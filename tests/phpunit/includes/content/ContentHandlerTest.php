@@ -2,6 +2,7 @@
 
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
 use MediaWiki\Page\PageIdentity;
@@ -40,6 +41,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 						'ParserFactory',
 						'GlobalIdGenerator',
 						'LanguageNameUtils',
+						'LinkRenderer',
 						'MagicWordFactory',
 						'ParsoidParserFactory',
 					],
@@ -507,6 +509,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( ParserFactory::class ),
 			$this->createMock( GlobalIdGenerator::class ),
 			$this->createMock( LanguageNameUtils::class ),
+			$this->createMock( LinkRenderer::class ),
 			$this->createMock( MagicWordFactory::class ),
 			$this->createMock( ParsoidParserFactory::class )
 		);

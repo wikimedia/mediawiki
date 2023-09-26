@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit;
 
 use FileContentHandler;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Title\TitleFactory;
@@ -34,6 +35,7 @@ class FileContentHandlerTest extends MediaWikiUnitTestCase {
 			$this->createMock( ParserFactory::class ),
 			$this->createMock( GlobalIdGenerator::class ),
 			$this->createMock( LanguageNameUtils::class ),
+			$this->createMock( LinkRenderer::class ),
 			$this->createMock( MagicWordFactory::class ),
 			$this->createMock( ParsoidParserFactory::class )
 		);

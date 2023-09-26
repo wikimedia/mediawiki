@@ -27,6 +27,7 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
@@ -54,6 +55,9 @@ class WikitextContentHandler extends TextContentHandler {
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
 
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
 	/** @var MagicWordFactory */
 	private $magicWordFactory;
 
@@ -66,6 +70,7 @@ class WikitextContentHandler extends TextContentHandler {
 	 * @param ParserFactory $parserFactory
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 * @param LanguageNameUtils $languageNameUtils
+	 * @param LinkRenderer $linkRenderer
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param ParsoidParserFactory $parsoidParserFactory
 	 */
@@ -75,6 +80,7 @@ class WikitextContentHandler extends TextContentHandler {
 		ParserFactory $parserFactory,
 		GlobalIdGenerator $globalIdGenerator,
 		LanguageNameUtils $languageNameUtils,
+		LinkRenderer $linkRenderer,
 		MagicWordFactory $magicWordFactory,
 		ParsoidParserFactory $parsoidParserFactory
 	) {
@@ -84,6 +90,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$this->parserFactory = $parserFactory;
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->languageNameUtils = $languageNameUtils;
+		$this->linkRenderer = $linkRenderer;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->parsoidParserFactory = $parsoidParserFactory;
 	}
@@ -183,6 +190,7 @@ class WikitextContentHandler extends TextContentHandler {
 			$this->parserFactory,
 			$this->globalIdGenerator,
 			$this->languageNameUtils,
+			$this->linkRenderer,
 			$this->magicWordFactory,
 			$this->parsoidParserFactory
 		);
@@ -373,7 +381,9 @@ class WikitextContentHandler extends TextContentHandler {
 			if ( $cpoParams->getGenerateHtml() ) {
 				$redirTarget = $content->getRedirectTarget();
 				$parserOutput->setRedirectHeader(
-					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $redirTarget, false )
+					$this->linkRenderer->makeRedirectHeader(
+						$title->getPageLanguage(), $redirTarget, false
+					)
 				);
 				$parserOutput->addModuleStyles( [ 'mediawiki.action.view.redirectPage' ] );
 			} else {

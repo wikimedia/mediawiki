@@ -1803,37 +1803,11 @@ class Article implements Page {
 	 * @param Title $target Destination to redirect
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
 	 * @return string Containing HTML with redirect link
+	 * @deprecated since 1.41, use LinkRenderer::makeRedirectHeader() instead
 	 */
 	public static function getRedirectHeaderHtml( Language $lang, Title $target, $forceKnown = false ) {
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-
-		$html = '<ul class="redirectText">';
-		if ( $forceKnown ) {
-			$link = $linkRenderer->makeKnownLink(
-				$target,
-				$target->getFullText(),
-				[],
-				// Make sure wiki page redirects are not followed
-				$target->isRedirect() ? [ 'redirect' => 'no' ] : []
-			);
-		} else {
-			$link = $linkRenderer->makeLink(
-				$target,
-				$target->getFullText(),
-				[],
-				// Make sure wiki page redirects are not followed
-				$target->isRedirect() ? [ 'redirect' => 'no' ] : []
-			);
-		}
-		$html .= '<li>' . $link . '</li>';
-		$html .= '</ul>';
-
-		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->escaped();
-
-		return '<div class="redirectMsg">' .
-			'<p>' . $redirectToText . '</p>' .
-			$html .
-			'</div>';
+		return $linkRenderer->makeRedirectHeader( $lang, $target, $forceKnown );
 	}
 
 	/**

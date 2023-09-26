@@ -20,6 +20,7 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 						'ParserFactory',
 						'GlobalIdGenerator',
 						'LanguageNameUtils',
+						'LinkRenderer',
 						'MagicWordFactory',
 						'ParsoidParserFactory',
 					],
