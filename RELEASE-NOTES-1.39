@@ -11,10 +11,56 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.39.4 ===
 * Localisation updates.
+* (T333050) Fix infinite loop for self-redirects with variants conversion.
+* docs: Fix a few typos in MainConfigSchema.
+* (T309714) mime: Add support for 'font/sfnt' mime type.
+* (T341434) WikiImporter: Improve error message output.
+* (T317255) VueComponentParser: Use Zest's getElementsByTagName() rather than
+  PHP's.
+* (T341737) ApiBase: Cast $id to string in filterIDs.
+* (T286291, T296188) Merge zh and zh-tw namespace translations back to zh-hans,
+  zh-hant, zh-hk respectively.
+* (T337875) WRStats: Round up SequenceSpec::hardExpiry to the nearest integer.
+* (T237898) installer: Check MariaDB version in updater/installer.
+* (T342632) ApiComparePages: Add help url.
+* (T326182, T324903) EditPage: Add #[AllowDynamicProperties].
+* (T342351) rdbms: Fix postgres db function call.
+* (T343675) user: Use {@} to escape annotation when writting about annotation.
+* (T343797) LanguageWa: Fix double timezone adjustment.
+* (T326454) Update pear/mail to 1.5.1.
+* (T343622) docs: Set the <comment> tag back to optional.
+* (T330528) Upgrade wikimedia/html-formatter from 3.0.1 to 4.0.3.
+* (T337463) wdio-mediawiki: await saveScreenshot.
+* (T274041) Include core PSR-4 classes in the generated classmap.
 * (T208477) $wgPrivilegedGroups – Users belonging in some of the listed groups
   will be audited more aggressively.
+* doc: Improve description of "type" in extension.schema.v2.json.
 * Added PrivilegedGroups attribute for extension.json / skin.json, which lets
   you add any new user groups you define to wgPrivilegedGroups (see above).
+* HTMLForm: Fix E_NOTICE when hide-if is used with setFormIdentifier.
+* (T288624) MultiHttpClient: Unset $this->cmh after closing it.
+* (T345039) Do not run SkinAfterBottomScripts hook twice unconditionally.
+* (T265734) API Help: Note that parameters may be inherited from other context.
+* API: Make continue parameter help description more specific.
+* (T285545) i18n: Split apihelp for standard dir parameter.
+* (T285545) i18n: Split apihelp for redirects/linkshere/transcludedin/fileusage
+  show.
+* (T285545) i18n: Split apihelp for parameter list=deletedrevs&drprop=.
+* (T285545) i18n: Split apihelp for parameter list=allpages&apprexpiry=.
+* (T285545) i18n: Split apihelp for parameter action=opensearch&redirects=.
+* (T285545) i18n: Split apihelp for parameter action=managetags&operation=.
+* (T285545) api: Add message for list=watchlist&wlprop=expiry.
+* (T334011) ApiComparePages: expose 'difftype' param if wikidiff2 is installed.
+* (T342633) api: Add message for action=compare&prop=timestamp.
+* API: revids=… does not necessarily return the queried revisions.
+* (T326696) user: Truncate option value in UserOptionsManager.
+* (T326696) ApiOptions: Give warning if the value is too long.
+* API i18n: Add {{PLURAL:}} for byte count messages.
+* (T235207) Get correct main page in API call examples.
+* doc: Make extension.schema.v2.json a valid JSON schema.
+* updateSpecialPages.php: Avoid implicit float conversion on modulo.
+* (T347227) ImportReporter: Make callback functions public.
+* (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
 
 == MediaWiki 1.39.4 ==
 
@@ -309,12 +355,13 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated OOUI from v0.43.2 to v0.44.5.
 * Updated composer/semver from 3.2.6 to 3.3.2.
 * Updated cssjanus/cssjanus fromv2.1.0 to v2.1.1.
-* Updated pear/mail from v1.4.1 to v1.5.0.
+* Updated pear/mail from v1.4.1 to v1.5.1.
 * Updated symfony/polyfill-php73 from 1.25.0 to 1.26.0.
 * Updated symfony/polyfill-php80 from 1.25.0 to 1.26.0.
 * Updated symfony/yaml from 5.4.3 to 5.4.10.
 * Updated vue/compat from 3.2.23 to 3.2.37.
 * Updated wikimedia/base-convert from 2.0.1 to 2.0.2.
+* Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * Updated wikimedia/ip-set from 3.0.0 to 3.1.0.
 * Updated wikimedia/minify from 2.2.6 to 2.3.0.
 * Updated wikimedia/php-session-serializer from 2.0.0 to 2.0.1.
