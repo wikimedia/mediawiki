@@ -5954,7 +5954,7 @@ class MainConfigSchema {
 	 * @since 1.41
 	 */
 	public const ResourceLoaderEnableSourceMapLinks = [
-		'default' => false,
+		'default' => true,
 	];
 
 	/**
