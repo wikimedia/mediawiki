@@ -26,6 +26,7 @@ use MediaWiki\User\UserIdentity;
 use ParserOptions;
 use Skin;
 use StatusValue;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * This class provides an implementation of the core hook interfaces,
@@ -353,6 +354,8 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialMuteModifyFormFieldsHook,
 	\MediaWiki\Hook\SpecialNewpagesConditionsHook,
 	\MediaWiki\Hook\SpecialNewPagesFiltersHook,
+	\MediaWiki\Hook\SpecialPrefixIndexGetFormFiltersHook,
+	\MediaWiki\Hook\SpecialPrefixIndexQueryHook,
 	\MediaWiki\Hook\SpecialRandomGetRandomTitleHook,
 	\MediaWiki\Hook\SpecialRecentChangesPanelHook,
 	\MediaWiki\Hook\SpecialResetTokensTokensHook,
@@ -3737,6 +3740,22 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialPasswordResetOnSubmit',
 			[ &$users, $data, &$error ]
+		);
+	}
+
+	public function onSpecialPrefixIndexGetFormFilters( IContextSource $contextSource, array &$filters ) {
+		$this->container->run(
+			'SpecialPrefixIndexGetFormFilters',
+			[ $contextSource, &$filters ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onSpecialPrefixIndexQuery( array $fieldData, SelectQueryBuilder $queryBuilder ) {
+		$this->container->run(
+			'SpecialPrefixIndexQuery',
+			[ $fieldData, $queryBuilder ],
+			[ 'abortable' => false ]
 		);
 	}
 
