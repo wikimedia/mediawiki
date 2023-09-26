@@ -2976,9 +2976,8 @@ class OutputPage extends ContextSource {
 	 *   since 1.41; use ::setPageTitleMsg() and ::setHTMLTitle() instead.
 	 */
 	public function prepareErrorPage( $pageTitle = null, $htmlTitle = false ) {
-		if ( $pageTitle !== null || $htmlTitle !== null ) {
-			// Passing explicit arguments is deprecated and will in the future
-			// emit a deprecation warning.
+		if ( $pageTitle !== null || $htmlTitle !== false ) {
+			wfDeprecated( __METHOD__ . ' with explicit arguments', '1.41' );
 			if ( $pageTitle !== null ) {
 				$this->setPageTitle( $pageTitle );
 			}
