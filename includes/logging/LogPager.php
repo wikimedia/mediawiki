@@ -444,7 +444,7 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	protected function doBatchLookups() {
-		$lb = $this->linkBatchFactory->newLinkBatch();
+		$lb = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $this->mResult as $row ) {
 			$lb->add( $row->log_namespace, $row->log_title );
 			$lb->addUser( new UserIdentityValue( (int)$row->log_user, $row->log_user_text ) );

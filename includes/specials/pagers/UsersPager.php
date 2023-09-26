@@ -319,7 +319,7 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	protected function doBatchLookups() {
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		$userIds = [];
 		# Give some pointers to make user links
 		foreach ( $this->mResult as $row ) {

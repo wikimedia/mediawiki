@@ -101,7 +101,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	protected function doBatchLookups() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		# Give some pointers to make (last) links
 		$this->prevId = [];
 		$rev_id = null;

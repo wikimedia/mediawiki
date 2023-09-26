@@ -103,7 +103,7 @@ class SpecialListRedirects extends QueryPage {
 			return;
 		}
 
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 			$redirTarget = $this->getRedirectTarget( $row );

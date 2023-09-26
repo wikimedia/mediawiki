@@ -592,9 +592,9 @@ abstract class Skin extends ContextSource {
 
 		if ( $titles ) {
 			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $titles );
-			$lb->setCaller( __METHOD__ );
-			$lb->execute();
+			$linkBatchFactory->newLinkBatch( $titles )
+				->setCaller( __METHOD__ )
+				->execute();
 		}
 	}
 

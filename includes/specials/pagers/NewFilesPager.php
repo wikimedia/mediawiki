@@ -195,7 +195,7 @@ class NewFilesPager extends RangeChronologicalPager {
 
 	protected function doBatchLookups() {
 		$this->mResult->seek( 0 );
-		$lb = $this->linkBatchFactory->newLinkBatch();
+		$lb = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $this->mResult as $row ) {
 			if ( $row->actor_user ) {
 				$lb->add( NS_USER, $row->actor_name );

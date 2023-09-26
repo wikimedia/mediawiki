@@ -57,12 +57,11 @@ class ProtectedTitlesPager extends AlphabeticPager {
 
 	protected function doBatchLookups() {
 		$this->mResult->seek( 0 );
-		$lb = $this->linkBatchFactory->newLinkBatch();
 
+		$lb = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $this->mResult as $row ) {
 			$lb->add( $row->pt_namespace, $row->pt_title );
 		}
-
 		$lb->execute();
 	}
 

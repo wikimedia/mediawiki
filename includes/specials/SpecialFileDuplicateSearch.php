@@ -183,7 +183,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 	 * @param File[] $list
 	 */
 	private function doBatchLookups( $list ) {
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $list as $file ) {
 			$batch->addObj( $file->getTitle() );
 			if ( $file->isLocal() ) {

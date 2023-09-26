@@ -198,7 +198,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		# Do a link batch query
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()
+			->setCaller( __METHOD__ );
 		$revIds = [];
 		$title = $this->getTitle();
 		foreach ( $this->mResult as $row ) {
