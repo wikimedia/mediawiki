@@ -1029,9 +1029,9 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		}
 		$out->addHTML( "<ul>\n" );
 
-		$linkBatch = $this->linkBatchFactory->newLinkBatch( $subpages );
-		$linkBatch->setCaller( __METHOD__ );
-		$linkBatch->execute();
+		$this->linkBatchFactory->newLinkBatch( $subpages )
+			->setCaller( __METHOD__ )
+			->execute();
 		$linkRenderer = $this->getLinkRenderer();
 
 		foreach ( $subpages as $subpage ) {

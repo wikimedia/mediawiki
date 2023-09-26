@@ -155,7 +155,8 @@ class UserCache {
 			}
 		}
 
-		$lb = $this->linkBatchFactory->newLinkBatch();
+		$lb = $this->linkBatchFactory->newLinkBatch()
+			->setCaller( __METHOD__ );
 		foreach ( $usersToCheck as $userId => $name ) {
 			if ( $this->queryNeeded( $userId, 'userpage', $options ) ) {
 				$lb->add( NS_USER, $name );

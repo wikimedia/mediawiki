@@ -505,7 +505,7 @@ class ImageListPager extends TablePager {
 
 	protected function doBatchLookups() {
 		$this->mResult->seek( 0 );
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		$rowsWithComments = [ 'img_description' => [], 'oi_description' => [], 'fr_description' => [] ];
 		foreach ( $this->mResult as $i => $row ) {
 			$batch->addUser( new UserIdentityValue( $row->actor_user ?? 0, $row->actor_name ) );

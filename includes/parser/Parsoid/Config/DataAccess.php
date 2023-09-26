@@ -198,9 +198,9 @@ class DataAccess extends IDataAccess {
 				$titleObjs[$name] = $t;
 			}
 		}
-		$linkBatch = $this->linkBatchFactory->newLinkBatch( $titleObjs );
-		$linkBatch->setCaller( __METHOD__ );
-		$linkBatch->execute();
+		$this->linkBatchFactory->newLinkBatch( $titleObjs )
+			->setCaller( __METHOD__ )
+			->execute();
 
 		foreach ( $titleObjs as $obj ) {
 			$pdbk = $obj->getPrefixedDBkey();

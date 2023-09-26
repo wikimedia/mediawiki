@@ -434,9 +434,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			}
 		}
 
-		// use LinkBatch to make sure, that all required data (associated with Titles)
-		// is loaded in one query
-		$lb = $this->linkBatchFactory->newLinkBatch();
+		// Optimization: Batch preload all Title data in one query
+		$lb = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $rows as $row ) {
 			$lb->add( $row->page_namespace, $row->page_title );
 		}
