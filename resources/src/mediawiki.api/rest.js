@@ -181,7 +181,7 @@
 			// Make the AJAX request.
 			xhr = $.ajax( ajaxOptions );
 
-			// Save it to to make it possible to abort.
+			// Save it to make it possible to abort.
 			requestIndex = this.requests.length;
 			this.requests.push( xhr );
 			xhr.always( function () {
