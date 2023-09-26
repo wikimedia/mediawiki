@@ -374,7 +374,7 @@ class GenerateSitemap extends Maintenance {
 							continue; // we don't want default variant
 						}
 						$entry = $this->fileEntry(
-							$title->getCanonicalURL( $vCode ),
+							$title->getCanonicalURL( [ 'variant' => $vCode ] ),
 							$date,
 							$this->priority( $namespace )
 						);
