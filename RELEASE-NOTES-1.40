@@ -6,11 +6,52 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.40.0 ===
 * Localisation updates.
+* (T333050) Fix infinite loop for self-redirects with variants conversion.
+* docs: Fix a few typos in MainConfigSchema.
+* (T290464) Add DiscussionTools bundling to release notes.
+* (T309714) mime: Add support for 'font/sfnt' mime type.
+* (T341434) WikiImporter: Improve error message output.
+* (T341737) ApiBase: Cast $id to string in filterIDs.
+* (T286291, T296188) Merge zh and zh-tw namespace translations back to zh-hans,
+  zh-hant, zh-hk respectively.
+* (T337875) WRStats: Round up SequenceSpec::hardExpiry to the nearest integer.
+* (T237898) installer: Check MariaDB version in updater/installer.
+* (T342632) ApiComparePages: Add help url.
+* (T326182, T324903) EditPage: Add #[AllowDynamicProperties].
+* (T342351) rdbms: Fix postgres db function call.
+* (T343675) user: Use {@} to escape annotation when writting about annotation.
+* (T343797) LanguageWa: Fix double timezone adjustment.
+* (T343669) skins: Avoid function call on array.
+* (T326454) Update pear/mail to 1.5.1.
+* (T343622) docs: Set the <comment> tag back to optional.
+* (T330528) Upgrade wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * Updated jQuery from v3.6.1 to v3.7.1.
+* (T337463) wdio-mediawiki: await saveScreenshot.
 * (T208477) $wgPrivilegedGroups – Users belonging in some of the listed groups
   will be audited more aggressively.
+* doc: Improve description of "type" in extension.schema.v2.json.
 * Added PrivilegedGroups attribute for extension.json / skin.json, which lets
   you add any new user groups you define to wgPrivilegedGroups (see above).
+* (T288624) MultiHttpClient: Unset $this->cmh after closing it.
+* (T345039) Do not run SkinAfterBottomScripts hook twice unconditionally.
+* (T265734) API Help: Note that parameters may be inherited from other context.
+* (T285545) i18n: Split apihelp for standard dir parameter.
+* (T285545) i18n: Split apihelp for redirects/linkshere/transcludedin/fileusage
+  show.
+* (T285545) i18n: Split apihelp for parameter list=deletedrevs&drprop=.
+* (T285545) i18n: Split apihelp for parameter list=allpages&apprexpiry=.
+* (T285545) i18n: Split apihelp for parameter action=opensearch&redirects=.
+* (T285545) i18n: Split apihelp for parameter action=managetags&operation=.
+* (T285545) api: Add message for list=watchlist&wlprop=expiry.
+* (T334011) ApiComparePages: expose 'difftype' param if wikidiff2 is installed.
+* (T342633) api: Add message for action=compare&prop=timestamp.
+* API: revids=… does not necessarily return the queried revisions.
+* (T235207) Get correct main page in API call examples.
+* doc: Make extension.schema.v2.json a valid JSON schema.
+* (T326696) Add since tag to UserOptionsManager::MAX_BYTES_OPTION_VALUE.
+* updateSpecialPages.php: Avoid implicit float conversion on modulo.
+* (T347227) ImportReporter: Make callback functions public.
+* (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
 
 == MediaWiki 1.40.0 ==
 
@@ -178,11 +219,12 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated cssjanus/cssjanus from 2.1.0 to 2.1.1.
 * Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
 * Updated justinrainbow/json-schema from 5.2.11 to 5.2.12.
-* Updated pear/mail from 1.4.1 to 1.5.0.
+* Updated pear/mail from 1.4.1 to 1.5.1.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
 * Updated psr/container from 1.1.1 to 1.1.2.
 * Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
 * Updated symfony/yaml from 5.4.10 to 5.4.17.
+* Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * Updated wikimedia/less.php from 3.1.0 to 4.0.0.
 * Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
 * Updated wikimedia/parsoid from 0.16.0 to 0.17.0.
