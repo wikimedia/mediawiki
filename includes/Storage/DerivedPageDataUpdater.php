@@ -1702,11 +1702,18 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$this->messageCache->updateMessageOverride( $title, $mainContent );
 		}
 
-		// TODO: move onArticleCreate and onArticle into a PageEventEmitter service
+		// TODO: move onArticleCreate and onArticleEdit into a PageEventEmitter service
 		if ( $this->options['created'] ) {
-			WikiPage::onArticleCreate( $title );
+			WikiPage::onArticleCreate( $title, $this->isRedirect() );
 		} elseif ( $this->options['changed'] ) { // T52785
-			WikiPage::onArticleEdit( $title, $this->revision, $this->getTouchedSlotRoles() );
+			WikiPage::onArticleEdit(
+				$title,
+				$this->revision,
+				$this->getTouchedSlotRoles(),
+				// Redirect target may have changed if the page is or was a redirect.
+				// (We can't check if it was definitely changed without additional queries.)
+				$this->isRedirect() || $this->wasRedirect()
+			);
 		} elseif ( $this->options['restored'] ) {
 			$this->mainWANObjectCache->touchCheckKey(
 				"DerivedPageDataUpdater:restore:page:$id"

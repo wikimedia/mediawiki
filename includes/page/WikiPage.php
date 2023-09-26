@@ -2688,8 +2688,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * This is called on page move and undelete, as well as edit
 	 *
 	 * @param Title $title
+	 * @param bool $maybeIsRedirect True if the page may have been created as a redirect.
+	 *   If false, this is used as a hint to skip some unnecessary updates.
 	 */
-	public static function onArticleCreate( Title $title ) {
+	public static function onArticleCreate( Title $title, $maybeIsRedirect = true ) {
 		// TODO: move this into a PageEventEmitter service
 
 		// Update existence markers on article/talk tabs...
@@ -2705,12 +2707,22 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$services->getLinkCache()->invalidateTitle( $title );
 
 		// Invalidate caches of articles which include this page
-		$job = HTMLCacheUpdateJob::newForBacklinks(
+		$jobs = [];
+		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
 			$title,
 			'templatelinks',
 			[ 'causeAction' => 'create-page' ]
 		);
-		$services->getJobQueueGroup()->lazyPush( $job );
+		// Images
+		if ( $maybeIsRedirect && $title->getNamespace() === NS_FILE ) {
+			// Process imagelinks when the file page was created as a redirect
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
+				[ 'causeAction' => 'create-page' ]
+			);
+		}
+		$services->getJobQueueGroup()->lazyPush( $jobs );
 
 		if ( $title->getNamespace() === NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
@@ -2781,11 +2793,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param RevisionRecord|null $revRecord revision that was just saved, may be null
 	 * @param string[]|null $slotsChanged The role names of the slots that were changed.
 	 *        If not given, all slots are assumed to have changed.
+	 * @param bool $maybeRedirectChanged True if the page's redirect target may have changed in the
+	 *   latest revision. If false, this is used as a hint to skip some unnecessary updates.
 	 */
 	public static function onArticleEdit(
 		Title $title,
 		RevisionRecord $revRecord = null,
-		$slotsChanged = null
+		$slotsChanged = null,
+		$maybeRedirectChanged = true
 	) {
 		// TODO: move this into a PageEventEmitter service
 
@@ -2797,6 +2812,15 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
 				$title,
 				'templatelinks',
+				[ 'causeAction' => 'edit-page' ]
+			);
+		}
+		// Images
+		if ( $maybeRedirectChanged && $title->getNamespace() === NS_FILE ) {
+			// Process imagelinks in case the redirect target has changed
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
 				[ 'causeAction' => 'edit-page' ]
 			);
 		}
