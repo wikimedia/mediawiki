@@ -1361,11 +1361,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			if ( $this->options['changed'] ) {
 				// The edit created a new revision
 				$this->pageState['oldId'] = $revision->getParentId();
-
-				if ( isset( $this->options['oldrevision'] ) ) {
-					$rev = $this->options['oldrevision'];
-					$this->pageState['oldRevision'] = $rev;
-				}
+				// Old revision is null if this is a page creation
+				$this->pageState['oldRevision'] = $this->options['oldrevision'] ?? null;
 			} else {
 				// This is a null-edit, so the old revision IS the new revision!
 				$this->pageState['oldId'] = $revision->getId();
