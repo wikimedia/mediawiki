@@ -26,7 +26,6 @@ use AutoCommitUpdate;
 use BacklinkCache;
 use DataUpdate;
 use DeferredUpdates;
-use DeprecationHelper;
 use Job;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
@@ -54,9 +53,6 @@ use Wikimedia\ScopedCallback;
  */
 class LinksUpdate extends DataUpdate {
 	use ProtectedHookAccessorTrait;
-	use DeprecationHelper;
-
-	// @todo make members protected, but make sure extensions don't break
 
 	/** @var int Page ID of the article linked from */
 	protected $mId;
@@ -96,79 +92,7 @@ class LinksUpdate extends DataUpdate {
 
 		$this->mTitle = Title::newFromPageIdentity( $page );
 		$this->mParserOutput = $parserOutput;
-
-		$this->deprecatePublicProperty( 'mId', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTitle', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mParserOutput', '1.38', __CLASS__ );
-
-		$this->deprecatePublicPropertyFallback( 'mLinks', '1.38',
-			function () {
-				return $this->getParserOutput()->getLinks();
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mImages', '1.38',
-			function () {
-				return $this->getParserOutput()->getImages();
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mTemplates', '1.38',
-			function () {
-				return $this->getParserOutput()->getTemplates();
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mExternals', '1.38',
-			function () {
-				return $this->getParserOutput()->getExternalLinks();
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mCategories', '1.38',
-			function () {
-				return $this->getParserOutput()->getCategories();
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mProperties', '1.38',
-			function () {
-				return $this->getParserOutput()->getPageProperties();
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mInterwikis', '1.38',
-			function () {
-				return $this->getParserOutput()->getInterwikiLinks();
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mInterlangs', '1.38',
-			function () {
-				$ill = $this->getParserOutput()->getLanguageLinks();
-				$res = [];
-				foreach ( $ill as $link ) {
-					[ $key, $title ] = explode( ':', $link, 2 );
-					$res[$key] = $title;
-				}
-				return $res;
-			},
-			null, __CLASS__
-		);
-		$this->deprecatePublicPropertyFallback( 'mCategories', '1.38',
-			function () {
-				$cats = $this->getParserOutput()->getCategories();
-				foreach ( $cats as &$sortkey ) {
-					# If the sortkey is longer then 255 bytes, it is truncated by DB, and then doesn't match
-					# when comparing existing vs current categories, causing T27254.
-					$sortkey = mb_strcut( $sortkey, 0, 255 );
-				}
-			},
-			null, __CLASS__
-		);
-
 		$this->mRecursive = $recursive;
-		$this->deprecatePublicProperty( 'mRecursive', '1.38', __CLASS__ );
 
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
