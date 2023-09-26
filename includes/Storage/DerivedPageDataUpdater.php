@@ -1498,7 +1498,10 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$linksUpdate = new LinksUpdate(
 			$title,
 			$parserOutput,
-			$recursive
+			$recursive,
+			// Redirect target may have changed if the page is or was a redirect.
+			// (We can't check if it was definitely changed without additional queries.)
+			$this->isRedirect() || $this->wasRedirect()
 		);
 		if ( $this->options['moved'] ) {
 			// @phan-suppress-next-line PhanTypeMismatchArgument Oldtitle is set along with moved

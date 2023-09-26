@@ -66,6 +66,9 @@ class LinksUpdate extends DataUpdate {
 	/** @var bool Whether to queue jobs for recursive updates */
 	protected $mRecursive;
 
+	/** @var bool Whether the page's redirect target may have changed in the latest revision */
+	protected $mMaybeRedirectChanged;
+
 	/** @var RevisionRecord Revision for which this update has been triggered */
 	private $mRevisionRecord;
 
@@ -84,15 +87,23 @@ class LinksUpdate extends DataUpdate {
 	 * @param PageIdentity $page The page we're updating
 	 * @param ParserOutput $parserOutput Output from a full parse of this page
 	 * @param bool $recursive Queue jobs for recursive updates?
+	 * @param bool $maybeRedirectChanged True if the page's redirect target may have changed in the
+	 *   latest revision. If false, this is used as a hint to skip some unnecessary updates.
 	 *
 	 * @throws MWException
 	 */
-	public function __construct( PageIdentity $page, ParserOutput $parserOutput, $recursive = true ) {
+	public function __construct(
+		PageIdentity $page,
+		ParserOutput $parserOutput,
+		$recursive = true,
+		$maybeRedirectChanged = true
+	) {
 		parent::__construct();
 
 		$this->mTitle = Title::newFromPageIdentity( $page );
 		$this->mParserOutput = $parserOutput;
 		$this->mRecursive = $recursive;
+		$this->mMaybeRedirectChanged = $maybeRedirectChanged;
 
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
@@ -238,8 +249,8 @@ class LinksUpdate extends DataUpdate {
 		self::queueRecursiveJobsForTable(
 			$this->mTitle, 'templatelinks', $action, $agent, $backlinkCache
 		);
-		if ( $this->mTitle->getNamespace() === NS_FILE ) {
-			// Process imagelinks in case the title is or was a redirect
+		if ( $this->mMaybeRedirectChanged && $this->mTitle->getNamespace() === NS_FILE ) {
+			// Process imagelinks in case the redirect target has changed
 			self::queueRecursiveJobsForTable(
 				$this->mTitle, 'imagelinks', $action, $agent, $backlinkCache
 			);
