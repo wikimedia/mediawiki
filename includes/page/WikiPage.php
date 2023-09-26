@@ -1780,7 +1780,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param int|false $originalRevId: The ID of an original revision that the edit
 	 * restores or repeats. The new revision is expected to have the exact same content as
 	 * the given original revision. This is used with rollbacks and with dummy "null" revisions
-	 * which are created to record things like page moves.
+	 * which are created to record things like page moves. Default is false, meaning we are not
+	 * making a rollback edit.
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)

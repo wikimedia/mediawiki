@@ -390,8 +390,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "#REDIRECT [[{$title->getPrefixedText()}]]" ),
 			$this->getTestSysop()->getUser(),
 			"testing 1",
-			EDIT_NEW,
-			false
+			EDIT_NEW
 		);
 		$this->forceRevisionDate( $rpage, '20120101000000' );
 
@@ -400,8 +399,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "#REDIRECT [[{$title->getPrefixedText()}]]\n\n[[Category:Test]]" ),
 			$this->getTestUser()->getUser(),
 			"testing 2",
-			EDIT_UPDATE,
-			$page->getLatest()
+			EDIT_UPDATE
 		);
 		$this->forceRevisionDate( $rpage, '20120101020202' );
 
@@ -441,8 +439,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "#REDIRECT [[{$title->getPrefixedText()}]]" ),
 			$this->getTestSysop()->getUser(),
 			"testing 1",
-			EDIT_NEW,
-			false
+			EDIT_NEW
 		);
 		$this->forceRevisionDate( $rpage, '20120101000000' );
 
@@ -451,8 +448,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "#REDIRECT [[{$title->getPrefixedText()}]]\n\n[[Category:Test]]" ),
 			$this->getTestUser()->getUser(),
 			"testing 2",
-			EDIT_UPDATE,
-			$page->getLatest()
+			EDIT_UPDATE
 		);
 		$this->forceRevisionDate( $rpage, '20120101020202' );
 
@@ -486,8 +482,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo" ),
 			$this->getTestSysop()->getUser(),
 			"testing 1",
-			EDIT_NEW,
-			false
+			EDIT_NEW
 		);
 		$this->forceRevisionDate( $page, '20120101000000' );
 		$baseId = $page->getRevisionRecord()->getId();
@@ -497,8 +492,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo bar" ),
 			$this->getTestUser()->getUser(),
 			"testing 2",
-			EDIT_UPDATE,
-			$page->getLatest()
+			EDIT_UPDATE
 		);
 		$this->forceRevisionDate( $page, '20120101020202' );
 
@@ -531,8 +525,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo" ),
 			$this->getTestSysop()->getUser(),
 			"testing 1",
-			EDIT_NEW,
-			false
+			EDIT_NEW
 		);
 		$this->forceRevisionDate( $page, '20120101000000' );
 		$baseTime = $page->getRevisionRecord()->getTimestamp();
@@ -542,8 +535,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo bar" ),
 			$this->getTestUser()->getUser(),
 			"testing 2",
-			EDIT_UPDATE,
-			$page->getLatest()
+			EDIT_UPDATE
 		);
 		$this->forceRevisionDate( $page, '20120101020202' );
 
@@ -579,8 +571,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo" ),
 			$this->getTestSysop()->getUser(),
 			"testing 1",
-			EDIT_NEW,
-			false
+			EDIT_NEW
 		);
 		$this->forceRevisionDate( $page, '20120101000000' );
 		$baseTime = $page->getRevisionRecord()->getTimestamp();
@@ -590,8 +581,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo bar" ),
 			$this->getTestUser()->getUser(),
 			"testing 2",
-			EDIT_UPDATE,
-			$page->getLatest()
+			EDIT_UPDATE
 		);
 		$this->forceRevisionDate( $page, '20120101020202' );
 
@@ -632,8 +622,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "#REDIRECT [[{$title->getPrefixedText()}]]" ),
 			$this->getTestSysop()->getUser(),
 			"testing 1",
-			EDIT_NEW,
-			false
+			EDIT_NEW
 		);
 		$this->forceRevisionDate( $rpage, '20120101000000' );
 
@@ -642,8 +631,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo bar" ),
 			$this->getTestUser()->getUser(),
 			"testing 2",
-			EDIT_UPDATE,
-			$page->getLatest()
+			EDIT_UPDATE
 		);
 		$this->forceRevisionDate( $rpage, '20120101020202' );
 
@@ -1755,8 +1743,7 @@ class ApiEditPageTest extends ApiTestCase {
 			new WikitextContent( "Foo" ),
 			$this->getTestSysop()->getUser(),
 			"testing 1",
-			EDIT_NEW,
-			false
+			EDIT_NEW
 		);
 		$this->forceRevisionDate( $page, '20120101000000' );
 		$baseId = $page->getRevisionRecord()->getId();
@@ -1768,12 +1755,11 @@ class ApiEditPageTest extends ApiTestCase {
 			new JavaScriptContent( "Bar" ),
 			$this->getTestUser()->getUser(),
 			"testing 2",
-			EDIT_UPDATE,
-			$page->getLatest()
+			EDIT_UPDATE
 		);
 		$this->forceRevisionDate( $page, '20120101020202' );
 
-		// ContentHanlder may throw exception if we attempt saving the above, so we will
+		// ContentHandler may throw exception if we attempt saving the above, so we will
 		// handle that with contentmodel-mismatch error. Test this is the case.
 		try {
 			$this->doApiRequestWithToken( [
