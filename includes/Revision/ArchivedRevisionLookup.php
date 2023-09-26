@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Revision;
 
-use ChangeTags;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -59,38 +59,22 @@ class ArchivedRevisionLookup {
 	 * @return IResultWrapper
 	 */
 	public function listRevisions( PageIdentity $page, array $extraConds = [], ?int $limit = null ) {
-		$queryInfo = $this->revisionStore->getArchiveQueryInfo();
-
-		$conds = array_merge( $extraConds, [
-			'ar_namespace' => $page->getNamespace(),
-			'ar_title' => $page->getDBkey(),
-		] );
+		$queryBuilder = $this->revisionStore->newArchiveSelectQueryBuilder( $this->dbProvider->getReplicaDatabase() )
+			->joinComment()
+			->where( $extraConds )
+			->andWhere( [ 'ar_namespace' => $page->getNamespace(), 'ar_title' => $page->getDBkey() ] );
 
 		// NOTE: ordering by ar_timestamp and ar_id, to remove ambiguity.
 		// XXX: Ideally, we would be ordering by ar_timestamp and ar_rev_id, but since we
 		// don't have an index on ar_rev_id, that causes a file sort.
-		$options = [ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ];
+		$queryBuilder->orderBy( [ 'ar_timestamp', 'ar_id' ], SelectQueryBuilder::SORT_DESC );
 		if ( $limit !== null ) {
-			$options['LIMIT'] = $limit;
+			$queryBuilder->limit( $limit );
 		}
 
-		ChangeTags::modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$conds,
-			$queryInfo['joins'],
-			$options,
-			''
-		);
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'archive' );
 
-		return $this->dbProvider->getReplicaDatabase()->select(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$conds,
-			__METHOD__,
-			$options,
-			$queryInfo['joins']
-		);
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**

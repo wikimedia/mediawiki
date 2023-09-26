@@ -20,12 +20,13 @@
  */
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Status\Status;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * List for archive table items, i.e. revisions deleted via action=delete
@@ -74,7 +75,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param \Wikimedia\Rdbms\IReadableDatabase $db
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
@@ -83,33 +84,18 @@ class RevDelArchiveList extends RevDelRevisionList {
 			$timestamps[] = $db->timestamp( $id );
 		}
 
-		$arQuery = $this->revisionStore->getArchiveQueryInfo();
-		$tables = $arQuery['tables'];
-		$fields = $arQuery['fields'];
-		$conds = [
-			'ar_namespace' => $this->getPage()->getNamespace(),
-			'ar_title' => $this->getPage()->getDBkey(),
-			'ar_timestamp' => $timestamps,
-		];
-		$join_conds = $arQuery['joins'];
-		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
+		$queryBuilder = $this->revisionStore->newArchiveSelectQueryBuilder( $db )
+			->joinComment()
+			->where( [
+				'ar_namespace' => $this->getPage()->getNamespace(),
+				'ar_title' => $this->getPage()->getDBkey(),
+				'ar_timestamp' => $timestamps,
+			] )
+			->orderBy( 'ar_timestamp', SelectQueryBuilder::SORT_DESC );
 
-		ChangeTags::modifyDisplayQuery(
-			$tables,
-			$fields,
-			$conds,
-			$join_conds,
-			$options,
-			''
-		);
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'archive' );
 
-		return $db->select( $tables,
-			$fields,
-			$conds,
-			__METHOD__,
-			$options,
-			$join_conds
-		);
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	public function newItem( $row ) {

@@ -19,10 +19,11 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Stores a list of taggable log entries.
@@ -34,30 +35,17 @@ class ChangeTagsLogList extends ChangeTagsList {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param \Wikimedia\Rdbms\IReadableDatabase $db
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		$queryInfo = DatabaseLogEntry::getSelectQueryData();
-		$queryInfo['conds'] += [ 'log_id' => $ids ];
-		$queryInfo['options'] += [ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ];
-		ChangeTags::modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			$queryInfo['join_conds'],
-			$queryInfo['options'],
-			''
-		);
-		return $db->select(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			__METHOD__,
-			$queryInfo['options'],
-			$queryInfo['join_conds']
-		);
+		$queryBuilder = DatabaseLogEntry::newSelectQueryBuilder( $db )
+			->where( [ 'log_id' => $ids ] )
+			->orderBy( [ 'log_timestamp', 'log_id' ], SelectQueryBuilder::SORT_DESC );
+
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'logging' );
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	public function newItem( $row ) {
