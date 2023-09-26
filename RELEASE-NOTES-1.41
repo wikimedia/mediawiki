@@ -505,6 +505,8 @@ because of Phabricator reports.
 * User::CHECK_USER_RIGHTS and User::IGNORE_USER_RIGHTS were removed. They were
   flags passed to methods which were previously removed.
 * All public properties of LinksUpdate, deprecated in 1.38, were removed.
+* The class Wikimedia\Rdbms\MySQLMasterPos, deprecated in 1.37, has been
+  removed. Use Wikimedia\Rdbms\MySQLPrimaryPos instead.
 * …
 
 === Deprecations in 1.41 ===

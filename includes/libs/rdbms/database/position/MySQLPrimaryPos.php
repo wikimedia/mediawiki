@@ -332,10 +332,3 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 	}
 
 }
-
-/**
- * Deprecated alias, renamed as of MediaWiki 1.37
- *
- * @deprecated since 1.37
- */
-class_alias( MySQLPrimaryPos::class, 'Wikimedia\\Rdbms\\MySQLMasterPos' );

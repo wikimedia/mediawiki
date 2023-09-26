@@ -3132,7 +3132,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\MWPostgreSqlPlatform' => __DIR__ . '/includes/libs/rdbms/dbal/MWPostgreSqlPlatform.php',
 	'Wikimedia\\Rdbms\\MaintainableDBConnRef' => __DIR__ . '/includes/libs/rdbms/database/MaintainableDBConnRef.php',
 	'Wikimedia\\Rdbms\\MySQLField' => __DIR__ . '/includes/libs/rdbms/field/MySQLField.php',
-	'Wikimedia\\Rdbms\\MySQLMasterPos' => __DIR__ . '/includes/libs/rdbms/database/position/MySQLPrimaryPos.php',
 	'Wikimedia\\Rdbms\\MySQLPrimaryPos' => __DIR__ . '/includes/libs/rdbms/database/position/MySQLPrimaryPos.php',
 	'Wikimedia\\Rdbms\\MysqliResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/MysqliResultWrapper.php',
 	'Wikimedia\\Rdbms\\NextSequenceValue' => __DIR__ . '/includes/libs/rdbms/database/utils/NextSequenceValue.php',
