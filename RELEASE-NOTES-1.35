@@ -18,6 +18,11 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.11 ===
 * Localisation updates.
+* (T333050) Fix infinite loop for self-redirects with variants conversion.
+* (T341434) WikiImporter: Improve error message output.
+* (T341737) ApiBase: Cast $id to string in filterIDs.
+* (T342632) ApiComparePages: Add help url.
+* (T347227) ImportReporter: Make callback functions public.
 
 == MediaWiki 1.35.11 ==
 
