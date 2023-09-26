@@ -25,7 +25,7 @@ class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAcquireLinkTargetId( $target ) {
 		$linkTargetStore = $this->getServiceContainer()->getLinkTargetLookup();
-		$db = $this->getServiceContainer()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$db = $this->getDb();
 		$id = $linkTargetStore->acquireLinkTargetId( $target, $db );
 		$row = $db->newSelectQueryBuilder()
 			->select( [ 'lt_id', 'lt_namespace', 'lt_title' ] )
@@ -42,7 +42,7 @@ class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetLinkTargetById( $target ) {
 		$linkTargetStore = MediaWikiServices::getInstance()->getLinkTargetLookup();
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$db = $this->getDb();
 		$id = $linkTargetStore->acquireLinkTargetId( $target, $db );
 		$actualLinkTarget = $linkTargetStore->getLinkTargetById( $id, $db );
 		$this->assertEquals( $target, $actualLinkTarget );
@@ -55,7 +55,7 @@ class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetLinkTargetByIdWithoutCache( $target ) {
 		$linkTargetStore = MediaWikiServices::getInstance()->getLinkTargetLookup();
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$db = $this->getDb();
 		$id = $linkTargetStore->acquireLinkTargetId( $target, $db );
 		$linkTargetStore->clearClassCache();
 		$actualLinkTarget = $linkTargetStore->getLinkTargetById( $id, $db );
