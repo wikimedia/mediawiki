@@ -24,7 +24,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\User\ActorMigration;
 use MediaWiki\WikiMap\WikiMap;
 
 class InitEditCount extends Maintenance {
@@ -51,8 +50,6 @@ class InitEditCount extends Maintenance {
 			$backgroundMode = $lb->hasReplicaServers();
 		}
 
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
-
 		if ( $backgroundMode ) {
 			$this->output( "Using replication-friendly background mode...\n" );
 
@@ -68,21 +65,21 @@ class InitEditCount extends Maintenance {
 			for ( $min = 0; $min <= $lastUser; $min += $chunkSize ) {
 				$max = $min + $chunkSize;
 
-				$revUser = $actorQuery['fields']['rev_user'];
-				$result = $dbr->select(
-					[ 'user', 'rev' => [ 'revision' ] + $actorQuery['tables'] ],
-					[ 'user_id', 'user_editcount' => "COUNT($revUser)" ],
-					"user_id > $min AND user_id <= $max",
-					__METHOD__,
-					[ 'GROUP BY' => 'user_id' ],
-					[ 'rev' => [ 'LEFT JOIN', "user_id = $revUser" ] ] + $actorQuery['joins']
-				);
+				$result = $dbr->newSelectQueryBuilder()
+					->select( [ 'user_id', 'user_editcount' => "COUNT(actor_rev_user.actor_user)" ] )
+					->from( 'user' )
+					->leftJoin( 'revision', 'rev', "user_id = actor_rev_user.actor_user" )
+					->join( 'actor', 'actor_rev_user', 'actor_rev_user.actor_id = rev_actor' )
+					->where( "user_id > $min AND user_id <= $max" )
+					->groupBy( 'user_id' )
+					->caller( __METHOD__ )->fetchResultSet();
 
 				foreach ( $result as $row ) {
-					$dbw->update( 'user',
-						[ 'user_editcount' => $row->user_editcount ],
-						[ 'user_id' => $row->user_id ],
-						__METHOD__ );
+					$dbw->newUpdateQueryBuilder()
+						->update( 'user' )
+						->set( [ 'user_editcount' => $row->user_editcount ] )
+						->where( [ 'user_id' => $row->user_id ] )
+						->caller( __METHOD__ )->execute();
 					++$migrated;
 				}
 
@@ -101,14 +98,13 @@ class InitEditCount extends Maintenance {
 			$this->output( "Using single-query mode...\n" );
 
 			$user = $dbw->tableName( 'user' );
-			$subquery = $dbw->selectSQLText(
-				[ 'revision' ] + $actorQuery['tables'],
-				[ 'COUNT(*)' ],
-				[ 'user_id = ' . $actorQuery['fields']['rev_user'] ],
-				__METHOD__,
-				[],
-				$actorQuery['joins']
-			);
+			$subquery = $dbw->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'revision' )
+				->join( 'actor', 'actor_rev_user', 'actor_rev_user.actor_id = rev_actor' )
+				->where( 'user_id = actor_rev_user.actor_user' )
+				->caller( __METHOD__ )->getSQL();
+
 			$dbw->query( "UPDATE $user SET user_editcount=($subquery)", __METHOD__ );
 		}
 

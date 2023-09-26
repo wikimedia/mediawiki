@@ -23,7 +23,6 @@
  */
 
 use MediaWiki\Title\Title;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\User;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -114,16 +113,14 @@ class RollbackEdits extends Maintenance {
 	private function getRollbackTitles( $user ) {
 		$dbr = $this->getDB( DB_REPLICA );
 		$titles = [];
-		$actorQuery = ActorMigration::newMigration()
-			->getWhere( $dbr, 'rev_user', User::newFromName( $user, false ) );
-		$results = $dbr->select(
-			[ 'page', 'revision' ] + $actorQuery['tables'],
-			[ 'page_namespace', 'page_title' ],
-			$actorQuery['conds'],
-			__METHOD__,
-			[],
-			[ 'revision' => [ 'JOIN', 'page_latest = rev_id' ] ] + $actorQuery['joins']
-		);
+
+		$results = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->join( 'revision', null, 'page_latest = rev_id' )
+			->join( 'actor', null, 'rev_actor = actor_id' )
+			->where( [ 'actor_name' => $user ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		foreach ( $results as $row ) {
 			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}

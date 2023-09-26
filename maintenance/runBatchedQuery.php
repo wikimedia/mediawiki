@@ -25,7 +25,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * Maintenance script to run a database query in batches and wait for replica DBs.
@@ -71,14 +71,21 @@ class RunBatchedQuery extends Maintenance {
 			$this->output( "Batch $n: " );
 			$n++;
 
-			// Note that the update conditions do not rely on atomicity of the
+			// Note that the update conditions do not rely on the atomicity of the
 			// SELECT query in order to guarantee that all rows are updated. The
 			// results of the SELECT are merely a partitioning hint. Simultaneous
 			// updates merely result in the wrong number of rows being updated
 			// in a batch.
 
-			$res = $dbw->select( $table, $key, $selectConds, __METHOD__,
-				[ 'ORDER BY' => $key, 'LIMIT' => $batchSize ] );
+			$res = $dbw->newSelectQueryBuilder()
+				->select( $key )
+				->from( $table )
+				->where( $selectConds )
+				->orderBy( $key )
+				->limit( $batchSize )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
 			if ( $res->numRows() ) {
 				$res->seek( $res->numRows() - 1 );
 				$row = $res->fetchObject();
@@ -95,7 +102,7 @@ class RunBatchedQuery extends Maintenance {
 
 			$query = "UPDATE " . $dbw->tableName( $table ) .
 				" SET " . $set .
-				" WHERE " . $dbw->makeList( $updateConds, IDatabase::LIST_AND );
+				" WHERE " . $dbw->makeList( $updateConds, ISQLPlatform::LIST_AND );
 
 			$dbw->query( $query, __METHOD__ );
 

@@ -499,7 +499,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *
 	 * @param string[]|string $fields The field or list of fields to order by.
 	 * @param string|null $direction self::SORT_ASC or self::SORT_DESC.
-	 * If this is null then $fields is assumed to optionally contain ASC or DESC
+	 * If this is null, then $fields is assumed to optionally contain ASC or DESC
 	 * after each field name.
 	 * @return $this
 	 */
