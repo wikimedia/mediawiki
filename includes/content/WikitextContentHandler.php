@@ -358,8 +358,10 @@ class WikitextContentHandler extends TextContentHandler {
 		$parserOptions = $cpoParams->getParserOptions();
 		$revId = $cpoParams->getRevId();
 
-		[ $redir, $text ] = $content->getRedirectTargetAndText();
-		if ( $parserOptions->getUseParsoid() && !$redir ) {
+		[ $redir, $text ] = $content->getRedirectTargetAndText(
+			$this->titleFactory, $this->magicWordFactory
+		);
+		if ( $parserOptions->getUseParsoid() ) {
 			$parser = $this->parsoidParserFactory->create();
 		} else {
 			$parser = $this->parserFactory->getInstance();
@@ -379,7 +381,9 @@ class WikitextContentHandler extends TextContentHandler {
 			// Make sure to include the redirect link in pagelinks
 			$parserOutput->addLink( $redir );
 			if ( $cpoParams->getGenerateHtml() ) {
-				$redirTarget = $content->getRedirectTarget();
+				[ $redirTarget, ] = $content->getRedirectTargetAndText(
+					$this->titleFactory, $this->magicWordFactory
+				);
 				$parserOutput->setRedirectHeader(
 					$this->linkRenderer->makeRedirectHeader(
 						$title->getPageLanguage(), $redirTarget, false
