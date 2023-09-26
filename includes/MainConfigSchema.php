@@ -5469,7 +5469,7 @@ class MainConfigSchema {
 	 *
 	 *   This option is **deprecated**. See [T127268](https://phabricator.wikimedia.org/T127268).
 	 *
-	 *   Default: `["desktop"]`
+	 *   Default: `[ 'desktop', 'mobile' ]`
 	 *
 	 * ## FileModule options
 	 *

@@ -3417,7 +3417,7 @@ config-schema:
               This is used by the MobileFrontend extension to prevent certain modules
               from being loaded.
               This option is **deprecated**. See [T127268](https://phabricator.wikimedia.org/T127268).
-              Default: `["desktop"]`
+              Default: `[ 'desktop', 'mobile' ]`
             ## FileModule options
             - localBasePath `{string}`:
               Base file path to prepend to relative file paths specified in other options.
