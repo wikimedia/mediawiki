@@ -3065,6 +3065,7 @@
 	"allmessagescurrent": "Message actuel",
 	"allmessagestext": "Ceci est la liste des messages système disponibles dans l’espace de noms MediaWiki.\nVeuillez visiter la [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Régionalisation de MediaWiki] et [https://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la régionalisation générique de MediaWiki.",
 	"allmessages-not-supported-database": "Cette page n’est pas utilisable car <strong>$wgUseDatabaseMessages</strong> a été désactivé.",
+	"allmessages-unknown-language": "Le code de langue <code>$1</code> est inconnu.",
 	"allmessages-filter-legend": "Filtrer",
 	"allmessages-filter": "Filtrer par état de personnalisation :",
 	"allmessages-filter-unmodified": "Non modifié",

@@ -2893,6 +2893,7 @@
 	"allmessagescurrent": "Сегашен текст",
 	"allmessagestext": "Ова е список на системските пораки расположливи за именскиот простор „МедијаВики“.\nОдете на [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Превод на МедијаВики] и [https://translatewiki.net translatewiki.net] ако сакате да придонесете кон општото преведување на МедијаВики.",
 	"allmessages-not-supported-database": "Оваа страница не може да се користи бидејќи '''$wgUseDatabaseMessages''' е исклучено.",
+	"allmessages-unknown-language": "Јазичниот код <code>$1</code> е непознат.",
 	"allmessages-filter-legend": "Филтер",
 	"allmessages-filter": "Филтрирај по состојба на прилагодувањето:",
 	"allmessages-filter-unmodified": "Неизменети",

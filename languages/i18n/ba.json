@@ -2887,6 +2887,7 @@
 	"allmessagescurrent": "Ағымдағы текст",
 	"allmessagestext": "Түбәндә MediaWiki исемдәр арауығында ҡулланылған система хәбәрҙәре исемлеге килтерелгән.\nӘгәр MediaWiki программаһын дөйөм локалләштереү эшенә үҙ өлөшөгөҙҙө керетергә теләһәгеҙ, [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki программаһын локалләштереү] битен һәм [https://translatewiki.net translatewiki.net] проектын ҡарап сығығыҙ.",
 	"allmessages-not-supported-database": "Был бит ҡулланыла алмай, сөнки <strong>$wgUseDatabaseMessages</strong> мөмкинлеге һүндерелгән.",
+	"allmessages-unknown-language": "<code>$1</code> коды теле билдәһеҙ.",
 	"allmessages-filter-legend": "Фильтр",
 	"allmessages-filter": "Көйләү торошо буйынса фильтрларға:",
 	"allmessages-filter-unmodified": "Үҙгәртелмәгәндәр",

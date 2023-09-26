@@ -2869,6 +2869,7 @@
 	"allmessagescurrent": "Алиез иворгожтос",
 	"allmessagestext": "MediaWiki нимвӧлметысь кутыны луымон сӧзнэт иворъёсын лыдъет.\nАсьтэлэсь ваёстэс потэ ке пыртэмды MediaWiki-лэн огъя интыяськонтӥяз, пыралэ татчы, тауна: [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Интыяськонтӥ MediaWiki] но [https://translatewiki\n.net translatewiki.net].",
 	"allmessages-not-supported-database": "Та бамез кутыны уг луы, малы ке шуоно, <strong>$wgUseDatabaseMessages\n</strong> дугдытэмын.",
+	"allmessages-unknown-language": "Кыллэн кодэз <code>$1</code> тодмотэм.",
 	"allmessages-filter-legend": "Сӥсъет",
 	"allmessages-filter": "Инэтэз ладъян сӥсъет:",
 	"allmessages-filter-unmodified": "Вошъяськисьтэм",
