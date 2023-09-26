@@ -38,6 +38,7 @@ use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Message;
 use PermissionsError;
+use StatusValue;
 use ThrottledError;
 use UserBlockedError;
 
@@ -157,7 +158,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		// error out if sending user cannot do this
+		// Error out if sending user cannot do this. Don't authorize yet.
 		$error = self::getPermissionsError(
 			$this->getUser(),
 			$this->getRequest()->getVal( 'wpEditToken' ),
@@ -253,12 +254,17 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @param User $user
 	 * @param string $editToken
 	 * @param Config|null $config optional for backwards compatibility
+	 * @param bool $authorize whether to authorize the immediate sending of mails,
+	 *        rather than just checking beforehand.
+	 *
 	 * @return null|string|array Null on success, string on error, or array on
 	 *  hook error
 	 */
-	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
+	public static function getPermissionsError( $user, $editToken, Config $config = null, $authorize = false ) {
 		$emailUser = MediaWikiServices::getInstance()->getEmailUserFactory()->newEmailUserBC( $user, $config );
-		$status = $emailUser->authorizeSend( (string)$editToken );
+		$status = $authorize ? $emailUser->authorizeSend( (string)$editToken )
+			: $emailUser->canSend( (string)$editToken );
+
 		if ( $status->isGood() ) {
 			return null;
 		}
@@ -346,14 +352,24 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 	/**
 	 * @param array $data
-	 * @return Status|false
+	 * @return StatusValue|false
 	 */
 	public function onFormSubmit( array $data ) {
 		$target = $this->userFactory->newFromName( $data['Target'] );
 		if ( !$target instanceof User ) {
-			return Status::newFatal( 'emailnotarget' );
+			return StatusValue::newFatal( 'emailnotarget' );
 		}
-		$res = $this->emailUserFactory->newEmailUser( $this->getAuthority() )->sendEmailUnsafe(
+
+		$emailUser = $this->emailUserFactory->newEmailUser( $this->getAuthority() );
+
+		// Fully authorize on sending emails.
+		$status = $emailUser->authorizeSend( $this->getRequest()->getVal( 'wpEditToken' ) );
+
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$res = $emailUser->sendEmailUnsafe(
 			$target,
 			$data['Subject'],
 			$data['Text'],
@@ -374,6 +390,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Really send a mail. Permissions should have been checked using
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
+	 *
+	 * @todo Deprecate this method, move the code into ApiEmailUser. It seems unused otherwise.
 	 *
 	 * @param array $data
 	 * @param IContextSource $context

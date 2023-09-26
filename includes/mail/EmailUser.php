@@ -20,28 +20,20 @@
 
 namespace MediaWiki\Mail;
 
-use BadMethodCallException;
 use MailAddress;
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\CentralId\CentralIdLookup;
-use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
-use Message;
 use MessageSpecifier;
-use RequestContext;
-use RuntimeException;
 use StatusValue;
-use ThrottledError;
 use UnexpectedValueException;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Message\ITextFormatter;
@@ -168,16 +160,16 @@ class EmailUser {
 	}
 
 	/**
-	 * Authorize the email sending, checking permissions etc.
+	 * Checks whether email sending is allowed.
 	 *
-	 * @internal This method should only be used by SpecialEmailUser. This could change when the $editToken parameter
-	 * is removed.
+	 * @internal This method should only be used by SpecialEmailUser.
+	 * This could change when the $editToken parameter is removed.
 	 *
 	 * @param string $editToken
-	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing a message key to use
-	 * with ErrorPageError. Only SpecialEmailUser should rely on this.
+	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing
+	 * a message key to use with ErrorPageError. Only SpecialEmailUser should rely on this.
 	 */
-	public function authorizeSend( string $editToken ): StatusValue {
+	public function canSend( string $editToken ): StatusValue {
 		if (
 			!$this->options->get( MainConfigNames::EnableEmail ) ||
 			!$this->options->get( MainConfigNames::EnableUserEmail )
@@ -193,21 +185,9 @@ class EmailUser {
 			return StatusValue::newFatal( 'mailnologin' );
 		}
 
-		// TODO We should simply use Authority for checking permissions and blocks (and the rate limit, after T310476)
-		// However, that requires a target page, and it's unclear what page should be used here (T339822).
-		if ( !$this->sender->isAllowed( 'sendemail' ) ) {
-			return StatusValue::newFatal( 'badaccess' );
-		}
-
-		$block = $this->sender->getBlock();
-		if ( $block instanceof AbstractBlock && $block->appliesToRight( 'sendemail' ) ) {
-			return StatusValue::newFatal( $this->getBlockedMessage( $user ) );
-		}
-
-		// Check the ping limiter without incrementing it - we'll check it
-		// again later and increment it on a successful send
-		if ( $user->pingLimiter( 'sendemail', 0 ) ) {
-			return StatusValue::newFatal( 'actionthrottledtext' );
+		$status = PermissionStatus::newGood();
+		if ( !$this->sender->isDefinitelyAllowed( 'sendemail', $status ) ) {
+			return $status;
 		}
 
 		$hookErr = false;
@@ -222,10 +202,34 @@ class EmailUser {
 			$ret->value = $hookErr[0];
 			return $ret;
 		}
-		$hookStatus = StatusValue::newGood();
-		$hookRes = $this->hookRunner->onEmailUserAuthorizeSend( $this->sender, $hookStatus );
-		if ( !$hookRes && !$hookStatus->isGood() ) {
-			return $hookStatus;
+
+		return StatusValue::newGood();
+	}
+
+	/**
+	 * Authorize the email sending, checking permissions etc.
+	 *
+	 * @internal This method should only be used by SpecialEmailUser.
+	 * This could change when the $editToken parameter is removed.
+	 *
+	 * @param string $editToken
+	 * @return StatusValue For BC, the StatusValue's value can be set to a string representing
+	 * a message key to use with ErrorPageError. Only SpecialEmailUser should rely on this.
+	 */
+	public function authorizeSend( string $editToken ): StatusValue {
+		$status = $this->canSend( $editToken );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$status = PermissionStatus::newGood();
+		if ( !$this->sender->authorizeAction( 'sendemail', $status ) ) {
+			return $status;
+		}
+
+		$hookRes = $this->hookRunner->onEmailUserAuthorizeSend( $this->sender, $status );
+		if ( !$hookRes && !$status->isGood() ) {
+			return $status;
 		}
 
 		return StatusValue::newGood();
@@ -255,10 +259,6 @@ class EmailUser {
 		}
 
 		$senderUser = $this->userFactory->newFromAuthority( $this->sender );
-		// Check and increment the rate limits
-		if ( $senderUser->pingLimiter( 'sendemail' ) ) {
-			throw $this->getThrottledError();
-		}
 
 		$toAddress = MailAddress::newFromUser( $target );
 		$fromAddress = MailAddress::newFromUser( $senderUser );
@@ -429,40 +429,4 @@ class EmailUser {
 		return SpecialPage::getTitleFor( 'Mute', $targetName )->getCanonicalURL();
 	}
 
-	/**
-	 * @return RuntimeException|ThrottledError
-	 * XXX ErrorPageError (that ThrottledError inherits from) runs heavy logic involving the global state in the
-	 * constructor, and cannot be used in unit tests. See T281935.
-	 * @codeCoverageIgnore
-	 */
-	private function getThrottledError() {
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			return new RuntimeException( "You are throttled, and I am not running heavy logic in the constructor" );
-		}
-		return new ThrottledError();
-	}
-
-	/**
-	 * XXX Temporary method to obtain a message for blocked users. This code shouldn't be here, and we should just
-	 * use Authority/PermissionManager to obtain a message. So don't bother making this pretty.
-	 * @param User $user
-	 * @return Message
-	 * @codeCoverageIgnore
-	 */
-	private function getBlockedMessage( User $user ): Message {
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			return new RawMessage( 'You shall not send' );
-		}
-		$blockErrorFormatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
-		$block = $user->getBlock();
-		if ( !$block ) {
-			throw new BadMethodCallException( 'This method should only be called if the user is blocked' );
-		}
-		return $blockErrorFormatter->getMessage(
-			$block,
-			$user,
-			RequestContext::getMain()->getLanguage(),
-			RequestContext::getMain()->getRequest()->getIP()
-		);
-	}
 }

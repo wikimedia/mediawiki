@@ -59,7 +59,8 @@ class ApiEmailUser extends ApiBase {
 		$error = SpecialEmailUser::getPermissionsError(
 			$this->getUser(),
 			$params['token'],
-			$this->getConfig()
+			$this->getConfig(),
+			true // authorize!
 		);
 		if ( $error ) {
 			$this->dieWithError( $error );
