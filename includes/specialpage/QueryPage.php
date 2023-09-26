@@ -431,7 +431,7 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		$fname = static::class . '::recache';
-		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
+		$dbw = $this->getDatabaseProvider()->getPrimaryDatabase();
 
 		try {
 			// Do query
@@ -516,7 +516,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function delete( LinkTarget $title ) {
 		if ( $this->isCached() ) {
-			$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
+			$dbw = $this->getDatabaseProvider()->getPrimaryDatabase();
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'querycache' )
 				->where( [
@@ -535,7 +535,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function deleteAllCachedData() {
 		$fname = static::class . '::' . __FUNCTION__;
-		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
+		$dbw = $this->getDatabaseProvider()->getPrimaryDatabase();
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'querycache' )
 			->where( [ 'qc_type' => $this->getName() ] )
@@ -634,7 +634,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function fetchFromCache( $limit, $offset = false ) {
-		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'qc_type', 'namespace' => 'qc_namespace', 'title' => 'qc_title', 'value' => 'qc_value' ] )
 			->from( 'querycache' )
@@ -674,7 +674,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function getCachedTimestamp() {
 		if ( $this->cachedTimestamp === null ) {
-			$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 			$fname = static::class . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->newSelectQueryBuilder()
 				->select( 'qci_timestamp' )
