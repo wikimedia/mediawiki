@@ -794,6 +794,8 @@ because of Phabricator reports.
   defined using a "HookHandlers" entry in extension.json are not affected.
 * The MediaWikiIntegrationTestCase::$users has been deprecated. Use Authority
   if possible, or call ::getTestUser() or ::getTestSysop() directly.
+* WebRequest::isSafeRequest() and ::markAsSafeRequest() has been deprecated
+  and now emits deprecation warnings. Use ::hasSafeMethod() instead.
 * The tests/phpunit/phpunit.php entrypoint has been deprecated. PHPUnit
   tests should be run with composer, for example with the
   `composer phpunit:entrypoint` command.

@@ -1407,12 +1407,15 @@ class WebRequest {
 	 *   - Updates to private viewing activity data MAY occur via DeferredUpdates.
 	 *   - Other updates SHOULD NOT occur (e.g. modifying content assets).
 	 *
+	 * @deprecated since 1.41, use hasSafeMethod() instead.
+	 *
 	 * @return bool
 	 * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
 	 * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
 	 * @since 1.28
 	 */
 	public function isSafeRequest() {
+		wfDeprecated( __METHOD__, '1.41' );
 		if ( $this->markedAsSafe && $this->wasPosted() ) {
 			return true; // marked as a "safe" POST
 		}
@@ -1426,11 +1429,14 @@ class WebRequest {
 	 * POST requests are often used due to the need for a client payload, even if the request
 	 * is otherwise equivalent to a "safe method" request.
 	 *
+	 * @deprecated since 1.41
+	 *
 	 * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
 	 * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
 	 * @since 1.28
 	 */
 	public function markAsSafeRequest() {
+		wfDeprecated( __METHOD__, '1.41' );
 		$this->markedAsSafe = true;
 	}
 
