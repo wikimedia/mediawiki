@@ -1263,20 +1263,14 @@ class MediaWiki {
 			$query, $this->config->get( MainConfigNames::SecretKey ) );
 
 		$errno = $errstr = null;
-		$info = $services->getUrlUtils()->parse( $this->config->get( MainConfigNames::CanonicalServer ) );
-		$host = $info ? $info['host'] : null;
-		$port = 80;
-		if ( isset( $info['scheme'] ) && $info['scheme'] == 'https' ) {
-			$host = "tls://" . $host;
-			$port = 443;
-		}
-		if ( isset( $info['port'] ) ) {
-			$port = $info['port'];
-		}
+		$info = $services->getUrlUtils()->parse( $this->config->get( MainConfigNames::CanonicalServer ) ) ?? [];
+		$https = ( $info['scheme'] ?? null ) === 'https';
+		$host = $info['host'] ?? null;
+		$port = $info['port'] ?? ( $https ? 443 : 80 );
 
 		AtEase::suppressWarnings();
 		$sock = $host ? fsockopen(
-			$host,
+			$https ? 'tls://' . $host : $host,
 			$port,
 			$errno,
 			$errstr,
