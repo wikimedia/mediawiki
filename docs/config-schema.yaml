@@ -956,6 +956,8 @@ config-schema:
             - application/x-msdownload
             - application/x-msmetafile
             - application/java
+            - application/xml
+            - text/xml
         type: array
         description: |-
             Files with these MIME types will never be allowed as uploads
