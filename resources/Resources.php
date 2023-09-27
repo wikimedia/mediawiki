@@ -664,7 +664,7 @@ return [
 	'@wikimedia/codex-search' => [
 		'packageFiles' => [
 			'resources/src/codex-search/codex-search.js',
-			'resources/lib/codex-search/codex-search.umd.js',
+			'resources/lib/codex/codex-search.js',
 		],
 		'dependencies' => [
 			'vue',
@@ -677,12 +677,12 @@ return [
 		'themeStyles' => [
 			// Special syntax supported by CodexModule
 			'wikimedia-ui' => [
-				'ltr' => 'resources/lib/codex-search/codex-search.style.css',
-				'rtl' => 'resources/lib/codex-search/codex-search.style-rtl.css'
+				'ltr' => 'resources/lib/codex/codex-search.style.css',
+				'rtl' => 'resources/lib/codex/codex-search.style-rtl.css'
 			],
 			'wikimedia-ui-legacy' => [
-				'ltr' => 'resources/lib/codex-search/codex-search.style-legacy.css',
-				'rtl' => 'resources/lib/codex-search/codex-search.style-legacy-rtl.css'
+				'ltr' => 'resources/lib/codex/codex-search.style-legacy.css',
+				'rtl' => 'resources/lib/codex/codex-search.style-legacy-rtl.css'
 			]
 		],
 		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles

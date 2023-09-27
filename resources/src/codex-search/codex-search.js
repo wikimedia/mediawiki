@@ -1,4 +1,4 @@
-const codexSearch = require( '../../lib/codex-search/codex-search.umd.js' );
+const codexSearch = require( '../../lib/codex/codex-search.js' );
 
 // Codex is written for Vue 3, but we're running the compatibility build of Vue 3 (@vue/compat),
 // which behaves like Vue 2 in certain cases. This causes issues, specifically with v-model use
