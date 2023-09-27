@@ -31,6 +31,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
@@ -135,17 +136,9 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 			);
 		}
 
-		$queryInfo = $queryBuilder->getQueryInfo( 'join_conds' );
-		ChangeTags::modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			$queryInfo['join_conds'],
-			$queryInfo['options'],
-			''
-		);
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'archive' );
 
-		return $queryInfo;
+		return $queryBuilder->getQueryInfo( 'join_conds' );
 	}
 
 	protected function doBatchLookups() {

@@ -971,6 +971,8 @@ because of Phabricator reports.
   LinkRenderer::makeRedirectHeader() instead.
 * SpecialBlock::getTargetAndType(), deprecated since 1.36, now emits deprecation
   warnings.
+* ChangeTags::modifyDisplayQuery() and ChangeTagsStore::modifyDisplayQuery()
+  have been deprecated in favor of ChangeTagsStore::modifyDisplayQueryBuilder()
 * Calling SpecialRandomPage::__construct without services as parameters is
   deprecated and emit deprecation warnings.
 * …

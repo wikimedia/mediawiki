@@ -28,6 +28,7 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -205,28 +206,18 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
-		$conds = $this->mConds;
-		$conds['rev_page'] = $this->articleID;
-		$conds[] = "rev_timestamp < " . $dbr->addQuotes( $this->maxTimestamp );
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $dbr )
+			->joinComment()
+			->joinPage()
+			->joinUser()
+			->where( $this->mConds )
+			->andWhere( [
+				'rev_page' => $this->articleID,
+				"rev_timestamp < " . $dbr->addQuotes( $this->maxTimestamp )
+			] );
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
 
-		$queryInfo = $this->revisionStore->getQueryInfo( [ 'page', 'user' ] );
-		$queryInfo['conds'] = $conds;
-		$queryInfo['options'] = [];
-
-		// rename the "joins" field to "join_conds" as expected by the base class.
-		$queryInfo['join_conds'] = $queryInfo['joins'];
-		unset( $queryInfo['joins'] );
-
-		ChangeTags::modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			$queryInfo['join_conds'],
-			$queryInfo['options'],
-			''
-		);
-
-		return $queryInfo;
+		return $queryBuilder->getQueryInfo( 'join_conds' );
 	}
 
 	public function getIndexField() {

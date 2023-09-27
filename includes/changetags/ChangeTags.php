@@ -618,7 +618,7 @@ class ChangeTags {
 	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
 	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore::modifyDisplayQuery instead
+	 * @deprecated since 1.41 use ChangeTagsStore::modifyDisplayQueryBuilder instead
 	 * @param string|array &$tables Table names, see Database::select
 	 * @param string|array &$fields Fields used in query, see Database::select
 	 * @param string|array &$conds Conditions used in query, see Database::select

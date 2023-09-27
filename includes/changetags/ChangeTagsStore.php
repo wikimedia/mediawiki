@@ -774,6 +774,8 @@ class ChangeTagsStore {
 	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
 	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
+	 * @deprecated since 1.41 use ChangeTagsStore::modifyDisplayQueryBuilder instead
+	 *
 	 * @param string|array &$tables Table names, see Database::select
 	 * @param string|array &$fields Fields used in query, see Database::select
 	 * @param string|array &$conds Conditions used in query, see Database::select
@@ -856,6 +858,99 @@ class ChangeTagsStore {
 					!in_array( 'DISTINCT', $options )
 				) {
 					$options[] = 'DISTINCT';
+				}
+			}
+		}
+	}
+
+	/**
+	 * Applies all tags-related changes to a query builder object.
+	 *
+	 * Handles selecting tags, and filtering.
+	 *
+	 * WARNING: If $filter_tag contains more than one tag and $exclude is false, this function
+	 * will add DISTINCT, which may cause performance problems for your query unless you put
+	 * the ID field of your table at the end of the ORDER BY, and set a GROUP BY equal to the
+	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
+	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
+	 *
+	 * @param SelectQueryBuilder $queryBuilder Query builder to add the join
+	 * @param string $table Table name. Must be either of 'recentchanges', 'logging', 'revision', or 'archive'
+	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
+	 * @param bool $exclude If true, exclude tag(s) from $filter_tag (NOR)
+	 *
+	 */
+	public function modifyDisplayQueryBuilder(
+		SelectQueryBuilder $queryBuilder,
+		$table,
+		$filter_tag = '',
+		bool $exclude = false
+	) {
+		$useTagFilter = $this->options->get( MainConfigNames::UseTagFilter );
+		$queryBuilder->field( $this->makeTagSummarySubquery( [ $table ] ), 'ts_tags' );
+
+		// We use an alias and qualify the conditions in case there are
+		// multiple joins to this table.
+		// In particular for compatibility with the RC filters that extension Translate does.
+		// Figure out which ID field to use
+		if ( $table === 'recentchanges' ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rc_id=rc_id';
+		} elseif ( $table === 'logging' ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_log_id=log_id';
+		} elseif ( $table === 'revision' ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=rev_id';
+		} elseif ( $table === 'archive' ) {
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=ar_rev_id';
+		} else {
+			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
+		}
+
+		if ( !$useTagFilter ) {
+			return;
+		}
+
+		if ( !is_array( $filter_tag ) ) {
+			// some callers provide false or null
+			$filter_tag = (string)$filter_tag;
+		}
+
+		if ( $filter_tag !== [] && $filter_tag !== '' ) {
+			// Somebody wants to filter on a tag.
+			// Add an INNER JOIN on change_tag
+			$filterTagIds = [];
+			foreach ( (array)$filter_tag as $filterTagName ) {
+				try {
+					$filterTagIds[] = $this->changeTagDefStore->getId( $filterTagName );
+				} catch ( NameTableAccessException $exception ) {
+				}
+			}
+
+			if ( $exclude ) {
+				if ( $filterTagIds !== [] ) {
+					$queryBuilder->leftJoin(
+						self::CHANGE_TAG,
+						self::DISPLAY_TABLE_ALIAS,
+						[ $join_cond, self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => $filterTagIds ]
+					);
+					$queryBuilder->where( [ self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => null ] );
+				}
+			} else {
+				$queryBuilder->join(
+					self::CHANGE_TAG,
+					self::DISPLAY_TABLE_ALIAS,
+					$join_cond
+				);
+				if ( $filterTagIds !== [] ) {
+					$queryBuilder->where( [ self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => $filterTagIds ] );
+				} else {
+					// all tags were invalid, return nothing
+					$queryBuilder->where( '0=1' );
+				}
+
+				if (
+					is_array( $filter_tag ) && count( $filter_tag ) > 1
+				) {
+					$queryBuilder->distinct();
 				}
 			}
 		}

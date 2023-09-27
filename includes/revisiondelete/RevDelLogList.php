@@ -23,9 +23,9 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\SpecialPage\SpecialPage;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * List for logging table items
@@ -89,17 +89,13 @@ class RevDelLogList extends RevDelList {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param \Wikimedia\Rdbms\IReadableDatabase $db
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-
-		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
-
-		$queryInfo = [
-			'tables' => [ 'logging', 'actor' ] + $commentQuery['tables'],
-			'fields' => [
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( [
 				'log_id',
 				'log_type',
 				'log_action',
@@ -111,32 +107,20 @@ class RevDelLogList extends RevDelList {
 				'log_params',
 				'log_deleted',
 				'log_user' => 'actor_user',
-				'log_user_text' => 'actor_name'
-			] + $commentQuery['fields'],
-			'conds' => [ 'log_id' => $ids ],
-			'options' => [ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ],
-			'join_conds' => [
-				'actor' => [ 'JOIN', 'actor_id=log_actor' ]
-			] + $commentQuery['joins'],
-		];
+				'log_user_text' => 'actor_name',
+				'log_comment_text' => 'comment_log_comment.comment_text',
+				'log_comment_data' => 'comment_log_comment.comment_data',
+				'log_comment_cid' => 'comment_log_comment.comment_id'
+			] )
+			->from( 'logging' )
+			->join( 'actor', null, 'actor_id=log_actor' )
+			->join( 'comment', 'comment_log_comment', 'comment_log_comment.comment_id = log_comment_id' )
+			->where( [ 'log_id' => $ids ] )
+			->orderBy( [ 'log_timestamp', 'log_id' ], SelectQueryBuilder::SORT_DESC );
 
-		ChangeTags::modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			$queryInfo['join_conds'],
-			$queryInfo['options'],
-			''
-		);
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'logging' );
 
-		return $db->select(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			__METHOD__,
-			$queryInfo['options'],
-			$queryInfo['join_conds']
-		);
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	public function newItem( $row ) {

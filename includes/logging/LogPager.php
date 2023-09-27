@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Pager;
 
-use ChangeTags;
 use DatabaseLogEntry;
 use LogEventsList;
 use LogFormatter;
@@ -359,28 +358,23 @@ class LogPager extends ReverseChronologicalPager {
 	 * @return array
 	 */
 	public function getQueryInfo() {
-		$basic = DatabaseLogEntry::getSelectQueryData();
-
-		$tables = $basic['tables'];
-		$fields = $basic['fields'];
-		$conds = $basic['conds'];
-		$options = $basic['options'];
-		$joins = $basic['join_conds'];
+		$queryBuilder = DatabaseLogEntry::newSelectQueryBuilder( $this->mDb )
+			->where( $this->mConds );
 
 		# Add log_search table if there are conditions on it.
 		# This filters the results to only include log rows that have
 		# log_search records with the specified ls_field and ls_value values.
 		if ( array_key_exists( 'ls_field', $this->mConds ) ) {
-			$tables[] = 'log_search';
-			$options['IGNORE INDEX'] = [ 'log_search' => 'ls_log_id' ];
-			$options['USE INDEX'] = [ 'logging' => 'PRIMARY' ];
+			$queryBuilder->join( 'log_search', null, 'ls_log_id=log_id' );
+			$queryBuilder->ignoreIndex( [ 'log_search' => 'ls_log_id' ] );
+			$queryBuilder->useIndex( [ 'logging' => 'PRIMARY' ] );
 			if ( !$this->hasEqualsClause( 'ls_field' )
 				|| !$this->hasEqualsClause( 'ls_value' )
 			) {
 				# Since (ls_field,ls_value,ls_logid) is unique, if the condition is
 				# to match a specific (ls_field,ls_value) tuple, then there will be
 				# no duplicate log rows. Otherwise, we need to remove the duplicates.
-				$options[] = 'DISTINCT';
+				$queryBuilder->distinct();
 			}
 		} elseif ( array_key_exists( 'log_actor', $this->mConds ) ) {
 			// Optimizer doesn't pick the right index when a user has lots of log actions (T303089)
@@ -391,34 +385,31 @@ class LogPager extends ReverseChronologicalPager {
 					break;
 				}
 			}
-			$options['USE INDEX'] = [ 'logging' => $index ];
+			$queryBuilder->useIndex( [ 'logging' => $index ] );
 		}
-		# Don't show duplicate rows when using log_search
-		$joins['log_search'] = [ 'JOIN', 'ls_log_id=log_id' ];
 
 		// T221458: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` before
 		// `logging` and filesorting is somehow better than querying $limit+1 rows from `logging`.
 		// Tell it not to reorder the query. But not when tag filtering or log_search was used, as it
 		// seems as likely to be harmed as helped in that case.
 		if ( $this->mTagFilter === '' && !array_key_exists( 'ls_field', $this->mConds ) ) {
-			$options[] = 'STRAIGHT_JOIN';
+			$queryBuilder->option( 'STRAIGHT_JOIN' );
 		}
 
-		$options['MAX_EXECUTION_TIME'] = $this->getConfig()
-			->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
+		$maxExecTime = $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
+		if ( $maxExecTime ) {
+			$queryBuilder->setMaxExecutionTime( $maxExecTime );
+		}
 
-		$info = [
-			'tables' => $tables,
-			'fields' => $fields,
-			'conds' => array_merge( $conds, $this->mConds ),
-			'options' => $options,
-			'join_conds' => $joins,
-		];
 		# Add ChangeTags filter query
-		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
-			$info['join_conds'], $info['options'], $this->mTagFilter, $this->mTagInvert );
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder(
+			$queryBuilder,
+			'logging',
+			$this->mTagFilter,
+			$this->mTagInvert
+		);
 
-		return $info;
+		return $queryBuilder->getQueryInfo();
 	}
 
 	/**
