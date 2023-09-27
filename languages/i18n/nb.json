@@ -2920,6 +2920,7 @@
 	"allmessagescurrent": "Gjeldende beskjedtekst",
 	"allmessagestext": "Dette er en liste over tilgjengelige systembeskjeder i MediaWiki-navnerommet.\nBesøk [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Oversettelse] og [https://translatewiki.net translatewiki.net] om du ønsker å bidra med oversettelse av MediaWiki.",
 	"allmessages-not-supported-database": "Denne siden kan ikke brukes fordi <strong>$wgUseDatabaseMessages</strong> er slått av.",
+	"allmessages-unknown-language": "Språkkoden <code>$1</code> er ukjent.",
 	"allmessages-filter-legend": "Filtrer",
 	"allmessages-filter": "Filtrer etter tilpasningsstatus:",
 	"allmessages-filter-unmodified": "Uendret",

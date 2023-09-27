@@ -512,7 +512,7 @@
 	"noarticletext": "Niy ma terŏz żŏdnego tekstu.\nMogesz [[Special:Search/{{PAGENAME}}|szukać tego tytułu na inkszych zajtach]],\n<span class=\"plainlinks\">[{{fullurl:{{#special:Log}}|page={{urlencode:{{FULLPAGENAMEE}}}}}} przeszukać regest] \nabo [{{fullurl:{{FULLPAGENAME}}|action=edit}} stworzić tã zajtã]</span>.",
 	"noarticletext-nopermission": "Ta zajtaa je terŏz prōznŏ.\nMożesz [[Special:Search/{{PAGENAME}}|szukać tego tytułu]] we treściach inkszych zajt abo <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiōnzane regesty]</span>, ale niy mŏsz praw do stworzyniŏ tyj zajty.",
 	"userpage-userdoesnotexist": "Użytkowńik \"<nowiki>$1</nowiki>\" ńy je zarejesztrowany. Sprowdź eli na pewno chćołżeś stworzyć/pomjynić gynał ta zajta.",
-	"userpage-userdoesnotexist-view": "Kōnto używŏcza''$1'' niy je zaregistrowane.",
+	"userpage-userdoesnotexist-view": "Kōnto używŏcza''$1'' niy je zaregistrowane na tyj wiki.",
 	"blocked-notice-logextract": "{{GENDER:$1|Tyn sprowjorz|Ta sprowjorka}} mo zawrzite sprowjyńa.",
 	"clearyourcache": "<strong>Pozōr:</strong> żeby ôbejzdrzeć zmiany po spamiyntaniu, może być potrzebne wysnŏżynie pamiyńci podryncznyj przeglōndarki.\n* <strong>Firefox / Safari:</strong> Przitrzim <em>Shift</em> przi klikaniu <em>Ôdświyż terŏźnõ strōnã</em>, abo naciś knefle <em>Ctrl+F5</em> abo <em>Ctrl+R</em> (<em>⌘-R</em> na kōmputrze Mac)\n* <strong>Google Chrome:</strong> Naciś <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> na kōmputrze Mac)\n* <strong>Internet Explorer:</strong> Przitrzim <em>Ctrl</em> przi klikaniu <em>Ôdświyż</em>, abo naciś knefle <em>Ctrl+F5</em>\n* <strong>Opera:</strong> Przejdź do <em>Myni → Sztelōnki</em> (<em>Opera → Preferyncyje</em> w Mac), a potym <em>Prywatność i bezpieczyństwo → Wysnŏż dane przeglōndaniŏ → Ôprōznij pamiyńć podryncznõ</em>.",
 	"usercssyoucanpreview": "!'''Podpowjydź:''' Użyj knefla \"Podglůnd\", coby przetestować Twůj nowy arkusz stylůw CSS abo kod JavaScript przed jego zaszrajbowańym.",
@@ -1958,5 +1958,13 @@
 	"skin-action-protect": "Zawrzij",
 	"skin-action-undelete": "Wćep",
 	"skin-action-delete": "Skasuj",
-	"skin-action-move": "Przeniyś"
+	"skin-action-move": "Przeniyś",
+	"blockedtext-made-by": "Szpera ôstała nałożōnŏ bez $1.",
+	"blockedtext-reason-comment": "Podano prziczina je <em>$1</em>.",
+	"blockedtext-start-time": "Zaczōntek szpery: $1",
+	"blockedtext-expiration-time": "Przedŏwniynie szpery: $1",
+	"blockedtext-intended-blockee": "Zaszperowany ôstoł: $1",
+	"blockedtext-contact-blocker-admin": "Mogesz skōntaktować sie ze $1 abo inkszym [[{{MediaWiki:Grouppage-sysop}}|adminisztratorym]], coby ôbgŏdać szperã.",
+	"blockedtext-block-ip": "Twōj adres IP to je terŏz $1.",
+	"blockedtext-include-details-queries": "Proszã ô wkludzyniy wszyjskich powyższych informacyji we wszelich spytaniach."
 }
