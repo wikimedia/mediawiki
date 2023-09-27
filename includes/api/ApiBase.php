@@ -1624,18 +1624,12 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.29
 	 * @param string|string[] $rights
-	 * @param User|null $user deprecated since 1.36
 	 * @throws ApiUsageException if the user doesn't have any of the rights.
 	 *  The error message is based on $rights[0].
 	 */
-	public function checkUserRightsAny( $rights, $user = null ) {
-		$authority = $this->getAuthority();
-		if ( $user !== null ) {
-			wfDeprecatedMsg( __METHOD__ . ': $user parameter is deprecated', '1.36' );
-			$authority = $user;
-		}
+	public function checkUserRightsAny( $rights ) {
 		$rights = (array)$rights;
-		if ( !$authority->isAllowedAny( ...$rights ) ) {
+		if ( !$this->getAuthority()->isAllowedAny( ...$rights ) ) {
 			$this->dieWithError( [ 'apierror-permissiondenied', $this->msg( "action-{$rights[0]}" ) ] );
 		}
 	}

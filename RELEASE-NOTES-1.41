@@ -978,6 +978,9 @@ because of Phabricator reports.
   warnings.
 * ApiBase::checkTitleUserPermissions() now type-forces a PageIdentity instead of
   a LinkTarget. Passing a LinkTarget has been deprecated since 1.36.
+* Passing a User to ApiBase::checkUserRightsAny() in the second parameter, which
+  was deprecated in 1.36, is no longer read. Instead, it will use the request
+  context's set Authority via IContextSource::getAuthority().
 * ChangeTags::modifyDisplayQuery() and ChangeTagsStore::modifyDisplayQuery()
   have been deprecated in favor of ChangeTagsStore::modifyDisplayQueryBuilder()
 * Calling SpecialRandomPage::__construct without services as parameters is
