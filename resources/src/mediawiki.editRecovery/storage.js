@@ -14,7 +14,7 @@ var db = null;
  */
 function openDatabaseLocal() {
 	return new Promise( function ( resolve, reject ) {
-		const schemaNumber = 1;
+		const schemaNumber = 2;
 		const openRequest = window.indexedDB.open( dbName, schemaNumber );
 		openRequest.addEventListener( 'upgradeneeded', upgradeDatabase );
 		openRequest.addEventListener( 'success', function ( event ) {
@@ -32,11 +32,30 @@ function openDatabaseLocal() {
  * @param {Object} versionChangeEvent
  */
 function upgradeDatabase( versionChangeEvent ) {
-	db = versionChangeEvent.target.result;
 	const keyPathParts = [ 'pageName', 'section' ];
-	const objectStore = db.createObjectStore( objectStoreName, { keyPath: keyPathParts } );
-	objectStore.createIndex( 'pageName-section', keyPathParts, { unique: true } );
-	objectStore.createIndex( 'lastModified', 'lastModified' );
+	var objectStore;
+
+	if ( versionChangeEvent.oldVersion === 0 ) {
+		// ObjectStore does not yet exist, create it.
+		db = versionChangeEvent.target.result;
+		objectStore = db.createObjectStore( objectStoreName, { keyPath: keyPathParts } );
+	} else {
+		// ObjectStore exists, but needs to be upgraded.
+		objectStore = versionChangeEvent.target.transaction.objectStore( objectStoreName );
+	}
+
+	// Create indexes if they don't exist.
+	if ( !objectStore.indexNames.contains( 'pageName-section' ) ) {
+		objectStore.createIndex( 'pageName-section', keyPathParts, { unique: true } );
+	}
+	if ( !objectStore.indexNames.contains( 'expiryDate' ) ) {
+		objectStore.createIndex( 'expiryDate', 'expiryDate' );
+	}
+
+	// Delete old indexes.
+	if ( objectStore.indexNames.contains( 'lastModified' ) ) {
+		objectStore.deleteIndex( 'lastModified' );
+	}
 }
 
 /**
@@ -79,7 +98,7 @@ function saveData( pageName, section, pageData ) {
 		// Add indexed fields.
 		pageData.pageName = pageName;
 		pageData.section = section || '';
-		pageData.lastModified = Math.round( Date.now() / 1000 );
+		pageData.expiryDate = getExpiryDate( 30 );
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
@@ -131,6 +150,53 @@ function deleteData( pageName ) {
 }
 
 /**
+ * Returns the date diff days in the future
+ *
+ * @param {number} diff Days in the future
+ * @return {number} Timestamp of diff days in the future
+ */
+function getExpiryDate( diff ) {
+	const today = new Date();
+	const diffDaysFuture = new Date( today.getFullYear(), today.getMonth(), today.getDate() + diff );
+	return diffDaysFuture.getTime() / 1000;
+}
+
+/**
+ * Delete expired data
+ *
+ * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
+ */
+function deleteExpiredData() {
+	return new Promise( function ( resolve, reject ) {
+		if ( !db ) {
+			reject( 'DB not opened' );
+		}
+
+		const transaction = db.transaction( objectStoreName, 'readwrite' );
+		const objectStore = transaction.objectStore( objectStoreName );
+		const expiryDate = objectStore.index( 'expiryDate' );
+		const today = Date.now() / 1000;
+
+		const expired = expiryDate.getAll( IDBKeyRange.upperBound( today, true ) );
+
+		expired.onsuccess = function ( event ) {
+			const cursors = event.target.result;
+			if ( cursors ) {
+				cursors.forEach( function ( cursor ) {
+					deleteData( cursor.pageName );
+				} );
+			} else {
+				resolve();
+			}
+		};
+
+		expired.onerror = function () {
+			reject( 'Error getting filtered data' );
+		};
+	} );
+}
+
+/**
  * Close database
  */
 function closeDatabase() {
@@ -144,5 +210,6 @@ module.exports = {
 	closeDatabase: closeDatabase,
 	loadData: loadData,
 	saveData: saveData,
-	deleteData: deleteData
+	deleteData: deleteData,
+	deleteExpiredData: deleteExpiredData
 };
