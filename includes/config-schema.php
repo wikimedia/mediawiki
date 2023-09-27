@@ -169,6 +169,8 @@ return [
 				13 => 'application/x-msdownload',
 				14 => 'application/x-msmetafile',
 				15 => 'application/java',
+				16 => 'application/xml',
+				17 => 'text/xml',
 			],
 			'CheckFileExtensions' => true,
 			'StrictFileExtensions' => true,
