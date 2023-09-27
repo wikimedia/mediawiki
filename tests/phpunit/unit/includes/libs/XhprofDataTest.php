@@ -250,7 +250,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	 */
 	protected function assertArrayStructure( $struct, $actual, $label = '' ) {
 		$this->assertIsArray( $actual, $label );
-		$this->assertCount( count( $struct ), $actual, $label );
+		$this->assertSameSize( $struct, $actual, $label );
 		foreach ( $struct as $key => $type ) {
 			$this->assertArrayHasKey( $key, $actual );
 			switch ( $type ) {

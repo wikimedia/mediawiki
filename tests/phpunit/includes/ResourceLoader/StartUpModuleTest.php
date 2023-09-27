@@ -728,9 +728,7 @@ mw.loader.register([
 					'factory' => function () {
 						$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
 							->onlyMethods( [ 'getModuleContent' ] )->getMock();
-						$mock->method( 'getModuleContent' )->will(
-							$this->throwException( new Exception )
-						);
+						$mock->method( 'getModuleContent' )->willThrowException( new Exception );
 						return $mock;
 					}
 				]
@@ -750,9 +748,7 @@ mw.loader.register([
 							] )
 							->getMock();
 						$mock->method( 'enableModuleContentVersion' )->willReturn( false );
-						$mock->method( 'getDefinitionSummary' )->will(
-							$this->throwException( new Exception )
-						);
+						$mock->method( 'getDefinitionSummary' )->willThrowException( new Exception );
 						return $mock;
 					}
 				]

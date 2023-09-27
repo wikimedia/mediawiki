@@ -23,6 +23,7 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 	private $originalExtensionRegistry = null;
 
 	protected function setUp(): void {
+		// phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 		global $wgHooks;
 
 		parent::setUp();

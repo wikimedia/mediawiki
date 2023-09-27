@@ -38,8 +38,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 			'user_id' => 12345,
 		];
 		$dbMock->method( 'selectRow' )->willReturn( $row );
-		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbMock ) );
-		$dbMock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn() => new ReplaceQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn () => new ReplaceQueryBuilder( $dbMock ) );
 
 		$lbMock = $this->createMock( ILoadBalancer::class );
 		$lbMock->method( 'getMaintenanceConnectionRef' )->willReturn( $dbMock );
@@ -219,8 +219,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 		$dbMock->method( 'selectRow' )->willReturn( $row );
 		$dbMock->method( 'timestamp' )->willReturn( 'timestamp' );
 		$dbMock->method( 'getDomainID' )->willReturn( 'foowiki' );
-		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbMock ) );
-		$dbMock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn() => new ReplaceQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn () => new ReplaceQueryBuilder( $dbMock ) );
 
 		$dbMock->expects( $this->once() )
 			->method( 'replace' )

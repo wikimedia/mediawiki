@@ -232,7 +232,7 @@ class RecentChangesUpdateJob extends Job {
 			->replaceInto( 'querycache_info' )
 			->rows( [
 				'qci_type' => 'activeusers',
-				'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ) , // not always $now
+				'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ), // not always $now
 			] )
 			->uniqueIndexFields( [ 'qci_type' ] )
 			->caller( __METHOD__ )->execute();

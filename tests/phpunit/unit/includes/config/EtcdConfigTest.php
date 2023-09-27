@@ -203,7 +203,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		$cache->expects( $this->exactly( 2 ) )->method( 'get' )
-			->will( $this->onConsecutiveCalls(
+			->willReturnOnConsecutiveCalls(
 				// .. misses cache first time
 				false,
 				// .. hits cache on retry
@@ -212,7 +212,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 					'expires' => INF,
 					'modifiedIndex' => 123
 				]
-			) );
+			);
 		// .. misses lock
 		$cache->expects( $this->once() )->method( 'lock' )
 			->willReturn( false );

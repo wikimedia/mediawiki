@@ -168,7 +168,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		}
 		$warnings = $status->getWarningsArray();
 
-		$this->assertSame( count( $messages ), count( $warnings ) );
+		$this->assertSameSize( $messages, $warnings );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
 			$this->assertEquals( $expectedArray, $warnings[$key] );
@@ -191,7 +191,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		}
 		$errors = $status->getErrorsArray();
 
-		$this->assertSame( count( $messages ), count( $errors ) );
+		$this->assertSameSize( $messages, $errors );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
 			$this->assertEquals( $expectedArray, $errors[$key] );
@@ -213,7 +213,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		}
 		$errors = $status->getErrorsArray();
 
-		$this->assertSame( count( $messages ), count( $errors ) );
+		$this->assertSameSize( $messages, $errors );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
 			$this->assertEquals( $expectedArray, $errors[$key] );

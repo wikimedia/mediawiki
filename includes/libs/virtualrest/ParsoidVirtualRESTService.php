@@ -89,14 +89,14 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 		foreach ( $reqs as $key => $req ) {
 			$parts = explode( '/', $req['url'] );
 
-			list(
+			[
 				$targetWiki, // 'local'
 				$version, // 'v3' ('v1' for restbase compatibility)
 				$reqType, // 'page' or 'transform'
 				$format, // 'html' or 'wikitext'
 				// $title (optional)
 				// $revision (optional)
-			) = $parts;
+			] = $parts;
 
 			if ( isset( $this->params['restbaseCompat'] ) && $this->params['restbaseCompat'] ) {
 				if ( $version !== 'v1' ) {

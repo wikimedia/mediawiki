@@ -2350,7 +2350,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	 * @param string|null $keyNeedle
 	 */
 	public function testSegmentableValues( array $params, $keyNeedle ) {
-		list( $cache, $bag ) = $this->newWanCache( $params );
+		[ $cache, $bag ] = $this->newWanCache( $params );
 		$mockWallClock = 1549343530.0;
 		$cache->setMockTime( $mockWallClock );
 		$key = $cache->makeGlobalKey( 'z', wfRandomString() );

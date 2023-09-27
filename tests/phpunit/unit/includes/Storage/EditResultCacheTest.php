@@ -116,7 +116,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 		$dbr->expects( $this->once() )
 			->method( 'selectField' )
 			->willReturn( FormatJson::encode( $editResult ) );
-		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbr ) );
+		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $dbr ) );
 		$dbProvider = $this->createMock( IConnectionProvider::class );
 		$dbProvider->expects( $this->once() )
 			->method( 'getReplicaDatabase' )
@@ -152,7 +152,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 		$dbr->expects( $this->once() )
 			->method( 'selectField' )
 			->willReturn( false );
-		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $dbr ) );
+		$dbr->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $dbr ) );
 		$dbProvider = $this->createMock( IConnectionProvider::class );
 		$dbProvider->expects( $this->once() )
 			->method( 'getReplicaDatabase' )

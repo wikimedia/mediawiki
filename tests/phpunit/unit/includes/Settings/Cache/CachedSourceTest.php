@@ -140,7 +140,7 @@ class CachedSourceTest extends TestCase {
 		$source
 			->expects( $this->once() )
 			->method( 'load' )
-			->will( $this->throwException( new SettingsBuilderException( 'foo' ) ) );
+			->willThrowException( new SettingsBuilderException( 'foo' ) );
 
 		$this->assertSame( $settings, $cacheSource->load() );
 	}

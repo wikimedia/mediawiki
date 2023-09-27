@@ -58,7 +58,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 			->caller( __METHOD__ )
 			->orderByName( $options['sort'] ?? SelectQueryBuilder::SORT_ASC );
 		$actors = iterator_to_array( $queryBuilder->fetchUserIdentities() );
-		$this->assertCount( count( $expected ), $actors );
+		$this->assertSameSize( $expected, $actors );
 		foreach ( $expected as $idx => $expectedActor ) {
 			$this->assertSameActors( $expectedActor, $actors[$idx] );
 		}
@@ -95,7 +95,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 				->orderByUserId( $options['sort'] ?? SelectQueryBuilder::SORT_ASC )
 				->fetchUserIdentities()
 		);
-		$this->assertCount( count( $expected ), $actors );
+		$this->assertSameSize( $expected, $actors );
 		foreach ( $expected as $idx => $expectedActor ) {
 			$this->assertSameActors( $expectedActor, $actors[$idx] );
 		}
@@ -146,7 +146,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 				->orderByUserId( $options['sort'] ?? SelectQueryBuilder::SORT_ASC )
 				->fetchUserIdentities()
 		);
-		$this->assertCount( count( $expected ), $actors );
+		$this->assertSameSize( $expected, $actors );
 		foreach ( $expected as $idx => $expectedActor ) {
 			$this->assertSameActors( $expectedActor, $actors[$idx] );
 		}

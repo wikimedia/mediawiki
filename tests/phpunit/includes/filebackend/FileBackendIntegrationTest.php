@@ -1306,9 +1306,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				array_keys( $contents ),
 				"Contents in right order ($backendName)."
 			);
-			$this->assertSame(
-				count( $source ),
-				count( $contents ),
+			$this->assertSameSize(
+				$source,
+				$contents,
 				"Contents array size correct ($backendName)."
 			);
 		} else {
@@ -1380,9 +1380,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				array_keys( $tmpFiles ),
 				"Local copies in right order ($backendName)."
 			);
-			$this->assertSame(
-				count( $source ),
-				count( $tmpFiles ),
+			$this->assertSameSize(
+				$source,
+				$tmpFiles,
 				"Local copies array size correct ($backendName)."
 			);
 		} else {
@@ -1465,9 +1465,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				array_keys( $tmpFiles ),
 				"Local refs in right order ($backendName)."
 			);
-			$this->assertSame(
-				count( $source ),
-				count( $tmpFiles ),
+			$this->assertSameSize(
+				$source,
+				$tmpFiles,
 				"Local refs array size correct ($backendName)."
 			);
 		} else {

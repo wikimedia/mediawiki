@@ -11,11 +11,15 @@
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingVar" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.SpacingAfter" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
-		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition" />
+		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.Found" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.BraceNotOnOwnLine" />
 		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">

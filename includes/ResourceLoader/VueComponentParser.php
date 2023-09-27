@@ -33,7 +33,6 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\Tokenizer;
 use Wikimedia\RemexHtml\TreeBuilder\Dispatcher;
-use Wikimedia\RemexHtml\TreeBuilder\Element;
 use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
 use Wikimedia\Zest\Zest;
 

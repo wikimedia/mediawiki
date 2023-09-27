@@ -193,7 +193,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		array $keysUsedInValueComparison,
 		array $requiredKeys = []
 	) {
-		$this->assertCount( count( $expectedItems ), $actualItems );
+		$this->assertSameSize( $expectedItems, $actualItems );
 
 		// not checking values of all keys of the actual item, so removing unwanted keys from comparison
 		$actualItemsOnlyComparedValues = array_map(

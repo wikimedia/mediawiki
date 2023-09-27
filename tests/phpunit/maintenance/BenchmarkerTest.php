@@ -145,10 +145,10 @@ class BenchmarkerTest extends TestCase {
 
 		$out = '';
 		$bench->expects( $this->any() )->method( 'output' )
-			->will( $this->returnCallback( static function ( $str ) use ( &$out ) {
+			->willReturnCallback( static function ( $str ) use ( &$out ) {
 				$out .= $str;
 				return null;
-			} ) );
+			} );
 
 		$bench->bench( [
 			[

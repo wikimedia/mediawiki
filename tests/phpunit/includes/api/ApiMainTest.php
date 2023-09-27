@@ -327,7 +327,7 @@ class ApiMainTest extends ApiTestCase {
 		$mock->method( 'getModuleName' )->willReturn( 'testmodule' );
 		$mock->method( 'getConditionalRequestData' )
 			->willReturn( wfTimestamp( TS_MW, $now - 3600 ) );
-		$mock->expects( $this->exactly( 0 ) )->method( 'execute' );
+		$mock->expects( $this->never() )->method( 'execute' );
 
 		$req = new FauxRequest( [
 			'action' => 'testmodule',

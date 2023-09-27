@@ -119,6 +119,7 @@ abstract class DumpIterator extends Maintenance {
 		if ( $this->getDbType() == Maintenance::DB_NONE ) {
 			// TODO: Allow hooks to be registered via SettingsBuilder as well!
 			//       This matches the idea of unifying SettingsBuilder with ExtensionRegistry.
+			// phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 			global $wgHooks;
 			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
 

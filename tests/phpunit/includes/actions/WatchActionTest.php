@@ -433,12 +433,10 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 		$mockMessageLocalizer->expects( $this->exactly( 2 ) )
 			->method( 'msg' )
-			->will(
-				$this->onConsecutiveCalls(
+			->willReturnOnConsecutiveCalls(
 					$mockMessage,
 					new Message( 'watchlist-expiry-options' )
-				)
-			);
+				);
 
 		$expected = WatchAction::getExpiryOptions( new MockMessageLocalizer( 'en' ), false );
 		$expiryOptions = WatchAction::getExpiryOptions( $mockMessageLocalizer, false );
