@@ -1069,6 +1069,8 @@ $wgMimeTypeBlacklist = [
 	'text/scriptlet', 'application/x-msdownload',
 	# Windows metafile, client-side vulnerability on some systems
 	'application/x-msmetafile',
+	# XML files generally - T341565
+	'application/xml', 'text/xml',
 ];
 
 /**
