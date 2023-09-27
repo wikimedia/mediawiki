@@ -32,7 +32,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
@@ -368,21 +367,6 @@ class RecentChange implements Taggable {
 		}
 
 		return $this->mPage;
-	}
-
-	/**
-	 * Get the User object of the person who performed this change.
-	 * @deprecated since 1.36, hard deprecated since 1.37, use getPerformerIdentity() instead.
-	 *
-	 * @return User
-	 */
-	public function getPerformer(): User {
-		wfDeprecated( __METHOD__, '1.36' );
-		if ( !$this->mPerformer instanceof User ) {
-			$this->mPerformer = User::newFromIdentity( $this->getPerformerIdentity() );
-		}
-
-		return $this->mPerformer;
 	}
 
 	/**

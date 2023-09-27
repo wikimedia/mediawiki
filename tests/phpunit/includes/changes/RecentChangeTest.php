@@ -121,7 +121,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAttribs
 	 */
 	public function testDatabaseRoundTrip( $attribs ) {
-		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$rc = new RecentChange;
 		$rc->mAttribs = $attribs;
 		$rc->mExtra = [
@@ -137,7 +136,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$user = new UserIdentityValue( $attribs['rc_user'] ?? 0, $attribs['rc_user_text'] );
 		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $user->equals( $rc->getPerformer() ) );
 
 		if ( empty( $attribs['rc_title'] ) ) {
 			$this->assertNull( $rc->getPage() );
@@ -153,10 +151,8 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::loadFromRow
 	 * @covers RecentChange::getAttributes
 	 * @covers RecentChange::getPerformerIdentity
-	 * @covers RecentChange::getPerformer
 	 */
 	public function testNewFromRow() {
-		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$user = $this->getTestUser()->getUser();
 
 		$row = (object)[
@@ -182,7 +178,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		];
 		$this->assertEquals( $expected, $rc->getAttributes() );
 		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $user->equals( $rc->getPerformer() ) );
 
 		$row = (object)[
 			'rc_foo' => 'AAA',
@@ -206,7 +201,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $rc->getAttributes() );
 		$this->assertEquals( $expected, $rc->getAttributes() );
 		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $user->equals( $rc->getPerformer() ) );
 	}
 
 	/**
@@ -214,10 +208,8 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::newFromId
 	 * @covers RecentChange::getAttributes
 	 * @covers RecentChange::getPerformerIdentity
-	 * @covers RecentChange::getPerformer
 	 */
 	public function testNotifyNew() {
-		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$now = MWTimestamp::now();
 		$rc = RecentChange::notifyNew(
 			$now,
@@ -240,7 +232,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( $expected, $actual );
 		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
 
 		$rc = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
 
@@ -248,7 +239,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( $expected, $actual );
 		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
 	}
 
 	/**
@@ -256,10 +246,8 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::newFromId
 	 * @covers RecentChange::getAttributes
 	 * @covers RecentChange::getPerformerIdentity
-	 * @covers RecentChange::getPerformer
 	 */
 	public function testNotifyEdit() {
-		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$now = MWTimestamp::now();
 		$rc = RecentChange::notifyEdit(
 			$now,
@@ -284,7 +272,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( $expected, $actual );
 		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
 
 		$rc = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
 
@@ -292,7 +279,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( $expected, $actual );
 		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
 	}
 
 	/**
@@ -300,10 +286,8 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::newFromId
 	 * @covers RecentChange::getAttributes
 	 * @covers RecentChange::getPerformerIdentity
-	 * @covers RecentChange::getPerformer
 	 */
 	public function testNewLogEntry() {
-		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$now = MWTimestamp::now();
 		$logPage = new PageReferenceValue( NS_SPECIAL, 'Log/test', PageReference::LOCAL );
 
@@ -343,7 +327,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( $expected, $actual );
 		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
-		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
 		$this->assertTrue( $this->title->isSamePageAs( $rc->getPage() ) );
 		$this->assertTrue( $this->title->isSamePageAs( $rc->getTitle() ) );
 	}
