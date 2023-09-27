@@ -929,6 +929,7 @@ config-schema:
             - cmd
             - vxd
             - cpl
+            - xml
         type: array
         description: |-
             Files with these extensions will never be allowed as uploads.
