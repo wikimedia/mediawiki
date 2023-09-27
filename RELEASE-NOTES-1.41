@@ -983,6 +983,8 @@ because of Phabricator reports.
   context's set Authority via IContextSource::getAuthority().
 * Sanitizer::escapeIdReferenceList(), deprecated since 1.36, has been dropped.
 * RecentChange::getPerformer(), deprecated since 1.36, has been dropped.
+* SpecialPage::getLanguageConverter(), deprecated since 1.36, has been dropped.
+  Use LanguageConverterFactory::getLanguageConverter() directly.
 * ChangeTags::modifyDisplayQuery() and ChangeTagsStore::modifyDisplayQuery()
   have been deprecated in favor of ChangeTagsStore::modifyDisplayQueryBuilder()
 * Calling SpecialRandomPage::__construct without services as parameters is
