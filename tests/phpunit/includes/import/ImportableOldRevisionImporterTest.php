@@ -52,7 +52,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $result );
 
 		$tags = ChangeTags::getTags(
-			$services->getDBLoadBalancer()->getConnection( DB_PRIMARY ),
+			$this->getDb(),
 			null,
 			$title->getLatestRevID()
 		);
