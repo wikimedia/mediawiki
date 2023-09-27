@@ -1643,7 +1643,9 @@ class MainConfigSchema {
 			# Windows metafile, client-side vulnerability on some systems
 			'application/x-msmetafile',
 			# Files that look like java files
-			'application/java'
+			'application/java',
+			# XML files generally - T341565
+			'application/xml', 'text/xml',
 		],
 		'type' => 'list',
 	];
