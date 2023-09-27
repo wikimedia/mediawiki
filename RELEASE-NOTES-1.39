@@ -7,11 +7,12 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.39.5 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.4 ===
 * Localisation updates.
-* (T333050) Fix infinite loop for self-redirects with variants conversion.
+* (T333050, CVE-2023-PENDING) SECURITY: Fix infinite loop for self-redirects
+  with variants conversion.
 * docs: Fix a few typos in MainConfigSchema.
 * (T309714) mime: Add support for 'font/sfnt' mime type.
 * (T341434) WikiImporter: Improve error message output.
@@ -61,6 +62,18 @@ THIS IS NOT A RELEASE YET
 * updateSpecialPages.php: Avoid implicit float conversion on modulo.
 * (T347227) ImportReporter: Make callback functions public.
 * (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
+* doc: Improve description of type in extension.schema.v1.json.
+* (T340217, CVE-2023-PENDING) SECURITY: Vector 2022: Numerous unescaped
+  messages leading to potential XSS.
+* (T340220, CVE-2023-PENDING) SECURITY: Vector 2022: vector-intro-page
+  message is assumed to yield a valid title.
+* (T340221, CVE-2023-PENDING) SECURITY: XSS via
+  'youhavenewmessagesmanyusers' and 'youhavenewmessages' messages.
+* (T341529, CVE-2023-PENDING) SECURITY: diff-multi-sameuser
+  ("X intermediate revisions by the same user not shown") ignores
+  username suppression.
+* (T341565, CVE-2023-3550) SECURITY: Stored XSS when uploading crafted
+  XML file to Special:Upload (non-standard configuration).
 
 == MediaWiki 1.39.4 ==
 
