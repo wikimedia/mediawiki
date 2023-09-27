@@ -47,13 +47,11 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 				[ 'linkpurge', 0 ],
 				[ 'editcontentmodel', 1 ]
 			)
-			->will(
-				$this->onConsecutiveCalls(
+			->willReturnOnConsecutiveCalls(
 					false,
 					false,
 					false
-				)
-			);
+				);
 
 		$title = $this->createMock( Title::class );
 		$title->expects( $this->once() )
@@ -78,13 +76,11 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 				[ 'linkpurge', 0 ],
 				[ 'editcontentmodel', 1 ]
 			)
-			->will(
-				$this->onConsecutiveCalls(
+			->willReturnOnConsecutiveCalls(
 					false,
 					false,
 					true // Only die on the last check
-				)
-			);
+				);
 
 		$title = $this->createMock( Title::class );
 		$title->expects( $this->once() )

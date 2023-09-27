@@ -29,7 +29,7 @@ class SpecialContributeTest extends SpecialPageTestBase {
 	 */
 	public function testExecute() {
 		$this->specialContribute = new SpecialContribute();
-		list( $html ) = $this->executeSpecialPage(
+		[ $html ] = $this->executeSpecialPage(
 			$this->admin->getUser()->getName(),
 			null,
 			'qqx',

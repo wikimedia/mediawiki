@@ -667,9 +667,9 @@ END
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
 					 ->onlyMethods( [ $getter, 'getName' ] )
 			->getMock();
-		$mock->method( $getter )->will( $this->throwException(
+		$mock->method( $getter )->willThrowException(
 			new Exception( 'Ferry not found' )
-		) );
+		);
 		$mock->method( 'getName' )->willReturn( __METHOD__ );
 		return $mock;
 	}

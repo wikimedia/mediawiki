@@ -941,7 +941,7 @@ class ChangesList extends ContextSource {
 				$this->getUser()->getName(),
 				$this->getLanguage()->getCode()
 			),
-			fn() => ChangeTags::formatSummaryRow(
+			fn () => ChangeTags::formatSummaryRow(
 				$rc->mAttribs['ts_tags'],
 				'changeslist',
 				$this->getContext()

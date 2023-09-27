@@ -134,7 +134,7 @@ class MessageBlobStoreTest extends \PHPUnit\Framework\TestCase {
 		// Arrange version 1 and 2
 		$blobStore->expects( $this->exactly( 2 ) )
 			->method( 'fetchMessage' )
-			->will( $this->onConsecutiveCalls( 'First', 'Second' ) );
+			->willReturnOnConsecutiveCalls( 'First', 'Second' );
 
 		// Assert
 		$blob = $blobStore->getBlob( $module, 'en' );

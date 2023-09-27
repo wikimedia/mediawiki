@@ -22,7 +22,7 @@ class StatsEmitterTest extends TestCase {
 	public function testSend() {
 		// set up a mock statsd data factory
 		$statsd = $this->createMock( IBufferingStatsdDataFactory::class );
-		$statsd->expects( $this->exactly( 1 ) )->method( "updateCount" );
+		$statsd->expects( $this->once() )->method( "updateCount" );
 
 		// initialize cache
 		$cache = new StatsCache();
@@ -36,7 +36,7 @@ class StatsEmitterTest extends TestCase {
 
 		// transport
 		$transport = $this->createMock( UDPTransport::class );
-		$transport->expects( $this->exactly( 1 ) )->method( "emit" )
+		$transport->expects( $this->once() )->method( "emit" )
 			->withConsecutive(
 				[ "mediawiki.test.bar:1|c\nmediawiki.test.bar:1|c\nmediawiki.test.foo:3.14|ms\n" ]
 			);

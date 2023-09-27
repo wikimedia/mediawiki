@@ -161,7 +161,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$mockBag = $this->getMockBuilder( EmptyBagOStuff::class )
 			->onlyMethods( [ 'makeKey', 'makeGlobalKey' ] )
 			->getMock();
-		$mockBag->expects( $this->exactly( 0 ) )
+		$mockBag->expects( $this->never() )
 			->method( 'makeKey' )
 			->withConsecutive(
 				[ 'filerepo-file-redirect', 'local', md5( 'Redirect' ) ]

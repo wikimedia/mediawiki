@@ -320,6 +320,6 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$header = $response->getHeader( 'Access-Control-Allow-Headers' );
 		$this->assertContains( 'Authorization', $header );
 		$this->assertContains( 'Content-Type', $header );
-		$this->assertSame( count( $header ), count( array_unique( $header ) ) );
+		$this->assertSameSize( $header, array_unique( $header ) );
 	}
 }

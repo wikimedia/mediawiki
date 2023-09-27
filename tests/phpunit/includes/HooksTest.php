@@ -58,6 +58,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 * @covers Hooks::getHandlers
 	 */
 	public function testGetHandlers() {
+		// phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 		global $wgHooks;
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 
@@ -108,6 +109,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testRegistration() {
 		$this->hideDeprecated( 'Hooks::isRegistered' );
 		$this->hideDeprecated( 'Hooks::run' );
+		// phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 		global $wgHooks;
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 

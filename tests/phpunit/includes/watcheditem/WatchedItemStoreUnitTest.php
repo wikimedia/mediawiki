@@ -40,10 +40,10 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getMockDb() {
 		$mock = $this->createMock( DBConnRef::class );
-		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $mock ) );
-		$mock->method( 'newUpdateQueryBuilder' )->willReturnCallback( static fn() => new UpdateQueryBuilder( $mock ) );
-		$mock->method( 'newDeleteQueryBuilder' )->willReturnCallback( static fn() => new DeleteQueryBuilder( $mock ) );
-		$mock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn() => new ReplaceQueryBuilder( $mock ) );
+		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $mock ) );
+		$mock->method( 'newUpdateQueryBuilder' )->willReturnCallback( static fn () => new UpdateQueryBuilder( $mock ) );
+		$mock->method( 'newDeleteQueryBuilder' )->willReturnCallback( static fn () => new DeleteQueryBuilder( $mock ) );
+		$mock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn () => new ReplaceQueryBuilder( $mock ) );
 		return $mock;
 	}
 

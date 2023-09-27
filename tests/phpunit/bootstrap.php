@@ -56,7 +56,7 @@ TestSetup::applyInitialConfig();
 $process = proc_open(
 	__DIR__ . '/getPHPUnitExtensionsAndSkins.php',
 	[
-		0 => [ 'pipe' ,'r' ],
+		0 => [ 'pipe', 'r' ],
 		1 => [ 'pipe', 'w' ],
 		2 => [ 'pipe', 'w' ]
 	],

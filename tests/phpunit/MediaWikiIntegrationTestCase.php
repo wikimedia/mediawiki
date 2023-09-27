@@ -1376,6 +1376,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function resetLegacyGlobals( MediaWikiServices $services ) {
+		// phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 		global $wgHooks;
 
 		$hooks = $wgHooks instanceof FauxGlobalHookArray ? $wgHooks->getOriginalArray() : $wgHooks;

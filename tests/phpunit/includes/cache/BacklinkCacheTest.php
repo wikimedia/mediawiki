@@ -112,7 +112,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::newFromText( $title ) );
 		$titlesArray = iterator_to_array( $backlinkCache->getLinkPages( $table, $startId, $endId, $max ) );
-		$this->assertSame( count( $expectedTitles ), count( $titlesArray ) );
+		$this->assertSameSize( $expectedTitles, $titlesArray );
 		$numOfTitles = count( $titlesArray );
 		for ( $i = 0; $i < $numOfTitles; $i++ ) {
 			$this->assertEquals( $expectedTitles[$i], $titlesArray[$i]->getDbKey() );

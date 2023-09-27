@@ -81,8 +81,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 					return $this->db->$method( ...$args );
 				} );
 		}
-		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn() => new SelectQueryBuilder( $mock ) );
-		$mock->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn() => new InsertQueryBuilder( $mock ) );
+		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $mock ) );
+		$mock->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn () => new InsertQueryBuilder( $mock ) );
 		return $mock;
 	}
 
@@ -389,7 +389,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 				return true;
 			} );
-		$db->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn() => new InsertQueryBuilder( $db ) );
+		$db->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn () => new InsertQueryBuilder( $db ) );
 
 		$lb = $this->createMock( LoadBalancer::class );
 		$lb->method( 'getConnection' )

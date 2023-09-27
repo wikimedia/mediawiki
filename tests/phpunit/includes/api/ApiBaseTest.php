@@ -1324,7 +1324,7 @@ class ApiBaseTest extends ApiTestCase {
 		$paramDescription = $mock->getFinalParamDescription();
 		$this->assertArrayHasKey( 'param', $paramDescription );
 		$messages = $paramDescription['param'];
-		$messageKeys = array_map( static fn( MessageSpecifier $m ) => $m->getKey(), $messages );
+		$messageKeys = array_map( static fn ( MessageSpecifier $m ) => $m->getKey(), $messages );
 		$this->assertSame( $expectedMessages, $messageKeys );
 	}
 

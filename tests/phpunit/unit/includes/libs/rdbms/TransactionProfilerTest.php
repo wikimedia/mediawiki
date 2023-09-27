@@ -165,7 +165,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 
 	public function testSilence() {
 		$logger = $this->createMock( LoggerInterface::class );
-		$logger->expects( $this->exactly( 0 ) )->method( 'warning' );
+		$logger->expects( $this->never() )->method( 'warning' );
 
 		$now = 1668108368.0;
 		$tp = new TransactionProfiler();
@@ -221,7 +221,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	public function testPartialSilence() {
 		$logger = $this->createMock( LoggerInterface::class );
 		// 1 entry for slow write
-		$logger->expects( $this->exactly( 1 ) )->method( 'warning' );
+		$logger->expects( $this->once() )->method( 'warning' );
 
 		$now = 1668108368.0;
 		$tp = new TransactionProfiler();

@@ -111,7 +111,7 @@ class RCCacheEntryFactory {
 					$this->context->getUser()->getName(),
 					$this->context->getLanguage()->getCode()
 				),
-				static fn() => Linker::userToolLinks(
+				static fn () => Linker::userToolLinks(
 					$cacheEntry->mAttribs['rc_user'],
 					$cacheEntry->mAttribs['rc_user_text'],
 					// Should the contributions link be red if the user has no edits (using default)
@@ -330,7 +330,7 @@ class RCCacheEntryFactory {
 					$this->context->getUser()->getName(),
 					$this->context->getLanguage()->getCode()
 				),
-				static fn() => Linker::userLink(
+				static fn () => Linker::userLink(
 					$cacheEntry->mAttribs['rc_user'],
 					$cacheEntry->mAttribs['rc_user_text'],
 					ExternalUserNames::getLocal( $cacheEntry->mAttribs['rc_user_text'] )

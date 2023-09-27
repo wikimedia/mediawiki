@@ -811,7 +811,7 @@ class ContribsPager extends RangeChronologicalPager {
 					$this->getUser()->getName(),
 					$lang->getCode()
 				),
-				fn() => ChangeTags::formatSummaryRow(
+				fn () => ChangeTags::formatSummaryRow(
 					$row->ts_tags,
 					null,
 					$this->getContext()

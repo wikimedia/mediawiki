@@ -286,7 +286,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 			->onlyMethods( [ 'canApiHighLimits' ] )
 			->getMock();
 
-		$main->method( 'canApiHighLimits' )->will( $this->onConsecutiveCalls( true, false ) );
+		$main->method( 'canApiHighLimits' )->willReturnOnConsecutiveCalls( true, false );
 
 		$callbacks = new ApiParamValidatorCallbacks( $main );
 		$this->assertTrue( $callbacks->useHighLimits( [] ) );

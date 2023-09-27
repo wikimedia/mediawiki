@@ -1373,10 +1373,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$catLinks = $op->getCategoryLinks();
 		$this->assertCount( (bool)$expectedNormal + (bool)$expectedHidden, $catLinks );
 		if ( $expectedNormal ) {
-			$this->assertSame( count( $expectedNormal ), count( $catLinks['normal'] ) );
+			$this->assertSameSize( $expectedNormal, $catLinks['normal'] );
 		}
 		if ( $expectedHidden ) {
-			$this->assertSame( count( $expectedHidden ), count( $catLinks['hidden'] ) );
+			$this->assertSameSize( $expectedHidden, $catLinks['hidden'] );
 		}
 
 		foreach ( $expectedNormal as $i => $name ) {
