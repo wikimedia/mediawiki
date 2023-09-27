@@ -1,12 +1,18 @@
 = MediaWiki 1.40 =
 
+PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
 == MediaWiki 1.40.1 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.40 branch.
 
 === Changes since MediaWiki 1.40.0 ===
 * Localisation updates.
-* (T333050) Fix infinite loop for self-redirects with variants conversion.
+* (T333050, CVE-2023-PENDING) SECURITY: Fix infinite loop for self-redirects
+  with variants conversion.
 * docs: Fix a few typos in MainConfigSchema.
 * (T290464) Add DiscussionTools bundling to release notes.
 * (T309714) mime: Add support for 'font/sfnt' mime type.
@@ -52,6 +58,17 @@ THIS IS NOT A RELEASE YET
 * updateSpecialPages.php: Avoid implicit float conversion on modulo.
 * (T347227) ImportReporter: Make callback functions public.
 * (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
+* doc: Improve description of type in extension.schema.v1.json.
+* (T340217, CVE-2023-PENDING) SECURITY: Vector 2022: Numerous unescaped messages
+  leading to potential XSS.
+* (T340220, CVE-2023-PENDING) SECURITY: Vector 2022: vector-intro-page message
+  is assumed to yield a valid title.
+* (T340221, CVE-2023-PENDING) SECURITY: XSS via 'youhavenewmessagesmanyusers'
+  and 'youhavenewmessages' messages.
+* (T341529, CVE-2023-PENDING) SECURITY: diff-multi-sameuser ("X intermediate
+  revisions by the same user not shown") ignores username suppression.
+* (T341565, CVE-2023-3550) SECURITY: Stored XSS when uploading crafted
+  XML file to Special:Upload (non standard configuration).
 
 == MediaWiki 1.40.0 ==
 
