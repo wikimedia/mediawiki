@@ -985,6 +985,8 @@ because of Phabricator reports.
 * RecentChange::getPerformer(), deprecated since 1.36, has been dropped.
 * SpecialPage::getLanguageConverter(), deprecated since 1.36, has been dropped.
   Use LanguageConverterFactory::getLanguageConverter() directly.
+* SpecialBlock::checkUnblockSelf(), deprecated since 1.36, has been dropped. Use
+  BlockPermissionChecker instead.
 * ChangeTags::modifyDisplayQuery() and ChangeTagsStore::modifyDisplayQuery()
   have been deprecated in favor of ChangeTagsStore::modifyDisplayQueryBuilder()
 * Calling SpecialRandomPage::__construct without services as parameters is

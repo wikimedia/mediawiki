@@ -1016,28 +1016,6 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * T17810: Site-wide blocked admins should not be able to block/unblock
-	 * others with one exception; they can block the user who blocked them,
-	 * to reduce advantage of a malicious account blocking all admins (T150826).
-	 *
-	 * T208965: Partially blocked admins can block and unblock others as normal.
-	 *
-	 * @deprecated since 1.36, hard deprecated since 1.37, use BlockPermissionChecker instead
-	 * @param UserIdentity|string|null $target Target to block or unblock; could be a
-	 *   UserIdentity object, or username/IP address, or null when the target is not
-	 *   known yet (e.g. when displaying Special:Block)
-	 * @param Authority $performer User doing the request
-	 * @return bool|string True or error message key
-	 */
-	public static function checkUnblockSelf( $target, Authority $performer ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getBlockPermissionCheckerFactory()
-			->newBlockPermissionChecker( $target, $performer )
-			->checkBlockPermissions();
-	}
-
-	/**
 	 * Process the form on POST submission.
 	 * @param array $data
 	 * @param HTMLForm|null $form
