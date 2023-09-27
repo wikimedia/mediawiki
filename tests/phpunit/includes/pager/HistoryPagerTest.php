@@ -7,6 +7,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -18,6 +19,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
+		$this->setService( 'DBLoadBalancerFactory', $this->createMock( LBFactory::class ) );
 	}
 
 	/**

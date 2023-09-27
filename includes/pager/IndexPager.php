@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Request\WebRequest;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -102,7 +102,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public $mLimit;
 	/** @var bool Whether the listing query completed */
 	public $mQueryDone = false;
-	/** @var IDatabase */
+	/** @var IReadableDatabase */
 	public $mDb;
 	/** @var stdClass|bool|null Extra row fetched at the end to see if the end was reached */
 	public $mPastTheEndRow;
@@ -203,7 +203,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
 		// Let the subclass set the DB here; otherwise use a replica DB for the current wiki
 		if ( !$this->mDb ) {
-			$this->mDb = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+			$this->mDb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		}
 
 		$index = $this->getIndexField(); // column to sort on
@@ -251,7 +251,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @since 1.20
 	 *
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	public function getDatabase() {
 		return $this->mDb;
