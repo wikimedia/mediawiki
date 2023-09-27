@@ -398,6 +398,7 @@ abstract class Action implements MessageLocalizer {
 		$title = $this->getPageTitle();
 		if ( is_string( $title ) ) {
 			// T343849: deprecated
+			wfDeprecated( 'string return from Action::getPageTitle()', '1.41' );
 			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
 		}
 		$out->setPageTitleMsg( $title );
@@ -414,7 +415,7 @@ abstract class Action implements MessageLocalizer {
 	 * @return string|Message
 	 */
 	protected function getPageTitle() {
-		return $this->getTitle()->getPrefixedText();
+		return ( new RawMessage( '$1' ) )->plaintextParams( $this->getTitle()->getPrefixedText() );
 	}
 
 	/**
