@@ -788,6 +788,7 @@ because of Phabricator reports.
   deprecation warnings.
 * SqlBagOStuff::expireAll() is deprecated and now emits deprecation warnings,
   use SqlBagOStuff::deleteObjectsExpiringBefore() instead.
+* SqlBagOStuff::deleteAll() is deprecated and now emits deprecation warnings.
 * Passing an actor id to the UserIdentityValue constructor is now emits
   deprecation warnings, it is deprecated since 1.36.
 * UserGroupMembership::getGroupName(), deprecated in 1.38, and
