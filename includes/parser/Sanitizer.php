@@ -1068,21 +1068,6 @@ class Sanitizer {
 	 * Given a string containing a space delimited list of ids, escape each id
 	 * to match ids escaped by the escapeIdForAttribute() function.
 	 *
-	 * @since 1.27
-	 * @deprecated since 1.36. Unused outside this class, will be made private.
-	 *
-	 * @param string $referenceString Space delimited list of ids
-	 * @return string
-	 */
-	public static function escapeIdReferenceList( $referenceString ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return self::escapeIdReferenceListInternal( $referenceString );
-	}
-
-	/**
-	 * Given a string containing a space delimited list of ids, escape each id
-	 * to match ids escaped by the escapeIdForAttribute() function.
-	 *
 	 * @param string $referenceString Space delimited list of ids
 	 * @return string
 	 */

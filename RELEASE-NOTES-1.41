@@ -981,6 +981,7 @@ because of Phabricator reports.
 * Passing a User to ApiBase::checkUserRightsAny() in the second parameter, which
   was deprecated in 1.36, is no longer read. Instead, it will use the request
   context's set Authority via IContextSource::getAuthority().
+* Sanitizer::escapeIdReferenceList(), deprecated since 1.36, has been dropped.
 * ChangeTags::modifyDisplayQuery() and ChangeTagsStore::modifyDisplayQuery()
   have been deprecated in favor of ChangeTagsStore::modifyDisplayQueryBuilder()
 * Calling SpecialRandomPage::__construct without services as parameters is

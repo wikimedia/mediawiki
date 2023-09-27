@@ -325,22 +325,24 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test escapeIdReferenceList for consistency with escapeIdForAttribute
+	 * Test escapeIdReferenceListInternal for consistency with escapeIdForAttribute
 	 *
-	 * @dataProvider provideEscapeIdReferenceList
-	 * @covers Sanitizer::escapeIdReferenceList
+	 * @dataProvider provideEscapeIdReferenceListInternal
+	 * @covers Sanitizer::escapeIdReferenceListInternal
 	 */
-	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
-		$this->hideDeprecated( Sanitizer::class . '::escapeIdReferenceList' );
+	public function testEscapeIdReferenceListInternal( $referenceList, $id1, $id2 ) {
+		$sanitizer = TestingAccessWrapper::newFromClass( Sanitizer::class );
+		$actual = $sanitizer->escapeIdReferenceListInternal( $referenceList );
+
 		$this->assertEquals(
-			Sanitizer::escapeIdReferenceList( $referenceList ),
+			$actual,
 			Sanitizer::escapeIdForAttribute( $id1 )
 			. ' '
 			. Sanitizer::escapeIdForAttribute( $id2 )
 		);
 	}
 
-	public static function provideEscapeIdReferenceList() {
+	public static function provideEscapeIdReferenceListInternal() {
 		/** [ <reference list>, <individual id 1>, <individual id 2> ] */
 		return [
 			[ 'foo bar', 'foo', 'bar' ],
