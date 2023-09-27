@@ -150,6 +150,7 @@ return [
 				28 => 'cmd',
 				29 => 'vxd',
 				30 => 'cpl',
+				31 => 'xml',
 			],
 			'MimeTypeExclusions' => [
 				0 => 'text/html',
