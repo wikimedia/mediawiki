@@ -358,24 +358,19 @@ interface IDatabase extends IReadableDatabase {
 	 * @internal callers outside of rdbms library should use InsertQueryBuilder instead.
 	 *
 	 * @param string $table Table name
-	 * @param-taint $table exec_sql
 	 * @param array|array[] $rows Row(s) to insert, as either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
 	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
 	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
 	 *     The keys in each map must be identical to each other and in the same order.
 	 *     The rows must not collide with each other.
-	 * @param-taint $rows exec_sql_numkey - NOTE: This does not work when inserting multiple rows (T290563)
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @param-taint $fname exec_sql
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
 	 *     - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
 	 *       IDatabase::affectedRows() can be used to determine how many rows were inserted.
-	 * @param-taint $options exec_sql
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
-	 * @return-taint none
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] );
