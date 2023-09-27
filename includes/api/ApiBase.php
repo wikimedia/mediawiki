@@ -25,7 +25,6 @@ use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\Block;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -1644,7 +1643,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Helper function for permission-denied errors.
 	 *
-	 * @param PageIdentity|LinkTarget $pageIdentity deprecated passing LinkTarget since 1.36
+	 * @param PageIdentity $pageIdentity
 	 * @param string|string[] $actions
 	 * @param array $options Additional options
 	 *  - user: (User) User to use rather than $this->getUser().
@@ -1658,15 +1657,10 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.36 deprecated passing LinkTarget as first parameter
 	 */
 	public function checkTitleUserPermissions(
-		$pageIdentity,
+		PageIdentity $pageIdentity,
 		$actions,
 		array $options = []
 	) {
-		if ( !$pageIdentity instanceof PageIdentity ) {
-			wfDeprecatedMsg( __METHOD__ . ': passing LinkTarget as $pageIdentity parameter is deprecated',
-				'1.36' );
-			$pageIdentity = Title::newFromLinkTarget( $pageIdentity );
-		}
 		$authority = $options['user'] ?? $this->getAuthority();
 		$status = new PermissionStatus();
 		foreach ( (array)$actions as $action ) {

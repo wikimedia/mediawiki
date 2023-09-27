@@ -976,6 +976,8 @@ because of Phabricator reports.
   LinkRenderer::makeRedirectHeader() instead.
 * SpecialBlock::getTargetAndType(), deprecated since 1.36, now emits deprecation
   warnings.
+* ApiBase::checkTitleUserPermissions() now type-forces a PageIdentity instead of
+  a LinkTarget. Passing a LinkTarget has been deprecated since 1.36.
 * ChangeTags::modifyDisplayQuery() and ChangeTagsStore::modifyDisplayQuery()
   have been deprecated in favor of ChangeTagsStore::modifyDisplayQueryBuilder()
 * Calling SpecialRandomPage::__construct without services as parameters is
