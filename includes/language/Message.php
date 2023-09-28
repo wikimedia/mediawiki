@@ -727,7 +727,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] ...$params Time period parameters, or a single argument that is
+	 * @param int|float|(int|float)[] ...$params Time period parameters, or a single argument that is
 	 * an array of time period parameters.
 	 *
 	 * @return self $this
@@ -1235,9 +1235,9 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * @since 1.22
 	 *
-	 * @param int $period
+	 * @param int|float $period
 	 *
-	 * @return int[] Array with a single "period" key.
+	 * @return int[]|float[] Array with a single "period" key.
 	 */
 	public static function timeperiodParam( $period ) {
 		return [ 'period' => $period ];
