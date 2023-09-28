@@ -316,4 +316,45 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			[ 'nstab-help' ],
 		];
 	}
+
+	/** @dataProvider provideXssLanguage */
+	public function testXssLanguage( array $config, bool $expectXssMessage ): void {
+		$this->overrideConfigValues( $config + [
+			MainConfigNames::UseXssLanguage => false,
+			MainConfigNames::RawHtmlMessages => [],
+		] );
+
+		$message = $this->getServiceContainer()->getMessageCache()
+			->get( 'key', true, 'x-xss' );
+		if ( $expectXssMessage ) {
+			$this->assertSame(
+				"<script>alert('key')</script>\"><script>alert('key')</script><x y=\"",
+				$message
+			);
+		} else {
+			$this->assertFalse( $message );
+		}
+	}
+
+	public static function provideXssLanguage(): iterable {
+		yield 'default' => [
+			'config' => [],
+			'expectXssMessage' => false,
+		];
+
+		yield 'enabled' => [
+			'config' => [
+				MainConfigNames::UseXssLanguage => true,
+			],
+			'expectXssMessage' => true,
+		];
+
+		yield 'enabled but message marked as raw' => [
+			'config' => [
+				MainConfigNames::UseXssLanguage => true,
+				MainConfigNames::RawHtmlMessages => [ 'key' ],
+			],
+			'expectXssMessage' => false,
+		];
+	}
 }

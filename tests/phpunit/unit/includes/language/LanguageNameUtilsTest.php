@@ -31,6 +31,7 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 					MainConfigNames::ExtraLanguageNames => [],
 					MainConfigNames::LanguageCode => 'en',
 					MainConfigNames::UsePigLatinVariant => true,
+					MainConfigNames::UseXssLanguage => false,
 				]
 			),
 			$this->hookContainer

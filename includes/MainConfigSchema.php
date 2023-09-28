@@ -4910,6 +4910,25 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to enable the 'x-xss' language code, used for development.
+	 *
+	 * When enabled, the language code 'x-xss' (e.g. via ?uselang=x-xss) can
+	 * be used to test correct message escaping at scale, to prevent
+	 * cross-site scripting. In this "language", every message becomes an HTML
+	 * snippet which attempts to alert the message key. Well-written code will
+	 * correctly escape all of these messages. If any alerts are actually
+	 * fired in the browser, the message is not being escaped correctly;
+	 * either the offending code should be fixed, or the message should be
+	 * added to {@link self::RawHtmlMessages}.
+	 *
+	 * @see https://www.mediawiki.org/wiki/Special:MyLanguage/Cross-site_scripting
+	 * @since 1.41
+	 */
+	public const UseXssLanguage = [
+		'default' => false,
+	];
+
+	/**
 	 * Show a bar of language selection links in the user login and user
 	 * registration forms; edit the "loginlanguagelinks" message to
 	 * customise these.

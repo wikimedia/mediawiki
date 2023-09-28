@@ -1895,6 +1895,12 @@ class MainConfigNames {
 	public const VariantArticlePath = 'VariantArticlePath';
 
 	/**
+	 * Name constant for the UseXssLanguage setting, for use with Config::get()
+	 * @see MainConfigSchema::UseXssLanguage
+	 */
+	public const UseXssLanguage = 'UseXssLanguage';
+
+	/**
 	 * Name constant for the LoginLanguageSelector setting, for use with Config::get()
 	 * @see MainConfigSchema::LoginLanguageSelector
 	 */

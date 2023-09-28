@@ -62,6 +62,8 @@ class MessageCache implements LoggerAwareInterface {
 		MainConfigNames::UseDatabaseMessages,
 		MainConfigNames::MaxMsgCacheEntrySize,
 		MainConfigNames::AdaptiveMessageCache,
+		MainConfigNames::UseXssLanguage,
+		MainConfigNames::RawHtmlMessages,
 	];
 
 	/**
@@ -116,6 +118,12 @@ class MessageCache implements LoggerAwareInterface {
 
 	/** @var bool */
 	private $adaptive;
+
+	/** @var bool */
+	private $useXssLanguage;
+
+	/** @var string[] */
+	private $rawHtmlMessages;
 
 	/**
 	 * Message cache has its own parser which it uses to transform messages
@@ -232,6 +240,8 @@ class MessageCache implements LoggerAwareInterface {
 		$this->disable = !$options->get( MainConfigNames::UseDatabaseMessages );
 		$this->maxEntrySize = $options->get( MainConfigNames::MaxMsgCacheEntrySize );
 		$this->adaptive = $options->get( MainConfigNames::AdaptiveMessageCache );
+		$this->useXssLanguage = $options->get( MainConfigNames::UseXssLanguage );
+		$this->rawHtmlMessages = $options->get( MainConfigNames::RawHtmlMessages );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1209,6 +1219,14 @@ class MessageCache implements LoggerAwareInterface {
 		// TODO: Move to a better place.
 		if ( $langcode === 'qqx' ) {
 			return '($*)';
+		} elseif (
+			$langcode === 'x-xss' &&
+			$this->useXssLanguage &&
+			!in_array( $lckey, $this->rawHtmlMessages, true )
+		) {
+			$xssViaInnerHtml = "<script>alert('$lckey')</script>";
+			$xssViaAttribute = '">' . $xssViaInnerHtml . '<x y="';
+			return $xssViaInnerHtml . $xssViaAttribute;
 		}
 
 		// Check the localisation cache

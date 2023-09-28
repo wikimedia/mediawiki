@@ -270,6 +270,9 @@ foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 )
 }
 unset( $code ); // no global pollution; destroy reference
 unset( $bcp47 ); // no global pollution; destroy reference
+if ( $wgUseXssLanguage ) {
+	$wgDummyLanguageCodes['x-xss'] = 'x-xss'; // Used for testing
+}
 
 // Temporary backwards-compatibility reading of old replica lag settings as of MediaWiki 1.36,
 // to support sysadmins who fail to update their settings immediately:

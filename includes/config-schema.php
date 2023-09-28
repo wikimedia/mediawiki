@@ -617,6 +617,7 @@ return [
 			'DisabledVariants' => [
 			],
 			'VariantArticlePath' => false,
+			'UseXssLanguage' => false,
 			'LoginLanguageSelector' => false,
 			'ForceUIMsgAsContentMsg' => [
 			],
