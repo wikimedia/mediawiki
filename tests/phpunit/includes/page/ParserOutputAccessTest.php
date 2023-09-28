@@ -70,9 +70,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $this->getHtml( $expected ), $this->getHtml( $actual ), $msg );
 	}
 
-	private function getParserCache( $bag = null ) {
+	private function getParserCache( BagOStuff $bag = null, string $name = 'test' ): ParserCache {
 		$parserCache = new ParserCache(
-			'test',
+			$name,
 			$bag ?: new HashBagOStuff(),
 			'19900220000000',
 			$this->getServiceContainer()->getHookContainer(),
@@ -800,6 +800,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$caches = [
 			$this->getParserCache( new HashBagOStuff() ),
 			$this->getParserCache( new HashBagOStuff() ),
+			// Needed to support T332931 hacks
+			// Will be removed by T347632
+			$this->getParserCache( new HashBagOStuff() )
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -892,4 +895,51 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEquals( $notParsoid, $parsoid, "Should use different caches" );
 		$this->assertEquals( array_fill( 0, count( $calls ), $parsoid ), $calls );
 	}
+
+	public function testT332931Hacks() {
+		// Cache used by ParsoidOutputAccess
+		$parsoidParserCache = $this->getParserCache( new HashBagOStuff(), 'parsoid' );
+
+		// Caches used by ParserOutputAccess
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$legacyParserCache = $this->getParserCache( new HashBagOStuff(), 'pcache' );
+		$otherParsoidParserCache = $this->getParserCache( new HashBagOStuff(), 'parsoid-pcache' );
+		$calls = [];
+		$parserCacheFactory->method( 'getParserCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( $parsoidParserCache, $otherParsoidParserCache, $legacyParserCache ) {
+				if ( $cacheName === 'parsoid' ) {
+					return $parsoidParserCache;
+				} elseif ( $cacheName === 'parsoid-pcache' ) {
+					return $otherParsoidParserCache;
+				} else {
+					return $legacyParserCache;
+				}
+			} );
+		$revisionCache = $this->getRevisionOutputCache( new HashBagOStuff() );
+		$parserCacheFactory->method( 'getRevisionOutputCache' )->willReturn( $revisionCache );
+
+		$access = $this->getParserOutputAccessWithCacheFactory( $parserCacheFactory );
+
+		// No hit when first accessed
+		$parserOptions = $this->getParserOptions();
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, 'Hello World' );
+		$output = $access->getCachedParserOutput( $page, $parserOptions );
+		$this->assertNull( $output );
+
+		// Now store it in the ParosidOutputAccess ParserCache
+		$cachedOutput = new ParserOutput( 'Cached Text' );
+		$parsoidParserCache->save( $cachedOutput, $page, $parserOptions );
+
+		// Try again -- the hacks should not kick in
+		// because this does not set useParsoid
+		$output = $access->getCachedParserOutput( $page, $parserOptions );
+		$this->assertNull( $output );
+
+		// Try again with useParsoid set! -- the hacks should kick in
+		$parserOptions->setUseParsoid();
+		$output = $access->getCachedParserOutput( $page, $parserOptions );
+		$this->assertNotNull( $output );
+	}
+
 }
