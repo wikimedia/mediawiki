@@ -1127,6 +1127,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			->where( $cond )
 			->caller( __METHOD__ )
 			->fetchFieldValues();
+
+		if ( !$wlIds ) {
+			return 0;
+		}
+
 		$expiry = $dbw->timestamp( $expiry );
 
 		$weRows = array_map( static function ( $wlId ) use ( $expiry ) {
