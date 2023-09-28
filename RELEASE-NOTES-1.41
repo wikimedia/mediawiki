@@ -788,6 +788,8 @@ because of Phabricator reports.
 * The tests/phpunit/phpunit.php entrypoint has been deprecated. PHPUnit
   tests should be run with composer, for example with the
   `composer phpunit:entrypoint` command.
+* The unnamespace UserNamePrefixSearch class, deprecated in 1.36, now emits
+  deprecation warnings. Use the MediaWiki\User\UserNamePrefixSearch service.
 * The jquery.cookie ResourceLoader module has been merged into the existing
   mediawiki.cookie module; jquery.cookie remains but is deprecated.
 * Passing a database to DatabaseBlockStore::insertBlock() is deprecated.
