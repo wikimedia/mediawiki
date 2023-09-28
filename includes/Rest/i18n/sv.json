@@ -14,6 +14,7 @@
 	"rest-nonexistent-revision": "Den angivna sidversionen ($1) finns inte",
 	"rest-nonexistent-user": "Den angivna användaren ($1) finns inte",
 	"rest-invalid-user": "Det angivna användarnamnet ($1) är ogiltigt",
+	"rest-unsupported-content-type": "Innehållstyp som inte stöds: $1",
 	"rest-permission-denied-anon": "Inte tillgänglig för anonyma användare",
 	"rest-permission-denied-title": "Användaren har inte behörighet att läsa titeln ($1)",
 	"rest-permission-denied-revision": "Användaren har inte åtkomst till den begärda sidversionen ($1).",
@@ -44,5 +45,7 @@
 	"rest-cannot-load-file": "Filen för titeln \"$1\" kan inte läsas in.",
 	"rest-cross-origin-anon-write": "Anonyma skrivbegäran från andra webbplatser tillåts inte",
 	"rest-requires-safe-against-csrf": "Denna slutpunkt kräver en CSRF-säker sessionsleverantör.",
-	"rest-badtoken": "Den angivna CSRF-nyckeln är ogiltig."
+	"rest-badtoken": "Den angivna CSRF-nyckeln är ogiltig.",
+	"rest-badtoken-missing": "Parametern <var>token</var> krävs om inte en CSRF-säker autentiseringsmetod används.",
+	"rest-badtoken-nosession": "CSRF-fel - ingen session."
 }

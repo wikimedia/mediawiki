@@ -92,7 +92,8 @@
 			"Пан Хаунд",
 			"Тест",
 			"Чорний Кіт",
-			"아라"
+			"아라",
+			"Marvire"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -2208,7 +2209,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Додати параметр:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Назва параметра",
 	"apisandbox-dynamic-error-exists": "Параметр з назвою «$1» вже існує.",
-	"apisandbox-templated-parameter-reason": "Цей [[Special:ApiHelp/main#main/templatedparams|шаблонний параметр]] запропонований на основі  {{PLURAL:$1|значення|значень}} з $2.",
+	"apisandbox-templated-parameter-reason": "Цей [[Special:ApiHelp/main#main/templatedparams|шаблонний параметр]] запропонований на основі {{PLURAL:$1|значення|значень}} з $2.",
 	"apisandbox-deprecated-parameters": "Застарілі параметри",
 	"apisandbox-fetch-token": "Автозаповнення токена",
 	"apisandbox-add-multi": "Додати",
@@ -2700,7 +2701,7 @@
 	"ipbother": "Інший термін",
 	"ipboptions": "2 години:2 hours,1 день:1 day,3 дні:3 days,1 тиждень:1 week,2 тижні:2 weeks,1 місяць:1 month,3 місяці:3 months,6 місяців:6 months,1 рік:1 year,назавжди:infinite",
 	"ipbhidename": "Приховати ім'я користувача у редагуваннях та списках",
-	"ipbwatchuser": "Додати до списку спостереження сторінку користувача і його обговорення",
+	"ipbwatchuser": "Додати до списку спостереження сторінку користувача і його сторінку обговорення",
 	"ipb-disableusertalk": "Редагування власної сторінки обговорення",
 	"ipb-change-block": "Переблокувати користувача з цими налаштуваннями",
 	"ipb-confirm": "Підтвердити блокування",

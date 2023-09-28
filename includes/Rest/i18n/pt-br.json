@@ -4,7 +4,8 @@
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
 			"Jhonnatanricardo",
-			"Re demz"
+			"Re demz",
+			"Felipe L. Ewald"
 		]
 	},
 	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
@@ -45,6 +46,8 @@
 	"rest-extraneous-csrf-token": "Token CSRF estranho encontrado. Os tokens de CSRF não devem ser usados ao usar mecanismos de autenticação como o OAuth que são seguros contra ataques de CSRF.",
 	"rest-cannot-load-file": "O arquivo para o título \"$1\" não pode ser carregado.",
 	"rest-cross-origin-anon-write": "Solicitações de gravação de origem cruzada anônimas não são permitidas",
+	"rest-requires-safe-against-csrf": "Esse endpoint requer um provedor de sessão seguro para CSRF.",
+	"rest-badtoken": "O token CSRF fornecido é inválido.",
 	"rest-badtoken-missing": "O parâmetro <var>token</var> é obrigatório, a não ser que um método de autentificação seguro contra ataques CSRF seja usado.",
 	"rest-badtoken-nosession": "Erro CSRF - nenhuma sessão."
 }

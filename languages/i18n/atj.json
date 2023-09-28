@@ -8,7 +8,8 @@
 			"Jeannette Coocoo",
 			"Nehirowisiw",
 			"Ninmeka",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Kicawetcita ntowapesinihikana:",
@@ -231,7 +232,7 @@
 	"savearticle": "Kinokepitcikanik acta",
 	"showpreview": "Tcockapita",
 	"showdiff": "Kanawapata ka meckotcipitcikateki",
-	"anoneditwarning": "<strong>Ekwa:</strong> nama kipitikeapikecinin. Nokon e tatosinatek kit irapitcikan ka pamikicikwakein kaskina wec ici nokon  kecpin e kweskisinihikein. Kecpin tca <strong>[$1 wi pitikeapikecinine]</strong> ou <strong>[$2 ocita kata pitakesinasowin]</strong>,nohwe ka kweskisinihikein ki ka masinason e icinikatitisowin, acit awacimec ki ka ici titamihikowin",
+	"anoneditwarning": "<strong>Ekwa:</strong> nama kipitikeapikecinin. Nokon e tatosinatek kit irapitcikan ka pamikicikwakein kaskina wec ici nokon kecpin e kweskisinihikein. Kecpin tca <strong>[$1 wi pitikeapikecinine]</strong> ou <strong>[$2 ocita kata pitakesinasowin]</strong>,nohwe ka kweskisinihikein ki ka masinason e icinikatitisowin, acit awacimec ki ka ici titamihikowin",
 	"loginreqlink": "posi",
 	"newarticletext": "Ki nanosinehen ntowapikepatcikan aka  e takok nohwe paskickwemakan kiapatc.\nWi ocitaine nohwe paskickwemakan, nta ici masinaha pwetek kit atisokesinihikan minawatc\n (matci kika nta kanawapaten [$1 ka witciwemakak paskickwemakan] awacimec wi nanto kiskeritamone). \nKecpin ota ka pe icawone{{GENDER:||e}} e ki onipiriin, ohwe makona <strong>kiweckawin</strong> taci e ici pamikicikwepitcikein",
 	"noarticletext": "Mekwatc nama takon atisokesinihikan nta paskickwemakanik.\nKe ki totaman [[Special:Search/{{PAGENAME}}|nantowapaha ohwe icinikatamowin]] kotakahikw paskickwemakanik, \n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|paskickwemakan={{FULLPAGENAMEE}}}} nantowapata ka ici  mikowapihikemikak]\nkekotc [{{fullurl:{{FULLPAGENAME}}|tota=orocowata}} ocita paskickwemakan]</span>.",

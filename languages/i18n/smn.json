@@ -5,7 +5,8 @@
 			"Muotâ",
 			"Seipinne",
 			"Trondtr",
-			"Yupik"
+			"Yupik",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Liiŋkâi vuálávijvim:",
@@ -460,7 +461,7 @@
 	"accmailtitle": "Syelisääni vuolgâttum",
 	"newarticle": "(Uuđâs)",
 	"newarticletext": "Liŋkkâ tuálvui siijđon, mii ij vala lah rahtum.\nTun puávtáh rähtiđ siijđo čälimáin vyellin leijee kiädán (keejâ [$1 raavâsiijđost] lasetiäđuid).\nJis tun jieh haalijd rähtiđ siijđo, te keevti laađđâm maccâmtooimâ.",
-	"anontalkpagetext": "----\n<em>Taat lii nomâttes kevttee savâstâllâmsijđo. Sun ij lah ráhtám olssis kevtteetubdâlduv teikâ ij keevti tom, mondiet sun tobdoo tääl numerisijn IP-čujottâssáin.  Koččâmušâst leijee IP-čujottâs puáhtá leđe maaŋgâ ulmuu kiävtust. Jis tun lah nomâttes kevttee já tust oro, et äšittes kommenteh láá stivrejum tunjin,  [[Special:CreateAccount|räähti olssâd kevtteetubdâlduv]] teikâ [[Special:UserLogin|čäälit jieijâd siisâ]] vâi tun viätáh puátteevuođâst moive eres nomâttes kevtteigijn.",
+	"anontalkpagetext": "----\n<em>Taat lii nomâttes kevttee savâstâllâmsijđo. Sun ij lah ráhtám olssis kevtteetubdâlduv teikâ ij keevti tom, mondiet sun tobdoo tääl numerisijn IP-čujottâssáin. Koččâmušâst leijee IP-čujottâs puáhtá leđe maaŋgâ ulmuu kiävtust. Jis tun lah nomâttes kevttee já tust oro, et äšittes kommenteh láá stivrejum tunjin, [[Special:CreateAccount|räähti olssâd kevtteetubdâlduv]] teikâ [[Special:UserLogin|čäälit jieijâd siisâ]] vâi tun viätáh puátteevuođâst moive eres nomâttes kevtteigijn.",
 	"noarticletext": "Tääl siijđost ij lah tekstâ.\nTun puávtáh [[Special:Search/{{PAGENAME}}|uuccâđ siijđo noomáin]] eres siijđoin,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uuccâđ fáádán lohtâseijee lokijd]\nteikâ [{{fullurl:{{FULLPAGENAME}}|action=edit}} rähtiđ siijđo]</span>.",
 	"noarticletext-nopermission": "Eidu tääl taan siijđost ij lah tekstâ.\nPuávtáh [[Special:Search/{{PAGENAME}}|uuccâđ siijđo noomáin]] eres siijđoin teikâ  <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uuccâđ fáádán lohtâseijee lokijd]</span>, mut tust ij lah vuoigâdvuotâ rähtiđ taam siijđo.",
 	"userpage-userdoesnotexist-view": "Kevtteetubdâldâh  ”$1” ij lah registeristum taan wikist.",
@@ -622,7 +623,7 @@
 	"powersearch-ns": "Uusâ nommâkomovuođâin:",
 	"powersearch-toggleall": "Valjii puoh",
 	"powersearch-togglenone": "Ij maiden",
-	"powersearch-remember": "Mušte valjim čuávuvái ucâmij várás",
+	"powersearch-remember": "Mušte muu valjim čuávuvái ucâmij várás",
 	"search-external": "Olgoldâs uuccâm",
 	"search-error": "Uuccâm ij luhostum: $1",
 	"search-warning": "Uuccâm ääigi šoodâi váruttâs: $1",
@@ -1126,7 +1127,7 @@
 	"randomincategory-submit": "Moonâ",
 	"randomredirect": "Sätistivrim",
 	"randomredirect-nopages": "Nommâkomovuođâst ”$1” iä lah stivrimsiijđoh.",
-	"statistics": "Lovottuvah",
+	"statistics": "Statistiikeh",
 	"statistics-header-pages": "Sijđostatistiikeh",
 	"statistics-header-edits": "Hammimstatistiikeh",
 	"statistics-header-users": "Kevtteestatistiikeh",

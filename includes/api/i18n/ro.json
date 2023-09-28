@@ -3,7 +3,8 @@
 		"authors": [
 			"ANDROBETA",
 			"NGC 54",
-			"Wintereu"
+			"Wintereu",
+			"Alesaru"
 		]
 	},
 	"apihelp-block-summary": "Blochează un utilizator.",
@@ -17,5 +18,6 @@
 	"apihelp-edit-example-edit": "Modifică o pagină.",
 	"apihelp-expandtemplates-param-title": "Titlul paginii.",
 	"apihelp-expandtemplates-param-text": "Wikitext de convertit.",
+	"api-help-parameters-note": "Alți parametri generali sunt disponibili.",
 	"apierror-readonly": "Wiki-ul este în prezent în modul doar de citit."
 }

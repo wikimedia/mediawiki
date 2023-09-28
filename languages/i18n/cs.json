@@ -63,7 +63,8 @@
 			"Walter Klosse",
 			"Want",
 			"YjM",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Decamexd"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -1432,9 +1433,9 @@
 	"action-deletedtext": "prohlížet si smazaný text a rozdíly mezi smazanými revizemi",
 	"action-browsearchive": "hledat smazané stránky",
 	"action-undelete": "obnovovat stránky",
-	"action-suppressrevision": "prohlížet si a obnovovat skryté revize",
+	"action-suppressrevision": "zobrazit, skrýt nebo zrušit skrytí určitých revizí stránek pro libovolného uživatele",
 	"action-suppressionlog": "prohlédnout si tento skrytý protokolovací záznam",
-	"action-block": "znemožnit tomuto uživateli editování",
+	"action-block": "zablokovat nebo odblokovat tohoto uživatele od úprav",
 	"action-protect": "změnit nastavení zámků této stránky",
 	"action-rollback": "rychle revertovat úpravy posledního uživatele editujícího danou stránku",
 	"action-import": "importovat stránky z jiné wiki",
@@ -1461,7 +1462,7 @@
 	"action-apihighlimits": "používat vyšší limity v API dotazech",
 	"action-autoconfirmed": "nebýt omezeni rychlostními limity na dané IP adrese",
 	"action-bigdelete": "mazat stránky s dlouhou historií",
-	"action-blockemail": "zablokovat uživateli možnost posílání e-mailů",
+	"action-blockemail": "zablokovat nebo odblokovat uživatele od odesílání e-mailů",
 	"action-bot": "být označen jako „bot“",
 	"action-editprotected": "editovat stránky zamčené na „{{int:protect-level-sysop}}“",
 	"action-editsemiprotected": "editovat stránky zamčené na „{{int:protect-level-autoconfirmed}}“",

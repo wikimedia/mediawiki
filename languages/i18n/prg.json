@@ -355,7 +355,7 @@
 	"eauthentsent": "Padrūktinsna pastāi tengīntan na e-mail adressin.\nĒmpirzdan ainuntkawīdas kittas waīstis wīrst būwušas tengīntan na šan adressin, prawerru izpilnintun instrukciōnins papeisātans en e-mailu. Tīt tu wīrst padrūktinuns(si), kāi šī e-mail adressi perlānke prei tin.",
 	"throttled-mailpassword": "Kliptaswīrdas preiminīsenis ast jāu tengīntan en {{PLURAL:$1|panzdauman stūndin|panzdaumans $1 stūndins}}.\nKāi pakūntlai ezze wargaitērpausnai, tēr aīns kliptaswīrdas preiminīsenis ast tengīntan en {{PLURAL:$1|stūndin|$1 stūndins}}.",
 	"mailerror": "Prei e-mail pustis tengīnsnan, tikka blānda $1",
-	"acct_creation_throttle_hit": "Iz IP adressin, kawīdan tū tērpaui teīkē di jāu šandēinan {{PLURAL:$1|rekkenan|rekkenans}},  ka ast maksimāls preiwērpts gīrbis en šin kērdan.\nStesse paggan, tērpawintei šan adressin ni mazīngi teinū segītun ripīntin rekkenan.",
+	"acct_creation_throttle_hit": "Iz IP adressin, kawīdan tū tērpaui teīkē di jāu šandēinan {{PLURAL:$1|rekkenan|rekkenans}}, ka ast maksimāls preiwērpts gīrbis en šin kērdan.\nStesse paggan, tērpawintei šan adressin ni mazīngi teinū segītun ripīntin rekkenan.",
 	"emailauthenticated": "Twajā e-mail adressi pastāi padrūktintan en $2 zūrgi $3.",
 	"emailnotauthenticated": "Twajā e-mail adressi ni pastāi padrūktintan.\nZemmaisis pustis funkciōnis di dīlai.",
 	"noemailprefs": "Padāis e-mail adressin en pirminiskwans, kāi tērpautun šans funkciōnins.",

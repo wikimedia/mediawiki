@@ -20,7 +20,8 @@
 			"Vlad5250",
 			"ଶିତିକଣ୍ଠ ଦାଶ",
 			"아라",
-			"Chinmayee Mishra"
+			"Chinmayee Mishra",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -1759,7 +1760,7 @@
 	"rollbacklinkcount-morethan": "{{PLURAL:$1|edit|edits}} $1ରୁ ଅଧିକ ପଛକୁ ଫେରାଇବେ",
 	"rollbackfailed": "ପୁରାପୁରି ପଛକୁ ଫେରିବା ବିଫଳ ହେଲା",
 	"cantrollback": "ବଦଳକୁ ପଛକୁ ଫେରାଇ ପାରିବେ ନାହିଁ;\nଶେଷ ଦାତାଜଣଙ୍କ ଏହି ପୃଷ୍ଠାର ଜଣେମାତ୍ର ଦାତା ।",
-	"alreadyrolled": "[[User:$2|$2]]([[User talk:$2|talk]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])ଙ୍କ ଦେଇ [[:$1]]ରେ ହୋଇଥିବା ଶେଷ ବଦଳକୁ ପଛକୁ ଫେରାଯାଇପାରିବ ନାହିଁ ;\nଏହାକୁ ଆଉ କେହି ସମ୍ପାଦନା କରିଛି ବା ପୁରାପୁରି ପଛକୁ ଫେରାଇଦେଇଛି ।\n\nଏହି ପୃଷ୍ଠାର ଶେଷ  ସମ୍ପାଦନା  [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ଙ୍କ ଦେଇ ହୋଇଥିଲା ।",
+	"alreadyrolled": "[[User:$2|$2]]([[User talk:$2|talk]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])ଙ୍କ ଦେଇ [[:$1]]ରେ ହୋଇଥିବା ଶେଷ ବଦଳକୁ ପଛକୁ ଫେରାଯାଇପାରିବ ନାହିଁ ;\nଏହାକୁ ଆଉ କେହି ସମ୍ପାଦନା କରିଛି ବା ପୁରାପୁରି ପଛକୁ ଫେରାଇଦେଇଛି ।\n\nଏହି ପୃଷ୍ଠାର ଶେଷ ସମ୍ପାଦନା [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ଙ୍କ ଦେଇ ହୋଇଥିଲା ।",
 	"editcomment": "ସମ୍ପାଦନାର ସାରକଥା ଥିଲା: <em>$1</em> ।",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|ଆଲୋଚନା]])ଙ୍କ ଦେଇ କରାଯାଇଥିବା ବଦଳକୁ [[User:$1|$1]]ଙ୍କ ଦେଇ କରାଯାଇଥିବା ଶେଷ ବଦଳକୁ ଫେରାଇ ଦିଆଗଲା",
 	"revertpage-nouser": "{{GENDER:$1|[[User:$1|$1]]}}ଙ୍କ ଦେଇ ଜଣେ ଅଜଣା ସଭ୍ୟଙ୍କ ସମ୍ପାଦନାକୁ ପଛକୁ ଫେରଗଲା",

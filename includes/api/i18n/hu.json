@@ -8,7 +8,8 @@
 			"Macofe",
 			"Tacsipacsi",
 			"ViDam",
-			"Wolf Rex"
+			"Wolf Rex",
+			"Amire80"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentáció]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etikett és használati útmutatók]]\n* [[mw:Special:MyLanguage/API:FAQ|GYIK]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Levelezőlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-bejelentések]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Hibabejelentések és kérések]\n</div>\n<strong>Állapot:</strong> A MediaWiki API egy érett és stabil interfész, ami aktív támogatásban és fejlesztésben részesül. Bár próbáljuk elkerülni, de néha szükség van visszafelé nem kompatibilis változtatásokra; iratkozz fel a [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce levelezőlistára] a frissítések követéséhez.\n\n<strong>Hibás kérések:</strong> Ha az API hibás kérést kap, egy HTTP-fejlécet küld vissza „MediaWiki-API-Error” kulccsal, és a fejléc értéke és a visszaküldött hibakód ugyanarra az értékre lesz állítva. További információért lásd: [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Hibák és figyelmeztetések]].\n\n<p class=\"mw-apisandbox-link\"><strong>Tesztelés:</strong> Az API-kérések könnyebb teszteléséhez használható az [[Special:ApiSandbox|API-homokozó]].</p>",
@@ -203,7 +204,7 @@
 	"apihelp-logout-example-logout": "Aktuális felhasználó kijelentkeztetése.",
 	"apihelp-managetags-summary": "A változtatáscímkék kezelése.",
 	"apihelp-managetags-param-operation": "A végrehajtandó feladat:\n;create: Új változtatáscímke létrehozása kézi használatra.\n;delete: Egy változtatáscímke eltávolítása az adatbázisból, beleértve az eltávolítását minden lapváltozatról, frissváltoztatások-bejegyzésről és naplóbejegyzésről, ahol használatban van.\n;activate: Egy változtatáscímke aktiválása, lehetővé téve a felhasználóknak a kézi használatát.\n;deactivate: Egy változtatáscímke deaktiválása, a felhasználók megakadályozása a kézi használatban.",
-	"apihelp-managetags-param-tag": "A létrehozandó, törlendő, aktiválandó vagy deaktiválandó címke. Létrehozás esetén adott nevű címke nem létezhet. Törlés esetén a címkének léteznie kell. Aktiválás esetén a címkének léteznie kell, és nem használhatja más kiterjesztés. Deaktiválás esetén a címkének aktívnak és kézzel definiáltnak  kell lennie.",
+	"apihelp-managetags-param-tag": "A létrehozandó, törlendő, aktiválandó vagy deaktiválandó címke. Létrehozás esetén adott nevű címke nem létezhet. Törlés esetén a címkének léteznie kell. Aktiválás esetén a címkének léteznie kell, és nem használhatja más kiterjesztés. Deaktiválás esetén a címkének aktívnak és kézzel definiáltnak kell lennie.",
 	"apihelp-managetags-param-reason": "Opcionális indoklás a címke létrehozásához, törléséhez, aktiválásához vagy deaktiválásához.",
 	"apihelp-managetags-param-ignorewarnings": "Figyelmeztetések figyelmen kívül hagyása a művelet közben.",
 	"apihelp-managetags-example-create": "<kbd>spam</kbd> címke létrehozása <kbd>For use in edit patrolling</kbd> indoklással",
@@ -274,7 +275,7 @@
 	"apihelp-parse-paramvalue-prop-revid": "A feldolgozott lap lapváltozat-azonosítója.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "A feldolgozott wikiszöveghez tartozó cím.",
 	"apihelp-parse-paramvalue-prop-headitems": "A <code>&lt;head&gt;</code> HTML-címkébe kerülő elemek.",
-	"apihelp-parse-paramvalue-prop-headhtml": "A lap feldolgozott dokumentumtípusa, nyitó  <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> és <code>&lt;body&gt;</code> HTML-címkéje.",
+	"apihelp-parse-paramvalue-prop-headhtml": "A lap feldolgozott dokumentumtípusa, nyitó <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> és <code>&lt;body&gt;</code> HTML-címkéje.",
 	"apihelp-parse-paramvalue-prop-modules": "A lapon használt ResourceLoader-modulok. A betöltésükhöz használd a <code>mw.loader.using()</code> függvényt. Vagy a <kbd>jsconfigvars</kbd>, vagy az <kbd>encodedjsconfigvars</kbd> paramétert kötelező együtt használni ezzel a paraméterrel.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "A lapra jellemző JavaScript-változók. A használatukhoz állítsd be őket az <code>mw.config.set()</code> függvénnyel.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "A lapra jellemző JavaScript-változók JSON-szövegként.",

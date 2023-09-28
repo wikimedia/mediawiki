@@ -102,6 +102,7 @@
 	"config-db-prefix": "Prefix för databastabell (inga bindestreck):",
 	"config-db-prefix-help": "Om du behöver dela en databas mellan flera olika wikier, eller mellan MediaWiki och en annan webbapplikation, kan du välja att lägga till ett prefix till alla tabellnamn för att undvika konflikter.\nAnvänd inte mellanslag.\n\nDet här fältet lämnas vanligtvis tomt.",
 	"config-mysql-old": "MySQL $1 eller senare krävs. Du har $2.",
+	"config-mariadb-old": "MariaDB $1 eller senare krävs. Du har $2.",
 	"config-db-port": "Databasport:",
 	"config-db-schema": "Schema för MediaWiki (inga bindestreck):",
 	"config-db-schema-help": "Det här schemat stämmer oftast.\nÄndra det endast om du vet att du behöver.",

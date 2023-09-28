@@ -80,7 +80,8 @@
 			"Tjernobyl",
 			"Urhixidur",
 			"Weblars",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -2022,7 +2023,7 @@
 	"apihelp-no-such-module": "Modul \"$1\" ikke fundet.",
 	"apisandbox": "API-sandkassen",
 	"apisandbox-jsonly": "JavaScript kræves for at bruge API-sandkassen.",
-	"apisandbox-intro": "Brug denne side til at eksperimentere med '''MediaWiki web service API'''.\nVi henviser til [https://www.mediawiki.org/wiki/API:Main_page dokumentationen af API] for yderligere oplysninger om brug af API.  Eksempel: [https://www.mediawiki.org/wiki/API#A_simple_example få indholdet af en forside]. Vælg en handling at se flere eksempler.\n\nBemærk, at selv om dette er en sandkasse, vil handlinger du udfører på denne side redigere wikien.",
+	"apisandbox-intro": "Brug denne side til at eksperimentere med '''MediaWiki web service API'''.\nVi henviser til [https://www.mediawiki.org/wiki/API:Main_page dokumentationen af API] for yderligere oplysninger om brug af API. Eksempel: [https://www.mediawiki.org/wiki/API#A_simple_example få indholdet af en forside]. Vælg en handling at se flere eksempler.\n\nBemærk, at selv om dette er en sandkasse, vil handlinger du udfører på denne side redigere wikien.",
 	"apisandbox-submit": "Lav forespørgsel",
 	"apisandbox-reset": "Ryd",
 	"apisandbox-retry": "Forsøg igen",

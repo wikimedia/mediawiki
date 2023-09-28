@@ -18,7 +18,8 @@
 			"Tlustulimu",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnyć:",
@@ -1260,7 +1261,7 @@
 	"action-bigdelete": "strony z dołhimi stawiznami wersijow wotstronić",
 	"action-blockemail": "wužiwarjam pósłanje mejlkow zakazać",
 	"action-editprotected": "strony wobdźěłać, kotrež su škitane jako „{{int:protect-level-sysop}}“",
-	"action-editsemiprotected": "strony wobdźěłać, kotrež su škitane jako  „{{int:protect-level-autoconfirmed}}“",
+	"action-editsemiprotected": "strony wobdźěłać, kotrež su škitane jako „{{int:protect-level-autoconfirmed}}“",
 	"action-editinterface": "wužiwarski powjerch wobdźěłać",
 	"action-editusercss": "cuze CSS-dataje wobdźěłać",
 	"action-edituserjson": "cuze JSON-dataje wobdźěłać",

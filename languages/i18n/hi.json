@@ -112,7 +112,8 @@
 			"아라",
 			"अजीत कुमार तिवारी",
 			"Proabscorp!",
-			"Srishakatux"
+			"Srishakatux",
+			"Amire80"
 		]
 	},
 	"tog-underline": "रेखांकित कड़ियाँ:",
@@ -2358,7 +2359,7 @@
 	"rollback-missingparam": "अनुरोध पर अपेक्षित पैरामीटर गायब हैं।",
 	"rollback-missingrevision": "अवतरण डाटा दिखाने में असमर्थ।",
 	"cantrollback": "संपादन पूर्ववत नहीं किया जा सकता।\nअन्तिम योगदानकर्ता इस पृष्ठ का एकमात्र लेखक है।",
-	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|वार्ता]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) द्वारा किए गए  [[:$1]] के पिछले संपादन को वापिस पुरानी स्थिति पर नहीं लाया जा सकता है;\nकिसी और ने इस बीच या तो इस पृष्ठ को फिर से संपादित कर दिया है या पहले ही पृष्ठ पुरानी स्थिति पर लाया जा चुका है।\n\nइस पृष्ठ का अन्तिम संपादन [[User:$3|$3]] ([[User talk:$3|वार्ता]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ने किया है।",
+	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|वार्ता]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) द्वारा किए गए [[:$1]] के पिछले संपादन को वापिस पुरानी स्थिति पर नहीं लाया जा सकता है;\nकिसी और ने इस बीच या तो इस पृष्ठ को फिर से संपादित कर दिया है या पहले ही पृष्ठ पुरानी स्थिति पर लाया जा चुका है।\n\nइस पृष्ठ का अन्तिम संपादन [[User:$3|$3]] ([[User talk:$3|वार्ता]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ने किया है।",
 	"editcomment": "संपादन सारांश था: <em>$1</em>।",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) के संपादनों को हटाकर [[User:$1|$1]] के अन्तिम अवतरण को पूर्ववत किया",
 	"revertpage-nouser": "(सदस्य नाम हटाया गया है) के संपादनों को हटाकर {{GENDER:$1|[[User:$1|$1]]}} के अन्तिम अवतरण को पूर्ववत किया।",
@@ -3788,7 +3789,7 @@
 	"authmanager-provider-password": "पासवर्ड-आधारित प्रमाणीकरण",
 	"authmanager-provider-password-domain": "पासवर्ड- और डोमेन-आधारित प्रमाणीकरण",
 	"authmanager-provider-temporarypassword": "अस्थाई पासवर्ड",
-	"authprovider-confirmlink-message": "आपके हाल के लॉगिन प्रयासों के आधार पर, निम्न खाते  आपके विकी खाते से जोड़ा जा सकता है। उन्हें जोड़ने से उन खातों के माध्यम से लॉगिंग सक्षम हो जाता है कृपया चुनें कि कौन सा लिंक होना चाहिए।",
+	"authprovider-confirmlink-message": "आपके हाल के लॉगिन प्रयासों के आधार पर, निम्न खाते आपके विकी खाते से जोड़ा जा सकता है। उन्हें जोड़ने से उन खातों के माध्यम से लॉगिंग सक्षम हो जाता है कृपया चुनें कि कौन सा लिंक होना चाहिए।",
 	"authprovider-confirmlink-request-label": "खाते जो जोड़ने हैं।",
 	"authprovider-confirmlink-success-line": "$1 : सफलतापूर्वक जुड़ा।",
 	"authprovider-confirmlink-failed": "खाता जोड़ने का काम पूरी तरह से नहीं हो पाया : $1",

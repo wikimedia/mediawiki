@@ -22,7 +22,8 @@
 			"ScrabberEax",
 			"V6rg",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -1887,7 +1888,7 @@
 	"apihelp-no-such-module": "'O modulo \"$1\" nun se trova.",
 	"apisandbox": "Casciulella 'e pprove API",
 	"apisandbox-jsonly": "'O JavaScript è necessario pe' puté ausà 'a casciulella 'e pprove 'e ll'API.",
-	"apisandbox-intro": "Aùsa sta paggena pe' puté ffà prove c' 'o  <strong>servizio web 'e ll'API MediaWiki</strong>.\nVedite e ve piglià riferimento ncopp' 'a [[mw:API:Main page|documentazione 'e ll'API]] pe' n'avé cchiù dettaglie 'e comm'ausà n'API. Esempio: [https://www.mediawiki.org/wiki/API#A_simple_example piglia 'e ccuntenute 'e na Paggena Prencepale]. Sceglie n'aziona pe' n'avé cchiù dettaglie.\n\nTenite a mmente ca, pure si chest'è na casciulella 'e pprove, ll'aziune ca vuje facite putessero cagnà sta wiki.",
+	"apisandbox-intro": "Aùsa sta paggena pe' puté ffà prove c' 'o <strong>servizio web 'e ll'API MediaWiki</strong>.\nVedite e ve piglià riferimento ncopp' 'a [[mw:API:Main page|documentazione 'e ll'API]] pe' n'avé cchiù dettaglie 'e comm'ausà n'API. Esempio: [https://www.mediawiki.org/wiki/API#A_simple_example piglia 'e ccuntenute 'e na Paggena Prencepale]. Sceglie n'aziona pe' n'avé cchiù dettaglie.\n\nTenite a mmente ca, pure si chest'è na casciulella 'e pprove, ll'aziune ca vuje facite putessero cagnà sta wiki.",
 	"apisandbox-submit": "Fà 'na richiesta",
 	"apisandbox-reset": "Pulezza",
 	"apisandbox-retry": "Riprova",
@@ -2457,7 +2458,7 @@
 	"movepage-moved": "<strong>\"$1\" è stata spustata int' 'a \"$2\"</strong>",
 	"movepage-moved-redirect": "Nu redirezionamiento è stato criato.",
 	"movepage-moved-noredirect": "'A criazione o lu redirezionamiento è stato luvato.",
-	"articleexists": "Na paggena cu chisto nomme asiste già, o pure 'o nomme scegliuto nun è buono.  Scegliere n'ato titulo.",
+	"articleexists": "Na paggena cu chisto nomme asiste già, o pure 'o nomme scegliuto nun è buono. Scegliere n'ato titulo.",
 	"cantmove-titleprotected": "Nun putite spustà 'a paggena a stu pizzo pecchè 'o titolo nuovo è stato prutetto 'a criazione",
 	"movetalk": "Muove 'a paggena 'e chiacchiera suoccia a chesta",
 	"move-subpages": "Mòve 'e sottopàggene (nfin' 'a $1)",

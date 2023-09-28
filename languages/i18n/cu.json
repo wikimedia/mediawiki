@@ -13,7 +13,8 @@
 			"Wolliger Mensch",
 			"Илья Драконов",
 			"ОйЛ",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-oldsig": "твои нꙑнѣшьн҄ь аѵтографъ :",
@@ -725,7 +726,7 @@
 	"unit-pixel": "п҃ѯ",
 	"imgmultigo": "прѣиди",
 	"table_pager_limit_submit": "прѣиди",
-	"autosumm-new": "нова страница ⁖ $1 ⁖ сътворєна  ѥстъ",
+	"autosumm-new": "нова страница ⁖ $1 ⁖ сътворєна ѥстъ",
 	"size-bytes": "$1 Б҃",
 	"size-kilobytes": "$1 Х҃Б",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|бєсѣда]])",
