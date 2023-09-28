@@ -205,6 +205,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @param string $target Target user name
 	 * @param User $sender User sending the email
 	 * @return User|string User object on success or a string on error
+	 * @todo Deprecate this once we have a better factory/lookup for UserEmailContact
 	 */
 	public static function getTarget( $target, User $sender ) {
 		$targetObject = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $target );
@@ -231,6 +232,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @param User $sender User sending the email
 	 * @return string Error message or empty string if valid.
 	 * @since 1.30
+	 * @deprecated since 1.41 Use EmailUser::validateTarget()
 	 */
 	public static function validateTarget( $target, User $sender ) {
 		if ( !$target instanceof User ) {
@@ -259,11 +261,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *
 	 * @return null|string|array Null on success, string on error, or array on
 	 *  hook error
+	 * @deprecated since 1.41 Use EmailUser::canSend() or EmailUser::authorizeSend()
 	 */
 	public static function getPermissionsError( $user, $editToken, Config $config = null, $authorize = false ) {
 		$emailUser = MediaWikiServices::getInstance()->getEmailUserFactory()->newEmailUserBC( $user, $config );
-		$status = $authorize ? $emailUser->authorizeSend( (string)$editToken )
-			: $emailUser->canSend( (string)$editToken );
+		$emailUser->setEditToken( (string)$editToken );
+		$status = $authorize ? $emailUser->authorizeSend() : $emailUser->canSend();
 
 		if ( $status->isGood() ) {
 			return null;
@@ -353,6 +356,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/**
 	 * @param array $data
 	 * @return StatusValue|false
+	 * @internal Only public because it's used as an HTMLForm callback.
 	 */
 	public function onFormSubmit( array $data ) {
 		$target = $this->userFactory->newFromName( $data['Target'] );
@@ -361,9 +365,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		$emailUser = $this->emailUserFactory->newEmailUser( $this->getAuthority() );
+		$emailUser->setEditToken( $this->getRequest()->getVal( 'wpEditToken' ) );
 
 		// Fully authorize on sending emails.
-		$status = $emailUser->authorizeSend( $this->getRequest()->getVal( 'wpEditToken' ) );
+		$status = $emailUser->authorizeSend();
 
 		if ( !$status->isOK() ) {
 			return $status;
@@ -391,11 +396,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
 	 *
-	 * @todo Deprecate this method, move the code into ApiEmailUser. It seems unused otherwise.
-	 *
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @return Status|false
+	 * @deprecated since 1.41 Use EmailUser::sendEmailUnsafe()
 	 */
 	public static function submit( array $data, IContextSource $context ) {
 		$target = MediaWikiServices::getInstance()->getUserFactory()->newFromName( (string)$data['Target'] );
