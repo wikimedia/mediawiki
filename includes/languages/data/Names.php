@@ -250,6 +250,7 @@ class Names {
 		'ka' => 'ქართული', # Georgian
 		'kaa' => 'Qaraqalpaqsha', # Karakalpak
 		'kab' => 'Taqbaylit', # Kabyle
+		'kai' => 'Karai-karai', # Karekare
 		'kbd' => 'адыгэбзэ', # Kabardian
 		'kbd-cyrl' => 'адыгэбзэ', # Kabardian (Cyrillic)
 		'kbp' => 'Kabɩyɛ', # Kabiyè
