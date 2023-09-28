@@ -113,6 +113,7 @@ class UpdateQueryBuilder {
 	 * Manually set the table name to be passed to IDatabase::update()
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function table( $table ) {
@@ -124,6 +125,7 @@ class UpdateQueryBuilder {
 	 * Set table for the query. Alias for table().
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function update( string $table ) {
@@ -164,6 +166,7 @@ class UpdateQueryBuilder {
 	 * to the existing conditions, separated by AND.
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
 	 * conditions. If an array is given, the conditions constructed from each
@@ -219,6 +222,7 @@ class UpdateQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function andWhere( $conds ) {
@@ -229,6 +233,7 @@ class UpdateQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function conds( $conds ) {
@@ -240,6 +245,7 @@ class UpdateQueryBuilder {
 	 * the set values.
 	 *
 	 * @param string|array $set
+	 * @param-taint $set exec_sql_numkey
 	 *
 	 * Combination map/list where each string-keyed entry maps a column
 	 * to a literal assigned value and each integer-keyed value is a SQL expression in the
@@ -275,6 +281,7 @@ class UpdateQueryBuilder {
 	 * Add set values to the query. Alias for set().
 	 *
 	 * @param string|array $set
+	 * @param-taint $set exec_sql_numkey
 	 * @return $this
 	 */
 	public function andSet( $set ) {
@@ -298,6 +305,7 @@ class UpdateQueryBuilder {
 	 * Set the method name to be included in an SQL comment.
 	 *
 	 * @param string $fname
+	 * @param-taint $fname exec_sql
 	 * @return $this
 	 */
 	public function caller( $fname ) {
