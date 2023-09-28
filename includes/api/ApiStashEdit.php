@@ -192,7 +192,7 @@ class ApiStashEdit extends ApiBase {
 			return;
 		}
 
-		if ( $user->pingLimiter( 'stashedit' ) ) {
+		if ( !$user->authorizeWrite( 'stashedit', $title ) ) {
 			$status = 'ratelimited';
 		} else {
 			$user = $this->getUserForPreview();

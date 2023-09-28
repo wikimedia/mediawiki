@@ -83,7 +83,7 @@ class ApiPurge extends ApiBase {
 				'title' => $title,
 			];
 			$page = $this->wikiPageFactory->newFromTitle( $pageIdentity );
-			if ( !$user->pingLimiter( 'purge' ) ) {
+			if ( $user->authorizeWrite( 'purge', $pageIdentity ) ) {
 				// Directly purge and skip the UI part of purge()
 				$page->doPurge();
 				$r['purged'] = true;
@@ -92,7 +92,7 @@ class ApiPurge extends ApiBase {
 			}
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
-				if ( !$user->pingLimiter( 'linkpurge' ) ) {
+				if ( $user->authorizeWrite( 'linkpurge', $pageIdentity ) ) {
 					# Logging to better see expensive usage patterns
 					if ( $forceRecursiveLinkUpdate ) {
 						LoggerFactory::getInstance( 'RecursiveLinkPurge' )->info(
