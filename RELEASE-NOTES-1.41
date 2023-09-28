@@ -182,7 +182,8 @@ because of Phabricator reports.
 * Article::doDelete(), deprecated since 1.37, has been removed.
 * CommentStore::getStore(), deprecated since 1.31, has been removed.
 * Article::getRedirectHeaderHtml() no longer accepts an array as $target.
-  Passing an array was deprecated in 1.39.
+  Passing an array was deprecated in 1.39.  (The method itself has also
+  been deprecated.)
 * BagOStuff::addBusyCallback(), deprecated since 1.39, has been removed.
 * IExpiringStore has been removed, use either ExpirationAwareness or
   StorageAwareness constants instead.
@@ -999,8 +1000,8 @@ because of Phabricator reports.
 * The legacy MediaWiki UI ResourceLoader modules, such as `mediawiki.ui`, are
   all now emitting deprecation warnings in the JavaScript console. Please use
   Codex CSS components instead.
-* Article::getRedirectHeaderHtml() has been deprecated, use
-  LinkRenderer::makeRedirectHeader() instead.
+* Article::getRedirectHeaderHtml() has been deprecated and emits deprecation
+  warnings, use LinkRenderer::makeRedirectHeader() instead.
 * SpecialBlock::getTargetAndType(), deprecated since 1.36, now emits deprecation
   warnings.
 * ApiBase::checkTitleUserPermissions() now type-forces a PageIdentity instead of
