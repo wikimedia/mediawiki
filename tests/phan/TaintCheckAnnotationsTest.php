@@ -29,8 +29,10 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleValue;
 use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
+use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 die( 'This file should never be loaded' );
 
@@ -381,6 +383,48 @@ class TaintCheckAnnotationsTest {
 		$iqb->andSet( [ 'x' => $_GET['a'] ] );// Safe
 
 		$iqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+	}
+
+	function testUpdateQueryBuilder( UpdateQueryBuilder $uqb ) {
+		$uqb->table( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->update( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$uqb->where( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->where( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->where( [ 'foo' => $_GET['a'] ] );// Safe
+		$uqb->andWhere( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->andWhere( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->andWhere( [ 'foo' => $_GET['a'] ] );// Safe
+		$uqb->conds( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->conds( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->conds( [ 'foo' => $_GET['a'] ] );// Safe
+
+		$uqb->set( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->set( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->set( [ 'x' => $_GET['a'] ] );// Safe
+		$uqb->andSet( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->andSet( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$uqb->andSet( [ 'x' => $_GET['a'] ] );// Safe
+
+		$uqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+	}
+
+	function testDeleteQueryBuilder( DeleteQueryBuilder $dqb ) {
+		$dqb->table( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->deleteFrom( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->delete( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$dqb->where( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->where( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->where( [ 'foo' => $_GET['a'] ] );// Safe
+		$dqb->andWhere( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->andWhere( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->andWhere( [ 'foo' => $_GET['a'] ] );// Safe
+		$dqb->conds( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->conds( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dqb->conds( [ 'foo' => $_GET['a'] ] );// Safe
+
+		$dqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 	}
 
 	function testMessage( Message $msg ) {

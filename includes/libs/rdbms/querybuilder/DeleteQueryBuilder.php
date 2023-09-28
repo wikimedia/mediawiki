@@ -93,6 +93,7 @@ class DeleteQueryBuilder {
 	 * Manually set the table name to be passed to IDatabase::delete()
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function table( string $table ): DeleteQueryBuilder {
@@ -104,6 +105,7 @@ class DeleteQueryBuilder {
 	 * Set table for the query. Alias for table().
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function deleteFrom( string $table ): DeleteQueryBuilder {
@@ -114,6 +116,7 @@ class DeleteQueryBuilder {
 	 * Set table for the query. Alias for table().
 	 *
 	 * @param string $table The table name
+	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
 	public function delete( string $table ): DeleteQueryBuilder {
@@ -125,6 +128,7 @@ class DeleteQueryBuilder {
 	 * to the existing conditions, separated by AND.
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
 	 * conditions. If an array is given, the conditions constructed from each
@@ -180,6 +184,7 @@ class DeleteQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function andWhere( $conds ): DeleteQueryBuilder {
@@ -190,6 +195,7 @@ class DeleteQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @param string|array $conds
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function conds( $conds ): DeleteQueryBuilder {
@@ -200,6 +206,7 @@ class DeleteQueryBuilder {
 	 * Set the method name to be included in an SQL comment.
 	 *
 	 * @param string $fname
+	 * @param-taint $fname exec_sql
 	 * @return $this
 	 */
 	public function caller( string $fname ): DeleteQueryBuilder {
