@@ -1806,6 +1806,7 @@ class Article implements Page {
 	 * @deprecated since 1.41, use LinkRenderer::makeRedirectHeader() instead
 	 */
 	public static function getRedirectHeaderHtml( Language $lang, Title $target, $forceKnown = false ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return $linkRenderer->makeRedirectHeader( $lang, $target, $forceKnown );
 	}
