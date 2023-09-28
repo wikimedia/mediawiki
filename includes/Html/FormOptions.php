@@ -184,6 +184,8 @@ class FormOptions implements ArrayAccess {
 	 *
 	 * @param string $name Option name
 	 * @return mixed
+	 * @return-taint tainted This actually depends on the type of the option, but there's no way to determine that
+	 * statically.
 	 */
 	public function getValue( $name ) {
 		$this->validateName( $name, true );
