@@ -2214,7 +2214,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string[] Array of internal group names (sorted since 1.33)
 	 */
 	public function getGroups() {
-		wfDeprecated( __METHOD__, '1.41' );
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserGroups( $this, $this->queryFlagsUsed );
@@ -2231,7 +2231,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
-		wfDeprecated( __METHOD__, '1.41' );
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserGroupMemberships( $this, $this->queryFlagsUsed );
@@ -2262,7 +2262,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function addGroup( $group, $expiry = null ) {
-		wfDeprecated( __METHOD__, '1.41' );
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->addUserToGroup( $this, $group, $expiry, true );
@@ -2279,7 +2279,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function removeGroup( $group ) {
-		wfDeprecated( __METHOD__, '1.41' );
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->removeUserFromGroup( $this, $group );
@@ -3277,7 +3277,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string[] internal group names
 	 */
 	public static function getAllGroups() {
-		wfDeprecated( __METHOD__, '1.41' );
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->listAllGroups();
@@ -3289,7 +3289,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string[] internal group names
 	 */
 	public static function getImplicitGroups() {
-		wfDeprecated( __METHOD__, '1.41' );
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->listAllImplicitGroups();
