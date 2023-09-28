@@ -523,6 +523,9 @@ because of Phabricator reports.
 * (T178356) The es6-polyfills module is deprecated and is now a no-op.
 * SerializedValueContainer::newUnified() is unused and now emits deprecation
   warnings.
+* Profiler::setProfileID() and ::getAllowOutput() are now deprecated and also
+  emit deprecation warnings. For ::setProfileID(), override the related class
+  member directly in sub-class.
 * (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
   namespace as appropriate, so that we can use PSR-4 auto-loading, which will
   speed up general code loading of MediaWiki. The old global namespace class
