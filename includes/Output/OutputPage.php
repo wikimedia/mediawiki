@@ -3973,25 +3973,22 @@ class OutputPage extends ContextSource {
 			] );
 		}
 
-		foreach ( $this->mMetatags as $tag ) {
-			if ( strncasecmp( $tag[0], 'http:', 5 ) === 0 ) {
-				$a = 'http-equiv';
-				$tag[0] = substr( $tag[0], 5 );
-			} elseif ( strncasecmp( $tag[0], 'og:', 3 ) === 0 ) {
-				$a = 'property';
+		foreach ( $this->mMetatags as [ $name, $val ] ) {
+			$attrs = [];
+			if ( strncasecmp( $name, 'http:', 5 ) === 0 ) {
+				$name = substr( $name, 5 );
+				$attrs['http-equiv'] = $name;
+			} elseif ( strncasecmp( $name, 'og:', 3 ) === 0 ) {
+				$attrs['property'] = $name;
 			} else {
-				$a = 'name';
+				$attrs['name'] = $name;
 			}
-			$tagName = "meta-{$tag[0]}";
+			$attrs['content'] = $val;
+			$tagName = "meta-$name";
 			if ( isset( $tags[$tagName] ) ) {
-				$tagName .= $tag[1];
+				$tagName .= $val;
 			}
-			$tags[$tagName] = Html::element( 'meta',
-				[
-					$a => $tag[0],
-					'content' => $tag[1]
-				]
-			);
+			$tags[$tagName] = Html::element( 'meta', $attrs );
 		}
 
 		foreach ( $this->mLinktags as $tag ) {
