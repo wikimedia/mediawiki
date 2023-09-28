@@ -2533,7 +2533,6 @@ config-schema:
         properties:
             StashType: { type: [integer, string, 'null'], default: null }
             StashDuration: { type: integer, default: 86400 }
-            CacheThresholdTime: { type: number, default: 0.0 }
             WarmParsoidParserCache: { type: boolean, default: false }
         description: |-
             Configuration for the caching related to parsoid output. The configuration contains the
@@ -2549,15 +2548,34 @@ config-schema:
                   Should be long enough for users to finish editing,
                   since losing an entry from the stash may mean that the user can't save their edit.
                   This is set to one day per default.
-            - CacheThresholdTime: If parsing is completed before this time (in seconds), assume it's
-                  a small page that is fast for parsing and does not need caching. Setting this to zero
-                  causes all outputs to be cached.
             - WarmParsoidParserCache: Setting this to true will pre-populate the parsoid parser cache
                   with parsoid outputs on page edits. This speeds up loading HTML into Visual Editor.
             @since 1.39
             @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
                       change.
         default: null
+    ParserCacheFilterConfig:
+        type: object
+        default:
+            pcache: { default: { minCpuTime: 0 } }
+            parsoid-pcache: { default: { minCpuTime: 0 } }
+        additionalProperties:
+            type: object
+            description: 'A map of namespace IDs to filter definitions.'
+            additionalProperties: { type: object, description: 'A map of filter names to values.', properties: { minCpuTime: { type: number } } }
+        description: |-
+            Per-namespace configuration for the ParserCache filter.
+            There is one top level key for each cache name supported in ParserCacheFactory.
+            The per-namespace configuration is given separately for each cache.
+            For each namespace, this defines a set of filter options, which are represented
+            as an associative array. The following keys are supported in this array:
+            - minCpuTime: causes the parser cache to not save any output that took fewer
+              than the given number of seconds of CPU time to generate, according to
+              ParserOutput::getTimeProfile(). Set to 0 to always cache, or to
+              PHP_INT_MAX to disable caching for this namespace.
+            If no filter options are defined for a given namespace, the filter options
+            under the "default" key will be used for pages in that namespace.
+            @since 1.42
     ChronologyProtectorStash:
         default: null
         type:

@@ -4096,10 +4096,6 @@ class MainConfigSchema {
 	 *       since losing an entry from the stash may mean that the user can't save their edit.
 	 *       This is set to one day per default.
 	 *
-	 * - CacheThresholdTime: If parsing is completed before this time (in seconds), assume it's
-	 *       a small page that is fast for parsing and does not need caching. Setting this to zero
-	 *       causes all outputs to be cached.
-	 *
 	 * - WarmParsoidParserCache: Setting this to true will pre-populate the parsoid parser cache
 	 *       with parsoid outputs on page edits. This speeds up loading HTML into Visual Editor.
 	 *
@@ -4112,9 +4108,58 @@ class MainConfigSchema {
 		'properties' => [
 			'StashType' => [ 'type' => 'int|string|null', 'default' => null ],
 			'StashDuration' => [ 'type' => 'int', 'default' => 24 * 60 * 60 ],
-			'CacheThresholdTime' => [ 'type' => 'float', 'default' => 0.0 ],
 			'WarmParsoidParserCache' => [ 'type' => 'bool', 'default' => false ],
 		]
+	];
+
+	/**
+	 * Per-namespace configuration for the ParserCache filter.
+	 *
+	 * There is one top level key for each cache name supported in ParserCacheFactory.
+	 * The per-namespace configuration is given separately for each cache.
+	 *
+	 * For each namespace, this defines a set of filter options, which are represented
+	 * as an associative array. The following keys are supported in this array:
+	 *
+	 * - minCpuTime: causes the parser cache to not save any output that took fewer
+	 *   than the given number of seconds of CPU time to generate, according to
+	 *   ParserOutput::getTimeProfile(). Set to 0 to always cache, or to
+	 *   PHP_INT_MAX to disable caching for this namespace.
+	 *
+	 * If no filter options are defined for a given namespace, the filter options
+	 * under the "default" key will be used for pages in that namespace.
+	 *
+	 * @since 1.42
+	 */
+	public const ParserCacheFilterConfig = [
+		'type' => 'map',
+		'default' => [ // default value
+			'pcache' => [ // old parser cache
+				'default' => [ // all namespaces
+					// 0 means no threshold.
+					// Use PHP_INT_MAX to disable cache.
+					'minCpuTime' => 0
+				],
+			],
+			'parsoid-pcache' => [ // parsoid output cache
+				'default' => [ // all namespaces
+					// 0 means no threshold.
+					// Use PHP_INT_MAX to disable cache.
+					'minCpuTime' => 0
+				],
+			],
+		],
+		'additionalProperties' => [ // caches
+			'type' => 'map',
+			'description' => 'A map of namespace IDs to filter definitions.',
+			'additionalProperties' => [ // namespaces
+				'type' => 'map',
+				'description' => 'A map of filter names to values.',
+				'properties' => [ // filters
+					'minCpuTime' => [ 'type' => 'float' ]
+				]
+			],
+		],
 	];
 
 	/**

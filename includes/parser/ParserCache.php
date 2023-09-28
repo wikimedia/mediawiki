@@ -26,6 +26,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserCacheFilter;
 use MediaWiki\Parser\ParserCacheMetadata;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
@@ -114,6 +115,8 @@ class ParserCache {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	private ?ParserCacheFilter $filter = null;
+
 	/**
 	 * @var BagOStuff small in-process cache to store metadata.
 	 * It's needed multiple times during the request, for example
@@ -159,6 +162,14 @@ class ParserCache {
 		$this->titleFactory = $titleFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->metadataProcCache = new HashBagOStuff( [ 'maxKeys' => 2 ] );
+	}
+
+	/**
+	 * @since 1.41
+	 * @param ParserCacheFilter $filter
+	 */
+	public function setFilter( ParserCacheFilter $filter ): void {
+		$this->filter = $filter;
 	}
 
 	/**
@@ -420,6 +431,17 @@ class ParserCache {
 				[ 'name' => $this->name ]
 			);
 			$this->incrementStats( $page, 'save_uncacheable' );
+			return;
+		}
+
+		if ( $this->filter && !$this->filter->shouldCache( $parserOutput, $page, $popts ) ) {
+			$this->logger->debug(
+				'Parser output was filtered and has not been saved',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $page, 'save_filtered' );
+
+			// TODO: In this case, we still want to cache in RevisionOutputCache (T350669).
 			return;
 		}
 

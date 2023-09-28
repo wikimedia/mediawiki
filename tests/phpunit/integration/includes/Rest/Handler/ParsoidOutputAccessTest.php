@@ -1,9 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\ParserOutputAccess;
-use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
@@ -16,7 +14,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -75,27 +72,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		?BagOStuff $parserCacheBag = null
 	): void {
 		$services = $this->getServiceContainer();
-
-		$parsoidCacheConfig += [
-			'CacheThresholdTime' => 0,
-		];
-
-		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'CacheEpoch' => '20200202112233',
-			'OldRevisionParserCacheExpireTime' => 60 * 60,
-		] );
-
-		$parserCacheFactory = new ParserCacheFactory(
-			$parserCacheBag ?: new HashBagOStuff(),
-			new WANObjectCache( [ 'cache' => new HashBagOStuff(), ] ),
-			$this->createHookContainer(),
-			new JsonCodec(),
-			new NullStatsdDataFactory(),
-			new NullLogger(),
-			$parserCacheFactoryOptions,
-			$services->getTitleFactory(),
-			$services->getWikiPageFactory()
-		);
 
 		$mockParsoid = $this->newMockParsoid( $expectedParses );
 		$parsoidParser = new ParsoidParser(
@@ -371,42 +347,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// since we suppressed caching for non-wikitext content.
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( 'Dummy output', $status );
-	}
-
-	/**
-	 * Unsupported functionality at this point
-	 */
-	public static function provideCacheThresholdData() {
-		return [
-			yield "fast parse" => [ 1, 2 ], // high threshold, no caching
-			yield "slow parse" => [ 0, 1 ], // low threshold, caching
-		];
-	}
-
-	/**
-	 * @dataProvider provideCacheThresholdData()
-	 */
-	public function testHtmlWithCacheThreshold(
-		$cacheThresholdTime,
-		$expectedCalls
-	) {
-		$this->markTestSkipped( 'Supported removed. Will be fixed by T346398.' );
-
-		$page = $this->getExistingTestPage( __METHOD__ );
-		$parsoidCacheConfig = [
-			'CacheThresholdTime' => $cacheThresholdTime
-		];
-		$parserOptions = $this->getParserOptions();
-
-		$this->resetServicesWithMockedParsoid( $expectedCalls, $parsoidCacheConfig );
-		$access = $this->getParsoidOutputAccessWithCache();
-		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertContainsHtml( self::MOCKED_HTML, $status );
-		$this->checkMetadata( $status );
-
-		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertContainsHtml( self::MOCKED_HTML, $status );
-		$this->checkMetadata( $status );
 	}
 
 	public function testOldRevisionIsCached() {

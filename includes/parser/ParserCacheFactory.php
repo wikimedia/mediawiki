@@ -84,6 +84,7 @@ class ParserCacheFactory {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::CacheEpoch,
+		MainConfigNames::ParserCacheFilterConfig,
 		MainConfigNames::OldRevisionParserCacheExpireTime,
 	];
 
@@ -141,6 +142,13 @@ class ParserCacheFactory {
 				$this->titleFactory,
 				$this->wikiPageFactory
 			);
+
+			$filterConfig = $this->options->get( MainConfigNames::ParserCacheFilterConfig );
+
+			if ( isset( $filterConfig[$name] ) ) {
+				$filter = new ParserCacheFilter( $filterConfig[$name] );
+				$cache->setFilter( $filter );
+			}
 
 			$this->parserCaches[$name] = $cache;
 		}
