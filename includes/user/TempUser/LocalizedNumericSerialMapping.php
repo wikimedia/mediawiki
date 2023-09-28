@@ -11,8 +11,7 @@ use MediaWiki\Languages\LanguageFactory;
  * @since 1.39
  */
 class LocalizedNumericSerialMapping implements SerialMapping {
-	/** @var Language */
-	private $language;
+	private Language $language;
 
 	/**
 	 * @param array $config

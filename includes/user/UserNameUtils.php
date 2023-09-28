@@ -56,43 +56,19 @@ class UserNameUtils implements UserRigorOptions {
 	 * RIGOR_* constants are inherited from UserRigorOptions
 	 */
 
-	/**
-	 * @var ServiceOptions
-	 */
-	private $options;
-
-	/**
-	 * @var Language
-	 */
-	private $contentLang;
-
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-
-	/**
-	 * @var TitleParser
-	 */
-	private $titleParser;
-
-	/**
-	 * @var ITextFormatter
-	 */
-	private $textFormatter;
+	private ServiceOptions $options;
+	private Language $contentLang;
+	private LoggerInterface $logger;
+	private TitleParser $titleParser;
+	private ITextFormatter $textFormatter;
 
 	/**
 	 * @var string[]|false Cache for isUsable()
 	 */
 	private $reservedUsernames = false;
 
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
-
-	/** @var TempUserConfig */
-	private $tempUserConfig;
+	private HookRunner $hookRunner;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param ServiceOptions $options

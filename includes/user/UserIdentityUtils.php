@@ -11,8 +11,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
  * @since 1.41
  */
 class UserIdentityUtils {
-	/** @var TempUserConfig */
-	private $tempUserConfig;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @internal

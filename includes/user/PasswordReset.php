@@ -50,26 +50,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class PasswordReset implements LoggerAwareInterface {
 	use LoggerAwareTrait;
 
-	/** @var ServiceOptions */
-	private $config;
-
-	/** @var AuthManager */
-	private $authManager;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	private ServiceOptions $config;
+	private AuthManager $authManager;
+	private HookRunner $hookRunner;
+	private IConnectionProvider $dbProvider;
+	private UserFactory $userFactory;
+	private UserNameUtils $userNameUtils;
+	private UserOptionsLookup $userOptionsLookup;
 
 	/**
 	 * In-process cache for isAllowed lookups, by username.

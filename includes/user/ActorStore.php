@@ -46,21 +46,15 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 	private const LOCAL_CACHE_SIZE = 100;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private ILoadBalancer $loadBalancer;
+	private UserNameUtils $userNameUtils;
 	private TempUserConfig $tempUserConfig;
-
-	/** @var LoggerInterface */
-	private $logger;
+	private LoggerInterface $logger;
 
 	/** @var string|false */
 	private $wikiId;
 
-	/** @var ActorCache */
-	private $cache;
+	private ActorCache $cache;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer

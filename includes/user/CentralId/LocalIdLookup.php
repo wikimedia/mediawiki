@@ -41,8 +41,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class LocalIdLookup extends CentralIdLookup {
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
 	/** @var string|null */
 	private $sharedDB;

@@ -72,35 +72,16 @@ class UserGroupManager implements IDBAccessObject {
 		MainConfigNames::PrivilegedGroups,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var UserEditTracker */
-	private $userEditTracker;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var TempUserConfig */
-	private $tempUserConfig;
+	private ServiceOptions $options;
+	private IConnectionProvider $dbProvider;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	private ReadOnlyMode $readOnlyMode;
+	private UserEditTracker $userEditTracker;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private JobQueueGroup $jobQueueGroup;
+	private LoggerInterface $logger;
+	private TempUserConfig $tempUserConfig;
 
 	/** @var callable[] */
 	private $clearCacheCallbacks;

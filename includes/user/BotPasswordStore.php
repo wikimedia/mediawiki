@@ -51,14 +51,9 @@ class BotPasswordStore implements IDBAccessObject {
 		MainConfigNames::BotPasswordsDatabase,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var LBFactory */
-	private $lbFactory;
-
-	/** @var CentralIdLookup */
-	private $centralIdLookup;
+	private ServiceOptions $options;
+	private LBFactory $lbFactory;
+	private CentralIdLookup $centralIdLookup;
 
 	/**
 	 * @param ServiceOptions $options
