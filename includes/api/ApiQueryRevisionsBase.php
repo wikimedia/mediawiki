@@ -60,7 +60,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
 		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true,
-		$slotRoles = null, $needSlots;
+		$slotRoles = null, $slotContentFormats, $needSlots;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_slotsize = false, $fld_sha1 = false, $fld_slotsha1 = false,
@@ -188,6 +188,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						$this->encodeParamName( $p ),
 						$this->encodeParamName( 'slots' ),
 					], 'invalidparammix' );
+				}
+			}
+			$this->slotContentFormats = [];
+			foreach ( $this->slotRoles as $slotRole ) {
+				if ( isset( $params['contentformat-' . $slotRole] ) ) {
+					$this->slotContentFormats[$slotRole] = $params['contentformat-' . $slotRole];
 				}
 			}
 		}
@@ -490,13 +496,25 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				// when extractDeprecatedContent() is no more.
 				if ( $content ) {
 					/** @var Content $content */
-					$vals['slots'][$role]['contentmodel'] = $content->getModel();
-					$vals['slots'][$role]['contentformat'] = $content->getDefaultFormat();
-					ApiResult::setContentValue(
-						$vals['slots'][$role],
-						'content',
-						$content->serialize()
-					);
+					$model = $content->getModel();
+					$format = $this->slotContentFormats[$role] ?? $content->getDefaultFormat();
+					if ( !$content->isSupportedFormat( $format ) ) {
+						$this->addWarning( [
+							'apierror-badformat',
+							$format,
+							$model,
+							$this->msg( 'revid', $revision->getId() )
+						] );
+						$vals['slots'][$role]['badcontentformat'] = true;
+					} else {
+						$vals['slots'][$role]['contentmodel'] = $model;
+						$vals['slots'][$role]['contentformat'] = $format;
+						ApiResult::setContentValue(
+							$vals['slots'][$role],
+							'content',
+							$content->serialize( $format )
+						);
+					}
 				}
 			}
 			ApiResult::setArrayType( $vals['slots'], 'kvp', 'role' );
@@ -809,6 +827,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-slots',
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_ALL => true,
+			],
+			'contentformat-{slot}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ],
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat-slot',
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 			],
 			'limit' => [
 				ParamValidator::PARAM_TYPE => 'limit',
