@@ -688,6 +688,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Set the method name to be included in an SQL comment.
 	 *
 	 * @param string $fname
+	 * @param-taint $fname exec_sql
 	 * @return $this
 	 */
 	public function caller( $fname ) {

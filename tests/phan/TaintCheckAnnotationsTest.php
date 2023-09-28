@@ -29,6 +29,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleValue;
 use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
+use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 die( 'This file should never be loaded' );
@@ -348,10 +349,38 @@ class TaintCheckAnnotationsTest {
 		$sqb->conds( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 		$sqb->conds( [ 'foo' => $_GET['a'] ] );// Safe
 
+		$sqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
 		echo $sqb->fetchResultSet();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $sqb->fetchField();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $sqb->fetchFieldValues();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $sqb->fetchRow();// @phan-suppress-current-line SecurityCheck-XSS
+	}
+
+	function testInsertQueryBuilder( InsertQueryBuilder $iqb ) {
+		$iqb->table( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$iqb->insert( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$iqb->insertInto( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$iqb->row( $_GET['a'] );// TODO: Unsafe
+		$iqb->row( [ 'bar' => $_GET['a'] ] );// Safe
+		$iqb->row( [ $_GET['a'] => 'foo' ] );// TODO: Unsafe
+
+		$iqb->rows( $_GET['a'] );// TODO: Unsafe
+		$iqb->rows( [ $_GET['a'] ] );// TODO: Unsafe
+		$iqb->rows( [ $_GET['a'] => [] ] );// Safe
+		$iqb->rows( [ $_GET['a'] => [ 'foo' => $_GET['a'] ] ] );// Safe
+		$iqb->rows( [ $_GET['a'] => [ $_GET['a'] => 'foo' ] ] );// TODO: Unsafe
+
+		$iqb->set( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$iqb->set( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$iqb->set( [ 'x' => $_GET['a'] ] );// Safe
+
+		$iqb->andSet( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$iqb->andSet( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$iqb->andSet( [ 'x' => $_GET['a'] ] );// Safe
+
+		$iqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 	}
 
 	function testMessage( Message $msg ) {
