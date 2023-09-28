@@ -47,7 +47,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 
 	private ServiceOptions $serviceOptions;
 	private Language $contentLang;
-	protected NamespaceInfo $nsInfo;
+	private NamespaceInfo $nsInfo;
 
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
