@@ -602,6 +602,9 @@ class Article implements Page {
 				$outputPage->addModules( 'mediawiki.editRecovery.postEdit' );
 			}
 		}
+
+		// Add toolbox portlet to toggle all collapsibles if there are any
+		$outputPage->addModules( 'mediawiki.toggleAllCollapsibles' );
 	}
 
 	/**
