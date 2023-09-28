@@ -57,23 +57,12 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	public const MAX_BYTES_OPTION_VALUE = 65530;
 
-	/** @var ServiceOptions */
-	private $serviceOptions;
-
-	/** @var DefaultOptionsLookup */
-	private $defaultOptionsLookup;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var LoggerInterface */
-	private $logger;
+	private ServiceOptions $serviceOptions;
+	private DefaultOptionsLookup $defaultOptionsLookup;
+	private LanguageConverterFactory $languageConverterFactory;
+	private IConnectionProvider $dbProvider;
+	private UserFactory $userFactory;
+	private LoggerInterface $logger;
 
 	/** @var array options modified within this request */
 	private $modifiedOptions = [];
@@ -91,14 +80,12 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	private $optionsFromDb = [];
 
-	/** @var HookRunner */
-	private $hookRunner;
+	private HookRunner $hookRunner;
 
 	/** @var array Query flags used to retrieve options from database */
 	private $queryFlagsUsedForCaching = [];
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private UserNameUtils $userNameUtils;
 
 	/**
 	 * @param ServiceOptions $options

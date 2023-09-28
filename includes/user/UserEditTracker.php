@@ -23,14 +23,9 @@ class UserEditTracker {
 	private const FIRST_EDIT = 1;
 	private const LATEST_EDIT = 2;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
+	private ActorMigration $actorMigration;
+	private IConnectionProvider $dbProvider;
+	private JobQueueGroup $jobQueueGroup;
 
 	/**
 	 * @var int[]

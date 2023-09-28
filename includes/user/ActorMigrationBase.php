@@ -45,14 +45,12 @@ class ActorMigrationBase {
 	/** @var int A combination of the SCHEMA_COMPAT_WRITE_* flags */
 	private $writeStage;
 
-	/** @var ActorStoreFactory */
-	private $actorStoreFactory;
+	private ActorStoreFactory $actorStoreFactory;
 
 	/** @var array */
 	private $fieldInfos;
 
-	/** @var bool */
-	private $allowUnknown;
+	private bool $allowUnknown;
 
 	/**
 	 * @param array $fieldInfos An array of associative arrays, giving configuration

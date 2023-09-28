@@ -45,26 +45,13 @@ class TalkPageNotificationManager {
 		MainConfigNames::DisableAnonTalk
 	];
 
-	/** @var array */
-	private $userMessagesCache = [];
-
-	/** @var bool */
-	private $disableAnonTalk;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var UserFactory */
-	private $userFactory;
+	private array $userMessagesCache = [];
+	private bool $disableAnonTalk;
+	private IConnectionProvider $dbProvider;
+	private ReadOnlyMode $readOnlyMode;
+	private RevisionLookup $revisionLookup;
+	private HookRunner $hookRunner;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param ServiceOptions $serviceOptions

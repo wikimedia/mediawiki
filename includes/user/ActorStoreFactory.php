@@ -42,15 +42,10 @@ class ActorStoreFactory {
 		MainConfigNames::SharedTables,
 	];
 
-	/** @var ILBFactory */
-	private $loadBalancerFactory;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private ILBFactory $loadBalancerFactory;
+	private UserNameUtils $userNameUtils;
 	private TempUserConfig $tempUserConfig;
-
-	/** @var LoggerInterface */
-	private $logger;
+	private LoggerInterface $logger;
 
 	/** @var string|false */
 	private $sharedDB;

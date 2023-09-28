@@ -34,15 +34,8 @@ use MediaWiki\Title\Title;
  */
 class ExternalUserNames {
 
-	/**
-	 * @var string
-	 */
-	private $usernamePrefix;
-
-	/**
-	 * @var bool
-	 */
-	private $assignKnownUsers;
+	private string $usernamePrefix;
+	private bool $assignKnownUsers;
 
 	/**
 	 * @var bool[]

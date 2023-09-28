@@ -36,35 +36,19 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * @since 1.35
  */
 class UserGroupManagerFactory {
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var ILBFactory */
-	private $dbLoadBalancerFactory;
-
-	/** @var UserEditTracker */
-	private $userEditTracker;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionLookup;
-
-	/** @var JobQueueGroupFactory */
-	private $jobQueueGroupFactory;
-
-	/** @var LoggerInterface */
-	private $logger;
+	private ServiceOptions $options;
+	private ReadOnlyMode $readOnlyMode;
+	private ILBFactory $dbLoadBalancerFactory;
+	private UserEditTracker $userEditTracker;
+	private GroupPermissionsLookup $groupPermissionLookup;
+	private JobQueueGroupFactory $jobQueueGroupFactory;
+	private LoggerInterface $logger;
 
 	/** @var callable[] */
 	private $clearCacheCallbacks;
 
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var TempUserConfig */
-	private $tempUserConfig;
+	private HookContainer $hookContainer;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param ServiceOptions $options

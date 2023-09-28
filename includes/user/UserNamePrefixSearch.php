@@ -41,11 +41,8 @@ class UserNamePrefixSearch {
 	/** @var string */
 	public const AUDIENCE_PUBLIC = 'public';
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private IConnectionProvider $dbProvider;
+	private UserNameUtils $userNameUtils;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

@@ -44,8 +44,7 @@ class ActorCache {
 	/** @var string Key by user name */
 	public const KEY_USER_NAME = 'name';
 
-	/** @var int */
-	private $maxSize;
+	private int $maxSize;
 
 	/**
 	 * @var array[][] Contains 3 keys, KEY_ACTOR_ID, KEY_USER_ID, and KEY_USER_NAME,

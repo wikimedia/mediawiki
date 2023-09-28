@@ -24,32 +24,15 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @since 1.39
  */
 class TempUserCreator implements TempUserConfig {
-	/** @var RealTempUserConfig */
-	private $config;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var AuthManager */
-	private $authManager;
-
-	/** @var Throttler|null */
-	private $throttler;
-
-	/** @var array */
-	private $serialProviderConfig;
-
-	/** @var array */
-	private $serialMappingConfig;
-
-	/** @var ObjectFactory */
-	private $objectFactory;
-
-	/** @var SerialProvider|null */
-	private $serialProvider;
-
-	/** @var SerialMapping|null */
-	private $serialMapping;
+	private RealTempUserConfig $config;
+	private UserFactory $userFactory;
+	private AuthManager $authManager;
+	private ?Throttler $throttler;
+	private array $serialProviderConfig;
+	private array $serialMappingConfig;
+	private ObjectFactory $objectFactory;
+	private ?SerialProvider $serialProvider;
+	private ?SerialMapping $serialMapping;
 
 	/** ObjectFactory specs for the core serial providers */
 	private const SERIAL_PROVIDERS = [
@@ -188,7 +171,7 @@ class TempUserCreator implements TempUserConfig {
 	 * @return SerialProvider
 	 */
 	private function getSerialProvider(): SerialProvider {
-		if ( !$this->serialProvider ) {
+		if ( !isset( $this->serialProvider ) ) {
 			$this->serialProvider = $this->createSerialProvider();
 		}
 		return $this->serialProvider;
@@ -228,7 +211,7 @@ class TempUserCreator implements TempUserConfig {
 	 * @return SerialMapping
 	 */
 	private function getSerialMapping(): SerialMapping {
-		if ( !$this->serialMapping ) {
+		if ( !isset( $this->serialMapping ) ) {
 			$this->serialMapping = $this->createSerialMapping();
 		}
 		return $this->serialMapping;

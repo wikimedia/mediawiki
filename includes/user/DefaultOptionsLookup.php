@@ -45,20 +45,14 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		MainConfigNames::NamespacesToBeSearchedDefault
 	];
 
-	/** @var ServiceOptions */
-	private $serviceOptions;
-
-	/** @var Language */
-	private $contentLang;
-
-	/** @var NamespaceInfo */
-	protected $nsInfo;
+	private ServiceOptions $serviceOptions;
+	private Language $contentLang;
+	protected NamespaceInfo $nsInfo;
 
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
 
-	/** @var HookRunner */
-	private $hookRunner;
+	private HookRunner $hookRunner;
 
 	/**
 	 * @var bool Whether a database-less test is being executed.
