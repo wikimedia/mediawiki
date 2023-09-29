@@ -4052,6 +4052,26 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * Compare this Language object to a Bcp47Code.  This is part of the
+	 * Bcp47Code interface.
+	 * @param Bcp47Code $other
+	 * @return bool
+	 * @since 1.41
+	 */
+	public function isSameCodeAs( Bcp47Code $other ): bool {
+		if ( $this === $other ) {
+			return true;
+		}
+		if ( $other instanceof Language ) {
+			// Compare the mediawiki-internal code
+			return $this->equals( $other );
+		}
+		// Bcp-47 codes are case insensitive.
+		// See Bcp47CodeValue::isSameCode()
+		return strcasecmp( $this->toBcp47Code(), $other->toBcp47Code() ) === 0;
+	}
+
+	/**
 	 * Get the language code from a file name. Inverse of getFileName()
 	 *
 	 * @param string $filename $prefix . $languageCode . $suffix
