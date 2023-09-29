@@ -70,7 +70,7 @@
 		this.useragentCheckboxShow = !!config.showUseragentCheckbox;
 		this.useragentCheckboxMandatory = !!config.useragentCheckboxMandatory;
 		this.useragentCheckboxMessage = config.useragentCheckboxMessage ||
-			$( '<p>' ).append( mw.msg( 'feedback-terms' ) );
+			$( '<p>' ).append( mw.message( 'feedback-terms' ).parseDom() );
 
 		// Message dialog
 		this.thankYouDialog = new OO.ui.MessageDialog();

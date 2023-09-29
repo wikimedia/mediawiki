@@ -23,7 +23,9 @@
 			"아라",
 			"Akbar Soepadhi",
 			"Pijri Paijar",
-			"Veracious"
+			"Veracious",
+			"Amire80",
+			"Bennylin"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -1949,7 +1951,7 @@
 	"enotif_lastvisited": "Pikeun sakumna parobahan ti saprak jebulan panungtung, tempo $1",
 	"enotif_lastdiff": "Pikeun nempo parobahan, ilikan $1",
 	"enotif_anon_editor": "pamaké anonim $1",
-	"enotif_body": "Sadérék $WATCHINGUSERNAME,\n\nKaca $PAGETITLE na {{SITENAME}} geus $CHANGEDORCREATED tanggal $PAGEEDITDATE ku $PAGEEDITOR. Mangga tingal {{SERVER}}{{localurl:$PAGETITLE}} pikeun vérsi kiwari.\n\n$NEWPAGE\n\nRingkesan éditor: $PAGESUMMARY $PAGEMINOREDIT\n\nKontak éditor:\nsurat {{SERVER}}{{localurl:Husus:Emailuser|target=$PAGEEDITOR}}\nwiki {{SERVER}}{{localurl:Pamaké:$PAGEEDITOR}}\n\nMun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun. Anjeun bisa ogé nyetél deui umbul-umbul pikeun sadaya kaca nu aya na daptar awaseun anjeun.\n\n             Sistim émbaran {{SITENAME}} pikeun anjeun\n\n--\nPikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Husus:Watchlist|edit=yes}}\n\nAsupan jeung bantuan salajengna:\n$HELPPAGE",
+	"enotif_body": "Sadérék $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nRingkesan éditor: $PAGESUMMARY $PAGEMINOREDIT\n\nKontak éditor:\nsurat {{SERVER}}{{localurl:Husus:Emailuser|target=$PAGEEDITOR}}\nwiki {{SERVER}}{{localurl:Pamaké:$PAGEEDITOR}}\n\nMun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun. Anjeun bisa ogé nyetél deui umbul-umbul pikeun sadaya kaca nu aya na daptar awaseun anjeun.\n\nSistim émbaran {{SITENAME}} pikeun anjeun\n\n--\nPikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Husus:Watchlist|edit=yes}}\n\nAsupan jeung bantuan salajengna:\n$HELPPAGE",
 	"enotif_minoredit": "Ieu mah éditan minor",
 	"created": "geus dijieun",
 	"changed": "geus robah",
@@ -2687,7 +2689,7 @@
 	"autosumm-blank": "Ngosongkeun eusi kaca",
 	"autosumm-replace": "Ngaganti kaca ku '$1'",
 	"autoredircomment": "Mindahkeun ka [[$1]]",
-	"autosumm-new": "Nyieun kaca anyar  $1",
+	"autosumm-new": "Nyieun kaca anyar $1",
 	"autosumm-newblank": "Nyieun kaca kosong",
 	"lag-warn-normal": "Parobahan nu leuwih anyar ti $1 {{PLURAL:$1|detik|detik}} moal ditémbongkeun dina ieu béréndélan.",
 	"lag-warn-high": "Kusabab kasibukan lag server pangkalan data, parobahan nu leuwih anyar $1 {{PLURAL:$1|detik|detik}} moal ditémbongkeun dina ieu béréndélan.",

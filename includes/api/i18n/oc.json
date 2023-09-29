@@ -5,7 +5,8 @@
 			"Cedric31",
 			"Macofe",
 			"Nicolas Eynaud",
-			"Quentí"
+			"Quentí",
+			"Amire80"
 		]
 	},
 	"apihelp-main-param-action": "Quina accion cal efectuar.",
@@ -79,7 +80,7 @@
 	"apihelp-managetags-summary": "Efectuar de prètzfaits de gestion relatius a la modificacion de las balisas.",
 	"apihelp-mergehistory-summary": "Fusionar leis istorics de pagina",
 	"apihelp-mergehistory-param-reason": "Rason per fusionar l’istoric.",
-	"apihelp-mergehistory-example-merge": "Fusionar l’istoric complet de  <kbd>AncianaPagina</kbd> dins <kbd>NovèlaPagina</kbd>.",
+	"apihelp-mergehistory-example-merge": "Fusionar l’istoric complet de <kbd>AncianaPagina</kbd> dins <kbd>NovèlaPagina</kbd>.",
 	"apihelp-mergehistory-example-merge-timestamp": "Fusionar las revisions de la pagina <kbd>AncianaPagina</kbd> fins al <kbd>2015-12-31T04:37:41Z</kbd> dins <kbd>NovèlaPagina</kbd>.",
 	"apihelp-move-summary": "Desplaçar una pagina.",
 	"apihelp-move-param-reason": "Motiu del cambiament de nom.",

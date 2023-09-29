@@ -53,6 +53,7 @@ class ExtensionProcessor implements Processor {
 		MainConfigNames::LogTypes,
 		MainConfigNames::MediaHandlers,
 		MainConfigNames::PasswordPolicy,
+		MainConfigNames::PrivilegedGroups,
 		MainConfigNames::RateLimits,
 		MainConfigNames::RawHtmlMessages,
 		MainConfigNames::ReauthenticateTime,

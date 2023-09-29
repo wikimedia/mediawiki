@@ -592,11 +592,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamplesMessages() {
-		static $examples = [
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+		$examples = [
 			'backlinks' => [
-				'action=query&list=backlinks&bltitle=Main%20Page'
+				"action=query&list=backlinks&bltitle={$mp}"
 					=> 'apihelp-query+backlinks-example-simple',
-				'action=query&generator=backlinks&gbltitle=Main%20Page&prop=info'
+				"action=query&generator=backlinks&gbltitle={$mp}&prop=info"
 					=> 'apihelp-query+backlinks-example-generator',
 			],
 			'embeddedin' => [

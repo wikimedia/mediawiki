@@ -468,6 +468,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					'older'
 				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
+					'newer' => 'api-help-paramvalue-direction-newer',
+					'older' => 'api-help-paramvalue-direction-older',
+				],
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'user' => [
@@ -494,23 +498,26 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=query&prop=revisions&titles=API|Main%20Page&' .
+			"action=query&prop=revisions&titles=API|{$mp}&" .
 				'rvslots=*&rvprop=timestamp|user|comment|content'
 				=> 'apihelp-query+revisions-example-content',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			"action=query&prop=revisions&titles={$mp}&rvlimit=5&" .
 				'rvprop=timestamp|user|comment'
 				=> 'apihelp-query+revisions-example-last5',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			"action=query&prop=revisions&titles={$mp}&rvlimit=5&" .
 				'rvprop=timestamp|user|comment&rvdir=newer'
 				=> 'apihelp-query+revisions-example-first5',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			"action=query&prop=revisions&titles={$mp}&rvlimit=5&" .
 				'rvprop=timestamp|user|comment&rvdir=newer&rvstart=2006-05-01T00:00:00Z'
 				=> 'apihelp-query+revisions-example-first5-after',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			"action=query&prop=revisions&titles={$mp}&rvlimit=5&" .
 				'rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1'
 				=> 'apihelp-query+revisions-example-first5-not-localhost',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			"action=query&prop=revisions&titles={$mp}&rvlimit=5&" .
 				'rvprop=timestamp|user|comment&rvuser=MediaWiki%20default'
 				=> 'apihelp-query+revisions-example-first5-user',
 		];

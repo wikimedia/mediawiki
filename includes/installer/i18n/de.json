@@ -116,6 +116,7 @@
 	"config-db-prefix": "Präfix der Datenbanktabelle (ohne Bindestriche):",
 	"config-db-prefix-help": "Sofern eine Datenbank für mehrere Wikiinstallationen oder eine Wikiinstallation und eine andere Programminstallation genutzt werden soll, muss ein Datenbanktabellenpräfix angegeben werden, um Datenbankprobleme zu vermeiden.\nEs können keine Leerzeichen verwendet werden.\n\nGewöhnlich bleibt dieses Feld leer.",
 	"config-mysql-old": "MySQL $1 oder höher wird benötigt. MySQL $2 ist momentan vorhanden.",
+	"config-mariadb-old": "MariaDB $1 oder höher ist erforderlich. Du hast $2.",
 	"config-db-port": "Datenbankport:",
 	"config-db-schema": "Schema für MediaWiki (ohne Bindestriche):",
 	"config-db-schema-help": "Dieses Datenschema ist in der Regel allgemein verwendbar.\nNur Änderungen daran vornehmen, sofern es gute Gründe dafür gibt.",

@@ -89,7 +89,8 @@
 			"Önni",
 			"לערי ריינהארט",
 			"아라",
-			555
+			555,
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sublinhar hiperligações:",
@@ -1118,7 +1119,7 @@
 	"prefs-changeemail": "Alterar ou remover correio eletrónico",
 	"prefs-setemail": "Definir um endereço de correio eletrónico",
 	"prefs-email": "Opções do correio eletrónico",
-	"prefs-rendering": "Aparência",
+	"prefs-rendering": "Aspeto",
 	"prefs-searchmisc": "Geral",
 	"saveprefs": "Gravar",
 	"restoreprefs": "Repor todas as configurações padrão",
@@ -3457,7 +3458,7 @@
 	"tags-title": "Etiquetas de modificação válidas",
 	"tags-intro": "Esta página lista as etiquetas com que o software poderá marcar uma edição e o respetivo significado.",
 	"tags-tag": "Nome da etiqueta",
-	"tags-display-header": "Aparência nas listas de modificações",
+	"tags-display-header": "Surgimento nas listas de modificações",
 	"tags-description-header": "Descrição completa do significado",
 	"tags-source-header": "Origem",
 	"tags-active-header": "Ativa?",

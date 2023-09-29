@@ -20,7 +20,8 @@
 			"Vlad5250",
 			"ଶିତିକଣ୍ଠ ଦାଶ",
 			"아라",
-			"Chinmayee Mishra"
+			"Chinmayee Mishra",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -1758,7 +1759,7 @@
 	"rollbacklinkcount-morethan": "{{PLURAL:$1|edit|edits}} $1ରୁ ଅଧିକ ପଛକୁ ଫେରାଇବେ",
 	"rollbackfailed": "ପୁରାପୁରି ପଛକୁ ଫେରିବା ବିଫଳ ହେଲା",
 	"cantrollback": "ବଦଳକୁ ପଛକୁ ଫେରାଇ ପାରିବେ ନାହିଁ;\nଶେଷ ଦାତାଜଣଙ୍କ ଏହି ପୃଷ୍ଠାର ଜଣେମାତ୍ର ଦାତା ।",
-	"alreadyrolled": "[[User:$2|$2]]([[User talk:$2|talk]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])ଙ୍କ ଦେଇ [[:$1]]ରେ ହୋଇଥିବା ଶେଷ ବଦଳକୁ ପଛକୁ ଫେରାଯାଇପାରିବ ନାହିଁ ;\nଏହାକୁ ଆଉ କେହି ସମ୍ପାଦନା କରିଛି ବା ପୁରାପୁରି ପଛକୁ ଫେରାଇଦେଇଛି ।\n\nଏହି ପୃଷ୍ଠାର ଶେଷ  ସମ୍ପାଦନା  [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ଙ୍କ ଦେଇ ହୋଇଥିଲା ।",
+	"alreadyrolled": "[[User:$2|$2]]([[User talk:$2|talk]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])ଙ୍କ ଦେଇ [[:$1]]ରେ ହୋଇଥିବା ଶେଷ ବଦଳକୁ ପଛକୁ ଫେରାଯାଇପାରିବ ନାହିଁ ;\nଏହାକୁ ଆଉ କେହି ସମ୍ପାଦନା କରିଛି ବା ପୁରାପୁରି ପଛକୁ ଫେରାଇଦେଇଛି ।\n\nଏହି ପୃଷ୍ଠାର ଶେଷ ସମ୍ପାଦନା [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ଙ୍କ ଦେଇ ହୋଇଥିଲା ।",
 	"editcomment": "ସମ୍ପାଦନାର ସାରକଥା ଥିଲା: <em>$1</em> ।",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|ଆଲୋଚନା]])ଙ୍କ ଦେଇ କରାଯାଇଥିବା ବଦଳକୁ [[User:$1|$1]]ଙ୍କ ଦେଇ କରାଯାଇଥିବା ଶେଷ ବଦଳକୁ ଫେରାଇ ଦିଆଗଲା",
 	"revertpage-nouser": "{{GENDER:$1|[[User:$1|$1]]}}ଙ୍କ ଦେଇ ଜଣେ ଅଜଣା ସଭ୍ୟଙ୍କ ସମ୍ପାଦନାକୁ ପଛକୁ ଫେରଗଲା",
@@ -2349,7 +2350,7 @@
 	"months": "{{PLURAL:$1|$1 month|$1 months}}",
 	"years": "{{PLURAL:$1|$1 year|$1 years}}",
 	"ago": "$1 ଆଗରୁ",
-	"just-now": "ଏବେ ଏବେ",
+	"just-now": "ଏଇ ଏବେ",
 	"hours-ago": "$1 {{PLURAL:$1|ଘଣ୍ଟା}} ଆଗରୁ",
 	"minutes-ago": "$1 {{PLURAL:$1|ମିନିଟ|ମିନିଟ}} ଆଗରୁ",
 	"seconds-ago": "$1 {{PLURAL:$1|ସେକେଣ୍ଡ|ସେକେଣ୍ଡ}} ଆଗରୁ",
@@ -2690,7 +2691,7 @@
 	"expand_templates_intro": "ଏହି ବିଶେଷ ପୃଷ୍ଠାଟି ସବୁ ଲେଖା ନେଇ ଛାଞ୍ଚକୁ ବାରମ୍ବାର ବଢ଼ାଇଦିଏ ।\nଏହା <code><nowiki>{{</nowiki>#language:…}}</code> ଭଳି ପାର୍ସର ଫଙ୍କସନମାନଙ୍କୁ\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code> ଭଳି ଭେରିଏବଲମାନଙ୍କୁ ବଢ଼ାଏ ।\nଅଧିକନ୍ତୁ, ଏହା <code><nowiki>{{</nowiki> }}</code>ରେ ଥିବା ସବୁ କିଛି ବଢ଼ାଇଥାଏ ।",
 	"expand_templates_title": "{{FULLPAGENAME}} ଆଦି ପାଇଁ ପ୍ରସଙ୍ଗ ନାମ:",
 	"expand_templates_input": "ଇନପୁଟ ବିଷୟ:",
-	"expand_templates_output": "ପରିଣାମ",
+	"expand_templates_output": "ଫଳାଫଳ",
 	"expand_templates_xml_output": "XML ଫଳାଫଳ",
 	"expand_templates_html_output": "ଖାଲି HTML ଫଳାଫଳ",
 	"expand_templates_ok": "ଠିକ ଅଛି",

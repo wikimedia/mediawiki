@@ -307,6 +307,8 @@ class ApiOpenSearch extends ApiBase {
 			],
 			'redirects' => [
 				ParamValidator::PARAM_TYPE => [ 'return', 'resolve' ],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				ApiBase::PARAM_HELP_MSG_APPEND => [ 'apihelp-opensearch-param-redirects-append' ],
 			],
 			'format' => [
 				ParamValidator::PARAM_DEFAULT => 'json',

@@ -12,16 +12,18 @@
 			"description": "Arbitrary notes, ignored by the parser."
 		}
 	},
+	"required": [
+		"manifest_version",
+		"name"
+	],
 	"properties": {
 		"manifest_version": {
 			"type": "integer",
-			"description": "Version of the extension.json schema the extension.json file is in.",
-			"required": true
+			"description": "Version of the extension.json schema the extension.json file is in."
 		},
 		"name": {
 			"type": "string",
-			"description": "The extension's canonical name.",
-			"required": true
+			"description": "The extension's canonical name."
 		},
 		"namemsg": {
 			"type": "string",
@@ -29,7 +31,20 @@
 		},
 		"type": {
 			"type": "string",
-			"description": "The extension's type, as an index to $wgExtensionCredits.",
+			"description": "The extension's type.",
+			"examples": [
+				"api",
+				"antispam",
+				"editor",
+				"media",
+				"parserhook",
+				"semantic",
+				"skin",
+				"specialpage",
+				"variable",
+				"wikibase",
+				"other"
+			],
 			"default": "other"
 		},
 		"author": {
@@ -709,6 +724,13 @@
 				}
 			}
 		},
+		"PrivilegedGroups": {
+			"type": "array",
+			"description": "User groups that should be considered privileged",
+			"items": {
+				"type": "string"
+			}
+		},
 		"RevokePermissions": {
 			"type": "object",
 			"description": "Default permissions to revoke from user groups",
@@ -1119,9 +1141,9 @@
 				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
 					"type": "object",
 					"additionalProperties": false,
+					"required": [ "value" ],
 					"properties": {
 						"value": {
-							"required": true
 						},
 						"merge_strategy": {
 							"type": "string",

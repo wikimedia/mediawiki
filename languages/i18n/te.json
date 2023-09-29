@@ -32,7 +32,11 @@
 			"రాకేశ్వర",
 			"వైజాసత్య",
 			"아라",
-			"Gopavasanth"
+			"Gopavasanth",
+			"Amire80",
+			"Nskjnv",
+			"Tmamatha",
+			"V Bhavya"
 		]
 	},
 	"tog-underline": "లింక్ అండర్‌లైన్:",
@@ -2116,7 +2120,7 @@
 	"apihelp-no-such-module": "\"$1\" మాడ్యూలు కనబడలేదు.",
 	"apisandbox": "API ప్రయోగశాల",
 	"apisandbox-jsonly": "API ప్రయోగశాలను వాడేందుకు జావాస్క్రిప్టు ఆవశ్యకం.",
-	"apisandbox-intro": "<strong>MediaWiki web service API</strong> తో ప్రయోగాలు చేసేందుకు ఈ పేజీని వాడండి.\nAPI  వాడుకకు సంబంధించి మరిన్ని వివరాల కోసం [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page the API documentation] చూడండి. ఉదాహరణ: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ఏదైనా పదం కలిగిన పేజీ శీర్షికల కోసం వెతకండి]. మరిన్ని ఉదాహరణల కోసం ఏదో ఒక చర్యను ఎంచుకోండి.\n\nఇది ప్రయోగశాలే అయినప్పటికీ, ఇక్కడ మీరు చేసే పనుల వలన వికీలో మార్పులు జరుగుతాయని గమనంలో ఉంచుకోండి.",
+	"apisandbox-intro": "<strong>MediaWiki web service API</strong> తో ప్రయోగాలు చేసేందుకు ఈ పేజీని వాడండి.\nAPI వాడుకకు సంబంధించి మరిన్ని వివరాల కోసం [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page the API documentation] చూడండి. ఉదాహరణ: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ఏదైనా పదం కలిగిన పేజీ శీర్షికల కోసం వెతకండి]. మరిన్ని ఉదాహరణల కోసం ఏదో ఒక చర్యను ఎంచుకోండి.\n\nఇది ప్రయోగశాలే అయినప్పటికీ, ఇక్కడ మీరు చేసే పనుల వలన వికీలో మార్పులు జరుగుతాయని గమనంలో ఉంచుకోండి.",
 	"apisandbox-submit": "అభ్యర్ధన చెయ్యి",
 	"apisandbox-reset": "తుడిచివేయి",
 	"apisandbox-retry": "మళ్ళీ ప్రయత్నించు",
@@ -2307,7 +2311,7 @@
 	"addedwatchtext-talk": "\"[[:$1]]\" అనే పేజీని, దాని అనుబంధ పేజీనీ మీ [[Special:Watchlist|వీక్షణ జాబితా]] లోకి చేర్చాం.",
 	"addedwatchtext-short": "\"$1\" పేజీని మీ వీక్షణ జాబితా లోకి చేర్చాం.",
 	"addedwatchexpiry-options-label": "వీక్షణ కాలం:",
-	"addedwatchexpiryhours": "\"[[:$1]]\" ని, దాని చర్చా పేజీనీ, కొద్ది గంటల పాటు వీక్షణలో ఉండేలా మీ   [[Special:Watchlist|వీక్షణ జాబితా]] లోకి చేర్చాం.",
+	"addedwatchexpiryhours": "\"[[:$1]]\" ని, దాని చర్చా పేజీనీ, కొద్ది గంటల పాటు వీక్షణలో ఉండేలా మీ [[Special:Watchlist|వీక్షణ జాబితా]] లోకి చేర్చాం.",
 	"addedwatchexpiryhours-talk": "\"[[:$1]]\" ని, దాని సంబంధిత పేజీనీ కొద్ది గంటల పాటు వీక్షణలో ఉండేలా మీ [[Special:Watchlist|వీక్షణ జాబితా]] లోకి చేర్చాం.",
 	"addedwatchexpirytext": "\"[[:$1]]\" ని, దాని చర్చ పేజీనీ మీ [[Special:Watchlist|వీక్షణ జాబితాలో]] $2 కోసం చేర్చాం.",
 	"addedwatchexpirytext-talk": "\"[[:$1]]\" ని, దాని అనుబంధ పేజీనీ మీ [[Special:Watchlist|వీక్షణ జాబితా]]లో $2 కోసం చేర్చాం.",

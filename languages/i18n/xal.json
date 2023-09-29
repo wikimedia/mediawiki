@@ -602,7 +602,7 @@
 	"watchlist-options": "Шинҗллһнә сеткүлин көгүд",
 	"watching": "Шинҗллһнә бүтлклд немлһн...",
 	"unwatching": "Шинҗлһнә бүрткләс һарһлһн...",
-	"enotif_body": "Мендвт, күндтә $WATCHINGUSERNAME,\n\n$PAGEEDITDATE цагт {{SITENAME}} төсвин $PAGETITLE халхиг $PAGEEDITOR $CHANGEDORCREATED. Ода болсн халхна янз үзҗ седхлә, $PAGETITLE_URL хәләтн.\n\n$NEWPAGE\n\nСольлһнә учр-утх: $PAGESUMMARY $PAGEMINOREDIT\n\nСольлчд бичг йовуллһн:\ne-mail'ар $PAGEEDITOR_EMAIL\nбикиһәр $PAGEEDITOR_WIKI\n\nЭн халх орхла биш, терүнә дәкәд сольлһн болхла, медүллһн бәәх уга. Тааһар шинҗлсн халхс сольлһна туск медүллһн унтраҗ чаднат.\n\n             {{grammar:genitive|{{SITENAME}}}} зәңгллһнә церглт\n\n--\nТана шинҗллһнә сеткүлин көгүдиг сольҗ седхлә, эниг дахтн:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nХәрү холва болн тус:\n$HELPPAGE",
+	"enotif_body": "Мендвт, күндтә $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nСольлһнә учр-утх: $PAGESUMMARY $PAGEMINOREDIT\n\nСольлчд бичг йовуллһн:\ne-mail'ар $PAGEEDITOR_EMAIL\nбикиһәр $PAGEEDITOR_WIKI\n\nЭн халх орхла биш, терүнә дәкәд сольлһн болхла, медүллһн бәәх уга. Тааһар шинҗлсн халхс сольлһна туск медүллһн унтраҗ чаднат.\n\n{{grammar:genitive|{{SITENAME}}}} зәңгллһнә церглт\n\n--\nТана шинҗллһнә сеткүлин көгүдиг сольҗ седхлә, эниг дахтн:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nХәрү холва болн тус:\n$HELPPAGE",
 	"created": "бүтәв",
 	"changed": "сольв",
 	"deletepage-submit": "Эн халхиг һарһҗ",

@@ -26,7 +26,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -997,7 +998,7 @@
 	"enotif_impersonal_salutation": "úsáideoir {{SITENAME}}",
 	"enotif_lastvisited": "Féach ar $1 le haghaidh gach athrú a rinneadh ó thús na cuairte seo caite a rinne tú.",
 	"enotif_anon_editor": "úsáideoir gan ainm $1",
-	"enotif_body": "A $WATCHINGUSERNAME, a chara,\n\n$CHANGEDORCREATED $PAGEEDITOR an leathanach $PAGETITLE  ag {{SITENAME}} ar $PAGEEDITDATE, féach ar $PAGETITLE_URL chun an leagan reatha a fháil.\n\n$NEWPAGE\n\nAthchoimriú an úsáideora a rinne é: $PAGESUMMARY $PAGEMINOREDIT\n\nSonraí teagmhála an úsáideora:\nr-phost: $PAGEEDITOR_EMAIL\nvicí: $PAGEEDITOR_WIKI\n\nI gcás athruithe eile, ní bheidh aon fhógra eile muna dtéann tú go dtí an leathanach seo.\nIs féidir freisin na bratacha fógartha a athrú do gach leathanach ar do liosta faire.\n\n\t     Is mise le meas,\n\t     Fógrachóras cairdiúil {{GRAMMAR:genitive|{{SITENAME}}}}\n\n--\nChun socruithe do liosta faire a athrú, tabhair cuairt ar\n{{canonicalurl:Special:Watchlist/edit}}\n\nChun an leathanach a bhaint de do liosta faire, tabhair cuairt ar\n$UNWATCHURL\n\nAiseolas agus a thuilleadh cabhrach:\n$HELPPAGE",
+	"enotif_body": "A $WATCHINGUSERNAME, a chara,\n\n$PAGEINTRO $NEWPAGE\n\nAthchoimriú an úsáideora a rinne é: $PAGESUMMARY $PAGEMINOREDIT\n\nSonraí teagmhála an úsáideora:\nr-phost: $PAGEEDITOR_EMAIL\nvicí: $PAGEEDITOR_WIKI\n\nI gcás athruithe eile, ní bheidh aon fhógra eile muna dtéann tú go dtí an leathanach seo.\nIs féidir freisin na bratacha fógartha a athrú do gach leathanach ar do liosta faire.\n\n\t     Is mise le meas,\n\t     Fógrachóras cairdiúil {{GRAMMAR:genitive|{{SITENAME}}}}\n\n--\nChun socruithe do liosta faire a athrú, tabhair cuairt ar\n{{canonicalurl:Special:Watchlist/edit}}\n\nChun an leathanach a bhaint de do liosta faire, tabhair cuairt ar\n$UNWATCHURL\n\nAiseolas agus a thuilleadh cabhrach:\n$HELPPAGE",
 	"enotif_minoredit": "Is mionathrú é seo",
 	"created": "Chruthaigh",
 	"changed": "D'athraigh",

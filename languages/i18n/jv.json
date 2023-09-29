@@ -25,7 +25,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Base",
-			"Bangrapip"
+			"Bangrapip",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Garis ngisori pranala:",
@@ -1977,7 +1978,7 @@
 	"enotif_lastvisited": "Deleng $1 kanggo kabèh owah-owahan wiwit pungkasan panjenengan niliki.",
 	"enotif_lastdiff": "Saperlu ndeleng owahan iki, tilikana $1",
 	"enotif_anon_editor": "naraguna anonim $1",
-	"enotif_body": "Kang minulya $WATCHINGUSERNAME,\n\nKaca $PAGETITLE ing {{SITENAME}} wis $CHANGEDORCREATED ing $PAGEEDITDATE déning $PAGEEDITOR, mangga mirsani $PAGETITLE_URL kanggo vèrsi pungkasan.\n\n$NEWPAGE\n\nSajarah besutan: $PAGESUMMARY $PAGEMINOREDIT\n\nHubungana pambesut:\nlayang-èl: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKita ora bakal ngandhani manèh yèn diowahi manèh, kejaba panjenengan wis mirsani kaca iku. Panjenengan uga bisa mbusak tandha notifikasi kanggo kabèh kaca pangawasan ing pawawangané panjenengan.\n\n             Sistém notifikasi {{SITENAME}}\n\n--\nKanggo ngowahi préferènsi ing pawawangané panjenengan, mangga mirsani\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPamrayoga lan pitulung sabanjuré:\n$HELPPAGE",
+	"enotif_body": "Kang minulya $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSajarah besutan: $PAGESUMMARY $PAGEMINOREDIT\n\nHubungana pambesut:\nlayang-èl: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKita ora bakal ngandhani manèh yèn diowahi manèh, kejaba panjenengan wis mirsani kaca iku. Panjenengan uga bisa mbusak tandha notifikasi kanggo kabèh kaca pangawasan ing pawawangané panjenengan.\n\n             Sistém notifikasi {{SITENAME}}\n\n--\nKanggo ngowahi préferènsi ing pawawangané panjenengan, mangga mirsani\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPamrayoga lan pitulung sabanjuré:\n$HELPPAGE",
 	"enotif_minoredit": "Iki besutan cilik",
 	"created": "kadamel",
 	"changed": "kaubah",

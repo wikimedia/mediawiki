@@ -22,7 +22,8 @@
 			"Mojaam",
 			"Nura A Sani",
 			"Omar Ali",
-			"아라"
+			"아라",
+			"El-hussain14"
 		]
 	},
 	"tog-underline": "Zana layin link:",
@@ -684,7 +685,7 @@
 	"movepagebtn": "Gusar da shafin",
 	"pagemovedsub": "Gusarwa ta cika",
 	"movepage-moved": "'''\"$1\" an gusar da shi zuwa \"$2\"'''",
-	"articleexists": "Akwai wani shafi mai wannan suna  [[:$1]], koko sunan da kuka zaɓa ba shi da tasiri.\ndaure ku zaɓi wani suna.",
+	"articleexists": "Akwai wani shafi mai wannan suna [[:$1]], koko sunan da kuka zaɓa ba shi da tasiri.\ndaure ku zaɓi wani suna.",
 	"movetalk": "Gusar da shafin mahawara mai alaƙa",
 	"movelogpage": "Rajistan gushe-gushe",
 	"movereason": "Dalili:",
@@ -750,6 +751,7 @@
 	"pageinfo-toolboxlink": "Bayanin shafi",
 	"previousdiff": "Sauyin baya",
 	"nextdiff": "Gyaran gaba →",
+	"widthheightpage": "$1 ×$2, $3 {{{{PLURAL:$3|feji|fejina}}",
 	"file-info-size": "pikisal $1 × $2, girman fayil: $3, irin MIME: $4",
 	"file-nohires": "Babu wata babbar saƙa.",
 	"svg-long-desc": "Fayil kin SVG, saƙar fikisal $1 x $2, girman fayil: $3",

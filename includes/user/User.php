@@ -64,7 +64,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @note User implements Authority to ease transition. Always prefer
  * using existing Authority or obtaining a proper Authority implementation.
  *
- * @newable in 1.35 only, the constructor is @internal since 1.36
+ * @note {@}newable in 1.35 only, the constructor is {@}internal since 1.36
  */
 #[AllowDynamicProperties]
 class User implements Authority, UserIdentity, UserEmailContact {

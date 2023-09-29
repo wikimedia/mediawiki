@@ -268,6 +268,7 @@
 	"exif-customrendered-0": "โพลเซสส์ปกติ",
 	"exif-customrendered-1": "โพลเซสส์ตั้งค่า",
 	"exif-customrendered-4": "ต้นฉบับ (สำหรับ HDR)",
+	"exif-customrendered-8": "ภาพคนเหมือน",
 	"exif-exposuremode-0": "เอกซ์โพเชอร์อัตโนมัติ",
 	"exif-exposuremode-1": "เอกซ์โพเชอร์ตั้งค่าเอง",
 	"exif-exposuremode-2": "แบรกเกตอัตโนมัติ",
@@ -353,5 +354,9 @@
 	"exif-urgency-normal": "ปกติ ($1)",
 	"exif-urgency-low": "ต่ำ ($1)",
 	"exif-urgency-high": "สูง ($1)",
-	"exif-urgency-other": "ระดับความสำคัญที่ผู้ใช้กำหนด ($1)"
+	"exif-urgency-other": "ระดับความสำคัญที่ผู้ใช้กำหนด ($1)",
+	"exif-usepanoramaviewer-true": "ใช่",
+	"exif-usepanoramaviewer-false": "ไม่",
+	"exif-exposurelockused-true": "ใช่",
+	"exif-exposurelockused-false": "ไม่"
 }

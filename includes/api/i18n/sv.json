@@ -19,7 +19,9 @@
 			"VickyC",
 			"Victorsa",
 			"WikiPhoenix",
-			"Yupik"
+			"Yupik",
+			"Amire80",
+			"André Costa (WMSE)"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentation]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etikett & användningsriktlinjer]]\n* [[mw:Special:MyLanguage/API:FAQ|Vanliga frågor]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Sändlista]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/announce API-nyheter]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Buggar och begäran]\n</div>\n<strong>Status:</strong> MediaWikis API är ett moget och stabilt gränssnitt som aktivt underhålls och förbättras. Vi försöker undvika det men ibland behöver vi kanske behöver göra störande ändringar; prenumerera på [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ sändlistan mediawiki-api-announce] för uppdateringsaviseringar.\n\n<strong>Felaktiga begäran:</strong> När felaktiga begäran skickas till API:et kommer en HTTP-header skickas med nyckeln \"MediaWiki-API-Error\" och sedan kommer både värdet i headern och felkoden som skickades tillbaka anges som samma värde. För mer information se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Fel och varningar]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testning:</strong> För enkelt testning av API-begäran, se [[Special:ApiSandbox]].</p>",
@@ -27,7 +29,7 @@
 	"apihelp-main-param-format": "Formatet för utdata.",
 	"apihelp-main-param-smaxage": "Ange headervärdet <code>s-maxage</code> till så här många sekunder. Fel cachelagras aldrig.",
 	"apihelp-main-param-maxage": "Ange headervärdet <code>max-age</code> till så här många sekunder. Fel cachelagras aldrig.",
-	"apihelp-main-param-assert": "Bekräfta att användaren är inloggad om satt till <kbd>user</kbd>, eller har bot-användarrättigheter om satt till <kbd>bot</kbd>.",
+	"apihelp-main-param-assert": "Bekräfta att användaren är inloggad om satt till <kbd>user</kbd>, <em>inte</em> inloggad om satt till <kbd>anon</kbd>,eller har bot-användarrättigheten om satt till <kbd>bot</kbd>.",
 	"apihelp-main-param-assertuser": "Verifiera att den nuvarande användaren är den namngivne användaren.",
 	"apihelp-main-param-requestid": "Alla värde som anges här kommer att inkluderas i svaret. Kan användas för att särskilja förfrågningar.",
 	"apihelp-main-param-servedby": "Inkludera det värdnamn som besvarade förfrågan i resultatet.",
@@ -106,7 +108,7 @@
 	"apihelp-edit-param-notminor": "Markera inte denna redigering som en mindre redigering även om användarinställningen \"{{int:tog-minordefault}}\" är inställd.",
 	"apihelp-edit-param-bot": "Markera denna redigering som en robotredigering.",
 	"apihelp-edit-param-basetimestamp": "Tidsstämpel för grundversionen, används för att upptäcka redigeringskonflikter. Kan erhållas genom [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
-	"apihelp-edit-param-starttimestamp": "Tidsstämpel för när redigeringsprocessen började, används för att upptäcka redigeringskonflikter. Ett lämpligt värde kan erhållas via  <var>[[Special:ApiHelp/main|curtimestamp]]</var> när redigeringsprocessen startas (t.ex. när sidans innehåll laddas för redigering).",
+	"apihelp-edit-param-starttimestamp": "Tidsstämpel för när redigeringsprocessen började, används för att upptäcka redigeringskonflikter. Ett lämpligt värde kan erhållas via <var>[[Special:ApiHelp/main|curtimestamp]]</var> när redigeringsprocessen startas (t.ex. när sidans innehåll laddas för redigering).",
 	"apihelp-edit-param-recreate": "Ignorera felmeddelande om sidan har blivit raderad under tiden.",
 	"apihelp-edit-param-createonly": "Redigera inte sidan om den redan finns.",
 	"apihelp-edit-param-nocreate": "Kasta ett fel om sidan inte finns.",
@@ -199,7 +201,7 @@
 	"apihelp-imagerotate-example-simple": "Rotera <kbd>File:Example.png</kbd> med <kbd>90</kbd> grader",
 	"apihelp-imagerotate-example-generator": "Rotera alla bilder i <kbd>Category:Flip</kbd> med <kbd>180</kbd> grader.",
 	"apihelp-import-summary": "Importer en sida från en annan wiki eller från en XML-fil.",
-	"apihelp-import-extended-description": "Notera att HTTP POST måste bli gjord som en fil uppladdning (d.v.s med multipart/form-data) när man skickar en fil för  <var>xml</var> parametern.",
+	"apihelp-import-extended-description": "Notera att HTTP POST måste bli gjord som en fil uppladdning (d.v.s med multipart/form-data) när man skickar en fil för <var>xml</var> parametern.",
 	"apihelp-import-param-summary": "Sammanfattning för importering av loggpost.",
 	"apihelp-import-param-xml": "Uppladdad XML-fil.",
 	"apihelp-import-param-interwikisource": "För interwiki-importer: wiki som du vill importera från.",

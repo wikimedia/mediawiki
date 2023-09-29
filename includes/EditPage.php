@@ -99,6 +99,7 @@ use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
  *       but should be split up into service objects and command objects
  *       in the future (T157658).
  */
+#[\AllowDynamicProperties]
 class EditPage implements IEditObject {
 	use DeprecationHelper;
 	use ProtectedHookAccessorTrait;

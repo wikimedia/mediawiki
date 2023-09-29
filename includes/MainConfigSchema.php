@@ -1613,7 +1613,9 @@ class MainConfigSchema {
 			# Other types that may be interpreted by some servers
 			'shtml', 'jhtml', 'pl', 'py', 'cgi',
 			# May contain harmful executables for Windows victims
-			'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl'
+			'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl',
+			# T341565
+			'xml',
 		],
 		'type' => 'list',
 	];
@@ -1639,7 +1641,9 @@ class MainConfigSchema {
 			# Windows metafile, client-side vulnerability on some systems
 			'application/x-msmetafile',
 			# Files that look like java files
-			'application/java'
+			'application/java',
+			# XML files generally - T341565
+			'application/xml', 'text/xml',
 		],
 		'type' => 'list',
 	];
@@ -4846,8 +4850,8 @@ class MainConfigSchema {
 			'copyright',
 			'history_copyright',
 			'googlesearch',
-			'feedback-terms',
-			'feedback-termsofuse',
+			'youhavenewmessagesmanyusers',
+			'youhavenewmessages',
 		],
 		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
@@ -7729,6 +7733,23 @@ class MainConfigSchema {
 					'deletelogentry' => true,
 				],
 		],
+	];
+
+	/**
+	 * List of groups which should be considered privileged (user accounts
+	 * belonging in these groups can be abused in dangerous ways).
+	 * This is used for some security checks, mainly logging.
+	 * @since 1.41
+	 * @see UserGroupManager::getUserPrivilegedGroups()
+	 */
+	public const PrivilegedGroups = [
+		'default' => [
+			'bureaucrat',
+			'interface-admin',
+			'suppress',
+			'sysop',
+		],
+		'type' => 'list',
 	];
 
 	/**

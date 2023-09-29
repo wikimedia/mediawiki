@@ -64,7 +64,8 @@
 			"Nguyenphutrong2",
 			"Tryvix1509",
 			"Amire80",
-			"Flyplanevn27"
+			"Flyplanevn27",
+			"I am Vietnam"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -401,7 +402,7 @@
 	"skin-action-viewsource": "Xem mã nguồn",
 	"viewsource-title": "Xem mã nguồn của $1",
 	"actionthrottled": "Thao tác bị giới hạn",
-	"actionthrottledtext": "Để nhằm tránh spam, bạn không thể thực hiện thao tác này quá nhiều lần trong một thời gian ngắn.  Xin hãy chờ vài phút trước khi thực hiện lại.",
+	"actionthrottledtext": "Để nhằm tránh spam, bạn không thể thực hiện thao tác này quá nhiều lần trong một thời gian ngắn. Xin hãy chờ vài phút trước khi thực hiện lại.",
 	"protectedpagetext": "Trang này đã bị khóa không cho sửa đổi hoặc tác động khác.",
 	"viewsourcetext": "Bạn vẫn có thể xem và sao chép mã nguồn của trang này.",
 	"viewyourtext": "Bạn vẫn có thể xem và sao chép mã nguồn <strong>các sửa đổi của bạn</strong> tại trang này.",
@@ -2198,7 +2199,7 @@
 	"magiclink-tracking-isbn": "Trang sử dụng liên kết tự động ISBN",
 	"magiclink-tracking-isbn-desc": "Trang sử dụng liên kết tự động ISBN. Xem thông tin về cách chuyển đổi tại [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org].",
 	"specialloguserlabel": "Người thực hiện:",
-	"speciallogtitlelabel": "Mục tiêu (tiêu đề hoặc {{ns:user}}:tên-người-dùng đối với người dùng):",
+	"speciallogtitlelabel": "Mục tiêu (tiêu đề hoặc {{ns:user}}:tennguoidung đối với thành viên):",
 	"log": "Nhật trình",
 	"logeventslist-submit": "Xem",
 	"logeventslist-more-filters": "Hiện thêm nhật trình:",

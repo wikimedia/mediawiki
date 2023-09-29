@@ -25,7 +25,8 @@
 			"bar.wikipedia.org administrators",
 			"✓",
 			"아라",
-			"Nikki"
+			"Nikki",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -411,7 +412,7 @@
 	"loginreqlink": "åhmëden",
 	"loginreqpagetext": "Du muasst dé $1, das d' Seiten leesen káhst.",
 	"accmailtitle": "Kénnwort vaschiggt",
-	"accmailtext": "E zuafällig genariards Posswort fyr [[User talk:$1|$1]] is an $2 gschickt worn.\n\nDes Posswort fyr des naiche Benutzerkonto kå auf da Speziaalseiten  „[[Special:ChangePassword|Posswort ändern]]“ gändert wern.",
+	"accmailtext": "E zuafällig genariards Posswort fyr [[User talk:$1|$1]] is an $2 gschickt worn.\n\nDes Posswort fyr des naiche Benutzerkonto kå auf da Speziaalseiten „[[Special:ChangePassword|Posswort ändern]]“ gändert wern.",
 	"newarticle": "(Neich)",
 	"newarticletext": "Du bist am Link zua'ner Seiten gfóigt, dé néd vurhánden is.\nUm dé Seiten áhzleeng, trog dein Text ins Beorwatungsfëdel unten eih. (weiderene Informaziónan auf da [$1 Hüfeseiten]).\nWánn du foischerweis do bist, drugg auf d'Schoitflechen '''Zrugg''' voh deim Browser.",
 	"anontalkpagetext": "----\n<em>Des is a Dischk vo an anonyman Nutze, wo no koa Konto ooglegt hod, oda wo s grod ned nutzt.</em>\nDesweng vawend ma a IP-Adress zua Identifiziarung.\nSo a IP-Adress kina mearane Nutza gmoasam vawendn.\nWannst du a anonma Nutza bist und mid dem Kommentar nix oofanga konst, konst da oafoch a [[Special:CreateAccount|Nutzakonto oolegn]] oda di [[Special:UserLogin|oomejdn]], damidst ned mid andan Nutzan vawexlst weasd.",

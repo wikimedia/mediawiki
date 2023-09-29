@@ -1167,7 +1167,7 @@ SQL;
 		$flags = self::QUERY_CHANGE_LOCKS | self::QUERY_NO_RETRY;
 
 		// https://www.postgresql.org/docs/9.1/functions-admin.html
-		$sql = "pg_advisory_unlock_all()";
+		$sql = "SELECT pg_advisory_unlock_all()";
 		$qs = $this->executeQuery( $sql, __METHOD__, $flags, $sql );
 		if ( $qs->res === false ) {
 			$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, true );

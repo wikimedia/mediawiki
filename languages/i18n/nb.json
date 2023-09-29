@@ -61,7 +61,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"EdoAug",
-			"Amire80"
+			"Amire80",
+			"TommyG"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -841,7 +842,7 @@
 	"unstrip-size-category-desc": "Siden overskrider størrelsesgrensen for unstrip.",
 	"converter-manual-rule-error": "En feil ble oppdaget i en manuell språkkonverteringsregel",
 	"undo-success": "Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og publisere endringene for å fullføre omgjøringen.",
-	"undo-failure": "Redigeringen kunne ikke omgjøres på grunn av konflikterende etterfølgende redigeringer.",
+	"undo-failure": "Redigeringen kunne ikke omgjøres på grunn av konflikt med etterfølgende redigeringer.",
 	"undo-main-slot-only": "Redigeringen kunne ikke omgjøres fordi den involverer innhold utenfor hovedspalten.",
 	"undo-norev": "Redigeringen kunne ikke fjernes fordi den ikke eksisterer eller ble slettet",
 	"undo-nochange": "Det ser ut til at redigeringen allerede er tilbakestilt.",
@@ -1589,7 +1590,7 @@
 	"rcfilters-filter-categorization-description": "Sporer sider som legges til i eller fjernes fra kategorier.",
 	"rcfilters-filter-logactions-label": "Loggførte handlinger",
 	"rcfilters-filter-logactions-description": "Administrative handlinger, kontoopprettelser, sideslettinger, opplastinger ...",
-	"rcfilters-hideminor-conflicts-typeofchange-global": "Filteret for «Mindre endringer» konflikterer med ett eller flere endringstypefiltre, fordi visse endringstyper ikke kan merkes som «mindre». De konflikterende fultrene merkes i området for aktive filtre ovenfor.",
+	"rcfilters-hideminor-conflicts-typeofchange-global": "Filteret for «Mindre endringer» kommer i konflikt med ett eller flere endringstypefiltre, fordi visse endringstyper ikke kan merkes som «mindre». Filtrene med konflikt merkes i området for aktive filtre ovenfor.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Visse endringstyper kan ikke merkes som «mindre», så dette filteret konflikterer med følgende endringstypefiltre: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Dette endringstypefilteret konflikterer med filteret for «Mindre endringer». Visse endringstyper kan ikke merkes som «mindre».",
 	"rcfilters-filtergroup-lastrevision": "Siste sideversjoner",

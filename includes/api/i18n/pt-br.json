@@ -23,7 +23,8 @@
 			"Warley Felipe C.",
 			"YuriNikolai",
 			"Re demz",
-			"Robertpontes"
+			"Robertpontes",
+			"Diegobiavati"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiqueta & diretrizes de uso]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de discussão]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface madura e estável que é ativamente suportada e aprimorada. Por mais que tentemos evitar, ocasionalmente talvez precisemos fazer mudanças estruturais; inscreva-se na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].</p>",
@@ -941,7 +942,7 @@
 	"apihelp-query+langlinks-param-inlanguagecode": "Código de idioma para nomes de idiomas localizados.",
 	"apihelp-query+langlinks-example-simple": "Obter links de interligação da página <kbd>Main Page</kbd>.",
 	"apihelp-query+languageinfo-summary": "Retornar informações sobre os idiomas disponíveis.",
-	"apihelp-query+languageinfo-extended-description": "Pode ser aplicada uma [[mw:API:Query#Continuing queries|continuação]] se a obtenção das informações demorar muito tempo para um só pedido.",
+	"apihelp-query+languageinfo-extended-description": "Pode ser aplicada uma [[mw:Special:MyLanguage/API:Continue\n|continuação]] se a obtenção das informações demorar muito tempo para um só pedido.",
 	"apihelp-query+languageinfo-param-prop": "Quais informações obter para cada idioma.",
 	"apihelp-query+languageinfo-paramvalue-prop-code": "O código do idioma (este código é específico do MediaWiki, embora tenha semelhanças com outros padrões).",
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "O código do idioma BCP-47.",
@@ -1569,7 +1570,7 @@
 	"api-help-param-disabled-in-miser-mode": "Desabilitado devido a [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]].",
 	"api-help-param-limited-in-miser-mode": "<strong>Nota:</strong> Devido ao [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]], usar isso pode resultar em menos de <var>$1limit</var> resultados antes de continuar; em casos extremos, nenhum resultado pode ser retornado.",
 	"api-help-param-direction": "Em qual direção enumerar:\n;newer: Lista primeiro mais antigo. Nota: $1start deve ser anterior a $1end.\n;older: Lista mais recente primeiro (padrão). Nota: $1start deve ser posterior a $1end.",
-	"api-help-param-continue": "Quando houver mais resultados disponíveis, use isso para continuar.",
+	"api-help-param-continue": "Quando houver mais resultados disponíveis, use isso para continuar. Informações mais detalhadas em como continuar uma consulta [[mw:Special:MyLanguage/API:Continue|podem ser encontradas em mediawiki.org]].",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(sem descrição)</span>",
 	"api-help-examples": "{{PLURAL:$1|Exemplo|Exemplos}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permissão|Permissões}}:",
@@ -1847,7 +1848,8 @@
 	"apiwarn-validationfailed-badchars": "caracteres inválidos na chave (apenas <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, <code>_</code> e <code>-</code> é permitido).",
 	"apiwarn-validationfailed-badpref": "não é uma preferência válida.",
 	"apiwarn-validationfailed-cannotset": "não pode ser configurado por este módulo.",
-	"apiwarn-validationfailed-keytoolong": "chave muito longa (não é permitido mais de $1 bytes).",
+	"apiwarn-validationfailed-keytoolong": "chave muito longa (não é permitido mais de $1 {{PLURAL:$1|byte|bytes}}).",
+	"apiwarn-validationfailed-valuetoolong": "valor muito longo (não pode ter mais de $1 {{PLURAL:$1|byte|bytes}}).",
 	"apiwarn-validationfailed": "Erro de validação para <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>Aviso de Segurança:</strong> <var>$wgDebugAPI</var> está ativado.",
 	"api-feed-error-title": "Erro ($1)",

@@ -93,14 +93,16 @@
 			"아라",
 			"Mskf1383",
 			"Af420",
-			"0PAWN0"
+			"0PAWN0",
+			"Darknessswamp8",
+			"Havadar-hvac"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
 	"tog-hideminor": "ویرایش‌های جزئی از تغییرات اخیر پنهان شود",
 	"tog-hidepatrolled": "ویرایش‌های گشت‌خورده از تغییرات اخیر پنهان شود",
 	"tog-newpageshidepatrolled": "صفحه‌های گشت‌خورده از فهرست صفحه‌های تازه پنهان شود",
-	"tog-hidecategorization": "نهفتن رده‌بندی صفحه‌ها",
+	"tog-hidecategorization": "رده‌بندی صفحه‌ها پنهان شود",
 	"tog-extendwatchlist": "گسترش فهرست پیگیری‌ برای نمایش همهٔ تغییرات، نه فقط جدیدترین‌ها",
 	"tog-usenewrc": "در تغییرات اخیر و فهرست پیگیری تغییرات بر پایهٔ صفحه‌ گروه‌بندی شود",
 	"tog-editondblclick": "ویرایش صفحه‌ها با دو کلیک",
@@ -3402,7 +3404,7 @@
 	"version-mediahandlers": "به‌دست‌گیرنده‌های رسانه‌ها",
 	"version-hooks": "قلاب‌ها",
 	"version-parser-extensiontags": "برچسب‌های افزونه تجزیه‌گر",
-	"version-parser-function-hooks": "قلاب‌های عملگر تجزیه‌گر",
+	"version-parser-function-hooks": "قلاب‌های تابع تجزیه‌گر",
 	"version-hook-name": "نام قلاب",
 	"version-hook-subscribedby": "وارد شده توسط",
 	"version-no-ext-name": "[بدون نام]",

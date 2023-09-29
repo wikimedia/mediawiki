@@ -102,6 +102,7 @@ class ApiManageTags extends ApiBase {
 			'operation' => [
 				ParamValidator::PARAM_TYPE => [ 'create', 'delete', 'activate', 'deactivate' ],
 				ParamValidator::PARAM_REQUIRED => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'tag' => [
 				ParamValidator::PARAM_TYPE => 'string',

@@ -4,7 +4,8 @@
 			"1233qwer1234qwer4",
 			"Susith Chandira Gts",
 			"SusithCM",
-			1100100
+			1100100,
+			"Amire80"
 		]
 	},
 	"apihelp-main-param-action": "ඉටු කිරීමට ඇත්තේ කුමන ක්‍රියාවද.",
@@ -54,5 +55,5 @@
 	"api-help-permissions": "{{PLURAL:$1|අවසරය|අවසරයන්}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|\tප්‍රදානලාභියාට}}: $2",
 	"api-credits-header": "ස්තුතිය",
-	"api-credits": "API වැඩිදියුණු කරන්නන්:\n* Roan Kattouw (ප්‍රධානියා 2007 සැප්. –2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (නිර්මාපකයා, ප්‍රධානියා 2006 සැප්. – 2007 සැප්.)\n* Brad Jorsch (ප්‍රධානියා 2013–මේ දක්වා)\n\nඔබගේ අදහස්, යෝජනා හා ගැටළු mediawiki-api@lists.wikimedia.org වෙත යොමු කරන්න, පින්තූර හෝ ගොනු හරහා ගැටළු ඉදිරිපත් කිරීමට  https://phabricator.wikimedia.org/ වෙත පිවිසෙන්න."
+	"api-credits": "API වැඩිදියුණු කරන්නන්:\n* Roan Kattouw (ප්‍රධානියා 2007 සැප්. –2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (නිර්මාපකයා, ප්‍රධානියා 2006 සැප්. – 2007 සැප්.)\n* Brad Jorsch (ප්‍රධානියා 2013–මේ දක්වා)\n\nඔබගේ අදහස්, යෝජනා හා ගැටළු mediawiki-api@lists.wikimedia.org වෙත යොමු කරන්න, පින්තූර හෝ ගොනු හරහා ගැටළු ඉදිරිපත් කිරීමට https://phabricator.wikimedia.org/ වෙත පිවිසෙන්න."
 }

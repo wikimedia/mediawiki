@@ -71,6 +71,7 @@ class UserGroupManager implements IDBAccessObject {
 		MainConfigNames::GroupsRemoveFromSelf,
 		MainConfigNames::RevokePermissions,
 		MainConfigNames::RemoveGroups,
+		MainConfigNames::PrivilegedGroups,
 	];
 
 	/** @var ServiceOptions */
@@ -124,6 +125,9 @@ class UserGroupManager implements IDBAccessObject {
 	/** string key for former groups cache */
 	private const CACHE_FORMER = 'former';
 
+	/** string key for former groups cache */
+	private const CACHE_PRIVILEGED = 'privileged';
+
 	/**
 	 * @var array Service caches, an assoc. array keyed after the user-keys generated
 	 * by the getCacheKey method and storing values in the following format:
@@ -133,6 +137,7 @@ class UserGroupManager implements IDBAccessObject {
 	 *   self::CACHE_EFFECTIVE => effective groups cache
 	 *   self::CACHE_MEMBERSHIP => [ ] // Array of UserGroupMembership objects
 	 *   self::CACHE_FORMER => former groups cache
+	 *   self::CACHE_PRIVILEGED => privileged groups cache
 	 * ]
 	 */
 	private $userGroupCache = [];
@@ -144,8 +149,9 @@ class UserGroupManager implements IDBAccessObject {
 	 * userKey => [
 	 *   self::CACHE_IMPLICIT => implicit groups query flag
 	 *   self::CACHE_EFFECTIVE => effective groups query flag
-	 *   self::CACHE_MEMBERSHIP  => membership groups query flag
+	 *   self::CACHE_MEMBERSHIP => membership groups query flag
 	 *   self::CACHE_FORMER => former groups query flag
+	 *   self::CACHE_PRIVILEGED => privileged groups query flag
 	 * ]
 	 */
 	private $queryFlagsUsedForCaching = [];
@@ -460,6 +466,57 @@ class UserGroupManager implements IDBAccessObject {
 		}
 
 		return $promote;
+	}
+
+	/**
+	 * Returns the list of privileged groups that $user belongs to.
+	 * Privileged groups are ones that can be abused in a dangerous way.
+	 *
+	 * Depending on how extensions extend this method, it might return values
+	 * that are not strictly user groups (ACL list names, etc.).
+	 * It is meant for logging/auditing, not for passing to methods that expect group names.
+	 *
+	 * @param UserIdentity $user
+	 * @param int $queryFlags
+	 * @param bool $recache Whether to avoid the cache
+	 * @return string[]
+	 * @since 1.41 (also backported to 1.39.5 and 1.40.1)
+	 * @see $wgPrivilegedGroups
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UserGetPrivilegedGroups
+	 */
+	public function getUserPrivilegedGroups(
+		UserIdentity $user,
+		int $queryFlags = self::READ_NORMAL,
+		bool $recache = false
+	): array {
+		$userKey = $this->getCacheKey( $user );
+
+		if ( !$recache &&
+			$this->canUseCachedValues( $user, self::CACHE_PRIVILEGED, $queryFlags ) &&
+			isset( $this->userGroupCache[$userKey][self::CACHE_PRIVILEGED] )
+		) {
+			return $this->userGroupCache[$userKey][self::CACHE_PRIVILEGED];
+		}
+
+		if ( !$user->isRegistered() ) {
+			return [];
+		}
+
+		$groups = array_intersect(
+			$this->getUserEffectiveGroups( $user, $queryFlags, $recache ),
+			$this->options->get( 'PrivilegedGroups' )
+		);
+
+		$this->hookRunner->onUserPrivilegedGroups( $user, $groups );
+
+		$this->setCache(
+			$this->getCacheKey( $user ),
+			self::CACHE_PRIVILEGED,
+			array_values( array_unique( $groups ) ),
+			$queryFlags
+		);
+
+		return $this->userGroupCache[$userKey][self::CACHE_PRIVILEGED];
 	}
 
 	/**

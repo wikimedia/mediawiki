@@ -35,6 +35,7 @@ use Wikimedia\RemexHtml\Tokenizer\Tokenizer;
 use Wikimedia\RemexHtml\TreeBuilder\Dispatcher;
 use Wikimedia\RemexHtml\TreeBuilder\Element;
 use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
+use Wikimedia\Zest\Zest;
 
 /**
  * Parser for Vue single file components (.vue files). See parse() for usage.
@@ -64,7 +65,7 @@ class VueComponentParser {
 	public function parse( string $html, array $options = [] ): array {
 		$dom = $this->parseHTML( $html );
 		// Remex wraps everything in <html><head>, unwrap that
-		$head = $dom->getElementsByTagName( 'head' )->item( 0 );
+		$head = Zest::getElementsByTagName( $dom, 'head' )[ 0 ];
 
 		// Find the <script>, <template> and <style> tags. They can appear in any order, but they
 		// must be at the top level, and there can only be one of each.

@@ -69,6 +69,7 @@
 	"config-db-wiki-account": "Benotzerkont fir normal Operatiounen",
 	"config-db-wiki-help": "Gitt de Benotzernumm an d'Passwuert an dat benotzt wäert gi fir sech bei den normale Wiki-Operatiounen mat der Datebank ze connectéieren.\nWann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, gëtt dëse Benotzerkont opgemaach mat dem Minimum vu Rechter déi gebraucht gi fir dës Wiki bedreiwen ze kënnen.",
 	"config-mysql-old": "MySQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.",
+	"config-mariadb-old": "MariaDB $1 oder eng méi nei Versioun gëtt gebraucht. Dir hutt $2.",
 	"config-db-port": "Port vun der Datebank:",
 	"config-db-schema": "Schema fir MediaWiki (keng Bindestrécher)",
 	"config-db-schema-help": "D'Schemaen hei driwwer si gewéinlech korrekt.\nÄnnert se nëmme wann Dir wësst datt et néideg ass.",

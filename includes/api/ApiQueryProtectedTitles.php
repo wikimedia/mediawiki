@@ -237,6 +237,10 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					'older'
 				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
+					'newer' => 'api-help-paramvalue-direction-newer',
+					'older' => 'api-help-paramvalue-direction-older',
+				],
 			],
 			'start' => [
 				ParamValidator::PARAM_TYPE => 'timestamp'
