@@ -252,3 +252,8 @@ class TitleMatcher {
 		return null;
 	}
 }
+
+/**
+ * @deprecated since 1.40, remove in 1.41.
+ */
+class_alias( TitleMatcher::class, 'SearchNearMatcher' );
