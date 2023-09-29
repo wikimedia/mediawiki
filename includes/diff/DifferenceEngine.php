@@ -1849,6 +1849,10 @@ class DifferenceEngine extends ContextSource {
 			'class' => [
 				'diff',
 				// The following classes are used here:
+				// * diff-type-table
+				// * diff-type-inline
+				'diff-type-' . $this->getTextDiffFormat(),
+				// The following classes are used here:
 				// * diff-contentalign-left
 				// * diff-contentalign-right
 				'diff-contentalign-' . $this->getDiffLang()->alignStart(),
