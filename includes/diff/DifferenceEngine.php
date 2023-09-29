@@ -42,6 +42,10 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -239,6 +243,9 @@ class DifferenceEngine extends ContextSource {
 	private UserOptionsLookup $userOptionsLookup;
 	private CommentFormatter $commentFormatter;
 	private IConnectionProvider $dbProvider;
+	private UserGroupManager $userGroupManager;
+	private UserEditTracker $userEditTracker;
+	private UserIdentityUtils $userIdentityUtils;
 
 	/** @var Message[] */
 	private $revisionLoadErrors = [];
@@ -275,6 +282,9 @@ class DifferenceEngine extends ContextSource {
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->userGroupManager = $services->getUserGroupManager();
+		$this->userEditTracker = $services->getUserEditTracker();
+		$this->userIdentityUtils = $services->getUserIdentityUtils();
 	}
 
 	/**
@@ -619,6 +629,63 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * Renders user associated edit count
+	 *
+	 * @param UserIdentity $user
+	 * @return string
+	 */
+	private function getUserEditCount( $user ): string {
+		$editCount = $this->userEditTracker->getUserEditCount( $user );
+		if ( $editCount === null ) {
+			return '';
+		}
+
+		return Html::rawElement( 'div', [
+			'class' => 'mw-diff-usereditcount',
+		],
+			$this->msg(
+				'diff-user-edits',
+				$this->getLanguage()->formatNum( $editCount )
+			)->parse()
+		);
+	}
+
+	/**
+	 * Renders user roles
+	 *
+	 * @param UserIdentity $user
+	 * @return string
+	 */
+	private function getUserRoles( UserIdentity $user ) {
+		if ( !$this->userIdentityUtils->isNamed( $user ) ) {
+			return '';
+		}
+		$userGroups = $this->userGroupManager->getUserGroups( $user );
+		$userGroupLinks = [];
+		foreach ( $userGroups as $group ) {
+			$userGroupLinks[] = UserGroupMembership::getLinkHTML( $group, $this->getContext() );
+		}
+		return Html::rawElement( 'div', [
+			'class' => 'mw-diff-userroles',
+		], $this->getLanguage()->commaList( $userGroupLinks ) );
+	}
+
+	/**
+	 * Renders user associated meta data
+	 *
+	 * @param UserIdentity|null $user
+	 * @return string
+	 */
+	private function getUserMetaData( ?UserIdentity $user ) {
+		if ( !$user ) {
+			return '';
+		}
+		return Html::rawElement( 'div', [
+			'class' => 'mw-diff-usermetadata',
+		], $this->getUserRoles( $user ) . $this->getUserEditCount( $user ) );
+	}
+
+	/**
 	 * Checks whether the current user has permission for accessing the revisions of the diff.
 	 * Note that this does not check whether the user has permission to view the page, it only
 	 * checks revdelete permissions.
@@ -816,7 +883,9 @@ class DifferenceEngine extends ContextSource {
 
 			$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $oldRevisionHeader . '</strong></div>' .
 				'<div id="mw-diff-otitle2">' .
-				Linker::revUserTools( $oldRevRecord, !$this->unhide ) . '</div>' .
+				Linker::revUserTools( $oldRevRecord, !$this->unhide ) .
+				$this->getUserMetaData( $oldRevRecord->getUser() ) .
+				'</div>' .
 				'<div id="mw-diff-otitle3">' . $oldminor . $oldRevComment . $ldel . '</div>' .
 				'<div id="mw-diff-otitle5">' . $oldChangeTags[0] . '</div>' .
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
@@ -898,7 +967,9 @@ class DifferenceEngine extends ContextSource {
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $newRevRecord, !$this->unhide ) .
-			" $rollback</div>" .
+			$rollback .
+			$this->getUserMetaData( $newRevRecord->getUser() ) .
+			'</div>' .
 			'<div id="mw-diff-ntitle3">' . $newminor . $newRevComment . $rdel . '</div>' .
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';

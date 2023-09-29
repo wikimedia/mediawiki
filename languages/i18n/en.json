@@ -1019,6 +1019,7 @@
 	"editundo": "undo",
 	"diff-incompatible": "Cannot compare content models \"$1\" and \"$2\"",
 	"diff-empty": "(No difference)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|edit|edits}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by the same {{GENDER:$3|user}} not shown)",
 	"diff-multi-otherusers": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one other user|$2 users}} not shown)",
 	"diff-multi-manyusers": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)",
