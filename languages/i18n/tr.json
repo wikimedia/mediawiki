@@ -2986,6 +2986,7 @@
 	"allmessagescurrent": "Geçerli mesaj metni",
 	"allmessagestext": "Bu liste, MediaWiki ad alanında bulunan sistem iletilerinin listesidir.\nGenel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Yerelleştirmesi] ve [https://translatewiki.net translatewiki.net] sayfalarını ziyaret edin.",
 	"allmessages-not-supported-database": "Bu sayfa kullanılamıyor, çünkü <strong>$wgUseDatabaseMessages</strong> devre dışı bırakıldı.",
+	"allmessages-unknown-language": "<code>$1</code> dil kodu bilinmiyor.",
 	"allmessages-filter-legend": "Filtre",
 	"allmessages-filter": "Özelleştirme durumuna göre filtrele:",
 	"allmessages-filter-unmodified": "Değiştirilmemiş",
