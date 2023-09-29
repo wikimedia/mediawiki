@@ -38,7 +38,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Widget\ComplexTitleInputWidget;
@@ -867,7 +867,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		$extraPages = [];
 		if ( $conds !== null ) {
-			$extraPages = TitleArray::newFromResult(
+			$extraPages = new TitleArrayFromResult(
 				$dbr->newSelectQueryBuilder()
 					->select( [ 'page_id', 'page_namespace', 'page_title' ] )
 					->from( 'page' )
@@ -974,11 +974,11 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	private function showSubpages( $title ) {
 		$nsHasSubpages = $this->nsInfo->hasSubpages( $title->getNamespace() );
 		$subpages = $title->getSubpages();
-		$count = $subpages instanceof TitleArray ? $subpages->count() : 0;
+		$count = $subpages instanceof TitleArrayFromResult ? $subpages->count() : 0;
 
 		$titleIsTalk = $title->isTalkPage();
 		$subpagesTalk = $title->getTalkPage()->getSubpages();
-		$countTalk = $subpagesTalk instanceof TitleArray ? $subpagesTalk->count() : 0;
+		$countTalk = $subpagesTalk instanceof TitleArrayFromResult ? $subpagesTalk->count() : 0;
 		$totalCount = $count + $countTalk;
 
 		if ( !$nsHasSubpages && $countTalk == 0 ) {

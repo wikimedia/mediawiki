@@ -2475,7 +2475,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		# if needed and don't declare it statically.
 		if ( $this->mHasSubpages === null ) {
 			$subpages = $this->getSubpages( 1 );
-			$this->mHasSubpages = $subpages instanceof TitleArray && $subpages->count();
+			$this->mHasSubpages = $subpages instanceof TitleArrayFromResult && $subpages->count();
 		}
 
 		return $this->mHasSubpages;
@@ -2485,7 +2485,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Get all subpages of this page.
 	 *
 	 * @param int $limit Maximum number of subpages to fetch; -1 for no limit
-	 * @return TitleArray|array TitleArray, or empty array if this page's namespace
+	 * @return TitleArrayFromResult|array TitleArrayFromResult, or empty array if this page's namespace
 	 *  doesn't allow subpages
 	 */
 	public function getSubpages( $limit = -1 ) {
@@ -2508,7 +2508,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			->options( $options )
 			->caller( __METHOD__ );
 
-		return TitleArray::newFromResult( $query->fetchResultSet() );
+		return new TitleArrayFromResult( $query->fetchResultSet() );
 	}
 
 	/**

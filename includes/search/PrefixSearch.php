@@ -24,7 +24,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 
 /**
  * Handles searching prefixes of titles and finding any page
@@ -290,6 +290,6 @@ abstract class PrefixSearch {
 			->offset( $offset );
 		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
-		return iterator_to_array( TitleArray::newFromResult( $res ) );
+		return iterator_to_array( new TitleArrayFromResult( $res ) );
 	}
 }

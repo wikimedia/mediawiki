@@ -47,7 +47,7 @@ use MediaWiki\Storage\PageUpdateStatus;
 use MediaWiki\Storage\PreparedUpdate;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\User;
 use MediaWiki\User\UserArrayFromResult;
@@ -2883,12 +2883,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Returns a list of categories this page is a member of.
 	 * Results will include hidden categories
 	 *
-	 * @return TitleArray
+	 * @return TitleArrayFromResult
 	 */
 	public function getCategories() {
 		$id = $this->getId();
 		if ( $id == 0 ) {
-			return TitleArray::newFromResult( new FakeResultWrapper( [] ) );
+			return new TitleArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -2898,7 +2898,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->where( [ 'cl_from' => $id ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
-		return TitleArray::newFromResult( $res );
+		return new TitleArrayFromResult( $res );
 	}
 
 	/**
