@@ -14,10 +14,10 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.35.13 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.12 ===
-* Localisation updates.
+* Tarball release to fix backport issues with patch for T341529.
 
 == MediaWiki 1.35.12 ==
 
