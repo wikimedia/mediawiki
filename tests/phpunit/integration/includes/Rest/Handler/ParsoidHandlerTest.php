@@ -1896,7 +1896,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 						'mwAQ' => [],
 						'mwAg' => [ 'dsr' => [ 0, 22, 0, 0 ] ],
 					],
-					'offsetType' => 'byte', // as provided in the input
+					'offsetType' => 'ucs2', // as provided in the input
 				]
 			],
 		];
@@ -1907,8 +1907,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'oldid' => 1, // will be replaced by a real revision id
 			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE ],
 			'envOptions' => [
-				// Used to test 'ucs2' before, but we dropped that support here
-				'offsetType' => 'byte', // make sure this is looped through to data-parsoid attribute
+				// Ensure this is ucs2 so we have a ucs2 offsetType test since
+				// Parsoid's rt-testing script is node.js based and hence needs
+				// ucs2 offsets to function correctly!
+				'offsetType' => 'ucs2', // make sure this is looped through to data-parsoid attribute
 			]
 		];
 		yield 'should get from a title and revision (pagebundle)' => [
