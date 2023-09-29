@@ -184,6 +184,13 @@ class CompareHandler extends Handler {
 		return $sections;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function needsWriteAccess() {
+		return false;
+	}
+
 	public function getParamSettings() {
 		return [
 			'from' => [
