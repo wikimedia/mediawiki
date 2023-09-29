@@ -27,25 +27,25 @@ use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * Caches user genders when needed to use correct namespace aliases.
+ * Look up "gender" user preference.
+ *
+ * This primarily used in MediaWiki\Title\MediaWikiTitleCodec for title formatting
+ * of pages in gendered namespace aliases, and in CoreParserFunctions for the
+ * `{{gender:}}` parser function.
  *
  * @since 1.18
  * @ingroup Cache
  */
 class GenderCache {
 	protected $cache = [];
-	protected $default;
+	protected $default = null;
 	protected $misses = 0;
+	/* @internal Exposed for MediaWiki core unit tests. */
 	protected $missLimit = 1000;
 
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var IConnectionProvider|null */
-	private $dbProvider;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	private NamespaceInfo $nsInfo;
+	private ?IConnectionProvider $dbProvider;
+	private UserOptionsLookup $userOptionsLookup;
 
 	public function __construct(
 		NamespaceInfo $nsInfo = null,
@@ -58,19 +58,20 @@ class GenderCache {
 	}
 
 	/**
-	 * Returns the default gender option in this wiki.
+	 * Get the default gender option on this wiki.
+	 *
 	 * @return string
 	 */
 	protected function getDefault() {
 		$this->default ??= $this->userOptionsLookup->getDefaultOption( 'gender' );
-
 		return $this->default;
 	}
 
 	/**
-	 * Returns the gender for given username.
+	 * Get the gender option for given username.
+	 *
 	 * @param string|UserIdentity $username
-	 * @param string|null $caller The calling method
+	 * @param string|null $caller Calling method for database profiling
 	 * @return string
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
@@ -80,24 +81,19 @@ class GenderCache {
 
 		$username = self::normalizeUsername( $username );
 		if ( !isset( $this->cache[$username] ) ) {
-			if ( $this->misses >= $this->missLimit &&
-				RequestContext::getMain()->getUser()->getName() !== $username
+			if ( $this->misses < $this->missLimit ||
+				RequestContext::getMain()->getUser()->getName() === $username
 			) {
-				if ( $this->misses === $this->missLimit ) {
-					$this->misses++;
-					wfDebug( __METHOD__ . ": too many misses, returning default onwards" );
-				}
-
-				return $this->getDefault();
-			} else {
 				$this->misses++;
 				$this->doQuery( $username, $caller );
 			}
+			if ( $this->misses === $this->missLimit ) {
+				// Log only once and don't bother incrementing beyond limit+1
+				$this->misses++;
+				wfDebug( __METHOD__ . ': too many misses, returning default onwards' );
+			}
 		}
 
-		/* Undefined if there is a valid username which for some reason doesn't
-		 * exist in the database.
-		 */
 		return $this->cache[$username] ?? $this->getDefault();
 	}
 
@@ -122,7 +118,7 @@ class GenderCache {
 	 *
 	 * @since 1.20
 	 * @param LinkTarget[] $titles
-	 * @param string|null $caller The calling method
+	 * @param string|null $caller Calling method for database profiling
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = [];
@@ -135,46 +131,39 @@ class GenderCache {
 	}
 
 	/**
-	 * Preloads genders for given list of users.
+	 * Preload gender option for multiple user names.
+	 *
 	 * @param string[]|string $users Usernames
-	 * @param string|null $caller The calling method
+	 * @param string|null $caller Calling method for database profiling
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();
 
-		$usersToCheck = [];
+		$usersToFetch = [];
 		foreach ( (array)$users as $value ) {
 			$name = self::normalizeUsername( $value );
-			// Skip users whose gender setting we already know
 			if ( !isset( $this->cache[$name] ) ) {
-				// For existing users, this value will be overwritten by the correct value
+				// This may be overwritten below by a fetched value
 				$this->cache[$name] = $default;
-				// We no longer verify that only valid names are checked for, T267054
-				$usersToCheck[] = $name;
+				// T267054: We don't need to fetch data for invalid usernames, but filtering breaks DI
+				$usersToFetch[] = $name;
 			}
 		}
 
-		if ( count( $usersToCheck ) === 0 ) {
+		// Skip query when database is unavailable (e.g. via the installer)
+		if ( !$usersToFetch || !$this->dbProvider ) {
 			return;
 		}
 
-		// Only query database, when db provider is provided by service wiring
-		// This maybe not happen when running as part of the installer
-		if ( $this->dbProvider === null ) {
-			return;
-		}
+		$caller = __METHOD__ . ( $caller ? "/$caller" : '' );
 
-		$queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+		$res = $queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_name', 'up_value' ] )
 			->from( 'user' )
 			->leftJoin( 'user_properties', null, [ 'user_id = up_user', 'up_property' => 'gender' ] )
-			->where( [ 'user_name' => $usersToCheck ] );
-
-		$comment = __METHOD__;
-		if ( strval( $caller ) !== '' ) {
-			$comment .= "/$caller";
-		}
-		$res = $queryBuilder->caller( $comment )->fetchResultSet();
+			->where( [ 'user_name' => $usersToFetch ] )
+			->caller( $caller )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$this->cache[$row->user_name] = $row->up_value ?: $default;
