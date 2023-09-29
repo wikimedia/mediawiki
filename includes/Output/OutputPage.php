@@ -2841,7 +2841,8 @@ class OutputPage extends ContextSource {
 
 		if ( $this->mRedirect != '' ) {
 			$services = MediaWikiServices::getInstance();
-			# Standards require redirect URLs to be absolute
+			// Modern standards don't require redirect URLs to be absolute, but make it so just in case.
+			// Note that this doesn't actually guarantee an absolute URL: relative-path URLs are left intact.
 			$this->mRedirect = (string)$services->getUrlUtils()->expand( $this->mRedirect, PROTO_CURRENT );
 
 			$redirect = $this->mRedirect;
