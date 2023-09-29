@@ -35,6 +35,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Rule\InvokedCount;
 use RequestContext;
 use TestLogger;
 use User;
@@ -115,6 +117,20 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user_former_groups';
 		$this->tablesUsed[] = 'logging';
 		$this->expiryTime = wfTimestamp( TS_MW, time() + 100500 );
+	}
+
+	/**
+	 * Returns a callable that must be called exactly $invokedCount times.
+	 * @param InvokedCount $invokedCount
+	 * @return callable|MockObject
+	 */
+	private function countPromise( $invokedCount ) {
+		$mockHandler = $this->getMockBuilder( \stdClass::class )
+			->addMethods( [ '__invoke' ] )
+			->getMock();
+		$mockHandler->expects( $invokedCount )
+			->method( '__invoke' );
+		return $mockHandler;
 	}
 
 	/**
@@ -1207,5 +1223,71 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	public function testChangeableByGroup( string $group, array $expected ) {
 		$manager = $this->getManager( self::CHANGEABLE_GROUPS_TEST_CONFIG );
 		$this->assertGroupsEquals( $expected, $manager->getGroupsChangeableByGroup( $group ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::getUserPrivilegedGroups()
+	 */
+	public function testGetUserPrivilegedGroups() {
+		$this->setMwGlobals( 'wgPrivilegedGroups', [ 'sysop', 'interface-admin', 'bar', 'baz' ] );
+		$makeHook = function ( $invocationCount, User $userToMatch, array $groupsToAdd ) {
+			return function ( $u, &$groups ) use ( $userToMatch, $invocationCount, $groupsToAdd ) {
+				$invocationCount();
+				$this->assertTrue( $userToMatch->equals( $u ) );
+				$groups = array_merge( $groups, $groupsToAdd );
+			};
+		};
+
+		$manager = $this->getManager();
+
+		$user = new User;
+		$user->setName( '*Unregistered 1234' );
+
+		$this->assertArrayEquals(
+			[],
+			$manager->getUserPrivilegedGroups( $user )
+		);
+
+		$user = $this->getTestUser( [ 'sysop', 'bot', 'interface-admin' ] )->getUser();
+
+		$this->setTemporaryHook( 'UserPrivilegedGroups',
+			$makeHook( $this->countPromise( $this->once() ), $user, [ 'foo' ] ) );
+		$this->setTemporaryHook( 'UserEffectiveGroups',
+			$makeHook( $this->countPromise( $this->once() ), $user, [ 'bar', 'boom' ] ) );
+		$this->assertArrayEquals(
+			[ 'sysop', 'interface-admin', 'foo', 'bar' ],
+			$manager->getUserPrivilegedGroups( $user )
+		);
+		$this->assertArrayEquals(
+			[ 'sysop', 'interface-admin', 'foo', 'bar' ],
+			$manager->getUserPrivilegedGroups( $user )
+		);
+
+		$this->setTemporaryHook( 'UserPrivilegedGroups',
+			$makeHook( $this->countPromise( $this->once() ), $user, [ 'baz' ] ) );
+		$this->setTemporaryHook( 'UserEffectiveGroups',
+			$makeHook( $this->countPromise( $this->once() ), $user, [ 'baz' ] ) );
+		$this->assertArrayEquals(
+			[ 'sysop', 'interface-admin', 'foo', 'bar' ],
+			$manager->getUserPrivilegedGroups( $user )
+		);
+		$this->assertArrayEquals(
+			[ 'sysop', 'interface-admin', 'baz' ],
+			$manager->getUserPrivilegedGroups( $user, UserGroupManager::READ_NORMAL, true )
+		);
+		$this->assertArrayEquals(
+			[ 'sysop', 'interface-admin', 'baz' ],
+			$manager->getUserPrivilegedGroups( $user )
+		);
+
+		$this->setTemporaryHook( 'UserPrivilegedGroups', static function () {
+		} );
+		$this->setTemporaryHook( 'UserEffectiveGroups', static function () {
+		} );
+		$user = $this->getTestUser( [] )->getUser();
+		$this->assertArrayEquals(
+			[],
+			$manager->getUserPrivilegedGroups( $user, UserGroupManager::READ_NORMAL, true )
+		);
 	}
 }

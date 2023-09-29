@@ -10,7 +10,8 @@
 			"Shirayuki",
 			"Vlad5250",
 			"아라",
-			"Base"
+			"Base",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -412,7 +413,7 @@
 	"eauthentsent": "Un mesâg ed cunfèirma l'é stê spidî a l'indirés ed pôsta eletrônica sgnê ché. L'utèint per prèir inviêr di mesâg ed pôsta eletrônica al dēv andêr a drē al j istrusiòun scréti, in môd da cunfermêr ch' l'é ló al legétim proprietâri 'd l'indirés.",
 	"throttled-mailpassword": "Un mesâg ed pôsta eletrônica 'd arnōv ed la cêva 'd ingrès l'é bèle stê inviê da mēno 'd {{PLURAL:$1|1 ōra|$1 ōri}}. Per pervèder abûş, la funziòun 'd arnōv ed la cêva 'd ingrès la pōl èser druvêda sōl 'na vôlta ògni {{PLURAL:$1|1 ōra|$1 ōri}}.",
 	"mailerror": "Erōr int la spedisiòun dal mesâg $1",
-	"acct_creation_throttle_hit": "{{PLURAL:$1|1 registrasiòun l'é bèle stêda fâta |$1 registrasiòun în bèle stêdi fâti}} da quelchidûn cun al tó 'stès indirés IP int l'ûltem $2, ch'l'é al mâsim permés in cól peréiod ed tèimp ché. Per còst j utèint che drōven cl 'indirés IP ché, p'r al mumèint,  an 's pōl mìa registrêr.",
+	"acct_creation_throttle_hit": "{{PLURAL:$1|1 registrasiòun l'é bèle stêda fâta |$1 registrasiòun în bèle stêdi fâti}} da quelchidûn cun al tó 'stès indirés IP int l'ûltem $2, ch'l'é al mâsim permés in cól peréiod ed tèimp ché. Per còst j utèint che drōven cl 'indirés IP ché, p'r al mumèint, an 's pōl mìa registrêr.",
 	"emailauthenticated": "L'indirés ed pôsta eletrônica l'é stê cunfermê al $2 al $3.",
 	"emailnotauthenticated": "L'indirés ed pôsta eletrônica an n'é mìa incòra stê cunfermê.\nA gnirâ mìa spidî mesâg ed pôsta eletrônica p'r al funsiòun in elèinch ché sòta.",
 	"noemailprefs": "Scréver un indirés ed pôsta eletrônica per fêr funsionêr st' al funsiòun.",
@@ -519,7 +520,7 @@
 	"accmailtext": "'Na cêva 'd ingrés l'è stêda fâta a chêş per [[User talk:$1|$1]] e l'è stêda spidîda a $2. Cla cêva 'd ingrès ché la pōl èser cambiêda int la pàgina per ''[[Special:ChangePassword|cambiêr la cêva 'd ingrès]]'' subét dôp avèir fât l'ingrès.",
 	"newarticle": "(Nōv)",
 	"newarticletext": "Al colegamèint apèina fât al cumbîna cun 'na pàgina ch' an n'é mìa incòra stêda fâta. S'ét vō fêr la pàgina adès, l'é asê cumincêr a scréver al tèst int la caşèla ché sòt (per vedèr infurmasiòun pió precîşi guêrda la [$1 pàgina 'd ajót]). Se al colegamèint  l'é stê avêrt per erōr, l'é asê clichêr al pulsânt \"Indrē\" dal tó navigadōr.",
-	"anontalkpagetext": "----\n<em>Còsta l'è la pàgina 'd discusiòun ed 'n utèint sèinsa nòm, ch' an n' à mìa incòra fât 'n' utèinsa o in tót al manēri an n'è mìa drē druvêrla.</em> Per arcgnòsrel l'è dòunca necesâri druvê al nóme dal só indirés IP. J indirés IP a pōlen èser spartî cun êter utèint. Se t'é un utèint sèinsa nòm e 't pèins che i cumèint in cla pàgina ché an riguêrden mìa té, [[Special:CreateAccount|fa 'n' utèinsa nōva]] o [[Special:UserLogin|vîn dèinter cun còla ch' ét gh'ê bèle]] per schivşêr, in futûr,  'd èser cunfûş cun 'd j êter utèint sèinsa nòm.",
+	"anontalkpagetext": "----\n<em>Còsta l'è la pàgina 'd discusiòun ed 'n utèint sèinsa nòm, ch' an n' à mìa incòra fât 'n' utèinsa o in tót al manēri an n'è mìa drē druvêrla.</em> Per arcgnòsrel l'è dòunca necesâri druvê al nóme dal só indirés IP. J indirés IP a pōlen èser spartî cun êter utèint. Se t'é un utèint sèinsa nòm e 't pèins che i cumèint in cla pàgina ché an riguêrden mìa té, [[Special:CreateAccount|fa 'n' utèinsa nōva]] o [[Special:UserLogin|vîn dèinter cun còla ch' ét gh'ê bèle]] per schivşêr, in futûr, 'd èser cunfûş cun 'd j êter utèint sèinsa nòm.",
 	"noarticletext": "In cól mumèint ché la pàgina serchêda l'é vōda.Ét pō\n[[Special:Search/{{PAGENAME}}|serchêr cól tétoi ché]] int al j êtri pàgini dal sît, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] opór  [{{fullurl:{{FULLPAGENAME}}|action=edit}} e fêr cla pàgina ché]</span>.",
 	"noarticletext-nopermission": "In cól mumèint ché la pàgina serchêda l'é vōda. L'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît o<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] <span>, mó an 't gh'ê mìa al permès ed fêr cla pàgina ché.",
 	"missing-revision": "La revişiòun #$1 'd la pagina \"{{FULLPAGENAME}}\" l' an gh'è mìa. Còst, ed sôlit, a sucēd mèint'r as va drē a 'n colegamèint a 'na pàgina scanşlêda, in 'na stòria, di lavōr fât, mìa arnuvêda. I particulêr a 's pōlen catêr int al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regéster dal scanşladûri].",
@@ -1043,7 +1044,7 @@
 	"action-suppressrevision": "turnêr a vèder e turnêr a mèter al versiòun lughêdi",
 	"action-suppressionlog": "guardêr sté regéster privê",
 	"action-block": "bluchê sté utèint in scritûra",
-	"action-protect": "cambiêr i livē 'd prutesiòun per cla  pàgina ché",
+	"action-protect": "cambiêr i livē 'd prutesiòun per cla pàgina ché",
 	"action-rollback": "scanşèla a la şvêlta al mudéfichi ed l'ûltem utèint ch'l'à mudifichê 'na pàgina particulêra",
 	"action-import": "côpia dal pàgini da 'n' êtra wiki",
 	"action-importupload": "zuntêr dal pàgini da un file carghê",

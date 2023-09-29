@@ -2362,7 +2362,7 @@
 	"autoblocklist": "Alọhẹndotena zomọ̀ tọn lẹ",
 	"autoblocklist-submit": "Dín",
 	"autoblocklist-legend": "Basi kandai alọhẹndotena he wa aimẹ na yedelẹ",
-	"autoblocklist-localblocks": "Lẹdo mẹ  {{PLURAL:$1|alọhẹndotena he wa aimẹ na ede|alọhẹndotena he wa aimẹ na yedelẹ}}",
+	"autoblocklist-localblocks": "Lẹdo mẹ {{PLURAL:$1|alọhẹndotena he wa aimẹ na ede|alọhẹndotena he wa aimẹ na yedelẹ}}",
 	"autoblocklist-total-autoblocks": "Sọha Alọhẹndotenamẹ he wa aimẹ na yedelẹ: $1",
 	"autoblocklist-empty": "Todohukanji he yin alọhẹndote na ede tin to tata",
 	"autoblocklist-otherblocks": "Devo {{PLURAL:$1|alọhẹndotena he wa aimẹ na ede |alọhẹndotena he wa aimẹ na yedelẹ}}",

@@ -1452,7 +1452,7 @@ class DifferenceEngine extends ContextSource {
 	 * Process DiffEngine config and get a sensible, usable engine
 	 *
 	 * @return string 'wikidiff2', 'php', or path to an executable
-	 * @internal For use by this class and TextSlotDiffRenderer only.
+	 * @internal For use by this class and within Core only.
 	 */
 	public static function getEngine() {
 		$diffEngine = MediaWikiServices::getInstance()->getMainConfig()
@@ -1653,12 +1653,22 @@ class DifferenceEngine extends ContextSource {
 
 		// Don't show the notice if too many rows must be scanned
 		// @todo show some special message for that case
-		$nEdits = $this->revisionStore->countRevisionsBetween(
+		$nEdits = 0;
+		$revisionIdList = $this->revisionStore->getRevisionIdsBetween(
 			$this->mNewPage->getArticleID(),
 			$oldRevRecord,
 			$newRevRecord,
 			1000
 		);
+		// only count revisions that are visible
+		if ( count( $revisionIdList ) > 0 ) {
+			foreach ( $revisionIdList as $revisionId ) {
+				$revision = $this->revisionStore->getRevisionById( $revisionId );
+				if ( $revision->getUser( RevisionRecord::FOR_THIS_USER, $this->getAuthority() ) ) {
+					$nEdits++;
+				}
+			}
+		}
 		if ( $nEdits > 0 && $nEdits <= 1000 ) {
 			$limit = 100; // use diff-multi-manyusers if too many users
 			try {

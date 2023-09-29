@@ -726,7 +726,7 @@
 	"userrights-lookup-user": "Sarudza mushandisi",
 	"userrights-user-editname": "Isa zitamushando:",
 	"editusergroup": "Raichisa mapoka evashandisi",
-	"editinguser": "Parikushandurwa mapoka evashandisi a {{GENDER:$1|mushandisi}} <strong>[[USER:$1|$1]]</strong> $2",
+	"editinguser": "Parikushandurwa mapoka evashandisi a {{GENDER:$1|mushandisi}} <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "Parikuringwa mapoka emushandisa {{GENDER:$1|mushandisi}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-viewusergroup": "Ringa mapoka a {{GENDER:$1|mushandisi}}",
 	"userrights-groupsmember": "Mamembha e:",

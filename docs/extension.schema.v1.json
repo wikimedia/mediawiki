@@ -19,7 +19,20 @@
 		},
 		"type": {
 			"type": "string",
-			"description": "The extension's type, as an index to $wgExtensionCredits.",
+			"description": "The extension's type.",
+			"examples": [
+				"api",
+				"antispam",
+				"editor",
+				"media",
+				"parserhook",
+				"semantic",
+				"skin",
+				"specialpage",
+				"variable",
+				"wikibase",
+				"other"
+			],
 			"default": "other"
 		},
 		"author": {
@@ -672,6 +685,13 @@
 						}
 					}
 				}
+			}
+		},
+		"PrivilegedGroups": {
+			"type": "array",
+			"description": "User groups that should be considered privileged",
+			"items": {
+				"type": "string"
 			}
 		},
 		"RevokePermissions": {

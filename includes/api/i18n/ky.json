@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Janatkg",
-			"Macofe"
+			"Macofe",
+			"Bosogo"
 		]
 	},
 	"apihelp-block-summary": "Колдонуучуну бөгөттөө",
@@ -11,7 +12,10 @@
 	"apihelp-checktoken-param-token": "Текшерүү белгиси.",
 	"apihelp-delete-summary": "Баракты өчүрүү",
 	"apihelp-delete-example-simple": "<kbd>Main Page</kbd> өчүрүү.",
-	"apihelp-edit-summary": "Барактарды түзүү жана оңдоо.",
+	"apihelp-edit-summary": "Барактарды түзүү жана түзөтүү.",
 	"apihelp-edit-param-text": "Барактын мазмуну.",
-	"apihelp-edit-param-minor": "Майда оңдоо."
+	"apihelp-edit-param-minor": "Майда түзөтүү.",
+	"apihelp-login-param-name": "Колдонуучунун ысымы.",
+	"apihelp-login-example-login": "Кирүү.",
+	"apihelp-userrights-param-user": "Колдонуучу."
 }

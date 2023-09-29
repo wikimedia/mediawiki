@@ -12,7 +12,8 @@
 			"Wikimistusik",
 			"Zetud",
 			"아라",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Levconyana gluyaxa",
@@ -441,7 +442,7 @@
 	"preview": "Abdinedira",
 	"showpreview": "Abdinedira",
 	"showdiff": "Nedira va betakseem",
-	"anoneditwarning": "'''Obral !''' Rin til medogluyayan. Rinafe IP mane ko bubetarizvot zo stragatar.  Ede <strong>[$1 va int dogluyal]</strong> oke <strong>[$2 pataredul]</strong>, betaks ik aryona belunda pu rinaf webesikyolt di zo gad.",
+	"anoneditwarning": "'''Obral !''' Rin til medogluyayan. Rinafe IP mane ko bubetarizvot zo stragatar. Ede <strong>[$1 va int dogluyal]</strong> oke <strong>[$2 pataredul]</strong>, betaks ik aryona belunda pu rinaf webesikyolt di zo gad.",
 	"missingcommenttext": "Va sebuks valevon bazel, vay !!",
 	"summary-preview": "Abdinedira va vildeks :",
 	"previewerrortext": "Rokla sokiyir edje va betakseem fu abdinedil.",

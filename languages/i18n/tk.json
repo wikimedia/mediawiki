@@ -17,7 +17,8 @@
 			"The Evil IP address",
 			"Vlad5250",
 			"아라",
-			"Base"
+			"Base",
+			"Zolgoyo"
 		]
 	},
 	"tog-underline": "Çykgytlaryň aşagyny çyz:",
@@ -1916,7 +1917,7 @@
 	"watchlistnotwatchable": "Sahypany görüp bolmaýar.",
 	"addwatch": "Gözegçilik sanawyna goşuň",
 	"updatewatchlist": "Gözegçilik sanawyny täzeläň",
-	"addedwatchtext": "[[:$1]]  atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.\n\nGeljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler şu ýerde sanawlanjakdyr.\n\nAňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýtgeşmeleriň sanawynda]] '''goýy''' harp bilen görkeziljekdir.",
+	"addedwatchtext": "[[:$1]] atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.\n\nGeljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler şu ýerde sanawlanjakdyr.\n\nAňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýtgeşmeleriň sanawynda]] '''goýy''' harp bilen görkeziljekdir.",
 	"addedwatchexpiry-options-label": "Gözegçilik sanawynyň möhleti:",
 	"removewatch": "Gözegçilik sanawyndan aýyryň",
 	"removedwatchtext": "\"[[:$1]]\" sahypasy [[Special:Watchlist|gözegçilik sanawyňyzdan]] aýyryldy.",
@@ -1953,7 +1954,7 @@
 	"enotif_lastvisited": "Iň soňky gezek baryp göreliňiz bäri bolan ähli üýtgeşmeleri görmek üçin serediň: $1",
 	"enotif_lastdiff": "Bu üýtgeşmäni görmek üçin serediň: $1",
 	"enotif_anon_editor": "anonim ulanyjy $1",
-	"enotif_body": "Hormatly $WATCHINGUSERNAME,\n\n{{SITENAME}} saýtyndaky $PAGETITLE sahypasy $PAGEEDITDATE senesinde $PAGEEDITOR tarapyndan $CHANGEDORCREATED. Sahypanyň häzirki wersiýasyny $PAGETITLE_URL adresinden görüp bilersiňiz.\n\n$NEWPAGE\n\nRedaktoryň düşündirişi: $PAGESUMMARY $PAGEMINOREDIT\n\nRedaktor bilen habarlaşmak üçin:\ne-poçta: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nBu sahypany baryp görýänçäňiz onuň bilen baglanyşykly üýtgeşmeler size habar ediljek däldir.\nŞeýle hem gözegçilik sanawyňyzdaky ähli sahypalaryň habar beriş belliklerini aýyryp bilersiňiz.\n\n               {{SITENAME}} saýtynyň habar beriş ulgamy.\n\n--\nGözegçilik sanawy sazlamalaryňyzy üýtgetmek üçin:\n{{canonicalurl:Special:Watchlist/edit}}\n\nSahypany gözegçilik sanawyňyzdan öçürmek üçin:\n$UNWATCHURL\n\nSeslenme we goşmaça kömek:\n$HELPPAGE",
+	"enotif_body": "Hormatly $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nRedaktoryň düşündirişi: $PAGESUMMARY $PAGEMINOREDIT\n             \nRedaktor bilen habarlaşmak üçin:\ne-poçta: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nBu sahypany baryp görýänçäňiz onuň bilen baglanyşykly üýtgeşmeler size habar ediljek däldir.\nŞeýle hem gözegçilik sanawyňyzdaky ähli sahypalaryň habar beriş belliklerini aýyryp bilersiňiz.\n\n{{SITENAME}} saýtynyň habar beriş ulgamy.\n\n--\nGözegçilik sanawy sazlamalaryňyzy üýtgetmek üçin:\n{{canonicalurl:Special:Watchlist/edit}}\n\nSahypany gözegçilik sanawyňyzdan öçürmek üçin:\n$UNWATCHURL\n\nSeslenme we goşmaça kömek:\n$HELPPAGE",
 	"enotif_minoredit": "Bu kiçijik üýtgeşme",
 	"created": "döredildi",
 	"changed": "üýtgedildi",

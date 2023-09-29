@@ -193,6 +193,8 @@
 	"exif-photometricinterpretation-5": "Separate (probabilemente CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (codification ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (codification ITU)",
+	"exif-photometricinterpretation-32803": "Matrice de filtros de color",
+	"exif-photometricinterpretation-34892": "Linear brute",
 	"exif-unknowndate": "Data incognite",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Invertite horizontalmente",

@@ -82,11 +82,6 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		$expected = AutoLoader::getClassFiles();
 		$actual = [];
 
-		$psr4Namespaces = [];
-		foreach ( AutoLoader::CORE_NAMESPACES as $ns => $path ) {
-			$psr4Namespaces[rtrim( $ns, '\\' ) . '\\'] = self::fixSlashes( rtrim( $path, '/' ) );
-		}
-
 		foreach ( $expected as $class => $file ) {
 			// Only prefix $IP if it doesn't have it already.
 			// Generally local classes don't have it, and those from extensions and test suites do.
@@ -110,21 +105,6 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 			[ $classesInFile, $aliasesInFile ] = self::parseFile( $contents );
 
 			foreach ( $classesInFile as $className => $ignore ) {
-				// Skip if it's a PSR4 class
-				$parts = explode( '\\', $className );
-				for ( $i = count( $parts ) - 1; $i > 0; $i-- ) {
-					$ns = implode( '\\', array_slice( $parts, 0, $i ) ) . '\\';
-					if ( isset( $psr4Namespaces[$ns] ) ) {
-						$expectedPath = $psr4Namespaces[$ns] . '/'
-							. implode( '/', array_slice( $parts, $i ) )
-							. '.php';
-						if ( $filePath === $expectedPath ) {
-							continue 2;
-						}
-					}
-				}
-
-				// Nope, add it.
 				$actual[$className] = $file;
 			}
 

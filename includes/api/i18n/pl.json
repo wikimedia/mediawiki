@@ -23,7 +23,9 @@
 			"Vlad5250",
 			"Woytecr",
 			"Odder",
-			"MarMi wiki"
+			"MarMi wiki",
+			"Amire80",
+			"WaldiSt"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentacja]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etykieta i wytyczne użytkowania]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista dyskusyjna]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Ogłoszenia dotyczące API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Błędy i propozycje]\n</div>\n<strong>Stan:</strong> API MediaWiki jest ugruntowanym i stabilnym interfejsem, który jest aktywnie wspierany i ulepszany. Mimo iż staramy się tego unikać, czasami mogą mieć miejsce drastyczne zmiany; subskrybuj [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ listę dyskusyjną mediawiki-api-announce], aby być na bieżąco ze zmianami.\n\n<strong>Błędne żądania:</strong> Gdy zostanie wysłane błędne żądanie do API, zostanie wysłany w odpowiedzi nagłówek HTTP z kluczem „MediaWiki-API-Error” i zarówno jego wartość jak i wartość kodu błędu wysłanego w odpowiedzi będą miały taką samą wartość. Aby uzyskać więcej informacji, zobacz [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Błędy i ostrzeżenia]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testowanie:</strong> Aby łatwo testować żądania API, zobacz [[Special:ApiSandbox]].</p>",
@@ -269,7 +271,7 @@
 	"apihelp-options-extended-description": "Można ustawiać tylko opcje zarejestrowane w rdzeniu, w zainstalowanych rozszerzeniach lub z kluczami o prefiksie <code>userjs-</code> (do wykorzystywania przez skrypty użytkowników).",
 	"apihelp-options-param-reset": "Resetuj preferencje do domyślnych.",
 	"apihelp-options-param-resetkinds": "Lista typów opcji do zresetowania, jeżeli ustawiono opcję <var>$1reset</var>.",
-	"apihelp-options-param-change": "Lista zmian, w formacie nazwa=wartość (np. skin=vector).  Jeżeli nie zostanie podana wartość (nawet znak równości), np., optionname|otheroption|..., to opcja zostanie zresetowana do jej wartości domyślnej. Jeżeli jakakolwiek podawana wartość zawiera znak pionowej kreski (<kbd>|</kbd>), użyj [[Special:ApiHelp/main#main/datatypes|alternatywnego separatora wielu wartości]] aby operacja się powiodła.",
+	"apihelp-options-param-change": "Lista zmian, w formacie nazwa=wartość (np. skin=vector). Jeżeli nie zostanie podana wartość (nawet znak równości), np., optionname|otheroption|..., to opcja zostanie zresetowana do jej wartości domyślnej. Jeżeli jakakolwiek podawana wartość zawiera znak pionowej kreski (<kbd>|</kbd>), użyj [[Special:ApiHelp/main#main/datatypes|alternatywnego separatora wielu wartości]] aby operacja się powiodła.",
 	"apihelp-options-param-optionname": "Nazwa opcji, która powinna być ustawiona na wartość <var>$1optionvalue</var>.",
 	"apihelp-options-param-optionvalue": "Wartość opcji, określona w <var>$1optionname</var>.",
 	"apihelp-options-example-reset": "Resetuj wszystkie preferencje.",
@@ -769,7 +771,7 @@
 	"apihelp-undelete-param-title": "Tytuł strony do przywrócenia.",
 	"apihelp-undelete-param-reason": "Powód przywracania.",
 	"apihelp-undelete-param-timestamps": "Sygnatury czasowe wersji do odtworzenia. Jeśli zarówno var>$1timestamps</var> jak i <var>$1fileids</var> pozostaną puste, odtworzone zostaną wszystkie wersje.",
-	"apihelp-undelete-param-fileids": "ID wersji pliku do odtworzenia.  Jeśli zarówno var>$1timestamps</var> jak i <var>$1fileids</var> pozostaną puste, odtworzone zostaną wszystkie wersje.",
+	"apihelp-undelete-param-fileids": "ID wersji pliku do odtworzenia. Jeśli zarówno var>$1timestamps</var> jak i <var>$1fileids</var> pozostaną puste, odtworzone zostaną wszystkie wersje.",
 	"apihelp-upload-param-filename": "Nazwa pliku docelowego.",
 	"apihelp-upload-param-watch": "Obserwuj stronę.",
 	"apihelp-upload-param-ignorewarnings": "Ignoruj wszystkie ostrzeżenia.",
@@ -807,7 +809,7 @@
 	"api-format-title": "Wynik zapytania API MediaWiki",
 	"api-pageset-param-titles": "Lista tytułów do przetworzenia.",
 	"api-pageset-param-pageids": "Lista identyfikatorów stron do przetworzenia.",
-	"api-pageset-param-revids": "Lista identyfikatorów wersji do przetworzenia.",
+	"api-pageset-param-revids": "Lista identyfikatorów wersji do pracy. Należy zauważyć, że prawie wszystkie moduły zapytań konwertują identyfikatory wersji na odpowiedni identyfikator strony i zamiast tego działają na najnowszej wersji. Tylko <kbd>prop=revisions</kbd> używa dokładnych wersji dla swojej odpowiedzi.",
 	"api-pageset-param-generator": "Pobierz listę stron do przetworzenia poprzez wykonanie określonego modułu zapytań.\n\n<strong>Uwaga:</strong> Nazwy parametrów generatora musi poprzedzać prefiks „g”. Zobacz przykłady.",
 	"api-pageset-param-redirects-generator": "Automatycznie rozwiązuj przekierowania ze stron podanych w <var>$1titles</var>, <var>$1pageids</var>, oraz <var>$1revids</var>, a także ze stron zwróconych przez <var>$1generator</var>.",
 	"api-pageset-param-converttitles": "Konwertuj tytuły do innych wariantów, jeżeli trzeba. Będzie działać tylko wtedy, gdy język zawartości wiki będzie wspierał konwersje wariantów. Języki, które wspierają konwersję wariantów to m.in. $1.",

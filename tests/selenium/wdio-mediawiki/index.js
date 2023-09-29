@@ -36,7 +36,7 @@ function filePath( title, extension ) {
  * @param {string} title Description (will be sanitised and used as file name)
  * @return {string} File path
  */
-function saveScreenshot( title ) {
+async function saveScreenshot( title ) {
 	// Create sensible file name for current test title
 	const path = filePath( title, 'png' );
 	// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
@@ -46,7 +46,7 @@ function saveScreenshot( title ) {
 		fs.mkdirSync( browser.config.screenshotPath );
 	}
 	// Create and save screenshot
-	browser.saveScreenshot( path );
+	await browser.saveScreenshot( path );
 	return path;
 }
 

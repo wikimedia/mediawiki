@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"EileenSanda"
+			"EileenSanda",
+			"Amire80"
 		]
 	},
 	"apihelp-block-summary": "Sperra ein brúkara.",
@@ -16,7 +17,7 @@
 	"apihelp-block-param-allowusertalk": "Loyv brúkaranum at skriva á sína egnu síðu (avhongur av <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Um brúkarin longu er sperraður, yvirskriva so tað verandi sperringina.",
 	"apihelp-block-example-ip-simple": "Sperra IP adressuna <kbd>192.0.2.5</kbd> í tríggjar dagar við orsøkini <kbd>First strike</kbd>.",
-	"apihelp-block-example-user-complex": "Sperra brúkara <kbd>Vandal</kbd> í óvissa tíð við orsøkini  <kbd>Vandalism</kbd>, og forða fyri upprættan av nýggjum kontum og at senda teldupost.",
+	"apihelp-block-example-user-complex": "Sperra brúkara <kbd>Vandal</kbd> í óvissa tíð við orsøkini <kbd>Vandalism</kbd>, og forða fyri upprættan av nýggjum kontum og at senda teldupost.",
 	"apihelp-createaccount-summary": "Upprætta eina nýggja brúkarakonto.",
 	"apihelp-delete-summary": "Strika eina síðu.",
 	"apihelp-edit-example-edit": "Rætta eina síðu.",

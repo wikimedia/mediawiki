@@ -18,10 +18,11 @@
 			"Mjbmr",
 			"Reza1615",
 			"Sahehco",
-			"Signal89"
+			"Signal89",
+			"Amire80"
 		]
 	},
-	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|مستندات]]\n* [[mw:Special:MyLanguage/API:Etiquette|آداب و رهنمودهای استفاده]]\n* [[mw:Special:MyLanguage/API:FAQ|پرسش‌های متداول]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ میلینگ لیست]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ اطلاعیه‌های واسط برنامه‌نویسی کاربردی]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R مشکلات و درخواست‌ها]\n</div>\n\n<strong>وضعیت:</strong> تمام ویژگی‌هایی که در این صفحه نمایش یافته‌اند باید کار بکنند، ولی رابط برنامه‌نویسی کاربردی کماکان در حال توسعه است، و ممکن است در هر زمان تغییر بکند. به عضویت [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ فهرست پست الکترونیکی mediawiki-api-announce] در بیایید تا از تغییرات باخبر شوید.\n\n<strong>درخواست‌های معیوب:</strong> وقتی درخواست‌های معیوب به رابط برنامه‌نویسی کاربردی فرستاده شوند، یک سرایند اچ‌تی‌تی‌پی با کلید «MediaWiki-API-Erorr» فرستاده می‌شود و بعد هم مقدار سرایند و هم کد خطای بازگردانده شده  هر دو به یک مقدار نسبت داده می‌شوند. برای اطلاعات بیشتر [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] را ببینید.\n\n<strong>آزمایش:</strong> برای انجام درخواست‌های API آزمایشی [[Special:ApiSandbox]] را ببینید.",
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|مستندات]]\n* [[mw:Special:MyLanguage/API:Etiquette|آداب و رهنمودهای استفاده]]\n* [[mw:Special:MyLanguage/API:FAQ|پرسش‌های متداول]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ میلینگ لیست]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ اطلاعیه‌های واسط برنامه‌نویسی کاربردی]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R مشکلات و درخواست‌ها]\n</div>\n\n<strong>وضعیت:</strong> تمام ویژگی‌هایی که در این صفحه نمایش یافته‌اند باید کار بکنند، ولی رابط برنامه‌نویسی کاربردی کماکان در حال توسعه است، و ممکن است در هر زمان تغییر بکند. به عضویت [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ فهرست پست الکترونیکی mediawiki-api-announce] در بیایید تا از تغییرات باخبر شوید.\n\n<strong>درخواست‌های معیوب:</strong> وقتی درخواست‌های معیوب به رابط برنامه‌نویسی کاربردی فرستاده شوند، یک سرایند اچ‌تی‌تی‌پی با کلید «MediaWiki-API-Erorr» فرستاده می‌شود و بعد هم مقدار سرایند و هم کد خطای بازگردانده شده هر دو به یک مقدار نسبت داده می‌شوند. برای اطلاعات بیشتر [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] را ببینید.\n\n<strong>آزمایش:</strong> برای انجام درخواست‌های API آزمایشی [[Special:ApiSandbox]] را ببینید.",
 	"apihelp-main-param-action": "کدام عملیات را انجام دهد.",
 	"apihelp-main-param-format": "فرمت خروجی.",
 	"apihelp-main-param-smaxage": "تنظيم <code>s-maxage</code> سرآیند کنترل حافضهٔ نهان HTTP بر اين تعداد ثانيه‌ها. خطاها هرگز در حافظه نهان نمی‌شوند.",
@@ -131,7 +132,7 @@
 	"apihelp-delete-param-unwatch": "حذف صفحه از فهرست پیگیری کاربر کنونی.",
 	"apihelp-delete-param-oldimage": "نام تصویر قدیمی مورد نظر برای حذف که به‌واسطهٔ [[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]] وارد شده‌است.",
 	"apihelp-delete-example-simple": "حذف <kbd>صفحهٔ اصلی</kbd>.",
-	"apihelp-delete-example-reason": "حذف <kbd>صفحهٔ اصلی</kbd> همراه دلیل  <kbd>آماده‌سازی برای انتقال</kbd>",
+	"apihelp-delete-example-reason": "حذف <kbd>صفحهٔ اصلی</kbd> همراه دلیل <kbd>آماده‌سازی برای انتقال</kbd>",
 	"apihelp-disabled-summary": "این پودمان غیرفعال شده است.",
 	"apihelp-edit-summary": "ایجاد و ویرایش صفحه",
 	"apihelp-edit-param-title": "عنوان صفحه‌ای که قصد ویرایشش را دارید. نمی‌تواند در کنار <var>$1pageid</var> استفاده شود.",
@@ -363,7 +364,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-parsedcomment": "تجزیهٔ خلاصهٔ نسخه. در صورتی که نسخهٔ مرتبط با خلاصه حذف شده‌باشد، یک ویژگی <samp>commenthidden</samp> برگردانده خواهد شد.",
 	"apihelp-query+imageinfo-paramvalue-prop-size": "اندازهٔ تصویر به بایت و ارتفاع، عرض و شمار صفحه‌های تصویر (در صورت وجود) را اضافه می‌کند.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "نام مستعار برای size",
-	"apihelp-query+imageinfo-paramvalue-prop-sha1": "افزودن  SHA-1 hash برای پرونده",
+	"apihelp-query+imageinfo-paramvalue-prop-sha1": "افزودن SHA-1 hash برای پرونده",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "افزودن نوع MIME برای پرونده",
 	"apihelp-query+imageinfo-param-end": "زمان توقف فهرست کردن.",
 	"apihelp-query+imageinfo-param-urlheight": "مشابه $1urlwidth.",

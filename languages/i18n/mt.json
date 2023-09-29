@@ -492,7 +492,7 @@
 	"cannotchangeemail": "L-indirizzi elettroniċi ma jistgħux jiġu mibdula fuq din il-wiki.",
 	"emaildisabled": "Dan is-sit ma jistgħax jibgħat messaġġi tal-posta elettronika.",
 	"accountcreated": "Il-kont ġie maħluq",
-	"accountcreatedtext": "Il-kont tal-utent għal  [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskussjoni]]) ġie maħluq.",
+	"accountcreatedtext": "Il-kont tal-utent għal [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskussjoni]]) ġie maħluq.",
 	"createaccount-title": "Ħolqien tal-kont għal {{SITENAME}}",
 	"createaccount-text": "Xi ħadd ħoloq kont għall-indirizz tal-posta elettronika tiegħek fuq {{SITENAME}} ($4) bl-isem \"$2\", bil-password: \"$3\".\nHuwa opportun li tidħol issa u tbiddel il-password tiegħek mill-ewwel.\n\nJekk trid tista' ma tagħtix każ dan il-messaġġ, jekk dan il-kont ġie maħluq bi żball.",
 	"login-throttled": "Ippruvajt tidħol fl-kont wisq drabi\nJekk jogħġbok stenna $1 qabel ma terġa' tipprova.",

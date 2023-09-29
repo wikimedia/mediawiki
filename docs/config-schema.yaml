@@ -931,6 +931,7 @@ config-schema:
             - cmd
             - vxd
             - cpl
+            - xml
         type: array
         description: |-
             Files with these extensions will never be allowed as uploads.
@@ -955,6 +956,8 @@ config-schema:
             - application/x-msdownload
             - application/x-msmetafile
             - application/java
+            - application/xml
+            - text/xml
         type: array
         description: |-
             Files with these MIME types will never be allowed as uploads
@@ -3016,8 +3019,8 @@ config-schema:
             - copyright
             - history_copyright
             - googlesearch
-            - feedback-terms
-            - feedback-termsofuse
+            - youhavenewmessagesmanyusers
+            - youhavenewmessages
         type: array
         items:
             type: string
@@ -4869,6 +4872,19 @@ config-schema:
             Functionality to make pages inaccessible has not been extensively tested
             for security. Use at your own risk!
             This replaces $wgWhitelistAccount and $wgWhitelistEdit
+    PrivilegedGroups:
+        default:
+            - bureaucrat
+            - interface-admin
+            - suppress
+            - sysop
+        type: array
+        description: |-
+            List of groups which should be considered privileged (user accounts
+            belonging in these groups can be abused in dangerous ways).
+            This is used for some security checks, mainly logging.
+            @since 1.41
+            @see UserGroupManager::getUserPrivilegedGroups()
     RevokePermissions:
         default: {  }
         type: object

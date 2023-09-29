@@ -99,6 +99,7 @@
 	"config-db-prefix": "Prefixo de tabella del base de datos (sin tractos de union):",
 	"config-db-prefix-help": "Si il es necessari usar un base de datos in commun inter multiple wikis, o inter MediaWiki e un altere application web, tu pote optar pro adder un prefixo a tote le nomines de tabella pro evitar conflictos.\nNon usa spatios.\n\nIste campo usualmente resta vacue.",
 	"config-mysql-old": "MySQL $1 o plus recente es requirite, tu ha $2.",
+	"config-mariadb-old": "MariaDB $1 o plus recente es necessari. Tu ha $2.",
 	"config-db-port": "Porto de base de datos:",
 	"config-db-schema": "Schema pro MediaWiki (sin tractos de union):",
 	"config-db-schema-help": "Iste schema es generalmente correcte.\nSolmente cambia lo si tu es secur que es necessari.",

@@ -40,7 +40,8 @@
 			"ديفيد",
 			"아라",
 			"Armenoid",
-			"Vlad5250"
+			"Vlad5250",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Հղումների ընդգծում՝",
@@ -647,6 +648,7 @@
 	"postedit-confirmation-restored": "Էջը վերականգնվել է",
 	"postedit-confirmation-saved": "Ձեր խմբագրումը պահպանված է:",
 	"postedit-confirmation-published": "Ձեր խմբագրումը հրապարակվեց:",
+	"postedit-temp-created-label": "Ժամանակավոր հաշիվ",
 	"edit-already-exists": "Հրարավոր չէ նոր էջ ստեղծել․ այն արդեն գոյություն ունի։",
 	"defaultmessagetext": "Լռելյան տեքստը",
 	"invalid-json-data": "Անվավեր JSON՝ $1",
@@ -1459,7 +1461,7 @@
 	"usermessage-editor": "Համակարգի սուրհանդակ",
 	"watchlist": "Իմ հսկողության ցանկը",
 	"mywatchlist": "Հսկացանկ",
-	"watchlistfor2": "$1 $2-ի համար",
+	"watchlistfor2": "$1-ի համար",
 	"nowatchlist": "Ձեր հսկողության ցանկը դատարկ է։",
 	"watchlistanontext": "Անհրաժեշտ է $1՝ հսկացանկը դիտելու կամ խմբագրելու համար։",
 	"watchnologin": "Չեք մտել համակարգ",
@@ -1497,7 +1499,7 @@
 	"enotif_lastvisited": "Տես $1՝ ձեր վերջին այցից ի վեր կատարված փոփոխությունների համար։",
 	"enotif_lastdiff": "Տես $1՝ այս փոփոխությունը դիտելու համար։",
 	"enotif_anon_editor": "անանուն մասնակից $1",
-	"enotif_body": "Հարգելի $WATCHINGUSERNAME,\n\n$PAGEEDITDATE {{grammar:genitive|{{SITENAME}}}} «$PAGETITLE» էջը $CHANGEDORCREATED $PAGEEDITOR մասնակցի կողմից, տես $PAGETITLE_URL ՝ ընթացիկ տարբերակի համար։\n\n$NEWPAGE\n\nԽմբագրման ամփոփում. $PAGESUMMARY $PAGEMINOREDIT\n\nԿապվել խմբագրողի հետ.\nէլ-փոստ՝ $PAGEEDITOR_EMAIL\nվիքի՝ $PAGEEDITOR_WIKI\n\nՀետագա տեղեկացումներ այս էջի փոփոխումների մասին չեն լինի, մինչև որ չայցելեք այն։ Դուք կարող եք նաև փոփոխել տեղեկացման դրոշները ձեր կողմից հսկվող բոլոր էջերի համար ձեր հսկացանկում։\n\n             {{grammar:genitive|{{SITENAME}}}} տեղեկացման ծառայություն\n\n--\nՁեր հսկացանկի նախընտրությունները փոխելու համար այցելեք՝\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nՀետադարձ կապ և օգնություն՝\n$HELPPAGE",
+	"enotif_body": "Հարգելի $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nԽմբագրման ամփոփում. $PAGESUMMARY $PAGEMINOREDIT\n\nԿապվել խմբագրողի հետ.\nէլ-փոստ՝ $PAGEEDITOR_EMAIL\nվիքի՝ $PAGEEDITOR_WIKI\n\nՀետագա տեղեկացումներ այս էջի փոփոխումների մասին չեն լինի, մինչև որ չայցելեք այն։ Դուք կարող եք նաև փոփոխել տեղեկացման դրոշները ձեր կողմից հսկվող բոլոր էջերի համար ձեր հսկացանկում։\n\n             {{grammar:genitive|{{SITENAME}}}} տեղեկացման ծառայություն\n\n--\nՁեր հսկացանկի նախընտրությունները փոխելու համար այցելեք՝\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nՀետադարձ կապ և օգնություն՝\n$HELPPAGE",
 	"enotif_minoredit": "Սա չնչին խմբագրում է",
 	"created": "ստեղծված է",
 	"changed": "փոփոխված է",

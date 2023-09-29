@@ -10,6 +10,7 @@
  * @author Anakmalaysia
  * @author Andrew971218
  * @author Bencmq
+ * @author BobChao
  * @author Breawycker
  * @author Byfserag
  * @author Ch.Andrew
@@ -23,11 +24,13 @@
  * @author Horacewai2
  * @author Hydra
  * @author Hzy980512
+ * @author Ianbu
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author Justincheng12345
  * @author Kaganer
  * @author KaiesTse
+ * @author Kayau
  * @author Kuailong
  * @author Lauhenry
  * @author Liangent
@@ -41,12 +44,14 @@
  * @author PhiLiP
  * @author Philip
  * @author Radish10cm
+ * @author Roc michael
  * @author Shinjiman
  * @author Shirayuki
  * @author Shizhao
  * @author Simon Shek
  * @author Skjackey tse
  * @author StephDC
+ * @author Urhixidur
  * @author Waihorace
  * @author Winston Sung
  * @author Wmr89502270
@@ -54,8 +59,11 @@
  * @author Wrightbus
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author Yukiseaside
  * @author Yuyu
+ * @author Zerng07
  * @author 乌拉跨氪
+ * @author לערי ריינהארט
  */
 
 $fallback = 'zh-tw, zh-hk, zh, zh-hans';
@@ -66,8 +74,8 @@ $namespaceNames = [
 	NS_MEDIA            => '媒體',
 	NS_SPECIAL          => '特殊',
 	NS_TALK             => '討論',
-	NS_USER             => '用戶',
-	NS_USER_TALK        => '用戶討論',
+	NS_USER             => '使用者',
+	NS_USER_TALK        => '使用者討論',
 	NS_PROJECT_TALK     => '$1討論',
 	NS_FILE             => '檔案',
 	NS_FILE_TALK        => '檔案討論',
@@ -75,45 +83,60 @@ $namespaceNames = [
 	NS_MEDIAWIKI_TALK   => 'MediaWiki討論',
 	NS_TEMPLATE         => '模板',
 	NS_TEMPLATE_TALK    => '模板討論',
-	NS_HELP             => '幫助',
-	NS_HELP_TALK        => '幫助討論',
+	NS_HELP             => '說明',
+	NS_HELP_TALK        => '說明討論',
 	NS_CATEGORY         => '分類',
 	NS_CATEGORY_TALK    => '分類討論',
 ];
 
 $namespaceAliases = [
-	"媒體" => NS_MEDIA,
-	"特殊" => NS_SPECIAL,
-	"對話" => NS_TALK,
-	"討論" => NS_TALK,
-	"用戶" => NS_USER,
-	"用戶對話" => NS_USER_TALK,
-	"用戶討論" => NS_USER_TALK,
-	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
-	# "{{SITENAME}}_對話" => NS_PROJECT_TALK
-	"圖像" => NS_FILE,
-	"檔案" => NS_FILE,
-	"文件" => NS_FILE,
+	'媒體' => NS_MEDIA,
+	'媒體檔案' => NS_MEDIA,
+	'媒體文件' => NS_MEDIA,
+	'特殊' => NS_SPECIAL,
+	'討論' => NS_TALK,
+	'對話' => NS_TALK,
+	'使用者' => NS_USER,
+	'用戶' => NS_USER,
+	'使用者討論' => NS_USER_TALK,
+	'使用者對話' => NS_USER_TALK,
+	'用戶討論' => NS_USER_TALK,
+	'用戶對話' => NS_USER_TALK,
+	'專案' => NS_PROJECT,
+	# '項目' conflicted with WB_NS_ITEM
+	'$1討論' => NS_PROJECT_TALK,
+	'$1對話' => NS_PROJECT_TALK,
+	'專案討論' => NS_PROJECT_TALK,
+	# '項目討論' conflicted with WB_NS_ITEM_TALK
 	'Image' => NS_FILE,
+	'檔案' => NS_FILE,
+	'文件' => NS_FILE,
+	'圖像' => NS_FILE,
+	'圖片' => NS_FILE,
 	'Image_talk' => NS_FILE_TALK,
-	"圖像對話" => NS_FILE_TALK,
-	"圖像討論" => NS_FILE_TALK,
-	"檔案對話" => NS_FILE_TALK,
-	"檔案討論" => NS_FILE_TALK,
-	"文件對話" => NS_FILE_TALK,
-	"文件討論" => NS_FILE_TALK,
-	"樣板" => NS_TEMPLATE,
-	"模板" => NS_TEMPLATE,
-	"樣板對話" => NS_TEMPLATE_TALK,
-	"樣板討論" => NS_TEMPLATE_TALK,
-	"模板對話" => NS_TEMPLATE_TALK,
-	"模板討論" => NS_TEMPLATE_TALK,
-	"幫助" => NS_HELP,
-	"幫助對話" => NS_HELP_TALK,
-	"幫助討論" => NS_HELP_TALK,
-	"分類" => NS_CATEGORY,
-	"分類對話" => NS_CATEGORY_TALK,
-	"分類討論" => NS_CATEGORY_TALK,
+	'檔案討論' => NS_FILE_TALK,
+	'檔案對話' => NS_FILE_TALK,
+	'文件討論' => NS_FILE_TALK,
+	'文件對話' => NS_FILE_TALK,
+	'圖像討論' => NS_FILE_TALK,
+	'圖像對話' => NS_FILE_TALK,
+	'圖片討論' => NS_FILE_TALK,
+	'模板' => NS_TEMPLATE,
+	'樣板' => NS_TEMPLATE,
+	'模板討論' => NS_TEMPLATE_TALK,
+	'模板對話' => NS_TEMPLATE_TALK,
+	'樣板討論' => NS_TEMPLATE_TALK,
+	'樣板對話' => NS_TEMPLATE_TALK,
+	'說明' => NS_HELP,
+	'幫助' => NS_HELP,
+	'使用說明' => NS_HELP,
+	'說明討論' => NS_HELP_TALK,
+	'幫助討論' => NS_HELP_TALK,
+	'幫助對話' => NS_HELP_TALK,
+	'使用說明討論' => NS_HELP_TALK,
+	'分類' => NS_CATEGORY,
+	'分類討論' => NS_CATEGORY_TALK,
+	'分類對話' => NS_CATEGORY_TALK,
 ];
 
 /** @phpcs-require-sorted-array */

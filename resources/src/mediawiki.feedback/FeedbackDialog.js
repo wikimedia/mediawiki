@@ -85,9 +85,11 @@ FeedbackDialog.prototype.initialize = function () {
 		align: 'inline'
 	} );
 
+	var $termsOfUseLabelText = $( '<p>' ).append( mw.message( 'feedback-termsofuse' ).parseDom() );
+	$termsOfUseLabelText.find( 'a' ).attr( 'target', '_blank' );
 	termsOfUseLabel = new OO.ui.LabelWidget( {
 		classes: [ 'mw-feedbackDialog-feedback-termsofuse' ],
-		label: $( '<p>' ).append( mw.msg( 'feedback-termsofuse' ) )
+		label: $termsOfUseLabelText
 	} );
 
 	this.feedbackPanel.$element.append(

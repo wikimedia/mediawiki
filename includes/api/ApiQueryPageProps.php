@@ -120,8 +120,11 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=query&prop=pageprops&titles=Main%20Page|MediaWiki'
+			"action=query&prop=pageprops&titles={$mp}|MediaWiki"
 				=> 'apihelp-query+pageprops-example-simple',
 		];
 	}

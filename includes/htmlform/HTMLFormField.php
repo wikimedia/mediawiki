@@ -158,11 +158,14 @@ abstract class HTMLFormField {
 	 */
 	protected function getNearestFieldValue( $alldata, $name, $asDisplay = false, $backCompat = false ) {
 		$field = $this->getNearestField( $name, $backCompat );
-		// When the field is belong to a HTMLFormFieldCloner
+		// When the field belongs to a HTMLFormFieldCloner
 		if ( isset( $field->mParams['cloner'] ) ) {
 			$value = $field->mParams['cloner']->extractFieldData( $field, $alldata );
 		} else {
-			$value = $alldata[$field->mParams['fieldname']];
+			// Note $alldata is an empty array when first rendering a form with a formIdentifier.
+			// In that case, $alldata[$field->mParams['fieldname']] is unset and we use the
+			// field's default value
+			$value = $alldata[$field->mParams['fieldname']] ?? $field->getDefault();
 		}
 
 		// Check invert state for HTMLCheckField
