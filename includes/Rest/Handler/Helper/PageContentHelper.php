@@ -374,6 +374,3 @@ class PageContentHelper {
 	}
 
 }
-
-/** @deprecated since 1.40, remove in 1.41 */
-class_alias( PageContentHelper::class, "MediaWiki\\Rest\\Handler\\PageContentHelper" );

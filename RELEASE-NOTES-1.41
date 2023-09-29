@@ -499,6 +499,16 @@ because of Phabricator reports.
    - IDatabase (use Wikimedia\Rdbms\IDatabase)
    - FakeResultWrapper (use Wikimedia\Rdbms\FakeResultWrapper)
    - ResultWrapper (use Wikimedia\Rdbms\ResultWrapper)
+* The following old, deprecated aliases for classes have now been removed:
+   - MediaWiki\Rest\Handler\HtmlInputTransformHelper
+   - MediaWiki\Rest\Handler\HtmlMessageOutputHelper
+   - MediaWiki\Rest\Handler\HtmlOutputRendererHelper
+   - MediaWiki\Rest\Handler\PageContentHelper
+   - MediaWiki\Rest\Handler\PageRestHelperFactory
+   - MediaWiki\Rest\Handler\ParsoidFormatHelper
+   - MediaWiki\Rest\Handler\RevisionContentHelper
+  (use the classes from namespace MediaWiki\Rest\Handler\Helper)
+   - SearchNearMatcher (use MediaWiki\Search\TitleMatcher)
 * $CHANGEDORCREATED argument of 'enotif_body' message was removed.
   It wasn't used in the default messages since 1.21.
 * The AbstractBlock and DatabaseBlock public properties mExpiry, mHideName,
