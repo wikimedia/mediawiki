@@ -251,15 +251,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		// Only set the option if the value isn't the default (see Wikimedia\Parsoid\Config\Env)!
 		// See Parsoid::wikitext2html for possible values.
 		if ( $offsetType !== 'byte' ) {
-			// (T347426) If there is a real use case for this, we might support
-			// this. But, it requires us to be able to run a Parsoid htm2html
-			// transform on the output doc. The current transformation in
-			// Parsoid\ContentUtils has dependencies on Parsoid env, Siteconfig
-			// and page source which makes it not possible to be run directly.
-			throw new HttpException( "Unsupported offset type: $offsetType", 406 );
-
-			// $this->parsoidOptions['offsetType'] = $offsetType;
-			// $this->isCacheable = false;
+			$this->parsoidOptions['offsetType'] = $offsetType;
+			$this->isCacheable = false;
 		}
 	}
 

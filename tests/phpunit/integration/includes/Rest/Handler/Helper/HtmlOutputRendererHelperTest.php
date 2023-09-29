@@ -358,7 +358,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetPageBundleWithOptions() {
-		$this->markTestSkipped( 'T347426: Support for non-default output content major version + offset type has been disabled.' );
+		$this->markTestSkipped( 'T347426: Support for non-default output content major version has been disabled.' );
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$helper = $this->newHelper();
