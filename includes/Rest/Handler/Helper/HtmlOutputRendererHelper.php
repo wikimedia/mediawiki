@@ -788,3 +788,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( HtmlOutputRendererHelper::class, "MediaWiki\\Rest\\Handler\\HtmlOutputRendererHelper" );

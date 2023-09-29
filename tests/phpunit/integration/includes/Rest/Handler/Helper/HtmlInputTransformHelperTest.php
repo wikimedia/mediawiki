@@ -806,7 +806,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @throws HttpException
 	 * @throws \MWException
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper::setOriginal
+	 * @covers       \MediaWiki\Rest\Handler\HtmlInputTransformHelper::setOriginal
 	 */
 	public function testSetOriginal( ?SelserContext $stashed, $rev, $originalRendering, $expectedText ) {
 		if ( is_int( $rev ) && $rev > 0 ) {
@@ -874,7 +874,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper::getTransform
+	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper::getTransform
 	 */
 	public function testGetTransform() {
 		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'HtmlInputTransformHelperTest' );

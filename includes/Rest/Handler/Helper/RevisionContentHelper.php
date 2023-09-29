@@ -185,3 +185,6 @@ class RevisionContentHelper extends PageContentHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( RevisionContentHelper::class, "MediaWiki\\Rest\\Handler\\RevisionContentHelper" );
