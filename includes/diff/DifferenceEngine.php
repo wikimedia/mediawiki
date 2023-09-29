@@ -1680,7 +1680,7 @@ class DifferenceEngine extends ContextSource {
 		if ( count( $revisionIdList ) > 0 ) {
 			foreach ( $revisionIdList as $revisionId ) {
 				$revision = $this->revisionStore->getRevisionById( $revisionId );
-				if ( $revision->getUser( RevisionRecord::FOR_THIS_USER, $this->getAuthority() ) ) {
+				if ( $revision->getUser( RevisionRecord::FOR_THIS_USER, $this->getUser() ) ) {
 					$nEdits++;
 				}
 			}
