@@ -143,6 +143,8 @@ $wgEnableUploads = true;
 
 // Enable en-x-piglatin variant conversion for testing
 $wgUsePigLatinVariant = true;
+// Enable x-xss language code for testing correct message escaping
+$wgUseXssLanguage = true;
 
 // Enable the new wikitext mode for browser testing (T270240)
 $wgVisualEditorEnableWikitext = true;
