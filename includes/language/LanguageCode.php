@@ -224,12 +224,18 @@ class LanguageCode {
 	 * but (a) better describes the caller's intention, and (b) should
 	 * be much more efficient in practice.
 	 *
-	 * @param string $code The standard BCP-47 language code
+	 * @param string|Bcp47Code $code The standard BCP-47 language code
 	 * @return string A MediaWiki-internal code, as returned for example by
 	 *    Language::getCode()
 	 * @since 1.40
 	 */
-	public static function bcp47ToInternal( string $code ): string {
+	public static function bcp47ToInternal( $code ): string {
+		if ( $code instanceof Language ) {
+			return $code->getCode();
+		}
+		if ( $code instanceof Bcp47Code ) {
+			$code = $code->toBcp47Code();
+		}
 		static $invertedLookup = [];
 		if ( !$invertedLookup ) {
 			// There should never be two different entries in

@@ -443,7 +443,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			->willReturnCallback( function ( $code ) {
 				static $seen = [];
 				if ( $code instanceof Bcp47Code ) {
-					$code = LanguageCode::bcp47ToInternal( $code->toBcp47Code() );
+					$code = LanguageCode::bcp47ToInternal( $code );
 				}
 				if ( !isset( $seen[$code] ) ) {
 					$seen[$code] = $this->getLanguageMock( $code );
@@ -453,7 +453,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$mock->method( 'getParentLanguage' )
 			 ->willReturnCallback( static function ( $code ) use ( $mock ) {
 				if ( $code instanceof Bcp47Code ) {
-					$code = LanguageCode::bcp47ToInternal( $code->toBcp47Code() );
+					$code = LanguageCode::bcp47ToInternal( $code );
 				}
 				$code = preg_replace( '/-.*$/', '', $code );
 				return $mock->getLanguage( $code );
