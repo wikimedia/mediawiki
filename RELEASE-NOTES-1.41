@@ -934,6 +934,9 @@ because of Phabricator reports.
   deprecation warnings from its factory functions.
 * MediaWiki\ResourceLoader\Module::getDeprecationInformation() is deprecated.
   Use ::getDeprecationWarning() instead.
+* Calling ParserOutput::setTOCHTML() inside the OutputPageParserOutput hook
+  as a means to toggle display of the TOC is deprecated.  Setting the
+  ParserOutputFlags::NO_TOC flag is a supported alternative.
 * Passing a Message to OutputPage::setPageTitle() is deprecated.
   Use ::setPageTitleMsg() instead (which escapes HTML metacharacters).
 * Passing arguments to OutputPage::prepareErrorPage() is deprecated.
