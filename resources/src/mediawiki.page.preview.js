@@ -602,35 +602,38 @@
 
 				// Prepend section heading to section text.
 				contents = sectionTitle + contents;
-
 			}
 
-			var diffPar = {
-				action: 'compare',
-				fromtitle: config.title,
-				totitle: config.title,
-				toslots: 'main',
-				// Remove trailing whitespace for consistency with EditPage diffs.
-				// TODO trimEnd() when we can use that.
-				'totext-main': contents.replace( /\s+$/, '' ),
-				'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
-				topst: true,
-				slots: 'main',
-				uselang: mw.config.get( 'wgUserLanguage' )
-			};
-			if ( mw.config.get( 'wgUserVariant' ) ) {
-				diffPar.variant = mw.config.get( 'wgUserVariant' );
-			}
-			if ( section ) {
-				diffPar[ 'tosection-main' ] = section;
-			}
-			if ( mw.config.get( 'wgArticleId' ) === 0 ) {
-				diffPar.fromslots = 'main';
-				diffPar[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
-				diffPar[ 'fromtext-main' ] = '';
-			}
-
-			diffRequest = tempUserNamePromise.then( function () {
+			// The compare API returns an error if the title doesn't exist and fromtext is not
+			// specified. So we have to account for the possibility that the page was created or
+			// deleted after the user started editing. Luckily the parse API returns pageid so we
+			// can wait for that.
+			// TODO: Show "Warning: This page was deleted after you started editing!"?
+			diffRequest = parseRequest.then( function ( parseResponse ) {
+				var diffPar = {
+					action: 'compare',
+					fromtitle: config.title,
+					totitle: config.title,
+					toslots: 'main',
+					// Remove trailing whitespace for consistency with EditPage diffs.
+					// TODO trimEnd() when we can use that.
+					'totext-main': contents.replace( /\s+$/, '' ),
+					'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
+					topst: true,
+					slots: 'main',
+					uselang: mw.config.get( 'wgUserLanguage' )
+				};
+				if ( mw.config.get( 'wgUserVariant' ) ) {
+					diffPar.variant = mw.config.get( 'wgUserVariant' );
+				}
+				if ( section ) {
+					diffPar[ 'tosection-main' ] = section;
+				}
+				if ( parseResponse.parse.pageid === 0 ) {
+					diffPar.fromslots = 'main';
+					diffPar[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
+					diffPar[ 'fromtext-main' ] = '';
+				}
 				return api.post( diffPar );
 			} );
 
