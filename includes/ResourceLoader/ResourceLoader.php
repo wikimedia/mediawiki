@@ -118,14 +118,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $logger;
 	/** @var HookContainer */
 	private $hookContainer;
-	/** @var HookRunner */
-	private $hookRunner;
 	/** @var BagOStuff */
 	private $srvCache;
 	/** @var IBufferingStatsdDataFactory */
 	private $stats;
-	/** @var string */
-	private $loadScript;
 	/** @var int */
 	private $maxageVersioned;
 	/** @var int */
@@ -180,7 +176,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		DependencyStore $tracker = null,
 		array $params = []
 	) {
-		$this->loadScript = $params['loadScript'] ?? '/load.php';
 		$this->maxageVersioned = $params['maxageVersioned'] ?? 30 * 24 * 60 * 60;
 		$this->maxageUnversioned = $params['maxageUnversioned'] ?? 5 * 60;
 
@@ -189,13 +184,12 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		$services = MediaWikiServices::getInstance();
 		$this->hookContainer = $services->getHookContainer();
-		$this->hookRunner = new HookRunner( $this->hookContainer );
 
 		$this->srvCache = $services->getLocalServerObjectCache();
 		$this->stats = $services->getStatsdDataFactory();
 
 		// Add 'local' source first
-		$this->addSource( 'local', $this->loadScript );
+		$this->addSource( 'local', $params['loadScript'] ?? '/load.php' );
 
 		// Special module that always exists
 		$this->register( 'startup', [ 'class' => StartUpModule::class ] );
