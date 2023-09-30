@@ -1199,10 +1199,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onContentHandlerForModelID( $modeName, &$handler ) {
+	public function onContentHandlerForModelID( $modelName, &$handler ) {
 		return $this->container->run(
 			'ContentHandlerForModelID',
-			[ $modeName, &$handler ]
+			[ $modelName, &$handler ]
 		);
 	}
 
