@@ -20,7 +20,7 @@ interface BeforePageRedirectHook {
 	 * @since 1.35
 	 *
 	 * @param OutputPage $out
-	 * @param string &$redirect Absolute or path-relatvie URL, modifiable
+	 * @param string &$redirect Absolute or path-relative URL, modifiable
 	 * @param string &$code HTTP code (eg '301' or '302'), modifiable
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
