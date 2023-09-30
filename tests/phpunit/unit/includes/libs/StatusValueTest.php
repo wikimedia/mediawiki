@@ -149,18 +149,18 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 			. "| error    | Basic string parsing      | Naïve string parsing                |\n"
 			. "| error    | Wrapped string            | This is a longer input parameter and |\n"
 			. "|          |                           |  thus will wrap                      |\n"
-			. "| error    | Multi-byte string         | Demo:  캐나다∂는 북미에 있 |\n"
-			. "|          |                           | 는 나라로 면적이 매우 넓   |\n"
-			. "|          |                           | 습니다.                           |\n"
+			. "| error    | Multi-byte string         | 캐나다∂는 북미에 있는 나라로 면적이 매우 넓습니다. |\n"
+			. "| error    | Multi-byte wrapped string | 캐나다는 태평양에서 대서양까지, 북쪽으로는 북극과 접해 있는 북미 |\n"
+			. "|          |                           | 의 큰 나라입니다.             |\n"
 			. "+----------+---------------------------+--------------------------------------+\n";
 		yield [
 			false, null, [
 				[ 'message' => 'Basic string parsing', 'params' => 'Naïve string parsing' ],
 				[ 'message' => 'Wrapped string', 'params' => 'This is a longer input parameter and thus will wrap' ],
-				// Note: Carefully spaced to avoid breaking multi-byte characters, as it's hard to re-create the bad behaviour.
-				[ 'message' => 'Multi-byte string', 'params' => 'Demo:  캐나다∂는 북미에 있는 나라로 면적이 매우 넓  습니다.' ]
+				[ 'message' => 'Multi-byte string', 'params' => '캐나다∂는 북미에 있는 나라로 면적이 매우 넓습니다.' ],
+				[ 'message' => 'Multi-byte wrapped string', 'params' => '캐나다는 태평양에서 대서양까지, 북쪽으로는 북극과 접해 있는 북미의 큰 나라입니다.' ]
 			],
-			'<Error, collected 3 message(s) on the way, no value set>' . $multiErrorReport,
+			'<Error, collected 4 message(s) on the way, no value set>' . $multiErrorReport,
 			'Three errors with different kinds of string parameters including long strings that are split when simple'
 		];
 	}
