@@ -630,11 +630,9 @@
 				diffPar[ 'fromtext-main' ] = '';
 			}
 
-			if ( contents !== '' ) {
-				diffRequest = tempUserNamePromise.then( function () {
-					return api.post( diffPar );
-				} );
-			}
+			diffRequest = tempUserNamePromise.then( function () {
+				return api.post( diffPar );
+			} );
 
 		} else if ( config.$diffNode ) {
 			config.$diffNode.hide();
