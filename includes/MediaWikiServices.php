@@ -773,8 +773,10 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.35
+	 * @deprecated since 1.42, use getFormatterFactory()->getBlockErrorFormatter() instead.
 	 */
 	public function getBlockErrorFormatter(): BlockErrorFormatter {
+		wfDeprecated( __METHOD__, '1.42' );
 		return $this->getService( 'BlockErrorFormatter' );
 	}
 

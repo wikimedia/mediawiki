@@ -304,7 +304,6 @@ class UserAuthority implements Authority {
 			$messages = $this->blockErrorFormatter->getMessages(
 				$userBlock,
 				$this->actor,
-				$this->uiContext->getLanguage(),
 				$this->request->getIP()
 			);
 

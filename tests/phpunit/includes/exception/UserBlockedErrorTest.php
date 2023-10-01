@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\User\UserIdentity;
 
@@ -16,13 +17,13 @@ class UserBlockedErrorTest extends MediaWikiIntegrationTestCase {
 		$mockBlockErrorFormatter = $this->createMock( BlockErrorFormatter::class );
 		$mockBlockErrorFormatter->expects( $this->once() )
 			->method( 'getMessages' )
-			->with( $expectedBlock, $expectedUser, $expectedLanguage, $expectedIp )
+			->with( $expectedBlock, $expectedUser, $expectedIp )
 			->willReturn( $returnMessages );
-		$this->overrideMwServices( null, [
-			'BlockErrorFormatter' => static function () use ( $mockBlockErrorFormatter ) {
-				return $mockBlockErrorFormatter;
-			}
-		] );
+
+		$formatterFactory = $this->createNoOpMock( FormatterFactory::class, [ 'getBlockErrorFormatter' ] );
+		$formatterFactory->method( 'getBlockErrorFormatter' )->willReturn( $mockBlockErrorFormatter );
+
+		$this->setService( 'FormatterFactory', $formatterFactory );
 	}
 
 	public function testConstructionProvidedOnlyBlockParameter() {

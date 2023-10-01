@@ -425,10 +425,11 @@ abstract class AbstractBlock implements Block {
 	public function getPermissionsError( IContextSource $context ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		$message = MediaWikiServices::getInstance()
-			->getBlockErrorFormatter()->getMessage(
+			->getFormatterFactory()->getBlockErrorFormatter( $context )
+			->getMessage(
 				$this,
 				$context->getUser(),
-				$context->getLanguage(),
+				null,
 				$context->getRequest()->getIP()
 			);
 		return array_merge( [ $message->getKey() ], $message->getParams() );

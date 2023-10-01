@@ -456,6 +456,15 @@ because of Phabricator reports.
   Use PageUpdater instance.
 * SpecialBlock::getSuggestedDurations() has been deprecated, use
   Language::getBlockDurations() instead.
+* MediaWikiServices::getBlockErrorFormatter() has been deprecated, use
+  MediaWikiServices::getFormatterFactory()->getBlockErrorFormatter() instead.
+* (T352284) Some user options-related classes were moved over to the existing
+  MediaWiki\User\Options namespace. Old names are deprecated and kept as
+  aliases for backwards-compatibility:
+   - DefaultOptionsLookup
+   - UserOptionsLookup
+   - UserOptionsManager
+   - StaticUserOptionsLookup
 * Database::listViews() has been deprecated. This was previously used to filter
   views out of the return value of Database::listTables(). Now listTables()
   will not include views. MediaWiki does not use views.

@@ -37,6 +37,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ScopedCallback;
@@ -487,6 +488,14 @@ class RequestContext implements IContextSource, MutableContext {
 		}
 
 		return $this->lang;
+	}
+
+	/**
+	 * @since 1.42
+	 * @return Bcp47Code
+	 */
+	public function getLanguageCode() {
+		return $this->getLanguage();
 	}
 
 	/**

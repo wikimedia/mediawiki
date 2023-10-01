@@ -1556,12 +1556,13 @@ abstract class ApiBase extends ContextSource {
 	 * @return never
 	 */
 	public function dieBlocked( Block $block ) {
-		$blockErrorFormatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+		$blockErrorFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
+			->getBlockErrorFormatter( $this->getContext() );
 
 		$msg = $blockErrorFormatter->getMessage(
 			$block,
 			$this->getUser(),
-			$this->getLanguage(),
+			null,
 			$this->getRequest()->getIP()
 		);
 
