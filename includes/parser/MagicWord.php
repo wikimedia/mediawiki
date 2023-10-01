@@ -442,19 +442,6 @@ class MagicWord {
 	}
 
 	/**
-	 * Adds all the synonyms of this MagicWord to an array, to allow quick
-	 * lookup in a list of magic words
-	 *
-	 * @param string[] &$array
-	 * @param string $value
-	 */
-	public function addToArray( &$array, $value ) {
-		foreach ( $this->mSynonyms as $syn ) {
-			$array[$this->contLang->lc( $syn )] = $value;
-		}
-	}
-
-	/**
 	 * @return bool
 	 */
 	public function isCaseSensitive() {
