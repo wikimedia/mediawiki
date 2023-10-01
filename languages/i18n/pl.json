@@ -499,7 +499,7 @@
 	"userlogin-yourname-ph": "Wprowadź swoją nazwę użytkownika",
 	"createacct-another-username-ph": "Wprowadź nazwę użytkownika",
 	"yourpassword": "Hasło:",
-	"prefs-help-yourpassword": "Odzyskiwanie konta jest włączone. Zarzyj do $1 po więcej ustawień.",
+	"prefs-help-yourpassword": "Odzyskiwanie konta jest włączone. Zobacz więcej ustawień w sekcji „$1”.",
 	"userlogin-yourpassword": "Hasło",
 	"userlogin-yourpassword-ph": "Wpisz swoje hasło",
 	"createacct-yourpassword-ph": "Wprowadź hasło",
