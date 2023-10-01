@@ -25,6 +25,7 @@ use ChangesList;
 use ChangeTags;
 use HtmlArmor;
 use IContextSource;
+use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
@@ -55,6 +56,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @var FormOptions
 	 */
 	protected $opts;
+
+	protected MapCacheLRU $tagsCache;
 
 	/** @var string[] */
 	private $formattedComments = [];
@@ -100,6 +103,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->opts = $opts;
+		$this->tagsCache = new MapCacheLRU( 50 );
 	}
 
 	public function getQueryInfo() {
@@ -305,10 +309,17 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		# Tags, if any.
 		if ( isset( $row->ts_tags ) ) {
-			[ $tagDisplay, $newClasses ] = ChangeTags::formatSummaryRow(
-				$row->ts_tags,
-				'newpages',
-				$this->getContext()
+			[ $tagDisplay, $newClasses ] = $this->tagsCache->getWithSetCallback(
+				$this->tagsCache->makeKey(
+					$row->ts_tags,
+					$this->getUser()->getName(),
+					$lang->getCode()
+				),
+				fn () => ChangeTags::formatSummaryRow(
+					$row->ts_tags,
+					'newpages',
+					$this->getContext()
+				)
 			);
 			$classes = array_merge( $classes, $newClasses );
 		} else {

@@ -57,6 +57,9 @@ class LogEventsList extends ContextSource {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var MapCacheLRU */
+	private $tagsCache;
+
 	/**
 	 * @param IContextSource $context
 	 * @param LinkRenderer|null $linkRenderer
@@ -71,6 +74,7 @@ class LogEventsList extends ContextSource {
 			$this->linkRenderer = $linkRenderer;
 		}
 		$this->hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$this->tagsCache = new MapCacheLRU( 50 );
 	}
 
 	/**
@@ -325,10 +329,17 @@ class LogEventsList extends ContextSource {
 		$del = $this->getShowHideLinks( $row );
 
 		// Any tags...
-		[ $tagDisplay, $newClasses ] = ChangeTags::formatSummaryRow(
-			$row->ts_tags,
-			'logevent',
-			$this->getContext()
+		[ $tagDisplay, $newClasses ] = $this->tagsCache->getWithSetCallback(
+			$this->tagsCache->makeKey(
+				$row->ts_tags ?? '',
+				$this->getUser()->getName(),
+				$this->getLanguage()->getCode()
+			),
+			fn () => ChangeTags::formatSummaryRow(
+				$row->ts_tags,
+				'logevent',
+				$this->getContext()
+			)
 		);
 		$classes = array_merge(
 			[ 'mw-logline-' . $entry->getType() ],
