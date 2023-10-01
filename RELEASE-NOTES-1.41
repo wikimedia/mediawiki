@@ -391,7 +391,7 @@ because of Phabricator reports.
   - ::getMessageKeysFor()
   - ::getConvRuleTitle()
 * The parameter noSeparators to Language::formatNum, deprecated since 1.36,
-  has beed removed. Use Language::formatNumNoSeparators instead.
+  has been removed. Use Language::formatNumNoSeparators instead.
 * The following methods in the ParserOutput class, deprecated since 1.38, have
   been removed:
   - ::addOutputHook()
@@ -800,7 +800,7 @@ because of Phabricator reports.
   DatabaseBlockStore instead.
 * The global function wfGetLangObj is deprecated and emits deprecation
   warnings. Use MediaWiki\Languages\LanguageFactory::getLanguage instead.
-* virtualrest::SwiftVirtualRESTService is deprecated in 1.41 and now emits
+* The SwiftVirtualRESTService class is deprecated in 1.41 and now emits
   deprecation warnings.
 * SqlBagOStuff::expireAll() is deprecated and now emits deprecation warnings,
   use SqlBagOStuff::deleteObjectsExpiringBefore() instead.
@@ -836,8 +836,8 @@ because of Phabricator reports.
   deprecated in 1.35, now emit deprecation warnings.
 * VirtualRESTService class and its subclasses now emit deprecation warnings
   in 1.41 and as a replacement we can use MultiHttpClient.
-* Calling the getVirtualRESTServiceClient() which creates the VRSC now
-  emits deprecation warnings.
+* Calling the MediaWikiServices::getVirtualRESTServiceClient() function
+  which creates the VirtualRESTServiceClient now emits deprecation warnings.
 * Language::getMessage and Language::getAllMessages are deprecated. Use
   LocalisationCache or MessageCache as appropriate.
 * VirtualRESTService class is deprecated in 1.41 and as a replacement
