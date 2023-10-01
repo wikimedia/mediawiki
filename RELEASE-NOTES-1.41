@@ -126,6 +126,7 @@ default info icon.
   from v0.6.2 to v0.20.0.
 * Updated guzzlehttp/guzzle from 7.5.0 to 7.5.3.
 * Updated jQuery from v3.6.1 to v3.7.0.
+* Updated justinrainbow/json-schema from 5.2.12 to v5.2.13.
 * Updated Mustache from 3.0.1 to 4.2.0.
 * Updated OOjs from 6.0.0 to 7.0.1.
 * Updated OOUI from v0.46.3 to v0.48.1.
