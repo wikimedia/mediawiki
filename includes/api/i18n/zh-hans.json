@@ -52,7 +52,8 @@
 			"Tr jason",
 			"捍粵者",
 			"CrownedWharf566",
-			"LittlePaw365"
+			"LittlePaw365",
+			"Gzombiejun"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>MediaWiki API是一个成熟稳定的，不断受到支持和改进的界面。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -1664,6 +1665,7 @@
 	"apierror-changecontentmodel-cannot-convert": "无法将$1转换为内容模型<code>$2</code>",
 	"apierror-chunk-too-small": "对于非最终块，最小块大小为$1{{PLURAL:$1|字节}}。",
 	"apierror-cidrtoobroad": "比/$2更宽的$1 CIDR地址段不被接受。",
+	"apierror-compare-maintextrequired": "当<var>$1slots</var>包含<kbd>main</kbd>时，需要参数<var>$1text-main</var> （不能删除主要部分）。",
 	"apierror-compare-no-title": "不能在没有标题的情况下预保存转换。尝试指定<var>fromtitle</var>或<var>totitle</var>。",
 	"apierror-compare-nosuchfromsection": "在“from”内容中没有章节$1。",
 	"apierror-compare-nosuchtosection": "在“to”内容中没有章节$1。",
@@ -1682,8 +1684,8 @@
 	"apierror-deletedrevs-param-not-1-2": "<var>$1</var>参数不能用于模式1或2。",
 	"apierror-deletedrevs-param-not-3": "<var>$1</var>参数不能用于模式3。",
 	"apierror-edit-invalidredirect": "跟随重定向时无法编辑<kbd>$1</kbd>，因为目标<kbd>$2</kbd>无效。",
-	"apierror-emptynewsection": "无法创建空白新章节。",
-	"apierror-emptypage": "不允许创建新的，空白的页面。",
+	"apierror-emptynewsection": "无法创建空的新章节。",
+	"apierror-emptypage": "不允许创建新的、空的页面。",
 	"apierror-exceptioncaught": "[$1]捕获异常：$2",
 	"apierror-exceptioncaughttype": "[$1]发现$2类型异常",
 	"apierror-filedoesnotexist": "文件不存在。",

@@ -2484,7 +2484,7 @@
 	"table_pager_limit_submit": "යන්න",
 	"table_pager_empty": "ප්‍රතිඵල නොමැත",
 	"autosumm-blank": "පිටුව හිස් කෙරිණි",
-	"autosumm-replace": "පිටුව වෙනුවට  '$1' ප්‍රතිස්ථාපනය කරමින්",
+	"autosumm-replace": "පිටුව වෙනුවට '$1' ප්‍රතිස්ථාපනය කරමින්",
 	"autoredircomment": " [[$1]] වෙතට යළි-යොමුකරමින්",
 	"autosumm-new": "'$1' යොදමින් නව පිටුවක් තනන ලදි",
 	"size-bytes": "$1 බ",

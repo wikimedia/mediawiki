@@ -2724,7 +2724,7 @@
 	"autosumm-blank": "Ngosongkeun eusi kaca",
 	"autosumm-replace": "Ngaganti kaca ku '$1'",
 	"autoredircomment": "Mindahkeun ka [[$1]]",
-	"autosumm-new": "Nyieun kaca anyar  $1",
+	"autosumm-new": "Nyieun kaca anyar $1",
 	"autosumm-newblank": "Nyieun kaca kosong",
 	"lag-warn-normal": "Parobahan nu leuwih anyar ti $1 {{PLURAL:$1|detik|detik}} moal ditémbongkeun dina ieu béréndélan.",
 	"lag-warn-high": "Kusabab kasibukan lag server pangkalan data, parobahan nu leuwih anyar $1 {{PLURAL:$1|detik|detik}} moal ditémbongkeun dina ieu béréndélan.",

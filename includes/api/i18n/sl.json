@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eleassar"
+			"Eleassar",
+			"Amire80"
 		]
 	},
 	"apihelp-main-param-action": "Katero dejanje izvesti.",
@@ -72,6 +73,8 @@
 	"apihelp-login-param-password": "Geslo.",
 	"apihelp-login-param-domain": "Domena (izbirno).",
 	"apihelp-login-example-login": "Prijava.",
+	"apihelp-mergehistory-param-to": "Naslov strani, v katero naj se združi zgodovina. Ni ga mogoče uporabiti skupaj z <var>$1toid</var>.",
+	"apihelp-mergehistory-param-toid": "ID strani, v katero naj se združi zgodovina. Ni ga mogoče uporabiti skupaj z <var>$1to</var>.",
 	"apihelp-mergehistory-param-reason": "Razlog za združitev zgodovine.",
 	"apihelp-move-summary": "Prestavi stran.",
 	"apihelp-move-param-from": "Naslov strani za preimenovanje. Ni ga mogoče uporabiti skupaj z <var>$1fromid</var>.",

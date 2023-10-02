@@ -2825,7 +2825,7 @@
 	"allmessagesdefault": "Texto predeterminado",
 	"allmessagescurrent": "Texto actual da mensaxe",
 	"allmessagestext": "Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.\nPor favor, visite a páxina de [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation localización] e [https://translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.",
-	"allmessages-not-supported-database": "Esta páxina non está dispoñible porque '''$wgUseDatabaseMessages''' está desactivado.",
+	"allmessages-not-supported-database": "Esta páxina non está dispoñible porque <strong>$wgUseDatabaseMessages</strong> está desactivado.",
 	"allmessages-filter-legend": "Filtrar",
 	"allmessages-filter": "Filtrar por estado de personalización:",
 	"allmessages-filter-unmodified": "Inalteradas",

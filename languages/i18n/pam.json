@@ -1176,7 +1176,7 @@
 	"unblocklink": "ilako pangasabat",
 	"change-blocklink": "alilan ya ing pamaniabat o ''block''",
 	"contribslink": "ambag",
-	"autoblocker": "Tambing yang mesabat uling bayu-bayu ne pamung ginamit \"[[User:$1|$1]]\" ing kekang IP address.  Mesabat ya i $1 uling: \"'''$2'''\"",
+	"autoblocker": "Tambing yang mesabat uling bayu-bayu ne pamung ginamit \"[[User:$1|$1]]\" ing kekang IP address. Mesabat ya i $1 uling: \"'''$2'''\"",
 	"blocklogpage": "Sabat tala",
 	"blocklogentry": "Mesabat ya ing \"[[$1]]\" a mapupus kilub ning $2 $3",
 	"blocklogtext": "Ini tala (log) de reng pamaniabat ampong pamaglako pangasabat kareng talagamit.\nE la makabili deng IP address a tambing nang makasabat.\nLon me ing [[Special:BlockList|IP block list]] para king tala da reng kasalungsungan a makabawal o makasabat.",
