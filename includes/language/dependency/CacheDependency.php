@@ -27,6 +27,8 @@
 abstract class CacheDependency {
 	/**
 	 * Returns true if the dependency is expired, false otherwise
+	 *
+	 * @return bool
 	 */
 	abstract public function isExpired();
 

@@ -96,7 +96,7 @@ class MessageCache implements LoggerAwareInterface {
 	private $cache;
 
 	/**
-	 * Map of (lowercase message key => unused) for all software defined messages
+	 * Map of (lowercase message key => unused) for all software-defined messages
 	 *
 	 * @var array
 	 */
@@ -130,6 +130,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @var ParserOptions
 	 */
 	private $parserOptions;
+
 	/** @var ?Parser Lazy-created via self::getParser() */
 	private $parser = null;
 
@@ -249,7 +250,7 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * ParserOptions is lazy initialised.
+	 * ParserOptions is lazily initialised.
 	 *
 	 * @return ParserOptions
 	 */
@@ -311,11 +312,11 @@ class MessageCache implements LoggerAwareInterface {
 	 * Nothing is loaded if member variable mDisable is true, either manually
 	 * set by calling code or if message loading fails (is this possible?).
 	 *
-	 * Returns true if cache is already populated or it was successfully populated,
+	 * Returns true if cache is already populated, or it was successfully populated,
 	 * or false if populating empty cache fails. Also returns true if MessageCache
 	 * is disabled.
 	 *
-	 * @param string $code Language to which load messages
+	 * @param string $code Which language to load messages for
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
 	 * @return bool
 	 */
@@ -348,7 +349,7 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * Load messages from the cache or database, without exception guarding.
 	 *
-	 * @param string $code Language to which load messages
+	 * @param string $code Which language to load messages for
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
 	 * @return bool
 	 */
@@ -493,7 +494,7 @@ class MessageCache implements LoggerAwareInterface {
 		// Lock the cache to prevent conflicting writes.
 		// This lock is non-blocking so stale cache can quickly be used.
 		// Note that load() will call a blocking getReentrantScopedLock()
-		// after this if it really need to wait for any current thread.
+		// after this if it really needs to wait for any current thread.
 		[ $scopedLock ] = $this->getReentrantScopedLock( $code, 0 );
 		if ( !$scopedLock ) {
 			$where[] = 'could not acquire main lock';
@@ -612,7 +613,7 @@ class MessageCache implements LoggerAwareInterface {
 			$cache['EXCESSIVE'][$row->page_title] = $row->page_latest;
 		}
 
-		// Can not inject the RevisionStore as it would break the installer since
+		// RevisionStore cannot be injected as it would break the installer since
 		// it instantiates MessageCache before the DB.
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		// Set the text for small software-defined messages in the main cache map
@@ -676,8 +677,8 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		foreach ( $uncacheableRows as $row ) {
-			// T193271: cache object gets too big and slow to generate.
-			// At least include revision ID so page changes are reflected in the hash.
+			// T193271: The cache object gets too big and slow to generate.
+			// At least include revision ID, so that page changes are reflected in the hash.
 			$cache['EXCESSIVE'][$row->page_title] = $row->page_latest;
 		}
 
@@ -712,7 +713,7 @@ class MessageCache implements LoggerAwareInterface {
 
 	/**
 	 * Can the given DB key be added to the main cache blob? To reduce the
-	 * impact of abuse of the MediaWiki namespace by {{int:}} and CentralNotice,
+	 * abuse impact of the MediaWiki namespace by {{int:}} and CentralNotice,
 	 * this is only true if the page overrides a predefined message.
 	 *
 	 * @param string $name Message name (possibly with /code suffix)
@@ -722,7 +723,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	private function isMainCacheable( $name, $code = null ) {
-		// Convert first letter to lowercase, and strip /code suffix
+		// Convert the first letter to lowercase, and strip /code suffix
 		$name = $this->contLang->lcfirst( $name );
 		// Include common conversion table pages. This also avoids problems with
 		// Installer::parse() bailing out due to disallowed DB queries (T207979).
@@ -772,7 +773,7 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * Updates cache as necessary when message page is changed
 	 *
-	 * @param string $title Message cache key with initial uppercase letter
+	 * @param string $title Message cache key with the initial uppercase letter
 	 * @param string|false $text New contents of the page (false if deleted)
 	 */
 	public function replace( $title, $text ) {
@@ -791,7 +792,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Page deleted
 			$this->cache->setField( $code, $title, '!NONEXISTENT' );
 		} else {
-			// Ignore $wgMaxMsgCacheEntrySize so the process cache is up to date
+			// Ignore $wgMaxMsgCacheEntrySize so the process cache is up-to-date
 			$this->cache->setField( $code, $title, ' ' . $text );
 		}
 
@@ -889,7 +890,7 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Is the given cache array expired due to time passing or a version change?
+	 * Is the given cache array expired due-to-time passing or a version change?
 	 *
 	 * @param array $cache
 	 * @return bool
@@ -979,7 +980,7 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $code Language to which load messages
+	 * @param string $code Which language to load messages for
 	 * @param int $timeout Wait timeout in seconds
 	 * @return array (ScopedCallback or null, whether locking failed due to an I/O error)
 	 * @phan-return array{0:ScopedCallback|null,1:bool}
@@ -1289,13 +1290,13 @@ class MessageCache implements LoggerAwareInterface {
 	 * some callers require this behavior. LanguageConverter::parseCachedTable()
 	 * and self::get() are some examples in core.
 	 *
-	 * @param string $title Message cache key with initial uppercase letter
+	 * @param string $title Message cache key with the initial uppercase letter
 	 * @param string $code Code denoting the language to try
 	 * @return string|false The message, or false if it does not exist or on error
 	 */
 	public function getMsgFromNamespace( $title, $code ) {
 		// Load all MediaWiki page definitions into cache. Note that individual keys
-		// already loaded into cache during this request remain in the cache, which
+		// already loaded into the cache during this request remain in the cache, which
 		// includes the value of hook-defined messages.
 		$this->load( $code );
 
@@ -1459,7 +1460,7 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * @param string $text
 	 * @param PageReference|null $page
-	 * @param bool $linestart Whether or not this is at the start of a line
+	 * @param bool $linestart Whether this is at the start of a line
 	 * @param bool $interface Whether this is an interface message
 	 * @param Language|StubUserLang|string|null $language Language code
 	 * @return ParserOutput|string
@@ -1573,6 +1574,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * If $code is the content language code, this will return all message keys
 	 * for which MediaWiki:msgkey exists. If $code is another language code, this
 	 * will ONLY return message keys for which MediaWiki:msgkey/$code exists.
+	 *
 	 * @param string $code Language code
 	 * @return string[]|null Array of message keys
 	 */
@@ -1650,7 +1652,7 @@ class MessageCache implements LoggerAwareInterface {
 
 	/**
 	 * @param string $hash Hash for this version of the entire key/value overrides map
-	 * @param string $title Message cache key with initial uppercase letter
+	 * @param string $title Message cache key with the initial uppercase letter
 	 * @return string
 	 */
 	private function bigMessageCacheKey( $hash, $title ) {

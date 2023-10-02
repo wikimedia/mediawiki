@@ -1470,7 +1470,7 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Wrapper for what ever method we use to get message contents.
+	 * Wrapper for whatever method we use to get message contents.
 	 *
 	 * @since 1.17
 	 *

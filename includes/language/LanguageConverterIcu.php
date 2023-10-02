@@ -90,7 +90,7 @@ abstract class LanguageConverterIcu extends LanguageConverterSpecific {
 	}
 
 	/**
-	 * Get the array mapping variant aliases to main variant.
+	 * Get the array mapping variant aliases to the main variant.
 	 *
 	 * @return string[]
 	 */

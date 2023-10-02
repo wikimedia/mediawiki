@@ -54,21 +54,21 @@ class LanguageCode {
 
 	/**
 	 * Mapping of non-standard language codes used in MediaWiki to
-	 * standardized BCP 47 codes.  These are not deprecated (yet?):
+	 * standardized BCP 47 codes. These are not deprecated (yet?):
 	 * IANA may eventually recognize the subtag, in which case the `-x-`
 	 * infix could be removed, or else we could rename the code in
 	 * MediaWiki, in which case they'd move up to the above mapping
 	 * of deprecated codes.
 	 *
 	 * As a rule, we preserve all distinctions made by MediaWiki
-	 * internally.  For example, `de-formal` becomes `de-x-formal`
+	 * internally. For example, `de-formal` becomes `de-x-formal`
 	 * instead of just `de` because MediaWiki distinguishes `de-formal`
-	 * from `de` (for example, for interface translations).  Similarly,
+	 * from `de` (for example, for interface translations). Similarly,
 	 * BCP 47 indicates that `kk-Cyrl` SHOULD not be used because it
 	 * "typically does not add information", but in our case MediaWiki
 	 * LanguageConverter distinguishes `kk` (render content in a mix of
 	 * Kurdish variants) from `kk-Cyrl` (convert content to be uniformly
-	 * Cyrillic).  As the BCP 47 requirement is a SHOULD not a MUST,
+	 * Cyrillic). As the BCP 47 requirement is a SHOULD not a MUST,
 	 * `kk-Cyrl` is a valid code, although some validators may emit
 	 * a warning note.
 	 *
@@ -164,7 +164,7 @@ class LanguageCode {
 	/**
 	 * Replace deprecated language codes that were used in previous
 	 * versions of MediaWiki to up-to-date, current language codes.
-	 * Other values will returned unchanged.
+	 * Other values will be returned unchanged.
 	 *
 	 * @param string $code Old language code
 	 * @return string New language code
@@ -193,7 +193,7 @@ class LanguageCode {
 		$codeSegment = explode( '-', $code );
 		$codeBCP = [];
 		foreach ( $codeSegment as $segNo => $seg ) {
-			// when previous segment is x, it is a private segment and should be lc
+			// when the previous segment is x, it is a private segment and should be lc
 			if ( $segNo > 0 && strtolower( $codeSegment[( $segNo - 1 )] ) == 'x' ) {
 				$codeBCP[$segNo] = strtolower( $seg );
 			// ISO 3166 country code
@@ -207,15 +207,14 @@ class LanguageCode {
 				$codeBCP[$segNo] = strtolower( $seg );
 			}
 		}
-		$langCode = implode( '-', $codeBCP );
-		return $langCode;
+		return implode( '-', $codeBCP );
 	}
 
 	/**
 	 * Convert standardized BCP 47 codes to the internal names used
-	 * by MediaWiki and returned by Language::getCode().  This function
-	 * should be the inverse of LanguageCode::bcp47().  Note that BCP 47
-	 * explicitly states that language codes are case insensitive.
+	 * by MediaWiki and returned by Language::getCode(). This function
+	 * should be the inverse of LanguageCode::bcp47(). Note that BCP 47
+	 * explicitly states that language codes are case-insensitive.
 	 *
 	 * Since LanguageFactory::getLanguage() is pretty generous about
 	 * accepting aliases (as long as they are lowercased), this function
@@ -225,7 +224,7 @@ class LanguageCode {
 	 * be much more efficient in practice.
 	 *
 	 * @param string|Bcp47Code $code The standard BCP-47 language code
-	 * @return string A MediaWiki-internal code, as returned for example by
+	 * @return string A MediaWiki-internal code, as returned, for example, by
 	 *    Language::getCode()
 	 * @since 1.40
 	 */
@@ -239,7 +238,7 @@ class LanguageCode {
 		static $invertedLookup = [];
 		if ( !$invertedLookup ) {
 			// There should never be two different entries in
-			// NON_STANDARD_LANGUAGE_CODE_MAPPING which map *different*
+			// NON_STANDARD_LANGUAGE_CODE_MAPPING that map *different*
 			// internal codes to the same external BCP-47 code.  That is,
 			// BCP-47 should preserve all the information from the internal
 			// code (discussed further above)[*].  But note the converse isn't
@@ -260,7 +259,7 @@ class LanguageCode {
 			}
 			// We deliberately do *not* use DEPRECATED_LANGUAGE_CODE_MAPPING
 			// here: deprecated codes are no longer valid mediawiki internal
-			// codes and we should never return them.
+			// codes, and we should never return them.
 		}
 		// Internal codes are all lowercase.  This also achieves
 		// case-insensitivity in the lookup.
@@ -275,6 +274,7 @@ class LanguageCode {
 	 * code is provided, it will map it to the proper BCP-47 code.  We
 	 * don't emit a logged warning on this path yet, but we intend to
 	 * in the future.
+	 *
 	 * @param string $code A "language code" provided from an HTTP or HTML
 	 *   API, presumed to be BCP-47
 	 * @return Bcp47Code An "actual" BCP-47 code

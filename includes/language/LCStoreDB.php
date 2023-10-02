@@ -39,9 +39,9 @@ class LCStoreDB implements LCStore {
 
 	/** @var IDatabase|null */
 	private $dbw;
-	/** @var bool Whether a batch of writes were recently written */
+	/** @var bool Whether write batch was recently written */
 	private $writesDone = false;
-	/** @var bool Whether the DB is read-only or otherwise unavailable for writes */
+	/** @var bool Whether the DB is read-only or otherwise unavailable for writing */
 	private $readOnly = false;
 
 	public function __construct( $params ) {
@@ -105,7 +105,7 @@ class LCStoreDB implements LCStore {
 			$this->writesDone = true;
 		} catch ( DBQueryError $e ) {
 			if ( $dbw->wasReadOnlyError() ) {
-				$this->readOnly = true; // just avoid site down time
+				$this->readOnly = true; // just avoid site downtime
 			} else {
 				throw $e;
 			}

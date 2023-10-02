@@ -130,7 +130,7 @@ class LanguageFactory {
 	 * presumed to be a standard BCP-47 code.  (There are, regrettably,
 	 * some ambiguous codes where this makes a difference.)
 	 *
-	 * As Language itself implements Bcp47Code, this method is an efficient
+	 * As the Language class itself implements Bcp47Code, this method is an efficient
 	 * and safe downcast if you pass in a Language object.
 	 *
 	 * @param string|Bcp47Code $code
@@ -176,7 +176,7 @@ class LanguageFactory {
 	 * Create a language object for a given language code.
 	 *
 	 * @param string $code
-	 * @param bool $fallback Whether we're going through language fallback chain
+	 * @param bool $fallback Whether we're going through the language fallback chain
 	 * @return Language
 	 */
 	private function newFromCode( $code, $fallback = false ): Language {
@@ -223,7 +223,7 @@ class LanguageFactory {
 
 	/**
 	 * @param string $code
-	 * @param bool $fallback Whether we're going through language fallback chain
+	 * @param bool $fallback Whether we're going through the language fallback chain
 	 * @return string Name of the language class
 	 */
 	private function classFromCode( $code, $fallback = true ) {
@@ -236,7 +236,7 @@ class LanguageFactory {
 
 	/**
 	 * Get the "parent" language which has a converter to convert a "compatible" language
-	 * (in another variant) to this language (eg. zh for zh-cn, but not en for en-gb).
+	 * (in another variant) to this language (eg., zh for zh-cn, but not en for en-gb).
 	 *
 	 * @note This method does not contain the deprecated and compatibility
 	 *  mappings of Language::getLanguage(string).

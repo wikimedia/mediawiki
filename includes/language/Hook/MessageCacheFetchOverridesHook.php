@@ -22,8 +22,8 @@ interface MessageCacheFetchOverridesHook {
 	 *   callable that returns a message key. Callables are passed the message key,
 	 *   the MessageCache instance, a Language/StubUserLang object and a boolean indicating if the
 	 *   value should be fetched from the database. Note that strings will always be interpreted as
-	 *   a message key, not a callable! This prevents ambiguity between message keys and functions.
-	 *   Use Closure::fromCallable or other callable syntaxes.
+	 *   a message key; this is not valid callable syntax! This prevents ambiguity between message keys and functions.
+	 *   Use Closure::fromCallable or another valid callable syntax.
 	 */
 	public function onMessageCacheFetchOverrides( array &$keys ): void;
 }

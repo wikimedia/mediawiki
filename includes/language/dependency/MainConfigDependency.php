@@ -20,7 +20,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Depend on a MW configuration variable.
+ * Depend on a MediaWiki configuration variable.
  *
  * @ingroup Language
  */
@@ -37,9 +37,6 @@ class MainConfigDependency extends CacheDependency {
 		return MediaWikiServices::getInstance()->getMainConfig();
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isExpired() {
 		if ( !$this->getConfig()->has( $this->name ) ) {
 			return true;

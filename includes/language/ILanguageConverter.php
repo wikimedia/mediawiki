@@ -31,6 +31,7 @@ interface ILanguageConverter {
 
 	/**
 	 * Get all valid variants.
+	 *
 	 * @return string[] Contains all valid variants
 	 */
 	public function getVariants();
@@ -39,7 +40,8 @@ interface ILanguageConverter {
 	 * In case some variant is not defined in the markup, we need
 	 * to have some fallback. For example, in zh, normally people
 	 * will define zh-hans and zh-hant, but less so for zh-sg or zh-hk.
-	 * when zh-sg is preferred but not defined, we will pick zh-hans
+	 *
+	 * When zh-sg is preferred but not defined, we will pick zh-hans
 	 * in this case. Right now this is only used by zh.
 	 *
 	 * @param string $variant The language code of the variant
@@ -50,25 +52,28 @@ interface ILanguageConverter {
 
 	/**
 	 * Get the title produced by the conversion rule.
+	 *
 	 * @return string|false The converted title text
 	 */
 	public function getConvRuleTitle();
 
 	/**
 	 * Get preferred language variant.
+	 *
 	 * @return string The preferred language code
 	 */
 	public function getPreferredVariant();
 
 	/**
 	 * This function would not be affected by user's settings
+	 *
 	 * @return string The default variant code
 	 */
 	public function getDefaultVariant();
 
 	/**
 	 * Validate the variant and return an appropriate strict internal
-	 * variant code if one exists.  Compare to Language::hasVariant()
+	 * variant code if one exists. Compare to Language::hasVariant()
 	 * which does a strict test.
 	 *
 	 * @param string|null $variant The variant to validate
@@ -116,18 +121,18 @@ interface ILanguageConverter {
 	public function autoConvertToAllVariants( $text );
 
 	/**
-	 * Auto convert a LinkTarget or PageReference to a readable string in the
+	 * Automatically converts a LinkTarget or PageReference to a readable string in the
 	 * preferred variant, separating the namespace and the main part of the title.
 	 *
 	 * @since 1.39
 	 * @param LinkTarget|PageReference $title
 	 * @return string[] Three elements: converted namespace text, converted namespace separator,
-	 *   and converted main part of the title
+	 *   and the converted main part of the title
 	 */
 	public function convertSplitTitle( $title );
 
 	/**
-	 * Auto convert a LinkTarget or PageReference to a readable string in the
+	 * Automatically convert a LinkTarget or PageReference to a readable string in the
 	 * preferred variant.
 	 *
 	 * @param LinkTarget|PageReference $title
@@ -148,7 +153,7 @@ interface ILanguageConverter {
 	 * Convert text to different variants of a language. The automatic
 	 * conversion is done in autoConvert(). Here we parse the text
 	 * marked with -{}-, which specifies special conversions of the
-	 * text that can not be accomplished in autoConvert().
+	 * text that cannot be accomplished in autoConvert().
 	 *
 	 * Syntax of the markup:
 	 * -{code1:text1;code2:text2;...}-  or
@@ -159,7 +164,7 @@ interface ILanguageConverter {
 	 *   method input that hasn't properly been escaped as it may result in
 	 *   an XSS in subsequent calls, even if those subsequent calls properly
 	 *   escape things.
-	 * @param string $text Text to be converted, already html escaped.
+	 * @param string $text Text to be converted; already html escaped.
 	 * @return string Converted text (html)
 	 */
 	public function convert( $text );
@@ -167,7 +172,7 @@ interface ILanguageConverter {
 	/**
 	 * Same as convert() except a extra parameter to custom variant.
 	 *
-	 * @param string $text Text to be converted, already html escaped
+	 * @param string $text Text to be converted; already html escaped
 	 * @param-taint $text exec_html
 	 * @param string $variant The target variant code
 	 * @param bool $clearState Whether to clear the converter title before
@@ -180,7 +185,7 @@ interface ILanguageConverter {
 	/**
 	 * If a language supports multiple variants, it is possible that
 	 * non-existing link in one variant actually exists in another variant.
-	 * This function tries to find it. See e.g. LanguageZh.php
+	 * This function tries to find it. See e.g., LanguageZh.php
 	 * The input parameters may be modified upon return
 	 *
 	 * @param string &$link The name of the link

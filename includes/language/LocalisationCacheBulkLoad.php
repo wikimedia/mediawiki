@@ -28,8 +28,8 @@
 class LocalisationCacheBulkLoad extends LocalisationCache {
 
 	/**
-	 * A cache of the contents of data files.
-	 * Core files are serialized to avoid using ~1GB of RAM during a recache.
+	 * A cache for the contents of the data files.
+	 * Core files are serialized to avoid using ~1GB of RAM during a re-cache.
 	 */
 	private $fileCache = [];
 

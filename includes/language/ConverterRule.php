@@ -63,7 +63,7 @@ class ConverterRule {
 	}
 
 	/**
-	 * Check if variants array in convert array.
+	 * Check if the variant array is in the convert array.
 	 *
 	 * @param array|string $variants Variant language code
 	 * @return string|false Translated text
@@ -155,7 +155,7 @@ class ConverterRule {
 		$unidtable = [];
 		$varsep_pattern = $this->mConverter->getVarSeparatorPattern();
 
-		// Split according to $varsep_pattern, but ignore semicolons from HTML entities
+		// Split text according to $varsep_pattern, but ignore semicolons from HTML entities
 		$rules = preg_replace( '/(&[#a-zA-Z0-9]+);/', "$1\x01", $rules );
 		$choice = preg_split( $varsep_pattern, $rules );
 		$choice = str_replace( "\x01", ';', $choice );
@@ -258,8 +258,7 @@ class ConverterRule {
 
 	/**
 	 * Similar to getRuleConvertedStr(), but this prefers to use MediaWiki\Title\Title;
-	 * use original
-	 * page title if $variant === $this->mConverter->getMainCode()
+	 * use original page title if $variant === $this->mConverter->getMainCode(),
 	 * and may return false in this case (so this title conversion rule
 	 * will be ignored and the original title is shown).
 	 *
@@ -365,7 +364,7 @@ class ConverterRule {
 				$this->mRules = $this->mConverter->autoConvert( $this->mRules,
 					$variant );
 			} else {
-				// if current variant no in flags,
+				// if the current variant is not in flags,
 				// then we check its fallback variants.
 				$variantFallbacks =
 					$this->mConverter->getVariantFallbacks( $variant );
@@ -394,7 +393,7 @@ class ConverterRule {
 
 		if ( !$this->mBidtable && !$this->mUnidtable ) {
 			if ( isset( $flags['+'] ) || isset( $flags['-'] ) ) {
-				// fill all variants if text in -{A/H/-|text}- is non-empty but without rules
+				// fill all variants if the text in -{A/H/-|text}- is non-empty but without rules
 				if ( $rules !== '' ) {
 					foreach ( $this->mConverter->getVariants() as $v ) {
 						$this->mBidtable[$v] = $rules;
@@ -441,7 +440,7 @@ class ConverterRule {
 					$this->mRuleDisplay = '';
 					break;
 				default:
-					// ignore unknown flags (but see error case below)
+					// ignore unknown flags (but see error-case below)
 			}
 		}
 		if ( $this->mRuleDisplay === false ) {
@@ -478,7 +477,7 @@ class ConverterRule {
 	}
 
 	/**
-	 * Return how deal with conversion rules.
+	 * Return how to deal with conversion rules.
 	 * @return string
 	 */
 	public function getRulesAction() {

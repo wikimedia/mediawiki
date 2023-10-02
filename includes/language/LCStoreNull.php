@@ -19,7 +19,7 @@
  */
 
 /**
- * Null store backend, used to avoid DB errors during install.
+ * Null store backend, used to avoid DB errors during MediaWiki installation.
  *
  * @ingroup Language
  */

@@ -125,17 +125,17 @@ class LanguageNameUtils {
 	}
 
 	/**
-	 * Returns true if a language code string is of a valid form, whether or not it exists. This
-	 * includes codes which are used solely for customisation via the MediaWiki namespace.
+	 * Returns true if a language code string is of a valid form, whether it exists.
+	 * This includes codes which are used solely for customisation via the MediaWiki namespace.
 	 *
 	 * @param string $code
 	 *
-	 * @return bool False if the language code contains dangerous characters, e.g. HTML special
-	 *  characters or characters illegal in MediaWiki titles.
+	 * @return bool False if the language code contains dangerous characters, e.g, HTML special
+	 *  characters or characters that are illegal in MediaWiki titles.
 	 */
 	public function isValidCode( string $code ): bool {
 		if ( !isset( $this->validCodeCache[$code] ) ) {
-			// People think language codes are HTML-safe, so enforce it.  Ideally we should only
+			// People think language codes are HTML-safe, so enforce it. Ideally, we should only
 			// allow a-zA-Z0-9- but .+ and other chars are often used for {{int:}} hacks.  See bugs
 			// T39564, T39587, T38938.
 			$this->validCodeCache[$code] =
@@ -182,13 +182,14 @@ class LanguageNameUtils {
 
 	/**
 	 * Get an array of language names, indexed by code.
+	 *
 	 * @param null|string $inLanguage Code of language in which to return the names
 	 *   Use self::AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
-	 *   self::ALL all available languages
-	 *   self::DEFINED only if the language is defined in MediaWiki or wgExtraLanguageNames
+	 *   self::ALL All available languages
+	 *   self::DEFINED Only if the language is defined in MediaWiki or wgExtraLanguageNames
 	 *     (default)
-	 *   self::SUPPORTED only if the language is in self::DEFINED *and* has a message file
+	 *   self::SUPPORTED Only if the language is in self::DEFINED *and* has a message file
 	 * @return array Language code => language name (sorted by key)
 	 */
 	public function getLanguageNames( $inLanguage = self::AUTONYMS, $include = self::DEFINED ) {
@@ -211,7 +212,8 @@ class LanguageNameUtils {
 	}
 
 	/**
-	 * Uncached helper for getLanguageNames
+	 * Uncached helper for getLanguageNames.
+	 *
 	 * @param null|string $inLanguage As getLanguageNames
 	 * @param string $include As getLanguageNames
 	 * @return array Language code => language name (sorted by key)
@@ -284,7 +286,7 @@ class LanguageNameUtils {
 	 * @param string $code The code of the language for which to get the name
 	 * @param null|string $inLanguage Code of language in which to return the name (self::AUTONYMS
 	 *   for autonyms)
-	 * @param string $include See getLanguageNames(), except this defaults to self::ALL instead of
+	 * @param string $include See getLanguageNames(), except this function defaults to self::ALL instead of
 	 *   self::DEFINED
 	 * @return string Language name or empty
 	 */
@@ -295,7 +297,8 @@ class LanguageNameUtils {
 	}
 
 	/**
-	 * Get the name of a file for a certain language code
+	 * Get the name of a file for a certain language code.
+	 *
 	 * @param string $prefix Prepend this to the filename
 	 * @param string $code Language code
 	 * @param string $suffix Append this to the filename

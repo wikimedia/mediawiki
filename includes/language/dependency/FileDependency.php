@@ -68,9 +68,6 @@ class FileDependency extends CacheDependency {
 		}
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isExpired() {
 		AtEase::suppressWarnings();
 		$lastmod = filemtime( $this->filename );

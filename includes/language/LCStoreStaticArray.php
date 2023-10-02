@@ -108,7 +108,7 @@ class LCStoreStaticArray implements LCStore {
 	}
 
 	/**
-	 * Decode something that was encoded with encode
+	 * Decode something that was encoded with 'encode'
 	 *
 	 * @param mixed $encoded
 	 * @return array|mixed

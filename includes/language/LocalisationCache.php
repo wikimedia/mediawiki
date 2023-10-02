@@ -50,7 +50,7 @@ class LocalisationCache {
 	private $options;
 
 	/**
-	 * True if recaching should only be done on an explicit call to recache().
+	 * True if re-caching should only be done on an explicit call to recache().
 	 * Setting this reduces the overhead of cache freshness checking, which
 	 * requires doing a stat() for every extension i18n file.
 	 *
@@ -61,7 +61,7 @@ class LocalisationCache {
 	/**
 	 * The cache data. 2/3-d array, where the first key is the language code,
 	 * the second key is the item key e.g. 'messages', and the optional third key is
-	 * an item specific subkey index. Some items are not arrays and so for those
+	 * an item specific subkey index. Some items are not arrays, and so for those
 	 * items, there are no subkeys.
 	 *
 	 * @var array<string,array>
@@ -90,7 +90,7 @@ class LocalisationCache {
 	 * A 2-d associative array, code/key, where presence indicates that the item
 	 * is loaded. Value arbitrary.
 	 *
-	 * For split items, if set, this indicates that all of the subitems have been
+	 * For split items, if set, this indicates that all the subitems have been
 	 * loaded.
 	 *
 	 * @var array<string,array<string,true>>
@@ -99,14 +99,14 @@ class LocalisationCache {
 
 	/**
 	 * A 3-d associative array, code/key/subkey, where presence indicates that
-	 * the subitem is loaded. Only used for the split items, i.e. messages.
+	 * the subitem is loaded. Only used for the split items, i.e. ,messages.
 	 *
 	 * @var array<string,array<string,array<string,true>>>
 	 */
 	private $loadedSubitems = [];
 
 	/**
-	 * An array where presence of a key indicates that that language has been
+	 * An array where the presence of a key indicates that that language has been
 	 * initialised. Initialisation includes checking for cache expiry and doing
 	 * any necessary updates.
 	 *
@@ -124,7 +124,7 @@ class LocalisationCache {
 	private $shallowFallbacks = [];
 
 	/**
-	 * An array where the keys are codes that have been recached by this instance.
+	 * An array where the keys are codes that have been re-cached by this instance.
 	 *
 	 * @var array<string,true>
 	 */
@@ -339,7 +339,7 @@ class LocalisationCache {
 		$this->langNameUtils = $langNameUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
-		// Keep this separate from $this->options so it can be mutable
+		// Keep this separate from $this->options so that it can be mutable
 		$this->manualRecache = $options->get( 'manualRecache' );
 	}
 
@@ -364,7 +364,7 @@ class LocalisationCache {
 	 * Get a cache item.
 	 *
 	 * Warning: this may be slow for split items (messages), since it will
-	 * need to fetch all of the subitems from the cache individually.
+	 * need to fetch all the subitems from the cache individually.
 	 * @param string $code
 	 * @param string $key
 	 * @return mixed
@@ -415,7 +415,7 @@ class LocalisationCache {
 			return null;
 		}
 
-		// The source language should have been set, but to avoid Phan error and be double sure.
+		// The source language should have been set, but to avoid a Phan error and to be double sure.
 		return [ $subitem, $this->sourceLanguage[$code][$key][$subkey] ?? $code ];
 	}
 
@@ -427,6 +427,7 @@ class LocalisationCache {
 	 *
 	 * Will return null if the item is not found, or false if the item is not an
 	 * array.
+	 *
 	 * @param string $code
 	 * @param string $key
 	 * @return bool|null|string|string[]
@@ -446,6 +447,7 @@ class LocalisationCache {
 
 	/**
 	 * Load an item into the cache.
+	 *
 	 * @param string $code
 	 * @param string $key
 	 */
@@ -497,7 +499,8 @@ class LocalisationCache {
 	}
 
 	/**
-	 * Load a subitem into the cache
+	 * Load a subitem into the cache.
+	 *
 	 * @param string $code
 	 * @param string $key
 	 * @param string $subkey
@@ -566,7 +569,7 @@ class LocalisationCache {
 		foreach ( $deps as $dep ) {
 			// Because we're unserializing stuff from cache, we
 			// could receive objects of classes that don't exist
-			// anymore (e.g. uninstalled extensions)
+			// anymore (e.g., uninstalled extensions)
 			// When this happens, always expire the cache
 			if ( !$dep instanceof CacheDependency || $dep->isExpired() ) {
 				$this->logger->debug( __METHOD__ . "($code): cache for $code expired due to " .
@@ -581,6 +584,7 @@ class LocalisationCache {
 
 	/**
 	 * Initialise a language in this object. Rebuild the cache if necessary.
+	 *
 	 * @param string $code
 	 * @throws MWException
 	 */
@@ -598,7 +602,7 @@ class LocalisationCache {
 			return;
 		}
 
-		# Recache the data if necessary
+		# Re-cache the data if necessary
 		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
 			if ( $this->langNameUtils->isSupportedLanguage( $code ) ) {
 				$this->recache( $code );
@@ -662,6 +666,7 @@ class LocalisationCache {
 	/**
 	 * Create a fallback from one language to another, without creating a
 	 * complete persistent cache.
+	 *
 	 * @param string $primaryCode
 	 * @param string $fallbackCode
 	 */
@@ -675,6 +680,7 @@ class LocalisationCache {
 
 	/**
 	 * Read a PHP file containing localisation data.
+	 *
 	 * @param string $_fileName
 	 * @param string $_fileType
 	 * @throws MWException
@@ -699,7 +705,7 @@ class LocalisationCache {
 				}
 			}
 		} elseif ( $_fileType == 'aliases' ) {
-			// @phan-suppress-next-line PhanImpossibleCondition May be set in included file
+			// @phan-suppress-next-line PhanImpossibleCondition May be set in the included file
 			if ( isset( $aliases ) ) {
 				$data['aliases'] = $aliases;
 			}
@@ -712,6 +718,7 @@ class LocalisationCache {
 
 	/**
 	 * Read a JSON file containing localisation messages.
+	 *
 	 * @param string $fileName Name of file to read
 	 * @throws MWException If there is a syntax error in the JSON file
 	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
@@ -731,7 +738,7 @@ class LocalisationCache {
 			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
 
-		// Remove keys starting with '@', they're reserved for metadata and non-message data
+		// Remove keys starting with '@'; they are reserved for metadata and non-message data
 		foreach ( $data as $key => $unused ) {
 			if ( $key === '' || $key[0] === '@' ) {
 				unset( $data[$key] );
@@ -743,6 +750,7 @@ class LocalisationCache {
 
 	/**
 	 * Get the compiled plural rules for a given language from the XML files.
+	 *
 	 * @since 1.20
 	 * @param string $code
 	 * @return array<int,string>|null
@@ -765,7 +773,9 @@ class LocalisationCache {
 
 	/**
 	 * Get the plural rules for a given language from the XML files.
+	 *
 	 * Cached.
+	 *
 	 * @since 1.20
 	 * @param string $code
 	 * @return array<int,string>|null
@@ -779,7 +789,9 @@ class LocalisationCache {
 
 	/**
 	 * Get the plural rule types for a given language from the XML files.
+	 *
 	 * Cached.
+	 *
 	 * @since 1.22
 	 * @param string $code
 	 * @return array<int,string>|null
@@ -886,6 +898,7 @@ class LocalisationCache {
 	/**
 	 * Merge two localisation values, a primary and a fallback, overwriting the
 	 * primary value in place.
+	 *
 	 * @param string $key
 	 * @param mixed &$value
 	 * @param mixed $fallbackValue
@@ -1041,7 +1054,8 @@ class LocalisationCache {
 
 	/**
 	 * Load localisation data for a given language for both core and extensions
-	 * and save it to the persistent cache store and the process cache
+	 * and save it to the persistent cache store and the process cache.
+	 *
 	 * @param string $code
 	 * @throws MWException
 	 */
@@ -1147,8 +1161,7 @@ class LocalisationCache {
 				}
 			}
 
-			# Allow extensions an opportunity to adjust the data for this
-			# fallback
+			# Allow extensions an opportunity to adjust the data for this fallback
 			$this->hookRunner->onLocalisationCacheRecacheFallback( $this, $csCode, $csData );
 
 			# Merge the data for this fallback into the final array
@@ -1243,7 +1256,7 @@ class LocalisationCache {
 		$this->store->finishWrite();
 
 		# Clear out the MessageBlobStore
-		# HACK: If using a null (i.e. disabled) storage backend, we
+		# HACK: If using a null (i.e., disabled) storage backend, we
 		# can't write to the MessageBlobStore either
 		if ( !$this->store instanceof LCStoreNull ) {
 			foreach ( $this->clearStoreCallbacks as $callback ) {
@@ -1256,7 +1269,8 @@ class LocalisationCache {
 	 * Build the preload item from the given pre-cache data.
 	 *
 	 * The preload item will be loaded automatically, improving performance
-	 * for the commonly-requested items it contains.
+	 * for the commonly requested items it contains.
+	 *
 	 * @param array $data
 	 * @return array
 	 */
@@ -1276,7 +1290,9 @@ class LocalisationCache {
 
 	/**
 	 * Unload the data for a given language from the object cache.
+	 *
 	 * Reduces memory usage.
+	 *
 	 * @param string $code
 	 */
 	public function unload( $code ) {

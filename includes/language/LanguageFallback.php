@@ -107,7 +107,7 @@ class LanguageFallback {
 
 			case self::STRICT:
 				// Use this mode when you don't want to fall back to English unless explicitly
-				// defined, for example when you have language-variant icons and an international
+				// defined, for example, when you have language-variant icons and an international
 				// language-independent fallback.
 				$ret = $this->localisationCache->getItem( $code, 'originalFallbackSequence' );
 				break;
