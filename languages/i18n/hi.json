@@ -112,7 +112,8 @@
 			"भारत्पराक्रमि",
 			"अजीत कुमार तिवारी",
 			"Srishakatux",
-			"Proabscorp!"
+			"Proabscorp!",
+			"Amire80"
 		]
 	},
 	"tog-underline": "रेखांकित कड़ियाँ:",
@@ -3814,7 +3815,7 @@
 	"authmanager-provider-password": "पासवर्ड-आधारित प्रमाणीकरण",
 	"authmanager-provider-password-domain": "पासवर्ड- और डोमेन-आधारित प्रमाणीकरण",
 	"authmanager-provider-temporarypassword": "अस्थाई पासवर्ड",
-	"authprovider-confirmlink-message": "आपके हाल के लॉगिन प्रयासों के आधार पर, निम्न खाते  आपके विकी खाते से जोड़ा जा सकता है। उन्हें जोड़ने से उन खातों के माध्यम से लॉगिंग सक्षम हो जाता है कृपया चुनें कि कौन सा लिंक होना चाहिए।",
+	"authprovider-confirmlink-message": "आपके हाल के लॉगिन प्रयासों के आधार पर, निम्न खाते आपके विकी खाते से जोड़ा जा सकता है। उन्हें जोड़ने से उन खातों के माध्यम से लॉगिंग सक्षम हो जाता है कृपया चुनें कि कौन सा लिंक होना चाहिए।",
 	"authprovider-confirmlink-request-label": "खाते जो जोड़ने हैं।",
 	"authprovider-confirmlink-success-line": "$1 : सफलतापूर्वक जुड़ा।",
 	"authprovider-confirmlink-failed": "खाता जोड़ने का काम पूरी तरह से नहीं हो पाया : $1",

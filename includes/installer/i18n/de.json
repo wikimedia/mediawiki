@@ -28,7 +28,7 @@
 	"config-desc": "Das MediaWiki-Installationsprogramm",
 	"config-title": "Installation von MediaWiki $1",
 	"config-information": "Informationen",
-	"config-localsettings-upgrade": "Eine Datei \"LocalSettings.php\" wurde gefunden.\nUm die vorhandene MediaWiki-Installation aktualisieren zu können, muss der Wert des Konfigruationsparameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angegeben werden.\nDer Wert des Konfigruationsparameters befindet sich in der Datei \"LocalSettings.php\".",
+	"config-localsettings-upgrade": "Eine Datei <code>LocalSettings.php</code> wurde gefunden.\nUm die vorhandene MediaWiki-Installation aktualisieren zu können, muss der Wert des Konfigurationsparameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angegeben werden.\nDer Wert des Konfigruationsparameters befindet sich in der Datei <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Eine Datei \"LocalSettings.php\" wurde gefunden. Um die vorhandene Installation zu aktualisieren, muss das Skript \"update.php\" ausgeführt werden.",
 	"config-localsettings-key": "Aktualisierungsschlüssel:",
 	"config-localsettings-badkey": "Der angegebene Aktualisierungsschlüssel ist falsch.",
