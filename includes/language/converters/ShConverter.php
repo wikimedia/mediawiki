@@ -96,24 +96,20 @@ class ShConverter extends LanguageConverter {
 		'Ž' => 'Ж',
 	];
 
-	/** @inheritDoc */
 	public function getMainCode(): string {
 		return 'sh';
 	}
 
-	/** @inheritDoc */
 	public function getLanguageVariants(): array {
 		return [ 'sh-latn', 'sh-cyrl' ];
 	}
 
-	/** @inheritDoc */
 	public function getVariantsFallbacks(): array {
 		return [
 			'sh-cyrl' => 'sh-latn',
 		];
 	}
 
-	/** @inheritDoc */
 	protected function loadDefaultTables(): array {
 		return [
 			'sh-cyrl' => new ReplacementArray( $this->mToCyrillic ),
@@ -122,7 +118,7 @@ class ShConverter extends LanguageConverter {
 	}
 
 	/**
-	 * It would omit roman numbers
+	 * Omits roman numbers
 	 *
 	 * @inheritDoc
 	 */

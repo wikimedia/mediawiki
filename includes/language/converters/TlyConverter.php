@@ -73,41 +73,20 @@ class TlyConverter extends LanguageConverter {
 	 */
 	private $toCyrillic = [];
 
-	/**
-	 * Get Main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'tly';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'tly', 'tly-cyrl' ];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'tly-cyrl' => 'tly',
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		$this->toCyrillic = array_flip( $this->toLatin );
 

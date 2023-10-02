@@ -150,32 +150,14 @@ class ShiConverter extends LanguageConverterSpecific {
 		'v' => 'ⴼ',
 	];
 
-	/**
-	 * Get main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'shi';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'shi', 'shi-tfng', 'shi-latn' ];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'shi' => [ 'shi-latn', 'shi-tfng' ],
@@ -184,9 +166,6 @@ class ShiConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
@@ -196,20 +175,12 @@ class ShiConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	/**
-	 * It translates text into variant
-	 *
-	 * @param string $text
-	 * @param string $toVariant
-	 *
-	 * @return string
-	 */
 	public function translate( $text, $toVariant ) {
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it
 		if ( trim( $text ) ) {
 			$this->loadTables();
-			// To Tifinagh, first translate uppercase to lowercase Latin
+			// For Tifinagh, first translate uppercase to lowercase Latin
 			if ( $toVariant == 'shi-tfng' ) {
 				$text = $this->mTables['lowercase']->replace( $text );
 			}

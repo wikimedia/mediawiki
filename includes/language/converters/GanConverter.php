@@ -25,32 +25,14 @@
  */
 class GanConverter extends LanguageConverter {
 
-	/**
-	 * Get Main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'gan';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'gan', 'gan-hans', 'gan-hant' ];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'gan' => [ 'gan-hans', 'gan-hant' ],
@@ -69,32 +51,10 @@ class GanConverter extends LanguageConverter {
 		return [ 'gan' => 'disable' ];
 	}
 
-	/**
-	 * Get desc. code separator.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
-	public function getDescCodeSeparator(): string {
-		return ': ';
-	}
-
-	/**
-	 * Get desc. var separator.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getDescVarSeparator(): string {
 		return '; ';
 	}
 
-	/**
-	 * Get variant names. Overrides parent's implementation
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantNames(): array {
 		$names = [
 			'gan' => '原文',
@@ -104,9 +64,6 @@ class GanConverter extends LanguageConverter {
 		return array_merge( parent::getVariantNames(), $names );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
@@ -115,10 +72,6 @@ class GanConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * @param string $key
-	 * @return string
-	 */
 	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'gan' );
 	}

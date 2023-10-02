@@ -44,7 +44,7 @@ class KuConverter extends LanguageConverterSpecific {
 		# 'ئێ' => 'ê', # initial e
 		'ە' => 'e',
 		'ه‌' => 'e', # with one non-joiner
-		'ه‌‌' => 'e', # with two non-joiner
+		'ه‌‌' => 'e', # with two non-joiners
 		'ة' => 'e',
 		'ێ' => 'ê',
 		'ي' => 'î',
@@ -147,32 +147,14 @@ class KuConverter extends LanguageConverterSpecific {
 */
 		];
 
-	/**
-	 * Get Main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'ku';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'ku', 'ku-arab', 'ku-latn' ];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'ku' => 'ku-latn',
@@ -181,9 +163,6 @@ class KuConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'ku-latn' => new ReplacementArray( $this->mArabicToLatin ),
@@ -193,14 +172,9 @@ class KuConverter extends LanguageConverterSpecific {
 	}
 
 	/**
-	 *  It translates text into variant, specials:
-	 *    - omitting roman numbers
+	 * Omits roman numbers
 	 *
-	 * @param string $text
-	 * @param string $toVariant
-	 *
-	 * @throws MWException
-	 * @return string
+	 * @inheritDoc
 	 */
 	public function translate( $text, $toVariant ) {
 		$this->loadTables();

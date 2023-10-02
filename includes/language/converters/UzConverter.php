@@ -101,32 +101,14 @@ class UzConverter extends LanguageConverter {
 		'ʼ' => 'ъ',
 	];
 
-	/**
-	 * Get Main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'uz';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'uz', 'uz-latn', 'uz-cyrl' ];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'uz' => 'uz-latn',
@@ -135,9 +117,6 @@ class UzConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'uz-cyrl' => new ReplacementArray( $this->toCyrillic ),
@@ -146,11 +125,6 @@ class UzConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * @param string $text
-	 * @param string $toVariant
-	 * @return string
-	 */
 	public function translate( $text, $toVariant ) {
 		if ( $toVariant == 'uz-cyrl' ) {
 			$text = str_replace( 'ye', 'е', $text );

@@ -25,39 +25,18 @@
  */
 class EnConverter extends LanguageConverter {
 
-	/**
-	 * Get Main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'en';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'en', 'en-x-piglatin' ];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'en' => new ReplacementArray(),
@@ -68,8 +47,8 @@ class EnConverter extends LanguageConverter {
 	/**
 	 * Translates text into Pig Latin. This allows developers to test the language variants
 	 * functionality and user interface without having to switch wiki language away from default.
-	 * This method also processes custom conversion rules to allow testing
-	 * of these parts of language converter as well.
+	 * This method also processes custom conversion rules to allow testing these parts of the
+	 * language converter as well.
 	 *
 	 * @param string $text
 	 * @param string $toVariant
@@ -88,7 +67,7 @@ class EnConverter extends LanguageConverter {
 		}
 
 		// Split on the matches from custom rules, so that we only apply
-		// the Pig Latin transformation on output which is not from a
+		// the Pig Latin transformation on output. which is not from a
 		// custom rule; this avoids double-conversion.
 		// (See SrConverter for similar split-and-process code.)
 		$re = '(' .
@@ -104,7 +83,7 @@ class EnConverter extends LanguageConverter {
 		$matches = preg_split( $re, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 		$m = array_shift( $matches );
 
-		// Apply Pig Latin transformation to initial "non-matching" section.
+		// Apply Pig Latin transformation to the initial "non-matching" section.
 		$ret = self::pigLatin( $m[0] );
 		$mstart = (int)$m[1] + strlen( $m[0] );
 		foreach ( $matches as $m ) {

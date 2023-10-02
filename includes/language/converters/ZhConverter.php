@@ -25,22 +25,10 @@
  */
 class ZhConverter extends LanguageConverter {
 
-	/**
-	 * Get Main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'zh';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [
 			'zh',
@@ -55,12 +43,6 @@ class ZhConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'zh' => [
@@ -84,12 +66,6 @@ class ZhConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * Get manual level limits for variants supported by converter.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getAdditionalManualLevel(): array {
 		return [
 			'zh' => 'disable',
@@ -98,32 +74,14 @@ class ZhConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * Get desc. code separator.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getDescCodeSeparator(): string {
 		return '：';
 	}
 
-	/**
-	 * Get desc. var separator.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getDescVarSeparator(): string {
 		return '；';
 	}
 
-	/**
-	 * Get variant names.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantNames(): array {
 		$names = [
 			'zh' => '原文',
@@ -139,9 +97,6 @@ class ZhConverter extends LanguageConverter {
 		return array_merge( parent::getVariantNames(), $names );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'zh-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
@@ -156,9 +111,6 @@ class ZhConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function postLoadTables( &$tables ) {
 		$tables['zh-cn']->setArray(
 			$tables['zh-cn']->getArray() + $tables['zh-hans']->getArray()
@@ -180,10 +132,6 @@ class ZhConverter extends LanguageConverter {
 		);
 	}
 
-	/**
-	 * @param string $key
-	 * @return string
-	 */
 	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'zh' );
 	}

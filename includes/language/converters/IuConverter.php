@@ -84,32 +84,14 @@ class IuConverter extends LanguageConverterSpecific {
 		'ɫii' => 'ᖡ', 'ɫu' => 'ᖢ', 'ɫuu' => 'ᖣ', 'ɫa' => 'ᖤ', 'ɫaa' => 'ᖥ',
 	];
 
-	/**
-	 * Get Main language code.
-	 * @since 1.36
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'iu';
 	}
 
-	/**
-	 * Get supported variants of the language.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'iu', 'ike-cans', 'ike-latn' ];
 	}
 
-	/**
-	 * Get language variants fallbacks.
-	 * @since 1.36
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'iu' => 'ike-cans',
@@ -118,9 +100,6 @@ class IuConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
@@ -130,14 +109,6 @@ class IuConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	/**
-	 * It translates text into variant
-	 *
-	 * @param string $text
-	 * @param string $toVariant
-	 *
-	 * @return string
-	 */
 	public function translate( $text, $toVariant ) {
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it

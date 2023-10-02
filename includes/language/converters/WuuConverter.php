@@ -27,29 +27,14 @@ use MediaWiki\Languages\Data\ZhConversion;
  */
 class WuuConverter extends LanguageConverter {
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return string
-	 */
 	public function getMainCode(): string {
 		return 'wuu';
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return array
-	 */
 	public function getLanguageVariants(): array {
 		return [ 'wuu', 'wuu-hans', 'wuu-hant' ];
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return array
-	 */
 	public function getVariantsFallbacks(): array {
 		return [
 			'wuu' => [ 'wuu-hans', 'wuu-hant' ],
@@ -58,38 +43,18 @@ class WuuConverter extends LanguageConverter {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return array
-	 */
 	protected function getAdditionalManualLevel(): array {
 		return [ 'wuu' => 'disable' ];
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return string
-	 */
 	public function getDescCodeSeparator(): string {
 		return '：';
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return string
-	 */
 	public function getDescVarSeparator(): string {
 		return '；';
 	}
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @return array
-	 */
 	public function getVariantNames(): array {
 		$names = [
 			'wuu' => '原文',
@@ -99,9 +64,6 @@ class WuuConverter extends LanguageConverter {
 		return array_merge( parent::getVariantNames(), $names );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	protected function loadDefaultTables(): array {
 		return [
 			'wuu-hans' => new ReplacementArray( ZhConversion::$zh2Hans ),
