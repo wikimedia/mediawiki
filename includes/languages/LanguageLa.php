@@ -31,7 +31,7 @@ class LanguageLa extends Language {
 	 * Convert from the nominative form of a noun to some other case
 	 *
 	 * Just used in a couple places for sitenames; special-case as necessary.
-	 * Rules are far from complete.
+	 * The rules are far from complete.
 	 *
 	 * Cases: genitive, accusative, ablative
 	 *
@@ -67,6 +67,7 @@ class LanguageLa extends Language {
 					'ei'
 				];
 				return preg_replace( $in, $out, $word );
+
 			case 'accusative':
 				// only a few declensions, and even for those mostly the singular only
 				$in = [
@@ -86,6 +87,7 @@ class LanguageLa extends Language {
 					'em'
 				];
 				return preg_replace( $in, $out, $word );
+
 			case 'ablative':
 				// only a few declensions, and even for those mostly the singular only
 				$in = [
@@ -105,6 +107,7 @@ class LanguageLa extends Language {
 					'e'
 				];
 				return preg_replace( $in, $out, $word );
+
 			default:
 				return $word;
 		}

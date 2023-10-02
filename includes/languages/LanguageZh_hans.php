@@ -25,51 +25,27 @@
  * @ingroup Languages
  */
 class LanguageZh_hans extends Language {
-	/**
-	 * @return bool
-	 */
 	public function hasWordBreaks() {
 		return false;
 	}
 
 	/**
-	 * Eventually this should be a word segmentation;
-	 * for now just treat each character as a word.
 	 * @todo FIXME: Only do this for Han characters...
 	 *
-	 * @param string $string
-	 *
-	 * @return string
+	 * @inheritDoc
 	 */
 	public function segmentByWord( $string ) {
 		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
-		$s = self::insertSpace( $string, $reg );
-		return $s;
+		return self::insertSpace( $string, $reg );
 	}
 
-	/**
-	 * @param string $s
-	 * @return string
-	 */
 	public function normalizeForSearch( $s ) {
 		// Double-width roman characters
 		$s = parent::normalizeForSearch( $s );
 		$s = trim( $s );
-		$s = $this->segmentByWord( $s );
-
-		return $s;
+		return $this->segmentByWord( $s );
 	}
 
-	/**
-	 * Takes a number of seconds and turns it into a text using values such as hours and minutes.
-	 *
-	 * @since 1.21
-	 *
-	 * @param int $seconds The amount of seconds.
-	 * @param array $chosenIntervals The intervals to enable.
-	 *
-	 * @return string
-	 */
 	public function formatDuration( $seconds, array $chosenIntervals = [] ) {
 		if ( !$chosenIntervals ) {
 			$chosenIntervals = [ 'centuries', 'years', 'days', 'hours', 'minutes', 'seconds' ];

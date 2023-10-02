@@ -27,15 +27,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Languages
  */
 class LanguageGa extends Language {
-
-	/**
-	 * Convert day names
-	 * Invoked with {{GRAMMAR:transformation|word}}
-	 *
-	 * @param string $word
-	 * @param string $case
-	 * @return string
-	 */
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );

@@ -29,14 +29,6 @@ use MediaWiki\User\UserIdentity;
  * @ingroup Languages
  */
 class LanguageFi extends Language {
-	/**
-	 * Convert from the nominative form of a noun to some other case
-	 * Invoked with {{grammar:case|word}}
-	 *
-	 * @param string $word
-	 * @param string $case
-	 * @return string
-	 */
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
@@ -47,7 +39,7 @@ class LanguageFi extends Language {
 		# These rules don't cover the whole language.
 		# They are used only for site names.
 
-		# wovel harmony flag
+		# vowel harmony flag
 		$aou = preg_match( '/[aou][^äöy]*$/i', $word );
 
 		# The flag should be false for compounds where the last word has only neutral vowels (e/i).

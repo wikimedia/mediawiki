@@ -29,44 +29,35 @@
  */
 class LanguageKk extends LanguageKk_cyrl {
 	/**
-	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
+	 * Fixes an issue with ucfirst for transforming 'i' to 'İ'
 	 *
-	 * @param string $string
-	 *
-	 * @return string
+	 * @inheritDoc
 	 */
-	public function ucfirst( $string ) {
-		if ( substr( $string, 0, 1 ) === 'i' ) {
+	public function ucfirst( $str ) {
+		if ( substr( $str, 0, 1 ) === 'i' ) {
 			$variant = $this->getConverterInternal()->getPreferredVariant();
 			if ( $variant == 'kk-latn' || $variant == 'kk-tr' ) {
-				return 'İ' . substr( $string, 1 );
+				return 'İ' . substr( $str, 1 );
 			}
 		}
-		return parent::ucfirst( $string );
+		return parent::ucfirst( $str );
 	}
 
 	/**
-	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
+	 * Fixes issue with lcfirst for transforming 'I' to 'ı'
 	 *
-	 * @param string $string
-	 *
-	 * @return string
+	 * @inheritDoc
 	 */
-	public function lcfirst( $string ) {
-		if ( substr( $string, 0, 1 ) === 'I' ) {
+	public function lcfirst( $str ) {
+		if ( substr( $str, 0, 1 ) === 'I' ) {
 			$variant = $this->getConverterInternal()->getPreferredVariant();
 			if ( $variant == 'kk-latn' || $variant == 'kk-tr' ) {
-				return 'ı' . substr( $string, 1 );
+				return 'ı' . substr( $str, 1 );
 			}
 		}
-		return parent::lcfirst( $string );
+		return parent::lcfirst( $str );
 	}
 
-	/**
-	 * @param string $word
-	 * @param string $case
-	 * @return string
-	 */
 	public function convertGrammar( $word, $case ) {
 		// T277689: If there's no word, then there's nothing to convert.
 		if ( $word === '' ) {

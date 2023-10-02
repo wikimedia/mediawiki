@@ -124,9 +124,9 @@ class CrhExceptions {
 	 * variants: all lowercase, all uppercase, first letter capitalized
 	 */
 	private $ManyToOneC2LMappings = [
-		# Carefully ordered many-to-one mappings
-		# these are ordered so C2L is correct (the later Latin one)
-		# see also L2C mappings below
+		# Carefully ordered many-to-one mapping.
+		# These are ordered so that the C2L is correct (the later Latin one).
+		# See also the L2C mappings below
 		'fevqülade' => 'февкъульаде', 'fevqulade' => 'февкъульаде',
 		'beyude' => 'бейуде', 'beyüde' => 'бейуде',
 		'curat' => 'джурьат', 'cürat' => 'джурьат',
@@ -385,7 +385,7 @@ class CrhExceptions {
 
 	/**
 	 * @var string[] map Cyrillic to Latin and back, match beginning of word
-	 * variants: all lowercase, all uppercase, first letter capitalized
+	 * variants: all lowercase letters, all uppercase letters, first letter capitalized
 	 * items with capture group refs (e.g., $1) are only mapped from the
 	 * regex to the reference
 	 */
@@ -816,7 +816,7 @@ class CrhExceptions {
 		'/ЙЬ/u' => 'Й',
 
 		# частичное решение проблемы слова юз - 100
-		# Partial solution of the problem of the word юз ("100")
+		# Partial solution to the problem of the word юз ("100")
 		# notice that these are cross-word patterns
 		'/эки юзь/u' => 'эки юз', '/Эки юзь/u' => 'Эки юз', '/ЭКИ ЮЗЬ/u' => 'ЭКИ ЮЗ',
 		'/учь юзь/u' => 'учь юз', '/Учь юзь/u' => 'Учь юз', '/УЧЬ ЮЗЬ/u' => 'УЧЬ ЮЗ',

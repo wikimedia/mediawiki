@@ -33,21 +33,21 @@ class LanguageOs extends Language {
 	 * Convert from the nominative form of a noun to other cases
 	 * Invoked with {{grammar:case|word}}
 	 *
-	 * Depending on word there are four different ways of converting to other cases.
-	 * 1) Word consist of not Cyrillic letters or is an abbreviation.
+	 * Depending on the word, there are four different ways of converting to other cases.
+	 * 1) Words consist of not Cyrillic letters or is an abbreviation.
 	 * 		Then result word is: word + hyphen + case ending.
 	 *
 	 * 2) Word consist of Cyrillic letters.
 	 * 2.1) Word is in plural.
-	 * 		Then result word is: word - last letter + case ending. Ending of allative case here is 'æм'.
+	 * 		Then result word is: word - last letter + case ending. Ending of the allative case here is 'æм'.
 	 *
-	 * 2.2) Word is in singular.
+	 * 2.2) Word is in singular form.
 	 * 2.2.1) Word ends on consonant.
 	 * 		Then result word is: word + case ending.
 	 *
 	 * 2.2.2) Word ends on vowel.
-	 * 		Then result word is: word + 'й' + case ending for cases != allative or comitative
-	 * 		and word + case ending for allative or comitative. Ending of allative case here is 'æ'.
+	 * 		The resultant word is: word + 'й' + case ending for cases != allative or comitative
+	 * 		and word + case ending for allative or comitative. Ending of the allative case here is 'æ'.
 	 *
 	 * @param string $word
 	 * @param string $case
@@ -59,16 +59,16 @@ class LanguageOs extends Language {
 		if ( isset( $grammarForms['os'][$case][$word] ) ) {
 			return $grammarForms['os'][$case][$word];
 		}
-		# Ending for allative case
+		# Ending for the allative case
 		$end_allative = 'мæ';
-		# Variable for 'j' beetwen vowels
+		# Variable for 'j' between vowels
 		$jot = '';
 		# Variable for "-" for not Ossetic words
 		$hyphen = '';
 		# Variable for ending
 		$ending = '';
 
-		# CHecking if the $word is in plural form
+		# Checking if the $word is in plural form
 		if ( preg_match( '/тæ$/u', $word ) ) {
 			$word = mb_substr( $word, 0, -1 );
 			$end_allative = 'æм';
@@ -91,12 +91,15 @@ class LanguageOs extends Language {
 			case 'genitive':
 				$ending = $hyphen . $jot . 'ы';
 				break;
+
 			case 'dative':
 				$ending = $hyphen . $jot . 'æн';
 				break;
+
 			case 'allative':
 				$ending = $hyphen . $end_allative;
 				break;
+
 			case 'ablative':
 				if ( $jot == 'й' ) {
 					$ending = $hyphen . $jot . 'æ';
@@ -104,14 +107,18 @@ class LanguageOs extends Language {
 					$ending = $hyphen . $jot . 'æй';
 				}
 				break;
+
 			case 'inessive':
 				break;
+
 			case 'superessive':
 				$ending = $hyphen . $jot . 'ыл';
 				break;
+
 			case 'equative':
 				$ending = $hyphen . $jot . 'ау';
 				break;
+
 			case 'comitative':
 				$ending = $hyphen . 'имæ';
 				break;

@@ -33,21 +33,17 @@ class LanguageWa extends Language {
 	 * "<day> di <monthname>" for months starting by a consoun, and
 	 * "<day> d' <monthname>" for months starting with a vowel
 	 *
-	 * @param string $ts
-	 * @param bool $adj
-	 * @param bool $format
-	 * @param bool $tc
-	 * @return string
+	 * @inheritDoc
 	 */
-	public function date( $ts, $adj = false, $format = true, $tc = false ) {
+	public function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		$datePreference = $this->dateFormat( $format );
 		if ( $datePreference == 'ISO 8601' || $datePreference == 'walloon short' ) {
-			return parent::date( $ts, $adj, $format, $tc );
+			return parent::date( $ts, $adj, $format, $timecorrection );
 		}
 
 		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) {
-			$ts = $this->userAdjust( $ts, $tc );
+			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
 
 		# Walloon 'dmy' format
@@ -69,13 +65,6 @@ class LanguageWa extends Language {
 		return $d;
 	}
 
-	/**
-	 * @param string $ts
-	 * @param bool $adj
-	 * @param bool $format
-	 * @param bool $tc
-	 * @return string
-	 */
 	public function timeanddate( $ts, $adj = false, $format = true, $tc = false ) {
 		$datePreference = $this->dateFormat( $format );
 		if ( $datePreference == 'ISO 8601' || $datePreference == 'walloon short' ) {

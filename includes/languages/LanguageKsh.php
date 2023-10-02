@@ -26,7 +26,7 @@
  */
 class LanguageKsh extends Language {
 	// Do not add male wiki families, since that's the default.
-	// No need add neuter wikis having names ending in -wiki.
+	// No need to add neuter to wikis having names ending in "-wiki".
 	private static $familygender = [
 		'wikipedia' => 'f',
 		'wikiversity' => 'f',
@@ -40,11 +40,10 @@ class LanguageKsh extends Language {
 	];
 
 	/**
-	 * Convert from the nominative form of a noun to other cases.
-	 * Invoked with {{GRAMMAR:case|word}} inside messages.
+	 * @inheritDoc
 	 *
-	 * case is a sequence of words, each of which is case insensitive.
-	 * Between words, there must be at least one space character.
+	 * $case is a sequence of words, each of which is case insensitive.
+	 * There must be at least one space character between words.
 	 * Only the 1st character of each word is considered.
 	 * Word order is irrelevant.
 	 *
@@ -56,15 +55,15 @@ class LanguageKsh extends Language {
 	 *
 	 * Possible values specifying the article type are:
 	 * 	Betoont               focussed or stressed article
-	 * 	-omitted-             unstressed or unfocussed article
+	 * 	-omitted-             unstressed or unfocused article
 	 *
 	 * Possible values for the type of genitive are:
 	 * 	Sing, Iehr            prepositioned genitive = possessive dative
 	 * 	Vun, Fon, -omitted-   postpositioned genitive = preposition "vun" with dative
 	 *
-	 * Values of case overrides & prepositions, in the order of preceedence:
+	 * Values of case overrides & prepositions, in the order of precedence:
 	 * 	Sing, Iehr            possessive dative = prepositioned genitive
-	 * 	Vun, Fon              preposition "vun" with dative = postpositioned genitive
+	 * 	Vun, Fon              preposition "vun" with dative = post positioned genitive
 	 * 	En, em                preposition "en" with dative
 	 *
 	 * Values for object gender specifiers of the possessive dative, or
@@ -77,21 +76,19 @@ class LanguageKsh extends Language {
 	 * http://translatewiki.net/wiki/Portal:Ksh#GRAMMAR_Pr%C3%B6%C3%B6fe
 	 * Contents of the leftmost table column can be copied and pasted as
 	 * "case" values.
-	 *
-	 * @param string $word
-	 * @param string $case
-	 *
-	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
 		$lord = strtolower( $word );
 		$gender = 'm'; // Nuutnaarel // default
 		if ( preg_match( '/wiki$/', $lord ) ) {
-			$gender = 'n';	// Dat xyz-wiki
+			$gender = 'n'; // Dat xyz-wiki
 		}
 		if ( isset( self::$familygender[$lord] ) ) {
 			$gender = self::$familygender[$lord];
 		}
+
+		$isGenderFemale = $gender === 'f';
+
 		$case = ' ' . strtolower( $case );
 		if ( preg_match( '/ [is]/', $case ) ) {
 			# däm WikiMaatplaz singe, dä Wikipeedija iere, däm Wikiwööterbooch singe
@@ -99,35 +96,34 @@ class LanguageKsh extends Language {
 			# däm WikiMaatplaz sing, dä Wikipeedija ier, däm Wikiwööterbooch sing
 			# dem/em WikiMaatplaz sing, de Wikipeedija ier, dem/em Wikiwööterbooch sing
 			$word = ( preg_match( '/ b/', $case )
-						? ( $gender == 'f' ? 'dä' : 'däm' )
-						: ( $gender == 'f' ? 'de' : 'dem' )
-					) . ' ' . $word . ' ' .
-					( $gender == 'f' ? 'ier' : 'sing' ) .
-					( preg_match( '/ m/', $case ) ? 'e' : ''
-				);
+					? ( $isGenderFemale ? 'dä' : 'däm' )
+					: ( $isGenderFemale ? 'de' : 'dem' )
+				) . ' ' . $word . ' ' .
+				( $isGenderFemale ? 'ier' : 'sing' ) .
+				( preg_match( '/ m/', $case ) ? 'e' : '' );
 		} elseif ( preg_match( '/ e/', $case ) ) {
 			# en dämm WikiMaatPlaz, en dä Wikipeedija, en dämm Wikiwööterbooch
 			# em WikiMaatplaz, en de Wikipeedija, em Wikiwööterbooch
 			if ( preg_match( '/ b/', $case ) ) {
-				$word = 'en ' . ( $gender == 'f' ? 'dä' : 'däm' ) . ' ' . $word;
+				$word = 'en ' . ( $isGenderFemale ? 'dä' : 'däm' ) . ' ' . $word;
 			} else {
-				$word = ( $gender == 'f' ? 'en de' : 'em' ) . ' ' . $word;
+				$word = ( $isGenderFemale ? 'en de' : 'em' ) . ' ' . $word;
 			}
 		} elseif ( preg_match( '/ [fv]/', $case ) || preg_match( '/ [2jg]/', $case ) ) {
 			# vun däm WikiMaatplaz, vun dä Wikipeedija, vun däm Wikiwööterbooch
 			# vum WikiMaatplaz, vun de Wikipeedija, vum Wikiwööterbooch
 			if ( preg_match( '/ b/', $case ) ) {
-				$word = 'vun ' . ( $gender == 'f' ? 'dä' : 'däm' ) . ' ' . $word;
+				$word = 'vun ' . ( $isGenderFemale ? 'dä' : 'däm' ) . ' ' . $word;
 			} else {
-				$word = ( $gender == 'f' ? 'vun de' : 'vum' ) . ' ' . $word;
+				$word = ( $isGenderFemale ? 'vun de' : 'vum' ) . ' ' . $word;
 			}
 		} elseif ( preg_match( '/ [3d]/', $case ) ) {
 			# dämm WikiMaatPlaz, dä Wikipeedija, dämm Wikiwööterbooch
 			# dem/em WikiMaatplaz, de Wikipeedija, dem/em Wikiwööterbooch
 			if ( preg_match( '/ b/', $case ) ) {
-				$word = ( $gender == 'f' ? 'dää' : 'dämm' ) . ' ' . $word;
+				$word = ( $isGenderFemale ? 'dää' : 'dämm' ) . ' ' . $word;
 			} else {
-				$word = ( $gender == 'f' ? 'de' : 'dem' ) . ' ' . $word;
+				$word = ( $isGenderFemale ? 'de' : 'dem' ) . ' ' . $word;
 			}
 		} else {
 			# dä WikiMaatPlaz, di Wikipeedija, dat Wikiwööterbooch
@@ -178,12 +174,14 @@ class LanguageKsh extends Language {
 		}
 		$forms = $this->preConvertPlural( $forms, 3 );
 
-		if ( $count == 1 ) {
+		if ( $count === 1 ) {
 			return $forms[0];
-		} elseif ( $count == 0 ) {
-			return $forms[2];
-		} else {
-			return $forms[1];
 		}
+
+		if ( $count === 0 ) {
+			return $forms[2];
+		}
+
+		return $forms[1];
 	}
 }

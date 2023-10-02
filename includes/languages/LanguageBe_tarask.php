@@ -35,19 +35,15 @@ class LanguageBe_tarask extends Language {
 	 * This function unifies apostrophe sign in search index values
 	 * to enable search using both apostrophe signs.
 	 *
-	 * @param string $string
-	 *
-	 * @return string
+	 * @inheritDoc
 	 */
-	public function normalizeForSearch( $string ) {
+	public function normalizeForSearch( $text ) {
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
 
 		# Replacing apostrophe sign U+2019 with U+0027
-		$s = str_replace( "\u{2019}", '\'', $string );
+		$text = str_replace( "\u{2019}", '\'', $text );
 
-		$s = parent::normalizeForSearch( $s );
-
-		return $s;
+		return parent::normalizeForSearch( $text );
 	}
 }

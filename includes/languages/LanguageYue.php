@@ -25,16 +25,13 @@
  */
 class LanguageYue extends Language {
 
-	/**
-	 * @return bool
-	 */
 	public function hasWordBreaks() {
 		return false;
 	}
 
 	/**
-	 * Eventually this should be a word segmentation;
-	 * for now just treat each character as a word.
+	 * Eventually, this should be a word segmentation;
+	 * but for now just treat each character as a word.
 	 * @todo FIXME: Only do this for Han characters...
 	 *
 	 * @param string $string
@@ -42,7 +39,6 @@ class LanguageYue extends Language {
 	 */
 	public function segmentByWord( $string ) {
 		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
-		$s = self::insertSpace( $string, $reg );
-		return $s;
+		return self::insertSpace( $string, $reg );
 	}
 }

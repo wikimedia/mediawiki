@@ -27,16 +27,11 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Languages
  */
 class LanguageSl extends Language {
-	# Convert from the nominative form of a noun to some other case
-	# Invoked with {{GRAMMAR:case|word}}
 
 	/**
 	 * Cases: rodilnik, dajalnik, tožilnik, mestnik, orodnik
 	 *
-	 * @param string $word
-	 * @param string $case
-	 *
-	 * @return string
+	 * @inheritDoc
 	 */
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
@@ -49,6 +44,7 @@ class LanguageSl extends Language {
 			case 'mestnik': # locative
 				$word = 'o ' . $word;
 				break;
+
 			case 'orodnik': # instrumental
 				$word = 'z ' . $word;
 				break;

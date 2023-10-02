@@ -2667,7 +2667,7 @@ class Language implements Bcp47Code {
 	 *
 	 * @return string|null
 	 */
-	protected function getSerchIndexVariant() {
+	protected function getSearchIndexVariant() {
 		return null;
 	}
 
@@ -2684,8 +2684,8 @@ class Language implements Bcp47Code {
 	 */
 	public function normalizeForSearch( $text ) {
 		$text = self::convertDoubleWidth( $text );
-		if ( $this->getSerchIndexVariant() ) {
-			return $this->getConverterInternal()->autoConvert( $text, $this->getSerchIndexVariant() );
+		if ( $this->getSearchIndexVariant() ) {
+			return $this->getConverterInternal()->autoConvert( $text, $this->getSearchIndexVariant() );
 		}
 		return $text;
 	}

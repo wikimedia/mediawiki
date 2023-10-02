@@ -28,14 +28,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Languages
  */
 class LanguageDsb extends Language {
-	/**
-	 * Convert from the nominative form of a noun to some other case
-	 * Invoked with {{grammar:case|word}}
-	 *
-	 * @param string $word
-	 * @param string $case
-	 * @return string
-	 */
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );

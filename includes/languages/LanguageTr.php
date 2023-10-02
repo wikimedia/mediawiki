@@ -37,33 +37,25 @@
  */
 class LanguageTr extends Language {
 
-	private $uc = [ 'I', 'İ' ];
-	private $lc = [ 'ı', 'i' ];
+	private const UC = [ 'I', 'İ' ];
+	private const LC = [ 'ı', 'i' ];
 
-	/**
-	 * @param string $string
-	 * @return string
-	 */
-	public function ucfirst( $string ) {
-		$first = mb_substr( $string, 0, 1 );
-		if ( in_array( $first, $this->lc ) ) {
-			$first = str_replace( $this->lc, $this->uc, $first );
-			return $first . mb_substr( $string, 1 );
+	public function ucfirst( $str ) {
+		$first = mb_substr( $str, 0, 1 );
+		if ( in_array( $first, self::LC ) ) {
+			$first = str_replace( self::LC, self::UC, $first );
+			return $first . mb_substr( $str, 1 );
 		}
-		return parent::ucfirst( $string );
+		return parent::ucfirst( $str );
 	}
 
-	/**
-	 * @param string $string
-	 * @return mixed|string
-	 */
-	public function lcfirst( $string ) {
-		$first = mb_substr( $string, 0, 1 );
-		if ( in_array( $first, $this->uc ) ) {
-			$first = str_replace( $this->uc, $this->lc, $first );
-			return $first . mb_substr( $string, 1 );
+	public function lcfirst( $str ) {
+		$first = mb_substr( $str, 0, 1 );
+		if ( in_array( $first, self::UC ) ) {
+			$first = str_replace( self::UC, self::LC, $first );
+			return $first . mb_substr( $str, 1 );
 		}
-		return parent::lcfirst( $string );
+		return parent::lcfirst( $str );
 	}
 
 }

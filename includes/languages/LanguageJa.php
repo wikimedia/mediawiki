@@ -25,12 +25,8 @@
  */
 class LanguageJa extends Language {
 
-	/**
-	 * @param string $string
-	 * @return string
-	 */
 	public function segmentByWord( $string ) {
-		// Strip known punctuation ?
+		// Strip known punctuation?
 		// $s = preg_replace( '/\xe3\x80[\x80-\xbf]/', '', $s ); # U3000-303f
 
 		// Space strings of like hiragana/katakana/kanji
@@ -42,13 +38,12 @@ class LanguageJa extends Language {
 			. '|\xe9\xa6[\x80-\x99])';
 			# U3200-9999 = \xe3\x88\x80-\xe9\xa6\x99
 		$reg = "/({$hiragana}+|{$katakana}+|{$kanji}+)/";
-		$s = self::insertSpace( $string, $reg );
-		return $s;
+		return self::insertSpace( $string, $reg );
 	}
 
 	/**
-	 * Italic is not appropriate for Japanese script
-	 * Unfortunately most browsers do not recognise this, and render `<em>` as italic
+	 * Italic is not appropriate for Japanese script.
+	 * Unfortunately, most browsers do not recognise this, and render `<em>` as italic.
 	 *
 	 * @param string $text
 	 * @return string

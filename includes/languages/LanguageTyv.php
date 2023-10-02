@@ -29,14 +29,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Languages
  */
 class LanguageTyv extends Language {
-	/**
-	 * Grammatical transformations, needed for inflected languages
-	 * Invoked by putting {{grammar:case|word}} in a message
-	 *
-	 * @param string $word
-	 * @param string $case
-	 * @return string
-	 */
+
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
@@ -76,144 +69,151 @@ class LanguageTyv extends Language {
 			case "genitive":
 				if ( in_array( $wordEnding, $unvoicedPhonemes ) ) {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "түң";
+						$word .= "түң";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "тиң";
+						$word .= "тиң";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "туң";
+						$word .= "туң";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "тың";
+						$word .= "тың";
 					}
 				} elseif ( $wordEnding === "л" ) {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "дүң";
+						$word .= "дүң";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "диң";
+						$word .= "диң";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "дуң";
+						$word .= "дуң";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "дың";
+						$word .= "дың";
 					}
 				} else {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "нүң";
+						$word .= "нүң";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "ниң";
+						$word .= "ниң";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "нуң";
+						$word .= "нуң";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "ның";
+						$word .= "ның";
 					}
 				}
 				break;
+
 			case "dative":
 				if ( in_array( $wordEnding, $unvoicedPhonemes ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = $word . "ке";
+						$word .= "ке";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = $word . "ка";
+						$word .= "ка";
 					}
 				} else {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = $word . "ге";
+						$word .= "ге";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = $word . "га";
+						$word .= "га";
 					}
 				}
 				break;
+
 			case "accusative":
 				if ( in_array( $wordEnding, $unvoicedPhonemes ) ) {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "тү";
+						$word .= "тү";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "ти";
+						$word .= "ти";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "ту";
+						$word .= "ту";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "ты";
+						$word .= "ты";
 					}
 				} elseif ( $wordEnding === "л" ) {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "дү";
+						$word .= "дү";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "ди";
+						$word .= "ди";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "ду";
+						$word .= "ду";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "ды";
+						$word .= "ды";
 					}
 				} else {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "нү";
+						$word .= "нү";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "ни";
+						$word .= "ни";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "ну";
+						$word .= "ну";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "ны";
+						$word .= "ны";
 					}
 				}
 				break;
+
 			case "locative":
 				if ( in_array( $wordEnding, $unvoicedPhonemes ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = $word . "те";
+						$word .= "те";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = $word . "та";
+						$word .= "та";
 					}
 				} else {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = $word . "де";
+						$word .= "де";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = $word . "да";
+						$word .= "да";
 					}
 				}
 				break;
+
 			case "ablative":
 				if ( in_array( $wordEnding, $unvoicedPhonemes ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = $word . "тен";
+						$word .= "тен";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = $word . "тан";
+						$word .= "тан";
 					}
 				} else {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = $word . "ден";
+						$word .= "ден";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = $word . "дан";
+						$word .= "дан";
 					}
 				}
 				break;
+
 			case "directive1":
 				if ( in_array( $wordEnding, $directiveVoicedStems ) ) {
-					$word = $word . "же";
+					$word .= "же";
 				} elseif ( in_array( $wordEnding, $directiveUnvoicedStems ) ) {
-					$word = $word . "че";
+					$word .= "че";
 				}
 				break;
+
 			case "directive2":
 				if ( in_array( $wordEnding, $unvoicedPhonemes ) ) {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "түве";
+						$word .= "түве";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "тиве";
+						$word .= "тиве";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "туве";
+						$word .= "туве";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "тыве";
+						$word .= "тыве";
 					}
 				} else {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
-						$word = $word . "дүве";
+						$word .= "дүве";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {
-						$word = $word . "диве";
+						$word .= "диве";
 					} elseif ( in_array( $wordLastVowel, $roundBackVowels ) ) {
-						$word = $word . "дуве";
+						$word .= "дуве";
 					} elseif ( in_array( $wordLastVowel, $unroundBackVowels ) ) {
-						$word = $word . "дыве";
+						$word .= "дыве";
 					}
 				}
 				break;
+
 			default:
 				break;
 		}
