@@ -303,6 +303,11 @@ return [
 
 	'BacklinkCacheFactory' => static function ( MediaWikiServices $services ): BacklinkCacheFactory {
 		return new BacklinkCacheFactory(
+			new ServiceOptions(
+				BacklinkCache::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getLinksMigration(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancerFactory()
