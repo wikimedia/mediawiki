@@ -4150,14 +4150,11 @@ class Language implements Bcp47Code {
 		if ( !isset( $format['noabbrevs'] ) ) {
 			$format['noabbrevs'] = false;
 		}
-		$secondsMsg = wfMessage(
-			$format['noabbrevs'] ? 'seconds' : 'seconds-abbrev' )->inLanguage( $this );
-		$minutesMsg = wfMessage(
-			$format['noabbrevs'] ? 'minutes' : 'minutes-abbrev' )->inLanguage( $this );
-		$hoursMsg = wfMessage(
-			$format['noabbrevs'] ? 'hours' : 'hours-abbrev' )->inLanguage( $this );
-		$daysMsg = wfMessage(
-			$format['noabbrevs'] ? 'days' : 'days-abbrev' )->inLanguage( $this );
+		$secondsMsg = $this->msg( $format['noabbrevs'] ? 'seconds' : 'seconds-abbrev' );
+		$minutesMsg = $this->msg( $format['noabbrevs'] ? 'minutes' : 'minutes-abbrev' );
+		$hoursMsg = $this->msg( $format['noabbrevs'] ? 'hours' : 'hours-abbrev' );
+		$daysMsg = $this->msg( $format['noabbrevs'] ? 'days' : 'days-abbrev' );
+		$space = $this->msg( 'word-separator' )->text();
 
 		if ( round( $seconds * 10 ) < 100 ) {
 			$s = $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) );
@@ -4173,7 +4170,7 @@ class Language implements Bcp47Code {
 				$minutes++;
 			}
 			$s = $minutesMsg->params( $this->formatNum( $minutes ) )->text();
-			$s .= ' ';
+			$s .= $space;
 			$s .= $secondsMsg->params( $this->formatNum( $secondsPart ) )->text();
 		} elseif ( round( $seconds ) <= 2 * 86400 ) {
 			$hours = floor( $seconds / 3600 );
@@ -4188,10 +4185,10 @@ class Language implements Bcp47Code {
 				$hours++;
 			}
 			$s = $hoursMsg->params( $this->formatNum( $hours ) )->text();
-			$s .= ' ';
+			$s .= $space;
 			$s .= $minutesMsg->params( $this->formatNum( $minutes ) )->text();
 			if ( !in_array( $format['avoid'], [ 'avoidseconds', 'avoidminutes', 'avoidhours' ] ) ) {
-				$s .= ' ' . $secondsMsg->params( $this->formatNum( $secondsPart ) )->text();
+				$s .= $space . $secondsMsg->params( $this->formatNum( $secondsPart ) )->text();
 			}
 		} else {
 			$days = floor( $seconds / 86400 );
@@ -4208,7 +4205,7 @@ class Language implements Bcp47Code {
 					$days++;
 				}
 				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
-				$s .= ' ';
+				$s .= $space;
 				$s .= $hoursMsg->params( $this->formatNum( $hours ) )->text();
 			} elseif ( $format['avoid'] === 'avoidseconds' ) {
 				$hours = floor( ( $seconds - $days * 86400 ) / 3600 );
@@ -4222,13 +4219,13 @@ class Language implements Bcp47Code {
 					$days++;
 				}
 				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
-				$s .= ' ';
+				$s .= $space;
 				$s .= $hoursMsg->params( $this->formatNum( $hours ) )->text();
-				$s .= ' ';
+				$s .= $space;
 				$s .= $minutesMsg->params( $this->formatNum( $minutes ) )->text();
 			} else {
 				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
-				$s .= ' ';
+				$s .= $space;
 				$s .= $this->formatTimePeriod( $seconds - $days * 86400, $format );
 			}
 		}
