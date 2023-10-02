@@ -123,19 +123,7 @@
 .diff-addedline,
 .diff-deletedline,
 .diff-context {
-	/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
-	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
-	font-size: 13px;
-	/* Standardize tab width */
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	-moz-tab-size: 4;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	tab-size: 4;
-	line-height: 1.6;
 	vertical-align: top;
-	// Fallback for browsers that don't support break-spaces, mainly IE11
-	white-space: pre-wrap;
-	white-space: break-spaces;
 	border-style: solid;
 	border-width: 1px 1px 1px 4px;
 	border-radius: 0.33em;
@@ -149,6 +137,19 @@
 .mw-diff-inline-moved,
 .mw-diff-inline-changed,
 .mw-diff-inline-context {
+	/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
+	font-size: 13px;
+	/* Standardize tab width */
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	-moz-tab-size: 4;
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	tab-size: 4;
+	line-height: 1.6;
+	// Fallback for browsers that don't support break-spaces, mainly IE11
+	white-space: pre-wrap;
+	white-space: break-spaces;
+
 	// Allow editfont to be set on container while only
 	// affecting wikitext content.
 	// These classes match mw-editfont-*
