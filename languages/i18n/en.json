@@ -1012,6 +1012,7 @@
 	"difference-title-multipage": "$1 and $2: Difference between pages",
 	"difference-multipage": "(Difference between pages)",
 	"lineno": "Line $1:",
+	"lineno-inline": "Line $1 ⟶ $2:",
 	"compareselectedversions": "Compare selected revisions",
 	"showhideselectedversions": "Change visibility of selected revisions",
 	"showhideselectedfileversions": "Change visibility of selected file versions",

@@ -1265,6 +1265,7 @@
 	"difference-title-multipage": "Displayed as page title when viewing the difference between two edits of different pages.\n\nParameters:\n* $1 - the page title of the old revision\n* $2 - the page title of the new revision",
 	"difference-multipage": "Displayed under the title when viewing the difference between two or more pages.\nSee also {{msg-mw|difference}}.",
 	"lineno": "Message used when comparing different versions of a page (diff). $1 is a line number.",
+	"lineno-inline": "Message used when comparing different versions of a page (diff) in inline mode. $1 is the line number of the older revision, and $2 is the line number of the newer revision.",
 	"compareselectedversions": "Used as button in history pages.\n\nSee also:\n* {{msg-mw|Compareselectedversions}}\n* {{msg-mw|Accesskey-compareselectedversions}}\n* {{msg-mw|Tooltip-compareselectedversions}}",
 	"showhideselectedversions": "Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on history pages.",
 	"showhideselectedfileversions": "Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on for files.",

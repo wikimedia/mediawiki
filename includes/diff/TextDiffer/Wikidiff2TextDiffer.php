@@ -204,8 +204,8 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 
 	public function localize( string $format, string $diff, array $options = [] ): string {
 		$diff = $this->localizeLineNumbers( $diff,
-			$options['reducedLineNumbers'] ?? false );
-		// FIXME: in the inline case, comments like <!-- LINES 25,25 --> remain in the output
+			$options['reducedLineNumbers'] ?? false
+		);
 		if ( $this->haveMoveSupport ) {
 			$diff = $this->addLocalizedTitleTooltips( $format, $diff );
 		}
