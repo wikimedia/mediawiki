@@ -1175,6 +1175,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "Listar os roles de espazo de contido que existen na revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Usa <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> ou <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> no seu lugar. Árbore de análise XML do contido da modificación (precisa o modelo de contido <code>$1</code>).",
 	"apihelp-query+revisions+base-param-slots": "Que espazos de revisión para os que devolver datos, cando as propiedades relacionadas co espazo están incluídas en <var>$1props</var>. Se se omite, os datos do espazo <kbd>main</kbd> han devolverse nun formato compatible con versións anteriores.",
+	"apihelp-query+revisions+base-param-contentformat-slot": "Formato de serialización de contido utilizado para o contido de saída.",
 	"apihelp-query+revisions+base-param-limit": "Limitar cantas revisións se van devolver.",
 	"apihelp-query+revisions+base-param-expandtemplates": "En substitución, use <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>. Expandir os modelos no contido da revisión (require $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "En substitución, use <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> ou <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Xenerar a árbore de análise XML para o contido da revisión (require $1prop=content; substituído por <kbd>$1prop=parsetree</kbd>).",

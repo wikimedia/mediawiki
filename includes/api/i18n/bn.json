@@ -18,7 +18,7 @@
 	"apihelp-checktoken-param-token": "পরীক্ষা করার জন্য টোকেন।",
 	"apihelp-createaccount-summary": "নতুন ব্যবহারকারীর অ্যাকাউন্ট তৈরি করুন",
 	"apihelp-delete-summary": "একটি পাতা মুছে ফেলুন।",
-	"apihelp-delete-example-simple": "<kbd>প্রধান পাতা</kbd> মুছে ফেলুন।",
+	"apihelp-delete-example-simple": "[[{{MediaWiki:Mainpage}}]] মুছে ফেলুন।",
 	"apihelp-disabled-summary": "এই মডিউলটি অক্ষম করা হয়েছে।",
 	"apihelp-edit-param-text": "পাতার বিষয়বস্তু।",
 	"apihelp-edit-param-minor": "এটিকে অনুল্লেখ্য সম্পাদনা হিসেবে চিহ্নিত করে।",

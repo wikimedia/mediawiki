@@ -273,6 +273,7 @@
 	"apihelp-query+revisions-example-first5-after": "Pridobitev prvih 5 redakcij [[{{MediaWiki:Mainpage}}]], narejenih po 1. maju 2006.",
 	"apihelp-query+revisions-example-first5-not-localhost": "Pridobitev prvih 5 redakcij [[{{MediaWiki:Mainpage}}]], ki jih ni naredil anonimni uporabnik <kbd>127.0.0.1</kbd>.",
 	"apihelp-query+revisions-example-first5-user": "Pridobitev prvih 5 redakcij [[{{MediaWiki:Mainpage}}]], ki jih je ustvaril uporabnik <kbd>MediaWiki default</kbd>.",
+	"apihelp-query+revisions+base-param-contentformat-slot": "Format serializacije vsebine, ki se uporablja za izpis vsebine.",
 	"apihelp-query+revisions+base-param-parse": "Namesto tega uporabite <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Razčleni vsebino redakcije (zahteva $1prop=content). Če je ta možnost uporabljena zaradi zmogljivosti, se omejitev $1 vsili na 1.",
 	"apihelp-query+search-param-prop": "Katere lastnosti naj se vrnejo:",
 	"apihelp-query+search-paramvalue-prop-redirecttitle": "Doda naslov ujemajoče se preusmeritve.",

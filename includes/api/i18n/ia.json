@@ -1158,6 +1158,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "Listar le rolos del segmentos de contento que existe in le version.",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Usar <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> o <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> in su loco. Le arbore de analyse syntactic de XML del contento del version (require le modello de contento <code>$1</code>).",
 	"apihelp-query+revisions+base-param-slots": "Le segmentos del version pro le quales restituer datos, si proprietates concernente segmentos es includite in <var>$1props</var>. Si non, le datos del segmento <kbd>main</kbd> (principal) essera restituite in un formato retrocompatibile.",
+	"apihelp-query+revisions+base-param-contentformat-slot": "Formato de serialisation de contento usate pro le sortita de contento.",
 	"apihelp-query+revisions+base-param-limit": "Limitar quante versiones se restitue.",
 	"apihelp-query+revisions+base-param-expandtemplates": "Usar <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> in su loco. Expander patronos in le contento del version (require $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "Usar <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> o <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> in su loco. Generar un arbore de analyse syntactic de pro le contento del version (require $1prop=content).",

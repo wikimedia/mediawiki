@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"rest-unsupported-content-type": "ТӀе ца оьцу Content-Type: $1",
+	"rest-permission-denied-anon": "Аноним декъашхочун тӀекхочуш йац",
+	"rest-permission-denied-title": "Декъашхочун бакъонаш йац ($1) корта беша",
+	"rest-permission-denied-revision": "Йоьхуш йолу ($1) версин декъашхо тӀекхача ца ло.",
+	"rest-resource-limit-exceeded": "Дехар кечдеш ресурсийн лимиташ совйьхна.",
+	"rest-pagehistory-incompatible-params": "«older_than» а, «newer_than» а параметрш цхьана чуйихка ца мега",
+	"rest-pagehistory-param-range-error": "Версин идентификатор хила йеза 0 сов",
+	"rest-pagehistory-timestamp-error": "Къастиначу версин ханна йолу билгало схьаэца ца йелира ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Билгалйина лараран тайпа ($1) хуьлийла йац",
+	"rest-pagehistorycount-parameters-invalid": "Билгалйина параметрийн комбинаци тӀе оьцуш йац.",
+	"rest-compare-page-mismatch": "Билгалйина версеш массийта агӀонийн йу, уьш йуьстилла дац.",
+	"rest-compare-permission-denied": "Йоьхуш йолу версин декъашхо тӀекхача ца ло.",
+	"rest-bad-content-model": "Чулацаман нийса йоцу модель: $1",
+	"rest-cannot-load-file": "«$1» коьртана файл чуйаккха мегаш дац.",
+	"rest-badtoken-nosession": "CSRF гӀалат — сеанс йац."
+}

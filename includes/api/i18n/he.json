@@ -1176,6 +1176,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "רשימת תפקידי משבצות תוכן שקיימות בגרסה.",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "יש להשתמש ב־ <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> או ב־ <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> במקום בזה.\n\nעץ פענוח XML של תוכן הגרסה (דורש מודל תוכן <code>$1</code>).",
 	"apihelp-query+revisions+base-param-slots": "עבור אילו משבצות תוכן להחזיר נתונים, כאשר מאפיינים שקשורים למשבצת כלולים ב־<var>$1props</var>. אם זה מושמט, נתונים ממשבצת <kbd>main</kbd> יוחזרו בתסדיר תואם לאחור.",
+	"apihelp-query+revisions+base-param-contentformat-slot": "תסדיר להסדרת תוכן שמשמש לפלט תוכן.",
 	"apihelp-query+revisions+base-param-limit": "להגביל את מספר הגרסאות שיוחזרו.",
 	"apihelp-query+revisions+base-param-expandtemplates": "יש להשתמש ב־<kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> במקום בזה. להרחיב תבניות בתוכן הגרסה (דורש $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "יש להשתמש ב־<kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> או ב־<kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> במקום בזה. יצירת עץ פענוח XML עבור תוכן הגרסה (דורש את $1prop=content; מוחלף ב־<kbd>$1prop=parsetree</kbd>).",

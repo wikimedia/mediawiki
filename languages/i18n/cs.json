@@ -1476,7 +1476,7 @@
 	"action-apihighlimits": "používat vyšší limity v API dotazech",
 	"action-autoconfirmed": "nebýt omezeni rychlostními limity na dané IP adrese",
 	"action-bigdelete": "mazat stránky s dlouhou historií",
-	"action-blockemail": "zablokovat nebo odblokovat uživatele od odesílání e-mailů",
+	"action-blockemail": "zablokovat nebo odblokovat uživateli posílání e-mailů",
 	"action-bot": "být označen jako „bot“",
 	"action-editprotected": "editovat stránky zamčené na „{{int:protect-level-sysop}}“",
 	"action-editsemiprotected": "editovat stránky zamčené na „{{int:protect-level-autoconfirmed}}“",
