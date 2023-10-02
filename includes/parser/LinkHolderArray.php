@@ -427,9 +427,11 @@ class LinkHolderArray {
 					$entry['title'] = $variantTitle;
 					$entry['pdbk'] = $varPdbk;
 
-					// set pdbk and colour
-					$classes[$varPdbk] = $linkRenderer->getLinkClasses( $variantTitle );
-					$pagemap[$s->page_id] = $pdbk;
+					// set pdbk and colour if we haven't checked this title yet.
+					if ( !isset( $classes[$varPdbk] ) ) {
+						$classes[$varPdbk] = $linkRenderer->getLinkClasses( $variantTitle );
+						$pagemap[$s->page_id] = $varPdbk;
+					}
 				}
 			}
 
