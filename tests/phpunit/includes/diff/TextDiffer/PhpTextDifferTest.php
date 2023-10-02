@@ -86,20 +86,26 @@ class PhpTextDifferTest extends MediaWikiIntegrationTestCase {
 			[ 1, [], 'Line 1:' ],
 			[ 2, [], 'Line 2:' ],
 			[ 1, [ 'reducedLineNumbers' => true ], '' ],
+			[ [ 3, 5 ], [ 'diff-type' => 'inline' ], 'Line 3 ⟶ 5:' ],
+			[ [ 1, 5 ], [ 'diff-type' => 'inline', 'reducedLineNumbers' => true ], 'Line 1 ⟶ 5:' ],
+			[ [ 1, 1 ], [ 'diff-type' => 'inline', 'reducedLineNumbers' => true ], '' ]
 		];
 	}
 
 	/**
 	 * @dataProvider provideLocalize
-	 * @param string $line
+	 * @param int|int[] $line
 	 * @param array $options
 	 * @param string $expected
 	 */
 	public function testLocalize( $line, $options, $expected ) {
+		$content = is_array( $line )
+			? "<!-- LINES $line[0],$line[1] -->"
+			: "<!--LINE $line-->";
 		$differ = $this->createDiffer();
 		$result = $differ->localize(
 			'table',
-			"<!--LINE $line-->",
+			$content,
 			$options
 		);
 		$this->assertSame( $expected, $result );
