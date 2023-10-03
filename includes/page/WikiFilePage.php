@@ -21,7 +21,7 @@
 use MediaWiki\Actions\FileDeleteAction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -218,7 +218,7 @@ class WikiFilePage extends WikiPage {
 	 * For foreign API files (InstantCommons), this is not supported currently.
 	 * Results will include hidden categories.
 	 *
-	 * @return TitleArray|Title[]
+	 * @return TitleArrayFromResult
 	 * @since 1.23
 	 */
 	public function getForeignCategories() {
@@ -228,7 +228,7 @@ class WikiFilePage extends WikiPage {
 
 		if ( !$file instanceof LocalFile ) {
 			wfDebug( __METHOD__ . " is not supported for this file" );
-			return TitleArray::newFromResult( new FakeResultWrapper( [] ) );
+			return new TitleArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 
 		/** @var LocalRepo $repo */
@@ -242,7 +242,7 @@ class WikiFilePage extends WikiPage {
 			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey(), ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
-		return TitleArray::newFromResult( $res );
+		return new TitleArrayFromResult( $res );
 	}
 
 	/**

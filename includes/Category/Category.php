@@ -27,7 +27,7 @@ use DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 use MWException;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -320,7 +320,7 @@ class Category {
 	 * category sort key $offset.
 	 * @param int|false $limit
 	 * @param string $offset
-	 * @return TitleArray TitleArray object for category members.
+	 * @return TitleArrayFromResult Title objects for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
@@ -340,7 +340,7 @@ class Category {
 			$queryBuilder->andWhere( $dbr->buildComparison( '>', [ 'cl_sortkey' => $offset ] ) );
 		}
 
-		$result = TitleArray::newFromResult( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
+		$result = new TitleArrayFromResult( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
 
 		return $result;
 	}

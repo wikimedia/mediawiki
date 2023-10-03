@@ -35,16 +35,20 @@ use Wikimedia\Rdbms\IResultWrapper;
  * The documentation of the return types for the abstract current/key functions
  * helps static code analyzer to treat this as Iterator<Title>
  *
+ * @deprecated since 1.41, Use TitleArrayFromResult instead.
+ *
  * @method int count()
  */
 abstract class TitleArray implements Iterator {
 	/**
+	 * @deprecated since 1.41, Use TitleArrayFromResult instead.
 	 * @param IResultWrapper $res A SQL result including at least page_namespace and
 	 *   page_title -- also can have page_id, page_len, page_is_redirect,
 	 *   page_latest (if those will be used).  See Title::newFromRow.
 	 * @return TitleArrayFromResult
 	 */
 	public static function newFromResult( $res ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		// TODO consider merging this class with TitleArrayFromResult now that the
 		// TitleArrayFromResult hook has been removed
 		return new TitleArrayFromResult( $res );

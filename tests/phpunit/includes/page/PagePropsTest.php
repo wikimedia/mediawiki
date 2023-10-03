@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -82,7 +82,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 			$this->createRowFromTitle( $this->title2 )
 		];
 		$resultWrapper = new FakeResultWrapper( $rows );
-		$titles = TitleArray::newFromResult( $resultWrapper );
+		$titles = new TitleArrayFromResult( $resultWrapper );
 		$result = $pageProps->getProperties( $titles, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );

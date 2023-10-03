@@ -792,6 +792,8 @@ because of Phabricator reports.
   the handler are deprecated and will soon be removed. Deprecated ways to
   specify a hook handler include callables wrapped in an array. Handlers
   defined using a "HookHandlers" entry in extension.json are not affected.
+* TitleArray::newFromResult() has been deprecated and now emits deprecation
+  warnings, use TitleArrayFromResults instead.
 * The MediaWikiIntegrationTestCase::$users has been deprecated. Use Authority
   if possible, or call ::getTestUser() or ::getTestSysop() directly.
 * The tests/phpunit/phpunit.php entrypoint has been deprecated. PHPUnit
