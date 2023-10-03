@@ -3294,7 +3294,7 @@
 			},
 			{
 				"name": "page_is_redirect",
-				"comment": "1 indicates the article is a redirect.",
+				"comment": "1 indicates the article is a redirect. If so, there is a row in the `redirect` table with rd_from=page_id, which contains the redirect target.",
 				"type": "mwtinyint",
 				"options": { "notnull": true, "unsigned": true, "default": 0 }
 			},
