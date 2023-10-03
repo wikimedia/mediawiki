@@ -106,6 +106,9 @@ For notes on 1.40.x and older releases, see HISTORY.
 * When $wgUseXssLanguage is set to true (enabled by default in
   DevelopmentSettings.php), ?uselang=x-xss can be used to easily test
   whether all messages are being escaped correctly.
+* Html::noticeBox accepts new optional parameters heading and iconClassName. 
+heading allows to pass an string as title and iconClassName overwrites the 
+default info icon.
 * …
 
 === External library changes in 1.41 ===
