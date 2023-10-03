@@ -27,8 +27,7 @@ use HtmlArmor;
 use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\CommentFormatter\CommentFormatter;
-use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Html\FormOptions;
@@ -59,45 +58,41 @@ class SpecialNewPages extends IncludableSpecialPage {
 	protected $showNavigation = false;
 
 	private LinkBatchFactory $linkBatchFactory;
-	private CommentStore $commentStore;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private RevisionLookup $revisionLookup;
 	private NamespaceInfo $namespaceInfo;
 	private UserOptionsLookup $userOptionsLookup;
-	private CommentFormatter $commentFormatter;
+	private RowCommentFormatter $rowCommentFormatter;
 	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param CommentStore $commentStore
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param CommentFormatter $commentFormatter
+	 * @param RowCommentFormatter $rowCommentFormatter
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		CommentStore $commentStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		GroupPermissionsLookup $groupPermissionsLookup,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
 		UserOptionsLookup $userOptionsLookup,
-		CommentFormatter $commentFormatter,
+		RowCommentFormatter $rowCommentFormatter,
 		ChangeTagsStore $changeTagsStore
 	) {
 		parent::__construct( 'Newpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->commentStore = $commentStore;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->revisionLookup = $revisionLookup;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->commentFormatter = $commentFormatter;
+		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->changeTagsStore = $changeTagsStore;
 	}
 
@@ -392,8 +387,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 			$this->linkBatchFactory,
 			$this->namespaceInfo,
 			$this->changeTagsStore,
-			$this->commentStore,
-			$this->commentFormatter,
+			$this->rowCommentFormatter,
 			$this->contentHandlerFactory,
 			$this->opts,
 		);

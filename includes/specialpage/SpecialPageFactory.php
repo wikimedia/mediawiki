@@ -694,13 +694,12 @@ class SpecialPageFactory {
 			'class' => SpecialNewPages::class,
 			'services' => [
 				'LinkBatchFactory',
-				'CommentStore',
 				'ContentHandlerFactory',
 				'GroupPermissionsLookup',
 				'RevisionLookup',
 				'NamespaceInfo',
 				'UserOptionsLookup',
-				'CommentFormatter',
+				'RowCommentFormatter',
 				'ChangeTagsStore',
 			]
 		],
