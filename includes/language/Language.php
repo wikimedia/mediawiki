@@ -2995,7 +2995,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Get all the magic words from the localisation cache.
 	 *
-	 * @return string[][]
+	 * @return array<string,array> $magicWord => [ int $caseSensitive, string ...$alias ]
 	 */
 	public function getMagicWords() {
 		return $this->localisationCache->getItem( $this->mCode, 'magicWords' );

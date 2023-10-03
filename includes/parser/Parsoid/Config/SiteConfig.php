@@ -681,7 +681,7 @@ class SiteConfig extends ISiteConfig {
 		return $this->parserFactory->getMainInstance()->getFunctionSynonyms();
 	}
 
-	/** @inheritDoc */
+	/** @return array<string,array> $magicWord => [ int $caseSensitive, string ...$alias ] */
 	protected function getMagicWords(): array {
 		return $this->contLang->getMagicWords();
 	}
