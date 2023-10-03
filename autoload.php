@@ -1333,7 +1333,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\ParserOutputPostCacheTransformHook' => __DIR__ . '/includes/parser/Hook/ParserOutputPostCacheTransformHook.php',
 	'MediaWiki\\Hook\\ParserPreSaveTransformCompleteHook' => __DIR__ . '/includes/parser/Hook/ParserPreSaveTransformCompleteHook.php',
 	'MediaWiki\\Hook\\ParserTestGlobalsHook' => __DIR__ . '/includes/Hook/ParserTestGlobalsHook.php',
-	'MediaWiki\\Hook\\ParserTestTablesHook' => __DIR__ . '/includes/Hook/ParserTestTablesHook.php',
 	'MediaWiki\\Hook\\PasswordPoliciesForUserHook' => __DIR__ . '/includes/password/Hook/PasswordPoliciesForUserHook.php',
 	'MediaWiki\\Hook\\PostLoginRedirectHook' => __DIR__ . '/includes/specials/Hook/PostLoginRedirectHook.php',
 	'MediaWiki\\Hook\\PreferencesGetIconHook' => __DIR__ . '/includes/Hook/PreferencesGetIconHook.php',
