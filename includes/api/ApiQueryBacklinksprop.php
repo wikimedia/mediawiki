@@ -217,7 +217,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$this->addWhere( "$bl_from = page_id" );
 
 		if ( $this->getModuleName() === 'redirects' ) {
-			$this->addWhereFld( 'rd_interwiki', [ '', null ] );
+			$this->addWhereFld( 'rd_interwiki', '' );
 		}
 
 		$this->addFields( array_keys( $sortby ) );
@@ -263,10 +263,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				$this->dieWithError( 'apierror-show' );
 			}
 			$this->addWhereIf( "rd_fragment != " . $db->addQuotes( '' ), isset( $show['fragment'] ) );
-			$this->addWhereIf(
-				[ 'rd_fragment' => [ '', null ] ],
-				isset( $show['!fragment'] )
-			);
+			$this->addWhereIf( [ 'rd_fragment' => '' ], isset( $show['!fragment'] ) );
 			$this->addWhereIf( [ 'page_is_redirect' => 1 ], isset( $show['redirect'] ) );
 			$this->addWhereIf( [ 'page_is_redirect' => 0 ], isset( $show['!redirect'] ) );
 		}
@@ -326,7 +323,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 					);
 				}
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable set when used
-				if ( $fld_fragment && $row->rd_fragment !== null && $row->rd_fragment !== '' ) {
+				if ( $fld_fragment && $row->rd_fragment !== '' ) {
 					$vals['fragment'] = $row->rd_fragment;
 				}
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable set when used
