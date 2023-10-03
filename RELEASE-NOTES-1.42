@@ -82,6 +82,9 @@ because of Phabricator reports.
 * BlockManager::getUserBlock() was deprecated. Instead use
   BlockManager::getBlock(), which expects the caller to do ipblock-exempt
   checking.
+* User::isBlocked(), ::isBlockedFromCreateAccount() and ::isBlockedFrom() now
+  emit deprecation warnings. They were deprecated since 1.34, 1.37 and 1.33
+  respectively.
 * Vuex has been deprecated in favor of its successor, Pinia. Though deprecated,
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.
