@@ -652,6 +652,40 @@ abstract class LanguageConverter implements ILanguageConverter {
 		return $text;
 	}
 
+	/**
+	 * @param string $text Text to convert
+	 * @param string $variant Variant language code
+	 * @return string Translated text
+	 */
+	protected function translateWithoutRomanNumbers( $text, $variant ) {
+		$breaks = '[^\w\x80-\xff]';
+
+		// regexp for roman numbers
+		// Lookahead assertion ensures $roman doesn't match the empty string
+		$roman = '(?=[MDCLXVI])M{0,4}(C[DM]|D?C{0,3})(X[LC]|L?X{0,3})(I[VX]|V?I{0,3})';
+
+		$reg = '/^' . $roman . '$|^' . $roman . $breaks . '|' . $breaks
+			. $roman . '$|' . $breaks . $roman . $breaks . '/';
+
+		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
+
+		$m = array_shift( $matches );
+		$this->loadTables();
+		if ( !isset( $this->mTables[$variant] ) ) {
+			throw new MWException( "Broken variant table: "
+				. implode( ',', array_keys( $this->mTables ) ) );
+		}
+		$ret = $this->mTables[$variant]->replace( $m[0] );
+		$mstart = (int)$m[1] + strlen( $m[0] );
+		foreach ( $matches as $m ) {
+			$ret .= substr( $text, $mstart, (int)$m[1] - $mstart );
+			$ret .= $this->translate( $m[0], $variant );
+			$mstart = (int)$m[1] + strlen( $m[0] );
+		}
+
+		return $ret;
+	}
+
 	public function autoConvertToAllVariants( $text ) {
 		$this->loadTables();
 

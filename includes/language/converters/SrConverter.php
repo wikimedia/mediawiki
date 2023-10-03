@@ -115,33 +115,8 @@ class SrConverter extends LanguageConverterSpecific {
 	 *
 	 * @inheritDoc
 	 */
-	public function translate( $text, $toVariant ) {
-		$breaks = '[^\w\x80-\xff]';
-
-		// regexp for roman numbers
-		// Lookahead assertion ensures $roman doesn't match the empty string
-		$roman = '(?=[MDCLXVI])M{0,4}(C[DM]|D?C{0,3})(X[LC]|L?X{0,3})(I[VX]|V?I{0,3})';
-
-		$reg = '/^' . $roman . '$|^' . $roman . $breaks . '|' . $breaks
-			. $roman . '$|' . $breaks . $roman . $breaks . '/';
-
-		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
-
-		$m = array_shift( $matches );
-		$this->loadTables();
-		if ( !isset( $this->mTables[$toVariant] ) ) {
-			throw new MWException( "Broken variant table: "
-				. implode( ',', array_keys( $this->mTables ) ) );
-		}
-		$ret = $this->mTables[$toVariant]->replace( $m[0] );
-		$mstart = (int)$m[1] + strlen( $m[0] );
-		foreach ( $matches as $m ) {
-			$ret .= substr( $text, $mstart, (int)$m[1] - $mstart );
-			$ret .= parent::translate( $m[0], $toVariant );
-			$mstart = (int)$m[1] + strlen( $m[0] );
-		}
-
-		return $ret;
+	public function translate( $text, $variant ) {
+		return $this->translateWithoutRomanNumbers( $text, $variant );
 	}
 
 	public function guessVariant( $text, $variant ) {
