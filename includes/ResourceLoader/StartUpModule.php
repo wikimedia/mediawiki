@@ -51,7 +51,7 @@ class StartUpModule extends Module {
 	 * Cache version for client-side ResourceLoader module storage.
 	 * Like ResourceLoaderStorageVersion but not configurable.
 	 */
-	private const STORAGE_VERSION = '1.41';
+	private const STORAGE_VERSION = '2';
 
 	private $groupIds = [
 		// These reserved numbers MUST start at 0 and not skip any. These are preset
