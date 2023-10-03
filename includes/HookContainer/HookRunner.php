@@ -302,7 +302,6 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserOutputPostCacheTransformHook,
 	\MediaWiki\Hook\ParserPreSaveTransformCompleteHook,
 	\MediaWiki\Hook\ParserTestGlobalsHook,
-	\MediaWiki\Hook\ParserTestTablesHook,
 	\MediaWiki\Hook\PasswordPoliciesForUserHook,
 	\MediaWiki\Hook\PostLoginRedirectHook,
 	\MediaWiki\Hook\PreferencesGetIconHook,
@@ -3049,13 +3048,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserTestGlobals',
 			[ &$globals ]
-		);
-	}
-
-	public function onParserTestTables( &$tables ) {
-		return $this->container->run(
-			'ParserTestTables',
-			[ &$tables ]
 		);
 	}
 

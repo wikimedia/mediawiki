@@ -256,6 +256,8 @@ because of Phabricator reports.
   has been removed.
 * MediaWikiServices::getWatchlistNotificationManager(), deprecated in 1.36,
   has been removed.
+* Interface MediaWiki\Hook\ParserTestTablesHook, deprecated in 1.36,
+  has been removed.
 * The NewPagesLineEndingHook now takes NewPagesPager instead of
   SpecialNewpages as first argument.
 * The following methods in the Title class, deprecated since 1.37, have been
