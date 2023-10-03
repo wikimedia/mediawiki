@@ -22,16 +22,18 @@
 require_once __DIR__ . '/../includes/Benchmarker.php';
 
 /**
- * Maintenance script that benchmarks JSMinPlus.
+ * Measure ResourceLoader syntax validation for user-supplied JavaScript.
  *
+ * @see ResourceLoader\Module::validateScriptFile
+ * @see JSParseHelper
  * @ingroup Benchmark
  */
-class BenchmarkJSMinPlus extends Benchmarker {
+class BenchmarkJsValidate extends Benchmarker {
 	protected $defaultCount = 10;
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Benchmarks JSMinPlus.' );
+		$this->addDescription( 'Measure JavaScript syntax validation.' );
 		$this->addOption( 'file', 'Path to JS file. Default: jquery', false, true );
 	}
 
@@ -48,7 +50,8 @@ class BenchmarkJSMinPlus extends Benchmarker {
 		$this->bench( [
 			"JSParser::parse ($filename)" => [
 				'function' => static function ( $parser, $content, $filename ) {
-					$parser->parse( $content, $filename, 1 );
+					// phpcs:ignore Generic.PHP.NoSilencedErrors
+					@$parser->parse( $content, $filename, 1 );
 				},
 				'args' => [ $parser, $content, $filename ]
 			]
@@ -56,5 +59,5 @@ class BenchmarkJSMinPlus extends Benchmarker {
 	}
 }
 
-$maintClass = BenchmarkJSMinPlus::class;
+$maintClass = BenchmarkJsValidate::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
