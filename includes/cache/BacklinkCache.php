@@ -26,10 +26,11 @@
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -55,6 +56,12 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * Introduced by r47317
  */
 class BacklinkCache {
+	/**
+	 * @internal Used by ServiceWiring.php
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::UpdateRowsPerJob,
+	];
 
 	/**
 	 * Multi dimensions array representing batches. Keys are:
@@ -92,21 +99,30 @@ class BacklinkCache {
 
 	private const CACHE_EXPIRY = 3600;
 	private IConnectionProvider $dbProvider;
+	private ServiceOptions $options;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * Create a new BacklinkCache
 	 *
+	 * @param ServiceOptions $options
+	 * @param LinksMigration $linksMigration
 	 * @param WANObjectCache $wanCache
 	 * @param HookContainer $hookContainer
 	 * @param IConnectionProvider $dbProvider
 	 * @param PageReference $page Page to create a backlink cache for
 	 */
 	public function __construct(
+		ServiceOptions $options,
+		LinksMigration $linksMigration,
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
 		IConnectionProvider $dbProvider,
 		PageReference $page
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+		$this->linksMigration = $linksMigration;
 		$this->page = $page;
 		$this->wanCache = $wanCache;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -258,9 +274,9 @@ class BacklinkCache {
 		switch ( $table ) {
 			case 'pagelinks':
 			case 'templatelinks':
-				$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 				$queryBuilder->where(
-					$linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) ) );
+					$this->linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) )
+				);
 				break;
 			case 'redirect':
 				$queryBuilder->where( [
@@ -342,14 +358,12 @@ class BacklinkCache {
 			),
 			self::CACHE_EXPIRY,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $table, $max ) {
-				$config = MediaWikiServices::getInstance()->getMainConfig();
-
 				$setOpts += Database::getCacheSetOptions( $this->getDB() );
 
 				if ( is_infinite( $max ) ) {
 					// Use partition() since it will batch the query and skip the JOIN.
 					// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
-					$batchSize = $config->get( MainConfigNames::UpdateRowsPerJob );
+					$batchSize = $this->options->get( MainConfigNames::UpdateRowsPerJob );
 					$this->partition( $table, $batchSize );
 					$value = $this->partitionCache[$table][$batchSize]['numRows'];
 				} else {
@@ -500,8 +514,9 @@ class BacklinkCache {
 
 		// @todo: use UNION without breaking tests that use temp tables
 		$resSets = [];
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		$linkConds = $linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $this->page ) );
+		$linkConds = $this->linksMigration->getLinksConditions(
+			'templatelinks', TitleValue::newFromPage( $this->page )
+		);
 		$resSets[] = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title', 'page_id' ] )
 			->from( 'templatelinks' )

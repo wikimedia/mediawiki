@@ -24,7 +24,9 @@
 namespace MediaWiki\Cache;
 
 use BacklinkCache;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Page\PageReference;
 use WANObjectCache;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -43,16 +45,18 @@ class BacklinkCacheFactory {
 	private $hookContainer;
 
 	private IConnectionProvider $dbProvider;
+	private ServiceOptions $options;
+	private LinksMigration $linksMigration;
 
-	/**
-	 * @param WANObjectCache $wanCache
-	 * @param HookContainer $hookContainer
-	 */
 	public function __construct(
+		ServiceOptions $options,
+		LinksMigration $linksMigration,
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
 		IConnectionProvider $dbProvider
 	) {
+		$this->options = $options;
+		$this->linksMigration = $linksMigration;
 		$this->wanCache = $wanCache;
 		$this->hookContainer = $hookContainer;
 		$this->dbProvider = $dbProvider;
@@ -71,6 +75,8 @@ class BacklinkCacheFactory {
 	public function getBacklinkCache( PageReference $page ): BacklinkCache {
 		if ( !$this->latestBacklinkCache || !$this->latestBacklinkCache->getPage()->isSamePageAs( $page ) ) {
 			$this->latestBacklinkCache = new BacklinkCache(
+				$this->options,
+				$this->linksMigration,
 				$this->wanCache,
 				$this->hookContainer,
 				$this->dbProvider,
