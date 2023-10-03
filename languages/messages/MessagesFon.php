@@ -30,4 +30,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => "Akpaxwé_lɛ_sín_xoɖɔtɛn",
 ];
 
+// Remove French gendered user namespace aliases
+$namespaceGenderAliases = [];
+
 $linkTrail = '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙƉɖ̀Ɛ̌ɛ̂Ɔ́ɔ̄]+)(.*)$/sDu';
