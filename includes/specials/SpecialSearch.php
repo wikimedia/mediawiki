@@ -694,8 +694,8 @@ class SpecialSearch extends SpecialPage {
 		$out->addJsConfigVars( [ 'searchTerm' => $term ] );
 		$out->addModules( 'mediawiki.special.search' );
 		$out->addModuleStyles( [
-			'mediawiki.special', 'mediawiki.special.search.styles', 'mediawiki.ui', 'mediawiki.ui.button',
-			'mediawiki.ui.input', 'mediawiki.widgets.SearchInputWidget.styles',
+			'mediawiki.special', 'mediawiki.special.search.styles',
+			'mediawiki.widgets.SearchInputWidget.styles',
 		] );
 	}
 
