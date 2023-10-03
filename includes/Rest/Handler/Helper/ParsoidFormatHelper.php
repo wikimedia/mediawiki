@@ -130,6 +130,3 @@ class ParsoidFormatHelper {
 	}
 
 }
-
-/** @deprecated since 1.40, remove in 1.41 */
-class_alias( ParsoidFormatHelper::class, "MediaWiki\\Rest\\Handler\\ParsoidFormatHelper" );

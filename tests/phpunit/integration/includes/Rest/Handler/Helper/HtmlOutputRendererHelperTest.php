@@ -588,7 +588,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper::init
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper::init
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
 	 */
 	public function testEtagLastModifiedWithPageIdentity() {
