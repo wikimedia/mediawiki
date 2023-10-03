@@ -42,6 +42,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 === External library changes in 1.42 ===
 
 ==== New external libraries ====
+* Added mediawiki/json-codec at v2.2.1
 * …
 
 ===== New development-only external libraries =====
