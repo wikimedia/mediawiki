@@ -159,6 +159,7 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
 	'wgTitle' => \MediaWiki\Title\Title::class,
 	'wgGalleryOptions' => 'array',
+	'wgDirectoryMode' => 'int',
 	'wgDummyLanguageCodes' => 'string[]',
 	'wgNamespaceProtection' => 'array<int,string|string[]>',
 	'wgNamespaceAliases' => 'array<string,int>',
