@@ -15,16 +15,18 @@
 		inlineToggleSwitchLayout = OO.ui.FieldLayout.static.infuse( $inlineToggleSwitchLayout ),
 		inlineToggleSwitch = inlineToggleSwitchLayout.getField();
 
-	inlineToggleSwitch.on( 'change', onDiffTypeInlineChange );
+	inlineToggleSwitch.on( 'change', function ( e ) {
+		onDiffTypeInlineChange( e, true );
+	} );
 	inlineToggleSwitch.on( 'disable', onDiffTypeInlineDisabled );
 
 	$wikitextDiffContainer = $( 'table.diff[data-mw="interface"]' );
-	$wikitextDiffHeader = $wikitextDiffContainer.find( 'tr.diff-title' );
+	$wikitextDiffHeader = $wikitextDiffContainer.find( 'tr.diff-title' )
+		.add( $wikitextDiffContainer.find( 'td.diff-multi, td.diff-notice' ).parent() );
 	$wikitextDiffBody = $wikitextDiffContainer.find( 'tr' ).not( $wikitextDiffHeader );
 
 	if ( inlineToggleSwitch.getValue() ) {
 		$wikitextDiffBodyInline = $wikitextDiffBody;
-		$wikitextDiffBody.first( 'tr' ).addClass( 'inline-diff-row' );
 	} else {
 		$wikitextDiffBodyTable = $wikitextDiffBody;
 	}
@@ -33,9 +35,9 @@
 	 * Handler for inlineToggleSwitch onChange event
 	 *
 	 * @param {boolean} isInline
+	 * @param {boolean} saveDiffTypeOption
 	 */
-	function onDiffTypeInlineChange( isInline ) {
-
+	function onDiffTypeInlineChange( isInline, saveDiffTypeOption ) {
 		if ( ( isInline && typeof $wikitextDiffBodyInline === 'undefined' ) ||
 			( !isInline && typeof $wikitextDiffBodyTable === 'undefined' ) ) {
 			fetchDiff( isInline );
@@ -43,13 +45,15 @@
 			toggleDiffTypeVisibility( isInline );
 		}
 
-		api.saveOption( 'diff-type', isInline ? 'inline' : 'table' )
-			.fail( function ( error ) {
-				if ( error === 'notloggedin' ) {
-					// Can't save preference, so use query parameter stickiness
-					switchQueryParams( isInline );
-				}
-			} );
+		if ( saveDiffTypeOption ) {
+			api.saveOption( 'diff-type', isInline ? 'inline' : 'table' )
+				.fail( function ( error ) {
+					if ( error === 'notloggedin' ) {
+						// Can't save preference, so use query parameter stickiness
+						switchQueryParams( isInline );
+					}
+				} );
+		}
 	}
 
 	/**
@@ -102,6 +106,9 @@
 			$inlineLegendContainer.addClass( 'oo-ui-element-hidden' );
 		} else {
 			$inlineLegendContainer.toggleClass( 'oo-ui-element-hidden', !inlineToggleSwitch.getValue() );
+			// When Inline Switch is enabled, toggle wikitext according to its value.
+			// Do not save user 'diff-type' preference
+			onDiffTypeInlineChange( inlineToggleSwitch.getValue(), false );
 		}
 	}
 
@@ -135,7 +142,6 @@
 		api.get( apiParams ).done( function ( diffData ) {
 			if ( isInline ) {
 				$wikitextDiffBodyInline = $( diffData.compare[ '*' ] );
-				$wikitextDiffBodyInline.first( 'tr' ).addClass( 'inline-diff-row' );
 			} else {
 				$wikitextDiffBodyTable = $( diffData.compare[ '*' ] );
 			}
