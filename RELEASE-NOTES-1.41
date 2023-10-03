@@ -515,6 +515,7 @@ because of Phabricator reports.
 * All public properties of LinksUpdate, deprecated in 1.38, were removed.
 * The class Wikimedia\Rdbms\MySQLMasterPos, deprecated in 1.37, has been
   removed. Use Wikimedia\Rdbms\MySQLPrimaryPos instead.
+* The class GetBlockErrorMessageKey, deprecated in 1.40, has been removed.
 * MagicWord::addToArray has been removed without deprecation. There were no
   known uses.
 * …
