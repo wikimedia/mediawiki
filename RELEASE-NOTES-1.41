@@ -998,6 +998,8 @@ because of Phabricator reports.
   warnings.
 * WikiPage::getPageIsRedirectField() is now deprecated.
 * WikiPage::insertRedirect() is now deprecated.
+* Parser::getFreshParser(), deprecated since 1.39, now emits deprecation
+  warnings.
 * The legacy MediaWiki UI ResourceLoader modules, such as `mediawiki.ui`, are
   all now emitting deprecation warnings in the JavaScript console. Please use
   Codex CSS components instead.

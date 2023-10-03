@@ -6385,11 +6385,12 @@ class Parser {
 	 * $oldParser->getFreshParser()->parse( ... );
 	 * if you're unsure if $oldParser is safe to use.
 	 *
-	 * @deprecated since 1.39, use ParserFactory::getInstance()
+	 * @deprecated since 1.39, use ParserFactory::getInstance(), Hard-deprecated since 1.41.
 	 * @since 1.24
 	 * @return Parser A parser object that is not parsing anything
 	 */
 	public function getFreshParser() {
+		wfDeprecated( __METHOD__, '1.39' );
 		if ( $this->mInParse ) {
 			return $this->factory->create();
 		} else {
