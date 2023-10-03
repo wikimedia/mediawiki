@@ -567,7 +567,6 @@ class MediaWiki {
 				$trxProfiler = Profiler::instance()->getTransactionProfiler();
 				$trxLimits = $this->config->get( MainConfigNames::TrxProfilerLimits );
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
-				$request->markAsSafeRequest();
 			}
 
 			// Let CDN cache things if we can purge them.

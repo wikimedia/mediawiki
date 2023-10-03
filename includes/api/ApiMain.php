@@ -1957,7 +1957,6 @@ class ApiMain extends ApiBase {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
 		} elseif ( $request->wasPosted() && !$module->isWriteMode() ) {
 			$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
-			$request->markAsSafeRequest();
 		} else {
 			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
 		}
