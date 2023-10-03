@@ -24,12 +24,13 @@ namespace MediaWiki\ResourceLoader;
 
 use Exception;
 use FileContentsHasher;
-use JSParser;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Peast\Peast;
+use Peast\Syntax\Exception as PeastSyntaxException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -1090,15 +1091,10 @@ abstract class Module implements LoggerAwareInterface {
 			),
 			$cache::TTL_WEEK,
 			static function () use ( $contents, $fileName ) {
-				$parser = new JSParser();
 				try {
-					// Ignore compiler warnings (T77169)
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-					@$parser->parse( $contents, $fileName, 1 );
-				} catch ( TimeoutException $e ) {
-					throw $e;
-				} catch ( Exception $e ) {
-					return $e->getMessage();
+					Peast::ES2016( $contents )->parse();
+				} catch ( PeastSyntaxException $e ) {
+					return $e->getMessage() . " on line " . $e->getPosition()->getLine();
 				}
 				// Cache success as null
 				return null;
@@ -1113,8 +1109,7 @@ abstract class Module implements LoggerAwareInterface {
 			// the response itself.
 			return 'mw.log.error(' .
 				json_encode(
-					'JavaScript parse error (scripts need to be valid ECMAScript 5): ' .
-					$error
+					'Parse error: ' . $error
 				) .
 				');';
 		}

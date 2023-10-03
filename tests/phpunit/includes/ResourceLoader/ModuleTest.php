@@ -164,28 +164,26 @@ class ModuleTest extends ResourceLoaderTestCase {
 		yield 'valid ES5' => [ "\n'valid';" ];
 
 		yield 'valid ES6/ES2015 for-of' => [
-			"var x = ['a', 'b']; for (var key of x) { console.log(key); }",
-			'Parse error: Unexpected token; token ; expected in file \'input\' on line 1'
+			"var x = ['a', 'b']; for (var key of x) { console.log(key); }"
 		];
 
 		yield 'valid ES2016 exponentiation' => [
-			"var x = 2; var y = 3; console.log(x ** y);",
-			'Parse error: Missing ) in parenthetical in file \'input\' on line 1'
+			"var x = 2; var y = 3; console.log(x ** y);"
 		];
 
 		yield 'valid ES2017 async-await' => [
 			"var foo = async function(x) { return await x.fetch(); }",
-			'Parse error: Missing ; before statement in file \'input\' on line 1'
+			'Parse error: Unexpected: function on line 1'
 		];
 
 		yield 'valid ES2018 spread in object literal' => [
 			"var x = {b: 2, c: 3}; var y = {a: 1, ...x};",
-			'Parse error: Invalid property name in file \'input\' on line 1'
+			'Parse error: Unexpected: ... on line 1'
 		];
 
 		yield 'SyntaxError' => [
 			"var a = 'this is';\n {\ninvalid",
-			'Parse error: Unexpected token; token } expected in file \'input\' on line 3"'
+			'Parse error: Unclosed { on line 3'
 		];
 
 		// If an implementation matches inputs using a regex with runaway backtracking,
@@ -210,8 +208,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider provideValidateScripts
-	 * @covers JSMinPlus
-	 * @covers JSParser
 	 */
 	public function testValidateScriptFile( $input, $error = null ) {
 		$this->overrideConfigValue( MainConfigNames::ResourceLoaderValidateJS, true );

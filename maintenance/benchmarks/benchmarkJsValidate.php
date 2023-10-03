@@ -56,6 +56,15 @@ class BenchmarkJsValidate extends Benchmarker {
 				'args' => [ $parser, $content, $filename ]
 			]
 		] );
+
+		$this->bench( [
+			"Peast::parse ($filename)" => [
+				'function' => static function ( $content ) {
+					Peast\Peast::ES2016( $content )->parse();
+				},
+				'args' => [ $content ]
+			]
+		] );
 	}
 }
 
