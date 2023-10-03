@@ -1541,7 +1541,8 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['cat'] ) ) {
-			foreach ( $output->getCategories() as $name => $sortkey ) {
+			foreach ( $output->getCategoryNames() as $name ) {
+				$sortkey = $output->getCategorySortKey( $name );
 				$after[] = "cat=$name sort=$sortkey";
 			}
 		}

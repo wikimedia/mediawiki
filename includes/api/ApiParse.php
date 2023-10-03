@@ -569,7 +569,7 @@ class ApiParse extends ApiBase {
 			$result_array['langlinks'] = $this->formatLangLinks( $langlinks );
 		}
 		if ( isset( $prop['categories'] ) ) {
-			$result_array['categories'] = $this->formatCategoryLinks( $p_result->getCategories() );
+			$result_array['categories'] = $this->formatCategoryLinks( $p_result->getCategoryMap() );
 		}
 		if ( isset( $prop['categorieshtml'] ) ) {
 			$result_array['categorieshtml'] = $outputPage->getSkin()->getCategories();

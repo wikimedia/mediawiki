@@ -1287,7 +1287,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
 
-		$stubPO = $this->createParserOutputStub( 'getCategories', $args );
+		$stubPO = $this->createParserOutputStub( [
+			'getCategories' => $args,
+			'getCategoryMap' => $args,
+		] );
 
 		// addParserOutput and addParserOutputMetadata should behave identically for us, so
 		// alternate to get coverage for both without adding extra tests
@@ -1611,6 +1614,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$arrayReturningMethods = [
 			'getCategories',
+			'getCategoryMap',
 			'getFileSearchOptions',
 			'getHeadItems',
 			'getImages',

@@ -699,10 +699,26 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * @deprecated since 1.40; use ::getCategoryNames() and
-	 * ::getCategorySortKey()instead. This function will be
-	 * made @internal in a future release.
+	 * ::getCategorySortKey() instead. For @internal use ::getCategoryMap()
+	 * may be used, but it is not recommended.
 	 */
 	public function &getCategories() {
+		wfDeprecated( __METHOD__, '1.40' );
+		return $this->mCategories;
+	}
+
+	/**
+	 * Return category names and sort keys as a map.
+	 *
+	 * BEWARE that numeric category names get converted to 'int' when stored
+	 * as array keys.  Because of this, use of this method is not recommended
+	 * in new code; using ::getCategoryNames() and ::getCategorySortKey() will
+	 * be less error-prone.
+	 *
+	 * @return array<string|int,string>
+	 * @internal
+	 */
+	public function getCategoryMap(): array {
 		return $this->mCategories;
 	}
 
@@ -2277,7 +2293,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function mergeTrackingMetaDataFrom( ParserOutput $source ): void {
 		$this->mLanguageLinks = self::mergeList( $this->mLanguageLinks, $source->getLanguageLinks() );
-		$this->mCategories = self::mergeMap( $this->mCategories, $source->getCategories() );
+		$this->mCategories = self::mergeMap( $this->mCategories, $source->getCategoryMap() );
 		$this->mLinks = self::merge2D( $this->mLinks, $source->getLinks() );
 		$this->mTemplates = self::merge2D( $this->mTemplates, $source->getTemplates() );
 		$this->mTemplateIds = self::merge2D( $this->mTemplateIds, $source->getTemplateIds() );

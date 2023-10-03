@@ -284,7 +284,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getLanguageLinks() );
 					$testCase->assertArrayEquals( [], $object->getInterwikiLinks() );
 					$testCase->assertArrayEquals( [], $object->getCategoryNames() );
-					$testCase->assertArrayEquals( [], $object->getCategories() );
+					$testCase->assertArrayEquals( [], $object->getCategoryMap() );
 					$testCase->assertArrayEquals( [], $object->getIndicators() );
 					$testCase->assertSame( '', $object->getTitleText() );
 					$testCase->assertArrayEquals( [], $object->getSections() );
@@ -389,7 +389,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [
 						'category1' => '2',
 						'category2' => '1'
-					], $object->getCategories() );
+					], $object->getCategoryMap() );
 					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
 					$testCase->assertSame( 'title_text1', $object->getTitleText() );
 					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
