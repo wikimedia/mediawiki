@@ -535,8 +535,23 @@ because of Phabricator reports.
 * The class Wikimedia\Rdbms\MySQLMasterPos, deprecated in 1.37, has been
   removed. Use Wikimedia\Rdbms\MySQLPrimaryPos instead.
 * The class GetBlockErrorMessageKey, deprecated in 1.40, has been removed.
-* MagicWord::addToArray has been removed without deprecation. There were no
-  known uses.
+* The following MagicWord methods have been removed without deprecation. There
+  were no known uses.
+  - ::addToArray
+  - ::getVariableRegex
+  - ::getVariableStartToEndRegex
+  - ::getWasModified
+  - ::matchStart
+  - ::matchVariableStartToEnd
+  - ::substituteCallback
+* The following MagicWordArray methods have been removed or made private without
+  deprecation. There were no known uses outside of the class.
+  - ::addArray
+  - ::getRegex, already marked as @internal, now private
+  - ::getRegexStart, already marked as @internal, now private
+  - ::getVariableRegex, deprecated since 1.36
+  - ::getVariableStartToEndRegex, already marked as @internal, now private
+  - ::parseMatch, now private
 * …
 
 === Deprecations in 1.41 ===

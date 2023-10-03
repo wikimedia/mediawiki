@@ -86,15 +86,6 @@ class MagicWord {
 	/** @var string */
 	private $mBaseRegex = '';
 
-	/** @var string */
-	private $mVariableRegex = '';
-
-	/** @var string */
-	private $mVariableStartToEndRegex = '';
-
-	/** @var bool */
-	private $mModified = false;
-
 	/** @var bool */
 	private $mFound = false;
 
@@ -155,12 +146,6 @@ class MagicWord {
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
 		$this->mRegexStartToEnd = "/^(?:{$this->mBaseRegex})$/{$case}";
-		$this->mVariableRegex = str_replace( "\\$1", "(.*?)", $this->mRegex );
-		$this->mVariableStartToEndRegex = str_replace(
-			"\\$1",
-			"(.*?)",
-			"/^(?:{$this->mBaseRegex})$/{$case}"
-		);
 	}
 
 	/**
@@ -255,17 +240,6 @@ class MagicWord {
 	}
 
 	/**
-	 * Returns true if the text starts with the word
-	 *
-	 * @param string $text
-	 *
-	 * @return bool
-	 */
-	public function matchStart( $text ) {
-		return (bool)preg_match( $this->getRegexStart(), $text );
-	}
-
-	/**
 	 * Returns true if the text matched the word
 	 *
 	 * @param string $text
@@ -275,37 +249,6 @@ class MagicWord {
 	 */
 	public function matchStartToEnd( $text ) {
 		return (bool)preg_match( $this->getRegexStartToEnd(), $text );
-	}
-
-	/**
-	 * Returns NULL if there's no match, the value of $1 otherwise
-	 * The return code is the matched string, if there's no variable
-	 * part in the regex and the matched variable part ($1) if there
-	 * is one.
-	 *
-	 * @param string $text
-	 *
-	 * @return string|null
-	 */
-	public function matchVariableStartToEnd( $text ) {
-		$matches = [];
-		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
-		if ( $matchcount == 0 ) {
-			return null;
-		} else {
-			# multiple matched parts (variable match); some will be empty because of
-			# synonyms. The variable will be the second non-empty one so remove any
-			# blank elements and re-sort the indices.
-			# See also T8526
-
-			$matches = array_values( array_filter( $matches ) );
-
-			if ( count( $matches ) == 1 ) {
-				return $matches[0];
-			} else {
-				return $matches[1];
-			}
-		}
 	}
 
 	/**
@@ -368,48 +311,7 @@ class MagicWord {
 			$subject,
 			$limit
 		);
-		$this->mModified = $res !== $subject;
 		return $res;
-	}
-
-	/**
-	 * Variable handling: {{SUBST:xxx}} style words
-	 * Calls back a function to determine what to replace xxx with
-	 * Input word must contain $1
-	 *
-	 * @param string $text
-	 * @param callable $callback
-	 *
-	 * @return string
-	 */
-	public function substituteCallback( $text, $callback ) {
-		$res = preg_replace_callback( $this->getVariableRegex(), $callback, $text );
-		$this->mModified = $res !== $text;
-		return $res;
-	}
-
-	/**
-	 * Matches the word, where $1 is a wildcard
-	 *
-	 * @return string
-	 */
-	public function getVariableRegex() {
-		if ( $this->mVariableRegex == '' ) {
-			$this->initRegex();
-		}
-		return $this->mVariableRegex;
-	}
-
-	/**
-	 * Matches the entire string, where $1 is a wildcard
-	 *
-	 * @return string
-	 */
-	public function getVariableStartToEndRegex() {
-		if ( $this->mVariableStartToEndRegex == '' ) {
-			$this->initRegex();
-		}
-		return $this->mVariableStartToEndRegex;
 	}
 
 	/**
@@ -428,16 +330,6 @@ class MagicWord {
 	 */
 	public function getSynonyms() {
 		return $this->mSynonyms;
-	}
-
-	/**
-	 * Returns true if the last call to replace() or substituteCallback()
-	 * returned a modified text, otherwise false.
-	 *
-	 * @return bool
-	 */
-	public function getWasModified() {
-		return $this->mModified;
 	}
 
 	/**

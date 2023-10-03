@@ -69,16 +69,6 @@ class MagicWordArray {
 	}
 
 	/**
-	 * Add a number of magic words by name
-	 *
-	 * @param string[] $names
-	 */
-	public function addArray( $names ) {
-		$this->names = array_merge( $this->names, array_values( $names ) );
-		$this->hash = $this->baseRegex = $this->regex = null;
-	}
-
-	/**
 	 * Get a 2-d hashtable for this array
 	 * @return array
 	 */
@@ -155,9 +145,8 @@ class MagicWordArray {
 	/**
 	 * Get an unanchored regex that does not match parameters
 	 * @return string[]
-	 * @internal
 	 */
-	public function getRegex() {
+	private function getRegex(): array {
 		if ( $this->regex === null ) {
 			$this->regex = [];
 			$base = $this->getBaseRegex( true, '/' );
@@ -172,24 +161,11 @@ class MagicWordArray {
 	}
 
 	/**
-	 * Get a regex for matching variables with parameters
-	 *
-	 * @return string[]
-	 * @internal
-	 * @deprecated since 1.36 Appears to have no uses.
-	 */
-	public function getVariableRegex() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return str_replace( "\\$1", "(.*?)", $this->getRegex() );
-	}
-
-	/**
 	 * Get a regex anchored to the start of the string that does not match parameters
 	 *
 	 * @return string[]
-	 * @internal
 	 */
-	public function getRegexStart() {
+	private function getRegexStart(): array {
 		$newRegex = [];
 		$base = $this->getBaseRegex( true, '/' );
 		foreach ( $base as $case => $re ) {
@@ -205,9 +181,8 @@ class MagicWordArray {
 	 * Get an anchored regex for matching variables with parameters
 	 *
 	 * @return string[]
-	 * @internal
 	 */
-	public function getVariableStartToEndRegex() {
+	private function getVariableStartToEndRegex(): array {
 		$newRegex = [];
 		$base = $this->getBaseRegex( true, '/' );
 		foreach ( $base as $case => $re ) {
@@ -237,7 +212,7 @@ class MagicWordArray {
 	 * @throws MWException
 	 * @return array
 	 */
-	public function parseMatch( $m ) {
+	private function parseMatch( array $m ): array {
 		reset( $m );
 		while ( ( $key = key( $m ) ) !== null ) {
 			$value = current( $m );
