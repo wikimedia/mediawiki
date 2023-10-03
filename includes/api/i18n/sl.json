@@ -86,6 +86,8 @@
 	"apihelp-managetags-paramvalue-operation-delete": "Odstranite oznako spremembe iz baze podatkov, vključno z odstranitvijo oznake iz vseh revizij, nedavnih vnosov sprememb in vnosov v dnevnik, v katerih se uporablja.",
 	"apihelp-managetags-paramvalue-operation-activate": "Deaktiviranje oznake spremembe, kar uporabnikom prepreči, da bi jo uporabili ročno.",
 	"apihelp-managetags-paramvalue-operation-deactivate": "Deaktiviranje oznake spremembe, kar uporabnikom prepreči, da bi jo uporabili ročno.",
+	"apihelp-mergehistory-param-to": "Naslov strani, v katero naj se združi zgodovina. Ni ga mogoče uporabiti skupaj z <var>$1toid</var>.",
+	"apihelp-mergehistory-param-toid": "ID strani, v katero naj se združi zgodovina. Ni ga mogoče uporabiti skupaj z <var>$1to</var>.",
 	"apihelp-mergehistory-param-reason": "Razlog za združitev zgodovine.",
 	"apihelp-move-summary": "Prestavi stran.",
 	"apihelp-move-param-from": "Naslov strani za preimenovanje. Ni ga mogoče uporabiti skupaj z <var>$1fromid</var>.",
