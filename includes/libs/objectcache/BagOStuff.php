@@ -449,7 +449,7 @@ abstract class BagOStuff implements
 	/**
 	 * Get a "watch point" token that can be used to get the "last error" to occur after now
 	 *
-	 * @return int A token that the current error event
+	 * @return int A token to that can be used with getLastError()
 	 * @since 1.38
 	 */
 	public function watchErrors() {
