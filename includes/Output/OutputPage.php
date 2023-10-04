@@ -566,6 +566,7 @@ class OutputPage extends ContextSource {
 	 * if possible.
 	 *
 	 * @param string $script Raw HTML
+	 * @param-taint $script exec_html
 	 */
 	public function addScript( $script ) {
 		$this->mScripts .= $script;
@@ -588,6 +589,7 @@ class OutputPage extends ContextSource {
 	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
 	 * @param string $script JavaScript text, no script tags
+	 * @param-taint $script exec_html
 	 */
 	public function addInlineScript( $script ) {
 		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
@@ -766,8 +768,8 @@ class OutputPage extends ContextSource {
 	 * This would be your very LAST fallback.
 	 *
 	 * @param string $name Item name
-	 * @param-taint $name exec_html
 	 * @param string $value Raw HTML
+	 * @param-taint $value exec_html
 	 */
 	public function addHeadItem( $name, $value ) {
 		$this->mHeadItems[$name] = $value;
@@ -778,6 +780,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.28
 	 * @param string|string[] $values Raw HTML
+	 * @param-taint $values exec_html
 	 */
 	public function addHeadItems( $values ) {
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$values );
@@ -1723,6 +1726,7 @@ class OutputPage extends ContextSource {
 	 * the appropriate class; see note in ::getIndicators().
 	 *
 	 * @param string[] $indicators
+	 * @param-taint $indicators exec_html
 	 * @since 1.25
 	 */
 	public function setIndicators( array $indicators ) {
