@@ -2291,7 +2291,7 @@ class OutputPage extends ContextSource {
 		// compatibility check to see if that happened.
 		$isTocPresent = $parserOutput->hasTOCHTML();
 		if ( $isTocPresent && !$this->mEnableTOC ) {
-			wfDeprecated( 'OutputPageParserOutput hook to mutate TOC', '1.41' );
+			// Eventually we'll emit a deprecation message here (T293513)
 			$this->mEnableTOC = true;
 		}
 		// Uniform handling of all boolean flags: they are OR'ed together
