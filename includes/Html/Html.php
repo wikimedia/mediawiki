@@ -293,7 +293,7 @@ class Html {
 
 		// Some people were abusing this by passing things like
 		// 'h1 id="foo" to $element, which we don't want.
-		if ( strpos( $element, ' ' ) !== false ) {
+		if ( str_contains( $element, ' ' ) ) {
 			wfWarn( __METHOD__ . " given element name with space '$element'" );
 		}
 

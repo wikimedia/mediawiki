@@ -455,11 +455,11 @@ class SiteConfig extends ISiteConfig {
 			// Just append the placeholder at the end.
 			// This makes sure that the interwikiMatcher adds one match
 			// group per URI, and that interwiki links work as expected.
-			if ( strpos( $val['url'], '$1' ) === false ) {
+			if ( !str_contains( $val['url'], '$1' ) ) {
 				$val['url'] .= '$1';
 			}
 
-			if ( substr( $row['iw_url'], 0, 2 ) == '//' ) {
+			if ( str_starts_with( $row['iw_url'], '//' ) ) {
 				$val['protorel'] = true;
 			}
 			if ( isset( $row['iw_local'] ) && $row['iw_local'] == '1' ) {
