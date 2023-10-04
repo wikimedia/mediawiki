@@ -86,9 +86,6 @@ class MagicWord {
 	/** @var string */
 	private $mBaseRegex = '';
 
-	/** @var bool */
-	private $mFound = false;
-
 	/** @var Language */
 	private $contLang;
 
@@ -133,7 +130,7 @@ class MagicWord {
 		// Sort the synonyms by length, descending, so that the longest synonym
 		// matches in precedence to the shortest
 		$synonyms = $this->mSynonyms;
-		usort( $synonyms, [ $this, 'compareStringLength' ] );
+		usort( $synonyms, static fn ( $a, $b ) => strlen( $b ) <=> strlen( $a ) );
 
 		$escSyn = [];
 		foreach ( $synonyms as $synonym ) {
@@ -146,22 +143,6 @@ class MagicWord {
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
 		$this->mRegexStartToEnd = "/^(?:{$this->mBaseRegex})$/{$case}";
-	}
-
-	/**
-	 * A comparison function that returns -1, 0 or 1 depending on whether the
-	 * first string is longer, the same length or shorter than the second
-	 * string.
-	 *
-	 * @param string $s1
-	 * @param string $s2
-	 *
-	 * @return int
-	 */
-	public function compareStringLength( $s1, $s2 ) {
-		$l1 = strlen( $s1 );
-		$l2 = strlen( $s2 );
-		return $l2 <=> $l1; // descending
 	}
 
 	/**
@@ -260,14 +241,8 @@ class MagicWord {
 	 * @return bool
 	 */
 	public function matchAndRemove( &$text ) {
-		$this->mFound = false;
-		$text = preg_replace_callback(
-			$this->getRegex(),
-			[ $this, 'pregRemoveAndRecord' ],
-			$text
-		);
-
-		return $this->mFound;
+		$text = preg_replace( $this->getRegex(), '', $text, -1, $count );
+		return (bool)$count;
 	}
 
 	/**
@@ -275,24 +250,8 @@ class MagicWord {
 	 * @return bool
 	 */
 	public function matchStartAndRemove( &$text ) {
-		$this->mFound = false;
-		$text = preg_replace_callback(
-			$this->getRegexStart(),
-			[ $this, 'pregRemoveAndRecord' ],
-			$text
-		);
-
-		return $this->mFound;
-	}
-
-	/**
-	 * Used in matchAndRemove()
-	 *
-	 * @return string
-	 */
-	public function pregRemoveAndRecord() {
-		$this->mFound = true;
-		return '';
+		$text = preg_replace( $this->getRegexStart(), '', $text, -1, $count );
+		return (bool)$count;
 	}
 
 	/**
