@@ -194,7 +194,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$work = $this->newPoolWorkArticleView( $page, $fakeRev, $options );
 		/** @var Status $status */
 		$status = $work->execute();
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 
 }

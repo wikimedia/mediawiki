@@ -83,14 +83,8 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$reporter->setContext( new RequestContext() );
 		$reporter->open();
-
 		$importer->doImport();
-
-		$result = $reporter->close();
-
-		$this->assertTrue(
-			$result->isGood()
-		);
+		$this->assertStatusGood( $reporter->close() );
 	}
 
 }

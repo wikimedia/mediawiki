@@ -262,7 +262,14 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 
 		/** @var PasswordReset $passwordReset */
 		$status = $passwordReset->execute( $performingUser, $username, $email );
-		$this->assertStatus( $status, $expectedError );
+
+		if ( is_string( $expectedError ) ) {
+			$this->assertStatusError( $expectedError, $status );
+		} elseif ( $expectedError ) {
+			$this->assertStatusNotOk( $status );
+		} else {
+			$this->assertStatusGood( $status );
+		}
 	}
 
 	public function provideExecute() {
@@ -499,25 +506,6 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'usersWithEmail' => [ 'User1', 'User2', 'User3', 'User4' ],
 			],
 		];
-	}
-
-	private function assertStatus( StatusValue $status, $error = false ) {
-		if ( $error === false ) {
-			$this->assertTrue(
-				$status->isGood(),
-				'Expected status to be good, result was: ' . $status->__toString()
-			);
-		} else {
-			$this->assertStatusNotGood( $status, 'Expected status to not be good' );
-			if ( is_string( $error ) ) {
-				$this->assertNotEmpty( $status->getErrors() );
-				$message = $status->getErrors()[0]['message'];
-				if ( $message instanceof MessageSpecifier ) {
-					$message = $message->getKey();
-				}
-				$this->assertSame( $error, $message );
-			}
-		}
 	}
 
 	private function makeConfig( $enableEmail, array $passwordResetRoutes, $emailForResets ) {

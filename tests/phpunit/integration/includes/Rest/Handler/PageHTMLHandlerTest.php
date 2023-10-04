@@ -65,8 +65,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecuteWithHtml() {
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
-		$this->assertTrue(
-			$this->editPage( $page, self::WIKITEXT )->isGood(),
+		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
 			'Edited a page'
 		);
 
@@ -141,8 +140,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecuteHtmlOnly() {
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
-		$this->assertTrue(
-			$this->editPage( $page, self::WIKITEXT )->isGood(),
+		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
 			'Edited a page'
 		);
 
@@ -199,8 +197,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 		$page = $this->getExistingTestPage( 'HtmlVariantConversion' );
-		$this->assertTrue(
-			$this->editPage( $page, '<p>test language conversion</p>' )->isGood(),
+		$this->assertStatusGood( $this->editPage( $page, '<p>test language conversion</p>' ),
 			'Edited a page'
 		);
 

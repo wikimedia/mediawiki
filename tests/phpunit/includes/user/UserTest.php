@@ -282,27 +282,25 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		// Minimum length
 		$this->assertFalse( $this->user->isValidPassword( 'a' ) );
-		$this->assertFalse( $this->user->checkPasswordValidity( 'a' )->isGood() );
-		$this->assertTrue( $this->user->checkPasswordValidity( 'a' )->isOK() );
+		$status = $this->user->checkPasswordValidity( 'a' );
+		$this->assertStatusWarning( 'passwordtooshort', $status );
 
 		// Maximum length
 		$longPass = str_repeat( 'a', 41 );
 		$this->assertFalse( $this->user->isValidPassword( $longPass ) );
-		$this->assertFalse( $this->user->checkPasswordValidity( $longPass )->isGood() );
-		$this->assertFalse( $this->user->checkPasswordValidity( $longPass )->isOK() );
+		$status = $this->user->checkPasswordValidity( $longPass );
+		$this->assertStatusError( 'passwordtoolong', $status );
 
 		// Matches username
-		$this->assertFalse( $this->user->checkPasswordValidity( $this->user->getName() )->isGood() );
-		$this->assertTrue( $this->user->checkPasswordValidity( $this->user->getName() )->isOK() );
+		$status = $this->user->checkPasswordValidity( $this->user->getName() );
+		$this->assertStatusWarning( 'password-substring-username-match', $status );
 
 		$this->setTemporaryHook( 'isValidPassword', static function ( $password, &$result, $user ) {
 			$result = 'isValidPassword returned false';
 			return false;
 		} );
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
-		$this->assertStatusOK( $status );
-		$this->assertStatusNotGood( $status );
-		$this->assertSame( 'isValidPassword returned false', $status->getErrors()[0]['message'] );
+		$this->assertStatusWarning( 'isValidPassword returned false', $status );
 
 		$this->removeTemporaryHook( 'isValidPassword' );
 
@@ -320,15 +318,14 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			return true;
 		} );
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
-		$this->assertStatusOK( $status );
-		$this->assertStatusNotGood( $status );
-		$this->assertSame( 'isValidPassword returned true', $status->getErrors()[0]['message'] );
+		$this->assertStatusWarning( 'isValidPassword returned true', $status );
 
 		$this->removeTemporaryHook( 'isValidPassword' );
 
 		// On the forbidden list
 		$user = User::newFromName( 'Useruser' );
-		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
+		$status = $user->checkPasswordValidity( 'Passpass' );
+		$this->assertStatusWarning( 'password-login-forbidden', $status );
 	}
 
 	/**
@@ -1533,9 +1530,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::EmailAuthentication => false
 		] );
 		$status = $user->setEmailWithConfirmation( 'test1@mediawiki.org' );
-		$this->assertSame(
-			'emaildisabled',
-			$status->getErrors()[0]['message'],
+		$this->assertStatusError( 'emaildisabled', $status,
 			'Cannot set email when email is disabled'
 		);
 		$this->assertSame(

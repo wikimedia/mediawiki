@@ -555,10 +555,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 			$permissionStatus
 		);
 
-		$this->assertTrue( $permissionStatus->hasMessage( 'actionthrottledtext' ) );
+		$this->assertStatusError( 'actionthrottledtext', $permissionStatus );
 		$this->assertTrue( $permissionStatus->isRateLimitExceeded() );
 
-		$this->assertTrue( $permissionStatus->hasMessage( 'blockedtext-partial' ) );
+		$this->assertStatusError( 'blockedtext-partial', $permissionStatus );
 		$this->assertNotNull( $permissionStatus->getBlock() );
 
 		$errors = $permissionStatus->getErrors();

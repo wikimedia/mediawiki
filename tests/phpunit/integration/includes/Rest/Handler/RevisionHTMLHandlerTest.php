@@ -157,8 +157,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecuteWithHtml() {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
-		$this->assertTrue(
-			$this->editPage( $page, self::WIKITEXT )->isGood(),
+		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
 			'Edited a page'
 		);
 
@@ -179,8 +178,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecuteHtmlOnly() {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
-		$this->assertTrue(
-			$this->editPage( $page, self::WIKITEXT )->isGood(),
+		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
 			'Edited a page'
 		);
 

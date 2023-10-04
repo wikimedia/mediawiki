@@ -85,7 +85,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			'readOnlyMode' => $mockReadOnly,
 			'performer' => $this->mockRegisteredUltimateAuthority()
 		] );
-		$this->assertFalse( $rollback->authorizeRollback()->isGood() );
+		$this->assertStatusNotOk( $rollback->authorizeRollback() );
 	}
 
 	/**
@@ -105,13 +105,13 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			'performer' => $performer,
 			'userFactory' => $userFactoryMock
 		] );
-		$this->assertTrue( $rollbackPage->authorizeRollback()->isGood() );
+		$this->assertStatusGood( $rollbackPage->authorizeRollback() );
 	}
 
 	public function testRollbackNotAllowed() {
-		$this->assertFalse( $this->newServiceInstance( RollbackPage::class, [
+		$this->assertStatusNotOk( $this->newServiceInstance( RollbackPage::class, [
 			'performer' => $this->mockRegisteredNullAuthority()
-		] )->rollbackIfAllowed()->isGood() );
+		] )->rollbackIfAllowed() );
 	}
 
 	public function testRollback() {

@@ -370,12 +370,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	public function testReadOnly( string $method ): void {
 		$backend = $this->newMockFileBackend( [ 'readOnly' => '.' ] );
 		$status = $backend->$method( [] );
-		$this->assertSame( [ [
-			'type' => 'error',
-			'message' => 'backend-fail-readonly',
-			'params' => [ 'test_name', '.' ],
-		] ], $status->getErrors() );
-		$this->assertStatusNotOK( $status );
+		$this->assertStatusError( 'backend-fail-readonly', $status );
 	}
 
 	public static function provideReadOnly(): array {

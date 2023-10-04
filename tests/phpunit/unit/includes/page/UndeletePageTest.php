@@ -81,10 +81,9 @@ class UndeletePageTest extends MediaWikiUnitTestCase {
 		$res = $this->getUndeletePage( $page, $wpFactory, $nsInfo, $archivedRevisionLookup )
 			->canProbablyUndeleteAssociatedTalk();
 		if ( $expectedMsg === null ) {
-			$this->assertTrue( $res->isGood(), $res->__toString() );
+			$this->assertStatusGood( $res );
 		} else {
-			$this->assertFalse( $res->isOK() );
-			$this->assertTrue( $res->hasMessage( $expectedMsg ) );
+			$this->assertStatusError( $expectedMsg, $res );
 		}
 	}
 

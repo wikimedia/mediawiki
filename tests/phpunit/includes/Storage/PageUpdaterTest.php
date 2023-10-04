@@ -657,11 +657,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertFalse( $updater->wasSuccessful(), 'wasSuccessful()' );
 		$this->assertNull( $updater->getNewRevision(), 'getNewRevision()' );
-		$this->assertStatusNotOK( $status, 'getStatus()->isOK()' );
-		$this->assertTrue(
-			$status->hasMessage( 'content-not-allowed-here' ),
-			'content-not-allowed-here'
-		);
+		$this->assertStatusError( 'content-not-allowed-here', $status );
 	}
 
 	public static function provideSetRcPatrolStatus( $patrolled ) {

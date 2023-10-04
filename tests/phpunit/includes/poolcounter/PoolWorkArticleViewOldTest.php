@@ -79,7 +79,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		$work = $this->newPoolWorkArticleView( $page, null, $options );
 		/** @var Status $status */
 		$status = $work->execute();
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 
 		$cachedOutput = $cache->get( $page->getRevisionRecord(), $options );
 		$this->assertNotEmpty( $cachedOutput );
@@ -97,7 +97,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		$work = $this->newPoolWorkArticleView( $page, null, $parserOptions );
 		/** @var Status $status */
 		$status = $work->execute();
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 
 		$this->assertFalse( $cache->get( $page->getRevisionRecord(), $parserOptions ) );
 	}

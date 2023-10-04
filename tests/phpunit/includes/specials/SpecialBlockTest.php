@@ -434,8 +434,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$context
 		);
 
-		if ( $expected === 'ipb-prevent-user-talk-edit' ) {
-			$this->assertSame( $expected, $result->getErrorsArray()[0][0] );
+		if ( is_string( $expected ) ) {
+			$this->assertStatusError( $expected, $result );
 		} else {
 			$block = DatabaseBlock::newFromTarget( $target );
 			$this->assertSame( $expected, $block->isUsertalkEditAllowed() );

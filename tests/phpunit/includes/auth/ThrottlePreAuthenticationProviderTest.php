@@ -193,23 +193,21 @@ class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase
 			$status = $provider->testForAuthentication( [ $req ] );
 			$this->assertEquals( $i < 3, $status->isGood(), "attempt #$i" );
 		}
-		$this->assertCount( 1, $status->getErrors() );
-		$msg = new \Message( $status->getErrors()[0]['message'], $status->getErrors()[0]['params'] );
-		$this->assertEquals( 'login-throttled', $msg->getKey() );
+		$this->assertStatusError( 'login-throttled', $status );
 
 		$provider->postAuthentication( User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newFail( wfMessage( 'foo' ) ) );
-		$this->assertFalse( $provider->testForAuthentication( [ $req ] )->isGood(), 'after FAIL' );
+		$this->assertStatusNotOk( $provider->testForAuthentication( [ $req ] ), 'after FAIL' );
 
 		$provider->postAuthentication( User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
-		$this->assertTrue( $provider->testForAuthentication( [ $req ] )->isGood(), 'after PASS' );
+		$this->assertStatusGood( $provider->testForAuthentication( [ $req ] ), 'after PASS' );
 
 		$req1 = new UsernameAuthenticationRequest;
 		$req1->username = 'foo';
 		$req2 = new UsernameAuthenticationRequest;
 		$req2->username = 'bar';
-		$this->assertTrue( $provider->testForAuthentication( [ $req1, $req2 ] )->isGood() );
+		$this->assertStatusGood( $provider->testForAuthentication( [ $req1, $req2 ] ) );
 
 		$req = new UsernameAuthenticationRequest;
 		$req->username = 'Some user';
@@ -218,7 +216,7 @@ class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase
 		$provider->testForAuthentication( [ $req ] );
 		$req->username = 'some user';
 		$status = $provider->testForAuthentication( [ $req ] );
-		$this->assertStatusNotGood( $status, 'denormalized usernames are normalized' );
+		$this->assertStatusNotOk( $status, 'denormalized usernames are normalized' );
 	}
 
 	public function testPostAuthentication() {

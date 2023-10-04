@@ -60,7 +60,7 @@ class SpecialLogTest extends SpecialPageTestBase {
 			],
 			'comment' => 'SpecialLogTest'
 		] );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 
 		// Allow everyone to read the suppression log
 		$this->mergeMwGlobalArrayValue(
