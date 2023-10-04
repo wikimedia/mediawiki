@@ -1,0 +1,375 @@
+{
+	"comment": "Increaes us_size to bigint (T191805)",
+	"before":
+	{
+		"name": "uploadstash",
+		"comment": "Store information about newly uploaded files before they're moved into the actual filestore",
+		"columns": [
+			{
+				"name": "us_id",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_user",
+				"comment": "the user who uploaded the file.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_key",
+				"comment": "file key. this is how applications actually search for the file. this might go away, or become the primary key.",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_orig_path",
+				"comment": "the original path",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_path",
+				"comment": "the temporary path at which the file is actually stored",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_source_type",
+				"comment": "which type of upload the file came from (sometimes)",
+				"type": "string",
+				"options": {
+					"notnull": false,
+					"length": 50
+				}
+			},
+			{
+				"name": "us_timestamp",
+				"comment": "the date/time on which the file was added",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_status",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 50
+				}
+			},
+			{
+				"name": "us_chunk_inx",
+				"comment": "chunk counter starts at 0, current offset is stored in us_size",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_props",
+				"comment": "Serialized file properties from FSFile::getProps()",
+				"type": "blob",
+				"options": {
+					"notnull": false,
+					"length": 65530
+				}
+			},
+			{
+				"name": "us_size",
+				"comment": "file size in bytes",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_sha1",
+				"comment": "this hash comes from FSFile::getSha1Base36(), and is 31 characters",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 31
+				}
+			},
+			{
+				"name": "us_mime",
+				"type": "string",
+				"options": {
+					"notnull": false,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_media_type",
+				"comment": "Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table",
+				"type": "mwenum",
+				"options": { "notnull": false, "default": null,
+					"fixed": true,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "us_image_width",
+				"comment": "image-specific properties",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_image_height",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_image_bits",
+				"type": "smallint",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "us_user",
+				"comment": "sometimes there's a delete for all of a user's stuff.",
+				"columns": [
+					"us_user"
+				],
+				"unique": false
+			},
+			{
+				"name": "us_key",
+				"comment": "pick out files by key, enforce key uniqueness",
+				"columns": [
+					"us_key"
+				],
+				"unique": true
+			},
+			{
+				"name": "us_timestamp",
+				"comment": "the abandoned upload cleanup script needs this",
+				"columns": [
+					"us_timestamp"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"us_id"
+		]
+	},
+	"after":
+	{
+		"name": "uploadstash",
+		"comment": "Store information about newly uploaded files before they're moved into the actual filestore",
+		"columns": [
+			{
+				"name": "us_id",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_user",
+				"comment": "the user who uploaded the file.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_key",
+				"comment": "file key. this is how applications actually search for the file. this might go away, or become the primary key.",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_orig_path",
+				"comment": "the original path",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_path",
+				"comment": "the temporary path at which the file is actually stored",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_source_type",
+				"comment": "which type of upload the file came from (sometimes)",
+				"type": "string",
+				"options": {
+					"notnull": false,
+					"length": 50
+				}
+			},
+			{
+				"name": "us_timestamp",
+				"comment": "the date/time on which the file was added",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_status",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 50
+				}
+			},
+			{
+				"name": "us_chunk_inx",
+				"comment": "chunk counter starts at 0, current offset is stored in us_size",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_props",
+				"comment": "Serialized file properties from FSFile::getProps()",
+				"type": "blob",
+				"options": {
+					"notnull": false,
+					"length": 65530
+				}
+			},
+			{
+				"name": "us_size",
+				"comment": "file size in bytes",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_sha1",
+				"comment": "this hash comes from FSFile::getSha1Base36(), and is 31 characters",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 31
+				}
+			},
+			{
+				"name": "us_mime",
+				"type": "string",
+				"options": {
+					"notnull": false,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_media_type",
+				"comment": "Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table",
+				"type": "mwenum",
+				"options": { "notnull": false, "default": null,
+					"fixed": true,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "us_image_width",
+				"comment": "image-specific properties",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_image_height",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_image_bits",
+				"type": "smallint",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "us_user",
+				"comment": "sometimes there's a delete for all of a user's stuff.",
+				"columns": [
+					"us_user"
+				],
+				"unique": false
+			},
+			{
+				"name": "us_key",
+				"comment": "pick out files by key, enforce key uniqueness",
+				"columns": [
+					"us_key"
+				],
+				"unique": true
+			},
+			{
+				"name": "us_timestamp",
+				"comment": "the abandoned upload cleanup script needs this",
+				"columns": [
+					"us_timestamp"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"us_id"
+		]
+	}
+}

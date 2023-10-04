@@ -524,7 +524,7 @@ CREATE TABLE /*_*/uploadstash (
   us_status VARCHAR(50) NOT NULL,
   us_chunk_inx INT UNSIGNED DEFAULT NULL,
   us_props BLOB DEFAULT NULL,
-  us_size INT UNSIGNED NOT NULL,
+  us_size BIGINT UNSIGNED NOT NULL,
   us_sha1 VARCHAR(31) NOT NULL,
   us_mime VARCHAR(255) DEFAULT NULL,
   us_media_type ENUM(
@@ -552,7 +552,7 @@ CREATE TABLE /*_*/filearchive (
   fa_deleted_user INT DEFAULT NULL,
   fa_deleted_timestamp BINARY(14) DEFAULT NULL,
   fa_deleted_reason_id BIGINT UNSIGNED NOT NULL,
-  fa_size INT UNSIGNED DEFAULT 0,
+  fa_size BIGINT UNSIGNED DEFAULT 0,
   fa_width INT DEFAULT 0,
   fa_height INT DEFAULT 0,
   fa_metadata MEDIUMBLOB DEFAULT NULL,
@@ -598,7 +598,7 @@ CREATE TABLE /*_*/text (
 CREATE TABLE /*_*/oldimage (
   oi_name VARBINARY(255) DEFAULT '' NOT NULL,
   oi_archive_name VARBINARY(255) DEFAULT '' NOT NULL,
-  oi_size INT UNSIGNED DEFAULT 0 NOT NULL,
+  oi_size BIGINT UNSIGNED DEFAULT 0 NOT NULL,
   oi_width INT DEFAULT 0 NOT NULL,
   oi_height INT DEFAULT 0 NOT NULL,
   oi_bits INT DEFAULT 0 NOT NULL,
@@ -682,7 +682,7 @@ CREATE TABLE /*_*/ipblocks (
 
 CREATE TABLE /*_*/image (
   img_name VARBINARY(255) DEFAULT '' NOT NULL,
-  img_size INT UNSIGNED DEFAULT 0 NOT NULL,
+  img_size BIGINT UNSIGNED DEFAULT 0 NOT NULL,
   img_width INT DEFAULT 0 NOT NULL,
   img_height INT DEFAULT 0 NOT NULL,
   img_metadata MEDIUMBLOB NOT NULL,

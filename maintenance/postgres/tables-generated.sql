@@ -602,7 +602,7 @@ CREATE TABLE uploadstash (
   us_status VARCHAR(50) NOT NULL,
   us_chunk_inx INT DEFAULT NULL,
   us_props TEXT DEFAULT NULL,
-  us_size INT NOT NULL,
+  us_size BIGINT NOT NULL,
   us_sha1 VARCHAR(31) NOT NULL,
   us_mime VARCHAR(255) DEFAULT NULL,
   us_media_type US_MEDIA_TYPE_ENUM DEFAULT NULL,
@@ -628,7 +628,7 @@ CREATE TABLE filearchive (
   fa_deleted_user INT DEFAULT NULL,
   fa_deleted_timestamp TIMESTAMPTZ DEFAULT NULL,
   fa_deleted_reason_id BIGINT NOT NULL,
-  fa_size INT DEFAULT 0,
+  fa_size BIGINT DEFAULT 0,
   fa_width INT DEFAULT 0,
   fa_height INT DEFAULT 0,
   fa_metadata TEXT DEFAULT NULL,
@@ -667,7 +667,7 @@ CREATE TABLE text (
 
 CREATE TABLE oldimage (
   oi_name TEXT DEFAULT '' NOT NULL, oi_archive_name TEXT DEFAULT '' NOT NULL,
-  oi_size INT DEFAULT 0 NOT NULL, oi_width INT DEFAULT 0 NOT NULL,
+  oi_size BIGINT DEFAULT 0 NOT NULL, oi_width INT DEFAULT 0 NOT NULL,
   oi_height INT DEFAULT 0 NOT NULL, oi_bits INT DEFAULT 0 NOT NULL,
   oi_description_id BIGINT NOT NULL,
   oi_actor BIGINT NOT NULL, oi_timestamp TIMESTAMPTZ NOT NULL,
@@ -738,7 +738,7 @@ CREATE INDEX ipb_parent_block_id ON ipblocks (ipb_parent_block_id);
 
 CREATE TABLE image (
   img_name TEXT DEFAULT '' NOT NULL,
-  img_size INT DEFAULT 0 NOT NULL,
+  img_size BIGINT DEFAULT 0 NOT NULL,
   img_width INT DEFAULT 0 NOT NULL,
   img_height INT DEFAULT 0 NOT NULL,
   img_metadata TEXT NOT NULL,

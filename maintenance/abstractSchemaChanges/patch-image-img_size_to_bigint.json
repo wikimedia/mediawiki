@@ -1,0 +1,368 @@
+{
+	"comment": "Make img.img_size an unsigned bigint (T191805)",
+	"before":
+	{
+		"name": "image",
+		"comment": "Uploaded images and other files.",
+		"columns": [
+			{
+				"name": "img_name",
+				"comment": "Filename. This is also the title of the associated description page, which will be in namespace 6 (NS_FILE).",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "img_size",
+				"comment": "File size in bytes.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_width",
+				"comment": "For images, width in pixels.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_height",
+				"comment": "For images, height in pixels.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_metadata",
+				"comment": "Extracted Exif metadata stored as a json array (new system) or serialized PHP array (old system). The json array can contain an address in the text table or external storage.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "img_bits",
+				"comment": "For images, bits per pixel if known.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_media_type",
+				"comment": "Media type as defined by the MEDIATYPE_xxx constants",
+				"type": "mwenum",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "img_major_mime",
+				"comment": "major part of a MIME media type as defined by IANA see https://www.iana.org/assignments/media-types/ for \"chemical\" cf. http://dx.doi.org/10.1021/ci9803233 by the ACS",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"CustomSchemaOptions": {
+						"enum_values": [ "unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical" ]
+					}
+				}
+			},
+			{
+				"name": "img_minor_mime",
+				"comment": "minor part of a MIME media type as defined by IANA the minor parts are not required to adhere to any standard but should be consistent throughout the database see https://www.iana.org/assignments/media-types/",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"length": 100
+				}
+			},
+			{
+				"name": "img_description_id",
+				"comment": "Foreign key to comment table, which contains the description field as entered by the uploader. This is displayed in image upload history and logs.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_actor",
+				"comment": "actor_id of the uploader.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_timestamp",
+				"comment": "Time of the upload.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_sha1",
+				"comment": "SHA-1 content hash in base-36",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "img_actor_timestamp",
+				"comment": "Used by Special:Newimages and ApiQueryAllImages",
+				"columns": [
+					"img_actor",
+					"img_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_size",
+				"comment": "Used by Special:ListFiles for sort-by-size",
+				"columns": [
+					"img_size"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_timestamp",
+				"comment": "Used by Special:Newimages and Special:ListFiles",
+				"columns": [
+					"img_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_sha1",
+				"comment": "Used in API and duplicate search",
+				"columns": [
+					"img_sha1"
+				],
+				"unique": false,
+				"options": { "lengths": [ 10 ] }
+			},
+			{
+				"name": "img_media_mime",
+				"comment": "Used to get media of one type",
+				"columns": [
+					"img_media_type",
+					"img_major_mime",
+					"img_minor_mime"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"img_name"
+		]
+	},
+	"after":
+	{
+		"name": "image",
+		"comment": "Uploaded images and other files.",
+		"columns": [
+			{
+				"name": "img_name",
+				"comment": "Filename. This is also the title of the associated description page, which will be in namespace 6 (NS_FILE).",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "img_size",
+				"comment": "File size in bytes.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_width",
+				"comment": "For images, width in pixels.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_height",
+				"comment": "For images, height in pixels.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_metadata",
+				"comment": "Extracted Exif metadata stored as a json array (new system) or serialized PHP array (old system). The json array can contain an address in the text table or external storage.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "img_bits",
+				"comment": "For images, bits per pixel if known.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_media_type",
+				"comment": "Media type as defined by the MEDIATYPE_xxx constants",
+				"type": "mwenum",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "img_major_mime",
+				"comment": "major part of a MIME media type as defined by IANA see https://www.iana.org/assignments/media-types/ for \"chemical\" cf. http://dx.doi.org/10.1021/ci9803233 by the ACS",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"CustomSchemaOptions": {
+						"enum_values": [ "unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical" ]
+					}
+				}
+			},
+			{
+				"name": "img_minor_mime",
+				"comment": "minor part of a MIME media type as defined by IANA the minor parts are not required to adhere to any standard but should be consistent throughout the database see https://www.iana.org/assignments/media-types/",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"length": 100
+				}
+			},
+			{
+				"name": "img_description_id",
+				"comment": "Foreign key to comment table, which contains the description field as entered by the uploader. This is displayed in image upload history and logs.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_actor",
+				"comment": "actor_id of the uploader.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_timestamp",
+				"comment": "Time of the upload.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_sha1",
+				"comment": "SHA-1 content hash in base-36",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "img_actor_timestamp",
+				"comment": "Used by Special:Newimages and ApiQueryAllImages",
+				"columns": [
+					"img_actor",
+					"img_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_size",
+				"comment": "Used by Special:ListFiles for sort-by-size",
+				"columns": [
+					"img_size"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_timestamp",
+				"comment": "Used by Special:Newimages and Special:ListFiles",
+				"columns": [
+					"img_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_sha1",
+				"comment": "Used in API and duplicate search",
+				"columns": [
+					"img_sha1"
+				],
+				"unique": false,
+				"options": { "lengths": [ 10 ] }
+			},
+			{
+				"name": "img_media_mime",
+				"comment": "Used to get media of one type",
+				"columns": [
+					"img_media_type",
+					"img_major_mime",
+					"img_minor_mime"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"img_name"
+		]
+	}
+
+}
