@@ -56,7 +56,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 		$handler = $this->createMock( Handler::class );
 		$handler->method( 'needsWriteAccess' )
-			->willReturn( false );
+			->willReturn( $needsWriteAccess );
 
 		$result = $cors->authorize(
 			$request,
