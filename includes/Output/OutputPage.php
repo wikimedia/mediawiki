@@ -33,6 +33,7 @@ use HtmlArmor;
 use IContextSource;
 use InvalidArgumentException;
 use JavaScriptContent;
+use Language;
 use LanguageCode;
 use LinkCache;
 use MediaWiki\Config\Config;
@@ -68,6 +69,7 @@ use RequestContext;
 use Skin;
 use TextContent;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -416,6 +418,11 @@ class OutputPage extends ContextSource {
 	 * @var string|null The URL to send in a <link> element with rel=license
 	 */
 	private $copyrightUrl;
+
+	/**
+	 * @var Language|null
+	 */
+	private $contentLang;
 
 	/** @var array Profiling data */
 	private $limitReportJSData = [];
@@ -2154,6 +2161,83 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * @internal For use by ViewAction/Article only
+	 * @since 1.42
+	 * @param Bcp47Code $lang
+	 */
+	public function setContentLangForJS( Bcp47Code $lang ): void {
+		$this->contentLang = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $lang );
+	}
+
+	/**
+	 * Which language getJSVars should use
+	 *
+	 * Use of this is strongly discouraged in favour of ParserOutput::getLanguage(),
+	 * and should not be needed in most cases given that ParserOutput::getText()
+	 * already takes care of 'lang' and 'dir' attributes.
+	 *
+	 * Consider whether RequestContext::getLanguage (e.g. OutputPage::getLanguage
+	 * or Skin::getLanguage) or MediaWikiServices::getContentLanguage is more
+	 * appropiate first for your use case.
+	 *
+	 * @since 1.42
+	 * @return Language
+	 */
+	private function getContentLangForJS(): Language {
+		if ( !$this->contentLang ) {
+			// If this is not set, then we're likely not on in a request that renders page content
+			// (e.g. ViewAction or ApiParse), but rather a different Action or SpecialPage.
+			// In that case there isn't a main ParserOutput object to represent the page or output.
+			// But, the skin and frontend code mostly don't make this distinction, and so we still
+			// need to return something for mw.config.
+			//
+			// For historical reasons, the expectation is that:
+			// * on a SpecialPage, we return the language for the content area just like on a
+			//   page view. SpecialPage content is localised, and so this is the user language.
+			// * on an Action about a WikiPage, we return the language that content would have
+			//   been shown in, if this were a page view. This is generally the page language
+			//   as stored in the database, except adapted to the current user (e.g. in case of
+			//   translated pages or a language variant preference)
+			//
+			// This mess was centralised to here in 2023 (T341244).
+			$title = $this->getTitle();
+			if ( $title->isSpecialPage() ) {
+				// Special pages render in the interface language, based on request context.
+				// If the user's preference (or request parameter) specifies a variant,
+				// the content may have been converted to the user's language variant.
+				$pageLang = $this->getLanguage();
+			} else {
+				wfDebug( __METHOD__ . ' has to guess ParserOutput language' );
+				// Guess what Article::getParserOutput and ParserOptions::optionsHash() would decide
+				// on a page view:
+				//
+				// - Pages may have a custom page_lang set in the database,
+				//   via Title::getPageLanguage/Title::getDbPageLanguage
+				//
+				// - Interface messages (NS_MEDIAWIKI) render based on their subpage,
+				//   via Title::getPageLanguage/ContentHandler::getPageLanguage/MessageCache::figureMessage
+				//
+				// - Otherwise, pages are assumed to be in the wiki's default content language.
+				//   via Title::getPageLanguage/ContentHandler::getPageLanguage/MediaWikiServices::getContentLanguage
+				$pageLang = $title->getPageLanguage();
+			}
+			if ( $title->getNamespace() !== NS_MEDIAWIKI ) {
+				$services = MediaWikiServices::getInstance();
+				$langConv = $services->getLanguageConverterFactory()->getLanguageConverter( $pageLang );
+				// NOTE: LanguageConverter::getPreferredVariant inspects global RequestContext.
+				// This usually returns $pageLang unchanged.
+				$variant = $langConv->getPreferredVariant();
+				if ( $pageLang->getCode() !== $variant ) {
+					$pageLang = $services->getLanguageFactory()->getLanguage( $variant );
+				}
+			}
+			$this->contentLang = $pageLang;
+		}
+		return $this->contentLang;
+	}
+
+	/**
 	 * Add all metadata associated with a ParserOutput object, but without the actual HTML. This
 	 * includes categories, language links, ResourceLoader modules, effects of certain magic words,
 	 * and so on.  It does *not* include section information.
@@ -3726,7 +3810,9 @@ class OutputPage extends ContextSource {
 			$articleId = $wikiPage->getId();
 		}
 
-		$lang = $title->getPageViewLanguage();
+		// ParserOutput informs HTML/CSS via lang/dir attributes.
+		// We inform JavaScript via mw.config from here.
+		$lang = $this->getContentLangForJS();
 
 		// Pre-process information
 		$separatorTransTable = $lang->separatorTransformTable();

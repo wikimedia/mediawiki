@@ -1567,6 +1567,7 @@ class SpecialPageFactory {
 
 		$page = $this->getPage( $name );
 		if ( !$page ) {
+			// Emulate SpecialPage::setHeaders()
 			$context->getOutput()->setArticleRelated( false );
 			$context->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 

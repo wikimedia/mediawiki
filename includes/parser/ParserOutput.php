@@ -1251,36 +1251,46 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Get the primary language code of the output.
 	 *
-	 * This gives the primary language of the output, including
-	 * any variant used, as a MediaWiki-internal language code.  This can
-	 * be converted to a standard IETF language tag complying with BCP 47
-	 * by passing it to the LanguageCode::bcp47() method.
+	 * This returns the primary language of the output, including
+	 * any LanguageConverter variant applied.
 	 *
-	 * Note that this may differ from the wiki's primary language (because
-	 * page language can differ from primary language) and can differ from
-	 * the page language as well (because the parser uses the user language
-	 * when processing interface messages).  It will also differ from the
-	 * Parser's target language when language conversion has been performed;
-	 * in that case it will be equal to
-	 * Parser::getTargetLanguageConverter()->getPreferredVariant(); use
-	 * LanguageFactory::getParentLanguage() on that code if you need the
-	 * base language.  (Note that ::getPreferredVariant() depends on the
-	 * request URL and the User language as well.)
+	 * NOTE: This may differ from the wiki's default content language
+	 * ($wgLanguageCode, MediaWikiServices::getContentLanguage), because
+	 * each page may have its own "page language" set (PageStoreRecord,
+	 * Title::getDbPageLanguageCode, ContentHandler::getPageLanguage).
 	 *
-	 * Finally, note that the actual HTML included in this ParserOutput
-	 * may actually represent content in multiple languages.  It is
-	 * expected that the HTML will use internal `lang` attributes (with
-	 * BCP-47 values) to switch from the primary language reported by
-	 * this method.
+	 * NOTE: This may differ from the "page language" when parsing
+	 * user interface messages, in which case this reflects the user
+	 * language (including any variant preference).
 	 *
-	 * @return ?Bcp47Code The primary language for this output, as a
-	 *   MediaWiki-internal language code, or `null` if a language
-	 *   was not set.
+	 * NOTE: This may differ from the Parser's "target language" that was
+	 * set while the Parser was parsing the page, because the final output
+	 * is converted to the current user's preferred LanguageConverter variant
+	 * (assuming this is a variant of the target language).
+	 * See Parser::getTargetLanguageConverter()->getPreferredVariant(); use
+	 * LanguageFactory::getParentLanguage() on the language code to obtain
+	 * the base language code. LanguageConverter::getPreferredVariant()
+	 * depends on the global RequestContext for the URL and the User
+	 * language preference.
+	 *
+	 * Finally, note that a single ParserOutput object may contain
+	 * HTML content in multiple different languages and directions
+	 * (T114640). Authors of wikitext and of parser extensions are
+	 * expected to mark such subtrees with a `lang` attribute (set to
+	 * a BCP-47 value, see Language::toBcp47Code()) and a corresponding
+	 * `dir` attribute (see Language::getDir()). This method returns
+	 * the language code for wrapper of the HTML content.
+	 *
+	 * @see Parser::internalParseHalfParsed
 	 * @since 1.40
+	 * @return ?Bcp47Code The primary language for this output,
+	 *   or `null` if a language was not set.
 	 */
 	public function getLanguage(): ?Bcp47Code {
 		// This information is temporarily stored in extension data (T303329)
 		$code = $this->getExtensionData( 'core:target-lang-variant' );
+		// This is null if the ParserOutput was cached by MW 1.40 or earlier,
+		// or not constructed by Parser/ParserCache.
 		return $code === null ? null : new Bcp47CodeValue( $code );
 	}
 

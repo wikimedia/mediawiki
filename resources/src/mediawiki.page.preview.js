@@ -394,21 +394,10 @@
 
 		// Remove preview note, if present (added by Live Preview, etc.).
 		config.$previewNode.find( '.previewnote' ).remove();
+		// Remove any previous preview
+		config.$previewNode.children( '.mw-parser-output' ).remove();
 
-		$content = config.$previewNode.children( '.mw-content-ltr,.mw-content-rtl' );
-
-		if ( !$content.length ) {
-			var dir = $( 'html' ).attr( 'dir' );
-			$content = $( '<div>' )
-				.attr( 'lang', mw.config.get( 'wgContentLanguage' ) )
-				.attr( 'dir', dir )
-				// The following classes are used here:
-				// * mw-content-ltr
-				// * mw-content-rtl
-				.addClass( 'mw-content-' + dir );
-		}
-
-		$content.html( response.parse.text );
+		$content = $( $.parseHTML( response.parse.text ) );
 
 		config.$previewNode.append( $content ).show();
 

@@ -234,30 +234,30 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$text = $po->getText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringContainsString( '<div', $text );
-		$this->assertStringContainsString( 'class="foo"', $text );
+		$this->assertStringContainsString( 'class="mw-content-ltr foo"', $text );
 
 		$po->addWrapperDivClass( 'bar' );
 		$text = $po->getText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringContainsString( '<div', $text );
-		$this->assertStringContainsString( 'class="foo bar"', $text );
+		$this->assertStringContainsString( 'class="mw-content-ltr foo bar"', $text );
 
 		$po->addWrapperDivClass( 'bar' ); // second time does nothing, no "foo bar bar".
 		$text = $po->getText( [ 'unwrap' => true ] );
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringNotContainsString( '<div', $text );
-		$this->assertStringNotContainsString( 'class="foo bar"', $text );
+		$this->assertStringNotContainsString( 'class="', $text );
 
 		$text = $po->getText( [ 'wrapperDivClass' => '' ] );
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringNotContainsString( '<div', $text );
-		$this->assertStringNotContainsString( 'class="foo bar"', $text );
+		$this->assertStringNotContainsString( 'class="', $text );
 
 		$text = $po->getText( [ 'wrapperDivClass' => 'xyzzy' ] );
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringContainsString( '<div', $text );
-		$this->assertStringContainsString( 'class="xyzzy"', $text );
-		$this->assertStringNotContainsString( 'class="foo bar"', $text );
+		$this->assertStringContainsString( 'class="mw-content-ltr xyzzy"', $text );
+		$this->assertStringNotContainsString( 'foo bar', $text );
 
 		$text = $po->getRawText();
 		$this->assertSame( 'Kittens', $text );
@@ -266,7 +266,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$text = $po->getText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringNotContainsString( '<div', $text );
-		$this->assertStringNotContainsString( 'class="foo bar"', $text );
+		$this->assertStringNotContainsString( 'class="', $text );
 	}
 
 	/**
@@ -427,7 +427,7 @@ EOF
 			],
 			'Disable TOC, but wrap' => [
 				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], $text, <<<EOF
-<div class="mw-parser-output"><p>Test document.
+<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
 </p>
 
 <h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>

@@ -156,11 +156,21 @@ abstract class Skin extends ContextSource {
 				$this->msg( 'mainpage-title' ) :
 				$this->msg( 'mainpage-title-loggedin', $user->getName() );
 
-			// T298715, T331095: Treat as config and get from page view language
+			// T298715: Use content language rather than user language so that
+			// the custom page heading is shown to all users, not just those that have
+			// their interface set to the site content language.
+			//
+			// T331095: Avoid Message::inContentLanuguage and, just like Parser,
+			// pick the language variant based on the current URL and/or user
+			// preference if their variant relates to the content language.
 			$forceUIMsgAsContentMsg = $this->getConfig()
 				->get( MainConfigNames::ForceUIMsgAsContentMsg );
 			if ( !in_array( $titleMsg->getKey(), (array)$forceUIMsgAsContentMsg ) ) {
-				$titleMsg->inLanguage( $title->getPageViewLanguage() );
+				$services = MediaWikiServices::getInstance();
+				$contLangVariant = $services->getLanguageConverterFactory()
+					->getLanguageConverter( $services->getContentLanguage() )
+					->getPreferredVariant();
+				$titleMsg->inLanguage( $contLangVariant );
 			}
 			$titleMsg->setInterfaceMessageFlag( true );
 			$blankedHeading = $titleMsg->isBlank();
@@ -2389,28 +2399,14 @@ abstract class Skin extends ContextSource {
 	 * @return string html
 	 */
 	protected function wrapHTML( $title, $html ) {
-		# An ID that includes the actual body text; without categories, contentSub, ...
-		$realBodyAttribs = [
+		// This wraps the "real" body content (i.e. parser output or special page).
+		// On page views, elements like categories and contentSub are outside of this.
+		return Html::rawElement( 'div', [
 			'id' => 'mw-content-text',
 			'class' => [
 				'mw-body-content',
 			],
-		];
-
-		# Add a mw-content-ltr/rtl class to be able to style based on text
-		# direction when the content is different from the UI language (only
-		# when viewing)
-		# Most information on special pages and file pages is in user language,
-		# rather than content language, so those will not get this
-		if ( $this->getContext()->getActionName() === 'view' &&
-			( !$title->inNamespaces( NS_SPECIAL, NS_FILE ) || $title->isRedirect() ) ) {
-			$pageLang = $title->getPageViewLanguage();
-			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
-			$realBodyAttribs['dir'] = $pageLang->getDir();
-			$realBodyAttribs['class'][] = 'mw-content-' . $pageLang->getDir();
-		}
-
-		return Html::rawElement( 'div', $realBodyAttribs, $html );
+		], $html );
 	}
 
 	/**

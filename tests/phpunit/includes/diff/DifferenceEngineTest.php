@@ -634,7 +634,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 				'expected' => [
 					'html' =>
 						'\(diff-empty\).*' .
-						'<div class="mw-parser-output"><p>no kittens'
+						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>no kittens'
 				],
 			],
 			'normal diff=prev' => [
@@ -647,7 +647,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 						'\(viewsourceold\).*' .
 						'<del class="diffchange diffchange-inline">no kittens</del>.*' .
 						'<ins class="diffchange diffchange-inline">one kitten</ins>.*' .
-						'<div class="mw-parser-output"><p>one kitten',
+						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>one kitten',
 				]
 			],
 			'normal diff=number' => [
@@ -660,7 +660,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 						'\(viewsourceold\).*' .
 						'<del class="diffchange diffchange-inline">no kittens</del>.*' .
 						'<ins class="diffchange diffchange-inline">one kitten</ins>.*' .
-						'<div class="mw-parser-output"><p>one kitten',
+						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>one kitten',
 				]
 			],
 			'user cannot read' => [
@@ -748,7 +748,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 						'\(rev-deleted-diff-view\).*' .
 						'<del class="diffchange diffchange-inline">three </del>.*' .
 						'<ins class="diffchange diffchange-inline">fnord </ins>.*' .
-						'<div class="mw-parser-output"><p>fnord kittens',
+						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>fnord kittens',
 				]
 			],
 		];

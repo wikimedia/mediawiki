@@ -627,6 +627,8 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Superseded by OutputPageTest::testGetJsVarsAboutPageLang
+	 *
 	 * @dataProvider providerGetPageViewLanguage
 	 * @covers ContentHandler::getPageViewLanguage
 	 */

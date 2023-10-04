@@ -176,7 +176,7 @@ EOF
 			],
 			'Disable TOC, but wrap' => [
 				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], $text, <<<EOF
-<div class="mw-parser-output"><p>Test document.
+<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
 </p>
 
 <h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>

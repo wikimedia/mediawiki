@@ -3705,6 +3705,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * viewed by user. Defaults to content language, but in certain cases it can be
 	 * e.g. the user language (such as special pages).
 	 *
+	 * @deprecated since 1.42 Use ParserOutput::getLanguage instead. See also OutputPage::getContLangForJS.
 	 * @since 1.20
 	 * @return Language
 	 */

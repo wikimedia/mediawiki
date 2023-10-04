@@ -3547,12 +3547,6 @@ class EditPage implements IEditObject {
 
 		if ( $this->formtype === 'preview' ) {
 			$this->showPreview( $previewOutput );
-		} else {
-			// Empty content container for LivePreview
-			$pageViewLang = $this->mTitle->getPageViewLanguage();
-			$attribs = [ 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
-				'class' => 'mw-content-' . $pageViewLang->getDir() ];
-			$out->addHTML( Html::rawElement( 'div', $attribs ) );
 		}
 
 		$out->addHTML( '</div>' );
@@ -4109,11 +4103,6 @@ class EditPage implements IEditObject {
 				$out->parseAsInterface( $note )
 			) . $conflict
 		);
-
-		$pageViewLang = $this->mTitle->getPageViewLanguage();
-		$attribs = [ 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
-			'class' => 'mw-content-' . $pageViewLang->getDir() ];
-		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}

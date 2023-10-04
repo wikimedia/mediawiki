@@ -959,6 +959,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Superseded by OutputPageTest::testGetJsVarsAboutPageLang
+	 *
 	 * @dataProvider provideGetPageViewLanguage
 	 * @covers MediaWiki\Title\Title::getPageViewLanguage
 	 */

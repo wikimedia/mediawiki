@@ -351,11 +351,6 @@ class McrUndoAction extends FormAction {
 			)
 		);
 
-		$pageViewLang = $this->getTitle()->getPageViewLanguage();
-		$attribs = [ 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
-			'class' => 'mw-content-' . $pageViewLang->getDir() ];
-		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
-
 		$out->addHTML( $previewhead . $previewHTML );
 	}
 

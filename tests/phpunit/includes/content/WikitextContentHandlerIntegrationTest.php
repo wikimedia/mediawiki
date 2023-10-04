@@ -44,7 +44,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'title' => 'WikitextContentTest_testGetParserOutput',
 			'model' => CONTENT_MODEL_WIKITEXT,
 			'text' => "hello ''world''\n",
-			'expectedHtml' => "<div class=\"mw-parser-output\"><p>hello <i>world</i>\n</p></div>",
+			'expectedHtml' => '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr">' . "<p>hello <i>world</i>\n</p></div>",
 			'expectedFields' => [
 				'Links' => [
 				],
@@ -61,7 +61,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'title' => 'WikitextContentTest_testGetParserOutput',
 			'model' => CONTENT_MODEL_WIKITEXT,
 			'text' => "hello ''world''\n",
-			'expectedHtml' => "<div class=\"mw-parser-output\"><section data-mw-section-id=\"0\" id=\"mwAQ\"><p id=\"mwAg\">hello <i id=\"mwAw\">world</i></p>\n</section></div>",
+			'expectedHtml' => '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr">' . "<section data-mw-section-id=\"0\" id=\"mwAQ\"><p id=\"mwAg\">hello <i id=\"mwAw\">world</i></p>\n</section></div>",
 			'expectedFields' => [
 				'Links' => [
 				],
@@ -77,7 +77,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'title' => 'WikitextContentTest_testGetParserOutput',
 			'model' => CONTENT_MODEL_WIKITEXT,
 			'text' => "#REDIRECT [[Main Page]]",
-			'expectedHtml' => "<div class=\"mw-parser-output\"><div class=\"redirectMsg\"><p>Redirect to:</p><ul class=\"redirectText\"><li><a href=\"/index.php?title=Main_Page&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Main Page (page does not exist)\">Main Page</a></li></ul></div><section data-mw-section-id=\"0\" id=\"mwAQ\"><link rel=\"mw:PageProp/redirect\" href=\"./Main_Page\" id=\"mwAg\"/></section></div>",
+			'expectedHtml' => '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr">' . "<div class=\"redirectMsg\"><p>Redirect to:</p><ul class=\"redirectText\"><li><a href=\"/index.php?title=Main_Page&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Main Page (page does not exist)\">Main Page</a></li></ul></div><section data-mw-section-id=\"0\" id=\"mwAQ\"><link rel=\"mw:PageProp/redirect\" href=\"./Main_Page\" id=\"mwAg\"/></section></div>",
 			'expectedFields' => [
 				'Links' => [
 					[ 'Main_Page' => 0 ],
