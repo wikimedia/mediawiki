@@ -1775,8 +1775,8 @@ class Sanitizer {
 		$url = self::decodeCharReferences( $url );
 
 		# Escape any control characters introduced by the above step
-		$url = preg_replace_callback( '/[\][<>"\\x00-\\x20\\x7F\|]/',
-			[ __CLASS__, 'cleanUrlCallback' ], $url );
+		$url = preg_replace_callback( '/[\][<>"\\x00-\\x20\\x7F\|]+/',
+			static fn ( $m ) => urlencode( $m[0] ), $url );
 
 		# Validate hostname portion
 		$matches = [];
@@ -1848,14 +1848,6 @@ class Sanitizer {
 		} else {
 			return $url;
 		}
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
-	private static function cleanUrlCallback( $matches ) {
-		return urlencode( $matches[0] );
 	}
 
 	/**

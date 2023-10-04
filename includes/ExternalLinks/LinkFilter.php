@@ -104,10 +104,8 @@ class LinkFilter {
 			$okChars .= '\x80-\xf4';
 		}
 		$host = preg_replace_callback(
-			'<[^' . $okChars . ']>',
-			static function ( $m ) {
-				return rawurlencode( $m[0] );
-			},
+			'<[^' . $okChars . ']+>',
+			static fn ( $m ) => rawurlencode( $m[0] ),
 			strtolower( $host )
 		);
 

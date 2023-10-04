@@ -465,10 +465,8 @@ class UserMailer {
 		$replace = $illegal . '.\t ?_';
 
 		$out = "=?$charset?Q?";
-		$out .= preg_replace_callback( "/([$replace])/",
-			static function ( $matches ) {
-				return sprintf( "=%02X", ord( $matches[1] ) );
-			},
+		$out .= preg_replace_callback( "/[$replace]/",
+			static fn ( $m ) => sprintf( "=%02X", ord( $m[0] ) ),
 			$string
 		);
 		$out .= '?=';
