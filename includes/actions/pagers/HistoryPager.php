@@ -251,7 +251,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 			$this->buttons .= Html::openElement(
 				'div', [ 'class' => 'mw-history-compareselectedversions' ] );
-			$className = 'historysubmit mw-history-compareselectedversions-button mw-ui-button';
+			$className = 'historysubmit mw-history-compareselectedversions-button cdx-button';
 			$attrs = [ 'class' => $className ]
 				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' );
 			$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
@@ -306,7 +306,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				'type' => 'submit',
 				'name' => 'title',
 				'value' => SpecialPage::getTitleFor( $name )->getPrefixedDBkey(),
-				'class' => [ 'mw-ui-button', $class, 'historysubmit' ],
+				'class' => [ 'cdx-button', $class, 'historysubmit' ],
 				'form' => 'mw-history-revisionactions',
 			],
 			$this->msg( $msg )->text()
