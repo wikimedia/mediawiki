@@ -1,4 +1,22 @@
 <?php
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -25,27 +43,17 @@ use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
- * Output of the PHP parser.
+ * Rendered output of a wiki page, as parsed from wikitext.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * ParserOutput objects are created by the ParserOutputAccess service,
+ * which automatically caches them via ParserCache when possible,
+ * and produces new output from the Parser (or Parsoid) as-needed.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ * Higher-level access is also available via the ContentHandler class,
+ * with as its main consumers our APIs and OutputPage/Skin frontend.
  *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
  * @ingroup Parser
  */
-
 class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	use GhostFieldAccessTrait;
 	use JsonUnserializableTrait;
@@ -402,6 +410,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *    of the `data-mw-deduplicate` attribute.
 	 *  - absoluteURLs: (bool) use absolute URLs in all links. Default: false
 	 *  - includeDebugInfo: (bool) render PP limit report in HTML. Default: false
+	 *  - bodyContentOnly: (bool) . Default: true
 	 * @return string HTML
 	 * @return-taint escaped
 	 */
@@ -410,11 +419,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'allowTOC' => true,
 			'injectTOC' => true,
 			'enableSectionEditLinks' => true,
-			'skin' => null,
 			'userLang' => null,
+			'skin' => null,
 			'unwrap' => false,
-			'deduplicateStyles' => true,
 			'wrapperDivClass' => $this->getWrapperDivClass(),
+			'deduplicateStyles' => true,
+			'absoluteURLs' => false,
 			'includeDebugInfo' => false,
 			'bodyContentOnly' => true,
 		];
@@ -545,7 +555,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 
 		// Expand all relative URLs
-		if ( ( $options['absoluteURLs'] ?? false ) && $text ) {
+		if ( $options['absoluteURLs'] && $text ) {
 			$text = Linker::expandLocalLinks( $text );
 		}
 
