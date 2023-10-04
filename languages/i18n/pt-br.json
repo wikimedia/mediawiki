@@ -2421,7 +2421,7 @@
 	"emailuser": "Enviar-lhe um e-mail",
 	"emailuser-title-target": "Enviar e-mail para {{GENDER:$1|este usuário|esta usuária|este(a) usuário(a)}}",
 	"emailuser-title-notarget": "Enviar e-mail",
-	"emailpagetext": "Você pode usar o formulário a seguir para enviar um e-mail para {{GENDER:$1|este usuário|esta usuária}}.\nO endereço de e-mail que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer como o endereço do remetente da mensagem, com o destinatário podendo responder diretamente para você.",
+	"emailpagetext": "Você pode usar o formulário a seguir para enviar um e-mail para {{GENDER:$1|este usuário|esta usuária}}.\nO endereço de e-mail que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer no e-mail, com o destinatário podendo responder diretamente para você.",
 	"defemailsubject": "E-mail {{GENDER:$1|do usuário|da usuária|do(a) usuário(a)}} \"$1\" da {{SITENAME}}",
 	"usermaildisabled": "O e-mail do usuário foi desativado",
 	"usermaildisabledtext": "Você não tem como enviar e-mails a outros usuários deste wiki.",

@@ -38,6 +38,7 @@
 	"rest-bad-json-body": "Corpo do pedido inválido; tem de ser um objeto JSON.",
 	"rest-json-body-parse-error": "A análise sintática do corpo do pedido como JSON falhou: $1",
 	"rest-missing-body-field": "O campo obrigatório \"$1\" está em falta no corpo do pedido.",
+	"rest-extraneous-body-fields": "Foram encontrados campos alheios no corpo do pedido: $1",
 	"rest-bad-content-model": "Modelo de conteúdo incorreto: $1",
 	"rest-update-cannot-create-page": "A página \"$1# não pode ser criada porque já existe. Para atualizar a página existente, forneça o identificador da revisão base na estrutura que se encontra sob a chave \"latest\" no corpo do pedido.",
 	"rest-extraneous-csrf-token": "Foi encontrada uma chave CSRF supérflua. As chaves CSRF não podem ser utilisadas ao usar mecanismos de autenticação como o OAuth, que são seguros contra ataques de CSRF.",

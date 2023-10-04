@@ -2932,6 +2932,7 @@
 	"allmessagescurrent": "Παρόν κείμενο",
 	"allmessagestext": "Αυτή είναι μια λίστα με όλα τα μηνύματα συστήματος που βρίσκονται στην περιοχή MediaWiki.\nΠαρακαλούμε επισκεφθείτε τα [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] και [https://translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.",
 	"allmessages-not-supported-database": "Αυτή η σελίδα δεν υποστηρίζεται επειδή το ''wgUseDatabaseMessages'' είναι απενεργοποιημένο.",
+	"allmessages-unknown-language": "Ο κωδικός γλώσσας <code>$1</code> είναι άγνωστος.",
 	"allmessages-filter-legend": "Φίλτρο",
 	"allmessages-filter": "Ταξινόμηση βάσει της δήλωσης προσαρμογής:",
 	"allmessages-filter-unmodified": "Ατροποποίητο",

@@ -154,6 +154,7 @@
 	"tog-prefershttps": "استخدم دائما اتصالا آمنا عند تسجيل الدخول",
 	"tog-showrollbackconfirmation": "إظهار رسالة تأكيد عند النقر على رابط الاسترجاع",
 	"tog-requireemail": "إرسال رسائل البريد الإلكتروني لإعادة تعيين كلمة المرور فقط عندما يتم توفير كل من عنوان البريد الإلكتروني واسم المستخدم.",
+	"tog-forcesafemode": "فعل [[mw:Manual:Safemode|الوضع الآمن]] دائمًا",
 	"underline-always": "دائما",
 	"underline-never": "أبدا",
 	"underline-default": "وفق المظهر أو المتصفح",
