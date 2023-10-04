@@ -106,9 +106,9 @@ For notes on 1.40.x and older releases, see HISTORY.
 * When $wgUseXssLanguage is set to true (enabled by default in
   DevelopmentSettings.php), ?uselang=x-xss can be used to easily test
   whether all messages are being escaped correctly.
-* Html::noticeBox accepts new optional parameters heading and iconClassName. 
-heading allows to pass an string as title and iconClassName overwrites the 
-default info icon.
+* Html::noticeBox accepts new optional parameters heading and iconClassName.
+  heading allows to pass an string as title and iconClassName overwrites the
+  default info icon.
 * …
 
 === External library changes in 1.41 ===
@@ -574,8 +574,8 @@ because of Phabricator reports.
   speed up general code loading of MediaWiki. The old global namespace class
   names are being left behind as deprecated aliases.
 
-  In this release of MediaWiki, 1455 classes now have a namespace and 1179 do
-  not yet (55% done, up from 47% in MediaWiki 1.40.0). The following have newly
+  In this release of MediaWiki, 1661 classes now have a namespace and 972 do
+  not yet (63% done, up from 54% in MediaWiki 1.40.0). The following have newly
   been moved:
   - MediaWiki\Config:
     - Config
