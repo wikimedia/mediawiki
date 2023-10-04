@@ -666,19 +666,12 @@ EOF
 		// TOC ------------
 		$a = new ParserOutput( '' );
 		$a->setSections( [ [ 'fromtitle' => 'A1' ], [ 'fromtitle' => 'A2' ] ] );
-		$a->getText(); // force TOC
 
 		$b = new ParserOutput( '' );
 		$b->setSections( [ [ 'fromtitle' => 'B1' ], [ 'fromtitle' => 'B2' ] ] );
-		$b->getText(); // force TOC
-
-		$emptyTOC = '<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>' . "\n" .
-		'<li class="toclevel-0"><a href="#"><span class="tocnumber"></span> <span class="toctext"></span></a></li>' . "\n" .
-		'<li class="toclevel-0"><a href="#"><span class="tocnumber"></span> <span class="toctext"></span></a>' . "\n" .
-		"</li></div>\n";
 
 		yield 'concat TOC' => [ $a, $b, [
-			'getTOCHTML' => $emptyTOC . $emptyTOC,
+			'getTOCHTML' => '',
 			'getSections' => [
 				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A1' ] )->toLegacy(),
 				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A2' ] )->toLegacy(),
