@@ -1227,7 +1227,7 @@ abstract class Skin extends ContextSource {
 			return [];
 		}
 		if ( $this->languageLinks === null ) {
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookRunner = $this->getHookRunner();
 
 			$userLang = $this->getLanguage();
 			$languageLinks = [];
@@ -1304,9 +1304,9 @@ abstract class Skin extends ContextSource {
 					'lang' => $ilInterwikiCodeBCP47,
 					'hreflang' => $ilInterwikiCodeBCP47,
 				];
-				$hookContainer->run( 'SkinTemplateGetLanguageLink',
-					[ &$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput() ],
-					[] );
+				$hookRunner->onSkinTemplateGetLanguageLink(
+					$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput()
+				);
 				$languageLinks[] = $languageLink;
 			}
 			$this->languageLinks = $languageLinks;
