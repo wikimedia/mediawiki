@@ -1224,6 +1224,12 @@ $wgDatabaseReplicaLagCritical = null;
 $wgMaxExecutionTimeForExpensiveQueries = null;
 
 /**
+ * Config variable stub for the VirtualDomainsMapping setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::VirtualDomainsMapping
+ */
+$wgVirtualDomainsMapping = null;
+
+/**
  * Config variable stub for the TemplateLinksSchemaMigrationStage setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::TemplateLinksSchemaMigrationStage
  */

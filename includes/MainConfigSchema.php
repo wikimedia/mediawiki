@@ -3230,6 +3230,26 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Mapping of virtual domain to external cluster db.
+	 *
+	 * If no entry is set, the code assumes local database.
+	 * For example, for routing queries of virtual domain 'vdomain'
+	 * to 'wikishared' database in 'extension1' cluster. The config should be like this:
+	 *  [ 'vdomain' => [ 'cluster' => 'extension1', 'db' => 'wikishared' ] ]
+	 *
+	 * If the database needs to be the local domain, just set the 'db' to false.
+	 *
+	 * If you want to get another db in the main cluster, just omit 'cluster'. For example:
+	 *  [ 'centralauth' => [ 'db' => 'centralauth' ] ]
+	 *
+	 * @since 1.41
+	 */
+	public const VirtualDomainsMapping = [
+		'default' => [],
+		'type' => 'map',
+	];
+
+	/**
 	 * Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.
 	 *
 	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:

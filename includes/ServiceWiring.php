@@ -709,7 +709,8 @@ return [
 			$srvCache,
 			$wanCache,
 			$services->getCriticalSectionProvider(),
-			$services->getStatsdDataFactory()
+			$services->getStatsdDataFactory(),
+			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' )
 		);
 	},
 

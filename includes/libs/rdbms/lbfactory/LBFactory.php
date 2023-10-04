@@ -76,6 +76,10 @@ abstract class LBFactory implements ILBFactory {
 	private $indexAliases = [];
 	/** @var DatabaseDomain[]|string[] Map of (domain alias => DB domain) */
 	protected $domainAliases = [];
+	/** @var array[] Map of virtual domain to array of cluster and domain */
+	protected array $virtualDomainsMapping = [];
+	/** @var string[] List of registered virtual domains */
+	protected array $virtualDomains = [];
 	/** @var callable[] */
 	private $replicationWaitCallbacks = [];
 
@@ -150,6 +154,8 @@ abstract class LBFactory implements ILBFactory {
 		$this->agent = $conf['agent'] ?? '';
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
+		$this->virtualDomainsMapping = $conf['virtualDomainsMapping'] ?? [];
+		$this->virtualDomains = $conf['virtualDomains'] ?? [];
 
 		static $nextTicket;
 		$this->ticket = $nextTicket = ( is_int( $nextTicket ) ? $nextTicket++ : mt_rand() );
@@ -515,6 +521,20 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function getPrimaryDatabase( $domain = false ): IDatabase {
+		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
+			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
+				$config = $this->virtualDomainsMapping[$domain];
+				if ( isset( $config['cluster'] ) ) {
+					return $this
+						->getExternalLB( $config['cluster'] )
+						->getConnection( DB_PRIMARY, [], $config['db'] );
+				}
+				$domain = $config['db'];
+			} else {
+				// It's not configured, assume local db.
+				$domain = false;
+			}
+		}
 		return $this->getMainLB( $domain )->getConnection( DB_PRIMARY, [], $domain );
 	}
 
@@ -523,6 +543,20 @@ abstract class LBFactory implements ILBFactory {
 			$groups = [];
 		} else {
 			$groups = [ $group ];
+		}
+		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
+			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
+				$config = $this->virtualDomainsMapping[$domain];
+				if ( isset( $config['cluster'] ) ) {
+					return $this
+						->getExternalLB( $config['cluster'] )
+						->getConnection( DB_REPLICA, $groups, $config['db'] );
+				}
+				$domain = $config['db'];
+			} else {
+				// It's not configured, assume local db.
+				$domain = false;
+			}
 		}
 		return $this->getMainLB( $domain )->getConnection( DB_REPLICA, $groups, $domain );
 	}

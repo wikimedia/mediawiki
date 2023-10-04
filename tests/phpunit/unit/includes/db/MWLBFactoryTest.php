@@ -41,7 +41,8 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 			new EmptyBagOStuff(),
 			new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] ),
 			new CriticalSectionProvider( RequestTimeout::singleton(), 1, null, null ),
-			new NullStatsdDataFactory()
+			new NullStatsdDataFactory(),
+			[]
 		);
 	}
 

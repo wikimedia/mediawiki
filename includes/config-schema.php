@@ -387,6 +387,8 @@ return [
 			'DatabaseReplicaLagWarning' => 10,
 			'DatabaseReplicaLagCritical' => 30,
 			'MaxExecutionTimeForExpensiveQueries' => 0,
+			'VirtualDomainsMapping' => [
+			],
 			'TemplateLinksSchemaMigrationStage' => 768,
 			'PageLinksSchemaMigrationStage' => 3,
 			'ExternalLinksDomainGaps' => [
@@ -2625,6 +2627,7 @@ return [
 			],
 			'LBFactoryConf' => 'object',
 			'LocalDatabases' => 'array',
+			'VirtualDomainsMapping' => 'object',
 			'TemplateLinksSchemaMigrationStage' => 'integer',
 			'PageLinksSchemaMigrationStage' => 'integer',
 			'ExternalLinksDomainGaps' => 'object',

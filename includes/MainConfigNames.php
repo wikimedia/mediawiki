@@ -1239,6 +1239,12 @@ class MainConfigNames {
 	public const MaxExecutionTimeForExpensiveQueries = 'MaxExecutionTimeForExpensiveQueries';
 
 	/**
+	 * Name constant for the VirtualDomainsMapping setting, for use with Config::get()
+	 * @see MainConfigSchema::VirtualDomainsMapping
+	 */
+	public const VirtualDomainsMapping = 'VirtualDomainsMapping';
+
+	/**
 	 * Name constant for the TemplateLinksSchemaMigrationStage setting, for use with Config::get()
 	 * @see MainConfigSchema::TemplateLinksSchemaMigrationStage
 	 */

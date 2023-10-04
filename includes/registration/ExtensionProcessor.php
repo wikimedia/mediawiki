@@ -82,6 +82,7 @@ class ExtensionProcessor implements Processor {
 		'LateJSConfigVarNames',
 		'TempUserSerialProviders',
 		'TempUserSerialMappings',
+		'DatabaseVirtualDomains',
 	];
 
 	/**
