@@ -385,24 +385,14 @@ class BitmapHandler extends TransformationalImageHandler {
 		$customConvertCommand = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::CustomConvertCommand );
 
-		// Variables: %s %d %w %h
-		$src = Shell::escape( $params['srcPath'] );
-		$dst = Shell::escape( $params['dstPath'] );
-		$w = Shell::escape( $params['physicalWidth'] );
-		$h = Shell::escape( $params['physicalHeight'] );
 		// Find all variables in the original command at once,
 		// so that replacement values cannot inject variable placeholders
-		$cmd = preg_replace_callback( '/%[dswh]/',
-			static function ( $m ) use ( $src, $dst, $w, $h ) {
-				return [
-					'%s' => $src,
-					'%d' => $dst,
-					'%w' => $w,
-					'%h' => $h,
-				][$m[0]];
-			},
-			$customConvertCommand
-		);
+		$cmd = strtr( $customConvertCommand, [
+			'%s' => Shell::escape( $params['srcPath'] ),
+			'%d' => Shell::escape( $params['dstPath'] ),
+			'%w' => Shell::escape( $params['physicalWidth'] ),
+			'%h' => Shell::escape( $params['physicalHeight'] ),
+		] );
 		wfDebug( __METHOD__ . ": Running custom convert command $cmd" );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval );

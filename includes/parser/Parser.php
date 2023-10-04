@@ -4754,13 +4754,8 @@ class Parser {
 	 * @return string Result HTML
 	 */
 	public static function replaceTableOfContentsMarker( $text, $toc ) {
-		return preg_replace_callback(
-			self::TOC_PLACEHOLDER_REGEX,
-			static function ( array $matches ) use( $toc ) {
-				return $toc; // Ensure $1 \1 etc are safe to use in $toc
-			},
-			$text
-		);
+		return preg_replace( self::TOC_PLACEHOLDER_REGEX,
+			StringUtils::escapeRegexReplacement( $toc ), $text );
 	}
 
 	/**
