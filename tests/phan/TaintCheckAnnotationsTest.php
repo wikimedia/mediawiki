@@ -566,8 +566,9 @@ class TaintCheckAnnotationsTest {
 	}
 
 	function testOutputPage( \MediaWiki\Output\OutputPage $out ) {
-		$out->addHeadItem( $_GET['a'], '' );// @phan-suppress-current-line SecurityCheck-XSS
-		$out->addHeadItem( '', $_GET['a'] );// Safe (?)
+		$out->addHeadItem( $_GET['a'], '' );// safe
+		$out->addHeadItem( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addHeadItems( [ 'foo' => $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 
 		$out->addHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
@@ -575,14 +576,19 @@ class TaintCheckAnnotationsTest {
 
 		$out->addInlineStyle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 		$out->addSubtitle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->setSubtitle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addScript( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addInlineScript( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->setIndicators( [ 'foo' => $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	/**
 	 * Non-namespaced alias of the OutputPage class.
 	 */
 	function testOutputPageAlias( \OutputPage $out ) {
-		$out->addHeadItem( $_GET['a'], '' );// @phan-suppress-current-line SecurityCheck-XSS
-		$out->addHeadItem( '', $_GET['a'] );// Safe (?)
+		$out->addHeadItem( $_GET['a'], '' );// safe
+		$out->addHeadItem( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addHeadItems( [ 'foo' => $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 
 		$out->addHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
@@ -590,6 +596,10 @@ class TaintCheckAnnotationsTest {
 
 		$out->addInlineStyle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 		$out->addSubtitle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->setSubtitle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addScript( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addInlineScript( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->setIndicators( [ 'foo' => $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	function testSanitizer() {
