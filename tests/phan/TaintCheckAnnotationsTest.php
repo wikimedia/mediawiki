@@ -574,6 +574,7 @@ class TaintCheckAnnotationsTest {
 		$out->prependHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
 		$out->addInlineStyle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addSubtitle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	/**
@@ -588,6 +589,7 @@ class TaintCheckAnnotationsTest {
 		$out->prependHTML( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 
 		$out->addInlineStyle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$out->addSubtitle( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	function testSanitizer() {

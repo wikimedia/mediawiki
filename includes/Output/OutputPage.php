@@ -1277,6 +1277,7 @@ class OutputPage extends ContextSource {
 	 * Add $str to the subtitle
 	 *
 	 * @param string|Message $str String or Message to add to the subtitle. String should be safe HTML.
+	 * @param-taint $str exec_html
 	 */
 	public function addSubtitle( $str ) {
 		if ( $str instanceof Message ) {
