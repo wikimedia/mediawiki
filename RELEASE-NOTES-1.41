@@ -132,6 +132,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Updated OOUI from v0.46.3 to v0.48.1.
 * Updated symfony/polyfill-php82 from v1.27.0 to v1.28.0.
 * Updated symfony/yaml from v5.4.17 to v5.4.23.
+* Updated wikimedia/bcp-47-code from 1.0.0 to 2.0.0.
 * Updated wikimedia/common-passwords from 0.4.0 to 0.5.0.
 * Updated wikimedia/composer-merge-plugin from 2.0.1 to 2.1.0.
 * Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
