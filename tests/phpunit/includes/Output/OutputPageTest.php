@@ -2893,7 +2893,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertFalse( $op->isTOCEnabled() );
 
-		$this->filterDeprecated( '/OutputPageParserOutput hook to mutate TOC/' );
 		$pOut2 = $this->createParserOutputStub( [
 			'getTOCHTML' => 'stuff',
 			'hasTOCHTML' => true,
