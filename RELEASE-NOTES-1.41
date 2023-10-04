@@ -117,6 +117,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Added pinia at v2.0.16.
 * Added symfony/polyfill-php81 at v1.28.0.
 * Added symfony/polyfill-php82 at v1.28.0.
+* Added symfony/polyfill-php83 at v1.28.0.
 
 ===== New development-only external libraries =====
 * …
