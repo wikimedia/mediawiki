@@ -1795,7 +1795,7 @@
 			{
 				"name": "us_size",
 				"comment": "file size in bytes",
-				"type": "integer",
+				"type": "bigint",
 				"options": {
 					"unsigned": true,
 					"notnull": true
@@ -1962,7 +1962,7 @@
 			},
 			{
 				"name": "fa_size",
-				"type": "integer",
+				"type": "bigint",
 				"options": {
 					"unsigned": true,
 					"notnull": false,
@@ -2190,7 +2190,7 @@
 			},
 			{
 				"name": "oi_size",
-				"type": "integer",
+				"type": "bigint",
 				"options": {
 					"unsigned": true,
 					"notnull": true,
@@ -2637,7 +2637,7 @@
 			{
 				"name": "img_size",
 				"comment": "File size in bytes.",
-				"type": "integer",
+				"type": "bigint",
 				"options": {
 					"unsigned": true,
 					"notnull": true,
