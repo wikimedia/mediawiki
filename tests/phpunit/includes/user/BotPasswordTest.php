@@ -361,8 +361,8 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$passwordHash = $password ? $passwordFactory->newFromPlaintext( $password ) : null;
-		$this->assertFalse( $bp->save( 'update', $passwordHash )->isGood() );
-		$this->assertTrue( $bp->save( 'insert', $passwordHash )->isGood() );
+		$this->assertStatusNotOk( $bp->save( 'update', $passwordHash ) );
+		$this->assertStatusGood( $bp->save( 'insert', $passwordHash ) );
 
 		$bp2 = BotPassword::newFromCentralId( 42, 'TestSave', BotPassword::READ_LATEST );
 		$this->assertInstanceOf( BotPassword::class, $bp2 );
@@ -383,8 +383,8 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$token = $bp->getToken();
 		$this->assertEquals( 42, $bp->getUserCentralId() );
 		$this->assertEquals( 'TestSave', $bp->getAppId() );
-		$this->assertFalse( $bp->save( 'insert' )->isGood() );
-		$this->assertTrue( $bp->save( 'update' )->isGood() );
+		$this->assertStatusNotOk( $bp->save( 'insert' ) );
+		$this->assertStatusGood( $bp->save( 'update' ) );
 		$this->assertNotEquals( $token, $bp->getToken() );
 
 		$bp2 = BotPassword::newFromCentralId( 42, 'TestSave', BotPassword::READ_LATEST );
@@ -400,7 +400,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		$passwordHash = $passwordFactory->newFromPlaintext( 'XXX' );
 		$token = $bp->getToken();
-		$this->assertTrue( $bp->save( 'update', $passwordHash )->isGood() );
+		$this->assertStatusGood( $bp->save( 'update', $passwordHash ) );
 		$this->assertNotEquals( $token, $bp->getToken() );
 
 		/** @var Password $pw */
@@ -451,17 +451,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		$status = $bp->save( 'insert' );
 
-		$this->assertStatusNotGood( $status );
-		$this->assertNotEmpty( $status->getErrors() );
-
-		$this->assertSame(
-			'botpasswords-toolong-restrictions',
-			$status->getErrors()[0]['message']
-		);
-
-		$this->assertSame(
-			'botpasswords-toolong-grants',
-			$status->getErrors()[1]['message']
-		);
+		$this->assertStatusError( 'botpasswords-toolong-restrictions', $status );
+		$this->assertStatusError( 'botpasswords-toolong-grants', $status );
 	}
 }

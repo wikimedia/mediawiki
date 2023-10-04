@@ -160,8 +160,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPermanentRedirect( $format, $path, $extraPathParams = [], $queryParams = [] ) {
 		$page = $this->getExistingTestPage( 'SourceEndpointTestPage with spaces' );
-		$this->assertTrue(
-			$this->editPage( $page, self::WIKITEXT )->isGood(),
+		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
 			'Edited a page'
 		);
 

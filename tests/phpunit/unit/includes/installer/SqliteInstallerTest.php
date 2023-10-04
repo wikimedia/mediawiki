@@ -21,8 +21,7 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 			mkdir( $dir, 0000 );
 			/** @var Status $status */
 			$status = $method->invoke( null, $dir );
-			$this->assertStatusNotGood( $status );
-			$this->assertSame( 'config-sqlite-dir-unwritable', $status->getErrors()[0]['message'] );
+			$this->assertStatusError( 'config-sqlite-dir-unwritable', $status );
 			rmdir( $dir );
 		}
 
@@ -53,8 +52,7 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 			mkdir( sys_get_temp_dir() . "/$random", 0000 );
 			/** @var Status $status */
 			$status = $method->invoke( null, $dir );
-			$this->assertStatusNotGood( $status );
-			$this->assertSame( 'config-sqlite-mkdir-error', $status->getErrors()[0]['message'] );
+			$this->assertStatusError( 'config-sqlite-mkdir-error', $status );
 			rmdir( sys_get_temp_dir() . "/$random" );
 		}
 

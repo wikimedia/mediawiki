@@ -3081,9 +3081,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$wrappedRevStore->blobStore = $mockBlobStore;
 
 		$result = $revStore->getContentBlobsForBatch( [ $revRecord1->getId() ] );
-		$this->assertStatusOK( $result );
-		$this->assertStatusNotGood( $result );
-		$this->assertNotEmpty( $result->getErrors() );
+		$this->assertStatusWarning( 'internalerror_info', $result );
 
 		$records = $result->getValue();
 		$this->assertArrayHasKey( $revRecord1->getId(), $records );
@@ -3169,8 +3167,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 					'content' => true
 				]
 			);
-		$this->assertStatusNotGood( $result );
-		$this->assertNotEmpty( $result->getErrors() );
+		$this->assertStatusWarning( 'internalerror_info', $result );
 		$records = $result->getValue();
 		$this->assertRevisionRecordsEqual( $revRecord1, $records[$revRecord1->getId()] );
 		$this->assertSame( $text . '1',
@@ -3240,7 +3237,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusGood( $status, 'edit 1' );
 		$originalRev = $status->getNewRevision();
 
-		$this->assertTrue( $this->editPage( $page, 'Content 2' )->isGood(), 'edit 2' );
+		$this->assertStatusGood( $this->editPage( $page, 'Content 2' ), 'edit 2' );
 
 		$status = $this->editPage( $page, 'Content 1' );
 		$this->assertStatusGood( $status, 'edit 3' );

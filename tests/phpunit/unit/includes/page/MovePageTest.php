@@ -132,12 +132,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			$notSpamStatus = $mp->$method( $this->mockRegisteredUltimateAuthority(), 'NOT_SPAM' );
 			$this->assertStatusGood( $notSpamStatus );
 			$spamStatus = $mp->$method( $this->mockRegisteredUltimateAuthority(), 'SPAM' );
-			$this->assertStatusNotGood( $spamStatus );
-			$this->assertArrayEquals( [ [
-				'message' => 'spamprotectiontext',
-				'type' => 'error',
-				'params' => []
-			] ], $spamStatus->getErrors() );
+			$this->assertStatusError( 'spamprotectiontext', $spamStatus );
 		}
 	}
 }
