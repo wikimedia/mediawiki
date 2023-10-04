@@ -735,6 +735,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'ipallowed' => true,
 			'iprange' => true,
 			'external' => true,
+			'required' => true,
 		];
 
 		$ns = $this->opts['namespace'] ?? null;
