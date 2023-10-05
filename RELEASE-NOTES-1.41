@@ -540,11 +540,13 @@ because of Phabricator reports.
 * The following MagicWord methods have been removed without deprecation. There
   were no known uses.
   - ::addToArray
+  - ::compareStringLength
   - ::getVariableRegex
   - ::getVariableStartToEndRegex
   - ::getWasModified
   - ::matchStart
   - ::matchVariableStartToEnd
+  - ::pregRemoveAndRecord
   - ::substituteCallback
 * The following MagicWordArray methods have been removed or made private without
   deprecation. There were no known uses outside of the class.
