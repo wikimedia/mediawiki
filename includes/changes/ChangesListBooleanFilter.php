@@ -23,7 +23,7 @@
 
 use MediaWiki\Html\FormOptions;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Represents a hide-based boolean filter (used on ChangesListSpecialPage and descendants)
@@ -178,7 +178,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * Modifies the query to include the filter.  This is only called if the filter is
 	 * in effect (taking into account the default).
 	 *
-	 * @param IDatabase $dbr Database, for addQuotes, makeList, and similar
+	 * @param IReadableDatabase $dbr Database, for addQuotes, makeList, and similar
 	 * @param ChangesListSpecialPage $specialPage Current special page
 	 * @param array &$tables Array of tables; see IDatabase::select $table
 	 * @param array &$fields Array of fields; see IDatabase::select $vars
@@ -186,7 +186,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * @param array &$query_options Array of query options; see IDatabase::select $options
 	 * @param array &$join_conds Array of join conditions; see IDatabase::select $join_conds
 	 */
-	public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
+	public function modifyQuery( IReadableDatabase $dbr, ChangesListSpecialPage $specialPage,
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds
 	) {
 		if ( $this->queryCallable === null ) {

@@ -1156,7 +1156,7 @@ class RecentChange implements Taggable {
 				// NOTE: rc_actor exists in the database, but application logic should not use it.
 				wfDeprecatedMsg( 'Accessing deprecated field rc_actor', '1.36' );
 				$actorStore = MediaWikiServices::getInstance()->getActorStore();
-				$db = wfGetDB( DB_REPLICA );
+				$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 				return $actorStore->findActorId( $user, $db );
 			}
 		}

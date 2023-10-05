@@ -7,8 +7,9 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -42,7 +43,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		UserOptionsLookup $userOptionsLookup = null
 	) {
 		return new WatchedItemQueryService(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockDbProvider( $mockDb ),
 			$this->getMockCommentStore(),
 			$this->getMockWatchedItemStore(),
 			$this->createHookContainer(),
@@ -111,14 +112,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		return $mock;
 	}
 
-	/**
-	 * @param DBConnRef $mockDb
-	 * @return LoadBalancer
-	 */
-	private function getMockLoadBalancer( DBConnRef $mockDb ) {
-		$mock = $this->createMock( LoadBalancer::class );
-		$mock->method( 'getConnectionRef' )
-			->with( DB_REPLICA )
+	private function getMockDbProvider( IReadableDatabase $mockDb ): IConnectionProvider {
+		$mock = $this->createMock( IConnectionProvider::class );
+		$mock->method( 'getReplicaDatabase' )
 			->willReturn( $mockDb );
 		return $mock;
 	}
