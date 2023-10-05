@@ -948,7 +948,6 @@
 	"default": "pridifinutu",
 	"prefs-files": "File",
 	"prefs-custom-css": "CSS pirsunalizzatu",
-	"prefs-custom-json": "JSON pirsunalizzatu",
 	"prefs-custom-js": "JavaScript pirsunalizzatu",
 	"prefs-common-config": "CSS/JSON/JavaScript cunnivisu tra tutti li peddi:",
 	"prefs-reset-intro": "Poi adupirari sta pàggina p'azzirari li tò prifirenzi a chiddi pridifinuti dû situ.\nSt'opirazzioni nun si pò annullari doppu ch'è fatta.",

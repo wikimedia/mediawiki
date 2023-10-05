@@ -1055,7 +1055,6 @@
 	"default": "standard",
 	"prefs-files": "Filer",
 	"prefs-custom-css": "Eigendefinert CSS",
-	"prefs-custom-json": "Eigendefinert JSON",
 	"prefs-custom-js": "Eigendefinert JavaScript",
 	"prefs-common-config": "Delt CSS/JSON/JavaScript for alle draktene:",
 	"prefs-reset-intro": "Du kan nytta denne sida til å tilbakestilla innstillingane dine til standardinnstillingane.\nDette kan ikkje tilbakestillast.",

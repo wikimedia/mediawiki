@@ -982,7 +982,6 @@
 	"default": "tsipalotra",
 	"prefs-files": "Rakitra",
 	"prefs-custom-css": "CSS manokana",
-	"prefs-custom-json": "JSON manokana",
 	"prefs-custom-js": "Javascript manokana",
 	"prefs-common-config": "JavaScript ary CSS zaraina ho an'ny fiankanjoana rehetra:",
 	"prefs-reset-intro": "Azonao ampiasaina ity pejy ity mba hamerina ny safidinao amin'izay safidy tsipalotr'ilay sehatra. Tsy azo averina io.",

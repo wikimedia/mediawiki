@@ -1058,7 +1058,6 @@
 	"default": "базни опциї",
 	"prefs-files": "Файли",
 	"prefs-custom-css": "Власни CSS",
-	"prefs-custom-json": "Власни JSON",
 	"prefs-custom-js": "Власни JavaScript",
 	"prefs-common-config": "Дзелєни CSS/JSON/JavaScript за шицки теми:",
 	"prefs-reset-intro": "Можеце хасновац тот бок же бисце ознова намесцели свойо штелованє опцийох на стандардни (дифолт)вредносци сайта.\nМеркуйце, кед тото зробице нє годни сце врациц скорейши вредносци.",

@@ -973,7 +973,6 @@
 	"default": "pēc noklusējuma",
 	"prefs-files": "Faili",
 	"prefs-custom-css": "Personīgais CSS",
-	"prefs-custom-json": "Pielāgots JSON",
 	"prefs-custom-js": "Personīgais JavaScript",
 	"prefs-common-config": "Kopīgs CSS/JSON/JavaScript visās apdarēs:",
 	"prefs-emailconfirm-label": "E-pasta statuss:",

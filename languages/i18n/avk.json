@@ -724,7 +724,6 @@
 	"default": "omava",
 	"prefs-files": "Iyeltak se",
 	"prefs-custom-css": "Ilkaf CSS",
-	"prefs-custom-json": "Ilkaf JSON",
 	"prefs-custom-js": "Ilkaf JavaScript",
 	"youremail": "Jinafe internetmane",
 	"username": "{{GENDER:$1|Favesikyolt}} :",

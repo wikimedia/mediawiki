@@ -1117,7 +1117,6 @@
 	"default": "rhagosodyn",
 	"prefs-files": "Ffeiliau",
 	"prefs-custom-css": "CSS wedi'i addasu",
-	"prefs-custom-json": "JSON addasedig",
 	"prefs-custom-js": "JavaScript wedi'i addasu",
 	"prefs-common-config": "CSS / JSON / JavaScript ar gyfer pob gwedd:",
 	"prefs-reset-intro": "Gallwch ddefnyddio'r dudalen hon i ailosod eich dewisiadau i'r rhai diofyn.\nNi allwch ddadwneud y weithred hon.",

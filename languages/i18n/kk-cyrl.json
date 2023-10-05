@@ -1100,7 +1100,6 @@
 	"default": "әдепкі",
 	"prefs-files": "Файлдар",
 	"prefs-custom-css": "Баптаулы CSS",
-	"prefs-custom-json": "Баптаулы JSON",
 	"prefs-custom-js": "Баптаулы JavaScript",
 	"prefs-common-config": "Барлық мұқаба үшін ортақ CSS/JSON/JavaScript:",
 	"prefs-reset-intro": "Бұл бетті баптауларыңызды сайт әдепкісіне арылтуға қолдана аласыз.\nБұл қайтымсыз әрекет.",

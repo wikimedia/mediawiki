@@ -798,7 +798,6 @@
 	"default": "standert",
 	"prefs-files": "Bestannen",
 	"prefs-custom-css": "Oanpast CSS",
-	"prefs-custom-json": "Oanpast JSON",
 	"prefs-custom-js": "Oanpast JavaScript",
 	"prefs-common-config": "Dield CSS/JSON/JavaScript foar alle foarmjouwings:",
 	"prefs-reset-intro": "Jo kinne dizze side brûke om jo ynstellings werom te setten nei de websteestandert.\nDat kin net ûngedien makke wurde.",

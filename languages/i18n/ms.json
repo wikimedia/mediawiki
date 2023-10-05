@@ -1135,7 +1135,6 @@
 	"default": "asali",
 	"prefs-files": "Fail",
 	"prefs-custom-css": "CSS tempahan",
-	"prefs-custom-json": "JSON menurut pesanan",
 	"prefs-custom-js": "JavaScript tempahan",
 	"prefs-common-config": "CSS/JavaScript kongsi untuk semua kulit:",
 	"prefs-reset-intro": "Anda boleh menggunakan laman ini untuk menetapkan semula keutamaan anda kepada tetapan asali.\nTindakan ini tidak boleh dibatalkan.",

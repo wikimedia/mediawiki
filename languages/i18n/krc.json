@@ -1098,7 +1098,6 @@
 	"default": "тынгылау бла",
 	"prefs-files": "Файлла",
 	"prefs-custom-css": "Энчи CSS",
-	"prefs-custom-json": "Энчи JSON",
 	"prefs-custom-js": "Энчи JavaScript",
 	"prefs-common-config": "Бютеу темала ючюн джайылгъан CSS/JSON/JavaScript:",
 	"prefs-reset-intro": "Бу бетни джарашдырыуларыгъызны тынгылыау бла салыннган джарашдырыулагъа кёчюрюрге хайырланаллыкъсыз.\nБу ишлемни къабыл этсегиз, ызына къайтараллыкъ тюлсюз.",

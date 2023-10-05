@@ -1035,7 +1035,6 @@
 	"default": "baku",
 	"prefs-files": "Berkas",
 	"prefs-custom-css": "CSS surang",
-	"prefs-custom-json": "JSON kustom",
 	"prefs-custom-js": "JavaScript surang",
 	"prefs-common-config": "CSS/JS babagi untuak kasado kulik:",
 	"prefs-reset-intro": "Angku dapek manggunokan laman ko untuak mangambalikan pangaturan ka setelan baku situs ko.\nPangambalian pangaturan indak dapek dibatalan.",

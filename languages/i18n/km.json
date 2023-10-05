@@ -955,7 +955,6 @@
 	"default": "លំនាំដើម",
 	"prefs-files": "ឯកសារ",
 	"prefs-custom-css": "CSSកម្លាយ",
-	"prefs-custom-json": "JSONកម្លាយ",
 	"prefs-custom-js": "JavaScriptកម្លាយ",
 	"prefs-common-config": "CSS/JSON/JavaScriptរួមសម្រាប់សំបកទាំងអស់៖",
 	"prefs-reset-intro": "អ្នក​អាច​ប្រើ​ទំព័រ​នេះ​ដើម្បី​កំណត់​ចំណង់ចំណូល​ចិត្ត​របស់​អ្នក​ដូច​លំនាំ​ដើម​ឡើង​វិញ​។\nសកម្មភាព​នេះ​មិន​អាច​ឈប់ធ្វើ​ឡើង​វិញ​បាន​ទេ​។",

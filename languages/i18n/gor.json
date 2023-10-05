@@ -942,7 +942,6 @@
 	"default": "kakali",
 	"prefs-files": "Berkas",
 	"prefs-custom-css": "CSS pribadi",
-	"prefs-custom-json": "JSON kustom",
 	"prefs-custom-js": "JavaScript pribadi",
 	"prefs-common-config": "CSS/JSON/JavaScript motayade ode nga'amila alipo:",
 	"prefs-reset-confirm": "Joo, Wa'u ohila mopobohu aturu lo preperensi'u.",

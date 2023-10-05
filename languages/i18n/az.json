@@ -1075,7 +1075,6 @@
 	"default": "standart",
 	"prefs-files": "Fayllar",
 	"prefs-custom-css": "Xüsusi CSS",
-	"prefs-custom-json": "Fərdi JSON",
 	"prefs-custom-js": "Xüsusi JavaScript",
 	"prefs-common-config": "Bütün görünüşlər üçün ümumi CSS/JavaScript:",
 	"prefs-reset-intro": "Bu səhifəni parametrlər ilkin vəziyyətə gətirmək üçün istifadə edə bilərsiniz. Bu əməliyyat geri qaytarıla bilməz.",

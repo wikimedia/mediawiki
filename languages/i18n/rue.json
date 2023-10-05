@@ -860,7 +860,6 @@
 	"default": "імпліцітне",
 	"prefs-files": "Файлы",
 	"prefs-custom-css": "Властный CSS",
-	"prefs-custom-json": "Властный JSON",
 	"prefs-custom-js": "Властный JavaScript",
 	"prefs-common-config": "Сдїляне CSS/JSON/JavaScript про вшыткы штілы:",
 	"prefs-reset-intro": "Помочов той сторінкы можете вшыткы наставлїня вернути на імпліцітны годноты.\nТоту операцію не годен вернути назад.",

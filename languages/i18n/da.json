@@ -1121,7 +1121,6 @@
 	"default": "standard",
 	"prefs-files": "Filer",
 	"prefs-custom-css": "Personlig CSS",
-	"prefs-custom-json": "Tilpasset JSON",
 	"prefs-custom-js": "Personlig JavaScript",
 	"prefs-common-config": "Fælles CSS/JSON/JavaScript for alle udseender:",
 	"prefs-reset-intro": "Du kan bruge denne side til at tilbagestille alle dine indstillinger til standardindstillingerne.\nDet kan ikke gøres om.",

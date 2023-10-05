@@ -1039,7 +1039,6 @@
 	"default": "Ylheinen",
 	"prefs-files": "Fiilit",
 	"prefs-custom-css": "Käyttäjäkohtanen CSS-tyylisivu",
-	"prefs-custom-json": "Mukautettu JSON",
 	"prefs-custom-js": "Käyttäjäkohtanen JavaScript-sivu",
 	"prefs-common-config": "Yhteiset CSS/JSON/JavaScript-sivut kaikile ulkoasuile:",
 	"prefs-reset-intro": "Voit käyttää tätä sivua palauttaaksesi kaikki inställninkit sivuston oletusasetuksiin. Tätä ei voi kumota.",
