@@ -133,12 +133,6 @@ class HtmlToContentTransform {
 		}
 	}
 
-	private function timingMetrics( string $key, $value ) {
-		if ( $this->metrics ) {
-			$this->metrics->timing( $key, $value );
-		}
-	}
-
 	public function setOptions( array $options ) {
 		$this->options = $options;
 	}
@@ -659,24 +653,10 @@ class HtmlToContentTransform {
 	 * @return string
 	 */
 	private function htmlToText(): string {
-		// Performance Timing options
-		$timing = $this->startTiming();
-
 		$doc = $this->getModifiedDocument();
 		$htmlSize = $this->getModifiedHtmlSize();
-
-		// Send input size to statsd/Graphite
-		$this->timingMetrics( 'html2wt.size.input', $htmlSize );
-
 		$inputContentVersion = $this->getSchemaVersion();
-
-		$this->incrementMetrics(
-			'html2wt.original.version.' . $inputContentVersion
-		);
-
 		$selserData = $this->getSelserData();
-
-		$timing->end( 'html2wt.init' );
 
 		try {
 			$text = $this->parsoid->dom2wikitext( $this->getPageConfig(), $doc, [
@@ -689,15 +669,6 @@ class HtmlToContentTransform {
 			throw new HttpException( $e->getMessage(), 400 );
 		} catch ( ResourceLimitExceededException $e ) {
 			throw new HttpException( $e->getMessage(), 413 );
-		}
-
-		$total = $timing->end( 'html2wt.total' );
-		$this->timingMetrics( 'html2wt.size.output', strlen( $text ) );
-
-		if ( $htmlSize ) {  // Avoid division by zero
-			// NOTE: the name timePerInputKB is misleading, since $htmlSize is
-			//       in characters, not bytes.
-			$this->timingMetrics( 'html2wt.timePerInputKB', $total * 1024 / $htmlSize );
 		}
 
 		return $text;
