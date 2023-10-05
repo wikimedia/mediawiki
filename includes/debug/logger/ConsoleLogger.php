@@ -8,9 +8,16 @@ use Psr\Log\LogLevel;
 use Wikimedia\Assert\Assert;
 
 /**
- * A logger which writes to the terminal. The output is supposed to be
- * human-readable, and should be changed as necessary to better achieve that
- * goal.
+ * Write logs to command-line output (STDERR).
+ *
+ * The output is supposed to be human-readable, and should be changed as necessary
+ * to better achieve that goal.
+ *
+ * This is developed for use in maintenance/eval.php.
+ *
+ * @internal For use in MediaWiki core only
+ * @since 1.30
+ * @ingroup Debug
  */
 class ConsoleLogger extends AbstractLogger {
 	private const LEVELS = [

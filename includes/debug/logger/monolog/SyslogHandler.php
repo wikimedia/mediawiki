@@ -25,18 +25,19 @@ use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Logger;
 
 /**
- * Log handler that supports sending log events to a syslog server using RFC
- * 3164 formatted UDP packets.
+ * Write logs to a syslog server, using RFC 3164 formatted UDP packets.
  *
- * Monolog's SyslogUdpHandler creates a partial RFC 5424 header (PRI and
- * VERSION) and relies on the associated formatter to complete the header and
- * message payload. This makes using it with a fixed format formatter like
- * \Monolog\Formatter\LogstashFormatter impossible. Additionally, the
- * direct syslog input for Logstash only handles RFC 3164 syslog packets.
+ * This builds on Monolog's SyslogUdpHandler, which creates only a partial
+ * RFC 5424 header (PRI and VERSION), with rest intending to come
+ * from a specifically configured LineFormatter.
  *
- * This Handler should work with any Formatter. The formatted message will be
- * prepended with an RFC 3164 message header and a partial message body. The
- * resulting packet will looks something like:
+ * This makes use of SyslogUdpHandler it impossible with a formatter like
+ * \Monolog\Formatter\LogstashFormatter. Additionally, the direct syslog
+ * input for Logstash requires and accepts only RFC 3164 formatted packets.
+ *
+ * This is a complete syslog handler and should work with any formatter. The
+ * formatted message will be prepended with a complete RFC 3164 message
+ * header and a partial message body. The resulting packet looks like:
  *
  *   <PRI>DATETIME HOSTNAME PROGRAM: MESSAGE
  *
@@ -44,19 +45,13 @@ use Monolog\Logger;
  * default Logstash syslog input handler.
  *
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2015 Wikimedia Foundation and contributors
  */
 class SyslogHandler extends SyslogUdpHandler {
 
-	/**
-	 * @var string
-	 */
-	private $appname;
-
-	/**
-	 * @var string
-	 */
-	private $hostname;
+	private string $appname;
+	private string $hostname;
 
 	/**
 	 * @param string $appname Application name to report to syslog

@@ -112,6 +112,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  *
  * @see https://github.com/Seldaek/monolog
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2014 Wikimedia Foundation and contributors
  */
 class MonologSpi implements Spi {

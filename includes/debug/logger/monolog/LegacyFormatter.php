@@ -30,8 +30,8 @@ use Monolog\Formatter\NormalizerFormatter;
  *
  * @deprecated since 1.32
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2013 Wikimedia Foundation and contributors
- * @see \MediaWiki\Logger\LegacyLogger
  */
 class LegacyFormatter extends NormalizerFormatter {
 

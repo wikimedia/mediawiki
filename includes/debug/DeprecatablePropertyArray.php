@@ -5,11 +5,13 @@ namespace MediaWiki\Debug;
 use ArrayAccess;
 
 /**
- * ArrayAccess implementation that supports deprecating access to certain properties.
+ * ArrayAccess with support for deprecating access to certain offsets.
+ *
  * It behaves mostly as a normal array, however in order to avoid instantiating
  * deprecated properties by default, a callable initializer can be set to the property.
  * It will be executed upon 'get'.
- * @note setting properties does not emit deprecation warnings.
+ * @note Setting properties does not emit deprecation warnings.
+ *
  * @newable
  * @since 1.35
  */

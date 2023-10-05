@@ -2,8 +2,10 @@
 
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\TitleValue;
-use Wikimedia\AtEase\AtEase;
 
+/**
+ * @covers MWDebug
+ */
 class MWDebugTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
@@ -15,20 +17,15 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 		MWDebug::init();
-		AtEase::suppressWarnings();
 	}
 
 	public static function tearDownAfterClass(): void {
 		MWDebug::deinit();
-		AtEase::restoreWarnings();
 		parent::tearDownAfterClass();
 	}
 
-	/**
-	 * @covers MWDebug::log
-	 */
 	public function testAddLog() {
-		MWDebug::log( 'logging a string' );
+		@MWDebug::log( 'logging a string' );
 		$this->assertEquals(
 			[ [
 				'msg' => 'logging a string',
@@ -39,11 +36,8 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers MWDebug::warning
-	 */
 	public function testAddWarning() {
-		MWDebug::warning( 'Warning message' );
+		@MWDebug::warning( 'Warning message' );
 		$this->assertEquals(
 			[ [
 				'msg' => 'Warning message',
@@ -54,9 +48,6 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers MWDebug::detectDeprecatedOverride
-	 */
 	public function testDetectDeprecatedOverride() {
 		$baseclassInstance = new TitleValue( NS_MAIN, 'Test' );
 
@@ -78,7 +69,7 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		};
 
 		$this->assertTrue(
-			MWDebug::detectDeprecatedOverride(
+			@MWDebug::detectDeprecatedOverride(
 				$subclassInstance,
 				TitleValue::class,
 				'getNamespace',
@@ -90,36 +81,27 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( 1, MWDebug::getLog() );
 	}
 
-	/**
-	 * @covers MWDebug::deprecated
-	 */
 	public function testAvoidDuplicateDeprecations() {
-		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
-		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
 		$this->assertCount( 1, MWDebug::getLog(),
 			"Only one deprecated warning per function should be kept"
 		);
 	}
 
-	/**
-	 * @covers MWDebug::deprecated
-	 */
 	public function testAvoidNonConsecutivesDuplicateDeprecations() {
-		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
-		MWDebug::warning( 'some warning' );
-		MWDebug::log( 'we could have logged something too' );
+		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+		@MWDebug::warning( 'some warning' );
+		@MWDebug::log( 'we could have logged something too' );
 		// Another deprecation
-		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
 		$this->assertCount( 3, MWDebug::getLog(),
 			"Only one deprecated warning per function should be kept"
 		);
 	}
 
-	/**
-	 * @covers MWDebug::appendDebugInfoToApiResult
-	 */
 	public function testAppendDebugInfoToApiResultXmlFormat() {
 		$request = $this->newApiRequest(
 			[ 'action' => 'help', 'format' => 'xml' ],
@@ -153,21 +135,11 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param string[] $params
 	 * @param string $requestUrl
-	 *
 	 * @return FauxRequest
 	 */
 	private function newApiRequest( array $params, $requestUrl ) {
-		$request = $this->getMockBuilder( FauxRequest::class )
-			->onlyMethods( [ 'getRequestURL' ] )
-			->setConstructorArgs( [
-				$params
-			] )
-			->getMock();
-
-		$request->method( 'getRequestURL' )
-			->willReturn( $requestUrl );
-
-		return $request;
+		$req = new FauxRequest( $params );
+		$req->setRequestURL( $requestUrl );
+		return $req;
 	}
-
 }

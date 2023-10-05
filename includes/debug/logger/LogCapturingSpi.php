@@ -6,9 +6,13 @@ use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 
 /**
- * Wraps another spi to capture all logs generated. This can be
- * used, for example, to collect all logs generated during a
- * unit test and report them when the test fails.
+ * Wrap another Spi and keep a copy of all log messages.
+ *
+ * This is developed for use by PHPUnit bootstrapping, to collect logs
+ * generated during a given unit test, and print them after a failing test.
+ *
+ * @internal For use in MediaWiki core only
+ * @ingroup Debug
  */
 class LogCapturingSpi implements Spi {
 	/** @var LoggerInterface[] */

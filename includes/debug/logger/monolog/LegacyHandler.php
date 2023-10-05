@@ -28,23 +28,33 @@ use Socket;
 use UnexpectedValueException;
 
 /**
- * Log handler that replicates the behavior of MediaWiki's former wfErrorLog()
- * logging service. Log output can be directed to a local file, a PHP stream,
- * or a udp2log server.
+ * Monolog imitation of MediaWiki\Logger\LegacyLogger
+ *
+ * This replicates the behavior of LegacyLogger, which in turn replicates
+ * MediaWiki's former wfErrorLog() function.
+ *
+ * The main use case of the LegacyHandler is to enable adoption of Monolog
+ * features (such as alternate formatters, extra processors, and enabling multiple
+ * destinations/handlers at the same time), where one of the handlers (this one)
+ * essentiallly does what the LegacySpi would do if you hadn't enabled
+ * MonologSpi. In particular: writing to a file like $wgDebugLogFile,
+ * and sending messages to a PHP stream or udp2log server.
  *
  * For udp2log output, the stream specification must have the form:
  * "udp://HOST:PORT[/PREFIX]"
  * where:
+ *
  * - HOST: IPv4, IPv6 or hostname
  * - PORT: server port
  * - PREFIX: optional (but recommended) prefix telling udp2log how to route
- * the log event. The special prefix "{channel}" will use the log event's
- * channel as the prefix value.
+ *   the log event. The special prefix "{channel}" will use the log event's
+ *   channel as the prefix value.
  *
- * When not targeting a udp2log stream this class will act as a drop-in
+ * When not targeting a udp2log server, this class will act as a drop-in
  * replacement for \Monolog\Handler\StreamHandler.
  *
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 class LegacyHandler extends AbstractProcessingHandler {

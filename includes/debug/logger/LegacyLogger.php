@@ -42,10 +42,11 @@ use Wikimedia\AtEase\AtEase;
  * - `$wgDBerrorLog`
  * - `$wgDBerrorLogTZ`
  *
- * See docs/Configuration.ms for detailed explanations of these settings.
+ * See docs/Configuration.md for detailed explanations of these settings.
  *
  * @see \MediaWiki\Logger\LoggerFactory
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2014 Wikimedia Foundation and contributors
  */
 class LegacyLogger extends AbstractLogger {
