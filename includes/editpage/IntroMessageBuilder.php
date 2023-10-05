@@ -540,7 +540,7 @@ class IntroMessageBuilder {
 	 * e.g. "User:Example/Monobook.css" instead of "monobook.css"
 	 */
 	private function isWrongCaseUserConfigPage( Title $title ): bool {
-		if ( $title->isUserConfigPage() ) {
+		if ( $title->isUserCssConfigPage() || $title->isUserJsConfigPage() ) {
 			$name = $title->getSkinFromConfigSubpage();
 			$skins = array_merge(
 				array_keys( $this->skinFactory->getInstalledSkins() ),
