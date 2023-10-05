@@ -642,6 +642,55 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->destroy();
 	}
 
+	public function testVirtualDomains() {
+		$baseOverrides = [
+			'localDomain' => ( new DatabaseDomain( 'localdomain', null, '' ) )->getId(),
+			'sectionLoads' => [
+				'DEFAULT' => [
+					'test-db1' => 1,
+				],
+				'shareddb' => [
+					'test-db1' => 1,
+				],
+			],
+			'externalLoads' => [
+				'extension1' => [
+					'test-db1' => 1,
+				],
+			],
+			'virtualDomains' => [ 'virtualdomain1', 'virtualdomain2', 'virtualdomain3', 'virtualdomain4' ],
+			'virtualDomainsMapping' => [
+				'virtualdomain1' => [ 'db' => 'extdomain', 'cluster' => 'extension1' ],
+				'virtualdomain2' => [ 'db' => false, 'cluster' => 'extension1' ],
+				'virtualdomain3' => [ 'db' => 'shareddb' ],
+			]
+		];
+		$factory = $this->newLBFactoryMulti( $baseOverrides );
+		$db1 = $factory->getPrimaryDatabase( 'virtualdomain1' );
+		$this->assertEquals(
+			'extdomain',
+			$db1->getDomainID()
+		);
+
+		$db2 = $factory->getPrimaryDatabase( 'virtualdomain2' );
+		$this->assertEquals(
+			'localdomain',
+			$db2->getDomainID()
+		);
+
+		$db3 = $factory->getPrimaryDatabase( 'virtualdomain3' );
+		$this->assertEquals(
+			'shareddb',
+			$db3->getDomainID()
+		);
+
+		$db3 = $factory->getPrimaryDatabase( 'virtualdomain4' );
+		$this->assertEquals(
+			'localdomain',
+			$db3->getDomainID()
+		);
+	}
+
 	private function quoteTable( IReadableDatabase $db, $table ) {
 		if ( $db->getType() === 'sqlite' ) {
 			return $table;

@@ -67,6 +67,7 @@ class MWLBFactory {
 		MainConfigNames::ExternalServers,
 		MainConfigNames::SQLiteDataDir,
 		MainConfigNames::SQLMode,
+		MainConfigNames::VirtualDomainsMapping,
 	];
 	/**
 	 * @var ServiceOptions
@@ -96,6 +97,7 @@ class MWLBFactory {
 	 * @var StatsdDataFactoryInterface
 	 */
 	private $statsdDataFactory;
+	private array $virtualDomains = [];
 
 	/**
 	 * @param ServiceOptions $options
@@ -113,7 +115,8 @@ class MWLBFactory {
 		BagOStuff $srvCache,
 		WANObjectCache $wanCache,
 		CriticalSectionProvider $csProvider,
-		StatsdDataFactoryInterface $statsdDataFactory
+		StatsdDataFactoryInterface $statsdDataFactory,
+		array $virtualDomains
 	) {
 		$this->options = $options;
 		$this->readOnlyMode = $readOnlyMode;
@@ -122,6 +125,7 @@ class MWLBFactory {
 		$this->wanCache = $wanCache;
 		$this->csProvider = $csProvider;
 		$this->statsdDataFactory = $statsdDataFactory;
+		$this->virtualDomains = $virtualDomains;
 	}
 
 	/**
@@ -215,6 +219,8 @@ class MWLBFactory {
 		$lbConf['chronologyProtector'] = $this->chronologyProtector;
 		$lbConf['srvCache'] = $this->srvCache;
 		$lbConf['wanCache'] = $this->wanCache;
+		$lbConf['virtualDomains'] = $this->virtualDomains;
+		$lbConf['virtualDomainsMapping'] = $this->options->get( MainConfigNames::VirtualDomainsMapping );
 
 		return $lbConf;
 	}

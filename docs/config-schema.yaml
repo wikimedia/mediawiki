@@ -1974,6 +1974,19 @@ config-schema:
             Max execution time for queries of several expensive special pages such as RecentChanges
             in milliseconds.
             @since 1.38
+    VirtualDomainsMapping:
+        default: {  }
+        type: object
+        description: |-
+            Mapping of virtual domain to external cluster db.
+            If no entry is set, the code assumes local database.
+            For example, for routing queries of virtual domain 'vdomain'
+            to 'wikishared' database in 'extension1' cluster. The config should be like this:
+             [ 'vdomain' => [ 'cluster' => 'extension1', 'db' => 'wikishared' ] ]
+            If the database needs to be the local domain, just set the 'db' to false.
+            If you want to get another db in the main cluster, just omit 'cluster'. For example:
+             [ 'centralauth' => [ 'db' => 'centralauth' ] ]
+            @since 1.41
     TemplateLinksSchemaMigrationStage:
         default: 768
         type: integer

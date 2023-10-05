@@ -1127,6 +1127,13 @@
 				"type": "string"
 			}
 		},
+		"DatabaseVirtualDomains": {
+			"type": "array",
+			"description": "Names of virtual domains that are used to get a db connection.",
+			"items": {
+				"type": "string"
+			}
+		},
 		"ReauthenticateTime": {
 			"type": "object",
 			"patternProperties": {

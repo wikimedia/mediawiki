@@ -33,6 +33,8 @@ For notes on 1.40.x and older releases, see HISTORY.
   external link queries.
 * $wgResourceLoaderEnableSourceMapLinks - Add a SourceMap header to
   ResourceLoader responses for JavaScript modules (T47514).
+* $wgVirtualDomainsMapping - Mapping of virtual domains to other dbs. It's
+  useful to get connection to the external cluster.
 * …
 
 ==== Changed configuration ====
