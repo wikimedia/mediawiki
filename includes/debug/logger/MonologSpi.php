@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+use DateTimeZone;
 use MediaWiki\Logger\Monolog\BufferHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -209,7 +210,23 @@ class MonologSpi implements Spi {
 	 * @return LoggerInterface
 	 */
 	protected function createLogger( $channel, $spec ): LoggerInterface {
-		$obj = new Logger( $channel );
+		$handlers = [];
+		if ( isset( $spec['handlers'] ) && $spec['handlers'] ) {
+			foreach ( $spec['handlers'] as $handler ) {
+				$handlers[] = $this->getHandler( $handler );
+			}
+		}
+
+		$processors = [];
+		if ( isset( $spec['processors'] ) ) {
+			foreach ( $spec['processors'] as $processor ) {
+				$processors[] = $this->getProcessor( $processor );
+			}
+		}
+
+		// Use UTC for logs instead of Monolog's default, which asks the
+		// PHP runtime, which MediaWiki sets to $wgLocaltimezone (T99581)
+		$obj = new Logger( $channel, $handlers, $processors, new DateTimeZone( 'UTC' ) );
 
 		if ( isset( $spec['calls'] ) ) {
 			foreach ( $spec['calls'] as $method => $margs ) {
@@ -217,17 +234,6 @@ class MonologSpi implements Spi {
 			}
 		}
 
-		if ( isset( $spec['processors'] ) ) {
-			foreach ( $spec['processors'] as $processor ) {
-				$obj->pushProcessor( $this->getProcessor( $processor ) );
-			}
-		}
-
-		if ( isset( $spec['handlers'] ) && $spec['handlers'] ) {
-			foreach ( $spec['handlers'] as $handler ) {
-				$obj->pushHandler( $this->getHandler( $handler ) );
-			}
-		}
 		return $obj;
 	}
 

@@ -22,11 +22,11 @@ namespace MediaWiki\Logger;
 
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers \MediaWiki\Logger\MonologSpi
+ */
 class MonologSpiTest extends \MediaWikiUnitTestCase {
 
-	/**
-	 * @covers \MediaWiki\Logger\MonologSpi::mergeConfig
-	 */
 	public function testMergeConfig() {
 		$base = [
 			'loggers' => [
@@ -132,14 +132,6 @@ class MonologSpiTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Logger\MonologSpi::__construct
-	 * @covers \MediaWiki\Logger\MonologSpi::reset
-	 * @covers \MediaWiki\Logger\MonologSpi::getLogger
-	 * @covers \MediaWiki\Logger\MonologSpi::createLogger
-	 * @covers \MediaWiki\Logger\MonologSpi::getProcessor
-	 * @covers \MediaWiki\Logger\MonologSpi::getHandler
-	 */
 	public function testDefaultChannel() {
 		$base = [
 			'loggers' => [
@@ -184,9 +176,6 @@ class MonologSpiTest extends \MediaWikiUnitTestCase {
 		$this->assertCount( 0, $wrapperMonologSpi->singletons['formatters'] );
 	}
 
-	/**
-	 * @covers \MediaWiki\Logger\MonologSpi::createLogger
-	 */
 	public function testEmptyChannel() {
 		$base = [
 			'loggers' => [
