@@ -43,7 +43,6 @@ use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
 use RecentChange;
 use WatchedItemStoreInterface;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Xml;
@@ -328,13 +327,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 *
 	 * SpecialRecentChangesLinked should also be updated accordingly when something changed here.
 	 *
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param string[] &$tables
 	 * @param string[] &$fields
 	 * @param mixed[] &$joinConds
 	 * @param mixed[] &$conds
 	 */
-	protected function addWatchlistJoins( IDatabase $dbr, &$tables, &$fields, &$joinConds, &$conds ) {
+	protected function addWatchlistJoins( IReadableDatabase $dbr, &$tables, &$fields, &$joinConds, &$conds ) {
 		if ( !$this->needsWatchlistFeatures() ) {
 			return;
 		}

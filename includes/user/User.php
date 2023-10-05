@@ -840,8 +840,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return null;
 		}
 
-		$loadBalancer = $services->getDBLoadBalancer();
-		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbProvider = $services->getDBLoadBalancerFactory();
+		$dbr = $dbProvider->getReplicaDatabase();
 
 		$userQuery = self::newQueryBuilder( $dbr )
 			->where( [ 'user_name' => $name ] )
@@ -849,7 +849,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$row = $userQuery->fetchRow();
 		if ( !$row ) {
 			// Try the primary database...
-			$userQuery->connection( $loadBalancer->getConnectionRef( DB_PRIMARY ) );
+			$userQuery->connection( $dbProvider->getPrimaryDatabase() );
 			$row = $userQuery->fetchRow();
 		}
 

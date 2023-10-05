@@ -217,7 +217,7 @@ class HistoryAction extends FormlessAction {
 			}
 			$out->addWikiMsg( 'nohistory' );
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $services->getDBLoadBalancerFactory()->getReplicaDatabase();
 
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
@@ -353,7 +353,7 @@ class HistoryAction extends FormlessAction {
 			return new FakeResultWrapper( [] );
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 
 		if ( $direction === self::DIR_PREV ) {
 			[ $dirs, $oper ] = [ "ASC", ">=" ];

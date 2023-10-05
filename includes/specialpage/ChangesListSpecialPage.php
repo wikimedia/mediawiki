@@ -40,7 +40,6 @@ use OOUI\IconWidget;
 use RecentChange;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -1568,10 +1567,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Which database to use for read queries
 	 *
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
-	protected function getDB(): IDatabase {
-		return wfGetDB( DB_REPLICA );
+	protected function getDB(): IReadableDatabase {
+		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 	}
 
 	/**
