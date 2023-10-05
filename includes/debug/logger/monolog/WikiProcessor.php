@@ -27,6 +27,7 @@ use MediaWiki\WikiMap\WikiMap;
  * wiki / request ID, and MediaWiki version.
  *
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 class WikiProcessor {

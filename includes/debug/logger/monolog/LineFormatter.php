@@ -38,6 +38,7 @@ use Throwable;
  * will be used to redact the trace information.
  *
  * @since 1.26
+ * @ingroup Debug
  * @copyright © 2015 Wikimedia Foundation and contributors
  */
 class LineFormatter extends MonologLineFormatter {

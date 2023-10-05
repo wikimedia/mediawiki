@@ -5,7 +5,13 @@ namespace MediaWiki\Logger;
 use Psr\Log\NullLogger;
 
 /**
- * Simple logger SPI for logging to STDERR.
+ * ConsoleLogger service provider for MediaWiki\Logger\LoggerFactory.
+ *
+ * This is developed for use in maintenance/eval.php.
+ *
+ * @internal For use in MediaWiki core only
+ * @since 1.30
+ * @ingroup Debug
  */
 class ConsoleSpi implements Spi {
 
@@ -19,7 +25,7 @@ class ConsoleSpi implements Spi {
 	 *   - channels: (string[]) List of channels to log: channel name => minimum level.
 	 *     Omit to log everything.
 	 *   - forwardTo: (Spi) Forward all log messages to this SPI (regardless of whether
-	 *     ConsoleSPI logs them).
+	 *     ConsoleSpi logs them).
 	 */
 	public function __construct( array $config = [] ) {
 		$this->channels = $config['channels'] ?? null;

@@ -3,12 +3,14 @@
 namespace MediaWiki\Logger\Monolog;
 
 /**
- * LogstashFormatter squashes the base message array and the context and extras subarrays into one.
- * This can result in unfortunately named context fields overwriting other data (T145133).
- * This class modifies the standard LogstashFormatter to rename such fields and flag the message.
- * Also changes exception JSON-ification which is done poorly by the standard class.
+ * Modified version of Monolog\Formatter\LogstashFormatter
+ *
+ * - Squash the base message array, the context and extra subarrays into one.
+ *   This can result in unfortunately named context fields overwriting other data (T145133).
+ * - Improve exception JSON-ification, which is done poorly by the standard class.
  *
  * @since 1.29
+ * @ingroup Debug
  */
 class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 

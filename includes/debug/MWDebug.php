@@ -1,7 +1,5 @@
 <?php
 /**
- * Debug toolbar related code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,12 +28,15 @@ use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
 /**
- * New debugger system that outputs a toolbar on page view.
+ * Debug toolbar.
  *
- * By default, most methods do nothing ( self::$enabled = false ). You have
- * to explicitly call MWDebug::init() to enabled them.
+ * By default most of these methods do nothing, as enforced by self::$enabled = false.
+ *
+ * To enable the debug toolbar, use $wgDebugToolbar = true in LocalSettings.php.
+ * That ensures MWDebug::init() is called from Setup.php.
  *
  * @since 1.19
+ * @ingroup Debug
  */
 class MWDebug {
 	/**

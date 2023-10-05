@@ -1,3 +1,6 @@
+Logger {#debuglogger}
+=======
+
 MediaWiki.Logger.LoggerFactory implements a [PSR-3] compatible message logging
 system.
 
@@ -40,7 +43,8 @@ configuration of this provider. The default configuration installs a null
 handler that will silently discard all logging events. The documentation
 provided by the class describes a more feature rich logging configuration.
 
-# Classes
+## Classes
+
 * MediaWiki.Logger.LoggerFactory: Factory for Psr.Log.LoggerInterface loggers
 * MediaWiki.Logger.Spi: Service provider interface for
   MediaWiki.Logger.LoggerFactory
@@ -57,9 +61,10 @@ provided by the class describes a more feature rich logging configuration.
 * MediaWiki.Logger.Monolog.WikiProcessor: Monolog log processor that adds host:
   wfHostname() and wiki: WikiMap::getCurrentWikiId() to all records
 
-# Globals
-* $wgMWLoggerDefaultSpi: Specification for creating the default service provider
-  interface to use with LoggerFactory
+## Globals
 
-[PSR-3]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+* $wgMWLoggerDefaultSpi: Configure which service provider LoggerFactory will
+  use for creating logger objects.
+
+[PSR-3]: https://www.php-fig.org/psr/psr-3/
 [Monolog]: https://github.com/Seldaek/monolog

@@ -1,7 +1,5 @@
 <?php
 /**
- * Helper class for the index.php entry point.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -26,11 +24,18 @@ use DeferredUpdates;
 use Monolog\Handler\BufferHandler as BaseBufferHandler;
 
 /**
+ * Helper class for the index.php entry point.
+ *
  * Updates \Monolog\Handler\BufferHandler to use DeferredUpdates rather
  * than register_shutdown_function. On supported platforms this will
  * use register_postsend_function or fastcgi_finish_request() to delay
  * until after the request has shutdown and we are no longer delaying
  * the web request.
+ *
+ * TODO: shutdown is later than postsend. Is this class still useful?
+ *
+ * @since 1.26
+ * @ingroup Debug
  */
 class BufferHandler extends BaseBufferHandler {
 	/**

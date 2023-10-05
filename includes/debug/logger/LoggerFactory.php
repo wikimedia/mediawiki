@@ -23,7 +23,7 @@ namespace MediaWiki\Logger;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * PSR-3 logger instance factory.
+ * Create PSR-3 logger objects.
  *
  * Creation of \Psr\Log\LoggerInterface instances is managed via the
  * LoggerFactory::getInstance() static method which in turn delegates to the
@@ -38,8 +38,8 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * $wgMWLoggerDefaultSpi is expected to be an array usable by
  * ObjectFactory::getObjectFromSpec() to create a class.
  *
- * @see \MediaWiki\Logger\Spi
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2014 Wikimedia Foundation and contributors
  */
 class LoggerFactory {

@@ -1,7 +1,5 @@
 <?php
 /**
- * Trait for issuing warnings on deprecated access.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,6 +19,8 @@
  */
 
 /**
+ * Trait for issuing warnings on deprecated access.
+ *
  * Use this trait in classes which have properties for which public access
  * is deprecated or implementation has been moved to another class.
  * Set the list of properties in $deprecatedPublicProperties

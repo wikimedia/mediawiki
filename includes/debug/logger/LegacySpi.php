@@ -23,7 +23,8 @@ namespace MediaWiki\Logger;
 use Psr\Log\LoggerInterface;
 
 /**
- * LoggerFactory service provider that creates LegacyLogger instances.
+ * The default service provider for MediaWiki\Logger\LoggerFactory, which creates
+ * LegacyLogger objects.
  *
  * Usage:
  * @code
@@ -32,8 +33,8 @@ use Psr\Log\LoggerInterface;
  * ];
  * @endcode
  *
- * @see \MediaWiki\Logger\LoggerFactory
  * @since 1.25
+ * @ingroup Debug
  * @copyright © 2014 Wikimedia Foundation and contributors
  */
 class LegacySpi implements Spi {
