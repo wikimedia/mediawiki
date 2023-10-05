@@ -321,10 +321,8 @@ class InsertQueryBuilder {
 	 */
 	public function execute() {
 		if ( !$this->rows ) {
-			// (T347610) For now, allow this but deprecate it, so we can trace these and fix them rapidly.
-			wfDeprecatedMsg( self::class . ' triggered with no rows set; exit early instead.' );
-			// TODO: Uncomment rather than deprecate once early-exist mitigations are in place.
-			// throw new UnexpectedValueException( __METHOD__ . ' can\'t have empty $rows value' );
+			throw new UnexpectedValueException(
+				__METHOD__ . ' can\'t have empty $rows value' );
 		}
 		if ( $this->table === '' ) {
 			throw new UnexpectedValueException(
