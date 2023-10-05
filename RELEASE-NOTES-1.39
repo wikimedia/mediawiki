@@ -11,6 +11,11 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.39.5 ===
 * Localisation updates.
+* Updated symfony/polyfill-php80 from 1.26.0 to 1.28.0.
+* Updated symfony/polyfill-php81 from 1.26.0 to 1.28.0.
+* Added symfony/polyfill-php82.
+* Added symfony/polyfill-php83.
+* Updated symfony/yaml from 5.4.10 to 5.4.23.
 
 == MediaWiki 1.39.5 ==
 
@@ -366,6 +371,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 ==== New external libraries ====
 * Added Codex v0.1.1. This replaces the now deprecated wvui library.
 * Added symfony/polyfill-php81.
+* Added symfony/polyfill-php82.
+* Added symfony/polyfill-php83.
 
 ===== New development-only external libraries =====
 * Updated QUnit from 2.18.0 to 2.18.2.
@@ -376,9 +383,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated composer/semver from 3.2.6 to 3.3.2.
 * Updated cssjanus/cssjanus fromv2.1.0 to v2.1.1.
 * Updated pear/mail from v1.4.1 to v1.5.1.
-* Updated symfony/polyfill-php73 from 1.25.0 to 1.26.0.
-* Updated symfony/polyfill-php80 from 1.25.0 to 1.26.0.
-* Updated symfony/yaml from 5.4.3 to 5.4.10.
+* Updated symfony/polyfill-php80 from 1.25.0 to 1.28.0.
+* Updated symfony/yaml from 5.4.3 to 5.4.23.
 * Updated vue/compat from 3.2.23 to 3.2.37.
 * Updated wikimedia/base-convert from 2.0.1 to 2.0.2.
 * Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
