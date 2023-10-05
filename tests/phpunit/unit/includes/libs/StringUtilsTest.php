@@ -1,37 +1,28 @@
 <?php
 
+/**
+ * @covers \StringUtils
+ */
 class StringUtilsTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @covers StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
-	public function testIsUtf8( $expected, $string ) {
+	public function testIsUtf8( bool $expected, string $string ) {
 		$this->assertEquals( $expected, StringUtils::isUtf8( $string ),
 			'Testing string "' . $this->escaped( $string ) . '"' );
 	}
 
 	/**
 	 * Print high range characters as a hexadecimal
-	 * @param string $string
-	 * @return string
 	 */
-	private function escaped( $string ) {
-		$escaped = '';
-		$length = strlen( $string );
-		for ( $i = 0; $i < $length; $i++ ) {
-			$char = $string[$i];
-			$val = ord( $char );
-			if ( $val > 127 ) {
-				$escaped .= '\x' . dechex( $val );
-			} else {
-				$escaped .= $char;
-			}
-		}
-
-		return $escaped;
+	private function escaped( string $string ): string {
+		return preg_replace_callback( '/[\x80-\xFF]/',
+			static fn ( $m ) => '\x' . dechex( ord( $m[0] ) ),
+			$string
+		);
 	}
 
 	/**
@@ -127,19 +118,12 @@ class StringUtilsTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @param string $input
-	 * @param bool $expected
 	 * @dataProvider provideRegexps
-	 * @covers StringUtils::isValidPCRERegex
 	 */
-	public function testIsValidPCRERegex( $input, $expected ) {
+	public function testIsValidPCRERegex( string $input, bool $expected ) {
 		$this->assertSame( $expected, StringUtils::isValidPCRERegex( $input ) );
 	}
 
-	/**
-	 * Data provider for testIsValidPCRERegex
-	 * @return array
-	 */
 	public static function provideRegexps() {
 		return [
 			[ 'foo', false ],
@@ -150,4 +134,24 @@ class StringUtilsTest extends PHPUnit\Framework\TestCase {
 			[ '/foo\/', false ]
 		];
 	}
+
+	/**
+	 * @dataProvider provideRegexReplacements
+	 */
+	public function testEscapeRegexReplacement( string $replacement ) {
+		$escaped = StringUtils::escapeRegexReplacement( $replacement );
+		$result = preg_replace( '/(placeholder)/', $escaped, 'placeholder' );
+		$this->assertSame( $replacement, $result );
+	}
+
+	public function provideRegexReplacements() {
+		return [
+			'meaningless characters' => [ ' "()*+-./?[]^a{|}ä' ],
+			'backslash' => [ '\\1' ],
+			'backslash, already escaped' => [ '\\\\1' ],
+			'dollar' => [ '$1' ],
+			'dollar, already escaped' => [ '\$1' ],
+		];
+	}
+
 }
