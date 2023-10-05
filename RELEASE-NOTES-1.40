@@ -11,6 +11,11 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.40.1 ===
 * Localisation updates.
+* Updated symfony/polyfill-php80 from 1.27.0 to 1.28.0.
+* Updated symfony/polyfill-php81 from 1.27.0 to 1.28.0.
+* Added symfony/polyfill-php82.
+* Added symfony/polyfill-php83.
+* Updated symfony/yaml from 5.4.17 to 5.4.23.
 
 == MediaWiki 1.40.1 ==
 
@@ -231,7 +236,9 @@ For notes on 1.39.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added codex-design-tokens at v0.6.2.
-* Added symfony/polyfill-php81 at v1.27.0.
+* Added symfony/polyfill-php81 at v1.28.0.
+* Added symfony/polyfill-php82 at v1.28.0.
+* Added symfony/polyfill-php83 at v1.28.0.
 * Added wikimedia/bcp-47-code at v1.0.0.
 
 ===== New development-only external libraries =====
@@ -246,8 +253,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated pear/mail from 1.4.1 to 1.5.1.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
 * Updated psr/container from 1.1.1 to 1.1.2.
-* Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
-* Updated symfony/yaml from 5.4.10 to 5.4.17.
+* Updated symfony/polyfill-php80 from 1.26.0 to 1.28.0.
+* Updated symfony/yaml from 5.4.10 to 5.4.23.
 * Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * Updated wikimedia/less.php from 3.1.0 to 4.0.0.
 * Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
