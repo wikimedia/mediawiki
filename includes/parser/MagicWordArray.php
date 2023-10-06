@@ -40,7 +40,7 @@ class MagicWordArray {
 	/** @var MagicWordFactory */
 	private $factory;
 
-	/** @var array|null */
+	/** @var array<int,array<string,string>>|null */
 	private $hash;
 
 	/** @var string[]|null */
@@ -70,7 +70,7 @@ class MagicWordArray {
 
 	/**
 	 * Get a 2-d hashtable for this array
-	 * @return array
+	 * @return array<int,array<string,string>>
 	 */
 	public function getHash() {
 		if ( $this->hash === null ) {
@@ -96,7 +96,7 @@ class MagicWordArray {
 	 *  other regexps with similar constructs.
 	 * @param string $delimiter The delimiter which will be used for the
 	 *  eventual regexp.
-	 * @return string[]
+	 * @return array<int,string>
 	 * @internal
 	 */
 	public function getBaseRegex( bool $capture = true, string $delimiter = '/' ): array {
@@ -144,7 +144,7 @@ class MagicWordArray {
 
 	/**
 	 * Get an unanchored regex that does not match parameters
-	 * @return string[]
+	 * @return array<int,string>
 	 */
 	private function getRegex(): array {
 		if ( $this->regex === null ) {
@@ -163,7 +163,7 @@ class MagicWordArray {
 	/**
 	 * Get a regex anchored to the start of the string that does not match parameters
 	 *
-	 * @return string[]
+	 * @return array<int,string>
 	 */
 	private function getRegexStart(): array {
 		$newRegex = [];
@@ -180,7 +180,7 @@ class MagicWordArray {
 	/**
 	 * Get an anchored regex for matching variables with parameters
 	 *
-	 * @return string[]
+	 * @return array<int,string>
 	 */
 	private function getVariableStartToEndRegex(): array {
 		$newRegex = [];
@@ -207,10 +207,10 @@ class MagicWordArray {
 	 * Returns array(magic word ID, parameter value)
 	 * If there is no parameter value, that element will be false.
 	 *
-	 * @param array $m
+	 * @param array<string|int,string> $m
 	 *
 	 * @throws MWException
-	 * @return array
+	 * @return (string|false)[]
 	 */
 	private function parseMatch( array $m ): array {
 		reset( $m );
@@ -242,7 +242,7 @@ class MagicWordArray {
 	 *
 	 * @param string $text
 	 *
-	 * @return array
+	 * @return (string|false)[]
 	 */
 	public function matchVariableStartToEnd( $text ) {
 		$regexes = $this->getVariableStartToEndRegex();
@@ -273,12 +273,13 @@ class MagicWordArray {
 	}
 
 	/**
-	 * Returns an associative array, ID => param value, for all items that match
+	 * Returns an associative array mapping magic word id => false, for all items that match. Cannot
+	 * be used for magic words with parameters.
 	 * Removes the matched items from the input string (passed by reference)
 	 *
 	 * @param string &$text
 	 *
-	 * @return array
+	 * @return array<string,false> Magic word id => false
 	 */
 	public function matchAndRemove( &$text ) {
 		$found = [];
@@ -329,7 +330,7 @@ class MagicWordArray {
 	 *
 	 * @param string &$text
 	 *
-	 * @return int|bool False on failure
+	 * @return string|false False on failure
 	 */
 	public function matchStartAndRemove( &$text ) {
 		$regexes = $this->getRegexStart();

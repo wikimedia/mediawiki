@@ -246,7 +246,7 @@ class Parser {
 	private array $mTplRedirCache;
 	/** @internal */
 	public array $mHeadings;
-	/** @var array<string,string> */
+	/** @var array<string,false> */
 	private array $mDoubleUnderscores;
 	/**
 	 * Number of expensive parser function calls

@@ -150,7 +150,7 @@ class MagicWordFactory {
 		'safesubst',
 	];
 
-	/** @var array [ string => MagicWord ] */
+	/** @var array<string,MagicWord> */
 	private $mObjects = [];
 
 	/** @var MagicWordArray */
@@ -243,7 +243,7 @@ class MagicWordFactory {
 	/**
 	 * Get a new MagicWordArray with provided $names
 	 *
-	 * @param array $names
+	 * @param string[] $names
 	 * @return MagicWordArray
 	 */
 	public function newArray( array $names = [] ): MagicWordArray {
