@@ -1034,7 +1034,6 @@
 	"youremail": "ಇ-ಮೈಲ್:",
 	"username": "{{GENDER:$1|ಬಳಕೆದಾರೆರೆಪುದರ್}}:",
 	"prefs-memberingroups": "{{GENDER:$2|ಸದಸ್ಯೆರ್}} ಆದುಪ್ಪುನ {{PLURAL:$1|ಗುಂಪು|ಗುಂಪುಲು}}:",
-	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1 ( $2 ಮುಟ್ಟ)",
 	"prefs-registration": "ನೋಂದಣಿದ ಸಮಯ:",
 	"yourrealname": "ನಿಜವಾಯಿನ ಪುದರ್:",

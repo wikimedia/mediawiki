@@ -6,6 +6,7 @@
 			"Enye Lav",
 			"Soul Train",
 			"Yufereff",
+			"Римма",
 			"아라"
 		]
 	},
@@ -269,6 +270,7 @@
 	"timezoneregion-europe": "Европа",
 	"timezoneregion-indian": "Индика океан",
 	"timezoneregion-pacific": "Лöнь океан",
+	"prefs-common-config": "Быдӧс темаэзлӧ ӧткодь CSS/JavaScript оформитӧм",
 	"youremail": "Электрон пошта:",
 	"username": "Уджкерисьлöн ним:",
 	"yourrealname": "Быльнöй нимыт:",
@@ -532,6 +534,10 @@
 	"specialpages": "Тодильнöй листбоккез",
 	"deletepage": "Чышкыны листбок",
 	"htmlform-selectorother-other": "Мöдiк",
+	"specialmute-error-email-disabled": "Юӧртӧммез пӧдналан функция оз уджав, мыля вики-проектлӧн администратор пӧдналіс сэтісь электроннӧй почта ыстӧм.",
+	"specialmute-error-mutelist-disabled": "Юӧртӧммез пӧдналан функция оз уджав, мыля вики-проектлӧн администратор пӧдналіс электроннӧй почтаись ыстӧммез эта викилӧ.",
+	"specialmute-error-no-email-set": "Юӧртӧммез пӧдналан функция оз уджав, мыля электроннӧй почталісь адрессӧ эдӧ вынсьӧтӧ.",
+	"specialmute-error-no-options": "Юӧртӧммез пӧдналан функция оз уджав",
 	"nstab-mainpage": "Пондöтчан листбок",
 	"skin-action-protect": "Дорйыны",
 	"skin-action-delete": "Чышкыны"

@@ -1472,7 +1472,7 @@
 	"upload-form-label-infoform-categories": "பகுப்புகள்",
 	"upload-form-label-infoform-date": "தேதி",
 	"backend-fail-stream": " $1 கோப்பை stream செய்ய இயலவில்லை  .",
-	"backend-fail-backup": " $1 கோப்பை பின்சேமிப்பு (backup) செய்ய இயலவில்லை .",
+	"backend-fail-backup": " $1 கோப்பை பின்சேமிப்பு (backup) செய்ய இயலவில்லை.",
 	"backend-fail-notexists": " \"$1\"  என்னும் கோப்பு எதுவும் இல்லை",
 	"backend-fail-hashes": "கோப்பிற்கான hashes ஐ ஒப்பிடுவதற்காக பெற இயலவில்லை.",
 	"backend-fail-notsame": "ஒரே மாதிரியாக இல்லாத  கோப்பு $1 ஏற்கனவே உள்ளது.",

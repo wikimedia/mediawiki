@@ -4,6 +4,7 @@
 			"Amdf",
 			"Amire80",
 			"Andrijko Z.",
+			"Nadezhda",
 			"아라"
 		]
 	},
@@ -242,6 +243,7 @@
 	"powersearch-ns": "Кымдецвлӓштӹ лӹмвлӓм кӹчӓлмӓш:",
 	"preferences": "Настройкывлӓ",
 	"mypreferences": "Настройкывлӓ",
+	"prefs-common-config": "Цилӓ скинвлӓлӓн цымыр CSS/JavaScript:",
 	"group-sysop": "Администраторвлӓ",
 	"grouppage-sysop": "{{ns:project}}:Администраторвлӓ",
 	"newuserlogpage": "Сирӹшӹвлӓм регистрируйышы журнал",

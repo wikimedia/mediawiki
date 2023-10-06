@@ -1135,7 +1135,6 @@
 	"youremail": "Электронан пошт:",
 	"username": "{{GENDER:$1|Декъашхочун цӀе}}:",
 	"prefs-memberingroups": "{{GENDER:$1|Тобана|Тобаншан}} {{PLURAL:$2|декъашхо|декъашхой}}:",
-	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1 ($2 тӀе кхаччалц)",
 	"prefs-registration": "Аккаунт кхоьллина хан:",
 	"yourrealname": "Хьан бакъ цӀе:",
