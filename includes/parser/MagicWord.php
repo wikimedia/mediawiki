@@ -74,17 +74,7 @@ class MagicWord {
 	/** @var bool */
 	public $mCaseSensitive;
 
-	/** @var string */
-	private $mRegex = '';
-
-	/** @var string */
-	private $mRegexStart = '';
-
-	/** @var string */
-	private $mRegexStartToEnd = '';
-
-	/** @var string */
-	private $mBaseRegex = '';
+	private ?string $mBaseRegex = null;
 
 	/** @var Language */
 	private $contLang;
@@ -123,38 +113,12 @@ class MagicWord {
 	}
 
 	/**
-	 * Preliminary initialisation
-	 * @internal
-	 */
-	public function initRegex() {
-		// Sort the synonyms by length, descending, so that the longest synonym
-		// matches in precedence to the shortest
-		$synonyms = $this->mSynonyms;
-		usort( $synonyms, static fn ( $a, $b ) => strlen( $b ) <=> strlen( $a ) );
-
-		$escSyn = [];
-		foreach ( $synonyms as $synonym ) {
-			// In case a magic word contains /, like that's going to happen;)
-			$escSyn[] = preg_quote( $synonym, '/' );
-		}
-		$this->mBaseRegex = implode( '|', $escSyn );
-
-		$case = $this->mCaseSensitive ? '' : 'iu';
-		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
-		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
-		$this->mRegexStartToEnd = "/^(?:{$this->mBaseRegex})$/{$case}";
-	}
-
-	/**
 	 * Gets a regex representing matching the word
 	 *
 	 * @return string
 	 */
 	public function getRegex() {
-		if ( $this->mRegex == '' ) {
-			$this->initRegex();
-		}
-		return $this->mRegex;
+		return '/' . $this->getBaseRegex() . '/' . $this->getRegexCase();
 	}
 
 	/**
@@ -165,10 +129,6 @@ class MagicWord {
 	 * @return string
 	 */
 	public function getRegexCase() {
-		if ( $this->mRegex === '' ) {
-			$this->initRegex();
-		}
-
 		return $this->mCaseSensitive ? '' : 'iu';
 	}
 
@@ -178,10 +138,7 @@ class MagicWord {
 	 * @return string
 	 */
 	public function getRegexStart() {
-		if ( $this->mRegex == '' ) {
-			$this->initRegex();
-		}
-		return $this->mRegexStart;
+		return '/^(?:' . $this->getBaseRegex() . ')/' . $this->getRegexCase();
 	}
 
 	/**
@@ -191,10 +148,7 @@ class MagicWord {
 	 * @since 1.23
 	 */
 	public function getRegexStartToEnd() {
-		if ( $this->mRegexStartToEnd == '' ) {
-			$this->initRegex();
-		}
-		return $this->mRegexStartToEnd;
+		return '/^(?:' . $this->getBaseRegex() . ')$/' . $this->getRegexCase();
 	}
 
 	/**
@@ -203,8 +157,15 @@ class MagicWord {
 	 * @return string
 	 */
 	public function getBaseRegex() {
-		if ( $this->mRegex == '' ) {
-			$this->initRegex();
+		if ( $this->mBaseRegex === null ) {
+			// Sort the synonyms by length, descending, so that the longest synonym
+			// matches in precedence to the shortest
+			$synonyms = $this->mSynonyms;
+			usort( $synonyms, static fn ( $a, $b ) => strlen( $b ) <=> strlen( $a ) );
+			foreach ( $synonyms as &$synonym ) {
+				$synonym = preg_quote( $synonym, '/' );
+			}
+			$this->mBaseRegex = implode( '|', $synonyms );
 		}
 		return $this->mBaseRegex;
 	}
