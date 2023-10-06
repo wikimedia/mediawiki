@@ -362,8 +362,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 * Request Two:
 	 *   This request then uses the request header ETag which is the same as that in
 	 *   the cached stashed key container because during the second request, no stashing
-	 *   was done and the page revision is the same so what is the in output response headers
-	 *   in the user's browser will be exactly what's in the parsoid output stash.
+	 *   was done and the page revision is the same. So what is in the output response headers
+	 *   in the user's browser will be exactly what is in the parsoid output stash.
 	 *
 	 * NOTE: if we make another request which actually stashes, that cached stash key will
 	 *   be updated, and we can use it to access the stash's latest entry.
@@ -382,10 +382,13 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$revisions['first']->getId(),
 			[ 'stash' => false ]
 		);
-		$this->assertNotNull( $outputStash->get( $stashKey1 ) );
-		$this->assertNotNull( $outputStash->get( $stashKey2 ) );
 
+		// The etags should be different, but the stash key should be identicl
 		$this->assertNotSame( $etag1, $etag2 );
+		$this->assertSame( $stashKey1->getKey(), $stashKey2->getKey() );
+
+		// Ensure nothing has changed with the output stash
+		$this->assertNotNull( $outputStash->get( $stashKey1 ) );
 
 		// Make sure the output for stashed and unstashed doesn't have the same tag,
 		// since it will actually be different!
