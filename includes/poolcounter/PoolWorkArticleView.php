@@ -79,10 +79,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 			null,
 			[ 'audience' => RevisionRecord::RAW ]
 		);
-		if ( !$renderedRevision ) {
-			// audience check failed
-			return Status::newFatal( 'pool-errorunknown' );
-		}
 
 		$time = -microtime( true );
 		$parserOutput = $renderedRevision->getRevisionParserOutput();
