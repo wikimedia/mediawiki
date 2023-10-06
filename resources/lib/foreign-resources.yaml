@@ -288,24 +288,6 @@ jquery.client:
     package/LICENSE-MIT:
     package/README.md:
 
-jquery.form:
-  license: GPL-2.0+ OR MIT
-  homepage: https://github.com/jquery-form/form
-  authors: Mike Alsup and Kevin Morris
-  version: 3.14-ff80d9ddf4
-  type: file
-  src: https://raw.githubusercontent.com/jquery-form/form/ff80d9ddf4/jquery.form.js
-  integrity: sha384-h4G2CrcSbixzMvrrK259cNBYaL/vS1D4+KdUN9NJDzQnTU1bQ6Avluget+Id13M7
-
-jquery.fullscreen:
-  license: GPL-2.0+
-  homepage: https://github.com/theopolisme/jquery-fullscreen
-  authors: Theo Patt, Timo Tijhof, Gilles Dubuc
-  version: 2.1.0
-  type: file
-  src: https://raw.githubusercontent.com/theopolisme/jquery-fullscreen/v2.1.0/jquery.fullscreen.js
-  integrity: sha384-G4KPs2d99tgcsyUnJ3eeZ1r2hEKDwZfc4+/xowL/LIemq2VVwEE8HpVAWt4WYNLR
-
 jquery.i18n:
   license: MIT OR GPL-2.0-or-later
   homepage: https://github.com/wikimedia/jquery.i18n
