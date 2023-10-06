@@ -300,9 +300,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'label-message' => 'emailusername',
 				'id' => 'emailusertarget',
 				'autofocus' => true,
+				// Skip validation when visit directly without subpage (T347854)
+				'default' => '',
 				// Prefill for subpage syntax and old target param.
 				'filter-callback' => static function ( $value ) use ( $name ) {
-					return $value ?? $name;
+					return str_replace( '_', ' ',
+						( $value !== '' && $value !== false && $value !== null ) ? $value : $name );
 				}
 			]
 		], $this->getContext() );
