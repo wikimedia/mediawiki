@@ -2955,6 +2955,7 @@ return [
 			'oojs-ui-core.icons',
 			'oojs-ui.styles.indicators',
 			'mediawiki.language',
+			'mediawiki.page.ready',
 		],
 		'messages' => [
 			'ooui-field-help',

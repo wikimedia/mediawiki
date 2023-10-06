@@ -14,4 +14,7 @@
 		}
 		return isMobile;
 	};
+	OO.ui.getTeleportTarget = function () {
+		return require( 'mediawiki.page.ready' ).teleportTarget;
+	};
 }() );
