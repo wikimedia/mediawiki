@@ -1570,6 +1570,12 @@ class MediaWikiServices extends ServiceContainer {
 	 * a top-level context, because re-entering the parser will throw an
 	 * exception.
 	 *
+	 * @note Do not use this service for dependency injection or in service wiring.
+	 * It is convenience function to get the global instance in global code.
+	 * For dependency injection or service wiring code use the parser factory via the
+	 * 'ParserFactory' service and call one of the factory functions, preferably
+	 * {@link ParserFactory::create}.
+	 *
 	 * @since 1.29
 	 * @return Parser
 	 */

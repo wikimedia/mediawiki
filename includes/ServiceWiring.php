@@ -1415,6 +1415,9 @@ return [
 	},
 
 	'Parser' => static function ( MediaWikiServices $services ): Parser {
+		// This service exists as convenience function to get the global parser in global code.
+		// Do not use this service for dependency injection or in service wiring (T343070).
+		// Use the 'ParserFactory' service instead.
 		return $services->getParserFactory()->getMainInstance();
 	},
 
