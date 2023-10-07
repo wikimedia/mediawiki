@@ -235,6 +235,12 @@ Template:safesubst
 {{{1}}}
 !! endarticle
 
+!! article
+Template:ROOTPAGENAME
+!! text
+NotTheVariable
+!! endarticle
+
 !! test
 T24297: safesubst: works during PST
 !! options
@@ -285,6 +291,22 @@ Template named safesubst - T309405
 </p>
 !! html/parsoid
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"safesubst","href":"./Template:Safesubst"},"params":{"1":{"wt":"123"}},"i":0}}]}'>123</span></p>
+!! end
+
+!! test
+subst: with whitespace - variable vs. template
+!! options
+pst title=[[TestSubstVariable]]
+!! wikitext
+Variable: {{subst: ROOTPAGENAME}}
+Variable: {{subst:ROOTPAGENAME}}
+Template: {{subst: ROOTPAGENAME|template}}
+Template: {{subst:ROOTPAGENAME|template}}
+!! html/php
+Variable: TestSubstVariable
+Variable: TestSubstVariable
+Template: NotTheVariable
+Template: NotTheVariable
 !! end
 
 !! test

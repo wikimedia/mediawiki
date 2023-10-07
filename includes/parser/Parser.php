@@ -2981,6 +2981,7 @@ class Parser {
 		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( !$found ) {
 			$substMatch = $this->mSubstWords->matchStartAndRemove( $part1 );
+			$part1 = trim( $part1 );
 
 			# Possibilities for substMatch: "subst", "safesubst" or FALSE
 			# Decide whether to expand template or keep wikitext as-is.
