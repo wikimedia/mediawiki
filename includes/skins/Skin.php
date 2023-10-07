@@ -1906,8 +1906,7 @@ abstract class Skin extends ContextSource {
 		// added to it for LTR text on RTL pages
 
 		$attribs = [];
-		$attribs['title'] = $this->msg( 'editsectionhint' )->rawParams( $sectionTitle )
-			->inLanguage( $lang )->text();
+		$attribs['title'] = $this->msg( 'editsectionhint', $sectionTitle )->inLanguage( $lang )->text();
 
 		$links = [
 			'editsection' => [
