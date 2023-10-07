@@ -6,6 +6,7 @@ use MediaWiki\Parser\MagicWordFactory;
 
 /**
  * @covers \MediaWiki\Parser\MagicWordFactory
+ * @covers \MediaWiki\Parser\MagicWord
  *
  * @author Derick N. Alangi
  */

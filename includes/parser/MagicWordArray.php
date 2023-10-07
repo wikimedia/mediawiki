@@ -1,8 +1,5 @@
 <?php
-
 /**
- * See docs/magicword.md.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Parser
  */
 
 namespace MediaWiki\Parser;
@@ -31,6 +27,10 @@ use UnexpectedValueException;
 
 /**
  * Class for handling an array of magic words
+ *
+ * See docs/magicword.md.
+ *
+ * @since 1.11
  * @ingroup Parser
  */
 class MagicWordArray {
@@ -69,6 +69,7 @@ class MagicWordArray {
 
 	/**
 	 * Get a 2-d hashtable for this array
+	 *
 	 * @return array<int,array<string,string>>
 	 */
 	public function getHash(): array {
@@ -90,13 +91,14 @@ class MagicWordArray {
 
 	/**
 	 * Get the base regex
+	 *
+	 * @internal For use in {@see Parser} only
 	 * @param bool $capture Set to false to suppress the capture groups,
 	 *  which can cause unexpected conflicts when this regexp is embedded in
 	 *  other regexps with similar constructs.
 	 * @param string $delimiter The delimiter which will be used for the
 	 *  eventual regexp.
 	 * @return array<int,string>
-	 * @internal
 	 */
 	public function getBaseRegex( bool $capture = true, string $delimiter = '/' ): array {
 		if ( $capture && $delimiter === '/' && $this->baseRegex !== null ) {
@@ -143,6 +145,7 @@ class MagicWordArray {
 
 	/**
 	 * Get an unanchored regex that does not match parameters
+	 *
 	 * @return array<int,string>
 	 */
 	private function getRegex(): array {
@@ -203,12 +206,10 @@ class MagicWordArray {
 
 	/**
 	 * Parse a match array from preg_match
-	 * Returns array(magic word ID, parameter value)
-	 * If there is no parameter value, that element will be false.
 	 *
 	 * @param array<string|int,string> $matches
-	 *
-	 * @return (string|false)[]
+	 * @return array{0:string,1:string|false} Pair of (magic word ID, parameter value),
+	 *  where the latter is instead false if there is no parameter value.
 	 */
 	private function parseMatch( array $matches ): array {
 		$magicName = null;
@@ -235,13 +236,10 @@ class MagicWordArray {
 
 	/**
 	 * Match some text, with parameter capture
-	 * Returns an array with the magic word name in the first element and the
-	 * parameter in the second element.
-	 * Both elements are false if there was no match.
 	 *
 	 * @param string $text
-	 *
-	 * @return (string|false)[]
+	 * @return (string|false)[] Magic word name in the first element and the parameter in the second
+	 *  element. Both elements are false if there was no match.
 	 */
 	public function matchVariableStartToEnd( $text ): array {
 		$regexes = $this->getVariableStartToEndRegex();
@@ -256,11 +254,10 @@ class MagicWordArray {
 
 	/**
 	 * Match some text, without parameter capture
-	 * Returns the magic word name, or false if there was no capture
 	 *
+	 * @see MagicWord::matchStartToEnd
 	 * @param string $text
-	 *
-	 * @return string|false False on failure
+	 * @return string|false The magic word name, or false if there was no capture
 	 */
 	public function matchStartToEnd( $text ) {
 		$hash = $this->getHash();
@@ -272,13 +269,14 @@ class MagicWordArray {
 	}
 
 	/**
-	 * Returns an associative array mapping magic word id => false, for all items that match. Cannot
-	 * be used for magic words with parameters.
+	 * Return an associative array for all items that match.
+	 *
+	 * Cannot be used for magic words with parameters.
 	 * Removes the matched items from the input string (passed by reference)
 	 *
+	 * @see MagicWord::matchAndRemove
 	 * @param string &$text
-	 *
-	 * @return array<string,false> Magic word id => false
+	 * @return array<string,false> Keyed by magic word ID
 	 */
 	public function matchAndRemove( &$text ): array {
 		$found = [];
@@ -322,12 +320,12 @@ class MagicWordArray {
 	/**
 	 * Return the ID of the magic word at the start of $text, and remove
 	 * the prefix from $text.
-	 * Return false if no match found and $text is not modified.
+	 *
 	 * Does not match parameters.
 	 *
-	 * @param string &$text
-	 *
-	 * @return string|false False on failure
+	 * @see MagicWord::matchStartAndRemove
+	 * @param string &$text Unmodified if no match is found.
+	 * @return string|false False if no match is found.
 	 */
 	public function matchStartAndRemove( &$text ) {
 		$regexes = $this->getRegexStart();

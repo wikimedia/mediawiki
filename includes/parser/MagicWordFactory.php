@@ -1,7 +1,5 @@
 <?php
 /**
- * See docs/magicword.md.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Parser
  */
 
 namespace MediaWiki\Parser;
@@ -28,7 +25,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 
 /**
- * A factory that stores information about MagicWords, and creates them on demand with caching.
+ * Store information about magic words, and create/cache MagicWord objects.
+ *
+ * See docs/magicword.md.
  *
  * Possible future improvements:
  *   * Simultaneous searching for a number of magic words
@@ -155,6 +154,9 @@ class MagicWordFactory {
 	private Language $contLang;
 	private HookRunner $hookRunner;
 
+	/**
+	 * @internal For ServiceWiring only
+	 */
 	public function __construct( Language $contentLanguage, HookContainer $hookContainer ) {
 		$this->contLang = $contentLanguage;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -165,10 +167,9 @@ class MagicWordFactory {
 	}
 
 	/**
-	 * Factory: creates an object representing an ID
+	 * Get a MagicWord object for a given internal ID
 	 *
 	 * @param string $id The internal name of the magic word
-	 *
 	 * @return MagicWord
 	 */
 	public function get( $id ): MagicWord {
@@ -197,6 +198,7 @@ class MagicWordFactory {
 
 	/**
 	 * Get an array of parser substitution modifier IDs
+	 *
 	 * @return string[]
 	 */
 	public function getSubstIDs(): array {

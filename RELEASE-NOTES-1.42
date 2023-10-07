@@ -79,6 +79,8 @@ because of Phabricator reports.
 
 === Breaking changes in 1.42 ===
 * UserRightsProxy, deprecated since 1.38, has been removed.
+* MagicWord::load() has been marked @internal and may change in the future
+  without further notice.
 * MediaWiki's virtualrest internal library has been removed in favor of the
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
 * …
@@ -89,6 +91,7 @@ because of Phabricator reports.
 * BlockManager::getUserBlock() was deprecated. Instead use
   BlockManager::getBlock(), which expects the caller to do ipblock-exempt
   checking.
+* MagicWord::getId() has been deprecated.
 * User::isBlocked(), ::isBlockedFromCreateAccount() and ::isBlockedFrom() now
   emit deprecation warnings. They were deprecated since 1.34, 1.37 and 1.33
   respectively.
