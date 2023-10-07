@@ -1080,9 +1080,10 @@ class SkinTemplate extends Skin {
 				// * nstab-category
 				// * nstab-<subject namespace key>
 				$subjectMsg = [ "nstab-$subjectId" ];
-			}
-			if ( $subjectPage->isMainPage() ) {
-				array_unshift( $subjectMsg, 'nstab-mainpage' );
+
+				if ( $subjectPage->isMainPage() ) {
+					array_unshift( $subjectMsg, 'nstab-mainpage' );
+				}
 			}
 
 			$associatedPages[$subjectId] = $this->tabAction(
