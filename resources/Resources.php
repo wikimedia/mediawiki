@@ -170,12 +170,6 @@ return [
 	'jquery.client' => [
 		'scripts' => 'resources/lib/jquery.client/jquery.client.js',
 	],
-	'jquery.color' => [
-		'scripts' => [
-			'resources/src/jquery.color/jquery.colorUtil.js',
-			'resources/src/jquery.color/jquery.color.js',
-		],
-	],
 	'jquery.confirmable' => [
 		'scripts' => [
 			'resources/src/jquery/jquery.confirmable.js',
@@ -193,12 +187,6 @@ return [
 	'jquery.cookie' => [
 		'deprecated' => 'Merged into "mediawiki.cookie", use that module instead (T271995)',
 		'dependencies' => 'mediawiki.cookie',
-	],
-	'jquery.form' => [
-		'scripts' => 'resources/lib/jquery.form/jquery.form.js',
-	],
-	'jquery.fullscreen' => [
-		'scripts' => 'resources/lib/jquery.fullscreen/jquery.fullscreen.js',
 	],
 	'jquery.highlightText' => [
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',

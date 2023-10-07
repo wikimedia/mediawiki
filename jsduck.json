@@ -12,7 +12,6 @@
 	"--exclude": [
 		"resources/src/codex",
 		"resources/src/codex-search",
-		"resources/src/jquery.color/jquery.color.js",
 		"resources/src/jquery.tablesorter",
 		"resources/src/jquery.tipsy",
 		"resources/src/jquery/jquery.highlightText.js",

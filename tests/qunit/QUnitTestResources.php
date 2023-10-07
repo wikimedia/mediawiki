@@ -61,8 +61,6 @@ return [
 				}
 			],
 			'tests/qunit/resources/startup/clientprefs.test.js',
-			'tests/qunit/resources/jquery.color.test.js',
-			'tests/qunit/resources/jquery.colorUtil.test.js',
 			'tests/qunit/resources/jquery.highlightText.test.js',
 			'tests/qunit/resources/jquery.lengthLimit.test.js',
 			'tests/qunit/resources/jquery.makeCollapsible.test.js',
@@ -112,7 +110,6 @@ return [
 			'tests/qunit/resources/mediawiki.visibleTimeout.test.js',
 		],
 		'dependencies' => [
-			'jquery.color',
 			'jquery.highlightText',
 			'jquery.lengthLimit',
 			'jquery.makeCollapsible',

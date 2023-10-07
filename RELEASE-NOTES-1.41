@@ -156,6 +156,9 @@ For notes on 1.40.x and older releases, see HISTORY.
 * jquery.hoverIntent was removed.
 * codex-search was removed, it's part of codex now.
 * wikimedia/ip-set was removed, it's part of wikimedia/ip-utils now.
+* jquery.color was removed.
+* jquery.fullscreen was removed.
+* jquery.form was removed.
 * …
 
 === Bug fixes in 1.41 ===
