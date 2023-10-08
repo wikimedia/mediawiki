@@ -28,8 +28,9 @@ use HTMLForm;
 use IContextSource;
 use MediaWiki\Config\Config;
 use MediaWiki\Mail\EmailUserFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
@@ -47,7 +48,7 @@ use UserBlockedError;
  *
  * @ingroup SpecialPage
  */
-class SpecialEmailUser extends UnlistedSpecialPage {
+class SpecialEmailUser extends SpecialPage {
 	protected $mTarget;
 
 	/**
@@ -88,7 +89,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	}
 
 	public function getDescription() {
-		$target = self::getTarget( $this->mTarget, $this->getUser() );
+		$target = self::getTarget( $this->mTarget ?? '', $this->getUser() );
 		if ( !$target instanceof User ) {
 			return $this->msg( 'emailuser-title-notarget' );
 		}
@@ -450,6 +451,13 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// Autocomplete subpage as user list - public to allow caching
 		return $this->userNamePrefixSearch
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isListed() {
+		return $this->getConfig()->get( MainConfigNames::EnableUserEmail );
 	}
 
 	protected function getGroupName() {
