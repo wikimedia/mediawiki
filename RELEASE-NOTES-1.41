@@ -562,6 +562,8 @@ because of Phabricator reports.
   - ::getVariableRegex, deprecated since 1.36
   - ::getVariableStartToEndRegex, already marked as @internal, now private
   - ::parseMatch, now private
+* AbstractContent::getRedirectChain() and ::getUltimateRedirectTarget(), both
+  deprecated in 1.38, have been removed.
 * …
 
 === Deprecations in 1.41 ===

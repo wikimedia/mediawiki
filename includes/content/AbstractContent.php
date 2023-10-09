@@ -295,27 +295,6 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @since 1.21
-	 * @deprecated since 1.38, use getRedirectTarget() instead.
-	 *   Emitting deprecation warnings since 1.39.
-	 *   Support for redirect chains has been removed.
-	 *
-	 * @return Title[]|null
-	 *
-	 * @see Content::getRedirectChain
-	 */
-	public function getRedirectChain() {
-		wfDeprecated( __METHOD__, '1.38' );
-
-		$title = $this->getRedirectTarget();
-		if ( $title === null ) {
-			return null;
-		} else {
-			return [ $title ];
-		}
-	}
-
-	/**
 	 * Subclasses that implement redirects should override this.
 	 *
 	 * @stable to override
@@ -327,24 +306,6 @@ abstract class AbstractContent implements Content {
 	 */
 	public function getRedirectTarget() {
 		return null;
-	}
-
-	/**
-	 * @note Migrated here from Title::newFromRedirectRecurse.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.38, use getRedirectTarget() instead.
-	 *   Emitting deprecation warnings since 1.39.
-	 *   Support for redirect chains has been removed.
-	 *
-	 * @return Title|null
-	 *
-	 * @see Content::getUltimateRedirectTarget
-	 */
-	public function getUltimateRedirectTarget() {
-		wfDeprecated( __METHOD__, '1.38' );
-
-		return $this->getRedirectTarget();
 	}
 
 	/**
