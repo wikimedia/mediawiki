@@ -1706,7 +1706,7 @@
 	"ipb_cant_unblock": "Çewtî: IDya astengkirinê $1 nehate dîtin. Dibe ku vê gavê jixwe rakirî be.",
 	"proxyblocker": "Astengkera proxy-yê",
 	"sorbsreason": "Adrêsa IP ya te ji DNSBL'a {{SITENAME}} wek proxy'eka vekirî tê naskirin.",
-	"sorbs_create_account_reason": "Adrêsa IP ya te ji DNSBL'a {{SITENAME}} wek proxy'eka vekirî tê naskirin. Tu nikarê account'ekê ji xwe ra çêkê.",
+	"sorbs_create_account_reason": "Adrêsa te ya IPê ji DNSBLa {{SITENAME}} wek proxy-eke vekirî tê naskirin. Tu nikarî ji xwe re hesabekî çêkî.",
 	"ipbnounblockself": "Tu nikarî xwe asteng bikî.",
 	"lockdb": "Danegehê bigire",
 	"unlockdb": "Danegehê veke",

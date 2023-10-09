@@ -1251,7 +1251,7 @@
 	"backend-fail-connect": "Impusébil coleghêres al sistēma 'd memôria \"$1\".",
 	"backend-fail-internal": "É sucès un erōr mìa cgnusû int al sistēma  ed memôria \"$1\".",
 	"backend-fail-contenttype": "Impusébil stabilîr al gèner di file 'd archiviêr in \"$1\".",
-	"backend-fail-batchsize": "Al sistēma 'd memōria l'à dê  un totêl ed \"$1\" 'd {{PLURAL:$1|operazione|operasiòun}} 'd archévi; al lémit l' é 'd \"$2\"  'd {{PLURAL:$2|operazione|operasiòun}}.",
+	"backend-fail-batchsize": "Al sistēma 'd memōria l'à dê un totêl ed \"$1\" 'd {{PLURAL:$1|operazione|operasiòun}} 'd archévi; al lémit l' é 'd \"$2\" 'd {{PLURAL:$2|operazione|operasiòun}}.",
 	"backend-fail-usable": "Impusébil lēzer o scréver al file \"$1\" a câşva ed dirét insuficînt o a mânca l'indirés al  sistēma di file/spâsi insuficînt.",
 	"filejournal-fail-dbconnect": "Impusébil coleghêres al database e da l'é mandêrel al terminêl ed memōria \"$1\".",
 	"filejournal-fail-dbquery": "Impusébil arnuvêr al database e da l'é mandêrel al terminêl ed memōria \"$1\".",

@@ -11,7 +11,8 @@
 			"Matma Rex",
 			"Mjbmr",
 			"Rachitrali",
-			"Sultanselim baloch"
+			"Sultanselim baloch",
+			"Amire80"
 		]
 	},
 	"tog-underline": "لینکانی جهلگا خط کشیتین",
@@ -1191,7 +1192,7 @@
 	"backend-fail-describe": "نه توان که «$1» ئی فایلی میتادیتا ئا تغییر دات.",
 	"backend-fail-alreadyexists": "$1 ئی فایل شه دیما وجود داشت.",
 	"backend-fail-store": "نه توان که  $1 ئی فایلا بئ $2 ئی تا ذخیره کورت.",
-	"backend-fail-copy": "نه توانن که $1 ئی فایلا به  $2  کاپی کنن.",
+	"backend-fail-copy": "نه توانن که $1 ئی فایلا به $2 کاپی کنن.",
 	"backend-fail-move": "نه توانن که $1 ئی فایلا به $2 انتقال دئین.",
 	"backend-fail-opentemp": "نه توان که موقتین فایلا پاچ کورت.",
 	"backend-fail-writetemp": "نیویشتین بی موقتین فایلئ سرا امکان نه داریت.",

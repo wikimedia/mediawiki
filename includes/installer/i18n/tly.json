@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Erdemaslancan",
-			"Patriot Kur"
+			"Patriot Kur",
+			"Patriot Kor",
+			"Гусейн"
 		]
 	},
 	"config-information": "Məlumot",
-	"config-page-language": "Zıvon",
+	"config-page-language": "Zyvon",
 	"config-page-welcome": "Xəş oməyon bə MediaWiki!",
 	"config-page-name": "Nüm",
 	"config-page-options": "Tənziməkon",

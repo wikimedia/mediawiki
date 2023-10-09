@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"paramvalidator-emptystring": "баьсса могӀа",
+	"paramvalidator-missingparam": "«$1» параметр хила йеза.",
+	"paramvalidator-help-default": "Ӏадйитаран кеп: $1",
+	"paramvalidator-help-default-empty": "Ӏадйитаран кеп: (йаьсса)",
+	"paramvalidator-help-deprecated": "ХӀара параметр ширйелла.",
+	"paramvalidator-help-multi-max-simple": "МаьӀнийн максимум дукхалла — {{PLURAL:$1|$1}}.",
+	"paramvalidator-help-multi-all": "Дерриге маьӀнаш билгалдан лелайе <kbd>$1</kbd>.",
+	"paramvalidator-help-required": "ХӀара хила йеза параметр йу.",
+	"paramvalidator-help-type-boolean": "Тайпа: {{PLURAL:$1|логикин маьӀна}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Йаьсса хила йеза|Йаьсса хила мега йа $1}}",
+	"paramvalidator-help-type-integer": "Тайпа: {{PLURAL:$1|дийнатерахьан маьӀна}}",
+	"paramvalidator-help-type-limit": "Тайпа: дийнатерахьан маьӀна йа «max»",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|МаьӀна}} хила ца деза $3 сов даьлла.",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|МаьӀна}} хила деза $2 а, $3 йуккъехь.",
+	"paramvalidator-help-type-number-min": "{{PLURAL:$1|МаьӀна}} $2 доца хила ца деза.",
+	"paramvalidator-help-type-presenceboolean": "Тайпа: логикин маьӀна",
+	"paramvalidator-help-type-string-maxbytes": "Хила ца йеза $1 {{PLURAL:$1|байтал}} йеха.",
+	"paramvalidator-help-type-string-maxchars": "Хила ца йеза $1 {{PLURAL:$1|хьаьркал}} йеха.",
+	"paramvalidator-help-type-timestamp": "Тайпа: {{PLURAL:$1|ханна билгало}}",
+	"paramvalidator-help-type-upload": "Файл санна дӀайахьийта йеза multipart/form-data лелош."
+}
