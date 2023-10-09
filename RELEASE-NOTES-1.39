@@ -24,7 +24,7 @@ This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.4 ===
 * Localisation updates.
-* (T333050, CVE-2023-PENDING) SECURITY: Fix infinite loop for self-redirects
+* (T333050, CVE-2023-45363) SECURITY: Fix infinite loop for self-redirects
   with variants conversion.
 * docs: Fix a few typos in MainConfigSchema.
 * (T309714) mime: Add support for 'font/sfnt' mime type.
@@ -75,14 +75,18 @@ This is a security and maintenance release of the MediaWiki 1.39 branch.
 * updateSpecialPages.php: Avoid implicit float conversion on modulo.
 * (T347227) ImportReporter: Make callback functions public.
 * (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
+* (T204470) Remove feedback messages from RawHtmlMessages.
+* (T264765, CVE-2023-45364) SECURITY: Article: Check permissions before
+  showing link to view deleted revision.
+* (T310378) Ensure that installer i18n is loaded by update.php.
 * doc: Improve description of type in extension.schema.v1.json.
-* (T340217, CVE-2023-PENDING) SECURITY: Vector 2022: Numerous unescaped
+* (T340217, CVE-2023-45359) SECURITY: Vector 2022: Numerous unescaped
   messages leading to potential XSS.
-* (T340220, CVE-2023-PENDING) SECURITY: Vector 2022: vector-intro-page
+* (T340220, CVE-2023-45361) SECURITY: Vector 2022: vector-intro-page
   message is assumed to yield a valid title.
-* (T340221, CVE-2023-PENDING) SECURITY: XSS via
+* (T340221, CVE-2023-45360) SECURITY: XSS via
   'youhavenewmessagesmanyusers' and 'youhavenewmessages' messages.
-* (T341529, CVE-2023-PENDING) SECURITY: diff-multi-sameuser
+* (T341529, CVE-2023-45362) SECURITY: diff-multi-sameuser
   ("X intermediate revisions by the same user not shown") ignores
   username suppression.
 * (T341565, CVE-2023-3550) SECURITY: Stored XSS when uploading crafted
