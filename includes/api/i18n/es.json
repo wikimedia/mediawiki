@@ -76,6 +76,7 @@
 	"apihelp-main-param-errorformat": "Formato utilizado para la salida de texto de avisos y errores.",
 	"apihelp-main-param-errorlang": "Idioma empleado para advertencias y errores. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> con <kbd>siprop=languages</kbd> devuelve una lista de códigos de idioma. Puedes especificar <kbd>content</kbd> para utilizar el idioma del contenido de esta wiki o <kbd>uselang</kbd> para utilizar el valor del parámetro <var>uselang</var>.",
 	"apihelp-main-param-errorsuselocal": "Si se da, los textos de error emplearán mensajes localmente personalizados del espacio de nombres {{ns:MediaWiki}}.",
+	"apihelp-acquiretempusername-summary": "Adquiera un nombre de usuario de usuario temporal y guárdelo en la sesión actual, si la creación de una cuenta temporal está habilitada y el usuario actual está desconectado. Si un nombre ya ha sido guardado, devuelve el mismo nombre.",
 	"apihelp-acquiretempusername-extended-description": "Si el usuario luego realiza una acción que da como resultado la creación de una cuenta temporal, el nombre de usuario oculto se usará para su cuenta. También se puede utilizar en vistas previas. Sin embargo, la cuenta aún no se ha creado y el nombre no es visible para otros usuarios.",
 	"apihelp-block-summary": "Bloquear a un usuario.",
 	"apihelp-block-param-user": "Usuario que bloquear.",

@@ -2876,7 +2876,7 @@
 	"allmessagescurrent": "Билиҥҥи тиэкис",
 	"allmessagestext": "Манна MediaWiki биллэриилэрин тиһилигэ көстөр.\nЭн MediaWiki алтыһаанын тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation МедиаВикини тылбаастааһын] уонна манна [https://translatewiki.net translatewiki.net] киир.",
 	"allmessages-not-supported-database": "Бу сирэй туттуллар кыаҕа суох, тоҕо диэтэххэ '''$wgUseDatabaseMessages''' араарыллыбыт.",
-	"allmessages-unknown-language": "<code>$1</code> куод тыла биллибэт.",
+	"allmessages-unknown-language": "<code>$1</code> тыл куода биллибэт.",
 	"allmessages-filter-legend": "Сиидэ",
 	"allmessages-filter": "Уларытыы көрүҥүнэн наардыыр сиидэ:",
 	"allmessages-filter-unmodified": "Уларытыллыбатахтар",

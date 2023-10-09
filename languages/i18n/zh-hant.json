@@ -4138,6 +4138,7 @@
 	"specialmute-error-invalid-user": "無法找到請求的使用者名稱。",
 	"specialmute-error-email-disabled": "靜音功能無法使用，因為wiki管理員已停用此wiki的電郵功能。",
 	"specialmute-error-mutelist-disabled": "靜音功能無法使用，因為wiki管理員已停用此wiki的電郵靜音清單功能。",
+	"specialmute-error-no-email-set": "靜音功能無法使用，因為您尚未確認您的電子郵件地址。",
 	"specialmute-error-no-options": "靜音功能無法使用。",
 	"specialmute-email-footer": "要管理{{BIDI:$2}}的電子郵件偏好設定，請查看<$1>。",
 	"specialmute-login-required": "請登入以變更您的靜音偏好設定。",
