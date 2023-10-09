@@ -896,7 +896,14 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( array_fill( 0, count( $calls ), $parsoid ), $calls );
 	}
 
-	public function testT332931Hacks() {
+	public function provideTestT332931Hacks() {
+		return [ [ false ], [ true ] ];
+	}
+
+	/**
+	 * @dataProvider provideTestT332931Hacks
+	 */
+	public function testT332931Hacks( bool $useDefaultWrapClass ) {
 		// Cache used by ParsoidOutputAccess
 		$parsoidParserCache = $this->getParserCache( new HashBagOStuff(), 'parsoid' );
 
@@ -922,6 +929,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		// No hit when first accessed
 		$parserOptions = $this->getParserOptions();
+		if ( !$useDefaultWrapClass ) {
+			$parserOptions->setWrapOutputClass( 'custom-wrap-class' );
+		}
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, 'Hello World' );
 		$output = $access->getCachedParserOutput( $page, $parserOptions );
@@ -940,6 +950,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserOptions->setUseParsoid();
 		$output = $access->getCachedParserOutput( $page, $parserOptions );
 		$this->assertNotNull( $output );
+		$this->assertEquals( $parserOptions->getWrapOutputClass(), $output->getWrapperDivClass() );
 	}
 
 }

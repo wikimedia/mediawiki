@@ -244,6 +244,12 @@ class ParserOutputAccess {
 					ParsoidOutputAccess::PARSOID_PARSER_CACHE_NAME
 				);
 				$output = $fallbackParsoidCache->get( $page, $parserOptions );
+				// Unforunately, fallback content doesn't have the wrapper div
+				// class set properly.
+				$class = $parserOptions->getWrapOutputClass();
+				if ( $output && $class !== false && !$parserOptions->getInterfaceMessage() ) {
+					$output->addWrapperDivClass( $class );
+				}
 			}
 		}
 
