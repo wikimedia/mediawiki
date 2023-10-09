@@ -138,10 +138,10 @@ class UpdateSpecialPages extends Maintenance {
 			do {
 				$this->error( "Connection failed, reconnecting in 10 seconds..." );
 				sleep( 10 );
+				$this->waitForReplication();
 			} while ( !$lb->pingAll() );
 			$this->output( "Reconnected\n\n" );
 		}
-		// Wait for the replica DB to catch up
 		$this->waitForReplication();
 	}
 
