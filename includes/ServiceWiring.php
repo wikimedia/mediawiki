@@ -359,7 +359,6 @@ return [
 				BlockManager::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			$services->getPermissionManager(),
 			$services->getUserFactory(),
 			$services->getUserIdentityUtils(),
 			LoggerFactory::getInstance( 'BlockManager' ),
@@ -1627,6 +1626,7 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getGroupPermissionsLookup(),
 			$services->getUserGroupManager(),
+			$services->getBlockManager(),
 			$services->getBlockErrorFormatter(),
 			$services->getHookContainer(),
 			$services->getUserCache(),

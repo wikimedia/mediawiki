@@ -230,7 +230,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					BlockManager::CONSTRUCTOR_OPTIONS,
 					$this->getServiceContainer()->getMainConfig()
 				),
-				$this->getServiceContainer()->getPermissionManager(),
 				$this->getServiceContainer()->getUserFactory(),
 				$this->getServiceContainer()->getUserIdentityUtils(),
 				LoggerFactory::getInstance( 'BlockManager' ),

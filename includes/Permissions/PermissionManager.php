@@ -25,6 +25,7 @@ use LogicException;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -113,6 +114,9 @@ class PermissionManager {
 
 	/** @var string[]|null Cached results of getImplicitRights() */
 	private $implicitRights;
+
+	/** @var BlockManager */
+	private $blockManager;
 
 	/** @var BlockErrorFormatter */
 	private $blockErrorFormatter;
@@ -264,6 +268,7 @@ class PermissionManager {
 	 * @param NamespaceInfo $nsInfo
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param UserGroupManager $userGroupManager
+	 * @param BlockManager $blockManager
 	 * @param BlockErrorFormatter $blockErrorFormatter
 	 * @param HookContainer $hookContainer
 	 * @param UserCache $userCache
@@ -280,6 +285,7 @@ class PermissionManager {
 		NamespaceInfo $nsInfo,
 		GroupPermissionsLookup $groupPermissionsLookup,
 		UserGroupManager $userGroupManager,
+		BlockManager $blockManager,
 		BlockErrorFormatter $blockErrorFormatter,
 		HookContainer $hookContainer,
 		UserCache $userCache,
@@ -296,6 +302,7 @@ class PermissionManager {
 		$this->nsInfo = $nsInfo;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->userGroupManager = $userGroupManager;
+		$this->blockManager = $blockManager;
 		$this->blockErrorFormatter = $blockErrorFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userCache = $userCache;

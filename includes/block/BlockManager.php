@@ -25,7 +25,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\User\User;
@@ -45,13 +45,10 @@ use Wikimedia\IPUtils;
  * @since 1.34 Refactored from User and Block.
  */
 class BlockManager {
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserFactory */
 	private $userFactory;
 
-	/* UserIdentityUtils */
+	/* @var UserIdentityUtils */
 	private $userIdentityUtils;
 
 	/** @var ServiceOptions */
@@ -83,7 +80,6 @@ class BlockManager {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param PermissionManager $permissionManager
 	 * @param UserFactory $userFactory
 	 * @param UserIdentityUtils $userIdentityUtils
 	 * @param LoggerInterface $logger
@@ -91,7 +87,6 @@ class BlockManager {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		PermissionManager $permissionManager,
 		UserFactory $userFactory,
 		UserIdentityUtils $userIdentityUtils,
 		LoggerInterface $logger,
@@ -99,7 +94,6 @@ class BlockManager {
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->permissionManager = $permissionManager;
 		$this->userFactory = $userFactory;
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->logger = $logger;
@@ -157,7 +151,7 @@ class BlockManager {
 			// ipblock-exempt when calling getBlock within Autopromote.
 			// See T270145.
 			!$disableIpBlockExemptChecking &&
-			!$this->permissionManager->userHasRight( $user, 'ipblock-exempt' );
+			!$this->isIpBlockExempt( $user );
 
 		if ( !$checkIpBlocks ) {
 			$request = null;
@@ -218,6 +212,16 @@ class BlockManager {
 	 */
 	public function clearUserCache( UserIdentity $user ) {
 		$this->userBlockCache->clearUser( $user );
+	}
+
+	/**
+	 * Determine if a user is exempt from IP blocks
+	 * @param UserIdentity $user
+	 * @return bool
+	 */
+	private function isIpBlockExempt( UserIdentity $user ) {
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->userHasRight( $user, 'ipblock-exempt' );
 	}
 
 	/**
