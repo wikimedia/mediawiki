@@ -89,10 +89,13 @@ class CorsUtils implements BasicAuthorizerInterface {
 	 * @return string
 	 */
 	private function getCanonicalDomain(): string {
-		return parse_url(
-			$this->options->get( MainConfigNames::CanonicalServer ),
-			PHP_URL_HOST
-		);
+		$res = parse_url( $this->options->get( MainConfigNames::CanonicalServer ) );
+		'@phan-var array $res';
+
+		$host = $res['host'] ?? '';
+		$port = $res['port'] ?? null;
+
+		return $port ? "$host:$port" : $host;
 	}
 
 	/**
