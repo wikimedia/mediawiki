@@ -3,6 +3,7 @@
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Wikimedia\Rdbms\DBLanguageError;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
@@ -271,6 +272,36 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 				"SELECT  field,field2 AS alias  " .
 				"FROM table    " .
 				"WHERE alias = 'text'"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => new Expression( 'alias', '=', 'text' ),
+				],
+				"SELECT  field,field2 AS alias  " .
+				"FROM table    " .
+				"WHERE alias = 'text'"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => [ new Expression( 'alias', '=', 'text' ) ],
+				],
+				"SELECT  field,field2 AS alias  " .
+				"FROM table    " .
+				"WHERE (alias = 'text')"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => ( new Expression( 'alias', '>', 'text' ) )->or( 'alias', '<', 'ext' ),
+				],
+				"SELECT  field,field2 AS alias  " .
+				"FROM table    " .
+				"WHERE (alias > 'text' OR alias < 'ext')"
 			],
 			[
 				[
