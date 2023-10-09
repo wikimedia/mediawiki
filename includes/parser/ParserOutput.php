@@ -518,7 +518,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					$services = MediaWikiServices::getInstance();
 					$toc = $services->getTidy()->tidy( $toc, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 				}
-				$this->mTOCHTML = $toc;
 				$text = Parser::replaceTableOfContentsMarker( $text, $toc );
 			}
 		} else {
@@ -2267,8 +2266,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		} elseif ( $sourceTocData !== null ) {
 			$this->setTOCData( $sourceTocData );
 		}
-		// T327429/T293513: This is also bogus.
-		$this->mTOCHTML .= $source->mTOCHTML;
 
 		// XXX: we don't want to concatenate title text, so first write wins.
 		// We should use the first *modified* title text, but we don't have the original to check.
