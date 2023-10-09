@@ -638,6 +638,18 @@ wgFragmentMode=[ "html5", "legacy" ]
 !! end
 
 !! test
+Heading with literal wikitext - the wikitext is not parsed in section edit link tooltip
+!! config
+wgFragmentMode=[ "html5" ]
+!! wikitext
+== <nowiki>{{PAGENAME}}</nowiki> ==
+== &#123;&#123;PAGENAME}} ==
+!! html/php
+<h2><span class="mw-headline" id="{{PAGENAME}}">{{PAGENAME}}</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: {{PAGENAME}}">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="{{PAGENAME}}_2">&#123;&#123;PAGENAME}}</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: {{PAGENAME}}">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! end
+
+!! test
 Parsing an URL
 !! wikitext
 http://fr.wikipedia.org/wiki/🍺
