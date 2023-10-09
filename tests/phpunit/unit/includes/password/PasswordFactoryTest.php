@@ -46,6 +46,7 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testInit() {
+		$this->expectDeprecationAndContinue( '/deprecated in MediaWiki 1.32/' );
 		$config = new HashConfig( [
 			MainConfigNames::PasswordConfig => [
 				'foo' => [ 'class' => InvalidPassword::class ],

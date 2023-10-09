@@ -1037,6 +1037,7 @@ because of Phabricator reports.
   - TablePager::getBody(), deprecated since 1.24
   - ContentHandler::getSlotDiffRendererInternal(), deprecated since 1.35
   - ParserOutput::getCategories(), deprecated since 1.40
+  - PasswordFactory::init(), deprecated since 1.32
 * WikitextContent::getRedirectTargetAndText has been deprecated, use
   WikitextContentHandler::extractRedirectTargetAndText instead.
 * WikiPage::doDeleteArticleBatched, deprecated in 1.37, now emits deprecation
