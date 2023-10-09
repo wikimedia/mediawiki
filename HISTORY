@@ -2,6 +2,76 @@ Change notes from older releases. For current info, see RELEASE-NOTES-1.41.
 
 = MediaWiki 1.40 =
 
+PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
+== MediaWiki 1.40.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.40 branch.
+
+=== Changes since MediaWiki 1.40.0 ===
+* Localisation updates.
+* (T333050, CVE-2023-45363) SECURITY: Fix infinite loop for self-redirects
+  with variants conversion.
+* docs: Fix a few typos in MainConfigSchema.
+* (T290464) Add DiscussionTools bundling to release notes.
+* (T309714) mime: Add support for 'font/sfnt' mime type.
+* (T341434) WikiImporter: Improve error message output.
+* (T341737) ApiBase: Cast $id to string in filterIDs.
+* (T286291, T296188) Merge zh and zh-tw namespace translations back to zh-hans,
+  zh-hant, zh-hk respectively.
+* (T337875) WRStats: Round up SequenceSpec::hardExpiry to the nearest integer.
+* (T237898) installer: Check MariaDB version in updater/installer.
+* (T342632) ApiComparePages: Add help url.
+* (T326182, T324903) EditPage: Add #[AllowDynamicProperties].
+* (T342351) rdbms: Fix postgres db function call.
+* (T343675) user: Use {@} to escape annotation when writting about annotation.
+* (T343797) LanguageWa: Fix double timezone adjustment.
+* (T343669) skins: Avoid function call on array.
+* (T326454) Update pear/mail to 1.5.1.
+* (T343622) docs: Set the <comment> tag back to optional.
+* (T330528) Upgrade wikimedia/html-formatter from 3.0.1 to 4.0.3.
+* Updated jQuery from v3.6.1 to v3.7.1.
+* (T337463) wdio-mediawiki: await saveScreenshot.
+* (T208477) $wgPrivilegedGroups – Users belonging in some of the listed groups
+  will be audited more aggressively.
+* doc: Improve description of "type" in extension.schema.v2.json.
+* Added PrivilegedGroups attribute for extension.json / skin.json, which lets
+  you add any new user groups you define to wgPrivilegedGroups (see above).
+* (T288624) MultiHttpClient: Unset $this->cmh after closing it.
+* (T345039) Do not run SkinAfterBottomScripts hook twice unconditionally.
+* (T265734) API Help: Note that parameters may be inherited from other context.
+* (T285545) i18n: Split apihelp for standard dir parameter.
+* (T285545) i18n: Split apihelp for redirects/linkshere/transcludedin/fileusage
+  show.
+* (T285545) i18n: Split apihelp for parameter list=deletedrevs&drprop=.
+* (T285545) i18n: Split apihelp for parameter list=allpages&apprexpiry=.
+* (T285545) i18n: Split apihelp for parameter action=opensearch&redirects=.
+* (T285545) i18n: Split apihelp for parameter action=managetags&operation=.
+* (T285545) api: Add message for list=watchlist&wlprop=expiry.
+* (T334011) ApiComparePages: expose 'difftype' param if wikidiff2 is installed.
+* (T342633) api: Add message for action=compare&prop=timestamp.
+* API: revids=… does not necessarily return the queried revisions.
+* (T235207) Get correct main page in API call examples.
+* doc: Make extension.schema.v2.json a valid JSON schema.
+* (T326696) Add since tag to UserOptionsManager::MAX_BYTES_OPTION_VALUE.
+* updateSpecialPages.php: Avoid implicit float conversion on modulo.
+* (T347227) ImportReporter: Make callback functions public.
+* (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
+* doc: Improve description of type in extension.schema.v1.json.
+* (T340217, CVE-2023-45359) SECURITY: Vector 2022: Numerous unescaped messages
+  leading to potential XSS.
+* (T340220, CVE-2023-45361) SECURITY: Vector 2022: vector-intro-page message
+  is assumed to yield a valid title.
+* (T340221, CVE-2023-45360) SECURITY: XSS via 'youhavenewmessagesmanyusers'
+  and 'youhavenewmessages' messages.
+* (T341529, CVE-2023-45362) SECURITY: diff-multi-sameuser ("X intermediate
+  revisions by the same user not shown") ignores username suppression.
+* (T341565, CVE-2023-3550) SECURITY: Stored XSS when uploading crafted
+  XML file to Special:Upload (non standard configuration).
+
 == MediaWiki 1.40.0 ==
 
 === Changes since MediaWiki 1.40.0-rc.0 ===
@@ -74,6 +144,8 @@ For notes on 1.39.x and older releases, see HISTORY.
   Ignore it unless you have a large wiki farm with complex migration needs.
 * $wgSpecialContributeSkinsEnabled – This setting lets you list skins on which
   Special:Contribute is available, for where others don't work for the feature.
+* $wgPrivilegedGroups – Users belonging in some of the listed groups will be
+  audited more aggressively.
 
 ==== Changed configuration ====
 * $wgPasswordPolicies – This setting, which controls what makes for a valid
@@ -166,11 +238,12 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated cssjanus/cssjanus from 2.1.0 to 2.1.1.
 * Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
 * Updated justinrainbow/json-schema from 5.2.11 to 5.2.12.
-* Updated pear/mail from 1.4.1 to 1.5.0.
+* Updated pear/mail from 1.4.1 to 1.5.1.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
 * Updated psr/container from 1.1.1 to 1.1.2.
 * Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
 * Updated symfony/yaml from 5.4.10 to 5.4.17.
+* Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * Updated wikimedia/less.php from 3.1.0 to 4.0.0.
 * Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
 * Updated wikimedia/parsoid from 0.16.0 to 0.17.0.
@@ -651,6 +724,81 @@ There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.39 =
 
+PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
+== MediaWiki 1.39.5 ==
+
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since MediaWiki 1.39.4 ===
+* Localisation updates.
+* (T333050, CVE-2023-45363) SECURITY: Fix infinite loop for self-redirects
+  with variants conversion.
+* docs: Fix a few typos in MainConfigSchema.
+* (T309714) mime: Add support for 'font/sfnt' mime type.
+* (T341434) WikiImporter: Improve error message output.
+* (T317255) VueComponentParser: Use Zest's getElementsByTagName() rather than
+  PHP's.
+* (T341737) ApiBase: Cast $id to string in filterIDs.
+* (T286291, T296188) Merge zh and zh-tw namespace translations back to zh-hans,
+  zh-hant, zh-hk respectively.
+* (T337875) WRStats: Round up SequenceSpec::hardExpiry to the nearest integer.
+* (T237898) installer: Check MariaDB version in updater/installer.
+* (T342632) ApiComparePages: Add help url.
+* (T326182, T324903) EditPage: Add #[AllowDynamicProperties].
+* (T342351) rdbms: Fix postgres db function call.
+* (T343675) user: Use {@} to escape annotation when writting about annotation.
+* (T343797) LanguageWa: Fix double timezone adjustment.
+* (T326454) Update pear/mail to 1.5.1.
+* (T343622) docs: Set the <comment> tag back to optional.
+* (T330528) Upgrade wikimedia/html-formatter from 3.0.1 to 4.0.3.
+* (T337463) wdio-mediawiki: await saveScreenshot.
+* (T274041) Include core PSR-4 classes in the generated classmap.
+* (T208477) $wgPrivilegedGroups – Users belonging in some of the listed groups
+  will be audited more aggressively.
+* doc: Improve description of "type" in extension.schema.v2.json.
+* Added PrivilegedGroups attribute for extension.json / skin.json, which lets
+  you add any new user groups you define to wgPrivilegedGroups (see above).
+* HTMLForm: Fix E_NOTICE when hide-if is used with setFormIdentifier.
+* (T288624) MultiHttpClient: Unset $this->cmh after closing it.
+* (T345039) Do not run SkinAfterBottomScripts hook twice unconditionally.
+* (T265734) API Help: Note that parameters may be inherited from other context.
+* API: Make continue parameter help description more specific.
+* (T285545) i18n: Split apihelp for standard dir parameter.
+* (T285545) i18n: Split apihelp for redirects/linkshere/transcludedin/fileusage
+  show.
+* (T285545) i18n: Split apihelp for parameter list=deletedrevs&drprop=.
+* (T285545) i18n: Split apihelp for parameter list=allpages&apprexpiry=.
+* (T285545) i18n: Split apihelp for parameter action=opensearch&redirects=.
+* (T285545) i18n: Split apihelp for parameter action=managetags&operation=.
+* (T285545) api: Add message for list=watchlist&wlprop=expiry.
+* (T334011) ApiComparePages: expose 'difftype' param if wikidiff2 is installed.
+* (T342633) api: Add message for action=compare&prop=timestamp.
+* API: revids=… does not necessarily return the queried revisions.
+* (T326696) user: Truncate option value in UserOptionsManager.
+* (T326696) ApiOptions: Give warning if the value is too long.
+* API i18n: Add {{PLURAL:}} for byte count messages.
+* (T235207) Get correct main page in API call examples.
+* doc: Make extension.schema.v2.json a valid JSON schema.
+* updateSpecialPages.php: Avoid implicit float conversion on modulo.
+* (T347227) ImportReporter: Make callback functions public.
+* (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
+* doc: Improve description of type in extension.schema.v1.json.
+* (T340217, CVE-2023-45359) SECURITY: Vector 2022: Numerous unescaped
+  messages leading to potential XSS.
+* (T340220, CVE-2023-45361) SECURITY: Vector 2022: vector-intro-page
+  message is assumed to yield a valid title.
+* (T340221, CVE-2023-45360) SECURITY: XSS via
+  'youhavenewmessagesmanyusers' and 'youhavenewmessages' messages.
+* (T341529, CVE-2023-45362) SECURITY: diff-multi-sameuser
+  ("X intermediate revisions by the same user not shown") ignores
+  username suppression.
+* (T341565, CVE-2023-3550) SECURITY: Stored XSS when uploading crafted
+  XML file to Special:Upload (non-standard configuration).
+
 == MediaWiki 1.39.4 ==
 
 This is a security and maintenance release of the MediaWiki 1.39 branch.
@@ -860,6 +1008,8 @@ For notes on 1.38.x and older releases, see HISTORY.
   request URLs to canonical CDN URLs insensitive to parameter order.
 * $wgMultiShardSiteStats – This allows you to split site_stats across multiple
   rows. Only useful for very large, heavily edited wikis. (T306589)
+* $wgPrivilegedGroups – Users belonging in some of the listed groups will be
+  audited more aggressively.
 
 ==== Changed configuration ====
 * $wgInvalidUsernameCharacters – This setting now contains the char '>', which
@@ -942,12 +1092,13 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated OOUI from v0.43.2 to v0.44.5.
 * Updated composer/semver from 3.2.6 to 3.3.2.
 * Updated cssjanus/cssjanus fromv2.1.0 to v2.1.1.
-* Updated pear/mail from v1.4.1 to v1.5.0.
+* Updated pear/mail from v1.4.1 to v1.5.1.
 * Updated symfony/polyfill-php73 from 1.25.0 to 1.26.0.
 * Updated symfony/polyfill-php80 from 1.25.0 to 1.26.0.
 * Updated symfony/yaml from 5.4.3 to 5.4.10.
 * Updated vue/compat from 3.2.23 to 3.2.37.
 * Updated wikimedia/base-convert from 2.0.1 to 2.0.2.
+* Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * Updated wikimedia/ip-set from 3.0.0 to 3.1.0.
 * Updated wikimedia/minify from 2.2.6 to 2.3.0.
 * Updated wikimedia/php-session-serializer from 2.0.0 to 2.0.1.
@@ -4619,6 +4770,46 @@ There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.35 =
 
+MediaWiki 1.35 should mostly work on PHP 8.0/8.1, however it is not
+currently actively supported. Testing (on a development wiki!) is
+appreciated, and bugs with PHP 8.0/8.1 on MediaWiki 1.35 will be accepted.
+
+It is anticipated that in a later MediaWiki 1.35 point release, we can
+declare 1.35 as supporting PHP 8.0/8.1.
+
+PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
+== MediaWiki 1.35.13 ==
+
+This is a maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.12 ===
+* Tarball release to fix backport issues with patch for T341529.
+
+== MediaWiki 1.35.12 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.11 ===
+* Localisation updates.
+* (T333050, CVE-2023-45363) SECURITY: Fix infinite loop for
+  self-redirects with variants conversion.
+* (T341434) WikiImporter: Improve error message output.
+* (T341737) ApiBase: Cast $id to string in filterIDs.
+* (T342632) ApiComparePages: Add help url.
+* (T347227) ImportReporter: Make callback functions public.
+* doc: Improve description of type in extension.schema.v1.json.
+* (T340221, CVE-2023-45360) SECURITY: XSS via
+  'youhavenewmessagesmanyusers' and 'youhavenewmessages' messages.
+* (T341529, CVE-2023-45362) SECURITY: diff-multi-sameuser
+  ("X intermediate revisions by the same user not shown") ignores username
+  suppression.
+* (T341565, CVE-2023-3550) SECURITY: Stored XSS when uploading crafted XML
+  file to Special:Upload (non-standard configuration).
+
 == MediaWiki 1.35.11 ==
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
@@ -4713,7 +4904,7 @@ This is a security and maintenance release of the MediaWiki 1.35 branch.
 * (T312301) SpecialDiff: Don't pass null to trim().
 * Hooks: Use more meaningful name for SkinAfterPortlet hook parameter.
 * (T289926) Ensure we don't pass null to mb_strlen.
-* (T312305, T311572, T311571, T311578) HTMLForm: Null coalescence in trim()
+* (T312305, T311572, T311571, T311578) HtmlForm: Null coalescence in trim()
   calls.
 * (T289926) site: Consistently return null from Site::getDomain().
 * (T307304, T289879) filebackend,jobqueue: Add signature for
@@ -4947,7 +5138,7 @@ This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
 
-MediaWiki 1.35.2 supports Composer 2.0. It is reccommended to make sure your
+MediaWiki 1.35.2 supports Composer 2.0. It is recommended to make sure your
 libraries are up to date on Composer 1.x, before running Composer 2.x.
 
 While normally running update.php isn't required for point releases,
@@ -5278,10 +5469,10 @@ See the file UPGRADE for more detailed upgrade instructions, including
 important information when upgrading from versions prior to 1.11.
 
 Some specific notes for MediaWiki 1.35 upgrades are below:
-* (T259685) Zeroconf (zero-configuration) VisualEditor/Parsoid doesn't work
-  using SQLite as the database backend for MediaWiki. This is due to the lack
-  of write concurrency in SQLite. If you wish to use this feature, it is
-  recommended to use MySQL/MariaDB rather than SQLite.
+* (T259685) When using SQLite as the database backend for MediaWiki,
+  Zeroconf (zero-configuration) VisualEditor/Parsoid only works with
+  MediaWiki 1.35.2 and above.  It is still recommended to use
+  MySQL/MariaDB rather than SQLite when using VisualEditor.
 
 For notes on 1.34.x and older releases, see HISTORY.
 
@@ -5320,15 +5511,15 @@ For notes on 1.34.x and older releases, see HISTORY.
   of this setting, but all other aspects of the expiry feature are controlled
   by it. Enabling in production is discouraged for the time being. A future
   MediaWiki 1.35 release will advertise this feature once it is stable.
-* $wgWatchlistPurgeRate — This sets the chance of expired watchlist items being
+* $wgWatchlistPurgeRate — This sets the chance of expired watchlist items being
   purged on each page edit. Only has effect if $wgWatchlistExpiry is true.
 * $wgWatchlistExpiryMaxDuration — This is the maximum definite relative duration
   for watchlist expiries. Only has effect if $wgWatchlistExpiry is true.
-* $wgImgAuthPath – This can be used to override the path prefix used when
+* $wgImgAuthPath – This can be used to override the path prefix used when
   handling img_auth.php requests. (T235357)
 * $wgAllowedCorsHeaders — This is a list of headers which can be used in a
   cross-site API request.
-* $wgHTTPMaxTimeout and $wgHTTPMaxConnectTimeout — These allow site
+* $wgHTTPMaxTimeout and $wgHTTPMaxConnectTimeout — These allow site
   administrators to limit the timeouts used by the HTTP client libraries.
   This only affects callers using HttpRequestFactory and the deprecated
   wrappers in the Http class.
@@ -5390,7 +5581,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgShellRestrictionMethod — This now defaults to 'autodetect', which will
   enable sandboxing for shell commands using firejail, if it's installed. To
   disable restrictions, set it to false.
-* $wgLegacyJavaScriptGlobals – This deprecated setting now default to false,
+* $wgLegacyJavaScriptGlobals – This deprecated setting now default to false,
   instead of true, ahead of its planned removal.
 
 ==== Removed configuration ====
@@ -5411,7 +5602,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   $wgCdnServersNoPurge, or $wgCdnMaxAge instead.
 * $wgDisableCounters — This, deprecated in 1.25, was removed. The feature that
   it controlled was already removed in 1.26, but the variable remained existent
-  with a value of `true` for backward-compatibility.
+  with a value of `false` for backward-compatibility.
 * $wgMaxGeneratedPPNodeCount — This setting was removed. It only affected
   Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
 * $wgFixArabicUnicode and $wgFixMalayalamUnicode — These, deprecated in 1.33,
@@ -5515,21 +5706,21 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added wikimedia/ip-utils 1.0.0.
-* Added wikimedia/parsoid 0.12.0.
+* Added wikimedia/parsoid 0.12.3.
 * Added wikimedia/services 2.0.1.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
 * Added vuex v3.1.3.
-* Added symfony/symfony/polyfill-php80 1.23.1.
+* Added symfony/symfony/polyfill-php80 1.25.0.
 
 ===== New development-only external libraries =====
-* Added doctrine/dbal 2.10.2.
+* Added doctrine/dbal 3.1.5.
 * Added doctrine/sql-formatter 1.1.0.
-* Added pimple/pimple 3.3.0.
+* Added pimple/pimple 3.3.1.
 
 ==== Changed external libraries ====
-* pear/mail_mime was upgraded from 1.10.2 to 1.10.8.
-* wikimedia/less.php was upgraded from 1.8.0 to 3.0.0.
+* pear/mail_mime was upgraded from 1.10.2 to 1.10.11.
+* wikimedia/less.php was upgraded from 1.8.0 to 3.1.0.
 * Updated oojs from 3.0.0 to 5.0.0.
 * Updated OOUI from 0.35.1 to 0.39.3.
 * zordius/lightncandy was upgraded from 0.23.0 to 1.2.5.
@@ -5543,10 +5734,13 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated wikimedia/xmp-reader from 0.6.3 to 0.8.5.
   Fixes error log spam with too-large XMP data, and adds support for GPano tags.
 * Updated wikimedia/base-convert from v2.0.0 to v2.0.1.
-* Updated composer/semver from 1.5.0 to 1.5.1.
+* Updated composer/semver from 1.5.0 to 1.7.2.
 * Updated wikimedia/remex-html from 2.1.0 to 2.2.0.
 * Replaced wikimedia/password-blacklist 0.1.4 with wikimedia/common-passwords
   0.2.0.
+* Updated wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1.
+* Updated wikimedia/html-formatter from 1.0.2 to 2.0.1.
+* Updated wikimedia/object-factory from 2.1.0 to 2.2.0.
 
 ===== Changed development-only external libraries =====
 * Updated symfony/yaml from 3.4.28 to 5.0.5.
@@ -5554,11 +5748,13 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated php-parallel-lint/php-console-highlighter from v0.3.2 to v0.5.
 * Updated php-parallel-lint/php-parallel-lint from v0.9.2 to v1.2.0.
 * Updated psy/psysh from 0.9.9 to 0.10.4.
-* Updated monolog/monolog from 1.24.0 to 1.25.2.
-* Upgrade mediawiki-codesniffer from 28.0.0 to 30.0.0.
+* Updated monolog/monolog from 1.24.0 to 2.2.0.
+* Upgrade mediawiki-codesniffer from 28.0.0 to 38.0.0.
 * Updated composer/spdx-licenses from 1.5.1 to 1.5.3.
 * Updated monolog/monolog from 1.25.2 to 1.25.3.
 * Updated qunit from 2.9.1 to 2.10.0.
+* Updating wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
+* Updated seld/jsonlint from 1.7.1 to 1.8.3.
 
 ==== Removed external libraries ====
 * phpunit/php-invoker (dev-only).
@@ -5635,6 +5831,7 @@ because of Phabricator reports.
 * (T248299) Added language support for Inari Sami (smn).
 * (T251369) Added language support for Ladin (lld).
 * (T251369) Added language support for Seediq (trv), also known as Taroko.
+* (T254854) Added language support for Southern Altay (alt).
 
 === Breaking changes in 1.35 ===
 * MediaWiki no longer supports PHP 7.2; use PHP 7.3.19+ (T228346, T257879).
@@ -6662,6 +6859,48 @@ because of Phabricator reports.
 * The printableversion has been marked as deprecated per T167956.
 * (T30162, T245387) The installer supports using a Postgres server running
   on a custom port other than 5432.
+
+== Compatibility ==
+MediaWiki 1.35 requires PHP 7.3.19 or later, and the following PHP extensions:
+
+* ctype
+* dom
+* fileinfo
+* iconv
+* json
+* mbstring
+* xml
+
+MySQL/MariaDB is the recommended DBMS. PostgreSQL or SQLite can also be used,
+but support for them is somewhat less mature.
+
+The supported versions are:
+
+* MySQL 5.5.8 or later
+* PostgreSQL 9.2 or later
+* SQLite 3.8.0 or later
+
+== Online documentation ==
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+       https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation
+
+== Mailing list ==
+A mailing list is available for MediaWiki user support and discussion:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.34 =
 
