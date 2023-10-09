@@ -24,7 +24,7 @@ This is a security and maintenance release of the MediaWiki 1.40 branch.
 
 === Changes since MediaWiki 1.40.0 ===
 * Localisation updates.
-* (T333050, CVE-2023-PENDING) SECURITY: Fix infinite loop for self-redirects
+* (T333050, CVE-2023-45363) SECURITY: Fix infinite loop for self-redirects
   with variants conversion.
 * docs: Fix a few typos in MainConfigSchema.
 * (T290464) Add DiscussionTools bundling to release notes.
@@ -68,17 +68,23 @@ This is a security and maintenance release of the MediaWiki 1.40 branch.
 * (T235207) Get correct main page in API call examples.
 * doc: Make extension.schema.v2.json a valid JSON schema.
 * (T326696) Add since tag to UserOptionsManager::MAX_BYTES_OPTION_VALUE.
+* (T310378) Ensure that installer i18n is loaded by update.php.
 * updateSpecialPages.php: Avoid implicit float conversion on modulo.
 * (T347227) ImportReporter: Make callback functions public.
 * (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
+* (T204470) Remove feedback messages from RawHtmlMessages.
+* (T127268) MainConfigSchema: Update doc for "ResourceLoader: Default File
+  modules to mobile and desktop targets".
+* (T264765, CVE-2023-45364) SECURITY: Article: Check permissions before
+  showing link to view deleted revision.
 * doc: Improve description of type in extension.schema.v1.json.
-* (T340217, CVE-2023-PENDING) SECURITY: Vector 2022: Numerous unescaped messages
+* (T340217, CVE-2023-45359) SECURITY: Vector 2022: Numerous unescaped messages
   leading to potential XSS.
-* (T340220, CVE-2023-PENDING) SECURITY: Vector 2022: vector-intro-page message
+* (T340220, CVE-2023-45361) SECURITY: Vector 2022: vector-intro-page message
   is assumed to yield a valid title.
-* (T340221, CVE-2023-PENDING) SECURITY: XSS via 'youhavenewmessagesmanyusers'
+* (T340221, CVE-2023-45360) SECURITY: XSS via 'youhavenewmessagesmanyusers'
   and 'youhavenewmessages' messages.
-* (T341529, CVE-2023-PENDING) SECURITY: diff-multi-sameuser ("X intermediate
+* (T341529, CVE-2023-45362) SECURITY: diff-multi-sameuser ("X intermediate
   revisions by the same user not shown") ignores username suppression.
 * (T341565, CVE-2023-3550) SECURITY: Stored XSS when uploading crafted
   XML file to Special:Upload (non standard configuration).
