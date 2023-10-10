@@ -2295,6 +2295,8 @@
 	"apisandbox-request-format-php-label": "PHP array",
 	"apisandbox-request-php-label": "Request PHP array:",
 	"apisandbox-request-time": "Request time: {{PLURAL:$1|$1 ms}}",
+	"apisandbox-request-post": "This request must be sent using the HTTP POST method.",
+	"apisandbox-request-formdata": "This request must be sent as a file upload (i.e. using <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Correct token and resubmit",
 	"apisandbox-results-fixtoken-fail": "Failed to fetch \"$1\" token.",
 	"apisandbox-alert-page": "Fields on this page are not valid.",
