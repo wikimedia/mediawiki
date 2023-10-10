@@ -4695,10 +4695,9 @@ class Parser {
 	 */
 	public function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
-			global $wgTitle;
 			$magicScopeVariable = $this->lock();
 			$this->startParse(
-				$wgTitle,
+				$this->mTitle,
 				ParserOptions::newFromUser( RequestContext::getMain()->getUser() ),
 				self::OT_PREPROCESS,
 				true
@@ -4804,7 +4803,7 @@ class Parser {
 	 *
 	 * @param string $text The text to preprocess
 	 * @param ParserOptions $options
-	 * @param ?PageReference $page The context page or null to use $wgTitle
+	 * @param ?PageReference $page The context page
 	 * @return string
 	 * @since 1.3
 	 */
@@ -4817,12 +4816,7 @@ class Parser {
 		}
 		$executing = true;
 
-		if ( !$page ) {
-			global $wgTitle;
-			$page = $wgTitle;
-		}
-
-		$text = $this->preprocess( $text, $page, $options );
+		$text = $this->preprocess( $text, $page ?? $this->mTitle, $options );
 
 		$executing = false;
 		return $text;
@@ -5677,15 +5671,14 @@ class Parser {
 	 *
 	 * @param string $mode One of "get" or "replace"
 	 * @param string|false $newText Replacement text for section data.
+	 * @param PageReference|null $page
 	 * @return string For "get", the extracted section text.
 	 *   for "replace", the whole page with the section replaced.
 	 */
-	private function extractSections( $text, $sectionId, $mode, $newText = '' ) {
-		global $wgTitle; # not generally used but removes an ugly failure mode
-
+	private function extractSections( $text, $sectionId, $mode, $newText, ?PageReference $page = null ) {
 		$magicScopeVariable = $this->lock();
 		$this->startParse(
-			$wgTitle,
+			$page,
 			ParserOptions::newFromUser( RequestContext::getMain()->getUser() ),
 			self::OT_PLAIN,
 			true
