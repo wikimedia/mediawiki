@@ -1630,12 +1630,11 @@ class DifferenceEngine extends ContextSource {
 	 * Replace a common convention for language-independent line numbers with
 	 * the text in the user's language.
 	 *
+	 * @deprecated since 1.41, use BaseTextDiffer::localizeLineNumbers()
 	 * @param string $text
-	 *
 	 * @return string
 	 */
 	public function localiseLineNumbers( $text ) {
-		// TODO duplicate of BaseTextDiffer::localizeLineNumbers(), kept for compatibility
 		return preg_replace_callback( '/<!--LINE (\d+)-->/',
 			function ( array $matches ) {
 				if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {

@@ -121,7 +121,21 @@ abstract class BaseTextDiffer implements TextDiffer {
 	protected function localizeLineNumbers(
 		$text, $reducedLineNumbers
 	) {
-		// TODO duplicate of DifferenceEngine::localiseLineNumbers()
+		// Inline diffs.
+		$text = preg_replace_callback( '/<!-- LINES (\d+),(\d+) -->/',
+			function ( array $matches ) use ( $reducedLineNumbers ) {
+				if ( $matches[1] === '1' && $matches[2] === '1' && $reducedLineNumbers ) {
+					return '';
+				}
+				$msg = $matches[1] === $matches[2]
+					? 'lineno'
+					: 'lineno-inline';
+				return $this->getLocalizer()->msg( $msg )
+					->numParams( $matches[1], $matches[2] )
+					->escaped();
+			}, $text );
+
+		// Table diffs.
 		return preg_replace_callback( '/<!--LINE (\d+)-->/',
 			function ( array $matches ) use ( $reducedLineNumbers ) {
 				if ( $matches[1] === '1' && $reducedLineNumbers ) {
