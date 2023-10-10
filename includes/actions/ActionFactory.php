@@ -238,7 +238,15 @@ class ActionFactory {
 			return $spec;
 		}
 
-		if ( !$article instanceof Article ) {
+		if ( $article instanceof PageIdentity ) {
+			if ( !$article->canExist() ) {
+				// Encountered a non-proper PageIdentity (e.g. a special page).
+				// We can't construct an Article object for a SpecialPage,
+				// so give up here. Actions are only defined for proper pages anyway.
+				// See T348451.
+				return null;
+			}
+
 			$article = Article::newFromTitle(
 				Title::newFromPageIdentity( $article ),
 				$context
@@ -305,6 +313,11 @@ class ActionFactory {
 	 * known. Currently, this will also return null if the action is known but disabled. This may
 	 * change in the future.
 	 *
+	 * @note If $target refers to a non-proper page (such as a special page), this method will
+	 * currently return null due to limitations in the way it is implemented (T346036). This
+	 * will also happen when $target is null if the wiki's main page is not a proper page
+	 * (e.g. Special:MyLanguage/Main_Page, see T348451).
+	 *
 	 * @param string $name
 	 * @param Article|PageIdentity|null $target The target on which the action is to be performed,
 	 *     if known. This is used to apply page-specific action overrides.
@@ -316,6 +329,14 @@ class ActionFactory {
 		$context = RequestContext::getMain();
 
 		if ( !$target ) {
+			// If no target is given, check if the action is even defined before
+			// falling back to the main page. If $target is given, we can't
+			// exit early, since there may be action overrides defined for the page.
+			$spec = $this->getActionSpec( $name );
+			if ( !$spec ) {
+				return null;
+			}
+
 			$target = Title::newMainPage();
 		}
 
