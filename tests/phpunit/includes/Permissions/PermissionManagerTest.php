@@ -521,6 +521,44 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * Regression test for T348451
+	 */
+	public function testGetApplicableBlockForSpecialPage() {
+		$block = new DatabaseBlock( [
+			'address' => '127.0.8.1',
+			'by' => new UserIdentityValue( 100, 'TestUser' ),
+			'auto' => true,
+		] );
+
+		$user = $this->getMockBuilder( User::class )
+			->onlyMethods( [ 'getBlock' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( $block );
+
+		$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+
+		$this->overrideUserPermissions( $user, [
+			'createpage',
+			'edit',
+		] );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		// The block is applicable even if the target page is a special page
+		// for which we cannot instantiate an Action object.
+		$this->assertSame(
+			$block,
+			$permissionManager->getApplicableBlock(
+				'edit',
+				$user,
+				PermissionManager::RIGOR_FULL,
+				$title
+			)
+		);
+	}
+
 	public static function provideTestCheckUserBlockActions() {
 		return [
 			'Sitewide autoblock' => [

@@ -950,6 +950,8 @@ class PermissionManager {
 
 		// If no ActionInfo is returned, assume that the action requires unblock
 		// which is the default.
+		// NOTE: We may get null here even for known actions, if a wiki's main page
+		// is set to a special page, e.g. Special:MyLanguage/Main_Page (T348451, T346036).
 		if ( !$actionInfo || $actionInfo->requiresUnblock() ) {
 			if (
 				( !$page || $this->isBlockedFrom( $user, $page, $useReplica ) ) ||
