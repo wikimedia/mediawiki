@@ -112,6 +112,7 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use Mediawiki\ParserOutputTransform\DefaultOutputTransform;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1093,6 +1094,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancerFactoryConfigBuilder(): MWLBFactory {
 		return $this->getService( 'DBLoadBalancerFactoryConfigBuilder' );
+	}
+
+	/**
+	 * @internal
+	 * @return DefaultOutputTransform
+	 */
+	public function getDefaultOutputTransform(): DefaultOutputTransform {
+		return $this->getService( 'DefaultOutputTransform' );
 	}
 
 	/**

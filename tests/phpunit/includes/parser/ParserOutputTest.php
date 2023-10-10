@@ -270,6 +270,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * This test aims at being replaced by its version in DefaultOutputTransformTest when ParserOutput::getText
+	 * gets deprecated.
 	 * @covers ParserOutput::getText
 	 * @dataProvider provideGetText
 	 * @param array $options Options to getText()
@@ -485,6 +487,8 @@ EOF
 	}
 
 	/**
+	 * This test aims at being replaced by its version in DefaultOutputTransformTest when ParserOutput::getText
+	 * gets deprecated.
 	 * @covers ParserOutput::getText
 	 */
 	public function testGetText_failsIfNoText() {
@@ -522,6 +526,8 @@ EOF
 	}
 
 	/**
+	 * This test aims at being replaced by its version in DefaultOutputTransformTest when ParserOutput::getText
+	 * gets deprecated.
 	 * @dataProvider provideGetText_absoluteURLs
 	 */
 	public function testGetText_absoluteURLs( string $text, string $expectedText ) {

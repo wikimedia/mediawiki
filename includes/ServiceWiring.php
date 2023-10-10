@@ -139,6 +139,7 @@ use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use Mediawiki\ParserOutputTransform\DefaultOutputTransform;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -710,6 +711,14 @@ return [
 			$services->getCriticalSectionProvider(),
 			$services->getStatsdDataFactory(),
 			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' )
+		);
+	},
+
+	'DefaultOutputTransform' => static function ( MediaWikiServices $services ): DefaultOutputTransform {
+		return new DefaultOutputTransform(
+			$services->getHookContainer(),
+			$services->getTidy(),
+			LoggerFactory::getInstance( 'Parser' )
 		);
 	},
 

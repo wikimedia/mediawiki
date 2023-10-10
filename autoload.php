@@ -2318,6 +2318,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Widget\\UsersMultiselectWidget' => __DIR__ . '/includes/widget/UsersMultiselectWidget.php',
 	'MediaWiki\\WikiMap\\WikiMap' => __DIR__ . '/includes/WikiMap/WikiMap.php',
 	'MediaWiki\\WikiMap\\WikiReference' => __DIR__ . '/includes/WikiMap/WikiReference.php',
+	'Mediawiki\\ParserOutputTransform\\DefaultOutputTransform' => __DIR__ . '/includes/ParserOutputTransform/DefaultOutputTransform.php',
 	'MediumSpecificBagOStuff' => __DIR__ . '/includes/libs/objectcache/MediumSpecificBagOStuff.php',
 	'MemcLockManager' => __DIR__ . '/includes/libs/lockmanager/MemcLockManager.php',
 	'MemcachedBagOStuff' => __DIR__ . '/includes/libs/objectcache/MemcachedBagOStuff.php',
