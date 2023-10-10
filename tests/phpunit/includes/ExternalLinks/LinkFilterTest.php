@@ -114,6 +114,11 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'news:4df8kh$iagfewewf(at)newsbf02aaa.news.aol.com' ],
 			[ '', 'news:*.aol.com',
 				'news:4df8kh$iagfewewf(at)newsbf02aaa.news.aol.com' ],
+
+			// (T347574) Only set host if it's not already set (if // is used)
+			[ 'news:', 'comp.compression', 'news://comp.compression' ],
+			[ 'news:', 'comp.compression', 'news:comp.compression' ],
+
 			[ '', 'git://github.com/prwef/abc-def.git', 'git://github.com/prwef/abc-def.git' ],
 			[ 'git://', 'github.com/', 'git://github.com/prwef/abc-def.git' ],
 			[ 'git://', '*.github.com/', 'git://a.b.c.d.e.f.github.com/prwef/abc-def.git' ],
