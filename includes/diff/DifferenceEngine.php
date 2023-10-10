@@ -797,7 +797,9 @@ class DifferenceEngine extends ContextSource {
 			$oldRevisionHeader = $this->getRevisionHeader( $oldRevRecord, 'complete' );
 			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff', $this->getContext() );
 			$oldRevComment = $this->commentFormatter
-				->formatRevision( $oldRevRecord, $user, !$diffOnly, !$this->unhide );
+				->formatRevision(
+					$oldRevRecord, $user, !$diffOnly, !$this->unhide, /** disable parentheseses */ false
+				);
 
 			if ( $oldRevComment === '' ) {
 				$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
@@ -868,7 +870,9 @@ class DifferenceEngine extends ContextSource {
 		$newRevisionHeader = $this->getRevisionHeader( $newRevRecord, 'complete' ) .
 			' ' . implode( ' ', $formattedRevisionTools );
 		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
-		$newRevComment = $this->commentFormatter->formatRevision( $newRevRecord, $user, !$diffOnly, !$this->unhide );
+		$newRevComment = $this->commentFormatter->formatRevision(
+			$newRevRecord, $user, !$diffOnly, !$this->unhide, /** disable parentheseses */ false
+		);
 
 		if ( $newRevComment === '' ) {
 			$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
