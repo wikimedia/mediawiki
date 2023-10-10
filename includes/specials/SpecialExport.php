@@ -565,10 +565,12 @@ class SpecialExport extends SpecialPage {
 	 */
 	protected function getPageLinks( $inputPages, $pageSet, $depth ) {
 		for ( ; $depth > 0; --$depth ) {
+			[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( 'pagelinks' );
+			$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks' );
 			$pageSet = $this->getLinks(
-				$inputPages, $pageSet, [ 'pagelinks' ],
-				[ 'namespace' => 'pl_namespace', 'title' => 'pl_title' ],
-				[ 'pagelinks' => [ 'JOIN', [ 'page_id=pl_from' ] ] ]
+				$inputPages, $pageSet, $queryInfo['tables'],
+				[ 'namespace' => $nsField, 'title' => $titleField ],
+				array_merge( [ 'pagelinks' => [ 'JOIN', [ 'page_id=pl_from' ] ] ], $queryInfo['joins'] )
 			);
 			$inputPages = array_keys( $pageSet );
 		}
