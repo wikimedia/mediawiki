@@ -543,6 +543,7 @@ because of Phabricator reports.
 * The class Wikimedia\Rdbms\MySQLMasterPos, deprecated in 1.37, has been
   removed. Use Wikimedia\Rdbms\MySQLPrimaryPos instead.
 * The class GetBlockErrorMessageKey, deprecated in 1.40, has been removed.
+* The ability to set Parser::mTitle to null, deprecated in 1.34, was removed.
 * The following MagicWord methods have been removed without deprecation. There
   were no known uses.
   - ::addToArray

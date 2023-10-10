@@ -270,13 +270,9 @@ class Parser {
 	/**
 	 * Title context, used for self-link rendering and similar things
 	 *
-	 * Since 1.34, leaving `mTitle` uninitialized or setting `mTitle` to
-	 * `null` is deprecated.
-	 *
-	 * @var Title|null
 	 * @deprecated since 1.35, use Parser::getPage()
 	 */
-	public $mTitle;
+	public Title $mTitle;
 	/** Output type, one of the OT_xxx constants */
 	private int $mOutputType;
 	/**
@@ -488,6 +484,7 @@ class Parser {
 		$this->initializeVariables();
 
 		$this->hookRunner->onParserFirstCallInit( $this );
+		$this->mTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/Missing' );
 	}
 
 	/**
@@ -965,9 +962,6 @@ class Parser {
 	 * @return Title
 	 */
 	public function getTitle(): Title {
-		if ( !$this->mTitle ) {
-			$this->mTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
-		}
 		return $this->mTitle;
 	}
 
@@ -984,7 +978,7 @@ class Parser {
 			// For now (early 1.37 alpha), always convert to Title, so we don't have to do it over
 			// and over again in other methods. Eventually, we will no longer need to have a Title
 			// instance internally.
-			$t = Title::castFromPageReference( $t );
+			$t = Title::newFromPageReference( $t );
 		}
 
 		if ( $t->hasFragment() ) {
@@ -998,9 +992,18 @@ class Parser {
 	/**
 	 * Returns the page used as context for parsing, e.g. when resolving relative subpage links.
 	 * @since 1.37
-	 * @return ?PageReference
+	 * @return ?PageReference Null if no page is set (deprecated since 1.34)
 	 */
 	public function getPage(): ?PageReference {
+		if ( $this->mTitle->isSpecial( 'Badtitle' ) ) {
+			[ , $subPage ] = $this->specialPageFactory->resolveAlias( $this->mTitle->getDBkey() );
+
+			if ( $subPage === 'Missing' ) {
+				wfDeprecated( __METHOD__ . ' without a Title set', '1.34' );
+				return null;
+			}
+		}
+
 		return $this->mTitle;
 	}
 
