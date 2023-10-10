@@ -1066,6 +1066,7 @@
 	"difference-title-multipage": "$1 und $2: Unterschied zwischen den Seiten",
 	"difference-multipage": "(Unterschied zwischen Seiten)",
 	"lineno": "Zeile $1:",
+	"lineno-inline": "Zeile $1 ⟶ $2:",
 	"compareselectedversions": "Gewählte Versionen vergleichen",
 	"showhideselectedversions": "Sichtbarkeit gewählter Versionen ändern",
 	"showhideselectedfileversions": "Sichtbarkeit gewählter Dateiversionen ändern",
