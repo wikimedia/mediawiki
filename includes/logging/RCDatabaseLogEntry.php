@@ -27,7 +27,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * A subclass of DatabaseLogEntry for objects constructed from entries in the
@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class RCDatabaseLogEntry extends DatabaseLogEntry {
 
-	public static function newFromId( $id, IDatabase $db ) {
+	public static function newFromId( $id, IReadableDatabase $db ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Make the LSP violation explicit to prevent sneaky failures
 		throw new LogicException( 'Not implemented!' );

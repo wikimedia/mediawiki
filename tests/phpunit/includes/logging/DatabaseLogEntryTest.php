@@ -3,7 +3,7 @@
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @group Database
@@ -40,7 +40,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		array $expectedFields = null
 	) {
 		$row = $row ? (object)$row : null;
-		$db = $this->createMock( IDatabase::class );
+		$db = $this->createMock( IReadableDatabase::class );
 		$db->expects( self::once() )
 			->method( 'selectRow' )
 			->with( $selectFields['tables'],
@@ -52,7 +52,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 			)
 			->will( self::returnValue( $row ) );
 
-		/** @var IDatabase $db */
+		/** @var IReadableDatabase $db */
 		$logEntry = DatabaseLogEntry::newFromId( $id, $db );
 
 		if ( !$expectedFields ) {
