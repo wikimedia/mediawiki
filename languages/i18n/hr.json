@@ -2970,6 +2970,7 @@
 	"imgmultigo": "Kreni!",
 	"imgmultigoto": "Idi na stranicu $1",
 	"img-lang-default": "(zadani jezik)",
+	"img-lang-info": "Prikaži ovu sliku na sljedećem jeziku: $1. $2",
 	"img-lang-go": "Idi",
 	"table_pager_next": "Sljedeća stranica",
 	"table_pager_prev": "Prethodna stranica",

@@ -64,7 +64,9 @@
 			"NB",
 			"Eukarióta",
 			"FoBe",
-			"Amire80"
+			"Amire80",
+			"Beze",
+			"Ewithu"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -398,7 +400,7 @@
 	"querypage-no-updates": "Az oldal frissítése jelenleg le van tiltva. Az itt szereplő adatok nem frissülnek azonnal.",
 	"querypage-updates-periodical": "Az oldal frissítése időszakosan történik.",
 	"viewsource": "Lapforrás",
-	"skin-action-viewsource": "lapforrás",
+	"skin-action-viewsource": "Lapforrás",
 	"viewsource-title": "$1 forrásának megtekintése",
 	"actionthrottled": "Művelet megszakítva",
 	"actionthrottledtext": "A visszaélések elleni védekezés miatt nem végezhető el a művelet túl sokszor egy adott időn belül, és te átlépted a beállított határt. Próbálkozz újra néhány perc múlva.",

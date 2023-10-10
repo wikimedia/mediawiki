@@ -2281,7 +2281,7 @@
 	"allpagesfrom": "顯示以此開頭的頁面",
 	"allpagesto": "顯示以此結尾的頁面",
 	"allarticles": "所有頁面",
-	"allinnamespace": "所有頁面（$1 命名空間）",
+	"allinnamespace": "所有頁面（「$1」命名空間）",
 	"allpagessubmit": "執行",
 	"allpagesprefix": "根據前綴查詢頁面",
 	"allpagesbadtitle": "指定的頁面標題無效、包含內部語言或內部 Wiki 的字首。\n它可能包含一個或多個的不能用於標題的字元。",
