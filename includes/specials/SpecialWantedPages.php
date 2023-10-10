@@ -24,6 +24,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -35,17 +36,21 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialWantedPages extends WantedQueryPage {
 
+	private LinksMigration $linksMigration;
+
 	/**
 	 * @param IConnectionProvider $dbProvider
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Wantedpages' );
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function isIncludable() {
@@ -66,20 +71,21 @@ class SpecialWantedPages extends WantedQueryPage {
 	public function getQueryInfo() {
 		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		$count = $this->getConfig()->get( MainConfigNames::WantedPagesThreshold ) - 1;
+		[ $blNamespace, $blTitle ] = $this->linksMigration->getTitleFields( 'pagelinks' );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks', 'pagelinks' );
 		$query = [
-			'tables' => [
-				'pagelinks',
+			'tables' => array_merge( $queryInfo['tables'], [
 				'pg1' => 'page',
 				'pg2' => 'page'
-			],
+			] ),
 			'fields' => [
-				'namespace' => 'pl_namespace',
-				'title' => 'pl_title',
+				'namespace' => $blNamespace,
+				'title' => $blTitle,
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [
 				'pg1.page_namespace' => null,
-				'pl_namespace NOT IN (' . $dbr->makeList( [ NS_USER, NS_USER_TALK ] ) . ')',
+				$blNamespace . ' NOT IN (' . $dbr->makeList( [ NS_USER, NS_USER_TALK ] ) . ')',
 				'pg2.page_namespace != ' . $dbr->addQuotes( NS_MEDIAWIKI ),
 			],
 			'options' => [
@@ -87,17 +93,17 @@ class SpecialWantedPages extends WantedQueryPage {
 					'COUNT(*) > ' . $dbr->addQuotes( $count ),
 					'COUNT(*) > SUM(pg2.page_is_redirect)'
 				],
-				'GROUP BY' => [ 'pl_namespace', 'pl_title' ]
+				'GROUP BY' => [ $blNamespace, $blTitle ]
 			],
-			'join_conds' => [
+			'join_conds' => array_merge( [
 				'pg1' => [
 					'LEFT JOIN', [
-						'pg1.page_namespace = pl_namespace',
-						'pg1.page_title = pl_title'
+						'pg1.page_namespace = ' . $blNamespace,
+						'pg1.page_title = ' . $blTitle
 					]
 				],
 				'pg2' => [ 'LEFT JOIN', 'pg2.page_id = pl_from' ]
-			]
+			], $queryInfo['joins'] )
 		];
 		// Replacement for the WantedPages::getSQL hook
 		$this->getHookRunner()->onWantedPages__getQueryInfo( $this, $query );

@@ -388,6 +388,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancerFactory',
 				'LinkBatchFactory',
+				'LinksMigration',
 			]
 		],
 		'Wantedtemplates' => [
