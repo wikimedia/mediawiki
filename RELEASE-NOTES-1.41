@@ -22,7 +22,9 @@ Some specific notes for MediaWiki 1.41 upgrades are below:
 For notes on 1.40.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.41 ===
-* …
+* $wgGroupPermissions: The 'purge' permission is now considered an
+  implicit right that can be rate limited, but not revoked. This has
+  effectively already been the case for a long time, see T291316.
 
 ==== New configuration ====
 * $wgPrivilegedGroups – Users belonging in some of the listed groups will be

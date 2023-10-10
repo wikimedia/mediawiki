@@ -216,7 +216,6 @@ class PermissionManager {
 		'patrol',
 		'patrolmarks',
 		'protect',
-		'purge',
 		'read',
 		'renameuser',
 		'reupload',
@@ -256,6 +255,7 @@ class PermissionManager {
 		'changeemail',
 		'confirmemail',
 		'linkpurge',
+		'purge',
 	];
 
 	/**
