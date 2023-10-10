@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
@@ -164,6 +165,13 @@ class UploadFromChunks extends UploadFromFile {
 		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
 		$tAmount = microtime( true ) - $tStart;
 		if ( !$status->isOK() ) {
+			// This is a backend error and not user-related, so log is safe
+			// Upload verification further on is not safe to log server side
+			$this->logFileBackendStatus(
+				$status,
+				'[{type}] Error on concatenate {chunks} stashed files ({details})',
+				[ 'chunks' => $chunkIndex ]
+			);
 			return $status;
 		}
 
@@ -343,15 +351,11 @@ class UploadFromChunks extends UploadFromFile {
 
 		// Check for error in stashing the chunk:
 		if ( !$storeStatus->isOK() ) {
-			$error = $storeStatus->getErrorsArray();
-			$error = reset( $error );
-			if ( !count( $error ) ) {
-				$error = $storeStatus->getWarningsArray();
-				$error = reset( $error );
-				if ( !count( $error ) ) {
-					$error = [ 'unknown', 'no error recorded' ];
-				}
-			}
+			$error = $this->logFileBackendStatus(
+				$storeStatus,
+				'[{type}] Error storing chunk in "{chunkKey}" for {fileKey} ({details})',
+				[ 'chunkPath' => $chunkPath, 'fileKey' => $fileKey ]
+			);
 			throw new UploadChunkFileException( "Error storing file in '{chunkPath}': " .
 				implode( '; ', $error ), [ 'chunkPath' => $chunkPath ] );
 		}
@@ -379,5 +383,41 @@ class UploadFromChunks extends UploadFromFile {
 		if ( is_array( $res ) ) {
 			throw new UploadChunkVerificationException( $res );
 		}
+	}
+
+	/**
+	 * Log a status object from FileBackend functions (via FileRepo functions) to the upload log channel.
+	 * Return a array with the first error to build up a exception message
+	 *
+	 * @param Status $status
+	 * @param string $logMessage
+	 * @param array $context
+	 * @return array
+	 */
+	private function logFileBackendStatus( Status $status, string $logMessage, array $context = [] ): array {
+		$logger = LoggerFactory::getInstance( 'upload' );
+		$errorToThrow = null;
+		$warningToThrow = null;
+
+		foreach ( $status->getErrors() as $errorItem ) {
+			// The message key stands for distinct error situation from the file backend,
+			// each error situation should be shown up in aggregated stats as own point, replace in message
+			$logMessageType = str_replace( '{type}', $errorItem['message'], $logMessage );
+
+			// The message arguments often contains the name of the failing datacenter or file names
+			// and should not show up in aggregated stats, add to context
+			$context['details'] = implode( '; ', $errorItem['params'] );
+
+			if ( $errorItem['type'] === 'error' ) {
+				// Use the first error of the list for the exception text
+				$errorToThrow ??= array_merge( [ $errorItem['message'] ], $errorItem['params'] );
+				$logger->error( $logMessage, $context );
+			} else {
+				// When no error is found, fall back to the first warning
+				$warningToThrow ??= array_merge( [ $errorItem['message'] ], $errorItem['params'] );
+				$logger->warning( $logMessage, $context );
+			}
+		}
+		return $errorToThrow ?? $warningToThrow ?? [ 'unknown', 'no error recorded' ];
 	}
 }
