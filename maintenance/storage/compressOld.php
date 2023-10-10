@@ -258,7 +258,7 @@ class CompressOld extends Maintenance {
 			$pageConds[] = 'page_namespace<>0';
 		}
 		if ( $queryExtra ) {
-					$pageConds[] = $queryExtra;
+			$pageConds[] = $queryExtra;
 		}
 		 */
 
@@ -268,11 +268,23 @@ class CompressOld extends Maintenance {
 		# Don't compress object type entities, because that might produce data loss when
 		# overwriting bulk storage concat rows. Don't compress external references, because
 		# the script doesn't yet delete rows from external storage.
-		$conds = [
-			'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'object', $dbr->anyString() )
-			. ' AND old_flags NOT '
-			. $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() )
-		];
+		$slotRoleStore = $this->getServiceContainer()->getSlotRoleStore();
+		$queryBuilderTemplate = $dbw->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'old_id', 'old_flags', 'old_text' ] )
+			->forUpdate()
+			->from( 'revision' )
+			->join( 'slots', null, 'rev_id=slot_revision_id' )
+			->join( 'content', null, 'content_id=slot_content_id' )
+			->join( 'text', null, 'SUBSTRING(content_address, 4)=old_id' )
+			->where(
+				'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'object', $dbr->anyString() )
+				. ' AND old_flags NOT '
+				. $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() )
+			)
+			->andWhere( [
+				'slot_role_id' => $slotRoleStore->getId( SlotRecord::MAIN ),
+				'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
+			] );
 
 		if ( $beginDate ) {
 			if ( !preg_match( '/^\d{14}$/', $beginDate ) ) {
@@ -280,7 +292,7 @@ class CompressOld extends Maintenance {
 
 				return false;
 			}
-			$conds[] = "rev_timestamp>'" . $beginDate . "'";
+			$queryBuilderTemplate->andWhere( "rev_timestamp>'" . $beginDate . "'" );
 		}
 		if ( $endDate ) {
 			if ( !preg_match( '/^\d{14}$/', $endDate ) ) {
@@ -288,26 +300,8 @@ class CompressOld extends Maintenance {
 
 				return false;
 			}
-			$conds[] = "rev_timestamp<'" . $endDate . "'";
+			$queryBuilderTemplate->andWhere( "rev_timestamp<'" . $endDate . "'" );
 		}
-
-		$slotRoleStore = $this->getServiceContainer()->getSlotRoleStore();
-		$tables = [ 'revision', 'slots', 'content', 'text' ];
-		$conds = array_merge( [
-			'rev_id=slot_revision_id',
-			'slot_role_id=' . $slotRoleStore->getId( SlotRecord::MAIN ),
-			'content_id=slot_content_id',
-			'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
-			'SUBSTRING(content_address, 4)=old_id',
-		], $conds );
-
-		$fields = [ 'rev_id', 'old_id', 'old_flags', 'old_text' ];
-		$revLoadOptions = 'FOR UPDATE';
-
-		# Don't work with current revisions
-		# Don't lock the page table for update either -- TS 2006-04-04
-		# $tables[] = 'page';
-		# $conds[] = 'page_id=rev_page AND rev_id != page_latest';
 
 		for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
 			$this->waitForReplication();
@@ -332,17 +326,17 @@ class CompressOld extends Maintenance {
 			$this->output( "$pageId\t" . $titleObj->getPrefixedDBkey() . " " );
 
 			# Load revisions
-			$revRes = $dbw->select( $tables, $fields,
-				array_merge( [
+			$queryBuilder = clone $queryBuilderTemplate;
+			$revRes = $queryBuilder->where(
+				[
 					'rev_page' => $pageRow->page_id,
-					# Don't operate on the current revision
-					# Use < instead of <> in case the current revision has changed
-					# since the page select, which wasn't locking
+					// Don't operate on the current revision
+					// Use < instead of <> in case the current revision has changed
+					// since the page select, which wasn't locking
 					'rev_timestamp < ' . (int)$pageRow->rev_timestamp
-				], $conds ),
-				__METHOD__,
-				$revLoadOptions
-			);
+				] )
+				->caller( __METHOD__ )->fetchResultSet();
+
 			$revs = [];
 			foreach ( $revRes as $revRow ) {
 				$revs[] = $revRow;

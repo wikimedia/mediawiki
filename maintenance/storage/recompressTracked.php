@@ -334,12 +334,11 @@ class RecompressTracked {
 		if ( $this->noCount ) {
 			$numPages = '[unknown]';
 		} else {
-			$numPages = $dbr->selectField( 'blob_tracking',
-				'COUNT(DISTINCT bt_page)',
-				# A condition is required so that this query uses the index
-				[ 'bt_moved' => 0 ],
-				__METHOD__
-			);
+			$numPages = $dbr->newSelectQueryBuilder()
+				->select( 'COUNT(DISTINCT bt_page)' )
+				->from( 'blob_tracking' )
+				->where( [ 'bt_moved' => 0 ] )
+				->caller( __METHOD__ )->fetchField();
 		}
 		if ( $this->copyOnly ) {
 			$this->info( "Copying pages..." );

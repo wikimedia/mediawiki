@@ -57,12 +57,14 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 		$this->output( "Populating rev_sha1 column\n" );
 		$rc = $this->doSha1Updates( $revStore, 'revision', 'rev_id',
-			$revStore->getQueryInfo(), 'rev'
+			$revStore->newSelectQueryBuilder( $this->getDB( DB_PRIMARY ) )->joinComment(),
+			'rev'
 		);
 
 		$this->output( "Populating ar_sha1 column\n" );
 		$ac = $this->doSha1Updates( $revStore, 'archive', 'ar_rev_id',
-			$revStore->getArchiveQueryInfo(), 'ar'
+			$revStore->newArchiveSelectQueryBuilder( $this->getDB( DB_PRIMARY ) )->joinComment(),
+			'ar'
 		);
 
 		$this->output( "rev_sha1 and ar_sha1 population complete "
@@ -75,11 +77,11 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 * @param MediaWiki\Revision\RevisionStore $revStore
 	 * @param string $table
 	 * @param string $idCol
-	 * @param array $queryInfo
+	 * @param \Wikimedia\Rdbms\SelectQueryBuilder $queryBuilder should use a primary db
 	 * @param string $prefix
 	 * @return int Rows changed
 	 */
-	protected function doSha1Updates( $revStore, $table, $idCol, $queryInfo, $prefix ) {
+	protected function doSha1Updates( $revStore, $table, $idCol, $queryBuilder, $prefix ) {
 		$db = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
 		$start = $db->newSelectQueryBuilder()
@@ -106,9 +108,9 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 			$cond = "$idCol BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd .
 				" AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
-			$res = $db->select(
-				$queryInfo['tables'], $queryInfo['fields'], $cond, __METHOD__, [], $queryInfo['joins']
-			);
+
+			$res = $queryBuilder->where( $cond )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			$this->beginTransaction( $db, __METHOD__ );
 			foreach ( $res as $row ) {
@@ -147,11 +149,11 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			return false; // T24624? T22757?
 		}
 
-		$db->update( $table,
-			[ "{$prefix}_sha1" => $sha1 ],
-			[ $idCol => $row->$idCol ],
-			__METHOD__
-		);
+		$db->newUpdateQueryBuilder()
+			->update( $table )
+			->set( [ "{$prefix}_sha1" => $sha1 ] )
+			->where( [ $idCol => $row->$idCol ] )
+			->caller( __METHOD__ )->execute();
 
 		return true;
 	}

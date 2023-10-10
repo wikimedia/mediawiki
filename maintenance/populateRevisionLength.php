@@ -62,7 +62,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			'revision',
 			'rev_id',
 			'rev',
-			$revisionStore->getQueryInfo()
+			$revisionStore->newSelectQueryBuilder( $this->getDB( DB_REPLICA ) )->joinComment()
 		);
 
 		$this->output( "Populating ar_len column\n" );
@@ -70,7 +70,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			'archive',
 			'ar_id',
 			'ar',
-			$revisionStore->getArchiveQueryInfo()
+			$revisionStore->newArchiveSelectQueryBuilder( $this->getDB( DB_REPLICA ) )->joinComment()
 		);
 
 		$this->output( "rev_len and ar_len population complete "
@@ -83,10 +83,10 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 * @param string $table
 	 * @param string $idCol
 	 * @param string $prefix
-	 * @param array $queryInfo
+	 * @param \Wikimedia\Rdbms\SelectQueryBuilder $queryBuilder should use a replica db
 	 * @return int
 	 */
-	protected function doLenUpdates( $table, $idCol, $prefix, $queryInfo ) {
+	protected function doLenUpdates( $table, $idCol, $prefix, $queryBuilder ) {
 		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
@@ -111,10 +111,9 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 		while ( $blockStart <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
-			$res = $dbr->select(
-				$queryInfo['tables'],
-				$queryInfo['fields'],
-				[
+
+			$res = $queryBuilder
+				->where( [
 					"$idCol >= $blockStart",
 					"$idCol <= $blockEnd",
 					$dbr->makeList( [
@@ -125,11 +124,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 							"{$prefix}_sha1 != " . $dbr->addQuotes( 'phoiac9h4m842xq45sp7s6u21eteeq1' ),
 						], IDatabase::LIST_AND )
 					], IDatabase::LIST_OR )
-				],
-				__METHOD__,
-				[],
-				$queryInfo['joins']
-			);
+				] )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			if ( $res->numRows() > 0 ) {
 				$this->beginTransaction( $dbw, __METHOD__ );
@@ -175,11 +171,11 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		}
 
 		# Update the row...
-		$dbw->update( $table,
-			[ "{$prefix}_len" => $revRecord->getSize() ],
-			[ $idCol => $row->$idCol ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( $table )
+			->set( [ "{$prefix}_len" => $revRecord->getSize() ] )
+			->where( [ $idCol => $row->$idCol ] )
+			->caller( __METHOD__ )->execute();
 
 		return true;
 	}
