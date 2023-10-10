@@ -25,7 +25,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Shell\Shell;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
@@ -34,7 +33,6 @@ use MediaWiki\Utils\UrlUtils;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\RequestTimeout\RequestTimeout;
-use Wikimedia\WrappedString;
 
 /**
  * Load an extension
@@ -976,39 +974,6 @@ function wfHostname() {
 	}
 
 	return php_uname( 'n' ) ?: 'unknown';
-}
-
-/**
- * Returns a script tag that stores the amount of time it took MediaWiki to
- * handle the request in milliseconds as 'wgBackendResponseTime'.
- *
- * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
- * hostname of the server handling the request.
- *
- * @deprecated since 1.40
- * @param string|null $nonce Unused
- * @param bool $triggerWarnings introduced in 1.41 whether to trigger deprecation notice.
- * @return string|WrappedString HTML
- */
-function wfReportTime( $nonce = null, $triggerWarnings = true ) {
-	global $wgShowHostnames;
-
-	if ( $triggerWarnings ) {
-		wfDeprecated( __FUNCTION__, '1.40' );
-	}
-	$elapsed = ( microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT'] );
-	// seconds to milliseconds
-	$responseTime = round( $elapsed * 1000 );
-	$reportVars = [ 'wgBackendResponseTime' => $responseTime ];
-	if ( $wgShowHostnames ) {
-		$reportVars['wgHostname'] = wfHostname();
-	}
-
-	return (
-		ResourceLoader::makeInlineScript(
-			ResourceLoader::makeConfigSetScript( $reportVars )
-		)
-	);
 }
 
 /**

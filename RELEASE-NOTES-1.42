@@ -123,6 +123,9 @@ because of Phabricator reports.
 * Support for setting dynamic property on StatusValue object has been removed.
   To pass your arbitrary data along the object, use StatusValue::statusData
   property (which is always declared).
+* The global function wfReportTime(), deprecated since 1.40, has been removed.
+* The skin template parameter 'reporttime', deprecated since 1.41, has been
+  removed.
 * …
 
 === Deprecations in 1.42 ===
