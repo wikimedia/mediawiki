@@ -565,6 +565,9 @@ abstract class AbstractBlock implements Block {
 		return $this->isCreateAccountBlocked();
 	}
 
+	/**
+	 * @return AbstractBlock[]
+	 */
 	public function toArray(): array {
 		return [ $this ];
 	}

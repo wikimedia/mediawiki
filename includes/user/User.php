@@ -226,9 +226,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/** @var WebRequest|null */
 	private $mRequest;
 
-	/** @var AbstractBlock|false */
-	private $mBlockedFromCreateAccount = false;
-
 	/** @var int User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
@@ -2798,30 +2795,20 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get whether the user is explicitly blocked from account creation.
-	 * @deprecated since 1.37. Instead use Authority::authorize* for createaccount permission.
+	 * If the user is blocked from creating an account, return the Block.
+	 * @deprecated since 1.37. If a Block is needed, use BlockManager::getCreateAccountBlock().
+	 *   If a boolean or error message is needed, use Authority::authorize* for the
+	 *   createaccount permission.
 	 * @return Block|false
 	 */
 	public function isBlockedFromCreateAccount() {
-		$block = $this->getBlock();
-		if ( $block && $block->appliesToRight( 'createaccount' ) ) {
-			return $block;
-		}
-
-		# T15611: if the IP address the user is trying to create an account from is
-		# blocked with createaccount disabled, prevent new account creation there even
-		# when the user is logged in
-		if ( $this->mBlockedFromCreateAccount === false
-			&& !$this->isAllowed( 'ipblock-exempt' )
-		) {
-			$this->mBlockedFromCreateAccount = DatabaseBlock::newFromTarget(
-				null, $this->getRequest()->getIP()
-			);
-		}
-		return $this->mBlockedFromCreateAccount instanceof AbstractBlock
-			&& $this->mBlockedFromCreateAccount->appliesToRight( 'createaccount' )
-			? $this->mBlockedFromCreateAccount
-			: false;
+		$isExempt = $this->isAllowed( 'ipblock-exempt' );
+		$block = MediaWikiServices::getInstance()->getBlockManager()
+			->getCreateAccountBlock(
+				$this,
+				$isExempt ? null : $this->getRequest(),
+				false );
+		return $block ?: false;
 	}
 
 	/**
@@ -2851,7 +2838,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isAllowedToCreateAccount() {
-		return $this->isAllowed( 'createaccount' ) && !$this->isBlockedFromCreateAccount();
+		return $this->getThisAsAuthority()->isDefinitelyAllowed( 'createaccount' );
 	}
 
 	/**

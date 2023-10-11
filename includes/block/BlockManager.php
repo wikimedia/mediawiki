@@ -78,6 +78,9 @@ class BlockManager {
 	/** @var BlockCache */
 	private $userBlockCache;
 
+	/** @var BlockCache */
+	private $createAccountBlockCache;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param UserFactory $userFactory
@@ -99,6 +102,7 @@ class BlockManager {
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userBlockCache = new BlockCache;
+		$this->createAccountBlockCache = new BlockCache;
 	}
 
 	/**
@@ -121,7 +125,10 @@ class BlockManager {
 	 * blocked, and does not determine whether the person using that account is affected
 	 * in practice by any IP address or cookie blocks.
 	 *
-	 * @internal This should only be called by User::getBlockedStatus
+	 * @deprecated since 1.42 Use getBlock(), which is the same except that it expects
+	 *   the caller to do ipblock-exempt permission checking and to set $request to null
+	 *   if the user is exempt from IP blocks.
+	 *
 	 * @param UserIdentity $user
 	 * @param WebRequest|null $request The global request object if the user is the
 	 *  global user (cases #1 and #2), otherwise null (case #3). The IP address and
@@ -139,9 +146,6 @@ class BlockManager {
 		$fromReplica,
 		$disableIpBlockExemptChecking = false
 	) {
-		$fromPrimary = !$fromReplica;
-		$ip = null;
-
 		// If this is the global user, they may be affected by IP blocks (case #1),
 		// or they may be exempt (case #2). If affected, look for additional blocks
 		// against the IP address and referenced in a cookie.
@@ -153,9 +157,37 @@ class BlockManager {
 			!$disableIpBlockExemptChecking &&
 			!$this->isIpBlockExempt( $user );
 
-		if ( !$checkIpBlocks ) {
-			$request = null;
-		}
+		return $this->getBlock(
+			$user,
+			$checkIpBlocks ? $request : null,
+			$fromReplica
+		);
+	}
+
+	/**
+	 * Get the blocks that apply to a user. If there is only one, return that, otherwise
+	 * return a composite block that combines the strictest features of the applicable
+	 * blocks.
+	 *
+	 * If the user is exempt from IP blocks, the request should be null.
+	 *
+	 * @since 1.42
+	 * @param UserIdentity $user The user performing the action
+	 * @param WebRequest|null $request The request to use for IP and cookie
+	 *   blocks, or null to skip checking for such blocks. If the user has the
+	 *   ipblock-exempt right, the request should be null.
+	 * @param bool $fromReplica Whether to check the replica DB first.
+	 *   To improve performance, non-critical checks are done against replica DBs.
+	 *   Check when actually saving should be done against primary.
+	 * @return AbstractBlock|null
+	 */
+	public function getBlock(
+		UserIdentity $user,
+		?WebRequest $request,
+		$fromReplica = true
+	): ?AbstractBlock {
+		$fromPrimary = !$fromReplica;
+		$ip = null;
 
 		// TODO: normalise the fromPrimary parameter when replication is not configured.
 		// Maybe DatabaseBlockStore can tell us about the LoadBalancer configuration.
@@ -212,6 +244,105 @@ class BlockManager {
 	 */
 	public function clearUserCache( UserIdentity $user ) {
 		$this->userBlockCache->clearUser( $user );
+		$this->createAccountBlockCache->clearUser( $user );
+	}
+
+	/**
+	 * Get the block which applies to a create account action, if there is any
+	 *
+	 * @since 1.42
+	 * @param UserIdentity $user
+	 * @param WebRequest|null $request The request, or null to omit IP address
+	 *   and cookie blocks. If the user has the ipblock-exempt right, null
+	 *   should be passed.
+	 * @param bool $fromReplica
+	 * @return AbstractBlock|null
+	 */
+	public function getCreateAccountBlock(
+		UserIdentity $user,
+		?WebRequest $request,
+		$fromReplica
+	) {
+		$key = new BlockCacheKey( $request, $user, $fromReplica );
+		$cachedBlock = $this->createAccountBlockCache->get( $key );
+		if ( $cachedBlock !== null ) {
+			$this->logger->debug( "Create account block cache hit with key {$key}" );
+			return $cachedBlock ?: null;
+		}
+		$this->logger->debug( "Create account block cache miss with key {$key}" );
+
+		$applicableBlocks = [];
+		$userBlock = $this->getBlock( $user, $request, $fromReplica );
+		if ( $userBlock ) {
+			$applicableBlocks = $userBlock->toArray();
+		}
+
+		// T15611: if the IP address the user is trying to create an account from is
+		// blocked with createaccount disabled, prevent new account creation there even
+		// when the user is logged in
+		if ( $request ) {
+			$ipBlock = DatabaseBlock::newFromTarget(
+				null, $request->getIP()
+			);
+			if ( $ipBlock ) {
+				$applicableBlocks = array_merge( $applicableBlocks, $ipBlock->toArray() );
+			}
+		}
+
+		foreach ( $applicableBlocks as $i => $block ) {
+			if ( !$block->appliesToRight( 'createaccount' ) ) {
+				unset( $applicableBlocks[$i] );
+			}
+		}
+		$result = $this->createGetBlockResult(
+			$request ? $request->getIP() : null,
+			$applicableBlocks
+		);
+		$this->createAccountBlockCache->set( $key, $result ?: false );
+		return $result;
+	}
+
+	/**
+	 * Remove elements of a block which fail a callback test.
+	 *
+	 * @since 1.42
+	 * @param Block|null $block The block, or null to pass in zero blocks.
+	 * @param callable $callback The callback, which will be called once for
+	 *   each non-composite component of the block. The only parameter is the
+	 *   non-composite Block. It should return true, to keep that component,
+	 *   or false, to remove that component.
+	 * @return Block|null
+	 *    - If there are zero remaining elements, null will be returned.
+	 *    - If there is one remaining element, a DatabaseBlock or some other
+	 *      non-composite block will be returned.
+	 *    - If there is more than one remaining element, a CompositeBlock will
+	 *      be returned.
+	 */
+	public function filter( ?Block $block, $callback ) {
+		if ( !$block ) {
+			return null;
+		} elseif ( $block instanceof CompositeBlock ) {
+			$blocks = $block->getOriginalBlocks();
+			$originalCount = count( $blocks );
+			foreach ( $blocks as $i => $originalBlock ) {
+				if ( !$callback( $originalBlock ) ) {
+					unset( $blocks[$i] );
+				}
+			}
+			if ( !$blocks ) {
+				return null;
+			} elseif ( count( $blocks ) === 1 ) {
+				return $blocks[ array_key_first( $blocks ) ];
+			} elseif ( count( $blocks ) === $originalCount ) {
+				return $block;
+			} else {
+				return $block->withOriginalBlocks( array_values( $blocks ) );
+			}
+		} elseif ( !$callback( $block ) ) {
+			return null;
+		} else {
+			return $block;
+		}
 	}
 
 	/**
