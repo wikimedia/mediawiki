@@ -406,6 +406,7 @@
 	"history-title": "$1: шинрүлсн түүк",
 	"difference-title": "$1: Тодрхалт хоорндк йилһл",
 	"lineno": "$1 мөр:",
+	"lineno-inline": "Мөр $1 ⟶ $2:",
 	"compareselectedversions": "Суңһсн янзс әдлцүлх",
 	"editundo": "буцх",
 	"diff-multi-sameuser": "({{PLURAL:$1|Нег завсрин ясвр|$1 Нег завсрин ясврмуд}} әдлхн {{GENDER:$3|user}} эс үзүлгдх)",

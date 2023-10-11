@@ -975,6 +975,7 @@
 	"difference-title-multipage": "$1 и $2: Разлика помеѓу страниците",
 	"difference-multipage": "(Разлики помеѓу страници)",
 	"lineno": "Ред $1:",
+	"lineno-inline": "Ред $1 ⟶ $2:",
 	"compareselectedversions": "Спореди ги избраните преработки",
 	"showhideselectedversions": "Измени видливост на избраните преработки",
 	"showhideselectedfileversions": "Измени видливост на избраните податотечни верзии",
