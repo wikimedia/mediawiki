@@ -12670,6 +12670,14 @@ class MainConfigSchema {
 		'type' => 'boolean',
 	];
 
+	/**
+	 * Number of seconds to keep edit recovery data after the edit is stored.
+	 */
+	public const EditRecoveryExpiry = [
+		'default' => 2592000,
+		'type' => 'integer',
+	];
+
 	// endregion -- End Miscellaneous
 
 }

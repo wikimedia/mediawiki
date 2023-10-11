@@ -4438,3 +4438,9 @@ $wgSpecialContributeSkinsEnabled = null;
  * @see MediaWiki\MainConfigSchema::EnableEditRecovery
  */
 $wgEnableEditRecovery = null;
+
+/**
+ * Config variable stub for the EditRecoveryExpiry setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EditRecoveryExpiry
+ */
+$wgEditRecoveryExpiry = null;

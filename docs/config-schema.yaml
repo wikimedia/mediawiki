@@ -7910,3 +7910,7 @@ config-schema:
         description: |-
             Whether to enable the client-side edit recovery feature.
             This is a temporary feature flag.
+    EditRecoveryExpiry:
+        default: 2592000
+        type: integer
+        description: 'Number of seconds to keep edit recovery data after the edit is stored.'

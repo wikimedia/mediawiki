@@ -2483,6 +2483,7 @@ return [
 			'SpecialContributeSkinsEnabled' => [
 			],
 			'EnableEditRecovery' => false,
+			'EditRecoveryExpiry' => 2592000,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2951,6 +2952,7 @@ return [
 			'SkinsPreferred' => 'array',
 			'SpecialContributeSkinsEnabled' => 'array',
 			'EnableEditRecovery' => 'boolean',
+			'EditRecoveryExpiry' => 'integer',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',
