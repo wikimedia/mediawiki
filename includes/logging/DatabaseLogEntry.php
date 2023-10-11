@@ -28,7 +28,6 @@ use MediaWiki\Logging\LoggingSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -112,13 +111,13 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Loads a LogEntry with the given id from database
+	 * Loads a LogEntry with the given id from database.
 	 *
 	 * @param int $id
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return DatabaseLogEntry|null
 	 */
-	public static function newFromId( $id, IDatabase $db ) {
+	public static function newFromId( $id, IReadableDatabase $db ) {
 		$row = self::newSelectQueryBuilder( $db )
 			->where( [ 'log_id' => $id ] )
 			->caller( __METHOD__ )->fetchRow();
