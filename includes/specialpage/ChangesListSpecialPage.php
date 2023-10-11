@@ -456,8 +456,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					],
 					[
 						'name' => 'hidenewuserlog',
-						'label' => 'rcfilters-filter-newuserlogactions-label',
-						'description' => 'rcfilters-filter-newuserlogactions-description',
+						'label' => 'rcfilters-filter-accountcreations-label',
+						'description' => 'rcfilters-filter-accountcreations-description',
 						'default' => false,
 						'priority' => -6,
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
