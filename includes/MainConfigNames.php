@@ -4454,4 +4454,22 @@ class MainConfigNames {
 	 */
 	public const EnableEditRecovery = 'EnableEditRecovery';
 
+	/**
+	 * Name constant for the CommunityConfigurationStorages setting, for use with Config::get()
+	 * @see MainConfigSchema::CommunityConfigurationStorages
+	 */
+	public const CommunityConfigurationStorages = 'CommunityConfigurationStorages';
+
+	/**
+	 * Name constant for the CommunityConfigurationValidators setting, for use with Config::get()
+	 * @see MainConfigSchema::CommunityConfigurationValidators
+	 */
+	public const CommunityConfigurationValidators = 'CommunityConfigurationValidators';
+
+	/**
+	 * Name constant for the CommunityConfigurationProviders setting, for use with Config::get()
+	 * @see MainConfigSchema::CommunityConfigurationProviders
+	 */
+	public const CommunityConfigurationProviders = 'CommunityConfigurationProviders';
+
 }

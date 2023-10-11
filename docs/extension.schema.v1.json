@@ -1400,6 +1400,15 @@
 			"type": "string",
 			"description": "The directory holding the foreign-resources.yaml file, relative to the extension root. See https://www.mediawiki.org/wiki/Foreign_resources"
 		},
+		"CommunityConfigurationStorages": {
+			"type": "object"
+		},
+		"CommunityConfigurationValidators": {
+			"type": "object"
+		},
+		"CommunityConfigurationProviders": {
+			"type": "object"
+		},
 		"load_composer_autoloader": {
 			"type": "boolean",
 			"description": "Load the composer autoloader for this extension, if one is present"

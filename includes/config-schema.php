@@ -2483,6 +2483,12 @@ return [
 			'SpecialContributeSkinsEnabled' => [
 			],
 			'EnableEditRecovery' => false,
+			'CommunityConfigurationStorages' => [
+			],
+			'CommunityConfigurationValidators' => [
+			],
+			'CommunityConfigurationProviders' => [
+			],
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2951,6 +2957,9 @@ return [
 			'SkinsPreferred' => 'array',
 			'SpecialContributeSkinsEnabled' => 'array',
 			'EnableEditRecovery' => 'boolean',
+			'CommunityConfigurationStorages' => 'object',
+			'CommunityConfigurationValidators' => 'object',
+			'CommunityConfigurationProviders' => 'object',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

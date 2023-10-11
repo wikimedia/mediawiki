@@ -4438,3 +4438,21 @@ $wgSpecialContributeSkinsEnabled = null;
  * @see MediaWiki\MainConfigSchema::EnableEditRecovery
  */
 $wgEnableEditRecovery = null;
+
+/**
+ * Config variable stub for the CommunityConfigurationStorages setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CommunityConfigurationStorages
+ */
+$wgCommunityConfigurationStorages = null;
+
+/**
+ * Config variable stub for the CommunityConfigurationValidators setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CommunityConfigurationValidators
+ */
+$wgCommunityConfigurationValidators = null;
+
+/**
+ * Config variable stub for the CommunityConfigurationProviders setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CommunityConfigurationProviders
+ */
+$wgCommunityConfigurationProviders = null;

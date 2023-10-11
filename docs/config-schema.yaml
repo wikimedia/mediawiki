@@ -7910,3 +7910,15 @@ config-schema:
         description: |-
             Whether to enable the client-side edit recovery feature.
             This is a temporary feature flag.
+    CommunityConfigurationStorages:
+        default: {  }
+        type: object
+        description: 'List of configured community configuration storages'
+    CommunityConfigurationValidators:
+        default: {  }
+        type: object
+        description: 'List of configured community configuration validators'
+    CommunityConfigurationProviders:
+        default: {  }
+        type: object
+        description: 'List of configured community configuration providers'

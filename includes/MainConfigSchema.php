@@ -12670,6 +12670,30 @@ class MainConfigSchema {
 		'type' => 'boolean',
 	];
 
+	/**
+	 * List of configured community configuration storages
+	 */
+	public const CommunityConfigurationStorages = [
+		'default' => [],
+		'type' => 'object',
+	];
+
+	/**
+	 * List of configured community configuration validators
+	 */
+	public const CommunityConfigurationValidators = [
+		'default' => [],
+		'type' => 'object',
+	];
+
+	/**
+	 * List of configured community configuration providers
+	 */
+	public const CommunityConfigurationProviders = [
+		'default' => [],
+		'type' => 'object',
+	];
+
 	// endregion -- End Miscellaneous
 
 }
