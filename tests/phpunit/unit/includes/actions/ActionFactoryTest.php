@@ -142,6 +142,26 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * Regression test for T348451
+	 * @covers ::getAction
+	 */
+	public function testActionForSpecialPage() {
+		$context = $this->createMock( IContextSource::class );
+		$factory = $this->getFactory();
+
+		$article = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+
+		$this->assertNull(
+			$factory->getActionInfo( 'edit', $article ),
+			'Special pages do not support actions'
+		);
+		$this->assertNull(
+			$factory->getAction( 'edit', $article, $context ),
+			'Special pages do not support actions'
+		);
+	}
+
+	/**
 	 * @covers ::getAction
 	 */
 	public function testGetAction_overrideNonexistent() {
