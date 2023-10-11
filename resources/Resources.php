@@ -1351,10 +1351,22 @@ return [
 		'packageFiles' => [
 			'edit.js',
 			'storage.js',
+			'LoadNotification.js',
+		],
+		'styles' => [
+			'styles.less',
 		],
 		'dependencies' => [
-			'mediawiki.widgets.AbandonEditDialog'
-		]
+			'mediawiki.widgets.AbandonEditDialog',
+			'mediawiki.notification',
+			'oojs-ui.styles.icons-editing-core',
+		],
+		'messages' => [
+			'edit-recovery-loaded-title',
+			'edit-recovery-loaded-message',
+			'edit-recovery-loaded-show',
+			'edit-recovery-loaded-discard',
+		],
 	],
 
 	'mediawiki.action.view.postEdit' => [
