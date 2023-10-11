@@ -76,6 +76,8 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.42 ===
+* API modules using ApiBase::requirePostedParameters() must also override
+  mustBePosted() to return true.
 * …
 
 === Other changes in 1.42 ===
