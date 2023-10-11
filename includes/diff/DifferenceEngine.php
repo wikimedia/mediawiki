@@ -706,6 +706,7 @@ class DifferenceEngine extends ContextSource {
 		$allowed = $this->isUserAllowedToSeeRevisions( $this->getAuthority() );
 
 		$revisionTools = [];
+		$breadCrumbs = '';
 
 		# mOldRevisionRecord is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V
@@ -775,11 +776,20 @@ class DifferenceEngine extends ContextSource {
 			$hasPrevious = $samePage && $this->mOldPage &&
 				$this->revisionStore->getPreviousRevision( $this->mOldRevisionRecord );
 			if ( $hasPrevious ) {
+				$prevlinkQuery = [ 'diff' => 'prev', 'oldid' => $this->mOldid ] + $query;
 				$prevlink = $this->linkRenderer->makeKnownLink(
 					$this->mOldPage,
 					$this->msg( 'previousdiff' )->text(),
 					[ 'id' => 'differences-prevlink' ],
-					[ 'diff' => 'prev', 'oldid' => $this->mOldid ] + $query
+					$prevlinkQuery
+				);
+				$breadCrumbs .= $this->linkRenderer->makeKnownLink(
+					$this->mOldPage,
+					$this->msg( 'previousdiff' )->text(),
+					[
+						'class' => 'mw-diff-revision-history-link-previous'
+					],
+					$prevlinkQuery
 				);
 			} else {
 				$prevlink = "\u{00A0}";
@@ -826,11 +836,20 @@ class DifferenceEngine extends ContextSource {
 		# Make "next revision link"
 		# Skip next link on the top revision
 		if ( $samePage && $this->mNewPage && !$this->mNewRevisionRecord->isCurrent() ) {
+			$nextlinkQuery = [ 'diff' => 'next', 'oldid' => $this->mNewid ] + $query;
 			$nextlink = $this->linkRenderer->makeKnownLink(
 				$this->mNewPage,
 				$this->msg( 'nextdiff' )->text(),
 				[ 'id' => 'differences-nextlink' ],
-				[ 'diff' => 'next', 'oldid' => $this->mNewid ] + $query
+				$nextlinkQuery
+			);
+			$breadCrumbs .= $this->linkRenderer->makeKnownLink(
+				$this->mNewPage,
+				$this->msg( 'nextdiff' )->text(),
+				[
+					'class' => 'mw-diff-revision-history-link-next'
+				],
+				$nextlinkQuery
 			);
 		} else {
 			$nextlink = "\u{00A0}";
@@ -891,6 +910,11 @@ class DifferenceEngine extends ContextSource {
 			$formattedRevisionTools, $nextlink, $rollback, $newminor, $diffOnly,
 			$rdel, $this->unhide );
 
+		$out->addHTML(
+			Html::rawElement( 'div', [
+				'class' => 'mw-diff-revision-history-links'
+			], $breadCrumbs )
+		);
 		# If the diff cannot be shown due to a deleted revision, then output
 		# the diff header and links to unhide (if available)...
 		if ( $this->shouldBeHiddenFromUser( $this->getAuthority() ) ) {
