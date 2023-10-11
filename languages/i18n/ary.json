@@ -731,7 +731,7 @@
 	"nextn-title": "$1 {{PLURAL:$1|نتيجة}} تالية",
 	"shown-title": "وري $1 {{PLURAL:$1|نتيجة|نتائج}} فكل صفحة",
 	"viewprevnext": "شوف ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "كاينا صفحة بالاسم التالي \"[[:$1]]\" ف{{SITENAME}}. {{PLURAL:$2|0=|شوف حتى نتائج البحث الأخرى.}}",
+	"searchmenu-exists": "كاينة صفحة ب هاد السمية \"[[:$1]]\" ف {{SITENAME}}. {{PLURAL:$2|0=|شوف تا نتايج التقلاب لخرة.}}",
 	"searchmenu-new": "صاوب الصفحة \"[[:$1]]\" ف هاد لويكي! {{PLURAL:$2|0=|شوف حتى الصفحة لي كاينة ف نتائج التقلاب.|شوف حتى الصفحات لي كاينين ف نتائج التقلاب.}}",
 	"searchprofile-articles": "صفحات المحتوى",
 	"searchprofile-images": "الميديا",

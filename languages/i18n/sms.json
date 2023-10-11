@@ -95,7 +95,7 @@
 	"category-subcat-count-limited": "Tän kategoriast {{PLURAL:$1|lij õhtt vueʹllkategoria|$1 vueʹllkategoria|$1 vueʹllkategoriad}}.",
 	"category-article-count": "{{PLURAL:$2|Tän kategoriast lij pâi čuâvvai seidd.|Tän kategoriast {{PLURAL:$1|lie čuâvvai $1 seiddad|1=lij čuâvvai 1 seidd|2=lie čuâvvai 2 seeid|3=lie čuâvvai 3 seeid|4=lie čuâvvai 4 seeid|5=lie čuâvvai 5 seeid|6=lie čuâvvai 6 seeid}}. Seeidai obbmieʹrr tän kategoriast lij $2.}}",
 	"category-article-count-limited": "Čuâvvai {{PLURAL:$1|seidd lij|$1 seeid lie|$1 seiddâd lie}} tän kategoriast.",
-	"category-file-count": "{{PLURAL:$2|Tän kategoriast lij pâi čuâvvai teâttõs.|Čuâvvai {{PLURAL:$1|$1 teâttõõzz lie|$1 teâttõssâd lie}} tän kategoriast. Teâttõõzzi obbmieʹrr kategoriast lij $2.}}",
+	"category-file-count": "{{PLURAL:$2|Tän kategoriast lij pâi čuâvvai teâttõs.|Čuâvvai {{PLURAL:$1|$1 teâttõssâd lie|1=teâttõs lij|2=2 teâttõõzz lie|3=3 teâttõõzz lie|4=4 teâttõõzz lie|5=5 teâttõõzz lie|6=6 teâttõõzz lie}} tän kategoriast. Teâttõõzzi obbmieʹrr kategoriast lij $2.}}",
 	"category-file-count-limited": "Čuâvvai {{PLURAL:$1|teâttõs lij|$1 teâttõõzz lie|$1 teâttõssâd lie}} tän kategoriast.",
 	"about": "Lââʹssteâđ",
 	"article": "Siiskâžseidd",

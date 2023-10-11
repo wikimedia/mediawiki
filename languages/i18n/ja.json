@@ -143,7 +143,8 @@
 			"Chqaz",
 			"1108-Kiju",
 			"Dragoniez",
-			"Anonymoususer12321"
+			"Anonymoususer12321",
+			"M1660661"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2278,7 +2279,7 @@
 	"magiclink-tracking-isbn-desc": "このページはISBNマジックリンクを使用しています。移行方法について[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org]を参照してください。",
 	"specialloguserlabel": "実行者:",
 	"speciallogtitlelabel": "対象 (ページ名または\"{{ns:user}}:利用者名\"):",
-	"log": "ログ",
+	"log": "記録",
 	"logeventslist-submit": "表示",
 	"logeventslist-more-filters": "付加記録を表示:",
 	"logeventslist-patrol-log": "巡回記録",
