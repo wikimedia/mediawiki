@@ -29,7 +29,7 @@ var RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 		framed: false,
 		indicator: topLinksCookieValue === 'collapsed' ? 'down' : 'up',
 		flags: [ 'progressive' ],
-		label: $( '<span>' ).append( mw.message( 'rcfilters-other-review-tools' ).parse() ).contents()
+		label: mw.message( 'rcfilters-other-review-tools' ).parseDom()
 	} );
 
 	this.$topLinks
