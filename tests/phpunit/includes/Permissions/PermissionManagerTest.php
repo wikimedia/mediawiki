@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -630,7 +631,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					'by' => UserIdentityValue::newRegistered( 100, 'Test' ),
 					'sitewide' => false,
 				] ) )->setRestrictions( [
-					new ActionRestriction( 0, 1 )
+					new ActionRestriction( 0, BlockActionInfo::ACTION_UPLOAD )
 				] ),
 				false,
 				[
