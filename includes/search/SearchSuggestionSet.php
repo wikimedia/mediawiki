@@ -194,6 +194,13 @@ class SearchSuggestionSet {
 	public function shrink( $limit ) {
 		if ( count( $this->suggestions ) > $limit ) {
 			$this->suggestions = array_slice( $this->suggestions, 0, $limit );
+			$this->pageMap = [];
+			foreach ( $this->suggestions as $suggestion ) {
+				$pageID = $suggestion->getSuggestedTitleID();
+				if ( $pageID && empty( $this->pageMap[$pageID] ) ) {
+					$this->pageMap[$pageID] = true;
+				}
+			}
 			$this->hasMoreResults = true;
 		}
 	}

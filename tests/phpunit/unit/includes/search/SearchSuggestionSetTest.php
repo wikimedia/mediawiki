@@ -98,10 +98,14 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	public function testShrink() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
 		for ( $i = 0; $i < 100; $i++ ) {
-			$set->append( new SearchSuggestion( 0 ) );
+			$set->append( new SearchSuggestion( 0, 'test', null, $i ) );
 		}
 		$set->shrink( 10 );
 		$this->assertEquals( 10, $set->getSize() );
+		$this->assertTrue( $set->hasMoreResults() );
+		$set->prepend( new SearchSuggestion( 0, 'test', null,  10 ) );
+		$this->assertEquals( 11, $set->getSize() );
+		$this->assertEquals( 10, $set->getSuggestions()[0]->getSuggestedTitleID() );
 
 		$set->shrink( 0 );
 		$this->assertSame( 0, $set->getSize() );
