@@ -1355,27 +1355,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Attach a flag to the output so that it can be checked later to handle special cases
-	 *
-	 * @param string $flag
-	 * @deprecated since 1.38; use ::setOutputFlag()
-	 */
-	public function setFlag( $flag ): void {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->mFlags[$flag] = true;
-	}
-
-	/**
-	 * @param string $flag
-	 * @return bool Whether the given flag was set to signify a special case
-	 * @deprecated since 1.38; use ::getOutputFlag()
-	 */
-	public function getFlag( $flag ): bool {
-		wfDeprecated( __METHOD__, '1.38' );
-		return isset( $this->mFlags[$flag] );
-	}
-
-	/**
 	 * @return string[] List of flags signifying special cases
 	 * @internal
 	 */
