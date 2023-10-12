@@ -708,8 +708,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		//   If the 'mainpage' message contains something that is invalid,  Title::newFromText
 		//   will return null.
 
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Fallback is always valid
-		return $title ?? self::newFromText( 'Main Page' );
+		return $title ?? self::makeTitle( NS_MAIN, 'Main Page' );
 	}
 
 	/**
