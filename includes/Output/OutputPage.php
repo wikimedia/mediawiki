@@ -2280,20 +2280,10 @@ class OutputPage extends ContextSource {
 		// This cannot be moved to addParserOutputText because that is not
 		// called by EditPage for Preview.
 
-		// T294950/T293513: ParserOutput::getTOCHTML() has been
-		// replaced by ParserOutput::getTOCData(), and
 		// ParserOutputFlags::SHOW_TOC is used to indicate whether the TOC
 		// should be shown (or hidden) in the output.
 		$this->mEnableTOC = $this->mEnableTOC ||
 			$parserOutput->getOutputFlag( ParserOutputFlags::SHOW_TOC );
-		// But extensions used to be able to modify ParserOutput::setTOCHTML()
-		// to toggle TOC in the OutputPageParserOutput hook; so for backward
-		// compatibility check to see if that happened.
-		$isTocPresent = $parserOutput->hasTOCHTML();
-		if ( $isTocPresent && !$this->mEnableTOC ) {
-			// Eventually we'll emit a deprecation message here (T293513)
-			$this->mEnableTOC = true;
-		}
 		// Uniform handling of all boolean flags: they are OR'ed together
 		// (See ParserOutput::collectMetadata())
 		$flags =

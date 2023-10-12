@@ -871,16 +871,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return bool
-	 * @internal Only for the temporary use of
-	 *   OutputPage::addParserOutputMetadata; will be removed with
-	 *   ::{get,set}TOCHTML().
-	 */
-	public function hasTOCHTML() {
-		return (bool)$this->mTOCHTML;
-	}
-
-	/**
 	 * @return string|null TS_MW timestamp of the revision content
 	 */
 	public function getTimestamp() {
