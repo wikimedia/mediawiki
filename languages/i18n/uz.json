@@ -1008,7 +1008,6 @@
 	"rcfilters-filter-categorization-description": "Turkumlarga qoʻshilgan yoki olib tashlangan sahifalar yozuvlari.",
 	"rcfilters-filter-logactions-label": "Qaydga olingan amallar",
 	"rcfilters-filter-logactions-description": "Administrativ amallar, hisob qaydnomalari yaratilishlari, sahifa oʻchirilishlari, yuklashlar…",
-	"rcfilters-filter-newuserlogactions-label": "Yangi foydalanuvchilar",
 	"rcfilters-filtergroup-lastrevision": "Soʻnggi koʻrinishi",
 	"rcfilters-filter-lastrevision-label": "Soʻnggi koʻrinishi",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:not</strong> $1",

@@ -560,7 +560,6 @@
 	"rcfilters-filter-major-label": "دەسکاریە نابۊچگەگان",
 	"rcfilters-filtergroup-changetype": "جوور ئاڵشتکاری",
 	"rcfilters-filter-pageedits-label": "دەسکاریەیل پەڕە",
-	"rcfilters-filter-newuserlogactions-label": "وەکاربەرەیل تازە",
 	"rcnotefrom": "لە ژێرەو ئاڵشتکاریەگان لە <strong>$3, $4</strong> (تا <strong>$1</strong> {{PLURAL:$5|نیشان دریاس|نیشان دریان}}).",
 	"rclistfrom": "گووڕانکاریە نووەگان نیشان بدە وە دەسپێکردن لە $3 $2",
 	"rcshowhideminor": "دەسکاری بۊچگەگان $1",

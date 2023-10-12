@@ -1297,7 +1297,6 @@
 	"rcfilters-filter-categorization-description": "Wys kategorisering van bladsye.",
 	"rcfilters-filter-logactions-label": "Geregistreerde aksies",
 	"rcfilters-filter-logactions-description": "Administratiewe aksies, nuwe rekeninge, bladsyverwyderings, oplaaie…",
-	"rcfilters-filter-newuserlogactions-label": "Nuwe gebruikers",
 	"rcfilters-filtergroup-lastrevision": "Nuutste weergawes",
 	"rcfilters-filter-lastrevision-label": "Nuutste weergawe",
 	"rcfilters-filter-lastrevision-description": "Slegs die mees onlangse wysigings aan die bladsy.",

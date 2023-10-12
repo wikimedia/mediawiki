@@ -1546,7 +1546,6 @@
 	"rcfilters-filter-categorization-description": "Kategoriyan ra qeydê cıkerdış u wedardışê pelan.",
 	"rcfilters-filter-logactions-label": "Rocekê iştırakan",
 	"rcfilters-filter-logactions-description": "Karberiya xızmetkaran, vıraştışê hesaban, esterıtışê pelan, barkerdışi...",
-	"rcfilters-filter-newuserlogactions-label": "Karberê neweyi",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "Parzûnê \"vurnayışo werdi\", yo ya zi zêde parzûnê vurnayışiya takêşiyeno, çıkı tay zanıyaye tewrê vurnayışa \"werdı\" nışan nêbenê. Pê amyaye parzûn çi cor dê parzûnanê cori de nışan biyê.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Tay tewrê vurnayışa \"werdı\" nêasenê, coki ra no parzûn vurnayışê parzûnê naya ninê pêro :$1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Parzûnê ena vurnayış parzûnê \"vurnayışê werdiy\" ninê pêro . Tay tewrê vurnayışa \"werdı\" nêhesıbnêyênê",

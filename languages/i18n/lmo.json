@@ -1561,7 +1561,6 @@
 	"rcfilters-filter-categorization-description": "Register di pagine sgiontade o tolte via di categorie.",
 	"rcfilters-filter-logactions-label": "Azzion de register",
 	"rcfilters-filter-logactions-description": "Azzion aministrative, creazzion de utenze, scancelament di pagine, caregament...",
-	"rcfilters-filter-newuserlogactions-label": "Utent noeuv",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "El filter \"Modifiche minori\" a l'è in conflit con almanch vun di filter \"Tipo de modifica\", perché certe modifiche poden minga vesser insegnade come \"piscinine\". I filter in conflit a inn indicad in l'area \"Filter ativ\" chi de sora.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Certi tipi de cambiament poden minga vesser indicade come \"piscinine\", donca quell filter chì l'è in conflit con'sti filter chìː $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "'Sto filter \"Tipo di modifica\" l'è in conflit cont el filter \"Modifiche piscinine\". Certi tipi de modifiche poden minga vesser indicade come  \"piscinine\".",

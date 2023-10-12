@@ -1598,7 +1598,6 @@
 	"rcfilters-filter-categorization-description": "Rekod laman yang ditambah atau dikeluarkan dari kategori.",
 	"rcfilters-filter-logactions-label": "Tindakan berlog",
 	"rcfilters-filter-logactions-description": "Tindakan pentadbiran, pembuatan akaun, penghapusan halaman, muat naik…",
-	"rcfilters-filter-newuserlogactions-label": "Pengguna baru",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "Penapis \"Suntingan kecil\" bercanggah dengan satu atau lebih Jenis penapis perubahan, kerana jenis perubahan tertentu tidak boleh ditetapkan sebagai \"kecil\". Penapis bercanggah ditandakan di kawasan penapis Aktif, di atas.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Jenis perubahan tertentu tidak boleh ditetapkan sebagai \"kecil\", jadi penapis ini bercanggah dengan penapis Jenis Perubahan berikut: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Penapis Jenis perubahan ini bercanggah dengan penapis \"Suntingan kecil\". Jenis perubahan tertentu tidak boleh ditetapkan sebagai \"kecil\".",

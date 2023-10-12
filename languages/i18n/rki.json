@@ -754,7 +754,6 @@
 	"rcfilters-savedqueries-cancel-label": "မလုပ်ယာ",
 	"rcfilters-filter-pageedits-label": "စာမျက်နှာ တည်းဖြတ်မှုတိ",
 	"rcfilters-filter-newpages-label": "စာမျက်နှာ ဖန်တီးမှုတိ",
-	"rcfilters-filter-newuserlogactions-label": "လူသစ်တိ",
 	"rcnotefrom": "အောက်ကနီရာ <strong>$3၊ $4</strong> ကစနာ {{PLURAL:$5|ပြောင်းလဲမှု|ပြောင်းလဲမှုတိ}} ဖြစ်ရေ  (<strong>$1</strong> အထိ ပြထားရေ)။",
 	"rclistfrom": "$3 $2 မှစပြီးကေ အပြောင်းအလဲအသစ်တိကို ပြရန်",
 	"rcshowhideminor": "အရေးမကြီးရေ ပြင်ဆင်မှု $1ရန်",

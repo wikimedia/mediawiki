@@ -1520,7 +1520,6 @@
 	"rcfilters-filter-categorization-description": "Registri pri pagini qui adjuntesis o removesis de kategorii.",
 	"rcfilters-filter-logactions-label": "Agadi enrejistrata",
 	"rcfilters-filter-logactions-description": "Agadi dal administreri, kreado di konti, efaco di pagini, sendo di arkivi...",
-	"rcfilters-filter-newuserlogactions-label": "Nova uzeri",
 	"rcfilters-typeofchange-conflicts-hideminor": "Ca tipo di filtrilo pri chanjo konfliktas kun la filtrilo \"Minor edits\". Kelka tipi di chanji ne povas judikesar kom \"minora\".",
 	"rcfilters-filtergroup-lastrevision": "Maxim recenta modifikuri",
 	"rcfilters-filter-lastrevision-label": "Nuna versiono",

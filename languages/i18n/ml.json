@@ -1495,7 +1495,6 @@
 	"rcfilters-filter-categorization-description": "വർഗ്ഗത്തിൽ ചേർത്തതും ഒഴിവാക്കിയതുമായ താളുകളുടെ വിവരങ്ങൾ.",
 	"rcfilters-filter-logactions-label": "രേഖപ്പെടുത്തിയ പ്രവൃത്തികൾ",
 	"rcfilters-filter-logactions-description": "കാര്യനിർവാഹക പ്രവർത്തനങ്ങൾ, അംഗത്വസൃഷ്ടികൾ, താൾ മായ്ക്കലുകൾ, അപ്‌ലോഡുകൾ...",
-	"rcfilters-filter-newuserlogactions-label": "പുതിയ ഉപയോക്താക്കൾ",
 	"rcfilters-filtergroup-lastrevision": "ഏറ്റവും പുതിയ നാൾപ്പതിപ്പുകൾ",
 	"rcfilters-filter-lastrevision-label": "ഏറ്റവും പുതിയ നാൾപ്പതിപ്പ്",
 	"rcfilters-filter-lastrevision-description": "താളിലെ ഏറ്റവും പുതിയ മാറ്റം മാത്രം.",

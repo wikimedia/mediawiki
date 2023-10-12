@@ -1448,7 +1448,6 @@
 	"rcfilters-filter-categorization-label": "Ännerunge vun de Kategorien:",
 	"rcfilters-filter-logactions-label": "Protokolléiert Aktiounen",
 	"rcfilters-filter-logactions-description": "Administrativ Aktiounen, Uleeë vu Benotzerkonten, Läsche vu Säiten, Eropgeluede Fichieren, ...",
-	"rcfilters-filter-newuserlogactions-label": "Nei Benotzer",
 	"rcfilters-hideminor-conflicts-typeofchange": "Verschidden Type vu Ännerunge kënnen net als \"kleng\" markéiert ginn, dofir ass dëse Filter a Konflikt mat dësem Typ vun Ännerungsfilteren: $1",
 	"rcfilters-filtergroup-lastrevision": "Lescht Versiounen",
 	"rcfilters-filter-lastrevision-label": "Lescht Versioun",

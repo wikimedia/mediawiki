@@ -1489,7 +1489,6 @@
 	"rcfilters-filter-categorization-description": "Skrá um að síðum hefur verið bætt við eða þær fjarlægðar úr flokkum.",
 	"rcfilters-filter-logactions-label": "Skráðar aðgerðir",
 	"rcfilters-filter-logactions-description": "Stjórnendaaðgerðir, nýir aðgangar, eyðingar á síðum, upphleðslur…",
-	"rcfilters-filter-newuserlogactions-label": "Nýjir notendur",
 	"rcfilters-filtergroup-lastrevision": "Nýjustu útgáfur",
 	"rcfilters-filter-lastrevision-label": "Nýjasta útgáfa",
 	"rcfilters-filter-lastrevision-description": "Eingöngu nýjasta breytingin á síðu.",

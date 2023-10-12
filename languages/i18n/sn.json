@@ -834,7 +834,6 @@
 	"rcfilters-filter-humans-description": "Zvichinjirudzo zvakaitwa nevanhu.",
 	"rcfilters-filter-minor-label": "Zvichinjirudzo zvidiki",
 	"rcfilters-filtergroup-changetype": "Mhando ye shanduro",
-	"rcfilters-filter-newuserlogactions-label": "Vashandisi vatsva",
 	"rcnotefrom": "Pazasi {{PLURAL:$5|paneshanduko|panezvishanduko}} kubvira <strong>$3, $4</strong> (kusvika ku<strong>$1</strong> akarakidzwa).",
 	"rclistfrom": "Rakidza zvichinjirudzo kubva $2, $3",
 	"rcshowhideminor": "$1 zvichinjirudzo zvidoko",

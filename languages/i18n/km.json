@@ -1309,7 +1309,6 @@
 	"rcfilters-filter-categorization-description": "កំណត់ត្រាពីការបន្ថែមឬដកចេញទំព័រពីចំណាត់ថ្នាក់ក្រុម។",
 	"rcfilters-filter-logactions-label": "កំណត់ត្រាសកម្មភាព",
 	"rcfilters-filter-logactions-description": "សកម្មភាពរបស់អភិបាល ការបង្កើតគណនី ការលុបអត្ថបទចោល ការផ្ទុកឯកសារឡើង...",
-	"rcfilters-filter-newuserlogactions-label": "អ្នកប្រើប្រាស់ថ្មី",
 	"rcfilters-filtergroup-lastrevision": "កំណែថ្មីបំផុត",
 	"rcfilters-filter-lastrevision-label": "កំណែថ្មីបំផុត",
 	"rcfilters-filter-lastrevision-description": "បង្ហាញតែបន្លាស់ប្ដូរថ្មីៗបំផុតរបស់ទំព័រមួយ។",

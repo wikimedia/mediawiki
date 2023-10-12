@@ -1439,7 +1439,6 @@
 	"rcfilters-filter-categorization-description": "幫頁面加類或者減類嘅紀錄。",
 	"rcfilters-filter-logactions-label": "日誌操作",
 	"rcfilters-filter-logactions-description": "管理操作、開新戶口、刪頁、上傳等等。",
-	"rcfilters-filter-newuserlogactions-label": "開新戶口",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "「細修改」篩選條件同另一個或者幾個篩選條件有衝突，皆因有啲改動唔可以係「細修改」。衝突嘅篩選條件已經喺上面用緊嘅篩選條件嗰度標示。",
 	"rcfilters-hideminor-conflicts-typeofchange": "有啲改動唔可以係「細修改」，所以呢個篩選條件同呢啲篩選條件有衝突：$1",
 	"rcfilters-typeofchange-conflicts-hideminor": "呢個篩選條件同「細修改」篩選條件有衝突。有啲改動唔可以係「細修改」。",

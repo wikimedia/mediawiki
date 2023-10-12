@@ -1229,7 +1229,6 @@
 	"rcfilters-filter-categorization-description": "ကဏ္ဍများထဲသို့ စာမျက်နှာများ ပေါင်းထည့်ခြင်း သို့ ဖယ်ရှားခြင်း မှတ်တမ်းများ။",
 	"rcfilters-filter-logactions-label": "အကောင့်ဝင်ထားသည့် ပြုလုပ်ချက်များ",
 	"rcfilters-filter-logactions-description": "စီမံခန့်ခွဲရေး ပြုလုပ်ချက်များ၊ အကောင့် ဖန်တီးမှုများ၊ စာမျက်နှာ ဖျက်ခြင်းများ၊ ဖိုင်တင်ခြင်းများ...",
-	"rcfilters-filter-newuserlogactions-label": "အသုံးပြုသူ အသစ်များ",
 	"rcfilters-filtergroup-lastrevision": "နောက်ဆုံး တည်းဖြတ်မူများ",
 	"rcfilters-filter-lastrevision-label": "နောက်ဆုံး တည်းဖြတ်မူ",
 	"rcfilters-filter-lastrevision-description": "စာမျက်နှာတစ်ခု၏ နောက်ဆုံးအကျဆုံး ပြောင်းလဲမှုသာလျှင်။",

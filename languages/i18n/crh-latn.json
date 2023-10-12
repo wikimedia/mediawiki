@@ -844,7 +844,6 @@
 	"rcfilters-filter-pageedits-label": "Saife deñiştirilmeleri",
 	"rcfilters-filter-newpages-label": "Saife yaratılmaları",
 	"rcfilters-filter-logactions-label": "Kündeligi yapılğan areketler",
-	"rcfilters-filter-newuserlogactions-label": "Yañı qullanıcılar",
 	"rcfilters-liveupdates-button": "Canlı yañartuv",
 	"rcfilters-target-page-placeholder": "Bir saife (yada kategoriya) adı kirsetiñiz",
 	"rcnotefrom": "<strong>$3, $4</strong> tarihından başlap yapılğan {{PLURAL:$5|deñiştirme|deñiştirmeler}} aşağıdadır (eñ çоq <strong>$1</strong> dane saife kösterile).",
