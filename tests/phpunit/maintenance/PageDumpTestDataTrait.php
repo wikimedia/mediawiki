@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Exception;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -105,7 +105,7 @@ trait PageDumpTestDataTrait {
 			] );
 
 			// re-load from database, with correct deletion status
-			$this->rev2_2 = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionById(
+			$this->rev2_2 = $this->getServiceContainer()->getRevisionLookup()->getRevisionById(
 				$this->rev2_2->getId()
 			);
 
@@ -116,7 +116,7 @@ trait PageDumpTestDataTrait {
 			[ , , $this->rev3_2 ] = $this->addRevision( $page,
 				"BackupDumperTestP3Text2", "BackupDumperTestP2Summary2" );
 			$this->pageId3 = $page->getId();
-			MediaWikiServices::getInstance()->getDeletePageFactory()
+			$this->getServiceContainer()->getDeletePageFactory()
 				->newDeletePage( $page, $context->getAuthority() )
 				->deleteUnsafe( "Testing" );
 
@@ -174,10 +174,10 @@ trait PageDumpTestDataTrait {
 		$db->newUpdateQueryBuilder()
 			->update( 'content' )
 			->set( [ 'content_address' => 'tt:0' ] )
-			->where( [ 'content_id' => $revision->getSlot( \MediaWiki\Revision\SlotRecord::MAIN )->getContentId() ] )
+			->where( [ 'content_id' => $revision->getSlot( SlotRecord::MAIN )->getContentId() ] )
 			->execute();
 
-		$revision = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionById(
+		$revision = $this->getServiceContainer()->getRevisionLookup()->getRevisionById(
 			$revision->getId()
 		);
 		return $revision;
@@ -192,7 +192,7 @@ trait PageDumpTestDataTrait {
 	 */
 	protected function setRevisionVarMappings( $prefix, RevisionRecord $rev, DumpAsserter $asserter ) {
 		$ts = wfTimestamp( TS_ISO_8601, $rev->getTimestamp() );
-		$title = MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText(
+		$title = $this->getServiceContainer()->getTitleFormatter()->getPrefixedText(
 			$rev->getPageAsLinkTarget()
 		);
 
@@ -253,23 +253,23 @@ trait PageDumpTestDataTrait {
 	}
 
 	private function setSiteVarMappings( DumpAsserter $asserter ) {
-		global $wgSitename, $wgDBname, $wgCapitalLinks;
+		$config = $this->getServiceContainer()->getMainConfig();
 
 		$asserter->setVarMapping( 'mw_version', MW_VERSION );
 		$asserter->setVarMapping( 'schema_version', $asserter->getSchemaVersion() );
 
-		$asserter->setVarMapping( 'site_name', $wgSitename );
+		$asserter->setVarMapping( 'site_name', $config->get( MainConfigNames::Sitename ) );
 		$asserter->setVarMapping(
 			'project_namespace',
-			MediaWikiServices::getInstance()->getTitleFormatter()->getNamespaceName(
+			$this->getServiceContainer()->getTitleFormatter()->getNamespaceName(
 				NS_PROJECT,
 				'Dummy'
 			)
 		);
-		$asserter->setVarMapping( 'site_db', $wgDBname );
+		$asserter->setVarMapping( 'site_db', $config->get( MainConfigNames::DBname ) );
 		$asserter->setVarMapping(
 			'site_case',
-			$wgCapitalLinks ? 'first-letter' : 'case-sensitive'
+			$config->get( MainConfigNames::CapitalLinks ) ? 'first-letter' : 'case-sensitive'
 		);
 		$asserter->setVarMapping(
 			'site_base',
@@ -277,7 +277,7 @@ trait PageDumpTestDataTrait {
 		);
 		$asserter->setVarMapping(
 			'site_language',
-			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode()
+			$this->getServiceContainer()->getContentLanguage()->getHtmlCode()
 		);
 	}
 }
