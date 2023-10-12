@@ -667,7 +667,7 @@
 	"apihelp-query+allusers-param-to": "The username to stop enumerating at.",
 	"apihelp-query+allusers-param-prefix": "Search for all users that begin with this value.",
 	"apihelp-query+allusers-param-dir": "Direction to sort in.",
-	"apihelp-query+allusers-param-group": "Only include users in the given groups.",
+	"apihelp-query+allusers-param-group": "Only include users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.",
 	"apihelp-query+allusers-param-excludegroup": "Exclude users in the given groups.",
 	"apihelp-query+allusers-param-rights": "Only include users with the given rights. Does not include rights granted by implicit or auto-promoted groups like *, user, or autoconfirmed.",
 	"apihelp-query+allusers-param-prop": "Which pieces of information to include:",
