@@ -1353,6 +1353,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			if ( $services->peekService( 'UserEditTracker' ) ) {
 				$services->getUserEditTracker()->clearUserEditCache( $this );
 			}
+
+			if ( $services->peekService( 'BlockManager' ) ) {
+				$services->getBlockManager()->clearUserCache( $this );
+			}
 		}
 
 		if ( $reloadFrom ) {

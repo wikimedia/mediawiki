@@ -78,6 +78,9 @@ class BlockManager {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var BlockCache */
+	private $userBlockCache;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param PermissionManager $permissionManager
@@ -101,6 +104,7 @@ class BlockManager {
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userBlockCache = new BlockCache;
 	}
 
 	/**
@@ -155,7 +159,25 @@ class BlockManager {
 			!$disableIpBlockExemptChecking &&
 			!$this->permissionManager->userHasRight( $user, 'ipblock-exempt' );
 
-		if ( $request && $checkIpBlocks ) {
+		if ( !$checkIpBlocks ) {
+			$request = null;
+		}
+
+		// TODO: normalise the fromPrimary parameter when replication is not configured.
+		// Maybe DatabaseBlockStore can tell us about the LoadBalancer configuration.
+		$cacheKey = new BlockCacheKey(
+			$request,
+			$user,
+			$fromPrimary
+		);
+		$block = $this->userBlockCache->get( $cacheKey );
+		if ( $block !== null ) {
+			$this->logger->debug( "Block cache hit with key {$cacheKey}" );
+			return $block ?: null;
+		}
+		$this->logger->debug( "Block cache miss with key {$cacheKey}" );
+
+		if ( $request ) {
 
 			// Case #1: checking the global user, including IP blocks
 			$ip = $request->getIP();
@@ -185,7 +207,17 @@ class BlockManager {
 		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
 		$this->hookRunner->onGetUserBlock( clone $legacyUser, $ip, $block );
 
+		$this->userBlockCache->set( $cacheKey, $block ?: false );
 		return $block;
+	}
+
+	/**
+	 * Clear the cache of any blocks that refer to the specified user
+	 *
+	 * @param UserIdentity $user
+	 */
+	public function clearUserCache( UserIdentity $user ) {
+		$this->userBlockCache->clearUser( $user );
 	}
 
 	/**
