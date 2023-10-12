@@ -26,14 +26,14 @@ namespace MediaWiki\Logger;
  * To primary APIs for this feature, and the classes where their documentation
  * starts, are:
  *
- * - MediaWiki\Logger\LoggerFactory, this is creates all logger objects at
+ * - MediaWiki\Logger\LoggerFactory, this creates all logger objects at
  *   run time.
  *
  * - MediaWiki\Logger\Spi, to develop or configure the service classes
  *   that internally create logger objects. For example, MediaWiki\Logger\LegacyLogger
  *   is the default Spi that backs features like $wgDebugLogFile.
  *   MediaWiki\Logger\MonologSpi is an Spi you can opt-in to via $wgMWLoggerDefaultSpi
- *   to enable structured logging with destionations like Syslog and Logstash,
+ *   to enable structured logging with destinations like Syslog and Logstash,
  *   and "processor" and "formatter" features to augment messages with metadata,
  *   as powered by the Monolog library.
  *
