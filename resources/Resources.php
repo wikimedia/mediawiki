@@ -2053,6 +2053,8 @@ return [
 			'apisandbox-request-format-php-label',
 			'apisandbox-request-php-label',
 			'apisandbox-request-time',
+			'apisandbox-request-post',
+			'apisandbox-request-formdata',
 			'apisandbox-results-fixtoken',
 			'apisandbox-results-fixtoken-fail',
 			'apisandbox-alert-page',

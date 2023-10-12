@@ -2548,6 +2548,8 @@
 	"apisandbox-request-format-php-label": "Label for the menu item to select PHP array format.\n\nSee also:\n* {{msg-mw|apisandbox-request-selectformat-label}}\n* {{msg-mw|apisandbox-request-json-label}}\n* {{msg-mw|apisandbox-request-url-label}}",
 	"apisandbox-request-php-label": "Label for text field display the request parameters a PHP array.\n\nShould be similar to {{msg-mw|Apisandbox-request-json-label}}.\n\nSee also:\n* {{msg-mw|Apisandbox-request-format-php-label}}\n* {{msg-mw|apisandbox-request-format-json-label}}\n* {{msg-mw|apisandbox-request-format-url-label}}",
 	"apisandbox-request-time": "Label and value for displaying the time taken by the request.\n\nParameters:\n* $1 - Time taken in milliseconds",
+	"apisandbox-request-post": "Label shown below request parameters on [[Special:ApiSandbox]].\n\nSee also:\n* {{msg-mw|api-help-flag-mustbeposted}}\n* {{msg-mw|apierror-mustbeposted}}",
+	"apisandbox-request-formdata": "Label shown below request parameters on [[Special:ApiSandbox]].\n\nSee also:\n* {{msg-mw|apihelp-import-extended-description}}\n* {{msg-mw|apihelp-upload-extended-description}}\n* {{msg-mw|apierror-badupload}}",
 	"apisandbox-results-fixtoken": "JavaScript button label",
 	"apisandbox-results-fixtoken-fail": "Displayed as an error message from JavaScript when a CSRF token could not be fetched.\n\nParameters:\n* $1 - Token type",
 	"apisandbox-alert-page": "Tooltip for the alert icon on a module's page tab when the page contains fields with issues.",

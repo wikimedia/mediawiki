@@ -19,6 +19,13 @@ UploadSelectFileParamWidget.prototype.getApiValueForDisplay = function () {
 };
 
 /**
+ * @return {boolean}
+ */
+UploadSelectFileParamWidget.prototype.requiresFormData = function () {
+	return true;
+};
+
+/**
  * @return {Mixed}
  */
 UploadSelectFileParamWidget.prototype.getApiValue = function () {

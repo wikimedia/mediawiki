@@ -630,9 +630,12 @@
 		 *
 		 * @param {Object} displayParams Query parameters, sanitized for display.
 		 * @param {Object} rawParams Query parameters. You should probably use displayParams instead.
+		 * @param {string} method HTTP method that must be used for this request: 'get' or 'post'
+		 * @param {Object} ajaxOptions Extra options that must be used for this request, in the format
+		 *   expected by jQuery#ajax.
 		 * @return {OO.ui.MenuOptionWidget[]} Each item's data should be an OO.ui.FieldLayout
 		 */
-		formatRequest: function ( displayParams, rawParams ) {
+		formatRequest: function ( displayParams, rawParams, method, ajaxOptions ) {
 			var jsonLayout, phpLayout,
 				apiUrl = new mw.Uri( mw.util.wikiScript( 'api' ) ).toString(),
 				items = [
@@ -693,7 +696,7 @@
 					} )
 				];
 
-			mw.hook( 'apisandbox.formatRequest' ).fire( items, displayParams, rawParams );
+			mw.hook( 'apisandbox.formatRequest' ).fire( items, displayParams, rawParams, method, ajaxOptions );
 
 			return items;
 		},
@@ -896,6 +899,8 @@
 			var deferreds = [],
 				paramsAreForced = !!params,
 				displayParams = {},
+				ajaxOptions = {},
+				method = 'get',
 				tokenWidgets = [],
 				checkPages = [ pages.main ];
 
@@ -919,7 +924,10 @@
 					tokenWidgets.push( checkPage.tokenWidget );
 				}
 				deferreds = deferreds.concat( checkPage.apiCheckValid() );
-				checkPage.getQueryParams( params, displayParams );
+				checkPage.getQueryParams( params, displayParams, ajaxOptions );
+				if ( checkPage.paramInfo.mustbeposted !== undefined ) {
+					method = 'post';
+				}
 				var subpages = checkPage.getSubpages();
 				// eslint-disable-next-line no-loop-func
 				subpages.forEach( function ( subpage ) {
@@ -993,7 +1001,7 @@
 
 				var query = $.param( displayParams );
 
-				var formatItems = Util.formatRequest( displayParams, params );
+				var formatItems = Util.formatRequest( displayParams, params, method, ajaxOptions );
 
 				// Force a 'fm' format with wrappedhtml=1, if available
 				if ( params.format !== undefined ) {
@@ -1047,16 +1055,30 @@
 						).$element,
 						formatItems.map( function ( item ) {
 							return item.getData().$element;
-						} ),
-						$result
+						} )
 					);
+
+				if ( method === 'post' ) {
+					page.$element.append( new OO.ui.LabelWidget( {
+						label: mw.message( 'apisandbox-request-post' ).parseDom(),
+						classes: [ 'oo-ui-inline-help' ]
+					} ).$element );
+				}
+				if ( ajaxOptions.contentType === 'multipart/form-data' ) {
+					page.$element.append( new OO.ui.LabelWidget( {
+						label: mw.message( 'apisandbox-request-formdata' ).parseDom(),
+						classes: [ 'oo-ui-inline-help' ]
+					} ).$element );
+				}
+
+				page.$element.append( $result );
+
 				ApiSandbox.updateUI();
 				booklet.setPage( '|results|' );
 
 				location.href = oldhash = '#' + query;
 
-				api.post( params, {
-					contentType: 'multipart/form-data',
+				api[ method ]( params, $.extend( ajaxOptions, {
 					dataType: 'text',
 					xhr: function () {
 						var xhr = new window.XMLHttpRequest();
@@ -1082,7 +1104,7 @@
 						} );
 						return xhr;
 					}
-				} )
+				} ) )
 					.catch( function ( code, data, result, jqXHR ) {
 						var d = $.Deferred();
 
@@ -1963,8 +1985,10 @@
 	 *
 	 * @param {Object} params Write query parameters into this object
 	 * @param {Object} displayParams Write query parameters for display into this object
+	 * @param {Object} ajaxOptions Write options for the API request into this object, in the format
+	 *   expected by jQuery#ajax.
 	 */
-	ApiSandbox.PageLayout.prototype.getQueryParams = function ( params, displayParams ) {
+	ApiSandbox.PageLayout.prototype.getQueryParams = function ( params, displayParams, ajaxOptions ) {
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.widgets, function ( name, widget ) {
 			var value = widget.getApiValue();
@@ -1974,6 +1998,9 @@
 					value = widget.getApiValueForDisplay();
 				}
 				displayParams[ name ] = value;
+				if ( typeof widget.requiresFormData === 'function' && widget.requiresFormData() ) {
+					ajaxOptions.contentType = 'multipart/form-data';
+				}
 			}
 		} );
 	};
