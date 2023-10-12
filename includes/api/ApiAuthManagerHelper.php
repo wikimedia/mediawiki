@@ -27,7 +27,6 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Status\Status;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -243,23 +242,18 @@ class ApiAuthManagerHelper {
 	/**
 	 * Logs successful or failed authentication.
 	 * @param string $event Event type (e.g. 'accountcreation')
-	 * @param string|AuthenticationResponse $result Response or error message
+	 * @param AuthenticationResponse $result Response or error message
 	 */
-	public function logAuthenticationResult( $event, $result ) {
-		if ( is_string( $result ) ) {
-			$status = Status::newFatal( $result );
-		} elseif ( $result->status === AuthenticationResponse::PASS ) {
-			$status = Status::newGood();
-		} elseif ( $result->status === AuthenticationResponse::FAIL ) {
-			$status = Status::newFatal( $result->message );
-		} else {
+	public function logAuthenticationResult( $event, AuthenticationResponse $result ) {
+		if ( !in_array( $result->status, [ AuthenticationResponse::PASS, AuthenticationResponse::FAIL ] ) ) {
 			return;
 		}
 
 		$module = $this->module->getModuleName();
 		LoggerFactory::getInstance( 'authevents' )->info( "$module API attempt", [
 			'event' => $event,
-			'status' => strval( $status ),
+			'successful' => $result->status === AuthenticationResponse::PASS,
+			'status' => $result->message ? $result->message->getKey() : '-',
 			'module' => $module,
 		] );
 	}
