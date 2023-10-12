@@ -209,4 +209,8 @@ class ApiFeedRecentChanges extends ApiBase {
 				=> 'apihelp-feedrecentchanges-example-30days',
 		];
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Feedrecentchanges';
+	}
 }

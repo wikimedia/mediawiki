@@ -152,4 +152,8 @@ class ApiRsd extends ApiBase {
 
 		return $outputData;
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Rsd';
+	}
 }

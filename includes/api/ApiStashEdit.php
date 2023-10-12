@@ -276,4 +276,8 @@ class ApiStashEdit extends ApiBase {
 	public function isInternal() {
 		return true;
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Stashedit';
+	}
 }
