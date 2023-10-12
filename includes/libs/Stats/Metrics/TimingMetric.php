@@ -70,7 +70,7 @@ class TimingMetric implements MetricInterface {
 	 * @return void
 	 */
 	public function start(): void {
-		$this->startTime = microtime( true );
+		$this->startTime = hrtime( true );
 	}
 
 	/**
@@ -83,7 +83,8 @@ class TimingMetric implements MetricInterface {
 			trigger_error( "Stats: stop() called before start() for metric '{$this->getName()}'", E_USER_WARNING );
 			return;
 		}
-		$this->observe( ( microtime( true ) - $this->startTime ) * 1000 );
+		$value = ( hrtime( true ) - $this->startTime ) * 1e+6; // convert nanoseconds to milliseconds
+		$this->observe( $value );
 		$this->startTime = null;
 	}
 
