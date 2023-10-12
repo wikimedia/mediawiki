@@ -185,7 +185,7 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @param string $hook Name of hook to clear
 	 *
-	 * @internal For use by Hooks.php
+	 * @internal For testing only
 	 * @codeCoverageIgnore
 	 */
 	public function clear( string $hook ): void {
