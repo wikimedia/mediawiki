@@ -72,10 +72,10 @@ class CounterMetric implements MetricInterface {
 	/**
 	 * Increments metric by provided value.
 	 *
-	 * @param int $value
+	 * @param float $value
 	 * @return void
 	 */
-	public function incrementBy( int $value ): void {
+	public function incrementBy( float $value ): void {
 		if ( $this->statsdNamespace !== null ) {
 			$this->baseMetric->getStatsdDataFactory()->updateCount( $this->statsdNamespace, $value );
 			$this->statsdNamespace = null;
