@@ -41,14 +41,14 @@ class BlockActionInfo {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var int */
-	private const ACTION_UPLOAD = 1;
+	/** @internal Public for testing only -- use getIdFromAction() */
+	public const ACTION_UPLOAD = 1;
 
-	/** @var int */
-	private const ACTION_MOVE = 2;
+	/** @internal Public for testing only -- use getIdFromAction() */
+	public const ACTION_MOVE = 2;
 
-	/** @var int */
-	private const ACTION_CREATE = 3;
+	/** @internal Public for testing only -- use getIdFromAction() */
+	public const ACTION_CREATE = 3;
 
 	/**
 	 * Core block actions.
