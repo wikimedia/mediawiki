@@ -1,6 +1,30 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const url = require( 'url' );
+
+// Parse a URL-ref, which may or may not contain a protocol and host.
+// WHATWG URL currently doesn't support partial URLs, see https://github.com/whatwg/url/issues/531
+function parseURL( ref ) {
+	const urlObj = new url.URL( ref, 'http://fake-host' );
+	const urlRec = {
+		protocol: urlObj.protocol,
+		host: urlObj.host,
+		hostname: urlObj.hostname,
+		port: urlObj.port,
+		pathname: urlObj.pathname,
+		search: urlObj.search,
+		hash: urlObj.hash
+	};
+
+	if ( urlRec.hostname === 'fake-host' ) {
+		urlRec.host = '';
+		urlRec.hostname = '';
+		urlRec.port = '';
+	}
+
+	return urlRec;
+}
 
 describe( 'Page Source', () => {
 	const page = utils.title( 'PageSource_' );
@@ -38,11 +62,12 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
+			const redirectDbKey = utils.dbkey( redirectPage );
 			const { status, text, headers } = await client.get( `/page/${redirectPage}`, { flavor: 'edit' } );
-			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
-			const { searchParams } = new URL( headers.location );
-			assert.deepEqual( searchParams.has( 'flavor' ), true );
-			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
+			const { host, search, pathname } = parseURL( headers.location );
+			assert.include( search, 'flavor=edit' );
+			assert.deepEqual( host, '' );
+			assert.include( pathname, `/page/${redirectDbKey}` );
 			assert.deepEqual( status, 301, text );
 		} );
 
@@ -92,10 +117,8 @@ describe( 'Page Source', () => {
 	describe( 'GET /page/{title}/bare', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
 			const { status, text, headers } = await client.get( `/page/${redirectPage}/bare`, { flavor: 'edit' } );
-			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
-			const { searchParams } = new URL( headers.location );
-			assert.deepEqual( searchParams.has( 'flavor' ), true );
-			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
+			const { search } = parseURL( headers.location );
+			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 301, text );
 		} );
 
@@ -145,20 +168,19 @@ describe( 'Page Source', () => {
 	describe( 'GET /page/{title}/html', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
 			const { status, text, headers } = await client.get( `/page/${redirectPage}/html`, { flavor: 'edit' } );
-			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
-			const { searchParams } = new URL( headers.location );
-			assert.deepEqual( searchParams.has( 'flavor' ), true );
-			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
+			const { search } = parseURL( headers.location );
+			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 301, text );
 		} );
 
 		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const redirectedPageDbkey = utils.dbkey( redirectedPage );
 			const { status, text, headers } = await client.get( `/page/${redirectPageDbkey}/html`, { flavor: 'edit' } );
-			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
-			const { searchParams } = new URL( headers.location );
-			assert.deepEqual( searchParams.has( 'flavor' ), true );
-			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
+			const { host, pathname, search } = parseURL( headers.location );
+			assert.include( search, 'flavor=edit' );
+			assert.include( pathname, `/page/${redirectedPageDbkey}` );
+			assert.deepEqual( host, '' );
 			assert.deepEqual( status, 307, text );
 		} );
 
@@ -248,20 +270,16 @@ describe( 'Page Source', () => {
 	describe( 'GET /page/{title}/with_html', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
 			const { status, text, headers } = await client.get( `/page/${redirectPage}/with_html`, { flavor: 'edit' } );
-			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
-			const { searchParams } = new URL( headers.location );
-			assert.deepEqual( searchParams.has( 'flavor' ), true );
-			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
+			const { search } = parseURL( headers.location );
+			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 301, text );
 		} );
 
 		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const { status, text, headers } = await client.get( `/page/${redirectPageDbkey}/with_html`, { flavor: 'edit' } );
-			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
-			const { searchParams } = new URL( headers.location );
-			assert.deepEqual( searchParams.has( 'flavor' ), true );
-			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
+			const { search } = parseURL( headers.location );
+			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 307, text );
 		} );
 

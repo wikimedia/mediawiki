@@ -229,6 +229,23 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideGetRouteUrl
 	 */
+	public function testGetRoutePath( $route, $expectedUrl, $query = [], $path = [] ) {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
+		$router = $this->createRouter( $request );
+
+		$path = $router->getRoutePath( $route, $path, $query );
+		$this->assertStringNotContainsString( self::CANONICAL_SERVER, $path );
+		$this->assertStringStartsWith( '/', $path );
+
+		$expected = new Uri( $expectedUrl );
+		$actual = new Uri( $path );
+		$this->assertStringContainsString( $expected->getPath(), $actual->getPath() );
+		$this->assertStringContainsString( $expected->getQuery(), $actual->getQuery() );
+	}
+
+	/**
+	 * @dataProvider provideGetRouteUrl
+	 */
 	public function testGetRouteUrl( $route, $expectedUrl, $query = [], $path = [] ) {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
 		$router = $this->createRouter( $request );

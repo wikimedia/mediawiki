@@ -284,6 +284,29 @@ class Router {
 	}
 
 	/**
+	 * Returns the path part of the route URL for the given route, including the root path.
+	 * Intended for use in relative redirects.
+	 *
+	 * @since 1.42
+	 *
+	 * @param string $route
+	 * @param array $pathParams
+	 * @param array $queryParams
+	 *
+	 * @return string
+	 * @see getPrivateRouteUrl
+	 */
+	public function getRoutePath(
+		string $route,
+		array $pathParams = [],
+		array $queryParams = []
+	): string {
+		$route = $this->substPathParams( $route, $pathParams );
+		$path = $this->rootPath . $route;
+		return wfAppendQuery( $path, $queryParams );
+	}
+
+	/**
 	 * Returns a full URL for the given route.
 	 * Intended for use in redirects and when including links to endpoints in output.
 	 *
@@ -300,9 +323,7 @@ class Router {
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		$route = $this->substPathParams( $route, $pathParams );
-		$url = $this->baseUrl . $this->rootPath . $route;
-		return wfAppendQuery( $url, $queryParams );
+		return $this->baseUrl . $this->getRoutePath( $route, $pathParams, $queryParams );
 	}
 
 	/**
@@ -329,9 +350,7 @@ class Router {
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		$route = $this->substPathParams( $route, $pathParams );
-		$url = $this->privateBaseUrl . $this->rootPath . $route;
-		return wfAppendQuery( $url, $queryParams );
+		return $this->privateBaseUrl . $this->getRoutePath( $route, $pathParams, $queryParams );
 	}
 
 	/**

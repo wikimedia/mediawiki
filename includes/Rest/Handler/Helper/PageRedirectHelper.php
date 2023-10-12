@@ -28,6 +28,7 @@ class PageRedirectHelper {
 	private LanguageConverterFactory $languageConverterFactory;
 	private bool $followWikiRedirects = false;
 	private string $titleParamName = 'title';
+	private bool $useRelativeRedirects = true;
 
 	public function __construct(
 		RedirectStore $redirectStore,
@@ -45,6 +46,13 @@ class PageRedirectHelper {
 		$this->path = $path;
 		$this->request = $request;
 		$this->languageConverterFactory = $languageConverterFactory;
+	}
+
+	/**
+	 * @param bool $useRelativeRedirects
+	 */
+	public function setUseRelativeRedirects( bool $useRelativeRedirects ): void {
+		$this->useRelativeRedirects = $useRelativeRedirects;
 	}
 
 	/**
@@ -160,18 +168,29 @@ class PageRedirectHelper {
 
 	/**
 	 * @param string|PageReference $title
-	 * @return string
+	 * @return string The target to use in the Location header. Will be relative,
+	 *         unless setUseRelativeRedirects( false ) was called.
 	 */
 	public function getTargetUrl( $title ): string {
 		if ( !is_string( $title ) ) {
 			$title = $this->titleFormatter->getPrefixedDBkey( $title );
 		}
 
-		return $this->router->getRouteUrl(
-			$this->path,
-			[ $this->titleParamName => $title ],
-			$this->request->getQueryParams()
-		);
+		$pathParams = [ $this->titleParamName => $title ];
+
+		if ( $this->useRelativeRedirects ) {
+			return $this->router->getRoutePath(
+				$this->path,
+				$pathParams,
+				$this->request->getQueryParams()
+			);
+		} else {
+			return $this->router->getRouteUrl(
+				$this->path,
+				$pathParams,
+				$this->request->getQueryParams()
+			);
+		}
 	}
 
 	/**

@@ -66,13 +66,20 @@ trait HandlerTestTrait {
 		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
 
 		/** @var Router|MockObject $router */
-		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
-		$router->method( 'getRouteUrl' )->willReturnCallback( static function ( $route, $path = [], $query = [] ) {
-			foreach ( $path as $param => $value ) {
-				$route = str_replace( '{' . $param . '}', urlencode( (string)$value ), $route );
+		$router = $this->createNoOpMock( Router::class, [ 'getRoutePath', 'getRouteUrl' ] );
+		$router->method( 'getRoutePath' )->willReturnCallback(
+			static function ( $route, $path = [], $query = [] ) {
+				foreach ( $path as $param => $value ) {
+					$route = str_replace( '{' . $param . '}', urlencode( (string)$value ), $route );
+				}
+				return wfAppendQuery( '/rest' . $route, $query );
 			}
-			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
-		} );
+		);
+		$router->method( 'getRouteUrl' )->willReturnCallback(
+			static function ( $route, $path = [], $query = [] ) use ( $router ) {
+				return 'https://wiki.example.com' . $router->getRoutePath( $route, $path, $query );
+			}
+		);
 
 		$authority ??= $this->mockAnonUltimateAuthority();
 		$hookContainer = $hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );

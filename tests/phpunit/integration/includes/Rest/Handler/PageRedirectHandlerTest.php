@@ -199,15 +199,10 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return void
 	 */
 	private function assertUrlQueryParameters( string $url, array $queryParams ): void {
-		$parsedUrl = $this->getServiceContainer()->getUrlUtils()->parse( $url );
-		$urlParameters = [];
-
-		if ( is_array( $parsedUrl ) ) {
-			if ( array_key_exists( 'query', $parsedUrl ) ) {
-				$urlParameters = wfCgiToArray(
-					$parsedUrl['query']
-				);
-			}
+		if ( preg_match( '/\?(.*?)(#.*)?$/', $url, $m ) ) {
+			$urlParameters = wfCgiToArray( $m[1] );
+		} else {
+			$urlParameters = [];
 		}
 		$this->assertArrayEquals( $queryParams, $urlParameters );
 	}

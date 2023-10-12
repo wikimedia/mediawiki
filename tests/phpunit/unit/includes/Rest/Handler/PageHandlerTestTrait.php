@@ -40,14 +40,14 @@ use Wikimedia\Parsoid\Parsoid;
  */
 trait PageHandlerTestTrait {
 
-	private function newRouter( $baseUrl ): Router {
-		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
-		$router->method( 'getRouteUrl' )
+	private function newRouter( $baseUrl, $rootPath = '' ): Router {
+		$router = $this->createNoOpMock( Router::class, [ 'getRoutePath', 'getRouteUrl' ] );
+		$router->method( 'getRoutePath' )
 			->willReturnCallback( static function (
 				string $route,
 				array $pathParams = [],
 				array $queryParams = []
-			) use ( $baseUrl ) {
+			) use ( $router, $rootPath ) {
 				foreach ( $pathParams as $param => $value ) {
 					// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
 					// Spaces in path params must be encoded to %20 (not +).
@@ -55,8 +55,16 @@ trait PageHandlerTestTrait {
 					$route = str_replace( '{' . $param . '}', rawurlencode( (string)$value ), $route );
 				}
 
-				$url = $baseUrl . $route;
+				$url = $rootPath . $route;
 				return wfAppendQuery( $url, $queryParams );
+			} );
+		$router->method( 'getRouteUrl' )
+			->willReturnCallback( static function (
+				string $route,
+				array $pathParams = [],
+				array $queryParams = []
+			) use ( $baseUrl, $router ) {
+				return $baseUrl . $router->getRoutePath( $route, $pathParams, $queryParams );
 			} );
 
 		return $router;
