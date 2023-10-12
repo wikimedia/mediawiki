@@ -81,10 +81,10 @@ class ApiClientLogin extends ApiBase {
 
 		// Make sure it's possible to log in
 		if ( !$this->authManager->canAuthenticateNow() ) {
-			$this->getResult()->addValue( null, 'clientlogin', $helper->formatAuthenticationResponse(
-				AuthenticationResponse::newFail( $this->msg( 'userlogin-cannot-' . AuthManager::ACTION_LOGIN ) )
-			) );
-			$helper->logAuthenticationResult( 'login', 'userlogin-cannot-' . AuthManager::ACTION_LOGIN );
+			$res = AuthenticationResponse::newFail( $this->msg( 'userlogin-cannot-' . AuthManager::ACTION_LOGIN ) );
+			$this->getResult()->addValue( null, 'clientlogin',
+				$helper->formatAuthenticationResponse( $res ) );
+			$helper->logAuthenticationResult( 'login', $res );
 			return;
 		}
 
