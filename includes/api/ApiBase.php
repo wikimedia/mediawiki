@@ -1032,6 +1032,20 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $prefix Set to 'noprefix' to skip calling $this->encodeParamName()
 	 */
 	public function requirePostedParameters( $params, $prefix = 'prefix' ) {
+		if ( !$this->mustBePosted() ) {
+			// In order to allow client code to choose the correct method (GET or POST) depending *only*
+			// on mustBePosted(), make sure that the module requires posting if any of its potential
+			// parameters require posting.
+
+			// TODO: Uncomment this
+			// throw new LogicException( 'mustBePosted() must be true when using requirePostedParameters()' );
+
+			// This seems to already be the case in all modules in practice, but deprecate it first just
+			// in case.
+			wfDeprecatedMsg( 'mustBePosted() must be true when using requirePostedParameters()',
+				'1.42' );
+		}
+
 		// Skip if $wgDebugAPI is set, or if we're in internal mode
 		if ( $this->getConfig()->get( MainConfigNames::DebugAPI ) ||
 		$this->getMain()->isInternalMode() ) {
