@@ -515,7 +515,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getBlockedStatus
+	 * @covers User::getBlock
 	 */
 	public function testSoftBlockRanges() {
 		$this->overrideConfigValue( MainConfigNames::SoftBlockRanges, [ '10.0.0.0/8' ] );
@@ -971,7 +971,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getBlockedStatus
 	 * @covers User::getBlock
 	 * @covers User::isHidden
 	 * @covers User::isBlockedFrom
@@ -1014,7 +1013,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getBlockedStatus
+	 * @covers User::getBlock
 	 */
 	public function testCompositeBlocks() {
 		$this->tablesUsed[] = 'ipblocks';

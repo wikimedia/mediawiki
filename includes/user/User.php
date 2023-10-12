@@ -216,30 +216,15 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	/** @var string|null */
 	protected $mDatePreference;
-	/**
-	 * @var string|int -1 when the block is unset
-	 */
-	private $mBlockedby;
 	/** @var string|false */
 	protected $mHash;
-	/**
-	 * TODO: This should be removed when User::blockedFor
-	 * and AbstractBlock::getReason are hard deprecated.
-	 * @var CommentStoreComment
-	 */
-	protected $mBlockreason;
 	/** @var AbstractBlock */
 	protected $mGlobalBlock;
 	/** @var bool */
 	protected $mLocked;
-	/** @var bool */
-	private $mHideName;
 
 	/** @var WebRequest|null */
 	private $mRequest;
-
-	/** @var AbstractBlock|null */
-	private $mBlock;
 
 	/** @var AbstractBlock|false */
 	private $mBlockedFromCreateAccount = false;
@@ -1327,7 +1312,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		global $wgFullyInitialised;
 
 		$this->mDatePreference = null;
-		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
 		$this->mThisAsAuthority = null;
 
@@ -1366,64 +1350,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				$this->mLoadedItems = [];
 			}
 			$this->mFrom = $reloadFrom;
-		}
-	}
-
-	/**
-	 * Get blocking information
-	 *
-	 * TODO: Move this into the BlockManager, along with block-related properties.
-	 *
-	 * @param bool $fromReplica Whether to check the replica DB first.
-	 *   To improve performance, non-critical checks are done against replica DBs.
-	 *   Check when actually saving should be done against primary DB.
-	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
-	 *   a infinite recursion with autopromote. See T270145.
-	 */
-	private function getBlockedStatus( $fromReplica = true, $disableIpBlockExemptChecking = false ) {
-		if ( $this->mBlockedby != -1 ) {
-			return;
-		}
-
-		wfDebug( __METHOD__ . ": checking blocked status for " . $this->getName() );
-
-		// Initialize data...
-		// Otherwise something ends up stomping on $this->mBlockedby when
-		// things get lazy-loaded later, causing false positive block hits
-		// due to -1 !== 0. Probably session-related... Nothing should be
-		// overwriting mBlockedby, surely?
-		$this->load();
-
-		// TODO: Block checking shouldn't really be done from the User object. Block
-		// checking can involve checking for IP blocks, cookie blocks, and/or XFF blocks,
-		// which need more knowledge of the request context than the User should have.
-		// Since we do currently check blocks from the User, we have to do the following
-		// here:
-		// - Check if this is the user associated with the main request
-		// - If so, pass the relevant request information to the block manager
-		$request = null;
-		if ( $this->isGlobalSessionUser() ) {
-			// This is the global user, so we need to pass the request
-			$request = $this->getRequest();
-		}
-
-		$block = MediaWikiServices::getInstance()->getBlockManager()->getUserBlock(
-			$this,
-			$request,
-			$fromReplica,
-			$disableIpBlockExemptChecking
-		);
-
-		if ( $block ) {
-			$this->mBlock = $block;
-			$this->mBlockedby = $block->getByName();
-			$this->mBlockreason = $block->getReasonComment();
-			$this->mHideName = $block->getHideName();
-		} else {
-			$this->mBlock = null;
-			$this->mBlockedby = '';
-			$this->mBlockreason = CommentStoreComment::newUnsavedComment( '' );
-			$this->mHideName = false;
 		}
 	}
 
@@ -1508,8 +1434,25 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$fromReplica = ( $freshness !== self::READ_LATEST );
 		}
 
-		$this->getBlockedStatus( $fromReplica, $disableIpBlockExemptChecking );
-		return $this->mBlock instanceof AbstractBlock ? $this->mBlock : null;
+		// TODO: Block checking shouldn't really be done from the User object. Block
+		// checking can involve checking for IP blocks, cookie blocks, and/or XFF blocks,
+		// which need more knowledge of the request context than the User should have.
+		// Since we do currently check blocks from the User, we have to do the following
+		// here:
+		// - Check if this is the user associated with the main request
+		// - If so, pass the relevant request information to the block manager
+		$request = null;
+		if ( $this->isGlobalSessionUser() ) {
+			// This is the global user, so we need to pass the request
+			$request = $this->getRequest();
+		}
+
+		return MediaWikiServices::getInstance()->getBlockManager()->getUserBlock(
+			$this,
+			$request,
+			$fromReplica,
+			$disableIpBlockExemptChecking
+		);
 	}
 
 	/**
@@ -1537,8 +1480,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function blockedFor() {
 		wfDeprecated( __METHOD__, '1.35' );
-		$this->getBlockedStatus();
-		return $this->mBlockreason;
+		$block = $this->getBlock();
+		return $block ? $block->getReasonComment() : CommentStoreComment::newUnsavedComment( '' );
 	}
 
 	/**
@@ -1612,11 +1555,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True if hidden, false otherwise
 	 */
 	public function isHidden() {
-		if ( $this->mHideName !== null ) {
-			return (bool)$this->mHideName;
-		}
-		$this->getBlockedStatus();
-		return (bool)$this->mHideName;
+		$block = $this->getBlock();
+		return $block ? $block->getHideName() : false;
 	}
 
 	/**
@@ -2860,12 +2800,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get whether the user is explicitly blocked from account creation.
 	 * @deprecated since 1.37. Instead use Authority::authorize* for createaccount permission.
-	 * @return AbstractBlock|false
+	 * @return Block|false
 	 */
 	public function isBlockedFromCreateAccount() {
-		$this->getBlockedStatus();
-		if ( $this->mBlock && $this->mBlock->appliesToRight( 'createaccount' ) ) {
-			return $this->mBlock;
+		$block = $this->getBlock();
+		if ( $block && $block->appliesToRight( 'createaccount' ) ) {
+			return $block;
 		}
 
 		# T15611: if the IP address the user is trying to create an account from is
@@ -2891,8 +2831,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * check, use ::getBlock()->appliesToRight( 'sendemail' ).
 	 */
 	public function isBlockedFromEmailuser() {
-		$this->getBlockedStatus();
-		return $this->mBlock && $this->mBlock->appliesToRight( 'sendemail' );
+		$block = $this->getBlock();
+		return $block && $block->appliesToRight( 'sendemail' );
 	}
 
 	/**
@@ -2902,8 +2842,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isBlockedFromUpload() {
-		$this->getBlockedStatus();
-		return $this->mBlock && $this->mBlock->appliesToRight( 'upload' );
+		$block = $this->getBlock();
+		return $block && $block->appliesToRight( 'upload' );
 	}
 
 	/**
