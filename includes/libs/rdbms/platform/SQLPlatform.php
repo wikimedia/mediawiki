@@ -480,7 +480,7 @@ class SQLPlatform implements ISQLPlatform {
 		if ( !$this->unionSupportsOrderAndLimit() ) {
 			return $sql;
 		}
-		$sql = $sql . $this->makeOrderBy( $options );
+		$sql .= $this->makeOrderBy( $options );
 		$limit = $options['LIMIT'] ?? null;
 		$offset = $options['OFFSET'] ?? false;
 		if ( $limit !== null ) {

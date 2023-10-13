@@ -441,7 +441,7 @@ class UrlUtils {
 
 		// parse_url() incorrectly handles schemes case-sensitively. Convert it to lowercase.
 		$bits['scheme'] = strtolower( $bits['scheme'] );
-		$bits['host'] = $bits['host'] ?? '';
+		$bits['host'] ??= '';
 
 		// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
 		if ( in_array( $bits['scheme'] . '://', $this->validProtocols ) ) {

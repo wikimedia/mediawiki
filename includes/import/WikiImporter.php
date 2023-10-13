@@ -1212,7 +1212,7 @@ class WikiImporter {
 		$revId = $pageInfo['id'];
 		$title = $pageInfo['_title'];
 		// T292348: text key may be absent, force addition if null
-		$uploadInfo['text'] = $uploadInfo['text'] ?? '';
+		$uploadInfo['text'] ??= '';
 		$content = $this->makeContent( $title, $revId, $uploadInfo );
 
 		$revision->setTitle( $title );
