@@ -877,7 +877,7 @@ class DifferenceEngine extends ContextSource {
 			$element = Html::rawElement(
 				'span',
 				[ 'class' => $toolClass ],
-				$this->msg( 'parentheses' )->rawParams( $tool )->escaped()
+				$tool
 			);
 			$formattedRevisionTools[] = $element;
 		}
@@ -1835,8 +1835,7 @@ class DifferenceEngine extends ContextSource {
 
 			$key = $this->getAuthority()->probablyCan( 'edit', $rev->getPage() ) ? 'editold' : 'viewsourceold';
 			$msg = $this->msg( $key )->text();
-			$editLink = $this->msg( 'parentheses' )->rawParams(
-				$this->linkRenderer->makeKnownLink( $title, $msg, [], $editQuery ) )->escaped();
+			$editLink = $this->linkRenderer->makeKnownLink( $title, $msg, [], $editQuery );
 			$header .= ' ' . Html::rawElement(
 				'span',
 				[ 'class' => 'mw-diff-edit' ],
