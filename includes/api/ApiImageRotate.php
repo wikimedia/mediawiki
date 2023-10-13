@@ -218,4 +218,8 @@ class ApiImageRotate extends ApiBase {
 				=> 'apihelp-imagerotate-example-generator',
 		];
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imagerotate';
+	}
 }

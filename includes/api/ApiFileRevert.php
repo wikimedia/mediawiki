@@ -150,4 +150,8 @@ class ApiFileRevert extends ApiBase {
 				=> 'apihelp-filerevert-example-revert',
 		];
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Filerevert';
+	}
 }

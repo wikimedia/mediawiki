@@ -323,4 +323,8 @@ class ApiFeedContributions extends ApiBase {
 				=> 'apihelp-feedcontributions-example-simple',
 		];
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Feedcontributions';
+	}
 }
