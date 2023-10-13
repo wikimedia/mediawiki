@@ -2892,21 +2892,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$pOut1 = $this->createParserOutputStub( [
 			'getTOCHTML' => '',
-			'hasTOCHTML' => false,
 		] );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertFalse( $op->isTOCEnabled() );
 
+		// Transitional: This is now a no-op and will be deleted in the next commit.
 		$pOut2 = $this->createParserOutputStub( [
 			'getTOCHTML' => 'stuff',
-			'hasTOCHTML' => true,
 		] );
 		$op->addParserOutput( $pOut2 );
-		$this->assertTrue( $op->isTOCEnabled() );
+		$this->assertFalse( $op->isTOCEnabled() );
 
-		// The parser output doesn't disable the TOC after it was enabled
+		// The parser output doesn't somehow enable the TOC
 		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertTrue( $op->isTOCEnabled() );
+		$this->assertFalse( $op->isTOCEnabled() );
 	}
 
 	public function testNoTOC() {
