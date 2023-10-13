@@ -2,7 +2,6 @@
 
 use MediaWiki\CommentFormatter\CommentItem;
 use MediaWiki\Linker\Linker;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/../includes/Benchmarker.php';
@@ -50,9 +49,9 @@ class BenchmarkCommentFormatter extends Benchmarker {
 			],
 
 			'CommentFormatter::createBatch' => [
-				'function' => static function () use ( $inputs ) {
+				'function' => function () use ( $inputs ) {
 					Title::clearCaches();
-					$formatter = MediaWikiServices::getInstance()->getCommentFormatter();
+					$formatter = $this->getServiceContainer()->getCommentFormatter();
 					$comments = [];
 					foreach ( $inputs as $input ) {
 						$comments[] = ( new CommentItem( $input['comment'] ) )
@@ -65,9 +64,9 @@ class BenchmarkCommentFormatter extends Benchmarker {
 			],
 
 			'CommentFormatter::formatStrings' => [
-				'function' => static function () use ( $comments ) {
+				'function' => function () use ( $comments ) {
 					Title::clearCaches();
-					$formatter = MediaWikiServices::getInstance()->getCommentFormatter();
+					$formatter = $this->getServiceContainer()->getCommentFormatter();
 					$formatter->formatStrings( $comments );
 				}
 			],

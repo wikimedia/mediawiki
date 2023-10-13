@@ -23,7 +23,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
@@ -83,7 +82,7 @@ class ResetUserEmail extends Maintenance {
 		}
 
 		if ( $this->hasOption( 'email-password' ) ) {
-			$passReset = MediaWikiServices::getInstance()->getPasswordReset();
+			$passReset = $this->getServiceContainer()->getPasswordReset();
 			$sysUser = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 			$status = Status::wrap( $passReset->execute( $sysUser, $user->getName(), $email ) );
 			if ( !$status->isGood() ) {
