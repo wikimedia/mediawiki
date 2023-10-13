@@ -28,6 +28,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
@@ -177,10 +178,10 @@ function wfStreamThumb( array $params ) {
 	// Check permissions if there are read restrictions
 	$varyHeader = [];
 	if ( !$services->getGroupPermissionsLookup()->groupHasPermission( '*', 'read' ) ) {
-		$user = RequestContext::getMain()->getUser();
+		$authority = RequestContext::getMain()->getAuthority();
 		$imgTitle = $img->getTitle();
 
-		if ( !$imgTitle || !$services->getPermissionManager()->userCan( 'read', $user, $imgTitle ) ) {
+		if ( !$imgTitle || !$authority->authorizeRead( 'read', $imgTitle ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
 				'the source file.' );
 			return;
@@ -353,12 +354,15 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
-	$user = RequestContext::getMain()->getUser();
-	if ( !wfThumbIsStandard( $img, $params ) && $user->pingLimiter( 'renderfile-nonstandard' ) ) {
-		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->parse() );
+	$authority = RequestContext::getMain()->getAuthority();
+	$status = PermissionStatus::newEmpty();
+	if ( !wfThumbIsStandard( $img, $params )
+		&& !$authority->authorizeAction( 'renderfile-nonstandard', $status )
+	) {
+		wfThumbError( 429, Status::wrap( $status )->getHTML() );
 		return;
-	} elseif ( $user->pingLimiter( 'renderfile' ) ) {
-		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->parse() );
+	} elseif ( !$authority->authorizeAction( 'renderfile', $status ) ) {
+		wfThumbError( 429, Status::wrap( $status )->getHTML() );
 		return;
 	}
 
