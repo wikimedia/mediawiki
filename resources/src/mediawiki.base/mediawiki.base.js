@@ -489,6 +489,7 @@ mw.hook = function ( name ) {
 			 */
 			add: function () {
 				for ( var i = 0; i < arguments.length; i++ ) {
+					fns.push( arguments[ i ] );
 					if ( memory ) {
 						try {
 							arguments[ i ].apply( null, memory );
@@ -496,7 +497,6 @@ mw.hook = function ( name ) {
 							rethrow( e );
 						}
 					}
-					fns.push( arguments[ i ] );
 				}
 				return this;
 			},
