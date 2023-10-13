@@ -91,11 +91,17 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	): ParserOutput {
 		$parserOutput = new ParserOutput();
 
+		// Parsoid itself does not vary output by parser options right now.
+		// But, ensure that any option use by extensions, parser functions,
+		// recursive parses, or (in the unlikely future scenario) Parsoid itself
+		// are recorded as used.
+		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
+
 		// The enable/disable logic here matches that in Parser::internalParseHalfParsed(),
 		// although __NOCONTENTCONVERT__ is handled internal to Parsoid.
 		//
-		// TODO: It might be preferable to handle __NOCONTENTCONVERT__ here rather than
-		// by instpecting the DOM inside Parsoid. That will come in a separate patch.
+		// T349137: It might be preferable to handle __NOCONTENTCONVERT__ here rather than
+		// by inspecting the DOM inside Parsoid. That will come in a separate patch.
 		$htmlVariantLanguage = null;
 		if ( !( $options->getDisableContentConversion() || $options->getInterfaceMessage() ) ) {
 			// NOTES (some of these are TODOs for read views integration)
@@ -115,7 +121,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			//    preferred variant and set it in ParserOptions OR the REST API will have
 			//    to set some other flag indicating that the preferred variant should not
 			//    be computed. For now, I am adding a temporary hack, but this should be
-			//    replaced with something more sensible.
+			//    replaced with something more sensible (T267067).
 			//
 			// 3. Additionally, Parsoid's callers will have to set targetLanguage in ParserOptions
 			//    to mimic the logic in Parser.php (missing right now).
@@ -129,11 +135,6 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 				$htmlVariantLanguage = $langCode;
 			}
 		}
-
-		// NOTE: This is useless until the time Parsoid uses the
-		// $options ParserOptions object. But if/when it does, this
-		// will ensure that we track used options correctly.
-		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
 
 		$defaultOptions = [
 			'pageBundle' => true,
