@@ -70,8 +70,4 @@ class ApiAcquireTempUserName extends ApiBase {
 	public function mustBePosted() {
 		return true;
 	}
-
-	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:AcquireTempUserName';
-	}
 }
