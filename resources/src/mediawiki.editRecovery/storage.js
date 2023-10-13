@@ -14,7 +14,7 @@ var db = null;
  */
 function openDatabaseLocal() {
 	return new Promise( function ( resolve, reject ) {
-		const schemaNumber = 2;
+		const schemaNumber = 3;
 		const openRequest = window.indexedDB.open( dbName, schemaNumber );
 		openRequest.addEventListener( 'upgradeneeded', upgradeDatabase );
 		openRequest.addEventListener( 'success', function ( event ) {
@@ -48,13 +48,16 @@ function upgradeDatabase( versionChangeEvent ) {
 	if ( !objectStore.indexNames.contains( 'pageName-section' ) ) {
 		objectStore.createIndex( 'pageName-section', keyPathParts, { unique: true } );
 	}
-	if ( !objectStore.indexNames.contains( 'expiryDate' ) ) {
-		objectStore.createIndex( 'expiryDate', 'expiryDate' );
+	if ( !objectStore.indexNames.contains( 'expiry' ) ) {
+		objectStore.createIndex( 'expiry', 'expiry' );
 	}
 
 	// Delete old indexes.
 	if ( objectStore.indexNames.contains( 'lastModified' ) ) {
 		objectStore.deleteIndex( 'lastModified' );
+	}
+	if ( objectStore.indexNames.contains( 'expiryDate' ) ) {
+		objectStore.deleteIndex( 'expiryDate' );
 	}
 }
 
@@ -99,7 +102,7 @@ function saveData( pageName, section, pageData ) {
 		// Add indexed fields.
 		pageData.pageName = pageName;
 		pageData.section = section || '';
-		pageData.expiryDate = ( Date.now() / 1000 ) + ( expiryDays * 24 * 60 * 60 );
+		pageData.expiry = ( Date.now() / 1000 ) + ( expiryDays * 24 * 60 * 60 );
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
@@ -163,10 +166,10 @@ function deleteExpiredData() {
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
-		const expiryDate = objectStore.index( 'expiryDate' );
+		const expiry = objectStore.index( 'expiry' );
 		const now = Date.now() / 1000;
 
-		const expired = expiryDate.getAll( IDBKeyRange.upperBound( now, true ) );
+		const expired = expiry.getAll( IDBKeyRange.upperBound( now, true ) );
 
 		expired.onsuccess = function ( event ) {
 			const cursors = event.target.result;
