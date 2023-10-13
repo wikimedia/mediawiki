@@ -71,7 +71,7 @@ class FixDoubleRedirects extends Maintenance {
 			->join( 'page', 'pa', 'rd_from = pa.page_id' )
 			->join( 'page', 'pb', [ 'rd_namespace = pb.page_namespace', 'rd_title = pb.page_title' ] )
 			// T42352
-			->where( [ 'rd_interwiki' => [ null, '' ], 'pb.page_is_redirect' => 1 ] );
+			->where( [ 'rd_interwiki' => '', 'pb.page_is_redirect' => 1 ] );
 
 		if ( $title != null ) {
 			$queryBuilder->andWhere( [

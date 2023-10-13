@@ -230,8 +230,6 @@ class NamespaceDupes extends Maintenance {
 				// have rd_interwiki=w and rd_namespace=0, which would match the
 				// query for a conflicting namespace "Foo" if filtering wasn't done.
 				$this->checkLinkTable( 'redirect', 'rd', $ns, $name, $options,
-					[ 'rd_interwiki' => null ] );
-				$this->checkLinkTable( 'redirect', 'rd', $ns, $name, $options,
 					[ 'rd_interwiki' => '' ] );
 			}
 		}

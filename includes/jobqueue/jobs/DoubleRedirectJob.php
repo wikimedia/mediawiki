@@ -101,7 +101,7 @@ class DoubleRedirectJob extends Job {
 			->from( 'redirect' )
 			->join( 'page', null, 'page_id = rd_from' )
 			->where( [ 'rd_namespace' => $redirTitle->getNamespace(), 'rd_title' => $redirTitle->getDBkey() ] )
-			->andWhere( [ 'rd_interwiki' => [ '', null ] ] )
+			->andWhere( [ 'rd_interwiki' => '' ] )
 			->caller( __METHOD__ )->fetchResultSet();
 		if ( !$res->numRows() ) {
 			return;
@@ -273,7 +273,7 @@ class DoubleRedirectJob extends Job {
 					$row->rd_namespace,
 					$row->rd_title,
 					'',
-					$row->rd_interwiki ?? ''
+					$row->rd_interwiki
 				);
 			}
 		}

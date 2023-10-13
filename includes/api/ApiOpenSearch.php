@@ -167,11 +167,11 @@ class ApiOpenSearch extends ApiBase {
 				$res = $db->newSelectQueryBuilder()
 					->select( [ 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ] )
 					->from( 'page' )
+					->join( 'redirect', null, [ 'rd_from = page_id' ] )
 					->where( [
-						'rd_interwiki' => [ null, '' ],
+						'rd_interwiki' => '',
 						$lb->constructSet( 'page', $db )
 					] )
-					->join( 'redirect', null, [ 'rd_from = page_id' ] )
 					->caller( __METHOD__ )
 					->fetchResultSet();
 				foreach ( $res as $row ) {

@@ -3526,7 +3526,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $this->isExternal() ) {
 			$queryBuilder->andWhere( [ 'rd_interwiki' => $this->mInterwiki ] );
 		} else {
-			$queryBuilder->andWhere( [ 'rd_interwiki' => [ '', null ] ] );
+			$queryBuilder->andWhere( [ 'rd_interwiki' => '' ] );
 		}
 		if ( $ns !== null ) {
 			$queryBuilder->andWhere( [ 'page_namespace' => $ns ] );

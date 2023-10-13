@@ -994,14 +994,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return $this->mRedirectTarget;
 		}
 
-		if ( $row->rd_fragment === null && $row->rd_interwiki === null ) {
-			// Incomplete database migration from 2011 due to database corruption (T346290).
-			// We could still return the title from this row, but let's not do it, as these rows
-			// should be dropped when these fields are made NOT NULL in a future database migration.
-			$this->mRedirectTarget = null;
-			return $this->mRedirectTarget;
-		}
-
 		// (T203942) We can't redirect to Media namespace because it's virtual.
 		// We don't want to modify Title objects farther down the
 		// line. So, let's fix this here by changing to File namespace.
