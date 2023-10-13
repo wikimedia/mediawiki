@@ -42,6 +42,7 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'dfn-only', 'Delete links from nonexistent articles only' );
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
 		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
+		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
 		$this->addOption( 'touched-only', 'Only fix pages that have been touched after last update' );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
@@ -99,9 +100,17 @@ class RefreshLinks extends Maintenance {
 		} else {
 			$new = $this->hasOption( 'new-only' );
 			$redir = $this->hasOption( 'redirects-only' );
+			$oldRedir = $this->hasOption( 'old-redirects-only' );
 			$touched = $this->hasOption( 'touched-only' );
 			$what = $redir ? 'redirects' : 'links';
-			if ( $new ) {
+			if ( $oldRedir ) {
+				$builder->leftJoin( 'redirect', null, 'page_id=rd_from' )
+					->andWhere( [
+						'page_is_redirect' => 1,
+						'rd_from' => null,
+					] );
+				$this->output( "Refreshing old redirects from $start...\n" );
+			} elseif ( $new ) {
 				$builder->andWhere( [ 'page_is_new' => 1 ] );
 				$this->output( "Refreshing $what from new pages...\n" );
 			} else {
@@ -112,7 +121,7 @@ class RefreshLinks extends Maintenance {
 				}
 				$this->output( "Refreshing $what from pages...\n" );
 			}
-			$this->doRefreshLinks( $builder, $redir );
+			$this->doRefreshLinks( $builder, $redir || $oldRedir );
 			if ( !$this->hasOption( 'namespace' ) ) {
 				$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
 			}
