@@ -8,6 +8,7 @@ const storage = require( './storage.js' );
 const inputFields = {};
 const fieldNamePrefix = 'field_';
 var hasLoaded = false;
+var modified = false;
 var changeDebounceTimer = null;
 
 // Number of miliseconds to debounce form input.
@@ -129,10 +130,16 @@ function loadData( pageData ) {
 
 function fieldChangeHandler() {
 	clearTimeout( changeDebounceTimer );
+	modified = true;
 	changeDebounceTimer = setTimeout( saveFormData, debounceTime );
 }
 
 function saveFormData() {
+	if ( !modified ) {
+		// fieldChangeHandler has never been called, don't save
+		// an unmodified edit form.
+		return;
+	}
 	const pageData = {};
 	Object.keys( inputFields ).forEach( function ( fieldName ) {
 		const field = inputFields[ fieldName ];
