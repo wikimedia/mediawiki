@@ -988,12 +988,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->where( [ 'rd_from' => $this->getId() ] )
 			->caller( __METHOD__ )->fetchRow();
 
-		if ( !$row ) {
-			// Incomplete database migration from 2008 due to database corruption (T346290).
-			$this->mRedirectTarget = null;
-			return $this->mRedirectTarget;
-		}
-
 		// (T203942) We can't redirect to Media namespace because it's virtual.
 		// We don't want to modify Title objects farther down the
 		// line. So, let's fix this here by changing to File namespace.
