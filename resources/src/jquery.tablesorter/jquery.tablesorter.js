@@ -188,7 +188,9 @@
 				var parser = false;
 				var sortType = $headers.eq( config.columnToHeader[ j ] ).data( 'sortType' );
 				if ( sortType !== undefined ) {
-					parser = getParserById( sortType );
+					// Cast any numbers or other stuff to a string. Methods
+					// like charAt, toLowerCase and split are expected in callers.
+					parser = getParserById( String( sortType ) );
 				}
 
 				if ( parser === false ) {
