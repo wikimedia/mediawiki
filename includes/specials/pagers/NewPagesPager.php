@@ -374,7 +374,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$linkBatch->execute();
 
 		$this->formattedComments = $this->rowCommentFormatter->formatRows(
-			$this->mResult, 'rc_comment', 'rc_namespace', 'rc_title', 'rc_id', true
+			$this->mResult, 'rc_comment', 'page_namespace', 'page_title', 'rc_id', true
 		);
 	}
 
