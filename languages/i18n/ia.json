@@ -2165,6 +2165,8 @@
 	"apisandbox-request-format-php-label": "Matrice PHP",
 	"apisandbox-request-php-label": "Requestar matrice PHP:",
 	"apisandbox-request-time": "Duration del requesta: {{PLURAL:$1|$1 ms}}",
+	"apisandbox-request-post": "Iste requesta debe esser inviate con le methodo HTTP POST.",
+	"apisandbox-request-formdata": "Iste requesta debe esser inviate como incargamento de file (i.e. usante <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Corrige le token e reinvia",
 	"apisandbox-results-fixtoken-fail": "Impossibile recuperar le token “$1”.",
 	"apisandbox-alert-page": "Certe campos in iste pagina non es valide.",

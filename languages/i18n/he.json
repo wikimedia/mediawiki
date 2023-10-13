@@ -2205,6 +2205,8 @@
 	"apisandbox-request-format-php-label": "מערך PHP",
 	"apisandbox-request-php-label": "ייצוג הבקשה כמערך PHP:",
 	"apisandbox-request-time": "זמן הבקשה: {{PLURAL:$1|מילישנייה אחת|$1 מילישניות}}",
+	"apisandbox-request-post": "הבקשה הזאת צריכה להישלח בשיטת HTTP POST.",
+	"apisandbox-request-formdata": "הבקשה הזאת צריכה להישלח בתור העלאת קובץ (כלומר באמצעות <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "יש לתקן את האסימון ולשלוח שוב",
 	"apisandbox-results-fixtoken-fail": "קבלת האסימון \"$1\" נכשלה.",
 	"apisandbox-alert-page": "שדות בדף זה אינם תקינים.",

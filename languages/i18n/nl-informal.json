@@ -155,7 +155,7 @@
 	"userjsyoucanpreview": "<strong>Tip:</strong>  gebruik de knop \"{{int:showpreview}}\" om je nieuwe JavaScript te testen voordat je het publiceert.",
 	"usercsspreview": "<strong>Dit is alleen een voorvertoning van je persoonlijke CSS.\nDeze is nog niet gepubliceerd!</strong>",
 	"userjspreview": "<strong>Let op: je test nu jouw persoonlijke JavaScript.\nDe pagina is nog niet gepubliceerd!</strong>",
-	"userinvalidconfigtitle": "<strong>Waarschuwing:</strong>''' er is geen vormgeving \"$1\".\nJe eigen .css-, .json- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
+	"userinvalidconfigtitle": "<strong>Waarschuwing:</strong>''' er is geen vormgeving “$1”.\nJe eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 	"previewnote": "<strong>Let op: dit is een controlepagina.</strong>\nJe tekst is niet gepubliceerd!",
 	"previewconflict": "Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als je hem publiceert.",
 	"session_fail_preview": "Je bewerking is helaas niet opgeslagen, want de sessiegegevens zijn verloren gegaan.\n\nMisschien ben je automatisch afgemeld. <strong>Ga na of je nog bent aangemeld en probeer het opnieuw.</strong>\nAls het dan nog niet lukt, [[Special:UserLogout|meld je dan af]] en dan weer aan, en controleer of je browser wel cookies van deze site toestaat.",
