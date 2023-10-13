@@ -57,7 +57,7 @@ class FixUserRegistration extends Maintenance {
 				$lastId = $id;
 
 				// Get first edit time
-				$actorStore = \MediaWiki\MediaWikiServices::getInstance()->getActorStore();
+				$actorStore = $this->getServiceContainer()->getActorStore();
 				$userIdentity = $actorStore->getUserIdentityByUserId( $id );
 				if ( !$userIdentity ) {
 					continue;
