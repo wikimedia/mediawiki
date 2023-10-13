@@ -659,8 +659,7 @@ return [
 		return $services->getDBLoadBalancerFactory()->getMainLB();
 	},
 
-	'DBLoadBalancerFactory' =>
-	static function ( MediaWikiServices $services ): Wikimedia\Rdbms\LBFactory {
+	'DBLoadBalancerFactory' => static function ( MediaWikiServices $services ): Wikimedia\Rdbms\LBFactory {
 		$mainConfig = $services->getMainConfig();
 		$lbFactoryConfigBuilder = $services->getDBLoadBalancerFactoryConfigBuilder();
 
@@ -888,8 +887,7 @@ return [
 		);
 	},
 
-	'HttpRequestFactory' =>
-	static function ( MediaWikiServices $services ): HttpRequestFactory {
+	'HttpRequestFactory' => static function ( MediaWikiServices $services ): HttpRequestFactory {
 		return new HttpRequestFactory(
 			new ServiceOptions(
 				HttpRequestFactory::CONSTRUCTOR_OPTIONS,
@@ -1223,21 +1221,21 @@ return [
 			'typeFile' => $mainConfig->get( MainConfigNames::MimeTypeFile ),
 			'infoFile' => $mainConfig->get( MainConfigNames::MimeInfoFile ),
 			'xmlTypes' => $mainConfig->get( MainConfigNames::XMLMimeTypes ),
-			'guessCallback' =>
-				static function ( $mimeAnalyzer, &$head, &$tail, $file, &$mime )
-				use ( $logger, $hookRunner ) {
-					// Also test DjVu
-					$deja = new DjVuImage( $file );
-					if ( $deja->isValid() ) {
-						$logger->info( "Detected $file as image/vnd.djvu\n" );
-						$mime = 'image/vnd.djvu';
+			'guessCallback' => static function (
+				$mimeAnalyzer, &$head, &$tail, $file, &$mime
+			) use ( $logger, $hookRunner ) {
+				// Also test DjVu
+				$deja = new DjVuImage( $file );
+				if ( $deja->isValid() ) {
+					$logger->info( "Detected $file as image/vnd.djvu\n" );
+					$mime = 'image/vnd.djvu';
 
-						return;
-					}
-					// Some strings by reference for performance - assuming well-behaved hooks
-					$hookRunner->onMimeMagicGuessFromContent(
-						$mimeAnalyzer, $head, $tail, $file, $mime );
-				},
+					return;
+				}
+				// Some strings by reference for performance - assuming well-behaved hooks
+				$hookRunner->onMimeMagicGuessFromContent(
+					$mimeAnalyzer, $head, $tail, $file, $mime );
+			},
 			'extCallback' => static function ( $mimeAnalyzer, $ext, &$mime ) use ( $hookRunner ) {
 				// Media handling extensions can improve the MIME detected
 				$hookRunner->onMimeMagicImproveFromExtension( $mimeAnalyzer, $ext, $mime );
@@ -1601,8 +1599,7 @@ return [
 		);
 	},
 
-	'PerDbNameStatsdDataFactory' =>
-	static function ( MediaWikiServices $services ): StatsdDataFactoryInterface {
+	'PerDbNameStatsdDataFactory' => static function ( MediaWikiServices $services ): StatsdDataFactoryInterface {
 		$config = $services->getMainConfig();
 		$wiki = $config->get( MainConfigNames::DBname );
 		return new PrefixingStatsdDataFactoryProxy(
@@ -2338,8 +2335,7 @@ return [
 		return $lookup;
 	},
 
-	'VirtualRESTServiceClient' =>
-	static function ( MediaWikiServices $services ): VirtualRESTServiceClient {
+	'VirtualRESTServiceClient' => static function ( MediaWikiServices $services ): VirtualRESTServiceClient {
 		$config = $services->getMainConfig()->get( MainConfigNames::VirtualRestConfig );
 
 		$vrsClient = new VirtualRESTServiceClient(
@@ -2356,8 +2352,7 @@ return [
 		return $vrsClient;
 	},
 
-	'WatchedItemQueryService' =>
-	static function ( MediaWikiServices $services ): WatchedItemQueryService {
+	'WatchedItemQueryService' => static function ( MediaWikiServices $services ): WatchedItemQueryService {
 		return new WatchedItemQueryService(
 			$services->getDBLoadBalancerFactory(),
 			$services->getCommentStore(),
@@ -2440,8 +2435,9 @@ return [
 		);
 	},
 
-	'WikiRevisionOldRevisionImporterNoUpdates' =>
-	static function ( MediaWikiServices $services ): ImportableOldRevisionImporter {
+	'WikiRevisionOldRevisionImporterNoUpdates' => static function (
+		MediaWikiServices $services
+	): ImportableOldRevisionImporter {
 		return new ImportableOldRevisionImporter(
 			false,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
