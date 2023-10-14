@@ -43,12 +43,20 @@ class FixLegacyEncoding extends MoveToExternal {
 		}
 		$blobStore = $this->getServiceContainer()->getBlobStore();
 		if ( in_array( 'external', $flags ) && $blobStore instanceof SqlBlobStore ) {
-			$text = $blobStore->expandBlob( $text, $flags );
+			$newText = $blobStore->expandBlob( $text, $flags );
+			if ( $newText === false ) {
+				return [ false, $flags ];
+			}
+			$text = $newText;
 			// It will be put back in external storage again
 			$flags = array_diff( $flags, [ 'external' ] );
 		}
 		if ( in_array( 'gzip', $flags ) ) {
-			$text = gzinflate( $text );
+			$newText = gzinflate( $text );
+			if ( $newText === false ) {
+				return [ false, $flags ];
+			}
+			$text = $newText;
 			$flags = array_diff( $flags, [ 'gzip' ] );
 		}
 		return [ $text, $flags ];
