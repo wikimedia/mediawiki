@@ -94,6 +94,21 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		assert.verifySteps( [ 'x2' ], 'Remember only the most recent firing' );
 	} );
 
+	QUnit.test( 'mw.hook - functions always registered before firing', function ( assert ) {
+		mw.hook( 'test.register' ).fire();
+
+		function onceHandler() {
+			// The handler has already be registered so can be removed
+			mw.hook( 'test.register' ).remove( onceHandler );
+			assert.step( 'call' );
+		}
+		mw.hook( 'test.register' ).add( onceHandler );
+		// Subsequent fire does nothing as handler has been removed
+		mw.hook( 'test.register' ).fire();
+
+		assert.verifySteps( [ 'call' ] );
+	} );
+
 	QUnit.test( 'mw.hook - Multiple consumers with memory between fires', function ( assert ) {
 		mw.hook( 'test.many' )
 			.add( function ( data ) {
