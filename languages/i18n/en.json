@@ -1027,7 +1027,7 @@
 	"diff-inline-tooltip-ins": "Content added",
 	"diff-inline-tooltip-del": "Content deleted",
 	"diff-inline-format-label": "Inline",
-	"diff-table-format-label": "Table",
+	"diff-inline-switch-desc": "Switches between inline format and two-column format",
 	"diff-line-deleted": "⟵ delete",
 	"diff-newline": "↲ newline",
 	"difference-missing-revision": "{{PLURAL:$2|One revision|$2 revisions}} of this difference ($1) {{PLURAL:$2|was|were}} not found.\n\nThis is usually caused by following an outdated diff link to a page that has been deleted.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",

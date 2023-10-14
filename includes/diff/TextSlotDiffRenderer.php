@@ -260,7 +260,8 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 					[
 						'id' => 'mw-diffPage-inline-toggle-switch-layout',
 						'label' => $context->msg( 'diff-inline-format-label' )->plain(),
-						'infusable' => true
+						'infusable' => true,
+						'help' => $context->msg( 'diff-inline-switch-desc' )->plain()
 					]
 				),
 			);

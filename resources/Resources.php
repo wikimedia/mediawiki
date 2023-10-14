@@ -758,6 +758,7 @@ return [
 		],
 		'messages' => [
 			'diff-inline-format-label',
+			'diff-inline-switch-desc'
 		]
 	],
 	'mediawiki.diff.styles' => [
