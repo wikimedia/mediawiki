@@ -32,7 +32,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -48,7 +47,7 @@ class DumpLinks extends Maintenance {
 
 	public function execute() {
 		$dbr = $this->getDB( DB_REPLICA );
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		$queryInfo = $linksMigration->getQueryInfo( 'pagelinks' );
 		$queryInfo['tables'] = array_diff( $queryInfo['tables'], [ 'pagelinks' ] );
 		[ $blNamespace, $blTitle ] = $linksMigration->getTitleFields( 'pagelinks' );
