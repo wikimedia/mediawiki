@@ -268,7 +268,7 @@ class LinkHolderArray {
 
 		# Do the thing
 		$text = preg_replace_callback(
-			'/<!--LINK\'" (-?[\d+:]+)-->/',
+			'/<!--LINK\'" (-?[\d:]+)-->/',
 			static function ( array $matches ) use ( $replacePairs ) {
 				return $replacePairs[$matches[1]];
 			},
