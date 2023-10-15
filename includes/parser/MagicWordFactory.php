@@ -38,7 +38,6 @@ use MediaWiki\HookContainer\HookRunner;
  * @ingroup Parser
  */
 class MagicWordFactory {
-	/** #@- */
 
 	/** @var bool */
 	private $mVariableIDsInitialised = false;
@@ -161,8 +160,6 @@ class MagicWordFactory {
 
 	/** @var HookRunner */
 	private $hookRunner;
-
-	/** #@- */
 
 	/**
 	 * @param Language $contLang Content language

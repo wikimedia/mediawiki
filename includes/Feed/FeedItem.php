@@ -229,7 +229,6 @@ class FeedItem {
 		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
 	}
 
-	/** #@- */
 }
 
 /**

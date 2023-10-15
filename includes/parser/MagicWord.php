@@ -63,7 +63,6 @@ use StringUtils;
  * @ingroup Parser
  */
 class MagicWord {
-	/** #@- */
 
 	/** @var string|null Potentially null for a short time before {@see load} is called */
 	public $mId;
@@ -78,8 +77,6 @@ class MagicWord {
 
 	/** @var Language */
 	private $contLang;
-
-	/** #@- */
 
 	/**
 	 * Create a new MagicWord object
