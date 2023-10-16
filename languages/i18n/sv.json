@@ -1052,7 +1052,7 @@
 	"diff-inline-tooltip-ins": "Innehåll som lades till",
 	"diff-inline-tooltip-del": "Innehåll som raderades",
 	"diff-inline-format-label": "I texten",
-	"diff-table-format-label": "Tabell",
+	"diff-inline-switch-desc": "Växlar mellan inline- och tvåkolumnsformat",
 	"diff-line-deleted": "⟵ radera",
 	"diff-newline": "↲ radbrytning",
 	"difference-missing-revision": "Det gick inte att hitta {{PLURAL:$2|en version|$2 versioner}} av den här differensen ($1).\n\nDetta beror oftast på att du har försökt följa en utgången difflänk till en sida som har raderats.\nMer detaljerad information finns i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",

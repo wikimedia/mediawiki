@@ -1029,7 +1029,6 @@
 	"diff-inline-tooltip-ins": "Περιεχόμενο που προστέθηκε",
 	"diff-inline-tooltip-del": "Περιεχόμενο που διαγράφηκε",
 	"diff-inline-format-label": "Ενδογραμμικά",
-	"diff-table-format-label": "Πίνακας",
 	"diff-line-deleted": "⟵ διαγραφή",
 	"diff-newline": "↲ νέα γραμμή",
 	"difference-missing-revision": "{{PLURAL:$2|Μία αναθεώρηση|$2 αναθεωρήσεις}} αυτής της διαφοράς ($1) δεν {{PLURAL:$2|μπόρεσε να βρεθεί|μπόρεσαν να βρεθούν}}.\n\nΑυτό συνήθως προκαλείται από παλιό σύνδεσμο διαφοράς προς σελίδα που έχει διαγραφεί.\nΛεπτομέρειες θα βρείτε στο [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ημερολόγιο καταγραφής διαγραφών].",

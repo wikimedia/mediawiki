@@ -145,6 +145,7 @@
 	"apihelp-query+allrevisions-example-ns-any": "Navede prvih 50 redakcij v poljubnem imenskem prostoru.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Pridobi velikost datoteke in mere slike.",
 	"apihelp-query+alltransclusions-paramvalue-prop-ids": "Doda ID prevključitvene strani (tega ni mogoče uporabiti skupaj z $1unique).",
+	"apihelp-query+allusers-param-group": "V dane skupine naj bodo vključeni samo uporabniki. Ne vključuje implicitnih ali samodejno promoviranih skupin, kot so *, uporabnik ali samodejno potrjeno.",
 	"apihelp-query+allusers-param-excludegroup": "Izključi uporabnike v teh skupinah.",
 	"apihelp-query+backlinks-example-simple": "Prikaz povezav na [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+backlinks-example-generator": "Pridobitev informacij o straneh, ki se povezujejo z [[{{MediaWiki:Mainpage}}]].",

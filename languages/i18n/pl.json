@@ -1068,7 +1068,6 @@
 	"diff-inline-tooltip-ins": "Dodano zawartość",
 	"diff-inline-tooltip-del": "Usunięto zawartość",
 	"diff-inline-format-label": "Jednokolumnowy",
-	"diff-table-format-label": "Tabela",
 	"diff-line-deleted": "⟵ usunięto",
 	"diff-newline": "↲ nowa linia",
 	"difference-missing-revision": "{{PLURAL:$2|Wersja|$2 wersje|$2 wersji}} #$1 strony „{{PAGENAME}}” nie {{PLURAL:$2|została znaleziona|zostały znalezione|zostało znalezionych}}.\n\nZazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].",

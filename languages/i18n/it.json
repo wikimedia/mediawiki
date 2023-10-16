@@ -1096,7 +1096,6 @@
 	"diff-inline-tooltip-ins": "Contenuto aggiunto",
 	"diff-inline-tooltip-del": "Contenuto cancellato",
 	"diff-inline-format-label": "In linea",
-	"diff-table-format-label": "Tabella",
 	"difference-missing-revision": "{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.\n\nQuesto si verifica solitamente seguendo un collegamento obsoleto di un diff a una pagina cancellata.\nI dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni].",
 	"difference-bad-old-revision": "Il contenuto della vecchia versione è mancante o danneggiato.",
 	"difference-bad-new-revision": "Il contenuto della nuova versione è mancante o danneggiato.",

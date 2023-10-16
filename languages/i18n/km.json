@@ -812,7 +812,6 @@
 	"diff-paragraph-moved-toold": "កថាខណ្ឌត្រូវបានផ្លាស់ទី។ ចុចដើម្បីលោតទៅទីតាំងចាស់។",
 	"diff-inline-tooltip-ins": "ខ្លឹមសារដែលបានសរសេរបន្ថែម",
 	"diff-inline-tooltip-del": "ខ្លឹមសារដែលបានលុបចោល",
-	"diff-table-format-label": "តារាង",
 	"diff-line-deleted": "⟵ លុបចោល",
 	"diff-newline": "↲ បន្ទាត់ថ្មី",
 	"difference-missing-revision": " {{PLURAL:$2|រកមិនឃើញ|រកមិនឃើញ}}{{PLURAL:$2|កំណែមួយ|កំណែចំនួន $2}} របស់ភាពខុសគ្នានេះ ($1) ទេ។\n\nជាធម្មតានេះបណ្ដាលមកពីការតាមទៅកាន់តំនភ្ជាប់ភាពខុសគ្នារបស់ទំព័រដែលត្រូវបានលុបចោល។\nព័ត៌មានលំអិតអាចរកបាននៅក្នុង [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} កំណត់ហេតុនៃការលុបចោល]។",

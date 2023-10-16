@@ -634,7 +634,7 @@
 	"apihelp-query+allusers-param-to": "באיזה שם משתמש להפסיק למנות.",
 	"apihelp-query+allusers-param-prefix": "חיפוש כל המשתמשים שמתחילים בערך הזה.",
 	"apihelp-query+allusers-param-dir": "באיזה כיוון למיין.",
-	"apihelp-query+allusers-param-group": "לכלול רק משתמשים בקבוצות הנתונות.",
+	"apihelp-query+allusers-param-group": "לכלול רק משתמשים בקבוצות הנתונות. לא כולל קבוצות משתמעות או אוטומטיות כגון *, user או autoconfirmed.",
 	"apihelp-query+allusers-param-excludegroup": "לא לכלול משתמשים בקבוצות הנתונות.",
 	"apihelp-query+allusers-param-rights": "לכלול רק משתמשים עם ההרשאות הנתונות. לא כולל הרשאות שניתנו בקבוצות משתמעות או אוטומטיות כגון *, user או autoconfirmed.",
 	"apihelp-query+allusers-param-prop": "אילו פרטי מידע לכלול:",

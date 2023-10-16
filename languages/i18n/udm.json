@@ -971,7 +971,6 @@
 	"diff-inline-tooltip-ins": "Пушкесэз ватсамын",
 	"diff-inline-tooltip-del": "Пушкесэз ӵушемын",
 	"diff-inline-format-label": "тупась",
-	"diff-table-format-label": "таблица",
 	"diff-line-deleted": "⟵ӵушоно",
 	"diff-newline": "↲ выль чур",
 	"difference-missing-revision": "{{PLURAL:$2|Одӥг верси|$2 версиосыз}}та ӵошатонлэн ($1) {{PLURAL:$2|вал}} ӧвӧл шедьтэмын.\n\nӴемысь со озьы луэ, бамлэн историяз вужмем чӧлсконъя потыса.  Пыр-почгес тодыны луоз татысь [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ӵушонъёсын журналысь].",

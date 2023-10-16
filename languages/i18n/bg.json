@@ -994,7 +994,6 @@
 	"diff-inline-tooltip-ins": "Добавено е съдържание",
 	"diff-inline-tooltip-del": "Изтрито е съдържание",
 	"diff-inline-format-label": "Линейно",
-	"diff-table-format-label": "Таблица",
 	"diff-line-deleted": "⟵ изтриване",
 	"diff-newline": "↲ нов ред",
 	"difference-missing-revision": "{{PLURAL:$2|Не беше открита|Не бяха открити}} {{PLURAL:$2|една версия|$2 версии}} от тази разликова препратка ($1).\n\nТова обикновено се случва, когато е последвана остаряла разликова препратка на страница, която е била изтрита.\nПовече подробности могат да бъдат открити в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дневника на изтриванията].",

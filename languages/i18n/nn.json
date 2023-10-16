@@ -908,7 +908,6 @@
 	"diff-inline-tooltip-ins": "Nytt innhald",
 	"diff-inline-tooltip-del": "Sletta innhald",
 	"diff-inline-format-label": "På line",
-	"diff-table-format-label": "Tabell",
 	"diff-line-deleted": "⟵ slett",
 	"diff-newline": "↲ linjeskift",
 	"difference-missing-revision": "{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje {{PLURAL:$2|funnen|funne}}.\n\nDette skriv seg som oftast frå at ein har fylgt ei forelda versjonslenkje til ei side som er sletta.\nDetaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",

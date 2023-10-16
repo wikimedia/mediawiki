@@ -978,7 +978,6 @@
 	"diff-inline-tooltip-ins": "Ис хоһооно эбилиннэ",
 	"diff-inline-tooltip-del": "Ис хоһооно сотторолунна",
 	"diff-inline-format-label": "Утумнаах",
-	"diff-table-format-label": "Табылыысса",
 	"diff-line-deleted": "⟵ сот",
 	"diff-newline": "↲ саҥа устуруока",
 	"difference-missing-revision": "$2 барыл бу тэҥнээһиҥҥэ ($1) көстүбэтэ.\n\nБу үксүн хайыы-үйэ сотуллубут сирэйи кытта тэҥнээри эргэрбит сигэнэн кэллэххэ баар буолааччы.\nСиһилии баҕар [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.",

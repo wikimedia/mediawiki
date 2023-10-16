@@ -578,7 +578,6 @@
 	"diff-empty": "(Ij mihheen iäruid)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Ohtâ kooskâst leijee versio|$1 kooskâst leijee versio}} siämmáá kevttest ij čaittuu)",
 	"diff-multi-otherusers": "Siämmáá kevttee ({{PLURAL:$1|ohtâ koskânleijee versio ij|$2 koskânleijee versioh iä}}  čaittuu)",
-	"diff-table-format-label": "Tavlustâh",
 	"searchresults": "Uuccâmpuátuseh",
 	"search-filter-title-prefix-reset": "Uusâ puoh siijđoin",
 	"searchresults-title": "Uuccâmpuátuseh uuccâmsáánán ”$1”",

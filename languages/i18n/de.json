@@ -1081,7 +1081,7 @@
 	"diff-inline-tooltip-ins": "Inhalt hinzugefügt",
 	"diff-inline-tooltip-del": "Inhalt gelöscht",
 	"diff-inline-format-label": "Inline",
-	"diff-table-format-label": "Tabelle",
+	"diff-inline-switch-desc": "Wechselt zwischen Inline-Format und Zwei-Spalten-Format",
 	"diff-line-deleted": "⟵ löschen",
 	"diff-newline": "↲ Zeilenumbruch",
 	"difference-missing-revision": "{{PLURAL:$2|Eine Version|$2 Versionen}} dieser Unterschiedsanzeige ($1) {{PLURAL:$2|wurde|wurden}} nicht gefunden.\n\nDieser Fehler wird normalerweise von einem veralteten Link zur Versionsgeschichte einer Seite verursacht, die zwischenzeitlich gelöscht wurde.\nEinzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] vorhanden.",

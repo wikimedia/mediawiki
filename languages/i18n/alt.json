@@ -967,7 +967,6 @@
 	"diff-inline-tooltip-ins": "Толынты кожулды",
 	"diff-inline-tooltip-del": "Толынты кырылды",
 	"diff-inline-format-label": "Чийӱленген",
-	"diff-table-format-label": "Таблица",
 	"diff-line-deleted": "⟵ јоголтор",
 	"diff-newline": "↲ јаҥы јолдык",
 	"difference-missing-revision": "{{PLURAL:$2|версия}} бу теҥдештирӱге ($1) {{PLURAL:$2|табылбады}}.\n\nМындый айалга кырып салган бӱктиҥ эскирген версиялардыҥ теҥдештирӱзиниҥ тайантызын эдинзе болот.\nЈартамалын [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} кырылганныҥ журналында] табар арга бар.",

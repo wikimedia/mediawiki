@@ -971,7 +971,6 @@
 	"diff-inline-tooltip-ins": "Контентым ешарыме",
 	"diff-inline-tooltip-del": "Контентым кораҥдыме",
 	"diff-inline-format-label": "Вияш",
-	"diff-table-format-label": "Таблицан",
 	"diff-line-deleted": "⟵ кораҥдаш",
 	"diff-newline": "↲ у корно",
 	"difference-missing-revision": "Тиде таҥастарымашлан ($1) {{PLURAL:$2|ик версийым|$2 версийым}} {{PLURAL:$2|мумо огыл}}.\n\nТыгай шукыж годым кораҥдыме велыжлан версий-влакым таҥастарашлан тоштемше кылвер дене куснымылан лиеда.\nРашлык [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} кораҥдымаш журналыште] лийын кертеш.",

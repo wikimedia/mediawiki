@@ -746,6 +746,7 @@
 	"difference-title-multipage": "$1 և $2: Խմբագրումների տարբերություն",
 	"difference-multipage": "(Էջերի տարերություն)",
 	"lineno": "Տող  $1.",
+	"lineno-inline": "Տող $1 ⟶ $2՝",
 	"compareselectedversions": "Համեմատել ընտրած տարբերակները",
 	"showhideselectedversions": "Ցուցադրել/թաքցնել ընտրված խմբագրումները",
 	"editundo": "հետ շրջել",

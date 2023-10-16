@@ -1018,7 +1018,6 @@
 	"diff-inline-tooltip-ins": "বিষয়বস্তু যোগ হয়েছে",
 	"diff-inline-tooltip-del": "বিষয়বস্তু বিয়োগ হয়েছে",
 	"diff-inline-format-label": "একরেখা",
-	"diff-table-format-label": "ছক",
 	"diff-line-deleted": "⟵ অপসারণ",
 	"diff-newline": "↲ নতুন লাইন",
 	"difference-missing-revision": "এই পার্থক্যের ($1) অন্তর্গত {{PLURAL:$2|একটি সংশোধিত সংস্করণ|$2টি সংশোধিত সংস্করণ}} খুঁজে পাওয়া যাচ্ছে না।\n\nসাধারণত মুছে ফেলা হয়েছে এমন পাতার মেয়াদ উত্তীর্ণ ইতিহাস পাতার লিংক খোলার কারণে এটি হতে পারে। \n[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} পাতা অবলুপ্তি লগে] বিস্তারিত তথ্য জানা যাবে।",

@@ -616,7 +616,7 @@
 	"apihelp-query+allusers-param-to": "Le nomine de usator al qual cessar le enumeration.",
 	"apihelp-query+allusers-param-prefix": "Cercar tote le usatores comenciante con iste valor.",
 	"apihelp-query+allusers-param-dir": "Direction de ordinamento.",
-	"apihelp-query+allusers-param-group": "Includer solmente le usatores in le gruppos date.",
+	"apihelp-query+allusers-param-group": "Includer solmente le usatores in le gruppos date. Non include gruppos implicite o auto-promovite como *, user, o autoconfirmed.",
 	"apihelp-query+allusers-param-excludegroup": "Excluder usatores in le gruppos date.",
 	"apihelp-query+allusers-param-rights": "Includer solmente le usatores con le derectos date. Non includer derectos concedite per gruppos implicite o auto-promovite como *, user, o autoconfirmed.",
 	"apihelp-query+allusers-param-prop": "Qual pecias de information includer:",

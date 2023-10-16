@@ -993,7 +993,6 @@
 	"diff-inline-tooltip-ins": "Контент өстәлгән",
 	"diff-inline-tooltip-del": "Контент бетерелгән",
 	"diff-inline-format-label": "Кертелгән",
-	"diff-table-format-label": "Җәдвәл",
 	"diff-line-deleted": "бетерергә",
 	"diff-newline": "↲ яңа юл",
 	"difference-missing-revision": "($1) битенең {{PLURAL:$2|бер версия}} {{PLURAL:$2|табылмады}}.\nМондый хәлләр, гадәттә, искергән сылтама буенча бетерелгән бит өчен юрамаларны чагыштыру очрагында була.\nТулырак мәгълүмат [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} бетерүләр журналында] булырга мөмкин.",

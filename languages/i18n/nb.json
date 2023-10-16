@@ -1017,7 +1017,6 @@
 	"diff-inline-tooltip-ins": "Innhold lagt til",
 	"diff-inline-tooltip-del": "Slettet innhold",
 	"diff-inline-format-label": "På linje",
-	"diff-table-format-label": "Tabell",
 	"diff-line-deleted": "⟵ slett",
 	"diff-newline": "↲ linjeskift",
 	"difference-missing-revision": "{{PLURAL:$2|Én sideversjon|$2 sideversjoner}} av denne forskjellen ($1) ble ikke funnet.\n\nDette skyldes som regel at en gammel forskjellslenke er fulgt til en side som er slettet.\nDetaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",

@@ -952,7 +952,6 @@
 	"diff-paragraph-moved-toold": "Paragrap dipindahin. Klik bakal loncat ke lokasi lama.",
 	"diff-inline-tooltip-ins": "Isi ditambahin",
 	"diff-inline-tooltip-del": "Isi diapus",
-	"diff-table-format-label": "Jadwal",
 	"diff-line-deleted": "⟵ apus",
 	"diff-newline": "↲ baris baru",
 	"difference-missing-revision": "{{PLURAL:$2|Atu perbaèkan|$2 perbaèkan}} deri ni perbèdaan ($1) {{PLURAL:$2|kaga'}} ketemu.\n\nNi biasanya lantaran sènggètan perbèdaan nyang kedaluwarsa ke halaman nyang udah diapus.\nTètèk bengèk bisa diliat di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rekeman pengapusan].",

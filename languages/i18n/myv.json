@@ -970,7 +970,6 @@
 	"diff-inline-tooltip-ins": "Пештязесь путозь",
 	"diff-inline-tooltip-del": "Пештязесь нардазь",
 	"diff-inline-format-label": "Линиянь",
-	"diff-table-format-label": "Таблицань",
 	"diff-line-deleted": "⟵ нардамс",
 	"diff-newline": "↲ од кикс",
 	"difference-missing-revision": "Апак {{PLURAL:$2|1=муе|муезь}} {{PLURAL:$2|$2 версия|$2 версият|$2 версиятне|1=версиятнестэ вейке}} те карадо-каршо аравтоманть туртов ($1).\n\nИстя эрси ташто невтемава ютамсто нардазь лопань карадо-каршо версиятнень аравтомсто. \nДомкасто весемесь ули [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} нардамонь журналсо].",

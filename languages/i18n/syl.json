@@ -353,7 +353,6 @@
 	"diff-multi-sameuser": "({{PLURAL:$1|ꠝꠣꠏꠦ ꠖꠥꠀꠞꠣ ꠖꠦꠈꠣ|$1 ꠝꠣꠏꠦ ꠖꠥꠀꠞꠣ ꠖꠦꠈꠣ}} ꠄꠇꠤ {{GENDER:$3|ꠛꠦꠛꠀꠞꠈꠞ꠆ꠞꠣ}} ꠖꠦꠈꠣꠁꠟ ꠅꠁꠍꠦꠘꠣ)",
 	"diff-multi-otherusers": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one other user|$2 users}} ꠖꠦꠈꠣꠁꠟ ꠅꠁꠍꠦꠘꠣ)",
 	"diff-inline-format-label": "ꠟꠣꠁꠘꠦ ꠟꠣꠁꠘꠦ",
-	"diff-table-format-label": "ꠐꠦꠛꠥꠟ",
 	"diff-line-deleted": "⟵ ꠙꠣꠟꠣꠃꠇ꠆ꠇꠣ",
 	"diff-newline": "↲ ꠘꠄꠀ ꠟꠣꠁꠘ",
 	"searchresults": "ꠚꠟ ꠕꠥꠇꠣꠅ",

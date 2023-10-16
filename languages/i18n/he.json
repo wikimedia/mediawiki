@@ -1012,7 +1012,7 @@
 	"diff-inline-tooltip-ins": "תוכן שנוסף",
 	"diff-inline-tooltip-del": "תוכן שנמחק",
 	"diff-inline-format-label": "בשורה",
-	"diff-table-format-label": "טבלה",
+	"diff-inline-switch-desc": "מעבר בין תצוגה בשורה לבין תצוגה בשתי עמודות",
 	"diff-line-deleted": "מחיקה ⟵",
 	"diff-newline": "שורה חדשה ↲",
 	"difference-missing-revision": "{{PLURAL:$2|גרסה אחת|$2 גרסאות}} מתוך הגרסאות שביקשת להשוות ($1) {{PLURAL:$2|לא נמצאה|לא נמצאו}}.\n\nזה נגרם בדרך־כלל עקב לחיצה על קישור ישן להבדלים בין גרסאות של דף שנמחק.\nאפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",

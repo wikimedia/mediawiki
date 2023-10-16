@@ -988,7 +988,6 @@
 	"diff-inline-tooltip-ins": "Kandungan ditambah",
 	"diff-inline-tooltip-del": "Kandungan dihapus",
 	"diff-inline-format-label": "Dalam baris",
-	"diff-table-format-label": "Jadual",
 	"diff-line-deleted": "⟵ padam",
 	"diff-newline": "↲ baris baharu",
 	"difference-missing-revision": "{{PLURAL:$2|Satu semakan|$2 semakan}} bagi perbezaan ini ($1) tidak ditemui.\n\nHal ini biasanya disebabkan oleh pautan perbezaan yang lapuk ke halaman yang sudah dihapuskan.\nButirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",

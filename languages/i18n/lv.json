@@ -852,7 +852,6 @@
 	"diff-inline-tooltip-ins": "Pievienotais saturs",
 	"diff-inline-tooltip-del": "Dzēstais saturs",
 	"diff-inline-format-label": "Vienā rindā",
-	"diff-table-format-label": "Tabulā",
 	"searchresults": "Meklēšanas rezultāti",
 	"search-filter-title-prefix": "Meklē tikai lapas, kuru nosaukums sākas ar \"$1\"",
 	"search-filter-title-prefix-reset": "Meklēt visas lapas",

@@ -987,7 +987,6 @@
 	"diff-inline-tooltip-ins": "Lisatud sisu",
 	"diff-inline-tooltip-del": "Eemaldatud sisu",
 	"diff-inline-format-label": "Reasisene",
-	"diff-table-format-label": "Tabel",
 	"diff-line-deleted": "⟵ kustutatud",
 	"diff-newline": "↲ reavahetus",
 	"difference-missing-revision": "Selle erinevuste vaate {{PLURAL:$2|üht|$2}} redaktsiooni ($1) ei leitud.\n\nHarilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin asunud lehekülg on kustutatud.\nÜksikasjad leiad [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamislogist].",

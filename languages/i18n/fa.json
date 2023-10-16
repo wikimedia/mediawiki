@@ -1053,7 +1053,6 @@
 	"diff-inline-tooltip-ins": "محتوای افزوده‌شده",
 	"diff-inline-tooltip-del": "محتوای حذف‌شده",
 	"diff-inline-format-label": "درخط",
-	"diff-table-format-label": "جدول",
 	"diff-line-deleted": "حذف ⟵",
 	"diff-newline": "سطر جدید ↲",
 	"difference-missing-revision": "{{PLURAL:$2|یک ویرایش|$2 ویرایش}}  از تفاوت نسخه‌ها ($1) {{PLURAL:$2|یافت|یافت}}  نشد.\n\nاین اتفاق معمولاً در اثر دنبال کردن پیوند تفاوتی به یک صفحهٔ حذف‌شده پیش می‌آید.\nمی‌توانید جزئیات بیشتر را در [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] بیابید.",

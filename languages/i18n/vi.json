@@ -1018,7 +1018,6 @@
 	"diff-inline-tooltip-ins": "Nội dung được thêm vào",
 	"diff-inline-tooltip-del": "Nội dung được xóa",
 	"diff-inline-format-label": "Nội tuyến",
-	"diff-table-format-label": "Bảng",
 	"diff-line-deleted": "⟵ xóa",
 	"diff-newline": "↲ dòng mới",
 	"difference-missing-revision": "Không tìm thấy {{PLURAL:$2|một phiên bản|$2 phiên bản}} trong khác biệt này ($1).\n\nLỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến khác biệt giữa các bản của trang đã bị xóa.\nXem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",

@@ -985,7 +985,6 @@
 	"diff-inline-tooltip-ins": "დინორექ ქეგიაძონუ",
 	"diff-inline-tooltip-del": "დინორექ დილასჷ",
 	"diff-inline-format-label": "ღოზური",
-	"diff-table-format-label": "რცხილი",
 	"diff-line-deleted": "⟵ ლასუა",
 	"diff-newline": "↲ ახალი ლაწკარი",
 	"difference-missing-revision": "{{PLURAL:$2|$2 ვერსია}} ამ შედარებისათვის ($1) {{PLURAL:$2|ვერ მოიძებნა}}.\n\nეს ჩვეულებრივ ხდება მაშინ, თუ ვერსიების შედარების მოძველებული ბმულით გადადიხართ გვერდზე, რომელიც წაიშალა.\nდეტალური ინფორმაცია შესაძლებელია იყოს [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} წაშლების ჟურნალში].",

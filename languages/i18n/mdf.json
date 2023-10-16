@@ -966,7 +966,6 @@
 	"diff-inline-tooltip-ins": "Уликссь полатф",
 	"diff-inline-tooltip-del": "Уликссь нардаф",
 	"diff-inline-format-label": "Линейнай",
-	"diff-table-format-label": "Таблицань",
 	"diff-line-deleted": "⟵ нардамс",
 	"diff-newline": "↲ од китькс",
 	"difference-missing-revision": "Апак {{PLURAL:$2|1=мук|муфт}} {{PLURAL:$2|$2 версия|$2 версият|$2 версиятне|1=версиятнень эзда фкясь}} тя карань-каршек арафтоманди ($1).\n\nТяфта эрсекшни ташта cсылкатнень эзга ётамста нардаф лопань карань-каршек версиятнень арафтомста. \nКрхкаста сембось ащи[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} нардамань журналса].",

@@ -992,7 +992,6 @@
 	"diff-inline-tooltip-ins": "Conținut adăugat",
 	"diff-inline-tooltip-del": "Conținut șters",
 	"diff-inline-format-label": "Aliniat",
-	"diff-table-format-label": "Tabel",
 	"diff-line-deleted": "⟵ șters",
 	"diff-newline": "↲ linie nouă",
 	"difference-missing-revision": "{{PLURAL:$2|O versiune a|$2 versiuni ale|$2 de versiuni ale}} acestei diferențe ($1) nu {{PLURAL:$2|a fost găsită|au fost găsite}}.\n\nAcest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.\nDetalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",

@@ -968,7 +968,6 @@
 	"diff-inline-tooltip-ins": "Kontén kawewehin",
 	"diff-inline-tooltip-del": "Kontén kaapus",
 	"diff-inline-format-label": "Abaris",
-	"diff-table-format-label": "Tabél",
 	"diff-line-deleted": "⟵ apus",
 	"diff-newline": "↲ garis anyar",
 	"difference-missing-revision": "{{PLURAL:$2|révisi|révisi-révisi}} saking patiosan ($1) saking {{PLURAL:$2|nénten}} katemu.\n\nPuniki ketah mawinan olih tautan patiosan sané kadaluwarsa nuju kaca sané sampun kausap.\nPidarta prasida katemuin ring [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pangusapan].",

@@ -754,7 +754,6 @@
 	"diff-multi-otherusers": "({{PLURAL:$2|ھڪ ٻي واپرائيندڙ|$2 واپرائيندڙن}} پاران {{PLURAL:$1|ھڪ وچيون ورجاءُ|$1 وچيان ورجاءَ}} نہ ڏيکاريل)",
 	"diff-inline-tooltip-ins": "شامل ڪيل مواد",
 	"diff-inline-tooltip-del": "ڊاٿل مواد",
-	"diff-table-format-label": "ٽيبل",
 	"diff-line-deleted": "ڊاهيو",
 	"diff-newline": "نئین لائن",
 	"searchresults": "ڳولا نتيجا",

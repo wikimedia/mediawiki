@@ -978,7 +978,6 @@
 	"diff-inline-tooltip-ins": "Чулацам тӀетоьхна",
 	"diff-inline-tooltip-del": "Чулацам дӀабаьккхина",
 	"diff-inline-format-label": "Сизийн",
-	"diff-table-format-label": "Таблицин",
 	"diff-line-deleted": "⟵ дӀайаккха",
 	"diff-newline": "↲ керла могӀа",
 	"difference-missing-revision": "{{PLURAL:$2|Цакарий}} {{PLURAL:$2|$2 верси}} ($1) дустарна.\n\nИштта хуьлу хьажорг шира хилча, дӀайаьккхина йолу.\nМадарра хила мега [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дӀадаьхнарш долу тéптар] чохь.",

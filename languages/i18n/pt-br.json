@@ -1100,7 +1100,6 @@
 	"diff-inline-tooltip-ins": "Conteúdo adicionado",
 	"diff-inline-tooltip-del": "Conteúdo deletado",
 	"diff-inline-format-label": "Em linha",
-	"diff-table-format-label": "Tabela",
 	"diff-line-deleted": "⟵ apagar",
 	"diff-newline": "↲ nova linha",
 	"difference-missing-revision": "{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.\n\nIsto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.\nOs detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",

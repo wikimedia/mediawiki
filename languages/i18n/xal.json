@@ -410,6 +410,7 @@
 	"compareselectedversions": "Суңһсн янзс әдлцүлх",
 	"editundo": "буцх",
 	"diff-multi-sameuser": "({{PLURAL:$1|Нег завсрин ясвр|$1 Нег завсрин ясврмуд}} әдлхн {{GENDER:$3|user}} эс үзүлгдх)",
+	"diff-inline-switch-desc": "Дотрк формат болн хойр бахнын форматын хоорнд шилҗх",
 	"searchresults": "Хәәврин аш",
 	"searchresults-title": "«$1» хәәврин аш",
 	"notextmatches": "Халхсин бичәснд ирлцән уга",

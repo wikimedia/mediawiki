@@ -666,7 +666,7 @@
 	"apihelp-query+allusers-param-to": "枚举的结束用户名。",
 	"apihelp-query+allusers-param-prefix": "搜索所有以此值开头的用户。",
 	"apihelp-query+allusers-param-dir": "排序方向。",
-	"apihelp-query+allusers-param-group": "只包含指定组中的用户。",
+	"apihelp-query+allusers-param-group": "只包含指定组中的用户。不包含隐性或自动提升的用户组，例如*、用户或自动确认用户。",
 	"apihelp-query+allusers-param-excludegroup": "排除指定组中的用户。",
 	"apihelp-query+allusers-param-rights": "仅列出有所选权限的用户。不包括隐性的或自动加入的用户组别（如*、用户或自动确认用户）所授予的权限。",
 	"apihelp-query+allusers-param-prop": "要包含的信息束：",

@@ -999,7 +999,6 @@
 	"diff-inline-tooltip-ins": "Садржај додат",
 	"diff-inline-tooltip-del": "Садржај обрисан",
 	"diff-inline-format-label": "Инлајн",
-	"diff-table-format-label": "Табела",
 	"diff-line-deleted": "⟵ обрисано",
 	"diff-newline": "↲ нов ред",
 	"difference-missing-revision": "{{PLURAL:$2|Једна измена|$2 измене}} ове разлике ($1) не {{PLURAL:$2|постоји|постоје}}.\n\nОво се обично дешава када пратите застарелу везу до странице која је избрисана.\nДетаље можете да пронађете у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дневнику брисања].",

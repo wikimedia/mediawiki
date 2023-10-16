@@ -973,7 +973,7 @@
 	"diff-inline-tooltip-ins": "Contento addite",
 	"diff-inline-tooltip-del": "Contento delite",
 	"diff-inline-format-label": "In linea",
-	"diff-table-format-label": "Tabella",
+	"diff-inline-switch-desc": "Cambia inter formato in linea e formato a duo columnas",
 	"diff-line-deleted": "⟵ deler",
 	"diff-newline": "↲ nove linea",
 	"difference-missing-revision": "{{PLURAL:$2|Un version|$2 versiones}} de iste differentia ($1) non ha essite trovate.\n\nIsto es generalmente causate per sequer un ligamine de diff obsolete a un pagina que ha essite delite.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
