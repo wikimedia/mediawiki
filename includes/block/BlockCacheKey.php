@@ -10,16 +10,16 @@ use WeakReference;
  * @internal For use by BlockManager
  */
 class BlockCacheKey {
-	/** @var bool Whether the key includes a non-null request */
-	private $hasRequest;
-	/** @var WeakReference|null A reference to the WebRequest */
-	private $requestRef;
-	/** @var WeakReference A reference to the UserIdentity */
-	private $userRef;
-	/** @var bool Whether the UserIdentity has zero user ID */
-	private $isAnon;
-	/** @var bool The part of the key indicating whether to do queries against the primary DB */
-	private $fromPrimary;
+	/** Whether the key includes a non-null request */
+	private bool $hasRequest;
+	/** A reference to the WebRequest or null */
+	private ?WeakReference $requestRef;
+	/** A reference to the UserIdentity */
+	private WeakReference $userRef;
+	/** Whether the UserIdentity has zero user ID */
+	private bool $isAnon;
+	/** The part of the key indicating whether to do queries against the primary DB */
+	private bool $fromPrimary;
 
 	/**
 	 * @param WebRequest|null $request
@@ -40,7 +40,7 @@ class BlockCacheKey {
 	 * @param BlockCacheKey $other
 	 * @return bool
 	 */
-	private function requestEquals( self $other ) {
+	private function requestEquals( self $other ): bool {
 		if ( $this->hasRequest !== $other->hasRequest ) {
 			return false;
 		} elseif ( $this->hasRequest ) {
@@ -96,7 +96,7 @@ class BlockCacheKey {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public function isUser( UserIdentity $user ) {
+	public function isUser( UserIdentity $user ): bool {
 		return $this->userRef->get() === $user;
 	}
 
@@ -104,7 +104,7 @@ class BlockCacheKey {
 	 * @param WeakReference|null $ref
 	 * @return string
 	 */
-	private static function dumpWeakRef( ?WeakReference $ref ) {
+	private static function dumpWeakRef( ?WeakReference $ref ): string {
 		if ( $ref === null ) {
 			return 'none';
 		} else {
@@ -122,7 +122,7 @@ class BlockCacheKey {
 	 *
 	 * @return string
 	 */
-	public function __toString() {
+	public function __toString(): string {
 		return 'BlockCacheKey{' .
 			'request=' . self::dumpWeakRef( $this->requestRef ) . ',' .
 			'user=' . self::dumpWeakRef( $this->userRef ) . ',' .
