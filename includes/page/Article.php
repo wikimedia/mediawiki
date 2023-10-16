@@ -1914,8 +1914,6 @@ class Article implements Page {
 		return $cacheable;
 	}
 
-	/** #@- */
-
 	/**
 	 * Lightweight method to get the parser output for a page, checking the parser cache
 	 * and so on. Doesn't consider most of the stuff that Article::view() is forced to

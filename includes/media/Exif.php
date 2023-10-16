@@ -675,12 +675,6 @@ class Exif {
 		unset( $this->mFilteredExifData[$prop . 'Ref'] );
 	}
 
-	/** #@- */
-
-	/** #@+
-	 * @return array
-	 */
-
 	/**
 	 * Get $this->mRawExifData
 	 * @return array
@@ -696,8 +690,6 @@ class Exif {
 	public function getFilteredData() {
 		return $this->mFilteredExifData;
 	}
-
-	/** #@- */
 
 	/**
 	 * The version of the output format
@@ -852,8 +844,6 @@ class Exif {
 
 		return false;
 	}
-
-	/** #@- */
 
 	/**
 	 * Validates if a tag has a legal value according to the Exif spec

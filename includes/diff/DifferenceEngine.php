@@ -243,8 +243,6 @@ class DifferenceEngine extends ContextSource {
 	/** @var Message[] */
 	private $revisionLoadErrors = [];
 
-	/** #@- */
-
 	/**
 	 * @param IContextSource|null $context Context to use, anything else will be ignored
 	 * @param int $old Old ID we want to show and diff with.

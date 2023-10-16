@@ -2841,8 +2841,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		self::purgeInterwikiCheckKey( $title );
 	}
 
-	/** #@- */
-
 	/**
 	 * Purge the check key for cross-wiki cache entries referencing this page
 	 *
