@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use Exception;
 use LogicException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
@@ -521,14 +520,14 @@ class FileModuleTest extends ResourceLoaderTestCase {
 			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => static function () {
 				return [ 'A-version' ];
 			}, 'callback' => static function () {
-				throw new Exception( 'Unexpected computation' );
+				throw new LogicException( 'Unexpected computation' );
 			} ] ]
 		];
 		$b = [
 			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => static function () {
 				return [ 'B-version' ];
 			}, 'callback' => static function () {
-				throw new Exception( 'Unexpected computation' );
+				throw new LogicException( 'Unexpected computation' );
 			} ] ]
 		];
 		yield 'packageFiles with different versionCallback' => [ $a, $b, false ];
@@ -539,7 +538,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 					return [ 'X-version' ];
 				},
 				'callback' => static function () {
-					throw new Exception( 'Unexpected computation' );
+					throw new LogicException( 'Unexpected computation' );
 				}
 			] ]
 		];
@@ -549,7 +548,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 					return [ 'X-version' ];
 				},
 				'callback' => static function () {
-					throw new Exception( 'Unexpected computation' );
+					throw new LogicException( 'Unexpected computation' );
 				}
 			] ]
 		];

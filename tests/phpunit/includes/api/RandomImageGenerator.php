@@ -240,11 +240,11 @@ class RandomImageGenerator {
 
 		$fh = fopen( $filename, 'w' );
 		if ( !$fh ) {
-			throw new Exception( "couldn't open $filename for writing" );
+			throw new UnexpectedValueException( "couldn't open $filename for writing" );
 		}
 		fwrite( $fh, $svg->asXML() );
 		if ( !fclose( $fh ) ) {
-			throw new Exception( "couldn't close $filename" );
+			throw new UnexpectedValueException( "couldn't close $filename" );
 		}
 	}
 

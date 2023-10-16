@@ -33,7 +33,7 @@ class CommandFactoryTest extends MediaWikiUnitTestCase {
 			}
 
 			public function getClient( array $options = [] ) {
-				throw new \Exception( 'unreachable' );
+				throw new \LogicException( 'unreachable' );
 			}
 		};
 

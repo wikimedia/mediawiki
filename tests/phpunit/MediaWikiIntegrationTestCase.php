@@ -769,11 +769,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function getServiceContainer() {
 		if ( !$this->localServices ) {
-			throw new Exception( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
+			throw new LogicException( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
 		}
 
 		if ( $this->localServices !== MediaWikiServices::getInstance() ) {
-			throw new Exception( __METHOD__ . ' may lead to inconsistencies because the '
+			throw new UnexpectedValueException( __METHOD__ . ' may lead to inconsistencies because the '
 				. ' global MediaWikiServices instance has been replaced by test code.' );
 		}
 
@@ -806,11 +806,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function setService( $name, $service ) {
 		if ( !$this->localServices ) {
-			throw new Exception( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
+			throw new LogicException( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
 		}
 
 		if ( $this->localServices !== MediaWikiServices::getInstance() ) {
-			throw new Exception( __METHOD__ . ' will not work because the global MediaWikiServices '
+			throw new UnexpectedValueException( __METHOD__ . ' will not work because the global MediaWikiServices '
 				. 'instance has been replaced by test code.' );
 		}
 
