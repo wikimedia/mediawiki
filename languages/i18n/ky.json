@@ -546,7 +546,7 @@
 	"log-fulllog": "Журналды бүтүн бойдон көрүү",
 	"edit-conflict": "Түзөтүүлөр тирешеси.",
 	"postedit-confirmation-created": "Барак түзүлдү.",
-	"postedit-confirmation-restored": "Барак калыбына келтирилген.",
+	"postedit-confirmation-restored": "Барак калыбына келтирилди.",
 	"postedit-confirmation-saved": "Түзөтүүңүз сакталды.",
 	"postedit-confirmation-published": "Түзөтмөңүз жарыяланды.",
 	"edit-already-exists": "Жаңы барак түзүү мүмкүн эмес. Мындай барак бар",

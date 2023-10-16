@@ -56,7 +56,8 @@
 			"Fenixs-ru",
 			"Deltaspace",
 			"BerryAVGN",
-			"Amire80"
+			"Amire80",
+			"Smigles"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -459,7 +460,7 @@
 	"apihelp-purge-param-forcerecursivelinkupdate": "То же, что <kbd>forcelinkupdate</kbd>, а также обновить таблицу ссылок для всех страниц, использующих данную как шаблон.",
 	"apihelp-purge-example-simple": "Очистить кэш для страниц <kbd>Main Page</kbd> и <kbd>API</kbd>.",
 	"apihelp-purge-example-generator": "Очистить кэш первых 10 страниц в основном пространстве имён.",
-	"apihelp-query-summary": "Запросить данные с - и - О MediaWiki.",
+	"apihelp-query-summary": "Запросить данные с и о MediaWiki.",
 	"apihelp-query-extended-description": "Все модификации данных сначала должны запросить соответствующий токен для предотвращения злоупотреблений с вредоносных сайтов.",
 	"apihelp-query-param-prop": "Какие использовать свойства для запрашиваемых страниц.",
 	"apihelp-query-param-list": "Какие списки использовать.",
