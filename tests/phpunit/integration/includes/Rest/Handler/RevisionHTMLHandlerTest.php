@@ -6,11 +6,11 @@ use DeferredUpdates;
 use Exception;
 use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Rest\Handler\Helper\RevisionContentHelper;
@@ -20,10 +20,8 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
-use NullStatsdDataFactory;
 use Psr\Http\Message\StreamInterface;
-use Psr\Log\NullLogger;
-use WANObjectCache;
+use ReflectionClass;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -63,29 +61,15 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param ?Parsoid $parsoid
-	 *
 	 * @return RevisionHTMLHandler
 	 */
-	private function newHandler( ?Parsoid $parsoid = null ): RevisionHTMLHandler {
+	private function newHandler(): RevisionHTMLHandler {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'CacheEpoch' => '20200202112233',
 			'OldRevisionParserCacheExpireTime' => 60 * 60,
 		] );
 
 		$services = $this->getServiceContainer();
-		$parserCacheFactory = new ParserCacheFactory(
-			$this->parserCacheBagOStuff,
-			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
-			$this->createHookContainer(),
-			new JsonCodec(),
-			new NullStatsdDataFactory(),
-			new NullLogger(),
-			$parserCacheFactoryOptions,
-			$services->getTitleFactory(),
-			$services->getWikiPageFactory()
-		);
-
 		$config = [
 			'RightsUrl' => 'https://example.com/rights',
 			'RightsText' => 'some rights',
@@ -99,17 +83,11 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$services->getMainConfig(),
 				[ 'ParsoidWikiID' => 'MyWiki' ]
 			),
-			$parserCacheFactory,
+			$services->getParsoidParserFactory(),
+			$services->getParserOutputAccess(),
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
-			$services->getGlobalIdGenerator(),
-			$services->getStatsdDataFactory(),
-			$parsoid ?? new Parsoid(
-			$services->get( 'ParsoidSiteConfig' ),
-			$services->get( 'ParsoidDataAccess' )
-		),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory(),
 			$services->getContentHandlerFactory()
 		);
 
@@ -286,12 +264,38 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'id' => $revisions['first']->getId() ] ]
 		);
 
-		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
-		$parsoid->expects( $this->once() )
+		$services = $this->getServiceContainer();
+		$parsoidParser = $services->getParsoidParserFactory()->create();
+
+		// Mock Parsoid
+		$mockParsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
+		$mockParsoid->expects( $this->once() )
 			->method( 'wikitext2html' )
 			->willThrowException( $parsoidException );
 
-		$handler = $this->newHandler( $parsoid );
+		// Install it in the ParsoidParser object
+		$reflector = new ReflectionClass( 'MediaWiki\Parser\Parsoid\ParsoidParser' );
+		$prop = $reflector->getProperty( 'parsoid' );
+		$prop->setAccessible( true );
+		$prop->setValue( $parsoidParser, $mockParsoid );
+		$this->assertEquals( $prop->getValue( $parsoidParser ), $mockParsoid );
+
+		// Create a mock Parsoid factory that returns the ParsoidParser object
+		// with the mocked Parsoid object.
+		$mockParsoidParserFactory = $this->createNoOpMock( ParsoidParserFactory::class, [ 'create' ] );
+		$mockParsoidParserFactory->expects( $this->once() )
+			->method( 'create' )
+			->willReturn( $parsoidParser );
+
+		// Ensure WiktiextContentHandler has the mock ParsoidParserFactory
+		$wtHandler = $services->getContentHandlerFactory()->getContentHandler( 'wikitext' );
+		$reflector = new ReflectionClass( 'WikitextContentHandler' );
+		$prop = $reflector->getProperty( 'parsoidParserFactory' );
+		$prop->setAccessible( true );
+		$prop->setValue( $wtHandler, $mockParsoidParserFactory );
+		$this->assertEquals( $prop->getValue( $wtHandler ), $mockParsoidParserFactory );
+
+		$handler = $this->newHandler();
 		$this->expectExceptionObject( $expectedException );
 		$this->executeHandler( $handler, $request, [
 			'format' => 'html'

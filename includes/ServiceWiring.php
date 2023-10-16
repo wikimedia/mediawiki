@@ -1505,14 +1505,11 @@ return [
 				$services->getMainConfig(),
 				[ 'ParsoidWikiID' => WikiMap::getCurrentWikiId() ]
 			),
-			$services->getParserCacheFactory(),
+			$services->getParsoidParserFactory(),
+			$services->getParserOutputAccess(),
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
-			$services->getGlobalIdGenerator(),
-			$services->getStatsdDataFactory(),
-			$services->getService( '_Parsoid' ),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory(),
 			$services->getContentHandlerFactory()
 		);
 	},
@@ -1546,7 +1543,8 @@ return [
 			$services->getParsoidDataAccess(),
 			$services->getParsoidPageConfigFactory(),
 			$services->getLanguageConverterFactory(),
-			$services->getParserFactory()
+			$services->getParserFactory(),
+			$services->getGlobalIdGenerator()
 		);
 	},
 
