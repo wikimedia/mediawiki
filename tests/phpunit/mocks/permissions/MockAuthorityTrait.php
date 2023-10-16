@@ -2,12 +2,26 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
+use IContextSource;
+use Language;
 use MediaWiki\Block\Block;
+use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\SystemBlock;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RateLimiter;
+use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Permissions\UserAuthority;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Message;
+use PHPUnit\Framework\MockObject\MockObject;
+use StatusValue;
 
 /**
  * Various useful Authority mocks.
@@ -216,5 +230,179 @@ trait MockAuthorityTrait {
 			} );
 		$mock->method( 'getBlock' )->willReturn( $block );
 		return $mock;
+	}
+
+	/** @return string[] Some dummy message parameters to test error message formatting. */
+	private function getFakeBlockMessageParams(): array {
+		return [
+			'[[User:Blocker|Blocker]]',
+			'Block reason that can contain {{templates}}',
+			'192.168.0.1',
+			'Blocker',
+		];
+	}
+
+	/**
+	 * @param bool $limited
+	 * @return RateLimiter
+	 */
+	private function newRateLimiter( $limited = false ): RateLimiter {
+		/** @var RateLimiter|MockObject $rateLimiter */
+		$rateLimiter = $this->createNoOpMock(
+			RateLimiter::class,
+			[ 'limit', 'isLimitable' ]
+		);
+
+		$rateLimiter->method( 'limit' )->willReturn( $limited );
+		$rateLimiter->method( 'isLimitable' )->willReturn( true );
+
+		return $rateLimiter;
+	}
+
+	/**
+	 * @param string[] $permissions
+	 * @return PermissionManager
+	 */
+	private function newPermissionsManager( array $permissions ): PermissionManager {
+		/** @var PermissionManager|MockObject $permissionManager */
+		$permissionManager = $this->createNoOpMock(
+			PermissionManager::class,
+			[
+				'userHasRight',
+				'userHasAnyRight',
+				'userHasAllRights',
+				'userCan',
+				'getPermissionErrors',
+				'isBlockedFrom',
+				'getApplicableBlock',
+				'newFatalPermissionDeniedStatus',
+			]
+		);
+
+		$permissionManager->method( 'userHasRight' )->willReturnCallback(
+			static function ( $user, $permission ) use ( $permissions ) {
+				return in_array( $permission, $permissions );
+			}
+		);
+
+		$permissionManager->method( 'userHasAnyRight' )->willReturnCallback(
+			static function ( $user, ...$actions ) use ( $permissions ) {
+				return array_diff( $actions, $permissions ) != $actions;
+			}
+		);
+
+		$permissionManager->method( 'userHasAllRights' )->willReturnCallback(
+			static function ( $user, ...$actions ) use ( $permissions ) {
+				return !array_diff( $actions, $permissions );
+			}
+		);
+
+		$permissionManager->method( 'userCan' )->willReturnCallback(
+			static function ( $permission, $user ) use ( $permissionManager ) {
+				return $permissionManager->userHasRight( $user, $permission );
+			}
+		);
+
+		$fakeBlockMessageParams = $this->getFakeBlockMessageParams();
+		// If the user has a block, the block applies to all actions except for 'read'
+		$permissionManager->method( 'getPermissionErrors' )->willReturnCallback(
+			static function ( $permission, $user, $target ) use ( $permissionManager, $fakeBlockMessageParams ) {
+				$errors = [];
+				if ( !$permissionManager->userCan( $permission, $user, $target ) ) {
+					$errors[] = [ 'permissionserrors' ];
+				}
+
+				if ( $user->getBlock() && $permission !== 'read' ) {
+					$errors[] = array_merge(
+						[ 'blockedtext-partial' ],
+						$fakeBlockMessageParams
+					);
+				}
+
+				return $errors;
+			}
+		);
+
+		$permissionManager->method( 'newFatalPermissionDeniedStatus' )->willReturnCallback(
+			static function ( $permission, $context ) use ( $permissionManager ) {
+				return StatusValue::newFatal( 'permissionserrors' );
+			}
+		);
+
+		// If the page's title is "Forbidden", will return a SystemBlock. Likewise,
+		// if the action is 'blocked', this will return a SystemBlock.
+		$permissionManager->method( 'getApplicableBlock' )->willReturnCallback(
+			static function ( $action, User $user, $rigor, $page ) {
+				if ( $page && $page->getDBkey() === 'Forbidden' ) {
+					return new SystemBlock();
+				}
+
+				if ( $action === 'blocked' ) {
+					return new SystemBlock();
+				}
+
+				return null;
+			}
+		);
+
+		$permissionManager->method( 'isBlockedFrom' )->willReturnCallback(
+			static function ( User $user, $page ) {
+				return $page->getDBkey() === 'Forbidden';
+			}
+		);
+
+		return $permissionManager;
+	}
+
+	private function newUser( Block $block = null ): User {
+		/** @var User|MockObject $actor */
+		$actor = $this->createNoOpMock( User::class, [ 'getBlock', 'isNewbie', 'toRateLimitSubject' ] );
+		$actor->method( 'getBlock' )->willReturn( $block );
+		$actor->method( 'isNewbie' )->willReturn( false );
+
+		$subject = new RateLimitSubject( $actor, '::1', [] );
+		$actor->method( 'toRateLimitSubject' )->willReturn( $subject );
+		return $actor;
+	}
+
+	private function newBlockErrorFormatter(): BlockErrorFormatter {
+		$blockErrorFormatter = $this->createNoOpMock( BlockErrorFormatter::class, [ 'getMessage' ] );
+		$blockErrorFormatter->method( 'getMessage' )->willReturn( new Message( 'blocked' ) );
+		return $blockErrorFormatter;
+	}
+
+	private function newContext(): IContextSource {
+		$language = $this->createNoOpMock( Language::class, [ 'getCode' ] );
+		$language->method( 'getCode' )->willReturn( 'en' );
+
+		$context = $this->createNoOpMock( IContextSource::class, [ 'getLanguage' ] );
+		$context->method( 'getLanguage' )->willReturn( $language );
+		return $context;
+	}
+
+	private function newRequest(): WebRequest {
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		return $request;
+	}
+
+	private function newUserAuthority( array $options = [] ): UserAuthority {
+		$permissionManager = $options['permissionManager']
+			?? $this->newPermissionsManager( $options['permissions'] ?? [] );
+
+		$rateLimiter = $options['rateLimiter']
+			?? $this->newRateLimiter( $options['limited'] ?? false );
+
+		$blockErrorFormatter = $options['blockErrorFormatter']
+			?? $this->newBlockErrorFormatter();
+
+		return new UserAuthority(
+			$options['actor'] ?? $this->newUser(),
+			$options['request'] ?? $this->newRequest(),
+			$options['context'] ?? $this->newContext(),
+			$permissionManager,
+			$rateLimiter,
+			$blockErrorFormatter
+		);
 	}
 }
