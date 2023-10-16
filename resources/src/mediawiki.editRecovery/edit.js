@@ -71,8 +71,8 @@ function onLoadHandler( $editForm ) {
 }
 
 function onLoadData( pageData ) {
-	// If there is data stored, and we're not on an edit conflict resolution form, load the data into the form.
-	if ( pageData !== undefined && mw.config.get( 'wgEditMessage' ) !== 'editconflict' ) {
+	// If there is data stored, load it into the form.
+	if ( pageData !== undefined ) {
 		loadData( pageData );
 	}
 
