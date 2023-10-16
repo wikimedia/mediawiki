@@ -61,14 +61,14 @@ abstract class FileBackendStore extends FileBackend {
 	protected const CACHE_EXPENSIVE_SIZE = 5; // integer; max entries in "expensive cache"
 
 	/** @var false Idiom for "no result due to missing file" (since 1.34) */
-	protected static $RES_ABSENT = false;
+	protected const RES_ABSENT = false;
 	/** @var null Idiom for "no result due to I/O errors" (since 1.34) */
-	protected static $RES_ERROR = null;
+	protected const RES_ERROR = null;
 
 	/** @var string File does not exist according to a normal stat query */
-	protected static $ABSENT_NORMAL = 'FNE-N';
+	protected const ABSENT_NORMAL = 'FNE-N';
 	/** @var string File does not exist according to a "latest"-mode stat query */
-	protected static $ABSENT_LATEST = 'FNE-L';
+	protected const ABSENT_LATEST = 'FNE-L';
 
 	/**
 	 * @see FileBackend::__construct()
@@ -425,7 +425,7 @@ abstract class FileBackendStore extends FileBackend {
 				$fsFile = $this->getLocalReference( [ 'src' => $path ] );
 				if ( !$fsFile ) { // retry failed?
 					$status->fatal(
-						$fsFile === self::$RES_ERROR ? 'backend-fail-read' : 'backend-fail-notexists',
+						$fsFile === self::RES_ERROR ? 'backend-fail-read' : 'backend-fail-notexists',
 						$path
 					);
 
@@ -656,7 +656,7 @@ abstract class FileBackendStore extends FileBackend {
 			return true;
 		}
 
-		return ( $stat === self::$RES_ABSENT ) ? false : self::EXISTENCE_ERROR;
+		return $stat === self::RES_ABSENT ? false : self::EXISTENCE_ERROR;
 	}
 
 	final public function getFileTimestamp( array $params ) {
@@ -722,9 +722,9 @@ abstract class FileBackendStore extends FileBackend {
 			) {
 				return $stat;
 			}
-		} elseif ( $stat === self::$ABSENT_LATEST ) {
+		} elseif ( $stat === self::ABSENT_LATEST ) {
 			return self::STAT_ABSENT;
-		} elseif ( $stat === self::$ABSENT_NORMAL ) {
+		} elseif ( $stat === self::ABSENT_NORMAL ) {
 			if ( !$latest ) {
 				return self::STAT_ABSENT;
 			}
@@ -738,7 +738,7 @@ abstract class FileBackendStore extends FileBackend {
 			return $stat;
 		}
 
-		return ( $stat === self::$RES_ERROR ) ? self::STAT_ERROR : self::STAT_ABSENT;
+		return $stat === self::RES_ERROR ? self::STAT_ERROR : self::STAT_ABSENT;
 	}
 
 	/**
@@ -776,11 +776,11 @@ abstract class FileBackendStore extends FileBackend {
 				}
 				// Update persistent cache (@TODO: set all entries in one batch)
 				$this->setFileCache( $path, $stat );
-			} elseif ( $stat === self::$RES_ABSENT ) {
+			} elseif ( $stat === self::RES_ABSENT ) {
 				$this->cheapCache->setField(
 					$path,
 					'stat',
-					$latest ? self::$ABSENT_LATEST : self::$ABSENT_NORMAL
+					$latest ? self::ABSENT_LATEST : self::ABSENT_NORMAL
 				);
 				$this->cheapCache->setField(
 					$path,
@@ -842,9 +842,9 @@ abstract class FileBackendStore extends FileBackend {
 				AtEase::suppressWarnings();
 				$content = file_get_contents( $fsFile->getPath() );
 				AtEase::restoreWarnings();
-				$contents[$path] = is_string( $content ) ? $content : self::$RES_ERROR;
+				$contents[$path] = is_string( $content ) ? $content : self::RES_ERROR;
 			} else {
-				// self::$RES_ERROR or self::$RES_ABSENT
+				// self::RES_ERROR or self::RES_ABSENT
 				$contents[$path] = $fsFile;
 			}
 		}
@@ -877,7 +877,7 @@ abstract class FileBackendStore extends FileBackend {
 				'xattr',
 				[ 'map' => $fields, 'latest' => $latest ]
 			);
-		} elseif ( $fields === self::$RES_ABSENT ) {
+		} elseif ( $fields === self::RES_ABSENT ) {
 			$this->cheapCache->setField(
 				$path,
 				'xattr',
@@ -924,7 +924,7 @@ abstract class FileBackendStore extends FileBackend {
 				'sha1',
 				[ 'hash' => $sha1, 'latest' => $latest ]
 			);
-		} elseif ( $sha1 === self::$RES_ABSENT ) {
+		} elseif ( $sha1 === self::RES_ABSENT ) {
 			$this->cheapCache->setField(
 				$path,
 				'sha1',
@@ -948,10 +948,10 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $fsFile instanceof FSFile ) {
 			$sha1 = $fsFile->getSha1Base36();
 
-			return is_string( $sha1 ) ? $sha1 : self::$RES_ERROR;
+			return is_string( $sha1 ) ? $sha1 : self::RES_ERROR;
 		}
 
-		return ( $fsFile === self::$RES_ERROR ) ? self::$RES_ERROR : self::$RES_ABSENT;
+		return $fsFile === self::RES_ERROR ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
 	final public function getFileProps( array $params ) {
@@ -975,7 +975,7 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $params['srcs'] as $src ) {
 			$path = self::normalizeStoragePath( $src );
 			if ( $path === null ) {
-				$fsFiles[$src] = self::$RES_ERROR; // invalid storage path
+				$fsFiles[$src] = self::RES_ERROR; // invalid storage path
 			} elseif ( $this->expensiveCache->hasField( $path, 'localRef' ) ) {
 				$val = $this->expensiveCache->getField( $path, 'localRef' );
 				// If we want the latest data, check that this cached
@@ -996,7 +996,7 @@ abstract class FileBackendStore extends FileBackend {
 					[ 'object' => $fsFile, 'latest' => $latest ]
 				);
 			} else {
-				// self::$RES_ERROR or self::$RES_ABSENT
+				// self::RES_ERROR or self::RES_ABSENT
 				$fsFiles[$path] = $fsFile;
 			}
 		}
@@ -1112,7 +1112,7 @@ abstract class FileBackendStore extends FileBackend {
 				if ( $exists === true ) {
 					$res = true;
 					break; // found one!
-				} elseif ( $exists === self::$RES_ERROR ) {
+				} elseif ( $exists === self::RES_ERROR ) {
 					$res = self::EXISTENCE_ERROR;
 				}
 			}

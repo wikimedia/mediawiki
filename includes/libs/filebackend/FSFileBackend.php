@@ -585,7 +585,7 @@ class FSFileBackend extends FileBackendStore {
 	protected function doGetFileStat( array $params ) {
 		$fsSrcPath = $this->resolveToFSPath( $params['src'] );
 		if ( $fsSrcPath === null ) {
-			return self::$RES_ERROR; // invalid storage path
+			return self::RES_ERROR; // invalid storage path
 		}
 
 		$this->trapWarnings(); // don't trust 'false' if there were errors
@@ -601,7 +601,7 @@ class FSFileBackend extends FileBackendStore {
 			];
 		}
 
-		return $hadError ? self::$RES_ERROR : self::$RES_ABSENT;
+		return $hadError ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
 	protected function doClearCache( array $paths = null ) {
@@ -628,7 +628,7 @@ class FSFileBackend extends FileBackendStore {
 		$exists = is_dir( $fsDirectory );
 		$hadError = $this->untrapWarnings();
 
-		return $hadError ? self::$RES_ERROR : $exists;
+		return $hadError ? self::RES_ERROR : $exists;
 	}
 
 	/**
@@ -653,11 +653,11 @@ class FSFileBackend extends FileBackendStore {
 			} elseif ( is_dir( $fsDirectory ) ) {
 				$this->logger->warning( __METHOD__ . ": unreadable directory: '$fsDirectory'" );
 
-				return self::$RES_ERROR; // bad permissions?
+				return self::RES_ERROR; // bad permissions?
 			} else {
 				$this->logger->warning( __METHOD__ . ": unreachable directory: '$fsDirectory'" );
 
-				return self::$RES_ERROR;
+				return self::RES_ERROR;
 			}
 		}
 
@@ -687,12 +687,12 @@ class FSFileBackend extends FileBackendStore {
 				$this->logger->warning( __METHOD__ .
 					": unreadable directory: '$fsDirectory': $error" );
 
-				return self::$RES_ERROR; // bad permissions?
+				return self::RES_ERROR; // bad permissions?
 			} else {
 				$this->logger->warning( __METHOD__ .
 					": unreachable directory: '$fsDirectory': $error" );
 
-				return self::$RES_ERROR;
+				return self::RES_ERROR;
 			}
 		}
 
@@ -705,7 +705,7 @@ class FSFileBackend extends FileBackendStore {
 		foreach ( $params['srcs'] as $src ) {
 			$source = $this->resolveToFSPath( $src );
 			if ( $source === null ) {
-				$fsFiles[$src] = self::$RES_ERROR; // invalid path
+				$fsFiles[$src] = self::RES_ERROR; // invalid path
 				continue;
 			}
 
@@ -716,9 +716,9 @@ class FSFileBackend extends FileBackendStore {
 			if ( $isFile ) {
 				$fsFiles[$src] = new FSFile( $source );
 			} elseif ( $hadError ) {
-				$fsFiles[$src] = self::$RES_ERROR;
+				$fsFiles[$src] = self::RES_ERROR;
 			} else {
-				$fsFiles[$src] = self::$RES_ABSENT;
+				$fsFiles[$src] = self::RES_ABSENT;
 			}
 		}
 
@@ -731,14 +731,14 @@ class FSFileBackend extends FileBackendStore {
 		foreach ( $params['srcs'] as $src ) {
 			$source = $this->resolveToFSPath( $src );
 			if ( $source === null ) {
-				$tmpFiles[$src] = self::$RES_ERROR; // invalid path
+				$tmpFiles[$src] = self::RES_ERROR; // invalid path
 				continue;
 			}
 			// Create a new temporary file with the same extension...
 			$ext = FileBackend::extensionFromPath( $src );
 			$tmpFile = $this->tmpFileFactory->newTempFSFile( 'localcopy_', $ext );
 			if ( !$tmpFile ) {
-				$tmpFiles[$src] = self::$RES_ERROR;
+				$tmpFiles[$src] = self::RES_ERROR;
 				continue;
 			}
 
@@ -753,9 +753,9 @@ class FSFileBackend extends FileBackendStore {
 				$this->chmod( $tmpPath );
 				$tmpFiles[$src] = $tmpFile;
 			} elseif ( $hadError ) {
-				$tmpFiles[$src] = self::$RES_ERROR; // copy failed
+				$tmpFiles[$src] = self::RES_ERROR; // copy failed
 			} else {
-				$tmpFiles[$src] = self::$RES_ABSENT;
+				$tmpFiles[$src] = self::RES_ABSENT;
 			}
 		}
 
