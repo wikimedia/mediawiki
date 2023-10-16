@@ -1112,10 +1112,12 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * @param callable $authorizer ( string $action, PageIdentity $target, PermissionStatus $status )
+	 * @param string $action
 	 * @return StatusValue
 	 */
 	private function authorizeInternal(
-		callable $authorizer
+		callable $authorizer,
+		string $action
 	): StatusValue {
 		// Wiki is read-only?
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -1124,7 +1126,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		$permStatus = new PermissionStatus();
 		if ( !$authorizer(
-			'createaccount',
+			$action,
 			SpecialPage::getTitleFor( 'CreateAccount' ),
 			$permStatus
 		) ) {
@@ -1158,7 +1160,8 @@ class AuthManager implements LoggerAwareInterface {
 				PermissionStatus $status
 			) use ( $creator ) {
 				return $creator->probablyCan( $action, $target, $status );
-			}
+			},
+			'createaccount'
 		);
 	}
 
@@ -1181,7 +1184,8 @@ class AuthManager implements LoggerAwareInterface {
 				PermissionStatus $status
 			) use ( $creator ) {
 				return $creator->authorizeWrite( $action, $target, $status );
-			}
+			},
+			'createaccount'
 		);
 	}
 
@@ -1712,9 +1716,19 @@ class AuthManager implements LoggerAwareInterface {
 	 *  - one of the self::AUTOCREATE_SOURCE_* constants
 	 * @param bool $login Whether to also log the user in
 	 * @param bool $log Whether to generate a user creation log entry (since 1.36)
+	 * @param Authority|null $performer The performer of the action to use for user rights
+	 *   checking. Normally null to indicate an anonymous performer. Added in 1.42 for
+	 *   Special:CreateLocalAccount (T234371).
+	 *
 	 * @return Status Good if user was created, Ok if user already existed, otherwise Fatal
 	 */
-	public function autoCreateUser( User $user, $source, $login = true, $log = true ) {
+	public function autoCreateUser(
+		User $user,
+		$source,
+		$login = true,
+		$log = true,
+		?Authority $performer = null
+	) {
 		$validSources = [
 			self::AUTOCREATE_SOURCE_SESSION,
 			self::AUTOCREATE_SOURCE_MAINT,
@@ -1777,10 +1791,12 @@ class AuthManager implements LoggerAwareInterface {
 			return Status::newFatal( wfMessage( 'readonlytext', $reason ) );
 		}
 
+		// If there is a non-anonymous performer, don't use their session
+		$session = $performer ? null : $this->request->getSession();
+
 		// Check the session, if we tried to create this user already there's
 		// no point in retrying.
-		$session = $this->request->getSession();
-		if ( $session->get( self::AUTOCREATE_BLOCKLIST ) ) {
+		if ( $session && $session->get( self::AUTOCREATE_BLOCKLIST ) ) {
 			$this->logger->debug( __METHOD__ . ': blacklisted in session {sessionid}', [
 				'username' => $username,
 				'sessionid' => $session->getId(),
@@ -1801,26 +1817,31 @@ class AuthManager implements LoggerAwareInterface {
 			$this->logger->debug( __METHOD__ . ': name "{username}" is not usable', [
 				'username' => $username,
 			] );
-			$session->set( self::AUTOCREATE_BLOCKLIST, 'noname' );
+			if ( $session ) {
+				$session->set( self::AUTOCREATE_BLOCKLIST, 'noname' );
+			}
 			$user->setId( 0 );
 			$user->loadFromId();
 			return Status::newFatal( 'noname' );
 		}
 
 		// Is the IP user able to create accounts?
-		$anon = $this->userFactory->newAnonymous();
-		if ( $source !== self::AUTOCREATE_SOURCE_MAINT &&
-			!$anon->isAllowedAny( 'createaccount', 'autocreateaccount' )
-		) {
-			$this->logger->debug( __METHOD__ . ': IP lacks the ability to create or autocreate accounts', [
-				'username' => $username,
-				'clientip' => $anon->getName(),
-			] );
-			$session->set( self::AUTOCREATE_BLOCKLIST, 'authmanager-autocreate-noperm' );
-			$session->persist();
-			$user->setId( 0 );
-			$user->loadFromId();
-			return Status::newFatal( 'authmanager-autocreate-noperm' );
+		$performer ??= $this->userFactory->newAnonymous();
+		if ( $source !== self::AUTOCREATE_SOURCE_MAINT ) {
+			$status = $this->authorizeAutoCreateAccount( $performer );
+			if ( !$status->isOK() ) {
+				$this->logger->debug( __METHOD__ . ': cannot create or autocreate accounts', [
+					'username' => $username,
+					'creator' => $performer->getName(),
+				] );
+				if ( $session ) {
+					$session->set( self::AUTOCREATE_BLOCKLIST, $status );
+					$session->persist();
+				}
+				$user->setId( 0 );
+				$user->loadFromId();
+				return Status::wrap( $status );
+			}
 		}
 
 		// Avoid account creation races on double submissions
@@ -1851,7 +1872,9 @@ class AuthManager implements LoggerAwareInterface {
 					'username' => $username,
 					'reason' => $ret->getWikiText( false, false, 'en' ),
 				] );
-				$session->set( self::AUTOCREATE_BLOCKLIST, $status );
+				if ( $session ) {
+					$session->set( self::AUTOCREATE_BLOCKLIST, $status );
+				}
 				$user->setId( 0 );
 				$user->loadFromId();
 				return $ret;
@@ -1949,6 +1972,26 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		return Status::newGood();
+	}
+
+	/**
+	 * Authorize automatic account creation. This is like account creation but
+	 * checks the autocreateaccount right instead of the createaccount right.
+	 *
+	 * @param Authority $creator
+	 * @return StatusValue
+	 */
+	private function authorizeAutoCreateAccount( Authority $creator ) {
+		return $this->authorizeInternal(
+			static function (
+				string $action,
+				PageIdentity $target,
+				PermissionStatus $status
+			) use ( $creator ) {
+				return $creator->authorizeWrite( $action, $target, $status );
+			},
+			'autocreateaccount'
+		);
 	}
 
 	// endregion -- end of Account creation

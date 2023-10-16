@@ -879,7 +879,7 @@ class PermissionManager {
 		$useReplica = $rigor !== self::RIGOR_SECURE;
 
 		// Create account blocks are implemented separately due to weird IP exemption rules
-		if ( $action === 'createaccount' ) {
+		if ( in_array( $action, [ 'createaccount', 'autocreateaccount' ], true ) ) {
 			$isExempt = $this->userHasRight( $user, 'ipblock-exempt' );
 			return $this->blockManager->getCreateAccountBlock(
 				$user,
@@ -1077,6 +1077,11 @@ class PermissionManager {
 			) {
 				// Show category page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-category-page' ];
+			}
+		} elseif ( $action === 'autocreateaccount' ) {
+			// createaccount implies autocreateaccount
+			if ( !$this->userHasAnyRight( $user, 'autocreateaccount', 'createaccount' ) ) {
+				$errors[] = $this->missingPermissionError( $action, $short );
 			}
 		} elseif ( !$this->userHasRight( $user, $action ) ) {
 			$errors[] = $this->missingPermissionError( $action, $short );
@@ -1339,7 +1344,9 @@ class PermissionManager {
 
 		// Only 'createaccount' can be performed on special pages,
 		// which don't actually exist in the DB.
-		if ( $title->getNamespace() === NS_SPECIAL && $action !== 'createaccount' ) {
+		if ( $title->getNamespace() === NS_SPECIAL
+			&& !in_array( $action, [ 'createaccount', 'autocreateaccount' ], true )
+		) {
 			$errors[] = [ 'ns-specialprotected' ];
 		}
 
