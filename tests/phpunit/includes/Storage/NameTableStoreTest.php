@@ -177,18 +177,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	public static function provideTestGetAndAcquireIdNameNormalization() {
 		yield [ 'A', 'a', 'strtolower' ];
 		yield [ 'b', 'B', 'strtoupper' ];
-		yield [
-			'X',
-			'X',
-			static function ( $name ) {
-				return $name;
-			}
-		];
-		yield [ 'ZZ', 'ZZ-a', __CLASS__ . '::appendDashAToString' ];
-	}
-
-	public static function appendDashAToString( $string ) {
-		return $string . '-a';
+		yield [ 'X', 'X', static fn ( $name ) => $name ];
+		yield [ 'ZZ', 'ZZ-a', static fn ( $name ) => "$name-a" ];
 	}
 
 	/**

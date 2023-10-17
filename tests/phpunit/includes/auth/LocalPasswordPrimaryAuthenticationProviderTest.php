@@ -450,7 +450,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			],
 			[
 				PasswordAuthenticationRequest::class,
-				static fn ( $sysopUsername ) => lcfirst( $sysopUsername ),
+				'lcfirst',
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood()
