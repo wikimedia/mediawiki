@@ -403,11 +403,19 @@ class WikitextContentHandler extends TextContentHandler {
 		[ $redir, $contentWithoutRedirect ] = $this->extractRedirectTargetAndText( $content );
 		if ( $parserOptions->getUseParsoid() ) {
 			$parser = $this->parsoidParserFactory->create();
+			// Parsoid renders the #REDIRECT magic word as an invisible
+			// <link> tag and doesn't require it to be stripped.
+			// T349087: ...and in fact, RESTBase relies on getting
+			// redirect information from this <link> tag, so it needs
+			// to be present.
+			$text = $content->getText();
 		} else {
+			// The legacy parser requires the #REDIRECT magic word to
+			// be stripped from the content before parsing.
 			$parser = $this->parserFactory->getInstance();
+			$text = $contentWithoutRedirect->getText();
 		}
 
-		$text = $contentWithoutRedirect->getText();
 		$parserOutput = $parser
 			->parse( $text, $title, $parserOptions, true, true, $revId );
 
