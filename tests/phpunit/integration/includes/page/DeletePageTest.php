@@ -84,6 +84,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 	private function assertDeletionLogged(
 		ProperPageIdentity $title,
+		int $pageID,
 		User $deleter,
 		string $reason,
 		bool $suppress,
@@ -100,6 +101,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 				'log_actor',
 				'log_namespace',
 				'log_title',
+				'log_page',
 			],
 			[ 'log_id' => $logID ],
 			[ [
@@ -109,6 +111,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 				(string)$deleter->getActorId(),
 				(string)$title->getNamespace(),
 				$title->getDBkey(),
+				$pageID,
 			] ],
 			[],
 			$commentQuery['joins']
@@ -306,7 +309,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertPageObjectsConsistency( $page );
 		$this->assertArchiveVisibility( $page->getTitle(), $suppress );
-		$this->assertDeletionLogged( $page, $deleterUser, $reason, $suppress, $logSubtype, $logID );
+		$this->assertDeletionLogged( $page, $id, $deleterUser, $reason, $suppress, $logSubtype, $logID );
 		$this->assertDeletionTags( $logID, $tags );
 		$this->assertPageLinksUpdate( $id, $immediate );
 
