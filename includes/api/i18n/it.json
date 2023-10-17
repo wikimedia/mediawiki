@@ -341,7 +341,7 @@
 	"apihelp-query+allusers-param-to": "Il nome utente al quale interrompere l'elenco.",
 	"apihelp-query+allusers-param-prefix": "Ricerca per tutti gli utenti che iniziano con questo valore.",
 	"apihelp-query+allusers-param-dir": "Direzione dell'ordinamento.",
-	"apihelp-query+allusers-param-group": "Includi solo gli utenti nei gruppi indicati.",
+	"apihelp-query+allusers-param-group": "Includi solo gli utenti dei gruppi indicati. Non include gruppi impliciti o auto-promossi come *, utente o autoconfermato.",
 	"apihelp-query+allusers-param-excludegroup": "Escludi gli utenti nei gruppi indicati.",
 	"apihelp-query+allusers-param-prop": "Quali informazioni includere:",
 	"apihelp-query+allusers-param-limit": "Quanti nomi utente totali restituire.",
