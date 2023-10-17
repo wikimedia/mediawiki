@@ -4,7 +4,6 @@ namespace Mediawiki\ParserOutputTransform;
 
 use LogicException;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWikiLangTestCase;
 use ParserOutput;
 use Wikimedia\Parsoid\Core\SectionMetadata;
@@ -35,7 +34,7 @@ class DefaultOutputTransformTest extends MediaWikiLangTestCase {
 
 		$po = new ParserOutput( $text );
 		self::initSections( $po );
-		$actual = MediaWikiServices::getInstance()->getDefaultOutputTransform()->transform( $po, $options )
+		$actual = $this->getServiceContainer()->getDefaultOutputTransform()->transform( $po, $options )
 			->getTransformedText();
 		$this->assertSame( $expect, $actual );
 	}
@@ -217,7 +216,7 @@ EOF
 		$po = new ParserOutput( null );
 
 		$this->expectException( LogicException::class );
-		MediaWikiServices::getInstance()->getDefaultOutputTransform()->transform( $po, [] );
+		$this->getServiceContainer()->getDefaultOutputTransform()->transform( $po, [] );
 	}
 
 	public static function provideTransform_absoluteURLs() {
@@ -254,7 +253,7 @@ EOF
 	public function testTransform_absoluteURLs( string $text, string $expectedText ) {
 		$this->overrideConfigValue( MainConfigNames::Server, '//TEST_SERVER' );
 		$po = new ParserOutput( $text );
-		$actual = MediaWikiServices::getInstance()->getDefaultOutputTransform()
+		$actual = $this->getServiceContainer()->getDefaultOutputTransform()
 			->transform( $po, [ 'absoluteURLs' => true ] )->getTransformedText();
 		$this->assertSame( $expectedText, $actual );
 	}

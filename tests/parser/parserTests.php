@@ -26,7 +26,6 @@
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Tests\AnsiTermColorer;
@@ -193,7 +192,7 @@ class ParserTestsMaintenance extends Maintenance {
 		$recorderLB = false;
 		if ( $record || $compare ) {
 			// Make an untracked DB_PRIMARY connection (wiki's table prefix, not parsertest_)
-			$recorderLB = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
+			$recorderLB = $this->getServiceContainer()->getDBLoadBalancerFactory()->newMainLB();
 			$recorderDB = $recorderLB->getMaintenanceConnectionRef( DB_PRIMARY );
 			// Add recorder before previewer because recorder will create the
 			// DB table if it doesn't exist

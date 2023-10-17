@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\TitleValue;
 
 /**
@@ -41,7 +40,7 @@ class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Linker\LinkTargetStore::getLinkTargetById
 	 */
 	public function testGetLinkTargetById( $target ) {
-		$linkTargetStore = MediaWikiServices::getInstance()->getLinkTargetLookup();
+		$linkTargetStore = $this->getServiceContainer()->getLinkTargetLookup();
 		$db = $this->getDb();
 		$id = $linkTargetStore->acquireLinkTargetId( $target, $db );
 		$actualLinkTarget = $linkTargetStore->getLinkTargetById( $id, $db );
@@ -54,7 +53,7 @@ class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Linker\LinkTargetStore::getLinkTargetById
 	 */
 	public function testGetLinkTargetByIdWithoutCache( $target ) {
-		$linkTargetStore = MediaWikiServices::getInstance()->getLinkTargetLookup();
+		$linkTargetStore = $this->getServiceContainer()->getLinkTargetLookup();
 		$db = $this->getDb();
 		$id = $linkTargetStore->acquireLinkTargetId( $target, $db );
 		$linkTargetStore->clearClassCache();

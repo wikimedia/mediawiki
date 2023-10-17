@@ -3,7 +3,6 @@
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FileModule;
@@ -46,7 +45,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'sourcemap' => null,
 		];
 		$resourceLoader = $rl ?: new ResourceLoader(
-			MediaWikiServices::getInstance()->getMainConfig(),
+			$this->getServiceContainer()->getMainConfig(),
 			null,
 			null,
 			[

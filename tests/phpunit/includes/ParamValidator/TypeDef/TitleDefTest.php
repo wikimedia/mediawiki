@@ -3,7 +3,6 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -18,7 +17,7 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		return new TitleDef(
 			$callbacks,
-			MediaWikiServices::getInstance()->getTitleFactory()
+			$this->getServiceContainer()->getTitleFactory()
 		);
 	}
 
