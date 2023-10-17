@@ -1851,18 +1851,18 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$this->overrideConfigValues( $options );
 		}
 
-		$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$langNameUtils = $this->getServiceContainer()->getLanguageNameUtils();
 		$this->assertSame( $expected,
 			$langNameUtils->getLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
 		$this->assertSame( $expected, $langNameUtils->getLanguageName( $code, ...$otherArgs ) );
 	}
 
 	private function getLanguageNames( ...$args ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageNames( ...$args );
+		return $this->getServiceContainer()->getLanguageNameUtils()->getLanguageNames( ...$args );
 	}
 
 	private function getLanguageName( ...$args ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageName( ...$args );
+		return $this->getServiceContainer()->getLanguageNameUtils()->getLanguageName( ...$args );
 	}
 
 	private function getFileName( ...$args ) {

@@ -8,7 +8,6 @@
  */
 
 use MediaWiki\Languages\LanguageFactory;
-use MediaWiki\MediaWikiServices;
 
 require __DIR__ . '/../../../maintenance/Maintenance.php';
 
@@ -43,7 +42,7 @@ class GenerateJqueryMsgData extends Maintenance {
 	}
 
 	public function execute() {
-		$this->languageFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+		$this->languageFactory = $this->getServiceContainer()->getLanguageFactory();
 		$data = $this->getData();
 		$this->writeJsonFile( $data, __DIR__ . '/mediawiki.jqueryMsg.data.json' );
 	}

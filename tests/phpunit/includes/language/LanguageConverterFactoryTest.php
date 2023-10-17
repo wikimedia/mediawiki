@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -27,9 +26,9 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$manualLevel
 	) {
 		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( $langCode );
 		$factory = new LanguageConverterFactory(
-			MediaWikiServices::getInstance()->getObjectFactory(),
+			$this->getServiceContainer()->getObjectFactory(),
 			false,
 			false,
 			false,
@@ -62,9 +61,9 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testCreateFromCodeEnPigLatin() {
 		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
-			MediaWikiServices::getInstance()->getObjectFactory(),
+			$this->getServiceContainer()->getObjectFactory(),
 			true,
 			false,
 			false,
@@ -100,9 +99,9 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testDisabledBooleans( $pigLatinDisabled, $conversionDisabled, $titleDisabled ) {
 		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
-			MediaWikiServices::getInstance()->getObjectFactory(),
+			$this->getServiceContainer()->getObjectFactory(),
 			!$pigLatinDisabled,
 			$conversionDisabled,
 			$titleDisabled,
@@ -147,9 +146,9 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testDefaultContentLanguageFallback() {
 		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
-			MediaWikiServices::getInstance()->getObjectFactory(),
+			$this->getServiceContainer()->getObjectFactory(),
 			false,
 			false,
 			false,
