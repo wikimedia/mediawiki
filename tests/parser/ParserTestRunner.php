@@ -2230,8 +2230,10 @@ class ParserTestRunner {
 		// Find out values for some special options.
 		$langCode =
 			self::getOptionValue( 'language', $opts, 'en' );
-		$variant =
+		$variant = // old deprecated option name
 			self::getOptionValue( 'variant', $opts, false );
+		$variant =
+			self::getOptionValue( 'htmlVariantLanguage', $opts, $variant );
 		$maxtoclevel =
 			self::getOptionValue( 'wgMaxTocLevel', $opts, 999 );
 		$linkHolderBatchSize =
