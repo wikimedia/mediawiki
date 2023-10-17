@@ -18,11 +18,9 @@
  * @file
  */
 
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\JsonUnserializable;
 use MediaWiki\Json\JsonUnserializableTrait;
 use MediaWiki\Json\JsonUnserializer;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -317,10 +315,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/** @var int Upper bound of expiry based on parse duration */
 	private $mMaxAdaptiveExpiry = INF;
-
-	/** @internal */
-	public const EDITSECTION_REGEX =
-		'#<mw:editsection page="(.*?)" section="(.*?)">(.*?)</mw:editsection>#s';
 
 	// finalizeAdaptiveCacheExpiry() uses TTL = MAX( m * PARSE_TIME + b, MIN_AR_TTL)
 	// Current values imply that m=3933.333333 and b=-333.333333
@@ -645,6 +639,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function getTOCData(): ?TOCData {
 		return $this->mTOCData;
+	}
+
+	/**
+	 * @internal
+	 * @return string
+	 */
+	public function getCacheMessage(): string {
+		return $this->mCacheMessage;
 	}
 
 	/**
@@ -1864,93 +1866,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		} else {
 			$this->mLimitReportJSData[$key] = $data;
 		}
-	}
-
-	/**
-	 * @internal
-	 * @return string
-	 */
-	public function renderDebugInfo(): string {
-		$text = '';
-
-		$limitReportData = $this->getLimitReportData();
-		// If nothing set it, we can't get it.
-		if ( $limitReportData ) {
-			$limitReport = "NewPP limit report\n";
-
-			if ( array_key_exists( 'cachereport-origin', $limitReportData ) ) {
-				$limitReport .= "Parsed by {$limitReportData['cachereport-origin']}\n";
-			}
-
-			if ( array_key_exists( 'cachereport-timestamp', $limitReportData ) ) {
-				$limitReport .= "Cached time: {$limitReportData['cachereport-timestamp']}\n";
-			}
-
-			if ( array_key_exists( 'cachereport-ttl', $limitReportData ) ) {
-				$limitReport .= "Cache expiry: {$limitReportData['cachereport-ttl']}\n";
-			}
-
-			if ( array_key_exists( 'cachereport-transientcontent', $limitReportData ) ) {
-				$transient = $limitReportData['cachereport-transientcontent'] ? 'true' : 'false';
-				$limitReport .= "Reduced expiry: $transient\n";
-			}
-
-			// TODO: flags should go into limit report too.
-			$limitReport .= 'Complications: [' . implode( ', ', $this->getAllFlags() ) . "]\n";
-
-			$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
-			foreach ( $limitReportData as $key => $value ) {
-				if ( in_array( $key, [
-					'cachereport-origin',
-					'cachereport-timestamp',
-					'cachereport-ttl',
-					'cachereport-transientcontent',
-					'limitreport-timingprofile',
-				] ) ) {
-					// These keys are processed separately.
-					continue;
-				}
-				if ( $hookRunner->onParserLimitReportFormat(
-					$key, $value, $limitReport, false, false )
-				) {
-					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
-					$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
-						->inLanguage( 'en' )->useDatabase( false );
-					if ( !$valueMsg->exists() ) {
-						$valueMsg = new RawMessage( '$1' );
-					}
-					if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
-						$valueMsg->params( $value );
-						$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
-					}
-				}
-			}
-			// Since we're not really outputting HTML, decode the entities and
-			// then re-encode the things that need hiding inside HTML comments.
-			$limitReport = htmlspecialchars_decode( $limitReport );
-
-			// Sanitize for comment. Note '‐' in the replacement is U+2010,
-			// which looks much like the problematic '-'.
-			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
-			$text = "\n<!-- \n$limitReport-->\n";
-
-			$profileReport = $limitReportData['limitreport-timingprofile'] ?? null;
-			if ( $profileReport ) {
-				$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
-				$text .= implode( "\n", $profileReport ) . "\n-->\n";
-			}
-		}
-
-		if ( $this->mCacheMessage ) {
-			$text .= "\n<!-- $this->mCacheMessage\n -->\n";
-		}
-
-		$parsoidVersion = $this->getExtensionData( 'core:parsoid-version' );
-		if ( $parsoidVersion ) {
-			$text .= "\n<!--Parsoid $parsoidVersion-->\n";
-		}
-
-		return $text;
 	}
 
 	/**
