@@ -215,7 +215,7 @@ class ParsoidOutputAccess {
 		try {
 			// Since we know we are generating Parsoid output, explicitly
 			// call ParserOptions::setUseParsoid. This ensures that when
-			// we query the parser-cache, the right cache key is called.
+			// we query the parser-cache, the right cache key is computed.
 			// This is an optional transition step to using ParserOutputAccess.
 			$parserOpts->setUseParsoid();
 			$status = $this->parserOutputAccess->getParserOutput(
