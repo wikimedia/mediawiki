@@ -98,7 +98,7 @@ class ParserOutputAccess {
 	/**
 	 * In cases that an extension tries to get the same ParserOutput of
 	 * the page right after it was parsed (T301310).
-	 * @var ParserOutput[]
+	 * @var ParserOutput[][]
 	 */
 	private $localCache = [];
 
@@ -218,8 +218,8 @@ class ParserOutputAccess {
 		$classCacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
-			if ( isset( $this->localCache[$classCacheKey] ) && !$isOld ) {
-				return $this->localCache[$classCacheKey];
+			if ( isset( $this->localCache[$classCacheKey][$page->getLatest()] ) && !$isOld ) {
+				return $this->localCache[$classCacheKey][$page->getLatest()];
 			}
 			$output = $primaryCache->get( $page, $parserOptions );
 		} elseif ( $useCache === self::CACHE_SECONDARY && $revision ) {
@@ -230,7 +230,7 @@ class ParserOutputAccess {
 		}
 
 		if ( $output && !$isOld ) {
-			$this->localCache[$classCacheKey] = $output;
+			$this->localCache[$classCacheKey] = [ $page->getLatest() => $output ];
 		}
 
 		// HACK! If the 'useParsoid' option is set, also look up content
@@ -329,7 +329,7 @@ class ParserOutputAccess {
 		if ( $output && !$isOld ) {
 			$primaryCache = $this->getPrimaryCache( $parserOptions );
 			$classCacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions );
-			$this->localCache[$classCacheKey] = $output;
+			$this->localCache[$classCacheKey] = [ $page->getLatest() => $output ];
 		}
 
 		if ( $status->isGood() ) {
