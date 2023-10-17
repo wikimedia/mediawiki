@@ -22,7 +22,7 @@
 class FSFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var string Shell command */
 	public $cmd;
-	/** var callback Post-operation success/error handling and cleanup function */
+	/** @var callback Post-operation success/error handling and cleanup function */
 	public $callback;
 
 	/**
