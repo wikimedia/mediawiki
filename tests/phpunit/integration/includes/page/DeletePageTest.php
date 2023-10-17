@@ -324,4 +324,59 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		yield 'custom deletion log' => [ false, [], true, 'custom-del-log' ];
 		yield 'queued deletion' => [ false, [], false, 'delete' ];
 	}
+
+	public function testDeletionHooks() {
+		$deleterUser = static::getTestSysop()->getUser();
+		$deleter = new UltimateAuthority( $deleterUser );
+
+		$status = $this->editPage( __METHOD__, '#REDIRECT[[Foo]]' );
+		$id = $status->getNewRevision()->getPageId();
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromID( $id );
+
+		$this->assertTrue( $wikiPage->exists(), 'WikiPage exists before deletion' );
+		$this->assertTrue( $wikiPage->isRedirect(), 'WikiPage is redirect before deletion' );
+		// Clear internal WikiPage state, to ensure that DeletePage loads it if it's missing
+		$wikiPage->clear();
+
+		// Set up hook handlers for testing
+		$oldHookCalled = 0;
+		$newHookCalled = 0;
+
+		$this->setTemporaryHook( 'ArticleDeleteComplete', function (
+			WikiPage $wikiPage, ...$unused
+		) use ( &$oldHookCalled ) {
+			$this->assertTrue( $wikiPage->exists(), 'WikiPage exists in ArticleDeleteComplete hook' );
+			$this->assertTrue( $wikiPage->isRedirect(), 'WikiPage is redirect in ArticleDeleteComplete hook' );
+
+			$oldHookCalled++;
+		} );
+
+		$this->setTemporaryHook( 'PageDeleteComplete', function (
+			ProperPageIdentity $page, ...$unused
+		) use ( &$newHookCalled ) {
+			$this->assertTrue( $page->exists(), 'ProperPageIdentity exists in PageDeleteComplete hook' );
+
+			// This works because $page is actually a WikiPage, and WikiPageFactory::newFromTitle() returns
+			// the same object. Shouldn't have done that, some extension probably depends on this now…
+			$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $page );
+			$this->assertTrue( $wikiPage->exists(), 'WikiPage exists in PageDeleteComplete hook' );
+			$this->assertTrue( $wikiPage->isRedirect(), 'WikiPage is redirect in PageDeleteComplete hook' );
+
+			$newHookCalled++;
+		} );
+
+		// Do the deletion
+		$reason = "testing deletion";
+		$deletePage = $this->getDeletePage( $wikiPage, $deleter );
+		$status = $deletePage
+			->forceImmediate( true )
+			->deleteUnsafe( $reason );
+
+		$this->assertStatusGood( $status, 'Deletion should succeed' );
+		$this->assertSame( 1, $oldHookCalled, 'Old hook was called' );
+		$this->assertSame( 1, $newHookCalled, 'New hook was called' );
+
+		$this->assertFalse( $wikiPage->exists(), 'WikiPage does not exist after deletion' );
+		$this->assertFalse( $wikiPage->isRedirect(), 'WikiPage is not a redirect after deletion' );
+	}
 }

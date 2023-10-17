@@ -21,7 +21,8 @@ interface ArticleDeleteCompleteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param WikiPage $wikiPage WikiPage that was deleted
+	 * @param WikiPage $wikiPage WikiPage that was deleted.
+	 *   This object represents state before deletion (e.g. $wikiPage->exists() will return true).
 	 * @param User $user User that deleted the article
 	 * @param string $reason Reason the article was deleted
 	 * @param int $id ID of the article that was deleted
