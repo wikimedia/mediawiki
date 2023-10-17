@@ -32,6 +32,9 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Linker\LinkTargetLookup;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -40,12 +43,13 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use Message;
 use WatchedItemStoreInterface;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -115,12 +119,13 @@ class MergeHistory {
 
 	/** @var TitleFactory */
 	private $titleFactory;
+	private LinkTargetLookup $linkTargetLookup;
 
 	/**
 	 * @param PageIdentity $source Page from which history will be merged
 	 * @param PageIdentity $dest Page to which history will be merged
 	 * @param ?string $timestamp Timestamp up to which history from the source will be merged
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param RevisionStore $revisionStore
 	 * @param WatchedItemStoreInterface $watchedItemStore
@@ -129,12 +134,13 @@ class MergeHistory {
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param TitleFormatter $titleFormatter
 	 * @param TitleFactory $titleFactory
+	 * @param LinkTargetLookup $linkTargetLookup
 	 */
 	public function __construct(
 		PageIdentity $source,
 		PageIdentity $dest,
 		?string $timestamp,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		IContentHandlerFactory $contentHandlerFactory,
 		RevisionStore $revisionStore,
 		WatchedItemStoreInterface $watchedItemStore,
@@ -142,7 +148,8 @@ class MergeHistory {
 		HookContainer $hookContainer,
 		WikiPageFactory $wikiPageFactory,
 		TitleFormatter $titleFormatter,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		LinkTargetLookup $linkTargetLookup
 	) {
 		// Save the parameters
 		$this->source = $source;
@@ -150,7 +157,7 @@ class MergeHistory {
 		$this->timestamp = $timestamp;
 
 		// Get the database
-		$this->dbw = $loadBalancer->getConnectionRef( DB_PRIMARY );
+		$this->dbw = $dbProvider->getPrimaryDatabase();
 
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
@@ -160,6 +167,7 @@ class MergeHistory {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->titleFactory = $titleFactory;
+		$this->linkTargetLookup = $linkTargetLookup;
 	}
 
 	/**
@@ -470,6 +478,7 @@ class MergeHistory {
 		$newPage->updateRevisionOn( $this->dbw, $insertedRevRecord );
 
 		if ( !$deleteSource ) {
+			// TODO: This doesn't belong here, it should be part of PageLinksTable.
 			// We have created a redirect page so let's
 			// record the link from the page to the new title.
 			// It should have no other outgoing links...
@@ -477,14 +486,27 @@ class MergeHistory {
 				->deleteFrom( 'pagelinks' )
 				->where( [ 'pl_from' => $this->source->getId() ] )
 				->caller( __METHOD__ )->execute();
-			$this->dbw->insert( 'pagelinks',
-				[
-					'pl_from' => $this->source->getId(),
-					'pl_from_namespace' => $this->source->getNamespace(),
-					'pl_namespace' => $this->dest->getNamespace(),
-					'pl_title' => $this->dest->getDBkey() ],
-				__METHOD__
+			$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::PageLinksSchemaMigrationStage
 			);
+			$row = [
+				'pl_from' => $this->source->getId(),
+				'pl_from_namespace' => $this->source->getNamespace(),
+			];
+			if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+				$row['pl_namespace'] = $this->dest->getNamespace();
+				$row['pl_title'] = $this->dest->getDBkey();
+			}
+			if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+				$row['pl_target_id'] = $this->linkTargetLookup->acquireLinkTargetId(
+					new TitleValue( $this->dest->getNamespace(), $this->dest->getDBkey() ),
+					$this->dbw
+				);
+			}
+			$this->dbw->newInsertQueryBuilder()
+				->insertInto( 'pagelinks' )
+				->row( $row )
+				->caller( __METHOD__ )->execute();
 
 		} else {
 			// T263340/T93469: Delete the source page to prevent errors because its
