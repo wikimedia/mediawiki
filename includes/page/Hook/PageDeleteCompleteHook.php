@@ -21,6 +21,7 @@ interface PageDeleteCompleteHook {
 	 * @since 1.37
 	 *
 	 * @param ProperPageIdentity $page Page that was deleted.
+	 *   This object represents state before deletion (e.g. $page->exists() will return true).
 	 * @param Authority $deleter Who deleted the page
 	 * @param string $reason Reason the page was deleted
 	 * @param int $pageID ID of the page that was deleted
