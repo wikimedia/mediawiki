@@ -6,8 +6,7 @@ namespace MediaWiki\Block;
  * @internal For use by BlockManager
  */
 class BlockCacheEntry {
-	/** @var BlockCacheKey */
-	public $key;
+	public BlockCacheKey $key;
 	/** @var AbstractBlock|false */
 	public $block;
 
