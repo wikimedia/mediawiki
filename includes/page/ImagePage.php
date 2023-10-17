@@ -644,7 +644,7 @@ EOT
 		} else {
 			# Image does not exist
 			if ( !$this->getPage()->getId() ) {
-				$dbr = wfGetDB( DB_REPLICA );
+				$dbr = $this->dbProvider->getReplicaDatabase();
 
 				# No article exists either
 				# Show deletion log to be consistent with normal articles
@@ -867,7 +867,7 @@ EOT
 	 * @return IResultWrapper
 	 */
 	protected function queryImageLinks( $target, $limit ) {
-		return wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+		return $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title', 'il_to' ] )
 			->from( 'imagelinks' )
 			->join( 'page', null, 'il_from = page_id' )

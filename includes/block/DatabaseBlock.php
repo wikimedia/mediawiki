@@ -238,7 +238,11 @@ class DatabaseBlock extends AbstractBlock {
 		$fromPrimary,
 		$vagueTarget = null
 	) {
-		$db = wfGetDB( $fromPrimary ? DB_PRIMARY : DB_REPLICA );
+		if ( $fromPrimary ) {
+			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		} else {
+			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		}
 
 		$specificTarget = $specificTarget instanceof UserIdentity ?
 			$specificTarget->getName() :

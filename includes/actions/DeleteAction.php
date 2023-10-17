@@ -597,7 +597,7 @@ class DeleteAction extends FormAction {
 	 * @return bool
 	 */
 	private function pageHasHistory(): bool {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'revision' )

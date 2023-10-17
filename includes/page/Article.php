@@ -48,6 +48,7 @@ use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\IPUtils;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\NonSerializable\NonSerializableTrait;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Legacy class representing an editable page and handling UI for some page actions.
@@ -136,6 +137,8 @@ class Article implements Page {
 	/** @var ArchivedRevisionLookup */
 	private $archivedRevisionLookup;
 
+	protected IConnectionProvider $dbProvider;
+
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
@@ -161,6 +164,7 @@ class Article implements Page {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->archivedRevisionLookup = $services->getArchivedRevisionLookup();
+		$this->dbProvider = $services->getDBLoadBalancerFactory();
 	}
 
 	/**
@@ -1261,7 +1265,7 @@ class Article implements Page {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$oldestRevisionRow = $dbr->newSelectQueryBuilder()
 			->select( [ 'rev_id', 'rev_timestamp' ] )
 			->from( 'revision' )
@@ -1497,7 +1501,7 @@ class Article implements Page {
 		if ( $isRegistered || $dbCache->get( $key ) || $sessionExists ) {
 			$logTypes = [ 'delete', 'move', 'protect' ];
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->dbProvider->getReplicaDatabase();
 
 			$conds = [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ];
 			// Give extensions a chance to hide their (unrelated) log entries
