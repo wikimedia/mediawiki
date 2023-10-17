@@ -3,7 +3,6 @@
 use MediaWiki\Storage\BlobAccessException;
 
 class HistoryBlobUtils {
-	public const NO_CLASSES = [ 'allowed_classes' => false ];
 
 	/**
 	 * Get the classes which are allowed to be contained in a text or ES row
