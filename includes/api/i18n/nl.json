@@ -27,7 +27,8 @@
 			"Southparkfan",
 			"Valhallasw",
 			"Amire80",
-			"DiGro"
+			"DiGro",
+			"Strepulah"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentatie]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & gebruiksrichtlijnen]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ E-maillijst]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> De MediaWiki API is een stabiele interface die actief ondersteund en verbeterd wordt. Hoewel we het proberen te voorkomen, is het mogelijk dat er soms wijzigingen worden aangebracht die bepaalde API-verzoek kunnen verhinderen; abonneer u op de [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ e-maillijst mediawiki-api-announce] voor meldingen over wijzigingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Foutmeldingen en waarschuwingen]] voor meer informatie.\n\n<p class=\"mw-apisandbox-link\"><strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].</p>",
@@ -341,7 +342,7 @@
 	"apihelp-query+iwlinks-param-prefix": "Retourneer alleen interwiki-links met dit voorvoegsel.",
 	"apihelp-query+langbacklinks-example-simple": "Toon de pagina's die verwijzen naar [[:fr:Test]].",
 	"apihelp-query+langbacklinks-example-generator": "Informatie verkrijgen over pagina's die gekoppeld zijn aan [[:fr:Test]].",
-	"apihelp-query+langlinks-param-limit": "Hoeveel intertaalkoppelingen er getoont moeten worden.",
+	"apihelp-query+langlinks-param-limit": "Hoeveel intertaalkoppelingen er getoond moeten worden.",
 	"apihelp-query+langlinks-paramvalue-prop-url": "Voegt de volledige URL toe.",
 	"apihelp-query+languageinfo-extended-description": "[[mw:Special:MyLanguage/API:Continue|Voortzetting]] kan worden toegepast als het ophalen van de informatie te lang duurt voor één verzoek.",
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "De BCP-47 taalcode.",
