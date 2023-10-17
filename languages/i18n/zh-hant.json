@@ -137,7 +137,8 @@
 			"Sidishandsome",
 			"Roy17",
 			"LittlePaw365",
-			"Cookai1205"
+			"Cookai1205",
+			"H78c67c"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1065,7 +1066,7 @@
 	"difference-title": "「$1」：修訂間差異",
 	"difference-title-multipage": "「$1」與「$2」：頁面間的差異",
 	"difference-multipage": "(頁面間的差異)",
-	"lineno": "行 $1：",
+	"lineno": "第$1行：",
 	"compareselectedversions": "比較已選擇的修訂",
 	"showhideselectedversions": "變更已選擇修訂的顯示設定",
 	"editundo": "復原",
@@ -1144,7 +1145,7 @@
 	"datedefault": "預設值",
 	"prefs-labs": "實驗中的功能",
 	"prefs-user-pages": "使用者頁面",
-	"prefs-personal": "使用者檔案",
+	"prefs-personal": "使用者設定檔",
 	"prefs-rc": "近期變更",
 	"prefs-watchlist": "監視清單",
 	"prefs-editwatchlist": "編輯監視清單",
@@ -1325,7 +1326,7 @@
 	"group-all": "（全部）",
 	"group-user-member": "{{GENDER:$1|使用者}}",
 	"group-autoconfirmed-member": "自動確認使用者",
-	"group-bot-member": "機器人",
+	"group-bot-member": "{{GENDER:$1|機器人}}",
 	"group-sysop-member": "{{GENDER:$1|管理員}}",
 	"group-interface-admin-member": "{{GENDER:$1|介面管理員}}",
 	"group-bureaucrat-member": "行政員",
