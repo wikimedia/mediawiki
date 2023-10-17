@@ -98,18 +98,18 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		// by instpecting the DOM inside Parsoid. That will come in a separate patch.
 		$htmlVariantLanguage = null;
 		if ( !( $options->getDisableContentConversion() || $options->getInterfaceMessage() ) ) {
-			// NOTES (some of are TODOs for read views integration)
+			// NOTES (some of these are TODOs for read views integration)
 			// 1. This html variant conversion is a pre-cache transform. HtmlOutputRendererHelper
-			//     has another variant conversion that is a post-cache transform based on the
-			//     'Accept-Language' header. If that header is set, there is really no reason to
-			//     do this conversion here. So, eventually, we are likely to either not pass in
-			//     the htmlVariantLanguage option below OR disable language conversion from the
-			//     wt2html path in Parsoid and this and the Accept-Language variant conversion
-			//     both would have to be handled as post-cache transforms.
+			//    has another variant conversion that is a post-cache transform based on the
+			//    'Accept-Language' header. If that header is set, there is really no reason to
+			//    do this conversion here. So, eventually, we are likely to either not pass in
+			//    the htmlVariantLanguage option below OR disable language conversion from the
+			//    wt2html path in Parsoid and this and the Accept-Language variant conversion
+			//    both would have to be handled as post-cache transforms.
 			//
 			// 2. Parser.php calls convert() which computes a preferred variant from the
 			//    target language. But, we cannot do that unconditionally here because REST API
-			//    requests specifcy the exact variant via the 'Content-Language' header.
+			//    requests specify the exact variant via the 'Content-Language' header.
 			//
 			//    For Parsoid page views, either the callers will have to compute the
 			//    preferred variant and set it in ParserOptions OR the REST API will have
@@ -117,7 +117,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			//    be computed. For now, I am adding a temporary hack, but this should be
 			//    replaced with something more sensible.
 			//
-			// 3. Additionally, Parsoid's callers will have to set targetLanguage in ParserOptiosn
+			// 3. Additionally, Parsoid's callers will have to set targetLanguage in ParserOptions
 			//    to mimic the logic in Parser.php (missing right now).
 			$langCode = $pageConfig->getPageLanguageBcp47();
 			if ( $options->getRenderReason() === 'page-view' ) { // TEMPORARY HACK
