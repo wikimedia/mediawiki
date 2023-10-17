@@ -482,10 +482,8 @@ class UrlUtils {
 			return null;
 		}
 		return preg_replace_callback(
-			'/((?:%[89A-F][0-9A-F])+)/i',
-			static function ( array $matches ) {
-				return urldecode( $matches[1] );
-			},
+			'/(?:%[89A-F][0-9A-F])+/i',
+			static fn ( $m ) => urldecode( $m[0] ),
 			$expanded
 		);
 	}

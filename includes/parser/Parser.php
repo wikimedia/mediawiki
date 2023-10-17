@@ -2263,10 +2263,8 @@ class Parser {
 
 		# Make sure unsafe characters are encoded
 		$url = preg_replace_callback(
-			'/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]/',
-			static function ( $m ) {
-				return rawurlencode( $m[0] );
-			},
+			'/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]+/',
+			static fn ( $m ) => rawurlencode( $m[0] ),
 			$url
 		);
 
