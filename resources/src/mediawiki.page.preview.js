@@ -8,6 +8,7 @@
  *
  * @class mw.plugin.page.preview
  * @singleton
+ * @stable for use in gadgets and extensions
  */
 ( function () {
 	var api = new mw.Api();
@@ -37,6 +38,7 @@
 	/**
 	 * Wrap a string in parentheses.
 	 *
+	 * @private
 	 * @param {string} str
 	 * @return {string}
 	 */
