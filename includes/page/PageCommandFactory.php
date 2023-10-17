@@ -32,6 +32,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\ArchivedRevisionLookup;
@@ -154,6 +155,7 @@ class PageCommandFactory implements
 
 	/** @var RestrictionStore */
 	private $restrictionStore;
+	private LinkTargetLookup $linkTargetLookup;
 
 	public function __construct(
 		Config $config,
@@ -184,7 +186,8 @@ class PageCommandFactory implements
 		PageUpdaterFactory $pageUpdaterFactory,
 		ITextFormatter $contLangMsgTextFormatter,
 		ArchivedRevisionLookup $archivedRevisionLookup,
-		RestrictionStore $restrictionStore
+		RestrictionStore $restrictionStore,
+		LinkTargetLookup $linkTargetLookup
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -215,6 +218,7 @@ class PageCommandFactory implements
 		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 		$this->restrictionStore = $restrictionStore;
+		$this->linkTargetLookup = $linkTargetLookup;
 	}
 
 	/**
@@ -278,7 +282,7 @@ class PageCommandFactory implements
 			$source,
 			$destination,
 			$timestamp,
-			$this->lbFactory->getMainLB(),
+			$this->lbFactory,
 			$this->contentHandlerFactory,
 			$this->revisionStore,
 			$this->watchedItemStore,
@@ -286,7 +290,8 @@ class PageCommandFactory implements
 			$this->hookContainer,
 			$this->wikiPageFactory,
 			$this->titleFormatter,
-			$this->titleFactory
+			$this->titleFactory,
+			$this->linkTargetLookup
 		);
 	}
 
