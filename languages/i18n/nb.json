@@ -1003,6 +1003,7 @@
 	"difference-title-multipage": "$1 og $2: Forskjell mellom sider",
 	"difference-multipage": "(Forskjell mellom sider)",
 	"lineno": "Linje $1:",
+	"lineno-inline": "Rad $1 ⟶ $2:",
 	"compareselectedversions": "Sammenlign valgte sideversjoner",
 	"showhideselectedversions": "Vis/skjul valgte sideversjoner",
 	"showhideselectedfileversions": "Endre synligheten til de valgte filversjonene",

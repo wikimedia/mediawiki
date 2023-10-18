@@ -956,6 +956,7 @@
 	"difference-title-multipage": "«$1» тата «$2»: страницӑсем хушшинчи уйрӑмлӑх",
 	"difference-multipage": "(Страницӑсем хушшинчи уйрӑмлӑх)",
 	"lineno": "$1-мĕш йĕрке:",
+	"lineno-inline": "Йӗрке $1 ⟶ $2:",
 	"compareselectedversions": "Суйланă версисене танлаштар",
 	"showhideselectedversions": "Суйланӑ версисене кӑтарт/пытар",
 	"showhideselectedfileversions": "Файлӑн суйланӑ версисен курӑмлӑхне улӑштар",

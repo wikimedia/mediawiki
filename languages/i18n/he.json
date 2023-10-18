@@ -997,6 +997,7 @@
 	"difference-title-multipage": "$1 ו{{GRAMMAR:תחילית|$2}}: הבדלים בין דפים",
 	"difference-multipage": "(הבדלים בין דפים)",
 	"lineno": "שורה $1:",
+	"lineno-inline": "שורה $1 ⟵ $2:",
 	"compareselectedversions": "השוואת הגרסאות שנבחרו",
 	"showhideselectedversions": "שינוי מצב התצוגה של הגרסאות שנבחרו",
 	"showhideselectedfileversions": "שינוי מצב התצוגה של גרסאות הקובץ שנבחרו",

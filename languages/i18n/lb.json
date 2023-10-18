@@ -907,6 +907,7 @@
 	"difference-title-multipage": "$1 a(n) $2: Ënnerscheed tëscht de Säiten",
 	"difference-multipage": "(Ënnerscheed tëscht Säiten)",
 	"lineno": "Linn $1:",
+	"lineno-inline": "Zeil $1 ⟶ $2:",
 	"compareselectedversions": "Ausgewielt Versioune vergläichen",
 	"showhideselectedversions": "Erausgesicht Versioune weisen/verstoppen",
 	"editundo": "réckgängeg maachen",

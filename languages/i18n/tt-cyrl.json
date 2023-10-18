@@ -3108,7 +3108,7 @@
 	"pageinfo-recent-authors": "Соңгы вакытта аерым авторлар саны",
 	"pageinfo-magic-words": "Тылсымлы {{PLURAL:$1|сүз}} ($1)",
 	"pageinfo-hidden-categories": "Яшерен {{PLURAL:$1|төркем}} ($1)",
-	"pageinfo-templates": "{{PLURAL:$1|1=Калып|Калыплар}} ($1)",
+	"pageinfo-templates": "{{PLURAL:$1|кертелгән калып}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|бит}} ($1) тәрҗемә ителгән",
 	"pageinfo-toolboxlink": "Бит турында мәгълүмат",
 	"pageinfo-redirectsto": "Юнәлтү",
