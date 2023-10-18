@@ -80,14 +80,13 @@ class RecentChangesUpdateJob extends Job {
 			MainConfigNames::RCMaxAge );
 		$updateRowsPerQuery = $services->getMainConfig()->get(
 			MainConfigNames::UpdateRowsPerQuery );
-		$dbw = wfGetDB( DB_PRIMARY );
+		$factory = $services->getDBLoadBalancerFactory();
+		$dbw = $factory->getPrimaryDatabase();
 		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
 			// already in progress
 			return;
 		}
-
-		$factory = $services->getDBLoadBalancerFactory();
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$cutoff = $dbw->timestamp( time() - $rcMaxAge );
