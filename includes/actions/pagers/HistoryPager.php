@@ -375,7 +375,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			$lastlink = $this->lastLink( $revRecord, null );
 		} else {
 			// Do not display a link, because this is the oldest revision of the page
-			$lastlink = $this->historyPage->message['last'];
+			$lastlink = Html::element( 'span', [
+				'class' => 'mw-history-histlinks-previous',
+			], $this->historyPage->message['last'] );
 		}
 		$curLastlinks = Html::rawElement( 'span', [], $curlink ) .
 			Html::rawElement( 'span', [], $lastlink );
@@ -533,12 +535,15 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $latest === $rev->getId()
 			|| !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 		) {
-			return $cur;
+			return Html::element( 'span', [
+				'class' => 'mw-history-histlinks-current',
+			], $cur );
 		} else {
 			return $this->getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				new HtmlArmor( $cur ),
 				[
+					'class' => 'mw-history-histlinks-current',
 					'title' => $this->historyPage->message['tooltip-cur']
 				],
 				[
@@ -563,13 +568,16 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( !$prevRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ||
 			( $nextRev && !$nextRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) )
 		) {
-			return $last;
+			return Html::element( 'span', [
+				'class' => 'mw-history-histlinks-previous',
+			], $last );
 		}
 
 		return $this->getLinkRenderer()->makeKnownLink(
 			$this->getTitle(),
 			new HtmlArmor( $last ),
 			[
+				'class' => 'mw-history-histlinks-previous',
 				'title' => $this->historyPage->message['tooltip-last']
 			],
 			[
