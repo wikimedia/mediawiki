@@ -97,7 +97,8 @@ class MWLBFactory {
 	 * @var StatsdDataFactoryInterface
 	 */
 	private $statsdDataFactory;
-	private array $virtualDomains = [];
+	/** @var string[] */
+	private array $virtualDomains;
 
 	/**
 	 * @param ServiceOptions $options
@@ -107,6 +108,7 @@ class MWLBFactory {
 	 * @param WANObjectCache $wanCache
 	 * @param CriticalSectionProvider $csProvider
 	 * @param StatsdDataFactoryInterface $statsdDataFactory
+	 * @param string[] $virtualDomains
 	 */
 	public function __construct(
 		ServiceOptions $options,
