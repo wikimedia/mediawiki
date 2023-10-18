@@ -744,7 +744,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Ingest file stat entries that just came from querying the backend (not cache)
 	 *
-	 * @param array[]|bool[]|null[] $stats Map of (path => doGetFileStat() stype result)
+	 * @param array<string,array|false|null> $stats Map of storage path => {@see doGetFileStat} result
 	 * @param bool $latest Whether doGetFileStat()/doGetFileStatMulti() had the 'latest' flag
 	 * @return bool Whether all files have non-error stat replies
 	 */
@@ -811,6 +811,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::getFileStat()
 	 * @param array $params
+	 * @return array|false|null
 	 */
 	abstract protected function doGetFileStat( array $params );
 
@@ -1504,7 +1505,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackend::clearCache()
 	 *
-	 * @param array|null $paths Storage paths (optional)
+	 * @param string[]|null $paths Storage paths (optional)
 	 */
 	protected function doClearCache( array $paths = null ) {
 	}
@@ -1534,7 +1535,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $params Parameters include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
-	 * @return array|null Map of storage paths to array|bool|null (returns null if not supported)
+	 * @return array<string,array|false|null>|null Null if not supported. Otherwise a map of storage
+	 *  path to attribute map, false (missing file), or null (I/O error).
 	 * @since 1.23
 	 */
 	protected function doGetFileStatMulti( array $params ) {
