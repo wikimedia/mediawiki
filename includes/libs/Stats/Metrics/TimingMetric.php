@@ -90,7 +90,9 @@ class TimingMetric implements MetricInterface {
 	/**
 	 * Records a previously calculated observation.
 	 *
-	 * @param float $value
+	 * Expects values in milliseconds.
+	 *
+	 * @param float $value milliseconds
 	 * @return void
 	 */
 	public function observe( float $value ): void {
