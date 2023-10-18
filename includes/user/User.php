@@ -1431,6 +1431,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$fromReplica = ( $freshness !== self::READ_LATEST );
 		}
 
+		if ( $disableIpBlockExemptChecking ) {
+			$isExempt = false;
+		} else {
+			$isExempt = $this->isAllowed( 'ipblock-exempt' );
+		}
+
 		// TODO: Block checking shouldn't really be done from the User object. Block
 		// checking can involve checking for IP blocks, cookie blocks, and/or XFF blocks,
 		// which need more knowledge of the request context than the User should have.
@@ -1439,16 +1445,15 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// - Check if this is the user associated with the main request
 		// - If so, pass the relevant request information to the block manager
 		$request = null;
-		if ( $this->isGlobalSessionUser() ) {
+		if ( !$isExempt && $this->isGlobalSessionUser() ) {
 			// This is the global user, so we need to pass the request
 			$request = $this->getRequest();
 		}
 
-		return MediaWikiServices::getInstance()->getBlockManager()->getUserBlock(
+		return MediaWikiServices::getInstance()->getBlockManager()->getBlock(
 			$this,
 			$request,
 			$fromReplica,
-			$disableIpBlockExemptChecking
 		);
 	}
 

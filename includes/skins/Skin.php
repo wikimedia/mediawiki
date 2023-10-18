@@ -607,7 +607,7 @@ abstract class Skin extends ContextSource {
 		if ( $this->mRelevantUser && $this->mRelevantUser->isRegistered() ) {
 			$userBlock = MediaWikiServices::getInstance()
 				->getBlockManager()
-				->getUserBlock( $this->mRelevantUser, null, true );
+				->getBlock( $this->mRelevantUser, null );
 			if ( $userBlock && $userBlock->getHideName() &&
 				!$this->getAuthority()->isAllowed( 'hideuser' )
 			) {
@@ -1421,7 +1421,7 @@ abstract class Skin extends ContextSource {
 				// Check if the user is already blocked
 				$userBlock = MediaWikiServices::getInstance()
 				->getBlockManager()
-				->getUserBlock( $user, null, true );
+				->getBlock( $user, null );
 				if ( $userBlock ) {
 					$nav_urls['changeblockip'] = [
 						'icon' => 'block',
