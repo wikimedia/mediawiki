@@ -74,6 +74,7 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.42 ===
+* UserRightsProxy, deprecated since 1.38, has been removed.
 * …
 
 === Deprecations in 1.42 ===

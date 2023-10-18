@@ -78,9 +78,11 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		);
 
 		$this->assertSame( 1, $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
+		$result = $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target );
+		sort( $result );
 		$this->assertSame(
 			[ 'bot', 'sysop' ],
-			$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target )
+			$result
 		);
 	}
 
