@@ -87,7 +87,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				Title::makeTitle( NS_MAIN, 'Test2' ),
 				null,
-				$this->getServiceContainer()->getDBLoadBalancer(),
+				$this->getServiceContainer()->getDBLoadBalancerFactory(),
 				$this->getServiceContainer()->getContentHandlerFactory(),
 				$this->getServiceContainer()->getRevisionStore(),
 				$this->getServiceContainer()->getWatchedItemStore(),
@@ -96,6 +96,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getWikiPageFactory(),
 				$this->getServiceContainer()->getTitleFormatter(),
 				$this->getServiceContainer()->getTitleFactory(),
+				$this->getServiceContainer()->getLinkTargetLookup()
 			] )
 			->getMock();
 		$mh->expects( $this->once() )

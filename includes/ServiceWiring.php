@@ -2558,7 +2558,8 @@ return [
 				$services->getContentLanguage()->getCode()
 			),
 			$services->getArchivedRevisionLookup(),
-			$services->getRestrictionStore()
+			$services->getRestrictionStore(),
+			$services->getLinkTargetLookup()
 		);
 	},
 
