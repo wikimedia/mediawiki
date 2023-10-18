@@ -590,6 +590,7 @@ return [
 		'dependencies' => [
 			'vue',
 		],
+		'deprecated' => '[1.42] Use Pinia instead. See migration guidelines: https://w.wiki/7pLU'
 	],
 
 	'pinia' => [

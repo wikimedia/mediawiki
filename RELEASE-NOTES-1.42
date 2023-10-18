@@ -79,6 +79,9 @@ because of Phabricator reports.
 === Deprecations in 1.42 ===
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
+* Vuex has been deprecated in favor of its successor, Pinia. Though deprecated,
+  Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
+  for new projects.
 * …
 
 === Other changes in 1.42 ===
