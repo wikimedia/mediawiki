@@ -450,7 +450,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
-				static fn ( $sysopUsername ) => lcfirst( $sysopUsername ),
+				'lcfirst',
 				Status::newGood(),
 				StatusValue::newGood(),
 				StatusValue::newGood()
