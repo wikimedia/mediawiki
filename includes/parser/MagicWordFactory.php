@@ -39,11 +39,10 @@ use MediaWiki\HookContainer\HookRunner;
  */
 class MagicWordFactory {
 
-	/** @var bool */
-	private $mVariableIDsInitialised = false;
+	private bool $mVariableIDsInitialised = false;
 
 	/** @var string[] */
-	private $mVariableIDs = [
+	private array $mVariableIDs = [
 		'!',
 		'=',
 		'currentmonth',
@@ -126,7 +125,7 @@ class MagicWordFactory {
 	];
 
 	/** @var string[] */
-	private $mDoubleUnderscoreIDs = [
+	private array $mDoubleUnderscoreIDs = [
 		'notoc',
 		'nogallery',
 		'forcetoc',
@@ -144,33 +143,24 @@ class MagicWordFactory {
 	];
 
 	/** @var string[] */
-	private $mSubstIDs = [
+	private array $mSubstIDs = [
 		'subst',
 		'safesubst',
 	];
 
 	/** @var array<string,MagicWord> */
-	private $mObjects = [];
+	private array $mObjects = [];
+	private ?MagicWordArray $mDoubleUnderscoreArray = null;
 
-	/** @var MagicWordArray */
-	private $mDoubleUnderscoreArray = null;
+	private Language $contLang;
+	private HookRunner $hookRunner;
 
-	/** @var Language */
-	private $contLang;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/**
-	 * @param Language $contLang Content language
-	 * @param HookContainer $hookContainer
-	 */
-	public function __construct( Language $contLang, HookContainer $hookContainer ) {
-		$this->contLang = $contLang;
+	public function __construct( Language $contentLanguage, HookContainer $hookContainer ) {
+		$this->contLang = $contentLanguage;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
-	public function getContentLanguage() {
+	public function getContentLanguage(): Language {
 		return $this->contLang;
 	}
 
@@ -181,7 +171,7 @@ class MagicWordFactory {
 	 *
 	 * @return MagicWord
 	 */
-	public function get( $id ) {
+	public function get( $id ): MagicWord {
 		if ( !isset( $this->mObjects[$id] ) ) {
 			$mw = new MagicWord( null, [], false, $this->contLang );
 			$mw->load( $id );
@@ -195,7 +185,7 @@ class MagicWordFactory {
 	 *
 	 * @return string[]
 	 */
-	public function getVariableIDs() {
+	public function getVariableIDs(): array {
 		if ( !$this->mVariableIDsInitialised ) {
 			# Get variable IDs
 			$this->hookRunner->onMagicWordwgVariableIDs( $this->mVariableIDs );
@@ -209,7 +199,7 @@ class MagicWordFactory {
 	 * Get an array of parser substitution modifier IDs
 	 * @return string[]
 	 */
-	public function getSubstIDs() {
+	public function getSubstIDs(): array {
 		return $this->mSubstIDs;
 	}
 
@@ -229,7 +219,7 @@ class MagicWordFactory {
 	 *
 	 * @return MagicWordArray
 	 */
-	public function getDoubleUnderscoreArray() {
+	public function getDoubleUnderscoreArray(): MagicWordArray {
 		if ( $this->mDoubleUnderscoreArray === null ) {
 			$this->hookRunner->onGetDoubleUnderscoreIDs( $this->mDoubleUnderscoreIDs );
 			$this->mDoubleUnderscoreArray = $this->newArray( $this->mDoubleUnderscoreIDs );

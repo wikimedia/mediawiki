@@ -34,11 +34,10 @@ use MWException;
  * @ingroup Parser
  */
 class MagicWordArray {
+
 	/** @var string[] */
 	public $names = [];
-
-	/** @var MagicWordFactory */
-	private $factory;
+	private MagicWordFactory $factory;
 
 	/** @var array<int,array<string,string>>|null */
 	private $hash;
@@ -63,7 +62,7 @@ class MagicWordArray {
 	 *
 	 * @param string $name
 	 */
-	public function add( $name ) {
+	public function add( $name ): void {
 		$this->names[] = $name;
 		$this->hash = $this->baseRegex = $this->regex = null;
 	}
@@ -72,7 +71,7 @@ class MagicWordArray {
 	 * Get a 2-d hashtable for this array
 	 * @return array<int,array<string,string>>
 	 */
-	public function getHash() {
+	public function getHash(): array {
 		if ( $this->hash === null ) {
 			$this->hash = [ 0 => [], 1 => [] ];
 			foreach ( $this->names as $name ) {
@@ -244,7 +243,7 @@ class MagicWordArray {
 	 *
 	 * @return (string|false)[]
 	 */
-	public function matchVariableStartToEnd( $text ) {
+	public function matchVariableStartToEnd( $text ): array {
 		$regexes = $this->getVariableStartToEndRegex();
 		foreach ( $regexes as $regex ) {
 			$m = [];
@@ -281,7 +280,7 @@ class MagicWordArray {
 	 *
 	 * @return array<string,false> Magic word id => false
 	 */
-	public function matchAndRemove( &$text ) {
+	public function matchAndRemove( &$text ): array {
 		$found = [];
 		$regexes = $this->getRegex();
 		foreach ( $regexes as $regex ) {

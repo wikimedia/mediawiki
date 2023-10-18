@@ -68,15 +68,14 @@ class MagicWord {
 	public $mId;
 
 	/** @var string[] */
-	public $mSynonyms;
+	public array $mSynonyms;
 
 	/** @var bool */
 	public $mCaseSensitive;
 
 	private ?string $mBaseRegex = null;
 
-	/** @var Language */
-	private $contLang;
+	private Language $contLang;
 
 	/**
 	 * Create a new MagicWord object
@@ -86,13 +85,13 @@ class MagicWord {
 	 * @param string|null $id The internal name of the magic word
 	 * @param string[]|string $syn synonyms for the magic word
 	 * @param bool $cs If magic word is case sensitive
-	 * @param Language|null $contLang Content language
+	 * @param Language|null $contentLanguage
 	 */
-	public function __construct( $id = null, $syn = [], $cs = false, Language $contLang = null ) {
+	public function __construct( $id = null, $syn = [], $cs = false, Language $contentLanguage = null ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
-		$this->contLang = $contLang ?: MediaWikiServices::getInstance()->getContentLanguage();
+		$this->contLang = $contentLanguage ?: MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**
@@ -101,7 +100,7 @@ class MagicWord {
 	 * @param string $id
 	 * @throws MWException
 	 */
-	public function load( $id ) {
+	public function load( $id ): void {
 		$this->mId = $id;
 		$this->contLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
@@ -114,7 +113,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	public function getRegex() {
+	public function getRegex(): string {
 		return '/' . $this->getBaseRegex() . '/' . $this->getRegexCase();
 	}
 
@@ -125,7 +124,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	public function getRegexCase() {
+	public function getRegexCase(): string {
 		return $this->mCaseSensitive ? '' : 'iu';
 	}
 
@@ -134,7 +133,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	public function getRegexStart() {
+	public function getRegexStart(): string {
 		return '/^(?:' . $this->getBaseRegex() . ')/' . $this->getRegexCase();
 	}
 
@@ -144,7 +143,7 @@ class MagicWord {
 	 * @return string
 	 * @since 1.23
 	 */
-	public function getRegexStartToEnd() {
+	public function getRegexStartToEnd(): string {
 		return '/^(?:' . $this->getBaseRegex() . ')$/' . $this->getRegexCase();
 	}
 
@@ -153,7 +152,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	public function getBaseRegex() {
+	public function getBaseRegex(): string {
 		if ( $this->mBaseRegex === null ) {
 			// Sort the synonyms by length, descending, so that the longest synonym
 			// matches in precedence to the shortest
@@ -174,7 +173,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	public function match( $text ) {
+	public function match( $text ): bool {
 		return (bool)preg_match( $this->getRegex(), $text );
 	}
 
@@ -186,7 +185,7 @@ class MagicWord {
 	 * @return bool
 	 * @since 1.23
 	 */
-	public function matchStartToEnd( $text ) {
+	public function matchStartToEnd( $text ): bool {
 		return (bool)preg_match( $this->getRegexStartToEnd(), $text );
 	}
 
@@ -198,7 +197,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	public function matchAndRemove( &$text ) {
+	public function matchAndRemove( &$text ): bool {
 		$text = preg_replace( $this->getRegex(), '', $text, -1, $count );
 		return (bool)$count;
 	}
@@ -207,7 +206,7 @@ class MagicWord {
 	 * @param string &$text
 	 * @return bool
 	 */
-	public function matchStartAndRemove( &$text ) {
+	public function matchStartAndRemove( &$text ): bool {
 		$text = preg_replace( $this->getRegexStart(), '', $text, -1, $count );
 		return (bool)$count;
 	}
@@ -245,7 +244,7 @@ class MagicWord {
 	/**
 	 * @return string[]
 	 */
-	public function getSynonyms() {
+	public function getSynonyms(): array {
 		return $this->mSynonyms;
 	}
 
