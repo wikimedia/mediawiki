@@ -95,10 +95,11 @@ function saveData( pageName, section, pageData ) {
 			reject( 'DB not opened' );
 		}
 
+		var expiryDays = 30;
 		// Add indexed fields.
 		pageData.pageName = pageName;
 		pageData.section = section || '';
-		pageData.expiryDate = getExpiryDate( 30 );
+		pageData.expiryDate = ( Date.now() / 1000 ) + ( expiryDays * 24 * 60 * 60 );
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
@@ -150,18 +151,6 @@ function deleteData( pageName ) {
 }
 
 /**
- * Returns the date diff days in the future
- *
- * @param {number} diff Days in the future
- * @return {number} Timestamp of diff days in the future
- */
-function getExpiryDate( diff ) {
-	const today = new Date();
-	const diffDaysFuture = new Date( today.getFullYear(), today.getMonth(), today.getDate() + diff );
-	return diffDaysFuture.getTime() / 1000;
-}
-
-/**
  * Delete expired data
  *
  * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
@@ -175,9 +164,9 @@ function deleteExpiredData() {
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
 		const expiryDate = objectStore.index( 'expiryDate' );
-		const today = Date.now() / 1000;
+		const now = Date.now() / 1000;
 
-		const expired = expiryDate.getAll( IDBKeyRange.upperBound( today, true ) );
+		const expired = expiryDate.getAll( IDBKeyRange.upperBound( now, true ) );
 
 		expired.onsuccess = function ( event ) {
 			const cursors = event.target.result;
