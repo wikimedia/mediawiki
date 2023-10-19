@@ -206,28 +206,32 @@ class MagicWordArray {
 	 * Returns array(magic word ID, parameter value)
 	 * If there is no parameter value, that element will be false.
 	 *
-	 * @param array<string|int,string> $m
+	 * @param array<string|int,string> $matches
 	 *
 	 * @throws MWException
 	 * @return (string|false)[]
 	 */
-	private function parseMatch( array $m ): array {
-		reset( $m );
-		while ( ( $key = key( $m ) ) !== null ) {
-			$value = current( $m );
-			next( $m );
-			if ( $key === 0 || $value === '' ) {
-				continue;
+	private function parseMatch( array $matches ): array {
+		$magicName = null;
+		foreach ( $matches as $key => $match ) {
+			if ( $magicName !== null ) {
+				// The structure we found at this point is [ …,
+				//     'a_magicWordName' => 'matchedSynonym',
+				//     n                 => 'matchedSynonym (again)',
+				//     n + 1             => 'parameterValue',
+				// … ]
+				return [ $magicName, $matches[$key + 1] ?? false ];
 			}
-			$parts = explode( '_', $key, 2 );
-			if ( count( $parts ) != 2 ) {
-				// This shouldn't happen
-				// continue;
-				throw new MWException( __METHOD__ . ': bad parameter name' );
+			// Skip the initial full match and any non-matching group
+			if ( $match !== '' && $key !== 0 ) {
+				$parts = explode( '_', $key, 2 );
+				if ( !isset( $parts[1] ) ) {
+					// This shouldn't happen
+					// continue;
+					throw new MWException( __METHOD__ . ': bad parameter name' );
+				}
+				$magicName = $parts[1];
 			}
-			[ /* $synIndex */, $magicName ] = $parts;
-			$paramValue = next( $m );
-			return [ $magicName, $paramValue ];
 		}
 		// This shouldn't happen either
 		throw new MWException( __METHOD__ . ': parameter not found' );
