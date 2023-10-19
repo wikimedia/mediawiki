@@ -328,7 +328,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertStatusNotOK( $status );
+		$this->assertStatusError( 'missing-revision', $status );
 	}
 
 	/**
@@ -491,7 +491,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// output is for the first revision denied
 		$parserOptions = $this->getParserOptions();
 		$status = $access->getParserOutput( $page, $parserOptions, $firstRev );
-		$this->assertStatusNotOK( $status );
+		$this->assertStatusError( 'missing-revision-permission', $status );
 		// TODO: Once PoolWorkArticleView properly reports errors, check that the correct error
 		//       is propagated.
 	}
@@ -682,7 +682,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertStatusNotOK( $status );
+		$this->assertStatusError( 'nopagetext', $status );
 	}
 
 	/**
@@ -771,7 +771,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$result = $access->getParserOutput( $page, $parserOptions );
-		$this->assertStatusNotOK( $result );
+		$this->assertStatusError( 'pool-timeout', $result );
 	}
 
 	/**

@@ -285,7 +285,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$status = $page->doUserEditContent( $content, $user1, "[[testing]] 1", EDIT_NEW );
 
-		$this->assertStatusOK( $status, 'OK' );
+		$this->assertStatusGood( $status );
 		$this->assertTrue( $status->value['new'], 'new' );
 		$this->assertNotNull( $status->getNewRevision(), 'revision-record' );
 
@@ -345,7 +345,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// try null edit, with a different user
 		$status = $page->doUserEditContent( $content, $user2, 'This changes nothing', EDIT_UPDATE, false );
-		$this->assertStatusOK( $status, 'OK' );
+		$this->assertStatusWarning( 'edit-no-change', $status );
 		$this->assertFalse( $status->value['new'], 'new' );
 		$this->assertNull( $status->getNewRevision(), 'revision-record' );
 		$this->assertNotNull( $page->getRevisionRecord() );
@@ -363,7 +363,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 
 		$status = $page->doUserEditContent( $content, $user1, "testing 2", EDIT_UPDATE );
-		$this->assertStatusOK( $status, 'OK' );
+		$this->assertStatusGood( $status );
 		$this->assertFalse( $status->value['new'], 'new' );
 		$this->assertNotNull( $status->getNewRevision(), 'revision-record' );
 		$statusRevRecord = $status->getNewRevision();
@@ -456,8 +456,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$status1 = $page->doUserEditContent( $content, $user, __METHOD__ );
 		$status2 = $page->doUserEditContent( $content, $user, __METHOD__ );
 
-		$this->assertStatusOK( $status1, 'OK' );
-		$this->assertStatusOK( $status2, 'OK' );
+		$this->assertStatusGood( $status1 );
+		$this->assertStatusWarning( 'edit-no-change', $status2 );
 
 		$this->assertNotNull( $status1->getNewRevision(), 'OK' );
 		$this->assertNull( $status2->getNewRevision(), 'OK' );
@@ -1713,8 +1713,7 @@ more stuff
 		$this->setService( 'ReadOnlyMode', $readOnly );
 
 		$status = $page->doUpdateRestrictions( [], [], $cascade, 'aReason', $user, [] );
-		$this->assertStatusNotOK( $status );
-		$this->assertSame( 'readonlytext', $status->getMessage()->getKey() );
+		$this->assertStatusError( 'readonlytext', $status );
 	}
 
 	/**

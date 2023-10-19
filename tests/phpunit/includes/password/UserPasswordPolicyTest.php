@@ -196,8 +196,7 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 		$user->addToDatabase();
 
 		$status = $upp->checkUserPassword( $user, 'Passpass' );
-		$this->assertStatusNotGood( $status, 'password invalid' );
-		$this->assertStatusOK( $status, 'can login' );
+		$this->assertStatusWarning( 'password-login-forbidden', $status );
 	}
 
 	/**
