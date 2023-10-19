@@ -9,6 +9,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Title\TitleFactory;
@@ -24,35 +25,35 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class RenameuserSQL {
 	/**
-	 * The old username
+	 * The old username of the user being renamed
 	 *
 	 * @var string
 	 */
 	public $old;
 
 	/**
-	 * The new username
+	 * The new username of the user being renamed
 	 *
 	 * @var string
 	 */
 	public $new;
 
 	/**
-	 * The user ID
+	 * The user ID of the user being renamed
 	 *
 	 * @var int
 	 */
 	public $uid;
 
 	/**
-	 * The tables => fields to be updated
+	 * The [ tables => fields ] to be updated
 	 *
 	 * @var array
 	 */
 	public $tables;
 
 	/**
-	 * tables => fields to be updated in a deferred job
+	 * [ tables => fields ] to be updated in a deferred job
 	 *
 	 * @var array[]
 	 */
@@ -74,7 +75,7 @@ class RenameuserSQL {
 	private $renamer;
 
 	/**
-	 * Reason to be used in the log entry
+	 * Reason for the rename to be used in the log entry
 	 *
 	 * @var string
 	 */
@@ -171,9 +172,6 @@ class RenameuserSQL {
 	 * @return bool
 	 */
 	public function rename() {
-		// Grab the user's edit count first, used in log entry
-		$contribs = $this->userFactory->newFromId( $this->uid )->getEditCount();
-
 		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$atomicId = $dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 
@@ -186,6 +184,9 @@ class RenameuserSQL {
 
 			return false;
 		}
+
+		// Grab the user's edit count before any updates are made; used later in a log entry
+		$contribs = $this->userFactory->newFromId( $this->uid )->getEditCount();
 
 		// Rename and touch the user before re-attributing edits to avoid users still being
 		// logged in and making new edits (under the old name) while being renamed.
@@ -205,13 +206,13 @@ class RenameuserSQL {
 		// Again, avoids user being logged in with old name.
 		$user = $this->userFactory->newFromId( $this->uid );
 
-		$user->load( User::READ_LATEST );
+		$user->load( Authority::READ_LATEST );
 		SessionManager::singleton()->invalidateSessionsForUser( $user );
 
 		// Purge user cache
 		$user->invalidateCache();
 
-		// Update ipblock list if this user has a block in there.
+		// Update the ipblock table rows if this user has a block in there.
 		$dbw->newUpdateQueryBuilder()
 			->update( 'ipblocks' )
 			->set( [ 'ipb_address' => $this->new ] )
@@ -238,7 +239,7 @@ class RenameuserSQL {
 			] )
 			->caller( __METHOD__ )->execute();
 
-		$this->debug( "Updating recentchanges table for {$this->old} to {$this->new}" );
+		$this->debug( "Updating recentchanges table for rename from {$this->old} to {$this->new}" );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'recentchanges' )
 			->set( [ 'rc_title' => $newTitle->getDBkey() ] )
@@ -300,16 +301,16 @@ class RenameuserSQL {
 
 			// Insert jobs into queue!
 			foreach ( $res as $row ) {
-				# Since the ORDER BY is ASC, set the min timestamp with first row
+				// Since the ORDER BY is ASC, set the min timestamp with first row
 				if ( $jobParams['count'] === 0 ) {
 					$jobParams['minTimestamp'] = $row->$timestampC;
 				}
-				# Keep updating the last timestamp, so it should be correct
-				# when the last item is added.
+				// Keep updating the last timestamp, so it should be correct
+				// when the last item is added.
 				$jobParams['maxTimestamp'] = $row->$timestampC;
-				# Update row counter
+				// Update row counter
 				$jobParams['count']++;
-				# Once a job has $wgUpdateRowsPerJob rows, add it to the queue
+				// Once a job has $wgUpdateRowsPerJob rows, add it to the queue
 				if ( $jobParams['count'] >= $this->updateRowsPerJob ) {
 					$jobs[] = new JobSpecification( 'renameUser', $jobParams, [], $oldTitle );
 					$jobParams['minTimestamp'] = '0';
@@ -317,7 +318,7 @@ class RenameuserSQL {
 					$jobParams['count'] = 0;
 				}
 			}
-			# If there are any job rows left, add it to the queue as one job
+			// If there are any job rows left, add it to the queue as one job
 			if ( $jobParams['count'] > 0 ) {
 				$jobs[] = new JobSpecification( 'renameUser', $jobParams, [], $oldTitle );
 			}
@@ -341,7 +342,7 @@ class RenameuserSQL {
 		$count = count( $jobs );
 		if ( $count > 0 ) {
 			$this->jobQueueGroup->push( $jobs );
-			$this->debug( "Queued $count jobs for {$this->old} to {$this->new}" );
+			$this->debug( "Queued $count jobs for rename from {$this->old} to {$this->new}" );
 		}
 
 		// Commit the transaction
@@ -353,7 +354,7 @@ class RenameuserSQL {
 				$dbw->startAtomic( $fname );
 				// Clear caches and inform authentication plugins
 				$user = $this->userFactory->newFromId( $this->uid );
-				$user->load( User::READ_LATEST );
+				$user->load( Authority::READ_LATEST );
 				// Trigger the UserSaveSettings hook
 				$user->saveSettings();
 				$this->hookRunner->onRenameUserComplete( $this->uid, $this->old, $this->new );
@@ -364,13 +365,13 @@ class RenameuserSQL {
 			$fname
 		);
 
-		$this->debug( "Finished rename for {$this->old} to {$this->new}" );
+		$this->debug( "Finished rename from {$this->old} to {$this->new}" );
 
 		return true;
 	}
 
 	/**
-	 * @param string $name Current wiki local user name
+	 * @param string $name Current wiki local username
 	 * @return int Returns 0 if no row was found
 	 */
 	private function lockUserAndGetId( $name ) {
