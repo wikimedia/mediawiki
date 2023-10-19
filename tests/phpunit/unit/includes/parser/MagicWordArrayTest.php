@@ -1,9 +1,19 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
- * @covers \MagicWordArray
+ * @covers \MediaWiki\Parser\MagicWordArray
  */
 class MagicWordArrayTest extends MediaWikiUnitTestCase {
+
+	private const MAGIC_WORDS = [
+		'notitleconvert' => [ 0, '__NOTITLECONVERT__', '__NOTC__' ],
+		'notoc' => [ 0, '__NOTOC__' ],
+		'img_thumbnail' => [ 1, 'thumb', 'thumbnail' ],
+		'img_upright' => [ 1, 'upright', 'upright=$1', 'upright $1' ],
+		'img_width' => [ 1, '$1px' ],
+	];
 
 	public function testConstructor() {
 		$array = new MagicWordArray( [ 'ID' ], $this->getFactory() );
@@ -61,6 +71,39 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @dataProvider provideMatchVariableStartToEndMultiple
+	 */
+	public function testMatchVariableStartToEndMultiple(
+		string $input,
+		array $expected = [ false, false ]
+	) {
+		$array = new MagicWordArray( array_keys( self::MAGIC_WORDS ), $this->getFactory() );
+		$this->assertSame( $expected, $array->matchVariableStartToEnd( $input ) );
+
+		/** @var MagicWordArray $spy */
+		$spy = TestingAccessWrapper::newFromObject( $array );
+		$this->assertSame( [
+			'/^(?:(?i:(?P<a_notitleconvert>__NOTITLECONVERT__)|(?P<b_notitleconvert>__NOTC__)|' .
+				'(?P<a_notoc>__NOTOC__)))$/Su',
+			'/^(?:(?P<a_img_thumbnail>thumb)|(?P<b_img_thumbnail>thumbnail)|' .
+				'(?P<a_img_upright>upright)|(?P<b_img_upright>upright\=(.*?))|(?P<c_img_upright>upright (.*?))|' .
+				'(?P<a_img_width>(.*?)px))$/S',
+		], $spy->getVariableStartToEndRegex() );
+	}
+
+	public function provideMatchVariableStartToEndMultiple() {
+		return [
+			[ 'thumb', [ 'img_thumbnail', false ] ],
+			[ 'upright=1.2', [ 'img_upright', '1.2' ] ],
+			[ 'upright=', [ 'img_upright', '' ] ],
+			[ 'upright', [ 'img_upright', false ] ],
+			[ '100px', [ 'img_width', '100' ] ],
+			[ 'px', [ 'img_width', '' ] ],
+			[ 'PX' ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideMatchStartAndRemove
 	 */
 	public function testMatchStartAndRemove(
@@ -107,14 +150,64 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	private function getFactory( bool $caseSensitive = false ): MagicWordFactory {
+	/**
+	 * @dataProvider provideMatchAndRemoveMultiple
+	 */
+	public function testMatchAndRemoveMultiple(
+		string $input,
+		array $expectedMatches = [],
+		string $expectedText = null
+	) {
+		$array = new MagicWordArray( array_keys( self::MAGIC_WORDS ), $this->getFactory() );
+		$text = $input;
+		$this->assertSame( $expectedMatches, $array->matchAndRemove( $text ) );
+		$this->assertSame( $expectedText ?? $input, $text );
+	}
+
+	public function provideMatchAndRemoveMultiple() {
+		return [
+			[
+				'x__NOTC__x__NOTOC__x__NOTITLECONVERT__x',
+				[ 'notitleconvert' => false, 'notoc' => false ],
+				'xxxx',
+			],
+			[
+				'__NOTOC__NOTITLECONVERT__NOTOC____NOTOC__',
+				[ 'notoc' => false ],
+				'NOTITLECONVERT',
+			],
+			[
+				'[[File:X.png|thumb|Alt]]',
+				[ 'img_thumbnail' => false ],
+				'[[File:X.png||Alt]]',
+			],
+			[
+				'[[File:X.png|thumb|100px]]',
+				[ 'img_thumbnail' => false ],
+				'[[File:X.png||100px]]',
+			],
+			[
+				'[[File:X.png|upright=1.2|thumbnail]]',
+				[ 'img_upright' => false, 'img_thumbnail' => false ],
+				// Note: The matchAndRemove method is obviously not designed for this, still we want
+				// to document the status quo
+				'[[File:X.png|=1.2|nail]]',
+			],
+		];
+	}
+
+	private function getFactory( ?bool $caseSensitive = null ): MagicWordFactory {
 		$language = $this->createNoOpMock( Language::class, [ 'lc', '__debugInfo' ] );
 		$language->method( 'lc' )->willReturnCallback( static fn ( $s ) => strtolower( $s ) );
 
 		$factory = $this->createNoOpMock( MagicWordFactory::class, [ 'getContentLanguage', 'get' ] );
 		$factory->method( 'getContentLanguage' )->willReturn( $language );
 		$factory->method( 'get' )->willReturnCallback(
-			static fn ( $id ) => new MagicWord( $id, [ 'SYNONYM', 'alt=$1' ], $caseSensitive, $language )
+			static function ( $id ) use ( $caseSensitive, $language ) {
+				$data = self::MAGIC_WORDS[$id] ?? [ 0, 'SYNONYM', 'alt=$1' ];
+				$caseSensitive ??= (bool)$data[0];
+				return new MagicWord( $id, array_slice( $data, 1 ), $caseSensitive, $language );
+			}
 		);
 		return $factory;
 	}
