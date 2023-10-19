@@ -46,7 +46,7 @@ class LanguageMlTest extends LanguageClassesTestCase {
 	 */
 	public function testNormalize( $input, $expected ) {
 		if ( $input === $expected ) {
-			throw new Exception( 'Expected output must differ.' );
+			$this->fail( 'Expected output must differ.' );
 		}
 
 		$this->assertSame(

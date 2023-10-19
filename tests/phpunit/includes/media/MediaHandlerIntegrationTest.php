@@ -33,31 +33,31 @@ class MediaHandlerIntegrationTest extends MediaWikiMediaTestCase {
 			}
 
 			public function getParamMap() {
-				throw new Exception( 'should never get here' );
+				throw new LogicException( 'should never get here' );
 			}
 
 			public function validateParam( $name, $value ) {
-				throw new Exception( 'should never get here' );
+				throw new LogicException( 'should never get here' );
 			}
 
 			public function makeParamString( $params ) {
-				throw new Exception( 'should never get here' );
+				throw new LogicException( 'should never get here' );
 			}
 
 			public function parseParamString( $str ) {
-				throw new Exception( 'should never get here' );
+				throw new LogicException( 'should never get here' );
 			}
 
 			public function normaliseParams( $image, &$params ) {
-				throw new Exception( 'should never get here' );
+				throw new LogicException( 'should never get here' );
 			}
 
 			public function getImageSize( $image, $path ) {
-				throw new Exception( 'should never get here' );
+				throw new LogicException( 'should never get here' );
 			}
 
 			public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-				throw new Exception( 'should never get here' );
+				throw new LogicException( 'should never get here' );
 			}
 		};
 		$file = $this->dataFile( 'Tux.svg', 'image/svg+xml' );

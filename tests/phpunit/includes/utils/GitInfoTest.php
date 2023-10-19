@@ -16,7 +16,7 @@ class GitInfoTest extends MediaWikiIntegrationTestCase {
 		self::$tempDir = wfTempDir() . '/mw-phpunit-' . wfRandomString( 8 );
 		if ( !mkdir( self::$tempDir ) ) {
 			self::$tempDir = null;
-			throw new Exception( 'Unable to create temporary directory' );
+			self::fail( 'Unable to create temporary directory' );
 		}
 		mkdir( self::$tempDir . '/gitrepo' );
 		mkdir( self::$tempDir . '/gitrepo/1' );

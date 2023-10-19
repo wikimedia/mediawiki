@@ -16,7 +16,7 @@ class MessagesStructureTest extends MediaWikiUnitTestCase {
 			$n++;
 		}
 		if ( $n === 0 ) {
-			throw new \Exception( 'Not enough files' );
+			throw new \UnderflowException( 'Not enough files' );
 		}
 	}
 

@@ -23,7 +23,7 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->importStreamSource = ImportStreamSource::newFromFile( $file );
 
 		if ( !$this->importStreamSource->isGood() ) {
-			throw new Exception( "Import source for {$file} failed" );
+			$this->fail( "Import source for {$file} failed" );
 		}
 	}
 
