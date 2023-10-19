@@ -23,7 +23,6 @@ namespace MediaWiki\Parser;
 use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use UnexpectedValueException;
 
 /**
  * Class for handling an array of magic words
@@ -105,7 +104,6 @@ class MagicWordArray {
 			return $this->baseRegex;
 		}
 		$regex = [ 0 => [], 1 => [] ];
-		$allGroups = [];
 		foreach ( $this->names as $name ) {
 			$magic = $this->factory->get( $name );
 			$case = $magic->isCaseSensitive() ? 1 : 0;
@@ -115,13 +113,6 @@ class MagicWordArray {
 					$it = strtr( $i, '0123456789', 'abcdefghij' );
 					$groupName = $it . '_' . $name;
 					$group = '(?P<' . $groupName . '>' . preg_quote( $syn, $delimiter ) . ')';
-					// look for same group names to avoid same named subpatterns in the regex
-					if ( isset( $allGroups[$groupName] ) ) {
-						throw new UnexpectedValueException(
-							__METHOD__ . ': duplicate internal name in magic word array: ' . $name
-						);
-					}
-					$allGroups[$groupName] = true;
 					$regex[$case][] = $group;
 				} else {
 					$regex[$case][] = preg_quote( $syn, $delimiter );
@@ -153,7 +144,7 @@ class MagicWordArray {
 			$this->regex = [];
 			$base = $this->getBaseRegex( true, '/' );
 			foreach ( $base as $case => $re ) {
-				$this->regex[$case] = "/{$re}/S";
+				$this->regex[$case] = "/$re/JS";
 			}
 			// As a performance optimization, turn on unicode mode only for
 			// case-insensitive matching.
@@ -171,7 +162,7 @@ class MagicWordArray {
 		$newRegex = [];
 		$base = $this->getBaseRegex( true, '/' );
 		foreach ( $base as $case => $re ) {
-			$newRegex[$case] = "/^(?:{$re})/S";
+			$newRegex[$case] = "/^(?:$re)/JS";
 		}
 		// As a performance optimization, turn on unicode mode only for
 		// case-insensitive matching.
@@ -188,7 +179,7 @@ class MagicWordArray {
 		$newRegex = [];
 		$base = $this->getBaseRegex( true, '/' );
 		foreach ( $base as $case => $re ) {
-			$newRegex[$case] = str_replace( "\\$1", "(.*?)", "/^(?:{$re})$/S" );
+			$newRegex[$case] = str_replace( '\$1', '(.*?)', "/^(?:$re)$/JS" );
 		}
 		// As a performance optimization, turn on unicode mode only for
 		// case-insensitive matching.
