@@ -372,17 +372,22 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideRespond() {
-		$rl = MediaWikiServices::getInstance()->getResourceLoader();
-		foreach ( $rl->getModuleNames() as $moduleName ) {
-			yield $moduleName => [ $moduleName ];
+		$services = MediaWikiServices::getInstance();
+		$rl = $services->getResourceLoader();
+		$skinFactory = $services->getSkinFactory();
+		foreach ( array_keys( $skinFactory->getInstalledSkins() ) as $skin ) {
+			foreach ( $rl->getModuleNames() as $moduleName ) {
+				yield [ $moduleName, $skin ];
+			}
 		}
 	}
 
 	/**
 	 * @dataProvider provideRespond
 	 * @param string $moduleName
+	 * @param string $skin
 	 */
-	public function testRespond( $moduleName ) {
+	public function testRespond( $moduleName, $skin ) {
 		$rl = $this->getServiceContainer()->getResourceLoader();
 		$module = $rl->getModule( $moduleName );
 		if ( $module->getGroup() === RL\Module::GROUP_PRIVATE ) {
@@ -394,7 +399,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$only = $module->getType() === RL\Module::LOAD_STYLES ? 'styles' : null;
 		$context = new RL\Context(
 			$rl,
-			new FauxRequest( [ 'modules' => $moduleName, 'only' => $only ] )
+			new FauxRequest( [ 'modules' => $moduleName, 'only' => $only, 'skin' => $skin ] )
 		);
 		ob_start();
 		$rl->respond( $context );
