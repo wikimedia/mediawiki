@@ -1071,6 +1071,7 @@
 	"editundo": "geri al",
 	"diff-incompatible": "\"$1\" ve \"$2\" içerik modelleri karşılaştırılamıyor",
 	"diff-empty": "(Fark yok)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|değişiklik}}",
 	"diff-multi-sameuser": "(Aynı kullanıcının {{PLURAL:$1|aradaki bir diğer değişikliği|aradaki diğer {{GENDER:$3|$1 değişikliği}}}} gösterilmiyor)",
 	"diff-multi-otherusers": "({{PLURAL:$2|Bir diğer kullanıcıdan|$2 kullanıcıdan}} {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)",
 	"diff-multi-manyusers": "($2 kullanıcıdan fazla tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)",

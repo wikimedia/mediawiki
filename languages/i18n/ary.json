@@ -1220,6 +1220,7 @@
 	"filedelete-legend": "سيپريمي كولشي",
 	"filedelete-comment": "سباب:",
 	"filedelete-submit": "محي",
+	"filedelete-success": "<strong>$1</strong> تحيّد.",
 	"filedelete-otherreason": "سباب وحداخور/زايد:",
 	"filedelete-reason-otherlist": "سباب أخور",
 	"filedelete-reason-dropdown": "*asbab l-ḫdf l-ĝamma\n** ĥra ḫoqoq n-naċr\n** milef mḍobl",

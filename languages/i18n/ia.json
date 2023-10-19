@@ -965,6 +965,7 @@
 	"editundo": "disfacer",
 	"diff-incompatible": "Impossibile comparar contento del modellos “$1” e “$2”",
 	"diff-empty": "(Nulle differentia)",
+	"diff-user-edits": "<span>$1</span> modification{{PLURAL:$1||es}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per le mesme usat{{GENDER:$3|or|rice}} non es monstrate)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per {{PLURAL:$2|un altere usator|$2 usatores}} non es monstrate)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per plus de $2 {{PLURAL:$2|usator|usatores}} non es monstrate)",

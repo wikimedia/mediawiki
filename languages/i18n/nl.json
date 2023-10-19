@@ -1062,6 +1062,7 @@
 	"editundo": "ongedaan maken",
 	"diff-incompatible": "Kan inhoudsmodellen \"$1\" en \"$2\" niet vergelijken",
 	"diff-empty": "(geen verschil)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|bewerking|bewerkingen}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Een tussenliggende versie|$1 tussenliggende versies}} door dezelfde {{GENDER:$3|gebruiker}} niet weergegeven)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Een tussenliggende versie|$1 tussenliggende versies}} door {{PLURAL:$2|een andere gebruiker|$2 gebruikers}} niet weergegeven)",
 	"diff-multi-manyusers": "($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)",

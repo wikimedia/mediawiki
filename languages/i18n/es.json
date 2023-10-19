@@ -1189,6 +1189,7 @@
 	"editundo": "deshacer",
 	"diff-incompatible": "No es posible comparar los modelos de contenido «$1» y «$2»",
 	"diff-empty": "(Sin diferencias)",
+	"diff-user-edits": "<span>$1</span> edici{{PLURAL:$1|ón|ones}}",
 	"diff-multi-sameuser": "(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} {{GENDER:$3|del mismo usuario|de la misma usuaria}})",
 	"diff-multi-otherusers": "(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de {{PLURAL:$2|otro usuario|$2 usuarios}})",
 	"diff-multi-manyusers": "(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de más de {{PLURAL:$2|un usuario|$2 usuarios}})",

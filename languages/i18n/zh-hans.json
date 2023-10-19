@@ -1151,6 +1151,7 @@
 	"diff-inline-tooltip-ins": "添加的内容",
 	"diff-inline-tooltip-del": "删除的内容",
 	"diff-inline-format-label": "行内",
+	"diff-inline-switch-desc": "在行内格式和两列格式之间切换",
 	"diff-line-deleted": "⟵ 删除",
 	"diff-newline": "↲ 换行",
 	"difference-missing-revision": "此差异对比的{{PLURAL:$2|$2个版本}}（$1）{{PLURAL:$2|没有}}找到。\n\n这通常是因为进入了一个已被删除的页面的版本差异对比链接。\n详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",

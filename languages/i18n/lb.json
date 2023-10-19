@@ -912,6 +912,7 @@
 	"showhideselectedversions": "Erausgesicht Versioune weisen/verstoppen",
 	"editundo": "réckgängeg maachen",
 	"diff-empty": "(Keen Ënnerscheed)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|Ännerung|Ännerungen}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{GENDER:$3|deem selwechte Benotzer|där selwechter Benotzerin}} {{PLURAL:$1|gëtt|ginn}} net gewisen)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem anere|$2}} Benotzer {{PLURAL:$1|gëtt|ginn}} net gewisen)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vu méi wéi $2 {{PLURAL:$2|Benotzer|Benotzer}} ginn net gewisen)",

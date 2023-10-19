@@ -1073,6 +1073,7 @@
 	"editundo": "rückgängig machen",
 	"diff-incompatible": "Die Inhaltsmodelle „$1“ und „$2“ können nicht verglichen werden.",
 	"diff-empty": "(kein Unterschied)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|Bearbeitung|Bearbeitungen}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} {{GENDER:$3|desselben Benutzers|derselben Benutzerin}} {{PLURAL:$1|wird|werden}} nicht angezeigt)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem anderen Benutzer|$2 Benutzern}} {{PLURAL:$1|wird|werden}} nicht angezeigt)",
 	"diff-multi-manyusers": "({{PLURAL:$1|$1 dazwischenliegende Versionen}} von mehr als {{PLURAL:$2|$2 Benutzern}}, die nicht angezeigt werden)",

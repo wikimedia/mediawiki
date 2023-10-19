@@ -983,6 +983,7 @@
 	"editundo": "desfacer",
 	"diff-incompatible": "Non se poden comparar os modelos de contido \"$1\" e \"$2\"",
 	"diff-empty": "(Sen diferenzas.)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|edición|edicións}}",
 	"diff-multi-sameuser": "(Non se {{PLURAL:$1|amosa unha revisión|amosan $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} {{GENDER:$3|polo mesmo usuario|pola mesma usuaria}})",
 	"diff-multi-otherusers": "(Non se {{PLURAL:$1|amosa unha revisión feita|amosan $1 revisións feitas}} por {{PLURAL:$2|outro usuario|$2 usuarios}}.)",
 	"diff-multi-manyusers": "(Non se {{PLURAL:$1|amosa unha revisión|amosan $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por máis {{PLURAL:$2|dun usuario|de $2 usuarios}}.)",
