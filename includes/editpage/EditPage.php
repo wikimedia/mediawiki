@@ -2766,7 +2766,10 @@ class EditPage implements IEditObject {
 			$out->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
-		if ( $this->context->getConfig()->get( MainConfigNames::EnableEditRecovery ) ) {
+		if ( $this->context->getConfig()->get( MainConfigNames::EnableEditRecovery )
+			&& !$this->isConflict
+			&& !$this->undoAfter
+		) {
 			$out->addModules( 'mediawiki.editRecovery.edit' );
 		}
 
