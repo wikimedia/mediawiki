@@ -608,17 +608,17 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			if ( $bitField == RevisionRecord::DELETED_RESTRICTED ) {
 				$field['label-raw'] = "<b>" . $field['label-raw'] . "</b>";
 				if ( $type === 'radio' ) {
-					$field['options'] = [
-						$this->msg( 'revdelete-radio-same' )->text() => -1,
-						$this->msg( 'revdelete-radio-unset-suppress' )->text() => 0,
-						$this->msg( 'revdelete-radio-set-suppress' )->text() => 1
+					$field['options-messages'] = [
+						'revdelete-radio-same' => -1,
+						'revdelete-radio-unset-suppress' => 0,
+						'revdelete-radio-set-suppress' => 1
 					];
 				}
 			} elseif ( $type === 'radio' ) {
-				$field['options'] = [
-					$this->msg( 'revdelete-radio-same' )->text() => -1,
-					$this->msg( 'revdelete-radio-unset' )->text() => 0,
-					$this->msg( 'revdelete-radio-set' )->text() => 1
+				$field['options-messages'] = [
+					'revdelete-radio-same' => -1,
+					'revdelete-radio-unset' => 0,
+					'revdelete-radio-set' => 1
 				];
 			}
 
