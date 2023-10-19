@@ -524,6 +524,16 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
+		// Preload for self::getCategoryLinks
+		$allCats = $this->getOutput()->getCategoryLinks();
+		if ( isset( $allCats['normal'] ) && $allCats['normal'] !== [] ) {
+			$catLink = Title::newFromText( $this->msg( 'pagecategorieslink' )->inContentLanguage()->text() );
+			if ( $catLink ) {
+				// If this is a special page, the LinkBatch would skip it
+				$titles[] = $catLink;
+			}
+		}
+
 		$this->getHookRunner()->onSkinPreloadExistence( $titles, $this );
 
 		if ( $titles ) {
