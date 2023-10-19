@@ -50,7 +50,7 @@ class SpecialRenameUserTest extends SpecialPageTestBase {
 		$this->editPage( $oldTalkPage, 'user talk page' );
 
 		$formData = [
-			'token' => $performer->getEditToken(),
+			'wpEditToken' => $performer->getEditToken(),
 			'oldusername' => $oldName,
 			'newusername' => $newName,
 			'reason' => 'r',

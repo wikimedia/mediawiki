@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Specials;
 
+use HTMLForm;
 use Language;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -16,7 +18,6 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Xml;
 
 /**
  * Special page that allows authorised users to rename
@@ -122,23 +123,30 @@ class SpecialRenameUser extends SpecialPage {
 
 		$this->showForm( $oldName, $newName, $warnings, $reason, $moveChecked, $suppressChecked );
 
-		if ( $request->getText( 'token' ) === '' ) {
+		if ( $request->getText( 'wpEditToken' ) === '' ) {
 			# They probably haven't even submitted the form, so don't go further.
 			return;
-		} elseif ( $warnings ) {
+		}
+		if ( $warnings ) {
 			# Let user read warnings
 			return;
-		} elseif ( !$request->wasPosted() || !$performer->matchEditToken( $request->getVal( 'token' ) ) ) {
+		}
+		if (
+			!$request->wasPosted() ||
+			!$performer->matchEditToken( $request->getVal( 'wpEditToken' ) )
+		) {
 			$out->addHTML( Html::errorBox( $out->msg( 'renameuser-error-request' )->parse() ) );
 
 			return;
-		} elseif ( !$newTitle ) {
+		}
+		if ( !$newTitle ) {
 			$out->addHTML( Html::errorBox(
 				$out->msg( 'renameusererrorinvalid' )->params( $request->getText( 'newusername' ) )->parse()
 			) );
 
 			return;
-		} elseif ( $oldName === $newName ) {
+		}
+		if ( $oldName === $newName ) {
 			$out->addHTML( Html::errorBox( $out->msg( 'renameuser-error-same-user' )->parse() ) );
 
 			return;
@@ -283,78 +291,53 @@ class SpecialRenameUser extends SpecialPage {
 
 	private function showForm( $oldName, $newName, $warnings, $reason, $moveChecked, $suppressChecked ) {
 		$performer = $this->getUser();
-		$token = $performer->getEditToken();
-		$out = $this->getOutput();
 
-		$out->addHTML(
-			Xml::openElement( 'form', [
-				'method' => 'post',
-				'action' => $this->getPageTitle()->getLocalURL(),
-				'id' => 'renameuser'
-			] ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, $this->msg( 'renameuser' )->text() ) .
-			Xml::openElement( 'table', [ 'id' => 'mw-renameuser-table' ] ) .
-			"<tr>
-				<td class='mw-label'>" .
-			Xml::label( $this->msg( 'renameuserold' )->text(), 'oldusername' ) .
-			"</td>
-				<td class='mw-input'>" .
-			Xml::input( 'oldusername', 20, $oldName, [ 'type' => 'text', 'tabindex' => '1' ] ) . ' ' .
-			"</td>
-			</tr>
-			<tr>
-				<td class='mw-label'>" .
-			Xml::label( $this->msg( 'renameusernew' )->text(), 'newusername' ) .
-			"</td>
-				<td class='mw-input'>" .
-			Xml::input( 'newusername', 20, $newName, [ 'type' => 'text', 'tabindex' => '2' ] ) .
-			"</td>
-			</tr>
-			<tr>
-				<td class='mw-label'>" .
-			Xml::label( $this->msg( 'renameuserreason' )->text(), 'reason' ) .
-			"</td>
-				<td class='mw-input'>" .
-			Xml::input(
-				'reason',
-				40,
-				$reason,
-				[ 'type' => 'text', 'tabindex' => '3', 'maxlength' => 255 ]
-			) .
-			'</td>
-			</tr>'
-		);
+		$formDescriptor = [
+			'oldusername' => [
+				'type' => 'user',
+				'name' => 'oldusername',
+				'label-message' => 'renameuserold',
+				'default' => $oldName,
+				'required' => true,
+			],
+			'newusername' => [
+				'type' => 'text',
+				'name' => 'newusername',
+				'label-message' => 'renameusernew',
+				'default' => $newName,
+				'required' => true,
+			],
+			'reason' => [
+				'type' => 'text',
+				'name' => 'reason',
+				'label-message' => 'renameuserreason',
+				'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
+				'maxlength-unit' => 'codepoints',
+				'infusable' => true,
+				'default' => $reason,
+				'required' => true,
+			],
+		];
+
 		if ( $this->permissionManager->userHasRight( $performer, 'move' ) ) {
-			$out->addHTML( "
-				<tr>
-					<td>&#160;
-					</td>
-					<td class='mw-input'>" .
-				Xml::checkLabel( $this->msg( 'renameusermove' )->text(), 'movepages', 'movepages',
-					$moveChecked, [ 'tabindex' => '4' ] ) .
-				'</td>
-				</tr>'
-			);
-
-			if ( $this->permissionManager->userHasRight( $performer, 'suppressredirect' ) ) {
-				$out->addHTML( "
-					<tr>
-						<td>&#160;
-						</td>
-						<td class='mw-input'>" .
-					Xml::checkLabel(
-						$this->msg( 'renameusersuppress' )->text(),
-						'suppressredirect',
-						'suppressredirect',
-						$suppressChecked,
-						[ 'tabindex' => '5' ]
-					) .
-					'</td>
-					</tr>'
-				);
-			}
+			$formDescriptor['confirm'] = [
+				'type' => 'check',
+				'id' => 'movepages',
+				'name' => 'movepages',
+				'label-message' => 'renameusermove',
+				'default' => $moveChecked,
+			];
 		}
+		if ( $this->permissionManager->userHasRight( $performer, 'suppressredirect' ) ) {
+			$formDescriptor['suppressredirect'] = [
+				'type' => 'check',
+				'id' => 'suppressredirect',
+				'name' => 'suppressredirect',
+				'label-message' => 'renameusersuppress',
+				'default' => $suppressChecked,
+			];
+		}
+
 		if ( $warnings ) {
 			$warningsHtml = [];
 			foreach ( $warnings as $warning ) {
@@ -363,53 +346,28 @@ class SpecialRenameUser extends SpecialPage {
 					$this->msg( $warning )->parse();
 			}
 
-			$out->addHTML( "
-				<tr>
-					<td class='mw-label'>" . $this->msg( 'renameuserwarnings' )->escaped() . "
-					</td>
-					<td class='mw-input'>" .
-				'<ul class="error"><li>' .
-				implode( '</li><li>', $warningsHtml ) . '</li></ul>' .
-				'</td>
-				</tr>'
-			);
-			$out->addHTML( "
-				<tr>
-					<td>&#160;
-					</td>
-					<td class='mw-input'>" .
-				Xml::checkLabel(
-					$this->msg( 'renameuserconfirm' )->text(),
-					'confirmaction',
-					'confirmaction',
-					false,
-					[ 'tabindex' => '6' ]
-				) .
-				'</td>
-				</tr>'
-			);
+			$formDescriptor['renameuserwarnings'] = [
+				'type' => 'info',
+				'label-message' => 'renameuserwarnings',
+				'raw' => true,
+				'default' => Html::warningBox( '<ul><li>' .
+					implode( '</li><li>', $warningsHtml ) . '</li></ul>' ),
+			];
+
+			$formDescriptor['confirmaction'] = [
+				'type' => 'check',
+				'name' => 'confirmaction',
+				'id' => 'confirmaction',
+				'label-message' => 'renameuserconfirm',
+			];
 		}
-		$out->addHTML( "
-			<tr>
-				<td>&#160;
-				</td>
-				<td class='mw-submit'>" .
-			Xml::submitButton(
-				$this->msg( 'renameusersubmit' )->text(),
-				[
-					'name' => 'submit',
-					'tabindex' => '7',
-					'id' => 'submit'
-				]
-			) .
-			' ' .
-			'</td>
-			</tr>' .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
-			Html::hidden( 'token', $token ) .
-			Xml::closeElement( 'form' ) . "\n"
-		);
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			->setMethod( 'post' )
+			->setId( 'renameuser' )
+			->setSubmitTextMsg( 'renameusersubmit' );
+
+		$this->getOutput()->addHTML( $htmlForm->prepareForm()->getHTML( false ) );
 	}
 
 	/**
