@@ -2084,6 +2084,72 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function testLenientRevisionHandling() {
+		$page1 = $this->getNonexistingTestPage( "Page1" );
+		$status = $this->editPage( $page1, 'Page 1 revision content' );
+		$rev1 = $status->getNewRevision();
+
+		$page2 = $this->getNonexistingTestPage( "Page2" );
+		$status = $this->editPage( $page2, '#REDIRECT [[Page1]]' );
+		$rev2 = $status->getNewRevision();
+
+		$handler = $this->newParsoidHandler();
+
+		// Test 1: <page1, rev1>
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
+		$attribs['opts']['from'] ??= 'wikitext';
+		$attribs['opts']['format'] ??= 'html';
+		$attribs['envOptions'] += self::DEFAULT_ATTRIBS['envOptions'];
+		$attribs['oldid'] = $rev1->getId();
+
+		$pageConfig = $this->getPageConfig( $page1, $attribs['oldid'] );
+		$response = $handler->wt2html( $pageConfig, $attribs );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = $body->getContents();
+		$this->assertStringContainsString( 'Page 1 revision content', $data );
+
+		// Test 2: <page2, rev2>
+		$attribs['oldid'] = $rev2->getId();
+		$pageConfig = $this->getPageConfig( $page2, $attribs['oldid'] );
+		$response = $handler->wt2html( $pageConfig, $attribs );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = $body->getContents();
+		$this->assertStringContainsString( '<link rel="mw:PageProp/redirect" ', $data );
+
+		// Test 2: <page2, rev1> <-- should transparently redirect
+		$attribs['oldid'] = $rev1->getId();
+		$pageConfig = $this->getPageConfig( $page2, $attribs['oldid'] );
+		$response = $handler->wt2html( $pageConfig, $attribs );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = $body->getContents();
+		$this->assertStringContainsString( 'Page 1 revision content', $data );
+
+		// Test 3 repeated with ParserCache to ensure nothing is written to cache!
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get', 'makeParserOutputKey', 'getMetadata' ] );
+		// This is the critical assertion -- no cache svaes for mismatched rev & page params
+		$parserCache->expects( $this->never() )->method( 'save' );
+		// Ensures there is a cache miss
+		$parserCache->method( 'get' )->willReturn( false );
+		// Verify that the cache is queried
+		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
+		$parserCache->expects( $this->atLeastOnce() )->method( 'getMetadata' );
+		$parserCacheFactory = $this->createNoOpMock(
+			ParserCacheFactory::class,
+			[ 'getParserCache', 'getRevisionOutputCache' ]
+		);
+		$parserCacheFactory->method( 'getParserCache' )->willReturn( $parserCache );
+		$parserCacheFactory->method( 'getRevisionOutputCache' )->willReturn(
+			$this->createNoOpMock( RevisionOutputCache::class )
+		);
+		$this->setService( 'ParserCacheFactory', $parserCacheFactory );
+		$handler = $this->newParsoidHandler();
+		$handler->wt2html( $pageConfig, $attribs ); // Reuse pageconfig & attribs from test 3
+	}
+
 	public function testWt2html_ParserCache() {
 		$page = $this->getExistingTestPage();
 		$pageConfig = $this->getPageConfig( $page );

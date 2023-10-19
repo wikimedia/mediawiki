@@ -130,6 +130,9 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var ?Bcp47Code */
 	private $targetLanguage = null;
 
+	/** Should we ignore mismatched $page and $revisionOrId values? */
+	private bool $lenientRevHandling = false;
+
 	/**
 	 * Flags to be passed as $options to ParsoidOutputAccess::getParserOutput,
 	 * to control parser cache access.
@@ -159,6 +162,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
+	 * @param bool $lenientRevHandling Should we ignore mismatches
+	 *    $page and the page that $revision belongs to? Usually happens
+	 *    because of page moves. This should be set to true only for
+	 *	  internal API calls.
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
@@ -166,7 +173,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		ParsoidOutputAccess $parsoidOutputAccess,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
-		LanguageFactory $languageFactory
+		LanguageFactory $languageFactory,
+		bool $lenientRevHandling = false
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
@@ -174,6 +182,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
+		$this->lenientRevHandling = $lenientRevHandling;
 	}
 
 	/**
@@ -756,7 +765,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				$this->page,
 				$parserOptions,
 				$this->revisionOrId,
-				$flags
+				$flags,
+				$this->lenientRevHandling
 			);
 
 			// T333606: Force a reparse if the version coming from cache is not the default
@@ -775,7 +785,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 						$this->page,
 						$parserOptions,
 						$this->revisionOrId,
-						$flags | ParserOutputAccess::OPT_FORCE_PARSE
+						$flags | ParserOutputAccess::OPT_FORCE_PARSE,
+						$this->lenientRevHandling
 					);
 				}
 			}
@@ -783,7 +794,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$status = $this->parsoidOutputAccess->parseUncacheable(
 				$this->page,
 				$parserOptions,
-				$this->revisionOrId
+				$this->revisionOrId,
+				$this->lenientRevHandling
 			);
 
 			// @phan-suppress-next-line PhanSuspiciousValueComparison
