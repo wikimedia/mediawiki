@@ -17,7 +17,10 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @since 1.40
@@ -103,7 +106,17 @@ class LanguageVariantConverter {
 
 		$pageConfig = $this->getPageConfig( $pageLanguage, $sourceVariant );
 
-		if ( !$this->parsoid->implementsLanguageConversionBcp47( $pageConfig, $targetVariant ) ) {
+		if ( $this->parsoid->implementsLanguageConversionBcp47( $pageConfig, $targetVariant ) ) {
+			return $this->parsoid->pb2pb(
+				$pageConfig, 'variant', $pageBundle,
+				[
+					'variant' => [
+						'source' => $sourceVariant,
+						'target' => $targetVariant,
+					]
+				]
+			);
+		} else {
 			if ( !$this->isFallbackLanguageConverterEnabled ) {
 				// Fallback variant conversion is not enabled, return the page bundle as is.
 				return $pageBundle;
@@ -129,30 +142,23 @@ class LanguageVariantConverter {
 			$msg = "<!-- Variant conversion performed using the core LanguageConverter -->";
 			$convertedHtml = $msg . $convertedHtml;
 
-			// HACK: Pass the HTML to Parsoid for variant conversion in order to add metadata that is
-			// missing when we use the core LanguageConverter directly.
-
-			// Replace the original page bundle, so Parsoid gets the converted HTML as input.
-			$pageBundle = new PageBundle(
-				$convertedHtml,
-				[],
-				[],
-				$pageBundle->version,
-				[ 'content-language' => $targetVariant->toBcp47Code() ]
+			// NOTE: Keep this in sync with code in Parsoid.php in Parsoid repo
+			// Add meta information that Parsoid normally adds
+			$headers = [
+				'content-language' => $targetVariant->toBcp47Code(),
+				'vary' => [ 'Accept', 'Accept-Language' ]
+			];
+			$doc = DOMUtils::parseHTML( '' );
+			$doc->appendChild( $doc->createElement( 'head' ) );
+			DOMUtils::addHttpEquivHeaders( $doc, $headers );
+			$docElt = $doc->documentElement;
+			'@phan-var Element $docElt';
+			$docHtml = DOMCompat::getOuterHTML( $docElt );
+			$convertedHtml = preg_replace( "#</body>#", $docHtml, "$convertedHtml</body>" );
+			return new PageBundle(
+				$convertedHtml, [], [], $pageBundle->version, $headers
 			);
 		}
-
-		$modifiedPageBundle = $this->parsoid->pb2pb(
-			$pageConfig, 'variant', $pageBundle,
-			[
-				'variant' => [
-					'source' => $sourceVariant,
-					'target' => $targetVariant,
-				]
-			]
-		);
-
-		return $modifiedPageBundle;
 	}
 
 	/**
