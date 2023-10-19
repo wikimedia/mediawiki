@@ -429,7 +429,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$parserOutput = $this->getParserOutput();
 
 		if ( $this->stash ) {
-			if ( $this->user->pingLimiter( 'stashbasehtml' ) ) {
+			if ( !$this->user->authorizeWrite( 'stashbasehtml', $this->page ) ) {
 				throw new LocalizedHttpException(
 					MessageValue::new( 'parsoid-stash-rate-limit-error' ),
 					// See https://www.rfc-editor.org/rfc/rfc6585#section-4

@@ -238,8 +238,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	 * @return MockObject|User
 	 */
 	private function newUser( array $returns = [] ): MockObject {
-		$user = $this->createNoOpMock( User::class, [ 'pingLimiter' ] );
-		$user->method( 'pingLimiter' )->willReturn( $returns['pingLimiter'] ?? false );
+		$user = $this->createNoOpMock( User::class, [ 'authorizeWrite' ] );
+		$user->method( 'authorizeWrite' )->willReturn( $returns['authorizeWrite'] ?? true );
 		return $user;
 	}
 
@@ -480,7 +480,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper();
 
-		$user = $this->newUser( [ 'pingLimiter' => true ] );
+		$user = $this->newUser( [ 'authorizeWrite' => false ] );
 		$helper->init( $page, self::PARAM_DEFAULTS, $user );
 		$helper->setStashingEnabled( true );
 
@@ -494,7 +494,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper();
 
-		$user = $this->newUser( [ 'pingLimiter' => true ] );
+		$user = $this->newUser( [ 'authorizeWrite' => false ] );
 		$helper->init( $page, self::PARAM_DEFAULTS, $user );
 
 		// Assert that the initial flavor is "view"
