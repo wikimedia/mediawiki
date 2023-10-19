@@ -24,7 +24,16 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 
 /**
- * Lookup permissions for groups and groups with permissions.
+ * A service class for looking up permissions bestowed to groups, groups bestowed with
+ * permissions, and permissions bestowed by membership in a combination of groups, solely
+ * according to site configuration for group permissions and inheritence thereof.
+ *
+ * This class does *not* account for implicit rights (which are not associated with groups).
+ * Callers might want to use {@see PermissionManager} if this is an issue.
+ *
+ * This class does *not* infer membership in one group (e.g. '*') from membership in another
+ * (e.g. 'user'). Callers must account for this when using {@see self::getGroupPermissions()}.
+ *
  * @since 1.36
  * @package MediaWiki\Permissions
  */
@@ -88,7 +97,7 @@ class GroupPermissionsLookup {
 
 		// Check if the permission has been revoked
 		$revoked = isset( $this->revokePermissions[$group][$permission] ) &&
-		$this->revokePermissions[$group][$permission];
+			$this->revokePermissions[$group][$permission];
 		if ( !$revoked && $inheritsFrom !== false ) {
 			$revoked = isset( $this->revokePermissions[$inheritsFrom][$permission] ) &&
 				$this->revokePermissions[$inheritsFrom][$permission];
@@ -143,7 +152,10 @@ class GroupPermissionsLookup {
 	}
 
 	/**
-	 * Get the permissions associated with a given list of groups
+	 * Get the permissions associated with membership in a combination of groups
+	 *
+	 * Group-based revocation of a permission negates all group-based assignments of that
+	 * permission.
 	 *
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
