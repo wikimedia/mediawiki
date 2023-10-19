@@ -989,9 +989,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->caller( __METHOD__ )->fetchRow();
 
 		if ( !$row ) {
-			// Incomplete database migration from 2008 due to database corruption (T346290).
-			$this->mRedirectTarget = null;
-			return $this->mRedirectTarget;
+			LoggerFactory::getInstance( 'wikipage' )->info(
+				'WikiPage found inconsistent redirect status; probably the page was deleted after it was loaded'
+			);
+			return null;
 		}
 
 		// (T203942) We can't redirect to Media namespace because it's virtual.
