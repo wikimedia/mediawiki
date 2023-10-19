@@ -648,7 +648,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$stat = $this->getContainerStat( $fullCont );
 		if ( is_array( $stat ) ) {
 			return $status; // already there
-		} elseif ( $stat === self::$RES_ERROR ) {
+		} elseif ( $stat === self::RES_ERROR ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logger->error( __METHOD__ . ': cannot get container stat' );
 		} else {
@@ -676,7 +676,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$readUsers,
 				$writeUsers
 			) );
-		} elseif ( $stat === self::$RES_ABSENT ) {
+		} elseif ( $stat === self::RES_ABSENT ) {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
@@ -700,7 +700,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$readUsers,
 				$writeUsers
 			) );
-		} elseif ( $stat === self::$RES_ABSENT ) {
+		} elseif ( $stat === self::RES_ABSENT ) {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
@@ -720,9 +720,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (a) Check the container
 		$stat = $this->getContainerStat( $fullCont, true );
-		if ( $stat === self::$RES_ABSENT ) {
+		if ( $stat === self::RES_ABSENT ) {
 			return $status; // ok, nothing to do
-		} elseif ( $stat === self::$RES_ERROR ) {
+		} elseif ( $stat === self::RES_ERROR ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logger->error( __METHOD__ . ': cannot get container stat' );
 		} elseif ( is_array( $stat ) && $stat['count'] == 0 ) {
@@ -834,7 +834,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$reqs = []; // (path => op)
 
 		// Initial dummy values to preserve path order
-		$contents = array_fill_keys( $params['srcs'], self::$RES_ERROR );
+		$contents = array_fill_keys( $params['srcs'], self::RES_ERROR );
 		foreach ( $params['srcs'] as $path ) { // each path in this concurrent batch
 			[ $srcCont, $srcRel ] = $this->resolveStoragePathReal( $path );
 			if ( $srcRel === null || !$auth ) {
@@ -867,15 +867,15 @@ class SwiftFileBackend extends FileBackendStore {
 				if ( $size === (int)$rhdrs['content-length'] ) {
 					$contents[$path] = $content;
 				} else {
-					$contents[$path] = self::$RES_ERROR;
+					$contents[$path] = self::RES_ERROR;
 					$rerr = "Got {$size}/{$rhdrs['content-length']} bytes";
 					$this->onError( null, __METHOD__,
 						[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc );
 				}
 			} elseif ( $rcode === 404 ) {
-				$contents[$path] = self::$RES_ABSENT;
+				$contents[$path] = self::RES_ABSENT;
 			} else {
-				$contents[$path] = self::$RES_ERROR;
+				$contents[$path] = self::RES_ERROR;
 				$this->onError( null, __METHOD__,
 					[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc, $rbody );
 			}
@@ -892,7 +892,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return ( count( $status->value ) ) > 0;
 		}
 
-		return self::$RES_ERROR;
+		return self::RES_ERROR;
 	}
 
 	/**
@@ -1112,7 +1112,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $stat['xattr'];
 		}
 
-		return ( $stat === self::$RES_ERROR ) ? self::$RES_ERROR : self::$RES_ABSENT;
+		return $stat === self::RES_ERROR ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
 	protected function doGetFileSha1base36( array $params ) {
@@ -1125,7 +1125,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $stat['sha1'];
 		}
 
-		return ( $stat === self::$RES_ERROR ) ? self::$RES_ERROR : self::$RES_ABSENT;
+		return $stat === self::RES_ERROR ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
 	protected function doStreamFile( array $params ) {
@@ -1203,7 +1203,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$reqs = []; // (path => op)
 
 		// Initial dummy values to preserve path order
-		$tmpFiles = array_fill_keys( $params['srcs'], self::$RES_ERROR );
+		$tmpFiles = array_fill_keys( $params['srcs'], self::RES_ERROR );
 		foreach ( $params['srcs'] as $path ) { // each path in this concurrent batch
 			[ $srcCont, $srcRel ] = $this->resolveStoragePathReal( $path );
 			if ( $srcRel === null || !$auth ) {
@@ -1242,7 +1242,7 @@ class SwiftFileBackend extends FileBackendStore {
 				// Make sure that the stream finished and fully wrote to disk
 				$size = $tmpFile->getSize();
 				if ( $size !== (int)$rhdrs['content-length'] ) {
-					$tmpFiles[$path] = self::$RES_ERROR;
+					$tmpFiles[$path] = self::RES_ERROR;
 					$rerr = "Got {$size}/{$rhdrs['content-length']} bytes";
 					$this->onError( null, __METHOD__,
 						[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc );
@@ -1252,14 +1252,14 @@ class SwiftFileBackend extends FileBackendStore {
 				$stat['latest'] = $latest;
 				$this->cheapCache->setField( $path, 'stat', $stat );
 			} elseif ( $rcode === 404 ) {
-				$tmpFiles[$path] = self::$RES_ABSENT;
+				$tmpFiles[$path] = self::RES_ABSENT;
 				$this->cheapCache->setField(
 					$path,
 					'stat',
-					$latest ? self::$ABSENT_LATEST : self::$ABSENT_NORMAL
+					$latest ? self::ABSENT_LATEST : self::ABSENT_NORMAL
 				);
 			} else {
-				$tmpFiles[$path] = self::$RES_ERROR;
+				$tmpFiles[$path] = self::RES_ERROR;
 				$this->onError( null, __METHOD__,
 					[ 'src' => $path ] + $ep, $rerr, $rcode, $rdesc, $rbody );
 			}
@@ -1471,7 +1471,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !$this->containerStatCache->hasField( $container, 'stat' ) ) {
 			$auth = $this->getAuthentication();
 			if ( !$auth ) {
-				return self::$RES_ERROR;
+				return self::RES_ERROR;
 			}
 
 			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
@@ -1492,12 +1492,12 @@ class SwiftFileBackend extends FileBackendStore {
 					$this->setContainerCache( $container, $stat ); // update persistent cache
 				}
 			} elseif ( $rcode === 404 ) {
-				return self::$RES_ABSENT;
+				return self::RES_ABSENT;
 			} else {
 				$this->onError( null, __METHOD__,
 					[ 'cont' => $container ], $rerr, $rcode, $rdesc, $rbody );
 
-				return self::$RES_ERROR;
+				return self::RES_ERROR;
 			}
 		}
 
@@ -1667,16 +1667,16 @@ class SwiftFileBackend extends FileBackendStore {
 		foreach ( $params['srcs'] as $path ) {
 			[ $srcCont, $srcRel ] = $this->resolveStoragePathReal( $path );
 			if ( $srcRel === null || !$auth ) {
-				$stats[$path] = self::$RES_ERROR;
+				$stats[$path] = self::RES_ERROR;
 				continue; // invalid storage path or auth error
 			}
 
 			$cstat = $this->getContainerStat( $srcCont );
-			if ( $cstat === self::$RES_ABSENT ) {
-				$stats[$path] = self::$RES_ABSENT;
+			if ( $cstat === self::RES_ABSENT ) {
+				$stats[$path] = self::RES_ABSENT;
 				continue; // ok, nothing to do
-			} elseif ( $cstat === self::$RES_ERROR ) {
-				$stats[$path] = self::$RES_ERROR;
+			} elseif ( $cstat === self::RES_ERROR ) {
+				$stats[$path] = self::RES_ERROR;
 				continue;
 			}
 
@@ -1705,9 +1705,9 @@ class SwiftFileBackend extends FileBackendStore {
 					$stat['latest'] = true; // strong consistency
 				}
 			} elseif ( $rcode === 404 ) {
-				$stat = self::$RES_ABSENT;
+				$stat = self::RES_ABSENT;
 			} else {
-				$stat = self::$RES_ERROR;
+				$stat = self::RES_ERROR;
 				$this->onError( null, __METHOD__, $params, $rerr, $rcode, $rdesc, $rbody );
 			}
 			$stats[$path] = $stat;
