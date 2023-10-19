@@ -124,9 +124,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/** @var callable */
 	protected $obResetFunc;
-	/** @var callable */
+	/** @var callable|null */
 	protected $streamMimeFunc;
-	/** @var callable */
+	/** @var callable|null */
 	protected $statusWrapper;
 
 	/** Bitfield flags for supported features */

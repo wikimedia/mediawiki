@@ -48,10 +48,10 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var MapCacheLRU Map of paths to large (RAM/disk) cache items */
 	protected $expensiveCache;
 
-	/** @var array Map of container names to sharding config */
+	/** @var array<string,array> Map of container names to sharding config */
 	protected $shardViaHashLevels = [];
 
-	/** @var callable Method to get the MIME type of files */
+	/** @var callable|null Method to get the MIME type of files */
 	protected $mimeCallback;
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)

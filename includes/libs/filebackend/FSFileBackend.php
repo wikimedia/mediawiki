@@ -68,7 +68,7 @@ class FSFileBackend extends FileBackendStore {
 	/** @var string|null Directory holding the container directories */
 	protected $basePath;
 
-	/** @var array Map of container names to root paths for custom container paths */
+	/** @var array<string,string> Map of container names to root paths for custom container paths */
 	protected $containerPaths;
 
 	/** @var int Directory permission mode */
