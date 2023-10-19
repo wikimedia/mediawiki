@@ -121,18 +121,30 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if ( $params['rights'] !== null && count( $params['rights'] ) ) {
 			$groups = [];
+			// TODO: this does not properly account for $wgRevokePermissions
 			foreach ( $params['rights'] as $r ) {
-				$groups = array_merge( $groups, $this->groupPermissionsLookup->getGroupsWithPermission( $r ) );
+				if ( in_array( $r, $this->getPermissionManager()->getImplicitRights(), true ) ) {
+					$groups[] = '*';
+				} else {
+					$groups = array_merge(
+						$groups,
+						$this->groupPermissionsLookup->getGroupsWithPermission( $r )
+					);
+				}
 			}
 
-			// no group with the given right(s) exists, no need for a query
 			if ( $groups === [] ) {
+				// No group with the given right(s) exists, no need for a query
 				$this->getResult()->addIndexedTagName( [ 'query', $this->getModuleName() ], '' );
 
 				return;
 			}
 
 			$groups = array_unique( $groups );
+			if ( in_array( '*', $groups, true ) || in_array( 'user', $groups, true ) ) {
+				// All user rows logically match but there are no "*"/"user" user_groups rows
+				$groups = [];
+			}
 
 			if ( $params['group'] === null ) {
 				$params['group'] = $groups;
@@ -376,7 +388,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'rights' => [
-				ParamValidator::PARAM_TYPE => $this->getPermissionManager()->getAllPermissions(),
+				ParamValidator::PARAM_TYPE => array_unique( array_merge(
+					$this->getPermissionManager()->getAllPermissions(),
+					$this->getPermissionManager()->getImplicitRights()
+				) ),
 				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'prop' => [
