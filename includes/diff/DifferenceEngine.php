@@ -1894,9 +1894,6 @@ class DifferenceEngine extends ContextSource {
 			$header = $this->linkRenderer->makeKnownLink(
 				$title,
 				$header->text(),
-				[
-					'data-timestamp' => $revtimestamp,
-				],
 				[ 'oldid' => $rev->getId() ]
 			);
 			$editQuery = [ 'action' => 'edit' ];
@@ -1915,6 +1912,14 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			$header = $header->escaped();
 		}
+
+		// Machine readable information
+		$header .= Html::element( 'span',
+			[
+				'class' => 'mw-diff-timestamp',
+				'data-timestamp' => wfTimestamp( TS_ISO_8601, $revtimestamp ),
+			], ''
+		);
 
 		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			return Html::rawElement(
