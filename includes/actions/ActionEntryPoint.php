@@ -11,7 +11,6 @@ use HttpError;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Profiler\ProfilingContext;
@@ -40,13 +39,6 @@ use Wikimedia\Rdbms\DBConnectionError;
  * @ingroup entrypoint
  */
 class ActionEntryPoint extends MediaWikiEntryPoint {
-
-	public function __construct(
-		$context,
-		MediaWikiServices $mediaWikiServices
-	) {
-		parent::__construct( $context, $mediaWikiServices );
-	}
 
 	/**
 	 * Overwritten to narrow the return type to RequestContext
@@ -82,8 +74,8 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 			$cache = new HTMLFileCache( $context->getTitle(), $action );
 			if ( $cache->isCached() ) {
 				$cache->loadFromFileCache( $context, HTMLFileCache::MODE_OUTAGE );
-				print MWExceptionRenderer::getHTML( $e );
-				exit;
+				$this->print( MWExceptionRenderer::getHTML( $e ) );
+				$this->exit();
 			}
 		}
 

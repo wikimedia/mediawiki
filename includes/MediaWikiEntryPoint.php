@@ -21,6 +21,7 @@
 namespace MediaWiki;
 
 use Exception;
+use HttpStatus;
 use IBufferingStatsdDataFactory;
 use IContextSource;
 use JobQueueGroup;
@@ -78,6 +79,9 @@ abstract class MediaWikiEntryPoint {
 
 	private IContextSource $context;
 	private Config $config;
+	private int $baseOutputBufferLevel;
+
+	private bool $postSendMode = false;
 
 	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
 	private int $postSendStrategy;
@@ -93,23 +97,30 @@ abstract class MediaWikiEntryPoint {
 
 	private bool $preparedForOutput = false;
 
+	protected EntryPointEnvironment $environment;
+
 	private MediaWikiServices $mediaWikiServices;
 
 	/**
 	 * @param IContextSource $context
+	 * @param EntryPointEnvironment $environment
 	 * @param MediaWikiServices $mediaWikiServices
 	 */
 	public function __construct(
 		IContextSource $context,
+		EntryPointEnvironment $environment,
 		MediaWikiServices $mediaWikiServices
 	) {
 		$this->context = $context;
-		$this->mediaWikiServices = $mediaWikiServices;
 		$this->config = $this->context->getConfig();
+		$this->environment = $environment;
+		$this->mediaWikiServices = $mediaWikiServices;
 
-		if ( MW_ENTRY_POINT === 'cli' ) {
+		$this->baseOutputBufferLevel = 0;
+
+		if ( $environment->isCli() ) {
 			$this->postSendStrategy = self::DEFER_CLI_MODE;
-		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
+		} elseif ( $environment->hasFastCgi() ) {
 			$this->postSendStrategy = self::DEFER_FASTCGI_FINISH_REQUEST;
 		} else {
 			$this->postSendStrategy = self::DEFER_SET_LENGTH_AND_FLUSH;
@@ -137,6 +148,11 @@ abstract class MediaWikiEntryPoint {
 	 */
 	protected function doSetup() {
 		// no-op
+		// TODO: move ob_start( [ MediaWiki\Output\OutputHandler::class, 'handle' ] ) here
+		// TODO: move HeaderCallback::register() here
+		// TODO: move SessionManager::getGlobalSession() here (from Setup.php)
+		// TODO: move AuthManager::autoCreateUser here (from Setup.php)
+		// TODO: move pingback here (from Setup.php)
 	}
 
 	/**
@@ -318,7 +334,7 @@ abstract class MediaWikiEntryPoint {
 		);
 		$now = time();
 
-		$allowHeaders = !( $output->isDisabled() || headers_sent() );
+		$allowHeaders = !( $output->isDisabled() || $this->inPostSendMode() );
 
 		if ( $cpIndex > 0 ) {
 			if ( $allowHeaders ) {
@@ -409,6 +425,25 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
+	 * If the request URL matches a given base path, extract the path part of
+	 * the request URL after that base, and decode escape sequences in it.
+	 *
+	 * If the request URL does not match, false is returned.
+	 *
+	 * @internal Should be protected, made public for backwards
+	 *           compatibility code in WebRequest.
+	 * @param string $basePath
+	 *
+	 * @return false|string
+	 */
+	public function getRequestPathSuffix( $basePath ) {
+		return WebRequest::getRequestPathSuffix(
+			$basePath,
+			$this->getRequestURL()
+		);
+	}
+
+	/**
 	 * Forces the response to be sent to the client and then
 	 * does work that can be done *after* the
 	 * user gets the HTTP response, so they don't block on it.
@@ -435,23 +470,18 @@ abstract class MediaWikiEntryPoint {
 		// Defer everything else if possible...
 		if ( $this->postSendStrategy === self::DEFER_FASTCGI_FINISH_REQUEST ) {
 			// Flush the output to the client, continue processing, and avoid further output
-			fastcgi_finish_request();
+			$this->fastCgiFinishRequest();
 		} elseif ( $this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH ) {
 			// Flush the output to the client, continue processing, and avoid further output
-			if ( ob_get_level() ) {
-				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-				@ob_end_flush();
-			}
-			// Flush the web server output buffer to the client/proxy if possible
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			@flush();
+			$this->flushOutputBuffer();
 		}
 
 		// Since the headers and output where already flushed, disable WebResponse setters
 		// during post-send processing to warnings and unexpected behavior (T191537)
-		WebResponse::disableForPostSend();
+		$this->enterPostSendMode();
+
 		// Run post-send updates while preventing further output...
-		ob_start( static function () {
+		$this->startOutputBuffer( static function () {
 			return ''; // do not output uncaught exceptions
 		} );
 		try {
@@ -462,11 +492,14 @@ abstract class MediaWikiEntryPoint {
 				MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
 			);
 		}
-		$length = ob_get_length();
+		$length = $this->getOutputBufferLength();
 		if ( $length > 0 ) {
-			trigger_error( __METHOD__ . ": suppressed $length byte(s)", E_USER_NOTICE );
+			$this->triggerError(
+				__METHOD__ . ": suppressed $length byte(s)",
+				E_USER_NOTICE
+			);
 		}
-		ob_end_clean();
+		$this->discardOutputBuffer();
 	}
 
 	/**
@@ -517,7 +550,7 @@ abstract class MediaWikiEntryPoint {
 	/**
 	 * Print a response body to the current buffer (if there is one) or the server (otherwise)
 	 *
-	 * This method should be called after commitMainTransaction() and before postOutputShutdown()
+	 * This method should be called after commitMainTransaction() and before doPostOutputShutdown()
 	 *
 	 * Any accompanying Content-Type header is assumed to have already been set
 	 *
@@ -525,11 +558,11 @@ abstract class MediaWikiEntryPoint {
 	 */
 	protected function outputResponsePayload( $content ) {
 		// Append any visible profiling data in a manner appropriate for the Content-Type
-		ob_start();
+		$this->startOutputBuffer();
 		try {
 			Profiler::instance()->logDataPageOutputOnly();
 		} finally {
-			$content .= ob_get_clean();
+			$content .= $this->drainOutputBuffer();
 		}
 
 		// By default, usually one output buffer is active now, either the internal PHP buffer
@@ -542,33 +575,44 @@ abstract class MediaWikiEntryPoint {
 
 		// Disable mod_deflate compression since it interferes with the output buffer set
 		// by MW_SETUP_CALLBACK and can also cause the client to wait on deferred updates
-		if ( function_exists( 'apache_setenv' ) ) {
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			@apache_setenv( 'no-gzip', '1' );
+		$this->disableModDeflate();
+
+		if ( $this->inPostSendMode() ) {
+			// Output already sent. This may happen for actions or special pages
+			// that generate raw output and disable OutputPage. In that case,
+			// we should just exit, but we should log an error if $content
+			// was not empty.
+			if ( $content !== '' ) {
+				$length = strlen( $content );
+				$this->triggerError(
+					__METHOD__ . ": discarded $length byte(s) of output",
+					E_USER_NOTICE
+				);
+			}
+			return;
 		}
 
 		if (
 			// "Content-Length" is used to prevent clients from waiting on deferred updates
 			$this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH &&
 			// The HTTP response code clearly allows for a meaningful body
-			in_array( http_response_code(), [ 200, 404 ], true ) &&
+			in_array( $this->getStatusCode(), [ 200, 404 ], true ) &&
 			// The queue of (post-send) deferred updates is non-empty
 			DeferredUpdates::pendingUpdatesCount() &&
 			// Any buffered output is not spread out across multiple output buffers
-			ob_get_level() <= 1 &&
-			// It is not too late to set additional HTTP headers
-			!headers_sent()
+			$this->getOutputBufferLevel() <= 1
 		) {
 			$response = $this->context->getRequest()->response();
 
-			$obStatus = ob_get_status();
+			$obStatus = $this->getOutputBufferStatus();
 			if ( !isset( $obStatus['name'] ) ) {
 				// No output buffer is active
 				$response->header( 'Content-Length: ' . strlen( $content ) );
 			} elseif ( $obStatus['name'] === 'default output handler' ) {
 				// Internal PHP "output_buffering" output buffer (note that the internal PHP
 				// "zlib.output_compression" output buffer is named "zlib output compression")
-				$response->header( 'Content-Length: ' . ( ob_get_length() + strlen( $content ) ) );
+				$response->header( 'Content-Length: ' .
+					( $this->getOutputBufferLength() + strlen( $content ) ) );
 			}
 
 			// The MW_SETUP_CALLBACK output buffer ("MediaWiki\OutputHandler::handle") sets
@@ -580,7 +624,7 @@ abstract class MediaWikiEntryPoint {
 			// has been read (informed by any "Content-Length" header). This prevents the client
 			// from waiting on deferred updates.
 			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection
-			if ( ( $_SERVER['SERVER_PROTOCOL'] ?? '' ) === 'HTTP/1.1' ) {
+			if ( $this->getServerInfo( 'SERVER_PROTOCOL' ) === 'HTTP/1.1' ) {
 				$response->header( 'Connection: close' );
 			}
 		}
@@ -588,7 +632,7 @@ abstract class MediaWikiEntryPoint {
 		// Print the content *after* adjusting HTTP headers and disabling mod_deflate since
 		// calling "print" will send the output to the client if there is no output buffer or
 		// if the output buffer chunk size is reached
-		print $content;
+		$this->print( $content );
 	}
 
 	/**
@@ -837,4 +881,317 @@ abstract class MediaWikiEntryPoint {
 	protected function getConfig( string $key ) {
 		return $this->config->get( $key );
 	}
+
+	protected function isCli(): bool {
+		return $this->environment->isCli();
+	}
+
+	protected function hasFastCgi(): bool {
+		return $this->environment->hasFastCgi();
+	}
+
+	protected function getServerInfo( string $key, $default = null ) {
+		return $this->environment->getServerInfo( $key, $default );
+	}
+
+	protected function print( $data ) {
+		if ( $this->inPostSendMode() ) {
+			throw new RuntimeException( 'Output already sent!' );
+		}
+
+		print $data;
+	}
+
+	/**
+	 * @param int $code
+	 *
+	 * @return never
+	 */
+	protected function exit( int $code = 0 ) {
+		$this->environment->exit( $code );
+	}
+
+	/**
+	 * Adds a new output buffer level.
+	 *
+	 * @param ?callable $callback
+	 *
+	 * @see ob_start
+	 */
+	protected function startOutputBuffer( ?callable $callback = null ): void {
+		ob_start( $callback );
+	}
+
+	/**
+	 * Returns the content of the current output buffer and resets the buffer
+	 * (but does not end it).
+	 *
+	 * @see ob_get_clean
+	 * @return false|string
+	 */
+	protected function drainOutputBuffer() {
+		return ob_get_clean();
+	}
+
+	/**
+	 * Establishes the base buffer level.
+	 * The base buffer level controls whether flushOutputBuffer() actually sends
+	 * data to the client, or just commits the data to a parent buffer.
+	 *
+	 * Per default, the base buffer level is initialized to 0.
+	 * Tests will have to establish a different base level, in order to be able
+	 * to capture output.
+	 *
+	 * @see captureOutput();
+	 *
+	 * @param int $offset The base level relative to the current level.
+	 *        Set to 0 if the current level should not be flushed by
+	 *        flushOutputBuffer(). Set to -1 if the current level should
+	 *        be flushed.
+	 */
+	public function establishOutputBufferLevel( int $offset = 0 ): void {
+		$level = ob_get_level() + $offset;
+
+		if ( $level < 0 ) {
+			throw new RuntimeException(
+				'Cannot set the output buffer base level to a negative number'
+			);
+		}
+
+		$this->baseOutputBufferLevel = $level;
+	}
+
+	/**
+	 * Returns the output buffer level, taking into account the base buffer
+	 * level.
+	 *
+	 * @see ob_get_level
+	 */
+	protected function getOutputBufferLevel(): int {
+		return max( 0, ob_get_level() - $this->baseOutputBufferLevel );
+	}
+
+	/**
+	 * Ends the current output buffer, appending its content to the parent
+	 * buffer.
+	 * @see ob_end_flush
+	 */
+	protected function commitOutputBuffer(): bool {
+		if ( $this->inPostSendMode() ) {
+			throw new RuntimeException( 'Output already sent!' );
+		}
+
+		$level = $this->getOutputBufferLevel();
+		if ( $level === 0 ) {
+			return false;
+		} else {
+			//phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			return @ob_end_flush();
+		}
+	}
+
+	/**
+	 * Commits all output buffers down to the base buffer level,
+	 * then ends the base level buffer and returns its contents.
+	 *
+	 * Intended for testing, to allow the generated output to be examined.
+	 * Needs establishOutputBufferLevel() to be called before run().
+	 * getOutputBufferLevel() will return 0 after this method returns.
+	 *
+	 * @see establishOutputBufferLevel();
+	 * @see ob_end_clean
+	 */
+	public function captureOutput(): string {
+		if ( !$this->inPostSendMode() ) {
+			throw new RuntimeException( 'Output not yet sent!' );
+		}
+
+		$this->flushOutputBuffer();
+		return $this->drainOutputBuffer();
+	}
+
+	/**
+	 * Commits all output buffers down to the base buffer level.
+	 * getOutputBufferLevel() will return 0 after this method returns.
+	 * If the base buffer level is 0, this sends data to the client.
+	 *
+	 * @see ob_end_flush
+	 * @see flush
+	 */
+	protected function flushOutputBuffer(): void {
+		if ( $this->inPostSendMode() && $this->getOutputBufferLevel() ) {
+			throw new RuntimeException( 'Output already sent!' );
+		}
+
+		while ( $this->getOutputBufferLevel() ) {
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@ob_end_flush();
+		}
+
+		// If the true buffer level is 0, flush the system buffer as well,
+		// so we actually send data to the client.
+		if ( ob_get_level() === 0 ) {
+			// Flush the web server output buffer to the client/proxy if possible
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@flush();
+		}
+	}
+
+	/**
+	 * Discards all buffered output, down to the base buffer level.
+	 */
+	protected function discardAllOutput() {
+		while ( $this->getOutputBufferLevel() ) {
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@ob_end_clean();
+		}
+	}
+
+	/**
+	 * @see ob_get_length
+	 * @return false|int
+	 */
+	protected function getOutputBufferLength() {
+		return ob_get_length();
+	}
+
+	/**
+	 * @see ob_get_status
+	 */
+	protected function getOutputBufferStatus(): array {
+		return ob_get_status();
+	}
+
+	/**
+	 * @see ob_end_clean
+	 */
+	protected function discardOutputBuffer(): bool {
+		return ob_end_clean();
+	}
+
+	protected function disableModDeflate(): void {
+		$this->environment->disableModDeflate();
+	}
+
+	/**
+	 * @see http_response_code
+	 * @return int|bool
+	 */
+	protected function getStatusCode() {
+		return $this->getResponse()->getStatusCode();
+	}
+
+	/**
+	 * @see headers_sent
+	 */
+	protected function inPostSendMode(): bool {
+		return $this->postSendMode || $this->getResponse()->headersSent();
+	}
+
+	/**
+	 * Triggers a PHP runtime error
+	 *
+	 * @see trigger_error
+	 */
+	protected function triggerError( string $message, int $level = E_USER_NOTICE ): bool {
+		return $this->environment->triggerError( $message, $level );
+	}
+
+	/**
+	 * Returns the value of an environment variable.
+	 *
+	 * @see getenv
+	 *
+	 * @param string $name
+	 *
+	 * @return array|false|string
+	 */
+	protected function getEnv( string $name ) {
+		return $this->environment->getEnv( $name );
+	}
+
+	/**
+	 * Returns the value of an ini option.
+	 *
+	 * @see ini_get
+	 *
+	 * @param string $name
+	 *
+	 * @return false|string
+	 */
+	protected function getIni( string $name ) {
+		return $this->environment->getIni( $name );
+	}
+
+	/**
+	 * @param string $name
+	 * @param mixed $value
+	 *
+	 * @return false|string
+	 */
+	protected function setIniOption( string $name, $value ) {
+		return $this->environment->setIniOption( $name, $value );
+	}
+
+	/**
+	 * @see header() function
+	 */
+	protected function header( string $header, bool $replace = true, int $status = 0 ): void {
+		$this->getResponse()->header( $header, $replace, $status );
+	}
+
+	/**
+	 * @see HttpStatus
+	 */
+	protected function status( int $code ): void {
+		$this->header( HttpStatus::getHeader( $code ) );
+	}
+
+	/**
+	 * Calls fastcgi_finish_request if possible. Reasons for not calling
+	 * fastcgi_finish_request include the fastcgi extension not being loaded
+	 * and the base buffer level being different from 0.
+	 *
+	 * @see fastcgi_finish_request
+	 * @return bool true if fastcgi_finish_request was called and successful.
+	 */
+	protected function fastCgiFinishRequest(): bool {
+		if ( !$this->inPostSendMode() ) {
+			$this->flushOutputBuffer();
+		}
+
+		// Don't mess with fastcgi on CLI mode.
+		if ( $this->isCli() ) {
+			return false;
+		}
+
+		// Only mess with fastcgi if we really have no buffers left.
+		if ( ob_get_level() > 0 ) {
+			return false;
+		}
+
+		return $this->environment->fastCgiFinishRequest();
+	}
+
+	/**
+	 * Returns the current request's path and query string (not a full URL),
+	 * like PHP's built-in $_SERVER['REQUEST_URI'].
+	 *
+	 * @see WebRequest::getRequestURL()
+	 * @see WebRequest::getGlobalRequestURL()
+	 */
+	protected function getRequestURL(): string {
+		// Despite the name, this just returns the path and query string
+		return $this->getRequest()->getRequestURL();
+	}
+
+	/**
+	 * Disables all output to the client.
+	 */
+	protected function enterPostSendMode() {
+		$this->postSendMode = true;
+
+		$this->getResponse()->disableForPostSend();
+	}
+
 }

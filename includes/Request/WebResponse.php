@@ -41,7 +41,7 @@ class WebResponse {
 	protected static $setCookies = [];
 
 	/** @var bool Used to disable setters before running jobs post-request (T191537) */
-	protected static $disableForPostSend = false;
+	protected $disableForPostSend = false;
 
 	/**
 	 * Disable setters for post-send processing
@@ -50,10 +50,10 @@ class WebResponse {
 	 * self::statusHeader() will log a warning and return without
 	 * setting cookies or headers.
 	 *
-	 * @since 1.32
+	 * @since 1.32 (non-static since 1.42)
 	 */
-	public static function disableForPostSend() {
-		self::$disableForPostSend = true;
+	public function disableForPostSend() {
+		$this->disableForPostSend = true;
 	}
 
 	/**
@@ -63,7 +63,7 @@ class WebResponse {
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
-		if ( self::$disableForPostSend ) {
+		if ( $this->disableForPostSend ) {
 			wfDebugLog( 'header', 'ignored post-send header {header}', 'all', [
 				'header' => $string,
 				'replace' => $replace,
@@ -79,6 +79,15 @@ class WebResponse {
 		} else {
 			header( $string, $replace );
 		}
+	}
+
+	/**
+	 * @see http_response_code
+	 * @return int|bool
+	 * @since 1.42
+	 */
+	public function getStatusCode() {
+		return http_response_code();
 	}
 
 	/**
@@ -103,7 +112,7 @@ class WebResponse {
 	 * @param int $code Status code
 	 */
 	public function statusHeader( $code ) {
-		if ( self::$disableForPostSend ) {
+		if ( $this->disableForPostSend ) {
 			wfDebugLog( 'header', 'ignored post-send status header {code}', 'all', [
 				'code' => $code,
 				'exception' => new RuntimeException( 'Ignored post-send status header' ),
@@ -182,7 +191,7 @@ class WebResponse {
 			$expire = time() + $cookieExpiration;
 		}
 
-		if ( self::$disableForPostSend ) {
+		if ( $this->disableForPostSend ) {
 			$prefixedName = $options['prefix'] . $name;
 			wfDebugLog( 'cookie', 'ignored post-send cookie {cookie}', 'all', [
 				'cookie' => $prefixedName,
@@ -206,7 +215,7 @@ class WebResponse {
 			return;
 		}
 
-		// Note: Don't try to move this earlier to reuse it for self::$disableForPostSend,
+		// Note: Don't try to move this earlier to reuse it for $this->disableForPostSend,
 		// we need to use the altered values from the hook here. (T198525)
 		$prefixedName = $options['prefix'] . $name;
 		$value = (string)$value;

@@ -83,7 +83,7 @@ class WebRequest {
 	 * Lazy-init response object
 	 * @var WebResponse
 	 */
-	private $response;
+	protected ?WebResponse $response = null;
 
 	/**
 	 * Cached client IP address
@@ -130,6 +130,23 @@ class WebRequest {
 	}
 
 	/**
+	 * Returns an entry from the $_SERVER array.
+	 * This exists mainly to allow us to inject fake values for testing.
+	 *
+	 * @param string $name A well known key for $_SERVER,
+	 *        see <https://www.php.net/manual/en/reserved.variables.server.php>.
+	 *        Only fields that contain string values are supported,
+	 *        so 'argv' and 'argc' are not safe to use.
+	 * @param ?string $default The value to return if no value is known for the
+	 *        key $name.
+	 *
+	 * @return ?string
+	 */
+	protected function getServerInfo( string $name, ?string $default = null ): ?string {
+		return isset( $_SERVER[$name] ) ? (string)$_SERVER[$name] : $default;
+	}
+
+	/**
 	 * Extract relevant query arguments from the http request uri's path
 	 * to be merged with the normal php provided query arguments.
 	 * Tries to use the REQUEST_URI data if available and parses it
@@ -149,13 +166,13 @@ class WebRequest {
 	 * @return string[] Any query arguments found in path matches.
 	 * @throws FatalError If invalid routes are configured (T48998)
 	 */
-	protected static function getPathInfo( $want = 'all' ) {
+	protected function getPathInfo( $want = 'all' ) {
 		// PATH_INFO is mangled due to https://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
-		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+		$url = $this->getServerInfo( 'REQUEST_URI' );
+		if ( $url !== null ) {
 			// Slurp out the path portion to examine...
-			$url = $_SERVER['REQUEST_URI'];
 			if ( !preg_match( '!^https?://!', $url ) ) {
 				$url = 'http://unused' . $url;
 			}
@@ -208,14 +225,16 @@ class WebRequest {
 			global $wgUsePathInfo;
 			$matches = [];
 			if ( $wgUsePathInfo ) {
-				if ( !empty( $_SERVER['ORIG_PATH_INFO'] ) ) {
+				$origPathInfo = $this->getServerInfo( 'ORIG_PATH_INFO' ) ?? '';
+				$pathInfo = $this->getServerInfo( 'PATH_INFO' ) ?? '';
+				if ( $origPathInfo !== '' ) {
 					// Mangled PATH_INFO
 					// https://bugs.php.net/bug.php?id=31892
 					// Also reported when ini_get('cgi.fix_pathinfo')==false
-					$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
-				} elseif ( !empty( $_SERVER['PATH_INFO'] ) ) {
+					$matches['title'] = substr( $origPathInfo, 1 );
+				} elseif ( $pathInfo !== '' ) {
 					// Regular old PATH_INFO yay
-					$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+					$matches['title'] = substr( $pathInfo, 1 );
 				}
 			}
 		}
@@ -232,11 +251,13 @@ class WebRequest {
 	 * @since 1.35
 	 * @param string $basePath The base URL path. Trailing slashes will be
 	 *   stripped.
+	 * @param ?string $requestUrl The request URL to examine. If not given, the
+	 *   URL returned by getGlobalRequestURL() will be used.
 	 * @return string|false
 	 */
-	public static function getRequestPathSuffix( $basePath ) {
+	public static function getRequestPathSuffix( string $basePath, ?string $requestUrl ) {
 		$basePath = rtrim( $basePath, '/' ) . '/';
-		$requestUrl = self::getGlobalRequestURL();
+		$requestUrl ??= self::getGlobalRequestURL();
 		$qpos = strpos( $requestUrl, '?' );
 		if ( $qpos !== false ) {
 			$requestPath = substr( $requestUrl, 0, $qpos );
@@ -375,7 +396,7 @@ class WebRequest {
 	 * available variant URLs.
 	 */
 	public function interpolateTitle() {
-		$matches = self::getPathInfo( 'title' );
+		$matches = $this->getPathInfo( 'title' );
 		foreach ( $matches as $key => $val ) {
 			$this->data[$key] = $this->queryAndPathParams[$key] = $val;
 		}
@@ -770,7 +791,7 @@ class WebRequest {
 	 * @return-taint tainted
 	 */
 	public function getRawQueryString() {
-		return $_SERVER['QUERY_STRING'];
+		return $this->getServerInfo( 'QUERY_STRING' ) ?? '';
 	}
 
 	/**
@@ -807,7 +828,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public function getMethod() {
-		return $_SERVER['REQUEST_METHOD'] ?? 'GET';
+		return $this->getServerInfo( 'REQUEST_METHOD' ) ?: 'GET';
 	}
 
 	/**
@@ -1105,14 +1126,11 @@ class WebRequest {
 	/**
 	 * Return a handle to WebResponse style object, for setting cookies,
 	 * headers and other stuff, for Request being worked on.
-	 *
-	 * @return WebResponse
 	 */
-	public function response() {
+	public function response(): WebResponse {
 		/* Lazy initialization of response object for this request */
-		if ( !is_object( $this->response ) ) {
-			$class = ( $this instanceof FauxRequest ) ? FauxResponse::class : WebResponse::class;
-			$this->response = new $class();
+		if ( !$this->response ) {
+			$this->response = new WebResponse();
 		}
 		return $this->response;
 	}
@@ -1253,11 +1271,11 @@ class WebRequest {
 	 * @return string|null
 	 */
 	protected function getRawIP() {
-		$remoteAddr = $_SERVER['REMOTE_ADDR'] ?? null;
+		$remoteAddr = $this->getServerInfo( 'REMOTE_ADDR' );
 		if ( !$remoteAddr ) {
 			return null;
 		}
-		if ( is_array( $remoteAddr ) || str_contains( $remoteAddr, ',' ) ) {
+		if ( str_contains( $remoteAddr, ',' ) ) {
 			throw new MWException( 'Remote IP must not contain multiple values' );
 		}
 
@@ -1391,11 +1409,11 @@ class WebRequest {
 	 * @since 1.28
 	 */
 	public function hasSafeMethod() {
-		if ( !isset( $_SERVER['REQUEST_METHOD'] ) ) {
+		if ( $this->getServerInfo( 'REQUEST_METHOD' ) === null ) {
 			return false; // CLI mode
 		}
 
-		return in_array( $_SERVER['REQUEST_METHOD'], [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
+		return in_array( $this->getServerInfo( 'REQUEST_METHOD' ), [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
 	}
 
 	/**

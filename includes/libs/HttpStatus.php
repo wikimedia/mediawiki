@@ -88,28 +88,43 @@ class HttpStatus {
 	}
 
 	/**
+	 * Construct an HTTP status code header
+	 *
+	 * @since 1.42
+	 * @param int $code Status code
+	 * @return string
+	 */
+	public static function getHeader( $code ): string {
+		static $version = null;
+		$message = self::getMessage( $code );
+		if ( $message === null ) {
+			throw new InvalidArgumentException( "Unknown HTTP status code $code" );
+		}
+
+		if ( $version === null ) {
+			$version = isset( $_SERVER['SERVER_PROTOCOL'] ) &&
+			$_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0' ?
+				'1.0' :
+				'1.1';
+		}
+
+		return "HTTP/$version $code $message";
+	}
+
+	/**
 	 * Output an HTTP status code header
 	 *
 	 * @since 1.26
 	 * @param int $code Status code
 	 */
 	public static function header( $code ) {
-		static $version = null;
-		$message = self::getMessage( $code );
-		if ( $message === null ) {
-			trigger_error( "Unknown HTTP status code $code", E_USER_WARNING );
-			return;
-		}
-
 		\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
-		if ( $version === null ) {
-			$version = isset( $_SERVER['SERVER_PROTOCOL'] ) &&
-				$_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0' ?
-					'1.0' :
-					'1.1';
-		}
 
-		header( "HTTP/$version $code $message" );
+		try {
+			header( self::getHeader( $code ) );
+		} catch ( InvalidArgumentException $ex ) {
+			trigger_error( "Unknown HTTP status code $code", E_USER_WARNING );
+		}
 	}
 
 }
