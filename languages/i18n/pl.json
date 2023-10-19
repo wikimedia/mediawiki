@@ -1217,7 +1217,7 @@
 	"prefs-files": "Pliki",
 	"prefs-custom-css": "własny CSS",
 	"prefs-custom-js": "własny JavaScript",
-	"prefs-custom-cssjs-safemode": "Niestandardowe kody CSS/JavaScript są obecnie niedostępne, ponieważ włączono tryb bezpieczny. [[#mw-input-wpforcesafemode|Wyłącz tryb bezpieczny]], aby używać niestandardowych kodów CSS/JavaScript.",
+	"prefs-custom-cssjs-safemode": "Niestandardowe skrypty CSS/JavaScript są obecnie niedostępne, ponieważ włączono tryb bezpieczny. [[#mw-input-wpforcesafemode|Wyłącz tryb bezpieczny]], aby używać niestandardowych skryptów CSS/JavaScript.",
 	"prefs-common-config": "Wspólny CSS/JavaScript dla wszystkich skórek:",
 	"prefs-reset-intro": "Na tej stronie można przywrócić domyślne ustawienia preferencji dla tej witryny.\nTej operacji nie można później cofnąć.",
 	"prefs-reset-confirm": "Tak, chcę zresetować moje preferencje.",

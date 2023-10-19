@@ -958,6 +958,7 @@
 	"difference-title-multipage": "$1 e $2: Differentia inter paginas",
 	"difference-multipage": "(Differentia inter paginas)",
 	"lineno": "Linea $1:",
+	"lineno-inline": "Linea $1 ⟶ $2:",
 	"compareselectedversions": "Comparar versiones seligite",
 	"showhideselectedversions": "Revelar/celar le versiones seligite",
 	"showhideselectedfileversions": "Cambiar le visibilitate del versiones seligite del file",

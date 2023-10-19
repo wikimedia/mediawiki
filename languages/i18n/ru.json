@@ -1126,6 +1126,7 @@
 	"difference-title-multipage": "«$1» и «$2»: разница между страницами",
 	"difference-multipage": "(Различия между страницами)",
 	"lineno": "Строка $1:",
+	"lineno-inline": "Строка $1 ⟶ $2 :",
 	"compareselectedversions": "Сравнить выбранные версии",
 	"showhideselectedversions": "Показать/скрыть выбранные версии",
 	"showhideselectedfileversions": "Изменить видимость выбранных версий файла",

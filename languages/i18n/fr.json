@@ -2634,7 +2634,7 @@
 	"changecontentmodel-success-title": "Le modèle de contenu a été modifié",
 	"changecontentmodel-success-text": "Le modèle de contenu de [[:$1]] a été modifié.",
 	"changecontentmodel-cannot-convert": "Le contenu sur [[:$1]] n’a pas pu être converti en un type de $2.",
-	"changecontentmodel-nodirectediting": "Le modèle de contenu $1 ne permet pas la modification directe",
+	"changecontentmodel-nodirectediting": "Le modèle de contenu $1 ne prend pas en charge la modification directe",
 	"changecontentmodel-emptymodels-title": "Aucun modèle de contenu disponible",
 	"changecontentmodel-emptymodels-text": "Le contenu sur [[:$1]] ne peut être converti en aucun type.",
 	"log-name-contentmodel": "Journal des modifications de modèle de contenu",

@@ -1055,6 +1055,7 @@
 	"difference-title-multipage": "$1 en $2: verschil tussen pagina's",
 	"difference-multipage": "(Verschil tussen pagina's)",
 	"lineno": "Regel $1:",
+	"lineno-inline": "Regel $1 ⟶ $2:",
 	"compareselectedversions": "Geselecteerde versies vergelijken",
 	"showhideselectedversions": "Geselecteerde versies weergeven/verbergen",
 	"showhideselectedfileversions": "Zichtbaarheid van geselecteerde bestanden veranderen",
