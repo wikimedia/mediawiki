@@ -830,11 +830,6 @@ abstract class ParsoidHandler extends Handler {
 			return $response;
 		}
 
-		// Performance Timing options
-		// init refers to time elapsed before parsing begins
-		$metrics = $this->metrics;
-		$timing = Timing::start( $metrics );
-
 		// TODO: This method should take a PageIdentity + revId,
 		//       to reduce the usage of PageConfig in MW core.
 		$helper = $this->getHtmlOutputRendererHelper(
@@ -853,11 +848,6 @@ abstract class ParsoidHandler extends Handler {
 
 		$needsPageBundle = ( $format === ParsoidFormatHelper::FORMAT_PAGEBUNDLE );
 
-		if ( Semver::satisfies( $attribs['envOptions']['outputContentVersion'],
-			'!=' . Parsoid::defaultHTMLVersion() ) ) {
-			$metrics->increment( 'wt2html.parse.version.notdefault' );
-		}
-
 		if ( $attribs['body_only'] ) {
 			$helper->setFlavor( 'fragment' );
 		} elseif ( !$needsPageBundle ) {
@@ -871,12 +861,7 @@ abstract class ParsoidHandler extends Handler {
 			$mstr = 'wt';
 		}
 
-		$timing->end( "wt2html.$mstr.init" );
-		$metrics->timing(
-			"wt2html.$mstr.size.input",
-			strlen( $pageConfig->getPageMainContent() )
-		);
-		$parseTiming = Timing::start( $metrics );
+		$parseTiming = Timing::start();
 
 		if ( $needsPageBundle ) {
 			$pb = $helper->getPageBundle();
@@ -926,9 +911,7 @@ abstract class ParsoidHandler extends Handler {
 		// XXX: For pagebundle requests, this can be somewhat inflated
 		// because of pagebundle json-encoding overheads
 		$outSize = $response->getBody()->getSize();
-		$parseTime = $parseTiming->end( "wt2html.$mstr.parse" );
-		$timing->end( 'wt2html.total' );
-		$metrics->timing( "wt2html.$mstr.size.output", $outSize );
+		$parseTime = $parseTiming->end();
 
 		// Ignore slow parse metrics for non-oldid parses
 		if ( $mstr === 'pageWithOldid' ) {
@@ -952,8 +935,6 @@ abstract class ParsoidHandler extends Handler {
 				// for generating output like the <head> section and should be factored in,
 				// but this is good enough for now as a useful first degree of approxmation.
 				$timePerKB = $parseTime * 1024 / $outSize;
-				$metrics->timing( 'wt2html.timePerKB', $timePerKB );
-
 				if ( $timePerKB > 500 ) {
 					// At 100ms/KB, even a 100KB page which isn't that large will take 10s.
 					// So, we probably want to shoot for a threshold under 100ms.
