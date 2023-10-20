@@ -12,6 +12,14 @@ class OrExpressionGroup extends ExpressionGroup {
 		return 'OR';
 	}
 
+	/**
+	 * @param string $field
+	 * @param-taint $field exec_sql
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<='
+	 * @param-taint $op exec_sql
+	 * @param string|int|float|null|bool|Blob|array $value
+	 * @param-taint $value escapes_sql
+	 */
 	public function or( string $field, string $op, $value ): OrExpressionGroup {
 		$expr = new Expression( $field, $op, $value );
 		$this->add( $expr );

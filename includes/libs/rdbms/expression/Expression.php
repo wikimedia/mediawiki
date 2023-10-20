@@ -20,9 +20,10 @@ class Expression implements IExpression {
 	 * Store an expression
 	 *
 	 * @param string $field
-	 * @param string $op one of comparison operators
-	 * @param string|int|float|null|bool|Blob|array $value
 	 * @param-taint $field exec_sql
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<='
+	 * @param-taint $op exec_sql
+	 * @param string|int|float|null|bool|Blob|array $value
 	 * @param-taint $value escapes_sql
 	 */
 	public function __construct( string $field, string $op, $value ) {
@@ -44,11 +45,27 @@ class Expression implements IExpression {
 		$this->value = $value;
 	}
 
+	/**
+	 * @param string $field
+	 * @param-taint $field exec_sql
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<='
+	 * @param-taint $op exec_sql
+	 * @param string|int|float|null|bool|Blob|array $value
+	 * @param-taint $value escapes_sql
+	 */
 	public function and( string $field, string $op, $value ): AndExpressionGroup {
 		$exprGroup = new AndExpressionGroup( $this );
 		return $exprGroup->and( $field, $op, $value );
 	}
 
+	/**
+	 * @param string $field
+	 * @param-taint $field exec_sql
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<='
+	 * @param-taint $op exec_sql
+	 * @param string|int|float|null|bool|Blob|array $value
+	 * @param-taint $value escapes_sql
+	 */
 	public function or( string $field, string $op, $value ): OrExpressionGroup {
 		$exprGroup = new OrExpressionGroup( $this );
 		return $exprGroup->or( $field, $op, $value );
