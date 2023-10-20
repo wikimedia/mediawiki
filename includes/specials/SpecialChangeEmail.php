@@ -188,8 +188,12 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 		// To prevent spam, rate limit adding a new address, but do
 		// not rate limit removing an address.
-		if ( $newAddr !== '' && $user->pingLimiter( 'changeemail' ) ) {
-			return Status::newFatal( 'actionthrottledtext' );
+		if ( $newAddr !== '' ) {
+			// Enforce permissions, user blocks, and rate limits
+			$status = $this->authorizeAction( 'changeemail' );
+			if ( !$status->isGood() ) {
+				return Status::wrap( $status );
+			}
 		}
 
 		$userLatest = $user->getInstanceForUpdate();

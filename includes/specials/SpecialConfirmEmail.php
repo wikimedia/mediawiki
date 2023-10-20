@@ -187,12 +187,8 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 			return;
 		}
 
-		// rate limit email confirmations
-		if ( $user->pingLimiter( 'confirmemail' ) ) {
-			$this->getOutput()->addWikiMsg( 'actionthrottledtext' );
-
-			return;
-		}
+		// Enforce permissions, user blocks, and rate limits
+		$this->authorizeAction( 'confirmemail' )->throwErrorPageError();
 
 		$userLatest = $user->getInstanceForUpdate();
 		$userLatest->confirmEmail();
