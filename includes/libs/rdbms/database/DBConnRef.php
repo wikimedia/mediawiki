@@ -522,6 +522,10 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function expr( string $field, string $op, $value ): IExpression {
+		return new Expression( $field, $op, $value );
+	}
+
 	public function addIdentifierQuotes( $s ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

@@ -28,6 +28,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBLanguageError;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\QueryBuilderFromRawSql;
@@ -225,7 +226,11 @@ class SQLPlatform implements ISQLPlatform {
 			}
 
 			if ( ( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_numeric( $field ) ) {
-				$list .= "($value)";
+				if ( $value instanceof IExpression ) {
+					$list .= "(" . $value->toSql( $this->quoter ) . ")";
+				} else {
+					$list .= "($value)";
+				}
 			} elseif ( $mode == self::LIST_SET && is_numeric( $field ) ) {
 				$list .= "$value";
 			} elseif (
@@ -736,6 +741,8 @@ class SQLPlatform implements ISQLPlatform {
 
 		if ( is_array( $conds ) ) {
 			$where = $this->makeList( $conds, self::LIST_AND );
+		} elseif ( $conds instanceof IExpression ) {
+			$where = $conds->toSql( $this->quoter );
 		} elseif ( $conds === null || $conds === false ) {
 			$where = '';
 			$this->logger->warning(

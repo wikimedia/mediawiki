@@ -1581,6 +1581,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $s instanceof Blob ) {
 			$s = $s->fetch();
 		}
+		if ( $s instanceof IExpression ) {
+			return $s->toSql( $this );
+		}
 		if ( $s === null ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
@@ -1590,6 +1593,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			return "'" . $this->strencode( $s ) . "'";
 		}
+	}
+
+	public function expr( string $field, string $op, $value ): IExpression {
+		return new Expression( $field, $op, $value );
 	}
 
 	public function nextSequenceValue( $seqName ) {
