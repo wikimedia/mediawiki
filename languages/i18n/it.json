@@ -1088,6 +1088,7 @@
 	"showhideselectedfileversions": "Mostra/nascondi versioni selezionate",
 	"editundo": "annulla",
 	"diff-empty": "(Nessuna differenza)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|modifica|modifiche}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di uno stesso {{GENDER:$3|utente}} non {{PLURAL:$1|è mostrata|sono mostrate}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di {{PLURAL:$2|un altro utente|$2 utenti}} non mostrate)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non {{PLURAL:$1|mostrata|mostrate}})",
