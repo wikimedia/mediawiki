@@ -1,10 +1,8 @@
-( function () {
-	QUnit.module( 'mediawiki.ForeignApi', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			this.server = this.sandbox.useFakeServer();
-			this.server.respondImmediately = true;
-		}
-	} ) );
+QUnit.module( 'mediawiki.ForeignApi', function ( hooks ) {
+	hooks.beforeEach( function () {
+		this.server = this.sandbox.useFakeServer();
+		this.server.respondImmediately = true;
+	} );
 
 	QUnit.test( 'origin is included in GET requests', function ( assert ) {
 		var api = new mw.ForeignApi( '//localhost:4242/w/api.php' );
@@ -54,4 +52,4 @@
 		return api.post( {} );
 	} );
 
-}() );
+} );
