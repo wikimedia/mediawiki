@@ -24,10 +24,10 @@
 
 namespace MediaWiki\Parser;
 
-use Exception;
+use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MWException;
+use UnexpectedValueException;
 
 /**
  * Class for handling an array of magic words
@@ -115,7 +115,7 @@ class MagicWordArray {
 					$group = '(?P<' . $groupName . '>' . preg_quote( $syn, $delimiter ) . ')';
 					// look for same group names to avoid same named subpatterns in the regex
 					if ( isset( $allGroups[$groupName] ) ) {
-						throw new MWException(
+						throw new UnexpectedValueException(
 							__METHOD__ . ': duplicate internal name in magic word array: ' . $name
 						);
 					}
@@ -208,7 +208,6 @@ class MagicWordArray {
 	 *
 	 * @param array<string|int,string> $matches
 	 *
-	 * @throws MWException
 	 * @return (string|false)[]
 	 */
 	private function parseMatch( array $matches ): array {
@@ -226,15 +225,12 @@ class MagicWordArray {
 			if ( $match !== '' && $key !== 0 ) {
 				$parts = explode( '_', $key, 2 );
 				if ( !isset( $parts[1] ) ) {
-					// This shouldn't happen
-					// continue;
-					throw new MWException( __METHOD__ . ': bad parameter name' );
+					throw new LogicException( 'Unexpected group name' );
 				}
 				$magicName = $parts[1];
 			}
 		}
-		// This shouldn't happen either
-		throw new MWException( __METHOD__ . ': parameter not found' );
+		throw new LogicException( 'Unexpected $m array with no match' );
 	}
 
 	/**
@@ -292,15 +288,14 @@ class MagicWordArray {
 			$res = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
 			if ( $res === false ) {
 				$error = preg_last_error();
-				// TODO: Remove function_exists when we require PHP8
-				$errorText = function_exists( 'preg_last_error_msg' ) ? preg_last_error_msg() : '';
+				$errorText = preg_last_error_msg();
 				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all error: {code} {errorText}', [
 					'code' => $error,
 					'regex' => $regex,
 					'text' => $text,
 					'errorText' => $errorText
 				] );
-				throw new Exception( "preg_match_all error $error: $errorText" );
+				throw new LogicException( "preg_match_all error $error: $errorText" );
 			} elseif ( $res ) {
 				foreach ( $matches as $m ) {
 					[ $name, $param ] = $this->parseMatch( $m );
@@ -310,15 +305,14 @@ class MagicWordArray {
 			$res = preg_replace( $regex, '', $text );
 			if ( $res === null ) {
 				$error = preg_last_error();
-				// TODO: Remove function_exists when we require PHP8
-				$errorText = function_exists( 'preg_last_error_msg' ) ? preg_last_error_msg() : '';
+				$errorText = preg_last_error_msg();
 				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace error: {code} {errorText}', [
 					'code' => $error,
 					'regex' => $regex,
 					'text' => $text,
 					'errorText' => $errorText
 				] );
-				throw new Exception( "preg_replace error $error: $errorText" );
+				throw new LogicException( "preg_replace error $error: $errorText" );
 			}
 			$text = $res;
 		}

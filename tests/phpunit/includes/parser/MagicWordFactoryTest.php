@@ -40,7 +40,7 @@ class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testGetInvalidMagicWord() {
 		$magicWordFactory = $this->makeMagicWordFactory();
 
-		$this->expectException( MWException::class );
+		$this->expectException( UnexpectedValueException::class );
 		@$magicWordFactory->get( 'invalid magic word' );
 	}
 

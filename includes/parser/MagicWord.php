@@ -25,8 +25,8 @@ namespace MediaWiki\Parser;
 
 use Language;
 use MediaWiki\MediaWikiServices;
-use MWException;
 use StringUtils;
+use UnexpectedValueException;
 
 /**
  * This class encapsulates "magic words" such as "#redirect", __NOTOC__, etc.
@@ -98,13 +98,12 @@ class MagicWord {
 	 * Initialises this object with an ID
 	 *
 	 * @param string $id
-	 * @throws MWException
 	 */
 	public function load( $id ): void {
 		$this->mId = $id;
 		$this->contLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
-			throw new MWException( "Error: invalid magic word '$id'" );
+			throw new UnexpectedValueException( "Error: invalid magic word '$id'" );
 		}
 	}
 
