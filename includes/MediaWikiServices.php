@@ -96,6 +96,7 @@ use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Output\IframeSandboxFactory;
+use Mediawiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\File\BadFileLookup;
@@ -116,7 +117,6 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
-use Mediawiki\ParserOutputTransform\DefaultOutputTransform;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1047,10 +1047,11 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @return OutputTransformPipeline
 	 * @internal
 	 */
-	public function getDefaultOutputTransform(): DefaultOutputTransform {
-		return $this->getService( 'DefaultOutputTransform' );
+	public function getDefaultOutputPipeline(): OutputTransformPipeline {
+		return $this->getService( 'DefaultOutputPipeline' );
 	}
 
 	/**

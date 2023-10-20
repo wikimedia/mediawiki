@@ -120,6 +120,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Output\IframeSandboxFactory;
+use Mediawiki\OutputTransform\DefaultOutputPipelineFactory;
+use Mediawiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\File\BadFileLookup;
@@ -144,7 +146,6 @@ use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
-use Mediawiki\ParserOutputTransform\DefaultOutputTransform;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -735,14 +736,15 @@ return [
 		);
 	},
 
-	'DefaultOutputTransform' => static function ( MediaWikiServices $services ): DefaultOutputTransform {
-		return new DefaultOutputTransform(
+	'DefaultOutputPipeline' => static function ( MediaWikiServices $services ): OutputTransformPipeline {
+		return ( new DefaultOutputPipelineFactory(
 			$services->getHookContainer(),
 			$services->getTidy(),
 			$services->getLanguageFactory(),
 			$services->getContentLanguage(),
-			LoggerFactory::getInstance( 'Parser' )
-		);
+			LoggerFactory::getInstance( 'Parser' ),
+			$services->getTitleFactory()
+		) )->buildPipeline();
 	},
 
 	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {

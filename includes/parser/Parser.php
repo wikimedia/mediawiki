@@ -6399,6 +6399,18 @@ class Parser {
 	}
 
 	/**
+	 * Strip everything but the <body> from the provided string
+	 * @param string $text
+	 * @return string
+	 * @unstable
+	 */
+	public static function extractBody( string $text ): string {
+		$text = preg_replace( '!^.*?<body[^>]*>!s', '', $text, 1 );
+		$text = preg_replace( '!</body>\s*</html>\s*$!', '', $text, 1 );
+		return $text;
+	}
+
+	/**
 	 * Return this parser if it is not doing anything, otherwise
 	 * get a fresh parser. You can use this method by doing
 	 * $newParser = $oldParser->getFreshParser(), or more simply

@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputStringSets;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -147,7 +148,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mImages = [];
 
 	/**
-	 * @var array<string,array> DB keys of the images used mapped to sha1 and MW timestamp.
+	 * @var array<string,array<string,string>> DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
 	private $mFileSearchOptions = [];
 
@@ -331,13 +332,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private const MIN_AR_TTL = 15; // min adaptive TTL (for pool counter, and edit stashing)
 
 	/**
-	 * Temporary storage for raw text that has been passed through an output transform.
-	 * This is explicitly NOT serialized/deserialized.
-	 * @var ?string
-	 */
-	private ?string $mTransformedText = null;
-
-	/**
 	 * @param string|null $text HTML. Use null to indicate that this ParserOutput contains only
 	 *        meta-data, and the HTML output is undetermined, as opposed to empty. Passing null
 	 *        here causes hasText() to return false. In 1.39 the default value changed from ''
@@ -387,29 +381,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Gets the text set temporarily by output transformations and stored in $mTransformedText.
-	 * If the text has not been transformed yet, returns the raw text $mText.
-	 *
-	 * @return string
-	 * @internal
-	 */
-	public function getTransformedText() {
-		if ( $this->mTransformedText === null ) {
-			return $this->getRawText();
-		}
-
-		return $this->mTransformedText;
-	}
-
-	/**
-	 * Get the text transformed by an output transform
-	 * @internal
-	 */
-	public function setTransformedText( string $text ) {
-		$this->mTransformedText = $text;
-	}
-
-	/**
 	 * Get the output HTML
 	 *
 	 * T293512: in the future, ParserOutput::getText() will be deprecated in favor of invoking the
@@ -448,8 +419,22 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return-taint escaped
 	 */
 	public function getText( $options = [] ) {
-		return MediaWikiServices::getInstance()->getDefaultOutputTransform()
-			->transform( $this, $options )->getTransformedText();
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$options += [
+			'allowTOC' => true,
+			'injectTOC' => true,
+			'enableSectionEditLinks' => true,
+			'userLang' => null,
+			'skin' => null,
+			'unwrap' => false,
+			'wrapperDivClass' => $this->getWrapperDivClass(),
+			'deduplicateStyles' => true,
+			'absoluteURLs' => false,
+			'includeDebugInfo' => false,
+			'bodyContentOnly' => true,
+			'isParsoidContent' => PageBundleParserOutputConverter::hasPageBundle( $this ),
+		];
+		return $pipeline->run( $this, null, $options )->getContentHolderText();
 	}
 
 	/**
@@ -2648,6 +2633,46 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $mSections !== null && $mSections !== [] ) {
 			$this->setSections( $mSections );
 		}
+	}
+
+	public function __clone() {
+		// It seems that very little of this object needs to be explicitly deep-cloned
+		// while keeping copies reasonably separated.
+		// Most of the non-scalar properties of this object are either
+		// - (potentially multi-nested) arrays of scalars (which get deep-cloned), or
+		// - arrays that may contain arbitrary elements (which don't necessarily get
+		//   deep-cloned), but for which no particular care elsewhere is given to
+		//   copying their references around (e.g. mJsConfigVars).
+		// Hence, we are not going out of our way to ensure that the references to innermost
+		// objects that may appear in a ParserOutput are unique. If that becomes the
+		// expectation at any point, this method will require updating as well.
+		// The exception is TOCData (which is an object), which we clone explicitly.
+		if ( $this->mTOCData ) {
+			$this->mTOCData = clone $this->mTOCData;
+		}
+	}
+
+	/**
+	 * Returns the content holder text of the ParserOutput.
+	 * This will eventually be replaced by something like getContentHolder()->getText() when we have a
+	 * ContentHolder/HtmlHolder class.
+	 * @internal
+	 * @unstable
+	 * @return string
+	 */
+	public function getContentHolderText(): string {
+		return $this->getRawText();
+	}
+
+	/**
+	 * Sets the content holder text of the ParserOutput.
+	 * This will eventually be replaced by something like getContentHolder()->setText() when we have a
+	 * ContentHolder/HtmlHolder class.
+	 * @internal
+	 * @unstable
+	 */
+	public function setContentHolderText( string $s ): void {
+		$this->setText( $s );
 	}
 
 	public function __get( $name ) {

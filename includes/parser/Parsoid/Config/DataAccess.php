@@ -31,7 +31,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\BadFileLookup;
-use Mediawiki\ParserOutputTransform\DefaultOutputTransform;
 use MediaWiki\Title\Title;
 use Parser;
 use ParserFactory;
@@ -365,7 +364,7 @@ class DataAccess extends IDataAccess {
 		$out = $parser->getOutput();
 		$out->setText( $html );
 		$out->collectMetadata( $metadata ); # merges $out into $metadata
-		return DefaultOutputTransform::extractBody( $out->getRawText() );
+		return Parser::extractBody( $out->getRawText() );
 	}
 
 	/** @inheritDoc */

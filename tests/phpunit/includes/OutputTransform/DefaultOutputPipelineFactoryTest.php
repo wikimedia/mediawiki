@@ -1,26 +1,24 @@
 <?php
 
-namespace Mediawiki\ParserOutputTransform;
+namespace Mediawiki\OutputTransform;
 
 use LogicException;
 use MediaWiki\MainConfigNames;
 use MediaWikiLangTestCase;
 use ParserOutput;
 use RequestContext;
-use Wikimedia\Parsoid\Core\SectionMetadata;
-use Wikimedia\Parsoid\Core\TOCData;
 
 /**
- * @covers \Mediawiki\ParserOutputTransform\DefaultOutputTransform
+ * @covers \Mediawiki\OutputTransform\DefaultOutputPipelineFactory
  * The tests in this file are copied from the tests in ParserOutputTest. They aim at being the sole version
- * once we deprecate ParserOutput::getText.
+ * once we deprecate ParserOutput::getText. Some of them have been moved to their specific pipeline stage instead.
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */
-class DefaultOutputTransformTest extends MediaWikiLangTestCase {
+class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @covers \Mediawiki\ParserOutputTransform\DefaultOutputTransform::transform
+	 * @covers \Mediawiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
 	 * @dataProvider provideTransform
 	 * @param array $options Options to transform()
 	 * @param string $text Parser text
@@ -38,84 +36,16 @@ class DefaultOutputTransformTest extends MediaWikiLangTestCase {
 		] );
 
 		$po = new ParserOutput( $text );
-		self::initSections( $po );
-		$actual = $this->getServiceContainer()->getDefaultOutputTransform()->transform( $po, $options )
-			->getTransformedText();
+		TestUtils::initSections( $po );
+		$actual = $this->getServiceContainer()->getDefaultOutputPipeline()
+			->run( $po, null, $options )->getContentHolderText();
 		$this->assertSame( $expect, $actual );
 	}
 
-	private static function initSections( ParserOutput $po ): void {
-		$po->setTOCData( new TOCData(
-			SectionMetadata::fromLegacy( [
-				'index' => "1",
-				'level' => 1,
-				'toclevel' => 1,
-				'number' => "1",
-				'line' => "Section 1",
-				'anchor' => "Section_1"
-			] ),
-			SectionMetadata::fromLegacy( [
-				'index' => "2",
-				'level' => 1,
-				'toclevel' => 1,
-				'number' => "2",
-				'line' => "Section 2",
-				'anchor' => "Section_2"
-			] ),
-			SectionMetadata::fromLegacy( [
-				'index' => "3",
-				'level' => 2,
-				'toclevel' => 2,
-				'number' => "2.1",
-				'line' => "Section 2.1",
-				'anchor' => "Section_2.1"
-			] ),
-			SectionMetadata::fromLegacy( [
-				'index' => "4",
-				'level' => 1,
-				'toclevel' => 1,
-				'number' => "3",
-				'line' => "Section 3",
-				'anchor' => "Section_3"
-			] ),
-		) );
-	}
-
 	public static function provideTransform() {
-		$text = <<<EOF
-<p>Test document.
-</p>
-<meta property="mw:PageProp/toc" />
-<h2><span class="mw-headline" id="Section_1">Section 1</span><mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
-<p>One
-</p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
-<p>Two
-</p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><mw:editsection page="Talk:User:Bug_T261347" section="3">Section 2.1</mw:editsection></h3>
-<p>Two point one
-</p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
-<p>Three
-</p>
-EOF;
-
-		$dedupText = <<<EOF
-<p>This is a test document.</p>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
-<style data-mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate1">.Same-attribute-different-content {}</style>
-<style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
-<style>.Duplicate1 {}</style>
-EOF;
-
 		return [
 			'No options' => [
-				[], $text, <<<EOF
+				[], TestUtils::TEST_DOC, <<<EOF
 <p>Test document.
 </p>
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
@@ -145,7 +75,7 @@ EOF;
 EOF
 			],
 			'Disable section edit links' => [
-				[ 'enableSectionEditLinks' => false ], $text, <<<EOF
+				[ 'enableSectionEditLinks' => false ], TestUtils::TEST_DOC, <<<EOF
 <p>Test document.
 </p>
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
@@ -175,7 +105,7 @@ EOF
 EOF
 			],
 			'Disable TOC, but wrap' => [
-				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], $text, <<<EOF
+				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], TestUtils::TEST_DOC, <<<EOF
 <div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
 </p>
 
@@ -193,73 +123,21 @@ EOF
 </p></div>
 EOF
 			],
-			'Style deduplication' => [
-				[], $dedupText, <<<EOF
-<p>This is a test document.</p>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1">
-<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1">
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate2">
-<style data-mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1">
-<style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
-<style>.Duplicate1 {}</style>
-EOF
-			],
 			'Style deduplication disabled' => [
-				[ 'deduplicateStyles' => false ], $dedupText, $dedupText
+				[ 'deduplicateStyles' => false ], TestUtils::TEST_TO_DEDUP, TestUtils::TEST_TO_DEDUP
 			],
 		];
 		// phpcs:enable
 	}
 
 	/**
-	 * @covers \Mediawiki\ParserOutputTransform\DefaultOutputTransform::transform
+	 * @covers \Mediawiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
 	 */
 	public function testTransform_failsIfNoText() {
 		$po = new ParserOutput( null );
 
 		$this->expectException( LogicException::class );
-		$this->getServiceContainer()->getDefaultOutputTransform()->transform( $po, [] );
-	}
-
-	public static function provideTransform_absoluteURLs() {
-		yield 'empty' => [
-			'text' => '',
-			'expectedText' => '',
-		];
-		yield 'no-links' => [
-			'text' => '<p>test</p>',
-			'expectedText' => '<p>test</p>',
-		];
-		yield 'simple link' => [
-			'text' => '<a href="/wiki/Test">test</a>',
-			'expectedText' => '<a href="//TEST_SERVER/wiki/Test">test</a>',
-		];
-		yield 'already absolute, relative' => [
-			'text' => '<a href="//TEST_SERVER/wiki/Test">test</a>',
-			'expectedText' => '<a href="//TEST_SERVER/wiki/Test">test</a>',
-		];
-		yield 'already absolute, https' => [
-			'text' => '<a href="https://TEST_SERVER/wiki/Test">test</a>',
-			'expectedText' => '<a href="https://TEST_SERVER/wiki/Test">test</a>',
-		];
-		yield 'external' => [
-			'text' => '<a href="https://en.wikipedia.org/wiki/Test">test</a>',
-			'expectedText' => '<a href="https://en.wikipedia.org/wiki/Test">test</a>',
-		];
-	}
-
-	/**
-	 * @covers \Mediawiki\ParserOutputTransform\DefaultOutputTransform::transform
-	 * @dataProvider provideTransform_absoluteURLs
-	 */
-	public function testTransform_absoluteURLs( string $text, string $expectedText ) {
-		$this->overrideConfigValue( MainConfigNames::Server, '//TEST_SERVER' );
-		$po = new ParserOutput( $text );
-		$actual = $this->getServiceContainer()->getDefaultOutputTransform()
-			->transform( $po, [ 'absoluteURLs' => true ] )->getTransformedText();
-		$this->assertSame( $expectedText, $actual );
+		$this->getServiceContainer()->getDefaultOutputPipeline()
+			->run( $po, null, [] );
 	}
 }
