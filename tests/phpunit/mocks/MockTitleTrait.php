@@ -72,8 +72,10 @@ trait MockTitleTrait {
 
 		// TODO getPageLanguage should return a Language object, 'qqx' is a string
 		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
-		$title->method( 'getContentModel' )
-			->willReturn( $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT );
+		$contentModel = $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT;
+		$title->method( 'getContentModel' )->willReturn( $contentModel );
+		$title->method( 'hasContentModel' )->willReturnCallback(
+			static fn ( $id ) => $id === $contentModel );
 		$title->method( 'getTitleProtection' )->willReturn( false );
 		$title->method( 'canExist' )
 			->willReturn( $ns >= 0 && empty( $props['interwiki'] ) && $text !== '' );
