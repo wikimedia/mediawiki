@@ -30,6 +30,7 @@ use MediaWiki\Title\TitleValue;
 use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
@@ -425,6 +426,39 @@ class TaintCheckAnnotationsTest {
 		$dqb->conds( [ 'foo' => $_GET['a'] ] );// Safe
 
 		$dqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+	}
+
+	function testExpression( \Wikimedia\Rdbms\IDatabase $db ) {
+		$db->expr( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->expr( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->expr( 'a', '=', $_GET['value'] ); // Safe
+
+		new Expression( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		new Expression( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		new Expression( 'a', '=', $_GET['value'] ); // Safe
+
+		$safeExpr = new Expression( 'a', '=', 'a' );
+		$safeExpr->and( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$safeExpr->and( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$safeExpr->and( 'a', '=', $_GET['value'] ); // Safe
+		$safeExpr->or( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$safeExpr->or( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$safeExpr->or( 'a', '=', $_GET['value'] ); // Safe
+
+		$andExpr = $safeExpr->andExpr( $safeExpr );
+		$andExpr->and( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$andExpr->and( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$andExpr->and( 'a', '=', $_GET['value'] ); // Safe
+
+		$orExpr = $safeExpr->orExpr( $safeExpr );
+		$orExpr->or( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$orExpr->or( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$orExpr->or( 'a', '=', $_GET['value'] ); // Safe
+
+		$unsafeExpr = new Expression( $_GET['a'], $_GET['a'], $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		// Not validated at this point, only when building the Expression
+		$db->newSelectQueryBuilder()->where( $safeExpr );
+		$db->newSelectQueryBuilder()->where( $unsafeExpr );
 	}
 
 	function testMessage( Message $msg ) {

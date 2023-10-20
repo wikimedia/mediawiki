@@ -670,8 +670,11 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @since 1.42
 	 * @param string $field
-	 * @param string $op one of [ '>', '<', '!=', '=', '>=', '<=' ]
+	 * @param-taint $field exec_sql
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<='
+	 * @param-taint $op exec_sql
 	 * @param string|int|float|null|bool|Blob|array $value
+	 * @param-taint $value escapes_sql
 	 * @return Expression
 	 */
 	public function expr( string $field, string $op, $value ): Expression;
