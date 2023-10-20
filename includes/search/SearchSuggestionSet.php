@@ -161,6 +161,25 @@ class SearchSuggestionSet {
 	}
 
 	/**
+	 * Remove a suggestion from the set.
+	 * Removes the first suggestion that has the same article id or the same suggestion text.
+	 * @param SearchSuggestion $suggestion
+	 * @return bool true if something was removed
+	 */
+	public function remove( SearchSuggestion $suggestion ): bool {
+		foreach ( $this->suggestions as $k => $s ) {
+			$titleId = $s->getSuggestedTitleID();
+			if ( ( $titleId != null && $titleId === $suggestion->getSuggestedTitleID() )
+				 || $s->getText() === $suggestion->getText() ) {
+				array_splice( $this->suggestions, $k, 1 );
+				unset( $this->pageMap[$s->getSuggestedTitleID()] );
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @return float the best score in this suggestion set
 	 */
 	public function getBestScore() {
@@ -194,15 +213,26 @@ class SearchSuggestionSet {
 	public function shrink( $limit ) {
 		if ( count( $this->suggestions ) > $limit ) {
 			$this->suggestions = array_slice( $this->suggestions, 0, $limit );
-			$this->pageMap = [];
-			foreach ( $this->suggestions as $suggestion ) {
-				$pageID = $suggestion->getSuggestedTitleID();
-				if ( $pageID && empty( $this->pageMap[$pageID] ) ) {
-					$this->pageMap[$pageID] = true;
-				}
-			}
+			$this->pageMap = self::buildPageMap( $this->suggestions );
 			$this->hasMoreResults = true;
 		}
+	}
+
+	/**
+	 * Build an array of true with the page ids present in $suggestion as keys.
+	 *
+	 * @param array $suggestions
+	 * @return array<int,bool>
+	 */
+	private static function buildPageMap( array $suggestions ): array {
+		$pageMap = [];
+		foreach ( $suggestions as $suggestion ) {
+			$pageID = $suggestion->getSuggestedTitleID();
+			if ( $pageID ) {
+				$pageMap[$pageID] = true;
+			}
+		}
+		return $pageMap;
 	}
 
 	/**
