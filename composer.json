@@ -174,7 +174,8 @@
 		"allow-plugins": {
 			"composer/package-versions-deprecated": true,
 			"wikimedia/composer-merge-plugin": true,
-			"composer/installers": true
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
 	"extra": {
