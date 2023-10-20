@@ -284,6 +284,7 @@ abstract class AbstractBlock implements Block {
 
 		$res = null;
 		switch ( $right ) {
+			case 'autocreateaccount':
 			case 'createaccount':
 				$res = $this->isCreateAccountBlocked();
 				break;

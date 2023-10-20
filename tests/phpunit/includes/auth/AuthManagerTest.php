@@ -10,6 +10,8 @@ use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
@@ -106,6 +108,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'ipblocks';
+		$this->tablesUsed[] = 'user';
 	}
 
 	/**
@@ -2796,16 +2799,16 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
 		$this->unhook( 'LocalUserCreated' );
-		$this->assertEquals( Status::newFatal( 'authmanager-autocreate-noperm' ), $ret );
+		$this->assertTrue( $ret->hasMessage( 'badaccess-group0' ) );
 		$this->assertSame( 0, $user->getId() );
 		$this->assertNotEquals( $username, $user->getName() );
 		$this->assertSame( 0, $session->getUser()->getId() );
 		$this->assertSame( [
-			[ LogLevel::DEBUG, 'IP lacks the ability to create or autocreate accounts' ],
+			[ LogLevel::DEBUG, 'cannot create or autocreate accounts' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertSame(
-			'authmanager-autocreate-noperm', $session->get( AuthManager::AUTOCREATE_BLOCKLIST )
+		$this->assertEquals(
+			(string)$ret, (string)$session->get( AuthManager::AUTOCREATE_BLOCKLIST )
 		);
 
 		// maintenance scripts always work
@@ -3074,6 +3077,87 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( [ '4::userid' => $user->getId() ], $entry->getParameters() );
 
 		$workaroundPHPUnitBug = true;
+	}
+
+	/**
+	 * @dataProvider provideAutoCreateUserBlocks
+	 */
+	public function testAutoCreateUserBlocks(
+		string $blockType,
+		array $blockOptions,
+		string $performerType,
+		bool $expectedStatus
+
+	) {
+		if ( $blockType === 'ip' ) {
+			$blockOptions['address'] = '127.0.0.0/24';
+		} elseif ( $blockType === 'global-ip' ) {
+			$this->setTemporaryHook( 'GetUserBlock',
+				static function ( $user, $ip, &$block ) use ( $blockOptions ) {
+					$block = new SystemBlock( $blockOptions );
+					$block->isCreateAccountBlocked( true );
+				}
+			);
+			$blockOptions = null;
+		} elseif ( $blockType === 'none' ) {
+			$blockOptions = null;
+		} else {
+			$this->fail( "Unknown block type \"$blockType\"" );
+		}
+
+		if ( $blockOptions !== null ) {
+			$blockOptions += [
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => __METHOD__,
+				'expiry' => time() + 100500,
+			];
+			$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+			$block = new DatabaseBlock( $blockOptions );
+			$blockStore->insertBlock( $block );
+		}
+
+		if ( $performerType === 'sysop' ) {
+			$performer = $this->getTestSysop()->getUser();
+		} elseif ( $performerType === 'anon' ) {
+			$performer = null;
+		} else {
+			$this->fail( "Unknown performer type \"$performerType\"" );
+		}
+
+		$this->logger = LoggerFactory::getInstance( 'AuthManagerTest' );
+		$this->initializeManager( true );
+
+		$user = $this->userFactory->newFromName( 'NewUser' );
+		$status = $this->manager->autoCreateUser( $user,
+			AuthManager::AUTOCREATE_SOURCE_SESSION, true, true, $performer );
+		$this->assertSame( $expectedStatus, $status->isGood() );
+	}
+
+	public static function provideAutoCreateUserBlocks() {
+		return [
+			// block type (ip/global/none), block options, performer, expected status
+			'not blocked' => [ 'none', [], 'anon', true ],
+			'ip-blocked' => [ 'ip', [], 'anon', true ],
+			'ip-blocked with createAccount' => [
+				'ip',
+				[ 'createAccount' => true ],
+				'anon',
+				false
+			],
+			'partially ip-blocked' => [
+				'ip',
+				[ 'restrictions' => new PageRestriction( 0, 1 ) ],
+				'anon',
+				true
+			],
+			'ip-blocked with sysop performer' => [
+				'ip',
+				[ 'createAccount' => true ],
+				'sysop',
+				true
+			],
+			'globally blocked' => [ 'global-ip', [], 'anon', false ],
+		];
 	}
 
 	/**
