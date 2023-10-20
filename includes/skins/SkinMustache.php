@@ -106,6 +106,20 @@ class SkinMustache extends SkinTemplate {
 
 	/**
 	 * @inheritDoc
+	 */
+	protected function doEditSectionLinksHTML( array $links, Language $lang ) {
+		$template = $this->getOptions()['templateSectionLinks'] ?? null;
+		if ( !$template ) {
+			return parent::doEditSectionLinksHTML( $links, $lang );
+		}
+		return $this->getTemplateParser()->processTemplate( $template, [
+			'class' => 'mw-editsection',
+			'array-links' => $links
+		] );
+	}
+
+	/**
+	 * @inheritDoc
 	 * @return array Data specific for a mustache template. See parent function for common data.
 	 */
 	public function getTemplateData() {

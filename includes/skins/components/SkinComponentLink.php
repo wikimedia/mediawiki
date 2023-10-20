@@ -102,6 +102,8 @@ class SkinComponentLink implements SkinComponent {
 	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
+	 *   - 'class-as-property' key to specify that class attribute should be
+	 *     not be included in array-attributes.
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
 	 *   a link in. This should be an array of arrays containing a 'tag' and
 	 *   optionally an 'attributes' key. If you only have one element you don't
@@ -119,7 +121,9 @@ class SkinComponentLink implements SkinComponent {
 	 * - array-attributes: HTML attributes as array of objects:
 	 * 		- key: Attribute name ex: 'href', 'class', 'id', ...
 	 * 		- value: Attribute value
+	 * 		NOTE: if options['class-as-property'] is set, class will not be included in the list.
 	 * - text: Text of the link
+	 * - class: Class of the link
 	 */
 	private function makeLink( $key, $item, $options = [] ) {
 		$html = $item['html'] ?? null;
@@ -159,6 +163,7 @@ class SkinComponentLink implements SkinComponent {
 
 		$attrs = [];
 		$linkHtmlAttributes = [];
+		$classAsProperty = $options['class-as-property'] ?? false;
 		if ( $isLink ) {
 			$attrs = $item;
 			foreach ( [
@@ -192,6 +197,9 @@ class SkinComponentLink implements SkinComponent {
 				if ( $value === null ) {
 					continue;
 				}
+				if ( $classAsProperty && $key === 'class' ) {
+					continue;
+				}
 				$linkHtmlAttributes[] = [ 'key' => $key, 'value' => $value ];
 			}
 
@@ -203,12 +211,16 @@ class SkinComponentLink implements SkinComponent {
 				? 'a'
 				: $options['link-fallback'], $attrs, $html );
 		}
-		return [
+		$data = [
 			'html' => $html,
 			'icon' => $icon,
 			'array-attributes' => count( $linkHtmlAttributes ) > 0 ? $linkHtmlAttributes : null,
-			'text' => trim( $text )
+			'text' => trim( $text ),
 		];
+		if ( $classAsProperty ) {
+			$data['class'] = $attrs['class'] ?? '';
+		}
+		return $data;
 	}
 
 	/**

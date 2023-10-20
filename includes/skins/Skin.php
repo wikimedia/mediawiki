@@ -1911,6 +1911,7 @@ abstract class Skin extends ContextSource {
 
 		$links = [
 			'editsection' => [
+				'icon' => 'edit',
 				'text' => $this->msg( 'editsection' )->inLanguage( $lang )->text(),
 				'targetTitle' => $nt,
 				'attribs' => $attribs,
@@ -1920,18 +1921,44 @@ abstract class Skin extends ContextSource {
 
 		$this->getHookRunner()->onSkinEditSectionLinks( $this, $nt, $section, $sectionTitle, $links, $lang );
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$newLinks = [];
+		$options = $this->defaultLinkOptions + [
+			'class-as-property' => true,
+		];
+		$ctx = $this->getContext();
+		foreach ( $links as $key => $linkDetails ) {
+			$targetTitle = $linkDetails['targetTitle'];
+			$attrs = $linkDetails['attribs'];
+			$query = $linkDetails['query'];
+			unset( $linkDetails['targetTitle'] );
+			unset( $linkDetails['query'] );
+			unset( $linkDetails['attribs'] );
+			unset( $linkDetails['options' ] );
+			$component = new SkinComponentLink(
+				$key, $linkDetails + [
+					'href' => Title::newFromLinkTarget( $targetTitle )->getLinkURL( $query, false ),
+				] + $attrs, $ctx, $options
+			);
+			$newLinks[] = $component->getTemplateData();
+		}
+		return $this->doEditSectionLinksHTML( $newLinks, $lang );
+	}
+
+	/**
+	 * @stable to override by skins
+	 *
+	 * @param array $links
+	 * @param Language $lang
+	 * @return string
+	 */
+	protected function doEditSectionLinksHTML( array $links, Language $lang ) {
 		$result = Html::openElement( 'span', [ 'class' => 'mw-editsection' ] );
 		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], '[' );
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$linksHtml = [];
 		foreach ( $links as $linkDetails ) {
-			$linksHtml[] = $linkRenderer->makeKnownLink(
-				$linkDetails['targetTitle'],
-				$linkDetails['text'],
-				$linkDetails['attribs'],
-				$linkDetails['query']
-			);
+			$linksHtml[] = $linkDetails['html'];
 		}
 
 		$result .= implode(
