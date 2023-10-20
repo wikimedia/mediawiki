@@ -1396,16 +1396,16 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Check if user is blocked
 	 *
-	 * @deprecated since 1.34, use User::getBlock() or
-	 *             Authority:getBlock() or Authority:definitelyCan() or
-	 *             Authority:authorizeRead() or Authority:authorizeWrite() or
-	 *             PermissionManager::isBlockedFrom(), as appropriate.
+	 * @deprecated since 1.34, use BlockManager::getBlock(), Authority:definitelyCan(),
+	 *   Authority:authorizeRead() or Authority:authorizeWrite(), as appropriate.
+	 *   Hard-deprecated since 1.42.
 	 *
 	 * @param bool $fromReplica Whether to check the replica DB instead of
 	 *   the primary DB. Hacked from false due to horrible probs on site.
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $fromReplica = true ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return $this->getBlock( $fromReplica ) !== null;
 	}
 
@@ -1459,11 +1459,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param bool $fromReplica Whether to check the replica DB instead of the primary DB
 	 * @return bool
 	 *
-	 * @deprecated since 1.33,
-	 * use MediaWikiServices::getInstance()->getPermissionManager()->isBlockedFrom(..)
-	 *
+	 * @deprecated since 1.33, hard-deprecated since 1.42
+	 *   use MediaWikiServices::getInstance()->getPermissionManager()->isBlockedFrom(..)
 	 */
 	public function isBlockedFrom( $title, $fromReplica = false ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		return MediaWikiServices::getInstance()->getPermissionManager()
 			->isBlockedFrom( $this, $title, $fromReplica );
 	}
@@ -2802,6 +2802,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Block|false
 	 */
 	public function isBlockedFromCreateAccount() {
+		wfDeprecated( __METHOD__, '1.37' );
 		$isExempt = $this->isAllowed( 'ipblock-exempt' );
 		$block = MediaWikiServices::getInstance()->getBlockManager()
 			->getCreateAccountBlock(

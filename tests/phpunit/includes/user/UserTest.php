@@ -976,6 +976,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isBlockedFrom
 	 */
 	public function testBlockInstanceCache() {
+		$this->hideDeprecated( User::class . '::isBlockedFrom' );
 		// First, check the user isn't blocked
 		$user = $this->getMutableTestUser()->getUser();
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
@@ -1079,6 +1080,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
 	 */
 	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
+		$this->hideDeprecated( User::class . '::isBlockedFrom' );
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, $options['blockAllowsUTEdit'] ?? true );
 
 		$user = $this->getMutableTestUser()->getUser();
