@@ -3,7 +3,10 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockActionInfo;
+use MediaWiki\Block\BlockManager;
+use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -472,11 +475,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$block->setRestrictions( [ $pageRestriction ] );
 		}
 
-		$user = $this->getMockBuilder( User::class )
-			->onlyMethods( [ 'getBlock' ] )
-			->getMock();
-		$user->method( 'getBlock' )
-			->willReturn( $block );
+		$user = $this->createUserWithBlock( $block );
 
 		$this->overrideUserPermissions( $user, [
 			'createpage',
@@ -499,7 +498,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					$action,
 					$user,
 					$this->title
-				)
+				),
+				"Number of permission errors for action \"$action\""
 			);
 		}
 
@@ -511,8 +511,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					$action,
 					$user,
 					PermissionManager::RIGOR_FULL,
-					$this->title
-				) !== null
+					$this->title,
+					null
+				) !== null,
+				"Block returned by getApplicableBlock() for action \"$action\""
 			);
 		}
 
@@ -520,6 +522,26 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertTrue(
 			$permissionManager->quickUserCan( 'move-target', $this->user, $this->title )
 		);
+	}
+
+	/**
+	 * Create a user that is blocked in global state
+	 *
+	 * @param Block|null $block
+	 * @return User
+	 */
+	private function createUserWithBlock( ?Block $block ) {
+		$newUser = new User;
+		$blockManager = $this->getMockBuilder( BlockManager::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'getUserBlock' ] )
+			->getMock();
+		$blockManager->method( 'getUserBlock' )
+			->willReturnCallback( static function ( $paramUser ) use ( $newUser, $block ) {
+				return $paramUser === $newUser ? $block : null;
+			} );
+		$this->setService( 'BlockManager', $blockManager );
+		return $newUser;
 	}
 
 	/**
@@ -532,12 +554,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'auto' => true,
 		] );
 
-		$user = $this->getMockBuilder( User::class )
-			->onlyMethods( [ 'getBlock' ] )
-			->getMock();
-		$user->method( 'getBlock' )
-			->willReturn( $block );
-
+		$user = $this->createUserWithBlock( $block );
 		$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
 
 		$this->overrideUserPermissions( $user, [
@@ -555,7 +572,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				'edit',
 				$user,
 				PermissionManager::RIGOR_FULL,
-				$title
+				$title,
+				null
 			)
 		);
 	}
@@ -675,6 +693,83 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * A test of the filter() calls in getApplicableBlock()
+	 */
+	public function testGetApplicableBlockCompositeFilter() {
+		$this->overrideConfigValues( [
+			MainConfigNames::EnablePartialActionBlocks => true,
+		] );
+		$blockOptions = [
+			'address' => '127.0.8.1',
+			'by' => UserIdentityValue::newRegistered( 100, 'Test' ),
+			'sitewide' => false,
+		];
+
+		$uploadBlock = new DatabaseBlock( $blockOptions );
+		$uploadBlock->setRestrictions( [
+			new ActionRestriction( 0, BlockActionInfo::ACTION_UPLOAD )
+		] );
+
+		$emailBlock = new DatabaseBlock(
+			[
+				'blockEmail' => true,
+				'sitewide' => true
+			] + $blockOptions
+		);
+
+		$page = $this->getExistingTestPage();
+		$page2 = $this->getExistingTestPage( __FUNCTION__ . ' page2' );
+		$pageBlock = new DatabaseBlock( $blockOptions );
+		$pageBlock->setRestrictions( [
+			new PageRestriction( 0, $page->getId() )
+		] );
+
+		$compositeBlock = new CompositeBlock( [
+			'originalBlocks' => [
+				$uploadBlock,
+				$emailBlock,
+				$pageBlock
+			]
+		] );
+		$user = $this->createUserWithBlock( $compositeBlock );
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		// The email block, being a sitewide block with an additional
+		// blockEmail option, also blocks upload.
+		// assertEquals() gives nicer failure messages than assertSame().
+		$this->assertEquals(
+			[ $uploadBlock, $emailBlock ],
+			$permissionManager->getApplicableBlock(
+				'upload', $user, PermissionManager::RIGOR_FULL, null, null
+			)->toArray()
+		);
+
+		// Emailing is only blocked by the email block
+		$this->assertEquals(
+			[ $emailBlock ],
+			$permissionManager->getApplicableBlock(
+				'sendemail', $user, PermissionManager::RIGOR_FULL, null, null
+			)->toArray()
+		);
+
+		// As for upload, the email block applies to sitewide editing
+		$this->assertEquals(
+			[ $emailBlock, $pageBlock ],
+			$permissionManager->getApplicableBlock(
+				'edit', $user, PermissionManager::RIGOR_FULL, $page->getTitle(), null
+			)->toArray()
+		);
+
+		// Test filtering by page -- we use $page2 so $pageBlock does not apply
+		$this->assertEquals(
+			[ $emailBlock ],
+			$permissionManager->getApplicableBlock(
+				'edit', $user, PermissionManager::RIGOR_FULL, $page2->getTitle(), null
+			)->toArray()
+		);
+	}
+
+	/**
 	 * @dataProvider provideTestCheckUserBlockMessage
 	 */
 	public function testCheckUserBlockMessage( $blockType, $blockParams, $restriction, $expected ) {
@@ -695,12 +790,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$block->setRestrictions( [ $pageRestriction ] );
 		}
 
-		$user = $this->getMockBuilder( User::class )
-			->onlyMethods( [ 'getBlock' ] )
-			->getMock();
-		$user->method( 'getBlock' )
-			->willReturn( $block );
-
+		$user = $this->createUserWithBlock( $block );
 		$this->overrideUserPermissions( $user, [ 'edit', 'createpage' ] );
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
@@ -818,15 +908,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 		] );
 
-		$user = $this->getMockBuilder( User::class )
-			->onlyMethods( [ 'getBlock' ] )
-			->getMock();
-		$user->method( 'getBlock' )
-			->willReturn( new DatabaseBlock( [
-				'address' => '127.0.8.1',
-				'by' => $this->user,
-			] ) );
-
+		$user = $this->createUserWithBlock( new DatabaseBlock( [
+			'address' => '127.0.8.1',
+			'by' => $this->user,
+		] ) );
 		$this->assertCount( 1, $this->getServiceContainer()->getPermissionManager()
 			->getPermissionErrors( 'tester', $user, $this->title )
 		);

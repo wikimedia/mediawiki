@@ -23,10 +23,10 @@ use IContextSource;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -35,6 +35,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -435,35 +436,13 @@ class PermissionManager {
 	 * @return bool
 	 */
 	public function isBlockedFrom( User $user, $page, $fromReplica = false ): bool {
-		$block = $user->getBlock( $fromReplica );
-		if ( !$block ) {
-			return false;
-		}
-
-		if ( $page instanceof PageIdentity ) {
-			$title = Title::newFromPageIdentity( $page );
-		} else {
-			$title = Title::newFromLinkTarget( $page );
-		}
-
-		$blocked = $user->isHidden();
-		if ( !$blocked ) {
-			// Special handling for a user's own talk page. The block is not aware
-			// of the user, so this must be done here.
-			if ( $title->equals( $user->getTalkPage() ) ) {
-				$blocked = $block->appliesToUsertalk( $title );
-			} else {
-				$blocked = $block->appliesToTitle( $title );
-			}
-		}
-
-		// only for the purpose of the hook. We really don't need this here.
-		$allowUsertalk = $block->isUsertalkEditAllowed();
-
-		// Allow extensions to let a blocked user access a particular page
-		$this->hookRunner->onUserIsBlockedFrom( $user, $title, $blocked, $allowUsertalk );
-
-		return $blocked;
+		return (bool)$this->getApplicableBlock(
+			'edit',
+			$user,
+			$fromReplica ? self::RIGOR_FULL : self::RIGOR_SECURE,
+			$page,
+			$user->getRequest()
+		);
 	}
 
 	/**
@@ -844,7 +823,8 @@ class PermissionManager {
 			$action,
 			$user,
 			$rigor,
-			$page
+			$page,
+			$user->getRequest()
 		);
 
 		if ( $block ) {
@@ -875,13 +855,16 @@ class PermissionManager {
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
 	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param LinkTarget|PageReference|null $page
+	 * @param WebRequest|null $request The request to get the IP and cookies
+	 *   from. If this is null, IP and cookie blocks will not be checked.
 	 * @return ?Block
 	 */
 	public function getApplicableBlock(
 		string $action,
 		User $user,
 		string $rigor,
-		$page
+		$page,
+		?WebRequest $request
 	): ?Block {
 		// Unblocking handled in SpecialUnblock
 		if ( $rigor === self::RIGOR_QUICK || in_array( $action, [ 'unblock' ] ) ) {
@@ -893,54 +876,46 @@ class PermissionManager {
 			return null;
 		}
 
-		if ( $rigor === self::RIGOR_SECURE ) {
-			$blockInfoFreshness = Authority::READ_LATEST;
-			$useReplica = false;
-		} else {
-			// RIGOR_FULL, RIGOR_QUICK
-			$blockInfoFreshness = Authority::READ_NORMAL;
-			$useReplica = true;
-		}
+		$useReplica = $rigor !== self::RIGOR_SECURE;
 
-		$block = $user->getBlock( $blockInfoFreshness );
-
+		// Create account blocks are implemented separately due to weird IP exemption rules
 		if ( $action === 'createaccount' ) {
-			$applicableBlock = null;
-			if ( $block && $block->appliesToRight( 'createaccount' ) ) {
-				$applicableBlock = $block;
-			}
-
-			// T15611: if the IP address the user is trying to create an account from is
-			// blocked with createaccount disabled, prevent new account creation there even
-			// when the user is logged in
-			if ( !$this->userHasRight( $user, 'ipblock-exempt' ) ) {
-				$ipBlock = DatabaseBlock::newFromTarget(
-					null, $user->getRequest()->getIP()
-				);
-				if ( $ipBlock && $ipBlock->appliesToRight( 'createaccount' ) ) {
-					$applicableBlock = $ipBlock;
-				}
-			}
-			if ( $applicableBlock ) {
-				return $applicableBlock;
-			}
+			$isExempt = $this->userHasRight( $user, 'ipblock-exempt' );
+			return $this->blockManager->getCreateAccountBlock(
+				$user,
+				$isExempt ? null : $request,
+				$useReplica
+			);
 		}
 
-		// If the user does not have a block, or the block they do have explicitly
-		// allows the action (like "read" or "upload").
-		if ( !$block || $block->appliesToRight( $action ) === false ) {
+		$block = $this->blockManager->getUserBlock( $user, $request, $useReplica );
+		if ( !$block ) {
+			return null;
+		}
+		$userIsHidden = $block->getHideName();
+
+		// Remove elements from the block that explicitly allow the action
+		// (like "read" or "upload").
+		$block = $this->blockManager->filter(
+			$block,
+			static function ( AbstractBlock $originalBlock ) use ( $action ) {
+				// Remove the block if it explicitly allows the action
+				return $originalBlock->appliesToRight( $action ) !== false;
+			}
+		);
+		if ( !$block ) {
 			return null;
 		}
 
-		// Determine if the user is blocked from this action on this page.
-		$actionTarget = null;
+		// Convert the input page to a Title
+		$targetTitle = null;
 		if ( $page ) {
-			$actionTarget = $page instanceof PageReference ?
+			$targetTitle = $page instanceof PageReference ?
 				Title::castFromPageReference( $page ) :
 				Title::castFromLinkTarget( $page );
 
-			if ( !$actionTarget->canExist() ) {
-				$actionTarget = null;
+			if ( !$targetTitle->canExist() ) {
+				$targetTitle = null;
 			}
 		}
 
@@ -948,30 +923,57 @@ class PermissionManager {
 		// There is no way to instantiate an action by restriction. However, this
 		// will get the action where the restriction is the same. This may result
 		// in actions being blocked that shouldn't be.
-		$actionInfo = $this->actionFactory->getActionInfo( $action, $actionTarget );
+		$actionInfo = $this->actionFactory->getActionInfo( $action, $targetTitle );
 
 		// Ensure that the retrieved action matches the restriction.
 		if ( $actionInfo && $actionInfo->getRestriction() !== $action ) {
 			$actionInfo = null;
 		}
 
+		// Return null if the action does not require an unblocked user.
 		// If no ActionInfo is returned, assume that the action requires unblock
 		// which is the default.
 		// NOTE: We may get null here even for known actions, if a wiki's main page
 		// is set to a special page, e.g. Special:MyLanguage/Main_Page (T348451, T346036).
-		if ( !$actionInfo || $actionInfo->requiresUnblock() ) {
-			if (
-				( !$page || $this->isBlockedFrom( $user, $page, $useReplica ) ) ||
-				(
-					$this->options->get( MainConfigNames::EnablePartialActionBlocks ) &&
-					$block->appliesToRight( $action )
-				)
-			) {
-				return $block;
-			}
+		if ( $actionInfo && !$actionInfo->requiresUnblock() ) {
+			return null;
 		}
 
-		return null;
+		// Remove elements from the block that do not apply to the specific page
+		if ( $targetTitle ) {
+			$targetIsUserTalk = !$userIsHidden && $targetTitle->equals( $user->getTalkPage() );
+			$block = $this->blockManager->filter(
+				$block,
+				static function ( AbstractBlock $originalBlock )
+				use ( $action, $targetTitle, $targetIsUserTalk ) {
+					if ( $originalBlock->appliesToRight( $action ) ) {
+						// An action block takes precedence over appliesToTitle().
+						// Block::appliesToRight('edit') always returns null,
+						// allowing title-based exemptions to take effect.
+						return true;
+					} elseif ( $targetIsUserTalk ) {
+						// Special handling for a user's own talk page. The block is not aware
+						// of the user, so this must be done here.
+						return $originalBlock->appliesToUsertalk( $targetTitle );
+					} else {
+						return $originalBlock->appliesToTitle( $targetTitle );
+					}
+				}
+			);
+		}
+
+		if ( $targetTitle && $block
+			&& $block instanceof AbstractBlock // for phan
+		) {
+			// Allow extensions to let a blocked user access a particular page
+			$allowUsertalk = $block->isUsertalkEditAllowed();
+			$blocked = true;
+			$this->hookRunner->onUserIsBlockedFrom( $user, $targetTitle, $blocked, $allowUsertalk );
+			if ( !$blocked ) {
+				$block = null;
+			}
+		}
+		return $block;
 	}
 
 	/**
@@ -1585,7 +1587,7 @@ class PermissionManager {
 			if (
 				$userObj->isRegistered() &&
 				$this->options->get( MainConfigNames::BlockDisablesLogin ) &&
-				$userObj->getBlock()
+				$this->blockManager->getUserBlock( $userObj, $userObj->getRequest(), true )
 			) {
 				$anon = new User;
 				$this->usersRights[ $rightsCacheKey ] = array_intersect(

@@ -134,6 +134,20 @@ class CompositeBlock extends AbstractBlock {
 		return $this->originalBlocks;
 	}
 
+	/**
+	 * Create a clone of the object with the original blocks array set to
+	 * something else.
+	 *
+	 * @since 1.42
+	 * @param AbstractBlock[] $blocks
+	 * @return self
+	 */
+	public function withOriginalBlocks( array $blocks ) {
+		$clone = clone $this;
+		$clone->originalBlocks = $blocks;
+		return $clone;
+	}
+
 	public function toArray(): array {
 		return $this->originalBlocks;
 	}

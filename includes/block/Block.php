@@ -33,8 +33,12 @@ use MediaWiki\User\UserIdentity;
  * The block may apply to the entire site, or may be limited to specific pages
  * or namespaces.
  *
- * @since 1.37 Extracted from the AbstractBlock base class,
- * which was in turn factored out of DatabaseBlock in 1.34.
+ * @since 1.37
+ *
+ * Extracted from the AbstractBlock base class, which was in turn factored out
+ * of DatabaseBlock in 1.34. Block was introduced as a narrow interface for
+ * Authority. It avoids legacy types such as User and Title. However, all
+ * implementations should continue to extend AbstractBlock.
  *
  * Extends WikiAwareEntity since 1.38.
  */

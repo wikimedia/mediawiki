@@ -79,6 +79,9 @@ because of Phabricator reports.
 === Deprecations in 1.42 ===
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
+* BlockManager::getUserBlock() was deprecated. Instead use
+  BlockManager::getBlock(), which expects the caller to do ipblock-exempt
+  checking.
 * Vuex has been deprecated in favor of its successor, Pinia. Though deprecated,
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.

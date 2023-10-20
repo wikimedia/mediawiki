@@ -334,8 +334,8 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		// Reload user
 		$u = User::newFromName( $username );
-		$this->assertFalse(
-			$u->isBlockedFromCreateAccount(),
+		$this->assertTrue(
+			$u->isDefinitelyAllowed( 'createaccount' ),
 			"Our sandbox user should be able to create account before being blocked"
 		);
 
@@ -370,8 +370,8 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		// Reload user
 		$u = User::newFromName( $username );
-		$this->assertTrue(
-			(bool)$u->isBlockedFromCreateAccount(),
+		$this->assertFalse(
+			$u->isDefinitelyAllowed( 'createaccount' ),
 			"Our sandbox user '$username' should NOT be able to create account"
 		);
 	}
