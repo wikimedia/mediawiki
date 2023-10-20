@@ -564,9 +564,10 @@ abstract class ParsoidHandler extends Handler {
 			// Create a mutable revision record point to the same revision
 			// and set to the desired wikitext.
 			$revisionRecord = new MutableRevisionRecord( $title );
-			if ( $revId !== null ) {
-				$revisionRecord->setId( $revId );
-			}
+			// Don't set id to $revId if we have $wikitextOverride
+			// A revision corresponds to specific wikitext, which $wikitextOverride
+			// might not be.
+			$revisionRecord->setId( 0 );
 			$revisionRecord->setSlot(
 				SlotRecord::newUnsaved(
 					SlotRecord::MAIN,
@@ -836,7 +837,12 @@ abstract class ParsoidHandler extends Handler {
 			$attribs,
 			$wikitext,
 			$this->pageConfigToPageIdentity( $pageConfig ),
-			$pageConfig->getRevisionId()
+			// Id will be 0 if we have $wikitext but that isn't valid
+			// to call $helper->setRevision with.  In any case, the revision
+			// will be reset when $helper->setContent is called with $wikitext.
+			// Ideally, the revision would be pass through here instead of
+			// the id and wikitext.
+			$pageConfig->getRevisionId() ?: null
 		);
 
 		if ( !$this->allowParserCacheWrite() ) {
