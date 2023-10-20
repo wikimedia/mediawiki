@@ -53,7 +53,8 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param string|null $subPage The subpage parameter to call the page with
 	 * @param WebRequest|null $request Web request that may contain URL parameters, etc
-	 * @param Language|string|null $language The language which should be used in the context
+	 * @param Language|string|null $language The language which should be used in the context;
+	 *  defaults to "qqx"
 	 * @param Authority|null $performer The user which should be used in the context of this special page
 	 * @param bool $fullHtml if true, the entirety of the generated HTML will be returned, this
 	 * includes the opening <!DOCTYPE> declaration and closing </html> tag. If false, only value
@@ -74,7 +75,7 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 			$this->newSpecialPage(),
 			$subPage,
 			$request,
-			$language,
+			$language ?: 'qqx',
 			$performer,
 			$fullHtml
 		);
