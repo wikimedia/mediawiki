@@ -1,11 +1,9 @@
-( function () {
-	QUnit.module( 'mediawiki.ForeignRest', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			this.server = this.sandbox.useFakeServer();
-			this.server.respondImmediately = true;
-			this.actionApi = new mw.ForeignApi( 'http://test.example.com/api.php' );
-		}
-	} ) );
+QUnit.module( 'mediawiki.ForeignRest', function ( hooks ) {
+	hooks.beforeEach( function () {
+		this.server = this.sandbox.useFakeServer();
+		this.server.respondImmediately = true;
+		this.actionApi = new mw.ForeignApi( 'http://test.example.com/api.php' );
+	} );
 
 	QUnit.test( 'get()', function ( assert ) {
 		var api = new mw.ForeignRest( 'http://test.example.com/rest.php', this.actionApi );
@@ -53,4 +51,4 @@
 			} )
 			.always( assert.async() );
 	} );
-}() );
+} );

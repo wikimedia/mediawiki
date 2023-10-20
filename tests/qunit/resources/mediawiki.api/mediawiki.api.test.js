@@ -1,10 +1,8 @@
-( function () {
-	QUnit.module( 'mediawiki.api', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			this.server = this.sandbox.useFakeServer();
-			this.server.respondImmediately = true;
-		}
-	} ) );
+QUnit.module( 'mediawiki.api', function ( hooks ) {
+	hooks.beforeEach( function () {
+		this.server = this.sandbox.useFakeServer();
+		this.server.respondImmediately = true;
+	} );
 
 	function sequence( responses ) {
 		var i = 0;
@@ -141,27 +139,19 @@
 		return api.get( { foo: false, bar: true } );
 	} );
 
-	QUnit.test( 'getToken() - cached', function ( assert ) {
-		var api = new mw.Api(),
-			test = this;
+	QUnit.test( 'getToken() - cached', async function ( assert ) {
+		var api = new mw.Api();
 
 		// Get csrfToken for local wiki, this should not make
 		// a request as it should be retrieved from mw.user.tokens.
-		return api.getToken( 'csrf' )
-			.then( function ( token ) {
-				assert.true( token.length > 0, 'Got a token' );
-			}, function ( err ) {
-				assert.strictEqual( err, '', 'API error' );
-			} )
-			.then( function () {
-				assert.strictEqual( test.server.requests.length, 0, 'Requests made' );
-			} );
+		const token = await api.getToken( 'csrf' );
+		assert.true( token.length > 0, 'token' );
+
+		assert.strictEqual( this.server.requests.length, 0, 'Requests made' );
 	} );
 
-	QUnit.test( 'getToken() - uncached', function ( assert ) {
-		var api = new mw.Api(),
-			firstDone = assert.async(),
-			secondDone = assert.async();
+	QUnit.test( 'getToken() - uncached', async function ( assert ) {
+		var api = new mw.Api();
 
 		this.server.respondWith( /type=testuncached/, [ 200, { 'Content-Type': 'application/json' },
 			'{ "query": { "tokens": { "testuncachedtoken": "good" } } }'
@@ -170,23 +160,11 @@
 		// Get a token of a type that isn't prepopulated by mw.user.tokens.
 		// Could use "block" or "delete" here, but those could in theory
 		// be added to mw.user.tokens, so use a fake one instead.
-		api.getToken( 'testuncached' )
-			.done( function ( token ) {
-				assert.strictEqual( token, 'good', 'The token' );
-			} )
-			.fail( function ( err ) {
-				assert.strictEqual( err, '', 'API error' );
-			} )
-			.always( firstDone );
+		const token = await api.getToken( 'testuncached' );
+		assert.strictEqual( token, 'good', 'token' );
 
-		api.getToken( 'testuncached' )
-			.done( function ( token ) {
-				assert.strictEqual( token, 'good', 'The cached token' );
-			} )
-			.fail( function ( err ) {
-				assert.strictEqual( err, '', 'API error' );
-			} )
-			.always( secondDone );
+		const token2 = await api.getToken( 'testuncached' );
+		assert.strictEqual( token2, 'good', 'token2' );
 
 		assert.strictEqual( this.server.requests.length, 1, 'Requests made' );
 	} );
@@ -236,31 +214,23 @@
 			} );
 	} );
 
-	QUnit.test( 'getToken() - deprecated', function ( assert ) {
+	QUnit.test( 'getToken() - deprecated', async function ( assert ) {
 		// Cache API endpoint from default to avoid cachehit in mw.user.tokens
-		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } ),
-			test = this;
+		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
 
 		this.server.respondWith( /type=csrf/, [ 200, { 'Content-Type': 'application/json' },
 			'{ "query": { "tokens": { "csrftoken": "csrfgood" } } }'
 		] );
 
 		// Get a token of a type that is in the legacy map.
-		return api.getToken( 'email' )
-			.done( function ( token ) {
-				assert.strictEqual( token, 'csrfgood', 'Token' );
-			} )
-			.fail( function ( err ) {
-				assert.strictEqual( err, '', 'API error' );
-			} )
-			.always( function () {
-				assert.strictEqual( test.server.requests.length, 1, 'Requests made' );
-			} );
+		const token = await api.getToken( 'email' );
+		assert.strictEqual( token, 'csrfgood', 'Token' );
+
+		assert.strictEqual( this.server.requests.length, 1, 'Requests made' );
 	} );
 
-	QUnit.test( 'badToken()', function ( assert ) {
-		var api = new mw.Api(),
-			test = this;
+	QUnit.test( 'badToken()', async function ( assert ) {
+		var api = new mw.Api();
 
 		this.server.respondWith( /type=testbad/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
@@ -269,21 +239,16 @@
 			]
 		) );
 
-		return api.getToken( 'testbad' )
-			.then( function () {
-				api.badToken( 'testbad' );
-				return api.getToken( 'testbad' );
-			} )
-			.then( function ( token ) {
-				assert.strictEqual( token, 'good', 'The token' );
-				assert.strictEqual( test.server.requests.length, 2, 'Requests made' );
-			} );
+		await api.getToken( 'testbad' );
+		api.badToken( 'testbad' );
 
+		const token = await api.getToken( 'testbad' );
+		assert.strictEqual( token, 'good', 'The token' );
+		assert.strictEqual( this.server.requests.length, 2, 'Requests made' );
 	} );
 
-	QUnit.test( 'badToken( legacy )', function ( assert ) {
-		var api = new mw.Api( { ajax: { url: '/badTokenLegacy/api.php' } } ),
-			test = this;
+	QUnit.test( 'badToken( legacy )', async function ( assert ) {
+		var api = new mw.Api( { ajax: { url: '/badTokenLegacy/api.php' } } );
 
 		this.server.respondWith( /type=csrf/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
@@ -292,16 +257,12 @@
 			]
 		) );
 
-		return api.getToken( 'options' )
-			.then( function () {
-				api.badToken( 'options' );
-				return api.getToken( 'options' );
-			} )
-			.then( function ( token ) {
-				assert.strictEqual( token, 'goodlegacy', 'The token' );
-				assert.strictEqual( test.server.requests.length, 2, 'Request made' );
-			} );
+		await api.getToken( 'options' );
+		api.badToken( 'options' );
 
+		const token = await api.getToken( 'options' );
+		assert.strictEqual( token, 'goodlegacy', 'The token' );
+		assert.strictEqual( this.server.requests.length, 2, 'Request made' );
 	} );
 
 	QUnit.test( 'postWithToken( tokenType, params )', function ( assert ) {
@@ -324,54 +285,45 @@
 			} );
 	} );
 
-	QUnit.test( 'postWithToken( tokenType, params with assert )', function ( assert ) {
-		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } ),
-			test = this;
+	QUnit.test( 'postWithToken( tokenType, params with assert )', async function ( assert ) {
+		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
 
 		this.server.respondWith( /assert=user/, [ 200, { 'Content-Type': 'application/json' },
 			'{ "error": { "code": "assertuserfailed", "info": "Assertion failed" } }'
 		] );
 
-		return api.postWithToken( 'testassertpost', { action: 'example', key: 'foo', assert: 'user' } )
-			// Cast error to success and vice versa
-			.then( function () {
-				return $.Deferred().reject( 'Unexpected success' );
-			}, function ( errorCode ) {
-				assert.strictEqual( errorCode, 'assertuserfailed', 'getToken fails assert' );
-				return $.Deferred().resolve();
-			} )
-			.then( function () {
-				assert.strictEqual( test.server.requests.length, 1, 'Requests made' );
-			} );
+		await assert.rejects(
+			api.postWithToken( 'testassertpost', { action: 'example', key: 'foo', assert: 'user' } ),
+			/assertuserfailed/,
+			'errorcode'
+		);
 	} );
 
-	QUnit.test( 'postWithToken( tokenType, params, ajaxOptions )', function ( assert ) {
-		var api = new mw.Api(),
-			test = this;
+	QUnit.test( 'postWithToken( tokenType, params, ajaxOptions )', async function ( assert ) {
+		var api = new mw.Api();
 
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' }, '{ "example": "quux" }' ] );
 
-		return api.postWithToken( 'csrf',
+		await api.postWithToken( 'csrf',
 			{ action: 'example' },
 			{
 				headers: {
 					'X-Foo': 'Bar'
 				}
 			}
-		).then( function () {
-			assert.strictEqual( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
+		);
+		assert.strictEqual( this.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
 
-			return api.postWithToken( 'csrf',
-				{ action: 'example' },
-				function () {
-					assert.true( false, 'This parameter cannot be a callback' );
-				}
-			);
-		} ).then( function ( data ) {
-			assert.strictEqual( data.example, 'quux' );
-
-			assert.strictEqual( test.server.requests.length, 2, 'Request made' );
-		} );
+		let called = 0;
+		const data = await api.postWithToken( 'csrf',
+			{ action: 'example' },
+			function () {
+				called++;
+			}
+		);
+		assert.strictEqual( called, 0, 'parameter cannot be a callback' );
+		assert.propEqual( data, { example: 'quux' }, 'data' );
+		assert.strictEqual( this.server.requests.length, 2, 'Request made' );
 	} );
 
 	QUnit.test( 'postWithToken() - badtoken', function ( assert ) {
@@ -448,32 +400,22 @@
 			} );
 	} );
 
-	QUnit.module( 'mediawiki.api (2)', {
-		beforeEach: function () {
-			var self = this,
-				requests = this.requests = [];
-			this.api = new mw.Api();
-			this.sandbox.stub( $, 'ajax', function () {
-				var request = $.extend( {
-					abort: self.sandbox.spy()
-				}, $.Deferred() );
-				requests.push( request );
-				return request;
-			} );
-		}
-	} );
-
 	QUnit.test( '#abort', function ( assert ) {
-		this.api.get( {
-			a: 1
+		this.sandbox.stub( $, 'ajax', function ( options ) {
+			return $.Deferred().promise( {
+				abort: function () {
+					assert.step( options.type + ' aborted' );
+				}
+			} );
 		} );
-		this.api.post( {
-			b: 2
-		} );
-		this.api.abort();
-		assert.strictEqual( this.requests.length, 2, 'Check both requests triggered' );
-		this.requests.forEach( function ( request, i ) {
-			assert.true( request.abort.calledOnce, 'abort request number ' + i );
-		} );
+		const api = new mw.Api();
+		api.get( { a: 1 } );
+		api.post( { b: 2 } );
+		api.abort();
+
+		assert.verifySteps( [
+			'GET aborted',
+			'POST aborted'
+		] );
 	} );
-}() );
+} );
