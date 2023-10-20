@@ -3,7 +3,6 @@
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\LinkedData\PageDataRequestHandler;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
@@ -33,8 +32,6 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		// Force the content model to avoid DB queries.
 		$this->interfaceTitle->setContentModel( CONTENT_MODEL_WIKITEXT );
 		$this->obLevel = ob_get_level();
-
-		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 	}
 
 	protected function tearDown(): void {

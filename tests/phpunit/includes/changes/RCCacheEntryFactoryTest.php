@@ -1,15 +1,12 @@
 <?php
 
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
  * @covers \RCCacheEntryFactory
- *
  * @group Database
- *
- * @author Katie Filbert < aude.wiki@gmail.com >
+ * @author Katie Filbert <aude.wiki@gmail.com>
  */
 class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
@@ -25,8 +22,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-
-		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 
 		$this->linkRenderer = $this->getServiceContainer()->getLinkRenderer();
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();

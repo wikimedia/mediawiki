@@ -392,15 +392,6 @@ class ParserTestRunner {
 		$setup['wgMetaNamespace'] = "TestWiki";
 		$setup['wgServer'] = 'http://example.org';
 		$setup['wgServerName'] = 'example.org';
-		$setup['wgScriptPath'] = '';
-		$setup['wgScript'] = '/index.php';
-		$setup['wgResourceBasePath'] = '';
-		$setup['wgStylePath'] = '/skins';
-		$setup['wgExtensionAssetsPath'] = '/extensions';
-		$setup['wgArticlePath'] = '/wiki/$1';
-		$setup['wgActionPaths'] = [];
-		$setup['wgVariantArticlePath'] = false;
-		$setup['wgUploadNavigationUrl'] = false;
 		$setup['wgCapitalLinks'] = true;
 		$setup['wgNoFollowLinks'] = true;
 		$setup['wgNoFollowDomainExceptions'] = [ 'no-nofollow.org' ];

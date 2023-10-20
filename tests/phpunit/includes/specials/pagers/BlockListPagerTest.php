@@ -193,7 +193,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testFormatValueRestrictions() {
 		$this->overrideConfigValues( [
-			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::Script => '/w/index.php',
 		] );
 

@@ -21,8 +21,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Linker\Linker::userLink
 	 */
 	public function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg = '' ) {
-		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
-
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
 		if ( !$userName ) {
 			$actual = @Linker::userLink( $userId, $userName, $altUserName );

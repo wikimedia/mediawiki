@@ -36,8 +36,6 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::Server => 'http://example.org',
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
-			MainConfigNames::ArticlePath => '/wiki/$1',
-			MainConfigNames::ActionPaths => [],
 			MainConfigNames::LanguageCode => 'en',
 		] );
 	}

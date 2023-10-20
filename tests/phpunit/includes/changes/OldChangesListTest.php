@@ -1,19 +1,16 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
- * @covers \OldChangesList
- *
  * @todo add tests to cover article link, timestamp, character difference,
  *       log entry, user tool links, direction marks, tags, rollback,
  *       watching users, and date header.
  *
+ * @covers \OldChangesList
  * @group Database
- *
- * @author Katie Filbert < aude.wiki@gmail.com >
+ * @author Katie Filbert <aude.wiki@gmail.com>
  */
 class OldChangesListTest extends MediaWikiLangTestCase {
 
@@ -25,7 +22,6 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 		$this->setUserLang( 'qqx' );
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
 	}

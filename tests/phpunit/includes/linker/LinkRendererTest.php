@@ -26,7 +26,6 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->overrideConfigValues( [
-			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::Server => '//example.org',
 			MainConfigNames::CanonicalServer => 'http://example.org',
 			MainConfigNames::ScriptPath => '/w',

@@ -46,7 +46,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::CanonicalServer => 'https://example.org',
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
-			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::LanguageCode => 'en',
 			// For testSecureAndSplitValid, testSecureAndSplitInvalid
 			MainConfigNames::LocalInterwikis => [ 'localtestiw' ],
@@ -477,7 +476,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->overrideConfigValues( [
 			MainConfigNames::Server => 'https://xx.wiki.test',
-			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::ExternalInterwikiFragmentMode => 'legacy',
 			MainConfigNames::FragmentMode => [ 'html5', 'legacy' ]
 		] );

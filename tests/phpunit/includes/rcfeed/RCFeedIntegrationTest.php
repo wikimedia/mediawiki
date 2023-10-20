@@ -21,7 +21,6 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::ServerName => 'example.org',
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
-			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::DBname => 'example',
 			MainConfigNames::DBprefix => self::dbPrefix(),
 			MainConfigNames::RCFeeds => [],

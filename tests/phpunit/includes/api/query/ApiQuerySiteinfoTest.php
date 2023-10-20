@@ -514,7 +514,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testRightsInfo( $page, $url, $text, $expectedUrl, $expectedText ) {
 		$this->overrideConfigValues( [
 			MainConfigNames::Server => 'https://local.example',
-			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::RightsPage => $page,
 			MainConfigNames::RightsUrl => $url,
 			MainConfigNames::RightsText => $text,

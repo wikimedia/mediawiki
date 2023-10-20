@@ -682,11 +682,6 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testMessageAsParam() {
-		$this->overrideConfigValues( [
-			MainConfigNames::Script => '/wiki/index.php',
-			MainConfigNames::ArticlePath => '/wiki/$1',
-		] );
-
 		$msg = new Message( 'returnto', [
 			new Message( 'apihelp-link', [
 				'foo', new Message( 'mainpage', [],

@@ -59,7 +59,6 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::Server => 'http://acme.test',
 			MainConfigNames::CanonicalServer => 'http://acme.test',
-			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::RightsUrl => 'https://creativecommons.org/licenses/by-sa/3.0/',
 		] );
 

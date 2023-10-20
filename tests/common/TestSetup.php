@@ -34,6 +34,8 @@ class TestSetup {
 	 * of a Maintenance subclass which then gets called via MW_SETUP_CALLBACK in Setup.php.
 	 */
 	public static function applyInitialConfig() {
+		global $wgScriptPath, $wgScript, $wgResourceBasePath, $wgStylePath, $wgExtensionAssetsPath;
+		global $wgArticlePath, $wgActionPaths, $wgVariantArticlePath, $wgUploadNavigationUrl;
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgSessionCacheType;
 		global $wgMainStash, $wgChronologyProtectorStash;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
@@ -53,6 +55,17 @@ class TestSetup {
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
 		$wgDBStrictWarnings = true;
+
+		// Server URLs
+		$wgScriptPath = '';
+		$wgScript = '/index.php';
+		$wgResourceBasePath = '';
+		$wgStylePath = '/skins';
+		$wgExtensionAssetsPath = '/extensions';
+		$wgArticlePath = '/wiki/$1';
+		$wgActionPaths = [];
+		$wgVariantArticlePath = false;
+		$wgUploadNavigationUrl = false;
 
 		// Make sure all caches and stashes are either disabled or use
 		// in-process cache only to prevent tests from using any preconfigured

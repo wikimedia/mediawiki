@@ -18,7 +18,6 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::Server => 'http://acme.test',
 			MainConfigNames::CanonicalServer => 'http://acme.test',
-			MainConfigNames::ArticlePath => '/wiki/$1',
 		] );
 	}
 
