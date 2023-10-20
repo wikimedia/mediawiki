@@ -1421,44 +1421,36 @@ function wfTempDir() {
  * @param string $dir Full path to directory to create
  * @param int|null $mode Chmod value to use, default is $wgDirectoryMode
  * @param string|null $caller Optional caller param for debugging.
- * @throws MWException
  * @return bool
  */
 function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	global $wgDirectoryMode;
 
 	if ( FileBackend::isStoragePath( $dir ) ) {
-		throw new MWException( __FUNCTION__ . " given storage path '$dir'." );
+		throw new LogicException( __FUNCTION__ . " given storage path '$dir'." );
 	}
-
 	if ( $caller !== null ) {
 		wfDebug( "$caller: called wfMkdirParents($dir)" );
 	}
-
-	if ( strval( $dir ) === '' || is_dir( $dir ) ) {
+	if ( strval( $dir ) === '' ) {
 		return true;
 	}
 
 	$dir = str_replace( [ '\\', '/' ], DIRECTORY_SEPARATOR, $dir );
-
-	if ( $mode === null ) {
-		$mode = $wgDirectoryMode;
-	}
+	$mode ??= $wgDirectoryMode;
 
 	// Turn off the normal warning, we're doing our own below
-	AtEase::suppressWarnings();
-	$ok = mkdir( $dir, $mode, true ); // PHP5 <3
-	AtEase::restoreWarnings();
-
+	// PHP doesn't include the path in its warning message, so we add our own to aid in diagnosis.
+	//
+	// Repeat existence check if creation failed so that we silently recover in case of
+	// a race condition where another request created it since the first check.
+	//
+	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	$ok = is_dir( $dir ) || @mkdir( $dir, $mode, true ) || is_dir( $dir );
 	if ( !$ok ) {
-		// directory may have been created on another request since we last checked
-		if ( is_dir( $dir ) ) {
-			return true;
-		}
-
-		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
-		wfLogWarning( sprintf( "failed to mkdir \"%s\" mode 0%o", $dir, $mode ) );
+		trigger_error( sprintf( "failed to mkdir \"%s\" mode 0%o", $dir, $mode ), E_USER_WARNING );
 	}
+
 	return $ok;
 }
 
