@@ -585,20 +585,6 @@ class HtmlToContentTransform {
 		}
 
 		$this->validatePageBundle( $pb );
-
-		// TODO: HACK! Remove as soon as change I41e6c741a3e2e is in the version of Parsoid used by MW.
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-		if ( isset( $pb->parsoid['ids'] ) && is_object( $pb->parsoid['ids'] ) ) {
-			// recursively convert stdClass objects to associative arrays.
-			$pb->parsoid = json_decode( json_encode( $pb->parsoid ), true );
-		}
-
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-		if ( isset( $pb->mw['ids'] ) && is_object( $pb->mw['ids'] ) ) {
-			// recursively convert stdClass objects to associative arrays.
-			$pb->mw = json_decode( json_encode( $pb->mw ), true );
-		}
-
 		PageBundle::apply( $doc, $pb );
 	}
 
