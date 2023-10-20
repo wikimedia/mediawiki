@@ -31,6 +31,7 @@ use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Query module to enumerate all images.
@@ -261,17 +262,12 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$mimeConds = [];
 			foreach ( $params['mime'] as $mime ) {
 				[ $major, $minor ] = File::splitMime( $mime );
-				$mimeConds[] = $db->makeList(
-					[
-						'img_major_mime' => $major,
-						'img_minor_mime' => $minor,
-					],
-					LIST_AND
-				);
+				$mimeConds[] =
+					$db->expr( 'img_major_mime', '=', $major )
+						->and( 'img_minor_mime', '=', $minor );
 			}
-			// safeguard against internal_api_error_DBQueryError
 			if ( count( $mimeConds ) > 0 ) {
-				$this->addWhere( $db->makeList( $mimeConds, LIST_OR ) );
+				$this->addWhere( new OrExpressionGroup( ...$mimeConds ) );
 			} else {
 				// no MIME types, no files
 				$this->getResult()->addValue( 'query', $this->getModuleName(), [] );

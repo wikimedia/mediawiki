@@ -672,9 +672,9 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param string $field
 	 * @param string $op one of [ '>', '<', '!=', '=', '>=', '<=' ]
 	 * @param string|int|float|null|bool|Blob|array $value
-	 * @return IExpression
+	 * @return Expression
 	 */
-	public function expr( string $field, string $op, $value ): IExpression;
+	public function expr( string $field, string $op, $value ): Expression;
 
 	/**
 	 * Get a debugging string that mentions the database type, the ID of this instance,

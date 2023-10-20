@@ -184,12 +184,12 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 			->from( 'recentchanges' )
 			->join( 'actor', 'actor', 'actor_id=rc_actor' )
 			->where( [
-				'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Exclude external (Wikidata)
-				'actor_user IS NOT NULL',
-				'rc_bot' => 0,
-				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
-				'rc_timestamp >= ' . $dbr->addQuotes(
-					$dbr->timestamp( time() - $config->get( MainConfigNames::ActiveUserDays ) * 24 * 3600 ) ),
+				$dbr->expr( 'rc_type', '!=', RC_EXTERNAL ), // Exclude external (Wikidata)
+				$dbr->expr( 'actor_user', '!=', null ),
+				$dbr->expr( 'rc_bot', '=', 0 ),
+				$dbr->expr( 'rc_log_type', '!=', 'newusers' )->or( 'rc_log_type', '=', null ),
+				$dbr->expr( 'rc_timestamp', '>=',
+					$dbr->timestamp( time() - $config->get( MainConfigNames::ActiveUserDays ) * 24 * 3600 ) )
 			] )
 			->caller( __METHOD__ )
 			->fetchField();
