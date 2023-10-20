@@ -51,6 +51,11 @@ class UserGroupManagerFactory {
 	private TempUserConfig $tempUserConfig;
 
 	/**
+	 * @var UserGroupManager[] User group manager instances indexed by wiki
+	 */
+	private $instances = [];
+
+	/**
 	 * @param ServiceOptions $options
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param ILBFactory $dbLoadBalancerFactory
@@ -94,20 +99,22 @@ class UserGroupManagerFactory {
 		if ( is_string( $wikiId ) && $this->dbLoadBalancerFactory->getLocalDomainID() === $wikiId ) {
 			$wikiId = UserIdentity::LOCAL;
 		}
-
-		// TODO: Once UserRightsProxy is removed, cache the instance per wiki.
-		return new UserGroupManager(
-			$this->options,
-			$this->readOnlyMode,
-			$this->dbLoadBalancerFactory,
-			$this->hookContainer,
-			$this->userEditTracker,
-			$this->groupPermissionLookup,
-			$this->jobQueueGroupFactory->makeJobQueueGroup( $wikiId ),
-			$this->logger,
-			$this->tempUserConfig,
-			$this->clearCacheCallbacks,
-			$wikiId
-		);
+		$key = (string)$wikiId;
+		if ( !isset( $this->instances[$key] ) ) {
+			$this->instances[$key] = new UserGroupManager(
+				$this->options,
+				$this->readOnlyMode,
+				$this->dbLoadBalancerFactory,
+				$this->hookContainer,
+				$this->userEditTracker,
+				$this->groupPermissionLookup,
+				$this->jobQueueGroupFactory->makeJobQueueGroup( $wikiId ),
+				$this->logger,
+				$this->tempUserConfig,
+				$this->clearCacheCallbacks,
+				$wikiId
+			);
+		}
+		return $this->instances[$key];
 	}
 }
