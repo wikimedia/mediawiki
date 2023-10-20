@@ -202,14 +202,6 @@ class MWDebug {
 			self::formatCallerDescription( $msg, $callerDescription ),
 			'warning',
 			$level );
-
-		if ( self::$enabled ) {
-			self::$log[] = [
-				'msg' => htmlspecialchars( $msg ),
-				'type' => 'warn',
-				'caller' => $callerDescription['func'],
-			];
-		}
 	}
 
 	/**
@@ -385,19 +377,6 @@ class MWDebug {
 		if ( $sendToLog ) {
 			trigger_error( $msg, E_USER_DEPRECATED );
 		}
-
-		if ( self::$enabled ) {
-			$logMsg = htmlspecialchars( $msg ) .
-				Html::rawElement( 'div', [ 'class' => 'mw-debug-backtrace' ],
-					Html::element( 'span', [], 'Backtrace:' ) . wfBacktrace()
-				);
-
-			self::$log[] = [
-				'msg' => $logMsg,
-				'type' => 'deprecated',
-				'caller' => $callerFunc,
-			];
-		}
 	}
 
 	/**
@@ -516,9 +495,11 @@ class MWDebug {
 	}
 
 	/**
-	 * This is a method to pass messages from wfDebug to the pretty debugger.
-	 * Do NOT use this method, use MWDebug::log or wfDebug()
+	 * This method receives messages from LoggerFactory, wfDebugLog, and MWExceptionHandler.
 	 *
+	 * Do NOT call this method directly.
+	 *
+	 * @internal For use by MWExceptionHandler and LegacyLogger only
 	 * @since 1.19
 	 * @param string $str
 	 * @param array $context
@@ -540,7 +521,40 @@ class MWDebug {
 				$str = LegacyLogger::interpolate( $str, $context );
 				$str = $prefix . $str;
 			}
-			self::$debug[] = rtrim( UtfNormal\Validator::cleanUp( $str ) );
+			$str = rtrim( UtfNormal\Validator::cleanUp( $str ) );
+			self::$debug[] = $str;
+			if ( isset( $context['channel'] ) && $context['channel'] === 'error' ) {
+				$message = isset( $context['exception'] )
+					? $context['exception']->getMessage()
+					: $str;
+				$real = self::parseCallerDescription( $message );
+				if ( $real ) {
+					// from wfLogWarning()
+					$message = $real['message'];
+					$caller = $real['func'];
+				} else {
+					$trace = isset( $context['exception'] ) ? $context['exception']->getTrace() : [];
+					if ( ( $trace[5]['function'] ?? null ) === 'wfDeprecated' ) {
+						// from MWExceptionHandler/trigger_error/MWDebug/MWDebug/MWDebug/wfDeprecated()
+						$offset = 6;
+					} elseif ( ( $trace[1]['function'] ?? null ) === 'trigger_error' ) {
+						// from trigger_error
+						$offset = 2;
+					} else {
+						// built-in PHP error
+						$offset = 1;
+					}
+					$frame = $trace[$offset] ?? $trace[0];
+					$caller = ( isset( $frame['class'] ) ? $frame['class'] . '::' : '' )
+						. $frame['function'];
+				}
+
+				self::$log[] = [
+					'msg' => htmlspecialchars( $message ),
+					'type' => 'warn',
+					'caller' => $caller,
+				];
+			}
 		}
 	}
 

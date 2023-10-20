@@ -2,6 +2,7 @@
 
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\TitleValue;
+use Psr\Log\LoggerInterface;
 
 /**
  * @covers MWDebug
@@ -9,6 +10,8 @@ use MediaWiki\Title\TitleValue;
 class MWDebugTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
+		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+
 		parent::setUp();
 		/** Clear log before each test */
 		MWDebug::clearLog();
@@ -24,25 +27,54 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		parent::tearDownAfterClass();
 	}
 
-	public function testAddLog() {
+	public function testLog() {
 		@MWDebug::log( 'logging a string' );
 		$this->assertEquals(
 			[ [
 				'msg' => 'logging a string',
 				'type' => 'log',
-				'caller' => 'MWDebugTest->testAddLog',
+				'caller' => 'MWDebugTest->testLog',
 			] ],
 			MWDebug::getLog()
 		);
 	}
 
-	public function testAddWarning() {
-		@MWDebug::warning( 'Warning message' );
+	public function testWarningProduction() {
+		$logger = $this->createMock( LoggerInterface::class );
+		$logger->expects( $this->once() )->method( 'info' );
+		$this->setLogger( 'warning', $logger );
+
+		@MWDebug::warning( 'Ohnosecond!' );
+	}
+
+	public function testWarningDevelopment() {
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+
+		$this->expectNotice();
+		$this->expectNoticeMessage( 'Ohnosecond!' );
+
+		MWDebug::warning( 'Ohnosecond!' );
+	}
+
+	/**
+	 * Message from the error channel are copied to the debug toolbar "Console" log.
+	 *
+	 * This normally happens via wfDeprecated -> MWDebug::deprecated -> trigger_error
+	 * -> MWExceptionHandler -> LoggerFactory -> LegacyLogger -> MWDebug::debugMsg.
+	 *
+	 * The above test asserts up until trigger_error.
+	 * This test asserts from LegacyLogger down.
+	 */
+	public function testMessagesFromErrorChannel() {
+		// Turn off to keep mw-error.log file empty in CI (and thus avoid build failure)
+		$this->setMwGlobals( 'wgDebugLogGroups', [] );
+
+		MWExceptionHandler::handleError( E_USER_DEPRECATED, 'Warning message' );
 		$this->assertEquals(
 			[ [
-				'msg' => 'Warning message',
+				'msg' => 'PHP Deprecated: Warning message',
 				'type' => 'warn',
-				'caller' => 'MWDebugTest::testAddWarning',
+				'caller' => 'MWDebugTest::testMessagesFromErrorChannel',
 			] ],
 			MWDebug::getLog()
 		);
@@ -68,38 +100,44 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 			}
 		};
 
-		$this->assertTrue(
-			@MWDebug::detectDeprecatedOverride(
-				$subclassInstance,
-				TitleValue::class,
-				'getNamespace',
-				MW_VERSION
-			)
-		);
+		$this->expectDeprecation();
+		$this->expectDeprecationMessage( '@anonymous' );
 
-		// A warning should have been logged
-		$this->assertCount( 1, MWDebug::getLog() );
-	}
-
-	public function testAvoidDuplicateDeprecations() {
-		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
-		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
-
-		$this->assertCount( 1, MWDebug::getLog(),
-			"Only one deprecated warning per function should be kept"
+		MWDebug::detectDeprecatedOverride(
+			$subclassInstance,
+			TitleValue::class,
+			'getNamespace',
+			MW_VERSION
 		);
 	}
 
-	public function testAvoidNonConsecutivesDuplicateDeprecations() {
+	public function testDeprecated() {
+		$this->expectDeprecation();
+		$this->expectDeprecationMessage( 'wfOldFunction' );
+
+		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+	}
+
+	/**
+	 * @doesNotPerformAssertions
+	 */
+	public function testDeprecatedIgnoreDuplicate() {
+		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+
+		// If we reach here, than the second one did not throw any deprecation warning.
+		// The first one was silenced to seed the ignore logic.
+	}
+
+	/**
+	 * @doesNotPerformAssertions
+	 */
+	public function testDeprecatedIgnoreNonConsecutivesDuplicate() {
 		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 		@MWDebug::warning( 'some warning' );
 		@MWDebug::log( 'we could have logged something too' );
-		// Another deprecation
-		@MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
-
-		$this->assertCount( 3, MWDebug::getLog(),
-			"Only one deprecated warning per function should be kept"
-		);
+		// Another deprecation (not silenced)
+		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 	}
 
 	public function testAppendDebugInfoToApiResultXmlFormat() {
