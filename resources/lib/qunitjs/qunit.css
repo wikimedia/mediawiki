@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.19.4
+ * QUnit 2.20.0
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -45,10 +45,10 @@
 	@media (min-height: 500px) {
 		#qunit {
 			position: fixed;
-			left: 0px;
-			right: 0px;
-			top: 0px;
-			bottom: 0px;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
 			padding: 8px;
 			display: -webkit-box;
 			display: flex;

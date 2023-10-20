@@ -442,16 +442,16 @@ qunitjs:
   license: MIT
   homepage: https://qunitjs.com
   authors: OpenJS Foundation and other contributors
-  version: 2.19.4
+  version: 2.20.0
   type: multi-file
   # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
-      src: https://code.jquery.com/qunit/qunit-2.19.4.js
-      integrity: sha256-ZFjYNVAOk8Ozw+xXXCfNuf87Knngp3BVxFk3lBLD/Uc=
+      src: https://code.jquery.com/qunit/qunit-2.20.0.js
+      integrity: sha256-qDPbT8viaD6gCaTrUd7FOE5lU5S9H5U5bbuQMADnrRY=
     qunit.css:
-      src: https://code.jquery.com/qunit/qunit-2.19.4.css
-      integrity: sha256-qwmW00heo7d+2GZQ2eKAsTbPZ/Tw5emPGigowFrXpVk=
+      src: https://code.jquery.com/qunit/qunit-2.20.0.css
+      integrity: sha256-NN2oro7r8aYcRYA4fnBbijdLRS7Rc4Pz9ikcmlwWvl4=
 
 sinonjs:
   license: BSD-3-Clause

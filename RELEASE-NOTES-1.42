@@ -52,6 +52,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 ===== Changed development-only external libraries =====
+* Upgraded QUnit from v2.19.4 to v2.20.0.
 * …
 
 ==== Removed external libraries ====

@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.19.4
+ * QUnit 2.20.0
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -280,49 +280,11 @@
     };
   };
 
-  // Support: IE 9
-  // Detect if the console object exists and no-op otherwise.
-  // This allows support for IE 9, which doesn't have a console
-  // object if the developer tools are not open.
-
-  // Support: IE 9
-  // Function#bind is supported, but no console.log.bind().
-
-  // Support: SpiderMonkey (mozjs 68+)
-  // The console object has a log method, but no warn method.
-
-  var Logger = {
-    warn: console$1 ? Function.prototype.bind.call(console$1.warn || console$1.log, console$1) : function () {}
-  };
-
   var toString = Object.prototype.toString;
   var hasOwn$1 = Object.prototype.hasOwnProperty;
-  var nativePerf = getNativePerf();
-
-  // TODO: Consider using globalThis instead so that perf marks work
-  // in Node.js as well. As they can have overhead, we should also
-  // have a way to disable these, and/or make them an opt-in reporter
-  // in QUnit 3 and then support globalThis.
-  // For example: `QUnit.addReporter(QUnit.reporters.perf)`.
-  function getNativePerf() {
-    if (window$1 && typeof window$1.performance !== 'undefined' && typeof window$1.performance.mark === 'function' && typeof window$1.performance.measure === 'function') {
-      return window$1.performance;
-    } else {
-      return undefined;
-    }
-  }
   var performance = {
-    now: nativePerf ? nativePerf.now.bind(nativePerf) : Date.now,
-    measure: nativePerf ? function (comment, startMark, endMark) {
-      // `performance.measure` may fail if the mark could not be found.
-      // reasons a specific mark could not be found include: outside code invoking `performance.clearMarks()`
-      try {
-        nativePerf.measure(comment, startMark, endMark);
-      } catch (ex) {
-        Logger.warn('performance.measure could not be executed because of ', ex.message);
-      }
-    } : function () {},
-    mark: nativePerf ? nativePerf.mark.bind(nativePerf) : function () {}
+    // eslint-disable-next-line compat/compat -- Checked
+    now: window$1 && window$1.performance && window$1.performance.now ? window$1.performance.now.bind(window$1.performance) : Date.now
   };
 
   // Returns a new Array with the elements that are in a but not in b
@@ -340,9 +302,11 @@
    * @param {Array} array
    * @return {boolean}
    */
-  function inArray(elem, array) {
+  var inArray = Array.prototype.includes ? function (elem, array) {
+    return array.includes(elem);
+  } : function (elem, array) {
     return array.indexOf(elem) !== -1;
-  }
+  };
 
   /**
    * Recursively clone an object into a plain array or object, taking only the
@@ -1089,6 +1053,21 @@
     return dump;
   })();
 
+  // Support: IE 9
+  // Detect if the console object exists and no-op otherwise.
+  // This allows support for IE 9, which doesn't have a console
+  // object if the developer tools are not open.
+
+  // Support: IE 9
+  // Function#bind is supported, but no console.log.bind().
+
+  // Support: SpiderMonkey (mozjs 68+)
+  // The console object has a log method, but no warn method.
+
+  var Logger = {
+    warn: console$1 ? Function.prototype.bind.call(console$1.warn || console$1.log, console$1) : function () {}
+  };
+
   var SuiteReport = /*#__PURE__*/function () {
     function SuiteReport(name, parentSuite) {
       _classCallCheck(this, SuiteReport);
@@ -1110,8 +1089,6 @@
       value: function start(recordTime) {
         if (recordTime) {
           this._startTime = performance.now();
-          var suiteLevel = this.fullName.length;
-          performance.mark("qunit_suite_".concat(suiteLevel, "_start"));
         }
         return {
           name: this.name,
@@ -1132,10 +1109,6 @@
       value: function end(recordTime) {
         if (recordTime) {
           this._endTime = performance.now();
-          var suiteLevel = this.fullName.length;
-          var suiteName = this.fullName.join(' – ');
-          performance.mark("qunit_suite_".concat(suiteLevel, "_end"));
-          performance.measure(suiteLevel === 0 ? 'QUnit Test Run' : "QUnit Test Suite: ".concat(suiteName), "qunit_suite_".concat(suiteLevel, "_start"), "qunit_suite_".concat(suiteLevel, "_end"));
         }
         return {
           name: this.name,
@@ -1471,7 +1444,12 @@
     }, {
       key: "async",
       value: function async(count) {
-        var requiredCalls = count === undefined ? 1 : count;
+        if (count === undefined) {
+          count = 1;
+        } else if (typeof count !== 'number') {
+          throw new TypeError('async takes number as an input');
+        }
+        var requiredCalls = count;
         return this.test.internalStop(requiredCalls);
       }
 
@@ -2466,7 +2444,6 @@
       value: function start(recordTime) {
         if (recordTime) {
           this._startTime = performance.now();
-          performance.mark('qunit_test_start');
         }
         return {
           name: this.name,
@@ -2479,11 +2456,6 @@
       value: function end(recordTime) {
         if (recordTime) {
           this._endTime = performance.now();
-          if (performance) {
-            performance.mark('qunit_test_end');
-            var testName = this.fullName.join(' – ');
-            performance.measure("QUnit Test: ".concat(testName), 'qunit_test_start', 'qunit_test_end');
-          }
         }
         return extend(this.start(), {
           runtime: this.getRuntime(),
@@ -3583,6 +3555,89 @@
     return ConsoleReporter;
   }();
 
+  // TODO: Consider using globalThis instead of window, so that the reporter
+  // works for Node.js as well. As this can add overhead, we should make
+  // this opt-in before we enable it for CLI.
+  //
+  // QUnit 3 will switch from `window` to `globalThis` and then make it
+  // no longer an implicit feature of the HTML Reporter, but rather let
+  // it be opt-in via `QUnit.config.reporters = ['perf']` or something
+  // like that.
+  var nativePerf = window$1 && typeof window$1.performance !== 'undefined' &&
+  // eslint-disable-next-line compat/compat -- Checked
+  typeof window$1.performance.mark === 'function' &&
+  // eslint-disable-next-line compat/compat -- Checked
+  typeof window$1.performance.measure === 'function' ? window$1.performance : undefined;
+  var perf = {
+    measure: nativePerf ? function (comment, startMark, endMark) {
+      // `performance.measure` may fail if the mark could not be found.
+      // reasons a specific mark could not be found include: outside code invoking `performance.clearMarks()`
+      try {
+        nativePerf.measure(comment, startMark, endMark);
+      } catch (ex) {
+        Logger.warn('performance.measure could not be executed because of ', ex.message);
+      }
+    } : function () {},
+    mark: nativePerf ? nativePerf.mark.bind(nativePerf) : function () {}
+  };
+  var PerfReporter = /*#__PURE__*/function () {
+    function PerfReporter(runner) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      _classCallCheck(this, PerfReporter);
+      this.perf = options.perf || perf;
+      runner.on('runStart', this.onRunStart.bind(this));
+      runner.on('runEnd', this.onRunEnd.bind(this));
+      runner.on('suiteStart', this.onSuiteStart.bind(this));
+      runner.on('suiteEnd', this.onSuiteEnd.bind(this));
+      runner.on('testStart', this.onTestStart.bind(this));
+      runner.on('testEnd', this.onTestEnd.bind(this));
+    }
+    _createClass(PerfReporter, [{
+      key: "onRunStart",
+      value: function onRunStart() {
+        this.perf.mark('qunit_suite_0_start');
+      }
+    }, {
+      key: "onSuiteStart",
+      value: function onSuiteStart(suiteStart) {
+        var suiteLevel = suiteStart.fullName.length;
+        this.perf.mark("qunit_suite_".concat(suiteLevel, "_start"));
+      }
+    }, {
+      key: "onSuiteEnd",
+      value: function onSuiteEnd(suiteEnd) {
+        var suiteLevel = suiteEnd.fullName.length;
+        var suiteName = suiteEnd.fullName.join(' – ');
+        this.perf.mark("qunit_suite_".concat(suiteLevel, "_end"));
+        this.perf.measure("QUnit Test Suite: ".concat(suiteName), "qunit_suite_".concat(suiteLevel, "_start"), "qunit_suite_".concat(suiteLevel, "_end"));
+      }
+    }, {
+      key: "onTestStart",
+      value: function onTestStart() {
+        this.perf.mark('qunit_test_start');
+      }
+    }, {
+      key: "onTestEnd",
+      value: function onTestEnd(testEnd) {
+        this.perf.mark('qunit_test_end');
+        var testName = testEnd.fullName.join(' – ');
+        this.perf.measure("QUnit Test: ".concat(testName), 'qunit_test_start', 'qunit_test_end');
+      }
+    }, {
+      key: "onRunEnd",
+      value: function onRunEnd() {
+        this.perf.mark('qunit_suite_0_end');
+        this.perf.measure('QUnit Test Run', 'qunit_suite_0_start', 'qunit_suite_0_end');
+      }
+    }], [{
+      key: "init",
+      value: function init(runner, options) {
+        return new PerfReporter(runner, options);
+      }
+    }]);
+    return PerfReporter;
+  }();
+
   var FORCE_COLOR,
     NODE_DISABLE_COLORS,
     NO_COLOR,
@@ -3956,6 +4011,7 @@
 
   var reporters = {
     console: ConsoleReporter,
+    perf: PerfReporter,
     tap: TapReporter
   };
 
@@ -4063,7 +4119,7 @@
   QUnit.isLocal = window$1 && window$1.location && window$1.location.protocol === 'file:';
 
   // Expose the current QUnit version
-  QUnit.version = '2.19.4';
+  QUnit.version = '2.20.0';
   extend(QUnit, {
     config: config,
     dump: dump,
@@ -5115,6 +5171,7 @@
     if (!window$1 || !document) {
       return;
     }
+    QUnit.reporters.perf.init(QUnit);
     var config = QUnit.config;
     var hiddenTests = [];
     var collapseNext = false;
