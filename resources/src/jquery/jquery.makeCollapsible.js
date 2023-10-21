@@ -58,7 +58,6 @@
 				// Exclude table row containing togglelink
 				$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
 			}
-
 		} else if ( !options.plainMode && ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) ) {
 			// Lists
 			$containers = $collapsible.find( '> li' );
@@ -81,7 +80,19 @@
 			}
 		}
 
-		$containers.toggle( expand );
+		// jQuery "fixes" the value of the hidden attribute to always be "hidden"
+		// Browsers which don't support 'until-found' will still hide the element
+		$containers.each( function () {
+			if ( expand ) {
+				this.removeAttribute( 'hidden' );
+			} else {
+				// Support: FF<=138, Safari
+				// Browsers which don't support until-found will just see the hidden
+				// attribute and interpet it as hidden=hidden, but because we want to
+				// use a [hidden=until-found] CSS selector, do a feature check here.
+				this.setAttribute( 'hidden', 'onbeforematch' in document.body ? 'until-found' : 'hidden' );
+			}
+		} );
 		hookCallback();
 	}
 
@@ -391,6 +402,11 @@
 			$toggle.on( 'click.mw-collapsible keydown.mw-collapsible', actionHandler )
 				.attr( 'aria-expanded', 'true' )
 				.prop( 'tabIndex', 0 );
+
+			// beforematch is fired when hidden text is found with the browser's find feature (ctrl+f)
+			$collapsible.on( 'beforematch', () => {
+				actionHandler.call( $toggle.get( 0 ), null, { wasCollapsed: true } );
+			} );
 
 			$( this ).data( 'mw-collapsible', {
 				collapse: function () {
