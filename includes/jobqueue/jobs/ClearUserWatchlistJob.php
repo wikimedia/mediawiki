@@ -70,7 +70,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 			->select( 'wl_id' )
 			->from( 'watchlist' )
 			->where( [ 'wl_user' => $userId ] )
-			->andWhere( $dbr->buildComparison( '<=', [ 'wl_id' => $maxWatchlistId ] ) )
+			->andWhere( $dbr->expr( 'wl_id', '<=', $maxWatchlistId ) )
 			->limit( $batchSize )
 			->caller( __METHOD__ )->fetchFieldValues();
 		if ( count( $watchlistIds ) == 0 ) {

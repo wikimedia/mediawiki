@@ -2448,7 +2448,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			static function ( IDatabase $dbw, $fname ) {
 				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'protected_titles' )
-					->where( $dbw->buildComparison( '<', [ 'pt_expiry' => $dbw->timestamp() ] ) )
+					->where( $dbw->expr( 'pt_expiry', '<', $dbw->timestamp() ) )
 					->caller( $fname )->execute();
 			}
 		) );
@@ -3430,7 +3430,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 						->update( 'page' )
 						->set( [ 'page_touched' => $dbTimestamp ] )
 						->where( $conds )
-						->andWhere( $dbw->buildComparison( '<', [ 'page_touched' => $dbTimestamp ] ) )
+						->andWhere( $dbw->expr( 'page_touched', '<', $dbTimestamp ) )
 						->caller( $fname )->execute();
 
 					MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $this );

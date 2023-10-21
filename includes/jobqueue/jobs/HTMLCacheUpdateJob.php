@@ -151,7 +151,7 @@ class HTMLCacheUpdateJob extends Job {
 				->update( 'page' )
 				->set( [ 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ] )
 				->where( [ 'page_id' => $batch ] )
-				->andWhere( $dbw->buildComparison( '<', [ 'page_touched' => $dbw->timestamp( $casTsUnix ) ] ) )
+				->andWhere( $dbw->expr( 'page_touched', '<', $dbw->timestamp( $casTsUnix ) ) )
 				->caller( __METHOD__ )->execute();
 			if ( count( $batches ) > 1 ) {
 				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );

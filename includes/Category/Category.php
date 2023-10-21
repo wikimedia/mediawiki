@@ -337,7 +337,7 @@ class Category {
 		}
 
 		if ( $offset !== '' ) {
-			$queryBuilder->andWhere( $dbr->buildComparison( '>', [ 'cl_sortkey' => $offset ] ) );
+			$queryBuilder->andWhere( $dbr->expr( 'cl_sortkey', '>', $offset ) );
 		}
 
 		$result = new TitleArrayFromResult( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );

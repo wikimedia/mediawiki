@@ -183,7 +183,7 @@ class JobQueueDB extends JobQueue {
 					[
 						'job_cmd' => $this->type,
 						"job_token != {$dbr->addQuotes( '' )}",
-						$dbr->buildComparison( '>=', [ 'job_attempts' => $this->maxTries ] ),
+						$dbr->expr( 'job_attempts', '>=', $this->maxTries ),
 					]
 				)
 				->caller( __METHOD__ )->fetchRowCount();
@@ -771,7 +771,7 @@ class JobQueueDB extends JobQueue {
 					[
 						'job_cmd' => $this->type,
 						"job_token != {$dbw->addQuotes( '' )}", // was acquired
-						$dbw->buildComparison( '<', [ 'job_token_timestamp' => $pruneCutoff ] ) // stale
+						$dbw->expr( 'job_token_timestamp', '<', $pruneCutoff ) // stale
 					]
 				);
 			if ( $this->claimTTL > 0 ) { // only prune jobs attempted too many times...

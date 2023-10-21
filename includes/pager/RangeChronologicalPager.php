@@ -108,7 +108,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 		);
 		// End of the range has been added by ReverseChronologicalPager
 		if ( $this->startOffset ) {
-			$conds[] = $this->mDb->buildComparison( '>=', [ $this->getTimestampField() => $this->startOffset ] );
+			$conds[] = $this->mDb->expr( $this->getTimestampField(), '>=', $this->startOffset );
 		} elseif ( $this->rangeConds ) {
 			// Keep compatibility with some derived classes, T325034
 			$conds = array_merge( $conds, $this->rangeConds );

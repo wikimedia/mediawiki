@@ -328,7 +328,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$order
 		);
 		if ( $this->endOffset ) {
-			$conds[] = $this->mDb->buildComparison( '<', [ $this->getTimestampField() => $this->endOffset ] );
+			$conds[] = $this->mDb->expr( $this->getTimestampField(), '<', $this->endOffset );
 		}
 
 		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];

@@ -150,8 +150,8 @@ class PurgeChangedFiles extends Maintenance {
 					'log_namespace' => NS_FILE,
 					'log_type' => $logType,
 					'log_action' => $logActions,
-					$dbr->buildComparison( '>=', [ 'log_timestamp' => $this->startTimestamp ] ),
-					$dbr->buildComparison( '<=', [ 'log_timestamp' => $this->endTimestamp ] ),
+					$dbr->expr( 'log_timestamp', '>=', $this->startTimestamp ),
+					$dbr->expr( 'log_timestamp', '<=', $this->endTimestamp ),
 				] )
 				->caller( __METHOD__ )->fetchResultSet();
 

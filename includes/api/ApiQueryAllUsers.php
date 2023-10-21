@@ -221,7 +221,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'actor_user = user_id',
 					'rc_type != ' . $db->addQuotes( RC_EXTERNAL ), // no wikidata
 					'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ),
-					$db->buildComparison( '>=', [ 'rc_timestamp' => $timestamp ] ),
+					$db->expr( 'rc_timestamp', '>=', $timestamp ),
 				] );
 			$this->addFields( [
 				'recentactions' => '(' . $subqueryBuilder->caller( __METHOD__ )->getSQL() . ')'

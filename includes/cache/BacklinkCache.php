@@ -187,12 +187,12 @@ class BacklinkCache {
 			// because databases are stupid and don't necessarily propagate indexes.
 			if ( $startId ) {
 				$queryBuilder->where(
-					$this->getDB()->buildComparison( '>=', [ $fromField => $startId ] )
+					$this->getDB()->expr( $fromField, '>=', $startId )
 				);
 			}
 			if ( $endId ) {
 				$queryBuilder->where(
-					$this->getDB()->buildComparison( '<=', [ $fromField => $endId ] )
+					$this->getDB()->expr( $fromField, '<=', $endId )
 				);
 			}
 			$queryBuilder->orderBy( $fromField );
