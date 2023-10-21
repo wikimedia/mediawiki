@@ -370,7 +370,7 @@ class JobQueueDB extends JobQueue {
 						[
 							'job_cmd' => $this->type,
 							'job_token' => '', // unclaimed
-							$dbw->buildComparison( $gte ? '>=' : '<=', [ 'job_random' => $rand ] )
+							$dbw->expr( 'job_random', $gte ? '>=' : '<=', $rand )
 						]
 					)
 					->orderBy(
@@ -730,8 +730,8 @@ class JobQueueDB extends JobQueue {
 						[
 							'job_cmd' => $this->type,
 							"job_token != {$dbw->addQuotes( '' )}", // was acquired
-							$dbw->buildComparison( '<',  [ 'job_token_timestamp' => $claimCutoff ] ), // stale
-							$dbw->buildComparison( '<',  [ 'job_attempts' => $this->maxTries ] ), // retries left
+							$dbw->expr( 'job_token_timestamp', '<', $claimCutoff ), // stale
+							$dbw->expr( 'job_attempts', '<', $this->maxTries ), // retries left
 						]
 					)
 					->caller( __METHOD__ )->fetchResultSet();

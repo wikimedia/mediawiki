@@ -76,10 +76,7 @@ class ActivityUpdateJob extends Job {
 		// that the user is "caught up" on edits already. When the field
 		// is non-NULL, make sure not to set it back in time or set it to
 		// NULL when newer revisions were in fact added to the page.
-		$casTimeCond = $dbw->buildComparison(
-			'<',
-			[ 'wl_notificationtimestamp' => $dbw->timestamp( $casTimestamp ) ]
-		);
+		$casTimeCond = $dbw->expr( 'wl_notificationtimestamp', '<', $dbw->timestamp( $casTimestamp ) );
 
 		// select primary key first instead of directly update to avoid deadlocks per T204561
 		$wlId = $dbw->newSelectQueryBuilder()

@@ -232,7 +232,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		$minClTime = $this->getTimestampOffset( $rand );
 		if ( $minClTime ) {
 			$queryBuilder->andWhere(
-				$dbr->buildComparison( $op, [ 'cl_timestamp' => $dbr->timestamp( $minClTime ) ] )
+				$dbr->expr( 'cl_timestamp', $op, $dbr->timestamp( $minClTime ) )
 			);
 		}
 
