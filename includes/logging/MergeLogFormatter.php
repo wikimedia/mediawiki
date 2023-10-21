@@ -57,6 +57,12 @@ class MergeLogFormatter extends LogFormatter {
 
 		// Show unmerge link
 		$params = $this->extractParameters();
+		if ( isset( $params[5] ) ) {
+			$mergePoint = $params[4] . "|" . $params[5];
+		} else {
+			// This is an old log entry from before we recorded the revid separately
+			$mergePoint = $params[4];
+		}
 		$revert = $this->getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( 'MergeHistory' ),
 			$this->msg( 'revertmerge' )->text(),
@@ -64,7 +70,7 @@ class MergeLogFormatter extends LogFormatter {
 			[
 				'target' => $params[3],
 				'dest' => $this->entry->getTarget()->getPrefixedDBkey(),
-				'mergepoint' => $params[4],
+				'mergepoint' => $mergePoint,
 				'submitted' => 1 // show the revisions immediately
 			]
 		);
@@ -81,6 +87,7 @@ class MergeLogFormatter extends LogFormatter {
 			'5:timestamp:mergepoint',
 			'4::dest' => '4:title:dest',
 			'5::mergepoint' => '5:timestamp:mergepoint',
+			'6::mergerevid'
 		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {

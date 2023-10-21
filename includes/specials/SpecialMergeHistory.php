@@ -124,7 +124,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->mTargetID = intval( $request->getVal( 'targetID' ) );
 		$this->mDestID = intval( $request->getVal( 'destID' ) );
 		$this->mTimestamp = $request->getVal( 'mergepoint' );
-		if ( $this->mTimestamp === null || !preg_match( '/[0-9]{14}/', $this->mTimestamp ) ) {
+		if ( $this->mTimestamp === null || !preg_match( '/[0-9]{14}(\|[0-9]+)?/', $this->mTimestamp ) ) {
 			$this->mTimestamp = '';
 		}
 		$this->mComment = $request->getText( 'wpComment' );

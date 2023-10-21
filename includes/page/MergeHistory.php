@@ -93,6 +93,11 @@ class MergeHistory {
 	 */
 	protected $timestampLimit = false;
 
+	/**
+	 * @var string|null
+	 */
+	private $revidLimit = null;
+
 	/** @var int Number of revisions merged (for Special:MergeHistory success message) */
 	protected $revisionsMerged;
 
@@ -393,7 +398,8 @@ class MergeHistory {
 		$logEntry->setTarget( $this->source );
 		$logEntry->setParameters( [
 			'4::dest' => $this->titleFormatter->getPrefixedText( $this->dest ),
-			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW )
+			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW ),
+			'6::mergerevid' => $this->revidLimit
 		] );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
@@ -563,7 +569,7 @@ class MergeHistory {
 	}
 
 	/**
-	 * Lazily initializes timestamp limits and conditions.
+	 * Lazily initializes timestamp (and possibly revid) limits and conditions.
 	 */
 	private function initTimestampLimits() {
 		// Max timestamp should be min of destination page
@@ -573,13 +579,21 @@ class MergeHistory {
 			->where( [ 'rev_page' => $this->dest->getId() ] )
 			->caller( __METHOD__ )->fetchField();
 		$this->maxTimestamp = new MWTimestamp( $firstDestTimestamp );
-
+		$this->revidLimit = null;
 		// Get the timestamp pivot condition
 		try {
 			if ( $this->timestamp ) {
+				$parts = explode( '|', $this->timestamp );
+				if ( count( $parts ) == 2 ) {
+					$timestamp = $parts[0];
+					$this->revidLimit = $parts[1];
+				} else {
+					$timestamp = $this->timestamp;
+				}
 				// If we have a requested timestamp, use the
 				// latest revision up to that point as the insertion point
-				$mwTimestamp = new MWTimestamp( $this->timestamp );
+				$mwTimestamp = new MWTimestamp( $timestamp );
+
 				$lastWorkingTimestamp = $this->dbw->newSelectQueryBuilder()
 					->select( 'MAX(rev_timestamp)' )
 					->from( 'revision' )
@@ -597,20 +611,31 @@ class MergeHistory {
 				// beginning of destination page history
 
 				// Get the latest timestamp of the source
-				$lastSourceTimestamp = $this->dbw->newSelectQueryBuilder()
-					->select( 'rev_timestamp' )
+				$row = $this->dbw->newSelectQueryBuilder()
+					->select( [ 'rev_timestamp', 'rev_id' ] )
 					->from( 'page' )
 					->join( 'revision', null, 'page_latest = rev_id' )
 					->where( [ 'page_id' => $this->source->getId() ] )
-					->caller( __METHOD__ )->fetchField();
-				$lasttimestamp = new MWTimestamp( $lastSourceTimestamp );
-
+					->caller( __METHOD__ )->fetchRow();
 				$timeInsert = $this->maxTimestamp;
-				$this->timestampLimit = $lasttimestamp;
+				if ( $row ) {
+					$lasttimestamp = new MWTimestamp( $row->rev_timestamp );
+					$this->timestampLimit = $lasttimestamp;
+					$this->revidLimit = $row->rev_id;
+				} else {
+					$this->timestampLimit = null;
+				}
 			}
-
-			$this->timeWhere = "rev_timestamp <= " .
-				$this->dbw->addQuotes( $this->dbw->timestamp( $timeInsert ) );
+			$dbLimit = $this->dbw->timestamp( $timeInsert );
+			if ( $this->revidLimit ) {
+				$this->timeWhere = $this->dbw->buildComparison( '<=',
+					[ 'rev_timestamp' => $dbLimit, 'rev_id' => $this->revidLimit ]
+				);
+			} else {
+				$this->timeWhere = $this->dbw->buildComparison( '<=',
+					[ 'rev_timestamp' => $dbLimit ]
+				);
+			}
 		} catch ( TimestampException $ex ) {
 			// The timestamp we got is screwed up and merge cannot continue
 			// This should be detected by $this->isValidMerge()

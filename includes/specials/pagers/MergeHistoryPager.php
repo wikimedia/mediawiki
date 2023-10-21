@@ -52,6 +52,9 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	private $maxTimestamp;
 
 	/** @var string */
+	private $maxRevId;
+
+	/** @var string */
 	private $mergePointTimestamp;
 
 	/** @var int[] */
@@ -94,7 +97,14 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 			->from( 'revision' )
 			->where( [ 'rev_page' => $dest->getId() ] )
 			->caller( __METHOD__ )->fetchField();
+		$maxRevId = $dbr->newSelectQueryBuilder()
+			->select( "MIN(rev_id)" )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $dest->getId() ] )
+			->where( [ 'rev_timestamp' => $maxtimestamp ] )
+			->caller( __METHOD__ )->fetchField();
 		$this->maxTimestamp = $maxtimestamp;
+		$this->maxRevId = $maxRevId;
 		$this->mergePointTimestamp = $mergePointTimestamp;
 
 		// Set database before parent constructor to avoid setting it there with wfGetDB
@@ -154,7 +164,11 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$last = $this->msg( 'last' )->escaped();
 
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
-		$checkBox = Xml::radio( 'mergepoint', $ts, ( $this->mergePointTimestamp === $ts ) );
+		$tsWithId = $ts . "|" . $row->rev_id;
+		$checkBox = Xml::radio(
+			'mergepoint', $tsWithId,
+			$this->mergePointTimestamp === $ts || $this->mergePointTimestamp === $tsWithId
+		);
 
 		$user = $this->getUser();
 
@@ -213,7 +227,12 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 			->where( $this->mConds )
 			->andWhere( [
 				'rev_page' => $this->articleID,
-				$dbr->expr( 'rev_timestamp', '<', $this->maxTimestamp ),
+				$dbr->buildComparison( "<",
+					[
+						"rev_timestamp" => $this->maxTimestamp,
+						"rev_id" => $this->maxRevId
+					]
+				)
 			] );
 		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
 

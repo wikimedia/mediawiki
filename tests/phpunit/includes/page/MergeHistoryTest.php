@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MergeHistory;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 
@@ -217,5 +218,41 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $status );
 
 		$this->assertFalse( $title->exists() );
+	}
+
+	/**
+	 * @covers MediaWiki\Page\MergeHistory::initTimestampLimits
+	 */
+	public function testSplitTimestamp() {
+		// Create the source page with two revisions with the same timestamp
+		$user = static::getTestSysop()->getUser();
+		$title1 = $this->insertPage( "Merge7" )["title"];
+		$timestamp = MWTimestamp::now( TS_MW );
+		$store = $this->getServiceContainer()->getRevisionStore();
+		$revision = MutableRevisionRecord::newFromParentRevision( $store->getFirstRevision( $title1 ) );
+		$revision->setTimestamp( $timestamp );
+		$revision->setComment( CommentStoreComment::newUnsavedComment( "testing" ) );
+		$revision->setUser( $user );
+		$dbw = $this->getDB();
+		$revid1 = $store->insertRevisionOn( $revision, $dbw )->getID();
+
+		$revision2 = MutableRevisionRecord::newFromParentRevision( $store->getFirstRevision( $title1 ) );
+		$revision2->setTimestamp( $timestamp );
+		$revision2->setComment( CommentStoreComment::newUnsavedComment( "testing" ) );
+		$revision2->setUser( $user );
+		$revid2 = $store->insertRevisionOn( $revision2, $dbw )->getID();
+		// Create the destination page (here to ensure its timestamp is the same or later than the above)
+		$title2 = $this->insertPage( "Merge8" )["title"];
+
+		// Now do the merge
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory( $title1, $title2, $timestamp . '|' . $revid1 );
+		$status = $mh->merge( $user );
+		$this->assertStatusOK( $status );
+
+		$this->assertNull( $store->getRevisionByPageId( $title1->getId(), $revid1 ) );
+		$this->assertNotNull( $store->getRevisionByPageId( $title1->getId(), $revid2 ) );
+		$this->assertNotNull( $store->getRevisionByPageId( $title2->getId(), $revid1 ) );
+		$this->assertNull( $store->getRevisionByPageId( $title2->getId(), $revid2 ) );
 	}
 }
