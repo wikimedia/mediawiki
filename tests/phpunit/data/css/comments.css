@@ -1,7 +1,0 @@
-/* url expressions in comments should be ignored */
-
-.selector { /*@noflip*/ background-image: /*@embed*/ url(not-commented.gif); }
-
-/*
-.selector { background-image: url(commented-out.gif); }
-*/

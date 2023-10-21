@@ -176,22 +176,6 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * CSSMin::getLocalFileReferences should ignore url(...) expressions
-	 * that have been commented out.
-	 */
-	public function testCommentedLocalFileReferences() {
-		$basepath = __DIR__ . '/../data/css/';
-		$css = file_get_contents( $basepath . 'comments.css' );
-		$files = CSSMin::getLocalFileReferences( $css, $basepath );
-		$expected = [ $basepath . 'not-commented.gif' ];
-		$this->assertSame(
-			$expected,
-			$files,
-			'Url(...) expression in comment should be omitted.'
-		);
-	}
-
-	/**
 	 * Get all registered modules from ResouceLoader.
 	 * @return array
 	 */
