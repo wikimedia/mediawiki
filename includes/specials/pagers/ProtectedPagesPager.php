@@ -301,10 +301,10 @@ class ProtectedPagesPager extends TablePager {
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
 		$conds = $this->mConds;
-		$conds[] = 'pr_expiry > ' . $dbr->addQuotes( $dbr->timestamp() ) .
-			' OR pr_expiry IS NULL';
+		$conds[] = $dbr->expr( 'pr_expiry', '>', $dbr->timestamp() )
+			->or( 'pr_expiry', '=', null );
 		$conds[] = 'page_id=pr_page';
-		$conds[] = 'pr_type=' . $dbr->addQuotes( $this->type );
+		$conds[] = $dbr->expr( 'pr_type', '=', $this->type );
 
 		if ( $this->sizetype == 'min' ) {
 			$conds[] = 'page_len>=' . $this->size;
@@ -323,10 +323,10 @@ class ProtectedPagesPager extends TablePager {
 		}
 
 		if ( $this->level ) {
-			$conds[] = 'pr_level=' . $dbr->addQuotes( $this->level );
+			$conds[] = $dbr->expr( 'pr_level', '=', $this->level );
 		}
 		if ( $this->namespace !== null ) {
-			$conds[] = 'page_namespace=' . $dbr->addQuotes( $this->namespace );
+			$conds[] = $dbr->expr( 'page_namespace', '=', $this->namespace );
 		}
 
 		$commentQuery = $this->commentStore->getJoin( 'log_comment' );

@@ -192,7 +192,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addFields( [ 'groups' =>
 				$db->buildGroupConcatField( '|', 'user_groups', 'ug_group', [
 					'ug_user=user_id',
-					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+					$db->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $db->timestamp() )
 				] )
 			] );
 		}
@@ -219,8 +219,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				->join( 'actor', null, 'rc_actor = actor_id' )
 				->where( [
 					'actor_user = user_id',
-					'rc_type != ' . $db->addQuotes( RC_EXTERNAL ), // no wikidata
-					'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ),
+					$db->expr( 'rc_type', '!=', RC_EXTERNAL ), // no wikidata
+					$db->expr( 'rc_log_type', '=', null )
+					   ->or( 'rc_log_type', '!=', 'newusers' ),
 					$db->expr( 'rc_timestamp', '>=', $timestamp ),
 				] );
 			$this->addFields( [

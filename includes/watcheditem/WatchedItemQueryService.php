@@ -333,7 +333,7 @@ class WatchedItemQueryService {
 			// If expiries are enabled, join with the watchlist_expiry table and exclude expired items.
 			$tables = [ 'watchlist', 'watchlist_expiry' ];
 			$conds[] = $db->makeList(
-				[ 'we_expiry' => null, 'we_expiry > ' . $db->addQuotes( $db->timestamp() ) ],
+				[ 'we_expiry' => null, $db->expr( 'we_expiry', '>', $db->timestamp() ) ],
 				$db::LIST_OR
 			);
 			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
@@ -465,7 +465,7 @@ class WatchedItemQueryService {
 		$conds = [ 'wl_user' => $watchlistOwnerId ];
 
 		if ( $this->expiryEnabled ) {
-			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $db->addQuotes( $db->timestamp() );
+			$conds[] = $db->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>', $db->timestamp() );
 		}
 
 		if ( !$options['allRevisions'] ) {
@@ -492,7 +492,7 @@ class WatchedItemQueryService {
 
 		if ( !isset( $options['start'] ) && !isset( $options['end'] ) && $db->getType() === 'mysql' ) {
 			// This is an index optimization for mysql
-			$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
+			$conds[] = $db->expr( 'rc_timestamp', '>', '' );
 		}
 
 		$conds = array_merge( $conds, $this->getUserRelatedConds( $db, $user, $options ) );

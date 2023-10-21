@@ -106,7 +106,7 @@ class SpecialUnwatchedPages extends QueryPage {
 			'conds' => [
 				'wl_title' => null,
 				'page_is_redirect' => 0,
-				'page_namespace != ' . $dbr->addQuotes( NS_MEDIAWIKI ),
+				$dbr->expr( 'page_namespace', '!=', NS_MEDIAWIKI ),
 			],
 			'join_conds' => [ 'watchlist' => [
 				'LEFT JOIN', [ 'wl_title = page_title',

@@ -93,7 +93,7 @@ class RevisionDeleteUser {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'logging' )
 				->set( [ self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) ] )
-				->where( [ 'log_actor' => $actorId, 'log_type != ' . $dbw->addQuotes( 'suppress' ) ] )
+				->where( [ 'log_actor' => $actorId, $dbw->expr( 'log_type', '!=', 'suppress' ) ] )
 				->caller( __METHOD__ )->execute();
 
 			# Hide name from RC
@@ -125,7 +125,7 @@ class RevisionDeleteUser {
 			->where( [
 				'log_namespace' => NS_USER,
 				'log_title' => $userDbKey,
-				'log_type != ' . $dbw->addQuotes( 'suppress' )
+				$dbw->expr( 'log_type', '!=', 'suppress' )
 			] )
 			->caller( __METHOD__ )->execute();
 

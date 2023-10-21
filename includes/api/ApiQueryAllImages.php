@@ -220,7 +220,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					[
 						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
 						'ug_user = actor_user',
-						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+						$db->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $db->timestamp() )
 					]
 				] ] );
 				$groupCond = $params['filterbots'] == 'nobots' ? 'NULL' : 'NOT NULL';

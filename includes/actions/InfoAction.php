@@ -918,7 +918,7 @@ class InfoAction extends FormlessAction {
 					->select( "COUNT(DISTINCT $field)" )
 					->from( 'revision' )
 					->where( [ $pageField => $id ] )
-					->andWhere( [ 'rev_timestamp >= ' . $dbr->addQuotes( $threshold ) ] )
+					->andWhere( [ $dbr->expr( 'rev_timestamp', '>=', $threshold ) ] )
 					->caller( $fname )
 					->fetchField();
 

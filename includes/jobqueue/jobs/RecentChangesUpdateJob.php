@@ -97,7 +97,7 @@ class RecentChangesUpdateJob extends Job {
 			$res = $dbw->select(
 				$rcQuery['tables'],
 				$rcQuery['fields'],
-				[ 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ],
+				[ $dbw->expr( 'rc_timestamp', '<', $cutoff ) ],
 				__METHOD__,
 				[ 'LIMIT' => $updateRowsPerQuery ],
 				$rcQuery['joins']
@@ -169,9 +169,9 @@ class RecentChangesUpdateJob extends Job {
 			->from( 'recentchanges' )
 			->join( 'actor', null, 'actor_id=rc_actor' )
 			->where( [
-				'actor_user IS NOT NULL', // actual accounts
-				'rc_type != ' . $dbw->addQuotes( RC_EXTERNAL ), // no wikidata
-				'rc_log_type IS NULL OR rc_log_type != ' . $dbw->addQuotes( 'newusers' ),
+				$dbw->expr( 'actor_user', '!=', null ), // actual accounts
+				$dbw->expr( 'rc_type', '!=', RC_EXTERNAL ), // no wikidata
+				$dbw->expr( 'rc_log_type', '=', null )->or( 'rc_log_type', '!=', 'newusers' ),
 				$dbw->expr( 'rc_timestamp', '>=', $dbw->timestamp( $sTimestamp ) ),
 				$dbw->expr( 'rc_timestamp', '<=', $dbw->timestamp( $eTimestamp ) ),
 			] )

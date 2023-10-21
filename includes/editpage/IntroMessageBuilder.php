@@ -430,7 +430,7 @@ class IntroMessageBuilder {
 				'recreate-moveddeleted-warn',
 				$this->getLogExtract( [ 'delete', 'move' ], $page, '', [
 					'lim' => 10,
-					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
+					'conds' => [ $dbr->expr( 'log_action', '!=', 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'recreate-moveddeleted-warn' ],
 				] )

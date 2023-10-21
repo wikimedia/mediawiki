@@ -412,7 +412,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_EDIT );
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_EDIT );
 						},
 						'cssClassSuffix' => 'src-mw-edit',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -428,7 +428,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_NEW );
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_NEW );
 						},
 						'cssClassSuffix' => 'src-mw-new',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -447,7 +447,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_LOG );
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_LOG );
 						},
 						'cssClassSuffix' => 'src-mw-log',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -465,7 +465,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						) {
 							$conds[] = $dbr->makeList(
 								[
-									'rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
+									$dbr->expr( 'rc_log_type', '!=', 'newusers' ),
 									'rc_log_type' => null
 								],
 								IReadableDatabase::LIST_OR
@@ -582,7 +582,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 				IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 			) {
-				$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
+				$conds[] = $dbr->expr( 'rc_type', '!=', RC_CATEGORIZE );
 			},
 			'cssClassSuffix' => 'src-mw-categorize',
 			'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -1507,7 +1507,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$opts->reset( 'from' );
 		}
 
-		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
+		$conds[] = $dbr->expr( 'rc_timestamp', '>=', $cutoff );
 	}
 
 	/**
@@ -1831,7 +1831,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'user_editcount >= ' . intval( $config->get( MainConfigNames::LearnerEdits ) ),
 				$dbr->makeList( [
 					'user_registration' => null,
-					'user_registration <= ' . $dbr->addQuotes( $dbr->timestamp( $learnerCutoff ) ),
+					$dbr->expr( 'user_registration', '<=', $dbr->timestamp( $learnerCutoff ) ),
 				], IReadableDatabase::LIST_OR ),
 			],
 			IReadableDatabase::LIST_AND
@@ -1842,8 +1842,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'user_editcount >= ' . intval( $config->get( MainConfigNames::ExperiencedUserEdits ) ),
 				$dbr->makeList( [
 					'user_registration' => null,
-					'user_registration <= ' .
-						$dbr->addQuotes( $dbr->timestamp( $experiencedUserCutoff ) ),
+					$dbr->expr( 'user_registration', '<=', $dbr->timestamp( $experiencedUserCutoff ) ),
 				], IReadableDatabase::LIST_OR ),
 			],
 			IReadableDatabase::LIST_AND

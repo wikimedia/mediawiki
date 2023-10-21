@@ -486,7 +486,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$tagCount = $dbr->newSelectQueryBuilder()
 			->table( 'change_tag' )
 			->where( [
-				'ct_rc_id >= ' . $dbr->addQuotes( $rcInfo->min_id ),
+				$dbr->expr( 'ct_rc_id', '>=', $rcInfo->min_id ),
 				'ct_tag_id' => $tagIds
 			] )
 			->caller( __METHOD__ )

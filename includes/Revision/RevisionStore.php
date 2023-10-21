@@ -2931,7 +2931,7 @@ class RevisionStore
 		$queryBuilder = $this->newSelectQueryBuilder( $db )
 			->where( [
 				'rev_page' => $pageId,
-				'rev_timestamp > ' . $db->addQuotes( $db->timestamp( $since ) )
+				$db->expr( 'rev_timestamp', '>', $db->timestamp( $since ) )
 			] )
 			->orderBy( 'rev_timestamp', SelectQueryBuilder::SORT_ASC )
 			->limit( 50 );

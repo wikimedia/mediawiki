@@ -192,7 +192,7 @@ class SpecialPrefixIndex extends SpecialAllPages {
 				->where( [
 					'page_namespace' => $namespace,
 					'page_title' . $dbr->buildLike( $prefixKey, $dbr->anyString() ),
-					'page_title >= ' . $dbr->addQuotes( $fromKey ),
+					$dbr->expr( 'page_title', '>=', $fromKey ),
 				] )
 				->orderBy( 'page_title' )
 				->limit( $this->maxPerPage + 1 )

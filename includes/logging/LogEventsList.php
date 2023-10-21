@@ -506,7 +506,7 @@ class LogEventsList extends ContextSource {
 	 * @param array $param Associative Array with the following additional options:
 	 * - lim Integer Limit of items to show, default is 50
 	 * - conds Array Extra conditions for the query
-	 *   (e.g. 'log_action != ' . $dbr->addQuotes( 'revision' ))
+	 *   (e.g. $dbr->expr( 'log_action', '!=', 'revision' ))
 	 * - showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty
 	 *   if set to true (default), "No matching items in log" is displayed if loglist is empty
 	 * - msgKey Array If you want a nice box with a message, set this to the key of the message.

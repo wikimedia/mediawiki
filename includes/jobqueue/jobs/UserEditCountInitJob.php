@@ -47,7 +47,7 @@ class UserEditCountInitJob extends Job implements GenericParameterJob {
 			->set( [ 'user_editcount' => $this->params['editCount'] ] )
 			->where( [
 				'user_id' => $this->params['userId'],
-				'user_editcount IS NULL OR user_editcount < ' . $dbw->addQuotes( $this->params['editCount'] )
+				$dbw->expr( 'user_editcount', '=', null )->or( 'user_editcount', '<', $this->params['editCount'] )
 			] )
 			->caller( __METHOD__ )->execute();
 

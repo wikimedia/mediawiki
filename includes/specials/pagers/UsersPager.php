@@ -177,8 +177,11 @@ class UsersPager extends AlphabeticPager {
 		$options = [];
 
 		if ( $this->requestedGroup != '' || $this->temporaryGroupsOnly ) {
-			$conds[] = 'ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ) .
-			( !$this->temporaryGroupsOnly ? ' OR ug_expiry IS NULL' : '' );
+			$cond = $dbr->expr( 'ug_expiry', '>=', $dbr->timestamp() );
+			if ( !$this->temporaryGroupsOnly ) {
+				$cond = $cond->or( 'ug_expiry', '=', null );
+			}
+			$conds[] = $cond;
 		}
 
 		if ( $this->requestedGroup != '' ) {
@@ -193,7 +196,7 @@ class UsersPager extends AlphabeticPager {
 					$conds[] = 'user_id >= ' . $userIdentity->getId();
 				}
 			} else {
-				$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
+				$conds[] = $dbr->expr( 'user_name', '>=', $this->requestedUser );
 			}
 		}
 

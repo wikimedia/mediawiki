@@ -204,7 +204,7 @@ class ApiQueryContributors extends ApiQueryBase {
 				[
 					'ug_user=' . $revQuery['fields']['rev_user'],
 					'ug_group' => $limitGroups,
-					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+					$db->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $db->timestamp() )
 				]
 			] ] );
 			// @phan-suppress-next-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable

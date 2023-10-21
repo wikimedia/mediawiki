@@ -114,7 +114,7 @@ class NewFilesPager extends RangeChronologicalPager {
 					[
 						'ug_group' => $groupsWithBotPermission,
 						'ug_user = actor_user',
-						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
 					]
 				];
 			}
