@@ -79,13 +79,10 @@ class ApiAMCreateAccount extends ApiBase {
 
 		// Make sure it's possible to create accounts
 		if ( !$this->authManager->canCreateAccounts() ) {
-			$this->getResult()->addValue( null, 'createaccount', $helper->formatAuthenticationResponse(
-				AuthenticationResponse::newFail(
-					$this->msg( 'userlogin-cannot-' . AuthManager::ACTION_CREATE )
-				)
-			) );
-			$helper->logAuthenticationResult( 'accountcreation',
-				'userlogin-cannot-' . AuthManager::ACTION_CREATE );
+			$res = AuthenticationResponse::newFail( $this->msg( 'userlogin-cannot-' . AuthManager::ACTION_CREATE ) );
+			$this->getResult()->addValue( null, 'createaccount',
+				$helper->formatAuthenticationResponse( $res ) );
+			$helper->logAuthenticationResult( 'accountcreation', $res );
 			return;
 		}
 
