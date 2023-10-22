@@ -1234,7 +1234,7 @@ class Linker {
 	/**
 	 * Generate standard user tool links (talk, contributions, block link, etc.)
 	 *
-	 * @since 1.16.3
+	 * @since 1.42
 	 * @param int $userId User identifier
 	 * @param string $userText User name or IP address
 	 * @param bool $redContribsWhenNoEdits Should the contributions link be
@@ -1242,19 +1242,12 @@ class Linker {
 	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK
 	 *   and Linker::TOOL_LINKS_EMAIL).
 	 * @param int|null $edits User edit count (optional, for performance)
-	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
-	 * @return string HTML fragment
+	 * @return string[] Array of HTML fragments, each of them a link tag with a distinctive
+	 *   class; or a single string on error.
 	 */
-	public static function userToolLinks(
-		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null,
-		$useParentheses = true
-	) {
-		if ( $userText === '' ) {
-			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
-				'that need to be fixed?' );
-			return ' ' . wfMessage( 'empty-username' )->parse();
-		}
-		global $wgLang;
+	public static function userToolLinkArray(
+		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
+	): array {
 		$services = MediaWikiServices::getInstance();
 		$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 		$talkable = !( $disableAnonTalk && $userId == 0 );
@@ -1263,7 +1256,7 @@ class Linker {
 
 		if ( $userId == 0 && ExternalUserNames::isExternal( $userText ) ) {
 			// No tools for an external user
-			return '';
+			return [];
 		}
 
 		$items = [];
@@ -1301,6 +1294,19 @@ class Linker {
 
 		( new HookRunner( $services->getHookContainer() ) )->onUserToolLinksEdit( $userId, $userText, $items );
 
+		return $items;
+	}
+
+	/**
+	 * Generate standard tool links HTML from a link array returned by userToolLinkArray().
+	 * @since 1.42
+	 * @param array $items
+	 * @param bool $useParentheses (optional, default true) Wrap comments in parentheses where needed
+	 * @return string
+	 */
+	public static function renderUserToolLinksArray( array $items, bool $useParentheses ): string {
+		global $wgLang;
+
 		if ( !$items ) {
 			return '';
 		}
@@ -1318,6 +1324,34 @@ class Linker {
 		}
 		return ' <span class="mw-usertoollinks mw-changeslist-links">' .
 			implode( ' ', $tools ) . '</span>';
+	}
+
+	/**
+	 * Generate standard user tool links (talk, contributions, block link, etc.)
+	 *
+	 * @since 1.16.3
+	 * @param int $userId User identifier
+	 * @param string $userText User name or IP address
+	 * @param bool $redContribsWhenNoEdits Should the contributions link be
+	 *   red if the user has no edits?
+	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK
+	 *   and Linker::TOOL_LINKS_EMAIL).
+	 * @param int|null $edits User edit count (optional, for performance)
+	 * @param bool $useParentheses (optional, default true) Wrap comments in parentheses where needed
+	 * @return string HTML fragment
+	 */
+	public static function userToolLinks(
+		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null,
+		$useParentheses = true
+	) {
+		if ( $userText === '' ) {
+			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
+				'that need to be fixed?' );
+			return ' ' . wfMessage( 'empty-username' )->parse();
+		}
+
+		$items = self::userToolLinkArray( $userId, $userText, $redContribsWhenNoEdits, $flags, $edits );
+		return self::renderUserToolLinksArray( $items, $useParentheses );
 	}
 
 	/**
