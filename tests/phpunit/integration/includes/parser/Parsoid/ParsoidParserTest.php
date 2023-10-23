@@ -27,7 +27,9 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		$output = $parsoidParser->parse( ...$args );
 		$html = $output->getText( $getTextOpts );
 		$this->assertStringContainsString( $expected, $html );
-		$this->assertSame( [ 'wrapclass', 'interfaceMessage', 'maxIncludeSize' ], $output->getUsedOptions() );
+		$this->assertSame( [
+			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'maxIncludeSize'
+		], $output->getUsedOptions() );
 	}
 
 	public static function provideParsoidParserHtml() {

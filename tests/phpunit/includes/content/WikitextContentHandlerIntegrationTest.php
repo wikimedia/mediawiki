@@ -68,7 +68,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				'Sections' => [
 				],
 				'UsedOptions' => [
-					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'wrapclass'
+					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'wrapclass'
 				],
 			],
 			'options' => [ 'useParsoid' => true ]
@@ -85,7 +85,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				'Sections' => [
 				],
 				'UsedOptions' => [
-					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'wrapclass'
+					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'wrapclass'
 				],
 			],
 			'options' => [ 'useParsoid' => true ]
