@@ -51,21 +51,6 @@ class ParsoidOutputAccess {
 	 */
 	public const PARSOID_PARSER_CACHE_NAME = 'parsoid';
 
-	/**
-	 * @deprecated since 1.42 use ParserOutputAccess::OPT_NO_UPDATE_CACHE instead
-	 * Temporarily needed while we migrate extensions and other codebases
-	 * to use the ParserOutputAccess constant directly
-	 */
-	public const OPT_NO_UPDATE_CACHE = ParserOutputAccess::OPT_NO_UPDATE_CACHE;
-
-	/**
-	 * @deprecated Parsoid will always lint at this point. This option
-	 * has no effect and will be removed once all callers are fixed.
-	 *
-	 * @var int Collect linter data for the ParserLogLinterData hook.
-	 */
-	public const OPT_LOG_LINT_DATA = 64;
-
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidCacheConfig,
 		'ParsoidWikiID'
