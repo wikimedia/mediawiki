@@ -12,15 +12,9 @@ use InvalidArgumentException;
  * @unstable since 1.39, should be stable by 1.39 release.
  */
 class ParsoidRenderID {
-
-	/** @var int */
-	private $revisionID;
-
-	/** @var string */
-	private $uniqueID;
-
-	/** @var string */
-	private $stashKey;
+	private int $revisionID;
+	private string $uniqueID;
+	private string $stashKey;
 
 	/**
 	 * @param int $revisionID Revision that was rendered

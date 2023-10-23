@@ -28,20 +28,11 @@ use WikitextContent;
  * @unstable since 1.41; see T236809 for plan.
  */
 class ParsoidParser /* eventually this will extend \Parser */ {
-	/** @var Parsoid */
-	private $parsoid;
-
-	/** @var PageConfigFactory */
-	private $pageConfigFactory;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var ParserFactory */
-	private $legacyParserFactory;
-
-	/** @var GlobalIdGenerator */
-	private $globalIdGenerator;
+	private Parsoid $parsoid;
+	private PageConfigFactory $pageConfigFactory;
+	private LanguageConverterFactory $languageConverterFactory;
+	private ParserFactory $legacyParserFactory;
+	private GlobalIdGenerator $globalIdGenerator;
 
 	/**
 	 * @param Parsoid $parsoid

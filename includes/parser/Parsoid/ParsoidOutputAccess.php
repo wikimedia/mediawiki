@@ -56,29 +56,14 @@ class ParsoidOutputAccess {
 		'ParsoidWikiID'
 	];
 
-	/** @var ParsoidParserFactory */
-	private $parsoidParserFactory;
-
-	/** @var PageLookup */
-	private $pageLookup;
-
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var ParserOutputAccess */
-	private $parserOutputAccess;
-
-	/** @var SiteConfig */
-	private $siteConfig;
-
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var string */
-	private $parsoidWikiId;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
+	private ParsoidParserFactory $parsoidParserFactory;
+	private PageLookup $pageLookup;
+	private RevisionLookup $revisionLookup;
+	private ParserOutputAccess $parserOutputAccess;
+	private SiteConfig $siteConfig;
+	private ServiceOptions $options;
+	private string $parsoidWikiId;
+	private IContentHandlerFactory $contentHandlerFactory;
 
 	/**
 	 * @param ServiceOptions $options

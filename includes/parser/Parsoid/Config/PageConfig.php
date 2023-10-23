@@ -37,24 +37,12 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
  * @internal
  */
 class PageConfig extends IPageConfig {
-
-	/** @var ParserOptions */
-	private $parserOptions;
-
-	/** @var SlotRoleHandler */
-	private $slotRoleHandler;
-
-	/** @var Title */
-	private $title;
-
-	/** @var ?RevisionRecord */
-	private $revision;
-
-	/** @var Bcp47Code */
-	private $pageLanguage;
-
-	/** @var string */
-	private $pageLanguageDir;
+	private ParserOptions $parserOptions;
+	private SlotRoleHandler $slotRoleHandler;
+	private Title $title;
+	private ?RevisionRecord $revision = null;
+	private Bcp47Code $pageLanguage;
+	private string $pageLanguageDir;
 
 	/**
 	 * @param ParserOptions $parserOptions

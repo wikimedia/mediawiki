@@ -16,30 +16,14 @@ use Wikimedia\Parsoid\Parsoid;
  * @unstable should be marked stable before 1.40 release
  */
 class HtmlTransformFactory {
-
-	/** @var Parsoid */
-	private $parsoid;
-
-	/** @var array */
-	private $parsoidSettings;
-
-	/** @var PageConfigFactory */
-	private $configFactory;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var SiteConfig */
-	private $siteConfig;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var LanguageFactory */
-	private $languageFactory;
+	private Parsoid $parsoid;
+	private array $parsoidSettings;
+	private PageConfigFactory $configFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private SiteConfig $siteConfig;
+	private TitleFactory $titleFactory;
+	private LanguageConverterFactory $languageConverterFactory;
+	private LanguageFactory $languageFactory;
 
 	/**
 	 * @param Parsoid $parsoid

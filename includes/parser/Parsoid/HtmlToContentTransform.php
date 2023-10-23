@@ -36,60 +36,27 @@ use Wikimedia\Parsoid\Utils\Timing;
  * @unstable should be stable before 1.40 release
  */
 class HtmlToContentTransform {
-	/** @var array */
-	private $options = [];
-
-	/** @var ?int */
-	private $oldid = null;
-
-	/** @var ?Bcp47Code */
-	private $contentLanguage = null;
-
-	/** @var ?Content */
-	private $originalContent = null;
-
-	/** @var ?RevisionRecord */
-	private $originalRevision = null;
-
+	private array $options = [];
+	private ?int $oldid = null;
+	private ?Bcp47Code $contentLanguage = null;
+	private ?Content $originalContent = null;
+	private ?RevisionRecord $originalRevision = null;
 	/**
 	 * Whether $this->doc has had any necessary processing applied,
 	 * such as injecting data-parsoid attributes from a PageBundle.
-	 * @var bool
 	 */
-	private $docHasBeenProcessed = false;
-
-	/** @var ?Document */
-	private $doc = null;
-
-	/** @var ?Element */
-	private $originalBody = null;
-
-	/** @var ?StatsdDataFactoryInterface A statistics aggregator */
-	protected $metrics = null;
-
-	/** @var PageBundle */
-	private $modifiedPageBundle;
-
-	/** @var PageBundle */
-	private $originalPageBundle;
-
-	/** @var ?PageConfig */
-	private $pageConfig = null;
-
-	/** @var Parsoid */
-	private $parsoid;
-
-	/** @var array */
-	private $parsoidSettings;
-
-	/** @var PageIdentity */
-	private $page;
-
-	/** @var PageConfigFactory */
-	private $pageConfigFactory;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
+	private bool $docHasBeenProcessed = false;
+	private ?Document $doc = null;
+	private ?Element $originalBody = null;
+	protected ?StatsdDataFactoryInterface $metrics = null;
+	private PageBundle $modifiedPageBundle;
+	private PageBundle $originalPageBundle;
+	private ?PageConfig $pageConfig = null;
+	private Parsoid $parsoid;
+	private array $parsoidSettings;
+	private PageIdentity $page;
+	private PageConfigFactory $pageConfigFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
 
 	/**
 	 * @param string $modifiedHTML

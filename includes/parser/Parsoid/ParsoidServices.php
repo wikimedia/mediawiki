@@ -32,9 +32,7 @@ use Wikimedia\Parsoid\Config\SiteConfig;
  * transition is complete.  Use MediaWikiServices instead.
  */
 class ParsoidServices {
-
-	/** @var MediaWikiServices */
-	private $services;
+	private MediaWikiServices $services;
 
 	/**
 	 * @param MediaWikiServices $services
