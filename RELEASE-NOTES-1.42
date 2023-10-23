@@ -22,6 +22,8 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
+* $wgEditRecoveryExpiry: Number of seconds to keep edit recovery data
+  after the edit is stored.
 * …
 
 ==== Changed configuration ====

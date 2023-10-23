@@ -3,6 +3,7 @@
  */
 
 const dbName = mw.config.get( 'wgDBname' ) + '_editRecovery';
+const editRecoveryExpiry = mw.config.get( 'wgEditRecoveryExpiry' );
 const objectStoreName = 'unsaved-page-data';
 
 var db = null;
@@ -98,11 +99,10 @@ function saveData( pageName, section, pageData ) {
 			reject( 'DB not opened' );
 		}
 
-		var expiryDays = 30;
 		// Add indexed fields.
 		pageData.pageName = pageName;
 		pageData.section = section || '';
-		pageData.expiry = ( Date.now() / 1000 ) + ( expiryDays * 24 * 60 * 60 );
+		pageData.expiryDate = getExpiryDate( editRecoveryExpiry );
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
@@ -153,6 +153,16 @@ function deleteData( pageName, section ) {
 			reject( 'Error opening cursor' );
 		};
 	} );
+}
+
+/**
+ * Returns the date diff seconds in the future
+ *
+ * @param {number} diff Seconds in the future
+ * @return {number} Timestamp of diff days in the future
+ */
+function getExpiryDate( diff ) {
+	return ( Date.now() / 1000 ) + diff;
 }
 
 /**

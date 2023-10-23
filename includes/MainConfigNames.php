@@ -4454,4 +4454,10 @@ class MainConfigNames {
 	 */
 	public const EnableEditRecovery = 'EnableEditRecovery';
 
+	/**
+	 * Name constant for the EditRecoveryExpiry setting, for use with Config::get()
+	 * @see MainConfigSchema::EditRecoveryExpiry
+	 */
+	public const EditRecoveryExpiry = 'EditRecoveryExpiry';
+
 }
