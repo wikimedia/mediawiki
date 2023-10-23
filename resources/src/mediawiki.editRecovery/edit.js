@@ -8,7 +8,7 @@ const storage = require( './storage.js' );
 const inputFields = {};
 const fieldNamePrefix = 'field_';
 var hasLoaded = false;
-var modified = false;
+var originalData = {};
 var changeDebounceTimer = null;
 
 // Number of miliseconds to debounce form input.
@@ -45,6 +45,9 @@ function onLoadHandler( $editForm ) {
 		inputFields[ field.name ] = field;
 	} );
 
+	// Store the original data for later comparing to the data-to-save.
+	originalData = getFormData();
+
 	// Open indexedDB database and load any saved data that might be there.
 	const pageName = mw.config.get( 'wgPageName' );
 	const section = inputFields.wpSection.value || null;
@@ -59,6 +62,7 @@ function onLoadHandler( $editForm ) {
 	cancelButton.on( 'click', function () {
 		windowManager.openWindow( 'abandonedit' ).closed.then( function ( data ) {
 			if ( data && data.action === 'discard' ) {
+				originalData = null;
 				storage.deleteData( pageName, section ).finally( function () {
 					// Release the beforeunload handler from mediawiki.action.edit.editWarning,
 					// per the documentation there
@@ -130,16 +134,27 @@ function loadData( pageData ) {
 
 function fieldChangeHandler() {
 	clearTimeout( changeDebounceTimer );
-	modified = true;
 	changeDebounceTimer = setTimeout( saveFormData, debounceTime );
 }
 
 function saveFormData() {
-	if ( !modified ) {
-		// fieldChangeHandler has never been called, don't save
-		// an unmodified edit form.
-		return;
+	const pageName = mw.config.get( 'wgPageName' );
+	const section = inputFields.wpSection.value !== undefined ? inputFields.wpSection.value : null;
+	const pageData = getFormData();
+	if ( originalData === null || JSON.stringify( pageData ) === JSON.stringify( originalData ) ) {
+		// Delete the stored data if there's no change, or if we've flagged originalData as irrelevant.
+		storage.deleteData( pageName, section );
+	} else {
+		storage.saveData( pageName, section, pageData );
 	}
+}
+
+/**
+ * Get the current form data.
+ *
+ * @return {Object}
+ */
+function getFormData() {
 	const pageData = {};
 	Object.keys( inputFields ).forEach( function ( fieldName ) {
 		const field = inputFields[ fieldName ];
@@ -159,7 +174,5 @@ function saveFormData() {
 		}
 		pageData[ fieldNamePrefix + fieldName ] = newValue;
 	} );
-	const pageName = mw.config.get( 'wgPageName' );
-	const section = inputFields.wpSection.value !== undefined ? inputFields.wpSection.value : null;
-	storage.saveData( pageName, section, pageData );
+	return pageData;
 }
