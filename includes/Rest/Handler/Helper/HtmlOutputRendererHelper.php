@@ -376,16 +376,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param array $parameters
 	 * @param User $user
 	 * @param RevisionRecord|int|null $revision
-	 * @param ?Bcp47Code $pageLanguage
 	 */
 	public function init(
 		PageIdentity $page,
 		array $parameters,
 		User $user,
-		$revision = null,
-		// FIXME: This is not set anywhere except in tests?
-		// Should we remove this?
-		?Bcp47Code $pageLanguage = null
+		$revision = null
 	) {
 		$this->page = $page;
 		$this->user = $user;
@@ -393,10 +389,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 		if ( $revision !== null ) {
 			$this->setRevision( $revision );
-		}
-
-		if ( $pageLanguage !== null ) {
-			$this->setPageLanguage( $pageLanguage );
 		}
 
 		if ( $this->stash ) {
