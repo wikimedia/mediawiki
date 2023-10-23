@@ -1088,7 +1088,7 @@
 	"editundo": "復原",
 	"diff-incompatible": "無法比較內容模型「$1」和「$2」",
 	"diff-empty": "（無差異）",
-	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|edit|編輯}}",
+	"diff-user-edits": "<span>$1</span>{{PLURAL:$1|筆編輯}}",
 	"diff-multi-sameuser": "（未顯示同一{{GENDER:$3|使用者}}於中間所作的 {{PLURAL:$1|$1 次修訂}}）",
 	"diff-multi-otherusers": "（未顯示由 $2 位使用者於中間所作的 $1 次修訂）",
 	"diff-multi-manyusers": "（未顯示由超過 $2 位使用者於中間所作的 $1 次修訂）",

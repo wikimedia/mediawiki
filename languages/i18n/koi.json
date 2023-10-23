@@ -241,6 +241,7 @@
 	"lineno-inline": "$1 ⟶ $2 визь",
 	"compareselectedversions": "Ордчаöтны бöрйöм версияэз",
 	"editundo": "керны важмоз",
+	"diff-user-edits": "<span>$1</span> {{УНА ЛЫД:$1|веськӧтны|веськӧтны}}",
 	"diff-inline-switch-desc": "Вуджны сувтӧтлӧм формат и кык столбеца формат коласӧ",
 	"searchresults": "Адззöм то мый:",
 	"searchresults-title": "\"$1\" сьöртi адззöм то мый:",

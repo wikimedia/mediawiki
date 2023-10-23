@@ -2004,6 +2004,7 @@
 	"log-action-filter-newusers-create2": "مصاوبة من طاراف خدايمي مقيّد",
 	"log-action-filter-upload-revert": "ترجاع",
 	"userlogout-continue": "واش متيقن بلي باغي تديكونيكطا؟",
+	"nonmain-slot-differences-therefore-readonly": "مايمكنش ليك تكتب نص ويكي ف هاد لمراجعة د الصفحة، حيت كانو تبديلات على الداطا لي كانت فاش تدارت المراجعة لي مامبازياش على نص ويكي. [$1 باش ترجّع هاد النسخة كليكي هنا.]",
 	"skin-view-create-local": "زيد وصف محلي",
 	"nstab-mainpage": "الصفحة اللولا",
 	"skin-view-edit-local": "زيد وصف محلي",

@@ -1674,6 +1674,7 @@
 	"rcfilters-filter-categorization-description": "سجلات إضافة أو إزالة الصفحات من التصنيفات.",
 	"rcfilters-filter-logactions-label": "الأفعال المسجلة",
 	"rcfilters-filter-logactions-description": "الأفعال الإدارية، إنشاء الحسابات، حذف الصفحات، عمليات الرفع…",
+	"rcfilters-filter-accountcreations-label": "إنشاء الحسابات",
 	"rcfilters-filter-accountcreations-description": "إدخالات السجل لإنشاء الحساب. يجب تحديد الإجراءات المسجلة.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "مرشح \"التعديلات الطفيفة\" يتعارض مع مرشح واحد أو أكثر من مرشحات نوع التغيير، وذلك لأن بعض أنواع التغيير لا يمكن التعليم عليها ك\"طفيفة.\" المرشحات المتعارضة معلم عليها في مساحة المرشحات النشطة بالأعلى.",
 	"rcfilters-hideminor-conflicts-typeofchange": "بعض أنواع التغييرات لا يمكن التعليم عليها ك\"طفيفة،\" لذا فهذا المرشح يتعارض مع مرشحات نوع التغيير التالية: $1",

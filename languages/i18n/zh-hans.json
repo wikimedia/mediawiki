@@ -1143,6 +1143,7 @@
 	"editundo": "撤销",
 	"diff-incompatible": "无法比较内容模型“ $1 ”和“ $2 ”",
 	"diff-empty": "（没有差异）",
+	"diff-user-edits": "<span>$1</span>{{PLURAL:$1|次编辑}}",
 	"diff-multi-sameuser": "（未显示同一{{GENDER:$3|用户}}的{{PLURAL:$1|$1个中间版本}}）",
 	"diff-multi-otherusers": "（未显示{{PLURAL:$1|另一用户|$2个用户}}的{{PLURAL:$1|$1个中间版本}}）",
 	"diff-multi-manyusers": "（未显示超过$2个用户的$1个中间版本）",

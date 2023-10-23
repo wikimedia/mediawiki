@@ -2701,7 +2701,7 @@
 	"contribute": "投稿",
 	"contribsub2": "利用者: {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
-	"contributions-edit-count": "$1の編集回数は$2回。",
+	"contributions-edit-count": "{{GENDER:$1|利用者}}の{{PLURAL:$2|編集}}は$2回。",
 	"contributions-account-creation-date": "$1にアカウント作成。",
 	"contributions-userdoesnotexist": "利用者アカウント「$1」は登録されていません。",
 	"negative-namespace-not-supported": "負の値で指定される名前空間はサポートされていません。",

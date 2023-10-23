@@ -1644,7 +1644,7 @@
 	"rcfilters-filter-categorization-label": "Luokkamuutokset",
 	"rcfilters-filter-categorization-description": "Tulokset sivuista, joita on lisätty luokkiin tai poistettu luokista.",
 	"rcfilters-filter-logactions-label": "Lokitoiminnot",
-	"rcfilters-filter-logactions-description": "Ylläpidolliset toimet, tunnusten luonnit, sivujen poistot, tiedostolataukset…",
+	"rcfilters-filter-logactions-description": "Ylläpidolliset toimet, sivujen poistot, tiedostolataukset…",
 	"rcfilters-filter-accountcreations-label": "Tunnusten luonnit",
 	"rcfilters-filter-accountcreations-description": "Tunnusten luontien lokimerkinnät. Lokitoiminnot tulee olla valittuna.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "”Pienet muutokset” -suodatin on ristiriidassa yhden tai useamman Muutoksen tyyppi -suodattimen kanssa, koska joitain muutostyyppejä ei voida pitää ”pieninä”. Ristiriidassa oleva suodatin on merkittynä Aktiivisissa suodattimissa, yläpuolella.",
