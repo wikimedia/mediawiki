@@ -121,9 +121,10 @@ function saveData( pageName, section, pageData ) {
  * Delete data relating to a specific page
  *
  * @param {string} pageName The current page name (with underscores)
+ * @param {string|null} section The section ID, or null if the whole page is being edited
  * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
  */
-function deleteData( pageName ) {
+function deleteData( pageName, section ) {
 	return new Promise( function ( resolve, reject ) {
 		if ( !db ) {
 			reject( 'DB not opened' );
@@ -138,7 +139,8 @@ function deleteData( pageName ) {
 			const cursor = event.target.result;
 			if ( cursor ) {
 				const key = cursor.key;
-				if ( key[ 0 ] === pageName ) {
+				const deleteSection = ( section === null && key[ 1 ] === '' ) || section === key[ 1 ];
+				if ( key[ 0 ] === pageName && deleteSection ) {
 					objectStore.delete( key );
 				}
 				cursor.continue();
@@ -175,7 +177,7 @@ function deleteExpiredData() {
 			const cursors = event.target.result;
 			if ( cursors ) {
 				cursors.forEach( function ( cursor ) {
-					deleteData( cursor.pageName );
+					deleteData( cursor.pageName, cursor.section );
 				} );
 			} else {
 				resolve();
