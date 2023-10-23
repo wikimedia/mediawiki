@@ -16,21 +16,17 @@
 	 *
 	 * @private
 	 * @param {jQuery} $collapsible
-	 * @param {string} action The action this function will take ('expand' or 'collapse').
+	 * @param {boolean} expand Expand the element, otherwise collapse
 	 * @param {jQuery|null} [$defaultToggle]
 	 * @param {Object|undefined} [options]
 	 */
-	function toggleElement( $collapsible, action, $defaultToggle, options ) {
+	function toggleElement( $collapsible, expand, $defaultToggle, options ) {
 		options = options || {};
 
 		// Validate parameters
 
 		// $collapsible must be an instance of jQuery
 		if ( !$collapsible.jquery ) {
-			return;
-		}
-		if ( action !== 'expand' && action !== 'collapse' ) {
-			// action must be string with 'expand' or 'collapse'
 			return;
 		}
 		if ( $defaultToggle === undefined ) {
@@ -40,9 +36,9 @@
 		// Trigger a custom event to allow callers to hook to the collapsing/expanding,
 		// allowing the module to be testable, and making it possible to
 		// e.g. implement persistence via cookies
-		$collapsible.trigger( action === 'expand' ? 'beforeExpand.mw-collapsible' : 'beforeCollapse.mw-collapsible' );
+		$collapsible.trigger( expand ? 'beforeExpand.mw-collapsible' : 'beforeCollapse.mw-collapsible' );
 		var hookCallback = function () {
-			$collapsible.trigger( action === 'expand' ? 'afterExpand.mw-collapsible' : 'afterCollapse.mw-collapsible' );
+			$collapsible.trigger( expand ? 'afterExpand.mw-collapsible' : 'afterCollapse.mw-collapsible' );
 		};
 
 		// Handle different kinds of elements
@@ -82,7 +78,7 @@
 			}
 		}
 
-		$containers.toggle( action === 'expand' );
+		$containers.toggle( expand );
 		hookCallback();
 	}
 
@@ -153,7 +149,7 @@
 		}
 
 		// And finally toggle the element state itself
-		toggleElement( $collapsible, wasCollapsed ? 'expand' : 'collapse', $toggle, options );
+		toggleElement( $collapsible, !!wasCollapsed, $toggle, options );
 	}
 
 	/**
