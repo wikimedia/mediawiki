@@ -344,7 +344,9 @@ abstract class ParsoidHandler extends Handler {
 	): HtmlOutputRendererHelper {
 		$services = MediaWikiServices::getInstance();
 
-		$helper = $services->getPageRestHelperFactory()->newHtmlOutputRendererHelper();
+		// Request lenient rev handling
+		$lenientRevHandling = true;
+		$helper = $services->getPageRestHelperFactory()->newHtmlOutputRendererHelper( $lenientRevHandling );
 
 		$user = RequestContext::getMain()->getUser();
 

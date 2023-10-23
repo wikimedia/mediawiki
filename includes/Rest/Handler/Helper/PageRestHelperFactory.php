@@ -101,14 +101,22 @@ class PageRestHelperFactory {
 		);
 	}
 
-	public function newHtmlOutputRendererHelper(): HtmlOutputRendererHelper {
+	/**
+	 * Should we ignore page id mismatches between page and revision objects
+	 * in HTML/pagebundle requests? Mismatches arise because of page moves.
+	 * This is recommended only for handling calls to internal APIs.
+	 */
+	public function newHtmlOutputRendererHelper(
+		bool $lenientRevHandling = false
+	): HtmlOutputRendererHelper {
 		return new HtmlOutputRendererHelper(
 			$this->parsoidOutputStash,
 			$this->stats,
 			$this->parsoidOutputAccess,
 			$this->htmlTransformFactory,
 			$this->contentHandlerFactory,
-			$this->languageFactory
+			$this->languageFactory,
+			$lenientRevHandling
 		);
 	}
 
