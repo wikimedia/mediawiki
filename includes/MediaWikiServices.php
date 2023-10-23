@@ -193,7 +193,6 @@ use SiteStore;
 use SkinFactory;
 use UploadRevisionImporter;
 use UserCache;
-use VirtualRESTServiceClient;
 use WANObjectCache;
 use WatchedItemQueryService;
 use WatchedItemStoreInterface;
@@ -2206,15 +2205,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserRegistrationLookup(): UserRegistrationLookup {
 		return $this->getService( 'UserRegistrationLookup' );
-	}
-
-	/**
-	 * @deprecated since 1.41, Use MultiHttpClient instead.
-	 * @since 1.28
-	 * @return VirtualRESTServiceClient
-	 */
-	public function getVirtualRESTServiceClient(): VirtualRESTServiceClient {
-		return $this->getService( 'VirtualRESTServiceClient' );
 	}
 
 	/**

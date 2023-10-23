@@ -2345,23 +2345,6 @@ return [
 		return $lookup;
 	},
 
-	'VirtualRESTServiceClient' => static function ( MediaWikiServices $services ): VirtualRESTServiceClient {
-		$config = $services->getMainConfig()->get( MainConfigNames::VirtualRestConfig );
-
-		$vrsClient = new VirtualRESTServiceClient(
-			$services->getHttpRequestFactory()->createMultiClient() );
-		foreach ( $config['paths'] as $prefix => $serviceConfig ) {
-			$class = $serviceConfig['class'];
-			// Merge in the global defaults
-			$constructArg = $serviceConfig['options'] ?? [];
-			$constructArg += $config['global'];
-			// Make the VRS service available at the mount point
-			$vrsClient->mount( $prefix, [ 'class' => $class, 'config' => $constructArg ] );
-		}
-
-		return $vrsClient;
-	},
-
 	'WatchedItemQueryService' => static function ( MediaWikiServices $services ): WatchedItemQueryService {
 		return new WatchedItemQueryService(
 			$services->getDBLoadBalancerFactory(),
