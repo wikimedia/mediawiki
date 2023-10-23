@@ -92,7 +92,8 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		$invalidJson = new JsonContent( '{"key":' );
 
 		$this->assertStatusGood( $handler->validateSave( $validJson, $validationParams ) );
-		$this->assertStatusNotOK( $handler->validateSave( $invalidJson, $validationParams ) );
+		$this->assertStatusError( 'invalid-json-data',
+			$handler->validateSave( $invalidJson, $validationParams ) );
 
 		$this->setTemporaryHook(
 			'JsonValidateSave',
@@ -105,7 +106,6 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 			}
 		);
 
-		$this->assertStatusNotOK( $handler->validateSave( $validJson, $validationParams ) );
 		$this->assertStatusError( 'invalid-json-data',
 			$handler->validateSave( $invalidJson, $validationParams ) );
 		$this->assertStatusError( 'missing-key-foo',
