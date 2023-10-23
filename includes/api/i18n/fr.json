@@ -1653,7 +1653,7 @@
 	"apierror-cantview-deleted-revision-content": "Vous n’avez pas la permission de visualiser le contenu des révisions supprimées.",
 	"apierror-changeauth-norequest": "Échec à la création de la requête de modification.",
 	"apierror-changecontentmodel-missingtitle": "La page que vous avez spécifiée n’existe pas. Pour créer une nouvelle page avec un modèle de contenu personnalisé, utiliser le module <kbd>action=edit</kbd>.",
-	"apierror-changecontentmodel-nodirectediting": "Le modèle de contenu <code>$1</code> ne supporte pas la modification directe",
+	"apierror-changecontentmodel-nodirectediting": "Le modèle de contenu <code>$1</code> ne prend pas en charge la modification directe",
 	"apierror-changecontentmodel-cannotbeused": "Le modèle de contenu <code>$1</code> ne peut être utilisé sur $2",
 	"apierror-changecontentmodel-cannot-convert": "Impossible de convertir $1 en modèle de contenu <code>$2</code>",
 	"apierror-chunk-too-small": "La taille minimale d’un segment est de $1 octet{{PLURAL:$1||s}} pour les segments hors le dernier.",
