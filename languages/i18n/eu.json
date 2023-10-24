@@ -1425,7 +1425,7 @@
 	"rcfilters-activefilters-show-tooltip": "Erakuste Iragazki Aktiboen eremua",
 	"rcfilters-advancedfilters": "Iragazki aurreratuak",
 	"rcfilters-limit-title": "Erakusteko emaitzak",
-	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|aldaketa|aldaketak}}, $2",
+	"rcfilters-limit-and-date-label": "{{PLURAL:$1|Aldaketa $1|$1 aldaketa}}, $2",
 	"rcfilters-date-popup-title": "Bilatzeko denbora tartea",
 	"rcfilters-days-title": "Azken egunak",
 	"rcfilters-hours-title": "Azken orduak",

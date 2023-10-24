@@ -729,6 +729,7 @@
 	"temp-user-banner-description": "أنت تستخدم حساباً مؤقتاً",
 	"temp-user-banner-tooltip-label": "مزيد من المعلومات حول الحسابات المؤقتة",
 	"temp-user-banner-tooltip-title": "حساب مؤقت",
+	"temp-user-banner-tooltip-description-learn-more": "أنشئ هذا الحساب المؤقت بعد إجراء تعديل دون حساب عبر هذا المتصفح والجهاز.  [[mw:Help:Temporary_accounts|تعلم المزيد]].",
 	"blankarticle": "<strong>تنبيه:</strong> الصفحة التي تريد إنشاءها فارغة. إذا نقرت \"$1\" ثانية فستنشأ الصفحة بدون محتوى.",
 	"anoneditwarning": "<strong>تحذير:</strong> أنت غير مسجل الدخول. عنوان الأيبي الخاص بك سيكون معروضا بشكل علني لو قمت بأي تعديلات. لو أنك <strong>[$1 سجلت الدخول]</strong> أو <strong>[$2 أنشأت حسابا]</strong>، فتعديلاتك ستنسب لاسم المستخدم الخاص بك، بالإضافة إلى فوائد أخرى.",
 	"autocreate-edit-warning": "<strong>تحذير:</strong> أنت لم تسجل الدخول. سينسب تعديلك إلى <strong>[[{{MediaWiki:tempuser-helppage}}|auto-generated name]]</strong> عن طريق إضافة ملف تعريف ارتباط إلى متصفحك. سيكون عنوان IP الخاص بك مرئيًا للمستخدمين الموثوق بهم. عندما <strong>[تسجل الدخول $1]</strong> أو <strong>[تنشئ حساباً $2]</strong>، ستُنسب تعديلاتك إلى الاسم الذي تختاره، إلى جانب المزايا الأخرى.",
