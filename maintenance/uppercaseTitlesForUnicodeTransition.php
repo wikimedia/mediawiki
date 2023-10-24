@@ -622,7 +622,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 					$res = $db->select(
 						$table,
 						$selectFields,
-						[ "$nsField = $ns", $like, $db->buildComparison( '>', $cont ) ],
+						[ "$nsField = $ns", $like, $cont ? $db->buildComparison( '>', $cont ) : '1=1' ],
 						__METHOD__,
 						[ 'ORDER BY' => array_merge( [ $titleField ], $pkFields ), 'LIMIT' => $batchSize ]
 					);
