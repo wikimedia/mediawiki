@@ -51,8 +51,6 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* Updated codex, codex-design-tokens and codex-icons
-  from v1.0.0-rc.1 to v1.0.0.
 * Updated OOUI from v0.48.1 to v0.48.2.
 * …
 
