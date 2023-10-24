@@ -24,24 +24,12 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * @ingroup Parser
  */
 class ParsoidParserFactory /* eventually this may extend \ParserFactory */ {
-
-	/** @var SiteConfig */
-	private $siteConfig;
-
-	/** @var DataAccess */
-	private $dataAccess;
-
-	/** @var PageConfigFactory */
-	private $pageConfigFactory;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var ParserFactory */
-	private $legacyParserFactory;
-
-	/** @var GlobalIdGenerator */
-	private $globalIdGenerator;
+	private SiteConfig $siteConfig;
+	private DataAccess $dataAccess;
+	private PageConfigFactory $pageConfigFactory;
+	private LanguageConverterFactory $languageConverterFactory;
+	private ParserFactory $legacyParserFactory;
+	private GlobalIdGenerator $globalIdGenerator;
 
 	/**
 	 * @param SiteConfig $siteConfig

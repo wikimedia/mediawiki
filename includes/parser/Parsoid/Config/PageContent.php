@@ -29,9 +29,7 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
  * @since 1.39
  */
 class PageContent extends IPageContent {
-
-	/** @var RevisionRecord */
-	private $rev;
+	private RevisionRecord $rev;
 
 	/**
 	 * @param RevisionRecord $rev

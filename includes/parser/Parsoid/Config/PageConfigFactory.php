@@ -40,15 +40,9 @@ use Wikimedia\Bcp47Code\Bcp47Code;
  * @internal
  */
 class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
-
-	/** @var LanguageFactory */
-	private $languageFactory;
+	private RevisionStore $revisionStore;
+	private SlotRoleRegistry $slotRoleRegistry;
+	private LanguageFactory $languageFactory;
 
 	/**
 	 * @param RevisionStore $revisionStore

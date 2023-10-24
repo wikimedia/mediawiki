@@ -96,69 +96,28 @@ class SiteConfig extends ISiteConfig {
 		MainConfigNames::ExternalLinkTarget,
 	];
 
-	/** @var ServiceOptions */
-	private $config;
-
-	/** @var Config */
-	private $mwConfig;
-
-	/** @var array Parsoid-specific options array from $config */
-	private $parsoidSettings;
-
-	/** @var Language */
-	private $contLang;
-
-	/** @var StatsdDataFactoryInterface */
-	private $stats;
-
-	/** @var MagicWordFactory */
-	private $magicWordFactory;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
-	/** @var InterwikiLookup */
-	private $interwikiLookup;
-
-	/** @var ParserFactory */
-	private $parserFactory;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var ObjectFactory */
-	private $objectFactory;
-
-	/** @var LanguageFactory */
-	private $languageFactory;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var UrlUtils */
-	private $urlUtils;
-
-	/** @var string|null */
-	private $baseUri;
-
-	/** @var string|null */
-	private $relativeLinkPrefix;
-
-	/** @var array|null */
-	private $interwikiMap;
-
-	/** @var array|null */
-	private $variants;
-
-	/** @var array */
-	private $extensionTags;
-
+	private ServiceOptions $config;
+	private Config $mwConfig;
+	/** Parsoid-specific options array from $config */
+	private array $parsoidSettings;
+	private Language $contLang;
+	private StatsdDataFactoryInterface $stats;
+	private MagicWordFactory $magicWordFactory;
+	private NamespaceInfo $namespaceInfo;
+	private SpecialPageFactory $specialPageFactory;
+	private InterwikiLookup $interwikiLookup;
+	private ParserFactory $parserFactory;
+	private UserOptionsLookup $userOptionsLookup;
+	private ObjectFactory $objectFactory;
+	private LanguageFactory $languageFactory;
+	private LanguageConverterFactory $languageConverterFactory;
+	private LanguageNameUtils $languageNameUtils;
+	private UrlUtils $urlUtils;
+	private ?string $baseUri = null;
+	private ?string $relativeLinkPrefix = null;
+	private ?array $interwikiMap = null;
+	private ?array $variants = null;
+	private ?array $extensionTags = null;
 	private bool $isTimedMediaHandlerLoaded;
 
 	/**

@@ -24,38 +24,19 @@ use Wikimedia\Parsoid\Parsoid;
  * @unstable should be marked stable before 1.40 release
  */
 class LanguageVariantConverter {
-	/** @var PageConfigFactory */
-	private $pageConfigFactory;
-
-	/** @var PageConfig */
-	private $pageConfig;
-
-	/** @var PageIdentity */
-	private $pageIdentity;
-
-	/** @var Title */
-	private $pageTitle;
-
-	/** @var Parsoid */
-	private $parsoid;
-
-	/** @var SiteConfig */
-	private $siteConfig;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var LanguageFactory */
-	private $languageFactory;
-
+	private PageConfigFactory $pageConfigFactory;
+	private ?PageConfig $pageConfig = null;
+	private PageIdentity $pageIdentity;
+	private Title $pageTitle;
+	private Parsoid $parsoid;
+	private SiteConfig $siteConfig;
+	private LanguageConverterFactory $languageConverterFactory;
+	private LanguageFactory $languageFactory;
 	/**
 	 * Page language override from the Content-Language header.
-	 * @var ?Bcp47Code
 	 */
-	private $pageLanguageOverride = null;
-
-	/** @var bool */
-	private $isFallbackLanguageConverterEnabled = true;
+	private ?Bcp47Code $pageLanguageOverride = null;
+	private bool $isFallbackLanguageConverterEnabled = true;
 
 	public function __construct(
 		PageIdentity $pageIdentity,
