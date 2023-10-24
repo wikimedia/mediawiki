@@ -80,10 +80,10 @@ class RefreshLinks extends Maintenance {
 		}
 
 		if ( $this->hasOption( 'before-timestamp' ) ) {
-			$timeCond = $dbr->buildComparison( '<', [
-				'page_links_updated' => $this->getOption( 'before-timestamp' )
-			] );
-			$builder->andWhere( [ "$timeCond OR page_links_updated IS NULL" ] );
+			$builder->andWhere(
+				$dbr->expr( 'page_links_updated', '<', $this->getOption( 'before-timestamp' ) )
+					->or( 'page_links_updated', '=', null )
+			);
 		}
 
 		if ( $this->hasOption( 'category' ) ) {

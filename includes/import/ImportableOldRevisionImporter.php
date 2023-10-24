@@ -150,9 +150,8 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $dbw )
 			->joinComment()
 			->where( [ 'rev_page' => $pageId ] )
-			->andWhere( $dbw->buildComparison(
-				'<=',
-				[ 'rev_timestamp' => $dbw->timestamp( $importableRevision->getTimestamp() ) ]
+			->andWhere( $dbw->expr(
+				'rev_timestamp', '<=', $dbw->timestamp( $importableRevision->getTimestamp() )
 			) )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC );
 		$prevRevRow = $queryBuilder->caller( __METHOD__ )->fetchRow();

@@ -150,10 +150,12 @@ interface ISQLPlatform {
 	 * Note that the order of keys in the associative array $conds is significant,
 	 * and must match the order of fields used by the index.
 	 *
-	 * You might also use it to generate a simple comparison without writing raw SQL:
+	 * When comparing a single value, prefer using the expression builder:
 	 *
-	 *     $db->buildComparison( '<=', [ 'key' => $val ] )
+	 *     $db->expr( 'key', '<=', $val )
+	 *
 	 *     // equivalent to:
+	 *     $db->buildComparison( '<=', [ 'key' => $val ] )
 	 *     'key <= ' . $db->addQuotes( $val )
 	 *
 	 * @param string $op Comparison operator, one of '>', '>=', '<', '<='
