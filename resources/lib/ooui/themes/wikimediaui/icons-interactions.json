@@ -57,6 +57,9 @@
 		"ellipsis": {
 			"file": "images/icons/ellipsis.svg"
 		},
+		"verticalEllipsis": {
+			"file": "images/icons/verticalEllipsis.svg"
+		},
 		"feedback": {
 			"file": {
 				"ltr": "images/icons/feedback-ltr.svg",

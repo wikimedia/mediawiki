@@ -1,5 +1,21 @@
 # OOUI Release History
 
+## v0.48.2 / 2023-10-24
+
+### Features
+* MultilineTextInputWidget: config to forbid newlines (David Lynch)
+
+### Styles
+* Icons: Implement verticalEllipsis (Ed Sanders)
+* CopyTextLayout: Use 'copy' icon (Jack who built the house)
+* IndexLayout: Add !important to hidden panel rules (Ed Sanders)
+
+### Code
+* Add OO.ui.getTeleportTarget() to allow it to be overridden (Bartosz Dziewoński)
+* ClippableElement: Reserve space for the vertical scrollbar (Bartosz Dziewoński)
+* InputWidget: Call setValue immediately after edit events (Ed Sanders)
+* Tag: Add warning comment to Tag::resetElementId() (TheresNoTime)
+
 ## v0.48.1 / 2023-09-12
 
 ### Features

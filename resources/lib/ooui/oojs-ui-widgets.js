@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.1
+ * OOUI v0.48.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-09-12T23:28:04Z
+ * Date: 2023-10-24T20:22:08Z
  */
 ( function ( OO ) {
 
@@ -3012,7 +3012,7 @@ OO.ui.CopyTextLayout = function OoUiCopyTextLayout( config ) {
 	}, config.textInput ) );
 	this.button = new OO.ui.ButtonWidget( $.extend( {
 		label: OO.ui.msg( 'ooui-copytextlayout-copy' ),
-		icon: 'articles'
+		icon: 'copy'
 	}, config.button ) );
 
 	// Parent constructor
