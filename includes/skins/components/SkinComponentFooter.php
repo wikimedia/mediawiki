@@ -55,6 +55,7 @@ class SkinComponentFooter implements SkinComponent {
 		$footerData = $this->getTemplateDataFooter();
 
 		// Create the menu components from the footer data.
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
 		$footerInfoMenuData = new SkinComponentMenu(
 			'footer-info',
 			$footerData['info'],
