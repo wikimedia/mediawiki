@@ -3542,7 +3542,7 @@
 	"tag-mw-undo-description": "Các thay đổi lùi sửa (hoàn tác) những thay đổi trước đó thông qua liên kết lùi lại",
 	"tag-mw-manual-revert": "Lùi lại thủ công",
 	"tag-mw-manual-revert-description": "Sửa đổi thủ công phục hồi trang về trạng thái chính xác trước đó",
-	"tag-mw-reverted": "Đã được lùi sửa",
+	"tag-mw-reverted": "Đã bị lùi lại",
 	"tag-mw-reverted-description": "Các sửa đổi sau đó bị một sửa đổi khác lùi sửa",
 	"tag-mw-server-side-upload": "Tải từ phía máy chủ",
 	"tag-mw-server-side-upload-description": "Tập tin phương tiện được tải lên bằng mã bảo trì",

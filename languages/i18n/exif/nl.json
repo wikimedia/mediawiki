@@ -203,6 +203,8 @@
 	"exif-photometricinterpretation-5": "Gescheiden (waarschijnlijk CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-codering)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-codering)",
+	"exif-photometricinterpretation-32803": "Kleurenfilterserie",
+	"exif-photometricinterpretation-34892": "Lineair rauw",
 	"exif-unknowndate": "Datum onbekend",
 	"exif-orientation-1": "Normaal",
 	"exif-orientation-2": "Horizontaal gespiegeld",
