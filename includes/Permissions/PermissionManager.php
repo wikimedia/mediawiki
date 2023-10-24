@@ -251,7 +251,7 @@ class PermissionManager {
 	 * "right-$right".
 	 * @showinitializer
 	 */
-	private const IMPLICIT_RIGHTS = [
+	private const CORE_IMPLICIT_RIGHTS = [
 		'renderfile',
 		'renderfile-nonstandard',
 		'stashedit',
@@ -1731,7 +1731,7 @@ class PermissionManager {
 	public function getImplicitRights(): array {
 		if ( $this->implicitRights === null ) {
 			$rights = array_unique( array_merge(
-				self::IMPLICIT_RIGHTS,
+				self::CORE_IMPLICIT_RIGHTS,
 				$this->options->get( MainConfigNames::ImplicitRights )
 			) );
 
