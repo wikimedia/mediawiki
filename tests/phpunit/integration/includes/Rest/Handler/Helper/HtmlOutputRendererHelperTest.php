@@ -832,9 +832,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		// This is the key assertion in this test case: get() and save() are both called.
 		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'save', 'getMetadata', 'makeParserOutputKey' ] );
-		// Second call is for the fallback cache for hacks added to ParserCache
-		// (T347632 tracks removal of this hack)
-		$parserCache->expects( $this->exactly( 2 ) )->method( 'get' )->willReturn( false );
+		$parserCache->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$parserCache->expects( $this->once() )->method( 'save' );
 		$parserCache->expects( $this->once() )->method( 'getMetadata' );
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
