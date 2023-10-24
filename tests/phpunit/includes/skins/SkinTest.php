@@ -1,11 +1,10 @@
 <?php
 
-use MediaWiki\Block\BlockManager;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -19,6 +18,7 @@ use MediaWiki\User\UserIdentityValue;
  */
 class SkinTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
+	use MockBlockTrait;
 
 	/**
 	 * @covers Skin
@@ -391,20 +391,17 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			public function outputPage() {
 			}
 		};
-		$relevantUser = UserIdentityValue::newRegistered( 1, '123.123.123.123' );
+		$relevantUser = UserIdentityValue::newRegistered( 1, 'SomeUser' );
 		$skin->setRelevantUser( $relevantUser );
 		$this->assertSame( $relevantUser, $skin->getRelevantUser() );
 
-		$blockManagerMock = $this->createNoOpMock( BlockManager::class, [ 'getUserBlock' ] );
-		$blockManagerMock->method( 'getUserBlock' )
-			->with( $relevantUser )
-			->willReturn( new DatabaseBlock( [
-				'address' => $relevantUser,
-				'wiki' => $relevantUser->getWikiId(),
-				'by' => UserIdentityValue::newAnonymous( '123.123.123.123' ),
-				'hideName' => true
-			] ) );
-		$this->setService( 'BlockManager', $blockManagerMock );
+		$this->installMockBlockManager(
+			[
+				'target' => $relevantUser,
+				'hideName' => true,
+			]
+		);
+
 		$ctx = RequestContext::getMain();
 		$ctx->setAuthority( $this->mockAnonNullAuthority() );
 		$skin->setContext( $ctx );
@@ -475,9 +472,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 				return $this->createMock( UserIdentity::class );
 			} );
 		$this->setService( 'UserIdentityLookup', $userIdentityLookup );
-		$blockManager = $this->createMock( BlockManager::class );
-		$blockManager->method( 'getUserBlock' )->willReturn( null );
-		$this->setService( 'BlockManager', $blockManager );
 		$skin->setRelevantTitle(
 			Title::makeTitle( NS_USER, $user->getName() )
 		);

@@ -217,6 +217,7 @@ $wgAutoloadClasses += [
 	'NullMultiHttpClient' => "$testDir/phpunit/mocks/NullMultiHttpClient.php",
 	'MediaWiki\\Tests\\BrokenClass'
 		=> "$testDir/phpunit/mocks/BrokenClass.php",
+	'MediaWiki\\Tests\\Unit\\MockBlockTrait' => "$testDir/phpunit/mocks/MockBlockTrait.php",
 	'MediaWiki\\Tests\\Unit\\MockServiceDependenciesTrait'
 		=> "$testDir/phpunit/mocks/MockServiceDependenciesTrait.php",
 	'MediaWiki\\Tests\\Unit\\DummyServicesTrait'
