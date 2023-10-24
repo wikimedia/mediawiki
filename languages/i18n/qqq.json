@@ -1280,7 +1280,7 @@
 	"diff-paragraph-moved-toold": "Explaining title tag for the indicating symbols when a paragraph was moved hinting to the old location in the Diff view.",
 	"diff-inline-tooltip-ins": "Title for inserted content in a diff, shown as a tooltip on the content and also in a legend at the top of the diff.",
 	"diff-inline-tooltip-del": "Title for deleted content in a diff, shown as a tooltip on the content and also in a legend at the top of the diff.",
-	"diff-inline-format-label": "Used as label for inline diff format",
+	"diff-inline-format-label": "Used as label for inline diff format. Please try to keep this message short, if possible.",
 	"diff-inline-switch-desc": "Used as a description in the help message for the inline switch",
 	"diff-line-deleted": "Used as label when a deleted line is rendered in a diff.\n\nThe arrow in this message is supposed to look like the arrow on the backspace key (sometimes labeled \"delete\") on many physical keyboards. This arrow usually points to the left in all languages. '''Therefore, in RTL languages, use the ⟵ character and put it in the ''end'' of the translation.'''",
 	"diff-newline": "Used as label when a new line is rendered in a diff\n\nThe arrow in this message is supposed to look like the arrow on the Enter key (sometimes labeled \"return\") on many physical keyboards. This arrow usually points to the left in all languages. '''Therefore, in RTL languages, use the ↲ character and put it in the ''end'' of the translation.'''",
