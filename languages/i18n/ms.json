@@ -36,7 +36,8 @@
 			"McDutchie",
 			"Base",
 			"Hakimi97",
-			"Amire80"
+			"Amire80",
+			"Lim Natee"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -3675,7 +3676,7 @@
 	"mw-widgets-abandonedit-keep": "Teruskan menyunting",
 	"mw-widgets-abandonedit-title": "Adakah anda pasti?",
 	"mw-widgets-copytextlayout-copy": "Salin",
-	"mw-widgets-dateinput-no-date": "Tarik belum dipilih",
+	"mw-widgets-dateinput-no-date": "Tarikh belum dipilih",
 	"mw-widgets-mediasearch-input-placeholder": "Cari media",
 	"mw-widgets-mediasearch-noresults": "Tiada hasil carian.",
 	"mw-widgets-titleinput-description-new-page": "laman belum wujud",
@@ -3684,6 +3685,7 @@
 	"mw-widgets-usersmultiselect-placeholder": "Tambah lagi...",
 	"mw-widgets-titlesmultiselect-placeholder": "Tambah lagi...",
 	"date-range-from": "Dari tarikh:",
+	"date-range-to": "Ke tarikh:",
 	"sessionprovider-generic": "$1 sesi",
 	"randomrootpage": "Laman akar rawak",
 	"log-action-filter-block": "Jenis sekatan:",

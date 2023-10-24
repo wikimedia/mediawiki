@@ -49,7 +49,8 @@
 			"Yueman",
 			"Z423x5c6",
 			"捍粵者",
-			"아라"
+			"아라",
+			"H78c67c"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -985,7 +986,7 @@
 	"prefs-reset-intro": "你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。",
 	"prefs-emailconfirm-label": "電郵確認:",
 	"youremail": "電郵:",
-	"username": "用戶名：",
+	"username": "{{GENDER:$1|用戶頁}}",
 	"prefs-memberingroups": "{{GENDER:$2|所屬}}嘅{{PLURAL:$1|組}}：",
 	"group-membership-link-with-expiry": "$1 （直到 $2）",
 	"prefs-registration": "註冊時間:",
@@ -1810,6 +1811,8 @@
 	"apisandbox-request-time": "請求時間：{{PLURAL:$1|$1毫秒}}",
 	"apisandbox-continue": "繼續",
 	"apisandbox-continue-clear": "清除",
+	"apisandbox-multivalue-all-namespaces": "$1 （全部名空間）",
+	"apisandbox-multivalue-all-values": "$1 （全部值）",
 	"booksources": "書籍來源",
 	"booksources-search-legend": "搵書源",
 	"booksources-search": "搵",
@@ -3073,6 +3076,7 @@
 	"log-action-filter-contentmodel-new": "用非預設內容模型開版",
 	"log-action-filter-delete-delete": "刪版",
 	"log-action-filter-delete-delete_redir": "覆蓋跳轉",
+	"log-action-filter-managetags-create": "整新標籤",
 	"log-action-filter-protect-protect": "保護",
 	"log-action-filter-protect-unprotect": "取消保護",
 	"log-action-filter-upload-overwrite": "重新上載",
@@ -3085,6 +3089,7 @@
 	"credentialsform-account": "戶口名：",
 	"linkaccounts": "連戶口",
 	"linkaccounts-submit": "連戶口",
+	"specialmute": "靜音",
 	"specialmute-submit": "確認",
 	"mute-preferences": "靜音設定",
 	"revid": "修訂 $1",

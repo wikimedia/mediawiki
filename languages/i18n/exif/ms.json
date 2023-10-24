@@ -4,7 +4,8 @@
 			"Anakmalaysia",
 			"Aviator",
 			"Hydra",
-			"Zamwan"
+			"Zamwan",
+			"Tofeiku"
 		]
 	},
 	"exif-imagewidth": "Lebar",
@@ -189,6 +190,9 @@
 	"exif-compression-4": "Pengekodan faks Kumpulan 4 CCITT",
 	"exif-copyrighted-true": "Berhak cipta",
 	"exif-copyrighted-false": "Status hak cipta tidak ditetapkan",
+	"exif-photometricinterpretation-0": "Hitam dan putih (Putih ialah 0)",
+	"exif-photometricinterpretation-1": "Hitam dan putih (Hitam ialah 0)",
+	"exif-photometricinterpretation-3": "Palet",
 	"exif-unknowndate": "Tarikh tidak diketahui",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Dibalikkan secara mengufuk",
@@ -259,6 +263,8 @@
 	"exif-scenetype-1": "Gambar yang diambil secara terus",
 	"exif-customrendered-0": "Proses biasa",
 	"exif-customrendered-1": "Proses tempahan",
+	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-8": "Potret",
 	"exif-exposuremode-0": "Pendedahan automatik",
 	"exif-exposuremode-1": "Pendedahan manual",
 	"exif-exposuremode-2": "Braket automatik",
