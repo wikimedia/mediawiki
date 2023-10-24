@@ -128,7 +128,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated codex, codex-design-tokens and codex-icons
-  from v0.6.2 to v1.0.0-rc.1.
+  from v0.6.2 to v1.0.0.
 * Updated guzzlehttp/guzzle from 7.5.0 to 7.5.3.
 * Updated jQuery from v3.6.1 to v3.7.0.
 * Updated justinrainbow/json-schema from 5.2.12 to v5.2.13.
