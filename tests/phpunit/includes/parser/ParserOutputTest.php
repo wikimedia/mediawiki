@@ -279,6 +279,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param string $expect Expected output
 	 */
 	public function testGetText( $options, $text, $expect ) {
+		// Avoid other skins affecting the section edit links
+		$this->overrideConfigValue( MainConfigNames::DefaultSkin, 'fallback' );
+		RequestContext::resetMain();
+
 		$this->overrideConfigValues( [
 			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::ScriptPath => '/w',
@@ -377,16 +381,16 @@ EOF;
 </ul>
 </div>
 
-<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1"><span>edit</span></a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>One
 </p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2"><span>edit</span></a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Two
 </p>
 <h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
 <p>Two point one
 </p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3"><span>edit</span></a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Three
 </p>
 EOF
@@ -426,16 +430,16 @@ EOF
 <div class="mw-parser-output"><p>Test document.
 </p>
 
-<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1"><span>edit</span></a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>One
 </p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2"><span>edit</span></a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Two
 </p>
 <h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
 <p>Two point one
 </p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3"><span>edit</span></a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Three
 </p></div>
 EOF
