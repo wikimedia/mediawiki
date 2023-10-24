@@ -143,7 +143,7 @@ class DatabaseBlockStore {
 				$ids = $dbw->newSelectQueryBuilder()
 					->select( 'ipb_id' )
 					->from( 'ipblocks' )
-					->where( $dbw->buildComparison( '<', [ 'ipb_expiry' => $dbw->timestamp() ] ) )
+					->where( $dbw->expr( 'ipb_expiry', '<', $dbw->timestamp() ) )
 					// Set a limit to avoid causing replication lag (T301742)
 					->limit( $limit )
 					->caller( $fname )->fetchFieldValues();
@@ -245,7 +245,7 @@ class DatabaseBlockStore {
 				->select( 'ipb_id' )
 				->from( 'ipblocks' )
 				->where( [ 'ipb_address' => $row['ipb_address'], 'ipb_user' => $row['ipb_user'] ] )
-				->andWhere( $dbw->buildComparison( '<', [ 'ipb_expiry' => $dbw->timestamp() ] ) )
+				->andWhere( $dbw->expr( 'ipb_expiry', '<', $dbw->timestamp() ) )
 				->caller( __METHOD__ )->fetchFieldValues();
 			if ( $ids ) {
 				$ids = array_map( 'intval', $ids );

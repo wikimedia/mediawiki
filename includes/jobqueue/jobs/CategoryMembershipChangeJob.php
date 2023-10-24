@@ -134,7 +134,7 @@ class CategoryMembershipChangeJob extends Job {
 			->select( [ 'rev_timestamp', 'rev_id' ] )
 			->from( 'revision' )
 			->where( [ 'rev_page' => $page->getId() ] )
-			->andWhere( $dbr->buildComparison( '>=', [ 'rev_timestamp' => $dbr->timestamp( $cutoffUnix ) ] ) )
+			->andWhere( $dbr->expr( 'rev_timestamp', '>=', $dbr->timestamp( $cutoffUnix ) ) )
 			->andWhere( 'EXISTS (' . $subQuery->caller( __METHOD__ )->getSQL() . ')' )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
 			->caller( __METHOD__ )->fetchRow();

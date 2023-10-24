@@ -294,7 +294,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 			->select( 'user_id' )
 			->from( 'user' )
 			->where( [ 'user_email_token' => md5( $confirmationCode ) ] )
-			->andWhere( $db->buildComparison( '>', [ 'user_email_token_expires' => $db->timestamp() ] ) )
+			->andWhere( $db->expr( 'user_email_token_expires', '>', $db->timestamp() ) )
 			->options( $options )
 			->caller( __METHOD__ )->fetchField();
 

@@ -54,7 +54,7 @@ class PurgeJobUtils {
 					->from( 'page' )
 					->where( [ 'page_namespace' => $namespace ] )
 					->andWhere( [ 'page_title' => $dbkeys ] )
-					->andWhere( $dbw->buildComparison( '<', [ 'page_touched' => $now ] ) )
+					->andWhere( $dbw->expr( 'page_touched', '<', $now ) )
 					->caller( $fname )->fetchFieldValues();
 
 				if ( !$ids ) {
@@ -70,7 +70,7 @@ class PurgeJobUtils {
 						->update( 'page' )
 						->set( [ 'page_touched' => $now ] )
 						->where( [ 'page_id' => $idBatch ] )
-						->andWhere( $dbw->buildComparison( '<', [ 'page_touched' => $now ] ) ) // handle races
+						->andWhere( $dbw->expr( 'page_touched', '<', $now ) ) // handle races
 						->caller( $fname )->execute();
 					if ( count( $idBatches ) > 1 ) {
 						$lbFactory->commitAndWaitForReplication( $fname, $ticket );

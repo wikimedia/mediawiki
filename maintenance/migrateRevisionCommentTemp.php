@@ -95,7 +95,7 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 
 			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression last is not-null when used
 			$this->output( "... rev_id=$last, updated $updated\n" );
-			$conds = [ $dbw->buildComparison( '>', [ 'rev_id' => $last ] ) ];
+			$conds = [ $dbw->expr( 'rev_id', '>', $last ) ];
 
 			// Sleep between batches for replication to catch up
 			$this->waitForReplication();

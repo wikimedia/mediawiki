@@ -172,8 +172,8 @@ class RecentChangesUpdateJob extends Job {
 				'actor_user IS NOT NULL', // actual accounts
 				'rc_type != ' . $dbw->addQuotes( RC_EXTERNAL ), // no wikidata
 				'rc_log_type IS NULL OR rc_log_type != ' . $dbw->addQuotes( 'newusers' ),
-				$dbw->buildComparison( '>=', [ 'rc_timestamp' => $dbw->timestamp( $sTimestamp ) ] ),
-				$dbw->buildComparison( '<=', [ 'rc_timestamp' => $dbw->timestamp( $eTimestamp ) ] ),
+				$dbw->expr( 'rc_timestamp', '>=', $dbw->timestamp( $sTimestamp ) ),
+				$dbw->expr( 'rc_timestamp', '<=', $dbw->timestamp( $eTimestamp ) ),
 			] )
 			->groupBy( 'actor_name' )
 			->orderBy( 'NULL' ) // avoid filesort
@@ -193,7 +193,7 @@ class RecentChangesUpdateJob extends Job {
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => array_map( 'strval', array_keys( $names ) ),
-					$dbw->buildComparison( '>=', [ 'qcc_value' => $nowUnix - $days * 86400 ] ),
+					$dbw->expr( 'qcc_value', '>=', $nowUnix - $days * 86400 ),
 				] )
 				->caller( __METHOD__ )->fetchResultSet();
 			// Note: In order for this to be actually consistent, we would need
@@ -241,7 +241,7 @@ class RecentChangesUpdateJob extends Job {
 			->deleteFrom( 'querycachetwo' )
 			->where( [
 				'qcc_type' => 'activeusers',
-				$dbw->buildComparison( '<', [ 'qcc_value' => $nowUnix - $days * 86400 ] ) // TS_UNIX
+				$dbw->expr( 'qcc_value', '<', $nowUnix - $days * 86400 ) // TS_UNIX
 			] )
 			->caller( __METHOD__ )->execute();
 

@@ -365,8 +365,8 @@ class LinkFilter {
 			}
 			foreach ( $domainGaps[$index1] ?? [] as $from => $to ) {
 				$thisDomainConditions[] = $db->makeList( [
-					$db->buildComparison( '<', [ 'el_id' => $from ] ),
-					$db->buildComparison( '>', [ 'el_id' => $to ] ),
+					$db->expr( 'el_id', '<', $from ),
+					$db->expr( 'el_id', '>', $to ),
 				], ISQLPlatform::LIST_OR );
 			}
 			$domainConditions[] = $db->makeList( $thisDomainConditions, ISQLPlatform::LIST_AND );

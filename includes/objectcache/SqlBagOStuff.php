@@ -1497,7 +1497,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 						->deleteFrom( $this->getTableNameByShard( $tableIndex ) )
 						->where( [
 							'keyname' => $keys,
-							$db->buildComparison( '<', [ 'exptime' => $db->timestamp( $cutoffUnix ) ] ),
+							$db->expr( 'exptime', '<', $db->timestamp( $cutoffUnix ) ),
 						] )
 						->caller( __METHOD__ )->execute();
 					$keysDeletedCount += $db->affectedRows();
