@@ -99,7 +99,8 @@ class SkinComponentFooter implements SkinComponent {
 		$skinContext = $this->skinContext;
 		$out = $skinContext->getOutput();
 		$ctx = $skinContext->getContextSource();
-		$title = $out->getTitle();
+		// This needs to be the relevant Title rather than just the raw Title for e.g. special pages that render content
+		$title = $skinContext->getRelevantTitle();
 		$titleExists = $title && $title->exists();
 		$config = $skinContext->getConfig();
 		$maxCredits = $config->get( MainConfigNames::MaxCredits );
