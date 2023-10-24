@@ -159,7 +159,7 @@ interface ISQLPlatform {
 	 *     'key <= ' . $db->addQuotes( $val )
 	 *
 	 * @param string $op Comparison operator, one of '>', '>=', '<', '<='
-	 * @param array $conds Map of field names to their values to use in the comparison
+	 * @param non-empty-array<string,mixed> $conds Map of field names to their values to use in the comparison
 	 * @return string SQL code
 	 */
 	public function buildComparison( string $op, array $conds ): string;
