@@ -259,7 +259,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 			[
 				new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ),
-				'en' ,
+				'en',
 				'Foo_Bar'
 			],
 			[
@@ -279,12 +279,12 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				new PageIdentityValue( 37, NS_MAIN, 'Remote_page', PageIdentity::LOCAL ),
-				'en' ,
+				'en',
 				'Remote_page'
 			],
 			[
 				new PageIdentityValue( 37, 10000000, 'Foobar', PageIdentity::LOCAL ),
-				'en' ,
+				'en',
 				'Special:Badtitle/NS10000000:Foobar'
 			],
 		];

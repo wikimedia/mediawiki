@@ -122,7 +122,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'method' => 'GET',
-				'url' => 'http://example.test/67890' ,
+				'url' => 'http://example.test/67890',
 			]
 		];
 		$responses = $this->createClient()->runMulti( $reqs );

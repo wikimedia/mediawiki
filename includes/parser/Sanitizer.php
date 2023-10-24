@@ -912,9 +912,11 @@ class Sanitizer {
 		# Templates and links may be expanded in later parsing,
 		# creating invalid or dangerous output. Suppress this.
 		$encValue = strtr( $encValue, [
-			'<'    => '&lt;',   // This should never happen,
-			'>'    => '&gt;',   // we've received invalid input
-			'"'    => '&quot;', // which should have been escaped.
+			// '<', '>', and '"' should never happen, as they indicate that we've received invalid input which should
+			// have been escaped.
+			'<'    => '&lt;',
+			'>'    => '&gt;',
+			'"'    => '&quot;',
 			'{'    => '&#123;',
 			'}'    => '&#125;', // prevent unpaired language conversion syntax
 			'['    => '&#91;',

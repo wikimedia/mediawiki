@@ -180,7 +180,7 @@ class MetricTest extends TestCase {
 			$zero_metrics->increment();
 		}
 		$this->assertLessThan( $rounds, count( $ten_percent_metrics->getSamples() ) ); // random
-		$this->assertCount( $rounds,  $all_metrics->getSamples() );
+		$this->assertCount( $rounds, $all_metrics->getSamples() );
 		$this->assertCount( 0, $zero_metrics->getSamples() );
 	}
 

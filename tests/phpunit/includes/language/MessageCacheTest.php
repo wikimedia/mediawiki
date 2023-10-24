@@ -277,12 +277,11 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 	public static function provideIsMainCacheable() {
 		$cases = [
-			// $message                $expected
-			[ 'allpages',              true ],
-			[ 'Allpages',              true ],
-			[ 'Allpages/bat',          true ],
+			[ 'allpages', true ],
+			[ 'Allpages', true ],
+			[ 'Allpages/bat', true ],
 			[ 'Conversiontable/zh-tw', true ],
-			[ 'My_special_message',    false ],
+			[ 'My_special_message', false ],
 		];
 		foreach ( [ null, 'en', 'fr' ] as $code ) {
 			foreach ( $cases as $case ) {

@@ -54,7 +54,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 				"id" => $id,
 				"comment" => $revision->getComment()->text,
 				"timestamp" => wfTimestamp( TS_ISO_8601, $revision->getTimestamp() ),
-				"delta" => $segment->getDeltaForRevision( $id ) ,
+				"delta" => $segment->getDeltaForRevision( $id ),
 				"size" => $revision->getSize(),
 				"tags" => $tags,
 				// Contribution type will always be MediaWiki revisions,

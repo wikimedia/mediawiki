@@ -603,7 +603,7 @@ END
     ]
 ]);',
 			ResourceLoader::makeLoaderRegisterScript( $context, [
-				[ 'test.foo', '100' , [], null, null ],
+				[ 'test.foo', '100', [], null, null ],
 				[ 'test.bar', '200', [ 'test.unknown' ], null ],
 				[ 'test.baz', '300', [ 'test.quux', 'test.foo' ], null ],
 				[ 'test.quux', '400', [], null, null, 'return true;' ],

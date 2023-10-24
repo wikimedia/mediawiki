@@ -90,7 +90,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		yield [ 0, [ 'count' => 0 ], [], 'me' ];
 		yield [ 3, [ 'count' => 3 ], [], 'me' ];
 		yield [ 0, [ 'count' => 0 ], [ 'pathParams' => [ 'user' => 'someName' ] ], 'user' ];
-		yield [ 3, [ 'count' => 3 ], [ 'pathParams' => [ 'user' => 'someName' ] ] , 'user' ];
+		yield [ 3, [ 'count' => 3 ], [ 'pathParams' => [ 'user' => 'someName' ] ], 'user' ];
 	}
 
 	/**

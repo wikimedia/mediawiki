@@ -65,7 +65,7 @@ class DeleteQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->caller( 'foo' );
 		$this->assertEquals(
 			[
-				'table' => 't' ,
+				'table' => 't',
 				'conds' => [ 'a' => 'b' ],
 				'caller' => 'foo',
 			],

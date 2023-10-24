@@ -103,7 +103,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 		$set->shrink( 10 );
 		$this->assertEquals( 10, $set->getSize() );
 		$this->assertTrue( $set->hasMoreResults() );
-		$set->prepend( new SearchSuggestion( 0, 'test', null,  10 ) );
+		$set->prepend( new SearchSuggestion( 0, 'test', null, 10 ) );
 		$this->assertEquals( 11, $set->getSize() );
 		$this->assertEquals( 10, $set->getSuggestions()[0]->getSuggestedTitleID() );
 

@@ -126,8 +126,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			[ 'telnet://', '*.test.com', 'telnet://shell.test.com/~home/' ],
 			[ '', 'http://test.com', 'http://test.com/index?arg=1' ],
 			[ 'http://', '*.test.com', 'http://www.test.com/index?arg=1' ],
-			[ '' ,
-				'http://xx23124:__ffdfdef__@www.test.com:12345/dir' ,
+			[ '',
+				'http://xx23124:__ffdfdef__@www.test.com:12345/dir',
 				'http://name:pass@www.test.com:12345/dir/dir/file.xyz.php#__se__?arg1=_&arg2[]=4rtg'
 			],
 			[ 'http://', '127.0.0.1', 'http://127.000.000.001' ],

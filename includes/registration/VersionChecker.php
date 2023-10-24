@@ -166,8 +166,7 @@ class VersionChecker {
 								'msg' =>
 									"{$extension} is not compatible with the current MediaWiki "
 									. "core (version {$this->coreVersion->getPrettyString()}), "
-									. "it requires: $values."
-								,
+									. "it requires: $values.",
 								'type' => 'incompatible-core',
 							];
 						}
@@ -185,8 +184,7 @@ class VersionChecker {
 										'msg' =>
 											"{$extension} is not compatible with the current PHP "
 											. "version {$this->phpVersion->getPrettyString()}), "
-											. "it requires: $constraint."
-										,
+											. "it requires: $constraint.",
 										'type' => 'incompatible-php',
 									];
 								}
@@ -201,8 +199,7 @@ class VersionChecker {
 									$errors[] = [
 										'msg' =>
 											"{$extension} requires {$phpExtension} PHP extension "
-											. "to be installed."
-										,
+											. "to be installed.",
 										'type' => 'missing-phpExtension',
 										'missing' => $phpExtension,
 									];
@@ -232,8 +229,7 @@ class VersionChecker {
 									$errors[] = [
 										'msg' =>
 											"{$extension} requires \"{$ability}\" ability"
-											. $customMessage
-										,
+											. $customMessage,
 										'type' => 'missing-ability',
 										'missing' => $ability,
 									];

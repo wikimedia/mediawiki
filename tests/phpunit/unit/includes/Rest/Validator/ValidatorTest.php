@@ -123,7 +123,7 @@ class ValidatorTest extends \MediaWikiUnitTestCase {
 
 		/** @var Handler|MockObject $handler */
 		$handler = $this->getMockBuilder( Handler::class )
-			->onlyMethods( [ 'getBodyValidator' , 'execute' ] )
+			->onlyMethods( [ 'getBodyValidator', 'execute' ] )
 			->getMock();
 		$handler->method( 'getBodyValidator' )->willReturn( $bodyValidator );
 
