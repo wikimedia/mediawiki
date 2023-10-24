@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:RandomInCategory
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Brian Wolff
  */
 
 namespace MediaWiki\Specials;
@@ -34,7 +30,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * Special page to direct the user to a random page
+ * Redirect to a random page in a category
  *
  * @note The method used here is rather biased. It is assumed that
  * the use of this page will be people wanting to get a random page
@@ -56,14 +52,15 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * won't have the same page selected 99% of the time.
  *
  * @ingroup SpecialPage
+ * @author Brian Wolff
  */
 class SpecialRandomInCategory extends FormSpecialPage {
-	/** @var string[] */
-	protected $extra = []; // Extra SQL statements
-	/** @var Title|false */
-	protected $category = false; // Title object of category
-	/** @var int */
-	protected $maxOffset = 30; // Max amount to fudge randomness by.
+	/** @var string[] Extra SQL statements */
+	protected $extra = [];
+	/** @var Title|false Title object of category */
+	protected $category = false;
+	/** @var int Max amount to fudge randomness by */
+	protected $maxOffset = 30;
 	/** @var int|null */
 	private $maxTimestamp = null;
 	/** @var int|null */
@@ -163,7 +160,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	/**
 	 * Choose a random title.
-	 * @return Title|null Title object (or null if nothing to choose from)
+	 * @return Title|null Title object or null if nothing to choose from
 	 */
 	public function getRandomTitle() {
 		// Convert to float, since we do math with the random number.
@@ -204,17 +201,17 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	}
 
 	/**
-	 * @param float|false $rand Random number between 0 and 1
-	 * @param int $offset Extra offset to fudge randomness
-	 * @param bool $up True to get the result above the random number, false for below
-	 * @return SelectQueryBuilder Query builder.
 	 * @note The $up parameter is supposed to counteract what would happen if there
 	 *   was a large gap in the distribution of cl_timestamp values. This way instead
 	 *   of things to the right of the gap being favoured, both sides of the gap
 	 *   are favoured.
+	 *
+	 * @param float|false $rand Random number between 0 and 1
+	 * @param int $offset Extra offset to fudge randomness
+	 * @param bool $up True to get the result above the random number, false for below
+	 * @return SelectQueryBuilder
 	 */
 	protected function getQueryBuilder( $rand, $offset, $up ) {
-		$op = $up ? '>=' : '<=';
 		if ( !$this->category instanceof Title ) {
 			throw new BadMethodCallException( 'No category set' );
 		}
@@ -231,6 +228,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 		$minClTime = $this->getTimestampOffset( $rand );
 		if ( $minClTime ) {
+			$op = $up ? '>=' : '<=';
 			$queryBuilder->andWhere(
 				$dbr->expr( 'cl_timestamp', $op, $dbr->timestamp( $minClTime ) )
 			);
@@ -241,7 +239,6 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	/**
 	 * @param float|false $rand Random number between 0 and 1
-	 *
 	 * @return int|false A random (unix) timestamp from the range of the category or false on failure
 	 */
 	protected function getTimestampOffset( $rand ) {
