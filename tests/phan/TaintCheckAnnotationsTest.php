@@ -415,6 +415,9 @@ class TaintCheckAnnotationsTest {
 		$dqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 	}
 
+	/**
+	 * @suppress PhanPluginUseReturnValueKnown
+	 */
 	function testExpression( \Wikimedia\Rdbms\IDatabase $db ) {
 		$db->expr( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->expr( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection

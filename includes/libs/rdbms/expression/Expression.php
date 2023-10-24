@@ -65,6 +65,7 @@ class Expression implements IExpression {
 	 * @param-taint $op exec_sql
 	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
+	 * @phan-side-effect-free
 	 */
 	public function and( string $field, string $op, $value ): AndExpressionGroup {
 		$exprGroup = new AndExpressionGroup( $this );
@@ -78,17 +79,28 @@ class Expression implements IExpression {
 	 * @param-taint $op exec_sql
 	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
+	 * @phan-side-effect-free
 	 */
 	public function or( string $field, string $op, $value ): OrExpressionGroup {
 		$exprGroup = new OrExpressionGroup( $this );
 		return $exprGroup->or( $field, $op, $value );
 	}
 
+	/**
+	 * @param IExpression $expr
+	 * @return AndExpressionGroup
+	 * @phan-side-effect-free
+	 */
 	public function andExpr( IExpression $expr ): AndExpressionGroup {
 		$exprGroup = new AndExpressionGroup( $this );
 		return $exprGroup->andExpr( $expr );
 	}
 
+	/**
+	 * @param IExpression $expr
+	 * @return OrExpressionGroup
+	 * @phan-side-effect-free
+	 */
 	public function orExpr( IExpression $expr ): OrExpressionGroup {
 		$exprGroup = new OrExpressionGroup( $this );
 		return $exprGroup->orExpr( $expr );
