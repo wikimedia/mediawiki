@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.1
+ * OOUI v0.48.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-09-12T23:28:04Z
+ * Date: 2023-10-24T20:22:08Z
  */
 ( function ( OO ) {
 
@@ -507,6 +507,19 @@ OO.ui.getViewportSpacing = function () {
 };
 
 /**
+ * Get the element where elements that are positioned outside of normal flow are inserted,
+ * for example dialogs and dropdown menus.
+ *
+ * This is meant to be overridden if the site needs to style this element in some way
+ * (e.g. setting font size), and doesn't want to style the whole document.
+ *
+ * @return {HTMLElement}
+ */
+OO.ui.getTeleportTarget = function () {
+	return document.body;
+};
+
+/**
  * Get the default overlay, which is used by various widgets when they are passed `$overlay: true`.
  * See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  *
@@ -515,7 +528,7 @@ OO.ui.getViewportSpacing = function () {
 OO.ui.getDefaultOverlay = function () {
 	if ( !OO.ui.$defaultOverlay ) {
 		OO.ui.$defaultOverlay = $( '<div>' ).addClass( 'oo-ui-defaultOverlay' );
-		$( document.body ).append( OO.ui.$defaultOverlay );
+		$( OO.ui.getTeleportTarget() ).append( OO.ui.$defaultOverlay );
 	}
 	return OO.ui.$defaultOverlay;
 };
@@ -5765,6 +5778,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	var clipHeight = allotedHeight < naturalHeight;
 
 	if ( clipWidth ) {
+		// The hacks below are no longer needed for Firefox and Chrome after T349034,
+		// but may still be needed for Safari. TODO: Test and maybe remove them.
+
 		// Set overflow to 'scroll' first to avoid browser bugs causing bogus scrollbars (T67059),
 		// then to 'auto' which is what we want.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
@@ -5789,6 +5805,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		} );
 	}
 	if ( clipHeight ) {
+		// The hacks below are no longer needed for Firefox and Chrome after T349034,
+		// but may still be needed for Safari. TODO: Test and maybe remove them.
+
 		// Set overflow to 'scroll' first to avoid browser bugs causing bogus scrollbars (T67059),
 		// then to 'auto' which is what we want.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
@@ -9998,7 +10017,11 @@ OO.ui.InputWidget.prototype.getInputElement = function () {
 OO.ui.InputWidget.prototype.onEdit = function () {
 	var widget = this;
 	if ( !this.isDisabled() ) {
+		widget.setValue( widget.$input.val() );
 		// Allow the stack to clear so the value will be updated
+		// TODO: This appears to only be used by TextInputWidget, and in current browsers
+		// they always the value immediately, however it is mostly harmless so this can be
+		// left in until more thoroughly tested.
 		setTimeout( function () {
 			widget.setValue( widget.$input.val() );
 		} );
@@ -12222,6 +12245,10 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * {@link OO.ui.mixin.IndicatorElement indicators}.
  * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
  *
+ * MultilineTextInputWidgets can also be used when a single line string is required, but
+ * we want to display it to the user over mulitple lines (wrapped). This is done by setting
+ * the `allowLinebreaks` config to `false`.
+ *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.
  *
  *     @example
@@ -12244,11 +12271,18 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  *  Use the #maxRows config to specify a maximum number of displayed rows.
  * @cfg {number} [maxRows] Maximum number of rows to display when #autosize is set to true.
  *  Defaults to the maximum of `10` and `2 * rows`, or `10` if `rows` isn't provided.
+ * @cfg {boolean} [allowLinebreaks=true] Whether to allow the user to add line breaks.
  */
 OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config ) {
 	config = $.extend( {
 		type: 'text'
 	}, config );
+
+	// This property needs to exist before setValue in the parent constructor,
+	// otherwise any linebreaks in the initial value won't be stripped by
+	// cleanUpValue:
+	this.allowLinebreaks = config.allowLinebreaks !== undefined ? config.allowLinebreaks : true;
+
 	// Parent constructor
 	OO.ui.MultilineTextInputWidget.super.call( this, config );
 
@@ -12345,6 +12379,15 @@ OO.ui.MultilineTextInputWidget.prototype.updatePosition = function () {
  * Modify to emit 'enter' on Ctrl/Meta+Enter, instead of plain Enter
  */
 OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
+	if ( !this.allowLinebreaks ) {
+		// In this mode we're pretending to be a single-line input, so we
+		// prevent adding newlines and react to enter in the same way as
+		// TextInputWidget:
+		if ( e.which === OO.ui.Keys.ENTER ) {
+			e.preventDefault();
+		}
+		return OO.ui.TextInputWidget.prototype.onKeyPress.call( this, e );
+	}
 	if (
 		( e.which === OO.ui.Keys.ENTER && ( e.ctrlKey || e.metaKey ) ) ||
 		// Some platforms emit keycode 10 for Control+Enter keypress in a textarea
@@ -12352,6 +12395,22 @@ OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
 	) {
 		this.emit( 'enter', e );
 	}
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MultilineTextInputWidget.prototype.cleanUpValue = function ( value ) {
+	// Parent method will guarantee we're dealing with a string, and apply inputFilter:
+	value = OO.ui.MultilineTextInputWidget.super.prototype.cleanUpValue( value );
+	if ( !this.allowLinebreaks ) {
+		// If we're forbidding linebreaks then clean them out of the incoming
+		// value to avoid a confusing situation
+		// TODO: Better handle a paste with linebreaks by using the paste event, as when
+		// we use input filtering the cursor is always reset to the end of the input.
+		value = value.replace( /\r?\n/g, ' ' );
+	}
+	return value;
 };
 
 /**

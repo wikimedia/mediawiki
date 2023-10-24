@@ -24,5 +24,6 @@
 	"ooui-selectfile-not-supported": "Faili valiku tugi puudub",
 	"ooui-selectfile-placeholder": "Faili ei ole valitud",
 	"ooui-selectfile-dragdrop-placeholder": "Lohista fail siia",
-	"ooui-selectfile-dragdrop-placeholder-multiple": "Lohista failid siia"
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Lohista failid siia",
+	"ooui-field-help": "Abi"
 }

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.1
+ * OOUI v0.48.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-09-12T23:28:04Z
+ * Date: 2023-10-24T20:22:08Z
  */
 ( function ( OO ) {
 
@@ -3689,7 +3689,7 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
 OO.ui.getWindowManager = function () {
 	if ( !OO.ui.windowManager ) {
 		OO.ui.windowManager = new OO.ui.WindowManager();
-		$( document.body ).append( OO.ui.windowManager.$element );
+		$( OO.ui.getTeleportTarget() ).append( OO.ui.windowManager.$element );
 		OO.ui.windowManager.addWindows( [ new OO.ui.MessageDialog() ] );
 	}
 	return OO.ui.windowManager;

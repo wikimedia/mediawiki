@@ -32,6 +32,9 @@
 		"ellipsis": {
 			"file": "../wikimediaui/images/icons/ellipsis.svg"
 		},
+		"verticalEllipsis": {
+			"file": "../wikimediaui/images/icons/verticalEllipsis.svg"
+		},
 		"feedback": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/feedback-ltr.svg",
