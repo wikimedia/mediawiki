@@ -992,6 +992,7 @@
 	"diff-inline-tooltip-ins": "Змесціва дададзена",
 	"diff-inline-tooltip-del": "Змесціва выдалена",
 	"diff-inline-format-label": "Лінейны",
+	"diff-inline-switch-desc": "Пераключэнне паміж убудаваным і двухслупковым фарматамі",
 	"diff-line-deleted": "⟵ выдаленне",
 	"diff-newline": "↲ новы радок",
 	"difference-missing-revision": "{{PLURAL:$2|$2 версія|$2 версіі|$2 версій}} гэтай розніцы ($1) {{PLURAL:$2|не знойдзена|не знойдзены}}.\n\nЗвычайна такое здараецца з-за пераходу па састарэлай спасылцы на розніцу ў старонцы, якая была выдалена.\nПадрабязнасці могуць быць у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале выдаленняў].",

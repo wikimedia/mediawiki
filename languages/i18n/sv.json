@@ -1044,6 +1044,7 @@
 	"editundo": "gör ogjord",
 	"diff-incompatible": "Kan inte jämföra innehållsmodellerna \"$1\" och \"$2\"",
 	"diff-empty": "(Ingen skillnad)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|redigering|redigeringar}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|En mellanliggande sidversion|$1 mellanliggande sidversioner}} av samma {{GENDER:$3|användare}} visas inte)",
 	"diff-multi-otherusers": "({{PLURAL:$1|En mellanliggande sidversion|$1 mellanliggande sidversioner}} av {{PLURAL:$2|en annan användare|$2 användare}} visas inte)",
 	"diff-multi-manyusers": "({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 användare visas inte)",

@@ -4078,7 +4078,7 @@
 	"renameusererrordoesnotexist": "Маннык ааттаах кыттааччы «<nowiki>$1</nowiki>» бэлиэтэммэтэх.",
 	"renameusererrorexists": "Маннык ааттаах кыттааччы \"<nowiki>$1</nowiki>\" номнуо баар.",
 	"renameusererrorinvalid": "Маннык аат \"<nowiki>$1</nowiki>\" көҥуллэммэт.",
-	"renameuser-error-request": "Запрос тутуута моһуоктанна. Бука диэн төнүн уонна хатылаа.",
+	"renameuser-error-request": "Ыйытык тутуута моһуоктанна. Бука диэн төнүн уонна хатылаа.",
 	"renameuser-error-same-user": "Кыттааччы аатын урукку аатыгар уларытар табыллыбат.",
 	"renameuser-error-temp-user": "\"$1\" диэн быстах кэмнээх бэлиэтии ааккын сатаан уларыппаххын.",
 	"renameuser-error-temp-user-reserved": "\"$1\" сатаан туттубаххын. Быстах бэлиэтэниилэргэ эрэ аналлаах.",

@@ -1046,6 +1046,7 @@
 	"diff-inline-tooltip-ins": "내용 추가됨",
 	"diff-inline-tooltip-del": "내용 삭제됨",
 	"diff-inline-format-label": "인라인",
+	"diff-inline-switch-desc": "인라인 포맷과 2열 포맷 사이를 전환합니다",
 	"diff-line-deleted": "⟵ 삭제",
 	"diff-newline": "↲ 새 줄",
 	"difference-missing-revision": "문서 비교에서 {{PLURAL:$2|하나|$2개}}의 판($1)을 찾을 수 {{PLURAL:$2|없습니다}}.\n\n이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 비교 링크로 인해 발생합니다.\n자세한 내용은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 확인할 수 있습니다.",

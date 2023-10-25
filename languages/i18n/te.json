@@ -1589,6 +1589,7 @@
 	"rcfilters-filter-categorization-description": "వర్గాల్లో చేర్చిన, తీసేసిన పేజీల రికార్డు.",
 	"rcfilters-filter-logactions-label": "చిట్టాల్లోకి చేరిన కార్యకలాపాలు",
 	"rcfilters-filter-logactions-description": "నిర్వాహక పనులు, ఖాతాల సృష్టి, పేజీ తొలగింపులు, ఎక్కింపులు...",
+	"rcfilters-filter-accountcreations-label": "ఖాతాల సృష్టి",
 	"rcfilters-filter-accountcreations-description": "ఖాతా సృష్టికి సంబంధించిన చిట్టా పద్దులు. చిట్టాల్లోకి చేరిన కార్యకలాపాలను తప్పక ఎంచుకుని ఉండాలి.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "కొన్ని రకాల మార్పులను \"చిన్న\" అని గుర్తించ కూడదు కాబట్టి \"చిన్న మార్పులు\" వడపోత ఇతర రకాల వడపోతలతో ఘర్షిస్తోంది. ఘర్షిస్తున్న వడపోతలను పైనున్న సచేతనమైన వడపోతల స్థలంలో గుర్తు పెట్టాం.",
 	"rcfilters-hideminor-conflicts-typeofchange": "కొన్ని రకాల మార్పులను \"చిన్న\" మార్పులుగా సూచించ జాలరు. అంచేత ఈ వడపోత కింది మార్పు రకాల వడపోతలతో ఘర్షిస్తోంది: $1",

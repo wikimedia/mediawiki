@@ -4,7 +4,8 @@
 			"Crucifunked",
 			"Enolp",
 			"Fitoschido",
-			"Xuacu"
+			"Xuacu",
+			"YoaR"
 		]
 	},
 	"config-desc": "L'instalador de MediaWiki",
@@ -235,7 +236,7 @@
 	"config-install-tables-failed": "<strong>Error:</strong> La creación de tables falló col error siguiente: $1",
 	"config-install-interwiki": "Enllenando la tabla d'interwiki predeterminada",
 	"config-install-interwiki-list": "Nun pudo lleese'l ficheru <code>interwiki.list</code>.",
-	"config-install-interwiki-exists": "<strong>Avisu:</strong> Paez que la tabla d'interwikis yá contien entraes.\nSaltando la llista predeterminada.",
+	"config-install-interwiki-exists": "<strong>Avisu:</strong> paez que la tabla d'interwikis yá contién entraes.\nSaltando la llista predeterminada.",
 	"config-install-stats": "Aniciando les estadístiques",
 	"config-install-keys": "Xenerando les claves secretes",
 	"config-install-updates": "Torgar que s'executen anovamientos innecesarios",
