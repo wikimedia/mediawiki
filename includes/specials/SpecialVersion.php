@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Version
- *
  * Copyright © 2005 Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -55,7 +52,7 @@ use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * Give information about the version of MediaWiki, PHP, the DB and extensions
+ * Version information about MediaWiki (core, extensions, libs), PHP, and the database.
  *
  * @ingroup SpecialPage
  */
@@ -124,11 +121,9 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * main()
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $IP;
 		$config = $this->getConfig();
 		$credits = self::getCredits( ExtensionRegistry::getInstance(), $config );
 
@@ -165,7 +160,7 @@ class SpecialVersion extends SpecialPage {
 
 				$wikiText = '{{int:version-credits-not-found}}';
 				if ( $extName === 'MediaWiki' ) {
-					$wikiText = file_get_contents( $IP . '/CREDITS' );
+					$wikiText = file_get_contents( MW_INSTALL_PATH . '/CREDITS' );
 					// Put the contributor list into columns
 					$wikiText = str_replace(
 						[ '<!-- BEGIN CONTRIBUTOR LIST -->', '<!-- END CONTRIBUTOR LIST -->' ],
@@ -199,7 +194,7 @@ class SpecialVersion extends SpecialPage {
 
 				if ( $extName === 'MediaWiki' ) {
 					$out->addWikiTextAsInterface(
-						file_get_contents( $IP . '/COPYING' )
+						file_get_contents( MW_INSTALL_PATH . '/COPYING' )
 					);
 					$licenseFound = true;
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
@@ -447,9 +442,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	public static function getVersion( $flags = '', $lang = null ) {
-		global $IP;
-
-		$gitInfo = self::getGitHeadSha1( $IP );
+		$gitInfo = GitInfo::repo()->getHeadSHA1();
 		if ( !$gitInfo ) {
 			$version = MW_VERSION;
 		} elseif ( $flags === 'nodb' ) {
@@ -507,9 +500,9 @@ class SpecialVersion extends SpecialPage {
 	 *   with link and date, or false on failure
 	 */
 	private static function getVersionLinkedGit() {
-		global $IP, $wgLang;
+		global $wgLang;
 
-		$gitInfo = new GitInfo( $IP );
+		$gitInfo = new GitInfo( MW_INSTALL_PATH );
 		$headSHA1 = $gitInfo->getHeadSHA1();
 		if ( !$headSHA1 ) {
 			return false;
@@ -677,9 +670,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	protected function getExternalLibraries( array $credits ) {
-		global $IP;
 		$paths = [
-			"$IP/vendor/composer/installed.json"
+			MW_INSTALL_PATH . '/vendor/composer/installed.json'
 		];
 
 		$extensionTypes = self::getExtensionTypes();
@@ -744,7 +736,7 @@ class SpecialVersion extends SpecialPage {
 					htmlspecialchars( $arr['name'] )
 				);
 			}, $info['authors'] );
-			$authors = $this->listAuthors( $authors, false, "$IP/vendor/$name" );
+			$authors = $this->listAuthors( $authors, false, MW_INSTALL_PATH . "/vendor/$name" );
 
 			// We can safely assume that the libraries' names and descriptions
 			// are written in English and aren't going to be translated,
@@ -782,8 +774,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	private function getClientSideLibraries() {
-		global $IP;
-		$registryDirs = [ 'MediaWiki' => "{$IP}/resources/lib" ]
+		$registryDirs = [ 'MediaWiki' => MW_INSTALL_PATH . '/resources/lib' ]
 			+ ExtensionRegistry::getInstance()->getAttribute( 'ForeignResourcesDir' );
 
 		$modules = [];
@@ -1018,11 +1009,10 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		if ( isset( $extension['path'] ) ) {
-			global $IP;
 			$extensionPath = dirname( $extension['path'] );
 			if ( $this->coreId == '' ) {
 				wfDebug( 'Looking up core head id' );
-				$coreHeadSHA1 = self::getGitHeadSha1( $IP );
+				$coreHeadSHA1 = GitInfo::repo()->getHeadSHA1();
 				if ( $coreHeadSHA1 ) {
 					$this->coreId = $coreHeadSHA1;
 				}
@@ -1386,19 +1376,13 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * @deprecated since 1.41 Use GitInfo::repo() for MW_INSTALL_PATH, or new GitInfo otherwise.
 	 * @param string $dir Directory of the git checkout
 	 * @return string|false Sha1 of commit HEAD points to
 	 */
 	public static function getGitHeadSha1( $dir ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return ( new GitInfo( $dir ) )->getHeadSHA1();
-	}
-
-	/**
-	 * @param string $dir Directory of the git checkout
-	 * @return bool|string Branch currently checked out
-	 */
-	public static function getGitCurrentBranch( $dir ) {
-		return ( new GitInfo( $dir ) )->getCurrentBranch();
 	}
 
 	/**

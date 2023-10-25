@@ -1,10 +1,5 @@
 <?php
 /**
- * A class to help return information about a git repo MediaWiki may be inside
- * This is used by Special:Version and is also useful for the LocalSettings.php
- * of anyone working on large branches in git to setup config that show up only
- * when specific branches are currently checked out.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -34,38 +29,36 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
-use Wikimedia\AtEase\AtEase;
 
 /**
+ * Fetch status information from a local git repository
+ *
+ * This is used by Special:Version. It can also be used by developers
+ * in their LocalSettings.php to ease testing of a branch you work on
+ * for a longer period of time. For example:
+ *
+ *     if ( GitInfo::currentBranch() === 'myrewriteproject' ) {
+ *     }
+ *
  * @newable
  * @note marked as newable in 1.35 for lack of a better alternative,
  *       but should become a stateless service eventually.
  */
 class GitInfo {
 
-	/**
-	 * Singleton for the repo at $IP
-	 */
+	/** Singleton for the repo at $IP */
 	protected static $repo = null;
 
-	/**
-	 * Location of the .git directory
-	 */
+	/* Location of the .git directory */
 	protected $basedir;
 
-	/**
-	 * Location of the repository
-	 */
+	/* Location of the repository */
 	protected $repoDir;
 
-	/**
-	 * Path to JSON cache file for pre-computed git information.
-	 */
+	/* Path to JSON cache file for pre-computed git information */
 	protected $cacheFile;
 
-	/**
-	 * Cached git information.
-	 */
+	/* Cached git information */
 	protected $cache = [];
 
 	/**
@@ -75,21 +68,15 @@ class GitInfo {
 
 	/** Configuration options needed */
 	private const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::BaseDirectory,
 		MainConfigNames::CacheDirectory,
 		MainConfigNames::GitBin,
 		MainConfigNames::GitInfoCacheDirectory,
 		MainConfigNames::GitRepositoryViewers,
 	];
 
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var HookRunner */
-	private $hookRunner;
+	private LoggerInterface $logger;
+	private ServiceOptions $options;
+	private HookRunner $hookRunner;
 
 	/**
 	 * @stable to call
@@ -155,23 +142,22 @@ class GitInfo {
 		if ( $gitInfoCacheDirectory === false ) {
 			$gitInfoCacheDirectory = $this->options->get( MainConfigNames::CacheDirectory ) . '/gitinfo';
 		}
-		$baseDir = $this->options->get( MainConfigNames::BaseDirectory );
 		if ( $gitInfoCacheDirectory ) {
-			// Convert both $IP and $repoDir to canonical paths to protect against
-			// $IP having changed between the settings files and runtime.
-			$realIP = realpath( $baseDir );
+			// Convert both MW_INSTALL_PATH and $repoDir to canonical paths
 			$repoName = realpath( $repoDir );
 			if ( $repoName === false ) {
 				// Unit tests use fake path names
 				$repoName = $repoDir;
 			}
+			$realIP = realpath( MW_INSTALL_PATH );
 			if ( strpos( $repoName, $realIP ) === 0 ) {
-				// Strip $IP from path
+				// Strip MW_INSTALL_PATH from path
 				$repoName = substr( $repoName, strlen( $realIP ) );
 			}
-			// Transform path to git repo to something we can safely embed in
-			// a filename
-			$repoName = strtr( $repoName, DIRECTORY_SEPARATOR, '-' );
+			// Transform git repo path to something we can safely embed in a filename
+			// Windows supports both backslash and forward slash, ensure both are substituted.
+			// @phan-suppress-next-line PhanPluginDuplicateArrayKey
+			$repoName = strtr( $repoName, [ '/' => '-', DIRECTORY_SEPARATOR => '-' ] );
 			$fileName = 'info' . $repoName . '.json';
 			$cachePath = "{$gitInfoCacheDirectory}/{$fileName}";
 			if ( is_readable( $cachePath ) ) {
@@ -272,7 +258,8 @@ class GitInfo {
 			$date = false;
 
 			// Suppress warnings about any open_basedir restrictions affecting $wgGitBin (T74445).
-			$isFile = AtEase::quietCall( 'is_file', $gitBin );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$isFile = @is_file( $gitBin );
 			if ( $isFile &&
 				is_executable( $gitBin ) &&
 				!Shell::isDisabled() &&
@@ -355,9 +342,8 @@ class GitInfo {
 			$config = "{$this->basedir}/config";
 			$url = false;
 			if ( is_readable( $config ) ) {
-				AtEase::suppressWarnings();
-				$configArray = parse_ini_file( $config, true );
-				AtEase::restoreWarnings();
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$configArray = @parse_ini_file( $config, true );
 				$remote = false;
 
 				// Use the "origin" remote repo if available or any other repo if not.

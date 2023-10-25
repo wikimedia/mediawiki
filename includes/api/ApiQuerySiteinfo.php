@@ -278,11 +278,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['fixarabicunicode'] = true; // Config removed in 1.35, always true
 		$data['fixmalayalamunicode'] = true; // Config removed in 1.35, always true
 
-		$baseDir = $this->getConfig()->get( MainConfigNames::BaseDirectory );
-		$git = SpecialVersion::getGitHeadSha1( $baseDir );
+		$git = GitInfo::repo()->getHeadSHA1();
 		if ( $git ) {
 			$data['git-hash'] = $git;
-			$data['git-branch'] = SpecialVersion::getGitCurrentBranch( $baseDir );
+			$data['git-branch'] = GitInfo::repo()->getCurrentBranch();
 		}
 
 		// 'case-insensitive' option is reserved for future
@@ -672,8 +671,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendInstalledLibraries( $property ) {
-		$baseDir = $this->getConfig()->get( MainConfigNames::BaseDirectory );
-		$path = "$baseDir/vendor/composer/installed.json";
+		$path = MW_INSTALL_PATH . '/vendor/composer/installed.json';
 		if ( !file_exists( $path ) ) {
 			return true;
 		}
