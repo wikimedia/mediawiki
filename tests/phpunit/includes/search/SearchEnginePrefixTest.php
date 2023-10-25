@@ -295,7 +295,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				"Exact match shouldn't override already found match if " .
+				"Exact match should override already found match if " .
 					"both exact match and found match are redirect",
 				'provision' => [
 					// Another redirect to the same target as the exact match
@@ -307,7 +307,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				'results' => [
 					// Found redirect is pulled to the top and exact match isn't
 					// added
-					'Redirect test2',
+					'Redirect TEST2',
 					'Redirect Test2 Worse Result',
 				],
 			] ],

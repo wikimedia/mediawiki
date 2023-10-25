@@ -111,6 +111,27 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 0, $set->getSize() );
 	}
 
+	/**
+	 * @covers SearchSuggestionSet::remove
+	 */
+	public function testRemove() {
+		$set = SearchSuggestionSet::emptySuggestionSet();
+		$sug = new SearchSuggestion( 0.3, 'sugg', null, 1 );
+		$set->append( $sug );
+		// same text, id
+		$this->assertTrue( $set->remove( $sug ) );
+		$this->assertSame( 0, $set->getSize() );
+
+		$set->append( $sug );
+		// different text, id
+		$this->assertFalse( $set->remove( new SearchSuggestion( 0.3, 'something else', null, 2 ) ) );
+		$this->assertSame( 1, $set->getSize() );
+
+		// same text, different/missing id
+		$this->assertTrue( $set->remove( new SearchSuggestion( 0.3, 'sugg', null, 2 ) ) );
+		$this->assertSame( 0, $set->getSize() );
+	}
+
 	/** @return iterable */
 	public static function provideNoTitles(): iterable {
 		yield 'Empty Array' => [ [] ];
