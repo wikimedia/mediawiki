@@ -11,7 +11,7 @@ use Wikimedia\Rdbms\LBFactory;
  * @todo Can this be converted to unit tests?
  *
  * @group Blocking
- * @coversDefaultClass \MediaWiki\Block\BlockErrorFormatter
+ * @covers \MediaWiki\Block\BlockErrorFormatter
  */
 class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
@@ -26,11 +26,6 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestGetMessage
-	 * @covers ::getMessage
-	 * @covers ::getBlockErrorMessageParams
-	 * @covers ::getBlockErrorInfo
-	 * @covers ::getFormattedBlockErrorInfo
-	 * @covers ::getBlockErrorMessageKey
 	 */
 	public function testGetMessage( $block, $expectedKey, $expectedParams ) {
 		$context = new DerivativeContext( RequestContext::getMain() );
@@ -179,8 +174,6 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestGetMessageCompositeBlocks
-	 * @covers ::getMessage
-	 * @covers ::getBlockErrorMessageParams
 	 */
 	public function testGetMessageCompositeBlocks( $ids, $expected ) {
 		$block = $this->getMockBuilder( CompositeBlock::class )
