@@ -353,13 +353,13 @@ class ActorStoreTest extends ActorStoreTestBase {
 			static function () {
 				return new UserIdentityValue( 0, self::IP );
 			}, // $actorCallback
-			43,  // $expected
+			43, // $expected
 		];
 		yield 'anon, non-canonical, local' => [
 			static function () {
 				return new UserIdentityValue( 0, strtolower( self::IP ) );
 			}, // $actorCallback
-			43,  // $expected
+			43, // $expected
 		];
 		yield 'registered, local' => [
 			static function () {
@@ -376,7 +376,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		yield 'anon, non-existent, local' => [
 			static function () {
 				return new UserIdentityValue( 0, '127.1.2.3' );
-			},  // $actorCallback
+			}, // $actorCallback
 			null, // $expected
 		];
 		yield 'registered, non-existent, local' => [
@@ -406,7 +406,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		yield 'anon User, non-existent, local' => [
 			static function ( MediaWikiServices $serviceContainer ) {
 				return $serviceContainer->getUserFactory()->newAnonymous( '127.1.2.3' );
-			},  // $actorCallback
+			}, // $actorCallback
 			null, // $expected
 		];
 		yield 'anon, foreign' => [
@@ -466,11 +466,11 @@ class ActorStoreTest extends ActorStoreTestBase {
 	public static function provideFindActorIdByName() {
 		yield 'anon' => [
 			self::IP, // $actorCallback
-			43,  // $expected
+			43, // $expected
 		];
 		yield 'anon, non-canonical' => [
 			strtolower( self::IP ), // $actorCallback
-			43,  // $expected
+			43, // $expected
 		];
 		yield 'registered' => [
 			'TestUser', // $actorCallback
@@ -489,7 +489,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 			45, // $expected
 		];
 		yield 'anon, non-existent' => [
-			'127.1.2.3',  // $actorCallback
+			'127.1.2.3', // $actorCallback
 			null, // $expected
 		];
 		yield 'registered, non-existent' => [

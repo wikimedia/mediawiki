@@ -120,7 +120,7 @@ class UpdateQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->caller( 'foo' );
 		$this->assertEquals(
 			[
-				'table' => 't' ,
+				'table' => 't',
 				'set' => [ 'f' => 'g', 'd' => 'l' ],
 				'conds' => [ 'a' => 'b' ],
 				'options' => [ 'IGNORE' ],

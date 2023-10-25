@@ -1807,7 +1807,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			// overrides do not affect ASCII characters
 			[ 'foo', 'Foo', 'ASCII is not overridden', [ 'f' => 'b' ] ],
 			// but they do affect non-ascii ones
-			[ 'èl', 'Ll' , 'Non-ASCII is overridden', [ 'è' => 'L' ] ],
+			[ 'èl', 'Ll', 'Non-ASCII is overridden', [ 'è' => 'L' ] ],
 			[ 'ვიკიპედია', 'ვიკიპედია', 'Georgian case is preserved', false ],
 		];
 	}

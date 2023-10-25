@@ -119,7 +119,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 		$this->assertArrayEquals( [
-			Title::makeTitle( NS_MAIN, 'Foo' ),  // newFromText doesn't yield the same internal state....
+			Title::makeTitle( NS_MAIN, 'Foo' ), // newFromText doesn't yield the same internal state....
 			Title::makeTitle( NS_MAIN, 'Bar' ),
 		], $update->getAddedLinks() );
 

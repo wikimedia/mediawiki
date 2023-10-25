@@ -51,7 +51,7 @@ class WikiReference {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		$host = parse_url( $this->mCanonicalServer,  PHP_URL_HOST );
+		$host = parse_url( $this->mCanonicalServer, PHP_URL_HOST );
 		if ( $host ) {
 			return $host;
 		} else {

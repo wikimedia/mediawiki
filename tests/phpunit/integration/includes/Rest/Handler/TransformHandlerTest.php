@@ -104,7 +104,7 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 				'>esttay anguagelay onversioncay<',
 				// NOTE: quotes are escaped because this is embedded in JSON
 				'<meta http-equiv=\"content-language\" content=\"en-x-piglatin\"/>'
-			] ,
+			],
 			200,
 			// NOTE: Parsoid returns a content-language header in the page bundle,
 			// but that header is not applied to the HTTP response, which is JSON.

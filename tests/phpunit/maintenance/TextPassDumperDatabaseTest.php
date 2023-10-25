@@ -197,7 +197,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$dumper = new TextPassDumper();
 			$dumper->loadWithArgv( [ "--stub=file:" . $nameStub,
 				"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
-				"--maxtime=1" /*This is in minutes. Fixup is below*/,
+				"--maxtime=1", // This is in minutes. Fixup is below
 				"--buffersize=32768", // The default of 32 iterations fill up 32 KiB about twice
 				"--checkpointfile=checkpoint-%s-%s.xml.gz" ] );
 			$dumper->setDB( $this->db );

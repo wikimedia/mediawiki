@@ -608,7 +608,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 			'AAAABBAAA',
 			$blobStore->expandBlob(
 				'ForTesting://cluster1/12345',
-				[ 'external' , 'gzip' ]
+				[ 'external', 'gzip' ]
 			)
 		);
 	}

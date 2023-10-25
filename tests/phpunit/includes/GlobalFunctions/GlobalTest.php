@@ -151,7 +151,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 			[ 'foo=bar&qwerty=asdf', [ 'foo' => 'bar', 'qwerty' => 'asdf' ] ], // multiple value
 			[ 'foo=A%26B%3D5%2B6%40%21%22%27', [ 'foo' => 'A&B=5+6@!"\'' ] ], // urldecoding test
 			[ 'foo[bar]=baz', [ 'foo' => [ 'bar' => 'baz' ] ] ],
-			[ 'foo%5Bbar%5D=baz', [ 'foo' => [ 'bar' => 'baz' ] ] ],  // urldecoding test 2
+			[ 'foo%5Bbar%5D=baz', [ 'foo' => [ 'bar' => 'baz' ] ] ], // urldecoding test 2
 			[
 				'foo%5Bbar%5D=baz&foo%5Bqwerty%5D=asdf',
 				[ 'foo' => [ 'bar' => 'baz', 'qwerty' => 'asdf' ] ]

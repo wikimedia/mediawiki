@@ -70,10 +70,10 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 			[ '`1`', 1 ],
 
 			// Whatchout! Should probably use something more meaningful
-			[ "`'`", "'" ],  # single quote
-			[ '`"`', '"' ],  # double quote
-			[ '````', '`' ], # backtick
-			[ '`’`', '’' ],  # apostrophe (look at your encyclopedia)
+			'single quote' => [ "`'`", "'" ],
+			'double quote' => [ '`"`', '"' ],
+			'backtick' => [ '````', '`' ],
+			'apostrophe' => [ '`’`', '’' ],
 
 			// sneaky NUL bytes are lurking everywhere
 			[ '``', "\0" ],
@@ -93,7 +93,7 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 			[ '`Басты_бет`', 'Басты_бет' ],
 
 			// Real world:
-			[ '`Alix`', 'Alix' ],  # while( ! $recovered ) { sleep(); }
+			[ '`Alix`', 'Alix' ], # while( ! $recovered ) { sleep(); }
 			[ '`Backtick: ```', 'Backtick: `' ],
 			[ '`This is a test`', 'This is a test' ],
 		];

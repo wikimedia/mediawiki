@@ -32,8 +32,8 @@ class MergeStrategyTest extends TestCase {
 		yield 'array_plus_2d' => [
 			'strategy' => MergeStrategy::ARRAY_PLUS_2D,
 			'newArray' => [ 'a' => [ 'b' => [ 'c' => [ 'e' => 'f' ] ] ] ],
-			'baseArray' => [ 'a' => [ 'b' => [ 'c' => [ 'g' => 'h' ] ], 'i' => 'j' ] ] ,
-			'expected' => [ 'a' => [ 'b' => [ 'c' => [ 'e' => 'f' ] ], 'i' => 'j' ] ] ,
+			'baseArray' => [ 'a' => [ 'b' => [ 'c' => [ 'g' => 'h' ] ], 'i' => 'j' ] ],
+			'expected' => [ 'a' => [ 'b' => [ 'c' => [ 'e' => 'f' ] ], 'i' => 'j' ] ],
 		];
 		yield 'array_plus' => [
 			'strategy' => MergeStrategy::ARRAY_PLUS,

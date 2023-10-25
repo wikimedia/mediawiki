@@ -111,8 +111,8 @@ class TempUserCreator implements TempUserConfig {
 		$status = $this->authManager->autoCreateUser(
 			$user,
 			AuthManager::AUTOCREATE_SOURCE_TEMP,
-			true /* login */,
-			false /* log */
+			true, // login
+			false // log
 		);
 		$createStatus = new CreateStatus;
 		$createStatus->merge( $status );

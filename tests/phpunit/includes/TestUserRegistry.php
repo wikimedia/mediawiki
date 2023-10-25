@@ -36,9 +36,9 @@ class TestUserRegistry {
 	public static function getMutableTestUser( $testName, $groups = [] ) {
 		$id = self::getNextId();
 		$testUser = new TestUser(
-			"TestUser $testName $id",  // username
-			"Name $id",                // real name
-			"$id@mediawiki.test",      // e-mail
+			"TestUser $testName $id",
+			"Name $id",
+			"$id@mediawiki.test",
 			(array)$groups
 		);
 		$testUser->getUser()->clearInstanceCache();
@@ -76,9 +76,9 @@ class TestUserRegistry {
 				$username = "TestUser $id";
 			}
 			self::$testUsers[$key] = $testUser = new TestUser(
-				$username,            // username
-				"Name $id",           // real name
-				"$id@mediawiki.test", // e-mail
+				$username,
+				"Name $id",
+				"$id@mediawiki.test",
 				$groups
 			);
 		}

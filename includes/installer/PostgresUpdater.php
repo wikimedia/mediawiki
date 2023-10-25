@@ -157,7 +157,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'page_restrictions', 'pr_typelevel', '(pr_type, pr_level)' ],
 			[ 'addPgIndex', 'page_restrictions', 'pr_level', '(pr_level)' ],
 			[ 'addPgIndex', 'page_restrictions', 'pr_cascade', '(pr_cascade)' ],
-			[ 'changePrimaryKey', 'page_restrictions', [ 'pr_id' ], 'page_restrictions_pk' ] ,
+			[ 'changePrimaryKey', 'page_restrictions', [ 'pr_id' ], 'page_restrictions_pk' ],
 			[ 'changeNullableField', 'page_restrictions', 'pr_page', 'NOT NULL', true ],
 			[ 'dropFkey', 'user_groups', 'ug_user' ],
 			[ 'setDefault', 'user_groups', 'ug_user', 0 ],

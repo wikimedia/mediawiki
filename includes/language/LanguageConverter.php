@@ -207,13 +207,13 @@ abstract class LanguageConverter implements ILanguageConverter {
 			// '+' add rules for alltext
 			// 'E' the flags have an error
 			// these flags above are reserved for program
-			'A' => 'A',   // add rule for convert code (all text converted)
-			'T' => 'T',   // title convert
-			'R' => 'R',   // raw content
-			'D' => 'D',   // convert description (subclass implement)
-			'-' => '-',   // remove convert (not implement)
-			'H' => 'H',   // add rule for convert code (but no display in placed code)
-			'N' => 'N',   // current variant name
+			'A' => 'A', // add rule for convert code (all text converted)
+			'T' => 'T', // title convert
+			'R' => 'R', // raw content
+			'D' => 'D', // convert description (subclass implement)
+			'-' => '-', // remove convert (not implement)
+			'H' => 'H', // add rule for convert code (but no display in placed code)
+			'N' => 'N', // current variant name
 		];
 		$flags = array_merge( $defaultflags, $this->getAdditionalFlags() );
 		foreach ( $this->getVariants() as $v ) {

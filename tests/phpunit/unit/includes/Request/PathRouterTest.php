@@ -209,7 +209,7 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 			// Make sure the router handles unicode characters correctly
 			"Unicode 1" => [
 				"/wiki/$1",
-				"/wiki/Spécial:Modifications_récentes" ,
+				"/wiki/Spécial:Modifications_récentes",
 				[ 'title' => "Spécial:Modifications_récentes" ],
 			],
 

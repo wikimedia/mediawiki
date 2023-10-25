@@ -725,7 +725,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$fields['target'] = [
 			'type' => 'user',
 			'default' => $target ?
-				str_replace( '_', ' ', $target ) : '' ,
+				str_replace( '_', ' ', $target ) : '',
 			'label' => $this->msg( 'sp-contributions-username' )->text(),
 			'name' => 'target',
 			'id' => 'mw-target-user-or-ip',

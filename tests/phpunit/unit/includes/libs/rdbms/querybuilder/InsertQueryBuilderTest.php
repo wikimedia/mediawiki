@@ -96,7 +96,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->caller( 'foo' );
 		$this->assertEquals(
 			[
-				'table' => 't' ,
+				'table' => 't',
 				'rows' => [ [ 'a' => 'b', 'd' => 'l' ] ],
 				'options' => [ 'IGNORE' ],
 				'upsert' => false,
@@ -117,7 +117,7 @@ class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->caller( 'foo' );
 		$this->assertEquals(
 			[
-				'table' => 't' ,
+				'table' => 't',
 				'rows' => [ [ 'f' => 'g', 'd' => 'l' ] ],
 				'upsert' => true,
 				'set' => [ 'f' => 'm' ],
