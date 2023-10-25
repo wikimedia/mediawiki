@@ -1894,6 +1894,7 @@ class DifferenceEngine extends ContextSource {
 			$header = $this->linkRenderer->makeKnownLink(
 				$title,
 				$header->text(),
+				[],
 				[ 'oldid' => $rev->getId() ]
 			);
 			$editQuery = [ 'action' => 'edit' ];
