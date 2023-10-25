@@ -1017,7 +1017,7 @@
 	"diff-paragraph-moved-toold": "অনুচ্ছেদ স্থানান্তর করা হয়েছে। পুরনো অবস্থানে যাওয়ার জন্য ক্লিক করুন।",
 	"diff-inline-tooltip-ins": "বিষয়বস্তু যোগ হয়েছে",
 	"diff-inline-tooltip-del": "বিষয়বস্তু বিয়োগ হয়েছে",
-	"diff-inline-format-label": "একরেখা",
+	"diff-inline-format-label": "রৈখিক",
 	"diff-table-format-label": "ছক",
 	"diff-line-deleted": "⟵ অপসারণ",
 	"diff-newline": "↲ নতুন লাইন",

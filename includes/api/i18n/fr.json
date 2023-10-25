@@ -1198,6 +1198,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "Lister les rôles d’emplacement de contenu qui existent dans la version.",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Utiliser <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> ou <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> à la place. L’arbre d’analyse XML du contenu de la révision (nécessite le modèle de contenu <code>$1</code>).",
 	"apihelp-query+revisions+base-param-slots": "Pour quels emplacements de version renvoyer des données, quand les propriétés relatives aux emplacements sont incluses dans <var>$1props</var>. Si omis, les données de l’emplacement <kbd>main</kbd> (principal) seront renvoyées dans un format rétro-compatible.",
+	"apihelp-query+revisions+base-param-contentformat-slot": "Format de sérialisation du contenu utilisé pour la sortie du contenu.",
 	"apihelp-query+revisions+base-param-limit": "Limiter le nombre de révisions renvoyées.",
 	"apihelp-query+revisions+base-param-expandtemplates": "Utiliser <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> à la place. Développer les modèles dans le contenu de la révision (nécessite $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "Utiliser <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> ou <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> à la place. Générer l’arbre d’analyse XML pour le contenu de la révision (nécessite $1prop=content).",

@@ -1051,7 +1051,7 @@
 	"diff-paragraph-moved-toold": "Avsnittet flyttades. Klicka för att hoppa till den gamla platsen.",
 	"diff-inline-tooltip-ins": "Innehåll som lades till",
 	"diff-inline-tooltip-del": "Innehåll som raderades",
-	"diff-inline-format-label": "I texten",
+	"diff-inline-format-label": "Inline",
 	"diff-table-format-label": "Tabell",
 	"diff-line-deleted": "⟵ radera",
 	"diff-newline": "↲ radbrytning",
