@@ -18,9 +18,10 @@ class Page {
 	 * @return {void} This method runs a browser command.
 	 */
 	async openTitle( title, query = {}, fragment = '' ) {
+		const config = Object.assign( browser.config || {}, browser.options || {} );
 		query.title = title;
 		await browser.url(
-			browser.config.baseUrl + '/index.php?' +
+			config.baseUrl + '/index.php?' +
 			querystring.stringify( query ) +
 			( fragment ? ( '#' + fragment ) : '' )
 		);
