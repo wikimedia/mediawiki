@@ -521,21 +521,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function getPrimaryDatabase( $domain = false ): IDatabase {
-		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
-			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
-				$config = $this->virtualDomainsMapping[$domain];
-				if ( isset( $config['cluster'] ) ) {
-					return $this
-						->getExternalLB( $config['cluster'] )
-						->getConnection( DB_PRIMARY, [], $config['db'] );
-				}
-				$domain = $config['db'];
-			} else {
-				// It's not configured, assume local db.
-				$domain = false;
-			}
-		}
-		return $this->getMainLB( $domain )->getConnection( DB_PRIMARY, [], $domain );
+		return $this->getMappedDatabase( DB_PRIMARY, [], $domain );
 	}
 
 	public function getReplicaDatabase( $domain = false, $group = null ): IReadableDatabase {
@@ -544,13 +530,26 @@ abstract class LBFactory implements ILBFactory {
 		} else {
 			$groups = [ $group ];
 		}
+		return $this->getMappedDatabase( DB_REPLICA, $groups, $domain );
+	}
+
+	/**
+	 * Helper for getPrimaryDatabase and getReplicaDatabase() providing virtual
+	 * domain mapping.
+	 *
+	 * @param int $index
+	 * @param array $groups
+	 * @param string|false $domain
+	 * @return IDatabase
+	 */
+	private function getMappedDatabase( $index, $groups, $domain ) {
 		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
 			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
 				$config = $this->virtualDomainsMapping[$domain];
 				if ( isset( $config['cluster'] ) ) {
 					return $this
 						->getExternalLB( $config['cluster'] )
-						->getConnection( DB_REPLICA, $groups, $config['db'] );
+						->getConnection( $index, $groups, $config['db'] );
 				}
 				$domain = $config['db'];
 			} else {
@@ -558,7 +557,7 @@ abstract class LBFactory implements ILBFactory {
 				$domain = false;
 			}
 		}
-		return $this->getMainLB( $domain )->getConnection( DB_REPLICA, $groups, $domain );
+		return $this->getMainLB( $domain )->getConnection( $index, $groups, $domain );
 	}
 
 	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
