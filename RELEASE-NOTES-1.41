@@ -75,6 +75,7 @@ For notes on 1.40.x and older releases, see HISTORY.
 * MultiHttpClient will send X-Request-Id header and additionally will forward
   'tracestate' and/or 'traceparent' headers when those are present in the
   original request and $wgAllowExternalReqID is set to true.
+* (T191805) The max possible size of an uploaded file was increased to 32 GiB.
 * …
 
 === New developer features in 1.41 ===
@@ -567,6 +568,9 @@ because of Phabricator reports.
   - ::parseMatch, now private
 * AbstractContent::getRedirectChain() and ::getUltimateRedirectTarget(), both
   deprecated in 1.38, have been removed.
+* The default max file size in FileBackendStore was increased from 4 GiB to
+  32 GiB. Subclasses that cannot handle files larger than 4 GiB need to set
+  $this->maxFileSize explicitly.
 * …
 
 === Deprecations in 1.41 ===

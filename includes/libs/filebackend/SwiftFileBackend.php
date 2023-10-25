@@ -160,6 +160,11 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->writeUsers = $config['writeUsers'] ?? [];
 		$this->secureReadUsers = $config['secureReadUsers'] ?? [];
 		$this->secureWriteUsers = $config['secureWriteUsers'] ?? [];
+		// Per https://docs.openstack.org/swift/latest/overview_large_objects.html
+		// we need to split objects if they are larger than 5 GB. Support for
+		// splitting objects has not yet been implemented by this class
+		// so limit max file size to 5GiB.
+		$this->maxFileSize = 5 * 1024 * 1024 * 1024;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {

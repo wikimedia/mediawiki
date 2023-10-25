@@ -54,7 +54,7 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var callable|null Method to get the MIME type of files */
 	protected $mimeCallback;
 
-	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
+	protected $maxFileSize = 32 * 1024 * 1024 * 1024; // integer bytes (32GiB)
 
 	protected const CACHE_TTL = 10; // integer; TTL in seconds for process cache entries
 	protected const CACHE_CHEAP_SIZE = 500; // integer; max entries in "cheap cache"
@@ -100,7 +100,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return int Bytes
 	 */
 	final public function maxFileSizeInternal() {
-		return $this->maxFileSize;
+		return min( $this->maxFileSize, PHP_INT_MAX );
 	}
 
 	/**
