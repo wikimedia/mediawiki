@@ -4941,6 +4941,24 @@ config-schema:
         description: |-
             Flag to enable partial blocks against performing certain actions.
             @unstable Temporary feature flag, to be removed before the release of 1.38: T280532
+    EnableMultiBlocks:
+        default: false
+        type: boolean
+        description: |-
+            If this is false, the number of blocks of a given target is limited to only 1.
+            @since 1.42
+    BlockTargetMigrationStage:
+        default: 3
+        type: integer
+        description: |4-
+             Ipblocks table schema migration stage, for normalizing ipb_address field and
+            	adding the block_target table.
+            Use the SCHEMA_COMPAT_XXX flags. Supported values:
+              - SCHEMA_COMPAT_OLD
+              - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+              - SCHEMA_COMPAT_NEW
+            History:
+              - 1.42: Added
     WhitelistRead:
         default: false
         description: |-
