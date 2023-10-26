@@ -398,10 +398,16 @@ class EmailNotification {
 					)->inContentLanguage()->text();
 			}
 			$keys['$OLDID'] = $this->oldid;
+			$keys['$PAGELOG'] = '';
 		} else {
-			# clear $OLDID placeholder in the message template
+			// If there is no revision to link to, link to the page log, which should have details. See T115183.
 			$keys['$OLDID'] = '';
 			$keys['$NEWPAGE'] = '';
+			$keys['$PAGELOG'] = "\n\n" . wfMessage(
+					'enotif_pagelog',
+					SpecialPage::getTitleFor( 'Log' )->getCanonicalURL( [ 'page' => $this->title->getPrefixedDBkey() ] )
+				)->inContentLanguage()->text();
+
 		}
 
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
