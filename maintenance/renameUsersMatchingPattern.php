@@ -95,10 +95,8 @@ class RenameUsersMatchingPattern extends Maintenance {
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'user_name' ] )
 				->from( 'user' )
-				->where( array_merge(
-					[ 'user_name' . $fromPattern->buildLike( $dbr ) ],
-					$batchConds
-				) )
+				->where( 'user_name' . $fromPattern->buildLike( $dbr ) )
+				->andWhere( $batchConds )
 				->orderBy( 'user_name' )
 				->limit( $batchSize )
 				->caller( __METHOD__ )

@@ -1469,12 +1469,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$res = $db->newSelectQueryBuilder()
 					->select( [ 'keyname', 'exptime' ] )
 					->from( $this->getTableNameByShard( $tableIndex ) )
-					->where(
-						array_merge(
-							[ $db->expr( 'exptime', '<', $db->timestamp( $cutoffUnix ) ) ],
-							$maxExp ? [ $db->expr( 'exptime', '>=', $maxExp ) ] : []
-						)
-					)
+					->where( $db->expr( 'exptime', '<', $db->timestamp( $cutoffUnix ) ) )
+					->andWhere( $maxExp ? $db->expr( 'exptime', '>=', $maxExp ) : [] )
 					->orderBy( 'exptime', SelectQueryBuilder::SORT_ASC )
 					->limit( $batchSize )
 					->caller( __METHOD__ )

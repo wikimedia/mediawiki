@@ -138,7 +138,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		$pkFilter = array_fill_keys( $primaryKey, true );
 		$this->output( "Beginning cleanup of $table\n" );
 
-		$next = '1=1';
+		$next = [];
 		$countAssigned = 0;
 		$countPrefixed = 0;
 		$userNameUtils = $this->getServiceContainer()->getUserNameUtils();
@@ -148,7 +148,8 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( array_merge( $primaryKey, [ $idField, $nameField ], $orderby ) )
 				->from( $table )
-				->where( array_merge( $conds, [ $next ] ) )
+				->where( $conds )
+				->andWhere( $next )
 				->orderBy( $orderby )
 				->limit( $this->mBatchSize )
 				->caller( __METHOD__ )
