@@ -5803,13 +5803,6 @@ config-schema:
                            or if $wgForceHTTPS is true.
             If $wgForceHTTPS is true, session cookies will be secure regardless of this
             setting. However, other cookies will still be affected.
-    DisableCookieCheck:
-        default: false
-        description: |-
-            By default, MediaWiki checks if the client supports cookies during the
-            login process, so that it can display an informative error message if
-            cookies are disabled. Set this to true if you want to disable this cookie
-            check.
     CookiePrefix:
         default: false
         dynamicDefault:

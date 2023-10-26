@@ -3152,12 +3152,6 @@ $wgCookiePath = null;
 $wgCookieSecure = null;
 
 /**
- * Config variable stub for the DisableCookieCheck setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::DisableCookieCheck
- */
-$wgDisableCookieCheck = null;
-
-/**
  * Config variable stub for the CookiePrefix setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CookiePrefix
  */
