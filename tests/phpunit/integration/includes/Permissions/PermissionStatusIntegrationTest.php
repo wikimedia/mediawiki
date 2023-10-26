@@ -98,8 +98,8 @@ class PermissionStatusIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testThrowErrorPageError_blocked() {
-		$blockErrorFormatter = $this->createNoOpMock( BlockErrorFormatter::class, [ 'getMessage' ] );
-		$blockErrorFormatter->method( 'getMessage' )->willReturn( new RawMessage( 'testing' ) );
+		$blockErrorFormatter = $this->createNoOpMock( BlockErrorFormatter::class, [ 'getMessages' ] );
+		$blockErrorFormatter->method( 'getMessages' )->willReturn( [ new RawMessage( 'testing' ) ] );
 
 		$this->setService( 'BlockErrorFormatter', $blockErrorFormatter );
 

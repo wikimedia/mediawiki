@@ -52,8 +52,15 @@ class UserBlockedError extends ErrorPageError {
 		}
 
 		// @todo This should be passed in via the constructor
-		$message = MediaWikiServices::getInstance()->getBlockErrorFormatter()
-			->getMessage( $block, $user, $language, $ip );
+		$messages = MediaWikiServices::getInstance()->getBlockErrorFormatter()
+			->getMessages( $block, $user, $language, $ip );
+		if ( count( $messages ) === 1 ) {
+			$message = $messages[0];
+		} else {
+			$message = new RawMessage( '* $' . implode( "\n* \$", range( 1, count( $messages ) ) ) );
+			$message->params( $messages )->parse();
+		}
+
 		parent::__construct( 'blockedtitle', $message );
 	}
 }
