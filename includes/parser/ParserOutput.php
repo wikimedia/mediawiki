@@ -810,6 +810,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return wfSetVar( $this->mText, $text, true );
 	}
 
+	/**
+	 * @deprecated since 1.42, use ::addLanguageLink() instead.
+	 */
 	public function setLanguageLinks( $ll ) {
 		return wfSetVar( $this->mLanguageLinks, $ll );
 	}
