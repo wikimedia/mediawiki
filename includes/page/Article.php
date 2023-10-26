@@ -865,7 +865,7 @@ class Article implements Page {
 
 		// Cache stale ParserOutput object with a short expiry
 		if ( $renderStatus->hasMessage( 'view-pool-dirty-output' ) ) {
-			$outputPage->setCdnMaxage( $context->getConfig()->get( MainConfigNames::CdnMaxageStale ) );
+			$outputPage->lowerCdnMaxage( $context->getConfig()->get( MainConfigNames::CdnMaxageStale ) );
 			$outputPage->setLastModified( $pOutput->getCacheTime() );
 			$staleReason = $renderStatus->hasMessage( 'view-pool-contention' )
 				? $context->msg( 'view-pool-contention' )->escaped()
