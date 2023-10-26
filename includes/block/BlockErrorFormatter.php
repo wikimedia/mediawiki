@@ -69,6 +69,9 @@ class BlockErrorFormatter {
 	 * block features. Message parameters are formatted for the specified user and
 	 * language.
 	 *
+	 * If passed a CompositeBlock, will get a generic message stating that there are
+	 * multiple blocks. To get all the block messages, use getMessages instead.
+	 *
 	 * @param Block $block
 	 * @param UserIdentity $user
 	 * @param Language $language
@@ -84,6 +87,30 @@ class BlockErrorFormatter {
 		$key = $this->getBlockErrorMessageKey( $block, $user );
 		$params = $this->getBlockErrorMessageParams( $block, $user, $language, $ip );
 		return new Message( $key, $params );
+	}
+
+	/**
+	 * Get block error messages for all of the blocks that apply to a user.
+	 *
+	 * @since 1.42
+	 * @param Block $block
+	 * @param UserIdentity $user
+	 * @param Language $language
+	 * @param string $ip
+	 * @return Message[]
+	 */
+	public function getMessages(
+		Block $block,
+		UserIdentity $user,
+		Language $language,
+		string $ip
+	): array {
+		$messages = [];
+		foreach ( $block->toArray() as $singleBlock ) {
+			$messages[] = $this->getMessage( $singleBlock, $user, $language, $ip );
+		}
+
+		return $messages;
 	}
 
 	/**

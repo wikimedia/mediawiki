@@ -300,7 +300,7 @@ class UserAuthority implements Authority {
 				return false;
 			}
 
-			$message = $this->blockErrorFormatter->getMessage(
+			$messages = $this->blockErrorFormatter->getMessages(
 				$userBlock,
 				$this->actor,
 				$this->uiContext->getLanguage(),
@@ -308,7 +308,9 @@ class UserAuthority implements Authority {
 			);
 
 			$status->setPermission( $action );
-			$status->fatal( $message );
+			foreach ( $messages as $message ) {
+				$status->fatal( $message );
+			}
 		}
 
 		// Check and bump the rate limit.

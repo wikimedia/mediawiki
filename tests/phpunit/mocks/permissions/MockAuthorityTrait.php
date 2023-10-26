@@ -366,8 +366,8 @@ trait MockAuthorityTrait {
 	}
 
 	private function newBlockErrorFormatter(): BlockErrorFormatter {
-		$blockErrorFormatter = $this->createNoOpMock( BlockErrorFormatter::class, [ 'getMessage' ] );
-		$blockErrorFormatter->method( 'getMessage' )->willReturn( new Message( 'blocked' ) );
+		$blockErrorFormatter = $this->createNoOpMock( BlockErrorFormatter::class, [ 'getMessages' ] );
+		$blockErrorFormatter->method( 'getMessages' )->willReturn( [ new Message( 'blocked' ) ] );
 		return $blockErrorFormatter;
 	}
 
