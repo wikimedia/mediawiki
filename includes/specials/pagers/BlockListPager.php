@@ -433,7 +433,7 @@ class BlockListPager extends TablePager {
 
 		# Filter out any expired blocks
 		$db = $this->getDatabase();
-		$info['conds'][] = 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() );
+		$info['conds'][] = $db->expr( 'ipb_expiry', '>', $db->timestamp() );
 
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
@@ -453,7 +453,7 @@ class BlockListPager extends TablePager {
 		return (int)$dbr->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
 			->from( 'ipblocks' )
-			->where( [ 'ipb_auto' => '1', 'ipb_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ), ] )
+			->where( [ 'ipb_auto' => '1', $dbr->expr( 'ipb_expiry', '>=', $dbr->timestamp() ), ] )
 			->caller( __METHOD__ )->fetchField();
 	}
 

@@ -481,7 +481,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 					[
 						$revQuery['fields']['rev_user'] . ' = ug_user',
 						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
-						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
 					],
 					__METHOD__
 				) .

@@ -226,7 +226,7 @@ class HistoryAction extends FormlessAction {
 				$this->getTitle(),
 				'',
 				[ 'lim' => 10,
-					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
+					'conds' => [ $dbr->expr( 'log_action', '!=', 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'moveddeleted-notice' ]
 				]

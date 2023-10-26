@@ -144,7 +144,7 @@ class ActiveUsersPager extends UsersPager {
 			$conds = array_merge( $conds, $data['conds'] );
 		}
 		if ( $this->requestedUser != '' ) {
-			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
+			$conds[] = $dbr->expr( 'qcc_title', '>=', $this->requestedUser );
 		}
 		if ( $this->groups !== [] ) {
 			$tables['ug1'] = 'user_groups';
@@ -172,10 +172,10 @@ class ActiveUsersPager extends UsersPager {
 		$tables = [ 'qcc_users' => $subquery, 'recentchanges' ];
 		$jconds = [ 'recentchanges' => [ 'LEFT JOIN', [
 			'rc_actor = actor_id',
-			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
-			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
-			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
-			'rc_timestamp >= ' . $dbr->addQuotes( $timestamp ),
+			$dbr->expr( 'rc_type', '!=', RC_EXTERNAL ), // Don't count wikidata.
+			$dbr->expr( 'rc_type', '!=', RC_CATEGORIZE ), // Don't count categorization changes.
+			$dbr->expr( 'rc_log_type', '=', null )->or( 'rc_log_type', '!=', 'newusers' ),
+			$dbr->expr( 'rc_timestamp', '>=', $timestamp ),
 		] ] ];
 		$conds = [];
 

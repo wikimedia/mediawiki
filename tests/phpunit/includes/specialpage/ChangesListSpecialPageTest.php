@@ -6,6 +6,7 @@ use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -136,10 +137,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	/**
-	 * @param array|string $var
+	 * @param array|string|IExpression $var
 	 * @return bool false if condition begins with 'rc_timestamp '
 	 */
 	private static function filterOutRcTimestampCondition( $var ): bool {
+		if ( $var instanceof IExpression ) {
+			$var = $var->toGeneralizedSql();
+		}
 		return ( is_array( $var ) || strpos( (string)$var, 'rc_timestamp ' ) === false );
 	}
 

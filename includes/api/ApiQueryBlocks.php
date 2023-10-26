@@ -196,7 +196,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		}
 
 		// Filter out expired rows
-		$this->addWhere( 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() ) );
+		$this->addWhere( $db->expr( 'ipb_expiry', '>', $db->timestamp() ) );
 
 		$res = $this->select( __METHOD__ );
 

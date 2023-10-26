@@ -136,14 +136,14 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
 		$conds = $this->mConds;
-		$conds[] = 'pt_expiry > ' . $dbr->addQuotes( $this->mDb->timestamp() ) .
-			' OR pt_expiry IS NULL';
+		$conds[] = $dbr->expr( 'pt_expiry', '>', $this->mDb->timestamp() )
+			->or( 'pt_expiry', '=', null );
 		if ( $this->level ) {
 			$conds['pt_create_perm'] = $this->level;
 		}
 
 		if ( $this->namespace !== null ) {
-			$conds[] = 'pt_namespace=' . $dbr->addQuotes( $this->namespace );
+			$conds[] = $dbr->expr( 'pt_namespace', '=', $this->namespace );
 		}
 
 		return [

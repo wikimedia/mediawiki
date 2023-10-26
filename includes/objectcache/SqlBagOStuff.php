@@ -1112,7 +1112,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		// Note that tombstones always have past expiration dates
 		return [
 			'keyname' => $keys,
-			'exptime >= ' . $db->addQuotes( $db->timestamp( $time ) )
+			$db->expr( 'exptime', '>=', $db->timestamp( $time ) )
 		];
 	}
 
@@ -1222,7 +1222,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$set = [];
 		foreach ( $expressionsByColumn as $column => [ $updateExpression, $initExpression ] ) {
 			$rhs = $db->conditional(
-				'exptime >= ' . $db->addQuotes( $db->timestamp( $mtUnixTs ) ),
+				$db->expr( 'exptime', '>=', $db->timestamp( $mtUnixTs ) ),
 				$updateExpression,
 				$initExpression
 			);
@@ -1471,8 +1471,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					->from( $this->getTableNameByShard( $tableIndex ) )
 					->where(
 						array_merge(
-							[ 'exptime < ' . $db->addQuotes( $db->timestamp( $cutoffUnix ) ) ],
-							$maxExp ? [ 'exptime >= ' . $db->addQuotes( $maxExp ) ] : []
+							[ $db->expr( 'exptime', '<', $db->timestamp( $cutoffUnix ) ) ],
+							$maxExp ? [ $db->expr( 'exptime', '>=', $maxExp ) ] : []
 						)
 					)
 					->orderBy( 'exptime', SelectQueryBuilder::SORT_ASC )

@@ -7,6 +7,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -897,7 +898,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			[
 				'mysql',
 				[],
-				[ "rc_timestamp > ''" ],
+				[ new Expression( 'rc_timestamp', '>', '' ) ],
 			],
 			[
 				'mysql',
@@ -929,6 +930,13 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$conds = array_merge( $commonConds, $expectedExtraConds );
 
 		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->any() )
+			->method( 'expr' )
+			->with(
+				'rc_timestamp',
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)->willReturnCallback( static fn ( $field, $op, $val ) => new Expression( $field, $op, $val ) );
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(

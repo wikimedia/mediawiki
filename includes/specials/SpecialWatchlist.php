@@ -430,7 +430,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$tables[] = 'watchlist_expiry';
 			$fields[] = 'we_expiry';
 			$join_conds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
-			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+			$conds[] = $dbr->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>', $dbr->timestamp() );
 		}
 
 		$tables[] = 'page';

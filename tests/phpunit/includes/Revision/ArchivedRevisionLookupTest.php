@@ -210,7 +210,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		$db = $this->getDb();
 		$revisions = $lookup->listRevisions(
 			$this->archivedPage,
-			[ 'ar_timestamp < ' . $db->addQuotes( $db->timestamp( $this->secondRev->getTimestamp() ) ) ],
+			[ $db->expr( 'ar_timestamp', '<', $db->timestamp( $this->secondRev->getTimestamp() ) ) ],
 			1 );
 		$this->assertSame( 1, $revisions->numRows() );
 		// Get the rows as arrays

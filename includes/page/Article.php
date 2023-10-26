@@ -1503,7 +1503,7 @@ class Article implements Page {
 
 			$dbr = $this->dbProvider->getReplicaDatabase();
 
-			$conds = [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ];
+			$conds = [ $dbr->expr( 'log_action', '!=', 'revision' ) ];
 			// Give extensions a chance to hide their (unrelated) log entries
 			$this->getHookRunner()->onArticle__MissingArticleConditions( $conds, $logTypes );
 			LogEventsList::showLogExtract(

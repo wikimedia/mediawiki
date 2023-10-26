@@ -2429,7 +2429,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$ids = $dbw->selectFieldValues(
 					'page_restrictions',
 					'pr_id',
-					[ 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
+					[ $dbw->expr( 'pr_expiry', '<', $dbw->timestamp() ) ],
 					$fname,
 					[ 'LIMIT' => $config->get( MainConfigNames::UpdateRowsPerQuery ) ] // T135470
 				);

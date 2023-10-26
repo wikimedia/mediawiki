@@ -359,7 +359,7 @@ class LinkFilter {
 			$index1 = implode( '', $trimmedlikeDomain );
 			$thisDomainConditions = [];
 			if ( $options['oneWildcard'] && $likePath[0] != '/' ) {
-				$thisDomainConditions[] = 'el_to_domain_index = ' . $db->addQuotes( $index1 );
+				$thisDomainConditions[] = $db->expr( 'el_to_domain_index', '=', $index1 );
 			} else {
 				$thisDomainConditions[] = "el_to_domain_index" . $db->buildLike( $index1, $db->anyString() );
 			}

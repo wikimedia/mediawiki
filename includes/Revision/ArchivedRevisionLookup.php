@@ -155,7 +155,7 @@ class ArchivedRevisionLookup {
 			->where( [
 				'ar_namespace' => $page->getNamespace(),
 				'ar_title' => $page->getDBkey(),
-				'ar_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) )
+				$dbr->expr( 'ar_timestamp', '<', $dbr->timestamp( $timestamp ) ),
 			] )
 			->orderBy( 'ar_timestamp DESC' )
 			->caller( __METHOD__ )->fetchRow();
@@ -169,7 +169,7 @@ class ArchivedRevisionLookup {
 			->where( [
 				'page_namespace' => $page->getNamespace(),
 				'page_title' => $page->getDBkey(),
-				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) )
+				$dbr->expr( 'rev_timestamp', '<', $dbr->timestamp( $timestamp ) )
 			] )
 			->orderBy( 'rev_timestamp DESC' )
 			->caller( __METHOD__ )->fetchRow();

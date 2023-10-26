@@ -503,6 +503,9 @@ class SQLPlatform implements ISQLPlatform {
 		if ( is_array( $cond ) ) {
 			$cond = $this->makeList( $cond, self::LIST_AND );
 		}
+		if ( $cond instanceof IExpression ) {
+			$cond = $cond->toSql( $this->quoter );
+		}
 
 		return "(CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END)";
 	}
@@ -1555,7 +1558,11 @@ class SQLPlatform implements ISQLPlatform {
 		if ( is_array( $array ) ) {
 			$scrubbedArray = [];
 			foreach ( $array as $key => $value ) {
-				$scrubbedArray[$key] = '?';
+				if ( $value instanceof IExpression ) {
+					$scrubbedArray[$key] = $value->toGeneralizedSql();
+				} else {
+					$scrubbedArray[$key] = '?';
+				}
 			}
 			return $this->makeList( $scrubbedArray, $listType );
 		}

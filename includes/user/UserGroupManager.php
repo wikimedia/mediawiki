@@ -879,7 +879,7 @@ class UserGroupManager implements IDBAccessObject {
 			$hasExpiredRow = (bool)$dbr->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'user_groups' )
-				->where( [ 'ug_expiry < ' . $dbr->addQuotes( $dbr->timestamp() ) ] )
+				->where( [ $dbr->expr( 'ug_expiry', '<', $dbr->timestamp() ) ] )
 				->caller( $fname )->fetchField();
 			if ( $hasExpiredRow ) {
 				$this->jobQueueGroup->push( new UserGroupExpiryJob( [] ) );
@@ -1033,7 +1033,7 @@ class UserGroupManager implements IDBAccessObject {
 		do {
 			$dbw->startAtomic( __METHOD__ );
 			$res = $this->newQueryBuilder( $dbw )
-				->where( [ 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp( $now ) ) ] )
+				->where( [ $dbw->expr( 'ug_expiry', '<', $dbw->timestamp( $now ) ) ] )
 				->forUpdate()
 				->limit( 100 )
 				->caller( __METHOD__ )
