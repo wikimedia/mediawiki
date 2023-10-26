@@ -4,6 +4,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Parser\MagicWordArray
+ * @covers \MediaWiki\Parser\MagicWord
  */
 class MagicWordArrayTest extends MediaWikiUnitTestCase {
 
