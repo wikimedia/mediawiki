@@ -118,6 +118,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		$user = $this->targetUser ?: $this->getUser();
 		$session = $this->getRequest()->getSession();
 
+		$injected_html = '';
 		if ( $direct ) {
 			$user->touch();
 
@@ -135,12 +136,11 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 				// TODO something more specific? This used to use nocookieslogin
 				return;
 			}
-		}
 
-		# Run any hooks; display injected HTML if any, else redirect
-		$injected_html = '';
-		$this->getHookRunner()->onUserLoginComplete(
-			$user, $injected_html, $direct );
+			# Run any hooks; display injected HTML if any, else redirect
+			$this->getHookRunner()->onUserLoginComplete(
+				$user, $injected_html, $direct );
+		}
 
 		if ( $injected_html !== '' || $extraMessages ) {
 			$this->showSuccessPage( 'success', $this->msg( 'loginsuccesstitle' ),

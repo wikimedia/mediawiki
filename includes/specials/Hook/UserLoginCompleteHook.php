@@ -18,12 +18,12 @@ interface UserLoginCompleteHook {
 	 * For functionality that needs to run after any login (API or web) use UserLoggedIn.
 	 *
 	 * @since 1.35
+	 * @since 1.42 The $direct parameter is always true when the hook is called.
 	 *
 	 * @param User $user The user object that was created on login
 	 * @param string &$inject_html Any HTML to inject after the "logged in" message.
 	 * @param bool $direct (bool) The hook is called directly after a successful login. This will
-	 *   only happen once per login. A UserLoginComplete call with direct=false can
-	 *   happen when the user visits the login page while already logged in.
+	 *   only happen once per login.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserLoginComplete( $user, &$inject_html, $direct );

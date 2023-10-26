@@ -79,6 +79,8 @@ because of Phabricator reports.
 
 === Breaking changes in 1.42 ===
 * UserRightsProxy, deprecated since 1.38, has been removed.
+* UserLoginCompleteHook is always called with its $direct parameter set to
+  boolean true. The false case has been removed.
 * MagicWord::load() has been marked @internal and may change in the future
   without further notice.
 * MediaWiki's virtualrest internal library has been removed in favor of the
