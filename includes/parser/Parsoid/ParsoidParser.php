@@ -28,6 +28,13 @@ use WikitextContent;
  * @unstable since 1.41; see T236809 for plan.
  */
 class ParsoidParser /* eventually this will extend \Parser */ {
+	/**
+	 * @unstable
+	 * This should not be used widely right now since this may go away.
+	 * This is being added to support DiscussionTools with Parsoid HTML
+	 * and after initial exploration, this may be implemented differently.
+	 */
+	public const PARSOID_TITLE_KEY = "parsoid:title-dbkey";
 	private Parsoid $parsoid;
 	private PageConfigFactory $pageConfigFactory;
 	private LanguageConverterFactory $languageConverterFactory;
@@ -146,6 +153,13 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			$parserOutput );
 
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
+
+		// Record the page title in dbkey form so that post-cache transforms
+		// have access to the title.
+		$parserOutput->setExtensionData(
+			self::PARSOID_TITLE_KEY,
+			strtr( $pageConfig->getTitle(), ' ', '_', ) // pageConfig returns text, not dbkey
+		);
 
 		// Register a watcher again because the $parserOuptut arg
 		// and $parserOutput return value above are different objects!

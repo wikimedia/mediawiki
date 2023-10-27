@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use ParserOptions;
@@ -27,6 +28,10 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		$output = $parsoidParser->parse( ...$args );
 		$html = $output->getText( $getTextOpts );
 		$this->assertStringContainsString( $expected, $html );
+		$this->assertSame(
+			$args[1]->getPrefixedDBkey(),
+			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
+		);
 		$this->assertSame( [
 			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'maxIncludeSize'
 		], $output->getUsedOptions() );
@@ -39,5 +44,33 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			// Once we support $linestart and other parser options we
 			// can extend these tests.
 		];
+	}
+
+	public function testParsoidParseRevisions() {
+		$helloWorld = 'Hello, World';
+
+		$page = $this->getNonexistingTestPage( 'Test' );
+		$this->editPage( $page, $helloWorld );
+		$pageTitle = $page->getTitle();
+
+		$parsoidParser = $this->getServiceContainer()
+			->getParsoidParserFactory()->create();
+		$output = $parsoidParser->parse(
+			$helloWorld,
+			$pageTitle,
+			ParserOptions::newFromAnon(),
+			true,
+			true,
+			$page->getRevisionRecord()->getId()
+		);
+		$html = $output->getText();
+		$this->assertStringContainsString( $helloWorld, $html );
+		$this->assertSame(
+			$pageTitle->getPrefixedDBkey(),
+			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
+		);
+		$this->assertSame( [
+			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'maxIncludeSize'
+		], $output->getUsedOptions() );
 	}
 }
