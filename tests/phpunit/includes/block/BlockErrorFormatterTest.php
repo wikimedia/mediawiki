@@ -205,4 +205,64 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider provideTestGetMessages
+	 */
+	public function testGetMessages( $block, $expectedKeys ) {
+		$context = new DerivativeContext( RequestContext::getMain() );
+
+		$formatter = $this->getServiceContainer()->getBlockErrorFormatter();
+		$messages = $formatter->getMessages(
+			$block,
+			$context->getUser(),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' ),
+			'1.2.3.4'
+		);
+
+		$this->assertSame( $expectedKeys, array_map( static function ( $message ) {
+			return $message->getKey();
+		}, $messages ) );
+	}
+
+	public static function provideTestGetMessages() {
+		$timestamp = '20000101000000';
+		$expiry = '20010101000000';
+
+		$databaseBlock = new DatabaseBlock( [
+			'timestamp' => $timestamp,
+			'expiry' => $expiry,
+			'reason' => 'Test reason.',
+		] );
+
+		$systemBlock = new SystemBlock( [
+			'timestamp' => $timestamp,
+			'systemBlock' => 'test',
+			'reason' => new Message( 'proxyblockreason' ),
+		] );
+
+		$compositeBlock = new CompositeBlock( [
+			'timestamp' => $timestamp,
+			'originalBlocks' => [
+				$databaseBlock,
+				$systemBlock
+			]
+		] );
+
+		return [
+			'Database block' => [
+				$databaseBlock,
+				[ 'blockedtext' ],
+			],
+
+			'System block (type \'test\')' => [
+				$systemBlock,
+				[ 'systemblockedtext' ],
+			],
+			'Composite block (original blocks not inserted)' => [
+				$compositeBlock,
+				[ 'blockedtext', 'systemblockedtext' ],
+			],
+		];
+	}
 }

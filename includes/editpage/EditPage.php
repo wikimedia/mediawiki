@@ -941,14 +941,16 @@ class EditPage implements IEditObject {
 					$rigor !== PermissionManager::RIGOR_SECURE
 				)
 			) {
-				$message = $this->blockErrorFormatter->getMessage(
+				$messages = $this->blockErrorFormatter->getMessages(
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable User must have a block
 					$contextUser->getBlock(),
 					$contextUser,
 					$this->context->getLanguage(),
 					$this->context->getRequest()->getIP()
 				);
-				$permErrors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+				foreach ( $messages as $message ) {
+					$permErrors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+				}
 			}
 		}
 

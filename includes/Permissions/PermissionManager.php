@@ -830,14 +830,16 @@ class PermissionManager {
 		if ( $block ) {
 			// @todo FIXME: Pass the relevant context into this function.
 			$context = RequestContext::getMain();
-			$message = $this->blockErrorFormatter->getMessage(
+			$messages = $this->blockErrorFormatter->getMessages(
 				$block,
 				$user,
 				$context->getLanguage(),
 				$context->getRequest()->getIP()
 			);
 
-			$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+			foreach ( $messages as $message ) {
+				$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+			}
 		}
 
 		return $errors;
