@@ -104,6 +104,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 			'two matches' => [ 'xSyNoNyMxSyNoNyMx', [ 'ID' => false ], 'xxx' ],
 			'this method does not support parameters' => [ 'xalt=x' ],
 			'unexpected behavior when used with parameters' => [ 'xalt=$1x', [ 'ID' => false ], 'xx' ],
+			'T321234' => [ "\x83", [] ],
 		];
 	}
 
