@@ -30,6 +30,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RateLimiter;
+use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -67,6 +69,7 @@ class EditConstraintFactory {
 
 	/** @var SpamChecker */
 	private $spamRegexChecker;
+	private RateLimiter $rateLimiter;
 
 	/**
 	 * Some constraints have dependencies that need to be injected,
@@ -86,6 +89,7 @@ class EditConstraintFactory {
 	 * @param HookContainer $hookContainer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param SpamChecker $spamRegexChecker
+	 * @param RateLimiter $rateLimiter
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -93,7 +97,8 @@ class EditConstraintFactory {
 		PermissionManager $permissionManager,
 		HookContainer $hookContainer,
 		ReadOnlyMode $readOnlyMode,
-		SpamChecker $spamRegexChecker
+		SpamChecker $spamRegexChecker,
+		RateLimiter $rateLimiter
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -112,6 +117,9 @@ class EditConstraintFactory {
 
 		// SpamRegexConstraint
 		$this->spamRegexChecker = $spamRegexChecker;
+
+		// UserRateLimitConstraint
+		$this->rateLimiter = $rateLimiter;
 	}
 
 	/**
@@ -164,6 +172,26 @@ class EditConstraintFactory {
 	public function newReadOnlyConstraint(): ReadOnlyConstraint {
 		return new ReadOnlyConstraint(
 			$this->readOnlyMode
+		);
+	}
+
+	/**
+	 * @param RateLimitSubject $subject
+	 * @param string $oldModel
+	 * @param string $newModel
+	 *
+	 * @return UserRateLimitConstraint
+	 */
+	public function newUserRateLimitConstraint(
+		RateLimitSubject $subject,
+		string $oldModel,
+		string $newModel
+	): UserRateLimitConstraint {
+		return new UserRateLimitConstraint(
+			$this->rateLimiter,
+			$subject,
+			$oldModel,
+			$newModel
 		);
 	}
 
