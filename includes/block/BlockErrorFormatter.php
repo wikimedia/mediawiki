@@ -234,7 +234,7 @@ class BlockErrorFormatter {
 		Block $block,
 		UserIdentity $user,
 		Language $language,
-		$ip
+		string $ip
 	) {
 		$info = $this->getFormattedBlockErrorInfo( $block, $user, $language );
 
