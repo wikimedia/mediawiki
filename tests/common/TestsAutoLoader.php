@@ -252,6 +252,7 @@ $wgAutoloadClasses += [
 	'NullGuzzleClient' => "$testDir/phpunit/mocks/NullGuzzleClient.php",
 	'NullHttpRequestFactory' => "$testDir/phpunit/mocks/NullHttpRequestFactory.php",
 	'NullMultiHttpClient' => "$testDir/phpunit/mocks/NullMultiHttpClient.php",
+	'MediaWiki\Tests\FileRepo\TestRepoTrait' => "$testDir/phpunit/mocks/filerepo/TestRepoTrait.php",
 	'MediaWiki\\Tests\\MockEnvironment' => "$testDir/phpunit/mocks/MockEnvironment.php",
 
 	# tests/phpunit/unit/includes

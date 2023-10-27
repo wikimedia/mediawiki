@@ -8,6 +8,8 @@
  * if it was a request to thumb.php with the relevant query parameters filled
  * out. See also $wgGenerateThumbnailOnParse.
  *
+ * @see thumb.php
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,9 +30,17 @@
  * @ingroup Media
  */
 
-define( 'THUMB_HANDLER', true );
+use MediaWiki\EntryPointEnvironment;
+use MediaWiki\FileRepo\Thumbnail404EntryPoint;
+use MediaWiki\MediaWikiServices;
+
+define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 define( 'MW_ENTRY_POINT', 'thumb_handler' );
 
-// Execute thumb.php, having set THUMB_HANDLER so that
-// it knows to extract params from a thumbnail file URL.
-require __DIR__ . '/thumb.php';
+require __DIR__ . '/includes/WebStart.php';
+
+( new Thumbnail404EntryPoint(
+	RequestContext::getMain(),
+	new EntryPointEnvironment(),
+	MediaWikiServices::getInstance()
+) )->run();

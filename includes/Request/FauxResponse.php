@@ -62,7 +62,7 @@ class FauxResponse extends WebResponse {
 			}
 		}
 
-		if ( $http_response_code !== null ) {
+		if ( $http_response_code ) {
 			$this->code = intval( $http_response_code );
 		}
 	}
