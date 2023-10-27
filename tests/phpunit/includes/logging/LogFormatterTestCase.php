@@ -153,13 +153,13 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 		];
 	}
 
-	private static function removeSomeHtml( $html ) {
+	protected static function removeSomeHtml( $html ) {
 		$html = str_replace( '&quot;', '"', $html );
 		$html = preg_replace( '/\xE2\x80[\x8E\x8F]/', '', $html ); // Strip lrm/rlm
 		return trim( strip_tags( $html ) );
 	}
 
-	private static function removeApiMetaData( $val ) {
+	protected static function removeApiMetaData( $val ) {
 		if ( is_array( $val ) ) {
 			unset( $val['_element'] );
 			unset( $val['_type'] );

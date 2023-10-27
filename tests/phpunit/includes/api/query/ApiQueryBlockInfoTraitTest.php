@@ -1,15 +1,16 @@
 <?php
 
-use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\MockDatabase;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers ApiQueryBlockInfoTrait
- * @group Database
  */
 class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
 
 	public function testUsesApiBlockInfoTrait() {
 		$this->assertTrue( method_exists( ApiQueryBlockInfoTrait::class, 'getBlockDetails' ),
@@ -17,59 +18,91 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideAddBlockInfoToQuery
+	 * @dataProvider provideAddDeletedUserFilter
 	 */
-	public function testAddBlockInfoToQuery( $args, $expect ) {
+	public function testAddDeletedUserFilter( $schema, $isAllowed, $expect ) {
+		$this->overrideConfigValue( MainConfigNames::BlockTargetMigrationStage, $schema );
+
 		// Fake timestamp to show up in the queries
 		$reset = ConvertibleTimestamp::setFakeTime( '20190101000000' );
 
-		$data = [];
+		$authority = $this->mockRegisteredAuthorityWithPermissions(
+			$isAllowed ? [ 'hideuser' ] : [] );
+		$db = new MockDatabase;
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->from( 'table' );
 
-		$mock = $this->getMockForTrait( ApiQueryBlockInfoTrait::class );
-		$mock->method( 'getDB' )->willReturn( $this->getDb() );
-		$mock->method( 'getAuthority' )
-			->willReturn( $this->getMutableTestUser()->getUser() );
-		$mock->method( 'addTables' )->willReturnCallback( static function ( $v ) use ( &$data ) {
-			$data['tables'] = array_merge( $data['tables'] ?? [], (array)$v );
-		} );
-		$mock->method( 'addFields' )->willReturnCallback( static function ( $v ) use ( &$data ) {
-			$data['fields'] = array_merge( $data['fields'] ?? [], (array)$v );
-		} );
-		$mock->method( 'addWhere' )->willReturnCallback( static function ( $v ) use ( &$data ) {
-			$data['where'] = array_merge( $data['where'] ?? [], (array)$v );
-		} );
-		$mock->method( 'addJoinConds' )->willReturnCallback( static function ( $v ) use ( &$data ) {
-			$data['joins'] = array_merge( $data['joins'] ?? [], (array)$v );
-		} );
+		$mock = $this->getMockBuilder( ApiQueryBase::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [
+				'getQueryBuilder',
+				'getDB',
+				'getAuthority'
+			] )
+			->getMockForAbstractClass();
 
-		TestingAccessWrapper::newFromObject( $mock )->addBlockInfoToQuery( ...$args );
-		$this->assertEquals( $expect, $data );
+		$mock->method( 'getQueryBuilder' )->willReturn( $queryBuilder );
+		$mock->method( 'getDB' )->willReturn( new MockDatabase );
+		$mock->method( 'getAuthority' )->willReturn( $authority );
+
+		TestingAccessWrapper::newFromObject( $mock )->addDeletedUserFilter();
+		$data = $queryBuilder->getQueryInfo();
+		$this->assertSame( $expect, $data );
 	}
 
-	public static function provideAddBlockInfoToQuery() {
-		$queryInfo = DatabaseBlock::getQueryInfo();
-
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-		$ts = $db->addQuotes( $db->timestamp( '20190101000000' ) );
-
+	public static function provideAddDeletedUserFilter() {
 		return [
-			[ [ false ], [
-				'tables' => [ 'blk' => [ 'ipblocks' ] ],
-				'fields' => [ 'ipb_deleted' ],
-				'where' => [ 'ipb_deleted' => [ 0, null ] ],
-				'joins' => [
-					'blk' => [ 'LEFT JOIN', [ 'ipb_user=user_id', "ipb_expiry > $ts" ] ]
+			'old unauthorized' => [
+				SCHEMA_COMPAT_OLD,
+				false,
+				[
+					'tables' => [ 'table' ],
+					'fields' => [ 'hu_deleted' => '1=0' ],
+					'conds' => [
+						'NOT EXISTS (SELECT  1  FROM "ipblocks"    ' .
+						'WHERE (ipb_user=user_id) AND ipb_deleted = 1  )' ],
+					'options' => [],
+					'join_conds' => [],
 				],
-			] ],
-
-			[ [ true ], [
-				'tables' => [ 'blk' => $queryInfo['tables'] ],
-				'fields' => $queryInfo['fields'],
-				'where' => [ 'ipb_deleted' => [ 0, null ] ],
-				'joins' => $queryInfo['joins'] + [
-					'blk' => [ 'LEFT JOIN', [ 'ipb_user=user_id', "ipb_expiry > $ts" ] ]
+			],
+			'old authorized' => [
+				SCHEMA_COMPAT_OLD,
+				true,
+				[
+					'tables' => [ 'table' ],
+					'fields' => [ 'hu_deleted' => 'EXISTS (SELECT  1  FROM "ipblocks"    ' .
+						'WHERE (ipb_user=user_id) AND ipb_deleted = 1  )' ],
+					'conds' => [],
+					'options' => [],
+					'join_conds' => []
 				],
-			] ],
+			],
+			'new unauthorized' => [
+				SCHEMA_COMPAT_NEW,
+				false,
+				[
+					'tables' => [ 'table' ],
+					'fields' => [ 'hu_deleted' => '1=0' ],
+					'conds' => [ 'NOT EXISTS (SELECT  1  FROM "block_target" ' .
+						'JOIN "block" ON ((bl_target=bt_id))   ' .
+						'WHERE (bt_user=user_id) AND bl_deleted = 1  )' ],
+					'options' => [],
+					'join_conds' => [],
+				],
+			],
+			'new authorized' => [
+				SCHEMA_COMPAT_NEW,
+				true,
+				[
+					'tables' => [ 'table' ],
+					'fields' => [ 'hu_deleted' => 'EXISTS (SELECT  1  FROM "block_target" ' .
+						'JOIN "block" ON ((bl_target=bt_id))   ' .
+						'WHERE (bt_user=user_id) AND bl_deleted = 1  )' ],
+					'conds' => [],
+					'options' => [],
+					'join_conds' => []
+				],
+			],
 		];
 	}
 

@@ -20,6 +20,7 @@
 
 namespace MediaWiki\User;
 
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
@@ -46,6 +47,7 @@ class ActorStoreFactory {
 	private UserNameUtils $userNameUtils;
 	private TempUserConfig $tempUserConfig;
 	private LoggerInterface $logger;
+	private HideUserUtils $hideUserUtils;
 
 	/** @var string|false */
 	private $sharedDB;
@@ -62,13 +64,15 @@ class ActorStoreFactory {
 	 * @param UserNameUtils $userNameUtils
 	 * @param TempUserConfig $tempUserConfig
 	 * @param LoggerInterface $logger
+	 * @param HideUserUtils $hideUserUtils
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ILBFactory $loadBalancerFactory,
 		UserNameUtils $userNameUtils,
 		TempUserConfig $tempUserConfig,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		HideUserUtils $hideUserUtils
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->loadBalancerFactory = $loadBalancerFactory;
@@ -77,6 +81,7 @@ class ActorStoreFactory {
 		$this->userNameUtils = $userNameUtils;
 		$this->tempUserConfig = $tempUserConfig;
 		$this->logger = $logger;
+		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/**
@@ -106,6 +111,7 @@ class ActorStoreFactory {
 				$this->userNameUtils,
 				$this->tempUserConfig,
 				$this->logger,
+				$this->hideUserUtils,
 				$wikiId
 			);
 		}

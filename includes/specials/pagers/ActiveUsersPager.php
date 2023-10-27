@@ -22,6 +22,7 @@
 namespace MediaWiki\Pager;
 
 use IContextSource;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\FormOptions;
@@ -42,6 +43,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup Pager
  */
 class ActiveUsersPager extends UsersPager {
+	/** @var HideUserUtils */
+	private $hideUserUtils;
 
 	/**
 	 * @var FormOptions
@@ -71,6 +74,7 @@ class ActiveUsersPager extends UsersPager {
 	 * @param IConnectionProvider $dbProvider
 	 * @param UserGroupManager $userGroupManager
 	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param HideUserUtils $hideUserUtils
 	 * @param FormOptions $opts
 	 */
 	public function __construct(
@@ -80,6 +84,7 @@ class ActiveUsersPager extends UsersPager {
 		IConnectionProvider $dbProvider,
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
+		HideUserUtils $hideUserUtils,
 		FormOptions $opts
 	) {
 		parent::__construct(
@@ -93,6 +98,7 @@ class ActiveUsersPager extends UsersPager {
 			null
 		);
 
+		$this->hideUserUtils = $hideUserUtils;
 		$this->RCMaxAge = $this->getConfig()->get( MainConfigNames::ActiveUserDays );
 		$this->requestedUser = '';
 
@@ -162,9 +168,7 @@ class ActiveUsersPager extends UsersPager {
 			$conds['ug2.ug_user'] = null;
 		}
 		if ( !$this->canSeeHideuser() ) {
-			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ], __METHOD__
-				) . ')';
+			$conds[] = $this->hideUserUtils->getExpression( $dbr );
 		}
 		$subquery = $dbr->buildSelectSubquery( $tables, $fields, $conds, $fname, $options, $jconds );
 
@@ -237,15 +241,33 @@ class ActiveUsersPager extends UsersPager {
 		// Although the first query already hits the block table for un-privileged, this
 		// is done in two queries to avoid huge quicksorts and to make COUNT(*) correct.
 		$dbr = $this->getDatabase();
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'ipb_user', 'deleted' => 'MAX(ipb_deleted)', 'sitewide' => 'MAX(ipb_sitewide)' ] )
-			->from( 'ipblocks' )
-			->where( [ 'ipb_user' => $uids ] )
-			->groupBy( [ 'ipb_user' ] )
-			->caller( __METHOD__ )->fetchResultSet();
+		if ( $this->blockTargetReadStage === SCHEMA_COMPAT_READ_OLD ) {
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [
+					'bt_user' => 'ipb_user',
+					'deleted' => 'MAX(ipb_deleted)',
+					'sitewide' => 'MAX(ipb_sitewide)'
+				] )
+				->from( 'ipblocks' )
+				->where( [ 'ipb_user' => $uids ] )
+				->groupBy( [ 'ipb_user' ] )
+				->caller( __METHOD__ )->fetchResultSet();
+		} else {
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [
+					'bt_user',
+					'deleted' => 'MAX(bl_deleted)',
+					'sitewide' => 'MAX(bl_sitewide)'
+				] )
+				->from( 'block_target' )
+				->join( 'block', null, 'bl_target=bt_id' )
+				->where( [ 'bt_user' => $uids ] )
+				->groupBy( [ 'bt_user' ] )
+				->caller( __METHOD__ )->fetchResultSet();
+		}
 		$this->blockStatusByUid = [];
 		foreach ( $res as $row ) {
-			$this->blockStatusByUid[$row->ipb_user] = [
+			$this->blockStatusByUid[$row->bt_user] = [
 				'deleted' => $row->deleted,
 				'sitewide' => $row->sitewide,
 			];

@@ -20,6 +20,7 @@
 
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
+use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\User\User;
@@ -46,6 +47,8 @@ trait ApiBlockInfoTrait {
 	 *  - blockexpiryrelative - relative time to blockexpiry (e.g. 'in 5 days'), omitted if infinite
 	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
 	 *  - systemblocktype - system block type, if any
+	 *  - blockcomponents - If the block is a composite block, this will be an array of block
+	 *    info arrays
 	 */
 	private function getBlockDetails(
 		Block $block,
@@ -88,6 +91,14 @@ trait ApiBlockInfoTrait {
 
 		if ( $block instanceof SystemBlock ) {
 			$vals['systemblocktype'] = $block->getSystemBlockType();
+		}
+
+		if ( $block instanceof CompositeBlock ) {
+			$components = [];
+			foreach ( $block->getOriginalBlocks() as $singleBlock ) {
+				$components[] = $this->getBlockDetails( $singleBlock, $language );
+			}
+			$vals['blockcomponents'] = $components;
 		}
 
 		return $vals;

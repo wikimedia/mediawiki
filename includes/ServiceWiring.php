@@ -57,6 +57,7 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Block\UserBlockCommandFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
@@ -272,7 +273,8 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getUserNameUtils(),
 			$services->getTempUserConfig(),
-			LoggerFactory::getInstance( 'ActorStore' )
+			LoggerFactory::getInstance( 'ActorStore' ),
+			$services->getHideUserUtils()
 		);
 	},
 
@@ -399,7 +401,8 @@ return [
 
 	'BlockRestrictionStoreFactory' => static function ( MediaWikiServices $services ): BlockRestrictionStoreFactory {
 		return new BlockRestrictionStoreFactory(
-			$services->getDBLoadBalancerFactory()
+			$services->getDBLoadBalancerFactory(),
+			$services->getMainConfig()->get( MainConfigNames::BlockTargetMigrationStage )
 		);
 	},
 
@@ -865,6 +868,12 @@ return [
 	'GroupPermissionsLookup' => static function ( MediaWikiServices $services ): GroupPermissionsLookup {
 		return new GroupPermissionsLookup(
 			new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
+		);
+	},
+
+	'HideUserUtils' => static function ( MediaWikiServices $services ): HideUserUtils {
+		return new HideUserUtils(
+			$services->getMainConfig()->get( MainConfigNames::BlockTargetMigrationStage )
 		);
 	},
 
@@ -2342,7 +2351,8 @@ return [
 	'UserNamePrefixSearch' => static function ( MediaWikiServices $services ): UserNamePrefixSearch {
 		return new UserNamePrefixSearch(
 			$services->getDBLoadBalancerFactory(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getHideUserUtils()
 		);
 	},
 

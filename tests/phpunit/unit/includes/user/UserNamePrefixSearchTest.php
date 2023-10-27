@@ -3,12 +3,15 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
@@ -54,7 +57,9 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 				->willReturn( $hasHideuser );
 		}
 
-		$database = $this->createMock( DBConnRef::class );
+		$platform = new SQLPlatformTestHelper( new AddQuoterMock() );
+
+		$database = $this->createMock( Database::class );
 		$database->expects( $this->once() )
 			->method( 'anyString' )
 			->willReturn( 'anyStringGoesHere' );
@@ -63,15 +68,22 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			->method( 'expr' )
 			->with( ...$args )
 			->willReturn( new Expression( ...$args ) );
+		$database->expects( $this->any() )
+			->method( 'selectSQLText' )
+			->willReturnCallback(
+				static function ( $table, $vars, $conds, $fname, $options, $join_conds )
+				use ( $platform ) {
+					return $platform->selectSQLText(
+						$table, $vars, $conds, $fname, $options, $join_conds );
+				}
+			);
 
 		// Query parameters
 		$tables = [ 'user' ];
 		$conds = [ new Expression( ...$args ) ];
 		$joinConds = [];
 		if ( $excludeHidden ) {
-			$tables['ipblocks'] = 'ipblocks';
-			$conds['ipb_deleted'] = [ 0, null ];
-			$joinConds['ipblocks'] = [ 'LEFT JOIN', 'user_id=ipb_user' ];
+			$conds[] = 'NOT EXISTS (SELECT  1  FROM ipblocks    WHERE (ipb_user=user_id) AND ipb_deleted = 1  )';
 		}
 		$options = [
 			'LIMIT' => $limit,
@@ -96,9 +108,12 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			->method( 'getReplicaDatabase' )
 			->willReturn( $database );
 
+		$hideUserUtils = new HideUserUtils( SCHEMA_COMPAT_OLD );
+
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$dbProvider,
-			$userNameUtils
+			$userNameUtils,
+			$hideUserUtils
 		);
 		$res = $userNamePrefixSearch->search(
 			$audience,
@@ -142,7 +157,8 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 	public function testSearchInvalidAudience() {
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( UserNameUtils::class )
+			$this->createMock( UserNameUtils::class ),
+			new HideUserUtils( SCHEMA_COMPAT_OLD )
 		);
 
 		$this->expectException( InvalidArgumentException::class );

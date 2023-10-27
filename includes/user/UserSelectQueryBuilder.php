@@ -21,6 +21,7 @@
 namespace MediaWiki\User;
 
 use Iterator;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
@@ -34,6 +35,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	/** @var ActorStore */
 	private $actorStore;
 	private TempUserConfig $tempUserConfig;
+	private HideUserUtils $hideUserUtils;
 
 	private bool $userJoined = false;
 
@@ -46,12 +48,14 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	public function __construct(
 		IReadableDatabase $db,
 		ActorStore $actorStore,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		HideUserUtils $hideUserUtils
 	) {
 		parent::__construct( $db );
 
 		$this->actorStore = $actorStore;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->hideUserUtils = $hideUserUtils;
 		$this->table( 'actor' );
 	}
 
@@ -240,14 +244,11 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return $this
 	 */
 	public function hidden( bool $hidden ): self {
-		$this->leftJoin( 'ipblocks', null, [ "actor_user=ipb_user" ] );
-		if ( $hidden ) {
-			// only hidden users
-			$this->conds( [ 'ipb_deleted = 1' ] );
-		} else {
-			// filter out hidden users
-			$this->conds( [ 'ipb_deleted' => [ 0, null ] ] );
-		}
+		$this->conds( $this->hideUserUtils->getExpression(
+			$this->db,
+			'actor_user',
+			$hidden ? HideUserUtils::HIDDEN_USERS : HideUserUtils::SHOWN_USERS
+		) );
 		return $this;
 	}
 

@@ -64,6 +64,7 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getUserNameUtils(),
 			$this->getServiceContainer()->getTempUserConfig(),
 			new NullLogger(),
+			$this->getServiceContainer()->getHideUserUtils(),
 			$wikiId
 		);
 

@@ -9,33 +9,30 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * @covers \MediaWiki\Block\DatabaseBlockStoreFactory
  */
 class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 
 	/**
 	 * @dataProvider provideDomains
 	 */
 	public function testGetDatabaseBlockStore( $domain ) {
-		$lb = $this->createMock( LoadBalancer::class );
-		$lbFactory = $this->createMock( LBFactory::class );
-		$lbFactory
-			->method( 'getMainLB' )
-			->with( $domain )
-			->willReturn( $lb );
+		$lbFactory = $this->getDummyDBLoadBalancerFactory();
 
 		$blockRestrictionStore = $this->createMock( BlockRestrictionStore::class );
 		$blockRestrictionStoreFactory = $this->createMock(
@@ -47,7 +44,14 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			->willReturn( $blockRestrictionStore );
 
 		$factory = new DatabaseBlockStoreFactory(
-			$this->createMock( ServiceOptions::class ),
+			new ServiceOptions(
+				DatabaseBlockStore::CONSTRUCTOR_OPTIONS,
+				new HashConfig(
+					[
+						MainConfigNames::BlockTargetMigrationStage => SCHEMA_COMPAT_OLD,
+					] + array_fill_keys( DatabaseBlockStore::CONSTRUCTOR_OPTIONS, null )
+				)
+			),
 			$this->createMock( LoggerInterface::class ),
 			$this->createMock( ActorStoreFactory::class ),
 			$blockRestrictionStoreFactory,

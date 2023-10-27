@@ -323,6 +323,7 @@ class ApiQuery extends ApiBase {
 		'blocks' => [
 			'class' => ApiQueryBlocks::class,
 			'services' => [
+				'DatabaseBlockStore',
 				'BlockActionInfo',
 				'BlockRestrictionStore',
 				'CommentStore',

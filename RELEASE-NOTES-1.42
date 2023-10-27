@@ -199,6 +199,11 @@ because of Phabricator reports.
   for new projects.
 * Title::getBrokenLinksFrom() has been deprecated.
 * ParserOutput::setLanguageLinks() has been deprecated.
+* ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
+  and will soon stop working due to schema changes. Instead use
+  addDeletedUserFilter() or getBlockDetailsForRows().
+* DatabaseBlockStore::updateTimestamp() is now internal and should not be
+  called.
 * The module `mediawiki.icon` has been deprecated. Use the Codex mixin instead
  (T351681).
 * Passing a WikiPage to PageEditStash::parseAndCache() has been deprecated.

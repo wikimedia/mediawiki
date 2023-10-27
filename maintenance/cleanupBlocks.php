@@ -29,6 +29,8 @@ use MediaWiki\Block\DatabaseBlock;
  * Maintenance script to clean up user blocks with user names not matching the
  * 'user' table.
  *
+ * TODO: delete this script after the block_target schema migration is complete
+ *
  * @ingroup Maintenance
  */
 class CleanupBlocks extends Maintenance {

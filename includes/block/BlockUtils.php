@@ -40,6 +40,7 @@ use Wikimedia\IPUtils;
  * For now, this includes only
  * - block target parsing
  * - block target validation
+ * - parsing the target and type of a block in the database
  *
  * @since 1.36
  */
@@ -77,7 +78,8 @@ class BlockUtils {
 	}
 
 	/**
-	 * From an existing block, get the target and the type of target.
+	 * From string specification or UserIdentity, get the block target and the
+	 * type of target.
 	 *
 	 * Note that, except for null, it is always safe to treat the target
 	 * as a string; for UserIdentityValue objects this will return
@@ -85,6 +87,10 @@ class BlockUtils {
 	 * UserIdentityValue::getName().
 	 *
 	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
+	 *
+	 * Since 1.42, it is no longer safe to pass a value from the database field
+	 * ipb_address/bt_address to this method, since the username is normalized.
+	 * Use parseBlockTargetRow() instead. (T346683)
 	 *
 	 * @param string|UserIdentity|null $target
 	 * @return array [ UserIdentity|String|null, int|null ]
@@ -146,6 +152,39 @@ class BlockUtils {
 		}
 
 		return [ null, null ];
+	}
+
+	/**
+	 * From a row which must contain bt_auto, bt_user, bt_address and bl_id,
+	 * and optionally bt_user_text, determine the block target and type.
+	 *
+	 * @since 1.42
+	 * @param \stdClass $row
+	 * @return array [ UserIdentity|String|null, int|null ]
+	 */
+	public function parseBlockTargetRow( $row ) {
+		if ( $row->bt_auto ) {
+			return [ $row->bl_id, AbstractBlock::TYPE_AUTO ];
+		} elseif ( isset( $row->bt_user ) ) {
+			if ( isset( $row->bt_user_text ) ) {
+				$user = new UserIdentityValue( $row->bt_user, $row->bt_user_text );
+			} else {
+				$user = $this->userIdentityLookup->getUserIdentityByUserId( $row->bt_user );
+			}
+			return [ $user, AbstractBlock::TYPE_USER ];
+		} elseif ( $row->bt_address === null ) {
+			return [ null, null ];
+		} elseif ( IPUtils::isValid( $row->bt_address ) ) {
+			return [
+				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $row->bt_address ) ),
+				AbstractBlock::TYPE_IP
+			];
+		} elseif ( IPUtils::isValidRange( $row->bt_address ) ) {
+			// Can't create a UserIdentity from an IP range
+			return [ IPUtils::sanitizeRange( $row->bt_address ), AbstractBlock::TYPE_RANGE ];
+		} else {
+			return [ null, null ];
+		}
 	}
 
 	/**

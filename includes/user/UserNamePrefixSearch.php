@@ -23,6 +23,7 @@
 namespace MediaWiki\User;
 
 use InvalidArgumentException;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
@@ -45,17 +46,21 @@ class UserNamePrefixSearch {
 
 	private IConnectionProvider $dbProvider;
 	private UserNameUtils $userNameUtils;
+	private HideUserUtils $hideUserUtils;
 
 	/**
 	 * @param IConnectionProvider $dbProvider
 	 * @param UserNameUtils $userNameUtils
+	 * @param HideUserUtils $hideUserUtils
 	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		HideUserUtils $hideUserUtils
 	) {
 		$this->dbProvider = $dbProvider;
 		$this->userNameUtils = $userNameUtils;
+		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/**
@@ -92,8 +97,7 @@ class UserNamePrefixSearch {
 
 		// Filter out hidden user names
 		if ( $audience === self::AUDIENCE_PUBLIC || !$audience->isAllowed( 'hideuser' ) ) {
-			$queryBuilder->leftJoin( 'ipblocks', null, 'user_id=ipb_user' );
-			$queryBuilder->andWhere( [ 'ipb_deleted' => [ 0, null ] ] );
+			$queryBuilder->andWhere( $this->hideUserUtils->getExpression( $dbr ) );
 		}
 
 		return $queryBuilder->caller( __METHOD__ )->fetchFieldValues();

@@ -852,6 +852,7 @@ return [
 					'services' => [
 						0 => 'MainConfig',
 						1 => 'DBLoadBalancerFactory',
+						2 => 'HideUserUtils',
 					],
 				],
 			],

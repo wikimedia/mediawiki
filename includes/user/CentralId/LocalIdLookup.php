@@ -23,6 +23,7 @@
 namespace MediaWiki\User\CentralId;
 
 use DBAccessObjectUtils;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
@@ -42,6 +43,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class LocalIdLookup extends CentralIdLookup {
 
 	private IConnectionProvider $dbProvider;
+	private HideUserUtils $hideUserUtils;
 
 	/** @var string|null */
 	private $sharedDB;
@@ -55,15 +57,18 @@ class LocalIdLookup extends CentralIdLookup {
 	/**
 	 * @param Config $config
 	 * @param IConnectionProvider $dbProvider
+	 * @param HideUserUtils $hideUserUtils
 	 */
 	public function __construct(
 		Config $config,
-		IConnectionProvider $dbProvider
+		IConnectionProvider $dbProvider,
+		HideUserUtils $hideUserUtils
 	) {
 		$this->sharedDB = $config->get( MainConfigNames::SharedDB );
 		$this->sharedTables = $config->get( MainConfigNames::SharedTables );
 		$this->localDatabases = $config->get( MainConfigNames::LocalDatabases );
 		$this->dbProvider = $dbProvider;
+		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	public function isAttached( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool {
@@ -101,13 +106,12 @@ class LocalIdLookup extends CentralIdLookup {
 			->options( $options );
 
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
-			$queryBuilder->leftJoin( 'ipblocks', null, 'ipb_user=user_id' );
-			$queryBuilder->field( 'ipb_deleted' );
+			$this->hideUserUtils->addFieldToBuilder( $queryBuilder );
 		}
 
 		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 		foreach ( $res as $row ) {
-			$idToName[$row->user_id] = empty( $row->ipb_deleted ) ? $row->user_name : '';
+			$idToName[$row->user_id] = empty( $row->hu_deleted ) ? $row->user_name : '';
 		}
 
 		return $idToName;
@@ -131,8 +135,7 @@ class LocalIdLookup extends CentralIdLookup {
 			->options( $options );
 
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
-			$queryBuilder->leftJoin( 'ipblocks', null, 'ipb_user=user_id' );
-			$queryBuilder->where( [ 'ipb_deleted' => [ 0, null ] ] );
+			$queryBuilder->andWhere( $this->hideUserUtils->getExpression( $db ) );
 		}
 
 		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();

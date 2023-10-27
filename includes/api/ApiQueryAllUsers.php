@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\UserFactory;
@@ -205,7 +204,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere( 'user_editcount > 0' );
 		}
 
-		$this->addBlockInfoToQuery( $fld_blockinfo );
+		$this->addDeletedUserFilter();
 
 		if ( $fld_groups || $fld_rights ) {
 			$this->addFields( [ 'groups' =>
@@ -263,6 +262,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$countDuplicates = 0;
 		$lastUser = false;
 		$result = $this->getResult();
+		$blockInfos = $fld_blockinfo ? $this->getBlockDetailsForRows( $res ) : null;
 		foreach ( $res as $row ) {
 			$count++;
 
@@ -310,10 +310,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				);
 			}
 
-			if ( $fld_blockinfo && $row->ipb_id !== null ) {
-				$data += $this->getBlockDetails( DatabaseBlock::newFromRow( $row ) );
+			if ( $fld_blockinfo && isset( $blockInfos[$row->user_id] ) ) {
+				$data += $blockInfos[$row->user_id];
 			}
-			if ( $row->ipb_deleted ) {
+			if ( $row->hu_deleted ) {
 				$data['hidden'] = true;
 			}
 			if ( $fld_editcount ) {

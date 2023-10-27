@@ -50,6 +50,7 @@ use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -1140,6 +1141,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getGroupPermissionsLookup(): GroupPermissionsLookup {
 		return $this->getService( 'GroupPermissionsLookup' );
+	}
+
+	/**
+	 * @since 1.42
+	 * @return HideUserUtils
+	 */
+	public function getHideUserUtils(): HideUserUtils {
+		return $this->getService( 'HideUserUtils' );
 	}
 
 	/**

@@ -24,6 +24,7 @@
 namespace MediaWiki\Specials;
 
 use HTMLForm;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -45,24 +46,28 @@ class SpecialActiveUsers extends SpecialPage {
 	private IConnectionProvider $dbProvider;
 	private UserGroupManager $userGroupManager;
 	private UserIdentityLookup $userIdentityLookup;
+	private HideUserUtils $hideUserUtils;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param IConnectionProvider $dbProvider
 	 * @param UserGroupManager $userGroupManager
 	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param HideUserUtils $hideUserUtils
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		UserGroupManager $userGroupManager,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		HideUserUtils $hideUserUtils
 	) {
 		parent::__construct( 'Activeusers' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->dbProvider = $dbProvider;
 		$this->userGroupManager = $userGroupManager;
 		$this->userIdentityLookup = $userIdentityLookup;
+		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/**
@@ -96,6 +101,7 @@ class SpecialActiveUsers extends SpecialPage {
 			$this->dbProvider,
 			$this->userGroupManager,
 			$this->userIdentityLookup,
+			$this->hideUserUtils,
 			$opts
 		);
 		$usersBody = $pager->getBody();

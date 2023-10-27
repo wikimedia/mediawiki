@@ -4412,7 +4412,7 @@ config-schema:
             @since 1.36
     CentralIdLookupProviders:
         default:
-            local: { class: MediaWiki\User\CentralId\LocalIdLookup, services: [MainConfig, DBLoadBalancerFactory] }
+            local: { class: MediaWiki\User\CentralId\LocalIdLookup, services: [MainConfig, DBLoadBalancerFactory, HideUserUtils] }
         type: object
         description: |-
             Central ID lookup providers
