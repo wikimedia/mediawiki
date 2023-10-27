@@ -108,7 +108,8 @@ class ApiQueryTags extends ApiQueryBase {
 			if ( $fld_source ) {
 				$tag['source'] = [];
 				if ( $isSoftware ) {
-					// TODO: Can we change this to 'software'?
+					$tag['source'][] = 'software';
+					// @TODO: remove backwards compatibility entry (T247552)
 					$tag['source'][] = 'extension';
 				}
 				if ( $isExplicit ) {
