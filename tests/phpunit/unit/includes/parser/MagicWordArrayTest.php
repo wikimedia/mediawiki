@@ -85,10 +85,10 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		$spy = TestingAccessWrapper::newFromObject( $array );
 		$this->assertSame( [
 			'/^(?:(?i:(?P<a_notitleconvert>__NOTITLECONVERT__)|(?P<b_notitleconvert>__NOTC__)|' .
-				'(?P<a_notoc>__NOTOC__)))$/Su',
+				'(?P<a_notoc>__NOTOC__)))$/JSu',
 			'/^(?:(?P<a_img_thumbnail>thumb)|(?P<b_img_thumbnail>thumbnail)|' .
 				'(?P<a_img_upright>upright)|(?P<b_img_upright>upright\=(.*?))|(?P<c_img_upright>upright (.*?))|' .
-				'(?P<a_img_width>(.*?)px))$/S',
+				'(?P<a_img_width>(.*?)px))$/JS',
 		], $spy->getVariableStartToEndRegex() );
 	}
 
@@ -195,6 +195,15 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 				'[[File:X.png|=1.2|nail]]',
 			],
 		];
+	}
+
+	public function testRegexWithDuplicateGroupNames() {
+		$array = new MagicWordArray( [ 'ID', 'ID' ], $this->getFactory() );
+		$text = 'SYNONYM';
+		$this->assertSame( [ 'ID', false ], $array->matchVariableStartToEnd( $text ) );
+		$this->assertSame( 'ID', $array->matchStartAndRemove( $text ) );
+		$text = 'SYNONYM';
+		$this->assertSame( [ 'ID' => false ], $array->matchAndRemove( $text ) );
 	}
 
 	private function getFactory( ?bool $caseSensitive = null ): MagicWordFactory {
