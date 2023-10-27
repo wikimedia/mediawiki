@@ -3,9 +3,7 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
-use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockActionInfo;
-use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -18,6 +16,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
+use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
@@ -37,6 +36,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class PermissionManagerTest extends MediaWikiLangTestCase {
 	use TestAllServiceOptionsUsed;
+	use MockBlockTrait;
 
 	/** @var string */
 	protected $userName;
@@ -527,20 +527,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	/**
 	 * Create a user that is blocked in global state
 	 *
-	 * @param Block|null $block
+	 * @param array $options $block
 	 * @return User
 	 */
-	private function createUserWithBlock( ?Block $block ) {
-		$newUser = new User;
-		$blockManager = $this->getMockBuilder( BlockManager::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'getUserBlock' ] )
-			->getMock();
-		$blockManager->method( 'getUserBlock' )
-			->willReturnCallback( static function ( $paramUser ) use ( $newUser, $block ) {
-				return $paramUser === $newUser ? $block : null;
-			} );
-		$this->setService( 'BlockManager', $blockManager );
+	private function createUserWithBlock( $options = [] ) {
+		$newUser = new User();
+		$newUser->setId( 12345 );
+		$newUser->setName( 'BlockedUser' );
+
+		$this->installMockBlockManager( $options, $newUser );
 		return $newUser;
 	}
 
