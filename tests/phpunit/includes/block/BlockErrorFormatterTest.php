@@ -3,7 +3,6 @@
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\Request\FauxRequest;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -29,19 +28,13 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetMessage( $block, $expectedKey, $expectedParams ) {
 		$context = new DerivativeContext( RequestContext::getMain() );
-		$request = $this->getMockBuilder( FauxRequest::class )
-			->onlyMethods( [ 'getIP' ] )
-			->getMock();
-		$request->method( 'getIP' )
-			->willReturn( '1.2.3.4' );
-		$context->setRequest( $request );
 
 		$formatter = $this->getServiceContainer()->getBlockErrorFormatter();
 		$message = $formatter->getMessage(
 			$block,
 			$context->getUser(),
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' ),
-			$context->getRequest()->getIP()
+			'1.2.3.4'
 		);
 
 		$this->assertSame( $expectedKey, $message->getKey() );

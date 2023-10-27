@@ -79,8 +79,8 @@ class BlockErrorFormatter {
 		Block $block,
 		UserIdentity $user,
 		Language $language,
-		$ip
-	) {
+		string $ip
+	): Message {
 		$key = $this->getBlockErrorMessageKey( $block, $user );
 		$params = $this->getBlockErrorMessageParams( $block, $user, $language, $ip );
 		return new Message( $key, $params );
