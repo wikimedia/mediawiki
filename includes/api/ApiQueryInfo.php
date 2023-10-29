@@ -38,6 +38,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
@@ -58,6 +59,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private RestrictionStore $restrictionStore;
 	private LinksMigration $linksMigration;
 	private TempUserCreator $tempUserCreator;
+	private UserFactory $userFactory;
 	private IntroMessageBuilder $introMessageBuilder;
 	private PreloadedContentBuilder $preloadedContentBuilder;
 	private RevisionLookup $revisionLookup;
@@ -126,6 +128,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param RestrictionStore $restrictionStore
 	 * @param LinksMigration $linksMigration
 	 * @param TempUserCreator $tempUserCreator
+	 * @param UserFactory $userFactory
 	 * @param IntroMessageBuilder $introMessageBuilder
 	 * @param PreloadedContentBuilder $preloadedContentBuilder
 	 * @param RevisionLookup $revisionLookup
@@ -144,6 +147,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		RestrictionStore $restrictionStore,
 		LinksMigration $linksMigration,
 		TempUserCreator $tempUserCreator,
+		UserFactory $userFactory,
 		IntroMessageBuilder $introMessageBuilder,
 		PreloadedContentBuilder $preloadedContentBuilder,
 		RevisionLookup $revisionLookup,
@@ -159,6 +163,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->restrictionStore = $restrictionStore;
 		$this->linksMigration = $linksMigration;
 		$this->tempUserCreator = $tempUserCreator;
+		$this->userFactory = $userFactory;
 		$this->introMessageBuilder = $introMessageBuilder;
 		$this->preloadedContentBuilder = $preloadedContentBuilder;
 		$this->revisionLookup = $revisionLookup;
@@ -527,29 +532,36 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 
 			$pageInfo['actions'] = [];
+			if ( $this->params['testactionsautocreate'] ) {
+				$pageInfo['wouldautocreate'] = [];
+			}
+
 			foreach ( $this->params['testactions'] as $action ) {
 				$this->countTestedActions++;
 
+				$shouldAutoCreate = $this->tempUserCreator->shouldAutoCreate( $this->getUser(), $action );
+
+				if ( $shouldAutoCreate ) {
+					$authority = $this->userFactory->newTempPlaceholder();
+				} else {
+					$authority = $this->getAuthority();
+				}
+
 				if ( $detailLevel === 'boolean' ) {
-					$pageInfo['actions'][$action] = $this->getAuthority()->authorizeRead( $action, $page );
+					$pageInfo['actions'][$action] = $authority->authorizeRead( $action, $page );
 				} else {
 					$status = new PermissionStatus();
 					if ( $detailLevel === 'quick' ) {
-						$this->getAuthority()->probablyCan( $action, $page, $status );
+						$authority->probablyCan( $action, $page, $status );
 					} else {
-						$this->getAuthority()->definitelyCan( $action, $page, $status );
+						$authority->definitelyCan( $action, $page, $status );
 					}
 					$this->addBlockInfoToStatus( $status );
 					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $status );
 				}
-			}
 
-			if ( $this->params['testactionsautocreate'] ) {
-				$pageInfo['wouldautocreate'] = [];
-				foreach ( $this->params['testactions'] as $action ) {
-					// Copied from EditPage::maybeActivateTempUserCreate
-					$pageInfo['wouldautocreate'][$action] =
-						$this->tempUserCreator->shouldAutoCreate( $this->getUser(), $action );
+				if ( $this->params['testactionsautocreate'] ) {
+					$pageInfo['wouldautocreate'][$action] = $shouldAutoCreate;
 				}
 			}
 		}
