@@ -51,6 +51,7 @@ class CleanupInvalidDbKeys extends Maintenance {
 		[ 'pagelinks', 'pl', 'idField' => 'pl_from' ],
 		[ 'templatelinks', 'tl', 'idField' => 'tl_from' ],
 		[ 'categorylinks', 'cl', 'idField' => 'cl_from', 'nsField' => 14, 'titleField' => 'cl_to' ],
+		[ 'imagelinks', 'il', 'idField' => 'il_from', 'nsField' => 6, 'titleField' => 'il_to' ],
 	];
 
 	public function __construct() {
@@ -279,6 +280,7 @@ TEXT
 			case 'pagelinks':
 			case 'templatelinks':
 			case 'categorylinks':
+			case 'imagelinks':
 				// Update links tables for each page where these bogus links are supposedly
 				// located. If the invalid rows don't go away after these jobs go through,
 				// they're probably being added by a buggy hook.
