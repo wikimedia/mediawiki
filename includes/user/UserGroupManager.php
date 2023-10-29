@@ -23,6 +23,7 @@ namespace MediaWiki\User;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
+use LogicException;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -138,6 +139,13 @@ class UserGroupManager {
 	 * ]
 	 */
 	private $queryFlagsUsedForCaching = [];
+
+	/**
+	 * @internal For use preventing an infinite loop when checking APCOND_BLOCKED
+	 * @var array An assoc. array mapping the getCacheKey userKey to a bool indicating
+	 * an ongoing condition check.
+	 */
+	private $recursionMap = [];
 
 	/**
 	 * @param ServiceOptions $options
@@ -587,6 +595,7 @@ class UserGroupManager {
 	 * @param User $user The user to check the condition against
 	 * @return bool Whether the condition is true for the user
 	 * @throws InvalidArgumentException if autopromote condition was not recognized.
+	 * @throws LogicException if APCOND_BLOCKED is checked again before returning a result.
 	 */
 	private function checkCondition( array $cond, User $user ): bool {
 		if ( count( $cond ) < 1 ) {
@@ -628,10 +637,21 @@ class UserGroupManager {
 				return IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
 				// Because checking for ipblock-exempt leads back to here (thus infinite recursion),
-				// we stop checking for ipblock-exempt via here. We do this by setting the second
-				// param to true.
-				// See T270145.
+				// we if we've been here before for this user without having returned a value.
+				// See T270145 and T349608
+				$userKey = $this->getCacheKey( $user );
+				if ( $this->recursionMap[$userKey] ?? false ) {
+					throw new LogicException(
+						"Unexpected recursion! APCOND_BLOCKED is being checked during" .
+						" an existing APCOND_BLOCKED check for \"{$user->getName()}\"!"
+					);
+				}
+				$this->recursionMap[$userKey] = true;
+				// Setting the second parameter here to true prevents us from getting back here
+				// during standard MediaWiki core behavior
 				$block = $user->getBlock( IDBAccessObject::READ_LATEST, true );
+				$this->recursionMap[$userKey] = false;
+
 				return $block && $block->isSitewide();
 			case APCOND_ISBOT:
 				return in_array( 'bot', $this->groupPermissionsLookup

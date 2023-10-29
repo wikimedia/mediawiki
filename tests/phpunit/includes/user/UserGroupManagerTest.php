@@ -23,6 +23,7 @@ namespace MediaWiki\Tests\User;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LogEntryBase;
+use LogicException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Config\SiteConfiguration;
@@ -974,6 +975,77 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$info = $context->exportSession();
 
 		$this->assertNull( $user->getBlock() );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
+	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
+	 */
+	public function testGetUserAutopromoteBlockedDoesNotRecurseWithHook() {
+		$this->overrideConfigValue(
+			MainConfigNames::Autopromote,
+			[ 'test_autoconfirmed' => [ '&', APCOND_BLOCKED ] ]
+		);
+
+		// Make sure session handling is started
+		if ( !PHPSessionHandler::isInstalled() ) {
+			PHPSessionHandler::install(
+				SessionManager::singleton()
+			);
+		}
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		$permissionManager->invalidateUsersRightsCache();
+
+		$oldSessionId = session_id();
+
+		$context = RequestContext::getMain();
+		// Variables are unused but needed to reproduce the failure
+		$oInfo = $context->exportSession();
+
+		$user = User::newFromName( 'UnitTestContextUser' );
+		$user->addToDatabase();
+
+		$sinfo = [
+			'sessionId' => 'd612ee607c87e749ef14da4983a702cd',
+			'userId' => $user->getId(),
+			'ip' => '192.0.2.0',
+			'headers' => [
+				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
+			]
+		];
+
+		$onGetUserBlockCalled = false;
+		$this->setTemporaryHook(
+			'GetUserBlock',
+			static function ( $user, $ip, &$block ) use ( $permissionManager, &$onGetUserBlockCalled ) {
+				$onGetUserBlockCalled = true;
+
+				try {
+					if ( $permissionManager->userHasAnyRight( $user, 'ipblock-exempt', 'globalblock-exempt' ) ) {
+						return true;
+					}
+				} catch ( LogicException $e ) {
+					// We expect an uncaught LogicException from UserGroupManager::checkCondition here
+					// otherwise there's something else wrong!
+					if ( !str_starts_with( $e->getMessage(), "Unexpected recursion!" ) ) {
+						throw $e;
+					}
+				}
+
+				return true;
+			}
+		);
+
+		// Variables are unused but needed to reproduce the failure
+		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
+		$info = $context->exportSession();
+
+		$this->assertNull( $user->getBlock() );
+
+		$this->assertTrue(
+			$onGetUserBlockCalled,
+			'Check that HookRunner::onGetUserBlock was called'
+		);
 	}
 
 	/**
