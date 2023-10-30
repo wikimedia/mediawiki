@@ -483,6 +483,7 @@
 	"noemailcreate": "Sinul pidäy andua voimas olii sähköpoštuadressi.",
 	"passwordsent": "Uuzi peittosana on työtty käyttäjän <b>$1</b> sähköpoštuadresile.\nOle hyvä, piäze sistiemah uvvessah, konzu olet suannuh sen.",
 	"blocked-mailpassword": "Kohendamine sinun IP-adresispäi on kielletty. Viärän käytön eistämizekse peittosanan uvvistamine täs IP-adresispäi sežo on kielletty.",
+	"eauthentsent": "Annettuh sähköpoštuadressih on työtty viesti. Uuzii viestilöi ei rubie suamah, kuni et rua sidä, midä kyzytäh viestin ohjielois, nenga varmistat, ku tämä sähköpoštuadressi on sinun.",
 	"mailerror": "Haireh sähköpoštua työndäjes: $1",
 	"emaildisabled": "Täl verkosivustolpäi ei sua työndiä sähköpoštuviestilöi.",
 	"accountcreated": "Käyttäjäntunnus on luajittu",
