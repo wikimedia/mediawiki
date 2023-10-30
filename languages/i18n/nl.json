@@ -4181,7 +4181,7 @@
 	"parsoid-client-error": "Ongeldige Parsoid-invoer: $1",
 	"newpages-showhide-bots": "robots $1",
 	"newpages-showhide-patrolled": "gecontroleerde bewerkingen $1",
-	"newpages-showhide-redirect": "Doorverwijzingen $1",
+	"newpages-showhide-redirect": "doorverwijzingen $1",
 	"newpages-showhide-registered": "geregistreerde gebruikers $1",
 	"blockedtext-made-by": "De blokkade is opgelegd door $1.",
 	"blockedtext-reason-comment": "De opgegeven reden is <em>$1</em>.",
