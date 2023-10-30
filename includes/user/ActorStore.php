@@ -618,6 +618,12 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 				"user_name=\"{$user->getName()}\""
 			);
 		}
+
+		if ( $this->tempUserConfig->isEnabled() && $this->userNameUtils->isIP( $userName ) ) {
+			$this->logger->warning( 'Creating an IP actor with temporary accounts enabled', [
+				'actor_name' => $user->getName()
+			] );
+		}
 		return [ $userId, $userName ];
 	}
 
