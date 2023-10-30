@@ -132,7 +132,7 @@ class DatabaseBlockStore {
 			return;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->getPrimaryDB();
 		$store = $this->blockRestrictionStore;
 		$limit = $this->options->get( MainConfigNames::UpdateRowsPerQuery );
 
@@ -184,6 +184,14 @@ class DatabaseBlockStore {
 		}
 	}
 
+	private function getReplicaDB(): IDatabase {
+		return $this->loadBalancer->getConnection( DB_REPLICA, [], $this->wikiId );
+	}
+
+	private function getPrimaryDB(): IDatabase {
+		return $this->loadBalancer->getConnection( DB_PRIMARY, [], $this->wikiId );
+	}
+
 	/**
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
@@ -218,7 +226,7 @@ class DatabaseBlockStore {
 
 		$this->purgeExpiredBlocks();
 
-		$dbw = $database ?: $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $database ?: $this->getPrimaryDB();
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 
 		$dbw->newInsertQueryBuilder()
@@ -310,7 +318,7 @@ class DatabaseBlockStore {
 			);
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->getPrimaryDB();
 
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 		$dbw->startAtomic( __METHOD__ );
@@ -396,7 +404,7 @@ class DatabaseBlockStore {
 				__METHOD__ . " requires that a block id be set\n"
 			);
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->getPrimaryDB();
 		$ids = $dbw->newSelectQueryBuilder()
 			->select( 'ipb_id' )
 			->from( 'ipblocks' )
@@ -482,7 +490,7 @@ class DatabaseBlockStore {
 		if ( !$blocker ) {
 			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->wikiId );
+		$dbw = $this->getPrimaryDB();
 		$blockerActor = $this->actorStoreFactory
 			->getActorNormalization( $this->wikiId )
 			->acquireActorId( $blocker, $dbw );
@@ -554,7 +562,7 @@ class DatabaseBlockStore {
 			return [];
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->wikiId );
+		$dbr = $this->getReplicaDB();
 
 		$targetUser = $block->getTargetUserIdentity();
 		$actor = $targetUser ? $this->actorStoreFactory
