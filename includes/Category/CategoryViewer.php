@@ -388,11 +388,17 @@ class CategoryViewer extends ContextSource {
 			# set in $wgCategoryCollation, pagination might go totally haywire.
 			$extraConds = [ 'cl_type' => $type ];
 			if ( isset( $this->from[$type] ) ) {
-				$extraConds[] = 'cl_sortkey >= '
-					. $dbr->addQuotes( $this->collation->getSortKey( $this->from[$type] ) );
+				$extraConds[] = $dbr->expr(
+					'cl_sortkey',
+					'>=',
+					$this->collation->getSortKey( $this->from[$type] )
+				);
 			} elseif ( isset( $this->until[$type] ) ) {
-				$extraConds[] = 'cl_sortkey < '
-					. $dbr->addQuotes( $this->collation->getSortKey( $this->until[$type] ) );
+				$extraConds[] = $dbr->expr(
+					'cl_sortkey',
+					'<',
+					$this->collation->getSortKey( $this->until[$type] )
+				);
 				$this->flip[$type] = true;
 			}
 

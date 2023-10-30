@@ -146,7 +146,10 @@ class JobQueueDB extends JobQueue {
 		try {
 			$count = $dbr->newSelectQueryBuilder()
 				->from( 'job' )
-				->where( [ 'job_cmd' => $this->type, "job_token != {$dbr->addQuotes( '' )}" ] )
+				->where( [
+					'job_cmd' => $this->type,
+					$dbr->expr( 'job_token', '!=', '' ),
+				] )
 				->caller( __METHOD__ )->fetchRowCount();
 		} catch ( DBError $e ) {
 			throw $this->getDBException( $e );
@@ -182,7 +185,7 @@ class JobQueueDB extends JobQueue {
 				->where(
 					[
 						'job_cmd' => $this->type,
-						"job_token != {$dbr->addQuotes( '' )}",
+						$dbr->expr( 'job_token', '!=', '' ),
 						$dbr->expr( 'job_attempts', '>=', $this->maxTries ),
 					]
 				)
@@ -729,7 +732,7 @@ class JobQueueDB extends JobQueue {
 					->where(
 						[
 							'job_cmd' => $this->type,
-							"job_token != {$dbw->addQuotes( '' )}", // was acquired
+							$dbw->expr( 'job_token', '!=', '' ), // was acquired
 							$dbw->expr( 'job_token_timestamp', '<', $claimCutoff ), // stale
 							$dbw->expr( 'job_attempts', '<', $this->maxTries ), // retries left
 						]
@@ -752,7 +755,7 @@ class JobQueueDB extends JobQueue {
 						] )
 						->where( [
 							'job_id' => $ids,
-							"job_token != {$dbw->addQuotes( '' )}"
+							$dbw->expr( 'job_token', '!=', '' ),
 						] )
 						->caller( __METHOD__ )->execute();
 
@@ -770,12 +773,12 @@ class JobQueueDB extends JobQueue {
 				->where(
 					[
 						'job_cmd' => $this->type,
-						"job_token != {$dbw->addQuotes( '' )}", // was acquired
+						$dbw->expr( 'job_token', '!=', '' ), // was acquired
 						$dbw->expr( 'job_token_timestamp', '<', $pruneCutoff ) // stale
 					]
 				);
 			if ( $this->claimTTL > 0 ) { // only prune jobs attempted too many times...
-				$qb->andWhere( "job_attempts >= {$dbw->addQuotes( $this->maxTries )}" );
+				$qb->andWhere( $dbw->expr( 'job_attempts', '>=', $this->maxTries ) );
 			}
 			// Get the IDs of jobs that are considered stale and should be removed. Selecting
 			// the IDs first means that the UPDATE can be done by primary key (less deadlocks).

@@ -329,11 +329,11 @@ abstract class ApiQueryBase extends ApiBase {
 		$db = $this->getDB();
 
 		if ( $start !== null ) {
-			$this->addWhere( $field . $after . $db->addQuotes( $start ) );
+			$this->addWhere( $db->expr( $field, $after, $start ) );
 		}
 
 		if ( $end !== null ) {
-			$this->addWhere( $field . $before . $db->addQuotes( $end ) );
+			$this->addWhere( $db->expr( $field, $before, $end ) );
 		}
 
 		if ( $sort ) {

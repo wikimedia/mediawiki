@@ -942,8 +942,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->setArticleBodyOnly( true );
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		if ( $this->mHistoryOffset ) {
-			$encOffset = $dbr->addQuotes( $dbr->timestamp( $this->mHistoryOffset ) );
-			$extraConds = [ "ar_timestamp < $encOffset" ];
+			$extraConds = [ $dbr->expr( 'ar_timestamp', '<', $dbr->timestamp( $this->mHistoryOffset ) ) ];
 		} else {
 			$extraConds = [];
 		}

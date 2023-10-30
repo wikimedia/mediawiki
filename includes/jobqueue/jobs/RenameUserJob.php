@@ -100,8 +100,8 @@ class RenameUserJob extends Job {
 		}
 		# Bound by timestamp if given
 		if ( $timestampColumn !== null ) {
-			$conds[] = "$timestampColumn >= " . $dbw->addQuotes( $minTimestamp );
-			$conds[] = "$timestampColumn <= " . $dbw->addQuotes( $maxTimestamp );
+			$conds[] = $dbw->expr( $timestampColumn, '>=', $minTimestamp );
+			$conds[] = $dbw->expr( $timestampColumn, '<=', $maxTimestamp );
 		# Bound by unique key if given (B/C)
 		} elseif ( $uniqueKey !== null && $keyId !== null ) {
 			$conds[$uniqueKey] = $keyId;

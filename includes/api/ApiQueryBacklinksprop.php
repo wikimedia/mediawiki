@@ -28,6 +28,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
@@ -248,10 +249,10 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			$where = [];
 			foreach ( $titles as $t ) {
 				if ( $t->getNamespace() == $bl_namespace ) {
-					$where[] = "$bl_title = " . $db->addQuotes( $t->getDBkey() );
+					$where[] = $db->expr( $bl_title, '=', $t->getDBkey() );
 				}
 			}
-			$this->addWhere( $db->makeList( $where, LIST_OR ) );
+			$this->addWhere( new OrExpressionGroup( ...$where ) );
 		}
 
 		if ( $params['show'] !== null ) {
@@ -262,7 +263,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			) {
 				$this->dieWithError( 'apierror-show' );
 			}
-			$this->addWhereIf( "rd_fragment != " . $db->addQuotes( '' ), isset( $show['fragment'] ) );
+			$this->addWhereIf( $db->expr( 'rd_fragment', '!=', '' ), isset( $show['fragment'] ) );
 			$this->addWhereIf( [ 'rd_fragment' => '' ], isset( $show['!fragment'] ) );
 			$this->addWhereIf( [ 'page_is_redirect' => 1 ], isset( $show['redirect'] ) );
 			$this->addWhereIf( [ 'page_is_redirect' => 0 ], isset( $show['!redirect'] ) );

@@ -222,7 +222,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// We already join on actor due to getArchiveQueryInfo()
 			$this->addWhereFld( 'actor_name', $params['user'] );
 		} elseif ( $params['excludeuser'] !== null ) {
-			$this->addWhere( 'actor_name<>' . $db->addQuotes( $params['excludeuser'] ) );
+			$this->addWhere( $db->expr( 'actor_name', '!=', $params['excludeuser'] ) );
 		}
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {

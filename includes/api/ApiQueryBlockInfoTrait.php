@@ -20,6 +20,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Permissions\Authority;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -95,7 +96,7 @@ trait ApiQueryBlockInfoTrait {
 
 	/**
 	 * @see ApiQueryBase::addWhere
-	 * @param string|array $conds
+	 * @param string|array|IExpression $conds
 	 */
 	abstract protected function addWhere( $conds );
 
