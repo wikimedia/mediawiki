@@ -14,7 +14,6 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint
- * @covers \MediaWiki\Rest\Router
  */
 class EntryPointTest extends MediaWikiIntegrationTestCase {
 	use RestTestTrait;
@@ -60,7 +59,7 @@ class EntryPointTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHeader() {
-		$uri = '/rest/mock/EntryPoint/header';
+		$uri = '/rest/mock/v1/EntryPoint/header';
 		$request = new RequestData( [ 'uri' => new Uri( $uri ) ] );
 
 		$env = new MockEnvironment();
@@ -93,7 +92,7 @@ class EntryPointTest extends MediaWikiIntegrationTestCase {
 	 * Make sure EntryPoint rewinds a seekable body stream before reading.
 	 */
 	public function testBodyRewind() {
-		$uri = '/rest/mock/EntryPoint/bodyRewind';
+		$uri = '/rest/mock/v1/EntryPoint/bodyRewind';
 		$request = new RequestData( [ 'uri' => new Uri( $uri ) ] );
 
 		$env = new MockEnvironment();

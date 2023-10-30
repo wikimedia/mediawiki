@@ -2,17 +2,16 @@
 
 namespace MediaWiki\Rest;
 
-use AppendIterator;
 use BagOStuff;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
-use MediaWiki\Rest\Handler\RedirectHandler;
-use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
+use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\RouteFileModule;
+use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
@@ -22,22 +21,27 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * The REST router is responsible for gathering handler configuration, matching
- * an input path and HTTP method against the defined routes, and constructing
- * and executing the relevant handler for a request.
+ * The REST router is responsible for gathering module configuration, matching
+ * an input path against the defined modules, and constructing
+ * and executing the relevant module for a request.
  */
 class Router {
+	private const PREFIX_PATTERN = '!^/([-_.\w]+(?:/v\d+)?)(/.*)$!';
+
 	/** @var string[] */
 	private $routeFiles;
 
-	/** @var array */
+	/** @var array[] */
 	private $extraRoutes;
 
-	/** @var array|null */
-	private $routesFromFiles;
+	/** @var null|array[] */
+	private $moduleMap = null;
+
+	/** @var Module[] */
+	private $modules = [];
 
 	/** @var int[]|null */
-	private $routeFileTimestamps;
+	private $moduleFileTimestamps = null;
 
 	/** @var string */
 	private $baseUrl;
@@ -48,14 +52,11 @@ class Router {
 	/** @var string */
 	private $rootPath;
 
-	/** @var \BagOStuff */
+	/** @var BagOStuff */
 	private $cacheBag;
 
-	/** @var PathMatcher[]|null Path matchers by method */
-	private $matchers;
-
 	/** @var string|null */
-	private $configHash;
+	private $configHash = null;
 
 	/** @var ResponseFactory */
 	private $responseFactory;
@@ -87,9 +88,6 @@ class Router {
 	/** @var StatsdDataFactoryInterface */
 	private $stats;
 
-	/** @var ServiceOptions */
-	private $options;
-
 	/**
 	 * @internal
 	 * @var array
@@ -98,16 +96,11 @@ class Router {
 		MainConfigNames::CanonicalServer,
 		MainConfigNames::InternalServer,
 		MainConfigNames::RestPath,
-		// From RootSpecHandler::CONSTRUCTOR_OPTIONS
-		MainConfigNames::RightsUrl,
-		MainConfigNames::RightsText,
-		MainConfigNames::EmergencyContact,
-		MainConfigNames::Sitename,
 	];
 
 	/**
-	 * @param string[] $routeFiles List of names of JSON files containing routes
-	 * @param array $extraRoutes Extension route array
+	 * @param string[] $routeFiles
+	 * @param array[] $extraRoutes
 	 * @param ServiceOptions $options
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
 	 * @param ResponseFactory $responseFactory
@@ -121,8 +114,8 @@ class Router {
 	 * @internal
 	 */
 	public function __construct(
-		$routeFiles,
-		$extraRoutes,
+		array $routeFiles,
+		array $extraRoutes,
 		ServiceOptions $options,
 		BagOStuff $cacheBag,
 		ResponseFactory $responseFactory,
@@ -138,7 +131,6 @@ class Router {
 
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
-		$this->options = $options;
 		$this->baseUrl = $options->get( MainConfigNames::CanonicalServer );
 		$this->privateBaseUrl = $options->get( MainConfigNames::InternalServer );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
@@ -156,132 +148,6 @@ class Router {
 	}
 
 	/**
-	 * Get the cache data, or false if it is missing or invalid
-	 *
-	 * @return bool|array
-	 */
-	private function fetchCacheData() {
-		$cacheData = $this->cacheBag->get( $this->getCacheKey() );
-		if ( $cacheData && $cacheData['CONFIG-HASH'] === $this->getConfigHash() ) {
-			unset( $cacheData['CONFIG-HASH'] );
-			return $cacheData;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * @return string The cache key
-	 */
-	private function getCacheKey() {
-		return $this->cacheBag->makeKey( __CLASS__, '4' );
-	}
-
-	/**
-	 * Get a config version hash for cache invalidation
-	 *
-	 * @return string
-	 */
-	private function getConfigHash() {
-		if ( $this->configHash === null ) {
-			$this->configHash = md5( json_encode( [
-				$this->extraRoutes,
-				$this->getRouteFileTimestamps()
-			] ) );
-		}
-		return $this->configHash;
-	}
-
-	/**
-	 * Load the defined JSON files and return the merged routes
-	 *
-	 * @return array
-	 */
-	private function getRoutesFromFiles() {
-		if ( $this->routesFromFiles === null ) {
-			$this->routeFileTimestamps = [];
-			foreach ( $this->routeFiles as $fileName ) {
-				$this->routeFileTimestamps[$fileName] = filemtime( $fileName );
-				$routes = json_decode( file_get_contents( $fileName ), true );
-				if ( $this->routesFromFiles === null ) {
-					$this->routesFromFiles = $routes;
-				} else {
-					$this->routesFromFiles = array_merge( $this->routesFromFiles, $routes );
-				}
-			}
-		}
-		return $this->routesFromFiles;
-	}
-
-	/**
-	 * Get an array of last modification times of the defined route files.
-	 *
-	 * @return int[] Last modification times
-	 */
-	private function getRouteFileTimestamps() {
-		if ( $this->routeFileTimestamps === null ) {
-			$this->routeFileTimestamps = [];
-			foreach ( $this->routeFiles as $fileName ) {
-				$this->routeFileTimestamps[$fileName] = filemtime( $fileName );
-			}
-		}
-		return $this->routeFileTimestamps;
-	}
-
-	/**
-	 * Get an iterator for all defined routes, including loading the routes from
-	 * the JSON files.
-	 *
-	 * @unstable
-	 *
-	 * @return AppendIterator
-	 */
-	public function getAllRoutes() {
-		$iterator = new AppendIterator;
-		$iterator->append( new \ArrayIterator( $this->getRoutesFromFiles() ) );
-		$iterator->append( new \ArrayIterator( $this->extraRoutes ) );
-		return $iterator;
-	}
-
-	/**
-	 * Get an array of PathMatcher objects indexed by HTTP method
-	 *
-	 * @return PathMatcher[]
-	 */
-	private function getMatchers() {
-		if ( $this->matchers === null ) {
-			$cacheData = $this->fetchCacheData();
-			$matchers = [];
-			if ( $cacheData ) {
-				foreach ( $cacheData as $method => $data ) {
-					$matchers[$method] = PathMatcher::newFromCache( $data );
-				}
-			} else {
-				foreach ( $this->getAllRoutes() as $spec ) {
-					$methods = $spec['method'] ?? [ 'GET' ];
-					if ( !is_array( $methods ) ) {
-						$methods = [ $methods ];
-					}
-					foreach ( $methods as $method ) {
-						if ( !isset( $matchers[$method] ) ) {
-							$matchers[$method] = new PathMatcher;
-						}
-						$matchers[$method]->add( $spec['path'], $spec );
-					}
-				}
-
-				$cacheData = [ 'CONFIG-HASH' => $this->getConfigHash() ];
-				foreach ( $matchers as $method => $matcher ) {
-					$cacheData[$method] = $matcher->getCacheData();
-				}
-				$this->cacheBag->set( $this->getCacheKey(), $cacheData );
-			}
-			$this->matchers = $matchers;
-		}
-		return $this->matchers;
-	}
-
-	/**
 	 * Remove the path prefix $this->rootPath. Return the part of the path with the
 	 * prefix removed, or false if the prefix did not match.
 	 *
@@ -296,73 +162,271 @@ class Router {
 	}
 
 	/**
-	 * Returns the path part of the route URL for the given route, including the root path.
-	 * Intended for use in relative redirects.
+	 * @param string $fullPath
 	 *
+	 * @return string[] [ string $module, string $path ]
+	 */
+	private function splitPath( string $fullPath ): array {
+		$pathWithModule = $this->getRelativePath( $fullPath );
+
+		if ( !$pathWithModule ) {
+			throw new LocalizedHttpException(
+				( new MessageValue( 'rest-prefix-mismatch' ) )
+					->plaintextParams( $fullPath, $this->rootPath ),
+				404
+			);
+		}
+
+		if ( !preg_match( self::PREFIX_PATTERN, $pathWithModule, $matches ) ) {
+			throw new LocalizedHttpException(
+				( new MessageValue( 'rest-bad-prefix' ) )
+					->plaintextParams( $pathWithModule ),
+				404
+			);
+		}
+
+		[ , $module, $pathUnderModule ] = $matches;
+
+		if ( !$this->getModuleInfo( $module ) ) {
+			// Prefix doesn't match any module, try the prefix-less module...
+			// TODO: At some point in the future, we'll want to warn and redirect...
+			$module = '';
+			$pathUnderModule = $pathWithModule;
+		}
+
+		return [ $module, $pathUnderModule ];
+	}
+
+	/**
+	 * Get the cache data, or false if it is missing or invalid
+	 *
+	 * @return ?array
+	 */
+	private function fetchCachedModuleMap(): ?array {
+		$moduleMapCacheKey = $this->getModuleMapCacheKey();
+		$cacheData = $this->cacheBag->get( $moduleMapCacheKey );
+		if ( $cacheData && $cacheData[Module::CACHE_CONFIG_HASH_KEY] === $this->getModuleMapHash() ) {
+			unset( $cacheData[Module::CACHE_CONFIG_HASH_KEY] );
+			return $cacheData;
+		} else {
+			return null;
+		}
+	}
+
+	private function fetchCachedModuleData( string $module ): ?array {
+		$moduleDataCacheKey = $this->getModuleDataCacheKey( $module );
+		$cacheData = $this->cacheBag->get( $moduleDataCacheKey );
+		return $cacheData ?: null;
+	}
+
+	private function cacheModuleMap( array $map ) {
+		$map[Module::CACHE_CONFIG_HASH_KEY] = $this->getModuleMapHash();
+		$moduleMapCacheKey = $this->getModuleMapCacheKey();
+		$this->cacheBag->set( $moduleMapCacheKey, $map );
+	}
+
+	private function cacheModuleData( string $module, array $map ) {
+		$moduleDataCacheKey = $this->getModuleDataCacheKey( $module );
+		$this->cacheBag->set( $moduleDataCacheKey, $map );
+	}
+
+	private function getModuleDataCacheKey( string $module ): string {
+		if ( $module === '' ) {
+			// Proper key for the prefix-less module.
+			$module = '-';
+		}
+		return $this->cacheBag->makeKey( __CLASS__, 'module', $module );
+	}
+
+	private function getModuleMapCacheKey(): string {
+		return $this->cacheBag->makeKey( __CLASS__, 'map', '1' );
+	}
+
+	/**
+	 * Get a config version hash for cache invalidation
+	 */
+	private function getModuleMapHash(): string {
+		if ( $this->configHash === null ) {
+			$this->configHash = md5( json_encode( [
+				$this->extraRoutes,
+				$this->getModuleFileTimestamps()
+			] ) );
+		}
+		return $this->configHash;
+	}
+
+	private function buildModuleMap(): array {
+		$modules = [];
+		$noPrefixFiles = [];
+
+		foreach ( $this->routeFiles as $file ) {
+			// NOTE: we end up loading the file here (for the meta-data) as well
+			// as in the Module object (for the routes). But since we have
+			// caching on both levels, that shouldn't matter.
+			$spec = Module::loadJsonFile( $file );
+
+			if ( isset( $spec['routes'] ) ) {
+				if ( !isset( $spec['module'] ) ) {
+					throw new ModuleConfigurationException(
+						"Missing module name in $file"
+					);
+				}
+
+				// Intermediate format, containing a "routes" key and a prefix
+				// in the "module" field.
+				$name = $spec['module'];
+
+				if ( isset( $modules[$name] ) ) {
+					$otherFiles = implode( ' and ', $modules[$name]['routeFiles'] );
+					throw new ModuleConfigurationException(
+						"Duplicate module $name in $file, also used in $otherFiles"
+					);
+				}
+
+				$modules[$name] = [
+					'class' => RouteFileModule::class,
+					'pathPrefix' => $name,
+					'routeFiles' => [ $file ]
+				];
+				// TODO: also support OpenAPI spec files
+			} else {
+				// Old-style route file containing a flat list of routes.
+				$noPrefixFiles[] = $file;
+			}
+		}
+
+		// The prefix-less module will be used when no prefix is matched.
+		// It provides a mechanism to integrate extra routes and route files
+		// registered by extensions.
+		if ( $noPrefixFiles || $this->extraRoutes ) {
+			$modules[''] = [
+				'class' => RouteFileModule::class,
+				'pathPrefix' => '',
+				'routeFiles' => $noPrefixFiles,
+				'extraRoutes' => $this->extraRoutes,
+			];
+		}
+
+		return $modules;
+	}
+
+	/**
+	 * Get an array of last modification times of the defined route files.
+	 *
+	 * @return int[] Last modification times
+	 */
+	private function getModuleFileTimestamps() {
+		if ( $this->moduleFileTimestamps === null ) {
+			$this->moduleFileTimestamps = [];
+			foreach ( $this->routeFiles as $fileName ) {
+				$this->moduleFileTimestamps[$fileName] = filemtime( $fileName );
+			}
+		}
+		return $this->moduleFileTimestamps;
+	}
+
+	private function getModuleMap(): array {
+		if ( !$this->moduleMap ) {
+			$map = $this->fetchCachedModuleMap();
+
+			if ( !$map ) {
+				$map = $this->buildModuleMap();
+				$this->cacheModuleMap( $map );
+			}
+
+			$this->moduleMap = $map;
+		}
+		return $this->moduleMap;
+	}
+
+	private function getModuleInfo( $module ): ?array {
+		$map = $this->getModuleMap();
+		return $map[$module] ?? null;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getModuleNames(): array {
+		return array_keys( $this->getModuleMap() );
+	}
+
+	public function getModuleForPath( string $fullPath ): ?Module {
+		[ $moduleName, ] = $this->splitPath( $fullPath );
+		return $this->getModule( $moduleName );
+	}
+
+	public function getModule( string $name ): ?Module {
+		if ( isset( $this->modules[$name] ) ) {
+			return $this->modules[$name];
+		}
+
+		$info = $this->getModuleInfo( $name );
+
+		if ( !$info ) {
+			return null;
+		}
+
+		$module = new RouteFileModule(
+			$info['routeFiles'] ?? [],
+			$info['extraRoutes'] ?? [],
+			$this,
+			$info['pathPrefix'] ?? $name,
+			$this->responseFactory,
+			$this->basicAuth,
+			$this->objectFactory,
+			$this->restValidator,
+			$this->errorReporter
+		);
+
+		$cacheData = $this->fetchCachedModuleData( $name );
+
+		if ( $cacheData !== null ) {
+			$cacheOk = $module->initFromCacheData( $cacheData );
+		} else {
+			$cacheOk = false;
+		}
+
+		if ( !$cacheOk ) {
+			$cacheData = $module->getCacheData();
+			$this->cacheModuleData( $name, $cacheData );
+		}
+
+		if ( $this->cors ) {
+			$module->setCors( $this->cors );
+		}
+
+		$this->modules[$name] = $module;
+		return $module;
+	}
+
+	/**
 	 * @since 1.42
-	 *
-	 * @param string $route
-	 * @param array $pathParams
-	 * @param array $queryParams
-	 *
-	 * @return string
-	 * @see getPrivateRouteUrl
 	 */
 	public function getRoutePath(
-		string $route,
+		string $routeWithModulePrefix,
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		$route = $this->substPathParams( $route, $pathParams );
-		$path = $this->rootPath . $route;
+		$routeWithModulePrefix = $this->substPathParams( $routeWithModulePrefix, $pathParams );
+		$path = $this->rootPath . $routeWithModulePrefix;
 		return wfAppendQuery( $path, $queryParams );
 	}
 
-	/**
-	 * Returns a full URL for the given route.
-	 * Intended for use in redirects and when including links to endpoints in output.
-	 *
-	 * @param string $route
-	 * @param array $pathParams
-	 * @param array $queryParams
-	 *
-	 * @return string
-	 * @see getPrivateRouteUrl
-	 *
-	 */
 	public function getRouteUrl(
-		string $route,
+		string $routeWithModulePrefix,
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		return $this->baseUrl . $this->getRoutePath( $route, $pathParams, $queryParams );
+		return $this->baseUrl . $this->getRoutePath( $routeWithModulePrefix, $pathParams, $queryParams );
 	}
 
-	/**
-	 * Returns a full private URL for the given route.
-	 * Private URLs are for use within the local subnet, they may use host names or ports
-	 * or paths that are not publicly accessible.
-	 * Intended for use in redirects and when including links to endpoints in output.
-	 *
-	 * @note Only private endpoints should use this method for redirects or links to
-	 *       include on the response! Public endpoints should not expose the URLs
-	 *       of private endpoints to the public!
-	 *
-	 * @since 1.39
-	 * @see getRouteUrl
-	 *
-	 * @param string $route
-	 * @param array $pathParams
-	 * @param array $queryParams
-	 *
-	 * @return string
-	 */
 	public function getPrivateRouteUrl(
-		string $route,
+		string $routeWithModulePrefix,
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		return $this->privateBaseUrl . $this->getRoutePath( $route, $pathParams, $queryParams );
+		return $this->privateBaseUrl . $this->getRoutePath( $routeWithModulePrefix, $pathParams, $queryParams );
 	}
 
 	/**
@@ -378,88 +442,44 @@ class Router {
 			// Slashes must be encoded as %2F.
 			$route = str_replace( '{' . $param . '}', rawurlencode( (string)$value ), $route );
 		}
-
 		return $route;
 	}
 
-	/**
-	 * Find the handler for a request and execute it
-	 *
-	 * @param RequestInterface $request
-	 * @return ResponseInterface
-	 */
-	public function execute( RequestInterface $request ) {
-		$path = $request->getUri()->getPath();
-		$relPath = $this->getRelativePath( $path );
-		if ( $relPath === false ) {
-			return $this->responseFactory->createLocalizedHttpError( 404,
-				( new MessageValue( 'rest-prefix-mismatch' ) )
-					->plaintextParams( $path, $this->rootPath )
-			);
-		}
-
-		$requestMethod = $request->getMethod();
-		$matchers = $this->getMatchers();
-		$matcher = $matchers[$requestMethod] ?? null;
-		$match = $matcher ? $matcher->match( $relPath ) : null;
-
-		// For a HEAD request, execute the GET handler instead if one exists.
-		// The webserver will discard the body.
-		if ( !$match && $requestMethod === 'HEAD' && isset( $matchers['GET'] ) ) {
-			$match = $matchers['GET']->match( $relPath );
-		}
-
-		if ( !$match ) {
-			// Check for 405 wrong method
-			$allowed = $this->getAllowedMethods( $relPath );
-
-			// Check for CORS Preflight. This response will *not* allow the request unless
-			// an Access-Control-Allow-Origin header is added to this response.
-			if ( $this->cors && $requestMethod === 'OPTIONS' ) {
-				return $this->cors->createPreflightResponse( $allowed );
-			}
-
-			if ( $allowed ) {
-				$response = $this->responseFactory->createLocalizedHttpError( 405,
-					( new MessageValue( 'rest-wrong-method' ) )
-						->textParams( $requestMethod )
-						->commaListParams( $allowed )
-						->numParams( count( $allowed ) )
-				);
-				$response->setHeader( 'Allow', $allowed );
-				return $response;
-			} else {
-				// Did not match with any other method, must be 404
-				return $this->responseFactory->createLocalizedHttpError( 404,
-					( new MessageValue( 'rest-no-match' ) )
-						->plaintextParams( $relPath )
-				);
-			}
-		}
-
-		$pathForMetrics = '(unknown)';
-		$handler = null;
+	public function execute( RequestInterface $request ): ResponseInterface {
 		try {
-			// Use rawurldecode so a "+" in path params is not interpreted as a space character.
-			$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
-			$handler = $this->createHandler( $request, $match['userData'] );
-
-			$this->setBodyData( $request, $handler );
-
-			// Replace any characters that may have a special meaning in the metrics DB.
-			$pathForMetrics = $handler->getPath();
-			$pathForMetrics = strtr( $pathForMetrics, '{}:', '-' );
-			$pathForMetrics = strtr( $pathForMetrics, '/.', '_' );
-
-			$statTime = microtime( true );
-
-			$response = $this->executeHandler( $handler );
+			$fullPath = $request->getUri()->getPath();
+			$response = $this->doExecute( $fullPath, $request );
 		} catch ( HttpException $e ) {
 			$response = $this->responseFactory->createFromException( $e );
 		} catch ( Throwable $e ) {
-			$this->errorReporter->reportError( $e, $handler, $request );
+			$this->errorReporter->reportError( $e, null, $request );
 			$response = $this->responseFactory->createFromException( $e );
 		}
+
+		return $response;
+	}
+
+	private function doExecute( string $fullPath, RequestInterface $request ): ResponseInterface {
+		$requestMethod = $request->getMethod();
+
+		[ $modulePrefix, $path ] = $this->splitPath( $fullPath );
+		$module = $this->getModule( $modulePrefix );
+
+		if ( !$module ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-unknown-module' )->plaintextParams( $modulePrefix ),
+				404,
+				[ 'prefix' => $modulePrefix ]
+			);
+		}
+
+		// Replace any characters that may have a special meaning in the metrics DB.
+		$pathForMetrics = $path;
+		$pathForMetrics = strtr( $pathForMetrics, '{}:', '-' );
+		$pathForMetrics = strtr( $pathForMetrics, '/.', '_' );
+
+		$statTime = microtime( true );
+		$response = $module->execute( $path, $request );
 
 		// gather metrics
 		$statusCode = $response->getStatusCode();
@@ -479,109 +499,21 @@ class Router {
 	}
 
 	/**
-	 * Get the allow methods for a path.
+	 * Prepare the handler by injecting relevant service objects and state
+	 * into $handler.
 	 *
-	 * @param string $relPath
-	 * @return array
+	 * @internal
 	 */
-	private function getAllowedMethods( string $relPath ): array {
-		// Check for 405 wrong method
-		$allowed = [];
-		foreach ( $this->getMatchers() as $allowedMethod => $allowedMatcher ) {
-			if ( $allowedMatcher->match( $relPath ) ) {
-				$allowed[] = $allowedMethod;
-			}
-		}
-
-		return array_unique(
-			in_array( 'GET', $allowed ) ? array_merge( [ 'HEAD' ], $allowed ) : $allowed
-		);
-	}
-
-	/**
-	 * Create a handler from its spec
-	 * @param RequestInterface $request
-	 * @param array $spec
-	 * @return Handler
-	 */
-	private function createHandler( RequestInterface $request, array $spec ): Handler {
-		$handler = $this->instantiateHandlerObject( $spec );
-
-		// TODO: split the init method, so instantiateHandlerObject can inject the spec.
-		$handler->init( $this, $request, $spec, $this->authority, $this->responseFactory,
-			$this->hookContainer, $this->session
+	public function prepareHandler( Handler $handler ) {
+		// Injecting services in the Router class means we don't have to inject
+		// them into each Module.
+		$handler->initServices(
+			$this->authority,
+			$this->responseFactory,
+			$this->hookContainer
 		);
 
-		return $handler;
-	}
-
-	/**
-	 * Creates a handler from the given spec, but does not initialize it.
-	 * @param array $spec
-	 * @return Handler
-	 */
-	public function instantiateHandlerObject( array $spec ): Handler {
-		if ( !isset( $spec['class'] ) && !isset( $spec['factory'] ) ) {
-			// Inject well known handle class for shorthand definition
-			if ( isset( $spec['redirect'] ) ) {
-				$spec['class'] = RedirectHandler::class;
-			} else {
-				throw new RouteDefinitionException(
-					'Route handler definition must specify "class" or ' .
-					'"factory" or "redirect"'
-				);
-			}
-		}
-
-		/** @var $handler Handler (annotation for PHPStorm) */
-		// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
-		$handler = $this->objectFactory->createObject(
-			$spec,
-			[ 'assertClass' => Handler::class ]
-		);
-
-		return $handler;
-	}
-
-	/**
-	 * Execute a fully-constructed handler
-	 *
-	 * @param Handler $handler
-	 * @return ResponseInterface
-	 * @throws HttpException
-	 */
-	private function executeHandler( $handler ): ResponseInterface {
-		ProfilingContext::singleton()->init( MW_ENTRY_POINT, $handler->getPath() );
-		// Check for basic authorization, to avoid leaking data from private wikis
-		$authResult = $this->basicAuth->authorize( $handler->getRequest(), $handler );
-		if ( $authResult ) {
-			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );
-		}
-
-		// Check session (and session provider)
-		$handler->checkSession();
-
-		// Validate the parameters
-		$handler->validate( $this->restValidator );
-
-		// Check conditional request headers
-		$earlyResponse = $handler->checkPreconditions();
-		if ( $earlyResponse ) {
-			return $earlyResponse;
-		}
-
-		// Run the main part of the handler
-		$response = $handler->execute();
-		if ( !( $response instanceof ResponseInterface ) ) {
-			$response = $this->responseFactory->createFromReturnValue( $response );
-		}
-
-		// Set Last-Modified and ETag headers in the response if available
-		$handler->applyConditionalResponseHeaders( $response );
-
-		$handler->applyCacheControl( $response );
-
-		return $response;
+		$handler->initSession( $this->session );
 	}
 
 	/**
@@ -603,37 +535,6 @@ class Router {
 		$this->stats = $stats;
 
 		return $this;
-	}
-
-	private function setBodyData( RequestInterface $request, Handler $handler ) {
-		// fail if the request method is in nobodymethod but has body
-		$requestMethod = $request->getMethod();
-		if ( in_array( $requestMethod, RequestInterface::NO_BODY_METHODS ) ) {
-			// check if the request has a body
-			if ( $request->hasBody() ) {
-				// NOTE: Don't throw, see T359509.
-				// TODO: Ignore only empty bodies, log a warning or fail if
-				//       there is actual content.
-				return;
-			}
-		}
-
-		// fail if the request method expects a body but has no body
-		if ( in_array( $requestMethod, RequestInterface::BODY_METHODS ) ) {
-			// check if it has no body
-			if ( !$request->hasBody() ) {
-				throw new LocalizedHttpException( new MessageValue( "rest-request-body-expected", [ $requestMethod ] ),
-					411
-				);
-			}
-		}
-
-		// call parsedbody
-		if ( $request->hasBody() ) {
-			$parsedBody = $handler->parseBodyData( $request );
-			// Set the parsed body data on the request object
-			$request->setParsedBody( $parsedBody );
-		}
 	}
 
 }

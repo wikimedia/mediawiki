@@ -34,12 +34,11 @@ use Wikimedia\Parsoid\Parsoid;
  * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
  * or MediaWikiIntegrationTestCase.
  *
- * @stable to use
  * @package MediaWiki\Tests\Rest\Handler
  */
 trait PageHandlerTestTrait {
 
-	private function newRouter( $baseUrl, $rootPath = '' ): Router {
+	private function newRouterForPageHandler( $baseUrl, $rootPath = '' ): Router {
 		$router = $this->createNoOpMock( Router::class, [ 'getRoutePath', 'getRouteUrl' ] );
 		$router->method( 'getRoutePath' )
 			->willReturnCallback( static function (
@@ -147,7 +146,7 @@ trait PageHandlerTestTrait {
 					$services->getRedirectStore(),
 					$services->getTitleFormatter(),
 					$responseFactory,
-					$this->newRouter( 'https://example.test/api' ),
+					$this->newRouterForPageHandler( 'https://example.test/api' ),
 					'/test/{title}',
 					$request,
 					$services->getLanguageConverterFactory()

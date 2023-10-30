@@ -283,15 +283,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		/** @var ResponseFactory|MockObject $responseFactory */
 		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
 
-		$handler->init(
-			$router,
-			$request,
-			$config,
-			$authority,
-			$responseFactory,
-			$this->createHookContainer(),
-			$this->getSession( true )
-		);
+		if ( !$request->hasBody() && $method === 'POST' ) {
+			// Send an empty body if none was provided.
+			$request->setParsedBody( [] );
+		}
+
+		$handler->initContext( $this->newModule( [ 'router' => $router ] ), $config );
+		$handler->initServices( $authority, $responseFactory, $this->createHookContainer() );
+		$handler->initSession( $this->getSession( true ) );
+		$handler->initForExecute( $request );
 
 		return $handler;
 	}
@@ -2251,4 +2251,5 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 		return $seen[$code];
 	}
+
 }

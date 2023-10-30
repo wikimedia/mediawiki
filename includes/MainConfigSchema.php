@@ -400,7 +400,7 @@ class MainConfigSchema {
 	}
 
 	/**
-	 * The URL path to the REST API
+	 * The URL path to the REST API.
 	 * Defaults to "{$wgScriptPath}/rest.php"
 	 *
 	 * @since 1.34

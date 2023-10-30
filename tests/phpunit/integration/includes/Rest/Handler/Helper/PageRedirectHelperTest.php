@@ -41,7 +41,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 
 		$responseFactory = new ResponseFactory( [] );
 
-		$router = $this->newRouter( 'https://example.test', '/api' );
+		$router = $this->newRouterForPageHandler( 'https://example.test', '/api' );
 		$request = new RequestData( [ 'queryParams' => $queryParams, 'headers' => $headers ] );
 
 		return new PageRedirectHelper(

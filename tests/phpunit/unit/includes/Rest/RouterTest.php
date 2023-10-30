@@ -3,24 +3,27 @@
 namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Uri;
+use HashBagOStuff;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\Handler;
-use MediaWiki\Rest\HttpException;
-use MediaWiki\Rest\RedirectException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\Rest\ResponseException;
+use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\Router
@@ -34,19 +37,18 @@ class RouterTest extends MediaWikiUnitTestCase {
 	/** @var Throwable[] */
 	private $reportedErrors = [];
 
-	/**
-	 * @param RequestInterface $request
-	 * @param string|null $authError
-	 * @param string[] $additionalRouteFiles
-	 * @return Router
-	 */
+	private $cacheBag;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->cacheBag = new HashBagOStuff();
+	}
+
 	private function createRouter(
 		RequestInterface $request,
-		$authError = null,
-		$additionalRouteFiles = []
-	) {
-		$routeFiles = array_merge( [ __DIR__ . '/testRoutes.json' ], $additionalRouteFiles );
-
+		?string $authError = null,
+		array $routeFiles = [ __DIR__ . '/testRoutes.json' ]
+	): Router {
 		/** @var MockObject|ErrorReporter $mockErrorReporter */
 		$mockErrorReporter = $this->createNoOpMock( ErrorReporter::class, [ 'reportError' ] );
 		$mockErrorReporter->method( 'reportError' )
@@ -64,6 +66,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'routeFiles' => $routeFiles,
 			'request' => $request,
 			'config' => $config,
+			'cacheBag' => $this->cacheBag,
 			'errorReporter' => $mockErrorReporter,
 			'basicAuth' => new StaticBasicAuthorizer( $authError ),
 		] );
@@ -78,7 +81,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testWrongMethod() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/hello' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/hello' ),
 			'method' => 'TRACE'
 		] );
 		$router = $this->createRouter( $request );
@@ -90,12 +93,30 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testHeadToGet() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/hello' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/hello' ),
 			'method' => 'HEAD'
 		] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );
+	}
+
+	public function testCorsPreflight() {
+		$cors = $this->getCorsUtils();
+
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/hello' ),
+			'method' => 'OPTIONS'
+		] );
+		$router = $this->createRouter( $request );
+		$router->setCors( $cors );
+
+		$response = $router->execute( $request );
+		$this->assertSame( 204, $response->getStatusCode() );
+		$this->assertSame(
+			[ 'HEAD', 'GET', ],
+			$response->getHeader( 'Access-Control-Allow-Methods' )
+		);
 	}
 
 	public function testNoMatch() {
@@ -106,42 +127,8 @@ class RouterTest extends MediaWikiUnitTestCase {
 		// TODO: add more information to the response body and test for its presence here
 	}
 
-	public static function throwHandlerFactory() {
-		return new class extends Handler {
-			public function execute() {
-				throw new HttpException( 'Mock error', 555 );
-			}
-		};
-	}
-
-	public static function fatalHandlerFactory() {
-		return new class extends Handler {
-			public function execute() {
-				throw new RuntimeException( 'Fatal mock error', 12345 );
-			}
-		};
-	}
-
-	public static function throwRedirectHandlerFactory() {
-		return new class extends Handler {
-			public function execute() {
-				throw new RedirectException( 301, 'http://example.com' );
-			}
-		};
-	}
-
-	public static function throwWrappedHandlerFactory() {
-		return new class extends Handler {
-			public function execute() {
-				$response = $this->getResponseFactory()->create();
-				$response->setStatus( 200 );
-				throw new ResponseException( $response );
-			}
-		};
-	}
-
 	public function testHttpException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throw' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throw' ) ] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 555, $response->getStatusCode() );
@@ -152,7 +139,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFatalException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/fatal' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/fatal' ) ] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 500, $response->getStatusCode() );
@@ -165,7 +152,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testRedirectException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throwRedirect' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throwRedirect' ) ] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 301, $response->getStatusCode() );
@@ -173,8 +160,8 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testRedirectDefinition() {
-		// This route is defined in testRoutes.json wihtout specifying a class or factory.
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/redirect' ) ] );
+		// This route is defined in testRoutes.json without specifying a class or factory.
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/redirect' ) ] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 308, $response->getStatusCode() );
@@ -182,7 +169,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testResponseException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throwWrapped' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throwWrapped' ) ] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );
@@ -190,8 +177,8 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testBasicAccess() {
 		// Using the throwing handler is a way to assert that the handler is not executed
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throw' ) ] );
-		$router = $this->createRouter( $request, 'test-error', [] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throw' ) ] );
+		$router = $this->createRouter( $request, 'test-error' );
 		$response = $router->execute( $request );
 		$this->assertSame( 403, $response->getStatusCode() );
 		$body = $response->getBody();
@@ -200,26 +187,28 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'test-error', $data['error'] );
 	}
 
-	/**
-	 * @dataProvider providePaths
-	 */
-	public function testAdditionalEndpoints( $path ) {
+	public function testAdditionalEndpoints() {
 		$request = new RequestData( [
-			'uri' => new Uri( $path )
+			'uri' => new Uri( '/rest/mock-too/RouterTest/hello/two' )
 		] );
 		$router = $this->createRouter(
 			$request,
 			null,
-			[ __DIR__ . '/testAdditionalRoutes.json' ]
+			// NOTE: testAdditionalRoutes uses the old flat format!
+			[ __DIR__ . '/testRoutes.json', __DIR__ . '/testAdditionalRoutes.json' ]
 		);
+
+		// Routes from flat route files end up on a module that uses the empty prefix.
+		$this->assertSame( [ 'mock/v1', '' ], $router->getModuleNames() );
+
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public static function providePaths() {
 		return [
-			[ '/rest/mock/RouterTest/hello' ],
-			[ '/rest/mock/RouterTest/hello/two' ],
+			[ '/rest/mock/v1/RouterTest/hello' ],
+			[ '/rest/mock-too/RouterTest/hello/two' ],
 		];
 	}
 
@@ -244,7 +233,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGetRouteUrl
 	 */
 	public function testGetRoutePath( $route, $expectedUrl, $query = [], $path = [] ) {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/route' ) ] );
 		$router = $this->createRouter( $request );
 
 		$path = $router->getRoutePath( $route, $path, $query );
@@ -261,7 +250,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGetRouteUrl
 	 */
 	public function testGetRouteUrl( $route, $expectedUrl, $query = [], $path = [] ) {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/route' ) ] );
 		$router = $this->createRouter( $request );
 
 		$url = $router->getRouteUrl( $route, $path, $query );
@@ -275,7 +264,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGetRouteUrl
 	 */
 	public function testGetPrivateRouteUrl( $route, $expectedUrl, $query = [], $path = [] ) {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/route' ) ] );
 		$router = $this->createRouter( $request );
 
 		$url = $router->getPrivateRouteUrl( $route, $path, $query );
@@ -285,6 +274,42 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertStringContainsString( $expectedUrl, $uri );
 	}
 
+	public function testCaching() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/route' ) ] );
+		$router1 = $this->createRouter( $request );
+		$router1wrapper = TestingAccessWrapper::newFromObject( $router1 );
+
+		// Ensure the module map is loaded and cached
+		$router1->getModule( 'mock' );
+
+		// Create a second router
+		$router2 = $this->createRouter( $request );
+		$router2wrapper = TestingAccessWrapper::newFromObject( $router2 );
+
+		// Destroy $router2's ability to load modules and routes
+		$router2wrapper->routeFiles = [ '/this/does/not/exist' ];
+
+		// Make sure the config hash is set and matches.
+		$router2wrapper->configHash = $router1wrapper->configHash;
+
+		// Check that $router2 can return a module based on cached information.
+		// Note that this needs both levels of the cache to work.
+		$module2 = $router2->getModule( 'mock/v1' );
+		$this->assertNotNull( $module2 );
+
+		// Create a third router
+		$router3 = $this->createRouter( $request );
+		$router3wrapper = TestingAccessWrapper::newFromObject( $router3 );
+
+		// Force a different route file (but don't force the config hash)
+		$router3wrapper->routeFiles = [ __DIR__ . '/testAdditionalRoutes.json' ];
+
+		// This should fail, since the router should detect that the config is
+		// different, so it can't use cached data.
+		$module3 = $router3->getModule( 'mock/v1' );
+		$this->assertNull( $module3 );
+	}
+
 	public function testHandlerDisablesBodyParsing() {
 		// This is valid JSON, but not an object.
 		// Automatic parsing will fail, since it re	requires
@@ -292,7 +317,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$payload = '"just a test"';
 
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/stream' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/stream' ),
 			'method' => 'PUT',
 			'bodyContents' => $payload,
 			'headers' => [ "content-type" => 'application/json' ]
@@ -319,7 +344,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$payload = '{ "test": "yes" }';
 
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/old-body-validator' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/old-body-validator' ),
 			'method' => 'PUT',
 			'bodyContents' => $payload,
 			'headers' => [ "content-type" => 'application/json-patch+json' ]
@@ -384,7 +409,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetRequestFailsWithBody() {
 		$this->markTestSkipped( 'T359509' );
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'GET',
 			'bodyContents' => '{"foo":"bar"}',
 			'headers' => [ "content-type" => 'application/json' ]
@@ -396,7 +421,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testGetRequestIgnoresEmptyBody() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'GET',
 			'bodyContents' => '',
 			'headers' => [
@@ -411,7 +436,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testPostRequestFailsWithoutBody() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
 		] );
 		$router = $this->createRouter( $request );
@@ -421,7 +446,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testEmptyBodyWithoutContentTypePasses() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
 			'headers' => [ 'content-length' => '0' ],
 			'bodyContent' => '',
@@ -435,7 +460,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testRequestBodyWithoutContentTypeFails() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
 			'bodyContents' => '{"foo":"bar"}', // Request body without content-type
 		] );
@@ -447,7 +472,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testDeleteRequestWithoutBody() {
 		// Test DELETE request without body
 		$requestWithoutBody = new RequestData( [
-		'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+		'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 		'method' => 'DELETE',
 		] );
 		$router = $this->createRouter( $requestWithoutBody );
@@ -458,7 +483,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testDeleteRequestWithBody() {
 			// Test DELETE request with body
 			$requestWithBody = new RequestData( [
-				'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+				'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 				'method' => 'DELETE',
 				'bodyContents' => '{"bodyParam":"bar"}',
 				'headers' => [ "content-type" => 'application/json' ]
@@ -470,7 +495,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testUnsupportedContentTypeReturns415() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
 			'bodyContents' => '{"foo":"bar"}',
 			'headers' => [ "content-type" => 'text/plain' ] // Unsupported content type
@@ -482,7 +507,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testHandlerCanAccessParsedBodyForJsonRequest() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
 			'bodyContents' => '{"bodyParam":"bar"}',
 			'headers' => [ "content-type" => 'application/json' ]
@@ -504,7 +529,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testHandlerCanAccessValidatedBodyForJsonRequest() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
 			'bodyContents' => '{"bodyParam":"bar"}',
 			'headers' => [ "content-type" => 'application/json' ]
@@ -531,7 +556,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testHandlerCanAccessValidatedParams() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo/bar' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo/bar' ),
 			'method' => 'POST',
 			'headers' => [ "content-type" => 'application/json' ],
 			'bodyContents' => '{}'
@@ -549,5 +574,31 @@ class RouterTest extends MediaWikiUnitTestCase {
 		// Check the value of the 'pathParams' field
 		$validatedParams = $data['validatedParams'];
 		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ], (string)$response->getBody() );
+	}
+
+	/**
+	 * @return CorsUtils
+	 */
+	private function getCorsUtils(): CorsUtils {
+		$cors = new CorsUtils(
+			new ServiceOptions(
+				CorsUtils::CONSTRUCTOR_OPTIONS,
+				[
+					MainConfigNames::AllowedCorsHeaders => [],
+					MainConfigNames::AllowCrossOrigin => [],
+					MainConfigNames::RestAllowCrossOriginCookieAuth => [],
+					MainConfigNames::CanonicalServer => 'testing',
+					MainConfigNames::CrossSiteAJAXdomains => [],
+					MainConfigNames::CrossSiteAJAXdomainExceptions => [],
+				]
+			),
+			new ResponseFactory( [] ),
+			new UserIdentityValue(
+				1,
+				'Test'
+			)
+		);
+
+		return $cors;
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Rest\ConditionalHeaderUtil;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -41,6 +42,24 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			->onlyMethods( $methods )
 			->getMock();
 		$handler->method( 'execute' )->willReturn( (object)[] );
+
+		return $handler;
+	}
+
+	private function initHandlerPartially( Handler $handler ) {
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+
+		$router = $this->newRouter();
+		$module = $this->newModule( [ 'router' => $router ] );
+
+		$authority = $this->mockAnonUltimateAuthority();
+		$hookContainer = $this->createHookContainer();
+
+		$session = $this->getSession( true );
+		$handler->initContext( $module, [] );
+		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$handler->initSession( $session );
 
 		return $handler;
 	}
@@ -767,6 +786,183 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			$parsedBody = $handler->parseBodyData( $requestData );
 			$this->assertEquals( $expectedResult, $parsedBody );
 		}
+	}
+
+	public function testGetRequestFailsWithBody() {
+		$this->markTestSkipped( 'T359509' );
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'GET',
+			'bodyContents' => '{"foo":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+
+		$this->expectExceptionCode( 400 );
+		$handler->initForExecute( $request );
+	}
+
+	public function testGetRequestIgnoresEmptyBody() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'GET',
+			'bodyContents' => '',
+			'headers' => [
+				"content-length" => 0,
+				"content-type" => 'text/plain'
+			]
+		] );
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+		$handler->initForExecute( $request );
+		$this->addToAssertionCount( 1 );
+	}
+
+	public function testPostRequestFailsWithoutBody() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'POST',
+		] );
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+
+		$this->expectExceptionCode( 411 );
+		$handler->initForExecute( $request );
+	}
+
+	public function testEmptyBodyWithoutContentTypePasses() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'POST',
+			'headers' => [ 'content-length' => '0' ],
+			'bodyContent' => '',
+			// Should pass even without content-type!
+		] );
+
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+		$handler->initForExecute( $request );
+		$this->addToAssertionCount( 1 );
+	}
+
+	public function testRequestBodyWithoutContentTypeFails() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"foo":"bar"}', // Request body without content-type
+		] );
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+
+		$this->expectExceptionCode( 415 );
+		$handler->initForExecute( $request );
+	}
+
+	public function testDeleteRequestWithoutBody() {
+		// Test DELETE request without body
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'DELETE',
+		] );
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+		$handler->initForExecute( $request );
+		$this->addToAssertionCount( 1 );
+	}
+
+	public function testDeleteRequestWithBody() {
+		// Test DELETE request with body
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'DELETE',
+			'bodyContents' => '{"bodyParam":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+		$handler->initForExecute( $request );
+		$this->addToAssertionCount( 1 );
+	}
+
+	public function testUnsupportedContentTypeReturns415() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"foo":"bar"}',
+			'headers' => [ "content-type" => 'text/plain' ] // Unsupported content type
+		] );
+		$handler = new EchoHandler();
+		$this->initHandlerPartially( $handler );
+
+		$this->expectExceptionCode( 415 );
+		$handler->initForExecute( $request );
+	}
+
+	public function testHandlerCanAccessParsedBodyForJsonRequest() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"bodyParam":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+		$handler = new EchoHandler();
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+		$data = $handler->execute();
+
+		// Check if the response contains a field called 'parsedBody'
+		$this->assertArrayHasKey( 'parsedBody', $data );
+
+		// Check the value of the 'parsedBody' field
+		$parsedBody = $data['parsedBody'];
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $parsedBody );
+	}
+
+	public function testHandlerCanAccessValidatedBodyForJsonRequest() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"bodyParam":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+		$handler = new EchoHandler();
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+		$data = $handler->execute();
+
+		// Check if the response contains a field called 'validatedBody'
+		$this->assertArrayHasKey( 'validatedBody', $data );
+
+		// Check the value of the 'validatedBody' field
+		$validatedBody = $data['validatedBody'];
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $validatedBody );
+
+		// Check the value of the 'validatedParams' field.
+		// It should not contain bodyParam.
+		$validatedParams = $data['validatedParams'];
+		$this->assertArrayNotHasKey( 'bodyParam', $validatedParams );
+	}
+
+	public function testHandlerCanAccessValidatedParams() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo/bar' ),
+			'pathParams' => [ 'pathParam' => 'bar' ],
+			'method' => 'POST',
+			'headers' => [ "content-type" => 'application/json' ],
+			'bodyContents' => '{}'
+		] );
+		$handler = new EchoHandler();
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+		$data = $handler->execute();
+
+		// Check if the response contains a field called 'pathParams'
+		$this->assertArrayHasKey( 'validatedParams', $data );
+
+		// Check the value of the 'pathParams' field
+		$validatedParams = $data['validatedParams'];
+		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ] );
 	}
 
 }

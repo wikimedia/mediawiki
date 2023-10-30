@@ -161,9 +161,9 @@ class CorsUtils implements BasicAuthorizerInterface {
 	 * Create a CORS preflight response.
 	 *
 	 * @param array $allowedMethods
-	 * @return ResponseInterface
+	 * @return Response
 	 */
-	public function createPreflightResponse( array $allowedMethods ): ResponseInterface {
+	public function createPreflightResponse( array $allowedMethods ): Response {
 		$response = $this->responseFactory->createNoContent();
 		$response->setHeader( 'Access-Control-Allow-Methods', $allowedMethods );
 

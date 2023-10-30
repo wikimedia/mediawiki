@@ -1,0 +1,25 @@
+{
+	"module": "mock.v1",
+	"routes": [
+		{
+			"path": "/ModuleTest/hello",
+			"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
+		},
+		{
+			"path": "/ModuleTest/throw",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwHandlerFactory"
+		},
+		{
+			"path": "/ModuleTest/fatal",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::fatalHandlerFactory"
+		},
+		{
+			"path": "/ModuleTest/throwRedirect",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwRedirectHandlerFactory"
+		},
+		{
+			"path": "/ModuleTest/throwWrapped",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+		}
+	]
+}

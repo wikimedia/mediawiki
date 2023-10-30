@@ -153,6 +153,11 @@ because of Phabricator reports.
 * Overriding MWException::getHTML(), ::getText(), ::getPageTitle(), and
   ::reportHTML() in order to display custom exception messages is no
   longer supported.
+* In PageHandlerTestTrait, the newRouter() method was renamed to
+  newRouterForPageHandler() to avoid a conflict with a method of the same
+  name in RestTestTrait. Also, PageHandlerTestTrait is no longer marked as
+  "stable to use". It was marked this way by accident, the functionality it
+  provides is specific to certain handlers implemented in MediaWiki core.
 * TablePager::getBody(), final and deprecated since 1.24, has been removed.
   Use ::getBodyOutput() or ::getFullOutput() instead.
 * ImportableUploadRevisionImporter::downloadSource(), deprecated in 1.31, is now

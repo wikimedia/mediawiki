@@ -211,6 +211,8 @@ class EntryPoint extends MediaWikiEntryPoint {
 	public function execute() {
 		$this->startOutputBuffer();
 
+		// IDEA: Move the call to cors->modifyResponse() into Module,
+		//       so it's in the same class as cors->createPreflightResponse().
 		$response = $this->cors->modifyResponse(
 			$this->request,
 			$this->router->execute( $this->request )

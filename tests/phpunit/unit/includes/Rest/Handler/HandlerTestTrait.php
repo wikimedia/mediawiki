@@ -6,6 +6,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
@@ -13,6 +14,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\Assert;
@@ -28,12 +30,13 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @package MediaWiki\Tests\Rest\Handler
  */
 trait HandlerTestTrait {
+	use RestTestTrait;
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 	use SessionHelperTestTrait;
 
 	/**
-	 * Calls init() on the Handler, supplying a mock Router and ResponseFactory.
+	 * Calls init() on the Handler, supplying a mock RouteUrlProvider and ResponseFactory.
 	 *
 	 * @param Handler $handler
 	 * @param RequestInterface $request
@@ -41,7 +44,7 @@ trait HandlerTestTrait {
 	 * @param HookContainer|array $hooks Hook container or array of hooks
 	 * @param Authority|null $authority
 	 * @param Session|null $session Defaults to `$this->getSession( true )`
-	 * @param Router|null $router
+	 * @param Router|Module|null $routerOrModule
 	 *
 	 * @internal to the trait
 	 */
@@ -52,43 +55,87 @@ trait HandlerTestTrait {
 		$hooks = [],
 		Authority $authority = null,
 		Session $session = null,
-		Router $router = null
+		$routerOrModule = null
 	) {
 		$formatter = $this->getDummyTextFormatter( true );
-
-		/** @var ResponseFactory|MockObject $responseFactory */
 		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
 
-		if ( !$router ) {
-			/** @var Router|MockObject $router */
-			$router = $this->createNoOpMock( Router::class, [ 'getRoutePath', 'getRouteUrl' ] );
-			$router->method( 'getRoutePath' )->willReturnCallback(
-				static function ( $route, $path = [], $query = [] ) {
-					foreach ( $path as $param => $value ) {
-						$route = str_replace( '{' . $param . '}', urlencode( (string)$value ), $route );
-					}
-					return wfAppendQuery( '/rest' . $route, $query );
-				}
-			);
-			$router->method( 'getRouteUrl' )->willReturnCallback(
-				static function ( $route, $path = [], $query = [] ) use ( $router ) {
-					return 'https://wiki.example.com' . $router->getRoutePath( $route, $path, $query );
-				}
-			);
+		$module = null;
+		$router = null;
+
+		if ( $routerOrModule instanceof Module ) {
+			$module = $routerOrModule;
+			$router = $module->getRouter();
 		}
 
-		// call parseBodyData
-		if ( $request->hasBody() && !$request->getParsedBody() ) {
-			$parsedBody = $handler->parseBodyData( $request );
-			// Set the parsed body data on the request object
-			$request->setParsedBody( $parsedBody );
+		if ( $routerOrModule instanceof Router ) {
+			$router = $routerOrModule;
+		}
+
+		if ( !$module ) {
+			if ( !$router ) {
+				$router = $this->newRouter();
+			}
+
+			$module = $this->newModule( [ 'router' => $router ] );
+		}
+
+		if ( !$request->hasBody()
+			&& in_array( $request->getMethod(), RequestInterface::BODY_METHODS )
+		) {
+			// Send an empty body if none was provided.
+			$request->setParsedBody( [] );
 		}
 
 		$authority ??= $this->mockAnonUltimateAuthority();
-		$hookContainer = $hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
+		$hookContainer =
+			$hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
 
 		$session ??= $this->getSession( true );
-		$handler->init( $router, $request, $config, $authority, $responseFactory, $hookContainer, $session );
+		$handler->initContext( $module, $config );
+		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$handler->initSession( $session );
+		$handler->initForExecute( $request );
+	}
+
+	/**
+	 * @return MockObject&Router
+	 */
+	private function newRouter(): Router {
+		$router = $this->createNoOpMock(
+			Router::class,
+			[
+				'getRoutePath',
+				'getRouteUrl'
+			]
+		);
+		$router->method( 'getRoutePath' )->willReturnCallback(
+			static function ( $route, $path = [], $query = [] ) {
+				foreach ( $path as $param => $value ) {
+					$route = str_replace(
+						'{' . $param . '}',
+						urlencode( (string)$value ),
+						$route
+					);
+				}
+
+				return wfAppendQuery(
+					'/rest' . $route,
+					$query
+				);
+			}
+		);
+		$router->method( 'getRouteUrl' )->willReturnCallback(
+			static function ( $route, $path = [], $query = [] ) use ( $router ) {
+				return 'https://wiki.example.com' . $router->getRoutePath(
+						$route,
+						$path,
+						$query
+					);
+			}
+		);
+
+		return $router;
 	}
 
 	/**
@@ -137,7 +184,7 @@ trait HandlerTestTrait {
 	 * @param array $validatedBody Body params to return as already valid
 	 * @param Authority|null $authority
 	 * @param Session|null $session Defaults to `$this->getSession( true )`
-	 * @param Router|null $router
+	 * @param Router|Module|null $routerOrModule
 	 *
 	 * @return ResponseInterface
 	 */
@@ -150,12 +197,12 @@ trait HandlerTestTrait {
 		$validatedBody = [],
 		Authority $authority = null,
 		Session $session = null,
-		Router $router = null
+		$routerOrModule = null
 	): ResponseInterface {
 		// supply defaults for required fields in $config
 		$config += [ 'path' => '/test' ];
 
-		$this->initHandler( $handler, $request, $config, $hooks, $authority, $session, $router );
+		$this->initHandler( $handler, $request, $config, $hooks, $authority, $session, $routerOrModule );
 		$validator = null;
 		if ( $validatedParams || $validatedBody ) {
 			/** @var Validator|MockObject $validator */

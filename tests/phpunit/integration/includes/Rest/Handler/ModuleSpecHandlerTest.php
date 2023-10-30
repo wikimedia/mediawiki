@@ -7,7 +7,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
-use MediaWiki\Rest\Handler\RootSpecHandler;
+use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Handler\ModuleSpecHandler;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
@@ -19,11 +20,11 @@ use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
 /**
- * @covers \MediaWiki\Rest\Handler\RootSpecHandler
+ * @covers \MediaWiki\Rest\Handler\ModuleSpecHandler
  *
  * @group Database
  */
-class RootSpecHandlerTest extends MediaWikiIntegrationTestCase {
+class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
 	/**
@@ -60,8 +61,13 @@ class RootSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$responseFactory = new ResponseFactory( [ $formatter ] );
 
 		return ( new Router(
-			[ MW_INSTALL_PATH . '/includes/Rest/coreRoutes.json' ],
-			[],
+			[ __DIR__ . '/SpecTestRoutes.json' ],
+			[
+				[
+					"path" => "/foo/bar",
+					"factory" => "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler",
+				],
+			],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
 			$responseFactory,
@@ -82,13 +88,29 @@ class RootSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::EmergencyContact => '',
 			MainConfigNames::Sitename => '',
 		] );
-		return new RootSpecHandler(
+		return new ModuleSpecHandler(
 			$config
 		);
 	}
 
-	public function testGetInfoSpecSuccess() {
-		$request = new RequestData( [] );
+	public static function provideGetInfoSpecSuccess() {
+		yield 'module and version' => [
+			[
+				'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
+			]
+		];
+		yield 'prefix-less module' => [
+			[
+				'pathParams' => [ 'module' => '-' ]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetInfoSpecSuccess
+	 */
+	public function testGetInfoSpecSuccess( $params ) {
+		$request = new RequestData( $params );
 
 		$router = $this->createRouter( $request );
 
@@ -110,4 +132,13 @@ class RootSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$data = json_decode( $response->getBody(), true );
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 	}
+
+	public static function newFooBarHandler() {
+		return new class extends Handler {
+			public function execute() {
+				return 'foo bar';
+			}
+		};
+	}
+
 }

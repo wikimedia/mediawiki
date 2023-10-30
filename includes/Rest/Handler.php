@@ -6,11 +6,13 @@ use DateTime;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -35,8 +37,8 @@ abstract class Handler {
 	 */
 	public const PARAM_DESCRIPTION = Validator::PARAM_DESCRIPTION;
 
-	/** @var Router */
-	private $router;
+	/** @var Module */
+	private $module;
 
 	/** @var RequestInterface */
 	private $request;
@@ -69,48 +71,159 @@ abstract class Handler {
 	private $hookRunner;
 
 	/**
-	 * Initialise with dependencies from the Router. This is called after construction.
-	 * @param Router $router
-	 * @param RequestInterface $request
-	 * @param array $config
-	 * @param Authority $authority
-	 * @param ResponseFactory $responseFactory
-	 * @param HookContainer $hookContainer
-	 * @param Session $session
-	 * @internal
-	 */
-	final public function init( Router $router, RequestInterface $request, array $config,
-		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer,
-		Session $session
-	) {
-		$this->initContext( $router, $config );
-		$this->request = $request;
-		$this->authority = $authority;
-		$this->responseFactory = $responseFactory;
-		$this->hookContainer = $hookContainer;
-		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->session = $session;
-		$this->postInitSetup();
-	}
-
-	/**
-	 * Injects information about the handler's context in the Router.
+	 * Injects information about the handler's context in the Module.
+	 * The framework should call this right after the object was constructed.
 	 *
 	 * First function of the initialization function, must be called before
 	 * initServices().
 	 *
-	 * @param Router $router
+	 * @param Module $module
 	 * @param array $routeConfig information about the route declaration.
 	 *
 	 * @internal
 	 */
-	final public function initContext( Router $router, array $routeConfig ) {
-		$this->router = $router;
+	final public function initContext( Module $module, array $routeConfig ) {
+		Assert::precondition(
+			$this->authority === null,
+			'initContext() must be called before initServices()'
+		);
+
+		$this->module = $module;
 		$this->config = $routeConfig;
 	}
 
 	/**
-	 * Returns the path this handler is bound to, including path variables.
+	 * Inject service objects.
+	 *
+	 * Second function of the initialization function, must be called after
+	 * initContext() and before initSession().
+	 *
+	 * @param Authority $authority
+	 * @param ResponseFactory $responseFactory
+	 * @param HookContainer $hookContainer
+	 *
+	 * @internal
+	 */
+	final public function initServices(
+		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
+	) {
+		Assert::precondition(
+			$this->module !== null,
+			'initServices() must not be called before initContext()'
+		);
+		Assert::precondition(
+			$this->session === null,
+			'initServices() must be called before initSession()'
+		);
+
+		$this->authority = $authority;
+		$this->responseFactory = $responseFactory;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
+	 * Inject session information.
+	 *
+	 * Third function of the initialization function, must be called after
+	 * initServices() and before initForExecute().
+	 *
+	 * @param Session $session
+	 *
+	 * @internal
+	 */
+	final public function initSession( Session $session ) {
+		Assert::precondition(
+			$this->authority !== null,
+			'initSession() must not be called before initContext()'
+		);
+		Assert::precondition(
+			$this->request === null,
+			'initSession() must be called before initForExecute()'
+		);
+
+		$this->session = $session;
+	}
+
+	/**
+	 * Initialise for execution based on the given request.
+	 *
+	 * Last function of the initialization function, must be called after
+	 * initSession() and before validate() and checkPreconditions().
+	 *
+	 * This function will call postInitSetup() to allow subclasses to
+	 * perform their own initialization.
+	 *
+	 * The request object is updated with parsed body data if needed.
+	 *
+	 * @internal
+	 *
+	 * @param RequestInterface $request
+	 *
+	 * @throws HttpException if the handler does not accept the request for
+	 *         some reason.
+	 */
+	final public function initForExecute( RequestInterface $request ) {
+		Assert::precondition(
+			$this->session !== null,
+			'initForExecute() must not be called before initSession()'
+		);
+
+		if ( $request->getParsedBody() === null ) {
+			$this->processRequestBody( $request );
+		}
+
+		$this->request = $request;
+
+		$this->postInitSetup();
+	}
+
+	/**
+	 * Process the request's request body and set the parsed body data
+	 * if appropriate.
+	 *
+	 * @see parseBodyData()
+	 *
+	 * @throws HttpException if the request body is not acceptable.
+	 */
+	private function processRequestBody( RequestInterface $request ) {
+		// fail if the request method is in NO_BODY_METHODS but has body
+		$requestMethod = $request->getMethod();
+		if ( in_array( $requestMethod, RequestInterface::NO_BODY_METHODS ) ) {
+			// check if the request has a body
+			if ( $request->hasBody() ) {
+				// NOTE: Don't throw, see T359509.
+				// TODO: Ignore only empty bodies, log a warning or fail if
+				//       there is actual content.
+				return;
+			}
+		}
+
+		// fail if the request method expects a body but has no body
+		if ( in_array( $requestMethod, RequestInterface::BODY_METHODS ) ) {
+			// check if it has no body
+			if ( !$request->hasBody() ) {
+				throw new LocalizedHttpException(
+					new MessageValue(
+						"rest-request-body-expected",
+						[ $requestMethod ]
+					),
+					411
+				);
+			}
+		}
+
+		// call parsedbody
+		if ( $request->hasBody() ) {
+			$parsedBody = $this->parseBodyData( $request );
+			// Set the parsed body data on the request object
+			$request->setParsedBody( $parsedBody );
+		}
+	}
+
+	/**
+	 * Returns the path this handler is bound to relative to the module prefix.
+	 * Includes path variables.
 	 *
 	 * @return string
 	 */
@@ -138,10 +251,21 @@ abstract class Handler {
 	/**
 	 * Get the Router. The return type declaration causes it to raise
 	 * a fatal error if init() has not yet been called.
+	 *
 	 * @return Router
 	 */
 	protected function getRouter(): Router {
-		return $this->router;
+		return $this->module->getRouter();
+	}
+
+	/**
+	 * Get the Module this handler belongs to.
+	 * Will fail hard if called before initContext().
+	 *
+	 * @return Module
+	 */
+	protected function getModule(): Module {
+		return $this->module;
 	}
 
 	/**
@@ -157,7 +281,7 @@ abstract class Handler {
 	 */
 	protected function getRouteUrl( $pathParams = [], $queryParams = [] ): string {
 		$path = $this->getConfig()['path'];
-		return $this->router->getRouteUrl( $path, $pathParams, $queryParams );
+		return $this->getRouter()->getRouteUrl( $path, $pathParams, $queryParams );
 	}
 
 	/**
@@ -519,6 +643,15 @@ abstract class Handler {
 			$spec['requestBody'] = $requestBody;
 		}
 
+		// TODO: Allow additional information about parameters and responses to
+		//       be provided in the route definition.
+		$overrides = array_intersect_key(
+			$this->getConfig(),
+			array_flip( [ 'description', 'summary', 'tags', 'deprecated', 'externalDocs', 'security' ] )
+		);
+
+		$spec = $overrides + $spec;
+
 		return $spec;
 	}
 
@@ -860,6 +993,8 @@ abstract class Handler {
 	 * is called to inject the dependencies.
 	 *
 	 * @stable to override
+	 * @throws HttpException if the handler does not accept the request for
+	 *         some reason.
 	 */
 	protected function postInitSetup() {
 	}

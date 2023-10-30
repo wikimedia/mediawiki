@@ -1,6 +1,6 @@
 [
 	{
-		"path": "/mock-too/RouterTest/hello/two",
+		"path": "/mock.v1/ModuleTest/hello/two",
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
 	}
 ]

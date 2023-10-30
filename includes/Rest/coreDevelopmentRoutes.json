@@ -1,7 +1,14 @@
 [
 	{
-		"path": "/",
-		"class": "MediaWiki\\Rest\\Handler\\RootSpecHandler",
+		"path": "/coredev/v0/specs/module/{module}",
+		"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
+		"services": [
+			"MainConfig"
+		]
+	},
+	{
+		"path": "/coredev/v0/specs/module/{module}/{version}",
+		"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
 		"services": [
 			"MainConfig"
 		]

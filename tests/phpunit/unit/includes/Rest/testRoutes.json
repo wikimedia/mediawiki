@@ -1,60 +1,63 @@
-[
-	{
-		"path": "/mock/RouterTest/hello",
-		"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
-	},
-	{
-		"method": [ "GET", "POST", "PUT", "DELETE" ],
-		"path": "/mock/RouterTest/echo",
-		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
-	},
-	{
-		"method": [ "GET", "POST", "PUT", "DELETE" ],
-		"path": "/mock/RouterTest/echo/{pathParam}",
-		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
-	},
-	{
-		"method": [ "POST", "PUT" ],
-		"path": "/mock/RouterTest/stream",
-		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::streamHandlerFactory"
-	},
-	{
-		"method": [ "POST", "PUT" ],
-		"path": "/mock/RouterTest/old-body-validator",
-		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::oldBodyValidatorFactory"
-	},
-	{
-		"path": "/mock/EntryPoint/header",
-		"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
-	},
-	{
-		"path": "/mock/EntryPoint/bodyRewind",
-		"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerBodyRewind"
-	},
-	{
-		"path": "/mock/RouterTest/throw",
-		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwHandlerFactory"
-	},
-	{
-		"path": "/mock/RouterTest/fatal",
-		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::fatalHandlerFactory"
-	},
-	{
-		"path": "/mock/RouterTest/throwRedirect",
-		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwRedirectHandlerFactory"
-	},
-	{
-		"path": "/mock/RouterTest/redirect",
-		"redirect": {
-			"path": "/mock/RouterTest/redirectTarget"
+{
+	"module": "mock/v1",
+	"routes": [
+		{
+			"path": "/RouterTest/hello",
+			"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
+		},
+		{
+			"method": [ "GET", "POST", "PUT", "DELETE" ],
+			"path": "/RouterTest/echo",
+			"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+		},
+		{
+			"method": [ "GET", "POST", "PUT", "DELETE" ],
+			"path": "/RouterTest/echo/{pathParam}",
+			"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+		},
+		{
+			"method": [ "POST", "PUT" ],
+			"path": "/RouterTest/stream",
+			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::streamHandlerFactory"
+		},
+		{
+			"method": [ "POST", "PUT" ],
+			"path": "/RouterTest/old-body-validator",
+			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::oldBodyValidatorFactory"
+		},
+		{
+			"path": "/EntryPoint/header",
+			"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
+		},
+		{
+			"path": "/EntryPoint/bodyRewind",
+			"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerBodyRewind"
+		},
+		{
+			"path": "/RouterTest/throw",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwHandlerFactory"
+		},
+		{
+			"path": "/RouterTest/fatal",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::fatalHandlerFactory"
+		},
+		{
+			"path": "/RouterTest/throwRedirect",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwRedirectHandlerFactory"
+		},
+		{
+			"path": "/RouterTest/redirect",
+			"redirect": {
+				"path": "/mock/RouterTest/redirectTarget"
+			}
+		},
+		{
+			"path": "/RouterTest/throwWrapped",
+			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+		},
+		{
+			"path": "/MWBasicRequestAuthorizerTest/write",
+			"factory": "MediaWiki\\Tests\\Unit\\Rest\\BasicAccess\\MWBasicRequestAuthorizerTest::writeHandlerFactory"
 		}
-	},
-	{
-		"path": "/mock/RouterTest/throwWrapped",
-		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwWrappedHandlerFactory"
-	},
-	{
-		"path": "/mock/MWBasicRequestAuthorizerTest/write",
-		"factory": "MediaWiki\\Tests\\Unit\\Rest\\BasicAccess\\MWBasicRequestAuthorizerTest::writeHandlerFactory"
-	}
-]
+	]
+}
