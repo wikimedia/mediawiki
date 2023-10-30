@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 /*!
  * Colors and icons for external links.
  */
@@ -5,8 +7,11 @@
 /* stylelint-disable selector-class-pattern */
 
 // External links.
-.mw-parser-output a.external {
-	color: #36b;
+.mw-parser-output a.external.link-audio,
+/* External interwiki links.*/
+.mw-parser-output a.extiw,
+.mw-parser-output a.extiw:active {
+	color: @color-link-external;
 }
 
 .mw-parser-output a.external,
@@ -74,10 +79,4 @@
 .mw-parser-output a.external[ href*='.PDF?' ],
 .link-document {
 	background-image: url( images/document-ltr.svg );
-}
-
-// External interwiki links.
-.mw-parser-output a.extiw,
-.mw-parser-output a.extiw:active {
-	color: #36b;
 }
