@@ -4,7 +4,8 @@
 			"Crucifunked",
 			"Enolp",
 			"Fitoschido",
-			"Xuacu"
+			"Xuacu",
+			"YoaR"
 		]
 	},
 	"config-desc": "L'instalador de MediaWiki",
@@ -131,7 +132,7 @@
 	"config-sqlite-readonly": "El ficheru <code>$1</code> nun puede escribise.",
 	"config-sqlite-cant-create-db": "Nun pudo crease'l ficheru de la base de datos <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "PHP nun tien compatibilidá pa FTS3, baxando a una versión anterior les tables.",
-	"config-can-upgrade": "Esta base de datos contien tables de MediaWiki.\nP'anovales a MediaWiki $1, pulsia <strong>Siguir</strong>.",
+	"config-can-upgrade": "Esta base de datos contién tables de MediaWiki.\nP'anovales a MediaWiki $1, pulsia <strong>Siguir</strong>.",
 	"config-upgrade-error": "Hebo un error al anovar les tables de MediaWiki de la base de datos.\n\nPa más información, consulta'l rexistru de más arriba; pa tentalo nuevamente, pulsia <strong>Siguir</strong>.",
 	"config-upgrade-done": "Anovamientu completáu.\n\nYá puedes [$1 principiar a usar la wiki].\n\nSi quies rexenerar el ficheru <code>LocalSettings.php</code>, pulsia nel botón d'abaxo.\nEsto <strong>nun s'encamienta</strong> sacante que teas teniendo problemes cola wiki.",
 	"config-upgrade-done-no-regenerate": "Anovamientu completáu.\n\nYá puedes [$1 principiar a usar la wiki].",
@@ -242,7 +243,7 @@
 	"config-install-tables-failed": "<strong>Error:</strong> La creación de tables falló col error siguiente: $1",
 	"config-install-interwiki": "Enllenando la tabla d'interwiki predeterminada",
 	"config-install-interwiki-list": "Nun pudo lleese'l ficheru <code>interwiki.list</code>.",
-	"config-install-interwiki-exists": "<strong>Avisu:</strong> Paez que la tabla d'interwikis yá contien entraes.\nSaltando la llista predeterminada.",
+	"config-install-interwiki-exists": "<strong>Avisu:</strong> paez que la tabla d'interwikis yá contién entraes.\nSaltando la llista predeterminada.",
 	"config-install-stats": "Aniciando les estadístiques",
 	"config-install-keys": "Xenerando les claves secretes",
 	"config-install-updates": "Torgar que s'executen anovamientos innecesarios",
