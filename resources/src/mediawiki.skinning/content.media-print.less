@@ -1,24 +1,25 @@
-@import 'variables.less';
+@import 'mediawiki.skin.variables';
+@import 'content.variables.less';
 
 figure[ typeof~='mw:File/Thumb' ],
 figure[ typeof~='mw:File/Frame' ] {
-	border: @border-thumbinner-print;
-	border-bottom: 0;  // No border to figcaption
-	background-color: @background-color-thumbinner-print;
+	border: @border-width-base-print;
+	border-bottom: 0; // No border to figcaption
+	background-color: @background-color-base-print;
 
 	> :not( figcaption ) .mw-file-element {
-		border: @border-thumbimage-print;
+		border: @border-thumbborder-print;
 	}
 
 	> figcaption {
-		border: @border-thumbinner-print;
-		border-top: 0;
-		background-color: @background-color-thumbinner-print;
-		font-size: @font-size-thumbinner-print;
+		background-color: @background-color-base-print;
 		color: @color-thumbinner-print;
+		font-size: @font-size-thumbinner-print;
+		border: @border-width-base-print;
+		border-top: 0;
 	}
 }
 
 .mw-image-border .mw-file-element {
-	border: @border-thumbborder-print;
+	border: @border-width-base-print;
 }

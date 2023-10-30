@@ -7,19 +7,20 @@
  */
 
 /* stylelint-disable selector-class-pattern */
-@import 'variables.less';
+@import 'mediawiki.skin.variables';
+@import 'content.variables.less';
 
 /* Thumbnails */
 
 div.thumbinner {
-	border: @border-thumbinner-screen;
-	background-color: @background-color-thumbinner-screen;
+	border: @border-subtle;
+	background-color: @background-color-interactive-subtle;
 	font-size: @font-size-thumbinner-screen;
 }
 
 .thumbimage {
-	background-color: @background-color-thumbimage-screen;
-	border: @border-thumbimage-screen;
+	background-color: @background-color-interactive-subtle;
+	border: 1px solid @border-color-subtle;
 }
 
 .thumbcaption {
@@ -29,7 +30,7 @@ div.thumbinner {
 }
 
 .thumbborder {
-	border: @border-thumbborder-screen;
+	border: @border-width-base @border-style-base #eaecf0;
 }
 
 .magnify {
