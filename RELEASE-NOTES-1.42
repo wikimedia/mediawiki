@@ -65,6 +65,9 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.42 ===
+* APIQueryTags now includes "software" in the "source" array for software
+  generated tags. Reliance on the "extension" entries in this array is now
+  deprecated, but they will remain for backwards compatibility.
 * …
 
 === Action API internal changes in 1.42 ===
