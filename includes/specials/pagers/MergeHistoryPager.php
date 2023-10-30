@@ -213,7 +213,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 			->where( $this->mConds )
 			->andWhere( [
 				'rev_page' => $this->articleID,
-				"rev_timestamp < " . $dbr->addQuotes( $this->maxTimestamp )
+				$dbr->expr( 'rev_timestamp', '<', $this->maxTimestamp ),
 			] );
 		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
 

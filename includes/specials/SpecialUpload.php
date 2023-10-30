@@ -323,7 +323,7 @@ class SpecialUpload extends SpecialPage {
 			LogEventsList::showLogExtract( $delNotice, [ 'delete', 'move' ],
 				$desiredTitleObj,
 				'', [ 'lim' => 10,
-					'conds' => [ 'log_action != ' . $this->localRepo->getReplicaDB()->addQuotes( 'revision' ) ],
+					'conds' => [ $this->localRepo->getReplicaDB()->expr( 'log_action', '!=', 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'upload-recreate-warning' ] ]
 			);

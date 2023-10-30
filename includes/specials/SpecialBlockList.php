@@ -230,7 +230,7 @@ class SpecialBlockList extends SpecialPage {
 		} elseif ( $hideTemp ) {
 			$conds['ipb_expiry'] = $db->getInfinity();
 		} elseif ( $hideIndef ) {
-			$conds[] = "ipb_expiry != " . $db->addQuotes( $db->getInfinity() );
+			$conds[] = $db->expr( 'ipb_expiry', '!=', $db->getInfinity() );
 		}
 
 		if ( $this->blockType === 'sitewide' ) {

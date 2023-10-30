@@ -908,7 +908,7 @@ class InfoAction extends FormlessAction {
 					->select( 'COUNT(rev_page)' )
 					->from( 'revision' )
 					->where( [ 'rev_page' => $id ] )
-					->andWhere( [ "rev_timestamp >= " . $dbr->addQuotes( $threshold ) ] )
+					->andWhere( $dbr->expr( 'rev_timestamp', '>=', $threshold ) )
 					->caller( $fname )
 					->fetchField();
 				$result['recent_edits'] = $edits;

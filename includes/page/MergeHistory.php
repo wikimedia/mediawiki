@@ -584,7 +584,7 @@ class MergeHistory {
 					->select( 'MAX(rev_timestamp)' )
 					->from( 'revision' )
 					->where( [
-						'rev_timestamp <= ' . $this->dbw->addQuotes( $this->dbw->timestamp( $mwTimestamp ) ),
+						$this->dbw->expr( 'rev_timestamp', '<=', $this->dbw->timestamp( $mwTimestamp ) ),
 						'rev_page' => $this->source->getId()
 					] )
 					->caller( __METHOD__ )->fetchField();

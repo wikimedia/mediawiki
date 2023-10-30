@@ -159,7 +159,9 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		if ( $params['prtype'] || $params['prexpiry'] != 'all' ) {
 			$this->addTables( 'page_restrictions' );
 			$this->addWhere( 'page_id=pr_page' );
-			$this->addWhere( "pr_expiry > {$db->addQuotes( $db->timestamp() )} OR pr_expiry IS NULL" );
+			$this->addWhere(
+				$db->expr( 'pr_expiry', '>', $db->timestamp() )->or( 'pr_expiry', '=', null )
+			);
 
 			if ( $params['prtype'] ) {
 				$this->addWhereFld( 'pr_type', $params['prtype'] );
@@ -183,7 +185,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			if ( $params['prexpiry'] == 'indefinite' ) {
 				$this->addWhereFld( 'pr_expiry', [ $db->getInfinity(), null ] );
 			} elseif ( $params['prexpiry'] == 'definite' ) {
-				$this->addWhere( "pr_expiry != {$db->addQuotes( $db->getInfinity() )}" );
+				$this->addWhere( $db->expr( 'pr_expiry', '!=', $db->getInfinity() ) );
 			}
 
 			$this->addOption( 'DISTINCT' );

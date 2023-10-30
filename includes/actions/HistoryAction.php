@@ -361,25 +361,17 @@ class HistoryAction extends FormlessAction {
 			[ $dirs, $oper ] = [ "DESC", "<=" ];
 		}
 
-		if ( $offset ) {
-			$offsets = [ "rev_timestamp $oper " . $dbr->addQuotes( $dbr->timestamp( $offset ) ) ];
-		} else {
-			$offsets = [];
-		}
-
-		$page_id = $this->getWikiPage()->getId();
-
-		$res = MediaWikiServices::getInstance()->getRevisionStore()->newSelectQueryBuilder( $dbr )
+		$queryBuilder = MediaWikiServices::getInstance()->getRevisionStore()->newSelectQueryBuilder( $dbr )
 			->joinComment()
-			->where( [ 'rev_page' => $page_id ] )
-			->andWhere( $offsets )
+			->where( [ 'rev_page' => $this->getWikiPage()->getId() ] )
 			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
 			->orderBy( [ 'rev_timestamp' ], $dirs )
-			->limit( $limit )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			->limit( $limit );
+		if ( $offset ) {
+			$queryBuilder->andWhere( $dbr->expr( 'rev_timestamp', $oper, $dbr->timestamp( $offset ) ) );
+		}
 
-		return $res;
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**

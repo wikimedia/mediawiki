@@ -85,12 +85,12 @@ class SpecialWantedPages extends WantedQueryPage {
 			],
 			'conds' => [
 				'pg1.page_namespace' => null,
-				$blNamespace . ' NOT IN (' . $dbr->makeList( [ NS_USER, NS_USER_TALK ] ) . ')',
-				'pg2.page_namespace != ' . $dbr->addQuotes( NS_MEDIAWIKI ),
+				$dbr->expr( $blNamespace, '!=', [ NS_USER, NS_USER_TALK ] ),
+				$dbr->expr( 'pg2.page_namespace', '!=', NS_MEDIAWIKI ),
 			],
 			'options' => [
 				'HAVING' => [
-					'COUNT(*) > ' . $dbr->addQuotes( $count ),
+					$dbr->expr( 'COUNT(*)', '>', $count ),
 					'COUNT(*) > SUM(pg2.page_is_redirect)'
 				],
 				'GROUP BY' => [ $blNamespace, $blTitle ]
