@@ -2567,7 +2567,7 @@
 	"ipb_cant_unblock": "Fazi : N'eo ket bet kavet stankadenn an ID $1. Moarvat eo bet nullet.",
 	"ipb_blocked_as_range": "Fazi : N'eo ket bet stanket ar chomlec'h IP $1 war-eeun, setu n'hall ket bezañ distanket. Stanket eo bet dre al live $2 avat, hag a c'hall bezañ distanket.",
 	"ip_range_invalid": "Stankañ IP direizh.",
-	"ip_range_toolarge": "N'eo ket aotreet stankañ pajennoù brasoc'h evit /$1.",
+	"ip_range_toolarge": "N'eo ket aotreet stankañ lijorennoù brasoc'h evit /$1.",
 	"proxyblocker": "Stanker proksi",
 	"proxyblockreason": "Stanket eo bet hoc'h IP rak ur proksi digor eo. Trugarez da gelaouiñ ho pourvezer moned ouzh ar Genrouedad pe ho skoazell deknikel eus ar gudenn surentez-mañ.",
 	"sorbsreason": "Rollet eo ho chomlec'h IP evel ur proksi digor en DNSBL implijet gant {{SITENAME}}.",
