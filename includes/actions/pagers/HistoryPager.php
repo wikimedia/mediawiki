@@ -27,6 +27,7 @@ use ChangesList;
 use ChangeTags;
 use HistoryAction;
 use HtmlArmor;
+use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -65,6 +66,8 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/** @var bool Whether to show the tag editing UI */
 	protected $showTagEditUI;
+
+	protected MapCacheLRU $tagsCache;
 
 	/** @var string */
 	private $tagFilter;
@@ -127,6 +130,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->getDateCond( $year, $month, $day );
 		$this->conds = $conds;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
+		$this->tagsCache = new MapCacheLRU( 50 );
 		$services = MediaWikiServices::getInstance();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
@@ -487,10 +491,17 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= $pagerTools->toHTML();
 
 		# Tags
-		[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(
-			$row->ts_tags,
-			'history',
-			$this->getContext()
+		[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(
+			$this->tagsCache->makeKey(
+				$row->ts_tags ?? '',
+				$this->getUser()->getName(),
+				$lang->getCode()
+			),
+			fn () => ChangeTags::formatSummaryRow(
+				$row->ts_tags,
+				'history',
+				$this->getContext()
+			)
 		);
 		$classes = array_merge( $classes, $newClasses );
 		if ( $tagSummary !== '' ) {
