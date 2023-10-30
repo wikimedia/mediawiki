@@ -93,6 +93,16 @@ describe( 'Page Source', () => {
 			const { status } = await client.get( `/page/${dummyPageTitle}` );
 			assert.deepEqual( status, 404 );
 		} );
+		it( 'Should return 404 error for invalid titles', async () => {
+			const badTitle = '::X::';
+			const { status } = await client.get( `/page/${badTitle}` );
+			assert.deepEqual( status, 404 );
+		} );
+		it( 'Should return 404 error for special pages', async () => {
+			const badTitle = 'Special:Blankpage';
+			const { status } = await client.get( `/page/${badTitle}` );
+			assert.deepEqual( status, 404 );
+		} );
 		it( 'Should have appropriate response headers', async () => {
 			const preEditResponse = await client.get( `/page/${page}` );
 			const preEditDate = new Date( preEditResponse.body.latest.timestamp );
