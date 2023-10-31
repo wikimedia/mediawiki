@@ -17,7 +17,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use RenameUserJob;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -96,8 +96,8 @@ class RenameuserSQL {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var UserFactory */
 	private $userFactory;
@@ -129,7 +129,7 @@ class RenameuserSQL {
 	public function __construct( $old, $new, $uid, User $renamer, $options = [] ) {
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
-		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->dbProvider = $services->getDBLoadBalancerFactory();
 		$this->userFactory = $services->getUserFactory();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->titleFactory = $services->getTitleFactory();
@@ -172,7 +172,7 @@ class RenameuserSQL {
 	 * @return bool
 	 */
 	public function rename() {
-		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$atomicId = $dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 
 		$this->hookRunner->onRenameUserPreRename( $this->uid, $this->old, $this->new );
@@ -375,7 +375,7 @@ class RenameuserSQL {
 	 * @return int Returns 0 if no row was found
 	 */
 	private function lockUserAndGetId( $name ) {
-		return (int)$this->loadBalancer->getConnection( DB_PRIMARY )->newSelectQueryBuilder()
+		return (int)$this->dbProvider->getPrimaryDatabase()->newSelectQueryBuilder()
 			->select( 'user_id' )
 			->forUpdate()
 			->from( 'user' )
