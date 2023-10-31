@@ -16,6 +16,7 @@
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-parse-html-literal": "off",
 		"no-var": "off",
+		"no-shadow": [ "error", { "allow": [ "hooks" ] } ],
 		"qunit/resolve-async": "off"
 	}
 }
