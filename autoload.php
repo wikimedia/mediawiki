@@ -33,6 +33,7 @@ $wgAutoloadLocalClasses = [
 	'ApiClientLogin' => __DIR__ . '/includes/api/ApiClientLogin.php',
 	'ApiComparePages' => __DIR__ . '/includes/api/ApiComparePages.php',
 	'ApiContinuationManager' => __DIR__ . '/includes/api/ApiContinuationManager.php',
+	'ApiCreateTempUserTrait' => __DIR__ . '/includes/api/ApiCreateTempUserTrait.php',
 	'ApiDelete' => __DIR__ . '/includes/api/ApiDelete.php',
 	'ApiDisabled' => __DIR__ . '/includes/api/ApiDisabled.php',
 	'ApiEditPage' => __DIR__ . '/includes/api/ApiEditPage.php',
