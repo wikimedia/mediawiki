@@ -929,6 +929,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Auth\\UsernameAuthenticationRequest' => __DIR__ . '/includes/auth/UsernameAuthenticationRequest.php',
 	'MediaWiki\\BadFileLookup' => __DIR__ . '/includes/page/File/BadFileLookup.php',
 	'MediaWiki\\Block\\AbstractBlock' => __DIR__ . '/includes/block/AbstractBlock.php',
+	'MediaWiki\\Block\\AutoblockExemptionList' => __DIR__ . '/includes/block/AutoblockExemptionList.php',
 	'MediaWiki\\Block\\Block' => __DIR__ . '/includes/block/Block.php',
 	'MediaWiki\\Block\\BlockActionInfo' => __DIR__ . '/includes/block/BlockActionInfo.php',
 	'MediaWiki\\Block\\BlockCache' => __DIR__ . '/includes/block/BlockCache.php',

@@ -24,6 +24,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LBFactory;
@@ -67,6 +68,15 @@ class DatabaseBlockStoreFactory {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var TempUserConfig */
+	private $tempUserConfig;
+
+	/** @var BlockUtils */
+	private $blockUtils;
+
+	/** @var AutoblockExemptionList */
+	private $autoblockExemptionList;
+
 	/** @var DatabaseBlockStore[] */
 	private $storeCache = [];
 
@@ -80,6 +90,9 @@ class DatabaseBlockStoreFactory {
 	 * @param LBFactory $loadBalancerFactory
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserFactory $userFactory
+	 * @param TempUserConfig $tempUserConfig
+	 * @param BlockUtils $blockUtils
+	 * @param AutoblockExemptionList $autoblockExemptionList
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -90,7 +103,10 @@ class DatabaseBlockStoreFactory {
 		HookContainer $hookContainer,
 		LBFactory $loadBalancerFactory,
 		ReadOnlyMode $readOnlyMode,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		TempUserConfig $tempUserConfig,
+		BlockUtils $blockUtils,
+		AutoblockExemptionList $autoblockExemptionList
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -103,6 +119,9 @@ class DatabaseBlockStoreFactory {
 		$this->loadBalancerFactory = $loadBalancerFactory;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userFactory = $userFactory;
+		$this->tempUserConfig = $tempUserConfig;
+		$this->blockUtils = $blockUtils;
+		$this->autoblockExemptionList = $autoblockExemptionList;
 	}
 
 	/**
@@ -126,6 +145,9 @@ class DatabaseBlockStoreFactory {
 				$this->loadBalancerFactory->getMainLB( $wikiId ),
 				$this->readOnlyMode,
 				$this->userFactory,
+				$this->tempUserConfig,
+				$this->blockUtils,
+				$this->autoblockExemptionList,
 				$wikiId
 			);
 		}

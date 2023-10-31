@@ -501,16 +501,40 @@ class BlockManager {
 	}
 
 	/**
-	 * Wrapper for mocking in tests.
+	 * Get all blocks that match any IP from an array of IP addresses
 	 *
-	 * @param array $xff
-	 * @param bool $isAnon
-	 * @param bool $fromPrimary
+	 * @internal Public to support deprecated method in DatabaseBlock
+	 *
+	 * @param array $ipChain List of IPs (strings), usually retrieved from the
+	 *     X-Forwarded-For header of the request
+	 * @param bool $applySoftBlocks Include soft blocks (anonymous-only blocks). These
+	 *     should only block anonymous and temporary users.
+	 * @param bool $fromPrimary Whether to query the primary or replica DB
 	 * @return DatabaseBlock[]
 	 */
-	protected function getBlocksForIPList( array $xff, bool $isAnon, bool $fromPrimary ) {
-		// TODO: remove dependency on DatabaseBlock (T221075)
-		return DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromPrimary );
+	public function getBlocksForIPList( array $ipChain, bool $applySoftBlocks, bool $fromPrimary ) {
+		if ( $ipChain === [] ) {
+			return [];
+		}
+
+		$ips = [];
+		foreach ( array_unique( $ipChain ) as $ipaddr ) {
+			// Discard invalid IP addresses. Since XFF can be spoofed and we do not
+			// necessarily trust the header given to us, make sure that we are only
+			// checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
+			// Do not treat private IP spaces as special as it may be desirable for wikis
+			// to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
+			if ( !IPUtils::isValid( $ipaddr ) ) {
+				continue;
+			}
+			// Don't check trusted IPs (includes local CDNs which will be in every request)
+			if ( MediaWikiServices::getInstance()->getProxyLookup()->isTrustedProxy( $ipaddr ) ) {
+				continue;
+			}
+			$ips[] = $ipaddr;
+		}
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->newListFromIPs( $ips, $applySoftBlocks, $fromPrimary );
 	}
 
 	/**

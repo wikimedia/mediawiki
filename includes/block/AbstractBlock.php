@@ -88,7 +88,9 @@ abstract class AbstractBlock implements Block {
 	 *  - wiki: (string|false) The wiki the block has been issued in,
 	 *    self::LOCAL for the local wiki (since 1.38)
 	 *  - reason: (string|Message|CommentStoreComment) Reason for the block
-	 *  - timestamp: (string) The time at which the block comes into effect
+	 *  - timestamp: (string) The time at which the block comes into effect,
+	 *    in any format supported by wfTimestamp()
+	 *  - decodedTimestamp: (string) The timestamp in MW 14-character format
 	 *  - hideName: (bool) Hide the target user name
 	 *  - anonOnly: (bool) Used if the target is an IP address. The block only
 	 *    applies to anon and temporary users using this IP address, and not to
@@ -109,7 +111,11 @@ abstract class AbstractBlock implements Block {
 		$this->wikiId = $options['wiki'];
 		$this->setTarget( $options['address'] );
 		$this->setReason( $options['reason'] );
-		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
+		if ( isset( $options['decodedTimestamp'] ) ) {
+			$this->setTimestamp( $options['decodedTimestamp'] );
+		} else {
+			$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
+		}
 		$this->setHideName( (bool)$options['hideName'] );
 		$this->isHardblock( !$options['anonOnly'] );
 	}

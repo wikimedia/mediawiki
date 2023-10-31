@@ -45,6 +45,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
+use MediaWiki\Block\AutoblockExemptionList;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
@@ -301,6 +302,10 @@ return [
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;
+	},
+
+	'AutoblockExemptionList' => static function ( MediaWikiServices $services ): AutoblockExemptionList {
+		return new AutoblockExemptionList( LoggerFactory::getInstance( 'AutoblockExemptionList' ) );
 	},
 
 	'BacklinkCacheFactory' => static function ( MediaWikiServices $services ): BacklinkCacheFactory {
@@ -641,7 +646,10 @@ return [
 			$services->getHookContainer(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getReadOnlyMode(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getTempUserConfig(),
+			$services->getBlockUtils(),
+			$services->getAutoblockExemptionList()
 		);
 	},
 

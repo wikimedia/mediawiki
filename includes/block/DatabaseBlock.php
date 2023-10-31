@@ -27,17 +27,14 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -53,9 +50,9 @@ class DatabaseBlock extends AbstractBlock {
 	private $auto;
 
 	/** @var int|null */
-	private $parentBlockId = null;
+	private $parentBlockId;
 
-	/** @var int */
+	/** @var int|null */
 	private $id;
 
 	/** @var bool */
@@ -74,7 +71,8 @@ class DatabaseBlock extends AbstractBlock {
 	 *  `AbstractBlock::__construct`, and also:
 	 *  - user: (int) Override target user ID (for foreign users)
 	 *  - auto: (bool) Is this an automatic block?
-	 *  - expiry: (string) Timestamp of expiration of the block or 'infinity'
+	 *  - expiry: (string) Database timestamp of expiration of the block or 'infinity'
+	 *  - decodedExpiry: (string) The decoded expiry in MW 14-char format or 'infinity'
 	 *  - anonOnly: (bool) Only disallow anonymous actions
 	 *  - createAccount: (bool) Disallow creation of new accounts
 	 *  - enableAutoblock: (bool) Enable automatic blocking
@@ -83,6 +81,7 @@ class DatabaseBlock extends AbstractBlock {
 	 *  - sitewide: (bool) Disallow editing all pages and all contribution actions,
 	 *    except those specifically allowed by other block flags
 	 *  - by: (UserIdentity) UserIdentity object of the blocker.
+	 *  - restrictions: (Restriction[]) Array of partial block restrictions
 	 *
 	 * @since 1.26 $options array
 	 */
@@ -90,6 +89,8 @@ class DatabaseBlock extends AbstractBlock {
 		parent::__construct( $options );
 
 		$defaults = [
+			'id'              => null,
+			'parentBlockId'   => null,
 			'user'            => null,
 			'auto'            => false,
 			'expiry'          => '',
@@ -99,15 +100,27 @@ class DatabaseBlock extends AbstractBlock {
 			'allowUsertalk'   => false,
 			'sitewide'        => true,
 			'by'              => null,
+			'restrictions'    => null,
 		];
 
 		$options += $defaults;
+
+		$this->id = $options['id'];
+		$this->parentBlockId = $options['parentBlockId'];
 
 		if ( $options['by'] instanceof UserIdentity ) {
 			$this->setBlocker( $options['by'] );
 		}
 
-		$this->setExpiry( $this->getDBConnection( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
+		if ( isset( $options['decodedExpiry'] ) ) {
+			$this->setExpiry( $options['decodedExpiry'] );
+		} else {
+			$this->setExpiry( $this->getDBConnection( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
+		}
+
+		if ( $options['restrictions'] !== null ) {
+			$this->setRestrictions( $options['restrictions'] );
+		}
 
 		// Boolean settings
 		$this->auto = (bool)$options['auto'];
@@ -125,21 +138,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return DatabaseBlock|null
 	 */
 	public static function newFromID( $id ) {
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-		$blockQuery = self::getQueryInfo();
-		$res = $dbr->selectRow(
-			$blockQuery['tables'],
-			$blockQuery['fields'],
-			[ 'ipb_id' => $id ],
-			__METHOD__,
-			[],
-			$blockQuery['joins']
-		);
-		if ( $res ) {
-			return self::newFromRow( $res );
-		} else {
-			return null;
-		}
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->newFromID( $id );
 	}
 
 	/**
@@ -161,35 +161,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
-		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
-		$commentQuery = $commentStore->getJoin( 'ipb_reason' );
-		return [
-			'tables' => [
-				'ipblocks',
-				'ipblocks_actor' => 'actor'
-			] + $commentQuery['tables'],
-			'fields' => [
-				'ipb_id',
-				'ipb_address',
-				'ipb_timestamp',
-				'ipb_auto',
-				'ipb_anon_only',
-				'ipb_create_account',
-				'ipb_enable_autoblock',
-				'ipb_expiry',
-				'ipb_deleted',
-				'ipb_block_email',
-				'ipb_allow_usertalk',
-				'ipb_parent_block_id',
-				'ipb_sitewide',
-				'ipb_by_actor',
-				'ipb_by' => 'ipblocks_actor.actor_user',
-				'ipb_by_text' => 'ipblocks_actor.actor_name'
-			] + $commentQuery['fields'],
-			'joins' => [
-				'ipblocks_actor' => [ 'JOIN', 'actor_id=ipb_by_actor' ]
-			] + $commentQuery['joins'],
-		];
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->getQueryInfo( DatabaseBlockStore::SCHEMA_IPBLOCKS );
 	}
 
 	/**
@@ -222,246 +195,14 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Load blocks from the database which target the specific target exactly, or which cover the
-	 * vague target.
-	 *
-	 * @param UserIdentity|string|null $specificTarget
-	 * @param int|null $specificType
-	 * @param bool $fromPrimary
-	 * @param UserIdentity|string|null $vagueTarget Also search for blocks affecting this target.
-	 *     Doesn't make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
-	 * @return DatabaseBlock[] Any relevant blocks
-	 */
-	protected static function newLoad(
-		$specificTarget,
-		$specificType,
-		$fromPrimary,
-		$vagueTarget = null
-	) {
-		if ( $fromPrimary ) {
-			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
-		} else {
-			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-		}
-
-		$specificTarget = $specificTarget instanceof UserIdentity ?
-			$specificTarget->getName() :
-			(string)$specificTarget;
-
-		if ( $specificType !== null ) {
-			$conds = [ 'ipb_address' => [ $specificTarget ] ];
-		} else {
-			$conds = [ 'ipb_address' => [] ];
-		}
-
-		// Be aware that the != '' check is explicit, since empty values will be
-		// passed by some callers (T31116)
-		if ( $vagueTarget != '' ) {
-			[ $target, $type ] = MediaWikiServices::getInstance()
-				->getBlockUtils()
-				->parseBlockTarget( $vagueTarget );
-			switch ( $type ) {
-				case self::TYPE_USER:
-					// Slightly weird, but who are we to argue?
-					$conds['ipb_address'][] = (string)$target;
-					$conds = $db->makeList( $conds, LIST_OR );
-					break;
-
-				case self::TYPE_IP:
-					$conds['ipb_address'][] = (string)$target;
-					$conds['ipb_address'] = array_unique( $conds['ipb_address'] );
-					$conds[] = self::getRangeCond( IPUtils::toHex( $target ) );
-					$conds = $db->makeList( $conds, LIST_OR );
-					break;
-
-				case self::TYPE_RANGE:
-					[ $start, $end ] = IPUtils::parseRange( $target );
-					$conds['ipb_address'][] = (string)$target;
-					$conds[] = self::getRangeCond( $start, $end );
-					$conds = $db->makeList( $conds, LIST_OR );
-					break;
-
-				default:
-					throw new UnexpectedValueException( "Tried to load block with invalid type" );
-			}
-		}
-
-		$blockQuery = self::getQueryInfo();
-		$res = $db->select(
-			$blockQuery['tables'],
-			$blockQuery['fields'],
-			$conds,
-			__METHOD__,
-			[],
-			$blockQuery['joins']
-		);
-
-		$blocks = [];
-		$blockIds = [];
-		$autoBlocks = [];
-		foreach ( $res as $row ) {
-			$block = self::newFromRow( $row );
-
-			// Don't use expired blocks
-			if ( $block->isExpired() ) {
-				continue;
-			}
-
-			// Don't use anon only blocks on users
-			if (
-				$specificType == self::TYPE_USER &&
-				!$block->isHardblock() &&
-				!MediaWikiServices::getInstance()
-					->getTempUserConfig()
-					->isTempName( $specificTarget )
-			) {
-				continue;
-			}
-
-			// Check for duplicate autoblocks
-			if ( $block->getType() === self::TYPE_AUTO ) {
-				$autoBlocks[] = $block;
-			} else {
-				$blocks[] = $block;
-				$blockIds[] = $block->getId();
-			}
-		}
-
-		// Only add autoblocks that aren't duplicates
-		foreach ( $autoBlocks as $block ) {
-			if ( !in_array( $block->parentBlockId, $blockIds ) ) {
-				$blocks[] = $block;
-			}
-		}
-
-		return $blocks;
-	}
-
-	/**
-	 * Choose the most specific block from some combination of user, IP and IP range
-	 * blocks. Decreasing order of specificity: user > IP > narrower IP range > wider IP
-	 * range. A range that encompasses one IP address is ranked equally to a singe IP.
-	 *
-	 * This is refactored out from DatabaseBlock::newLoad.
-	 *
-	 * @param DatabaseBlock[] $blocks These should not include autoblocks or ID blocks
-	 * @return DatabaseBlock|null The block with the most specific target
-	 */
-	protected static function chooseMostSpecificBlock( array $blocks ) {
-		if ( count( $blocks ) === 1 ) {
-			return $blocks[0];
-		}
-
-		// This result could contain a block on the user, a block on the IP, and a russian-doll
-		// set of range blocks.  We want to choose the most specific one, so keep a leader board.
-		$bestBlock = null;
-
-		// Lower will be better
-		$bestBlockScore = 100;
-		foreach ( $blocks as $block ) {
-			if ( $block->getType() == self::TYPE_RANGE ) {
-				// This is the number of bits that are allowed to vary in the block, give
-				// or take some floating point errors
-				$target = $block->getTargetName();
-				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
-				[ , $bits ] = IPUtils::parseCIDR( $target );
-				$size = $max - $bits;
-
-				// Rank a range block covering a single IP equally with a single-IP block
-				$score = self::TYPE_RANGE - 1 + ( $size / $max );
-
-			} else {
-				$score = $block->getType();
-			}
-
-			if ( $score < $bestBlockScore ) {
-				$bestBlockScore = $score;
-				$bestBlock = $block;
-			}
-		}
-
-		return $bestBlock;
-	}
-
-	/**
 	 * Get a set of SQL conditions which will select range blocks encompassing a given range
 	 * @param string $start Hexadecimal IP representation
 	 * @param string|null $end Hexadecimal IP representation, or null to use $start = $end
 	 * @return string
 	 */
 	public static function getRangeCond( $start, $end = null ) {
-		// Per T16634, we want to include relevant active range blocks; for
-		// range blocks, we want to include larger ranges which enclose the given
-		// range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
-		// so we can improve performance by filtering on a LIKE clause
-		$chunk = self::getIpFragment( $start );
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-		$like = $dbr->buildLike( $chunk, $dbr->anyString() );
-
-		$safeStart = $dbr->addQuotes( $start );
-		$safeEnd = $dbr->addQuotes( $end ?? $start );
-
-		return $dbr->makeList(
-			[
-				"ipb_range_start $like",
-				"ipb_range_start <= $safeStart",
-				"ipb_range_end >= $safeEnd",
-			],
-			LIST_AND
-		);
-	}
-
-	/**
-	 * Get the component of an IP address which is certain to be the same between an IP
-	 * address and a range block containing that IP address.
-	 * @param string $hex Hexadecimal IP representation
-	 * @return string
-	 */
-	protected static function getIpFragment( $hex ) {
-		$blockCIDRLimit = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::BlockCIDRLimit );
-		if ( str_starts_with( $hex, 'v6-' ) ) {
-			return 'v6-' . substr( substr( $hex, 3 ), 0, (int)floor( $blockCIDRLimit['IPv6'] / 4 ) );
-		} else {
-			return substr( $hex, 0, (int)floor( $blockCIDRLimit['IPv4'] / 4 ) );
-		}
-	}
-
-	/**
-	 * Given a database row from the ipblocks table, initialize
-	 * member variables
-	 * @param stdClass $row A row from the ipblocks table
-	 */
-	protected function initFromRow( $row ) {
-		$this->setTarget( $row->ipb_address );
-
-		$this->setTimestamp( wfTimestamp( TS_MW, $row->ipb_timestamp ) );
-		$this->auto = (bool)$row->ipb_auto;
-		$this->setHideName( (bool)$row->ipb_deleted );
-		$this->id = (int)$row->ipb_id;
-		// Blocks with no parent ID should have ipb_parent_block_id as null,
-		// don't save that as 0 though, see T282890
-		$this->parentBlockId = $row->ipb_parent_block_id ? (int)$row->ipb_parent_block_id : null;
-
-		$services = MediaWikiServices::getInstance();
-		$this->setBlocker( $services->getActorNormalization()
-			->newActorFromRowFields( $row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ) );
-
-		// I wish I didn't have to do this
-		$db = $this->getDBConnection( DB_REPLICA );
-		$this->setExpiry( $db->decodeExpiry( $row->ipb_expiry ) );
-		$this->setReason(
-			$services->getCommentStore()
-			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $db, 'ipb_reason', $row )
-		);
-
-		$this->isHardblock( !$row->ipb_anon_only );
-		$this->isAutoblocking( (bool)$row->ipb_enable_autoblock );
-		$this->isSitewide( (bool)$row->ipb_sitewide );
-
-		$this->isCreateAccountBlocked( (bool)$row->ipb_create_account );
-		$this->isEmailBlocked( (bool)$row->ipb_block_email );
-		$this->isUsertalkEditAllowed( (bool)$row->ipb_allow_usertalk );
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_IPBLOCKS );
 	}
 
 	/**
@@ -470,9 +211,9 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return DatabaseBlock
 	 */
 	public static function newFromRow( $row ) {
-		$block = new DatabaseBlock;
-		$block->initFromRow( $row );
-		return $block;
+		$services = MediaWikiServices::getInstance();
+		$db = $services->getDBLoadBalancerFactory()->getReplicaDatabase();
+		return $services->getDatabaseBlockStore()->newFromRow( $db, $row );
 	}
 
 	/**
@@ -523,7 +264,6 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Checks whether a given IP is on the autoblock exemption list.
-	 * TODO: this probably belongs somewhere else, but not sure where...
 	 *
 	 * @since 1.36
 	 *
@@ -531,45 +271,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return bool
 	 */
 	public static function isExemptedFromAutoblocks( $ip ) {
-		// Try to get the ip-autoblock_exemption from the cache, as it's faster
-		// than getting the msg raw and explode()'ing it.
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$lines = $cache->getWithSetCallback(
-			$cache->makeKey( 'ip-autoblock', 'exemption' ),
-			$cache::TTL_DAY,
-			static function ( $curValue, &$ttl, array &$setOpts ) {
-				$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				return explode( "\n",
-					wfMessage( 'block-autoblock-exemptionlist' )->inContentLanguage()->plain()
-				);
-			}
-		);
-
-		wfDebug( "Checking the autoblock exemption list.." );
-
-		foreach ( $lines as $line ) {
-			// List items only
-			if ( !str_starts_with( $line, '*' ) ) {
-				continue;
-			}
-
-			$wlEntry = substr( $line, 1 );
-			$wlEntry = trim( $wlEntry );
-
-			wfDebug( "Checking $ip against $wlEntry..." );
-
-			// Is the IP in this range?
-			if ( IPUtils::isInRange( $ip, $wlEntry ) ) {
-				wfDebug( " IP $ip matches $wlEntry, not autoblocking" );
-				return true;
-			} else {
-				wfDebug( " No match" );
-			}
-		}
-
-		return false;
+		return MediaWikiServices::getInstance()->getAutoblockExemptionList()
+			->isExempt( $ip );
 	}
 
 	/**
@@ -579,114 +282,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return int|false ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
-		// If autoblocks are disabled, go away.
-		if ( !$this->isAutoblocking() ) {
-			return false;
-		}
-
-		$services = MediaWikiServices::getInstance();
-		[ $target, $type ] = $services->getBlockUtils()
-			->parseBlockTarget( $autoblockIP );
-		if ( $type != self::TYPE_IP ) {
-			wfDebug( "Autoblock not supported for ip ranges." );
-			return false;
-		}
-		$target = (string)$target;
-
-		// Check if autoblock exempt.
-		if ( self::isExemptedFromAutoblocks( $target ) ) {
-			return false;
-		}
-
-		// Allow hooks to cancel the autoblock.
-		if ( !( new HookRunner( $services->getHookContainer() ) )->onAbortAutoblock( $target, $this ) ) {
-			wfDebug( "Autoblock aborted by hook." );
-			return false;
-		}
-
-		// It's okay to autoblock. Go ahead and insert/update the block...
-
-		// Do not add a *new* block if the IP is already blocked.
-		$dbr = $this->getDBConnection( DB_REPLICA );
-
-		$blockQuery = self::getQueryInfo();
-
-		$res = $dbr->select(
-			$blockQuery['tables'],
-			$blockQuery['fields'],
-			[ 'ipb_address' => $target ],
-			__METHOD__,
-			[],
-			$blockQuery['joins']
-		);
-
-		$blocks = [];
-		foreach ( $res as $row ) {
-			$block = new DatabaseBlock( [ 'wiki' => $this->getWikiId() ] );
-			$block->initFromRow( $row );
-
-			if ( $block->isExpired() ) {
-				continue;
-			}
-
-			$blocks[] = $block;
-		}
-		$ipblock = self::chooseMostSpecificBlock( $blocks );
-
-		if ( $ipblock ) {
-			// Check if the block is an autoblock and would exceed the user block
-			// if renewed. If so, do nothing, otherwise prolong the block time...
-			if ( $ipblock->auto && $this->getExpiry() > $ipblock->getExpiry() ) {
-				// Reset block timestamp to now and its expiry to
-				// $wgAutoblockExpiry in the future
-				$ipblock->updateTimestamp();
-			}
-			return false;
-		}
-		$blocker = $this->getBlocker();
-		if ( !$blocker ) {
-			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
-		}
-
-		// Make a new block object with the desired properties.
-		$autoblock = new DatabaseBlock( [ 'wiki' => $this->getWikiId() ] );
-		wfDebug( "Autoblocking {$this->getTargetName()}@" . $target );
-		$autoblock->setTarget( UserIdentityValue::newAnonymous( $target, $this->getWikiId() ) );
-		$autoblock->setBlocker( $blocker );
-		$autoblock->setReason(
-			wfMessage(
-				'autoblocker',
-				$this->getTargetName(),
-				$this->getReasonComment()->text
-			)->inContentLanguage()->plain()
-		);
-		$timestamp = wfTimestampNow();
-		$autoblock->setTimestamp( $timestamp );
-		$autoblock->auto = true;
-		$autoblock->isCreateAccountBlocked( $this->isCreateAccountBlocked() );
-		// Continue suppressing the name if needed
-		$autoblock->setHideName( $this->getHideName() );
-		$autoblock->isUsertalkEditAllowed( $this->isUsertalkEditAllowed() );
-		$autoblock->parentBlockId = $this->id;
-		$autoblock->isSitewide( $this->isSitewide() );
-		$autoblock->setRestrictions( $this->getRestrictions() );
-
-		if ( $this->getExpiry() == 'infinity' ) {
-			// Original block was indefinite, start an autoblock now
-			$autoblock->setExpiry( self::getAutoblockExpiry( $timestamp ) );
-		} else {
-			// If the user is already blocked with an expiry date, we don't
-			// want to pile on top of that.
-			$autoblock->setExpiry( min( $this->getExpiry(), self::getAutoblockExpiry( $timestamp ) ) );
-		}
-
-		// Insert the block...
-		$status = $services->getDatabaseBlockStoreFactory()
-			->getDatabaseBlockStore( $this->getWikiId() )
-			->insertBlock( $autoblock );
-		return $status
-			? $status['id']
-			: false;
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->doAutoblock( $this, $autoblockIP );
 	}
 
 	/**
@@ -704,22 +301,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * Update the timestamp on autoblocks.
 	 */
 	public function updateTimestamp() {
-		if ( $this->auto ) {
-			$this->setTimestamp( wfTimestamp() );
-			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
-
-			$dbw = $this->getDBConnection( DB_PRIMARY );
-			$dbw->newUpdateQueryBuilder()
-				->update( 'ipblocks' )
-				->set(
-					[
-						'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
-						'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
-					]
-				)
-				->where( [ 'ipb_id' => $this->getId( $this->getWikiId() ) ] )
-				->caller( __METHOD__ )->execute();
-		}
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->updateTimestamp( $this );
 	}
 
 	/**
@@ -823,6 +406,8 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
+	 * Does the block cause autoblocks to be created?
+	 *
 	 * @param null|bool $x
 	 * @return bool
 	 */
@@ -859,9 +444,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
-		$autoblockExpiry = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::AutoblockExpiry );
-
-		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $autoblockExpiry );
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->getAutoblockExpiry( $timestamp );
 	}
 
 	/**
@@ -901,8 +485,8 @@ class DatabaseBlock extends AbstractBlock {
 		$vagueTarget = null,
 		$fromPrimary = false
 	) {
-		$blocks = self::newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
-		return self::chooseMostSpecificBlock( $blocks );
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->newFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
 	}
 
 	/**
@@ -919,24 +503,8 @@ class DatabaseBlock extends AbstractBlock {
 		$vagueTarget = null,
 		$fromPrimary = false
 	) {
-		[ $target, $type ] = MediaWikiServices::getInstance()
-			->getBlockUtils()
-			->parseBlockTarget( $specificTarget );
-		if ( $type == self::TYPE_ID || $type == self::TYPE_AUTO ) {
-			$block = self::newFromID( $target );
-			return $block ? [ $block ] : [];
-		} elseif ( $target === null && $vagueTarget == '' ) {
-			// We're not going to find anything useful here
-			// Be aware that the == '' check is explicit, since empty values will be
-			// passed by some callers (T31116)
-			return [];
-		} elseif ( in_array(
-			$type,
-			[ self::TYPE_USER, self::TYPE_IP, self::TYPE_RANGE, null ] )
-		) {
-			return self::newLoad( $target, $type, $fromPrimary, $vagueTarget );
-		}
-		return [];
+		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+			->newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
 	}
 
 	/**
@@ -951,63 +519,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @since 1.22
 	 */
 	public static function getBlocksForIPList( array $ipChain, $applySoftBlocks, $fromPrimary = false ) {
-		if ( $ipChain === [] ) {
-			return [];
-		}
-
-		$conds = [];
-		$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
-		foreach ( array_unique( $ipChain ) as $ipaddr ) {
-			// Discard invalid IP addresses. Since XFF can be spoofed and we do not
-			// necessarily trust the header given to us, make sure that we are only
-			// checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
-			// Do not treat private IP spaces as special as it may be desirable for wikis
-			// to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
-			if ( !IPUtils::isValid( $ipaddr ) ) {
-				continue;
-			}
-			// Don't check trusted IPs (includes local CDNs which will be in every request)
-			if ( $proxyLookup->isTrustedProxy( $ipaddr ) ) {
-				continue;
-			}
-			// Check both the original IP (to check against single blocks), as well as build
-			// the clause to check for range blocks for the given IP.
-			$conds['ipb_address'][] = $ipaddr;
-			$conds[] = self::getRangeCond( IPUtils::toHex( $ipaddr ) );
-		}
-
-		if ( $conds === [] ) {
-			return [];
-		}
-
-		if ( $fromPrimary ) {
-			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
-		} else {
-			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-		}
-		$conds = $db->makeList( $conds, LIST_OR );
-		if ( !$applySoftBlocks ) {
-			$conds = [ $conds, 'ipb_anon_only' => 0 ];
-		}
-		$blockQuery = self::getQueryInfo();
-		$rows = $db->select(
-			$blockQuery['tables'],
-			array_merge( [ 'ipb_range_start', 'ipb_range_end' ], $blockQuery['fields'] ),
-			$conds,
-			__METHOD__,
-			[],
-			$blockQuery['joins']
-		);
-
-		$blocks = [];
-		foreach ( $rows as $row ) {
-			$block = self::newFromRow( $row );
-			if ( !$block->isExpired() ) {
-				$blocks[] = $block;
-			}
-		}
-
-		return $blocks;
+		return MediaWikiServices::getInstance()->getBlockManager()
+			->getBlocksForIPList( $ipChain, $applySoftBlocks, $fromPrimary );
 	}
 
 	/**

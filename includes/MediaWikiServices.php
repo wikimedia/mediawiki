@@ -39,6 +39,7 @@ use LogicException;
 use MediaHandlerFactory;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\AutoblockExemptionList;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
@@ -741,6 +742,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getAuthManager(): AuthManager {
 		return $this->getService( 'AuthManager' );
+	}
+
+	/**
+	 * @since 1.42
+	 * @return AutoblockExemptionList
+	 */
+	public function getAutoblockExemptionList(): AutoblockExemptionList {
+		return $this->getService( 'AutoblockExemptionList' );
 	}
 
 	/**

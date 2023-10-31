@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Tests\Block;
 
+use MediaWiki\Block\AutoblockExemptionList;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -11,6 +13,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
 use Psr\Log\LoggerInterface;
@@ -52,7 +55,10 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( HookContainer::class ),
 			$lbFactory,
 			$this->createMock( ReadOnlyMode::class ),
-			$this->createMock( UserFactory::class )
+			$this->createMock( UserFactory::class ),
+			$this->createMock( TempUserConfig::class ),
+			$this->createMock( BlockUtils::class ),
+			$this->createMock( AutoblockExemptionList::class )
 		);
 
 		$databaseBlockStore = $factory->getDatabaseBlockStore( $domain );
