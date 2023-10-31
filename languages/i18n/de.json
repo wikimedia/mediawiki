@@ -3584,6 +3584,7 @@
 	"tags-actions-header": "Aktionen",
 	"tags-active-yes": "Ja",
 	"tags-active-no": "Nein",
+	"tags-source-software": "Definiert von der Software",
 	"tags-source-extension": "Definiert von der Software",
 	"tags-source-manual": "Manuell von Benutzern und Bots eingesetzt",
 	"tags-source-none": "Nicht mehr in Verwendung",
