@@ -902,13 +902,3 @@ class_alias( DatabaseMySQL::class, 'DatabaseMysqlBase' );
  * @deprecated since 1.29
  */
 class_alias( DatabaseMySQL::class, 'DatabaseMysqli' );
-
-/**
- * @deprecated and never released; to drop before 1.41
- */
-class_alias( DatabaseMySQL::class, 'Wikimedia\\Rdbms\\DatabaseMysqli' );
-
-/**
- * @deprecated and never released; to drop before 1.41
- */
-class_alias( DatabaseMySQL::class, 'Wikimedia\\Rdbms\\DatabaseMysqlBase' );
