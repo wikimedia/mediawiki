@@ -220,7 +220,6 @@ trait PageHandlerTestTrait {
 			$services->getDBLoadBalancerFactory(),
 			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
 			$services->getPageStore(),
-			$services->getActorMigration(),
 			$services->getPageRestHelperFactory()
 		);
 	}

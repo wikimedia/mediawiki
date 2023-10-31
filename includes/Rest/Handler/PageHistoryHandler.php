@@ -201,36 +201,36 @@ class PageHistoryHandler extends SimpleHandler {
 	 */
 	private function getDbResults( ExistingPageRecord $page, array $params, $relativeRevId, $ts, $tagIds ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$revQuery = $this->revisionStore->getQueryInfo();
-		$cond = [
-			'rev_page' => $page->getId()
-		];
+		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $dbr )
+			->joinComment()
+			->where( [ 'rev_page' => $page->getId() ] )
+			// Select one more than the return limit, to learn if there are additional revisions.
+			->limit( self::REVISIONS_RETURN_LIMIT + 1 );
 
 		if ( $params['filter'] ) {
 			// The validator ensures this value, if present, is one of the expected values
 			switch ( $params['filter'] ) {
 				case 'bot':
-					$cond[] = 'EXISTS(' . $dbr->selectSQLText(
-							'user_groups',
-							'1',
-							[
-								'actor_rev_user.actor_user = ug_user',
-								'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
-								$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
-							],
-							__METHOD__
-						) . ')';
+					$subquery = $queryBuilder->newSubquery()
+						->select( '1' )
+						->from( 'user_groups' )
+						->where( [
+							'actor_rev_user.actor_user = ug_user',
+							'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
+							$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
+						] );
+					$queryBuilder->andWhere( 'EXISTS(' . $subquery->getSQL() . ')' );
 					$bitmask = $this->getBitmask();
 					if ( $bitmask ) {
-						$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
+						$queryBuilder->andWhere( $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
 					}
 					break;
 
 				case 'anonymous':
-					$cond['actor_user'] = null;
+					$queryBuilder->andWhere( [ 'actor_user' => null ] );
 					$bitmask = $this->getBitmask();
 					if ( $bitmask ) {
-						$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
+						$queryBuilder->andWhere( $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
 					}
 					break;
 
@@ -238,16 +238,15 @@ class PageHistoryHandler extends SimpleHandler {
 					if ( !$tagIds ) {
 						return false;
 					}
-					$cond[] = 'EXISTS(' . $dbr->selectSQLText(
-							'change_tag',
-							'1',
-							[ 'ct_rev_id = rev_id', 'ct_tag_id' => $tagIds ],
-							__METHOD__
-						) . ')';
+					$subquery = $queryBuilder->newSubquery()
+						->select( '1' )
+						->from( 'change_tag' )
+						->where( [ 'ct_rev_id = rev_id', 'ct_tag_id' => $tagIds ] );
+					$queryBuilder->andWhere( 'EXISTS(' . $subquery->getSQL() . ')' );
 					break;
 
 				case 'minor':
-					$cond[] = 'rev_minor_edit != 0';
+					$queryBuilder->andWhere( $dbr->expr( 'rev_minor_edit', '!=', 0 ) );
 					break;
 			}
 		}
@@ -255,31 +254,16 @@ class PageHistoryHandler extends SimpleHandler {
 		if ( $relativeRevId ) {
 			$op = $params['older_than'] ? '<' : '>';
 			$sort = $params['older_than'] ? 'DESC' : 'ASC';
-			$cond[] = $dbr->buildComparison( $op, [
+			$queryBuilder->andWhere( $dbr->buildComparison( $op, [
 				'rev_timestamp' => $dbr->timestamp( $ts ),
 				'rev_id' => $relativeRevId,
-			] );
-			$orderBy = "rev_timestamp $sort, rev_id $sort";
+			] ) );
+			$queryBuilder->orderBy( [ 'rev_timestamp', 'rev_id' ], $sort );
 		} else {
-			$orderBy = "rev_timestamp DESC, rev_id DESC";
+			$queryBuilder->orderBy( [ 'rev_timestamp', 'rev_id' ], 'DESC' );
 		}
 
-		// Select one more than the return limit, to learn if there are additional revisions.
-		$limit = self::REVISIONS_RETURN_LIMIT + 1;
-
-		$res = $dbr->select(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			$cond,
-			__METHOD__,
-			[
-				'ORDER BY' => $orderBy,
-				'LIMIT' => $limit,
-			],
-			$revQuery['joins']
-		);
-
-		return $res;
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**

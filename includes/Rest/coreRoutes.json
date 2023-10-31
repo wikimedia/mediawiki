@@ -22,7 +22,6 @@
 			"DBLoadBalancerFactory",
 			"MainWANObjectCache",
 			"PageStore",
-			"ActorMigration",
 			"PageRestHelperFactory"
 		]
 	},

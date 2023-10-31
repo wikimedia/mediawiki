@@ -16,7 +16,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
-use MediaWiki\User\ActorMigration;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -53,7 +52,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	private IConnectionProvider $dbProvider;
 	private PageLookup $pageLookup;
 	private WANObjectCache $cache;
-	private ActorMigration $actorMigration;
 	private PageRestHelperFactory $helperFactory;
 
 	/** @var RevisionRecord|false|null */
@@ -72,7 +70,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param IConnectionProvider $dbProvider
 	 * @param WANObjectCache $cache
 	 * @param PageLookup $pageLookup
-	 * @param ActorMigration $actorMigration
 	 * @param PageRestHelperFactory $helperFactory
 	 */
 	public function __construct(
@@ -82,7 +79,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 		IConnectionProvider $dbProvider,
 		WANObjectCache $cache,
 		PageLookup $pageLookup,
-		ActorMigration $actorMigration,
 		PageRestHelperFactory $helperFactory
 	) {
 		$this->revisionStore = $revisionStore;
@@ -91,7 +87,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$this->dbProvider = $dbProvider;
 		$this->cache = $cache;
 		$this->pageLookup = $pageLookup;
-		$this->actorMigration = $actorMigration;
 		$this->helperFactory = $helperFactory;
 	}
 
@@ -468,43 +463,36 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getBotCount( $pageId, RevisionRecord $fromRev = null ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 
-		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'revision' )
+			->join( 'actor', 'actor_rev_user', 'actor_rev_user.actor_id = rev_actor' )
+			->where( [ 'rev_page' => intval( $pageId ) ] )
+			->andWhere( [
+				$dbr->bitAnd(
+					'rev_deleted',
+					RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER
+				) => 0
+			] )
+			->limit( self::COUNT_LIMITS['bot'] + 1 ); // extra to detect truncation
+		$subquery = $queryBuilder->newSubquery()
+			->select( '1' )
+			->from( 'user_groups' )
+			->where( [
+				'actor_rev_user.actor_user = ug_user',
+				'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
+				$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
+			] );
 
-		$cond = [
-			'rev_page' => intval( $pageId ),
-			$dbr->bitAnd( 'rev_deleted',
-				RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) => 0,
-			'EXISTS(' .
-				$dbr->selectSQLText(
-					'user_groups',
-					'1',
-					[
-						$revQuery['fields']['rev_user'] . ' = ug_user',
-						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
-						$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
-					],
-					__METHOD__
-				) .
-			')'
-		];
+		$queryBuilder->andWhere( 'EXISTS(' . $subquery->getSQL() . ')' );
 		if ( $fromRev ) {
-			$cond[] = $dbr->buildComparison( '>', [
+			$queryBuilder->andWhere( $dbr->buildComparison( '>', [
 				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
 				'rev_id' => $fromRev->getId(),
-			] );
+			] ) );
 		}
 
-		$edits = $dbr->selectRowCount(
-			[
-				'revision',
-			] + $revQuery['tables'],
-			'1',
-			$cond,
-			__METHOD__,
-			[ 'LIMIT' => self::COUNT_LIMITS['bot'] + 1 ], // extra to detect truncation
-			$revQuery['joins']
-		);
-		return $edits;
+		return $queryBuilder->caller( __METHOD__ )->fetchRowCount();
 	}
 
 	/**
