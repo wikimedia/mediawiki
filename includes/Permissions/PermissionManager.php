@@ -879,18 +879,19 @@ class PermissionManager {
 		}
 
 		$useReplica = $rigor !== self::RIGOR_SECURE;
+		$isExempt = $this->userHasRight( $user, 'ipblock-exempt' );
+		$requestIfNotExempt = $isExempt ? null : $request;
 
 		// Create account blocks are implemented separately due to weird IP exemption rules
 		if ( in_array( $action, [ 'createaccount', 'autocreateaccount' ], true ) ) {
-			$isExempt = $this->userHasRight( $user, 'ipblock-exempt' );
 			return $this->blockManager->getCreateAccountBlock(
 				$user,
-				$isExempt ? null : $request,
+				$requestIfNotExempt,
 				$useReplica
 			);
 		}
 
-		$block = $this->blockManager->getUserBlock( $user, $request, $useReplica );
+		$block = $this->blockManager->getBlock( $user, $requestIfNotExempt, $useReplica );
 		if ( !$block ) {
 			return null;
 		}
@@ -1566,11 +1567,11 @@ class PermissionManager {
 		$rightsCacheKey = $this->getRightsCacheKey( $user );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
 			$userObj = User::newFromIdentity( $user );
-			$this->usersRights[ $rightsCacheKey ] = $this->groupPermissionsLookup->getGroupPermissions(
+			$rights = $this->groupPermissionsLookup->getGroupPermissions(
 				$this->userGroupManager->getUserEffectiveGroups( $user )
 			);
 			// Hook requires a full User object
-			$this->hookRunner->onUserGetRights( $userObj, $this->usersRights[ $rightsCacheKey ] );
+			$this->hookRunner->onUserGetRights( $userObj, $rights );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
@@ -1578,34 +1579,36 @@ class PermissionManager {
 				// FIXME: $userObj->getRequest().. need to be replaced with something else
 				$allowedRights = $userObj->getRequest()->getSession()->getAllowedUserRights();
 				if ( $allowedRights !== null ) {
-					$this->usersRights[ $rightsCacheKey ] = array_intersect(
-						$this->usersRights[ $rightsCacheKey ],
-						$allowedRights
-					);
+					$rights = array_intersect( $rights, $allowedRights );
 				}
 			}
 
 			// Hook requires a full User object
-			$this->hookRunner->onUserGetRightsRemove(
-				$userObj, $this->usersRights[ $rightsCacheKey ] );
+			$this->hookRunner->onUserGetRightsRemove( $userObj, $rights );
 			// Force reindexation of rights when a hook has unset one of them
-			$this->usersRights[ $rightsCacheKey ] = array_values(
-				array_unique( $this->usersRights[ $rightsCacheKey ] )
-			);
+			$rights = array_values( array_unique( $rights ) );
 
+			// If BlockDisablesLogin is true, remove rights that anonymous
+			// users don't have. This has to be done after the hooks so that
+			// we know whether the user is exempt. (T129738)
 			if (
-				$userObj->isRegistered() &&
-				$this->options->get( MainConfigNames::BlockDisablesLogin ) &&
-				$this->blockManager->getUserBlock( $userObj, $userObj->getRequest(), true )
+				$userObj->isRegistered()
+				&& $this->options->get( MainConfigNames::BlockDisablesLogin )
 			) {
-				$anon = new User;
-				$this->usersRights[ $rightsCacheKey ] = array_intersect(
-					$this->usersRights[ $rightsCacheKey ],
-					$this->getUserPermissions( $anon )
-				);
+				$isExempt = in_array( 'ipblock-exempt', $rights, true );
+				if ( $this->blockManager->getBlock(
+					$userObj,
+					$isExempt ? null : $userObj->getRequest()
+				) ) {
+					$anon = new User;
+					$rights = array_intersect( $rights, $this->getUserPermissions( $anon ) );
+				}
 			}
+
+			$this->usersRights[ $rightsCacheKey ] = $rights;
+		} else {
+			$rights = $this->usersRights[ $rightsCacheKey ];
 		}
-		$rights = $this->usersRights[ $rightsCacheKey ];
 		foreach ( $this->temporaryUserRights[ $user->getId() ] ?? [] as $overrides ) {
 			$rights = array_values( array_unique( array_merge( $rights, $overrides ) ) );
 		}
