@@ -18,7 +18,8 @@
 			"לערי ריינהארט",
 			"Света Поторочина",
 			"Palezik",
-			"Amire80"
+			"Amire80",
+			"LaMagiaaa"
 		]
 	},
 	"tog-underline": "Чӧлсконъёсты ултӥз гожен пусъёно",
@@ -1184,7 +1185,7 @@
 	"group-bureaucrat": "Бюрократъёс",
 	"group-suppress": "Ватӥсьёс",
 	"group-all": "(ваньмыз)",
-	"group-user-member": "{{GENDER\n:$1|юзчи}}",
+	"group-user-member": "{{GENDER:$1|юзчи}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|асэрказ зэматэм юзчи \n}}",
 	"group-bot-member": "{{GENDER:$1|бот}}",
 	"group-sysop-member": "{{GENDER:$1|администратор}}",

@@ -2699,7 +2699,7 @@
 	"empty-username": "(felhasználónév nem elérhető)",
 	"contribslink": "szerkesztései",
 	"emaillink": "e-mail küldése",
-	"autoblocker": "Az általad használt IP-cím autoblokkolva van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",
+	"autoblocker": "Az általad használt IP-cím autoblokkolva van, mivel nemrég „[[User:$1|$1]]” használta.\n$1 blokkolásának indoklása: „$2”",
 	"blocklogpage": "Blokkolási napló",
 	"blocklog-showlog": "Ez a {{GENDER:$1|felhasználó}} már blokkolva volt korábban. A blokkolási napló ide vonatkozó része alább látható:",
 	"blocklog-showsuppresslog": "Ez a felhasználó korábban blokkot kapott, és a naplóbejegyzés el lett rejtve. Az elrejtési napló alább látható tájékoztatásként:",
