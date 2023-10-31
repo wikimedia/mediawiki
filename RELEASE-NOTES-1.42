@@ -107,6 +107,7 @@ because of Phabricator reports.
 * Vuex has been deprecated in favor of its successor, Pinia. Though deprecated,
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.
+* Title::getBrokenLinksFrom() has been deprecated.
 * …
 
 === Other changes in 1.42 ===

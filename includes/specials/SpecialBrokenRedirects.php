@@ -129,13 +129,6 @@ class SpecialBrokenRedirects extends QueryPage {
 				$result->rd_title,
 				$result->rd_fragment
 			);
-		} else {
-			$blinks = $fromObj->getBrokenLinksFrom(); # TODO: check for redirect, not for links
-			if ( $blinks ) {
-				$toObj = $blinks[0];
-			} else {
-				$toObj = false;
-			}
 		}
 
 		$linkRenderer = $this->getLinkRenderer();
