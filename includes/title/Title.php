@@ -62,6 +62,7 @@ use RuntimeException;
 use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
 
@@ -219,6 +220,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	private function getPageLanguageConverter(): ILanguageConverter {
 		return $this->getLanguageConverter( $this->getPageLanguage() );
+	}
+
+	/**
+	 * Shorthand for getting a database connection provider
+	 * @return IConnectionProvider
+	 */
+	private function getDbProvider(): IConnectionProvider {
+		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 
 	/**
@@ -2530,8 +2539,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $this->mNamespace < 0 ) {
 			$n = 0;
 		} else {
-			$dbr = wfGetDB( DB_REPLICA );
-
+			$dbr = $this->getDbProvider()->getReplicaDatabase();
 			$n = $dbr->newSelectQueryBuilder()
 				->select( 'COUNT(*)' )
 				->from( 'archive' )
@@ -2568,7 +2576,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $this->mNamespace < 0 ) {
 			return false;
 		}
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDbProvider()->getReplicaDatabase();
 		$deleted = (bool)$dbr->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'archive' )
@@ -2787,9 +2795,9 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function getLinksTo( $options = [], $table = 'pagelinks', $prefix = 'pl' ) {
 		if ( count( $options ) > 0 ) {
-			$db = wfGetDB( DB_PRIMARY );
+			$db = $this->getDbProvider()->getPrimaryDatabase();
 		} else {
-			$db = wfGetDB( DB_REPLICA );
+			$db = $this->getDbProvider()->getReplicaDatabase();
 		}
 
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
@@ -2859,7 +2867,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return [];
 		}
 
-		$db = wfGetDB( DB_REPLICA );
+		$db = $this->getDbProvider()->getReplicaDatabase();
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
@@ -2978,7 +2986,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isSingleRevRedirect() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDbProvider()->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 		$pageStore = MediaWikiServices::getInstance()->getPageStore();
 
@@ -3022,7 +3030,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return $data;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDbProvider()->getReplicaDatabase();
 
 		$res = $dbr->newSelectQueryBuilder()
 			->select( 'cl_to' )
@@ -3110,8 +3118,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		if ( $this->mIsBigDeletion === null ) {
-			$dbr = wfGetDB( DB_REPLICA );
-
+			$dbr = $this->getDbProvider()->getReplicaDatabase();
 			$revCount = $dbr->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'revision' )
@@ -3136,7 +3143,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		if ( $this->mEstimateRevisions === null ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->getDbProvider()->getReplicaDatabase();
 			$this->mEstimateRevisions = $dbr->estimateRowCount( 'revision', '*',
 				[ 'rev_page' => $this->getArticleID() ], __METHOD__ );
 		}
@@ -3422,7 +3429,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$conds = $this->pageCond();
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
-				wfGetDB( DB_PRIMARY ),
+				$this->getDbProvider()->getPrimaryDatabase(),
 				__METHOD__,
 				function ( IDatabase $dbw, $fname ) use ( $conds, $purgeTime ) {
 					$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
@@ -3517,7 +3524,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function getRedirectsHere( $ns = null ) {
 		$redirs = [];
 
-		$queryBuilder = wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+		$queryBuilder = $this->getDbProvider()->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
 			->from( 'redirect' )
 			->join( 'page', null, 'rd_from = page_id' )
