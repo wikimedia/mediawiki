@@ -2925,11 +2925,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Get an array of Title objects referring to non-existent articles linked
 	 * from this page.
 	 *
-	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and
-	 *   should use redirect table in this case).
 	 * @return Title[]
 	 */
 	public function getBrokenLinksFrom() {
+		wfDeprecated( __METHOD__, '1.42' );
 		if ( $this->getArticleID() == 0 ) {
 			# All links from article ID 0 are false positives
 			return [];
