@@ -105,6 +105,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$session = $this->getRequest()->getSession();
 		$user = $this->targetUser ?: $this->getUser();
 
+		$injected_html = '';
 		if ( $direct ) {
 			# Only save preferences if the user is not creating an account for someone else.
 			if ( !$this->proxyAccountCreation ) {
@@ -140,15 +141,13 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 				);
 				return;
 			}
+			$this->getHookRunner()->onUserLoginComplete( $user, $injected_html, $direct );
 		}
 
 		$this->clearToken();
 
 		# Run any hooks; display injected HTML
-		$injected_html = '';
 		$welcome_creation_msg = 'welcomecreation-msg';
-		$this->getHookRunner()->onUserLoginComplete( $user, $injected_html, $direct );
-
 		/**
 		 * Let any extensions change what message is shown.
 		 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforeWelcomeCreation
