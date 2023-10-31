@@ -4,6 +4,7 @@
 'use strict';
 
 const storage = require( './storage.js' );
+const LoadNotification = require( './LoadNotification.js' );
 
 const inputFields = {};
 const fieldNamePrefix = 'field_';
@@ -77,7 +78,21 @@ function onLoadHandler( $editForm ) {
 function onLoadData( pageData ) {
 	// If there is data stored, load it into the form.
 	if ( pageData !== undefined ) {
+		const oldPageData = getFormData();
 		loadData( pageData );
+		const loadNotification = new LoadNotification();
+		const notification = loadNotification.getNotification();
+		// On 'show changes'.
+		loadNotification.getDiffButton().on( 'click', function () {
+			$( '#wpDiff' ).trigger( 'click' );
+		} );
+		// On 'discard changes'.
+		loadNotification.getDiscardButton().on( 'click', function () {
+			loadData( oldPageData );
+			storage.deleteData( mw.config.get( 'wgPageName' ) ).then( function () {
+				notification.close();
+			} );
+		} );
 	}
 
 	// Add change handlers.
@@ -155,7 +170,7 @@ function saveFormData() {
  * @return {Object}
  */
 function getFormData() {
-	const pageData = {};
+	const formData = {};
 	Object.keys( inputFields ).forEach( function ( fieldName ) {
 		const field = inputFields[ fieldName ];
 		var newValue = null;
@@ -172,7 +187,7 @@ function getFormData() {
 			// Anything else.
 			newValue = field.value;
 		}
-		pageData[ fieldNamePrefix + fieldName ] = newValue;
+		formData[ fieldNamePrefix + fieldName ] = newValue;
 	} );
-	return pageData;
+	return formData;
 }
