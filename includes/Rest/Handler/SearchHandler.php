@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\Config;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageStore;
@@ -16,13 +17,14 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
+use RequestContext;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
 use SearchResult;
 use SearchSuggestion;
+use StatusValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -89,6 +91,7 @@ class SearchHandler extends Handler {
 	 * @var int|null
 	 */
 	private $completionCacheExpiry;
+	private FormatterFactory $formatterFactory;
 
 	/**
 	 * @param Config $config
@@ -99,6 +102,7 @@ class SearchHandler extends Handler {
 	 * @param RedirectLookup $redirectLookup
 	 * @param PageStore $pageStore
 	 * @param TitleFormatter $titleFormatter
+	 * @param FormatterFactory $formatterFactory
 	 */
 	public function __construct(
 		Config $config,
@@ -108,7 +112,8 @@ class SearchHandler extends Handler {
 		PermissionManager $permissionManager,
 		RedirectLookup $redirectLookup,
 		PageStore $pageStore,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		FormatterFactory $formatterFactory
 	) {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->searchEngineConfig = $searchEngineConfig;
@@ -117,6 +122,7 @@ class SearchHandler extends Handler {
 		$this->redirectLookup = $redirectLookup;
 		$this->pageStore = $pageStore;
 		$this->titleFormatter = $titleFormatter;
+		$this->formatterFactory = $formatterFactory;
 
 		// @todo Avoid injecting the entire config, see T246377
 		$this->completionCacheExpiry = $config->get( MainConfigNames::SearchSuggestCacheExpiry );
@@ -151,18 +157,19 @@ class SearchHandler extends Handler {
 
 	/**
 	 * Get SearchResults when results are either SearchResultSet or Status objects
-	 * @param ISearchResultSet|Status|null $results
+	 * @param ISearchResultSet|StatusValue|null $results
 	 * @return SearchResult[]
 	 * @throws LocalizedHttpException
 	 */
 	private function getSearchResultsOrThrow( $results ) {
 		if ( $results ) {
-			if ( $results instanceof Status ) {
+			if ( $results instanceof StatusValue ) {
 				$status = $results;
 				if ( !$status->isOK() ) {
 					[ $error ] = $status->splitByErrorType();
 					if ( $error->getErrors() ) { // Only throw for errors, suppress warnings (for now)
-						$errorMessages = $error->getMessage();
+						$formatter = $this->formatterFactory->getStatusFormatter( RequestContext::getMain() );
+						$errorMessages = $formatter->getMessage( $error );
 						throw new LocalizedHttpException(
 							new MessageValue( "rest-search-error", [ $errorMessages->getKey() ] )
 						);

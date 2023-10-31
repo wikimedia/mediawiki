@@ -25,9 +25,9 @@ namespace MediaWiki\Specials;
 
 use ErrorPageError;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\SpecialPage\LoginSignupSpecialPage;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use StatusValue;
 
@@ -48,13 +48,17 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		'authform-wrongtoken' => 'sessionfailure',
 	];
 
+	private FormatterFactory $formatterFactory;
+
 	/**
 	 * @param AuthManager $authManager
+	 * @param FormatterFactory $formatterFactory
 	 */
-	public function __construct( AuthManager $authManager ) {
+	public function __construct( AuthManager $authManager, FormatterFactory $formatterFactory ) {
 		parent::__construct( 'CreateAccount', 'createaccount' );
 
 		$this->setAuthManager( $authManager );
+		$this->formatterFactory = $formatterFactory;
 	}
 
 	public function doesWrites() {
@@ -70,10 +74,12 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$status = $this->mPosted ?
 			$authManager->authorizeCreateAccount( $performer ) :
 			$authManager->probablyCanCreateAccount( $performer );
+
 		if ( !$status->isGood() ) {
+			$formatter = $this->formatterFactory->getStatusFormatter( $this->getContext() );
 			throw new ErrorPageError(
 				'createacct-error',
-				Status::wrap( $status )->getMessage()
+				$formatter->getMessage( $status )
 			);
 		}
 	}

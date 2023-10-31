@@ -6,6 +6,8 @@ use InvalidArgumentException;
 use Language;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Language\FormatterFactory;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -20,6 +22,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Status\Status;
+use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
@@ -137,6 +140,14 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 			$hookContainer
 		);
 
+		$mockStatusFormatter = $this->createNoOpMock( StatusFormatter::class, [ 'getMessage' ] );
+		$mockStatusFormatter->method( 'getMessage' )->willReturn(
+			new RawMessage( 'testing' )
+		);
+
+		$mockFormatterFactory = $this->createNoOpMock( FormatterFactory::class, [ 'getStatusFormatter' ] );
+		$mockFormatterFactory->method( 'getStatusFormatter' )->willReturn( $mockStatusFormatter );
+
 		return new SearchHandler(
 			$config,
 			$searchEngineFactory,
@@ -145,7 +156,8 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 			$permissionManager,
 			$redirectLookup,
 			$pageStore,
-			$mockTitleFormatter
+			$mockTitleFormatter,
+			$mockFormatterFactory,
 		);
 	}
 

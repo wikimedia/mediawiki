@@ -101,6 +101,9 @@ because of Phabricator reports.
 * User::isBlocked(), ::isBlockedFromCreateAccount() and ::isBlockedFrom() now
   emit deprecation warnings. They were deprecated since 1.34, 1.37 and 1.33
   respectively.
+* Status::setMessageLocalizer is deprecated. Callers that want to control the
+  localization of the Status object should obtain a StatusFormatter from
+  the StatusFormatterFactory.
 * Vuex has been deprecated in favor of its successor, Pinia. Though deprecated,
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.

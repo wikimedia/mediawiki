@@ -76,7 +76,8 @@
 			"PermissionManager",
 			"RedirectLookup",
 			"PageStore",
-			"TitleFormatter"
+			"TitleFormatter",
+			"FormatterFactory"
 		],
 		"mode": "fulltext"
 	},
@@ -91,7 +92,8 @@
 			"PermissionManager",
 			"RedirectLookup",
 			"PageStore",
-			"TitleFormatter"
+			"TitleFormatter",
+			"FormatterFactory"
 		],
 		"mode": "completion"
 	},
