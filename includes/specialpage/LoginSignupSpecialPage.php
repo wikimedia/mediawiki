@@ -1151,10 +1151,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected function hasSessionCookie() {
 		$config = $this->getConfig();
-		return $config->get( MainConfigNames::DisableCookieCheck ) || (
-			$config->get( 'InitialSessionId' ) &&
-			$this->getRequest()->getSession()->getId() === (string)$config->get( 'InitialSessionId' )
-		);
+		return $config->get( 'InitialSessionId' ) &&
+			$this->getRequest()->getSession()->getId() === (string)$config->get( 'InitialSessionId' );
 	}
 
 	/**

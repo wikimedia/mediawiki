@@ -1800,7 +1800,6 @@ return [
 			'CookieDomain' => '',
 			'CookiePath' => '/',
 			'CookieSecure' => 'detect',
-			'DisableCookieCheck' => false,
 			'CookiePrefix' => false,
 			'CookieHttpOnly' => true,
 			'CookieSameSite' => null,

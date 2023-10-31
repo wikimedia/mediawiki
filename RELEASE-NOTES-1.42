@@ -30,6 +30,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 ==== Removed configuration ====
+* $wgDisableCookieCheck has been removed.
 * …
 
 === New user-facing features in 1.42 ===

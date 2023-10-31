@@ -3167,12 +3167,6 @@ class MainConfigNames {
 	public const CookieSecure = 'CookieSecure';
 
 	/**
-	 * Name constant for the DisableCookieCheck setting, for use with Config::get()
-	 * @see MainConfigSchema::DisableCookieCheck
-	 */
-	public const DisableCookieCheck = 'DisableCookieCheck';
-
-	/**
 	 * Name constant for the CookiePrefix setting, for use with Config::get()
 	 * @see MainConfigSchema::CookiePrefix
 	 */
