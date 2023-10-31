@@ -294,19 +294,6 @@ class TaintCheckAnnotationsTest {
 		$db->query( $quoted );// Safe
 	}
 
-	/**
-	 * Test deprecated alias of DatabaseMySQL
-	 */
-	function testDatabaseMysqlBase( \Wikimedia\Rdbms\DatabaseMysqlBase $db ) {
-		$quoted = $db->addQuotes( $_GET['a'] );
-		echo $quoted;// @phan-suppress-current-line SecurityCheck-XSS
-		$db->query( $quoted );// Safe
-
-		$identQuoted = $db->addIdentifierQuotes( $_GET['a'] );
-		echo $identQuoted;// @phan-suppress-current-line SecurityCheck-XSS
-		$db->query( $identQuoted );// Safe
-	}
-
 	function testDatabaseMySQL( \Wikimedia\Rdbms\DatabaseMySQL $db ) {
 		$quoted = $db->addQuotes( $_GET['a'] );
 		echo $quoted;// @phan-suppress-current-line SecurityCheck-XSS
