@@ -34,7 +34,6 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
@@ -2791,12 +2790,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return false;
 		}
 
-		$userblock = DatabaseBlock::newFromTarget( $this->getName() );
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+
+		$userblock = $blockStore->newFromTarget( $this->getName() );
 		if ( !$userblock ) {
 			return false;
 		}
 
-		return (bool)$userblock->doAutoblock( $this->getRequest()->getIP() );
+		return (bool)$blockStore->doAutoblock( $userblock, $this->getRequest()->getIP() );
 	}
 
 	/**

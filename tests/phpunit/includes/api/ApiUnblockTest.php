@@ -33,22 +33,24 @@ class ApiUnblockTest extends ApiTestCase {
 			'address' => $this->blockee->getName(),
 			'by' => $this->blocker,
 		] );
-		$result = $this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$result = $blockStore->insertBlock( $block );
 		$this->assertNotFalse( $result, 'Could not insert block' );
-		$blockFromDB = DatabaseBlock::newFromID( $result['id'] );
+		$blockFromDB = $blockStore->newFromID( $result['id'] );
 		$this->assertTrue( $blockFromDB !== null, 'Could not retrieve block' );
 	}
 
 	private function getBlockFromParams( array $params ) {
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		if ( array_key_exists( 'user', $params ) ) {
-			return DatabaseBlock::newFromTarget( $params['user'] );
+			return $blockStore->newFromTarget( $params['user'] );
 		}
 		if ( array_key_exists( 'userid', $params ) ) {
-			return DatabaseBlock::newFromTarget(
+			return $blockStore->newFromTarget(
 				$this->getServiceContainer()->getUserFactory()->newFromId( $params['userid'] )
 			);
 		}
-		return DatabaseBlock::newFromID( $params['id'] );
+		return $blockStore->newFromID( $params['id'] );
 	}
 
 	/**

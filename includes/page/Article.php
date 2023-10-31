@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\HookContainer\HookRunner;
@@ -139,6 +140,9 @@ class Article implements Page {
 
 	protected IConnectionProvider $dbProvider;
 
+	/** @var DatabaseBlockStore */
+	protected $blockStore;
+
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
@@ -165,6 +169,7 @@ class Article implements Page {
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->archivedRevisionLookup = $services->getArchivedRevisionLookup();
 		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->blockStore = $services->getDatabaseBlockStore();
 	}
 
 	/**
@@ -1025,7 +1030,7 @@ class Article implements Page {
 			} else {
 				$specificTarget = $titleText;
 			}
-			if ( DatabaseBlock::newFromTarget( $specificTarget, $vagueTarget ) instanceof DatabaseBlock ) {
+			if ( $this->blockStore->newFromTarget( $specificTarget, $vagueTarget ) instanceof DatabaseBlock ) {
 				return [
 					'index' => 'noindex',
 					'follow' => 'nofollow'
@@ -1428,7 +1433,7 @@ class Article implements Page {
 			$rootPart = $title->getRootText();
 			$user = User::newFromName( $rootPart, false /* allow IP users */ );
 			$ip = $this->userNameUtils->isIP( $rootPart );
-			$block = DatabaseBlock::newFromTarget( $user, $user );
+			$block = $this->blockStore->newFromTarget( $user, $user );
 
 			if ( $user && $user->isRegistered() && $user->isHidden() &&
 				!$context->getAuthority()->isAllowed( 'hideuser' )

@@ -134,10 +134,12 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Load a block from the block ID.
 	 *
+	 * @deprecated since 1.42 use DatabaseBlockStore::newFromID()
 	 * @param int $id ID to search for
 	 * @return DatabaseBlock|null
 	 */
 	public static function newFromID( $id ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
 			->newFromID( $id );
 	}
@@ -440,10 +442,13 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Get the expiry timestamp for an autoblock created at the given time.
 	 *
+	 * @deprecated since 1.42 No replacement, no known callers.
+	 *
 	 * @param string|int $timestamp
 	 * @return string
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
 			->getAutoblockExpiry( $timestamp );
 	}

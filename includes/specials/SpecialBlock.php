@@ -35,6 +35,7 @@ use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -75,6 +76,7 @@ class SpecialBlock extends FormSpecialPage {
 	private BlockUtils $blockUtils;
 	private BlockPermissionCheckerFactory $blockPermissionCheckerFactory;
 	private BlockUserFactory $blockUserFactory;
+	private DatabaseBlockStore $blockStore;
 	private UserNameUtils $userNameUtils;
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private BlockActionInfo $blockActionInfo;
@@ -109,6 +111,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param BlockUtils $blockUtils
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param BlockUserFactory $blockUserFactory
+	 * @param DatabaseBlockStore $blockStore
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param BlockActionInfo $blockActionInfo
@@ -119,6 +122,7 @@ class SpecialBlock extends FormSpecialPage {
 		BlockUtils $blockUtils,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		BlockUserFactory $blockUserFactory,
+		DatabaseBlockStore $blockStore,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		BlockActionInfo $blockActionInfo,
@@ -130,6 +134,7 @@ class SpecialBlock extends FormSpecialPage {
 		$this->blockUtils = $blockUtils;
 		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
 		$this->blockUserFactory = $blockUserFactory;
+		$this->blockStore = $blockStore;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->blockActionInfo = $blockActionInfo;
@@ -457,7 +462,7 @@ class SpecialBlock extends FormSpecialPage {
 		// This won't be
 		$fields['PreviousTarget']['default'] = (string)$this->target;
 
-		$block = DatabaseBlock::newFromTarget( $this->target );
+		$block = $this->blockStore->newFromTarget( $this->target );
 
 		// Populate fields if there is a block that is not an autoblock; if it is a range
 		// block, only populate the fields if the range is the same as $this->target

@@ -27,6 +27,7 @@ use HTMLForm;
 use HTMLMultiSelectField;
 use LogEventsList;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookRunner;
@@ -75,6 +76,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	private CommentFormatter $commentFormatter;
 	private UserFactory $userFactory;
 	private UserIdentityLookup $userIdentityLookup;
+	private DatabaseBlockStore $blockStore;
 	private ?ContribsPager $pager = null;
 
 	/**
@@ -89,6 +91,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @param CommentFormatter|null $commentFormatter
 	 * @param UserFactory|null $userFactory
 	 * @param UserIdentityLookup|null $userIdentityLookup
+	 * @param DatabaseBlockStore|null $blockStore
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory = null,
@@ -101,7 +104,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		UserOptionsLookup $userOptionsLookup = null,
 		CommentFormatter $commentFormatter = null,
 		UserFactory $userFactory = null,
-		UserIdentityLookup $userIdentityLookup = null
+		UserIdentityLookup $userIdentityLookup = null,
+		DatabaseBlockStore $blockStore = null
 	) {
 		parent::__construct( 'Contributions' );
 		// This class is extended and therefore falls back to global state - T269521
@@ -117,6 +121,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
 		$this->userIdentityLookup = $userIdentityLookup ?? $services->getUserIdentityLookup();
+		$this->blockStore = $blockStore ?? $services->getDatabaseBlockStore();
 	}
 
 	public function execute( $par ) {
@@ -457,9 +462,10 @@ class SpecialContributions extends IncludableSpecialPage {
 				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
 				// and not a user object.
 				if ( IPUtils::isValidRange( $userObj->getName() ) ) {
-					$block = DatabaseBlock::newFromTarget( $userObj->getName(), $userObj->getName() );
+					$block = $this->blockStore
+						->newFromTarget( $userObj->getName(), $userObj->getName() );
 				} else {
-					$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
+					$block = $this->blockStore->newFromTarget( $userObj, $userObj );
 				}
 
 				if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {

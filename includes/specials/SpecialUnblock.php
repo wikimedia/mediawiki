@@ -27,6 +27,7 @@ use HTMLForm;
 use LogEventsList;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -55,6 +56,7 @@ class SpecialUnblock extends SpecialPage {
 
 	private UnblockUserFactory $unblockUserFactory;
 	private BlockUtils $blockUtils;
+	private DatabaseBlockStore $blockStore;
 	private UserNameUtils $userNameUtils;
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private WatchlistManager $watchlistManager;
@@ -62,6 +64,7 @@ class SpecialUnblock extends SpecialPage {
 	/**
 	 * @param UnblockUserFactory $unblockUserFactory
 	 * @param BlockUtils $blockUtils
+	 * @param DatabaseBlockStore $blockStore
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param WatchlistManager $watchlistManager
@@ -69,6 +72,7 @@ class SpecialUnblock extends SpecialPage {
 	public function __construct(
 		UnblockUserFactory $unblockUserFactory,
 		BlockUtils $blockUtils,
+		DatabaseBlockStore $blockStore,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		WatchlistManager $watchlistManager
@@ -76,6 +80,7 @@ class SpecialUnblock extends SpecialPage {
 		parent::__construct( 'Unblock', 'block' );
 		$this->unblockUserFactory = $unblockUserFactory;
 		$this->blockUtils = $blockUtils;
+		$this->blockStore = $blockStore;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->watchlistManager = $watchlistManager;
@@ -90,7 +95,7 @@ class SpecialUnblock extends SpecialPage {
 		$this->checkReadOnly();
 
 		[ $this->target, $this->type ] = $this->getTargetAndType( $par, $this->getRequest() );
-		$this->block = DatabaseBlock::newFromTarget( $this->target );
+		$this->block = $this->blockStore->newFromTarget( $this->target );
 		if ( $this->target instanceof UserIdentity ) {
 			// Set the 'relevant user' in the skin, so it displays links like Contributions,
 			// User logs, UserRights, etc.

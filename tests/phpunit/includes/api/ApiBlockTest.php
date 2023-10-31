@@ -22,6 +22,7 @@ class ApiBlockTest extends ApiTestCase {
 	use MockAuthorityTrait;
 
 	protected $mUser = null;
+	private $blockStore;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -38,6 +39,7 @@ class ApiBlockTest extends ApiTestCase {
 				'IPv6' => 19,
 			]
 		);
+		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 	}
 
 	/**
@@ -59,7 +61,7 @@ class ApiBlockTest extends ApiTestCase {
 		}
 		$ret = $this->doApiRequestWithToken( array_merge( $params, $extraParams ), null, $blocker );
 
-		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
+		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
 
 		$this->assertTrue( $block !== null, 'Block is valid' );
 
@@ -216,7 +218,7 @@ class ApiBlockTest extends ApiTestCase {
 	public function testBlockWithoutRestrictions() {
 		$this->doBlock();
 
-		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
+		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
 
 		$this->assertTrue( $block->isSitewide() );
 		$this->assertSame( [], $block->getRestrictions() );
@@ -232,7 +234,7 @@ class ApiBlockTest extends ApiTestCase {
 			'allowusertalk' => true,
 		] );
 
-		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
+		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
 
 		$this->assertFalse( $block->isSitewide() );
 		$this->assertInstanceOf( PageRestriction::class, $block->getRestrictions()[0] );
@@ -248,7 +250,7 @@ class ApiBlockTest extends ApiTestCase {
 			'allowusertalk' => true,
 		] );
 
-		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
+		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
 
 		$this->assertInstanceOf( NamespaceRestriction::class, $block->getRestrictions()[0] );
 		$this->assertEquals( $namespace, $block->getRestrictions()[0]->getValue() );
@@ -269,7 +271,7 @@ class ApiBlockTest extends ApiTestCase {
 			'allowusertalk' => true,
 		] );
 
-		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
+		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
 
 		$this->assertInstanceOf( ActionRestriction::class, $block->getRestrictions()[0] );
 		$this->assertEquals( $action, $blockActionInfo->getActionFromId( $block->getRestrictions()[0]->getValue() ) );

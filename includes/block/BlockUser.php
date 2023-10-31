@@ -89,7 +89,7 @@ class BlockUser {
 	private $hookRunner;
 
 	/** @var DatabaseBlockStore */
-	private $databaseBlockStore;
+	private $blockStore;
 
 	/** @var UserFactory */
 	private $userFactory;
@@ -241,7 +241,7 @@ class BlockUser {
 			);
 		$this->blockUtils = $blockUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->databaseBlockStore = $databaseBlockStore;
+		$this->blockStore = $databaseBlockStore;
 		$this->userFactory = $userFactory;
 		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
@@ -413,7 +413,8 @@ class BlockUser {
 	 *   Status is an instance of a newly placed block.
 	 */
 	public function placeBlock( bool $reblock = false ): Status {
-		$priorBlock = DatabaseBlock::newFromTarget( $this->target, null, /*fromPrimary=*/true );
+		$priorBlock = $this->blockStore
+			->newFromTarget( $this->target, null, /*fromPrimary=*/true );
 		$priorHideUser = $priorBlock instanceof DatabaseBlock && $priorBlock->getHideName();
 		if (
 			$this->blockPermissionChecker
@@ -555,12 +556,13 @@ class BlockUser {
 
 		// Is there a conflicting block?
 		// xxx: there is an identical call at the beginning of ::placeBlock
-		$priorBlock = DatabaseBlock::newFromTarget( $this->target, null, /*fromPrimary=*/true );
+		$priorBlock = $this->blockStore
+			->newFromTarget( $this->target, null, /*fromPrimary=*/true );
 
 		// T287798: we are blocking an IP that is currently autoblocked
 		// we can ignore the block because ipb_address_unique allows the IP address
 		// be both manually blocked and autoblocked
-		// this will work as long as DatabaseBlock::newLoad prefers manual IP blocks
+		// this will work as long as DatabaseBlockStore::newLoad prefers manual IP blocks
 		// over autoblocks
 		if ( $priorBlock !== null
 			&& $priorBlock->getType() === AbstractBlock::TYPE_AUTO
@@ -582,12 +584,12 @@ class BlockUser {
 			}
 
 			$currentBlock = $this->configureBlock( $priorBlock );
-			$this->databaseBlockStore->updateBlock( $currentBlock ); // TODO handle failure
+			$this->blockStore->updateBlock( $currentBlock ); // TODO handle failure
 			$isReblock = true;
 			$block = $currentBlock;
 		} else {
 			// Try to insert block.
-			$insertStatus = $this->databaseBlockStore->insertBlock( $block );
+			$insertStatus = $this->blockStore->insertBlock( $block );
 			if ( !$insertStatus ) {
 				$this->logger->warning( 'Block could not be inserted. No existing block was found.' );
 				return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );

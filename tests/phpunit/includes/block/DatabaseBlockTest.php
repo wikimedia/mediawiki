@@ -187,6 +187,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::newFromID
 	 */
 	public function testINewFromIDReturnsCorrectBlock() {
+		$this->hideDeprecated( DatabaseBlock::class . '::newFromID' );
 		$user = $this->getUserForBlocking();
 		$block = $this->addBlockForUser( $user );
 
@@ -385,7 +386,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->filterDeprecated( '/Passing a \$database is no longer supported/' );
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		// Delete the last round's block if it's still there
-		$oldBlock = DatabaseBlock::newFromTarget( 'UserOnForeignWiki' );
+		$oldBlock = $blockStore->newFromTarget( 'UserOnForeignWiki' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
 			$blockStore->deleteBlock( $oldBlock );
@@ -417,7 +418,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$user = null; // clear
 
-		$block = DatabaseBlock::newFromID( $res['id'] );
+		$block = $blockStore->newFromID( $res['id'] );
 		$this->assertEquals(
 			'UserOnForeignWiki',
 			$block->getTargetName(),
@@ -701,7 +702,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$blockStore->insertBlock( $block );
 
 		// Refresh the block from the database.
-		$block = DatabaseBlock::newFromID( $block->getId() );
+		$block = $blockStore->newFromID( $block->getId() );
 		$restrictions = $block->getRestrictions();
 		$this->assertCount( 1, $restrictions );
 		$this->assertTrue( $restriction->equals( $restrictions[0] ) );

@@ -4,6 +4,7 @@ namespace MediaWiki\EditPage;
 
 use LogEventsList;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
@@ -50,6 +51,7 @@ class IntroMessageBuilder {
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
 	private RestrictionStore $restrictionStore;
+	private DatabaseBlockStore $blockStore;
 	private ReadOnlyMode $readOnlyMode;
 	private SpecialPageFactory $specialPageFactory;
 	private RepoGroup $repoGroup;
@@ -64,6 +66,7 @@ class IntroMessageBuilder {
 		TempUserCreator $tempUserCreator,
 		UserFactory $userFactory,
 		RestrictionStore $restrictionStore,
+		DatabaseBlockStore $blockStore,
 		ReadOnlyMode $readOnlyMode,
 		SpecialPageFactory $specialPageFactory,
 		RepoGroup $repoGroup,
@@ -77,6 +80,7 @@ class IntroMessageBuilder {
 		$this->tempUserCreator = $tempUserCreator;
 		$this->userFactory = $userFactory;
 		$this->restrictionStore = $restrictionStore;
+		$this->blockStore = $blockStore;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->repoGroup = $repoGroup;
@@ -310,7 +314,7 @@ class IntroMessageBuilder {
 			$validation = UserRigorOptions::RIGOR_NONE;
 			$user = $this->userFactory->newFromName( $username, $validation );
 			$ip = $this->userNameUtils->isIP( $username );
-			$block = DatabaseBlock::newFromTarget( $user, $user );
+			$block = $this->blockStore->newFromTarget( $user, $user );
 
 			$userExists = ( $user && $user->isRegistered() );
 			if ( $userExists && $user->isHidden() && !$performer->isAllowed( 'hideuser' ) ) {
