@@ -8,6 +8,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\User;
 use Psr\Log\NullLogger;
+use Wikimedia\IPUtils;
 
 /**
  * Integration tests for DatabaseBlockStore.
@@ -16,6 +17,7 @@ use Psr\Log\NullLogger;
  * @group Blocking
  * @group Database
  * @covers \MediaWiki\Block\DatabaseBlockStore
+ * @coversDefaultClass \MediaWiki\Block\DatabaseBlockStore
  */
 class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
@@ -129,6 +131,202 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 				$block->getRestrictions()
 			)
 		);
+	}
+
+	/**
+	 * @covers ::newFromID
+	 * @covers ::newListFromTarget
+	 * @covers ::newFromRow
+	 */
+	public function testNewFromID_exists() {
+		$block = new DatabaseBlock( [
+			'address' => '1.2.3.4',
+			'by' => $this->getTestSysop()->getUser(),
+		] );
+		$store = $this->getStore();
+		$inserted = $store->insertBlock( $block );
+		$this->assertTrue(
+			(bool)$inserted['id'],
+			'Block inserted correctly'
+		);
+
+		$blockId = $inserted['id'];
+		$newFromIdRes = $store->newFromID( $blockId );
+		$this->assertInstanceOf(
+			DatabaseBlock::class,
+			$newFromIdRes,
+			'Looking up an existing block by id'
+		);
+
+		$newListRes = $store->newListFromTarget( "#$blockId" );
+		$this->assertCount(
+			1,
+			$newListRes,
+			'newListFromTarget with a block id for an existing block'
+		);
+		$this->assertInstanceOf(
+			DatabaseBlock::class,
+			$newListRes[0],
+			'DatabaseBlock returned'
+		);
+		$this->assertSame(
+			$blockId,
+			$newListRes[0]->getId(),
+			'Block returned is the correct one'
+		);
+	}
+
+	/**
+	 * @covers ::newFromID
+	 * @covers ::newListFromTarget
+	 */
+	public function testNewFromID_missing() {
+		$store = $this->getStore();
+		$missingBlockId = 9998;
+		$dbRow = $this->db->selectRow(
+			'ipblocks',
+			'*',
+			[ 'ipb_id' => $missingBlockId ],
+			__METHOD__
+		);
+		$this->assertFalse(
+			$dbRow,
+			"Sanity check: make sure there is no block with id $missingBlockId"
+		);
+
+		$newFromIdRes = $store->newFromID( $missingBlockId );
+		$this->assertNull(
+			$newFromIdRes,
+			'Looking up a missing block by id'
+		);
+
+		$newListRes = $store->newListFromTarget( "#$missingBlockId" );
+		$this->assertCount(
+			0,
+			$newListRes,
+			'newListFromTarget with a block id for a missing block'
+		);
+	}
+
+	/**
+	 * @covers ::getQueryInfo
+	 */
+	public function testGetQueryInfo() {
+		// We don't list all of the fields that should be included, because that just
+		// duplicates the function itself. Instead, check the structure and the field
+		// aliases. The fact that this query info is everything needed to create a block
+		// is validated by its uses within the service
+		$queryInfo = $this->getStore()->getQueryInfo( DatabaseBlockStore::SCHEMA_IPBLOCKS );
+		$this->assertArrayHasKey( 'tables', $queryInfo );
+		$this->assertArrayHasKey( 'fields', $queryInfo );
+		$this->assertArrayHasKey( 'joins', $queryInfo );
+
+		$this->assertIsArray( $queryInfo['fields'] );
+		$this->assertArrayHasKey( 'ipb_by', $queryInfo['fields'] );
+		$this->assertSame( 'ipblocks_actor.actor_user', $queryInfo['fields']['ipb_by'] );
+		$this->assertArrayHasKey( 'ipb_by_text', $queryInfo['fields'] );
+		$this->assertSame( 'ipblocks_actor.actor_name', $queryInfo['fields']['ipb_by_text'] );
+	}
+
+	/**
+	 * @covers ::newListFromIPs
+	 * @covers ::newFromRow
+	 */
+	public function testNewListFromIPs() {
+		$block = new DatabaseBlock( [
+			'address' => '1.2.3.4',
+			'by' => $this->getTestSysop()->getUser(),
+		] );
+		$store = $this->getStore();
+		$inserted = $store->insertBlock( $block );
+		$this->assertTrue(
+			(bool)$inserted['id'],
+			'Sanity check: block inserted correctly'
+		);
+
+		// Early return of empty array if no ips in the list
+		$list = $store->newListFromIPs( [], true );
+		$this->assertCount(
+			0,
+			$list,
+			'No matching blocks'
+		);
+
+		// Empty array for no match
+		$list = $store->newListFromIPs(
+			[ '10.1.1.1', '192.168.1.1' ],
+			true
+		);
+		$this->assertCount(
+			0,
+			$list,
+			'No blocks retrieved if all ips are invalid or trusted proxies'
+		);
+
+		// Actually fetching, block was inserted above
+		$list = $store->newListFromIPs( [ '1.2.3.4' ], true );
+		$this->assertCount(
+			1,
+			$list,
+			'Block retrieved for the blocked ip'
+		);
+		$this->assertInstanceOf(
+			DatabaseBlock::class,
+			$list[0],
+			'Sanity check: DatabaseBlock returned'
+		);
+		$this->assertSame(
+			$inserted['id'],
+			$list[0]->getId(),
+			'Block returned is the correct one'
+		);
+	}
+
+	public static function provideGetRangeCond() {
+		// $start, $end, $expect
+		$hex1 = IPUtils::toHex( '1.2.3.4' );
+		$hex2 = IPUtils::toHex( '1.2.3.5' );
+		yield 'IPv4 start, same end' => [
+			$hex1,
+			null,
+			"(ipb_range_start  LIKE '0102%' ESCAPE '`' )"
+			. " AND (ipb_range_start <= '$hex1')"
+			. " AND (ipb_range_end >= '$hex1')"
+		];
+		yield 'IPv4 start, different end' => [
+			$hex1,
+			$hex2,
+			"(ipb_range_start  LIKE '0102%' ESCAPE '`' )"
+			. " AND (ipb_range_start <= '$hex1')"
+			. " AND (ipb_range_end >= '$hex2')"
+		];
+		$hex3 = IPUtils::toHex( '2000:DEAD:BEEF:A:0:0:0:0' );
+		$hex4 = IPUtils::toHex( '2000:DEAD:BEEF:A:0:0:000A:000F' );
+		yield 'IPv6 start, same end' => [
+			$hex3,
+			null,
+			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`' )"
+			. " AND (ipb_range_start <= '$hex3')"
+			. " AND (ipb_range_end >= '$hex3')"
+		];
+		yield 'IPv6 start, different end' => [
+			$hex3,
+			$hex4,
+			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`' )"
+			. " AND (ipb_range_start <= '$hex3')"
+			. " AND (ipb_range_end >= '$hex4')"
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetRangeCond
+	 * @covers ::getRangeCond
+	 * @covers ::getIpFragment
+	 */
+	public function testGetRangeCond( $start, $end, $expect ) {
+		$this->assertSame(
+			$expect,
+			$this->getStore()->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_IPBLOCKS ) );
 	}
 
 	/**
