@@ -348,6 +348,13 @@
 			 *   e.g. a matching class was not defined on the HTML document element.
 			 */
 			set: function ( feature, value ) {
+				if ( mw.user.isNamed() ) {
+					// Avoid storing an unused cookie and returning true when the setting
+					// wouldn't actually be applied.
+					// Encourage future-proof and server-first implementations.
+					// Encourage feature parity for logged-in users.
+					throw new Error( 'clientPrefs are for unregistered users only' );
+				}
 				if ( !isValidFeatureName( feature ) || !isValidFeatureValue( value ) ) {
 					return false;
 				}

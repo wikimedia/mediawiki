@@ -147,6 +147,8 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			document.documentElement.setAttribute( 'class', '' );
 			// reset any cookies
 			mw.cookie.set( CLIENT_PREF_COOKIE_NAME, null );
+			// simulate logged-out status for most clientPrefs tests
+			mw.config.set( { wgUserName: null } );
 		} );
 		hooks.afterEach( function () {
 			mw.cookie.set( CLIENT_PREF_COOKIE_NAME, null );
@@ -254,6 +256,14 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 				'dark-mode-clientpref-enabled',
 				'always store even if it matches default as we have no knowledge of what the default could be'
 			);
+		} );
+
+		QUnit.test( 'set() [throw if registered user]', function ( assert ) {
+			mw.config.set( { wgUserName: 'Example' } );
+
+			assert.throws( () => {
+				mw.user.clientPrefs.set( 'foo', 'bar' );
+			}, /unregistered users only/, 'error' );
 		} );
 	} );
 } );
