@@ -1,0 +1,1 @@
+"use strict";const i=require("vue"),r=require("./constants.js");let t=0;function a(n){var u;const e=i.getCurrentInstance(),s=(u=e==null?void 0:e.props.id)!=null?u:e==null?void 0:e.attrs.id;return n?"".concat(r.LibraryPrefix,"-").concat(n,"-").concat(t++):s?"".concat(r.LibraryPrefix,"-").concat(s,"-").concat(t++):"".concat(r.LibraryPrefix,"-").concat(t++)}exports.useGeneratedId=a;

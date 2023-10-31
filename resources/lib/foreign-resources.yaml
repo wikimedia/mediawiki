@@ -163,6 +163,7 @@ codex:
     package/dist/codex-search.style-rtl.css:
     package/dist/codex-search.style-legacy.css:
     package/dist/codex-search.style-legacy-rtl.css:
+    package/dist/modules/*: modules
     package/dist/mixins/*: mixins
     package/LICENSE:
     package/README.md:
