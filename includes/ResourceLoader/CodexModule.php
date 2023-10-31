@@ -22,44 +22,58 @@ namespace MediaWiki\ResourceLoader;
 
 use ExtensionRegistry;
 use MediaWiki\Config\Config;
+use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlJsCode;
+use MediaWiki\MainConfigNames;
 
 /**
- * Module for codex that has direction-specific style files and a static helper function for
- * embedding icons in package modules.
+ * Module for codex that has direction-specific style files and a static helper
+ * function for embedding icons in package modules. This module also contains
+ * logic to support code-splitting (aka tree-shaking) of the Codex library to
+ * return only a subset of component JS and/or CSS files.
  *
  * @ingroup ResourceLoader
  * @internal
  */
 class CodexModule extends FileModule {
+	private const CODEX_MODULE_DIR = 'resources/lib/codex/modules/';
 
-	protected $themeStyles = [];
-	protected $themeStylesAdded = false;
+	/** @var array<string,string> */
+	private array $themeMap = [];
 
-	protected static $builtinSkinThemeMap = [
-		'default' => 'wikimedia-ui'
-	];
+	/** @var array<string,array> */
+	private array $themeStyles = [];
+
+	/** @var array<string> */
+	private array $codexComponents = [];
+
+	private bool $hasThemeStyles = false;
+	private bool $isStyleOnly = false;
+	private bool $isScriptOnly = false;
+	private bool $setupComplete = false;
 
 	public function __construct( array $options = [], $localBasePath = null, $remoteBasePath = null ) {
+		$skinCodexThemes = ExtensionRegistry::getInstance()->getAttribute( 'SkinCodexThemes' );
+		$this->themeMap = [ 'default' => 'wikimedia-ui' ] + $skinCodexThemes;
+
 		if ( isset( $options['themeStyles'] ) ) {
-			$this->themeStyles = $options['themeStyles'];
+			$this->hasThemeStyles = true;
+			$this->themeStyles = $options[ 'themeStyles' ];
+		}
+
+		if ( isset( $options[ 'codexComponents' ] ) ) {
+			$this->codexComponents = $options[ 'codexComponents' ];
+		}
+
+		if ( isset( $options[ 'codexStyleOnly' ] ) ) {
+			$this->isStyleOnly = $options[ 'codexStyleOnly' ];
+		}
+
+		if ( isset( $options[ 'codexScriptOnly' ] ) ) {
+			$this->isScriptOnly = $options[ 'codexScriptOnly' ];
 		}
 
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
-	}
-
-	public function getStyleFiles( Context $context ) {
-		if ( $this->themeStyles && !$this->themeStylesAdded ) {
-			// Add theme styles
-			$themeMap = static::$builtinSkinThemeMap +
-				ExtensionRegistry::getInstance()->getAttribute( 'SkinCodexThemes' );
-			$theme = $themeMap[ $context->getSkin() ] ?? $themeMap[ 'default' ];
-			$dir = $context->getDirection();
-			$styles = $this->themeStyles[ $theme ][ $dir ];
-			$this->styles = array_merge( $this->styles, (array)$styles );
-			// Remember we added the theme styles so we don't add them twice if getStyleFiles() is called twice
-			$this->themeStylesAdded = true;
-		}
-		return parent::getStyleFiles( $context );
 	}
 
 	/**
@@ -83,13 +97,205 @@ class CodexModule extends FileModule {
 	 * @param string[] $iconNames Names of icons to fetch
 	 * @return array
 	 */
-	public static function getIcons( Context $context, Config $config, array $iconNames = [] ) {
+	public static function getIcons( Context $context, Config $config, array $iconNames = [] ): array {
 		global $IP;
 		static $allIcons = null;
 		if ( $allIcons === null ) {
 			$allIcons = json_decode( file_get_contents( "$IP/resources/lib/codex-icons/codex-icons.json" ), true );
 		}
 		return array_intersect_key( $allIcons, array_flip( $iconNames ) );
+	}
+
+	// These 3 public methods are the entry points to this class; depending on the
+	// circumstances any one of these might be called first.
+
+	public function getPackageFiles( Context $context ) {
+		$this->setupCodex( $context );
+		return parent::getPackageFiles( $context );
+	}
+
+	public function getStyleFiles( Context $context ) {
+		$this->setupCodex( $context );
+		return parent::getStyleFiles( $context );
+	}
+
+	public function getDefinitionSummary( Context $context ) {
+		$this->setupCodex( $context );
+		return parent::getDefinitionSummary( $context );
+	}
+
+	/**
+	 * @param Context $context
+	 * @return string Name of the manifest file to use
+	 */
+	private function getManifestFile( Context $context ): string {
+		$isRtl = $context->getDirection() === 'rtl';
+		$isLegacy = $this->getTheme( $context ) === 'wikimedia-ui-legacy';
+		$manifestFile = null;
+
+		if ( $isRtl && $isLegacy ) {
+			$manifestFile = 'manifest-legacy-rtl.json';
+		} elseif ( $isRtl ) {
+			$manifestFile = 'manifest-rtl.json';
+		} elseif ( $isLegacy ) {
+			$manifestFile = 'manifest-legacy.json';
+		} else {
+			$manifestFile = 'manifest.json';
+		}
+
+		return $manifestFile;
+	}
+
+	/**
+	 * @param Context $context
+	 * @return string Name of the current theme
+	 */
+	private function getTheme( Context $context ): string {
+		return $this->themeMap[ $context->getSkin() ] ?? $this->themeMap[ 'default' ];
+	}
+
+	/**
+	 * There are several different use-cases for CodexModule. We may be dealing
+	 * with:
+	 *
+	 * - A CSS-only or JS & CSS module for the entire component library
+	 * - An otherwise standard module that needs one or more Codex icons
+	 * - A CSS-only or CSS-and-JS module that has opted-in to Codex's
+	 *   tree-shaking feature by specifying the "codexComponents" option
+	 *
+	 * Regardless of the kind of CodexModule we are dealing with, some kind of
+	 * one-time setup operation may need to be performed.
+	 *
+	 * In the case of a full-library module, we need to ensure that the correct
+	 * theme- and direction-specific CSS file is used.
+	 *
+	 * In the case of a tree-shaking module, we need to ensure that the CSS
+	 * and/or JS files for the specified components (as well as all
+	 * dependencies) are added to the module's packageFiles.
+	 *
+	 * @param Context $context
+	 */
+	private function setupCodex( Context $context ) {
+		if ( $this->setupComplete ) {
+			return;
+		}
+
+		// If we are tree-shaking, add component-specific JS/CSS files
+		if ( count( $this->codexComponents ) > 0 ) {
+			$this->addComponentFiles( $context );
+		}
+
+		// If themestyles are present, add them to the module styles
+		if ( $this->hasThemeStyles ) {
+			$theme = $this->getTheme( $context );
+			$dir = $context->getDirection();
+			$styles = $this->themeStyles[ $theme ][ $dir ];
+			$this->styles = array_merge( $this->styles, (array)$styles );
+		}
+
+		$this->setupComplete = true;
+	}
+
+	/**
+	 * Resolve the dependencies for a list of keys in a given manifest,
+	 * and return flat arrays of both scripts and styles. Dependencies
+	 * are ordered.
+	 *
+	 * @param array<string> $keys
+	 * @param array<string,array> $manifest
+	 * @return array<string,array>
+	 */
+	private function resolveDependencies( $keys, $manifest ): array {
+		$resolvedKeys = [];
+		$scripts = [];
+		$styles = [];
+
+		$gatherDependencies = static function ( $key ) use ( &$resolvedKeys, $manifest, &$gatherDependencies ) {
+			foreach ( $manifest[ $key ][ 'imports' ] ?? [] as $dep ) {
+				if ( !in_array( $dep, $resolvedKeys ) ) {
+					$gatherDependencies( $dep );
+				}
+			}
+			$resolvedKeys[] = $key;
+		};
+
+		foreach ( $keys as $key ) {
+			$gatherDependencies( $key );
+		}
+
+		foreach ( $resolvedKeys as $key ) {
+			$scripts[] = $manifest[ $key ][ 'file' ];
+			foreach ( $manifest[ $key ][ 'css'] ?? [] as $css ) {
+				$styles[] = $css;
+			}
+		}
+
+		return [
+			'scripts' => $scripts,
+			'styles' => $styles
+		];
+	}
+
+	/**
+	 * For Codex modules that rely on tree-shaking, this method determines
+	 * which CSS and/or JS files need to be included by consulting the
+	 * appropriate manifest file.
+	 *
+	 * @param Context $context
+	 */
+	private function addComponentFiles( Context $context ) {
+		$remoteBasePath = $this->getConfig()->get( MainConfigNames::ResourceBasePath );
+
+		// Manifest data structure representing all Codex components in the library
+		$manifest = json_decode(
+			file_get_contents( MW_INSTALL_PATH . '/' . self::CODEX_MODULE_DIR . $this->getManifestFile( $context ) ),
+			true
+		);
+
+		// Generate an array of manifest keys that meet the following conditions:
+		// * Entry has a "file" property that matches one of the specified codexComponents (sans extension)
+		// * The "file" property has a ".js" file extension
+		$manifestKeys = array_keys( array_filter( $manifest, function ( $val ) {
+			$file = pathinfo( $val[ 'file' ] );
+			return (
+				array_key_exists( 'extension', $file ) &&
+				$file[ 'extension' ] === 'js' &&
+				in_array( $file[ 'filename' ], $this->codexComponents )
+			);
+		} ) );
+
+		[ 'scripts' => $scripts, 'styles' => $styles ] = $this->resolveDependencies( $manifestKeys, $manifest );
+
+		// Add the CSS files to the module's package file (unless this is a script-only module)
+		if ( !( $this->isScriptOnly ) ) {
+			foreach ( $styles as $fileName ) {
+				$this->styles[] = new FilePath( self::CODEX_MODULE_DIR . $fileName, MW_INSTALL_PATH, $remoteBasePath );
+			}
+		}
+
+		// Add the JS files to the module's package file (unless this is a style-only module)
+		if ( !( $this->isStyleOnly ) ) {
+			$exports = [];
+			foreach ( $this->codexComponents as $component ) {
+				$exports[ $component ] = new HtmlJsCode(
+					'require( ' . Html::encodeJsVar( "./_codex/$component.js" ) . ' )'
+				);
+			}
+
+			// Add a synthetic top-level "exports" file
+			$this->packageFiles[] = [
+				'name' => 'codex.js',
+				'content' => 'module.exports = ' . Html::encodeJsVar( HtmlJsCode::encodeObject( $exports ) ) . ';'
+			];
+
+			// Add each of the referenced scripts to the package
+			foreach ( $scripts as $fileName ) {
+				$this->packageFiles[] = [
+					'name' => "_codex/$fileName",
+					'file' => new FilePath( self::CODEX_MODULE_DIR . $fileName, MW_INSTALL_PATH, $remoteBasePath )
+				];
+			}
+		}
 	}
 }
 
