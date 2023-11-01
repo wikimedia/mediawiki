@@ -4615,8 +4615,8 @@
 	"right-renameuser": "Rename users",
 	"renameuser-renamed-notice": "This user has been renamed.\nThe rename log is provided below for reference.",
 	"log-unknown-action": "performed unknown action \"$2\" on [[$1]]",
-	"createacct-benefit-heading-temp-user": "Thank you for contributing to Wikipedia.\nCreate an account to access more features.",
-	"createacct-benefit-subheading-temp-user": "Wikipedia is made by people like you. With an account you can have a permanent and secure identity with access to features like:",
+	"createacct-benefit-heading-temp-user": "Thank you for contributing to {{SITENAME}}.\nCreate an account to access more features.",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} is made by people like you. With an account you can have a permanent and secure identity with access to features like:",
 	"benefit-1-description": "Watchlists that allow you to keep track of pages that you’re interested in.",
 	"benefit-2-description": "Permanent list of contributions you’ve made to the project",
 	"benefit-3-description": "Preferences that allow you to customize your experience."
