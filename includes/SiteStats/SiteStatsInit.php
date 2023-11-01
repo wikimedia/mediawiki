@@ -24,12 +24,13 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use SiteStatsUpdate;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Class designed for counting of stats.
  */
 class SiteStatsInit {
-	/** @var IDatabase */
+	/** @var IReadableDatabase */
 	private $dbr;
 	/** @var int */
 	private $edits;
@@ -43,17 +44,17 @@ class SiteStatsInit {
 	private $files;
 
 	/**
-	 * @param bool|IDatabase $database
+	 * @param bool|IReadableDatabase $database
 	 * - bool: Whether to use the primary DB
 	 * - IDatabase: Database connection to use
 	 */
 	public function __construct( $database = false ) {
-		if ( $database instanceof IDatabase ) {
+		if ( $database instanceof IReadableDatabase ) {
 			$this->dbr = $database;
 		} elseif ( $database ) {
-			$this->dbr = self::getDB( DB_PRIMARY );
+			$this->dbr = self::getPrimaryDB();
 		} else {
-			$this->dbr = self::getDB( DB_REPLICA, 'vslow' );
+			$this->dbr = self::getReplicaDB();
 		}
 	}
 
@@ -154,7 +155,7 @@ class SiteStatsInit {
 
 		// Count active users if need be
 		if ( $options['activeUsers'] ) {
-			SiteStatsUpdate::cacheUpdate( self::getDB( DB_PRIMARY ) );
+			SiteStatsUpdate::cacheUpdate( self::getPrimaryDB() );
 		}
 	}
 
@@ -162,7 +163,7 @@ class SiteStatsInit {
 	 * Insert a dummy row with all zeroes if no row is present
 	 */
 	public static function doPlaceholderInit() {
-		$dbw = self::getDB( DB_PRIMARY );
+		$dbw = self::getPrimaryDB();
 		$exists = (bool)$dbw->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'site_stats' )
@@ -202,7 +203,7 @@ class SiteStatsInit {
 					'ss_images' => $this->getShardedValue( $this->files ?? $this->files(), $shardCnt, $i ),
 				];
 				$row = [ 'ss_row_id' => $i ] + $set;
-				self::getDB( DB_PRIMARY )->newInsertQueryBuilder()
+				self::getPrimaryDB()->newInsertQueryBuilder()
 					->insertInto( 'site_stats' )
 					->row( $row )
 					->onDuplicateKeyUpdate()
@@ -220,7 +221,7 @@ class SiteStatsInit {
 			];
 			$row = [ 'ss_row_id' => 1 ] + $set;
 
-			self::getDB( DB_PRIMARY )->newInsertQueryBuilder()
+			self::getPrimaryDB()->newInsertQueryBuilder()
 				->insertInto( 'site_stats' )
 				->row( $row )
 				->onDuplicateKeyUpdate()
@@ -230,15 +231,16 @@ class SiteStatsInit {
 		}
 	}
 
-	/**
-	 * @param int $index
-	 * @param string[]|string $groups
-	 * @return IDatabase
-	 */
-	private static function getDB( $index, $groups = [] ) {
+	private static function getReplicaDB(): IReadableDatabase {
 		return MediaWikiServices::getInstance()
-			->getDBLoadBalancer()
-			->getConnectionRef( $index, $groups );
+			->getDBLoadBalancerFactory()
+			->getReplicaDatabase( false, 'vslow' );
+	}
+
+	private static function getPrimaryDB(): IDatabase {
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancerFactory()
+			->getPrimaryDatabase();
 	}
 }
 
