@@ -1800,6 +1800,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Handler\\Helper\\PageRedirectHelper' => __DIR__ . '/includes/Rest/Handler/Helper/PageRedirectHelper.php',
 	'MediaWiki\\Rest\\Handler\\Helper\\PageRestHelperFactory' => __DIR__ . '/includes/Rest/Handler/Helper/PageRestHelperFactory.php',
 	'MediaWiki\\Rest\\Handler\\Helper\\ParsoidFormatHelper' => __DIR__ . '/includes/Rest/Handler/Helper/ParsoidFormatHelper.php',
+	'MediaWiki\\Rest\\Handler\\Helper\\RestAuthorizeTrait' => __DIR__ . '/includes/Rest/Handler/Helper/RestAuthorizeTrait.php',
 	'MediaWiki\\Rest\\Handler\\Helper\\RevisionContentHelper' => __DIR__ . '/includes/Rest/Handler/Helper/RevisionContentHelper.php',
 	'MediaWiki\\Rest\\Handler\\LanguageLinksHandler' => __DIR__ . '/includes/Rest/Handler/LanguageLinksHandler.php',
 	'MediaWiki\\Rest\\Handler\\MediaFileHandler' => __DIR__ . '/includes/Rest/Handler/MediaFileHandler.php',

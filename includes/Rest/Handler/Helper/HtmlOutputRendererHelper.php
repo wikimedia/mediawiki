@@ -71,6 +71,8 @@ use Wikimedia\Parsoid\Utils\WTUtils;
  * @unstable Pending consolidation of the Parsoid extension with core code.
  */
 class HtmlOutputRendererHelper implements HtmlOutputHelper {
+	use RestAuthorizeTrait;
+
 	/**
 	 * @internal
 	 * @var string[]
@@ -430,14 +432,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$parserOutput = $this->getParserOutput();
 
 		if ( $this->stash ) {
-			if ( !$this->authority->authorizeAction( 'stashbasehtml' ) ) {
-				throw new LocalizedHttpException(
-					MessageValue::new( 'parsoid-stash-rate-limit-error' ),
-					// See https://www.rfc-editor.org/rfc/rfc6585#section-4
-					429,
-					[ 'reason' => 'Rate limiter tripped, wait for a few minutes and try again' ]
-				);
-			}
+			$this->authorizeWriteOrThrow( $this->authority, 'stashbasehtml', $this->page );
 
 			$isFakeRevision = $this->getRevisionId() === null;
 			$parsoidStashKey = ParsoidRenderID::newFromKey(
