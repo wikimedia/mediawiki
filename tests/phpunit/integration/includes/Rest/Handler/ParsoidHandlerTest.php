@@ -21,6 +21,7 @@ use MediaWiki\Rest\Handler\ParsoidHandler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -160,6 +161,14 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				}
 
 				return parent::newParsoid();
+			}
+
+			public function getRequest(): RequestInterface {
+				if ( isset( $this->overrides['getRequest'] ) ) {
+					return $this->overrides['getRequest']();
+				}
+
+				return parent::getRequest();
 			}
 
 			protected function getHtmlInputTransformHelper(
@@ -2177,6 +2186,30 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 	// TODO: test wt2html failure modes
 	// TODO: test redlinks
+
+	public function testCreateRedirectToOldidResponse() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$pageConfig = $this->getPageConfig( $page );
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$request = new RequestData( [ 'pathParams' => [ 'format' => 'html' ] ] );
+
+		$handler = $this->newParsoidHandler( [
+			'getRequest' => static function () use ( $request ) {
+				return $request;
+			}
+		] );
+		$resp = $handler->createRedirectToOldidResponse( $pageConfig, $attribs );
+
+		$this->assertSame( 302, $resp->getStatusCode() );
+
+		// NOTE: T350219: This must be a relative path, not an absolute URL.
+		// Otherwise, the redirect will not work inside the MWF service mesh.
+		$this->assertSame(
+			"/rest/v1/revision/{$page->getLatest()}/html",
+			$resp->getHeaderLine( 'location' )
+		);
+	}
 
 	public function createLanguageMock( string $code ) {
 		// Ensure that we always return the same object for a given code.

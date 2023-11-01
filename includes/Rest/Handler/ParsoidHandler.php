@@ -25,11 +25,9 @@ use InvalidArgumentException;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Rest\Handler;
@@ -68,6 +66,7 @@ use WikitextContent;
 
 /**
  * Base class for Parsoid handlers.
+ * @internal For use by the Parsoid extension
  */
 abstract class ParsoidHandler extends Handler {
 
@@ -531,7 +530,7 @@ abstract class ParsoidHandler extends Handler {
 	protected function getRedirectRouteUrl(
 		string $path, array $pathParams = [], array $queryParams = []
 	) {
-		return $this->getRouter()->getRouteUrl( $path, $pathParams, $queryParams );
+		return $this->getRouter()->getRoutePath( $path, $pathParams, $queryParams );
 	}
 
 	/**
@@ -688,43 +687,6 @@ abstract class ParsoidHandler extends Handler {
 			throw new InvalidArgumentException( 'Unsupported revision content format: ' . $format );
 		}
 		return '/v1/revision/{revision}/html';
-	}
-
-	/**
-	 * @param LinkTarget $redirectTarget
-	 * @param string $domain
-	 * @param string $format
-	 *
-	 * @throws ResponseException
-	 */
-	private function followWikiRedirect( $redirectTarget, $domain, $format ): void {
-		$pageStore = MediaWikiServices::getInstance()->getPageStore();
-		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
-		$redirectTarget = $pageStore->getPageForLink( $redirectTarget );
-
-		if ( $redirectTarget instanceof ExistingPageRecord ) {
-			$pathParams = [
-				'domain' => $domain,
-				'format' => $format,
-				'title' => $titleFormatter->getPrefixedDBkey( $redirectTarget ),
-				'revision' => $redirectTarget->getLatest()
-			];
-
-			// NOTE: Core doesn't have REST endpoints that return raw wikitext,
-			//       so the below will fail unless the methods are overwritten.
-			if ( $redirectTarget->exists() ) {
-				$redirectPath = $this->getRevisionContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
-			} else {
-				$redirectPath = $this->getPageContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
-			}
-			throw new ResponseException(
-				$this->createRedirectResponse(
-					$redirectPath,
-					$pathParams,
-					$this->getRequest()->getQueryParams()
-				)
-			);
-		}
 	}
 
 	/**
