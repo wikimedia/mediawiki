@@ -32,6 +32,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Local repository that stores files in the local filesystem and registers them
@@ -376,20 +377,16 @@ class LocalRepo extends FileRepo {
 		$oiConds = []; // WHERE clause array for each file
 		foreach ( $searchSet as $dbKey => $search ) {
 			if ( isset( $search['time'] ) ) {
-				$oiConds[] = $dbr->makeList(
-					[
-						'oi_name' => $this->getNameFromTitle( File::normalizeTitle( $dbKey ) ),
-						'oi_timestamp' => $dbr->timestamp( $search['time'] )
-					],
-					LIST_AND
-				);
+				$oiConds[] = $dbr
+					->expr( 'oi_name', '=', $this->getNameFromTitle( File::normalizeTitle( $dbKey ) ) )
+					->and( 'oi_timestamp', '=', $dbr->timestamp( $search['time'] ) );
 			}
 		}
 
 		if ( count( $oiConds ) ) {
 			$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbr );
 
-			$res = $queryBuilder->where( $dbr->makeList( $oiConds, LIST_OR ) )
+			$res = $queryBuilder->where( new OrExpressionGroup( ...$oiConds ) )
 				->caller( __METHOD__ )->fetchResultSet();
 			$applyMatchingFiles( $res, $searchSet, $finalFiles );
 		}

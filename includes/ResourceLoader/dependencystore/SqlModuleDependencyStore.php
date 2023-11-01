@@ -24,6 +24,7 @@ use InvalidArgumentException;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Track per-module file dependencies in the core module_deps table
@@ -126,16 +127,15 @@ class SqlModuleDependencyStore extends DependencyStore {
 		$disjunctionConds = [];
 		foreach ( (array)$entities as $entity ) {
 			[ $module, $variant ] = $this->getEntityNameComponents( $entity );
-			$disjunctionConds[] = $dbw->makeList(
-				[ 'md_skin' => $variant, 'md_module' => $module ],
-				$dbw::LIST_AND
-			);
+			$disjunctionConds[] = $dbw
+				->expr( 'md_skin', '=', $variant )
+				->and( 'md_module', '=', $module );
 		}
 
 		if ( $disjunctionConds ) {
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'module_deps' )
-				->where( $dbw->makeList( $disjunctionConds, $dbw::LIST_OR ) )
+				->where( new OrExpressionGroup( ...$disjunctionConds ) )
 				->caller( __METHOD__ )->execute();
 		}
 	}
@@ -154,10 +154,9 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 		$disjunctionConds = [];
 		foreach ( $modulesByVariant as $variant => $modules ) {
-			$disjunctionConds[] = $db->makeList(
-				[ 'md_skin' => $variant, 'md_module' => $modules ],
-				$db::LIST_AND
-			);
+			$disjunctionConds[] = $db
+				->expr( 'md_skin', '=', $variant )
+				->and( 'md_module', '=', $modules );
 		}
 
 		$depsBlobByEntity = [];
@@ -166,7 +165,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 			$res = $db->newSelectQueryBuilder()
 				->select( [ 'md_module', 'md_skin', 'md_deps' ] )
 				->from( 'module_deps' )
-				->where( $db->makeList( $disjunctionConds, $db::LIST_OR ) )
+				->where( new OrExpressionGroup( ...$disjunctionConds ) )
 				->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $row ) {

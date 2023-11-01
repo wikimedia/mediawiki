@@ -74,7 +74,7 @@ class DeleteOldRevisions extends Maintenance {
 		# Get all revisions that aren't in this set
 		$this->output( "Searching for inactive revisions..." );
 		if ( count( $latestRevs ) > 0 ) {
-			$revConds[] = 'rev_id NOT IN (' . $dbw->makeList( $latestRevs ) . ')';
+			$revConds[] = $dbw->expr( 'rev_id', '!=', $latestRevs );
 		}
 		$res = $dbw->newSelectQueryBuilder()
 			->select( 'rev_id' )

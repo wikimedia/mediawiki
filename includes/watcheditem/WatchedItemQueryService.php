@@ -332,10 +332,7 @@ class WatchedItemQueryService {
 		if ( $this->expiryEnabled ) {
 			// If expiries are enabled, join with the watchlist_expiry table and exclude expired items.
 			$tables = [ 'watchlist', 'watchlist_expiry' ];
-			$conds[] = $db->makeList(
-				[ 'we_expiry' => null, $db->expr( 'we_expiry', '>', $db->timestamp() ) ],
-				$db::LIST_OR
-			);
+			$conds[] = $db->expr( 'we_expiry', '>', $db->timestamp() )->or( 'we_expiry', '=', null );
 			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
 		}
 		$res = $db->select(

@@ -42,6 +42,7 @@ use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\OrExpressionGroup;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -1045,15 +1046,14 @@ class UserGroupManager implements IDBAccessObject {
 				$deleteCond = []; // array for deleting the rows that are to be moved around
 				foreach ( $res as $row ) {
 					$insertData[] = [ 'ufg_user' => $row->ug_user, 'ufg_group' => $row->ug_group ];
-					$deleteCond[] = $dbw->makeList(
-						[ 'ug_user' => $row->ug_user, 'ug_group' => $row->ug_group ],
-						$dbw::LIST_AND
-					);
+					$deleteCond[] = $dbw
+						->expr( 'ug_user', '=', $row->ug_user )
+						->and( 'ug_group', '=', $row->ug_group );
 				}
 				// Delete the rows we're about to move
 				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'user_groups' )
-					->where( $dbw->makeList( $deleteCond, $dbw::LIST_OR ) )
+					->where( new OrExpressionGroup( ...$deleteCond ) )
 					->caller( __METHOD__ )->execute();
 				// Push the groups to user_former_groups
 				$dbw->newInsertQueryBuilder()

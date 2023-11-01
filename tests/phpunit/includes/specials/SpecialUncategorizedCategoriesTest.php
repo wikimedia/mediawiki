@@ -2,6 +2,7 @@
 
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Specials\SpecialUncategorizedCategories;
+use Wikimedia\Rdbms\Expression;
 
 /**
  * Tests for Special:UncategorizedCategories
@@ -52,22 +53,22 @@ class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 		return [
 			[
 				"* Stubs\n* Test\n* *\n* * test123",
-				[ 0 => "page_title not in ( 'Stubs','Test','*','*_test123' )" ]
+				[ 0 => new Expression( 'page_title', '!=', [ 'Stubs', 'Test', '*', '*_test123' ] ) ]
 			],
 			[
 				"Stubs\n* Test\n* *\n* * test123",
-				[ 0 => "page_title not in ( 'Test','*','*_test123' )" ]
+				[ 0 => new Expression( 'page_title', '!=', [ 'Test', '*', '*_test123' ] ) ],
 			],
 			[
 				"* StubsTest\n* *\n* * test123",
-				[ 0 => "page_title not in ( 'StubsTest','*','*_test123' )" ]
+				[ 0 => new Expression( 'page_title', '!=', [ 'StubsTest', '*', '*_test123' ] ) ],
 			],
 			[ "", [] ],
 			[ "\n\n\n", [] ],
 			[ "\n", [] ],
-			[ "Test\n*Test2", [ 0 => "page_title not in ( 'Test2' )" ] ],
+			[ "Test\n*Test2", [ 0 => new Expression( 'page_title', '!=', [ 'Test2' ] ) ] ],
 			[ "Test", [] ],
-			[ "*Test\nTest2", [ 0 => "page_title not in ( 'Test' )" ] ],
+			[ "*Test\nTest2", [ 0 => new Expression( 'page_title', '!=', [ 'Test' ] ) ] ],
 			[ "Test\nTest2", [] ],
 		];
 	}
