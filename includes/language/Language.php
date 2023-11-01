@@ -3395,7 +3395,7 @@ class Language implements Bcp47Code {
 	 * This provides the multibyte version of truncateForDatabase() method of this class,
 	 * suitable for truncation based on number of characters, instead of number of bytes.
 	 *
-	 * The input should be a raw UTF-8 strin, and *NOT* be HTML
+	 * The input should be a raw UTF-8 string, and *NOT* be HTML
 	 * escaped. It is not safe to truncate HTML-escaped strings,
 	 * because the entity can be truncated! Use ::truncateHtml() if you
 	 * need a specific number of HTML-encoded bytes, or
