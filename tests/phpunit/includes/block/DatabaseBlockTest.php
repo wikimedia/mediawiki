@@ -896,10 +896,10 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	/**
 	 * @covers ::appliesToRight
 	 */
-	public function testBlockAllowsPurge() {
+	public function testBlockAllowsRead() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$block = new DatabaseBlock();
-		$this->assertFalse( $block->appliesToRight( 'purge' ) );
+		$this->assertFalse( $block->appliesToRight( 'read' ) );
 	}
 
 	/**
