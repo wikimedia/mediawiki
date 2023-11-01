@@ -152,6 +152,20 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'<p>Сілтеменің астын сыз:</p>',
 			'kk-cyrl|kk-Cyrl'
 		];
+		yield 'Variant conversion with fallback to core LanguageConverter (bogus variant code)' => [
+			new PageBundle(
+				'<p>Сілтеменің астын сыз:</p>',
+				[ 'parsoid-data' ],
+				[ 'mw-data' ],
+				Parsoid::defaultHTMLVersion(),
+				[]
+			),
+			null,
+			'kk-cyrl-BOGUS',
+			'kk-latn',
+			'<p>Сілтеменің астын сыз:</p>',
+			'kk' // We get back the original page language
+		];
 	}
 
 	/**
