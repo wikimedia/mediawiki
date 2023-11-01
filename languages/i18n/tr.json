@@ -3608,6 +3608,7 @@
 	"tags-actions-header": "Eylemler",
 	"tags-active-yes": "Evet",
 	"tags-active-no": "Hayır",
+	"tags-source-software": "Yazılım tarafından tanımlanmış",
 	"tags-source-extension": "Yazılım tarafından tanımlanmış",
 	"tags-source-manual": "Kullanıcı ve botlar tarafından elle uygulanır",
 	"tags-source-none": "Artık kullanımda değil",

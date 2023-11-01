@@ -3567,6 +3567,7 @@
 	"tags-actions-header": "Дејства",
 	"tags-active-yes": "Да",
 	"tags-active-no": "Не",
+	"tags-source-software": "Определено од програмот",
 	"tags-source-extension": "Одредени од програмот",
 	"tags-source-manual": "Применети рачно од корисници и ботови",
 	"tags-source-none": "Вон употреба",

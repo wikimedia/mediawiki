@@ -3572,6 +3572,7 @@
 	"tags-actions-header": "Azioni",
 	"tags-active-yes": "Sì",
 	"tags-active-no": "No",
+	"tags-source-software": "Definito dal software",
 	"tags-source-extension": "Definito dal software",
 	"tags-source-manual": "Applicato manualmente da utenti e bot",
 	"tags-source-none": "Non più in uso",

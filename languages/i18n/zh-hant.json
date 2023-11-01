@@ -3596,6 +3596,7 @@
 	"tags-actions-header": "操作",
 	"tags-active-yes": "是",
 	"tags-active-no": "否",
+	"tags-source-software": "由軟體定義",
 	"tags-source-extension": "由軟體定義",
 	"tags-source-manual": "由使用者與機器人手動套用",
 	"tags-source-none": "不再使用",

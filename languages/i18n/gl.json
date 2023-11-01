@@ -3510,6 +3510,7 @@
 	"tags-actions-header": "Accións",
 	"tags-active-yes": "Si",
 	"tags-active-no": "Non",
+	"tags-source-software": "Definida polo software",
 	"tags-source-extension": "Definida polo software",
 	"tags-source-manual": "Aplicado manualmente por usuarios e bots",
 	"tags-source-none": "Xa non está en uso",

@@ -3568,6 +3568,7 @@
 	"tags-actions-header": "Handelingen",
 	"tags-active-yes": "Ja",
 	"tags-active-no": "Nee",
+	"tags-source-software": "Gedefinieerd door de software",
 	"tags-source-extension": "Gedefinieerd door de software",
 	"tags-source-manual": "Handmatig toegevoegd door gebruikers en bots",
 	"tags-source-none": "Niet meer in gebruik",

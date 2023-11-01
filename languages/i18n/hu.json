@@ -3463,6 +3463,7 @@
 	"tags-actions-header": "Műveletek",
 	"tags-active-yes": "Igen",
 	"tags-active-no": "Nem",
+	"tags-source-software": "A szoftver határozza meg",
 	"tags-source-extension": "A szoftver határozza meg",
 	"tags-source-manual": "Manuálisan adják meg felhasználók és botok",
 	"tags-source-none": "Már nincs használatban",

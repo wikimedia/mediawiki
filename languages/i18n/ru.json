@@ -3712,6 +3712,7 @@
 	"tags-actions-header": "Действия",
 	"tags-active-yes": "Да",
 	"tags-active-no": "Нет",
+	"tags-source-software": "Определяется программным обеспечением",
 	"tags-source-extension": "Определяется программным обеспечением",
 	"tags-source-manual": "Вносятся вручную участниками и ботами",
 	"tags-source-none": "Больше не используется",
