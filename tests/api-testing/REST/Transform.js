@@ -84,7 +84,7 @@ function contentTypeMatcher( expectedMime, expectedSpec, expectedVersion ) {
 describe( '/transform/ endpoint', function () {
 	const client = new REST();
 	const parsedUrl = new url.URL( client.req.app );
-	const PARSOID_URL = parsedUrl.href;
+	const REST_PATH = parsedUrl.pathname;
 	const endpointPrefix = client.pathPrefix = 'rest.php/coredev/v0';
 	const page = utils.title( 'TransformSource_' );
 	const pageWithSpaces = page.replace( '_', ' ' );
@@ -522,7 +522,7 @@ describe( '/transform/ endpoint', function () {
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
 					res.headers.location.should.equal(
-						PARSOID_URL + endpointPrefix +
+						REST_PATH + endpointPrefix +
 						'/transform/wikitext/to/lint/Lint%20Page/102'
 					);
 				} )
@@ -649,7 +649,7 @@ describe( '/transform/ endpoint', function () {
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
 					res.headers.location.should.equal(
-						PARSOID_URL + endpointPrefix + `/transform/wikitext/to/html/${pageWithSpacesEncoded}/${revid}`
+						REST_PATH + endpointPrefix + `/transform/wikitext/to/html/${pageWithSpacesEncoded}/${revid}`
 					);
 				} )
 				.end( done );
@@ -668,7 +668,7 @@ describe( '/transform/ endpoint', function () {
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
 					res.headers.location.should.equal(
-						PARSOID_URL + endpointPrefix + `/transform/wikitext/to/pagebundle/${pageWithSpacesEncoded}/${revid}`
+						REST_PATH + endpointPrefix + `/transform/wikitext/to/pagebundle/${pageWithSpacesEncoded}/${revid}`
 					);
 				} )
 				.end( done );
@@ -685,7 +685,7 @@ describe( '/transform/ endpoint', function () {
 				.expect( 307 ) // no revid or wikitext source provided
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
-					const expected = PARSOID_URL + endpointPrefix +
+					const expected = REST_PATH + endpointPrefix +
 						`/transform/wikitext/to/html/${pageWithSpacesEncoded}/`;
 
 					assert.strictEqual(
