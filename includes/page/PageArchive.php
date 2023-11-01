@@ -25,8 +25,10 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -88,15 +90,13 @@ class PageArchive {
 		}
 
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
-		$condTitles = array_unique( array_map( static function ( Title $t ) {
+		$condTitles = array_values( array_unique( array_map( static function ( Title $t ) {
 			return $t->getDBkey();
-		}, $results ) );
+		}, $results ) ) );
 		$conds = [
 			'ar_namespace' => $ns,
-			$dbr->makeList( [
-				'ar_title' => $condTitles,
-				'ar_title' . $dbr->buildLike( $termDb, $dbr->anyString() ),
-			], LIST_OR ),
+			$dbr->expr( 'ar_title', '=', $condTitles )
+				->or( 'ar_title', IExpression::LIKE, new LikeValue( $termDb, $dbr->anyString() ) ),
 		];
 
 		return self::listPages( $dbr, $conds );
@@ -125,7 +125,7 @@ class PageArchive {
 
 		$conds = [
 			'ar_namespace' => $ns,
-			'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
+			$dbr->expr( 'ar_title', IExpression::LIKE, new LikeValue( $prefix, $dbr->anyString() ) ),
 		];
 
 		return self::listPages( $dbr, $conds );

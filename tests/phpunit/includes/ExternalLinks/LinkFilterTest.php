@@ -2,6 +2,8 @@
 
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
@@ -497,7 +499,19 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			],
 		] );
 		$conds = LinkFilter::getQueryConditions( $query, $options );
-		$this->assertEquals( $expected, $conds );
+		if ( !$conds ) {
+			$this->assertEquals( $expected, $conds );
+			return;
+		}
+		$sqlConds = [];
+		foreach ( $conds as $cond ) {
+			if ( $cond instanceof IExpression ) {
+				$sqlConds[] = $cond->toSql( new AddQuoterMock() );
+			} else {
+				$sqlConds[] = $cond;
+			}
+		}
+		$this->assertEquals( $expected, $sqlConds );
 	}
 
 	public static function provideGetQueryConditions() {
@@ -506,8 +520,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'example.com',
 				[],
 				[
-					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' )) OR ' .
-					'((el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
+					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
 					'el_to_path LIKE \'/%\' ESCAPE \'`\' ',
 				],
 			],
@@ -515,8 +529,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'example.com/foobar',
 				[],
 				[
-					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' )) OR ' .
-					'((el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
+					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
 					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
 				],
 			],
@@ -524,8 +538,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'*.example.com',
 				[],
 				[
-					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' )) OR ' .
-					'((el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
+					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
 					'el_to_path LIKE \'/%\' ESCAPE \'`\' ',
 				],
 			],
@@ -533,8 +547,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'*.example.com/foobar',
 				[],
 				[
-					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' )) OR ' .
-					'((el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
+					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
 					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
 				],
 			],
@@ -542,8 +556,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'*.example.com/foobar',
 				[ 'oneWildcard' => true ],
 				[
-					'((el_to_domain_index = \'http://com.example.\')) OR ' .
-					'((el_to_domain_index = \'https://com.example.\'))',
+					'((el_to_domain_index = \'http://com.example.\') OR ' .
+					'(el_to_domain_index = \'https://com.example.\'))',
 					'el_to_path LIKE \'/foobar%\' ESCAPE \'`\' ',
 				],
 			],
@@ -551,8 +565,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'example.com/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=',
 				[],
 				[
-					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' )) OR ' .
-					'((el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
+					'((el_to_domain_index LIKE \'http://com.example.%\' ESCAPE \'`\' ) OR ' .
+					'(el_to_domain_index LIKE \'https://com.example.%\' ESCAPE \'`\' ))',
 					'el_to_path LIKE ' .
 					'\'/blah/blah/blah/blah/blah/blah/blah/blah/blah/blah?foo=%\' ' .
 					'ESCAPE \'`\' ',
@@ -567,13 +581,13 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'gaps.example',
 				[],
 				[
-					'((el_to_domain_index LIKE \'http://example.gaps.%\' ESCAPE \'`\' ) AND ' .
-					'((el_id < 10) OR (el_id > 20)) AND ' .
-					'((el_id < 100) OR (el_id > 200)) AND ' .
-					'((el_id < 1000) OR (el_id > 2000))) OR ' .
-					'((el_to_domain_index LIKE \'https://example.gaps.%\' ESCAPE \'`\' ) AND ' .
-					'((el_id < 30) OR (el_id > 40)) AND ' .
-					'((el_id < 5000) OR (el_id > 60000)))',
+					'((el_to_domain_index LIKE \'http://example.gaps.%\' ESCAPE \'`\'  AND ' .
+					'(el_id < 10 OR el_id > 20) AND ' .
+					'(el_id < 100 OR el_id > 200) AND ' .
+					'(el_id < 1000 OR el_id > 2000)) OR ' .
+					'(el_to_domain_index LIKE \'https://example.gaps.%\' ESCAPE \'`\'  AND ' .
+					'(el_id < 30 OR el_id > 40) AND ' .
+					'(el_id < 5000 OR el_id > 60000)))',
 					'el_to_path LIKE \'/%\' ESCAPE \'`\' ',
 				],
 			],

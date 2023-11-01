@@ -5,11 +5,13 @@ namespace Wikimedia\Rdbms;
 use Wikimedia\Rdbms\Database\DbQuoter;
 
 /**
- * @internal
+ * @since 1.42
  */
 interface IExpression {
 
-	public const ACCEPTABLE_OPERATORS = [ '>', '<', '!=', '=', '>=', '<=' ];
+	public const ACCEPTABLE_OPERATORS = [ '>', '<', '!=', '=', '>=', '<=', self::LIKE ];
+
+	public const LIKE = 'LIKE';
 
 	/**
 	 * Return SQL for execution.

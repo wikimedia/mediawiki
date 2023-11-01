@@ -26,8 +26,11 @@ use MediaWiki\MediaWikiServices;
 use StringUtils;
 use TextContent;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\AndExpressionGroup;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Utilities for formatting and querying the externallinks table.
@@ -361,15 +364,16 @@ class LinkFilter {
 			if ( $options['oneWildcard'] && $likePath[0] != '/' ) {
 				$thisDomainConditions[] = $db->expr( 'el_to_domain_index', '=', $index1 );
 			} else {
-				$thisDomainConditions[] = "el_to_domain_index" . $db->buildLike( $index1, $db->anyString() );
+				$thisDomainConditions[] = $db->expr(
+					'el_to_domain_index',
+					IExpression::LIKE,
+					new LikeValue( $index1, $db->anyString() )
+				);
 			}
 			foreach ( $domainGaps[$index1] ?? [] as $from => $to ) {
-				$thisDomainConditions[] = $db->makeList( [
-					$db->expr( 'el_id', '<', $from ),
-					$db->expr( 'el_id', '>', $to ),
-				], ISQLPlatform::LIST_OR );
+				$thisDomainConditions[] = $db->expr( 'el_id', '<', $from )->or( 'el_id', '>', $to );
 			}
-			$domainConditions[] = $db->makeList( $thisDomainConditions, ISQLPlatform::LIST_AND );
+			$domainConditions[] = new AndExpressionGroup( ...$thisDomainConditions );
 
 		}
 		if ( !$domainConditions ) {
@@ -383,8 +387,8 @@ class LinkFilter {
 		$index2 = implode( '', $trimmedlikePath );
 
 		return [
-			$db->makeList( $domainConditions, ISQLPlatform::LIST_OR ),
-			"el_to_path" . $db->buildLike( $index2, $db->anyString() ),
+			new OrExpressionGroup( ...$domainConditions ),
+			$db->expr( 'el_to_path', IExpression::LIKE, new LikeValue( $index2, $db->anyString() ) ),
 		];
 	}
 
