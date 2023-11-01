@@ -1,5 +1,4 @@
-// TODO: Redefined here to avoid importing variables.less;
-@width-breakpoint-desktop: 1000px;
+@import 'mediawiki.skin.variables.less';
 
 @wm-expirywidget-text-width: 43.3em;
 
@@ -37,7 +36,7 @@
 		}
 	}
 
-	@media ( max-width: ( @width-breakpoint-desktop - 1px ) ) {
+	@media ( max-width: @max-width-breakpoint-desktop ) {
 		.mw-widget-selectWithInputWidget {
 			display: block;
 		}

@@ -131,7 +131,7 @@
 	}
 
 	// In desktop these icons shrink in size as touch area no longer important.
-	@media ( min-width: @width-breakpoint-desktop ) {
+	@media ( min-width: @min-width-breakpoint-desktop ) {
 		&.mw-ui-button {
 			padding: @icon-padding-md-button--desktop;
 		}
@@ -161,7 +161,7 @@
 	}
 }
 
-@media all and ( min-width: @width-breakpoint-desktop ) {
+@media all and ( min-width: @min-width-breakpoint-desktop ) {
 	.mw-ui-icon-with-label-desktop {
 		// stylelint-disable-next-line declaration-no-important
 		color: @icon-color !important;
