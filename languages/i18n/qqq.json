@@ -741,7 +741,7 @@
 	"nocookiesfornew": "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 	"nocookiesforlogin": "{{optional}}\nThis message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).\n\nDefault:\n* {{msg-mw|Nocookieslogin}}",
 	"createacct-loginerror": "This message is displayed after a successful registration when there is a server-side error with logging the user in. This is not expected to happen.",
-	"createacct-temp-warning": "Message shown to temporary users when creating an account.",
+	"createacct-temp-warning": "Message shown to temporary users when creating an account.\nParameters:\n* $1 - automatically generated username for a temporary user.",
 	"noname": "Error message.",
 	"loginsuccesstitle": "The title of the page saying that you are logged in. The content of the page is the message {{msg-mw|Loginsuccess}}.\n{{Identical|Log in}}",
 	"loginsuccess": "The content of the page saying that you are logged in. The title of the page is {{msg-mw|Loginsuccesstitle}}.\n\nParameters:\n* $1 - the name of the logged in user\n{{Gender}}",
@@ -4868,5 +4868,10 @@
 	"action-renameuser": "{{Doc-action|renameuser}}\n{{Identical|Rename user}}",
 	"right-renameuser": "Message for renameuser right\n{{Doc-right|renameuser}}",
 	"renameuser-renamed-notice": "Parameters:\n* $1 - (Optional) username, for GENDER support",
-	"log-unknown-action": "Fallback message used to display an unknown action in the log. Parameters:\n* $1 - Page title.\n* $2 - Key of the action."
+	"log-unknown-action": "Fallback message used to display an unknown action in the log. Parameters:\n* $1 - Page title.\n* $2 - Key of the action.",
+	"createacct-benefit-heading-temp-user": "Heading text description for temporary users who want to create an account to make their edits more permanent.",
+	"createacct-benefit-subheading-temp-user": "Subheading text description for temporary users who want to create an account to make their edits more permanent.",
+	"benefit-1-description": "The text for the first benefit shown on signup for temporary users.",
+	"benefit-2-description": "The text for the second benefit shown on signup for temporary users.",
+	"benefit-3-description": "The text for the third benefit shown on signup for temporary users."
 }

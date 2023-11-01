@@ -618,7 +618,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				Html::rawElement( 'p', [], $languageLinks )
 			);
 		}
-
+		if ( $this->getUser()->isTemp() ) {
+			$noticeHtml = $this->getNoticeHtml();
+		} else {
+			$noticeHtml = '';
+		}
 		$formBlock = Html::rawElement( 'div', [ 'id' => 'userloginForm' ], $formHtml );
 		$formAndBenefits = $formBlock;
 		if ( $this->isSignup() && $this->showExtraInformation() ) {
@@ -645,6 +649,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$loginPrompt
 			. $languageLinks
 			. $signupStart
+			. $noticeHtml
 			. $formAndBenefits
 		);
 	}
@@ -658,29 +663,78 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected function getBenefitsContainerHtml(): string {
 		$benefitsContainer = '';
+		$this->getOutput()->addModuleStyles( [ 'oojs-ui.styles.icons-user' ] );
 		if ( $this->isSignup() && $this->showExtraInformation() ) {
-			// The following messages are used here:
-			// * createacct-benefit-icon1 createacct-benefit-head1 createacct-benefit-body1
-			// * createacct-benefit-icon2 createacct-benefit-head2 createacct-benefit-body2
-			// * createacct-benefit-icon3 createacct-benefit-head3 createacct-benefit-body3
-			$benefitCount = 3;
-			$benefitList = '';
-			for ( $benefitIdx = 1; $benefitIdx <= $benefitCount; $benefitIdx++ ) {
-				$headUnescaped = $this->msg( "createacct-benefit-head$benefitIdx" )->text();
-				$iconClass = $this->msg( "createacct-benefit-icon$benefitIdx" )->text();
-				$benefitList .= Html::rawElement( 'div', [ 'class' => "mw-number-text $iconClass" ],
-					Html::rawElement( 'h3', [],
-						$this->msg( "createacct-benefit-head$benefitIdx" )->escaped()
-					)
-					. Html::rawElement( 'p', [],
-						$this->msg( "createacct-benefit-body$benefitIdx" )->params( $headUnescaped )->escaped()
-					)
+			if ( !$this->getUser()->isTemp() ) {
+				// The following messages are used here:
+				// * createacct-benefit-icon1 createacct-benefit-head1 createacct-benefit-body1
+				// * createacct-benefit-icon2 createacct-benefit-head2 createacct-benefit-body2
+				// * createacct-benefit-icon3 createacct-benefit-head3 createacct-benefit-body3
+				$benefitCount = 3;
+				$benefitList = '';
+				for ( $benefitIdx = 1; $benefitIdx <= $benefitCount; $benefitIdx++ ) {
+					$headUnescaped = $this->msg( "createacct-benefit-head$benefitIdx" )->text();
+					$iconClass = $this->msg( "createacct-benefit-icon$benefitIdx" )->text();
+					$benefitList .= Html::rawElement( 'div', [ 'class' => "mw-number-text $iconClass" ],
+						Html::rawElement( 'h3', [],
+							$this->msg( "createacct-benefit-head$benefitIdx" )->escaped()
+						)
+						. Html::rawElement( 'p', [],
+							$this->msg( "createacct-benefit-body$benefitIdx" )->params( $headUnescaped )->escaped()
+						)
+					);
+				}
+				$benefitsContainer = Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-container' ],
+					Html::rawElement( 'h2', [], $this->msg( 'createacct-benefit-heading' )->escaped() )
+					. Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-list' ], $benefitList )
+				);
+			} else {
+				$benefitList = '';
+				$this->getOutput()->addModuleStyles(
+					[
+						'oojs-ui.styles.icons-moderation',
+						'oojs-ui.styles.icons-interactions',
+					]
+				);
+				$benefits = [
+					[
+						'icon' => 'oo-ui-icon-unStar',
+						'description' => $this->msg( "benefit-1-description" )->escaped()
+					],
+					[
+						'icon' => 'oo-ui-icon-userContributions',
+						'description' => $this->msg( "benefit-2-description" )->escaped()
+					],
+					[
+						'icon' => 'oo-ui-icon-settings',
+						'description' => $this->msg( "benefit-3-description" )->escaped()
+					]
+				];
+				foreach ( $benefits as $benefit ) {
+					$benefitContent = Html::rawElement( 'div', [ 'class' => 'mw-benefit-item' ],
+						Html::rawElement( 'span', [ 'class' => $benefit[ 'icon' ] ] )
+						. Html::rawElement( 'p', [], $benefit['description'] )
+					);
+
+					$benefitList .= Html::rawElement(
+						'div', [ 'class' => 'mw-benefit-item-wrapper' ], $benefitContent );
+				}
+
+				$benefitsListWrapper = Html::rawElement(
+					'div', [ 'class' => 'mw-benefit-list-wrapper' ], $benefitList );
+
+				$headingSubheadingWrapper = Html::rawElement( 'div', [ 'class' => 'mw-heading-subheading-wrapper' ],
+					Html::rawElement( 'h2', [], $this->msg( 'createacct-benefit-heading-temp-user' )->escaped() )
+					. Html::rawElement( 'p', [ 'class' => 'mw-benefit-subheading' ], $this->msg(
+						'createacct-benefit-subheading-temp-user' )->escaped() )
+				);
+
+				$benefitsContainer = Html::rawElement(
+					'div', [ 'class' => 'mw-createacct-benefits-container' ],
+					$headingSubheadingWrapper
+					. $benefitsListWrapper
 				);
 			}
-			$benefitsContainer = Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-container' ],
-				Html::rawElement( 'h2', [], $this->msg( 'createacct-benefit-heading' )->escaped() )
-				. Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-list' ], $benefitList )
-			);
 		}
 		return $benefitsContainer;
 	}
@@ -1046,17 +1100,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'weight' => -100,
 			];
 		}
-		if ( $this->isSignup() && $this->getUser()->isTemp() ) {
-			$fieldDefinitions['tempWarning'] = [
-				'type' => 'info',
-				'default' => Html::warningBox(
-					$this->msg( 'createacct-temp-warning' )->parse()
-				),
-				'raw' => true,
-				'rawrow' => true,
-				'weight' => -90,
-			];
-		}
 		if ( !$this->showExtraInformation() ) {
 			unset( $fieldDefinitions['linkcontainer'], $fieldDefinitions['signupend'] );
 		}
@@ -1291,6 +1334,22 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$this->addTabIndex( $formDescriptor );
 	}
+
+	/**
+	 * Generates the HTML for a notice box to be displayed to a temporary user.
+	 *
+	 * @return string HTML representing the notice box
+	 */
+	protected function getNoticeHtml() {
+		$noticeContent = $this->msg( 'createacct-temp-warning', $this->getUser()->getName() )->parse();
+		return Html::noticeBox(
+			$noticeContent,
+			'',
+			'',
+			'mw-userLogin-icon--user-temporary'
+		);
+	}
+
 }
 
 /**
