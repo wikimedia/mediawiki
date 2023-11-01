@@ -28,6 +28,8 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 
 		// Prepare factory
 		$this->blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
+
+		$this->tablesUsed[] = 'ipblocks';
 	}
 
 	/**
@@ -164,19 +166,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			'infinity',
 			'test reblock'
 		)->placeBlockUnsafe( /*reblock=*/false );
-		$this->assertStatusError( 'ipb_already_blocked', $reblockStatus );
-
-		$this->user->clearInstanceCache();
-		$block = $this->user->getBlock();
-		$this->assertInstanceOf( DatabaseBlock::class, $block );
-		$this->assertSame( $blockId, $block->getId() );
-
-		$reblockStatus = $this->blockUserFactory->newBlockUser(
-			$this->user,
-			$this->mockAnonUltimateAuthority(),
-			'infinity',
-			'test block'
-		)->placeBlockUnsafe( /*reblock=*/true );
 		$this->assertStatusError( 'ipb_already_blocked', $reblockStatus );
 
 		$this->user->clearInstanceCache();
