@@ -878,6 +878,11 @@ class PermissionManager {
 			return null;
 		}
 
+		// Implicit rights aren't blockable (T350117, T350202).
+		if ( in_array( $action, $this->getImplicitRights(), true ) ) {
+			return null;
+		}
+
 		$useReplica = $rigor !== self::RIGOR_SECURE;
 		$isExempt = $this->userHasRight( $user, 'ipblock-exempt' );
 		$requestIfNotExempt = $isExempt ? null : $request;
