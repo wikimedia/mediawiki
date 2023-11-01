@@ -133,9 +133,11 @@ class LanguageVariantConverter {
 				// and don't need to compute a preferred variant based on a base language.
 				// Also see T267067 for why convert() should be avoided.
 				$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
+				$pageVariant = $targetVariant;
 			} else {
-				// No conversion possible - pass through original HTML.
+				// No conversion possible - pass through original HTML in original language
 				$convertedHtml = $pageBundle->html;
+				$pageVariant = $pageConfig->getPageLanguageBcp47();
 			}
 
 			// Add a note so that we can identify what was used to perform the variant conversion
@@ -145,7 +147,7 @@ class LanguageVariantConverter {
 			// NOTE: Keep this in sync with code in Parsoid.php in Parsoid repo
 			// Add meta information that Parsoid normally adds
 			$headers = [
-				'content-language' => $targetVariant->toBcp47Code(),
+				'content-language' => $pageVariant->toBcp47Code(),
 				'vary' => [ 'Accept', 'Accept-Language' ]
 			];
 			$doc = DOMUtils::parseHTML( '' );
