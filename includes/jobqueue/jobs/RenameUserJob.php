@@ -111,8 +111,12 @@ class RenameUserJob extends Job {
 
 		# Actually update the rows for this job...
 		if ( $uniqueKey !== null ) {
-			# Select the rows to update by PRIMARY KEY
-			$ids = $dbw->selectFieldValues( $table, $uniqueKey, $conds, __METHOD__ );
+			// Select the rows to update by PRIMARY KEY
+			$ids = $dbw->newSelectQueryBuilder()
+				->select( $uniqueKey )
+				->from( $table )
+				->where( $conds )
+				->caller( __METHOD__ )->fetchFieldValues();
 			# Update these rows by PRIMARY KEY to avoid replica lag
 			foreach ( array_chunk( $ids, $this->updateRowsPerQuery ) as $batch ) {
 				$dbw->commit( __METHOD__, 'flush' );
