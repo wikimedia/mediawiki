@@ -17,7 +17,7 @@
 	"tog-hidepatrolled": "Siamţhat venhim tihdanglam thar zingah tilang suh",
 	"tog-newpageshidepatrolled": "Phêk venhim phêk thar tlarah tilang suh",
 	"tog-extendwatchlist": "A thar chauh ni lo, tihdanglamna zawng zawng tilang tùrin ralvèn kapparh rawh",
-	"tog-usenewrc": "Tihdanglam tharte leh ralvente a phêk azir zëlin tlar rawh (JavaScript a ngai)",
+	"tog-usenewrc": "A hnuhnûng ber leh ennawnna list-ah hian Page-in Group-in a thlak",
 	"tog-editondblclick": "Hmehphìrin phêk siamṭha rawh (JavaScript a ngai)",
 	"tog-editsectiononrightclick": "Hlawm thupui ding-hmeh hmangin hlawm siamţhat theihna awmtir rawh (JavaScript a ngai)",
 	"tog-watchcreations": "Ka phêk siamte leh ka taksa hlankaite ka ralvèn zing-ah telh rawh",
@@ -148,7 +148,7 @@
 	"history": "Phêk chanchin",
 	"history_short": "Chanchin",
 	"updatedmarker": "ka tlawh hnuhnun ber hnua tihdanglam",
-	"printableversion": "Chhut theih thildàn",
+	"printableversion": "A chhut theih thildàn",
 	"permalink": "Hlet hlun",
 	"print": "Chhụkàina",
 	"view": "Enna",
@@ -1444,7 +1444,7 @@
 	"blockedtext-start-time": "Dânna ṭanna hun: $1",
 	"blockedtext-expiration-time": "Dânna tawpna hun: $1",
 	"blockedtext-intended-blockee": "Dânna nei tu tum: $1",
-	"blockedtext-contact-blocker-admin": "$1 emaw a dang [{{MediaWiki:Grouppage-sysop}}|enkawltu]] emaw dânna chungchang sawiho turin i biak theih a ni.",
+	"blockedtext-contact-blocker-admin": "$1 emaw a dang emaw [[{{MediaWiki:Grouppage-sysop}}|administrator]] dânna chungchang sawiho turin i biak theih a ni.",
 	"blockedtext-block-ip": "Tuna i IP chenna hmun chu $1 a ni.",
 	"blockedtext-include-details-queries": "Zawhna i neih apiangah a chunga kan sawi zawng zawng hi ziak tel vek thei a ni."
 }

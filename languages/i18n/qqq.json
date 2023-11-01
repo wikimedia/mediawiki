@@ -254,7 +254,8 @@
 			"আফতাবুজ্জামান",
 			"គីមស៊្រុន",
 			"捍粵者",
-			"아라"
+			"아라",
+			"Chadyka"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -3618,7 +3619,7 @@
 	"pageinfo-redirects-value": "{{Optional}}\nParameters:\n* $1 - the number of redirects to the page",
 	"pageinfo-subpages-name": "Header of the row in the first table of the info action.\n\nFollowed by {{msg-mw|Pageinfo-subpages-value}} or {{msg-mw|Pageinfo-subpages-value-unknown}}.\n\nUsed as link text. The link points to the \"{{int:Prefixindex}}\" page ([[Special:PrefixIndex]]).\n\nSee example: [{{canonicalurl:Main page|action=info}} Main page?action=info]",
 	"pageinfo-subpages-value": "Parameters:\n* $1 - the number of subpages of the page\n* $2 - the number of subpages of the page that are redirects\n* $3 - the number of subpages of the page that are not redirects",
-	"pageinfo-subpages-value-unknown": "The number of subpages of the page is not in the cache and thus is unknown.\n\nParameters:\n* $1 - the link to purge the cache.",
+	"pageinfo-subpages-value-unknown": "The number of subpages of the page is not in the cache and thus is unknown. An adjective that describes {{msg-mw|pageinfo-subpages-name}}.\n\nParameters:\n* $1 - the link to purge the cache.",
 	"pageinfo-firstuser": "The user who created the page.\n\nParameters:\n* $1 - the first user's username, used for GENDER support.",
 	"pageinfo-firsttime": "The date and time the page was created.",
 	"pageinfo-lastuser": "The last user who edited the page.\n\nParameters:\n* $1 - the last user's username, used for GENDER support.",
