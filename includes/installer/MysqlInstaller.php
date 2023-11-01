@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
+use Wikimedia\Rdbms\DatabaseMySQL;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
@@ -162,7 +163,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	public function openConnection() {
 		$status = Status::newGood();
 		try {
-			/** @var DatabaseMysqlBase $db */
+			/** @var DatabaseMySQL $db */
 			$db = ( new DatabaseFactory() )->create( 'mysql', [
 				'host' => $this->getVar( 'wgDBserver' ),
 				'user' => $this->getVar( '_InstallUser' ),

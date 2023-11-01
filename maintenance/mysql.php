@@ -142,7 +142,7 @@ class MysqlMaintenance extends Maintenance {
 			2 => STDERR,
 		];
 
-		// Split host and port as in DatabaseMysqlBase::mysqlConnect()
+		// Split host and port as in DatabaseMySQL::mysqlConnect()
 		$realServer = $info['host'];
 		$hostAndPort = IPUtils::splitHostAndPort( $realServer );
 		$socket = false;

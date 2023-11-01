@@ -1,6 +1,6 @@
 <?php
 /**
- * Holds tests for DatabaseMysqlBase class.
+ * Holds tests for DatabaseMySQL class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,10 @@
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 
+namespace Wikimedia\Tests\Rdbms;
+
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use MediaWikiCoversValidator;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMySQL;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -37,7 +40,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \Wikimedia\Rdbms\DatabaseMySQL
  */
-class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
+class DatabaseMySQLTest extends \PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
