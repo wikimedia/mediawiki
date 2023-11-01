@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
+use MWRestrictions;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -579,6 +580,18 @@ abstract class SessionProvider implements SessionProviderInterface {
 			throw new \InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
 		}
 
+		return null;
+	}
+
+	/**
+	 * Fetch any restrictions imposed on logins or actions when this
+	 * session is active.
+	 *
+	 * @since 1.42
+	 * @stable to override
+	 * @return MWRestrictions|null
+	 */
+	public function getRestrictions( ?array $providerMetadata ): ?MWRestrictions {
 		return null;
 	}
 

@@ -28,6 +28,7 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
+use MWRestrictions;
 
 /**
  * Session provider for bot passwords
@@ -119,6 +120,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 				'appId' => $bp->getAppId(),
 				'token' => $bp->getToken(),
 				'rights' => $this->grantsInfo->getGrantRights( $bp->getGrants() ),
+				'restrictions' => $bp->getRestrictions()->toJson(),
 			],
 		] );
 		$session = $this->getManager()->getSessionFromInfo( $info, $request );
@@ -203,5 +205,19 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		// Should never happen
 		$this->logger->debug( __METHOD__ . ': No provider metadata, returning no rights allowed' );
 		return [];
+	}
+
+	public function getRestrictions( ?array $data ): ?MWRestrictions {
+		if ( $data && isset( $data['restrictions'] ) && is_string( $data['restrictions'] ) ) {
+			try {
+				return MWRestrictions::newFromJson( $data['restrictions'] );
+			} catch ( \InvalidArgumentException $e ) {
+				$this->logger->warning( __METHOD__ . ': Failed to parse restrictions: {restrictions}', [
+					'restrictions' => $data['restrictions']
+				] );
+				return null;
+			}
+		}
+		return null;
 	}
 }

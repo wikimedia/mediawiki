@@ -226,6 +226,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'appId' => $bp->getAppId(),
 			'token' => $bp->getToken(),
 			'rights' => [ 'read' ],
+			'restrictions' => $bp->getRestrictions()->toJson(),
 		], $session->getProviderMetadata() );
 
 		$this->assertEquals( [ 'read' ], $session->getAllowedUserRights() );

@@ -67,6 +67,10 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 				StatusValue::newFatal( 'restrictionsfield-badip', '256.0.0.1/32' )
 			],
 			[
+				[ 'IPAddresses' => [ '127.0.0.1/32' ], 'Pages' => [ "Main Page", "Main Page/sandbox" ] ],
+				StatusValue::newGood()
+			],
+			[
 				[ 'IPAddresses' => '127.0.0.1/32' ],
 				new InvalidArgumentException( 'IPAddresses is not an array' )
 			],
@@ -122,6 +126,11 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 			[
 				'{"IPAddresses":["127.0.0.1/32"]}',
 				[ 'IPAddresses' => [ '127.0.0.1/32' ] ],
+				StatusValue::newGood()
+			],
+			[
+				'{"IPAddresses":["127.0.0.1/32"],"Pages":["Main Page"]}',
+				[ 'IPAddresses' => [ '127.0.0.1/32' ], 'Pages' => [ "Main Page" ] ],
 				StatusValue::newGood()
 			],
 			[

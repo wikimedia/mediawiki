@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Page\PageSelectQueryBuilder;
+use MediaWiki\Page\PageStore;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 
@@ -46,6 +48,15 @@ class HTMLRestrictionsFieldTest extends MediaWikiIntegrationTestCase {
 		$form = HTMLForm::factory( 'ooui', [
 			'restrictions' => [ 'class' => HTMLRestrictionsField::class ],
 		], $context );
+
+		$pageStore = $this->createMock( PageStore::class );
+		$this->setService( 'PageStore', $pageStore );
+		$queryBuilderMock = $this->createMock( PageSelectQueryBuilder::class );
+		$queryBuilderMock->method( 'fetchPageRecords' )->willReturn( new EmptyIterator() );
+		$queryBuilderMock->method( 'wherePageIds' )->willReturnSelf();
+		$queryBuilderMock->method( 'caller' )->willReturnSelf();
+		$pageStore->method( 'newSelectQueryBuilder' )->willReturn( $queryBuilderMock );
+
 		$form->setTitle( Title::makeTitle( NS_MAIN, 'Main Page' ) )->setSubmitCallback( static function () {
 			return true;
 		} )->prepareForm();

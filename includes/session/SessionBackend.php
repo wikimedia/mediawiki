@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
+use MWRestrictions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 
@@ -428,6 +429,15 @@ final class SessionBackend {
 	 */
 	public function getAllowedUserRights() {
 		return $this->provider->getAllowedUserRights( $this );
+	}
+
+	/**
+	 * Fetch any restrictions imposed on logins or actions when this
+	 * session is active.
+	 * @return MWRestrictions|null
+	 */
+	public function getRestrictions(): ?MWRestrictions {
+		return $this->provider->getRestrictions( $this->providerMetadata );
 	}
 
 	/**
