@@ -9,7 +9,7 @@
  */
 function FeedbackDialog( config ) {
 	// Parent constructor
-	FeedbackDialog.parent.call( this, config );
+	FeedbackDialog.super.call( this, config );
 
 	this.status = '';
 	this.feedbackPageTitle = null;
@@ -49,7 +49,7 @@ FeedbackDialog.prototype.initialize = function () {
 		feedbackFieldsetLayout, termsOfUseLabel;
 
 	// Parent method
-	FeedbackDialog.parent.prototype.initialize.call( this );
+	FeedbackDialog.super.prototype.initialize.call( this );
 
 	this.feedbackPanel = new OO.ui.PanelLayout( {
 		scrollable: false,
@@ -134,7 +134,7 @@ FeedbackDialog.prototype.getBodyHeight = function () {
  * @inheritdoc
  */
 FeedbackDialog.prototype.getSetupProcess = function ( data ) {
-	return FeedbackDialog.parent.prototype.getSetupProcess.call( this, data )
+	return FeedbackDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			// Get the URL of the target page, we want to use that in links in the intro
 			// and in the success dialog
@@ -192,7 +192,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
  * @inheritdoc
  */
 FeedbackDialog.prototype.getReadyProcess = function ( data ) {
-	return FeedbackDialog.parent.prototype.getReadyProcess.call( this, data )
+	return FeedbackDialog.super.prototype.getReadyProcess.call( this, data )
 		.next( function () {
 			this.feedbackSubjectInput.focus();
 		}, this );
@@ -244,7 +244,7 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 		}, this );
 	}
 	// Fallback to parent handler
-	return FeedbackDialog.parent.prototype.getActionProcess.call( this, action );
+	return FeedbackDialog.super.prototype.getActionProcess.call( this, action );
 };
 
 /**
@@ -303,7 +303,7 @@ FeedbackDialog.prototype.postMessage = function ( poster, subject, message ) {
  * @inheritdoc
  */
 FeedbackDialog.prototype.getTeardownProcess = function ( data ) {
-	return FeedbackDialog.parent.prototype.getTeardownProcess.call( this, data )
+	return FeedbackDialog.super.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
 			this.emit( 'submit', this.status, this.feedbackPageName, this.feedbackPageUrl );
 			// Cleanup

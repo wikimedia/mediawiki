@@ -20,7 +20,7 @@
 	 */
 	mw.widgets.ComplexTitleInputWidget = function MwWidgetsComplexTitleInputWidget( config ) {
 		// Parent constructor
-		mw.widgets.ComplexTitleInputWidget.parent.call( this, config );
+		mw.widgets.ComplexTitleInputWidget.super.call( this, config );
 
 		// Properties
 		this.namespace = new mw.widgets.NamespaceInputWidget( config.namespace );
@@ -56,7 +56,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ComplexTitleInputWidget.static.reusePreInfuseDOM = function ( node, config ) {
-		config = mw.widgets.ComplexTitleInputWidget.parent.static.reusePreInfuseDOM( node, config );
+		config = mw.widgets.ComplexTitleInputWidget.super.static.reusePreInfuseDOM( node, config );
 		config.namespace = mw.widgets.NamespaceInputWidget.static.reusePreInfuseDOM(
 			$( node ).find( '.mw-widget-namespaceInputWidget' ),
 			config.namespace
@@ -72,7 +72,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ComplexTitleInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.ComplexTitleInputWidget.parent.static.gatherPreInfuseState( node, config );
+		var state = mw.widgets.ComplexTitleInputWidget.super.static.gatherPreInfuseState( node, config );
 		state.namespace = mw.widgets.NamespaceInputWidget.static.gatherPreInfuseState(
 			$( node ).find( '.mw-widget-namespaceInputWidget' ),
 			config.namespace
@@ -98,7 +98,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ComplexTitleInputWidget.prototype.restorePreInfuseState = function ( state ) {
-		mw.widgets.ComplexTitleInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+		mw.widgets.ComplexTitleInputWidget.super.prototype.restorePreInfuseState.call( this, state );
 		this.namespace.restorePreInfuseState( state.namespace );
 		this.title.restorePreInfuseState( state.title );
 	};
@@ -107,7 +107,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ComplexTitleInputWidget.prototype.setDisabled = function ( disabled ) {
-		mw.widgets.ComplexTitleInputWidget.parent.prototype.setDisabled.call( this, disabled );
+		mw.widgets.ComplexTitleInputWidget.super.prototype.setDisabled.call( this, disabled );
 		if ( this.namespace ) {
 			this.namespace.setDisabled( disabled );
 		}

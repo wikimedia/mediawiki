@@ -45,7 +45,7 @@
 		);
 
 		// Parent constructor
-		mw.widgets.ComplexNamespaceInputWidget.parent.call( this, config );
+		mw.widgets.ComplexNamespaceInputWidget.super.call( this, config );
 
 		// Properties
 		this.config = config;
@@ -119,7 +119,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ComplexNamespaceInputWidget.prototype.setDisabled = function ( disabled ) {
-		mw.widgets.ComplexNamespaceInputWidget.parent.prototype.setDisabled.call( this, disabled );
+		mw.widgets.ComplexNamespaceInputWidget.super.prototype.setDisabled.call( this, disabled );
 		if ( this.namespace ) {
 			this.namespace.setDisabled( disabled );
 		}

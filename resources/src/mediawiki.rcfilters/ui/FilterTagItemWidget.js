@@ -19,7 +19,7 @@ FilterTagItemWidget = function MwRcfiltersUiFilterTagItemWidget(
 ) {
 	config = config || {};
 
-	FilterTagItemWidget.parent.call( this, controller, filtersViewModel, invertModel, itemModel, config );
+	FilterTagItemWidget.super.call( this, controller, filtersViewModel, invertModel, itemModel, config );
 
 	this.$element
 		.addClass( 'mw-rcfilters-ui-filterTagItemWidget' );

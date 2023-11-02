@@ -27,7 +27,7 @@
 	mw.ForeignStructuredUpload.BookletLayout = function ( config ) {
 		config = config || {};
 		// Parent constructor
-		mw.ForeignStructuredUpload.BookletLayout.parent.call( this, config );
+		mw.ForeignStructuredUpload.BookletLayout.super.call( this, config );
 
 		this.target = config.target;
 	};
@@ -43,7 +43,7 @@
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.initialize = function () {
 		var booklet = this;
-		return mw.ForeignStructuredUpload.BookletLayout.parent.prototype.initialize.call( this ).then(
+		return mw.ForeignStructuredUpload.BookletLayout.super.prototype.initialize.call( this ).then(
 			function () {
 				return $.when(
 					// Point the CategoryMultiselectWidget to the right wiki
@@ -369,7 +369,7 @@
 
 		return this.uploadPromise
 			.then( this.validateFilename.bind( this, title ) )
-			.then( mw.ForeignStructuredUpload.BookletLayout.parent.prototype.saveFile.bind( this ) );
+			.then( mw.ForeignStructuredUpload.BookletLayout.super.prototype.saveFile.bind( this ) );
 	};
 
 	/* Getters */
@@ -462,7 +462,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.clear = function () {
-		mw.ForeignStructuredUpload.BookletLayout.parent.prototype.clear.call( this );
+		mw.ForeignStructuredUpload.BookletLayout.super.prototype.clear.call( this );
 
 		this.ownWorkCheckbox.setSelected( false );
 		this.categoriesWidget.setValue( [] );

@@ -44,7 +44,7 @@
 		this.label = new OO.ui.LabelWidget( { label: mw.msg( 'pagesize' ) } );
 
 		// Parent constructor
-		mw.widgets.SizeFilterWidget.parent.call( this, config );
+		mw.widgets.SizeFilterWidget.super.call( this, config );
 
 		// Initialization
 		this.radioselectinput.setValue( config.selectMin ? 'min' : 'max' );
@@ -66,7 +66,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SizeFilterWidget.static.reusePreInfuseDOM = function ( node, config ) {
-		config = mw.widgets.SizeFilterWidget.parent.static.reusePreInfuseDOM( node, config );
+		config = mw.widgets.SizeFilterWidget.super.static.reusePreInfuseDOM( node, config );
 		config.radioselectinput = OO.ui.RadioSelectInputWidget.static.reusePreInfuseDOM(
 			$( node ).find( '.oo-ui-radioSelectInputWidget' ),
 			config.radioselectinput
@@ -82,7 +82,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SizeFilterWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.SizeFilterWidget.parent.static.gatherPreInfuseState( node, config );
+		var state = mw.widgets.SizeFilterWidget.super.static.gatherPreInfuseState( node, config );
 		state.radioselectinput = OO.ui.RadioSelectInputWidget.static.gatherPreInfuseState(
 			$( node ).find( '.oo-ui-radioSelectInputWidget' ),
 			config.radioselectinput
@@ -100,7 +100,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SizeFilterWidget.prototype.restorePreInfuseState = function ( state ) {
-		mw.widgets.SizeFilterWidget.parent.prototype.restorePreInfuseState.call( this, state );
+		mw.widgets.SizeFilterWidget.super.prototype.restorePreInfuseState.call( this, state );
 		this.radioselectinput.restorePreInfuseState( state.radioselectinput );
 		this.textinput.restorePreInfuseState( state.textinput );
 	};

@@ -23,7 +23,7 @@ RclTopSectionWidget = function MwRcfiltersUiRclTopSectionWidget(
 	config = config || {};
 
 	// Parent
-	RclTopSectionWidget.parent.call( this, config );
+	RclTopSectionWidget.super.call( this, config );
 
 	this.controller = controller;
 

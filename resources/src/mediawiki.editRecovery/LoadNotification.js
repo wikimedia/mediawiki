@@ -4,7 +4,7 @@
  * @extends OO.ui.Widget
  */
 const LoadNotification = function mwWidgetsEditRecoveryLoadNotification() {
-	LoadNotification.parent.call( this, {} );
+	LoadNotification.super.call( this, {} );
 	this.diffButton = new OO.ui.ButtonWidget( {
 		label: mw.msg( 'edit-recovery-loaded-show' )
 	} );

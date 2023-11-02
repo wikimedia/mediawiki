@@ -21,7 +21,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.widgets.TitleSearchWidget.parent.call( this, config );
+		mw.widgets.TitleSearchWidget.super.call( this, config );
 
 		// Mixin constructors
 		mw.widgets.TitleWidget.call( this, config );
@@ -83,7 +83,7 @@
 				return;
 			}
 			// Parent method
-			mw.widgets.TitleSearchWidget.parent.prototype.onQueryChange.call( widget );
+			mw.widgets.TitleSearchWidget.super.prototype.onQueryChange.call( widget );
 			widget.results.addItems( widget.getOptionsFromData( data ) );
 		} );
 	};

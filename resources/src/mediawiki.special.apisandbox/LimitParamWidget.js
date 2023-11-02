@@ -9,7 +9,7 @@ var TextParamMixin = require( './TextParamMixin.js' );
  * @param {Object} config Configuration options
  */
 function LimitParamWidget( config ) {
-	LimitParamWidget.parent.call( this, config );
+	LimitParamWidget.super.call( this, config );
 }
 
 OO.inheritClass( LimitParamWidget, OO.ui.TextInputWidget );

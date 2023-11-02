@@ -25,7 +25,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.widgets.TitleInputWidget.parent.call( this, $.extend( {}, config, {
+		mw.widgets.TitleInputWidget.super.call( this, $.extend( {}, config, {
 			validate: config.validate !== undefined ? config.validate : this.isQueryValid.bind( this ),
 			autocomplete: false
 		} ) );
@@ -120,7 +120,7 @@
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		retval = mw.widgets.TitleInputWidget.parent.prototype.focus.apply( this, arguments );
+		retval = mw.widgets.TitleInputWidget.super.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( !this.suggestions );
 
@@ -134,7 +134,7 @@
 		var widget = this;
 
 		// Parent method
-		value = mw.widgets.TitleInputWidget.parent.prototype.cleanUpValue.call( this, value );
+		value = mw.widgets.TitleInputWidget.super.prototype.cleanUpValue.call( this, value );
 
 		return trimByteLength( this.value, value, this.maxLength, function ( val ) {
 			var title = widget.getMWTitle( val );

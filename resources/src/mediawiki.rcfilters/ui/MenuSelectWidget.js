@@ -46,7 +46,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	this.footers = [];
 
 	// Parent
-	MenuSelectWidget.parent.call( this, $.extend( config, {
+	MenuSelectWidget.super.call( this, $.extend( config, {
 		$autoCloseIgnore: this.$overlay,
 		width: config.isMobile ? undefined : 650,
 		// Our filtering is done through the model
@@ -141,7 +141,7 @@ MenuSelectWidget.prototype.onModelSearchChange = function () {
  */
 MenuSelectWidget.prototype.toggle = function ( show ) {
 	this.lazyMenuCreation();
-	MenuSelectWidget.parent.prototype.toggle.call( this, show );
+	MenuSelectWidget.super.prototype.toggle.call( this, show );
 	// Always open this menu downwards. FilterTagMultiselectWidget scrolls it into view.
 	this.setVerticalPosition( 'below' );
 };
@@ -332,7 +332,7 @@ MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 		currentItem = this.findHighlightedItem() || this.findSelectedItem();
 
 	// Call parent
-	MenuSelectWidget.parent.prototype.onDocumentKeyDown.call( this, e );
+	MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
 
 	// We want to select the item on arrow movement
 	// rather than just highlight it, like the menu

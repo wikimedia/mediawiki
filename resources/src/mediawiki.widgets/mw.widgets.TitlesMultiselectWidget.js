@@ -20,7 +20,7 @@
 	 */
 	mw.widgets.TitlesMultiselectWidget = function MwWidgetsTitlesMultiselectWidget( config ) {
 		// Parent constructor
-		mw.widgets.TitlesMultiselectWidget.parent.call( this, $.extend( true,
+		mw.widgets.TitlesMultiselectWidget.super.call( this, $.extend( true,
 			{
 				allowEditTags: false
 			},
@@ -104,7 +104,7 @@
 				widget.menu.addItems( widget.getOptionsFromData( data ) );
 			} ).always( function () {
 				// Parent method
-				mw.widgets.TitlesMultiselectWidget.parent.prototype.onInputChange.call( widget );
+				mw.widgets.TitlesMultiselectWidget.super.prototype.onInputChange.call( widget );
 			} );
 	};
 

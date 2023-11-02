@@ -55,7 +55,7 @@ module.exports = ( function () {
 		);
 
 		// Call parent constructor
-		CoreForeignRest.parent.call( this, options );
+		CoreForeignRest.super.call( this, options );
 	}
 
 	OO.inheritClass( CoreForeignRest, mw.Rest );

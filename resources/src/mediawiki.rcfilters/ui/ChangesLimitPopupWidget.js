@@ -16,7 +16,7 @@ ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitMo
 	config = config || {};
 
 	// Parent
-	ChangesLimitPopupWidget.parent.call( this, config );
+	ChangesLimitPopupWidget.super.call( this, config );
 
 	this.limitModel = limitModel;
 	this.groupByPageItemModel = groupByPageItemModel;

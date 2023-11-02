@@ -18,7 +18,7 @@ var ValuePickerWidget = function MwRcfiltersUiValuePickerWidget( model, config )
 	config = config || {};
 
 	// Parent
-	ValuePickerWidget.parent.call( this, config );
+	ValuePickerWidget.super.call( this, config );
 	// Mixin constructors
 	OO.ui.mixin.LabelElement.call( this, config );
 

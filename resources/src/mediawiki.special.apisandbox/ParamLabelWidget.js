@@ -6,7 +6,7 @@
  * @constructor
  */
 function ParamLabelWidget() {
-	ParamLabelWidget.parent.call(
+	ParamLabelWidget.super.call(
 		this,
 		{ classes: [ 'oo-ui-inline-help' ] }
 	);

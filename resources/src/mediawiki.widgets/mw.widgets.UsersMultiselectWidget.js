@@ -44,7 +44,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.UsersMultiselectWidget.parent.call( this, $.extend( {}, config, {} ) );
+		mw.widgets.UsersMultiselectWidget.super.call( this, $.extend( {}, config, {} ) );
 
 		// Mixin constructors
 		OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$handle } ) );
@@ -192,7 +192,7 @@
 	};
 
 	mw.widgets.UsersMultiselectWidget.prototype.onInputChange = function () {
-		mw.widgets.UsersMultiselectWidget.parent.prototype.onInputChange.apply( this, arguments );
+		mw.widgets.UsersMultiselectWidget.super.prototype.onInputChange.apply( this, arguments );
 
 		this.updateMenuItems();
 	};

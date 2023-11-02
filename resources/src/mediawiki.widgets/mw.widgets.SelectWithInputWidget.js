@@ -57,7 +57,7 @@
 		}.bind( this ) );
 
 		// Parent constructor
-		mw.widgets.SelectWithInputWidget.parent.call( this, config );
+		mw.widgets.SelectWithInputWidget.super.call( this, config );
 
 		// Initialization
 		this.$element
@@ -78,7 +78,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SelectWithInputWidget.static.reusePreInfuseDOM = function ( node, config ) {
-		config = mw.widgets.SelectWithInputWidget.parent.static.reusePreInfuseDOM( node, config );
+		config = mw.widgets.SelectWithInputWidget.super.static.reusePreInfuseDOM( node, config );
 		config.dropdowninput = OO.ui.DropdownInputWidget.static.reusePreInfuseDOM(
 			$( node ).find( '.oo-ui-dropdownInputWidget' ),
 			config.dropdowninput
@@ -94,7 +94,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SelectWithInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.SelectWithInputWidget.parent.static.gatherPreInfuseState( node, config );
+		var state = mw.widgets.SelectWithInputWidget.super.static.gatherPreInfuseState( node, config );
 		state.dropdowninput = OO.ui.DropdownInputWidget.static.gatherPreInfuseState(
 			$( node ).find( '.oo-ui-dropdownInputWidget' ),
 			config.dropdowninput
@@ -112,7 +112,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SelectWithInputWidget.prototype.restorePreInfuseState = function ( state ) {
-		mw.widgets.SelectWithInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+		mw.widgets.SelectWithInputWidget.super.prototype.restorePreInfuseState.call( this, state );
 		this.dropdowninput.restorePreInfuseState( state.dropdowninput );
 		this.textinput.restorePreInfuseState( state.textinput );
 	};
@@ -122,7 +122,7 @@
 	 */
 	mw.widgets.SelectWithInputWidget.prototype.setDisabled = function ( disabled ) {
 		var textinputIsHidden = this.or && this.dropdowninput.getValue() !== 'other';
-		mw.widgets.SelectWithInputWidget.parent.prototype.setDisabled.call( this, disabled );
+		mw.widgets.SelectWithInputWidget.super.prototype.setDisabled.call( this, disabled );
 		this.dropdowninput.setDisabled( disabled );
 		// It is impossible to submit a form with hidden fields failing validation, e.g. one that
 		// is required. However, validity is not checked for disabled fields, as these are not

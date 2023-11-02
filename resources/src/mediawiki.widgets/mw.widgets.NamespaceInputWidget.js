@@ -23,7 +23,7 @@
 		config = $.extend( {}, config, { options: this.constructor.static.getNamespaceDropdownOptions( config ) } );
 
 		// Parent constructor
-		mw.widgets.NamespaceInputWidget.parent.call( this, config );
+		mw.widgets.NamespaceInputWidget.super.call( this, config );
 
 		// Initialization
 		this.$element.addClass( 'mw-widget-namespaceInputWidget' );

@@ -22,7 +22,7 @@
 
 	mw.htmlform.FieldLayout = function ( config ) {
 		// Parent constructor
-		mw.htmlform.FieldLayout.parent.call( this, config );
+		mw.htmlform.FieldLayout.super.call( this, config );
 		// Mixin constructors
 		mw.htmlform.Element.call( this, config );
 	};
@@ -31,7 +31,7 @@
 
 	mw.htmlform.ActionFieldLayout = function ( config ) {
 		// Parent constructor
-		mw.htmlform.ActionFieldLayout.parent.call( this, config );
+		mw.htmlform.ActionFieldLayout.super.call( this, config );
 		// Mixin constructors
 		mw.htmlform.Element.call( this, config );
 	};

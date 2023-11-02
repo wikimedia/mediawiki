@@ -25,7 +25,7 @@ FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget(
 	this.model = itemModel;
 
 	// Parent
-	FilterMenuOptionWidget.parent.call( this, controller, filtersViewModel, this.invertModel, itemModel, highlightPopup, config );
+	FilterMenuOptionWidget.super.call( this, controller, filtersViewModel, this.invertModel, itemModel, highlightPopup, config );
 
 	// Event
 	this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );
@@ -49,7 +49,7 @@ FilterMenuOptionWidget.static.scrollIntoViewOnSelect = false;
  */
 FilterMenuOptionWidget.prototype.updateUiBasedOnState = function () {
 	// Parent
-	FilterMenuOptionWidget.parent.prototype.updateUiBasedOnState.call( this );
+	FilterMenuOptionWidget.super.prototype.updateUiBasedOnState.call( this );
 
 	this.setCurrentMuteState();
 };

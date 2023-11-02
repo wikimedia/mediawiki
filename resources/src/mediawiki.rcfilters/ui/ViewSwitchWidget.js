@@ -15,7 +15,7 @@ ViewSwitchWidget = function MwRcfiltersUiViewSwitchWidget( controller, model, co
 	config = config || {};
 
 	// Parent
-	ViewSwitchWidget.parent.call( this, config );
+	ViewSwitchWidget.super.call( this, config );
 
 	this.controller = controller;
 	this.model = model;

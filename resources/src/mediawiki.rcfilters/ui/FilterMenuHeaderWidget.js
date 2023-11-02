@@ -18,7 +18,7 @@ var FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( contr
 	this.$overlay = config.$overlay || this.$element;
 
 	// Parent
-	FilterMenuHeaderWidget.parent.call( this, config );
+	FilterMenuHeaderWidget.super.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, $.extend( {
 		label: mw.msg( 'rcfilters-filterlist-title' ),
 		$label: $( '<div>' )

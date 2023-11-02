@@ -14,7 +14,7 @@ var FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton(
 	config = config || {};
 
 	// Parent
-	FilterItemHighlightButton.parent.call( this, $.extend( true, {}, config, {
+	FilterItemHighlightButton.super.call( this, $.extend( true, {}, config, {
 		icon: 'highlight',
 		indicator: 'down'
 	} ) );
@@ -56,7 +56,7 @@ FilterItemHighlightButton.prototype.onAction = function () {
 	this.popup.setFilterItem( this.model );
 
 	// Parent method
-	FilterItemHighlightButton.parent.prototype.onAction.call( this );
+	FilterItemHighlightButton.super.prototype.onAction.call( this );
 };
 
 /**

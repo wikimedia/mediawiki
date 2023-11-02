@@ -36,7 +36,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.SearchInputWidget.parent.call( this, config );
+		mw.widgets.SearchInputWidget.super.call( this, config );
 
 		// Initialization
 		this.$element.addClass( 'mw-widget-searchInputWidget' );
@@ -133,7 +133,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.setReadOnly = function ( state ) {
-		mw.widgets.SearchInputWidget.parent.prototype.setReadOnly.call( this, state );
+		mw.widgets.SearchInputWidget.super.prototype.setReadOnly.call( this, state );
 		this.updateSearchIndicator();
 		return this;
 	};
@@ -232,7 +232,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.onLookupMenuChoose = function () {
-		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuChoose.apply( this, arguments );
+		mw.widgets.SearchInputWidget.super.prototype.onLookupMenuChoose.apply( this, arguments );
 
 		if ( this.performSearchOnClick ) {
 			this.$element.closest( 'form' ).trigger( 'submit' );
@@ -243,7 +243,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.getLookupMenuOptionsFromData = function () {
-		var items = mw.widgets.SearchInputWidget.parent.prototype.getLookupMenuOptionsFromData.apply(
+		var items = mw.widgets.SearchInputWidget.super.prototype.getLookupMenuOptionsFromData.apply(
 			this, arguments
 		);
 

@@ -15,7 +15,7 @@ DatePopupWidget = function MwRcfiltersUiDatePopupWidget( model, config ) {
 	config = config || {};
 
 	// Parent
-	DatePopupWidget.parent.call( this, config );
+	DatePopupWidget.super.call( this, config );
 	// Mixin constructors
 	OO.ui.mixin.LabelElement.call( this, config );
 

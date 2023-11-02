@@ -34,7 +34,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.NamespacesMultiselectWidget.parent.call( this, $.extend( true,
+		mw.widgets.NamespacesMultiselectWidget.super.call( this, $.extend( true,
 			{
 				menu: {
 					filterMode: 'substring'
