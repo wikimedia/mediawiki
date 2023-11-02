@@ -487,7 +487,7 @@
 	"nocookiesfornew": "The user account was not created, as we could not confirm its source.\nEnsure you have cookies enabled, reload this page and try again.",
 	"nocookiesforlogin": "{{int:nocookieslogin}}",
 	"createacct-loginerror": "The account was successfully created but you could not be logged in automatically. Please proceed to [[Special:UserLogin|manual login]].",
-	"createacct-temp-warning": "The edits you made with your temporary account <strong> $1 </strong> will not be carried over to your permanent one.",
+	"createacct-temp-warning": "The edits you made with your temporary account <strong>$1</strong> will not be carried over to your permanent one.",
 	"noname": "You have not specified a valid username.",
 	"loginsuccesstitle": "Logged in",
 	"loginsuccess": "<strong>You are now logged in to {{SITENAME}} as \"$1\".</strong>",
@@ -4618,6 +4618,6 @@
 	"createacct-benefit-heading-temp-user": "Thank you for contributing to {{SITENAME}}.\nCreate an account to access more features.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} is made by people like you. With an account you can have a permanent and secure identity with access to features like:",
 	"benefit-1-description": "Watchlists that allow you to keep track of pages that you’re interested in.",
-	"benefit-2-description": "Permanent list of contributions you’ve made to the project",
+	"benefit-2-description": "Permanent list of contributions you’ve made to the project.",
 	"benefit-3-description": "Preferences that allow you to customize your experience."
 }
