@@ -138,7 +138,7 @@
 	margin: 8px 0;
 }
 
-@media all and ( min-width: @width-breakpoint-tablet ) {
+@media all and ( min-width: @min-width-breakpoint-tablet ) {
 	.mw-prefs-search.oo-ui-fieldLayout {
 		width: 20em;
 	}
@@ -153,7 +153,7 @@
 	}
 }
 
-@media all and ( max-width: ( @width-breakpoint-tablet - 1 ) ) {
+@media all and ( max-width: ( @max-width-breakpoint-mobile ) ) {
 	.mw-prefs-search.oo-ui-fieldLayout {
 		// Fallback is graceful enough.
 		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
@@ -255,7 +255,7 @@
 	outline: 4px solid #eaf3ff;
 }
 
-@media all and ( min-width: @width-breakpoint-tablet ) {
+@media all and ( min-width: @min-width-breakpoint-tablet ) {
 	/* Make the "Basic information" section more compact */
 	/* OOUI's `align: 'left'` for FieldLayouts sucks, so we do our own */
 	#mw-htmlform-info {
