@@ -1896,7 +1896,7 @@
 	"backend-fail-describe": "لا يمكن تغيير بيانات التعريف metadata للملف \"$1\".",
 	"backend-fail-alreadyexists": "الملف \"$1\" موجود بالفعل.",
 	"backend-fail-store": "لا يمكن تخزين الملف \"$1\" في \"$2\".",
-	"backend-fail-copy": "لا يمكن نسخ الملف  \"$1\"  إلى  \"$2\".",
+	"backend-fail-copy": "لا يمكن نسخ الملف \"$1\" إلى \"$2\".",
 	"backend-fail-move": "تعذر نقل ملف \"$1\" إلى \"$2\".",
 	"backend-fail-opentemp": "تعذّر فتح ملف مؤقت.",
 	"backend-fail-writetemp": "تعذرت كتابة ملف مؤقت.",

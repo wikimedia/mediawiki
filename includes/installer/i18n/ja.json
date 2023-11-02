@@ -31,7 +31,8 @@
 			"ネイ",
 			"背番号4のエース",
 			"青子守歌",
-			"아라"
+			"아라",
+			"Kokage si"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -123,6 +124,7 @@
 	"config-db-prefix": "データベース テーブルの接頭辞 (ハイフンは不要):",
 	"config-db-prefix-help": "データベースを複数のウィキ間、あるいはMediaWikiと他のウェブアプリケーションで共有する必要がある場合、衝突を避けるために、すべてのテーブル名に接頭辞を付ける必要があります。\n空白は使用できません。\n\nこのフィールドは、通常は空のままです。",
 	"config-mysql-old": "MySQL $1 以降が必要です。ご使用中の MySQL は $2 です。",
+	"config-mariadb-old": "$1以降のMariaDBが必要です。ご使用中のバージョンは$2です。",
 	"config-db-port": "データベースのポート:",
 	"config-db-schema": "MediaWiki のスキーマ (ハイフンは不要):",
 	"config-db-schema-help": "通常はこのスキーマで問題ありません。\n必要な場合のみ変更してください。",
@@ -242,6 +244,7 @@
 	"config-personalization-settings": "個人用設定",
 	"config-logo-preview-main": "メインページ",
 	"config-logo-icon": "ロゴ（アイコン）",
+	"config-logo-wordmark-help": "サイト名。未入力の場合は、テキストを使用します。30pxもしくはそれ以下のサイズのSVGが望ましいです。",
 	"config-instantcommons": "Instant Commons 機能を有効にする",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] は、[https://commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトにある画像、音声、その他のメディアをウィキ上で利用できるようにする機能です。\nこれを使用するには、MediaWiki がインターネットに接続できる必要があります。\n\nウィキメディア・コモンズ以外のウィキを同様に設定する手順など、この機能に関する詳細な情報は、[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos マニュアル]をご覧ください。",
 	"config-cc-error": "クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。\nライセンスの名前を手動で入力してください。",

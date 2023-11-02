@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xuacu"
+			"Xuacu",
+			"YoaR"
 		]
 	},
 	"rest-prefix-mismatch": "El camín solicitáu ($1) nun taba dientro del camín raíz de la API REST ($2)",
@@ -23,6 +24,6 @@
 	"rest-compare-inaccessible": "La revisión especificada pol parámetru $1 nun tien accesu públicu.",
 	"rest-compare-wrong-content": "L'espaciu $1 de la revisión especificáu pol parámetru $2 tien un tipu de conteníu que nun pue convertise a testu.",
 	"rest-compare-wikidiff2": "Esti endpoint rique wikidiff2 1.9.0 o mayor.",
-	"rest-pagehistorycount-too-many-revisions": "El títulu especificáu contien demasiaes revisiones pa recuperar esta cuenta.",
+	"rest-pagehistorycount-too-many-revisions": "El títulu especificáu contién demasiaes revisiones pa recuperar esta cuenta.",
 	"rest-search-error": "Error al devolver los resultaos de la gueta: $1"
 }

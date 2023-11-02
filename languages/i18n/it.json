@@ -1926,7 +1926,7 @@
 	"backend-fail-describe": "Impossibile modificare i metadati del file \"$1\".",
 	"backend-fail-alreadyexists": "Il file $1 esiste già.",
 	"backend-fail-store": "Impossibilie memorizzare file  $1  in  $2 .",
-	"backend-fail-copy": "Impossibile copiare il file  $1  in  $2 .",
+	"backend-fail-copy": "Impossibile copiare il file \"$1\" in \"$2\".",
 	"backend-fail-move": "Impossibile spostare file  $1  in  $2 .",
 	"backend-fail-opentemp": "Impossibile aprire il file temporaneo.",
 	"backend-fail-writetemp": "Impossibile creare il file temporaneo.",

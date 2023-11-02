@@ -23,7 +23,8 @@
 			"Urhixidur",
 			"V6rg",
 			"ZeneizeForesto",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sotolìnia i colegaméntiː",
@@ -1710,7 +1711,7 @@
 	"backend-fail-describe": "Imposcibile modificâ i metadæti do file \"$1\".",
 	"backend-fail-alreadyexists": "O file $1 o l'existe za.",
 	"backend-fail-store": "Imposcibbile memorizzâ o file  $1  in  $2 .",
-	"backend-fail-copy": "Imposcibile copiâ o file  $1  in  $2 .",
+	"backend-fail-copy": "Imposcibile copiâ o file $1 in $2 .",
 	"backend-fail-move": "Imposcibile messciâ o file  $1  in  $2 .",
 	"backend-fail-opentemp": "Imposcibbile arvî o file temporannio.",
 	"backend-fail-writetemp": "Imposcibbile scrive o file temporannio.",

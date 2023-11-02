@@ -42,7 +42,8 @@
 			"水獭很懒",
 			"沈澄心",
 			"阿pp",
-			"아라"
+			"아라",
+			"LittlePaw365"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -219,10 +220,10 @@
 	"config-optional-skip": "我已经不耐烦了，请立即安装wiki。",
 	"config-profile": "用户权限配置文件：",
 	"config-profile-wiki": "开放wiki",
-	"config-profile-no-anon": "需要注册账号",
+	"config-profile-no-anon": "需要创建账号",
 	"config-profile-fishbowl": "仅限授权编者",
 	"config-profile-private": "私人wiki",
-	"config-profile-help": "如果您允许尽量多的人编写wiki，网站上的内容会更加丰富。\n在MediaWiki中，您可以轻松地审核最近更改，并轻易回退掉新手或破坏者造成的损害。\n\n然而，许多人觉得让MediaWiki存在多种角色将更加好用；同时，要说服所有人都愿以wiki的方式作贡献并非一件易事。因此，您可以有以下选择：\n\n<strong>{{int:config-profile-wiki}}</strong>模式允许包括未登录用户在内的所有人编辑。<strong>{{int:config-profile-no-anon}}</strong>的wiki需要额外的注册流程，这有可能会阻碍随意贡献者。\n\n<strong>{{int:config-profile-fishbowl}}</strong>方案只允许获批准的用户编辑，但对公众开放页面浏览（包括历史记录）。\n<strong>{{int:config-profile-private}}</strong>则只允许获批准的用户浏览、编辑页面。\n\n安装完成后，您还可以对用户权限进行更多、更复杂的配置，参见[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights 相关的使用手册]。",
+	"config-profile-help": "当您允许尽可能多的人编辑wiki时，wiki才能发挥最佳效果。在MediaWiki内，复核最近的更改，以及复原天真或恶意用户造成的任何损坏都很容易。\n\n许多人发现MediaWiki在各种各样的情形下都很实用，但是要让每个编者都相信wiki方式的好处有时并不容易。因此选择权交到您手上。\n\n<strong>{{int:config-profile-wiki}}</strong>模型允许任何人编辑，甚至无需登录。<strong>{{int:config-profile-no-anon}}</strong>的wiki提供额外的账号功能，但可能会阻止临时贡献者。\n\n<strong>{{int:config-profile-fishbowl}}</strong>方案允许获批准的用户进行编辑，而公众可以查看页面（包括历史记录）。<strong>{{int:config-profile-private}}</strong>只允许获批准的用户查看页面，以及进行编辑。\n\n安装后可进行更复杂的用户权限配置，更多信息请查阅[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights 相关手册条目]。",
 	"config-license": "版权和许可证：",
 	"config-license-none": "无页脚许可证",
 	"config-license-cc-by-sa": "知识共享署名-相同方式共享",

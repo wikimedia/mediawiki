@@ -1667,7 +1667,7 @@
 	"rcfilters-liveupdates-button-title-off": "Visa nya ändringar när de händer",
 	"rcfilters-watchlist-markseen-button": "Markera alla ändringar som sedda",
 	"rcfilters-watchlist-edit-watchlist-button": "Redigera din lista över bevakade sidor",
-	"rcfilters-watchlist-showupdated": "Sidor som har ändrats sedan ditt senaste besök visas i <strong>fetstil</strong> med färgmarkering.",
+	"rcfilters-watchlist-showupdated": "Sidor som har ändrats sedan ditt senaste besök visas i <strong>fetstil</strong> och med fylld listpunkt.",
 	"rcfilters-preference-label": "Använd gränssnitt som inte använder JavaScript",
 	"rcfilters-preference-help": "Läser in [[{{#special:RecentChanges}}|senaste ändringarna]] och [[{{#special:RecentChangesLinked}}|relaterade ändringar]] utan filtersökning eller markeringsfunktionalitet.",
 	"rcfilters-watchlist-preference-label": "Använd gränssnitt som inte använder JavaScript",

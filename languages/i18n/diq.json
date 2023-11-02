@@ -1799,7 +1799,7 @@
 	"backend-fail-connect": "Depo kerdışê \"$1\" peyni de nêgrêdeya.",
 	"backend-fail-internal": "Depo kerdışê \"$1\" peyni de ju xırabin vıcyê.",
 	"backend-fail-contenttype": "Qandê depo kerdışi zerrey babeta dosya da \"$1\" nêvineya.",
-	"backend-fail-batchsize": "Depo kerdışê  dosya da $1 {{PLURAL:$1|operasyon de|operasyonê}} cı groto; sinorê  {{PLURAL:$2|operasyoni|operasyona}} $2.",
+	"backend-fail-batchsize": "Depo kerdışê dosya da $1 {{PLURAL:$1|operasyon de|operasyonê}} cı groto; sinorê {{PLURAL:$2|operasyoni|operasyona}} $2.",
 	"backend-fail-usable": "Dosyay $1 nênusneyê çıkı ratnayışê cı racnayeyo yana karkerdışe cı kemiyo.",
 	"backend-fail-stat": "Weziyetê Dosya $1 nêwanıyeno.",
 	"backend-fail-hash": "Aidê dosyay \"$1\" rê kriptografi belı nêbiya.",
