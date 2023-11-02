@@ -17,7 +17,7 @@ class AndExpressionGroup extends ExpressionGroup {
 	 * @param-taint $field exec_sql
 	 * @param string $op One of '>', '<', '!=', '=', '>=', '<='
 	 * @param-taint $op exec_sql
-	 * @param string|int|float|null|bool|Blob|array $value
+	 * @param string|int|float|bool|Blob|null|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
 	 */
 	public function and( string $field, string $op, $value ): AndExpressionGroup {
