@@ -122,7 +122,40 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 			$helper->checkAccess();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
-			$this->assertSame( 403, $ex->getCode() );
+			$this->assertSame( 404, $ex->getCode() );
+		}
+	}
+
+	public static function provideBadTitle() {
+		yield [ '_' ];
+		yield [ '::Hello' ];
+		yield [ 'Special:Blankpage' ];
+	}
+
+	/**
+	 * @dataProvider provideBadTitle
+	 */
+	public function testBadTitle( $badTitle ) {
+		$helper = $this->newHelper( [ 'title' => $badTitle ] );
+
+		$this->assertNotNull( $helper->getTitleText() );
+		$this->assertNull( $helper->getPage() );
+
+		$this->assertFalse( $helper->hasContent() );
+		$this->assertNull( $helper->getTargetRevision() );
+
+		try {
+			$helper->getContent();
+			$this->fail( 'Expected HttpException' );
+		} catch ( HttpException $ex ) {
+			$this->assertSame( 404, $ex->getCode() );
+		}
+
+		try {
+			$helper->checkAccess();
+			$this->fail( 'Expected HttpException' );
+		} catch ( HttpException $ex ) {
+			$this->assertSame( 404, $ex->getCode() );
 		}
 	}
 

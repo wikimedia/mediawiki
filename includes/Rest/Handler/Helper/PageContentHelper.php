@@ -348,6 +348,14 @@ class PageContentHelper {
 	public function checkHasContent() {
 		$titleText = $this->getTitleText() ?? '';
 
+		$page = $this->getPageIdentity();
+		if ( !$page ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-invalid-title' )->plaintextParams( $titleText ),
+				404
+			);
+		}
+
 		if ( !$this->hasContent() ) {
 			// needs to check if it's possibly a variant title
 			throw new LocalizedHttpException(
@@ -369,8 +377,8 @@ class PageContentHelper {
 	 * @throws LocalizedHttpException if the content is not accessible
 	 */
 	public function checkAccess() {
-		$this->checkAccessPermission();
-		$this->checkHasContent();
+		$this->checkHasContent(); // Status 404: Not Found
+		$this->checkAccessPermission(); // Status 403: Forbidden
 	}
 
 }
