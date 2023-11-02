@@ -65,7 +65,7 @@
 	 */
 	mw.Upload.BookletLayout = function ( config ) {
 		// Parent constructor
-		mw.Upload.BookletLayout.parent.call( this, config );
+		mw.Upload.BookletLayout.super.call( this, config );
 
 		this.$overlay = config.$overlay;
 

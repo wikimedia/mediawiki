@@ -23,7 +23,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.widgets.UserInputWidget.parent.call( this, $.extend( {}, config, { autocomplete: false } ) );
+		mw.widgets.UserInputWidget.super.call( this, $.extend( {}, config, { autocomplete: false } ) );
 
 		// Mixin constructors
 		OO.ui.mixin.LookupElement.call( this, config );
@@ -66,7 +66,7 @@
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		retval = mw.widgets.UserInputWidget.parent.prototype.focus.apply( this, arguments );
+		retval = mw.widgets.UserInputWidget.super.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( false );
 

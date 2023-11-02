@@ -155,7 +155,7 @@
 			}
 		}
 		// Parent constructor
-		mw.widgets.DateInputWidget.parent.call( this, config );
+		mw.widgets.DateInputWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.IndicatorElement.call( this, config );
@@ -325,7 +325,7 @@
 			value = '';
 		}
 
-		mw.widgets.DateInputWidget.parent.prototype.setValue.call( this, value );
+		mw.widgets.DateInputWidget.super.prototype.setValue.call( this, value );
 
 		if ( this.value !== oldValue ) {
 			this.updateUI();

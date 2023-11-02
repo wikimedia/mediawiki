@@ -24,7 +24,7 @@ WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidget(
 	config = config || {};
 
 	// Parent
-	WatchlistTopSectionWidget.parent.call( this, config );
+	WatchlistTopSectionWidget.super.call( this, config );
 
 	editWatchlistButton = new OO.ui.ButtonWidget( {
 		label: mw.msg( 'rcfilters-watchlist-edit-watchlist-button' ),

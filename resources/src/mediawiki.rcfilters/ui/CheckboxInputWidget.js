@@ -11,7 +11,7 @@ var CheckboxInputWidget = function MwRcfiltersUiCheckboxInputWidget( config ) {
 	config = config || {};
 
 	// Parent
-	CheckboxInputWidget.parent.call( this, config );
+	CheckboxInputWidget.super.call( this, config );
 
 	// Event
 	this.$input

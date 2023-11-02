@@ -48,7 +48,7 @@
 		this.validateSearchTypes();
 
 		// Parent constructor
-		mw.widgets.CategoryMultiselectWidget.parent.call( this, $.extend( true, {}, config, {
+		mw.widgets.CategoryMultiselectWidget.super.call( this, $.extend( true, {}, config, {
 			menu: {
 				filterFromInput: false
 			},
@@ -121,7 +121,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.clearInput = function () {
-		mw.widgets.CategoryMultiselectWidget.parent.prototype.clearInput.call( this );
+		mw.widgets.CategoryMultiselectWidget.super.prototype.clearInput.call( this );
 		// Abort all pending requests, we won't need their results
 		this.api.abort();
 	};
@@ -193,7 +193,7 @@
 		if ( !title ) {
 			return false;
 		}
-		return mw.widgets.CategoryMultiselectWidget.parent.prototype.isAllowedData.call( this, data );
+		return mw.widgets.CategoryMultiselectWidget.super.prototype.isAllowedData.call( this, data );
 	};
 
 	/**

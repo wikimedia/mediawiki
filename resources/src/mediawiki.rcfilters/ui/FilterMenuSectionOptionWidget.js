@@ -24,7 +24,7 @@ var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptio
 	this.$overlay = config.$overlay || this.$element;
 
 	// Parent
-	FilterMenuSectionOptionWidget.parent.call( this, $.extend( {
+	FilterMenuSectionOptionWidget.super.call( this, $.extend( {
 		label: this.model.getTitle(),
 		$label: $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget-header-title' )

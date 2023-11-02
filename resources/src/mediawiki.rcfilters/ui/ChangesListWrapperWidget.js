@@ -23,7 +23,7 @@ var ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
 	} );
 
 	// Parent
-	ChangesListWrapperWidget.parent.call( this, config );
+	ChangesListWrapperWidget.super.call( this, config );
 
 	this.filtersViewModel = filtersViewModel;
 	this.changesListViewModel = changesListViewModel;

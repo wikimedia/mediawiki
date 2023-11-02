@@ -20,7 +20,7 @@
 	 */
 	mw.widgets.NamespacesMenuOptionWidget = function MwWidgetsNamespacesMenuOptionWidget( config ) {
 		// Parent
-		mw.widgets.NamespacesMenuOptionWidget.parent.call( this, config );
+		mw.widgets.NamespacesMenuOptionWidget.super.call( this, config );
 	};
 
 	/* Setup */

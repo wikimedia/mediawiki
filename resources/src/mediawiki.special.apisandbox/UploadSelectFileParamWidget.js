@@ -6,7 +6,7 @@
  * @constructor
  */
 function UploadSelectFileParamWidget() {
-	UploadSelectFileParamWidget.parent.call( this );
+	UploadSelectFileParamWidget.super.call( this );
 }
 
 OO.inheritClass( UploadSelectFileParamWidget, OO.ui.SelectFileWidget );

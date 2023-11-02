@@ -29,7 +29,7 @@ FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 	config = config || {};
 
 	// Parent
-	FilterWrapperWidget.parent.call( this, config );
+	FilterWrapperWidget.super.call( this, config );
 	// Mixin constructors
 	OO.ui.mixin.PendingElement.call( this, config );
 

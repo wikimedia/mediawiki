@@ -18,7 +18,7 @@ ChangesLimitAndDateButtonWidget = function MwRcfiltersUiChangesLimitWidget( cont
 	config = config || {};
 
 	// Parent
-	ChangesLimitAndDateButtonWidget.parent.call( this, config );
+	ChangesLimitAndDateButtonWidget.super.call( this, config );
 
 	this.controller = controller;
 	this.model = model;

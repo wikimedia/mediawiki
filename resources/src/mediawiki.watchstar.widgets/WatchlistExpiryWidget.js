@@ -23,7 +23,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 	config = config || {};
 	$link = config.$link;
 
-	WatchlistExpiryWidget.parent.call( this, config );
+	WatchlistExpiryWidget.super.call( this, config );
 
 	messageLabel = new OO.ui.LabelWidget( {
 		label: config.message

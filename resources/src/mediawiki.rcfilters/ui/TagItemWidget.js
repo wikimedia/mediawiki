@@ -25,7 +25,7 @@ var TagItemWidget = function MwRcfiltersUiTagItemWidget(
 	this.itemModel = itemModel;
 	this.selected = false;
 
-	TagItemWidget.parent.call( this, $.extend( {
+	TagItemWidget.super.call( this, $.extend( {
 		data: this.itemModel.getName()
 	}, config ) );
 

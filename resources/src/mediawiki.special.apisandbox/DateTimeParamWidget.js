@@ -15,7 +15,7 @@ function DateTimeParamWidget( config ) {
 	};
 	config.clearable = false;
 
-	DateTimeParamWidget.parent.call( this, config );
+	DateTimeParamWidget.super.call( this, config );
 }
 
 OO.inheritClass( DateTimeParamWidget, mw.widgets.datetime.DateTimeInputWidget );

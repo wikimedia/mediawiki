@@ -27,7 +27,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.widgets.CheckMatrixWidget.parent.call( this, config );
+		mw.widgets.CheckMatrixWidget.super.call( this, config );
 		this.checkboxes = {};
 		this.name = config.name;
 		this.id = config.id;
@@ -138,7 +138,7 @@
 		var widget = this;
 
 		// Parent method
-		mw.widgets.CheckMatrixWidget.parent.prototype.setDisabled.call( this, isDisabled );
+		mw.widgets.CheckMatrixWidget.super.prototype.setDisabled.call( this, isDisabled );
 
 		// setDisabled sometimes gets called before the widget is ready
 		if ( this.checkboxes ) {

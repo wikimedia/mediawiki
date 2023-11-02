@@ -43,7 +43,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.Upload.Dialog.parent.call( this, config );
+		mw.Upload.Dialog.super.call( this, config );
 
 		// Initialize
 		this.bookletClass = config.bookletClass;
@@ -112,7 +112,7 @@
 	 */
 	mw.Upload.Dialog.prototype.initialize = function () {
 		// Parent method
-		mw.Upload.Dialog.parent.prototype.initialize.call( this );
+		mw.Upload.Dialog.super.prototype.initialize.call( this );
 
 		this.uploadBooklet = this.createUploadBooklet();
 		this.uploadBooklet.connect( this, {
@@ -185,7 +185,7 @@
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getSetupProcess = function ( data ) {
-		return mw.Upload.Dialog.parent.prototype.getSetupProcess.call( this, data )
+		return mw.Upload.Dialog.super.prototype.getSetupProcess.call( this, data )
 			.next( function () {
 				return this.uploadBooklet.initialize();
 			}, this );
@@ -215,14 +215,14 @@
 			return new OO.ui.Process( this.uploadBooklet.initialize() );
 		}
 
-		return mw.Upload.Dialog.parent.prototype.getActionProcess.call( this, action );
+		return mw.Upload.Dialog.super.prototype.getActionProcess.call( this, action );
 	};
 
 	/**
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getTeardownProcess = function ( data ) {
-		return mw.Upload.Dialog.parent.prototype.getTeardownProcess.call( this, data )
+		return mw.Upload.Dialog.super.prototype.getTeardownProcess.call( this, data )
 			.next( function () {
 				this.uploadBooklet.clear();
 			}, this );

@@ -21,7 +21,7 @@ var RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 	config = config || {};
 
 	// Parent
-	RcTopSectionWidget.parent.call( this, config );
+	RcTopSectionWidget.super.call( this, config );
 
 	this.$topLinks = $topLinks;
 

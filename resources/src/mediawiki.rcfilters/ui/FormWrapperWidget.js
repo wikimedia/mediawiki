@@ -16,7 +16,7 @@ var FormWrapperWidget = function MwRcfiltersUiFormWrapperWidget( filtersModel, c
 	config = config || {};
 
 	// Parent
-	FormWrapperWidget.parent.call( this, $.extend( {}, config, {
+	FormWrapperWidget.super.call( this, $.extend( {}, config, {
 		$element: $formRoot
 	} ) );
 

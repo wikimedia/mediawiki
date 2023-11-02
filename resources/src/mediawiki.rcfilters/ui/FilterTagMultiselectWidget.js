@@ -50,7 +50,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	} );
 
 	// Parent
-	FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
+	FilterTagMultiselectWidget.super.call( this, $.extend( true, {
 		label: mw.msg( 'rcfilters-filterlist-title' ),
 		placeholder: mw.msg( 'rcfilters-empty-filter' ),
 		inputPosition: 'outline',
@@ -387,7 +387,7 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 	var scrollToElement = this.isMobile ? this.input.$input : this.$element;
 
 	// Parent
-	FilterTagMultiselectWidget.parent.prototype.onMenuToggle.call( this );
+	FilterTagMultiselectWidget.super.prototype.onMenuToggle.call( this );
 
 	if ( isVisible ) {
 		if ( !this.isMobile ) {
@@ -441,7 +441,7 @@ FilterTagMultiselectWidget.prototype.onInputFocus = function () {
 		this.getMenu().toggle();
 	} else {
 		// Parent
-		FilterTagMultiselectWidget.parent.prototype.onInputFocus.call( this );
+		FilterTagMultiselectWidget.super.prototype.onInputFocus.call( this );
 	}
 };
 
@@ -450,7 +450,7 @@ FilterTagMultiselectWidget.prototype.onInputFocus = function () {
  */
 FilterTagMultiselectWidget.prototype.doInputEscape = function () {
 	// Parent
-	FilterTagMultiselectWidget.parent.prototype.doInputEscape.call( this );
+	FilterTagMultiselectWidget.super.prototype.doInputEscape.call( this );
 
 	// Blur the input
 	this.input.$input.trigger( 'blur' );
@@ -473,7 +473,7 @@ FilterTagMultiselectWidget.prototype.onMouseDown = function ( e ) {
 FilterTagMultiselectWidget.prototype.onChangeTags = function () {
 	// If initialized, call parent method.
 	if ( this.controller.isInitialized() ) {
-		FilterTagMultiselectWidget.parent.prototype.onChangeTags.call( this );
+		FilterTagMultiselectWidget.super.prototype.onChangeTags.call( this );
 	}
 
 	this.emptyFilterMessage.toggle( this.isEmpty() );
@@ -635,7 +635,7 @@ FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 
 	this.menu.setUserSelecting( true );
 	// Parent method
-	FilterTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
+	FilterTagMultiselectWidget.super.prototype.onTagSelect.call( this, tagItem );
 
 	// Switch view
 	this.controller.resetSearchForView( tagItem.getView() );
@@ -668,7 +668,7 @@ FilterTagMultiselectWidget.prototype.selectTag = function ( item ) {
  */
 FilterTagMultiselectWidget.prototype.onTagRemove = function ( tagItem ) {
 	// Parent method
-	FilterTagMultiselectWidget.parent.prototype.onTagRemove.call( this, tagItem );
+	FilterTagMultiselectWidget.super.prototype.onTagRemove.call( this, tagItem );
 
 	this.controller.clearFilter( tagItem.getName() );
 

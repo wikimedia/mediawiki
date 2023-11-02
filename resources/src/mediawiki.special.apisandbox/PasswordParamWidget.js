@@ -11,7 +11,7 @@ var TextParamMixin = require( './TextParamMixin.js' ),
  */
 function PasswordParamWidget( config ) {
 	config.type = 'password';
-	PasswordParamWidget.parent.call( this, config );
+	PasswordParamWidget.super.call( this, config );
 }
 
 OO.inheritClass( PasswordParamWidget, OO.ui.TextInputWidget );

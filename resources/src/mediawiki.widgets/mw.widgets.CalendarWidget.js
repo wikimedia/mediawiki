@@ -35,7 +35,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.widgets.CalendarWidget.parent.call( this, config );
+		mw.widgets.CalendarWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
@@ -641,7 +641,7 @@
 		}
 
 		// Parent method
-		mw.widgets.CalendarWidget.parent.prototype.toggle.call( this, visible );
+		mw.widgets.CalendarWidget.super.prototype.toggle.call( this, visible );
 
 		if ( change ) {
 			this.togglePositioning( visible && !!this.$floatableContainer );

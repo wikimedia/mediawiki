@@ -33,7 +33,7 @@ MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
 	config = $.extend( {}, config );
 
 	// Parent
-	MainWrapperWidget.parent.call( this, config );
+	MainWrapperWidget.super.call( this, config );
 
 	this.controller = controller;
 	this.model = model;

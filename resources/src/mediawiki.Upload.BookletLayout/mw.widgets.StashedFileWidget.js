@@ -39,7 +39,7 @@
 		}
 
 		// Parent constructor
-		mw.widgets.StashedFileWidget.parent.call( this, config );
+		mw.widgets.StashedFileWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.IconElement.call( this, config );

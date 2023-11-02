@@ -26,7 +26,7 @@
 		this.relativeField.$element.addClass( 'mw-widget-ExpiryWidget-relative' );
 
 		// Parent constructor
-		mw.widgets.ExpiryWidget.parent.call( this, config );
+		mw.widgets.ExpiryWidget.super.call( this, config );
 
 		// Properties
 		this.inputSwitch = new OO.ui.ButtonSelectWidget( {
@@ -143,7 +143,7 @@
 	mw.widgets.ExpiryWidget.static.reusePreInfuseDOM = function ( node, config ) {
 		var $relativeElement = $( node ).find( '.mw-widget-ExpiryWidget-relative' );
 
-		config = mw.widgets.ExpiryWidget.parent.static.reusePreInfuseDOM( node, config );
+		config = mw.widgets.ExpiryWidget.super.static.reusePreInfuseDOM( node, config );
 
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $relativeElement.hasClass( 'oo-ui-textInputWidget' ) ) {
@@ -165,7 +165,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ExpiryWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.ExpiryWidget.parent.static.gatherPreInfuseState( node, config );
+		var state = mw.widgets.ExpiryWidget.super.static.gatherPreInfuseState( node, config );
 
 		state.relativeInput = config.RelativeInputClass.static.gatherPreInfuseState(
 			$( node ).find( '.mw-widget-ExpiryWidget-relative' ),
@@ -179,7 +179,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ExpiryWidget.prototype.restorePreInfuseState = function ( state ) {
-		mw.widgets.ExpiryWidget.parent.prototype.restorePreInfuseState.call( this, state );
+		mw.widgets.ExpiryWidget.super.prototype.restorePreInfuseState.call( this, state );
 		this.relativeField.restorePreInfuseState( state.relativeInput );
 	};
 
@@ -187,7 +187,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ExpiryWidget.prototype.setDisabled = function ( disabled ) {
-		mw.widgets.ExpiryWidget.parent.prototype.setDisabled.call( this, disabled );
+		mw.widgets.ExpiryWidget.super.prototype.setDisabled.call( this, disabled );
 		this.relativeField.setDisabled( disabled );
 
 		if ( this.inputSwitch ) {

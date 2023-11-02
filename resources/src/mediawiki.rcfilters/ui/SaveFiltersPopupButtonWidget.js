@@ -23,7 +23,7 @@ var SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButtonW
 	this.model = model;
 
 	// Parent
-	SaveFiltersPopupButtonWidget.parent.call( this, $.extend( {
+	SaveFiltersPopupButtonWidget.super.call( this, $.extend( {
 		framed: false,
 		icon: 'bookmark',
 		title: mw.msg( 'rcfilters-savedqueries-add-new-title' ),

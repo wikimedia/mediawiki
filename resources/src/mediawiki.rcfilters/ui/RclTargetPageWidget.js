@@ -15,7 +15,7 @@ var RclTargetPageWidget = function MwRcfiltersUiRclTargetPageWidget(
 	config = config || {};
 
 	// Parent
-	RclTargetPageWidget.parent.call( this, config );
+	RclTargetPageWidget.super.call( this, config );
 
 	this.controller = controller;
 	this.model = targetPageModel;

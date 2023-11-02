@@ -49,7 +49,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.TitleOptionWidget.parent.call( this, config );
+		mw.widgets.TitleOptionWidget.super.call( this, config );
 
 		// Remove check icon
 		this.checkIcon.$element.remove();

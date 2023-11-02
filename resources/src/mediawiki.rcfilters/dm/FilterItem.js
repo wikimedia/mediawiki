@@ -23,7 +23,7 @@ FilterItem = function MwRcfiltersDmFilterItem( param, groupModel, config ) {
 	this.groupModel = groupModel;
 
 	// Parent
-	FilterItem.parent.call( this, param, $.extend( {
+	FilterItem.super.call( this, param, $.extend( {
 		namePrefix: this.groupModel.getNamePrefix()
 	}, config ) );
 	// Mixin constructor

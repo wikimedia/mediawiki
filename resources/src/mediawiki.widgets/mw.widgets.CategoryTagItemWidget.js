@@ -103,7 +103,7 @@
 		// We only need to handle categories here... but we don't know the target language.
 		// So assume that any namespace-like prefix is the 'Category' namespace...
 		title = title.replace( /^(.+?)_*:_*(.*)$/, 'Category:$2' ); // HACK
-		ForeignTitle.parent.call( this, title, namespace );
+		ForeignTitle.super.call( this, title, namespace );
 	}
 	OO.inheritClass( ForeignTitle, mw.Title );
 	ForeignTitle.prototype.getNamespacePrefix = function () {
@@ -127,7 +127,7 @@
 	mw.widgets.CategoryTagItemWidget = function MWWCategoryTagItemWidget( config ) {
 		var widget = this;
 		// Parent constructor
-		mw.widgets.CategoryTagItemWidget.parent.call( this, $.extend( {
+		mw.widgets.CategoryTagItemWidget.super.call( this, $.extend( {
 			data: config.title.getMainText(),
 			label: config.title.getMainText()
 		}, config ) );

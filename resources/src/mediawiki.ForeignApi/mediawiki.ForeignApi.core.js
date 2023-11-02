@@ -67,7 +67,7 @@ module.exports = ( function () {
 		);
 
 		// Call parent constructor
-		CoreForeignApi.parent.call( this, options );
+		CoreForeignApi.super.call( this, options );
 	}
 
 	OO.inheritClass( CoreForeignApi, mw.Api );
@@ -119,7 +119,7 @@ module.exports = ( function () {
 			newAjaxOptions = ajaxOptions;
 		}
 
-		return CoreForeignApi.parent.prototype.ajax.call( this, parameters, newAjaxOptions );
+		return CoreForeignApi.super.prototype.ajax.call( this, parameters, newAjaxOptions );
 	};
 
 	return CoreForeignApi;
