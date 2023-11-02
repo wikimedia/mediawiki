@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -91,10 +92,7 @@ class FindOrphanedFiles extends Maintenance {
 
 				$oldNames[] = $name;
 				[ , $base ] = explode( '!', $name, 2 ); // <TS_MW>!<img_name>
-				$oiWheres[] = $dbr->makeList(
-					[ 'oi_name' => $base, 'oi_archive_name' => $name ],
-					LIST_AND
-				);
+				$oiWheres[]  = $dbr->expr( 'oi_name', '=', $base )->and( 'oi_archive_name', '=', $name );
 			} else {
 				if ( $verbose ) {
 					$this->output( "Checking current file $name\n" );
@@ -115,7 +113,7 @@ class FindOrphanedFiles extends Maintenance {
 			$dbr->newSelectQueryBuilder()
 				->select( [ 'name' => 'oi_archive_name', 'old' => '1' ] )
 				->from( 'oldimage' )
-				->where( $oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0' )
+				->where( $oiWheres ? new OrExpressionGroup( ...$oiWheres ) : '1=0' )
 		);
 
 		$res = $uqb->all()->caller( __METHOD__ )->fetchResultSet();

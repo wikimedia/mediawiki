@@ -1007,7 +1007,7 @@ abstract class Maintenance {
 			->select( 'old_id' )
 			->distinct()
 			->from( 'text' )
-			->where( [ 'old_id NOT IN ( ' . $dbw->makeList( $cur ) . ' )' ] )
+			->where( $dbw->expr( 'old_id', '!=', $cur ) )
 			->caller( __METHOD__ )->fetchResultSet();
 		$old = [];
 		foreach ( $res as $row ) {

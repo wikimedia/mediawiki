@@ -242,23 +242,18 @@ class FindMissingActors extends Maintenance {
 		LIMIT 1000;
 		*/
 
-		$conds = $type == 'missing'
-			? [ 'actor_id' => null ]
-			: [ 'actor_name' => '' ];
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( [ $actorField, $idField ] )
+			->from( $table )
+			->leftJoin( 'actor', null, [ "$actorField = actor_id" ] )
+			->where( $type == 'missing' ? [ 'actor_id' => null ] : [ 'actor_name' => '' ] )
+			->limit( $this->getBatchSize() );
 
 		if ( $skip ) {
-			$conds[] = $actorField . ' NOT IN ( ' . $dbr->makeList( $skip ) . ' ) ';
+			$queryBuilder->andWhere( $dbr->expr( $actorField, '!=', $skip ) );
 		}
 
-		$queryBuilder = $dbr->newSelectQueryBuilder();
-		$queryBuilder->table( $table )
-			->fields( [ $actorField, $idField ] )
-			->conds( $conds )
-			->leftJoin( 'actor', null, [ "$actorField = actor_id" ] )
-			->limit( $this->getBatchSize() )
-			->caller( __METHOD__ );
-
-		$res = $queryBuilder->fetchResultSet();
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 		$count = $res->numRows();
 
 		$bad = [];

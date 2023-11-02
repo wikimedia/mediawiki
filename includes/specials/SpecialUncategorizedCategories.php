@@ -100,7 +100,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 		$exceptionList = $this->getExceptionList();
 		if ( $exceptionList ) {
 			$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
-			$query['conds'][] = 'page_title not in ( ' . $dbr->makeList( $exceptionList ) . ' )';
+			$query['conds'][] = $dbr->expr( 'page_title', '!=', $exceptionList );
 		}
 
 		return $query;
