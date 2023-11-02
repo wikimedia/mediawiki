@@ -129,6 +129,8 @@ class SpecialBrokenRedirects extends QueryPage {
 				$result->rd_title,
 				$result->rd_fragment
 			);
+		} else {
+			$toObj = false;
 		}
 
 		$linkRenderer = $this->getLinkRenderer();
