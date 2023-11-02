@@ -254,7 +254,8 @@
 			"MRidhaAJ",
 			"Wangombe",
 			"20kdc",
-			"No se"
+			"No se",
+			"Chadyka"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -477,7 +478,7 @@
 	"view-pool-timeout": "{{notranslate}}\nDebug message indicating that stale content was returned due to a lock timeout",
 	"aboutsite": "Used as the label of the link that appears at the footer of every page on the wiki (in most of the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.\n\n[[mw:Manual:Interface/Aboutsite|MediaWiki manual]].\n\n{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>.}}\n\n{{Identical|About}}",
 	"aboutpage": "{{doc-important|Copy the word \"Project:\" as is to the translation, without translating it. This is the namespace prefix.}}\n\nDo translate \"About\", however.\n\nUsed as the target of the link that appears at the footer of every page on the wiki (in most of the skins) and leads to the page that contains the site description. Therefore, the content should be the same with the page name of the site description page. Only the message in the [[mw:Manual:$wgLanguageCode|site language]] ([[MediaWiki:Aboutpage]]) is used. The link label is {{msg-mw|aboutsite}}.",
-	"copyright": "{{RawHtml|phab=T204470}}\n\nParameters:\n* $1 - license name\n'''See also'''\n* {{msg-mw|Mobile-frontend-copyright}}",
+	"copyright": "{{RawHtml|phab=T45646}}\n\nParameters:\n* $1 - license name\n'''See also'''\n* {{msg-mw|Mobile-frontend-copyright}}",
 	"copyrightpage": "{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}\n\n{{Identical|Copyright}}",
 	"currentevents": "Standard link in the sidebar, for news.\n\nSee also {{msg-mw|Currentevents-url}} for the link URL.\n\nSee also:\n* {{msg-mw|Currentevents}}\n* {{msg-mw|Accesskey-n-currentevents}}\n* {{msg-mw|Tooltip-n-currentevents}}",
 	"currentevents-url": "{{doc-important|Copy the word \"Project:\" as is to the translation, without translating it. This is the namespace prefix.}}\nTarget page of \"CurrentEvents\" in the sidebar.\n\nSee also:\n* {{msg-mw|Currentevents}}",
@@ -2553,7 +2554,7 @@
 	"logeventslist-more-filters": "Label on [[Special:Log]]. Some log types are hidden by default when viewing \"all\" logs, because they might be very verbose, and these options show them.",
 	"logeventslist-patrol-log": "Patrol log option label on [[Special:Log]]",
 	"logeventslist-tag-log": "Tag log option label on [[Special:Log]]",
-	"logeventslist-newusers-log": "New users log option on [[Special:log]]",
+	"logeventslist-newusers-log": "New users log option on [[Special:Log]]",
 	"all-logs-page": "{{doc-logpage}}\nTitle of [[Special:Log]].",
 	"alllogstext": "Header of [[Special:Log]]",
 	"logempty": "Used as warning when there are no items to show.",

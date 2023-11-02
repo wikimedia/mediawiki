@@ -892,7 +892,7 @@
 	"revertmerge": "反合併",
 	"mergelogpagetext": "下底是只最近發生个頁面歷史合併个紀錄列表。",
 	"history-title": "「$1」个修訂歷史",
-	"difference-title": "!!FUZZY!!「$1」版本間个差別",
+	"difference-title": "「$1」版本間个差別",
 	"difference-title-multipage": "!!FUZZY!!頁面「$1」搭「$2」之間个差別",
 	"difference-multipage": "（頁面間个差別）",
 	"lineno": "第$1排：",
