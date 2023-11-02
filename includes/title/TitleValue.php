@@ -29,6 +29,8 @@ use MediaWiki\Page\PageReference;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\ParameterTypeException;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Parsoid\Core\LinkTargetTrait;
 
 /**
  * Represents the target of a wiki link.
@@ -42,6 +44,7 @@ use Wikimedia\Assert\ParameterTypeException;
  * @since 1.23
  */
 class TitleValue implements LinkTarget {
+	use LinkTargetTrait;
 
 	/** @var int */
 	private $namespace;
@@ -106,6 +109,24 @@ class TitleValue implements LinkTarget {
 	 */
 	public static function newFromPage( PageReference $page ): TitleValue {
 		return new TitleValue( $page->getNamespace(), $page->getDBkey() );
+	}
+
+	/**
+	 * Create a TitleValue from a LinkTarget
+	 * @param ParsoidLinkTarget $linkTarget
+	 * @return TitleValue
+	 * @since 1.42
+	 */
+	public static function newFromLinkTarget( ParsoidLinkTarget $linkTarget ): TitleValue {
+		if ( $linkTarget instanceof TitleValue ) {
+			return $linkTarget;
+		}
+		return new TitleValue(
+			$linkTarget->getNamespace(),
+			$linkTarget->getDBkey(),
+			$linkTarget->getFragment(),
+			$linkTarget->getInterwiki()
+		);
 	}
 
 	/**
@@ -199,24 +220,12 @@ class TitleValue implements LinkTarget {
 		return $this->namespace;
 	}
 
-	public function inNamespace( int $ns ): bool {
-		return $this->namespace == $ns;
-	}
-
 	public function getFragment(): string {
 		return $this->fragment;
 	}
 
-	public function hasFragment(): bool {
-		return $this->fragment !== '';
-	}
-
 	public function getDBkey(): string {
 		return $this->dbkey;
-	}
-
-	public function getText(): string {
-		return str_replace( '_', ' ', $this->dbkey );
 	}
 
 	public function createFragmentTarget( string $fragment ): self {
@@ -226,10 +235,6 @@ class TitleValue implements LinkTarget {
 			$fragment,
 			$this->interwiki
 		);
-	}
-
-	public function isExternal(): bool {
-		return $this->interwiki !== '';
 	}
 
 	public function getInterwiki(): string {
@@ -256,14 +261,6 @@ class TitleValue implements LinkTarget {
 		}
 
 		return $name;
-	}
-
-	public function isSameLinkAs( LinkTarget $other ): bool {
-		// NOTE: keep in sync with Title::isSameLinkAs()!
-		return ( $other->getInterwiki() === $this->getInterwiki() )
-			&& ( $other->getDBkey() === $this->getDBkey() )
-			&& ( $other->getNamespace() === $this->getNamespace() )
-			&& ( $other->getFragment() === $this->getFragment() );
 	}
 }
 

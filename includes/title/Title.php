@@ -62,6 +62,8 @@ use RuntimeException;
 use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Parsoid\Core\LinkTargetTrait;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
@@ -77,6 +79,7 @@ use WikiPage;
 class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	use DeprecationHelper;
 	use WikiAwareEntityTrait;
+	use LinkTargetTrait;
 
 	/** @var MapCacheLRU|null */
 	private static $titleCache = null;
@@ -292,11 +295,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
 	 * @since 1.27
-	 * @param LinkTarget $linkTarget Assumed to be safe.
+	 * @param ParsoidLinkTarget $linkTarget Assumed to be safe.
 	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
 	 * @return Title
 	 */
-	public static function newFromLinkTarget( LinkTarget $linkTarget, $forceClone = '' ) {
+	public static function newFromLinkTarget( ParsoidLinkTarget $linkTarget, $forceClone = '' ) {
 		if ( $linkTarget instanceof Title ) {
 			// Special case if it's already a Title object
 			if ( $forceClone === self::NEW_CLONE ) {
@@ -317,10 +320,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Same as newFromLinkTarget(), but if passed null, returns null.
 	 *
 	 * @since 1.34
-	 * @param LinkTarget|null $linkTarget Assumed to be safe (if not null).
+	 * @param ParsoidLinkTarget|null $linkTarget Assumed to be safe (if not null).
 	 * @return Title|null
 	 */
-	public static function castFromLinkTarget( ?LinkTarget $linkTarget ) {
+	public static function castFromLinkTarget( ?ParsoidLinkTarget $linkTarget ) {
 		if ( !$linkTarget ) {
 			return null;
 		}
@@ -946,15 +949,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Is this Title interwiki?
-	 *
-	 * @return bool
-	 */
-	public function isExternal(): bool {
-		return $this->mInterwiki !== '';
 	}
 
 	/**
@@ -1769,16 +1763,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function getFragment(): string {
 		return $this->mFragment;
-	}
-
-	/**
-	 * Check if a Title fragment is set
-	 *
-	 * @return bool
-	 * @since 1.23
-	 */
-	public function hasFragment(): bool {
-		return $this->mFragment !== '';
 	}
 
 	/**
@@ -3174,22 +3158,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		} else {
 			return false;
 		}
-	}
-
-	/**
-	 * @see LinkTarget::isSameLinkAs()
-	 * @since 1.36
-	 *
-	 * @param LinkTarget $other
-	 * @return bool
-	 */
-	public function isSameLinkAs( LinkTarget $other ): bool {
-		// NOTE: keep in sync with TitleValue::isSameLinkAs()!
-		// NOTE: === is needed for number-like titles
-		return ( $other->getInterwiki() === $this->getInterwiki() )
-			&& ( $other->getDBkey() === $this->getDBkey() )
-			&& ( $other->getNamespace() === $this->getNamespace() )
-			&& ( $other->getFragment() === $this->getFragment() );
 	}
 
 	/**
