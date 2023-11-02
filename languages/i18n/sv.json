@@ -44,6 +44,7 @@
 			"Leo Johannes",
 			"Liftarn",
 			"Lokal Profil",
+			"Ludvig Broman",
 			"M.M.S.",
 			"Macofe",
 			"MagnusA",
@@ -546,7 +547,7 @@
 	"nocookieslogin": "{{SITENAME}} använder kakor för att logga in användare. Du har stängt av kakor i din webbläsare. Försök igen med stöd för kakor aktiverat.",
 	"nocookiesfornew": "Användarkontot skapades inte, eftersom vi inte kunde bekräfta dess källa.\nSe till att du har aktiverat kakor, ladda om denna sida och försök igen.",
 	"createacct-loginerror": "Kontot skapades men du kunde inte loggas in automatiskt. Var god [[Special:UserLogin|logga in manuellt]].",
-	"createacct-temp-warning": "Redigeringarna du gjort med ditt temporära konto kommer inte att överföras till ditt permanenta.",
+	"createacct-temp-warning": "Redigeringarna du gjort med ditt temporära konto <strong> $1 </strong> kommer inte att överföras till ditt permanenta.",
 	"noname": "Du har angett ett ogiltigt användarnamn.",
 	"loginsuccesstitle": "Inloggad",
 	"loginsuccess": "<strong>Du är nu inloggad på {{SITENAME}} som ”$1”.</strong>",
@@ -4197,5 +4198,10 @@
 	"action-renameuser": "ändra namn på användaren",
 	"right-renameuser": "Byt namn på användare",
 	"renameuser-renamed-notice": "Användaren har fått ett nytt namn.\nSom referens återfinns omdöpningsloggen nedan.",
-	"log-unknown-action": "utförde den okända åtgärden \"$2\" på [[$1]]"
+	"log-unknown-action": "utförde den okända åtgärden \"$2\" på [[$1]]",
+	"createacct-benefit-heading-temp-user": "Tack för att du bidrar till Wikipedia.\nSkapa ett konto för att få tillgång till fler funktioner.",
+	"createacct-benefit-subheading-temp-user": "Wikipedia görs av människor som du. Med ett konto kan du ha en permanent och säker identitet med tillgång till funktioner som:",
+	"benefit-1-description": "Bevakningslistor som låter dig hålla reda på sidor som du är intresserad av.",
+	"benefit-2-description": "Permanent lista över dina bidrag till projektet",
+	"benefit-3-description": "Inställningar som låter dig anpassa din upplevelse."
 }

@@ -506,7 +506,7 @@
 	"nocookieslogin": "{{SITENAME}} עושה שימוש בעוגיות כדי להכניס משתמשים למערכת.\nבדפדפן שלך העוגיות מבוטלות.\nיש להפעיל אותן ולאחר מכן לנסות שוב.",
 	"nocookiesfornew": "חשבון המשתמש לא נוצר, משום שלא יכולנו לאמת את המקור שלו.\nנא לוודא שהעוגיות (cookies) בדפדפן שלך מופעלות, ורק לאחר מכן לטעון מחדש את הדף הזה ולנסות שוב.",
 	"createacct-loginerror": "החשבון נוצר בהצלחה, אבל לא ניתן היה להיכנס אליו באופן אוטומטי. נא [[Special:UserLogin|להיכנס באופן ידני]].",
-	"createacct-temp-warning": "העריכות שעשית עם החשבון הזמני שלך לא יועברו לחשבון הקבוע שלך.",
+	"createacct-temp-warning": "העריכות שעשית בחשבון הזמני שלך <strong> $1 </strong> לא יועברו לחשבון הקבוע שלך.",
 	"noname": "לא הזנת שם משתמש תקין.",
 	"loginsuccesstitle": "נכנסת לחשבון",
 	"loginsuccess": "<strong>נכנסת ל{{GRAMMAR:תחילית|{{SITENAME}}}} בשם \"$1\".</strong>",
@@ -658,6 +658,10 @@
 	"resettokens-watchlist-token": "אסימון להזנת הרשת (Atom/RSS) של [[Special:Watchlist|שינויים של דפים ברשימת המעקב]]",
 	"resettokens-done": "האסימונים אופסו.",
 	"resettokens-resetbutton": "איפוס האסימונים שנבחרו",
+	"edit-recovery-loaded-title": "השינויים שוחזרו",
+	"edit-recovery-loaded-message": "השינויים הלא־שמורים שלך שוחזרו אוטומטית.",
+	"edit-recovery-loaded-show": "הצגת שינויים",
+	"edit-recovery-loaded-discard": "זריקת שינויים",
 	"summary": "תקציר:",
 	"subject": "נושא:",
 	"minoredit": "זוהי עריכה משנית",
@@ -4232,5 +4236,10 @@
 	"action-renameuser": "לשנות שמות משתמשים",
 	"right-renameuser": "שינוי שמות משתמשים",
 	"renameuser-renamed-notice": "שם המשתמש הזה שונה.\nיומן שינויי שמות המשתמש מוצג להלן.",
-	"log-unknown-action": "ביצע את הפעולה הבלתי־ידועה \"$2\" על הדף [[$1]]"
+	"log-unknown-action": "ביצע את הפעולה הבלתי־ידועה \"$2\" על הדף [[$1]]",
+	"createacct-benefit-heading-temp-user": "תודה על תרומתך לוויקיפדיה.\nנא ליצור חשבון כדי לגשת לתכונות נוספות.",
+	"createacct-benefit-subheading-temp-user": "אנשים כמוך יוצרים את ויקיפדיה. עם חשבון, תהיה לך אפשרות להחזיק בזהות קבועה ובטוחה עם גישה לתכונות כגון:",
+	"benefit-1-description": "רשימות מעקב שמאפשרות לך לעקוב אחרי דפים שמעניינים אותך.",
+	"benefit-2-description": "רשימה קבועה של תרומות שלך למיזם",
+	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך."
 }

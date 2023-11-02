@@ -467,7 +467,7 @@
 	"nocookieslogin": "{{SITENAME}} usa ''cookies'' pro mantener le sessiones del usatores.\nTu ha disactivate le functionalitate del ''cookies''.\nPer favor activa lo e tenta lo de novo.",
 	"nocookiesfornew": "Le conto de usator non esseva create, proque nos non poteva confirmar su origine.\nVerifica que tu ha activate le ''cookies'', recarga iste pagina e reproba.",
 	"createacct-loginerror": "Le conto ha essite create, ma le systema non ha potite aperir session automaticamente. Per favor, [[Special:UserLogin|aperi session manualmente]].",
-	"createacct-temp-warning": "Le modificationes que tu ha facite con tu conto temporari non essera transferite a tu conto permanente.",
+	"createacct-temp-warning": "Le modificationes que tu ha facite con tu conto temporari <strong>$1</strong> non essera transferite a tu conto permanente.",
 	"noname": "Tu non specificava un nomine de usator valide.",
 	"loginsuccesstitle": "Session aperite",
 	"loginsuccess": "<strong>Tu es ora authenticate in {{SITENAME}} como “$1”.</strong>",
@@ -619,6 +619,10 @@
 	"resettokens-watchlist-token": "Token pro syndication web (Atom/RSS) de [[Special:Watchlist|modificationes a paginas in tu observatorio]]",
 	"resettokens-done": "Tokens reinitialisate.",
 	"resettokens-resetbutton": "Reinitialisar le tokens seligite",
+	"edit-recovery-loaded-title": "Cambiamentos recuperate",
+	"edit-recovery-loaded-message": "Tu cambiamentos non salveguardate ha essite automaticamente recuperate.",
+	"edit-recovery-loaded-show": "Detaliar modificationes",
+	"edit-recovery-loaded-discard": "Abandonar modificationes",
 	"summary": "Summario:",
 	"subject": "Subjecto:",
 	"minoredit": "Isto es un modification minor",
@@ -4112,5 +4116,10 @@
 	"action-renameuser": "renominar usatores",
 	"right-renameuser": "Renominar usatores",
 	"renameuser-renamed-notice": "Iste usator ha essite renominate.\nLe registro de renominationes es providite ci infra pro referentia.",
-	"log-unknown-action": "ha exequite le action incognite “$2” sur [[$1]]"
+	"log-unknown-action": "ha exequite le action incognite “$2” sur [[$1]]",
+	"createacct-benefit-heading-temp-user": "Gratias pro haber contribuite a Wikipedia.\nCrea un conto pro acceder a plus functiones.",
+	"createacct-benefit-subheading-temp-user": "Wikipedia es facite per gente como tu. Con un conto, tu pote haber un identitate permanente e secur con accesso a functiones como:",
+	"benefit-1-description": "Le observatorio, que te permitte sequer le paginas de tu interesse.",
+	"benefit-2-description": "Lista permanente del contributiones que tu ha apportate al projecto",
+	"benefit-3-description": "Preferentias que te permitte personalisar tu experientia."
 }
