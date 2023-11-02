@@ -37,7 +37,6 @@ use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
-use MediaWiki\Rest\ResponseException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
@@ -483,57 +482,6 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
-	 * Redirect to another Parsoid URL (e.g. canonization)
-	 *
-	 * @stable to override
-	 *
-	 * @param string $path Target URL
-	 * @param array $pathParams Path parameters to inject into path
-	 * @param array $queryParams Query parameters
-	 *
-	 * @return Response
-	 */
-	protected function createRedirectResponse(
-		string $path, array $pathParams = [], array $queryParams = []
-	): Response {
-		// FIXME this should not be necessary in the REST entry point
-		unset( $queryParams['title'] );
-
-		$url = $this->getRedirectRouteUrl( $path, $pathParams, $queryParams );
-
-		if ( $this->getRequest()->getMethod() === 'POST' ) {
-			// 307 response
-			$response = $this->getResponseFactory()->createTemporaryRedirect( $url );
-		} else {
-			// 302 response
-			$response = $this->getResponseFactory()->createLegacyTemporaryRedirect( $url );
-		}
-		$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
-		return $response;
-	}
-
-	/**
-	 * Returns the target URL for a redirect to the given path and parameters.
-	 * This exists so subclasses can override it to control whether the redirect
-	 * should go to a private or to a public URL.
-	 *
-	 * @see Router::getRouteUrl()
-	 *
-	 * @stable to override
-	 *
-	 * @param string $path
-	 * @param array $pathParams
-	 * @param array $queryParams
-	 *
-	 * @return string
-	 */
-	protected function getRedirectRouteUrl(
-		string $path, array $pathParams = [], array $queryParams = []
-	) {
-		return $this->getRouter()->getRoutePath( $path, $pathParams, $queryParams );
-	}
-
-	/**
 	 * Try to create a PageConfig object. If we get an exception (because content
 	 * may be missing or inaccessible), throw an appropriate HTTP response object
 	 * for callers to handle.
@@ -595,13 +543,6 @@ abstract class ParsoidHandler extends Handler {
 			throw new HttpException( $e->getMessage(), 403 );
 		} catch ( RevisionAccessException $e ) {
 			throw new HttpException( $e->getMessage(), 404 );
-		}
-
-		if ( !$html2WtMode && $wikitextOverride === null && !$hasOldId ) {
-			// Redirect to the latest revid
-			throw new ResponseException(
-				$this->createRedirectToOldidResponse( $pageConfig, $attribs )
-			);
 		}
 
 		// All good!
@@ -687,43 +628,6 @@ abstract class ParsoidHandler extends Handler {
 			throw new InvalidArgumentException( 'Unsupported revision content format: ' . $format );
 		}
 		return '/v1/revision/{revision}/html';
-	}
-
-	/**
-	 * Expand the current URL with the latest revision number and redirect there.
-	 *
-	 * @param PageConfig $pageConfig
-	 * @param array $attribs Request attributes from getRequestAttributes()
-	 * @return Response
-	 */
-	protected function createRedirectToOldidResponse(
-		PageConfig $pageConfig, array $attribs
-	): Response {
-		$format = $this->getRequest()->getPathParam( 'format' );
-		$target = $pageConfig->getTitle();
-		$revid = $pageConfig->getRevisionId();
-
-		if ( $revid === null ) {
-			throw new LogicException( 'Expected page to have a revision id.' );
-		}
-
-		$this->metrics->increment( 'redirectToOldid.' . $format );
-
-		$pathParams = [
-			'domain' => $attribs['envOptions']['domain'],
-			'format' => $format,
-			'title' => $target,
-			'revision' => $revid
-		];
-
-		if ( $this->getRequest()->getMethod() === 'POST' ) {
-			$pathParams['from'] = $this->getRequest()->getPathParam( 'from' );
-			$newPath = $this->getTransformEndpoint( $format );
-		} else {
-			$newPath = $this->getRevisionContentEndpoint( $format );
-
-		}
-		return $this->createRedirectResponse( $newPath, $pathParams, $this->getRequest()->getQueryParams() );
 	}
 
 	public function wtLint( PageConfig $pageConfig, array $attribs, ?string $wikitext = null ) {
