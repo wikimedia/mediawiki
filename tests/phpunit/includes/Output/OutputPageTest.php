@@ -1608,8 +1608,18 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function createParserOutputStubWithFlags( array $retVals, array $flags ): ParserOutput {
 		$pOut = $this->createMock( ParserOutput::class );
+
+		$mockedGetText = false;
 		foreach ( $retVals as $method => $retVal ) {
 			$pOut->method( $method )->willReturn( $retVal );
+			if ( $method === 'getText' ) {
+				$mockedGetText = true;
+			}
+		}
+
+		// Needed to ensure OutputPage::getParserOutputText doesn't return null
+		if ( !$mockedGetText ) {
+			$pOut->method( 'getText' )->willReturn( '' );
 		}
 
 		$arrayReturningMethods = [
@@ -1890,12 +1900,13 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
 
-		$pOut = $this->createParserOutputStub( 'getText', '<some text>' );
+		$text = '<some text>';
+		$pOut = $this->createParserOutputStub( 'getText', $text );
 
 		$op->addParserOutputMetadata( $pOut );
 		$this->assertSame( '', $op->getHTML() );
 
-		$op->addParserOutputText( $pOut );
+		$op->addParserOutputText( $text );
 		$this->assertSame( '<some text>', $op->getHTML() );
 	}
 

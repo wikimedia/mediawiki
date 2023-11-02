@@ -89,6 +89,9 @@ because of Phabricator reports.
   without further notice.
 * MediaWiki's virtualrest internal library has been removed in favor of the
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
+* OutputPage::addParserOutputText has been marked @internal since there are no
+  known users of it. Its old behavior has been deprecated and will change
+  in the future without further notice.
 * …
 
 === Deprecations in 1.42 ===

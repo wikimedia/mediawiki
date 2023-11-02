@@ -2296,6 +2296,17 @@ class OutputPage extends ContextSource {
 		}
 	}
 
+	private function getParserOutputText( ParserOutput $parserOutput, array $poOptions = [] ): string {
+		// Add default options from the skin
+		$skin = $this->getSkin();
+		$skinOptions = $skin->getOptions();
+		$poOptions += [
+			'skin' => $skin,
+			'injectTOC' => $skinOptions['toc'],
+		];
+		return $parserOutput->getText( $poOptions );
+	}
+
 	/**
 	 * Add the HTML and enhancements for it (like ResourceLoader modules) associated with a
 	 * ParserOutput object, without any other metadata.
@@ -2305,7 +2316,8 @@ class OutputPage extends ContextSource {
 	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
 	public function addParserOutputContent( ParserOutput $parserOutput, $poOptions = [] ) {
-		$this->addParserOutputText( $parserOutput, $poOptions );
+		$text = $this->getParserOutputText( $parserOutput, $poOptions );
+		$this->addParserOutputText( $text, $poOptions );
 
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
@@ -2316,19 +2328,15 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add the HTML associated with a ParserOutput object, without any metadata.
 	 *
-	 * @since 1.24
-	 * @param ParserOutput $parserOutput
+	 * @internal For local use only
+	 * @param string|ParserOutput $text
 	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
-	public function addParserOutputText( ParserOutput $parserOutput, $poOptions = [] ) {
-		// Add default options from the skin
-		$skin = $this->getSkin();
-		$skinOptions = $skin->getOptions();
-		$poOptions += [
-			'skin' => $skin,
-			'injectTOC' => $skinOptions['toc'],
-		];
-		$text = $parserOutput->getText( $poOptions );
+	public function addParserOutputText( $text, $poOptions = [] ) {
+		if ( $text instanceof ParserOutput ) {
+			wfDeprecated( __METHOD__ . ' with ParserOutput as first arg', '1.42' );
+			$text = $this->getParserOutputText( $text, $poOptions );
+		}
 		$this->getHookRunner()->onOutputPageBeforeHTML( $this, $text );
 		$this->addHTML( $text );
 	}
@@ -2340,8 +2348,9 @@ class OutputPage extends ContextSource {
 	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
 	public function addParserOutput( ParserOutput $parserOutput, $poOptions = [] ) {
+		$text = $this->getParserOutputText( $parserOutput, $poOptions );
 		$this->addParserOutputMetadata( $parserOutput );
-		$this->addParserOutputText( $parserOutput, $poOptions );
+		$this->addParserOutputText( $text, $poOptions );
 	}
 
 	/**
