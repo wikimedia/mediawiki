@@ -563,7 +563,7 @@
 	"nocookieslogin": "{{SITENAME}} wykorzystuje ciasteczka do przechowywania informacji o zalogowaniu się przez użytkownika.\nMasz obecnie w przeglądarce wyłączoną obsługę ciasteczek.\nSpróbuj ponownie po jej włączeniu.",
 	"nocookiesfornew": "Konto użytkownika nie zostało utworzone, ponieważ nie można było potwierdzić jego źródła.\nUpewnij się, że masz włączoną obsługę ciasteczek, przeładuj stronę i spróbuj ponownie.",
 	"createacct-loginerror": "Konto zostało pomyślnie utworzone, ale nie mogłeś zostać zalogowany automatycznie. Proszę, [[Special:UserLogin|zalogować się ręcznie]].",
-	"createacct-temp-warning": "Edycje wykonane z konta tymczasowego nie zostaną przeniesione do stałego konta.",
+	"createacct-temp-warning": "Edycje wykonane z konta tymczasowego <strong> $1 </strong> nie zostaną przeniesione do stałego konta.",
 	"noname": "To nie jest poprawna nazwa użytkownika.",
 	"loginsuccesstitle": "Zalogowano",
 	"loginsuccess": "'''{{GENDER:|Zalogowałeś się|Zalogowałaś się|Zalogowano}} do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
@@ -4257,5 +4257,10 @@
 	"action-renameuser": "zmieniania nazw użytkowników",
 	"right-renameuser": "Zmiana nazw kont użytkowników",
 	"renameuser-renamed-notice": "Nazwa tego konta została zmieniona.\nRejestr zmian nazw kont użytkowników znajduje się poniżej.",
-	"log-unknown-action": "wykonał(a) nieznaną akcję „$2” na [[$1]]"
+	"log-unknown-action": "wykonał(a) nieznaną akcję „$2” na [[$1]]",
+	"createacct-benefit-heading-temp-user": "Dziękujemy za wkład w {{GRAMMAR:B.lp|{{SITENAME}}}}.\nUtwórz konto, aby uzyskać dostęp do wszystkich funkcji.",
+	"createacct-benefit-subheading-temp-user": "{{GRAMMAR:M.lp|{{SITENAME}}}} jest tworzona przez ludzi jak ty. Posiadając konto, zyskujesz stałą i niezbywalną tożsamość oraz dostęp do funkcji, takich jak:",
+	"benefit-1-description": "Lista obserwowanych, pozwalająca śledzić interesujące cię strony.",
+	"benefit-2-description": "Lista edycji, które zostały przez Ciebie wniesione do projektu.",
+	"benefit-3-description": "Preferencje pozwalające dostosować twoje korzystanie z projektu."
 }

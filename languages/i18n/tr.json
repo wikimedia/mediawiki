@@ -573,7 +573,7 @@
 	"nocookieslogin": "{{SITENAME}}, kullanıcılara giriş yapmak için çerezleri kullanıyor.\nDevre dışı bırakılmış çerezleriniz var.\nLütfen etkinleştirin ve tekrar deneyin.",
 	"nocookiesfornew": "Kullanıcı hesabı oluşturulamadı, sorunun kaynağını da tespit edemedik.\nÇerezlerin açık olduğundan emin olun ve bu sayfayı yeniden yükleyip tekrar deneyin.",
 	"createacct-loginerror": "Hesap başarılı şekilde oluşturuldu ancak otomatik olarak oturumunuz açılmadı. Lütfen [[Special:UserLogin|manüel giriş]] sayfasına gidin.",
-	"createacct-temp-warning": "Geçici hesabınızla yaptığınız düzenlemeler kalıcı hesabınıza taşınmaz.",
+	"createacct-temp-warning": "<strong>$1</strong> geçici hesabınızla yaptığınız düzenlemeler kalıcı hesabınıza taşınmaz.",
 	"noname": "Geçerli bir kullanıcı adı girmediniz.",
 	"loginsuccesstitle": "Oturum açıldı",
 	"loginsuccess": "<strong>{{SITENAME}} sitesinde \"$1\" kullanıcı adıyla oturum açtınız.</strong>",

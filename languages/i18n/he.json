@@ -4237,8 +4237,8 @@
 	"right-renameuser": "שינוי שמות משתמשים",
 	"renameuser-renamed-notice": "שם המשתמש הזה שונה.\nיומן שינויי שמות המשתמש מוצג להלן.",
 	"log-unknown-action": "ביצע את הפעולה הבלתי־ידועה \"$2\" על הדף [[$1]]",
-	"createacct-benefit-heading-temp-user": "תודה על תרומתך לוויקיפדיה.\nנא ליצור חשבון כדי לגשת לתכונות נוספות.",
-	"createacct-benefit-subheading-temp-user": "אנשים כמוך יוצרים את ויקיפדיה. עם חשבון, תהיה לך אפשרות להחזיק בזהות קבועה ובטוחה עם גישה לתכונות כגון:",
+	"createacct-benefit-heading-temp-user": "תודה על תרומתך לאתר {{SITENAME}}.\nנא ליצור חשבון כדי לגשת לתכונות נוספות.",
+	"createacct-benefit-subheading-temp-user": "אנשים כמוך יוצרים את {{SITENAME}}. עם חשבון, תהיה לך אפשרות להחזיק בזהות קבועה ובטוחה עם גישה לתכונות כגון:",
 	"benefit-1-description": "רשימות מעקב שמאפשרות לך לעקוב אחרי דפים שמעניינים אותך.",
 	"benefit-2-description": "רשימה קבועה של תרומות שלך למיזם",
 	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך."

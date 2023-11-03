@@ -3,6 +3,7 @@
 		"authors": [
 			"500000000006城",
 			"A Chinese Wikipedian",
+			"GuoPC",
 			"Hzy980512",
 			"LittlePaw365",
 			"Shizhao",
@@ -15,7 +16,7 @@
 	"rest-prefix-mismatch": "请求的路径($1)不在REST API根路径($2)中",
 	"rest-wrong-method": "请求方法($1)不是{{PLURAL:$3|此路径允许的方法之一|此路径允许的方法}}($2)",
 	"rest-no-match": "请求的相对路径($1)不匹配任何已知的处理程序",
-	"rest-nonexistent-title": "指定的标题($1)不存在",
+	"rest-nonexistent-title": "指定的页面($1)不存在",
 	"rest-nonexistent-title-revision": "指定的修订($1)对于指定的页面不存在($2)",
 	"rest-nonexistent-revision": "指定的修订($1)不存在",
 	"rest-nonexistent-user": "指定的用户($1)不存在",

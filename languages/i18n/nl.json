@@ -4230,5 +4230,10 @@
 	"action-renameuser": "gebruikers te hernoemen",
 	"right-renameuser": "Gebruikers hernoemen",
 	"renameuser-renamed-notice": "Deze gebruiker is hernoemd.\nRelevante regels uit het logboek gebruikersnaamwijzigingen worden hieronder ter referentie weergegeven.",
-	"log-unknown-action": "heeft onbekende handeling \"$2\" op [[$1]] uitgevoerd"
+	"log-unknown-action": "heeft onbekende handeling \"$2\" op [[$1]] uitgevoerd",
+	"createacct-benefit-heading-temp-user": "Bedankt voor uw bijdrage aan {{SITENAME}}.\nMaak een account aan om toegang te krijgen tot meer functies.",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} wordt gemaakt door mensen zoals u. Met een account kunt u een permanente en veilige identiteit hebben met toegang tot functies zoals:",
+	"benefit-1-description": "Volglijsten, waarmee u pagina’s kunt bijhouden waarin u geïnteresseerd bent.",
+	"benefit-2-description": "Permanente lijst met bijdragen die u aan het project hebt geleverd",
+	"benefit-3-description": "Voorkeuren, waarmee u uw account naar uw hand kunt zetten."
 }

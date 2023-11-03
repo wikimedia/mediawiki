@@ -753,9 +753,9 @@
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Anmelden]] oder [[Special:CreateAccount|ein Konto erstellen]], damit zukünftige Bearbeitungen dir zugerechnet werden können und du auf andere Funktionen zugreifen kannst.",
 	"blankarticle": "<strong>Warnung:</strong> Die Seite, die du erstellst, ist leer.\nWenn du erneut auf „$1“ klickst, wird die Seite ohne Inhalt erstellt.",
 	"anoneditwarning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Deine IP-Adresse wird bei Bearbeitungen öffentlich sichtbar. <strong>[$1 Melde dich an]</strong> oder <strong>[$2 erstelle ein Benutzerkonto]</strong>, damit Bearbeitungen deinem Benutzernamen zugeordnet werden. Ein eigenes Benutzerkonto hat eine ganze Reihe von Vorteilen.",
-	"autocreate-edit-warning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Deine Eingabe wird einem <strong>[[{{MediaWiki:tempuser-helppage}}|automatisch generierten Namen]]</strong> zugeordnet, indem ein Cookie in deinem Browser gespeichert wird. Deine IP-Adresse wird für vertrauenswürdige Benutzer sichtbar sein. Wenn du dich <strong>[$1 anmeldest]</strong> oder <strong>[$2 ein Konto erstellst]</strong>, werden deine Bearbeitungen einem von dir gewählten Namen zugeordnet; dies hat auch weitere Vorzüge.",
+	"autocreate-edit-warning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Du bist nicht angemeldet. Sobald du eine Änderung vornimmst, wird ein temporäres Konto für dich erstellt. [[{{MediaWiki:tempuser-helppage}}|Weitere Informationen]]. <strong>[$1 Melde dich an]</strong> oder <strong>[$2 erstelle ein Konto]</strong>, um nach Ablauf dieses Kontos weiterhin Benachrichtigungen zu erhalten und auf andere Funktionen zugreifen zu können.",
 	"anonpreviewwarning": "<em>Du bist nicht angemeldet. Beim Veröffentlichen wird deine IP-Adresse in der Versionsgeschichte aufgezeichnet.</em>",
-	"autocreate-preview-warning": "<em>Du bist nicht angemeldet. Dein Beitrag wird einem [[{{MediaWiki:tempuser-helppage}}|automatisch generierten Namen]] zugeordnet und deine IP-Adresse ist für die Administratoren sichtbar.</em>",
+	"autocreate-preview-warning": "<em>Du bist nicht angemeldet. Sobald du eine Änderung vornimmst, wird ein temporäres Konto für dich erstellt. [[{{MediaWiki:tempuser-helppage}}|Weitere Informationen]].</em>",
 	"missingsummary": "<strong>Hinweis:</strong> Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „$1“ klickst, wird deine Änderung ohne Zusammenfassung veröffentlicht.",
 	"selfredirect": "<strong>Warnung:</strong> Du leitest auf diese Seite selbst weiter.\nDu hast vermutlich das falsche Weiterleitungsziel angegeben oder du bearbeitest die falsche Seite.\nWenn du erneut auf „$1“ klickst, wird die Weiterleitung dennoch erstellt.",
 	"missingcommenttext": "Bitte gib einen Kommentar ein.",
@@ -4255,6 +4255,6 @@
 	"createacct-benefit-heading-temp-user": "Vielen Dank für deinen Beitrag zu {{SITENAME}}.\nErstelle ein Konto, um auf weitere Funktionen zuzugreifen.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} wird von Leuten wie dir erstellt. Mit einem Konto erhältst du eine dauerhafte und sichere Identität mit Zugriff auf Funktionen wie:",
 	"benefit-1-description": "Beobachtungslisten, mit denen du den Überblick über die Seiten behältst, die dich interessieren.",
-	"benefit-2-description": "Dauerhafte Liste deiner Beiträge zum Projekt",
+	"benefit-2-description": "Permanente Liste deine Beiträge zum Projekt.",
 	"benefit-3-description": "Voreinstellungen, mit denen du dein Konto individuell gestalten kannst."
 }
