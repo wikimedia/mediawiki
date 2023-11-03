@@ -729,7 +729,7 @@
 		 */
 		init: function () {
 			windowManager = new OO.ui.WindowManager();
-			$( document.body ).append( windowManager.$element );
+			$( OO.ui.getTeleportTarget() ).append( windowManager.$element );
 			windowManager.addWindows( {
 				errorAlert: new OO.ui.MessageDialog()
 			} );
