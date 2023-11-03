@@ -28,6 +28,7 @@ use HTMLForm;
 use HTMLRestrictionsField;
 use InvalidPassword;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
@@ -105,8 +106,9 @@ class SpecialBotPasswords extends FormSpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		$this->getOutput()->disallowUserJs();
 		$this->requireNamedUser();
+		$this->getOutput()->disallowUserJs();
+		$this->getOutput()->addModules( 'mediawiki.special' );
 		$this->addHelpLink( 'Manual:Bot_passwords' );
 
 		if ( $par !== null ) {
@@ -165,9 +167,9 @@ class SpecialBotPasswords extends FormSpecialPage {
 				}
 			}
 
-			$lang = $this->getLanguage();
 			$showGrants = $this->grantsInfo->getValidGrants();
-			$grantLinks = array_map( [ $this->grantsLocalization, 'getGrantsLink' ], $showGrants );
+			$grantNames = $this->grantsLocalization->getGrantDescriptionsWithClasses(
+				$showGrants, $this->getLanguage() );
 
 			$fields[] = [
 				'type' => 'info',
@@ -181,7 +183,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$this->msg( 'botpasswords-label-grants-column' )->escaped() => 'grant'
 				],
 				'rows' => array_combine(
-					$grantLinks,
+					$grantNames,
 					$showGrants
 				),
 				'default' => array_map(
@@ -191,16 +193,12 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$this->botPassword->getGrants()
 				),
 				'tooltips-html' => array_combine(
-					$grantLinks,
+					$grantNames,
 					array_map(
-						function ( $rights ) use ( $lang ) {
-							return $lang->semicolonList(
-								array_map(
-									fn ( $right ) => $this->msg( "right-$right" )->parse(),
-									$rights
-								)
-							);
-						},
+						fn ( $rights ) => Html::rawElement( 'ul', [], implode( '', array_map(
+							fn ( $right ) => Html::rawElement( 'li', [], $this->msg( "right-$right" )->parse() ),
+							$rights
+						) ) ),
 						array_intersect_key( $this->grantsInfo->getRightsByGrant(),
 							array_fill_keys( $showGrants, true ) )
 					)
