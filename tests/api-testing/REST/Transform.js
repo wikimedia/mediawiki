@@ -7,7 +7,6 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 const domino = require( 'domino' );
 const should = require( 'chai' ).should();
 const semver = require( 'semver' );
-const url = require( 'url' );
 const fs = require( 'fs' );
 
 const parsoidOptions = {
@@ -83,13 +82,9 @@ function contentTypeMatcher( expectedMime, expectedSpec, expectedVersion ) {
 // TODO: Replace all occurrences of (Lint Page/Lint_Page) with `page`.
 describe( '/transform/ endpoint', function () {
 	const client = new REST();
-	const parsedUrl = new url.URL( client.req.app );
-	const REST_PATH = parsedUrl.pathname;
 	const endpointPrefix = client.pathPrefix = 'rest.php/coredev/v0';
 	const page = utils.title( 'TransformSource_' );
-	const pageWithSpaces = page.replace( '_', ' ' );
 	const pageEncoded = encodeURIComponent( page );
-	const pageWithSpacesEncoded = encodeURIComponent( pageWithSpaces );
 	const pageContent = '{|\nhi\n|ho\n|}';
 	let revid;
 
@@ -491,7 +486,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should lint the given page, transform', function ( done ) {
+		it( 'should lint the given revision, transform', function ( done ) {
 			if ( skipForNow ) {
 				return this.skip();
 			} // Enable linting config
@@ -507,24 +502,18 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should redirect title to latest revision (lint)', function ( done ) {
+		it( 'should lint the given page, transform', function ( done ) {
 			if ( skipForNow ) {
 				return this.skip();
 			} // Enable linting config
 			client.req
-				.post( endpointPrefix + '/transform/wikitext/to/lint/' )
-				.send( {
-					original: {
-						title: 'Lint_Page'
-					}
-				} )
-				.expect( 307 ) // no revid or wikitext source provided
+				.post( endpointPrefix + '/transform/wikitext/to/lint/Lint_Page' )
+				.send( {} )
+				.expect( status200 )
 				.expect( function ( res ) {
-					res.headers.should.have.property( 'location' );
-					res.headers.location.should.equal(
-						REST_PATH + endpointPrefix +
-						'/transform/wikitext/to/lint/Lint%20Page/102'
-					);
+					res.body.should.be.instanceof( Array );
+					res.body.length.should.equal( 1 );
+					res.body[ 0 ].type.should.equal( 'fostered' );
 				} )
 				.end( done );
 		} );
@@ -641,17 +630,12 @@ describe( '/transform/ endpoint', function () {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
+					// no revid or wikitext source provided
 					original: {
 						title: page
 					}
 				} )
-				.expect( 307 ) // no revid or wikitext source provided
-				.expect( function ( res ) {
-					res.headers.should.have.property( 'location' );
-					res.headers.location.should.equal(
-						REST_PATH + endpointPrefix + `/transform/wikitext/to/html/${pageWithSpacesEncoded}/${revid}`
-					);
-				} )
+				.expect( validHtmlResponse() )
 				.end( done );
 		} );
 
@@ -660,17 +644,12 @@ describe( '/transform/ endpoint', function () {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
+					// no revid or wikitext source provided
 					original: {
 						title: page
 					}
 				} )
-				.expect( 307 ) // no revid or wikitext source provided
-				.expect( function ( res ) {
-					res.headers.should.have.property( 'location' );
-					res.headers.location.should.equal(
-						REST_PATH + endpointPrefix + `/transform/wikitext/to/pagebundle/${pageWithSpacesEncoded}/${revid}`
-					);
-				} )
+				.expect( validPageBundleResponse() )
 				.end( done );
 		} );
 
@@ -682,16 +661,7 @@ describe( '/transform/ endpoint', function () {
 						title: page
 					}
 				} )
-				.expect( 307 ) // no revid or wikitext source provided
-				.expect( function ( res ) {
-					res.headers.should.have.property( 'location' );
-					const expected = REST_PATH + endpointPrefix +
-						`/transform/wikitext/to/html/${pageWithSpacesEncoded}/`;
-
-					assert.strictEqual(
-						res.headers.location.startsWith( expected ), true, res.headers.location
-					);
-				} )
+				.expect( validHtmlResponse() )
 				.end( done );
 		} );
 
