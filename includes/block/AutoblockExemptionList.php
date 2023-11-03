@@ -4,6 +4,8 @@ namespace MediaWiki\Block;
 
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Provides access to the wiki's autoblock exemption list.
@@ -11,11 +13,15 @@ use Wikimedia\IPUtils;
  */
 class AutoblockExemptionList {
 	private LoggerInterface $logger;
+	/** Should be for the wiki's content language */
+	private ITextFormatter $textFormatter;
 
 	public function __construct(
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		ITextFormatter $textFormatter
 	) {
 		$this->logger = $logger;
+		$this->textFormatter = $textFormatter;
 	}
 
 	/**
@@ -25,9 +31,10 @@ class AutoblockExemptionList {
 	 * @return bool
 	 */
 	public function isExempt( $ip ) {
-		$lines = explode( "\n",
-			wfMessage( 'block-autoblock-exemptionlist' )->inContentLanguage()->plain()
+		$list = $this->textFormatter->format(
+			MessageValue::new( 'block-autoblock-exemptionlist' )
 		);
+		$lines = explode( "\n", $list );
 		$this->logger->debug( "Checking the autoblock exemption list.." );
 		foreach ( $lines as $line ) {
 			// List items only
