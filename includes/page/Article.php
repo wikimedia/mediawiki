@@ -1030,14 +1030,14 @@ class Article implements Page {
 		$ns = $title->getNamespace();
 
 		# Don't index user and user talk pages for blocked users (T13443)
-		if ( ( $ns === NS_USER || $ns === NS_USER_TALK ) && !$title->isSubpage() ) {
+		if ( $ns === NS_USER || $ns === NS_USER_TALK ) {
 			$specificTarget = null;
 			$vagueTarget = null;
 			$titleText = $title->getText();
 			if ( IPUtils::isValid( $titleText ) ) {
 				$vagueTarget = $titleText;
 			} else {
-				$specificTarget = $titleText;
+				$specificTarget = $title->getRootText();
 			}
 			if ( $this->blockStore->newFromTarget( $specificTarget, $vagueTarget ) instanceof DatabaseBlock ) {
 				return [

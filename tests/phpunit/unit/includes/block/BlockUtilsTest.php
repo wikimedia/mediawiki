@@ -102,14 +102,12 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideTestParseBlockTargetNonIpString
 	 * @param string $inputTarget
-	 * @param string $baseName if it was a subpage
 	 * @param ?UserIdentity $userIdentityLookupResult
 	 * @param UserIdentity|string|null $outputTarget
 	 * @param ?int $targetType
 	 */
 	public function testParseBlockTargetNonIpString(
 		string $inputTarget,
-		string $baseName,
 		?UserIdentity $userIdentityLookupResult,
 		$outputTarget,
 		?int $targetType
@@ -123,7 +121,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
 		$userIdentityLookup
 			->method( 'getUserIdentityByName' )
-			->with( $baseName )
+			->with( $inputTarget )
 			->willReturn( $userIdentityLookupResult );
 		$blockUtils = $this->getUtils(
 			[],
@@ -139,14 +137,12 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		$userIdentity = $this->createMock( UserIdentity::class );
 		yield 'Name returns a valid user' => [
 			'DannyS712',
-			'DannyS712',
 			$userIdentity,
 			$userIdentity,
 			AbstractBlock::TYPE_USER
 		];
 
 		yield 'Auto block id' => [
-			'#123',
 			'#123',
 			null,
 			'123',
@@ -155,7 +151,6 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 
 		yield 'Invalid user name, with subpage' => [
 			'SomeInvalid#UserName/WithASubpage',
-			'SomeInvalid#UserName',
 			null,
 			null,
 			null

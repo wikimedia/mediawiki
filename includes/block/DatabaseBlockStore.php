@@ -39,7 +39,6 @@ use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use stdClass;
-use UnexpectedValueException;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -469,7 +468,7 @@ class DatabaseBlockStore {
 					break;
 
 				default:
-					throw new UnexpectedValueException( "Tried to load block with invalid type" );
+					$this->logger->debug( "Ignoring invalid vague target" );
 			}
 		}
 
