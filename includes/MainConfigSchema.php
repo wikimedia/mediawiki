@@ -104,14 +104,14 @@ use WinCacheBagOStuff;
  *         with uniform values. The 'object' type should be used for structures that have a known
  *         set of meaningful properties, especially if each property may have a different kind
  *         of value.
- *         See {@link MediaWiki\Settings\Source\JsonTypeHelper} for details.
+ *         See {@link \MediaWiki\Settings\Source\JsonTypeHelper} for details.
  *
  * The following additional keys are used by MediaWiki:
- * - mergeStrategy: see the {@link MediaWiki\Settings\Config\MergeStrategy}.
+ * - mergeStrategy: see the {@link \MediaWiki\Settings\Config\MergeStrategy}.
  * - dynamicDefault: Specified a callback that computes the effective default at runtime, based
  *   on the value of other config variables or on the system environment.
- *   See {@link MediaWiki\Settings\Source\ReflectionSchemaSource}
- *   and {@link MediaWiki\Settings\DynamicDefaultValues} for details.
+ *   See {@link \MediaWiki\Settings\Source\ReflectionSchemaSource}
+ *   and {@link \MediaWiki\Settings\DynamicDefaultValues} for details.
  *
  * @note After changing this file, run maintenance/generateConfigSchema.php to update
  *       all the files derived from the information in MainConfigSchema.
@@ -948,7 +948,7 @@ class MainConfigSchema {
 	 * The above maps ".../img_auth.php/timeline/X" to "mwstore://local-fs/timeline-render/".
 	 * The name "local-fs" should correspond by name to an entry in $wgFileBackends.
 	 *
-	 * @see $wgFileBackends
+	 * @see self::FileBackends
 	 */
 	public const ImgAuthUrlPathMap = [
 		'default' => [],
@@ -1086,7 +1086,7 @@ class MainConfigSchema {
 	 * be searched after the local file repo.
 	 * Otherwise, you will only have access to local media files.
 	 *
-	 * @see FileRepo::__construct for the default options.
+	 * @see \FileRepo::__construct for the default options.
 	 * @see Setup.php for an example usage and default initialization.
 	 */
 	public const LocalFileRepo = [
@@ -1130,7 +1130,7 @@ class MainConfigSchema {
 	 * is found in the local repository (e.g. via `[[File:..]]` syntax).
 	 *
 	 * @since 1.11
-	 * @see $wgLocalFileRepo
+	 * @see self::LocalFileRepo
 	 */
 	public const ForeignFileRepos = [
 		'default' => [],
@@ -3005,7 +3005,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @see $wgSharedDB
+	 * @see self::SharedDB
 	 */
 	public const SharedPrefix = [
 		'default' => false,
@@ -3021,7 +3021,7 @@ class MainConfigSchema {
 	}
 
 	/**
-	 * @see $wgSharedDB
+	 * @see self::SharedDB
 	 * The installer will add 'actor' to this list for all new wikis.
 	 */
 	public const SharedTables = [
@@ -3034,7 +3034,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @see $wgSharedDB
+	 * @see self::SharedDB
 	 * @since 1.23
 	 */
 	public const SharedSchema = [
@@ -3212,7 +3212,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @see $wgDatabaseReplicaLagWarning
+	 * @see self::DatabaseReplicaLagWarning
 	 * @since 1.36
 	 */
 	public const DatabaseReplicaLagCritical = [
@@ -3420,7 +3420,7 @@ class MainConfigSchema {
 	/**
 	 * List of enabled ExternalStore protocols.
 	 *
-	 * @see ExternalStoreAccess
+	 * @see \ExternalStoreAccess
 	 *
 	 * ```
 	 * $wgExternalStores = [ "DB" ];
@@ -3439,7 +3439,7 @@ class MainConfigSchema {
 	 * It is ignored if a different LBFactory is set, or if `externalClusters`
 	 * is already set explicitly.
 	 *
-	 * @see ExternalStoreAccess
+	 * @see \ExternalStoreAccess
 	 *
 	 * **Example:**
 	 * Create a cluster named 'blobs_cluster1':
@@ -3459,7 +3459,7 @@ class MainConfigSchema {
 	 * The place to put new text blobs or false to put them in the text table
 	 * of the local wiki database.
 	 *
-	 * @see ExternalStoreAccess
+	 * @see \ExternalStoreAccess
 	 *
 	 * **Example:**
 	 *
@@ -3714,7 +3714,7 @@ class MainConfigSchema {
 	 *   instead of `timeout` and will be retried once if a connection fails
 	 *   to be established. Background: https://phabricator.wikimedia.org/T105378.
 	 *
-	 * @see MediaWiki\PoolCounter\PoolCounterClient
+	 * @see \MediaWiki\PoolCounter\PoolCounterClient
 	 * @since 1.16
 	 */
 	public const PoolCountClientConf = [
@@ -3835,7 +3835,8 @@ class MainConfigSchema {
 	 * To configure the `broadcastRoutingPrefix` WANObjectCache parameter,
 	 * use $wgWANObjectCache.
 	 *
-	 * @see $wgMessageCacheType, $wgParserCacheType
+	 * @see self::MessageCacheType
+	 * @see self::ParserCacheType
 	 */
 	public const MainCacheType = [
 		'default' => CACHE_NONE,
@@ -4479,7 +4480,7 @@ class MainConfigSchema {
 	/**
 	 * Cache timeout for the CDN when DB replica DB lag is high
 	 *
-	 * @see $wgCdnMaxAge
+	 * @see self::CdnMaxAge
 	 * @since 1.27
 	 */
 	public const CdnMaxageLagged = [
@@ -4518,7 +4519,7 @@ class MainConfigSchema {
 	/**
 	 * Cache timeout for the CDN when a response is known to be wrong or incomplete (due to load)
 	 *
-	 * @see $wgCdnMaxAge
+	 * @see self::CdnMaxAge
 	 * @since 1.27
 	 */
 	public const CdnMaxageSubstitute = [
@@ -4633,7 +4634,7 @@ class MainConfigSchema {
 	 * ```
 	 *
 	 * @since 1.22
-	 * @see $wgHTCPMulticastTTL
+	 * @see self::HTCPMulticastTTL
 	 */
 	public const HTCPRouting = [
 		'default' => [],
@@ -4643,7 +4644,7 @@ class MainConfigSchema {
 	/**
 	 * HTCP multicast TTL.
 	 *
-	 * @see $wgHTCPRouting
+	 * @see self::HTCPRouting
 	 */
 	public const HTCPMulticastTTL = [
 		'default' => 1,
@@ -5190,8 +5191,7 @@ class MainConfigSchema {
 	 * Set BrowserFormatDetection to false to fallback to browser defaults.
 	 *
 	 * @since 1.37
-	 * @see https://developer.apple.com/
-	 *     library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+	 * @see https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
 	 */
 	public const BrowserFormatDetection = [
 		'default' => 'telephone=no',
@@ -5908,7 +5908,7 @@ class MainConfigSchema {
 	 *   - versioned
 	 *   - unversioned
 	 *
-	 * @see ResourceLoader::__construct
+	 * @see \MediaWiki\ResourceLoader\ResourceLoader::__construct
 	 * @since 1.35
 	 */
 	public const ResourceLoaderMaxage = [
@@ -6439,7 +6439,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @see $wgMaxTemplateDepth
+	 * @see self::MaxTemplateDepth
 	 */
 	public const MaxPPExpandDepth = [
 		'default' => 100,
@@ -6453,7 +6453,7 @@ class MainConfigSchema {
 	 * to any other protocols with the same name as a namespace. See task T46011 for
 	 * more information.
 	 *
-	 * @see wfParseUrl
+	 * @see \wfParseUrl
 	 */
 	public const UrlProtocols = [
 		'default' => [
@@ -6795,7 +6795,7 @@ class MainConfigSchema {
 	/**
 	 * Number of days the user must exist before becoming a learner.
 	 *
-	 * @see $wgLearnerEdits
+	 * @see self::LearnerEdits
 	 */
 	public const LearnerMemberSince = [
 		'default' => 4,
@@ -6804,7 +6804,7 @@ class MainConfigSchema {
 	/**
 	 * Number of edits the user must have before becoming "experienced".
 	 *
-	 * @see $wgLearnerEdits
+	 * @see self::LearnerEdits
 	 */
 	public const ExperiencedUserEdits = [
 		'default' => 500,
@@ -6813,7 +6813,7 @@ class MainConfigSchema {
 	/**
 	 * Number of days the user must exist before becoming "experienced".
 	 *
-	 * @see $wgLearnerEdits
+	 * @see self::LearnerEdits
 	 */
 	public const ExperiencedUserMemberSince = [
 		'default' => 30,
@@ -7042,7 +7042,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @see $wgAuthManagerConfig
+	 * @see self::AuthManagerConfig
 	 * @since 1.27
 	 */
 	public const AuthManagerAutoConfig = [
@@ -7185,7 +7185,7 @@ class MainConfigSchema {
 	 * The key 'default' is used if a requested operation isn't defined in the array.
 	 *
 	 * @since 1.27
-	 * @see $wgReauthenticateTime
+	 * @see self::ReauthenticateTime
 	 */
 	public const AllowSecuritySensitiveOperationIfCannotReauthenticate = [
 		'default' => [ 'default' => true, ],
@@ -7974,7 +7974,7 @@ class MainConfigSchema {
 	 * belonging in these groups can be abused in dangerous ways).
 	 * This is used for some security checks, mainly logging.
 	 * @since 1.41
-	 * @see UserGroupManager::getUserPrivilegedGroups()
+	 * @see \MediaWiki\User\UserGroupManager::getUserPrivilegedGroups()
 	 */
 	public const PrivilegedGroups = [
 		'default' => [
@@ -8064,7 +8064,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @see $wgGroupsAddToSelf
+	 * @see self::GroupsAddToSelf
 	 */
 	public const GroupsRemoveFromSelf = [
 		'default' => [],
@@ -8283,7 +8283,7 @@ class MainConfigSchema {
 	 *
 	 * Criteria has the same format as $wgAutopromote
 	 *
-	 * @see $wgAutopromote
+	 * @see self::Autopromote
 	 * @since 1.18
 	 */
 	public const AutopromoteOnce = [
@@ -8335,7 +8335,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @see $wgAddGroups
+	 * @see self::AddGroups
 	 */
 	public const RemoveGroups = [
 		'default' => [],
@@ -8915,6 +8915,13 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Grant groups are used on some user interfaces to display conceptually
+	 * similar grants together.
+	 *
+	 * This configuration value should usually be set by extensions, not
+	 * site administrators.
+	 *
+	 * @see self::GrantPermissions
 	 * @since 1.27
 	 */
 	public const GrantPermissionGroups = [
@@ -9745,7 +9752,7 @@ class MainConfigSchema {
 	/**
 	 * Prefix for metric names sent to $wgStatsdServer.
 	 *
-	 * @see MediaWikiServices::getInstance()->getStatsdDataFactory
+	 * @see \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory
 	 * @see \BufferingStatsdDataFactory
 	 * @since 1.25
 	 */
@@ -11193,9 +11200,11 @@ class MainConfigSchema {
 	 * for that.
 	 *
 	 * @note the default wiring file will be added automatically by Setup.php
-	 * @see MediaWikiServices @see ServiceContainer::loadWiringFiles() for details on loading
-	 *     service instantiator functions. @see docs/Injection.md for an overview of dependency
-	 *     injection in MediaWiki.
+	 * @see \MediaWiki\MediaWikiServices
+	 * @see \Wikimedia\Services\ServiceContainer::loadWiringFiles() for details on loading
+	 *   service instantiator functions.
+	 * @see docs/Injection.md for an overview of dependency
+	 *   injection in MediaWiki.
 	 */
 	public const ServiceWiringFiles = [
 		'default' => [],

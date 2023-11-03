@@ -455,7 +455,7 @@ config-schema:
             $wgImgAuthUrlPathMap['/timeline/'] = 'mwstore://local-fs/timeline-render/';
             The above maps ".../img_auth.php/timeline/X" to "mwstore://local-fs/timeline-render/".
             The name "local-fs" should correspond by name to an entry in $wgFileBackends.
-            @see $wgFileBackends
+            @see self::FileBackends
     LocalFileRepo:
         default: false
         type:
@@ -579,7 +579,7 @@ config-schema:
             If you set $wgForeignFileRepos to an array of repository structures, those will
             be searched after the local file repo.
             Otherwise, you will only have access to local media files.
-            @see FileRepo::__construct for the default options.
+            @see \FileRepo::__construct for the default options.
             @see Setup.php for an example usage and default initialization.
     ForeignFileRepos:
         default: []
@@ -592,7 +592,7 @@ config-schema:
             The wiki will only consider the foreign repository if no file of the given name
             is found in the local repository (e.g. via `[[File:..]]` syntax).
             @since 1.11
-            @see $wgLocalFileRepo
+            @see self::LocalFileRepo
     UseInstantCommons:
         default: false
         description: |-
@@ -1830,7 +1830,7 @@ config-schema:
         dynamicDefault:
             use: [DBprefix]
             callback: [MediaWiki\MainConfigSchema, getDefaultSharedPrefix]
-        description: '@see $wgSharedDB'
+        description: '@see self::SharedDB'
     SharedTables:
         default:
             - user
@@ -1838,7 +1838,7 @@ config-schema:
             - user_autocreate_serial
         type: array
         description: |-
-            @see $wgSharedDB
+            @see self::SharedDB
             The installer will add 'actor' to this list for all new wikis.
     SharedSchema:
         default: false
@@ -1846,7 +1846,7 @@ config-schema:
             use: [DBmwschema]
             callback: [MediaWiki\MainConfigSchema, getDefaultSharedSchema]
         description: |-
-            @see $wgSharedDB
+            @see self::SharedDB
             @since 1.23
     DBservers:
         default: false
@@ -1966,7 +1966,7 @@ config-schema:
     DatabaseReplicaLagCritical:
         default: 30
         description: |-
-            @see $wgDatabaseReplicaLagWarning
+            @see self::DatabaseReplicaLagWarning
             @since 1.36
     MaxExecutionTimeForExpensiveQueries:
         default: 0
@@ -2093,7 +2093,7 @@ config-schema:
         type: array
         description: |-
             List of enabled ExternalStore protocols.
-            @see ExternalStoreAccess
+            @see \ExternalStoreAccess
             ```
             $wgExternalStores = [ "DB" ];
             ```
@@ -2106,7 +2106,7 @@ config-schema:
             of {@link Wikimedia::Rdbms::LBFactorySimple LBFactorySimple}.
             It is ignored if a different LBFactory is set, or if `externalClusters`
             is already set explicitly.
-            @see ExternalStoreAccess
+            @see \ExternalStoreAccess
             **Example:**
             Create a cluster named 'blobs_cluster1':
             ```
@@ -2122,7 +2122,7 @@ config-schema:
         description: |-
             The place to put new text blobs or false to put them in the text table
             of the local wiki database.
-            @see ExternalStoreAccess
+            @see \ExternalStoreAccess
             **Example:**
             ```
             $wgDefaultExternalStore = [ 'DB://cluster1', 'DB://cluster2' ];
@@ -2292,7 +2292,7 @@ config-schema:
             - connect_timeout: [Since 1.28] Alternative connection timeout. If set, it is used
               instead of `timeout` and will be retried once if a connection fails
               to be established. Background: https://phabricator.wikimedia.org/T105378.
-            @see MediaWiki\PoolCounter\PoolCounterClient
+            @see \MediaWiki\PoolCounter\PoolCounterClient
             @since 1.16
     MaxUserDBWriteDuration:
         default: false
@@ -2369,7 +2369,8 @@ config-schema:
             See @ref wanobjectcache-deployment "Deploying WANObjectCache".
             To configure the `broadcastRoutingPrefix` WANObjectCache parameter,
             use $wgWANObjectCache.
-            @see $wgMessageCacheType, $wgParserCacheType
+            @see self::MessageCacheType
+            @see self::ParserCacheType
     MessageCacheType:
         default: -1
         description: |-
@@ -2783,7 +2784,7 @@ config-schema:
         default: 30
         description: |-
             Cache timeout for the CDN when DB replica DB lag is high
-            @see $wgCdnMaxAge
+            @see self::CdnMaxAge
             @since 1.27
     CdnMaxageStale:
         default: 10
@@ -2808,7 +2809,7 @@ config-schema:
         default: 60
         description: |-
             Cache timeout for the CDN when a response is known to be wrong or incomplete (due to load)
-            @see $wgCdnMaxAge
+            @see self::CdnMaxAge
             @since 1.27
     ForcedRawSMaxage:
         default: 300
@@ -2894,12 +2895,12 @@ config-schema:
             ];
             ```
             @since 1.22
-            @see $wgHTCPMulticastTTL
+            @see self::HTCPMulticastTTL
     HTCPMulticastTTL:
         default: 1
         description: |-
             HTCP multicast TTL.
-            @see $wgHTCPRouting
+            @see self::HTCPRouting
     UsePrivateIPs:
         default: false
         description: 'Should forwarded Private IPs be accepted?'
@@ -3240,8 +3241,7 @@ config-schema:
             The default of this setting is to disable telephone number data detection.
             Set BrowserFormatDetection to false to fallback to browser defaults.
             @since 1.37
-            @see https://developer.apple.com/
-                library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+            @see https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
     SkinMetaTags:
         default: {  }
         type: object
@@ -3743,7 +3743,7 @@ config-schema:
             Valid keys:
               - versioned
               - unversioned
-            @see ResourceLoader::__construct
+            @see \MediaWiki\ResourceLoader\ResourceLoader::__construct
             @since 1.35
     ResourceLoaderUseObjectCacheForDeps:
         default: false
@@ -4109,7 +4109,7 @@ config-schema:
             stop the parser before it hits the xdebug limit.
     MaxPPExpandDepth:
         default: 100
-        description: '@see $wgMaxTemplateDepth'
+        description: '@see self::MaxTemplateDepth'
     UrlProtocols:
         default:
             - 'bitcoin:'
@@ -4148,7 +4148,7 @@ config-schema:
             Instead, if you want to support file links, add 'file://'. The same applies
             to any other protocols with the same name as a namespace. See task T46011 for
             more information.
-            @see wfParseUrl
+            @see \wfParseUrl
     CleanSignatures:
         default: true
         description: 'If true, removes (by substituting) templates in signatures.'
@@ -4358,17 +4358,17 @@ config-schema:
         default: 4
         description: |-
             Number of days the user must exist before becoming a learner.
-            @see $wgLearnerEdits
+            @see self::LearnerEdits
     ExperiencedUserEdits:
         default: 500
         description: |-
             Number of edits the user must have before becoming "experienced".
-            @see $wgLearnerEdits
+            @see self::LearnerEdits
     ExperiencedUserMemberSince:
         default: 30
         description: |-
             Number of days the user must exist before becoming "experienced".
-            @see $wgLearnerEdits
+            @see self::LearnerEdits
     ManualRevertSearchRadius:
         default: 15
         type: integer
@@ -4506,7 +4506,7 @@ config-schema:
         type: object
         mergeStrategy: array_plus_2d
         description: |-
-            @see $wgAuthManagerConfig
+            @see self::AuthManagerConfig
             @since 1.27
     RememberMe:
         default: choose
@@ -4569,7 +4569,7 @@ config-schema:
             that case, while setting it false will have it return SEC_FAIL.
             The key 'default' is used if a requested operation isn't defined in the array.
             @since 1.27
-            @see $wgReauthenticateTime
+            @see self::ReauthenticateTime
     ChangeCredentialsBlacklist:
         default:
             - MediaWiki\Auth\TemporaryPasswordAuthenticationRequest
@@ -5033,7 +5033,7 @@ config-schema:
             belonging in these groups can be abused in dangerous ways).
             This is used for some security checks, mainly logging.
             @since 1.41
-            @see UserGroupManager::getUserPrivilegedGroups()
+            @see \MediaWiki\User\UserGroupManager::getUserPrivilegedGroups()
     RevokePermissions:
         default: {  }
         type: object
@@ -5093,7 +5093,7 @@ config-schema:
     GroupsRemoveFromSelf:
         default: {  }
         type: object
-        description: '@see $wgGroupsAddToSelf'
+        description: '@see self::GroupsAddToSelf'
     RestrictionTypes:
         default:
             - create
@@ -5257,7 +5257,7 @@ config-schema:
             Where event is either:
                - 'onEdit' (when user edits)
             Criteria has the same format as $wgAutopromote
-            @see $wgAutopromote
+            @see self::Autopromote
             @since 1.18
     AutopromoteOnceLogInRC:
         default: true
@@ -5290,7 +5290,7 @@ config-schema:
     RemoveGroups:
         default: {  }
         type: object
-        description: '@see $wgAddGroups'
+        description: '@see self::AddGroups'
     AvailableRights:
         default: []
         type: array
@@ -5596,7 +5596,13 @@ config-schema:
         type: object
         additionalProperties:
             type: string
-        description: '@since 1.27'
+        description: |-
+            Grant groups are used on some user interfaces to display conceptually
+            similar grants together.
+            This configuration value should usually be set by extensions, not
+            site administrators.
+            @see self::GrantPermissions
+            @since 1.27
     EnableBotPasswords:
         default: true
         type: boolean
@@ -6075,7 +6081,7 @@ config-schema:
         default: MediaWiki
         description: |-
             Prefix for metric names sent to $wgStatsdServer.
-            @see MediaWikiServices::getInstance()->getStatsdDataFactory
+            @see \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory
             @see \BufferingStatsdDataFactory
             @since 1.25
     StatsdSamplingRates:
@@ -6984,9 +6990,11 @@ config-schema:
             However, this cannot be used to replace existing services - use the MediaWikiServices hook
             for that.
             @note the default wiring file will be added automatically by Setup.php
-            @see MediaWikiServices @see ServiceContainer::loadWiringFiles() for details on loading
-                service instantiator functions. @see docs/Injection.md for an overview of dependency
-                injection in MediaWiki.
+            @see \MediaWiki\MediaWikiServices
+            @see \Wikimedia\Services\ServiceContainer::loadWiringFiles() for details on loading
+              service instantiator functions.
+            @see docs/Injection.md for an overview of dependency
+              injection in MediaWiki.
     JobClasses:
         default:
             deletePage: DeletePageJob
