@@ -3146,7 +3146,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			],
 			'partially ip-blocked' => [
 				'ip',
-				[ 'restrictions' => new PageRestriction( 0, 1 ) ],
+				[ 'restrictions' => [ new PageRestriction( 0, 1 ) ] ],
 				'anon',
 				true
 			],

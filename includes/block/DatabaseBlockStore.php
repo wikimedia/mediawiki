@@ -31,10 +31,17 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
+use stdClass;
+use UnexpectedValueException;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -44,20 +51,24 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @author DannyS712
  */
 class DatabaseBlockStore {
-	/** @var string|false */
-	private $wikiId;
-
-	/** @var ServiceOptions */
-	private $options;
+	public const SCHEMA_IPBLOCKS = 'ipblocks';
 
 	/**
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::PutIPinRC,
+		MainConfigNames::AutoblockExpiry,
+		MainConfigNames::BlockCIDRLimit,
 		MainConfigNames::BlockDisablesLogin,
+		MainConfigNames::PutIPinRC,
 		MainConfigNames::UpdateRowsPerQuery,
 	];
+
+	/** @var string|false */
+	private $wikiId;
+
+	/** @var ServiceOptions */
+	private $options;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -83,6 +94,15 @@ class DatabaseBlockStore {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var TempUserConfig */
+	private $tempUserConfig;
+
+	/** @var BlockUtils */
+	private $blockUtils;
+
+	/** @var AutoblockExemptionList */
+	private $autoblockExemptionList;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param LoggerInterface $logger
@@ -93,6 +113,9 @@ class DatabaseBlockStore {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserFactory $userFactory
+	 * @param TempUserConfig $tempUserConfig
+	 * @param BlockUtils $blockUtils
+	 * @param AutoblockExemptionList $autoblockExemptionList
 	 * @param string|false $wikiId
 	 */
 	public function __construct(
@@ -105,6 +128,9 @@ class DatabaseBlockStore {
 		ILoadBalancer $loadBalancer,
 		ReadOnlyMode $readOnlyMode,
 		UserFactory $userFactory,
+		TempUserConfig $tempUserConfig,
+		BlockUtils $blockUtils,
+		AutoblockExemptionList $autoblockExemptionList,
 		$wikiId = DatabaseBlock::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -120,7 +146,465 @@ class DatabaseBlockStore {
 		$this->loadBalancer = $loadBalancer;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userFactory = $userFactory;
+		$this->tempUserConfig = $tempUserConfig;
+		$this->blockUtils = $blockUtils;
+		$this->autoblockExemptionList = $autoblockExemptionList;
 	}
+
+	/***************************************************************************/
+	// region   Database read methods
+	/** @name   Database read methods */
+
+	/**
+	 * Load a block from the block ID.
+	 *
+	 * @since 1.42
+	 * @param int $id ID to search for
+	 * @return DatabaseBlock|null
+	 */
+	public function newFromID( $id ) {
+		$dbr = $this->getReplicaDB();
+		$blockQuery = $this->getQueryInfo( self::SCHEMA_IPBLOCKS );
+		$res = $dbr->selectRow(
+			$blockQuery['tables'],
+			$blockQuery['fields'],
+			[ 'ipb_id' => $id ],
+			__METHOD__,
+			[],
+			$blockQuery['joins']
+		);
+		if ( $res ) {
+			return $this->newFromRow( $dbr, $res );
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new block object.
+	 *
+	 * Since 1.34, ipb_by and ipb_by_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
+	 * @since 1.42
+	 * @param string $schema What schema to use for field aliases. Must be
+	 *   self::SCHEMA_IPBLOCKS. In future this will default to a new schema
+	 *   and later the parameter will be removed.
+	 * @return array[] With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *     or `SelectQueryBuilder::joinConds`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
+	 */
+	public function getQueryInfo( $schema ) {
+		if ( $schema !== self::SCHEMA_IPBLOCKS ) {
+			throw new InvalidArgumentException( '$schema must be SCHEMA_IPBLOCKS' );
+		}
+		$commentQuery = $this->commentStore->getJoin( 'ipb_reason' );
+		return [
+			'tables' => [
+				'ipblocks',
+				'ipblocks_actor' => 'actor'
+			] + $commentQuery['tables'],
+			'fields' => [
+				'ipb_id',
+				'ipb_address',
+				'ipb_timestamp',
+				'ipb_auto',
+				'ipb_anon_only',
+				'ipb_create_account',
+				'ipb_enable_autoblock',
+				'ipb_expiry',
+				'ipb_deleted',
+				'ipb_block_email',
+				'ipb_allow_usertalk',
+				'ipb_parent_block_id',
+				'ipb_sitewide',
+				'ipb_by_actor',
+				'ipb_by' => 'ipblocks_actor.actor_user',
+				'ipb_by_text' => 'ipblocks_actor.actor_name'
+			] + $commentQuery['fields'],
+			'joins' => [
+				'ipblocks_actor' => [ 'JOIN', 'actor_id=ipb_by_actor' ]
+			] + $commentQuery['joins'],
+		];
+	}
+
+	/**
+	 * Load blocks from the database which target the specific target exactly, or which cover the
+	 * vague target.
+	 *
+	 * @param UserIdentity|string|null $specificTarget
+	 * @param int|null $specificType
+	 * @param bool $fromPrimary
+	 * @param UserIdentity|string|null $vagueTarget Also search for blocks affecting this target.
+	 *     Doesn't make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
+	 * @return DatabaseBlock[] Any relevant blocks
+	 */
+	private function newLoad(
+		$specificTarget,
+		$specificType,
+		$fromPrimary,
+		$vagueTarget = null
+	) {
+		if ( $fromPrimary ) {
+			$db = $this->getPrimaryDB();
+		} else {
+			$db = $this->getReplicaDB();
+		}
+
+		$specificTarget = $specificTarget instanceof UserIdentity ?
+			$specificTarget->getName() :
+			(string)$specificTarget;
+
+		if ( $specificType !== null ) {
+			$conds = [ 'ipb_address' => [ $specificTarget ] ];
+		} else {
+			$conds = [ 'ipb_address' => [] ];
+		}
+
+		// Be aware that the != '' check is explicit, since empty values will be
+		// passed by some callers (T31116)
+		if ( $vagueTarget != '' ) {
+			[ $target, $type ] = $this->blockUtils->parseBlockTarget( $vagueTarget );
+			switch ( $type ) {
+				case Block::TYPE_USER:
+					// Slightly weird, but who are we to argue?
+					$conds['ipb_address'][] = (string)$target;
+					$conds = $db->makeList( $conds, LIST_OR );
+					break;
+
+				case Block::TYPE_IP:
+					$conds['ipb_address'][] = (string)$target;
+					$conds['ipb_address'] = array_unique( $conds['ipb_address'] );
+					$conds[] = $this->getRangeCond( IPUtils::toHex( $target ), null, self::SCHEMA_IPBLOCKS );
+					$conds = $db->makeList( $conds, LIST_OR );
+					break;
+
+				case Block::TYPE_RANGE:
+					[ $start, $end ] = IPUtils::parseRange( $target );
+					$conds['ipb_address'][] = (string)$target;
+					$conds[] = $this->getRangeCond( $start, $end, self::SCHEMA_IPBLOCKS );
+					$conds = $db->makeList( $conds, LIST_OR );
+					break;
+
+				default:
+					throw new UnexpectedValueException( "Tried to load block with invalid type" );
+			}
+		}
+
+		$blockQuery = $this->getQueryInfo( self::SCHEMA_IPBLOCKS );
+		$res = $db->select(
+			$blockQuery['tables'],
+			$blockQuery['fields'],
+			$conds,
+			__METHOD__,
+			[],
+			$blockQuery['joins']
+		);
+
+		$blocks = [];
+		$blockIds = [];
+		$autoBlocks = [];
+		foreach ( $res as $row ) {
+			$block = $this->newFromRow( $db, $row );
+
+			// Don't use expired blocks
+			if ( $block->isExpired() ) {
+				continue;
+			}
+
+			// Don't use anon only blocks on users
+			if (
+				$specificType == Block::TYPE_USER &&
+				!$block->isHardblock() &&
+				!$this->tempUserConfig->isTempName( $specificTarget )
+			) {
+				continue;
+			}
+
+			// Check for duplicate autoblocks
+			if ( $block->getType() === Block::TYPE_AUTO ) {
+				$autoBlocks[] = $block;
+			} else {
+				$blocks[] = $block;
+				$blockIds[] = $block->getId();
+			}
+		}
+
+		// Only add autoblocks that aren't duplicates
+		foreach ( $autoBlocks as $block ) {
+			if ( !in_array( $block->getParentBlockId(), $blockIds ) ) {
+				$blocks[] = $block;
+			}
+		}
+
+		return $blocks;
+	}
+
+	/**
+	 * Choose the most specific block from some combination of user, IP and IP range
+	 * blocks. Decreasing order of specificity: user > IP > narrower IP range > wider IP
+	 * range. A range that encompasses one IP address is ranked equally to a singe IP.
+	 *
+	 * @param DatabaseBlock[] $blocks These should not include autoblocks or ID blocks
+	 * @return DatabaseBlock|null The block with the most specific target
+	 */
+	private function chooseMostSpecificBlock( array $blocks ) {
+		if ( count( $blocks ) === 1 ) {
+			return $blocks[0];
+		}
+
+		// This result could contain a block on the user, a block on the IP, and a russian-doll
+		// set of range blocks.  We want to choose the most specific one, so keep a leader board.
+		$bestBlock = null;
+
+		// Lower will be better
+		$bestBlockScore = 100;
+		foreach ( $blocks as $block ) {
+			if ( $block->getType() == Block::TYPE_RANGE ) {
+				// This is the number of bits that are allowed to vary in the block, give
+				// or take some floating point errors
+				$target = $block->getTargetName();
+				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
+				[ , $bits ] = IPUtils::parseCIDR( $target );
+				$size = $max - $bits;
+
+				// Rank a range block covering a single IP equally with a single-IP block
+				$score = Block::TYPE_RANGE - 1 + ( $size / $max );
+
+			} else {
+				$score = $block->getType();
+			}
+
+			if ( $score < $bestBlockScore ) {
+				$bestBlockScore = $score;
+				$bestBlock = $block;
+			}
+		}
+
+		return $bestBlock;
+	}
+
+	/**
+	 * Get a set of SQL conditions which will select range blocks encompassing a given range
+	 *
+	 * @since 1.42
+	 * @param string $start Hexadecimal IP representation
+	 * @param string|null $end Hexadecimal IP representation, or null to use $start = $end
+	 * @param string $schema What schema to use for field aliases. Must be
+	 *   self::SCHEMA_IPBLOCKS. In future this will default to a new schema
+	 *   and later the parameter will be removed.
+	 * @return string
+	 */
+	public function getRangeCond( $start, $end, $schema ) {
+		if ( $schema !== self::SCHEMA_IPBLOCKS ) {
+			throw new InvalidArgumentException( '$schema must be SCHEMA_IPBLOCKS' );
+		}
+		// Per T16634, we want to include relevant active range blocks; for
+		// range blocks, we want to include larger ranges which enclose the given
+		// range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
+		// so we can improve performance by filtering on a LIKE clause
+		$chunk = $this->getIpFragment( $start );
+		$dbr = $this->getReplicaDB();
+		$like = $dbr->buildLike( $chunk, $dbr->anyString() );
+
+		$safeStart = $dbr->addQuotes( $start );
+		$safeEnd = $dbr->addQuotes( $end ?? $start );
+
+		return $dbr->makeList(
+			[
+				"ipb_range_start $like",
+				"ipb_range_start <= $safeStart",
+				"ipb_range_end >= $safeEnd",
+			],
+			LIST_AND
+		);
+	}
+
+	/**
+	 * Get the component of an IP address which is certain to be the same between an IP
+	 * address and a range block containing that IP address.
+	 *
+	 * @param string $hex Hexadecimal IP representation
+	 * @return string
+	 */
+	private function getIpFragment( $hex ) {
+		$blockCIDRLimit = $this->options->get( MainConfigNames::BlockCIDRLimit );
+		if ( str_starts_with( $hex, 'v6-' ) ) {
+			return 'v6-' . substr( substr( $hex, 3 ), 0, (int)floor( $blockCIDRLimit['IPv6'] / 4 ) );
+		} else {
+			return substr( $hex, 0, (int)floor( $blockCIDRLimit['IPv4'] / 4 ) );
+		}
+	}
+
+	/**
+	 * Create a new DatabaseBlock object from a database row
+	 *
+	 * @since 1.42
+	 * @param IReadableDatabase $db The database you got the row from
+	 * @param stdClass $row Row from the ipblocks table
+	 * @return DatabaseBlock
+	 */
+	public function newFromRow( IReadableDatabase $db, $row ) {
+		return new DatabaseBlock( [
+			'address' => $row->ipb_address,
+			'wiki' => $this->wikiId,
+			'timestamp' => $row->ipb_timestamp,
+			'auto' => (bool)$row->ipb_auto,
+			'hideName' => (bool)$row->ipb_deleted,
+			'id' => (int)$row->ipb_id,
+			// Blocks with no parent ID should have ipb_parent_block_id as null,
+			// don't save that as 0 though, see T282890
+			'parentBlockId' => $row->ipb_parent_block_id
+				? (int)$row->ipb_parent_block_id : null,
+			'by' => $this->actorStoreFactory
+				->getActorStore( $this->wikiId )
+				->newActorFromRowFields( $row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ),
+			'decodedExpiry' => $db->decodeExpiry( $row->ipb_expiry ),
+			'reason' => $this->commentStore
+				// Legacy because $row may have come from self::selectFields()
+				->getCommentLegacy( $db, 'ipb_reason', $row ),
+			'anonOnly' => $row->ipb_anon_only,
+			'enableAutoblock' => (bool)$row->ipb_enable_autoblock,
+			'sitewide' => (bool)$row->ipb_sitewide,
+			'createAccount' => (bool)$row->ipb_create_account,
+			'blockEmail' => (bool)$row->ipb_block_email,
+			'allowUsertalk' => (bool)$row->ipb_allow_usertalk
+		] );
+	}
+
+	/**
+	 * Given a target and the target's type, get an existing block object if possible.
+	 *
+	 * @since 1.42
+	 * @param string|UserIdentity|int|null $specificTarget A block target, which may be one of
+	 *   several types:
+	 *     * A user to block, in which case $target will be a User
+	 *     * An IP to block, in which case $target will be a User generated by using
+	 *       User::newFromName( $ip, false ) to turn off name validation
+	 *     * An IP range, in which case $target will be a String "123.123.123.123/18" etc
+	 *     * The ID of an existing block, in the format "#12345" (since pure numbers are valid
+	 *       usernames
+	 *     Calling this with a user, IP address or range will not select autoblocks, and will
+	 *     only select a block where the targets match exactly (so looking for blocks on
+	 *     1.2.3.4 will not select 1.2.0.0/16 or even 1.2.3.4/32)
+	 * @param string|UserIdentity|int|null $vagueTarget As above, but we will search for *any*
+	 *     block which affects that target (so for an IP address, get ranges containing that IP;
+	 *     and also get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
+	 * @param bool $fromPrimary Whether to use the DB_PRIMARY database
+	 * @return DatabaseBlock|null (null if no relevant block could be found). The target and type
+	 *     of the returned block will refer to the actual block which was found, which might
+	 *     not be the same as the target you gave if you used $vagueTarget!
+	 */
+	public function newFromTarget(
+		$specificTarget,
+		$vagueTarget = null,
+		$fromPrimary = false
+	) {
+		$blocks = $this->newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
+		return $this->chooseMostSpecificBlock( $blocks );
+	}
+
+	/**
+	 * This is similar to DatabaseBlockStore::newFromTarget, but it returns all the relevant blocks.
+	 *
+	 * @since 1.42
+	 * @param string|UserIdentity|int|null $specificTarget
+	 * @param string|UserIdentity|int|null $vagueTarget
+	 * @param bool $fromPrimary
+	 * @return DatabaseBlock[] Any relevant blocks
+	 */
+	public function newListFromTarget(
+		$specificTarget,
+		$vagueTarget = null,
+		$fromPrimary = false
+	) {
+		[ $target, $type ] = $this->blockUtils->parseBlockTarget( $specificTarget );
+		if ( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
+			$block = $this->newFromID( $target );
+			return $block ? [ $block ] : [];
+		} elseif ( $target === null && $vagueTarget == '' ) {
+			// We're not going to find anything useful here
+			// Be aware that the == '' check is explicit, since empty values will be
+			// passed by some callers (T31116)
+			return [];
+		} elseif ( in_array(
+			$type,
+			[ Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ] )
+		) {
+			return $this->newLoad( $target, $type, $fromPrimary, $vagueTarget );
+		}
+		return [];
+	}
+
+	/**
+	 * Get all blocks that match any IP from an array of IP addresses
+	 *
+	 * @since 1.42
+	 * @param string[] $addresses Validated list of IP addresses
+	 * @param bool $applySoftBlocks Include soft blocks (anonymous-only blocks). These
+	 *     should only block anonymous and temporary users.
+	 * @param bool $fromPrimary Whether to query the primary or replica DB
+	 * @return DatabaseBlock[]
+	 */
+	public function newListFromIPs( array $addresses, $applySoftBlocks, $fromPrimary = false ) {
+		if ( $addresses === [] ) {
+			return [];
+		}
+
+		$conds = [];
+		foreach ( array_unique( $addresses ) as $ipaddr ) {
+			// Check both the original IP (to check against single blocks), as well as build
+			// the clause to check for range blocks for the given IP.
+			$conds['ipb_address'][] = $ipaddr;
+			$conds[] = $this->getRangeCond( IPUtils::toHex( $ipaddr ), null, self::SCHEMA_IPBLOCKS );
+		}
+
+		if ( $conds === [] ) {
+			return [];
+		}
+
+		if ( $fromPrimary ) {
+			$db = $this->getPrimaryDB();
+		} else {
+			$db = $this->getReplicaDB();
+		}
+		$conds = $db->makeList( $conds, LIST_OR );
+		if ( !$applySoftBlocks ) {
+			$conds = [ $conds, 'ipb_anon_only' => 0 ];
+		}
+		$blockQuery = $this->getQueryInfo( self::SCHEMA_IPBLOCKS );
+		$rows = $db->select(
+			$blockQuery['tables'],
+			array_merge( [ 'ipb_range_start', 'ipb_range_end' ], $blockQuery['fields'] ),
+			$conds,
+			__METHOD__,
+			[],
+			$blockQuery['joins']
+		);
+
+		$blocks = [];
+		foreach ( $rows as $row ) {
+			$block = $this->newFromRow( $db, $row );
+			if ( !$block->isExpired() ) {
+				$blocks[] = $block;
+			}
+		}
+
+		return $blocks;
+	}
+
+	// endregion -- end of database read methods
+
+	/***************************************************************************/
+	// region   Database write methods
+	/** @name   Database write methods */
 
 	/**
 	 * Delete expired blocks from the ipblocks table
@@ -586,11 +1070,172 @@ class DatabaseBlockStore {
 			return [];
 		}
 
-		$id = $block->doAutoblock( $rcIp );
+		$id = $this->doAutoblock( $block, $rcIp );
 		if ( !$id ) {
 			return [];
 		}
 		return [ $id ];
 	}
+
+	/**
+	 * Autoblocks the given IP, referring to the specified block.
+	 *
+	 * @since 1.42
+	 * @param DatabaseBlock $parentBlock
+	 * @param string $autoblockIP The IP to autoblock.
+	 * @return int|false ID if an autoblock was inserted, false if not.
+	 */
+	public function doAutoblock( DatabaseBlock $parentBlock, $autoblockIP ) {
+		// If autoblocks are disabled, go away.
+		if ( !$parentBlock->isAutoblocking() ) {
+			return false;
+		}
+		$this->checkDatabaseDomain( $parentBlock->getWikiId() );
+
+		[ $target, $type ] = $this->blockUtils->parseBlockTarget( $autoblockIP );
+		if ( $type != Block::TYPE_IP ) {
+			$this->logger->debug( "Autoblock not supported for ip ranges." );
+			return false;
+		}
+		$target = (string)$target;
+
+		// Check if autoblock exempt.
+		if ( $this->autoblockExemptionList->isExempt( $target ) ) {
+			return false;
+		}
+
+		// Allow hooks to cancel the autoblock.
+		if ( !$this->hookRunner->onAbortAutoblock( $target, $parentBlock ) ) {
+			$this->logger->debug( "Autoblock aborted by hook." );
+			return false;
+		}
+
+		// It's okay to autoblock. Go ahead and insert/update the block...
+
+		// Do not add a *new* block if the IP is already blocked.
+		$dbr = $this->getReplicaDB();
+
+		$blockQuery = $this->getQueryInfo( self::SCHEMA_IPBLOCKS );
+
+		$res = $dbr->select(
+			$blockQuery['tables'],
+			$blockQuery['fields'],
+			[ 'ipb_address' => $target ],
+			__METHOD__,
+			[],
+			$blockQuery['joins']
+		);
+
+		$blocks = [];
+		foreach ( $res as $row ) {
+			$block = $this->newFromRow( $dbr, $row );
+
+			if ( $block->isExpired() ) {
+				continue;
+			}
+
+			$blocks[] = $block;
+		}
+		$ipblock = $this->chooseMostSpecificBlock( $blocks );
+
+		if ( $ipblock ) {
+			// Check if the block is an autoblock and would exceed the user block
+			// if renewed. If so, do nothing, otherwise prolong the block time...
+			if ( $ipblock->getType() === Block::TYPE_AUTO
+				&& $parentBlock->getExpiry() > $ipblock->getExpiry()
+			) {
+				// Reset block timestamp to now and its expiry to
+				// $wgAutoblockExpiry in the future
+				$this->updateTimestamp( $ipblock );
+			}
+			return false;
+		}
+		$blocker = $parentBlock->getBlocker();
+		if ( !$blocker ) {
+			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
+		}
+
+		$timestamp = wfTimestampNow();
+		if ( $parentBlock->getExpiry() == 'infinity' ) {
+			// Original block was indefinite, start an autoblock now
+			$expiry = $this->getAutoblockExpiry( $timestamp );
+		} else {
+			// If the user is already blocked with an expiry date, we don't
+			// want to pile on top of that.
+			$expiry = min(
+				$parentBlock->getExpiry(),
+				$this->getAutoblockExpiry( $timestamp )
+			);
+		}
+
+		$autoblock = new DatabaseBlock( [
+			'wiki' => $this->wikiId,
+			'address' => UserIdentityValue::newAnonymous( $target, $this->wikiId ),
+			'by' => $blocker,
+			'reason' =>
+				wfMessage(
+					'autoblocker',
+					$parentBlock->getTargetName(),
+					$parentBlock->getReasonComment()->text
+				)->inContentLanguage()->plain(),
+			'decodedTimestamp' => $timestamp,
+			'auto' => true,
+			'createAccount' => $parentBlock->isCreateAccountBlocked(),
+			// Continue suppressing the name if needed
+			'hideName' => $parentBlock->getHideName(),
+			'allowUsertalk' => $parentBlock->isUsertalkEditAllowed(),
+			'parentBlockId' => $parentBlock->getId( $this->wikiId ),
+			'sitewide' => $parentBlock->isSitewide(),
+			'restrictions' => $parentBlock->getRestrictions(),
+			'decodedExpiry' => $expiry,
+		] );
+
+		$this->logger->debug( "Autoblocking {$parentBlock->getTargetName()}@" . $target );
+
+		$status = $this->insertBlock( $autoblock );
+		return $status
+			? $status['id']
+			: false;
+	}
+
+	/**
+	 * Update the timestamp on autoblocks.
+	 *
+	 * @param DatabaseBlock $block
+	 */
+	public function updateTimestamp( DatabaseBlock $block ) {
+		$this->checkDatabaseDomain( $block->getWikiId() );
+		if ( $block->getType() === Block::TYPE_AUTO ) {
+			$block->setTimestamp( wfTimestamp() );
+			$block->setExpiry( $this->getAutoblockExpiry( $block->getTimestamp() ) );
+
+			$dbw = $this->getPrimaryDB();
+			$dbw->newUpdateQueryBuilder()
+				->update( 'ipblocks' )
+				->set(
+					[
+						'ipb_timestamp' => $dbw->timestamp( $block->getTimestamp() ),
+						'ipb_expiry' => $dbw->timestamp( $block->getExpiry() ),
+					]
+				)
+				->where( [ 'ipb_id' => $block->getId( $this->wikiId ) ] )
+				->caller( __METHOD__ )->execute();
+		}
+	}
+
+	/**
+	 * Get the expiry timestamp for an autoblock created at the given time.
+	 *
+	 * @internal Public to support deprecated DatabaseBlock method
+	 * @param string|int $timestamp
+	 * @return string
+	 */
+	public function getAutoblockExpiry( $timestamp ) {
+		$autoblockExpiry = $this->options->get( MainConfigNames::AutoblockExpiry );
+
+		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $autoblockExpiry );
+	}
+
+	// endregion -- end of database write methods
 
 }

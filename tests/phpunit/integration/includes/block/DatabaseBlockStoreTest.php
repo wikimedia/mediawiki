@@ -43,8 +43,10 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$overrideConstructorArgs = $options['constructorArgs'] ?? [];
 
 		$defaultConfig = [
-			'PutIPinRC' => true,
+			'AutoblockExpiry' => 86400,
+			'BlockCIDRLimit' => [ 'IPv4' => 16, 'IPv6' => 19 ],
 			'BlockDisablesLogin' => false,
+			'PutIPinRC' => true,
 			'UpdateRowsPerQuery' => 10,
 		];
 		$config = array_merge( $defaultConfig, $overrideConfig );
@@ -71,6 +73,9 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'loadBalancer' => $services->getDBLoadBalancer(),
 			'readOnlyMode' => $readOnlyMode,
 			'userFactory' => $services->getUserFactory(),
+			'tempUserConfig' => $services->getTempUserConfig(),
+			'blockUtils' => $services->getBlockUtils(),
+			'autoblockExemptionList' => $services->getAutoblockExemptionList(),
 		];
 		$constructorArgs = array_merge( $defaultConstructorArgs, $overrideConstructorArgs );
 
