@@ -96,6 +96,11 @@ class PageConfig extends IPageConfig {
 	}
 
 	/** @inheritDoc */
+	public function getTitleObj(): Title {
+		return $this->title;
+	}
+
+	/** @inheritDoc */
 	public function getNs(): int {
 		return $this->title->getNamespace();
 	}

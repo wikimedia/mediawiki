@@ -387,10 +387,14 @@ class DataAccess extends IDataAccess {
 
 	/** @inheritDoc */
 	public function fetchTemplateSource(
-		IPageConfig $pageConfig, string $title
+		IPageConfig $pageConfig, $title
 	): ?IPageContent {
 		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
-		$titleObj = Title::newFromText( $title );
+		if ( is_string( $title ) ) {
+			$titleObj = Title::newFromTextThrow( $title );
+		} else {
+			$titleObj = Title::newFromLinkTarget( $title );
+		}
 
 		// Use the PageConfig to take advantage of custom template
 		// fetch hooks like FlaggedRevisions, etc.
@@ -400,8 +404,12 @@ class DataAccess extends IDataAccess {
 	}
 
 	/** @inheritDoc */
-	public function fetchTemplateData( IPageConfig $pageConfig, string $title ): ?array {
+	public function fetchTemplateData( IPageConfig $pageConfig, $title ): ?array {
 		$ret = [];
+		if ( !is_string( $title ) ) {
+			$titleObj = Title::newFromLinkTarget( $title );
+			$title = $titleObj->getPrefixedText();
+		}
 		// @todo: This hook needs some clean up: T304899
 		$this->hookRunner->onParserFetchTemplateData(
 			[ $title ],

@@ -477,6 +477,11 @@ class SiteConfig extends ISiteConfig {
 		return Title::newMainPage()->getPrefixedText();
 	}
 
+	public function mainPageAsLinkTarget(): Title {
+		// @todo Perhaps should inject TitleFactory here?
+		return Title::newMainPage();
+	}
+
 	/**
 	 * Lookup config
 	 * @param string $key
