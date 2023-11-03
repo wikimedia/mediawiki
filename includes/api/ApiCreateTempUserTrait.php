@@ -39,7 +39,7 @@ trait ApiCreateTempUserTrait {
 		$this->getHookRunner()->onTempUserCreatedRedirect(
 			$this->getRequest()->getSession(),
 			$savedTempUser,
-			$params['returnto'],
+			$params['returnto'] ?: '',
 			$returnToQuery,
 			$returnToAnchor,
 			$redirectUrl
