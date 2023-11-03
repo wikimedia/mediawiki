@@ -62,7 +62,7 @@
 				position: 'below',
 				autoFlip: false
 			} );
-			$( document.body ).append( popup.$element );
+			$( OO.ui.getTeleportTarget() ).append( popup.$element );
 			popup.toggle( true );
 		} else {
 			// Otherwise display a mw.notify message

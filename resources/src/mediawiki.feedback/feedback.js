@@ -152,7 +152,7 @@
 				this.constructor.static.dialog,
 				this.thankYouDialog
 			] );
-			$( document.body )
+			$( OO.ui.getTeleportTarget() )
 				.append( this.constructor.static.windowManager.$element );
 		}
 		// Open the dialog
