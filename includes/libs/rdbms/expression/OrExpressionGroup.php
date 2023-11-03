@@ -15,9 +15,9 @@ class OrExpressionGroup extends ExpressionGroup {
 	/**
 	 * @param string $field
 	 * @param-taint $field exec_sql
-	 * @param string $op One of '>', '<', '!=', '=', '>=', '<='
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE
 	 * @param-taint $op exec_sql
-	 * @param string|int|float|bool|Blob|null|non-empty-list<string|int|float|bool|Blob> $value
+	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
 	 */
 	public function or( string $field, string $op, $value ): OrExpressionGroup {

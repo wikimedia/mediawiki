@@ -30,6 +30,7 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\QueryBuilderFromRawSql;
 use Wikimedia\Rdbms\Subquery;
@@ -437,25 +438,10 @@ class SQLPlatform implements ISQLPlatform {
 		} else {
 			$params = func_get_args();
 		}
+		// @phan-suppress-next-line PhanParamTooFewUnpack
+		$likeValue = new LikeValue( ...$params );
 
-		$s = '';
-
-		// We use ` instead of \ as the default LIKE escape character, since addQuotes()
-		// may escape backslashes, creating problems of double escaping. The `
-		// character has good cross-DBMS compatibility, avoiding special operators
-		// in MS SQL like ^ and %
-		$escapeChar = '`';
-
-		foreach ( $params as $value ) {
-			if ( $value instanceof LikeMatch ) {
-				$s .= $value->toString();
-			} else {
-				$s .= $this->escapeLikeInternal( $value, $escapeChar );
-			}
-		}
-
-		return ' LIKE ' .
-			$this->quoter->addQuotes( $s ) . ' ESCAPE ' . $this->quoter->addQuotes( $escapeChar ) . ' ';
+		return ' LIKE ' . $likeValue->toSql( $this->quoter );
 	}
 
 	public function anyChar() {
