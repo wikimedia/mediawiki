@@ -261,7 +261,6 @@ $wgAutoloadLocalClasses = [
 	'CleanupRemovedModules' => __DIR__ . '/maintenance/cleanupRemovedModules.php',
 	'CleanupSpam' => __DIR__ . '/maintenance/cleanupSpam.php',
 	'CleanupUploadStash' => __DIR__ . '/maintenance/cleanupUploadStash.php',
-	'CleanupUsersWithNoId' => __DIR__ . '/maintenance/cleanupUsersWithNoId.php',
 	'CleanupWatchlist' => __DIR__ . '/maintenance/cleanupWatchlist.php',
 	'ClearInterwikiCache' => __DIR__ . '/maintenance/clearInterwikiCache.php',
 	'ClearUserWatchlistJob' => __DIR__ . '/includes/jobqueue/jobs/ClearUserWatchlistJob.php',
