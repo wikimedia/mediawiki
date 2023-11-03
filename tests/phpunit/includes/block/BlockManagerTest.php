@@ -924,6 +924,61 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testGetBlocksForIPList() {
+		$this->tablesUsed[] = 'ipblocks';
+		$blockManager = $this->getBlockManager( [] );
+		$block = new DatabaseBlock( [
+			'address' => '1.2.3.4',
+			'by' => $this->getTestSysop()->getUser(),
+		] );
+		$inserted = $this->getServiceContainer()
+			->getDatabaseBlockStore()
+			->insertBlock( $block );
+		$this->assertTrue(
+			(bool)$inserted['id'],
+			'Check that the block was inserted correctly'
+		);
+
+		// Early return of empty array if no ips in the list
+		$list = $blockManager->getBlocksForIPList( [], true, false );
+		$this->assertCount(
+			0,
+			$list,
+			'No blocks retrieved if no ips listed'
+		);
+
+		// Early return of empty array if all ips are either invalid or trusted proxies,
+		// '192.168.1.1' is set to trusted in setUp();
+		$list = $blockManager->getBlocksForIPList(
+			[ '300.300.300.300', '192.168.1.1' ],
+			true,
+			false
+		);
+		$this->assertCount(
+			0,
+			$list,
+			'No blocks retrieved if all ips are invalid or trusted proxies'
+		);
+
+		// Actually fetching, block was inserted above
+		$list = $blockManager->getBlocksForIPList( [ '1.2.3.4' ], true, false );
+		$this->assertCount(
+			1,
+			$list,
+			'Block retrieved for the blocked ip'
+		);
+		$this->assertInstanceOf(
+			DatabaseBlock::class,
+			$list[0],
+			'DatabaseBlock returned'
+		);
+		$this->assertSame(
+			$inserted['id'],
+			$list[0]->getId(),
+			'Block returned is the correct one'
+		);
+	}
+
 	/**
 	 * @coversNothing
 	 */
