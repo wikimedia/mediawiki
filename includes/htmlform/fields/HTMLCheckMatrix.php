@@ -22,6 +22,10 @@ use MediaWiki\Request\WebRequest;
  *     - Array of column-row tags to be displayed as disabled but unavailable to change.
  *   - tooltips
  *     - Optional associative array mapping row labels to tooltips (as text, will be escaped).
+ *   - tooltips-html
+ *     - Optional associative array mapping row labels to tooltips (as HTML).
+ *       Only used by OOUI form fields. Takes precedence when supported, so to support both
+ *       OOUI and non-OOUI forms, you can set both.
  *   - tooltip-class
  *     - Optional CSS class used on tooltip container span. Defaults to mw-icon-question.
  *       Not used by OOUI form fields.
@@ -171,6 +175,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				'rows' => $this->mParams['rows'],
 				'columns' => $this->mParams['columns'],
 				'tooltips' => $this->mParams['tooltips'] ?? [],
+				'tooltips-html' => $this->mParams['tooltips-html'] ?? [],
 				'forcedOff' => $this->mParams['force-options-off'] ?? [],
 				'forcedOn' => $this->mParams['force-options-on'] ?? [],
 				'values' => $value,

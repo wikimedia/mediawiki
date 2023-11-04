@@ -17,6 +17,8 @@
 	 *  disabled but unavailable to change.
 	 * @cfg {Object} [tooltips] Optional object mapping row labels to tooltips
 	 *  (as text, will be escaped).
+	 * @cfg {Object} [tooltipsHtml] Optional object mapping row labels to tooltips
+	 *  (as HTML). Takes precedence over text tooltips.
 	 */
 	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {
 		var $headRow = $( '<tr>' ),
@@ -34,6 +36,7 @@
 		this.rows = config.rows || {};
 		this.columns = config.columns || {};
 		this.tooltips = config.tooltips || [];
+		this.tooltipsHtml = config.tooltipsHtml || [];
 		this.values = config.values || [];
 		this.forcedOn = config.forcedOn || [];
 		this.forcedOff = config.forcedOff || [];
@@ -56,7 +59,8 @@
 					new OO.ui.Widget(), // Empty widget, since we don't have the checkboxes here
 					{
 						label: new OO.ui.HtmlSnippet( rowLabel ),
-						help: widget.tooltips[ rowLabel ],
+						help: widget.tooltips[ rowLabel ] ||
+							widget.tooltipsHtml[ rowLabel ] && new OO.ui.HtmlSnippet( widget.tooltipsHtml[ rowLabel ] ),
 						align: 'inline'
 					}
 				);

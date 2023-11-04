@@ -20,6 +20,8 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	/** @var array */
 	protected $tooltips;
 	/** @var array */
+	protected $tooltipsHtml;
+	/** @var array */
 	protected $values;
 	/** @var array */
 	protected $forcedOn;
@@ -43,6 +45,9 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 *     - Array of column-row tags to be displayed as disabled but unavailable to change.
 	 *   - tooltips
 	 *     - Optional associative array mapping row labels to tooltips (as text, will be escaped).
+	 *   - tooltips-html
+	 *     - Optional associative array mapping row labels to tooltips (as HTML). Takes precedence
+	 *       over text tooltips.
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
@@ -56,6 +61,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 		$this->rows = $config['rows'] ?? [];
 		$this->columns = $config['columns'] ?? [];
 		$this->tooltips = $config['tooltips'] ?? [];
+		$this->tooltipsHtml = $config['tooltips-html'] ?? [];
 
 		$this->values = $config['values'] ?? [];
 
@@ -183,7 +189,11 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * @return string Tooltip. Null if none is available.
 	 */
 	private function getTooltip( $label ) {
-		return $this->tooltips[ $label ] ?? null;
+		if ( isset( $this->tooltipsHtml[ $label ] ) ) {
+			return new \OOUI\HtmlSnippet( $this->tooltipsHtml[ $label ] );
+		} else {
+			return $this->tooltips[ $label ] ?? null;
+		}
 	}
 
 	protected function getJavaScriptClassName() {
@@ -197,6 +207,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 			'rows' => $this->rows,
 			'columns' => $this->columns,
 			'tooltips' => $this->tooltips,
+			'tooltipsHtml' => $this->tooltipsHtml,
 			'forcedOff' => $this->forcedOff,
 			'forcedOn' => $this->forcedOn,
 			'values' => $this->values,

@@ -169,10 +169,14 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$showGrants = $this->grantsInfo->getValidGrants();
 			$grantLinks = array_map( [ $this->grantsLocalization, 'getGrantsLink' ], $showGrants );
 
+			$fields[] = [
+				'type' => 'info',
+				'default' => '',
+				'help-message' => 'botpasswords-help-grants',
+			];
 			$fields['grants'] = [
 				'type' => 'checkmatrix',
 				'label-message' => 'botpasswords-label-grants',
-				'help-message' => 'botpasswords-help-grants',
 				'columns' => [
 					$this->msg( 'botpasswords-label-grants-column' )->escaped() => 'grant'
 				],
@@ -186,11 +190,16 @@ class SpecialBotPasswords extends FormSpecialPage {
 					},
 					$this->botPassword->getGrants()
 				),
-				'tooltips' => array_combine(
+				'tooltips-html' => array_combine(
 					$grantLinks,
 					array_map(
-						static function ( $rights ) use ( $lang ) {
-							return $lang->semicolonList( array_map( [ User::class, 'getRightDescription' ], $rights ) );
+						function ( $rights ) use ( $lang ) {
+							return $lang->semicolonList(
+								array_map(
+									fn ( $right ) => $this->msg( "right-$right" )->parse(),
+									$rights
+								)
+							);
 						},
 						array_intersect_key( $this->grantsInfo->getRightsByGrant(),
 							array_fill_keys( $showGrants, true ) )
