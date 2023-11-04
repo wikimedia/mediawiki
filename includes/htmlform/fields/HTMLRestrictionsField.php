@@ -14,7 +14,6 @@ use Wikimedia\IPUtils;
  * The value returned will be an MWRestrictions or the input string if it was not a list of
  * valid IP ranges.
  *
- * @stable to extend
  */
 class HTMLRestrictionsField extends HTMLTextAreaField {
 	protected const DEFAULT_ROWS = 5;
