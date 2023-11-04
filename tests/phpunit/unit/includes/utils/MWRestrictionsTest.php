@@ -39,14 +39,15 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	 * @covers MWRestrictions::toArray
 	 * @dataProvider provideArray
 	 * @param array $data
-	 * @param bool|InvalidArgumentException $expect True if the call succeeds,
+	 * @param StatusValue|InvalidArgumentException $expect StatusValue if the call succeeds,
 	 *  otherwise the exception that should be thrown.
 	 */
 	public function testArray( $data, $expect ) {
-		if ( $expect === true ) {
+		if ( $expect instanceof StatusValue ) {
 			$ret = MWRestrictions::newFromArray( $data );
 			$this->assertInstanceOf( MWRestrictions::class, $ret );
 			$this->assertSame( $data, $ret->toArray() );
+			$this->assertSame( $ret->validity->getErrors(), $expect->getErrors() );
 		} else {
 			try {
 				MWRestrictions::newFromArray( $data );
@@ -59,11 +60,11 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 
 	public static function provideArray() {
 		return [
-			[ [ 'IPAddresses' => [] ], true ],
-			[ [ 'IPAddresses' => [ '127.0.0.1/32' ] ], true ],
+			[ [ 'IPAddresses' => [] ], StatusValue::newGood() ],
+			[ [ 'IPAddresses' => [ '127.0.0.1/32' ] ], StatusValue::newGood() ],
 			[
 				[ 'IPAddresses' => [ '256.0.0.1/32' ] ],
-				new InvalidArgumentException( 'Invalid IP address: 256.0.0.1/32' )
+				StatusValue::newFatal( 'restrictionsfield-badip', '256.0.0.1/32' )
 			],
 			[
 				[ 'IPAddresses' => '127.0.0.1/32' ],
@@ -72,11 +73,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 			[
 				[],
 				new InvalidArgumentException( 'Array is missing required keys: IPAddresses' )
-			],
-			[
-				[ 'foo' => 'bar', 'bar' => 42 ],
-				new InvalidArgumentException( 'Array contains invalid keys: foo, bar' )
-			],
+			]
 		];
 	}
 
@@ -88,27 +85,29 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	 * @covers MWRestrictions::__toString
 	 * @dataProvider provideJson
 	 * @param string $json
-	 * @param array|InvalidArgumentException $expect
+	 * @param array|null $restrictions
+	 * @param StatusValue|InvalidArgumentException $expect
 	 */
-	public function testJson( $json, $expect ) {
-		if ( is_array( $expect ) ) {
+	public function testJson( $json, $restrictions, $expect ) {
+		if ( $expect instanceof StatusValue ) {
 			$ret = MWRestrictions::newFromJson( $json );
 			$this->assertInstanceOf( MWRestrictions::class, $ret );
-			$this->assertSame( $expect, $ret->toArray() );
+			$this->assertSame( $restrictions, $ret->toArray() );
 
 			$this->assertSame( $json, $ret->toJson( false ) );
 			$this->assertSame( $json, (string)$ret );
 
 			$this->assertSame(
-				FormatJson::encode( $expect, true, FormatJson::ALL_OK ),
+				FormatJson::encode( $restrictions, true, FormatJson::ALL_OK ),
 				$ret->toJson( true )
 			);
+			$this->assertSame( $expect->getErrors(), $ret->validity->getErrors() );
 		} else {
 			try {
 				MWRestrictions::newFromJson( $json );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( InvalidArgumentException $ex ) {
-				$this->assertTrue( true );
+				$this->assertEquals( $expect, $ex );
 			}
 		}
 	}
@@ -117,34 +116,37 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 		return [
 			[
 				'{"IPAddresses":[]}',
-				[ 'IPAddresses' => [] ]
+				[ 'IPAddresses' => [] ],
+				StatusValue::newGood()
 			],
 			[
 				'{"IPAddresses":["127.0.0.1/32"]}',
-				[ 'IPAddresses' => [ '127.0.0.1/32' ] ]
+				[ 'IPAddresses' => [ '127.0.0.1/32' ] ],
+				StatusValue::newGood()
 			],
 			[
 				'{"IPAddresses":["256.0.0.1/32"]}',
-				new InvalidArgumentException( 'Invalid IP address: 256.0.0.1/32' )
+				[ 'IPAddresses' => [ '256.0.0.1/32' ] ],
+				StatusValue::newFatal( 'restrictionsfield-badip', '256.0.0.1/32' )
 			],
 			[
 				'{"IPAddresses":"127.0.0.1/32"}',
+				null,
 				new InvalidArgumentException( 'IPAddresses is not an array' )
 			],
 			[
 				'{}',
+				null,
 				new InvalidArgumentException( 'Array is missing required keys: IPAddresses' )
 			],
 			[
-				'{"foo":"bar","bar":42}',
-				new InvalidArgumentException( 'Array contains invalid keys: foo, bar' )
-			],
-			[
 				'{"IPAddresses":[]',
+				null,
 				new InvalidArgumentException( 'Invalid restrictions JSON' )
 			],
 			[
 				'"IPAddresses"',
+				null,
 				new InvalidArgumentException( 'Invalid restrictions JSON' )
 			],
 		];
