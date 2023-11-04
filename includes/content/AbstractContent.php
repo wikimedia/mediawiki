@@ -545,7 +545,7 @@ abstract class AbstractContent implements Content {
 			$options ??= ParserOptions::newFromAnon();
 
 			$po = new ParserOutput();
-			$options->registerWatcher( [ $po, 'recordOption' ] );
+			$options->registerWatcher( [ &$po, 'recordOption' ] );
 
 			$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 			if ( $hookRunner->onContentGetParserOutput(

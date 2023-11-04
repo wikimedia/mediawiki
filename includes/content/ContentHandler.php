@@ -1746,7 +1746,7 @@ abstract class ContentHandler {
 
 		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$po = new ParserOutput();
-		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
+		$parserOptions->registerWatcher( [ &$po, 'recordOption' ] );
 		if ( $hookRunner->onContentGetParserOutput(
 			// FIXME $cpoParams->getRevId() may be null here?
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
