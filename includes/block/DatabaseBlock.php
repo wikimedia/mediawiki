@@ -69,7 +69,6 @@ class DatabaseBlock extends AbstractBlock {
 	 *
 	 * @param array $options Parameters of the block, with options supported by
 	 *  `AbstractBlock::__construct`, and also:
-	 *  - user: (int) Override target user ID (for foreign users)
 	 *  - auto: (bool) Is this an automatic block?
 	 *  - expiry: (string) Database timestamp of expiration of the block or 'infinity'
 	 *  - decodedExpiry: (string) The decoded expiry in MW 14-char format or 'infinity'
@@ -91,7 +90,6 @@ class DatabaseBlock extends AbstractBlock {
 		$defaults = [
 			'id'              => null,
 			'parentBlockId'   => null,
-			'user'            => null,
 			'auto'            => false,
 			'expiry'          => '',
 			'createAccount'   => false,

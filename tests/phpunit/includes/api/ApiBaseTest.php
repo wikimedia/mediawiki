@@ -1424,8 +1424,7 @@ class ApiBaseTest extends ApiTestCase {
 		// Has a blocked $user, so special block handling
 		$user = $this->getMutableTestUser()->getUser();
 		$block = new DatabaseBlock( [
-			'address' => $user->getName(),
-			'user' => $user->getId(),
+			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
@@ -1486,8 +1485,7 @@ class ApiBaseTest extends ApiTestCase {
 		// Has a blocked $user, so special block handling
 		$user = $this->getMutableTestUser()->getUser();
 		$block = new DatabaseBlock( [
-			'address' => $user->getName(),
-			'user' => $user->getId(),
+			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,

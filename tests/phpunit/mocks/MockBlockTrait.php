@@ -31,6 +31,7 @@ trait MockBlockTrait {
 			if ( !isset( $options['wiki'] ) ) {
 				$options['wiki'] = $user->getWikiId();
 			}
+			unset( $options['target'] );
 		}
 
 		if ( !isset( $options['by'] ) ) {

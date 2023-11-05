@@ -1632,8 +1632,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		}
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockOptions = [
-			'address' => 'UTBlockee',
-			'user' => $user->getId(),
+			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
@@ -1710,8 +1709,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		}
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockOptions = [
-			'address' => 'UTBlockee',
-			'user' => $user->getId(),
+			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
