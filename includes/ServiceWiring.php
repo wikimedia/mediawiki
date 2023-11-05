@@ -305,7 +305,13 @@ return [
 	},
 
 	'AutoblockExemptionList' => static function ( MediaWikiServices $services ): AutoblockExemptionList {
-		return new AutoblockExemptionList( LoggerFactory::getInstance( 'AutoblockExemptionList' ) );
+		$messageFormatterFactory = new MessageFormatterFactory( Message::FORMAT_PLAIN );
+		return new AutoblockExemptionList(
+			LoggerFactory::getInstance( 'AutoblockExemptionList' ),
+			$messageFormatterFactory->getTextFormatter(
+				$services->getContentLanguage()->getCode()
+			)
+		);
 	},
 
 	'BacklinkCacheFactory' => static function ( MediaWikiServices $services ): BacklinkCacheFactory {
