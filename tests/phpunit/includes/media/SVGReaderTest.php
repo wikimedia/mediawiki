@@ -141,6 +141,17 @@ class SVGReaderTest extends \MediaWikiIntegrationTestCase {
 					'translations' => []
 				],
 			],
+			[
+				"$base/css-animated.svg",
+				[
+					'width' => 100,
+					'height' => 100,
+					'originalWidth' => '100',
+					'originalHeight' => '100',
+					'animated' => true,
+					'translations' => []
+				],
+			],
 		];
 	}
 
