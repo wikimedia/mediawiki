@@ -573,6 +573,33 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * Regression test for T350202
+	 */
+	public function testGetApplicableBlockForImplicitRight() {
+		$block = new DatabaseBlock( [
+			'address' => '127.0.8.1',
+			'by' => new UserIdentityValue( 100, 'TestUser' ),
+			'auto' => true,
+		] );
+
+		$user = $this->createUserWithBlock( $block );
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		// The block is not applicable because the purge permission is implicit.
+		$this->assertNull(
+			$permissionManager->getApplicableBlock(
+				'purge',
+				$user,
+				PermissionManager::RIGOR_FULL,
+				$title,
+				null
+			)
+		);
+	}
+
 	public static function provideTestCheckUserBlockActions() {
 		return [
 			'Sitewide autoblock' => [
