@@ -423,13 +423,13 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// make sure output wrapping works right
-		$this->assertStringContainsString( 'class="mw-parser-output"', $mainHtml );
-		$this->assertStringContainsString( 'class="mw-parser-output"', $auxHtml );
-		$this->assertStringContainsString( 'class="mw-parser-output"', $combinedHtml );
+		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $mainHtml );
+		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $auxHtml );
+		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $combinedHtml );
 
 		// there should be only one wrapper div
-		$this->assertSame( 1, preg_match_all( '#class="mw-parser-output"#', $combinedHtml ) );
-		$this->assertStringNotContainsString( 'class="mw-parser-output"', $combinedOutput->getRawText() );
+		$this->assertSame( 1, preg_match_all( '#class="[^"]*mw-parser-output"#', $combinedHtml ) );
+		$this->assertStringNotContainsString( 'mw-parser-output"', $combinedOutput->getRawText() );
 
 		$combinedLinks = $combinedOutput->getLinks();
 		$mainLinks = $mainOutput->getLinks();

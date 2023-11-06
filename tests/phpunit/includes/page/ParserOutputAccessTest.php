@@ -838,7 +838,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$calls = [];
 		$this->editPage( $page, "__NOTOC__" );
 		$status0 = $access->getParserOutput( $page, $parserOptions0 );
-		$this->assertContainsHtml( '<div class="mw-parser-output"></div>', $status0 );
+		$this->assertContainsHtml( '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"></div>', $status0 );
 		$status1 = $access->getParserOutput( $page, $parserOptions1 );
 		$this->assertContainsHtml( '<meta property="mw:PageProp/notoc"', $status1 );
 		$this->assertNotSameHtml( $status0, $status1 );

@@ -734,6 +734,8 @@ return [
 		return new DefaultOutputTransform(
 			$services->getHookContainer(),
 			$services->getTidy(),
+			$services->getLanguageFactory(),
+			$services->getContentLanguage(),
 			LoggerFactory::getInstance( 'Parser' )
 		);
 	},

@@ -812,6 +812,15 @@ class Article implements Page {
 		# Adjust title for main page & pages with displaytitle
 		if ( $pOutput ) {
 			$this->adjustDisplayTitle( $pOutput );
+
+			// It would be nice to automatically set this during the first call
+			// to OutputPage::addParserOutputMetadata, but we can't because doing
+			// so would break non-pageview actions where OutputPage::getContLangForJS
+			// has different requirements.
+			$pageLang = $pOutput->getLanguage();
+			if ( $pageLang ) {
+				$outputPage->setContentLangForJS( $pageLang );
+			}
 		}
 
 		# Check for any __NOINDEX__ tags on the page using $pOutput

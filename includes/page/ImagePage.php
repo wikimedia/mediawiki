@@ -146,16 +146,12 @@ class ImagePage extends Article {
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
 		if ( $this->getPage()->getId() ) {
-			# NS_FILE is in the user language, but this section (the actual wikitext)
-			# should be in page content language
-			$pageLang = $this->getTitle()->getPageViewLanguage();
-			$out->addHTML( Xml::openElement( 'div', [ 'id' => 'mw-imagepage-content',
-				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
-				'class' => 'mw-content-' . $pageLang->getDir() ] ) );
-
+			$out->addHTML( Html::openElement( 'div', [ 'id' => 'mw-imagepage-content' ] ) );
+			// NS_FILE pages render mostly in the user language (like special pages),
+			// except the editable wikitext content, which is rendered in the page content
+			// language by the parent class.
 			parent::view();
-
-			$out->addHTML( Xml::closeElement( 'div' ) );
+			$out->addHTML( Html::closeElement( 'div' ) );
 		} else {
 			# Just need to set the right headers
 			$out->setArticleFlag( true );
@@ -335,10 +331,16 @@ class ImagePage extends Article {
 			return null;
 		}
 
-		$requestLanguage =
-			$request->getVal( 'lang',
-				LanguageCode::bcp47( $this->getTitle()->getPageViewLanguage()->getCode() )
-			);
+		$requestLanguage = $request->getVal( 'lang' );
+		if ( $requestLanguage === null ) {
+			// For on File pages about a translatable SVG, decide which
+			// language to render the large thumbnail in (T310445)
+			$services = MediaWikiServices::getInstance();
+			$variantLangCode = $services->getLanguageConverterFactory()
+				->getLanguageConverter( $services->getContentLanguage() )
+				->getPreferredVariant();
+			$requestLanguage = LanguageCode::bcp47( $variantLangCode );
+		}
 		if ( $handler->validateParam( 'lang', $requestLanguage ) ) {
 			return $file->getMatchedLanguage( $requestLanguage );
 		}

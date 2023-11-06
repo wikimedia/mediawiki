@@ -1794,16 +1794,16 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'wrapWikiTextAsInterface' => [
 				'Simple' => [
 					[ 'wrapperClass', 'text' ],
-					"<div class=\"wrapperClass\"><p>text\n</p></div>"
+					"<div class=\"mw-content-ltr wrapperClass\" lang=\"en\" dir=\"ltr\"><p>text\n</p></div>"
 				], 'Spurious </div>' => [
 					[ 'wrapperClass', 'text</div><div>more' ],
-					"<div class=\"wrapperClass\"><p>text</p><div>more</div></div>"
+					"<div class=\"mw-content-ltr wrapperClass\" lang=\"en\" dir=\"ltr\"><p>text</p><div>more</div></div>"
 				], 'Extra newlines would break <p> wrappers' => [
 					[ 'two classes', "1\n\n2\n\n3" ],
-					"<div class=\"two classes\"><p>1\n</p><p>2\n</p><p>3\n</p></div>"
+					"<div class=\"mw-content-ltr two classes\" lang=\"en\" dir=\"ltr\"><p>1\n</p><p>2\n</p><p>3\n</p></div>"
 				], 'Other unclosed tags' => [
 					[ 'error', 'a<b>c<i>d' ],
-					"<div class=\"error\"><p>a<b>c<i>d\n</i></b></p></div>"
+					"<div class=\"mw-content-ltr error\" lang=\"en\" dir=\"ltr\"><p>a<b>c<i>d\n</i></b></p></div>"
 				],
 			],
 		];
@@ -3170,6 +3170,69 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance( [], null, null, $performer );
 		$op->getContext()->getSkin()->setRelevantTitle( Title::makeTitle( NS_MAIN, 'RelevantTitle' ) );
 		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
+	}
+
+	public function provideJsVarsAboutPageLang() {
+		// Format:
+		// - expected
+		// - title
+		// - site content language
+		// - user language
+		// - wgDefaultLanguageVariant
+		return [
+			[ 'fr', [ NS_HELP, 'I_need_somebody' ], 'fr', 'fr', false ],
+			[ 'es', [ NS_HELP, 'I_need_somebody' ], 'es', 'zh-tw', false ],
+			[ 'zh', [ NS_HELP, 'I_need_somebody' ], 'zh', 'zh-tw', false ],
+			[ 'es', [ NS_HELP, 'I_need_somebody' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'es', [ NS_MEDIAWIKI, 'About' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'es', [ NS_MEDIAWIKI, 'About/' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'de', [ NS_MEDIAWIKI, 'About/de' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_MEDIAWIKI, 'Common.js' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_MEDIAWIKI, 'Common.css' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_USER, 'JohnDoe/Common.js' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_USER, 'JohnDoe/Monobook.css' ], 'es', 'zh-tw', 'zh-cn' ],
+
+			[ 'zh-cn', [ NS_HELP, 'I_need_somebody' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'zh', [ NS_MEDIAWIKI, 'About' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'zh', [ NS_MEDIAWIKI, 'About/' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'de', [ NS_MEDIAWIKI, 'About/de' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'zh-cn', [ NS_MEDIAWIKI, 'About/zh-cn' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'zh-tw', [ NS_MEDIAWIKI, 'About/zh-tw' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_MEDIAWIKI, 'Common.js' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_MEDIAWIKI, 'Common.css' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_USER, 'JohnDoe/Common.js' ], 'zh', 'zh-tw', 'zh-cn' ],
+			[ 'en', [ NS_USER, 'JohnDoe/Monobook.css' ], 'zh', 'zh-tw', 'zh-cn' ],
+
+			[ 'nl', [ NS_SPECIAL, 'BlankPage' ], 'en', 'nl', false ],
+			[ 'zh-tw', [ NS_SPECIAL, 'NewPages' ], 'es', 'zh-tw', 'zh-cn' ],
+			[ 'zh-tw', [ NS_SPECIAL, 'NewPages' ], 'zh', 'zh-tw', 'zh-cn' ],
+
+			[ 'sr-ec', [ NS_FILE, 'Example' ], 'sr', 'sr', 'sr-ec' ],
+			[ 'sr', [ NS_FILE, 'Example' ], 'sr', 'sr', 'sr' ],
+			[ 'sr-ec', [ NS_MEDIAWIKI, 'Example' ], 'sr-ec', 'sr-ec', 'sr' ],
+			[ 'sr' , [ NS_MEDIAWIKI, 'Example' ], 'sr', 'sr', 'sr-ec' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideJsVarsAboutPageLang
+	 */
+	public function testGetJsVarsAboutPageLang( $expected, $title, $contLang, $userLang, $variant ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::DefaultLanguageVariant => $variant,
+		] );
+		$this->setContentLang( $contLang );
+		$output = $this->newInstance(
+			[ 'LanguageCode' => $contLang ],
+			new FauxRequest( [ 'uselang' => $userLang ] ),
+			'notitle'
+		);
+		$output->setTitle( Title::makeTitle( $title[0], $title[1] ) );
+
+		$this->assertArraySubmapSame( [
+			'wgPageViewLanguage' => $expected,
+			'wgPageContentLanguage' => $expected,
+		], $output->getJSVars() );
 	}
 
 	/**

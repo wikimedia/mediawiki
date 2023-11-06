@@ -246,7 +246,6 @@ class SpecialExpandTemplates extends SpecialPage {
 	 * @param OutputPage $out
 	 */
 	private function showHtmlPreview( Title $title, ParserOutput $pout, OutputPage $out ) {
-		$lang = $title->getPageViewLanguage();
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 
 		if ( $this->getConfig()->get( MainConfigNames::RawHtml ) ) {
@@ -277,13 +276,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 		}
 
-		$out->addHTML( Html::openElement( 'div', [
-			'class' => 'mw-content-' . $lang->getDir(),
-			'dir' => $lang->getDir(),
-			'lang' => $lang->getHtmlCode(),
-		] ) );
 		$out->addParserOutputContent( $pout, [ 'enableSectionEditLinks' => false ] );
-		$out->addHTML( Html::closeElement( 'div' ) );
 		$out->setCategoryLinks( $pout->getCategoryMap() );
 	}
 

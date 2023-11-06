@@ -260,7 +260,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$this->assertStringContainsString( 'Hello World', $text );
 		$this->assertStringContainsString( '<div', $text );
-		$this->assertStringContainsString( 'class="mw-parser-output"', $text );
+		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $text );
 	}
 
 	public function provideRevisionAccess() {

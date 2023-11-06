@@ -978,7 +978,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			[
 				CONTENT_MODEL_WIKITEXT,
 				"hello ''world''\n",
-				"<div class=\"mw-parser-output\"><p>hello <i>world</i></p></div>"
+				'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>hello <i>world</i></p></div>'
 			],
 			[
 				CONTENT_MODEL_JAVASCRIPT,

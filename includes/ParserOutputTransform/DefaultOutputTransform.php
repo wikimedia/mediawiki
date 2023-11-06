@@ -7,6 +7,7 @@ use Linker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tidy\TidyDriverBase;
 use Parser;
@@ -25,13 +26,23 @@ use Title;
 class DefaultOutputTransform {
 
 	private HookRunner $hookRunner;
-	private LoggerInterface $logger;
 	private TidyDriverBase $tidy;
+	private LanguageFactory $langFactory;
+	private Language $contentLang;
+	private LoggerInterface $logger;
 
-	public function __construct( HookContainer $hc, TidyDriverBase $tidy, LoggerInterface $logger ) {
+	public function __construct(
+		HookContainer $hc,
+		TidyDriverBase $tidy,
+		LanguageFactory $langFactory,
+		Language $contentLang,
+		LoggerInterface $logger
+	) {
 		$this->hookRunner = new HookRunner( $hc );
-		$this->logger = $logger;
 		$this->tidy = $tidy;
+		$this->langFactory = $langFactory;
+		$this->contentLang = $contentLang;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -104,7 +115,12 @@ class DefaultOutputTransform {
 		$this->hookRunner->onParserOutputPostCacheTransform( $po, $text, $options );
 
 		if ( $options['wrapperDivClass'] !== '' && !$options['unwrap'] ) {
-			$text = Html::rawElement( 'div', [ 'class' => $options['wrapperDivClass'] ], $text );
+			$pageLang = $this->getLanguageWithFallbackGuess( $po );
+			$text = Html::rawElement( 'div', [
+				'class' => 'mw-content-' . $pageLang->getDir() . ' ' . $options['wrapperDivClass'],
+				'lang' => $pageLang->toBcp47Code(),
+				'dir' => $pageLang->getDir(),
+			], $text );
 		}
 
 		'@phan-var string $text';
@@ -139,6 +155,15 @@ class DefaultOutputTransform {
 
 		$po->setTransformedText( $text );
 		return $po;
+	}
+
+	private function getLanguageWithFallbackGuess( ParserOutput $po ): Language {
+		$pageLang = $po->getLanguage();
+		if ( $pageLang ) {
+			return $this->langFactory->getLanguage( $pageLang );
+		} else {
+			return $this->contentLang;
+		}
 	}
 
 	/**
