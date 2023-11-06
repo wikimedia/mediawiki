@@ -36,7 +36,7 @@ use MediaWiki\MainConfigNames;
  * @internal
  */
 class CodexModule extends FileModule {
-	private const CODEX_MODULE_DIR = 'resources/lib/codex/modules/';
+	protected const CODEX_MODULE_DIR = 'resources/lib/codex/modules/';
 
 	/** @var array<string,string> */
 	private array $themeMap = [];
@@ -52,6 +52,15 @@ class CodexModule extends FileModule {
 	private bool $isScriptOnly = false;
 	private bool $setupComplete = false;
 
+	/**
+	 * @param array $options [optional]
+	 *  - themeStyles: array of skin- or theme-specific files
+	 *  - codexComponents: array of Codex components to include
+	 *  - codexStyleOnly: whether to include only style files
+	 *  - codexScriptOnly: whether to include only script files
+	 * @param string|null $localBasePath [optional]
+	 * @param string|null $remoteBasePath [optional]
+	 */
 	public function __construct( array $options = [], $localBasePath = null, $remoteBasePath = null ) {
 		$skinCodexThemes = ExtensionRegistry::getInstance()->getAttribute( 'SkinCodexThemes' );
 		$this->themeMap = [ 'default' => 'wikimedia-ui' ] + $skinCodexThemes;
@@ -248,7 +257,7 @@ class CodexModule extends FileModule {
 
 		// Manifest data structure representing all Codex components in the library
 		$manifest = json_decode(
-			file_get_contents( MW_INSTALL_PATH . '/' . self::CODEX_MODULE_DIR . $this->getManifestFile( $context ) ),
+			file_get_contents( MW_INSTALL_PATH . '/' . static::CODEX_MODULE_DIR . $this->getManifestFile( $context ) ),
 			true
 		);
 
@@ -269,7 +278,8 @@ class CodexModule extends FileModule {
 		// Add the CSS files to the module's package file (unless this is a script-only module)
 		if ( !( $this->isScriptOnly ) ) {
 			foreach ( $styles as $fileName ) {
-				$this->styles[] = new FilePath( self::CODEX_MODULE_DIR . $fileName, MW_INSTALL_PATH, $remoteBasePath );
+				$this->styles[] = new FilePath( static::CODEX_MODULE_DIR .
+					$fileName, MW_INSTALL_PATH, $remoteBasePath );
 			}
 		}
 
@@ -292,7 +302,7 @@ class CodexModule extends FileModule {
 			foreach ( $scripts as $fileName ) {
 				$this->packageFiles[] = [
 					'name' => "_codex/$fileName",
-					'file' => new FilePath( self::CODEX_MODULE_DIR . $fileName, MW_INSTALL_PATH, $remoteBasePath )
+					'file' => new FilePath( static::CODEX_MODULE_DIR . $fileName, MW_INSTALL_PATH, $remoteBasePath )
 				];
 			}
 		}
