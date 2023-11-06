@@ -1312,7 +1312,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Assert cache update after edit ----------
 		$parserCacheFactory = $this->getServiceContainer()->getParserCacheFactory();
 		$parserCache = $parserCacheFactory->getParserCache( ParserCacheFactory::DEFAULT_NAME );
-		$parsoidCache = $parserCacheFactory->getParserCache( ParsoidOutputAccess::PARSOID_PARSER_CACHE_NAME );
+		$parsoidCache = $parserCacheFactory->getParserCache( "parsoid-" . ParserCacheFactory::DEFAULT_NAME );
 
 		$parserCache->deleteOptionsKey( $page );
 		$parsoidCache->deleteOptionsKey( $page );
@@ -1331,7 +1331,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Parsoid cache should have an entry
 		$parserOptions = ParserOptions::newFromAnon();
-
+		$parserOptions->setUseParsoid();
 		$parsoidCached = $parsoidCache->get( $page, $parserOptions, true );
 		$this->assertIsObject( $parsoidCached );
 		$this->assertStringContainsString( 'first', $parsoidCached->getRawText() );
@@ -1344,6 +1344,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->getServiceContainer()->getParsoidOutputAccess()->getParsoidRenderID( $parsoidCached );
 
 		// The cached ParserOutput should not use the revision timestamp
+		// Create nwe ParserOptions object since we setUseParsoid() above
+		$parserOptions = ParserOptions::newFromAnon();
 		$cached = $parserCache->get( $page, $parserOptions, true );
 		$this->assertIsObject( $cached );
 		$this->assertNotSame( $parsoidCached, $cached );

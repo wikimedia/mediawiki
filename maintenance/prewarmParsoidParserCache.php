@@ -1,6 +1,7 @@
 <?php
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -74,7 +75,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 			$page,
 			ParserOptions::newFromAnon(),
 			$revision,
-			$this->forceParse | ParsoidOutputAccess::OPT_LOG_LINT_DATA
+			$this->forceParse
 		);
 	}
 
@@ -110,7 +111,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 		if ( $force !== null ) {
 			// If --force is supplied, for a parse for supported pages or supported
 			// pages in the specified batch.
-			$this->forceParse = ParsoidOutputAccess::OPT_FORCE_PARSE;
+			$this->forceParse = ParserOutputAccess::OPT_FORCE_PARSE;
 		}
 
 		$startFrom = (int)$startFrom;

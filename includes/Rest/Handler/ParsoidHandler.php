@@ -277,7 +277,6 @@ abstract class ParsoidHandler extends Handler {
 			// by the parsoid extension. Will be null for core endpoints.
 			'domain' => $request->getPathParam( 'domain' ),
 			'pageName' => $attribs['pageName'],
-			'offsetType' => $attribs['offsetType'],
 			'cookie' => $request->getHeaderLine( 'Cookie' ),
 			'reqId' => $request->getHeaderLine( 'X-Request-Id' ),
 			'userAgent' => $request->getHeaderLine( 'User-Agent' ),
@@ -366,10 +365,6 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( isset( $attribs['envOptions']['outputContentVersion'] ) ) {
 			$helper->setOutputProfileVersion( $attribs['envOptions']['outputContentVersion'] );
-		}
-
-		if ( isset( $attribs['envOptions']['offsetType'] ) ) {
-			$helper->setOffsetType( $attribs['envOptions']['offsetType'] );
 		}
 
 		if ( isset( $attribs['pagelanguage'] ) ) {
@@ -886,6 +881,20 @@ abstract class ParsoidHandler extends Handler {
 		if ( $needsPageBundle ) {
 			$pb = $helper->getPageBundle();
 
+			// Handle custom offset requests as a pb2pb transform
+			if ( $attribs['offsetType'] !== 'byte' ) {
+				$parsoid = $this->newParsoid();
+				$pb = $parsoid->pb2pb(
+					$pageConfig,
+					'convertoffsets',
+					$pb,
+					[
+						'inputOffsetType' => 'byte',
+						'outputOffsetType' => $attribs['offsetType']
+					]
+				);
+			}
+
 			$response = $this->getResponseFactory()->createJson( $pb->responseData() );
 			$helper->putHeaders( $response, false );
 
@@ -896,6 +905,9 @@ abstract class ParsoidHandler extends Handler {
 			);
 		} else {
 			$out = $helper->getHtml();
+
+			// TODO: offsetType conversion isn't supported right now for non-pagebundle endpoints
+			// Once the OutputTransform framework lands, we might revisit this.
 
 			$response = $this->getResponseFactory()->create();
 			$response->getBody()->write( $out->getRawText() );

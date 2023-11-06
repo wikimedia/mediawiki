@@ -135,6 +135,9 @@ class LanguageVariantConverter {
 			$languageConverter = $this->languageConverterFactory->getLanguageConverter( $baseLanguage );
 			$targetVariantCode = $this->languageFactory->getLanguage( $targetVariant )->getCode();
 			if ( $languageConverter->hasVariant( $targetVariantCode ) ) {
+				// NOTE: This is not a convert() because we have the exact desired variant
+				// and don't need to compute a preferred variant based on a base language.
+				// Also see T267067 for why convert() should be avoided.
 				$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
 			} else {
 				// No conversion possible - pass through original HTML.
