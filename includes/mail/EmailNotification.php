@@ -30,7 +30,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserArray;
@@ -521,9 +520,9 @@ class EmailNotification {
 	 *
 	 * @param UserEmailContact $watchingUser
 	 * @param string $source
-	 * @return Status
+	 * @return StatusValue
 	 */
-	private function sendPersonalised( UserEmailContact $watchingUser, $source ) {
+	private function sendPersonalised( UserEmailContact $watchingUser, $source ): StatusValue {
 		// From the PHP manual:
 		//   Note: The to parameter cannot be an address in the form of
 		//   "Something <someone@example.com>". The mail command will not parse
@@ -558,24 +557,33 @@ class EmailNotification {
 			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
 		}
 
-		return UserMailer::send( $to, $this->from, $this->subject, $body, [
-			'replyTo' => $this->replyto,
-			'headers' => $headers,
-		] );
+		return $mwServices
+			->getEmailer()
+			->send(
+				[ $to ],
+				$this->from,
+				$this->subject,
+				$body,
+				null,
+				[
+					'replyTo' => $this->replyto,
+					'headers' => $headers,
+				]
+			);
 	}
 
 	/**
 	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
 	 * @param MailAddress[] $addresses
-	 * @return Status|null
+	 * @return ?StatusValue
 	 */
-	private function sendImpersonal( $addresses ) {
-		if ( !$addresses ) {
+	private function sendImpersonal( array $addresses ): ?StatusValue {
+		if ( count( $addresses ) === 0 ) {
 			return null;
 		}
-
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
 		$body = str_replace(
 			[
 				'$WATCHINGUSERNAME',
@@ -590,9 +598,18 @@ class EmailNotification {
 			$this->body
 		);
 
-		return UserMailer::send( $addresses, $this->from, $this->subject, $body, [
-			'replyTo' => $this->replyto,
-		] );
+		return $services
+			->getEmailer()
+			->send(
+				$addresses,
+				$this->from,
+				$this->subject,
+				$body,
+				null,
+				[
+					'replyTo' => $this->replyto,
+				]
+			);
 	}
 
 }

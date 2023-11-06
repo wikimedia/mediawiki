@@ -64,7 +64,6 @@ use RuntimeException;
 use stdClass;
 use UnexpectedValueException;
 use UserCache;
-use UserMailer;
 use UserPasswordPolicy;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
@@ -3007,9 +3006,15 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 		$to = MailAddress::newFromUser( $this );
 
-		return UserMailer::send( $to, $sender, $subject, $body, [
-			'replyTo' => $replyto,
-		] );
+		return Status::wrap( MediaWikiServices::getInstance()->getEmailer()
+			->send(
+				[ $to ],
+				$sender,
+				$subject,
+				$body,
+				null,
+				[ 'replyTo' => $replyto ]
+			) );
 	}
 
 	/**

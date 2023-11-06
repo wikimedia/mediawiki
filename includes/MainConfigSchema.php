@@ -11235,7 +11235,12 @@ class MainConfigSchema {
 			'refreshLinks' => RefreshLinksJob::class,
 			'deleteLinks' => DeleteLinksJob::class,
 			'htmlCacheUpdate' => HTMLCacheUpdateJob::class,
-			'sendMail' => EmaillingJob::class,
+			'sendMail' => [
+				'class' => EmaillingJob::class,
+				'services' => [
+					0 => 'Emailer'
+				]
+			],
 			'enotifNotify' => EnotifNotifyJob::class,
 			'fixDoubleRedirect' => [
 				'class' => DoubleRedirectJob::class,

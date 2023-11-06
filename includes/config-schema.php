@@ -2062,7 +2062,12 @@ return [
 				'refreshLinks' => 'RefreshLinksJob',
 				'deleteLinks' => 'DeleteLinksJob',
 				'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
-				'sendMail' => 'EmaillingJob',
+				'sendMail' => [
+					'class' => 'EmaillingJob',
+					'services' => [
+						0 => 'Emailer',
+					],
+				],
 				'enotifNotify' => 'EnotifNotifyJob',
 				'fixDoubleRedirect' => [
 					'class' => 'DoubleRedirectJob',
