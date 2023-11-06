@@ -419,6 +419,17 @@ class ParserCache {
 		// T350538: Eventually we'll warn if the $cacheTime and $revId
 		// parameters are non-null here, since we *should* be getting
 		// them from the ParserOutput.
+		if ( $revId !== null && $revId !== $parserOutput->getCacheRevisionId() ) {
+			$this->logger->warning(
+				'Inconsistent revision ID',
+				[
+					'name' => $this->name,
+					'reason' => $popts->getRenderReason(),
+					'revid1' => $revId,
+					'revid2' => $parserOutput->getCacheRevisionId(),
+				]
+			);
+		}
 
 		if ( !$parserOutput->hasText() ) {
 			throw new InvalidArgumentException( 'Attempt to cache a ParserOutput with no text set!' );
@@ -465,6 +476,15 @@ class ParserCache {
 		if ( $cacheTime ) {
 			$parserOutput->setCacheTime( $cacheTime );
 		} else {
+			if ( !$parserOutput->hasCacheTime() ) {
+				$this->logger->warning(
+					'No cache time set',
+					[
+						'name' => $this->name,
+						'reason' => $popts->getRenderReason(),
+					]
+				);
+			}
 			$cacheTime = $parserOutput->getCacheTime();
 		}
 
@@ -477,7 +497,7 @@ class ParserCache {
 			$parserOutput->setCacheRevisionId( $revId );
 		}
 		if ( !$revId ) {
-			$this->logger->debug(
+			$this->logger->warning(
 				'Parser output cannot be saved if the revision ID is not known',
 				[ 'name' => $this->name ]
 			);
@@ -486,6 +506,13 @@ class ParserCache {
 		}
 
 		if ( !$parserOutput->getRenderId() ) {
+			$this->logger->warning(
+				'Parser output missing render ID',
+				[
+					'name' => $this->name,
+					'reason' => $popts->getRenderReason(),
+				]
+			);
 			$parserOutput->setRenderId( $this->globalIdGenerator->newUUIDv1() );
 		}
 
