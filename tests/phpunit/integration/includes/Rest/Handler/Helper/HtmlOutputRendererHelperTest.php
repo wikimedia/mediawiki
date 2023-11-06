@@ -137,6 +137,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				PageIdentity $page,
 				ParserOptions $parserOpts,
 				$rev,
+				bool $lenientRevHandling,
 				array $envOptions = []
 			) {
 				$html = $this->getMockHtml( $rev, $envOptions );
@@ -616,6 +617,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				PageIdentity $page,
 				ParserOptions $parserOpts,
 				$rev,
+				bool $lenientRevHandling,
 				array $envOptions = []
 			) use ( $fakePage, $fakeRevision ) {
 				self::assertSame( $page, $fakePage, '$page and $fakePage should be the same' );
