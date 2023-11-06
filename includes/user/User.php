@@ -3007,13 +3007,21 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 		$to = MailAddress::newFromUser( $this );
 
+		if ( is_array( $body ) ) {
+			$bodyText = $body['text'] ?? '';
+			$bodyHtml = $body['html'] ?? null;
+		} else {
+			$bodyText = $body;
+			$bodyHtml = null;
+		}
+
 		return Status::wrap( MediaWikiServices::getInstance()->getEmailer()
 			->send(
 				[ $to ],
 				$sender,
 				$subject,
-				$body,
-				null,
+				$bodyText,
+				$bodyHtml,
 				[ 'replyTo' => $replyto ]
 			) );
 	}
