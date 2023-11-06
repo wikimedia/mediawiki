@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Unit\Edit;
 
 use HashBagOStuff;
+use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
-use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use TextContentHandler;
 use Wikimedia\Parsoid\Core\PageBundle;
