@@ -886,6 +886,11 @@ class PermissionManager {
 			return null;
 		}
 
+		// Implicit rights aren't blockable (T350117, T350202).
+		if ( in_array( $action, $this->getImplicitRights(), true ) ) {
+			return null;
+		}
+
 		if ( $rigor === self::RIGOR_SECURE ) {
 			$blockInfoFreshness = Authority::READ_LATEST;
 			$useReplica = false;
