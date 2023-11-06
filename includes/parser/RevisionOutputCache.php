@@ -263,8 +263,8 @@ class RevisionOutputCache {
 		if ( !$output->getRenderId() ) {
 			$output->setRenderId( $this->globalIdGenerator->newUUIDv1() );
 		}
-		if ( !$output->getTimestamp() ) {
-			$output->setTimestamp( $revision->getTimestamp() );
+		if ( !$output->getRevisionTimestamp() ) {
+			$output->setRevisionTimestamp( $revision->getTimestamp() );
 		}
 
 		$msg = "Saved in RevisionOutputCache with key $cacheKey" .

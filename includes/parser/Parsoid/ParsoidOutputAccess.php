@@ -223,7 +223,7 @@ class ParsoidOutputAccess {
 		$output->setCacheTime( $ts );
 		$output->setRenderId( 'dummy-output' );
 		$output->setCacheRevisionId( 0 );
-		$output->setTimestamp( $ts );
+		$output->setRevisionTimestamp( $ts );
 		// Required in HtmlOutputRendererHelper::putHeaders when $forHtml
 		$output->setExtensionData(
 			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY,

@@ -375,7 +375,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$parserOutput = $rr->getRevisionParserOutput();
 		// Assert parser output recorded timestamp and parsed rev_id
 		$this->assertSame( $rev->getId(), $parserOutput->getCacheRevisionId() );
-		$this->assertSame( $rev->getTimestamp(), $parserOutput->getTimestamp() );
+		$this->assertSame( $rev->getTimestamp(), $parserOutput->getRevisionTimestamp() );
 
 		$html = $parserOutput->getText();
 

@@ -850,7 +850,7 @@ class Article implements Page {
 		$outputPage->setRevisionIsCurrent( $oldid === $this->mPage->getLatest() );
 		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Preload timestamp to avoid a DB hit
-		$cachedTimestamp = $pOutput->getTimestamp();
+		$cachedTimestamp = $pOutput->getRevisionTimestamp();
 		if ( $cachedTimestamp !== null ) {
 			$outputPage->setRevisionTimestamp( $cachedTimestamp );
 			$this->mPage->setTimestamp( $cachedTimestamp );

@@ -86,8 +86,8 @@ class ContentRenderer {
 		if ( $parserOutput->getCacheRevisionId() === null && $revId !== null ) {
 			$parserOutput->setCacheRevisionId( $revId );
 		}
-		if ( $parserOutput->getTimestamp() === null && $revTimestamp !== null ) {
-			$parserOutput->setTimestamp( $revTimestamp );
+		if ( $parserOutput->getRevisionTimestamp() === null && $revTimestamp !== null ) {
+			$parserOutput->setRevisionTimestamp( $revTimestamp );
 		}
 		return $parserOutput;
 	}

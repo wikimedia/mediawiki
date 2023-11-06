@@ -191,7 +191,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$pout->setCacheRevisionId( $rev ?: $page->getLatest() );
 		$pout->setCacheTime( wfTimestampNow() ); // will use fake time
 		if ( $revTimestamp ) {
-			$pout->setTimestamp( $revTimestamp );
+			$pout->setRevisionTimestamp( $revTimestamp );
 		}
 		// We test that UUIDs are unique, so make a cheap unique UUID
 		$pout->setRenderId( 'bogus-uuid-' . strval( $counter++ ) );

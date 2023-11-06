@@ -1031,25 +1031,25 @@ EOF
 
 		// timestamp ------------
 		$a = new ParserOutput();
-		$a->setTimestamp( '20180101000011' );
+		$a->setRevisionTimestamp( '20180101000011' );
 		$b = new ParserOutput();
 		yield 'only left timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
 		$a = new ParserOutput();
 		$b = new ParserOutput();
-		$b->setTimestamp( '20180101000011' );
+		$b->setRevisionTimestamp( '20180101000011' );
 		yield 'only right timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
 		$a = new ParserOutput();
-		$a->setTimestamp( '20180101000011' );
+		$a->setRevisionTimestamp( '20180101000011' );
 		$b = new ParserOutput();
-		$b->setTimestamp( '20180101000001' );
+		$b->setRevisionTimestamp( '20180101000001' );
 		yield 'left timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
 		$a = new ParserOutput();
-		$a->setTimestamp( '20180101000001' );
+		$a->setRevisionTimestamp( '20180101000001' );
 		$b = new ParserOutput();
-		$b->setTimestamp( '20180101000011' );
+		$b->setRevisionTimestamp( '20180101000011' );
 		yield 'right timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
 		// speculative rev id ------------
