@@ -23,7 +23,6 @@ use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Parser\ParserCacheFactory;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -231,26 +230,6 @@ class ParserOutputAccess {
 
 		if ( $output && !$isOld ) {
 			$this->localCache[$classCacheKey] = [ $page->getLatest() => $output ];
-		}
-
-		// HACK! If the 'useParsoid' option is set, also look up content
-		// from the 'parsoid' cache that was used by ParsoidOutputAccess to store
-		// Parsoid content. This lets us fetch content from previously stored content
-		// without running into cold cache problems!
-		// (T347632 tracks removal of this hack)
-		if ( !$output && $parserOptions->getUseParsoid() ) {
-			if ( $useCache === self::CACHE_PRIMARY ) {
-				$fallbackParsoidCache = $this->parserCacheFactory->getParserCache(
-					ParsoidOutputAccess::PARSOID_PARSER_CACHE_NAME
-				);
-				$output = $fallbackParsoidCache->get( $page, $parserOptions );
-				// Unforunately, fallback content doesn't have the wrapper div
-				// class set properly.
-				$class = $parserOptions->getWrapOutputClass();
-				if ( $output && $class !== false && !$parserOptions->getInterfaceMessage() ) {
-					$output->addWrapperDivClass( $class );
-				}
-			}
 		}
 
 		if ( $output ) {
