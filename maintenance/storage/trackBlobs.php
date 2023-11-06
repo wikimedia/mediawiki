@@ -23,6 +23,9 @@
 
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -102,13 +105,15 @@ class TrackBlobs extends Maintenance {
 	private function getTextClause() {
 		if ( !$this->textClause ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$this->textClause = '';
+			$conds = [];
 			foreach ( $this->clusters as $cluster ) {
-				if ( $this->textClause != '' ) {
-					$this->textClause .= ' OR ';
-				}
-				$this->textClause .= 'old_text' . $dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
+				$conds[] = $dbr->expr(
+					'old_text',
+					IExpression::LIKE,
+					new LikeValue( "DB://$cluster/", $dbr->anyString() )
+				);
 			}
+			$this->textClause = new OrExpressionGroup( ...$conds );
 		}
 
 		return $this->textClause;
@@ -146,7 +151,11 @@ class TrackBlobs extends Maintenance {
 
 		$conds = [
 			$textClause,
-			'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+			$dbr->expr(
+				'old_flags',
+				IExpression::LIKE,
+				new LikeValue( $dbr->anyString(), 'external', $dbr->anyString() )
+			)
 		];
 		$slotRoleStore = $this->getServiceContainer()->getSlotRoleStore();
 
@@ -240,9 +249,13 @@ class TrackBlobs extends Maintenance {
 				->from( 'text' )
 				->leftJoin( 'blob_tracking', null, 'bt_text_id=old_id' )
 				->where( [
-					'old_id>' . $dbr->addQuotes( $startId ),
+					$dbr->expr( 'old_id', '>', $startId ),
 					$textClause,
-					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+					$dbr->expr(
+						'old_flags',
+						IExpression::LIKE,
+						new LikeValue( $dbr->anyString(), 'external', $dbr->anyString() )
+					),
 					'bt_text_id' => null,
 				] )
 				->orderBy( 'old_id' )

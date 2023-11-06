@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\User\User;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -68,7 +70,6 @@ class WrapOldPasswords extends Maintenance {
 
 		// Get a list of password types that are applicable
 		$dbw = $this->getDB( DB_PRIMARY );
-		$typeCond = 'user_password' . $dbw->buildLike( ":$firstType:", $dbw->anyString() );
 
 		$count = 0;
 		$minUserId = 0;
@@ -81,7 +82,14 @@ class WrapOldPasswords extends Maintenance {
 				->select( [ 'user_id', 'user_name', 'user_password' ] )
 				->lockInShareMode()
 				->from( 'user' )
-				->where( [ 'user_id > ' . $dbw->addQuotes( $minUserId ), $typeCond ] )
+				->where( [
+					$dbw->expr( 'user_id', '>', $minUserId ),
+					$dbw->expr(
+						'user_password',
+						IExpression::LIKE,
+						new LikeValue( ":$firstType:", $dbw->anyString() )
+					),
+				] )
 				->orderBy( 'user_id' )
 				->limit( $this->getBatchSize() )
 				->caller( __METHOD__ )->fetchResultSet();

@@ -26,8 +26,10 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -205,23 +207,27 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 	/**
 	 * Get batched LIKE conditions from the charmap
-	 * @param ISQLPlatform $db Database handle
+	 * @param IReadableDatabase $db Database handle
 	 * @param string $field Field name
 	 * @param int $batchSize Size of the batches
 	 * @return array
 	 */
-	private function getLikeBatches( ISQLPlatform $db, $field, $batchSize = 100 ) {
+	private function getLikeBatches( IReadableDatabase $db, $field, $batchSize = 100 ) {
 		$ret = [];
 		$likes = [];
 		foreach ( $this->charmap as $from => $to ) {
-			$likes[] = $field . $db->buildLike( $from, $db->anyString() );
+			$likes[] = $db->expr(
+				$field,
+				IExpression::LIKE,
+				new LikeValue( $from, $db->anyString() )
+			);
 			if ( count( $likes ) >= $batchSize ) {
-				$ret[] = $db->makeList( $likes, $db::LIST_OR );
+				$ret[] = new OrExpressionGroup( ...$likes );
 				$likes = [];
 			}
 		}
 		if ( $likes ) {
-			$ret[] = $db->makeList( $likes, $db::LIST_OR );
+			$ret[] = new OrExpressionGroup( ...$likes );
 		}
 		return $ret;
 	}
