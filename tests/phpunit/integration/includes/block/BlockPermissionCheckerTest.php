@@ -45,8 +45,7 @@ class BlockPermissionCheckerTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$block = new DatabaseBlock( [
-			'address' => $blockedUser->getName(),
-			'user' => $blockedUser->getId(),
+			'address' => $blockedUser,
 			'by' => $blockPerformer,
 			'expiry' => 'infinity',
 			'sitewide' => $sitewide,

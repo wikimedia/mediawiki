@@ -34,8 +34,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [
-			'address' => $badActor->getName(),
-			'user' => $badActor->getId(),
+			'address' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
@@ -62,11 +61,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [
-			'address' => $badActor->getName(),
-			'user' => $badActor->getId(),
+			'address' => $badActor,
 			'by' => $sysop,
-			'ipb_expiry' => 'infinity',
-			'ipb_sitewide' => 1,
 		] );
 
 		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
@@ -93,8 +89,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [
-			'address' => $badActor->getName(),
-			'user' => $badActor->getId(),
+			'address' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 0,

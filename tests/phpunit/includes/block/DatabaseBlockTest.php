@@ -107,8 +107,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		}
 
 		$blockOptions = [
-			'address' => $user->getName(),
-			'user' => $user->getId(),
+			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => 'Parce que',
 			'expiry' => time() + 100500,
@@ -343,7 +342,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		// Foreign perspective (blockee not on current wiki)...
 		$blockOptions = [
 			'address' => $username,
-			'user' => $userId,
 			'reason' => 'crosswiki block...',
 			'timestamp' => wfTimestampNow(),
 			'expiry' => $this->db->getInfinity(),
@@ -401,7 +399,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		// Foreign perspective (blockee not on current wiki)...
 		$blockOptions = [
 			'address' => 'UserOnForeignWiki',
-			'user' => $user->getId(),
 			'reason' => 'crosswiki block...',
 			'timestamp' => wfTimestampNow(),
 			'expiry' => $this->db->getInfinity(),
@@ -505,8 +502,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [
-			'address' => $badActor->getName(),
-			'user' => $badActor->getId(),
+			'address' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
@@ -691,8 +687,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [
-			'address' => $badActor->getName(),
-			'user' => $badActor->getId(),
+			'address' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
@@ -720,8 +715,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [
-			'address' => $badActor->getName(),
-			'user' => $badActor->getId(),
+			'address' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
