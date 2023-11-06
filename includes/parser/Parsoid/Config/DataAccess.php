@@ -240,7 +240,7 @@ class DataAccess extends IDataAccess {
 				'mime' => $file->getMimeType(),
 				'url' => $file->getFullUrl(),
 				'mustRender' => $file->mustRender(),
-				'badFile' => $this->badFileLookup->isBadFile( $filename, $page ?: false ),
+				'badFile' => $this->badFileLookup->isBadFile( $filename, $page ),
 			];
 
 			$length = $file->getLength();
