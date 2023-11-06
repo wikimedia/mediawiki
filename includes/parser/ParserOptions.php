@@ -821,6 +821,27 @@ class ParserOptions {
 	}
 
 	/**
+	 * Should section edit links be suppressed?
+	 * Used when parsing wikitext which will be presented in a
+	 * non-interactive context: previews, UX text, etc.
+	 * @since 1.42
+	 * @return bool
+	 */
+	public function getSuppressSectionEditLinks() {
+		return $this->getOption( 'suppressSectionEditLinks' );
+	}
+
+	/**
+	 * Suppress section edit links in the output.
+	 * Used when parsing wikitext which will be presented in a
+	 * non-interactive context: previews, UX text, etc.
+	 * @since 1.42
+	 */
+	public function setSuppressSectionEditLinks() {
+		$this->setOption( 'suppressSectionEditLinks', true );
+	}
+
+	/**
 	 * If the wiki is configured to allow raw html ($wgRawHtml = true)
 	 * is it allowed in the specific case of parsing this page.
 	 *
@@ -1192,6 +1213,7 @@ class ParserOptions {
 				'targetLanguage' => null,
 				'removeComments' => true,
 				'suppressTOC' => false,
+				'suppressSectionEditLinks' => false,
 				'enableLimitReport' => false,
 				'preSaveTransform' => true,
 				'isPreview' => false,

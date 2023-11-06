@@ -5,6 +5,7 @@ namespace MediaWiki\OutputTransform\Stages;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -32,7 +33,10 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	}
 
 	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
-		if ( $options['enableSectionEditLinks'] ?? true ) {
+		if (
+			( $options['enableSectionEditLinks'] ?? true ) &&
+			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
+		) {
 			return $this->addSectionLinks( $text, $po, $options );
 		} else {
 			return preg_replace( self::EDITSECTION_REGEX, '', $text );
