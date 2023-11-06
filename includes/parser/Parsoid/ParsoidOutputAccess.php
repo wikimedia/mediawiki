@@ -307,7 +307,7 @@ class ParsoidOutputAccess {
 		$revId = $revision->getId();
 		if ( $revId !== 0 && $revId !== null ) {
 			return Status::newFatal( 'parsoid-revision-access',
-				"parseUncacheable should not called for a real revision" );
+				"parseUncacheable should not be called for a real revision" );
 		}
 
 		$status = $this->handleUnsupportedContentModel( $revision );
