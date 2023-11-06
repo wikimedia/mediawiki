@@ -485,7 +485,7 @@
 	"nocookieslogin": "{{SITENAME}} usa cookies para rexistrar os usuario, mais ti tes as cookies deshabilitadas.\nPor favor, habilítaas e téntao de novo.",
 	"nocookiesfornew": "Non se creou a conta de usuario porque non puidemos confirmar a orixe.\nAsegúrate de que tes as cookies habilitadas, recarga a páxina e téntao de novo.",
 	"createacct-loginerror": "A conta creouse correctamente, pero non te puideches conectar de xeito automático. Vai ao [[Special:UserLogin|acceso manual]].",
-	"createacct-temp-warning": "As edicións que fixeches coa conta temporal non se che transferirán á conta permanente.",
+	"createacct-temp-warning": "As edicións que fixeches coa conta temporal <strong>$1</strong> non se che transferirán á conta permanente.",
 	"noname": "Non sinalaches un nome de usuario válido.",
 	"loginsuccesstitle": "Accediches ao sistema",
 	"loginsuccess": "<strong>Accediches a {{SITENAME}} como \"$1\".</strong>",
@@ -663,9 +663,9 @@
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Inicia sesión]] ou [[Special:CreateAccount|crea unha conta]] para obter recoñecemento para as túas futuras edicións e acceder a outras funcións.",
 	"blankarticle": "<strong>Advertencia:</strong> A páxina que estás a piques de crear está baleira.\nSe premes no botón \"$1\" outra vez máis, a páxina quedará creada pero sen contido.",
 	"anoneditwarning": "<strong>Aviso:</strong> Non accediches ao sistema. O teu enderezo IP será visible se fas algunha corrección. Se <strong>[$1 accedes ao sistema]</strong> ou <strong>[$2 creas unha conta]</strong>, as edicións que fagas quedarán atribuídas ao teu nome de usuario e ademais obterás outros beneficios.",
-	"autocreate-edit-warning": "<strong>Aviso:</strong> Non accediches ao sistema. A túa edición quedará atribuída a un <strong>[[{{MediaWiki:tempuser-helppage}}|nome xerado automaticamente]]</strong> e engadiráselle unha cookie ao teu navegador. O teu enderezo IP será visible para os usuarios de confianza. Se <strong>[$1 accedes ao sistema]</strong> ou <strong>[$2 creas unha conta]</strong>, as túas edicións quedarán atribuídas ao nome que escollas, e ademais obterás outros beneficios.",
+	"autocreate-edit-warning": "<strong>Aviso:</strong> Non accediches ao sistema. A edición quedará atribuída a unha conta temporal. [[{{MediaWiki:tempuser-helppage}}|Máis información]]. <strong>[$1 Accede ao sistema]</strong> ou <strong>[$2 crea unha conta]</strong> para seguir recibindo notificacións trala expiración da conta e acceder a outras funcións.",
 	"anonpreviewwarning": "''Non iniciaches a sesión. Se gardas a páxina, o teu enderezo IP quedará rexistrado no historial de edicións.''",
-	"autocreate-preview-warning": "<em>Non accediches ao sistema. A túa edición quedará atribuída a un [[{{MediaWiki:tempuser-helppage}}|nome xerado automaticamente]] e o teu enderezo IP será visible para os administradores.</em>",
+	"autocreate-preview-warning": "<em>Non accediches ao sistema. A edición quedará atribuída a unha conta temporal. [[{{MediaWiki:tempuser-helppage}}|Máis información]].</em>",
 	"missingsummary": "'''Aviso:''' Esqueciches incluír un texto explicativo no campo de resumo.\nSe premes en \"$1\" a túa edición publicarase sen ningunha descrición que sinale en que consistiu a corrección.",
 	"selfredirect": "<strong>Atención:</strong> Estás redirixindo esta páxina sobre si mesma.\nQuizais indicaches a páxina de destino que non era ou poida que esteas a editar unha páxina errónea.\nSe premes en \"$1\" de novo vaise crear a redireción, sexa como for.",
 	"missingcommenttext": "Por favor, escribe un comentario.",
@@ -4172,5 +4172,10 @@
 	"action-renameuser": "renomear usuarios",
 	"right-renameuser": "Renomear usuarios",
 	"renameuser-renamed-notice": "Este usuario foi renomeado.\nVelaquí está o rexistro de cambios de nome de usuario por se quere consultalo.",
-	"log-unknown-action": "realizou a acción descoñecida \"$2\" en [[$1]]"
+	"log-unknown-action": "realizou a acción descoñecida \"$2\" en [[$1]]",
+	"createacct-benefit-heading-temp-user": "Grazas por contribuíres a {{SITENAME}}.\nCrea unha conta para acceder a máis funcións.",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} está feito por persoas coma ti. Cunha conta podes ter unha identidade permanente e segura con acceso a funcións como:",
+	"benefit-1-description": "Listas de vixilancia que che permiten facer un seguimento das páxinas que che interesan.",
+	"benefit-2-description": "Lista permanente de contribucións que fixeches ao proxecto.",
+	"benefit-3-description": "Preferencias que che permiten personalizar a túa experiencia."
 }

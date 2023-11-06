@@ -741,9 +741,9 @@
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Zaloguj się]] bądź [[Special:CreateAccount|załóż konto]], aby twoje przyszłe edycje były Ci przypisywane oraz aby uzyskać dostęp do pozostałych funkcji.",
 	"blankarticle": "<strong>Uwaga:</strong> Strona, którą masz zamiar utworzyć jest pusta.\nJeżeli klikniesz \"$1\" ponownie, strona zostanie utworzona bez jakiejkolwiek treści.",
 	"anoneditwarning": "<strong>Uwaga:</strong> Nie jesteś zalogowany. Jeśli wykonasz jakąkolwiek zmianę, Twój adres IP będzie widoczny publicznie. Jeśli <strong>[$1 zalogujesz się]</strong> lub <strong>[$2 utworzysz konto]</strong>, Twoje zmiany zostaną przypisane do konta, wraz z innymi korzyściami.",
-	"autocreate-edit-warning": "<strong>Uwaga:</strong> Nie jesteś zalogowany(a). Twoja edycja zostanie podpisana nazwą, która została <strong>[[{{MediaWiki:tempuser-helppage}}|wygenerowana automatycznie]]</strong> poprzez dodanie ciasteczka do twojej przeglądarki. Twój adres IP będzie widoczny dla zaufanych użytkowników. Jeśli się <strong>[$1 zalogujesz]</strong> bądź <strong>[$2 założysz konto]</strong>, twoje zmiany będą przypisywane do nazwy, którą wybierzesz, wraz z innymi korzyściami.",
+	"autocreate-edit-warning": "<strong>Uwaga:</strong> Nie jesteś zalogowany(a). Kiedy wykonasz pierwszą edycję, zostanie dla Ciebie utworzone konto tymczasowe ([[{{MediaWiki:tempuser-helppage}}|dowiedz się więcej]]). <strong>[$1 Zaloguj się]</strong> lub <strong>[$2 zarejestruj]</strong>, aby otrzymywać powiadomienia, nawet kiedy to tymczasowe konto wygaśnie. Będziesz mieć wtedy dostęp również do pozostałych funkcji konta.",
 	"anonpreviewwarning": "<em>Nie jesteś zalogowany. Po opublikowaniu Twój adres IP zostanie zapisany w historii edycji tej strony.</em>",
-	"autocreate-preview-warning": "<em>Nie jesteś zalogowany(a). Twoja edycja zostanie podpisana nazwą, która została [[{{MediaWiki:tempuser-helppage}}|wygenerowana automatycznie]], a twój adres IP będzie widoczny dla administratorów.</em>",
+	"autocreate-preview-warning": "<em>Nie jesteś zalogowany(a). Kiedy wykonasz pierwszą edycję, zostanie dla Ciebie utworzone konto tymczasowe. [[{{MediaWiki:tempuser-helppage}}|Dowiedz się więcej]].</em>",
 	"missingsummary": "<strong>Uwaga:</strong> Nie wprowadz{{GENDER:|iłeś|iłaś|ono}} opisu zmian.\nJeżeli nie chcesz go wprowadzać, naciśnij przycisk „$1” jeszcze raz.",
 	"selfredirect": "<strong>Ostrzeżenie:</strong> Przekierowujesz tę stronę do niej samej.\nByć może został przez Ciebie wybrany zły cel przekierowania lub edytujesz niewłaściwą stronę.\nJeżeli ponownie klikniesz „$1”, przekierowanie zostanie utworzone.",
 	"missingcommenttext": "Wprowadź komentarz poniżej.",
@@ -4261,6 +4261,6 @@
 	"createacct-benefit-heading-temp-user": "Dziękujemy za wkład w {{GRAMMAR:B.lp|{{SITENAME}}}}.\nUtwórz konto, aby uzyskać dostęp do wszystkich funkcji.",
 	"createacct-benefit-subheading-temp-user": "{{GRAMMAR:M.lp|{{SITENAME}}}} jest tworzona przez ludzi jak ty. Posiadając konto, zyskujesz stałą i niezbywalną tożsamość oraz dostęp do funkcji, takich jak:",
 	"benefit-1-description": "Lista obserwowanych, pozwalająca śledzić interesujące cię strony.",
-	"benefit-2-description": "Lista edycji, które zostały przez Ciebie wniesione do projektu.",
+	"benefit-2-description": "Trwała lista edycji, które zostały przez Ciebie wniesione do projektu.",
 	"benefit-3-description": "Preferencje pozwalające dostosować twoje korzystanie z projektu."
 }

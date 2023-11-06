@@ -514,7 +514,7 @@
 	"nocookieslogin": "{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.",
 	"nocookiesfornew": "Uživatelský účet nebyl založen, neboť jsme nebyli schopni potvrdit jeho původ.\nUjistěte se, že máte povoleny cookies, obnovte tuto stránku a zkuste to znovu.",
 	"createacct-loginerror": "Účet byl úspěšně vytvořen, ale nemohli jste být automaticky přihlášeni. Pokračujte prosím na [[Special:UserLogin|ruční přihlášení]].",
-	"createacct-temp-warning": "Editace, které jste provedli svým dočasným účtem, nebudou přeneseny pod váš trvalý účet.",
+	"createacct-temp-warning": "Editace, které jste provedli svým dočasným účtem <strong>$1</strong>, nebudou přeneseny pod váš trvalý účet.",
 	"noname": "{{GENDER:|Nezadal|Nezadala|Nezadali}} jste platné uživatelské jméno.",
 	"loginsuccesstitle": "Přihlášení bylo úspěšné",
 	"loginsuccess": "<strong>Nyní jste na {{grammar:6sg|{{SITENAME}}}} {{GENDER:$1|přihlášen jako uživatel|přihlášena jako uživatelka}} „$1“.</strong>",

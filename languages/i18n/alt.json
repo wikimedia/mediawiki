@@ -5,6 +5,7 @@
 			"Altai uul",
 			"Amire80",
 			"Bakpay",
+			"Batiye",
 			"Catrope",
 			"HalanTul",
 			"Kareyac",
@@ -613,6 +614,10 @@
 	"resettokens-watchlist-token": "[[Special:Watchlist|Слердиҥ ширтеер тизимниҥ бӱктерде солынтыларыныҥ]] (Atom/RSS) веб-каналдыҥ токени",
 	"resettokens-done": "Токендер тӱжӱре чачылды.",
 	"resettokens-resetbutton": "Талдаган токендер тӱжӱре чачылды",
+	"edit-recovery-loaded-title": "Тӱзедӱлер орныктырылды",
+	"edit-recovery-loaded-message": "Слердиҥ корулалбаган тӱзедӱлеригер автоматически орныктырылган.",
+	"edit-recovery-loaded-show": "Солынтыларды кӧргӱзер",
+	"edit-recovery-loaded-discard": "Солынтыларды јоголтор",
 	"summary": "Солынтылардыҥ јартамалы:",
 	"subject": "Темазы/бажалыгы:",
 	"minoredit": "Бу кичӱ тӱзедӱ",
@@ -3429,6 +3434,7 @@
 	"tags-actions-header": "Кылыныш",
 	"tags-active-yes": "Эйе",
 	"tags-active-no": "Јок",
+	"tags-source-software": "Программалык јеткилдишле аайладат",
 	"tags-source-extension": "Программалык јеткилдишле аайладат",
 	"tags-source-manual": "Туружаачылар ла боттор колдыҥ болужыла кийдирет",
 	"tags-source-none": "База эдинбей турган",
@@ -4084,5 +4090,7 @@
 	"action-renameuser": "туружаачылардыҥ аттарын солыыр",
 	"right-renameuser": "Туружаачылардыҥ аттарын солыыр",
 	"renameuser-renamed-notice": "Бу туружаачыныҥ адын солыган.\nАттар солыганныҥ журналы болуш этире алдында берилди.",
-	"log-unknown-action": "[[$1]]-а јарты јок \"$2\" кылыныш эдилген"
+	"log-unknown-action": "[[$1]]-а јарты јок \"$2\" кылыныш эдилген",
+	"createacct-benefit-heading-temp-user": "{{SITENAME}} сайтына салтарарды јетиргенер учун быйан. \nОноҥ до кӧп функцияларды кӧрӧргӧ јаҥы аккаунт эдип алыгар.",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} слердий кижилердиҥ болужыла јайалып турган. Јаҥы аккаунт эдип, бӱдӱмчилӱ ле јеткер јок аккаунт болордо бу мындый аҥылуларды кӧрӱп болорор:"
 }

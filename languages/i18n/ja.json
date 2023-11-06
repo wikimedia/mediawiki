@@ -593,7 +593,7 @@
 	"nocookieslogin": "{{SITENAME}}ではログインに Cookie を使用します。\nCookie を無効にしているようです。\nCookie を有効にしてから、もう一度試してください。",
 	"nocookiesfornew": "発信元を確認できなかったため、アカウントは作成されませんでした。\nCookieを有効にしていることを確認して、このページを再読込してもう一度試してください。",
 	"createacct-loginerror": "アカウントは作成されましたが、自動的にログインできませんでした。[[Special:UserLogin|手動でログイン]]をしてください。",
-	"createacct-temp-warning": "臨時アカウントで投稿する編集は永久アカウントに持ち越せません。",
+	"createacct-temp-warning": "臨時アカウント<strong>$1</strong>で行った編集は永続アカウントに持ち越せません。",
 	"noname": "有効な利用者名が指定されていません。",
 	"loginsuccesstitle": "ログイン済み",
 	"loginsuccess": "<strong>{{SITENAME}}に「$1」としてログインしました。</strong>",
@@ -771,9 +771,9 @@
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|ログイン]]もしくは[[Special:CreateAccount|アカウントを作成]]して、これからの編集をそのアカウントに関連付けし、その他の機能にもアクセスできます。",
 	"blankarticle": "<strong>警告:</strong>作成しようとしているページの内容がありません。{{Int:savearticle}}\"をもう一度クリックすると、中身の無いページが作成されます。",
 	"anoneditwarning": "<strong>警告:</strong> ログインしていません。編集を行うと、あなたの IP アドレスが公開されます。<strong>[$1 ログイン]</strong>または<strong>[$2 アカウントを作成]</strong>すれば、あなたの編集はその利用者名とともに表示されるほか、その他の利点もあります。",
-	"autocreate-edit-warning": "<strong>警告:</strong>あなたはログインしていません。このまま編集すると、ブラウザにクッキーを追加することにより[[{{MediaWiki:tempuser-helppage}}|自動生成された名前]]で帰属表示されます。信頼された利用者があなたのIPアドレスを見ることができます。<strong>[$1|ログイン]</strong>または<strong>[$2|アカウントを作成]</strong>すると、自分の選んだ利用者名で帰属表示されるほか、様々なメリットを受けられます。",
+	"autocreate-edit-warning": "<strong>警告:</strong>あなたはログインしていません。このまま編集すると、臨時アカウントが作成されます。[[{{MediaWiki:tempuser-helppage}}|詳細はこちら]]。信頼された利用者があなたのIPアドレスを見ることができます。このアカウントの有効期限が切れた後も通知を受け取り続けたり、その他の機能を利用するには、<strong>[$1|ログイン]</strong>または<strong>[$2|アカウントを作成]</strong>してください。",
 	"anonpreviewwarning": "<em>ログインしていません。投稿すると、あなたのIPアドレスがこのページの履歴に記録されます。</em>",
-	"autocreate-preview-warning": "<em>ログインしていません。編集内容は[[{{MediaWiki:tempuser-helppage}}|自動生成された名前]]に関連付けられ、管理者にはIPアドレスが表示されます。</em>",
+	"autocreate-preview-warning": "<em>ログインしていません。編集を行うと、臨時アカウントが作成されます。[[{{MediaWiki:tempuser-helppage}}|詳細はこちら]]。</em>",
 	"missingsummary": "<strong>注意:</strong> 編集内容の要約が空欄です。\n「$1」をもう一度クリックすると、編集内容は要約なしで公開されます。",
 	"selfredirect": "<strong>警告:</strong> あなたはこのページを自身に転送させようとしています。\n転送先の設定を間違ったか、あるいは間違ったページを編集しているかもしれません。\n「$1」を再度クリックすると、そのままの転送ページが作成されます。",
 	"missingcommenttext": "コメントを入力してください。",
@@ -4388,5 +4388,10 @@
 	"action-renameuser": "利用者名の変更",
 	"right-renameuser": "利用者名を変更",
 	"renameuser-renamed-notice": "この利用者は利用者名を変更しました。\n参考のため、利用者名変更記録を以下に示します。",
-	"log-unknown-action": "[[$1]]に未知の操作「$2」を実行しました"
+	"log-unknown-action": "[[$1]]に未知の操作「$2」を実行しました",
+	"createacct-benefit-heading-temp-user": "{{SITENAME}}への投稿ありがとうございます。\nアカウントを作成すると、さらに多くの機能を利用することができます。",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}}はあなたのような人々によって作られています。アカウントがあれば、永続的かつ安全に自己同一性を保証することができ、以下のような機能を利用することができます:",
+	"benefit-1-description": "興味のあるページを追跡することができるウォッチリスト。",
+	"benefit-2-description": "自分がそのプロジェクトで行った投稿の永続的な一覧。",
+	"benefit-3-description": "カスタマイズ可能な個人設定。"
 }

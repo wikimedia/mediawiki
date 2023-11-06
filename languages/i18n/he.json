@@ -684,9 +684,9 @@
 	"temp-user-banner-tooltip-description-login": "נא [[Special:UserLogin|להיכנס לחשבון]] או [[Special:CreateAccount|ליצור חשבון]] כדי לקבל קרדיט על עריכות עתידיות ולגשת לאפשרויות אחרות.",
 	"blankarticle": "<strong>אזהרה:</strong> הדף הזה ריק.\nלחיצה חוזרת על \"$1\" תגרום לדף להיווצר ללא כל תוכן.",
 	"anoneditwarning": "<strong>אזהרה:</strong> אינכם מחוברים לחשבון. כתובת ה־IP שלכם תוצג בפומבי אם תבצעו עריכות כלשהן. אם <strong>[$1 תיכנסו לחשבון]</strong> או <strong>[$2 תיצרו חשבון]</strong>, העריכות שלכם תיוחסנה לשם המשתמש שלכם ותקבלו גם יתרונות אחרים.",
-	"autocreate-edit-warning": "<strong>אזהרה:</strong> לא נכנסת לחשבון. העריכה שלך תיוחס ל<strong>[[{{MediaWiki:tempuser-helppage}}|שם מחולל אוטומטית]]</strong> באמצעות הוספת עוגייה לדפדפן שלך. כתובת ה־IP שלך תוצג למשתמשים אמינים. <strong>[$1 כניסה לחשבון]</strong> או <strong>[$2 יצירת חשבון]</strong> תגרומנה לכך שהעריכות שלך תיוחסנה לשם הנבחר שלך, ויש לזה עוד יתרונות.",
+	"autocreate-edit-warning": "<strong>לא נכנסת לחשבון.</strong> לאחר עריכה, ייווצר בשבילך חשבון זמני. אפשר לקרוא על זה [[{{MediaWiki:tempuser-helppage}}|מידע נוסף]]. יש <strong>[$1 להיכנס לחשבון]</strong> או <strong>[$2 ליצור חשבון]</strong> כדי לקבל התראה כשמישהו משיב לאחר שהחשבון הזה פג, וכדי לגשת לתכונות אחרות.",
 	"anonpreviewwarning": "<em>לא נכנסת לחשבון. פרסום ירשום את כתובת ה־IP שלך בהיסטוריית העריכות של הדף הזה.</em>",
-	"autocreate-preview-warning": "<em>לא נכנסת לחשבון. העריכה שלך תשויך ל[[{{MediaWiki:tempuser-helppage}}|שם מחולל אוטומטית]] וכתובת ה־IP שלך תוצג למפעילים.</em>",
+	"autocreate-preview-warning": "<em>לא נכנסת לחשבון. לאחר עריכה, ייווצר בשבילך חשבון זמני. אפשר לקרוא על זה [[{{MediaWiki:tempuser-helppage}}|מידע נוסף]].</em>",
 	"missingsummary": "<strong>תזכורת:</strong> לא הזנת תקציר עריכה.\nלחיצה חוזרת על \"$1\" תגרום לעריכה שלך להתפרסם בלי תקציר.",
 	"selfredirect": "<strong>אזהרה:</strong> {{GENDER:|אתה|את}} מפנה את הדף הזה לעצמו.\nאולי כתבת יעד שגוי להפניה, ואולי {{GENDER:|אתה עורך|את עורכת}} את הדף הלא־נכון.\nאם {{GENDER:|תלחץ|תלחצי}} על \"$1\" שוב, ההפניה תיווצר בכל זאת.",
 	"missingcommenttext": "יש להקליד תוכן.",
@@ -1830,7 +1830,7 @@
 	"upload-dialog-title": "העלאת קובץ",
 	"upload-dialog-button-cancel": "ביטול",
 	"upload-dialog-button-back": "חזרה",
-	"upload-dialog-button-done": "בוצע",
+	"upload-dialog-button-done": "סיום",
 	"upload-dialog-button-save": "שמירה",
 	"upload-dialog-button-upload": "העלאה",
 	"upload-form-label-infoform-title": "פרטים",
@@ -4240,6 +4240,6 @@
 	"createacct-benefit-heading-temp-user": "תודה על תרומתך לאתר {{SITENAME}}.\nנא ליצור חשבון כדי לגשת לתכונות נוספות.",
 	"createacct-benefit-subheading-temp-user": "אנשים כמוך יוצרים את {{SITENAME}}. עם חשבון, תהיה לך אפשרות להחזיק בזהות קבועה ובטוחה עם גישה לתכונות כגון:",
 	"benefit-1-description": "רשימות מעקב שמאפשרות לך לעקוב אחרי דפים שמעניינים אותך.",
-	"benefit-2-description": "רשימה קבועה של תרומות שלך למיזם",
+	"benefit-2-description": "רשימה קבועה של תרומות שלך למיזם.",
 	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך."
 }

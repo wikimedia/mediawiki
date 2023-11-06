@@ -770,9 +770,9 @@
 	"temp-user-banner-tooltip-description-learn-more": "Questo utente temporaneo è stato creato dopo che è stata apportata una modifica senza un'utenza su questo browser e dispositivo. [[mw:Help:Temporary_accounts|Ulteriori informazioni]].",
 	"blankarticle": "<strong>Attenzione:</strong> la pagina che stai creando è vuota.\nCliccando nuovamente su \"$1\", la pagina sarà creata senza alcun contenuto.",
 	"anoneditwarning": "<strong>Attenzione:</strong> non hai effettuato l'accesso. Se effettuerai delle modifiche il tuo indirizzo IP sarà visibile pubblicamente. Se <strong>[$1 accedi]</strong> o <strong>[$2 crei un'utenza]</strong>, le tue modifiche saranno attribuite al tuo nome utente, insieme ad altri benefici.",
-	"autocreate-edit-warning": "<strong>Attenzione:</strong> accesso non effettuato. La tua modifica sarà attribuita a un <strong>[[{{MediaWiki:tempuser-helppage}}|nome auto-generato]]</strong> aggiungendo un cookie al tuo browser. Il tuo indirizzo IP sarà visibile a tutti gli utenti autoconvalidati. Se <strong>[$1 accedi]</strong> oppure <strong>[$2 crei un'utenza]</strong>, le modifiche saranno attribuite al nome che hai scelto, insieme ad altri benefici.",
+	"autocreate-edit-warning": "<strong>Attenzione:</strong> accesso non effettuato. Quando effettuerai una modifica, verrà creata un'utenza temporanea per te. [[{{MediaWiki:tempuser-helppage}}|Ulteriori informazioni]]. <strong>[$1 Accedi]</strong> o <strong>[$2 crea un'utenza]</strong> per continuare a ricevere notifiche dopo la scadenza dell'utenza temporanea e per accedere ad altre funzionalità.",
 	"anonpreviewwarning": "<em>Non hai effettuato l'accesso. Pubblicando, il tuo indirizzo IP sarà registrato nella cronologia della pagina.</em>",
-	"autocreate-preview-warning": "<em>Non hai effettuato l'accesso. La tua modifica sarà attribuita a un [[{{MediaWiki:tempuser-helppage}}|nome auto-generato]] e il tuo indirizzo IP sarà visibile agli amministratori.</em>",
+	"autocreate-preview-warning": "<em>Non hai effettuato l'accesso. Quando effettuerai una modifica, verrà creata un'utenza temporanea per te. [[{{MediaWiki:tempuser-helppage}}|Ulteriori informazioni]].</em>",
 	"missingsummary": "<strong>Attenzione:</strong> non è stato specificato l'oggetto di questa modifica. Premendo di nuovo \"$1\" la modifica verrà pubblicata senza.",
 	"selfredirect": "<strong>Attenzione:</strong> stai reindirizzando questa pagina a se stessa.\nPotresti aver indicato la destinazione errata per il redirect, o stai modificando la pagina sbagliata.\nSe fai clic nuovamente su \"$1\", il redirect sarà creato comunque.",
 	"missingcommenttext": "Inserisci un commento.",
@@ -4227,5 +4227,6 @@
 	"action-renameuser": "rinominare gli utenti",
 	"right-renameuser": "Rinomina gli utenti",
 	"renameuser-renamed-notice": "Questo utente è stato rinominato.\nIl registro delle rinomine è riportato di seguito per informazione.",
-	"log-unknown-action": "ha eseguito l'azione sconosciuta \"$2\" su [[$1]]"
+	"log-unknown-action": "ha eseguito l'azione sconosciuta \"$2\" su [[$1]]",
+	"benefit-2-description": "Elenco permanente dei contributi che hai apportato al progetto."
 }
