@@ -99,6 +99,14 @@ because of Phabricator reports.
   without further notice.
 * MediaWiki's virtualrest internal library has been removed in favor of the
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
+* Several deprecated methods have been removed from the Content interface,
+  in favor of the respective methods in ContentHandlers. Callers should
+  use a more narrow interface like ContentRenderer or ContentTransformer
+  when possible. The following methods have been removed from Content:
+  - getParserOutput()
+  - preSaveTransform()
+  - preloadTransform()
+  - prepareSave()
 * PostgresUpdater::addPgEnumValue() unused everywhere, have been removed
   without deprecation. Use of ENUM is highly discouraged.
 * OutputPage::addParserOutputText has been marked @internal since there are no

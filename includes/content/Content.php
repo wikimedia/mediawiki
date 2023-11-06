@@ -19,9 +19,7 @@
  */
 
 use MediaWiki\Parser\MagicWord;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 
 /**
  * Base interface for representing page content.
@@ -265,34 +263,6 @@ interface Content {
 	public function isCountable( $hasLinks = null );
 
 	/**
-	 * Parse the Content object and generate a ParserOutput from the result.
-	 * $result->getText() can be used to obtain the generated HTML. If no HTML
-	 * is needed, $generateHtml can be set to false; in that case,
-	 * $result->getText() may return null.
-	 *
-	 * @note To control which options are used in the cache key for the
-	 *       generated parser output, implementations of this method
-	 *       may call ParserOutput::recordOption() on the output object.
-	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentRenderer::getParserOutput
-	 * and override ContentHandler::fillParserOutput.
-	 * @param Title $title The page title to use as a context for rendering.
-	 * @param int|null $revId ID of the revision being rendered.
-	 *  See Parser::parse() for the ramifications. (default: null)
-	 * @param ParserOptions|null $options Any parser options.
-	 * @param bool $generateHtml Whether to generate HTML (default: true). If false,
-	 *        the result of calling getText() on the ParserOutput object returned by
-	 *        this method is undefined.
-	 *
-	 * @since 1.21
-	 *
-	 * @return ParserOutput
-	 */
-	public function getParserOutput( Title $title, $revId = null,
-		ParserOptions $options = null, $generateHtml = true );
-
-	// TODO: make RenderOutput and RenderOptions base classes
-
-	/**
 	 * Construct the redirect destination from this content and return a Title,
 	 * or null if this content doesn't represent a redirect.
 	 *
@@ -358,21 +328,6 @@ interface Content {
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' );
 
 	/**
-	 * Returns a Content object with pre-save transformations applied (or this
-	 * object if no transformations apply).
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.37. Hard-deprecated since 1.37. Use ContentTransformer::preSaveTransform
-	 * and override ContentHandler::preSaveTransform.
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $parserOptions
-	 *
-	 * @return Content
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $parserOptions );
-
-	/**
 	 * Returns a new WikitextContent object with the given section heading
 	 * prepended, if supported. The default implementation just returns this
 	 * Content object unmodified, ignoring the section header.
@@ -384,50 +339,6 @@ interface Content {
 	 * @return Content
 	 */
 	public function addSectionHeader( $header );
-
-	/**
-	 * Returns a Content object with preload transformations applied (or this
-	 * object if no transformations apply).
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.37. Hard-deprecated since 1.37. Use ContentTransformer::preloadTransform
-	 * and override ContentHandler::preloadTransform.
-	 * @param Title $title
-	 * @param ParserOptions $parserOptions
-	 * @param array $params
-	 *
-	 * @return Content
-	 */
-	public function preloadTransform( Title $title, ParserOptions $parserOptions, $params = [] );
-
-	/**
-	 * Prepare Content for saving. Called before Content is saved by WikiPage::doUserEditContent() and in
-	 * similar places.
-	 *
-	 * This may be used to check the content's consistency with global state. This function should
-	 * NOT write any information to the database.
-	 *
-	 * Note that this method will usually be called inside the same transaction
-	 * bracket that will be used to save the new revision.
-	 *
-	 * Note that this method is called before any update to the page table is
-	 * performed. This means that $page may not yet know a page ID.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentHandler::validateSave instead.
-	 *
-	 * @param WikiPage $page The page to be saved.
-	 * @param int $flags Bitfield for use with EDIT_XXX constants, see WikiPage::doUserEditContent()
-	 * @param int $parentRevId The ID of the current revision
-	 * @param User $user
-	 *
-	 * @return Status A status object indicating whether the content was
-	 *   successfully prepared for saving. If the returned status indicates
-	 *   an error, a rollback will be performed and the transaction aborted.
-	 *
-	 * @see WikiPage::doUserEditContent()
-	 */
-	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user );
 
 	/**
 	 * Returns true if this Content object matches the given magic word.
