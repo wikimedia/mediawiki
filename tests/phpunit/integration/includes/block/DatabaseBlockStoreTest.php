@@ -346,7 +346,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'autoIds', $result );
 		$this->assertCount( 0, $result['autoIds'] );
 
-		$retrievedBlock = DatabaseBlock::newFromID( $result['id'] );
+		$retrievedBlock = $store->newFromID( $result['id'] );
 		$this->assertTrue( $block->equals( $retrievedBlock ) );
 	}
 
@@ -451,7 +451,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'autoIds', $result );
 		$this->assertCount( 1, $result['autoIds'] );
 
-		$retrievedBlock = DatabaseBlock::newFromID( $result['autoIds'][0] );
+		$retrievedBlock = $store->newFromID( $result['autoIds'][0] );
 		$this->assertSame( $block->getId(), $retrievedBlock->getParentBlockId() );
 		$this->assertAutoblockEqualsBlock( $block, $retrievedBlock );
 	}
@@ -467,28 +467,28 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUpdateBlock() {
-		$existingBlock = DatabaseBlock::newFromTarget( $this->sysop );
+		$store = $this->getStore();
+		$existingBlock = $store->newFromTarget( $this->sysop );
 		$existingBlock->isUsertalkEditAllowed( true );
 
-		$store = $this->getStore();
 		$result = $store->updateBlock( $existingBlock );
 
-		$updatedBlock = DatabaseBlock::newFromID( $result['id'] );
-		$autoblock = DatabaseBlock::newFromID( $result['autoIds'][0] );
+		$updatedBlock = $store->newFromID( $result['id'] );
+		$autoblock = $store->newFromID( $result['autoIds'][0] );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
 		$this->assertAutoblockEqualsBlock( $existingBlock, $autoblock );
 	}
 
 	public function testUpdateBlockAddOrRemoveAutoblock() {
+		$store = $this->getStore();
 		// Existing block is autoblocking to begin with
-		$existingBlock = DatabaseBlock::newFromTarget( $this->sysop );
+		$existingBlock = $store->newFromTarget( $this->sysop );
 		$existingBlock->isAutoblocking( false );
 
-		$store = $this->getStore();
 		$result = $store->updateBlock( $existingBlock );
 
-		$updatedBlock = DatabaseBlock::newFromID( $result['id'] );
+		$updatedBlock = $store->newFromID( $result['id'] );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
 		$this->assertCount( 0, $result['autoIds'] );
@@ -499,8 +499,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$existingBlock->isAutoblocking( true );
 		$result = $store->updateBlock( $existingBlock );
 
-		$updatedBlock = DatabaseBlock::newFromID( $result['id'] );
-		$autoblock = DatabaseBlock::newFromID( $result['autoIds'][0] );
+		$updatedBlock = $store->newFromID( $result['id'] );
+		$autoblock = $store->newFromID( $result['autoIds'][0] );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
 		$this->assertAutoblockEqualsBlock( $existingBlock, $autoblock );
@@ -510,17 +510,17 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideUpdateBlockRestrictions
 	 */
 	public function testUpdateBlockRestrictions( $expectedCount ) {
-		$existingBlock = DatabaseBlock::newFromTarget( $this->sysop );
+		$store = $this->getStore();
+		$existingBlock = $store->newFromTarget( $this->sysop );
 		$restrictions = [];
 		for ( $ns = 0; $ns < $expectedCount; $ns++ ) {
 			$restrictions[] = new NamespaceRestriction( $existingBlock->getId(), $ns );
 		}
 		$existingBlock->setRestrictions( $restrictions );
 
-		$store = $this->getStore();
 		$result = $store->updateBlock( $existingBlock );
 
-		$retrievedBlock = DatabaseBlock::newFromID( $result['id'] );
+		$retrievedBlock = $store->newFromID( $result['id'] );
 		$this->assertCount(
 			$expectedCount,
 			$retrievedBlock->getRestrictions()
@@ -535,27 +535,25 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDeleteBlockSuccess() {
-		$target = $this->sysop;
-		$block = DatabaseBlock::newFromTarget( $target );
-
 		$store = $this->getStore();
+		$target = $this->sysop;
+		$block = $store->newFromTarget( $target );
 
 		$this->assertTrue( $store->deleteBlock( $block ) );
-		$this->assertNull( DatabaseBlock::newFromTarget( $target ) );
+		$this->assertNull( $store->newFromTarget( $target ) );
 	}
 
 	public function testDeleteBlockFailureReadOnly() {
-		$target = $this->sysop;
-		$block = DatabaseBlock::newFromTarget( $target );
-
 		$store = $this->getStore( [
 			'constructorArgs' => [
 				'readOnlyMode' => $this->getDummyReadOnlyMode( true )
 			],
 		] );
+		$target = $this->sysop;
+		$block = $store->newFromTarget( $target );
 
 		$this->assertFalse( $store->deleteBlock( $block ) );
-		$this->assertTrue( (bool)DatabaseBlock::newFromTarget( $target ) );
+		$this->assertTrue( (bool)$store->newFromTarget( $target ) );
 	}
 
 	public function testDeleteBlockFailureNoBlockId() {

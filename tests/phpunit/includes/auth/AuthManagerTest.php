@@ -236,7 +236,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getUserFactory(),
 				$this->getServiceContainer()->getUserIdentityUtils(),
 				LoggerFactory::getInstance( 'BlockManager' ),
-				$this->getServiceContainer()->getHookContainer()
+				$this->getServiceContainer()->getHookContainer(),
+				$this->getServiceContainer()->getDatabaseBlockStore(),
+				$this->getServiceContainer()->getProxyLookup()
 			) extends BlockManager
 {
 				protected function checkHost( $hostname ) {

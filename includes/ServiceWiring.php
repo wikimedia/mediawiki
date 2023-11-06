@@ -374,7 +374,9 @@ return [
 			$services->getUserFactory(),
 			$services->getUserIdentityUtils(),
 			LoggerFactory::getInstance( 'BlockManager' ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getDatabaseBlockStore(),
+			$services->getProxyLookup()
 		);
 	},
 
@@ -948,6 +950,7 @@ return [
 			$services->getTempUserCreator(),
 			$services->getUserFactory(),
 			$services->getRestrictionStore(),
+			$services->getDatabaseBlockStore(),
 			$services->getReadOnlyMode(),
 			$services->getSpecialPageFactory(),
 			$services->getRepoGroup(),

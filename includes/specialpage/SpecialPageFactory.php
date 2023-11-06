@@ -504,6 +504,7 @@ class SpecialPageFactory {
 				'BlockUtils',
 				'BlockPermissionCheckerFactory',
 				'BlockUserFactory',
+				'DatabaseBlockStore',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'BlockActionInfo',
@@ -516,6 +517,7 @@ class SpecialPageFactory {
 			'services' => [
 				'UnblockUserFactory',
 				'BlockUtils',
+				'DatabaseBlockStore',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'WatchlistManager',
@@ -576,6 +578,7 @@ class SpecialPageFactory {
 				'UserNamePrefixSearch',
 				'CommentFormatter',
 				'LinkBatchFactory',
+				'DatabaseBlockStore',
 			]
 		],
 		'Preferences' => [
@@ -601,6 +604,8 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 				'CommentFormatter',
 				'UserFactory',
+				'UserIdentityLookup',
+				'DatabaseBlockStore',
 			]
 		],
 		'Listgrouprights' => [

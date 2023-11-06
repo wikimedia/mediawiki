@@ -113,7 +113,7 @@ class UnblockUser {
 			// Needed, because BlockUtils::parseBlockTarget will strip the # from autoblocks.
 			$this->target = '#' . $this->target;
 		}
-		$this->block = DatabaseBlock::newFromTarget( $this->target );
+		$this->block = $this->blockStore->newFromTarget( $this->target );
 		$this->performer = $performer;
 		$this->reason = $reason;
 		$this->tags = $tags;

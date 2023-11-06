@@ -134,7 +134,11 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			$services->getNamespaceInfo(),
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
-			$services->getUserOptionsLookup()
+			$services->getUserOptionsLookup(),
+			$services->getCommentFormatter(),
+			$services->getUserFactory(),
+			$services->getUserIdentityLookup(),
+			$services->getDatabaseBlockStore()
 		);
 	}
 

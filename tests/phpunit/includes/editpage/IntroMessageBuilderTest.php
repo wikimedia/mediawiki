@@ -73,6 +73,7 @@ class IntroMessageBuilderTest extends MediaWikiIntegrationTestCase {
 			$tempUserCreator,
 			$userFactory,
 			$services->getRestrictionStore(),
+			$services->getDatabaseBlockStore(),
 			$services->getReadOnlyMode(),
 			$services->getSpecialPageFactory(),
 			$repoGroup,

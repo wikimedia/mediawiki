@@ -197,10 +197,10 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveWhileBlocked() {
-		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$this->assertNull( $blockStore->newFromTarget( '127.0.0.1' ) );
 
 		$user = $this->getTestSysop()->getUser();
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( [
 			'address' => $user->getName(),
 			'by' => $user,
@@ -224,7 +224,7 @@ class ApiMoveTest extends ApiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $ex ) {
 			$this->assertApiErrorCode( 'blocked', $ex );
-			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
+			$this->assertNotNull( $blockStore->newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$blockStore->deleteBlock( $block );
 			$user->clearInstanceCache();

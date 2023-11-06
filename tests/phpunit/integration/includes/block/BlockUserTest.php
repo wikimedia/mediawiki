@@ -100,7 +100,8 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 				'isHideUser' => true
 			]
 		)->placeBlock();
-		$block = DatabaseBlock::newFromTarget( $target );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->newFromTarget( $target );
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertFalse( $block->getHideName() );
 	}
@@ -275,7 +276,8 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			static function ( DatabaseBlock $block ) {
 				return $block->getId();
 			},
-			DatabaseBlock::newListFromTarget( $target, null, /*fromPrimary=*/true )
+			$this->getServiceContainer()->getDatabaseBlockStore()
+				->newListFromTarget( $target, null, /*fromPrimary=*/true )
 		);
 		$this->assertContains( $autoBlockId, $blockIds );
 		$this->assertContains( $IPBlock->getId(), $blockIds );

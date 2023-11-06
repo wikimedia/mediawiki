@@ -1602,7 +1602,8 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWhileBlocked() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$this->assertNull( $blockStore->newFromTarget( '127.0.0.1' ) );
 
 		$user = $this->getTestSysop()->getUser();
 		$block = new DatabaseBlock( [
@@ -1613,7 +1614,6 @@ class ApiEditPageTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -1625,7 +1625,7 @@ class ApiEditPageTest extends ApiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $ex ) {
 			$this->assertApiErrorCode( 'blocked', $ex );
-			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
+			$this->assertNotNull( $blockStore->newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$blockStore->deleteBlock( $block );
 			$user->clearInstanceCache();

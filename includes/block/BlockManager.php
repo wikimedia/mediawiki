@@ -26,6 +26,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\User\User;
@@ -75,6 +76,12 @@ class BlockManager {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var DatabaseBlockStore */
+	private $blockStore;
+
+	/** @var ProxyLookup */
+	private $proxyLookup;
+
 	/** @var BlockCache */
 	private $userBlockCache;
 
@@ -87,13 +94,16 @@ class BlockManager {
 	 * @param UserIdentityUtils $userIdentityUtils
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
+	 * @param DatabaseBlockStore $blockStore
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		UserFactory $userFactory,
 		UserIdentityUtils $userIdentityUtils,
 		LoggerInterface $logger,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		DatabaseBlockStore $blockStore,
+		ProxyLookup $proxyLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -101,6 +111,9 @@ class BlockManager {
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->blockStore = $blockStore;
+		$this->proxyLookup = $proxyLookup;
+
 		$this->userBlockCache = new BlockCache;
 		$this->createAccountBlockCache = new BlockCache;
 	}
@@ -211,9 +224,8 @@ class BlockManager {
 
 			$xff = $request->getHeader( 'X-Forwarded-For' );
 
-			// TODO: remove dependency on DatabaseBlock (T221075)
 			$blocks = array_merge(
-				DatabaseBlock::newListFromTarget( $user, $ip, $fromPrimary ),
+				$this->blockStore->newListFromTarget( $user, $ip, $fromPrimary ),
 				$this->getSystemIpBlocks( $ip, $applySoftBlocks ),
 				$this->getXffBlocks( $ip, $xff, $applySoftBlocks, $fromPrimary ),
 				$this->getCookieBlock( $user, $request )
@@ -223,8 +235,7 @@ class BlockManager {
 			// Case #2: checking the global user, but they are exempt from IP blocks
 			// and cookie blocks, so we only check for a user account block.
 			// Case #3: checking whether another user's account is blocked.
-			// TODO: remove dependency on DatabaseBlock (T221075)
-			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromPrimary );
+			$blocks = $this->blockStore->newListFromTarget( $user, null, $fromPrimary );
 
 		}
 
@@ -281,7 +292,7 @@ class BlockManager {
 		// blocked with createaccount disabled, prevent new account creation there even
 		// when the user is logged in
 		if ( $request ) {
-			$ipBlock = DatabaseBlock::newFromTarget(
+			$ipBlock = $this->blockStore->newFromTarget(
 				null, $request->getIP()
 			);
 			if ( $ipBlock ) {
@@ -401,7 +412,7 @@ class BlockManager {
 		}
 
 		$blocks = array_merge(
-			DatabaseBlock::newListFromTarget( $ip, $ip, !$fromReplica ),
+			$this->blockStore->newListFromTarget( $ip, $ip, !$fromReplica ),
 			$this->getSystemIpBlocks( $ip, true )
 		);
 
@@ -528,13 +539,12 @@ class BlockManager {
 				continue;
 			}
 			// Don't check trusted IPs (includes local CDNs which will be in every request)
-			if ( MediaWikiServices::getInstance()->getProxyLookup()->isTrustedProxy( $ipaddr ) ) {
+			if ( $this->proxyLookup->isTrustedProxy( $ipaddr ) ) {
 				continue;
 			}
 			$ips[] = $ipaddr;
 		}
-		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
-			->newListFromIPs( $ips, $applySoftBlocks, $fromPrimary );
+		return $this->blockStore->newListFromIPs( $ips, $applySoftBlocks, $fromPrimary );
 	}
 
 	/**
@@ -591,8 +601,7 @@ class BlockManager {
 
 		$blockCookieId = $this->getIdFromCookieValue( $cookieValue );
 		if ( $blockCookieId !== null ) {
-			// TODO: remove dependency on DatabaseBlock (T221075)
-			$block = DatabaseBlock::newFromID( $blockCookieId );
+			$block = $this->blockStore->newFromID( $blockCookieId );
 			if (
 				$block instanceof DatabaseBlock &&
 				$this->shouldApplyCookieBlock( $block, !$user->isRegistered() )
@@ -847,7 +856,7 @@ class BlockManager {
 
 	/**
 	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
-	 * the ID and a HMAC (see DatabaseBlock::setCookie), but will sometimes only be the ID.
+	 * the ID and a HMAC (see self::getCookieValue), but will sometimes only be the ID.
 	 *
 	 * @since 1.34
 	 * @param string $cookieValue The string in which to find the ID.

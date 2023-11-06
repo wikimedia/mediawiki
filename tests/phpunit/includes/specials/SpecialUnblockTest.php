@@ -21,6 +21,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		return new SpecialUnblock(
 			$services->getUnblockUserFactory(),
 			$services->getBlockUtils(),
+			$services->getDatabaseBlockStore(),
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
 			$services->getWatchlistManager()

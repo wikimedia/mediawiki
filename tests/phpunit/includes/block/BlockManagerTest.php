@@ -65,7 +65,9 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			$services->getUserFactory(),
 			$services->getUserIdentityUtils(),
 			new NullLogger(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getDatabaseBlockStore(),
+			$services->getProxyLookup()
 		];
 	}
 

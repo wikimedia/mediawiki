@@ -18,6 +18,8 @@ use Wikimedia\TestingAccessWrapper;
  * @coversDefaultClass \MediaWiki\Specials\SpecialBlock
  */
 class SpecialBlockTest extends SpecialPageTestBase {
+	private $blockStore;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -27,12 +29,18 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$services->getBlockUtils(),
 			$services->getBlockPermissionCheckerFactory(),
 			$services->getBlockUserFactory(),
+			$this->blockStore,
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
 			$services->getBlockActionInfo(),
 			$services->getTitleFormatter(),
 			$services->getNamespaceInfo()
 		);
+	}
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 	}
 
 	protected function tearDown(): void {
@@ -87,7 +95,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = $this->insertBlock();
 
 		// Refresh the block from the database.
-		$block = DatabaseBlock::newFromTarget( $block->getTargetUserIdentity() );
+		$block = $this->blockStore->newFromTarget( $block->getTargetUserIdentity() );
 
 		$page = $this->newSpecialPage();
 
@@ -133,10 +141,10 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			new ActionRestriction( 0, $actionId ),
 		] );
 
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->blockStore->insertBlock( $block );
 
 		// Refresh the block from the database.
-		$block = DatabaseBlock::newFromTarget( $block->getTargetUserIdentity() );
+		$block = $this->blockStore->newFromTarget( $block->getTargetUserIdentity() );
 
 		$page = $this->newSpecialPage();
 
@@ -185,7 +193,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertTrue( $result );
 
-		$block = DatabaseBlock::newFromTarget( $badActor );
+		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 	}
@@ -208,7 +216,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'sitewide' => 0,
 			'enableAutoblock' => false,
 		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->blockStore->insertBlock( $block );
 
 		$page = $this->newSpecialPage();
 		$reason = 'test';
@@ -232,7 +240,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertTrue( $result );
 
-		$block = DatabaseBlock::newFromTarget( $badActor );
+		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertTrue( $block->isAutoblocking() );
@@ -283,7 +291,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertTrue( $result );
 
-		$block = DatabaseBlock::newFromTarget( $badActor );
+		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertCount( 3, $block->getRestrictions() );
@@ -336,7 +344,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertTrue( $result );
 
-		$block = DatabaseBlock::newFromTarget( $badActor );
+		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
@@ -353,7 +361,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertTrue( $result );
 
-		$block = DatabaseBlock::newFromTarget( $badActor );
+		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
@@ -369,7 +377,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertTrue( $result );
 
-		$block = DatabaseBlock::newFromTarget( $badActor );
+		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
@@ -382,7 +390,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertTrue( $result );
 
-		$block = DatabaseBlock::newFromTarget( $badActor );
+		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertTrue( $block->isSitewide() );
@@ -437,7 +445,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		if ( is_string( $expected ) ) {
 			$this->assertStatusError( $expected, $result );
 		} else {
-			$block = DatabaseBlock::newFromTarget( $target );
+			$block = $this->blockStore->newFromTarget( $target );
 			$this->assertSame( $expected, $block->isUsertalkEditAllowed() );
 		}
 	}
@@ -627,7 +635,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'by' => $performer,
 			'hideName' => true,
 		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->blockStore->insertBlock( $block );
 
 		// Matches the existing block
 		$defaultData = [
@@ -874,7 +882,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'enableAutoblock' => true,
 		] );
 
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->blockStore->insertBlock( $block );
 
 		return $block;
 	}

@@ -309,7 +309,8 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 		] );
-		$autoblockId = $block->doAutoblock( '127.0.0.1' );
+		$autoblockId = $this->getServiceContainer()->getDatabaseBlockStore()
+			->doAutoblock( $block, '127.0.0.1' );
 
 		// Ensure that the restrictions on the block have not changed.
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
@@ -347,7 +348,8 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
-		$autoblockId = $block->doAutoblock( '127.0.0.1' );
+		$autoblockId = $this->getServiceContainer()->getDatabaseBlockStore()
+			->doAutoblock( $block, '127.0.0.1' );
 
 		// Ensure that the restrictions on the block have not changed.
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
