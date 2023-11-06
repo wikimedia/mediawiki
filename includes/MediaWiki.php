@@ -586,19 +586,11 @@ class MediaWiki {
 
 			$runTime = microtime( true ) - $t;
 
-			// Feature flag (T240685)
-			if ( $this->config->get( MainConfigNames::StatsTarget ) ) {
-				$statAction = strtr( $actionName, '.', '_' );
-				$services->getStatsFactory()->getTiming( 'action_executeTiming_seconds' )
-					->setLabel( 'action', $statAction )
-					->copyToStatsdAt( 'action.' . $statAction . '.executeTiming' )
-					->observe( 1000 * $runTime );
-			} else {
-				$services->getStatsdDataFactory()->timing(
-					'action.' . strtr( $actionName, '.', '_' ) . '.executeTiming',
-					1000 * $runTime
-				);
-			}
+			$statAction = strtr( $actionName, '.', '_' );
+			$services->getStatsFactory()->getTiming( 'action_executeTiming_seconds' )
+				->setLabel( 'action', $statAction )
+				->copyToStatsdAt( 'action.' . $statAction . '.executeTiming' )
+				->observe( 1000 * $runTime );
 			return;
 		}
 
