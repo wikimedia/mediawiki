@@ -95,6 +95,16 @@ class Expression implements IExpression {
 			if ( !$this->value ) {
 				throw new InvalidArgumentException( "The array of values can't be empty." );
 			}
+			if ( count( $this->value ) === 1 ) {
+				$value = $this->value[ array_key_first( $this->value ) ];
+				if ( $this->op === '=' ) {
+					return $this->field . ' = ' . $dbQuoter->addQuotes( $value );
+				} elseif ( $this->op === '!=' ) {
+					return $this->field . ' != ' . $dbQuoter->addQuotes( $value );
+				} else {
+					throw new LogicException( "Operator $this->op can't take array as value" );
+				}
+			}
 			$list = implode( ',', array_map( static fn ( $value ) => $dbQuoter->addQuotes( $value ), $this->value ) );
 			if ( $this->op === '=' ) {
 				return $this->field . " IN ($list)";
