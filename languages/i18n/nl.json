@@ -902,7 +902,7 @@
 	"undo-summary-username-hidden": "Versie $1 door een verborgen gebruiker ongedaan gemaakt",
 	"viewpagelogs": "Logboek voor deze pagina bekijken",
 	"viewpagelogs-lowercase": "logboek voor deze pagina bekijken",
-	"nohistory": "Deze pagina is niet bewerkt.",
+	"nohistory": "Er is geen bewerkingsgeschiedenis voor deze pagina.",
 	"currentrev": "Huidige versie",
 	"currentrev-asof": "Huidige versie van $2 om $3",
 	"revisionasof": "Versie van $1",

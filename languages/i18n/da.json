@@ -80,7 +80,8 @@
 			"KnudW",
 			"MinecraftAustralia",
 			"Peterleth",
-			"SiGNOUT"
+			"SiGNOUT",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -759,7 +760,7 @@
 	"token_suffix_mismatch": "<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen.</strong>\nAfvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du redigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.",
 	"edit_form_incomplete": "<strong>Nogle dele af redigeringsformularen nåede ikke serveren; dobbelttjek, at redigeringerne er intakte, og prøv igen.</strong>",
 	"editing": "Redigerer $1",
-	"edit-textarea-aria-label": "Wikitekst kilde redigering",
+	"edit-textarea-aria-label": "Wikitekst kilde-redigering",
 	"creating": "Opretter $1",
 	"editingsection": "Redigerer $1 (afsnit)",
 	"editingcomment": "Redigerer $1 (nyt afsnit)",
@@ -2665,7 +2666,7 @@
 	"move-leave-redirect": "Efterlad en omdirigering",
 	"protectedpagemovewarning": "'''Bemærk:''' Denne side er låst så kun administratorer kan flytte den.<br />\nDen seneste logpost vises nedenfor:",
 	"semiprotectedpagemovewarning": "<strong>Bemærk:</strong> Denne side er låst, så kun automatisk bekræftede brugere kan flytte den.\nDen seneste logpost vises nedenfor som reference:",
-	"move-over-sharedrepo": "== Fil findes ==\n[[:$1]] findes på en delt kilde. Ved at flytte en fil til denne titel vil overskrive den eksisterende delte fil.",
+	"move-over-sharedrepo": "[[: $1 ]] findes på et delt lager. Flytning af en fil til denne titel vil tilsidesætte den delte fil.",
 	"file-exists-sharedrepo": "Det valgte filnavn er allerede i brug på en delt kilde.\nVælg venligst et andet navn.",
 	"export": "Eksportér sider",
 	"exporttext": "Du kan eksportere teksten og historikken fra en eller flere sider i et simpelt XML-format.\nDette kan så importeres i en anden wiki der bruger MediaWiki-softwaren ved hjælp af [[Special:Import|importsiden]].\n\nFor at eksportere sider skal du skrive sidetitlerne i tekstboksen herunder med én titel per linje, og vælge om du vil have alle versioner i historikken eller kun den seneste version.\n\nHvis du kun vil have den seneste version, kan du også bruge en henvisning, for eksempel [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for siden \"[[{{MediaWiki:Mainpage}}]]\".",
