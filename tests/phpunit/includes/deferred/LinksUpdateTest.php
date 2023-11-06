@@ -232,6 +232,58 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		], $update->getRemovedExternalLinks() );
 	}
 
+	public function testUpdate_externallinksWrongOldEntry() {
+		/** @var ParserOutput $po */
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+
+		// Insert invalid entry from T350476
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'externallinks' )
+			->row( [
+				'el_from' => self::$testingPageId,
+				'el_to_domain_index' => 'http://.com.testing.',
+				'el_to_path' => '/',
+			] )
+			->row( [
+				'el_from' => self::$testingPageId,
+				'el_to_domain_index' => 'http://.',
+				'el_to_path' => '/',
+			] )
+			->row( [
+				'el_from' => self::$testingPageId,
+				'el_to_domain_index' => '',
+				'el_to_path' => null,
+			] )
+			->execute();
+
+		// Test that the invalid entries are removed on LinksUpdate
+		$po = new ParserOutput();
+		$po->setTitleText( $t->getPrefixedText() );
+		$po->addExternalLink( 'http://testing.com/wiki/Bar' );
+		$po->addExternalLink( 'http://testing.com/wiki/Baz' );
+		$update = $this->assertLinksUpdate(
+			$t,
+			$po,
+			'externallinks',
+			[ 'el_to_domain_index', 'el_to_path' ],
+			[ 'el_from' => self::$testingPageId ],
+			[
+				[ 'http://com.testing.', '/wiki/Bar' ],
+				[ 'http://com.testing.', '/wiki/Baz' ],
+			]
+		);
+
+		$this->assertArrayEquals( [
+			'http://testing.com/wiki/Bar',
+			'http://testing.com/wiki/Baz',
+		], $update->getAddedExternalLinks() );
+		$this->assertArrayEquals( [
+			'http://testing.com/',
+			'http:///',
+			'',
+		], $update->getRemovedExternalLinks() );
+	}
+
 	/**
 	 * @covers ParserOutput::addCategory
 	 */

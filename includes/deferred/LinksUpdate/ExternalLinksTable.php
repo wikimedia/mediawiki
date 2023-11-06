@@ -17,9 +17,10 @@ class ExternalLinksTable extends LinksTable {
 	private $existingLinks;
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
-		$links = LinkFilter::getIndexedUrlsNonReversed( array_keys( $parserOutput->getExternalLinks() ) );
-		foreach ( $links as $link ) {
-			$this->newLinks[$link] = true;
+		foreach ( $parserOutput->getExternalLinks() as $url => $unused ) {
+			foreach ( LinkFilter::makeIndexes( $url ) as [ $domainIndex, $path ] ) {
+				$this->newLinks[$domainIndex][$path] = true;
+			}
 		}
 	}
 
@@ -36,8 +37,7 @@ class ExternalLinksTable extends LinksTable {
 	}
 
 	/**
-	 * Get the existing links as an array, where the key is the URL and the
-	 * value is unused.
+	 * Get the existing links as an array
 	 *
 	 * @return array
 	 */
@@ -45,48 +45,59 @@ class ExternalLinksTable extends LinksTable {
 		if ( $this->existingLinks === null ) {
 			$this->existingLinks = [];
 			foreach ( $this->fetchExistingRows() as $row ) {
-				$link = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
-				$this->existingLinks[$link] = true;
+				$this->existingLinks[$row->el_to_domain_index][$row->el_to_path] = true;
 			}
 		}
 		return $this->existingLinks;
 	}
 
 	protected function getNewLinkIDs() {
-		foreach ( $this->newLinks as $link => $unused ) {
-			yield (string)$link;
+		foreach ( $this->newLinks as $domainIndex => $paths ) {
+			foreach ( $paths as $path => $unused ) {
+				yield [ (string)$domainIndex, (string)$path ];
+			}
 		}
 	}
 
 	protected function getExistingLinkIDs() {
-		foreach ( $this->getExistingLinks() as $link => $unused ) {
-			yield (string)$link;
+		foreach ( $this->getExistingLinks() as $domainIndex => $paths ) {
+			foreach ( $paths as $path => $unused ) {
+				yield [ (string)$domainIndex, (string)$path ];
+			}
 		}
 	}
 
 	protected function isExisting( $linkId ) {
-		return \array_key_exists( $linkId, $this->getExistingLinks() );
+		[ $domainIndex, $path ] = $linkId;
+		return isset( $this->getExistingLinks()[$domainIndex][$path] );
 	}
 
 	protected function isInNewSet( $linkId ) {
-		return \array_key_exists( $linkId, $this->newLinks );
+		[ $domainIndex, $path ] = $linkId;
+		return isset( $this->newLinks[$domainIndex][$path] );
 	}
 
 	protected function insertLink( $linkId ) {
-		foreach ( LinkFilter::makeIndexes( $linkId ) as $index ) {
-			$params = [
-				'el_to_domain_index' => substr( $index[0], 0, 255 ),
-				'el_to_path' => $index[1],
-			];
-			$this->insertRow( $params );
-		}
+		[ $domainIndex, $path ] = $linkId;
+		$params = [
+			'el_to_domain_index' => substr( $domainIndex, 0, 255 ),
+			'el_to_path' => $path,
+		];
+		$this->insertRow( $params );
 	}
 
 	protected function deleteLink( $linkId ) {
-		foreach ( LinkFilter::makeIndexes( $linkId ) as $index ) {
+		[ $domainIndex, $path ] = $linkId;
+		$this->deleteRow( [
+			'el_to_domain_index' => substr( $domainIndex, 0, 255 ),
+			'el_to_path' => $path
+		] );
+		if ( $path === '' ) {
+			// el_to_path is nullable, but null is not valid in php arrays,
+			// so both values are handled as one key, delete both rows when exists
 			$this->deleteRow( [
-				'el_to_domain_index' => substr( $index[0], 0, 255 ),
-				'el_to_path' => $index[1]
+				'el_to_domain_index' => substr( $domainIndex, 0, 255 ),
+				'el_to_path' => null
 			] );
 		}
 	}
@@ -99,10 +110,11 @@ class ExternalLinksTable extends LinksTable {
 	 */
 	public function getStringArray( $setType ) {
 		$ids = $this->getLinkIDs( $setType );
-		if ( is_array( $ids ) ) {
-			return $ids;
-		} else {
-			return iterator_to_array( $ids );
+		$stringArray = [];
+		foreach ( $ids as $linkId ) {
+			[ $domainIndex, $path ] = $linkId;
+			$stringArray[] = LinkFilter::reverseIndexes( $domainIndex ) . $path;
 		}
+		return $stringArray;
 	}
 }
