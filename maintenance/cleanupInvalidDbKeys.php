@@ -25,6 +25,8 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Maintenance script that cleans up invalid titles in various tables.
@@ -150,6 +152,14 @@ TEXT
 
 		// Find all TitleValue-invalid titles.
 		$percent = $dbr->anyString();
+		// The REGEXP operator is not cross-DBMS, so we have to use lots of LIKEs
+		$likeExpr = $dbr
+			->expr( $titleField, IExpression::LIKE, new LikeValue( $percent, ' ', $percent ) )
+			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, "\r", $percent ) )
+			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, "\n", $percent ) )
+			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, "\t", $percent ) )
+			->or( $titleField, IExpression::LIKE, new LikeValue( '_', $percent ) )
+			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, '_' ) );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [
 				'id' => $idField,
@@ -157,15 +167,7 @@ TEXT
 				'title' => $titleField,
 			] )
 			->tables( $tables )
-			// The REGEXP operator is not cross-DBMS, so we have to use lots of LIKEs
-			->where( $dbr->makeList( [
-				$titleField . $dbr->buildLike( $percent, ' ', $percent ),
-				$titleField . $dbr->buildLike( $percent, "\r", $percent ),
-				$titleField . $dbr->buildLike( $percent, "\n", $percent ),
-				$titleField . $dbr->buildLike( $percent, "\t", $percent ),
-				$titleField . $dbr->buildLike( '_', $percent ),
-				$titleField . $dbr->buildLike( $percent, '_' ),
-			], LIST_OR ) )
+			->where( $likeExpr )
 			->joinConds( $joinConds )
 			->limit( $this->getBatchSize() )
 			->caller( __METHOD__ )

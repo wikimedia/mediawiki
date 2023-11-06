@@ -32,8 +32,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Maintenance script that checks for articles to fix after
@@ -402,7 +404,7 @@ class NamespaceDupes extends Maintenance {
 					$extraConds,
 					[
 						$namespaceField => 0,
-						$titleField . $dbw->buildLike( "$name:", $dbw->anyString() )
+						$dbw->expr( $titleField, IExpression::LIKE, new LikeValue( "$name:", $dbw->anyString() ) ),
 					]
 				),
 				__METHOD__,
@@ -546,7 +548,7 @@ class NamespaceDupes extends Maintenance {
 			->from( 'page' )
 			->where( [
 				'page_namespace' => $checkNamespaces,
-				'page_title' . $dbw->buildLike( "$name:", $dbw->anyString() ),
+				$dbw->expr( 'page_title', IExpression::LIKE, new LikeValue( "$name:", $dbw->anyString() ) ),
 			] )
 			->caller( __METHOD__ )->fetchResultSet();
 	}

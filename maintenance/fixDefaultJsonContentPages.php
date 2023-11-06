@@ -24,6 +24,8 @@
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -48,10 +50,18 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$dbr = $this->getDB( DB_REPLICA );
 		$namespaces = [
-			NS_MEDIAWIKI => $dbr->buildLike( $dbr->anyString(), '.json' ),
-			NS_USER => $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString(), '.json' ),
+			NS_MEDIAWIKI => $dbr->expr(
+				'page_title',
+				IExpression::LIKE,
+				new LikeValue( $dbr->anyString(), '.json' )
+			),
+			NS_USER => $dbr->expr(
+				'page_title',
+				IExpression::LIKE,
+				new LikeValue( $dbr->anyString(), '/', $dbr->anyString(), '.json' )
+			),
 		];
-		foreach ( $namespaces as $ns => $like ) {
+		foreach ( $namespaces as $ns => $likeExpr ) {
 			$lastPage = 0;
 			do {
 				$rows = $dbr->newSelectQueryBuilder()
@@ -59,8 +69,8 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 					->from( 'page' )
 					->where( [
 						'page_namespace' => $ns,
-						'page_title ' . $like,
-						'page_id > ' . $dbr->addQuotes( $lastPage )
+						$likeExpr,
+						$dbr->expr( 'page_id', '>', $lastPage ),
 					] )
 					->orderBy( 'page_id' )
 					->limit( $this->getBatchSize() )

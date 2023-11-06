@@ -22,7 +22,9 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\LikeValue;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -138,7 +140,7 @@ ERROR
 			$dbw->update( 'user',
 				[ 'user_password = ' . $dbw->buildSubString( 'user_password', strlen( ':null:' ) + 1 ) ],
 				[
-					'user_password ' . $dbw->buildLike( ':null:', $dbw->anyString() ),
+					$dbw->expr( 'user_password', IExpression::LIKE, new LikeValue( ':null:', $dbw->anyString() ) ),
 					'user_name' => $userBatch,
 				],
 				__METHOD__
