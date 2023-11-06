@@ -2726,6 +2726,18 @@ $wgBlockDisablesLogin = null;
 $wgEnablePartialActionBlocks = null;
 
 /**
+ * Config variable stub for the EnableMultiBlocks setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableMultiBlocks
+ */
+$wgEnableMultiBlocks = null;
+
+/**
+ * Config variable stub for the BlockTargetMigrationStage setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::BlockTargetMigrationStage
+ */
+$wgBlockTargetMigrationStage = null;
+
+/**
  * Config variable stub for the WhitelistRead setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::WhitelistRead
  */
