@@ -34,20 +34,12 @@ use MediaWiki\Mail\UserEmailContact;
  * @newable
  */
 class MailAddress {
-	/**
-	 * @var string
-	 */
-	public $name;
 
-	/**
-	 * @var string
-	 */
-	public $realName;
+	public string $name;
 
-	/**
-	 * @var string
-	 */
-	public $address;
+	public string $realName;
+
+	public string $address;
 
 	/**
 	 * @stable to call

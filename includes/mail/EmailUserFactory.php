@@ -36,21 +36,20 @@ use Wikimedia\Message\ITextFormatter;
  * @since 1.41
  */
 class EmailUserFactory {
-	/** @var ServiceOptions */
 	private ServiceOptions $options;
-	/** @var HookContainer */
+
 	private HookContainer $hookContainer;
-	/** @var UserOptionsLookup */
+
 	private UserOptionsLookup $userOptionsLookup;
-	/** @var CentralIdLookup */
+
 	private CentralIdLookup $centralIdLookup;
-	/** @var UserFactory */
+
 	private UserFactory $userFactory;
-	/** @var IEmailer */
+
 	private IEmailer $emailer;
-	/** @var IMessageFormatterFactory */
+
 	private IMessageFormatterFactory $messageFormatterFactory;
-	/** @var ITextFormatter */
+
 	private ITextFormatter $contLangMsgFormatter;
 
 	/**

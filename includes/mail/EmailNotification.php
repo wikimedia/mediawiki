@@ -71,44 +71,33 @@ class EmailNotification {
 	 */
 	private const ALL_CHANGES = 'all_changes';
 
-	/** @var string */
-	protected $subject = '';
+	protected string $subject = '';
 
-	/** @var string */
-	protected $body = '';
+	protected string $body = '';
 
-	/** @var MailAddress|null */
-	protected $replyto;
+	protected ?MailAddress $replyto;
 
-	/** @var MailAddress|null */
-	protected $from;
+	protected ?MailAddress $from;
 
-	/** @var string|null */
-	protected $timestamp;
+	protected ?string $timestamp;
 
-	/** @var string */
-	protected $summary = '';
+	protected string $summary = '';
 
-	/** @var bool|null */
-	protected $minorEdit;
+	protected ?bool $minorEdit;
 
 	/** @var int|null|bool */
 	protected $oldid;
 
-	/** @var bool */
-	protected $composed_common = false;
+	protected bool $composed_common = false;
 
-	/** @var string */
-	protected $pageStatus = '';
+	protected string $pageStatus = '';
 
 	/** @var MailAddress[] */
-	protected $mailTargets = [];
+	protected array $mailTargets = [];
 
-	/** @var Title */
-	protected $title;
+	protected Title $title;
 
-	/** @var User */
-	protected $editor;
+	protected User $editor;
 
 	/**
 	 * Extensions that have hooks for
