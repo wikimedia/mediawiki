@@ -573,7 +573,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		$out->disallowUserJs(); // just in case...
 
-		$form = $this->getAuthForm( $requests, $this->authAction, $msg, $msgtype );
+		$form = $this->getAuthForm( $requests, $this->authAction );
 		$form->prepareForm();
 
 		$submitStatus = Status::newGood();
@@ -743,11 +743,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * Generates a form from the given request.
 	 * @param AuthenticationRequest[] $requests
 	 * @param string $action AuthManager action name
-	 * @param string|Message $msg
-	 * @param string $msgType
 	 * @return HTMLForm
 	 */
-	protected function getAuthForm( array $requests, $action, $msg = '', $msgType = 'error' ) {
+	protected function getAuthForm( array $requests, $action ) {
 		// FIXME merge this with parent
 
 		if ( isset( $this->authForm ) ) {
