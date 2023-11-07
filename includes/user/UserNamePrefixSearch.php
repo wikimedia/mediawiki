@@ -25,6 +25,8 @@ namespace MediaWiki\User;
 use InvalidArgumentException;
 use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Handles searching prefixes of user names
@@ -83,7 +85,7 @@ class UserNamePrefixSearch {
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( 'user_name' )
 			->from( 'user' )
-			->where( [ 'user_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) ] )
+			->where( $dbr->expr( 'user_name', IExpression::LIKE, new LikeValue( $prefix, $dbr->anyString() ) ) )
 			->orderBy( 'user_name' )
 			->limit( $limit )
 			->offset( $offset );

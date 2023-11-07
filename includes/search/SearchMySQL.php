@@ -26,6 +26,8 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -225,7 +227,9 @@ class SearchMySQL extends SearchDatabase {
 		foreach ( $this->features as $feature => $value ) {
 			if ( $feature === 'title-suffix-filter' && $value ) {
 				$dbr = $this->dbProvider->getReplicaDatabase();
-				$queryBuilder->andWhere( 'page_title' . $dbr->buildLike( $dbr->anyString(), $value ) );
+				$queryBuilder->andWhere(
+					$dbr->expr( 'page_title', IExpression::LIKE, new LikeValue( $dbr->anyString(), $value ) )
+				);
 			}
 		}
 	}

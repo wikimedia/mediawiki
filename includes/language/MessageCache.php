@@ -39,7 +39,9 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 
@@ -589,7 +591,11 @@ class MessageCache implements LoggerAwareInterface {
 		if ( count( $mostused ) ) {
 			$conds['page_title'] = $mostused;
 		} elseif ( $code !== $this->contLangCode ) {
-			$conds[] = 'page_title' . $dbr->buildLike( $dbr->anyString(), '/', $code );
+			$conds[] = $dbr->expr(
+				'page_title',
+				IExpression::LIKE,
+				new LikeValue( $dbr->anyString(), '/', $code )
+			);
 		} else {
 			// Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
 			// other than language code.

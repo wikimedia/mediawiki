@@ -9,7 +9,10 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -55,14 +58,15 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$database->expects( $this->once() )
 			->method( 'anyString' )
 			->willReturn( 'anyStringGoesHere' );
+		$args = [ 'user_name', IExpression::LIKE, new LikeValue( $prefix, 'anyStringGoesHere' ) ];
 		$database->expects( $this->once() )
-			->method( 'buildLike' )
-			->with( $prefix, 'anyStringGoesHere' )
-			->willReturn( 'LIKE ' . $prefix . 'anyStringGoesHere' );
+			->method( 'expr' )
+			->with( ...$args )
+			->willReturn( new Expression( ...$args ) );
 
 		// Query parameters
 		$tables = [ 'user' ];
-		$conds = [ 'user_name LIKE ' . $prefix . 'anyStringGoesHere' ];
+		$conds = [ new Expression( ...$args ) ];
 		$joinConds = [];
 		if ( $excludeHidden ) {
 			$tables['ipblocks'] = 'ipblocks';

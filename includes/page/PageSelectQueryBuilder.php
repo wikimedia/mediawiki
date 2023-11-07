@@ -5,7 +5,9 @@ namespace MediaWiki\Page;
 use Iterator;
 use LinkCache;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -74,7 +76,9 @@ class PageSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function whereTitlePrefix( int $namespace, string $prefix ): self {
 		$this->whereNamespace( $namespace );
-		$this->conds( 'page_title' . $this->db->buildLike( $prefix, $this->db->anyString() ) );
+		$this->conds(
+			$this->db->expr( 'page_title', IExpression::LIKE, new LikeValue( $prefix, $this->db->anyString() ) )
+		);
 		return $this;
 	}
 

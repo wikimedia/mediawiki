@@ -29,6 +29,8 @@ use LinkCache;
 use MediaWiki\Html\Html;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Implements Special:Prefixindex
@@ -191,7 +193,11 @@ class SpecialPrefixIndex extends SpecialAllPages {
 				->from( 'page' )
 				->where( [
 					'page_namespace' => $namespace,
-					'page_title' . $dbr->buildLike( $prefixKey, $dbr->anyString() ),
+					$dbr->expr(
+						'page_title',
+						IExpression::LIKE,
+						new LikeValue( $prefixKey, $dbr->anyString() )
+					),
 					$dbr->expr( 'page_title', '>=', $fromKey ),
 				] )
 				->orderBy( 'page_title' )
