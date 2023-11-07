@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectStore;
@@ -167,7 +168,7 @@ class PageRedirectHelper {
 	}
 
 	/**
-	 * @param string|PageReference $title
+	 * @param string|LinkTarget|PageReference $title
 	 * @return string The target to use in the Location header. Will be relative,
 	 *         unless setUseRelativeRedirects( false ) was called.
 	 */
