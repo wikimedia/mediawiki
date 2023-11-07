@@ -24,7 +24,9 @@ use Iterator;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class UserSelectQueryBuilder extends SelectQueryBuilder {
@@ -111,7 +113,9 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 		if ( !isset( $this->options['LIMIT'] ) ) {
 			throw new PreconditionException( 'Must set a limit when using a user name prefix' );
 		}
-		$this->conds( 'actor_name' . $this->db->buildLike( $prefix, $this->db->anyString() ) );
+		$this->conds(
+			$this->db->expr( 'actor_name', IExpression::LIKE, new LikeValue( $prefix, $this->db->anyString() ) )
+		);
 		return $this;
 	}
 

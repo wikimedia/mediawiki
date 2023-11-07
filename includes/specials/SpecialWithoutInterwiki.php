@@ -31,6 +31,8 @@ use MediaWiki\SpecialPage\PageQueryPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Special page lists pages without language links
@@ -125,7 +127,11 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 		];
 		if ( $this->prefix ) {
 			$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
-			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );
+			$query['conds'][] = $dbr->expr(
+				'page_title',
+				IExpression::LIKE,
+				new LikeValue( $this->prefix, $dbr->anyString() )
+			);
 		}
 
 		return $query;

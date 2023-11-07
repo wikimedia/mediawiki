@@ -25,6 +25,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
+use Wikimedia\Rdbms\AndExpressionGroup;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Handles searching prefixes of titles and finding any page
@@ -274,17 +278,21 @@ abstract class PrefixSearch {
 		// but sometimes there are two if some namespaces do not always capitalize.
 		$conds = [];
 		foreach ( $prefixes as $prefix => $namespaces ) {
-			$condition = [ 'page_namespace' => $namespaces ];
+			$condition = [ $dbr->expr( 'page_namespace', '=', $namespaces ) ];
 			if ( $prefix !== '' ) {
-				$condition[] = 'page_title' . $dbr->buildLike( $prefix, $dbr->anyString() );
+				$condition[] = $dbr->expr(
+					'page_title',
+					IExpression::LIKE,
+					new LikeValue( $prefix, $dbr->anyString() )
+				);
 			}
-			$conds[] = $dbr->makeList( $condition, LIST_AND );
+			$conds[] = new AndExpressionGroup( ...$condition );
 		}
 
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
 			->from( 'page' )
-			->where( $dbr->makeList( $conds, LIST_OR ) )
+			->where( new OrExpressionGroup( ...$conds ) )
 			->orderBy( [ 'page_title', 'page_namespace' ] )
 			->limit( $limit )
 			->offset( $offset );

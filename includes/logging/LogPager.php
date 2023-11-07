@@ -35,6 +35,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * @ingroup Pager
@@ -308,9 +310,13 @@ class LogPager extends ReverseChronologicalPager {
 					$params[] = $db->anyString();
 				}
 			}
-			$this->mConds[] = 'log_title' . $db->buildLike( ...$params );
+			$this->mConds[] = $db->expr( 'log_title', IExpression::LIKE, new LikeValue( ...$params ) );
 		} elseif ( $pattern && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
-			$this->mConds[] = 'log_title' . $db->buildLike( $page->getDBkey(), $db->anyString() );
+			$this->mConds[] = $db->expr(
+				'log_title',
+				IExpression::LIKE,
+				new LikeValue( $page->getDBkey(), $db->anyString() )
+			);
 			$this->pattern = $pattern;
 		} else {
 			$this->mConds['log_title'] = $page->getDBkey();

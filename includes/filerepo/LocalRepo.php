@@ -30,8 +30,10 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
@@ -219,7 +221,7 @@ class LocalRepo extends FileRepo {
 			->from( 'oldimage' )
 			->where( [
 				'oi_sha1' => $sha1,
-				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
+				$dbw->expr( 'oi_archive_name', IExpression::LIKE, new LikeValue( $dbw->anyString(), ".$ext" ) ),
 				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE,
 			] );
 		if ( $lock === 'lock' ) {
@@ -483,7 +485,8 @@ class LocalRepo extends FileRepo {
 		$dbr = $this->getReplicaDB();
 		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
 
-		$queryBuilder->where( 'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) )
+		$queryBuilder
+			->where( $dbr->expr( 'img_name', IExpression::LIKE, new LikeValue( $prefix, $dbr->anyString() ) ) )
 			->orderBy( 'img_name' )
 			->limit( intval( $limit ) );
 		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();

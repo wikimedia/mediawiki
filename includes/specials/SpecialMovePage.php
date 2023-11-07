@@ -57,6 +57,8 @@ use SearchEngineFactory;
 use StringUtils;
 use ThrottledError;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 use Xml;
 
 /**
@@ -843,8 +845,11 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			)
 		) ) {
 			$conds = [
-				'page_title' . $dbr->buildLike( $ot->getDBkey() . '/', $dbr->anyString() )
-					. ' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
+				$dbr->expr(
+					'page_title',
+					IExpression::LIKE,
+					new LikeValue( $ot->getDBkey() . '/', $dbr->anyString() )
+				)->or( 'page_title', '=', $ot->getDBkey() )
 			];
 			$conds['page_namespace'] = [];
 			if ( $this->nsInfo->hasSubpages( $nt->getNamespace() ) ) {

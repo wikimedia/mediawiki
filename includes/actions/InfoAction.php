@@ -46,6 +46,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Displays information about a page.
@@ -925,8 +927,11 @@ class InfoAction extends FormlessAction {
 				// Subpages (if enabled)
 				if ( $this->namespaceInfo->hasSubpages( $title->getNamespace() ) ) {
 					$conds = [ 'page_namespace' => $title->getNamespace() ];
-					$conds[] = 'page_title ' .
-						$dbr->buildLike( $title->getDBkey() . '/', $dbr->anyString() );
+					$conds[] = $dbr->expr(
+						'page_title',
+						IExpression::LIKE,
+						new LikeValue( $title->getDBkey() . '/', $dbr->anyString() )
+					);
 
 					// Subpages of this page (redirects)
 					$conds['page_is_redirect'] = 1;
