@@ -1375,13 +1375,9 @@ return [
 		'packageFiles' => [
 			'mediawiki.action.view.postEdit.js',
 			[ 'name' => 'config.json', 'config' => [ MainConfigNames::EditSubmitButtonLabelPublish ] ],
-			[ 'name' => 'contLangMessages.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
-				return [
-					'tempuser-helppage' => $messageLocalizer->msg( 'tempuser-helppage' )->inContentLanguage()->text(),
-				];
-			} ],
 		],
 		'dependencies' => [
+			'mediawiki.tempUserCreated',
 			'mediawiki.jqueryMsg',
 			'mediawiki.notification',
 			'mediawiki.storage',
@@ -2453,6 +2449,21 @@ return [
 			'temp-user-banner-tooltip-description-learn-more',
 			'temp-user-banner-tooltip-description-login'
 		]
+	],
+	'mediawiki.tempUserCreated' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.tempUserCreated',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.tempUserCreated",
+		'packageFiles' => [
+			'mediawiki.tempUserCreated.js',
+			[ 'name' => 'contLangMessages.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
+				return [
+					'tempuser-helppage' => $messageLocalizer->msg( 'tempuser-helppage' )->inContentLanguage()->text(),
+				];
+			} ],
+		],
+		'dependencies' => [
+			'mediawiki.util',
+		],
 	],
 	/* MediaWiki Installer */
 
