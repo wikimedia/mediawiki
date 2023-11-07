@@ -124,6 +124,23 @@ because of Phabricator reports.
   without deprecation. Use of ENUM is highly discouraged.
 * ILoadBalancer::getAnyOpenConnection() has been removed without deprecation,
   use ::getConnection() instead.
+* LanguageConverter's internal properties, all deprecated in 1.35 or 1.36, have
+  now had their deprecated property accessors dropped:
+  - mConvRuleTitle
+  - mUserVariant
+  - mHeaderVariant
+  - mMaxDepth
+  - mVarSeparatorPattern
+  - mLangObj
+  - mTablesLoaded
+  - mTables
+  - mVariants
+  - mMainLanguageCode
+  - mVariantFallbacks
+  - mFlags
+  - mVariantNames
+  - mDescCodeSep
+  - mDescVarSep
 * OutputPage::addParserOutputText has been marked @internal since there are no
   known users of it. Its old behavior has been deprecated and will change
   in the future without further notice.

@@ -114,44 +114,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param Language|StubUserLang $langobj
 	 */
 	public function __construct( $langobj ) {
-		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mHeaderVariant', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mMaxDepth', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mVarSeparatorPattern', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mLangObj', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTablesLoaded', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTables', '1.35', __CLASS__ );
-
 		$this->mLangObj = $langobj;
-
-		$this->deprecatePublicPropertyFallback( 'mVariants', '1.36', function () {
-			return $this->getVariants();
-		} );
-
-		$this->deprecatePublicPropertyFallback( 'mMainLanguageCode', '1.36', function () {
-			return $this->getMainCode();
-		} );
-
-		$this->deprecatePublicPropertyFallback( 'mVariantFallbacks', '1.36', function () {
-			return $this->getVariantsFallbacks();
-		} );
-
-		$this->deprecatePublicPropertyFallback( 'mFlags', '1.36', function () {
-			return $this->getFlags();
-		} );
-
-		$this->deprecatePublicPropertyFallback( 'mVariantNames', '1.36', function () {
-			return $this->getVariantNames();
-		} );
-
-		$this->deprecatePublicPropertyFallback( 'mDescCodeSep', '1.36', function () {
-			return $this->getDescCodeSeparator();
-		} );
-
-		$this->deprecatePublicPropertyFallback( 'mDescVarSep', '1.36', function () {
-			return $this->getDescVarSeparator();
-		} );
 	}
 
 	/**
