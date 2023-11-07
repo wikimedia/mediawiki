@@ -101,6 +101,8 @@ class ParserOutputAccess {
 	 */
 	private $localCache = [];
 
+	private const LOCAL_CACHE_SIZE = 10;
+
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
@@ -229,6 +231,10 @@ class ParserOutputAccess {
 		}
 
 		if ( $output && !$isOld ) {
+			if ( count( $this->localCache ) >= self::LOCAL_CACHE_SIZE ) {
+				// Remove oldest entry
+				unset( $this->localCache[ array_key_first( $this->localCache ) ] );
+			}
 			$this->localCache[$classCacheKey] = [ $page->getLatest() => $output ];
 		}
 
@@ -308,6 +314,10 @@ class ParserOutputAccess {
 		if ( $output && !$isOld ) {
 			$primaryCache = $this->getPrimaryCache( $parserOptions );
 			$classCacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions );
+			if ( count( $this->localCache ) >= self::LOCAL_CACHE_SIZE ) {
+				// Remove oldest entry
+				unset( $this->localCache[ array_key_first( $this->localCache ) ] );
+			}
 			$this->localCache[$classCacheKey] = [ $page->getLatest() => $output ];
 		}
 
