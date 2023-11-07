@@ -1386,6 +1386,15 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.42
+	 * @unstable
+	 * @return BagOStuff
+	 */
+	public function getMicroStash(): BagOStuff {
+		return $this->getService( 'MicroStash' );
+	}
+
+	/**
 	 * @since 1.28
 	 */
 	public function getMimeAnalyzer(): MimeAnalyzer {

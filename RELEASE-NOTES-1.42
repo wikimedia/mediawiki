@@ -22,6 +22,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
+* $wgMicroStashType: The object cache backend for the MicroStash service.
 * $wgEditRecoveryExpiry: Number of seconds to keep edit recovery data
   after the edit is stored.
 * …
@@ -31,6 +32,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 
 ==== Removed configuration ====
 * $wgDisableCookieCheck has been removed.
+* $wgStatsCacheType has been removed. Set $wgMicroStashType instead.
 * $wgJobSerialCommitThreshold has been removed without deprecation,
   it wasn't used anywhere according to codesearch and any setups using this
   config will perform just fine but might be less performant.

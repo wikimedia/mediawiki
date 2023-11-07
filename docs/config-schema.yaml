@@ -2412,11 +2412,6 @@ config-schema:
             which are used when parsing certain text and interface messages.
             For available types see $wgMainCacheType.
             @since 1.20
-    StatsCacheType:
-        default: -1
-        description: |-
-            The object cache type for stats storage.
-            {@link \Wikimedia\WRStats\WRStatsFactory}
     ObjectCaches:
         default:
             0: { class: EmptyBagOStuff, reportDupes: false }
@@ -2489,6 +2484,26 @@ config-schema:
             Extra parameters to the WANObjectCache constructor.
             See @ref wanobjectcache-deployment "Deploying WANObjectCache".
             @since 1.40
+    MicroStashType:
+        default: -1
+        type:
+            - string
+            - integer
+        description: |-
+            The stash store backend for MicroStash.
+            This store should be optimized for ephemeral data, and should be able to handle
+            a high volume of writes and reads. The dataset access scope should be across
+            all servers that serve the application.
+            Note that the TTL of the data written to the store must be respected completely
+            before the data gets evicted from the store (whether the data is used or not).
+            Thus, the store should not evict data before the TTL expires.
+            Properties of the backend should be:
+            1.) the data written to the store should be short-lived,
+            2.) it should be evicted ONLY after the TTL elapses (reliably persist),
+            3.) should be accessed by all servers that serve the application,
+            4.) should be able to handle a high volume of writes and reads.
+            @see \BagOStuff
+            @since 1.42
     MainStash:
         default: db-replicated
         description: |-
