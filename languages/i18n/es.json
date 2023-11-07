@@ -843,6 +843,8 @@
 	"resettokens-watchlist-token": "Clave del canal (Atom/RSS) de [[Special:Watchlist|cambios en las páginas de tu lista de seguimiento]]",
 	"resettokens-done": "Restablecimiento de claves.",
 	"resettokens-resetbutton": "Restablecer las claves",
+	"edit-recovery-loaded-title": "Cambios recuperados",
+	"edit-recovery-loaded-discard": "Descartar cambios",
 	"summary": "Resumen:",
 	"subject": "Asunto:",
 	"minoredit": "Esta es una edición menor",

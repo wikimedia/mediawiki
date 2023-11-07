@@ -4,7 +4,8 @@
 			"DannyS712",
 			"Fitoschido",
 			"Ihojose",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"No se"
 		]
 	},
 	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba dentro de la ruta raíz ($2) de la API REST",
@@ -15,6 +16,7 @@
 	"rest-nonexistent-revision": "No existe la revisión especificada ($1)",
 	"rest-nonexistent-user": "El usuario especificado ($1) no existe",
 	"rest-invalid-user": "El nombre de usuario especificado ($1) no es válido",
+	"rest-invalid-title": "El título especificado ($1) no se refiere a una página wiki.",
 	"rest-unsupported-content-type": "Tipo de contenido no compatible: $1",
 	"rest-permission-denied-anon": "No accesible por usuario anónimo",
 	"rest-permission-denied-title": "El usuario no tiene permisos para leer el título ($1)",
@@ -31,6 +33,7 @@
 	"rest-compare-inaccessible": "La revisión especificada por el parámetro $1 no es accesible públicamente.",
 	"rest-compare-wrong-content": "El espacio $1 de la revisión especificada por el parámetro $2 tiene un tipo de contenido que no se puede convertir a texto.",
 	"rest-compare-wikidiff2": "Este endpoint requiere wikidiff2 1.9.0 o superor.",
+	"rest-extraneous-body-fields": "Campos extraños encontrados en el cuerpo de la solicitud: $1",
 	"rest-bad-content-model": "Modelo de contenido malo: $1",
 	"rest-cannot-load-file": "No se puede cargar el archivo con el título «$1»."
 }
