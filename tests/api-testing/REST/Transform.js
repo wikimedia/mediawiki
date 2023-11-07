@@ -82,7 +82,7 @@ function contentTypeMatcher( expectedMime, expectedSpec, expectedVersion ) {
 // TODO: Replace all occurrences of (Lint Page/Lint_Page) with `page`.
 describe( '/transform/ endpoint', function () {
 	const client = new REST();
-	const endpointPrefix = client.pathPrefix = 'rest.php/coredev/v0';
+	const endpointPrefix = client.pathPrefix = 'rest.php/v1';
 	const page = utils.title( 'TransformSource_' );
 	const pageEncoded = encodeURIComponent( page );
 	const pageContent = '{|\nhi\n|ho\n|}';
