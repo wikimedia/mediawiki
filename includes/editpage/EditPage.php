@@ -4108,8 +4108,11 @@ class EditPage implements IEditObject {
 	}
 
 	private function incrementEditFailureStats( string $failureType ): void {
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$stats->increment( 'edit.failures.' . $failureType );
+		MediaWikiServices::getInstance()->getStatsFactory()
+			->getCounter( 'edit_failure_total' )
+			->setLabel( 'cause', $failureType )
+			->copyToStatsdAt( 'edit.failures.' . $failureType )
+			->increment();
 	}
 
 	/**
