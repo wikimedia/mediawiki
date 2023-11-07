@@ -183,5 +183,35 @@
 			"TitleFormatter",
 			"RevisionStore"
 		]
+	},
+	{
+		"method": "POST",
+		"path": "/v1/transform/{from}/to/{format}/{title}/{revision}",
+		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
+		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",
+		"transformations": {
+			"wikitext": [ "html", "lint" ],
+			"html": [ "wikitext" ]
+		}
+	},
+	{
+		"method": "POST",
+		"path": "/v1/transform/{from}/to/{format}",
+		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
+		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",
+		"transformations": {
+			"wikitext": [ "html", "lint" ],
+			"html": [ "wikitext" ]
+		}
+	},
+	{
+		"method": "POST",
+		"path": "/v1/transform/{from}/to/{format}/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
+		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",
+		"transformations": {
+			"wikitext": [ "html", "lint" ],
+			"html": [ "wikitext" ]
+		}
 	}
 ]
