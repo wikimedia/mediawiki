@@ -632,7 +632,7 @@
 	"changepassword-success": "Parolanız değiştirildi!",
 	"changepassword-throttled": "Çok fazla yeni oturum açma girişiminde bulundunuz.\nLütfen tekrar denemeden önce $1 bekleyin.",
 	"botpasswords": "Bot parolaları",
-	"botpasswords-summary": "<em>Bot parolaları</em> hesabın ana giriş kimlik bilgilerini kullanmadan API aracılığıyla bir kullanıcı hesabına erişime izin verir. Bir bot parolası ile giriş yaptığınızda mevcut kullanıcı hakları kısıtlanabilir.\n\nBunu neden yapmak isteyebileceğinizi bilmiyorsanız, yapmayınız. Hiç kimse sizden bunlardan birini üretip onlara vermenizi istememelidir.",
+	"botpasswords-summary": "<em>Bot parolaları</em> hesabın ana giriş kimlik bilgilerini kullanmadan API aracılığıyla bir kullanıcı hesabına erişimine izin verir. Bot parolası ile giriş yapıldığında mevcut kullanıcı hakları kısıtlanabilir.\n\nBunu neden yapmak isteyeceğinizi bilmiyorsanız, muhtemelen yapmamalısınız. Hiç kimse sizden bunlardan birini oluşturup onlara vermenizi istememelidir.",
 	"botpasswords-disabled": "Bot parolaları devre dışı.",
 	"botpasswords-no-central-id": "Bot parolaları kullanmak için merkezi bir hesap ile oturum açmalısınız.",
 	"botpasswords-existing": "Mevcut bot parolaları",
