@@ -282,6 +282,16 @@ class SVGReader {
 					}
 				}
 				switch ( $this->reader->localName ) {
+					case 'style':
+						$styleContents = $this->reader->readString();
+						if (
+							str_contains( $styleContents, 'animated' ) ||
+							str_contains( $styleContents, '@keyframes' )
+						) {
+							$this->debug( "HOUSTON WE HAVE ANIMATION" );
+							$this->metadata['animated'] = true;
+						}
+						break;
 					case 'script':
 						// Normally we disallow files with
 						// <script>, but its possible

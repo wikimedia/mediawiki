@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+	<defs>
+		<style>
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+			svg {
+				animation: spin 5s linear infinite;
+			}
+			.acircle {
+				opacity: 0.65;
+			}
+		</style>
+	</defs>
+	<circle class="acircle" cx="40" cy="40" r="30" stroke="red" fill="none"/>
+</svg>
