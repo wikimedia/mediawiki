@@ -1324,56 +1324,101 @@ Template generated table cell with attributes
 ## is the ordering of attributes. This could perhaps be fixed differently
 ## in the test runner.
 !! test
-Templated table cell with untemplated attributes: Common use cases
+Templated table cell with untemplated attributes: Cell combination tests
 !! wikitext
 {|
 |-
-!class="test"{{table_cell_content}} /* th & td combine */
+!class="test"{{table_cell_content|attr=! align=left}} /* th & th combine */
 |-
 |class="test"{{table_cell_content}} /* td & td combine */
-|
+|-
+!class="test"{{table_cell_content}} /* th & td combine */
+|-
+|class="test"{{table_cell_content|attr=! align=left}} /* td & th combine */
+|-
 |class="test"{{table_cell_content|attr=style='color:red;'}}
-|
+|-
 |class="test"{{table_cell_content|cmt=<!--bar-->}}
 |}
 !! html/php
 <table>
 
 <tbody><tr>
-<th class="test">foo /* th &amp; td combine */
+<th class="test" align="left">foo /* th &amp; th combine */
 </th></tr>
 <tr>
 <td class="test">foo /* td &amp; td combine */
-</td>
-<td>
-</td>
+</td></tr>
+<tr>
+<th class="test">foo /* th &amp; td combine */
+</th></tr>
+<tr>
+<td class="test" align="left">foo /* td &amp; th combine */
+</td></tr>
+<tr>
 <td class="test" style="color:red;">foo
-</td>
-<td>
-</td>
+</td></tr>
+<tr>
 <td class="test">foo
 </td></tr></tbody></table>
 !! html/parsoid+standalone
 <table>
 <tbody><tr data-parsoid='{"startTagSrc":"|-"}'>
-<th class="test" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* th &amp; td combine */"]}'>foo /* th &amp; td combine */</th></tr>
+<th class="test" align="left" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"! align=left"}},"i":0}}," /* th &amp; th combine */"]}'>foo /* th &amp; th combine */</th></tr>
 <tr data-parsoid='{"startTagSrc":"|-"}'>
-<td class="test" typeof="mw:Transclusion" about="#mwt2" data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* td &amp; td combine */"]}'>foo /* td &amp; td combine */</td>
-<td></td>
-<td class="test" style="color:red;" typeof="mw:Transclusion" about="#mwt3" data-parsoid='{"pi":[[{"k":"attr","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"style=&apos;color:red;&apos;"}},"i":0}}]}'>foo</td>
-<td></td>
-<td class="test" typeof="mw:Transclusion" about="#mwt4" data-parsoid='{"pi":[[{"k":"cmt","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"cmt":{"wt":"&lt;!--bar-->"}},"i":0}}]}'>foo</td></tr>
+<td class="test" typeof="mw:Transclusion" about="#mwt2" data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* td &amp; td combine */"]}'>foo /* td &amp; td combine */</td></tr>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<th class="test" typeof="mw:Transclusion" about="#mwt3" data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* th &amp; td combine */"]}'>foo /* th &amp; td combine */</th></tr>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<td class="test" align="left" about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"! align=left"}},"i":0}}," /* td &amp; th combine */"]}'>foo /* td &amp; th combine */</td>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<td class="test" style="color:red;" typeof="mw:Transclusion" about="#mwt5" data-parsoid='{"pi":[[{"k":"attr","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"style=&apos;color:red;&apos;"}},"i":0}}]}'>foo</td></tr>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<td class="test" typeof="mw:Transclusion" about="#mwt6" data-parsoid='{"pi":[[{"k":"cmt","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"cmt":{"wt":"&lt;!--bar-->"}},"i":0}}]}'>foo</td></tr>
 </tbody></table>
 !! html/parsoid+integrated
 <table>
 <tbody><tr data-parsoid='{"startTagSrc":"|-"}'>
-<th typeof="mw:Transclusion" class="test" about="#mwt1" data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* th &amp; td combine */"]}'>foo /* th &amp; td combine */</th></tr>
+<th align="left" typeof="mw:Transclusion" class="test" about="#mwt1" data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"! align=left"}},"i":0}}," /* th &amp; th combine */"]}'>foo /* th &amp; th combine */</th></tr>
 <tr data-parsoid='{"startTagSrc":"|-"}'>
-<td typeof="mw:Transclusion" class="test" about="#mwt2" data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* td &amp; td combine */"]}'>foo /* td &amp; td combine */</td>
-<td></td>
-<td class="test" style="color:red;" typeof="mw:Transclusion" about="#mwt3" data-parsoid='{"pi":[[{"k":"attr","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"style=&apos;color:red;&apos;"}},"i":0}}]}'>foo</td>
-<td></td>
-<td typeof="mw:Transclusion" class="test" about="#mwt4" data-parsoid='{"pi":[[{"k":"cmt","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"cmt":{"wt":"&lt;!--bar-->"}},"i":0}}]}'>foo</td></tr>
+<td typeof="mw:Transclusion" class="test" about="#mwt2" data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* td &amp; td combine */"]}'>foo /* td &amp; td combine */</td></tr>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<th typeof="mw:Transclusion" class="test" about="#mwt3" data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* th &amp; td combine */"]}'>foo /* th &amp; td combine */</th></tr>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<td align="left" typeof="mw:Transclusion" class="test" about="#mwt4" data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"! align=left"}},"i":0}}," /* td &amp; th combine */"]}'>foo /* td &amp; th combine */</td>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<td class="test" style="color:red;" typeof="mw:Transclusion" about="#mwt5" data-parsoid='{"pi":[[{"k":"attr","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"style=&apos;color:red;&apos;"}},"i":0}}]}'>foo</td></tr>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<td typeof="mw:Transclusion" class="test" about="#mwt6" data-parsoid='{"pi":[[{"k":"cmt","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"cmt":{"wt":"&lt;!--bar-->"}},"i":0}}]}'>foo</td></tr>
+</tbody></table>
+!! end
+
+# The failure in T343874 is only exercised in integrated mode
+!! test
+T343874: Templated table that has a templated cell with untemplated attributes
+!! options
+parsoid=wt2html
+!! wikitext
+{{tbl-start}}
+|-
+|class="test"{{table_cell_content}}
+|-
+|class="test"{{table_cell_content|attr=! align=left}}
+{{tbl-end}}
+!! html/php
+<table>
+
+<tbody><tr>
+<td class="test">foo
+</td></tr>
+<tr>
+<td class="test" align="left">foo
+</td></tr></tbody></table>
+!! html/parsoid+integrated
+<table typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n|-\n|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":1}},"\n|-\n|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"! align=left"}},"i":2}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":3}}]}'>
+<tbody>
+<tr><td class="test">foo</td></tr>
+<tr><td align="left" class="test">foo</td></tr>
 </tbody></table>
 !! end
 

@@ -2836,7 +2836,7 @@ Gallery override link with wikilink (T36852)
 wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
-File:Foobar.jpg|alt=galleryalt|link=Wikilink
+File:Foobar.jpg|link=Wikilink|alt=galleryalt
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
@@ -2870,7 +2870,7 @@ File:Foobar.jpg|alt=galleryalt|link=http://www.example.org
 </ul>
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="http://www.example.org"><img alt="galleryalt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-parsoid='{"optList":[{"ck":"alt","ak":"alt=galleryalt"},{"ck":"link","ak":"link=http://www.example.org"},{"ck":"width","ak":"120x120px"}]}'><a href="http://www.example.org"><img alt="galleryalt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -2950,8 +2950,8 @@ File:Foobar.jpg|link=<
 		</div></li>
 </ul>
 !! html/parsoid
-<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-mw='{"attribs":[["link",{"txt":"&lt;"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"></div></li>
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-parsoid='{"optList":[{"ck":"link","ak":"link=&lt;"},{"ck":"width","ak":"120x120px"}]}' data-mw='{"attribs":[["link",{"txt":"&lt;"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -3314,7 +3314,7 @@ wgParserEnableLegacyMediaDOM=true
 !! test
 T146305: Don't break image parsing if nested language converter markup is in the caption.
 !! options
-language=zh variant=zh-cn
+language=zh htmlVariantLanguage=zh-Hans-CN
 !! config
 wgParserEnableLegacyMediaDOM=true
 !! wikitext

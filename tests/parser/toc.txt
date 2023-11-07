@@ -522,7 +522,7 @@ Section headings with TOC and language conversion (T295187, T306862)
 !! config
 wgUsePigLatinVariant=true
 !! options
-language=en variant=en-x-piglatin
+language=en htmlVariantLanguage=en-x-piglatin
 !! wikitext
 ==Headline 1==
 ===Subheadline 1===
@@ -567,7 +567,7 @@ Section headings with TOC and language conversion disabled (T295187)
 !! config
 wgUsePigLatinVariant=true
 !! options
-language=en variant=en-x-piglatin
+language=en htmlVariantLanguage=en-x-piglatin
 !! wikitext
 ==Headline 1==
 ===Subheadline 1===
@@ -617,7 +617,7 @@ Section headings with TOC, language conversion rules, and displaytitle
 wgUsePigLatinVariant=true
 wgRestrictDisplayTitle=false
 !! options
-language=en variant=en-x-piglatin
+language=en htmlVariantLanguage=en-x-piglatin
 showtitle
 showtocdata
 parsoid={

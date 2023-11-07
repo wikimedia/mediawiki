@@ -80,7 +80,7 @@ Interwiki link with fragment (T4130)
 </p>
 !! end
 
-## The interwiki case here continued to be legacy escaped because of the
+## The non-local interwiki case here continues to be legacy escaped because of the
 ## default setting of $wgExternalInterwikiFragmentMode
 !! test
 Link scenarios with escaped fragments
@@ -92,15 +92,18 @@ wgFragmentMode=[ "html5", "legacy" ]
 [[#Is this great?]]
 [[Foo#Is this great?]]
 [[meatball:Foo#Is this great?]]
+[[:en:Foo#Is this great?]]
 !! html/php
 <p><a href="#Is_this_great?">#Is this great?</a>
 <a href="/wiki/Foo#Is_this_great?" title="Foo">Foo#Is this great?</a>
 <a href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" class="extiw" title="meatball:Foo">meatball:Foo#Is this great?</a>
+<a href="//en.wikipedia.org/wiki/Foo#Is_this_great?" class="extiw" title="en:Foo">en:Foo#Is this great?</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page#Is_this_great?" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#Is_this_great?"},"sa":{"href":"#Is this great?"}}'>#Is this great?</a>
 <a rel="mw:WikiLink" href="./Foo#Is_this_great?" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo#Is_this_great?"},"sa":{"href":"Foo#Is this great?"}}'>Foo#Is this great?</a>
-<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" title="meatball:Foo" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F"},"sa":{"href":"meatball:Foo#Is this great?"},"isIW":true}'>meatball:Foo#Is this great?</a></p>
+<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" title="meatball:Foo" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F"},"sa":{"href":"meatball:Foo#Is this great?"},"isIW":true}'>meatball:Foo#Is this great?</a>
+<a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo#Is_this_great?" title="en:Foo" class="extiw">en:Foo#Is this great?</a></p>
 !! end
 
 !! test

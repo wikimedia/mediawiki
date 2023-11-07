@@ -38,7 +38,10 @@ version=2
 # subpage       enable subpages (disabled by default)
 # title=[[XXX]] run test using article title XXX
 # language=XXX  set content language to XXX for this test
-# variant=XXX   set the variant of language for this test (eg zh-tw)
+# wtVariantLanguage=XXX set the wikitext (input) variant of language for this
+#               test using a BCP-47 code (eg zh-Hant-TW)
+# htmlVariantLanguage=XXX   set the html (output) variant of language for this
+#               test using a BCP-47 code (eg zh-Hant-TW)
 # notoc         disable table of contents
 # thumbsize=NNN set the default thumb size to NNNpx for this test
 # wrap          include the normal wrapper <div class="mw-parser-output"> (since 1.30)
@@ -12298,7 +12301,7 @@ this is not the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
 </p>
 !! html/parsoid+integrated
-<p>this is not the title <a rel="mw:WikiLink" href="./Template:DISPLAYTITLE:screen?action=edit&amp;redlink=1" title="Template:DISPLAYTITLE:screen" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:screen","function":"displaytitle"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:DISPLAYTITLE:screen"]}}'>Template:DISPLAYTITLE:screen</a></p>
+<p>this is not the title <a rel="mw:WikiLink" href="./Template:DISPLAYTITLE:screen?action=edit&amp;redlink=1" title="Template:DISPLAYTITLE:screen" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:screen","href":"./Template:DISPLAYTITLE:screen"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:DISPLAYTITLE:screen"]}}'>Template:DISPLAYTITLE:screen</a></p>
 !! end
 
 !! test
@@ -12420,113 +12423,6 @@ this is not the title
 </p>
 !! html/parsoid+integrated
 <p>this is not the title</p>
-!! end
-
-!! test
-Page status indicators: Empty name is invalid
-!! options
-showindicators
-!! wikitext
-<indicator name=" "></indicator>
-<indicator></indicator>
-!! html/php
-<p><span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
-<span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
-</p>
-!! end
-
-!! test
-Page status indicators: Weird syntaxes that are okay
-!! options
-showindicators
-!! wikitext
-<indicator name="empty" />
-<indicator name="name"></indicator>
-!! metadata
-empty=
-name=
-!! html/php
-<p><br />
-</p>
-!! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"empty"},"html":""}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"name"},"body":{"extsrc":""},"html":""}'/>
-!! end
-
-!! test
-Page status indicators: Torture test
-!! options
-showindicators
-!! config
-wgParserEnableLegacyMediaDOM=false
-!! wikitext
-<indicator name="01">hello world</indicator>
-<indicator name="02">[[Main Page]]</indicator>
-<indicator name="03">[[File:Foobar.jpg|25px|link=]]</indicator>
-<indicator name="04">[[File:Foobar.jpg|25px]]</indicator>
-<indicator name="05">*foo
-*bar</indicator>
-<indicator name="06"><nowiki>foo</nowiki></indicator>
-<indicator name="07"> Preformatted</indicator>
-<indicator name="08"><div>Broken tag</indicator>
-<indicator name="09">{| class=wikitable
-|cell
-|}</indicator>
-<indicator name="10">Two
-
-paragraphs</indicator>
-!! metadata
-01=hello world
-02=<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
-03=<span typeof="mw:File"><span><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></span></span>
-04=<span typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></a></span>
-05=<ul><li>foo</li>
-<li>bar</li></ul>
-06=foo
-07=<pre>Preformatted
-</pre>
-08=<div>Broken tag</div>
-09=<table class="wikitable">
-<tbody><tr>
-<td>cell
-</td></tr></tbody></table>
-10=<p>Two
-</p><p>paragraphs
-</p>
-!! metadata/parsoid
-01=hello world
-02=<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"},"dsr":[66,79,2,2]}'>Main Page</a>
-03=<span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"25px"},{"ck":"link","ak":"link="}],"dsr":[113,143,null,null]}'><span data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></span></span>
-04=<span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"25px"}],"dsr":[177,201,null,null]}'><a href="./File:Foobar.jpg" class="mw-file-description" data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span>
-05=<ul data-parsoid='{"dsr":[235,244,0,0]}'><li data-parsoid='{"dsr":[235,239,1,0]}'>foo</li>
-<li data-parsoid='{"dsr":[240,244,1,0]}'>bar</li></ul>
-06=<span typeof="mw:Nowiki" data-parsoid='{"dsr":[278,298,8,9]}'>foo</span>
-07=<pre data-parsoid='{"dsr":[0,345,1,0]}'>Preformatted</pre>
-08=<div data-parsoid='{"stx":"html","autoInsertedEnd":true,"dsr":[379,394,5,0]}'>Broken tag</div>
-09=<table class="wikitable" data-parsoid='{"dsr":[428,455,18,2]}'>
-<tbody data-parsoid='{"dsr":[447,453,0,0]}'><tr data-parsoid='{"autoInsertedStart":true,"dsr":[447,452,0,0]}'><td data-parsoid='{"dsr":[447,452,1,0]}'>cell</td></tr>
-</tbody></table>
-10=<p data-parsoid='{"dsr":[489,492,0,0]}'>Two</p>
-
-<p data-parsoid='{"dsr":[494,504,0,0]}'>paragraphs</p>
-!! html/php
-<p><br />
-</p><p><br />
-</p><p><br />
-</p><p><br />
-</p><p><br />
-</p>
-!! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"01"},"body":{"extsrc":"hello world"},"html":"hello world"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"02"},"body":{"extsrc":"[[Main Page]]"},"html":"&lt;a rel=\"mw:WikiLink\" href=\"./Main_Page\" title=\"Main Page\">Main Page&lt;/a>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt6" data-mw='{"name":"indicator","attrs":{"name":"03"},"body":{"extsrc":"[[File:Foobar.jpg|25px|link=]]"},"html":"&lt;span typeof=\"mw:File\">&lt;span>&lt;img resource=\"./File:Foobar.jpg\" src=\"http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg\" decoding=\"async\" data-file-width=\"1941\" data-file-height=\"220\" data-file-type=\"bitmap\" height=\"3\" width=\"25\" srcset=\"http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x\" class=\"mw-file-element\"/>&lt;/span>&lt;/span>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt8" data-mw='{"name":"indicator","attrs":{"name":"04"},"body":{"extsrc":"[[File:Foobar.jpg|25px]]"},"html":"&lt;span typeof=\"mw:File\">&lt;a href=\"./File:Foobar.jpg\" class=\"mw-file-description\">&lt;img resource=\"./File:Foobar.jpg\" src=\"http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg\" decoding=\"async\" data-file-width=\"1941\" data-file-height=\"220\" data-file-type=\"bitmap\" height=\"3\" width=\"25\" srcset=\"http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x\" class=\"mw-file-element\"/>&lt;/a>&lt;/span>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt10" data-mw='{"name":"indicator","attrs":{"name":"05"},"body":{"extsrc":"*foo\n*bar"},"html":"&lt;ul>&lt;li>foo&lt;/li>\n&lt;li>bar&lt;/li>&lt;/ul>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt13" data-mw='{"name":"indicator","attrs":{"name":"06"},"body":{"extsrc":"&lt;nowiki>foo&lt;/nowiki>"},"html":"&lt;span typeof=\"mw:Nowiki\">foo&lt;/span>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt15" data-mw='{"name":"indicator","attrs":{"name":"07"},"body":{"extsrc":" Preformatted"},"html":"&lt;pre>Preformatted&lt;/pre>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt17" data-mw='{"name":"indicator","attrs":{"name":"08"},"body":{"extsrc":"&lt;div>Broken tag"},"html":"&lt;div>Broken tag&lt;/div>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt19" data-mw='{"name":"indicator","attrs":{"name":"09"},"body":{"extsrc":"{| class=wikitable\n|cell\n|}"},"html":"&lt;table class=\"wikitable\">\n&lt;tbody>&lt;tr>&lt;td>cell&lt;/td>&lt;/tr>\n&lt;/tbody>&lt;/table>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt21" data-mw='{"name":"indicator","attrs":{"name":"10"},"body":{"extsrc":"Two\n\nparagraphs"},"html":"&lt;p>Two&lt;/p>\n\n&lt;p>paragraphs&lt;/p>"}'/>
 !! end
 
 !! test
@@ -13200,6 +13096,31 @@ LST Sections: Newfangled approach
 <link typeof="mw:Extension/section" about="#mwt6" data-mw='{"name":"section","attrs":{"end":"2014-04-10 (MW 1.23wmf22)"}}' /></p>
 !! html/parsoid+integrated
 <p>&lt;section begin="2011-05-16" /> &lt;section end="2014-04-10 (MW 1.23wmf22)" /></p>
+!! end
+
+!! test
+LST Sections: Fostering
+!! options
+parsoid=wt2html
+!! wikitext
+{|
+<section name="testing"/>
+| 123
+|}
+!! html/parsoid
+<link typeof="mw:Extension/section" about="#mwt2" data-parsoid='{"fostered":true}' data-mw='{"name":"section","attrs":{"name":"testing"}}'/><table>
+
+<tbody><tr><td>123
+</td></tr></tbody></table>
+!! html/parsoid+integrated
+<p>&lt;section name="testing"/></p>
+<table>
+<tbody>
+<tr>
+<td>123</td>
+</tr>
+</tbody>
+</table>
 !! end
 
 #--------- Test stripping of empty nodes in template content ----------
@@ -13979,6 +13900,21 @@ T73074: More fostering fun
 <table><td></td>{{1x|<tr>}}<!--c-->[[Category:Two]]
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:Two" data-parsoid='{"stx":"simple","a":{"href":"./Category:Two"},"sa":{"href":"Category:Two"},"fostered":true}'/><table data-parsoid='{"stx":"html","autoInsertedEnd":true}'><tbody><tr data-parsoid='{"autoInsertedStart":true}'><td data-parsoid='{"stx":"html"}'></td></tr><tr about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"autoInsertedEnd":true,"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tr>"}},"i":0}}]}'></tr><!--c--></tbody></table>
+!! end
+
+## Regression test for Parsoid's template wrapping of fostered content
+!! test
+Fostered content with a dom fragment token starting with a transclusion
+!! options
+parsoid=wt2html
+!! wikitext
+{|
+[[File:Foobar.jpg|right|{{1x|<div>123</div>}}]]
+|}
+!! html/parsoid
+<figure class="mw-default-size mw-halign-right" typeof="mw:File" data-parsoid='{"fostered":true}'><a href="./File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a><figcaption><div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;div>123&lt;/div>"}},"i":0}}]}'>123</div></figcaption></figure><table>
+
+</table>
 !! end
 
 !!test
@@ -16675,34 +16611,6 @@ Decoding of HTML entities in embedded HTML tags
 <table class="1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"><tbody><tr><td>x</td></tr></tbody></table>
 !! html/parsoid
 <table class="1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5" data-parsoid='{"stx":"html","a":{"class":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"sa":{"class":"1&amp;2&amp;amp;3&amp;amp;amp;4&amp;amp;amp;amp;5"}}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'>x</td></tr></tbody></table>
-!! end
-
-!! test
-Decoding of HTML entities in indicator names for IDs (T104196)
-!! options
-parsoid=wt2html,html2html
-showindicators
-!! wikitext
-<indicator name="1&2&amp;3&amp;amp;4&amp;amp;amp;5">Indicator</indicator>
-!! metadata
-1&2&3&amp;4&amp;amp;5=Indicator
-!! html/php
-!! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"},"html":"Indicator"}'/>
-!! end
-
-# this version of the test strips out the ambiguity so Parsoid rts cleanly
-!! test
-Decoding of HTML entities in indicator names for IDs (unambiguous) (T104196)
-!! options
-showindicators
-!! wikitext
-<indicator name="1&2&3&amp;amp;4&amp;amp;amp;5">Indicator</indicator>
-!! metadata
-1&2&3&amp;4&amp;amp;5=Indicator
-!! html/php
-!! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"},"html":"Indicator"}'/>
 !! end
 
 # This fragment mode is what Parsoid supports.
