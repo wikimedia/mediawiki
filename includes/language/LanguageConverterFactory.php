@@ -26,7 +26,6 @@ use EnConverter;
 use GanConverter;
 use ILanguageConverter;
 use IuConverter;
-use KkConverter;
 use KuConverter;
 use Language;
 use MediaWiki\StubObject\StubUserLang;
@@ -65,9 +64,6 @@ class LanguageConverterFactory {
 		],
 		'iu' => [
 			'class' => IuConverter::class,
-		],
-		'kk' => [
-			'class' => KkConverter::class,
 		],
 		'ku' => [
 			'class' => KuConverter::class,

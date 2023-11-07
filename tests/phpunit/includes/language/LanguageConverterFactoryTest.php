@@ -239,8 +239,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'hy', 'hyw', 'hz', 'ia', 'id', 'ie', 'ig', 'ii', 'ik', 'ike-cans',
 			'ike-latn', 'ilo', 'inh', 'io', 'is', 'it', 'ja', 'jam', 'jbo', 'jut',
 			'jv', 'ka', 'kaa', 'kab', 'kbd', 'kbd-cyrl', 'kbp', 'kg', 'khw', 'ki',
-			'kiu', 'kj', 'kjp', 'kk-arab', 'kk-cyrl', 'kk-latn', 'kk-cn', 'kk-kz',
-			'kk-tr', 'kl', 'km', 'kn', 'ko', 'ko-kp', 'koi', 'kr', 'krc', 'kri', 'krj',
+			'kiu', 'kj', 'kjp', 'kl', 'km', 'kn', 'ko', 'ko-kp', 'koi', 'kr', 'krc', 'kri', 'krj',
 			'krl', 'ks', 'ks-arab', 'ks-deva', 'ksh', 'ku-latn', 'ku-arab', 'kum', 'kv',
 			'kw', 'ky', 'la', 'lad', 'lb', 'lbe', 'lez', 'lfn', 'lg', 'li', 'lij', 'liv',
 			'lki', 'lmo', 'ln', 'lo', 'lrc', 'loz', 'lt', 'ltg', 'lus', 'luz', 'lv',
@@ -327,28 +326,6 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 				'iu' => 'bidirectional',
 				'ike-cans' => 'bidirectional',
 				'ike-latn' => 'bidirectional'
-			]
-		];
-
-		yield 'kk' => [
-			'kk', 'kk', KkConverter::class,
-			[ 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' ],
-			[
-				'kk' => 'kk-cyrl',
-				'kk-cyrl' => 'kk',
-				'kk-latn' => 'kk',
-				'kk-arab' => 'kk',
-				'kk-kz' => 'kk-cyrl',
-				'kk-tr' => 'kk-latn',
-				'kk-cn' => 'kk-arab'
-			], [], [], [
-				'kk' => 'bidirectional',
-				'kk-cyrl' => 'bidirectional',
-				'kk-latn' => 'bidirectional',
-				'kk-arab' => 'bidirectional',
-				'kk-kz' => 'bidirectional',
-				'kk-tr' => 'bidirectional',
-				'kk-cn' => 'bidirectional'
 			]
 		];
 

@@ -86,6 +86,7 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* (T268143) Language variant conversion has been removed for Kazakh.
 * …
 
 === Breaking changes in 1.42 ===
