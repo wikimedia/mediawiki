@@ -240,9 +240,11 @@ class TextContentHandler extends ContentHandler {
 				$method = new ReflectionMethod( $content, 'getHtml' );
 				$method->setAccessible( true );
 				$html = $method->invoke( $content );
+				$html = "<pre>$html</pre>";
 			} else {
 				// Return an HTML representation of the content
 				$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
+				$html = "<pre>$html</pre>";
 			}
 		} else {
 			$html = null;
