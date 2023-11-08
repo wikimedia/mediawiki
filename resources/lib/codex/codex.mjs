@@ -50,7 +50,7 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, getCurrentInstance, resolveComponent, createBlock, resolveDynamicComponent, withCtx, createVNode, createElementVNode, withDirectives, vShow, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, vModelCheckbox, createSlots, withModifiers, nextTick, vModelDynamic, onUnmounted, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
-const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', y = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', o1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', l1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', I1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', Z1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', $1 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', m = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7z"/>', n0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 5h2v2H9zm0 4h2v6H9z"/>', H2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', y2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8z"/>', i4 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20Zm-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10l5 5Z"/>', m5 = M, k5 = y, K5 = o1, Q5 = l1, e3 = I1, z3 = Z1, D3 = $1, K3 = {
+const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', F = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', o1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', l1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', I1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', Z1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', $1 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', m = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7z"/>', n0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 5h2v2H9zm0 4h2v6H9z"/>', H2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', F2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8z"/>', i4 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20Zm-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10l5 5Z"/>', m5 = M, k5 = F, K5 = o1, Q5 = l1, e3 = I1, z3 = Z1, D3 = $1, K3 = {
   langCodeMap: {
     ar: m
   },
@@ -59,7 +59,7 @@ const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 
   ltr: H2,
   shouldFlip: true
 }, s7 = {
-  ltr: y2,
+  ltr: F2,
   shouldFlip: true
 }, V7 = K2, D7 = i4;
 function R8(c, s, h) {
@@ -216,8 +216,14 @@ const _sfc_main$u = defineComponent({
     const rootElement = ref();
     const computedDir = useComputedDirection(rootElement);
     const computedLang = useComputedLanguage(rootElement);
-    const overriddenDir = computed(() => props.dir || computedDir.value);
-    const overriddenLang = computed(() => props.lang || computedLang.value);
+    const overriddenDir = computed(() => {
+      var _a;
+      return (_a = props.dir) != null ? _a : computedDir.value;
+    });
+    const overriddenLang = computed(() => {
+      var _a;
+      return (_a = props.lang) != null ? _a : computedLang.value;
+    });
     const rootClasses = computed(() => {
       return {
         "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && U8(props.icon, overriddenLang.value),
@@ -225,7 +231,10 @@ const _sfc_main$u = defineComponent({
       };
     });
     const resolvedIcon = computed(
-      () => R8(props.icon, overriddenLang.value || "", overriddenDir.value || "ltr")
+      () => {
+        var _a, _b;
+        return R8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+      }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
     const iconPath = computed(() => typeof resolvedIcon.value !== "string" ? resolvedIcon.value.path : "");
@@ -424,8 +433,9 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
 const CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$t]]);
 let counter = 0;
 function useGeneratedId(identifier) {
+  var _a;
   const vm = getCurrentInstance();
-  const externalId = (vm == null ? void 0 : vm.props.id) || (vm == null ? void 0 : vm.attrs.id);
+  const externalId = (_a = vm == null ? void 0 : vm.props.id) != null ? _a : vm == null ? void 0 : vm.attrs.id;
   if (identifier) {
     return "".concat(LibraryPrefix, "-").concat(identifier, "-").concat(counter++);
   } else if (externalId) {
@@ -860,9 +870,10 @@ function useFieldData(disabledProp, statusProp, idAttr) {
     return providedStatus.value;
   });
   const providedId = inject(FieldInputIdKey, void 0);
-  const computedInputId = computed(
-    () => providedId && providedId.value ? providedId.value : idAttr
-  );
+  const computedInputId = computed(() => {
+    var _a;
+    return (_a = providedId == null ? void 0 : providedId.value) != null ? _a : idAttr;
+  });
   return {
     computedDisabled,
     computedStatus,
@@ -2326,9 +2337,10 @@ const _sfc_main$h = defineComponent({
       keyBufferTimeout = setTimeout(clearKeyBuffer, 1500);
     }
     function findSelectedMenuItem() {
-      return computedMenuItems.value.find(
+      var _a;
+      return (_a = computedMenuItems.value.find(
         (menuItem) => menuItem.value === props.selected
-      ) || null;
+      )) != null ? _a : null;
     }
     function handleMenuItemChange(menuState, menuItem) {
       var _a;
@@ -2342,15 +2354,15 @@ const _sfc_main$h = defineComponent({
           activeMenuItem.value = null;
           break;
         case "highlighted":
-          highlightedMenuItem.value = menuItem || null;
+          highlightedMenuItem.value = menuItem != null ? menuItem : null;
           highlightedViaKeyboard.value = false;
           break;
         case "highlightedViaKeyboard":
-          highlightedMenuItem.value = menuItem || null;
+          highlightedMenuItem.value = menuItem != null ? menuItem : null;
           highlightedViaKeyboard.value = true;
           break;
         case "active":
-          activeMenuItem.value = menuItem || null;
+          activeMenuItem.value = menuItem != null ? menuItem : null;
           break;
       }
     }
@@ -2381,14 +2393,15 @@ const _sfc_main$h = defineComponent({
           }
         }
       };
-      highlightedIndex = highlightedIndex || computedMenuItems.value.length;
+      highlightedIndex = highlightedIndex != null ? highlightedIndex : computedMenuItems.value.length;
       const prev = (_a = findPrevEnabled(highlightedIndex)) != null ? _a : findPrevEnabled(computedMenuItems.value.length);
       handleHighlightViaKeyboard(prev);
     }
     function highlightNext(highlightedIndex) {
+      var _a;
       const findNextEnabled = (startIndex) => computedMenuItems.value.find((item, index) => !item.disabled && index > startIndex);
       highlightedIndex = highlightedIndex != null ? highlightedIndex : -1;
-      const next = findNextEnabled(highlightedIndex) || findNextEnabled(-1);
+      const next = (_a = findNextEnabled(highlightedIndex)) != null ? _a : findNextEnabled(-1);
       handleHighlightViaKeyboard(next);
     }
     function handleCharacterNavigation(e) {
@@ -2414,7 +2427,10 @@ const _sfc_main$h = defineComponent({
           stringToMatch = keyBuffer[0];
         }
         const matchingItem = itemsToMatch.find(
-          (item) => !item.disabled && String(item.label || item.value).toLowerCase().indexOf(stringToMatch) === 0
+          (item) => {
+            var _a;
+            return !item.disabled && String((_a = item.label) != null ? _a : item.value).toLowerCase().startsWith(stringToMatch);
+          }
         );
         if (matchingItem) {
           handleMenuItemChange("highlightedViaKeyboard", matchingItem);
@@ -3176,7 +3192,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
   });
   let {
     x,
-    y: y3
+    y
   } = computeCoordsFromPlacement(rects, placement, rtl);
   let statefulPlacement = placement;
   let middlewareData = {};
@@ -3193,7 +3209,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
       reset
     } = yield fn({
       x,
-      y: y3,
+      y,
       initialPlacement: placement,
       placement: statefulPlacement,
       strategy,
@@ -3206,7 +3222,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
       }
     });
     x = nextX != null ? nextX : x;
-    y3 = nextY != null ? nextY : y3;
+    y = nextY != null ? nextY : y;
     middlewareData = __spreadProps(__spreadValues({}, middlewareData), {
       [name]: __spreadValues(__spreadValues({}, middlewareData[name]), data)
     });
@@ -3225,7 +3241,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
         }
         ({
           x,
-          y: y3
+          y
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
       i = -1;
@@ -3234,7 +3250,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
   }
   return {
     x,
-    y: y3,
+    y,
     placement: statefulPlacement,
     strategy,
     middlewareData
@@ -3248,7 +3264,7 @@ function detectOverflow(state, options) {
     }
     const {
       x,
-      y: y3,
+      y,
       platform: platform2,
       rects,
       elements,
@@ -3272,7 +3288,7 @@ function detectOverflow(state, options) {
     }));
     const rect = elementContext === "floating" ? __spreadProps(__spreadValues({}, rects.floating), {
       x,
-      y: y3
+      y
     }) : rects.reference;
     const offsetParent = yield platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating);
     const offsetScale = (yield platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? (yield platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
@@ -3583,16 +3599,16 @@ function getScale(element) {
     $
   } = getCssDimensions(domElement);
   let x = ($ ? round(rect.width) : rect.width) / width;
-  let y3 = ($ ? round(rect.height) : rect.height) / height;
+  let y = ($ ? round(rect.height) : rect.height) / height;
   if (!x || !Number.isFinite(x)) {
     x = 1;
   }
-  if (!y3 || !Number.isFinite(y3)) {
-    y3 = 1;
+  if (!y || !Number.isFinite(y)) {
+    y = 1;
   }
   return {
     x,
-    y: y3
+    y
   };
 }
 const noOffsets = /* @__PURE__ */ createCoords(0);
@@ -3636,7 +3652,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
   }
   const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
   let x = (clientRect.left + visualOffsets.x) / scale.x;
-  let y3 = (clientRect.top + visualOffsets.y) / scale.y;
+  let y = (clientRect.top + visualOffsets.y) / scale.y;
   let width = clientRect.width / scale.x;
   let height = clientRect.height / scale.y;
   if (domElement) {
@@ -3650,11 +3666,11 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
       const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
       x *= iframeScale.x;
-      y3 *= iframeScale.y;
+      y *= iframeScale.y;
       width *= iframeScale.x;
       height *= iframeScale.y;
       x += left;
-      y3 += top;
+      y += top;
       currentIFrame = getWindow(currentIFrame).frameElement;
     }
   }
@@ -3662,7 +3678,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     width,
     height,
     x,
-    y: y3
+    y
   });
 }
 function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
@@ -3713,7 +3729,7 @@ function getDocumentRect(element) {
   const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
   const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
   let x = -scroll.scrollLeft + getWindowScrollBarX(element);
-  const y3 = -scroll.scrollTop;
+  const y = -scroll.scrollTop;
   if (getComputedStyle(body).direction === "rtl") {
     x += max(html.clientWidth, body.clientWidth) - width;
   }
@@ -3721,7 +3737,7 @@ function getDocumentRect(element) {
     width,
     height,
     x,
-    y: y3
+    y
   };
 }
 function getViewportRect(element, strategy) {
@@ -3731,21 +3747,21 @@ function getViewportRect(element, strategy) {
   let width = html.clientWidth;
   let height = html.clientHeight;
   let x = 0;
-  let y3 = 0;
+  let y = 0;
   if (visualViewport) {
     width = visualViewport.width;
     height = visualViewport.height;
     const visualViewportBased = isWebKit();
     if (!visualViewportBased || visualViewportBased && strategy === "fixed") {
       x = visualViewport.offsetLeft;
-      y3 = visualViewport.offsetTop;
+      y = visualViewport.offsetTop;
     }
   }
   return {
     width,
     height,
     x,
-    y: y3
+    y
   };
 }
 function getInnerBoundingClientRect(element, strategy) {
@@ -3756,12 +3772,12 @@ function getInnerBoundingClientRect(element, strategy) {
   const width = element.clientWidth * scale.x;
   const height = element.clientHeight * scale.y;
   const x = left * scale.x;
-  const y3 = top * scale.y;
+  const y = top * scale.y;
   return {
     width,
     height,
     x,
-    y: y3
+    y
   };
 }
 function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) {
@@ -4113,7 +4129,7 @@ function useFloating(reference, floating, options) {
   const referenceElement = computed(() => unwrapElement(reference.value));
   const floatingElement = computed(() => unwrapElement(floating.value));
   const x = ref(0);
-  const y3 = ref(0);
+  const y = ref(0);
   const strategy = ref(strategyOption.value);
   const placement = ref(placementOption.value);
   const middlewareData = shallowRef({});
@@ -4128,7 +4144,7 @@ function useFloating(reference, floating, options) {
       return initialStyles;
     }
     const xVal = roundByDPR(floatingElement.value, x.value);
-    const yVal = roundByDPR(floatingElement.value, y3.value);
+    const yVal = roundByDPR(floatingElement.value, y.value);
     if (transformOption.value) {
       return __spreadValues(__spreadProps(__spreadValues({}, initialStyles), {
         transform: "translate(" + xVal + "px, " + yVal + "px)"
@@ -4153,7 +4169,7 @@ function useFloating(reference, floating, options) {
       strategy: strategyOption.value
     }).then((position) => {
       x.value = position.x;
-      y3.value = position.y;
+      y.value = position.y;
       strategy.value = position.strategy;
       placement.value = position.placement;
       middlewareData.value = position.middlewareData;
@@ -4196,7 +4212,7 @@ function useFloating(reference, floating, options) {
   }
   return {
     x: shallowReadonly(x),
-    y: shallowReadonly(y3),
+    y: shallowReadonly(y),
     strategy: shallowReadonly(strategy),
     placement: shallowReadonly(placement),
     middlewareData: shallowReadonly(middlewareData),
@@ -4235,11 +4251,11 @@ function useFloatingMenu(referenceElement, menu) {
   );
   const menuVisibility = computed(() => {
     var _a, _b;
-    const isHidden = !menuIsExpanded() || ((_a = middlewareData.value.hide) == null ? void 0 : _a.escaped) || ((_b = middlewareData.value.hide) == null ? void 0 : _b.referenceHidden);
+    const isHidden = !menuIsExpanded() || !!((_a = middlewareData.value.hide) == null ? void 0 : _a.escaped) || ((_b = middlewareData.value.hide) == null ? void 0 : _b.referenceHidden);
     return isHidden ? "hidden" : "visible";
   });
   watch([floatingStyles, menuVisibility], ([newStyles, newVisibility]) => {
-    var _a;
+    var _a, _b;
     Object.assign((_a = menu.value) == null ? void 0 : _a.$el.style, {
       visibility: newVisibility,
       position: newStyles.position,
@@ -4252,7 +4268,7 @@ function useFloatingMenu(referenceElement, menu) {
       // the screen, which is what FloatingUI expects when it calculates the translate-x
       // value for both LTR and RTL.
       left: "".concat(newStyles.left, "px"),
-      transform: newStyles.transform || "none"
+      transform: (_b = newStyles.transform) != null ? _b : "none"
     });
   });
   let cleanupAutoUpdate = null;
@@ -5549,8 +5565,9 @@ const _sfc_main$a = defineComponent({
     }
     useFloatingMenu(textInput, menu);
     watch(selectedProp, (newVal) => {
+      var _a;
       if (newVal !== null) {
-        const selectedValue = selectedMenuItem.value ? selectedMenuItem.value.label || selectedMenuItem.value.value : "";
+        const selectedValue = selectedMenuItem.value ? (_a = selectedMenuItem.value.label) != null ? _a : selectedMenuItem.value.value : "";
         if (inputValue.value !== selectedValue) {
           inputValue.value = selectedValue;
           emit("input", inputValue.value);
@@ -6044,12 +6061,14 @@ const _sfc_main$7 = defineComponent({
       () => props.menuItems.find((menuItem) => menuItem.value === props.selected)
     );
     const currentLabel = computed(() => {
-      return selectedMenuItem.value ? selectedMenuItem.value.label || selectedMenuItem.value.value : props.defaultLabel;
+      var _a;
+      return selectedMenuItem.value ? (_a = selectedMenuItem.value.label) != null ? _a : selectedMenuItem.value.value : props.defaultLabel;
     });
     const startIcon = computed(() => {
+      var _a;
       if (props.defaultIcon && !selectedMenuItem.value) {
         return props.defaultIcon;
-      } else if (selectedMenuItem.value && selectedMenuItem.value.icon) {
+      } else if ((_a = selectedMenuItem.value) == null ? void 0 : _a.icon) {
         return selectedMenuItem.value.icon;
       }
       return void 0;
@@ -6217,12 +6236,13 @@ const _sfc_main$6 = defineComponent({
     }
   },
   setup(props) {
+    var _a;
     const tabsData = inject(TabsKey);
     const activeTab = inject(ActiveTabKey);
     if (!tabsData || !activeTab) {
       throw new Error("Tab component must be used inside a Tabs component");
     }
-    const tab = tabsData.value.get(props.name) || {};
+    const tab = (_a = tabsData.value.get(props.name)) != null ? _a : {};
     const isActive = computed(() => props.name === activeTab.value);
     return {
       tab,
@@ -7342,6 +7362,7 @@ const _sfc_main = defineComponent({
       }
     }
     function onUpdateMenuSelection(newVal) {
+      var _a;
       if (newVal === MenuFooterValue) {
         selection.value = null;
         inputValue.value = searchQuery.value;
@@ -7349,7 +7370,7 @@ const _sfc_main = defineComponent({
       }
       selection.value = newVal;
       if (newVal !== null) {
-        inputValue.value = selectedResult.value ? selectedResult.value.label || String(selectedResult.value.value) : "";
+        inputValue.value = selectedResult.value ? (_a = selectedResult.value.label) != null ? _a : String(selectedResult.value.value) : "";
       }
     }
     function onFocus() {
@@ -7385,11 +7406,12 @@ const _sfc_main = defineComponent({
       emit("search-result-click", searchResultClickEvent);
     }
     function onSearchResultKeyboardNavigation(searchResult) {
+      var _a;
       if (searchResult.value === MenuFooterValue) {
         inputValue.value = searchQuery.value;
         return;
       }
-      inputValue.value = searchResult.value ? searchResult.label || String(searchResult.value) : "";
+      inputValue.value = searchResult.value ? (_a = searchResult.label) != null ? _a : String(searchResult.value) : "";
     }
     function onSearchFooterClick(footerMenuItem) {
       var _a;
