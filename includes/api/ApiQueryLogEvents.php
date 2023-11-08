@@ -31,6 +31,8 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query action to List the log events, with optional filtering by various parameters.
@@ -231,7 +233,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $prefix ) ] );
 			}
 			$this->addWhereFld( 'log_namespace', $title->getNamespace() );
-			$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
+			$this->addWhere(
+				$db->expr( 'log_title', IExpression::LIKE, new LikeValue( $title->getDBkey(), $db->anyString() ) )
+			);
 		}
 
 		// Paranoia: avoid brute force searches (T19342)

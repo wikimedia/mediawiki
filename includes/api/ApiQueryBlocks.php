@@ -29,7 +29,9 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\IPUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate all user blocks
@@ -158,7 +160,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$prefix = substr( $lower, 0, $prefixLen + (int)floor( $cidrLimit / 4 ) );
 
 			$this->addWhere( [
-				'ipb_range_start' . $db->buildLike( $prefix, $db->anyString() ),
+				$db->expr( 'ipb_range_start', IExpression::LIKE, new LikeValue( $prefix, $db->anyString() ) ),
 				$db->expr( 'ipb_range_start', '<=', $lower ),
 				$db->expr( 'ipb_range_end', '>=', $upper ),
 				'ipb_auto' => 0

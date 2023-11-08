@@ -27,6 +27,8 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate all registered users.
@@ -115,8 +117,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addWhereRange( $userFieldToSort, $dir, $from, $to );
 
 		if ( $params['prefix'] !== null ) {
-			$this->addWhere( $userFieldToSort .
-				$db->buildLike( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere(
+				$db->expr(
+					$userFieldToSort,
+					IExpression::LIKE,
+					new LikeValue( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() )
+				)
+			);
 		}
 
 		if ( $params['rights'] !== null && count( $params['rights'] ) ) {
