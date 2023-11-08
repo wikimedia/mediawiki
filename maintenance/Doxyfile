@@ -64,6 +64,8 @@ ALIASES                = "type{1}=<b> \1 </b>:" \
                          "codingStandardsIgnoreEnd=\noop" \
                          "codingStandardsIgnoreStart=\noop" \
                          "phan=\noop" \
+                         "param-taint=\noop" \
+                         "return-taint=\noop" \
                          "suppress=\noop" \
                          "noVarDump=\noop"
 OPTIMIZE_OUTPUT_FOR_C  = NO
