@@ -4,7 +4,8 @@
 			"DannyS712",
 			"Fitoschido",
 			"Ihojose",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"No se"
 		]
 	},
 	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba dentro de la ruta raíz ($2) de la API REST",
@@ -31,6 +32,7 @@
 	"rest-compare-inaccessible": "La revisión especificada por el parámetro $1 no es accesible públicamente.",
 	"rest-compare-wrong-content": "El espacio $1 de la revisión especificada por el parámetro $2 tiene un tipo de contenido que no se puede convertir a texto.",
 	"rest-compare-wikidiff2": "Este endpoint requiere wikidiff2 1.9.0 o superor.",
+	"rest-extraneous-body-fields": "Campos extraños encontrados en el cuerpo de la solicitud: $1",
 	"rest-bad-content-model": "Modelo de contenido malo: $1",
 	"rest-cannot-load-file": "No se puede cargar el archivo con el título «$1»."
 }

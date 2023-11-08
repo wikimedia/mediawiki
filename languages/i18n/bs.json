@@ -939,6 +939,7 @@
 	"diff-paragraph-moved-toold": "Pasus je premješten. Kliknite da pređete na njegovo staro mjesto.",
 	"diff-inline-tooltip-ins": "Dodani sadržaj",
 	"diff-inline-tooltip-del": "Uklonjeni sadržaj",
+	"diff-inline-format-label": "U redovima",
 	"difference-missing-revision": "{{PLURAL:$2|Jedna izmjena|$2 izmjene|$2 izmjena}} od ove razlike ($1) ne {{PLURAL:$2|postoji|postoje}}.\n\nOvo se obično dešava kada kliknete na zastarjeli link ka stranici koja je izbrisana.\nViše informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].",
 	"searchresults": "Rezultati pretrage",
 	"search-filter-title-prefix-reset": "Pretraži sve stranice",

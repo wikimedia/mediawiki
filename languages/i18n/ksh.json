@@ -2976,7 +2976,7 @@
 	"logentry-tag-update-logentry": "{{GENDER:$2|dä|dat|dä Metmaacher|de|dat}} „$1“ hädd em Endraaach $5 em Logbohch vun dä Sigg „$3“{{PLURAL:$7|di Makkehrong|di Makkehronge|nix}} $6 derbei jedonn un {{PLURAL:$9|di Makkehrong|di Makehronge|nix}} $8 fott jenumme.",
 	"rightsnone": "(nix)",
 	"feedback-cancel": "Stopp! Avbreche!",
-	"feedback-close": "Jedonn.",
+	"feedback-close": "Jedonn",
 	"feedback-external-bug-report-button": "Donne ene Fähler mällde, ene Wonsch för en Verbäßerong ennreische, udder anndere täschneche Idee opbränge.",
 	"feedback-dialog-title": "En Rökmäldong jävve",
 	"feedback-dialog-intro": "Dat Fommolaa kam_mer för en Rökmäldong bruche. Di kütt zesamme met Dingem Metmaacher_Nahme op di Sigg „$1“.",

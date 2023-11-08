@@ -1118,6 +1118,7 @@
 	"prefs-help-skin-responsive": "레이아웃을 모바일의 화면 크기에 적응시킵니다.",
 	"skin-preview": "미리 보기",
 	"datedefault": "설정하지 않음",
+	"prefs-help-forcesafemode": "위키의 스크립트와 스타일시트를 비활성화합니다.",
 	"prefs-labs": "실험 중인 기능",
 	"prefs-user-pages": "사용자 문서",
 	"prefs-personal": "사용자 정보",

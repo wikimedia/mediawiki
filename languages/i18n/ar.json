@@ -107,7 +107,8 @@
 			"مشعل الحربي",
 			"نصوح",
 			"وهراني",
-			"아라"
+			"아라",
+			"LaMagiaaa"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -4274,7 +4275,7 @@
 	"newpages-showhide-registered": "$1 المستخدمين المسجلين",
 	"blockedtext-made-by": "المنع أجراه $1",
 	"blockedtext-reason-comment": "السبب المعطى هو <em>$1</em>",
-	"blockedtext-start-time": "بد$1اية المنع: $1",
+	"blockedtext-start-time": "بداية المنع: $1",
 	"blockedtext-expiration-time": "انتهاء المنع: $1",
 	"blockedtext-expiration-longest-block": "انتهاء صلاحية أطول كتلة: $1",
 	"blockedtext-intended-blockee": "الممنوع المقصود: $1",
