@@ -2141,7 +2141,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|nagkarga}} hin bag-o nga bersyon han $3",
 	"rightsnone": "(waray)",
 	"feedback-cancel": "Pasagdi",
-	"feedback-close": "Human na.",
+	"feedback-close": "Human na",
 	"feedback-message": "Mensahe:",
 	"feedback-subject": "Himangrawon:",
 	"feedback-thanks-title": "Salamat!",
