@@ -733,7 +733,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserOptions = $this->getParserOptions();
 		$access->getParserOutput( $page, $parserOptions );
 		$testingAccess = TestingAccessWrapper::newFromObject( $access );
-		$testingAccess->localCache = [];
+		$testingAccess->localCache->clear();
 
 		// inject mock PoolCounter status
 		$this->overrideConfigValues( [
