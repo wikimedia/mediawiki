@@ -826,7 +826,7 @@
 	"anoneditwarning": "<strong>警告：</strong>您没有登录。如果您做出任意编辑，您的IP地址将会公开可见。如果您<strong>[$1 登录]</strong>或<strong>[$2 创建]</strong>一个账户，您的编辑将归属于您的用户名，且将享受其他好处。",
 	"autocreate-edit-warning": "<strong>警告：</strong>您尚未登录。您的编辑将归于一个<strong>[[{{MediaWiki:tempuser-helppage}}|自动生成的名称]]</strong>（通过向您的浏览器添加一个Cookie）。您的IP地址将对受信任的用户可见。如果您<strong>[$1 登录]</strong> 或<strong>[$2 创建账号]</strong>，您的编辑会归于您的用户名之下，此外还有其他益处。",
 	"anonpreviewwarning": "<em>您尚未登录。若发布，则将在此页面的编辑历史中记录您的IP地址。</em>",
-	"autocreate-preview-warning": "<em>警告：您尚未登录。您的编辑将归于一个[[{{MediaWiki:tempuser-helppage}}|自动生成的名称]]，且管理员可查看您的IP地址。</em>",
+	"autocreate-preview-warning": "<em>警告：您尚未登录。您接下来做出的编辑将归于一个为您创建的临时账号。[[{{MediaWiki:tempuser-helppage}}|了解更多]]。</em>",
 	"missingsummary": "<strong>提示：</strong>您没有提供编辑摘要。\n如果您再次点击“$1”，您的编辑将不带摘要发布。",
 	"selfredirect": "<strong>警告：</strong>您正在将此页面重定向至它自己。\n您可能指定了错误的重定向目标，或者您正在编辑错误的页面。\n如果您再次点击“$1”，重定向仍将被创建。",
 	"missingcommenttext": "请输入一段评论。",
@@ -4376,6 +4376,6 @@
 	"createacct-benefit-heading-temp-user": "感谢您为{{SITENAME}}做出贡献。\n请创建账号以使用更多功能。",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}}是由像您这样的人创建的。拥有账号后，您可以获得永久且安全的身份，并可以使用以下功能：",
 	"benefit-1-description": "监视列表，可让您监视您感兴趣的页面。",
-	"benefit-2-description": "您对该项目所做贡献的永久记录",
+	"benefit-2-description": "您对该项目所做贡献的永久记录。",
 	"benefit-3-description": "参数设置，允许您定制使用体验。"
 }

@@ -700,6 +700,10 @@
 	"resettokens-watchlist-token": "شناسانندهٔ خوراک وبِی [[Special:Watchlist|تغییرات صفحه‌هایی که فهرست پیگیری‌‌تان می‌کنید]] (اتم/آراس‌اس)",
 	"resettokens-done": "بازنشانی شناساننده‌ها.",
 	"resettokens-resetbutton": "بازشناسی شناساننده‌های گزیده‌شده.",
+	"edit-recovery-loaded-title": "تغییرات بازیابی شد",
+	"edit-recovery-loaded-message": "تغییرات ذخیره‌نشدهٔ شما به صورت خودکار بازیابی شد.",
+	"edit-recovery-loaded-show": "نمایش تغییرات",
+	"edit-recovery-loaded-discard": "دور ریختن تغییرات",
 	"summary": "خلاصه:",
 	"subject": "عنوان:",
 	"minoredit": "این یک ویرایش جزئی است",
@@ -3592,6 +3596,7 @@
 	"tags-actions-header": "فعالیت‌ها",
 	"tags-active-yes": "بله",
 	"tags-active-no": "خیر",
+	"tags-source-software": "تعریف‌شده توسط نرم‌افزار",
 	"tags-source-extension": "تعریف‌شده توسط نرم‌افزار",
 	"tags-source-manual": "اعمال شده به صورت دستی توسط ربات‌ها یا کاربرها",
 	"tags-source-none": "دیگر استفاده نمی‌شود",
@@ -4243,5 +4248,7 @@
 	"action-renameuser": "تغییر نام کاربران",
 	"right-renameuser": "تغییر نام کاربران",
 	"renameuser-renamed-notice": "این کاربر تغییر نام داده‌است.\nسیاههٔ تغییر نام در ادامه آمده‌است.",
-	"log-unknown-action": "عمل ناشناختهٔ «$2» را در [[$1]] انجام داد"
+	"log-unknown-action": "عمل ناشناختهٔ «$2» را در [[$1]] انجام داد",
+	"createacct-benefit-heading-temp-user": "برای مشارکت شما در {{SITENAME}} سپاسگزاریم.\nبرای دسترسی به ویژگی‌های بیشتر، یک حساب بسازید.",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} توسط افرادی چون شما ساخته شده است. با ساخت حساب می‌توانید یک هویت دائمی و امن داشته و به ویژگی‌هایی نظیر موارد زیر دسترسی داشته باشید:"
 }
