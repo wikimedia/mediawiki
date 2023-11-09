@@ -637,117 +637,99 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
 	} );
 
-	QUnit.test( 'escapeRegExp', function ( assert ) {
-		var specials, normal;
-
-		specials = [
-			'\\',
-			'{',
-			'}',
-			'(',
-			')',
-			'[',
-			']',
-			'|',
-			'.',
-			'?',
-			'*',
-			'+',
-			'-',
-			'^',
-			'$'
-		];
-
-		normal = [
-			'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-			'abcdefghijklmnopqrstuvwxyz',
-			'0123456789'
-		].join( '' );
-
-		specials.forEach( function ( str ) {
-			// eslint-disable-next-line security/detect-non-literal-regexp
-			assert.propEqual( str.match( new RegExp( mw.util.escapeRegExp( str ) ) ), [ str ], 'Match ' + str );
-		} );
-
+	QUnit.test( 'escapeRegExp [normal]', function ( assert ) {
+		const normal = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+			'abcdefghijklmnopqrstuvwxyz' +
+			'0123456789';
 		assert.strictEqual( mw.util.escapeRegExp( normal ), normal, 'Alphanumerals are left alone' );
 	} );
 
-	QUnit.test( 'debounce', function ( assert ) {
-		var fn,
-			q = [],
-			done = assert.async();
+	QUnit.test.each( 'escapeRegExp [specials]', [
+		'\\',
+		'{',
+		'}',
+		'(',
+		')',
+		'[',
+		']',
+		'|',
+		'.',
+		'?',
+		'*',
+		'+',
+		'-',
+		'^',
+		'$'
+	], function ( assert, str ) {
+		assert.propEqual(
+			// eslint-disable-next-line security/detect-non-literal-regexp
+			str.match( new RegExp( mw.util.escapeRegExp( str ) ) ),
+			[ str ],
+			'confirm correct escaping by being able to match itself'
+		);
+	} );
 
-		fn = mw.util.debounce( function ( data ) {
-			q.push( data );
+	QUnit.test( 'debounce(Function, timeout)', async function ( assert ) {
+		var fn = mw.util.debounce( function ( data ) {
+			assert.step( data );
 		}, 5 );
 
-		fn( 1 );
-		setTimeout( function () {
-			fn( 2 );
+		fn( 'A' );
+		await new Promise( ( resolve ) => {
 			setTimeout( function () {
-				fn( 3 );
+				fn( 'B' );
+			}, 1 );
+			setTimeout( function () {
+				fn( 'C' );
 				setTimeout( function () {
-					assert.deepEqual(
-						q,
-						[ 3 ],
-						'Last one ran'
-					);
-					done();
+					resolve();
 				}, 10 );
-			} );
+			}, 1 );
 		} );
+
+		assert.verifySteps( [ 'C' ] );
 	} );
 
-	QUnit.test( 'debounce immediate', function ( assert ) {
-		var fn,
-			q = [],
-			done = assert.async();
-
-		fn = mw.util.debounce( function ( data ) {
-			q.push( data );
+	QUnit.test( 'debounce(Function, timeout, immediate=true)', async function ( assert ) {
+		var fn = mw.util.debounce( function ( data ) {
+			assert.step( data );
 		}, 5, true );
 
-		fn( 1 );
-		setTimeout( function () {
-			fn( 2 );
+		fn( 'A' );
+		await new Promise( ( resolve ) => {
 			setTimeout( function () {
-				fn( 3 );
+				fn( 'B' );
+			}, 1 );
+			setTimeout( function () {
+				fn( 'C' );
 				setTimeout( function () {
-					assert.deepEqual(
-						q,
-						[ 1 ],
-						'First one ran'
-					);
-					done();
+					resolve();
 				}, 10 );
-			} );
+			}, 1 );
 		} );
+
+		assert.verifySteps( [ 'A' ] );
 	} );
 
-	QUnit.test( 'debounce (old signature)', function ( assert ) {
-		var fn,
-			q = [],
-			done = assert.async();
-
-		fn = mw.util.debounce( 5, function ( data ) {
-			q.push( data );
+	QUnit.test( 'debounce(timeout, Function) [old signature]', async function ( assert ) {
+		var fn = mw.util.debounce( 5, function ( data ) {
+			assert.step( data );
 		} );
 
-		fn( 1 );
-		setTimeout( function () {
-			fn( 2 );
+		fn( 'A' );
+		await new Promise( ( resolve ) => {
 			setTimeout( function () {
-				fn( 3 );
+				fn( 'B' );
+			}, 1 );
+			setTimeout( function () {
+				fn( 'C' );
 				setTimeout( function () {
-					assert.deepEqual(
-						q,
-						[ 3 ],
-						'Last one ran'
-					);
-					done();
+					resolve();
 				}, 10 );
-			} );
+			}, 1 );
 		} );
+
+		assert.verifySteps( [ 'C' ] );
 	} );
 
 	QUnit.test( 'init (.mw-body-primary)', function ( assert ) {
