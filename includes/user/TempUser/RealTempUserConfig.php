@@ -58,7 +58,7 @@ class RealTempUserConfig implements TempUserConfig {
 			}
 			$this->serialProviderConfig = $config['serialProvider'];
 			$this->serialMappingConfig = $config['serialMapping'];
-			$this->expireAfterDays = $config['expireAfterDays'];
+			$this->expireAfterDays = $config['expireAfterDays'] ?? null;
 		}
 		if ( isset( $config['reservedPattern'] ) ) {
 			$this->reservedPattern = new Pattern( 'reservedPattern', $config['reservedPattern'] );
