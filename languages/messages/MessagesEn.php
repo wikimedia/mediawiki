@@ -430,6 +430,7 @@ $specialPageAliases = [
 	'Diff'                      => [ 'Diff' ],
 	'DoubleRedirects'           => [ 'DoubleRedirects' ],
 	'EditPage'                  => [ 'EditPage', 'Edit' ],
+	'EditRecovery'              => [ 'EditRecovery' ],
 	'EditTags'                  => [ 'EditTags' ],
 	'EditWatchlist'             => [ 'EditWatchlist' ],
 	'Emailuser'                 => [ 'EmailUser', 'Email' ],

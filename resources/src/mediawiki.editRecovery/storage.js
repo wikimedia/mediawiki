@@ -85,6 +85,21 @@ function loadData( pageName, section ) {
 	} );
 }
 
+function loadAllData() {
+	return new Promise( function ( resolve, reject ) {
+		if ( !db ) {
+			reject( 'DB not opened' );
+		}
+		const transaction = db.transaction( objectStoreName, 'readonly' );
+		const requestAll = transaction
+			.objectStore( objectStoreName )
+			.getAll();
+		requestAll.addEventListener( 'success', function () {
+			resolve( requestAll.result );
+		} );
+	} );
+}
+
 /**
  * Save data for a specific page and section
  *
@@ -213,6 +228,7 @@ module.exports = {
 	openDatabase: openDatabaseLocal,
 	closeDatabase: closeDatabase,
 	loadData: loadData,
+	loadAllData: loadAllData,
 	saveData: saveData,
 	deleteData: deleteData,
 	deleteExpiredData: deleteExpiredData

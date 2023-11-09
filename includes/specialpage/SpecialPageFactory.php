@@ -70,6 +70,7 @@ use MediaWiki\Specials\SpecialDeletePage;
 use MediaWiki\Specials\SpecialDiff;
 use MediaWiki\Specials\SpecialDoubleRedirects;
 use MediaWiki\Specials\SpecialEditPage;
+use MediaWiki\Specials\SpecialEditRecovery;
 use MediaWiki\Specials\SpecialEditTags;
 use MediaWiki\Specials\SpecialEditWatchlist;
 use MediaWiki\Specials\SpecialEmailInvalidate;
@@ -1232,6 +1233,7 @@ class SpecialPageFactory {
 		MainConfigNames::EnableEmail,
 		MainConfigNames::EnableJavaScriptTest,
 		MainConfigNames::EnableSpecialMute,
+		MainConfigNames::EnableEditRecovery,
 		MainConfigNames::PageLanguageUseDB,
 		MainConfigNames::SpecialPages,
 	];
@@ -1353,6 +1355,12 @@ class SpecialPageFactory {
 						'DBLoadBalancerFactory',
 						'SearchEngineFactory',
 					]
+				];
+			}
+
+			if ( $this->options->get( MainConfigNames::EnableEditRecovery ) ) {
+				$this->list['EditRecovery'] = [
+					'class' => SpecialEditRecovery::class,
 				];
 			}
 
