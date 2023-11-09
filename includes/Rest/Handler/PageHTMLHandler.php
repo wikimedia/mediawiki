@@ -3,7 +3,6 @@
 namespace MediaWiki\Rest\Handler;
 
 use LogicException;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
 use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
@@ -45,11 +44,8 @@ class PageHTMLHandler extends SimpleHandler {
 	}
 
 	protected function postValidationSetup() {
-		// TODO: Once Authority supports rate limit (T310476), just inject the Authority.
-		$user = MediaWikiServices::getInstance()->getUserFactory()
-			->newFromUserIdentity( $this->getAuthority()->getUser() );
-
-		$this->contentHelper->init( $user, $this->getValidatedParams() );
+		$authority = $this->getAuthority();
+		$this->contentHelper->init( $authority, $this->getValidatedParams() );
 
 		$page = $this->contentHelper->getPageIdentity();
 		$isSystemMessage = $this->contentHelper->useDefaultSystemMessage();
@@ -62,7 +58,7 @@ class PageHTMLHandler extends SimpleHandler {
 				$revision = $this->contentHelper->getTargetRevision();
 				// NOTE: We know that $this->htmlHelper is an instance of HtmlOutputRendererHelper
 				//       because we set it in the constructor.
-				$this->htmlHelper->init( $page, $this->getValidatedParams(), $user, $revision );
+				$this->htmlHelper->init( $page, $this->getValidatedParams(), $authority, $revision );
 
 				$request = $this->getRequest();
 				$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;

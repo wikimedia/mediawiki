@@ -346,10 +346,10 @@ abstract class ParsoidHandler extends Handler {
 		$lenientRevHandling = true;
 		$helper = $services->getPageRestHelperFactory()->newHtmlOutputRendererHelper( $lenientRevHandling );
 
-		$user = RequestContext::getMain()->getUser();
+		$authority = $this->getAuthority();
 
 		$params = [];
-		$helper->init( $page, $params, $user, $revId );
+		$helper->init( $page, $params, $authority, $revId );
 
 		// XXX: should default to the page's content model?
 		$model = $attribs['opts']['contentmodel']

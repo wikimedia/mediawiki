@@ -459,8 +459,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testStashingWithRateLimitExceeded() {
 		// Set the rate limit to 1 request per minute
 		$this->overrideConfigValue(
-			MainConfigNames::RateLimits,
-			[
+			MainConfigNames::RateLimits, [
 				'stashbasehtml' => [
 					'&can-bypass' => false,
 					'ip' => [ 1, 60 ],
@@ -470,12 +469,13 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$page = $this->getExistingTestPage();
+		$authority = $this->getAuthority();
 
-		$this->executePageHTMLRequest( $page, [ 'stash' => true ] );
+		$this->executePageHTMLRequest( $page, [ 'stash' => true ], [], $authority );
 		// In this request, the rate limit has been exceeded, so it should throw.
 		$this->expectException( LocalizedHttpException::class );
 		$this->expectExceptionCode( 429 );
-		$this->executePageHTMLRequest( $page, [ 'stash' => true ] );
+		$this->executePageHTMLRequest( $page, [ 'stash' => true ], [], $authority );
 	}
 
 }

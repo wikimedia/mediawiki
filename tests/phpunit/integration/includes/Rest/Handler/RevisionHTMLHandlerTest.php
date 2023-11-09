@@ -426,11 +426,12 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$page = $this->getExistingTestPage();
 
-		$this->executeRevisionHTMLRequest( $page->getLatest(), [ 'stash' => true ] );
+		$authority = $this->getAuthority();
+		$this->executeRevisionHTMLRequest( $page->getLatest(), [ 'stash' => true ], [], $authority );
 		// In this request, the rate limit has been exceeded, so it should throw.
 		$this->expectException( LocalizedHttpException::class );
 		$this->expectExceptionCode( 429 );
-		$this->executeRevisionHTMLRequest( $page->getLatest(), [ 'stash' => true ] );
+		$this->executeRevisionHTMLRequest( $page->getLatest(), [ 'stash' => true ], [], $authority );
 	}
 
 	/**

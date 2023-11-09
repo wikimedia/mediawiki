@@ -36,6 +36,7 @@ use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -46,7 +47,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use MWUnknownContentModelException;
 use ParserOptions;
 use ParserOutput;
@@ -103,8 +103,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var IBufferingStatsdDataFactory */
 	private $stats;
 
-	/** @var User */
-	private $user;
+	/** @var Authority */
+	private $authority;
 
 	/** @var ParsoidOutputAccess */
 	private $parsoidOutputAccess;
@@ -374,17 +374,17 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 *
 	 * @param PageIdentity $page
 	 * @param array $parameters
-	 * @param User $user
+	 * @param Authority $authority
 	 * @param RevisionRecord|int|null $revision
 	 */
 	public function init(
 		PageIdentity $page,
 		array $parameters,
-		User $user,
+		Authority $authority,
 		$revision = null
 	) {
 		$this->page = $page;
-		$this->user = $user;
+		$this->authority = $authority;
 		$this->stash = $parameters['stash'] ?? false;
 
 		if ( $revision !== null ) {
@@ -430,7 +430,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$parserOutput = $this->getParserOutput();
 
 		if ( $this->stash ) {
-			if ( $this->user->pingLimiter( 'stashbasehtml' ) ) {
+			if ( !$this->authority->authorizeAction( 'stashbasehtml' ) ) {
 				throw new LocalizedHttpException(
 					MessageValue::new( 'parsoid-stash-rate-limit-error' ),
 					// See https://www.rfc-editor.org/rfc/rfc6585#section-4

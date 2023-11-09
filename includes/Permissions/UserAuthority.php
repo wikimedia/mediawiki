@@ -263,7 +263,7 @@ class UserAuthority implements Authority {
 	 * @param string $action
 	 * @param PermissionStatus|null $status
 	 * @param int|false $limitRate False means no check, 0 means check only,
-	 *        1 means check and increment
+	 *        and 1 means check and increment
 	 * @param ?Block $userBlock
 	 *
 	 * @return bool
