@@ -36,6 +36,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\NamespaceInfo;
@@ -55,6 +56,9 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Rdbms\LoadBalancerSingle;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Services\NoSuchServiceException;
 
@@ -146,6 +150,22 @@ trait DummyServicesTrait {
 				}
 			);
 		return $contentHandlerFactory;
+	}
+
+	/**
+	 * @param array $dbOptions Options for the Database constructor
+	 * @return LoadBalancerSingle
+	 */
+	private function getDummyDBLoadBalancer( $dbOptions = [] ): ILoadBalancer {
+		return LoadBalancerSingle::newFromConnection( new MockDatabase( $dbOptions ) );
+	}
+
+	/**
+	 * @param array $dbOptions Options for the Database constructor
+	 * @return LBFactory
+	 */
+	private function getDummyDBLoadBalancerFactory( $dbOptions = [] ): LBFactory {
+		return LBFactorySingle::newFromConnection( new MockDatabase( $dbOptions ) );
 	}
 
 	/**
