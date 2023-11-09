@@ -1505,6 +1505,20 @@ wgParserEnableLegacyMediaDOM=false
 !! end
 
 !! test
+Image: framed vector images are scaled to their default size AND have srcset
+!! options
+parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:Foobar.svg|frame]]
+!! html/php
+<figure typeof="mw:File/Frame"><a href="/wiki/File:Foobar.svg" class="mw-file-description"><img src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" decoding="async" width="240" height="180" class="mw-file-element" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x" /></a><figcaption></figcaption></figure>
+!! html/parsoid
+<figure typeof="mw:File/Frame"><a href="./File:Foobar.svg" class="mw-file-description"><img resource="./File:Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" decoding="async" data-file-width="240" data-file-height="180" data-file-type="drawing" height="180" width="240" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x" class="mw-file-element"/></a><figcaption></figcaption></figure>
+!! end
+
+!! test
 Image: manualthumb images are always unscaled.
 !! options
 parsoid=wt2html,html2html
