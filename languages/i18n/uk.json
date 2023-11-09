@@ -1663,6 +1663,7 @@
 	"rcfilters-filter-categorization-description": "Записи про додавання або вилучення сторінок з категорій.",
 	"rcfilters-filter-logactions-label": "Журнальні дії",
 	"rcfilters-filter-logactions-description": "Адміністративні дії, створення облікових записів, видалення сторінок, завантаження файлів тощо.",
+	"rcfilters-filter-accountcreations-label": "Створення облікових записів",
 	"rcfilters-filter-accountcreations-description": "Записи журналу для створення облікового запису. Необхідно вибрати зареєстровані дії.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "Фільтр «Незначні редагування» конфліктує з одним або більше фільтрів за типом змін, оскільки певні типи змін не можна позначити як «незначні». Конфліктні фільтри позначені в ділянці активних фільтрів угорі.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Певні типи змін не можна позначити як «незначні», тож цей фільтр конфліктує з такими фільтрами за типом змін: $1",

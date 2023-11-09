@@ -666,7 +666,7 @@
 	"resettokens-watchlist-token": "[[Special:Watchlist|নজরতালিকায় থাকা পাতাগুলোতে পরিবর্তন]] সংক্রান্ত ওয়েব ফিডের (Atom বা RSS) টোকেন",
 	"resettokens-done": "টোকেনগুলি সফলভাবে পুনঃনির্ধারিত হয়েছে।",
 	"resettokens-resetbutton": "নির্বাচিত টোকেনগুলি পুনঃনির্ধারণ করুন",
-	"edit-recovery-loaded-title": "পরিবর্তনগুলি পুনরুদ্ধার করা হয়েছে",
+	"edit-recovery-loaded-title": "পরিবর্তন পুনরুদ্ধার করা হয়েছে",
 	"edit-recovery-loaded-message": "আপনার অসংরক্ষিত পরিবর্তনগুলি স্বয়ংক্রিয়ভাবে পুনরুদ্ধার করা হয়েছে।",
 	"edit-recovery-loaded-show": "পরিবর্তনগুলি দেখুন",
 	"edit-recovery-loaded-discard": "পরিবর্তন বাতিল করুন",
@@ -4227,6 +4227,7 @@
 	"right-renameuser": "ব্যবহারকারী নামান্তর করে",
 	"renameuser-renamed-notice": "এই ব্যবহারকারীর নাম পরিবর্তন করা হয়েছে।\nসূত্র হিসাবে নিচে নাম পরিবর্তন লগ দেওয়া হল।",
 	"log-unknown-action": "[[$1]]-এ অজানা \"$2\" কর্ম সম্পাদন করেছেন",
+	"createacct-benefit-heading-temp-user": "{{SITENAME}}-এ অবদান রাখার জন্য আপনাকে ধন্যবাদ।\nআরও বৈশিষ্ট্য ব্যবহার করতে একটি অ্যাকাউন্ট তৈরি করুন।",
 	"benefit-2-description": "প্রকল্পে আপনার অবদানের স্থায়ী তালিকা।",
 	"benefit-3-description": "পছন্দগুলি যা আপনাকে আপনার অভিজ্ঞতা সাজাতে অনুমতি দেয়"
 }
