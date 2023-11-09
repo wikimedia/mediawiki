@@ -637,10 +637,14 @@ class LocalisationCache {
 				continue;
 			}
 			foreach ( $preload[$key] as $subkey => $value ) {
-				[
-					$this->sourceLanguage[$code][$key][$subkey],
-					$preload[$key][$subkey]
-				] = explode( self::SOURCEPREFIX_SEPARATOR, $value, 2 );
+				if ( $value !== null ) {
+					[
+						$this->sourceLanguage[$code][$key][$subkey],
+						$preload[$key][$subkey]
+					] = explode( self::SOURCEPREFIX_SEPARATOR, $value, 2 );
+				} else {
+					$preload[$key][$subkey] = null;
+				}
 			}
 		}
 
