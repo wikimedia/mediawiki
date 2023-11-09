@@ -22,6 +22,7 @@ namespace MediaWiki\PoolCounter;
 
 use MWException;
 use Status;
+use Wikimedia\IPUtils;
 
 /**
  * Helper for \MediaWiki\PoolCounter\PoolCounterClient.
@@ -74,12 +75,15 @@ class PoolCounterConnectionManager {
 				return Status::newGood(
 					[ 'conn' => $this->conns[$hostName], 'hostName' => $hostName ] );
 			}
-			$parts = explode( ':', $hostName, 2 );
-			if ( count( $parts ) < 2 ) {
-				$parts[] = 7531;
+			$parts = IPUtils::splitHostAndPort( $hostName );
+			if ( $parts === false ) {
+				$errstr = '\'servers\' config incorrectly configured.';
+				return Status::newFatal( 'poolcounter-connection-error', $errstr, $hostName );
 			}
+			$host = $parts[0];
+			$port = $parts[1] ?? 7531;
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$conn = @$this->open( $parts[0], $parts[1], $errno, $errstr );
+			$conn = @$this->open( $host, $port, $errno, $errstr );
 			if ( $conn ) {
 				break;
 			}
