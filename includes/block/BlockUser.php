@@ -422,11 +422,13 @@ class BlockUser {
 					$this->isHideUser || $priorHideUser
 				) !== true
 		) {
+			$this->logger->debug( 'placeBlock: checkBasePermissions failed' );
 			return Status::newFatal( $priorHideUser ? 'cant-see-hidden-user' : 'badaccess-group0' );
 		}
 
 		$blockCheckResult = $this->blockPermissionChecker->checkBlockPermissions();
 		if ( $blockCheckResult !== true ) {
+			$this->logger->debug( 'placeBlock: checkBlockPermissions failed' );
 			return Status::newFatal( $blockCheckResult );
 		}
 
@@ -445,6 +447,7 @@ class BlockUser {
 			);
 
 			if ( !$status->isOK() ) {
+				$this->logger->debug( 'placeBlock: ChangeTags::canAddTagsAccompanyingChange failed' );
 				return $status;
 			}
 		}
@@ -454,9 +457,11 @@ class BlockUser {
 			try {
 				$title = $this->titleFactory->newFromTextThrow( $pageRestriction );
 				if ( !$title->exists() ) {
+					$this->logger->debug( "placeBlock: nonexistent page restriction $title" );
 					$status->fatal( 'cant-block-nonexistent-page', $pageRestriction );
 				}
 			} catch ( MalformedTitleException $e ) {
+				$this->logger->debug( 'placeBlock: malformed page restriction title' );
 				$status->fatal( $e->getMessageObject() );
 			}
 		}
@@ -479,10 +484,12 @@ class BlockUser {
 		$status = $this->blockUtils->validateTarget( $this->target );
 
 		if ( !$status->isOK() ) {
+			$this->logger->debug( 'placeBlockUnsafe: invalid target' );
 			return $status;
 		}
 
 		if ( $this->isUserTalkEditBlocked === null ) {
+			$this->logger->debug( 'placeBlockUnsafe: partial block on user talk page' );
 			return Status::newFatal( 'ipb-prevent-user-talk-edit' );
 		}
 
@@ -494,19 +501,23 @@ class BlockUser {
 			// the time can't be parsed
 			!$this->expiryTime
 		) {
+			$this->logger->debug( 'placeBlockUnsafe: invalid expiry' );
 			return Status::newFatal( 'ipb_expiry_invalid' );
 		}
 
 		if ( $this->expiryTime < wfTimestampNow() ) {
+			$this->logger->debug( 'placeBlockUnsafe: expiry in the past' );
 			return Status::newFatal( 'ipb_expiry_old' );
 		}
 
 		if ( $this->isHideUser ) {
 			if ( $this->isPartial() ) {
+				$this->logger->debug( 'placeBlockUnsafe: partial block cannot hide user' );
 				return Status::newFatal( 'ipb_hide_partial' );
 			}
 
 			if ( !wfIsInfinity( $this->rawExpiry ) ) {
+				$this->logger->debug( 'placeBlockUnsafe: temp user block has expiry' );
 				return Status::newFatal( 'ipb_expiry_temp' );
 			}
 
@@ -515,6 +526,7 @@ class BlockUser {
 				$hideUserContribLimit !== false &&
 				$this->userEditTracker->getUserEditCount( $this->target ) > $hideUserContribLimit
 			) {
+				$this->logger->debug( 'placeBlockUnsafe: hide user with too many contribs' );
 				return Status::newFatal( 'ipb_hide_invalid', Message::numParam( $hideUserContribLimit ) );
 			}
 		}
@@ -526,6 +538,7 @@ class BlockUser {
 				!$this->isCreateAccountBlocked &&
 				!$this->isUserTalkEditBlocked
 			) {
+				$this->logger->debug( 'placeBlockUnsafe: empty partial block' );
 				return Status::newFatal( 'ipb-empty-block' );
 			}
 		}
@@ -549,6 +562,7 @@ class BlockUser {
 		if ( !$this->hookRunner->onBlockIp( $block, $legacyUser, $denyReason ) ) {
 			$status = Status::newGood();
 			foreach ( $denyReason as $key ) {
+				$this->logger->debug( "placeBlockInternal: hook aborted with message \"$key\"" );
 				$status->fatal( $key );
 			}
 			return $status;
@@ -575,11 +589,14 @@ class BlockUser {
 		if ( $priorBlock !== null ) {
 			// Reblock only if the caller wants so
 			if ( !$reblock ) {
+				$this->logger->debug(
+					'placeBlockInternal: already blocked and reblock not requested' );
 				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
 			}
 
 			if ( $block->equals( $priorBlock ) ) {
 				// Block settings are equal => user is already blocked
+				$this->logger->debug( 'placeBlockInternal: already blocked, no change' );
 				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
 			}
 
@@ -611,6 +628,7 @@ class BlockUser {
 
 		$this->log( $block, $isReblock );
 
+		$this->logger->debug( 'placeBlockInternal: success' );
 		return Status::newGood( $block );
 	}
 
