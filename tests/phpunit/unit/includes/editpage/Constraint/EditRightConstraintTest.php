@@ -20,7 +20,7 @@
 
 use MediaWiki\EditPage\Constraint\EditRightConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -33,32 +33,135 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 class EditRightConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 	use MockAuthorityTrait;
+	use MockTitleTrait;
 
-	public function testPass() {
+	/**
+	 * @dataProvider provideTestPass
+	 * @param User $performer
+	 * @param bool $new
+	 * @param PermissionManager $permissionManager
+	 * @return void
+	 */
+	public function testPass( User $performer, bool $new, PermissionManager $permissionManager ) {
 		$constraint = new EditRightConstraint(
-			$this->mockRegisteredAuthorityWithPermissions( [ 'edit' ] )
+			$performer,
+			$permissionManager,
+			$this->createMock( Title::class ),
+			$new
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
 
+	public function provideTestPass() {
+		$title = $this->createMock( Title::class );
+		$userEdit = $this->createMock( User::class );
+		$permissionManagerEdit = $this->createMock( PermissionManager::class );
+		$permissionManagerEdit->expects( $this->once() )
+			->method( 'getPermissionErrors' )
+			->with(
+				'edit',
+				$userEdit,
+				$title
+			)
+			->willReturn( [] );
+		$userCreateAndEdit = $this->createMock( User::class );
+		$userCreateAndEdit->expects( $this->once() )
+			->method( 'authorizeWrite' )
+			->with(
+				'create',
+				$title
+			)
+			->willReturn( true );
+		$permissionManagerCreateAndEdit = $this->createMock( PermissionManager::class );
+		$permissionManagerCreateAndEdit->expects( $this->once() )
+			->method( 'getPermissionErrors' )
+			->with(
+				'edit',
+				$userCreateAndEdit,
+				$title
+			)
+			->willReturn( [] );
+		yield 'Edit existing page' => [
+			'performer' => $userEdit,
+			'new' => false,
+			'permissionManager' => $permissionManagerEdit
+		];
+		yield 'Create a new page' => [
+			'performer' => $userCreateAndEdit,
+			'new' => true,
+			'permissionManager' => $permissionManagerCreateAndEdit
+		];
+	}
+
 	/**
 	 * @dataProvider provideTestFailure
-	 * @param Authority $performer
+	 * @param User $performer
+	 * @param bool $new
+	 * @param PermissionManager $permissionManager
 	 * @param int $expectedValue
 	 */
-	public function testFailure( Authority $performer, int $expectedValue ) {
-		$constraint = new EditRightConstraint( $performer );
+	public function testFailure(
+		User $performer, bool $new, PermissionManager $permissionManager, int $expectedValue
+	) {
+		$title = $this->createMock( Title::class );
+		$constraint = new EditRightConstraint(
+			$performer,
+			$permissionManager,
+			$title,
+			$new
+		);
 		$this->assertConstraintFailed( $constraint, $expectedValue );
 	}
 
 	public function provideTestFailure() {
+		$title = $this->createMock( Title::class );
+		$anon = $this->createMock( User::class );
+		$anon->expects( $this->once() )->method( 'isRegistered' )->willReturn( false );
+		$permissionManagerAnon = $this->createMock( PermissionManager::class );
+		$permissionManagerAnon->expects( $this->once() )
+			->method( 'getPermissionErrors' )
+			->with(
+				'edit',
+				$anon,
+				$title
+			)
+			->willReturn( [ 'badaccess-group0' ] );
+		$reg = $this->createMock( User::class );
+		$reg->expects( $this->once() )->method( 'isRegistered' )->willReturn( true );
+		$permissionManagerReg = $this->createMock( PermissionManager::class );
+		$permissionManagerReg->expects( $this->once() )
+			->method( 'getPermissionErrors' )
+			->with(
+				'edit',
+				$reg,
+				$title
+			)
+			->willReturn( [ 'badaccess-group0' ] );
+		$userWithoutCreatePerm = $this->createMock( User::class );
+		$userWithoutCreatePerm->expects( $this->once() )
+			->method( 'authorizeWrite' )
+			->with(
+				'create',
+				$title
+			)
+			->willReturn( false );
 		yield 'Anonymous user' => [
-			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'edit' ] ),
+			'performer' => $anon,
+			'new' => false,
+			'permissionManager' => $permissionManagerAnon,
 			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_ANON,
 		];
 		yield 'Registered user' => [
-			'performer' => $this->mockRegisteredAuthorityWithoutPermissions( [ 'edit' ] ),
+			'performer' => $reg,
+			'new' => false,
+			'permissionManager' => $permissionManagerReg,
 			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_LOGGED,
+		];
+		yield 'User without create permission creates a page' => [
+			'performer' => $userWithoutCreatePerm,
+			'new' => true,
+			'permissionManager' => $this->createMock( PermissionManager::class ),
+			'expectedValue' => IEditConstraint::AS_NO_CREATE_PERMISSION,
 		];
 	}
 
