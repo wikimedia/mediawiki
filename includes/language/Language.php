@@ -656,9 +656,11 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function getVariantname( $code, $usemsg = true ) {
-		$msg = "variantname-$code";
-		if ( $usemsg && wfMessage( $msg )->exists() ) {
-			return $this->getMessageFromDB( $msg );
+		if ( $usemsg ) {
+			$msg = $this->msg( "variantname-$code" );
+			if ( $msg->exists() ) {
+				return $msg->text();
+			}
 		}
 		$name = $this->langNameUtils->getLanguageName( $code );
 		if ( $name ) {
@@ -2160,8 +2162,8 @@ class Language implements Bcp47Code {
 		foreach ( $intervals as $intervalName => $intervalValue ) {
 			// Messages: duration-seconds, duration-minutes, duration-hours, duration-days, duration-weeks,
 			// duration-years, duration-decades, duration-centuries, duration-millennia
-			$message = wfMessage( 'duration-' . $intervalName )->numParams( $intervalValue );
-			$segments[] = $message->inLanguage( $this )->escaped();
+			$message = $this->msg( 'duration-' . $intervalName )->numParams( $intervalValue );
+			$segments[] = $message->escaped();
 		}
 
 		return $this->listToText( $segments );
@@ -2411,22 +2413,19 @@ class Language implements Bcp47Code {
 			$weekday = self::WEEKDAY_MESSAGES[(int)$ts->timestamp->format( 'w' )];
 			// The following messages are used here:
 			// * sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
-			$ts = wfMessage( "$weekday-at" )
-				->inLanguage( $this )
+			$ts = $this->msg( "$weekday-at" )
 				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
 				->text();
 		} elseif ( $days == 1 ) {
 			// Timestamp was yesterday: say 'yesterday' and the time.
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
-			$ts = wfMessage( 'yesterday-at' )
-				->inLanguage( $this )
+			$ts = $this->msg( 'yesterday-at' )
 				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
 				->text();
 		} elseif ( $diff->h > 1 || $diff->h == 1 && $diff->i > 30 ) {
 			// Timestamp was today, but more than 90 minutes ago: say 'today' and the time.
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
-			$ts = wfMessage( 'today-at' )
-				->inLanguage( $this )
+			$ts = $this->msg( 'today-at' )
 				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
 				->text();
 
@@ -2434,16 +2433,16 @@ class Language implements Bcp47Code {
 		// XX units ago, e.g., "2 hours ago" or "5 minutes ago"
 		} elseif ( $diff->h == 1 ) {
 			// Less than 90 minutes, but more than an hour ago.
-			$ts = wfMessage( 'hours-ago' )->inLanguage( $this )->numParams( 1 )->text();
+			$ts = $this->msg( 'hours-ago' )->numParams( 1 )->text();
 		} elseif ( $diff->i >= 1 ) {
 			// A few minutes ago.
-			$ts = wfMessage( 'minutes-ago' )->inLanguage( $this )->numParams( $diff->i )->text();
+			$ts = $this->msg( 'minutes-ago' )->numParams( $diff->i )->text();
 		} elseif ( $diff->s >= 30 ) {
 			// Less than a minute, but more than 30 sec ago.
-			$ts = wfMessage( 'seconds-ago' )->inLanguage( $this )->numParams( $diff->s )->text();
+			$ts = $this->msg( 'seconds-ago' )->numParams( $diff->s )->text();
 		} else {
 			// Less than 30 seconds ago.
-			$ts = wfMessage( 'just-now' )->text();
+			$ts = $this->msg( 'just-now' )->text();
 		}
 
 		return $ts;
@@ -3334,7 +3333,7 @@ class Language implements Bcp47Code {
 	 */
 	public function commaList( array $list ) {
 		return implode(
-			wfMessage( 'comma-separator' )->inLanguage( $this )->escaped(),
+			$this->msg( 'comma-separator' )->escaped(),
 			$list
 		);
 	}
@@ -3348,7 +3347,7 @@ class Language implements Bcp47Code {
 	 */
 	public function semicolonList( array $list ) {
 		return implode(
-			wfMessage( 'semicolon-separator' )->inLanguage( $this )->escaped(),
+			$this->msg( 'semicolon-separator' )->escaped(),
 			$list
 		);
 	}
@@ -3361,7 +3360,7 @@ class Language implements Bcp47Code {
 	 */
 	public function pipeList( array $list ) {
 		return implode(
-			wfMessage( 'pipe-separator' )->inLanguage( $this )->escaped(),
+			$this->msg( 'pipe-separator' )->escaped(),
 			$list
 		);
 	}
@@ -3449,7 +3448,7 @@ class Language implements Bcp47Code {
 
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
-			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->text();
+			$ellipsis = $this->msg( 'ellipsis' )->text();
 		}
 		if ( $length == 0 ) {
 			return $ellipsis; // convention
@@ -3527,7 +3526,7 @@ class Language implements Bcp47Code {
 	public function truncateHtml( $text, $length, $ellipsis = '...' ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
-			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
+			$ellipsis = $this->msg( 'ellipsis' )->escaped();
 		}
 		# Check if there is clearly no need to truncate
 		if ( $length <= 0 ) {
