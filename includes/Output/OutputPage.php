@@ -95,6 +95,11 @@ use Wikimedia\WrappedStringList;
 class OutputPage extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
+	/** Output CSP policies as headers */
+	public const CSP_HEADERS = 'headers';
+	/** Output CSP policies as meta tags */
+	public const CSP_META = 'meta';
+
 	// Constants for getJSVars()
 	private const JS_VAR_EARLY = 1;
 	private const JS_VAR_LATE = 2;
@@ -442,6 +447,8 @@ class OutputPage extends ContextSource {
 	 * @var ContentSecurityPolicy
 	 */
 	private $CSP;
+
+	private string $cspOutputMode = self::CSP_HEADERS;
 
 	/**
 	 * @var array A cache of the names of the cookies that will influence the cache
@@ -3007,7 +3014,9 @@ class OutputPage extends ContextSource {
 		}
 
 		if ( $this->mArticleBodyOnly ) {
-			$this->CSP->sendHeaders();
+			if ( $this->cspOutputMode === self::CSP_HEADERS ) {
+				$this->CSP->sendHeaders();
+			}
 			echo $this->mBodytext;
 		} else {
 			// Enable safe mode if requested (T152169)
@@ -3024,7 +3033,9 @@ class OutputPage extends ContextSource {
 			// adding of CSS or Javascript by extensions, adding CSP sources.
 			$this->getHookRunner()->onBeforePageDisplay( $this, $sk );
 
-			$this->CSP->sendHeaders();
+			if ( $this->cspOutputMode === self::CSP_HEADERS ) {
+				$this->CSP->sendHeaders();
+			}
 
 			try {
 				$sk->outputPage();
@@ -4030,6 +4041,15 @@ class OutputPage extends ContextSource {
 		$tags = [];
 		$config = $this->getConfig();
 
+		if ( $this->cspOutputMode === self::CSP_META ) {
+			foreach ( $this->CSP->getDirectives() as $header => $directive ) {
+				$tags["meta-csp-$header"] = Html::element( 'meta', [
+					'http-equiv' => $header,
+					'content' => $directive,
+				] );
+			}
+		}
+
 		$tags['meta-generator'] = Html::element( 'meta', [
 			'name' => 'generator',
 			'content' => 'MediaWiki ' . MW_VERSION,
@@ -4826,6 +4846,23 @@ class OutputPage extends ContextSource {
 	 */
 	public function getCSP() {
 		return $this->CSP;
+	}
+
+	/**
+	 * Sets the output mechanism for content security policies (HTTP headers or meta tags).
+	 * Defaults to HTTP headers; in most cases this should not be changed.
+	 *
+	 * Meta mode should not be used together with setArticleBodyOnly() as meta tags and other
+	 * headers are not output when that flag is set.
+	 *
+	 * @param string $mode One of the CSP_* constants
+	 * @phan-param 'headers'|'meta' $mode
+	 * @return void
+	 * @see self::CSP_HEADERS
+	 * @see self::CSP_META
+	 */
+	public function setCspOutputMode( string $mode ): void {
+		$this->cspOutputMode = $mode;
 	}
 
 	/**
