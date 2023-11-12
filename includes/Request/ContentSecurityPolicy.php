@@ -73,21 +73,24 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Send a single CSP header based on a given policy config.
-	 *
-	 * @note Most callers will probably want ContentSecurityPolicy::sendHeaders() instead.
-	 * @internal
-	 * @param array|bool $csp ContentSecurityPolicy configuration
-	 * @param int $reportOnly self::*_MODE constant
+	 * Get the CSP directives for the wiki.
+	 * @return string[] Array of CSP directives (header name => header value). The array keys will be
+	 *    ContentSecurityPolicy::FULL_MODE and ContentSecurityPolicy::REPORT_ONLY_MODE; they might not
+	 *    be present if the wiki is configured no to use the given type of CSP.
+	 * @phan-return array{Content-Security-Policy?:string,Content-Security-Policy-Report-Only?:string}
+	 * @since 1.42
 	 */
-	public function sendCSPHeader( $csp, $reportOnly ) {
-		$policy = $this->makeCSPDirectives( $csp, $reportOnly );
-		$headerName = $this->getHeaderName( $reportOnly );
-		if ( $policy ) {
-			$this->response->header(
-				"$headerName: $policy"
-			);
-		}
+	public function getDirectives() {
+		$cspConfig = $this->mwConfig->get( MainConfigNames::CSPHeader );
+		$cspConfigReportOnly = $this->mwConfig->get( MainConfigNames::CSPReportOnlyHeader );
+
+		$cspPolicy = $this->makeCSPDirectives( $cspConfig, self::FULL_MODE );
+		$cspReportOnlyPolicy = $this->makeCSPDirectives( $cspConfigReportOnly, self::REPORT_ONLY_MODE );
+
+		return array_filter( [
+			$this->getHeaderName( self::FULL_MODE ) => $cspPolicy,
+			$this->getHeaderName( self::REPORT_ONLY_MODE ) => $cspReportOnlyPolicy,
+		] );
 	}
 
 	/**
@@ -100,11 +103,10 @@ class ContentSecurityPolicy {
 	 * @since 1.35
 	 */
 	public function sendHeaders() {
-		$cspConfig = $this->mwConfig->get( MainConfigNames::CSPHeader );
-		$cspConfigReportOnly = $this->mwConfig->get( MainConfigNames::CSPReportOnlyHeader );
-
-		$this->sendCSPHeader( $cspConfig, self::FULL_MODE );
-		$this->sendCSPHeader( $cspConfigReportOnly, self::REPORT_ONLY_MODE );
+		$directives = $this->getDirectives();
+		foreach ( $directives as $headerName => $policy ) {
+			$this->response->header( "$headerName: $policy" );
+		}
 
 		// This used to insert a <meta> tag here, per advice at
 		// https://blogs.dropbox.com/tech/2015/09/unsafe-inline-and-nonce-deployment/
