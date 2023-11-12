@@ -184,7 +184,7 @@ abstract class Skin extends ContextSource {
 				] + $this->getUserLanguageAttributes(),
 				$htmlTitle
 			),
-			'html-title' => $htmlTitle,
+			'html-title' => $htmlTitle ?: null,
 			// Boolean values
 			'is-title-blank' => $blankedHeading, // @since 1.38
 			'is-anon' => $user->isAnon(),
