@@ -457,7 +457,7 @@ class DeleteAction extends FormAction {
 			$fields['DeleteTalk'] = [
 				'type' => 'check',
 				'id' => 'wpDeleteTalk',
-				'tabIndex' => 3,
+				'tabindex' => 3,
 				'default' => false,
 				'label-message' => 'deletepage-deletetalk',
 			];
