@@ -5,7 +5,7 @@ use MediaWiki\Request\ContentSecurityPolicy;
 use Wikimedia\TestingAccessWrapper;
 
 class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
-	/** @var ContentSecurityPolicy */
+	/** @var ContentSecurityPolicy|TestingAccessWrapper */
 	private $csp;
 
 	protected function setUp(): void {
@@ -52,7 +52,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$this->clearHook( 'ContentSecurityPolicyDirectives' );
 
 		$context = RequestContext::getMain();
-		$resp = $context->getRequest()->response();
+		$resp = new FauxResponse();
 		$conf = $context->getConfig();
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$csp = new ContentSecurityPolicy( $resp, $conf, $hookContainer );
@@ -390,5 +390,20 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 			[ [ 'useNonces' => true ], [ 'useNonces' => false ], true ],
 			[ [ 'useNonces' => false ], [ 'useNonces' => true ], true ],
 		];
+	}
+
+	/**
+	 * @covers MediaWiki\Request\ContentSecurityPolicy::sendHeaders
+	 */
+	public function testSendHeaders() {
+		$this->csp->sendHeaders();
+		$this->assertSame(
+			"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'"
+				. " sister-site.somewhere.com *.wikipedia.org; default-src *"
+				. " data: blob:; style-src * data: blob: 'unsafe-inline';"
+				. " object-src 'none'; report-uri /w/api.php?action=cspreport&format=json",
+			$this->csp->response->getHeader( 'Content-Security-Policy' )
+		);
+		$this->assertNull( $this->csp->response->getHeader( 'Content-Security-Policy-Report-Only' ) );
 	}
 }
