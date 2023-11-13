@@ -144,8 +144,7 @@ FormWrapperWidget.prototype.cleanUpFieldset = function () {
 	this.$element.find( '.rclinks, .cldays, .wlinfo' ).detach();
 
 	if ( !this.$element.find( '.mw-recentchanges-table tr' ).length ) {
-		this.$element.find( '.mw-recentchanges-table' ).detach();
-		this.$element.find( 'hr' ).detach();
+		this.$element.find( '.mw-recentchanges-table, hr' ).detach();
 	}
 
 	// Get rid of all <br>s, which are inside rcshowhide

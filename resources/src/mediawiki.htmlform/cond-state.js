@@ -27,10 +27,7 @@
 			// Field cloner can load from template dynamically and fire event on sub element
 			$found = $root.closest( 'form' ).find( '[name]' ).filter( nameFilter );
 		}
-		if ( $found.length ) {
-			return $found;
-		}
-		return null;
+		return $found.length ? $found : null;
 	}
 
 	/**
