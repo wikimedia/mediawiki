@@ -21,6 +21,7 @@ namespace MediaWiki\Page;
 
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
+use MapCacheLRU;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
@@ -97,11 +98,9 @@ class ParserOutputAccess {
 	/**
 	 * In cases that an extension tries to get the same ParserOutput of
 	 * the page right after it was parsed (T301310).
-	 * @var ParserOutput[][]
+	 * @var MapCacheLRU<string,ParserOutput>
 	 */
-	private $localCache = [];
-
-	private const LOCAL_CACHE_SIZE = 10;
+	private MapCacheLRU $localCache;
 
 	/** @var RevisionLookup */
 	private $revisionLookup;
@@ -156,6 +155,8 @@ class ParserOutputAccess {
 		$this->loggerSpi = $loggerSpi;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->titleFormatter = $titleFormatter;
+
+		$this->localCache = new MapCacheLRU( 10 );
 	}
 
 	/**
@@ -219,8 +220,8 @@ class ParserOutputAccess {
 		$classCacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
-			if ( isset( $this->localCache[$classCacheKey][$page->getLatest()] ) && !$isOld ) {
-				return $this->localCache[$classCacheKey][$page->getLatest()];
+			if ( $this->localCache->hasField( $classCacheKey, $page->getLatest() ) && !$isOld ) {
+				return $this->localCache->getField( $classCacheKey, $page->getLatest() );
 			}
 			$output = $primaryCache->get( $page, $parserOptions );
 		} elseif ( $useCache === self::CACHE_SECONDARY && $revision ) {
@@ -231,11 +232,7 @@ class ParserOutputAccess {
 		}
 
 		if ( $output && !$isOld ) {
-			if ( count( $this->localCache ) >= self::LOCAL_CACHE_SIZE ) {
-				// Remove oldest entry
-				unset( $this->localCache[ array_key_first( $this->localCache ) ] );
-			}
-			$this->localCache[$classCacheKey] = [ $page->getLatest() => $output ];
+			$this->localCache->setField( $classCacheKey, $page->getLatest(), $output );
 		}
 
 		if ( $output ) {
@@ -314,11 +311,7 @@ class ParserOutputAccess {
 		if ( $output && !$isOld ) {
 			$primaryCache = $this->getPrimaryCache( $parserOptions );
 			$classCacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions );
-			if ( count( $this->localCache ) >= self::LOCAL_CACHE_SIZE ) {
-				// Remove oldest entry
-				unset( $this->localCache[ array_key_first( $this->localCache ) ] );
-			}
-			$this->localCache[$classCacheKey] = [ $page->getLatest() => $output ];
+			$this->localCache->setField( $classCacheKey, $page->getLatest(), $output );
 		}
 
 		if ( $status->isGood() ) {
