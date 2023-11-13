@@ -407,6 +407,9 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$combinedHtml = $combinedOutput->getText();
 		$mainHtml = $mainOutput->getText();
+
+		$this->assertNotSame( $combinedHtml, $mainHtml );
+
 		$auxHtml = $auxOutput->getText();
 
 		$this->assertStringContainsString( 'Kittens', $mainHtml );
@@ -438,6 +441,22 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( isset( $combinedLinks[NS_MAIN]['Goats'] ), 'links from aux slot' );
 		$this->assertFalse( isset( $mainLinks[NS_MAIN]['Goats'] ), 'no aux links in main' );
 		$this->assertFalse( isset( $auxLinks[NS_MAIN]['Kittens'] ), 'no main links in aux' );
+
+		// Same tests with Parsoid
+		// T351026: We should get only main slot output in the combined output.
+		// T351113 will have to update this test.
+		$options = ParserOptions::newFromAnon();
+		$options->setUseParsoid();
+		$rr = $renderer->getRenderedRevision( $rev, $options );
+
+		$combinedOutput = $rr->getRevisionParserOutput();
+		$mainOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
+		$combinedHtml = $combinedOutput->getText();
+		$this->assertSame( $combinedHtml, $mainOutput->getText() );
+		$this->assertSame( $combinedOutput->getLinks(), $mainOutput->getLinks() );
+		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $combinedHtml );
+		$this->assertStringContainsString( 'Kittens', $combinedHtml );
+		$this->assertStringNotContainsString( 'Goats', $combinedHtml );
 	}
 
 	public function testGetRenderedRevision_noHtml() {
