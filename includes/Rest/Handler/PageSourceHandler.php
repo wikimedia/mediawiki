@@ -11,7 +11,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Title\TitleFormatter;
-use Wikimedia\Assert\Assert;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Handler class for Core REST API Page Source endpoint with the following routes:
@@ -63,11 +63,19 @@ class PageSourceHandler extends SimpleHandler {
 	 */
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
-		$page = $this->contentHelper->getPage();
+		$page = $this->contentHelper->getPageIdentity();
 
-		// The call to $this->contentHelper->getPage() should not return null if
-		// $this->contentHelper->checkAccess() did not throw.
-		Assert::invariant( $page !== null, 'Page should be known' );
+		if ( !$page->exists() ) {
+			// We may get here for "known" but non-existing pages, such as
+			// message pages. Since there is no page, we should still return
+			// a 404. See T349677 for discussion.
+			$titleText = $this->contentHelper->getTitleText() ?? '(unknown)';
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-nonexistent-title' )
+					->plaintextParams( $titleText ),
+				404
+			);
+		}
 
 		$redirectHelper = $this->getRedirectHelper();
 
@@ -96,15 +104,13 @@ class PageSourceHandler extends SimpleHandler {
 				throw new LogicException( "Unknown HTML type $outputMode" );
 		}
 
-		if ( $page ) {
-			// If param redirect=no is present, that means this page can be a redirect
-			// check for a redirectTargetUrl and send it to the body as `redirect_target`
-			'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
-			$redirectTargetUrl = $redirectHelper->getWikiRedirectTargetUrl( $page );
+		// If param redirect=no is present, that means this page can be a redirect
+		// check for a redirectTargetUrl and send it to the body as `redirect_target`
+		'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
+		$redirectTargetUrl = $redirectHelper->getWikiRedirectTargetUrl( $page );
 
-			if ( $redirectTargetUrl ) {
-				$body['redirect_target'] = $redirectTargetUrl;
-			}
+		if ( $redirectTargetUrl ) {
+			$body['redirect_target'] = $redirectTargetUrl;
 		}
 
 		$response = $this->getResponseFactory()->createJson( $body );
