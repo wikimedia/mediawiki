@@ -109,6 +109,7 @@ because of Phabricator reports.
   Instead use DatabaseBlockStore::newFromID().
 * DatabaseBlock::getAutoblockExpiry() was deprecated without replacement.
 * MagicWord::getId() has been deprecated.
+* MagicWordFactory::getSubstIDs() has been deprecated.
 * Status::setMessageLocalizer is deprecated. Callers that want to control the
   localization of the Status object should obtain a StatusFormatter from
   the StatusFormatterFactory.

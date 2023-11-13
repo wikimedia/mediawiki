@@ -36,10 +36,9 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
 		$mwFactory = $this->createNoOpMock( MagicWordFactory::class,
-			[ 'get', 'getVariableIDs', 'getSubstIDs', 'newArray' ] );
+			[ 'get', 'getVariableIDs', 'getSubstArray', 'newArray' ] );
 		$mwFactory->method( 'get' )->willReturn( $mw );
 		$mwFactory->method( 'getVariableIDs' )->willReturn( [] );
-		$mwFactory->method( 'getSubstIDs' )->willReturn( [] );
 
 		$urlUtils = $this->createNoOpMock( UrlUtils::class, [ 'validProtocols' ] );
 		$urlUtils->method( 'validProtocols' )->willReturn( '' );

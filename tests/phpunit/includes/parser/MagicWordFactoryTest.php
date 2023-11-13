@@ -54,13 +54,13 @@ class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsOnly( 'string', $varIds );
 	}
 
-	public function testGetSubstIDs() {
+	public function testGetSubstArray() {
 		$magicWordFactory = $this->makeMagicWordFactory();
-		$substIds = $magicWordFactory->getSubstIDs();
+		$substArray = $magicWordFactory->getSubstArray();
 
-		$this->assertIsArray( $substIds );
-		$this->assertNotEmpty( $substIds );
-		$this->assertContainsOnly( 'string', $substIds );
+		$text = 'SafeSubst:x';
+		$this->assertSame( 'safesubst', $substArray->matchStartAndRemove( $text ) );
+		$this->assertSame( 'x', $text );
 	}
 
 	public function testGetDoubleUnderscoreArray() {
