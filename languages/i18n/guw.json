@@ -8,6 +8,7 @@
 			"Hunpatinjob",
 			"Jamex18",
 			"Joshateji",
+			"Medaho",
 			"Misteld",
 			"Sagbosam",
 			"Samatics",
@@ -915,7 +916,7 @@
 	"showhideselectedfileversions": "Diọ eyin vlavo, wunmẹ wepo he yin dide lọ tọn ni yin whiwhlá kavi lala",
 	"editundo": "lẹkọ",
 	"diff-empty": "(Vogbingbọn ma tin)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Dopo to zepọn he to ṣẹnṣẹn mẹ|$1 to zepọn he to ṣẹnṣẹn mẹ lẹ mẹ}} gbọn zinzantọ dopolọ he ma yin didohia)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Dopo to zepọn he to ṣẹnṣẹn mẹ|$1 to zepọn he to ṣẹnṣẹn mẹ lẹ mẹ}} gbọn {{GENDER:$3|zinzantọ}} dopolọ he ma yin didohia)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Dopo to diọdo he tin to ṣẹnṣẹn lẹ mẹ|$1 diọdo he tin to ṣẹnṣẹn lẹ}} gbọn {{PLURAL:$2|zinzantọ dopo devo|$2 zinzantọ lẹ}} ma yin didohia)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Dopo to diọdo he tin to ṣẹnṣẹn lẹ mẹ|$1 diọdo he tin to ṣẹnṣẹn lẹ}} gbọn {{PLURAL:$2|zinzantọ hugan dopo|$2 zinzantọ lẹ}} ma yin didohia)",
 	"diff-paragraph-moved-tonew": "Hukan ehe ko yin adà diọ na. Ziń nado yi fi yọyọ he ete.",
@@ -3312,7 +3313,7 @@
 	"blockedtext-expiration-longest-block": "Whenue alọhẹndotena he dite hugan na yin didè sẹ: $1",
 	"blockedtext-intended-blockee": "Mẹhe na yin alọhẹndotena lọ: $1",
 	"blockedtext-contact-blocker-admin": "A sọgan dọho hẹ $1 kavi [[{{MediaWiki:Grouppage-sysop}}|anadenanutọ]] devo gando alọhẹndote lọ go.",
-	"blockedtext-block-ip": "IP adlẹsi towe din tọn wẹ $1",
+	"blockedtext-block-ip": "IP adlẹsi towe din tọn wẹ $1.",
 	"blockedtext-block-id": "ID #$1 he yin alọhẹndotena.",
 	"blockedtext-include-details-queries": "Jaale mọ yi nudọnamẹ he to aga lẹ do dodinnanu depope he basi ate mẹ."
 }

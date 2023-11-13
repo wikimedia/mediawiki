@@ -118,7 +118,7 @@
 			"아라"
 		]
 	},
-	"tog-underline": "Links onderstrepen:",
+	"tog-underline": "Koppelingen onderstrepen:",
 	"tog-hideminor": "Kleine bewerkingen in recente wijzigingen verbergen",
 	"tog-hidepatrolled": "Gemarkeerde bewerkingen in recente wijzigingen verbergen",
 	"tog-newpageshidepatrolled": "Gemarkeerde pagina's in de lijst met nieuwe pagina's verbergen",
@@ -1870,7 +1870,7 @@
 	"upload-options": "Uploadinstellingen",
 	"watchthisupload": "Dit bestand volgen",
 	"filewasdeleted": "Er is eerder een bestand met deze naam verwijderd.\nRaadpleeg het $1 voordat u het opnieuw toevoegt.",
-	"filename-thumb-name": "Dit ziet eruit als de naam van een miniatuurbestand. Upload alstublieft geen miniaturen opnieuw in de wiki. Is dit niet het geval, corrigeer dan de bestandsnaam naar een meer betekenisvolle naam zonder het voorvoegsel voor miniaturen.",
+	"filename-thumb-name": "Dit ziet eruit als de titel van een miniatuur. Upload geen miniaturen terug naar dezelfde wiki. Zo niet, corrigeer dan de bestandsnaam zodat deze duidelijker is en geen voorvoegsel “thumbnail” heeft.",
 	"filename-bad-prefix": "De naam van het bestand dat u aan het uploaden bent begint met '''\"$1\"''', wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven.\nKies een duidelijke naam voor uw bestand.",
 	"filename-prefix-blacklist": " #<!-- leave this line exactly as it is --> <pre>\n# De syntaxis is als volgt:\n#   * Alle tekst vanaf het teken \"#\" tot het einde van de regel wordt gezien als opmerking\n#   * Iedere niet-lege regel is een voorvoegsel voor bestandsnamen die vaak automatisch worden toegekend door digitale camera's\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # sommige mobiele telefoons\nIMG # algemeen\nJD # Jenoptik\nMGP # Pentax\nPICT # overig\n #</pre> <!-- leave this line exactly as it is -->",
 	"upload-proto-error": "Verkeerd protocol",

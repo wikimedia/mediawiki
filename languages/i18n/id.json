@@ -4249,8 +4249,8 @@
 	"right-renameuser": "Mengubah nama pengguna",
 	"renameuser-renamed-notice": "Penguna ini telah berganti nama.\nLog pergantian nama disediakan di bawah untuk referensi.",
 	"log-unknown-action": "melakukan tindakan aneh \"$2\" pada [[$1]]",
-	"createacct-benefit-heading-temp-user": "Terima kasih telah berkontribusi di Wikipedia. Buatlah akun untuk mengakses fitur tambahan.",
-	"createacct-benefit-subheading-temp-user": "Wikipedia dibuat oleh orang-orang seperti Anda. Dengan mempunyai akun, Anda dapat memiliki identitas permanen dan aman serta akses ke fitur-fitur seperti:",
+	"createacct-benefit-heading-temp-user": "Terima kasih telah berkontribusi di {{SITENAME}}. Buatlah akun untuk mengakses fitur tambahan.",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} dibuat oleh orang-orang seperti Anda. Dengan mempunyai akun, Anda dapat memiliki identitas permanen dan aman serta akses ke fitur-fitur seperti:",
 	"benefit-1-description": "Daftar pantauan yang memungkinkan Anda melacak halaman yang Anda minati.",
 	"benefit-2-description": "Daftar permanen berisi kontribusi yang Anda berikan pada suatu proyek",
 	"benefit-3-description": "Preferensi yang memungkinkan Anda menyesuaikan pengalaman Anda."

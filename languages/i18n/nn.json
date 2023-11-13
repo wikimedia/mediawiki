@@ -1519,6 +1519,7 @@
 	"rcfilters-filter-categorization-description": "Oppføringar av sider som vert lagde til eller fjerna frå katerogiar.",
 	"rcfilters-filter-logactions-label": "Loggførte handlingar",
 	"rcfilters-filter-logactions-description": "Administrative handlingar, kontoopprettingar, sideslettingar, opplastingar …",
+	"rcfilters-filter-accountcreations-label": "Kontoopprettingar",
 	"rcfilters-filter-accountcreations-description": "Loggpostar for oppretting av konto. Logga handlingar må vera markerte.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "Filteret «Småplukk» strir mot eit eller fleire filter for «Type endring», av di somme typar endring ikkje kan merkast som «små». Dei motseiande filtera er framheva i området «Aktive filter» ovafor.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Somme typar endring kan ikkje merkast som «små», so dette filteret strir mot fylgjande filter for «Type endring»: $1",

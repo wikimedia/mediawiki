@@ -472,7 +472,7 @@
 	"nocookieslogin": "{{SITENAME}} za prijavljanje uporabnikov uporablja piškotke.\nPri vas so onemogočeni.\nProsimo, omogočite jih in poskusite znova.",
 	"nocookiesfornew": "Uporabniški račun ni bil ustvarjen, ker nismo mogli potrditi njegovega izvora.\nPoskrbite, da imate omogočene piškotke, osvežite to stran in poskusite znova.",
 	"createacct-loginerror": "Račun ste uspešno ustvarili, vendar vas ni bilo mogoče samodejno prijaviti. Prosimo, [[Special:UserLogin|prijavite se ročno]].",
-	"createacct-temp-warning": "Urejanja, ki jih opravili s svojim začasnim računom, ne bodo prenesena na vaš stalni račun.",
+	"createacct-temp-warning": "Urejanja, ki ste jih opravili s svojim začasnim računom <strong>$1</strong>, ne bodo prenesena na vaš stalni račun.",
 	"noname": "Niste vnesli veljavnega uporabniškega imena.",
 	"loginsuccesstitle": "Zdaj ste prijavljeni",
 	"loginsuccess": "'''Zdaj ste prijavljeni v {{GRAMMAR:tožilnik|{{SITENAME}}}} kot »$1«.'''",
