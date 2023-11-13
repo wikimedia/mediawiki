@@ -135,13 +135,14 @@ class LocalFileDeleteBatch {
 
 		if ( count( $oldRels ) ) {
 			$dbw = $this->file->repo->getPrimaryDB();
-			$res = $dbw->select(
-				'oldimage',
-				[ 'oi_archive_name', 'oi_sha1' ],
-				[ 'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) ),
-					'oi_name' => $this->file->getName() ], // performance
-				__METHOD__
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'oi_archive_name', 'oi_sha1' ] )
+				->from( 'oldimage' )
+				->where( [
+					'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) ),
+					'oi_name' => $this->file->getName() // performance
+				] )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				if ( $row->oi_archive_name === '' ) {
