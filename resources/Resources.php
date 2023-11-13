@@ -2285,6 +2285,25 @@ return [
 	'mediawiki.special.preferences.styles.ooui' => [
 		'styles' => 'resources/src/mediawiki.special.preferences.styles.ooui.less',
 	],
+	'mediawiki.special.editrecovery.styles' => [
+		'styles' => 'resources/src/mediawiki.special.editrecovery/styles.less',
+	],
+	'mediawiki.special.editrecovery' => [
+		'packageFiles' => [
+			'resources/src/mediawiki.special.editrecovery/init.js',
+			'resources/src/mediawiki.special.editrecovery/SpecialEditRecovery.vue',
+			'resources/src/mediawiki.editRecovery/storage.js',
+		],
+		'dependencies' => [
+			'vue',
+		],
+		'messages' => [
+			'editlink',
+			'parentheses',
+			'edit-recovery-special-intro',
+			'edit-recovery-special-intro-empty',
+		],
+	],
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special.search/search.js',
 		'dependencies' => 'mediawiki.widgets.SearchInputWidget',

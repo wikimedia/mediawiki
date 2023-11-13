@@ -2053,6 +2053,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Specials\\SpecialDiff' => __DIR__ . '/includes/specials/SpecialDiff.php',
 	'MediaWiki\\Specials\\SpecialDoubleRedirects' => __DIR__ . '/includes/specials/SpecialDoubleRedirects.php',
 	'MediaWiki\\Specials\\SpecialEditPage' => __DIR__ . '/includes/specials/SpecialEditPage.php',
+	'MediaWiki\\Specials\\SpecialEditRecovery' => __DIR__ . '/includes/specials/SpecialEditRecovery.php',
 	'MediaWiki\\Specials\\SpecialEditTags' => __DIR__ . '/includes/specials/SpecialEditTags.php',
 	'MediaWiki\\Specials\\SpecialEditWatchlist' => __DIR__ . '/includes/specials/SpecialEditWatchlist.php',
 	'MediaWiki\\Specials\\SpecialEmailInvalidate' => __DIR__ . '/includes/specials/SpecialEmailInvalidate.php',
