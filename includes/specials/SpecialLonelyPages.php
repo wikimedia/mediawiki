@@ -80,37 +80,31 @@ class SpecialLonelyPages extends PageQueryPage {
 	}
 
 	public function getQueryInfo() {
-		$queryInfo = $this->linksMigration->getQueryInfo(
-			'templatelinks',
-			'templatelinks',
-			'LEFT JOIN'
-		);
-		[ $ns, $title ] = $this->linksMigration->getTitleFields( 'templatelinks' );
-		$tables = array_merge( [ 'page', 'pagelinks' ], $queryInfo['tables'] );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks', 'pagelinks', 'LEFT JOIN' );
+		$tables = [ 'page', 'linktarget', 'templatelinks', 'pagelinks' ];
 		$conds = [
-			'pl_namespace' => null,
+			'pl_from' => null,
 			'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 			'page_is_redirect' => 0,
 			'tl_from' => null,
 		];
 		$joinConds = [
-			'pagelinks' => [
+			'templatelinks' => [ 'LEFT JOIN', [ 'tl_target_id=lt_id' ] ],
+			'linktarget' => [
 				'LEFT JOIN', [
-					'pl_namespace = page_namespace',
-					'pl_title = page_title'
+					"lt_namespace = page_namespace",
+					"lt_title = page_title"
 				]
-			],
-		];
-		$templatelinksJoin = [
-			'LEFT JOIN', [
-				"$ns = page_namespace",
-				"$title = page_title"
 			]
 		];
-		if ( in_array( 'linktarget', $tables ) ) {
-			$joinConds['linktarget'] = $templatelinksJoin;
-		} else {
-			$joinConds['templatelinks'] = $templatelinksJoin;
+
+		if ( !in_array( 'linktarget', $queryInfo['tables'] ) ) {
+			$joinConds['pagelinks'] = [
+				'LEFT JOIN', [
+					"pl_namespace = page_namespace",
+					"pl_title = page_title"
+				]
+			];
 		}
 
 		// Allow extensions to modify the query
