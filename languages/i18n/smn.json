@@ -1380,6 +1380,7 @@
 	"whatlinkshere-hideimages": "$1 tiätuvuárkkáliiŋkâ",
 	"whatlinkshere-filters": "Silleeh",
 	"block": "Eesti kevttee",
+	"blockip": "Eesti {{GENDER:$1|kevttee}}",
 	"ipbreason": "Suijâ:",
 	"ipboptions": "2 tiijme:2 hours,1 peivi:1 day,3 peeivi:3 days,1 okko:1 week,2 oho:2 weeks,1 mánuppaje:1 month,3 mánuppaje:3 months,6 mánuppaje:6 months,1 ihe:1 year,pisovâš:infinite",
 	"ipb-pages-label": "Sijđoh",

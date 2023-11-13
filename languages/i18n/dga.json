@@ -83,7 +83,7 @@
 	"pagecategories": "{{PLURAL:$1|Gbulo|Gbulogbulo}}",
 	"category_header": "Peegyiri naŋb be gbulo \"$1\"",
 	"subcategories": "Gbulogbulo bilibilii",
-	"category-media-header": "Saseɛ noba and a lambo \"$1\"",
+	"category-media-header": "Saseɛ noba a lambo \"$1\"",
 	"category-empty": "<em>A ganpeɛlɛ na ba taa poɔ emmo zie.</em>",
 	"hidden-categories": "{{PLURAL:$1|Gbulo naŋ sɔgre|Gbulogbulo naŋ sɔgre}}",
 	"category-subcat-count": "{{PLURAL:$2|A gbulo ŋa yuoŋ la be a gbuli ŋa poɔ.|A gbuli ŋa taa la {{PLURAL:$1|gbulbilii|$1 gbulbilii naŋ tuoro}}, ayi $2 a zaa.}}",

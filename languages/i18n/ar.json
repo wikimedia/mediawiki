@@ -107,7 +107,8 @@
 			"MRidhaAJ",
 			"Alshamiri1",
 			"أيوب",
-			"أبو هشام"
+			"أبو هشام",
+			"LaMagiaaa"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -3776,8 +3777,8 @@
 	"logentry-move-move_redir-noredirect": "{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى $4 على تحويلة دون ترك تحويلة",
 	"logentry-patrol-patrol": "{{GENDER:$2|عاين|عاين}} $1 المراجعة $4 للصفحة $3",
 	"logentry-patrol-patrol-auto": "{{GENDER:$2|عاين|عاينت}} $1 تلقائيا المراجعة $4 للصفحة $3",
-	"logentry-newusers-newusers": "تم إنشاء حساب {{GENDER:$2|المستخدم|المستخدمة}} $1",
-	"logentry-newusers-create": "تم إنشاء حساب {{GENDER:$2|المستخدم|المستخدمة}} $1",
+	"logentry-newusers-newusers": "أُنشِئ حساب {{GENDER:$2|المستخدم|المستخدمة}} $1",
+	"logentry-newusers-create": "أُنشِئ حساب {{GENDER:$2|المستخدم|المستخدمة}} $1",
 	"logentry-newusers-create2": "أنشأ $1 حسابا {{GENDER:$2|للمستخدم|للمستخدمة}} $3",
 	"logentry-newusers-byemail": "{{GENDER:$2|أنشأ|أنشأت}} $1 حساب المستخدم $3 وأُرسلت كلمة السر بالبريد الإلكتروني",
 	"logentry-newusers-autocreate": "أنشئ حساب {{GENDER:$2|المستخدم|المستخدمة}} $1 تلقائيًا",

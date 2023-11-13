@@ -2338,7 +2338,7 @@
 	"unwatchthispage": "Desatén",
 	"notanarticle": "No és una pàgina amb contingut",
 	"notvisiblerev": "S'ha suprimit la versió",
-	"watchlist-details": "{{PLURAL:$1|pàgina|pàgines}} a la llista de seguiment, sense comptar les pàgines de discussió.",
+	"watchlist-details": "{{PLURAL:$1|pàgina|pàgines}} a la llista de seguiment, sense comptar-hi les pàgines de discussió.",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|queda $1 dia|queden $1 dies}}",
 	"watchlist-expiring-days-full-text": "{{PLURAL:$1|1 dia|$1 dies}} restants a la vostra llista de seguiment",
 	"watchlist-expiry-hours-left": "Queden unes quantes hores",

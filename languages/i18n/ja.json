@@ -152,7 +152,7 @@
 	"tog-hidepatrolled": "最近の更新に巡回済みの編集を表示しない",
 	"tog-newpageshidepatrolled": "新しいページの一覧に巡回済みのページを表示しない",
 	"tog-hidecategorization": "ページのカテゴリ追加・除去を表示しない",
-	"tog-extendwatchlist": "ウォッチリストを展開し、最新のものだけでなくすべての変更を表示",
+	"tog-extendwatchlist": "最新のものだけでなくすべての変更を表示するようにウォッチリストを拡張",
 	"tog-usenewrc": "最近の更新とウォッチリストで、複数の変更をページごとにまとめる",
 	"tog-numberheadings": "見出しに番号を自動的に振る",
 	"tog-editondblclick": "ダブルクリックでページを編集",
