@@ -2435,13 +2435,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) {
 				$config = MediaWikiServices::getInstance()->getMainConfig();
-				$ids = $dbw->selectFieldValues(
-					'page_restrictions',
-					'pr_id',
-					[ $dbw->expr( 'pr_expiry', '<', $dbw->timestamp() ) ],
-					$fname,
-					[ 'LIMIT' => $config->get( MainConfigNames::UpdateRowsPerQuery ) ] // T135470
-				);
+				$ids = $dbw->newSelectQueryBuilder()
+					->select( 'pr_id' )
+					->from( 'page_restrictions' )
+					->where( $dbw->expr( 'pr_expiry', '<', $dbw->timestamp() ) )
+					->limit( $config->get( MainConfigNames::UpdateRowsPerQuery ) ) // T135470
+					->caller( $fname )->fetchFieldValues();
 				if ( $ids ) {
 					$dbw->newDeleteQueryBuilder()
 						->deleteFrom( 'page_restrictions' )
