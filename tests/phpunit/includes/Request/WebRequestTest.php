@@ -297,6 +297,11 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $req->getFuzzyBool( 'z' ), 'Not found' );
 	}
 
+	public function testGetFuzzyBoolDefaultTrue() {
+		$req = $this->mockWebRequest();
+		$this->assertTrue( $req->getFuzzyBool( 'z', true ), 'Not found, default true' );
+	}
+
 	public function testGetCheck() {
 		$req = $this->mockWebRequest( [ 'x' => 'Value', 'zero' => '0' ] );
 		$this->assertFalse( $req->getCheck( 'z' ), 'Not found' );
