@@ -668,8 +668,12 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function getFuzzyBool( $name, $default = false ): bool {
-		return $this->getBool( $name, $default )
-			&& strcasecmp( $this->getRawVal( $name ), 'false' ) !== 0;
+		$value = $this->getRawVal( $name );
+		if ( $value === null ) {
+			return (bool)$default;
+		}
+
+		return $value && strcasecmp( $value, 'false' ) !== 0;
 	}
 
 	/**
