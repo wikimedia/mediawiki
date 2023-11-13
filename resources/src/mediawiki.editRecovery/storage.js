@@ -154,7 +154,7 @@ function deleteData( pageName, section ) {
 			const cursor = event.target.result;
 			if ( cursor ) {
 				const key = cursor.key;
-				const deleteSection = ( section === null && key[ 1 ] === '' ) || section === key[ 1 ];
+				const deleteSection = ( !section && key[ 1 ] === '' ) || section === key[ 1 ];
 				if ( key[ 0 ] === pageName && deleteSection ) {
 					objectStore.delete( key );
 				}
