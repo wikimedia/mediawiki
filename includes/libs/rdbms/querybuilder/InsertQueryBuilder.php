@@ -317,9 +317,9 @@ class InsertQueryBuilder {
 	}
 
 	/**
-	 * Run the constructed INSERT query and return the result.
+	 * Run the constructed INSERT query.
 	 */
-	public function execute() {
+	public function execute(): void {
 		if ( !$this->rows ) {
 			// (T347610) For now, allow this but deprecate it, so we can trace these and fix them rapidly.
 			wfDeprecatedMsg( self::class . ' triggered with no rows set; exit early instead.' );
