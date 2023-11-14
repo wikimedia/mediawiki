@@ -2867,11 +2867,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Determine whether the user is a newbie. Newbies are either
-	 * anonymous IPs, or the most recently created accounts.
+	 * Determine whether the user is a newbie. Newbies are one of:
+	 * - IP address editors
+	 * - temporary accounts
+	 * - most recently created full accounts.
 	 * @return bool
 	 */
 	public function isNewbie() {
+		// IP users and temp account users are excluded from the autoconfirmed group.
 		return !$this->isAllowed( 'autoconfirmed' );
 	}
 
