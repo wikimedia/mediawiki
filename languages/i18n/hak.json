@@ -992,7 +992,7 @@
 	"enotif_lastvisited": "請參詳$1查看汝上次訪問後嘅所有更改。",
 	"enotif_lastdiff": "請參詳$1查看邇次更改。",
 	"enotif_anon_editor": "匿名用戶$1",
-	"enotif_body": "Chhîn-oi ke $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nphiên-si̍p chak-yeu: $PAGESUMMARY $PAGEMINOREDIT lièn-kiê chhṳ́ phiên-si̍p-chá: email: $PAGEEDITOR_EMAIL pún-chham: $PAGEEDITOR_WIKI chhai ngì fóng-mun chhṳ́-chông chṳ̂-chhièn, chiông-lòi ke kiên-kói vù-nèn hiong ngì thûng-tî. Ngì khó-yî chhûng-sat ngì só-yû kam-sṳ vùn-chông ke thûng-tî phêu-ki. {{SITENAME}} thûng-tî ne-thúng -- yeu kói-pien ngì-ke kam-sṳ lie̍t-péu sat-thin, chhiáng chhâm-siòng {{canonicalurl:{{#special:EditWatchlist}}}} chin-yit-phu ke pông-chhu: $HELPPAGE",
+	"enotif_body": "Chhîn-oi ke $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nphiên-si̍p chak-yeu: $PAGESUMMARY $PAGEMINOREDIT lièn-kiê chhṳ́ phiên-si̍p-chá: email: $PAGEEDITOR_EMAIL pún-chham: $PAGEEDITOR_WIKI chhai ngì fóng-mun chhṳ́-chông chṳ̂-chhièn, chiông-lòi ke kiên-kói vù-nèn hiong ngì thûng-tî. Ngì khó-yî chhûng-sat ngì só-yû kam-sṳ vùn-chông ke thûng-tî phêu-ki. {{SITENAME}} thûng-tî ne-thúng -- yeu kói-pien ngì-ke kam-sṳ lie̍t-péu sat-thin, chhiáng chhâm-siòng {{canonicalurl:{{#special:EditWatchlist}}}} chin-yit-phu ke pông-chhu: $HELPPAGE",
 	"deletepage-submit": "刪除頁面",
 	"confirm": "確認",
 	"excontent": "內容係:“$1”",

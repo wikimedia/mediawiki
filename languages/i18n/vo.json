@@ -1214,7 +1214,7 @@
 	"enotif_lastvisited": "Logolös eli $1 ad tuvön lisedi votükamas valik pos visit lätik ola.",
 	"enotif_lastdiff": "Logolös eli $1 ad tuvön votükami at.",
 	"enotif_anon_editor": "geban nennemik: $1",
-	"enotif_body": "O $WATCHINGUSERNAME löfik!\n\n$PAGEINTRO $NEWPAGE\n\nNaböfodönuam redakana: $PAGESUMMARY $PAGEMINOREDIT\n\nKanol penön gebane:\npot leäktronik: $PAGEEDITOR_EMAIL\npad in vük: $PAGEEDITOR_WIKI\n\nVotükams fütürik no ponunons ole if no ovisitol dönu padi at.\nKanol i geükön nunamastänis padas valik galädaliseda olik.\n\nNunamasit flenöfik ela {{SITENAME}} olik\n\n--\nAd votükön parametami galädaliseda olik, loglös\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nKüpets e yuf pluik:\n$HELPPAGE",
+	"enotif_body": "O $WATCHINGUSERNAME löfik!\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nNaböfodönuam redakana: $PAGESUMMARY $PAGEMINOREDIT\n\nKanol penön gebane:\npot leäktronik: $PAGEEDITOR_EMAIL\npad in vük: $PAGEEDITOR_WIKI\n\nVotükams fütürik no ponunons ole if no ovisitol dönu padi at.\nKanol i geükön nunamastänis padas valik galädaliseda olik.\n\nNunamasit flenöfik ela {{SITENAME}} olik\n\n--\nAd votükön parametami galädaliseda olik, loglös\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nKüpets e yuf pluik:\n$HELPPAGE",
 	"deletepage-submit": "Moükolöd padi",
 	"confirm": "Fümedolös",
 	"excontent": "ninäd äbinon: '$1'",

@@ -1663,7 +1663,7 @@
 	"enotif_lastvisited": "Dii $1 barmay kul se za war naarumi koraa ga \\",
 	"enotif_lastdiff": "Dii $1 ka barmaa woo guna.",
 	"enotif_anon_editor": "goykaw maatugante $1",
-	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nEditor's summary: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThere will be no other notifications in case of further activity unless you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.\n\nYour friendly {{SITENAME}} notification system\n\n--\nTo change your email notification settings, visit\n{{canonicalurl:{{#special:Preferences}}}}\n\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTo delete the page from your watchlist, visit\n$UNWATCHURL\n\nFeedback and further assistance:\n$HELPPAGE",
+	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nEditor's summary: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThere will be no other notifications in case of further activity unless you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.\n\nYour friendly {{SITENAME}} notification system\n\n--\nTo change your email notification settings, visit\n{{canonicalurl:{{#special:Preferences}}}}\n\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTo delete the page from your watchlist, visit\n$UNWATCHURL\n\nFeedback and further assistance:\n$HELPPAGE",
 	"deletepage-submit": "Moɲoo tuusu",
 	"confirm": "Cimandi",
 	"excontent": "gundekuna bay ka ti: \"$1\" \\",

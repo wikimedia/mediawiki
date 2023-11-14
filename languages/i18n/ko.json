@@ -2451,7 +2451,7 @@
 	"enotif_lastdiff": "이 바뀜을 보려면 $1을 보세요",
 	"enotif_anon_editor": "익명 사용자 $1",
 	"enotif_temp_editor": "임시 사용자 $1",
-	"enotif_body": "$WATCHINGUSERNAME님,\n\n$PAGEINTRO $NEWPAGE\n\n편집 요약: $PAGESUMMARY $PAGEMINOREDIT\n\n다음을 통해 편집자와 대화를 할 수 있습니다:\n이메일: $PAGEEDITOR_EMAIL\n위키: $PAGEEDITOR_WIKI\n\n로그인한 상태에서 이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다. 모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.\n\n{{SITENAME}} 알림 시스템\n\n--\n이메일 알림 설정을 바꾸시려면 이곳을 방문해주세요:\n{{canonicalurl:{{#special:Preferences}}}}\n\n주시문서 설정을 바꾸려면 다음을 사용하세요:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\n주시문서에서 이 문서를 지우려면 이곳을 방문해주세요:\n$UNWATCHURL\n\n피드백 및 추가 도움 얻기:\n$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME님,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\n편집 요약: $PAGESUMMARY $PAGEMINOREDIT\n\n다음을 통해 편집자와 대화를 할 수 있습니다:\n이메일: $PAGEEDITOR_EMAIL\n위키: $PAGEEDITOR_WIKI\n\n로그인한 상태에서 이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다. 모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.\n\n{{SITENAME}} 알림 시스템\n\n--\n이메일 알림 설정을 바꾸시려면 이곳을 방문해주세요:\n{{canonicalurl:{{#special:Preferences}}}}\n\n주시문서 설정을 바꾸려면 다음을 사용하세요:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\n주시문서에서 이 문서를 지우려면 이곳을 방문해주세요:\n$UNWATCHURL\n\n피드백 및 추가 도움 얻기:\n$HELPPAGE",
 	"enotif_minoredit": "사소한 편집입니다",
 	"deletepage-deletetalk": "관련 토론 문서 삭제",
 	"deletepage-submit": "문서 삭제",

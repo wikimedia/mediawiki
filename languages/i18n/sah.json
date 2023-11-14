@@ -2380,7 +2380,7 @@
 	"enotif_lastdiff": "Уларытыыны манна көр: $1",
 	"enotif_anon_editor": "ааттамматах кыттааччы $1",
 	"enotif_temp_editor": "быстах кэмнээх бэлиэтиини туттар кыттааччы $1",
-	"enotif_body": "Аламай күн сырдыгынан, $WATCHINGUSERNAME!\n\n$PAGEINTRO $NEWPAGE\n\nУларытыы кылгас ис хоһооно: $PAGESUMMARY $PAGEMINOREDIT\n\nУларыппыт киһиэхэ суруйуоххун сөп:\nэл. почта: $PAGEEDITOR_EMAIL\nбиики: $PAGEEDITOR_WIKI\n\nБу сирэйи бэлиэтэммит ааккынан киирэн көрбөтөххүнэ уларыйбытын туһунан биллэриилэр кэлиэхтэрэ суоҕа. Биллэриилэри аналлаах сирэйгэ отой арааран кэбиһиэххин эмиэ сөп.\n\n             Бары үтүөнү кытта, {{SITENAME}} биллэрэр тиһигэ\n\n--\nБиллэрии кэлэрин салайыы\n{{canonicalurl:{{#special:Preferences}}}}\n\nКэтиир тиһиги уларытыы\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nКэтиир тиһиктэн сирэйдэри сотуу\n$UNWATCHURL\n\nКөмө\n$HELPPAGE",
+	"enotif_body": "Аламай күн сырдыгынан, $WATCHINGUSERNAME!\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nУларытыы кылгас ис хоһооно: $PAGESUMMARY $PAGEMINOREDIT\n\nУларыппыт киһиэхэ суруйуоххун сөп:\nэл. почта: $PAGEEDITOR_EMAIL\nбиики: $PAGEEDITOR_WIKI\n\nБу сирэйи бэлиэтэммит ааккынан киирэн көрбөтөххүнэ уларыйбытын туһунан биллэриилэр кэлиэхтэрэ суоҕа. Биллэриилэри аналлаах сирэйгэ отой арааран кэбиһиэххин эмиэ сөп.\n\n             Бары үтүөнү кытта, {{SITENAME}} биллэрэр тиһигэ\n\n--\nБиллэрии кэлэрин салайыы\n{{canonicalurl:{{#special:Preferences}}}}\n\nКэтиир тиһиги уларытыы\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nКэтиир тиһиктэн сирэйдэри сотуу\n$UNWATCHURL\n\nКөмө\n$HELPPAGE",
 	"enotif_minoredit": "Бу улахан суолтата суох уларытыы",
 	"deletepage-deletetalk": "Сөп түбэһэр ырытыы сирэйин сот",
 	"deletepage-submit": "Сирэйи сот",

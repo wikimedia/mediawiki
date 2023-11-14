@@ -1665,7 +1665,7 @@
 	"enotif_lastvisited": "Fún gbogbo àwọn àtúnṣe látìgbà ìbẹ̀wò yín gbẹ̀yìn, ẹ wo $1",
 	"enotif_lastdiff": "Láti wo àtúnṣe yìí, ẹ wo $1",
 	"enotif_anon_editor": "oníṣe aláìlórúkọ $1",
-	"enotif_body": "$WATCHINGUSERNAME ọ̀wọ́n,\n\n$PAGEINTRO $NEWPAGE\n\nÀkótán olùtúnṣe: $PAGESUMMARY $PAGEMINOREDIT\n\nÌpàdé olùtúnṣe:\nlẹ́tà: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKò ní sí ìfitọ́nilétí míràn mọ́ fún àyípadà ọjọ́ọwájú àyàfi tí ẹ bá ṣàbẹ̀wò ojúewé yìí.\nẸ sì tún le ṣe àtúntò àwọn àmì ìfitọ́nilétí fún gbogbo àwọn ojúewé mímójútó nínú ìmójútó yín.\n\nSístẹ́mù ìfitọ́nilétí {{SITENAME}} ọ̀rẹ́ yín \n\n--\nLáti ṣàyípadà ìtò ìṣeàkíyèsí e-mail yín, ẹ lọ sí\n{{canonicalurl:{{#special:Preferences}}}}\n\nLáti ṣèyípadà ìtò ìmójútó yín, ẹ lọ sí\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nLáti ṣèparẹ́ ojúewé náà kúrò nínú ìmjútó yín, ẹ lọ sí\n$UNWATCHURL\n\nFún ìrànwọ́ àti ìbérè:\n$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME ọ̀wọ́n,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nÀkótán olùtúnṣe: $PAGESUMMARY $PAGEMINOREDIT\n\nÌpàdé olùtúnṣe:\nlẹ́tà: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKò ní sí ìfitọ́nilétí míràn mọ́ fún àyípadà ọjọ́ọwájú àyàfi tí ẹ bá ṣàbẹ̀wò ojúewé yìí.\nẸ sì tún le ṣe àtúntò àwọn àmì ìfitọ́nilétí fún gbogbo àwọn ojúewé mímójútó nínú ìmójútó yín.\n\nSístẹ́mù ìfitọ́nilétí {{SITENAME}} ọ̀rẹ́ yín \n\n--\nLáti ṣàyípadà ìtò ìṣeàkíyèsí e-mail yín, ẹ lọ sí\n{{canonicalurl:{{#special:Preferences}}}}\n\nLáti ṣèyípadà ìtò ìmójútó yín, ẹ lọ sí\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nLáti ṣèparẹ́ ojúewé náà kúrò nínú ìmjútó yín, ẹ lọ sí\n$UNWATCHURL\n\nFún ìrànwọ́ àti ìbérè:\n$HELPPAGE",
 	"enotif_minoredit": "Àtúnṣe kéreré kan nì yí",
 	"deletepage-submit": "Ìparẹ́ ojúewé",
 	"confirm": "Ìmúdájú",

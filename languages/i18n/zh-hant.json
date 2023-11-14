@@ -2503,7 +2503,7 @@
 	"enotif_lastdiff": "要檢視此次變更請見 $1",
 	"enotif_anon_editor": "匿名使用者 $1",
 	"enotif_temp_editor": "臨時使用者$1",
-	"enotif_body": "$WATCHINGUSERNAME 您好，\n\n$PAGEINTRO $NEWPAGE\n\n編輯摘要：$PAGESUMMARY $PAGEMINOREDIT\n\n編輯者聯絡方式：\n信箱：$PAGEEDITOR_EMAIL\n本站：$PAGEEDITOR_WIKI\n\n在您檢視該頁面之前，接下來的變更系統不會再向您發出通知。您也可以在監視清單中重設您所有監視頁面的通知狀態。\n\n{{SITENAME}} 通知系統\n\n--\n更改您的電子郵件通知設定，請至：\n{{canonicalurl:{{#special:Preferences}}}}\n\n更改您的監視清單設定，請至：\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\n從監視清單中刪除此頁面，請至：\n$UNWATCHURL\n\n回函並取得進一步協助：\n$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME 您好，\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\n編輯摘要：$PAGESUMMARY $PAGEMINOREDIT\n\n編輯者聯絡方式：\n信箱：$PAGEEDITOR_EMAIL\n本站：$PAGEEDITOR_WIKI\n\n在您檢視該頁面之前，接下來的變更系統不會再向您發出通知。您也可以在監視清單中重設您所有監視頁面的通知狀態。\n\n{{SITENAME}} 通知系統\n\n--\n更改您的電子郵件通知設定，請至：\n{{canonicalurl:{{#special:Preferences}}}}\n\n更改您的監視清單設定，請至：\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\n從監視清單中刪除此頁面，請至：\n$UNWATCHURL\n\n回函並取得進一步協助：\n$HELPPAGE",
 	"enotif_minoredit": "這是一個小修改",
 	"deletepage-deletetalk": "刪除相關的討論頁",
 	"deletepage-submit": "刪除頁面",

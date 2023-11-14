@@ -1923,7 +1923,7 @@
 	"enotif_lastvisited": "देखू $1 अपन अन्तिम बेर अएलाक बादक परिवर्तन लेल।",
 	"enotif_lastdiff": "ऐ परिवर्तनकेँ देखबा लेल $1 देखू।",
 	"enotif_anon_editor": "गुप्त प्रयोक्ता $1",
-	"enotif_body": "प्रिय $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nसम्पादकीय: $PAGESUMMARY $PAGEMINOREDIT\n\nसम्पादकसँ सम्पर्क करू:\nई-पत्र: $PAGEEDITOR_EMAIL\nविकी: $PAGEEDITOR_WIKI\n\nआन परिवर्तन भेलापर कोनो सूचना नै देल जाएत जँ अहाँ ई पन्ना नै देखब।\nअपन साकांक्ष सूचीक सूचना पेबाक प्रकार अहाँ बदलि सकै छी।\n\n             अहाँक प्रिय {{SITENAME}} सूचना प्रणाली\n\n--\nअपन ई-पत्र सूचना प्रकार बदलबाक लेल देखू\n{{canonicalurl:{{#special:Preferences}}}}\nअपन साकांक्ष-सूची सूचना प्रकार बदलबाक लेल देखू\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nअपन साकांक्ष-सूचीसँ कोनो पन्ना मेटेबाक लेल देखू\n$UNWATCHURL\n\nअपन अनुभव बतेबा वा कोनो सहायता लेल:\n$HELPPAGE",
+	"enotif_body": "प्रिय $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nसम्पादकीय: $PAGESUMMARY $PAGEMINOREDIT\n\nसम्पादकसँ सम्पर्क करू:\nई-पत्र: $PAGEEDITOR_EMAIL\nविकी: $PAGEEDITOR_WIKI\n\nआन परिवर्तन भेलापर कोनो सूचना नै देल जाएत जँ अहाँ ई पन्ना नै देखब।\nअपन साकांक्ष सूचीक सूचना पेबाक प्रकार अहाँ बदलि सकै छी।\n\n             अहाँक प्रिय {{SITENAME}} सूचना प्रणाली\n\n--\nअपन ई-पत्र सूचना प्रकार बदलबाक लेल देखू\n{{canonicalurl:{{#special:Preferences}}}}\nअपन साकांक्ष-सूची सूचना प्रकार बदलबाक लेल देखू\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nअपन साकांक्ष-सूचीसँ कोनो पन्ना मेटेबाक लेल देखू\n$UNWATCHURL\n\nअपन अनुभव बतेबा वा कोनो सहायता लेल:\n$HELPPAGE",
 	"enotif_minoredit": "अल्प सम्पादन",
 	"deletepage-submit": "पन्ना मेटाउ",
 	"confirm": "पक्का छी",

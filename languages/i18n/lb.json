@@ -2158,7 +2158,7 @@
 	"enotif_lastdiff": "Fir dës Ännerung ze gesinn, kuckt $1",
 	"enotif_anon_editor": "Anonymme Benotzer $1",
 	"enotif_temp_editor": "temporäre Benotzer $1",
-	"enotif_body": "Léiwe $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nResumé vum Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT\n\nDen Editeur kontaktéieren:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nEt gi soulaang keng weider Maile geschéckt, bis Dir d'Säit nees emol besicht hutt wärend deem Dir ageloggt sidd.\nOp Ärer Iwwerwaachungslëscht kënnt Dir all Noriichtemarkeren zesummen zrécksetzen.\n\n\nÄre frëndleche(n) {{SITENAME}} Noriichtessystem\n\n--\n\nFir d'Astellungen op Ären E-Mailnoriichten z'änneren, besicht wgl.\n{{canonicalurl:{{#special:Preferences}}}}\n\n\nFir d'Astellunge vun Ärer Iwwerwaachungslëscht z'änneren, besicht wgl.\n{{canonicalurl:Special:Watchlist/edit}}\n\nFeedback a weider Hëllef:\n$HELPPAGE",
+	"enotif_body": "Léiwe $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nResumé vum Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT\n\nDen Editeur kontaktéieren:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nEt gi soulaang keng weider Maile geschéckt, bis Dir d'Säit nees emol besicht hutt wärend deem Dir ageloggt sidd.\nOp Ärer Iwwerwaachungslëscht kënnt Dir all Noriichtemarkeren zesummen zrécksetzen.\n\n\nÄre frëndleche(n) {{SITENAME}} Noriichtessystem\n\n--\n\nFir d'Astellungen op Ären E-Mailnoriichten z'änneren, besicht wgl.\n{{canonicalurl:{{#special:Preferences}}}}\n\n\nFir d'Astellunge vun Ärer Iwwerwaachungslëscht z'änneren, besicht wgl.\n{{canonicalurl:Special:Watchlist/edit}}\n\nFeedback a weider Hëllef:\n$HELPPAGE",
 	"enotif_minoredit": "Dëst ass eng kleng Ännerung",
 	"deletepage-submit": "Säit läschen",
 	"confirm": "Confirméieren",

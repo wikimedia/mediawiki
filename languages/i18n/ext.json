@@ -1015,7 +1015,7 @@
 	"enotif_lastvisited": "Vai pa $1 pa visoreal tolos cambius hechus dendi la tu última vesita.",
 	"enotif_lastdiff": "Vai pa $1 pa visoreal esti chambu.",
 	"enotif_anon_editor": "usuáriu anónimu $1",
-	"enotif_body": "Estimau $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSíntesis el eitol: $PAGESUMMARY $PAGEMINOREDIT\n\nContatal con el eitol:\nEmail: $PAGEEDITOR_EMAIL\nGüiqui: $PAGEEDITOR_WIKI\n\nNel chascu en que nu vesitis el artículu, nu se te hazrán mas notificacionis. Amas, pueis cancelal tolas notificacionis ena tu lista e seguimientu.\n\n             Salús dendi {{SITENAME}}!!\n\n--\nPa hazel chambus ena tu lista e seguimientu, vesita\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nAyua la Güiquipeya:\n$HELPPAGE",
+	"enotif_body": "Estimau $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nSíntesis el eitol: $PAGESUMMARY $PAGEMINOREDIT\n\nContatal con el eitol:\nEmail: $PAGEEDITOR_EMAIL\nGüiqui: $PAGEEDITOR_WIKI\n\nNel chascu en que nu vesitis el artículu, nu se te hazrán mas notificacionis. Amas, pueis cancelal tolas notificacionis ena tu lista e seguimientu.\n\n             Salús dendi {{SITENAME}}!!\n\n--\nPa hazel chambus ena tu lista e seguimientu, vesita\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nAyua la Güiquipeya:\n$HELPPAGE",
 	"deletepage-submit": "Esborral páhina",
 	"confirm": "Confirmal",
 	"excontent": "el continiu era: '$1'",

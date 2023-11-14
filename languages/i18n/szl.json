@@ -1323,7 +1323,7 @@
 	"enotif_lastvisited": "Uobejřij na zajće $1 wšyjstke půmjyńańo uod Twojej uostatńij wizyty.",
 	"enotif_lastdiff": "Uobejřij na zajće $1 te pomjyńeńe.",
 	"enotif_anon_editor": "užytkowńik anůnimowy $1",
-	"enotif_body": "Drogi/o $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nOpis pomjyńeńa: $PAGESUMMARY $PAGEMINOREDIT\n\nSkůntaktuj śe s autorym:\ne-brif: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nW připadku kolejnych půmjyńań nowe powjadůmjyńo ńy bydům wysuane, dopůki ńy uodwjydziš tyi zajty.\nMožeš tyž zresetować wšyjstke flagi powjadůmjyń na swojej liśće zajtůw, na kere dowoš pozůr.\n\nWjadůmość systymu powjadůmjyń {{GRAMMAR:D.lp|{{SITENAME}}}}\n\n--\nKejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš pozůr, uodwjydź\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPomoc:\n$HELPPAGE",
+	"enotif_body": "Drogi/o $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nOpis pomjyńeńa: $PAGESUMMARY $PAGEMINOREDIT\n\nSkůntaktuj śe s autorym:\ne-brif: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nW připadku kolejnych půmjyńań nowe powjadůmjyńo ńy bydům wysuane, dopůki ńy uodwjydziš tyi zajty.\nMožeš tyž zresetować wšyjstke flagi powjadůmjyń na swojej liśće zajtůw, na kere dowoš pozůr.\n\nWjadůmość systymu powjadůmjyń {{GRAMMAR:D.lp|{{SITENAME}}}}\n\n--\nKejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš pozůr, uodwjydź\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPomoc:\n$HELPPAGE",
 	"deletepage-submit": "Skasuj artykuł",
 	"confirm": "Potwiyrdź",
 	"excontent": "zawartość zajty „$1”",

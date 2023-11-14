@@ -2088,7 +2088,7 @@
 	"enotif_lastvisited": "Per tota cambias pos tua visita la plu resente, vide $1",
 	"enotif_lastdiff": "Per regarda esta cambia, vide $1",
 	"enotif_anon_editor": "usor anonim $1",
-	"enotif_body": "Cara $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nResoma de editor: $PAGESUMMARY $PAGEMINOREDIT\n\nContata la editor:\neposta: $PAGEEDITOR_EMAIL\nvici: $PAGEEDITOR_WIKI\n\nNo plu avisas va aveni pos plu cambias, estra si tu visita esta paje cuando tu es autenticida. Tu pote ance reinisia la ajustas de avisa per tota la pajes cual tu monitori.\n\nTua sistem amin de avisa de {{SITENAME}}\n\n--\nPer cambia tua preferes de avisa par eposta, visita\n{{canonicalurl:{{#special:Preferences}}}}\n\nPer cambia tua lista de pajes monitorida, visita\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPer sutrae la paje de tua lista monitorida, visita\n$UNWATCHURL\n\nComentas e plu aida:\n$HELPPAGE",
+	"enotif_body": "Cara $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nResoma de editor: $PAGESUMMARY $PAGEMINOREDIT\n\nContata la editor:\neposta: $PAGEEDITOR_EMAIL\nvici: $PAGEEDITOR_WIKI\n\nNo plu avisas va aveni pos plu cambias, estra si tu visita esta paje cuando tu es autenticida. Tu pote ance reinisia la ajustas de avisa per tota la pajes cual tu monitori.\n\nTua sistem amin de avisa de {{SITENAME}}\n\n--\nPer cambia tua preferes de avisa par eposta, visita\n{{canonicalurl:{{#special:Preferences}}}}\n\nPer cambia tua lista de pajes monitorida, visita\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPer sutrae la paje de tua lista monitorida, visita\n$UNWATCHURL\n\nComentas e plu aida:\n$HELPPAGE",
 	"enotif_minoredit": "Esta es un edita minor",
 	"deletepage-submit": "Sutrae paje",
 	"confirm": "Aproba",

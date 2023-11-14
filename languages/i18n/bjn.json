@@ -1717,7 +1717,7 @@
 	"enotif_lastvisited": "Janaki $1 gasan samunyaan paubahan mula Pian pauncitan tadi bailang.",
 	"enotif_lastdiff": "Janaki $1 hagan maniringi paubahan ngini.",
 	"enotif_anon_editor": "pamakai kada-bangaran $1",
-	"enotif_body": "Halo $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nKasimpulan pambabak: $PAGESUMMARY $PAGEMINOREDIT\n\nHubungi pambabak:\nsuril: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKami kada pacangan mangirim pamadahan lain amun ada paubahan labih lanjut sampai Pian mailangi laman ngini.\nPian kawa jua manyitil-pulang bandira pamadahan hagan samunyaan laman nang Pian itihi dalam paitihan Pian.\n\nSistim kakawalan pamadahan {{SITENAME}} Pian\n\n--\nHagan maubah satilan suril pamadahan Pian, ilangi\n{{canonicalurl:{{#special:Preferences}}}}\n\nHagan maubah satilan paitihan Pian, ilangi\n$UNWATCHURL\n\nKitihan-bulik wan patulung labih lanjut:\n$HELPPAGE",
+	"enotif_body": "Halo $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nKasimpulan pambabak: $PAGESUMMARY $PAGEMINOREDIT\n\nHubungi pambabak:\nsuril: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKami kada pacangan mangirim pamadahan lain amun ada paubahan labih lanjut sampai Pian mailangi laman ngini.\nPian kawa jua manyitil-pulang bandira pamadahan hagan samunyaan laman nang Pian itihi dalam paitihan Pian.\n\nSistim kakawalan pamadahan {{SITENAME}} Pian\n\n--\nHagan maubah satilan suril pamadahan Pian, ilangi\n{{canonicalurl:{{#special:Preferences}}}}\n\nHagan maubah satilan paitihan Pian, ilangi\n$UNWATCHURL\n\nKitihan-bulik wan patulung labih lanjut:\n$HELPPAGE",
 	"deletepage-submit": "Hapus laman",
 	"confirm": "Yakinakan",
 	"excontent": "isi sabalumnya: '$1'",

@@ -2516,7 +2516,7 @@
 	"enotif_lastdiff": "この変更内容を表示するには、 $1 をご覧ください。",
 	"enotif_anon_editor": "匿名利用者 $1",
 	"enotif_temp_editor": "臨時利用者$1",
-	"enotif_body": "$WATCHINGUSERNAMEさん\n\n$PAGEINTRO $NEWPAGE\n\n編集内容の要約: $PAGESUMMARY ($PAGEMINOREDIT)\n\n投稿者の連絡先:\nメール: $PAGEEDITOR_EMAIL\nウィキ: $PAGEEDITOR_WIKI\n\nログインした状態でこのページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。\n\n{{SITENAME}}通知システム\n\n--\nメール通知の設定は、以下のページで変更してください:\n{{canonicalurl:{{#special:Preferences}}}}\n\nウォッチリストの設定は、以下のページで変更してください:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nこのページは、以下のページでウォッチリストから削除できます:\n$UNWATCHURL\n\nご意見、お問い合わせ:\n$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAMEさん\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\n編集内容の要約: $PAGESUMMARY ($PAGEMINOREDIT)\n\n投稿者の連絡先:\nメール: $PAGEEDITOR_EMAIL\nウィキ: $PAGEEDITOR_WIKI\n\nログインした状態でこのページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。\n\n{{SITENAME}}通知システム\n\n--\nメール通知の設定は、以下のページで変更してください:\n{{canonicalurl:{{#special:Preferences}}}}\n\nウォッチリストの設定は、以下のページで変更してください:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nこのページは、以下のページでウォッチリストから削除できます:\n$UNWATCHURL\n\nご意見、お問い合わせ:\n$HELPPAGE",
 	"enotif_minoredit": "細部の編集",
 	"deletepage-deletetalk": "関連するトークページを削除",
 	"deletepage-submit": "ページを削除",

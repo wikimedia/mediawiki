@@ -2166,7 +2166,7 @@
 	"enotif_lastvisited": "თქვენი ბოლო შემოსვლის შემდეგ გაკეთებული ყველა ცვლილების სანახავად, იხილეთ $1.",
 	"enotif_lastdiff": "ამ ცვლილების სანახავად, იხილეთ $1.",
 	"enotif_anon_editor": "ანონიმური მომხმარებელი $1",
-	"enotif_body": "ძვირფასო $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nცვლილების მოკლე აღწერა: $PAGESUMMARY $PAGEMINOREDIT\n\nდაუკავშირდით რედაქტორს:\nელ.ფოსტა: $PAGEEDITOR_EMAIL\nვიკი: $PAGEEDITOR_WIKI\n\nშემდგომი ცვლილებების შესახებ შეტყობინებების მისაღებად ამ გვერდს კვლავ უნდა ესტუმროთ. თქვენ აგრეთვე შეგიძლიათ თქვენ კონტროლის სიაში გათიშოთ შეტყობინების ფუნქცია ყველა გვერდისათვის.\n\n\t\t\t {{SITENAME}} შეტყობინებათა სისტემა\n\n--\nშეტყობინების პარამეტრების ცვლილება\n{{canonicalurl:{{#special:Preferences}}}}\n\nთქვენი კონტროლის სიის პარამეტრების ცვლილება\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nგვერდების ამოშლა თქვენი კონტროლის სიიდან\n$UNWATCHURL\n\nდამატებითი ინფორმაცია\n$HELPPAGE",
+	"enotif_body": "ძვირფასო $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nცვლილების მოკლე აღწერა: $PAGESUMMARY $PAGEMINOREDIT\n\nდაუკავშირდით რედაქტორს:\nელ.ფოსტა: $PAGEEDITOR_EMAIL\nვიკი: $PAGEEDITOR_WIKI\n\nშემდგომი ცვლილებების შესახებ შეტყობინებების მისაღებად ამ გვერდს კვლავ უნდა ესტუმროთ. თქვენ აგრეთვე შეგიძლიათ თქვენ კონტროლის სიაში გათიშოთ შეტყობინების ფუნქცია ყველა გვერდისათვის.\n\n\t\t\t {{SITENAME}} შეტყობინებათა სისტემა\n\n--\nშეტყობინების პარამეტრების ცვლილება\n{{canonicalurl:{{#special:Preferences}}}}\n\nთქვენი კონტროლის სიის პარამეტრების ცვლილება\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nგვერდების ამოშლა თქვენი კონტროლის სიიდან\n$UNWATCHURL\n\nდამატებითი ინფორმაცია\n$HELPPAGE",
 	"enotif_minoredit": "ეს არის მცირე შესწორება",
 	"deletepage-submit": "გვერდის წაშლა",
 	"confirm": "დადასტურება",

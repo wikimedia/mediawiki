@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"AguzulH",
 			"Amara-Amaziɣ",
 			"Amire80",
 			"Aslmad mohamed belarhzali",
@@ -157,8 +158,8 @@
 	"searchbutton": "ⵔⵣⵓ",
 	"go": "ⴷⴷⵓ",
 	"searcharticle": "ⴷⴷⵓ",
-	"skin-view-history": "ⵙⴽⵏ ⴰⵎⵣⵔⴰⵢ",
-	"history": "ⴰⵎⵣⵔⴰⵢ ⵏ ⵜⴰⵙⵏⴰ",
+	"skin-view-history": "ⵙⴽⵏ ⴰⵎⵣⵔⵓⵢ",
+	"history": "ⴰⵎⵣⵔⵓⵢ ⵏ ⵜⴰⵙⵏⴰ",
 	"history_short": "ⴰⵎⵣⵔⵓⵢ",
 	"history_small": "ⴰⵎⵣⵔⵓⵢ",
 	"updatedmarker": "ⵜⴻⵜⵜⵓⵙⴷⵖⵉ ⵙⴳ ⵜⵔⵣⴰⴼⵜ ⵏⵏⴽ ⵜⴰⵏⴳⴳⴰⵔⵓⵜ:",
@@ -712,7 +713,7 @@
 	"action-purge": "ⵙⵙⵓⴳⵓ ⵜⴰⵙⵏⴰ ⴰⴷ",
 	"nchanges": "$1 {{PLURAL:$1|ⵓⵙⵏⴼⵍ|ⵉⵙⵏⴼⵍⵏ}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|ⵙⴳ ⵓⵔⵣⴰⴼ ⴰⵎⴳⴳⴰⵔⵓ}}",
-	"enhancedrc-history": "ⴰⵎⵣⵔⴰⵢ",
+	"enhancedrc-history": "ⴰⵎⵣⵔⵓⵢ",
 	"recentchanges": "ⵉⵙⵏⴼⵍⵏ ⵉⵎⴳⴳⵓⵔⴰ",
 	"recentchanges-legend": "ⵜⵉⴷⵖⵔⵉⵏ ⵏ ⵉⵙⵏⴼⵍⵏ ⵉⵎⴳⴳⵓⵔⴰ",
 	"recentchanges-summary": "ⴹⴼⵔ ⵉⵙⵏⵉⴼⵉⵍⵏ ⵉⵎⴳⴳⵓⵔⴰ ⴰⴽⴽ ⵖⴼ ⵓⵡⵉⴽⵉ ⴷⴳ ⵜⴰⵙⵏⴰ ⴰⴷ.",
@@ -1014,7 +1015,7 @@
 	"tooltip-ca-edit": "ⵙⵏⴼⵍ ⵜⴰⵙⵏⴰ ⴰ",
 	"tooltip-ca-addsection": "ⵙⵏⵜⵉ ⵢⴰⵜ ⵜⴳⵣⵎⵉ ⵜⴰⵎⴰⵢⵏⵓⵜ",
 	"tooltip-ca-viewsource": "ⵜⴰⵙⵏⴰ ⴰ ⵜⴻⵜⵜⵓⴼⵔⴰⴳ.\nⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵙⴽⵏⴷ ⴰⵙⴰⴳⴰⵎ",
-	"tooltip-ca-history": "ⴰⵎⵣⵔⴰⵢ ⵏ ⵜⵙⵏⵖⴰⵍ ⵏ ⵜⴰⵙⵏⴰ ⴰⴷ",
+	"tooltip-ca-history": "ⴰⵎⵣⵔⵓⵢ ⵏ ⵜⵙⵏⵖⴰⵍ ⵏ ⵜⴰⵙⵏⴰ ⴰⴷ",
 	"tooltip-ca-protect": "ⵢⴰⵔⴰⵢ ⵜⴰⵙⵏⴰ ⴰ",
 	"tooltip-ca-delete": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ ⴰⴷ",
 	"tooltip-ca-move": "ⵙⵎⵓⵜⵜⵉ ⵜⴰⵙⵏⴰ ⴰ",

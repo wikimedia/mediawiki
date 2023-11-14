@@ -2396,7 +2396,7 @@
 	"enotif_lastdiff": "Бу үзгәреш белән танышу өчен, $1 бүлеген карагыз",
 	"enotif_anon_editor": "$1 исемле аноним кулланучы",
 	"enotif_temp_editor": "$1 исемле вакытлы кулланучы",
-	"enotif_body": "Хөрмәтле $WATCHINGUSERNAME,\n\n\n$PAGEINTRO $NEWPAGE\n\nҮзгәртүнең кыска эчтәлеге: $PAGESUMMARY $PAGEMINOREDIT\n\nҮзгәртүчегә язу:\nэл. почта $PAGEEDITOR_EMAIL\nвики $PAGEEDITOR_WIKI\n\nБу биткә кермәсәгез, аның башка үзгәртүләре турында хат җибәрелмәячәк. Шулай ук сез күзәтү исемлегегездә булган битләр өчен хәбәр бирү флагын алып куя аласыз.\n\n             {{grammar:genitive|{{SITENAME}}}} хәбәр бирү системасы\n\n--\nХәбәр итүләр көйләүләрен үзгәртү:\n{{canonicalurl:{{#special:Preferences}}}}\n\nКүзәтү исемлеге көйләүләрен үзгәртү:\n$HELPPAGE\n\nБитне сезнең күзәтү исемлегездән бетерү:\n$UNWATCHURL\n\nЭлемтә һәм ярдәм:\n$HELPPAGE",
+	"enotif_body": "Хөрмәтле $WATCHINGUSERNAME,\n\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nҮзгәртүнең кыска эчтәлеге: $PAGESUMMARY $PAGEMINOREDIT\n\nҮзгәртүчегә язу:\nэл. почта $PAGEEDITOR_EMAIL\nвики $PAGEEDITOR_WIKI\n\nБу биткә кермәсәгез, аның башка үзгәртүләре турында хат җибәрелмәячәк. Шулай ук сез күзәтү исемлегегездә булган битләр өчен хәбәр бирү флагын алып куя аласыз.\n\n             {{grammar:genitive|{{SITENAME}}}} хәбәр бирү системасы\n\n--\nХәбәр итүләр көйләүләрен үзгәртү:\n{{canonicalurl:{{#special:Preferences}}}}\n\nКүзәтү исемлеге көйләүләрен үзгәртү:\n$HELPPAGE\n\nБитне сезнең күзәтү исемлегездән бетерү:\n$UNWATCHURL\n\nЭлемтә һәм ярдәм:\n$HELPPAGE",
 	"enotif_minoredit": "Бу кече төзәтмә",
 	"deletepage-deletetalk": "Бәйләнешле фикер алышу битен бетерергә",
 	"deletepage-submit": "Битне бетерү",

@@ -2146,7 +2146,7 @@
 	"enotif_lastvisited": "你上次視察以嚟嘅修改請睇$1。",
 	"enotif_lastdiff": "睇$1去睇吓呢一次更改。",
 	"enotif_anon_editor": "匿名用戶$1",
-	"enotif_body": "$WATCHINGUSERNAME先生／小姐你好，\n\n$PAGEINTRO $NEWPAGE\n\n編輯者留低嘅撮要：$PAGESUMMARY $PAGEMINOREDIT\n\n聯絡呢個編輯者:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\n今後唔會再有進一步嘅通知，除非你再來呢版。你亦都可以喺你嘅監視清單度復位所有監視頁面嘅通知標誌。\n\n            {{SITENAME}}通知系統\n\n--\n要修改你嘅監視清單設定，請睇{{canonicalurl:{{#special:EditWatchlist}}}}\n\n要刪除你嘅監視清單度嘅呢一版，請睇$UNWATCHURL\n\n回饋及更多幫助：\n$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME先生／小姐你好，\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\n編輯者留低嘅撮要：$PAGESUMMARY $PAGEMINOREDIT\n\n聯絡呢個編輯者:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\n今後唔會再有進一步嘅通知，除非你再來呢版。你亦都可以喺你嘅監視清單度復位所有監視頁面嘅通知標誌。\n\n            {{SITENAME}}通知系統\n\n--\n要修改你嘅監視清單設定，請睇{{canonicalurl:{{#special:EditWatchlist}}}}\n\n要刪除你嘅監視清單度嘅呢一版，請睇$UNWATCHURL\n\n回饋及更多幫助：\n$HELPPAGE",
 	"enotif_minoredit": "呢次係細改",
 	"deletepage-deletetalk": "刪埋相應嘅傾偈版",
 	"deletepage-submit": "剷版",

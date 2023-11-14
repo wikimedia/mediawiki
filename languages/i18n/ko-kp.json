@@ -974,7 +974,7 @@
 	"wlnote": "$3 $4 기준으로, 아래에 최근 {{PLURAL:$2|<strong>$2</strong>시간}} 동안 {{PLURAL:$1|마지막 바뀜이|마지막 바뀜 <strong>$1</strong>개가}} 있습니다.",
 	"watchlist-options": "감시문서목록 설정",
 	"enotif_reset": "모든 문서를 방문한것으로 표시하기",
-	"enotif_body": "$WATCHINGUSERNAME님,\n\n$PAGEINTRO $NEWPAGE\n\n편집 요약: $PAGESUMMARY $PAGEMINOREDIT\n\n다음을 통해 편집자와 대화를 할수 있습니다:\n전자우편: $PAGEEDITOR_EMAIL\n위키: $PAGEEDITOR_WIKI\n\n가입한 상태에서 이 문서를 열기 전에는 다른 통지우편을 더 이상 보내지 않습니다. 모든 감시문서의 통지딱지를 초기화할수도 있습니다.\n\n{{SITENAME}} 통지 시스템\n\n--\n전자우편 통지설정을 바꾸시려면 이곳을 방문해주세요:\n{{canonicalurl:{{#special:Preferences}}}}\n\n감시문서설정을 바꾸려면 다음을 사용하세요:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\n감시문서에서 이 문서를 지우려면 이곳을 방문해주세요:\n$UNWATCHURL\n\n의견 및 추가 도움 얻기:\n$HELPPAGE",
+	"enotif_body": "$WATCHINGUSERNAME님,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\n편집 요약: $PAGESUMMARY $PAGEMINOREDIT\n\n다음을 통해 편집자와 대화를 할수 있습니다:\n전자우편: $PAGEEDITOR_EMAIL\n위키: $PAGEEDITOR_WIKI\n\n가입한 상태에서 이 문서를 열기 전에는 다른 통지우편을 더 이상 보내지 않습니다. 모든 감시문서의 통지딱지를 초기화할수도 있습니다.\n\n{{SITENAME}} 통지 시스템\n\n--\n전자우편 통지설정을 바꾸시려면 이곳을 방문해주세요:\n{{canonicalurl:{{#special:Preferences}}}}\n\n감시문서설정을 바꾸려면 다음을 사용하세요:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\n감시문서에서 이 문서를 지우려면 이곳을 방문해주세요:\n$UNWATCHURL\n\n의견 및 추가 도움 얻기:\n$HELPPAGE",
 	"dellogpage": "삭제 기록",
 	"rollbacklink": "되돌림",
 	"rollbacklinkcount": "{{PLURAL:$1|편집}} $1회 되돌림",

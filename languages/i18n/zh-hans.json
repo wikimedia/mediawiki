@@ -2569,7 +2569,7 @@
 	"enotif_lastdiff": "要查看此次更改，请参见 $1",
 	"enotif_anon_editor": "匿名用户$1",
 	"enotif_temp_editor": "临时用户$1",
-	"enotif_body": "尊敬的 $WATCHINGUSERNAME：\n\n您好！\n$PAGEINTRO$NEWPAGE\n\n编辑摘要：$PAGESUMMARY $PAGEMINOREDIT\n\n可通过以下方式联系编辑者：\n电子邮件：$PAGEEDITOR_EMAIL\n用户页面：$PAGEEDITOR_WIKI\n\n在您登录并访问该页面之前，我们不会发送新增更改的通知。您也可以重设您的监视列表中所有监视页面的通知标志。\n\n{{SITENAME}}通知系统\n\n--\n更改邮件通知设置：\n{{canonicalurl:{{#special:Preferences}}}}\n更改监视列表设置：\n{{canonicalurl:{{#special:EditWatchlist}}}}\n从监视列表中删除该页面：\n$UNWATCHURL\n反馈与其他帮助:\n$HELPPAGE",
+	"enotif_body": "尊敬的 $WATCHINGUSERNAME：\n\n您好！\n$PAGEINTRO $NEWPAGE $PAGELOG\n\n编辑摘要：$PAGESUMMARY $PAGEMINOREDIT\n\n可通过以下方式联系编辑者：\n电子邮件：$PAGEEDITOR_EMAIL\n用户页面：$PAGEEDITOR_WIKI\n\n在您登录并访问该页面之前，我们不会发送新增更改的通知。您也可以重设您的监视列表中所有监视页面的通知标志。\n\n{{SITENAME}}通知系统\n\n--\n更改邮件通知设置：\n{{canonicalurl:{{#special:Preferences}}}}\n更改监视列表设置：\n{{canonicalurl:{{#special:EditWatchlist}}}}\n从监视列表中删除该页面：\n$UNWATCHURL\n反馈与其他帮助:\n$HELPPAGE",
 	"enotif_minoredit": "这是一个小编辑",
 	"deletepage-deletetalk": "删除相关的讨论页",
 	"deletepage-submit": "删除页面",

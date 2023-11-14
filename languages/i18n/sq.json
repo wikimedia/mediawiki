@@ -2000,7 +2000,7 @@
 	"enotif_lastvisited": "Për të gjitha ndryshimet që prej vizitës tuaj të fundit, shikoni $1",
 	"enotif_lastdiff": "Për të shikuar këtë ndryshim, shikoni $1",
 	"enotif_anon_editor": "përdorues anonim $1",
-	"enotif_body": "I nderuar $WATCHINGUSERNAME, \n\n$PAGEINTRO $NEWPAGE\n\nPërmbledhja e redaktorit: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakto:\nemail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nNuk do të ketë njoftime të tjera për ndryshimet e ardhshme përveç nëse e vizitoni faqen. Gjithashtu mund të ktheni gjendjen e njoftimeve për të gjitha faqet nën mbikëqyrje.\n\nMiku juaj njoftues nga {{SITENAME}}\n\n--\nPër të ndryshuar parapëlqimet e mbikëqyrjes, shikoni {{canonicalurl:Special:Watchlist/edit}}\n\nPër të larguar faqen nga lista juaj e mbikëqyrjes, shikoni\n$UNWATCHURL\n\nPër përshtypje dhe ndihmë të mëtejshme:\n$HELPPAGE",
+	"enotif_body": "I nderuar $WATCHINGUSERNAME, \n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nPërmbledhja e redaktorit: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakto:\nemail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nNuk do të ketë njoftime të tjera për ndryshimet e ardhshme përveç nëse e vizitoni faqen. Gjithashtu mund të ktheni gjendjen e njoftimeve për të gjitha faqet nën mbikëqyrje.\n\nMiku juaj njoftues nga {{SITENAME}}\n\n--\nPër të ndryshuar parapëlqimet e mbikëqyrjes, shikoni {{canonicalurl:Special:Watchlist/edit}}\n\nPër të larguar faqen nga lista juaj e mbikëqyrjes, shikoni\n$UNWATCHURL\n\nPër përshtypje dhe ndihmë të mëtejshme:\n$HELPPAGE",
 	"deletepage-deletetalk": "Gris dhe faqen shoqëruese të diskutimeve",
 	"deletepage-submit": "Grise",
 	"confirm": "Konfirmoni",

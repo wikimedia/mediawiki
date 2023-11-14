@@ -2302,7 +2302,7 @@
 	"enotif_lastvisited": "Pre všetky zmeny od vašej poslednej návštevy pozrite $1",
 	"enotif_lastdiff": "Túto zmenu si môžete pozrieť na $1",
 	"enotif_anon_editor": "anonymný používateľ $1",
-	"enotif_body": "Drahý $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nZhrnutie redaktora: $PAGESUMMARY $PAGEMINOREDIT\nKontaktujte používateľa:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nNedostanete ďalšie upozornenia ani v prípade ďalších aktivít na stránke, kým túto stránku nenavštívite.\nMožete tiež vynulovať upozornenia pre všetky vaše sledované stránky.\n\nVáš upozorňovací systém {{GRAMMAR:genitív|{{SITENAME}}}}\n\n--\nZmeniť nastavenia vašich sledovaných stránok môžete na\n{{canonicalurl:Special:Watchlist/edit}}\n\nZmazať stránku z vášho zoznamu sledovaných môžete na\n$UNWATCHURL\n\nNávrhy a ďalšia pomoc:\n{{canonicalurl:{{int:Helppage}}}}",
+	"enotif_body": "Drahý $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nZhrnutie redaktora: $PAGESUMMARY $PAGEMINOREDIT\nKontaktujte používateľa:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nNedostanete ďalšie upozornenia ani v prípade ďalších aktivít na stránke, kým túto stránku nenavštívite.\nMožete tiež vynulovať upozornenia pre všetky vaše sledované stránky.\n\nVáš upozorňovací systém {{GRAMMAR:genitív|{{SITENAME}}}}\n\n--\nZmeniť nastavenia vašich sledovaných stránok môžete na\n{{canonicalurl:Special:Watchlist/edit}}\n\nZmazať stránku z vášho zoznamu sledovaných môžete na\n$UNWATCHURL\n\nNávrhy a ďalšia pomoc:\n{{canonicalurl:{{int:Helppage}}}}",
 	"enotif_minoredit": "Toto je drobná úprava",
 	"deletepage-deletetalk": "Vymazať pridruženú diskusnú stránku",
 	"deletepage-submit": "Zmazať stránku",

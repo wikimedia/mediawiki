@@ -1948,7 +1948,7 @@
 	"enotif_lastvisited": "Pikeun sakumna parobahan ti saprak jebulan panungtung, tempo $1",
 	"enotif_lastdiff": "Pikeun nempo parobahan, ilikan $1",
 	"enotif_anon_editor": "pamaké anonim $1",
-	"enotif_body": "Sadérék $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nRingkesan éditor: $PAGESUMMARY $PAGEMINOREDIT\n\nKontak éditor:\nsurat {{SERVER}}{{localurl:Husus:Emailuser|target=$PAGEEDITOR}}\nwiki {{SERVER}}{{localurl:Pamaké:$PAGEEDITOR}}\n\nMun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun. Anjeun bisa ogé nyetél deui umbul-umbul pikeun sadaya kaca nu aya na daptar awaseun anjeun.\n\nSistim émbaran {{SITENAME}} pikeun anjeun\n\n--\nPikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Husus:Watchlist|edit=yes}}\n\nAsupan jeung bantuan salajengna:\n$HELPPAGE",
+	"enotif_body": "Sadérék $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nRingkesan éditor: $PAGESUMMARY $PAGEMINOREDIT\n\nKontak éditor:\nsurat {{SERVER}}{{localurl:Husus:Emailuser|target=$PAGEEDITOR}}\nwiki {{SERVER}}{{localurl:Pamaké:$PAGEEDITOR}}\n\nMun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun. Anjeun bisa ogé nyetél deui umbul-umbul pikeun sadaya kaca nu aya na daptar awaseun anjeun.\n\nSistim émbaran {{SITENAME}} pikeun anjeun\n\n--\nPikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Husus:Watchlist|edit=yes}}\n\nAsupan jeung bantuan salajengna:\n$HELPPAGE",
 	"enotif_minoredit": "Ieu mah éditan minor",
 	"deletepage-submit": "Hapus kaca",
 	"confirm": "Konfirmasi",

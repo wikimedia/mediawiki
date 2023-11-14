@@ -2391,7 +2391,7 @@
 	"enotif_lastdiff": "Кхин хьажа. $1 хийцам бовза.",
 	"enotif_anon_editor": "аноним декъашхо $1",
 	"enotif_temp_editor": "Ханна декъашхой $1",
-	"enotif_body": "Маршалла хуьлда, $WATCHINGUSERNAME!\n\n$PAGEINTRO $NEWPAGE\n\nХийцамах лаьцна доцца дӀайаздар: $PAGESUMMARY $PAGEMINOREDIT\n\nХийцам бинчунна тӀедерзар:\nэл. пошт: $PAGEEDITOR_EMAIL\nвики: $PAGEEDITOR_WIKI\nНагахь санна хьо хьайн аккаунтца хӀокху агӀонан чу цадагӀахь, оцунна кхин хийцамаш бича хьуна хаам бира бац. Кхин хьан йиш йу и опци массо агӀонашна дӀайайъа.\nХааман система {{grammar:genitive|{{SITENAME}}}}\n\n--\nХааман хийцам бар\n{{canonicalurl:{{#special:Preferences}}}}\n\nХьайн тергаме могӀам нисбар\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nХьайн тергаме могӀам чуьра агӀонаш дӀайаха\n$UNWATCHURL\n\nЙуханехьа зӀе а, гӀо а\n$HELPPAGE",
+	"enotif_body": "Маршалла хуьлда, $WATCHINGUSERNAME!\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nХийцамах лаьцна доцца дӀайаздар: $PAGESUMMARY $PAGEMINOREDIT\n\nХийцам бинчунна тӀедерзар:\nэл. пошт: $PAGEEDITOR_EMAIL\nвики: $PAGEEDITOR_WIKI\nНагахь санна хьо хьайн аккаунтца хӀокху агӀонан чу цадагӀахь, оцунна кхин хийцамаш бича хьуна хаам бира бац. Кхин хьан йиш йу и опци массо агӀонашна дӀайайъа.\nХааман система {{grammar:genitive|{{SITENAME}}}}\n\n--\nХааман хийцам бар\n{{canonicalurl:{{#special:Preferences}}}}\n\nХьайн тергаме могӀам нисбар\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nХьайн тергаме могӀам чуьра агӀонаш дӀайаха\n$UNWATCHURL\n\nЙуханехьа зӀе а, гӀо а\n$HELPPAGE",
 	"enotif_minoredit": "ХӀара жима нисдар ду",
 	"deletepage-deletetalk": "ДӀайаккха хӀокху агӀонан дийцарийн агӀо",
 	"deletepage-submit": "ДӀайаккха агӀо",
