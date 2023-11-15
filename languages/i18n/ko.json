@@ -91,6 +91,7 @@
 			"그냥기여자",
 			"렌즈",
 			"밝은소년",
+			"밥풀떼기",
 			"아라",
 			"양념파닭",
 			"콩가루"
@@ -694,6 +695,9 @@
 	"resettokens-watchlist-token": "[[Special:Watchlist|주시문서 목록에 있는 문서의 바뀜]]의 웹 피드(Atom/RSS)에 대한 토큰",
 	"resettokens-done": "토큰을 재설정했습니다.",
 	"resettokens-resetbutton": "선택한 토큰 재설정",
+	"editrecovery": "편집 복구",
+	"edit-recovery-nojs-placeholder": "편집 복구 기능에는 JavaScript가 필요합니다.",
+	"edit-recovery-loaded-show": "차이 보기",
 	"edit-recovery-loaded-discard": "바뀜 버리기",
 	"summary": "요약:",
 	"subject": "주제:",

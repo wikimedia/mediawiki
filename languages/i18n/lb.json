@@ -610,6 +610,7 @@
 	"resettokens-watchlist-token": "Token fir de Webfeed (Atom/RSS) vun den [[Special:Watchlist|Ännerungen op Säite vun Ärer Iwwerwaachungslëscht]]",
 	"resettokens-done": "Token zréckgesat.",
 	"resettokens-resetbutton": "Selectionéiert Tokens zrécksetzen",
+	"edit-recovery-special-intro-empty": "Dir hutt keng net gespäichert Ännerungen.",
 	"edit-recovery-loaded-show": "Ännerunge weisen",
 	"summary": "Resumé:",
 	"subject": "Sujet:",

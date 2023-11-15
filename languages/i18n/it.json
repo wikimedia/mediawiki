@@ -745,6 +745,7 @@
 	"resettokens-watchlist-token": "Token per il feed web (Atom/RSS) delle [[Special:Watchlist|modifiche alle pagine nei tuoi osservati speciali]]",
 	"resettokens-done": "Token reimpostati.",
 	"resettokens-resetbutton": "Reimposta token selezionati",
+	"edit-recovery-special-intro-empty": "Non hai modifiche non salvate.",
 	"edit-recovery-loaded-title": "Modifiche ripristinate",
 	"edit-recovery-loaded-message": "Le tue modifiche non salvate sono state automaticamente ripristinate.",
 	"edit-recovery-loaded-show": "Mostra modifiche",
