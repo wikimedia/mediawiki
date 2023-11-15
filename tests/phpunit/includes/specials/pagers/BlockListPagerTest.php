@@ -57,6 +57,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->blockActionInfo = $services->getBlockActionInfo();
 		$this->blockRestrictionStore = $services->getBlockRestrictionStore();
 		$this->blockUtils = $services->getBlockUtils();
+		$this->hideUserUtils = $services->getHideUserUtils();
 		$this->commentStore = $services->getCommentStore();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->linkRenderer = $services->getLinkRenderer();
@@ -71,6 +72,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			$this->blockActionInfo,
 			$this->blockRestrictionStore,
 			$this->blockUtils,
+			$this->hideUserUtils,
 			$this->commentStore,
 			$this->linkBatchFactory,
 			$this->linkRenderer,
@@ -191,6 +193,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'bl_block_email' => 0,
 			'bl_allow_usertalk' => 1,
 			'bl_sitewide' => 0,
+			'bl_deleted' => 0,
 		];
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
 		$wrappedPager->mCurrentRow = $row;

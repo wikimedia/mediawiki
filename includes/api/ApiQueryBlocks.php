@@ -23,6 +23,7 @@
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
@@ -44,6 +45,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	private BlockActionInfo $blockActionInfo;
 	private BlockRestrictionStore $blockRestrictionStore;
 	private CommentStore $commentStore;
+	private HideUserUtils $hideUserUtils;
 
 	/** @var int */
 	private $blockTargetReadStage;
@@ -55,6 +57,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param CommentStore $commentStore
+	 * @param HideUserUtils $hideUserUtils
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -62,13 +65,15 @@ class ApiQueryBlocks extends ApiQueryBase {
 		DatabaseBlockStore $blockStore,
 		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		HideUserUtils $hideUserUtils
 	) {
 		parent::__construct( $query, $moduleName, 'bk' );
 		$this->blockStore = $blockStore;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
+		$this->hideUserUtils = $hideUserUtils;
 		$this->blockTargetReadStage = $this->getConfig()
 			->get( MainConfigNames::BlockTargetMigrationStage ) & SCHEMA_COMPAT_READ_MASK;
 	}
@@ -264,7 +269,13 @@ class ApiQueryBlocks extends ApiQueryBase {
 		}
 
 		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$this->addWhereFld( $bl_deleted, 0 );
+			if ( $this->blockTargetReadStage === SCHEMA_COMPAT_READ_OLD ) {
+				$this->addWhereFld( $bl_deleted, 0 );
+			} else {
+				$this->addWhere(
+					$this->hideUserUtils->getExpression( $db, 'block_target.bt_user' )
+				);
+			}
 		}
 
 		// Filter out expired rows

@@ -50,7 +50,7 @@ class HideUserUtils {
 			 $cond .= 'EXISTS (' .
 				 $dbr->newSelectQueryBuilder()
 					 ->select( '1' )
-					 ->from( 'ipblocks' )
+					 ->from( 'ipblocks', 'hu_ipblocks' )
 					 ->where( [ "ipb_user=$userIdField", 'ipb_deleted' => 1 ] )
 					 ->caller( __METHOD__ )
 					 ->getSQL() .
@@ -59,9 +59,9 @@ class HideUserUtils {
 			$cond .= 'EXISTS (' .
 				$dbr->newSelectQueryBuilder()
 					->select( '1' )
-					->from( 'block_target' )
-					->join( 'block', null, 'bl_target=bt_id' )
-					->where( [ "bt_user=$userIdField", 'bl_deleted' => 1 ] )
+					->from( 'block_target', 'hu_block_target' )
+					->join( 'block', null, 'bl_target=hu_block_target.bt_id' )
+					->where( [ "hu_block_target.bt_user=$userIdField", 'bl_deleted' => 1 ] )
 					->caller( __METHOD__ )
 					->getSQL() .
 				')';

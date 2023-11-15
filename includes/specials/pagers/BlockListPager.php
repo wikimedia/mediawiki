@@ -26,6 +26,7 @@ use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -62,6 +63,7 @@ class BlockListPager extends TablePager {
 	private BlockActionInfo $blockActionInfo;
 	private BlockRestrictionStore $blockRestrictionStore;
 	private BlockUtils $blockUtils;
+	private HideUserUtils $hideUserUtils;
 	private CommentStore $commentStore;
 	private LinkBatchFactory $linkBatchFactory;
 	private RowCommentFormatter $rowCommentFormatter;
@@ -78,6 +80,7 @@ class BlockListPager extends TablePager {
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param BlockUtils $blockUtils
+	 * @param HideUserUtils $hideUserUtils
 	 * @param CommentStore $commentStore
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LinkRenderer $linkRenderer
@@ -91,6 +94,7 @@ class BlockListPager extends TablePager {
 		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,
 		BlockUtils $blockUtils,
+		HideUserUtils $hideUserUtils,
 		CommentStore $commentStore,
 		LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
@@ -115,6 +119,7 @@ class BlockListPager extends TablePager {
 		$this->blockActionInfo = $blockActionInfo;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->blockUtils = $blockUtils;
+		$this->hideUserUtils = $hideUserUtils;
 		$this->commentStore = $commentStore;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->rowCommentFormatter = $rowCommentFormatter;
@@ -162,6 +167,7 @@ class BlockListPager extends TablePager {
 				'change-blocklink',
 				'blocklist-editing',
 				'blocklist-editing-sitewide',
+				'blocklist-hidden-param',
 			];
 
 			foreach ( $keys as $key ) {
@@ -252,6 +258,9 @@ class BlockListPager extends TablePager {
 			case 'params':
 				$properties = [];
 
+				if ( $row->bl_deleted ) {
+					$properties[] = htmlspecialchars( $msg['blocklist-hidden-param' ] );
+				}
 				if ( $row->bl_sitewide ) {
 					$properties[] = htmlspecialchars( $msg['blocklist-editing-sitewide'] );
 				}
@@ -317,6 +326,14 @@ class BlockListPager extends TablePager {
 		if ( $type === Block::TYPE_RANGE ) {
 			$userId = 0;
 			$userName = $target;
+		} elseif ( ( $row->hu_deleted ?? null )
+			&& !$this->getAuthority()->isAllowed( 'hideuser' )
+		) {
+			return Html::element(
+				'span',
+				[ 'class' => 'mw-blocklist-hidden' ],
+				$this->msg( 'blocklist-hidden-placeholder' )->text()
+			);
 		} elseif ( $target instanceof UserIdentity ) {
 			$userId = $target->getId();
 			$userName = $target->getName();
@@ -512,10 +529,21 @@ class BlockListPager extends TablePager {
 			# Filter out any expired blocks
 			$info['conds'][] = $db->expr( 'bl_expiry', '>', $db->timestamp() );
 
-			# Is the user allowed to see hidden blocks?
+			# Filter out blocks with the deleted option if the user doesn't
+			# have permission to see hidden users
+			# TODO: consider removing this -- we could just redact them instead.
+			# The mere fact that an admin has deleted a user does not need to
+			# be private and could be included in block lists and logs for
+			# transparency purposes. Previously, filtering out deleted blocks
+			# was a convenient way to avoid showing the target name.
 			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 				$info['conds']['bl_deleted'] = 0;
 			}
+
+			# Determine if the user is hidden
+			# With multiblocks we can't just rely on bl_deleted in the row being formatted
+			$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
+				$db, 'block_target.bt_user', HideUserUtils::HIDDEN_USERS );
 		}
 		return $info;
 	}
@@ -576,6 +604,7 @@ class BlockListPager extends TablePager {
 		$lb->setCaller( __METHOD__ );
 
 		$partialBlocks = [];
+		$userIds = [];
 		foreach ( $result as $row ) {
 			$target = $row->bt_address ?? $row->bt_user_text;
 			if ( $target !== null ) {
@@ -590,6 +619,10 @@ class BlockListPager extends TablePager {
 
 			if ( !$row->bl_sitewide ) {
 				$partialBlocks[] = (int)$row->bl_id;
+			}
+
+			if ( $row->bt_user ) {
+				$userIds[] = $row->bt_user;
 			}
 		}
 

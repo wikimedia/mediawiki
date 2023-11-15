@@ -83,7 +83,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$conds = [ new Expression( ...$args ) ];
 		$joinConds = [];
 		if ( $excludeHidden ) {
-			$conds[] = 'NOT EXISTS (SELECT  1  FROM ipblocks    WHERE (ipb_user=user_id) AND ipb_deleted = 1  )';
+			$conds[] = 'NOT EXISTS (SELECT  1  FROM ipblocks hu_ipblocks    WHERE (ipb_user=user_id) AND ipb_deleted = 1  )';
 		}
 		$options = [
 			'LIMIT' => $limit,

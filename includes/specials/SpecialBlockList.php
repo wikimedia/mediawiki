@@ -29,6 +29,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
@@ -59,6 +60,7 @@ class SpecialBlockList extends SpecialPage {
 	private IConnectionProvider $dbProvider;
 	private CommentStore $commentStore;
 	private BlockUtils $blockUtils;
+	private HideUserUtils $hideUserUtils;
 	private BlockActionInfo $blockActionInfo;
 	private RowCommentFormatter $rowCommentFormatter;
 
@@ -69,6 +71,7 @@ class SpecialBlockList extends SpecialPage {
 		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils,
+		HideUserUtils $hideUserUtils,
 		BlockActionInfo $blockActionInfo,
 		RowCommentFormatter $rowCommentFormatter
 	) {
@@ -80,6 +83,7 @@ class SpecialBlockList extends SpecialPage {
 		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
+		$this->hideUserUtils = $hideUserUtils;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->rowCommentFormatter = $rowCommentFormatter;
 	}
@@ -200,10 +204,6 @@ class SpecialBlockList extends SpecialPage {
 
 		$conds = [];
 		$db = $this->getDB();
-		// Is the user allowed to see hidden blocks?
-		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$conds[$bl_deleted] = 0;
-		}
 
 		if ( $this->target !== '' ) {
 			[ $target, $type ] = $this->blockUtils->parseBlockTarget( $this->target );
@@ -287,6 +287,7 @@ class SpecialBlockList extends SpecialPage {
 			$this->blockActionInfo,
 			$this->blockRestrictionStore,
 			$this->blockUtils,
+			$this->hideUserUtils,
 			$this->commentStore,
 			$this->linkBatchFactory,
 			$this->getLinkRenderer(),

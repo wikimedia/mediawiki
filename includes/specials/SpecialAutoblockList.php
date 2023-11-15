@@ -27,6 +27,7 @@ use HTMLForm;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
@@ -50,6 +51,7 @@ class SpecialAutoblockList extends SpecialPage {
 	private IConnectionProvider $dbProvider;
 	private CommentStore $commentStore;
 	private BlockUtils $blockUtils;
+	private HideUserUtils $hideUserUtils;
 	private BlockActionInfo $blockActionInfo;
 	private RowCommentFormatter $rowCommentFormatter;
 
@@ -59,6 +61,7 @@ class SpecialAutoblockList extends SpecialPage {
 	 * @param IConnectionProvider $dbProvider
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
+	 * @param HideUserUtils $hideUserUtils
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param RowCommentFormatter $rowCommentFormatter
 	 */
@@ -68,6 +71,7 @@ class SpecialAutoblockList extends SpecialPage {
 		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils,
+		HideUserUtils $hideUserUtils,
 		BlockActionInfo $blockActionInfo,
 		RowCommentFormatter $rowCommentFormatter
 	) {
@@ -78,6 +82,7 @@ class SpecialAutoblockList extends SpecialPage {
 		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
+		$this->hideUserUtils = $hideUserUtils;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->rowCommentFormatter = $rowCommentFormatter;
 	}
@@ -155,6 +160,7 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->blockActionInfo,
 			$this->blockRestrictionStore,
 			$this->blockUtils,
+			$this->hideUserUtils,
 			$this->commentStore,
 			$this->linkBatchFactory,
 			$this->getLinkRenderer(),
