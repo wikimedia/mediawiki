@@ -3952,12 +3952,6 @@ $wgJobTypesExcludedFromDefaultQueue = null;
 $wgJobBackoffThrottling = null;
 
 /**
- * Config variable stub for the JobSerialCommitThreshold setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::JobSerialCommitThreshold
- */
-$wgJobSerialCommitThreshold = null;
-
-/**
  * Config variable stub for the JobTypeConf setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::JobTypeConf
  */

@@ -31,6 +31,9 @@ For notes on 1.41.x and older releases, see HISTORY.
 
 ==== Removed configuration ====
 * $wgDisableCookieCheck has been removed.
+* $wgJobSerialCommitThreshold has been removed without deprecation,
+  it wasn't used anywhere according to codesearch and any setups using this
+  config will perform just fine but might be less performant.
 * …
 
 === New user-facing features in 1.42 ===

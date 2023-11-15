@@ -11354,24 +11354,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Make job runners commit changes for replica DB-lag prone jobs one job at a time.
-	 *
-	 * This is useful if there are many job workers that race on replica DB lag checks.
-	 * If set, jobs taking this many seconds of DB write time have serialized commits.
-	 *
-	 * Note that affected jobs may have worse lock contention. Also, if they affect
-	 * several DBs at once they may have a smaller chance of being atomic due to the
-	 * possibility of connection loss while queueing up to commit. Affected jobs may
-	 * also fail due to the commit lock acquisition timeout.
-	 *
-	 * @since 1.26
-	 */
-	public const JobSerialCommitThreshold = [
-		'default' => false,
-		'type' => 'float|false',
-	];
-
-	/**
 	 * Map of job types to configuration arrays.
 	 *
 	 * This determines which queue class and storage system is used for each job type.
