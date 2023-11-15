@@ -63,7 +63,7 @@ $process = proc_open(
 	$pipes
 );
 
-$pathsToJsonFilesStr = stream_get_contents( $pipes[1] );
+$extensionData = stream_get_contents( $pipes[1] );
 fclose( $pipes[1] );
 $cmdErr = stream_get_contents( $pipes[2] );
 fclose( $pipes[2] );
@@ -73,10 +73,15 @@ if ( $exitCode !== 0 ) {
 	exit( 1 );
 }
 
+// For simplicity, getPHPUnitExtensionsAndSkins uses `\n\nTESTPATHS\n\n` to separate the lists of JSON files and
+// additional test paths, so split the output into the individual lists.
+[ $pathsToJsonFilesStr, $testPathsStr ] = explode( "\n\nTESTPATHS\n\n", $extensionData );
 $pathsToJsonFiles = explode( "\n", $pathsToJsonFilesStr );
 
 /** @internal For use in ExtensionsUnitTestSuite and SkinsUnitTestSuite only */
 define( 'MW_PHPUNIT_EXTENSIONS_PATHS', array_map( 'dirname', $pathsToJsonFiles ) );
+/** @internal For use in ExtensionsTestSuite only */
+define( 'MW_PHPUNIT_EXTENSIONS_TEST_PATHS', explode( "\n", $testPathsStr ) );
 
 $extensionProcessor = new ExtensionProcessor();
 
