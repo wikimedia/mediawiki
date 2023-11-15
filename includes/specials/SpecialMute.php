@@ -217,14 +217,16 @@ class SpecialMute extends FormSpecialPage {
 
 		$target = $this->getTarget();
 
-		$fields['email-blacklist'] = [
-			'type' => 'check',
-			'label-message' => [
-				'specialmute-label-mute-email',
-				$target ? $target->getName() : ''
-			],
-			'default' => $this->isTargetMuted( 'email-blacklist' ),
-		];
+		if ( $target && $this->userIdentityUtils->isNamed( $target ) ) {
+			$fields['email-blacklist'] = [
+				'type' => 'check',
+				'label-message' => [
+					'specialmute-label-mute-email',
+					$target->getName()
+				],
+				'default' => $this->isTargetMuted( 'email-blacklist' ),
+			];
+		}
 
 		$legacyUser = $target ? User::newFromIdentity( $target ) : null;
 		$this->getHookRunner()->onSpecialMuteModifyFormFields( $legacyUser, $this->getUser(), $fields );
@@ -244,7 +246,7 @@ class SpecialMute extends FormSpecialPage {
 		if ( $username !== null ) {
 			$target = $this->userIdentityLookup->getUserIdentityByName( $username );
 		}
-		if ( !$target || !$this->userIdentityUtils->isNamed( $target ) ) {
+		if ( !$target || !$target->isRegistered() ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-invalid-user' );
 		} else {
 			$this->target = $target;

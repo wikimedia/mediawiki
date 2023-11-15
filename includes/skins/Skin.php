@@ -1460,8 +1460,7 @@ abstract class Skin extends ContextSource {
 
 			if ( $user->isRegistered() ) {
 				if ( $this->getConfig()->get( MainConfigNames::EnableSpecialMute ) &&
-					$this->getUser()->isNamed() &&
-					!MediaWikiServices::getInstance()->getUserNameUtils()->isTemp( $rootUser )
+					$this->getUser()->isNamed()
 				) {
 					$nav_urls['mute'] = [
 						'text' => $this->msg( 'mute-preferences' )->text(),
