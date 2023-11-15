@@ -2121,7 +2121,6 @@ return [
 			],
 			'JobBackoffThrottling' => [
 			],
-			'JobSerialCommitThreshold' => false,
 			'JobTypeConf' => [
 				'default' => [
 					'class' => 'JobQueueDB',
@@ -2898,10 +2897,6 @@ return [
 			'JobClasses' => 'object',
 			'JobTypesExcludedFromDefaultQueue' => 'array',
 			'JobBackoffThrottling' => 'object',
-			'JobSerialCommitThreshold' => [
-				0 => 'number',
-				1 => 'boolean',
-			],
 			'JobTypeConf' => 'object',
 			'SpecialPageCacheUpdates' => 'object',
 			'PagePropLinkInvalidations' => 'object',

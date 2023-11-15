@@ -27,11 +27,9 @@ use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBConnectionError;
-use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use Wikimedia\ScopedCallback;
 
 /**
  * Job queue runner utility methods
@@ -47,7 +45,6 @@ class JobRunner {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::JobBackoffThrottling,
 		MainConfigNames::JobClasses,
-		MainConfigNames::JobSerialCommitThreshold,
 		MainConfigNames::MaxJobDBWriteDuration,
 		MainConfigNames::TrxProfilerLimits,
 	];
@@ -303,7 +300,7 @@ class JobRunner {
 	 * Wraps the job's run() and tearDown() methods into appropriate transaction rounds.
 	 * During execution, SPI-based logging will use the ID of the HTTP request that spawned
 	 * the job (instead of the current one). Large DB write transactions will be subject to
-	 * $wgJobSerialCommitThreshold and $wgMaxJobDBWriteDuration.
+	 * $wgMaxJobDBWriteDuration.
 	 *
 	 * This should never be called if there are explicit transaction rounds or pending DB writes
 	 *
@@ -373,7 +370,11 @@ class JobRunner {
 			$status = $job->run();
 			$error = $job->getLastError();
 			// Commit all pending changes from this job
-			$this->commitPrimaryChanges( $job, $fnameTrxOwner );
+			$this->lbFactory->commitPrimaryChanges(
+				$fnameTrxOwner,
+				// Abort if any transaction was too big
+				$this->options->get( MainConfigNames::MaxJobDBWriteDuration )
+			);
 			// Run any deferred update tasks; doUpdates() manages transactions itself
 			DeferredUpdates::doUpdates();
 		} catch ( Throwable $e ) {
@@ -612,82 +613,5 @@ class JobRunner {
 		if ( $this->debug ) {
 			call_user_func_array( $this->debug, [ wfTimestamp( TS_DB ) . " $msg\n" ] );
 		}
-	}
-
-	/**
-	 * Issue a commit on all masters who are currently in a transaction and have
-	 * made changes to the database. It also supports sometimes waiting for the
-	 * local wiki's replica DBs to catch up. See the documentation for
-	 * $wgJobSerialCommitThreshold for more.
-	 *
-	 * @param RunnableJob $job
-	 * @param string $fnameTrxOwner
-	 * @throws DBError
-	 */
-	private function commitPrimaryChanges( RunnableJob $job, $fnameTrxOwner ) {
-		$syncThreshold = $this->options->get( MainConfigNames::JobSerialCommitThreshold );
-
-		$time = false;
-		$lb = $this->lbFactory->getMainLB();
-		if ( $syncThreshold !== false && $lb->hasStreamingReplicaServers() ) {
-			// Generally, there is one primary connection to the local DB
-			$dbwSerial = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
-			// We need natively blocking fast locks
-			if ( $dbwSerial && $dbwSerial->namedLocksEnqueue() ) {
-				$time = $dbwSerial->pendingWriteQueryDuration( $dbwSerial::ESTIMATE_DB_APPLY );
-				if ( $time < $syncThreshold ) {
-					$dbwSerial = false;
-				}
-			} else {
-				$dbwSerial = false;
-			}
-		} else {
-			// There are no replica DBs or writes are all to foreign DB (we don't handle that)
-			$dbwSerial = false;
-		}
-
-		if ( !$dbwSerial ) {
-			$this->lbFactory->commitPrimaryChanges(
-				$fnameTrxOwner,
-				// Abort if any transaction was too big
-				$this->options->get( MainConfigNames::MaxJobDBWriteDuration )
-			);
-
-			return;
-		}
-
-		$ms = intval( 1000 * $time );
-
-		$msg = $job->toString() . " COMMIT ENQUEUED [{job_commit_write_ms}ms of writes]";
-		$this->logger->info( $msg, [
-			'job_type' => $job->getType(),
-			'job_commit_write_ms' => $ms,
-		] );
-
-		$msg = $job->toString() . " COMMIT ENQUEUED [{$ms}ms of writes]";
-		$this->debugCallback( $msg );
-
-		// Wait for an exclusive lock to commit
-		if ( !$dbwSerial->lock( 'jobrunner-serial-commit', $fnameTrxOwner, 30 ) ) {
-			// This will trigger a rollback in the main loop
-			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
-		}
-		$unlocker = new ScopedCallback( static function () use ( $dbwSerial, $fnameTrxOwner ) {
-			$dbwSerial->unlock( 'jobrunner-serial-commit', $fnameTrxOwner );
-		} );
-
-		// Wait for the replica DBs to catch up
-		$pos = $lb->getPrimaryPos();
-		if ( $pos ) {
-			$lb->waitForAll( $pos );
-		}
-
-		// Actually commit the DB primary changes
-		$this->lbFactory->commitPrimaryChanges(
-			$fnameTrxOwner,
-			// Abort if any transaction was too big
-			$this->options->get( MainConfigNames::MaxJobDBWriteDuration )
-		);
-		ScopedCallback::consume( $unlocker );
 	}
 }

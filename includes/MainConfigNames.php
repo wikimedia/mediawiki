@@ -3967,12 +3967,6 @@ class MainConfigNames {
 	public const JobBackoffThrottling = 'JobBackoffThrottling';
 
 	/**
-	 * Name constant for the JobSerialCommitThreshold setting, for use with Config::get()
-	 * @see MainConfigSchema::JobSerialCommitThreshold
-	 */
-	public const JobSerialCommitThreshold = 'JobSerialCommitThreshold';
-
-	/**
 	 * Name constant for the JobTypeConf setting, for use with Config::get()
 	 * @see MainConfigSchema::JobTypeConf
 	 */
