@@ -329,10 +329,10 @@ class LanguageCode {
 		# the results from the capturing groups.
 		# https://www.iana.org/assignments/language-subtag-registry
 
-		$legacy = "en{$s}GB{$s}oed"
+		$legacy = "en{$s}gb{$s}oed"
 			. "|i{$s}(?:ami|bnn|default|enochian|hak|klingon|lux|mingo|navajo|pwn|tao|tay|tsu)"
 			. "|no{$s}(?:bok|nyn)"
-			. "|sgn{$s}(?:BE{$s}(?:fr|nl)|CH{$s}de)"
+			. "|sgn{$s}(?:be{$s}(?:fr|nl)|ch{$s}de)"
 			. "|zh{$s}min{$s}nan";
 
 		$variantList = "$variant(?:$s$variant)*";
@@ -350,6 +350,6 @@ class LanguageCode {
 
 		$root = "^(?:$langtag|$privateUse|$legacy)$";
 
-		return preg_match( "/$root/", strtolower( $code ) );
+		return preg_match( "/$root/i", $code );
 	}
 }
