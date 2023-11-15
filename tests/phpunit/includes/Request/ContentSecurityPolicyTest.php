@@ -393,6 +393,21 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers MediaWiki\Request\ContentSecurityPolicy::getDirectives
+	 */
+	public function testGetDirectives() {
+		$this->assertSame(
+			[
+				'Content-Security-Policy' => "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'"
+					. " sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;"
+					. " style-src * data: blob: 'unsafe-inline'; object-src 'none';"
+					. " report-uri /w/api.php?action=cspreport&format=json",
+			],
+			$this->csp->getDirectives()
+		);
+	}
+
+	/**
 	 * @covers MediaWiki\Request\ContentSecurityPolicy::sendHeaders
 	 */
 	public function testSendHeaders() {
