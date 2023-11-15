@@ -708,19 +708,29 @@ class Linker {
 						$manualthumb = true;
 					}
 				}
-			} elseif ( isset( $frameParams['framed'] ) ) {
-				// Use image dimensions, don't scale
-				$thumb = $file->getUnscaledThumb( $handlerParams );
-				$noscale = true;
-				$rdfaType = 'mw:File/Frame';
 			} else {
-				# Do not present an image bigger than the source, for bitmap-style images
-				# This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
 				$srcWidth = $file->getWidth( $page );
+				if ( isset( $frameParams['framed'] ) ) {
+					$rdfaType = 'mw:File/Frame';
+					if ( !$file->isVectorized() ) {
+						// Use image dimensions, don't scale
+						$noscale = true;
+					} else {
+						// framed is unscaled, but for vectorized images
+						// we need to a width for scaling up for the high density variants
+						$handlerParams['width'] = $srcWidth;
+					}
+				}
+
+				// Do not present an image bigger than the source, for bitmap-style images
+				// This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
 				if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
 					$handlerParams['width'] = $srcWidth;
 				}
-				$thumb = $file->transform( $handlerParams );
+
+				$thumb = $noscale
+					? $file->getUnscaledThumb( $handlerParams )
+					: $file->transform( $handlerParams );
 			}
 
 			if ( $thumb ) {
