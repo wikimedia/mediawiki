@@ -47,6 +47,10 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		// Note, there are some obscure globals which
 		// could affect the results which aren't included above.
 
+		$this->clearHook( 'ContentSecurityPolicyDefaultSource' );
+		$this->clearHook( 'ContentSecurityPolicyScriptSource' );
+		$this->clearHook( 'ContentSecurityPolicyDirectives' );
+
 		$context = RequestContext::getMain();
 		$resp = $context->getRequest()->response();
 		$conf = $context->getConfig();
