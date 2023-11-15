@@ -858,18 +858,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		yield [
 			NS_MAIN, 'JavaScript Test', CONTENT_MODEL_JAVASCRIPT, 'canonical',
 			static function () {
-				$po = ParserOptions::newFromAnon();
-				$po->setSuppressTOC();
-				return $po;
+				return ParserOptions::newFromAnon();
 			},
 		];
 		// CSS should have Table Of Contents suppressed
 		yield [
 			NS_MAIN, 'CSS Test', CONTENT_MODEL_CSS, 'canonical',
 			static function () {
-				$po = ParserOptions::newFromAnon();
-				$po->setSuppressTOC();
-				return $po;
+				return ParserOptions::newFromAnon();
 			},
 		];
 		// Language Conversion tables have content conversion disabled

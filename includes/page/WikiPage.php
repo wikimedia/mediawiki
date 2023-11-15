@@ -1886,16 +1886,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// we don't need special cases like this one, but see T313455.
 			$options->disableContentConversion();
 		}
-		if ( $contentModel !== CONTENT_MODEL_WIKITEXT ) {
-			$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
-				MainConfigNames::TextModelsToParse );
-			if ( in_array( $contentModel, $textModelsToParse, true ) ) {
-				// @todo Content model should have a means to tweak options, so
-				// we don't need special cases like this one. (T313455)
-				// ( See TextContentHandler::fillParserOutput() )
-				$options->setSuppressTOC(); # T307691
-			}
-		}
 
 		return $options;
 	}
