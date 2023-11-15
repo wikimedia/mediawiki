@@ -713,6 +713,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetRedirectTarget
 	 * @covers WikiPage::getRedirectTarget
+	 * @covers WikiPage::createRedirectTarget
 	 * @covers \MediaWiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {

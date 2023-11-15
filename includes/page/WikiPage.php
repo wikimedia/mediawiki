@@ -995,24 +995,53 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return null;
 		}
 
+		$this->mRedirectTarget = self::createRedirectTarget(
+			$row->rd_namespace, $row->rd_title,
+			$row->rd_fragment, $row->rd_interwiki
+		);
+		return $this->mRedirectTarget;
+	}
+
+	/**
+	 * Truncate link fragment to maximum storable value
+	 *
+	 * @param string $fragment The link fragment (after the "#")
+	 * @return string
+	 */
+	private static function truncateFragment( $fragment ) {
+		return mb_strcut( $fragment, 0, 255 );
+	}
+
+	/**
+	 * Create a Title object appropriate for WikiPage::$mRedirectTarget
+	 *
+	 * @param int $namespace The namespace of the article
+	 * @param string $title Database key form
+	 * @param string $fragment The link fragment (after the "#")
+	 * @param string $interwiki Interwiki prefix
+	 * @return Title|null Title object, or null if this is not a valid redirect
+	 */
+	private static function createRedirectTarget( $namespace, $title, $fragment, $interwiki ): ?Title {
 		// (T203942) We can't redirect to Media namespace because it's virtual.
 		// We don't want to modify Title objects farther down the
 		// line. So, let's fix this here by changing to File namespace.
-		if ( $row->rd_namespace == NS_MEDIA ) {
+		if ( $namespace == NS_MEDIA ) {
 			$namespace = NS_FILE;
-		} else {
-			$namespace = $row->rd_namespace;
 		}
+
+		// mimic behaviour of self::insertRedirectEntry for fragments that didn't
+		// come from the redirect table
+		$fragment = self::truncateFragment( $fragment );
 
 		// T261347: be defensive when fetching data from the redirect table.
 		// Use Title::makeTitleSafe(), and if that returns null, ignore the
 		// row. In an ideal world, the DB would be cleaned up after a
 		// namespace change, but nobody could be bothered to do that.
-		$this->mRedirectTarget = Title::makeTitleSafe(
-			$namespace, $row->rd_title,
-			$row->rd_fragment, $row->rd_interwiki
-		);
-		return $this->mRedirectTarget;
+		$title = Title::makeTitleSafe( $namespace, $title, $fragment, $interwiki );
+		if ( $title !== null && $title->isValidRedirectTarget() ) {
+			return $title;
+		}
+		return null;
 	}
 
 	/**
@@ -1064,7 +1093,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
-			$truncatedFragment = mb_strcut( $rt->getFragment(), 0, 255 );
+			$truncatedFragment = self::truncateFragment( $rt->getFragment() );
 			$dbw->newInsertQueryBuilder()
 				->insertInto( 'redirect' )
 				->row( [
@@ -1435,7 +1464,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->mTitle->loadFromRow( $insertedRow );
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
-			$this->mRedirectTarget = null;
+			$this->mRedirectTarget = $rt == null ? null : self::createRedirectTarget(
+				$rt->getNamespace(), $rt->getDBkey(), $rt->getFragment(), $rt->getInterwiki() );
 			$this->mPageIsRedirectField = (bool)$rt;
 			$this->mIsNew = $isNew;
 
