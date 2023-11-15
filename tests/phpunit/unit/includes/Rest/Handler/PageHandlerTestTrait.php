@@ -3,10 +3,8 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
-use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
@@ -24,9 +22,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
-use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -47,7 +43,7 @@ trait PageHandlerTestTrait {
 				string $route,
 				array $pathParams = [],
 				array $queryParams = []
-			) use ( $router, $rootPath ) {
+			) use ( $rootPath ) {
 				foreach ( $pathParams as $param => $value ) {
 					// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
 					// Spaces in path params must be encoded to %20 (not +).
@@ -100,24 +96,7 @@ trait PageHandlerTestTrait {
 		// of ParserOutputAccess and ParsoidOutputAccess without these problems!
 		$this->resetServices();
 
-		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'CacheEpoch' => '20200202112233',
-			'OldRevisionParserCacheExpireTime' => 60 * 60,
-		] );
-
 		$services = $this->getServiceContainer();
-		$parserCacheFactory = new ParserCacheFactory(
-			$this->parserCacheBagOStuff,
-			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
-			$this->createHookContainer(),
-			new JsonCodec(),
-			new NullStatsdDataFactory(),
-			new NullLogger(),
-			$parserCacheFactoryOptions,
-			$services->getTitleFactory(),
-			$services->getWikiPageFactory()
-		);
-
 		$config = [
 			'RightsUrl' => 'https://example.com/rights',
 			'RightsText' => 'some rights',
