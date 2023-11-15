@@ -55,6 +55,13 @@ class Status extends StatusValue {
 	/** @var callable|false */
 	public $cleanCallback = false;
 
+	/**
+	 * Used by some extensions (ConfirmEdit) to customize API error responses for edits.
+	 * @internal Only used by ConfirmEdit and the ApiEditPage class
+	 * @var array|null
+	 */
+	public $apiHookResult;
+
 	/** @var MessageLocalizer|null */
 	protected $messageLocalizer;
 
