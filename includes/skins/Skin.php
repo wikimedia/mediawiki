@@ -476,7 +476,10 @@ abstract class Skin extends ContextSource {
 
 		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
 		// on every page is deprecated. Express a dependency instead.
-		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
+		// Limited to non-article namespaces in 1.41 where CSS bundle size is important,
+		// and for security (it can be used by vandals to render fake login buttons).
+		$ns = $this->getTitle()->getNamespace();
+		if ( $ns !== NS_MAIN && strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
 			$modules['styles']['content'][] = 'mediawiki.ui.button';
 		}
 
