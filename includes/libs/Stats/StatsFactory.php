@@ -163,8 +163,22 @@ class StatsFactory {
 	 * Send all buffered metrics to the target and destroy the cache.
 	 */
 	public function flush(): void {
+		$this->trackUsage();
 		$this->emitter->send();
 		$this->cache->clear();
+	}
+
+	/**
+	 * Create a metric totaling all samples in the cache.
+	 */
+	private function trackUsage(): void {
+		$accumulator = 0;
+		foreach ( $this->cache->getAllMetrics() as $metric ) {
+			$accumulator += $metric->getSampleCount();
+		}
+		$this->getCounter( 'stats_buffered_total' )
+			->copyToStatsdAt( 'stats.statslib.buffered' )
+			->incrementBy( $accumulator );
 	}
 
 	/**

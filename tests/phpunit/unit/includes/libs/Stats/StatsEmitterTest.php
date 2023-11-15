@@ -15,14 +15,13 @@ use Wikimedia\Stats\StatsFactory;
  * @covers \Wikimedia\Stats\StatsCache
  * @covers \Wikimedia\Stats\Formatters\DogStatsdFormatter
  * @covers \Wikimedia\Stats\OutputFormats
- * @covers \Wikimedia\Stats\MetricsRenderer
  */
 class StatsEmitterTest extends TestCase {
 
 	public function testSend() {
 		// set up a mock statsd data factory
 		$statsd = $this->createMock( IBufferingStatsdDataFactory::class );
-		$statsd->expects( $this->once() )->method( "updateCount" );
+		$statsd->expects( $this->atLeastOnce() )->method( "updateCount" );
 
 		// initialize cache
 		$cache = new StatsCache();
@@ -38,7 +37,7 @@ class StatsEmitterTest extends TestCase {
 		$transport = $this->createMock( UDPTransport::class );
 		$transport->expects( $this->once() )->method( "emit" )
 			->withConsecutive(
-				[ "mediawiki.test.bar:1|c\nmediawiki.test.bar:1|c\nmediawiki.test.foo:3.14|ms\n" ]
+				[ "mediawiki.test.bar:1|c\nmediawiki.test.bar:1|c\nmediawiki.test.foo:3.14|ms\nmediawiki.test.stats_buffered_total:3|c\n" ]
 			);
 		$emitter = $emitter->withTransport( $transport );
 

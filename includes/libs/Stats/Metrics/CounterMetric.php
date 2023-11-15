@@ -104,6 +104,11 @@ class CounterMetric implements MetricInterface {
 	}
 
 	/** @inheritDoc */
+	public function getSampleCount(): int {
+		return $this->baseMetric->getSampleCount();
+	}
+
+	/** @inheritDoc */
 	public function getSampleRate(): float {
 		return $this->baseMetric->getSampleRate();
 	}

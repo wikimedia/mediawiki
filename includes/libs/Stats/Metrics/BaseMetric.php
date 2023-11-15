@@ -102,6 +102,11 @@ class BaseMetric implements BaseMetricInterface {
 	}
 
 	/** @inheritDoc */
+	public function getSampleCount(): int {
+		return count( $this->samples );
+	}
+
+	/** @inheritDoc */
 	public function withStaticLabels( array $labelKeys, array $labelValues ): BaseMetricInterface {
 		$this->labelKeys = $labelKeys;
 		$this->staticLabels = array_combine( $labelKeys, $labelValues );

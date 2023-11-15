@@ -610,13 +610,13 @@ abstract class MediaWikiEntryPoint {
 		// Any embedded profiler outputs were already processed in outputResponsePayload().
 		$profiler->logData();
 
+		// Send metrics gathered by StatsFactory
+		$services->getStatsFactory()->flush();
+
 		self::emitBufferedStatsdData(
 			$services->getStatsdDataFactory(),
 			$this->config
 		);
-
-		// Send metrics gathered by StatsFactory
-		$services->getStatsFactory()->flush();
 
 		// Commit and close up!
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
