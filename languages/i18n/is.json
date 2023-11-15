@@ -2394,6 +2394,8 @@
 	"contribute": "Taka þátt",
 	"contribsub2": "Eftir {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Fyrir {{GENDER:$2|$1}}",
+	"contributions-edit-count": "{{GENDER:$1|Notandi}} með $2 {{PLURAL:$2|breytingu|breytingar}}.",
+	"contributions-account-creation-date": "Aðgangur búinn til $1.",
 	"contributions-userdoesnotexist": "Notandaaðgangurinn \"$1\" er ekki skráður.",
 	"nocontribs": "Engar breytingar fundnar sem passa við þessa viðmiðun.",
 	"uctop": "núverandi",
