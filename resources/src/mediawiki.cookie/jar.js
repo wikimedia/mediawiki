@@ -75,20 +75,31 @@
 
 			value = config.json ? JSON.stringify(value) : String(value);
 
-			return (document.cookie = [
-				encodeURIComponent(key), '=', config.raw ? value : encodeURIComponent(value),
-				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-				options.path    ? '; path=' + options.path : '',
-				options.domain  ? '; domain=' + options.domain : '',
-				options.secure  ? '; secure' : '',
-				// PATCH: handle SameSite flag --tgr
-				options.sameSite ? '; samesite=' + options.sameSite : ''
-			].join(''));
+			try {
+				return (document.cookie = [
+					encodeURIComponent(key), '=', config.raw ? value : encodeURIComponent(value),
+					options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+					options.path ? '; path=' + options.path : '',
+					options.domain ? '; domain=' + options.domain : '',
+					options.secure ? '; secure' : '',
+					// PATCH: handle SameSite flag --tgr
+					options.sameSite ? '; samesite=' + options.sameSite : ''
+				].join(''));
+			} catch ( e ) {
+				// Fail silently if the document is not allowed to access cookies.
+				return '';
+			}
 		}
 
 		// read
 		var decode = config.raw ? raw : decoded;
-		var cookies = document.cookie.split('; ');
+		var cookies;
+		try {
+			cookies = document.cookie.split('; ');
+		} catch ( e ) {
+			// Fail silently if the document is not allowed to access cookies.
+			cookies = [];
+		}
 		var result = key ? null : {};
 		for (var i = 0, l = cookies.length; i < l; i++) {
 			var parts = cookies[i].split('=');
