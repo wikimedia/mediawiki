@@ -65,7 +65,8 @@
 			"아라",
 			"Amire80",
 			"Flyplanevn27",
-			"I am Vietnam"
+			"I am Vietnam",
+			"Pisceskaze"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -187,6 +188,7 @@
 	"index-category": "Trang được ghi chỉ mục",
 	"noindex-category": "Trang không hiển thị trong bộ máy tìm kiếm",
 	"broken-file-category": "Trang có sử dụng tập tin không tồn tại",
+	"categoryviewer-pagedlinks": "($1) ($2)",
 	"about": "Giới thiệu",
 	"article": "Trang nội dung",
 	"newwindow": "(mở trong cửa sổ mới)",
@@ -3505,6 +3507,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath?uselang=vi Đường dẫn bài]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath?uselang=vi Đường dẫn kịch bản]",
 	"version-libraries": "Các thư viện đã cài đặt",
+	"version-libraries-client": "Thư viện phía máy khách được cài đặt",
 	"version-libraries-library": "Thư viện",
 	"version-libraries-version": "Phiên bản",
 	"version-libraries-license": "Giấy phép",

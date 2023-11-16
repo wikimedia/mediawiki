@@ -3,12 +3,13 @@
 		"authors": [
 			"Aalam",
 			"Babanwalia",
-			"ਪ੍ਰਚਾਰਕ"
+			"ਪ੍ਰਚਾਰਕ",
+			"Kuldeepburjbhalaike"
 		]
 	},
-	"config-desc": "ਮੀਡੀਅਾਵਿਕੀ ਲੲੀ ਸਥਾਪਿਤਕਰਤਾ",
+	"config-desc": "ਮੀਡੀਆਵਿਕੀ ਲਈ ਇੰਸਟਾਲਰ",
 	"config-information": "ਜਾਣਕਾਰੀ",
-	"config-localsettings-badkey": "ਤੁਹਾਡੇ ਦੁਅਾਰਾ ਦਿਤੀ ਗੲੀ ਚਾਬੀ ਗਲਤ ਹੈ",
+	"config-localsettings-badkey": "ਤੁਹਾਡੇ ਵੱਲੋਂ ਪ੍ਰਦਾਨ ਕੀਤੀ ਅੱਪਗ੍ਰੇਡ ਕੁੰਜੀ ਗਲਤ ਹੈ।",
 	"config-your-language": "ਤੁਹਾਡੀ ਭਾਸ਼ਾ:",
 	"config-your-language-help": "ਜੜਾਈ ਦੀ ਕਾਰਵਾਈ ਵੇਲੇ ਵਰਤਣ ਵਾਸਤੇ ਕੋਈ ਭਾਸ਼ਾ ਚੁਣੋ।",
 	"config-wiki-language": "ਵਿਕੀ ਦੀ ਭਾਸ਼ਾ:",

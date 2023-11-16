@@ -1500,6 +1500,7 @@
 	"trackingcategories-msg": "Kategoriyalardı qadaǵalaw",
 	"mailnologin": "Jiberiwge adres tabılmadı",
 	"emailuser": "Paydalanıwshıǵa xat jiberiw",
+	"emailuser-title-notarget": "Paydalanıwshıǵa elektron xat jiberiw",
 	"defemailsubject": "{{SITENAME}} — $1 tárepinen xat",
 	"noemailtitle": "E-mail adresi joq",
 	"emailusername": "Paydalanıwshı atı:",
