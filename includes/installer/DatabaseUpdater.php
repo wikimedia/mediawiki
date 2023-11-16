@@ -574,13 +574,11 @@ abstract class DatabaseUpdater {
 	 * @return bool
 	 */
 	public function updateRowExists( $key ) {
-		$row = $this->db->selectRow(
-			'updatelog',
-			# T67813
-			'1 AS X',
-			[ 'ul_key' => $key ],
-			__METHOD__
-		);
+		$row = $this->db->newSelectQueryBuilder()
+			->select( '1 AS X' ) // T67813
+			->from( 'updatelog' )
+			->where( [ 'ul_key' => $key ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		return (bool)$row;
 	}
