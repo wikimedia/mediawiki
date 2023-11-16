@@ -203,6 +203,7 @@ $wgAutoloadClasses += [
 	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
 	'MediaWiki\\Session\\DummySessionBackend' => "$testDir/phpunit/mocks/session/DummySessionBackend.php",
 	'MediaWiki\\Tests\\BrokenClass' => "$testDir/phpunit/mocks/BrokenClass.php",
+	'MediaWiki\\Tests\\MockDatabase' => "$testDir/phpunit/mocks/MockDatabase.php",
 	'MediaWiki\\Tests\\Unit\\DummyServicesTrait' => "$testDir/phpunit/mocks/DummyServicesTrait.php",
 	'MediaWiki\\Tests\\Unit\\FakeQqxMessageLocalizer' => "$testDir/phpunit/mocks/FakeQqxMessageLocalizer.php",
 	'MediaWiki\\Tests\\Unit\\MockBlockTrait' => "$testDir/phpunit/mocks/MockBlockTrait.php",
