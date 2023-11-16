@@ -108,7 +108,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$handler = $this->newHandler();
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [
+		$this->executeHandlerAndGetBodyData( $handler, $request, [
 			'format' => 'with_html'
 		] );
 	}
