@@ -38,7 +38,9 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use RecentChange;
@@ -85,9 +87,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
-		ChangeTagsStore $changeTagsStore
+		ChangeTagsStore $changeTagsStore,
+		UserIdentityUtils $userIdentityUtils,
+		TempUserConfig $tempUserConfig
 	) {
-		parent::__construct( 'Watchlist', 'viewmywatchlist' );
+		parent::__construct(
+			'Watchlist',
+			'viewmywatchlist',
+			$userIdentityUtils,
+			$tempUserConfig
+		);
 
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistManager = $watchlistManager;

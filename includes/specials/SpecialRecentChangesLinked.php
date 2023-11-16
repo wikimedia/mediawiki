@@ -28,6 +28,8 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MessageCache;
 use RecentChange;
@@ -60,12 +62,17 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		MessageCache $messageCache,
 		UserOptionsLookup $userOptionsLookup,
 		SearchEngineFactory $searchEngineFactory,
-		ChangeTagsStore $changeTagsStore
+		ChangeTagsStore $changeTagsStore,
+		UserIdentityUtils $userIdentityUtils,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct(
 			$watchedItemStore,
 			$messageCache,
-			$userOptionsLookup
+			$userOptionsLookup,
+			$changeTagsStore,
+			$userIdentityUtils,
+			$tempUserConfig
 		);
 		$this->mName = 'Recentchangeslinked';
 		$this->searchEngineFactory = $searchEngineFactory;
