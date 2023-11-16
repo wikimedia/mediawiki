@@ -111,7 +111,7 @@ class UrlUtils {
 	 * specifies a protocol, PROTO_HTTP, PROTO_HTTPS, PROTO_RELATIVE and
 	 * PROTO_CURRENT do not change that.
 	 *
-	 * Parent references (/../) in the path are resolved (as in wfRemoveDotSegments).
+	 * Parent references (/../) in the path are resolved (as in ::removeDotSegments).
 	 *
 	 * @todo this won't work with current-path-relative URLs like "subdir/foo.html", etc.
 	 *
