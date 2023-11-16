@@ -827,46 +827,6 @@ END;
 		}
 	}
 
-	/**
-	 * Add a value to an existing PostgreSQL enum type
-	 * @since 1.31
-	 * @param string $type Type name. Must be in the core schema.
-	 * @param string $value Value to add.
-	 */
-	protected function addPgEnumValue( $type, $value ) {
-		$row = $this->db->selectRow(
-			[
-				't' => 'pg_catalog.pg_type',
-				'n' => 'pg_catalog.pg_namespace',
-				'e' => 'pg_catalog.pg_enum',
-			],
-			[ 't.typname', 't.typtype', 'e.enumlabel' ],
-			[
-				't.typname' => $type,
-				'n.nspname' => $this->db->getCoreSchema(),
-			],
-			__METHOD__,
-			[],
-			[
-				'n' => [ 'JOIN', 't.typnamespace = n.oid' ],
-				'e' => [ 'LEFT JOIN', [ 'e.enumtypid = t.oid', 'e.enumlabel' => $value ] ],
-			]
-		);
-
-		if ( !$row ) {
-			$this->output( "...Type $type does not exist, skipping modify enum.\n" );
-		} elseif ( $row->typtype !== 'e' ) {
-			$this->output( "...Type $type does not seem to be an enum, skipping modify enum.\n" );
-		} elseif ( $row->enumlabel === $value ) {
-			$this->output( "...Enum type $type already contains value '$value'.\n" );
-		} else {
-			$this->output( "...Adding value '$value' to enum type $type.\n" );
-			$etype = $this->db->addIdentifierQuotes( $type );
-			$evalue = $this->db->addQuotes( $value );
-			$this->db->query( "ALTER TYPE $etype ADD VALUE $evalue", __METHOD__ );
-		}
-	}
-
 	protected function dropFkey( $table, $field ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
