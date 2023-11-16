@@ -15,11 +15,10 @@ class Placeholder {
 	 * @param mixed $value
 	 */
 	public function __construct( $value ) {
-		$type = gettype( $value );
-		if ( $type === 'object' ) {
+		if ( is_object( $value ) ) {
 			$this->desc = get_class( $value ) . '#' . spl_object_id( $value );
 		} else {
-			$this->desc = $type;
+			$this->desc = gettype( $value );
 		}
 	}
 }
