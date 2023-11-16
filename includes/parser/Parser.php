@@ -69,6 +69,9 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -4098,6 +4101,61 @@ class Parser {
 			->page( $this->getPage() );
 	}
 
+	private function cleanUpTocLine( DocumentFragment $container ) {
+		# Remove any <style> or <script> tags (T198618)
+		$removeNodes = DOMCompat::querySelectorAll( $container, 'style, script' );
+		foreach ( $removeNodes as $node ) {
+			$node->parentNode->removeChild( $node );
+		}
+
+		# Strip out HTML
+		# Allowed tags are:
+		# * <sup> and <sub> (T10393)
+		# * <i> (T28375)
+		# * <b> (r105284)
+		# * <bdi> (T74884)
+		# * <span dir="rtl"> and <span dir="ltr"> (T37167)
+		# * <s> and <strike> (T35715)
+		# * <q> (T251672)
+		# We strip any parameter from accepted tags, except dir="rtl|ltr" from <span>,
+		# to allow setting directionality in toc items.
+		$allowedTags = [ 'span', 'sup', 'sub', 'bdi', 'i', 'b', 's', 'strike', 'q' ];
+		$allNodes = DOMCompat::querySelectorAll( $container, '*' );
+		foreach ( $allNodes as $node ) {
+			if ( in_array( strtolower( $node->tagName ), $allowedTags, true ) ) {
+				// Keep tag, remove attributes
+				$removeAttrs = [];
+				foreach ( $node->attributes as $attr ) {
+					if (
+						strtolower( $node->tagName ) === 'span' && $attr->name === 'dir'
+						&& ( $attr->value === 'rtl' || $attr->value === 'ltr' )
+					) {
+						// Keep <span dir="rtl"> and <span dir="ltr">
+						continue;
+					}
+					$removeAttrs[] = $attr;
+				}
+				foreach ( $removeAttrs as $attr ) {
+					$node->removeAttributeNode( $attr );
+				}
+			} else {
+				// Strip tag
+				while ( $childNode = $node->firstChild ) {
+					$node->parentNode->insertBefore( $childNode, $node );
+				}
+				$node->parentNode->removeChild( $node );
+			}
+		}
+
+		# Strip '<span></span>', which is the result from the above if
+		# <span id="foo"></span> is used to produce an additional anchor
+		# for a section.
+		$removeNodes = DOMCompat::querySelectorAll( $container, 'span:empty' );
+		foreach ( $removeNodes as $node ) {
+			$node->parentNode->removeChild( $node );
+		}
+	}
+
 	/**
 	 * This function accomplishes several tasks:
 	 * 1) Auto-number headings if that option is enabled
@@ -4179,6 +4237,7 @@ class Parser {
 		$headlines = $numMatches !== false ? $matches[3] : [];
 
 		$maxTocLevel = $this->svcOptions->get( MainConfigNames::MaxTocLevel );
+		$domDocument = DOMUtils::parseHTML( '' );
 		foreach ( $headlines as $headline ) {
 			$isTemplate = false;
 			$titleText = false;
@@ -4218,50 +4277,21 @@ class Parser {
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
 
-			# Remove any <style> or <script> tags (T198618)
-			$safeHeadline = preg_replace(
-				'#<(style|script)(?: [^>]*[^>/])?>.*?</\1>#is',
-				'',
-				$safeHeadline
-			);
+			// Parse the heading contents as HTML. This makes it easier to strip out some HTML tags,
+			// and ensures that we generate balanced HTML at the end (T218330).
+			$headlineDom = DOMUtils::parseHTMLToFragment( $domDocument, $safeHeadline );
 
-			# Strip out HTML (first regex removes any tag not allowed)
-			# Allowed tags are:
-			# * <sup> and <sub> (T10393)
-			# * <i> (T28375)
-			# * <b> (r105284)
-			# * <bdi> (T74884)
-			# * <span dir="rtl"> and <span dir="ltr"> (T37167)
-			# * <s> and <strike> (T35715)
-			# * <q> (T251672)
-			# We strip any parameter from accepted tags (second regex), except dir="rtl|ltr" from <span>,
-			# to allow setting directionality in toc items.
-			$tocline = preg_replace(
-				[
-					'#<(?!/?(span|sup|sub|bdi|i|b|s|strike|q)(?: [^>]*)?>).*?>#',
-					'#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|bdi|i|b|s|strike))(?: .*?)?>#'
-				],
-				[ '', '<$1>' ],
-				$safeHeadline
-			);
+			$this->cleanUpTocLine( $headlineDom );
 
-			# Strip '<span></span>', which is the result from the above if
-			# <span id="foo"></span> is used to produce an additional anchor
-			# for a section.
-			$tocline = str_replace( '<span></span>', '', $tocline );
-
-			$tocline = trim( $tocline );
+			// Serialize back to HTML
+			$tocline = trim( DOMUtils::getFragmentInnerHTML( $headlineDom ) );
 
 			# For the anchor, strip out HTML-y stuff period
-			$safeHeadline = preg_replace( '/<.*?>/', '', $safeHeadline );
+			$safeHeadline = trim( $headlineDom->textContent );
+			# Save headline for section edit hint before it's normalized for the link
+			$headlineHint = htmlspecialchars( $safeHeadline );
+
 			$safeHeadline = Sanitizer::normalizeSectionNameWhitespace( $safeHeadline );
-
-			# Save headline for section edit hint before it's escaped
-			$headlineHint = $safeHeadline;
-
-			# Decode HTML entities
-			$safeHeadline = Sanitizer::decodeCharReferences( $safeHeadline );
-
 			$safeHeadline = self::normalizeSectionName( $safeHeadline );
 
 			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
