@@ -172,7 +172,7 @@ class LegacyLogger extends AbstractLogger {
 			MWDebug::query(
 				$context['sql'],
 				$context['method'],
-				$context['runtime'],
+				$context['runtime_ms'] / 1000,
 				$context['db_server']
 			);
 		}
