@@ -648,7 +648,8 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return bool
 	 */
 	public function importLogItem() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$services = MediaWikiServices::getInstance();
+		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 
 		$userName = $this->getUser();
 		if ( ExternalUserNames::isExternal( $userName ) ) {
@@ -685,7 +686,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 				. $this->timestamp );
 			return false;
 		}
-		$services = MediaWikiServices::getInstance();
 		$actorId = $services->getActorNormalization()->acquireActorId( $user, $dbw );
 		$data = [
 			'log_type' => $this->type,

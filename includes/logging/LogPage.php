@@ -103,7 +103,7 @@ class LogPage {
 	protected function saveContent() {
 		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 
 		$now = wfTimestampNow();
 		$actorId = MediaWikiServices::getInstance()->getActorNormalization()

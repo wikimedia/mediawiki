@@ -141,7 +141,7 @@ class ImportReporter extends ContextSource {
 			}
 
 			$comment = CommentStoreComment::newUnsavedComment( $detail );
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 			$revStore = $services->getRevisionStore();
 			$nullRevRecord = $revStore->newNullRevision(
 				$dbw,

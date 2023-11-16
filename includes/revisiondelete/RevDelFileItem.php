@@ -23,6 +23,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Item class for an oldimage table row
@@ -32,10 +33,12 @@ class RevDelFileItem extends RevDelItem {
 	protected $list;
 	/** @var OldLocalFile */
 	protected $file;
+	protected IConnectionProvider $dbProvider;
 
 	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->file = static::initFile( $list, $row );
+		$this->dbProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 
 	/**
@@ -113,7 +116,7 @@ class RevDelFileItem extends RevDelItem {
 		}
 
 		# Do the database operations
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'oldimage' )
 			->set( [ 'oi_deleted' => $bits ] )

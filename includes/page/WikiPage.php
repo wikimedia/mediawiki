@@ -2571,7 +2571,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$deleteRevisionsBatchSize = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::DeleteRevisionsBatchSize );
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$revCount = $this->getRevisionStore()->countRevisionsByPageId( $dbr, $this->getId() );
 		$revCount += $safetyMargin;
 
@@ -2993,7 +2993,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$removeFields[] = "cat_{$type}s = cat_{$type}s - 1";
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'cat_title' ] )
 			->from( 'category' )

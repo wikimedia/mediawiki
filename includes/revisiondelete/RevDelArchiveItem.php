@@ -66,7 +66,7 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 	}
 
 	public function setBits( $bits ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'archive' )
 			->set( [ 'ar_deleted' => $bits ] )

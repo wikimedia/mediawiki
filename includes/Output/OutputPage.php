@@ -1652,7 +1652,7 @@ class OutputPage extends ContextSource {
 		$lb->setArray( $arr );
 
 		# Fetch existence plus the hiddencat property
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$fields = array_merge(
 			LinkCache::getSelectFields(),
 			[ 'pp_value' ]

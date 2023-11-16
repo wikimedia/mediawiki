@@ -97,7 +97,7 @@ class HistoryBlobStub {
 		if ( isset( self::$blobCache[$this->mOldId] ) ) {
 			$obj = self::$blobCache[$this->mOldId];
 		} else {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 			$row = $dbr->newSelectQueryBuilder()
 				->select( [ 'old_flags', 'old_text' ] )
 				->from( 'text' )
