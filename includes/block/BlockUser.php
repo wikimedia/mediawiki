@@ -22,6 +22,7 @@
 namespace MediaWiki\Block;
 
 use ChangeTags;
+use DeferredUpdates;
 use ManualLogEntry;
 use MediaWiki\Block\Restriction\AbstractRestriction;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -585,7 +586,6 @@ class BlockUser {
 			$priorBlock = null;
 		}
 
-		$isReblock = false;
 		if ( $priorBlock !== null ) {
 			// Reblock only if the caller wants so
 			if ( !$reblock ) {
@@ -601,10 +601,11 @@ class BlockUser {
 			}
 
 			$currentBlock = $this->configureBlock( $priorBlock );
+			$logEntry = $this->prepareLogEntry( true );
 			$this->blockStore->updateBlock( $currentBlock ); // TODO handle failure
-			$isReblock = true;
 			$block = $currentBlock;
 		} else {
+			$logEntry = $this->prepareLogEntry( false );
 			// Try to insert block.
 			$insertStatus = $this->blockStore->insertBlock( $block );
 			if ( !$insertStatus ) {
@@ -612,6 +613,8 @@ class BlockUser {
 				return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );
 			}
 		}
+		// Relate log ID to block ID (T27763)
+		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 
 		// Set *_deleted fields if requested
 		if ( $this->isHideUser ) {
@@ -620,13 +623,15 @@ class BlockUser {
 			RevisionDeleteUser::suppressUserName( $this->target->getName(), $this->target->getId() );
 		}
 
-		$this->hookRunner->onBlockIpComplete( $block, $legacyUser, $priorBlock );
+		DeferredUpdates::addCallableUpdate( function () use ( $block, $legacyUser, $priorBlock ) {
+			$this->hookRunner->onBlockIpComplete( $block, $legacyUser, $priorBlock );
+		} );
 
 		// DatabaseBlock constructor sanitizes certain block options on insert
 		$this->isEmailBlocked = $block->isEmailBlocked();
 		$this->isAutoblocking = $block->isAutoblocking();
 
-		$this->log( $block, $isReblock );
+		$this->log( $logEntry );
 
 		$this->logger->debug( 'placeBlockInternal: success' );
 		return Status::newGood( $block );
@@ -717,26 +722,37 @@ class BlockUser {
 	}
 
 	/**
-	 * Log the block to Special:Log
+	 * Create the log entry object to be inserted. Do read queries here before
+	 * we start locking block_target rows.
 	 *
-	 * @param DatabaseBlock $block
 	 * @param bool $isReblock
+	 * @return ManualLogEntry
 	 */
-	private function log( DatabaseBlock $block, bool $isReblock ) {
+	private function prepareLogEntry( bool $isReblock ) {
 		$logType = $this->isHideUser ? 'suppress' : 'block';
 		$logAction = $isReblock ? 'reblock' : 'block';
+		$title = Title::makeTitle( NS_USER, $this->target );
+		// Preload the page_id: needed for log_page in ManualLogEntry::insert()
+		$title->getArticleID();
 
 		$logEntry = new ManualLogEntry( $logType, $logAction );
-		$logEntry->setTarget( Title::makeTitle( NS_USER, $this->target ) );
+		$logEntry->setTarget( $title );
 		$logEntry->setComment( $this->reason );
 		$logEntry->setPerformer( $this->performer->getUser() );
 		$logEntry->setParameters( $this->constructLogParams() );
-		// Relate log ID to block ID (T27763)
-		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 		$logEntry->addTags( $this->tags );
 		if ( $this->logDeletionFlags !== null ) {
 			$logEntry->setDeleted( $this->logDeletionFlags );
 		}
+		return $logEntry;
+	}
+
+	/**
+	 * Log the block to Special:Log
+	 *
+	 * @param ManualLogEntry $logEntry
+	 */
+	private function log( ManualLogEntry $logEntry ) {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 	}
