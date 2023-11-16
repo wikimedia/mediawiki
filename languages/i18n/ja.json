@@ -745,6 +745,8 @@
 	"resettokens-watchlist-token": "[[Special:Watchlist|あなたのウォッチリストに登録されているページの変更]]を列挙するフィード (Atom/RSS) のトークン",
 	"resettokens-done": "トークンを再設定しました。",
 	"resettokens-resetbutton": "選択したトークンを再設定",
+	"editrecovery": "復元を編集する",
+	"edit-recovery-nojs-placeholder": "編集回復機能には JavaScript が必要です。",
 	"edit-recovery-loaded-title": "変更が復元されました",
 	"edit-recovery-loaded-message": "未保存の変更は自動で復元されました。",
 	"edit-recovery-loaded-show": "差分を表示",

@@ -1149,7 +1149,7 @@
 	"lockmanager-fail-closelock": "سّدان د لفيشي د تّأمين \"$1\" ماصدقش.",
 	"lockmanager-fail-deletelock": "لحدف د لفيشي د تّأمين \"$1\" ماصدقش.",
 	"zip-wrong-format": "لفيشي لمحدد ماشي فيشي ZIP",
-	"uploadstash": "تحميل مخبًي",
+	"uploadstash": "تخزين د لمشارجية",
 	"uploadstash-clear": "ميح لملفًات لمخبعة",
 	"uploadstash-errclear": "لمسيح د لملفًات مانجحش.",
 	"uploadstash-refresh": "تجديد الليستة د لفيشيات",

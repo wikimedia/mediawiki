@@ -652,6 +652,7 @@
 	"resettokens-watchlist-token": "Токен за веб-фид (Atom/RSS) [[Special:Watchlist|промена на страницама са списка надгледања]]",
 	"resettokens-done": "Токени су ресетовани.",
 	"resettokens-resetbutton": "Ресетуј изабране токене",
+	"edit-recovery-special-intro-empty": "Немате несачуваних измена.",
 	"edit-recovery-loaded-title": "Измене повраћене",
 	"edit-recovery-loaded-message": "Ваше несачуване измене су аутоматски повраћене.",
 	"edit-recovery-loaded-show": "Прикажи измене",
