@@ -1,3 +1,6 @@
+## 2.4.0 / 2023-11-16
+
+* Screenshots work with both WebdriverIO v7 and v8
 
 ## 2.3.0 / 2023-09-21
 
