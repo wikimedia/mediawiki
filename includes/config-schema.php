@@ -229,7 +229,7 @@ return [
 			'SVGConverters' => [
 				'ImageMagick' => '$path/convert -background "#ffffff00" -thumbnail $widthx$height\\! $input PNG:$output',
 				'sodipodi' => '$path/sodipodi -z -w $width -f $input -e $output',
-				'inkscape' => '$path/inkscape -z -w $width -f $input -e $output',
+				'inkscape' => '$path/inkscape -w $width -o $output $input',
 				'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
 				'rsvg' => '$path/rsvg-convert -w $width -h $height -o $output $input',
 				'imgserv' => '$path/imgserv-wrapper -i svg -o png -w$width $input $output',

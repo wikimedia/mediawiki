@@ -27,6 +27,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.46 ===
 
+* $wgSVGConverter inkscape now requires Inkscape 1.0 or newer
 * …
 
 ==== New configuration ====
