@@ -50,6 +50,7 @@
 	"config-env-good": "Орталыкъ сынаудан ётдю.\nMediaWiki-ни салыргъа боллукъсуз.",
 	"config-env-bad": "Орталыкъ сынаудан ётдю.\nMediaWiki-ни салыргъа боллукъ тюлсюз.",
 	"config-env-php": "PHP $1 салыннганды.",
+	"config-env-icu": "ICU $1 салынды (Unicode $2 бла дагъан болады).",
 	"config-no-db": "Билги базагъа келишген драйвер табылмады! PHP ючюн билги базаны драйверин салыргъа керексиз. Бу билги базаны {{PLURAL:$2|типи}} дагъан болады: $1\n\nPHP-ни кесигиз джыйдыгъыз эсе, бу болумда<code>./configure --with-mysqli</code> хайырланыб, билги базаны клиентин джандырыб, джангыдан джарашдырыгъыз.\nPHP-ни Debian неда Ubuntu пакетинден джюклеген эсегиз, бу болумда <code>php-mysql</code> пакетни да салыргъа керексиз.",
 	"config-outdated-sqlite": "<strong>Эсгертиу:</strong> сизде SQLite $2 барды. Керекли минимиум версия: $1. SQLite хайырланаллыкъ тюлсюз.",
 	"config-no-fts3": "<strong>Эсгертиу:</strong> SQLite [//sqlite.org/fts3.html FTS3 модулу] болмагъанлай теренлешди, бу билги базада излеу энчиликлери хайырландырылмайды.",
@@ -94,6 +95,7 @@
 	"config-db-prefix": "Билги базаны префикси (дефиссиз):",
 	"config-db-prefix-help": "Бир билги базаны, бирден аслам вики арасында неда MediaWiki бла башха веб-девайс арасында юлеширге керек эсе, даулашыуланы аллын тыяр ючюн, бютеу таблица атлагъа префикс къошаргъа боллукъсуз.\nБошлукъланы хайырланмагъыз.\n\n\nБу къыр кёбюсюне бош къалады.",
 	"config-mysql-old": "MySQL $1 неда андан да джангысы керекди. Сизде $2 барды.",
+	"config-mariadb-old": "MariaDB $1 не да андан да джангысы керекди. Сизде $2 барды.",
 	"config-db-port": "Билги базаны порту:",
 	"config-db-schema": "MediaWiki ючюн схема (дефиссиз):",
 	"config-db-schema-help": "Бу схема асламысы бла джетерли болады.\nКерти кереклигиз болса, ол заманда тюрлендиригиз.",
@@ -304,6 +306,7 @@
 	"config-screenshot": "скриншот",
 	"config-extension-not-found": "\"$1\" кенгериу ючюн регистрация файл табылмады",
 	"config-extension-dependency": "\"$1\" къурулгъан заманда бойсунуу халат чыкъды: $2",
+	"config-ext-skins-more-info": "кёбюрек информация",
 	"mainpagetext": "<strong>MediaWiki тыйыншлы салынды.</strong>",
 	"mainpagedocfooter": "Вики программа баджарыуну хайырланыууну юсюнден информация алыр ючюн [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents хайырланыучу юретиуге] къарагъыз.\n\n== Джангы башлагъанла ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Конфигурация джарашдырыуланы тизмеси]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki версияланы почталагъа джибериу тизмеси]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Тилигиз ючюн MediaWiki-ни джерлешдиригиз]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Викигизде спам бла къалай кюреширге керек болгъанын юренигиз]"
 }
