@@ -23,10 +23,11 @@ function testTitle( title ) {
  * @since 1.1.0
  * @param {string} title Test title
  * @param {string} extension png for screenshots, mp4 for videos
+ * @param {string} screenshotPath Optional path
  * @return {string} Full path of screenshot/video file
  */
-function filePath( title, extension ) {
-	return `${browser.config.screenshotPath}/${testTitle( title )}-${makeFilenameDate()}.${extension}`;
+function filePath( title, extension, screenshotPath = undefined ) {
+	return `${screenshotPath || browser.config.screenshotPath}/${testTitle( title )}-${makeFilenameDate()}.${extension}`;
 }
 
 /**
@@ -34,18 +35,19 @@ function filePath( title, extension ) {
  *
  * @since 1.0.0
  * @param {string} title Description (will be sanitised and used as file name)
+ * @param {string} screenshotPath Optional path
  * @return {string} File path
  */
-async function saveScreenshot( title ) {
+async function saveScreenshot( title, screenshotPath = undefined ) {
 	// Create sensible file name for current test title
-	const path = filePath( title, 'png' );
+	const path = filePath( title, 'png', screenshotPath );
 	// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
 	try {
 		// eslint-disable-next-line security/detect-non-literal-fs-filename
-		fs.statSync( browser.config.screenshotPath );
+		fs.statSync( screenshotPath || browser.config.screenshotPath );
 	} catch ( err ) {
 		// eslint-disable-next-line security/detect-non-literal-fs-filename
-		fs.mkdirSync( browser.config.screenshotPath );
+		fs.mkdirSync( screenshotPath || browser.config.screenshotPath );
 	}
 	// Create and save screenshot
 	await browser.saveScreenshot( path );
