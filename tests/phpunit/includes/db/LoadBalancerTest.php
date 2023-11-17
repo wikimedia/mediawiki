@@ -477,18 +477,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $acConnRef1Wrapper->conn );
 		$this->assertSame( $acConnRef1Wrapper->conn, $acConnRef2Wrapper->conn );
 
-		// Vary expected behaviour by dbtype, SQLite uses ATTR_DB_LEVEL_LOCKING.
-		// getConnection() ignores CONN_TRX_AUTOCOMMIT if ATTR_DB_LEVEL_LOCKING if set,
-		// meaning that external callers don't have to check. This is not the case for
-		// the internal getServerConnection()/getAnyOpenConnection() methods.
-		if ( $lb->getServerAttributes( $i )[Database::ATTR_DB_LEVEL_LOCKING] ) {
-			$this->assertSame( $raConnRef1Wrapper->conn, $acConnRef1Wrapper->conn );
-			$this->assertFalse( $lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
-		} else {
-			$this->assertFalse( $acConnRef1Wrapper->conn->getFlag( DBO_TRX ) );
-			$this->assertNotFalse( $lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
-		}
-
 		$this->assertNotFalse( $lb->getAnyOpenConnection( $i ) );
 
 		$lb->closeAll( __METHOD__ );

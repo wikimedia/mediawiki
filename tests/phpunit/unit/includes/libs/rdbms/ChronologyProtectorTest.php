@@ -22,7 +22,6 @@
  */
 
 use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
 
@@ -89,18 +88,16 @@ class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 		$replicationPos = '1-2-3';
 		$time = 100;
 
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'getPrimaryPos' )->willReturnCallback(
-			static function () use ( &$replicationPos, &$time ) {
-				return new MySQLPrimaryPos( $replicationPos, $time );
-			}
-		);
 		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->method( 'getClusterName' )->willReturn( 'test' );
 		$lb->method( 'getServerName' )->willReturn( 'primary' );
 		$lb->method( 'hasOrMadeRecentPrimaryChanges' )->willReturn( true );
 		$lb->method( 'hasStreamingReplicaServers' )->willReturn( true );
-		$lb->method( 'getAnyOpenConnection' )->willReturn( $db );
+		$lb->method( 'getPrimaryPos' )->willReturnCallback(
+			static function () use ( &$replicationPos, &$time ) {
+				return new MySQLPrimaryPos( $replicationPos, $time );
+			}
+		);
 
 		$client = [
 			'IPAddress' => '127.0.0.1',

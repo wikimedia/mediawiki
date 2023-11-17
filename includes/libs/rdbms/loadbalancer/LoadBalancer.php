@@ -603,11 +603,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
 		$i = ( $i === self::DB_PRIMARY ) ? ServerInfo::WRITER_INDEX : $i;
-
-		// Connection handles required to be in auto-commit mode use a separate connection
-		// pool since the main pool is effected by implicit and explicit transaction rounds
-		$autoCommitOnly = self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT );
-
 		$conn = false;
 		foreach ( $this->conns as $type => $poolConnsByServer ) {
 			if ( $i === self::DB_REPLICA ) {
@@ -620,7 +615,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					: [];
 			}
 
-			$conn = $this->pickAnyOpenConnection( $applicableConnsByServer, $autoCommitOnly );
+			$conn = $this->pickAnyOpenConnection( $applicableConnsByServer );
 			if ( $conn ) {
 				$this->logger->debug( __METHOD__ . ": found '$type' connection to #$i." );
 				break;
@@ -636,10 +631,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/**
 	 * @param Database[][] $connsByServer Map of (server index => array of DB handles)
-	 * @param bool $autoCommitOnly Whether to only look for auto-commit connections
 	 * @return IDatabase|false An appropriate open connection or false if none found
 	 */
-	private function pickAnyOpenConnection( array $connsByServer, $autoCommitOnly ) {
+	private function pickAnyOpenConnection( array $connsByServer ) {
 		foreach ( $connsByServer as $i => $conns ) {
 			foreach ( $conns as $conn ) {
 				if ( !$conn->isOpen() ) {
@@ -650,26 +644,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					);
 					continue; // some sort of error occurred?
 				}
-
-				if ( $autoCommitOnly ) {
-					if (
-						$conn->getLBInfo( self::INFO_CONN_CATEGORY ) !== self::CATEGORY_AUTOCOMMIT
-					) {
-						// Connection is aware of transaction rounds
-						continue;
-					}
-
-					if ( $conn->trxLevel() ) {
-						// Some sort of bug left a transaction open
-						$this->logger->warning(
-							__METHOD__ .
-							": pooled DB handle for {db_server} (#$i) has a pending transaction.",
-							$this->getConnLogContext( $conn )
-						);
-						continue;
-					}
-				}
-
 				return $conn;
 			}
 		}
