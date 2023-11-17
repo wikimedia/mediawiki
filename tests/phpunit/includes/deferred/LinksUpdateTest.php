@@ -112,7 +112,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'pagelinks',
 			[ 'pl_namespace', 'pl_title' ],
-			'pl_from = ' . self::$testingPageId,
+			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Bar' ],
 				[ NS_MAIN, 'Foo' ],
@@ -135,7 +135,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'pagelinks',
 			[ 'pl_namespace', 'pl_title' ],
-			'pl_from = ' . self::$testingPageId,
+			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Bar' ],
 				[ NS_MAIN, 'Baz' ],
@@ -160,7 +160,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'pagelinks',
 			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
-			'pl_from = ' . self::$testingPageId,
+			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Foo', NS_MAIN ],
 			]
@@ -174,7 +174,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'pagelinks',
 			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
-			'pl_from = ' . self::$testingPageId,
+			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Foo', NS_USER ],
 			]
@@ -196,7 +196,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'externallinks',
 			[ 'el_to_domain_index', 'el_to_path' ],
-			'el_from = ' . self::$testingPageId,
+			[ 'el_from' => self::$testingPageId ],
 			[
 				[ 'http://com.testing.', '/wiki/Bar' ],
 				[ 'http://com.testing.', '/wiki/Foo' ],
@@ -217,7 +217,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'externallinks',
 			[ 'el_to_domain_index', 'el_to_path' ],
-			'el_from = ' . self::$testingPageId,
+			[ 'el_from' => self::$testingPageId ],
 			[
 				[ 'http://com.testing.', '/wiki/Bar' ],
 				[ 'http://com.testing.', '/wiki/Baz' ],
@@ -301,7 +301,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'categorylinks',
 			[ 'cl_to', 'cl_sortkey' ],
-			'cl_from = ' . self::$testingPageId,
+			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nTESTING" ],
 				[ 'Foo', "FOO\nTESTING" ]
@@ -327,7 +327,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'categorylinks',
 			[ 'cl_to', 'cl_sortkey' ],
-			'cl_from = ' . self::$testingPageId,
+			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nTESTING" ],
 				[ 'Baz', "BAZ\nTESTING" ]
@@ -443,7 +443,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'categorylinks',
 			[ 'cl_to', 'cl_sortkey' ],
-			'cl_from = ' . self::$testingPageId,
+			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nOLD" ],
 				[ 'Foo', "FOO\nOLD" ],
@@ -472,7 +472,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'categorylinks',
 			[ 'cl_to', 'cl_sortkey' ],
-			'cl_from = ' . self::$testingPageId,
+			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nOLD" ],
 				[ 'Foo', "FOO\nOLD" ],
@@ -502,7 +502,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'categorylinks',
 			[ 'cl_to', 'cl_sortkey' ],
-			'cl_from = ' . self::$testingPageId,
+			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Baz', "BAZ\nNEW" ],
 				[ 'Foo', "FOO\nNEW" ],
@@ -538,7 +538,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'iwlinks',
 			[ 'iwl_prefix', 'iwl_title' ],
-			'iwl_from = ' . self::$testingPageId,
+			[ 'iwl_from' => self::$testingPageId ],
 			[
 				[ 'linksupdatetest', 'T1' ],
 				[ 'linksupdatetest', 'T2' ],
@@ -556,7 +556,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'iwlinks',
 			[ 'iwl_prefix', 'iwl_title' ],
-			'iwl_from = ' . self::$testingPageId,
+			[ 'iwl_from' => self::$testingPageId ],
 			[
 				[ 'linksupdatetest', 'T2' ],
 				[ 'linksupdatetest', 'T3' ]
@@ -584,7 +584,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'templatelinks',
 			[ 'tl_target_id' ],
-			'tl_from = ' . self::$testingPageId,
+			[ 'tl_from' => self::$testingPageId ],
 			[
 				[ $linkTargetLookup->acquireLinkTargetId( $target1, $this->db ) ],
 				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
@@ -602,7 +602,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'templatelinks',
 			[ 'tl_target_id' ],
-			'tl_from = ' . self::$testingPageId,
+			[ 'tl_from' => self::$testingPageId ],
 			[
 				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
 				[ $linkTargetLookup->acquireLinkTargetId( $target3, $this->db ) ],
@@ -625,7 +625,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'imagelinks',
 			'il_to',
-			'il_from = ' . self::$testingPageId,
+			[ 'il_from' => self::$testingPageId ],
 			[ [ '1.png' ], [ '2.png' ] ]
 		);
 
@@ -640,7 +640,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'imagelinks',
 			'il_to',
-			'il_from = ' . self::$testingPageId,
+			[ 'il_from' => self::$testingPageId ],
 			[ [ '2.png' ], [ '3.png' ] ]
 		);
 	}
@@ -696,7 +696,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'langlinks',
 			[ 'll_lang', 'll_title' ],
-			'll_from = ' . self::$testingPageId,
+			[ 'll_from' => self::$testingPageId ],
 			[
 				[ 'De', '1' ],
 				[ 'En', '1' ],
@@ -713,7 +713,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'langlinks',
 			[ 'll_lang', 'll_title' ],
-			'll_from = ' . self::$testingPageId,
+			[ 'll_from' => self::$testingPageId ],
 			[
 				[ 'En', '2' ],
 				[ 'Fr', '1' ]
@@ -729,7 +729,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$fields = [ 'pp_propname', 'pp_value', 'pp_sortkey' ];
-		$cond = 'pp_page = ' . self::$testingPageId;
+		$cond = [ 'pp_page' => self::$testingPageId ];
 
 		$po->setPageProperty( 'deleted', 1 );
 		$po->setPageProperty( 'changed', 1 );
@@ -771,7 +771,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		}
 
 		$update = $this->assertLinksUpdate(
-			$t, $po, 'page_props', $fields, 'pp_page = ' . self::$testingPageId, $expected );
+			$t, $po, 'page_props', $fields, [ 'pp_page' => self::$testingPageId ], $expected );
 
 		$expectedAssoc = [];
 		foreach ( $expected as [ $name, $value ] ) {
