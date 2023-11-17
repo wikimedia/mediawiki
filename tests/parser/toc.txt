@@ -330,9 +330,6 @@ Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:c[1] line:c<sup><span>[1]</span></sup>
 !! end
 
-# FIXME: This test shows a similar difference between legacy and
-# Parsoid output, but it may be due to a subtle difference in the
-# whitespace emitted by the parser test runner's <tag> implementation
 !! test
 Handle extension content in section headers properly (non-Cite version)
 !! config
@@ -346,10 +343,7 @@ parsoid={
 }
 !! wikitext
 ==c<tag>d</tag>==
-!! metadata/php
-Sections:
- h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:c_'d'_array_(_) line:"c\n'd'\narray (\n)"
-!! metadata/parsoid
+!! metadata
 Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:c'd'_array_(_) line:"c'd'\narray (\n)"
 !! end
@@ -1484,34 +1478,24 @@ __TOC__
 
 ==<span dir="rtl">זבנג!</span>==
 
-==<span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span>==
-
-==<span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span>==
-
-==<span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span>==
+==<span style="font-style: italic" dir="ltr" title="hello">Attributes other than dir</span>==
 !! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">3</span> <span class="toctext"><span>The attributes on these span tags must be deleted from the TOC</span></span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">4</span> <span class="toctext"><span>All attributes on these span tags must be deleted from the TOC</span></span></a></li>
-<li class="toclevel-1 tocsection-5"><a href="#Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">5</span> <span class="toctext"><span dir="ltr">Attributes after dir on these span tags must be deleted from the TOC</span></span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Attributes_other_than_dir"><span class="tocnumber">3</span> <span class="toctext"><span dir="ltr">Attributes other than dir</span></span></a></li>
 </ul>
 </div>
 
 <h2><span class="mw-headline" id="C.2B.2B"><span dir="ltr">C++</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: C++">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id=".D7.96.D7.91.D7.A0.D7.92.21"><span dir="rtl">זבנג!</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: זבנג!">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id="The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: The attributes on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id="All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: All attributes on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id="Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Attributes after dir on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Attributes_other_than_dir"><span style="font-style: italic" dir="ltr" title="hello">Attributes other than dir</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Attributes other than dir">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="C++" data-parsoid='{}'><span id="C.2B.2B" typeof="mw:FallbackId"></span><span dir="ltr">C++</span></h2>
 <h2 id="זבנג!"><span id=".D7.96.D7.91.D7.A0.D7.92.21" typeof="mw:FallbackId"></span><span dir="rtl">זבנג!</span></h2>
-<h2 id="The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span></h2>
-<h2 id="All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span></h2>
-<h2 id="Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span></h2>
+<h2 id="Attributes_other_than_dir"><span style="font-style: italic" dir="ltr" title="hello">Attributes other than dir</span></h2>
 !! end
 
 !! test
@@ -1761,11 +1745,11 @@ section 6
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Space_between_Text"><span class="tocnumber">1</span> <span class="toctext">Space between Text</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Space-Entity_between_Text"><span class="tocnumber">2</span> <span class="toctext">Space-Entity&#32;between&#32;Text</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Space-Entity_between_Text"><span class="tocnumber">2</span> <span class="toctext">Space-Entity between Text</span></a></li>
 <li class="toclevel-1 tocsection-3"><a href="#Plus.2Bbetween.2BText"><span class="tocnumber">3</span> <span class="toctext">Plus+between+Text</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#Plus-Entity.2Bbetween.2BText"><span class="tocnumber">4</span> <span class="toctext">Plus-Entity&#43;between&#43;Text</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Plus-Entity.2Bbetween.2BText"><span class="tocnumber">4</span> <span class="toctext">Plus-Entity+between+Text</span></a></li>
 <li class="toclevel-1 tocsection-5"><a href="#Underscore_between_Text"><span class="tocnumber">5</span> <span class="toctext">Underscore_between_Text</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Underscore-Entity_between_Text"><span class="tocnumber">6</span> <span class="toctext">Underscore-Entity&#95;between&#95;Text</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Underscore-Entity_between_Text"><span class="tocnumber">6</span> <span class="toctext">Underscore-Entity_between_Text</span></a></li>
 </ul>
 </div>
 
@@ -1781,7 +1765,7 @@ section 6
 <h2><span class="mw-headline" id="Plus-Entity.2Bbetween.2BText">Plus-Entity&#43;between&#43;Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Plus-Entity+between+Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>section 4
 </p>
-<h2><span class="mw-headline" id="Underscore_between_Text">Underscore_between_Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Underscore between Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Underscore_between_Text">Underscore_between_Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Underscore_between_Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>section 5
 </p>
 <h2><span class="mw-headline" id="Underscore-Entity_between_Text">Underscore-Entity&#95;between&#95;Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Underscore-Entity_between_Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
