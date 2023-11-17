@@ -97,8 +97,6 @@ var toUpperMap,
 	 * @return {number|boolean} Namespace id or boolean false
 	 */
 	getNsIdByName = function ( ns ) {
-		var id;
-
 		// Don't cast non-strings to strings, because null or undefined should not result in
 		// returning the id of a potential namespace called "Null:" (e.g. on null.example.org/wiki)
 		// Also, toLowerCase throws exception on null/undefined, because it is a String method.
@@ -107,7 +105,7 @@ var toUpperMap,
 		}
 		// TODO: Should just use local var namespaceIds here but it
 		// breaks test which modify the config
-		id = mw.config.get( 'wgNamespaceIds' )[ ns.toLowerCase() ];
+		var id = mw.config.get( 'wgNamespaceIds' )[ ns.toLowerCase() ];
 		if ( id === undefined ) {
 			return false;
 		}
@@ -239,9 +237,7 @@ var toUpperMap,
 	 * @return {Object|boolean}
 	 */
 	parse = function ( title, defaultNamespace ) {
-		var namespace, m, id, i, fragment;
-
-		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
+		var namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 		title = title
 			// Strip Unicode bidi override characters
@@ -275,9 +271,9 @@ var toUpperMap,
 		}
 
 		// Process namespace prefix (if any)
-		m = title.match( rSplit );
+		var m = title.match( rSplit );
 		if ( m ) {
-			id = getNsIdByName( m[ 1 ] );
+			var id = getNsIdByName( m[ 1 ] );
 			if ( id !== false ) {
 				// Ordinary namespace
 				namespace = id;
@@ -294,7 +290,8 @@ var toUpperMap,
 		}
 
 		// Process fragment
-		i = title.indexOf( '#' );
+		var i = title.indexOf( '#' );
+		var fragment;
 		if ( i === -1 ) {
 			fragment = null;
 		} else {
@@ -386,12 +383,11 @@ var toUpperMap,
 	 * @return {string}
 	 */
 	sanitize = function ( s, filter ) {
-		var i, ruleLength, rule, m, filterLength,
-			rules = sanitationRules;
+		var rules = sanitationRules;
 
-		for ( i = 0, ruleLength = rules.length; i < ruleLength; ++i ) {
-			rule = rules[ i ];
-			for ( m = 0, filterLength = filter.length; m < filterLength; ++m ) {
+		for ( var i = 0, ruleLength = rules.length; i < ruleLength; ++i ) {
+			var rule = rules[ i ];
+			for ( var m = 0, filterLength = filter.length; m < filterLength; ++m ) {
 				if ( rule[ filter[ m ] ] ) {
 					s = s.replace( rule.pattern, rule.replace );
 				}
@@ -463,12 +459,12 @@ function Title( title, namespace ) {
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
  */
 Title.newFromText = function ( title, namespace ) {
-	var t, parsed = parse( title, namespace );
+	var parsed = parse( title, namespace );
 	if ( !parsed ) {
 		return null;
 	}
 
-	t = Object.create( Title.prototype );
+	var t = Object.create( Title.prototype );
 	t.namespace = parsed.namespace;
 	t.title = parsed.title;
 	t.fragment = parsed.fragment;
@@ -514,8 +510,7 @@ Title.makeTitle = function ( namespace, title ) {
  * @return {mw.Title|null} A valid Title object or null if the input cannot be turned into a valid title
  */
 Title.newFromUserInput = function ( title, defaultNamespace, options ) {
-	var m, id, ext, lastDot,
-		namespace = parseInt( defaultNamespace ) || NS_MAIN;
+	var namespace = parseInt( defaultNamespace ) || NS_MAIN;
 
 	// merge options into defaults
 	options = $.extend( {
@@ -537,9 +532,9 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 	}
 
 	// Process namespace prefix (if any)
-	m = title.match( rSplit );
+	var m = title.match( rSplit );
 	if ( m ) {
-		id = getNsIdByName( m[ 1 ] );
+		var id = getNsIdByName( m[ 1 ] );
 		if ( id !== false ) {
 			// Ordinary namespace
 			namespace = id;
@@ -556,7 +551,7 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 		// Operate on the file extension
 		// Although it is possible having spaces between the name and the ".ext" this isn't nice for
 		// operating systems hiding file extensions -> strip them later on
-		lastDot = title.lastIndexOf( '.' );
+		var lastDot = title.lastIndexOf( '.' );
 
 		// No or empty file extension
 		if ( lastDot === -1 || lastDot >= title.length - 1 ) {
@@ -564,7 +559,7 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 		}
 
 		// Get the last part, which is supposed to be the file extension
-		ext = title.slice( lastDot + 1 );
+		var ext = title.slice( lastDot + 1 );
 
 		// Remove whitespace of the name part (that without extension)
 		title = title.slice( 0, lastDot ).trim();
@@ -651,9 +646,9 @@ Title.wantSignaturesNamespace = function ( namespaceId ) {
  * @throws {Error} If title is not a string or mw.Title
  */
 Title.exists = function ( title ) {
-	var match,
-		obj = Title.exist.pages;
+	var obj = Title.exist.pages;
 
+	var match;
 	if ( typeof title === 'string' ) {
 		match = obj[ title ];
 	} else if ( title instanceof Title ) {
@@ -694,13 +689,12 @@ Title.exist = {
 	pages: {},
 
 	set: function ( titles, state ) {
-		var i, len,
-			pages = this.pages;
+		var pages = this.pages;
 
 		titles = Array.isArray( titles ) ? titles : [ titles ];
 		state = state === undefined ? true : !!state;
 
-		for ( i = 0, len = titles.length; i < len; i++ ) {
+		for ( var i = 0, len = titles.length; i < len; i++ ) {
 			pages[ titles[ i ] ] = state;
 		}
 		return true;
