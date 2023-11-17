@@ -2783,15 +2783,22 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$services->getMessageCache()->updateMessageOverride( $title, null );
 		}
 
+		// Invalidate caches of articles which include this page
+		$jobs = [];
+		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+			$title,
+			'templatelinks',
+			[ 'causeAction' => 'delete-page' ]
+		);
 		// Images
 		if ( $title->getNamespace() === NS_FILE ) {
-			$job = HTMLCacheUpdateJob::newForBacklinks(
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
 				$title,
 				'imagelinks',
 				[ 'causeAction' => 'delete-page' ]
 			);
-			$services->getJobQueueGroup()->lazyPush( $job );
 		}
+		$services->getJobQueueGroup()->lazyPush( $jobs );
 
 		// User talk pages
 		if ( $title->getNamespace() === NS_USER_TALK ) {
