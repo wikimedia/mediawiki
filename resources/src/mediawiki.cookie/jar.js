@@ -10,35 +10,35 @@
  * @private
  * @class mw.cookie.jar
  */
-(function () {
+( function () {
 
 	var pluses = /\+/g;
 	var config, cookie;
 
-	function raw(s) {
+	function raw( s ) {
 		return s;
 	}
 
-	function decoded(s) {
+	function decoded( s ) {
 		try {
-			return unRfc2068(decodeURIComponent(s.replace(pluses, ' ')));
-		} catch(e) {
+			return unRfc2068( decodeURIComponent( s.replace( pluses, ' ' ) ) );
+		} catch ( e ) {
 			// If the cookie cannot be decoded this should not throw an error.
 			// See T271838.
 			return '';
 		}
 	}
 
-	function unRfc2068(value) {
-		if (value.indexOf('"') === 0) {
+	function unRfc2068( value ) {
+		if ( value.indexOf( '"' ) === 0 ) {
 			// This is a quoted cookie as according to RFC2068, unescape
-			value = value.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+			value = value.slice( 1, -1 ).replace( /\\"/g, '"' ).replace( /\\\\/g, '\\' );
 		}
 		return value;
 	}
 
-	function fromJSON(value) {
-		return config.json ? JSON.parse(value) : value;
+	function fromJSON( value ) {
+		return config.json ? JSON.parse( value ) : value;
 	}
 
 	/**
@@ -58,33 +58,33 @@
 	 * @return {string|Object} The current value (if getting a cookie), or an internal `document.cookie`
 	 *  expression (if setting or removing).
 	 */
-	config = cookie = function (key, value, options) {
+	config = cookie = function ( key, value, options ) {
 
 		// write
-		if (value !== undefined) {
-			options = Object.assign({}, config.defaults, options);
+		if ( value !== undefined ) {
+			options = Object.assign( {}, config.defaults, options );
 
-			if (value === null) {
+			if ( value === null ) {
 				options.expires = -1;
 			}
 
-			if (typeof options.expires === 'number') {
+			if ( typeof options.expires === 'number' ) {
 				var days = options.expires, t = options.expires = new Date();
-				t.setDate(t.getDate() + days);
+				t.setDate( t.getDate() + days );
 			}
 
-			value = config.json ? JSON.stringify(value) : String(value);
+			value = config.json ? JSON.stringify( value ) : String( value );
 
 			try {
-				return (document.cookie = [
-					encodeURIComponent(key), '=', config.raw ? value : encodeURIComponent(value),
+				return ( document.cookie = [
+					encodeURIComponent( key ), '=', config.raw ? value : encodeURIComponent( value ),
 					options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
 					options.path ? '; path=' + options.path : '',
 					options.domain ? '; domain=' + options.domain : '',
 					options.secure ? '; secure' : '',
 					// PATCH: handle SameSite flag --tgr
 					options.sameSite ? '; samesite=' + options.sameSite : ''
-				].join(''));
+				].join( '' ) );
 			} catch ( e ) {
 				// Fail silently if the document is not allowed to access cookies.
 				return '';
@@ -95,24 +95,24 @@
 		var decode = config.raw ? raw : decoded;
 		var cookies;
 		try {
-			cookies = document.cookie.split('; ');
+			cookies = document.cookie.split( '; ' );
 		} catch ( e ) {
 			// Fail silently if the document is not allowed to access cookies.
 			cookies = [];
 		}
 		var result = key ? null : {};
-		for (var i = 0, l = cookies.length; i < l; i++) {
-			var parts = cookies[i].split('=');
-			var name = decode(parts.shift());
-			var s = decode(parts.join('='));
+		for ( var i = 0, l = cookies.length; i < l; i++ ) {
+			var parts = cookies[ i ].split( '=' );
+			var name = decode( parts.shift() );
+			var s = decode( parts.join( '=' ) );
 
-			if (key && key === name) {
-				result = fromJSON(s);
+			if ( key && key === name ) {
+				result = fromJSON( s );
 				break;
 			}
 
-			if (!key) {
-				result[name] = fromJSON(s);
+			if ( !key ) {
+				result[ name ] = fromJSON( s );
 			}
 		}
 
@@ -132,9 +132,9 @@
 	 * @param {string} [options.sameSite]
 	 * @return {boolean} True if the cookie previously existed
 	 */
-	function removeCookie(key, options) {
-		if (cookie(key) !== null) {
-			cookie(key, null, options);
+	function removeCookie( key, options ) {
+		if ( cookie( key ) !== null ) {
+			cookie( key, null, options );
 			return true;
 		}
 		return false;
@@ -144,4 +144,4 @@
 		cookie: cookie,
 		removeCookie: removeCookie
 	};
-}());
+}() );
