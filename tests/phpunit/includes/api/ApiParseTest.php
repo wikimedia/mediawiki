@@ -593,7 +593,7 @@ class ApiParseTest extends ApiTestCase {
 		yield [ false, false, $expected ];
 		yield [ false, true, $expected ];
 		// Parsoid parses, with and without pre-existing content.
-		$expected = '!^<section[^>]*><p[^>]*><a rel="mw:WikiLink" href="./Foo" title="Foo"[^>]*>Foo</a></p></section>!';
+		$expected = '!^<section[^>]*><p[^>]*><a rel="mw:WikiLink" href="[^"]*Foo" title="Foo"[^>]*>Foo</a></p></section>!';
 		yield [ true, false, $expected ];
 		yield [ true, true, $expected ];
 	}

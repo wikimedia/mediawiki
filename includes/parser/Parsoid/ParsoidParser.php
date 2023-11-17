@@ -181,12 +181,6 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		$this->makeLimitReport( $options, $parserOutput );
 
-		// T350952: temporary fix for subpage paths: copy over Parsoid's
-		// <base href> into ParserOutput's head items.
-		if ( preg_match( '{<base href=[^>]+>}', $parserOutput->getRawText(), $matches ) === 1 ) {
-			$parserOutput->addHeadItem( $matches[0] );
-		}
-
 		// Record Parsoid version in extension data; this allows
 		// us to use the onRejectParserCacheValue hook to selectively
 		// expire "bad" generated content in the event of a rollback.
