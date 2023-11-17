@@ -1046,7 +1046,7 @@ return [
 	},
 
 	'JsonCodec' => static function ( MediaWikiServices $services ): JsonCodec {
-		return new JsonCodec();
+		return new JsonCodec( $services );
 	},
 
 	'LanguageConverterFactory' => static function ( MediaWikiServices $services ): LanguageConverterFactory {

@@ -279,8 +279,14 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\HookContainer\\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
 
 	# tests/phpunit/unit/includes/json
-	'MediaWiki\\Tests\\Json\\JsonDeserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSuperClass.php",
 	'MediaWiki\\Tests\\Json\\JsonDeserializableSubClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSubClass.php",
+	'MediaWiki\\Tests\\Json\\JsonDeserializableSubClassAlias' => "$testDir/phpunit/mocks/json/JsonDeserializableSubClass.php",
+	'MediaWiki\\Tests\\Json\\JsonDeserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSuperClass.php",
+	'MediaWiki\\Tests\\Json\\ManagedObject' => "$testDir/phpunit/mocks/json/ManagedObject.php",
+	'MediaWiki\\Tests\\Json\\ManagedObjectFactory' => "$testDir/phpunit/mocks/json/ManagedObjectFactory.php",
+	'MediaWiki\\Tests\\Json\\SampleContainerObject' => "$testDir/phpunit/mocks/json/SampleContainerObject.php",
+	'MediaWiki\\Tests\\Json\\SampleObject' => "$testDir/phpunit/mocks/json/SampleObject.php",
+	'MediaWiki\\Tests\\Json\\SampleObjectAlias' => "$testDir/phpunit/mocks/json/SampleObject.php",
 
 	# tests/phpunit/unit/includes/language
 	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/language/LanguageCodeTest.php",

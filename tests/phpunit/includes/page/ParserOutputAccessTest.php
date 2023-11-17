@@ -103,7 +103,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$bag ?: new HashBagOStuff(),
 			'19900220000000',
 			$this->getServiceContainer()->getHookContainer(),
-			new JsonCodec(),
+			new JsonCodec( $this->getServiceContainer() ),
 			StatsFactory::newNull(),
 			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory(),
@@ -121,7 +121,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$wanCache,
 			$expiry,
 			'19900220000000',
-			new JsonCodec(),
+			new JsonCodec( $this->getServiceContainer() ),
 			StatsFactory::newNull(),
 			new NullLogger(),
 			$this->getServiceContainer()->getGlobalIdGenerator()

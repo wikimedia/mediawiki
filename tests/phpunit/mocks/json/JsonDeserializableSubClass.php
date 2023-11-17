@@ -33,3 +33,7 @@ class JsonDeserializableSubClass extends JsonDeserializableSuperClass {
 		];
 	}
 }
+
+// This class_alias exists for testing alias support in JsonCodec and
+// should not be removed.
+class_alias( JsonDeserializableSubClass::class, 'MediaWiki\\Tests\\Json\\JsonDeserializableSubClassAlias' );
