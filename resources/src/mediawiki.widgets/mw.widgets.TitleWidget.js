@@ -150,6 +150,13 @@
 				// Do nothing. This is just so OOUI doesn't break due to abort being undefined.
 			} };
 
+		if ( query.match( /\s*#/ ) ) {
+			// Don't return results when searching for a link fragments, as this makes
+			// linking to fragments difficult.
+			// TODO: Suggest actual page fragments based on the query
+			return $.Deferred().resolve( {} ).promise( promiseAbortObject );
+		}
+
 		if ( !mw.Title.newFromText( query ) ) {
 			// Don't send invalid titles to the API.
 			// Just pretend it returned nothing so we can show the 'invalid title' section
@@ -194,7 +201,7 @@
 						// There are no prefix-search results, so make the only result the query title.
 						// The API response structures are identical because both API calls are action=query.
 						result.query = queryTitleResponse.query;
-					} else if ( queryTitleResponse.query.pages[ -1 ] !== undefined &&
+					} else if ( queryTitleResponse.query.pages && queryTitleResponse.query.pages[ -1 ] !== undefined &&
 						!widget.responseContainsNonExistingTitle( prefixSearchResponse, queryTitleResponse.query.pages[ -1 ].title )
 					) {
 						// There are prefix-search results, but the query title isn't in them,
