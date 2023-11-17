@@ -169,19 +169,17 @@
 	 *  the fetched data.
 	 */
 	mw.widgets.MediaResourceProvider.prototype.fetchAPIresults = function ( howMany ) {
-		var xhr, api,
-			provider = this;
+		var provider = this;
 
 		if ( !this.isValid() ) {
 			return $.Deferred().reject().promise( { abort: function () {} } );
 		}
 
-		api = this.isLocal ? new mw.Api() : new mw.ForeignApi( this.getAPIurl(), { anonymous: true } );
-		xhr = api.get( $.extend( {}, this.getStaticParams(), this.getUserParams(), this.getContinueData( howMany ) ) );
+		var api = this.isLocal ? new mw.Api() : new mw.ForeignApi( this.getAPIurl(), { anonymous: true } );
+		var xhr = api.get( $.extend( {}, this.getStaticParams(), this.getUserParams(), this.getContinueData( howMany ) ) );
 		return xhr
 			.then( function ( data ) {
-				var page, newObj, raw,
-					results = [];
+				var results = [];
 
 				if ( data.error ) {
 					provider.toggleDepleted( true );
@@ -199,10 +197,10 @@
 				// If the source returned no results, it will not have a
 				// query property
 				if ( data.query ) {
-					raw = data.query.pages;
+					var raw = data.query.pages;
 					if ( raw ) {
 						// Strip away the page ids
-						for ( page in raw ) {
+						for ( var page in raw ) {
 							if ( !raw[ page ].imageinfo ) {
 								// The search may give us pages that belong to the File:
 								// namespace but have no files in them, either because
@@ -211,7 +209,7 @@
 								// imageinfo. Skip those files.
 								continue;
 							}
-							newObj = raw[ page ].imageinfo[ 0 ];
+							var newObj = raw[ page ].imageinfo[ 0 ];
 							newObj.title = raw[ page ].title;
 							newObj.index = raw[ page ].index;
 							results.push( newObj );

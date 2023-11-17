@@ -101,9 +101,7 @@
 	 * @private
 	 */
 	mw.widgets.UsersMultiselectWidget.prototype.updateMenuItems = function () {
-		var isValidIp,
-			isValidRange,
-			inputValue = this.input.getValue();
+		var inputValue = this.input.getValue();
 
 		if ( inputValue === this.inputValue ) {
 			// Do not restart api query if nothing has changed in the input
@@ -117,6 +115,7 @@
 		if ( inputValue.length > 0 ) {
 			this.pushPending();
 
+			var isValidIp, isValidRange;
 			if ( this.ipAllowed || this.ipRangeAllowed ) {
 				isValidIp = mw.util.isIPAddress( inputValue, false );
 				isValidRange = !isValidIp &&

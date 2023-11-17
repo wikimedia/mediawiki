@@ -87,8 +87,7 @@
 	mw.widgets.CategoryMultiselectWidget.prototype.updateMenuItems = function () {
 		this.getMenu().clearItems();
 		this.getNewMenuItems( this.input.$input.val() ).then( function ( items ) {
-			var existingItems, filteredItems,
-				menu = this.getMenu();
+			var menu = this.getMenu();
 
 			// Never show the menu if the input lost focus in the meantime
 			if ( !this.input.$input.is( ':focus' ) ) {
@@ -96,12 +95,12 @@
 			}
 
 			// Array of strings of the data of OO.ui.MenuOptionsWidgets
-			existingItems = menu.getItems().map( function ( item ) {
+			var existingItems = menu.getItems().map( function ( item ) {
 				return item.data;
 			} );
 
 			// Remove if items' data already exists
-			filteredItems = items.filter( function ( item ) {
+			var filteredItems = items.filter( function ( item ) {
 				return existingItems.indexOf( item ) === -1;
 			} );
 
@@ -135,9 +134,7 @@
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.getNewMenuItems = function ( input ) {
-		var i,
-			promises = [],
-			deferred = $.Deferred();
+		var deferred = $.Deferred();
 
 		if ( input.trim() === '' ) {
 			deferred.resolve( [] );
@@ -146,21 +143,21 @@
 
 		// Abort all pending requests, we won't need their results
 		this.api.abort();
-		for ( i = 0; i < this.searchTypes.length; i++ ) {
+		var promises = [];
+		for ( var i = 0; i < this.searchTypes.length; i++ ) {
 			promises.push( this.searchCategories( input, this.searchTypes[ i ] ) );
 		}
 
 		this.pushPending();
 
 		$.when.apply( $, promises ).done( function () {
-			var categoryNames,
-				allData = [],
+			var allData = [],
 				dataSets = Array.prototype.slice.apply( arguments );
 
 			// Collect values from all results
 			allData = allData.concat.apply( allData, dataSets );
 
-			categoryNames = allData
+			var categoryNames = allData
 				// Remove duplicates
 				.filter( function ( value, index, self ) {
 					return self.indexOf( value ) === index;

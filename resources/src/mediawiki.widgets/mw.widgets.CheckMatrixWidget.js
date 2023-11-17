@@ -21,11 +21,7 @@
 	 *  (as HTML). Takes precedence over text tooltips.
 	 */
 	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {
-		var $headRow = $( '<tr>' ),
-			$table = $( '<table>' ),
-			$thead = $( '<thead>' ),
-			$tbody = $( '<tbody>' ),
-			widget = this;
+		var widget = this;
 		config = config || {};
 
 		// Parent constructor
@@ -42,6 +38,7 @@
 		this.forcedOff = config.forcedOff || [];
 
 		// Build header
+		var $headRow = $( '<tr>' );
 		$headRow.append( $( '<td>' ).text( '\u00A0' ) );
 
 		// Iterate over the columns object (ignore the value)
@@ -49,8 +46,10 @@
 		$.each( this.columns, function ( columnLabel ) {
 			$headRow.append( $( '<th>' ).html( columnLabel ) );
 		} );
+		var $thead = $( '<thead>' );
 		$thead.append( $headRow );
 
+		var $tbody = $( '<tbody>' );
 		// Build table
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.rows, function ( rowLabel, rowTag ) {
@@ -86,6 +85,7 @@
 
 			$tbody.append( $row );
 		} );
+		var $table = $( '<table>' );
 		$table
 			.addClass( 'mw-htmlform-matrix mw-widget-checkMatrixWidget-matrix' )
 			.append( $thead, $tbody );

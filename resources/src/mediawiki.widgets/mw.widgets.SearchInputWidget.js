@@ -143,7 +143,6 @@
 	 */
 	mw.widgets.SearchInputWidget.prototype.getSuggestionsPromise = function () {
 		var api = this.getApi(),
-			promise,
 			self = this;
 
 		// While the name is, for historical reasons, 'session-start', this indicates
@@ -153,7 +152,7 @@
 		} );
 
 		// reuse the searchSuggest function from mw.searchSuggest
-		promise = mw.searchSuggest.request( api, this.getQueryValue(), function () {}, this.limit, this.getNamespace() );
+		var promise = mw.searchSuggest.request( api, this.getQueryValue(), function () {}, this.limit, this.getNamespace() );
 
 		// tracking purposes
 		promise.done( function ( data, jqXHR ) {
@@ -168,11 +167,9 @@
 	 * @inheritdoc mw.widgets.TitleInputWidget
 	 */
 	mw.widgets.SearchInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
-		var resp;
-
 		// mw.widgets.TitleInputWidget uses response.query, which doesn't exist for opensearch,
 		// so return the whole response (titles only, and links)
-		resp = {
+		var resp = {
 			data: response || {},
 			metadata: {
 				type: this.requestType || 'unknown',
