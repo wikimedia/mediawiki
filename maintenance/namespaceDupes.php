@@ -33,7 +33,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -44,11 +43,6 @@ use Wikimedia\Rdbms\LikeValue;
  * @ingroup Maintenance
  */
 class NamespaceDupes extends Maintenance {
-
-	/**
-	 * @var IMaintainableDatabase
-	 */
-	protected $db;
 
 	/**
 	 * Total number of pages that need fixing that are automatically resolveable
@@ -378,43 +372,32 @@ class NamespaceDupes extends Maintenance {
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
 		$batchSize = 500;
+		$sqb = $dbw->newSelectQueryBuilder()
+			->select( $fromField )
+			->where( $extraConds )
+			->limit( $batchSize );
+
 		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
-			$queryInfo = $linksMigration->getQueryInfo( $table );
+			$sqb->queryInfo( $linksMigration->getQueryInfo( $table ) );
 			[ $namespaceField, $titleField ] = $linksMigration->getTitleFields( $table );
 		} else {
-			$queryInfo = [
-				'tables' => [ $table ],
-				'fields' => [
-					"{$fieldPrefix}_namespace",
-					"{$fieldPrefix}_title"
-				],
-				'joins' => []
-			];
+			$sqb->table( $table );
 			$namespaceField = "{$fieldPrefix}_namespace";
 			$titleField = "{$fieldPrefix}_title";
+			$sqb->fields( [ $namespaceField, $titleField ] );
 		}
+		$sqb->andWhere( [
+				$namespaceField => 0,
+				$dbw->expr( $titleField, IExpression::LIKE, new LikeValue( "$name:", $dbw->anyString() ) ),
+			] )
+			->orderBy( [ $titleField, $fromField ] )
+			->caller( __METHOD__ );
 
 		while ( true ) {
-			$res = $dbw->select(
-				$queryInfo['tables'],
-				array_merge( [ $fromField ], $queryInfo['fields'] ),
-				array_merge(
-					$batchConds,
-					$extraConds,
-					[
-						$namespaceField => 0,
-						$dbw->expr( $titleField, IExpression::LIKE, new LikeValue( "$name:", $dbw->anyString() ) ),
-					]
-				),
-				__METHOD__,
-				[
-					'ORDER BY' => [ $titleField, $fromField ],
-					'LIMIT' => $batchSize
-				],
-				$queryInfo['joins']
-			);
-
+			$res = ( clone $sqb )
+				->andWhere( $batchConds )
+				->fetchResultSet();
 			if ( $res->numRows() == 0 ) {
 				break;
 			}
@@ -463,14 +446,14 @@ class NamespaceDupes extends Maintenance {
 					];
 				}
 
-				$dbw->update( $table,
-					// SET
-					$setValue,
-					// WHERE
-					array_merge( [ $fromField => $row->$fromField ], $whereCondition ),
-					__METHOD__,
-					[ 'IGNORE' ]
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( $table )
+					->ignore()
+					->set( $setValue )
+					->where( [ $fromField => $row->$fromField ] )
+					->andWhere( $whereCondition )
+					->caller( __METHOD__ )
+					->execute();
 
 				$rowsToDeleteIfStillExists[] = $dbw->makeList(
 					array_merge( [ $fromField => $row->$fromField ], $deleteCondition ),
@@ -483,11 +466,11 @@ class NamespaceDupes extends Maintenance {
 			}
 
 			if ( $options['fix'] && count( $rowsToDeleteIfStillExists ) > 0 ) {
-				$dbw->delete(
-					$table,
-					$dbw->makeList( $rowsToDeleteIfStillExists, IDatabase::LIST_OR ),
-					__METHOD__
-				);
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( $table )
+					->where( $dbw->makeList( $rowsToDeleteIfStillExists, IDatabase::LIST_OR ) )
+					->caller( __METHOD__ )
+					->execute();
 
 				$this->deletedLinks += $dbw->affectedRows();
 				$this->resolvableLinks -= $dbw->affectedRows();
@@ -622,16 +605,17 @@ class NamespaceDupes extends Maintenance {
 	private function movePage( $id, LinkTarget $newLinkTarget ) {
 		$dbw = $this->getDB( DB_PRIMARY );
 
-		$dbw->update( 'page',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( [
 				"page_namespace" => $newLinkTarget->getNamespace(),
 				"page_title" => $newLinkTarget->getDBkey(),
-			],
-			[
+			] )
+			->where( [
 				"page_id" => $id,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Update *_from_namespace in links tables
 		$fromNamespaceTables = [
@@ -640,13 +624,12 @@ class NamespaceDupes extends Maintenance {
 			[ 'imagelinks', 'il' ]
 		];
 		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix ] ) {
-			$dbw->update( $table,
-				// SET
-				[ "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ],
-				// WHERE
-				[ "{$fieldPrefix}_from" => $id ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( $table )
+				->set( [ "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ] )
+				->where( [ "{$fieldPrefix}_from" => $id ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		return true;
@@ -700,15 +683,18 @@ class NamespaceDupes extends Maintenance {
 
 		$destId = $newTitle->getArticleID();
 		$this->beginTransaction( $dbw, __METHOD__ );
-		$dbw->update( 'revision',
-			// SET
-			[ 'rev_page' => $destId ],
-			// WHERE
-			[ 'rev_page' => $id ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_page' => $destId ] )
+			->where( [ 'rev_page' => $id ] )
+			->caller( __METHOD__ )
+			->execute();
 
-		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'page' )
+			->where( [ 'page_id' => $id ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$this->commitTransaction( $dbw, __METHOD__ );
 
