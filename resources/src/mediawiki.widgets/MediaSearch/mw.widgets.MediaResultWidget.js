@@ -113,11 +113,9 @@
 	 * @param {Object} [boundingBox] Specific bounding box, if supplied
 	 */
 	mw.widgets.MediaResultWidget.prototype.calculateSizing = function ( originalDimensions, boundingBox ) {
-		var wrapperPadding,
-			imageDimensions = {};
-
 		boundingBox = boundingBox || {};
 
+		var imageDimensions;
 		if ( this.isAudio ) {
 			// HACK: We are getting the wrong information from the
 			// API about audio files. Set their thumbnail to square 120px
@@ -145,7 +143,7 @@
 		this.$thumb.css( this.imageDimensions );
 
 		// Set the box size
-		wrapperPadding = this.calculateWrapperPadding( this.imageDimensions );
+		var wrapperPadding = this.calculateWrapperPadding( this.imageDimensions );
 		this.$element.css( wrapperPadding );
 	};
 
@@ -175,13 +173,12 @@
 	 * @param {number} resizeFactor The resizing factor for the image
 	 */
 	mw.widgets.MediaResultWidget.prototype.resizeThumb = function ( resizeFactor ) {
-		var boundingBox,
-			imageOriginalWidth = this.imageDimensions.width,
+		var imageOriginalWidth = this.imageDimensions.width,
 			wrapperWidth = this.$element.width();
 		// Set the new row height
 		this.setRowHeight( Math.ceil( this.getRowHeight() * resizeFactor ) );
 
-		boundingBox = {
+		var boundingBox = {
 			width: Math.ceil( this.imageDimensions.width * resizeFactor ),
 			height: this.getRowHeight()
 		};

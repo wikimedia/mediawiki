@@ -20,12 +20,11 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.NamespacesMultiselectWidget = function MwWidgetsNamespacesMultiselectWidget( config ) {
-		var i, ilen, option,
-			namespaces = {},
+		var namespaces = {},
 			options = mw.widgets.NamespaceInputWidget.static.getNamespaceDropdownOptions( {} );
 
-		for ( i = 0, ilen = options.length; i < ilen; i++ ) {
-			option = options[ i ];
+		for ( var i = 0, ilen = options.length; i < ilen; i++ ) {
+			var option = options[ i ];
 			namespaces[ option.data ] = option.label;
 		}
 

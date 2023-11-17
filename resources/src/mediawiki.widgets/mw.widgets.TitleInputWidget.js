@@ -114,13 +114,11 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.TitleInputWidget.prototype.focus = function () {
-		var retval;
-
 		// Prevent programmatic focus from opening the menu
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		retval = mw.widgets.TitleInputWidget.super.prototype.focus.apply( this, arguments );
+		var retval = mw.widgets.TitleInputWidget.super.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( !this.suggestions );
 

@@ -27,8 +27,7 @@
 	 * @private
 	 */
 	PageExistenceCache.prototype.processExistenceCheckQueue = function () {
-		var queue, titles,
-			cache = this;
+		var cache = this;
 		if ( this.currentRequest ) {
 			// Don't fire off a million requests at the same time
 			this.currentRequest.always( function () {
@@ -37,9 +36,9 @@
 			} );
 			return;
 		}
-		queue = this.existenceCheckQueue;
+		var queue = this.existenceCheckQueue;
 		this.existenceCheckQueue = {};
-		titles = Object.keys( queue ).filter( function ( title ) {
+		var titles = Object.keys( queue ).filter( function ( title ) {
 			if ( hasOwn.call( cache.existenceCache, title ) ) {
 				queue[ title ].resolve( cache.existenceCache[ title ] );
 			}

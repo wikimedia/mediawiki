@@ -109,15 +109,13 @@
 	};
 
 	mw.widgets.TitleWidget.prototype.getInterwikiPrefixesPromise = function () {
-		var api, cache, key;
-
 		if ( !this.showInterwikis ) {
 			return $.Deferred().resolve( [] ).promise();
 		}
 
-		api = this.getApi();
-		cache = this.constructor.static.interwikiPrefixesPromiseCache;
-		key = api.defaults.ajax.url;
+		var api = this.getApi();
+		var cache = this.constructor.static.interwikiPrefixesPromiseCache;
+		var key = api.defaults.ajax.url;
 
 		if ( !Object.prototype.hasOwnProperty.call( cache, key ) ) {
 			cache[ key ] = api.get( {
@@ -286,8 +284,7 @@
 	 * @return {OO.ui.OptionWidget[]} Menu items
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionsFromData = function ( data ) {
-		var i, len, index, option, pageExists, pageExistsExact, suggestionPage, page, redirect, redirects,
-			currentPageName = new mw.Title( mw.config.get( 'wgRelevantPageName' ) ).getPrefixedText(),
+		var currentPageName = new mw.Title( mw.config.get( 'wgRelevantPageName' ) ).getPrefixedText(),
 			items = [],
 			titles = [],
 			disambigs = [],
@@ -297,8 +294,8 @@
 			pageData = {};
 
 		if ( data.redirects ) {
-			for ( i = 0, len = data.redirects.length; i < len; i++ ) {
-				redirect = data.redirects[ i ];
+			for ( var r = 0, rLen = data.redirects.length; r < rLen; r++ ) {
+				var redirect = data.redirects[ r ];
 				redirectsTo[ redirect.to ] = redirectsTo[ redirect.to ] || [];
 				redirectsTo[ redirect.to ].push( redirect.from );
 				// Save the lowest index for this redirect target.
@@ -306,8 +303,8 @@
 			}
 		}
 
-		for ( index in data.pages ) {
-			suggestionPage = data.pages[ index ];
+		for ( var index in data.pages ) {
+			var suggestionPage = data.pages[ index ];
 
 			// When excludeCurrentPage is set, don't list the current page unless the user has type the full title
 			if ( this.excludeCurrentPage && suggestionPage.title === currentPageName && suggestionPage.title !== titleObj.getPrefixedText() ) {
@@ -336,8 +333,8 @@
 				titles.push( suggestionPage.title );
 			}
 
-			redirects = hasOwn.call( redirectsTo, suggestionPage.title ) ? redirectsTo[ suggestionPage.title ] : [];
-			for ( i = 0, len = redirects.length; i < len; i++ ) {
+			var redirects = hasOwn.call( redirectsTo, suggestionPage.title ) ? redirectsTo[ suggestionPage.title ] : [];
+			for ( var i = 0, iLen = redirects.length; i < iLen; i++ ) {
 				pageData[ redirects[ i ] ] = {
 					missing: false,
 					known: true,
@@ -359,14 +356,14 @@
 		// If not found, run value through mw.Title to avoid treating a match as a
 		// mismatch where normalisation would make them matching (T50476)
 
-		pageExistsExact = (
+		var pageExistsExact = (
 			hasOwn.call( pageData, this.getQueryValue() ) &&
 			(
 				!pageData[ this.getQueryValue() ].missing ||
 				pageData[ this.getQueryValue() ].known
 			)
 		);
-		pageExists = pageExistsExact || (
+		var pageExists = pageExistsExact || (
 			titleObj &&
 			hasOwn.call( pageData, titleObj.getPrefixedText() ) &&
 			(
@@ -386,9 +383,9 @@
 			this.cache.set( pageData );
 		}
 
-		for ( i = 0, len = titles.length; i < len; i++ ) {
-			page = hasOwn.call( pageData, titles[ i ] ) ? pageData[ titles[ i ] ] : {};
-			option = this.createOptionWidget( this.getOptionWidgetData( titles[ i ], page ) );
+		for ( var t = 0, tLen = titles.length; t < tLen; t++ ) {
+			var page = hasOwn.call( pageData, titles[ t ] ) ? pageData[ titles[ t ] ] : {};
+			var option = this.createOptionWidget( this.getOptionWidgetData( titles[ t ], page ) );
 
 			if ( this.showDisambigsLast && page.disambiguation ) {
 				disambigs.push( option );

@@ -71,8 +71,6 @@
 		// When the date time field update, update the relative
 		// field.
 		this.dateTimeField.on( 'change', function ( value ) {
-			var datetime;
-
 			// Do not alter the visible input.
 			if ( this.relativeField.isVisible() ) {
 				return;
@@ -84,7 +82,7 @@
 				return;
 			}
 
-			datetime = moment( value );
+			var datetime = moment( value );
 
 			// If the datetime is invlaid for some reason, reset the relative field.
 			if ( !datetime.isValid() ) {
@@ -98,8 +96,6 @@
 		// When the relative field update, update the date time field if it's a
 		// value that moment understands.
 		this.relativeField.on( 'change', function ( event ) {
-			var datetime;
-
 			// Emit a change event for this widget.
 			this.emit( 'change', event );
 
@@ -110,7 +106,7 @@
 
 			// Parsing of free text field may fail, so always check if the date is
 			// valid.
-			datetime = moment( event );
+			var datetime = moment( event );
 
 			if ( datetime.isValid() ) {
 				this.dateTimeField.setValue( datetime.utc().toISOString() );

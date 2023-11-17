@@ -91,8 +91,6 @@
 	 *     {@link mw.widgets.CalendarWidget CalendarWidget}.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
-		var placeholderDateFormat, mustBeAfter, mustBeBefore, $overlay;
-
 		// Config initialization
 		config = $.extend( {
 			precision: 'day',
@@ -106,6 +104,7 @@
 			}
 		}
 
+		var placeholderDateFormat;
 		if ( config.placeholderDateFormat ) {
 			placeholderDateFormat = config.placeholderDateFormat;
 		} else if ( config.inputFormat ) {
@@ -143,13 +142,13 @@
 		// Validate and set min and max dates as properties
 
 		if ( config.mustBeAfter !== undefined ) {
-			mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
+			var mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
 			if ( mustBeAfter.isValid() ) {
 				this.mustBeAfter = mustBeAfter;
 			}
 		}
 		if ( config.mustBeBefore !== undefined ) {
-			mustBeBefore = moment( config.mustBeBefore, 'YYYY-MM-DD' );
+			var mustBeBefore = moment( config.mustBeBefore, 'YYYY-MM-DD' );
 			if ( mustBeBefore.isValid() ) {
 				this.mustBeBefore = mustBeBefore;
 			}
@@ -196,7 +195,7 @@
 			.addClass( 'mw-widget-dateInputWidget' )
 			.append( this.$handle, this.textInput.$element, this.calendar.$element );
 
-		$overlay = config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay;
+		var $overlay = config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay;
 
 		if ( $overlay ) {
 			this.calendar.setFloatableContainer( this.$element );
@@ -377,14 +376,13 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.updateUI = function () {
-		var moment;
 		if ( this.getValue() === '' ) {
 			this.textInput.setValue( '' );
 			this.calendar.setDate( null );
 			this.innerLabel.setLabel( this.placeholderLabel );
 			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
 		} else {
-			moment = this.getMoment();
+			var moment = this.getMoment();
 			if ( !this.inTextInput ) {
 				this.textInput.setValue( moment.format( this.getInputFormat() ) );
 			}
@@ -441,8 +439,6 @@
 	 * @return {string} Format string
 	 */
 	mw.widgets.DateInputWidget.prototype.getDisplayFormat = function () {
-		var localeData, llll, lll, ll, format;
-
 		if ( this.displayFormat !== undefined ) {
 			return this.displayFormat;
 		}
@@ -461,11 +457,11 @@
 			// We try to construct it as 'llll - (lll - ll)' and hope for the best.
 			// This seems to work well for many languages (maybe even all?).
 
-			localeData = moment.localeData( moment.locale() );
-			llll = localeData.longDateFormat( 'llll' );
-			lll = localeData.longDateFormat( 'lll' );
-			ll = localeData.longDateFormat( 'll' );
-			format = llll.replace( lll.replace( ll, '' ), '' );
+			var localeData = moment.localeData( moment.locale() );
+			var llll = localeData.longDateFormat( 'llll' );
+			var lll = localeData.longDateFormat( 'lll' );
+			var ll = localeData.longDateFormat( 'll' );
+			var format = llll.replace( lll.replace( ll, '' ), '' );
 
 			if ( this.longDisplayFormat ) {
 				// Replace MMM to MMMM and ddd to dddd but don't change MMMM and dddd
@@ -644,13 +640,12 @@
 	 * @return {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.isInRange = function ( date ) {
-		var momentDate, isAfter, isBefore;
 		if ( this.mustBeAfter === undefined && this.mustBeBefore === undefined ) {
 			return true;
 		}
-		momentDate = moment( date, 'YYYY-MM-DD' );
-		isAfter = ( this.mustBeAfter === undefined || momentDate.isAfter( this.mustBeAfter ) );
-		isBefore = ( this.mustBeBefore === undefined || momentDate.isBefore( this.mustBeBefore ) );
+		var momentDate = moment( date, 'YYYY-MM-DD' );
+		var isAfter = ( this.mustBeAfter === undefined || momentDate.isAfter( this.mustBeAfter ) );
+		var isBefore = ( this.mustBeBefore === undefined || momentDate.isBefore( this.mustBeBefore ) );
 		return isAfter && isBefore;
 	};
 

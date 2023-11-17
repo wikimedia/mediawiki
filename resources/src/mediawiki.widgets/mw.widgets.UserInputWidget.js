@@ -60,13 +60,11 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.UserInputWidget.prototype.focus = function () {
-		var retval;
-
 		// Prevent programmatic focus from opening the menu
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		retval = mw.widgets.UserInputWidget.super.prototype.focus.apply( this, arguments );
+		var retval = mw.widgets.UserInputWidget.super.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( false );
 
@@ -103,11 +101,10 @@
 	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.widgets.UserInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
-		var len, i, user,
-			items = [];
+		var items = [];
 
-		for ( i = 0, len = data.length; i < len; i++ ) {
-			user = data[ i ] || {};
+		for ( var i = 0, len = data.length; i < len; i++ ) {
+			var user = data[ i ] || {};
 			items.push( new OO.ui.MenuOptionWidget( {
 				label: user.name,
 				data: user.name

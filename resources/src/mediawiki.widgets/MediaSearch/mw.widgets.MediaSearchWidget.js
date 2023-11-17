@@ -17,8 +17,6 @@
 	 * @param {number} [size] Vertical size of thumbnails
 	 */
 	mw.widgets.MediaSearchWidget = function MwWidgetsMediaSearchWidget( config ) {
-		var queueConfig;
-
 		// Configuration initialization
 		config = $.extend( {
 			placeholder: mw.msg( 'mw-widgets-mediasearch-input-placeholder' )
@@ -31,7 +29,7 @@
 		this.providers = {};
 		this.lastQueryValue = '';
 
-		queueConfig = {
+		var queueConfig = {
 			limit: this.constructor.static.limit,
 			threshold: this.constructor.static.threshold
 		};
@@ -197,8 +195,7 @@
 	 * @param {Object[]} items Given items by the media queue
 	 */
 	mw.widgets.MediaSearchWidget.prototype.processQueueResults = function ( items ) {
-		var i, len, title,
-			resultWidgets = [],
+		var resultWidgets = [],
 			inputSearchQuery = this.getQueryValue(),
 			queueSearchQuery = this.searchQueue.getSearchQuery();
 
@@ -209,8 +206,8 @@
 			return;
 		}
 
-		for ( i = 0, len = items.length; i < len; i++ ) {
-			title = new mw.Title( items[ i ].title ).getMainText();
+		for ( var i = 0, len = items.length; i < len; i++ ) {
+			var title = new mw.Title( items[ i ].title ).getMainText();
 			// Do not insert duplicates
 			if ( !Object.prototype.hasOwnProperty.call( this.itemCache, title ) ) {
 				this.itemCache[ title ] = true;
@@ -298,14 +295,13 @@
 	 * Lazy-load the images that are visible.
 	 */
 	mw.widgets.MediaSearchWidget.prototype.lazyLoadResults = function () {
-		var i, elementTop,
-			items = this.results.getItems(),
+		var items = this.results.getItems(),
 			resultsScrollTop = this.$results.scrollTop(),
 			position = resultsScrollTop + this.$results.outerHeight();
 
 		// Lazy-load results
-		for ( i = 0; i < items.length; i++ ) {
-			elementTop = items[ i ].$element.position().top;
+		for ( var i = 0; i < items.length; i++ ) {
+			var elementTop = items[ i ].$element.position().top;
 			if ( elementTop <= position && !items[ i ].hasSrc() ) {
 				// Load the image
 				items[ i ].lazyLoad();
@@ -318,9 +314,7 @@
 	 * the rows array.
 	 */
 	mw.widgets.MediaSearchWidget.prototype.resetRows = function () {
-		var i, len;
-
-		for ( i = 0, len = this.rows.length; i < len; i++ ) {
+		for ( var i = 0, len = this.rows.length; i < len; i++ ) {
 			this.rows[ i ].$element.remove();
 		}
 
@@ -398,20 +392,18 @@
 		// Add method to a queue; this queue will only run when the widget
 		// is visible
 		this.layoutQueue.push( function () {
-			var i, j, ilen, jlen, itemWidth, row, effectiveWidth,
-				resizeFactor,
-				maxRowWidth = search.results.$element.width() - 15;
+			var maxRowWidth = search.results.$element.width() - 15;
 
 			// Go over the added items
-			row = search.getAvailableRow();
-			for ( i = 0, ilen = items.length; i < ilen; i++ ) {
+			var row = search.getAvailableRow();
+			for ( var i = 0, ilen = items.length; i < ilen; i++ ) {
 
 				// Check item has just been added
 				if ( items[ i ].row !== null ) {
 					continue;
 				}
 
-				itemWidth = items[ i ].$element.outerWidth( true );
+				var itemWidth = items[ i ].$element.outerWidth( true );
 
 				// Add items to row until it is full
 				if ( search.rows[ row ].width + itemWidth >= maxRowWidth ) {
@@ -420,15 +412,15 @@
 					search.rows[ row ].$element.attr( 'data-full', true );
 
 					// Find the resize factor
-					effectiveWidth = search.rows[ row ].width;
-					resizeFactor = maxRowWidth / effectiveWidth;
+					var effectiveWidth = search.rows[ row ].width;
+					var resizeFactor = maxRowWidth / effectiveWidth;
 
 					search.rows[ row ].$element.attr( 'data-effectiveWidth', effectiveWidth );
 					search.rows[ row ].$element.attr( 'data-resizeFactor', resizeFactor );
 					search.rows[ row ].$element.attr( 'data-row', row );
 
 					// Resize all images in the row to fit the width
-					for ( j = 0, jlen = search.rows[ row ].items.length; j < jlen; j++ ) {
+					for ( var j = 0, jlen = search.rows[ row ].items.length; j < jlen; j++ ) {
 						search.rows[ row ].items[ j ].resizeThumb( resizeFactor );
 					}
 
@@ -460,11 +452,9 @@
 	 * Run layout methods from the queue only if the element is visible.
 	 */
 	mw.widgets.MediaSearchWidget.prototype.runLayoutQueue = function () {
-		var i, len;
-
 		// eslint-disable-next-line no-jquery/no-sizzle
 		if ( this.$element.is( ':visible' ) ) {
-			for ( i = 0, len = this.layoutQueue.length; i < len; i++ ) {
+			for ( var i = 0, len = this.layoutQueue.length; i < len; i++ ) {
 				this.layoutQueue.pop()();
 			}
 		}
