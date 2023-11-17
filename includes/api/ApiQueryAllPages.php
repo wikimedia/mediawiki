@@ -26,6 +26,8 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate all available pages.
@@ -93,7 +95,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$this->addWhere( $db->buildComparison( $op, [ 'page_title' => $cont[0] ] ) );
+			$this->addWhere( $db->expr( 'page_title', $op, $cont[0] ) );
 		}
 
 		$miserMode = $this->getConfig()->get( MainConfigNames::MiserMode );
@@ -116,9 +118,13 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$this->addWhereRange( 'page_title', $dir, $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'page_title' . $db->buildLike(
-				$this->titlePartToKey( $params['prefix'], $params['namespace'] ),
-				$db->anyString() ) );
+			$this->addWhere(
+				$db->expr(
+					'page_title',
+					IExpression::LIKE,
+					new LikeValue( $this->titlePartToKey( $params['prefix'], $params['namespace'] ), $db->anyString() )
+				)
+			);
 		}
 
 		if ( $resultPageSet === null ) {

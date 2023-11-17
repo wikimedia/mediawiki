@@ -30,7 +30,9 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
@@ -154,7 +156,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			if ( $params['continue'] !== null ) {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
 				$op = $ascendingOrder ? '>=' : '<=';
-				$this->addWhere( $db->buildComparison( $op, [ 'img_name' => $cont[0] ] ) );
+				$this->addWhere( $db->expr( 'img_name', $op, $cont[0] ) );
 			}
 
 			// Image filters
@@ -163,9 +165,13 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$this->addWhereRange( 'img_name', $ascendingOrder ? 'newer' : 'older', $from, $to );
 
 			if ( isset( $params['prefix'] ) ) {
-				$this->addWhere( 'img_name' . $db->buildLike(
-					$this->titlePartToKey( $params['prefix'], NS_FILE ),
-					$db->anyString() ) );
+				$this->addWhere(
+					$db->expr(
+						'img_name',
+						IExpression::LIKE,
+						new LikeValue( $this->titlePartToKey( $params['prefix'], NS_FILE ), $db->anyString() )
+					)
+				);
 			}
 		} else {
 			// Check mutually exclusive params

@@ -32,6 +32,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate all deleted files.
@@ -108,9 +110,13 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$to = ( $params['to'] === null ? null : $this->titlePartToKey( $params['to'], NS_FILE ) );
 		$this->addWhereRange( 'fa_name', $dir, $from, $to );
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'fa_name' . $db->buildLike(
-				$this->titlePartToKey( $params['prefix'], NS_FILE ),
-				$db->anyString() ) );
+			$this->addWhere(
+				$db->expr(
+					'fa_name',
+					IExpression::LIKE,
+					new LikeValue( $this->titlePartToKey( $params['prefix'], NS_FILE ), $db->anyString() )
+				)
+			);
 		}
 
 		$sha1Set = isset( $params['sha1'] );

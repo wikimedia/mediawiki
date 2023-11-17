@@ -23,6 +23,8 @@
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate all categories, even the ones that don't have
@@ -65,7 +67,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$this->addWhere( $db->buildComparison( $op, [ 'cat_title' => $cont[0] ] ) );
+			$this->addWhere( $db->expr( 'cat_title', $op, $cont[0] ) );
 		}
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
@@ -86,9 +88,13 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'cat_title' . $db->buildLike(
-				$this->titlePartToKey( $params['prefix'], NS_CATEGORY ),
-				$db->anyString() ) );
+			$this->addWhere(
+				$db->expr(
+					'cat_title',
+					IExpression::LIKE,
+					new LikeValue( $this->titlePartToKey( $params['prefix'], NS_CATEGORY ), $db->anyString() )
+				)
+			);
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );

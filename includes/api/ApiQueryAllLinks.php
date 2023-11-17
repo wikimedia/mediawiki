@@ -26,6 +26,8 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate links from all pages together.
@@ -174,7 +176,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			if ( $params['unique'] ) {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
-				$this->addWhere( $db->buildComparison( $op, [ $titleField => $cont[0] ] ) );
+				$this->addWhere( $db->expr( $titleField, $op, $cont[0] ) );
 			} else {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
 				$this->addWhere( $db->buildComparison( $op, [
@@ -192,8 +194,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->addWhereRange( $titleField, 'newer', $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( $titleField . $db->buildLike( $this->titlePartToKey(
-				$params['prefix'], $namespace ), $db->anyString() ) );
+			$this->addWhere(
+				$db->expr(
+					$titleField,
+					IExpression::LIKE,
+					new LikeValue( $this->titlePartToKey( $params['prefix'], $namespace ), $db->anyString() )
+				)
+			);
 		}
 
 		$this->addFields( [ 'pl_title' => $titleField ] );

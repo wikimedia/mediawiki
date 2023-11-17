@@ -33,6 +33,8 @@ use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -212,9 +214,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhereRange( 'ar_title', $dir, $from, $to );
 
 			if ( isset( $params['prefix'] ) ) {
-				$this->addWhere( 'ar_title' . $db->buildLike(
-					$this->titlePartToKey( $params['prefix'], $params['namespace'] ),
-					$db->anyString() ) );
+				$this->addWhere(
+					$db->expr(
+						'ar_title',
+						IExpression::LIKE,
+						new LikeValue(
+							$this->titlePartToKey( $params['prefix'], $params['namespace'] ),
+							$db->anyString()
+						)
+					)
+				);
 			}
 		}
 

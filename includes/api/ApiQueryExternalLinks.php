@@ -25,6 +25,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * A query module to list all external URLs found on a given set of pages.
@@ -82,7 +84,9 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			$this->addWhere( $conds );
 		} else {
 			if ( $protocol !== null ) {
-				$this->addWhere( $continueField . $db->buildLike( "$protocol", $db->anyString() ) );
+				$this->addWhere(
+					$db->expr( $continueField, IExpression::LIKE, new LikeValue( "$protocol", $db->anyString() ) )
+				);
 			}
 		}
 

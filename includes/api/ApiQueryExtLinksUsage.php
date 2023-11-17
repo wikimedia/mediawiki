@@ -27,6 +27,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * @ingroup API
@@ -71,7 +73,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		$this->addTables( [ 'externallinks', 'page' ] );
 		$this->addJoinConds( [ 'page' => [ 'JOIN', 'page_id=el_from' ] ] );
-		$continueField = 'el_to_domain_index';
 		$fields = [ 'el_to_domain_index', 'el_to_path' ];
 
 		$miser_ns = [];
@@ -94,7 +95,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			$this->addWhere( $conds );
 		} else {
 			if ( $protocol !== null ) {
-				$this->addWhere( $continueField . $db->buildLike( "$protocol", $db->anyString() ) );
+				$this->addWhere(
+					$db->expr( 'el_to_domain_index', IExpression::LIKE, new LikeValue( "$protocol", $db->anyString() ) )
+				);
 			}
 		}
 		$orderBy = [ 'el_id' ];
