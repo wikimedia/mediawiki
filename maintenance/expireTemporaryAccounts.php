@@ -7,6 +7,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserSelectQueryBuilder;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -29,6 +30,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 	protected UserFactory $userFactory;
 	protected AuthManager $authManager;
 	protected TempUserConfig $tempUserConfig;
+	protected UserIdentityUtils $userIdentityUtils;
 
 	public function __construct() {
 		parent::__construct();
@@ -50,6 +52,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 		$this->userFactory = $services->getUserFactory();
 		$this->authManager = $services->getAuthManager();
 		$this->tempUserConfig = $services->getTempUserConfig();
+		$this->userIdentityUtils = $services->getUserIdentityUtils();
 	}
 
 	/**
@@ -160,6 +163,11 @@ class ExpireTemporaryAccounts extends Maintenance {
 
 		$revokedUsers = 0;
 		foreach ( $tempAccounts as $tempAccountUserIdentity ) {
+			if ( !$this->userIdentityUtils->isTemp( $tempAccountUserIdentity ) ) {
+				// Not a temporary account, skip it.
+				continue;
+			}
+
 			$this->expireTemporaryAccount( $tempAccountUserIdentity );
 
 			$this->verboseLog(
