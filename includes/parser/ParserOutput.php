@@ -2081,7 +2081,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( $sourceTocData !== null ) {
 				// T327429: Section merging is broken, since it doesn't respect
 				// global numbering, but there are tests which expect section
-				// metadata to be concatendated.
+				// metadata to be concatenated.
 				// There should eventually be a deprecation warning here.
 				foreach ( $sourceTocData->getSections() as $s ) {
 					$tocData->addSection( $s );
