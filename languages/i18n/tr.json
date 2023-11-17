@@ -1660,6 +1660,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Oturum açmış editörler.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Kayıtlı olmayan",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Oturum açmamış kullanıcılar.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Oturum açmamış ve geçici hesap kullanan düzenleyiciler.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Yeni gelenler",
 	"rcfilters-filter-user-experience-level-newcomer-description": "10'dan az düzenlemesi veya 4 günden az etkinliği olan kayıtlı kullanıcılar.",
 	"rcfilters-filter-user-experience-level-learner-label": "Öğreniciler",

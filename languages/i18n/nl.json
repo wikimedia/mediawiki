@@ -1649,6 +1649,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Aangemelde bewerkers.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Niet-geregistreerd",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Bewerkers die niet zijn aangemeld.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Redacteuren die niet aangemeld zijn en redacteuren die tijdelijke accounts gebruiken.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nieuwkomers",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Geregistreerde bewerkers die minder dan 10 bewerkingen hebben gemaakt of 4 dagen actief zijn geweest.",
 	"rcfilters-filter-user-experience-level-learner-label": "Leerlingen",

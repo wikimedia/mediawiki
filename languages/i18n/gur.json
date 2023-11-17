@@ -413,6 +413,7 @@
 	"rcfilters-savedqueries-cancel-label": "Gu basɛ",
 	"rcfilters-search-placeholder-mobile": "Lɛɛsi",
 	"rcfilters-filterlist-title": "Lɛɛsi",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Dɛmesereba sɛba n ka loogɛ kɛ la dɛmesereba sɛba tari tuntuna yuse'ere n kan yue",
 	"rcnotefrom": "Pulin {{PLURAL:$5|ti teere bɔna|ti teeresi la bɔna}} saŋa <strong>$3, $4</strong> (up to <strong>$1</strong> shown).",
 	"rclistfrom": "Pa’alɛ teepɔɔlɔ pɔsera $2, $3",
 	"rcshowhideminor": "$1 demesepigesi",

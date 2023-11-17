@@ -1487,6 +1487,7 @@
 	"rcfilters-filter-previousrevision-description": "An holl gemmoù nemet \"ar stumm nevesañ\".",
 	"rcfilters-filter-excluded": "Skarzhet",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>not</strong> :$1",
+	"rcfilters-tag-prefix-tags-inverted": "<strong>pas</strong> #$1",
 	"rcfilters-exclude-button-off": "Skarzhañ ar re dibabet",
 	"rcfilters-exclude-button-on": "Re dibabet skarzhet",
 	"rcfilters-view-tags": "Kemmoù merket",

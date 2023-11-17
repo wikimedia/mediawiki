@@ -1664,6 +1664,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Angemeldete Autoren.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Unangemeldet",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Autoren, die nicht angemeldet sind.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Benutzer, die nicht angemeldet sind, und Benutzer, die temporäre Konten verwenden.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Neulinge",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Angemeldete Autoren, die weniger als 10 Bearbeitungen oder eine Aktivität von weniger als 4 Tagen haben.",
 	"rcfilters-filter-user-experience-level-learner-label": "Anfänger",

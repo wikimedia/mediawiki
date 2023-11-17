@@ -1569,6 +1569,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Најавени уредници.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Нерегистрирани",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Уредници кои не се најавени.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Уредниците кои не се најавени и уредниците што користат привремени сметки.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Новодојденци",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Зачленети уредници со помалку од 10 уредувања и 4 дена активност.",
 	"rcfilters-filter-user-experience-level-learner-label": "Ученици",

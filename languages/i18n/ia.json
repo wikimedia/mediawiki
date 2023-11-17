@@ -1552,6 +1552,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Redactores que ha aperite session.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Non registrate",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Redactores que non ha aperite session.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Redactores qui non ha aperite session e redactores qui usa contos temporari.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Novicios",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Redactores registrate que ha minus de 10 modificationes o 4 dies de activitate.",
 	"rcfilters-filter-user-experience-level-learner-label": "Apprentisses",

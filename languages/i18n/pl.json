@@ -1644,6 +1644,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Zalogowani edytorzy.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Niezarejestrowani",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Niezalogowani",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Edytorzy niezalogowani oraz używający kont tymczasowych.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Początkujący",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Zarejestrowani edytorzy, którzy mają mniej niż 10 edycji lub 4 dni aktywności.",
 	"rcfilters-filter-user-experience-level-learner-label": "Uczący się",
