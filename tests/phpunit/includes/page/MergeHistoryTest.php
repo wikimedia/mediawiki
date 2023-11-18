@@ -26,6 +26,10 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// Exclusive for testSourceUpdateForNoRedirectSupport()
 		$this->insertPage( 'Merge3' );
 		$this->insertPage( 'Merge4' );
+
+		// Exclusive for testSourceUpdateWithRedirectSupport()
+		$this->insertPage( 'Merge5' );
+		$this->insertPage( 'Merge6' );
 	}
 
 	/**
@@ -161,8 +165,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\Page\MergeHistory::merge
 	 */
 	public function testSourceUpdateWithRedirectSupport() {
-		$title = Title::makeTitle( NS_MAIN, 'Merge1' );
-		$title2 = Title::makeTitle( NS_MAIN, 'Merge2' );
+		$title = Title::makeTitle( NS_MAIN, 'Merge5' );
+		$title2 = Title::makeTitle( NS_MAIN, 'Merge6' );
 
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $title, $title2 );
@@ -170,6 +174,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $title->exists() );
 
 		$status = $mh->merge( static::getTestSysop()->getUser() );
+		$this->assertStatusOK( $status );
 
 		$this->assertTrue( $title->exists() );
 	}
