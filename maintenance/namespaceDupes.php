@@ -622,17 +622,42 @@ class NamespaceDupes extends Maintenance {
 
 		// Update *_from_namespace in links tables
 		$fromNamespaceTables = [
-			[ 'pagelinks', 'pl' ],
-			[ 'templatelinks', 'tl' ],
-			[ 'imagelinks', 'il' ]
+			[ 'pagelinks', 'pl', [ 'pl_namespace', 'pl_title' ] ],
+			[ 'templatelinks', 'tl', [ 'tl_target_id' ] ],
+			[ 'imagelinks', 'il', [ 'il_to' ] ]
 		];
-		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix ] ) {
-			$dbw->newUpdateQueryBuilder()
-				->update( $table )
-				->set( [ "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ] )
-				->where( [ "{$fieldPrefix}_from" => $id ] )
+		$updateRowsPerQuery = $this->getConfig()->get( MainConfigNames::UpdateRowsPerQuery );
+		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix, $additionalPrimaryKeyFields ] ) {
+			$fromField = "{$fieldPrefix}_from";
+			$fromNamespaceField = "{$fieldPrefix}_from_namespace";
+
+			$res = $dbw->newSelectQueryBuilder()
+				->select( $additionalPrimaryKeyFields )
+				->from( $table )
+				->where( [ $fromField => $id ] )
+				->andWhere( $dbw->expr( $fromNamespaceField, '!=', $newLinkTarget->getNamespace() ) )
 				->caller( __METHOD__ )
-				->execute();
+				->fetchResultSet();
+			if ( !$res ) {
+				continue;
+			}
+
+			$updateConds = [];
+			foreach ( $res as $row ) {
+				$updateConds[] = array_merge( [ $fromField => $id ], (array)$row );
+			}
+			$updateBatches = array_chunk( $updateConds, $updateRowsPerQuery );
+			foreach ( $updateBatches as $updateBatch ) {
+				$dbw->newUpdateQueryBuilder()
+					->update( $table )
+					->set( [ $fromNamespaceField => $newLinkTarget->getNamespace() ] )
+					->where( $dbw->factorConds( $updateBatch ) )
+					->caller( __METHOD__ )
+					->execute();
+				if ( count( $updateBatches ) > 1 ) {
+					$this->waitForReplication();
+				}
+			}
 		}
 
 		return true;
