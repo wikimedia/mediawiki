@@ -17,7 +17,8 @@
 			"Spenĉjo",
 			"Keenan Pepper",
 			"20kdc",
-			"Frzzl"
+			"Frzzl",
+			"Earldridge Jazzed Pineda"
 		]
 	},
 	"tog-underline": "linja anpa pi linja tawa:",
@@ -184,6 +185,7 @@
 	"jumptosearch": "alasa",
 	"view-pool-error": "ilo nanpa li pakala lili.\njan mute li wile lukin e lipu ni.\nsina wile lukin sin la, o awen lili.\n\n$1",
 	"generic-pool-error": "ilo nanpa li pakala lili.\njan mute li wile lukin e ijo ni.\nsina wile lukin sin la, o awen lili.",
+	"poolcounter-usage-error": "pakala kepeken: $1",
 	"aboutsite": "lipu {{SITENAME}} li seme?",
 	"aboutpage": "Project:lipu sona pi toki pona li seme?",
 	"copyright": "lipu ken $1 li lawa e lipu ni.",
@@ -299,8 +301,8 @@
 	"createacct-submit": "o pali e sijelo",
 	"createacct-another-submit": "o pali e sijelo",
 	"createacct-benefit-heading": "jan pali pi lipu {{SITENAME}} li sama sina.",
-	"createacct-benefit-body1": "li mute ante",
-	"createacct-benefit-body2": "li mute lipu",
+	"createacct-benefit-body1": "{{PLURAL:$1|li nanpa ante}}",
+	"createacct-benefit-body2": "{{PLURAL:$1|li nanpa lipu}}",
 	"createacct-benefit-body3": "jan pali pi tenpo poka",
 	"createaccounterror": "mi ken ala pali e sijelo: $1",
 	"loginsuccesstitle": "lon sijelo",
@@ -367,6 +369,7 @@
 	"searchprofile-articles-tooltip": "o alasa lon $1",
 	"searchprofile-everything-tooltip": "o alasa lon lipu ale, lon lipu toki ale",
 	"search-result-size": "$1 ({{PLURAL:$2|nimi $2}})",
+	"search-suggest": "sina wile ala wile e: $1",
 	"search-interwiki-more": "(ijo ante)",
 	"searchall": "ale",
 	"search-nonefound": "lipu ala li sama nimi alasa",

@@ -2546,6 +2546,7 @@
 	"blocklink": "stankañ",
 	"unblocklink": "distankañ",
 	"change-blocklink": "Kemmañ ar stankadenn",
+	"empty-username": "(anv implijer ebet da gaout)",
 	"contribslink": "degasadennoù",
 	"emaillink": "Kas ur postel",
 	"autoblocker": "Emstanket rak implijet eo bet ho chomlec'h IP gant \"[[User:$1|$1]]\" nevez zo.\nSetu amañ perak $1 : \"$2\"",

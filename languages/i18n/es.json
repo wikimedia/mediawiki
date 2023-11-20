@@ -242,7 +242,8 @@
 			"Nelthal",
 			"Dbsnp",
 			"MadriCR",
-			"Shyla summers"
+			"Shyla summers",
+			"Hmonroy"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -4001,7 +4002,7 @@
 	"log-action-filter-delete": "Tipo de eliminación:",
 	"log-action-filter-import": "Tipo de importación:",
 	"log-action-filter-managetags": "Tipo de administración de la etiqueta de acción:",
-	"log-action-filter-move": "Tipo de movimiento:",
+	"log-action-filter-move": "Tipo de traslado:",
 	"log-action-filter-newusers": "Tipo de creación de la cuenta:",
 	"log-action-filter-patrol": "Tipo de verificación:",
 	"log-action-filter-protect": "Tipo de protección:",
