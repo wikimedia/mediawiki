@@ -147,8 +147,8 @@ trait PageDumpTestDataTrait {
 		// class), we have to assert, that the page id are consecutively
 		// increasing
 		$this->assertEquals(
-			[ $this->pageId2, $this->pageId3, $this->pageId4 ],
 			[ $this->pageId1 + 1, $this->pageId1 + 2, $this->pageId1 + 3 ],
+			[ $this->pageId2, $this->pageId3, $this->pageId4 ],
 			"Page ids increasing without holes" );
 	}
 

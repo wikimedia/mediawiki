@@ -192,9 +192,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$comment = CommentStoreComment::newUnsavedComment( __METHOD__ );
 
-		$contentHandler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 		// PST turns [[|foo]] into [[foo]]
-		$content = $contentHandler->unserializeContent( __METHOD__ . ' [[|foo]][[bar]]' );
+		$content = $this->getServiceContainer()
+			->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_WIKITEXT )
+			->unserializeContent( __METHOD__ . ' [[|foo]][[bar]]' );
 
 		$revRecord = new MutableRevisionRecord( $page->getTitle() );
 		$revRecord->setContent( SlotRecord::MAIN, $content );

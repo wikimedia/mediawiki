@@ -238,6 +238,29 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \WikitextContentHandler::getDataForSearchIndex
+	 * @covers \ContentHandler::getFieldsForSearchIndex
+	 */
+	public function testGetFieldsForSearchIndex() {
+		$searchEngine = $this->createMock( SearchEngine::class );
+
+		$searchEngine->method( 'makeSearchFieldMapping' )
+			->willReturnCallback( static function ( $name, $type ) {
+				return new DummySearchIndexFieldDefinition( $name, $type );
+			} );
+
+		$this->hideDeprecated( 'ContentHandler::getForModelID' );
+
+		$fields = $this->handler->getFieldsForSearchIndex( $searchEngine );
+
+		$this->assertArrayHasKey( 'category', $fields );
+		$this->assertArrayHasKey( 'external_link', $fields );
+		$this->assertArrayHasKey( 'outgoing_link', $fields );
+		$this->assertArrayHasKey( 'template', $fields );
+		$this->assertArrayHasKey( 'content_model', $fields );
+	}
+
+	/**
+	 * @covers WikitextContentHandler::getDataForSearchIndex
 	 */
 	public function testDataIndexFieldsFile() {
 		$mockEngine = $this->createMock( SearchEngine::class );
