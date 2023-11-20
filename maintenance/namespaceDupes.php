@@ -670,6 +670,7 @@ class NamespaceDupes extends Maintenance {
 	 */
 	private function mergePage( $row, Title $newTitle ) {
 		$dbw = $this->getDB( DB_PRIMARY );
+		$updateRowsPerQuery = $this->getConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 
 		$id = $row->page_id;
 
@@ -683,12 +684,24 @@ class NamespaceDupes extends Maintenance {
 
 		$destId = $newTitle->getArticleID();
 		$this->beginTransaction( $dbw, __METHOD__ );
-		$dbw->newUpdateQueryBuilder()
-			->update( 'revision' )
-			->set( [ 'rev_page' => $destId ] )
+		$revIds = $dbw->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
 			->where( [ 'rev_page' => $id ] )
 			->caller( __METHOD__ )
-			->execute();
+			->fetchFieldValues();
+		$updateBatches = array_chunk( array_map( 'intval', $revIds ), $updateRowsPerQuery );
+		foreach ( $updateBatches as $updateBatch ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'revision' )
+				->set( [ 'rev_page' => $destId ] )
+				->where( [ 'rev_id' => $updateBatch ] )
+				->caller( __METHOD__ )
+				->execute();
+			if ( count( $updateBatches ) > 1 ) {
+				$this->waitForReplication();
+			}
+		}
 
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'page' )
