@@ -715,7 +715,6 @@ $wgAutoloadLocalClasses = [
 	'JpegMetadataExtractor' => __DIR__ . '/includes/media/JpegMetadataExtractor.php',
 	'JsonContent' => __DIR__ . '/includes/content/JsonContent.php',
 	'JsonContentHandler' => __DIR__ . '/includes/content/JsonContentHandler.php',
-	'KkConverter' => __DIR__ . '/includes/language/converters/KkConverter.php',
 	'KuConverter' => __DIR__ . '/includes/language/converters/KuConverter.php',
 	'LCStore' => __DIR__ . '/includes/language/LCStore.php',
 	'LCStoreCDB' => __DIR__ . '/includes/language/LCStoreCDB.php',
