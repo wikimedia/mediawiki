@@ -152,7 +152,8 @@ class SearchPostgres extends SearchDatabase {
 				"FROM page p, revision r, slots s, content c, \"text\" pc " .
 				"WHERE p.page_latest = r.rev_id " .
 				"AND s.slot_revision_id = r.rev_id " .
-				"AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
+				"AND s.slot_role_id = " .
+					$dbr->addQuotes( $slotRoleStore->acquireId( SlotRecord::MAIN ) ) . " " .
 				"AND c.content_id = s.slot_content_id " .
 				"AND pc.old_id = substring( c.content_address from '^tt:([0-9]+)$' )::int " .
 				"AND 1=0";
@@ -169,7 +170,8 @@ class SearchPostgres extends SearchDatabase {
 				"FROM page p, revision r, slots s, content c, \"text\" pc " .
 				"WHERE p.page_latest = r.rev_id " .
 				"AND s.slot_revision_id = r.rev_id " .
-				"AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
+				"AND s.slot_role_id = " . $dbr->addQuotes(
+					$slotRoleStore->acquireId( SlotRecord::MAIN ) ) . " " .
 				"AND c.content_id = s.slot_content_id " .
 				"AND pc.old_id = substring( c.content_address from '^tt:([0-9]+)$' )::int " .
 				"AND $fulltext @@ to_tsquery($searchstring)";
@@ -198,6 +200,7 @@ class SearchPostgres extends SearchDatabase {
 	public function update( $pageid, $title, $text ) {
 		// We don't want to index older revisions
 		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$sql = "UPDATE \"text\" SET textvector = NULL " .
 			"WHERE textvector IS NOT NULL " .
 			"AND old_id IN " .
@@ -205,11 +208,11 @@ class SearchPostgres extends SearchDatabase {
 			" FROM content c, slots s, revision r " .
 			" WHERE r.rev_page = $pageid " .
 			" AND s.slot_revision_id = r.rev_id " .
-			" AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
+			" AND s.slot_role_id = " .
+				$dbw->addQuotes( $slotRoleStore->acquireId( SlotRecord::MAIN ) ) . " " .
 			" AND c.content_id = s.slot_content_id " .
 			" ORDER BY old_rev_text_id DESC OFFSET 1)";
 
-		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->query( $sql, __METHOD__ );
 
 		return true;
