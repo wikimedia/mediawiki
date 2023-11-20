@@ -90,7 +90,7 @@ class SpecialWantedPages extends WantedQueryPage {
 			],
 			'options' => [
 				'HAVING' => [
-					$dbr->expr( 'COUNT(*)', '>', $count ),
+					'COUNT(*) > ' . $dbr->addQuotes( $count ),
 					'COUNT(*) > SUM(pg2.page_is_redirect)'
 				],
 				'GROUP BY' => [ $blNamespace, $blTitle ]

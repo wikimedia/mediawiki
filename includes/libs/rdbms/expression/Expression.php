@@ -45,6 +45,11 @@ class Expression implements IExpression {
 		if ( $op === IExpression::LIKE && !( $value instanceof LikeValue ) ) {
 			throw new InvalidArgumentException( "Value for like expression must be of LikeValue type" );
 		}
+
+		$field = trim( $field );
+		if ( !preg_match( '/^[A-Za-z\d\._]+$/', $field ) ) {
+			throw new InvalidArgumentException( "$field might contain SQL injection" );
+		}
 		$this->field = $field;
 		$this->op = $op;
 		$this->value = $value;
