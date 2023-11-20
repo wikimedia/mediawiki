@@ -1245,6 +1245,27 @@ return [
 		return new MessageFormatterFactory();
 	},
 
+	'MicroStash' => static function ( MediaWikiServices $services ): BagOStuff {
+		$mainConfig = $services->getMainConfig();
+
+		$id = $mainConfig->get( MainConfigNames::MicroStashType );
+
+		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
+		if ( !$params ) {
+			throw new ConfigException(
+				"\$wgObjectCaches must have \"$id\" set (via \$wgMicroStashType)"
+			);
+		}
+
+		$store = ObjectCache::newFromParams( $params, $services );
+
+		$store->getLogger()->debug( 'MicroStash using store {class}', [
+			'class' => get_class( $store )
+		] );
+
+		return $store;
+	},
+
 	'MimeAnalyzer' => static function ( MediaWikiServices $services ): MimeAnalyzer {
 		$logger = LoggerFactory::getInstance( 'Mime' );
 		$mainConfig = $services->getMainConfig();
@@ -2469,9 +2490,7 @@ return [
 
 	'WRStatsFactory' => static function ( MediaWikiServices $services ): WRStatsFactory {
 		return new WRStatsFactory(
-			new BagOStuffStatsStore(
-				ObjectCache::getInstance( $services->getMainConfig()->get( MainConfigNames::StatsCacheType ) )
-			)
+			new BagOStuffStatsStore( $services->getMicroStash() )
 		);
 	},
 

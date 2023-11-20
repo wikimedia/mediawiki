@@ -1492,12 +1492,6 @@ class MainConfigNames {
 	public const LanguageConverterCacheType = 'LanguageConverterCacheType';
 
 	/**
-	 * Name constant for the StatsCacheType setting, for use with Config::get()
-	 * @see MainConfigSchema::StatsCacheType
-	 */
-	public const StatsCacheType = 'StatsCacheType';
-
-	/**
 	 * Name constant for the ObjectCaches setting, for use with Config::get()
 	 * @see MainConfigSchema::ObjectCaches
 	 */
@@ -1508,6 +1502,12 @@ class MainConfigNames {
 	 * @see MainConfigSchema::WANObjectCache
 	 */
 	public const WANObjectCache = 'WANObjectCache';
+
+	/**
+	 * Name constant for the MicroStashType setting, for use with Config::get()
+	 * @see MainConfigSchema::MicroStashType
+	 */
+	public const MicroStashType = 'MicroStashType';
 
 	/**
 	 * Name constant for the MainStash setting, for use with Config::get()

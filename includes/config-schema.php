@@ -462,7 +462,6 @@ return [
 			'ParserCacheType' => -1,
 			'SessionCacheType' => -1,
 			'LanguageConverterCacheType' => -1,
-			'StatsCacheType' => -1,
 			'ObjectCaches' => [
 				0 => [
 					'class' => 'EmptyBagOStuff',
@@ -528,6 +527,7 @@ return [
 			],
 			'WANObjectCache' => [
 			],
+			'MicroStashType' => -1,
 			'MainStash' => 'db-replicated',
 			'ParsoidCacheConfig' => [
 				'StashType' => null,
@@ -2677,6 +2677,10 @@ return [
 			'MultiShardSiteStats' => 'boolean',
 			'ObjectCaches' => 'object',
 			'WANObjectCache' => 'object',
+			'MicroStashType' => [
+				0 => 'string',
+				1 => 'integer',
+			],
 			'ParsoidCacheConfig' => 'object',
 			'ChronologyProtectorStash' => [
 				0 => 'string',

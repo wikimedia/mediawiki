@@ -3905,14 +3905,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * The object cache type for stats storage.
-	 * {@link \Wikimedia\WRStats\WRStatsFactory}
-	 */
-	public const StatsCacheType = [
-		'default' => CACHE_ANYTHING,
-	];
-
-	/**
 	 * Advanced object cache configuration.
 	 *
 	 * Use this to define the class names and constructor parameters which are used
@@ -4028,6 +4020,31 @@ class MainConfigSchema {
 	public const WANObjectCache = [
 		'default' => [],
 		'type' => 'map',
+	];
+
+	/**
+	 * The stash store backend for MicroStash.
+	 *
+	 * This store should be optimized for ephemeral data, and should be able to handle
+	 * a high volume of writes and reads. The dataset access scope should be across
+	 * all servers that serve the application.
+	 *
+	 * Note that the TTL of the data written to the store must be respected completely
+	 * before the data gets evicted from the store (whether the data is used or not).
+	 * Thus, the store should not evict data before the TTL expires.
+	 *
+	 * Properties of the backend should be:
+	 * 1.) the data written to the store should be short-lived,
+	 * 2.) it should be evicted ONLY after the TTL elapses (reliably persist),
+	 * 3.) should be accessed by all servers that serve the application,
+	 * 4.) should be able to handle a high volume of writes and reads.
+	 *
+	 * @see \BagOStuff
+	 * @since 1.42
+	 */
+	public const MicroStashType = [
+		'default' => CACHE_ANYTHING,
+		'type' => 'string|int',
 	];
 
 	/**
