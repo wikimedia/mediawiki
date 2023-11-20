@@ -3331,7 +3331,7 @@
 	"duration-days": "$1 {{PLURAL:$1|ari}}",
 	"duration-weeks": "$1 {{PLURAL:$1|minggu}}",
 	"duration-years": "$1 {{PLURAL:$1|tahon}}",
-	"duration-decades": "$1 {{PLURAL:$1|dékade}}",
+	"duration-decades": "$1 {{PLURAL:$1|sepulutaonan}}",
 	"duration-centuries": "$1 {{PLURAL:$1|abad}}",
 	"duration-millennia": "{{PLURAL:$1|serèbu tahon|$1 rèbu tahon}}",
 	"rotate-comment": "Gambar diputer $1 {{PLURAL:$1|derajat}} searah jarum jem",

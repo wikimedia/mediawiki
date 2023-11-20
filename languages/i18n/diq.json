@@ -3997,7 +3997,7 @@
 	"unlinkaccounts-success": "Hesab gıre nêbiyo.",
 	"authenticationdatachange-ignored": "Datay kamiye araşt kerdışi nêgêriyê. Qay konfigurasyonê provideri nêkerdo?",
 	"userjsispublic": "Kerem kerê : Bon peley JavaScript, terefê karberanê binan ra zi aseno coki ra çıyo mahrem wa miyan de nêaso.",
-	"userjsonispublic": "Kerem kerê : Bon peley JSON'i , terefê karberanê binan ra zi aseno coki ra çıyo mahrem wa miyan de nêaso.",
+	"userjsonispublic": "Ebe keremê xo ra not ke: Cêrpelê JSON-yi dayeyanê nımıteyan gani muhtewa mekerê, çıra ke ê terefê karberanê binan ra yenê vinıtene.",
 	"usercssispublic": "Kerem kerê : Bon peley CSS , terefê karberanê binan ra zi aseno coki ra çıyo mahrem wa miyan de nêaso.",
 	"userjsdangerous": "Tembe keme: Na pela rê cıbıyaye skripti na pela herg barkerdış dê gureynenê.Kodê ke seba meqsedê ariya cıbiyaye tiya, Itimadê hesabi kenê ixlal. Vurnayışê ke şımayê na pela de verqayti dê kodi xebıtnenê.",
 	"restrictionsfield-badip": "Mabeynê IPeyê xırabıni ya zi rêze: $1",
