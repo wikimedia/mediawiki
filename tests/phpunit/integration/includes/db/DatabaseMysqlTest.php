@@ -33,7 +33,9 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown(): void {
-		$this->conn->close( __METHOD__ );
+		if ( $this->conn ) {
+			$this->conn->close( __METHOD__ );
+		}
 
 		parent::tearDown();
 	}
