@@ -43,6 +43,8 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.42 ===
+* (T326466) MediaWikiIntegrationTestCase's database and set-up code now avoids
+  using dynamic properties, which was causing deprecation warnings in PHP 8.2.
 * …
 
 === External library changes in 1.42 ===
