@@ -1571,6 +1571,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Editores autenticados.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Non rexistrados",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Editores que non están autenticados.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Editores que non iniciaron sesión e editores que usan contas temporais.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Chegados recentemente",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Editores rexistrados con menos de 10 edicións ou 4 días de actividade.",
 	"rcfilters-filter-user-experience-level-learner-label": "Aprendices",

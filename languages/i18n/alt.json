@@ -1547,6 +1547,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Кирип калган тӱзедӱчилер.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Регистрациязы јок",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Системага кирбеген тӱзедӱчилер.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Удурум аккаунтту системага киргелек редакторлор.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Јаҥы туружаачылар",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Регистрациялу тӱзедӱчилер, кемизинде 10-ноҥ ас тӱзедӱлӱ эмезе 4 кӱн иштенгендери.",
 	"rcfilters-filter-user-experience-level-learner-label": "Ӱренчиктер",

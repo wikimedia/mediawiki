@@ -1733,6 +1733,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "已登录的编者。",
 	"rcfilters-filter-user-experience-level-unregistered-label": "未注册",
 	"rcfilters-filter-user-experience-level-unregistered-description": "未登录的编者。",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "未登录的编者和使用临时账号的编者。",
 	"rcfilters-filter-user-experience-level-newcomer-label": "新手",
 	"rcfilters-filter-user-experience-level-newcomer-description": "少于10次编辑或4天活动的注册编者。",
 	"rcfilters-filter-user-experience-level-learner-label": "初学者",

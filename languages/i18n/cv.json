@@ -1550,6 +1550,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Системӑна кӗнӗ редакторсем.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Регистрациленменнисем",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Системӑна кӗмен редакторсем.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Системӑна кӗмен тата вӑхӑтлӑ аккаунтпа усӑ куракан редакторсем.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Ҫӗнӗ хутшӑнакансем",
 	"rcfilters-filter-user-experience-level-newcomer-description": "10 тӳрлетӳрен сахалрах тунӑ тата 4 кунран ытларах ӗҫлемен регистрациленнӗ редакторсем.",
 	"rcfilters-filter-user-experience-level-learner-label": "Вĕренекенсем",

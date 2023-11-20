@@ -3458,6 +3458,7 @@
 	"duplicate-displaytitle": "<strong>সতর্কীকরণ:</strong> প্রদর্শন শিরোনাম \"$2\" আগের প্রদর্শন শিরোনাম \"$1\" কে প্রতিস্থাপিত করবে।",
 	"restricted-displaytitle": "<strong>সতর্কবার্তা:</strong> প্রদর্শন শিরোনাম \"$1\" উপেক্ষা করা হয়েছে যেহেতু এটি পাতার আসল শিরোনামের সাথে সমতুল্য নয়।",
 	"invalid-indicator-name": "<strong>ত্রুটি:</strong> পাতার অবস্থা নির্দেশক <code>name</code> অ্যাট্রিবিউট খালি হতে পারবে না।",
+	"invalid-langconvert-attrs": "<strong>ত্রুটি:</strong> Langconvert ট্যাগের <code>from</code> এবং <code>to</code> বৈশিষ্ট্যগুলি খালি থাকা উচিত নয় এবং একই ভাষার রূপান্তরযোগ্য সংস্করণের জন্য BCP 47 কোড থাকতে হবে।",
 	"version": "সংস্করণ",
 	"version-extensions": "ইন্সটলকৃত এক্সটেনশনসমূহ",
 	"version-extensions-no-ext": "বর্তমানে কোনও এক্সটেনশন ইনস্টল করা নেই।",

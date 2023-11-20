@@ -198,7 +198,7 @@
 	"config-upload-enable": "Enable file uplaids",
 	"config-upload-help": "File uplaids potentiallie expose yer server til securitie risks.\nFer mair information, read the [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security securitie section] in the manual.\n\nTae enable file uplaids, chynge the mode oan the <code>eemages</code> subdirecterie unner MediaWiki's ruit directerie sae that the wab server can write til it.\nThan enable this optie.",
 	"config-upload-deleted": "Directerie fer delytit files:",
-	"config-upload-deleted-help": "Chuise ae directerie tae archive delytit files in.\nIdeally, this shidna be accessible fae the wab.",
+	"config-upload-deleted-help": "Wale ae directory tae archive deletit files in.\nIdeally, this sudna be accessible fae the wab.",
 	"config-instantcommons": "Enable Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons Instant Commons] is a featur that allous wikis tae uise images, soonds an ither media fand on the [https://commons.wikimedia.org/ Wikimedia Commons] steid.\nIn order tae dae this, MediaWiki requires access tae the Internet.\n\nFur mair information anent this featur, includin instructions on hou tae set it up for wikis ither nor the Wikimedia Commons, consult [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos the manual].",
 	"config-cc-error": "The Creative Commons license waler gied nae result.\nEnter the license name manually.",
