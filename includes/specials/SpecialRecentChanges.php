@@ -488,7 +488,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			->from( 'recentchanges' )
 			->caller( __METHOD__ )
 			->fetchRow();
-		if ( !$rcInfo ) {
+		if ( !$rcInfo || $rcInfo->min_id === null ) {
 			return false;
 		}
 		$rcSize = $rcInfo->max_id - $rcInfo->min_id;
