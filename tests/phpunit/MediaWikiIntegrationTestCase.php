@@ -679,7 +679,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->setUpSchema( $this->db );
 			ChangedTablesTracker::startTracking();
 			$this->addDBDataOnce();
-			static::$dbDataOnceTables = ChangedTablesTracker::getTablesAndStop();
+			static::$dbDataOnceTables = ChangedTablesTracker::getTables( $this->db->getDomainID() );
+			ChangedTablesTracker::stopTracking();
 		}
 
 		ChangedTablesTracker::startTracking();
@@ -763,7 +764,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->temporaryHookHandlers = [];
 
 		if ( self::needsDB() ) {
-			$tablesUsed = ChangedTablesTracker::getTablesAndStop();
+			$tablesUsed = ChangedTablesTracker::getTables( $this->db->getDomainID() );
+			ChangedTablesTracker::stopTracking();
 			// Do not clear tables written by addDBDataOnce, otherwise the data would need to be added again every time.
 			$tablesUsed = array_diff( $tablesUsed, static::$dbDataOnceTables );
 			self::resetDB( $this->db, $tablesUsed );
