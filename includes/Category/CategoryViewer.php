@@ -367,7 +367,7 @@ class CategoryViewer extends ContextSource {
 	}
 
 	protected function doCategoryQuery() {
-		$dbr = wfGetDB( DB_REPLICA, 'category' );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 
 		$this->nextPage = [
 			'page' => null,

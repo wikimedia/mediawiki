@@ -1069,7 +1069,7 @@ abstract class ContentHandler {
 		if ( func_num_args() === 2 ) {
 			wfDeprecated( __METHOD__ . ': $hasHistory parameter', '1.38' );
 		}
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// Get the last revision

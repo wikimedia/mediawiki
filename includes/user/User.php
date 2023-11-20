@@ -503,7 +503,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache, $wgFullyInitialised ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
+				$setOpts += Database::getCacheSetOptions(
+					MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase()
+				);
 				wfDebug( "User: cache miss for user {$this->mId}" );
 
 				$this->loadFromDatabase( self::READ_NORMAL );
@@ -2500,7 +2502,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// check against race conditions and replica DB lag.
 		$newTouched = $this->newTouchedTimestamp();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $newTouched ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'user' )
@@ -2705,7 +2707,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$this->mTouched = $this->newTouchedTimestamp();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$status = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 			$noPass = PasswordFactory::newInvalidPassword()->toString();
 			$dbw->newInsertQueryBuilder()

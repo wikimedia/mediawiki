@@ -183,7 +183,7 @@ class WikiModule extends Module {
 	 * @return IReadableDatabase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_REPLICA );
+		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 	}
 
 	/**

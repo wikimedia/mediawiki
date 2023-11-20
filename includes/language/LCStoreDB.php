@@ -145,7 +145,7 @@ class LCStoreDB implements LCStore {
 					throw new MWException( __CLASS__ . ': failed to obtain a DB connection' );
 				}
 			} else {
-				$this->dbw = wfGetDB( DB_PRIMARY );
+				$this->dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 			}
 		}
 

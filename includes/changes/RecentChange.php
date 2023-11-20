@@ -401,7 +401,7 @@ class RecentChange implements Taggable {
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
 		$putIPinRC = $mainConfig->get( MainConfigNames::PutIPinRC );
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
 		}
@@ -646,7 +646,7 @@ class RecentChange implements Taggable {
 	 * @return int Number of affected rows
 	 */
 	public function reallyMarkPatrolled() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'recentchanges' )
 			->set( [ 'rc_patrolled' => self::PRC_PATROLLED ] )
@@ -1397,7 +1397,7 @@ class RecentChange implements Taggable {
 				}
 			}
 		} elseif ( $actorId > 0 ) {
-			$db = wfGetDB( DB_REPLICA );
+			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
 			$user = $actorStore->getActorById( $actorId, $db );
 
 			if ( !$user ) {
