@@ -6,15 +6,15 @@ module.exports = {
 		};
 	}
 };;
-module.exports.template = "<!-- Outer comment --> \
-	<div class=\"mw-vue-test\"> \
-		<!-- \
-			Inner comment \
-			with multiple lines \
-			and tabs \
-		--> \
-		<p>Hello\\n<\/p> \
-		<p>{{ hello }}<\/p> \
-		<pre>			foo\\\n			bar \
-		<\/pre> \
+module.exports.template = "<!-- Outer comment --> \n\
+	<div class=\"mw-vue-test\"> \n\
+		<!-- \n\
+			Inner comment \n\
+			with multiple lines \n\
+			and tabs \n\
+		--> \n\
+		<p>Hello\\n<\/p> \n\
+		<p>{{ hello }}<\/p> \n\
+		<pre>			foo\\\n			bar \n\
+		<\/pre> \n\
 	<\/div>";

@@ -1476,9 +1476,10 @@ class FileModule extends Module {
 			}
 			$encodedTemplate = json_encode( $parsedComponent['template'] );
 			if ( $context->getDebug() ) {
-				// Replace \n (backslash-n) with space + backslash-newline in debug mode
+				// Replace \n (backslash-n) with space + backslash-n + backslash-newline in debug mode
+				// The \n has to be preserved to prevent Vue parser issues (T351771)
 				// We only replace \n if not preceded by a backslash, to avoid breaking '\\n'
-				$encodedTemplate = preg_replace( '/(?<!\\\\)\\\\n/', " \\\n", $encodedTemplate );
+				$encodedTemplate = preg_replace( '/(?<!\\\\)\\\\n/', " \\n\\\n", $encodedTemplate );
 				// Expand \t to real tabs in debug mode
 				$encodedTemplate = strtr( $encodedTemplate, [ "\\t" => "\t" ] );
 			}
