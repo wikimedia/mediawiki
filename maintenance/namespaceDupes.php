@@ -402,7 +402,7 @@ class NamespaceDupes extends Maintenance {
 				break;
 			}
 
-			$rowsToDelete = [];
+			$rowsToDeleteIfStillExists = [];
 
 			foreach ( $res as $row ) {
 				$logTitle = "from={$row->$fromField} ns={$row->$namespaceField} " .
@@ -455,19 +455,17 @@ class NamespaceDupes extends Maintenance {
 					->caller( __METHOD__ )
 					->execute();
 
-				// When there is a key conflict on UPDATE IGNORE, delete the row
-				if ( !$dbw->affectedRows() ) {
-					$rowsToDelete[] = array_merge( [ $fromField => $row->$fromField ], $deleteCondition );
-				}
+				// In case there is a key conflict on UPDATE IGNORE the row needs deletion
+				$rowsToDeleteIfStillExists[] = array_merge( [ $fromField => $row->$fromField ], $deleteCondition );
 
 				$this->output( "$table $logTitle -> " .
 					$destTitle->getPrefixedDBkey() . "\n"
 				);
 			}
 
-			if ( $options['fix'] && count( $rowsToDelete ) > 0 ) {
+			if ( $options['fix'] && count( $rowsToDeleteIfStillExists ) > 0 ) {
 				$affectedRows = 0;
-				$deleteBatches = array_chunk( $rowsToDelete, $updateRowsPerQuery );
+				$deleteBatches = array_chunk( $rowsToDeleteIfStillExists, $updateRowsPerQuery );
 				foreach ( $deleteBatches as $deleteBatch ) {
 					$dbw->newDeleteQueryBuilder()
 						->deleteFrom( $table )

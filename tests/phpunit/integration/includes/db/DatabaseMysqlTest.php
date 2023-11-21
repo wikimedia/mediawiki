@@ -448,6 +448,68 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->dropDestTable();
 	}
 
+	/**
+	 * @coversNothing
+	 */
+	public function testAffectedRowsAfterUpdateIgnore() {
+		$sTable = $this->createSourceTable();
+
+		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ],
+			[ 'sk' => 'Test', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
+		$this->conn->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
+		$this->assertSame( 2, $this->conn->affectedRows(), 'Test inserted' );
+
+		// Test changing something
+		$this->conn->update(
+			$sTable,
+			[ 'sk' => 'TestRow' ],
+			[ 'sk' => 'Test' ],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+		$this->assertSame( 1, $this->conn->affectedRows(), 'Updated' );
+
+		// Test changing nothing
+		$this->conn->update(
+			$sTable,
+			[ 'sk' => 'TestRow' ],
+			[ 'sk' => 'TestRow' ],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+		$this->assertSame( 1, $this->conn->affectedRows(), 'Nothing changed' );
+
+		// Test nothing found
+		$this->conn->update(
+			$sTable,
+			[ 'sk' => 'TestExistingRow' ],
+			[ 'sk' => 'TestNonexistingRow' ],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+		$this->assertSame( 0, $this->conn->affectedRows(), 'Not found' );
+
+		// Test key conflict on the unique sk field
+		$this->conn->update(
+			$sTable,
+			[ 'sk' => 'TestRow' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+		$this->assertSame( 1, $this->conn->affectedRows(), 'Key conflict, nothing changed on database' );
+
+		// Test key conflict on the unique sk field
+		$this->conn->update(
+			$sTable,
+			[ 'sk' => 'TestRow' ],
+			[ 'sk' => 'Luca' ],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+		$this->assertSame( 1, $this->conn->affectedRows(), 'Key conflict, nothing changed on database' );
+	}
+
 	private function createSourceTable() {
 		global $wgDBname;
 
