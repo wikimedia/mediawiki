@@ -51,12 +51,6 @@ use WikitextContentHandler;
 class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed[] = 'page';
-	}
-
 	/**
 	 * @param string $title
 	 *

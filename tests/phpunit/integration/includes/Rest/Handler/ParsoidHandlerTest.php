@@ -54,8 +54,6 @@ use WikitextContent;
 class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	use RestTestTrait;
 
-	protected $tablesUsed = [ 'page' ];
-
 	/**
 	 * Default request attributes, see ParsoidHandler::getRequestAttributes()
 	 */

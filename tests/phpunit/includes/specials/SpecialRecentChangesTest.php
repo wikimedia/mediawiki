@@ -179,8 +179,6 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	 * check for syntax errors etc. It doesn't verify the logic.
 	 */
 	public function testIsDenseTagFilter() {
-		$this->tablesUsed[] = 'change_tag_def';
-		$this->tablesUsed[] = 'change_tag';
 		ChangeTags::defineTag( 'rc-test-tag' );
 		$req = new FauxRequest();
 		$req->setVal( 'tagfilter', 'rc-test-tag' );
@@ -208,8 +206,6 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	 * @dataProvider provideDenseTagFilter
 	 */
 	public function testDenseTagFilter( $dense ) {
-		$this->tablesUsed[] = 'change_tag_def';
-		$this->tablesUsed[] = 'change_tag';
 		ChangeTags::defineTag( 'rc-test-tag' );
 		$req = new FauxRequest();
 		$req->setVal( 'tagfilter', 'rc-test-tag' );

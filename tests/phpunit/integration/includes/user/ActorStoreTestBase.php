@@ -17,8 +17,6 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 	protected const IP = '2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E';
 
 	public function addDBData() {
-		$this->tablesUsed[] = 'actor';
-
 		$actors = [
 			'registered' => [ 'actor_id' => '42', 'actor_user' => '24', 'actor_name' => 'TestUser' ],
 			'anon' => [ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],

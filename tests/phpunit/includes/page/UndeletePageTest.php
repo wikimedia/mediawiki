@@ -25,25 +25,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[
-				'page',
-				'revision',
-				'ip_changes',
-				'text',
-				'archive',
-				'recentchanges',
-				'logging',
-				'page_props',
-				'comment',
-				'slots',
-				'content',
-				'content_models',
-				'slot_roles',
-			]
-		);
-
 		$this->ipEditor = '2001:DB8:0:0:0:0:0:1';
 		$this->setupPage( 'UndeletePageTest_thePage', NS_MAIN, ' ' );
 		$this->setupPage( 'UndeletePageTest_thePage', NS_TALK, ' ' );

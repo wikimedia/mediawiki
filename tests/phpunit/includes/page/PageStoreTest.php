@@ -27,11 +27,6 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 	use LinkCacheTestTrait;
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'page';
-	}
-
 	/**
 	 * @param array $options
 	 * @param array $params

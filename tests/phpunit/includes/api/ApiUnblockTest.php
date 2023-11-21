@@ -20,11 +20,6 @@ class ApiUnblockTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[ 'ipblocks', 'change_tag', 'change_tag_def', 'logging' ]
-		);
-
 		$this->blocker = $this->getTestSysop()->getUser();
 		$this->blockee = $this->getMutableTestUser()->getUser();
 

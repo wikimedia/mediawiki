@@ -48,15 +48,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Clean up these tables after each test
-		$this->tablesUsed = [
-			'page',
-			'revision',
-			'comment',
-			'text',
-			'content'
-		];
-
 		$this->parserCacheBagOStuff = new HashBagOStuff();
 	}
 

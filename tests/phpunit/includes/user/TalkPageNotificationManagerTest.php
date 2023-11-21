@@ -25,7 +25,6 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 		// tablesUsed don't clear up the database before the first test runs: T265033
 		$this->truncateTable( 'user_newtalk' );
-		$this->tablesUsed[] = 'user_newtalk';
 	}
 
 	private function editUserTalk( UserIdentity $user, string $text ): RevisionRecord {

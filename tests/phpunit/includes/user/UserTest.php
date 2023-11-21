@@ -48,8 +48,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->setUpPermissionGlobals();
 
 		$this->user = $this->getTestUser( 'unittesters' )->getUser();
-		$this->tablesUsed[] = 'user';
-		$this->tablesUsed[] = 'revision';
 	}
 
 	private function setUpPermissionGlobals() {
@@ -1017,8 +1015,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getBlock
 	 */
 	public function testCompositeBlocks() {
-		$this->tablesUsed[] = 'ipblocks';
-
 		$user = $this->getMutableTestUser()->getUser();
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );
@@ -1049,8 +1045,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getBlock
 	 */
 	public function testUserBlock() {
-		$this->tablesUsed[] = 'ipblocks';
-
 		$user = $this->getMutableTestUser()->getUser();
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );

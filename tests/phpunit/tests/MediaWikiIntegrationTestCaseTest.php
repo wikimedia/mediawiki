@@ -397,7 +397,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		// Avoid self-deadlocks with Sqlite
 		$this->markTestSkippedIfDbType( 'sqlite' );
 
-		$this->tablesUsed[] = 'objectcache';
 		$this->db->insert(
 			'objectcache',
 			[ 'keyname' => __METHOD__, 'value' => 'TEST', 'exptime' => $this->db->timestamp( 11 ) ],

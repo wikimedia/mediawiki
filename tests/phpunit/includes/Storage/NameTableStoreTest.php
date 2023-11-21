@@ -25,11 +25,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'slot_roles';
-	}
-
 	private function populateTable( $values ) {
 		$insertValues = [];
 		foreach ( $values as $name ) {

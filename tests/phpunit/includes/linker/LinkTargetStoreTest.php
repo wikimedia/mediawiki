@@ -7,10 +7,6 @@ use MediaWiki\Title\TitleValue;
  * @covers MediaWiki\Linker\LinkTargetStore
  */
 class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'linktarget';
-	}
 
 	public static function provideLinkTargets() {
 		yield [ new TitleValue( NS_SPECIAL, 'BlankPage' ) ];

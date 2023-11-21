@@ -14,16 +14,6 @@ use MediaWiki\Title\Title;
  */
 class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'revision';
-
-		$this->tablesUsed[] = 'pagelinks';
-		$this->tablesUsed[] = 'categorylinks';
-	}
-
 	/**
 	 * @param string $name
 	 * @param Content[] $content

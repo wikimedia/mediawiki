@@ -14,11 +14,6 @@ use MediaWiki\User\User;
  */
 class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 
-	protected $tablesUsed = [
-		'recentchanges',
-		'page',
-	];
-
 	private function getLoggedInTestUser() {
 		return $this->getTestUser()->getUser();
 	}

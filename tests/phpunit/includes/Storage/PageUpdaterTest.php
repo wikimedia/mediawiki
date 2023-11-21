@@ -51,10 +51,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				true
 			);
 		}
-
-		$this->tablesUsed[] = 'logging';
-		$this->tablesUsed[] = 'recentchanges';
-		$this->tablesUsed[] = 'change_tag';
 	}
 
 	private function getDummyTitle( $method ) {

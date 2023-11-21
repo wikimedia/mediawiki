@@ -398,7 +398,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContribsPager::doBatchLookups
 	 */
 	public function testPopulatedIntegration() {
-		$this->tablesUsed[] = 'page';
 		$user = $this->getTestUser()->getUser();
 		$title = Title::makeTitle( NS_MAIN, 'ContribsPagerTest' );
 		$this->editPage( $title, '', '', NS_MAIN, $user );

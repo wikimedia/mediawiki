@@ -21,23 +21,6 @@ use WikiPage;
  * @see RevertedTagUpdateTest for non-DB tests
  */
 class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[
-				'page',
-				'revision',
-				'comment',
-				'text',
-				'content',
-				'change_tag',
-				'objectcache',
-				'job'
-			]
-		);
-	}
 
 	/**
 	 * This test ensures the update is not performed at the end of the web request, but

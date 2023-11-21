@@ -21,9 +21,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->tablesUsed[] = 'watchlist'; // This test might interfere with watchlists test.
-		$this->tablesUsed[] = 'watchlist_expiry';
-		$this->tablesUsed = array_merge( $this->tablesUsed, LocalFile::getQueryInfo()['tables'] );
+
 		$this->setService( 'RepoGroup', new RepoGroup(
 			[
 				'class' => LocalRepo::class,

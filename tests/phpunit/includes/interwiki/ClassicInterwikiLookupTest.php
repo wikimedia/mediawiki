@@ -14,7 +14,6 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 	private function populateDB( $iwrows ) {
 		$this->db->delete( 'interwiki', '*', __METHOD__ );
 		$this->db->insert( 'interwiki', array_values( $iwrows ), __METHOD__ );
-		$this->tablesUsed[] = 'interwiki';
 	}
 
 	/**

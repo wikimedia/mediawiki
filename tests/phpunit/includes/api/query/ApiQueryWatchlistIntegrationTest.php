@@ -20,9 +20,6 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->tablesUsed = array_unique(
-			array_merge( $this->tablesUsed, [ 'watchlist', 'recentchanges', 'page' ] )
-		);
 
 		$this->loggedInUser = $this->getMutableTestUser()->getUser();
 		$this->notLoggedInUser = $this->getMutableTestUser()->getUser();

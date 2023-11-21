@@ -13,11 +13,6 @@ use MediaWiki\User\User;
  */
 class ArticleTest extends \MediaWikiIntegrationTestCase {
 
-	protected $tablesUsed = [
-		'revision',
-		'recentchanges',
-	];
-
 	/**
 	 * @param Title $title
 	 * @param User|null $user

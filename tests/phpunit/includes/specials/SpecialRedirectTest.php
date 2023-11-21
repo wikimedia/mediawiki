@@ -12,8 +12,6 @@ use MediaWiki\Specials\SpecialRedirect;
  */
 class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 
-	protected $tablesUsed = [ 'user' ];
-
 	private const CREATE_USER = 'create_user';
 
 	/**

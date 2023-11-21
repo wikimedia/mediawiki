@@ -25,41 +25,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[
-				'page',
-				'revision',
-				'redirect',
-				'archive',
-				'category',
-				'ip_changes',
-				'text',
-
-				'slots',
-				'content',
-				'slot_roles',
-				'content_models',
-
-				'recentchanges',
-				'logging',
-
-				'page_props',
-				'page_restrictions',
-				'pagelinks',
-				'categorylinks',
-				'langlinks',
-				'externallinks',
-				'imagelinks',
-				'templatelinks',
-				'iwlinks'
-			]
-		);
-	}
-
 	protected function tearDown(): void {
 		ParserOptions::clearStaticCache();
 		parent::tearDown();

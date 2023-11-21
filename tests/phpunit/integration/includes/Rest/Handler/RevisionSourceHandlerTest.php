@@ -27,15 +27,6 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Clean up these tables after each test
-		$this->tablesUsed = [
-			'page',
-			'revision',
-			'comment',
-			'text',
-			'content'
-		];
-
 		$this->overrideConfigValues( [
 			'RightsUrl' => 'https://example.com/rights',
 			'RightsText' => 'some rights',

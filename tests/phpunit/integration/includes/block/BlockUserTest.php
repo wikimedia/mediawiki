@@ -28,8 +28,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 
 		// Prepare factory
 		$this->blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
-
-		$this->tablesUsed[] = 'ipblocks';
 	}
 
 	/**

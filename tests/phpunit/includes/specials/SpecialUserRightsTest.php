@@ -9,7 +9,6 @@ use MediaWiki\Specials\SpecialUserRights;
  * @covers \MediaWiki\Specials\SpecialUserRights
  */
 class SpecialUserRightsTest extends SpecialPageTestBase {
-	protected $tablesUsed = [ 'user', 'logging' ];
 
 	/**
 	 * @inheritDoc

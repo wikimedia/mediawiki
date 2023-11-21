@@ -16,10 +16,6 @@ class ApiProtectTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[ 'page_restrictions', 'logging', 'watchlist', 'watchlist_expiry' ]
-		);
 
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}

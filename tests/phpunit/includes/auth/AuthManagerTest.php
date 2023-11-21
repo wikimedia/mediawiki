@@ -105,12 +105,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'ipblocks';
-		$this->tablesUsed[] = 'user';
-	}
-
 	/**
 	 * Sets a mock on a hook
 	 * @param string $hook

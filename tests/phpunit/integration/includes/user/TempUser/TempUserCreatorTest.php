@@ -33,9 +33,6 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	];
 
 	public function testCreate() {
-		$this->tablesUsed[] = 'user';
-		$this->tablesUsed[] = 'user_autocreate_serial';
-
 		$this->overrideConfigValue(
 			MainConfigNames::AutoCreateTempUser,
 			[
@@ -114,7 +111,6 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testAcquireName_db() {
-		$this->tablesUsed[] = 'user_autocreate_serial';
 		$this->overrideConfigValue(
 			MainConfigNames::AutoCreateTempUser,
 			[ 'enabled' => true ] + self::DEFAULTS

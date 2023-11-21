@@ -26,21 +26,6 @@ use MediaWiki\Title\TitleValue;
  */
 class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 	public function testUpdate() {
-		$this->tablesUsed = array_merge( $this->tablesUsed,
-			[
-				'interwiki',
-				'page_props',
-				'pagelinks',
-				'categorylinks',
-				'langlinks',
-				'externallinks',
-				'imagelinks',
-				'templatelinks',
-				'iwlinks',
-				'recentchanges',
-			]
-		);
-
 		$res = $this->insertPage( 'Source' );
 		$id = $res['id'];
 		$title = $res['title'];

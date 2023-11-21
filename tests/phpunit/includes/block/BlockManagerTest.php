@@ -927,7 +927,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetBlocksForIPList() {
-		$this->tablesUsed[] = 'ipblocks';
 		$blockManager = $this->getBlockManager( [] );
 		$block = new DatabaseBlock( [
 			'address' => '1.2.3.4',

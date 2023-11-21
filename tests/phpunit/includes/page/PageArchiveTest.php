@@ -45,25 +45,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[
-				'page',
-				'revision',
-				'ip_changes',
-				'text',
-				'archive',
-				'recentchanges',
-				'logging',
-				'page_props',
-				'comment',
-				'slots',
-				'content',
-				'content_models',
-				'slot_roles',
-			]
-		);
-
 		// First create our dummy page
 		$this->archivedPage = Title::makeTitle( NS_MAIN, 'PageArchiveTest_thePage' );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $this->archivedPage );

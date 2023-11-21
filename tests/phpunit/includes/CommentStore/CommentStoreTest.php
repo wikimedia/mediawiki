@@ -11,12 +11,6 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  */
 class CommentStoreTest extends MediaWikiLangTestCase {
 
-	protected $tablesUsed = [
-		'revision',
-		'ipblocks',
-		'comment',
-	];
-
 	protected function getSchemaOverrides( IMaintainableDatabase $db ) {
 		return [
 			'scripts' => [

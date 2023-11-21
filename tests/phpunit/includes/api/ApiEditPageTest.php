@@ -44,10 +44,6 @@ class ApiEditPageTest extends ApiTestCase {
 			'testing-nontext' => 'DummyNonTextContentHandler',
 			'testing-serialize-error' => 'DummySerializeErrorContentHandler',
 		] );
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[ 'change_tag', 'change_tag_def', 'logging', 'watchlist', 'watchlist_expiry' ]
-		);
 	}
 
 	public function testEdit() {

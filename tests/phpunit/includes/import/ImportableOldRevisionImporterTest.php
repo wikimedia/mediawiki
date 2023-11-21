@@ -13,9 +13,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->tablesUsed[] = 'change_tag';
-		$this->tablesUsed[] = 'change_tag_def';
-
 		ChangeTags::defineTag( 'tag1' );
 	}
 

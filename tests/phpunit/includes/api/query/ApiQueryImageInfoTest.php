@@ -27,12 +27,6 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 
 	private $testUser = null;
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'image';
-		$this->tablesUsed[] = 'oldimage';
-	}
-
 	public function addDBData() {
 		parent::addDBData();
 		$this->testUser = new UserIdentityValue( 12364321, 'Dummy User' );
