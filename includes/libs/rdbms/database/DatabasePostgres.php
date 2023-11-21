@@ -577,8 +577,6 @@ __INDEXATTR__;
 				self::QUERY_CHANGE_SCHEMA,
 				'CREATE',
 				// Do not treat this is as a table modification on top of the CREATE above.
-				// This lets the new table remain marked as "pristine" if it was TEMPORARY,
-				// which optimizes truncate() during tests.
 				[]
 			);
 			$this->query( $query, $fname );
@@ -587,8 +585,6 @@ __INDEXATTR__;
 				self::QUERY_CHANGE_SCHEMA,
 				'ALTER',
 				// Do not treat this is as a table modification on top of the CREATE above.
-				// This lets the new table remain marked as "pristine" if it was TEMPORARY,
-				// which optimizes truncate() during tests.
 				[]
 			);
 			$this->query( $query, $fname );

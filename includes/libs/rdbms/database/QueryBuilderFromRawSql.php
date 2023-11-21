@@ -41,10 +41,15 @@ class QueryBuilderFromRawSql {
 	 * @return Query
 	 */
 	public static function buildQuery( string $sql, $flags, string $tablePrefix = '' ) {
-		if ( !$flags && !self::isWriteQuery( $sql ) ) {
-			$flags = SQLPlatform::QUERY_CHANGE_NONE;
-		} elseif ( !$flags ) {
-			$flags = SQLPlatform::QUERY_CHANGE_ROWS;
+		if ( !$flags ) {
+			if ( !self::isWriteQuery( $sql ) ) {
+				$flags = SQLPlatform::QUERY_CHANGE_NONE;
+			} else {
+				$flags = SQLPlatform::QUERY_CHANGE_ROWS;
+			}
+			if ( self::isCreateTemporaryTable( $sql ) ) {
+				$flags |= SQLPlatform::QUERY_CREATE_TEMP;
+			}
 		}
 		$queryVerb = self::getQueryVerb( $sql );
 		$writeTables = self::getWriteTables( $sql, $tablePrefix );
@@ -126,6 +131,10 @@ class QueryBuilderFromRawSql {
 		}
 
 		return $writeTables;
+	}
+
+	private static function isCreateTemporaryTable( $sql ) {
+		return (bool)preg_match( '/^CREATE\s+TEMPORARY\s+TABLE\s+/i', $sql );
 	}
 
 	/**

@@ -753,6 +753,7 @@ class DatabaseSqlite extends Database {
 			$sqlCreateTable,
 			1
 		);
+		$flags = self::QUERY_CHANGE_SCHEMA | self::QUERY_PSEUDO_PERMANENT;
 		if ( $temporary ) {
 			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sqlCreateTable ) ) {
 				$this->logger->debug(
@@ -763,13 +764,14 @@ class DatabaseSqlite extends Database {
 					'CREATE TEMPORARY TABLE',
 					$sqlCreateTable
 				);
+				$flags |= self::QUERY_CREATE_TEMP;
 			}
 		}
 
 		$res = $this->query(
 			$sqlCreateTable,
 			$fname,
-			self::QUERY_CHANGE_SCHEMA | self::QUERY_PSEUDO_PERMANENT
+			$flags
 		);
 
 		// Take over indexes
