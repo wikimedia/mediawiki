@@ -45,7 +45,7 @@ You'll need to have Docker installed:
 
 **Windows users**:
 
-We recommend [configuring Docker to use the Windows Subsystem for Linux (WSL)](https://docs.docker.com/desktop/wsl/#best-practices). This will result in performance improvements.
+We recommend [configuring Docker to use the Windows Subsystem for Linux (WSL)](https://docs.docker.com/desktop/wsl) for performance improvements. If you do enable it, ensure the MediaWiki files in the next step are stored in the Linux filesystem, as described in the [best practices](https://docs.docker.com/desktop/wsl/best-practices) page.
 
 ### 2. Download MediaWiki files
 
