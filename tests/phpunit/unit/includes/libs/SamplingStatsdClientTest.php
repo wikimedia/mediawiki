@@ -10,6 +10,14 @@ class SamplingStatsdClientTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
+	protected function setUp(): void {
+		parent::setUp();
+		if ( version_compare( PHP_VERSION, '8.2', '>=' ) ) {
+			// Tracked on T326386
+			$this->markTestSkipped( "PHP 8.2 isn't supported for this test" );
+		}
+	}
+
 	/**
 	 * @dataProvider samplingDataProvider
 	 */
