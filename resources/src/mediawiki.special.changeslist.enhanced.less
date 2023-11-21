@@ -55,11 +55,12 @@ td.mw-enhanced-rc {
 	cursor: pointer;
 
 	.mw-enhancedchanges-checkbox:not( :checked ) + * & {
-		background-image: url( mediawiki.icon/images/arrow-collapsed-ltr.svg );
+		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-base, @size-icon-x-small );
+		transform: rotate( -90deg );
 	}
 
 	.mw-enhancedchanges-checkbox:checked + * & {
-		background-image: url( mediawiki.icon/images/arrow-expanded.svg );
+		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-base, @size-icon-x-small );
 	}
 
 	// Show a focus ring around the label when focusing the invisible checkbox.
