@@ -56,7 +56,6 @@ class CommandLineInstaller extends Maintenance {
 			false,
 			true
 		);
-		/* $this->addOption( 'email', 'The email for the wiki administrator', false, true ); */
 		$this->addOption(
 			'scriptpath',
 			'The relative path of the wiki in the web server (/' . basename( dirname( __DIR__ ) ) . ')',
@@ -71,7 +70,6 @@ class CommandLineInstaller extends Maintenance {
 		);
 
 		$this->addOption( 'lang', 'The language to use (en)', false, true );
-		/* $this->addOption( 'cont-lang', 'The content language (en)', false, true ); */
 
 		$this->addOption( 'dbtype', 'The type of database (mysql)', false, true );
 		$this->addOption( 'dbserver', 'The database host (localhost)', false, true );
@@ -93,10 +91,7 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'confpath', "Path to write LocalSettings.php to ($IP)", false, true );
 		$this->addOption( 'dbschema', 'The schema for the MediaWiki DB in '
 			. 'PostgreSQL (mediawiki)', false, true );
-		/*
-		$this->addOption( 'namespace', 'The project namespace (same as the "name" argument)',
-			false, true );
-		*/
+
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 
 		$this->addOption( 'with-extensions', "Detect and include extensions" );
