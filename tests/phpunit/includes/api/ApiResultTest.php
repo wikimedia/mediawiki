@@ -699,6 +699,9 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	 * @param array|Exception $expect
 	 */
 	public function testTransformations( $label, $input, $transforms, $expect ) {
+		// Sorting changed - T326480
+		$this->markTestSkippedIfPhp( '>=', '8.2' );
+
 		$result = new ApiResult( false );
 		$result->addValue( null, 'test', $input );
 
