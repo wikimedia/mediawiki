@@ -1004,7 +1004,7 @@ class Linker {
 	 * @param string $query Urlencoded query string to prepend
 	 * @return string Urlencoded URL
 	 */
-	protected static function getUploadUrl( $destFile, $query = '' ) {
+	public static function getUploadUrl( $destFile, $query = '' ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
 		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
