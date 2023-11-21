@@ -16,11 +16,6 @@ use MediaWiki\MainConfigNames;
  */
 class ApiQueryBlocksTest extends ApiTestCase {
 
-	protected $tablesUsed = [
-		'ipblocks',
-		'ipblocks_restrictions',
-	];
-
 	public function testExecute() {
 		[ $data ] = $this->doApiRequest( [
 			'action' => 'query',

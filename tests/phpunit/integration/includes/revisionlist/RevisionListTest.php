@@ -14,16 +14,6 @@ use MediaWiki\Page\PageIdentityValue;
  */
 class RevisionListTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed[] = 'revision';
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'comment';
-		$this->tablesUsed[] = 'content';
-		$this->tablesUsed[] = 'user';
-	}
-
 	public function testGetType() {
 		$context = new RequestContext();
 		$page = new PageIdentityValue( 123, NS_MAIN, __METHOD__, PageIdentity::LOCAL );

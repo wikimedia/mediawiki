@@ -152,7 +152,6 @@ class ApiParseTest extends ApiTestCase {
 			MainConfigNames::ExtraInterlanguageLinkPrefixes,
 			[ 'madeuplanguage' ]
 		);
-		$this->tablesUsed[] = 'interwiki';
 	}
 
 	/**

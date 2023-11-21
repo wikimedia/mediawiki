@@ -91,14 +91,6 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 			self::CONTENT_B,
 			'20050101210041'
 		);
-
-		$this->tablesUsed = [
-			'page',
-			'revision',
-			'comment',
-			'text',
-			'content'
-		];
 	}
 
 	private function getLatestTestRevision(): RevisionRecord {

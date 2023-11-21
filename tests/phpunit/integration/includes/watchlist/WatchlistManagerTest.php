@@ -13,11 +13,6 @@ use MediaWiki\User\UserIdentityValue;
 class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'watchlist';
-	}
-
 	/**
 	 * While this *could* be moved to a unit test, it is specifically kept
 	 * here as an integration test to double check that the actual integration

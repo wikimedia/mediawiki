@@ -204,7 +204,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			__METHOD__,
 			'IGNORE'
 		);
-		$this->tablesUsed[] = 'interwiki';
 
 		$this->getServiceContainer()->getMessageCache()->enable();
 

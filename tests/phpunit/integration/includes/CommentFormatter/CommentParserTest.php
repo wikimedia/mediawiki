@@ -384,7 +384,6 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testLinkCacheInteraction() {
-		$this->tablesUsed[] = 'page';
 		$services = $this->getServiceContainer();
 		$present = $this->getExistingTestPage( 'Present' )->getTitle();
 		$absent = $this->getNonexistingTestPage( 'Absent' )->getTitle();

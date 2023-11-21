@@ -31,10 +31,6 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * @covers \Wikimedia\Rdbms\SqliteResultWrapper
  */
 class ResultWrapperTest extends MediaWikiIntegrationTestCase {
-	protected function setUp(): void {
-		$this->tablesUsed[] = 'ResultWrapperTest';
-	}
-
 	public function getSchemaOverrides( IMaintainableDatabase $db ) {
 		return [
 			'create' => [ 'ResultWrapperTest' ],

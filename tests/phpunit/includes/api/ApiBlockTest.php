@@ -26,10 +26,6 @@ class ApiBlockTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[ 'ipblocks', 'ipblocks_restrictions', 'change_tag', 'change_tag_def', 'logging' ]
-		);
 
 		$this->mUser = $this->getMutableTestUser()->getUser();
 		$this->overrideConfigValue(

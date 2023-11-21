@@ -59,9 +59,6 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	}
 
 	public function addDBData() {
-		$this->tablesUsed[] = 'logging';
-		$this->tablesUsed[] = 'user';
-
 		try {
 			$user1 = User::newFromName( 'BackupDumperLogUserA' );
 			$this->userId1 = $user1->getId();

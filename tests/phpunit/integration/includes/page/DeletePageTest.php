@@ -26,22 +26,6 @@ use WikiPage;
  * @note Permission-related tests are in \MediaWiki\Tests\Unit\Page\DeletePageTest
  */
 class DeletePageTest extends MediaWikiIntegrationTestCase {
-	protected $tablesUsed = [
-		'page',
-		'revision',
-		'redirect',
-		'archive',
-		'text',
-		'slots',
-		'content',
-		'slot_roles',
-		'content_models',
-		'recentchanges',
-		'logging',
-		'pagelinks',
-		'change_tag',
-		'change_tag_def',
-	];
 
 	private const PAGE_TEXT = "[[Stuart Little]]\n" .
 		"{{Multiple issues}}\n" .

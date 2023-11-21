@@ -10,21 +10,6 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  */
 class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed[] = 'change_tag';
-		$this->tablesUsed[] = 'change_tag_def';
-
-		// Truncate these to avoid the supposed-to-be-unused IDs in tests here turning
-		// out to be used, leading ChangeTags::updateTags() to pick up bogus rc_id,
-		// log_id, or rev_id values and run into unique constraint violations.
-		$this->tablesUsed[] = 'recentchanges';
-		$this->tablesUsed[] = 'logging';
-		$this->tablesUsed[] = 'revision';
-		$this->tablesUsed[] = 'archive';
-	}
-
 	protected function tearDown(): void {
 		parent::tearDown();
 	}

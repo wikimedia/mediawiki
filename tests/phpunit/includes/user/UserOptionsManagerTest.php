@@ -22,12 +22,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class UserOptionsManagerTest extends UserOptionsLookupTest {
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'user';
-		$this->tablesUsed[] = 'user_properties';
-	}
-
 	/**
 	 * @param array $overrides supported keys:
 	 *  - 'language' - string language code

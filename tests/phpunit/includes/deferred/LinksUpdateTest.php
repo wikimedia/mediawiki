@@ -35,22 +35,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->tablesUsed = array_merge( $this->tablesUsed,
-			[
-				'interwiki',
-				'page_props',
-				'pagelinks',
-				'categorylinks',
-				'category',
-				'langlinks',
-				'externallinks',
-				'imagelinks',
-				'templatelinks',
-				'iwlinks',
-				'recentchanges',
-			]
-		);
-
 		$this->getDb()->newReplaceQueryBuilder()
 			->replaceInto( 'interwiki' )
 			->uniqueIndexFields( [ 'iw_prefix' ] )

@@ -18,10 +18,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	protected static $amId = 0;
 
-	protected $tablesUsed = [
-		'actor',
-	];
-
 	private const STAGES_BY_NAME = [
 		'old' => SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD,
 		'read-old' => SCHEMA_COMPAT_WRITE_OLD_AND_TEMP | SCHEMA_COMPAT_READ_OLD,

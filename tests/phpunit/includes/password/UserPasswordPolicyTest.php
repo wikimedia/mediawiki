@@ -29,8 +29,6 @@ use MediaWiki\User\User;
  */
 class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 
-	protected $tablesUsed = [ 'user', 'user_groups' ];
-
 	protected $policies = [
 		'checkuser' => [
 			'MinimalPasswordLength' => [ 'value' => 10, 'forceChange' => true ],

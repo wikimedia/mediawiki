@@ -32,19 +32,6 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private const PAGE_NAME = 'McrUndoTestPage';
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		// Clean up these tables after each test
-		$this->tablesUsed = [
-			'page',
-			'revision',
-			'comment',
-			'text',
-			'content'
-		];
-	}
-
 	/**
 	 * Creates a new McrUndoAction object for testing.
 	 *

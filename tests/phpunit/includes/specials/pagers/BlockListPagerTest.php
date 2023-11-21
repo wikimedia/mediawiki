@@ -238,12 +238,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::preprocessResults
 	 */
 	public function testPreprocessResults() {
-		$this->tablesUsed[] = 'ipblocks';
-		$this->tablesUsed[] = 'ipblocks_restrictions';
-		$this->tablesUsed[] = 'comment';
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'user';
-
 		// Test the Link Cache.
 		$linkCache = $this->getServiceContainer()->getLinkCache();
 		$wrappedlinkCache = TestingAccessWrapper::newFromObject( $linkCache );

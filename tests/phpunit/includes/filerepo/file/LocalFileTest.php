@@ -20,14 +20,6 @@ use Wikimedia\TestingAccessWrapper;
 class LocalFileTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'image';
-		$this->tablesUsed[] = 'oldimage';
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'text';
-	}
-
 	private static function getDefaultInfo() {
 		return [
 			'name' => 'test',

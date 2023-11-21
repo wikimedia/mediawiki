@@ -9,15 +9,6 @@
  */
 class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed = array_merge(
-			$this->tablesUsed,
-			[ 'page', 'watchlist', 'watchlist_expiry' ]
-		);
-	}
-
 	public function testStuff() {
 		$user = $this->getTestUser()->getUser();
 		$watchedPageTitle = 'PageWatched';

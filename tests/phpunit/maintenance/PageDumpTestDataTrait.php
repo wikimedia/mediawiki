@@ -51,11 +51,6 @@ trait PageDumpTestDataTrait {
 		// be sure, titles created here using english namespace names
 		$this->setContentLang( 'en' );
 
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'revision';
-		$this->tablesUsed[] = 'ip_changes';
-		$this->tablesUsed[] = 'text';
-
 		try {
 			$this->namespace = $this->getDefaultWikitextNS();
 			$this->talk_namespace = NS_TALK;

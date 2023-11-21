@@ -66,20 +66,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $testPage;
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'archive';
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'revision';
-		$this->tablesUsed[] = 'comment';
-		$this->tablesUsed[] = 'actor';
-		$this->tablesUsed[] = 'recentchanges';
-		$this->tablesUsed[] = 'content';
-		$this->tablesUsed[] = 'slots';
-		$this->tablesUsed[] = 'content_models';
-		$this->tablesUsed[] = 'slot_roles';
-	}
-
 	/**
 	 * @return Title
 	 */

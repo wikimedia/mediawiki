@@ -711,9 +711,6 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		foreach ( $restrictionData as $row ) {
 			$this->db->insert( 'ipblocks_restrictions', $row );
 		}
-
-		$this->tablesUsed[] = 'ipblocks';
-		$this->tablesUsed[] = 'ipblocks_restrictions';
 	}
 
 }

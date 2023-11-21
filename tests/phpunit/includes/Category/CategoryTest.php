@@ -21,8 +21,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::MetaNamespace => 'Project',
 			MainConfigNames::LanguageCode => 'en',
 		] );
-
-		$this->tablesUsed[] = 'category';
 	}
 
 	public function addDBData() {

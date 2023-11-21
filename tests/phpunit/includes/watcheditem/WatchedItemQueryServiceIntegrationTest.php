@@ -15,9 +15,6 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->tablesUsed[] = 'watchlist';
-		$this->tablesUsed[] = 'watchlist_expiry';
-
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 

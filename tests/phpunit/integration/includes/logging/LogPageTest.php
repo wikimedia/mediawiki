@@ -30,7 +30,6 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 				'test_test' => 'testing-log-restriction'
 			]
 		] );
-		$this->tablesUsed[] = 'logging';
 	}
 
 	/**

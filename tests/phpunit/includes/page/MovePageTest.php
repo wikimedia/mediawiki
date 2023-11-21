@@ -104,10 +104,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				}
 			}
 		);
-
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'revision';
-		$this->tablesUsed[] = 'comment';
 	}
 
 	/**

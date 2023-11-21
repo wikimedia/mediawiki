@@ -36,12 +36,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+
 		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
-		$this->tablesUsed = array_merge( $this->tablesUsed, [
-			'page',
-			'recentchanges',
-			'logging',
-		] );
 	}
 
 	public function provideAuthorize() {

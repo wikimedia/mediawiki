@@ -7,14 +7,6 @@
  */
 class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'revision';
-		$this->tablesUsed[] = 'pagelinks';
-	}
-
 	/**
 	 * @dataProvider provideBacklinks
 	 * @covers BacklinkJobUtils

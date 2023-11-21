@@ -12,8 +12,6 @@ use MediaWiki\User\UserRigorOptions;
  * @group Database
  */
 class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [ 'page' ];
 
 	/**
 	 * Do an edit

@@ -15,10 +15,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// trigger purging of all page related tables
-		$this->tablesUsed[] = 'page';
-		$this->tablesUsed[] = 'revision';
-
 		// Anon user
 		$user = new User();
 		$user->setName( '127.0.0.1' );
