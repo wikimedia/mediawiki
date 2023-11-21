@@ -865,12 +865,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Avoid the overhead of logging calls unless debug mode is enabled
 		if ( $this->flagsHolder->getFlag( self::DBO_DEBUG ) ) {
 			$this->logger->debug(
-				"{method} [{runtime}s] {db_server}: {sql}",
+				"{method} [{runtime_ms}ms] {db_server}: {sql}",
 				$this->getLogContext( [
 					'method' => $fname,
 					'sql' => $sql->getSQL(),
 					'domain' => $this->getDomainID(),
-					'runtime' => round( $queryRuntime, 3 ),
+					'runtime_ms' => round( $queryRuntime * 1000, 3 ),
 					'db_log_category' => 'query'
 				] )
 			);
