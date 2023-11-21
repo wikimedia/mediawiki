@@ -31,7 +31,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LikeValue;
@@ -394,6 +393,7 @@ class NamespaceDupes extends Maintenance {
 			->orderBy( [ $titleField, $fromField ] )
 			->caller( __METHOD__ );
 
+		$updateRowsPerQuery = $this->getConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 		while ( true ) {
 			$res = ( clone $sqb )
 				->andWhere( $batchConds )
@@ -457,10 +457,7 @@ class NamespaceDupes extends Maintenance {
 
 				// When there is a key conflict on UPDATE IGNORE, delete the row
 				if ( !$dbw->affectedRows() ) {
-					$rowsToDelete[] = $dbw->makeList(
-						array_merge( [ $fromField => $row->$fromField ], $deleteCondition ),
-						IDatabase::LIST_AND
-					);
+					$rowsToDelete[] = array_merge( [ $fromField => $row->$fromField ], $deleteCondition );
 				}
 
 				$this->output( "$table $logTitle -> " .
@@ -469,14 +466,22 @@ class NamespaceDupes extends Maintenance {
 			}
 
 			if ( $options['fix'] && count( $rowsToDelete ) > 0 ) {
-				$dbw->newDeleteQueryBuilder()
-					->deleteFrom( $table )
-					->where( $dbw->makeList( $rowsToDelete, IDatabase::LIST_OR ) )
-					->caller( __METHOD__ )
-					->execute();
+				$affectedRows = 0;
+				$deleteBatches = array_chunk( $rowsToDelete, $updateRowsPerQuery );
+				foreach ( $deleteBatches as $deleteBatch ) {
+					$dbw->newDeleteQueryBuilder()
+						->deleteFrom( $table )
+						->where( $dbw->factorConds( $deleteBatch ) )
+						->caller( __METHOD__ )
+						->execute();
+					$affectedRows += $dbw->affectedRows();
+					if ( count( $deleteBatches ) > 1 ) {
+						$this->waitForReplication();
+					}
+				}
 
-				$this->deletedLinks += $dbw->affectedRows();
-				$this->resolvableLinks -= $dbw->affectedRows();
+				$this->deletedLinks += $affectedRows;
+				$this->resolvableLinks -= $affectedRows;
 			}
 
 			$batchConds = [
