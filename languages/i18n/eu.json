@@ -2536,7 +2536,7 @@
 	"ipb-unblock": "Erabiltzaile izen edo IP helbide bati blokeoa kendu",
 	"ipb-blocklist": "Ikusi indarrean diren blokeoak",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1(r)en}} ekarpenak",
-	"ipb-blocklist-duration-left": "Geratzen da: $1",
+	"ipb-blocklist-duration-left": "Geratzen zaiona: $1",
 	"block-actions": "Blokeatuko diren ekintzak:",
 	"block-expiry": "Blokeoaren iraupena",
 	"block-options": "Aukera gehigarriak:",

@@ -2500,7 +2500,7 @@
 	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Satu semakan|$1 semakan}} tidak dapat dipulihkan kerana <code>rev_id</code> {{PLURAL:$1|nya}} sedang digunakan.",
 	"undelete-nodiff": "Tiada semakan sebelumnya.",
 	"undeletebtn": "Pulihkan",
-	"undeletelink": "lihat/pulihkan",
+	"undeletelink": "lihat/nyahhapus",
 	"undeleteviewlink": "papar",
 	"undeleteinvert": "Kecualikan pilihan",
 	"undeletecomment": "Sebab:",

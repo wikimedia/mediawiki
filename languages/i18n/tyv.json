@@ -1397,7 +1397,7 @@
 	"recentchanges-label-newpage": "Бо эдилге-биле чаа арын чаяаттынган.",
 	"recentchanges-label-minor": "Улуг эвес эдилге-дир",
 	"recentchanges-label-bot": "Бо эдилгени робот күүсеткен.",
-	"recentchanges-label-unpatrolled": "Бо эдилгени кым-даа хынаваан",
+	"recentchanges-label-unpatrolled": "Бо өскертилге амдгаа дээр хайгаараттынмаан",
 	"recentchanges-label-plusminus": "Арынның сөзүглели бердинген түң байт-биле өскерилген",
 	"recentchanges-legend-heading": "<strong>Тайылбыр:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|чаа арыннар даңзызын]] база көрүңер)",
