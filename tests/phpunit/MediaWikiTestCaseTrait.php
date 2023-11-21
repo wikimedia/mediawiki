@@ -121,6 +121,20 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Skip the test if not running the necessary php version
+	 *
+	 * @since 1.42
+	 *
+	 * @param string $op
+	 * @param string $version
+	 */
+	protected function markTestSkippedIfPhp( $op, $version ) {
+		if ( version_compare( PHP_VERSION, $version, $op ) ) {
+			$this->markTestSkipped( "PHP $version isn't supported for this test" );
+		}
+	}
+
+	/**
 	 * Don't throw a warning if $function is deprecated and called later
 	 *
 	 * @since 1.19
