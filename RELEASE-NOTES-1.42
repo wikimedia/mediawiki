@@ -128,6 +128,8 @@ because of Phabricator reports.
   for new projects.
 * Title::getBrokenLinksFrom() has been deprecated.
 * ParserOutput::setLanguageLinks() has been deprecated.
+* The module `mediawiki.icon` has been deprecated. Use the Codex mixin instead
+ (T351681).
 * …
 
 === Other changes in 1.42 ===

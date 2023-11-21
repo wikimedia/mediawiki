@@ -900,6 +900,7 @@ return [
 		],
 	],
 	'mediawiki.icon' => [
+		'deprecated' => '[1.42] Use @cdx-icon-down-triangle and cdx-mixin-css-icon instead.',
 		'styles' => 'resources/src/mediawiki.icon/icon.less',
 	],
 	'mediawiki.inspect' => [
