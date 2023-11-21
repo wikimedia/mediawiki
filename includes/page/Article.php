@@ -566,10 +566,6 @@ class Article implements Page {
 			return;
 		}
 
-		if ( $parserOptions->getUseParsoid() ) {
-			$outputPage->addModules( 'mediawiki.skinning.content.parsoid' );
-		}
-
 		# For the main page, overwrite the <title> element with the con-
 		# tents of 'pagetitle-view-mainpage' instead of the default (if
 		# that's not empty).
