@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;

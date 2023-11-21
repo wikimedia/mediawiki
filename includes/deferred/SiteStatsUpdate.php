@@ -17,9 +17,13 @@
  *
  * @file
  */
+
+namespace MediaWiki\Deferred;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SiteStats\SiteStats;
+use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -205,3 +209,6 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		return $activeUsers;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( SiteStatsUpdate::class, 'SiteStatsUpdate' );

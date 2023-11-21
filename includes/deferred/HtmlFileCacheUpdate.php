@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
+use HTMLFileCache;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Assert\Assert;
@@ -69,3 +72,6 @@ class HtmlFileCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		}
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HtmlFileCacheUpdate::class, 'HtmlFileCacheUpdate' );

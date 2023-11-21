@@ -23,6 +23,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;

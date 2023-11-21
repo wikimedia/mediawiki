@@ -18,9 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
+use CdnPurgeJob;
+use Exception;
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 
@@ -344,3 +350,6 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		return false;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( CdnCacheUpdate::class, 'CdnCacheUpdate' );

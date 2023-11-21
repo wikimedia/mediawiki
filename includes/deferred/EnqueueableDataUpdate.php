@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Deferred;
+
 /**
  * Interface that marks a DataUpdate as enqueuable via the JobQueue
  *
@@ -15,3 +18,6 @@ interface EnqueueableDataUpdate {
 	 */
 	public function getAsJobSpecification();
 }
+
+/** @deprecated since 1.42 */
+class_alias( EnqueueableDataUpdate::class, 'EnqueueableDataUpdate' );

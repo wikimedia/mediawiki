@@ -22,11 +22,11 @@
 
 namespace MediaWiki\Block;
 
-use AutoCommitUpdate;
-use DeferredUpdates;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\AutoCommitUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

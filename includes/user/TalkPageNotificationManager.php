@@ -21,8 +21,8 @@
 
 namespace MediaWiki\User;
 
-use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

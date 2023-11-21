@@ -1,10 +1,12 @@
 <?php
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\CdnCacheUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Title\Title;
 
 /**
- * @covers CdnCacheUpdate
+ * @covers \MediaWiki\Deferred\CdnCacheUpdate
  */
 class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
 

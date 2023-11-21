@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
+
 /**
  * @covers TransactionRoundDefiningUpdate
  */

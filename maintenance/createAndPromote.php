@@ -25,6 +25,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 

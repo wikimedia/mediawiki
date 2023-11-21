@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionStatus;

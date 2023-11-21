@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBTransactionError;
 
@@ -131,3 +133,6 @@ class DeferredUpdatesScopeMediaWikiStack extends DeferredUpdatesScopeStack {
 		$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( DeferredUpdatesScopeMediaWikiStack::class, 'DeferredUpdatesScopeMediaWikiStack' );

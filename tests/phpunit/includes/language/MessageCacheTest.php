@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;

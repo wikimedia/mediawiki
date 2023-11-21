@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SiteStats\SiteStatsInit;
 use Wikimedia\TestingAccessWrapper;

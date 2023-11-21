@@ -28,13 +28,13 @@
 
 namespace MediaWiki\Specials;
 
-use DeferredUpdates;
 use EditWatchlistCheckboxSeriesField;
 use EditWatchlistNormalHTMLForm;
 use GenderCache;
 use HTMLForm;
 use LogicException;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;

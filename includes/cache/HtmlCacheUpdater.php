@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Deferred\CdnCacheUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\HtmlFileCacheUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;

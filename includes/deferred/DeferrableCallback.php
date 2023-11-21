@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Deferred;
+
 /**
  * Callback wrapper that has an originating method
  *
@@ -13,3 +15,6 @@ interface DeferrableCallback {
 	 */
 	public function getOrigin();
 }
+
+/** @deprecated since 1.42 */
+class_alias( DeferrableCallback::class, 'DeferrableCallback' );

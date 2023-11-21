@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;

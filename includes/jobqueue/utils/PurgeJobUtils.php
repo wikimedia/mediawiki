@@ -20,6 +20,8 @@
  *
  * @file
  */
+use MediaWiki\Deferred\AutoCommitUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;

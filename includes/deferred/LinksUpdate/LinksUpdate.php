@@ -22,11 +22,11 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use AutoCommitUpdate;
 use BacklinkCache;
-use DataUpdate;
-use DeferredUpdates;
 use Job;
+use MediaWiki\Deferred\AutoCommitUpdate;
+use MediaWiki\Deferred\DataUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

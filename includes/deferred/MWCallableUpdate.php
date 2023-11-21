@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Deferred;
+
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -67,3 +69,6 @@ class MWCallableUpdate
 		return $this->trxRoundRequirement;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( MWCallableUpdate::class, 'MWCallableUpdate' );

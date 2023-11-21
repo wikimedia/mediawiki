@@ -27,6 +27,8 @@
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

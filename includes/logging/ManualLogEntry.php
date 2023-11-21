@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;

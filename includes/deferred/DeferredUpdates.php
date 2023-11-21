@@ -18,7 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
+use ErrorPageError;
+use LogicException;
 use MediaWiki\Logger\LoggerFactory;
+use MWExceptionHandler;
+use Throwable;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -465,3 +471,6 @@ class DeferredUpdates {
 		self::getScopeStack()->onRunUpdateEnd( $update );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( DeferredUpdates::class, 'DeferredUpdates' );

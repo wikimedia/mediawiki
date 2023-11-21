@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
@@ -138,7 +139,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
 			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
 			$fname = __METHOD__;
-			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
 				$dbw = $this->dbProvider->getPrimaryDatabase();
 				$dbw->newUpdateQueryBuilder()
 					->update( 'user' )

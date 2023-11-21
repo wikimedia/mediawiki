@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Deferred\MWCallableUpdate;
+
 /**
  * @covers MWCallableUpdate
  */

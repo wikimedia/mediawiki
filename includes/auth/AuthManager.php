@@ -26,6 +26,8 @@ namespace MediaWiki\Auth;
 use Language;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -1594,7 +1596,7 @@ class AuthManager implements LoggerAwareInterface {
 				$state['userid'] = $user->getId();
 
 				// Update user count
-				\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
+				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 
 				// Watch user's userpage and talk page
 				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
@@ -1944,10 +1946,10 @@ class AuthManager implements LoggerAwareInterface {
 		$user->saveSettings();
 
 		// Update user count
-		\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
+		DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 		// Watch user's userpage and talk page (except temp users)
 		if ( $source !== self::AUTOCREATE_SOURCE_TEMP ) {
-			\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
 			} );
 		}

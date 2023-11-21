@@ -19,6 +19,8 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\MessageCacheUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;

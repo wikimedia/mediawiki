@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Deferred;
+
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -54,3 +56,6 @@ class AtomicSectionUpdate implements DeferrableUpdate, DeferrableCallback {
 		return $this->fname;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( AtomicSectionUpdate::class, 'AtomicSectionUpdate' );

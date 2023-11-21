@@ -20,11 +20,9 @@
 
 namespace MediaWiki\Storage;
 
-use AtomicSectionUpdate;
 use ChangeTags;
 use Content;
 use ContentHandler;
-use DeferredUpdates;
 use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
@@ -32,6 +30,8 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Deferred\AtomicSectionUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

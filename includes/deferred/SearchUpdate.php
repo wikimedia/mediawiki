@@ -23,12 +23,16 @@
  * @ingroup Search
  */
 
+namespace MediaWiki\Deferred;
+
+use Content;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageStore;
+use SearchEngine;
 
 /**
  * Database independent search index updater
@@ -213,3 +217,6 @@ class SearchUpdate implements DeferrableUpdate {
 		return $search->normalizeText( trim( $t ) );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( SearchUpdate::class, 'SearchUpdate' );

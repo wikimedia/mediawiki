@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Deferred;
+
 /**
  * Deferrable update that must run outside of any explicit LBFactory transaction round
  *
@@ -38,3 +40,6 @@ class TransactionRoundDefiningUpdate
 		return self::TRX_ROUND_ABSENT;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( TransactionRoundDefiningUpdate::class, 'TransactionRoundDefiningUpdate' );

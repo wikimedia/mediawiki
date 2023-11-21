@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use DeferredUpdates;
 use Exception;
 use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;

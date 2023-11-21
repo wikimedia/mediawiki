@@ -20,9 +20,9 @@
 
 namespace MediaWiki\SiteStats;
 
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use SiteStatsUpdate;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 

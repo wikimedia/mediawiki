@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use DeferredUpdates;
 use Exception;
 use HashBagOStuff;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\PageHTMLHandler;

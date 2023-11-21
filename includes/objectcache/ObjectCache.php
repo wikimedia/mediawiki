@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

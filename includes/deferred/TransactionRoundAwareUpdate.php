@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Deferred;
+
 /**
  * Deferrable update that specifies whether it must run outside of any explicit
  * LBFactory transaction round or must run inside of a round owned by doUpdate().
@@ -19,3 +21,6 @@ interface TransactionRoundAwareUpdate {
 	 */
 	public function getTransactionRoundRequirement();
 }
+
+/** @deprecated since 1.42 */
+class_alias( TransactionRoundAwareUpdate::class, 'TransactionRoundAwareUpdate' );

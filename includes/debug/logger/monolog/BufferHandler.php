@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Logger\Monolog;
 
-use DeferredUpdates;
+use MediaWiki\Deferred\DeferredUpdates;
 use Monolog\Handler\BufferHandler as BaseBufferHandler;
 
 /**

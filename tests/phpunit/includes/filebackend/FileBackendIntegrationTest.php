@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;

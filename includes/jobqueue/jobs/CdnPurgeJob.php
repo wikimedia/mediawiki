@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Deferred\CdnCacheUpdate;
+
 /**
  * Job to purge a set of URLs from CDN
  *

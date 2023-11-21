@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

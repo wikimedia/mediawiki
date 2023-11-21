@@ -27,6 +27,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\DatabaseSqlite;

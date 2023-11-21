@@ -24,10 +24,7 @@
 
 namespace MediaWiki\Title;
 
-use AtomicSectionUpdate;
-use AutoCommitUpdate;
 use DBAccessObjectUtils;
-use DeferredUpdates;
 use DeprecationHelper;
 use HTMLCacheUpdateJob;
 use IDBAccessObject;
@@ -37,6 +34,9 @@ use Language;
 use LinkCache;
 use MapCacheLRU;
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\Deferred\AtomicSectionUpdate;
+use MediaWiki\Deferred\AutoCommitUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;

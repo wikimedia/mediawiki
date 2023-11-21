@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\JobQueueEnqueueUpdate;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
 

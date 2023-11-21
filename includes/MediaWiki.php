@@ -23,6 +23,8 @@
 use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

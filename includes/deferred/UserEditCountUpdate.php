@@ -20,9 +20,12 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use RuntimeException;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -102,3 +105,6 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 		$hookRunner->onUserEditCountUpdate( array_values( $this->infoByUser ) );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( UserEditCountUpdate::class, 'UserEditCountUpdate' );

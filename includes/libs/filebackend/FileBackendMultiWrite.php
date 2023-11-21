@@ -21,6 +21,7 @@
  * @ingroup FileBackend
  */
 
+use MediaWiki\Deferred\DeferredUpdates;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;

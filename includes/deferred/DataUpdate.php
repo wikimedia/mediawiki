@@ -21,6 +21,8 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
 /**
  * Abstract base class for update jobs that do something with some secondary
  * data extracted from article.
@@ -74,3 +76,6 @@ abstract class DataUpdate implements DeferrableUpdate {
 	}
 
 }
+
+/** @deprecated since 1.42 */
+class_alias( DataUpdate::class, 'DataUpdate' );

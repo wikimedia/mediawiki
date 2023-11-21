@@ -29,6 +29,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;

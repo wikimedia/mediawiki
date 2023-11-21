@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;

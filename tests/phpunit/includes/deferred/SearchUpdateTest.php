@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\Page\PageIdentityValue;
 
 /**

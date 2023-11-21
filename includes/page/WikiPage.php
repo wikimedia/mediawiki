@@ -21,6 +21,7 @@
 use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;

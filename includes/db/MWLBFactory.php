@@ -24,6 +24,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ChronologyProtector;

@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 
@@ -62,3 +64,6 @@ class SendPasswordResetEmailUpdate implements DeferrableUpdate {
 	}
 
 }
+
+/** @deprecated since 1.42 */
+class_alias( SendPasswordResetEmailUpdate::class, 'SendPasswordResetEmailUpdate' );

@@ -22,11 +22,11 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use DeferredUpdates;
-use EnqueueableDataUpdate;
 use InvalidArgumentException;
 use JobSpecification;
 use MediaWiki\Category\Category;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\EnqueueableDataUpdate;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MWException;

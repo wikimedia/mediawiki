@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
+use LogicException;
+
 /**
  * DeferredUpdates helper class for tracking DeferrableUpdate::doUpdate() nesting levels
  * caused by nested calls to DeferredUpdates::doUpdates()
@@ -120,3 +124,6 @@ class DeferredUpdatesScopeStack {
 		// Overridden in DeferredUpdatesScopeMediaWikiStack::onRunUpdateFailed
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( DeferredUpdatesScopeStack::class, 'DeferredUpdatesScopeStack' );

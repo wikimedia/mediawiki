@@ -2,6 +2,7 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;

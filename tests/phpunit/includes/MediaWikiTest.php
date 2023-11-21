@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;

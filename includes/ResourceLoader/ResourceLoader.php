@@ -23,7 +23,6 @@
 namespace MediaWiki\ResourceLoader;
 
 use BagOStuff;
-use DeferredUpdates;
 use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
@@ -34,6 +33,7 @@ use Less_Environment;
 use Less_Parser;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\Config;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlJsCode;

@@ -20,10 +20,8 @@
 
 namespace MediaWiki\Page;
 
-use AtomicSectionUpdate;
 use ChangeTags;
 use ContentHandler;
-use DeferredUpdates;
 use File;
 use LogFormatter;
 use ManualLogEntry;
@@ -31,6 +29,8 @@ use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Deferred\AtomicSectionUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

@@ -21,12 +21,12 @@
 namespace MediaWiki\User;
 
 use DBAccessObjectUtils;
-use DeferredUpdates;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

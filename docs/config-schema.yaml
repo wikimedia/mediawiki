@@ -7127,7 +7127,7 @@ config-schema:
             @since 1.29
     SpecialPageCacheUpdates:
         default:
-            Statistics: [SiteStatsUpdate, cacheUpdate]
+            Statistics: [MediaWiki\Deferred\SiteStatsUpdate, cacheUpdate]
         type: object
         description: |-
             Additional functions to be performed with updateSpecialPages.

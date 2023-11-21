@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use CachedBagOStuff;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -699,7 +700,7 @@ final class SessionBackend {
 			if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 				// Promise that the token set here will be valid; save it at end of request
 				$user = $this->user;
-				\DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
+				DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
 					$user->saveSettings();
 				} );
 			}

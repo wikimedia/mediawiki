@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 

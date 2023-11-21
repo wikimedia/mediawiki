@@ -25,9 +25,9 @@
 
 namespace MediaWiki\Specials;
 
-use DeferredUpdates;
 use ISearchResultSet;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;

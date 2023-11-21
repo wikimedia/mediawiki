@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;

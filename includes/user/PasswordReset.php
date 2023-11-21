@@ -22,12 +22,13 @@
 
 namespace MediaWiki\User;
 
-use DeferredUpdates;
 use LogicException;
 use MapCacheLRU;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\SendPasswordResetEmailUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -36,7 +37,6 @@ use Message;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use SendPasswordResetEmailUpdate;
 use StatusValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 

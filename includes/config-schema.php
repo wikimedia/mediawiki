@@ -2131,7 +2131,7 @@ return [
 			'JobQueueIncludeInMaxLagFactor' => false,
 			'SpecialPageCacheUpdates' => [
 				'Statistics' => [
-					0 => 'SiteStatsUpdate',
+					0 => 'MediaWiki\\Deferred\\SiteStatsUpdate',
 					1 => 'cacheUpdate',
 				],
 			],

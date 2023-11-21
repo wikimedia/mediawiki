@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Maintenance;
 
-use DeferredUpdates;
 use Exception;
 use LCStoreNull;
 use LogicException;
 use Maintenance;
 use MediaWiki;
 use MediaWiki\Config\Config;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
 /**
  * DeferredUpdates helper class for managing DeferrableUpdate::doUpdate() nesting levels
  * caused by nested calls to DeferredUpdates::doUpdates()
@@ -275,3 +277,6 @@ class DeferredUpdatesScope {
 		return $processed;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( DeferredUpdatesScope::class, 'DeferredUpdatesScope' );

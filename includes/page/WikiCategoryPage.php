@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Category\Category;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 
 /**

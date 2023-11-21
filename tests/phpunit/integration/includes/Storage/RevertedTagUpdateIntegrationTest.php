@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Storage;
 
 use ChangeTags;
-use DeferredUpdates;
 use FormatJson;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use RecentChange;

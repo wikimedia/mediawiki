@@ -20,8 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Deferred;
+
+use IJobSpecification;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\MediaWikiServices;
+use MWExceptionHandler;
+use Throwable;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -74,3 +79,6 @@ class JobQueueEnqueueUpdate implements DeferrableUpdate, MergeableUpdate {
 		}
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( JobQueueEnqueueUpdate::class, 'JobQueueEnqueueUpdate' );

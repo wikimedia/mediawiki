@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Page\Hook;
 
-use DeferrableUpdate;
+use MediaWiki\Deferred\DeferrableUpdate;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 

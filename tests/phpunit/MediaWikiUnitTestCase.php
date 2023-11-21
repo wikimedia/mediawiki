@@ -20,6 +20,9 @@
  */
 
 use MediaWiki\Config\ConfigException;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\DeferredUpdatesScopeMediaWikiStack;
+use MediaWiki\Deferred\DeferredUpdatesScopeStack;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\NullSpi;
 use MediaWiki\MediaWikiServices;

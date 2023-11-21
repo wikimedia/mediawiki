@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/../includes/Benchmarker.php';
 
+use MediaWiki\Deferred\CdnCacheUpdate;
+
 /**
  * Maintenance script that benchmarks CDN purge.
  *

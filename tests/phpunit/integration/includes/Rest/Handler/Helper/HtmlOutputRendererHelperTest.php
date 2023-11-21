@@ -4,12 +4,12 @@ namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use BagOStuff;
 use CssContent;
-use DeferredUpdates;
 use EmptyBagOStuff;
 use Exception;
 use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\Logger\Spi as LoggerSpi;

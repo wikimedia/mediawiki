@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

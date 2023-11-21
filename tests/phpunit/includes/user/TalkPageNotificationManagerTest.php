@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
