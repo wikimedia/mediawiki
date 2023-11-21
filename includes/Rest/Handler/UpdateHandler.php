@@ -105,7 +105,9 @@ class UpdateHandler extends EditHandler {
 			);
 		}
 
-		$token = $this->getToken() ?? $this->getUser()->getEditToken();
+		// Use a known good CSRF token if a token is not needed because we are
+		// using a method of authentication that protects against CSRF, like OAuth.
+		$token = $this->needsToken() ? $this->getToken() : $this->getUser()->getEditToken();
 
 		$params = [
 			'action' => 'edit',

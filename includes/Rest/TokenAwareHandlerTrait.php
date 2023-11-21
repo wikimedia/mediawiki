@@ -53,12 +53,24 @@ trait TokenAwareHandlerTrait {
 			throw new LogicException( 'This trait must be used on handler classes.' );
 		}
 
-		if ( $this->getSession()->getProvider()->safeAgainstCsrf() ) {
+		if ( !$this->needsToken() ) {
 			return null;
 		}
 
 		$body = $this->getValidatedBody();
 		return $body['token'] ?? '';
+	}
+
+	/**
+	 * Determines whether a CSRF token is needed.
+	 *
+	 * Returns false if the request has been authenticated in a way that
+	 * protects against CSRF, such as OAuth.
+	 *
+	 * @return bool
+	 */
+	protected function needsToken(): bool {
+		return !$this->getSession()->getProvider()->safeAgainstCsrf();
 	}
 
 	/**
