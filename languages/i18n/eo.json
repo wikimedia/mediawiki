@@ -4091,6 +4091,7 @@
 	"blockedtext-expiration-time": "Findato de forbaro: $1",
 	"blockedtext-intended-blockee": "Celito: $1",
 	"blockedtext-contact-blocker-admin": "Vi rajtas kontakti kun $1 aŭ alia [[{{MediaWiki:Grouppage-sysop}}|administranto]] por diskuti la forbaron.",
+	"blockedtext-block-ip": "Via nuntempa IP-adreso estas $1.",
 	"renameuser": "Alinomi uzanton",
 	"renameuser-linkoncontribs": "alinomi {{GENDER:$1|uzanton}}",
 	"renameuser-linkoncontribs-text": "Alinomi ĉi tiun {{GENDER:$1|uzanton}}",

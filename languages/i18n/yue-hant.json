@@ -2232,7 +2232,7 @@
 	"protect-locked-blocked": "當你響被封鎖嗰陣唔可以改呢版嘅保護等級。\n呢個係'''$1'''版嘅現時設定：",
 	"protect-locked-dblock": "響資料庫主動鎖住咗嗰陣係唔可以改呢版嘅保護等級。\n呢個係'''$1'''版嘅現時設定：",
 	"protect-locked-access": "你嘅戶口係無權限去改呢版嘅保護等級。\n呢個係'''$1'''版嘅現時設定：",
-	"protect-cascadeon": "呢一版而家保護咗，因為佢嵌咗入嘅以下{{PLURAL:$1|一|幾}}版開咗連串保護。\n更改呢一版嘅保護設定唔會影響到嗰{{PLURAL:$1|個|啲}}連串保護。",
+	"protect-cascadeon": "呢一版而家保護咗，因為以下嵌入咗佢嘅呢{{PLURAL:$1|一|幾}}版開咗連串保護。\n更改呢一版嘅保護設定唔會影響到嗰{{PLURAL:$1|個|啲}}連串保護。",
 	"protect-default": "容許全部用戶",
 	"protect-fallback": "只容許有「$1」許可嘅用戶",
 	"protect-level-autoconfirmed": "只限已經自動確認嘅用戶",
