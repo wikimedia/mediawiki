@@ -23,6 +23,7 @@ class ExpressionTest extends \PHPUnit\Framework\TestCase {
 			[ 'rev_timestamp', '<=', '20221025145309', "rev_timestamp <= '20221025145309'" ],
 			[ 'rev_timestamp', '=', '20221025145309', "rev_timestamp = '20221025145309'" ],
 			[ 'rev_timestamp', '!=', '20221025145309', "rev_timestamp != '20221025145309'" ],
+			[ 'revision.rev_timestamp', '!=', '20221025145309', "revision.rev_timestamp != '20221025145309'" ],
 			[ 'rev_id', '>', 12345, 'rev_id > 12345' ],
 			[ 'rev_id', '>=', 12345, 'rev_id >= 12345' ],
 			[ 'rev_id', '<', 12345, 'rev_id < 12345' ],
@@ -67,6 +68,7 @@ class ExpressionTest extends \PHPUnit\Framework\TestCase {
 			[ 'rev_timestamp', '>', null ],
 			[ 'rev_timestamp', '<', null ],
 			[ 'rev_timestamp', '=<', '12345' ],
+			[ 'SELECT user_password from user where user_id = 1', '>', 1234 ],
 		];
 	}
 
