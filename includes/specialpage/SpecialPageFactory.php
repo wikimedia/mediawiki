@@ -1026,6 +1026,7 @@ class SpecialPageFactory {
 				'RevisionLookup',
 				'WikiPageFactory',
 				'SearchEngineFactory',
+				'CollationFactory',
 			],
 		],
 
