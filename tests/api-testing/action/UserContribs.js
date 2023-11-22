@@ -48,7 +48,7 @@ describe( 'The usercontribs list query', function testUserContribsListQuery() {
 
 	it( 'can lists all contributions for a given set of users', async () => {
 		const contribs = await fiona.list( 'usercontribs', {
-			ucuser: `${fiona.username}|${franky.username}`,
+			ucuser: `${ fiona.username }|${ franky.username }`,
 			ucprop: 'ids|user|comment|timestamp'
 		} );
 
@@ -66,7 +66,7 @@ describe( 'The usercontribs list query', function testUserContribsListQuery() {
 
 	it( 'can filter by namespace', async () => {
 		const contribs = await fiona.list( 'usercontribs', {
-			ucuser: `${fiona.username}|${franky.username}`,
+			ucuser: `${ fiona.username }|${ franky.username }`,
 			ucprop: 'ids|user|comment|timestamp',
 			ucnamespace: 1 // NS_TALK = 1
 		} );
@@ -82,7 +82,7 @@ describe( 'The usercontribs list query', function testUserContribsListQuery() {
 
 	it( 'can list top only', async () => {
 		const contribs = await fiona.list( 'usercontribs', {
-			ucuser: `${fiona.username}|${franky.username}`,
+			ucuser: `${ fiona.username }|${ franky.username }`,
 			ucprop: 'ids|user|comment|timestamp',
 			uctoponly: true
 		} );
@@ -97,7 +97,7 @@ describe( 'The usercontribs list query', function testUserContribsListQuery() {
 
 	it( 'can list creation only', async () => {
 		const contribs = await fiona.list( 'usercontribs', {
-			ucuser: `${fiona.username}|${franky.username}`,
+			ucuser: `${ fiona.username }|${ franky.username }`,
 			ucprop: 'ids|user|comment|timestamp',
 			ucshow: 'new'
 		} );

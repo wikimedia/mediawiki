@@ -49,11 +49,11 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 			};
 
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
@@ -71,11 +71,11 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'wikitext'
 			};
 
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
@@ -93,13 +93,13 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 200 );
 			checkEditResponse( title, reqBody, editBody );
 			assert.isAbove( editBody.latest.id, firstRev.newrevid );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
@@ -116,7 +116,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'nothing at all changed',
 				latest: { id: firstRev.newrevid }
 			};
-			const resp = await client.put( `/page/${title}`, reqBody );
+			const resp = await client.put( `/page/${ title }`, reqBody );
 			const { status: editStatus, body: editBody } = resp;
 
 			assert.equal( editStatus, 200 );
@@ -142,7 +142,7 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'wikitext',
 				latest: { id: firstRev.newrevid }
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 200 );
 			const expectedText = 'FIRST LINE\nlorem ipsum\nSECOND LINE';
@@ -163,12 +163,12 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'wikitext'
 			};
 
-			it( `should fail when ${missingPropName} is missing from the request body`, async () => {
+			it( `should fail when ${ missingPropName } is missing from the request body`, async () => {
 				const incompleteBody = { ...reqBody };
 				delete incompleteBody[ missingPropName ];
 
 				const { status: editStatus, body: editBody } =
-					await client.put( `/page/${title}`, incompleteBody );
+					await client.put( `/page/${ title }`, incompleteBody );
 
 				assert.equal( editStatus, 400 );
 				assert.nestedProperty( editBody, 'messageTranslations' );
@@ -183,7 +183,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 			};
 
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 400 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
@@ -197,7 +197,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 			};
 
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 403 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
@@ -212,7 +212,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				content_model: 'THIS DOES NOT EXIST!'
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 400 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
@@ -226,7 +226,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				content_model: 'wikitext'
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 400 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
@@ -255,7 +255,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: { id: 1234 }
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 404 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
@@ -273,7 +273,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 				// not 'latest' key, so page should be created
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 409 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
@@ -292,7 +292,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 409 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
@@ -317,7 +317,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
 			};
-			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = await client.put( `/page/${ title }`, reqBody );
 
 			assert.equal( editStatus, 403 );
 			assert.nestedProperty( editBody, 'messageTranslations' );

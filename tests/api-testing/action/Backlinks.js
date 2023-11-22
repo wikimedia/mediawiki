@@ -13,9 +13,9 @@ describe( 'Backlinks', function () {
 	before( async () => {
 		bob = await action.bob();
 
-		const randomPageText = `I'm guessing you came here from ${linksToEsther1} or ${linksToEsther2}.`;
+		const randomPageText = `I'm guessing you came here from ${ linksToEsther1 } or ${ linksToEsther2 }.`;
 
-		const text = `All I do is link to [[${randomPage}|Page]]`;
+		const text = `All I do is link to [[${ randomPage }|Page]]`;
 
 		await bob.edit( linksToEsther1, { text } );
 		await bob.edit( linksToEsther2, { text } );

@@ -113,14 +113,18 @@
 
 		conf.set(
 			'hasOwnProperty',
-			function () { return true; }
+			function () {
+				return true;
+			}
 		);
 		assert.strictEqual( conf.get( 'example', 'missing' ), 'missing', 'Use original hasOwnProperty method (positive)' );
 
 		conf.set( 'example', 'Foo' );
 		conf.set(
 			'hasOwnProperty',
-			function () { return false; }
+			function () {
+				return false;
+			}
 		);
 		assert.strictEqual( conf.get( 'example' ), 'Foo', 'Use original hasOwnProperty method (negative)' );
 

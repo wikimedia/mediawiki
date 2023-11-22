@@ -66,7 +66,7 @@ describe( 'POST /page', () => {
 
 			assert.nestedProperty( header, 'location' );
 			const location = header.location;
-			assert.match( location, new RegExp( `^https?://.*/v1/page/${encodedTitle}$` ) );
+			assert.match( location, new RegExp( `^https?://.*/v1/page/${ encodedTitle }$` ) );
 			checkEditResponse( title, reqBody, editBody );
 
 			// follow redirect
@@ -75,7 +75,7 @@ describe( 'POST /page', () => {
 			checkSourceResponse( title, reqBody, redirBody );
 
 			// construct request to fetch content
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
@@ -98,7 +98,7 @@ describe( 'POST /page', () => {
 			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
@@ -116,7 +116,7 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			it( `should fail when ${missingPropName} is missing from the request body`, async () => {
+			it( `should fail when ${ missingPropName } is missing from the request body`, async () => {
 				const incompleteBody = { ...reqBody };
 				delete incompleteBody[ missingPropName ];
 

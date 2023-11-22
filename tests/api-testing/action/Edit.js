@@ -214,22 +214,22 @@ describe( 'The edit action', function testEditAction() {
 
 		await Clark.edit( pageB, {
 			section: 0,
-			text: `${editText} some text`
+			text: `${ editText } some text`
 		} );
 
 		const secondModification = await Clark.getHtml( pageB );
-		assert.include( secondModification, `${editText} some text` );
+		assert.include( secondModification, `${ editText } some text` );
 		assert.include( secondModification, sectionText1 );
 		assert.include( secondModification, sectionText2 );
 
 		await Clark.edit( pageB, {
 			section: 1,
-			text: `== First ==\n${sectionText1} some text`
+			text: `== First ==\n${ sectionText1 } some text`
 		} );
 
 		const thirdModification = await Clark.getHtml( pageB );
-		assert.include( thirdModification, `${editText} some text` );
-		assert.include( thirdModification, `${sectionText1} some text` );
+		assert.include( thirdModification, `${ editText } some text` );
+		assert.include( thirdModification, `${ sectionText1 } some text` );
 		assert.include( thirdModification, sectionText2 );
 
 		await Clark.edit( pageB, {
@@ -238,7 +238,7 @@ describe( 'The edit action', function testEditAction() {
 		} );
 
 		const fourthModification = await Clark.getHtml( pageB );
-		assert.include( fourthModification, `${editText} some text` );
+		assert.include( fourthModification, `${ editText } some text` );
 		assert.notInclude( fourthModification, '== First ==' );
 		assert.include( fourthModification, sectionText2 );
 	} );
@@ -260,7 +260,7 @@ describe( 'The edit action', function testEditAction() {
 		} );
 
 		const pageContent = await Clark.getHtml( page );
-		assert.include( pageContent, `${top}${text}${bottom}` );
+		assert.include( pageContent, `${ top }${ text }${ bottom }` );
 	} );
 
 	it( 'should allow a user make edits on a page passing the timestamp from the previous edit on the same page the basetimetamp', async () => {

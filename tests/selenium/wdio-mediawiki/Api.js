@@ -21,7 +21,7 @@ module.exports = {
 		const bot = new MWBot();
 
 		await bot.loginGetEditToken( {
-			apiUrl: `${baseUrl}/api.php`,
+			apiUrl: `${ baseUrl }/api.php`,
 			username: username,
 			password: password
 		} );

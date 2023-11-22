@@ -129,13 +129,13 @@ describe( 'GET /contributions/count', () => {
 	describe( 'GET /user/{user}/contributions/count', () => {
 		let endpoint;
 		before( () => {
-			endpoint = `/user/${arnold.username}/contributions/count`;
+			endpoint = `/user/${ arnold.username }/contributions/count`;
 		} );
 
 		it( 'Returns status 404 for unknown user', async () => {
 			const anon = new REST( basePath );
-			const unknownUser = `Unknown ${utils.uniq()}`;
-			const response = await anon.get( `/user/${unknownUser}/contributions/count` );
+			const unknownUser = `Unknown ${ utils.uniq() }`;
+			const response = await anon.get( `/user/${ unknownUser }/contributions/count` );
 			assert.equal( response.status, 404 );
 			assert.nestedProperty( response.body, 'messageTranslations' );
 		} );
@@ -157,7 +157,7 @@ describe( 'GET /contributions/count', () => {
 
 		it( 'Does not return suppressed contributions when requesting user does not have appropriate permissions', async () => {
 			// Note that the suppressed contributions are Beth's contributions.
-			const bethsEndpoint = `/user/${beth.username}/contributions/count`;
+			const bethsEndpoint = `/user/${ beth.username }/contributions/count`;
 			await testSuppressedContributions( arnold, bethsEndpoint );
 		} );
 

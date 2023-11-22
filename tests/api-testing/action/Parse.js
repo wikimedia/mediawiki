@@ -67,7 +67,7 @@ describe( 'The parse action', function () {
 				text: 'This is {{PAGENAMEE}}'
 			} );
 
-			assert.include( result.parse.text[ '*' ], `This is ${pageTitle}` );
+			assert.include( result.parse.text[ '*' ], `This is ${ pageTitle }` );
 		} );
 		it( 'supports {{REVISIONID}} and {{REVISIONUSER}} via parameters', async () => {
 			const result = await alice.action( 'parse', {
@@ -78,7 +78,7 @@ describe( 'The parse action', function () {
 
 			assert.include(
 				result.parse.text[ '*' ],
-				`This is ${edits.pageCreation.newrevid} by ${edits.pageCreation.param_user}`
+				`This is ${ edits.pageCreation.newrevid } by ${ edits.pageCreation.param_user }`
 			);
 		} );
 		it( 'supports {{REVISIONID}} and {{REVISIONUSER}} of a saved revision', async () => {
@@ -94,7 +94,7 @@ describe( 'The parse action', function () {
 
 			assert.include(
 				result.parse.text[ '*' ],
-				`This is ${anotherEdit.newrevid} by ${anotherEdit.param_user}`
+				`This is ${ anotherEdit.newrevid } by ${ anotherEdit.param_user }`
 			);
 		} );
 	} );
@@ -110,7 +110,7 @@ describe( 'The parse action', function () {
 		it( 'supports optional parameters', async () => {
 			const result = await alice.action( 'parse', {
 				title: pageTitle,
-				text: `Say: {{${templateTitle}}}`
+				text: `Say: {{${ templateTitle }}}`
 			} );
 
 			assert.include( result.parse.text[ '*' ], 'Say: Hello world!' );
@@ -119,7 +119,7 @@ describe( 'The parse action', function () {
 		it( 'supports positional parameters', async () => {
 			const result = await alice.action( 'parse', {
 				title: pageTitle,
-				text: `Say: {{${templateTitle}|you}}`
+				text: `Say: {{${ templateTitle }|you}}`
 			} );
 
 			assert.include( result.parse.text[ '*' ], 'Say: Hello you!' );
@@ -128,7 +128,7 @@ describe( 'The parse action', function () {
 		it( 'supports named parameters', async () => {
 			const result = await alice.action( 'parse', {
 				title: pageTitle,
-				text: `Say: {{${templateTitle}|greeting=Ciao}}`
+				text: `Say: {{${ templateTitle }|greeting=Ciao}}`
 			} );
 
 			assert.include( result.parse.text[ '*' ], 'Say: Ciao world!' );

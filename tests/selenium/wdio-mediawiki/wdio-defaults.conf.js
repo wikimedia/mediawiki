@@ -105,7 +105,7 @@ exports.config = {
 		[ 'junit', {
 			outputDir: logPath,
 			outputFileFormat: function () {
-				return `WDIO.xunit-${makeFilenameDate()}.xml`;
+				return `WDIO.xunit-${ makeFilenameDate() }.xml`;
 			}
 		} ]
 	],
@@ -120,7 +120,7 @@ exports.config = {
 	 * @param {Object} test Mocha Test object
 	 */
 	beforeTest: function ( test ) {
-		ffmpeg = startVideo( ffmpeg, `${test.parent}-${test.title}` );
+		ffmpeg = startVideo( ffmpeg, `${ test.parent }-${ test.title }` );
 	},
 
 	/**
@@ -129,7 +129,7 @@ exports.config = {
 	 * @param {Object} test Mocha Test object
 	 */
 	afterTest: async function ( test ) {
-		await saveScreenshot( `${test.parent}-${test.title}` );
+		await saveScreenshot( `${ test.parent }-${ test.title }` );
 		stopVideo( ffmpeg );
 	}
 };

@@ -6,7 +6,7 @@ const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless
 
 function getJobCount() {
 	const bot = new MWBot( {
-		apiUrl: `${browser.config.baseUrl}/api.php`
+		apiUrl: `${ browser.config.baseUrl }/api.php`
 	} );
 	return bot.request( {
 		action: 'query',
@@ -16,12 +16,12 @@ function getJobCount() {
 }
 
 function log( message ) {
-	process.stdout.write( `RunJobs ${message}\n` );
+	process.stdout.write( `RunJobs ${ message }\n` );
 }
 
 function runThroughMainPageRequests( runCount = 1 ) {
 	const page = new Page();
-	log( `through requests to the main page (run ${runCount}).` );
+	log( `through requests to the main page (run ${ runCount }).` );
 
 	page.openTitle( '' );
 
@@ -30,7 +30,7 @@ function runThroughMainPageRequests( runCount = 1 ) {
 			log( 'found no more queued jobs.' );
 			return;
 		}
-		log( `detected ${jobCount} more queued job(s).` );
+		log( `detected ${ jobCount } more queued job(s).` );
 		if ( runCount >= MAINPAGE_REQUESTS_MAX_RUNS ) {
 			log( 'stopping requests to the main page due to reached limit.' );
 			return;

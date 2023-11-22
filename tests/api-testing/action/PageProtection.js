@@ -75,7 +75,7 @@ describe( 'Page protection', function () {
 
 			await admin.edit( template, { text: 'Whatever' } );
 
-			await admin.edit( page, { text: `Using {{${template}}}` } );
+			await admin.edit( page, { text: `Using {{${ template }}}` } );
 			await admin.action( 'protect', {
 				title: page,
 				token: await admin.token(),

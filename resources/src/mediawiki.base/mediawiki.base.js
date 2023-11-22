@@ -792,7 +792,9 @@ mw.loader.using = function ( dependencies, ready, error ) {
 
 	mw.loader.enqueue(
 		dependencies,
-		function () { deferred.resolve( mw.loader.require ); },
+		function () {
+			deferred.resolve( mw.loader.require );
+		},
 		deferred.reject
 	);
 

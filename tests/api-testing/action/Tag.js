@@ -64,7 +64,7 @@ describe( 'The tag action module', function () {
 		// Add 2 tags to recent change
 		await bob.action( 'tag', {
 			rcid: recentChangeId,
-			add: `${tagName}|${tag2Name}`,
+			add: `${ tagName }|${ tag2Name }`,
 			token: bob.tokens.csrftoken,
 			reason
 		}, 'POST' );

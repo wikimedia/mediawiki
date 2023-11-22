@@ -26,7 +26,7 @@ function testTitle( title ) {
  * @return {string} Full path of screenshot/video file
  */
 function filePath( title, extension ) {
-	return `${browser.config.screenshotPath}/${testTitle( title )}-${makeFilenameDate()}.${extension}`;
+	return `${ browser.config.screenshotPath }/${ testTitle( title ) }-${ makeFilenameDate() }.${ extension }`;
 }
 
 /**
