@@ -31,6 +31,7 @@ class MimeMap {
 	public const MIME_EXTENSIONS = [
 		'application/ogg' => [ 'ogx', 'ogg', 'ogm', 'ogv', 'oga', 'spx', 'opus' ],
 		'application/pdf' => [ 'pdf' ],
+		'application/vnd.apple.mpegurl' => [ 'm3u8', 'm3u' ],
 		'application/vnd.ms-opentype' => [ 'otf' ],
 		'application/vnd.oasis.opendocument.chart' => [ 'odc' ],
 		'application/vnd.oasis.opendocument.chart-template' => [ 'otc' ],
@@ -50,6 +51,7 @@ class MimeMap {
 		'application/vnd.oasis.opendocument.text-template' => [ 'ott' ],
 		'application/vnd.oasis.opendocument.text-web' => [ 'oth' ],
 		'application/javascript' => [ 'js' ],
+		'application/x-mpegurl' => [ 'm3u', 'm3u8' ],
 		'application/x-shockwave-flash' => [ 'swf' ],
 		'audio/midi' => [ 'mid', 'midi', 'kar' ],
 		'audio/mpeg' => [ 'mpga', 'mpa', 'mp2', 'mp3' ],
@@ -313,6 +315,8 @@ class MimeMap {
 		MEDIATYPE_MULTIMEDIA => [
 			'application/x-shockwave-flash',
 			'application/ogg',
+			'application/vnd.apple.mpegurl',
+			'application/x-mpegurl',
 			'audio/ogg',
 			'video/ogg',
 			'application/ogg',
