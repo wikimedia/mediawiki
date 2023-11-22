@@ -1,10 +1,8 @@
 <?php
 
 use MediaWiki\Config\Config;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
-use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -38,9 +36,6 @@ class RenameUserJob extends Job {
 	/** @var ILBFactory */
 	private $lbFactory;
 
-	/** @var LoggerInterface */
-	private $logger;
-
 	public function __construct(
 		Title $title,
 		$params,
@@ -51,25 +46,12 @@ class RenameUserJob extends Job {
 
 		$this->updateRowsPerQuery = $config->get( MainConfigNames::UpdateRowsPerQuery );
 		$this->lbFactory = $lbFactory;
-		$this->logger = LoggerFactory::getInstance( 'Renameuser' );
 	}
 
 	public function run() {
-		$dbw = $this->lbFactory->getMainLB()->getMaintenanceConnectionRef( DB_PRIMARY );
+		$dbw = $this->lbFactory->getPrimaryDatabase();
 		$table = $this->params['table'];
 		$column = $this->params['column'];
-
-		// It's not worth a hook to let extensions add themselves to that list.
-		// Just check whether the table and column still exist instead.
-		if ( !$dbw->tableExists( $table, __METHOD__ ) ) {
-			$this->logger->info(
-				"Ignoring job {$this->toString()}, table $table does not exist" );
-			return true;
-		} elseif ( !$dbw->fieldExists( $table, $column, __METHOD__ ) ) {
-			$this->logger->info(
-				"Ignoring job {$this->toString()}, column $table.$column does not exist" );
-			return true;
-		}
 
 		$oldname = $this->params['oldname'];
 		$newname = $this->params['newname'];
