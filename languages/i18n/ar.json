@@ -2436,7 +2436,7 @@
 	"notanarticle": "ليست صفحة محتوى",
 	"notvisiblerev": "المراجعة تم حذفها",
 	"watchlist-details": "{{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}} في قائمة مراقبتك (بالإضافة لصفحات النقاش).",
-	"watchlist-expiry-days-left": "بقي {{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يومًا|$1 يوم}}",
+	"watchlist-expiry-days-left": "بقي {{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يومًا|$1 يوم}}",
 	"watchlist-expiring-days-full-text": "{{PLURAL:$1|1 يوم|$1 أيام}} بقيت في قائمة مراقبتك",
 	"watchlist-expiry-hours-left": "بقيت بضع ساعات فقط",
 	"watchlist-expiring-hours-full-text": "بقيت بضع ساعات في قائمة مراقبتك",

@@ -11,7 +11,8 @@
 			"Ayire Adongo",
 			"Dnshitobu",
 			"Tessyshe",
-			"Uprising Man"
+			"Uprising Man",
+			"Atalata Gumah"
 		]
 	},
 	"tog-underline": "Linki bũũrɛ:",
@@ -40,10 +41,15 @@
 	"tog-uselivepreview": "Nyɛ kurum pagirɛ la de'eti hu kɛ ma reloadi",
 	"tog-watchlisthideown": "Sugɛ mam teere yeeira watchlist",
 	"tog-watchlisthideminor": "Suge teere piɔkisi yeira mam watchlist",
+	"tog-watchlisthideliu": "Sɔgɛ leregere la gee lɔgɛ kɛ zi'a ze'ele kaalɛ la puan",
+	"tog-watchlistreloadautomatically": "Le malegɛ iŋɛ kaalɛ la ɔtɔmatikalɛ fileta la san tɛ'ɛ. (JavaScript required )",
 	"tog-watchlisthideanons": "Sugɛ teere sega ti neriba tiga mina igɛ yeeira watchlist",
 	"tog-watchlisthidepatrolled": "Suge patrolled teere yeira the watchlist",
 	"tog-watchlisthidecategorization": "Sugɛ pɛga buuri buuri",
+	"tog-ccmeonemails": "Bo mam emails la ba sɛba ti a dikɛ bo sɛba n tari email la",
+	"tog-diffonly": "Da pa'ale pɛgerɛ la puan sigera diffs sa.",
 	"tog-showhiddencats": "Yesi catigoris saba nsugɛ la",
+	"tog-norollbackdiff": "Da pa'ale diff fu san ta ba'sɛ rollback la",
 	"tog-useeditwarning": "Bahi ti nbangɛ manɛ yeti enbaha pɛgerɛ ti mana kɛ save sala mam gulihɛ",
 	"tog-prefershttps": "Sana wuu diki connection bunsuna connɛcti",
 	"underline-always": "Saanawoo",

@@ -168,7 +168,7 @@
 	"config-admin-name": "Ditt navn:",
 	"config-admin-password": "Passord:",
 	"config-admin-password-confirm": "Passord igjen:",
-	"config-admin-help": "Skriv inn ditt ønskede brukernavn her, for eksempel «Joe Bloggs».\nDette er navnet du vil bruke for å logge inn på denne wikien.",
+	"config-admin-help": "Skriv inn ditt ønskede brukernavn her, for eksempel «Ørjan Åleskjær».\nDette er navnet du vil bruke for å logge inn på denne wikien.",
 	"config-admin-name-blank": "Skriv inn et administratorbrukernavn.",
 	"config-admin-name-invalid": "Det angitte brukernavnet «<nowiki>$1</nowiki>» er ugyldig.\nAngi et annet brukernavn.",
 	"config-admin-password-blank": "Skriv inn et passord for administratorkontoen.",

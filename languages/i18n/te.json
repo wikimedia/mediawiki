@@ -3292,7 +3292,7 @@
 	"autosumm-blank": "పేజీలోని విషయాన్నంతటినీ తీసేసారు.",
 	"autosumm-replace": "పేజీని '$1' తో మారుస్తున్నాం",
 	"autoredircomment": "పేజీని [[$1]] కు దారి మళ్ళించారు",
-	"autosumm-removed-redirect": "[[$1]] కు ఉన్న దారిమార్పును తీసేసాం",
+	"autosumm-removed-redirect": "[[$1]] కు ఉన్న దారిమార్పును తీసేసారు",
 	"autosumm-changed-redirect-target": "దారిమార్పును [[$1]] నుండి [[$2]] కు మార్చారు",
 	"autosumm-new": "\"$1\" తో కొత్త పేజీని సృష్టించారు",
 	"autosumm-newblank": "ఖాళీ పేజీని సృష్టించారు",
