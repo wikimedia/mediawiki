@@ -619,9 +619,10 @@ abstract class BagOStuff implements
 	 * @param array $valueByKey Map of (cache key => PHP variable value to serialize)
 	 * @return int[]|null[] Corresponding list of size estimates (null for invalid values)
 	 * @since 1.35
-	 * @deprecated Since 1.40
+	 * @deprecated Since 1.40, Hard deprecated since 1.42.
 	 */
 	public function setNewPreparedValues( array $valueByKey ) {
+		wfDeprecated( __METHOD__, '1.40' );
 		$sizes = [];
 		foreach ( $valueByKey as $value ) {
 			// Roughly estimate the size of the value once serialized. This does not account
