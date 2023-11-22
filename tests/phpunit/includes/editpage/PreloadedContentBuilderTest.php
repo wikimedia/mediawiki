@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\EditPage;
 
+use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Title\Title;
@@ -12,6 +13,9 @@ use MediaWikiIntegrationTestCase;
  * @group Database
  */
 class PreloadedContentBuilderTest extends MediaWikiIntegrationTestCase {
+
+	/** @var PreloadedContentBuilder */
+	private $preloadedContentBuilder;
 
 	protected function setUp(): void {
 		$services = $this->getServiceContainer();

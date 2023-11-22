@@ -24,6 +24,9 @@ use RepoGroup;
  */
 class IntroMessageBuilderTest extends MediaWikiIntegrationTestCase {
 
+	/** @var IntroMessageBuilder */
+	private $introMessageBuilder;
+
 	protected function setUp(): void {
 		$services = $this->getServiceContainer();
 
