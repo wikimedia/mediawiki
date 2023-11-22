@@ -498,7 +498,6 @@ mw.loader.register([
 				'modules' => [
 					'test.es6' => [
 						'class' => ResourceLoaderTestModule::class,
-						'es6' => true
 					],
 				],
 				'out' => '
@@ -609,7 +608,6 @@ mw.loader.register([
 					],
 					'test.es6' => [
 						'class' => ResourceLoaderTestModule::class,
-						'es6' => true
 					]
 				],
 				'out' => '
