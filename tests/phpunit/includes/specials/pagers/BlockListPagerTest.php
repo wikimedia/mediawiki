@@ -14,7 +14,7 @@ use MediaWiki\Pager\BlockListPager;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -41,8 +41,8 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var RowCommentFormatter */
 	private $rowCommentFormatter;

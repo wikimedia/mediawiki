@@ -6,6 +6,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Revision\RevisionStore;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @group Database
@@ -19,6 +20,9 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 	/** @var LinkRenderer */
 	private $linkRenderer;
+
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var RevisionStore */
 	private $revisionStore;
