@@ -45,6 +45,8 @@ For notes on 1.41.x and older releases, see HISTORY.
 ==== Changed configuration ====
 * $wgAutoCreateTempUser: 'matchPattern' now supports multiple match patterns.
 * $wgLogActionsHandlers is now ObjectFactory compatible.
+* $wgBotPasswordsCluster and $wgBotPasswordsDatabase have been deprecated
+  use $wgVirtualDomainsMapping['virtual-botpasswords'] instead.
 * …
 
 ==== Removed configuration ====

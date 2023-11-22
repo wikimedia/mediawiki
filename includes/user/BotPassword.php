@@ -42,6 +42,7 @@ use PasswordFactory;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Utility class for bot passwords
@@ -107,15 +108,16 @@ class BotPassword implements IDBAccessObject {
 		$this->grants = FormatJson::decode( $row->bp_grants );
 	}
 
-	/**
-	 * Get a database connection for the bot passwords database
-	 * @param int $db Index of the connection to get, e.g. DB_PRIMARY or DB_REPLICA.
-	 * @return IDatabase
-	 */
-	public static function getDB( $db ) {
+	public static function getReplicaDatabase(): IReadableDatabase {
 		return MediaWikiServices::getInstance()
 			->getBotPasswordStore()
-			->getDatabase( $db );
+			->getReplicaDatabase();
+	}
+
+	public static function getPrimaryDatabase(): IDatabase {
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->getPrimaryDatabase();
 	}
 
 	/**
@@ -221,7 +223,12 @@ class BotPassword implements IDBAccessObject {
 	 */
 	private function getPassword() {
 		[ $index, ] = DBAccessObjectUtils::getDBOptions( $this->flags );
-		$db = self::getDB( $index );
+		if ( $index === DB_PRIMARY ) {
+			$db = self::getPrimaryDatabase();
+		} else {
+			$db = self::getReplicaDatabase();
+		}
+
 		$password = $db->newSelectQueryBuilder()
 			->select( 'bp_password' )
 			->from( 'bot_passwords' )
@@ -327,7 +334,7 @@ class BotPassword implements IDBAccessObject {
 			return false;
 		}
 
-		$dbw = self::getDB( DB_PRIMARY );
+		$dbw = self::getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'bot_passwords' )
 			->set( [ 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ] )
@@ -365,7 +372,7 @@ class BotPassword implements IDBAccessObject {
 			return false;
 		}
 
-		$dbw = self::getDB( DB_PRIMARY );
+		$dbw = self::getPrimaryDatabase();
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'bot_passwords' )
 			->where( [ 'bp_user' => $centralId ] )

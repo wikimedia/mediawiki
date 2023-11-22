@@ -9079,6 +9079,7 @@ class MainConfigSchema {
 	 * Cluster for the bot_passwords table
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.42 Use $wgVirtualDomainsMapping instead.
 	 */
 	public const BotPasswordsCluster = [
 		'default' => false,
@@ -9092,6 +9093,7 @@ class MainConfigSchema {
 	 * "{$database}-{$prefix}".
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.42 Use $wgVirtualDomainsMapping instead.
 	 */
 	public const BotPasswordsDatabase = [
 		'default' => false,

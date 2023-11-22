@@ -220,7 +220,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
 
-			$dbr = BotPassword::getDB( DB_REPLICA );
+			$dbr = BotPassword::getReplicaDatabase();
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'bp_app_id', 'bp_password' ] )
 				->from( 'bot_passwords' )

@@ -28,6 +28,7 @@ use Exception;
 use MediaWiki\Html\Html;
 use MediaWiki\Status\Status;
 use MWException;
+use MWLBFactory;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
@@ -395,7 +396,10 @@ abstract class DatabaseInstaller {
 			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
 		}
 		$connection = $status->value;
-		$virtualDomains = $this->parent->getVirtualDomains();
+		$virtualDomains = array_merge(
+			$this->parent->getVirtualDomains(),
+			MWLBFactory::CORE_VIRTUAL_DOMAINS
+		);
 
 		$this->parent->resetMediaWikiServices( null, [
 			'DBLoadBalancerFactory' => static function () use ( $virtualDomains, $connection ) {
