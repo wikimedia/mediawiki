@@ -2121,7 +2121,7 @@ class Language implements Bcp47Code {
 		}
 
 		$date = new DateTime( $ts );
-		$date->modify( "+{$minDiff} minutes" );
+		$date->modify( "{$minDiff} minutes" );
 		return $date->format( 'YmdHis' );
 	}
 
