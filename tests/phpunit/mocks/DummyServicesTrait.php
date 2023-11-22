@@ -58,7 +58,6 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LBFactorySingle;
-use Wikimedia\Rdbms\LoadBalancerSingle;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Services\NoSuchServiceException;
 
@@ -150,14 +149,6 @@ trait DummyServicesTrait {
 				}
 			);
 		return $contentHandlerFactory;
-	}
-
-	/**
-	 * @param array $dbOptions Options for the Database constructor
-	 * @return LoadBalancerSingle
-	 */
-	private function getDummyDBLoadBalancer( $dbOptions = [] ): ILoadBalancer {
-		return LoadBalancerSingle::newFromConnection( new MockDatabase( $dbOptions ) );
 	}
 
 	/**
