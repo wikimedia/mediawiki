@@ -26,6 +26,7 @@ use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -219,14 +220,30 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param array $returns
-	 *
 	 * @return MockObject|Authority
 	 */
-	private function newAuthority( array $returns = [] ): MockObject {
-		$authority = $this->createNoOpMock( Authority::class, [ 'authorizeAction' ] );
-		$authority->method( 'authorizeAction' )
-			->willReturn( $returns['authorizeAction'] ?? true );
+	private function newAuthority(): MockObject {
+		$authority = $this->createNoOpMock( Authority::class, [ 'authorizeWrite' ] );
+		$authority->method( 'authorizeWrite' )->willReturn( true );
+		return $authority;
+	}
+
+	/**
+	 * @return MockObject|Authority
+	 */
+	private function newAuthorityWhoCantStash(): MockObject {
+		$authority = $this->createNoOpMock( Authority::class, [ 'authorizeWrite' ] );
+		$authority->method( 'authorizeWrite' )->willReturnCallback(
+			static function ( $action, $target, PermissionStatus $status ) {
+				if ( $action === 'stashbasehtml' ) {
+					$status->setRateLimitExceeded();
+					$status->setPermission( $action );
+					return false;
+				}
+
+				return true;
+			}
+		);
 		return $authority;
 	}
 
@@ -467,7 +484,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper();
 
-		$authority = $this->newAuthority( [ 'authorizeAction' => false ] );
+		$authority = $this->newAuthorityWhoCantStash();
 		$helper->init( $page, self::PARAM_DEFAULTS, $authority );
 		$helper->setStashingEnabled( true );
 
@@ -481,7 +498,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper();
 
-		$authority = $this->newAuthority( [ 'authorizeAction' => false ] );
+		$authority = $this->newAuthorityWhoCantStash();
 		$helper->init( $page, self::PARAM_DEFAULTS, $authority );
 
 		// Assert that the initial flavor is "view"

@@ -112,6 +112,7 @@ class SimpleAuthority implements Authority {
 		if ( !$ok && $status ) {
 			// TODO: use a message that at includes the permission name
 			$status->fatal( 'permissionserrors' );
+			$status->setPermission( $permission );
 		}
 
 		return $ok;
