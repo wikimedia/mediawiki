@@ -21,6 +21,8 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ 'ID' ], $array->getNames() );
 		$this->assertSame( [ '(?i:(?P<a_ID>SYNONYM)|(?P<b_ID>alt\=\$1))', '(?!)' ],
 			$array->getBaseRegex() );
+		$this->assertSame( [ '(?i:SYNONYM|alt\=\$1)', '(?!)' ],
+			$array->getBaseRegex( false ) );
 		$this->assertSame( 'ID', $array->matchStartToEnd( 'SyNoNyM' ) );
 	}
 
