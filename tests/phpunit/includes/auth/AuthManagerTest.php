@@ -1231,7 +1231,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$rememberReq->action = AuthManager::ACTION_LOGIN;
 
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$req->foobar = 'baz';
 		$restartResponse = AuthenticationResponse::newRestart(
 			$this->message( 'authmanager-authn-no-local-user' )
 		);
