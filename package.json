@@ -13,11 +13,11 @@
 		"selenium-test": "wdio ./tests/selenium/wdio.conf.js"
 	},
 	"devDependencies": {
-		"@wdio/cli": "7.16.13",
-		"@wdio/junit-reporter": "7.16.13",
-		"@wdio/local-runner": "7.16.13",
-		"@wdio/mocha-framework": "7.16.13",
-		"@wdio/spec-reporter": "7.16.13",
+		"@wdio/cli": "7.33.0",
+		"@wdio/junit-reporter": "7.33.0",
+		"@wdio/local-runner": "7.33.0",
+		"@wdio/mocha-framework": "7.33.0",
+		"@wdio/spec-reporter": "7.33.0",
 		"api-testing": "1.6.0",
 		"domino": "2.1.0",
 		"dotenv": "8.2.0",
