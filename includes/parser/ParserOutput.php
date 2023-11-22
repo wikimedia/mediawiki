@@ -183,14 +183,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mHeadItems = [];
 
 	/**
-	 * @var string[] Modules to be loaded by ResourceLoader
+	 * @var array<string,true> Modules to be loaded by ResourceLoader
 	 */
-	private $mModules = [];
+	private $mModuleSet = [];
 
 	/**
-	 * @var string[] Modules of which only the CSS will be loaded by ResourceLoader.
+	 * @var array<string,true> Modules of which only the CSS will be loaded by ResourceLoader.
 	 */
-	private $mModuleStyles = [];
+	private $mModuleStyleSet = [];
 
 	/**
 	 * @var array JavaScript config variable for mw.config combined with this page.
@@ -706,11 +706,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	public function getModules() {
-		return $this->mModules;
+		return array_keys( $this->mModuleSet );
 	}
 
 	public function getModuleStyles() {
-		return $this->mModuleStyles;
+		return array_keys( $this->mModuleStyleSet );
 	}
 
 	/**
@@ -1088,7 +1088,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string[] $modules
 	 */
 	public function addModules( array $modules ): void {
-		$this->mModules = array_merge( $this->mModules, $modules );
+		$modules = array_fill_keys( $modules, true );
+		$this->mModuleSet = array_merge( $this->mModuleSet, $modules );
 	}
 
 	/**
@@ -1096,7 +1097,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string[] $modules
 	 */
 	public function addModuleStyles( array $modules ): void {
-		$this->mModuleStyles = array_merge( $this->mModuleStyles, $modules );
+		$modules = array_fill_keys( $modules, true );
+		$this->mModuleStyleSet = array_merge( $this->mModuleStyleSet, $modules );
 	}
 
 	/**
@@ -2047,8 +2049,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function mergeHtmlMetaDataFrom( ParserOutput $source ): void {
 		// HTML and HTTP
 		$this->mHeadItems = self::mergeMixedList( $this->mHeadItems, $source->getHeadItems() );
-		$this->mModules = self::mergeList( $this->mModules, $source->getModules() );
-		$this->mModuleStyles = self::mergeList( $this->mModuleStyles, $source->getModuleStyles() );
+		$this->addModules( $source->getModules() );
+		$this->addModuleStyles( $source->getModuleStyles() );
 		$this->mJsConfigVars = self::mergeMapStrategy( $this->mJsConfigVars, $source->mJsConfigVars );
 		$this->mMaxAdaptiveExpiry = min( $this->mMaxAdaptiveExpiry, $source->mMaxAdaptiveExpiry );
 		$this->mExtraStyleSrcs = self::mergeList(
@@ -2414,8 +2416,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'HideNewSection' => $this->mHideNewSection,
 			'NoGallery' => $this->mNoGallery,
 			'HeadItems' => $this->mHeadItems,
-			'Modules' => $this->mModules,
-			'ModuleStyles' => $this->mModuleStyles,
+			'Modules' => array_keys( $this->mModuleSet ),
+			'ModuleStyles' => array_keys( $this->mModuleStyleSet ),
 			'JsConfigVars' => $this->mJsConfigVars,
 			'Warnings' => $this->mWarnings,
 			'Sections' => $this->getSections(),
@@ -2503,8 +2505,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mHideNewSection = $jsonData['HideNewSection'];
 		$this->mNoGallery = $jsonData['NoGallery'];
 		$this->mHeadItems = $jsonData['HeadItems'];
-		$this->mModules = $jsonData['Modules'];
-		$this->mModuleStyles = $jsonData['ModuleStyles'];
+		$this->mModuleSet = array_fill_keys( $jsonData['Modules'], true );
+		$this->mModuleStyleSet = array_fill_keys( $jsonData['ModuleStyles'], true );
 		$this->mJsConfigVars = $jsonData['JsConfigVars'];
 		$this->mWarnings = $jsonData['Warnings'];
 		$this->mFlags = $jsonData['Flags'];
@@ -2606,6 +2608,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$mSections = $this->getGhostFieldValue( 'mSections' );
 		if ( $mSections !== null && $mSections !== [] ) {
 			$this->setSections( $mSections );
+		}
+		// Backwards compatibility, pre 1.42
+		$mModules = $this->getGhostFieldValue( 'mModules' );
+		if ( $mModules !== null && $mModules !== [] ) {
+			$this->addModules( $mModules );
+		}
+		// Backwards compatibility, pre 1.42
+		$mModuleStyles = $this->getGhostFieldValue( 'mModuleStyles' );
+		if ( $mModuleStyles !== null && $mModuleStyles !== [] ) {
+			$this->addModuleStyles( $mModuleStyles );
 		}
 	}
 
