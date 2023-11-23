@@ -308,9 +308,11 @@ abstract class MediaWikiEntryPoint {
 
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 
-		// Persist the session to avoid race conditions on subsequent requests by the client
-		$request->getSession()->save(); // T214471
-		wfDebug( __METHOD__ . ': session changes committed' );
+		if ( !defined( 'MW_NO_SESSION' ) ) {
+			// Persist the session to avoid race conditions on subsequent requests by the client
+			$request->getSession()->save(); // T214471
+			wfDebug( __METHOD__ . ': session changes committed' );
+		}
 
 		// Subsequent requests by the client should see the DB replication positions, as written
 		// to ChronologyProtector during the shutdown() call below.
