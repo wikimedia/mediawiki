@@ -2538,7 +2538,6 @@
 	"changecontentmodel": "ویرایش مدل محتوای یک صفحه",
 	"changecontentmodel-legend": "تغییر نوع محتوی",
 	"changecontentmodel-title-label": "عنوان صفحه:",
-	"changecontentmodel-current-label": "مدل کنونی محتوا:",
 	"changecontentmodel-model-label": "مدل محتوای جدید:",
 	"changecontentmodel-reason-label": "دلیل:",
 	"changecontentmodel-submit": "تغییر",

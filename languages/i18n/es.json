@@ -2679,7 +2679,6 @@
 	"changecontentmodel": "Cambiar el modelo de contenido de una página",
 	"changecontentmodel-legend": "Cambiar el modelo de contenido",
 	"changecontentmodel-title-label": "Título de página:",
-	"changecontentmodel-current-label": "Modelo de contenido actual:",
 	"changecontentmodel-model-label": "Modelo de contenido nuevo:",
 	"changecontentmodel-reason-label": "Motivo:",
 	"changecontentmodel-submit": "Cambiar",

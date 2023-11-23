@@ -2637,7 +2637,6 @@
 	"changecontentmodel": "更改页面的内容模型",
 	"changecontentmodel-legend": "更改内容模型",
 	"changecontentmodel-title-label": "页面标题：",
-	"changecontentmodel-current-label": "当前内容模型：",
 	"changecontentmodel-model-label": "新的内容模型：",
 	"changecontentmodel-reason-label": "原因：",
 	"changecontentmodel-submit": "更改",

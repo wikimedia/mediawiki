@@ -2452,7 +2452,6 @@
 	"changecontentmodel": "Cambiar le modello de contento de un pagina",
 	"changecontentmodel-legend": "Cambiar modello de contento",
 	"changecontentmodel-title-label": "Titulo del pagina:",
-	"changecontentmodel-current-label": "Modello de contento actual:",
 	"changecontentmodel-model-label": "Nove modello de contento:",
 	"changecontentmodel-reason-label": "Motivo:",
 	"changecontentmodel-submit": "Cambiar",

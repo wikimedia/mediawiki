@@ -2277,7 +2277,6 @@
 	"changecontentmodel": "താളിന്റെ ഉള്ളടക്ക രീതി തിരുത്തുക",
 	"changecontentmodel-legend": "ഉള്ളടക്ക രീതി മാറ്റുക",
 	"changecontentmodel-title-label": "താളിന്റെ തലക്കെട്ട്:",
-	"changecontentmodel-current-label": "നിലവിലെ ഉള്ളടക്ക മാതൃക:",
 	"changecontentmodel-model-label": "പുതിയ ഉള്ളടക്ക രീതി:",
 	"changecontentmodel-reason-label": "കാരണം:",
 	"changecontentmodel-submit": "മാറ്റുക",

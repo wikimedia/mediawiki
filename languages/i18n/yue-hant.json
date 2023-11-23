@@ -2198,7 +2198,6 @@
 	"changecontentmodel": "改頁面嘅內容模型",
 	"changecontentmodel-legend": "改內容模型",
 	"changecontentmodel-title-label": "版面標題：",
-	"changecontentmodel-current-label": "現時嘅內容模型：",
 	"changecontentmodel-model-label": "新嘅內容模型：",
 	"changecontentmodel-reason-label": "原因：",
 	"changecontentmodel-submit": "改",

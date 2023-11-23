@@ -2499,7 +2499,6 @@
 	"changecontentmodel": "Endre innholdsmodellen til en side",
 	"changecontentmodel-legend": "Endre innholdsmodell",
 	"changecontentmodel-title-label": "Sidetittel:",
-	"changecontentmodel-current-label": "Nåværende innholdsmodell:",
 	"changecontentmodel-model-label": "Ny innholdsmodell:",
 	"changecontentmodel-reason-label": "Årsak:",
 	"changecontentmodel-submit": "Endre",

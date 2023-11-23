@@ -2580,7 +2580,6 @@
 	"changecontentmodel": "ページのコンテンツモデルの変更",
 	"changecontentmodel-legend": "コンテンツモデルを変更",
 	"changecontentmodel-title-label": "ページ名:",
-	"changecontentmodel-current-label": "現在のコンテンツモデル",
 	"changecontentmodel-model-label": "新しいコンテンツモデル:",
 	"changecontentmodel-reason-label": "理由:",
 	"changecontentmodel-submit": "変更",

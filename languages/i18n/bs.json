@@ -2264,7 +2264,6 @@
 	"changecontentmodel": "Promjena modela sadržaja stranice",
 	"changecontentmodel-legend": "Promijeni model sadržaja",
 	"changecontentmodel-title-label": "Naslov stranice:",
-	"changecontentmodel-current-label": "Trenutni model sadržaja:",
 	"changecontentmodel-model-label": "Novi model sadržaja:",
 	"changecontentmodel-reason-label": "Razlog:",
 	"changecontentmodel-submit": "Promijeni",

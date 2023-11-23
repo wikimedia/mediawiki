@@ -2519,7 +2519,6 @@
 	"changecontentmodel": "Змінити модель вмісту сторінки",
 	"changecontentmodel-legend": "Змінити модель вмісту",
 	"changecontentmodel-title-label": "Назва сторінки:",
-	"changecontentmodel-current-label": "Поточна модель вмісту:",
 	"changecontentmodel-model-label": "Нова модель вмісту:",
 	"changecontentmodel-reason-label": "Причина:",
 	"changecontentmodel-submit": "Змінити",

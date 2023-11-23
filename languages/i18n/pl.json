@@ -2543,7 +2543,6 @@
 	"changecontentmodel": "Edycja modelu zawartości strony",
 	"changecontentmodel-legend": "Zmienić model zawartości",
 	"changecontentmodel-title-label": "Tytuł strony:",
-	"changecontentmodel-current-label": "Obecny model zawartości:",
 	"changecontentmodel-model-label": "Nowy model zawartości:",
 	"changecontentmodel-reason-label": "Powód:",
 	"changecontentmodel-submit": "Zmień",

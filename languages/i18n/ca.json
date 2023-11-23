@@ -2459,7 +2459,6 @@
 	"changecontentmodel": "Canvia el model de contingut d'una pàgina",
 	"changecontentmodel-legend": "Canvia el model de contingut",
 	"changecontentmodel-title-label": "Títol de la pàgina:",
-	"changecontentmodel-current-label": "Model de contingut actual:",
 	"changecontentmodel-model-label": "Nou model de contingut:",
 	"changecontentmodel-reason-label": "Motiu:",
 	"changecontentmodel-submit": "Canvia",

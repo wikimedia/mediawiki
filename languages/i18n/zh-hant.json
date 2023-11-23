@@ -2576,7 +2576,6 @@
 	"changecontentmodel": "變更頁面的內容模型",
 	"changecontentmodel-legend": "變更內容模型",
 	"changecontentmodel-title-label": "頁面標題：",
-	"changecontentmodel-current-label": "目前內容模型：",
 	"changecontentmodel-model-label": "新內容模型：",
 	"changecontentmodel-reason-label": "原因：",
 	"changecontentmodel-submit": "變更",

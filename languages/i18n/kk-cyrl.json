@@ -2319,7 +2319,6 @@
 	"sessionfailure-title": "Сеанс сәтсіз болды",
 	"sessionfailure": "Кіру сессиясында шатақ болған сияқты;\nсессияға шабуылдаудардан қорғану үшін, осы әрекет тоқтатылды.\n«Артқа» дегенді басыңыз, және бетті қайта жүктеңіз де, қайта байқап көріңіз.",
 	"changecontentmodel-title-label": "Бет атауы:",
-	"changecontentmodel-current-label": "Қазіргі мазмұн моделі:",
 	"changecontentmodel-model-label": "Жаңа мазмұн моделі:",
 	"changecontentmodel-reason-label": "Себеп:",
 	"changecontentmodel-submit": "Өзгерту",

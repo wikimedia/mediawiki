@@ -948,7 +948,6 @@
 	"rollbacklinkcount": "واپس نیِو $1 {{PLURAL:$1|اؠڑِٹ|اؠڑِٹہٕ}}",
 	"rollbacklinkcount-morethan": "واپس نیِن $1 کھوتہٕ زیادٕ {{PLURAL:$1|اؠڑِٹ|اؠڑِٹہٕ}}",
 	"editcomment": "اؠڈِٹ خُلاصہٕ اۄس: <em>$1</em>.",
-	"changecontentmodel-current-label": "حالُک طَرٕز:",
 	"changecontentmodel-model-label": "نٔو مَواد طَرٕز:",
 	"changecontentmodel-reason-label": "وَجہٕ",
 	"changecontentmodel-submit": "بَدلاو",

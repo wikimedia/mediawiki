@@ -2465,7 +2465,6 @@
 	"changecontentmodel": "A lap tartalommodelljének megváltoztatása",
 	"changecontentmodel-legend": "Tartalommodell megváltoztatása",
 	"changecontentmodel-title-label": "Lapcím:",
-	"changecontentmodel-current-label": "Jelenlegi tartalommodell:",
 	"changecontentmodel-model-label": "Új tartalommodell:",
 	"changecontentmodel-reason-label": "Indoklás:",
 	"changecontentmodel-submit": "Változtatás",

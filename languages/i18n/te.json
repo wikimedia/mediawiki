@@ -2437,7 +2437,6 @@
 	"changecontentmodel": "పేజీ కంటెంటు మోడలును మార్చండి",
 	"changecontentmodel-legend": "కంటెంటు మోడలు మార్పు",
 	"changecontentmodel-title-label": "పేజీ శీర్షిక:",
-	"changecontentmodel-current-label": "ప్రస్తుత కంటెంటు మోడలు:",
 	"changecontentmodel-model-label": "కొత్త కంటెంటు మోడలు:",
 	"changecontentmodel-reason-label": "కారణం:",
 	"changecontentmodel-submit": "మార్చు",

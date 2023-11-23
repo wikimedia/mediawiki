@@ -2550,7 +2550,6 @@
 	"changecontentmodel": "Inhoudsmodel van pagina bewerken",
 	"changecontentmodel-legend": "Inhoudsmodel wijzigen",
 	"changecontentmodel-title-label": "Paginanaam:",
-	"changecontentmodel-current-label": "Huidige inhoudsmodel:",
 	"changecontentmodel-model-label": "Nieuw inhoudsmodel:",
 	"changecontentmodel-reason-label": "Reden:",
 	"changecontentmodel-submit": "Wijzigen",

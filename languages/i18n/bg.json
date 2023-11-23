@@ -2429,7 +2429,6 @@
 	"changecontentmodel": "Промяна на модела на съдържанието на страница",
 	"changecontentmodel-legend": "Промяна на модела на съдържанието",
 	"changecontentmodel-title-label": "Заглавие на страницата:",
-	"changecontentmodel-current-label": "Текущ модел на съдържанието:",
 	"changecontentmodel-model-label": "Нов модел на съдържанието:",
 	"changecontentmodel-reason-label": "Причина:",
 	"changecontentmodel-submit": "Променяне",

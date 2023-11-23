@@ -2458,7 +2458,6 @@
 	"changecontentmodel": "Бит эчтәлеге моделен үзгәртү",
 	"changecontentmodel-legend": "Эчтәлек модельләрен үзгәртергә",
 	"changecontentmodel-title-label": "Бит исеме:",
-	"changecontentmodel-current-label": "Хисап язмасының гамәлдәге моделе:",
 	"changecontentmodel-model-label": "Хисап язмасының яңа моделе:",
 	"changecontentmodel-reason-label": "Сәбәп:",
 	"changecontentmodel-submit": "Үзгәртү",

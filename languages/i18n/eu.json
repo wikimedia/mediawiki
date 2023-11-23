@@ -2359,7 +2359,6 @@
 	"changecontentmodel": "Aldatu orri bateko eduki eredua",
 	"changecontentmodel-legend": "Aldatu eduki eredua",
 	"changecontentmodel-title-label": "Orriaren izenburua:",
-	"changecontentmodel-current-label": "Egungo edukiaren eredua:",
 	"changecontentmodel-model-label": "Eduki eredu berria:",
 	"changecontentmodel-reason-label": "Arrazoia:",
 	"changecontentmodel-submit": "Aldatu",

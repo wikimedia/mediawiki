@@ -2527,7 +2527,6 @@
 	"changecontentmodel": "Ändra innehållsmodell för en sida",
 	"changecontentmodel-legend": "Ändra innehållsmodell",
 	"changecontentmodel-title-label": "Sidtitel:",
-	"changecontentmodel-current-label": "Nuvarande innehållsmodell:",
 	"changecontentmodel-model-label": "Ny innehållsmodell:",
 	"changecontentmodel-reason-label": "Orsak:",
 	"changecontentmodel-submit": "Ändra",

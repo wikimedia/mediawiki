@@ -2460,7 +2460,6 @@
 	"changecontentmodel": "Lehekülje sisumudeli muutmine",
 	"changecontentmodel-legend": "Sisumudeli muutmine",
 	"changecontentmodel-title-label": "Lehekülje pealkiri:",
-	"changecontentmodel-current-label": "Praegune sisumudel:",
 	"changecontentmodel-model-label": "Uus sisumudel:",
 	"changecontentmodel-reason-label": "Põhjus:",
 	"changecontentmodel-submit": "Muuda",

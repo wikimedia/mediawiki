@@ -2239,7 +2239,6 @@
 	"changecontentmodel": "Chanjar la konteno-modelo di (u)la pagino",
 	"changecontentmodel-legend": "Modifikar kontenajo di modelo",
 	"changecontentmodel-title-label": "Titulo di pagino:",
-	"changecontentmodel-current-label": "Nuna kontenajo-shablono:",
 	"changecontentmodel-model-label": "Nova modelo pri kontenajo:",
 	"changecontentmodel-reason-label": "Motivo:",
 	"changecontentmodel-submit": "Modifikar",

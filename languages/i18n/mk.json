@@ -2472,7 +2472,6 @@
 	"changecontentmodel": "Промена на содржинскиот модел на страница",
 	"changecontentmodel-legend": "Промена на содржински модел",
 	"changecontentmodel-title-label": "Наслов на страницата:",
-	"changecontentmodel-current-label": "Тековен содржински модел:",
 	"changecontentmodel-model-label": "Нов содржински модел:",
 	"changecontentmodel-reason-label": "Причина:",
 	"changecontentmodel-submit": "Смени",

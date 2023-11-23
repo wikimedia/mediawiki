@@ -14,6 +14,7 @@
 	"rest-nonexistent-user": "L'utente indicato ($1) non esiste",
 	"rest-invalid-user": "Il nome utente indicato ($1) non è valido",
 	"rest-invalid-title": "Il titolo indicato ($1) non si riferisce a una pagina wiki.",
+	"rest-permission-error": "Permesso negato: $1",
 	"rest-permission-denied-anon": "Non accessibile ad utenti anonimi",
 	"rest-permission-denied-title": "L'utente non ha i privilegi per leggere il titolo ($1)",
 	"rest-permission-denied-revision": "L'utente non ha accesso alla versione richiesta ($1).",

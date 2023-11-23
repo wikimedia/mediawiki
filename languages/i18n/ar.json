@@ -2537,7 +2537,6 @@
 	"changecontentmodel": "تغيير نموذج المحتوى لصفحة",
 	"changecontentmodel-legend": "غير نموذج المحتوى",
 	"changecontentmodel-title-label": "عنوان الصفحة:",
-	"changecontentmodel-current-label": "نموذج المحتوى الحالي:",
 	"changecontentmodel-model-label": "نموذج محتوى جديد:",
 	"changecontentmodel-reason-label": "السبب:",
 	"changecontentmodel-submit": "تغيير",

@@ -2446,7 +2446,6 @@
 	"changecontentmodel": "Keisti puslapio turinio modelį",
 	"changecontentmodel-legend": "Keisti turinio modelį",
 	"changecontentmodel-title-label": "Puslapio pavadinimas:",
-	"changecontentmodel-current-label": "Dabartinis turinio modelis:",
 	"changecontentmodel-model-label": "Naujas turinio modelis:",
 	"changecontentmodel-reason-label": "Priežastis:",
 	"changecontentmodel-submit": "Keisti",

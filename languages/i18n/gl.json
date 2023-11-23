@@ -2475,7 +2475,6 @@
 	"changecontentmodel": "Cambiar o modelo de contido dunha páxina",
 	"changecontentmodel-legend": "Cambiar o modelo de contido",
 	"changecontentmodel-title-label": "Título da páxinaː",
-	"changecontentmodel-current-label": "Modelo de contido actual:",
 	"changecontentmodel-model-label": "Novo modelo de contidoː",
 	"changecontentmodel-reason-label": "Motivo:",
 	"changecontentmodel-submit": "Cambiar",

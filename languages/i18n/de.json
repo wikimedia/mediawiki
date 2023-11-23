@@ -2566,7 +2566,6 @@
 	"changecontentmodel": "Inhaltsmodell einer Seite ändern",
 	"changecontentmodel-legend": "Inhaltsmodell ändern",
 	"changecontentmodel-title-label": "Seitentitel:",
-	"changecontentmodel-current-label": "Aktuelles Inhaltsmodell:",
 	"changecontentmodel-model-label": "Neues Inhaltsmodell:",
 	"changecontentmodel-reason-label": "Grund:",
 	"changecontentmodel-submit": "Ändern",

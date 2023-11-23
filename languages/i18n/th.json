@@ -2401,7 +2401,6 @@
 	"changecontentmodel": "เปลี่ยนตัวแบบเนื้อหาของหน้า",
 	"changecontentmodel-legend": "เปลี่ยนตัวแบบเนื้อหา",
 	"changecontentmodel-title-label": "ชื่อหน้า:",
-	"changecontentmodel-current-label": "แบบเนื้อหาปัจจุบัน:",
 	"changecontentmodel-model-label": "ตัวแบบเนื้อหาใหม่:",
 	"changecontentmodel-reason-label": "เหตุผล:",
 	"changecontentmodel-submit": "เปลี่ยน",

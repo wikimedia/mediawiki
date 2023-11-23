@@ -2409,7 +2409,6 @@
 	"changecontentmodel": "Promena sadržinskog modela stranice",
 	"changecontentmodel-legend": "Promeni sadržinski model",
 	"changecontentmodel-title-label": "Naslov stranice:",
-	"changecontentmodel-current-label": "Trenutni sadržinski model:",
 	"changecontentmodel-model-label": "Novi sadržinski model:",
 	"changecontentmodel-reason-label": "Razlog:",
 	"changecontentmodel-submit": "Promeni",

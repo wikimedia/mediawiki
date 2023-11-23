@@ -2405,7 +2405,6 @@
 	"changecontentmodel": "Modifega el modell de contegnud de una pagina",
 	"changecontentmodel-legend": "Modifega el modell de contegnud",
 	"changecontentmodel-title-label": "Titol de la paginaː",
-	"changecontentmodel-current-label": "Modell de contegnud atualː",
 	"changecontentmodel-model-label": "Modell de contegnud noeuvː",
 	"changecontentmodel-reason-label": "Reson:",
 	"changecontentmodel-submit": "Cambia",

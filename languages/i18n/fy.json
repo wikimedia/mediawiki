@@ -1616,7 +1616,6 @@
 	"rollback-success": "Wizigings fan {{GENDER:$3|$1}} weromdraaid;\nde lêste ferzje fan {{GENDER:$4|$2}} weromset.",
 	"changecontentmodel": "Ynhâldsmodel fan 'e side feroarje",
 	"changecontentmodel-title-label": "Sidetitel:",
-	"changecontentmodel-current-label": "Ynhâldsmodel no:",
 	"changecontentmodel-model-label": "Nij ynhâldsmodel:",
 	"changecontentmodel-reason-label": "Reden:",
 	"changecontentmodel-submit": "Feroarje",

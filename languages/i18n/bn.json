@@ -2507,7 +2507,6 @@
 	"changecontentmodel": "একটি পাতার বিষয়বস্তুর রূপ পরিবর্তন",
 	"changecontentmodel-legend": "বিষয়বস্তুর রূপ পরিবর্তন করুন",
 	"changecontentmodel-title-label": "পাতার শিরোনাম:",
-	"changecontentmodel-current-label": "বর্তমান বিষয়বস্তুর রূপ:",
 	"changecontentmodel-model-label": "পাতার বিষয়বস্তুর প্রতিরূপ:",
 	"changecontentmodel-reason-label": "কারণ:",
 	"changecontentmodel-submit": "পরিবর্তন করুন",

@@ -2564,7 +2564,6 @@
 	"changecontentmodel": "Bir sayfanın içerik modelini değiştir",
 	"changecontentmodel-legend": "İçerik modelini değiştir",
 	"changecontentmodel-title-label": "Sayfa başlığı:",
-	"changecontentmodel-current-label": "Mevcut içerik modeli:",
 	"changecontentmodel-model-label": "Yeni içerik modeli:",
 	"changecontentmodel-reason-label": "Sebep:",
 	"changecontentmodel-submit": "Değiştir",

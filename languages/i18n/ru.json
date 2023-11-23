@@ -2625,7 +2625,6 @@
 	"changecontentmodel": "Редактирование контентной модели страницы",
 	"changecontentmodel-legend": "Изменить модель содержимого",
 	"changecontentmodel-title-label": "Заголовок страницы:",
-	"changecontentmodel-current-label": "Текущая модель содержимого:",
 	"changecontentmodel-model-label": "Новая модель содержимого:",
 	"changecontentmodel-reason-label": "Причина:",
 	"changecontentmodel-submit": "Изменить",

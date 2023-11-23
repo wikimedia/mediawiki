@@ -2498,7 +2498,6 @@
 	"changecontentmodel": "Muuta sivun sisältömallia",
 	"changecontentmodel-legend": "Muuta sisältömallia",
 	"changecontentmodel-title-label": "Sivun otsikko:",
-	"changecontentmodel-current-label": "Nykyinen sisältömalli:",
 	"changecontentmodel-model-label": "Uusi sisältömalli:",
 	"changecontentmodel-reason-label": "Syy",
 	"changecontentmodel-submit": "Tee muutos",

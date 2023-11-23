@@ -1482,7 +1482,6 @@
 	"sessionfailure-title": "Seansda xatolik",
 	"changecontentmodel": "Sahifaning kontent modelini oʻzgartirish",
 	"changecontentmodel-title-label": "Sahifa nomi:",
-	"changecontentmodel-current-label": "Joriy matn modeli:",
 	"changecontentmodel-reason-label": "Sababi:",
 	"changecontentmodel-submit": "Oʻzgartirish",
 	"changecontentmodel-success-title": "Matn modeli oʻzgartirildi.",

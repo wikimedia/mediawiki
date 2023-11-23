@@ -2460,7 +2460,6 @@
 	"changecontentmodel": "Modificare model de conținut al unei pagini",
 	"changecontentmodel-legend": "Modifică modelul de conținut",
 	"changecontentmodel-title-label": "Titul paginii:",
-	"changecontentmodel-current-label": "Modelul de conținut curent:",
 	"changecontentmodel-model-label": "Model de conținut nou:",
 	"changecontentmodel-reason-label": "Motiv:",
 	"changecontentmodel-submit": "Schimbă",

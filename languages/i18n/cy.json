@@ -2313,7 +2313,6 @@
 	"changecontentmodel": "Newid model cynnwys tudalen",
 	"changecontentmodel-legend": "Newid model cynnwys",
 	"changecontentmodel-title-label": "Teitl y dudalen:",
-	"changecontentmodel-current-label": "Model cynnwys cyfredol:",
 	"changecontentmodel-model-label": "Model cynnwys newydd:",
 	"changecontentmodel-reason-label": "Rheswm:",
 	"changecontentmodel-submit": "Newid",
