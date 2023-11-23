@@ -133,7 +133,9 @@
 			// Build a list of template names for this batch.
 			var titles = templates
 				.slice( batch, batch + batchSize )
-				.map( function ( template ) { return template.title; } );
+				.map( function ( template ) {
+					return template.title;
+				} );
 			requests.push( api.post( {
 				action: 'query',
 				format: 'json',

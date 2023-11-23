@@ -125,7 +125,9 @@
 			}
 		).catch(
 			// Always resolve, never reject
-			function () { return $.Deferred().resolve(); }
+			function () {
+				return $.Deferred().resolve();
+			}
 		);
 	};
 

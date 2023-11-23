@@ -15,7 +15,7 @@ describe( 'ExternalLinks', function testExternalLinks() {
 	before( async () => {
 		alice = await action.alice();
 
-		const text = links.reduce( ( currText, url ) => `${currText} [${url}]`, '' );
+		const text = links.reduce( ( currText, url ) => `${ currText } [${ url }]`, '' );
 
 		await alice.edit( page, { text } );
 	} );

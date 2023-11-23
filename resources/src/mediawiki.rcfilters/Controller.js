@@ -182,7 +182,9 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 					min: 0, // The server normalizes negative numbers to 0 results
 					max: 1000
 				},
-				sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+				sortFunc: function ( a, b ) {
+					return Number( a.name ) - Number( b.name );
+				},
 				default: mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
 				sticky: true,
 				filters: displayConfig.limitArray.map( function ( num ) {
@@ -201,7 +203,9 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 					min: 0,
 					max: displayConfig.maxDays
 				},
-				sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+				sortFunc: function ( a, b ) {
+					return Number( a.name ) - Number( b.name );
+				},
 				numToLabelFunc: function ( i ) {
 					return Number( i ) < 1 ?
 						( Number( i ) * 24 ).toFixed( 2 ) :
@@ -566,7 +570,9 @@ Controller.prototype.toggleInvertedTags = function () {
 
 	if (
 		this.filtersModel.getFiltersByView( 'tags' ).filter(
-			function ( filterItem ) { return filterItem.isSelected(); }
+			function ( filterItem ) {
+				return filterItem.isSelected();
+			}
 		).length
 	) {
 		// Only re-fetch results if there are tags items that are actually selected
@@ -584,7 +590,9 @@ Controller.prototype.toggleInvertedNamespaces = function () {
 
 	if (
 		this.filtersModel.getFiltersByView( 'namespaces' ).filter(
-			function ( filterItem ) { return filterItem.isSelected(); }
+			function ( filterItem ) {
+				return filterItem.isSelected();
+			}
 		).length
 	) {
 		// Only re-fetch results if there are namespace items that are actually selected

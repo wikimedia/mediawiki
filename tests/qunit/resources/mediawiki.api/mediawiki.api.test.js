@@ -207,7 +207,9 @@ QUnit.module( 'mediawiki.api', function ( hooks ) {
 		] );
 
 		return api.getToken( 'testnoquery' )
-			.then( function () { assert.fail( 'Expected response missing a query to be rejected' ); } )
+			.then( function () {
+				assert.fail( 'Expected response missing a query to be rejected' );
+			} )
 			.catch( function ( err, rsp ) {
 				assert.strictEqual( err, 'query-missing', 'Expected no query error code' );
 				assert.deepEqual( rsp, serverRsp );

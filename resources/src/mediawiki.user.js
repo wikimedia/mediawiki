@@ -309,8 +309,12 @@
 		 */
 		getRights: function ( callback ) {
 			return getUserInfo().then(
-				function ( userInfo ) { return userInfo.rights; },
-				function () { return []; }
+				function ( userInfo ) {
+					return userInfo.rights;
+				},
+				function () {
+					return [];
+				}
 			).then( callback );
 		},
 

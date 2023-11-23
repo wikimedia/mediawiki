@@ -3,9 +3,17 @@
 const Page = require( 'wdio-mediawiki/Page' );
 
 class ProtectPage extends Page {
-	get reason() { return $( '#mwProtect-reason input' ); }
-	get editProtectSelect() { return $( '#mwProtect-level-edit select' ); }
-	get submit() { return $( '#mw-Protect-submit' ); }
+	get reason() {
+		return $( '#mwProtect-reason input' );
+	}
+
+	get editProtectSelect() {
+		return $( '#mwProtect-level-edit select' );
+	}
+
+	get submit() {
+		return $( '#mw-Protect-submit' );
+	}
 
 	open( title ) {
 		super.openTitle( title, { action: 'protect' } );

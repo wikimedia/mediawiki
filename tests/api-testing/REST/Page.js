@@ -51,7 +51,7 @@ describe( 'Page Source', () => {
 		await anon.edit( atinlayAgepay, { text: baseEditText } );
 
 		// Setup page with redirects
-		await anon.edit( redirectPage, { text: `Original name is ${redirectPage}` } );
+		await anon.edit( redirectPage, { text: `Original name is ${ redirectPage }` } );
 		const token = await mindy.token();
 		await mindy.action( 'move', {
 			from: redirectPage,
@@ -63,24 +63,24 @@ describe( 'Page Source', () => {
 	describe( 'GET /page/{title}', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
 			const redirectDbKey = utils.dbkey( redirectPage );
-			const { status, text, headers } = await client.get( `/page/${redirectPage}`, { flavor: 'edit' } );
+			const { status, text, headers } = await client.get( `/page/${ redirectPage }`, { flavor: 'edit' } );
 			const { host, search, pathname } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( host, '' );
-			assert.include( pathname, `/page/${redirectDbKey}` );
+			assert.include( pathname, `/page/${ redirectDbKey }` );
 			assert.deepEqual( status, 301, text );
 		} );
 
 		it( 'When a wiki redirect exists, it should be present in the body response', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
-			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}` );
+			const { status, body: { redirect_target }, text } = await client.get( `/page/${ redirectPageDbkey }` );
 			assert.deepEqual( status, 200, text );
-			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}$` ) );
+			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }$` ) );
 		} );
 
 		it( 'Should successfully return page source and metadata for Wikitext page', async () => {
-			const { status, body, text } = await client.get( `/page/${page}` );
+			const { status, body, text } = await client.get( `/page/${ page }` );
 			assert.deepEqual( status, 200, text );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'source' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
@@ -90,26 +90,26 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
-			const { status } = await client.get( `/page/${dummyPageTitle}` );
+			const { status } = await client.get( `/page/${ dummyPageTitle }` );
 			assert.deepEqual( status, 404 );
 		} );
 		it( 'Should return 404 error for invalid titles', async () => {
 			const badTitle = '::X::';
-			const { status } = await client.get( `/page/${badTitle}` );
+			const { status } = await client.get( `/page/${ badTitle }` );
 			assert.deepEqual( status, 404 );
 		} );
 		it( 'Should return 404 error for special pages', async () => {
 			const badTitle = 'Special:Blankpage';
-			const { status } = await client.get( `/page/${badTitle}` );
+			const { status } = await client.get( `/page/${ badTitle }` );
 			assert.deepEqual( status, 404 );
 		} );
 		it( 'Should have appropriate response headers', async () => {
-			const preEditResponse = await client.get( `/page/${page}` );
+			const preEditResponse = await client.get( `/page/${ page }` );
 			const preEditDate = new Date( preEditResponse.body.latest.timestamp );
 			const preEditEtag = preEditResponse.headers.etag;
 
 			await anon.edit( page, { text: "'''Edit 3'''" } );
-			const postEditResponse = await client.get( `/page/${page}` );
+			const postEditResponse = await client.get( `/page/${ page }` );
 			const postEditDate = new Date( postEditResponse.body.latest.timestamp );
 			const postEditHeaders = postEditResponse.headers;
 			const postEditEtag = postEditResponse.headers.etag;
@@ -126,7 +126,7 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}/bare', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
-			const { status, text, headers } = await client.get( `/page/${redirectPage}/bare`, { flavor: 'edit' } );
+			const { status, text, headers } = await client.get( `/page/${ redirectPage }/bare`, { flavor: 'edit' } );
 			const { search } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 301, text );
@@ -135,32 +135,32 @@ describe( 'Page Source', () => {
 		it( 'When a wiki redirect exists, it should be present in the body response', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
-			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}/bare` );
+			const { status, body: { redirect_target }, text } = await client.get( `/page/${ redirectPageDbkey }/bare` );
 			assert.deepEqual( status, 200, text );
-			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}/bare$` ) );
+			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/bare$` ) );
 		} );
 
 		it( 'Should successfully return page bare', async () => {
-			const { status, body, text } = await client.get( `/page/${page}/bare` );
+			const { status, body, text } = await client.get( `/page/${ page }/bare` );
 			assert.deepEqual( status, 200, text );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html_url' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
-			assert.match( body.html_url, new RegExp( `/page/${encodeURIComponent( pageWithSpaces )}/html$` ) );
+			assert.match( body.html_url, new RegExp( `/page/${ encodeURIComponent( pageWithSpaces ) }/html$` ) );
 		} );
 		it( 'Should return 404 error for non-existent page, even if a variant exists', async () => {
 			const agepayDbkey = utils.dbkey( agepay );
-			const { status } = await client.get( `/page/${agepayDbkey}/bare` );
+			const { status } = await client.get( `/page/${ agepayDbkey }/bare` );
 			assert.deepEqual( status, 404 );
 		} );
 		it( 'Should have appropriate response headers', async () => {
-			const preEditResponse = await client.get( `/page/${page}/bare` );
+			const preEditResponse = await client.get( `/page/${ page }/bare` );
 			const preEditDate = new Date( preEditResponse.body.latest.timestamp );
 			const preEditEtag = preEditResponse.headers.etag;
 
 			await anon.edit( page, { text: "'''Edit 4'''" } );
-			const postEditResponse = await client.get( `/page/${page}/bare` );
+			const postEditResponse = await client.get( `/page/${ page }/bare` );
 			const postEditDate = new Date( postEditResponse.body.latest.timestamp );
 			const postEditHeaders = postEditResponse.headers;
 			const postEditEtag = postEditResponse.headers.etag;
@@ -177,7 +177,7 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}/html', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
-			const { status, text, headers } = await client.get( `/page/${redirectPage}/html`, { flavor: 'edit' } );
+			const { status, text, headers } = await client.get( `/page/${ redirectPage }/html`, { flavor: 'edit' } );
 			const { search } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 301, text );
@@ -186,10 +186,10 @@ describe( 'Page Source', () => {
 		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbkey = utils.dbkey( redirectedPage );
-			const { status, text, headers } = await client.get( `/page/${redirectPageDbkey}/html`, { flavor: 'edit' } );
+			const { status, text, headers } = await client.get( `/page/${ redirectPageDbkey }/html`, { flavor: 'edit' } );
 			const { host, pathname, search } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
-			assert.include( pathname, `/page/${redirectedPageDbkey}` );
+			assert.include( pathname, `/page/${ redirectedPageDbkey }` );
 			assert.deepEqual( host, '' );
 			assert.deepEqual( status, 307, text );
 		} );
@@ -197,25 +197,25 @@ describe( 'Page Source', () => {
 		it( 'Variant redirects should return temporary redirect (307)', async () => {
 			const agepayDbkey = utils.dbkey( agepay );
 			const atinlayAgepayDbkey = utils.dbkey( atinlayAgepay );
-			const { status, text, headers } = await client.get( `/page/${agepayDbkey}/html` );
+			const { status, text, headers } = await client.get( `/page/${ agepayDbkey }/html` );
 			assert.deepEqual( status, 307, text );
 			assert.include( headers.location, atinlayAgepayDbkey );
 		} );
 
 		it( 'Bypass wiki redirects with query param redirect=no', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
-			const { status, text } = await client.get( `/page/${redirectPageDbkey}/html`, { redirect: 'no' } );
+			const { status, text } = await client.get( `/page/${ redirectPageDbkey }/html`, { redirect: 'no' } );
 			assert.deepEqual( status, 200, text );
 		} );
 
 		it( 'Bypass variant redirects with query param redirect=no', async () => {
 			const agepayDbkey = utils.dbkey( agepay );
-			const { status } = await client.get( `/page/${agepayDbkey}/html`, { redirect: 'no' } );
+			const { status } = await client.get( `/page/${ agepayDbkey }/html`, { redirect: 'no' } );
 			assert.deepEqual( status, 404 );
 		} );
 
 		it( 'Should successfully return page HTML', async () => {
-			const { status, headers, text } = await client.get( `/page/${page}/html` );
+			const { status, headers, text } = await client.get( `/page/${ page }/html` );
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( text, /<html\b/ );
@@ -223,7 +223,7 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should successfully return page HTML for a system message', async () => {
 			const msg = 'MediaWiki:Newpage-desc';
-			const { status, headers, text } = await client.get( `/page/${msg}/html` );
+			const { status, headers, text } = await client.get( `/page/${ msg }/html` );
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( text, /<html\b/ );
@@ -231,16 +231,16 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
-			const { status } = await client.get( `/page/${dummyPageTitle}/html` );
+			const { status } = await client.get( `/page/${ dummyPageTitle }/html` );
 			assert.deepEqual( status, 404 );
 		} );
 		it( 'Should have appropriate response headers', async () => {
-			const preEditResponse = await client.get( `/page/${page}/html` );
+			const preEditResponse = await client.get( `/page/${ page }/html` );
 			const preEditDate = new Date( preEditResponse.headers[ 'last-modified' ] );
 			const preEditEtag = preEditResponse.headers.etag;
 
 			await anon.edit( page, { text: "'''Edit XYZ'''" } );
-			const postEditResponse = await client.get( `/page/${page}/html` );
+			const postEditResponse = await client.get( `/page/${ page }/html` );
 			const postEditDate = new Date( postEditResponse.headers[ 'last-modified' ] );
 			const postEditHeaders = postEditResponse.headers;
 			const postEditEtag = postEditResponse.headers.etag;
@@ -255,7 +255,7 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should perform variant conversion', async () => {
 			await anon.edit( variantPage, { text: '<p>test language conversion</p>' } );
-			const { headers, text } = await client.get( `/page/${variantPage}/html`, null, {
+			const { headers, text } = await client.get( `/page/${ variantPage }/html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
 
@@ -266,7 +266,7 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should perform fallback variant conversion', async () => {
 			await mindy.edit( fallbackVariantPage, { text: 'Podvlačenje linkova:' } );
-			const { headers, text } = await client.get( `/page/${encodeURIComponent( fallbackVariantPage )}/html`, null, {
+			const { headers, text } = await client.get( `/page/${ encodeURIComponent( fallbackVariantPage ) }/html`, null, {
 				'accept-language': 'sh-cyrl'
 			} );
 
@@ -279,7 +279,7 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}/with_html', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
-			const { status, text, headers } = await client.get( `/page/${redirectPage}/with_html`, { flavor: 'edit' } );
+			const { status, text, headers } = await client.get( `/page/${ redirectPage }/with_html`, { flavor: 'edit' } );
 			const { search } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 301, text );
@@ -287,7 +287,7 @@ describe( 'Page Source', () => {
 
 		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
-			const { status, text, headers } = await client.get( `/page/${redirectPageDbkey}/with_html`, { flavor: 'edit' } );
+			const { status, text, headers } = await client.get( `/page/${ redirectPageDbkey }/with_html`, { flavor: 'edit' } );
 			const { search } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
 			assert.deepEqual( status, 307, text );
@@ -296,13 +296,13 @@ describe( 'Page Source', () => {
 		it( 'Bypass redirects with query param redirect=no', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
-			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}/with_html`, { redirect: 'no' } );
-			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}/with_html` ) );
+			const { status, body: { redirect_target }, text } = await client.get( `/page/${ redirectPageDbkey }/with_html`, { redirect: 'no' } );
+			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/with_html` ) );
 			assert.deepEqual( status, 200, text );
 		} );
 
 		it( 'Should successfully return page HTML and metadata for Wikitext page', async () => {
-			const { status, body, text } = await client.get( `/page/${page}/with_html` );
+			const { status, body, text } = await client.get( `/page/${ page }/with_html` );
 			assert.deepEqual( status, 200, text );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
@@ -313,7 +313,7 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should successfully return page HTML and metadata for a system message', async () => {
 			const msg = 'MediaWiki:Newpage-desc';
-			const { status, body, text } = await client.get( `/page/${msg}/with_html` );
+			const { status, body, text } = await client.get( `/page/${ msg }/with_html` );
 			assert.deepEqual( status, 200, text );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
@@ -326,16 +326,16 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
-			const { status } = await client.get( `/page/${dummyPageTitle}/with_html` );
+			const { status } = await client.get( `/page/${ dummyPageTitle }/with_html` );
 			assert.deepEqual( status, 404 );
 		} );
 		it( 'Should have appropriate response headers', async () => {
-			const preEditResponse = await client.get( `/page/${page}/with_html` );
+			const preEditResponse = await client.get( `/page/${ page }/with_html` );
 			const preEditRevDate = new Date( preEditResponse.body.latest.timestamp );
 			const preEditEtag = preEditResponse.headers.etag;
 
 			await anon.edit( page, { text: "'''Edit ABCD'''" } );
-			const postEditResponse = await client.get( `/page/${page}/with_html` );
+			const postEditResponse = await client.get( `/page/${ page }/with_html` );
 			const postEditRevDate = new Date( postEditResponse.body.latest.timestamp );
 			const postEditHeaders = postEditResponse.headers;
 			const postEditEtag = postEditResponse.headers.etag;
@@ -353,7 +353,7 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should perform variant conversion', async () => {
 			await anon.edit( variantPage, { text: '<p>test language conversion</p>' } );
-			const { headers, text } = await client.get( `/page/${variantPage}/html`, null, {
+			const { headers, text } = await client.get( `/page/${ variantPage }/html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
 
@@ -370,7 +370,7 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should perform fallback variant conversion', async () => {
 			await mindy.edit( fallbackVariantPage, { text: 'Podvlačenje linkova:' } );
-			const { headers, text } = await client.get( `/page/${encodeURIComponent( fallbackVariantPage )}/html`, null, {
+			const { headers, text } = await client.get( `/page/${ encodeURIComponent( fallbackVariantPage ) }/html`, null, {
 				'accept-language': 'sh-cyrl'
 			} );
 

@@ -9,16 +9,16 @@ describe( 'Categories', function testCategories() {
 	const catA = utils.title( 'Cat_A_' );
 	const catB = utils.title( 'Cat_B_' );
 
-	const titleA = `Category:${catA}`;
-	const titleB = `Category:${catB}`;
+	const titleA = `Category:${ catA }`;
+	const titleB = `Category:${ catB }`;
 
 	let alice;
 
 	before( async () => {
 		alice = await action.alice();
 
-		await alice.edit( pageX, { text: `Foo [[${titleA}]]` } );
-		await alice.edit( pageY, { text: `Bar [[${titleA}]] [[${titleB}]]` } );
+		await alice.edit( pageX, { text: `Foo [[${ titleA }]]` } );
+		await alice.edit( pageY, { text: `Bar [[${ titleA }]] [[${ titleB }]]` } );
 	} );
 
 	const listCategories = async ( page ) => {
@@ -62,8 +62,8 @@ describe( 'Categories', function testCategories() {
 	} );
 
 	it( 'are updated on edit', async () => {
-		await alice.edit( pageX, { text: `Foo [[${titleA}]] [[${titleB}]]` } );
-		await alice.edit( pageY, { text: `Bar [[${titleB}]]` } );
+		await alice.edit( pageX, { text: `Foo [[${ titleA }]] [[${ titleB }]]` } );
+		await alice.edit( pageY, { text: `Bar [[${ titleB }]]` } );
 
 		const categoriesOfX = await listCategories( pageX );
 		const categoriesOfY = await listCategories( pageY );
@@ -79,7 +79,7 @@ describe( 'Categories', function testCategories() {
 	} );
 
 	it( 'can be nested', async () => {
-		await alice.edit( titleB, { text: `Crud [[${titleA}]]` } );
+		await alice.edit( titleB, { text: `Crud [[${ titleA }]]` } );
 
 		const membersOfA = await listMembers( titleA, { cmtype: 'subcat' } );
 

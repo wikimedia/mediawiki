@@ -26,7 +26,7 @@ describe( 'Revision', () => {
 		const invalidRevId = '#';
 
 		it( 'should return 400 if revision id is not an integer', async () => {
-			const { status } = await client.get( `/revision/${validRevId}/compare/${invalidRevId}` );
+			const { status } = await client.get( `/revision/${ validRevId }/compare/${ invalidRevId }` );
 			assert.equal( status, 400 );
 		} );
 
@@ -34,7 +34,7 @@ describe( 'Revision', () => {
 			// XXX: this test requires php-wikidiff2 1.10 or later to be installed
 			const { newrevid: revId1 } = await mindy.edit( pageOne, { text: 'Mindy Edit 1' } );
 			const { newrevid: revId2 } = await mindy.edit( pageOne, { text: 'Mindy Edit 2' } );
-			const response = await client.get( `/revision/${revId1}/compare/${revId2}` );
+			const response = await client.get( `/revision/${ revId1 }/compare/${ revId2 }` );
 			const { status, body, text } = response;
 			assert.strictEqual( status, 200, text );
 			assert.nestedPropertyVal( body, 'from.id', revId1 );
@@ -44,21 +44,21 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
-			const { status } = await client.get( `/revision/${validRevId}/compare/${nonExistentRevId}` );
+			const { status } = await client.get( `/revision/${ validRevId }/compare/${ nonExistentRevId }` );
 			assert.strictEqual( status, 404 );
 		} );
 
 		it( 'should return 400 if revision ids belong to different pages', async () => {
 			const { newrevid: pageOneRev } = await mindy.edit( pageOne, { text: 'Page 1 edit' } );
 			const { newrevid: pageTwoRev } = await mindy.edit( pageTwo, { text: 'Page 2 edit' } );
-			const { status } = await client.get( `/revision/${pageOneRev}/compare/${pageTwoRev}` );
+			const { status } = await client.get( `/revision/${ pageOneRev }/compare/${ pageTwoRev }` );
 			assert.strictEqual( status, 400 );
 		} );
 	} );
 
 	describe( 'GET /revision/{id}', () => {
 		it( 'should successfully get source and metadata for revision', async () => {
-			const { status, body, text, headers } = await client.get( `/revision/${newrevid}` );
+			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }` );
 
 			assert.strictEqual( status, 200, text );
 			assert.strictEqual( body.id, newrevid );
@@ -81,7 +81,7 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/bare', () => {
 		it( 'should successfully get information about revision', async () => {
-			const { status, body, text, headers } = await client.get( `/revision/${newrevid}/bare` );
+			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }/bare` );
 
 			assert.strictEqual( status, 200, text );
 			assert.strictEqual( body.id, newrevid );
@@ -104,7 +104,7 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/with_html', () => {
 		it( 'should successfully get metadata and HTML of revision', async () => {
-			const { status, body, text, headers } = await client.get( `/revision/${newrevid}/with_html` );
+			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }/with_html` );
 
 			assert.strictEqual( status, 200, text );
 			assert.strictEqual( body.id, newrevid );
@@ -132,7 +132,7 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should perform variant conversion', async () => {
-			const { headers, text } = await client.get( `/revision/${newrevid}/with_html`, null, {
+			const { headers, text } = await client.get( `/revision/${ newrevid }/with_html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
 
@@ -151,7 +151,7 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/html', () => {
 		it( 'should successfully get HTML of revision', async () => {
-			const { status, text, headers } = await client.get( `/revision/${newrevid}/html` );
+			const { status, text, headers } = await client.get( `/revision/${ newrevid }/html` );
 
 			assert.strictEqual( status, 200, text );
 			assert.containsAllKeys( headers, [ 'etag', 'cache-control', 'last-modified', 'content-type' ] );
@@ -169,7 +169,7 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should perform variant conversion', async () => {
-			const { headers, text } = await client.get( `/revision/${newrevid}/html`, null, {
+			const { headers, text } = await client.get( `/revision/${ newrevid }/html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
 

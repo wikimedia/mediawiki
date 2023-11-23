@@ -7,8 +7,8 @@ describe( 'Links', function testLinks() {
 
 	const pageX = utils.title( 'LinkTest_X_' );
 	const pageY = utils.title( 'LinkTest_Y_' );
-	const imageY = `File:${pageY}`;
-	const urlY = `http://example.com/${pageY}`;
+	const imageY = `File:${ pageY }`;
+	const urlY = `http://example.com/${ pageY }`;
 
 	// TODO: language links, interwiki links...
 
@@ -17,9 +17,9 @@ describe( 'Links', function testLinks() {
 	before( async () => {
 		alice = await action.alice();
 
-		const textX = `Mention a [[${pageY}|Page]], ` +
-            `include an [[${imageY}]] and also link to [[:${imageY}]], ` +
-            `link to a URL[${urlY}]`;
+		const textX = `Mention a [[${ pageY }|Page]], ` +
+            `include an [[${ imageY }]] and also link to [[:${ imageY }]], ` +
+            `link to a URL[${ urlY }]`;
 
 		// Do all edits in parallel.
 		await Promise.all( [

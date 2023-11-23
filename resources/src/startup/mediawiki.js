@@ -192,7 +192,9 @@
 
 			// Define the relevant shortcut
 			mw.now = navStart && perf.now ?
-				function () { return navStart + perf.now(); } :
+				function () {
+					return navStart + perf.now();
+				} :
 				Date.now;
 
 			return mw.now();

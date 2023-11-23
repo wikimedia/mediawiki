@@ -265,7 +265,10 @@
 
 				try {
 					css = module.style.css.join();
-				} catch ( e ) { return; } // skip
+				} catch ( e ) {
+					// skip
+					return;
+				}
 
 				stats = inspect.auditSelectors( css );
 				modules.push( {

@@ -36,7 +36,7 @@ describe( 'GET contributions', () => {
 		// Create a tag.
 		const tag = 'user-contribs-api-test';
 		const tagDisplay = 'Api Test Display Text';
-		await action.makeTag( tag, `''${tagDisplay}''` );
+		await action.makeTag( tag, `''${ tagDisplay }''` );
 
 		// Beth makes 2 edits, the first one is later suppressed
 		const pageToDelete = utils.title( 'UserContribution_' );
@@ -49,7 +49,7 @@ describe( 'GET contributions', () => {
 			const oddEdit = i % 2;
 			const tags = oddEdit ? tag : null;
 			page = oddEdit ? oddEditsPage : evenEditsPage;
-			arnoldsTags[ i ] = oddEdit ? [ { name: tag, description: `<i>${tagDisplay}</i>` } ] : [];
+			arnoldsTags[ i ] = oddEdit ? [ { name: tag, description: `<i>${ tagDisplay }</i>` } ] : [];
 			const revData = await arnoldAction.edit( page, { text: revisionText[ i ], tags } );
 			await utils.sleep();
 			arnoldsRevisions[ revData.newrevid ] = revData;
@@ -341,7 +341,7 @@ describe( 'GET contributions', () => {
 		let endpoint;
 
 		before( () => {
-			endpoint = `/user/${arnold.username}/contributions`;
+			endpoint = `/user/${ arnold.username }/contributions`;
 		} );
 
 		it( 'Returns 400 if segment size is out of bounds', async () => {
@@ -354,7 +354,7 @@ describe( 'GET contributions', () => {
 
 		it( 'Returns 400 if user name is invalid', async () => {
 			const xyzzy = '|||'; // an invalid user name
-			const xendpoint = `/user/${xyzzy}/contributions`;
+			const xendpoint = `/user/${ xyzzy }/contributions`;
 			const response = await anon.get( xendpoint );
 			assert.equal( response.status, 400 );
 		} );
@@ -367,14 +367,14 @@ describe( 'GET contributions', () => {
 
 		it( 'Returns 404 if user is unknown', async () => {
 			const xyzzy = utils.uniq(); // a non-existing user name
-			const xendpoint = `/user/${xyzzy}/contributions`;
+			const xendpoint = `/user/${ xyzzy }/contributions`;
 			const response = await anon.get( xendpoint );
 			assert.equal( response.status, 404 );
 		} );
 
 		it( 'Returns 200 if user is an IP address', async () => {
 			const xyzzy = '127.111.222.111';
-			const xendpoint = `/user/${xyzzy}/contributions`;
+			const xendpoint = `/user/${ xyzzy }/contributions`;
 			const response = await anon.get( xendpoint );
 			assert.equal( response.status, 200 );
 
@@ -412,7 +412,7 @@ describe( 'GET contributions', () => {
 
 		it( 'Does not return suppressed contributions when requesting user does not have appropriate permissions', async () => {
 			// Note that the suppressed contributions are Beth's contributions.
-			const bethsEndpoint = `/user/${beth.username}/contributions`;
+			const bethsEndpoint = `/user/${ beth.username }/contributions`;
 			await testSuppressedRevisions( anon, bethsEndpoint );
 		} );
 

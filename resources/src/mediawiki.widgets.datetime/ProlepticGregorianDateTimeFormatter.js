@@ -393,7 +393,9 @@
 			if ( spec.values ) {
 				spec.size = Math.max.apply(
 					// eslint-disable-next-line no-jquery/no-map-util
-					null, $.map( spec.values, function ( v ) { return v.length; } )
+					null, $.map( spec.values, function ( v ) {
+						return v.length;
+					} )
 				);
 			}
 		}

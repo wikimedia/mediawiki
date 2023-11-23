@@ -4,7 +4,9 @@ const Page = require( 'wdio-mediawiki/Page' );
 
 class UndoPage extends Page {
 
-	get save() { return $( '#wpSave' ); }
+	get save() {
+		return $( '#wpSave' );
+	}
 
 	async undo( title, previousRev, undoRev ) {
 		await super.openTitle( title, {

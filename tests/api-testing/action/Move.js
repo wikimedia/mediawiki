@@ -5,11 +5,11 @@ const { action, assert, utils } = require( 'api-testing' );
 describe( 'Move action', function () {
 	const userPage = utils.title( 'MoveWith_' );
 	const page1 = utils.title( 'MoveWithout_' );
-	const page2 = `User:${userPage}`;
+	const page2 = `User:${ userPage }`;
 	const page1Subpage = utils.title();
 	const page2Subpage = utils.title();
-	const page1Talk = `Talk:${page1}`;
-	const page2Talk = `User_talk:${userPage}`;
+	const page1Talk = `Talk:${ page1 }`;
+	const page2Talk = `User_talk:${ userPage }`;
 	let mindy;
 
 	before( async () => {
@@ -17,17 +17,17 @@ describe( 'Move action', function () {
 
 		// creating page1, a subpage, and talkpage
 		await mindy.edit( page1, { text: 'Move without redirect, subpage and talkpage' } );
-		await mindy.edit( `${page1}/${page1Subpage}`, { text: `Subpage of ${page1}` } );
-		await mindy.edit( page1Talk, { text: `Talk page of ${page1}` } );
+		await mindy.edit( `${ page1 }/${ page1Subpage }`, { text: `Subpage of ${ page1 }` } );
+		await mindy.edit( page1Talk, { text: `Talk page of ${ page1 }` } );
 
 		// creating page2, a subpage, and talkpage
 		await mindy.edit( page2, { text: 'Move with redirect, subpage and talkpage' } );
-		await mindy.edit( `${page2}/${page2Subpage}`, { text: `Subpage of ${page2}` } );
-		await mindy.edit( page2Talk, { text: `Talk page of ${page2}` } );
+		await mindy.edit( `${ page2 }/${ page2Subpage }`, { text: `Subpage of ${ page2 }` } );
+		await mindy.edit( page2Talk, { text: `Talk page of ${ page2 }` } );
 	} );
 
 	it( 'should move a page without a redirect or its subpages and talkpages', async () => {
-		const newPage1 = `${page1}_${utils.title()}`;
+		const newPage1 = `${ page1 }_${ utils.title() }`;
 		const { move } = await mindy.action( 'move',
 			{
 				from: page1,
@@ -55,8 +55,8 @@ describe( 'Move action', function () {
 
 	it( 'should move a page with a redirect and its subpages and talkpages', async () => {
 		const newTitle = utils.title( 'Move_' );
-		const newPage2 = `User:${newTitle}`;
-		const newPage2Talk = `User_talk:${newTitle}`;
+		const newPage2 = `User:${ newTitle }`;
+		const newPage2Talk = `User_talk:${ newTitle }`;
 		const { move } = await mindy.action( 'move',
 			{
 				from: page2,
@@ -72,8 +72,8 @@ describe( 'Move action', function () {
 		assert.sameTitle( move.to, newPage2 );
 		assert.sameTitle( move.talkfrom, page2Talk );
 		assert.sameTitle( move.talkto, newPage2Talk );
-		assert.sameTitle( move.subpages[ 0 ].from, `${page2}/${page2Subpage}` );
-		assert.sameTitle( move.subpages[ 0 ].to, `${newPage2}/${page2Subpage}` );
+		assert.sameTitle( move.subpages[ 0 ].from, `${ page2 }/${ page2Subpage }` );
+		assert.sameTitle( move.subpages[ 0 ].to, `${ newPage2 }/${ page2Subpage }` );
 		assert.equal( move.reason, 'testing' );
 		assert.exists( move.redirectcreated );
 		assert.exists( move[ 'subpages-talk' ] );

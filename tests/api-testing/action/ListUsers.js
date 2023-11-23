@@ -16,9 +16,9 @@ describe( 'Listing Users', function () {
 
 		// NOTE: Because of T199393, the accounts have to be created sequentially.
 		// Doing so in parallel triggers a race condition that often results in a DBQueryError.
-		await user1.account( `${prefix}1` );
-		await user2.account( `${prefix}2` );
-		await user3.account( `${prefix}3` );
+		await user1.account( `${ prefix }1` );
+		await user2.account( `${ prefix }2` );
+		await user3.account( `${ prefix }3` );
 	} );
 
 	it( 'should get a list of registered users that begin with a given prefix', async () => {

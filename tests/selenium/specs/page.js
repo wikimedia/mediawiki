@@ -81,11 +81,11 @@ describe( 'Page', function () {
 
 	it( 'should have history @daily', async function () {
 		// create
-		await bot.edit( name, content, `created with "${content}"` );
+		await bot.edit( name, content, `created with "${ content }"` );
 
 		// check
 		await HistoryPage.open( name );
-		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${content}"` );
+		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${ content }"` );
 	} );
 
 	it( 'should be deletable', async function () {
@@ -99,7 +99,7 @@ describe( 'Page', function () {
 
 		// check
 		// eslint-disable-next-line security/detect-non-literal-regexp
-		assert.match( await DeletePage.displayedContent.getText(), new RegExp( `"${name}" has been deleted.` ) );
+		assert.match( await DeletePage.displayedContent.getText(), new RegExp( `"${ name }" has been deleted.` ) );
 	} );
 
 	it( 'should be restorable', async function () {
