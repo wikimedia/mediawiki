@@ -108,8 +108,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$services = $this->getFakeServiceContainer();
 
 			// NOTE: createRouter() implements the logic for determining the list of route files to load.
-			$entryPoint = TestingAccessWrapper::newFromClass( EntryPoint::class );
-			$router = $entryPoint->createRouter( $services, $context, new RequestData(), $responseFactory, $cors );
+			$router = EntryPoint::createRouter( $services, $context, new RequestData(), $responseFactory, $cors );
 			$router = TestingAccessWrapper::newFromObject( $router );
 		}
 
@@ -132,8 +131,9 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$responseFactory = $this->createNoOpMock( ResponseFactory::class );
 			$cors = $this->createNoOpMock( CorsUtils::class );
 
-			$this->router = TestingAccessWrapper::newFromClass( EntryPoint::class )
-				->createRouter( $this->getServiceContainer(), $context, new RequestData(), $responseFactory, $cors );
+			$this->router = EntryPoint::createRouter(
+				$this->getServiceContainer(), $context, new RequestData(), $responseFactory, $cors
+			);
 		}
 		return $this->router;
 	}
