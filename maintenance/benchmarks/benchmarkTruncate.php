@@ -13,18 +13,18 @@ class BenchmarkTruncate extends Benchmarker {
 		$dbw = $this->getDB( DB_PRIMARY );
 
 		$dbw->dropTable( 'benchmark_perm_test' );
-		$permTable = $dbw->tableName( 'benchmark_perm_test', 'unquoted' );
+		$permTable = $dbw->tableName( 'benchmark_perm_test', 'raw' );
 		$dbw->duplicateTableStructure(
-			$dbw->tableName( 'page', 'unquoted' ),
+			$dbw->tableName( 'page', 'raw' ),
 			$permTable,
 			false,
 			$fname
 		);
 
 		$dbw->dropTable( 'benchmark_temp_test' );
-		$tempTable = $dbw->tableName( 'benchmark_temp_test', 'unquoted' );
+		$tempTable = $dbw->tableName( 'benchmark_temp_test', 'raw' );
 		$dbw->duplicateTableStructure(
-			$dbw->tableName( 'page', 'unquoted' ),
+			$dbw->tableName( 'page', 'raw' ),
 			$tempTable,
 			true,
 			$fname
