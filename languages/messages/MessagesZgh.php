@@ -7,8 +7,6 @@
  * @author Lhoussine AIT TAYFST
  */
 
-$fallback = 'kab';
-
 $namespaceNames = [
 	NS_MEDIA            => 'ⵎⵉⴷⵢⴰ',
 	NS_SPECIAL          => 'ⴰⵎⵥⵍⵉ',
