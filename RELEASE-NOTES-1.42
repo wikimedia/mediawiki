@@ -90,6 +90,7 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T268143) Language variant conversion has been removed for Kazakh.
+* (T351874) Added language support for Komering (kge).
 * …
 
 === Breaking changes in 1.42 ===
