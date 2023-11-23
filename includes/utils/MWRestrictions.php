@@ -30,11 +30,14 @@ class MWRestrictions {
 
 	private $ipAddresses = [ '0.0.0.0/0', '::/0' ];
 
+	public StatusValue $validity;
+
 	/**
 	 * @param array|null $restrictions
 	 * @throws InvalidArgumentException
 	 */
 	protected function __construct( array $restrictions = null ) {
+		$this->validity = StatusValue::newGood();
 		if ( $restrictions !== null ) {
 			$this->loadFromArray( $restrictions );
 		}
@@ -70,16 +73,9 @@ class MWRestrictions {
 	}
 
 	private function loadFromArray( array $restrictions ) {
-		static $validKeys = [ 'IPAddresses' ];
 		static $neededKeys = [ 'IPAddresses' ];
 
 		$keys = array_keys( $restrictions );
-		$invalidKeys = array_diff( $keys, $validKeys );
-		if ( $invalidKeys ) {
-			throw new InvalidArgumentException(
-				'Array contains invalid keys: ' . implode( ', ', $invalidKeys )
-			);
-		}
 		$missingKeys = array_diff( $neededKeys, $keys );
 		if ( $missingKeys ) {
 			throw new InvalidArgumentException(
@@ -92,7 +88,7 @@ class MWRestrictions {
 		}
 		foreach ( $restrictions['IPAddresses'] as $ip ) {
 			if ( !IPUtils::isIPAddress( $ip ) ) {
-				throw new InvalidArgumentException( "Invalid IP address: $ip" );
+				$this->validity->fatal( 'restrictionsfield-badip', $ip );
 			}
 		}
 		$this->ipAddresses = $restrictions['IPAddresses'];

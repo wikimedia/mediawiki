@@ -1,8 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Status\Status;
-use Wikimedia\IPUtils;
 
 /**
  * Class for updating an MWRestrictions value (which is, currently, basically just an IP address
@@ -15,8 +14,10 @@ use Wikimedia\IPUtils;
  * valid IP ranges.
  *
  */
-class HTMLRestrictionsField extends HTMLTextAreaField {
+class HTMLRestrictionsField extends HTMLFormField {
 	protected const DEFAULT_ROWS = 5;
+
+	private HTMLTextAreaField $ipField;
 
 	/**
 	 * @stable to call
@@ -24,31 +25,28 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );
-		if ( !$this->mLabel ) {
-			$this->mLabel = $this->msg( 'restrictionsfield-label' )->parse();
-		}
-	}
-
-	public function getHelpText() {
-		return parent::getHelpText() ?? $this->msg( 'restrictionsfield-help' )->parse();
+		$this->ipField = new HTMLTextAreaField( [
+			'parent' => $params['parent'],
+			'fieldname' => $params['fieldname'] . '-ip',
+			'rows' => self::DEFAULT_ROWS,
+			'required' => $params['required'] ?? false,
+			'help-message' => 'restrictionsfield-help',
+			'label-message' => 'restrictionsfield-label',
+		] );
 	}
 
 	/**
 	 * @param WebRequest $request
-	 * @return string|MWRestrictions Restrictions object or original string if invalid
+	 * @return MWRestrictions Restrictions object
 	 */
 	public function loadDataFromRequest( $request ) {
-		if ( !$request->getCheck( $this->mName ) ) {
+		if ( !$request->getCheck( $this->mName . '-ip' ) ) {
 			return $this->getDefault();
 		}
 
-		$value = rtrim( $request->getText( $this->mName ), "\r\n" );
-		$ips = $value === '' ? [] : explode( "\n", $value );
-		try {
-			return MWRestrictions::newFromArray( [ 'IPAddresses' => $ips ] );
-		} catch ( InvalidArgumentException $e ) {
-			return $value;
-		}
+		$ipValue = rtrim( $request->getText( $this->mName . '-ip' ), "\r\n" );
+		$ips = $ipValue === '' ? [] : explode( "\n", $ipValue );
+		return MWRestrictions::newFromArray( [ 'IPAddresses' => $ips ] );
 	}
 
 	/**
@@ -59,7 +57,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	}
 
 	/**
-	 * @param string|MWRestrictions $value The value the field was submitted with
+	 * @param MWRestrictions $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
 	 * @return bool|string|Message True on success, or String/Message error to display, or
@@ -72,23 +70,16 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 
 		if (
 			isset( $this->mParams['required'] ) && $this->mParams['required'] !== false
-			&& $value instanceof MWRestrictions && !$value->toArray()['IPAddresses']
+			&& !$value->toArray()['IPAddresses']
 		) {
 			return $this->msg( 'htmlform-required' );
 		}
 
-		if ( is_string( $value ) ) {
-			// MWRestrictions::newFromArray failed; one of the IP ranges must be invalid
-			$status = Status::newGood();
-			foreach ( explode( "\n", $value ) as $range ) {
-				if ( !IPUtils::isIPAddress( $range ) ) {
-					$status->fatal( 'restrictionsfield-badip', $range );
-				}
-			}
-			if ( $status->isOK() ) {
-				$status->fatal( 'unknown-error' );
-			}
-			return $status->getMessage();
+		if ( !$value->validity->isGood() ) {
+			$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()->getStatusFormatter(
+				$this->mParent->getContext()
+			);
+			return $statusFormatter->getMessage( $value->validity );
 		}
 
 		if ( isset( $this->mValidationCallback ) ) {
@@ -99,24 +90,21 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	}
 
 	/**
-	 * @param string|MWRestrictions $value
+	 * @param MWRestrictions $value
 	 * @return string
 	 */
 	public function getInputHTML( $value ) {
-		if ( $value instanceof MWRestrictions ) {
-			$value = implode( "\n", $value->toArray()['IPAddresses'] );
-		}
-		return parent::getInputHTML( $value );
+		$ipValue = implode( "\n", $value->toArray()['IPAddresses'] );
+		return $this->ipField->getDiv( $ipValue );
 	}
 
 	/**
 	 * @param MWRestrictions $value
 	 * @return string
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function getInputOOUI( $value ) {
-		if ( $value instanceof MWRestrictions ) {
-			$value = implode( "\n", $value->toArray()['IPAddresses'] );
-		}
-		return parent::getInputOOUI( $value );
+		$ipValue = implode( "\n", $value->toArray()['IPAddresses'] );
+		return $this->ipField->getOOUI( $ipValue )->toString();
 	}
 }

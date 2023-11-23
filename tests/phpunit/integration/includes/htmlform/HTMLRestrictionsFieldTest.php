@@ -6,17 +6,21 @@ use MediaWiki\Title\Title;
 /**
  * @covers HTMLRestrictionsField
  */
-class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
+class HTMLRestrictionsFieldTest extends MediaWikiIntegrationTestCase {
 
 	use MediaWikiCoversValidator;
 
 	public function testConstruct() {
 		$htmlForm = $this->createMock( HTMLForm::class );
 		$htmlForm->method( 'msg' )->willReturnCallback( 'wfMessage' );
+		$languageMock = $this->createMock( Language::class );
+		$languageMock->method( 'getCode' )->willReturn( 'en' );
+		$titleMock = $this->createMock( Title::class );
+
+		$htmlForm->method( 'getLanguage' )->willReturn( $languageMock );
+		$htmlForm->method( 'getTitle' )->willReturn( $titleMock );
 
 		$field = new HTMLRestrictionsField( [ 'fieldname' => 'restrictions', 'parent' => $htmlForm ] );
-		$this->assertNotEmpty( $field->getLabel(), 'has a default label' );
-		$this->assertNotEmpty( $field->getHelpText(), 'has a default help text' );
 		$this->assertEquals( MWRestrictions::newDefault(), $field->getDefault(),
 			'defaults to the default MWRestrictions object' );
 
@@ -35,8 +39,8 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideValidate
 	 */
-	public function testForm( $text, $value ) {
-		$request = new FauxRequest( [ 'wprestrictions' => $text ], true );
+	public function testForm( $ipText, $value ) {
+		$request = new FauxRequest( [ 'wprestrictions-ip' => $ipText ], true );
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setRequest( $request );
 		$form = HTMLForm::factory( 'ooui', [
