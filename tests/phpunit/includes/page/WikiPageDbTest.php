@@ -284,8 +284,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			->where( [ 'log_page' => $id ] )
 			->assertResultSet( [ [ 'create', 'create' ] ] );
 
-		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
-		$this->assertTrue( $id > 0, "WikiPage should have new page id" );
+		$this->assertGreaterThan( 0, $title->getArticleID(), "Title object should have new page id" );
+		$this->assertGreaterThan( 0, $id, "WikiPage should have new page id" );
 		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
 		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
 
@@ -455,7 +455,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$page->getTitle()->getArticleID() > 0,
 			"Title object should now have page id 0"
 		);
-		$this->assertFalse( $page->getId() > 0, "WikiPage should now have page id 0" );
+		$this->assertSame( 0, $page->getId(), "WikiPage should now have page id 0" );
 		$this->assertFalse(
 			$page->exists(),
 			"WikiPage::exists should return false after page was deleted"
@@ -1482,7 +1482,7 @@ more stuff
 		$endTimeStamp = wfTimestampNow();
 
 		$this->assertIsInt( $result );
-		$this->assertTrue( $result > 0 );
+		$this->assertGreaterThan( 0, $result );
 
 		$condition = [ 'page_id' => $result ];
 

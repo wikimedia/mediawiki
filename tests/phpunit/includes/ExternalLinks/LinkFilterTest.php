@@ -214,7 +214,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 		$likeArrays = LinkFilter::makeLikeArray( $pattern, $protocol );
 		$likeArray = array_merge( $likeArrays[0], $likeArrays[1] );
 
-		$this->assertTrue( $likeArray !== false,
+		$this->assertIsArray( $likeArrays,
 			"LinkFilter::makeLikeArray('$pattern', '$protocol') returned false on a valid pattern"
 		);
 

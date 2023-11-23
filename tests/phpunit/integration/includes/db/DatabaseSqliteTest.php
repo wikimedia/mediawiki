@@ -5,6 +5,7 @@ use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;
@@ -135,7 +136,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		// ok, quoting works as expected, now try a round trip.
 		$re = $db->query( 'select ' . $db->addQuotes( $value ) );
 
-		$this->assertTrue( $re !== false, 'query failed' );
+		$this->assertInstanceOf( IResultWrapper::class, $re, 'query failed' );
 
 		$row = $re->fetchRow();
 		if ( $row ) {
