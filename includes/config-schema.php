@@ -2059,6 +2059,8 @@ return [
 			],
 			'MessagesDirs' => [
 			],
+			'TranslationAliasesDirs' => [
+			],
 			'ExtensionEntryPointListFiles' => [
 			],
 			'EnableParserLimitReporting' => true,
@@ -2904,6 +2906,7 @@ return [
 			'ExtensionFunctions' => 'array',
 			'ExtensionMessagesFiles' => 'object',
 			'MessagesDirs' => 'object',
+			'TranslationAliasesDirs' => 'object',
 			'ExtensionEntryPointListFiles' => 'object',
 			'ValidSkinNames' => 'object',
 			'SpecialPages' => 'object',

@@ -11056,6 +11056,37 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Message directories containing JSON files for localisation of special page aliases.
+	 *
+	 * Associative array mapping extension name to the directory where configurations can be
+	 * found. The directory is expected to contain JSON files corresponding to each language code.
+	 *
+	 * Variables defined in extensions will override conflicting variables defined
+	 * in the core. We recommend using this configuration to set variables that require localisation:
+	 * special page aliases, and in the future namespace aliases and magic words.
+	 *
+	 * **Simple example**: extension.json
+	 * ```
+	 * "TranslationAliasesDirs": {
+	 *   "TranslationNotificationsAlias": "i18n/aliases/"
+	 * }
+	 * ```
+	 * **Complex example**: extension.json
+	 *  ```
+	 *  "TranslationAliasesDirs": {
+	 *    "TranslationNotificationsAlias": [ "i18n/special-page-aliases", "i18n/magic-words", "i18n/namespaces" ]
+	 *  }
+	 *  ```
+	 *
+	 * @warning EXPERIMENTAL!
+	 * @since 1.42
+	 */
+	public const TranslationAliasesDirs = [
+		'default' => [],
+		'type' => 'map',
+	];
+
+	/**
 	 * Array of files with list(s) of extension entry points to be used in
 	 * maintenance/mergeMessageFileList.php
 	 *

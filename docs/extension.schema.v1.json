@@ -870,6 +870,10 @@
 			"type": "object",
 			"description": "Directory paths containing JSON internationalization data"
 		},
+		"TranslationAliasesDirs": {
+			"type": "object",
+			"description": "Message directories containing JSON files for localisation of special page aliases"
+		},
 		"ExtensionEntryPointListFiles": {
 			"type": "object"
 		},

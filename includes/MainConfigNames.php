@@ -3873,6 +3873,12 @@ class MainConfigNames {
 	public const MessagesDirs = 'MessagesDirs';
 
 	/**
+	 * Name constant for the TranslationAliasesDirs setting, for use with Config::get()
+	 * @see MainConfigSchema::TranslationAliasesDirs
+	 */
+	public const TranslationAliasesDirs = 'TranslationAliasesDirs';
+
+	/**
 	 * Name constant for the ExtensionEntryPointListFiles setting, for use with Config::get()
 	 * @see MainConfigSchema::ExtensionEntryPointListFiles
 	 */

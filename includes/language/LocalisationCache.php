@@ -187,6 +187,9 @@ class LocalisationCache {
 		'pluralRules', 'pluralRuleTypes', 'compiledPluralRules',
 	];
 
+	/** Keys for items which can be localized. */
+	public const ALL_ALIAS_KEYS = [ 'specialPageAliases' ];
+
 	/**
 	 * Keys for items which consist of associative arrays, which may be merged
 	 * by a fallback sequence.
@@ -307,6 +310,7 @@ class LocalisationCache {
 		'manualRecache',
 		MainConfigNames::ExtensionMessagesFiles,
 		MainConfigNames::MessagesDirs,
+		MainConfigNames::TranslationAliasesDirs,
 	];
 
 	/**
@@ -1078,11 +1082,12 @@ class LocalisationCache {
 
 		$codeSequence = array_merge( [ $code ], $coreData['fallbackSequence'] );
 		$messageDirs = $this->getMessagesDirs();
+		$translationAliasesDirs = $this->options->get( MainConfigNames::TranslationAliasesDirs );
 
 		# Load non-JSON localisation data for extensions
 		$extensionData = array_fill_keys( $codeSequence, $initialData );
 		foreach ( $this->options->get( MainConfigNames::ExtensionMessagesFiles ) as $extension => $fileName ) {
-			if ( isset( $messageDirs[$extension] ) ) {
+			if ( isset( $messageDirs[$extension] ) || isset( $translationAliasesDirs[$extension] ) ) {
 				# This extension has JSON message data; skip the PHP shim
 				continue;
 			}
@@ -1126,6 +1131,35 @@ class LocalisationCache {
 						$this->sourceLanguage[$code]['messages'][$subkey] ??= $csCode;
 					}
 					$this->mergeItem( 'messages', $csData['messages'], $messages );
+
+					$deps[] = new FileDependency( $fileName );
+				}
+			}
+
+			foreach ( $translationAliasesDirs as $dirs ) {
+				foreach ( (array)$dirs as $dir ) {
+					$fileName = "$dir/$csCode.json";
+					$data = $this->readJSONFile( $fileName );
+
+					foreach ( $data as $key => $item ) {
+						// We allow the key in the JSON to be specified in PascalCase similar to key definitions in
+						// extension.json, but eventually they are stored in camelCase
+						$normalizedKey = lcfirst( $key );
+
+						if ( $normalizedKey === '@metadata' ) {
+							// Don't store @metadata information in extension data.
+							continue;
+						}
+
+						if ( !in_array( $normalizedKey, self::ALL_ALIAS_KEYS ) ) {
+							throw new UnexpectedValueException(
+								"Invalid key: \"$key\" for " . MainConfigNames::TranslationAliasesDirs . ". " .
+								'Valid keys: ' . implode( ', ', self::ALL_ALIAS_KEYS )
+							);
+						}
+
+						$this->mergeItem( $normalizedKey, $extensionData[$csCode][$normalizedKey], $item );
+					}
 
 					$deps[] = new FileDependency( $fileName );
 				}
