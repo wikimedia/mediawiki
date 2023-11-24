@@ -143,7 +143,7 @@
 		"mw-install:sqlite": "php maintenance/install.php --server=http://localhost:4000 --dbtype sqlite --dbpath cache/ --scriptpath= --pass adminpassword MediaWiki Admin",
 		"serve": [
 			"Composer\\Config::disableProcessTimeout",
-			"php -S localhost:4000"
+			"php -S 127.0.0.1:4000"
 		],
 		"lint": "parallel-lint --exclude node_modules --exclude vendor",
 		"phan": "phan -d . --long-progress-bar",
