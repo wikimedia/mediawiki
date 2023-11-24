@@ -2352,6 +2352,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Widget\\UsersMultiselectWidget' => __DIR__ . '/includes/widget/UsersMultiselectWidget.php',
 	'MediaWiki\\WikiMap\\WikiMap' => __DIR__ . '/includes/WikiMap/WikiMap.php',
 	'MediaWiki\\WikiMap\\WikiReference' => __DIR__ . '/includes/WikiMap/WikiReference.php',
+	'Mediawiki\\OutputTransform\\ContentDOMTransformStage' => __DIR__ . '/includes/OutputTransform/ContentDOMTransformStage.php',
 	'Mediawiki\\OutputTransform\\ContentTextTransformStage' => __DIR__ . '/includes/OutputTransform/ContentTextTransformStage.php',
 	'Mediawiki\\OutputTransform\\DefaultOutputPipelineFactory' => __DIR__ . '/includes/OutputTransform/DefaultOutputPipelineFactory.php',
 	'Mediawiki\\OutputTransform\\OutputTransformPipeline' => __DIR__ . '/includes/OutputTransform/OutputTransformPipeline.php',
