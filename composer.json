@@ -140,7 +140,7 @@
 		]
 	},
 	"scripts": {
-		"mw-install:sqlite": "php maintenance/install.php --server=http://localhost:4000 --dbtype sqlite --dbpath cache/ --scriptpath= --pass adminpassword MediaWiki Admin",
+		"mw-install:sqlite": "php maintenance/install.php --server=http://localhost:4000 --dbtype sqlite --with-developmentsettings --dbpath cache/ --scriptpath= --pass adminpassword MediaWiki Admin",
 		"serve": [
 			"Composer\\Config::disableProcessTimeout",
 			"php -S 127.0.0.1:4000"

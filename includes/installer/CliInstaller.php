@@ -165,6 +165,8 @@ class CliInstaller extends Installer {
 			$skinNames = array_map( 'strtolower', $skins );
 			$this->setVar( 'wgDefaultSkin', $this->getDefaultSkin( $skinNames ) );
 		}
+
+		$this->setVar( '_WithDevelopmentSettings', isset( $options['with-developmentsettings'] ) );
 	}
 
 	private function validateExtensions( $type, $directory, $nameLists ) {

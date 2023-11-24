@@ -63,7 +63,7 @@ class LocalSettingsGenerator {
 				'wgMetaNamespace', 'wgAuthenticationTokenVersion', 'wgPingback',
 				'_Logo1x', '_LogoTagline', '_LogoWordmark', '_LogoIcon',
 				'_LogoWordmarkWidth', '_LogoWordmarkHeight',
-				'_LogoTaglineWidth', '_LogoTaglineHeight'
+				'_LogoTaglineWidth', '_LogoTaglineHeight', '_WithDevelopmentSettings'
 			],
 			$db->getGlobalNames()
 		);
@@ -305,6 +305,12 @@ class LocalSettingsGenerator {
 			$platformSettings = '';
 		}
 
+		$developmentSettings = '';
+		if ( isset( $this->values['_WithDevelopmentSettings'] ) && $this->values['_WithDevelopmentSettings'] ) {
+			$developmentSettings = "\n## Include DevelopmentSettings.php";
+			$developmentSettings .= "\nrequire_once \"\$IP/includes/DevelopmentSettings.php\";";
+		}
+
 		$this->values['taglineConfig'] = $this->values['_LogoTagline'] ? "\n\t'tagline' => [
 		\"src\" => \"{$this->values['_LogoTagline']}\",
 		\"width\" => {$this->values['_LogoTaglineWidth']},
@@ -336,6 +342,8 @@ class LocalSettingsGenerator {
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
+{$developmentSettings}
+
 {$platformSettings}
 
 ## Uncomment this to disable output compression

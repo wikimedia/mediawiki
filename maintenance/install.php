@@ -99,6 +99,7 @@ class CommandLineInstaller extends Maintenance {
 			false, true, false, true );
 		$this->addOption( 'skins', 'Comma-separated list of skins to install (default: all)',
 			false, true, false, true );
+		$this->addOption( 'with-developmentsettings', 'Load DevelopmentSettings.php in LocalSettings.php' );
 	}
 
 	public function canExecuteWithoutLocalSettings(): bool {
