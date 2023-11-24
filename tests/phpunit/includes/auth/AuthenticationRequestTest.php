@@ -272,7 +272,7 @@ class AuthenticationRequestTest extends \MediaWikiIntegrationTestCase {
 	 * @param array|bool $expectState
 	 */
 	public function testLoadFromSubmission( $fieldInfo, $data, $expectState ) {
-		$mock = $this->getMockForAbstractClass( AuthenticationRequest::class );
+		$mock = $this->getMockForAbstractClass( AuthenticationRequestForLoadFromSubmission::class );
 		$mock->method( 'getFieldInfo' )
 			->willReturn( $fieldInfo );
 
@@ -516,4 +516,12 @@ class AuthenticationRequestTest extends \MediaWikiIntegrationTestCase {
 			],
 		];
 	}
+}
+
+// Dynamic properties from the testLoadFromSubmission not working in php8.2
+abstract class AuthenticationRequestForLoadFromSubmission extends AuthenticationRequest {
+	public $choose;
+	public $push;
+	public $check;
+	public $field;
 }
