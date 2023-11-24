@@ -148,7 +148,9 @@ class DataAccess extends IDataAccess {
 	}
 
 	/** @inheritDoc */
-	public function getPageInfo( IPageConfig $pageConfig, array $titles ): array {
+	public function getPageInfo( $pageConfigOrTitle, array $titles ): array {
+		$pageTitle = $pageConfigOrTitle instanceof IPageConfig ? $pageConfigOrTitle->getTitle() :
+			$pageConfigOrTitle;
 		$titleObjs = [];
 		$pagemap = [];
 		$classes = [];
@@ -182,7 +184,7 @@ class DataAccess extends IDataAccess {
 			$pagemap[$obj->getArticleID()] = $pdbk;
 			$classes[$pdbk] = $obj->isRedirect() ? 'mw-redirect' : '';
 		}
-		$context_title = Title::newFromText( $pageConfig->getTitle() );
+		$context_title = Title::newFromText( $pageTitle );
 		$this->hookRunner->onGetLinkColours(
 			# $classes is passed by reference and mutated
 			$pagemap, $classes, $context_title
