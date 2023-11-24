@@ -38,7 +38,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	 * exist and are not illegal.
 	 *
 	 * @todo Modules can dynamically choose dependencies based on context. This method
-	 * does not find all such variations. The same applies to testUnsatisfiableDependencies().
+	 * does not find all such variations.
 	 */
 	public function testValidDependencies() {
 		$data = self::getAllModules();
@@ -96,83 +96,6 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 				);
 			}
 		}
-	}
-
-	/**
-	 * Verify that dependencies of all modules are actually registered in the same client context.
-	 *
-	 * Example:
-	 * - A depends on B. A has targets: mobile, desktop. B has targets: desktop. Therefore the
-	 *   dependency is sometimes unregistered: it's impossible to load module A on mobile.
-	 */
-	public function testUnsatisfiableDependencies() {
-		$data = self::getAllModules();
-
-		/** @var RL\Module $module */
-		$incompatibleTargetNames = [];
-		$targetsErrMsg = '';
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			$depNames = $module->getDependencies( $data['context'] );
-			$moduleTargets = $module->getTargets();
-
-			foreach ( $depNames as $depName ) {
-				$dep = $data['modules'][$depName] ?? null;
-				if ( !$dep ) {
-					// Missing dependencies reported by testMissingDependencies
-					continue;
-				}
-				if ( $moduleTargets === [ 'test' ] ) {
-					// Target filter does not apply under tests, which may include
-					// both mobile-only and desktop-only dependencies.
-					continue;
-				}
-				$targets = $dep->getTargets();
-				foreach ( $moduleTargets as $moduleTarget ) {
-					if ( !in_array( $moduleTarget, $targets ) ) {
-						$incompatibleTargetNames[] = $moduleName;
-						$targetsErrMsg .= "* The module '$moduleName' must not have target '$moduleTarget' "
-								. "because its dependency '$depName' does not have it\n";
-					}
-				}
-			}
-		}
-		$this->assertEquals( [], $incompatibleTargetNames, $targetsErrMsg );
-	}
-
-	/**
-	 * Verify that dependencies of all modules are actually registered in the same client context.
-	 *
-	 * Example:
-	 * - A depends on B. A has targets: mobile, desktop. B has targets: desktop. Therefore the
-	 *   dependency is sometimes unregistered: it's impossible to load module A on mobile.
-	 * - A depends on B. B has requiresES6=true but A does not. In some browsers, B will be
-	 *   unregistered at startup and thus impossible to satisfy as dependency.
-	 */
-	public function testRedundantTargets() {
-		$targetsBad = [];
-		$data = self::getAllModules();
-
-		// This makes sure that new modules are not added in a way that goes against
-		// the current plan to dismantle the targets system.
-		// Modules should only be removed from the list, not added.
-		$knownExceptions = [];
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			$definedTargets = $module->getTargets();
-			if (
-				!in_array( $moduleName, $knownExceptions ) &&
-				!str_starts_with( $moduleName, 'test.' ) &&
-				(
-					!in_array( 'desktop', $definedTargets ) ||
-					!in_array( 'mobile', $definedTargets )
-				)
-			) {
-				$targetsBad[] = $moduleName;
-			}
-		}
-		$this->assertEquals( [], $targetsBad,
-			'All modules should load on both mobile and desktop target. '
-			. 'The following modules have redundant targets definitions:' . implode( ' ', $targetsBad )
-		);
 	}
 
 	/**

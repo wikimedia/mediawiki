@@ -387,7 +387,7 @@
 								},
 								"targets": {
 									"type": [ "string", "array" ],
-									"description": "ResourceLoader target the module can run on",
+									"description": "ResourceLoader target the module can run on (unused since MediaWiki 1.42)",
 									"items": {
 										"type": "string"
 									}
@@ -430,7 +430,7 @@
 								},
 								"targets": {
 									"type": [ "string", "array" ],
-									"description": "ResourceLoader target the module can run on",
+									"description": "ResourceLoader target the module can run on (unused since MediaWiki 1.42)",
 									"items": {
 										"type": "string"
 									}

@@ -5568,15 +5568,6 @@ class MainConfigSchema {
 	 *   it will be wrapped by %ResourceLoader in an anonymous function and invoked
 	 *   when the module is considered for loading.
 	 *
-	 * - targets `{string[]}`
-	 *   List of %ResourceLoader targets where the module may be loaded from.
-	 *   This is used by the MobileFrontend extension to prevent certain modules
-	 *   from being loaded.
-	 *
-	 *   This option is **deprecated**. See [T127268](https://phabricator.wikimedia.org/T127268).
-	 *
-	 *   Default: `[ 'desktop', 'mobile' ]`
-	 *
 	 * ## FileModule options
 	 *
 	 * - localBasePath `{string}`:
@@ -5742,14 +5733,6 @@ class MainConfigSchema {
 	 *
 	 * ```
 	 * return typeof SomeWebAPI === 'function' && SomeWebAPI.prototype.duckMethod;
-	 * ```
-	 *
-	 * **Example: Module targets**
-	 *
-	 * ```
-	 * $wgResourceModules['ext.myExtension'] = [
-	 *   'targets' => [ 'desktop', 'mobile' ],
-	 * ];
 	 * ```
 	 * @anchor wgResourceModules-example-stylesheet
 	 *

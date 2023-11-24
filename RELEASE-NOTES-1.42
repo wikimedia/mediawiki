@@ -129,6 +129,11 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.42 ===
+* (T340802) ResourceLoader: The targets system is no longer active; all modules
+  will load on all platforms even if they are marked as desktop- or mobile-only
+  in the 'targets' field, which is no longer read. As part of this, the internal
+  methods RL\Module::setTarget() & ::getTargets(), and OutputPage::setTarget(),
+  have been removed.
 * TitleArray, deprecated since 1.41, has been removed.
 * UserRightsProxy, deprecated since 1.38, has been removed.
 * UserLoginCompleteHook is always called with its $direct parameter set to

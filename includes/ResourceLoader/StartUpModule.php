@@ -34,10 +34,6 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * the ability to vary based extra query parameters, in addition to those
  * from Context:
  *
- * - target: Only register modules in the client intended for this target.
- *   Default: "desktop".
- *   See also: OutputPage::setTarget(), Module::getTargets().
- *
  * - safemode: Only register modules that have ORIGIN_CORE as their origin.
  *   This disables ORIGIN_USER modules and mw.loader.store. (T185303, T145498)
  *   See also: OutputPage::disallowUserJs()
@@ -163,11 +159,8 @@ class StartUpModule extends Module {
 		$resourceLoader = $context->getResourceLoader();
 		// Future developers: Use WebRequest::getRawVal() instead getVal().
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
-		$target = $context->getRequest()->getRawVal( 'target', 'desktop' );
 		$safemode = $context->getRequest()->getRawVal( 'safemode' ) === '1';
 		$skin = $context->getSkin();
-		// Allow disabling target filter, for use by SpecialJavaScriptTest.
-		$byPassTargetFilter = $this->getConfig()->get( MainConfigNames::EnableJavaScriptTest ) && $target === 'test';
 
 		$moduleNames = $resourceLoader->getModuleNames();
 
@@ -191,19 +184,9 @@ class StartUpModule extends Module {
 		$registryData = [];
 		foreach ( $moduleNames as $name ) {
 			$module = $resourceLoader->getModule( $name );
-			$moduleTargets = $module->getTargets();
 			$moduleSkins = $module->getSkins();
-			$targetMismatch = !in_array( 'mobile', $moduleTargets ) || !in_array( 'desktop', $moduleTargets );
-			$hasValidTarget = in_array( 'mobile', $moduleTargets ) || in_array( 'desktop', $moduleTargets );
-			if ( $hasValidTarget && $targetMismatch ) {
-				wfDeprecated(
-					'Modules must target desktop and mobile. Module name:' . $name,
-					'1.41'
-				);
-			}
 			if (
-				( !$byPassTargetFilter && !in_array( $target, $moduleTargets ) )
-				|| ( $safemode && $module->getOrigin() > Module::ORIGIN_CORE_INDIVIDUAL )
+				( $safemode && $module->getOrigin() > Module::ORIGIN_CORE_INDIVIDUAL )
 				|| ( $moduleSkins !== null && !in_array( $skin, $moduleSkins ) )
 			) {
 				continue;

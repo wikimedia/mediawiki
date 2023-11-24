@@ -647,8 +647,6 @@ class ExtensionProcessor implements Processor {
 					$data['localBasePath'] = "$dir/{$data['localBasePath']}";
 				}
 			}
-			// Satisfy PHPUnit ResourcesTest::testUnsatisfiableDependencies
-			$data['targets'] = [ 'test' ];
 			$this->attributes['QUnitTestModules']["test.{$info['name']}"] = $data;
 		}
 

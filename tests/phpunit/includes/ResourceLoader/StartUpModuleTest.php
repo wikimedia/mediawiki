@@ -280,26 +280,6 @@ mw.loader.register([
 ]);'
 			] ],
 			[ [
-				'msg' => 'Different target (non-test should not be registered)',
-				'modules' => [
-					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
-					'test.target.foo' => [
-						'class' => ResourceLoaderTestModule::class,
-						'targets' => [ 'x-foo' ],
-					],
-				],
-				'out' => '
-mw.loader.addSource({
-    "local": "/w/load.php"
-});
-mw.loader.register([
-    [
-        "test.blank",
-        ""
-    ]
-]);'
-			] ],
-			[ [
 				'msg' => 'Different skin (irrelevant skin modules should not be registered)',
 				'modules' => [
 					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
@@ -596,15 +576,6 @@ mw.loader.register([
 						'class' => ResourceLoaderTestModule::class,
 						'group' => 'x-bar',
 						'source' => 'example',
-					],
-					'test.target.foo' => [
-						'class' => ResourceLoaderTestModule::class,
-						'targets' => [ 'x-foo' ],
-					],
-					'test.target.bar' => [
-						'class' => ResourceLoaderTestModule::class,
-						'source' => 'example',
-						'targets' => [ 'x-foo' ],
 					],
 					'test.es6' => [
 						'class' => ResourceLoaderTestModule::class,

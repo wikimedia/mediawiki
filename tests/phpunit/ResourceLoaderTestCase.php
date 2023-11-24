@@ -123,7 +123,6 @@ class ResourceLoaderTestModule extends Module {
 	protected $isRaw = false;
 	protected $isKnownEmpty = false;
 	protected $type = Module::LOAD_GENERAL;
-	protected $targets = [ 'phpunit' ];
 	protected $shouldEmbed = null;
 	protected $mayValidateScript = false;
 

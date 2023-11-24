@@ -63,8 +63,6 @@ abstract class Module implements LoggerAwareInterface {
 
 	/** @var string|null Module name */
 	protected $name = null;
-	/** @var string[] What client platforms the module targets (e.g. desktop, mobile) */
-	protected $targets = [ 'desktop', 'mobile' ];
 	/** @var string[]|null Skin names */
 	protected $skins = null;
 
@@ -490,16 +488,6 @@ abstract class Module implements LoggerAwareInterface {
 	public function getDependencies( Context $context = null ) {
 		// Stub, override expected
 		return [];
-	}
-
-	/**
-	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
-	 *
-	 * @stable to override
-	 * @return string[]
-	 */
-	public function getTargets() {
-		return $this->targets;
 	}
 
 	/**
