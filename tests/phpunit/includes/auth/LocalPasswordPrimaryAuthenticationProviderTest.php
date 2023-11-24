@@ -390,6 +390,8 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	) {
 		if ( $type === PasswordAuthenticationRequest::class ) {
 			$req = new $type();
+			$req->password = 'NewPassword';
+			$req->retype = 'NewPassword';
 		} elseif ( $type === PasswordDomainAuthenticationRequest::class ) {
 			$req = new $type( [] );
 		} else {
@@ -397,15 +399,15 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		}
 		$req->action = AuthManager::ACTION_CHANGE;
 		$req->username = $user;
-		$req->password = 'NewPassword';
-		$req->retype = 'NewPassword';
 
 		$provider = $this->getProvider();
 		$this->validity = $validity;
 		$this->assertEquals( $expect1, $provider->providerAllowsAuthenticationDataChange( $req, false ) );
 		$this->assertEquals( $expect2, $provider->providerAllowsAuthenticationDataChange( $req, true ) );
 
-		$req->retype = 'BadRetype';
+		if ( $req instanceof PasswordAuthenticationRequest ) {
+			$req->retype = 'BadRetype';
+		}
 		$this->assertEquals(
 			$expect1,
 			$provider->providerAllowsAuthenticationDataChange( $req, false )
@@ -486,12 +488,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		if ( $type === PasswordAuthenticationRequest::class ) {
 			$changeReq = new $type();
+			$changeReq->password = $newpass;
 		} else {
 			$changeReq = $this->createMock( $type );
 		}
 		$changeReq->action = AuthManager::ACTION_CHANGE;
 		$changeReq->username = $user;
-		$changeReq->password = $newpass;
 		$provider->providerChangeAuthenticationData( $changeReq );
 
 		if ( $loginOnly && $changed ) {

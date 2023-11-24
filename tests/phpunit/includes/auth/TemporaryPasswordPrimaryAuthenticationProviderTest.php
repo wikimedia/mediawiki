@@ -397,12 +397,12 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			$type === TemporaryPasswordAuthenticationRequest::class
 		) {
 			$req = new $type();
+			$req->password = 'NewPassword';
 		} else {
 			$req = $this->createMock( $type );
 		}
 		$req->action = AuthManager::ACTION_CHANGE;
 		$req->username = $user;
-		$req->password = 'NewPassword';
 
 		$provider = $this->getProvider();
 		$this->validity = $validity;
@@ -475,12 +475,12 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			$type === TemporaryPasswordAuthenticationRequest::class
 		) {
 			$changeReq = new $type();
+			$changeReq->password = $newpass;
 		} else {
 			$changeReq = $this->createMock( $type );
 		}
 		$changeReq->action = AuthManager::ACTION_CHANGE;
 		$changeReq->username = $user;
-		$changeReq->password = $newpass;
 		$resetMailer = $this->hookMailer();
 		$provider->providerChangeAuthenticationData( $changeReq );
 		ScopedCallback::consume( $resetMailer );
