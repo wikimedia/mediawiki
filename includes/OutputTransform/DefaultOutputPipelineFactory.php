@@ -15,6 +15,7 @@ use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
+use MediaWiki\OutputTransform\Stages\ParsoidLocalization;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\TitleFactory;
@@ -61,6 +62,7 @@ class DefaultOutputPipelineFactory {
 			->addStage( new ExtractBody( $this->logger ) )
 			->addStage( new AddRedirectHeader() )
 			->addStage( new RenderDebugInfo( $this->hookContainer ) )
+			->addStage( new ParsoidLocalization( $this->logger ) )
 			->addStage( new ExecutePostCacheTransformHooks( $this->hookContainer ) )
 			->addStage( new AddWrapperDivClass( $this->langFactory, $this->contentLang ) )
 			->addStage( new HandleSectionLinks( $this->titleFactory ) )
