@@ -6,13 +6,15 @@ general information on contributing to MediaWiki.
 
 ## Development environment
 
-MediaWiki provides an extendable local development environment based on Docker Compose. This environment provides PHP, Apache, Xdebug and a SQLite database.
+MediaWiki provides an extendable local development environment based on Docker Compose. This environment provides PHP,
+Apache, Xdebug and a SQLite database.
 
 **Do not use the development environment to serve a public website! Bad things would happen!**
 
 More documentation, examples, and configuration recipes are available at [mediawiki.org/wiki/MediaWiki-Docker][mw-docker].
 
-Support is available on the [Libera IRC network][libera-home] in the [#mediawiki channel][libera-webchat], and on Phabricator by creating tasks with the [MediaWiki-Docker][mw-docker-phab] tag.
+Support is available on the [Libera IRC network][libera-home] in the [#mediawiki channel][libera-webchat], and on
+Phabricator by creating tasks with the [MediaWiki-Docker][mw-docker-phab] tag.
 
 [mw-docker]: https://www.mediawiki.org/wiki/MediaWiki-Docker
 [mw-docker-phab]: https://phabricator.wikimedia.org/tag/mediawiki-docker/
@@ -43,18 +45,25 @@ You'll need to have Docker installed:
 
 **Windows users**:
 
-We recommend [configuring Docker to use the Windows Subsystem for Linux (WSL)](https://docs.docker.com/desktop/wsl) for performance improvements. If you do enable it, ensure the MediaWiki files in the next step are stored in the Linux filesystem, as described in the [best practices](https://docs.docker.com/desktop/wsl/best-practices) page.
+We recommend [configuring Docker to use the Windows Subsystem for Linux (WSL)](https://docs.docker.com/desktop/wsl) for performance improvements. If you
+do enable it, ensure the MediaWiki files in the next step are stored in the Linux filesystem, as described in the
+[best practices](https://docs.docker.com/desktop/wsl/best-practices) page.
 
 ### 2. Download MediaWiki files
 
-Download the latest MediaWiki files to your computer. One way to download the latest alpha version of MediaWiki is to [install git](https://git-scm.com/), open a shell, navigate to the directory where you want to save the files, then type `git clone https://gerrit.wikimedia.org/r/mediawiki/core.git mediawiki`.
+Download the latest MediaWiki files to your computer. One way to download the latest alpha version of MediaWiki is to
+[install git](https://git-scm.com/), open a shell, navigate to the directory where you want to save the files, then type
+`git clone https://gerrit.wikimedia.org/r/mediawiki/core.git mediawiki`.
 
-Optional: If you plan to submit patches to this repository, you will probably want to [create a Gerrit account](https://wikitech.wikimedia.org/wiki/Help:Create_a_Wikimedia_developer_account), then type `git remote set-url origin ssh://YOUR-GERRIT-USERNAME-HERE@gerrit.wikimedia.org:29418/mediawiki/core`, replacing YOUR-GERRIT-USERNAME-HERE with your Gerrit username. Please see the official [MediaWiki Gerrit tutorial](https://www.mediawiki.org/wiki/Gerrit/Tutorial) for more information.
+Optional: If you plan to submit patches to this repository, you will probably want to [create a Gerrit account](https://wikitech.wikimedia.org/wiki/Help:Create_a_Wikimedia_developer_account),
+then type `git remote set-url origin ssh://YOUR-GERRIT-USERNAME-HERE@gerrit.wikimedia.org:29418/mediawiki/core`,
+replacing YOUR-GERRIT-USERNAME-HERE with your Gerrit username. Please see the official
+[MediaWiki Gerrit tutorial](https://www.mediawiki.org/wiki/Gerrit/Tutorial) for more information.
 
 ### 3. Prepare `.env` file
 
-Using a text editor, create a `.env` file in the root of the MediaWiki core
-repository, and copy these contents into that file:
+Using a text editor, create a `.env` file in the root of the MediaWiki core repository, and copy these contents into
+that file:
 
 ```sh
 MW_SCRIPT_PATH=/w
@@ -82,7 +91,8 @@ echo "MW_DOCKER_UID=$(id -u)
 MW_DOCKER_GID=$(id -g)" >> .env
 ```
 
-Linux users: If you'd like to use Xdebug features inside your IDE, then create a `docker-compose.override.yml` file as well:
+Linux users: If you'd like to use Xdebug features inside your IDE, then create a `docker-compose.override.yml` file as
+well:
 
 ```yaml
 version: '3.7'
@@ -99,11 +109,15 @@ services:
   ```sh
   docker compose up -d
   ```
-  The "up" command makes sure that the PHP and webserver containers are running (and any others in the `docker-compose.yml` file). It is safe to run at any time, and will do nothing if the containers are already running.
+  The "up" command makes sure that the PHP and webserver containers are running (and any others in the
+  `docker-compose.yml` file). It is safe to run at any time, and will do nothing if the containers are already running.
 
   The first time, it may take a few minutes to download new Docker images.
 
-  The `-d` argument stands for "detached" mode, which run the services in the background. If you suspect a problem with one of the services, you can run it without `-d` to follow the server logs directly from your termimnal. You don't have to stop the services first, if you ran it with `-d` and then without, you'll get connected to the already running containers including a decent backscroll of server logs.
+  The `-d` argument stands for "detached" mode, which run the services in the background. If you suspect a problem with
+* one of the services, you can run it without `-d` to follow the server logs directly from your terminal. You don't have
+* to stop the services first, if you ran it with `-d` and then without, you'll get connected to the already running
+* containers including a decent back scroll of server logs.
 
   Note that MediaWiki debug logs go to `/cache/*.log` files (not sent to docker).
 
@@ -129,7 +143,7 @@ Done! The wiki should now be available for you at <http://localhost:8080>.
 
 ### Running commands
 
-You can use `docker compose exec mediawiki bash` to open a bash shell in the
+You can use `docker compose exec mediawiki bash` to open a Bash shell in the
 MediaWiki container. You can then run one or more commands as needed and stay
 within the container shell.
 
@@ -202,7 +216,7 @@ troubleshooting, you can open a shell as root with
 
 ### Install extensions and skins
 
-To install an extension or skin, follow the intructions of the mediawiki.org
+To install an extension or skin, follow the instructions of the mediawiki.org
 page for the extension or skin in question, and look for any dependencies
 or additional steps that may be needed.
 
@@ -231,7 +245,8 @@ To install the EventLogging extension:
     git clone https://gerrit.wikimedia.org/r/mediawiki/extensions/EventLogging
     ```
 
-    Alternatively, if you have extension repositories elsewhere on disk, mount each one as an overlapping volume in `docker-compose.override.yml`. This is comparable to a symlink, but those are not well-supported in Docker.
+    Alternatively, if you have extension repositories elsewhere on disk, mount each one as an overlapping volume in
+    `docker-compose.override.yml`. This is comparable to a symlink, but those are not well-supported in Docker.
 
     ```yaml
    version: '3.7'
@@ -252,7 +267,7 @@ By default, you will need to set `XDEBUG_TRIGGER=1` in the GET/POST, or as an
 environment variable, to turn on Xdebug for a request.
 
 You can also install a browser extension for controlling whether Xdebug is
-active.  See the [official Xdebug Step Debugging][step-debug], particularly the
+active. See the [official Xdebug Step Debugging][step-debug], particularly the
 "Activating Step Debugging" section, for more details.
 
 [step-debug]: https://xdebug.org/docs/step_debug
@@ -264,7 +279,7 @@ If you wish to run Xdebug on every request, you can set
 XDEBUG_CONFIG=start_with_request=yes
 ```
 
-You can pass any of Xdebug's configuration values in this variable.  For example:
+You can pass any of Xdebug's configuration values in this variable. For example:
 
 ```
 XDEBUG_CONFIG=client_host=192.168.42.34 client_port=9000 log=/tmp/xdebug.log
@@ -275,7 +290,7 @@ documentation](https://xdebug.org/docs/all_settings) for available settings.
 
 ### Stop or recreate environment
 
-Stop the environment, perhaps to reduce load when working on something
+Stop the environment, perhaps to reduce the load when working on something
 else. This preserves the containers, to be restarted later quickly with
 the `docker compose up -d` command.
 
@@ -300,7 +315,9 @@ To empty the wiki database and re-install it:
 * Delete the `cache/sqlite` directory.
 * Re-run the "Install MediaWiki database" command.
 
-You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file. And if you have additonal extensions installed that required a database table, then also run: `docker compose exec mediawiki php maintenance/run.php update`.
+You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file.
+And if you have any additional extensions installed that required a database table, then also run:
+`docker compose exec mediawiki php maintenance/run.php update`.
 
 ## Troubleshooting
 
@@ -334,11 +351,11 @@ See [Manual:Caching][manual-caching] on mediawiki.org for more information.
 ### Xdebug ports
 
 Older versions of Xdebug used port 9000, which could conflict with php-fpm
-running on the host.  This document used to recommend a workaround of telling
-your IDE to listen on a different port (e.g. 9009) and setting
+running on the host. This document used to recommend a workaround of telling
+your IDE to listen on a different port (e.g., 9009) and setting
 `XDEBUG_CONFIG=remote_port=9009` in your `.env`.
 
-Xdebug 3.x now uses the `client_port` value, which defaults to 9003.  This
+Xdebug 3.x now uses the `client_port` value, which defaults to 9003. This
 should no longer conflict with local php-fpm installations, but you may need
 to change the settings in your IDE or debugger.
 
@@ -360,12 +377,12 @@ services:
 
 With the latest version of Docker on Linux hosts, this _should_ work
 transparently as long as you're using the recommended
-`docker-compose.override.yml`.  If it doesn't, first check `docker version` to
+`docker-compose.override.yml`. If it doesn't, first check `docker version` to
 make sure you're running Docker 20.10.2 or above, and `docker compose version`
 to make sure it's 1.27.4 or above.
 
 If Xdebug still doesn't work, try specifying the hostname or IP address of your
-host. The IP address works more reliably.  You can obtain it by running e.g.
+host. The IP address works more reliably. You can obtain it by running e.g.
 `ip -4 addr show docker0` and copying the IP address into the config in `.env`,
 like `XDEBUG_CONFIG=remote_host=172.17.0.1`
 
@@ -383,7 +400,7 @@ client uses to talk to the daemon.
 
 `sudo usermod -aG docker $USER`
 
-And then relogin (or `newgrp docker`) to re-login with the new group membership.
+And then `relogin` (or `newgrp docker`) to re-login with the new group membership.
 
 ### "(Cannot access the database: Unknown error (localhost))"
 
@@ -399,6 +416,7 @@ $wgSQLiteDataDir = "/var/www/html/w/cache/sqlite";
 ### Windows users, "(Cannot access the database: No database connection (unknown))"
 
 The permissions with the `cache/sqlite` directory have to be set manually on Windows:
+
 ```sh
 docker compose exec mediawiki chmod -R o+rwx cache/sqlite
 ```
