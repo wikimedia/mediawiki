@@ -205,7 +205,7 @@ class NamespaceInfo {
 		$index = $this->makeValidNamespace( $index, __METHOD__ );
 
 		return $index > NS_MAIN
-			&& $index % 2;
+			&& $index % 2 === 1;
 	}
 
 	/**

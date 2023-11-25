@@ -621,7 +621,7 @@ Title.newFromImg = function ( img ) {
  * @return {boolean} Namespace is a talk namespace
  */
 Title.isTalkNamespace = function ( namespaceId ) {
-	return !!( namespaceId > NS_MAIN && namespaceId % 2 );
+	return namespaceId > NS_MAIN && namespaceId % 2 === 1;
 };
 
 /**
