@@ -95,7 +95,8 @@
 			"Af420",
 			"0PAWN0",
 			"Darknessswamp8",
-			"Havadar-hvac"
+			"Havadar-hvac",
+			"Rulebased"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -3654,7 +3655,7 @@
 	"logentry-block-block": "$1 {{GENDER:$4|$3}} را $5 {{GENDER:$2|بست}} $6",
 	"logentry-block-unblock": "$1 {{GENDER:$4|$3}} را {{GENDER:$2|باز کرد}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|تنظیمات}} قطع دسترسی {{GENDER:$4|$3}} را به پایان قطع دسترسی $5 $6 تغییر داد.",
-	"logentry-partialblock-block-page": "{{PLURAL:$1|صفحه|صفحه‌ها}} $2",
+	"logentry-partialblock-block-page": "{{PLURAL:$1|صفحهٔ|صفحه‌های}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|فضای نام|فضاهای نام}} $2",
 	"logentry-partialblock-block": "$1 {{GENDER:$4|$3}} را از ویرایش $7 با انقضای $5 $6 {{GENDER:$2|قطع دسترسی کرد}}",
 	"logentry-partialblock-reblock": "$1 {{GENDER:$2|تنظیمات}} قطع دسترسی {{GENDER:$4|$3}} را به جلوگیری از ویرایش $7 و پایان قطع دسترسی $5 $6 تغییر داد",

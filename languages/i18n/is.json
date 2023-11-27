@@ -604,6 +604,7 @@
 	"passwordreset-emailtext-user": "Notandinn $1 á {{SITENAME}} hefur beðið um endursetningu lykilorðsins þíns fyrir {{SITENAME}} ($4). Aðgangur eftirfarandi {{PLURAL:$3|notanda er|notendum eru}} tengd þessu netfangi:\n\n$2\n\nEf þetta er það sem þú vildir, þarftu að skrá þig inn og velja nýtt lykilorð. {{PLURAL:$3|Bráðabirgðalykilorðið rennur|Bráðabirgðalykilorðin renna}} út eftir $5 {{PLURAL:$5|dag|daga}}.\n\nEf það varst ekki þú sem fórst fram á þetta, eða ef þú manst aftur lykilorðið þitt, og vilt ekki lengur breyta því, skaltu hunsa þessi skilaboð og halda áfram að nota gamla lykilorðið.",
 	"passwordreset-emailelement": "Notandanafn: \n$1\n\nBráðabirgðalykilorð: \n$2",
 	"passwordreset-success-info": "Upplýsingarnar sem þú sendir inn eru: $1",
+	"passwordreset-emailtext-require-email": "Hins vegar, ef þú sendir ekki þessa beiðni og vilt koma í veg fyrir óumbeðna tölvupósta, þá gætirðu uppfært valkosti þína fyrir tölvupóstsendingar á $1 .\nÞú getur krafist bæði notendanafns og tölvupóstfangs við gerð endurstillingarpóst. Það gæti dregið úr fjölda slíkra atvika.",
 	"passwordreset-nodata": "Hvorki notandanafn né tölvupóstfang var gefið upp",
 	"changeemail": "Breyta eða fjarlægja netfang",
 	"changeemail-header": "Fylltu út þetta eyðublað til að breyta netfanginu þínu. Ef þú vilt fjarlægja tengingu allra netfanga frá aðganginum þínum skildu þá netfangs reitinn eftir tóman.",

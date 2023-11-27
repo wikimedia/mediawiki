@@ -92,7 +92,9 @@
 			"Naufal06",
 			"Base",
 			"Amire80",
-			"Taylor"
+			"Taylor",
+			"Es Krim 5 Juta Rasa",
+			"Stevannus rua"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1608,8 +1610,8 @@
 	"rcfilters-hideminor-conflicts-typeofchange-global": "Penyaring \"Suntingan kecil\" berkonflik dengan satu atau lebih jenis penyaring perubahan lain, karena jenis perubahan tertentu tidak dapat ditandai sebagai \"kecil\". Penyaring yang berkonflik ditandai di area Penyaring aktif, di atas.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Jenis perubahan tertentu tidak dapat ditandai sebagai \"kecil\", jadi penyaring ini berkonflik dengan penyaring Jenis Perubahan ini: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Penyaring Jenis perubahan ini bertentangan dengan penyaring \"Suntingan kecil\". Jenis perubahan tertentu tidak bisa ditetapkan sebagai suntingan \"kecil\".",
-	"rcfilters-filtergroup-lastrevision": "Revisi terbaru",
-	"rcfilters-filter-lastrevision-label": "Revisi terbaru",
+	"rcfilters-filtergroup-lastrevision": "Revisi terkini",
+	"rcfilters-filter-lastrevision-label": "Revisi terkini",
 	"rcfilters-filter-lastrevision-description": "Hanya perubahan terbaru pada halaman ini.",
 	"rcfilters-filter-previousrevision-label": "Bukan revisi terbaru",
 	"rcfilters-filter-previousrevision-description": "Semua perubahan yang bukan merupakan \"revisi terbaru\".",

@@ -3,7 +3,8 @@
 		"authors": [
 			"Ahmedadeljaff",
 			"Amire80",
-			"MRidhaAJ"
+			"MRidhaAJ",
+			"Hubaishan"
 		]
 	},
 	"tog-underline": "سطر جوا الوصلات:",
@@ -891,7 +892,7 @@
 	"prefs-editwatchlist-raw": "عدل قائمة المراقبه الخام",
 	"prefs-editwatchlist-clear": "امسح قائمة المراقبة",
 	"prefs-watchlist-days": "عدد الأيام للعرض بقائمة المراقبه:",
-	"prefs-watchlist-days-max": "الحد الأقصى {{PLURAL:$1|أقل من يوم|يوم واحد|يومين|$1 أيام|$1 يوم}}",
+	"prefs-watchlist-days-max": "الحد الأقصى {{PLURAL:$1|أقل من يوم|يوم واحد|يومان|$1 أيام|$1 يوم}}",
 	"prefs-watchlist-edits": "عدد التعديلات اللي تنعرض في قائمة المراقبه:",
 	"prefs-watchlist-edits-max": "العدد الأقصى: 1000",
 	"prefs-watchlist-token": "مفتاح قائمة المراقبه:",
@@ -906,7 +907,7 @@
 	"prefs-editing": "التعديل",
 	"searchresultshead": "بحث",
 	"recentchangesdays": "عدد الأيام المعروضة بأحدث التغييرات:",
-	"recentchangesdays-max": "الحد الأقصى {{PLURAL:$1|أقل من يوم|يوم واحد|يومين|$1 أيام|$1 يوم}}",
+	"recentchangesdays-max": "الحد الأقصى {{PLURAL:$1|أقل من يوم|يوم واحد|يومان|$1 أيام|$1 يوم}}",
 	"recentchangescount": "عدد التعديلات حتى تطلع في أحدث التغييرات وتواريخ الصفحات، والسجلات، افتراضيا:",
 	"prefs-help-recentchangescount": "العدد الأقصى: 1000",
 	"prefs-help-watchlist-token2": "هاذ هو المفتاح السري لتغذية الويب لقائمة مراقبتك.\nيكدر أي نفر يعرفه يقره قائمة مراقبتك، لا تتشاركه وي أحد.\nإذا احتاجيت، [[Special:ResetTokens|تكدر تعيد ضبطه]].",
@@ -1770,7 +1771,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> مو موجود.",
 	"revdelete-content-hid": "محتوى مخفي",
 	"searchsuggest-search": "بحث في {{SITENAME}}",
-	"duration-days": "{{PLURAL:$1|يوم واحد|يومين|$1 أيام|$1 يوم}}",
+	"duration-days": "{{PLURAL:$1|يوم واحد|يومان|$1 أيام|$1 يوم}}",
 	"mw-widgets-abandonedit-title": "انته متأكد؟",
 	"userlogout-continue": "انته تريد تسجل الخروج؟"
 }

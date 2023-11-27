@@ -254,7 +254,9 @@
 			"MRidhaAJ",
 			"Wangombe",
 			"20kdc",
-			"No se"
+			"No se",
+			"Chadyka",
+			"LaMagiaaa"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -4177,7 +4179,7 @@
 	"logentry-suppress-event-legacy": "{{Logentry}}",
 	"logentry-suppress-revision-legacy": "{{Logentry}}",
 	"revdelete-content-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
-	"revdelete-summary-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
+	"revdelete-summary-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-revision}}",
 	"revdelete-uname-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
 	"revdelete-content-unhid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
 	"revdelete-summary-unhid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
