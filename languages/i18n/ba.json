@@ -3710,7 +3710,7 @@
 	"feedback-thanks": "Рәхмәт! Һеҙҙең фекерегеҙ «[$2 $1]» битенә өҫтәлде.",
 	"feedback-thanks-title": "Рәхмәт!",
 	"feedback-useragent": "Браузер:",
-	"searchsuggest-search": "Мәҡәлә эҙләргә",
+	"searchsuggest-search": "{{SITENAME}} эсендә эҙләргә",
 	"searchsuggest-containing": "... булған биттәрҙе эҙләргә",
 	"search-match-redirect-label": "Эҙләгәндә теүәл тап килеүгә күсергә",
 	"search-match-redirect-help": "Әгәр биттең исеме эҙләгәнгә тап килһә, уны ошо биткә күсер өсөн һайлағыҙ",

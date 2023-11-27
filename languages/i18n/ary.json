@@ -1558,6 +1558,7 @@
 	"ipb-change-block": "Ĝawed bloki had l-mosṫeĥdim be had l-'iĝdadaṫ",
 	"badipaddress": "Ĝonwan IP ġalet",
 	"blockipsuccesssub": "بلوكاج ناجح",
+	"blockipsuccesstext": "تدار لبلوك ل [[Special:Contributions/$1|$1]].<br />\nشوف [[Special:BlockList|ليستة د لبلوكاج د لأيپي]] باش تراجع لحالات د لبلوكاج.",
 	"ipb-edit-dropdown": "بدل ساباب لبلوكاج",
 	"ipb-unblock-addr": "ديبلوكي $1",
 	"ipb-unblock": "ديبلوكي شي كونط د خدايمي ؤلا أدريسة د لأيپي",

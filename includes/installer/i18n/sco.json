@@ -115,7 +115,7 @@
 	"config-sqlite-parent-unwritable-group": "Canna mak the data directerie <code><nowiki>$1</nowiki></code>, cause the parent directerie <code><nowiki>$2</nowiki></code> isna writable bi the wabserver.\n\nThe installer haes determined the uiser yer wabserver is runnin aes.\nMak the <code><nowiki>$3</nowiki></code> directerie writable bi it tae continue.\nOan ae Unix/Linux system dae:\n\n<pre>cd $2\nmkdir $3\nchgrp $4 $3\nchmod g+w $3</pre>",
 	"config-sqlite-parent-unwritable-nogroup": "Cannae mak the data directery <code><nowiki>$1</nowiki></code>, acause the pairent directery <code><nowiki>$2</nowiki></code> isnae scrievable bi the wabserver.\n\nThe instawer coudnae determine the uiser yer wabserver is rinnin as.\nMak the <code><nowiki>$3</nowiki></code> directery globally scrievable bi it (an ithers!) tae continue.\nOn ae Unix/Linux system dae:\n\n<pre>cd $2\nmkdir $3\nchmod a+w $3</pre>",
 	"config-sqlite-mkdir-error": "Mistak in cræftin the data directerie \"$1\".\nCheck the location n try again.",
-	"config-sqlite-dir-unwritable": "Onable tae write in the directerie \"$1\".\nChynge its permeessions sae that the wabserver can write in it, n gie it anither gae.",
+	"config-sqlite-dir-unwritable": "Unable tae scrieve tae the directory \"$1\".\nChynge its permissions sae that the wabserver can scrieve in it, an try again.",
 	"config-sqlite-connection-error": "$1.\n\nCheck the data directerie n database name ablo n try again.",
 	"config-sqlite-readonly": "The file <code>$1</code> isna writeable.",
 	"config-sqlite-cant-create-db": "Coudna make database file <code>$1</code>.",

@@ -1032,7 +1032,7 @@
 	"template-semiprotected": "Appears in brackets after listed page titles which are semi-protected.\n\nSee also:\n* {{msg-mw|Template-protected}}",
 	"hiddencategories": "This message is shown below the edit form, like you have a section ''\"Templates used on this page\"''.\n\nParameters:\n* $1 - number of categories",
 	"edittools": "{{optional}}\nThis text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a JavaScript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.",
-	"edittools-upload": "{{optional}}\nThis text will be shown below upload forms. It will default to the contents of edittools.",
+	"edittools-upload": "{{ignored}}\nThis text will be shown below upload forms. It will default to the contents of edittools.",
 	"nocreatetext": "Used as error message.\n\nParameters:\n* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description\n* $2 - an URL to the same\n\nSee also:\n* {{msg-mw|Nocreate-loggedin}}\n* {{msg-mw|Whitelistedittext}}\n* {{msg-mw|Uploadnologintext}}\n* {{msg-mw|Loginreqpagetext}}",
 	"nocreate-loggedin": "Used as error message.\n\nSee also:\n* {{msg-mw|Nocreatetext}}",
 	"sectioneditnotsupported-title": "Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [[meta:Help:Section_editing#Section_editing|meta]].",

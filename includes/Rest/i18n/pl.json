@@ -18,6 +18,7 @@
 	"rest-invalid-user": "Podana nazwa użytkownika ($1) jest nieprawidłowa",
 	"rest-invalid-title": "Podany tytuł ($1) nie odnosi się do strony na wiki.",
 	"rest-unsupported-content-type": "Nieobsługiwany typ treści: $1",
+	"rest-permission-error": "Brak dostępu: $1",
 	"rest-permission-denied-anon": "Niedostępne dla anonimowego użytkownika",
 	"rest-permission-denied-title": "Użytkownik nie posiada uprawnień do czytania tytułu ($1)",
 	"rest-permission-denied-revision": "Użytkownik nie ma dostępu do żądanej wersji ($1).",
