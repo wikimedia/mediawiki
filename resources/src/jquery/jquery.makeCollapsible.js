@@ -401,7 +401,7 @@
 		 *
 		 * @event wikipage_collapsibleContent
 		 * @member mw.hook
-		 * @param {jQuery} $content All the elements that have been made collapsible
+		 * @param {jQuery} $collapsible An element that has been made collapsible
 		 */
 		mw.hook( 'wikipage.collapsibleContent' ).fire( this );
 
