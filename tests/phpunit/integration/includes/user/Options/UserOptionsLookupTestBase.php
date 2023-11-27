@@ -15,7 +15,7 @@ use MediaWiki\User\UserIdentityValue;
  * @covers MediaWiki\User\Options\UserOptionsManager
  * @covers MediaWiki\User\Options\UserOptionsLookup
  */
-abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
+abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();

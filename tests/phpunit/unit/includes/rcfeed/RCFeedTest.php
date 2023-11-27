@@ -21,7 +21,7 @@ class RCFeedTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFactoryCustomUri() {
-		$mockClass = $this->getMockClass( RCFeed::class );
+		$mockClass = get_class( $this->createMock( RCFeed::class ) );
 		$GLOBALS['wgRCEngines'] = [ 'test' => $mockClass ];
 
 		$this->hideDeprecated( '$wgRCFeeds without class' );

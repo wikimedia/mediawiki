@@ -20,7 +20,7 @@ use Wikimedia\Rdbms\LBFactory;
  * Extensions and skins can subclass this and override getTestCases with just their own bundlesize
  * file. This allows one to run that test suite by its own, for faster CLI feedback.
  */
-abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
+abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$db = $this->createMock( IDatabase::class );
@@ -100,3 +100,6 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 	}
 
 }
+
+// @deprecated since 1.42
+class_alias( BundleSizeTestBase::class, 'MediaWiki\\Tests\\Structure\\BundleSizeTest' );

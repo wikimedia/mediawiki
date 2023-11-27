@@ -6,7 +6,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 /**
  * @covers MediaWiki\User\Options\DefaultOptionsLookup
  */
-class DefaultOptionsLookupTest extends UserOptionsLookupTest {
+class DefaultOptionsLookupTest extends UserOptionsLookupTestBase {
 	protected function getLookup(
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
