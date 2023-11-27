@@ -309,6 +309,8 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 			[ 'zh-cmn-Hant', 'three-letter variant and script' ],
 			[ 'zh-cmn-Hant-HK', 'three-letter variant, script and country' ],
 			[ 'xr-p-lze', 'Extension' ],
+			[ 'en-GB-oed', 'grandfathered language tag, mixed capitalisation' ],
+			[ 'en-gb-oed', 'grandfathered language tag, all lowercase' ],
 		];
 	}
 
