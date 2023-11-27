@@ -612,7 +612,7 @@
 	"accountcreated": "Benutzerkonto erstellt",
 	"accountcreatedtext": "Das Benutzerkonto für [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|Diskussion]]) wurde eingerichtet.",
 	"createaccount-title": "Erstellung eines Benutzerkontos für {{SITENAME}}",
-	"createaccount-text": "Es wurde für dich ein Benutzerkonto „$2“ auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für „$2“ ist „$3“. Du solltest dich nun anmelden und das Passwort ändern.\n\nFalls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.",
+	"createaccount-text": "Es wurde für dich das Benutzerkonto „$2“ auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für „$2“ ist „$3“. Du solltest dich nun anmelden und das Passwort ändern.\n\nFalls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.",
 	"login-throttled": "Du hast zu oft versucht, dich anzumelden.\nBitte warte $1, bevor du es erneut probierst.",
 	"login-abort-generic": "Deine Anmeldung ist fehlgeschlagen – Abgebrochen",
 	"login-migrated-generic": "Dein Benutzerkonto wurde migriert. Dein Benutzername ist auf diesem Wiki nicht mehr vorhanden.",

@@ -3787,7 +3787,7 @@
 	"logentry-delete-restore-nocount": "$1 がページ「$3」を{{GENDER:$2|復元しました}}",
 	"restore-count-revisions": "{{PLURAL:$1|1|$1}}件の版",
 	"restore-count-files": "{{PLURAL:$1|$1件のファイル}}",
-	"logentry-delete-event": "$1 が $3 の{{PLURAL:$5|記録項目|記録項目$5件}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4",
+	"logentry-delete-event": "$1 が $3 の{{PLURAL:$5|記録項目|$5件の記録項目}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4",
 	"logentry-delete-revision": "$1 がページ「$3」の{{PLURAL:$5|版|$5件の版}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4",
 	"logentry-delete-event-legacy": "$1 が $3 の記録項目の閲覧レベルを{{GENDER:$2|変更しました}}",
 	"logentry-delete-revision-legacy": "$1 がページ「$3」の版の閲覧レベルを{{GENDER:$2|変更しました}}",
