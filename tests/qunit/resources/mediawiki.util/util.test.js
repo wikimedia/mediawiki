@@ -7,14 +7,16 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 } ), ( hooks ) => {
 	const util = require( 'mediawiki.util' );
 
-	hooks.beforeEach( () => {
+	hooks.beforeEach( function () {
+		this.sandbox.useFakeTimers();
+
 		$.fn.updateTooltipAccessKeys.setTestMode( true );
 		mw.util.setOptionsForTest( {
 			FragmentMode: [ 'legacy', 'html5' ],
 			LoadScript: '/w/load.php'
 		} );
 	} );
-	hooks.afterEach( () => {
+	hooks.afterEach( function () {
 		$.fn.updateTooltipAccessKeys.setTestMode( false );
 		mw.util.setOptionsForTest();
 	} );
@@ -675,17 +677,15 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		}, 5 );
 
 		fn( 'A' );
-		await new Promise( ( resolve ) => {
-			setTimeout( function () {
-				fn( 'B' );
-			}, 1 );
-			setTimeout( function () {
-				fn( 'C' );
-				setTimeout( function () {
-					resolve();
-				}, 10 );
-			}, 1 );
-		} );
+		setTimeout( function () {
+			fn( 'B' );
+		}, 1 );
+		this.sandbox.clock.tick( 2 );
+		setTimeout( function () {
+			fn( 'C' );
+		}, 1 );
+		this.sandbox.clock.tick( 2 );
+		this.sandbox.clock.tick( 10 );
 
 		assert.verifySteps( [ 'C' ] );
 	} );
@@ -696,17 +696,15 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		}, 5, true );
 
 		fn( 'A' );
-		await new Promise( ( resolve ) => {
-			setTimeout( function () {
-				fn( 'B' );
-			}, 1 );
-			setTimeout( function () {
-				fn( 'C' );
-				setTimeout( function () {
-					resolve();
-				}, 10 );
-			}, 1 );
-		} );
+		setTimeout( function () {
+			fn( 'B' );
+		}, 1 );
+		this.sandbox.clock.tick( 2 );
+		setTimeout( function () {
+			fn( 'C' );
+		}, 1 );
+		this.sandbox.clock.tick( 2 );
+		this.sandbox.clock.tick( 10 );
 
 		assert.verifySteps( [ 'A' ] );
 	} );
@@ -717,17 +715,15 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		} );
 
 		fn( 'A' );
-		await new Promise( ( resolve ) => {
-			setTimeout( function () {
-				fn( 'B' );
-			}, 1 );
-			setTimeout( function () {
-				fn( 'C' );
-				setTimeout( function () {
-					resolve();
-				}, 10 );
-			}, 1 );
-		} );
+		setTimeout( function () {
+			fn( 'B' );
+		}, 1 );
+		this.sandbox.clock.tick( 2 );
+		setTimeout( function () {
+			fn( 'C' );
+		}, 1 );
+		this.sandbox.clock.tick( 2 );
+		this.sandbox.clock.tick( 10 );
 
 		assert.verifySteps( [ 'C' ] );
 	} );
