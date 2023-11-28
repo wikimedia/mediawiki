@@ -47,6 +47,9 @@ For notes on 1.41.x and older releases, see HISTORY.
 === New developer features in 1.42 ===
 * (T326466) MediaWikiIntegrationTestCase's database and set-up code now avoids
   using dynamic properties, which was causing deprecation warnings in PHP 8.2.
+* (T13555) MediaWiki now includes styles that allow more accessible markup for
+  section headings. MediaWiki's own HTML output will be changed in the future.
+  More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
 * …
 
 === External library changes in 1.42 ===

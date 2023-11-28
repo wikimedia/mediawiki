@@ -62,6 +62,7 @@ hr {
 }
 
 /* Structural Elements */
+.mw-heading,
 h1,
 h2,
 h3,
@@ -69,48 +70,78 @@ h4,
 h5,
 h6 {
 	color: @color-emphasized;
+	font-weight: bold;
 	margin: 0;
 	padding-top: 0.5em;
 	padding-bottom: 0.17em;
 	overflow: hidden;
 }
 
+.mw-heading1,
 h1,
+.mw-heading2,
 h2 {
 	margin-bottom: 0.6em;
 	border-bottom: @border-width-base @border-style-base @border-color-base;
 }
 
+.mw-heading3,
 h3,
+.mw-heading4,
 h4,
+.mw-heading5,
 h5 {
 	margin-bottom: 0.3em;
 }
 
+.mw-heading1,
 h1 {
 	font-size: 188%;
 	font-weight: normal;
 }
 
+.mw-heading2,
 h2 {
 	font-size: 150%;
 	font-weight: normal;
 }
 
+.mw-heading3,
 h3 {
 	font-size: 128%;
 }
 
+.mw-heading4,
 h4 {
 	font-size: 116%;
 }
 
+.mw-heading5,
 h5 {
 	font-size: 108%;
 }
 
+.mw-heading6,
 h6 {
 	font-size: 100%;
+}
+
+// Override all styles above for `hN` nested inside `.mw-heading`, as used on wikitext pages.
+// Also override the most common skin-defined styles to make the migration after T13555 easier.
+.mw-heading {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		// Must be inline to allow `.mw-editsection` to be shown on the same line
+		display: inline;
+		border: 0;
+		margin: 0;
+		padding: 0;
+		font: inherit;
+	}
 }
 
 p {
