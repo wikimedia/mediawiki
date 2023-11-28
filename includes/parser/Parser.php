@@ -838,6 +838,32 @@ class Parser {
 	}
 
 	/**
+	 * Needed by Parsoid/PHP to ensure all the hooks for extensions
+	 * are run in the right order. The primary differences between this
+	 * and recursiveTagParseFully are:
+	 * (a) absence of $frame
+	 * (b) passing true to internalParseHalfParse so all hooks are run
+	 * (c) running 'ParserAfterParse' hook at the same point in the parsing
+	 *     pipeline when parse() does it. This kinda mimics Parsoid/JS behavior
+	 *     where exttags are processed by the M/w API.
+	 *
+	 * This is a temporary convenience method and will go away as we proceed
+	 * further with Parsoid <-> Parser.php integration.
+	 *
+	 * @internal
+	 * @deprecated
+	 * @param string $text Wikitext source of the extension
+	 * @return string
+	 * @return-taint escaped
+	 */
+	public function parseExtensionTagAsTopLevelDoc( $text ) {
+		$text = $this->recursiveTagParse( $text );
+		$this->hookRunner->onParserAfterParse( $this, $text, $this->mStripState );
+		$text = $this->internalParseHalfParsed( $text, true );
+		return $text;
+	}
+
+	/**
 	 * Expand templates and variables in the text, producing valid, static wikitext.
 	 * Also removes comments.
 	 * Do not call this function recursively.
