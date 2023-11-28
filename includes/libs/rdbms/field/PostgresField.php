@@ -18,8 +18,8 @@ SELECT
  attnotnull, attlen, conname AS conname,
  atthasdef,
  pg_get_expr(adbin, adrelid) AS adsrc,
- COALESCE(condeferred, 'f') AS deferred,
- COALESCE(condeferrable, 'f') AS deferrable,
+ COALESCE(condeferred, FALSE) AS deferred,
+ COALESCE(condeferrable, FALSE) AS deferrable,
  CASE WHEN typname = 'int2' THEN 'smallint'
   WHEN typname = 'int4' THEN 'integer'
   WHEN typname = 'int8' THEN 'bigint'
@@ -52,14 +52,14 @@ SQL;
 			}
 			$n = new PostgresField;
 			$n->type = $row->typname;
-			$n->nullable = ( $row->attnotnull == 'f' );
+			$n->nullable = !$row->attnotnull;
 			$n->name = $field;
 			$n->tablename = $table;
 			$n->max_length = $row->attlen;
-			$n->deferrable = ( $row->deferrable == 't' );
-			$n->deferred = ( $row->deferred == 't' );
+			$n->deferrable = (bool)$row->deferrable;
+			$n->deferred = (bool)$row->deferred;
 			$n->conname = $row->conname;
-			$n->has_default = ( $row->atthasdef === 't' );
+			$n->has_default = (bool)$row->atthasdef;
 			$n->default = $row->adsrc;
 
 			return $n;

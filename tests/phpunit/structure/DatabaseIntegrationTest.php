@@ -101,4 +101,25 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 			"The generated schema in '$type' type has to be the same"
 		);
 	}
+
+	/**
+	 * T352229
+	 */
+	public function testBooleanValues() {
+		$res = $this->db->newSelectQueryBuilder()
+			->select( [ 'false' => '1=0', 'true' => '1=1' ] )
+			->fetchResultSet();
+		$obj = $res->fetchObject();
+		$this->assertCount( 2, (array)$obj );
+		$this->assertSame( '0', $obj->false );
+		$this->assertSame( '1', $obj->true );
+
+		$res->seek( 0 );
+		$row = $res->fetchRow();
+		$this->assertCount( 4, $row );
+		$this->assertSame( '0', $row[0] );
+		$this->assertSame( '1', $row[1] );
+		$this->assertSame( '0', $row['false'] );
+		$this->assertSame( '1', $row['true'] );
+	}
 }
