@@ -38,7 +38,9 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		$po = $contentRenderer->getParserOutput( $content, $title, null, $parserOptions );
 
-		$html = $po->getText();
+		$html = $po->getText( [
+			'deduplicateStyles' => false,
+		] );
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
 
 		if ( $expectedHtml !== null ) {

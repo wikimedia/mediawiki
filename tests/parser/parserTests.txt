@@ -46,6 +46,7 @@ version=2
 # thumbsize=NNN set the default thumb size to NNNpx for this test
 # wrap          include the normal wrapper <div class="mw-parser-output"> (since 1.30)
 # local         format section links in edit comment text as local links
+# deduplicateStyles apply style deduplication to the output
 #
 # Configuration globals:
 #
