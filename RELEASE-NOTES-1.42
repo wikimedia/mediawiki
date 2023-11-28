@@ -115,6 +115,8 @@ because of Phabricator reports.
   - preSaveTransform()
   - preloadTransform()
   - prepareSave()
+* ParserOutput::setFlag() and ::getFlag(), deprecated in 1.38, were removed. You
+  should use ::setOutputFlag() and ::getOutputFlag() instead.
 * PostgresUpdater::addPgEnumValue() unused everywhere, have been removed
   without deprecation. Use of ENUM is highly discouraged.
 * ILoadBalancer::getAnyOpenConnection() has been removed without deprecation,
