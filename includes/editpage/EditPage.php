@@ -30,7 +30,6 @@ use ErrorPageError;
 use IContextSource;
 use LogPage;
 use ManualLogEntry;
-use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -476,7 +475,6 @@ class EditPage implements IEditObject {
 	private LinkBatchFactory $linkBatchFactory;
 	private RestrictionStore $restrictionStore;
 	private CommentStore $commentStore;
-	private BlockErrorFormatter $blockErrorFormatter;
 
 	/**
 	 * @stable to call
@@ -520,7 +518,6 @@ class EditPage implements IEditObject {
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->commentStore = $services->getCommentStore();
-		$this->blockErrorFormatter = $services->getBlockErrorFormatter();
 
 		// XXX: Restore this deprecation as soon as TwoColConflict is fixed (T305028)
 		// $this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
@@ -918,41 +915,13 @@ class EditPage implements IEditObject {
 		if ( $this->preview || $this->diff ) {
 			$ignoredErrors = [ 'blockedtext', 'autoblockedtext', 'systemblockedtext' ];
 		}
-		$permErrors = $this->permManager->getPermissionErrors(
+		return $this->permManager->getPermissionErrors(
 			'edit',
 			$user,
 			$this->mTitle,
 			$rigor,
 			$ignoredErrors
 		);
-
-		// Check if the user is blocked from editing.
-		// This check must be done on the context user, in order to trigger
-		// checks for blocks against IP address, XFF, etc, until T221067
-		if ( !$user->getBlock() ) {
-			$contextUser = $this->context->getUser();
-			if (
-				$user->getName() !== $contextUser->getName() &&
-				$this->permManager->isBlockedFrom(
-					$contextUser,
-					$this->mTitle,
-					$rigor !== PermissionManager::RIGOR_SECURE
-				)
-			) {
-				$messages = $this->blockErrorFormatter->getMessages(
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable User must have a block
-					$contextUser->getBlock(),
-					$contextUser,
-					$this->context->getLanguage(),
-					$this->context->getRequest()->getIP()
-				);
-				foreach ( $messages as $message ) {
-					$permErrors[] = array_merge( [ $message->getKey() ], $message->getParams() );
-				}
-			}
-		}
-
-		return $permErrors;
 	}
 
 	/**
