@@ -7,9 +7,97 @@
 
 $( function () {
 
-	var $tempUserBannerEl = $( '.mw-temp-user-banner ' ),
+	var config = require( './config.json' ),
+		$tempUserBannerEl = $( '.mw-temp-user-banner ' ),
 		$tempUserBannerTooltipEl = $( '.mw-temp-user-banner-tooltip ' ),
-		$tempUserBannerTooltipButtonEl = $( '#mw-temp-user-banner-tooltip-button' );
+		$tempUserBannerTooltipButtonEl = $( '#mw-temp-user-banner-tooltip-button' ),
+		TTL_DAY_MS = 86400000;
+
+	/**
+	 * Get the time since the account was created
+	 *
+	 * @return {number} The duration since it was created until "now" in milliseconds
+	 */
+	function getTemporaryAccountDurationMs() {
+		return Date.now() - mw.user.getFirstRegistration().getTime();
+	}
+
+	/**
+	 * Whether the account will expire within the period defined
+	 * by notifyBeforeExpirationDays in AutoCreateTempUser configuration
+	 *
+	 * @return {boolean}
+	 */
+	function isWithinExpirationNotificationPeriod() {
+		var expirationDurationMs = TTL_DAY_MS * config.AutoCreateTempUser.expireAfterDays;
+		var notificationDurationMs = TTL_DAY_MS * config.AutoCreateTempUser.notifyBeforeExpirationDays;
+		return getTemporaryAccountDurationMs() > ( expirationDurationMs - notificationDurationMs );
+	}
+
+	/**
+	 * Get the time until the account will expire
+	 *
+	 * @return {number} The duration from "now" until the account expiration in milliseconds
+	 */
+	function getTimeToExpirationMs() {
+		return ( TTL_DAY_MS * config.AutoCreateTempUser.expireAfterDays ) - getTemporaryAccountDurationMs();
+	}
+
+	/**
+	 * Whether the expiration tooltip should be shown. The following criteria
+	 * must be met:
+	 *  - Expiration is set in AutoCreateTempUser configuration (expireAfterDays)
+	 *  - The evaluated temporary account expiration is within the notification period
+	 *  as defined in AutoCreateTempUser configuration (notifyBeforeExpirationDays)
+	 *  - The user didn't proactively dismiss the tooltip clicking on the close button,
+	 *  see showTooltip()
+	 *
+	 * @return {boolean}
+	 */
+	function shouldShowExpirationAlert() {
+		var tempUserExpirationAlertDismissed = localStorage.getItem( 'tempUserExpirationAlertDismissed' );
+		var expirationIsSet = typeof config.AutoCreateTempUser.expireAfterDays === 'number';
+		var notifyBeforeExpirationIsSet = typeof config.AutoCreateTempUser.notifyBeforeExpirationDays === 'number';
+		return expirationIsSet &&
+			notifyBeforeExpirationIsSet &&
+			!tempUserExpirationAlertDismissed &&
+			isWithinExpirationNotificationPeriod();
+	}
+
+	/**
+	 * Retrieve the expiration descriptive text
+	 *
+	 * @return {string}
+	 */
+	function getExpirationDescriptionText() {
+		var timeToExpirationDays = Math.floor( getTimeToExpirationMs() / TTL_DAY_MS );
+		var params = [ timeToExpirationDays ];
+		var key = 'temp-user-banner-tooltip-description-expiration-soon';
+		if ( timeToExpirationDays < 1 ) {
+			key += '-day';
+			params.pop();
+		}
+		// Messages that can be used here:
+		// * temp-user-banner-tooltip-description-expiration-soon
+		// * temp-user-banner-tooltip-description-expiration-soon-day
+		return mw.message( key, params ).parseDom();
+	}
+
+	/**
+	 * Retrieve the tooltip content
+	 *
+	 * @param {boolean} shouldShowExpiration
+	 * @return {jQuery}
+	 */
+	function getTooltipContent( shouldShowExpiration ) {
+		var descriptionText = shouldShowExpiration ?
+			getExpirationDescriptionText() :
+			mw.message( 'temp-user-banner-tooltip-description-learn-more' ).parseDom();
+		return $( '<div>' ).append(
+			$( '<p>' ).append( descriptionText ),
+			$( '<p>' ).append( mw.message( 'temp-user-banner-tooltip-description-login' ).parseDom() )
+		);
+	}
 
 	/**
 	 * Builds a tooltip which is part of a banner for temporary account (IP masking) users.
@@ -23,42 +111,51 @@ $( function () {
 			return;
 		}
 
-		var $tooltipContent = $( '<div>' ).append(
-			$( '<p>' ).append( mw.message( 'temp-user-banner-tooltip-description-learn-more' ).parseDom() ),
-			$( '<p>' ).append( mw.message( 'temp-user-banner-tooltip-description-login' ).parseDom() )
-		);
 		var popup;
 
 		/**
 		 * Creates the tooltip if it doesn't already exist and toggles it.
 		 */
 		function showTooltip() {
-			if ( !popup ) {
-				popup = new OO.ui.PopupWidget( {
-					icon: 'clock',
-					padded: true,
-					head: true,
-					label: mw.msg( 'temp-user-banner-tooltip-title' ),
-					$content: $tooltipContent,
-					autoClose: true,
-					$autoCloseIgnore: $buttonEl,
-					$floatableContainer: $tooltipEl,
-					position: 'below'
-				} );
-				$tooltipEl.append( popup.$element );
-			}
-			popup.toggle();
-		}
-
-		$buttonEl.on( 'click', function () {
-			mw.loader.using( [
+			return mw.loader.using( [
 				'codex-search-styles',
 				'oojs-ui-core',
 				'oojs-ui-widgets',
 				'oojs-ui.styles.icons-interactions'
-			] )
-				.then( showTooltip );
-		} );
+			] ).then( function () {
+				var shouldShowExpiration = shouldShowExpirationAlert();
+				if ( !popup ) {
+					popup = new OO.ui.PopupWidget( {
+						icon: 'clock',
+						padded: true,
+						head: true,
+						label: mw.msg( 'temp-user-banner-tooltip-title' ),
+						$content: getTooltipContent( shouldShowExpiration ),
+						autoClose: !shouldShowExpiration,
+						$autoCloseIgnore: $buttonEl,
+						$floatableContainer: $tooltipEl,
+						position: 'below'
+					} );
+					$tooltipEl.append( popup.$element );
+
+					if ( shouldShowExpiration ) {
+						popup.on( 'toggle', function ( visible ) {
+							if ( !visible ) {
+								localStorage.setItem( 'tempUserExpirationAlertDismissed', true );
+								popup = null;
+							}
+						} );
+					}
+				}
+				popup.toggle();
+			} );
+		}
+
+		$buttonEl.on( 'click', showTooltip );
+
+		if ( shouldShowExpirationAlert() ) {
+			showTooltip();
+		}
 	}
 
 	initTempUserBannerTooltip( $tempUserBannerEl, $tempUserBannerTooltipEl, $tempUserBannerTooltipButtonEl );

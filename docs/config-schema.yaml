@@ -4871,6 +4871,7 @@ config-schema:
             serialProvider: { type: object, default: { type: local } }
             serialMapping: { type: object, default: { type: plain-numeric } }
             expireAfterDays: { type: [integer, 'null'], default: null }
+            notifyBeforeExpirationDays: { type: [integer, 'null'], default: null }
         type: object
         description: |-
             Configuration for automatic creation of temporary accounts on page save.

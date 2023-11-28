@@ -7702,6 +7702,7 @@ class MainConfigSchema {
 			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local' ] ],
 			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ],
 			'expireAfterDays' => [ 'type' => 'int|null', 'default' => null ],
+			'notifyBeforeExpirationDays' => [ 'type' => 'int|null', 'default' => null ],
 		],
 		'type' => 'object',
 	];

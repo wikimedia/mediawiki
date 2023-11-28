@@ -243,6 +243,23 @@
 		},
 
 		/**
+		 * Get date user first registered, if available.
+		 *
+		 * @return {boolean|null|Date} False for anonymous users, null if data is
+		 *  unavailable, or Date for when the user registered. For temporary users
+		 *  that is when their temporary account was created.
+		 */
+		getFirstRegistration: function () {
+			if ( mw.user.isAnon() ) {
+				return false;
+			}
+			var registration = mw.config.get( 'wgUserFirstRegistration' );
+			// Registration may be unavailable if the user signed up before MediaWiki
+			// began tracking this.
+			return registration ? new Date( registration ) : null;
+		},
+
+		/**
 		 * Whether the current user is anonymous
 		 *
 		 * @return {boolean}

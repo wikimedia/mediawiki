@@ -1161,6 +1161,7 @@ return [
 					'type' => 'plain-numeric',
 				],
 				'expireAfterDays' => null,
+				'notifyBeforeExpirationDays' => null,
 			],
 			'AutoblockExpiry' => 86400,
 			'BlockAllowsUTEdit' => true,

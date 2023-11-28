@@ -35,6 +35,9 @@ class RealTempUserConfig implements TempUserConfig {
 	/** @var int|null */
 	private $expireAfterDays;
 
+	/** @var int|null */
+	private $notifyBeforeExpirationDays;
+
 	/**
 	 * @param array $config See the documentation of $wgAutoCreateTempUser.
 	 *   - enabled: bool
@@ -45,6 +48,7 @@ class RealTempUserConfig implements TempUserConfig {
 	 *   - serialProvider: array
 	 *   - serialMapping: array
 	 *   - expireAfterDays: int, optional
+	 *   - notifyBeforeExpirationDays: int, optional
 	 */
 	public function __construct( $config ) {
 		if ( $config['enabled'] ?? false ) {
@@ -59,6 +63,7 @@ class RealTempUserConfig implements TempUserConfig {
 			$this->serialProviderConfig = $config['serialProvider'];
 			$this->serialMappingConfig = $config['serialMapping'];
 			$this->expireAfterDays = $config['expireAfterDays'] ?? null;
+			$this->notifyBeforeExpirationDays = $config['notifyBeforeExpirationDays'] ?? null;
 		}
 		if ( isset( $config['reservedPattern'] ) ) {
 			$this->reservedPattern = new Pattern( 'reservedPattern', $config['reservedPattern'] );
@@ -111,6 +116,10 @@ class RealTempUserConfig implements TempUserConfig {
 
 	public function getExpireAfterDays(): ?int {
 		return $this->expireAfterDays;
+	}
+
+	public function getNotifyBeforeExpirationDays(): ?int {
+		return $this->notifyBeforeExpirationDays;
 	}
 
 	/**

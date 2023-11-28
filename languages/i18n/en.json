@@ -677,6 +677,8 @@
 	"temp-user-banner-description": "You are using a temporary account",
 	"temp-user-banner-tooltip-label": "More information on temporary accounts",
 	"temp-user-banner-tooltip-title": "Temporary account",
+	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Your temporary account expires in {{PLURAL:$1|1 day|$1 days}}</strong>. After it expires, a new one will be created the next time you make an edit without logging in.",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Your temporary account expires in less than a day.</strong>. After it expires, a new one will be created the next time you make an edit without logging in.",
 	"temp-user-banner-tooltip-description-learn-more": "This temporary account was created after an edit was made without an account on this browser and device. [[mw:Help:Temporary_accounts|Learn more]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Log in]] or [[Special:CreateAccount|create an account]] to get credit for future edits and access other features.",
 	"blankarticle": "<strong>Warning:</strong> The page you are creating is blank.\nIf you click \"$1\" again, the page will be created without any content.",
