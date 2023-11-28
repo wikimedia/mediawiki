@@ -300,14 +300,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @return string
 	 */
 	protected function wrapGalleryText( $galleryText, $thumb ) {
-		# ATTENTION: The newline after <div class="gallerytext"> is needed to
-		# accommodate htmltidy which in version 4.8.6 generated crackpot html in
-		# its absence, see: https://phabricator.wikimedia.org/T3765
-		# -Ævar
-
-		return "\n\t\t\t" . '<div class="gallerytext">' . "\n"
-			. $galleryText
-			. "\n\t\t\t</div>";
+		return "\n\t\t\t" . '<div class="gallerytext">' . $galleryText . "</div>";
 	}
 
 	/**
