@@ -23,7 +23,7 @@ namespace MediaWiki\Page;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -210,7 +210,7 @@ class PageProps {
 	private function getGoodIDs( $titles ) {
 		$result = [];
 		if ( is_iterable( $titles ) ) {
-			if ( $titles instanceof TitleArray ||
+			if ( $titles instanceof TitleArrayFromResult ||
 				( is_array( $titles ) && reset( $titles ) instanceof Title
 			) ) {
 				// If the first element is a Title, assume all elements are Titles,

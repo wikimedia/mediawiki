@@ -25,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArray;
+use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -1209,7 +1209,7 @@ EOT
 
 	/**
 	 * @see WikiFilePage::getForeignCategories
-	 * @return TitleArray|Title[]
+	 * @return TitleArrayFromResult
 	 */
 	public function getForeignCategories() {
 		return $this->getPage()->getForeignCategories();
