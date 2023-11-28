@@ -1598,19 +1598,7 @@ abstract class ContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
-		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
-			$content,
-			$pstParams
-		);
-
-		if ( !$shouldCallDeprecatedMethod ) {
-			return $content;
-		}
-
-		return $this->callDeprecatedContentPST(
-			$content,
-			$pstParams
-		);
+		return $content;
 	}
 
 	/**
@@ -1631,19 +1619,7 @@ abstract class ContentHandler {
 		Content $content,
 		PreloadTransformParams $pltParams
 	): Content {
-		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
-			$content,
-			$pltParams
-		);
-
-		if ( !$shouldCallDeprecatedMethod ) {
-			return $content;
-		}
-
-		return $this->callDeprecatedContentPLT(
-			$content,
-			$pltParams
-		);
+		return $content;
 	}
 
 	/**
@@ -1668,31 +1644,6 @@ abstract class ContentHandler {
 		Content $content,
 		ValidationParams $validationParams
 	) {
-		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
-			$content,
-			AbstractContent::class,
-			'prepareSave',
-			'1.38'
-		);
-
-		if ( $detectPSDeprecatedOverride ) {
-			$services = MediaWikiServices::getInstance();
-			$page = $validationParams->getPageIdentity();
-			$user = RequestContext::getMain()->getUser();
-
-			if ( !( $page instanceof WikiPage ) ) {
-				$wikiPageFactory = $services->getWikiPageFactory();
-				$page = $wikiPageFactory->newFromTitle( $page );
-			}
-
-			return $content->prepareSave(
-				$page,
-				$validationParams->getFlags(),
-				$validationParams->getParentRevisionId(),
-				$user
-			);
-		}
-
 		if ( $content->isValid() ) {
 			return StatusValue::newGood();
 		} else {
@@ -1720,22 +1671,6 @@ abstract class ContentHandler {
 		Content $content,
 		ContentParseParams $cpoParams
 	) {
-		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
-			$content,
-			AbstractContent::class,
-			'getParserOutput',
-			'1.38'
-		);
-		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
-			$content,
-			AbstractContent::class,
-			'fillParserOutput',
-			'1.38'
-		);
-		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
-			return $this->callDeprecatedContentGPO( $content, $cpoParams );
-		}
-
 		$services = MediaWikiServices::getInstance();
 		$title = $services->getTitleFactory()->newFromPageReference( $cpoParams->getPage() );
 		$parserOptions = $cpoParams->getParserOptions();
@@ -1830,92 +1765,4 @@ abstract class ContentHandler {
 		throw new MWException( 'Subclasses of ContentHandler must override fillParserOutput!' );
 	}
 
-	/**
-	 * Check if we need to provide content overrides deprecated Content method.
-	 *
-	 * @internal only core ContentHandler implementations need to call this.
-	 * @param Content $content
-	 * @param PreSaveTransformParams|PreloadTransformParams $params
-	 * @return bool
-	 */
-	protected function shouldCallDeprecatedContentTransformMethod(
-		Content $content,
-		$params
-	): bool {
-		$method = $params instanceof PreSaveTransformParams
-			? "preSaveTransform"
-			: "preloadTransform";
-		return MWDebug::detectDeprecatedOverride(
-			$content,
-			AbstractContent::class,
-			$method,
-			'1.37'
-		);
-	}
-
-	/**
-	 * Provided content overrides deprecated Content::preSaveTransform,
-	 * call it and return.
-	 * @internal only core ContentHandler implementations need to call this.
-	 * @param Content $content
-	 * @param PreSaveTransformParams $params
-	 * @return Content
-	 */
-	protected function callDeprecatedContentPST(
-		Content $content,
-		PreSaveTransformParams $params
-	): Content {
-		$services = MediaWikiServices::getInstance();
-		$legacyUser = $services->getUserFactory()->newFromUserIdentity( $params->getUser() );
-		$legacyTitle = $services->getTitleFactory()->newFromPageReference( $params->getPage() );
-
-		return $content->preSaveTransform(
-			$legacyTitle,
-			$legacyUser,
-			$params->getParserOptions()
-		);
-	}
-
-	/**
-	 * If provided content overrides deprecated Content::preloadTransform,
-	 * call it and return.
-	 * @internal only core ContentHandler implementations need to call this.
-	 * @param Content $content
-	 * @param PreloadTransformParams $params
-	 * @return Content
-	 */
-	protected function callDeprecatedContentPLT(
-		Content $content,
-		PreloadTransformParams $params
-	): Content {
-		$services = MediaWikiServices::getInstance();
-		$legacyTitle = $services->getTitleFactory()->newFromPageReference( $params->getPage() );
-		return $content->preloadTransform(
-			$legacyTitle,
-			$params->getParserOptions(),
-			$params->getParams()
-		);
-	}
-
-	/**
-	 * If provided content overrides deprecated Content::getParserOutput,
-	 * call it and return.
-	 * @internal only core ContentHandler implementations need to call this.
-	 * @param Content $content
-	 * @param ContentParseParams $cpoParams
-	 * @return ParserOutput
-	 */
-	protected function callDeprecatedContentGPO(
-		Content $content,
-		ContentParseParams $cpoParams
-	) {
-		$services = MediaWikiServices::getInstance();
-		$legacyTitle = $services->getTitleFactory()->newFromPageReference( $cpoParams->getPage() );
-		return $content->getParserOutput(
-			$legacyTitle,
-			$cpoParams->getRevId(),
-			$cpoParams->getParserOptions(),
-			$cpoParams->getGenerateHtml()
-		);
-	}
 }

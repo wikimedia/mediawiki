@@ -171,18 +171,6 @@ class TextContentHandler extends ContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
-		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
-			$content,
-			$pstParams
-		);
-
-		if ( $shouldCallDeprecatedMethod ) {
-			return $this->callDeprecatedContentPST(
-				$content,
-				$pstParams
-			);
-		}
-
 		'@phan-var TextContent $content';
 
 		$text = $content->getText();

@@ -27,16 +27,10 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Content\Renderer\ContentParseParams;
-use MediaWiki\Content\Transform\PreloadTransformParamsValue;
-use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
-use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 
 /**
  * Base implementation for content objects.
@@ -365,28 +359,6 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @since 1.21
-	 * @deprecated since 1.37. Hard-deprecated since 1.37.
-	 * Use ContentTransformer::preSaveTransform instead.
-	 * Extensions defining a content model should override ContentHandler::preSaveTransform.
-	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
-	 * @return Content $this
-	 *
-	 * @see Content::preSaveTransform
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$pstParams = new PreSaveTransformParamsValue( $title, $user, $popts );
-		return $this->getContentHandler()->preSaveTransform(
-			$this,
-			$pstParams
-		);
-	}
-
-	/**
 	 * @stable to override
 	 * @since 1.21
 	 *
@@ -397,65 +369,6 @@ abstract class AbstractContent implements Content {
 	 */
 	public function addSectionHeader( $header ) {
 		return $this;
-	}
-
-	/**
-	 * @since 1.21
-	 * @deprecated since 1.37. Hard-deprecated since 1.37. Use ContentTransformer::preloadTransform instead.
-	 * Extensions defining a content model should override ContentHandler::preloadTransform.
-	 * @param Title $title
-	 * @param ParserOptions $popts
-	 * @param array $params
-	 * @return Content $this
-	 *
-	 * @see Content::preloadTransform
-	 */
-	public function preloadTransform( Title $title, ParserOptions $popts, $params = [] ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$pltParams = new PreloadTransformParamsValue( $title, $popts, $params );
-		return $this->getContentHandler()->preloadTransform(
-			$this,
-			$pltParams
-		);
-	}
-
-	/**
-	 * @since 1.21
-	 * @deprecated since 1.38. Hard-deprecated since 1.38.
-	 * Use ContentHandler::validateSave instead.
-	 *
-	 * @param WikiPage $page
-	 * @param int $flags
-	 * @param int $parentRevId
-	 * @param User $user
-	 * @return Status
-	 *
-	 * @see Content::prepareSave
-	 */
-	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
-			$this,
-			self::class,
-			'prepareSave',
-			'1.38'
-		);
-
-		if ( $detectPSDeprecatedOverride ) {
-			if ( $this->isValid() ) {
-				return Status::newGood();
-			} else {
-				return Status::newFatal( "invalid-content-data" );
-			}
-		}
-
-		$validationParams = new ValidationParams( $page, $flags, $parentRevId );
-		$statusValue = $this->getContentHandler()->validateSave(
-			$this,
-			$validationParams
-		);
-
-		return Status::wrap( $statusValue );
 	}
 
 	/**
@@ -503,101 +416,4 @@ abstract class AbstractContent implements Content {
 		return $result;
 	}
 
-	/**
-	 * Returns a ParserOutput object containing information derived from this content.
-	 * Most importantly, unless $generateHtml was false, the return value contains an
-	 * HTML representation of the content.
-	 *
-	 * Subclasses that want to control the parser output may override this, but it is
-	 * preferred to override fillParserOutput() instead.
-	 *
-	 * Subclasses that override getParserOutput() itself should take care to call the
-	 * ContentGetParserOutput hook.
-	 *
-	 * @since 1.24
-	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentRenderer::getParserOutput instead.
-	 * Extensions defining a content model should override ContentHandler::fillParserOutput.
-	 * @param Title $title Context title for parsing
-	 * @param int|null $revId Revision ID being rendered
-	 * @param ParserOptions|null $options
-	 * @param bool $generateHtml Whether or not to generate HTML
-	 *
-	 * @return ParserOutput Containing information derived from this content.
-	 */
-	public function getParserOutput( Title $title, $revId = null,
-		ParserOptions $options = null, $generateHtml = true
-	) {
-		wfDeprecated( __METHOD__, '1.38' );
-		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
-			$this,
-			self::class,
-			'getParserOutput',
-			'1.38'
-		);
-		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
-			$this,
-			self::class,
-			'fillParserOutput',
-			'1.38'
-		);
-
-		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
-			$options ??= ParserOptions::newFromAnon();
-
-			$po = new ParserOutput();
-			$options->registerWatcher( [ &$po, 'recordOption' ] );
-
-			$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
-			if ( $hookRunner->onContentGetParserOutput(
-				$this, $title, $revId, $options, $generateHtml, $po )
-			) {
-				// Save and restore the old value, just in case something is reusing
-				// the ParserOptions object in some weird way.
-				$oldRedir = $options->getRedirectTarget();
-				$options->setRedirectTarget( $this->getRedirectTarget() );
-				$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
-				$options->setRedirectTarget( $oldRedir );
-			}
-
-			$hookRunner->onContentAlterParserOutput( $this, $title, $po );
-			$options->registerWatcher( null );
-
-			return $po;
-		}
-
-		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
-		return $this->getContentHandler()->getParserOutput(
-			$this,
-			$cpoParams
-		);
-	}
-
-	/**
-	 * Fills the provided ParserOutput with information derived from the content.
-	 * Unless $generateHtml was false, this includes an HTML representation of the content.
-	 *
-	 * This is called by getParserOutput() after consulting the ContentGetParserOutput hook.
-	 * Subclasses are expected to override this method (or getParserOutput(), if need be).
-	 * Subclasses of TextContent should generally override getHtml() instead.
-	 *
-	 * This placeholder implementation always throws an exception.
-	 *
-	 * @since 1.24
-	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentHandler::fillParserOutput instead.
-	 * @param Title $title Context title for parsing
-	 * @param int|null $revId ID of the revision being rendered.
-	 *  See Parser::parse() for the ramifications.
-	 * @param ParserOptions $options
-	 * @param bool $generateHtml Whether or not to generate HTML
-	 * @param ParserOutput &$output The output object to fill (reference).
-	 *
-	 * @throws MWException
-	 */
-	protected function fillParserOutput( Title $title, $revId,
-		ParserOptions $options, $generateHtml, ParserOutput &$output
-	) {
-		wfDeprecated( __METHOD__, '1.38' );
-		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
-		$this->getContentHandler()->fillParserOutputInternal( $this, $cpoParams, $output );
-	}
 }

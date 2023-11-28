@@ -266,18 +266,6 @@ class WikitextContentHandler extends TextContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
-		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
-			$content,
-			$pstParams
-		);
-
-		if ( $shouldCallDeprecatedMethod ) {
-			return $this->callDeprecatedContentPST(
-				$content,
-				$pstParams
-			);
-		}
-
 		'@phan-var WikitextContent $content';
 		$text = $content->getText();
 
@@ -312,18 +300,6 @@ class WikitextContentHandler extends TextContentHandler {
 		Content $content,
 		PreloadTransformParams $pltParams
 	): Content {
-		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
-			$content,
-			$pltParams
-		);
-
-		if ( $shouldCallDeprecatedMethod ) {
-			return $this->callDeprecatedContentPLT(
-				$content,
-				$pltParams
-			);
-		}
-
 		'@phan-var WikitextContent $content';
 		$text = $content->getText();
 
