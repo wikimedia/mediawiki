@@ -1558,7 +1558,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
 			static function ( $unused1, $unused2, Status $status ) {
-				$status->apiHookResult = [ 'msg' => 'A message for you!' ];
+				$status->statusData = [ 'msg' => 'A message for you!' ];
 				return false;
 			} );
 

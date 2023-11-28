@@ -83,6 +83,7 @@ class Status extends StatusValue {
 		$result->successCount =& $sv->successCount;
 		$result->failCount =& $sv->failCount;
 		$result->success =& $sv->success;
+		$result->statusData =& $sv->statusData;
 
 		return $result;
 	}
@@ -116,9 +117,6 @@ class Status extends StatusValue {
 	public function __set( $name, $value ) {
 		if ( $name === 'ok' ) {
 			$this->setOK( $value );
-		} elseif ( !property_exists( $this, $name ) ) {
-			// Caller is using undeclared ad-hoc properties
-			$this->$name = $value;
 		} else {
 			throw new RuntimeException( "Cannot set '$name' property." );
 		}
