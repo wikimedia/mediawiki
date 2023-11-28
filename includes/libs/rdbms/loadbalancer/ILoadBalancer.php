@@ -208,22 +208,6 @@ interface ILoadBalancer {
 	public function getReaderIndex( $group = false );
 
 	/**
-	 * Get an existing DB handle to the given server index (on any domain)
-	 *
-	 * Use the CONN_TRX_AUTOCOMMIT flag to only look for connections opened with that flag.
-	 *
-	 * Avoid the use of begin()/commit() and startAtomic()/endAtomic() on any handle returned.
-	 * This method is intended for internal RDBMS callers that issue queries that do
-	 * not affect any current transaction.
-	 *
-	 * @internal For use by Rdbms classes only
-	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
-	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return Database|false False if no such connection is open
-	 */
-	public function getAnyOpenConnection( $i, $flags = 0 );
-
-	/**
 	 * Get a lazy-connecting database handle for a specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 *
 	 * The server index, $i, can be one of the following:

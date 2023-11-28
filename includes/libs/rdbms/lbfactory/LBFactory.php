@@ -238,7 +238,9 @@ abstract class LBFactory implements ILBFactory {
 		if ( ( $flags & self::SHUTDOWN_NO_CHRONPROT ) != self::SHUTDOWN_NO_CHRONPROT ) {
 			// Remark all of the relevant DB primary positions
 			foreach ( $this->getLBsForOwner() as $lb ) {
-				$this->chronologyProtector->stageSessionPrimaryPos( $lb );
+				if ( $lb->hasPrimaryConnection() ) {
+					$this->chronologyProtector->stageSessionPrimaryPos( $lb );
+				}
 			}
 			// Write the positions to the persistent stash
 			$this->chronologyProtector->persistSessionReplicationPositions( $cpIndex );

@@ -335,11 +335,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
 
 		if ( $lb->hasStreamingReplicaServers() ) {
-			$primaryConn = $lb->getAnyOpenConnection( ServerInfo::WRITER_INDEX );
-			$pos = null;
-			if ( $primaryConn ) {
-				$pos = $primaryConn->getPrimaryPos();
-			}
+			$pos = $lb->getPrimaryPos();
 			if ( $pos ) {
 				$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position now '$pos'" );
 				$this->shutdownPositionsByPrimary[$masterName] = $pos;

@@ -261,7 +261,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$mockDB1 = $this->createMock( IDatabase::class );
 		$mockDB1->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB1->method( 'lastDoneWrites' )->willReturn( $now );
-		$mockDB1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
 		// Load balancer for primary DB 1
 		$lb1 = $this->createMock( LoadBalancer::class );
 		$lb1->method( 'getConnection' )->willReturn( $mockDB1 );
@@ -274,13 +273,13 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 				return $hasChangesFunc( $mockDB1 );
 			}
 		);
+		$lb1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Primary DB 2
 		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB2 */
 		$mockDB2 = $this->createMock( IDatabase::class );
 		$mockDB2->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB2->method( 'lastDoneWrites' )->willReturn( $now );
-		$mockDB2->method( 'getPrimaryPos' )->willReturn( $m2Pos );
 		// Load balancer for primary DB 2
 		$lb2 = $this->createMock( LoadBalancer::class );
 		$lb2->method( 'getConnection' )->willReturn( $mockDB2 );
@@ -294,6 +293,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
+		$lb2->method( 'getPrimaryPos' )->willReturn( $m2Pos );
 
 		$bag = new HashBagOStuff();
 		$cp = new ChronologyProtector( $bag, null, false );

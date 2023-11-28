@@ -105,6 +105,8 @@ because of Phabricator reports.
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
 * PostgresUpdater::addPgEnumValue() unused everywhere, have been removed
   without deprecation. Use of ENUM is highly discouraged.
+* ILoadBalancer::getAnyOpenConnection() has been removed without deprecation,
+  use ::getConnection() instead.
 * OutputPage::addParserOutputText has been marked @internal since there are no
   known users of it. Its old behavior has been deprecated and will change
   in the future without further notice.
