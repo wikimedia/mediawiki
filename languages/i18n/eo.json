@@ -65,7 +65,9 @@
 			"아라",
 			"Saturnow",
 			"נדב ס",
-			"Lepticed"
+			"Lepticed",
+			"Voltinus",
+			"Ziko"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -1017,7 +1019,7 @@
 	"nextn-title": "{{PLURAL:$1|Posta $1 rezulto|Postaj $1 rezultoj}}",
 	"shown-title": "Montri {{PLURAL:$1|$1 rezulton|$1 rezultojn}} en paĝo",
 	"viewprevnext": "Montri ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "Estas paĝo nomita \"[[: $1 ]]\" sur {{SITENAME}}. {{PLURAL:$2| 0=|Vidu ankaŭ la aliajn serĉrezultojn trovitajn.}}",
+	"searchmenu-exists": "Ekzistas paĝo nomita \"[[:$1]]\" sur {{SITENAME}}. {{PLURAL:$2| 0=|Vidu ankaŭ la aliajn serĉrezultojn trovitajn.}}",
 	"searchmenu-new": "<strong>Krei la paĝon \"[[:$1]]\" en ĉi tiu vikio!</strong>{{PLURAL:$2|0=|Vidu ankaŭ la paĝon trovitan per via serĉo.|Vidu ankaŭ la trovitajn serĉrezultojn.}}",
 	"searchprofile-articles": "Enhavaj paĝoj",
 	"searchprofile-images": "Plurmedio",
