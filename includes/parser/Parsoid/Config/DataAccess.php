@@ -37,10 +37,12 @@ use Parser;
 use ParserFactory;
 use PPFrame;
 use RepoGroup;
+use Wikimedia\Assert\UnreachableException;
 use Wikimedia\Parsoid\Config\DataAccess as IDataAccess;
 use Wikimedia\Parsoid\Config\PageConfig as IPageConfig;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -150,8 +152,16 @@ class DataAccess extends IDataAccess {
 
 	/** @inheritDoc */
 	public function getPageInfo( $pageConfigOrTitle, array $titles ): array {
-		$pageTitle = $pageConfigOrTitle instanceof IPageConfig ? $pageConfigOrTitle->getTitle() :
-			$pageConfigOrTitle;
+		if ( $pageConfigOrTitle instanceof IPageConfig ) {
+			$context_title = Title::newFromTextThrow( $pageConfigOrTitle->getTitle() );
+		} elseif ( is_string( $pageConfigOrTitle ) ) {
+			// Temporary, deprecated.
+			$context_title = Title::newFromTextThrow( $pageConfigOrTitle );
+		} elseif ( $pageConfigOrTitle instanceof ParsoidLinkTarget ) {
+			$context_title = Title::newFromLinkTarget( $pageConfigOrTitle );
+		} else {
+			throw new UnreachableException( "Bad type for argument 1" );
+		}
 		$titleObjs = [];
 		$pagemap = [];
 		$classes = [];
@@ -185,7 +195,6 @@ class DataAccess extends IDataAccess {
 			$pagemap[$obj->getArticleID()] = $pdbk;
 			$classes[$pdbk] = $obj->isRedirect() ? 'mw-redirect' : '';
 		}
-		$context_title = Title::newFromText( $pageTitle );
 		$this->hookRunner->onGetLinkColours(
 			# $classes is passed by reference and mutated
 			$pagemap, $classes, $context_title
