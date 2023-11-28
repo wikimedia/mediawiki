@@ -107,6 +107,9 @@ because of Phabricator reports.
   in the future without further notice.
 * MediaWikiIntegrationTestCase::$tablesUsed has been deprecated. The framework
   now detects these automatically.
+* Support for setting dynamic property on StatusValue object has been removed.
+  To pass your arbitrary data along the object, use StatusValue::statusData
+  property (which is always declared).
 * …
 
 === Deprecations in 1.42 ===
