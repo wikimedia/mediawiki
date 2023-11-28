@@ -268,7 +268,7 @@ class SearchSqlite extends SearchDatabase {
 		$page = $dbr->tableName( 'page' );
 		$searchindex = $dbr->tableName( 'searchindex' );
 		return "SELECT $searchindex.rowid, page_namespace, page_title " .
-			"FROM $page,$searchindex " .
+			"FROM $searchindex CROSS JOIN $page " .
 			"WHERE page_id=$searchindex.rowid AND $match";
 	}
 
@@ -278,7 +278,7 @@ class SearchSqlite extends SearchDatabase {
 		$page = $dbr->tableName( 'page' );
 		$searchindex = $dbr->tableName( 'searchindex' );
 		return "SELECT COUNT(*) AS c " .
-			"FROM $page,$searchindex " .
+			"FROM $searchindex CROSS JOIN $page " .
 			"WHERE page_id=$searchindex.rowid AND $match " .
 			$this->queryNamespaces();
 	}
