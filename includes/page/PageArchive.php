@@ -21,8 +21,6 @@
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\UndeletePage;
-use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IExpression;
@@ -38,12 +36,6 @@ class PageArchive {
 
 	/** @var Title */
 	protected $title;
-
-	/** @var Status|null */
-	protected $fileStatus;
-
-	/** @var Status|null */
-	protected $revisionStatus;
 
 	/**
 	 * @param Title $title
@@ -148,19 +140,6 @@ class PageArchive {
 	}
 
 	/**
-	 * List the revisions of the given page. Returns result wrapper with
-	 * various archive table fields.
-	 *
-	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::listRevisions
-	 * @return IResultWrapper
-	 */
-	public function listRevisions() {
-		wfDeprecated( __METHOD__, '1.38' );
-		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
-		return $lookup->listRevisions( $this->title );
-	}
-
-	/**
 	 * List the deleted file revisions for this page, if it's a file page.
 	 * Returns a result wrapper with various filearchive fields, or null
 	 * if not a file page.
@@ -181,86 +160,9 @@ class PageArchive {
 	}
 
 	/**
-	 * Return a RevisionRecord object containing data for the deleted revision.
-	 *
-	 * @internal only for use in SpecialUndelete
-	 *
-	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getRevisionRecordByTimestamp
-	 * @param string $timestamp
-	 * @return RevisionRecord|null
-	 */
-	public function getRevisionRecordByTimestamp( $timestamp ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
-		return $lookup->getRevisionRecordByTimestamp( $this->title, $timestamp );
-	}
-
-	/**
-	 * Return the archived revision with the given ID.
-	 *
-	 * @since 1.35
-	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getArchivedRevisionRecord
-	 *
-	 * @param int $revId
-	 * @return RevisionRecord|null
-	 */
-	public function getArchivedRevisionRecord( int $revId ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
-		return $lookup->getArchivedRevisionRecord( $this->title, $revId );
-	}
-
-	/**
-	 * Return the most-previous revision, either live or deleted, against
-	 * the deleted revision given by timestamp.
-	 *
-	 * May produce unexpected results in case of history merges or other
-	 * unusual time issues.
-	 *
-	 * @since 1.35
-	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getPreviousRevisionRecord
-	 *
-	 * @param string $timestamp
-	 * @return RevisionRecord|null Null when there is no previous revision
-	 */
-	public function getPreviousRevisionRecord( string $timestamp ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
-		return $lookup->getPreviousRevisionRecord( $this->title, $timestamp );
-	}
-
-	/**
-	 * Returns the ID of the latest deleted revision.
-	 *
-	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::getLastRevisionId
-	 * @return int|false The revision's ID, or false if there is no deleted revision.
-	 */
-	public function getLastRevisionId() {
-		wfDeprecated( __METHOD__, '1.38' );
-		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
-		return $lookup->getLastRevisionId( $this->title );
-	}
-
-	/**
-	 * Quick check if any archived revisions are present for the page.
-	 * This says nothing about whether the page currently exists in the page table or not.
-	 *
-	 * @deprecated since 1.38, hard-deprecated since 1.41. Use ArchivedRevisionLookup::hasArchivedRevisions
-	 * @return bool
-	 */
-	public function isDeleted() {
-		wfDeprecated( __METHOD__, '1.38' );
-		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
-		return $lookup->hasArchivedRevisions( $this->title );
-	}
-
-	/**
 	 * Restore the given (or all) text and file revisions for the page.
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
-	 *
-	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
-	 * (depending what operations are attempted).
 	 *
 	 * @since 1.35
 	 * @deprecated since 1.38, use UndeletePage instead
@@ -311,26 +213,7 @@ class PageArchive {
 		} else {
 			$ret = false;
 		}
-		$this->fileStatus = $up->getFileStatus();
-		$this->revisionStatus = $up->getRevisionStatus();
 		return $ret;
 	}
 
-	/**
-	 * @deprecated since 1.38, hard-deprecated since 1.38. The entrypoints in UndeletePage return a StatusValue
-	 * @return Status|null
-	 */
-	public function getFileStatus() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->fileStatus;
-	}
-
-	/**
-	 * @deprecated since 1.38, hard-deprecated since 1.38. The entrypoints in UndeletePage return a StatusValue
-	 * @return Status|null
-	 */
-	public function getRevisionStatus() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->revisionStatus;
-	}
 }
