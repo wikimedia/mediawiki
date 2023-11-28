@@ -100,6 +100,7 @@ because of Phabricator reports.
   boolean true. The false case has been removed.
 * MagicWord::load() has been marked @internal and may change in the future
   without further notice.
+* BagOStuff::setNewPreparedValues() now emits deprecation warnings.
 * MediaWiki's virtualrest internal library has been removed in favor of the
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
 * PostgresUpdater::addPgEnumValue() unused everywhere, have been removed
