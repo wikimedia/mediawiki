@@ -182,6 +182,8 @@ because of Phabricator reports.
 * ParserOutput::setLanguageLinks() has been deprecated.
 * The module `mediawiki.icon` has been deprecated. Use the Codex mixin instead
  (T351681).
+* Passing a WikiPage to PageEditStash::parseAndCache() has been deprecated.
+  Use PageUpdater instance.
 * …
 
 === Other changes in 1.42 ===

@@ -130,8 +130,7 @@ class PageEditStash {
 		$logger = $this->logger;
 
 		if ( $pageUpdater instanceof WikiPage ) {
-			// TODO: Trigger deprecation warning once extensions have been fixed.
-			//       Or better, create PageUpdater::prepareAndStash and deprecate this method.
+			wfDeprecated( __METHOD__ . ' with WikiPage instance', '1.42' );
 			$pageUpdater = $pageUpdater->newPageUpdater( $user );
 		}
 
