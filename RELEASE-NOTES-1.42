@@ -146,6 +146,10 @@ because of Phabricator reports.
 * Database, DatabaseInstaller, DatabaseUpdater, DBPrimaryPos, ResultWrapper and
   SQLPlatform are no longer stable to extend. It is not possible to define
   database types in an extension.
+* UserDef::PARAM_ALLOWED_USER_TYPES now differentiates between temporary account
+  usernames and user accounts. Any endpoints that want temp users to be
+  valid but were passing a name through will break. Temp users must now be
+  explicitly allowed.
 * …
 
 === Deprecations in 1.42 ===

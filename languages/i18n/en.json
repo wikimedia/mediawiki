@@ -4548,6 +4548,7 @@
 	"paramvalidator-baduser": "Invalid value \"$2\" for user parameter <var>$1</var>.",
 	"paramvalidator-help-type-user": "Type: {{PLURAL:$1|1=user|2=list of users}}, {{PLURAL:$3|by|by any of}} $2",
 	"paramvalidator-help-type-user-subtype-name": "username",
+	"paramvalidator-help-type-user-subtype-temp": "Temporary user",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP range",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwiki name (e.g. \"prefix>ExampleName\")",
