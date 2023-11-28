@@ -217,7 +217,7 @@ class DefaultOutputTransform {
 	 */
 	private function deduplicateStyles( string $text ): string {
 		$seen = [];
-		return preg_replace_callback( '#<style\s+([^>]*data-mw-deduplicate\s*=[^>]*)>.*?</style>#s',
+		return preg_replace_callback( '#<style\s+([^>]*data-mw-deduplicate\s*=[\'"][^>]*)>.*?</style>#s',
 			static function ( $m ) use ( &$seen ) {
 				$attr = Sanitizer::decodeTagAttributes( $m[1] );
 				if ( !isset( $attr['data-mw-deduplicate'] ) ) {
