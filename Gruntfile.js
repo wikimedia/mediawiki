@@ -142,7 +142,7 @@ module.exports = function ( grunt ) {
 			}
 		},
 		copy: {
-			jsduck: {
+			jsdoc: {
 				src: 'resources/**/*',
 				dest: 'docs/js/modules',
 				expand: true,

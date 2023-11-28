@@ -49,8 +49,7 @@ function escapeIdInternal( str, mode ) {
 /**
  * Utility library provided by the `mediawiki.util` module.
  *
- * @class mw.util
- * @singleton
+ * @exports mw.util
  */
 var util = {
 
@@ -503,6 +502,7 @@ var util = {
 	 * @param {string} [label] of the new portlet.
 	 * @param {string} [before] selector of the element preceding the new portlet. If not passed
 	 *  the caller is responsible for appending the element to the DOM before using addPortletLink.
+	 * @fires util_addPortlet
 	 * @return {HTMLElement|null} will be null if it was not possible to create an portlet with
 	 *  the required information e.g. the selector given in before parameter could not be resolved
 	 *  to an existing element in the page.
@@ -540,12 +540,15 @@ var util = {
 			}
 		}
 		/**
-		 * @event util.addPortlet
-		 *
 		 * Fires when a portlet is successfully created.
 		 *
+		 * @event util_addPortlet
 		 * @param {HTMLElement} portlet the portlet that was created.
 		 * @param {string|null} before the css selector used to append to the DOM.
+		 * @example
+		 *   mw.hook( 'util.addPortlet' ).add( ( p ) => {
+		 *    p.style.border = 'solid 1px black';
+		 *   } );
 		 */
 		mw.hook( 'util.addPortlet' ).fire( portlet, before );
 		return portlet;
@@ -698,6 +701,18 @@ var util = {
 			$( link ).updateTooltipAccessKeys();
 		}
 
+		/**
+		 * Fires when a portlet link is successfully created.
+		 *
+		 * @event util_addPortletLink
+		 * @param {HTMLElement} item the portlet link that was created.
+		 * @param {Object} information about the item include id.
+		 * @example
+		 *   mw.hook( 'util.addPortletLink' ).add( ( link ) => {
+		 *    const span = $( '<span class="icon">' );
+		 *    link.appendChild( span );
+		 *   } );
+		 */
 		mw.hook( 'util.addPortletLink' ).fire( item, {
 			id: id
 		} );
