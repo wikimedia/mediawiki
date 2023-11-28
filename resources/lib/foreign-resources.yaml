@@ -469,10 +469,10 @@ vue:
   license: MIT
   homepage: https://vuejs.org/
   authors: Yuxi (Evan) You
-  version: 3.2.37
+  version: 3.3.9
   type: tar
-  src: https://registry.npmjs.org/vue/-/vue-3.2.37.tgz
-  integrity: sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ==
+  src: https://registry.npmjs.org/vue/-/vue-3.3.9.tgz
+  integrity: sha512-sy5sLCTR8m6tvUk1/ijri3Yqzgpdsmxgj6n6yl7GXXCXqVbmW2RCXe9atE4cEI6Iv7L89v5f35fZRRr5dChP9w==
   dest:
     package/README.md:
     package/LICENSE:
