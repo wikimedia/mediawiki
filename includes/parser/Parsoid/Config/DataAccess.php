@@ -347,7 +347,7 @@ class DataAccess extends IDataAccess {
 		string $wikitext
 	): string {
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML );
-		$html = $parser->recursiveTagParseFully( $wikitext );
+		$html = $parser->parseExtensionTagAsTopLevelDoc( $wikitext );
 		// XXX: Ideally we will eventually have the legacy parser use our
 		// ContentMetadataCollector instead of having a new ParserOutput
 		// created (implicitly in ::prepareParser()/Parser::resetOutput() )
