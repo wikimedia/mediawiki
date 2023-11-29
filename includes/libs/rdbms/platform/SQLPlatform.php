@@ -74,34 +74,18 @@ class SQLPlatform implements ISQLPlatform {
 		};
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function bitNot( $field ) {
 		return "(~$field)";
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function bitAnd( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft & $fieldRight)";
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function bitOr( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft | $fieldRight)";
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
@@ -397,10 +381,6 @@ class SQLPlatform implements ISQLPlatform {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( !is_numeric( $limit ) ) {
 			throw new DBLanguageError(
@@ -428,10 +408,6 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function buildLike( $param, ...$params ) {
 		if ( is_array( $param ) ) {
 			$params = $param;
@@ -460,10 +436,6 @@ class SQLPlatform implements ISQLPlatform {
 		return true; // True for almost every DB supported
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function unionQueries( $sqls, $all, $options = [] ) {
 		$glue = $all ? ') UNION ALL (' : ') UNION (';
 
@@ -481,10 +453,6 @@ class SQLPlatform implements ISQLPlatform {
 		return $sql;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
 		if ( is_array( $cond ) ) {
 			$cond = $this->makeList( $cond, self::LIST_AND );
@@ -496,18 +464,10 @@ class SQLPlatform implements ISQLPlatform {
 		return "(CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END)";
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function strreplace( $orig, $old, $new ) {
 		return "REPLACE({$orig}, {$old}, {$new})";
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function timestamp( $ts = 0 ) {
 		$t = new ConvertibleTimestamp( $ts );
 		// Let errors bubble up to avoid putting garbage in the DB
@@ -522,10 +482,6 @@ class SQLPlatform implements ISQLPlatform {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function getInfinity() {
 		return 'infinity';
 	}
@@ -586,28 +542,16 @@ class SQLPlatform implements ISQLPlatform {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function buildStringCast( $field ) {
 		// In theory this should work for any standards-compliant
 		// SQL implementation, although it may not be the best way to do it.
 		return "CAST( $field AS CHARACTER )";
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function buildIntegerCast( $field ) {
 		return 'CAST( ' . $field . ' AS INTEGER )';
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function implicitOrderby() {
 		return true;
 	}
@@ -624,18 +568,10 @@ class SQLPlatform implements ISQLPlatform {
 		return $this->indexAliases[$index] ?? $index;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function setIndexAliases( array $aliases ) {
 		$this->indexAliases = $aliases;
 	}
@@ -659,10 +595,6 @@ class SQLPlatform implements ISQLPlatform {
 		$this->currentDomain = $currentDomain;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1005,10 +937,6 @@ class SQLPlatform implements ISQLPlatform {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function tableName( $name, $format = 'quoted' ) {
 		if ( $name instanceof Subquery ) {
 			throw new DBLanguageError(
@@ -1160,7 +1088,6 @@ class SQLPlatform implements ISQLPlatform {
 	 * Returns if the given identifier looks quoted or not according to
 	 * the database convention for quoting identifiers
 	 *
-	 * @stable to override
 	 * @note Do not use this to determine if untrusted input is safe.
 	 *   A malicious user can trick this function.
 	 * @param string $name
@@ -1192,7 +1119,6 @@ class SQLPlatform implements ISQLPlatform {
 	 *
 	 * The inverse of Database::useIndexClause.
 	 *
-	 * @stable to override
 	 * @param string $index
 	 * @return string
 	 */
@@ -1309,10 +1235,6 @@ class SQLPlatform implements ISQLPlatform {
 		return '';
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
@@ -1585,7 +1507,6 @@ class SQLPlatform implements ISQLPlatform {
 	/**
 	 * Make UPDATE options for the Database::update function
 	 *
-	 * @stable to override
 	 * @param array $options The options passed to Database::update
 	 * @return string
 	 */
@@ -1654,7 +1575,6 @@ class SQLPlatform implements ISQLPlatform {
 	 * Main purpose: Used by query() to decide whether to begin a transaction
 	 * before the current query (in DBO_TRX mode, on by default).
 	 *
-	 * @stable to override
 	 * @return bool
 	 */
 	public function isTransactableQuery( Query $sql ) {
@@ -1969,7 +1889,6 @@ class SQLPlatform implements ISQLPlatform {
 	 * - In all other cases, / *$var* / is left unencoded. Except for table options,
 	 *   its use should be avoided. In 1.24 and older, string encoding was applied.
 	 *
-	 * @stable to override
 	 * @param string $ins SQL statement to replace variables in
 	 * @return string The new SQL statement with variables replaced
 	 */

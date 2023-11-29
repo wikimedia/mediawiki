@@ -36,7 +36,6 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
 /**
  * Class for handling database updates.
  *
- * @stable to extend
  * @ingroup Installer
  * @since 1.17
  */
@@ -113,7 +112,6 @@ abstract class DatabaseUpdater {
 	protected $skipSchema = false;
 
 	/**
-	 * @stable to call
 	 * @param IMaintainableDatabase &$db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
 	 * @param Maintenance|null $maintenance Maintenance object which created us
@@ -496,7 +494,6 @@ abstract class DatabaseUpdater {
 	 * This should be called after any request data has been imported, but before
 	 * any write operations to the database. The result should be passed to the DB
 	 * setSchemaVars() method.
-	 * @stable to override
 	 *
 	 * @return array
 	 * @since 1.28
@@ -881,7 +878,6 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Rename an index from an existing table
-	 * @stable to override
 	 *
 	 * @note Code in a LoadExtensionSchemaUpdates handler should
 	 *       use renameExtensionIndex instead!

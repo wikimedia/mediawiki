@@ -8,7 +8,6 @@ namespace Wikimedia\Rdbms;
  * The implementation details of this opaque type are up to the database subclass.
  *
  * @since 1.37
- * @stable to implement
  */
 interface DBPrimaryPos {
 	/**

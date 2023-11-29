@@ -37,7 +37,6 @@ use Wikimedia\ScopedCallback;
 /**
  * Relational database abstraction object
  *
- * @stable to extend
  * @ingroup Database
  * @since 1.28
  */
@@ -183,7 +182,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
-	 * @stable to call
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
@@ -284,7 +282,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function open( $server, $user, $password, $db, $schema, $tablePrefix );
 
 	/**
-	 * @stable to override
 	 * @return array Map of (Database::ATTR_* constant => value)
 	 * @since 1.31
 	 */
@@ -408,7 +405,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Get information about an index into an object
 	 *
-	 * @stable to override
 	 * @param string $table Table name
 	 * @param string $index Index name
 	 * @param string $fname Calling function name
@@ -419,7 +415,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Wrapper for addslashes()
 	 *
-	 * @stable to override
 	 * @param string $s String to be slashed.
 	 * @return string Slashed string.
 	 */
@@ -1151,7 +1146,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Reset any additional subclass trx* and session* fields
-	 * @stable to override
 	 */
 	protected function doHandleSessionLossPreconnect() {
 		// no-op
@@ -1163,7 +1157,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * It returns false by default, and not all engines support detecting this yet.
 	 * If this returns false, it will be treated as a generic query error.
 	 *
-	 * @stable to override
 	 * @param int|string $errno Error number
 	 * @return bool
 	 * @since 1.39
@@ -1404,7 +1397,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function estimateRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
@@ -1498,10 +1490,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	abstract public function tableExists( $table, $fname = __METHOD__ );
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		$indexInfo = $this->indexInfo( $table, $index, $fname );
 
@@ -1529,10 +1517,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function databasesAreIndependent() {
 		return false;
 	}
@@ -1551,7 +1535,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @stable to override
 	 * @param DatabaseDomain $domain
 	 * @throws DBConnectionError
 	 * @throws DBError
@@ -1574,10 +1557,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->serverName ?? $this->getServer() ?? 'unknown';
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			$s = $s->fetch();
@@ -1717,7 +1696,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @stable to override
 	 * @param string $table
 	 * @return string|null The AUTO_INCREMENT/SERIAL column; null if not needed
 	 */
@@ -1726,7 +1704,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @stable to override
 	 * @param string $table
 	 * @return array<string,string> Map of (column => type); [] if not needed
 	 */
@@ -1734,10 +1711,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return [];
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function deleteJoin(
 		$delTable,
 		$joinTable,
@@ -1751,10 +1724,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $query, $fname );
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function textFieldSize( $table, $field ) {
 		$tableName = $this->tableName( $table );
 		$query = new Query(
@@ -1828,7 +1797,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @stable to override
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @return bool Whether an INSERT SELECT with these options will be replication safe
@@ -1950,18 +1918,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $query, $fname );
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function wasDeadlock() {
 		return false;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function wasReadOnlyError() {
 		return false;
 	}
@@ -1969,7 +1929,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Do not use this method outside of Database/DBError classes
 	 *
-	 * @stable to override
 	 * @param int|string $errno
 	 * @return bool Whether the given query error was a connection drop
 	 * @since 1.38
@@ -1979,7 +1938,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @stable to override
 	 * @param int|string $errno
 	 * @return bool Whether it is known that the last query error only caused statement rollback
 	 * @note This is for backwards compatibility for callers catching DBError exceptions in
@@ -1992,7 +1950,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function serverIsReadOnly() {
 		return false;
@@ -2407,7 +2364,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Issues the BEGIN command to the database server.
 	 *
 	 * @see Database::begin()
-	 * @stable to override
 	 * @param string $fname
 	 * @throws DBError
 	 */
@@ -2593,10 +2549,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->commit( $fname, self::FLUSHING_INTERNAL );
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function duplicateTableStructure(
 		$oldName,
 		$newName,
@@ -2606,18 +2558,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
@@ -2783,18 +2727,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function encodeBlob( $b ) {
 		return $b;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function decodeBlob( $b ) {
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
@@ -2802,10 +2738,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $b;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function setSessionOptions( array $options ) {
 	}
 
@@ -2914,7 +2846,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Called by sourceStream() to check if we've reached a statement end
 	 *
-	 * @stable to override
 	 * @param string &$sql SQL assembled so far
 	 * @param string &$newLine New line about to be added to $sql
 	 * @return bool Whether $newLine contains end of the statement
@@ -2958,7 +2889,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $method
 	 * @return bool Success
 	 * @throws DBError
-	 * @stable to override
 	 */
 	protected function doLockIsFree( string $lockName, string $method ) {
 		return true; // not implemented
@@ -2997,7 +2927,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param int $timeout
 	 * @return float|null UNIX timestamp of lock acquisition; null on failure
 	 * @throws DBError
-	 * @stable to override
 	 */
 	protected function doLock( string $lockName, string $method, int $timeout ) {
 		return microtime( true ); // not implemented
@@ -3035,7 +2964,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $method
 	 * @return bool Success
 	 * @throws DBError
-	 * @stable to override
 	 */
 	protected function doUnlock( string $lockName, string $method ) {
 		return true; // not implemented
@@ -3076,10 +3004,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $unlocker;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function namedLocksEnqueue() {
 		return false;
 	}
@@ -3123,7 +3047,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @see Database::truncate()
-	 * @stable to override
 	 * @param string[] $tables
 	 * @param string $fname
 	 */
@@ -3163,7 +3086,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * This catches broken callers than catch and ignore disconnection exceptions.
 	 * Unlike checking isOpen(), this is safe to call inside of open().
 	 *
-	 * @stable to override
 	 * @return mixed
 	 * @throws DBUnexpectedError
 	 * @since 1.26

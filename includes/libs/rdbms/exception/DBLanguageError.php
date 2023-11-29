@@ -24,7 +24,6 @@ use Throwable;
 /**
  * @since 1.39
  * @newable
- * @stable to extend
  * @ingroup Database
  */
 class DBLanguageError extends DBUnexpectedError {

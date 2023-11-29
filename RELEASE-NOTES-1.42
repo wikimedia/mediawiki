@@ -143,6 +143,9 @@ because of Phabricator reports.
   - ::isDeleted()
   - ::getFileStatus()
   - ::getRevisionStatus()
+* Database, DatabaseInstaller, DatabaseUpdater, DBPrimaryPos, ResultWrapper and
+  SQLPlatform are no longer stable to extend. It is not possible to define
+  database types in an extension.
 * …
 
 === Deprecations in 1.42 ===

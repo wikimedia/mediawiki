@@ -22,7 +22,6 @@ namespace Wikimedia\Rdbms;
 /**
  * @ingroup Database
  * @newable
- * @stable to extend
  */
 class DBQueryError extends DBExpectedError {
 	/** @var string */
