@@ -37,7 +37,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		$this->importFileToTestRepo( self::IMAGES_DIR . '/greyscale-png.png', 'Test.png' );
 		$this->importFileToTestRepo( self::IMAGES_DIR . '/test.jpg', 'Icon.jpg' );
 
-		// Create a second version of Test.png
+		// Create a second version of Test.png and Icon.jpg
 		$this->importFileToTestRepo( self::IMAGES_DIR . '/greyscale-na-png.png', 'Test.png' );
 		$this->importFileToTestRepo( self::IMAGES_DIR . '/portrait-rotated.jpg', 'Icon.jpg' );
 
