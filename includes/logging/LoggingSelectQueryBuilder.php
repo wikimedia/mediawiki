@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 class LoggingSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
-	 * @internal use RevisionStore::newSelectQueryBuilder() instead.
+	 * @internal use DatabaseLogEntry::newSelectQueryBuilder() instead.
 	 * @param IReadableDatabase $db
 	 */
 	public function __construct( IReadableDatabase $db ) {
