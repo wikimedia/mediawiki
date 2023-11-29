@@ -39,7 +39,7 @@ class ContributionsCountHandler extends AbstractContributionHandler {
 				ParamValidator::PARAM_REQUIRED => true,
 				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_RETURN_OBJECT => true,
-				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip' ],
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp' ],
 			];
 		}
 		return $settings;

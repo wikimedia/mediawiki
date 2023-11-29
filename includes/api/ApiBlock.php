@@ -241,7 +241,7 @@ class ApiBlock extends ApiBase {
 		$params = [
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',
-				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id' ],
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'cidr', 'id' ],
 			],
 			'userid' => [
 				ParamValidator::PARAM_TYPE => 'integer',
