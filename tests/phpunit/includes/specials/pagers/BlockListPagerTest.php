@@ -329,4 +329,22 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $title->getDBkey(), $restriction->getTitle()->getDBkey() );
 		$this->assertEquals( $title->getNamespace(), $restriction->getTitle()->getNamespace() );
 	}
+
+	/**
+	 * T352310 regression test
+	 * @coversNothing
+	 */
+	public function testOffset() {
+		if ( $this->db->getType() === 'postgres' ) {
+			$this->markTestSkipped( "PostgreSQL fatals when the first part of " .
+				"the offset parameter has the wrong timestamp format" );
+		}
+		$request = new FauxRequest( [
+			'offset' => '20231115010645|7'
+		] );
+		RequestContext::getMain()->setRequest( $request );
+		$pager = $this->getBlockListPager();
+		$pager->getFullOutput();
+		$this->assertTrue( true );
+	}
 }

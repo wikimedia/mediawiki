@@ -101,7 +101,17 @@ class BlockListPager extends TablePager {
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $dbProvider->getReplicaDatabase();
+		$this->readStage = $this->getConfig()->get( MainConfigNames::BlockTargetMigrationStage )
+			& SCHEMA_COMPAT_READ_MASK;
+		if ( $this->readStage !== SCHEMA_COMPAT_READ_OLD
+			&& $this->readStage !== SCHEMA_COMPAT_READ_NEW
+		) {
+			throw new ConfigException(
+				'$wgBlockTargetMigrationStage has an invalid read stage' );
+		}
+
 		parent::__construct( $context, $linkRenderer );
+
 		$this->blockActionInfo = $blockActionInfo;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->blockUtils = $blockUtils;
@@ -111,14 +121,6 @@ class BlockListPager extends TablePager {
 		$this->specialPageFactory = $specialPageFactory;
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-		$this->readStage = $this->getConfig()->get( MainConfigNames::BlockTargetMigrationStage )
-			& SCHEMA_COMPAT_READ_MASK;
-		if ( $this->readStage !== SCHEMA_COMPAT_READ_OLD
-			&& $this->readStage !== SCHEMA_COMPAT_READ_NEW
-		) {
-			throw new ConfigException(
-				'$wgBlockTargetMigrationStage has an invalid read stage' );
-		}
 	}
 
 	protected function getFieldNames() {
@@ -450,7 +452,10 @@ class BlockListPager extends TablePager {
 					'bl_sitewide' => 'ipb_sitewide',
 					'bl_reason_text' => $commentQuery['fields']['ipb_reason_text'],
 					'bl_reason_data' => $commentQuery['fields']['ipb_reason_data'],
-					'bl_reason_cid' => $commentQuery['fields']['ipb_reason_cid']
+					'bl_reason_cid' => $commentQuery['fields']['ipb_reason_cid'],
+					// Aliases for IndexPager::extractResultInfo()
+					'ipb_id',
+					'ipb_timestamp',
 				] + $commentQuery['fields'],
 				'conds' => $this->conds,
 				'join_conds' => [
