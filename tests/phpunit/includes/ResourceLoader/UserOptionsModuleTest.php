@@ -16,7 +16,7 @@ class UserOptionsModuleTest extends MediaWikiIntegrationTestCase {
 		$module = new UserOptionsModule();
 		$hooks = $this->createHookContainer();
 		$module->setHookContainer( $hooks );
-		$options = new \MediaWiki\User\StaticUserOptionsLookup(
+		$options = new \MediaWiki\User\Options\StaticUserOptionsLookup(
 			[
 				'Example1' => [],
 				'Example2' => [ 'y' => '1', 'userjs-extra' => '1' ],
@@ -84,7 +84,7 @@ class UserOptionsModuleTest extends MediaWikiIntegrationTestCase {
 			}
 		] );
 		$module->setHookContainer( $hooks );
-		$options = new \MediaWiki\User\StaticUserOptionsLookup(
+		$options = new \MediaWiki\User\Options\StaticUserOptionsLookup(
 			[
 				'User' => [ 'include-explicit' => '1', 'exclude-explicit' => '1' ],
 			],
