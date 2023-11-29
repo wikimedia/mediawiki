@@ -471,9 +471,8 @@ vue:
   authors: Yuxi (Evan) You
   version: 3.2.37
   type: tar
-  # This is the migration build of Vue 3.2.37 which provides compatibility for Vue 2 code
-  src: https://registry.npmjs.org/@vue/compat/-/compat-3.2.37.tgz
-  integrity: sha512-MIYkFAz3Fur1mtZBqrNMYTymlohCQ0ol6vtNb58cqExLSCt63xZaXyiZZYPvS6WaMXfbNBDPXMvU9tO922eFCA==
+  src: https://registry.npmjs.org/vue/-/vue-3.2.37.tgz
+  integrity: sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ==
   dest:
     package/README.md:
     package/LICENSE:
