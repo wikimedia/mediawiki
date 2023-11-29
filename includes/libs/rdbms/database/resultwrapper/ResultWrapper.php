@@ -18,7 +18,6 @@ use stdClass;
  * Subclasses can override methods to make it solely work on the result resource instead.
  *
  * @ingroup Database
- * @stable to override
  */
 abstract class ResultWrapper implements IResultWrapper {
 	/**

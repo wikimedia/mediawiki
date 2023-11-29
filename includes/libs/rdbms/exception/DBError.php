@@ -31,7 +31,6 @@ use RuntimeException;
  * catching the exception and then rethrowing it is also acceptable.
  *
  * @newable
- * @stable to extend
  * @ingroup Database
  */
 class DBError extends RuntimeException {
