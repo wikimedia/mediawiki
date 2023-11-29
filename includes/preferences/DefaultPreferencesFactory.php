@@ -326,7 +326,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$disable = !$user->isAllowed( 'editmyoptions' );
 
-		$defaultOptions = $this->userOptionsManager->getDefaultOptions();
+		$defaultOptions = $this->userOptionsManager->getDefaultOptions( $user );
 		$userOptions = $this->userOptionsManager->getOptions( $user );
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		// Add in defaults from the user

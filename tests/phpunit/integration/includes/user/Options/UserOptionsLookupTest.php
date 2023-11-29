@@ -5,6 +5,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\DefaultOptionsLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\Registration\IUserRegistrationProvider;
+use MediaWiki\User\Registration\LocalUserRegistrationProvider;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
@@ -14,6 +16,45 @@ use MediaWiki\User\UserIdentityValue;
  * @covers MediaWiki\User\Options\UserOptionsLookup
  */
 abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->overrideConfigValues( [
+			MainConfigNames::UserRegistrationProviders => [
+				// Redefine the LocalUserRegistrationProvider with a mock provider
+				LocalUserRegistrationProvider::TYPE => [
+					'factory' => static function () {
+						return new class implements IUserRegistrationProvider {
+							/**
+							 * @inheritDoc
+							 */
+							public function fetchRegistration( UserIdentity $user ) {
+								switch ( $user->getId() ) {
+									case 1:
+										return null;
+									case 2:
+										return '20231220160000';
+									case 3:
+										return '20230101000000';
+									default:
+										return false;
+								}
+							}
+						};
+					}
+				]
+			],
+			MainConfigNames::ConditionalUserOptions => [
+				'conditional_option' => [
+					[
+						true,
+						[ CUDCOND_AFTER, '20230624000000' ]
+					]
+				]
+			]
+		] );
+	}
 
 	protected function getAnon(
 		string $name = 'anon'
@@ -38,6 +79,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 				new HashConfig( [
 					MainConfigNames::DefaultSkin => 'test',
 					MainConfigNames::DefaultUserOptions => array_merge( [
+						'conditional_option' => false,
 						'default_string_option' => 'string_value',
 						'default_int_option' => 1,
 						'default_bool_option' => true
@@ -52,7 +94,36 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 			$lang,
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getNamespaceInfo(),
+			$this->getServiceContainer()->get( '_ConditionalDefaultsLookup' ),
 			!$this->needsDB()
+		);
+	}
+
+	/**
+	 * @return array[]
+	 */
+	public static function provideConditionalDefaults() {
+		// NOTE: Definition of user_registration timestamp is in ::setUp(); search for
+		// a IUserRegistrationProvider implementation.
+		return [
+			'user_registration null' => [ false, 'conditional_option', 1 ],
+			'user_registration recent' => [ true, 'conditional_option', 2 ],
+			'user_registration old' => [ false, 'conditional_option', 3 ],
+		];
+	}
+
+	/**
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getDefaultOption
+	 * @dataProvider provideConditionalDefaults
+	 */
+	public function testGetConditionalDefaults( bool $expected, string $property, int $userId ) {
+		$this->assertSame(
+			$expected,
+			$this->getLookup()->getDefaultOption(
+				$property,
+				new UserIdentityValue( $userId, 'Admin' )
+			)
 		);
 	}
 

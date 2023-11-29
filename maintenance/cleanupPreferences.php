@@ -79,7 +79,7 @@ class CleanupPreferences extends Maintenance {
 
 		// Remove unknown preferences. Special-case 'userjs-' as we can't control those names.
 		if ( $unknown ) {
-			$defaultUserOptions = $this->getServiceContainer()->getUserOptionsLookup()->getDefaultOptions();
+			$defaultUserOptions = $this->getServiceContainer()->getUserOptionsLookup()->getDefaultOptions( null );
 			$where = [
 				'up_property NOT' . $dbr->buildLike( 'userjs-', $dbr->anyString() ),
 				'up_property NOT IN (' . $dbr->makeList( array_keys( $defaultUserOptions ) ) . ')',

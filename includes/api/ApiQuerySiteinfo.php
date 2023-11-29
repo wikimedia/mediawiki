@@ -939,7 +939,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendDefaultOptions( $property ) {
-		$options = $this->userOptionsLookup->getDefaultOptions();
+		$options = $this->userOptionsLookup->getDefaultOptions( null );
 		$options[ApiResult::META_BC_BOOLS] = array_keys( $options );
 		return $this->getResult()->addValue( 'query', $property, $options );
 	}

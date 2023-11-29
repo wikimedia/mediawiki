@@ -386,8 +386,10 @@ class SpecialSearch extends SpecialPage {
 	private function redirectOnExactMatch() {
 		if ( !$this->getConfig()->get( MainConfigNames::SearchMatchRedirectPreference ) ) {
 			// If the preference for whether to redirect is disabled, use the default setting
-			$defaultOptions = $this->userOptionsManager->getDefaultOptions();
-			return $defaultOptions['search-match-redirect'];
+			return $this->userOptionsManager->getDefaultOption(
+				'search-match-redirect',
+				$this->getUser()
+			);
 		} else {
 			// Otherwise use the user's preference
 			return $this->userOptionsManager->getOption( $this->getUser(), 'search-match-redirect' );

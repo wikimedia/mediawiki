@@ -28,6 +28,9 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgDjvuUseBoxedCommand and $wgDjvuShell: A temporary flag to control whether
   or not to use BoxedCommand when wrapping DejaVu rendering, and the command to
   call if so.
+* $wgConditionalUserOptions: Makes it possible to define user properties with
+  defaults varying by user, without growing the user_properties table. Typical
+  use-case is to enable a feature only for users created after a certain date.
 * …
 
 ==== Changed configuration ====
@@ -226,6 +229,11 @@ because of Phabricator reports.
   - APIs extended from ApiQueryRevisionsBase
 * Parser::getCustomDefaultSort() and ::setDefaultSort(), deprecated since 1.38,
   have been removed.
+* UserOptionsLookup::getDefaultOptions() and
+  UserOptionsLookup::getDefaultOption() now accept an UserIdentity, to
+  take conditional defaults for user properties into account. When conditional
+  defaults are used, calling those methods without the UserIdentity might
+  produce unexpected results.
 * …
 
 === Deprecations in 1.42 ===

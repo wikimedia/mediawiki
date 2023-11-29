@@ -153,7 +153,7 @@ trait MediaFileTrait {
 		$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$option = $optionsLookup->getIntOption( $user, $optionName );
 		if ( !isset( $imageLimits[$option] ) ) {
-			$option = $optionsLookup->getDefaultOption( $optionName );
+			$option = $optionsLookup->getDefaultOption( $optionName, $user );
 		}
 
 		// The user offset might still be incorrect, specially if

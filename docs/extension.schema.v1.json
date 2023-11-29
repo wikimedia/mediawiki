@@ -717,6 +717,10 @@
 			"type": "object",
 			"description": "Default values of user options"
 		},
+		"ConditionalUserOptions": {
+			"type": "object",
+			"description": "Conditional defaults of user options"
+		},
 		"HiddenPrefs": {
 			"type": "array",
 			"description": "Preferences users cannot set",

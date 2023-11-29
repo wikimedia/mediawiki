@@ -7586,6 +7586,38 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Conditional defaults for user options
+	 *
+	 * Map of user options to conditional defaults descriptors, which is an array
+	 * of conditional cases [ VALUE, CONDITION1, CONDITION2 ], where VALUE is the default value for
+	 * all users that meet ALL conditions, and each CONDITION is either a:
+	 *     (a) a CUDCOND_* constant (when condition does not take any arguments), or
+	 *     (b) an array [ CUDCOND_*, argument1, argument1, ... ] (when chosen condition takes at
+	 *         least one argument).
+	 *
+	 * When `null` is used as the VALUE, it is interpreted as "no conditional default for this
+	 * condition". In other words, `null` and $wgDefaultUserOptions['user-option'] can be used
+	 * interchangeably as the VALUE.
+	 *
+	 * All conditions are evaluated in order. When no condition matches.
+	 * $wgDefaultUserOptions is used instead.
+	 *
+	 * Example of valid configuration:
+	 *   $wgConditionalUserOptions['user-option'] = [
+	 *       [ 'registered in 2024', [ CUDCOND_AFTER, '20240101000000' ] ]
+	 *   ];
+	 *
+	 * List of valid conditions:
+	 *   * CUDCOND_AFTER: user registered after given timestamp (args: string $timestamp)
+	 *
+	 * @since 1.42
+	 */
+	public const ConditionalUserOptions = [
+		'default' => [],
+		'type' => 'map',
+	];
+
+	/**
 	 * An array of preferences to not show for the user
 	 */
 	public const HiddenPrefs = [

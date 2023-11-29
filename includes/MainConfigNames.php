@@ -2675,6 +2675,12 @@ class MainConfigNames {
 	public const DefaultUserOptions = 'DefaultUserOptions';
 
 	/**
+	 * Name constant for the ConditionalUserOptions setting, for use with Config::get()
+	 * @see MainConfigSchema::ConditionalUserOptions
+	 */
+	public const ConditionalUserOptions = 'ConditionalUserOptions';
+
+	/**
 	 * Name constant for the HiddenPrefs setting, for use with Config::get()
 	 * @see MainConfigSchema::HiddenPrefs
 	 */

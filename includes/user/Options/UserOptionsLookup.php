@@ -35,21 +35,28 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	public const EXCLUDE_DEFAULTS = 1;
 
 	/**
-	 * Combine the language default options with any site-specific options
+	 * Combine the language default options with any site-specific and user-specific defaults
 	 * and add the default language variants.
 	 *
+	 * @param UserIdentity|null $userIdentity User to look the default up for; set to null to
+	 * ignore any user-specific defaults (since 1.42)
 	 * @return array
 	 */
-	abstract public function getDefaultOptions(): array;
+	abstract public function getDefaultOptions( ?UserIdentity $userIdentity = null ): array;
 
 	/**
 	 * Get a given default option value.
 	 *
 	 * @param string $opt Name of option to retrieve
+	 * @param UserIdentity|null $userIdentity User to look the defaults up for; set to null to
+	 * ignore any user-specific defaults (since 1.42)
 	 * @return mixed|null Default option value
 	 */
-	public function getDefaultOption( string $opt ) {
-		$defaultOptions = $this->getDefaultOptions();
+	public function getDefaultOption(
+		string $opt,
+		?UserIdentity $userIdentity = null
+	) {
+		$defaultOptions = $this->getDefaultOptions( $userIdentity );
 		return $defaultOptions[$opt] ?? null;
 	}
 
@@ -79,7 +86,9 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	 * @param UserIdentity $user The user to get the option for
 	 * @param int $flags Bitwise combination of:
 	 *   UserOptionsManager::EXCLUDE_DEFAULTS  Exclude user options that are set
-	 *                                         to the default value.
+	 *                                         to the default value. Options
+	 *                                         that are set to their conditionally
+	 *                                         default value are not excluded.
 	 * @param int $queryFlags A bit field composed of READ_XXX flags
 	 * @return array
 	 */
