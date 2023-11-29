@@ -55,6 +55,9 @@ $wgShowHostnames = true;
 // Enable log files
 $logDir = getenv( 'MW_LOG_DIR' );
 if ( $logDir ) {
+	if ( !file_exists( $logDir ) ) {
+		mkdir( $logDir );
+	}
 	if ( MW_ENTRY_POINT === 'cli' ) {
 		$wgDebugLogFile = "$logDir/mw-debug-cli.log";
 	} else {
