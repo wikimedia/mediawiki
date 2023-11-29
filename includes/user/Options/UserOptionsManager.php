@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\User;
+namespace MediaWiki\User\Options;
 
 use DBAccessObjectUtils;
 use HTMLCheckMatrix;
@@ -34,6 +34,10 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserTimeCorrection;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
@@ -705,3 +709,8 @@ class UserOptionsManager extends UserOptionsLookup {
 		return (string)$a === (string)$b;
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( UserOptionsManager::class, 'MediaWiki\\User\\UserOptionsManager' );

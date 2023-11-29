@@ -42,11 +42,11 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Title\Title;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
-use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

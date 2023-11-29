@@ -17,7 +17,7 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\NamespaceInfo;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use MediaWikiUnitTestCase;
 use MessageCache;

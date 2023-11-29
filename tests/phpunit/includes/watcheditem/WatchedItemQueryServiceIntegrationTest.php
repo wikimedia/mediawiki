@@ -2,8 +2,8 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
-use MediaWiki\User\UserOptionsLookup;
 
 /**
  * @group Database

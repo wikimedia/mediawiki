@@ -14,7 +14,7 @@ use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserOptionsManager;
+use MediaWiki\User\Options\UserOptionsManager;
 use RepoGroup;
 use SearchResult;
 use ThumbnailImage;

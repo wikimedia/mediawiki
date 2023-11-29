@@ -4,8 +4,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsLookup;
 
 /**
  * Configuration handling class for SearchEngine.

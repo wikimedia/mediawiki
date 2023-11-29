@@ -18,9 +18,10 @@
  * @file
  */
 
-namespace MediaWiki\User;
+namespace MediaWiki\User\Options;
 
 use IDBAccessObject;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Provides access to user options
@@ -130,3 +131,8 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 		return intval( $val );
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( UserOptionsLookup::class, 'MediaWiki\\User\\UserOptionsLookup' );

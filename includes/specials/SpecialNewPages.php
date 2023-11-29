@@ -40,7 +40,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 
 /**
  * A special page that list newly created pages

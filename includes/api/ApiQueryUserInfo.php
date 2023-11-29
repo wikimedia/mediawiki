@@ -25,11 +25,11 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\ParamValidator\ParamValidator;
 

@@ -3,7 +3,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 
 /**
  * This program is free software; you can redistribute it and/or modify

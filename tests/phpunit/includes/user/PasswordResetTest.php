@@ -9,11 +9,11 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\IConnectionProvider;
 

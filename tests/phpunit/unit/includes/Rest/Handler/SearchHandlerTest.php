@@ -26,7 +26,7 @@ use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MockSearchResultSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use SearchEngine;

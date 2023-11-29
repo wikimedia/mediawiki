@@ -29,8 +29,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
-use MediaWiki\User\UserOptionsManager;
 use PermissionsError;
 use PreferencesFormOOUI;
 

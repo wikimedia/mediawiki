@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**

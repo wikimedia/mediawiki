@@ -22,8 +22,8 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

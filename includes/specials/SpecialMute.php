@@ -27,11 +27,11 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;
-use MediaWiki\User\UserOptionsManager;
 
 /**
  * A special page that allows users to modify their notification

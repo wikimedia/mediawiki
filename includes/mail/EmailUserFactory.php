@@ -25,8 +25,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Message\ITextFormatter;
 

@@ -171,7 +171,7 @@ $wgAutoloadClasses += [
 	'SpecialSearchTestMockResultSet' => "$testDir/phpunit/includes/specials/SpecialSearchTestMockResultSet.php",
 
 	# test/phpunit/includes/user
-	'UserOptionsLookupTest' => "$testDir/phpunit/includes/user/UserOptionsLookupTest.php",
+	'UserOptionsLookupTest' => "$testDir/phpunit/integration/includes/user/Options/UserOptionsLookupTest.php",
 
 	# tests/phpunit/includes/language
 	'DummyConverter' => "$testDir/phpunit/mocks/languages/DummyConverter.php",

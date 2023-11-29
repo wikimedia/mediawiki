@@ -2,9 +2,9 @@
 
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserOptionsLookup;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\Expression;

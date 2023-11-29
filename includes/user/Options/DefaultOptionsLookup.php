@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\User;
+namespace MediaWiki\User\Options;
 
 use Language;
 use LanguageConverter;
@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\User\UserIdentity;
 use Skin;
 use Wikimedia\Assert\Assert;
 
@@ -167,3 +168,8 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		);
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( DefaultOptionsLookup::class, 'MediaWiki\\User\\DefaultOptionsLookup' );

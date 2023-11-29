@@ -32,9 +32,9 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 

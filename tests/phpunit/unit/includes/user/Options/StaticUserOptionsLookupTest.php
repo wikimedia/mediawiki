@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\User;
 
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserOptionsLookup;
 use MediaWikiUnitTestCase;
 
 /**

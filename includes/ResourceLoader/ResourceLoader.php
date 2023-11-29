@@ -44,7 +44,7 @@ use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\WikiMap\WikiMap;
 use MWExceptionHandler;
 use MWExceptionRenderer;

@@ -3,15 +3,15 @@
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use MediaWiki\User\DefaultOptionsLookup;
+use MediaWiki\User\Options\DefaultOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserOptionsLookup;
 
 /**
- * @covers MediaWiki\User\DefaultOptionsLookup
- * @covers MediaWiki\User\UserOptionsManager
- * @covers MediaWiki\User\UserOptionsLookup
+ * @covers MediaWiki\User\Options\DefaultOptionsLookup
+ * @covers MediaWiki\User\Options\UserOptionsManager
+ * @covers MediaWiki\User\Options\UserOptionsLookup
  */
 abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 
@@ -57,8 +57,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
-	 * @covers MediaWiki\User\UserOptionsManager::getDefaultOptions
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOptions
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getDefaultOptions
 	 */
 	public function testGetDefaultOptions() {
 		$options = $this->getLookup()->getDefaultOptions();
@@ -68,8 +68,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOption
-	 * @covers MediaWiki\User\UserOptionsManager::getDefaultOption
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getDefaultOption
 	 */
 	public function testGetDefaultOption() {
 		$manager = $this->getLookup();
@@ -79,8 +79,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getOptions
-	 * @covers MediaWiki\User\UserOptionsManager::getOptions
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOptions
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getOptions
 	 */
 	public function testGetOptions() {
 		$options = $this->getLookup()->getOptions( $this->getAnon() );
@@ -90,8 +90,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
-	 * @covers MediaWiki\User\UserOptionsManager::getOption
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefault() {
 		$manager = $this->getLookup();
@@ -102,8 +102,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
-	 * @covers MediaWiki\User\UserOptionsManager::getOption
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefaultNotExist() {
 		$this->assertNull( $this->getLookup()
@@ -111,8 +111,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
-	 * @covers MediaWiki\User\UserOptionsManager::getOption
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefaultNotExistDefaultOverride() {
 		$this->assertSame( 'override', $this->getLookup()
@@ -120,7 +120,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsLookup::getIntOption
+	 * @covers MediaWiki\User\Options\UserOptionsLookup::getIntOption
 	 */
 	public function testGetIntOption() {
 		$this->assertSame(
@@ -131,7 +131,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsLookup::getBoolOption
+	 * @covers MediaWiki\User\Options\UserOptionsLookup::getBoolOption
 	 */
 	public function testGetBoolOption() {
 		$this->assertSame(

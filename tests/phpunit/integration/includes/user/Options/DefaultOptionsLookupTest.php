@@ -1,10 +1,10 @@
 <?php
 
-use MediaWiki\User\DefaultOptionsLookup;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\DefaultOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 
 /**
- * @covers MediaWiki\User\DefaultOptionsLookup
+ * @covers MediaWiki\User\Options\DefaultOptionsLookup
  */
 class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	protected function getLookup(
@@ -15,7 +15,7 @@ class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOption
 	 */
 	public function testGetOptionsExcludeDefaults() {
 		$this->assertSame( [], $this->getLookup()
@@ -23,7 +23,7 @@ class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testGetDefaultOptionsHook() {
 		$this->setTemporaryHook( 'UserGetDefaultOptions', static function ( &$options ) {
@@ -33,7 +33,7 @@ class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testSearchNS() {
 		$lookup = $this->getLookup();
@@ -45,7 +45,7 @@ class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
+	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testLangVariantOptions() {
 		$managerZh = $this->getLookup( 'zh' );

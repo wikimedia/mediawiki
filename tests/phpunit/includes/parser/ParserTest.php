@@ -59,7 +59,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createNoOpMock( HookContainer::class, [ 'run' ] ),
 			$this->createNoOpMock( MediaWiki\Tidy\TidyDriverBase::class ),
 			$this->createNoOpMock( WANObjectCache::class ),
-			$this->createNoOpMock( MediaWiki\User\UserOptionsLookup::class ),
+			$this->createNoOpMock( MediaWiki\User\Options\UserOptionsLookup::class ),
 			$this->createNoOpMock( MediaWiki\User\UserFactory::class ),
 			$this->createNoOpMock( TitleFormatter::class ),
 			$this->createNoOpMock( HttpRequestFactory::class ),

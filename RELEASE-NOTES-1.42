@@ -211,6 +211,9 @@ because of Phabricator reports.
  (T351681).
 * Passing a WikiPage to PageEditStash::parseAndCache() has been deprecated.
   Use PageUpdater instance.
+* User options related classes (UserOptionsLookup, UserOptionsManager
+  and DefaultOptionsLookup) were moved into the MediaWiki\User\Options
+  namespace. Old names are deprecated and kept as aliases (T352284).
 * …
 
 === Other changes in 1.42 ===

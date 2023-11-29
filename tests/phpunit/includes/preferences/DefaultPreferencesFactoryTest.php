@@ -19,12 +19,12 @@ use MediaWiki\Session\TestUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsLookup;
-use MediaWiki\User\UserOptionsManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 

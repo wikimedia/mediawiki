@@ -3,10 +3,10 @@
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserOptionsLookup;
-use MediaWiki\User\UserOptionsManager;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
@@ -18,7 +18,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Database
- * @covers MediaWiki\User\UserOptionsManager
+ * @covers MediaWiki\User\Options\UserOptionsManager
  */
 class UserOptionsManagerTest extends UserOptionsLookupTest {
 
@@ -64,7 +64,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::getOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionsExcludeDefaults() {
 		$manager = $this->getManager( [ 'defaults' => [
@@ -96,7 +96,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::getOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionHiddenPref() {
 		$user = $this->getAnon( __METHOD__ );
@@ -108,7 +108,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::setOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::setOption
 	 */
 	public function testSetOptionNullIsDefault() {
 		$user = $this->getAnon( __METHOD__ );
@@ -120,9 +120,9 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::getOption
-	 * @covers MediaWiki\User\UserOptionsManager::setOption
-	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::setOption
+	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testGetSetSave() {
 		$user = $this->getTestUser()->getUser();
@@ -145,7 +145,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::loadUserOptions
+	 * @covers MediaWiki\User\Options\UserOptionsManager::loadUserOptions
 	 */
 	public function testLoadUserOptionsHook() {
 		$user = UserIdentityValue::newRegistered( 42, 'Test' );
@@ -161,7 +161,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testSaveUserOptionsHookAbort() {
 		$manager = $this->getManager( [
@@ -178,7 +178,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testSaveUserOptionsHookModify() {
 		$user = UserIdentityValue::newRegistered( 42, 'Test' );
@@ -208,7 +208,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testSaveUserOptionsHookOriginal() {
 		$user = UserIdentityValue::newRegistered( 42, 'Test' );
@@ -235,7 +235,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserOptionsManager::loadUserOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::loadUserOptions
 	 */
 	public function testInfiniteRecursionOnLoadUserOptionsHook() {
 		$user = UserIdentityValue::newRegistered( 42, 'Test' );
@@ -262,7 +262,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserOptionsManager::resetOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::resetOptions
 	 */
 	public function testUserOptionsSaveAfterReset() {
 		$user = $this->getTestUser()->getUser();
@@ -404,7 +404,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserOptionsManager::saveOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testUpdatesUserTouched() {
 		$user = $this->getTestUser()->getUser();
