@@ -240,7 +240,7 @@ class PostgresPlatform extends SQLPlatform {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->quoter->addQuotes( $this->bigintFromLockName( $lockName ) );
 		return "SELECT (CASE(pg_try_advisory_lock($key))
-			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS unlocked";
+			WHEN FALSE THEN FALSE ELSE pg_advisory_unlock($key) END) AS unlocked";
 	}
 
 	public function unlockSQLText( $lockName ) {

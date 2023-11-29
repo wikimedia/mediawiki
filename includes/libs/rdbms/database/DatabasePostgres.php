@@ -1054,7 +1054,7 @@ __INDEXATTR__;
 		$res = $this->query( $query, $method );
 		$row = $res->fetchObject();
 
-		return ( $row->unlocked === 't' );
+		return (bool)$row->unlocked;
 	}
 
 	public function doLock( string $lockName, string $method, int $timeout ) {
@@ -1094,7 +1094,7 @@ __INDEXATTR__;
 		$result = $this->query( $query, $method );
 		$row = $result->fetchObject();
 
-		return ( $row->released === 't' );
+		return (bool)$row->released;
 	}
 
 	protected function doFlushSession( $fname ) {
