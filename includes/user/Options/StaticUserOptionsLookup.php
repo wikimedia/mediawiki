@@ -1,6 +1,8 @@
 <?php
 
-namespace MediaWiki\User;
+namespace MediaWiki\User\Options;
+
+use MediaWiki\User\UserIdentity;
 
 /**
  * A UserOptionsLookup that's just an array. Useful for testing and creating staging environments.
@@ -61,3 +63,8 @@ class StaticUserOptionsLookup extends UserOptionsLookup {
 		return $userOptions;
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( StaticUserOptionsLookup::class, 'MediaWiki\User\StaticUserOptionsLookup' );
