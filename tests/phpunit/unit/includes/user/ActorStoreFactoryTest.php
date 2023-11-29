@@ -67,7 +67,7 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $config ),
 			$this->getMockLoadBalancerFactory( $expectedDomain ),
 			$this->createNoOpMock( UserNameUtils::class ),
-			$this->createNoOpMock( TempUserConfig::class ),
+			$this->createMock( TempUserConfig::class ),
 			new NullLogger(),
 			new HideUserUtils( SCHEMA_COMPAT_READ_OLD )
 		);
@@ -84,7 +84,7 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $config ),
 			$this->getMockLoadBalancerFactory( $expectedDomain ),
 			$this->createNoOpMock( UserNameUtils::class ),
-			$this->createNoOpMock( TempUserConfig::class ),
+			$this->createMock( TempUserConfig::class ),
 			new NullLogger(),
 			$this->createNoOpMock( HideUserUtils::class )
 		);
@@ -101,7 +101,7 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $config ),
 			$this->getMockLoadBalancerFactory( $expectedDomain ),
 			$this->createNoOpMock( UserNameUtils::class ),
-			$this->createNoOpMock( TempUserConfig::class ),
+			$this->createMock( TempUserConfig::class ),
 			new NullLogger(),
 			$this->createNoOpMock( HideUserUtils::class )
 		);

@@ -59,6 +59,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 	private ActorCache $cache;
 
+	private bool $allowCreateIpActors;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserNameUtils $userNameUtils
@@ -85,6 +87,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$this->wikiId = $wikiId;
 
 		$this->cache = new ActorCache( self::LOCAL_CACHE_SIZE );
+
+		$this->allowCreateIpActors = !$this->tempUserConfig->isEnabled();
 	}
 
 	/**
@@ -631,7 +635,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			);
 		}
 
-		if ( $this->tempUserConfig->isEnabled() && $this->userNameUtils->isIP( $userName ) ) {
+		if ( !$this->allowCreateIpActors && $this->userNameUtils->isIP( $userName ) ) {
 			throw new CannotCreateActorException(
 				'Cannot create an actor for an IP user when temporary accounts are enabled'
 			);
@@ -731,6 +735,14 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			$this->hideUserUtils
 		);
 		return $builder->options( $options );
+	}
+
+	/**
+	 * @internal For use immediately after construction only
+	 * @param bool $allow
+	 */
+	public function setAllowCreateIpActors( bool $allow ): void {
+		$this->allowCreateIpActors = $allow;
 	}
 
 	/**
