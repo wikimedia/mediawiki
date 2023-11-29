@@ -22,6 +22,7 @@
 namespace MediaWiki\Pager;
 
 use IContextSource;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
@@ -32,16 +33,15 @@ use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -69,6 +69,9 @@ class BlockListPager extends TablePager {
 
 	/** @var string[] */
 	private $formattedComments = [];
+
+	/** @var int */
+	private $readStage;
 
 	/**
 	 * @param IContextSource $context
@@ -108,6 +111,14 @@ class BlockListPager extends TablePager {
 		$this->specialPageFactory = $specialPageFactory;
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
+		$this->readStage = $this->getConfig()->get( MainConfigNames::BlockTargetMigrationStage )
+			& SCHEMA_COMPAT_READ_MASK;
+		if ( $this->readStage !== SCHEMA_COMPAT_READ_OLD
+			&& $this->readStage !== SCHEMA_COMPAT_READ_NEW
+		) {
+			throw new ConfigException(
+				'$wgBlockTargetMigrationStage has an invalid read stage' );
+		}
 	}
 
 	protected function getFieldNames() {
@@ -115,12 +126,12 @@ class BlockListPager extends TablePager {
 
 		if ( $headers === null ) {
 			$headers = [
-				'ipb_timestamp' => 'blocklist-timestamp',
-				'ipb_target' => 'blocklist-target',
-				'ipb_expiry' => 'blocklist-expiry',
-				'ipb_by' => 'blocklist-by',
-				'ipb_params' => 'blocklist-params',
-				'ipb_reason' => 'blocklist-reason',
+				'bl_timestamp' => 'blocklist-timestamp',
+				'target' => 'blocklist-target',
+				'bl_expiry' => 'blocklist-expiry',
+				'by' => 'blocklist-by',
+				'params' => 'blocklist-params',
+				'bl_reason' => 'blocklist-reason',
 			];
 			foreach ( $headers as $key => $val ) {
 				$headers[$key] = $this->msg( $val )->text();
@@ -167,37 +178,15 @@ class BlockListPager extends TablePager {
 		$linkRenderer = $this->getLinkRenderer();
 
 		switch ( $name ) {
-			case 'ipb_timestamp':
+			case 'bl_timestamp':
 				$formatted = htmlspecialchars( $language->userTimeAndDate( $value, $this->getUser() ) );
 				break;
 
-			case 'ipb_target':
-				if ( $row->ipb_auto ) {
-					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
-				} else {
-					[ $target, ] = $this->blockUtils->parseBlockTarget( $row->ipb_address );
-
-					if ( is_string( $target ) ) {
-						if ( IPUtils::isValidRange( $target ) ) {
-							$target = User::newFromName( $target, false );
-						} else {
-							$formatted = $target;
-						}
-					}
-
-					if ( $target instanceof UserIdentity ) {
-						$formatted = Linker::userLink( $target->getId(), $target->getName() );
-						$formatted .= Linker::userToolLinks(
-							$target->getId(),
-							$target->getName(),
-							false,
-							Linker::TOOL_LINKS_NOBLOCK
-						);
-					}
-				}
+			case 'target':
+				$formatted = $this->formatTarget( $row );
 				break;
 
-			case 'ipb_expiry':
+			case 'bl_expiry':
 				$formatted = htmlspecialchars( $language->formatExpiry(
 					$value,
 					/* User preference timezone */true,
@@ -206,20 +195,21 @@ class BlockListPager extends TablePager {
 				) );
 				if ( $this->getAuthority()->isAllowed( 'block' ) ) {
 					$links = [];
-					if ( $row->ipb_auto ) {
+					if ( $row->bt_auto ) {
 						$links[] = $linkRenderer->makeKnownLink(
 							$this->specialPageFactory->getTitleForAlias( 'Unblock' ),
 							$msg['unblocklink'],
 							[],
-							[ 'wpTarget' => "#{$row->ipb_id}" ]
+							[ 'wpTarget' => "#{$row->bl_id}" ]
 						);
 					} else {
+						$target = $row->bt_address ?? $row->bt_user_text;
 						$links[] = $linkRenderer->makeKnownLink(
-							$this->specialPageFactory->getTitleForAlias( 'Unblock/' . $row->ipb_address ),
+							$this->specialPageFactory->getTitleForAlias( "Unblock/$target" ),
 							$msg['unblocklink']
 						);
 						$links[] = $linkRenderer->makeKnownLink(
-							$this->specialPageFactory->getTitleForAlias( 'Block/' . $row->ipb_address ),
+							$this->specialPageFactory->getTitleForAlias( "Block/$target" ),
 							$msg['change-blocklink']
 						);
 					}
@@ -248,44 +238,44 @@ class BlockListPager extends TablePager {
 				}
 				break;
 
-			case 'ipb_by':
-				$formatted = Linker::userLink( (int)$value, $row->ipb_by_text );
-				$formatted .= Linker::userToolLinks( (int)$value, $row->ipb_by_text );
+			case 'by':
+				$formatted = Linker::userLink( (int)$value, $row->bl_by_text );
+				$formatted .= Linker::userToolLinks( (int)$value, $row->bl_by_text );
 				break;
 
-			case 'ipb_reason':
+			case 'bl_reason':
 				$formatted = $this->formattedComments[$this->getResultOffset()];
 				break;
 
-			case 'ipb_params':
+			case 'params':
 				$properties = [];
 
-				if ( $row->ipb_sitewide ) {
+				if ( $row->bl_sitewide ) {
 					$properties[] = htmlspecialchars( $msg['blocklist-editing-sitewide'] );
 				}
 
-				if ( !$row->ipb_sitewide && $this->restrictions ) {
+				if ( !$row->bl_sitewide && $this->restrictions ) {
 					$list = $this->getRestrictionListHTML( $row );
 					if ( $list ) {
 						$properties[] = htmlspecialchars( $msg['blocklist-editing'] ) . $list;
 					}
 				}
 
-				if ( $row->ipb_anon_only ) {
+				if ( $row->bl_anon_only ) {
 					$properties[] = htmlspecialchars( $msg['anononlyblock'] );
 				}
-				if ( $row->ipb_create_account ) {
+				if ( $row->bl_create_account ) {
 					$properties[] = htmlspecialchars( $msg['createaccountblock'] );
 				}
-				if ( $row->ipb_user && !$row->ipb_enable_autoblock ) {
+				if ( $row->bt_user && !$row->bl_enable_autoblock ) {
 					$properties[] = htmlspecialchars( $msg['noautoblockblock'] );
 				}
 
-				if ( $row->ipb_block_email ) {
+				if ( $row->bl_block_email ) {
 					$properties[] = htmlspecialchars( $msg['emailblock'] );
 				}
 
-				if ( !$row->ipb_allow_usertalk ) {
+				if ( !$row->bl_allow_usertalk ) {
 					$properties[] = htmlspecialchars( $msg['blocklist-nousertalk'] );
 				}
 
@@ -311,6 +301,38 @@ class BlockListPager extends TablePager {
 	}
 
 	/**
+	 * Format the target field
+	 * @param stdClass $row
+	 * @return string
+	 */
+	private function formatTarget( $row ) {
+		if ( $row->bt_auto ) {
+			return $this->msg( 'autoblockid', $row->bl_id )->parse();
+		}
+
+		[ $target, $type ] = $this->blockUtils->parseBlockTargetRow( $row );
+
+		if ( $type === Block::TYPE_RANGE ) {
+			$userId = 0;
+			$userName = $target;
+		} elseif ( $target instanceof UserIdentity ) {
+			$userId = $target->getId();
+			$userName = $target->getName();
+		} elseif ( is_string( $target ) ) {
+			return htmlspecialchars( $target );
+		} else {
+			return $this->msg( 'empty-username' )->escaped();
+		}
+		return Linker::userLink( $userId, $userName ) .
+			Linker::userToolLinks(
+				$userId,
+				$userName,
+				false,
+				Linker::TOOL_LINKS_NOBLOCK
+			);
+	}
+
+	/**
 	 * Get Restriction List HTML
 	 *
 	 * @param stdClass $row
@@ -322,7 +344,7 @@ class BlockListPager extends TablePager {
 		$linkRenderer = $this->getLinkRenderer();
 
 		foreach ( $this->restrictions as $restriction ) {
-			if ( $restriction->getBlockId() !== (int)$row->ipb_id ) {
+			if ( $restriction->getBlockId() !== (int)$row->bl_id ) {
 				continue;
 			}
 
@@ -399,47 +421,97 @@ class BlockListPager extends TablePager {
 	}
 
 	public function getQueryInfo() {
-		$commentQuery = $this->commentStore->getJoin( 'ipb_reason' );
-
-		$info = [
-			'tables' => array_merge(
-				[ 'ipblocks', 'ipblocks_by_actor' => 'actor' ],
-				$commentQuery['tables']
-			),
-			'fields' => [
-				'ipb_id',
-				'ipb_address',
-				'ipb_user',
-				'ipb_by' => 'ipblocks_by_actor.actor_user',
-				'ipb_by_text' => 'ipblocks_by_actor.actor_name',
-				'ipb_timestamp',
-				'ipb_auto',
-				'ipb_anon_only',
-				'ipb_create_account',
-				'ipb_enable_autoblock',
-				'ipb_expiry',
-				'ipb_range_start',
-				'ipb_range_end',
-				'ipb_deleted',
-				'ipb_block_email',
-				'ipb_allow_usertalk',
-				'ipb_sitewide',
-			] + $commentQuery['fields'],
-			'conds' => $this->conds,
-			'join_conds' => [
-				'ipblocks_by_actor' => [ 'JOIN', 'actor_id=ipb_by_actor' ]
-			] + $commentQuery['joins']
-		];
-
-		# Filter out any expired blocks
 		$db = $this->getDatabase();
-		$info['conds'][] = $db->expr( 'ipb_expiry', '>', $db->timestamp() );
+		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
+			$commentQuery = $this->commentStore->getJoin( 'ipb_reason' );
+			$info = [
+				'tables' => array_merge(
+					[ 'ipblocks', 'ipblocks_by_actor' => 'actor' ],
+					$commentQuery['tables']
+				),
+				'fields' => [
+					'bt_address' => 'ipb_address',
+					'bt_user_text' => 'ipb_address',
+					'bt_user' => 'ipb_user',
+					'bt_auto' => 'ipb_auto',
+					'bt_range_start' => 'ipb_range_start',
+					'bt_range_end' => 'ipb_range_end',
+					'bl_id' => 'ipb_id',
+					'bl_by' => 'ipblocks_by_actor.actor_user',
+					'bl_by_text' => 'ipblocks_by_actor.actor_name',
+					'bl_timestamp' => 'ipb_timestamp',
+					'bl_anon_only' => 'ipb_anon_only',
+					'bl_create_account' => 'ipb_create_account',
+					'bl_enable_autoblock' => 'ipb_enable_autoblock',
+					'bl_expiry' => 'ipb_expiry',
+					'bl_deleted' => 'ipb_deleted',
+					'bl_block_email' => 'ipb_block_email',
+					'bl_allow_usertalk' => 'ipb_allow_usertalk',
+					'bl_sitewide' => 'ipb_sitewide',
+					'bl_reason_text' => $commentQuery['fields']['ipb_reason_text'],
+					'bl_reason_data' => $commentQuery['fields']['ipb_reason_data'],
+					'bl_reason_cid' => $commentQuery['fields']['ipb_reason_cid']
+				] + $commentQuery['fields'],
+				'conds' => $this->conds,
+				'join_conds' => [
+					'ipblocks_by_actor' => [ 'JOIN', 'actor_id=ipb_by_actor' ]
+				] + $commentQuery['joins']
+			];
+			# Filter out any expired blocks
+			$info['conds'][] = $db->expr( 'ipb_expiry', '>', $db->timestamp() );
 
-		# Is the user allowed to see hidden blocks?
-		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$info['conds']['ipb_deleted'] = 0;
+			# Is the user allowed to see hidden blocks?
+			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+				$info['conds']['ipb_deleted'] = 0;
+			}
+		} else {
+			$commentQuery = $this->commentStore->getJoin( 'bl_reason' );
+			$info = [
+				'tables' => array_merge(
+					[
+						'block',
+						'block_by_actor' => 'actor',
+						'block_target',
+					],
+					$commentQuery['tables']
+				),
+				'fields' => [
+					// The target fields should be those accepted by BlockUtils::parseBlockTargetRow()
+					'bt_address',
+					'bt_user_text',
+					'bt_user',
+					'bt_auto',
+					'bt_range_start',
+					'bt_range_end',
+					// Block fields and aliases
+					'bl_id',
+					'bl_by' => 'block_by_actor.actor_user',
+					'bl_by_text' => 'block_by_actor.actor_name',
+					'bl_timestamp',
+					'bl_anon_only',
+					'bl_create_account',
+					'bl_enable_autoblock',
+					'bl_expiry',
+					'bl_deleted',
+					'bl_block_email',
+					'bl_allow_usertalk',
+					'bl_sitewide',
+				] + $commentQuery['fields'],
+				'conds' => $this->conds,
+				'join_conds' => [
+					'block_by_actor' => [ 'JOIN', 'actor_id=bl_by_actor' ],
+					'block_target' => [ 'JOIN', 'bt_id=bl_target' ],
+				] + $commentQuery['joins']
+			];
+
+			# Filter out any expired blocks
+			$info['conds'][] = $db->expr( 'bl_expiry', '>', $db->timestamp() );
+
+			# Is the user allowed to see hidden blocks?
+			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+				$info['conds']['bl_deleted'] = 0;
+			}
 		}
-
 		return $info;
 	}
 
@@ -450,11 +522,23 @@ class BlockListPager extends TablePager {
 	 */
 	public function getTotalAutoblocks() {
 		$dbr = $this->getDatabase();
-		return (int)$dbr->newSelectQueryBuilder()
-			->select( 'COUNT(*)' )
-			->from( 'ipblocks' )
-			->where( [ 'ipb_auto' => '1', $dbr->expr( 'ipb_expiry', '>=', $dbr->timestamp() ), ] )
-			->caller( __METHOD__ )->fetchField();
+		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
+			return (int)$dbr->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'ipblocks' )
+				->where( [ 'ipb_auto' => '1', $dbr->expr( 'ipb_expiry', '>=', $dbr->timestamp() ), ] )
+				->caller( __METHOD__ )->fetchField();
+		} else {
+			return (int)$dbr->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'block' )
+				->join( 'block_target', null, 'bt_id=bl_target' )
+				->where( [
+					'bt_auto' => '1',
+					$dbr->expr( 'bl_expiry', '>=', $dbr->timestamp() )
+				] )
+				->caller( __METHOD__ )->fetchField();
+		}
 	}
 
 	protected function getTableClass() {
@@ -462,7 +546,11 @@ class BlockListPager extends TablePager {
 	}
 
 	public function getIndexField() {
-		return [ [ 'ipb_timestamp', 'ipb_id' ] ];
+		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
+			return [ [ 'ipb_timestamp', 'ipb_id' ] ];
+		} else {
+			return [ [ 'bl_timestamp', 'bl_id' ] ];
+		}
 	}
 
 	public function getDefaultSort() {
@@ -484,16 +572,19 @@ class BlockListPager extends TablePager {
 
 		$partialBlocks = [];
 		foreach ( $result as $row ) {
-			$lb->add( NS_USER, $row->ipb_address );
-			$lb->add( NS_USER_TALK, $row->ipb_address );
-
-			if ( $row->ipb_by ?? null ) {
-				$lb->add( NS_USER, $row->ipb_by_text );
-				$lb->add( NS_USER_TALK, $row->ipb_by_text );
+			$target = $row->bt_address ?? $row->bt_user_text;
+			if ( $target !== null ) {
+				$lb->add( NS_USER, $target );
+				$lb->add( NS_USER_TALK, $target );
 			}
 
-			if ( !$row->ipb_sitewide ) {
-				$partialBlocks[] = (int)$row->ipb_id;
+			if ( isset( $row->bl_by_text ) ) {
+				$lb->add( NS_USER, $row->bl_by_text );
+				$lb->add( NS_USER_TALK, $row->bl_by_text );
+			}
+
+			if ( !$row->bl_sitewide ) {
+				$partialBlocks[] = (int)$row->bl_id;
 			}
 		}
 
@@ -517,7 +608,7 @@ class BlockListPager extends TablePager {
 
 		// Format comments
 		// The keys of formattedComments will be the corresponding offset into $result
-		$this->formattedComments = $this->rowCommentFormatter->formatRows( $result, 'ipb_reason' );
+		$this->formattedComments = $this->rowCommentFormatter->formatRows( $result, 'bl_reason' );
 	}
 
 }

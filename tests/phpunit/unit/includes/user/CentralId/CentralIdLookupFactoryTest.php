@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\User\CentralId;
 
 use InvalidArgumentException;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
@@ -36,12 +37,14 @@ class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 				MainConfigNames::SharedTables => [],
 				MainConfigNames::LocalDatabases => [],
 			] ),
+			'HideUserUtils' => new HideUserUtils( SCHEMA_COMPAT_OLD )
 		];
 		$localIdLookupTest = [
 			'class' => LocalIdLookup::class,
 			'services' => [
 				'MainConfig',
 				'DBLoadBalancerFactory',
+				'HideUserUtils',
 			]
 		];
 		return new CentralIdLookupFactory(

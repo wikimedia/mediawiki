@@ -486,7 +486,7 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['DisableUTEdit']['default'] = !$block->isUsertalkEditAllowed();
 			}
 
-			// If the username was hidden (ipb_deleted == 1), don't show the reason
+			// If the username was hidden (bl_deleted == 1), don't show the reason
 			// unless this user also has rights to hideuser: T37839
 			if ( !$block->getHideName() || $this->getAuthority()->isAllowed( 'hideuser' ) ) {
 				$fields['Reason']['default'] = $block->getReasonComment()->text;

@@ -459,7 +459,7 @@ abstract class AbstractBlock implements Block {
 	 * page needs to be passed into the block object, which is unaware
 	 * of the user.
 	 *
-	 * The ipb_allow_usertalk flag (which corresponds to the property
+	 * The bl_allow_usertalk flag (which corresponds to the property
 	 * allowUsertalk) is used on sitewide blocks and partial blocks
 	 * that contain a namespace restriction on the user talk namespace,
 	 * but do not contain a page restriction on the user's talk page.
@@ -507,7 +507,7 @@ abstract class AbstractBlock implements Block {
 			}
 		}
 
-		// This is a type of block which uses the ipb_allow_usertalk
+		// This is a type of block which uses the bl_allow_usertalk
 		// flag. The flag can still be overridden by global configs.
 		if ( !MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::BlockAllowsUTEdit )

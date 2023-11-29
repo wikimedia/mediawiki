@@ -6895,6 +6895,7 @@ class MainConfigSchema {
 				'services' => [
 					'MainConfig',
 					'DBLoadBalancerFactory',
+					'HideUserUtils',
 				]
 			]
 		],

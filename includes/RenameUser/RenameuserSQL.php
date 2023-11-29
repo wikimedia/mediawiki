@@ -114,6 +114,9 @@ class RenameuserSQL {
 	/** @var int */
 	private $updateRowsPerJob;
 
+	/** @var int */
+	private $blockWriteStage;
+
 	/**
 	 * Constructor
 	 *
@@ -133,8 +136,12 @@ class RenameuserSQL {
 		$this->userFactory = $services->getUserFactory();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->titleFactory = $services->getTitleFactory();
-		$this->updateRowsPerJob = $services->getMainConfig()->get( MainConfigNames::UpdateRowsPerJob );
 		$this->logger = LoggerFactory::getInstance( 'Renameuser' );
+
+		$config = $services->getMainConfig();
+		$this->updateRowsPerJob = $config->get( MainConfigNames::UpdateRowsPerJob );
+		$this->blockWriteStage = $config->get( MainConfigNames::BlockTargetMigrationStage )
+			& SCHEMA_COMPAT_WRITE_MASK;
 
 		$this->old = $old;
 		$this->new = $new;
@@ -212,12 +219,21 @@ class RenameuserSQL {
 		// Purge user cache
 		$user->invalidateCache();
 
-		// Update the ipblock table rows if this user has a block in there.
-		$dbw->newUpdateQueryBuilder()
-			->update( 'ipblocks' )
-			->set( [ 'ipb_address' => $this->new ] )
-			->where( [ 'ipb_user' => $this->uid, 'ipb_address' => $this->old ] )
-			->caller( __METHOD__ )->execute();
+		// Update the ipblocks table rows if this user has a block in there.
+		if ( $this->blockWriteStage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'ipblocks' )
+				->set( [ 'ipb_address' => $this->new ] )
+				->where( [ 'ipb_user' => $this->uid, 'ipb_address' => $this->old ] )
+				->caller( __METHOD__ )->execute();
+		}
+		if ( $this->blockWriteStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'block_target' )
+				->set( [ 'bt_user_text' => $this->new ] )
+				->where( [ 'bt_user' => $this->uid, 'bt_user_text' => $this->old ] )
+				->caller( __METHOD__ )->execute();
+		}
 
 		// Update this users block/rights log. Ideally, the logs would be historical,
 		// but it is really annoying when users have "clean" block logs by virtue of

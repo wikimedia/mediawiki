@@ -497,6 +497,7 @@ class SpecialPageFactory {
 				'DBLoadBalancerFactory',
 				'UserGroupManager',
 				'UserIdentityLookup',
+				'HideUserUtils',
 			]
 		],
 		'Block' => [
@@ -528,6 +529,7 @@ class SpecialPageFactory {
 			'class' => SpecialBlockList::class,
 			'services' => [
 				'LinkBatchFactory',
+				'DatabaseBlockStore',
 				'BlockRestrictionStore',
 				'DBLoadBalancerFactory',
 				'CommentStore',

@@ -30,7 +30,9 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\BlockListPager;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -123,14 +125,29 @@ class SpecialAutoblockList extends SpecialPage {
 	 * @return BlockListPager
 	 */
 	protected function getBlockListPager() {
-		$conds = [
-			'ipb_parent_block_id IS NOT NULL',
-			// ipb_parent_block_id <> 0 because of T282890
-			'ipb_parent_block_id <> 0',
-		];
-		# Is the user allowed to see hidden blocks?
-		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$conds['ipb_deleted'] = 0;
+		$readStage = $this->getConfig()
+				->get( MainConfigNames::BlockTargetMigrationStage ) & SCHEMA_COMPAT_READ_MASK;
+		if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
+			$conds = [
+				'ipb_parent_block_id IS NOT NULL',
+				// ipb_parent_block_id <> 0 because of T282890
+				'ipb_parent_block_id <> 0',
+			];
+			# Is the user allowed to see hidden blocks?
+			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+				$conds['ipb_deleted'] = 0;
+			}
+		} elseif ( $readStage === SCHEMA_COMPAT_READ_NEW ) {
+			$conds = [
+				'bl_parent_block_id IS NOT NULL',
+			];
+			# Is the user allowed to see hidden blocks?
+			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+				$conds['bl_deleted'] = 0;
+			}
+		} else {
+			throw new ConfigException(
+				'$wgBlockTargetMigrationStage has an invalid read stage' );
 		}
 
 		return new BlockListPager(

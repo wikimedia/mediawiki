@@ -48,6 +48,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'AutoblockExpiry' => 86400,
 			'BlockCIDRLimit' => [ 'IPv4' => 16, 'IPv6' => 19 ],
 			'BlockDisablesLogin' => false,
+			'BlockTargetMigrationStage' => SCHEMA_COMPAT_OLD,
 			'PutIPinRC' => true,
 			'UpdateRowsPerQuery' => 10,
 		];

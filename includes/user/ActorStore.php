@@ -23,6 +23,7 @@ namespace MediaWiki\User;
 use CannotCreateActorException;
 use DBAccessObjectUtils;
 use InvalidArgumentException;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
@@ -50,6 +51,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	private UserNameUtils $userNameUtils;
 	private TempUserConfig $tempUserConfig;
 	private LoggerInterface $logger;
+	private HideUserUtils $hideUserUtils;
 
 	/** @var string|false */
 	private $wikiId;
@@ -61,6 +63,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param UserNameUtils $userNameUtils
 	 * @param TempUserConfig $tempUserConfig
 	 * @param LoggerInterface $logger
+	 * @param HideUserUtils $hideUserUtils
 	 * @param string|false $wikiId
 	 */
 	public function __construct(
@@ -68,6 +71,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		UserNameUtils $userNameUtils,
 		TempUserConfig $tempUserConfig,
 		LoggerInterface $logger,
+		HideUserUtils $hideUserUtils,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		Assert::parameterType( [ 'string', 'false' ], $wikiId, '$wikiId' );
@@ -76,6 +80,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$this->userNameUtils = $userNameUtils;
 		$this->tempUserConfig = $tempUserConfig;
 		$this->logger = $logger;
+		$this->hideUserUtils = $hideUserUtils;
 		$this->wikiId = $wikiId;
 
 		$this->cache = new ActorCache( self::LOCAL_CACHE_SIZE );
@@ -712,7 +717,13 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $dbOrQueryFlags );
 		}
 
-		return ( new UserSelectQueryBuilder( $db, $this, $this->tempUserConfig ) )->options( $options );
+		$builder = new UserSelectQueryBuilder(
+			$db,
+			$this,
+			$this->tempUserConfig,
+			$this->hideUserUtils
+		);
+		return $builder->options( $options );
 	}
 
 	/**

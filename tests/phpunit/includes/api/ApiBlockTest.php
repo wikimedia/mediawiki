@@ -23,6 +23,7 @@ class ApiBlockTest extends ApiTestCase {
 
 	protected $mUser = null;
 	private $blockStore;
+	private $blockMigrationStage;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -36,6 +37,8 @@ class ApiBlockTest extends ApiTestCase {
 			]
 		);
 		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$this->blockMigrationStage =
+			$this->getConfVar( MainConfigNames::BlockTargetMigrationStage );
 	}
 
 	/**
@@ -148,11 +151,20 @@ class ApiBlockTest extends ApiTestCase {
 			new UltimateAuthority( $this->getTestSysop()->getUser() )
 		);
 
-		$this->assertSame( '1', $this->db->newSelectQueryBuilder()
-			->select( 'ipb_deleted' )
-			->from( 'ipblocks' )
-			->where( [ 'ipb_id' => $res[0]['block']['id'] ] )
-			->caller( __METHOD__ )->fetchField() );
+		if ( $this->blockMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$this->assertSame( '1', $this->db->newSelectQueryBuilder()
+				->select( 'ipb_deleted' )
+				->from( 'ipblocks' )
+				->where( [ 'ipb_id' => $res[0]['block']['id'] ] )
+				->caller( __METHOD__ )->fetchField() );
+		}
+		if ( $this->blockMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$this->assertSame( '1', $this->db->newSelectQueryBuilder()
+				->select( 'bl_deleted' )
+				->from( 'block' )
+				->where( [ 'bl_id' => $res[0]['block']['id'] ] )
+				->caller( __METHOD__ )->fetchField() );
+		}
 	}
 
 	public function testBlockWithProhibitedHide() {
@@ -173,11 +185,20 @@ class ApiBlockTest extends ApiTestCase {
 
 		$res = $this->doBlock( [ 'noemail' => '' ] );
 
-		$this->assertSame( '1', $this->getDb()->newSelectQueryBuilder()
-			->select( 'ipb_block_email' )
-			->from( 'ipblocks' )
-			->where( [ 'ipb_id' => $res[0]['block']['id'] ] )
-			->caller( __METHOD__ )->fetchField() );
+		if ( $this->blockMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$this->assertSame( '1', $this->getDb()->newSelectQueryBuilder()
+				->select( 'ipb_block_email' )
+				->from( 'ipblocks' )
+				->where( [ 'ipb_id' => $res[0]['block']['id'] ] )
+				->caller( __METHOD__ )->fetchField() );
+		}
+		if ( $this->blockMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$this->assertSame( '1', $this->getDb()->newSelectQueryBuilder()
+				->select( 'bl_block_email' )
+				->from( 'block' )
+				->where( [ 'bl_id' => $res[0]['block']['id'] ] )
+				->caller( __METHOD__ )->fetchField() );
+		}
 	}
 
 	public function testBlockWithProhibitedEmailBlock() {
@@ -196,11 +217,20 @@ class ApiBlockTest extends ApiTestCase {
 		MWTimestamp::setFakeTime( $fakeTime );
 		$res = $this->doBlock( [ 'expiry' => '1 day' ] );
 
-		$expiry = $this->getDb()->newSelectQueryBuilder()
-			->select( 'ipb_expiry' )
-			->from( 'ipblocks' )
-			->where( [ 'ipb_id' => $res[0]['block']['id'] ] )
-			->caller( __METHOD__ )->fetchField();
+		if ( $this->blockMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$expiry = $this->getDb()->newSelectQueryBuilder()
+				->select( 'ipb_expiry' )
+				->from( 'ipblocks' )
+				->where( [ 'ipb_id' => $res[0]['block']['id'] ] )
+				->caller( __METHOD__ )->fetchField();
+		}
+		if ( $this->blockMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$expiry = $this->getDb()->newSelectQueryBuilder()
+				->select( 'bl_expiry' )
+				->from( 'block' )
+				->where( [ 'bl_id' => $res[0]['block']['id'] ] )
+				->caller( __METHOD__ )->fetchField();
+		}
 
 		$this->assertSame( (int)wfTimestamp( TS_UNIX, $expiry ), $fakeTime + 86400 );
 	}
