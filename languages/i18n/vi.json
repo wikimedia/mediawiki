@@ -2782,6 +2782,7 @@
 	"blocklog-showlog": "{{GENDER:$1}}Thành viên này trước đây đã bị cấm. Nhật trình cấm được ghi ra ở đây để tiện theo dõi:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Thành viên}} này trước đây đã từng bị cấm và ẩn đi. \n\nNhật trình ẩn được ghi dưới đây để tiện theo dõi:",
 	"unblocklog-showlog": "Nhật trình cấm của {{GENDER:$1|thành viên}} này được cung cấp ở dưới để tiện theo dõi:",
+	"unblocklog-showsuppresslog": "Nhật trình xoá hẳn của {{GENDER:$1|thành viên}} này được cung cấp ở dưới để tiện theo dõi:",
 	"blocklogtext": "Đây là nhật trình ghi lại những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê ở đây. Xem thêm [[Special:BlockList|danh sách cấm]] để có danh sách cấm và cấm hẳn hiện tại.",
 	"block-log-flags-anononly": "chỉ cấm người dùng vô danh",
 	"block-log-flags-nocreate": "cấm mở tài khoản",

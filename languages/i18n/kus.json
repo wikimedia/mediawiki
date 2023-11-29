@@ -267,7 +267,7 @@
 	"compareselectedversions": "Makim dɛmis banɛ ka fʋ gaŋ",
 	"editundo": "lɛbisim",
 	"diff-empty": "(Kɔn'ɔb-kɔn'ɔb kae)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Tiɛnrpa'alʋg ayinne tensʋk|$1 tiɛnrpa'ala tensʋk}} dinɛ ka onɛ tʋmi li la nɔɔ pʋ yinaa.)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Tiɛnrpa'alʋg ayinne tensʋk|$1 tiɛnrpa'ala tensʋk}} dinɛ ka onɛ {{GENDER:$3| tʋmi li la}}  pʋ yinaa)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Dɛmisʋg ayinne dinɛ mir|$1 dɛmisa banɛ mir taaba}} ka {{PLURAL:$2|tʋmtʋm sɔ'|$2 tʋmtʋm sieba}} linɛ pʋ yinaa.)",
 	"searchresults": "Labaar dinɛ yi iebin na",
 	"searchresults-title": "Labaar linɛ yi iebi ken \"$1\"",
