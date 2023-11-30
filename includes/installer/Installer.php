@@ -242,7 +242,7 @@ abstract class Installer {
 		'_LogoTagline' => '',
 		'_LogoTaglineWidth' => 117,
 		'_LogoTaglineHeight' => 13,
-
+		'_WithDevelopmentSettings' => false,
 		'wgAuthenticationTokenVersion' => 1,
 	];
 

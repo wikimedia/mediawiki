@@ -50,6 +50,8 @@ For notes on 1.41.x and older releases, see HISTORY.
 * (T13555) MediaWiki now includes styles that allow more accessible markup for
   section headings. MediaWiki's own HTML output will be changed in the future.
   More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
+* (T347347) The CLI installer accepts a "--with-developmentsettings" argument
+  to require the DevelopmentSettings.php file at install time.
 * …
 
 === External library changes in 1.42 ===
