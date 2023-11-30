@@ -852,14 +852,12 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * Checks if the output of transform() for this file is likely
-	 * to be valid. If this is false, various user elements will
-	 * display a placeholder instead.
+	 * Checks if the output of transform() for this file is likely to be valid.
 	 *
-	 * Currently, this checks if the file is an image format
-	 * that can be converted to a format
-	 * supported by all browsers (namely GIF, PNG and JPEG),
-	 * or if it is an SVG image and SVG conversion is enabled.
+	 * In other words, this will return true if a thumbnail can be provided for this
+	 * image (e.g. if [[File:...|thumb]] produces a result on a wikitext page).
+	 *
+	 * If this is false, various user elements will display a placeholder instead.
 	 *
 	 * @return bool
 	 */
