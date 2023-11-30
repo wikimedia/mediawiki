@@ -42,18 +42,6 @@ interface Processor {
 	public function getRequirements( array $info, $includeDev );
 
 	/**
-	 * Get the path for additional autoloaders, e.g. the one of Composer.
-	 *
-	 * @deprecated since 1.39, use getExtractedAutoloadInfo instead
-	 *
-	 * @param string $dir
-	 * @param array $info
-	 * @return array Containing the paths for autoloader file(s).
-	 * @since 1.27
-	 */
-	public function getExtraAutoloaderPaths( $dir, array $info );
-
-	/**
 	 * Returns the extracted autoload info.
 	 * The autoload info is returned as an associative array with three keys:
 	 * - files: a list of files to load, for use with Autoloader::loadFile()
