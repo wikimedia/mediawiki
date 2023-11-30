@@ -375,6 +375,12 @@ class DeferredUpdates {
 			// TODO: Do we still need this now maintenance scripts automatically call
 			// tryOpportunisticExecute from addUpdate, from every commit, and every
 			// waitForReplication call?
+			LoggerFactory::getInstance( 'DeferredUpdates' )->debug(
+				'Enqueuing {pendingUpdatesCount} updates as jobs',
+				[
+					'pendingUpdatesCount' => self::pendingUpdatesCount(),
+				]
+			);
 			self::getScopeStack()->current()->consumeMatchingUpdates(
 				self::ALL,
 				EnqueueableDataUpdate::class,
