@@ -1482,6 +1482,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Html\\FormOptions' => __DIR__ . '/includes/Html/FormOptions.php',
 	'MediaWiki\\Html\\Html' => __DIR__ . '/includes/Html/Html.php',
 	'MediaWiki\\Html\\HtmlHelper' => __DIR__ . '/includes/Html/HtmlHelper.php',
+	'MediaWiki\\Html\\HtmlHelperTrait' => __DIR__ . '/includes/Html/HtmlHelperTrait.php',
 	'MediaWiki\\Html\\HtmlJsCode' => __DIR__ . '/includes/Html/HtmlJsCode.php',
 	'MediaWiki\\Html\\ListToggle' => __DIR__ . '/includes/Html/ListToggle.php',
 	'MediaWiki\\Html\\TemplateParser' => __DIR__ . '/includes/Html/TemplateParser.php',
