@@ -29,6 +29,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
@@ -44,6 +45,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	private CommentStore $commentStore;
 	private CommentFormatter $commentFormatter;
 	private NameTableStore $changeTagDefStore;
+	private UserNameUtils $userNameUtils;
 
 	/** @var string[]|null */
 	private $formattedComments;
@@ -54,18 +56,21 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 * @param CommentStore $commentStore
 	 * @param RowCommentFormatter $commentFormatter
 	 * @param NameTableStore $changeTagDefStore
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		CommentStore $commentStore,
 		RowCommentFormatter $commentFormatter,
-		NameTableStore $changeTagDefStore
+		NameTableStore $changeTagDefStore,
+		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $query, $moduleName, 'le' );
 		$this->commentStore = $commentStore;
 		$this->commentFormatter = $commentFormatter;
 		$this->changeTagDefStore = $changeTagDefStore;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_type = false,
@@ -364,6 +369,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				}
 				if ( $this->fld_userid ) {
 					$vals['userid'] = (int)$row->actor_user;
+				}
+
+				if ( isset( $vals['user'] ) && $this->userNameUtils->isTemp( $vals['user'] ) ) {
+					$vals['temp'] = true;
 				}
 
 				if ( !$row->actor_user ) {

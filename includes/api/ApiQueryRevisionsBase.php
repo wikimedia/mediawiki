@@ -35,6 +35,7 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -85,6 +86,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	private CommentFormatter $commentFormatter;
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
+	private UserNameUtils $userNameUtils;
 
 	/**
 	 * @since 1.37 Support injection of services
@@ -101,6 +103,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param CommentFormatter|null $commentFormatter
 	 * @param TempUserCreator|null $tempUserCreator
 	 * @param UserFactory|null $userFactory
+	 * @param UserNameUtils|null $userNameUtils
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -114,7 +117,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		ContentTransformer $contentTransformer = null,
 		CommentFormatter $commentFormatter = null,
 		TempUserCreator $tempUserCreator = null,
-		UserFactory $userFactory = null
+		UserFactory $userFactory = null,
+		UserNameUtils $userNameUtils = null
 	) {
 		parent::__construct( $queryModule, $moduleName, $paramPrefix );
 		// This class is part of the stable interface and
@@ -129,6 +133,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
 		$this->tempUserCreator = $tempUserCreator ?? $services->getTempUserCreator();
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
+		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
 	}
 
 	public function execute() {
@@ -337,6 +342,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$u = $revision->getUser( RevisionRecord::RAW );
 				if ( $this->fld_user ) {
 					$vals['user'] = $u->getName();
+				}
+				if ( $this->userNameUtils->isTemp( $u->getName() ) ) {
+					$vals['temp'] = true;
 				}
 				if ( !$u->isRegistered() ) {
 					$vals['anon'] = true;

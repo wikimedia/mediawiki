@@ -1,9 +1,11 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @group API
@@ -55,6 +57,30 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$page->doUserEditContent(
 			$page->getContentHandler()->unserializeContent( __CLASS__ ),
 			$this->getServiceContainer()->getUserFactory()->newAnonymous(),
+			$summary
+		);
+	}
+
+	private function doTempPageEdit( LinkTarget $target, $summary ) {
+		// Set up temp user config
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
+				'enabled' => true,
+				'expireAfterDays' => null,
+				'actions' => [ 'edit' ],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			]
+		);
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
+		$page->doUserEditContent(
+			$page->getContentHandler()->unserializeContent( __CLASS__ ),
+			$this->getServiceContainer()
+				->getUserFactory()
+				->newFromUserIdentity( new UserIdentityValue( 123456, '*Unregistered 1' ) ),
 			$summary
 		);
 	}
@@ -277,13 +303,20 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	public function testUserPropParameter() {
 		$userEditTarget = new TitleValue( NS_MAIN, 'Foo' );
 		$anonEditTarget = new TitleValue( NS_MAIN, 'Bar' );
+		$tempEditTarget = new TitleValue( NS_MAIN, 'Baz' );
 		$this->doPageEdit( $this->getLoggedInTestUser(), $userEditTarget, 'Create the page' );
 		$this->doAnonPageEdit( $anonEditTarget, 'Create the page' );
+		$this->doTempPageEdit( $tempEditTarget, 'Create the page' );
 
 		$result = $this->doListRecentChangesRequest( [ 'rcprop' => 'user' ] );
 
 		$this->assertEquals(
 			[
+				[
+					'type' => 'new',
+					'temp' => true,
+					'user' => '*Unregistered 1',
+				],
 				[
 					'type' => 'new',
 					'anon' => true,
