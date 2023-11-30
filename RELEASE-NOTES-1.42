@@ -155,6 +155,8 @@ because of Phabricator reports.
   CoreParserFunctions::namespace() instead.
 * Processor:: and ExtensionProcessor::getExtraAutoloaderPaths(), deprecated in
   1.39, have been removed; use ::getExtractedAutoloadInfo() instead.
+* MWExceptionHandler::rollbackMasterChangesAndLog(), deprecated in 1.37, has
+  been removed. Use ::rollbackPrimaryChangesAndLog() instead.
 * MediaWikiIntegrationTestCase::$tablesUsed has been deprecated. The framework
   now detects these automatically.
 * Support for setting dynamic property on StatusValue object has been removed.
