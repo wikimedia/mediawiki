@@ -20,7 +20,8 @@
 
 	function onHTMLFormEnhance( $root ) {
 		var $skins = $root.find( '#mw-input-wpskin' );
-		if ( !$skins.length ) {
+		// Don't kick in before this tab panel is infused and hide-if executed (T352358).
+		if ( !$skins.length || $skins.closest( '.mw-htmlform-autoinfuse-lazy' ).length ) {
 			return;
 		}
 
