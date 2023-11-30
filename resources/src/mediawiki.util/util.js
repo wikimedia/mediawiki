@@ -1,3 +1,7 @@
+/**
+ * @description Utility library provided by the `mediawiki.util` ResourceLoader module. Accessible inside ResourceLoader modules
+ * or for gadgets as part of the [mw global object]{@link mw}.
+ */
 'use strict';
 
 var config = require( './config.json' );
@@ -47,15 +51,24 @@ function escapeIdInternal( str, mode ) {
 }
 
 /**
- * Utility library provided by the `mediawiki.util` module.
- *
- * @exports mw.util
+ * @namespace mw.util
+ * @classdesc Alias for the [mediawiki.util]{@link mediawiki.module:util} module.
+ */
+
+/**
+ * @example
+ *   // Inside MediaWiki extensions
+ *   const util = require( 'mediawiki.util' );
+ *   // In gadgets
+ *   const mwUtil = mw.util;
+ * @exports mediawiki.util
  */
 var util = {
 
 	/**
 	 * Encode the string like PHP's rawurlencode
 	 *
+	 * @method
 	 * @param {string} str String to be encoded.
 	 * @return {string} Encoded string
 	 */
@@ -248,13 +261,14 @@ var util = {
 	 * purging after edits, thus leading to stale content being served from a
 	 * non-canonical URL.
 	 *
+	 * @method
 	 * @param {string} str String to be encoded.
 	 * @return {string} Encoded string
 	 */
 	wikiUrlencode: mw.internalWikiUrlencode,
 
 	/**
-	 * Get the URL to a given local wiki page name,
+	 * Get the URL to a given local wiki page name.
 	 *
 	 * @param {string|null} [pageName=wgPageName] Page name
 	 * @param {Object} [params] A mapping of query parameter names to values,
@@ -502,7 +516,7 @@ var util = {
 	 * @param {string} [label] of the new portlet.
 	 * @param {string} [before] selector of the element preceding the new portlet. If not passed
 	 *  the caller is responsible for appending the element to the DOM before using addPortletLink.
-	 * @fires util_addPortlet
+	 * @fires Hooks~'util.addPortlet'
 	 * @return {HTMLElement|null} will be null if it was not possible to create an portlet with
 	 *  the required information e.g. the selector given in before parameter could not be resolved
 	 *  to an existing element in the page.
@@ -542,7 +556,8 @@ var util = {
 		/**
 		 * Fires when a portlet is successfully created.
 		 *
-		 * @event util_addPortlet
+		 * @event ~'util.addPortlet'
+		 * @memberof Hooks
 		 * @param {HTMLElement} portlet the portlet that was created.
 		 * @param {string|null} before the css selector used to append to the DOM.
 		 * @example
@@ -609,7 +624,7 @@ var util = {
 	 * @param {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
 	 *  Must be another item in the same list, it will be ignored otherwise.
 	 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
-	 * @fires util_addPortletLink
+	 * @fires Hooks~'util.addPortletLink'
 	 * @return {HTMLElement|null} The added list item, or null if no element was added.
 	 */
 	addPortletLink: function ( portletId, href, text, id, tooltip, accesskey, nextnode ) {
@@ -704,7 +719,8 @@ var util = {
 		/**
 		 * Fires when a portlet link is successfully created.
 		 *
-		 * @event util_addPortletLink
+		 * @event ~'util.addPortletLink'
+		 * @memberof Hooks
 		 * @param {HTMLElement} item the portlet link that was created.
 		 * @param {Object} information about the item include id.
 		 * @example

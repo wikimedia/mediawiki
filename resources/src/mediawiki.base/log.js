@@ -4,8 +4,7 @@
 /* eslint-disable no-console */
 
 /**
- * @class mw
- * @singleton
+ * @namespace mw.log
  */
 
 /**
@@ -60,7 +59,7 @@ mw.log.error = Function.prototype.bind.call( console.error, console );
  *
  *     hello( 1 );
  *
- *
+ * @memberof mw.log
  * @since 1.38
  * @param {string|null} key Name of the feature for deprecation tracker,
  *  or null for a console-only deprecation.

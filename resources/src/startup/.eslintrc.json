@@ -2,7 +2,7 @@
 	"root": true,
 	"extends": [
 		"wikimedia/client-es6",
-		"wikimedia/jsduck"
+		"wikimedia/jsdoc"
 	],
 	"parserOptions": {
 		"ecmaVersion": 3

@@ -12,16 +12,14 @@
 	/**
 	 * A Notification object for 1 message.
 	 *
-	 * The underscore in the name is to avoid a bug <https://github.com/senchalabs/jsduck/issues/304>.
-	 * It is not part of the actual class name.
+	 * The constructor is not publicly accessible; use [mw.notification.notify]{@link mw.notification} instead.
+	 * This does not insert anything into the document. To add to document use
+	 * [mw.notification.notify]{@link mw.notification#notify}.
 	 *
-	 * The constructor is not publicly accessible; use mw.notification#notify instead.
-	 * This does not insert anything into the document (see #start).
-	 *
-	 * @class mw.Notification_
-	 * @alternateClassName mw.Notification
-	 * @constructor
-	 * @private
+	 * @class Notification
+	 * @classdesc Describes a notification. See [mw.notification module]{@link mw.notification}.
+	 * @global
+	 * @hideconstructor
 	 * @param {mw.Message|jQuery|HTMLElement|string} message
 	 * @param {Object} options
 	 */
@@ -190,6 +188,7 @@
 
 	/**
 	 * Pause any running auto-hide timer for this notification
+	 * @memberof Notification
 	 */
 	Notification.prototype.pause = function () {
 		if ( this.isPaused ) {
@@ -207,6 +206,7 @@
 	 * Start autoHide timer if not already started.
 	 * Does nothing if autoHide is disabled.
 	 * Either to resume from pause or to make the first start.
+	 * @memberof Notification
 	 */
 	Notification.prototype.resume = function () {
 		var notif = this;
@@ -227,6 +227,7 @@
 
 	/**
 	 * Close the notification.
+	 * @memberof Notification
 	 */
 	Notification.prototype.close = function () {
 		var notif = this;
@@ -370,7 +371,9 @@
 	}
 
 	/**
-	 * @class mw.notification
+	 * @namespace mw.notification
+	 * @classdesc Send notifications to end users.
+	 * @memberof mw
 	 * @singleton
 	 */
 	notification = {
@@ -378,7 +381,8 @@
 		 * Pause auto-hide timers for all notifications.
 		 * Notifications will not auto-hide until resume is called.
 		 *
-		 * @see mw.Notification#pause
+		 * @see Notification#pause
+		 * @memberof mw.notification
 		 */
 		pause: function () {
 			callEachNotification(
@@ -390,6 +394,7 @@
 		/**
 		 * Resume any paused auto-hide timers from the beginning.
 		 * Only the first #autoHideLimit timers will be resumed.
+		 * @memberof mw.notification
 		 */
 		resume: function () {
 			callEachNotification(
@@ -405,10 +410,11 @@
 		/**
 		 * Display a notification message to the user.
 		 *
-		 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
+		 * @memberof mw.notification
+		 * @param {HTMLElement|HTMLElement[]|jQuery|Message|string} message
 		 * @param {Object} [options] The options to use for the notification.
-		 *  See #defaults for details.
-		 * @return {mw.Notification} Notification object
+		 *  See [#defaults]{@link mw.notification.defaults} for details.
+		 * @return {Notification} Notification object
 		 */
 		notify: function ( message, options ) {
 			var notif;
@@ -427,6 +433,7 @@
 
 		/**
 		 * @property {Object}
+		 * @memberof mw.notification
 		 * The defaults for #notify options parameter.
 		 *
 		 * - autoHide:

@@ -1,0 +1,18 @@
+/**
+ * The purpose of this file is to aid the generation of our jsdoc documentation.
+ * It documents global JSDoc types. It is never shipped in production.
+ * @ignore
+ */
+
+/**
+ * @namespace jQueryPlugins
+ * @classdesc MediaWiki includes the jQuery library. This is extended by a series of plugins.
+ *
+ * This page documents the list of jQuery plugins that can be used on a jQuery object. When using them
+ * please pay attention to their installation instructions.
+ */
+
+/**
+ * @namespace window
+ * @classdesc The global window object.
+ */

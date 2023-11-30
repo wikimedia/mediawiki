@@ -13,7 +13,11 @@ module.exports = {
 	],
 	source: {
 		include: [
-			'resources/src/mediawiki.util'
+			'resources/src/jsdoc.types.js',
+			'resources/src/mediawiki.base',
+			'resources/src/mediawiki.notification',
+			'resources/src/mediawiki.util',
+			'resources/src/startup'
 		],
 		exclude: [
 			/* The following modules are temporarily disabled as we haven't
@@ -54,7 +58,6 @@ module.exports = {
 			'resources/src/mediawiki.api',
 			'resources/src/mediawiki.special.changeslist.legend.js',
 			'resources/src/mediawiki.apipretty',
-			'resources/src/mediawiki.base',
 			'resources/src/mediawiki.special.changeslist.watchlistexpiry',
 			'resources/src/mediawiki.checkboxtoggle.js',
 			'resources/src/mediawiki.special.contributions.js',
@@ -107,7 +110,6 @@ module.exports = {
 			'resources/src/mediawiki.widgets.visibleLengthLimit',
 			'resources/src/mediawiki.misc-authed-pref',
 			'resources/src/moment',
-			'resources/src/mediawiki.notification',
 			'resources/src/oojs-global.js',
 			'resources/src/mediawiki.notification.convertmessagebox.js',
 			'resources/src/ooui-local.js',
@@ -115,7 +117,6 @@ module.exports = {
 			'resources/src/mediawiki.page.gallery.js',
 			'resources/src/skip-web2017-polyfills.js',
 			'resources/src/mediawiki.page.gallery.slideshow.js',
-			'resources/src/startup',
 			'resources/src/vue'
 		]
 	},

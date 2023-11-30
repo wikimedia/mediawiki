@@ -171,14 +171,17 @@ function updateTooltip( element ) {
 
 /**
  * Update the titles for all elements in a jQuery selection.
+ * Installed by [mediawiki.util]{@link mediawiki.module:util} module.
  *
- * @class updateTooltipAccessKeys
- * @memberof jQuery.fn
+ * @memberof jQueryPlugins
+ * @method updateTooltipAccessKeys
  * @return {jQuery}
  * @example
  *   // Converts tooltip "[z]" to associated browser shortcut key e.g. "[ctrl-option-z]"
- *   var $a = $('<a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a>');
- *   $a.updateTooltipAccessKeys();
+ *   mw.loader.using( 'mediawiki.util' ).then( () => {
+ *     var $a = $('<a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a>');
+ *     $a.updateTooltipAccessKeys();
+ *   } );
  * @chainable
  */
 $.fn.updateTooltipAccessKeys = function () {
@@ -195,6 +198,7 @@ $.fn.updateTooltipAccessKeys.getAccessKeyLabel = getAccessKeyLabel;
  * @method updateTooltipAccessKeys_getAccessKeyPrefix
  * @param {Object} [nav] An object with a 'userAgent' and 'platform' property.
  * @return {string}
+ * @ignore
  */
 $.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( nav ) {
 	return getAccessKeyModifiers( nav ) + '-';
@@ -205,12 +209,8 @@ $.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( nav ) {
  *
  * @method updateTooltipAccessKeys_setTestMode
  * @param {boolean} mode New mode
+ * @ignore
  */
 $.fn.updateTooltipAccessKeys.setTestMode = function ( mode ) {
 	testMode = mode;
 };
-
-/**
- * @class jQuery
- * @mixins jQuery.plugin.accessKeyLabel
- */

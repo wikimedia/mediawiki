@@ -13,17 +13,16 @@
 		hasOwn = Object.hasOwnProperty;
 
 	/**
-	 * Client for ResourceLoader server end point.
-	 *
+	 * @classdesc Client for ResourceLoader server end point.
 	 * This client is in charge of maintaining the module registry and state
 	 * machine, initiating network (batch) requests for loading modules, as
 	 * well as dependency resolution and execution of source code.
-	 *
-	 * For more information, refer to
-	 * <https://www.mediawiki.org/wiki/ResourceLoader/Features>
-	 *
-	 * @class mw.loader
+	 * @see <https://www.mediawiki.org/wiki/ResourceLoader/Features>
+	 * @namespace mw.loader
+	 * @memberof mw
 	 * @singleton
+	 * @hideconstructor
+	 * @static
 	 */
 
 	/**
@@ -59,7 +58,8 @@
 	/**
 	 * Fired via mw.track on various resource loading errors.
 	 *
-	 * @event resourceloader_exception
+	 * @event ~'resourceloader.exception'
+	 * @ignore
 	 * @param {Error|Mixed} e The error that was thrown. Almost always an Error
 	 *   object, but in theory module code could manually throw something else, and that
 	 *   might also end up here.
@@ -1044,11 +1044,14 @@
 	 * because its implementation needs to keep track of potential string size in order
 	 * to decide when to split the requests due to url size.
 	 *
+	 * @typedef {Object} ModuleString
+	 * @property {string} str Module query string
+	 * @property {Array} list List of module names in matching order
+	 *
 	 * @private
 	 * @param {Object} moduleMap Module map
 	 * @return {Object}
-	 * @return {string} return.str Module query string
-	 * @return {Array} return.list List of module names in matching order
+	 * @return {ModuleString}
 	 */
 	function buildModulesString( moduleMap ) {
 		var str = [];
@@ -1343,10 +1346,6 @@
 		 */
 		maxQueryLength: $VARS.maxQueryLength,
 
-		/**
-		 * @inheritdoc #newStyleTag
-		 * @method
-		 */
 		addStyleTag: newStyleTag,
 
 		// Exposed for internal use only. Documented as @private.
@@ -1469,6 +1468,7 @@
 		 * @param {string} [group=null] Group which the module is in
 		 * @param {string} [source='local'] Name of the source
 		 * @param {string} [skip=null] Script body of the skip function
+		 * @private
 		 */
 		register: function ( modules ) {
 			if ( typeof modules !== 'object' ) {
@@ -1520,6 +1520,7 @@
 		 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 		 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 		 * @param {string|null} [deprecationWarning] Deprecation warning if any
+		 * @private
 		 */
 		implement: function ( module, script, style, messages, templates, deprecationWarning ) {
 			var split = splitModuleKey( module ),
@@ -1582,6 +1583,7 @@
 		 * Function.prototype.toString() and later restored and executed in the global scope.
 		 *
 		 * The elements are all optional except the name.
+		 * @private
 		 */
 		impl: function ( declarator ) {
 			var data = declarator(),
@@ -1671,6 +1673,7 @@
 		 * Change the state of one or more modules.
 		 *
 		 * @param {Object} states Object of module name/state pairs
+		 * @private
 		 */
 		state: function ( states ) {
 			for ( var module in states ) {
