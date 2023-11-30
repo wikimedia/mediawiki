@@ -1179,6 +1179,60 @@ EOF
 	}
 
 	/**
+	 * @covers ParserOutput::mergeInternalMetaDataFrom
+	 * @covers ParserOutput::getTimes
+	 * @covers ParserOutput::resetParseStartTime
+	 * @covers ParserOutput::recordTimeProfile
+	 * @covers ParserOutput::getTimeProfile
+	 */
+	public function testMergeInternalMetaDataFrom_timeProfile() {
+		/** @var object $a */
+		$a = new ParserOutput();
+		$a = TestingAccessWrapper::newFromObject( $a );
+
+		$a->resetParseStartTime();
+		usleep( 1234 );
+		$a->recordTimeProfile();
+
+		$aClocks = $a->mTimeProfile;
+
+		// make sure a second call to recordTimeProfile has no effect
+		usleep( 1234 );
+		$a->recordTimeProfile();
+
+		foreach ( $aClocks as $clock => $duration ) {
+			$this->assertNotNull( $duration );
+			$this->assertGreaterThan( 0, $duration );
+			$this->assertSame( $aClocks[$clock], $a->getTimeProfile( $clock ) );
+		}
+
+		$b = new ParserOutput();
+
+		$a->mergeInternalMetaDataFrom( $b );
+		$mergedClocks = $a->mTimeProfile;
+
+		foreach ( $mergedClocks as $clock => $duration ) {
+			$this->assertSame( $aClocks[$clock], $duration, $clock );
+		}
+
+		// try again, with times in $b also set, and later than $a's
+		$b->resetParseStartTime();
+		usleep( 1234 );
+		$b->recordTimeProfile();
+
+		$b = TestingAccessWrapper::newFromObject( $b );
+		$bClocks = $b->mTimeProfile;
+
+		$a->mergeInternalMetaDataFrom( $b->object );
+		$mergedClocks = $a->mTimeProfile;
+
+		foreach ( $mergedClocks as $clock => $duration ) {
+			$this->assertGreaterThanOrEqual( $aClocks[$clock], $duration, $clock );
+			$this->assertGreaterThanOrEqual( $bClocks[$clock], $duration, $clock );
+		}
+	}
+
+	/**
 	 * @covers ParserOutput::getCacheTime
 	 * @covers ParserOutput::setCacheTime
 	 */

@@ -267,6 +267,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mParseStartTime = [];
 
 	/**
+	 * @var array Durations for getTimeProfile().
+	 */
+	private $mTimeProfile = [];
+
+	/**
 	 * @var bool Whether to emit X-Frame-Options: DENY.
 	 */
 	private $mPreventClickjacking = false;
@@ -1778,10 +1783,62 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Resets the parse start timestamps for future calls to getTimeSinceStart()
+	 * and recordTimeProfile().
+	 *
 	 * @since 1.22
 	 */
 	public function resetParseStartTime(): void {
 		$this->mParseStartTime = self::getTimes();
+		$this->mTimeProfile = [];
+	}
+
+	/**
+	 * Record the time since resetParseStartTime() was last called.
+	 * The recorded time can be accessed using getTimeProfile().
+	 *
+	 * After resetParseStartTime() was called, the first call to recordTimeProfile()
+	 * will record the time profile. Subsequent calls to recordTimeProfile() will have
+	 * no effect until resetParseStartTime() is called again.
+	 *
+	 * @since 1.42
+	 */
+	public function recordTimeProfile() {
+		if ( !$this->mParseStartTime ) {
+			// If resetParseStartTime was never called, there is nothing to record
+			return;
+		}
+
+		if ( $this->mTimeProfile !== [] ) {
+			// Don't override the times recorded by the previous call to recordTimeProfile().
+			return;
+		}
+
+		$now = self::getTimes();
+		$this->mTimeProfile = [
+			'wall' => $now['wall'] - $this->mParseStartTime['wall'],
+			'cpu' => $now['cpu'] - $this->mParseStartTime['cpu'],
+		];
+	}
+
+	/**
+	 * Returns the time that elapsed between the most recent call to resetParseStartTime()
+	 * and the first call to recordTimeProfile() after that.
+	 *
+	 * Clocks available are:
+	 *  - wall: Wall clock time
+	 *  - cpu: CPU time (requires getrusage)
+	 *
+	 * If recordTimeProfile() has noit been called since the most recent call to
+	 * resetParseStartTime(), or if resetParseStartTime() was never called, then
+	 * this method will return null.
+	 *
+	 * @param string $clock
+	 *
+	 * @since 1.42
+	 * @return float|null
+	 */
+	public function getTimeProfile( string $clock ) {
+		return $this->mTimeProfile[ $clock ] ?? null;
 	}
 
 	/**
@@ -1792,10 +1849,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *  - cpu: CPU time (requires getrusage)
 	 *
 	 * @since 1.22
+	 * @deprecated since 1.42, use getTimeProfile() instead.
 	 * @param string $clock
 	 * @return float|null
 	 */
 	public function getTimeSinceStart( $clock ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		if ( !isset( $this->mParseStartTime[$clock] ) ) {
 			return null;
 		}
@@ -1953,7 +2013,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return; // not set
 		}
 
-		$runtime = $this->getTimeSinceStart( 'wall' );
+		$runtime = $this->getTimeProfile( 'wall' );
 		if ( is_float( $runtime ) ) {
 			$slope = ( self::SLOW_AR_TTL - self::FAST_AR_TTL )
 				/ ( self::PARSE_SLOW_SEC - self::PARSE_FAST_SEC );
@@ -2002,6 +2062,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mParseStartTime = $this->useEachMinValue(
 			$this->mParseStartTime,
 			$source->mParseStartTime
+		);
+
+		$this->mTimeProfile = $this->useEachTotalValue(
+			$this->mTimeProfile,
+			$source->mTimeProfile
 		);
 
 		$this->mFlags = self::mergeMap( $this->mFlags, $source->mFlags );
@@ -2331,26 +2396,21 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$keys = array_merge( array_keys( $a ), array_keys( $b ) );
 
 		foreach ( $keys as $k ) {
-			if ( is_array( $a[$k] ?? null ) && is_array( $b[$k] ?? null ) ) {
-				$values[$k] = self::useEachMinValue( $a[$k], $b[$k] );
-			} else {
-				$values[$k] = self::useMinValue( $a[$k] ?? null, $b[$k] ?? null );
-			}
+			$values[$k] = min( $a[$k] ?? INF, $b[$k] ?? INF );
 		}
 
 		return $values;
 	}
 
-	private static function useMinValue( $a, $b ) {
-		if ( $a === null ) {
-			return $b;
+	private static function useEachTotalValue( array $a, array $b ): array {
+		$values = [];
+		$keys = array_merge( array_keys( $a ), array_keys( $b ) );
+
+		foreach ( $keys as $k ) {
+			$values[$k] = ( $a[$k] ?? 0 ) + ( $b[$k] ?? 0 );
 		}
 
-		if ( $b === null ) {
-			return $a;
-		}
-
-		return min( $a, $b );
+		return $values;
 	}
 
 	private static function useMaxValue( $a, $b ) {
@@ -2408,7 +2468,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'LimitReportData' => $this->mLimitReportData,
 			'LimitReportJSData' => $this->mLimitReportJSData,
 			'CacheMessage' => $this->mCacheMessage,
-			'ParseStartTime' => $this->mParseStartTime,
+			'TimeProfile' => $this->mTimeProfile,
+			'ParseStartTime' => $this->mParseStartTime, // useless
 			'PreventClickjacking' => $this->mPreventClickjacking,
 			'ExtraScriptSrcs' => $this->mExtraScriptSrcs,
 			'ExtraDefaultSrcs' => $this->mExtraDefaultSrcs,
@@ -2511,7 +2572,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
 		$this->mCacheMessage = $jsonData['CacheMessage'] ?? '';
-		$this->mParseStartTime = $jsonData['ParseStartTime'];
+		$this->mParseStartTime = $jsonData['ParseStartTime']; // useless!
+		$this->mTimeProfile = $jsonData['TimeProfile'] ?? [];
 		$this->mPreventClickjacking = $jsonData['PreventClickjacking'];
 		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'];
 		$this->mExtraDefaultSrcs = $jsonData['ExtraDefaultSrcs'];

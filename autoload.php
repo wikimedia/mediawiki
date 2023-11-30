@@ -1682,6 +1682,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\MagicWordArray' => __DIR__ . '/includes/parser/MagicWordArray.php',
 	'MediaWiki\\Parser\\MagicWordFactory' => __DIR__ . '/includes/parser/MagicWordFactory.php',
 	'MediaWiki\\Parser\\ParserCacheFactory' => __DIR__ . '/includes/parser/ParserCacheFactory.php',
+	'MediaWiki\\Parser\\ParserCacheFilter' => __DIR__ . '/includes/parser/ParserCacheFilter.php',
 	'MediaWiki\\Parser\\ParserCacheMetadata' => __DIR__ . '/includes/parser/ParserCacheMetadata.php',
 	'MediaWiki\\Parser\\ParserObserver' => __DIR__ . '/includes/parser/ParserObserver.php',
 	'MediaWiki\\Parser\\ParserOutputFlags' => __DIR__ . '/includes/parser/ParserOutputFlags.php',

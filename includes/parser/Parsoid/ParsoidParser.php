@@ -144,6 +144,8 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion()
 		];
 
+		$parserOutput->resetParseStartTime();
+
 		// This can throw ClientError or ResourceLimitExceededException.
 		// Callers are responsible for figuring out how to handle them.
 		$pageBundle = $this->parsoid->wikitext2html(
@@ -179,6 +181,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			$parserOutput->addWrapperDivClass( $class );
 		}
 
+		$parserOutput->recordTimeProfile();
 		$this->makeLimitReport( $options, $parserOutput );
 
 		// Record Parsoid version in extension data; this allows
@@ -295,14 +298,14 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	) {
 		$maxIncludeSize = $parserOptions->getMaxIncludeSize();
 
-		$cpuTime = $parserOutput->getTimeSinceStart( 'cpu' );
+		$cpuTime = $parserOutput->getTimeProfile( 'cpu' );
 		if ( $cpuTime !== null ) {
 			$parserOutput->setLimitReportData( 'limitreport-cputime',
 				sprintf( "%.3f", $cpuTime )
 			);
 		}
 
-		$wallTime = $parserOutput->getTimeSinceStart( 'wall' );
+		$wallTime = $parserOutput->getTimeProfile( 'wall' );
 		$parserOutput->setLimitReportData( 'limitreport-walltime',
 			sprintf( "%.3f", $wallTime )
 		);

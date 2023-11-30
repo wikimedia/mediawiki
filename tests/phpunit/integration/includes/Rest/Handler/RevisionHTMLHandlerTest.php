@@ -8,7 +8,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
-use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
@@ -55,11 +54,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionHTMLHandler
 	 */
 	private function newHandler(): RevisionHTMLHandler {
-		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'CacheEpoch' => '20200202112233',
-			'OldRevisionParserCacheExpireTime' => 60 * 60,
-		] );
-
 		$services = $this->getServiceContainer();
 		$config = [
 			'RightsUrl' => 'https://example.com/rights',

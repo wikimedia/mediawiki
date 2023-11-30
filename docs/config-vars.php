@@ -1507,6 +1507,12 @@ $wgMainStash = null;
 $wgParsoidCacheConfig = null;
 
 /**
+ * Config variable stub for the ParserCacheFilterConfig setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParserCacheFilterConfig
+ */
+$wgParserCacheFilterConfig = null;
+
+/**
  * Config variable stub for the ChronologyProtectorStash setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ChronologyProtectorStash
  */

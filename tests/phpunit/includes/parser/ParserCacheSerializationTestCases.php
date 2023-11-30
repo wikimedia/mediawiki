@@ -319,7 +319,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getPageProperties() );
 					$testCase->assertArrayEquals( [], $object->getUsedOptions() );
 					$testCase->assertNull( $object->getExtensionData( 'test_ext_data' ) );
-					$testCase->assertNull( $object->getTimeSinceStart( 'wall' ) );
+					$testCase->assertNull( $object->getTimeProfile( 'wall' ) );
 				}
 			],
 			'cacheTime' => [

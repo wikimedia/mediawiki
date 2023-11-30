@@ -680,6 +680,10 @@ class Parser {
 			$this->mOutput->setTitleText( $titleText );
 		}
 
+		# Recording timing info. Must be called before finalizeAdaptiveCacheExpiry() and
+		# makeLimitReport(), which make use of the timing info.
+		$this->mOutput->recordTimeProfile();
+
 		# Compute runtime adaptive expiry if set
 		$this->mOutput->finalizeAdaptiveCacheExpiry();
 
@@ -722,14 +726,14 @@ class Parser {
 	protected function makeLimitReport() {
 		$maxIncludeSize = $this->mOptions->getMaxIncludeSize();
 
-		$cpuTime = $this->mOutput->getTimeSinceStart( 'cpu' );
+		$cpuTime = $this->mOutput->getTimeProfile( 'cpu' );
 		if ( $cpuTime !== null ) {
 			$this->mOutput->setLimitReportData( 'limitreport-cputime',
 				sprintf( "%.3f", $cpuTime )
 			);
 		}
 
-		$wallTime = $this->mOutput->getTimeSinceStart( 'wall' );
+		$wallTime = $this->mOutput->getTimeProfile( 'wall' );
 		$this->mOutput->setLimitReportData( 'limitreport-walltime',
 			sprintf( "%.3f", $wallTime )
 		);

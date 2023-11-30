@@ -1691,11 +1691,15 @@ abstract class ContentHandler {
 			// the ParserOptions object in some weird way.
 			$oldRedir = $parserOptions->getRedirectTarget();
 			$parserOptions->setRedirectTarget( $content->getRedirectTarget() );
+
+			$po->resetParseStartTime();
 			$this->fillParserOutput(
 				$content,
 				$cpoParams,
 				$po
 			);
+			$po->recordTimeProfile();
+
 			MediaWikiServices::getInstance()->get( '_ParserObserver' )->notifyParse(
 				$title,
 				$cpoParams->getRevId(),

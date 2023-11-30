@@ -12,6 +12,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserCacheFilter;
 use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -271,6 +272,30 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$cache = $this->createParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 		$parserOutput->updateCacheExpiry( 0 );
+
+		$options1 = ParserOptions::newFromAnon();
+		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
+
+		$this->assertFalse( $cache->get( $this->page, $options1 ) );
+		$this->assertFalse( $cache->get( $this->page, $options1, true ) );
+		$this->assertFalse( $cache->getDirty( $this->page, $options1 ) );
+	}
+
+	/**
+	 * Test that ParserCacheFilter can be used to prevent content from being cached
+	 * @covers ParserCache::save
+	 * @covers ParserCache::get
+	 */
+	public function testDoesNotStoreFiltered() {
+		$cache = $this->createParserCache();
+		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+		$parserOutput->resetParseStartTime();
+		$parserOutput->recordTimeProfile();
+
+		// Only cache output that took at least 100 seconds of CPU to generate
+		$cache->setFilter( new ParserCacheFilter( [
+			'default' => [ 'minCpuTime' => 100 ]
+		] ) );
 
 		$options1 = ParserOptions::newFromAnon();
 		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );

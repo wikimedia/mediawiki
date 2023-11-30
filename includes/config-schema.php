@@ -532,8 +532,19 @@ return [
 			'ParsoidCacheConfig' => [
 				'StashType' => null,
 				'StashDuration' => 86400,
-				'CacheThresholdTime' => 0.0,
 				'WarmParsoidParserCache' => false,
+			],
+			'ParserCacheFilterConfig' => [
+				'pcache' => [
+					'default' => [
+						'minCpuTime' => 0,
+					],
+				],
+				'parsoid-pcache' => [
+					'default' => [
+						'minCpuTime' => 0,
+					],
+				],
 			],
 			'ChronologyProtectorStash' => null,
 			'ChronologyProtectorSecret' => '',
@@ -2684,6 +2695,7 @@ return [
 				1 => 'integer',
 			],
 			'ParsoidCacheConfig' => 'object',
+			'ParserCacheFilterConfig' => 'object',
 			'ChronologyProtectorStash' => [
 				0 => 'string',
 				1 => 'null',
@@ -3234,6 +3246,21 @@ return [
 		],
 		'ContentHandlerTextFallback' => [
 			'deprecated' => 'since 1.37',
+		],
+		'ParserCacheFilterConfig' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'description' => 'A map of namespace IDs to filter definitions.',
+				'additionalProperties' => [
+					'type' => 'object',
+					'description' => 'A map of filter names to values.',
+					'properties' => [
+						'minCpuTime' => [
+							'type' => 'number',
+						],
+					],
+				],
+			],
 		],
 		'SquidPurgeUseHostHeader' => [
 			'deprecated' => 'since 1.33',

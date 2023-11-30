@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
@@ -21,6 +22,8 @@ class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
 		$options = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			MainConfigNames::CacheEpoch => '20200202112233',
 			MainConfigNames::OldRevisionParserCacheExpireTime => 60,
+			MainConfigNames::ParserCacheFilterConfig
+				=> MainConfigSchema::getDefaultValue( MainConfigNames::ParserCacheFilterConfig ),
 		] );
 
 		return new ParserCacheFactory(
