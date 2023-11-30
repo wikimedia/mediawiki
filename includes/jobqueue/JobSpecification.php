@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Http\Telemetry;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
@@ -63,6 +64,9 @@ class JobSpecification implements IJobSpecification {
 	public function __construct(
 		$type, array $params, array $opts = [], PageReference $page = null
 	) {
+		$params += [
+			'requestId' => Telemetry::getInstance()->getRequestId(),
+		];
 		$this->validateParams( $params );
 		$this->validateParams( $opts );
 
@@ -127,6 +131,8 @@ class JobSpecification implements IJobSpecification {
 			unset( $info['params']['rootJobTimestamp'] );
 			// Likewise for jobs with different delay times
 			unset( $info['params']['jobReleaseTimestamp'] );
+			// Identical jobs from different requests should count as duplicates
+			unset( $info['params']['requestId'] );
 			if ( isset( $this->opts['removeDuplicatesIgnoreParams'] ) ) {
 				foreach ( $this->opts['removeDuplicatesIgnoreParams'] as $field ) {
 					unset( $info['params'][$field] );

@@ -21,9 +21,9 @@
  * @defgroup JobQueue JobQueue
  */
 
+use MediaWiki\Http\Telemetry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 
 /**
@@ -112,7 +112,9 @@ abstract class Job implements RunnableJob {
 		}
 
 		$this->command = $command;
-		$this->params = $params + [ 'requestId' => WebRequest::getRequestId() ];
+		$this->params = $params + [
+			'requestId' => Telemetry::getInstance()->getRequestId(),
+		];
 
 		if ( $this->title === null ) {
 			// Set this field for access via getTitle().
