@@ -120,13 +120,6 @@ class BlockUtils {
 			return [ IPUtils::sanitizeRange( $target ), AbstractBlock::TYPE_RANGE ];
 		}
 
-		// Consider the possibility that this is not a username at all
-		// but actually an old subpage (T31797)
-		if ( str_contains( $target, '/' ) ) {
-			// An old subpage, drill down to the user behind it
-			$target = explode( '/', $target )[0];
-		}
-
 		if ( preg_match( '/^#\d+$/', $target ) ) {
 			// Autoblock reference in the form "#12345"
 			return [ substr( $target, 1 ), AbstractBlock::TYPE_AUTO ];
