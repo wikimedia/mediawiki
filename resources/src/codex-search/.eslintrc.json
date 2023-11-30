@@ -3,7 +3,7 @@
 	"extends": [
 		"wikimedia/client-es6",
 		"wikimedia/mediawiki",
-		"wikimedia/jsduck"
+		"wikimedia/jsdoc"
 	],
 	"rules": {
 		"compat/compat": [

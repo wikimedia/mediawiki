@@ -1,5 +1,0 @@
-{
-	"extends": [
-		"wikimedia/jsduck"
-	]
-}
