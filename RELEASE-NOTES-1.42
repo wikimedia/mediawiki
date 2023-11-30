@@ -144,6 +144,13 @@ because of Phabricator reports.
 * OutputPage::addParserOutputText has been marked @internal since there are no
   known users of it. Its old behavior has been deprecated and will change
   in the future without further notice.
+* A some methods of ConnectionManager and SessionConsistentConnectionManager,
+  previously deprecated, have been removed:
+  - ::releaseConnection(), deprecated in 1.38; do not use
+  - ::getWriteConnectionRef(), deprecated in 1.39; use getWriteConnection()
+  - ::getReadConnectionRef(), deprecated in 1.38; use getReadConnection()
+  - ::getLazyWriteConnectionRef(), deprecated in 1.39; use getWriteConnection()
+  - ::getLazyReadConnectionRef(), deprecated in 1.38; use getReadConnection()
 * MediaWikiIntegrationTestCase::$tablesUsed has been deprecated. The framework
   now detects these automatically.
 * Support for setting dynamic property on StatusValue object has been removed.
