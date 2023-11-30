@@ -153,6 +153,15 @@ because of Phabricator reports.
   usernames and user accounts. Any endpoints that want temp users to be
   valid but were passing a name through will break. Temp users must now be
   explicitly allowed.
+* The Hooks class, a legacy wrapper for HooksContainer, has been removed. All of
+  its contents have been previously deprecated in 1.35 (or 1.41 for ::runner()):
+  - ::register()
+  - ::clear(),
+  - ::isRegistered()
+  - ::getHandlers()
+  - ::run()
+  - ::runWithoutAbort()
+  - ::runner()
 * …
 
 === Deprecations in 1.42 ===
