@@ -1623,7 +1623,7 @@
 	"apierror-allimages-redirect": "Используйте <kbd>gaifilterredir=nonredirects</kbd> вместо <var>redirects</var> при использовании <kbd>allimages</kbd> в качестве генератора.",
 	"apierror-allpages-generator-redirects": "Используйте <kbd>gaifilterredir=nonredirects</kbd> вместо <var>redirects</var> при использовании <kbd>allpages</kbd> в качестве генератора.",
 	"apierror-appendnotsupported": "Невозможно дописать страницы, использующие модель содержимого $1.",
-	"apierror-articleexists": "Статья, которую вы пытаетесь создать, уже создана.",
+	"apierror-articleexists": "Страница, которую вы пытались создать, уже создана.",
 	"apierror-assertanonfailed": "Вы больше не авторизированы, поэтому действие не может быть завершено.",
 	"apierror-assertbotfailed": "У вас нет права <code>bot</code>, поэтому действие не может быть выполнено.",
 	"apierror-assertnameduserfailed": "Вы больше не авторизированны как «$1», поэтому действие не может быть завершено.",

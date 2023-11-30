@@ -236,6 +236,8 @@
 	"preview": "Leɛkaabo",
 	"showpreview": "Dankaabu wuloo",
 	"showdiff": "Wulo leɛore",
+	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Fo die daga kyɛlɛkyɛlɛ na kpi la {{PLURAL:$1|bebiri 1|$1 bebie}}</strong>. Ka onaŋ wa kpi baare, bompaalaa na kuri la ka foŋ la wa e maale eŋ wagere zaa kyɛ ba kpɛ.",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Fo die daga kyɛlɛkyɛlɛ ko la ta ŋmentoŋgbuli kyɛ kpi.</strong>. Ka onaŋ wa kpi baare, bompaalaa na la kuri la ka foŋ wa e maale eŋ kyɛ ba kpɛ.",
 	"anoneditwarning": "<strong>Too:</strong> Fo ba kpɛ wɛ. Fo IP address na yi la gbangbale ko neɛzaa ka fooŋ leɛ maale embo zaa. Ka fooŋ <strong>[$1 kpɛ]</strong> bee <strong>[$2 Maale account]</strong>,fo maale embore na attribute ko fo kpeɛbo yuori, ane zunɔɔre mine.",
 	"blockedtext": "<strong>A sɛgre yuori bee ba ba k'o a o IP daga sore.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nFo naŋ baŋ de la \"{{int:emailuser}}\" ka a fo tangaraa wa ganna yeŋ[[Special:Preferences|preferences]] kyɛ ba naŋ ba iri fo bare sɛgebu poɔ.\n{{int:blockedtext-block-ip|$3}}, kyɛ ba neŋ iriŋ la a fo ID bare a #$5.\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "kpɛ",

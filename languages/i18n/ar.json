@@ -712,6 +712,8 @@
 	"resettokens-watchlist-token": "رمز تغذية الويب (آتوم/آس إس إس) [[Special:Watchlist|للتغيرات التي على قائمة مراقبتك]]",
 	"resettokens-done": "تغيير المفاتيح",
 	"resettokens-resetbutton": "غير المفاتيح المختارة",
+	"editrecovery": "استرداد التعديل",
+	"edit-recovery-nojs-placeholder": "الجافاسكربت مطلوبة لميزة استرداد التعديل.",
 	"edit-recovery-special-intro-empty": "ليس لديك تغييرات غير محفوظة.",
 	"edit-recovery-loaded-title": "استعيدت التغييرات",
 	"edit-recovery-loaded-message": "استعيدت تغييراتك غير المحفوظة تلقائيًّا.",

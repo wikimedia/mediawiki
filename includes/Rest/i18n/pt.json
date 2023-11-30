@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Caiofernandes",
 			"Hamilton Abreu",
 			"Mansil alfalb"
 		]
@@ -14,9 +15,11 @@
 	"rest-nonexistent-user": "O utilizador especificado ($1) não existe",
 	"rest-invalid-user": "O nome de utilizador especificado ($1) é inválido",
 	"rest-unsupported-content-type": "Tipo de conteúdo não suportado: $1",
+	"rest-permission-error": "Permissão negada: $1",
 	"rest-permission-denied-anon": "Não acessível por um utilizador anónimo",
 	"rest-permission-denied-title": "O utilizador não tem os direitos para ler o título ($1)",
 	"rest-permission-denied-revision": "O utilizador não tem acesso à revisão pedida ($1).",
+	"rest-rate-limit-exceeded": "Um limite de taxa foi excedido. Por favor, tente novamente mais tarde.",
 	"rest-resource-limit-exceeded": "Limites de recursos ultrapassados ao processar o pedido.",
 	"rest-pagehistory-incompatible-params": "Os parâmetros \"older_than\" ''(anterior a)'' e \"newer_than\" ''(posterior a)'' não podem ser especificados em simultâneo",
 	"rest-pagehistory-param-range-error": "O identificador da revisão tem de ser maior do que 0",

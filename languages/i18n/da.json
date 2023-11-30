@@ -81,6 +81,7 @@
 			"Tjernobyl",
 			"Urhixidur",
 			"Weblars",
+			"Zakawer2",
 			"아라"
 		]
 	},
@@ -1495,6 +1496,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Indloggede brugere",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Uregistreret",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Redaktører, der ikke er logget ind.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Bidragsydere som ikke er logget ind, og bidragsydere som bruger midlertidige kontoer.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nybegyndere",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Registrerede brugere som har færre end 10 redigeringer eller 4 dages aktivitet.",
 	"rcfilters-filter-user-experience-level-learner-label": "Let øvede",

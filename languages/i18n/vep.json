@@ -643,6 +643,8 @@
 	"temp-user-banner-description": "Sinä kävutoitad keskaigašt lehtpol't",
 	"temp-user-banner-tooltip-label": "Ližatedod keskaigaižiš lehtpoliš",
 	"temp-user-banner-tooltip-title": "Keskaigaine lehtpol'",
+	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Sinun keskaigaižen lehtpolen radonaig lopiše {{PLURAL:$1| üks' päiv|$1 päiväd}}</strong>. Konz nece radonaig lopiše da sinai sündub taht tehta vajehtusid, linneb tehtud uz' lehtpol' da sinei ei pida tulda sistemaha.",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Sinun keskaigaižen lehtpolen radonaig lopiše vähemba mi päiväs päliči</strong>. Konz nece radonaig lopiše da sinai sündub taht tehta vajehtusid, linneb tehtud uz' lehtpol' da sinei ei pida tulda sistemaha.",
 	"temp-user-banner-tooltip-description-learn-more": "Nece keskaigaine lehtpol' oli tehtud jäl'ghe vajehtusid ilman lehtpoleta neciš web-ecijas da neciš tedomašinas. \n[[mw:Help:Temporary_accounts|Luge enamba]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Tule]] libo [[Special:CreateAccount|tule sistemaha]] miše sada voimust tehta vajehtusid da kävutada toižid funkcijoid tulebas aigas.",
 	"blankarticle": "<strong>Homaiče:</strong> Lehtpol', miččen sinä teged, om tühj.\nKu sinä painad möst \"$1\", lehtpol' linneb tehtud ilman südäimištota.",
