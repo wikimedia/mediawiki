@@ -428,7 +428,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			],
 			'users' => [
 				ParamValidator::PARAM_TYPE => 'user',
-				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr' ],
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'cidr' ],
 				ParamValidator::PARAM_ISMULTI => true
 			],
 			'ip' => [

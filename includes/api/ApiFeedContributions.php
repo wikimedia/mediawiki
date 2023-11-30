@@ -284,7 +284,7 @@ class ApiFeedContributions extends ApiBase {
 			],
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',
-				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id', 'interwiki' ],
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'cidr', 'id', 'interwiki' ],
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'namespace' => [

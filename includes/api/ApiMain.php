@@ -2236,7 +2236,7 @@ class ApiMain extends ApiBase {
 			],
 			'assertuser' => [
 				ParamValidator::PARAM_TYPE => 'user',
-				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'temp' ],
 			],
 			'requestid' => null,
 			'servedby' => false,
