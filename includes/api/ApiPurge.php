@@ -129,10 +129,11 @@ class ApiPurge extends ApiBase {
 				} else {
 					if ( $authStatus->isRateLimitExceeded() ) {
 						$this->addWarning( 'apierror-ratelimited' );
+						$forceLinkUpdate = false;
+						$forceRecursiveLinkUpdate = false;
 					} else {
 						$this->addWarning( Status::wrap( $authStatus )->getMessage() );
 					}
-					$forceLinkUpdate = false;
 				}
 			}
 
