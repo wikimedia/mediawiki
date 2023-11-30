@@ -105,7 +105,9 @@ function onLoadData( pageData ) {
 	if ( pageData !== undefined ) {
 		const oldPageData = getFormData();
 		loadData( pageData );
-		const loadNotification = new LoadNotification();
+		const loadNotification = new LoadNotification( {
+			differentRev: oldPageData.field_parentRevId !== pageData.field_parentRevId
+		} );
 		const notification = loadNotification.getNotification();
 		// On 'show changes'.
 		loadNotification.getDiffButton().on( 'click', function () {

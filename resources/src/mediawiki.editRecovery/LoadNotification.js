@@ -3,8 +3,10 @@
  * @constructor
  * @extends OO.ui.Widget
  * @ignore
+ * @param {Object} config
+ * @param {boolean} config.differentRev Whether to display the 'different revision' warning.
  */
-const LoadNotification = function mwWidgetsEditRecoveryLoadNotification() {
+const LoadNotification = function mwWidgetsEditRecoveryLoadNotification( config ) {
 	LoadNotification.super.call( this, {} );
 	this.diffButton = new OO.ui.ButtonWidget( {
 		label: mw.msg( 'edit-recovery-loaded-show' )
@@ -20,8 +22,15 @@ const LoadNotification = function mwWidgetsEditRecoveryLoadNotification() {
 			this.diffButton.$element,
 			this.discardButton.$element
 		);
+	let $differentRev = null;
+	if ( config.differentRev ) {
+		$differentRev = $( '<em>' )
+			.text( mw.message( 'edit-recovery-loaded-message-different-rev' ) );
+	}
 	this.$element.append(
 		mw.message( 'edit-recovery-loaded-message' ).escaped(),
+		' ',
+		$differentRev,
 		$buttons
 	);
 };

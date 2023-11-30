@@ -664,6 +664,7 @@
 	"edit-recovery-special-recovered-on-tooltip": "The date and time that your recovery data was last saved",
 	"edit-recovery-loaded-title": "Changes recovered",
 	"edit-recovery-loaded-message": "Your unsaved changes have been automatically recovered.",
+	"edit-recovery-loaded-message-different-rev": "Note that the page may have changed since you started editing, please review your changes before saving.",
 	"edit-recovery-loaded-show": "Show changes",
 	"edit-recovery-loaded-discard": "Discard changes",
 	"summary": "Summary:",
