@@ -877,7 +877,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$status = $access->getParserOutput( $page, $parserOptions0, $firstRev );
 		$this->assertContainsHtml( 'First', $status );
 		// Check that we used the "not parsoid" revision cache
-		$this->assertTrue( count( $calls ) > 0 );
+		$this->assertNotEmpty( $calls );
 		$notParsoid = $calls[0];
 		$this->assertEquals( array_fill( 0, count( $calls ), $notParsoid ), $calls );
 
@@ -887,7 +887,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$status = $access->getParserOutput( $page, $parserOptions1, $firstRev );
 		$this->assertContainsHtml( 'First', $status );
 		$this->assertContainsHtml( '<meta property="mw:PageProp/notoc"', $status );
-		$this->assertTrue( count( $calls ) > 0 );
+		$this->assertNotEmpty( $calls );
 		$parsoid = $calls[0];
 		$this->assertNotEquals( $notParsoid, $parsoid, "Should use different caches" );
 		$this->assertEquals( array_fill( 0, count( $calls ), $parsoid ), $calls );

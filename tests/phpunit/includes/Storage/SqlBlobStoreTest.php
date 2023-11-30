@@ -161,9 +161,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getBlobStore();
 		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = $store->compressData( $row->old_text );
-		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
+		$this->assertStringContainsString( 'utf-8', $row->old_flags,
 			"Flags should contain 'utf-8'" );
-		$this->assertFalse( strpos( $row->old_flags, 'gzip' ) !== false,
+		$this->assertStringNotContainsString( 'gzip', $row->old_flags,
 			"Flags should not contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			$row->old_text, "Direct check" );
@@ -178,9 +178,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = $store->compressData( $row->old_text );
-		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
+		$this->assertStringContainsString( 'utf-8', $row->old_flags,
 			"Flags should contain 'utf-8'" );
-		$this->assertTrue( strpos( $row->old_flags, 'gzip' ) !== false,
+		$this->assertStringContainsString( 'gzip', $row->old_flags,
 			"Flags should contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			gzinflate( $row->old_text ), "Direct check" );
