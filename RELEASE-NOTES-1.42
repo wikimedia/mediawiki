@@ -157,6 +157,8 @@ because of Phabricator reports.
   1.39, have been removed; use ::getExtractedAutoloadInfo() instead.
 * MWExceptionHandler::rollbackMasterChangesAndLog(), deprecated in 1.37, has
   been removed. Use ::rollbackPrimaryChangesAndLog() instead.
+* LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,
+  has been removed. Use ::isLinkConversionDisabled() instead.
 * MediaWikiIntegrationTestCase::$tablesUsed has been deprecated. The framework
   now detects these automatically.
 * Support for setting dynamic property on StatusValue object has been removed.
