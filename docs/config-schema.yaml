@@ -1504,6 +1504,15 @@ config-schema:
             This may cause unneeded HTTP connections in browsers on wikis where a foreign repo is
             enabled but where a local repo is more commonly used.
             @since 1.35
+    DjvuUseBoxedCommand:
+        default: false
+        description: 'Whether to use BoxedCommand or not. Temporary feature flag for T352515'
+    DjvuShell:
+        default: /bin/sh
+        type:
+            - string
+            - 'null'
+        description: 'When using BoxedCommand, use this shell to extract the djvu metadata'
     DjvuDump:
         default: null
         type:

@@ -317,6 +317,8 @@ return [
 			'DirectoryMode' => 511,
 			'ResponsiveImages' => true,
 			'ImagePreconnect' => false,
+			'DjvuUseBoxedCommand' => false,
+			'DjvuShell' => '/bin/sh',
 			'DjvuDump' => null,
 			'DjvuRenderer' => null,
 			'DjvuTxt' => null,
@@ -2611,6 +2613,10 @@ return [
 			],
 			'UploadThumbnailRenderMap' => 'object',
 			'GalleryOptions' => 'object',
+			'DjvuShell' => [
+				0 => 'string',
+				1 => 'null',
+			],
 			'DjvuDump' => [
 				0 => 'string',
 				1 => 'null',

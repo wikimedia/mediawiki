@@ -852,6 +852,18 @@ $wgResponsiveImages = null;
 $wgImagePreconnect = null;
 
 /**
+ * Config variable stub for the DjvuUseBoxedCommand setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DjvuUseBoxedCommand
+ */
+$wgDjvuUseBoxedCommand = null;
+
+/**
+ * Config variable stub for the DjvuShell setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DjvuShell
+ */
+$wgDjvuShell = null;
+
+/**
  * Config variable stub for the DjvuDump setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DjvuDump
  */

@@ -867,6 +867,18 @@ class MainConfigNames {
 	public const ImagePreconnect = 'ImagePreconnect';
 
 	/**
+	 * Name constant for the DjvuUseBoxedCommand setting, for use with Config::get()
+	 * @see MainConfigSchema::DjvuUseBoxedCommand
+	 */
+	public const DjvuUseBoxedCommand = 'DjvuUseBoxedCommand';
+
+	/**
+	 * Name constant for the DjvuShell setting, for use with Config::get()
+	 * @see MainConfigSchema::DjvuShell
+	 */
+	public const DjvuShell = 'DjvuShell';
+
+	/**
 	 * Name constant for the DjvuDump setting, for use with Config::get()
 	 * @see MainConfigSchema::DjvuDump
 	 */

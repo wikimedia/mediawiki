@@ -25,6 +25,9 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgMicroStashType: The object cache backend for the MicroStash service.
 * $wgEditRecoveryExpiry: Number of seconds to keep edit recovery data
   after the edit is stored.
+* $wgDjvuUseBoxedCommand and $wgDjvuShell: A temporary flag to control whether
+  or not to use BoxedCommand when wrapping DejaVu rendering, and the command to
+  call if so.
 * …
 
 ==== Changed configuration ====
