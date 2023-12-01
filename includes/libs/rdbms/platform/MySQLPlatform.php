@@ -39,6 +39,10 @@ class MySQLPlatform extends SQLPlatform {
 		return '`' . str_replace( [ "\0", '`' ], [ '', '``' ], $s ) . '`';
 	}
 
+	public function extractTableNameComponents( string $name ) {
+		return $this->extractTableNameComponentsSimple( $name, '`' );
+	}
+
 	/**
 	 * @param string $name
 	 * @return bool
