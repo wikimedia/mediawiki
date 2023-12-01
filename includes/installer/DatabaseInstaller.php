@@ -333,6 +333,7 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		$this->enableLB();
 
 		// Now run updates to create tables for old extensions
 		$updater = DatabaseUpdater::newForDB( $this->db );
@@ -388,10 +389,14 @@ abstract class DatabaseInstaller {
 			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
 		$connection = $status->value;
+		$virtualDomains = $this->parent->getVirtualDomains();
 
 		$this->parent->resetMediaWikiServices( null, [
-			'DBLoadBalancerFactory' => static function () use ( $connection ) {
-				return LBFactorySingle::newFromConnection( $connection );
+			'DBLoadBalancerFactory' => static function () use ( $virtualDomains, $connection ) {
+				return LBFactorySingle::newFromConnection(
+					$connection,
+					[ 'virtualDomains' => $virtualDomains ]
+				);
 			}
 		] );
 	}

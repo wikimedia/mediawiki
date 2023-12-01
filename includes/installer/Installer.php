@@ -339,6 +339,7 @@ abstract class Installer {
 	 * @var HookContainer|null
 	 */
 	protected $autoExtensionHookContainer;
+	protected array $virtualDomains = [];
 
 	/**
 	 * UI interface for displaying a short message
@@ -1516,6 +1517,7 @@ abstract class Installer {
 			),
 			MediaWikiServices::getInstance()->getObjectFactory()
 		);
+		$this->virtualDomains = $data['attributes']['DatabaseVirtualDomains'] ?? [];
 
 		return Status::newGood();
 	}
@@ -1627,6 +1629,17 @@ abstract class Installer {
 				': includeExtensions() has not been called' );
 		}
 		return $this->autoExtensionHookContainer;
+	}
+
+	/**
+	 * Get the virtual domains
+	 *
+	 * @internal For use by DatabaseInstaller
+	 * @since 1.42
+	 * @return array
+	 */
+	public function getVirtualDomains(): array {
+		return $this->virtualDomains;
 	}
 
 	/**

@@ -63,6 +63,12 @@ abstract class DatabaseUpdater {
 	protected $extensionUpdates = [];
 
 	/**
+	 * List of extension-provided database updates on virtual domain dbs
+	 * @var array
+	 */
+	protected $extensionUpdatesWithVirtualDomains = [];
+
+	/**
 	 * Handle to the database subclass
 	 *
 	 * @var IMaintainableDatabase
@@ -280,6 +286,19 @@ abstract class DatabaseUpdater {
 	 */
 	public function addExtensionUpdate( array $update ) {
 		$this->extensionUpdates[] = $update;
+	}
+
+	/**
+	 * Add a new update coming from an extension on virtual domain databases.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
+	 *
+	 * @since 1.42
+	 *
+	 * @param array $update The update to run. Format is [ $virtualDomain, $callback, $params... ]
+	 *   similarly to ::addExtensionUpdate()
+	 */
+	public function addExtensionUpdateOnVirtualDomain( array $update ) {
+		$this->extensionUpdatesWithVirtualDomains[] = $update;
 	}
 
 	/**
@@ -519,6 +538,7 @@ abstract class DatabaseUpdater {
 		if ( isset( $what['extensions'] ) ) {
 			$this->loadExtensionSchemaUpdates();
 			$this->runUpdates( $this->getExtensionUpdates(), true );
+			$this->runUpdates( $this->extensionUpdatesWithVirtualDomains, true, true );
 		}
 
 		if ( isset( $what['stats'] ) ) {
@@ -536,14 +556,22 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param array $updates Array of updates to run
 	 * @param bool $passSelf Whether to pass this object we calling external functions
+	 * @param bool $hasVirtualDomain whether the updates array include virtual domains
 	 */
-	private function runUpdates( array $updates, $passSelf ) {
+	private function runUpdates( array $updates, $passSelf, $hasVirtualDomain = false ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
 		$updatesDone = [];
 		$updatesSkipped = [];
 		foreach ( $updates as $params ) {
 			$origParams = $params;
+			$oldDb = null;
+			$virtualDomain = null;
+			if ( $hasVirtualDomain === true ) {
+				$virtualDomain = array_shift( $params );
+				$oldDb = $this->db;
+				$this->db = $lbFactory->getPrimaryDatabase( $virtualDomain );
+				'@phan-var IMaintainableDatabase $this->db';
+			}
 			$func = array_shift( $params );
 			if ( !is_array( $func ) && method_exists( $this, $func ) ) {
 				$func = [ $this, $func ];
@@ -551,11 +579,19 @@ abstract class DatabaseUpdater {
 				array_unshift( $params, $this );
 			}
 			$ret = $func( ...$params );
+			if ( $hasVirtualDomain === true && $oldDb ) {
+				$this->db = $oldDb;
+			}
+
 			flush();
 			if ( $ret !== false ) {
 				$updatesDone[] = $origParams;
 				$lbFactory->waitForReplication( [ 'timeout' => self::REPLICATION_WAIT_TIMEOUT ] );
 			} else {
+				if ( $hasVirtualDomain === true ) {
+					$params = $origParams;
+					$func = array_shift( $params );
+				}
 				$updatesSkipped[] = [ $func, $params, $origParams ];
 			}
 		}
