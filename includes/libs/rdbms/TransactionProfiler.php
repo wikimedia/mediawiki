@@ -524,7 +524,8 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 				'query' => $this->getGeneralizedSql( $query ),
 				'exception' => new RuntimeException(),
 				'trxId' => $trxId,
-				'fullQuery' => $this->getRawSql( $query ),
+				// Avoid truncated JSON in Logstash (T349140)
+				'fullQuery' => mb_substr( $this->getRawSql( $query ), 0, 2000 ),
 				'dbHost' => $serverName
 			]
 		);
