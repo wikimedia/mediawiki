@@ -273,6 +273,7 @@
 	"exif-scenetype-1": "সরাসরি ফটো তোলা ছবি",
 	"exif-customrendered-0": "স্বাভাবিক প্রক্রিয়া",
 	"exif-customrendered-1": "পছন্দমাফিক প্রক্রিয়া",
+	"exif-customrendered-6": "প্যানোরামা",
 	"exif-customrendered-8": "প্রতিকৃতি",
 	"exif-exposuremode-0": "স্বয়ংক্রিয় আলোকসম্পাত",
 	"exif-exposuremode-1": "হাতে করা আলোকসম্পাত",
@@ -359,5 +360,14 @@
 	"exif-urgency-normal": "সাধারণ ($1)",
 	"exif-urgency-low": "নিম্ন ($1)",
 	"exif-urgency-high": "উচ্চ ($1)",
-	"exif-urgency-other": "ব্যবহারকারী নির্ধারিত অগ্রাধিকার ক্রম ($1)"
+	"exif-urgency-other": "ব্যবহারকারী নির্ধারিত অগ্রাধিকার ক্রম ($1)",
+	"exif-firstphotodate": "প্রথম ছবির তারিখ",
+	"exif-lastphotodate": "শেষ ছবির তারিখ",
+	"exif-projectiontype": "অভিক্ষেপের ধরন",
+	"exif-usepanoramaviewer": "প্যানোরামা ভিউয়ার ব্যবহার",
+	"exif-usepanoramaviewer-true": "হ্যাঁ",
+	"exif-usepanoramaviewer-false": "না",
+	"exif-exposurelockused": "এক্সপোজার লক ব্যবহৃত",
+	"exif-exposurelockused-true": "হ্যাঁ",
+	"exif-exposurelockused-false": "না"
 }

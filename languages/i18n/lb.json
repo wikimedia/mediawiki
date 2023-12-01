@@ -673,7 +673,7 @@
 	"userjspreview": "<strong>Denkt drun, datt Dir Äre JavaScript nëmmen test.\nEn ass nach net gespäichert!</strong>",
 	"sitecsspreview": "<strong>Denkt drun, datt Dir dësen CSS just kuckt.\nE gouf nach net gespäichert!</strong>",
 	"sitejspreview": "<strong>Denkt drun, datt Dir dëse JavaScript-Code just kuckt.\nE gouf nach net gespäichert!</strong>",
-	"userinvalidconfigtitle": "<strong>Opgepasst:</strong> Et gëtt keen Ausgesinn (skin) \"$1\".\nDenkt drun datt personaliséiert .css .json an .js Säiten e kleng geschriwwenen Titel benotzen, z. B. {{ns:user}}:Foo/vector.css am Géigesaz zu {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "<strong>Opgepasst:</strong> Et gëtt keen Ausgesinn (skin) \"$1\".\nDenkt drun datt personaliséiert .css an .js Säiten e kleng geschriwwenen Titel benotzen, z. B. {{ns:user}}:Foo/vector.css am Géigesaz zu {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Geännert)",
 	"note": "'''Notiz:'''",
 	"previewnote": "<strong>Denkt drun, datt dëst nëmmen eng net gespäichert Versioun ass.</strong>\nÄr Ännerunge goufen nach net publizéiert!",

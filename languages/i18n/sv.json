@@ -97,7 +97,8 @@
 			"Where next Columbus?",
 			"WikiPhoenix",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Ludvig Broman"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -1557,7 +1558,7 @@
 	"recentchanges-label-newpage": "Denna redigering skapade en ny sida",
 	"recentchanges-label-minor": "Detta är en mindre ändring",
 	"recentchanges-label-bot": "Denna redigering gjordes av en bot",
-	"recentchanges-label-unpatrolled": "Denna redigering har inte blivit patrullerad ännu",
+	"recentchanges-label-unpatrolled": "Denna redigering har ännu inte patrullerats",
 	"recentchanges-label-plusminus": "Sidans storlek ändrades med detta antal byte",
 	"recentchanges-legend-heading": "<strong>Teckenförklaring:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se även [[Special:NewPages|listan över nya sidor]])",
