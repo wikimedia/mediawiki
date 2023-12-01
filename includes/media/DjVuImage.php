@@ -250,27 +250,77 @@ class DjVuImage {
 	 * @return array|null|false
 	 */
 	public function retrieveMetaData() {
-		$djvuDump = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DjvuDump );
-		$djvuTxt = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DjvuTxt );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$djvuDump = $config->get( MainConfigNames::DjvuDump );
+		$djvuTxt = $config->get( MainConfigNames::DjvuTxt );
+		$djvuUseBoxedCommand = $config->get( MainConfigNames::DjvuUseBoxedCommand );
+		$djvuShell = $config->get( MainConfigNames::DjvuShell );
 		if ( !$this->isValid() ) {
 			return false;
 		}
 
-		if ( isset( $djvuDump ) ) {
-			# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
-			# https://sourceforge.net/p/djvu/bugs/71/
-			$cmd = Shell::escape( $djvuDump ) . ' ' . Shell::escape( $this->mFilename );
-			$dump = wfShellExec( $cmd );
-			$json = [ 'data' => $this->convertDumpToJSON( $dump ) ];
-		} else {
-			$json = null;
+		$retval = null;
+
+		if ( $djvuUseBoxedCommand ) {
+			$command = MediaWikiServices::getInstance()->getShellCommandFactory()
+				->createBoxed( 'media' )
+				->disableNetwork()
+				->firejailDefaultSeccomp()
+				->routeName( 'djvu-metadata' );
+			$command
+				->params( $djvuShell, 'scripts/retrieveDjvuMetaData.sh' )
+				->inputFileFromFile(
+					'scripts/retrieveDjvuMetaData.sh',
+					__DIR__ . '/scripts/retrieveDjvuMetaData.sh' )
+				->inputFileFromFile( 'file.djvu', $this->mFilename )
+				->memoryLimit( self::DJVUTXT_MEMORY_LIMIT );
+			$env = [];
+			if ( isset( $djvuDump ) ) {
+				$env['DJVU_DUMP'] = $djvuDump;
+				$command->outputFileToString( 'dump' );
+				$result = $command->environment( $env )->execute();
+			}
+			if ( isset( $djvuTxt ) ) {
+				$env['DJVU_TXT'] = $djvuTxt;
+				$command->outputFileToString( 'txt' );
+				$command->outputFileToString( 'txt_exit_code' );
+			}
+
+			$result = $command
+				->environment( $env )
+				->execute();
+			if ( isset( $djvuDump ) ) {
+				$dump = $result->getFileContents( 'dump' );
+				$json = $this->convertDumpToJSON( $dump );
+			} else {
+				$json = null;
+			}
+			if ( isset( $djvuTxt ) ) {
+				$retval = (int)trim( $result->getFileContents( 'txt_exit_code' ) );
+				$txt = $result->getFileContents( 'txt' );
+			}
+		} else { // No boxedcommand
+			if ( isset( $djvuDump ) ) {
+				# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
+				# https://sourceforge.net/p/djvu/bugs/71/
+				$cmd = Shell::escape( $djvuDump ) . ' ' . Shell::escape( $this->mFilename );
+				$dump = wfShellExec( $cmd );
+				$json = [ 'data' => $this->convertDumpToJSON( $dump ) ];
+			} else {
+				$json = null;
+			}
+			if ( isset( $djvuTxt ) ) {
+				$cmd = Shell::escape( $djvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
+				wfDebug( __METHOD__ . ": $cmd" );
+				$retval = 0;
+				$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
+			}
 		}
+
+		$txt ??= '';
+
 		# Text layer
 		if ( isset( $djvuTxt ) ) {
-			$cmd = Shell::escape( $djvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
-			wfDebug( __METHOD__ . ": $cmd" );
-			$retval = 0;
-			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
 			$json['text'] = [];
 			if ( $retval === 0 ) {
 				# Strip some control characters

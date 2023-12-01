@@ -2477,6 +2477,19 @@ class MainConfigSchema {
 	/** @name   DJVU settings */
 
 	/**
+	 * Whether to use BoxedCommand or not. Temporary feature flag for T352515
+	 */
+	public const DjvuUseBoxedCommand = [
+		'default' => false,
+	];
+	/**
+	 * When using BoxedCommand, use this shell to extract the djvu metadata
+	 */
+	public const DjvuShell = [
+		'default' => '/bin/sh',
+		'type' => '?string',
+	];
+	/**
 	 * Path of the djvudump executable
 	 * Enable this and $wgDjvuRenderer to enable djvu rendering
 	 * example: $wgDjvuDump = 'djvudump';
