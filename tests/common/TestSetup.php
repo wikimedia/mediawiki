@@ -45,12 +45,14 @@ class TestSetup {
 		global $wgMWLoggerDefaultSpi;
 		global $wgAuthManagerConfig;
 		global $wgShowExceptionDetails, $wgShowHostnames;
+		global $wgDBStrictWarnings;
 
 		$wgShowExceptionDetails = true;
 		$wgShowHostnames = true;
 
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
+		$wgDBStrictWarnings = true;
 
 		// Make sure all caches and stashes are either disabled or use
 		// in-process cache only to prevent tests from using any preconfigured

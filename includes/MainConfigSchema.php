@@ -2915,6 +2915,21 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Check for warnings after DB queries and throw an exception if an
+	 * unacceptable warning is detected.
+	 *
+	 * This setting is only used if $wgLBFactoryConf['class'] is set to
+	 * '\Wikimedia\Rdbms\LBFactorySimple' and $wgDBservers is an empty array.
+	 * Otherwise, the 'strictWarnings' parameter of the server array must be set
+	 * to achieve the same functionality.
+	 *
+	 * @since 1.42
+	 */
+	public const DBStrictWarnings = [
+		'default' => false,
+	];
+
+	/**
 	 * Separate username for maintenance tasks. Leave as null to use the default.
 	 */
 	public const DBadminuser = [

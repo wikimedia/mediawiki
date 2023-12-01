@@ -543,4 +543,18 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 		$this->conn->query( "DROP TEMPORARY TABLE IF EXISTS `$wgDBname`.`tmp_dst_tbl`" );
 	}
+
+	/**
+	 * Insert a null value into a field that is not nullable using INSERT IGNORE
+	 *
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::checkInsertWarnings
+	 */
+	public function testInsertIgnoreNull() {
+		$this->expectException( DBQueryError::class );
+		$this->conn->newInsertQueryBuilder()
+			->insertInto( 'log_search' )
+			->ignore()
+			->row( [ 'ls_field' => 'test', 'ls_value' => null, 'ls_log_id' => 1 ] )
+			->execute();
+	}
 }

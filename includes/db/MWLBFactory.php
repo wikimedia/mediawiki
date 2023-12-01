@@ -59,6 +59,7 @@ class MWLBFactory {
 		MainConfigNames::DBserver,
 		MainConfigNames::DBservers,
 		MainConfigNames::DBssl,
+		MainConfigNames::DBStrictWarnings,
 		MainConfigNames::DBtype,
 		MainConfigNames::DBuser,
 		MainConfigNames::DebugDumpSql,
@@ -194,6 +195,9 @@ class MWLBFactory {
 					$server['ssl'] = true;
 				}
 				$server['flags'] |= $this->options->get( MainConfigNames::DBcompress ) ? DBO_COMPRESS : 0;
+				if ( $this->options->get( MainConfigNames::DBStrictWarnings ) ) {
+					$server['strictWarnings'] = true;
+				}
 
 				$lbConf['servers'] = [ $server ];
 			}

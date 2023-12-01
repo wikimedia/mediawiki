@@ -360,6 +360,7 @@ return [
 			'DBtype' => 'mysql',
 			'DBssl' => false,
 			'DBcompress' => false,
+			'DBStrictWarnings' => false,
 			'DBadminuser' => null,
 			'DBadminpassword' => null,
 			'SearchType' => null,
