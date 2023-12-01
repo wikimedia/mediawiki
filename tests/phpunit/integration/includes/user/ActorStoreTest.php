@@ -655,6 +655,26 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->getStore()->createNewActor( new UserIdentityValue( 24, 'TestUser' ), $this->db );
 	}
 
+	/**
+	 * @covers ::createNewActor
+	 */
+	public function testAcquireActorId_autocreateTempIP() {
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
+				'enabled' => true,
+				'expireAfterDays' => null,
+				'actions' => [ 'edit' ],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			]
+		);
+		$this->expectException( CannotCreateActorException::class );
+		$this->getStore()->createNewActor( new UserIdentityValue( 0, '127.3.2.1' ), $this->db );
+	}
+
 	public static function provideAcquireActorId_existing() {
 		yield 'anon' => [
 			new UserIdentityValue( 0, self::IP ), // $actor
