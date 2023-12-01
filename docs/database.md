@@ -17,9 +17,9 @@ To make a read query, something like this usually suffices:
 
 ```php
 use MediaWiki\MediaWikiServices;
-$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+$dbProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 ...
-$dbr = $lb->getConnectionRef( DB_REPLICA );
+$dbr = $dbProvider->getReplicaDatabase();
 $res = $dbr->newSelectQueryBuilder()
   ->select( /* ... see docs... */ )
   // ...see docs for other methods...
@@ -32,7 +32,7 @@ foreach( $res as $row ) {
 
 For a write query, use something like:
 ```php
-$dbw = $lb->getConnectionRef( DB_PRIMARY );
+$dbw = $dbProvider->getPrimaryDatabase();
 $dbw->insert( /* ...see docs... */ );
 ```
 We use the convention `$dbr` for read and `$dbw` for write to help you keep track of whether the database object is a replica (read-only) or a primary (read/write). If you write to a replica, the world will explode. Or to be precise, a subsequent write query which succeeded on the primary may fail when propagated to the replica due to a unique key collision. Replication will then stop and it may take hours to repair the database and get it back online. Setting `read_only` in `my.cnf` on the replica will avoid this scenario, but given the dire consequences, we prefer to have as many checks as possible.
@@ -82,7 +82,7 @@ Due to the high write rate on Wikipedia (and some other wikis), MediaWiki develo
 Often this approach is not good enough, and it becomes necessary to enclose small groups of queries in their own transaction. Use the following syntax:
 
 ```php
-$dbw = wfGetDB( DB_PRIMARY );
+$dbw = $dbProvider->getPrimaryDatabase();
 $dbw->begin( __METHOD__ );
 /* Do queries */
 $dbw->commit( __METHOD__ );
@@ -116,8 +116,8 @@ MediaWiki currently supports the following query groups:
 The below is how you specify a query group when obtaining a connection:
 
 ```php
-$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-$lb->getConnectionRef( DB_REPLICA, 'vslow' );
+$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+$lb->getReplicaDatabase( false, 'vslow' );
 ```
 
 ## Supported DBMSs
