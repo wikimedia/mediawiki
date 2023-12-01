@@ -47,8 +47,8 @@ class QueryBuilderFromRawSql {
 			$flags = SQLPlatform::QUERY_CHANGE_ROWS;
 		}
 		$queryVerb = self::getQueryVerb( $sql );
-		$queryTables = self::getQueryTables( $sql, $tablePrefix );
-		return new Query( $sql, $flags, $queryVerb, $queryTables );
+		$writeTables = self::getWriteTables( $sql, $tablePrefix );
+		return new Query( $sql, $flags, $queryVerb, $writeTables );
 	}
 
 	private static function isWriteQuery( $rawSql ) {
@@ -90,7 +90,7 @@ class QueryBuilderFromRawSql {
 		) ? strtoupper( $m[1] ) : '';
 	}
 
-	private static function getQueryTables( $sql, $tablePrefix ) {
+	private static function getWriteTables( $sql, $tablePrefix ) {
 		// Regexes for basic queries that can create/change/drop temporary tables.
 		// For simplicity, this only looks for tables with sensible, alphanumeric, names;
 		// temporary tables only need simple programming names anyway.
@@ -112,20 +112,20 @@ class QueryBuilderFromRawSql {
 			];
 		}
 
-		$queryTables = [];
+		$writeTables = [];
 		foreach ( $regexes as $regex ) {
 			if ( preg_match( $regex, $sql, $m, PREG_UNMATCHED_AS_NULL ) ) {
 				$allTables = preg_split( '/\s*,\s*/', $m[2] );
 				foreach ( $allTables as $quotedTable ) {
 					$tableName = trim( $quotedTable, "\"'`" );
 					$tableName = preg_replace( '/^' . $tablePrefix . '/', '', $tableName );
-					$queryTables[] = $tableName;
+					$writeTables[] = $tableName;
 				}
 				break;
 			}
 		}
 
-		return $queryTables;
+		return $writeTables;
 	}
 
 	/**

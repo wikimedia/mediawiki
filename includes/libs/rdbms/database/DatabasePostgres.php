@@ -125,7 +125,7 @@ class DatabasePostgres extends Database {
 			];
 			foreach ( $variables as $var => $val ) {
 				$sql = 'SET ' . $this->platform->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val );
-				$query = new Query( $sql, self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX, 'SET', [] );
+				$query = new Query( $sql, self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX, 'SET' );
 				$this->query( $query, __METHOD__ );
 			}
 			$this->determineCoreSchema( $schema );
@@ -309,8 +309,7 @@ class DatabasePostgres extends Database {
 		$query = new Query(
 			"SELECT indexname FROM pg_indexes WHERE tablename='$table'",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			[ $table ]
+			'SELECT'
 		);
 		$res = $this->query( $query );
 		if ( !$res ) {
@@ -373,7 +372,7 @@ class DatabasePostgres extends Database {
 						AND	i.indclass[s.g] = opcls.oid
 						AND	pg_am.oid = opcls.opcmethod
 __INDEXATTR__;
-			$query = new Query( $sql, $flags, 'SELECT', [ 'pg_index', 'pg_class', 'pg_namespace' ] );
+			$query = new Query( $sql, $flags, 'SELECT' );
 			$res = $this->query( $query, __METHOD__ );
 			$a = [];
 			if ( $res ) {
@@ -395,7 +394,7 @@ __INDEXATTR__;
 			" AND indexdef LIKE 'CREATE UNIQUE%(" .
 			$this->strencode( $this->platform->indexName( $index ) ) .
 			")'";
-		$query = new Query( $sql, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SELECT', [ 'pg_indexes' ] );
+		$query = new Query( $sql, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SELECT' );
 		$res = $this->query( $query, $fname );
 		return $res && $res->numRows() > 0;
 	}
@@ -443,7 +442,7 @@ __INDEXATTR__;
 
 			$sql = "INSERT INTO $destTableEnc (" . implode( ',', array_keys( $varMap ) ) . ') ' .
 				$selectSql . ' ON CONFLICT DO NOTHING';
-			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', [ $destTable, $srcTable ] );
+			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', [ $destTable ] );
 			$this->query( $query, $fname );
 		} else {
 			parent::doInsertSelectNative( $destTable, $srcTable, $varMap, $conds, $fname,
@@ -478,7 +477,7 @@ __INDEXATTR__;
 			$sql = "SELECT column_name,udt_name " .
 				"FROM information_schema.columns " .
 				"WHERE table_name = $encTable AND table_schema = $encSchema";
-			$query = new Query( $sql, $flags, 'SELECT', [ $table ] );
+			$query = new Query( $sql, $flags, 'SELECT' );
 			$res = $this->query( $query, __METHOD__ );
 			if ( $res->numRows() ) {
 				foreach ( $res as $row ) {
@@ -498,7 +497,7 @@ __INDEXATTR__;
 			FROM pg_class c, pg_attribute a, pg_type t
 			WHERE relname='$encTable' AND a.attrelid=c.oid AND
 				a.atttypid=t.oid and a.attname='$field'";
-		$query = new Query( $sql, $flags, 'SELECT', [ $table ] );
+		$query = new Query( $sql, $flags, 'SELECT' );
 		$res = $this->query( $query, __METHOD__ );
 		$row = $res->fetchObject();
 		if ( $row->ftype == 'varchar' ) {
@@ -543,7 +542,8 @@ __INDEXATTR__;
 			"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)",
 			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA,
 			'SELECT',
-			[ $newName ]
+			// Use a dot to avoid double-prefixing in Database::getTempTableWrites()
+			[ '.' . $newName ]
 		);
 		$ret = $this->query( $query, $fname );
 		if ( !$ret ) {
@@ -561,8 +561,7 @@ __INDEXATTR__;
 		$query = new Query(
 			$sql,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			[ 'pg_class', 'pg_namespace', 'pg_attribute', 'pg_attrdef' ]
+			'SELECT'
 		);
 
 		$res = $this->query( $query, $fname );
@@ -577,14 +576,20 @@ __INDEXATTR__;
 				"CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE",
 				self::QUERY_CHANGE_SCHEMA,
 				'CREATE',
-				[ $newName ]
+				// Do not treat this is as a table modification on top of the CREATE above.
+				// This lets the new table remain marked as "pristine" if it was TEMPORARY,
+				// which optimizes truncate() during tests.
+				[]
 			);
 			$this->query( $query, $fname );
 			$query = new Query(
 				"ALTER TABLE $newNameE ALTER COLUMN $fieldE SET DEFAULT nextval({$newSeqQ}::regclass)",
 				self::QUERY_CHANGE_SCHEMA,
 				'ALTER',
-				[ $newName ]
+				// Do not treat this is as a table modification on top of the CREATE above.
+				// This lets the new table remain marked as "pristine" if it was TEMPORARY,
+				// which optimizes truncate() during tests.
+				[]
 			);
 			$this->query( $query, $fname );
 		}
@@ -614,8 +619,7 @@ __INDEXATTR__;
 		$query = new Query(
 			"SELECT DISTINCT tablename FROM pg_tables WHERE schemaname IN ($eschemas)",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			'pg_tables'
+			'SELECT'
 		);
 		$result = $this->query( $query, $fname );
 		$endArray = [];
@@ -832,8 +836,7 @@ __INDEXATTR__;
 		$query = new Query(
 			"SELECT nspname FROM pg_catalog.pg_namespace n WHERE n.oid = pg_my_temp_schema()",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			'pg_catalog'
+			'SELECT'
 		);
 		$res = $this->query( $query, __METHOD__ );
 		$row = $res->fetchObject();
@@ -891,8 +894,7 @@ __INDEXATTR__;
 			$query = new Query(
 				$sql,
 				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-				'SELECT',
-				'pg_catalog'
+				'SELECT'
 			);
 			$res = $this->query( $query, __METHOD__ );
 			if ( $res && $res->numRows() ) {
@@ -929,8 +931,7 @@ __INDEXATTR__;
 			$query = new Query(
 				$sql,
 				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-				'SELECT',
-				$table
+				'SELECT'
 			);
 			$res = $this->query( $query, __METHOD__ );
 			if ( $res && $res->numRows() ) {
@@ -953,8 +954,7 @@ __INDEXATTR__;
 			"SELECT 1 FROM pg_catalog.pg_namespace " .
 			"WHERE nspname = " . $this->addQuotes( $schema ) . " LIMIT 1",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			'pg_catalog'
+			'SELECT'
 		);
 		$res = $this->query( $query, __METHOD__ );
 
@@ -971,8 +971,7 @@ __INDEXATTR__;
 			"SELECT 1 FROM pg_catalog.pg_roles " .
 			"WHERE rolname = " . $this->addQuotes( $roleName ) . " LIMIT 1",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			'pg_catalog'
+			'SELECT'
 		);
 		$res = $this->query( $query, __METHOD__ );
 

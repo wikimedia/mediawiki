@@ -594,7 +594,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function getTempTableWrites( Query $query, $pseudoPermanent ) {
 		$tempTableChanges = [];
 		$tables = [];
-		foreach ( $query->getTables() as $table ) {
+		foreach ( $query->getWriteTables() as $table ) {
 			$tables[] = $this->platform->tableName( $table, 'raw' );
 		}
 		foreach ( $tables as $table ) {
@@ -1373,7 +1373,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			? self::QUERY_CHANGE_ROWS
 			: self::QUERY_CHANGE_NONE;
 
-		$query = new Query( $sql, $flags, 'SELECT', $table );
+		$query = new Query( $sql, $flags, 'SELECT' );
 		return $this->query( $query, $fname );
 	}
 
@@ -1666,8 +1666,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 							"SELECT $autoIncrementColumn AS id FROM $encTable " .
 							"WHERE ($sqlConditions)",
 							self::QUERY_CHANGE_NONE,
-							'SELECT',
-							$table
+							'SELECT'
 						);
 						$sRes = $this->query( $query, $fname, self::QUERY_CHANGE_ROWS );
 						$insertId = (int)$sRes->fetchRow()['id'];
@@ -1729,8 +1728,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$query = new Query(
 			"SHOW COLUMNS FROM $tableName LIKE \"$field\"",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SHOW',
-			$table
+			'SHOW'
 		);
 		$res = $this->query( $query, __METHOD__ );
 		$row = $res->fetchObject();
@@ -1908,13 +1906,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$selectOptions,
 			$selectJoinConds
 		);
-		if ( is_string( $destTable ) ) {
-			$destTable = [ $destTable ];
-		}
-		if ( is_string( $srcTable ) ) {
-			$srcTable = [ $srcTable ];
-		}
-		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', array_merge( $destTable, $srcTable ) );
+		$query = new Query(
+			$sql,
+			self::QUERY_CHANGE_ROWS,
+			'INSERT',
+			$destTable
+		);
 		$this->query( $query, $fname );
 	}
 

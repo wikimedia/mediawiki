@@ -32,32 +32,30 @@ class Query {
 	private $sql;
 	private $flags;
 	private $queryVerb;
-	private $queryTables;
+	private $writeTables;
 	private string $cleanedSql;
 
 	/**
 	 * @param string $sql
 	 * @param int $flags
 	 * @param string $queryVerb
-	 * @param string|string[]|null|false $queryTables
+	 * @param string|string[] $writeTables List of tables targeted for writes
 	 * @param string $cleanedSql
 	 */
 	public function __construct(
 		string $sql,
 		$flags,
 		$queryVerb,
-		$queryTables = [],
+		$writeTables = [],
 		$cleanedSql = ''
 	) {
 		$this->sql = $sql;
 		$this->flags = $flags;
 		$this->queryVerb = $queryVerb;
-		if ( is_array( $queryTables ) ) {
-			$this->queryTables = array_values( $queryTables );
-		} elseif ( $queryTables === '' || $queryTables === null || $queryTables === false ) {
-			$this->queryTables = [];
-		} elseif ( is_string( $queryTables ) ) {
-			$this->queryTables = [ $queryTables ];
+		if ( is_array( $writeTables ) ) {
+			$this->writeTables = array_values( $writeTables );
+		} elseif ( is_string( $writeTables ) && $writeTables !== '' ) {
+			$this->writeTables = [ $writeTables ];
 		} else {
 			throw new DBLanguageError( __METHOD__ . ' called with incorrect table parameter' );
 		}
@@ -104,8 +102,8 @@ class Query {
 		return $this->flags;
 	}
 
-	public function getTables(): array {
-		return $this->queryTables;
+	public function getWriteTables(): array {
+		return $this->writeTables;
 	}
 
 	public function getCleanedSql(): string {
