@@ -114,8 +114,7 @@
 			return this.ajax( path, {
 				type: 'POST',
 				headers: $.extend( headers, { 'content-type': 'application/json' } ),
-				data: JSON.stringify( body ),
-				dataType: 'json'
+				data: JSON.stringify( body )
 			} );
 		},
 
@@ -135,8 +134,7 @@
 			return this.ajax( path, {
 				type: 'PUT',
 				headers: $.extend( headers, { 'content-type': 'application/json' } ),
-				data: JSON.stringify( body ),
-				dataType: 'json'
+				data: JSON.stringify( body )
 			} );
 		},
 
@@ -156,8 +154,7 @@
 			return this.ajax( path, {
 				type: 'DELETE',
 				headers: $.extend( headers, { 'content-type': 'application/json' } ),
-				data: JSON.stringify( body ),
-				dataType: 'json'
+				data: JSON.stringify( body )
 			} );
 		},
 
