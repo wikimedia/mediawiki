@@ -58,8 +58,9 @@ describe( 'GET contributions', () => {
 	} );
 
 	const testGetEdits = async ( client, endpoint ) => {
-		const { status, body } = await client.get( endpoint, { limit } );
+		const { status, body, headers } = await client.get( endpoint, { limit } );
 		assert.equal( status, 200 );
+		assert.match( headers[ 'content-type' ], /^application\/json/ );
 
 		// assert body has property contributions
 		assert.property( body, 'contributions' );
@@ -104,8 +105,9 @@ describe( 'GET contributions', () => {
 	const testGetEditsByTag = async ( client, endpoint ) => {
 		const taggedRevisions = [ arnoldsEdits[ 1 ], arnoldsEdits[ 3 ], arnoldsEdits[ 5 ] ];
 
-		const { status, body } = await client.get( endpoint, { tag: 'user-contribs-api-test' } );
+		const { status, body, headers } = await client.get( endpoint, { tag: 'user-contribs-api-test' } );
 		assert.equal( status, 200 );
+		assert.match( headers[ 'content-type' ], /^application\/json/ );
 
 		// assert body has property contributions
 		assert.property( body, 'contributions' );
@@ -377,6 +379,7 @@ describe( 'GET contributions', () => {
 			const xendpoint = `/user/${ xyzzy }/contributions`;
 			const response = await anon.get( xendpoint );
 			assert.equal( response.status, 200 );
+			assert.match( response.headers[ 'content-type' ], /^application\/json/ );
 
 			assert.property( response.body, 'contributions' );
 			assert.deepEqual( response.body.contributions, [] );

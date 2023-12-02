@@ -44,8 +44,9 @@ describe( 'GET /contributions/count', () => {
 	} );
 
 	const testGetContributionsCount = async ( client, endpoint ) => {
-		const { status, body } = await client.get( endpoint );
+		const { status, body, header } = await client.get( endpoint );
 		assert.equal( status, 200 );
+		assert.match( header[ 'content-type' ], /^application\/json/ );
 		assert.property( body, 'count' );
 
 		const { count } = body;
@@ -53,8 +54,9 @@ describe( 'GET /contributions/count', () => {
 	};
 
 	const testGetContributionsCountByTag = async ( client, endpoint ) => {
-		const { status, body } = await client.get( endpoint, { tag: 'api-test' } );
+		const { status, body, header } = await client.get( endpoint, { tag: 'api-test' } );
 		assert.equal( status, 200 );
+		assert.match( header[ 'content-type' ], /^application\/json/ );
 
 		const { count } = body;
 		assert.deepEqual( count, 1 );
@@ -101,6 +103,7 @@ describe( 'GET /contributions/count', () => {
 			const anon = new REST( basePath );
 			const response = await anon.get( endpoint );
 			assert.equal( response.status, 401 );
+			assert.match( response.header[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( response.body, 'messageTranslations' );
 		} );
 
@@ -137,6 +140,7 @@ describe( 'GET /contributions/count', () => {
 			const unknownUser = `Unknown ${ utils.uniq() }`;
 			const response = await anon.get( `/user/${ unknownUser }/contributions/count` );
 			assert.equal( response.status, 404 );
+			assert.match( response.header[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( response.body, 'messageTranslations' );
 		} );
 

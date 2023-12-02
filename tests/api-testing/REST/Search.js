@@ -25,12 +25,14 @@ describe( 'Search', () => {
 	describe( 'GET /search/page?q={term}', () => {
 		it( 'should return empty array when search term has no title or text matches', async () => {
 			const nonExistentTerm = utils.uniq();
-			const { body } = await client.get( `/search/page?q=${ nonExistentTerm }` );
+			const { body, headers } = await client.get( `/search/page?q=${ nonExistentTerm }` );
 			const noResultsResponse = { pages: [] };
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( noResultsResponse, body );
 		} );
 		it( 'should return array of pages when there is only a text match', async () => {
 			const { body, headers } = await client.get( `/search/page?q=${ searchTerm }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 			const returnPage = body.pages[ 0 ];
 			assert.nestedProperty( returnPage, 'title' );
@@ -50,7 +52,8 @@ describe( 'Search', () => {
 			}
 		} );
 		it( 'should return array of pages when there is only title match', async () => {
-			const { body } = await client.get( `/search/page?q=${ pageWithBothTerms }` );
+			const { body, headers } = await client.get( `/search/page?q=${ pageWithBothTerms }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 			const returnPage = body.pages[ 0 ];
 			assert.nestedProperty( returnPage, 'title' );
@@ -62,7 +65,8 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
 		} );
 		it( 'should return a single page when there is a title and text match on the same page', async () => {
-			const { body } = await client.get( `/search/page?q=${ pageWithOwnTitle }` );
+			const { body, headers } = await client.get( `/search/page?q=${ pageWithOwnTitle }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 			const returnPage = body.pages[ 0 ];
 			assert.nestedProperty( returnPage, 'title' );
@@ -74,14 +78,16 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
 		} );
 		it( 'should return two pages when both pages match', async () => {
-			const { body } = await client.get( `/search/page?q=${ searchTerm2 }` );
+			const { body, headers } = await client.get( `/search/page?q=${ searchTerm2 }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 2 );
 			const returnedPages = [ body.pages[ 0 ].title, body.pages[ 1 ].title ];
 			const expectedPages = [ pageWithBothTerms, pageWithOneTerm ];
 			assert.equal( expectedPages.sort().join( '|' ), returnedPages.sort().join( '|' ) );
 		} );
 		it( 'should return only one page when two pages match but limit is 1', async () => {
-			const { body } = await client.get( `/search/page?q=${ searchTerm2 }&limit=1` );
+			const { body, headers } = await client.get( `/search/page?q=${ searchTerm2 }&limit=1` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 		} );
 		it( 'should not return results when page with term has been deleted', async () => {
@@ -94,7 +100,8 @@ describe( 'Search', () => {
 				token: await mindy.token( 'csrf' )
 			}, 'POST' );
 			await wiki.runAllJobs();
-			const { body } = await client.get( `/search/page?q=${ deleteTerm }` );
+			const { body, headers } = await client.get( `/search/page?q=${ deleteTerm }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
 		} );
 		it( 'should ignore duplicate redirect source and target if both pages are a match', async () => {
@@ -109,7 +116,8 @@ describe( 'Search', () => {
 			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: `${ uniquePageText }` } );
 
 			await wiki.runAllJobs();
-			const { body } = await client.get( `/search/page?q=${ uniquePageText }` );
+			const { body, headers } = await client.get( `/search/page?q=${ uniquePageText }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
 		} );
@@ -118,15 +126,18 @@ describe( 'Search', () => {
 	describe( 'GET /search/title?q={term}', () => {
 		it( 'should return empty array when search term has no title matches', async () => {
 			const nonExistentTerm = utils.uniq();
-			const { body } = await client.get( `/search/title?q=${ nonExistentTerm }` );
+			const { body, headers } = await client.get( `/search/title?q=${ nonExistentTerm }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
 		} );
 		it( 'should not return pages when there is only a text match', async () => {
-			const { body } = await client.get( `/search/title?q=${ searchTerm }` );
+			const { body, headers } = await client.get( `/search/title?q=${ searchTerm }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
 		} );
 		it( 'should return array of pages when there is a title match', async () => {
 			const { body, headers } = await client.get( `/search/title?q=${ pageWithBothTerms }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 			const returnPage = body.pages[ 0 ];
 			assert.nestedProperty( returnPage, 'title' );
@@ -143,14 +154,16 @@ describe( 'Search', () => {
 			assert.match( headers[ 'cache-control' ], /\bmax-age=[1-9]\d*/ );
 		} );
 		it( 'should return two pages when both pages match', async () => {
-			const { body } = await client.get( `/search/title?q=${ sharedTitleTerm }` );
+			const { body, headers } = await client.get( `/search/title?q=${ sharedTitleTerm }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 2 );
 			const returnedPages = [ body.pages[ 0 ].title, body.pages[ 1 ].title ];
 			const expectedPages = [ pageWithBothTerms, pageWithOneTerm ];
 			assert.equal( expectedPages.sort().join( '|' ), returnedPages.sort().join( '|' ) );
 		} );
 		it( 'should return only one page when two pages match but limit is 1', async () => {
-			const { body } = await client.get( `/search/title?q=${ sharedTitleTerm }&limit=1` );
+			const { body, headers } = await client.get( `/search/title?q=${ sharedTitleTerm }&limit=1` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 		} );
 		it( 'should not return deleted page', async () => {
@@ -163,7 +176,8 @@ describe( 'Search', () => {
 				token: await mindy.token( 'csrf' )
 			}, 'POST' );
 			await wiki.runAllJobs();
-			const { body } = await client.get( `/search/title?q=${ deleteTerm }` );
+			const { body, headers } = await client.get( `/search/title?q=${ deleteTerm }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
 		} );
 		it( 'should include redirect for page if one exists', async () => {
@@ -177,7 +191,8 @@ describe( 'Search', () => {
 			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: 'foo' } );
 			await wiki.runAllJobs();
 
-			const { body } = await client.get( `/search/title?q=${ redirectSourceTitle }` );
+			const { body, headers } = await client.get( `/search/title?q=${ redirectSourceTitle }` );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'matched_title', redirectSourceTitle );

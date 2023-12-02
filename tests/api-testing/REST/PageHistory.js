@@ -101,8 +101,11 @@ describe( 'Page History', () => {
 			const { editOne } = deleteEdits;
 
 			// Populate cache
-			const { body, status } = await client.get( `/page/${ titleToDelete }/history/counts/edits` );
+			const { body, status, headers } = await client.get(
+				`/page/${ titleToDelete }/history/counts/edits`
+			);
 			assert.equal( status, 200 );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( body, { count: 2, limit: false }, 'Initial edit count of 2 ' );
 
 			// Hack: If edits are not > 1 sec apart the latest timestamp will not not be detected.
@@ -124,10 +127,12 @@ describe( 'Page History', () => {
 
 			const revHideEdits = await client.get( `/page/${ titleToDelete }/history/counts/edits` );
 			assert.equal( revHideEdits.status, 200 );
+			assert.match( revHideEdits.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( revHideEdits.body, { count: 1, limit: false }, 'Edit count of 1 after hiding a revision' );
 
 			const revHideEditors = await client.get( `/page/${ titleToDelete }/history/counts/editors` );
 			assert.equal( revHideEditors.status, 200 );
+			assert.match( revHideEditors.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( revHideEditors.body, { count: 1, limit: false }, 'Editor count of 1 after hiding a revision' );
 
 			await utils.sleep();
@@ -146,11 +151,13 @@ describe( 'Page History', () => {
 
 			const revShowEdits = await client.get( `/page/${ titleToDelete }/history/counts/edits` );
 			assert.equal( revShowEdits.status, 200 );
+			assert.match( revShowEdits.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( revShowEdits.body, { count: 2, limit: false }, 'Edit count of 2 after un-hiding the hidden revision' );
 
 			const revShowEditors = await client.get( `/page/${ titleToDelete }/history/counts/editors` );
-			assert.deepEqual( revShowEditors.body, { count: 2, limit: false }, 'Editor count of 2 after un-hiding the hidden revision' );
 			assert.equal( revShowEditors.status, 200 );
+			assert.match( revShowEditors.headers[ 'content-type' ], /^application\/json/ );
+			assert.deepEqual( revShowEditors.body, { count: 2, limit: false }, 'Editor count of 2 after un-hiding the hidden revision' );
 		} );
 
 		it( 'Should update last-modified header after revision deletion', async () => {
@@ -168,8 +175,9 @@ describe( 'Page History', () => {
 			// we do 2 requests to verify the second value coming from cache is the same
 			for ( let i = 0; i < 2; i++ ) {
 				const res = await client.get( `/page/${ title }/history/counts/edits` );
-				assert.deepEqual( res.body, { count: 9, limit: false } );
 				assert.equal( res.status, 200 );
+				assert.match( res.headers[ 'content-type' ], /^application\/json/ );
+				assert.deepEqual( res.body, { count: 9, limit: false } );
 			}
 		} );
 
@@ -191,6 +199,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/page/${ title }/history/counts/edits?from=${ fromRev }&to=${ toRev }` );
 
 			assert.strictEqual( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 5, limit: false } );
 		} );
 
@@ -200,6 +209,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/page/${ title }/history/counts/edits?from=${ toRev }&to=${ fromRev }` );
 
 			assert.strictEqual( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 5, limit: false } );
 		} );
 
@@ -214,8 +224,9 @@ describe( 'Page History', () => {
 		it( 'Should get total number of anonymous edits', async () => {
 			const res = await client.get( `/page/${ title }/history/counts/anonymous` );
 
-			assert.deepEqual( res.body, { count: 2, limit: false } );
 			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
+			assert.deepEqual( res.body, { count: 2, limit: false } );
 		} );
 	} );
 
@@ -223,8 +234,9 @@ describe( 'Page History', () => {
 		it( 'Should get total number of edits by bots', async () => {
 			const res = await client.get( `/page/${ title }/history/counts/bot` );
 
-			assert.deepEqual( res.body, { count: 4, limit: false } );
 			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
+			assert.deepEqual( res.body, { count: 4, limit: false } );
 		} );
 	} );
 
@@ -232,22 +244,25 @@ describe( 'Page History', () => {
 		it( 'Should get total number of reverted edits', async () => {
 			const res = await client.get( `/page/${ title }/history/counts/reverted` );
 
-			assert.deepEqual( res.body, { count: 3, limit: false } );
 			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
+			assert.deepEqual( res.body, { count: 3, limit: false } );
 		} );
 	} );
 
 	describe( 'GET /page/{title}/history/counts/editors', () => {
 		it( 'Should return 404 for deleted page', async () => {
-			const { status: editorsStatus } = await client.get( `/page/${ titleToDelete }/history/counts/editors` );
+			const { status: editorsStatus, header: editorsHeader } = await client.get( `/page/${ titleToDelete }/history/counts/editors` );
 			assert.equal( editorsStatus, 404 );
+			assert.match( editorsHeader[ 'content-type' ], /^application\/json/ );
 		} );
 
 		it( 'Should get total number of unique editors', async () => {
 			const res = await client.get( `/page/${ title }/history/counts/editors` );
 
-			assert.deepEqual( res.body, { count: 4, limit: false } );
 			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
+			assert.deepEqual( res.body, { count: 4, limit: false } );
 		} );
 
 		it( 'Should get total number of unique editors between revisions, normal order', async () => {
@@ -256,6 +271,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/page/${ title }/history/counts/editors?from=${ fromRev }&to=${ toRev }` );
 
 			assert.strictEqual( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 3, limit: false } );
 		} );
 
@@ -265,6 +281,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/page/${ title }/history/counts/editors?from=${ toRev }&to=${ fromRev }` );
 
 			assert.strictEqual( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 3, limit: false } );
 		} );
 	} );
@@ -273,11 +290,12 @@ describe( 'Page History', () => {
 		it( 'Should get all revisions', async () => {
 			const res = await client.get( `/page/${ title }/history` );
 
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( res.body.revisions, edits.all.length );
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.all[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history` );
-			assert.equal( res.status, 200 );
 
 			await assertGetStatus( res.body.latest );
 		} );
@@ -285,11 +303,12 @@ describe( 'Page History', () => {
 		it( 'Should get revisions by anonymous users', async () => {
 			const res = await client.get( `/page/${ title }/history`, { filter: 'anonymous' } );
 
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( res.body.revisions, edits.anon.length );
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.anon[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history?filter=anonymous` );
-			assert.equal( res.status, 200 );
 
 			await assertGetStatus( res.body.latest );
 		} );
@@ -297,21 +316,23 @@ describe( 'Page History', () => {
 		it( 'Should get revisions by bots', async () => {
 			const res = await client.get( `/page/${ title }/history`, { filter: 'bot' } );
 
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( res.body.revisions, edits.bot.length );
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.bot[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history?filter=bot` );
-			assert.equal( res.status, 200 );
 		} );
 
 		it( 'Should get reverted revisions', async () => {
 			const res = await client.get( `/page/${ title }/history`, { filter: 'reverted' } );
 
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( res.body.revisions, edits.reverts.length );
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.reverts[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history?filter=reverted` );
-			assert.equal( res.status, 200 );
 		} );
 
 		it( 'Should return 400 for invalid filter parameter', async () => {
@@ -355,12 +376,13 @@ describe( 'Page History', () => {
 			const expected = edits.all.slice( 0, 3 );
 			const res = await client.get( `/page/${ title }/history`, { newer_than: id } );
 
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( res.body.revisions, expected.length );
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, expected[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history` );
 			assert.include( res.body.older, `page/${ title }/history?older_than=${ expected[ expected.length - 1 ].id }` );
-			assert.equal( res.status, 200 );
 		} );
 
 		it( 'Should get revisions older than specified id for a page', async () => {
@@ -368,12 +390,13 @@ describe( 'Page History', () => {
 			const expected = edits.all.slice( 4 );
 			const res = await client.get( `/page/${ title }/history`, { older_than: id } );
 
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( res.body.revisions, expected.length );
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, expected[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history` );
 			assert.include( res.body.newer, `page/${ title }/history?newer_than=${ expected[ 0 ].id }` );
-			assert.equal( res.status, 200 );
 
 			await assertGetStatus( res.body.newer );
 		} );
@@ -382,12 +405,13 @@ describe( 'Page History', () => {
 			const { id } = edits.all[ 3 ];
 			const res = await client.get( `/page/${ title }/history`, { newer_than: id, filter: 'bot' } );
 
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( res.body.revisions, 2 );
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.bot[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history?filter=bot` );
 			assert.include( res.body.older, `page/${ title }/history?filter=bot&older_than=${ edits.bot[ 1 ].id }` );
-			assert.equal( res.status, 200 );
 
 			await assertGetStatus( res.body.older );
 		} );
