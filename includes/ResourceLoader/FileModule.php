@@ -1259,7 +1259,7 @@ class FileModule extends Module {
 	 *     which will be JSON serialized. Optional, if not set, it will be set in readFileInfo().
 	 *   - callback: (callable) A callback to call to obtain the contents. This will be set if the
 	 *     version callback was present in the input, indicating that the callback is expensive.
-	 *   - callbackParams: (array) The parameters to be passed to the callback.
+	 *   - callbackParam: (array) The parameters to be passed to the callback.
 	 *   - definitionSummary: (array) The data returned by the version callback.
 	 *   - main: (bool) Whether the file is the main file of the package.
 	 */
