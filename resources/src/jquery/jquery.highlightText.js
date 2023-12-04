@@ -72,7 +72,7 @@
 				node.nodeType === Node.ELEMENT_NODE &&
 				// element with childnodes, and not a script, style or an element we created
 				node.childNodes &&
-				!/(script|style)/i.test( node.tagName ) &&
+				!/^(script|style)$/i.test( node.tagName ) &&
 				!(
 					node.tagName.toLowerCase() === 'span' &&
 					node.className.match( /\bhighlight/ )
