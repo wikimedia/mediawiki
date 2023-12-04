@@ -2478,21 +2478,20 @@ class MainConfigSchema {
 
 	/**
 	 * Whether to use BoxedCommand or not. Temporary feature flag for T352515
+	 *
+	 * @since 1.42
 	 */
 	public const DjvuUseBoxedCommand = [
 		'default' => false,
 	];
-	/**
-	 * When using BoxedCommand, use this shell to extract the djvu metadata
-	 */
-	public const DjvuShell = [
-		'default' => '/bin/sh',
-		'type' => '?string',
-	];
+
 	/**
 	 * Path of the djvudump executable
 	 * Enable this and $wgDjvuRenderer to enable djvu rendering
 	 * example: $wgDjvuDump = 'djvudump';
+	 *
+	 * If this is set, {@link self::ShellboxShell} must be set to the correct
+	 * shell path.
 	 */
 	public const DjvuDump = [
 		'default' => null,
@@ -2513,6 +2512,9 @@ class MainConfigSchema {
 	 * Path of the djvutxt DJVU text extraction utility
 	 * Enable this and $wgDjvuDump to enable text layer extraction from djvu files
 	 * example: $wgDjvuTxt = 'djvutxt';
+	 *
+	 * If this is set, {@link self::ShellboxShell} must be set to the correct
+	 *  shell path.
 	 */
 	public const DjvuTxt = [
 		'default' => null,
@@ -12394,6 +12396,20 @@ class MainConfigSchema {
 	 */
 	public const ShellboxSecretKey = [
 		'default' => null,
+		'type' => '?string',
+	];
+
+	/**
+	 * The POSIX-compatible shell to use when running scripts. This is used by
+	 * some media handling shell commands.
+	 *
+	 * If ShellboxUrls is configured, this path should exist on the remote side.
+	 * On Windows this should be the full path to bash.exe, not git-bash.exe.
+	 *
+	 * @since 1.42
+	 */
+	public const ShellboxShell = [
+		'default' => '/bin/sh',
 		'type' => '?string',
 	];
 

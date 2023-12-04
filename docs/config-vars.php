@@ -858,12 +858,6 @@ $wgImagePreconnect = null;
 $wgDjvuUseBoxedCommand = null;
 
 /**
- * Config variable stub for the DjvuShell setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::DjvuShell
- */
-$wgDjvuShell = null;
-
-/**
  * Config variable stub for the DjvuDump setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DjvuDump
  */
@@ -4306,6 +4300,12 @@ $wgShellboxUrls = null;
  * @see MediaWiki\MainConfigSchema::ShellboxSecretKey
  */
 $wgShellboxSecretKey = null;
+
+/**
+ * Config variable stub for the ShellboxShell setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ShellboxShell
+ */
+$wgShellboxShell = null;
 
 /**
  * Config variable stub for the HTTPTimeout setting, for use by phpdoc and IDEs.

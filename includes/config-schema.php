@@ -318,7 +318,6 @@ return [
 			'ResponsiveImages' => true,
 			'ImagePreconnect' => false,
 			'DjvuUseBoxedCommand' => false,
-			'DjvuShell' => '/bin/sh',
 			'DjvuDump' => null,
 			'DjvuRenderer' => null,
 			'DjvuTxt' => null,
@@ -2457,6 +2456,7 @@ return [
 				'default' => null,
 			],
 			'ShellboxSecretKey' => null,
+			'ShellboxShell' => '/bin/sh',
 			'HTTPTimeout' => 25,
 			'HTTPConnectTimeout' => 5.0,
 			'HTTPMaxTimeout' => 0,
@@ -2613,10 +2613,6 @@ return [
 			],
 			'UploadThumbnailRenderMap' => 'object',
 			'GalleryOptions' => 'object',
-			'DjvuShell' => [
-				0 => 'string',
-				1 => 'null',
-			],
 			'DjvuDump' => [
 				0 => 'string',
 				1 => 'null',
@@ -2958,6 +2954,10 @@ return [
 			],
 			'ShellboxUrls' => 'object',
 			'ShellboxSecretKey' => [
+				0 => 'string',
+				1 => 'null',
+			],
+			'ShellboxShell' => [
 				0 => 'string',
 				1 => 'null',
 			],

@@ -254,96 +254,113 @@ class DjVuImage {
 		$djvuDump = $config->get( MainConfigNames::DjvuDump );
 		$djvuTxt = $config->get( MainConfigNames::DjvuTxt );
 		$djvuUseBoxedCommand = $config->get( MainConfigNames::DjvuUseBoxedCommand );
-		$djvuShell = $config->get( MainConfigNames::DjvuShell );
+		$shell = $config->get( MainConfigNames::ShellboxShell );
 		if ( !$this->isValid() ) {
 			return false;
 		}
 
-		$retval = null;
+		if ( $djvuTxt === null && $djvuDump === null ) {
+			return [];
+		}
+
+		$txt = null;
+		$dump = null;
 
 		if ( $djvuUseBoxedCommand ) {
 			$command = MediaWikiServices::getInstance()->getShellCommandFactory()
-				->createBoxed( 'media' )
+				->createBoxed( 'djvu' )
 				->disableNetwork()
 				->firejailDefaultSeccomp()
-				->routeName( 'djvu-metadata' );
-			$command
-				->params( $djvuShell, 'scripts/retrieveDjvuMetaData.sh' )
+				->routeName( 'djvu-metadata' )
+				->params( $shell, 'scripts/retrieveDjvuMetaData.sh' )
 				->inputFileFromFile(
 					'scripts/retrieveDjvuMetaData.sh',
 					__DIR__ . '/scripts/retrieveDjvuMetaData.sh' )
 				->inputFileFromFile( 'file.djvu', $this->mFilename )
 				->memoryLimit( self::DJVUTXT_MEMORY_LIMIT );
 			$env = [];
-			if ( isset( $djvuDump ) ) {
+			if ( $djvuDump !== null ) {
 				$env['DJVU_DUMP'] = $djvuDump;
 				$command->outputFileToString( 'dump' );
-				$result = $command->environment( $env )->execute();
 			}
-			if ( isset( $djvuTxt ) ) {
+			if ( $djvuTxt !== null ) {
 				$env['DJVU_TXT'] = $djvuTxt;
 				$command->outputFileToString( 'txt' );
-				$command->outputFileToString( 'txt_exit_code' );
 			}
 
 			$result = $command
 				->environment( $env )
 				->execute();
-			if ( isset( $djvuDump ) ) {
-				$dump = $result->getFileContents( 'dump' );
-				$json = $this->convertDumpToJSON( $dump );
-			} else {
-				$json = null;
+			if ( $result->getExitCode() !== 0 ) {
+				wfDebug( 'retrieveDjvuMetaData failed with exit code ' . $result->getExitCode() );
+				return false;
 			}
-			if ( isset( $djvuTxt ) ) {
-				$retval = (int)trim( $result->getFileContents( 'txt_exit_code' ) );
-				$txt = $result->getFileContents( 'txt' );
+			if ( $djvuDump !== null ) {
+				if ( $result->wasReceived( 'dump' ) ) {
+					$dump = $result->getFileContents( 'dump' );
+				} else {
+					wfDebug( __METHOD__ . ": did not receive dump file" );
+				}
+			}
+
+			if ( $djvuTxt !== null ) {
+				if ( $result->wasReceived( 'txt' ) ) {
+					$txt = $result->getFileContents( 'txt' );
+				} else {
+					wfDebug( __METHOD__ . ": did not receive text file" );
+				}
 			}
 		} else { // No boxedcommand
-			if ( isset( $djvuDump ) ) {
+			if ( $djvuDump !== null ) {
 				# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
 				# https://sourceforge.net/p/djvu/bugs/71/
 				$cmd = Shell::escape( $djvuDump ) . ' ' . Shell::escape( $this->mFilename );
 				$dump = wfShellExec( $cmd );
-				$json = [ 'data' => $this->convertDumpToJSON( $dump ) ];
-			} else {
-				$json = null;
 			}
-			if ( isset( $djvuTxt ) ) {
+			if ( $djvuTxt !== null ) {
 				$cmd = Shell::escape( $djvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
 				wfDebug( __METHOD__ . ": $cmd" );
 				$retval = 0;
 				$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
+				if ( $retval !== 0 ) {
+					$txt = null;
+				}
 			}
 		}
 
-		$txt ??= '';
+		# Convert dump to array
+		$json = [];
+		if ( $dump !== null ) {
+			$data = $this->convertDumpToJSON( $dump );
+			if ( $data !== false ) {
+				$json = [ 'data' => $data ];
+			}
+		}
 
 		# Text layer
-		if ( isset( $djvuTxt ) ) {
-			$json['text'] = [];
-			if ( $retval === 0 ) {
-				# Strip some control characters
-				# Ignore carriage returns
-				$txt = preg_replace( "/\\\\013/", "", $txt );
-				# Replace runs of OCR region separators with a single extra line break
-				$txt = preg_replace( "/(?:\\\\(035|037))+/", "\n", $txt );
+		if ( $txt !== null ) {
+			# Strip some control characters
+			# Ignore carriage returns
+			$txt = preg_replace( "/\\\\013/", "", $txt );
+			# Replace runs of OCR region separators with a single extra line break
+			$txt = preg_replace( "/(?:\\\\(035|037))+/", "\n", $txt );
 
-				$reg = <<<EOR
-					/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
-					((?>    # Text to match is composed of atoms of either:
-						\\\\. # - any escaped character
-						|     # - any character different from " and \
-						[^"\\\\]+
-					)*?)
-					"\s*\)
-					| # Or page can be empty ; in this case, djvutxt dumps ()
-					\(\s*()\)/sx
+			$reg = <<<EOR
+				/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
+				((?>    # Text to match is composed of atoms of either:
+					\\\\. # - any escaped character
+					|     # - any character different from " and \
+					[^"\\\\]+
+				)*?)
+				"\s*\)
+				| # Or page can be empty ; in this case, djvutxt dumps ()
+				\(\s*()\)/sx
 EOR;
-				$matches = [];
-				preg_match_all( $reg, $txt, $matches );
-				$json['text'] = array_map( [ $this, 'pageTextCallback' ], $matches[1] );
-			}
+			$matches = [];
+			preg_match_all( $reg, $txt, $matches );
+			$json['text'] = array_map( [ $this, 'pageTextCallback' ], $matches[1] );
+		} else {
+			$json['text'] = [];
 		}
 
 		return $json;

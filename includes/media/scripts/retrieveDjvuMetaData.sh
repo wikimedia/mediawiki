@@ -1,23 +1,32 @@
 #!/bin/sh
-# Get parameters from environment
-export DJVU_DUMP="${DJVU_DUMP:-djvudump}"
-export DJVU_TXT="${DJVU_TXT:-djvutxt}"
+
 runDump() {
+	local ret
 	# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
 	# https://sourceforge.net/p/djvu/bugs/71/
 	"$DJVU_DUMP" file.djvu > dump
+	ret="$?"
+	if [ "$ret" -ne 0 ]; then
+		echo "djvudump failed with exit code $ret" 1>&2
+		rm -f dump
+	fi
 }
 runTxt() {
+	local ret
 	# Text layer
-	"$DJVU_TXT" \
-		--detail=page \
-		file.djvu > txt
-	# Store exit code so we can use it later
-	echo $? > txt_exit_code
+	if ! "$DJVU_TXT" --detail=page file.djvu > txt; then
+		rm -f txt
+	fi
+	ret="$?"
+	if [ "$ret" -ne 0 ]; then
+		echo "djvutxt failed with exit code $ret" 1>&2
+		rm -f txt
+	fi
 }
-if [ -x "$DJVU_DUMP" ]; then
+if [ -n "$DJVU_DUMP" ]; then
 	runDump
 fi
-if [ -x "$DJVU_TXT" ]; then
+if [ -n "$DJVU_TXT" ]; then
 	runTxt
 fi
+exit 0

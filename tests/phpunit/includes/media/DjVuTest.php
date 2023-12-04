@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Media
  * @covers DjVuHandler
@@ -20,6 +23,8 @@ class DjVuTest extends MediaWikiMediaTestCase {
 			$this->markTestSkipped(
 			'This test needs the installation of the ddjvu, djvutoxml and djvudump tools' );
 		}
+
+		$this->overrideConfigValue( MainConfigNames::DjvuUseBoxedCommand, true );
 
 		$this->handler = new DjVuHandler();
 	}

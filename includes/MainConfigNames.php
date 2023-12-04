@@ -873,12 +873,6 @@ class MainConfigNames {
 	public const DjvuUseBoxedCommand = 'DjvuUseBoxedCommand';
 
 	/**
-	 * Name constant for the DjvuShell setting, for use with Config::get()
-	 * @see MainConfigSchema::DjvuShell
-	 */
-	public const DjvuShell = 'DjvuShell';
-
-	/**
 	 * Name constant for the DjvuDump setting, for use with Config::get()
 	 * @see MainConfigSchema::DjvuDump
 	 */
@@ -4321,6 +4315,12 @@ class MainConfigNames {
 	 * @see MainConfigSchema::ShellboxSecretKey
 	 */
 	public const ShellboxSecretKey = 'ShellboxSecretKey';
+
+	/**
+	 * Name constant for the ShellboxShell setting, for use with Config::get()
+	 * @see MainConfigSchema::ShellboxShell
+	 */
+	public const ShellboxShell = 'ShellboxShell';
 
 	/**
 	 * Name constant for the HTTPTimeout setting, for use with Config::get()
