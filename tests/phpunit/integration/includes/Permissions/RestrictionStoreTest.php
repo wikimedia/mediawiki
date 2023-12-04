@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
-use CommentStore;
 use IDBAccessObject;
 use LinkCache;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinksMigration;

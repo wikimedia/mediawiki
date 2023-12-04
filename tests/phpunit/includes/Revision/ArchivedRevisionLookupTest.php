@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use CommentStoreComment;
 use ContentHandler;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;

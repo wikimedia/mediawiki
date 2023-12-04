@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Storage;
 
 use BagOStuff;
-use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DummyContentHandlerForTesting;
 use JavaScriptContent;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;

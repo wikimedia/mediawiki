@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Integration\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentItem;
 use MediaWiki\CommentFormatter\CommentParser;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\SimpleAuthority;
@@ -260,7 +261,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	private function makeRevisionAndAuthority( $text, $isDeleted, $isAllowed ) {
 		$page = new PageIdentityValue( 1, 0, 'Page', false );
 		$rev = new MutableRevisionRecord( $page );
-		$comment = new \CommentStoreComment( 1, $text );
+		$comment = new CommentStoreComment( 1, $text );
 		$rev->setId( 100 );
 		$rev->setComment( $comment );
 		$rev->setVisibility( $isDeleted ? RevisionRecord::DELETED_COMMENT : 0 );

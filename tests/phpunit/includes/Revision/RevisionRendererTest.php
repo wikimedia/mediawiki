@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use CommentStoreComment;
 use Content;
 use LogicException;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\HookContainer\HookContainer;
