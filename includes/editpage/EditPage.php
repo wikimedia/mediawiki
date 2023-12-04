@@ -430,17 +430,9 @@ class EditPage implements IEditObject {
 	 */
 	private $unicodeCheck;
 
-	/**
-	 * Factory function to create an edit conflict helper
-	 *
-	 * @var callable
-	 */
-	private $editConflictHelperFactory;
-
-	/**
-	 * @var TextConflictHelper|null
-	 */
-	private $editConflictHelper;
+	/** @var callable|null */
+	private $editConflictHelperFactory = null;
+	private ?TextConflictHelper $editConflictHelper = null;
 
 	private IContentHandlerFactory $contentHandlerFactory;
 	private PermissionManager $permManager;
@@ -501,7 +493,6 @@ class EditPage implements IEditObject {
 		$this->contentFormat = $this->contentHandlerFactory
 			->getContentHandler( $this->contentModel )
 			->getDefaultFormat();
-		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
 		$this->permManager = $services->getPermissionManager();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->watchlistExpiryEnabled = $this->getContext()->getConfig() instanceof Config
@@ -4539,43 +4530,31 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Set a factory function to create an EditConflictHelper
-	 *
-	 * @param callable $factory Factory function
+	 * @param callable $factory Factory function to create a {@see TextConflictHelper}
 	 * @since 1.31
 	 */
 	public function setEditConflictHelperFactory( callable $factory ) {
+		Assert::precondition( !$this->editConflictHelperFactory,
+			'Can only have one extension that resolves edit conflicts' );
 		$this->editConflictHelperFactory = $factory;
-		$this->editConflictHelper = null;
 	}
 
-	/**
-	 * @return TextConflictHelper
-	 */
 	private function getEditConflictHelper(): TextConflictHelper {
 		if ( !$this->editConflictHelper ) {
-			$this->editConflictHelper = call_user_func(
-				$this->editConflictHelperFactory,
-				$this->getSubmitButtonLabel()
-			);
+			$label = $this->getSubmitButtonLabel();
+			if ( $this->editConflictHelperFactory ) {
+				$this->editConflictHelper = ( $this->editConflictHelperFactory )( $label );
+			} else {
+				$this->editConflictHelper = new TextConflictHelper(
+					$this->getTitle(),
+					$this->getContext()->getOutput(),
+					MediaWikiServices::getInstance()->getStatsdDataFactory(),
+					$label,
+					MediaWikiServices::getInstance()->getContentHandlerFactory()
+				);
+			}
 		}
-
 		return $this->editConflictHelper;
-	}
-
-	/**
-	 * @param string $submitButtonLabel
-	 * @return TextConflictHelper
-	 * @throws MWUnknownContentModelException
-	 */
-	private function newTextConflictHelper( string $submitButtonLabel ): TextConflictHelper {
-		return new TextConflictHelper(
-			$this->getTitle(),
-			$this->getContext()->getOutput(),
-			MediaWikiServices::getInstance()->getStatsdDataFactory(),
-			$submitButtonLabel,
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
-		);
 	}
 }
 
