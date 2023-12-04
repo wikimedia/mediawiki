@@ -383,7 +383,7 @@ class Category {
 
 		$dbw->startAtomic( __METHOD__ );
 
-		// Lock the `category` row before locking `categorylinks` rows to try
+		// Lock the `category` row before potentially locking `categorylinks` rows to try
 		// to avoid deadlocks with LinksDeletionUpdate (T195397)
 		$dbw->newSelectQueryBuilder()
 			->from( 'category' )
@@ -399,7 +399,7 @@ class Category {
 			->where( [ 'cl_to' => $this->mName ] )
 			->limit( 110 )
 			->caller( __METHOD__ )->fetchRowCount();
-		// Only lock if there are below 100 rows.
+		// Only lock if there are below 100 rows (T352628)
 		if ( $rowCount < 100 ) {
 			// Lock all the `categorylinks` records and gaps for this category;
 			// this is a separate query due to postgres limitations
