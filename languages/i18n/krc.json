@@ -2182,6 +2182,8 @@
 	"restricted-displaytitle-ignored": "Экран башлыкълары джокъ саналгъан бетле",
 	"restricted-displaytitle-ignored-desc": "Бетни керти башлыгъына келишмеген бетни джокъ саналгъан <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> джокъду.",
 	"noindex-category-desc": "Бу бет роботла джанындан индексленмегенди, чуруму <code><nowiki>__NOINDEX__</nowiki></code> тамаша коду болгъаныды эмда бу белгиге эркинлик берилген адам аламда турады.",
+	"index-category-desc": "Бу бетде <code><nowiki>__INDEX__</nowiki></code> код барды (эмда бу белгиге эркинлик берилген ат юсде), бу себебли нормада этилмезлик болса да, роботла индекслейдиле.",
+	"post-expand-template-inclusion-category-desc": "Бет, бютеу шаблонла уллу ёсдюрлюгенлеринде <code>$wgMaxArticleSize</code> ёлчемден уллу болургъа болгъаны ючюн, бир къауум шаблон кенгертилмегенди.",
 	"trackingcategories-disabled": "Категория джукъланыбды",
 	"mailnologin": "Джиберирге адрес джокъду",
 	"mailnologintext": "Башха къошулуучулагъа эл. почта джиберелир ючюн [[Special:UserLogin|системагъа кирирге]] керексиз эм [[Special:Preferences|джарашдырыуланы]] бетинде джараулу эл. почта адрес болургъа керекди.",

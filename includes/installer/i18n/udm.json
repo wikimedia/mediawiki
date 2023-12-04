@@ -4,7 +4,8 @@
 			"Andrewboltachev",
 			"AlnashPiyash2",
 			"Zpizza",
-			"Kotwys"
+			"Kotwys",
+			"Света Поторочина"
 		]
 	},
 	"config-title": "MediaWiki $1 пуктон",
@@ -18,6 +19,6 @@
 	"config-page-complete": "Быдэстэмын!",
 	"config-page-copying": "Лицензия",
 	"config-page-upgradedoc": "Выльдытон",
-	"config-diff3-bad": "GNU diff3 текст ӵошатон тӥрлык шедьтымтэ. Тӥляд али сое санэ басьтытэк кельтэмды луэ, но тӥ та янгышез выльысь но выльысь адӟылоды, лэся.",
+	"config-diff3-bad": "GNU diff3 текстэз ӵошатон тӥрлык шедьтымтэ. Тӥляд али сое санэ басьтытэк кельтэмды луэ, но тупатонъя вачевуонъёс ӵемгес пумиськылозы.т",
 	"mainpagetext": "<strong>MediaWiki движок азинлыко пуктэмын.</strong>"
 }
