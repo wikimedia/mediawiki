@@ -437,7 +437,7 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 				$trace .= sprintf(
 					"%-2d %.3fs %s\n", $i, ( $end - $sTime ), $this->getGeneralizedSql( $query ) );
 			}
-			$this->logger->warning( "Sub-optimal transaction [{dbs}]:\n{trace}", [
+			$this->logger->warning( "Suboptimal transaction [{dbs}]:\n{trace}", [
 				'dbs' => implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) ),
 				'trace' => $trace
 			] );
