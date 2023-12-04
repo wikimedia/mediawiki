@@ -150,6 +150,86 @@ class RevisionContentHelper extends PageContentHelper {
 	}
 
 	/**
+	 * Returns an OpenAPI schema object describing the structure of the response.
+	 * @return array
+	 */
+	public function getResponseBodySchema() {
+		// TODO: we need to reference a re-usable "user" type. The license structure should also be re-usable.
+		return [
+			'description' => 'revision meta-data',
+			'required' => [
+				'id', 'size', 'delta', 'comment', 'minor', 'timestamp', 'content_model', 'page', 'license'
+			],
+			'properties' => [
+				'id' => [
+					'type' => 'integer',
+					'description' => 'Revision id',
+				],
+				'size' => [
+					'type' => 'integer',
+					'description' => 'The size of the revision, in no particular measure.',
+				],
+				'delta' => [
+					'type' => 'integer',
+					'nullable' => true,
+					'description' => 'The difference in size compared to the previous revision.',
+				],
+				'comment' => [
+					'type' => 'string',
+					'nullable' => true,
+					'description' => 'The comment the author associated with the revision',
+				],
+				'minor' => [
+					'type' => 'boolean',
+					'description' => 'Whether the author of the revision conidered it minor.',
+				],
+				'timestamp' => [
+					'type' => 'string',
+					'format' => 'date-time',
+				],
+				'content_model' => [
+					'type' => 'string',
+					'format' => 'mw-content-model',
+				],
+				'page' => [
+					'description' => 'the page the revision belongs to',
+					'required' => [ 'id', 'key', 'title' ],
+					'properties' => [
+						'id' => [
+							'type' => 'integer',
+							'description' => 'the page ID',
+						],
+						'key' => [
+							'type' => 'string',
+							'format' => 'mw-title',
+							'description' => 'the page title in URL form (unencoded)',
+						],
+						'title' => [
+							'type' => 'string',
+							'format' => 'mw-title',
+							'description' => 'the page title in human readable form',
+						],
+					]
+				],
+				'license' => [
+					'description' => 'license information for the revision content',
+					'required' => [ 'url', 'title' ],
+					'properties' => [
+						'url' => [
+							'type' => 'string',
+							'format' => 'url',
+						],
+						'title' => [
+							'type' => 'string',
+							'description' => 'the name of the license',
+						],
+					]
+				],
+			]
+		];
+	}
+
+	/**
 	 * @return array[]
 	 */
 	public function getParamSettings(): array {

@@ -45,7 +45,11 @@ trait RestTestTrait {
 		$config = ( $params['config'] ?? [] ) + [
 			MainConfigNames::CanonicalServer => 'https://wiki.example.com',
 			MainConfigNames::InternalServer => 'http://api.local:8080',
-			MainConfigNames::RestPath => '/rest'
+			MainConfigNames::RestPath => '/rest',
+			MainConfigNames::RightsUrl => 'https://rights.url',
+			MainConfigNames::RightsText => 'your rights',
+			MainConfigNames::EmergencyContact => 'admin@test.test',
+			MainConfigNames::Sitename => 'Test Site',
 		];
 
 		$request = $params['request'] ?? new RequestData();
