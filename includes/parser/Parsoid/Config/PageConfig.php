@@ -96,7 +96,7 @@ class PageConfig extends IPageConfig {
 	}
 
 	/** @inheritDoc */
-	public function getTitleObj(): Title {
+	public function getLinkTarget(): Title {
 		return $this->title;
 	}
 
