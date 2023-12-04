@@ -4173,6 +4173,7 @@
 	"paramvalidator-baduser": "הערך \"$2\" אינו ערך תקין עבור פרמטר המשתמש <var>$1</var>.",
 	"paramvalidator-help-type-user": "סוג: {{PLURAL:$1|1=משתמש|2=רשימת משתמשים}}, {{PLURAL:$3|בצורה הבאה|בכל אחת מהצורות הבאות}}: $2",
 	"paramvalidator-help-type-user-subtype-name": "שם משתמש",
+	"paramvalidator-help-type-user-subtype-temp": "משתמש זמני",
 	"paramvalidator-help-type-user-subtype-ip": "כתובת IP",
 	"paramvalidator-help-type-user-subtype-cidr": "טווח כתובות IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "שם משתמש שהגיע מאתר ויקי אחר (כגון \"prefix>ExampleName\")",

@@ -4250,6 +4250,7 @@
 	"paramvalidator-baduser": "قيمة غير صحيحة \"$2\" لمعامل المستخدم <var>$1</var>.",
 	"paramvalidator-help-type-user": "النوع: {{PLURAL:$1|1=مستخدم|2=قائمة المستخدمين}}، {{PLURAL:$3|بواسطة|بواسطة أي من}} $2",
 	"paramvalidator-help-type-user-subtype-name": "اسم المستخدم",
+	"paramvalidator-help-type-user-subtype-temp": "مستخدم مؤقت",
 	"paramvalidator-help-type-user-subtype-ip": "الآي بي",
 	"paramvalidator-help-type-user-subtype-cidr": "نطاق الآي بي",
 	"paramvalidator-help-type-user-subtype-interwiki": "اسم الإنترويكي (مثال \"prefix>ExampleName\")",

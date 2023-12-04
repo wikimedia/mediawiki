@@ -4178,6 +4178,7 @@
 	"paramvalidator-baduser": "ব্যবহারকারী প্যারামিটার <var>$1</var>-এর জন্য মান \"$2\" অবৈধ।",
 	"paramvalidator-help-type-user": "প্রকার: {{PLURAL:$1| 1=ব্যবহারকারী|2=ব্যবহারকারীদের তালিকা}}, {{PLURAL:$3|$2 দ্বারা|যে কোনো $2 দ্বারা}}",
 	"paramvalidator-help-type-user-subtype-name": "ব্যবহারকারী নাম",
+	"paramvalidator-help-type-user-subtype-temp": "অস্থায়ী ব্যবহারকারী",
 	"paramvalidator-help-type-user-subtype-ip": "আইপি",
 	"paramvalidator-help-type-user-subtype-cidr": "আইপি পরিসীমা",
 	"paramvalidator-help-type-user-subtype-interwiki": "আন্তঃউইকি নাম (উদা: \"উপসর্গ>উদাহরণ নাম\")",

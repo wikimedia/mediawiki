@@ -63,7 +63,7 @@
 	"apihelp-main-param-maxlag": "最大延迟可被用于MediaWiki安装于数据库复制集中。要保存导致更多网站复制延迟的操作，此参数可使客户端等待直到复制延迟少于指定值时。万一发生过多延迟，错误代码<samp>maxlag</samp>会返回消息，例如<samp>等待$host中：延迟$lag秒</samp>。<br />参见[[mw:Special:MyLanguage/Manual:Maxlag_parameter|手册:Maxlag参数]]以获取更多信息。",
 	"apihelp-main-param-smaxage": "设置<code>s-maxage</code> HTTP缓存控制头至这些秒。错误不会缓存。",
 	"apihelp-main-param-maxage": "设置<code>max-age</code> HTTP缓存控制头至这些秒。错误不会缓存。",
-	"apihelp-main-param-assert": "如果设置为<kbd>user</kbd>就验证用户已登录；如果设置为<kbd>anon</kbd>就验证用户未登录；如果设置为<kbd>bot</kbd>就验证是否有机器人用户权限。",
+	"apihelp-main-param-assert": "如果设置为<kbd>user</kbd>，则验证用户是否已登录（包括以临时用户身份登录）；如果设置为<kbd>anon</kbd>，则验证用户是否<em>未</em>登录；如果设置为<kbd>bot</kbd>，则验证用户是否拥有机器人用户权限。",
 	"apihelp-main-param-assertuser": "验证当前用户是命名用户。",
 	"apihelp-main-param-requestid": "任何在此提供的值将包含在响应中。可以用以区别请求。",
 	"apihelp-main-param-servedby": "包含保存结果请求的主机名。",

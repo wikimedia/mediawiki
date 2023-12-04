@@ -4207,6 +4207,7 @@
 	"paramvalidator-baduser": "<var>$1</var> kullanıcı parametresi için geçersiz \"$2\" değeri.",
 	"paramvalidator-help-type-user": "Şunu yazın: {{PLURAL:$1|1=kullanıcı|2=kullanıcı listesi}}, {{PLURAL:$3|herhangi biri}} $2",
 	"paramvalidator-help-type-user-subtype-name": "kullanıcı adı",
+	"paramvalidator-help-type-user-subtype-temp": "Geçici kullanıcı",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP aralığı",
 	"paramvalidator-help-type-user-subtype-interwiki": "vikiarası adı (ör. \"önek>ÖrnekAdı\")",

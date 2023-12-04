@@ -4169,6 +4169,7 @@
 	"paramvalidator-baduser": "Неважечка вредност „$2“ за корисничкиот параметар <var>$1</var>.",
 	"paramvalidator-help-type-user": "Вид: {{PLURAL:$1|1=корисник|2=список на корисници}}, {{PLURAL:$3|од|од некое од}} $2",
 	"paramvalidator-help-type-user-subtype-name": "корисничко име",
+	"paramvalidator-help-type-user-subtype-temp": "Привремен корисник",
 	"paramvalidator-help-type-user-subtype-ip": "IP-адреса",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-опсег",
 	"paramvalidator-help-type-user-subtype-interwiki": "меѓувики-назив (на пр. „prefix>ПримеренНазив“)",

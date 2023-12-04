@@ -3537,6 +3537,7 @@
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Passwuert däerf keent sinn dat op der spezifescher Lëscht vun de Standard-Passwierder steet",
 	"passwordpolicies-policy-maximalpasswordlength": "Passwurt muss manner wéi {{PLURAL:$1|een|$1}} Zeeche laang sinn",
 	"paramvalidator-help-type-user-subtype-name": "Benotzernumm",
+	"paramvalidator-help-type-user-subtype-temp": "Temporäre Benotzer",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP Adressberäich",
 	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Numm (z.B. \"prefix>BeispillNumm\")",

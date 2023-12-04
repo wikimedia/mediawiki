@@ -4194,6 +4194,7 @@
 	"paramvalidator-baduser": "Nieprawidłowa wartość \"$2\" dla parametru typu \"użytkownik\" <var>$1</var>.",
 	"paramvalidator-help-type-user": "Typ: {{PLURAL:$1|1=użytkownik|2=lista użytkowników}}, {{PLURAL:$3|podany jako:}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nazwa użytkownika",
+	"paramvalidator-help-type-user-subtype-temp": "Tymczasowy użytkownik",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "zakres IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nazwa interwiki (np. „prefiks>PrzykładowaNazwa”)",

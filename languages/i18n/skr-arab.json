@@ -2764,6 +2764,7 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "لاگ ان ویلے تبدیلی دی تجویز ݙیوو",
 	"userlogout-continue": "بھلا تساں لاگ آؤٹ تھیوݨ چاہندے ہو؟",
 	"paramvalidator-help-type-user-subtype-name": "ورتݨ ناں",
+	"paramvalidator-help-type-user-subtype-temp": "عارضی ورتݨ آلا",
 	"paramvalidator-help-type-user-subtype-ip": "آئی پی",
 	"paramvalidator-help-type-user-subtype-cidr": "آئی پی رینج",
 	"paramvalidator-help-type-user-subtype-id": "ورتݨ آلے دا سُن٘ڄاݨ نمبر (مثلاً \"#12345\")",

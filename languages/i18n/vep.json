@@ -4056,6 +4056,7 @@
 	"paramvalidator-baduser": "Kävutajan suruden <var>$1</var> vär znamoičend \"$2\".",
 	"paramvalidator-help-type-user": "Tip: {{PLURAL:$1|1=kävutai|2=kävutajiden lugetiž}}, {{PLURAL:$3|by|by any of}} $2",
 	"paramvalidator-help-type-user-subtype-name": "kävutajan nimi",
+	"paramvalidator-help-type-user-subtype-temp": "Keskaigaine kävutai",
 	"paramvalidator-help-type-user-subtype-ip": "IP-adres",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-adresoiden avaruz'",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwikin nimi (ozutesikš \"prefix>OzutezNimi\")",
