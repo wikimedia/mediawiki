@@ -392,16 +392,26 @@ class Category {
 			->forUpdate()
 			->acquireRowLocks();
 
-		// Lock all the `categorylinks` records and gaps for this category;
-		// this is a separate query due to postgres limitations
-		$dbw->newSelectQueryBuilder()
+		$rowCount = $dbw->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'categorylinks' )
 			->join( 'page', null, 'page_id = cl_from' )
 			->where( [ 'cl_to' => $this->mName ] )
-			->lockInShareMode()
-			->caller( __METHOD__ )
-			->acquireRowLocks();
+			->limit( 110 )
+			->caller( __METHOD__ )->fetchRowCount();
+		// Only lock if there are below 100 rows.
+		if ( $rowCount < 100 ) {
+			// Lock all the `categorylinks` records and gaps for this category;
+			// this is a separate query due to postgres limitations
+			$dbw->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'categorylinks' )
+				->join( 'page', null, 'page_id = cl_from' )
+				->where( [ 'cl_to' => $this->mName ] )
+				->lockInShareMode()
+				->caller( __METHOD__ )
+				->acquireRowLocks();
+		}
 
 		// Get the aggregate `categorylinks` row counts for this category
 		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], '1', 'NULL' );
