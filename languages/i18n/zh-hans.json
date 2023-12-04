@@ -194,7 +194,8 @@
 			"Amire80",
 			"淮南皓月",
 			"Vikarna",
-			"Googology"
+			"Googology",
+			"Anterdc99"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1709,7 +1710,7 @@
 	"rcfilters-filter-watchlistactivity-unseen-label": "未查看更改",
 	"rcfilters-filter-watchlistactivity-unseen-description": "对自发生更改之后您未访问的页面的更改。",
 	"rcfilters-filter-watchlistactivity-seen-label": "已查看更改",
-	"rcfilters-filter-watchlistactivity-seen-description": "对自发生更改之后您未访问的页面的更改。",
+	"rcfilters-filter-watchlistactivity-seen-description": "对自发生更改之后您已访问的页面的更改。",
 	"rcfilters-filtergroup-changetype": "更改类型",
 	"rcfilters-filter-pageedits-label": "页面编辑",
 	"rcfilters-filter-pageedits-description": "对wiki内容、讨论、分类描述等的编辑",

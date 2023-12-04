@@ -2369,6 +2369,7 @@
 	"sp-contributions-hideminor": "معمولی ترامیم چھپائیں",
 	"sp-contributions-submit": "تلاش",
 	"whatlinkshere": "مربوط صفحات",
+	"whatlinkshere-count": "$1 {{PLURAL:$1|اندراج|اندراجات}} سامنے ہیں۔",
 	"whatlinkshere-title": "«$1» سے مربوط صفحات",
 	"whatlinkshere-page": "صفحہ:",
 	"linkshere": "<strong>$1</strong> سے درج ذیل صفحات مربوط ہیں:",

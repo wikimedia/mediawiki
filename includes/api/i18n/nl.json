@@ -487,7 +487,7 @@
 	"api-help-examples": "{{PLURAL:$1|Voorbeeld|Voorbeelden}}:",
 	"api-help-permissions": "{{PLURAL:$1|Toestemming|Toestemmingen}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Toegekend}} aan: $2",
-	"api-help-open-in-apisandbox": "<small>[open in de zandbak]</small>",
+	"api-help-open-in-apisandbox": "<small>[in de sandbox openen]</small>",
 	"apierror-articleexists": "Het artikel dat u probeert aan te maken, bestaat al.",
 	"apierror-assertbotfailed": "U hebt niet het <code>bot</code>-recht, waardoor de handeling niet kon worden voltooid.",
 	"apierror-assertnameduserfailed": "U bent niet meer aangemeld als “$1”, waardoor de handeling niet kon worden voltooid.",
