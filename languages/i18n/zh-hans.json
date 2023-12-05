@@ -2990,7 +2990,7 @@
 	"movepagetalktext": "如果您勾选此框，相关联的讨论页将被自动移动到新的标题，除非这里已经有了一个非空讨论页。\n\n在这种情况下，如有需要，您将不得不手动移动或合并页面。",
 	"moveuserpage-warning": "'''警告：'''你将移动一个用户页面。请注意，只有该页面会被移动，该用户'''不会'''被更名。",
 	"movecategorypage-warning": "<strong>警告：</strong>您将要移动分类页面。请注意，只有分类页面会被移动，而属于旧分类的任何页面<em>都不会</em>被重新归类到新分类内。",
-	"movenologintext": "您必须是一名登注册用户并且[[Special:UserLogin|登录]]后才可移动一个页面。",
+	"movenologintext": "您必须是一名注册用户并且[[Special:UserLogin|登录]]后才可移动一个页面。",
 	"movenotallowed": "您没有权限移动页面。",
 	"movenotallowedfile": "您没有权限移动文件。",
 	"cant-move-user-page": "您没有权限移动用户页面（子页面除外）。",

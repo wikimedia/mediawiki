@@ -675,6 +675,7 @@
 	"temp-user-banner-description": "Користите привремени налог",
 	"temp-user-banner-tooltip-label": "Више информација о привременим налозима",
 	"temp-user-banner-tooltip-title": "Привремени налог",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Ваш привремени налог истиче за мање од једног дана.</strong> Пошто истекне, нови ће бити направљен следећи пут када будете непријављени уређивали.",
 	"temp-user-banner-tooltip-description-learn-more": "Овај привремени налог је направљен пошто је начињена измена из овог веб-прегледача и уређаја. [[mw:Help:Temporary_accounts|Сазнајте више]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Пријавите се]] или \n[[Special:CreateAccount|отворите налог]]. Тиме ће ваши доприноси бити приписивани корисничком имену које одаберете и стећи ћете многе погодности.",
 	"blankarticle": "<strong>Упозорење:</strong> Страница коју правите је празна.\nАко поново кликнете на „$1”, страница ће бити направљена без икакве садржине.",

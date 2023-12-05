@@ -1540,6 +1540,8 @@
 	"rcfilters-filter-categorization-description": "Optegnelser af at sider bliver tilføjet til eller fjernet fra kategorier.",
 	"rcfilters-filter-logactions-label": "Loggede handlinger",
 	"rcfilters-filter-logactions-description": "Administrative handlinger, kontooprettelser, sidesletninger, uploads...",
+	"rcfilters-filter-accountcreations-label": "Kontooprettelser",
+	"rcfilters-filter-accountcreations-description": "Logposter for kontooprettelse. Loggede handlinger skal være markeret.",
 	"rcfilters-filtergroup-lastrevision": "Seneste revisioner",
 	"rcfilters-filter-lastrevision-label": "Seneste revision",
 	"rcfilters-filter-lastrevision-description": "Kun den seneste ændring af en side.",
