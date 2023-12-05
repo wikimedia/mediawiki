@@ -72,43 +72,4 @@ class JsonBodyValidator implements BodyValidator {
 		return $data;
 	}
 
-	/**
-	 * Returns an OpenAPI Schema Object specification structure as an associative array.
-	 * @see https://swagger.io/specification/#schema-object
-	 *
-	 *
-	 * This will contain information about the supported parameters.
-	 *
-	 * @return array
-	 */
-	public function getOpenAPISpec(): array {
-		$body = [];
-		$required = [];
-
-		// XXX: Maybe we want to be able to define a spec file in the route definition?
-		// NOTE: the route definition may not be loaded when this is called before init()!
-
-		foreach ( $this->bodyParamSettings as $name => $paramSetting ) {
-			$param = Validator::getParameterSpec(
-				$name,
-				$paramSetting
-			);
-
-			$body['properties'][$name] = $param['schema'];
-
-			if ( isset( $param['description'] ) ) {
-				$body['properties'][$name]['description'] = $param['description'];
-			}
-
-			if ( $param['required'] ?? false ) {
-				$required[] = $param['name'];
-			}
-		}
-
-		if ( $required ) {
-			$body['required'] = $required;
-		}
-
-		return $body;
-	}
 }

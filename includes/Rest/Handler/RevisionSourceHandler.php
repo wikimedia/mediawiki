@@ -74,12 +74,6 @@ class RevisionSourceHandler extends SimpleHandler {
 		return $response;
 	}
 
-	protected function getResponseBodySchema(): array {
-		$schema = $this->contentHelper->getResponseBodySchema();
-		// TODO: add fields based on the output mode
-		return $schema;
-	}
-
 	/**
 	 * @return string|null
 	 */

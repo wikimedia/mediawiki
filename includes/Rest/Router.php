@@ -86,9 +86,6 @@ class Router {
 	/** @var StatsdDataFactoryInterface */
 	private $stats;
 
-	/** @var ServiceOptions */
-	private $options;
-
 	/**
 	 * @internal
 	 * @var array
@@ -97,11 +94,6 @@ class Router {
 		MainConfigNames::CanonicalServer,
 		MainConfigNames::InternalServer,
 		MainConfigNames::RestPath,
-		// From RootSpecHandler::CONSTRUCTOR_OPTIONS
-		MainConfigNames::RightsUrl,
-		MainConfigNames::RightsText,
-		MainConfigNames::EmergencyContact,
-		MainConfigNames::Sitename,
 	];
 
 	/**
@@ -137,7 +129,6 @@ class Router {
 
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
-		$this->options = $options;
 		$this->baseUrl = $options->get( MainConfigNames::CanonicalServer );
 		$this->privateBaseUrl = $options->get( MainConfigNames::InternalServer );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
@@ -173,7 +164,7 @@ class Router {
 	 * @return string The cache key
 	 */
 	private function getCacheKey() {
-		return $this->cacheBag->makeKey( __CLASS__, '4' );
+		return $this->cacheBag->makeKey( __CLASS__, '1' );
 	}
 
 	/**
@@ -231,11 +222,9 @@ class Router {
 	 * Get an iterator for all defined routes, including loading the routes from
 	 * the JSON files.
 	 *
-	 * @unstable
-	 *
 	 * @return AppendIterator
 	 */
-	public function getAllRoutes() {
+	private function getAllRoutes() {
 		$iterator = new AppendIterator;
 		$iterator->append( new \ArrayIterator( $this->getRoutesFromFiles() ) );
 		$iterator->append( new \ArrayIterator( $this->extraRoutes ) );
@@ -498,23 +487,6 @@ class Router {
 	 * @return Handler
 	 */
 	private function createHandler( RequestInterface $request, array $spec ): Handler {
-		$handler = $this->instantiateHandlerObject( $spec );
-
-		// TODO: split the init method, so instantiateHandlerObject can inject the spec.
-		$handler->init( $this, $request, $spec, $this->authority, $this->responseFactory,
-			$this->hookContainer, $this->session
-		);
-
-		return $handler;
-	}
-
-	/**
-	 * Creates a handler from the given spec, but does not initialize it.
-	 * @param array $spec
-	 * @return Handler
-	 */
-	public function instantiateHandlerObject( array $spec ): Handler {
-		// Hack for factory methods defined by Router
 		$objectFactorySpec = array_intersect_key(
 			$spec,
 			[
@@ -527,6 +499,9 @@ class Router {
 		);
 		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = $this->objectFactory->createObject( $objectFactorySpec );
+		$handler->init( $this, $request, $spec, $this->authority, $this->responseFactory,
+			$this->hookContainer, $this->session
+		);
 
 		return $handler;
 	}
