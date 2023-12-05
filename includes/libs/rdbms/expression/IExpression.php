@@ -9,9 +9,10 @@ use Wikimedia\Rdbms\Database\DbQuoter;
  */
 interface IExpression {
 
-	public const ACCEPTABLE_OPERATORS = [ '>', '<', '!=', '=', '>=', '<=', self::LIKE ];
+	public const ACCEPTABLE_OPERATORS = [ '>', '<', '!=', '=', '>=', '<=', self::LIKE, self::NOT_LIKE ];
 
 	public const LIKE = 'LIKE';
+	public const NOT_LIKE = 'NOT LIKE';
 
 	/**
 	 * Return SQL for execution.

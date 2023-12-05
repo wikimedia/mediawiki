@@ -5,6 +5,9 @@ namespace MediaWiki\Tests\Unit\Libs\Rdbms;
 use InvalidArgumentException;
 use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\Expression;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
@@ -17,36 +20,105 @@ class ExpressionTest extends \PHPUnit\Framework\TestCase {
 
 	public static function provideSimple() {
 		return [
-			[ 'rev_timestamp', '>', '20221025145309', "rev_timestamp > '20221025145309'" ],
-			[ 'rev_timestamp', '>=', '20221025145309', "rev_timestamp >= '20221025145309'" ],
-			[ 'rev_timestamp', '<', '20221025145309', "rev_timestamp < '20221025145309'" ],
-			[ 'rev_timestamp', '<=', '20221025145309', "rev_timestamp <= '20221025145309'" ],
-			[ 'rev_timestamp', '=', '20221025145309', "rev_timestamp = '20221025145309'" ],
-			[ 'rev_timestamp', '!=', '20221025145309', "rev_timestamp != '20221025145309'" ],
-			[ 'revision.rev_timestamp', '!=', '20221025145309', "revision.rev_timestamp != '20221025145309'" ],
-			[ 'rev_id', '>', 12345, 'rev_id > 12345' ],
-			[ 'rev_id', '>=', 12345, 'rev_id >= 12345' ],
-			[ 'rev_id', '<', 12345, 'rev_id < 12345' ],
-			[ 'rev_id', '<=', 12345, 'rev_id <= 12345' ],
-			[ 'rev_id', '=', 12345, 'rev_id = 12345' ],
-			[ 'rev_id', '=', [ 'x' ], "rev_id = 'x'" ],
-			[ 'rev_id', '!=', 12345, 'rev_id != 12345' ],
-			[ 'rev_id', '!=', [ 'x' ], "rev_id != 'x'" ],
-			[ 'rev_id', '=', [ 12345, 456 ], 'rev_id IN (12345,456)' ],
-			[ 'rev_id', '!=', [ 12345, 456 ], 'rev_id NOT IN (12345,456)' ],
-			[ 'rc_old_len', '=', null, 'rc_old_len IS NULL' ],
-			[ 'rc_old_len', '!=', null, 'rc_old_len IS NOT NULL' ],
 			[
-				'rev_timestamp',
-				'=',
-				[ '20221025145309', '20230919152602' ],
+				'rev_timestamp', '>', '20221025145309',
+				"rev_timestamp > '20221025145309'"
+			],
+			[
+				'rev_timestamp', '>=', '20221025145309',
+				"rev_timestamp >= '20221025145309'"
+			],
+			[
+				'rev_timestamp', '<', '20221025145309',
+				"rev_timestamp < '20221025145309'"
+			],
+			[
+				'rev_timestamp', '<=', '20221025145309',
+				"rev_timestamp <= '20221025145309'"
+			],
+			[
+				'rev_timestamp', '=', '20221025145309',
+				"rev_timestamp = '20221025145309'"
+			],
+			[
+				'rev_timestamp', '!=', '20221025145309',
+				"rev_timestamp != '20221025145309'"
+			],
+			[
+				'revision.rev_timestamp', '!=', '20221025145309',
+				"revision.rev_timestamp != '20221025145309'"
+			],
+			[
+				'rev_id', '>', 12345,
+				"rev_id > 12345"
+			],
+			[
+				'rev_id', '>=', 12345,
+				"rev_id >= 12345"
+			],
+			[
+				'rev_id', '<', 12345,
+				"rev_id < 12345"
+			],
+			[
+				'rev_id', '<=', 12345,
+				"rev_id <= 12345"
+			],
+			[
+				'rev_id', '=', 12345,
+				"rev_id = 12345"
+			],
+			[
+				'rev_id', '=', [ 'x' ],
+				"rev_id = 'x'"
+			],
+			[
+				'rev_id', '!=', 12345,
+				"rev_id != 12345"
+			],
+			[
+				'rev_id', '!=', [ 'x' ],
+				"rev_id != 'x'"
+			],
+			[
+				'rev_id', '=', [ 12345, 456 ],
+				"rev_id IN (12345,456)"
+			],
+			[
+				'rev_id', '!=', [ 12345, 456 ],
+				"rev_id NOT IN (12345,456)"
+			],
+			[
+				'rc_old_len', '=', null,
+				"rc_old_len IS NULL"
+			],
+			[
+				'rc_old_len', '!=', null,
+				"rc_old_len IS NOT NULL"
+			],
+			[
+				'rev_timestamp', '=', [ '20221025145309', '20230919152602' ],
 				"rev_timestamp IN ('20221025145309','20230919152602')"
 			],
 			[
-				'rev_timestamp',
-				'!=',
-				[ '20221025145309', '20230919152602' ],
+				'rev_timestamp', '!=', [ '20221025145309', '20230919152602' ],
 				"rev_timestamp NOT IN ('20221025145309','20230919152602')"
+			],
+			[
+				'user_name', IExpression::LIKE, new LikeValue( 'foo', new LikeMatch( '%' ) ),
+				"user_name LIKE 'foo%' ESCAPE '`' "
+			],
+			[
+				'user_name', IExpression::NOT_LIKE, new LikeValue( new LikeMatch( '%' ), 'foo' ),
+				"user_name NOT LIKE '%foo' ESCAPE '`' "
+			],
+			[
+				'user_name', IExpression::LIKE, new LikeValue( 'foo' ),
+				"user_name LIKE 'foo' ESCAPE '`' "
+			],
+			[
+				'user_name', IExpression::LIKE, new LikeValue( new LikeMatch( '_' ), '%_', new LikeMatch( '%' ) ),
+				"user_name LIKE '_`%`_%' ESCAPE '`' "
 			],
 		];
 	}
@@ -68,6 +140,9 @@ class ExpressionTest extends \PHPUnit\Framework\TestCase {
 			[ 'rev_timestamp', '>', null ],
 			[ 'rev_timestamp', '<', null ],
 			[ 'rev_timestamp', '=<', '12345' ],
+			[ 'user_name', IExpression::LIKE, 'foo' ],
+			[ 'user_name', IExpression::LIKE, [ 'foo' ] ],
+			[ 'user_name', '=', new LikeValue( 'foo' ) ],
 			[ 'SELECT user_password from user where user_id = 1', '>', 1234 ],
 		];
 	}
