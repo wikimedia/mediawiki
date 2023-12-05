@@ -37,6 +37,7 @@ use MediaWiki\MainConfigNames;
  */
 class CodexModule extends FileModule {
 	protected const CODEX_MODULE_DIR = 'resources/lib/codex/modules/';
+	private const CODEX_MODULE_DEPENDENCIES = [ 'vue' ];
 
 	/** @var array<string,string> */
 	private array $themeMap = [];
@@ -80,6 +81,16 @@ class CodexModule extends FileModule {
 
 		if ( isset( $options[ 'codexScriptOnly' ] ) ) {
 			$this->isScriptOnly = $options[ 'codexScriptOnly' ];
+		}
+
+		// Unlike when the entire @wikimedia/codex module is depended on, when the codexComponents
+		// option is used, Vue is not automatically included, though it is required. Add it and
+		// other dependencies here.
+		if ( !$this->isStyleOnly && count( $this->codexComponents ) > 0 ) {
+			$options[ 'dependencies' ] = array_unique( array_merge(
+				$options[ 'dependencies' ] ?? [],
+				self::CODEX_MODULE_DEPENDENCIES
+			) );
 		}
 
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
