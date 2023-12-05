@@ -31,6 +31,20 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class Validator {
 
+	/**
+	 * (string) ParamValidator constant to specify the source of the parameter.
+	 * Value must be 'path', 'query', or 'body' ('post' is accepted as an alias for 'body').
+	 * 'post' refers to application/x-www-form-urlencoded or multipart/form-data encoded parameters
+	 * in the body of a POST request (in other words, parameters in PHP's $_POST). For other kinds
+	 * of POST parameters, such as JSON fields, use BodyValidator instead of ParamValidator.
+	 */
+	public const PARAM_SOURCE = 'rest-param-source';
+
+	/**
+	 * Parameter description to use in generated documentation
+	 */
+	public const PARAM_DESCRIPTION = 'rest-param-description';
+
 	/** @var array Type defs for ParamValidator */
 	private const TYPE_DEFS = [
 		'boolean' => [ 'class' => BooleanDef::class ],
@@ -177,6 +191,81 @@ class Validator {
 
 		// Validate the body. BodyValidator throws an HttpException on failure.
 		return $handler->getBodyValidator( $ct )->validateBody( $request );
+	}
+
+	private const PARAM_TYPE_SCHEMAS = [
+		'boolean-param' => [ 'type' => 'boolean' ],
+		'enum-param' => [ 'type' => 'string' ],
+		'integer-param' => [ 'type' => 'integer' ],
+		'float-param' => [ 'type' => 'number', 'format' => 'float' ],
+		'double-param' => [ 'type' => 'number', 'format' => 'double' ],
+		// 'NULL-param' => [ 'type' => 'null' ], // FIXME
+		'password-param' => [ 'type' => 'string' ],
+		'string-param' => [ 'type' => 'string' ],
+		'timestamp-param' => [ 'type' => 'string', 'format' => 'mw-timestamp' ],
+		'upload-param' => [ 'type' => 'string', 'format' => 'mw-upload' ],
+		'expiry-param' => [ 'type' => 'string', 'format' => 'mw-expiry' ],
+		'title-param' => [ 'type' => 'string', 'format' => 'mw-title' ],
+		'user-param' => [ 'type' => 'string', 'format' => 'mw-user' ],
+	];
+
+	/**
+	 * Returns JSON Schema description of all known parameter types.
+	 * The name of the schema is the name of the parameter type with "-param" appended.
+	 *
+	 * @see https://swagger.io/specification/#schema-object
+	 * @see self::TYPE_DEFS
+	 *
+	 * @return array
+	 */
+	public static function getParameterTypeSchemas(): array {
+		return self::PARAM_TYPE_SCHEMAS;
+	}
+
+	/**
+	 * Convert a param settings array into an OpenAPI Parameter Object specification structure.
+	 * @see https://swagger.io/specification/#parameter-object
+	 *
+	 * @param string $name
+	 * @param array $paramSetting
+	 *
+	 * @return array
+	 */
+	public static function getParameterSpec( string $name, array $paramSetting ): array {
+		$type = $paramSetting[ ParamValidator::PARAM_TYPE ] ?? 'string';
+
+		if ( is_array( $type ) ) {
+			if ( $type === [] ) {
+				// Hack for empty enums. In path and query parameters,
+				// the empty string is often the same as "no value".
+				// TODO: generate a warning!
+				$type = [ '' ];
+			}
+
+			$schema = [
+				'type' => 'string',
+				'enum' => $type
+			];
+		} else {
+			// TODO: multi-value params?!
+			$schema = self::PARAM_TYPE_SCHEMAS["{$type}-param"] ?? [];
+		}
+
+		// TODO: generate a warning if the source is not specified!
+		$location = $paramSetting[ self::PARAM_SOURCE ] ?? 'unspecified';
+
+		$param = [
+			'name' => $name,
+			'description' => $paramSetting[ self::PARAM_DESCRIPTION ] ?? "$name parameter",
+			'in' => $location,
+			'schema' => $schema
+		];
+
+		// TODO: generate a warning if required is false for a pth param
+		$param['required'] = $location === 'path'
+			|| ( $paramSetting[ ParamValidator::PARAM_REQUIRED ] ?? false );
+
+		return $param;
 	}
 
 }
