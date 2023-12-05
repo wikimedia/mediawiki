@@ -459,6 +459,9 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					case 'Flash':
+						if ( $val === '' ) {
+							$val = 0;
+						}
 						$flashDecode = [
 							'fired' => $val & 0b00000001,
 							'return' => ( $val & 0b00000110 ) >> 1,
