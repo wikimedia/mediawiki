@@ -913,6 +913,8 @@
 	"edit-recovery-loaded-message": "Message shown in a notification toast popup when an in-progress edit is recovered.",
 	"edit-recovery-loaded-show": "Button text in a notification toast popup shown when an in-progress edit is recovered, used to show changes.",
 	"edit-recovery-loaded-discard": "Button text in a notification toast popup shown when an in-progress edit is recovered, used to cancel the recovery and delete the data.",
+	"edit-recovery-link-tooltip-no-data": "Tooltip shown on the link to Special:EditRecovery when there is no stored data.",
+	"edit-recovery-link-tooltip-with-data": "Tooltip shown on the link to Special:EditRecovery when there is any stored data.\n\nParameters:\n\n* $1 — The number of stored items.",
 	"summary": "The Summary text beside the edit summary field\n\nSee also:\n* {{msg-mw|Subject}}\nSee also:\n* {{msg-mw|Accesskey-summary}}\n* {{msg-mw|Tooltip-summary}}\n{{Identical|Summary}}",
 	"subject": "Used as label for the section title input box when adding a new section on a talk page.\n\nSee also:\n* {{msg-mw|Summary}}\n{{Identical|Subject}}",
 	"minoredit": "Text above Save page button in editor\n\nSee also:\n* {{msg-mw|Minoredit}}\n* {{msg-mw|Accesskey-minoredit}}\n* {{msg-mw|Tooltip-minoredit}}",

@@ -1338,13 +1338,20 @@ return [
 		'dependencies' => 'mediawiki.action.view.filepage',
 	],
 
-	'mediawiki.editRecovery.postEdit' => [
+	'mediawiki.editRecovery.hooks' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.editRecovery',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.editRecovery",
 		'packageFiles' => [
-			'postEdit.js',
+			'hooks.js',
 			'storage.js',
 		],
+		'styles' => [
+			'styles.less',
+		],
+		'messages' => [
+			'edit-recovery-link-tooltip-no-data',
+			'edit-recovery-link-tooltip-with-data',
+		]
 	],
 	'mediawiki.editRecovery.edit' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.editRecovery',
