@@ -11,11 +11,20 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
+	private const SRC_TABLE = 'tmp_src_tbl';
+	private const DST_TABLE = 'tmp_dst_tbl';
 
 	protected function setUp(): void {
 		parent::setUp();
 		if ( !$this->db instanceof DatabasePostgres ) {
 			$this->markTestSkipped( 'Not PostgreSQL' );
+		}
+	}
+
+	public function addDBDataOnce() {
+		if ( $this->db instanceof DatabasePostgres ) {
+			$this->createSourceTable();
+			$this->createDestTable();
 		}
 	}
 
@@ -215,18 +224,14 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\Database::insertId()
 	 */
 	public function testInsertIdAfterInsert() {
-		$dTable = $this->createDestTable();
-
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 
-		$this->db->insert( $dTable, $rows, __METHOD__ );
+		$this->db->insert( self::DST_TABLE, $rows, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 		$this->assertSame( 1, $this->db->affectedRows() );
-
-		$this->dropDestTable();
 	}
 
 	/**
@@ -234,23 +239,19 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\Database::insertId()
 	 */
 	public function testInsertIdAfterInsertIgnore() {
-		$dTable = $this->createDestTable();
-
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 
-		$this->db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
+		$this->db->insert( self::DST_TABLE, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 
-		$this->db->insert( $dTable, $rows, __METHOD__, 'IGNORE' );
+		$this->db->insert( self::DST_TABLE, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 0, $this->db->affectedRows() );
 		$this->assertSame( 0, $this->db->insertId() );
 
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 		$this->assertSame( 1, $this->db->affectedRows() );
-
-		$this->dropDestTable();
 	}
 
 	/**
@@ -258,23 +259,19 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\Database::insertId()
 	 */
 	public function testInsertIdAfterReplace() {
-		$dTable = $this->createDestTable();
-
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 
-		$this->db->replace( $dTable, 'k', $rows, __METHOD__ );
+		$this->db->replace( self::DST_TABLE, 'k', $rows, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 
-		$this->db->replace( $dTable, 'k', $rows, __METHOD__ );
+		$this->db->replace( self::DST_TABLE, 'k', $rows, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 2, $this->db->insertId() );
 
-		$this->assertNWhereKEqualsLuca( 2, $dTable );
+		$this->assertNWhereKEqualsLuca( 2, self::DST_TABLE );
 		$this->assertSame( 1, $this->db->affectedRows() );
-
-		$this->dropDestTable();
 	}
 
 	/**
@@ -282,27 +279,23 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\Database::insertId()
 	 */
 	public function testInsertIdAfterUpsert() {
-		$dTable = $this->createDestTable();
-
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 		$set = [
 			'v = ' . $this->db->buildExcludedValue( 'v' ),
 			't = ' . $this->db->buildExcludedValue( 't' ) . ' + 1'
 		];
 
-		$this->db->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
+		$this->db->upsert( self::DST_TABLE, $rows, 'k', $set, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 
-		$this->db->upsert( $dTable, $rows, 'k', $set, __METHOD__ );
+		$this->db->upsert( self::DST_TABLE, $rows, 'k', $set, __METHOD__ );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 		$this->assertSame( 1, $this->db->affectedRows() );
-
-		$this->dropDestTable();
 	}
 
 	/**
@@ -310,22 +303,19 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\Database::insertId()
 	 */
 	public function testInsertIdAfterInsertSelect() {
-		$sTable = $this->createSourceTable();
-		$dTable = $this->createDestTable();
-
 		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
-		$this->db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
+		$this->db->insert( self::SRC_TABLE, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 		$this->assertSame( 1, (int)$this->db->newSelectQueryBuilder()
 			->select( 'sn' )
-			->from( $sTable )
+			->from( self::SRC_TABLE )
 			->where( [ 'sk' => 'Luca' ] )
 			->fetchField() );
 
 		$this->db->insertSelect(
-			$dTable,
-			$sTable,
+			self::DST_TABLE,
+			self::SRC_TABLE,
 			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
 			[ 'sk' => 'Luca' ],
 			__METHOD__,
@@ -334,11 +324,8 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 		$this->assertSame( 1, $this->db->affectedRows() );
-
-		$this->dropSourceTable();
-		$this->dropDestTable();
 	}
 
 	/**
@@ -346,22 +333,19 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\Database::insertId()
 	 */
 	public function testInsertIdAfterInsertSelectIgnore() {
-		$sTable = $this->createSourceTable();
-		$dTable = $this->createDestTable();
-
 		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
-		$this->db->insert( $sTable, $rows, __METHOD__, 'IGNORE' );
+		$this->db->insert( self::SRC_TABLE, $rows, __METHOD__, 'IGNORE' );
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
 		$this->assertSame( 1, (int)$this->db->newSelectQueryBuilder()
 			->select( 'sn' )
-			->from( $sTable )
+			->from( self::SRC_TABLE )
 			->where( [ 'sk' => 'Luca' ] )
 			->fetchField() );
 
 		$this->db->insertSelect(
-			$dTable,
-			$sTable,
+			self::DST_TABLE,
+			self::SRC_TABLE,
 			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
 			[ 'sk' => 'Luca' ],
 			__METHOD__,
@@ -369,11 +353,11 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( 1, $this->db->affectedRows() );
 		$this->assertSame( 1, $this->db->insertId() );
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 
 		$this->db->insertSelect(
-			$dTable,
-			$sTable,
+			self::DST_TABLE,
+			self::SRC_TABLE,
 			[ 'k' => 'sk', 'v' => 'sv', 't' => 'st' ],
 			[ 'sk' => 'Luca' ],
 			__METHOD__,
@@ -382,11 +366,8 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $this->db->affectedRows() );
 		$this->assertSame( 0, $this->db->insertId() );
 
-		$this->assertNWhereKEqualsLuca( 1, $dTable );
+		$this->assertNWhereKEqualsLuca( 1, self::DST_TABLE );
 		$this->assertSame( 1, $this->db->affectedRows() );
-
-		$this->dropSourceTable();
-		$this->dropDestTable();
 	}
 
 	private function assertNWhereKEqualsLuca( $expected, $table ) {
@@ -398,48 +379,32 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createSourceTable() {
-		$prefix = self::dbPrefix();
+		$encTable = $this->db->tableName( 'tmp_src_tbl' );
 
-		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_src_tbl" );
+		$this->db->query( "DROP TABLE IF EXISTS $encTable" );
 		$this->db->query(
-			"CREATE TEMPORARY TABLE {$prefix}tmp_src_tbl (" .
+			"CREATE TEMPORARY TABLE $encTable (" .
 			"sn serial not null, " .
-			"sk text unique, " .
+			"sk text unique not null, " .
 			"sv integer, " .
 			"st integer, " .
 			"PRIMARY KEY(sn)" .
 			")"
 		);
-
-		return "tmp_src_tbl";
 	}
 
 	private function createDestTable() {
-		$prefix = self::dbPrefix();
+		$encTable = $this->db->tableName( 'tmp_dst_tbl' );
 
-		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_dst_tbl" );
+		$this->db->query( "DROP TABLE IF EXISTS $encTable" );
 		$this->db->query(
-			"CREATE TEMPORARY TABLE {$prefix}tmp_dst_tbl (" .
-				"n serial not null, " .
-				"k text unique, " .
-				"v integer, " .
-				"t integer, " .
-				"PRIMARY KEY(n)" .
+			"CREATE TEMPORARY TABLE $encTable (" .
+			"n serial not null, " .
+			"k text unique not null, " .
+			"v integer, " .
+			"t integer, " .
+			"PRIMARY KEY(n)" .
 			")"
 		);
-
-		return "tmp_dst_tbl";
-	}
-
-	private function dropSourceTable() {
-		$prefix = self::dbPrefix();
-
-		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_src_tbl" );
-	}
-
-	private function dropDestTable() {
-		$prefix = self::dbPrefix();
-
-		$this->db->query( "DROP TABLE IF EXISTS {$prefix}tmp_dst_tbl" );
 	}
 }
