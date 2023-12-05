@@ -211,10 +211,10 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 			return $this;
 		}
 
-		$this->conds( [
-			'actor_name NOT ' . $this->tempUserConfig->getMatchPattern()
-				->buildLike( $this->db )
-		] );
+		$this->conds(
+			$this->db->expr( 'actor_name', IExpression::NOT_LIKE,
+				$this->tempUserConfig->getMatchPattern()->toLikeValue( $this->db ) )
+		);
 		return $this;
 	}
 
@@ -229,10 +229,10 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 			return $this;
 		}
 
-		$this->conds( [
-			'actor_name ' . $this->tempUserConfig->getMatchPattern()
-				->buildLike( $this->db )
-		] );
+		$this->conds(
+			$this->db->expr( 'actor_name', IExpression::LIKE,
+				$this->tempUserConfig->getMatchPattern()->toLikeValue( $this->db ) )
+		);
 		return $this;
 	}
 

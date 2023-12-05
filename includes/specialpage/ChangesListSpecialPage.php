@@ -42,6 +42,7 @@ use OOUI\IconWidget;
 use RecentChange;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -1825,8 +1826,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		) {
 			$conds[] = 'actor_user IS NOT NULL';
 			if ( $this->tempUserConfig->isEnabled() ) {
-				$conds[] = 'actor_name NOT ' . $this->tempUserConfig->getMatchPattern()
-						->buildLike( $dbr );
+				$conds[] = $dbr->expr( 'actor_name', IExpression::NOT_LIKE,
+					$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) );
 			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 			return;
@@ -1837,8 +1838,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$conds[] = $dbr->makeList(
 					[
 						'actor_user' => null,
-						'actor_name ' . $this->tempUserConfig->getMatchPattern()
-							->buildLike( $dbr )
+						$dbr->expr( 'actor_name', IExpression::LIKE,
+							$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) ),
 					],
 					IReadableDatabase::LIST_OR
 				);
@@ -1892,8 +1893,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$conditions[] = $dbr->makeList(
 					[
 						'actor_user' => null,
-						'actor_name ' . $this->tempUserConfig->getMatchPattern()
-							->buildLike( $dbr )
+						$dbr->expr( 'actor_name', IExpression::LIKE,
+							$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) ),
 					],
 					IReadableDatabase::LIST_OR
 				);
@@ -1924,8 +1925,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner', 'newcomer' ] ) {
 			$conditions[] = 'actor_user IS NOT NULL';
 			if ( $this->tempUserConfig->isEnabled() ) {
-				$conditions[] = 'actor_name ' . $this->tempUserConfig->getMatchPattern()
-						->buildLike( $dbr );
+				$conditions[] = $dbr->expr( 'actor_name', IExpression::LIKE,
+					$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) );
 			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 		}
