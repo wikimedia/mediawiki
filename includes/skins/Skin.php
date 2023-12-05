@@ -1726,11 +1726,37 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Check whether to allow new talk page notifications for the current request.
+	 *
+	 * The client might be reading without a session cookie from an IP that matches
+	 * a previous IP editor. When clients without a session visit a page with a CDN miss,
+	 * we must not embed personal notifications, as doing so might leak personal details
+	 * (if Cache-Control is public), or risk an outage per T350861 (if max-age=0).
+	 *
+	 * From an end-user perspective, this has the added benefit of not randomly showing
+	 * notifications to readers (on page views that happen to be a CDN miss) when
+	 * sharing an IP with an editor. Notifying clients without a session is not reliably
+	 * possible, as their requests are usually CDN hits.
+	 *
+	 * @see https://phabricator.wikimedia.org/T350861
+	 * @return bool
+	 */
+	private function hideNewTalkMessagesForCurrentSession() {
+		// Only show new talk page notification if there is a session,
+		// (the client edited a page from this browser, or is logged-in).
+		return !$this->getRequest()->getSession()->isPersistent();
+	}
+
+	/**
 	 * Gets new talk page messages for the current user and returns an
 	 * appropriate alert message (or an empty string if there are no messages)
 	 * @return string
 	 */
 	public function getNewtalks() {
+		if ( $this->hideNewTalkMessagesForCurrentSession() ) {
+			return '';
+		}
+
 		$newMessagesAlert = '';
 		$user = $this->getUser();
 		$services = MediaWikiServices::getInstance();
@@ -1823,8 +1849,6 @@ abstract class Skin extends ContextSource {
 				)->numParams( $plural );
 			}
 			$newMessagesAlert = $newMessagesAlert->text();
-			// Disable CDN cache
-			$out->setCdnMaxage( 0 );
 		}
 
 		return $newMessagesAlert;
