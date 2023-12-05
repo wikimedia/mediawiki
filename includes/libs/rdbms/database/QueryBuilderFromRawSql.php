@@ -82,9 +82,9 @@ class QueryBuilderFromRawSql {
 	 * @return string
 	 */
 	private static function getQueryVerb( $sql ) {
-		// Distinguish ROLLBACK from ROLLBACK TO SAVEPOINT
+		// Distinguish ROLLBACK from ROLLBACK TO SAVEPOINT and CREATE from CREATE TEMPORARY
 		return preg_match(
-			'/^\s*(rollback\s+to\s+savepoint|[a-z]+)/i',
+			'/^\s*(rollback\s+to\s+savepoint|create\s+temporary|[a-z]+)/i',
 			$sql,
 			$m
 		) ? strtoupper( $m[1] ) : '';
@@ -105,7 +105,7 @@ class QueryBuilderFromRawSql {
 				"/^(UPDATE)(?:\s+OR\s+\w+|\s+IGNORE|\s+ONLY)?\s+$qts/i",
 				"/^(DELETE)\s+(?:\w+\s+)*?FROM(?:\s+ONLY)?\s+$qts/i",
 				// DDL write queries
-				"/^(CREATE)\s+TEMPORARY\s+TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+$qts/i",
+				"/^(CREATE)\s+(?:TEMPORARY\s+)?TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+$qts/i",
 				"/^(DROP)\s+(?:TEMPORARY\s+)?TABLE(?:\s+IF\s+EXISTS)?\s+$qts/i",
 				"/^(TRUNCATE)\s+(?:TEMPORARY\s+)?TABLE\s+$qts/i",
 				"/^(ALTER)\s+TABLE\s+$qts/i"

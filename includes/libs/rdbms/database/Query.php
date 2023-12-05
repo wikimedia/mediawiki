@@ -36,11 +36,21 @@ class Query {
 	private string $cleanedSql;
 
 	/**
-	 * @param string $sql
-	 * @param int $flags
-	 * @param string $queryVerb
+	 * @param string $sql SQL statement text
+	 * @param int $flags Bit field of ISQLPlatform::QUERY_CHANGE_* constants
+	 * @param string $queryVerb The first words of the SQL statement that convey what kind of
+	 *  database/table/column/index command was specified. Except for the following cases, this
+	 *  will be the first word of the SQL statement:
+	 *   - "RELEASE SAVEPOINT"
+	 *   - "ROLLBACK TO SAVEPOINT"
+	 *   - "CREATE TEMPORARY"
+	 *   - "CREATE INDEX"
+	 *   - "DROP INDEX"
+	 *   - "CREATE DATABASE"
+	 *   - "ALTER DATABASE"
+	 *   - "DROP DATABASE"
 	 * @param string|string[] $writeTables List of tables targeted for writes
-	 * @param string $cleanedSql
+	 * @param string $cleanedSql Sanitized/simplified SQL statement text for logging
 	 */
 	public function __construct(
 		string $sql,

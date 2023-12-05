@@ -598,7 +598,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$tables[] = $this->platform->tableName( $table, 'raw' );
 		}
 		foreach ( $tables as $table ) {
-			if ( $query->getVerb() === 'CREATE' ) {
+			if ( $query->getVerb() === 'CREATE TEMPORARY' ) {
 				// Record the type of temporary table being created
 				$tableType = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
 			} elseif ( isset( $this->sessionTempTables[$table] ) ) {
@@ -626,7 +626,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		foreach ( $changes as [ $tmpTableType, $verb, $table ] ) {
 			switch ( $verb ) {
-				case 'CREATE':
+				case 'CREATE TEMPORARY':
 					$this->sessionTempTables[$table] = [
 						'type' => $tmpTableType,
 						'pristine' => true,
