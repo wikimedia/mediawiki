@@ -36,8 +36,15 @@ li.gallerybox {
 div.gallerytext {
 	overflow: hidden;
 	font-size: 94%;
-	padding: 2px 4px;
+	padding: 9px 4px 17px;
 	word-wrap: break-word;
+
+	// FIXME: This is for backwards compatibility with parser markup generated prior
+	// to I5039c7ef9e07199c256fd568b4f94714e5831d17. It can be removed when we no longer
+	// need to worry about that HTML.
+	p {
+		margin: 0;
+	}
 }
 
 .galleryfilename {

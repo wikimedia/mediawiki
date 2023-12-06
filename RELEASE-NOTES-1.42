@@ -257,6 +257,8 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.42 ===
+* Gallery: Image captions are no longer wrapped in <p> tags. Skins that
+  customize rendering for galleries may need to tweak their CSS.
 * …
 
 == Compatibility ==
