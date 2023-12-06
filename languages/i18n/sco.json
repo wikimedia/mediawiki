@@ -1895,7 +1895,7 @@
 	"trackingcategories-name": "The Message name",
 	"trackingcategories-desc": "Categerie inclusion criteria",
 	"restricted-displaytitle-ignored": "Pages wi ignored display teetles",
-	"noindex-category-desc": "The page haes ae <code><nowiki>__NOINDEX__</nowiki></code> mageec waird oan it (n is in ae namespace whaur that flag is alloud), n sae it's no indext bi the robots.",
+	"noindex-category-desc": "The page isnae indext bi robots acause it haes the magic wird <code><nowiki>__NOINDEX__</nowiki></code> on it an is in ae namespace whaur that flag is alloued.",
 	"index-category-desc": "The page haes ae <code><nowiki>__INDEX__</nowiki></code> oan it (n is in ae namespace whaur that flag is alloud), n sae it's indext bi the robots whaur it widna normallie be.",
 	"post-expand-template-inclusion-category-desc": "The page size is muckler than <code>$wgMaxArticleSize</code>, efter makin aw o the templates muckler, sae some templates were no makit muckler.",
 	"post-expand-template-argument-category-desc": "The page is muckler than <code>$wgMaxArticleSize</code> efter makin ae template argument muckler (sommit in triple braces, lik <code>{{{Foo}}})</code>.",

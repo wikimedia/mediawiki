@@ -2457,6 +2457,8 @@
 	"unblocklink": "Spär ophiewen",
 	"change-blocklink": "Spär änneren",
 	"empty-username": "(kee Benotzernumm disponibel)",
+	"blocklist-hidden-placeholder": "(Benotzernumm verstoppt)",
+	"blocklist-hidden-param": "Benotzernumm verstoppt",
 	"contribslink": "Kontributiounen",
 	"emaillink": "Mail schécken",
 	"autoblocker": "Dir sidd automatesch gespaart, well Är IP-Adress rezent vum \"[[User:$1|$1]]\" benotzt gouf.\nDe Grond, dee fir d'Spär vum $1 ugi gouf, ass \"$2\"",

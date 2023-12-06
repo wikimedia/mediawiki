@@ -2867,6 +2867,8 @@
 	"unblocklink": "ブロック解除",
 	"change-blocklink": "設定を変更",
 	"empty-username": "(使用可能な利用者名がありません)",
+	"blocklist-hidden-placeholder": "(利用者名は隠されています)",
+	"blocklist-hidden-param": "利用者名は隠されています",
 	"contribslink": "投稿記録",
 	"emaillink": "メールを送信",
 	"autoblocker": "この IP アドレスを「[[User:$1|$1]]」が最近使用したため、自動ブロックされています。\n$1 のブロックの理由は「$2」です。",
