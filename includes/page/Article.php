@@ -599,6 +599,9 @@ class Article implements Page {
 			$outputPage->addJsConfigVars( 'wgPostEdit', $postEdit );
 			$outputPage->addModules( 'mediawiki.action.view.postEdit' ); // FIXME: test this
 		}
+
+		// Add toolbox portlet to toggle all collapsibles if there are any
+		$outputPage->addModules( 'mediawiki.toggleAllCollapsibles' );
 	}
 
 	/**
