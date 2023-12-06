@@ -3189,6 +3189,7 @@
 	"pageinfo-redirects-value": "$1",
 	"pageinfo-subpages-name": "الصفحات الفرعية لهذه الصفحة",
 	"pageinfo-subpages-value": "$1 ({{PLURAL:$2|لا تحويلات|تحويلة واحدة|تحويلتان|$2 تحويلات|$2 تحويلة}}؛ $3 {{PLURAL:$3|من غير  التحويلات}})",
+	"pageinfo-subpages-value-unknown": "غير معروف ($1)",
 	"pageinfo-firstuser": "الصفحة {{GENDER:$1| المنشئ}}",
 	"pageinfo-firsttime": "تاريخ إنشاء الصفحة",
 	"pageinfo-lastuser": "أحدث {{GENDER:$1| محرر}}",
