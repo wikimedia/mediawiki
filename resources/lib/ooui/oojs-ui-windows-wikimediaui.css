@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.2
+ * OOUI v0.48.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-10-24T20:22:11Z
+ * Date: 2023-12-06T23:10:30Z
  */
 
 .oo-ui-window {
@@ -235,7 +235,7 @@
 }
 .oo-ui-processDialog-title {
   font-size: 1.1em;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 2.72727273em;
 }
 .oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button {
@@ -386,9 +386,11 @@
   top: 0;
   bottom: 0;
 }
-.oo-ui-windowManager-modal-active {
+body.oo-ui-windowManager-modal-active {
   overflow: hidden;
-  position: relative;
+}
+html.oo-ui-windowManager-modal-active {
+  scrollbar-gutter: stable;
 }
 .oo-ui-windowManager-ios-modal-ready {
   height: 100%;
@@ -421,5 +423,5 @@
   max-height: calc( 100% - 2em );
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }

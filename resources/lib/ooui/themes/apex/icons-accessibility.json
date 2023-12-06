@@ -2,6 +2,9 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
+		"appearance": {
+			"file": "../wikimediaui/images/icons/appearance.svg"
+		},
 		"bright": {
 			"file": "../wikimediaui/images/icons/bright.svg"
 		},

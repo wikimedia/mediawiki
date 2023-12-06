@@ -43,7 +43,6 @@
 	"ooui-combobox-button-label": "Переключить параметры",
 	"ooui-selectfile-button-select": "Выберите файл",
 	"ooui-selectfile-button-select-multiple": "Выберите файлы",
-	"ooui-selectfile-not-supported": "Выбор файла не поддерживается",
 	"ooui-selectfile-placeholder": "Файл не выбран",
 	"ooui-selectfile-dragdrop-placeholder": "Перетащите файл сюда",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Перетащите файлы сюда",

@@ -3024,7 +3024,6 @@ return [
 			'ooui-selectfile-button-select-multiple',
 			'ooui-selectfile-dragdrop-placeholder',
 			'ooui-selectfile-dragdrop-placeholder-multiple',
-			'ooui-selectfile-not-supported',
 			'ooui-selectfile-placeholder',
 		],
 	],

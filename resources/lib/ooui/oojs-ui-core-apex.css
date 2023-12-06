@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.2
+ * OOUI v0.48.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-10-24T20:22:11Z
+ * Date: 2023-12-06T23:10:30Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -339,7 +339,7 @@
 }
 
 .oo-ui-pendingElement-pending {
-  background-color: #ddd;
+  background-color: #eee;
   background-image: linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
   background-size: 1.5625em 1.5625em;
   animation: oo-ui-pendingElement-stripes 650ms linear infinite;
@@ -1266,7 +1266,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   transition-duration: 250ms;
 }
 .oo-ui-textInputWidget .oo-ui-pendingElement-pending {
-  background-color: #ddd;
+  background-color: #eee;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
@@ -1633,7 +1633,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   transform: translate(-25%);
 }
 .oo-ui-progressBarWidget.oo-ui-widget-disabled {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 @keyframes oo-ui-progressBarWidget-slide {
   from {
@@ -1714,6 +1714,114 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-selectFileInputWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileInputWidget-label {
   cursor: default;
+}
+.oo-ui-selectFileInputWidget-dropTarget {
+  position: relative;
+  cursor: default;
+  height: 8.815em;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-dropLabel,
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-selectButton {
+  display: none;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-thumbnail {
+  width: 7.815em;
+  position: absolute;
+  top: 0.5em;
+  bottom: 0.5em;
+  left: 0.5em;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-thumbnail > .oo-ui-selectFileInputWidget-noThumbnail-icon {
+  opacity: 0.4;
+  height: 7.815em;
+  width: 7.815em;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-pendingElement-pending {
+  background-repeat: repeat;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-info {
+  display: block;
+  height: 100%;
+  width: auto;
+  margin-right: 0;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.oo-ui-selectFileInputWidget-dropTarget.oo-ui-selectFileInputWidget-withThumbnail .oo-ui-selectFileInputWidget-info {
+  margin-left: 8.815em;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-label {
+  display: block;
+  position: relative;
+  top: inherit;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-fileName {
+  display: block;
+}
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-selectFileInputWidget-dropTarget {
+  text-align: center;
+}
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-thumbnail,
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-info {
+  display: none;
+}
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-selectButton {
+  display: block;
+  margin: 2.2em 1em 1em;
+}
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileInputWidget-dropLabel {
+  display: block;
+}
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget,
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget .oo-ui-selectFileInputWidget-selectButton,
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget .oo-ui-buttonElement-button {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+  cursor: no-drop;
+}
+.oo-ui-selectFileInputWidget-dropTarget {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+.oo-ui-selectFileInputWidget-dropTarget.oo-ui-selectFileInputWidget-empty {
+  border-style: dashed;
+}
+.oo-ui-selectFileInputWidget-dropTarget .oo-ui-pendingElement-pending {
+  background-size: 1.5625em 1.5625em;
+}
+.oo-ui-selectFileInputWidget-buttonOnly {
+  width: auto;
+  max-width: none;
+}
+.oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-canDrop.oo-ui-selectFileInputWidget-dropTarget,
+.oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-canDrop .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
+  background-color: #e1f3ff;
+}
+.oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-cantDrop.oo-ui-selectFileInputWidget-dropTarget,
+.oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-cantDrop .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
+  background-color: #e1f3ff;
+  background-color: #ffdcdc;
+}
+.oo-ui-selectFileInputWidget.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget,
+.oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget {
+  background-color: #f3f3f3;
+  color: #ccc;
+  border-color: #ddd;
+  text-shadow: 0 1px 1px #fff;
 }
 
 

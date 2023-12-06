@@ -33,7 +33,6 @@
 	"ooui-combobox-button-label": "Toggle options",
 	"ooui-selectfile-button-select": "Select a file",
 	"ooui-selectfile-button-select-multiple": "Select files",
-	"ooui-selectfile-not-supported": "File selection is not supported",
 	"ooui-selectfile-placeholder": "No file is selected",
 	"ooui-selectfile-dragdrop-placeholder": "Drop file here",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Drop files here",
