@@ -671,7 +671,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @since 1.42
 	 * @param string $field
 	 * @param-taint $field exec_sql
-	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @param-taint $op exec_sql
 	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql

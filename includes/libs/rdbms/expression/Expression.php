@@ -22,7 +22,7 @@ class Expression implements IExpression {
 	 * @internal Outside of rdbms, Use IReadableDatabase::expr() to create an expression object.
 	 * @param string $field
 	 * @param-taint $field exec_sql
-	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @param-taint $op exec_sql
 	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
@@ -42,8 +42,11 @@ class Expression implements IExpression {
 			throw new InvalidArgumentException( "NULL can't be in the array of values" );
 		}
 
-		if ( $op === IExpression::LIKE && !( $value instanceof LikeValue ) ) {
-			throw new InvalidArgumentException( "Value for like expression must be of LikeValue type" );
+		if ( in_array( $op, [ IExpression::LIKE, IExpression::NOT_LIKE ] ) && !( $value instanceof LikeValue ) ) {
+			throw new InvalidArgumentException( "Value for 'LIKE' expression must be of LikeValue type" );
+		}
+		if ( !in_array( $op, [ IExpression::LIKE, IExpression::NOT_LIKE ] ) && ( $value instanceof LikeValue ) ) {
+			throw new InvalidArgumentException( "LikeValue may only be used with 'LIKE' expression" );
 		}
 
 		$field = trim( $field );
@@ -58,7 +61,7 @@ class Expression implements IExpression {
 	/**
 	 * @param string $field
 	 * @param-taint $field exec_sql
-	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @param-taint $op exec_sql
 	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
@@ -71,7 +74,7 @@ class Expression implements IExpression {
 	/**
 	 * @param string $field
 	 * @param-taint $field exec_sql
-	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE
+	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @param-taint $op exec_sql
 	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
@@ -128,7 +131,8 @@ class Expression implements IExpression {
 				throw new LogicException( "Operator $this->op can't take null as value" );
 			}
 		}
-		if ( $this->op === IExpression::LIKE && $this->value instanceof LikeValue ) {
+		if ( $this->value instanceof LikeValue ) {
+			// implies that `op` is LIKE or NOT_LIKE, checked in constructor
 			return $this->field . ' ' . $this->op . ' ' . $this->value->toSql( $dbQuoter );
 		}
 		return $this->field . ' ' . $this->op . ' ' . $dbQuoter->addQuotes( $this->value );
