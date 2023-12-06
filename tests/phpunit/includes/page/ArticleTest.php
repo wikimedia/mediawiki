@@ -34,31 +34,6 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Article::__get
-	 * @covers Article::__set
-	 */
-	public function testGetOrSetOnNewProperty() {
-		$article = new Article( Title::newMainPage() );
-
-		$this->filterDeprecated(
-			'/Accessing Article::\$ext_someNewProperty/'
-		);
-		$this->filterDeprecated(
-			'/Setting Article::\$ext_someNewProperty/'
-		);
-		$article->ext_someNewProperty = 12;
-		$this->assertEquals( 12, $article->ext_someNewProperty,
-			"Article get/set magic on new field" );
-		$this->assertEquals( 12, $article->getPage()->ext_someNewProperty,
-			"Article get/set magic on new field" );
-		$article->ext_someNewProperty = -8;
-		$this->assertEquals( -8, $article->ext_someNewProperty,
-			"Article get/set magic on update to new field" );
-		$this->assertEquals( -8, $article->getPage()->ext_someNewProperty,
-			"Article get/set magic on new field" );
-	}
-
-	/**
 	 * @covers Article::__sleep
 	 */
 	public function testSerialization_fails() {

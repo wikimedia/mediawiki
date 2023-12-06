@@ -1991,48 +1991,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * @deprecated since 1.35, use Article::getPage() instead
-	 *
-	 * Use PHP's magic __get handler to handle accessing of
-	 * raw WikiPage fields for backwards compatibility
-	 *
-	 * @param string $fname Field name
-	 * @return mixed
-	 */
-	public function __get( $fname ) {
-		wfDeprecatedMsg( "Accessing Article::\$$fname is deprecated since MediaWiki 1.35",
-			'1.35' );
-
-		if ( property_exists( $this->mPage, $fname ) ) {
-			return $this->mPage->$fname;
-		}
-		trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
-	}
-
-	/**
-	 * @deprecated since 1.35, use Article::getPage() instead
-	 *
-	 * Use PHP's magic __set handler to handle setting of
-	 * raw WikiPage fields for backwards compatibility
-	 *
-	 * @param string $fname Field name
-	 * @param mixed $fvalue New value
-	 */
-	public function __set( $fname, $fvalue ) {
-		wfDeprecatedMsg( "Setting Article::\$$fname is deprecated since MediaWiki 1.35",
-			'1.35' );
-
-		if ( property_exists( $this->mPage, $fname ) ) {
-			$this->mPage->$fname = $fvalue;
-		// Note: extensions may want to toss on new fields
-		} elseif ( !in_array( $fname, [ 'mContext', 'mPage' ] ) ) {
-			$this->mPage->$fname = $fvalue;
-		} else {
-			trigger_error( 'Inaccessible property via __set(): ' . $fname, E_USER_NOTICE );
-		}
-	}
-
-	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see ContentHandler::getActionOverrides
 	 * @return array
