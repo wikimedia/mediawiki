@@ -7,6 +7,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\Pattern;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use Wikimedia\Rdbms\IExpression;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -95,7 +96,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'user_name' ] )
 				->from( 'user' )
-				->where( 'user_name' . $fromPattern->buildLike( $dbr ) )
+				->where( $dbr->expr( 'user_name', IExpression::LIKE, $fromPattern->toLikeValue( $dbr ) ) )
 				->andWhere( $batchConds )
 				->orderBy( 'user_name' )
 				->limit( $batchSize )

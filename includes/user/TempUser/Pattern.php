@@ -2,6 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
@@ -61,12 +62,29 @@ class Pattern {
 	/**
 	 * Convert the pattern to an SQL like clause
 	 *
+	 * @deprecated since 1.42. Use toLikeValue() instead
 	 * @param ISQLPlatform $db
 	 * @return string
 	 */
 	public function buildLike( ISQLPlatform $db ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$this->init();
 		return $db->buildLike(
+			$this->prefix,
+			$db->anyString(),
+			$this->suffix
+		);
+	}
+
+	/**
+	 * Convert the pattern to an SQL builder "LIKE" value that matches it
+	 *
+	 * @param ISQLPlatform $db
+	 * @return LikeValue
+	 */
+	public function toLikeValue( ISQLPlatform $db ): LikeValue {
+		$this->init();
+		return new LikeValue(
 			$this->prefix,
 			$db->anyString(),
 			$this->suffix
