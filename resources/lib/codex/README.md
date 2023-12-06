@@ -1,42 +1,14 @@
-# Codex
+# @wikimedia/codex
 
-Codex is the design system for Wikimedia. Codex contains:
-- Vue and CSS-only components, in this package
-- Design tokens, in the `@wikimedia/codex-design-tokens` package
-- Icons, in the `@wikimedia/codex-icons` package
+Codex is the design system for Wikimedia.
 
-For more details, read the [Codex documentation](https://doc.wikimedia.org/codex/latest/).
+This package contains Codex components implemented in two variants:
 
-## Using Codex components
-To use a component, import it from this package:
-```
-// If using ES modules:
-import { CdxButton } from '@wikimedia/codex';
+- Vue 3 components
+- CSS-only components
 
-// or, if using CommonJS:
-const { CdxButton } = require( '@wikimedia/codex' );
-```
+See the [components overview documentation](https://doc.wikimedia.org/codex/latest/components/overview.html) for links to a complete list of components with demos and guidelines.
 
-then pass it into the `components` option of your Vue component:
+## Usage
 
-```
-<template>
-	<div>
-		<cdx-button action="progressive" weight="primary">
-			Click me!
-		</cdx-button>
-	</div>
-</template>
-
-<script>
-import { defineComponent } from 'vue';
-import { CdxButton } from '@wikimedia/codex';
-
-export default defineComponent( {
-	components: {
-		CdxButton
-	},
-	// ...
-} );
-</script>
-```
+See the [installation](https://doc.wikimedia.org/codex/main/using-codex/usage.html#installation) and [using components](https://doc.wikimedia.org/codex/main/using-codex/usage.html#using-components) documentation for information about how to use Codex components in your application.
