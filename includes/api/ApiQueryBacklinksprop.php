@@ -276,7 +276,11 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		// (...)" and chooses the wrong index, so specify the correct index to
 		// use for the query. See T139056 for details.
 		if ( !empty( $settings['indexes'] ) ) {
-			if ( $params['namespace'] !== null && !empty( $settings['from_namespace'] ) ) {
+			if (
+				$params['namespace'] !== null &&
+				count( $params['namespace'] ) == 1 &&
+				!empty( $settings['from_namespace'] )
+			) {
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxWithFromNS ] );
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
