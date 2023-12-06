@@ -1506,13 +1506,9 @@ config-schema:
             @since 1.35
     DjvuUseBoxedCommand:
         default: false
-        description: 'Whether to use BoxedCommand or not. Temporary feature flag for T352515'
-    DjvuShell:
-        default: /bin/sh
-        type:
-            - string
-            - 'null'
-        description: 'When using BoxedCommand, use this shell to extract the djvu metadata'
+        description: |-
+            Whether to use BoxedCommand or not. Temporary feature flag for T352515
+            @since 1.42
     DjvuDump:
         default: null
         type:
@@ -1522,6 +1518,8 @@ config-schema:
             Path of the djvudump executable
             Enable this and $wgDjvuRenderer to enable djvu rendering
             example: $wgDjvuDump = 'djvudump';
+            If this is set, {@link self::ShellboxShell} must be set to the correct
+            shell path.
     DjvuRenderer:
         default: null
         type:
@@ -1540,6 +1538,8 @@ config-schema:
             Path of the djvutxt DJVU text extraction utility
             Enable this and $wgDjvuDump to enable text layer extraction from djvu files
             example: $wgDjvuTxt = 'djvutxt';
+            If this is set, {@link self::ShellboxShell} must be set to the correct
+             shell path.
     DjvuPostProcessor:
         default: pnmtojpeg
         type:
@@ -7736,6 +7736,17 @@ config-schema:
             The secret key for HMAC verification of Shellbox requests. Set this to
             a long random string.
             @since 1.36
+    ShellboxShell:
+        default: /bin/sh
+        type:
+            - string
+            - 'null'
+        description: |-
+            The POSIX-compatible shell to use when running scripts. This is used by
+            some media handling shell commands.
+            If ShellboxUrls is configured, this path should exist on the remote side.
+            On Windows this should be the full path to bash.exe, not git-bash.exe.
+            @since 1.42
     HTTPTimeout:
         default: 25
         type: number
