@@ -183,19 +183,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			// produce one row-per-user, because we only keep on "no match".
 			$this->addTables( 'user_groups', 'ug1' );
 
-			if ( count( $params['excludegroup'] ) == 1 ) {
-				$exclude = [ 'ug1.ug_group' => $params['excludegroup'][0] ];
-			} else {
-				$exclude = [ $db->makeList(
-					[ 'ug1.ug_group' => $params['excludegroup'] ],
-					LIST_OR
-				) ];
-			}
 			$this->addJoinConds( [ 'ug1' => [ 'LEFT JOIN',
-				array_merge( [
+				[
 					'ug1.ug_user=user_id',
-					'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
-				], $exclude )
+					'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() ),
+					'ug1.ug_group' => $params['excludegroup'],
+				]
 			] ] );
 			$this->addWhere( [ 'ug1.ug_user' => null ] );
 		}
