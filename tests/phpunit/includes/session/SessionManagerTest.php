@@ -74,9 +74,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
-		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
-		$rProp->setAccessible( true );
-		$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
+		$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
+		$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 		$oldEnable = $handler->enable;
 		$reset[] = new \Wikimedia\ScopedCallback( static function () use ( $handler, $oldEnable ) {
 			if ( $handler->enable ) {

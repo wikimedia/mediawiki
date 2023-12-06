@@ -853,9 +853,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
 		if ( !PHPSessionHandler::isEnabled() ) {
-			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
-			$rProp->setAccessible( true );
-			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
+			$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
+			$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
@@ -893,9 +892,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
 		if ( !PHPSessionHandler::isEnabled() ) {
-			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
-			$rProp->setAccessible( true );
-			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
+			$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
+			$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
@@ -929,9 +927,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
 		if ( !PHPSessionHandler::isEnabled() ) {
-			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
-			$rProp->setAccessible( true );
-			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
+			$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
+			$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
