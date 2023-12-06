@@ -460,6 +460,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
+		$smallLimit = $this->getMain()->canApiHighLimits() ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_SML1;
 		return [
 			'start' => [
 				ParamValidator::PARAM_TYPE => 'timestamp',
@@ -526,7 +527,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'tags'
 				],
 				ParamValidator::PARAM_ISMULTI => true,
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
+					'content' => [ 'apihelp-query+deletedrevs-paramvalue-prop-content', $smallLimit ],
+				],
 				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'token' => true,
 				],
@@ -536,7 +539,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				ParamValidator::PARAM_TYPE => 'limit',
 				IntegerDef::PARAM_MIN => 1,
 				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
+				ApiBase::PARAM_HELP_MSG => [ 'apihelp-query+deletedrevs-param-limit', $smallLimit ],
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
