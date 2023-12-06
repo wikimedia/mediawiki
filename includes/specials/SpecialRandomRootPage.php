@@ -28,6 +28,8 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 class SpecialRandomRootPage extends SpecialRandomPage {
 
@@ -42,7 +44,11 @@ class SpecialRandomRootPage extends SpecialRandomPage {
 		parent::__construct( $dbProvider, $nsInfo );
 		$this->mName = 'Randomrootpage';
 		$dbr = $dbProvider->getReplicaDatabase();
-		$this->extra[] = 'page_title NOT ' . $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
+		$this->extra[] = $dbr->expr(
+			'page_title',
+			IExpression::NOT_LIKE,
+			new LikeValue( $dbr->anyString(), '/', $dbr->anyString() )
+		);
 	}
 
 	// Don't select redirects

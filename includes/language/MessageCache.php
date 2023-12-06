@@ -601,8 +601,11 @@ class MessageCache implements LoggerAwareInterface {
 		} else {
 			// Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
 			// other than language code.
-			$conds[] = 'page_title NOT' .
-				$dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
+			$conds[] = $dbr->expr(
+				'page_title',
+				IExpression::NOT_LIKE,
+				new LikeValue( $dbr->anyString(), '/', $dbr->anyString() )
+			);
 		}
 
 		// Set the stubs for oversized software-defined messages in the main cache map
