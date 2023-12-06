@@ -19,37 +19,26 @@ class TestUtils {
 	public static function setSessionManagerSingleton( SessionManager $manager = null ) {
 		session_write_close();
 
-		$rInstance = new \ReflectionProperty(
-			SessionManager::class, 'instance'
-		);
-		$rInstance->setAccessible( true );
-		$rGlobalSession = new \ReflectionProperty(
-			SessionManager::class, 'globalSession'
-		);
-		$rGlobalSession->setAccessible( true );
-		$rGlobalSessionRequest = new \ReflectionProperty(
-			SessionManager::class, 'globalSessionRequest'
-		);
-		$rGlobalSessionRequest->setAccessible( true );
+		$staticAccess = TestingAccessWrapper::newFromClass( SessionManager::class );
 
-		$oldInstance = $rInstance->getValue();
+		$oldInstance = $staticAccess->instance;
 
 		$reset = [
-			[ $rInstance, $oldInstance ],
-			[ $rGlobalSession, $rGlobalSession->getValue() ],
-			[ $rGlobalSessionRequest, $rGlobalSessionRequest->getValue() ],
+			[ 'instance', $oldInstance ],
+			[ 'globalSession', $staticAccess->globalSession ],
+			[ 'globalSessionRequest', $staticAccess->globalSessionRequest ],
 		];
 
-		$rInstance->setValue( $manager );
-		$rGlobalSession->setValue( null );
-		$rGlobalSessionRequest->setValue( null );
+		$staticAccess->instance = $manager;
+		$staticAccess->globalSession = null;
+		$staticAccess->globalSessionRequest = null;
 		if ( $manager && PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install( $manager );
 		}
 
-		return new \Wikimedia\ScopedCallback( static function () use ( &$reset, $oldInstance ) {
-			foreach ( $reset as &$arr ) {
-				$arr[0]->setValue( $arr[1] );
+		return new \Wikimedia\ScopedCallback( static function () use ( $reset, $staticAccess, $oldInstance ) {
+			foreach ( $reset as [ $property, $oldValue ] ) {
+				$staticAccess->$property = $oldValue;
 			}
 			if ( $oldInstance && PHPSessionHandler::isInstalled() ) {
 				PHPSessionHandler::install( $oldInstance );
