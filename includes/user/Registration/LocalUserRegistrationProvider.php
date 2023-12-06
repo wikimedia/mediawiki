@@ -22,7 +22,7 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 	 * @inheritDoc
 	 */
 	public function fetchRegistration( UserIdentity $user ) {
-		// TODO: Factor this out from User::getRegistration to this method.
+		// TODO: Factor this out from User::getRegistration to this method (T352871)
 		$user = $this->userFactory->newFromUserIdentity( $user );
 		return $user->getRegistration();
 	}
