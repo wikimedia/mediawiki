@@ -21,7 +21,6 @@
 use MediaWiki\Json\JsonUnserializable;
 use MediaWiki\Json\JsonUnserializableTrait;
 use MediaWiki\Json\JsonUnserializer;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
@@ -32,6 +31,7 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
@@ -874,10 +874,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Add a category.
-	 * @param string $c The category name
+	 * @param string|ParsoidLinkTarget $c The category name
 	 * @param string $sort The sort key
 	 */
 	public function addCategory( $c, $sort = '' ): void {
+		if ( $c instanceof ParsoidLinkTarget ) {
+			$c = $c->getDBkey();
+		}
 		$this->mCategories[$c] = $sort;
 	}
 
@@ -910,7 +913,17 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mEnableOOUI = $enable;
 	}
 
+	/**
+	 * Add a language link.
+	 * @param ParsoidLinkTarget|string $t
+	 */
 	public function addLanguageLink( $t ): void {
+		if ( $t instanceof ParsoidLinkTarget ) {
+			// language links are unusual in using 'text' rather than 'db key'
+			// T296023: This should be made more efficient so we don't need
+			// a full title lookup.
+			$t = Title::newfromLinkTarget( $t )->getFullText();
+		}
 		$this->mLanguageLinks[] = $t;
 	}
 
@@ -1002,10 +1015,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Record a local or interwiki inline link for saving in future link tables.
 	 *
-	 * @param LinkTarget $link (used to require Title until 1.38)
+	 * @param ParsoidLinkTarget $link (used to require Title until 1.38)
 	 * @param int|null $id Optional known page_id so we can skip the lookup
 	 */
-	public function addLink( LinkTarget $link, $id = null ): void {
+	public function addLink( ParsoidLinkTarget $link, $id = null ): void {
 		if ( $link->isExternal() ) {
 			// Don't record interwikis in pagelinks
 			$this->addInterwikiLink( $link );
@@ -1026,6 +1039,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return;
 		}
 		if ( $id === null ) {
+			// T296023: This actually kills performance; we should batch these.
 			$page = MediaWikiServices::getInstance()->getPageStore()->getPageForLink( $link );
 			$id = $page->getId();
 		}
@@ -1034,11 +1048,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Register a file dependency for this output
-	 * @param string $name Title dbKey
+	 * @param string|ParsoidLinkTarget $name Title dbKey
 	 * @param string|false|null $timestamp MW timestamp of file creation (or false if non-existing)
 	 * @param string|false|null $sha1 Base 36 SHA-1 of file (or false if non-existing)
 	 */
 	public function addImage( $name, $timestamp = null, $sha1 = null ): void {
+		if ( $name instanceof ParsoidLinkTarget ) {
+			$name = $name->getDBkey();
+		}
 		$this->mImages[$name] = 1;
 		if ( $timestamp !== null && $sha1 !== null ) {
 			$this->mFileSearchOptions[$name] = [ 'time' => $timestamp, 'sha1' => $sha1 ];
@@ -1048,19 +1065,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Register a template dependency for this output
 	 *
-	 * @param LinkTarget $link (used to require Title until 1.38)
+	 * @param ParsoidLinkTarget $link (used to require Title until 1.38)
 	 * @param int $page_id
 	 * @param int $rev_id
 	 */
 	public function addTemplate( $link, $page_id, $rev_id ): void {
 		$ns = $link->getNamespace();
 		$dbk = $link->getDBkey();
+		// T296023: Parsoid doesn't have page_id
 		$this->mTemplates[$ns][$dbk] = $page_id;
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
 	}
 
 	/**
-	 * @param LinkTarget $link LinkTarget object, must be an interwiki link
+	 * @param ParsoidLinkTarget $link must be an interwiki link
 	 *       (used to require Title until 1.38).
 	 *
 	 * @throws MWException If given invalid input

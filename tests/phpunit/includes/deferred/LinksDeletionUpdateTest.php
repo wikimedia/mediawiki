@@ -32,11 +32,11 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$po = new ParserOutput();
-		$po->addCategory( 'Cat', 'cat' );
+		$po->addCategory( new TitleValue( NS_CATEGORY, 'Cat' ), 'cat' );
 		$po->addExternalLink( 'https://en.wikipedia.org/' );
-		$po->addImage( 'Wiki.png' );
+		$po->addImage( new TitleValue( NS_FILE, 'Wiki.png' ) );
 		$po->addLink( new TitleValue( 0, 'foo', '', 'iwprefix' ) );
-		$po->addLanguageLink( 'fr:Francais' );
+		$po->addLanguageLink( new TitleValue( 0, 'Francais', '', 'fr' ) );
 		$po->addLink( new TitleValue( 0, 'Target' ) );
 		$po->setPageProperty( 'int', 1 );
 		$po->addTemplate( new TitleValue( NS_TEMPLATE, '!' ), 1, 1 );

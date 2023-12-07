@@ -6,6 +6,7 @@ use CacheTime;
 use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use MWDebug;
@@ -204,12 +205,12 @@ abstract class ParserCacheSerializationTestCases {
 
 		$parserOutputWithMetadata = new ParserOutput( '' );
 		$parserOutputWithMetadata->setSpeculativeRevIdUsed( 42 );
-		$parserOutputWithMetadata->addLanguageLink( 'link1' );
-		$parserOutputWithMetadata->addLanguageLink( 'link2' );
+		$parserOutputWithMetadata->addLanguageLink( Title::makeTitle( NS_MAIN, 'link1' ) );
+		$parserOutputWithMetadata->addLanguageLink( Title::makeTItle( NS_MAIN, 'link2' ) );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki1', '', 'enwiki' ) );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki2', '', 'enwiki' ) );
-		$parserOutputWithMetadata->addCategory( 'category2', '1' );
-		$parserOutputWithMetadata->addCategory( 'category1', '2' );
+		$parserOutputWithMetadata->addCategory( Title::makeTitle( NS_CATEGORY, 'category2' ), '1' );
+		$parserOutputWithMetadata->addCategory( Title::makeTitle( NS_CATEGORY, 'category1' ), '2' );
 		$parserOutputWithMetadata->setIndicator( 'indicator1', 'indicator1_value' );
 		$parserOutputWithMetadata->setTitleText( 'title_text1' );
 		$parserOutputWithMetadata->setSections( self::SECTIONS );
@@ -221,7 +222,7 @@ abstract class ParserCacheSerializationTestCases {
 			4242
 		);
 		$parserOutputWithMetadata->addImage(
-			'Image1',
+			new TitleValue( NS_FILE, 'Image1' ),
 			MWTimestamp::convert( TS_MW, 123456789 ),
 			'test_sha1'
 		);

@@ -10,7 +10,6 @@ use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
@@ -18,6 +17,7 @@ use MediaWiki\Title\TitleParser;
 use NullStatsdDataFactory;
 use stdClass;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -100,13 +100,13 @@ class PageStore implements PageLookup {
 	}
 
 	/**
-	 * @param LinkTarget $link
+	 * @param ParsoidLinkTarget $link
 	 * @param int $queryFlags
 	 *
 	 * @return ProperPageIdentity
 	 */
 	public function getPageForLink(
-		LinkTarget $link,
+		ParsoidLinkTarget $link,
 		int $queryFlags = self::READ_NORMAL
 	): ProperPageIdentity {
 		Assert::parameter( !$link->isExternal(), '$link', 'must not be external' );
