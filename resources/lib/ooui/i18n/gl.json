@@ -25,7 +25,6 @@
 	"ooui-dialog-process-continue": "Continuar",
 	"ooui-combobox-button-label": "Alternar as opcións",
 	"ooui-selectfile-button-select": "Seleccionar un ficheiro",
-	"ooui-selectfile-not-supported": "Non está soportada a selección de ficheiros",
 	"ooui-selectfile-placeholder": "Non se seleccionou ningún ficheiro",
 	"ooui-selectfile-dragdrop-placeholder": "Solte un ficheiro aquí",
 	"ooui-popup-widget-close-button-aria-label": "Pechar",

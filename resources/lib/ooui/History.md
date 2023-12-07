@@ -1,5 +1,44 @@
 # OOUI Release History
 
+## v0.48.3 / 2023-12-06
+
+### Deprecating changes
+* [DEPRECATING CHANGE] Merge SelectFileWidget into SelectFileInputWidget (Ed Sanders)
+
+### Features
+* SelectFileInputWidget: Provide visual feedback when invalid file is dropped (Ed Sanders)
+* WindowManager: Fix faking scrollbar width on the wrong side in RTL (Bartosz Dziewoński)
+
+### Styles
+* WikimediaUI theme, build: Replace WikimediaUI Base with Codex tokens (Volker E.)
+* WikimediaUI theme: Fix two regressions in background color (Volker E.)
+* WikimediaUI theme: Remove deprecated tokens file (Volker E.)
+* WikimediaUI theme: Remove overridden and duplicate tools styles (Bartosz Dziewoński)
+* WikimediaUI theme: Remove theme overriding variables for ToggleSwitch (Volker E.)
+* WikimediaUI theme: Remove wrong styles for toolbar actions (deprecated feature) (Bartosz Dziewoński)
+* WikimediaUI theme: Replace `box-shadow-*` variables with category tokens (Volker E.)
+* WikimediaUI theme: Replace leftover deprecated `box-shadow` var (Volker E.)
+* WikimediaUI theme: Replace padding static values by Codex tokens (Volker E.)
+* WikimediaUI theme: Replace static font weight values with tokens (Volker E.)
+* WikimediaUI theme: Simplify PopupToolGroup tools styles (Bartosz Dziewoński)
+* icons: Add 'appearance' icon to 'accessibility' pack (Derek Torsani)
+* icons: Minor SVG optimizations on 'qrCode' and 'userRights*' (Thiemo Kreuz)
+* styles, themes: Replace deprecated `@min-size-*` vars (Volker E.)
+* styles, themes: Replace deprecated `size-*` vars (Volker E.)
+* themes: Replace `background-color-*` variables with category tokens (Volker E.)
+* themes: Replace `border-*` variables with category tokens (Volker E.)
+* themes: Replace `color-*` variables with category tokens (Volker E.)
+* themes: Replace `opacity-*` variables with category tokens (Volker E.)
+
+### Code
+* SelectWidget: Clean up SelectWidget.getItemMatcher for empty queries (Thiemo Kreuz)
+* PopupButtonWidget: Fix slightly misplaced ARIA attributes (Thiemo Kreuz)
+* PHP Demos: Allow form submission to be tested (Ed Sanders)
+* SelectFileWidget: Remove support check (Ed Sanders)
+* SelectFileWidget: Fix documentation of change event (Ed Sanders)
+* SelectFileInputWidget: Drop IE11 support hack (Ed Sanders)
+* build: Update QUnit from 2.19.4 to 2.20.0 (James D. Forrester)
+
 ## v0.48.2 / 2023-10-24
 
 ### Features

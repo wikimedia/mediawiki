@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"CiphriusKane",
 			"Foxj",
 			"John Reid",
 			"MJL"
@@ -16,8 +17,7 @@
 	"ooui-dialog-message-reject": "Cancel",
 	"ooui-dialog-process-error": "Sommit went wrang",
 	"ooui-dialog-process-dismiss": "Close",
-	"ooui-dialog-process-retry": "Hae aniter gae",
+	"ooui-dialog-process-retry": "Try again",
 	"ooui-dialog-process-continue": "Conteena",
-	"ooui-selectfile-not-supported": "Cannae pick ony files",
 	"ooui-selectfile-placeholder": "Nae file selectit"
 }

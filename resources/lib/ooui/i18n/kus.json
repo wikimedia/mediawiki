@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Akudugu"
+			"Akudugu",
+			"Poasana Anabah"
 		]
 	},
+	"ooui-copytextlayout-copy": "Tu'asim",
 	"ooui-outline-control-move-down": "Vɛ'ɛgim lak la sig tɛŋir",
 	"ooui-outline-control-move-up": "Vɛ'ɛgim lak la dɔ agɔl",
 	"ooui-outline-control-remove": "Yiisim lak la",
@@ -20,7 +22,6 @@
 	"ooui-combobox-button-label": "Gaansʋg zin'ig",
 	"ooui-selectfile-button-select": "Gaŋim labaar",
 	"ooui-selectfile-button-select-multiple": "Gaŋim labaya",
-	"ooui-selectfile-not-supported": "Labakanɛ ka fʋ gaŋ la pʋ tʋmma",
 	"ooui-selectfile-placeholder": "Fʋ pʋ gaŋ labaarɛ",
 	"ooui-selectfile-dragdrop-placeholder": "Niŋim labaar kpɛla",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Niŋim labaya kpɛla",

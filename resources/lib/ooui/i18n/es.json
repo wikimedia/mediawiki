@@ -36,7 +36,6 @@
 	"ooui-combobox-button-label": "Alternar opciones",
 	"ooui-selectfile-button-select": "Selecciona un archivo",
 	"ooui-selectfile-button-select-multiple": "Seleccionar archivos",
-	"ooui-selectfile-not-supported": "No se admite la selección de archivos",
 	"ooui-selectfile-placeholder": "Ningún archivo seleccionado",
 	"ooui-selectfile-dragdrop-placeholder": "Suelta el archivo aquí",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Coloca archivos aquí",

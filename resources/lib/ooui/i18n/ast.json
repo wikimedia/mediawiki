@@ -3,7 +3,8 @@
 		"authors": [
 			"Basharh",
 			"Bishnu Saikia",
-			"Xuacu"
+			"Xuacu",
+			"YoaR"
 		]
 	},
 	"ooui-copytextlayout-copy": "Copiar",
@@ -15,14 +16,13 @@
 	"ooui-toolgroup-collapse": "Menos",
 	"ooui-item-remove": "Desaniciar",
 	"ooui-dialog-message-accept": "Aceutar",
-	"ooui-dialog-message-reject": "Encaboxar",
+	"ooui-dialog-message-reject": "Zarrar",
 	"ooui-dialog-process-error": "Daqué funcionó mal",
 	"ooui-dialog-process-dismiss": "Descartar",
 	"ooui-dialog-process-retry": "Vuelvi a intentalo",
 	"ooui-dialog-process-continue": "Siguir",
 	"ooui-combobox-button-label": "Llista desplegable pa caxa combinada",
 	"ooui-selectfile-button-select": "Seleicionar un ficheru",
-	"ooui-selectfile-not-supported": "Nun hai encontu pa la seleición de ficheros",
 	"ooui-selectfile-placeholder": "Nun se seleicionó nengún ficheru",
 	"ooui-selectfile-dragdrop-placeholder": "Soltar el ficheru equí",
 	"ooui-field-help": "Ayuda"

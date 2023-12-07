@@ -25,6 +25,9 @@
 		}
 	},
 	"images": {
+		"appearance": {
+			"file": "images/icons/appearance.svg"
+		},
 		"bright": {
 			"file": "images/icons/bright.svg"
 		},
