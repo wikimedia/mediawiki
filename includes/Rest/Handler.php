@@ -7,6 +7,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Validator\BodyValidator;
+use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
@@ -20,13 +21,14 @@ use Wikimedia\Message\MessageValue;
 abstract class Handler {
 
 	/**
-	 * (string) ParamValidator constant to specify the source of the parameter.
-	 * Value must be 'path', 'query', or 'post'.
-	 * 'post' refers to application/x-www-form-urlencoded or multipart/form-data encoded parameters
-	 * in the body of a POST request (in other words, parameters in PHP's $_POST). For other kinds
-	 * of POST parameters, such as JSON fields, use BodyValidator instead of ParamValidator.
+	 * @see Validator::PARAM_SOURCE
 	 */
-	public const PARAM_SOURCE = 'rest-param-source';
+	public const PARAM_SOURCE = Validator::PARAM_SOURCE;
+
+	/**
+	 * @see Validator::PARAM_DESCRIPTION
+	 */
+	public const PARAM_DESCRIPTION = Validator::PARAM_DESCRIPTION;
 
 	/** @var Router */
 	private $router;
@@ -350,6 +352,136 @@ abstract class Handler {
 	}
 
 	/**
+	 * Returns an OpenAPI Operation Object specification structure as an associative array.
+	 *
+	 * @see https://swagger.io/specification/#operation-object
+	 *
+	 * Per default, this will contain information about the supported parameters, as well as
+	 * the response for status 200.
+	 *
+	 * Subclasses may override this to provide additional information.
+	 *
+	 * @since 1.42
+	 * @stable to override
+	 *
+	 * @param string $method The HTTP method to produce a spec for ("get", "post", etc).
+	 *        Useful for handlers that behave differently depending on the
+	 *        request method.
+	 *
+	 * @return array
+	 */
+	public function getOpenApiSpec( string $method ): array {
+		$parameters = [];
+
+		// XXX: Maybe we want to be able to define a spec file in the route definition?
+		// NOTE: the route definition may not be loaded when this is called before init()!
+
+		foreach ( $this->getParamSettings() as $name => $paramSetting ) {
+			$param = Validator::getParameterSpec(
+				$name,
+				$paramSetting
+			);
+
+			$location = $param['in'];
+			if ( $location !== 'post' && $location !== 'body' ) {
+				// 'post' and 'body' are handled in getRequestSpec()
+				// but others are added as normal parameters
+				$parameters[] = $param;
+			}
+		}
+
+		$spec = [
+			'parameters' => $parameters,
+			'responses' => $this->getResponseSpec(),
+		];
+
+		$requestBody = $this->getRequestSpec();
+		if ( $requestBody ) {
+			$spec['requestBody'] = $requestBody;
+		}
+
+		return $spec;
+	}
+
+	/**
+	 * Returns an OpenAPI Request Body Object specification structure as an associative array.
+	 * @see https://swagger.io/specification/#request-body-object
+	 *
+	 * Per default, this calls getBodyValidator() to get a SchemaValidator,
+	 * and then calls getBodySpec() on it.
+	 * If no SchemaValidator is supported, this returns null;
+	 *
+	 * Subclasses may override this to provide additional information about the structure of responses.
+	 *
+	 * @stable to override
+	 * @return ?array
+	 */
+	protected function getRequestSpec(): ?array {
+		$request = [];
+
+		// XXX: support additional content types?!
+		try {
+			$validator = $this->getBodyValidator( 'application/json' );
+
+			// TODO: all validators should support getBodySpec()!
+			if ( $validator instanceof JsonBodyValidator ) {
+				$schema = $validator->getOpenAPISpec();
+
+				if ( $schema !== [] ) {
+					$request['content']['application/json']['schema'] = $schema;
+				}
+			}
+		} catch ( HttpException $ex ) {
+			// JSON not supported, ignore.
+		}
+
+		return $request ?: null;
+	}
+
+	/**
+	 * Returns an OpenAPI Schema Object specification structure as an associative array.
+	 * @see https://swagger.io/specification/#schema-object
+	 *
+	 * Returns null per default. Subclasses that return a JSON response should
+	 * implement this method to return a schema of the response body.
+	 *
+	 * @stable to override
+	 * @return ?array
+	 */
+	protected function getResponseBodySchema(): ?array {
+		return null;
+	}
+
+	/**
+	 * Returns an OpenAPI Responses Object specification structure as an associative array.
+	 * @see https://swagger.io/specification/#responses-object
+	 *
+	 * Per default, this will contain basic information response for status 200, 400, and 500.
+	 * The getResponseBodySchema() method is used to determine the structure of the response for status 200.
+	 *
+	 * Subclasses may override this to provide additional information about the structure of responses.
+	 *
+	 * @stable to override
+	 * @return array
+	 */
+	protected function getResponseSpec(): array {
+		$ok = [ 'description' => 'OK' ];
+
+		$bodySchema = $this->getResponseBodySchema();
+
+		if ( $bodySchema ) {
+			$ok['content']['application/json']['schema'] = $bodySchema;
+		}
+
+		// XXX: we should add info about redirects, and maybe a default for errors?
+		return [
+			'200' => $ok,
+			'400' => [ '$ref' => '#/components/responses/GenericErrorResponse' ],
+			'500' => [ '$ref' => '#/components/responses/GenericErrorResponse' ],
+		];
+	}
+
+	/**
 	 * Fetch the BodyValidator
 	 *
 	 * @stable to override
@@ -358,6 +490,8 @@ abstract class Handler {
 	 * @return BodyValidator
 	 */
 	public function getBodyValidator( $contentType ) {
+		// TODO: Create a JsonBodyValidator if getParamSettings() returns body params.
+		// XXX: also support multipart/form-data and application/x-www-form-urlencoded?
 		return new NullBodyValidator();
 	}
 

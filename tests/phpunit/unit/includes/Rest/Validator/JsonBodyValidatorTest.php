@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
+use MediaWiki\Rest\Validator\Validator;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
@@ -137,4 +138,63 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 		$this->expectExceptionObject( $expected );
 		$validator->validateBody( $requestData );
 	}
+
+	public function testOpenAPISpec() {
+		$settings = [
+			'first' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				Validator::PARAM_SOURCE => 'path',
+			],
+			'second' => [
+				ParamValidator::PARAM_TYPE => 'float',
+				Validator::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_REQUIRED => false,
+			],
+			'third' => [
+				ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c' ],
+				Validator::PARAM_SOURCE => 'body',
+				Validator::PARAM_DESCRIPTION => 'just a test',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+			'fourth' => [
+				ParamValidator::PARAM_TYPE => 'timestamp',
+			],
+		];
+		$expected = [
+			'properties' => [
+				'first' => [
+					'type' => 'string',
+					'description' => 'first parameter',
+				],
+				'second' => [
+					'type' => 'number',
+					'format' => 'float',
+					'description' => 'second parameter',
+				],
+				'third' => [
+					'type' => 'string',
+					'enum' => [ 'a', 'b', 'c' ],
+					'description' => 'just a test',
+				],
+				'fourth' => [
+					'type' => 'string',
+					'format' => 'mw-timestamp',
+					'description' => 'fourth parameter',
+				],
+			],
+			'required' => [
+				'first', 'third'
+			]
+		];
+
+		$validator = new JsonBodyValidator( $settings );
+		$spec = $validator->getOpenAPISpec();
+		$this->assertArrayEquals( $expected, $spec, false, true );
+	}
+
+	public function testOpenAPISpec_empty() {
+		$validator = new JsonBodyValidator( [] );
+		$this->assertSame( [], $validator->getOpenAPISpec() );
+	}
+
 }
