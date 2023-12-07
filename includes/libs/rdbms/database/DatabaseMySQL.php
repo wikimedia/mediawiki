@@ -304,7 +304,6 @@ class DatabaseMySQL extends Database {
 		if ( isset( $this->sessionTempTables[$tableName] ) ) {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
 		}
-
 		// We can't use buildLike() here, because it specifies an escape character
 		// other than the backslash, which is the only one supported by SHOW TABLES
 		// TODO: Avoid using platform's internal methods
@@ -318,7 +317,7 @@ class DatabaseMySQL extends Database {
 			$sql = "SHOW TABLES LIKE '$encLike'";
 		}
 
-		$query = new Query( $sql, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SHOW', $table );
+		$query = new Query( $sql, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SHOW' );
 		$res = $this->query( $query, $fname );
 
 		return $res->numRows() > 0;
@@ -333,8 +332,7 @@ class DatabaseMySQL extends Database {
 		$query = new Query(
 			"SELECT * FROM " . $this->tableName( $table ) . " LIMIT 1",
 			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SELECT',
-			$table
+			'SELECT'
 		);
 		$res = $this->query( $query, __METHOD__ );
 		if ( !$res ) {
@@ -360,8 +358,7 @@ class DatabaseMySQL extends Database {
 		$query = new Query(
 			'SHOW INDEX FROM ' . $this->tableName( $table ),
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SHOW',
-			$table
+			'SHOW'
 		);
 		$res = $this->query( $query, $fname );
 
@@ -638,7 +635,8 @@ class DatabaseMySQL extends Database {
 			"CREATE $tmp TABLE $newNameQuoted (LIKE $oldNameQuoted)",
 			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA,
 			'CREATE',
-			[ $oldName, $newName ]
+			// Use a dot to avoid double-prefixing in Database::getTempTableWrites()
+			[ '.' . $newName ]
 		);
 		return $this->query( $query, $fname );
 	}

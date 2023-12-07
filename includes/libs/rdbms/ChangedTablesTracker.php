@@ -62,14 +62,14 @@ class ChangedTablesTracker {
 		$queryVerb = $query->getVerb();
 		if ( $queryVerb === 'DROP' && preg_match( '/^DROP( TEMPORARY)? TABLE/i', $query->getSQL() ) ) {
 			// Special case: if a table is being dropped, forget about it.
-			self::$tableMap = array_diff_key( self::$tableMap, array_fill_keys( $query->getTables(), true ) );
+			self::$tableMap = array_diff_key( self::$tableMap, array_fill_keys( $query->getWriteTables(), true ) );
 			return;
 		}
 		if ( !in_array( $queryVerb, self::TRACKED_VERBS, true ) ) {
 			return;
 		}
 
-		foreach ( $query->getTables() as $table ) {
+		foreach ( $query->getWriteTables() as $table ) {
 			self::$tableMap[$table] = true;
 		}
 	}

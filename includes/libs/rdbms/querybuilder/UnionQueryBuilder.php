@@ -163,13 +163,11 @@ class UnionQueryBuilder {
 	 */
 	public function fetchResultSet() {
 		$sqls = [];
-		$tables = [];
 		foreach ( $this->sqbs as $sqb ) {
 			$sqls[] = $sqb->getSQL();
-			$tables = array_merge( $tables, $sqb->getQueryInfo()['tables'] );
 		}
 		$sql = $this->db->unionQueries( $sqls, $this->all, $this->options );
-		$query = new Query( $sql, ISQLPlatform::QUERY_CHANGE_NONE, 'SELECT', $tables );
+		$query = new Query( $sql, ISQLPlatform::QUERY_CHANGE_NONE, 'SELECT' );
 		return $this->db->query( $query, $this->caller );
 	}
 }
