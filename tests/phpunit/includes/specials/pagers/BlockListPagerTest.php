@@ -4,6 +4,7 @@ use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -31,6 +32,9 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 	/** @var BlockUtils */
 	private $blockUtils;
+
+	/** @var HideUserUtils */
+	private $hideUserUtils;
 
 	/** @var CommentStore */
 	private $commentStore;
