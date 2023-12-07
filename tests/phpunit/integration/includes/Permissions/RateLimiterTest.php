@@ -412,7 +412,9 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test limit with different limit types
+	 * Test limit with different limit types:
+	 * - newbie trips the 'user' limit when 'newbie' not set
+	 * - newbie trips the 'ip' limit on shared IP when 'user' is set
 	 * @covers ::limit
 	 * @covers ::getConditions
 	 */
@@ -424,22 +426,47 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
-		$user1 = $this->newFakeUser( 'User1', '127.0.0.1', 1, true );
-		$user2 = $this->newFakeUser( 'User2', '127.0.0.1', 2, true );
-		$user3 = $this->newFakeUser( 'User3', '127.0.0.1', 3, true );
+		$newbie1 = $this->newFakeUser( 'User1', '127.0.0.1', 1, true );
+		$newbie2 = $this->newFakeUser( 'User2', '127.0.0.1', 2, true );
+		$newbie3 = $this->newFakeUser( 'User3', '127.0.0.1', 3, true );
 
 		$stats = new BufferingStatsdDataFactory( 'test.' );
 		$limiter = $this->newRateLimiter( $limits, [] );
 		$limiter->setStats( $stats );
 
-		$this->assertFalse( $limiter->limit( $user1, 'edit' ) );
-		$this->assertFalse( $limiter->limit( $user2, 'edit' ) );
-		$this->assertTrue( $limiter->limit( $user3, 'edit' ) );
+		$this->assertFalse( $limiter->limit( $newbie1, 'edit' ) );
+		$this->assertFalse( $limiter->limit( $newbie2, 'edit' ) );
+		$this->assertTrue( $limiter->limit( $newbie3, 'edit' ) );
 
 		$statsData = $stats->getData();
 		$this->assertStatsHasCount( 'test.RateLimiter.limit.edit.result.passed', 1, $statsData );
 		$this->assertStatsHasCount( 'test.RateLimiter.limit.edit.result.tripped', 1, $statsData );
 		$this->assertStatsHasCount( 'test.RateLimiter.limit.edit.tripped_by.ip', 1, $statsData );
+	}
+
+	/**
+	 * Test limit when 'newbie' is set:
+	 * - 'newbie' limit takes precedence over 'user' limit for newbie
+	 * - newbie trips the 'ip' limit on a shared IP, when 'newbie' limit is set
+	 * @covers ::limit
+	 */
+	public function testLimitTypes_newbie() {
+		$limits = [
+			'edit' => [
+				'user' => [ 10, 60 ],
+				'newbie' => [ 1, 60 ],
+				'ip' => [ 1, 60 ],
+			],
+		];
+
+		$newbie1 = $this->newFakeUser( 'User1', '127.0.0.1', 1, true );
+		$newbie2 = $this->newFakeUser( 'User2', '127.0.0.1', 2, true );
+
+		$limiter = $this->newRateLimiter( $limits, [] );
+
+		$this->assertFalse( $limiter->limit( $newbie1, 'edit' ) );
+		$this->assertTrue( $limiter->limit( $newbie1, 'edit' ) );
+		$this->assertTrue( $limiter->limit( $newbie2, 'edit' ) );
 	}
 
 	/**
