@@ -183,7 +183,7 @@ TEXT
 				__METHOD__
 			);
 			// Improve estimate if feasible
-			if ( $count < 1000000 ) {
+			if ( $count < 1_000_000 ) {
 				$count = $this->dbr->newSelectQueryBuilder()
 					->select( 'COUNT(*)' )
 					->from( 'categorylinks' )

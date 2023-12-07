@@ -33,7 +33,7 @@ class TiffHandler extends ExifBitmapHandler {
 	/**
 	 * TIFF files over 10M are considered expensive to thumbnail
 	 */
-	private const EXPENSIVE_SIZE_LIMIT = 10485760;
+	private const EXPENSIVE_SIZE_LIMIT = 10_485_760;
 
 	/**
 	 * Conversion to PNG for inline display can be disabled here...

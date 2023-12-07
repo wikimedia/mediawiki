@@ -38,7 +38,7 @@ class StripState {
 	protected $expandSize = 0;
 
 	protected $depthLimit = 20;
-	protected $sizeLimit = 5000000;
+	protected $sizeLimit = 5_000_000;
 
 	/**
 	 * @stable to call

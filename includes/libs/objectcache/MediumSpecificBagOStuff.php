@@ -93,9 +93,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		// Default to 8MiB if segmentationSize is not set
-		$this->segmentationSize = $params['segmentationSize'] ?? 8388608;
+		$this->segmentationSize = $params['segmentationSize'] ?? 8_388_608;
 		// Default to 64MiB if segmentedValueMaxSize is not set
-		$this->segmentedValueMaxSize = $params['segmentedValueMaxSize'] ?? 67108864;
+		$this->segmentedValueMaxSize = $params['segmentedValueMaxSize'] ?? 67_108_864;
 	}
 
 	/**

@@ -79,7 +79,7 @@ class TextPassDumper extends BackupDumper {
 	protected $failureTimeout = 5;
 
 	/** @var int In bytes. Maximum size to read from the stub in on go. */
-	protected $bufferSize = 524288;
+	protected $bufferSize = 524_288;
 
 	/** @var array */
 	protected $php = [ PHP_BINARY ];

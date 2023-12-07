@@ -257,13 +257,13 @@ class Language implements Bcp47Code {
 	 * @since 1.35
 	 */
 	protected const DURATION_INTERVALS = [
-		'millennia' => 31556952000,
-		'centuries' => 3155695200,
-		'decades' => 315569520,
-		'years' => 31556952, // 86400 * ( 365 + ( 24 * 3 + 25 ) / 400 )
-		'weeks' => 604800,
-		'days' => 86400,
-		'hours' => 3600,
+		'millennia' => 31_556_952_000,
+		'centuries' => 3_155_695_200,
+		'decades' => 315_569_520,
+		'years' => 31_556_952, // 86400 * ( 365 + ( 24 * 3 + 25 ) / 400 )
+		'weeks' => 604_800,
+		'days' => 86_400,
+		'hours' => 3_600,
 		'minutes' => 60,
 		'seconds' => 1,
 	];

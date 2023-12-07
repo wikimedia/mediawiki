@@ -359,7 +359,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$sha1Context = hash_init( 'sha1' );
 		$hashDigestSize = 0;
 		while ( !feof( $srcHandle ) ) {
-			$buffer = (string)fread( $srcHandle, 131072 ); // 128 KiB
+			$buffer = (string)fread( $srcHandle, 131_072 ); // 128 KiB
 			hash_update( $md5Context, $buffer );
 			hash_update( $sha1Context, $buffer );
 			$hashDigestSize += strlen( $buffer );

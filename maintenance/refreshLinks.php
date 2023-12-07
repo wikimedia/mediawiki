@@ -46,7 +46,7 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'touched-only', 'Only fix pages that have been touched after last update' );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
-			'query, default 100000', false, true );
+			'query, default 100,000', false, true );
 		$this->addOption( 'namespace', 'Only fix pages in this namespace', false, true );
 		$this->addOption( 'category', 'Only fix pages in this category', false, true );
 		$this->addOption( 'tracking-category', 'Only fix pages in this tracking category', false, true );
@@ -63,7 +63,7 @@ class RefreshLinks extends Maintenance {
 		// delete entries for nonexistent IDs that fall outside the range.
 		$start = (int)$this->getArg( 0 ) ?: null;
 		$end = (int)$this->getOption( 'e' ) ?: null;
-		$dfnChunkSize = (int)$this->getOption( 'dfn-chunk-size', 100000 );
+		$dfnChunkSize = (int)$this->getOption( 'dfn-chunk-size', 100_000 );
 
 		if ( $this->hasOption( 'dfn-only' ) ) {
 			$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
@@ -257,7 +257,7 @@ class RefreshLinks extends Maintenance {
 	 * @author Merlijn van Deen <valhallasw@arctus.nl>
 	 */
 	private function deleteLinksFromNonexistent( $start = null, $end = null, $batchSize = 100,
-		$chunkSize = 100000
+		$chunkSize = 100_000
 	) {
 		$this->waitForReplication();
 		$this->output( "Deleting illegal entries from the links tables...\n" );

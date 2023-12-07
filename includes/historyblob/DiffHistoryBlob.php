@@ -61,7 +61,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @var int The maximum uncompressed size before the object becomes sad
 	 * Should be less than max_allowed_packet
 	 */
-	public $mMaxSize = 10000000;
+	public $mMaxSize = 10_000_000;
 
 	/** @var int The maximum number of text items before the object becomes sad */
 	public $mMaxCount = 100;

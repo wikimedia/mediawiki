@@ -423,7 +423,7 @@ class BacklinkCache {
 
 				// Do the selects in batches to avoid client-side OOMs (T45452).
 				// Use a LIMIT that plays well with $batchSize to keep equal sized partitions.
-				$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
+				$selectSize = max( $batchSize, 200_000 - ( 200_000 % $batchSize ) );
 				$start = false;
 				do {
 					$res = $this->queryLinks( $table, $start, false, $selectSize, 'ids' );

@@ -170,7 +170,7 @@ class RecompressTracked {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
 		$pos = $dbw->getPrimaryPos();
-		$dbr->primaryPosWait( $pos, 100000 );
+		$dbr->primaryPosWait( $pos, 100_000 );
 	}
 
 	/**

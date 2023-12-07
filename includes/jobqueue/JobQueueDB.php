@@ -35,8 +35,8 @@ use Wikimedia\ScopedCallback;
  */
 class JobQueueDB extends JobQueue {
 	private const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
-	private const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed
-	private const MAX_JOB_RANDOM = 2147483647; // integer; 2^31 - 1, used for job_random
+	private const MAX_AGE_PRUNE = 604_800; // integer; seconds a job can live once claimed
+	private const MAX_JOB_RANDOM = 2_147_483_647; // integer; 2^31 - 1, used for job_random
 	private const MAX_OFFSET = 255; // integer; maximum number of rows to skip
 
 	/** @var IMaintainableDatabase|DBError|null */

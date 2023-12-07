@@ -39,7 +39,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 	/** @var int */
 	public $mSize = 0;
 	/** @var int */
-	public $mMaxSize = 10000000;
+	public $mMaxSize = 10_000_000;
 	/** @var int */
 	public $mMaxCount = 100;
 

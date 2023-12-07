@@ -770,7 +770,7 @@ class Exif {
 	 * @return bool
 	 */
 	private function isLong( $in ) {
-		if ( !is_array( $in ) && sprintf( '%d', $in ) == $in && $in >= 0 && $in <= 4294967296 ) {
+		if ( !is_array( $in ) && sprintf( '%d', $in ) == $in && $in >= 0 && $in <= 4_294_967_296 ) {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
