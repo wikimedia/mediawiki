@@ -48,6 +48,8 @@ td.mw-enhanced-rc {
 	font-family: monospace, monospace;
 }
 
+@width-arrow-space: 15px;
+
 .mw-enhancedchanges-arrow {
 	padding-top: 2px;
 	background-position: left bottom;
@@ -57,10 +59,22 @@ td.mw-enhanced-rc {
 	.mw-enhancedchanges-checkbox:not( :checked ) + * & {
 		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-base, @size-icon-x-small );
 		transform: rotate( -90deg );
+
+		// Rotate is not flipped by CSS Janus. [T353099]
+		[ dir='rtl' ] & {
+			transform: rotate( 90deg );
+		}
 	}
 
 	.mw-enhancedchanges-checkbox:checked + * & {
 		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-base, @size-icon-x-small );
+	}
+
+	.mw-enhancedchanges-checkbox[ type ] + * & {
+		// Restore enforced space to make sure arrows align
+		// with timestamp
+		width: @width-arrow-space;
+		height: @width-arrow-space;
 	}
 
 	// Show a focus ring around the label when focusing the invisible checkbox.
@@ -72,8 +86,8 @@ td.mw-enhanced-rc {
 
 .mw-enhancedchanges-arrow-space {
 	display: inline-block;
-	width: 15px;
-	height: 15px;
+	width: @width-arrow-space;
+	height: @width-arrow-space;
 }
 
 .mw-enhanced-watched .mw-enhanced-rc-time {
