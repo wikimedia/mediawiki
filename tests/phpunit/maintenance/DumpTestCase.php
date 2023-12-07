@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DOMDocument;
 use ExecutableFinder;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;

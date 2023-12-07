@@ -1,13 +1,14 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Language\RawMessage;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @group Database
- * @covers MediaWiki\CommentStore\CommentStore
- * @covers CommentStoreComment
+ * @covers \MediaWiki\CommentStore\CommentStore
+ * @covers \MediaWiki\CommentStore\CommentStoreComment
  */
 class CommentStoreTest extends MediaWikiLangTestCase {
 

@@ -1,9 +1,10 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers CommentStoreComment
+ * @covers \MediaWiki\CommentStore\CommentStoreComment
  *
  * @license GPL-2.0-or-later
  */

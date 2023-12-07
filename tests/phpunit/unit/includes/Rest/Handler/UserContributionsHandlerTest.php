@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use CommentStoreComment;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\UserContributionsHandler;
 use MediaWiki\Rest\LocalizedHttpException;

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Unit\Revision;
 
-use CommentStoreComment;
 use DummyContentForTesting;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;

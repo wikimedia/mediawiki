@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Unit\Revision;
 
-use CommentStoreComment;
 use DummyContentForTesting;
 use InvalidArgumentException;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\BadRevisionException;

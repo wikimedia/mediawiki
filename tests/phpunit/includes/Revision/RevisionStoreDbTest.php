@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use CommentStoreComment;
 use Content;
 use Exception;
 use FallbackContent;
 use HashBagOStuff;
 use IDBAccessObject;
 use InvalidArgumentException;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

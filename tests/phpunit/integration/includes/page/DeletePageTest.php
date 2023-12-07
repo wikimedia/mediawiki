@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Page;
 
-use CommentStoreComment;
 use Content;
 use ContentHandler;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
