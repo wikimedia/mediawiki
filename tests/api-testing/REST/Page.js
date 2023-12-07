@@ -74,8 +74,10 @@ describe( 'Page Source', () => {
 		it( 'When a wiki redirect exists, it should be present in the body response', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
-			const { status, body: { redirect_target }, text } = await client.get( `/page/${ redirectPageDbkey }` );
+			const { status, body: { redirect_target }, text, headers } =
+				await client.get( `/page/${ redirectPageDbkey }` );
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }$` ) );
 		} );
 
@@ -135,14 +137,17 @@ describe( 'Page Source', () => {
 		it( 'When a wiki redirect exists, it should be present in the body response', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
-			const { status, body: { redirect_target }, text } = await client.get( `/page/${ redirectPageDbkey }/bare` );
+			const { status, body: { redirect_target }, text, headers } =
+				await client.get( `/page/${ redirectPageDbkey }/bare` );
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/bare$` ) );
 		} );
 
 		it( 'Should successfully return page bare', async () => {
-			const { status, body, text } = await client.get( `/page/${ page }/bare` );
+			const { status, body, text, headers } = await client.get( `/page/${ page }/bare` );
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html_url' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
@@ -204,14 +209,23 @@ describe( 'Page Source', () => {
 
 		it( 'Bypass wiki redirects with query param redirect=no', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
-			const { status, text } = await client.get( `/page/${ redirectPageDbkey }/html`, { redirect: 'no' } );
+			const { status, text, headers } = await client.get(
+				`/page/${ redirectPageDbkey }/html`,
+				{ redirect: 'no' }
+			);
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
 		} );
 
 		it( 'Bypass variant redirects with query param redirect=no', async () => {
 			const agepayDbkey = utils.dbkey( agepay );
-			const { status } = await client.get( `/page/${ agepayDbkey }/html`, { redirect: 'no' } );
+			const { status, headers } = await client.get(
+				`/page/${ agepayDbkey }/html`,
+				{ redirect: 'no' }
+			);
 			assert.deepEqual( status, 404 );
+			// rest-nonexistent-title error object returned instead of HTML
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 		} );
 
 		it( 'Should successfully return page HTML', async () => {
@@ -260,6 +274,7 @@ describe( 'Page Source', () => {
 			} );
 
 			assert.match( text, /esttay anguagelay onversioncay/ );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
@@ -271,6 +286,7 @@ describe( 'Page Source', () => {
 			} );
 
 			assert.match( text, /Подвлачење линкова:/ );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /sh-cyrl/i );
 			assert.match( headers.etag, /sh-cyrl/i );
@@ -296,14 +312,19 @@ describe( 'Page Source', () => {
 		it( 'Bypass redirects with query param redirect=no', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
-			const { status, body: { redirect_target }, text } = await client.get( `/page/${ redirectPageDbkey }/with_html`, { redirect: 'no' } );
+			const { status, body: { redirect_target }, text, headers } = await client.get(
+				`/page/${ redirectPageDbkey }/with_html`,
+				{ redirect: 'no' }
+			);
 			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/with_html` ) );
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 		} );
 
 		it( 'Should successfully return page HTML and metadata for Wikitext page', async () => {
-			const { status, body, text } = await client.get( `/page/${ page }/with_html` );
+			const { status, body, text, headers } = await client.get( `/page/${ page }/with_html` );
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
@@ -313,8 +334,9 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should successfully return page HTML and metadata for a system message', async () => {
 			const msg = 'MediaWiki:Newpage-desc';
-			const { status, body, text } = await client.get( `/page/${ msg }/with_html` );
+			const { status, body, text, headers } = await client.get( `/page/${ msg }/with_html` );
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', msg );
@@ -358,6 +380,7 @@ describe( 'Page Source', () => {
 			} );
 
 			assert.match( text, /esttay anguagelay onversioncay/ );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
 
@@ -375,6 +398,7 @@ describe( 'Page Source', () => {
 			} );
 
 			assert.match( text, /Подвлачење линкова:/ );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers.etag, /sh-cyrl/i );
 

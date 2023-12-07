@@ -63,6 +63,7 @@ describe( 'POST /page', () => {
 			const { status: editStatus, body: editBody, header } =
 				await client.post( '/page', reqBody );
 			assert.equal( editStatus, 201 );
+			assert.match( header[ 'content-type' ], /^application\/json/ );
 
 			assert.nestedProperty( header, 'location' );
 			const location = header.location;
@@ -70,13 +71,17 @@ describe( 'POST /page', () => {
 			checkEditResponse( title, reqBody, editBody );
 
 			// follow redirect
-			const { status: redirStatus, body: redirBody } = await supertest.agent( location ).get( '' );
+			const { status: redirStatus, body: redirBody, header: redirHeader } =
+				await supertest.agent( location ).get( '' );
 			assert.equal( redirStatus, 200 );
+			assert.match( redirHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, redirBody );
 
 			// construct request to fetch content
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${ normalizedTitle }` );
+			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
+				await client.get( `/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
+			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
 
@@ -94,12 +99,16 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			const { status: editStatus, body: editBody } = await client.post( '/page', reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } =
+				await client.post( '/page', reqBody );
 			assert.equal( editStatus, 201 );
+			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${ normalizedTitle }` );
+			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
+				await client.get( `/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
+			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
 	} );
@@ -120,10 +129,11 @@ describe( 'POST /page', () => {
 				const incompleteBody = { ...reqBody };
 				delete incompleteBody[ missingPropName ];
 
-				const { status: editStatus, body: editBody } =
+				const { status: editStatus, body: editBody, header: editHeader } =
 					await client.post( '/page', incompleteBody );
 
 				assert.equal( editStatus, 400 );
+				assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 				assert.nestedProperty( editBody, 'messageTranslations' );
 			} );
 		} );
@@ -137,9 +147,11 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			const { status: editStatus, body: editBody } = await client.post( '/page', reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } =
+				await client.post( '/page', reqBody );
 
 			assert.equal( editStatus, 400 );
+			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
 
@@ -152,9 +164,11 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			const { status: editStatus, body: editBody } = await client.post( '/page', reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } =
+				await client.post( '/page', reqBody );
 
 			assert.equal( editStatus, 403 );
+			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
 
@@ -168,9 +182,11 @@ describe( 'POST /page', () => {
 				content_model: 'THIS DOES NOT EXIST!',
 				title
 			};
-			const { status: editStatus, body: editBody } = await client.post( '/page', reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } =
+				await client.post( '/page', reqBody );
 
 			assert.equal( editStatus, 400 );
+			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
 
@@ -183,9 +199,11 @@ describe( 'POST /page', () => {
 				comment: 'tästing',
 				title
 			};
-			const { status: editStatus, body: editBody } = await client.post( '/page', reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } =
+				await client.post( '/page', reqBody );
 
 			assert.equal( editStatus, 400 );
+			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
 	} );
@@ -203,9 +221,11 @@ describe( 'POST /page', () => {
 				comment: 'tästing',
 				title
 			};
-			const { status: editStatus, body: editBody } = await client.post( '/page', reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } =
+				await client.post( '/page', reqBody );
 
 			assert.equal( editStatus, 409 );
+			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
 	} );
@@ -227,9 +247,11 @@ describe( 'POST /page', () => {
 				comment: 'tästing',
 				title
 			};
-			const { status: editStatus, body: editBody } = await client.post( '/page', reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } =
+				await client.post( '/page', reqBody );
 
 			assert.equal( editStatus, 403 );
+			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
 

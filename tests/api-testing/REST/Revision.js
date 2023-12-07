@@ -35,8 +35,9 @@ describe( 'Revision', () => {
 			const { newrevid: revId1 } = await mindy.edit( pageOne, { text: 'Mindy Edit 1' } );
 			const { newrevid: revId2 } = await mindy.edit( pageOne, { text: 'Mindy Edit 2' } );
 			const response = await client.get( `/revision/${ revId1 }/compare/${ revId2 }` );
-			const { status, body, text } = response;
+			const { status, body, text, headers } = response;
 			assert.strictEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.nestedPropertyVal( body, 'from.id', revId1 );
 			assert.nestedPropertyVal( body, 'to.id', revId2 );
 			assert.nestedProperty( body, 'diff' );
@@ -61,6 +62,7 @@ describe( 'Revision', () => {
 			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }` );
 
 			assert.strictEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.strictEqual( body.id, newrevid );
 			assert.strictEqual( body.minor, false );
 			assert.deepEqual( body.page, { id: pageid, title: page, key: utils.dbkey( page ) } );
@@ -84,6 +86,7 @@ describe( 'Revision', () => {
 			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }/bare` );
 
 			assert.strictEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.strictEqual( body.id, newrevid );
 			assert.strictEqual( body.minor, false );
 			assert.deepEqual( body.page, { id: pageid, title: page, key: utils.dbkey( page ) } );
@@ -107,6 +110,7 @@ describe( 'Revision', () => {
 			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }/with_html` );
 
 			assert.strictEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.strictEqual( body.id, newrevid );
 			assert.strictEqual( body.minor, false );
 			assert.deepEqual( body.page, { id: pageid, title: page, key: utils.dbkey( page ) } );
@@ -138,6 +142,7 @@ describe( 'Revision', () => {
 
 			assert.match( text, /Ellohay/ );
 			assert.match( text, /Orldway/ );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
 			// Since with_html returns JSON, content language is not set
@@ -175,6 +180,7 @@ describe( 'Revision', () => {
 
 			assert.match( text, /Ellohay/ );
 			assert.match( text, /Orldway/ );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
