@@ -59,8 +59,9 @@ function installGlobalHandler( window ) {
 }
 
 /**
+ * Allows the logging of client errors for later inspections.
+ *
  * @namespace mw.errorLogger
- * @classdesc Allows the logging of client errors for later inspections.
  * @singleton
  */
 mw.errorLogger = {

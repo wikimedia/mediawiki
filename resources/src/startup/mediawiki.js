@@ -38,6 +38,8 @@
 	}
 
 	/**
+	 * ES3 compatible class similar to [ES6 Map]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map}.
+	 *
 	 * @class mw.Map
 	 * @classdesc Create an object that can be read from or written to via methods that allow
 	 * interaction both with single and multiple properties at once.
@@ -234,6 +236,8 @@
 		},
 
 		/**
+		 * Library that predates the ES6 Map class with similar functionality.
+		 *
 		 * @type {mw.Map}
 		 */
 		Map: Map,
