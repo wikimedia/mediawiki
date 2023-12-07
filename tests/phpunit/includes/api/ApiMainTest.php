@@ -1163,7 +1163,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testMatchRequestedHeaders() {
-		$api = Wikimedia\TestingAccessWrapper::newFromClass( 'ApiMain' );
+		$api = Wikimedia\TestingAccessWrapper::newFromClass( ApiMain::class );
 		$allowedHeaders = [ 'Accept', 'Origin', 'User-Agent' ];
 
 		$this->assertTrue( $api->matchRequestedHeaders( 'Accept', $allowedHeaders ) );
