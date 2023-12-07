@@ -28,6 +28,7 @@
 	 *  exact name doesn't exist. Disabled by default when the namespace option is used, otherwise
 	 *  enabled by default.
 	 * @cfg {boolean} [showInterwikis=false] Show pages with a valid interwiki prefix
+	 * @cfg {boolean} [searchFragments=false] Search for hash fragments on a specific page when typed
 	 * @cfg {boolean} [addQueryInput=true] Add exact user's input query to results
 	 * @cfg {boolean} [excludeCurrentPage=false] Exclude the current page from suggestions
 	 * @cfg {boolean} [excludeDynamicNamespaces=false] Exclude pages whose namespace is negative
@@ -56,6 +57,7 @@
 		this.showDisambigsLast = !!config.showDisambigsLast;
 		this.showMissing = config.showMissing !== undefined ? !!config.showMissing : this.namespace === null;
 		this.showInterwikis = !!config.showInterwikis;
+		this.searchFragments = !!config.searchFragments;
 		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.excludeDynamicNamespaces = !!config.excludeDynamicNamespaces;
@@ -67,6 +69,7 @@
 			mw.language.bcp47( mw.config.get( 'wgContentLanguage' ) ),
 			{ sensitivity: 'base' }
 		).compare;
+		this.sectionsCache = {};
 
 		// Initialization
 		this.$element.addClass( 'mw-widget-titleWidget' );
@@ -137,6 +140,61 @@
 	};
 
 	/**
+	 * Suggest link fragments from the sections API
+	 *
+	 * @param {string} title Title, extracted form the user input
+	 * @param {string} fragmentQuery Partial link fragment, from the user input
+	 * @return {jQuery.Promise} Suggestions promise
+	 */
+	mw.widgets.TitleWidget.prototype.getSectionSuggestions = function ( title, fragmentQuery ) {
+		var widget = this;
+		var normalizedTitle = mw.Title.newFromText( title || mw.config.get( 'wgRelevantPageName' ) );
+		if ( !normalizedTitle ) {
+			return $.Deferred().resolve( [] ).promise();
+		}
+		var normalizedTitleText = normalizedTitle.getPrefixedText();
+		this.sectionsCache[ normalizedTitleText ] = this.sectionsCache[ normalizedTitleText ] || this.getApi().get( {
+			action: 'parse',
+			page: normalizedTitleText,
+			prop: 'sections'
+		} );
+
+		function normalizeFragment( fragment ) {
+			return fragment.toLowerCase().replace( /_/g, ' ' );
+		}
+
+		return this.sectionsCache[ normalizedTitleText ].then( function ( response ) {
+			var sections = OO.getProp( response, 'parse', 'sections' ) || [];
+			var normalizedFragmentQuery = normalizeFragment( fragmentQuery );
+			var results = sections.filter( function ( section ) {
+				return normalizeFragment( section.line ).indexOf( normalizedFragmentQuery ) !== -1;
+			} ).map( function ( section ) {
+				var fragment = section.linkAnchor.replace( /_/g, ' ' );
+				// TODO: Make promise abortable
+				return {
+					title: title + '#' + fragment,
+					// `title`` could be empty for a relative fragment, so store the normalized
+					// title if that is needed later.
+					normalizedTitle: normalizedTitle + '#' + fragment,
+					ns: normalizedTitle.getNamespaceId(),
+					// Sort prefix matches to the top
+					index: normalizeFragment( section.line ).indexOf( normalizedFragmentQuery ) === 0 ? 0 : 1
+				};
+			} );
+			// Sorting also happens later, but we need to do it now before we truncate
+			results.sort( function ( a, b ) {
+				return a.index - b.index;
+			} );
+			// Fake query result
+			return {
+				query: {
+					pages: results.slice( 0, widget.limit )
+				}
+			};
+		} ).promise( { abort: function () {} } );
+	};
+
+	/**
 	 * Get a promise which resolves with an API response for suggested
 	 * links for the current query.
 	 *
@@ -150,11 +208,11 @@
 				// Do nothing. This is just so OOUI doesn't break due to abort being undefined.
 			} };
 
-		if ( query.match( /\s*#/ ) ) {
-			// Don't return results when searching for a link fragments, as this makes
-			// linking to fragments difficult.
-			// TODO: Suggest actual page fragments based on the query
-			return $.Deferred().resolve( {} ).promise( promiseAbortObject );
+		if ( this.searchFragments ) {
+			var hashIndex = query.indexOf( '#' );
+			if ( hashIndex !== -1 ) {
+				return this.getSectionSuggestions( query.slice( 0, hashIndex ), query.slice( hashIndex + 1 ) );
+			}
 		}
 
 		if ( !mw.Title.newFromText( query ) ) {
@@ -422,11 +480,11 @@
 	 * @return {Object} Data for option widget
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionWidgetData = function ( title, data ) {
-		var mwTitle = new mw.Title( title ),
-			description = data.description;
+		var description = data.description;
 		if ( !description && ( data.missing && !data.known ) ) {
 			description = mw.msg( 'mw-widgets-titleinput-description-new-page' );
 		}
+		var mwTitle = new mw.Title( OO.getProp( data, 'originalData', 'normalizedTitle' ) || title );
 		return {
 			data: this.namespace !== null && this.relative ?
 				mwTitle.getRelativeText( this.namespace ) :
