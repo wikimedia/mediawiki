@@ -9,7 +9,8 @@ module.exports = {
 		template: 'node_modules/jsdoc-wmf-theme'
 	},
 	plugins: [
-		'plugins/markdown'
+		'plugins/markdown',
+		'plugins/summarize'
 	],
 	source: {
 		include: [
