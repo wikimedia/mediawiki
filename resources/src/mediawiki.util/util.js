@@ -51,6 +51,8 @@ function escapeIdInternal( str, mode ) {
 }
 
 /**
+ * Library providing useful common skin-agnostic utility functions.
+ *
  * @namespace mw.util
  * @classdesc Alias for the [mediawiki.util]{@link mediawiki.module:util} module.
  */
@@ -101,7 +103,7 @@ var util = {
 	},
 
 	/**
-	 * Get the target element from a link hash
+	 * Get the target element from a link hash.
 	 *
 	 * This is the same element as you would get from
 	 * document.querySelectorAll(':target'), but can be used on
@@ -141,7 +143,7 @@ var util = {
 	},
 
 	/**
-	 * Percent-decode a string, as found in a URL hash fragment
+	 * Percent-decode a string, as found in a URL hash fragment.
 	 *
 	 * Implements the percent-decode method as defined in
 	 * https://url.spec.whatwg.org/#percent-decode.
@@ -569,7 +571,9 @@ var util = {
 		return portlet;
 	},
 	/**
-	 * Add a link to a portlet menu on the page, such as:
+	 * Add a link to a portlet menu on the page.
+	 *
+	 * The portlets that are supported include:
 	 *
 	 * - p-cactions (Content actions),
 	 * - p-personal (Personal tools),
@@ -1000,7 +1004,7 @@ var util = {
 	},
 
 	/**
-	 * Escape string for safe inclusion in regular expression
+	 * Escape string for safe inclusion in regular expression.
 	 *
 	 * The following characters are escaped:
 	 *
@@ -1110,7 +1114,7 @@ var util = {
 	},
 
 	/**
-	 * Does given username match $wgAutoCreateTempUser?
+	 * Checks if the given username matches $wgAutoCreateTempUser.
 	 *
 	 * This functionality has been adapted from MediaWiki\User\TempUser\Pattern::isMatch()
 	 *

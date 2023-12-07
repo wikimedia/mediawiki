@@ -4,6 +4,8 @@
 /* eslint-disable no-console */
 
 /**
+ * Library for logging developer warnings to the JavaScript console.
+ *
  * @namespace mw.log
  */
 

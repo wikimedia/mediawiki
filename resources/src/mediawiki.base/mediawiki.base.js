@@ -11,7 +11,7 @@ require( './errorLogger.js' );
 
 /**
  * Object constructor for messages.
- * The constructor is not publicly accessible; use [mw.message]{@link mw} instead.
+ * The constructor is not publicly accessible; use {@link mw.message} instead.
  *
  * @example
  *
@@ -49,9 +49,8 @@ require( './errorLogger.js' );
  *     mw.log( obj.escaped() );
  *     // You will find: Time &quot;after&quot; &lt;time&gt;
  *
- * @class Message
+ * @class mw.Message
  * @classdesc Describes a translateable text or HTML string. Similar to the Message class in MediaWiki PHP.
- * @hideconstructor
  * @param {mw.Map} map Message store
  * @param {string} key
  * @param {Array} [parameters]
@@ -96,8 +95,9 @@ Message.prototype = {
 	/**
 	 * Add (does not replace) parameters for `$N` placeholder values.
 	 *
+	 * @memberof mw.Message
 	 * @param {Array} parameters
-	 * @return {Message}
+	 * @return {mw.Message}
 	 * @chainable
 	 */
 	params: function ( parameters ) {
@@ -151,6 +151,7 @@ Message.prototype = {
 	 * If jqueryMsg is loaded, this transforms text and parses a subset of supported wikitext
 	 * into HTML. Without jqueryMsg, it is equivalent to #escaped.
 	 *
+	 * @memberof mw.Message
 	 * @return {string} String form of parsed message
 	 */
 	parse: function () {
@@ -163,6 +164,7 @@ Message.prototype = {
 	 * This substitutes parameters, but otherwise does not transform the
 	 * message content.
 	 *
+	 * @memberof mw.Message
 	 * @return {string} String form of plain message
 	 */
 	plain: function () {
@@ -176,6 +178,7 @@ Message.prototype = {
 	 * magic words such as `{{plural:}}`, `{{gender:}}`, and `{{int:}}`.
 	 * Without jqueryMsg, it is equivalent to #plain.
 	 *
+	 * @memberof mw.Message
 	 * @return {string} String form of text message
 	 */
 	text: function () {
@@ -187,6 +190,7 @@ Message.prototype = {
 	 *
 	 * This is equivalent to the #text format, which is then HTML-escaped.
 	 *
+	 * @memberof mw.Message
 	 * @return {string} String form of html escaped message
 	 */
 	escaped: function () {
@@ -195,6 +199,8 @@ Message.prototype = {
 
 	/**
 	 * Check if a message exists. Equivalent to {@link mw.Map#exists}.
+	 *
+	 * @memberof mw.Message
 	 * @return {boolean}
 	 */
 	exists: function () {
@@ -296,10 +302,6 @@ mw.format = function ( formatString ) {
 };
 
 // Expose Message constructor
-/**
- * @memberof mw
- * @type {Message}
- */
 mw.Message = Message;
 
 /**
@@ -308,10 +310,10 @@ mw.Message = Message;
  * Shortcut for `new mw.Message( mw.messages, key, parameters )`.
  *
  * @memberof mw
- * @see {@link Message}
+ * @see {@link mw.Message}
  * @param {string} key Key of message to get
  * @param {...Mixed} parameters Values for $N replacements
- * @return {Message}
+ * @return {mw.Message}
  */
 mw.message = function ( key ) {
 	var parameters = slice.call( arguments, 1 );
@@ -324,7 +326,7 @@ mw.message = function ( key ) {
  * Shortcut for `mw.message( key, parameters... ).text()`.
  *
  * @memberof mw
- * @see {@link Message}
+ * @see {@link mw.Message}
  * @param {string} key Key of message to get
  * @param {...any} parameters Values for $N replacements
  * @return {string}
@@ -340,7 +342,7 @@ mw.msg = function () {
  * {@link module:mw.notification#notify|mw.notification module}.
  *
  * @memberof mw
- * @param {HTMLElement|HTMLElement[]|jQuery|Message|string} message
+ * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
  * @param {Object} [options] See mw.notification#defaults for the defaults.
  * @return {jQuery.Promise}
  */
@@ -562,7 +564,7 @@ mw.hook = function ( name ) {
 };
 
 /**
- * HTML construction helper functions
+ * HTML construction helper functions.
  *
  *     @example
  *
@@ -691,6 +693,8 @@ window.addOnloadHook = function ( fn ) {
 var loadedScripts = {};
 
 /**
+ * Import a script using an absolute URI.
+ *
  * @since 1.12.2
  * @memberof window
  * @param {string} url
@@ -738,6 +742,8 @@ window.importStylesheet = function ( title ) {
 };
 
 /**
+ * Import a stylesheet using an absolute URI.
+ *
  * @since 1.12.2
  * @memberof window
  * @param {string} url

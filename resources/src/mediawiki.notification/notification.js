@@ -10,14 +10,13 @@
 		preReadyNotifQueue = [];
 
 	/**
-	 * A Notification object for 1 message.
+	 * @classdesc Describes a notification. See [mw.notification module]{@link mw.notification}. A Notification object for 1 message.
 	 *
 	 * The constructor is not publicly accessible; use [mw.notification.notify]{@link mw.notification} instead.
 	 * This does not insert anything into the document. To add to document use
 	 * [mw.notification.notify]{@link mw.notification#notify}.
 	 *
 	 * @class Notification
-	 * @classdesc Describes a notification. See [mw.notification module]{@link mw.notification}.
 	 * @global
 	 * @hideconstructor
 	 * @param {mw.Message|jQuery|HTMLElement|string} message
@@ -371,6 +370,8 @@
 	}
 
 	/**
+	 * Library for sending notifications to end users.
+	 *
 	 * @namespace mw.notification
 	 * @classdesc Send notifications to end users.
 	 * @memberof mw
@@ -411,7 +412,7 @@
 		 * Display a notification message to the user.
 		 *
 		 * @memberof mw.notification
-		 * @param {HTMLElement|HTMLElement[]|jQuery|Message|string} message
+		 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
 		 * @param {Object} [options] The options to use for the notification.
 		 *  See [#defaults]{@link mw.notification.defaults} for details.
 		 * @return {Notification} Notification object

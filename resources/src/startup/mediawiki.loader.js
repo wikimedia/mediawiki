@@ -13,10 +13,11 @@
 		hasOwn = Object.hasOwnProperty;
 
 	/**
-	 * @classdesc Client for ResourceLoader server end point.
+	 * Client for ResourceLoader server end point.
 	 * This client is in charge of maintaining the module registry and state
 	 * machine, initiating network (batch) requests for loading modules, as
 	 * well as dependency resolution and execution of source code.
+	 *
 	 * @see <https://www.mediawiki.org/wiki/ResourceLoader/Features>
 	 * @namespace mw.loader
 	 * @memberof mw
