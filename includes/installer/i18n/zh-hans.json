@@ -43,7 +43,8 @@
 			"阿pp",
 			"아라",
 			"Xzonn",
-			"LittlePaw365"
+			"LittlePaw365",
+			"阿南之人"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -164,7 +165,7 @@
 	"config-postgres-old": "需要PostgreSQL $1或更新的版本。您的版本为$2。",
 	"config-sqlite-name-help": "请为您的wiki指定一个用于标识的名称。\n请勿使用空格或连字号。\n该名称将被用作SQLite数据文件的文件名。",
 	"config-sqlite-parent-unwritable-group": "由于网页服务器在父目录<code><nowiki>$2</nowiki></code>没有写权限，无法创建数据目录<code><nowiki>$1</nowiki></code>。\n\n安装程序已确定您的网页服务器所使用的用户。\n请将<code><nowiki>$3</nowiki></code>目录设为对该用户可写以继续安装过程。\n在Unix/Linux系统中，您可以逐行输入下列命令：\n\n<pre>cd $2\nmkdir $3\nchgrp $4 $3\nchmod g+w $3</pre>",
-	"config-sqlite-parent-unwritable-nogroup": "由于网页服务器在父目录<code><nowiki>$2</nowiki></code>没有写权限，无法创建数据目录<code><nowiki>$1</nowiki></code>。\n\n安装程序无法确定您的网页服务器所使用的用户。\n请将<code><nowiki>$3</nowiki></code>目录设为全局可写（对所有用户）以继续安装过程。\n在Unix/Linux系统中，您可以逐行输入下列命令：\n\n<pre>cd $2\nmkdir $3\nchmod a+w $3</pre>",
+	"config-sqlite-parent-unwritable-nogroup": "由于网页服务器在父目录<code><nowiki>$2</nowiki></code>没有写权限，无法创建数据目录<code><nowiki>$1</nowiki></code>。\n\n安装程序无法确定您的网页服务器所使用的用户。\n请将<code><nowiki>$3</nowiki></code>目录设为全域可写（对所有用户）以继续安装过程。\n在Unix/Linux系统中，您可以逐行输入下列命令：\n\n<pre>cd $2\nmkdir $3\nchmod a+w $3</pre>",
 	"config-sqlite-mkdir-error": "创建数据目录“$1”时发生错误。\n请检查路径后重试。",
 	"config-sqlite-dir-unwritable": "无法写入目录“$1”。\n请修改该目录的权限，使网页服务器有写的权限，然后重试。",
 	"config-sqlite-connection-error": "$1。\n\n请检查下列的数据目录和数据库名称后重试。",
