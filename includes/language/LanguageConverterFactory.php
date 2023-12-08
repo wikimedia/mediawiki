@@ -197,17 +197,6 @@ class LanguageConverterFactory {
 	}
 
 	/**
-	 * Whether to disable language variant conversion for titles.
-	 *
-	 * @return bool
-	 * @deprecated since 1.36 Should use ::isLinkConversionDisabled() instead
-	 */
-	public function isTitleConversionDisabled() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->isTitleConversionDisabled;
-	}
-
-	/**
 	 * Whether to disable language variant conversion for links.
 	 *
 	 * @return bool
