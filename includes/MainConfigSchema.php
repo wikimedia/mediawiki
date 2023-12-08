@@ -70,7 +70,6 @@ use ReflectionClass;
 use RefreshLinksJob;
 use RenameUserJob;
 use RenameuserLogFormatter;
-use ReplicatedBagOStuff;
 use RevertedTagUpdateJob;
 use RightsLogFormatter;
 use SqlBagOStuff;
@@ -3991,19 +3990,6 @@ class MainConfigSchema {
 			CACHE_ANYTHING => [ 'factory' => 'ObjectCache::newAnything' ],
 			CACHE_ACCEL => [ 'factory' => 'ObjectCache::getLocalServerInstance' ],
 
-			'db-replicated' => [
-				'class'        => ReplicatedBagOStuff::class,
-				'readFactory'  => [
-					'factory' => 'ObjectCache::newFromParams',
-					'args'    => [ [ 'class' => SqlBagOStuff::class, 'replicaOnly' => true ] ]
-				],
-				'writeFactory' => [
-					'factory' => 'ObjectCache::newFromParams',
-					'args'    => [ [ 'class' => SqlBagOStuff::class, 'replicaOnly' => false ] ]
-				],
-				'loggroup'     => 'SQLBagOStuff',
-				'reportDupes'  => false
-			],
 			'memcached-php' => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
 			'memcached-pecl' => [ 'class' => MemcachedPeclBagOStuff::class, 'loggroup' => 'memcached' ],
 			'hash' => [ 'class' => HashBagOStuff::class, 'reportDupes' => false ],
@@ -4091,7 +4077,7 @@ class MainConfigSchema {
 	 * @since 1.26
 	 */
 	public const MainStash = [
-		'default' => 'db-replicated',
+		'default' => CACHE_DB,
 	];
 
 	/**

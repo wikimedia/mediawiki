@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
 
 /**
  * @covers ObjectCache
@@ -109,7 +108,6 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	public static function provideIsDatabaseId() {
 		return [
 			[ CACHE_DB, CACHE_NONE, true ],
-			[ 'db-replicated', CACHE_NONE, true ],
 			[ CACHE_ANYTHING, CACHE_DB, true ],
 			[ CACHE_ANYTHING, 'hash', false ],
 			[ CACHE_ANYTHING, CACHE_ANYTHING, true ]
@@ -123,9 +121,6 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsDatabaseId( $id, $mainCacheType, $expected ) {
-		$this->setCacheConfig( [
-			'db-replicated' => MainConfigSchema::ObjectCaches['default']['db-replicated']
-		] );
 		$this->overrideConfigValues( [
 			MainConfigNames::MainCacheType => $mainCacheType
 		] );

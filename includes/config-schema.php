@@ -478,29 +478,6 @@ return [
 				3 => [
 					'factory' => 'ObjectCache::getLocalServerInstance',
 				],
-				'db-replicated' => [
-					'class' => 'ReplicatedBagOStuff',
-					'readFactory' => [
-						'factory' => 'ObjectCache::newFromParams',
-						'args' => [
-							0 => [
-								'class' => 'SqlBagOStuff',
-								'replicaOnly' => true,
-							],
-						],
-					],
-					'writeFactory' => [
-						'factory' => 'ObjectCache::newFromParams',
-						'args' => [
-							0 => [
-								'class' => 'SqlBagOStuff',
-								'replicaOnly' => false,
-							],
-						],
-					],
-					'loggroup' => 'SQLBagOStuff',
-					'reportDupes' => false,
-				],
 				'memcached-php' => [
 					'class' => 'MemcachedPhpBagOStuff',
 					'loggroup' => 'memcached',
@@ -529,7 +506,7 @@ return [
 			'WANObjectCache' => [
 			],
 			'MicroStashType' => -1,
-			'MainStash' => 'db-replicated',
+			'MainStash' => 1,
 			'ParsoidCacheConfig' => [
 				'StashType' => null,
 				'StashDuration' => 86400,

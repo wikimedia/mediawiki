@@ -36,7 +36,6 @@ class TestSetup {
 	public static function applyInitialConfig() {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgSessionCacheType;
 		global $wgMainStash, $wgChronologyProtectorStash;
-		global $wgObjectCaches;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalTZoffset, $wgLocalisationCacheConf;
 		global $wgSearchType;
@@ -68,8 +67,6 @@ class TestSetup {
 		// Uses db-replicated per default in MainConfigSchema
 		$wgMainStash = 'hash';
 		$wgChronologyProtectorStash = 'hash';
-		// Use hash instead of db
-		$wgObjectCaches['db-replicated'] = $wgObjectCaches['hash'];
 		// Use memory job queue
 		$wgJobTypeConf = [
 			'default' => [ 'class' => JobQueueMemory::class, 'order' => 'fifo' ],

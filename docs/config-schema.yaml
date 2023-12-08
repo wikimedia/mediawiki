@@ -2427,7 +2427,6 @@ config-schema:
             1: { class: SqlBagOStuff, loggroup: SQLBagOStuff }
             -1: { factory: 'ObjectCache::newAnything' }
             3: { factory: 'ObjectCache::getLocalServerInstance' }
-            db-replicated: { class: ReplicatedBagOStuff, readFactory: { factory: 'ObjectCache::newFromParams', args: [{ class: SqlBagOStuff, replicaOnly: true }] }, writeFactory: { factory: 'ObjectCache::newFromParams', args: [{ class: SqlBagOStuff, replicaOnly: false }] }, loggroup: SQLBagOStuff, reportDupes: false }
             memcached-php: { class: MemcachedPhpBagOStuff, loggroup: memcached }
             memcached-pecl: { class: MemcachedPeclBagOStuff, loggroup: memcached }
             hash: { class: HashBagOStuff, reportDupes: false }
@@ -2514,7 +2513,7 @@ config-schema:
             @see \BagOStuff
             @since 1.42
     MainStash:
-        default: db-replicated
+        default: 1
         description: |-
             The object store type of the main stash.
             This should be a fast storage system optimized for lightweight data, both ephemeral and
