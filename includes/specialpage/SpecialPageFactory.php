@@ -81,6 +81,7 @@ use MediaWiki\Specials\SpecialFewestRevisions;
 use MediaWiki\Specials\SpecialFileDuplicateSearch;
 use MediaWiki\Specials\SpecialFilepath;
 use MediaWiki\Specials\SpecialGoToInterwiki;
+use MediaWiki\Specials\SpecialIframeError;
 use MediaWiki\Specials\SpecialImport;
 use MediaWiki\Specials\SpecialJavaScriptTest;
 use MediaWiki\Specials\SpecialLinkAccounts;
@@ -1052,6 +1053,9 @@ class SpecialPageFactory {
 		],
 		'Blankpage' => [
 			'class' => SpecialBlankpage::class,
+		],
+		'IframeError' => [
+			'class' => SpecialIframeError::class,
 		],
 		'DeletePage' => [
 			'class' => SpecialDeletePage::class,
