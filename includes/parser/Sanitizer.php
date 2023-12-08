@@ -1326,14 +1326,9 @@ class Sanitizer {
 	 * @return null|string
 	 */
 	private static function hexCharReference( $codepoint ) {
-		# hexdec() will return a float (not an int) if $codepoint is too
-		# long, so protect against that.  The largest valid codepoint is
-		# 0x10FFFF.
-		if ( strlen( ltrim( $codepoint, '0' ) ) > 6 ) {
-			return null;
-		}
 		$point = hexdec( $codepoint );
-		if ( self::validateCodepoint( $point ) ) {
+		// hexdec() might return a float if the string is too long
+		if ( is_int( $point ) && self::validateCodepoint( $point ) ) {
 			return sprintf( '&#x%x;', $point );
 		} else {
 			return null;
@@ -1408,13 +1403,13 @@ class Sanitizer {
 		} elseif ( $matches[2] != '' ) {
 			return self::decodeChar( intval( $matches[2] ) );
 		} elseif ( $matches[3] != '' ) {
-			# hexdec will return a float if the string is too long (!) so
-			# check the length of the string first.
-			if ( strlen( ltrim( $matches[3], '0' ) ) > 6 ) {
+			$point = hexdec( $matches[3] );
+			// hexdec() might return a float if the string is too long
+			if ( !is_int( $point ) ) {
 				// Invalid character reference.
 				return \UtfNormal\Constants::UTF8_REPLACEMENT;
 			}
-			return self::decodeChar( hexdec( $matches[3] ) );
+			return self::decodeChar( $point );
 		}
 		# Last case should be an ampersand by itself
 		return $matches[0];
