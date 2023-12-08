@@ -42,6 +42,7 @@ class Names {
 	/** @phpcs-require-sorted-array */
 	public static $names = [
 		'aa' => 'Qafár af', # Afar
+		'aae' => 'Arbërisht', # Arbëresh
 		'ab' => 'аԥсшәа', # Abkhaz
 		'abs' => 'bahasa ambon', # Ambonese Malay, T193566
 		'ace' => 'Acèh', # Aceh
