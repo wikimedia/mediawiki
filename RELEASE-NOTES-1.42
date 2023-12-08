@@ -220,6 +220,8 @@ because of Phabricator reports.
     - UserEditCountUpdate
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
+* Using `new ImportReporter( … )` or `new ApiImportReporter( … )` without
+  the $context parameter is now deprecated.
 * BlockManager::getUserBlock() was deprecated. Instead use
   BlockManager::getBlock(), which expects the caller to do ipblock-exempt
   checking.
