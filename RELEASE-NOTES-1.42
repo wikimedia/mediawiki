@@ -155,6 +155,8 @@ because of Phabricator reports.
   - ::getReadConnectionRef(), deprecated in 1.38; use getReadConnection()
   - ::getLazyWriteConnectionRef(), deprecated in 1.39; use getWriteConnection()
   - ::getLazyReadConnectionRef(), deprecated in 1.38; use getReadConnection()
+* CoreParserFunctions::mwnamespace(), deprecated in 1.39, has been removed. Use
+  CoreParserFunctions::namespace() instead.
 * MediaWikiIntegrationTestCase::$tablesUsed has been deprecated. The framework
   now detects these automatically.
 * Support for setting dynamic property on StatusValue object has been removed.

@@ -675,21 +675,6 @@ class CoreParserFunctions {
 		return str_replace( '_', ' ', $t->getNsText() );
 	}
 
-	/**
-	 * Given a title, return the namespace name that would be given by the
-	 * corresponding magic word.
-	 * @note This function corresponded to the `namespace` parser function
-	 * and magic variable, but `namespace` was a reserved word before PHP 7.
-	 * @param Parser $parser
-	 * @param string|null $title
-	 * @return mixed|string
-	 * @deprecated Use CoreParserFunctions::namespace() instead.
-	 */
-	public static function mwnamespace( $parser, $title = null ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		return self::namespace( $parser, $title );
-	}
-
 	public static function namespacee( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
