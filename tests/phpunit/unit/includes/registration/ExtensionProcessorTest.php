@@ -1189,17 +1189,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testGetExtraAutoloaderPaths() {
-		$this->hideDeprecated( 'ExtensionProcessor::getExtraAutoloaderPaths' );
-		$processor = new ExtensionProcessor();
-		$this->assertSame(
-			[ "{$this->dirname}/vendor/autoload.php" ],
-			$processor->getExtraAutoloaderPaths( $this->dirname, [
-				'load_composer_autoloader' => true,
-			] )
-		);
-	}
-
 	public function testGetExtractedAutoloadInfo() {
 		$processor = new ExtensionProcessor();
 

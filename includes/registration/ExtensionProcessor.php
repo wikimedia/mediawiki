@@ -923,23 +923,6 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
-	 * @deprecated since 1.39, use getExtractedAutoloadInfo instead
-	 *
-	 * @param string $dir
-	 * @param array $info
-	 *
-	 * @return array
-	 */
-	public function getExtraAutoloaderPaths( $dir, array $info ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		$paths = [];
-		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
-			$paths[] = "$dir/vendor/autoload.php";
-		}
-		return $paths;
-	}
-
-	/**
 	 * Returns the extracted autoload info.
 	 * The autoload info is returned as an associative array with three keys:
 	 * - files: a list of files to load, for use with Autoloader::loadFile()
