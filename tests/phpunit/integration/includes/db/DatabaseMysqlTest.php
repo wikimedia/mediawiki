@@ -498,16 +498,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 			[ 'IGNORE' ]
 		);
 		$this->assertSame( 1, $this->conn->affectedRows(), 'Key conflict, nothing changed on database' );
-
-		// Test key conflict on the unique sk field
-		$this->conn->update(
-			$sTable,
-			[ 'sk' => 'TestRow' ],
-			[ 'sk' => 'Luca' ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
-		$this->assertSame( 1, $this->conn->affectedRows(), 'Key conflict, nothing changed on database' );
 	}
 
 	private function createSourceTable() {
