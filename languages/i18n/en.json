@@ -662,8 +662,6 @@
 	"edit-recovery-loaded-message": "Your unsaved changes have been automatically recovered.",
 	"edit-recovery-loaded-show": "Show changes",
 	"edit-recovery-loaded-discard": "Discard changes",
-	"edit-recovery-link-tooltip-no-data": "You currently have no Edit Recovery data saved",
-	"edit-recovery-link-tooltip-with-data": "You currently have Edit Recovery data saved for $1 {{PLURAL:$1|page|pages}}",
 	"summary": "Summary:",
 	"subject": "Subject:",
 	"minoredit": "This is a minor edit",
