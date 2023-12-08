@@ -517,25 +517,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		// Add the 'Edit Recovery' link after 'Contributions'.
-		if ( $this->getConfig()->get( MainConfigNames::EnableEditRecovery ) ) {
-			$editRecoveryItem = [
-				'text' => $this->msg( 'editrecovery' )->text(),
-				'href' => SkinComponentUtils::makeSpecialUrl( 'EditRecovery' ),
-				'active' => $title->isSpecial( 'EditRecovery' ),
-				'icon' => 'history',
-			];
-			$personal_urls = wfArrayInsertAfter(
-				$personal_urls,
-				[ 'editrecovery' => $editRecoveryItem ],
-				$this->loggedin ? 'mycontris' : 'anoncontribs'
-			);
-			// If there's no contribs link, fall back to adding at the end.
-			if ( !isset( $personal_urls['editrecovery'] ) ) {
-				$personal_urls['editrecovery'] = $editRecoveryItem;
-			}
-		}
-
 		return $personal_urls;
 	}
 

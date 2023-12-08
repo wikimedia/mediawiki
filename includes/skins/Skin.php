@@ -510,13 +510,6 @@ abstract class Skin extends ContextSource {
 			$modules['user'][] = 'mediawiki.tempUserBanner';
 			$modules['styles']['user'][] = 'mediawiki.tempUserBanner.styles';
 		}
-
-		// Add the Edit Recovery module to delete data on logout and control the display of the Special:EditRecovery
-		// link in the personal menu. T341845, T351781.
-		if ( $this->getConfig()->get( MainConfigNames::EnableEditRecovery ) ) {
-			$modules['user'][] = 'mediawiki.editRecovery.hooks';
-		}
-
 		return $modules;
 	}
 

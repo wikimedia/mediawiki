@@ -5,7 +5,6 @@
 
 const storage = require( './storage.js' );
 const LoadNotification = require( './LoadNotification.js' );
-const specialPageLink = document.getElementById( 'pt-editrecovery' );
 
 const inputFields = {};
 const fieldNamePrefix = 'field_';
@@ -159,10 +158,6 @@ function saveFormData() {
 		storage.deleteData( pageName, section );
 	} else {
 		storage.saveData( pageName, section, pageData );
-		// Re-show the link to Special:EditRecovery (it migth've been hidden in ./hooks.js).
-		if ( specialPageLink ) {
-			specialPageLink.classList.remove( 'oo-ui-element-hidden' );
-		}
 	}
 }
 
