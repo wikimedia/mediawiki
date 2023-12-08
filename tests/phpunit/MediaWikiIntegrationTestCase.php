@@ -1808,14 +1808,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// TODO: the below should be re-written as soon as LBFactory, LoadBalancer,
 		// and Database no longer use global state.
 
-		self::$dbSetup = true;
-
 		$dbClone = self::setupDatabaseWithTestPrefix( $db, $prefix );
 		if ( $dbClone ) {
 			self::$dbClone = $dbClone;
 		}
 
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsAfterDatabaseSetup( $db, $prefix );
+
+		self::$dbSetup = true;
 	}
 
 	/**
