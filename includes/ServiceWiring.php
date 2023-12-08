@@ -1011,12 +1011,13 @@ return [
 	'LanguageConverterFactory' => static function ( MediaWikiServices $services ): LanguageConverterFactory {
 		$usePigLatinVariant = $services->getMainConfig()->get( MainConfigNames::UsePigLatinVariant );
 		$isConversionDisabled = $services->getMainConfig()->get( MainConfigNames::DisableLangConversion );
-		$isTitleConversionDisabled = $services->getMainConfig()->get( MainConfigNames::DisableTitleConversion );
+		// Note that this configuration option is misnamed.
+		$isLinkConversionDisabled = $services->getMainConfig()->get( MainConfigNames::DisableTitleConversion );
 		return new LanguageConverterFactory(
 			$services->getObjectFactory(),
 			$usePigLatinVariant,
 			$isConversionDisabled,
-			$isTitleConversionDisabled,
+			$isLinkConversionDisabled,
 			static function () use ( $services ) {
 				return $services->getContentLanguage();
 			}

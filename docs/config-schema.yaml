@@ -3076,7 +3076,9 @@ config-schema:
         description: 'Whether to enable language variant conversion.'
     DisableTitleConversion:
         default: false
-        description: 'Whether to enable language variant conversion for links.'
+        description: |-
+            Whether to enable language variant conversion for links.
+            Note that this option is slightly misnamed.
     DefaultLanguageVariant:
         default: false
         description: |-
