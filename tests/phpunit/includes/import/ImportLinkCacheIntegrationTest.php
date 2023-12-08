@@ -71,7 +71,7 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 	private function doImport( $importStreamSource ) {
 		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
-			->getWikiImporter( $importStreamSource->value );
+			->getWikiImporter( $importStreamSource->value, $this->getTestSysop()->getAuthority() );
 		$importer->setDebug( true );
 
 		$reporter = new ImportReporter(

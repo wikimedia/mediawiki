@@ -24,7 +24,7 @@ class ImportTest extends MediaWikiLangTestCase {
 		$source = new ImportStringSource( $xml );
 		$services = $this->getServiceContainer();
 
-		$importer = $services->getWikiImporterFactory()->getWikiImporter( $source );
+		$importer = $services->getWikiImporterFactory()->getWikiImporter( $source, $this->getTestSysop()->getAuthority() );
 
 		$importer->doImport();
 		$title = Title::newFromText( $title );
@@ -92,7 +92,7 @@ EOF
 
 		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
-			->getWikiImporter( $source );
+			->getWikiImporter( $source, $this->getTestSysop()->getAuthority() );
 		$importer->setPageOutCallback( $callback );
 		$importer->doImport();
 
@@ -173,7 +173,7 @@ EOF
 
 		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
-			->getWikiImporter( $source );
+			->getWikiImporter( $source, $this->getTestSysop()->getAuthority() );
 		$importer->setSiteInfoCallback( $callback );
 		$importer->doImport();
 
@@ -283,7 +283,7 @@ EOF
 		// phpcs:enable
 
 		$services = $this->getServiceContainer();
-		$importer = $services->getWikiImporterFactory()->getWikiImporter( $source );
+		$importer = $services->getWikiImporterFactory()->getWikiImporter( $source, $this->getTestSysop()->getAuthority() );
 
 		$importer->setUsernamePrefix( 'Xxx', $assign );
 		$importer->doImport();

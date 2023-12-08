@@ -34,7 +34,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Status\Status;
@@ -113,6 +113,14 @@ class WikiImporter {
 	/** @var bool */
 	private $disableStatisticsUpdate = false;
 
+	/**
+	 * Authority used for permission checks only (to ensure that the user performing the import is
+	 * allowed to edit the pages they're importing). To skip the checks, use UltimateAuthority.
+	 *
+	 * If you want to also log the import actions, see ImportReporter.
+	 */
+	private Authority $performer;
+
 	private Config $config;
 	private HookRunner $hookRunner;
 	private Language $contentLanguage;
@@ -120,7 +128,6 @@ class WikiImporter {
 	private TitleFactory $titleFactory;
 	private WikiPageFactory $wikiPageFactory;
 	private UploadRevisionImporter $uploadRevisionImporter;
-	private PermissionManager $permissionManager;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private SlotRoleRegistry $slotRoleRegistry;
 
@@ -130,6 +137,7 @@ class WikiImporter {
 	 */
 	public function __construct(
 		ImportSource $source,
+		Authority $performer,
 		Config $config,
 		HookContainer $hookContainer,
 		Language $contentLanguage,
@@ -137,10 +145,10 @@ class WikiImporter {
 		TitleFactory $titleFactory,
 		WikiPageFactory $wikiPageFactory,
 		UploadRevisionImporter $uploadRevisionImporter,
-		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
 		SlotRoleRegistry $slotRoleRegistry
 	) {
+		$this->performer = $performer;
 		$this->config = $config;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->contentLanguage = $contentLanguage;
@@ -148,7 +156,6 @@ class WikiImporter {
 		$this->titleFactory = $titleFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->uploadRevisionImporter = $uploadRevisionImporter;
-		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 
@@ -533,8 +540,7 @@ class WikiImporter {
 				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $pageIdentity .
 					' because WikiPage::getRevisionRecord() returned null' );
 			} else {
-				$user = RequestContext::getMain()->getUser();
-				$update = $page->newPageUpdater( $user )->prepareUpdate();
+				$update = $page->newPageUpdater( $this->performer )->prepareUpdate();
 				$countKey = 'title_' . CacheKeyHelper::getKeyForPage( $pageIdentity );
 				$countable = $update->isCountable();
 				if ( array_key_exists( $countKey, $this->countableCache ) &&
@@ -1264,7 +1270,6 @@ class WikiImporter {
 		$title = $this->importTitleFactory->createTitleFromForeignTitle(
 			$foreignTitle );
 
-		$commandLineMode = $this->config->get( 'CommandLineMode' );
 		if ( $title === null ) {
 			# Invalid page title? Ignore the page
 			$this->notice( 'import-error-invalid', $foreignTitle->getFullText() );
@@ -1275,15 +1280,10 @@ class WikiImporter {
 		} elseif ( !$title->canExist() ) {
 			$this->notice( 'import-error-special', $title->getPrefixedText() );
 			return false;
-		} elseif ( !$commandLineMode ) {
-			$user = RequestContext::getMain()->getUser();
-
-			if ( !$this->permissionManager->userCan( 'edit', $user, $title ) ) {
-				# Do not import if the importing wiki user cannot edit this page
-				$this->notice( 'import-error-edit', $title->getPrefixedText() );
-
-				return false;
-			}
+		} elseif ( !$this->performer->definitelyCan( 'edit', $title ) ) {
+			# Do not import if the importing wiki user cannot edit this page
+			$this->notice( 'import-error-edit', $title->getPrefixedText() );
+			return false;
 		}
 
 		return [ $title, $foreignTitle ];

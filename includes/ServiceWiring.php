@@ -2470,7 +2470,6 @@ return [
 			$services->getTitleFactory(),
 			$services->getWikiPageFactory(),
 			$services->getWikiRevisionUploadImporter(),
-			$services->getPermissionManager(),
 			$services->getContentHandlerFactory(),
 			$services->getSlotRoleRegistry()
 		);

@@ -210,7 +210,7 @@ class SpecialImport extends SpecialPage {
 					->plain()
 			);
 		} else {
-			$importer = $this->wikiImporterFactory->getWikiImporter( $source->value );
+			$importer = $this->wikiImporterFactory->getWikiImporter( $source->value, $this->getAuthority() );
 			if ( $namespace !== null ) {
 				$importer->setTargetNamespace( $namespace );
 			} elseif ( $rootpage !== null ) {

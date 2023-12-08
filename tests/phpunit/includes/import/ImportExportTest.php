@@ -46,12 +46,12 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	 */
 	private function getImporter( ImportSource $source ) {
 		$config = new HashConfig( [
-			'CommandLineMode' => true,
 			MainConfigNames::MaxArticleSize => 2048,
 		] );
 		$services = $this->getServiceContainer();
 		$importer = new WikiImporter(
 			$source,
+			$this->getTestSysop()->getAuthority(),
 			$config,
 			$services->getHookContainer(),
 			$services->getContentLanguage(),
@@ -59,7 +59,6 @@ class ImportExportTest extends MediaWikiLangTestCase {
 			$services->getTitleFactory(),
 			$services->getWikiPageFactory(),
 			$services->getWikiRevisionUploadImporter(),
-			$services->getPermissionManager(),
 			$services->getContentHandlerFactory(),
 			$services->getSlotRoleRegistry()
 		);

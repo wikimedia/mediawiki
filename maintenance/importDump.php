@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\UltimateAuthority;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -309,10 +310,12 @@ TEXT
 	private function importFromHandle( $handle ) {
 		$this->startTime = microtime( true );
 
+		$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
+
 		$source = new ImportStreamSource( $handle );
 		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
-			->getWikiImporter( $source );
+			->getWikiImporter( $source, new UltimateAuthority( $user ) );
 
 		// Updating statistics require a lot of time so disable it
 		$importer->disableStatisticsUpdate();

@@ -24,7 +24,7 @@ class WikiImporterFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	protected static function getExtraClassArgCount() {
-		return 1;
+		return 2;
 	}
 
 	protected function getFactoryMethodName() {

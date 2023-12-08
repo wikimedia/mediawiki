@@ -28,6 +28,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -66,10 +67,12 @@ class DumpRenderer extends Maintenance {
 			$this->fatalError( 'Parser class configuration temporarily disabled.' );
 		}
 
+		$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
+
 		$source = new ImportStreamSource( $this->getStdin() );
 		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
-			->getWikiImporter( $source );
+			->getWikiImporter( $source, new UltimateAuthority( $user ) );
 
 		$importer->setRevisionCallback(
 			[ $this, 'handleRevision' ] );

@@ -23,7 +23,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
@@ -41,7 +41,6 @@ class WikiImporterFactory {
 	private TitleFactory $titleFactory;
 	private WikiPageFactory $wikiPageFactory;
 	private UploadRevisionImporter $uploadRevisionImporter;
-	private PermissionManager $permissionManager;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private SlotRoleRegistry $slotRoleRegistry;
 
@@ -53,7 +52,6 @@ class WikiImporterFactory {
 		TitleFactory $titleFactory,
 		WikiPageFactory $wikiPageFactory,
 		UploadRevisionImporter $uploadRevisionImporter,
-		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
 		SlotRoleRegistry $slotRoleRegistry
 	) {
@@ -64,19 +62,29 @@ class WikiImporterFactory {
 		$this->titleFactory = $titleFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->uploadRevisionImporter = $uploadRevisionImporter;
-		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 	}
 
 	/**
 	 * @param ImportSource $source
+	 * @param Authority|null $performer Authority used for permission checks only (to ensure that
+	 *     the user performing the import is allowed to edit the pages they're importing). To skip
+	 *     the checks, use UltimateAuthority.
 	 *
+	 *     When omitted, defaults to the current global user.
+	 *
+	 *     If you want to also log the import actions, see ImportReporter.
 	 * @return WikiImporter
 	 */
-	public function getWikiImporter( ImportSource $source ): WikiImporter {
+	public function getWikiImporter( ImportSource $source, Authority $performer = null ): WikiImporter {
+		if ( !$performer ) {
+			$performer = RequestContext::getMain()->getAuthority();
+		}
+
 		return new WikiImporter(
 			$source,
+			$performer,
 			$this->config,
 			$this->hookContainer,
 			$this->contentLanguage,
@@ -84,7 +92,6 @@ class WikiImporterFactory {
 			$this->titleFactory,
 			$this->wikiPageFactory,
 			$this->uploadRevisionImporter,
-			$this->permissionManager,
 			$this->contentHandlerFactory,
 			$this->slotRoleRegistry
 		);
