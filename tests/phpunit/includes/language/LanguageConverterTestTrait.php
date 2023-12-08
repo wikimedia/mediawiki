@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 
 trait LanguageConverterTestTrait {
 
@@ -24,10 +26,12 @@ trait LanguageConverterTestTrait {
 
 		$code = $this->getCode();
 		$this->factory = new LanguageConverterFactory(
+			new ServiceOptions( LanguageConverterFactory::CONSTRUCTOR_OPTIONS, new HashConfig( [
+				MainConfigNames::UsePigLatinVariant => false,
+				MainConfigNames::DisableLangConversion => false,
+				MainConfigNames::DisableTitleConversion => false,
+			] ) ),
 			$this->getServiceContainer()->getObjectFactory(),
-			false,
-			false,
-			false,
 			function () use ( $code ) {
 				$services = $this->getServiceContainer();
 				if ( $code ) {
