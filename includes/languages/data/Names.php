@@ -424,6 +424,7 @@ class Names {
 		'ruq-cyrl' => 'Влахесте', # Megleno-Romanian (Cyrillic script)
 		# 'ruq-grek' => 'Βλαεστε', # Megleno-Romanian (Greek script)
 		'ruq-latn' => 'Vlăheşte', # Megleno-Romanian (Latin script)
+		'rut' => 'мыхаӀбишды', # Rutul
 		'rw' => 'Ikinyarwanda', # Kinyarwanda
 		'ryu' => 'うちなーぐち', # Okinawan
 		'sa' => 'संस्कृतम्', # Sanskrit

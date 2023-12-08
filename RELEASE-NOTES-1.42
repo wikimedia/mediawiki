@@ -101,6 +101,7 @@ because of Phabricator reports.
 * (T268143) Language variant conversion has been removed for Kazakh.
 * (T351874) Added language support for Komering (kge).
 * (T351992) Added language support for Efik (efi).
+* (T352954) Added language support for Rutul (rut).
 * …
 
 === Breaking changes in 1.42 ===
