@@ -43,8 +43,30 @@ function onLoadHandler( $editForm ) {
 		inputFields[ field.name ] = field;
 	} );
 
-	// Store the original data for later comparing to the data-to-save.
-	originalData = getFormData();
+	// Store the original data for later comparing to the data-to-save. Use the defaultValue/defaultChecked in order to
+	// avoid using any data remembered by the browser. Note that we have to be careful to store with the same types as
+	// it will be done later, in order to correctly compare it (e.g. checkboxes as booleans).
+	Object.keys( inputFields ).forEach( function ( fieldName ) {
+		const field = inputFields[ fieldName ];
+		if ( field.nodeName === 'INPUT' || field.nodeName === 'TEXTAREA' ) {
+			if ( field.type === 'checkbox' ) {
+				// Checkboxes (Minoredit and Watchthis are handled below as they are OOUI widgets).
+				originalData[ fieldNamePrefix + fieldName ] = field.defaultChecked;
+			} else {
+				// Other HTMLInputElements.
+				originalData[ fieldNamePrefix + fieldName ] = field.defaultValue;
+			}
+		} else if ( field.$input !== undefined ) {
+			// OOUI widgets, which may not have been infused by this point.
+			if ( field.$input[ 0 ].type === 'checkbox' ) {
+				// Checkboxes.
+				originalData[ fieldNamePrefix + fieldName ] = field.$input[ 0 ].defaultChecked;
+			} else {
+				// Other OOUI widgets.
+				originalData[ fieldNamePrefix + fieldName ] = field.$input[ 0 ].defaultValue;
+			}
+		}
+	} );
 
 	// Open indexedDB database and load any saved data that might be there.
 	const pageName = mw.config.get( 'wgPageName' );
@@ -75,7 +97,6 @@ function onLoadHandler( $editForm ) {
 function onLoadData( pageData ) {
 	// If there is data stored, load it into the form.
 	if ( pageData !== undefined ) {
-		const oldPageData = getFormData();
 		loadData( pageData );
 		const loadNotification = new LoadNotification();
 		const notification = loadNotification.getNotification();
@@ -85,7 +106,7 @@ function onLoadData( pageData ) {
 		} );
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', function () {
-			loadData( oldPageData );
+			document.getElementById( 'editform' ).reset();
 			storage.deleteData( mw.config.get( 'wgPageName' ) ).then( function () {
 				notification.close();
 			} );
