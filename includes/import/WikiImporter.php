@@ -32,7 +32,6 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -1016,8 +1015,7 @@ class WikiImporter {
 	 * @throws MWException
 	 */
 	private function makeContent( Title $title, $revisionId, $contentInfo ) {
-		$maxArticleSize = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::MaxArticleSize );
+		$maxArticleSize = $this->config->get( MainConfigNames::MaxArticleSize );
 
 		if ( !isset( $contentInfo['text'] ) ) {
 			throw new MWException( 'Missing text field in import.' );

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\HashConfig;
+use MediaWiki\MainConfigNames;
 
 /**
  * Import failure test.
@@ -27,6 +28,7 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 	private function getImporter( ImportSource $source ) {
 		$config = new HashConfig( [
 			'CommandLineMode' => true,
+			MainConfigNames::MaxArticleSize => 2048,
 		] );
 		$services = $this->getServiceContainer();
 		$importer = new WikiImporter(
