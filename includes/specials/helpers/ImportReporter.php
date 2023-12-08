@@ -47,8 +47,14 @@ class ImportReporter extends ContextSource {
 	 * @param bool $upload
 	 * @param string $interwiki
 	 * @param string|bool $reason
+	 * @param IContextSource|null $context
 	 */
-	public function __construct( $importer, $upload, $interwiki, $reason = "" ) {
+	public function __construct( $importer, $upload, $interwiki, $reason = "", IContextSource $context = null ) {
+		if ( $context ) {
+			$this->setContext( $context );
+		} else {
+			wfDeprecated( __METHOD__ . ' without $context', '1.42' );
+		}
 		$this->mOriginalPageOutCallback =
 			$importer->setPageOutCallback( [ $this, 'reportPage' ] );
 		$this->mOriginalLogCallback =

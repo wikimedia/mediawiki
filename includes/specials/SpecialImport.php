@@ -238,9 +238,9 @@ class SpecialImport extends SpecialPage {
 				$isUpload,
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				$fullInterwikiPrefix,
-				$logcomment
+				$logcomment,
+				$this->getContext()
 			);
-			$reporter->setContext( $this->getContext() );
 			$exception = false;
 
 			$reporter->open();

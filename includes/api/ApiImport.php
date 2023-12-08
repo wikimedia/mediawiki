@@ -106,7 +106,8 @@ class ApiImport extends ApiBase {
 			$importer,
 			$isUpload,
 			$params['interwikisource'],
-			$params['summary']
+			$params['summary'],
+			$this
 		);
 		if ( $params['tags'] ) {
 			$reporter->setChangeTags( $params['tags'] );
