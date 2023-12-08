@@ -562,8 +562,11 @@ class ApiMain extends ApiBase {
 	 * @param IContextSource|WebRequest|null $context If this is an instance of
 	 *    MediaWiki\Request\FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite Should be set to true if the api may modify data
+	 * @param bool|null $internal Whether the API request is an internal faux
+	 *        request. If null or not given, the request is assumed to be internal
+	 *        if $context contains a FauxRequest.
 	 */
-	public function __construct( $context = null, $enableWrite = false ) {
+	public function __construct( $context = null, $enableWrite = false, $internal = null ) {
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		} elseif ( $context instanceof WebRequest ) {
@@ -581,7 +584,7 @@ class ApiMain extends ApiBase {
 			$request = $this->getRequest();
 		}
 
-		$this->mInternalMode = ( $request instanceof FauxRequest );
+		$this->mInternalMode = $internal ?? ( $request instanceof FauxRequest );
 
 		// Special handling for the main module: $parent === $this
 		parent::__construct( $this, $this->mInternalMode ? 'main_int' : 'main' );

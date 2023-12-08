@@ -835,6 +835,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Actions\\ActionInfo' => __DIR__ . '/includes/actions/ActionInfo.php',
 	'MediaWiki\\Actions\\FileDeleteAction' => __DIR__ . '/includes/actions/FileDeleteAction.php',
 	'MediaWiki\\Actions\\Hook\\GetActionNameHook' => __DIR__ . '/includes/actions/Hook/GetActionNameHook.php',
+	'MediaWiki\\Api\\ApiEntryPoint' => __DIR__ . '/includes/api/ApiEntryPoint.php',
 	'MediaWiki\\Api\\ApiHookRunner' => __DIR__ . '/includes/api/ApiHookRunner.php',
 	'MediaWiki\\Api\\Hook\\APIAfterExecuteHook' => __DIR__ . '/includes/api/Hook/APIAfterExecuteHook.php',
 	'MediaWiki\\Api\\Hook\\APIGetAllowedParamsHook' => __DIR__ . '/includes/api/Hook/APIGetAllowedParamsHook.php',
