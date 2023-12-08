@@ -631,8 +631,6 @@
 	"edit-recovery-loaded-message": "Tu cambiamentos non salveguardate ha essite automaticamente recuperate.",
 	"edit-recovery-loaded-show": "Detaliar modificationes",
 	"edit-recovery-loaded-discard": "Abandonar modificationes",
-	"edit-recovery-link-tooltip-no-data": "Tu actualmente non ha datos salveguardate de recuperation de modificationes",
-	"edit-recovery-link-tooltip-with-data": "Tu actualmente ha datos salveguardate de recuperation de modificationes pro $1 pagina{{PLURAL:$1||s}}",
 	"summary": "Summario:",
 	"subject": "Subjecto:",
 	"minoredit": "Isto es un modification minor",

@@ -728,8 +728,6 @@
 	"edit-recovery-loaded-message": "Uw niet-opgeslagen wijzigingen zijn automatisch hersteld.",
 	"edit-recovery-loaded-show": "Wijzigingen bekijken",
 	"edit-recovery-loaded-discard": "Wijzigingen weggooien",
-	"edit-recovery-link-tooltip-no-data": "Er zijn momenteel geen bewerkingsherstelgegevens opgeslagen",
-	"edit-recovery-link-tooltip-with-data": "U hebt momenteel opgeslagen bewerkingsherstelgegevens voor $1 {{PLURAL:$1|pagina|pagina’s}}",
 	"summary": "Samenvatting:",
 	"subject": "Onderwerp:",
 	"minoredit": "Dit is een kleine bewerking",

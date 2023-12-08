@@ -739,8 +739,6 @@
 	"edit-recovery-loaded-message": "Deine ungespeicherten Änderungen wurden automatisch wiederhergestellt.",
 	"edit-recovery-loaded-show": "Änderungen anzeigen",
 	"edit-recovery-loaded-discard": "Änderungen verwerfen",
-	"edit-recovery-link-tooltip-no-data": "Du hast derzeit keine Bearbeitungswiederherstellungsdaten gespeichert",
-	"edit-recovery-link-tooltip-with-data": "Du hast derzeit Bearbeitungswiederherstellungsdaten für $1 {{PLURAL:$1|Seite|Seiten}}",
 	"summary": "Zusammenfassung:",
 	"subject": "Betreff:",
 	"minoredit": "Nur Kleinigkeiten wurden verändert",

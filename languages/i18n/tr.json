@@ -737,8 +737,6 @@
 	"edit-recovery-loaded-message": "Kaydedilmemiş değişiklikleriniz kendiliğinden kurtarıldı.",
 	"edit-recovery-loaded-show": "Değişiklikleri göster",
 	"edit-recovery-loaded-discard": "Değişiklikleri çıkar",
-	"edit-recovery-link-tooltip-no-data": "Şu anda saklı hiçbir Düzenleme Kurtarma veriniz yok",
-	"edit-recovery-link-tooltip-with-data": "Şu anda $1 {{PLURAL:$1|sayfa}} için saklı Düzenleme Kurtarma veriniz var",
 	"summary": "Özet:",
 	"subject": "Konu:",
 	"minoredit": "Bu bir küçük değişiklik",

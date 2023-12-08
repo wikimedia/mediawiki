@@ -367,7 +367,7 @@
 	"protectedinterface": "This page gies interface text fur the saftware on this wiki, an is fendit fur tae hinder abuise. \nTae eik or change owersettins fur aw wikis, please uise [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation projeck.",
 	"editinginterface": "<strong>Warnishment:</strong> Ye'r eeditin ae page that is uised tae provide interface tex fer the saffware.\nChynges til this page will affect the kithin o the uiser interface fer ither uisers oan this wiki.",
 	"translateinterface": "Tae eik or chynge owersets fer aw wikis, please uise [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation wairk.",
-	"cascadeprotected": "This page has been pertectit frae eeditin acause it is transcludit in the follaein {{PLURAL:$1|page, which is|pages, which are}} pertectit wi the \"cascadin\" option turned on:\n$2",
+	"cascadeprotected": "This page haes been fendit fae editin acause it is transcludit in the follaein {{PLURAL:$1|page, that is|pages, that ar}}\n$2",
 	"namespaceprotected": "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",
 	"customcssprotected": "Ye dinna hae permeession tae eidit this CSS page cause it contains anither uiser's personal settings.",
 	"customjsprotected": "Ye dinna hae permeession tae eidit this JavaScript page cause it contains anither uiser's personal settings.",

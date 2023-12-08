@@ -811,8 +811,6 @@
 	"edit-recovery-loaded-message": "您未保存的更改已自动恢复。",
 	"edit-recovery-loaded-show": "显示更改",
 	"edit-recovery-loaded-discard": "放弃更改",
-	"edit-recovery-link-tooltip-no-data": "当前尚未保存编辑恢复数据",
-	"edit-recovery-link-tooltip-with-data": "当前已保存$1{{PLURAL:$1|个页面}}的编辑恢复数据",
 	"summary": "摘要：",
 	"subject": "主题：",
 	"minoredit": "这是一次小编辑",

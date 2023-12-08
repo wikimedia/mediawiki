@@ -359,6 +359,8 @@
 	"showtoc": "أظهر",
 	"hidetoc": "أخف",
 	"collapsible-collapse": "أخف",
+	"collapsible-collapse-all-text": "اطوِ الكل",
+	"collapsible-collapse-all-tooltip": "طي كافة العناصر القابلة للطي في الصفحة الحالية",
 	"collapsible-expand": "أظهر",
 	"confirmable-confirm": "أأنت متأكد{{GENDER:$1||ة}}؟",
 	"confirmable-yes": "نعم",

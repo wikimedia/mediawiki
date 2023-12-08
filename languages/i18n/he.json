@@ -670,8 +670,6 @@
 	"edit-recovery-loaded-message": "השינויים הלא־שמורים שלך שוחזרו אוטומטית.",
 	"edit-recovery-loaded-show": "הצגת שינויים",
 	"edit-recovery-loaded-discard": "זריקת שינויים",
-	"edit-recovery-link-tooltip-no-data": "כרגע אין לך נתוני שחזור עריכה שמורים",
-	"edit-recovery-link-tooltip-with-data": "כרגע יש לך נתוני שחזור עריכה שמורים עבור {{PLURAL:$1|דף אחד|$1 דפים}}",
 	"summary": "תקציר:",
 	"subject": "נושא:",
 	"minoredit": "זוהי עריכה משנית",

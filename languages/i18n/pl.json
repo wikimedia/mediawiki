@@ -727,8 +727,6 @@
 	"edit-recovery-loaded-message": "Twoje niezapisane zmiany zostały automatycznie odtworzone.",
 	"edit-recovery-loaded-show": "Pokaż zmiany",
 	"edit-recovery-loaded-discard": "Porzuć zmiany",
-	"edit-recovery-link-tooltip-no-data": "Obecnie nie posiadasz żadnych danych zapisanych w odtwarzaniu zmian",
-	"edit-recovery-link-tooltip-with-data": "Obecnie posiadasz dane dla {{PLURAL:$1|jednej strony|$1 stron}} zapisane w odtwarzaniu zmian",
 	"summary": "Opis zmian:",
 	"subject": "Temat:",
 	"minoredit": "To jest drobna zmiana",
