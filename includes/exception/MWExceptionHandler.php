@@ -197,19 +197,6 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * @deprecated since 1.37; please use rollbackPrimaryChangesAndLog() instead.
-	 * @param Throwable $e
-	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
-	 */
-	public static function rollbackMasterChangesAndLog(
-		Throwable $e,
-		$catcher = self::CAUGHT_BY_OTHER
-	) {
-		wfDeprecated( __METHOD__, '1.37' );
-		self::rollbackPrimaryChangesAndLog( $e, $catcher );
-	}
-
-	/**
 	 * Callback to use with PHP's set_exception_handler.
 	 *
 	 * @since 1.31
