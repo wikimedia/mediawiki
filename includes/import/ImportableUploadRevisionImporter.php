@@ -9,25 +9,11 @@ use Psr\Log\LoggerInterface;
  */
 class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
+	private bool $enableUploads;
+	private LoggerInterface $logger;
 
-	/**
-	 * @var bool
-	 */
-	private $enableUploads;
+	private bool $shouldCreateNullRevision = true;
 
-	/**
-	 * @var bool
-	 */
-	private $shouldCreateNullRevision = true;
-
-	/**
-	 * @param bool $enableUploads
-	 * @param LoggerInterface $logger
-	 */
 	public function __construct(
 		$enableUploads,
 		LoggerInterface $logger

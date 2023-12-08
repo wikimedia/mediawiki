@@ -34,48 +34,17 @@ use MediaWiki\Title\TitleFactory;
  * @since 1.37
  */
 class WikiImporterFactory {
-	/** @var Config */
-	private $config;
+	private Config $config;
+	private HookContainer $hookContainer;
+	private Language $contentLanguage;
+	private NamespaceInfo $namespaceInfo;
+	private TitleFactory $titleFactory;
+	private WikiPageFactory $wikiPageFactory;
+	private UploadRevisionImporter $uploadRevisionImporter;
+	private PermissionManager $permissionManager;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private SlotRoleRegistry $slotRoleRegistry;
 
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var UploadRevisionImporter */
-	private $uploadRevisionImporter;
-
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
-
-	/**
-	 * @param Config $config
-	 * @param HookContainer $hookContainer
-	 * @param Language $contentLanguage
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param TitleFactory $titleFactory
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param UploadRevisionImporter $uploadRevisionImporter
-	 * @param PermissionManager $permissionManager
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 */
 	public function __construct(
 		Config $config,
 		HookContainer $hookContainer,
