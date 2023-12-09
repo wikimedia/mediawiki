@@ -3291,7 +3291,7 @@ config-schema:
         type: object
         description: |-
             An array of open graph tags which should be added by all skins.
-            Accepted values are "og:title", "og:type" and "twitter:card".
+            Accepted values are "og:site_name", "og:title", "og:type" and "twitter:card".
             Since some of these fields can be provided by extensions it defaults to an empty array.
             @since 1.36
     DefaultSkin:

@@ -380,6 +380,7 @@ abstract class Skin extends ContextSource {
 	 */
 	public function initPage( OutputPage $out ) {
 		$skinMetaTags = $this->getConfig()->get( MainConfigNames::SkinMetaTags );
+		$siteName = $this->getConfig()->get( MainConfigNames::Sitename );
 		$this->preloadExistence();
 
 		if ( $this->isResponsive() ) {
@@ -402,6 +403,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$tags = [
+			'og:site_name' => $siteName,
 			'og:title' => $out->getHTMLTitle(),
 			'twitter:card' => 'summary_large_image',
 			'og:type' => 'website',
