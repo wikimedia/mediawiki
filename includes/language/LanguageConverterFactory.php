@@ -116,7 +116,7 @@ class LanguageConverterFactory {
 	/**
 	 * @var bool Whether to disable language variant conversion for links.
 	 */
-	private $isTitleConversionDisabled;
+	private $isLinkConversionDisabled;
 
 	/**
 	 * @var callable callback of "() : Language"
@@ -127,7 +127,7 @@ class LanguageConverterFactory {
 	 * @param ObjectFactory $objectFactory
 	 * @param bool $usePigLatinVariant should pig variant of English be used
 	 * @param bool $isConversionDisabled Whether to disable language variant conversion
-	 * @param bool $isTitleConversionDisabled Whether to disable language variant conversion for links
+	 * @param bool $isLinkConversionDisabled Whether to disable language variant conversion for links
 	 * @param callable $defaultLanguage callback of "() : Language", should return
 	 *  default language. Used in getLanguageConverter when $language is null.
 	 *
@@ -135,7 +135,7 @@ class LanguageConverterFactory {
 	 */
 	public function __construct(
 		ObjectFactory $objectFactory,
-		$usePigLatinVariant, $isConversionDisabled, $isTitleConversionDisabled,
+		$usePigLatinVariant, $isConversionDisabled, $isLinkConversionDisabled,
 		callable $defaultLanguage
 	) {
 		$this->objectFactory = $objectFactory;
@@ -143,7 +143,7 @@ class LanguageConverterFactory {
 			$this->converterList['en'] = self::EN_CONVERTER;
 		}
 		$this->isConversionDisabled = $isConversionDisabled;
-		$this->isTitleConversionDisabled = $isTitleConversionDisabled;
+		$this->isLinkConversionDisabled = $isLinkConversionDisabled;
 		$this->defaultLanguage = $defaultLanguage;
 	}
 
@@ -202,6 +202,6 @@ class LanguageConverterFactory {
 	 * @return bool
 	 */
 	public function isLinkConversionDisabled() {
-		return $this->isConversionDisabled || $this->isTitleConversionDisabled;
+		return $this->isConversionDisabled || $this->isLinkConversionDisabled;
 	}
 }

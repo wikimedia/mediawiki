@@ -4953,6 +4953,7 @@ class MainConfigSchema {
 
 	/**
 	 * Whether to enable language variant conversion for links.
+	 * Note that this option is slightly misnamed.
 	 */
 	public const DisableTitleConversion = [
 		'default' => false,
