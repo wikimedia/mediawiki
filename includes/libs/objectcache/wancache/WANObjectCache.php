@@ -223,7 +223,7 @@ class WANObjectCache implements
 	/** @var float Tiny negative float to use when CTL comes up >= 0 due to clock skew */
 	private const TINY_NEGATIVE = -0.000001;
 	/** @var float Tiny positive float to use when using "minTime" to assert an inequality */
-	private const TINY_POSTIVE = 0.000001;
+	private const TINY_POSITIVE = 0.000001;
 
 	/** Min millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
 	private const RECENT_SET_LOW_MS = 50;
@@ -1650,7 +1650,7 @@ class WANObjectCache implements
 			$curState[self::RES_TOMB_AS_OF],
 			$curState[self::RES_CHECK_AS_OF]
 		);
-		$safeMinAsOf = max( $minAsOf, $lastPurgeTime + self::TINY_POSTIVE );
+		$safeMinAsOf = max( $minAsOf, $lastPurgeTime + self::TINY_POSITIVE );
 		if ( $this->isExtremelyNewValue( $volState, $safeMinAsOf, $startTime ) ) {
 			$this->logger->debug( "fetchOrRegenerate($key): volatile hit" );
 			$this->stats->timing(
