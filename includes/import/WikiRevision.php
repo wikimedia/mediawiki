@@ -119,10 +119,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public $comment = "";
 
-	/**
-	 * @var MutableRevisionSlots
-	 */
-	private $slots;
+	private MutableRevisionSlots $slots;
 
 	/**
 	 * @since 1.5.7

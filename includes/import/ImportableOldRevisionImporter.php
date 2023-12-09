@@ -18,52 +18,15 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class ImportableOldRevisionImporter implements OldRevisionImporter {
 
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
+	private bool $doUpdates;
+	private LoggerInterface $logger;
+	private IConnectionProvider $dbProvider;
+	private RevisionStore $revisionStore;
+	private SlotRoleRegistry $slotRoleRegistry;
+	private WikiPageFactory $wikiPageFactory;
+	private PageUpdaterFactory $pageUpdaterFactory;
+	private UserFactory $userFactory;
 
-	/**
-	 * @var bool
-	 */
-	private $doUpdates;
-
-	/**
-	 * @var IConnectionProvider
-	 */
-	private $dbProvider;
-
-	/**
-	 * @var RevisionStore
-	 */
-	private $revisionStore;
-
-	/**
-	 * @var SlotRoleRegistry
-	 */
-	private $slotRoleRegistry;
-
-	/**
-	 * @var WikiPageFactory
-	 */
-	private $wikiPageFactory;
-
-	/** @var PageUpdaterFactory */
-	private $pageUpdaterFactory;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/**
-	 * @param bool $doUpdates
-	 * @param LoggerInterface $logger
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param PageUpdaterFactory|null $pageUpdaterFactory
-	 * @param UserFactory|null $userFactory
-	 */
 	public function __construct(
 		$doUpdates,
 		LoggerInterface $logger,
