@@ -2312,9 +2312,14 @@ return [
 		],
 		'messages' => [
 			'editlink',
-			'parentheses',
+			'parentheses-start',
+			'parentheses-end',
+			'pipe-separator',
 			'edit-recovery-special-intro',
 			'edit-recovery-special-intro-empty',
+			'edit-recovery-special-view',
+			'edit-recovery-special-edit',
+			'edit-recovery-special-recovered-on',
 		],
 	],
 	'mediawiki.special.search' => [
