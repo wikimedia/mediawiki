@@ -44,12 +44,12 @@
 
 		data = data || {};
 
-		label = data.message || new OO.ui.HtmlSnippet( mw.message(
+		label = data.message || mw.msg(
 			config.EditSubmitButtonLabelPublish ?
 				'postedit-confirmation-published' :
 				'postedit-confirmation-saved',
 			data.user || mw.user
-		).escaped() );
+		);
 
 		data.message = new OO.ui.MessageWidget( {
 			type: 'success',
