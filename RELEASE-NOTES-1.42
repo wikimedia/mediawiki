@@ -53,6 +53,9 @@ For notes on 1.41.x and older releases, see HISTORY.
 * (T13555) MediaWiki now includes styles that allow more accessible markup for
   section headings. MediaWiki's own HTML output will be changed in the future.
   More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
+* (T193472) PHP Notice and Warning errors that are silenced (e.g. by the "@"
+  operator, error_reporting directive, or Wikimedia\AtEase) are now logged to
+  a new "silenced-error" channel.
 * (T347347) The CLI installer accepts a "--with-developmentsettings" argument
   to require the DevelopmentSettings.php file at install time.
 * …
