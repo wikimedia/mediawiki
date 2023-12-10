@@ -198,6 +198,7 @@ because of Phabricator reports.
   - ::run()
   - ::runWithoutAbort()
   - ::runner()
+* Article::__get(), ::__set(), deprecated since 1.35, have been removed.
 * …
 
 === Deprecations in 1.42 ===
