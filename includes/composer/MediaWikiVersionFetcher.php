@@ -4,6 +4,8 @@
  * Provides access to MediaWiki's version without requiring MediaWiki (or anything else)
  * being loaded first.
  *
+ * @deprecated since 1.42
+ *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class MediaWikiVersionFetcher {
