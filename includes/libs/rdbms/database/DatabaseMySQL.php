@@ -636,7 +636,7 @@ class DatabaseMySQL extends Database {
 			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA,
 			$temporary ? 'CREATE TEMPORARY' : 'CREATE',
 			// Use a dot to avoid double-prefixing in Database::getTempTableWrites()
-			[ '.' . $newName ]
+			'.' . $newName
 		);
 		return $this->query( $query, $fname );
 	}

@@ -32,7 +32,7 @@ class Query {
 	private $sql;
 	private $flags;
 	private $queryVerb;
-	private $writeTables;
+	private $writeTable;
 	private string $cleanedSql;
 
 	/**
@@ -49,26 +49,20 @@ class Query {
 	 *   - "CREATE DATABASE"
 	 *   - "ALTER DATABASE"
 	 *   - "DROP DATABASE"
-	 * @param string|string[] $writeTables List of tables targeted for writes
+	 * @param string|null $writeTable The table targeted for writes, if any
 	 * @param string $cleanedSql Sanitized/simplified SQL statement text for logging
 	 */
 	public function __construct(
 		string $sql,
 		$flags,
 		$queryVerb,
-		$writeTables = [],
+		string $writeTable = null,
 		$cleanedSql = ''
 	) {
 		$this->sql = $sql;
 		$this->flags = $flags;
 		$this->queryVerb = $queryVerb;
-		if ( is_array( $writeTables ) ) {
-			$this->writeTables = array_values( $writeTables );
-		} elseif ( is_string( $writeTables ) && $writeTables !== '' ) {
-			$this->writeTables = [ $writeTables ];
-		} else {
-			throw new DBLanguageError( __METHOD__ . ' called with incorrect table parameter' );
-		}
+		$this->writeTable = $writeTable;
 		$this->cleanedSql = substr( $cleanedSql, 0, 255 );
 	}
 
@@ -112,8 +106,14 @@ class Query {
 		return $this->flags;
 	}
 
-	public function getWriteTables(): array {
-		return $this->writeTables;
+	/**
+	 * Get the table which is being written to, or null for a read query or if
+	 * the destination is unknown.
+	 *
+	 * @return string|null
+	 */
+	public function getWriteTable() {
+		return $this->writeTable;
 	}
 
 	public function getCleanedSql(): string {

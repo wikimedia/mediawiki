@@ -60,17 +60,19 @@ class ChangedTablesTracker {
 		}
 
 		$queryVerb = $query->getVerb();
+		$tableName = $query->getWriteTable();
+		if ( $tableName === null ) {
+			return;
+		}
 		if ( $queryVerb === 'DROP' ) {
 			// Special case: if a table is being dropped, forget about it.
-			self::$tableMap = array_diff_key( self::$tableMap, array_fill_keys( $query->getWriteTables(), true ) );
+			unset( self::$tableMap[$tableName] );
 			return;
 		}
 		if ( !in_array( $queryVerb, self::TRACKED_VERBS, true ) ) {
 			return;
 		}
 
-		foreach ( $query->getWriteTables() as $table ) {
-			self::$tableMap[$table] = true;
-		}
+		self::$tableMap[$tableName] = true;
 	}
 }
