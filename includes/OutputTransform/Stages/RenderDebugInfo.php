@@ -4,11 +4,11 @@ namespace Mediawiki\OutputTransform\Stages;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\RawMessage;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
 use Message;
 use ParserOptions;
 use ParserOutput;
-use RawMessage;
 
 /**
  * Adds debug info to the output

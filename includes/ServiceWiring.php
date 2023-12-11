@@ -1705,7 +1705,7 @@ return [
 		);
 	},
 
-	'Pingback' => static function ( MediaWikiServices $services ): PingBack {
+	'Pingback' => static function ( MediaWikiServices $services ): Pingback {
 		return new Pingback(
 			$services->getMainConfig(),
 			$services->getDBLoadBalancerFactory(),

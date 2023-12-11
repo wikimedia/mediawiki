@@ -11262,7 +11262,7 @@ class MainConfigSchema {
 	 * - license-name: Short name of the license (used as label for the link), such
 	 *   as "GPL-2.0-or-later" or "MIT" (https://spdx.org/licenses/ for a list of identifiers).
 	 *
-	 * @see \SpecialVersion::getCredits
+	 * @see \MediaWiki\Specials\SpecialVersion::getCredits
 	 */
 	public const ExtensionCredits = [
 		'default' => [],

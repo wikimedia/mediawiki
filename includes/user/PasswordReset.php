@@ -33,6 +33,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\User\Options\UserOptionsLookup;
 use Message;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;

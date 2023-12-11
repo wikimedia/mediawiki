@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Status\Status;
 
 /**
  * User-requested page cache purging

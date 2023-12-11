@@ -20,7 +20,11 @@
  * @file
  */
 
+use MediaWiki\Deferred\DataUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\EnqueueableDataUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\Deferred\TransactionRoundAwareUpdate;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\User\UserIdentity;

@@ -2,7 +2,7 @@
 
 namespace Mediawiki\OutputTransform\Stages;
 
-use Linker;
+use MediaWiki\Linker\Linker;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
 use ParserOptions;
 use ParserOutput;
