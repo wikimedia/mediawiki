@@ -541,7 +541,7 @@ __INDEXATTR__;
 			"CREATE $temporary TABLE $newNameE " .
 			"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)",
 			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA,
-			'SELECT',
+			$temporary ? 'CREATE TEMPORARY' : 'CREATE',
 			// Use a dot to avoid double-prefixing in Database::getTempTableWrites()
 			[ '.' . $newName ]
 		);
