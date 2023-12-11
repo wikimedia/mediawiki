@@ -337,10 +337,6 @@ class ObjectCache {
 		if ( ( $cache['class'] ?? '' ) === SqlBagOStuff::class ) {
 			return true;
 		}
-		// Ideally we would inspect the config, but it's complicated. The ID is suggestive.
-		if ( $id === 'db-replicated' ) {
-			return true;
-		}
 		if ( ( $cache['factory'] ?? '' ) === 'ObjectCache::newAnything' ) {
 			$id = self::getAnythingId();
 			return self::isDatabaseId( $id );
