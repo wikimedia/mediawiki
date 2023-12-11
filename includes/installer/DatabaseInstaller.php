@@ -671,8 +671,13 @@ abstract class DatabaseInstaller {
 	 * @return string
 	 */
 	public function getInstallUserBox() {
-		return Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', [], wfMessage( 'config-db-install-account' )->text() ) .
+		return "<span class=\"cdx-card\"><span class=\"cdx-card__text\">" .
+			Html::element(
+				'span',
+				[ 'class' => 'cdx-card__text__title' ],
+				wfMessage( 'config-db-install-account' )->text()
+			) .
+			"<span class=\"cdx-card__text__description\">" .
 			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->getTextBox(
 				'_InstallUser',
@@ -687,7 +692,7 @@ abstract class DatabaseInstaller {
 				[ 'dir' => 'ltr' ],
 				$this->parent->getHelpBox( 'config-db-install-password' )
 			) .
-			Html::closeElement( 'fieldset' );
+			"</span></span></span>";
 	}
 
 	/**
@@ -709,11 +714,15 @@ abstract class DatabaseInstaller {
 	 */
 	public function getWebUserBox( $noCreateMsg = false ) {
 		$wrapperStyle = $this->getVar( '_SameAccount' ) ? 'display: none' : '';
-		$s = Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', [], wfMessage( 'config-db-web-account' )->text() ) .
+		$s = "<span class=\"cdx-card\"><span class=\"cdx-card__text\">" .
+			Html::element(
+				'span',
+				[ 'class' => 'cdx-card__text__title' ],
+				wfMessage( 'config-db-web-account' )->text()
+			) .
 			$this->getCheckBox(
 				'_SameAccount', 'config-db-web-account-same',
-				[ 'class' => 'hideShowRadio', 'rel' => 'dbOtherAccount' ]
+				[ 'class' => 'hideShowRadio cdx-checkbox__input', 'rel' => 'dbOtherAccount' ]
 			) .
 			Html::openElement( 'div', [ 'id' => 'dbOtherAccount', 'style' => $wrapperStyle ] ) .
 			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
@@ -724,7 +733,7 @@ abstract class DatabaseInstaller {
 		} else {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}
-		$s .= Html::closeElement( 'div' ) . Html::closeElement( 'fieldset' );
+		$s .= Html::closeElement( 'div' ) . "</span></span></span>";
 
 		return $s;
 	}

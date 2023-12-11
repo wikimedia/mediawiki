@@ -10,7 +10,7 @@ class WebInstallerOutputTest extends MediaWikiIntegrationTestCase {
 		$out = new WebInstallerOutput( $installer );
 		$css = $out->getCSS();
 		$this->assertStringContainsString(
-			'#content {',
+			'#mw-panel {',
 			$css,
 			'CSS for installer can be generated'
 		);

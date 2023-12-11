@@ -261,7 +261,7 @@ class WebInstallerOptions extends WebInstallerPage {
 				foreach ( $extByType[$type] as $ext => $info ) {
 					$attribs = [
 						'data-name' => $ext,
-						'class' => 'config-ext-input'
+						'class' => 'config-ext-input cdx-checkbox__input'
 					];
 					$labelAttribs = [];
 					if ( isset( $info['requires']['extensions'] ) ) {

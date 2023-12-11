@@ -97,13 +97,18 @@ class MysqlInstaller extends DatabaseInstaller {
 			$this->parent->getHelpBox( 'config-db-host-help' )
 		) .
 			$this->getCheckBox( 'wgDBssl', 'config-db-ssl' ) .
-			Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', [], wfMessage( 'config-db-wiki-settings' )->text() ) .
+			"<span class=\"cdx-card\"><span class=\"cdx-card__text\">" .
+			Html::element(
+				'span',
+				[ 'class' => 'cdx-card__text__title' ],
+				wfMessage( 'config-db-wiki-settings' )->text()
+			) .
+			"<span class=\"cdx-card__text__description\">" .
 			$this->getTextBox( 'wgDBname', 'config-db-name', [ 'dir' => 'ltr' ],
 				$this->parent->getHelpBox( 'config-db-name-help' ) ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix', [ 'dir' => 'ltr' ],
 				$this->parent->getHelpBox( 'config-db-prefix-help' ) ) .
-			Html::closeElement( 'fieldset' ) .
+			"</span></span></span>" .
 			$this->getInstallUserBox();
 	}
 

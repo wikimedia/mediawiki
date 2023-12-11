@@ -75,8 +75,12 @@ class PostgresInstaller extends DatabaseInstaller {
 		) .
 			$this->getTextBox( 'wgDBport', 'config-db-port' ) .
 			$this->getCheckBox( 'wgDBssl', 'config-db-ssl' ) .
-			Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', [], wfMessage( 'config-db-wiki-settings' )->text() ) .
+			"<span class=\"cdx-card\"><span class=\"cdx-card__text\">" .
+			Html::element(
+				'span',
+				[ 'class' => 'cdx-card__text__title' ],
+				wfMessage( 'config-db-wiki-settings' )->text()
+			) .
 			$this->getTextBox(
 				'wgDBname',
 				'config-db-name',
@@ -89,7 +93,7 @@ class PostgresInstaller extends DatabaseInstaller {
 				[],
 				$this->parent->getHelpBox( 'config-db-schema-help' )
 			) .
-			Html::closeElement( 'fieldset' ) .
+			"</span></span></span>" .
 			$this->getInstallUserBox();
 	}
 

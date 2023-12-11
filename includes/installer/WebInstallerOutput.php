@@ -249,6 +249,7 @@ class WebInstallerOutput {
 	<meta name="robots" content="noindex, nofollow" />
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
+	<?php echo $this->getCodex() . "\n"; ?>
 	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
 	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
@@ -274,7 +275,7 @@ class WebInstallerOutput {
 
 </div></div>
 
-<div id="mw-panel">
+<aside id="mw-panel">
 	<div class="portal" id="p-logo">
 		<a href="https://www.mediawiki.org/" title="Main Page"></a>
 	</div>
@@ -301,7 +302,7 @@ class WebInstallerOutput {
 	}
 	echo '</ul></div></div>';
 ?>
-</div>
+</aside>
 
 <?php
 		echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
@@ -315,6 +316,7 @@ class WebInstallerOutput {
 	<meta name="robots" content="noindex, nofollow" />
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
+	<?php echo $this->getCodex() . "\n"; ?>
 	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
 	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
@@ -333,6 +335,13 @@ class WebInstallerOutput {
 	 */
 	public function getJQuery() {
 		return Html::linkedScript( "../resources/lib/jquery/jquery.js" );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCodex() {
+		return Html::linkedStyle( "../resources/lib/codex/codex.style.css" );
 	}
 
 }

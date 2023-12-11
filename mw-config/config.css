@@ -1,353 +1,180 @@
 /* stylelint-disable selector-class-pattern */
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+
+html {
+	line-height: 1.4;
+	font-size: 1em;
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	-webkit-text-size-adjust: 100%;
+}
+
+html.dark {
+	color-scheme: dark;
+}
+
 body {
-	background-color: #f7f7f7;
 	margin: 0;
-	font-family: sans-serif;
-	line-height: 1.5;
-}
-
-#mw-page-base {
-	height: 3.5em;
-}
-
-#mw-head-base {
-	position: absolute;
-	top: 0;
-	right: 0;
 	width: 100%;
+	min-width: 320px;
+	min-height: 100vh;
+	line-height: 1.6;
+	font-family: sans-serif;
+	font-size: 1em;
+	font-weight: normal;
+	color: rgba( 60, 60, 67 );
+	background-color: #f8f9fa;
+	direction: ltr;
+	font-synthesis: style;
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+main {
+	display: block;
+}
+
+.mw-body {
+	margin: 32px 32px 0;
+	padding-bottom: 30px;
+}
+
+@media ( min-width: 960px ) {
+	.mw-body {
+		margin: 32px 32px 0;
+		padding-top: 64px;
+		padding-left: 272px;
+	}
+}
+
+@media ( min-width: 1440px ) {
+	.mw-body {
+		padding-right: calc( (100vw - 1440px) / 2 );
+		padding-left: calc( (100vw - 1440px) / 2 + 272px );
+	}
 }
 
 #mw-panel {
-	position: absolute;
+	position: fixed;
 	top: 0;
+	bottom: 0;
 	left: 0;
-	width: 11em;
+	z-index: 50;
+	padding: 32px 32px 96px;
+	width: calc( 100vw - 64px );
+	max-width: 320px;
+	opacity: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	transform: translate( -100% );
+	transition: opacity 0.5s, transform 0.25s ease;
+	overflow-wrap: break-word;
+	border-right: 1px solid #c8ccd1;
 }
 
-#content {
-	background-color: #fff;
-	margin-left: 11em;
-	border: 1px solid #aaa;
-	padding: 1.25em 1.5em 1.5em 1.5em;
+#mw-panel a {
+	font-weight: 500;
+	color: #54595d;
 }
 
-.portal {
-	margin: 0 0.6em 0 0.7em;
-	padding: 0.25em 0;
+#mw-panel div:nth-child( n+2 ) {
+	border-top: 1px solid #a2a9b1;
+	padding-top: 10px;
 }
 
-.portal ul {
-	list-style: none;
-	margin: 0 0.5em;
-	font-size: 0.813em;
+#mw-panel a:hover {
+	/* stylelint-disable-next-line declaration-no-important */
+	color: #447ff5 !important;
 }
 
-.env-check {
-	font-size: 90%;
-	margin: 1em 0 1em 2.5em;
+#mw-panel a:active {
+	/* stylelint-disable-next-line declaration-no-important */
+	color: #36c !important;
+	/* stylelint-disable-next-line declaration-no-important */
+	font-weight: bold !important;
 }
 
-.config-section {
-	margin-top: 2em;
+#mw-panel li {
+	list-style-type: none;
 }
 
-.config-block {
-	margin-top: 2em;
-	display: block;
+.dark #mw-panel {
+	box-shadow: 0 1px 2px rgba( 0, 0, 0, 0.04 ), 0 1px 2px rgba( 0, 0, 0, 0.06 );
 }
 
-.config-block-label {
-	display: block;
-	margin-bottom: 0.2em;
+@media ( min-width: 960px ) {
+	#mw-panel {
+		z-index: 1;
+		padding-top: 64px;
+		padding-bottom: 128px;
+		width: 272px;
+		max-width: 100%;
+		opacity: 1;
+		visibility: visible;
+		box-shadow: none;
+		transform: translate( 0 );
+	}
 }
 
-.config-block-label label,
-.config-label {
-	font-weight: bold;
-	padding-right: 0.5em;
-	padding-top: 0.2em;
-}
-
-.config-block-elements {
-	display: flex;
-	margin-left: 2em;
-}
-
-.config-block-elements li {
-	list-style: none;
-}
-
-.config-input {
-	clear: left;
-}
-
-.config-page-wrapper {
-	padding: 0.5em;
-}
-
-.config-page-list {
-	background-color: #fff;
-	float: right;
-	width: 12em;
-	border: 1px solid #aaa;
-	padding: 0.5em;
-	/* 3em left margin to leave space between the list and the page-content */
-	margin: 0.5em 0.5em 0.5em 3.5em;
-}
-
-.config-page {
-	background-color: #eee;
-	padding: 0.5em 0.5em 0.5em 2em;
-	margin: 0.5em 0.5em 0.5em 0.5em;
-}
-
-.config-submit {
-	clear: left;
-	text-align: center;
-	padding: 1em;
-}
-
-.config-submit input {
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-}
-
-.config-page-disabled {
-	/* `#767676` is the lightest shade to comply to WCAG level AA contrast ratio, see T318200. */
-	color: #767676;
-}
-
-.config-error-box {
-	border: 2px solid #f00;
-}
-
-.config-page-current {
-	font-weight: bold;
-}
-
-.config-message {
-	display: list-item;
-	margin-left: 2em;
-	margin-top: 0.5em;
-}
-
-.config-input-text {
-	width: 20em;
-	margin-right: 1em;
-	height: 30px;
-}
-
-.config-input-check {
-	margin-left: 10em;
-}
-
-.config-skins-item {
-	/* Clearfix */
-	clear: left;
-	overflow: hidden;
-}
-
-.config-skins-item .config-input-check {
-	margin-left: 10em;
-	width: 20em;
-	float: left;
-}
-
-.config-skins-item .config-skins-use-as-default {
-	float: left;
-}
-
-.error {
-	background-color: #fff;
-	color: #f00;
-	font-weight: bold;
-	left: 1em;
-	font-size: 100%;
-}
-
-.config-settings-block {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.btn-install {
-	font-weight: bold;
-	font-size: 110%;
-	padding: 0.2em 0.3em;
-}
-
-.success-message {
-	color: #008a00;
-	display: block;
-	margin-top: 1em;
-	font-weight: bold;
-	font-size: 110%;
-}
-
-.config-cc-wrapper {
-	clear: left;
-	/* If you change this height, also change it in WebInstallerOptions::submitCC() */
-	height: 54em;
-}
-
-.config-plainlink a {
-	background: none !important; /* stylelint-disable-line declaration-no-important */
-	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.config-download-link {
-	font-size: 1.8em;
-	margin-left: 2em;
-}
-
-.config-download-link a {
-	background: url( images/download-32.png ) no-repeat center left;
-	padding-left: 40px; /* 32 px for the image (above), plus some breathing room */
-	height: 32px; /* provide enough vertical room for the image */
-	display: inline-block; /* allow the height property (above) to work */
-	/* TODO: re-evaluate this */
-	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
-	line-height: 32px; /* center the text vertically */
-}
-
-#config-live-log {
-	overflow: hidden;
-	min-width: 20em;
-}
-
-/* Hide empty live-log textarea */
-#config-live-log textarea:empty {
-	display: none;
-}
-
-.config-help-field-checkbox {
-	display: none;
-}
-
-/* tooltip styles */
-.config-help-field-hint {
-	/* @embed */
-	background-image: url( images/help-question.svg );
-	background-position: left center;
-	background-repeat: no-repeat;
-	margin-left: 2px;
-	padding: 0 0 0 15px;
-	cursor: pointer;
-	font-size: 0.8em;
-	text-decoration: underline;
-	color: #0645ad;
-}
-
-.config-help-field-hint:hover {
-	/* @embed */
-	background-image: url( images/help-question-hover.svg );
-}
-
-.config-help-field-data {
-	background-color: #d6f3ff;
-	display: block;
-	overflow: hidden;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	min-width: min-content;
-	padding: 5px 8px 4px 8px;
-	border: 1px solid #5dc9f4;
-	margin-left: 20px;
-}
-
-.config-help-field-checkbox:not( :checked ) ~ .config-help-field-data {
-	display: none;
+@media ( min-width: 1440px ) {
+	#mw-panel {
+		padding-left: max( 32px, calc( (100% - (1440px - 64px)) / 2 ) );
+		width: calc( (100% - (1440px - 64px)) / 2 + 240px );
+	}
 }
 
 #p-logo {
-	width: 10em;
-	height: 160px;
-	margin: 0 0 0 0.6em;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 160px;
 }
 
 #p-logo a {
-	background-image: url( images/installer-logo.png );
 	background-position: center center;
 	background-repeat: no-repeat;
 	display: block;
 	width: 10em;
 	height: 160px;
 	text-decoration: none;
+	background-image: url( images/installer-logo.png );
 }
 
-.visualClear {
-	clear: both;
+.config-page-list {
+	float: right;
+	max-width: 300px;
+	margin: 10px;
 }
 
-/** WARNING BOX STYLES */
-.mw-installer-box-left {
-	margin: 7px;
-	float: left;
-	width: 35px;
+.config-submit {
+	margin: 5px 0 5px 0;
 }
 
-.mw-installer-box-right {
-	margin: 0.5em 0.5em 0.5em 49px;
-}
-/** END WARNING BOX STYLES */
-
-/* Logo preview  */
-.logo-preview-area {
-	background-color: #f7f7f7;
+.config-help-field-content {
 	display: flex;
-	padding: 20px;
-	margin: 20px 20px 0;
 }
 
-/* Logo preview (main) */
-.logo-main {
-	display: flex;
-	align-items: center;
-	margin-left: 20px;
-}
-
-.logo-icon {
-	width: 50px;
-	height: 50px;
-	margin-right: 10px;
-}
-
-.logo-tagline,
-.logo-wordmark {
-	display: block;
-	max-width: 130px;
-	max-height: 50px;
-}
-
-.logo-tagline {
-	font-size: 0.75em;
-	text-align: center;
-}
-
-/* Logo preview (sidebar) */
-.logo-sidebar {
-	width: auto;
-	height: 160px;
-	margin-bottom: 1em;
-	max-width: 160px;
-}
-
-.logo-preview-area .sidebar {
-	width: 10em;
-	border-right: solid 1px #fe421e;
-	text-align: center;
-	padding: 0 0.5em;
-}
-
-.logo-preview-area nav {
-	text-align: left;
-}
-
-.logo-preview-area nav ul {
-	margin: 0;
-	list-style: none;
-}
-
-.logo-dropper {
+.config-help-field-content-hidden {
 	display: none;
+}
+
+.config-page-current {
+	font-weight: bold;
+}
+
+#config-live-log {
+	margin: 10px;
+}
+
+.cdx-card {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.dbWrapper {
+	margin-bottom: 30px;
 }
