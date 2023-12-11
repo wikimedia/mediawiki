@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Block\Block;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 

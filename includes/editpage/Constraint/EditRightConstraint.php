@@ -21,9 +21,9 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use StatusValue;
-use Title;
-use User;
 
 /**
  * Verify user permissions:

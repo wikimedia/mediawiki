@@ -3,14 +3,14 @@
 namespace Mediawiki\OutputTransform\Stages;
 
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use RequestContext;
-use Sanitizer;
 use Skin;
-use Title;
 
 /**
  * Replace the section link placeholders by their proper value

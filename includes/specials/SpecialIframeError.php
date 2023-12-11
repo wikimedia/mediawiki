@@ -3,7 +3,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Output\IframeSandbox;
-use UnlistedSpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
 /**
  * A special page showing an error message for browsers which do not

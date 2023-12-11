@@ -2091,7 +2091,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param string $oname The option name to reset the token in
 	 * @return string|false New token value, or false if this option is disabled.
 	 * @see getTokenFromOption()
-	 * @see UserOptionsManager::setOption
+	 * @see \MediaWiki\User\Options\UserOptionsManager::setOption
 	 */
 	public function resetTokenFromOption( $oname ) {
 		$hiddenPrefs =

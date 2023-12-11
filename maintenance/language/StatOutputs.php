@@ -23,6 +23,7 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
+use MediaWiki\Specials\SpecialVersion;
 use Wikimedia\AtEase\AtEase;
 
 /**
