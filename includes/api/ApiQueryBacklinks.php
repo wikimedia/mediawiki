@@ -231,15 +231,20 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @todo This should support links migration but since it's unreachable for templatelinks
-	 *     it's not needed right now.
 	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function runSecondQuery( $resultPageSet = null ) {
 		$db = $this->getDB();
-		$this->addTables( [ $this->bl_table, 'page' ] );
-		$this->addWhere( "{$this->bl_from}=page_id" );
+		if ( isset( $this->linksMigration::$mapping[$this->bl_table] ) ) {
+			$queryInfo = $this->linksMigration->getQueryInfo( $this->bl_table, $this->bl_table );
+			$this->addTables( $queryInfo['tables'] );
+			$this->addJoinConds( $queryInfo['joins'] );
+		} else {
+			$this->addTables( [ $this->bl_table ] );
+		}
+		$this->addTables( [ 'page' ] );
+		$this->addJoinConds( [ 'page' => [ 'JOIN', "{$this->bl_from}=page_id" ] ] );
 
 		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'page_id', 'page_title', 'page_namespace', 'page_is_redirect' ] );
