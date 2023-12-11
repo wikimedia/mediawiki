@@ -883,11 +883,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->stashMwGlobals( array_keys( $pairs ) );
 
+		$identical = true;
 		foreach ( $pairs as $key => $val ) {
-			$GLOBALS[$key] = $val;
+			// T317951: Don't use array_key_exists for performance reasons
+			if ( !isset( $GLOBALS[$key] ) || $GLOBALS[$key] !== $val ) {
+				$GLOBALS[$key] = $val;
+				$identical = false;
+			}
 		}
 
-		$this->resetServices();
+		if ( !$identical ) {
+			$this->resetServices();
+		}
 	}
 
 	/**
