@@ -238,6 +238,8 @@ because of Phabricator reports.
   mustBePosted() to return true.
 * Using `new ImportReporter( … )` or `new ApiImportReporter( … )` without
   the $context parameter is now deprecated.
+* Using `WikiImporterFactory::getWikiImporter()` without the $performer
+  parameter is now deprecated.
 * BlockManager::getUserBlock() was deprecated. Instead use
   BlockManager::getBlock(), which expects the caller to do ipblock-exempt
   checking.

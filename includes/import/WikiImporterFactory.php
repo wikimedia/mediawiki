@@ -72,13 +72,14 @@ class WikiImporterFactory {
 	 *     the user performing the import is allowed to edit the pages they're importing). To skip
 	 *     the checks, use UltimateAuthority.
 	 *
-	 *     When omitted, defaults to the current global user.
+	 *     When omitted, defaults to the current global user. This behavior is deprecated since 1.42.
 	 *
 	 *     If you want to also log the import actions, see ImportReporter.
 	 * @return WikiImporter
 	 */
 	public function getWikiImporter( ImportSource $source, Authority $performer = null ): WikiImporter {
 		if ( !$performer ) {
+			wfDeprecated( __METHOD__ . ' without $performer', '1.42' );
 			$performer = RequestContext::getMain()->getAuthority();
 		}
 
