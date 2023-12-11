@@ -11,7 +11,8 @@
 			"Yekrats",
 			"YvesNevelsteen",
 			"KuboF",
-			"NMaia"
+			"NMaia",
+			"Ziko"
 		]
 	},
 	"exif-imagewidth": "Larĝeco",
@@ -205,6 +206,8 @@
 	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (laŭ enkodigo de ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (laŭ enkodigo de ITU)",
+	"exif-photometricinterpretation-32803": "Kolora Filtrilo-Aro",
+	"exif-photometricinterpretation-34892": "Lineara kruda",
 	"exif-unknowndate": "Nekonata dato",
 	"exif-orientation-1": "Normala",
 	"exif-orientation-2": "Spegulumita horizontale",
@@ -275,6 +278,9 @@
 	"exif-scenetype-1": "Rekte fotita bildo",
 	"exif-customrendered-0": "Norma proceso",
 	"exif-customrendered-1": "Propra procezo",
+	"exif-customrendered-2": "HDR (neniu originalo konservita)",
+	"exif-customrendered-3": "HDR (originalo konservita)",
+	"exif-customrendered-4": "Originala (por HDR)",
 	"exif-customrendered-6": "Panoramo",
 	"exif-customrendered-7": "Portreta HDR",
 	"exif-customrendered-8": "Portreto",

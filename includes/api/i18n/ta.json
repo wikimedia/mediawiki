@@ -6,7 +6,8 @@
 			"Info-farmer",
 			"ElangoRamanujam",
 			"Balajijagadesh",
-			"Amire80"
+			"Amire80",
+			"Fahimrazick"
 		]
 	},
 	"apihelp-main-param-action": "எச்செயலை செயற்படுத்த",
@@ -28,7 +29,7 @@
 	"apihelp-edit-param-createonly": "இப்பக்கம் ஏற்கனவே இருந்தால் தொகுக்க வேண்டாம்.",
 	"apihelp-edit-param-nocreate": "இப்பக்கம் இல்லையென்றால் பிழையாக காட்டவும்.",
 	"apihelp-edit-param-watch": "இப்பக்கதை தற்போதைய பயனரின் கவனிப்பு பட்டியலில் சேர்க்கவும்.",
-	"apihelp-edit-param-unwatch": "தற்போதைய பயனரின் கவனிப்புப் பட்டியலில் இருந்து பக்கத்தினை நீக்கவும்.",
+	"apihelp-edit-param-unwatch": "பக்கத்தைத் தற்போதைய பயனரின் கவனிப்புப் பட்டியலில் இருந்து நீக்கு.",
 	"apihelp-edit-example-edit": "ஒரு பக்கத்தைத் தொகு.",
 	"apihelp-emailuser-summary": "பயனருக்கு மின்னஞ்சல் செய்",
 	"apihelp-expandtemplates-param-title": "பக்கத்தின் தலைப்பு.",
@@ -46,7 +47,7 @@
 	"api-help-license-noname": "அனுமதி: [[$1|இணைப்பைப் பார்]]",
 	"apierror-invalidtitle": "தவறான தலைப்பு ”$1”",
 	"apierror-mustbeloggedin-generic": "தாங்கள் புகுபதிந்திருக்கவேண்டும்.",
-	"apierror-mustbeloggedin": "தாங்கள் $1-ல் புகுபதிந்திருக்கவேண்டும்.",
+	"apierror-mustbeloggedin": "நீர் $1 இற் புகுபதிந்து இருந்தாக வேண்டும்.",
 	"apierror-nochanges": "மாற்றங்களேதும் கோரப்படவில்லை.",
 	"apierror-permissiondenied-generic": "அனுமதி மறுக்கப்பட்டது.",
 	"apierror-unknownerror-nocode": "இனம்புரியாப் பிழை.",

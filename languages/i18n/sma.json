@@ -402,7 +402,7 @@
 	"emailsent": "E-påaste seedtedh",
 	"watchlist": "Mov sïektjedhlästoe",
 	"mywatchlist": "Mov sïektjedhlästoe",
-	"removedwatchtext": "Bielie \"[[:$1]]\" lea sihkojuvvon raejeste [[Special:Watchlist|dov sïektjedhlästoe]].",
+	"removedwatchtext": "Bielie \"[[:$1]]\" lea sihkojuvvon raejeste dov sïektjedhlästoe.",
 	"watch": "Sïektjedh",
 	"watchthispage": "Sïektjedh dïhte bielie",
 	"unwatch": "Ov-sïektjedh",
