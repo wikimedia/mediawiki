@@ -45,9 +45,7 @@ You'll need to have Docker installed:
 
 **Windows users**:
 
-We recommend [configuring Docker to use the Windows Subsystem for Linux (WSL)](https://docs.docker.com/desktop/wsl) for performance improvements. If you
-do enable it, ensure the MediaWiki files in the next step are stored in the Linux filesystem, as described in the
-[best practices](https://docs.docker.com/desktop/wsl/best-practices) page.
+Running Docker from a Windows terminal and using the Windows file system will result in MediaWiki being very slow. For Windows 10 and higher, we recommend configuring Docker and Windows to use the [Windows Subsystem for Linux (WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux). Turn on WSL in your Windows settings, then run the following commands: `wsl --install -d ubuntu` and `wsl --set-version ubuntu 2`. Then go into Docker -> Settings -> General -> tick "Use the WSL 2 based engine", then go into Docker -> Settings -> Resources -> WSL Integration -> tick "Ubuntu". `git clone` the mediawiki repository into a WSL folder such as `home/yourusername/mediawiki` so that the files are inside WSL. Then you can run most of the commands in this tutorial outside of WSL, by opening PowerShell, navigating to the WSL directory with `cd \\wsl.localhost\Ubuntu\home\yourusername\mediawiki`, and executing shell commands as normal. To access WSL from PowerShell (rare but may be needed sometimes), you can use the command `ubuntu` to turn a PowerShell console into a WSL console. To navigate to WSL folders in [File Explorer](https://en.wikipedia.org/wiki/File_Explorer), show the Navigation Pane, then towards the bottom, look for "Linux" (it will be close to "This PC").
 
 ### 2. Download MediaWiki files
 
