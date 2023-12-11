@@ -239,6 +239,11 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				'http://example.org/%23%2F%3F&=+;?%23/?%26%3D%2B%3B#%23/?&=+;',
 			],
 			[
+				'Removing dot segments in the path part only',
+				'http://example.org/foo/../bar?param=foo/../bar#foo/../bar',
+				'http://example.org/bar?param=foo/../bar#foo/../bar',
+			],
+			[
 				'IPv6 links aren\'t escaped',
 				'http://[::1]/foobar',
 				'http://[::1]/foobar',
