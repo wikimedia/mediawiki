@@ -21,6 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Shell\Shell;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -502,9 +503,10 @@ class CheckStorage extends Maintenance {
 		$dbw->ping();
 
 		$source = new ImportStreamSource( $file );
+		$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
-			->getWikiImporter( $source );
+			->getWikiImporter( $source, new UltimateAuthority( $user ) );
 		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
 		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";

@@ -92,7 +92,7 @@ class ApiImport extends ApiBase {
 			}
 		}
 
-		$importer = $this->wikiImporterFactory->getWikiImporter( $source->value );
+		$importer = $this->wikiImporterFactory->getWikiImporter( $source->value, $this->getAuthority() );
 		if ( isset( $params['namespace'] ) ) {
 			$importer->setTargetNamespace( $params['namespace'] );
 		} elseif ( isset( $params['rootpage'] ) ) {
