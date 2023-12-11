@@ -617,7 +617,14 @@ class MWDebug {
 		$files = get_included_files();
 		$fileList = [];
 		foreach ( $files as $file ) {
-			$size = filesize( $file );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$size = @filesize( $file );
+			if ( $size === false ) {
+				// Certain files that have been included might then be deleted. This is especially likely to happen
+				// in tests, see T351986.
+				// Just use a size of 0, but include these files here to try and be as useful as possible.
+				$size = 0;
+			}
 			$fileList[] = [
 				'name' => $file,
 				'size' => $context->getLanguage()->formatSize( $size ),
