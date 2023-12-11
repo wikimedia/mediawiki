@@ -2,6 +2,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

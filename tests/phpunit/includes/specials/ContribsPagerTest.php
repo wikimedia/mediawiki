@@ -7,6 +7,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ContribsPager;
+use MediaWiki\Pager\IndexPager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;

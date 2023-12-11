@@ -11,6 +11,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\PasswordReset;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;

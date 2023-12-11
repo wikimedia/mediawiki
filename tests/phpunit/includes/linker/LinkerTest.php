@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;

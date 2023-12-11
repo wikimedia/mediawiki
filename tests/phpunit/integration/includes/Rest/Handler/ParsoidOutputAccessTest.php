@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -13,6 +14,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;

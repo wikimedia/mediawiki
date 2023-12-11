@@ -10,8 +10,8 @@ use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Tests\Rest\Handler\PageHandlerTestTrait;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use Title;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\PageRedirectHelper

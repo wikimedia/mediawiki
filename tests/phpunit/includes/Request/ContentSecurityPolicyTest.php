@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ContentSecurityPolicy;
+use MediaWiki\Request\FauxResponse;
 use Wikimedia\TestingAccessWrapper;
 
 class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {

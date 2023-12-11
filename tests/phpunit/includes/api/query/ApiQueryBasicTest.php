@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * These tests validate basic functionality of the api query module
  *

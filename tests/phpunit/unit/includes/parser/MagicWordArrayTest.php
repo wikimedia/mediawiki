@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Parser\MagicWord;
+use MediaWiki\Parser\MagicWordArray;
+use MediaWiki\Parser\MagicWordFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**

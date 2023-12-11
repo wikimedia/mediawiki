@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Category\Category;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;

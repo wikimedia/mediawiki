@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;

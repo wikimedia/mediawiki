@@ -2,6 +2,7 @@
 
 use MediaWiki\Deferred\DeferrableUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\EnqueueableDataUpdate;
 use MediaWiki\Deferred\MergeableUpdate;
 use MediaWiki\Deferred\MWCallableUpdate;
 use MediaWiki\Deferred\TransactionRoundDefiningUpdate;

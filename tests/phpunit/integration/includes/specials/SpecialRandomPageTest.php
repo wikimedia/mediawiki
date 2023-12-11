@@ -7,7 +7,7 @@ use MediaWiki\Specials\SpecialRandomPage;
  */
 class SpecialRandomPageTest extends MediaWikiIntegrationTestCase {
 
-	/** @var RandomPage */
+	/** @var SpecialRandomPage */
 	private $page;
 
 	public function setUp(): void {

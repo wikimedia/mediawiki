@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Specials\SpecialBookSources;
+use MediaWiki\Title\TitleFactory;
 
 class SpecialBookSourcesTest extends SpecialPageTestBase {
 	public static function provideISBNs() {

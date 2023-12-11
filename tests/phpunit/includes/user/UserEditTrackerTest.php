@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\Revision\MutableRevisionRecord;

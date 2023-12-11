@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialRenameUser;
 
 /**

@@ -5,6 +5,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 
 /**
  * @group ContentHandler

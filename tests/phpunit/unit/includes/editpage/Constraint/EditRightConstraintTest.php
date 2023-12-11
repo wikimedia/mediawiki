@@ -22,6 +22,8 @@ use MediaWiki\EditPage\Constraint\EditRightConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Tests the EditRightConstraint
