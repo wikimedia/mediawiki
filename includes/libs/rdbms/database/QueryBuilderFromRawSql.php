@@ -52,8 +52,8 @@ class QueryBuilderFromRawSql {
 			}
 		}
 		$queryVerb = self::getQueryVerb( $sql );
-		$writeTables = self::getWriteTables( $sql, $tablePrefix );
-		return new Query( $sql, $flags, $queryVerb, $writeTables );
+		$writeTable = self::getWriteTable( $sql, $tablePrefix );
+		return new Query( $sql, $flags, $queryVerb, $writeTable );
 	}
 
 	private static function isWriteQuery( $rawSql ) {
@@ -95,42 +95,37 @@ class QueryBuilderFromRawSql {
 		) ? strtoupper( $m[1] ) : '';
 	}
 
-	private static function getWriteTables( $sql, $tablePrefix ) {
-		// Regexes for basic queries that can create/change/drop temporary tables.
-		// For simplicity, this only looks for tables with sensible, alphanumeric, names;
-		// temporary tables only need simple programming names anyway.
-		static $regexes = null;
-		if ( $regexes === null ) {
-			// Regex with a group for quoted table 0 and a group for quoted tables 1..N
-			$qts = '((?:\w+|`\w+`|\'\w+\'|"\w+")(?:\s*,\s*(?:\w+|`\w+`|\'\w+\'|"\w+"))*)';
-			// Regex to get query verb, table 0, and tables 1..N
-			$regexes = [
-				// DML write queries
-				"/^(INSERT|REPLACE)\s+(?:\w+\s+)*?INTO\s+$qts/i",
-				"/^(UPDATE)(?:\s+OR\s+\w+|\s+IGNORE|\s+ONLY)?\s+$qts/i",
-				"/^(DELETE)\s+(?:\w+\s+)*?FROM(?:\s+ONLY)?\s+$qts/i",
-				// DDL write queries
-				"/^(CREATE)\s+(?:TEMPORARY\s+)?TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+$qts/i",
-				"/^(DROP)\s+(?:TEMPORARY\s+)?TABLE(?:\s+IF\s+EXISTS)?\s+$qts/i",
-				"/^(TRUNCATE)\s+(?:TEMPORARY\s+)?TABLE\s+$qts/i",
-				"/^(ALTER)\s+TABLE\s+$qts/i"
-			];
-		}
-
-		$writeTables = [];
-		foreach ( $regexes as $regex ) {
-			if ( preg_match( $regex, $sql, $m, PREG_UNMATCHED_AS_NULL ) ) {
-				$allTables = preg_split( '/\s*,\s*/', $m[2] );
-				foreach ( $allTables as $quotedTable ) {
-					$tableName = trim( $quotedTable, "\"'`" );
-					$tableName = preg_replace( '/^' . $tablePrefix . '/', '', $tableName );
-					$writeTables[] = $tableName;
-				}
-				break;
+	/**
+	 * @param string $sql
+	 * @param string $tablePrefix
+	 * @return string|null
+	 */
+	private static function getWriteTable( $sql, $tablePrefix ) {
+		// Regex for basic queries that can create/change/drop temporary tables.
+		// For simplicity, this only looks for tables with sensible alphanumeric names.
+		// Temporary tables only need simple programming names anyway.
+		$regex = <<<REGEX
+		/^
+			(?:
+				(?:INSERT|REPLACE)\s+(?:\w+\s+)*?INTO
+				| UPDATE(?:\s+OR\s+\w+|\s+IGNORE|\s+ONLY)?
+				| DELETE\s+(?:\w+\s+)*?FROM(?:\s+ONLY)?
+				| CREATE\s+(?:TEMPORARY\s+)?TABLE(?:\s+IF\s+NOT\s+EXISTS)?
+				| DROP\s+(?:TEMPORARY\s+)?TABLE(?:\s+IF\s+EXISTS)?
+				| TRUNCATE\s+(?:TEMPORARY\s+)?TABLE
+				| ALTER\s+TABLE
+			) \s+
+			(\w+|`\w+`|'\w+'|"\w+")
+		/ix
+		REGEX;
+		if ( preg_match( $regex, $sql, $m ) ) {
+			$tableName = trim( $m[1], "\"'`" );
+			if ( str_starts_with( $tableName, $tablePrefix ) ) {
+				$tableName = substr( $tableName, strlen( $tablePrefix ) );
 			}
+			return $tableName;
 		}
-
-		return $writeTables;
+		return null;
 	}
 
 	private static function isCreateTemporaryTable( $sql ) {

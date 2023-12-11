@@ -579,7 +579,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function doSingleStatementQuery( string $sql ): QueryStatus;
 
 	/**
-	 * Determine whether a query has a permanent table in its table list.
+	 * Determine whether a write query affects a permanent table.
 	 * This includes pseudo-permanent tables.
 	 *
 	 * @param Query $query
@@ -590,21 +590,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Temporary table creation is allowed
 			return false;
 		}
-		$tables = $query->getWriteTables();
-		if ( !$tables ) {
+		$table = $query->getWriteTable();
+		if ( $table === null ) {
 			// Parse error? Assume permanent.
 			return true;
 		}
-		foreach ( $tables as $table ) {
-			$rawTable = $this->platform->tableName( $table, 'raw' );
-			$tempInfo = $this->sessionTempTables[$rawTable] ?? null;
-			if ( !$tempInfo || $tempInfo->pseudoPermanent ) {
-				// Permanent table found
-				return true;
-			}
-		}
-		// All tables are temporary
-		return false;
+		$rawTable = $this->platform->tableName( $table, 'raw' );
+		$tempInfo = $this->sessionTempTables[$rawTable] ?? null;
+		return !$tempInfo || $tempInfo->pseudoPermanent;
 	}
 
 	/**
@@ -613,22 +606,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param Query $query
 	 */
 	protected function registerTempTables( Query $query ) {
+		$table = $query->getWriteTable();
+		if ( $table === null ) {
+			return;
+		}
 		switch ( $query->getVerb() ) {
 			case 'CREATE TEMPORARY':
-				foreach ( $query->getWriteTables() as $table ) {
-					$rawTable = $this->platform->tableName( $table, 'raw' );
-					$this->sessionTempTables[$rawTable] = new TempTableInfo(
-						$this->transactionManager->getTrxId(),
-						(bool)( $query->getFlags() & self::QUERY_PSEUDO_PERMANENT )
-					);
-				}
+				$rawTable = $this->platform->tableName( $table, 'raw' );
+				$this->sessionTempTables[$rawTable] = new TempTableInfo(
+					$this->transactionManager->getTrxId(),
+					(bool)( $query->getFlags() & self::QUERY_PSEUDO_PERMANENT )
+				);
 				break;
 
 			case 'DROP':
-				foreach ( $query->getWriteTables() as $table ) {
-					$rawTable = $this->platform->tableName( $table, 'raw' );
-					unset( $this->sessionTempTables[$rawTable] );
-				}
+				$rawTable = $this->platform->tableName( $table, 'raw' );
+				unset( $this->sessionTempTables[$rawTable] );
 		}
 	}
 
@@ -1696,7 +1689,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__
 	) {
 		$sql = $this->platform->deleteJoinSqlText( $delTable, $joinTable, $delVar, $joinVar, $conds );
-		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'DELETE', [ $delTable, $joinTable ] );
+		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'DELETE', $delTable );
 		$this->query( $query, $fname );
 	}
 

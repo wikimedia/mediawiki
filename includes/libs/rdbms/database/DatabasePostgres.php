@@ -442,7 +442,7 @@ __INDEXATTR__;
 
 			$sql = "INSERT INTO $destTableEnc (" . implode( ',', array_keys( $varMap ) ) . ') ' .
 				$selectSql . ' ON CONFLICT DO NOTHING';
-			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', [ $destTable ] );
+			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $destTable );
 			$this->query( $query, $fname );
 		} else {
 			parent::doInsertSelectNative( $destTable, $srcTable, $varMap, $conds, $fname,
@@ -543,7 +543,7 @@ __INDEXATTR__;
 			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA,
 			$temporary ? 'CREATE TEMPORARY' : 'CREATE',
 			// Use a dot to avoid double-prefixing in Database::getTempTableWrites()
-			[ '.' . $newName ]
+			'.' . $newName
 		);
 		$ret = $this->query( $query, $fname );
 		if ( !$ret ) {
@@ -577,7 +577,7 @@ __INDEXATTR__;
 				self::QUERY_CHANGE_SCHEMA,
 				'CREATE',
 				// Do not treat this is as a table modification on top of the CREATE above.
-				[]
+				null
 			);
 			$this->query( $query, $fname );
 			$query = new Query(
@@ -585,7 +585,7 @@ __INDEXATTR__;
 				self::QUERY_CHANGE_SCHEMA,
 				'ALTER',
 				// Do not treat this is as a table modification on top of the CREATE above.
-				[]
+				null
 			);
 			$this->query( $query, $fname );
 		}
@@ -594,14 +594,11 @@ __INDEXATTR__;
 	}
 
 	protected function doTruncate( array $tables, $fname ) {
-		$encTables = $this->tableNamesN( ...$tables );
-		$query = new Query(
-			"TRUNCATE TABLE " . implode( ',', $encTables ) . " RESTART IDENTITY",
-			self::QUERY_CHANGE_SCHEMA,
-			'TRUNCATE',
-			$tables
-		);
-		$this->query( $query, $fname );
+		foreach ( $tables as $table ) {
+			$sql = "TRUNCATE TABLE " . $this->tableName( $table ) . " RESTART IDENTITY";
+			$query = new Query( $sql, self::QUERY_CHANGE_SCHEMA, 'TRUNCATE', $table );
+			$this->query( $query, $fname );
+		}
 	}
 
 	/**
