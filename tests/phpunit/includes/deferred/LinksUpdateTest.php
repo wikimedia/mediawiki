@@ -601,8 +601,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
-		$po->addImage( "1.png" );
-		$po->addImage( "2.png" );
+		$po->addImage( new TitleValue( NS_FILE, "1.png" ) );
+		$po->addImage( new TitleValue( NS_FILE, "2.png" ) );
 
 		$this->assertLinksUpdate(
 			$t,
@@ -616,8 +616,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
-		$po->addImage( "2.png" );
-		$po->addImage( "3.png" );
+		$po->addImage( new TitleValue( NS_FILE, "2.png" ) );
+		$po->addImage( new TitleValue( NS_FILE, "3.png" ) );
 
 		$this->assertLinksUpdate(
 			$t,
@@ -632,8 +632,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	public function testUpdate_imagelinks_move() {
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
-		$po->addImage( "1.png" );
-		$po->addImage( "2.png" );
+		$po->addImage( new TitleValue( NS_FILE, "1.png" ) );
+		$po->addImage( new TitleValue( NS_FILE, "2.png" ) );
 
 		$fromNamespace = $t->getNamespace();
 		$this->assertLinksUpdate(
@@ -647,8 +647,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$oldT = $t;
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "User:Testing", self::$testingPageId );
-		$po->addImage( "1.png" );
-		$po->addImage( "2.png" );
+		$po->addImage( new TitleValue( NS_FILE, "1.png" ) );
+		$po->addImage( new TitleValue( NS_FILE, "2.png" ) );
 
 		$fromNamespace = $t->getNamespace();
 		$this->assertMoveLinksUpdate(
@@ -671,9 +671,9 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
-		$po->addLanguageLink( 'De:1' );
-		$po->addLanguageLink( 'En:1' );
-		$po->addLanguageLink( 'Fr:1' );
+		$po->addLanguageLink( new TitleValue( 0, '1', '', 'De' ) );
+		$po->addLanguageLink( new TitleValue( 0, '1', '', 'En' ) );
+		$po->addLanguageLink( new TitleValue( 0, '1', '', 'Fr' ) );
 
 		$this->assertLinksUpdate(
 			$t,
@@ -689,8 +689,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
-		$po->addLanguageLink( 'En:2' );
-		$po->addLanguageLink( 'Fr:1' );
+		$po->addLanguageLink( new TitleValue( 0, '2', '', 'En' ) );
+		$po->addLanguageLink( new TitleValue( 0, '1', '', 'Fr' ) );
 
 		$this->assertLinksUpdate(
 			$t,
@@ -847,9 +847,9 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( 'Test', 'Test' );
 		$po->addExternalLink( 'http://www.example.com/' );
-		$po->addImage( 'Test' );
+		$po->addImage( new TitleValue( NS_FILE, 'Test' ) );
 		$po->addInterwikiLink( new TitleValue( 0, 'test', '', 'test' ) );
-		$po->addLanguageLink( 'en:Test' );
+		$po->addLanguageLink( new TitleValue( 0, 'Test', '', 'en' ) );
 		$po->addLink( new TitleValue( 0, 'Test' ) );
 		$po->setPageProperty( 'string', 'x' );
 		$po->setPageProperty( 'numeric-string', '1' );
@@ -898,9 +898,9 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( $s, $s );
 		$po->addExternalLink( 'https://foo.com' );
-		$po->addImage( $s );
+		$po->addImage( new TitleValue( NS_FILE, $s ) );
 		$po->addInterwikiLink( new TitleValue( 0, $s, '', $s ) );
-		$po->addLanguageLink( "$s:$s" );
+		$po->addLanguageLink( new TitleValue( 0, $s, '', $s ) );
 		$po->addLink( new TitleValue( 0, $s ) );
 		$po->setPageProperty( $s, $s );
 		$po->addTemplate( new TitleValue( 0, $s ), 1, 1 );

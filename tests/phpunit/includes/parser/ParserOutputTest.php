@@ -817,15 +817,15 @@ EOF
 
 		$a->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Goats' ), 107, 1107 );
 
-		$a->addLanguageLink( 'de' );
-		$a->addLanguageLink( 'ru' );
+		$a->addLanguageLink( new TitleValue( NS_MAIN, 'de' ) );
+		$a->addLanguageLink( new TitleValue( NS_MAIN, 'ru' ) );
 		$a->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens DE', '', 'de' ) );
 		$a->addInterwikiLink( new TitleValue( NS_MAIN, 'Kittens RU', '', 'ru' ) );
 		$a->addExternalLink( 'https://kittens.wikimedia.test' );
 		$a->addExternalLink( 'https://goats.wikimedia.test' );
 
 		$a->addCategory( 'Foo', 'X' );
-		$a->addImage( 'Billy.jpg', '20180101000013', 'DEAD' );
+		$a->addImage( new TitleValue( NS_FILE, 'Billy.jpg' ), '20180101000013', 'DEAD' );
 
 		$b = new ParserOutput();
 		$b->addLink( Title::makeTitle( NS_MAIN, 'Goats' ), 7 );
@@ -836,15 +836,15 @@ EOF
 		$b->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Dragons' ), 108, 1108 );
 		$a->addTemplate( new TitleValue( NS_MAIN, 'Dragons' ), 118, 1118 );
 
-		$b->addLanguageLink( 'fr' );
-		$b->addLanguageLink( 'ru' );
+		$b->addLanguageLink( new TitleValue( NS_MAIN, 'fr' ) );
+		$b->addLanguageLink( new TitleValue( NS_MAIN, 'ru' ) );
 		$b->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens FR', '', 'fr' ) );
 		$b->addInterwikiLink( new TitleValue( NS_MAIN, 'Dragons RU', '', 'ru' ) );
 		$b->addExternalLink( 'https://dragons.wikimedia.test' );
 		$b->addExternalLink( 'https://goats.wikimedia.test' );
 
 		$b->addCategory( 'Bar', 'Y' );
-		$b->addImage( 'Puff.jpg', '20180101000017', 'BEEF' );
+		$b->addImage( new TitleValue( NS_FILE, 'Puff.jpg' ), '20180101000017', 'BEEF' );
 
 		yield 'all kinds of links' => [ $a, $b, [
 			'getLinks' => [

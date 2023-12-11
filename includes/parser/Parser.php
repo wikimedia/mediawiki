@@ -2624,7 +2624,7 @@ class Parser {
 					# T26502: filter duplicates
 					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {
 						$this->mLangLinkLanguages[$iw] = true;
-						$this->mOutput->addLanguageLink( $nt->getFullText() );
+						$this->mOutput->addLanguageLink( $nt );
 					}
 
 					/**
@@ -2666,7 +2666,7 @@ class Parser {
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = str_replace( "\n", '', $sortkey );
 					$sortkey = $this->getTargetLanguageConverter()->convertCategoryKey( $sortkey );
-					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
+					$this->mOutput->addCategory( $nt, $sortkey );
 
 					continue;
 				}
@@ -3724,11 +3724,11 @@ class Parser {
 		$time = $file ? $file->getTimestamp() : false;
 		$sha1 = $file ? $file->getSha1() : false;
 		# Register the file as a dependency...
-		$this->mOutput->addImage( $link->getDBkey(), $time, $sha1 );
+		$this->mOutput->addImage( $link, $time, $sha1 );
 		if ( $file && !$link->isSameLinkAs( $file->getTitle() ) ) {
 			# Update fetched file title after resolving redirects, etc.
 			$link = $file->getTitle();
-			$this->mOutput->addImage( $link->getDBkey(), $time, $sha1 );
+			$this->mOutput->addImage( $link, $time, $sha1 );
 		}
 
 		$title = Title::newFromLinkTarget( $link ); // for return type compat
