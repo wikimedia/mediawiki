@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Title\Title;
+
 /**
  * Integration test that checks import success and
  * LinkCache integration.

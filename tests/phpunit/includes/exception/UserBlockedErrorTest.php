@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\User\UserIdentity;
 
 /**

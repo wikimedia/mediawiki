@@ -3,6 +3,7 @@
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;

@@ -2,6 +2,7 @@
 
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\TestingAccessWrapper;
 

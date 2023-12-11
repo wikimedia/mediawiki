@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialUserRights;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * @group Database

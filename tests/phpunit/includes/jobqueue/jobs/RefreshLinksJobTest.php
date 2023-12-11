@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Title\Title;
 

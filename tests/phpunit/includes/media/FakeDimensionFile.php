@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Title\Title;
+
 class FakeDimensionFile extends File {
 	public $mustRender = false;
 	public $mime;

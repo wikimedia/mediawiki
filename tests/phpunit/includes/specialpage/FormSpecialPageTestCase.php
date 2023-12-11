@@ -6,6 +6,7 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.

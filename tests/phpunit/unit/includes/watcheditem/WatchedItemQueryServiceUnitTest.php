@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;

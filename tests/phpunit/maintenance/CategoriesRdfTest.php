@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DumpCategoriesAsRdf;
-use IMaintainableDatabase;
 use MediaWiki\MainConfigNames;
 use MediaWikiLangTestCase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @covers CategoriesRdf

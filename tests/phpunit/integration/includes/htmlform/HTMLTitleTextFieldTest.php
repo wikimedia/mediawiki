@@ -2,6 +2,7 @@
 
 use MediaWiki\Interwiki\InterwikiLookupAdapter;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 
 /**
  * @covers HTMLTitleTextFieldTest

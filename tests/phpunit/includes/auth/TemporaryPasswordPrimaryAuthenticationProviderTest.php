@@ -132,7 +132,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	}
 
 	public function testConfig() {
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			MainConfigNames::EnableEmail => false,
 			MainConfigNames::NewPasswordExpiry => 100,
 			MainConfigNames::PasswordReminderResendTime => 101,

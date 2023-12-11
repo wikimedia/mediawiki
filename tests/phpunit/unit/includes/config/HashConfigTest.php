@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ConfigException;
+use MediaWiki\Config\HashConfig;
 
 /**
  * @covers \MediaWiki\Config\HashConfig

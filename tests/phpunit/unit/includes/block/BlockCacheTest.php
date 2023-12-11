@@ -3,6 +3,7 @@
 use MediaWiki\Block\BlockCache;
 use MediaWiki\Block\BlockCacheKey;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\UserIdentityValue;
 
 /**
