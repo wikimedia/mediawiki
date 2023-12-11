@@ -188,4 +188,28 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 			$result[0]['query']['allusers'][2]
 		);
 	}
+
+	public function testUserRights() {
+		$userFactory = $this->getServiceContainer()->getUserFactory();
+		$userA = $userFactory->newFromName( self::USER_PREFIX . 'A' );
+		$userB = $userFactory->newFromName( self::USER_PREFIX . 'B' );
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// make the temp right last for the scope of this test
+		$scope = $permissionManager->addTemporaryUserRights( $userA, [ 'protect' ] );
+
+		$result = $this->doApiRequest( [
+			'action' => 'query',
+			'list' => 'allusers',
+			'auprefix' => self::USER_PREFIX,
+			'auprop' => 'rights',
+			'aulimit' => 2,
+		] );
+
+		$this->assertArrayHasKey( 'query', $result[0] );
+		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
+		$this->assertArrayHasKey( 'rights', $result[0]['query']['allusers'][0] );
+		$this->assertArrayHasKey( 'rights', $result[0]['query']['allusers'][1] );
+		$this->assertContains( 'protect', $result[0]['query']['allusers'][0]['rights'] );
+		$this->assertNotContains( 'protect', $result[0]['query']['allusers'][1]['rights'] );
+	}
 }
