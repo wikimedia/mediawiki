@@ -108,7 +108,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	public function execute( $par ) {
 		$this->requireNamedUser();
 		$this->getOutput()->disallowUserJs();
-		$this->getOutput()->addModules( 'mediawiki.special' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Manual:Bot_passwords' );
 
 		if ( $par !== null ) {

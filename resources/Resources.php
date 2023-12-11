@@ -1987,12 +1987,6 @@ return [
 		],
 	],
 	'mediawiki.special' => [
-		'class' => LessVarFileModule::class,
-		'lessMessages' => [
-			'grantriskgroup-vandalism',
-			'grantriskgroup-security',
-			'grantriskgroup-internal',
-		],
 		'styles' => [
 			'resources/src/mediawiki.special/special.less',
 			'resources/src/mediawiki.special/apisandbox.css',

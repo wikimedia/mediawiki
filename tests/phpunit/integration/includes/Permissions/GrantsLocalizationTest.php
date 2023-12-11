@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
+use HtmlArmor;
+use MediaWiki\Html\Html;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWikiIntegrationTestCase;
@@ -85,8 +87,11 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			$this->getServiceContainer()->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Listgrants', false, 'delete' ),
-				( new Message( 'grant-delete' ) )->text(),
-				[ 'class' => 'mw-grantslink mw-grantriskgroup-vandalism' ]
+				new HtmlArmor(
+					( new Message( 'grant-delete' ) )->escaped() . ' ' .
+					Html::element( 'span', [ 'class' => 'mw-grant mw-grantriskgroup-vandalism' ],
+						( new Message( 'grantriskgroup-vandalism' ) )->text() )
+				)
 			),
 			$this->grantsLocalization->getGrantsLink( 'delete' )
 		);
@@ -97,7 +102,7 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetGrantsWikiText() {
 		$this->assertSame(
-			"*<span class=\"mw-grantgroup\">Perform high volume activity</span>\n:<span class=\"mw-grant mw-grantriskgroup-low\">High-volume (bot) access</span>\n\n",
+			"*<span class=\"mw-grantgroup\">Perform high volume activity</span>\n:High-volume (bot) access <span class=\"mw-grant mw-grantriskgroup-low\"></span>\n\n",
 			$this->grantsLocalization->getGrantsWikiText( [ 'highvolume' ] )
 		);
 	}
