@@ -89,6 +89,7 @@
 	"api-help-examples": "{{PLURAL:$1|Пример|Примери}}:",
 	"api-help-permissions": "{{PLURAL:$1|Дозвола|Дозволе}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Додељено}}: $2",
+	"apierror-articleexists": "Страница коју сте покушали направити већ је направљена.",
 	"apierror-badtoken": "Невалидан CSRF токен.",
 	"apierror-blocked-partial": "Блокирано вам је уређивање ове странице.",
 	"apierror-compare-relative-to-deleted": "Није могуће користити <kbd>torelative=$1</kbd> у односу на избрисану ревизију.",

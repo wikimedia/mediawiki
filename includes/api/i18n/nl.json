@@ -383,7 +383,7 @@
 	"apihelp-query+redirects-example-generator": "Informatie over alle doorverwijzingen naar [[{{MediaWiki:Mainpage}}]] ophalen.",
 	"apihelp-query+revisions-param-tag": "Alleen revisies met dit label weergeven.",
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "De ID van de versie.",
-	"apihelp-query+revisions+base-paramvalue-prop-content": "Tekst van de versie. Als de tekst voor deze versie is verwijderd, wordt een eigenschap <samp>texthidden</samp> geretourneerd.",
+	"apihelp-query+revisions+base-paramvalue-prop-content": "Inhoud van elk versiesegment. Als de tekst voor een versie is verwijderd, wordt een eigenschap <samp>texthidden</samp> geretourneerd. Als deze optie wordt gebruikt, wordt om prestatieredenen een <var>$2limit</var> van $1 afgedwongen.",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "Labels voor de versie.",
 	"apihelp-query+revisions+base-param-difftotextpst": "Gebruik in plaats hiervan [[Special:ApiHelp/compare|action=compare]]. Een \"pre-save\"-transformatie uitvoeren op de tekst alvorens de verschillen te bepalen. Alleen geldig indien gebruikt met <var>$1difftotext</var>.",
 	"apihelp-query+search-summary": "Voer een zoekopdracht in de volledige tekst uit.",

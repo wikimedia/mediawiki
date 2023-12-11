@@ -3433,6 +3433,8 @@
 	"specialpages-group-developer": "Instrumentos pro disveloppatores",
 	"blankpage": "Pagina vacue",
 	"intentionallyblankpage": "Iste pagina es intentionalmente vacue",
+	"iframeerror-title": "Error de ‘iframe’",
+	"iframeerror-message": "Iste contento non pote esser monstrate perque tu navigator non supporta le [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc attributo ‘srcdoc’ del elemento ‘iframe’].",
 	"disabledspecialpage-disabled": "Iste pagina ha essite disactivate per un administrator del systema.",
 	"external_image_whitelist": "  #Lassa iste linea exactemente como illo es<pre>\n#Pone fragmentos de expressiones regular (solmente le parte que va inter //) hic infra\n#Istes essera comparate con le adresses URL (ligamines directe) a imagines externe\n#Le correspondentes apparera como imagines, le alteres solmente como ligamines a imagines\n#Le lineas comenciante con # essera tractate como commentos\n#Isto non distingue inter majusculas e minusculas\n\n#Insere omne fragmentos regex supra iste linea. Lassa iste linea exactemente como illo es</pre>",
 	"tags": "Etiquettas valide de modification",

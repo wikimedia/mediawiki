@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"EmyArt",
 			"Eric Mukiza",
 			"Musindi250",
 			"Ndahiro derrick",
@@ -166,6 +167,8 @@
 	"publishchanges-start": "Sakaza ibyahindutsemo…",
 	"showpreview": "Erekana ishushanyo",
 	"showdiff": "Erekana ibyahindutse",
+	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Konti yawe yigihe gito irangira mu {{PLURAL:$1|Umunsi 1 | $1munsi}}.</strong> Iyo birangiye, hazashyirwaho bundi bushya ubutaha uko uzahindura utiriwe winjira.",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong> Konti yawe yigihe gito irarangira mugihe kitarenze umunsi.</strong> Iyo birangiye, hazashyirwaho bundi bushya ubutaha uko uzahindura utiriwe winjira.",
 	"anoneditwarning": "<strong>Warning:</strong> Ntago urinjira . nugira inyandiko uhindura IP Adress yaw niyo iri bugaragare. niba <strong>[$1 log in]</strong> or <strong>[$2 create an account]</strong>, ibyo wahinduye bizitirirwa izina ukoresha,hamwe nizindi nyungu zijyanye nabyo.",
 	"loginreqlink": "injiramo",
 	"noarticletext": "Muri kino gihe, nta gisomwa kiriho kuri runo rupapuro.\nMushobora [[Special:Search/{{PAGENAME}}|kurondeza k'umutwe w'uru rupapuro]] muzindi mpapuro,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rondeza mubikorwa bifitaniye isano],\ncanke [{{fullurl:{{FULLPAGENAME}}|action=edit}} tanguza uru rupapuro]</span>.",
@@ -274,6 +277,7 @@
 	"metadata-help": "Iyi dosiye ikubiyemo andi makuru, wenda yashyizwe bivuye mu mpuza mashusho cyangwa sikaneri byokoreshejwe kubishyira mwikoranabuhanga.\nniba dosiye yarahinduwe , amakuru ntari bugaragare uko ari muriyo dosiye yahinduwe.",
 	"monthsall": "byose",
 	"specialpages": "Inyandiko zidasanzwe",
+	"iframeerror-title": "Ikosa rya Inframe",
 	"htmlform-submit": "Ohereza",
 	"searchsuggest-search": "Shakisha {{SITENAME}}",
 	"searchsuggest-containing": "Shakisha impapuro zirimo",

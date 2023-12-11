@@ -3545,6 +3545,8 @@
 	"specialpages-group-developer": "Hulpmiddelen voor ontwikkelaars",
 	"blankpage": "Lege pagina",
 	"intentionallyblankpage": "Deze pagina is bewust leeg gelaten en wordt gebruikt voor benchmarks, enzovoort.",
+	"iframeerror-title": "Iframe-fout",
+	"iframeerror-message": "Deze inhoud kan niet worden weergegeven omdat uw browser het [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc iframe srcdoc attribuut] niet ondersteunt.",
 	"disabledspecialpage-disabled": "Deze pagina is uitgeschakeld door een systeembeheerder.",
 	"external_image_whitelist": " #Laat deze regel onveranderd<pre>\n#Zet hieronder reguliere expressiefragmenten (alleen het deel dat tussen de // staat)\n#Deze worden gehouden tegen de URL's van externe (gehotlinkte) afbeeldingen\n#Als de reguliere expressie van toegang is, wordt een afbeelding weergegeven, anders wordt alleen een koppeling weergegeven\n#Regels die beginnen met \"#\" worden als opmerking behandeld\n#Regels in de witte lijst zijn niet hoofdlettergevoelig.\n\n#Zet alle reguliere expressiefragmenten boven deze regel. Laat deze regel onveranderd</pre>",
 	"tags": "Geldige wijzigingslabels",
