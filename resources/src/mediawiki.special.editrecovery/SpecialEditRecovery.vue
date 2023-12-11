@@ -5,15 +5,18 @@
 	<p v-else>
 		{{ $i18n( 'edit-recovery-special-intro-empty' ) }}
 	</p>
-	<ul>
+	<ol>
 		<li v-for="page in pages" :key="page">
-			<a :href="page.url">{{ page.title }}</a>
+			{{ page.title }}
 			<span v-if="page.section"> &ndash; {{ page.section }}</span>
-			<span>
-				<a :href="page.editUrl">{{ $i18n( 'parentheses', $i18n( 'editlink' ) ) }}</a>
-			</span>
+			{{ $i18n( 'parentheses-start' ) }}
+			<a :href="page.url">{{ $i18n( 'edit-recovery-special-view' ) }}</a>
+			{{ $i18n( 'pipe-separator' ) }}
+			<a :href="page.editUrl">{{ $i18n( 'edit-recovery-special-edit' ) }}</a>
+			{{ $i18n( 'parentheses-end' ) }}
+			{{ $i18n( 'edit-recovery-special-recovered-on', page.timeStored ) }}
 		</li>
-	</ul>
+	</ol>
 </template>
 
 <script>
@@ -23,6 +26,7 @@ module.exports = {
 	setup() {
 		const pages = ref( [] );
 		const storage = require( '../mediawiki.editRecovery/storage.js' );
+		const expiryTTL = mw.config.get( 'wgEditRecoveryExpiry' );
 		storage.openDatabase().then( () => {
 			storage.loadAllData().then( ( allData ) => {
 				allData.forEach( ( d ) => {
@@ -31,12 +35,14 @@ module.exports = {
 					if ( d.section ) {
 						editParams.section = d.section;
 					}
+					// Subtract expiry duration to get the time it was stored.
+					const recoveryTime = new Date( ( d.expiryDate - expiryTTL ) * 1000 );
 					pages.value.push( {
 						title: title.getPrefixedText(),
 						url: title.getUrl(),
 						editUrl: title.getUrl( editParams ),
 						section: d.section,
-						sectionLabel: d.section ? mw.msg( 'parentheses', mw.msg( 'search-section', d.section ) ) : ''
+						timeStored: recoveryTime.toLocaleString( { dateStyle: 'long', timeStyle: 'long' } )
 					} );
 				} );
 			} );
