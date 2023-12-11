@@ -3196,6 +3196,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\SessionConsistentConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/SessionConsistentConnectionManager.php',
 	'Wikimedia\\Rdbms\\SqliteResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/SqliteResultWrapper.php',
 	'Wikimedia\\Rdbms\\Subquery' => __DIR__ . '/includes/libs/rdbms/encasing/Subquery.php',
+	'Wikimedia\\Rdbms\\TempTableInfo' => __DIR__ . '/includes/libs/rdbms/database/utils/TempTableInfo.php',
 	'Wikimedia\\Rdbms\\TimestampType' => __DIR__ . '/includes/libs/rdbms/dbal/TimestampType.php',
 	'Wikimedia\\Rdbms\\TinyIntType' => __DIR__ . '/includes/libs/rdbms/dbal/TinyIntType.php',
 	'Wikimedia\\Rdbms\\TransactionIdentifier' => __DIR__ . '/includes/libs/rdbms/database/utils/TransactionIdentifier.php',

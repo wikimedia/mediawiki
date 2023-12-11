@@ -749,9 +749,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection() {
-		$this->expectException( DBReadOnlyRoleError::class );
-		$this->expectExceptionMessage( 'Server is configured as a read-only replica database.' );
-
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
 			[ 'topologyRole' => Database::ROLE_STREAMING_REPLICA ]
@@ -762,6 +759,14 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			"CREATE TEMPORARY TABLE temp_test_table (temp_column int);",
 			__METHOD__,
 			Database::QUERY_PSEUDO_PERMANENT
+		);
+
+		$this->expectException( DBReadOnlyRoleError::class );
+		$this->expectExceptionMessage( 'Server is configured as a read-only replica database.' );
+		// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
+		$dbr->query(
+			"INSERT INTO temp_test_table (temp_column) VALUES (42);",
+			__METHOD__
 		);
 	}
 

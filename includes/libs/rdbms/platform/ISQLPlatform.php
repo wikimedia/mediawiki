@@ -69,6 +69,8 @@ interface ISQLPlatform {
 	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
 	/** @var int Query is a command for advisory locks */
 	public const QUERY_CHANGE_LOCKS = 512 | self::QUERY_IGNORE_DBO_TRX;
+	/** @var int Query creates a temporary table */
+	public const QUERY_CREATE_TEMP = 1024;
 
 	/**
 	 * @param string|int $field

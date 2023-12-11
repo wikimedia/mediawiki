@@ -92,7 +92,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var array<string,array> Map of (name => (UNIX time,trx ID)) for current lock() mutexes */
 	protected $sessionNamedLocks = [];
-	/** @var array<string,array> Map of (name => (type,pristine,trx ID)) for current temp tables */
+	/** @var array<string,TempTableInfo> Current temp tables */
 	protected $sessionTempTables = [];
 
 	/** @var int Affected row count for the last statement to query() */
@@ -150,11 +150,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
 	private const NOT_APPLICABLE = 'n/a';
-
-	/** @var int Writes to this temporary table do not affect lastDoneWrites() */
-	private const TEMP_NORMAL = 1;
-	/** @var int Writes to this temporary table effect lastDoneWrites() */
-	private const TEMP_PSEUDO_PERMANENT = 2;
 
 	/** How long before it is worth doing a dummy query to test the connection */
 	private const PING_TTL = 1.0;
@@ -584,69 +579,56 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function doSingleStatementQuery( string $sql ): QueryStatus;
 
 	/**
+	 * Determine whether a query has a permanent table in its table list.
+	 * This includes pseudo-permanent tables.
+	 *
 	 * @param Query $query
-	 * @param bool $pseudoPermanent Treat any table from CREATE TEMPORARY as pseudo-permanent
-	 * @return array[] List of change n-tuples with:
-	 *   - int: self::TEMP_* constant for temp table operations
-	 *   - string: SQL query verb from $sql
-	 *   - string: Name of the temp table changed in $sql
+	 * @return bool
 	 */
-	private function getTempTableWrites( Query $query, $pseudoPermanent ) {
-		$tempTableChanges = [];
-		$tables = [];
-		foreach ( $query->getWriteTables() as $table ) {
-			$tables[] = $this->platform->tableName( $table, 'raw' );
+	private function hasPermanentTable( Query $query ) {
+		if ( $query->getVerb() === 'CREATE TEMPORARY' ) {
+			// Temporary table creation is allowed
+			return false;
+		}
+		$tables = $query->getWriteTables();
+		if ( !$tables ) {
+			// Parse error? Assume permanent.
+			return true;
 		}
 		foreach ( $tables as $table ) {
-			if ( $query->getVerb() === 'CREATE TEMPORARY' ) {
-				// Record the type of temporary table being created
-				$tableType = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
-			} elseif ( isset( $this->sessionTempTables[$table] ) ) {
-				$tableType = $this->sessionTempTables[$table]['type'];
-			} else {
-				$tableType = null;
-			}
-
-			if ( $tableType !== null ) {
-				$tempTableChanges[] = [ $tableType, $query->getVerb(), $table ];
+			$rawTable = $this->platform->tableName( $table, 'raw' );
+			$tempInfo = $this->sessionTempTables[$rawTable] ?? null;
+			if ( !$tempInfo || $tempInfo->pseudoPermanent ) {
+				// Permanent table found
+				return true;
 			}
 		}
-
-		return $tempTableChanges;
+		// All tables are temporary
+		return false;
 	}
 
 	/**
-	 * @param IResultWrapper|bool $ret
-	 * @param array[] $changes List of change n-tuples with from getTempTableWrites()
+	 * Register creation and dropping of temporary tables
+	 *
+	 * @param Query $query
 	 */
-	protected function registerTempWrites( $ret, array $changes ) {
-		if ( $ret === false ) {
-			return;
-		}
+	protected function registerTempTables( Query $query ) {
+		switch ( $query->getVerb() ) {
+			case 'CREATE TEMPORARY':
+				foreach ( $query->getWriteTables() as $table ) {
+					$rawTable = $this->platform->tableName( $table, 'raw' );
+					$this->sessionTempTables[$rawTable] = new TempTableInfo(
+						$this->transactionManager->getTrxId(),
+						(bool)( $query->getFlags() & self::QUERY_PSEUDO_PERMANENT )
+					);
+				}
+				break;
 
-		foreach ( $changes as [ $tmpTableType, $verb, $table ] ) {
-			switch ( $verb ) {
-				case 'CREATE TEMPORARY':
-					$this->sessionTempTables[$table] = [
-						'type' => $tmpTableType,
-						'pristine' => true,
-						'trxId' => $this->transactionManager->getTrxId()
-					];
-					break;
-				case 'DROP':
-					unset( $this->sessionTempTables[$table] );
-					break;
-				case 'TRUNCATE':
-					if ( isset( $this->sessionTempTables[$table] ) ) {
-						$this->sessionTempTables[$table]['pristine'] = true;
-					}
-					break;
-				default:
-					if ( isset( $this->sessionTempTables[$table] ) ) {
-						$this->sessionTempTables[$table]['pristine'] = false;
-					}
-					break;
-			}
+			case 'DROP':
+				foreach ( $query->getWriteTables() as $table ) {
+					$rawTable = $this->platform->tableName( $table, 'raw' );
+					unset( $this->sessionTempTables[$rawTable] );
+				}
 		}
 	}
 
@@ -697,17 +679,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertHasConnectionHandle();
 
 		$isPermWrite = false;
-		if ( $sql->isWriteQuery() ) {
+		$isWrite = $sql->isWriteQuery();
+		if ( $isWrite ) {
 			ChangedTablesTracker::recordQuery( $sql );
-			$pseudoPermanent = $this->flagsHolder::contains( $sql->getFlags(), self::QUERY_PSEUDO_PERMANENT );
-			$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
-			$isPermWrite = !$tempTableChanges;
-			foreach ( $tempTableChanges as [ $tmpType ] ) {
-				$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
-			}
 			// Permit temporary table writes on replica connections, but require a writable
 			// master connection for writes to persistent tables.
-			if ( $isPermWrite ) {
+			if ( $this->hasPermanentTable( $sql ) ) {
+				$isPermWrite = true;
 				$info = $this->getReadOnlyReason();
 				if ( $info ) {
 					[ $reason, $source ] = $info;
@@ -725,9 +703,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					);
 				}
 			}
-		} else {
-			// No temporary tables written to either
-			$tempTableChanges = [];
 		}
 
 		// Whether a silent retry attempt is left for recoverable connection loss errors
@@ -751,7 +726,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 
 		// Register creation and dropping of temporary tables
-		$this->registerTempWrites( $status->res, $tempTableChanges );
+		if ( $status->res ) {
+			$this->registerTempTables( $sql );
+		}
 		$this->completeCriticalSection( __METHOD__, $cs );
 
 		return $status;
@@ -1076,7 +1053,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 		// Loss of temp tables breaks future callers relying on those tables for queries
 		foreach ( $priorSessInfo->tempTables as $tableName => $tableInfo ) {
-			if ( $tableInfo['trxId'] && $tableInfo['trxId'] === $priorSessInfo->trxId ) {
+			if ( $tableInfo->trxId && $tableInfo->trxId === $priorSessInfo->trxId ) {
 				// Treat lost temp tables created during the lost transaction as a transaction
 				// state problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
 				// rollback automatically triggered server-side.
@@ -3023,22 +3000,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function truncate( $tables, $fname = __METHOD__ ) {
 		$tables = is_array( $tables ) ? $tables : [ $tables ];
-
-		$tablesTruncate = [];
-		foreach ( $tables as $table ) {
-			// Skip TEMPORARY tables with no writes nor sequence updates detected.
-			// This mostly is an optimization for integration testing.
-			$rawTable = $this->tableName( $table, 'raw' );
-			$isPristineTempTable = isset( $this->sessionTempTables[$rawTable] )
-			? $this->sessionTempTables[$rawTable]['pristine']
-			: false;
-			if ( !$isPristineTempTable ) {
-				$tablesTruncate[] = $table;
-			}
-		}
-
-		if ( $tablesTruncate ) {
-			$this->doTruncate( $tablesTruncate, $fname );
+		if ( $tables ) {
+			$this->doTruncate( $tables, $fname );
 		}
 	}
 
