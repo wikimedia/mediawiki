@@ -60,7 +60,7 @@ class ApiQueryTest extends ApiTestCase {
 	public function testTitlesAreRejectedIfInvalid() {
 		$title = false;
 		while ( !$title || Title::newFromText( $title )->exists() ) {
-			$title = md5( mt_rand( 0, 100000 ) );
+			$title = md5( mt_rand( 0, 100_000 ) );
 		}
 
 		$data = $this->doApiRequest( [

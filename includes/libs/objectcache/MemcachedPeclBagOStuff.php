@@ -55,7 +55,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$params += [
 			'compress_threshold' => 1500,
 			'connect_timeout' => 0.5,
-			'timeout' => 500000,
+			'timeout' => 500_000,
 			'serializer' => 'php',
 			'use_binary_protocol' => false,
 			'allow_tcp_nagle_delay' => true

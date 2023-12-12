@@ -76,7 +76,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * @var int
 	 */
-	private $cacheExpiry = 604800; // 7 days
+	private $cacheExpiry = 604_800; // 7 days
 
 	/**
 	 * @var bool

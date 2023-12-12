@@ -265,7 +265,7 @@ class WebResponse {
 	 * @since 1.27
 	 */
 	public function clearCookie( $name, $options = [] ) {
-		$this->setCookie( $name, '', time() - 31536000 /* 1 year */, $options );
+		$this->setCookie( $name, '', time() - 31_536_000 /* 1 year */, $options );
 	}
 
 	/**

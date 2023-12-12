@@ -13,7 +13,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @covers ApiErrorFormatter
 	 */
 	public function testErrorFormatterBasics() {
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$formatter = new ApiErrorFormatter( $result,
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' ), 'wikitext',
 			false );
@@ -41,7 +41,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @covers ApiErrorFormatter_BackCompat
 	 */
 	public function testNewWithFormat() {
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$formatter = new ApiErrorFormatter( $result,
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' ), 'wikitext',
 			false );
@@ -64,7 +64,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	public function testErrorFormatter( $format, $lang, $useDB,
 		$expect1, $expect2, $expect3
 	) {
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$formatter = new ApiErrorFormatter( $result,
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $lang ), $format,
 			$useDB );
@@ -408,7 +408,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$disclaimers = wfMessage( 'disclaimers' );
 		$edithelp = wfMessage( 'edithelp' );
 
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$formatter = new ApiErrorFormatter_BackCompat( $result );
 
 		$this->assertSame( 'en', $formatter->getLanguage()->getCode() );
@@ -601,7 +601,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetMessageFromException( $exception, $options, $expect ) {
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$formatter = new ApiErrorFormatter( $result,
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ), 'html',
 			false );
@@ -628,7 +628,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetMessageFromException_BC( $exception, $options, $expect ) {
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$formatter = new ApiErrorFormatter_BackCompat( $result );
 
 		$msg = $formatter->getMessageFromException( $exception, $options );
@@ -696,7 +696,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @covers ApiErrorFormatter::formatMessageInternal
 	 */
 	public function testAddMessagesFromStatus_filter() {
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$formatter = new ApiErrorFormatter( $result,
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' ),
 			'plaintext', false );

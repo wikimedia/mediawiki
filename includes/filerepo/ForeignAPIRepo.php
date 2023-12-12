@@ -60,7 +60,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	protected $apiThumbCacheExpiry = 86400; // 1 day (24*3600)
 
 	/** @var int Redownload thumbnail files after this expiry */
-	protected $fileCacheExpiry = 2592000; // 1 month (30*24*3600)
+	protected $fileCacheExpiry = 2_592_000; // 1 month (30*24*3600)
 
 	/**
 	 * @var int API metadata cache time.

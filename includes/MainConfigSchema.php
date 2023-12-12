@@ -1943,7 +1943,7 @@ class MainConfigSchema {
 	 * Default is 1024*256 bytes
 	 */
 	public const SVGMetadataCutoff = [
-		'default' => 262144,
+		'default' => 262_144,
 	];
 
 	/**
@@ -2003,7 +2003,7 @@ class MainConfigSchema {
 	 * 12.5 million pixels or 3500x3500.
 	 */
 	public const MaxImageArea = [
-		'default' => 12500000,
+		'default' => 12_500_000,
 		'type' => 'string|integer|false',
 	];
 
@@ -2016,7 +2016,7 @@ class MainConfigSchema {
 	 * It probably makes sense to keep this equal to $wgMaxImageArea.
 	 */
 	public const MaxAnimatedGifArea = [
-		'default' => 12500000,
+		'default' => 12_500_000,
 	];
 
 	/**
@@ -4276,7 +4276,7 @@ class MainConfigSchema {
 	 * Read/write timeout for MemCached server communication, in microseconds.
 	 */
 	public const MemCachedTimeout = [
-		'default' => 500000,
+		'default' => 500_000,
 	];
 
 	/**
@@ -6488,7 +6488,7 @@ class MainConfigSchema {
 	 * by PPFrame::expand()
 	 */
 	public const MaxPPNodeCount = [
-		'default' => 1000000,
+		'default' => 1_000_000,
 	];
 
 	/**
@@ -9579,7 +9579,7 @@ class MainConfigSchema {
 			'POST' => [
 				'readQueryTime' => 5,
 				'writeQueryTime' => 1,
-				'readQueryRows' => 100000,
+				'readQueryRows' => 100_000,
 				'maxAffected' => 1000
 			],
 			'POST-nonwrite' => [
@@ -9601,14 +9601,14 @@ class MainConfigSchema {
 			'PostSend-POST' => [
 				'readQueryTime' => 5,
 				'writeQueryTime' => 1,
-				'readQueryRows' => 100000,
+				'readQueryRows' => 100_000,
 				'maxAffected' => 1000
 			],
 			// Background job runner
 			'JobRunner' => [
 				'readQueryTime' => 30,
 				'writeQueryTime' => 5,
-				'readQueryRows' => 100000,
+				'readQueryRows' => 100_000,
 				'maxAffected' => 500 // ballpark of $wgUpdateRowsPerQuery
 			],
 			// Command-line scripts
@@ -12140,7 +12140,7 @@ class MainConfigSchema {
 	 * @warning Do not set this lower than $wgMaxArticleSize*1024
 	 */
 	public const APIMaxResultSize = [
-		'default' => 8388608,
+		'default' => 8_388_608,
 	];
 
 	/**
@@ -12277,7 +12277,7 @@ class MainConfigSchema {
 	 * Maximum amount of virtual memory available to shell processes under linux, in KiB.
 	 */
 	public const MaxShellMemory = [
-		'default' => 307200,
+		'default' => 307_200,
 	];
 
 	/**
@@ -12285,7 +12285,7 @@ class MainConfigSchema {
 	 * ImageMagick convert for example can be fairly hungry for scratch space
 	 */
 	public const MaxShellFileSize = [
-		'default' => 102400,
+		'default' => 102_400,
 	];
 
 	/**
@@ -12772,7 +12772,7 @@ class MainConfigSchema {
 	 * Number of seconds to keep edit recovery data after the edit is stored.
 	 */
 	public const EditRecoveryExpiry = [
-		'default' => 2592000,
+		'default' => 2_592_000,
 		'type' => 'integer',
 	];
 

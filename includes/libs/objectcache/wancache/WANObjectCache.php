@@ -2727,7 +2727,7 @@ class WANObjectCache implements
 		// Ramp up $chance from 0 to its nominal value over RAMPUP_TTL seconds to avoid stampedes
 		$chance *= ( $timeOld <= self::RAMPUP_TTL ) ? $timeOld / self::RAMPUP_TTL : 1;
 
-		return ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
+		return ( mt_rand( 1, 1_000_000_000 ) <= 1_000_000_000 * $chance );
 	}
 
 	/**
@@ -2768,7 +2768,7 @@ class WANObjectCache implements
 		// having p(0)=0 and p(1)=1. The value expires at the nominal expiry.
 		$chance = $ttrRatio ** 4;
 
-		return ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
+		return ( mt_rand( 1, 1_000_000_000 ) <= 1_000_000_000 * $chance );
 	}
 
 	/**

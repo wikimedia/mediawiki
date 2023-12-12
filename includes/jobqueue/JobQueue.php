@@ -63,7 +63,7 @@ abstract class JobQueue {
 
 	protected const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
 
-	protected const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
+	protected const ROOTJOB_TTL = 2_419_200; // integer; seconds to remember root jobs (28 days)
 
 	/**
 	 * @stable to call

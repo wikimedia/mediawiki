@@ -35,7 +35,7 @@ class WordLevelDiff extends Diff {
 	/**
 	 * @inheritDoc
 	 */
-	protected $bailoutComplexity = 40000000; // Roughly 6K x 6K words changed
+	protected $bailoutComplexity = 40_000_000; // Roughly 6K x 6K words changed
 
 	/**
 	 * @stable to call

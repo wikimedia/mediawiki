@@ -138,7 +138,7 @@ class ForkController {
 				}
 				// Throttle restarts
 				if ( $this->procsToStart ) {
-					usleep( 500000 );
+					usleep( 500_000 );
 				}
 			}
 

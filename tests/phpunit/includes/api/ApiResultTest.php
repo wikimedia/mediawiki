@@ -198,7 +198,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$arr = [];
-		$result2 = new ApiResult( 8388608 );
+		$result2 = new ApiResult( 8_388_608 );
 		$result2->addValue( null, 'foo', 'bar' );
 		ApiResult::setValue( $arr, 'baz', $result2 );
 		$this->assertSame( [
@@ -237,7 +237,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	 * @covers ApiResult
 	 */
 	public function testInstanceDataMethods() {
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 
 		$result->addValue( null, 'setValue', '1' );
 
@@ -496,8 +496,8 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $result->addValue( null, 'foo', $obj ) );
 		$this->assertSame( 2, $result->getSize() );
 
-		$result = new ApiResult( 8388608 );
-		$result2 = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
+		$result2 = new ApiResult( 8_388_608 );
 		$result2->addValue( null, 'foo', 'bar' );
 		$result->addValue( null, 'baz', $result2 );
 		$this->assertSame( [
@@ -508,7 +508,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			ApiResult::META_TYPE => 'assoc',
 		], $result->getResultData() );
 
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$result->addValue( null, 'foo', "foo\x80bar" );
 		$result->addValue( null, 'bar', "a\xcc\x81" );
 		$result->addValue( null, 'baz', 74 );
@@ -523,7 +523,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			ApiResult::META_TYPE => 'assoc',
 		], $result->getResultData() );
 
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$obj = (object)[ 1 => 'one' ];
 		$arr = [];
 		$result->addValue( $arr, 'foo', $obj );
@@ -541,7 +541,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testMetadata() {
 		$arr = [ 'foo' => [ 'bar' => [] ] ];
-		$result = new ApiResult( 8388608 );
+		$result = new ApiResult( 8_388_608 );
 		$result->addValue( null, 'foo', [ 'bar' => [] ] );
 
 		$expect = [

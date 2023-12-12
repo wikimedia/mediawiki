@@ -175,8 +175,8 @@ class GlobalIdGenerator {
 		Assert::parameter( $base <= 36, '$base', 'must be <= 36' );
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
-		$info = $this->getTimeAndDelay( 'lockFile128', 16384, 1048576, 1048576 );
-		$info[self::CLOCK_OFFSET_COUNTER] %= 1048576;
+		$info = $this->getTimeAndDelay( 'lockFile128', 16384, 1_048_576, 1_048_576 );
+		$info[self::CLOCK_OFFSET_COUNTER] %= 1_048_576;
 
 		return \Wikimedia\base_convert( $this->getTimestampedID128( $info ), 2, $base );
 	}

@@ -362,7 +362,7 @@ class LoadMonitor implements ILoadMonitor {
 		// the value might not refresh until a modest time after the nominal expiry.
 		$chance = exp( -64 * min( $genRatio, 0.1 ) ) * ( $ttrRatio ** 4 );
 
-		return ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
+		return ( mt_rand( 1, 1_000_000_000 ) <= 1_000_000_000 * $chance );
 	}
 
 	/**

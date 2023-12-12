@@ -47,7 +47,7 @@ use Xml;
 class SpecialExpandTemplates extends SpecialPage {
 
 	/** @var int Maximum size in bytes to include. 50 MB allows fixing those huge pages */
-	private const MAX_INCLUDE_SIZE = 50000000;
+	private const MAX_INCLUDE_SIZE = 50_000_000;
 
 	private ParserFactory $parserFactory;
 	private UserOptionsLookup $userOptionsLookup;
