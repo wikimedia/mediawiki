@@ -320,7 +320,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPostSendJobDoesNotSetCookie() {
 		// Prevent updates from running
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$response = new WebResponse;
 

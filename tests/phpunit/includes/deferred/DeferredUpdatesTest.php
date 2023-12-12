@@ -26,7 +26,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testAddMergeable() {
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$update1 = $this->getMockBuilder( MergeableUpdate::class )
 			->onlyMethods( [ 'merge', 'doUpdate' ] )->getMock();
@@ -43,20 +43,18 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testAddCallableUpdate() {
-		$this->setMwGlobals( 'wgCommandLineMode', true );
-
 		$ran = 0;
 		DeferredUpdates::addCallableUpdate( static function () use ( &$ran ) {
 			$ran++;
 		} );
-		DeferredUpdates::doUpdates();
+		// Opportunistic updates should be enabled, so the updates should have already executed
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
 
 		$this->assertSame( 1, $ran, 'Update ran' );
 	}
 
 	public function testGetPendingUpdates() {
-		// Prevent updates from running
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$pre = DeferredUpdates::PRESEND;
 		$post = DeferredUpdates::POSTSEND;
@@ -84,7 +82,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDoUpdatesWeb() {
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$updates = [
 			'1' => "deferred update 1;\n",
@@ -176,7 +174,6 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDoUpdatesCLI() {
-		$this->setMwGlobals( 'wgCommandLineMode', true );
 		$updates = [
 			'1' => "deferred update 1;\n",
 			'2' => "deferred update 2;\n",
@@ -241,12 +238,11 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectOutputString( implode( '', $updates ) );
 
-		DeferredUpdates::doUpdates();
+		// Opportunistic updates should be enabled, so the updates should have already executed
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
 	}
 
 	public function testPresendAddOnPostsendRun() {
-		$this->setMwGlobals( 'wgCommandLineMode', true );
-
 		$x = false;
 		$y = false;
 		// clear anything
@@ -266,14 +262,15 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 			DeferredUpdates::POSTSEND
 		);
 
-		DeferredUpdates::doUpdates();
+		// Opportunistic updates should be enabled, so the updates should have already executed
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
 
 		$this->assertTrue( $x, "Outer POSTSEND update ran" );
 		$this->assertTrue( $y, "Nested PRESEND update ran" );
 	}
 
 	public function testRunUpdateTransactionScope() {
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->assertFalse( $lbFactory->hasTransactionRound(), 'Initial state' );
@@ -293,7 +290,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	 * @covers TransactionRoundDefiningUpdate
 	 */
 	public function testRunOuterScopeUpdate() {
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->assertFalse( $lbFactory->hasTransactionRound(), 'Initial state' );
@@ -406,8 +403,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNestedExecution() {
-		// No immediate execution
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$res = null;
 		$resSub = null;
