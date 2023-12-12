@@ -70,7 +70,7 @@ class AttachLatest extends Maintenance {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$name = $title->getPrefixedText();
 			$latestTime = $dbw->newSelectQueryBuilder()
-				->select( 'MAX(rev_timestamp' )
+				->select( 'MAX(rev_timestamp)' )
 				->from( 'revision' )
 				->where( [ 'rev_page' => $pageId ] )
 				->caller( __METHOD__ )
