@@ -150,9 +150,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
 		if ( !strlen( $target ) ) {
-			if ( !$this->including() ) {
-				$out->addHTML( $this->getForm( $this->opts ) );
-			}
+			$out->addHTML( $this->getForm( $this->opts ) );
 
 			return;
 		}
@@ -299,9 +297,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->getHookRunner()->onSpecialContributionsBeforeMainOutput(
 			$notExternal ? $userObj->getId() : 0, $userObj, $this )
 		) {
-			if ( !$this->including() ) {
-				$out->addHTML( $this->getForm( $this->opts ) );
-			}
+			$out->addHTML( $this->getForm( $this->opts ) );
 			// We want a pure UserIdentity for imported actors, so the first letter
 			// of them is in lowercase and queryable.
 			$userIdentity = $notExternal ? $userObj :
@@ -689,6 +685,11 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @return string HTML fragment
 	 */
 	protected function getForm( array $pagerOptions ) {
+		if ( $this->including() ) {
+			// Do not show a form when special page is included in wikitext
+			return '';
+		}
+
 		// Modules required only for the form
 		$this->getOutput()->addModules( [
 			'mediawiki.special.contributions',
