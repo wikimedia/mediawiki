@@ -95,7 +95,8 @@ module.exports = function ( grunt ) {
 			options: {
 				reportNeedlessDisables: true
 			},
-			src: '{resources/src,mw-config}/**/*.{css,less,vue}'
+			resources: 'resources/src/**/*.{css,less,vue}',
+			config: 'mw-config/**/*.css'
 		},
 		watch: {
 			files: [
