@@ -148,7 +148,7 @@
 	 * This method is mainly intended for verbose logging. It is a no-op in production mode.
 	 * In ResourceLoader debug mode, it will use the browser's console.
 	 *
-	 * @memberof mw
+	 * @ignore
 	 * @param {...string} msg Messages to output to console.
 	 */
 	var log = function () {
@@ -158,15 +158,15 @@
 	/**
 	 * Write a message to the browser console's warning channel.
 	 *
-	 * @memberof mw
+	 * @memberof mw.log
+	 * @method warn
 	 * @param {...string} msg Messages to output to console
 	 */
 	log.warn = Function.prototype.bind.call( con.warn, con );
 
 	/**
-	 * Collection of methods to help log messages to the console.
+	 * Base library for MediaWiki. Exposed globally as `mw`, with `mediaWiki` as alias.
 	 *
-	 * @classdesc Base library for MediaWiki. Exposed globally as `mw`, with `mediaWiki` as alias.
 	 * @namespace mw
 	 * @singleton
 	 * @hideconstructor
