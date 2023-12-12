@@ -1,7 +1,3 @@
-/**
- * @description Utility library provided by the `mediawiki.util` ResourceLoader module. Accessible inside ResourceLoader modules
- * or for gadgets as part of the [mw global object]{@link mw}.
- */
 'use strict';
 
 var config = require( './config.json' );
@@ -64,6 +60,8 @@ function escapeIdInternal( str, mode ) {
  *   // In gadgets
  *   const mwUtil = mw.util;
  * @exports mediawiki.util
+ * @description Utility library provided by the `mediawiki.util` ResourceLoader module. Accessible inside ResourceLoader modules
+ * or for gadgets as part of the [mw global object]{@link mw}.
  */
 var util = {
 
