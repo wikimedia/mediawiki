@@ -6,7 +6,7 @@ var portletLinkOptions = require( './portletLinkOptions.json' );
 require( './jquery.accessKeyLabel.js' );
 
 /**
- * Encode the string like PHP's rawurlencode
+ * Encode the string like PHP's rawurlencode.
  *
  * @ignore
  * @param {string} str String to be encoded.
@@ -54,19 +54,20 @@ function escapeIdInternal( str, mode ) {
  */
 
 /**
+ * Utility library provided by the `mediawiki.util` ResourceLoader module. Accessible inside ResourceLoader modules
+ * or for gadgets as part of the [mw global object]{@link mw}.
+ *
  * @example
  *   // Inside MediaWiki extensions
  *   const util = require( 'mediawiki.util' );
  *   // In gadgets
  *   const mwUtil = mw.util;
  * @exports mediawiki.util
- * @description Utility library provided by the `mediawiki.util` ResourceLoader module. Accessible inside ResourceLoader modules
- * or for gadgets as part of the [mw global object]{@link mw}.
  */
 var util = {
 
 	/**
-	 * Encode the string like PHP's rawurlencode
+	 * Encode the string like PHP's rawurlencode.
 	 *
 	 * @method
 	 * @param {string} str String to be encoded.
@@ -458,7 +459,7 @@ var util = {
 	},
 
 	/**
-	 * Is a portlet visible?
+	 * Whether a portlet is visible.
 	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 * @return {boolean}
@@ -897,7 +898,7 @@ var util = {
 	},
 
 	/**
-	 * Check whether a string is a valid IP address
+	 * Check whether a string is a valid IP address.
 	 *
 	 * @since 1.25
 	 * @param {string} address String to check

@@ -505,7 +505,7 @@ mw.hook = function ( name ) {
 		 */
 		return {
 			/**
-			 * Register a hook handler
+			 * Register a hook handler.
 			 *
 			 * @param {...Function} handler Function to bind.
 			 * @chainable
@@ -525,7 +525,7 @@ mw.hook = function ( name ) {
 				return this;
 			},
 			/**
-			 * Unregister a hook handler
+			 * Unregister a hook handler.
 			 *
 			 * @param {...Function} handler Function to unbind.
 			 * @chainable
@@ -577,7 +577,6 @@ mw.hook = function ( name ) {
  *     mw.log( output ); // <div><img src="&lt;"/></div>
  *
  * @namespace mw.html
- * @classdesc Utility functions for aiding the construction of HTML.
  * @singleton
  */
 

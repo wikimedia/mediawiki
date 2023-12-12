@@ -373,7 +373,6 @@
 	 * Library for sending notifications to end users.
 	 *
 	 * @namespace mw.notification
-	 * @classdesc Send notifications to end users.
 	 * @memberof mw
 	 * @singleton
 	 */
