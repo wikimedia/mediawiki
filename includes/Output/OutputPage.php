@@ -2407,6 +2407,7 @@ class OutputPage extends ContextSource {
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
+		// Note: this path absolutely expects $parserOutput to be mutated by getText, see T353257
 		return $parserOutput->getText( $poOptions );
 	}
 

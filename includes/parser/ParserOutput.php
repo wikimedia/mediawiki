@@ -417,10 +417,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *  - bodyContentOnly: (bool) . Default: true
 	 * @return string HTML
 	 * @return-taint escaped
+	 * @deprecated since 1.42, this method has side-effects on the ParserOutput
+	 *  (see T353257) and so should be avoided in favor of directly invoking
+	 *  the default output pipeline on a ParserOutput.
 	 */
 	public function getText( $options = [] ) {
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$oldText = $this->mText; // T353257
 		$options += [
+			'suppressClone' => true, // T353257
 			'allowTOC' => true,
 			'injectTOC' => true,
 			'enableSectionEditLinks' => true,
@@ -434,7 +439,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'bodyContentOnly' => true,
 			'isParsoidContent' => PageBundleParserOutputConverter::hasPageBundle( $this ),
 		];
-		return $pipeline->run( $this, null, $options )->getContentHolderText();
+		$po = $pipeline->run( $this, null, $options );
+		$newText = $po->getContentHolderText();
+		// T353257: for back-compat only mutations to metadata performed by
+		// the pipeline should be preserved; mutations to $mText should be
+		// discarded.
+		$this->setText( $oldText );
+		return $newText;
 	}
 
 	/**

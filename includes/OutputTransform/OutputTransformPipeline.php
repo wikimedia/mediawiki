@@ -21,11 +21,14 @@ class OutputTransformPipeline {
 	/**
 	 * Runs the pipeline on the ParserOutput, yielding a transformed ParserOutput.
 	 * @param ParserOutput $in Parser output to which the transformations are
-	 * 	applied. It is copied before applying transformations and is hence not
-	 * modified by this method.
+	 * 	applied. It is typically copied before applying transformations and is
+	 * hence not mutated by this method, but if $options['suppressClone'] is
+	 * set it WILL be mutated!
 	 * @param ?ParserOptions $popts - will eventually replace options as container
 	 *    for transformation options
 	 * @param array $options Transformations to apply to the HTML
+	 *  - suppressClone: (bool) Whether to clone the ParserOutput before
+	 *     applying transformations. Default is false.
 	 *  - allowTOC: (bool) Show the TOC, assuming there were enough headings
 	 *     to generate one and `__NOTOC__` wasn't used. Default is true,
 	 *     but might be statefully overridden.
@@ -57,7 +60,13 @@ class OutputTransformPipeline {
 	 *  - bodyContentOnly: (bool) . Default: true
 	 */
 	public function run( ParserOutput $in, ?ParserOptions $popts, array $options ): ParserOutput {
-		$out = clone $in;
+		if ( $options['suppressClone'] ?? false ) {
+			// T353257: This should be a clone, but we've need to suppress it
+			// for some legacy codepaths.
+			$out = $in;
+		} else {
+			$out = clone $in;
+		}
 		foreach ( $this->stages as $stage ) {
 			if ( $stage->shouldRun( $out, $popts, $options ) ) {
 				// Some stages may (for now) modify $options. See OutputTransformStage documentation for more info.
