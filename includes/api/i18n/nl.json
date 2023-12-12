@@ -108,7 +108,7 @@
 	"apihelp-edit-param-tags": "Wijzigingslabels om op de versie toe te passen.",
 	"apihelp-edit-param-minor": "Mankeer deze bewerking als een kleine bewerking.",
 	"apihelp-edit-param-notminor": "Markeer deze bewerking niet als een kleine bewerking, zelfs niet als de gebruikersvoorkeur \"{{int:tog-minordefault}}\" aan staat.",
-	"apihelp-edit-param-bot": "Deze bewerking markeren als een botbewerking.",
+	"apihelp-edit-param-bot": "Deze bewerking als robotbewerking markeren.",
 	"apihelp-edit-param-createonly": "De pagina niet bewerken als die al bestaat.",
 	"apihelp-edit-param-nocreate": "Een foutmelding geven als de pagina niet bestaat.",
 	"apihelp-edit-param-watch": "Voeg de pagina toe aan de volglijst van de huidige gebruiker.",
