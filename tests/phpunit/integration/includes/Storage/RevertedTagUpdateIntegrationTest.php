@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Storage;
 
 use ChangeTags;
 use FormatJson;
-use MediaWiki\Config\HashConfig;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
@@ -173,7 +172,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$num = 5;
 
 		// disable patrolling
-		$this->overrideMwServices( new HashConfig( [ MainConfigNames::UseRCPatrol => false ] ) );
+		$this->overrideConfigValues( [ MainConfigNames::UseRCPatrol => false ] );
 
 		$page = $this->getExistingTestPage();
 		$revisionIds = $this->setupEditsOnPage( $page, $num );
