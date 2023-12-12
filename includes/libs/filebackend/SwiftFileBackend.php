@@ -1813,10 +1813,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function storageUrl( array $creds, $container = null, $object = null ) {
 		$parts = [ $creds['storage_url'] ];
-		if ( strlen( $container ) ) {
+		if ( strlen( $container ?? '' ) ) {
 			$parts[] = rawurlencode( $container );
 		}
-		if ( strlen( $object ) ) {
+		if ( strlen( $object ?? '' ) ) {
 			$parts[] = str_replace( "%2F", "/", rawurlencode( $object ) );
 		}
 
