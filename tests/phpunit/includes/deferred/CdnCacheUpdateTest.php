@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
 class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
 
 	public function testPurgeMergeWeb() {
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 		$this->setService( 'LinkBatchFactory', $this->createMock( LinkBatchFactory::class ) );
 
 		$title = Title::newMainPage();

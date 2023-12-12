@@ -2527,7 +2527,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
 
 		$p = 'container/test-cont/file.txt';
 		$be->quickCreate( [
