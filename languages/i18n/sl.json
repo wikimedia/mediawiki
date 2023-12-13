@@ -3766,7 +3766,7 @@
 	"logentry-move-move_redir": "$1 je {{GENDER:$2|prestavil|prestavila|prestavil/a}} stran $3 na $4 prek preusmeritve",
 	"logentry-move-move_redir-noredirect": "$1 je {{GENDER:$2|prestavil|prestavila|prestavil/a}} stran $3 na $4 prek preusmeritve in brez preusmeritve",
 	"logentry-patrol-patrol": "$1 je {{GENDER:$2|označil|označila|označil/a}} redakcijo $4 strani $3 kot pregledano",
-	"logentry-patrol-patrol-auto": "$1 je samodejno {{GENDER:$2|označil|označila|označil/a}} redakcijo $4 strani $3 kot pregledano",
+	"logentry-patrol-patrol-auto": "$1 je samodejno {{GENDER:$2|označil|označila|označil_a}} redakcijo $4 strani $3 kot pregledano",
 	"logentry-newusers-newusers": "$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril_a}} uporabniški račun",
 	"logentry-newusers-create": "$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril_a}} uporabniški račun",
 	"logentry-newusers-create2": "$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril_a}} uporabniški račun $3",
