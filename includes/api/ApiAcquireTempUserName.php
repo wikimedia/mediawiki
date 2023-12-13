@@ -58,8 +58,11 @@ class ApiAcquireTempUserName extends ApiBase {
 		// Checks passed, acquire the name
 		$session = $this->getRequest()->getSession();
 		$name = $this->tempUserCreator->acquireAndStashName( $session );
-		$session->persist();
+		if ( $name === null ) {
+			$this->dieWithError( 'apierror-tempuseracquirefailed', 'tempuseracquirefailed' );
+		}
 
+		$session->persist();
 		$this->getResult()->addValue( null, $this->getModuleName(), $name );
 	}
 

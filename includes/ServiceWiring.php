@@ -2211,6 +2211,7 @@ return [
 			$services->getObjectFactory(),
 			$services->getUserFactory(),
 			$services->getAuthManager(),
+			$services->getCentralIdLookup(),
 			// This is supposed to match ThrottlePreAuthenticationProvider
 			new Throttler(
 				$accountCreationThrottle,

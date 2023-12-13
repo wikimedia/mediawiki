@@ -4639,5 +4639,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} is made by people like you. With an account you can have a permanent and secure identity with access to features like:",
 	"benefit-1-description": "Watchlists that allow you to keep track of pages that you’re interested in.",
 	"benefit-2-description": "Permanent list of contributions you’ve made to the project.",
-	"benefit-3-description": "Preferences that allow you to customize your experience."
+	"benefit-3-description": "Preferences that allow you to customize your experience.",
+	"temp-user-unable-to-acquire": "Unable to acquire a temporary account username. Please try again."
 }
