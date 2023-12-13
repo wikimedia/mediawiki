@@ -1,6 +1,5 @@
 /**
- * @class mw.user
- * @singleton
+ * @namespace mw.user
  */
 ( function () {
 	var userInfoPromise, tempUserNamePromise, pageviewRandomId, sessionId;
@@ -70,7 +69,7 @@
 	}
 
 	// mw.user with the properties options and tokens gets defined in mediawiki.base.js.
-	Object.assign( mw.user, {
+	Object.assign( mw.user, /** @lends mw.user */{
 
 		/**
 		 * Generate a random user session ID.
@@ -79,8 +78,8 @@
 		 * session or series of sessions. Its uniqueness should not be depended on unless the
 		 * browser supports the crypto API.
 		 *
-		 * Known problems with Math.random():
-		 * Using the Math.random function we have seen sets
+		 * Known problems with `Math.random()`:
+		 * Using the `Math.random` function we have seen sets
 		 * with 1% of non uniques among 200,000 values with Safari providing most of these.
 		 * Given the prevalence of Safari in mobile the percentage of duplicates in
 		 * mobile usages of this code is probably higher.
@@ -89,8 +88,9 @@
 		 * We need about 80 bits to make sure that probability of collision
 		 * on 155 billion  is <= 1%
 		 *
-		 * See https://en.wikipedia.org/wiki/Birthday_attack#Mathematics
-		 * n(p;H) = n(0.01,2^80)= sqrt (2 * 2^80 * ln(1/(1-0.01)))
+		 * See {@link https://en.wikipedia.org/wiki/Birthday_attack#Mathematics}
+		 *
+		 * `n(p;H) = n(0.01,2^80)= sqrt (2 * 2^80 * ln(1/(1-0.01)))`
 		 *
 		 * @return {string} 80 bit integer (20 characters) in hex format, padded
 		 */
@@ -152,7 +152,7 @@
 		/**
 		 * Get the current user's database id
 		 *
-		 * Not to be confused with #id.
+		 * Not to be confused with {@link mw.user#id id}.
 		 *
 		 * @return {number} Current user's id, or 0 if user is anonymous
 		 */
@@ -244,7 +244,6 @@
 
 		/**
 		 * Get date user first registered, if available.
-		 *
 		 * @return {boolean|null|Date} False for anonymous users, null if data is
 		 *  unavailable, or Date for when the user registered. For temporary users
 		 *  that is when their temporary account was created.
@@ -297,7 +296,7 @@
 		/**
 		 * Get the current user's name or the session ID
 		 *
-		 * Not to be confused with #getId.
+		 * Not to be confused with {@link mw.user#getId getId}.
 		 *
 		 * @return {string} User name or random session ID
 		 */
@@ -347,21 +346,21 @@
 		 * and swap class names server-side through the Skin interface.
 		 *
 		 * This feature is limited to page views by unregistered users. For logged-in requests,
-		 * store preferences in the database instead, via UserOptionsManager or mw.Api#saveOption
+		 * store preferences in the database instead, via UserOptionsManager or `mw.Api.saveOption`
 		 * (may be hidden or API-only to exclude from Special:Preferences), and then include the
 		 * desired classes directly in Skin::getHtmlElementAttributes.
 		 *
 		 * Classes toggled by this feature must be named as `<feature>-clientpref-<value>`,
-		 * where `value` contains only alphanumerical characters (a-zA-Z0-9), and `feature`
+		 * where `value` contains only alphanumerical characters (a-z, A-Z, and 0-9), and `feature`
 		 * can also include hyphens.
 		 *
-		 * @class mw.user.clientPrefs
-		 * @singleton
+		 * @namespace mw.user.clientPrefs
 		 */
 		clientPrefs: {
 			/**
 			 * Change the class on the HTML document element, and save the value in a cookie
 			 *
+			 * @memberof mw.user.clientPrefs
 			 * @param {string} feature
 			 * @param {string} value
 			 * @return {boolean} True if feature was stored successfully, false if the value
@@ -401,6 +400,7 @@
 			/**
 			 * Retrieve the current value of the feature from the HTML document element
 			 *
+			 * @memberof mw.user.clientPrefs
 			 * @param {string} feature
 			 * @return {string|boolean} returns boolean if the feature is not recognized
 			 *  returns string if a feature was found.

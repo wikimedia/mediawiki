@@ -24,6 +24,7 @@ module.exports = {
 			'resources/src/mediawiki.notification',
 			'resources/src/mediawiki.util',
 			'resources/src/startup',
+			'resources/src/mediawiki.user.js',
 			'resources/src/mediawiki.Uri'
 
 		],
@@ -97,7 +98,6 @@ module.exports = {
 			'resources/src/mediawiki.language',
 			'resources/src/mediawiki.language.months',
 			'resources/src/mediawiki.language.names',
-			'resources/src/mediawiki.user.js',
 			'resources/src/mediawiki.language.specialCharacters',
 			'resources/src/mediawiki.userSuggest.js',
 			'resources/src/mediawiki.libs.jpegmeta',
