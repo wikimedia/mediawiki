@@ -383,6 +383,7 @@ class ApiQuery extends ApiBase {
 				'CommentStore',
 				'RowCommentFormatter',
 				'ChangeTagDefStore',
+				'UserNameUtils',
 			],
 		],
 		'pageswithprop' => [
@@ -422,6 +423,7 @@ class ApiQuery extends ApiBase {
 				'ChangeTagDefStore',
 				'SlotRoleStore',
 				'SlotRoleRegistry',
+				'UserNameUtils',
 			],
 		],
 		'search' => [

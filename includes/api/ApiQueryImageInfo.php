@@ -476,6 +476,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( $userid ) {
 					$vals['userid'] = $uploader ? $uploader->getId() : 0;
 				}
+				if ( $uploader && $services->getUserNameUtils()->isTemp( $uploader->getName() ) ) {
+					$vals['temp'] = true;
+				}
 				if ( $uploader && !$uploader->isRegistered() ) {
 					$vals['anon'] = true;
 				}

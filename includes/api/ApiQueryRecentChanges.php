@@ -30,6 +30,7 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -46,6 +47,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private NameTableStore $changeTagDefStore;
 	private NameTableStore $slotRoleStore;
 	private SlotRoleRegistry $slotRoleRegistry;
+	private UserNameUtils $userNameUtils;
 
 	private $formattedComments = [];
 
@@ -57,6 +59,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param NameTableStore $changeTagDefStore
 	 * @param NameTableStore $slotRoleStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -65,7 +68,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		RowCommentFormatter $commentFormatter,
 		NameTableStore $changeTagDefStore,
 		NameTableStore $slotRoleStore,
-		SlotRoleRegistry $slotRoleRegistry
+		SlotRoleRegistry $slotRoleRegistry,
+		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $query, $moduleName, 'rc' );
 		$this->commentStore = $commentStore;
@@ -73,6 +77,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->slotRoleStore = $slotRoleStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
@@ -540,6 +545,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 				if ( $this->fld_userid ) {
 					$vals['userid'] = (int)$row->actor_user;
+				}
+
+				if ( isset( $row->actor_name ) && $this->userNameUtils->isTemp( $row->actor_name ) ) {
+					$vals['temp'] = true;
 				}
 
 				if ( !$row->actor_user ) {

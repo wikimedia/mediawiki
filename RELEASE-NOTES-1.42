@@ -199,6 +199,11 @@ because of Phabricator reports.
   - ::runWithoutAbort()
   - ::runner()
 * Article::__get(), ::__set(), deprecated since 1.35, have been removed.
+* Several API calls have been updated to return a 'temp' user flag:
+  - ApiQueryImageInfo
+  - ApiQueryLogEvents
+  - ApiQueryRecentChanges
+  - APIs extended from ApiQueryRevisionsBase
 * …
 
 === Deprecations in 1.42 ===
