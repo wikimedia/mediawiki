@@ -120,6 +120,7 @@
 	"config-db-prefix": "Przedrostek tabel bazy danych:",
 	"config-db-prefix-help": "Jeśli zachodzi potrzeba współdzielenia jednej bazy danych między wieloma wiki, lub między MediaWiki i inną aplikacją sieciową, można dodać przedrostek do wszystkich nazw tabel w celu uniknięcia konfliktów.\nNie należy używać spacji.\n\nTo pole zwykle pozostawiane jest puste.",
 	"config-mysql-old": "Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.",
+	"config-mariadb-old": "Wymagana jest MariaDB $1 lub nowsza. Korzystasz z $2.",
 	"config-db-port": "Port bazy danych:",
 	"config-db-ssl": "Połącz przez SSL",
 	"config-db-schema": "Schemat bazy danych MediaWiki (nie może zawierać kresek):",

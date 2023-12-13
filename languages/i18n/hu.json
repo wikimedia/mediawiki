@@ -1615,6 +1615,7 @@
 	"rcfilters-filter-categorization-description": "Bejegyzések lapok kategóriákhoz való hozzáadásáról vagy azokból való eltávolításáról.",
 	"rcfilters-filter-logactions-label": "Naplózott műveletek",
 	"rcfilters-filter-logactions-description": "Adminisztratív műveletek, fióklétrehozások, laptörlések, feltöltések…",
+	"rcfilters-filter-accountcreations-label": "Fióklétrehozások",
 	"rcfilters-filter-accountcreations-description": "Fióklétrehozásról szóló naplóbejegyzések. Be kell hozzá kapcsolni a naplózott műveleteket.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "Az „apró változtatás” szűrő ütközik egy vagy több „változtatás típusa” szűrővel, mert bizonyos változtatástípusok nem jelölhetők aprónak. Az ütköző szűrők meg vannak jelölve a fenti Aktív szűrők részen.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Bizonyos változtatástípusok nem jelölhetők „aprónak”, így ez a szűrő ütközik a következő „változtatás típusa” szűrőkkel: $1",

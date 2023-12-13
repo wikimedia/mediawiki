@@ -710,6 +710,8 @@
 	"resettokens-watchlist-token": "[[Special:Watchlist|आपकी ध्यानसूची के पृष्ठों में बदलावों]] की वेब फ़ीड (Atom/RSS) हेतु टोकन",
 	"resettokens-done": "टोकन रीसेट कर दिए गए।",
 	"resettokens-resetbutton": "चुने हुए टोकन रीसेट करें",
+	"edit-recovery-special-view": "देखें",
+	"edit-recovery-special-edit": "सम्पादन",
 	"summary": "सारांश:",
 	"subject": "विषय:",
 	"minoredit": "यह एक छोटा संपादन है",
