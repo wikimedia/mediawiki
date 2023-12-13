@@ -43,6 +43,16 @@ class PoolCounterConnectionManager {
 	public $connect_timeout;
 
 	/**
+	 * @internal Public for testing only
+	 */
+	public $host;
+
+	/**
+	 * @internal Public for testing only
+	 */
+	public $port;
+
+	/**
 	 * @param array $conf
 	 * @throws MWException
 	 */
@@ -80,10 +90,11 @@ class PoolCounterConnectionManager {
 				$errstr = '\'servers\' config incorrectly configured.';
 				return Status::newFatal( 'poolcounter-connection-error', $errstr, $hostName );
 			}
-			$host = $parts[0];
-			$port = $parts[1] ?? 7531;
+			// IPV6 addresses need to be in brackets otherwise it fails.
+			$this->host = IPUtils::isValidIPv6( $parts[0] ) ? '[' . $parts[0] . ']' : $parts[0];
+			$this->port = $parts[1] ?: 7531;
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$conn = @$this->open( $host, $port, $errno, $errstr );
+			$conn = @$this->open( $this->host, $this->port, $errno, $errstr );
 			if ( $conn ) {
 				break;
 			}
