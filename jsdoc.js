@@ -21,7 +21,9 @@ module.exports = {
 			'resources/src/mediawiki.experiments.js',
 			'resources/src/mediawiki.notification',
 			'resources/src/mediawiki.util',
-			'resources/src/startup'
+			'resources/src/startup',
+			'resources/src/mediawiki.Uri'
+
 		],
 		exclude: [
 			/* The following modules are temporarily disabled as we haven't
@@ -50,7 +52,6 @@ module.exports = {
 			'resources/src/mediawiki.special.apisandbox',
 			'resources/src/mediawiki.Upload.js',
 			'resources/src/mediawiki.special.block.js',
-			'resources/src/mediawiki.Uri',
 			'resources/src/mediawiki.special.changecredentails.js',
 			'resources/src/mediawiki.action',
 			'resources/src/mediawiki.special.changeemail.js',
