@@ -178,8 +178,14 @@ trait UploadJobTrait {
 	 * @return bool
 	 */
 	protected function fetchFile(): bool {
+		$this->setStatus( 'fetching' );
 		// make sure the upload file is here. This is a noop in most cases.
-		$this->getUpload()->fetchFile();
+		$status = $this->getUpload()->fetchFile();
+		if ( !$status->isGood() ) {
+			$this->setStatus( 'fetching', 'Failure', $status );
+			$this->setLastError( "Error while fetching the image." );
+			return false;
+		}
 		$this->setStatus( 'publish' );
 		// We really don't care as this is, as mentioned, generally a noop.
 		// When that's not the case, classes will need to override this method anyways.

@@ -79,6 +79,7 @@ use TagLogFormatter;
 use TextContentHandler;
 use ThumbnailRenderJob;
 use UDPRCFeedEngine;
+use UploadFromUrlJob;
 use UploadLogFormatter;
 use UserEditCountInitJob;
 use UserGroupExpiryJob;
@@ -847,7 +848,7 @@ class MainConfigSchema {
 	 * Enable deferred upload tasks that use the job queue.
 	 *
 	 * Only enable this if job runners are set up for both the
-	 * 'AssembleUploadChunks' and 'PublishStashedFile' job types.
+	 * 'AssembleUploadChunks','PublishStashedFile' and 'UploadFromUrl' job types.
 	 */
 	public const EnableAsyncUploads = [
 		'default' => false,
@@ -11358,6 +11359,7 @@ class MainConfigSchema {
 			'AssembleUploadChunks' => AssembleUploadChunksJob::class,
 			'PublishStashedFile' => PublishStashedFileJob::class,
 			'ThumbnailRender' => ThumbnailRenderJob::class,
+			'UploadFromUrl' => UploadFromUrlJob::class,
 			'recentChangesUpdate' => RecentChangesUpdateJob::class,
 			'refreshLinksPrioritized' => RefreshLinksJob::class,
 			'refreshLinksDynamic' => RefreshLinksJob::class,
@@ -11405,7 +11407,7 @@ class MainConfigSchema {
 	 * These settings should be global to all wikis.
 	 */
 	public const JobTypesExcludedFromDefaultQueue = [
-		'default' => [ 'AssembleUploadChunks', 'PublishStashedFile' ],
+		'default' => [ 'AssembleUploadChunks', 'PublishStashedFile', 'UploadFromUrl' ],
 		'type' => 'list',
 	];
 
