@@ -22,6 +22,7 @@ namespace MediaWiki\PoolCounter;
 
 use MediaWiki\Status\Status;
 use MWException;
+use Wikimedia\IPUtils;
 
 /**
  * Helper for \MediaWiki\PoolCounter\PoolCounterClient.
@@ -40,6 +41,16 @@ class PoolCounterConnectionManager {
 	public $timeout;
 	/** @var int */
 	public $connect_timeout;
+
+	/**
+	 * @internal Public for testing only
+	 */
+	public $host;
+
+	/**
+	 * @internal Public for testing only
+	 */
+	public $port;
 
 	/**
 	 * @param array $conf
@@ -74,12 +85,16 @@ class PoolCounterConnectionManager {
 				return Status::newGood(
 					[ 'conn' => $this->conns[$hostName], 'hostName' => $hostName ] );
 			}
-			$parts = explode( ':', $hostName, 2 );
-			if ( count( $parts ) < 2 ) {
-				$parts[] = 7531;
+			$parts = IPUtils::splitHostAndPort( $hostName );
+			if ( $parts === false ) {
+				$errstr = '\'servers\' config incorrectly configured.';
+				return Status::newFatal( 'poolcounter-connection-error', $errstr, $hostName );
 			}
+			// IPV6 addresses need to be in brackets otherwise it fails.
+			$this->host = IPUtils::isValidIPv6( $parts[0] ) ? '[' . $parts[0] . ']' : $parts[0];
+			$this->port = $parts[1] ?: 7531;
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$conn = @$this->open( $parts[0], $parts[1], $errno, $errstr );
+			$conn = @$this->open( $this->host, $this->port, $errno, $errstr );
 			if ( $conn ) {
 				break;
 			}
