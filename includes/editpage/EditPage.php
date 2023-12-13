@@ -1084,162 +1084,7 @@ class EditPage implements IEditObject {
 		$this->isNew = !$this->mTitle->exists() || $this->section === 'new';
 
 		if ( $request->wasPosted() ) {
-			# These fields need to be checked for encoding.
-			# Also remove trailing whitespace, but don't remove _initial_
-			# whitespace from the text boxes. This may be significant formatting.
-			$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
-			if ( !$request->getCheck( 'wpTextbox2' ) ) {
-				// Skip this if wpTextbox2 has input, it indicates that we came
-				// from a conflict page with raw page text, not a custom form
-				// modified by subclasses
-				$textbox1 = $this->importContentFormData( $request );
-				if ( $textbox1 !== null ) {
-					$this->textbox1 = $textbox1;
-				}
-			}
-
-			$this->unicodeCheck = $request->getText( 'wpUnicodeCheck' );
-
-			if ( $this->section === 'new' ) {
-				# Allow setting sectiontitle different from the edit summary.
-				# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
-				# currently doing double duty as both edit summary and section title. Right now this
-				# is just to allow API edits to work around this limitation, but this should be
-				# incorporated into the actual edit form when EditPage is rewritten (T20654, T28312).
-				if ( $request->getCheck( 'wpSectionTitle' ) ) {
-					$this->sectiontitle = $request->getText( 'wpSectionTitle' );
-					if ( $request->getCheck( 'wpSummary' ) ) {
-						$this->summary = $request->getText( 'wpSummary' );
-					}
-				} else {
-					$this->sectiontitle = $request->getText( 'wpSummary' );
-				}
-			} else {
-				$this->sectiontitle = null;
-				$this->summary = $request->getText( 'wpSummary' );
-			}
-
-			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
-			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
-			# section titles. (T3600)
-			# It is weird to modify 'sectiontitle', even when it is provided when using the API, but API
-			# users have come to rely on it: https://github.com/wikimedia-gadgets/twinkle/issues/1625
-			$this->summary = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary );
-			if ( $this->sectiontitle !== null ) {
-				$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
-			}
-
-			if ( $this->section === 'new' ) {
-				$this->setNewSectionSummary();
-			}
-
-			$this->edittime = $request->getVal( 'wpEdittime' );
-			$this->editRevId = $request->getIntOrNull( 'editRevId' );
-			$this->starttime = $request->getVal( 'wpStarttime' );
-
-			$undidRev = $request->getInt( 'wpUndidRevision' );
-			if ( $undidRev ) {
-				$this->undidRev = $undidRev;
-			}
-			$undoAfter = $request->getInt( 'wpUndoAfter' );
-			if ( $undoAfter ) {
-				$this->undoAfter = $undoAfter;
-			}
-
-			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
-
-			if ( $this->textbox1 === '' && !$request->getCheck( 'wpTextbox1' ) ) {
-				// wpTextbox1 field is missing, possibly due to being "too big"
-				// according to some filter rules that may have been configured
-				// for security reasons.
-				$this->incompleteForm = true;
-			} else {
-				// If we receive the last parameter of the request, we can fairly
-				// claim the POST request has not been truncated.
-				$this->incompleteForm = !$request->getVal( 'wpUltimateParam' );
-			}
-			if ( $this->incompleteForm ) {
-				# If the form is incomplete, force to preview.
-				wfDebug( __METHOD__ . ": Form data appears to be incomplete" );
-				wfDebug( "POST DATA: " . var_export( $request->getPostValues(), true ) );
-				$this->preview = true;
-			} else {
-				$this->preview = $request->getCheck( 'wpPreview' );
-				$this->diff = $request->getCheck( 'wpDiff' );
-
-				// Remember whether a save was requested, so we can indicate
-				// if we forced preview due to session failure.
-				$this->mTriedSave = !$this->preview;
-
-				if ( $this->tokenOk( $request ) ) {
-					# Some browsers will not report any submit button
-					# if the user hits enter in the comment box.
-					# The unmarked state will be assumed to be a save,
-					# if the form seems otherwise complete.
-					wfDebug( __METHOD__ . ": Passed token check." );
-				} elseif ( $this->diff ) {
-					# Failed token check, but only requested "Show Changes".
-					wfDebug( __METHOD__ . ": Failed token check; Show Changes requested." );
-				} else {
-					# Page might be a hack attempt posted from
-					# an external site. Preview instead of saving.
-					wfDebug( __METHOD__ . ": Failed token check; forcing preview" );
-					$this->preview = true;
-				}
-			}
-			$this->save = !$this->preview && !$this->diff;
-			if ( !$this->edittime || !preg_match( '/^\d{14}$/', $this->edittime ) ) {
-				$this->edittime = null;
-			}
-
-			if ( !$this->starttime || !preg_match( '/^\d{14}$/', $this->starttime ) ) {
-				$this->starttime = null;
-			}
-
-			$this->recreate = $request->getCheck( 'wpRecreate' );
-
-			$user = $this->context->getUser();
-
-			$this->minoredit = $request->getCheck( 'wpMinoredit' );
-			$this->watchthis = $request->getCheck( 'wpWatchthis' );
-			$expiry = $request->getText( 'wpWatchlistExpiry' );
-			if ( $this->watchlistExpiryEnabled && $expiry !== '' ) {
-				// This parsing of the user-posted expiry is done for both preview and saving. This
-				// is necessary because ApiEditPage uses preview when it saves (yuck!). Note that it
-				// only works because the unnormalized value is retrieved again below in
-				// getCheckboxesDefinitionForWatchlist().
-				$expiry = ExpiryDef::normalizeExpiry( $expiry, TS_ISO_8601 );
-				if ( $expiry !== false ) {
-					$this->watchlistExpiry = $expiry;
-				}
-			}
-
-			# Don't force edit summaries when a user is editing their own user or talk page
-			if ( ( $this->mTitle->getNamespace() === NS_USER || $this->mTitle->getNamespace() === NS_USER_TALK )
-				&& $this->mTitle->getText() === $user->getName()
-			) {
-				$this->allowBlankSummary = true;
-			} else {
-				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' )
-					|| !$this->userOptionsLookup->getOption( $user, 'forceeditsummary' );
-			}
-
-			$this->autoSumm = $request->getText( 'wpAutoSummary' );
-
-			$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
-			$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
-
-			$changeTags = $request->getVal( 'wpChangeTags' );
-			if ( $changeTags === null || $changeTags === '' ) {
-				$this->changeTags = [];
-			} else {
-				$this->changeTags = array_filter(
-					array_map(
-						'trim',
-						explode( ',', $changeTags )
-					)
-				);
-			}
+			$this->importFormDataPosted( $request );
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form." );
@@ -1315,6 +1160,169 @@ class EditPage implements IEditObject {
 
 		// Allow extensions to modify form data
 		$this->getHookRunner()->onEditPage__importFormData( $this, $request );
+	}
+
+	/**
+	 * @param WebRequest $request
+	 */
+	private function importFormDataPosted( WebRequest $request ): void {
+		# These fields need to be checked for encoding.
+		# Also remove trailing whitespace, but don't remove _initial_
+		# whitespace from the text boxes. This may be significant formatting.
+		$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
+		if ( !$request->getCheck( 'wpTextbox2' ) ) {
+			// Skip this if wpTextbox2 has input, it indicates that we came
+			// from a conflict page with raw page text, not a custom form
+			// modified by subclasses
+			$textbox1 = $this->importContentFormData( $request );
+			if ( $textbox1 !== null ) {
+				$this->textbox1 = $textbox1;
+			}
+		}
+
+		$this->unicodeCheck = $request->getText( 'wpUnicodeCheck' );
+
+		if ( $this->section === 'new' ) {
+			# Allow setting sectiontitle different from the edit summary.
+			# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
+			# currently doing double duty as both edit summary and section title. Right now this
+			# is just to allow API edits to work around this limitation, but this should be
+			# incorporated into the actual edit form when EditPage is rewritten (T20654, T28312).
+			if ( $request->getCheck( 'wpSectionTitle' ) ) {
+				$this->sectiontitle = $request->getText( 'wpSectionTitle' );
+				if ( $request->getCheck( 'wpSummary' ) ) {
+					$this->summary = $request->getText( 'wpSummary' );
+				}
+			} else {
+				$this->sectiontitle = $request->getText( 'wpSummary' );
+			}
+		} else {
+			$this->sectiontitle = null;
+			$this->summary = $request->getText( 'wpSummary' );
+		}
+
+		# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
+		# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
+		# section titles. (T3600)
+		# It is weird to modify 'sectiontitle', even when it is provided when using the API, but API
+		# users have come to rely on it: https://github.com/wikimedia-gadgets/twinkle/issues/1625
+		$this->summary = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary );
+		if ( $this->sectiontitle !== null ) {
+			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
+		}
+
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
+		if ( $this->section === 'new' ) {
+			$this->setNewSectionSummary();
+		}
+
+		$this->edittime = $request->getVal( 'wpEdittime' );
+		$this->editRevId = $request->getIntOrNull( 'editRevId' );
+		$this->starttime = $request->getVal( 'wpStarttime' );
+
+		$undidRev = $request->getInt( 'wpUndidRevision' );
+		if ( $undidRev ) {
+			$this->undidRev = $undidRev;
+		}
+		$undoAfter = $request->getInt( 'wpUndoAfter' );
+		if ( $undoAfter ) {
+			$this->undoAfter = $undoAfter;
+		}
+
+		$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
+
+		if ( $this->textbox1 === '' && !$request->getCheck( 'wpTextbox1' ) ) {
+			// wpTextbox1 field is missing, possibly due to being "too big"
+			// according to some filter rules that may have been configured
+			// for security reasons.
+			$this->incompleteForm = true;
+		} else {
+			// If we receive the last parameter of the request, we can fairly
+			// claim the POST request has not been truncated.
+			$this->incompleteForm = !$request->getVal( 'wpUltimateParam' );
+		}
+		if ( $this->incompleteForm ) {
+			# If the form is incomplete, force to preview.
+			wfDebug( __METHOD__ . ": Form data appears to be incomplete" );
+			wfDebug( "POST DATA: " . var_export( $request->getPostValues(), true ) );
+			$this->preview = true;
+		} else {
+			$this->preview = $request->getCheck( 'wpPreview' );
+			$this->diff = $request->getCheck( 'wpDiff' );
+
+			// Remember whether a save was requested, so we can indicate
+			// if we forced preview due to session failure.
+			$this->mTriedSave = !$this->preview;
+
+			if ( $this->tokenOk( $request ) ) {
+				# Some browsers will not report any submit button
+				# if the user hits enter in the comment box.
+				# The unmarked state will be assumed to be a save,
+				# if the form seems otherwise complete.
+				wfDebug( __METHOD__ . ": Passed token check." );
+			} elseif ( $this->diff ) {
+				# Failed token check, but only requested "Show Changes".
+				wfDebug( __METHOD__ . ": Failed token check; Show Changes requested." );
+			} else {
+				# Page might be a hack attempt posted from
+				# an external site. Preview instead of saving.
+				wfDebug( __METHOD__ . ": Failed token check; forcing preview" );
+				$this->preview = true;
+			}
+		}
+		$this->save = !$this->preview && !$this->diff;
+		if ( !$this->edittime || !preg_match( '/^\d{14}$/', $this->edittime ) ) {
+			$this->edittime = null;
+		}
+
+		if ( !$this->starttime || !preg_match( '/^\d{14}$/', $this->starttime ) ) {
+			$this->starttime = null;
+		}
+
+		$this->recreate = $request->getCheck( 'wpRecreate' );
+
+		$user = $this->context->getUser();
+
+		$this->minoredit = $request->getCheck( 'wpMinoredit' );
+		$this->watchthis = $request->getCheck( 'wpWatchthis' );
+		$expiry = $request->getText( 'wpWatchlistExpiry' );
+		if ( $this->watchlistExpiryEnabled && $expiry !== '' ) {
+			// This parsing of the user-posted expiry is done for both preview and saving. This
+			// is necessary because ApiEditPage uses preview when it saves (yuck!). Note that it
+			// only works because the unnormalized value is retrieved again below in
+			// getCheckboxesDefinitionForWatchlist().
+			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS_ISO_8601 );
+			if ( $expiry !== false ) {
+				$this->watchlistExpiry = $expiry;
+			}
+		}
+
+		# Don't force edit summaries when a user is editing their own user or talk page
+		if ( ( $this->mTitle->getNamespace() === NS_USER || $this->mTitle->getNamespace() === NS_USER_TALK )
+			&& $this->mTitle->getText() === $user->getName()
+		) {
+			$this->allowBlankSummary = true;
+		} else {
+			$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' )
+				|| !$this->userOptionsLookup->getOption( $user, 'forceeditsummary' );
+		}
+
+		$this->autoSumm = $request->getText( 'wpAutoSummary' );
+
+		$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
+		$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
+
+		$changeTags = $request->getVal( 'wpChangeTags' );
+		if ( $changeTags === null || $changeTags === '' ) {
+			$this->changeTags = [];
+		} else {
+			$this->changeTags = array_filter(
+				array_map(
+					'trim',
+					explode( ',', $changeTags )
+				)
+			);
+		}
 	}
 
 	/**
