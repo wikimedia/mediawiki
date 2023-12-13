@@ -53,7 +53,7 @@
 			// jQuery event, @deprecated in 1.38
 			// Trigger a 'watchpage' event for this List item.
 			// NB: A expiry of 'infinity' is cast to null here, but not above
-			$li.trigger( 'watchpage.mw', [ otherAction, expiry === 'infinity' ? null : expiry ] );
+			$li.trigger( 'watchpage.mw', [ otherAction, mw.util.isInfinity( expiry ) ? null : expiry ] );
 		}
 
 		var tooltipAction = action;
@@ -61,7 +61,7 @@
 		var watchExpiry = null;
 		// Checking to see what if the expiry is set or indefinite to display the correct message
 		if ( isWatchlistExpiryEnabled && action === 'unwatch' ) {
-			if ( expiry === 'infinity' ) {
+			if ( mw.util.isInfinity( expiry ) ) {
 				// Resolves to tooltip-ca-unwatch message
 				tooltipAction = 'unwatch';
 			} else {

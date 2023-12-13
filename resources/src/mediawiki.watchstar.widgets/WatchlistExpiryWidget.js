@@ -91,11 +91,12 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			api.watch( pageTitle, value )
 				.done( function ( watchResponse ) {
 					var message,
-						mwTitle = mw.Title.newFromText( pageTitle );
+						mwTitle = mw.Title.newFromText( pageTitle ),
+						isInfinity = mw.util.isInfinity( value );
 					if ( mwTitle.isTalkPage() ) {
-						message = value === 'infinite' ? 'addedwatchindefinitelytext-talk' : 'addedwatchexpirytext-talk';
+						message = isInfinity ? 'addedwatchindefinitelytext-talk' : 'addedwatchexpirytext-talk';
 					} else {
-						message = value === 'infinite' ? 'addedwatchindefinitelytext' : 'addedwatchexpirytext';
+						message = isInfinity ? 'addedwatchindefinitelytext' : 'addedwatchexpirytext';
 					}
 
 					// The following messages can be used here:
