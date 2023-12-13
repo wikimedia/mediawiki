@@ -1,13 +1,10 @@
-/**
- * @class mw.Api.plugin.rollback
- * @since 1.28
- */
 ( function () {
 
-	Object.assign( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 		/**
 		 * Convenience method for `action=rollback`.
 		 *
+		 * @since 1.28
 		 * @param {string|mw.Title} page
 		 * @param {string} user
 		 * @param {Object} [params] Additional parameters
@@ -24,10 +21,5 @@
 			} );
 		}
 	} );
-
-	/**
-	 * @class mw.Api
-	 * @mixins mw.Api.plugin.rollback
-	 */
 
 }() );

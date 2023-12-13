@@ -1,9 +1,3 @@
-/**
- * Provides an interface for uploading files to MediaWiki.
- *
- * @class mw.Api.plugin.upload
- * @singleton
- */
 ( function () {
 	var
 		fieldsAllowed = {
@@ -31,7 +25,7 @@
 		return obj[ Object.keys( obj )[ 0 ] ];
 	}
 
-	Object.assign( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 		/**
 		 * Upload a file to MediaWiki.
 		 *
@@ -329,11 +323,8 @@
 		 * @private
 		 * @param {jQuery.Promise} uploadPromise
 		 * @param {Object} data
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.finishUpload Call this function to finish the upload.
-		 * @return {Object} return.finishUpload.data Additional data for the upload.
-		 * @return {jQuery.Promise} return.finishUpload.return API promise for the final upload
-		 * @return {Object} return.finishUpload.return.data API return value for the final upload
+		 * @return {jQuery.Promise<function(Object): jQuery.Promise>} Promise that resolves with a
+		 *  function that should be called to finish the upload.
 		 */
 		finishUploadToStash: function ( uploadPromise, data ) {
 			var filekey,
@@ -368,7 +359,9 @@
 		 *
 		 * This function will return a promise, which when resolved, will pass back a function
 		 * to finish the stash upload. You can call that function with an argument containing
-		 * more, or conflicting, data to pass to the server. For example:
+		 * more, or conflicting, data to pass to the server.
+		 *
+		 * @example
 		 *
 		 *     // upload a file to the stash with a placeholder filename
 		 *     api.uploadToStash( file, { filename: 'testing.png' } ).done( function ( finish ) {
@@ -381,11 +374,8 @@
 		 *
 		 * @param {File|HTMLInputElement} file
 		 * @param {Object} [data]
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.finishUpload Call this function to finish the upload.
-		 * @return {Object} return.finishUpload.data Additional data for the upload.
-		 * @return {jQuery.Promise} return.finishUpload.return API promise for the final upload
-		 * @return {Object} return.finishUpload.return.data API return value for the final upload
+		 * @return {jQuery.Promise<function(Object): jQuery.Promise>} Promise that resolves with a
+		 *  function that should be called to finish the upload.
 		 */
 		uploadToStash: function ( file, data ) {
 			var promise;
@@ -405,16 +395,13 @@
 		 * This function will return a promise, which when resolved, will pass back a function
 		 * to finish the stash upload.
 		 *
-		 * @see #method-uploadToStash
+		 * @see mw.Api#uploadToStash
 		 * @param {File|HTMLInputElement} file
 		 * @param {Object} [data]
 		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5 MiB)
 		 * @param {number} [chunkRetries] Amount of times to retry a failed chunk (default: 1)
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.finishUpload Call this function to finish the upload.
-		 * @return {Object} return.finishUpload.data Additional data for the upload.
-		 * @return {jQuery.Promise} return.finishUpload.return API promise for the final upload
-		 * @return {Object} return.finishUpload.return.data API return value for the final upload
+		 * @return {jQuery.Promise<function(Object): jQuery.Promise>} Promise that resolves with a
+		 *  function that should be called to finish the upload.
 		 */
 		chunkedUploadToStash: function ( file, data, chunkSize, chunkRetries ) {
 			var promise;
@@ -457,13 +444,13 @@
 			} );
 		},
 
+		/**
+		 * @private
+		 * @return {boolean}
+		 */
 		needToken: function () {
 			return true;
 		}
 	} );
 
-	/**
-	 * @class mw.Api
-	 * @mixins mw.Api.plugin.upload
-	 */
 }() );

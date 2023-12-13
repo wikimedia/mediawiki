@@ -1,19 +1,18 @@
-/**
- * @class mw.Api.plugin.user
- * @since 1.27
- */
 ( function () {
 
-	Object.assign( mw.Api.prototype, {
+	/**
+	 * @typedef {Object} mw.Api.UserInfo
+	 * @property {string[]} groups User groups that the current user belongs to
+	 * @property {string[]} rights Current user's rights
+	 */
+
+	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 
 		/**
 		 * Get the current user's groups and rights.
 		 *
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {Object} return.done.userInfo
-		 * @return {string[]} return.done.userInfo.groups User groups that the current user belongs to
-		 * @return {string[]} return.done.userInfo.rights Current user's rights
+		 * @since 1.27
+		 * @return {jQuery.Promise<mw.Api.UserInfo>}
 		 */
 		getUserInfo: function () {
 			return this.get( {
@@ -38,8 +37,6 @@
 		 * this method ensures that that won't happen, by checking the user's identity that was
 		 * embedded into the page when it was rendered against the active session on the server.
 		 *
-		 * Use it like this:
-		 *     api.postWithToken( 'csrf', api.assertCurrentUser( { action: 'edit', ... } ) )
 		 * When the assertion fails, the API request will fail, with one of the following error codes:
 		 * - apierror-assertanonfailed: when the client-side logic thinks the user is anonymous
 		 *   but the server thinks it is logged in;
@@ -48,6 +45,10 @@
 		 * - apierror-assertnameduserfailed: when both the client-side logic and the server thinks the
 		 *   user is logged in but they see it logged in under a different username.
 		 *
+		 * @example
+		 *   api.postWithToken( 'csrf', api.assertCurrentUser( { action: 'edit', ... } ) )
+		 *
+		 * @since 1.27
 		 * @param {Object} query Query parameters. The object will not be changed.
 		 * @return {Object}
 		 */
@@ -66,10 +67,5 @@
 		}
 
 	} );
-
-	/**
-	 * @class mw.Api
-	 * @mixins mw.Api.plugin.user
-	 */
 
 }() );

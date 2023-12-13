@@ -1,8 +1,23 @@
 ( function () {
+	/**
+	 * @typedef {Object} mw.Api.Options
+	 * @property {Object} [parameters = { action: 'query', format: 'json' }] Default query
+	 *  parameters for API requests
+	 * @property {Object} [ajax = { url: mw.util.wikiScript( 'api' ), timeout: 30 * 1000, dataType: 'json' }]
+	 *  Default options for jQuery#ajax
+	 * @property {boolean} [useUS] Whether to use U+001F when joining multi-valued
+	 *  parameters (since 1.28). Default is true if ajax.url is not set, false otherwise for
+	 *  compatibility.
+	 */
+
+	/**
+	 * @private
+	 * @type {mw.Api.Options}
+	 */
 	var defaultOptions;
 
 	/**
-	 * Client library for the action API. See mw.Rest for the REST API.
+	 * @classdesc Client library for the action API. See mw.Rest for the REST API.
 	 *
 	 * See also <https://www.mediawiki.org/wiki/API:Main_page>.
 	 *
@@ -33,8 +48,9 @@
 	 *
 	 * @class mw.Api
 	 * @constructor
-	 * @param {Object} [options] See #defaultOptions documentation above. This can also be overridden for
-	 *  each request by passing them to #get or #post (or directly #ajax) later on.
+	 * @param {mw.Api.Options} [options] See {@link mw.Api.Options}. This can also be overridden for
+	 *  each request by passing them to [get()]{@link mw.Api#get} or [post()]{@link mw.Api#post} (or directly to
+	 *  [ajax()]{@link mw.Api#ajax}) later on.
 	 */
 	mw.Api = function ( options ) {
 		var defaults = $.extend( {}, options ),
@@ -57,13 +73,7 @@
 
 	/**
 	 * @private
-	 * @property {Object} defaultOptions Default options for #ajax calls. Can be overridden by passing
-	 *     `options` to mw.Api constructor.
-	 * @property {Object} defaultOptions.parameters Default query parameters for API requests.
-	 * @property {Object} defaultOptions.ajax Default options for jQuery#ajax.
-	 * @property {boolean} defaultOptions.useUS Whether to use U+001F when joining multi-valued
-	 *     parameters (since 1.28). Default is true if ajax.url is not set, false otherwise for
-	 *     compatibility.
+	 * @type {mw.Api.Options}
 	 */
 	defaultOptions = {
 		parameters: {
@@ -129,7 +139,7 @@
 		},
 
 		/**
-		 * Perform API get request. See #ajax for details.
+		 * Perform API get request. See [ajax()]{@link mw.Api#ajax} for details.
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
@@ -142,7 +152,7 @@
 		},
 
 		/**
-		 * Perform API post request. See #ajax for details.
+		 * Perform API post request. See [ajax()]{@link mw.Api#ajax} for details.
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
@@ -185,9 +195,9 @@
 		/**
 		 * Perform the API call.
 		 *
-		 * @param {Object} parameters Parameters to the API. See also #defaultOptions.parameters.
+		 * @param {Object} parameters Parameters to the API. See also {@link mw.Api.Options}
 		 * @param {Object} [ajaxOptions] Parameters to pass to jQuery.ajax. See also
-		 *   #defaultOptions.ajax.
+		 *   {@link mw.Api.Options}
 		 * @return {jQuery.Promise} A promise that settles when the API response is processed.
 		 *   Has an 'abort' method which can be used to abort the request.
 		 *
@@ -209,7 +219,7 @@
 		 *       first line of the server response). For HTTP/2, `exception` is always an empty string.
 		 *     - When the response is not valid JSON but the previous error conditions aren't met,
 		 *       textStatus is "parsererror" and exception is the exception object thrown by
-		 *       `JSON.parse`.
+		 *       {@link JSON.parse}.
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
 			var token, requestIndex,
@@ -315,8 +325,9 @@
 		/**
 		 * Post to API with the specified type of token. If we have no token, get one and try to post.
 		 * If we already have a cached token, try using that, and if the request fails using the cached token,
-		 * blank it out and start over. For example, to change a user option, you could do:
+		 * blank it out and start over.
 		 *
+		 * @example <caption>For example, to change a user option, you could do:</caption>
 		 *     new mw.Api().postWithToken( 'csrf', {
 		 *         action: 'options',
 		 *         optionname: 'gender',
@@ -326,7 +337,7 @@
 		 * @param {string} tokenType The name of the token, like options or edit.
 		 * @param {Object} params API parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} See #post
+		 * @return {jQuery.Promise} See [post()]{@link mw.Api#post}
 		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
@@ -387,7 +398,7 @@
 		 * @param {string} type Token type
 		 * @param {Object|string} [additionalParams] Additional parameters for the API (since 1.35).
 		 *   When given a string, it's treated as the 'assert' parameter (since 1.25).
-		 * @return {jQuery.Promise} Received token.
+		 * @return {jQuery.Promise<string>} Received token.
 		 */
 		getToken: function ( type, additionalParams ) {
 			var apiPromise, promiseGroup, d, reject;
@@ -440,8 +451,8 @@
 		/**
 		 * Indicate that the cached token for a certain action of the API is bad.
 		 *
-		 * Call this if you get a 'badtoken' error when using the token returned by #getToken.
-		 * You may also want to use #postWithToken instead, which invalidates bad cached tokens
+		 * Call this if you get a 'badtoken' error when using the token returned by [getToken()]{@link mw.Api#getToken}.
+		 * You may also want to use [postWithToken()]{@link mw.Api#postWithToken} instead, which invalidates bad cached tokens
 		 * automatically.
 		 *
 		 * @param {string} type Token type
@@ -470,7 +481,7 @@
 		 * Error messages, particularly for editing pages, may consist of multiple paragraphs of text.
 		 * Your user interface should have enough space for that.
 		 *
-		 * Example usage:
+		 * @example
 		 *
 		 *     var api = new mw.Api();
 		 *     // var title = 'Test valid title';

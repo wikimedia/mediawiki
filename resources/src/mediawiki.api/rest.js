@@ -1,13 +1,14 @@
 ( function () {
 
 	/**
-	 * @class mw.Rest
+	 * @typedef {Object} mw.Rest.Options
+	 * @property {Object} [ajax={ url: mw.util.wikiScript( 'rest' ), timeout: 30 * 1000 }] Default
+	 *  options for [ajax()]{@link mw.Rest#ajax} calls. Can be overridden by passing `options` to
+	 *  the {@link mw.Rest} constructor.
 	 */
 
 	/**
-	 * @property {Object} defaultOptions Default options for #ajax calls. Can be overridden by passing
-	 *     `options` to mw.Rest constructor.
-	 * @property {Object} defaultOptions.ajax Default options for jQuery#ajax.
+	 * @type {mw.Rest.Options}
 	 * @private
 	 */
 	var defaultOptions = {
@@ -35,6 +36,7 @@
 	 * Constructor to create an object to interact with the REST API of a particular MediaWiki server.
 	 * mw.Rest objects represent the REST API of a particular MediaWiki server.
 	 *
+	 * @example
 	 *     var api = new mw.Rest();
 	 *     api.get( '/v1/page/Main_Page/html' )
 	 *     .done( function ( data ) {
@@ -54,7 +56,7 @@
 	 *     } );
 	 *
 	 * @constructor
-	 * @param {Object} [options] See #defaultOptions documentation above.
+	 * @param {mw.Rest.Options} [options] See {@link mw.Rest.Options}
 	 */
 	mw.Rest = function ( options ) {
 		var defaults = $.extend( {}, options );
@@ -82,7 +84,7 @@
 		},
 
 		/**
-		 * Perform REST API get request
+		 * Perform REST API get request.
 		 *
 		 * @method
 		 * @param {string} path
@@ -121,7 +123,7 @@
 		/**
 		 * Perform REST API PUT request.
 		 *
-		 * Note: only sending application/json is currently supported.
+		 * Note: only sending `application/json` is currently supported.
 		 *
 		 * @method
 		 * @param {string} path
@@ -141,7 +143,7 @@
 		/**
 		 * Perform REST API DELETE request.
 		 *
-		 * Note: only sending application/json is currently supported.
+		 * Note: only sending `application/json` is currently supported.
 		 *
 		 * @method
 		 * @param {string} path

@@ -1,18 +1,11 @@
-/**
- * Make the two-step login easier.
- *
- * @author Niklas Laxström
- * @class mw.Api.plugin.login
- * @since 1.22
- */
 ( function () {
 	'use strict';
 
-	Object.assign( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 		/**
 		 * @param {string} username
 		 * @param {string} password
-		 * @return {jQuery.Promise} See mw.Api#post
+		 * @return {jQuery.Promise} See [post()]{@link mw.Api#post}
 		 */
 		login: function ( username, password ) {
 			var params, apiPromise, innerPromise,
@@ -51,10 +44,5 @@
 				} );
 		}
 	} );
-
-	/**
-	 * @class mw.Api
-	 * @mixins mw.Api.plugin.login
-	 */
 
 }() );

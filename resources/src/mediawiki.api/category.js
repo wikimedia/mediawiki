@@ -1,16 +1,12 @@
-/**
- * @class mw.Api.plugin.category
- */
 ( function () {
 
-	Object.assign( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 		/**
 		 * Determine if a category exists.
 		 *
 		 * @param {mw.Title|string} title
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {boolean} return.done.isCategory Whether the category exists.
+		 * @return {jQuery.Promise<boolean>} Promise that resolves with a boolean indicating
+		 *  whether the category exists.
 		 */
 		isCategory: function ( title ) {
 			var apiPromise = this.get( {
@@ -36,9 +32,7 @@
 		 * E.g. given "Foo", return "Food", "Foolish people", "Foosball tables"...
 		 *
 		 * @param {string} prefix Prefix to match.
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string[]} return.done.categories Matched categories
+		 * @return {jQuery.Promise<string[]>} Promise that resolves with an array of matched categories
 		 */
 		getCategoriesByPrefix: function ( prefix ) {
 			// Fetch with allpages to only get categories that have a corresponding description page.
@@ -62,10 +56,8 @@
 		 * Get the categories that a particular page on the wiki belongs to.
 		 *
 		 * @param {mw.Title|string} title
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {boolean|mw.Title[]} return.done.categories List of category titles or false
-		 *  if title was not found.
+		 * @return {jQuery.Promise<mw.Title[]|false>} Promise that resolves with an array of
+		 *  category titles, or with false if the title was not found.
 		 */
 		getCategories: function ( title ) {
 			var apiPromise = this.get( {
@@ -92,10 +84,5 @@
 				.promise( { abort: apiPromise.abort } );
 		}
 	} );
-
-	/**
-	 * @class mw.Api
-	 * @mixins mw.Api.plugin.category
-	 */
 
 }() );

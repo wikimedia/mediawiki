@@ -1,19 +1,14 @@
-/**
- * @class mw.Api.plugin.parse
- */
 ( function () {
 
-	Object.assign( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 		/**
 		 * Convenience method for 'action=parse'.
 		 *
 		 * @param {string|mw.Title} content Content to parse, either as a wikitext string or
 		 *   a mw.Title.
 		 * @param {Object} additionalParams Parameters object to set custom settings, e.g.
-		 *   redirects, sectionpreview.  prop should not be overridden.
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string} return.done.data Parsed HTML of `wikitext`.
+		 *   `redirects`, `sectionpreview`. `prop` should not be overridden.
+		 * @return {jQuery.Promise<string>} Promise that resolves with the parsed HTML of `wikitext`
 		 */
 		parse: function ( content, additionalParams ) {
 			var apiPromise,
@@ -42,10 +37,5 @@
 				.promise( { abort: apiPromise.abort } );
 		}
 	} );
-
-	/**
-	 * @class mw.Api
-	 * @mixins mw.Api.plugin.parse
-	 */
 
 }() );

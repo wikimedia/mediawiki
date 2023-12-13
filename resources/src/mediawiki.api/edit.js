@@ -1,18 +1,13 @@
-/**
- * @class mw.Api.plugin.edit
- */
 ( function () {
 
-	Object.assign( mw.Api.prototype, {
+	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 
 		/**
-		 * Post to API with csrf token. If we have no token, get one and try to post.
-		 * If we have a cached token try using that, and if it fails, blank out the
-		 * cached token and start over.
+		 * Post to API with `csrf` token. See [#postWithToken]{@link mw.Api#postWithToken}
 		 *
 		 * @param {Object} params API parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} See #post
+		 * @return {jQuery.Promise} See [#post]{@link mw.Api#post}
 		 */
 		postWithEditToken: function ( params, ajaxOptions ) {
 			return this.postWithToken( 'csrf', params, ajaxOptions );
@@ -171,7 +166,7 @@
 		/**
 		 * Post a new section to the page.
 		 *
-		 * @see #postWithEditToken
+		 * @see mw.Api#postWithEditToken
 		 * @param {mw.Title|string} title Target page
 		 * @param {string} header
 		 * @param {string} message wikitext message
@@ -188,10 +183,5 @@
 			}, additionalParams ) );
 		}
 	} );
-
-	/**
-	 * @class mw.Api
-	 * @mixins mw.Api.plugin.edit
-	 */
 
 }() );
