@@ -1,5 +1,5 @@
 /**
- * @class jQuery.plugin.lengthLimit
+ * jQuery plugin for limiting string length.
  */
 ( function () {
 
@@ -19,11 +19,13 @@
 
 	/**
 	 * Utility function to trim down a string, based on byteLimit
-	 * and given a safe start position. It supports insertion anywhere
-	 * in the string, so "foo" to "fobaro" if limit is 4 will result in
-	 * "fobo", not "foba". Basically emulating the native maxlength by
-	 * reconstructing where the insertion occurred.
+	 * and given a safe start position.
 	 *
+	 * It supports insertion anywhere in the string, so "foo" to "fobaro" if
+	 * limit is 4 will result in "fobo", not "foba". Basically emulating the
+	 * native maxlength by reconstructing where the insertion occurred.
+	 *
+	 * @memberof jQueryPlugins
 	 * @method trimByteLength
 	 * @deprecated Use `require( 'mediawiki.String' ).trimByteLength` instead.
 	 * @static
@@ -173,6 +175,8 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
+	 * @memberof jQueryPlugins
+	 * @method byteLimit
 	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
 	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
@@ -197,6 +201,8 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
+	 * @memberof jQueryPlugins
+	 * @method codePointLimit
 	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
 	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
@@ -207,8 +213,4 @@
 		return lengthLimit.call( this, trimCodePointLength, limit, filterFunction );
 	};
 
-	/**
-	 * @class jQuery
-	 * @mixins jQuery.plugin.lengthLimit
-	 */
 }() );

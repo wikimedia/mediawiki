@@ -15,6 +15,7 @@ module.exports = {
 	source: {
 		include: [
 			'resources/src/jsdoc.types.js',
+			'resources/src/jquery.lengthLimit.js',
 			'resources/src/mediawiki.base',
 			'resources/src/mediawiki.experiments.js',
 			'resources/src/mediawiki.notification',
@@ -28,8 +29,7 @@ module.exports = {
 			'resources/src/mediawiki.page.image.pagination.js',
 			'resources/src/codex-search',
 			'resources/src/mediawiki.page.media.js',
-			'resources/src/jquery',
-			'resources/src/jquery.lengthLimit.js',
+			'resources/src/jquery/*',
 			'resources/src/mediawiki.page.preview.js',
 			'resources/src/jquery.spinner',
 			'resources/src/mediawiki.page.ready',
