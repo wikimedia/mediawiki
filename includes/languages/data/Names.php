@@ -189,6 +189,7 @@ class Names {
 		'gan' => '贛語', # Gan (multiple scripts - defaults to Traditional Han)
 		'gan-hans' => '赣语（简体）', # Gan (Simplified Han)
 		'gan-hant' => '贛語（繁體）', # Gan (Traditional Han)
+		'gcf' => 'kréyòl Gwadloup', # Guadeloupean Creole
 		'gcr' => 'kriyòl gwiyannen', # Guianan Creole
 		'gd' => 'Gàidhlig', # Scots Gaelic
 		'gl' => 'galego', # Galician

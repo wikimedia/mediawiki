@@ -102,6 +102,7 @@ because of Phabricator reports.
 * (T351874) Added language support for Komering (kge).
 * (T351992) Added language support for Efik (efi).
 * (T352954) Added language support for Rutul (rut).
+* (T353307) Added language support for Guadeloupean Creole (gcf).
 * …
 
 === Breaking changes in 1.42 ===
