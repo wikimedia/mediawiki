@@ -5,10 +5,10 @@
 	/**
 	 * Used to represent an upload in progress on the frontend.
 	 *
-	 * Subclassed to upload to a foreign API, with no other goodies. Use
+	 * @classdesc Subclassed to upload to a foreign API, with no other goodies. Use
 	 * this for a generic foreign image repository on your wiki farm.
 	 *
-	 * Note you can provide the {@link #target target} or not - if the first argument is
+	 * Note you can provide the `target` or not - if the first argument is
 	 * an object, we assume you want the default, and treat it as apiconfig
 	 * instead.
 	 *
@@ -20,7 +20,7 @@
 	 *     wiki. If not remote, this class behaves identically to mw.Upload (unless further subclassed)
 	 *     Use the same names as set in $wgForeignFileRepos for this. Also,
 	 *     make sure there is an entry in the $wgForeignUploadTargets array for this name.
-	 * @param {Object} [apiconfig] Passed to the constructor of mw.ForeignApi or mw.Api, as needed.
+	 * @param {Object} [apiconfig] Passed to the constructor of {@link mw.ForeignApi} or {@link mw.Api}, as needed.
 	 */
 	function ForeignUpload( target, apiconfig ) {
 		var api,
@@ -96,6 +96,7 @@
 
 	/**
 	 * @property {string} target
+	 *
 	 * Used to specify the target repository of the upload.
 	 *
 	 * If you set this to something that isn't 'local', you must be sure to

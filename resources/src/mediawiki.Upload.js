@@ -3,7 +3,8 @@
 
 	/**
 	 * Used to represent an upload in progress on the frontend.
-	 * Most of the functionality is implemented in mw.Api.plugin.upload,
+	 *
+	 * @classdesc Most of the functionality is implemented in {@link mw.Api#upload} and friends,
 	 * but this model class will tie it together as well as let you perform
 	 * actions in a logical way.
 	 *
@@ -65,9 +66,9 @@
 	/**
 	 * Get the mw.Api instance used by this Upload object.
 	 *
-	 * @return {jQuery.Promise}
-	 * @return {Function} return.done
-	 * @return {mw.Api} return.done.api
+	 * @name mw.Upload.prototype.getApi
+	 * @method
+	 * @return {jQuery.Promise<mw.Api>}
 	 */
 	UP.getApi = function () {
 		return $.Deferred().resolve( this.api ).promise();
@@ -76,6 +77,8 @@
 	/**
 	 * Set the text of the file page, to be created on file upload.
 	 *
+	 * @name mw.Upload.prototype.setText
+	 * @method
 	 * @param {string} text
 	 */
 	UP.setText = function ( text ) {
@@ -85,6 +88,8 @@
 	/**
 	 * Set the filename, to be finalized on upload.
 	 *
+	 * @name mw.Upload.prototype.setFilename
+	 * @method
 	 * @param {string} filename
 	 */
 	UP.setFilename = function ( filename ) {
@@ -94,6 +99,8 @@
 	/**
 	 * Set the stashed file to finish uploading.
 	 *
+	 * @name mw.Upload.prototype.setFilekey
+	 * @method
 	 * @param {string} filekey
 	 */
 	UP.setFilekey = function ( filekey ) {
@@ -107,6 +114,8 @@
 
 	/**
 	 * Sets the filename based on the filename as it was on the upload.
+	 * @name mw.Upload.prototype.setFilenameFromFile
+	 * @method
 	 */
 	UP.setFilenameFromFile = function () {
 		var file = this.getFile();
@@ -128,6 +137,8 @@
 	/**
 	 * Set the file to be uploaded.
 	 *
+	 * @name mw.Upload.prototype.setFile
+	 * @method
 	 * @param {HTMLInputElement|File|Blob} file
 	 */
 	UP.setFile = function ( file ) {
@@ -137,6 +148,8 @@
 	/**
 	 * Set whether the file should be watchlisted after upload.
 	 *
+	 * @name mw.Upload.prototype.setWatchlist
+	 * @method
 	 * @param {boolean} watchlist
 	 */
 	UP.setWatchlist = function ( watchlist ) {
@@ -146,6 +159,8 @@
 	/**
 	 * Set the edit comment for the upload.
 	 *
+	 * @name mw.Upload.prototype.setComment
+	 * @method
 	 * @param {string} comment
 	 */
 	UP.setComment = function ( comment ) {
@@ -155,6 +170,8 @@
 	/**
 	 * Get the text of the file page, to be created on file upload.
 	 *
+	 * @name mw.Upload.prototype.getText
+	 * @method
 	 * @return {string}
 	 */
 	UP.getText = function () {
@@ -164,6 +181,8 @@
 	/**
 	 * Get the filename, to be finalized on upload.
 	 *
+	 * @name mw.Upload.prototype.getFilename
+	 * @method
 	 * @return {string}
 	 */
 	UP.getFilename = function () {
@@ -173,6 +192,8 @@
 	/**
 	 * Get the file being uploaded.
 	 *
+	 * @name mw.Upload.prototype.getFile
+	 * @method
 	 * @return {HTMLInputElement|File|Blob}
 	 */
 	UP.getFile = function () {
@@ -182,6 +203,8 @@
 	/**
 	 * Get the boolean for whether the file will be watchlisted after upload.
 	 *
+	 * @name mw.Upload.prototype.getWatchlist
+	 * @method
 	 * @return {boolean}
 	 */
 	UP.getWatchlist = function () {
@@ -191,6 +214,8 @@
 	/**
 	 * Get the current value of the edit comment for the upload.
 	 *
+	 * @name mw.Upload.prototype.getComment
+	 * @method
 	 * @return {string}
 	 */
 	UP.getComment = function () {
@@ -200,6 +225,8 @@
 	/**
 	 * Gets the base filename from a path name.
 	 *
+	 * @name mw.Upload.prototype.getBasename
+	 * @method
 	 * @param {string} path
 	 * @return {string}
 	 */
@@ -221,6 +248,8 @@
 	/**
 	 * Sets the state and state details (if any) of the upload.
 	 *
+	 * @name mw.Upload.prototype.setState
+	 * @method
 	 * @param {mw.Upload.State} state
 	 * @param {Object} stateDetails
 	 */
@@ -232,6 +261,8 @@
 	/**
 	 * Gets the state of the upload.
 	 *
+	 * @name mw.Upload.prototype.getState
+	 * @method
 	 * @return {mw.Upload.State}
 	 */
 	UP.getState = function () {
@@ -241,6 +272,8 @@
 	/**
 	 * Gets details of the current state.
 	 *
+	 * @name mw.Upload.prototype.getStateDetails
+	 * @method
 	 * @return {string}
 	 */
 	UP.getStateDetails = function () {
@@ -252,6 +285,8 @@
 	 * Only available once the upload is finished! Don't try to get it
 	 * beforehand.
 	 *
+	 * @name mw.Upload.prototype.getImageInfo
+	 * @method
 	 * @return {Object|undefined}
 	 */
 	UP.getImageInfo = function () {
@@ -261,6 +296,8 @@
 	/**
 	 * Upload the file directly.
 	 *
+	 * @name mw.Upload.prototype.upload
+	 * @method
 	 * @return {jQuery.Promise}
 	 */
 	UP.upload = function () {
@@ -298,6 +335,8 @@
 	/**
 	 * Upload the file to the stash to be completed later.
 	 *
+	 * @name mw.Upload.prototype.uploadToStash
+	 * @method
 	 * @return {jQuery.Promise}
 	 */
 	UP.uploadToStash = function () {
@@ -334,6 +373,8 @@
 	/**
 	 * Finish a stash upload.
 	 *
+	 * @name mw.Upload.prototype.finishStashUpload
+	 * @method
 	 * @return {jQuery.Promise}
 	 */
 	UP.finishStashUpload = function () {
@@ -367,11 +408,14 @@
 		} );
 	};
 
+	mw.Upload = Upload;
+
 	/**
-	 * @enum mw.Upload.State
+	 * @enum
+	 *
 	 * State of uploads represented in simple terms.
 	 */
-	Upload.State = {
+	mw.Upload.State = {
 		/** Upload not yet started */
 		NEW: 0,
 
@@ -390,6 +434,4 @@
 		/** Upload finished and published */
 		UPLOADED: 5
 	};
-
-	mw.Upload = Upload;
 }() );
