@@ -16,6 +16,7 @@ module.exports = {
 		include: [
 			'resources/src/jsdoc.types.js',
 			'resources/src/mediawiki.base',
+			'resources/src/mediawiki.experiments.js',
 			'resources/src/mediawiki.notification',
 			'resources/src/mediawiki.util',
 			'resources/src/startup'
@@ -76,7 +77,6 @@ module.exports = {
 			'resources/src/mediawiki.special.unwatchedPages',
 			'resources/src/mediawiki.editRecovery',
 			'resources/src/mediawiki.special.upload',
-			'resources/src/mediawiki.experiments.js',
 			'resources/src/mediawiki.feedback',
 			'resources/src/mediawiki.feedlink',
 			'resources/src/mediawiki.special.userrights.js',
