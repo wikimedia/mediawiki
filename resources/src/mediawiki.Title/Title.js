@@ -3,30 +3,6 @@
  * @since 1.18
  */
 
-/**
- * Parse titles into an object structure. Note that when using the constructor
- * directly, passing invalid titles will result in an exception. Use #newFromText to use the
- * logic directly and get null for invalid titles which is easier to work with.
- *
- * Note that in the constructor and #newFromText method, `namespace` is the **default** namespace
- * only, and can be overridden by a namespace prefix in `title`. If you do not want this behavior,
- * use #makeTitle. Compare:
- *
- *     new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();                  // => 'Template:Foo'
- *     mw.Title.newFromText( 'Foo', NS_TEMPLATE ).getPrefixedText();          // => 'Template:Foo'
- *     mw.Title.makeTitle( NS_TEMPLATE, 'Foo' ).getPrefixedText();            // => 'Template:Foo'
- *
- *     new mw.Title( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Category:Foo'
- *     mw.Title.newFromText( 'Category:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Category:Foo'
- *     mw.Title.makeTitle( NS_TEMPLATE, 'Category:Foo' ).getPrefixedText();   // => 'Template:Category:Foo'
- *
- *     new mw.Title( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Template:Foo'
- *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
- *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
- *
- * @class mw.Title
- */
-
 /* Private members */
 
 var toUpperMap,
@@ -427,10 +403,34 @@ var toUpperMap,
 	};
 
 /**
- * @method constructor
+ * Parse titles into an object structure. Note that when using the constructor
+ * directly, passing invalid titles will result in an exception.
+ * Use [newFromText]{@link mw.Title.newFromText} to use the
+ * logic directly and get null for invalid titles which is easier to work with.
+ *
+ * Note that in the constructor and [newFromText]{@link mw.Title.newFromText} method,
+ * `namespace` is the **default** namespace only, and can be overridden by a namespace
+ * prefix in `title`. If you do not want this behavior,
+ * use #makeTitle.
+ *
+ * @example
+ *     new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();                  // => 'Template:Foo'
+ *     mw.Title.newFromText( 'Foo', NS_TEMPLATE ).getPrefixedText();          // => 'Template:Foo'
+ *     mw.Title.makeTitle( NS_TEMPLATE, 'Foo' ).getPrefixedText();            // => 'Template:Foo'
+ *
+ *     new mw.Title( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Category:Foo'
+ *     mw.Title.newFromText( 'Category:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Category:Foo'
+ *     mw.Title.makeTitle( NS_TEMPLATE, 'Category:Foo' ).getPrefixedText();   // => 'Template:Category:Foo'
+ *
+ *     new mw.Title( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Template:Foo'
+ *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
+ *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
+ * @class mw.Title
+ * @classdesc Library for constructing MediaWiki titles.
  * @param {string} title Title of the page. If no second argument given,
  *  this will be searched for a namespace
  * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
+ * @constructor
  * @throws {Error} When the title is invalid
  */
 function Title( title, namespace ) {
@@ -453,7 +453,8 @@ function Title( title, namespace ) {
  * prefix in `title`. If you do not want this behavior, use #makeTitle. See #constructor for
  * details.
  *
- * @static
+ * @name mw.Title.newFromText
+ * @method
  * @param {string} title
  * @param {number} [namespace=NS_MAIN] Default namespace
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
@@ -481,7 +482,8 @@ Title.newFromText = function ( title, namespace ) {
  * The single exception to this is when `namespace` is 0, indicating the main namespace. The
  * function behaves like #newFromText in that case.
  *
- * @static
+ * @name mw.Title.makeTitle
+ * @method
  * @param {number} namespace Namespace to use for the title
  * @param {string} title
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
@@ -498,7 +500,8 @@ Title.makeTitle = function ( namespace, title ) {
  * Constructor for Title objects from user input altering that input to
  * produce a title that MediaWiki will accept as legal
  *
- * @static
+ * @name mw.Title.newFromUserInput
+ * @method
  * @param {string} title
  * @param {number} [defaultNamespace=NS_MAIN]
  *  If given, will used as default namespace for the given title.
@@ -587,7 +590,8 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
  * so it is most likely a valid MediaWiki title and file name after processing.
  * Returns null on fatal errors.
  *
- * @static
+ * @name mw.Title.newFromFileName
+ * @method
  * @param {string} uncleanName The unclean file name including file extension but
  *   without namespace
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
@@ -601,7 +605,8 @@ Title.newFromFileName = function ( uncleanName ) {
  *
  *     var title = mw.Title.newFromImg( imageNode );
  *
- * @static
+ * @name mw.Title.newFromImg
+ * @method
  * @param {HTMLElement|jQuery} img The image to use as a base
  * @return {mw.Title|null} The file title or null if unsuccessful
  */
@@ -617,6 +622,8 @@ Title.newFromImg = function ( img ) {
  *
  * See NamespaceInfo::isTalk in PHP
  *
+ * @name mw.Title.isTalkNamespace
+ * @method
  * @param {number} namespaceId Namespace ID
  * @return {boolean} Namespace is a talk namespace
  */
@@ -629,6 +636,8 @@ Title.isTalkNamespace = function ( namespaceId ) {
  *
  * See NamespaceInfo::wantSignatures in PHP
  *
+ * @name mw.Title.wantSignaturesNamespace
+ * @method
  * @param {number} namespaceId Namespace ID
  * @return {boolean} Namespace is a signature namespace
  */
@@ -640,7 +649,8 @@ Title.wantSignaturesNamespace = function ( namespaceId ) {
 /**
  * Whether this title exists on the wiki.
  *
- * @static
+ * @name mw.Title.exists
+ * @method
  * @param {string|mw.Title} title prefixed db-key name (string) or instance of Title
  * @return {boolean|null} Boolean if the information is available, otherwise null
  * @throws {Error} If title is not a string or mw.Title
@@ -665,13 +675,10 @@ Title.exists = function ( title ) {
 };
 
 /**
- * Store page existence
+ * @typedef {Object} mw.Title~TitleExistenceStore
+ * @property {Object} pages Keyed by title. Boolean true value indicates page does exist.
  *
- * @static
- * @property {Object} exist
- * @property {Object} exist.pages Keyed by title. Boolean true value indicates page does exist.
- *
- * @property {Function} exist.set The setter function.
+ * @property {Function} set The setter function. Returns a boolean.
  *
  *  Example to declare existing titles:
  *
@@ -681,9 +688,13 @@ Title.exists = function ( title ) {
  *
  *     Title.exist.set( ['File:Foo_bar.jpg', ...], false );
  *
- * @property {string|Array} exist.set.titles Title(s) in strict prefixedDb title form
- * @property {boolean} [exist.set.state=true] State of the given titles
- * @return {boolean}
+ * @property {string|string[]} set.titles Title(s) in strict prefixedDb title form
+ * @property {boolean} [set.state=true] State of the given titles
+ */
+
+/**
+ * @name mw.Title.exist
+ * @type {mw.Title~TitleExistenceStore}
  */
 Title.exist = {
 	pages: {},
@@ -706,6 +717,8 @@ Title.exist = {
  * and ensure it's clean. Extensions with non-alphanumeric characters will be discarded.
  * Keep in sync with File::normalizeExtension() in PHP.
  *
+ * @name mw.Title.normalizeExtension
+ * @method
  * @param {string} extension File extension (without the leading dot)
  * @return {string} File extension in canonical form
  */
@@ -731,6 +744,8 @@ Title.normalizeExtension = function ( extension ) {
 /**
  * PHP's strtoupper differs from String.toUpperCase in a number of cases (T147646).
  *
+ * @name mw.Title.phpCharToUpper
+ * @method
  * @param {string} chr Unicode character
  * @return {string} Unicode character, in upper case, according to the same rules as in PHP
  */
@@ -747,8 +762,7 @@ Title.phpCharToUpper = function ( chr ) {
 };
 
 /* Public members */
-
-Title.prototype = {
+Title.prototype = /** @lends mw.Title.prototype */ {
 	constructor: Title,
 
 	/**
@@ -936,7 +950,7 @@ Title.prototype = {
 	/**
 	 * Get the URL to this title
 	 *
-	 * @see mw.util#getUrl
+	 * @see mediawiki.module:util.getUrl
 	 * @param {Object} [params] A mapping of query parameter names to values,
 	 *     e.g. `{ action: 'edit' }`.
 	 * @return {string}
@@ -1005,19 +1019,17 @@ Title.prototype = {
 };
 
 /**
- * Alias of mw.Title#getPrefixedDb
+ * Alias of [mw.Title#getPrefixedDb]{@link mw.Title#getPrefixedDb}
  *
- * TODO: Use @-alias when we switch to JSDoc
- *
+ * @name mw.Title.prototype.toString
  * @method
  */
 Title.prototype.toString = Title.prototype.getPrefixedDb;
 
 /**
- * Alias of mw.Title#getPrefixedText
+ * Alias of [mw.Title#getPrefixedText]{@link mw.Title#getPrefixedText}
  *
- * TODO: Use @-alias when we switch to JSDoc
- *
+ * @name mw.Title.prototype.toText
  * @method
  */
 Title.prototype.toText = Title.prototype.getPrefixedText;
