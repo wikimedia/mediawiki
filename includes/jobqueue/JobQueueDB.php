@@ -34,10 +34,17 @@ use Wikimedia\ScopedCallback;
  * @since 1.21
  */
 class JobQueueDB extends JobQueue {
-	private const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
-	private const MAX_AGE_PRUNE = 604_800; // integer; seconds a job can live once claimed
-	private const MAX_JOB_RANDOM = 2_147_483_647; // integer; 2^31 - 1, used for job_random
-	private const MAX_OFFSET = 255; // integer; maximum number of rows to skip
+	/* seconds to cache info without re-validating */
+	private const CACHE_TTL_SHORT = 30;
+	/* seconds a job can live once claimed */
+	private const MAX_AGE_PRUNE = 7 * 24 * 3600;
+	/**
+	 * Used for job_random, the highest safe 32-bit signed integer.
+	 * Equivalent to `( 2 ** 31 ) - 1` on 64-bit.
+	 */
+	private const MAX_JOB_RANDOM = 2_147_483_647;
+	/* maximum number of rows to skip */
+	private const MAX_OFFSET = 255;
 
 	/** @var IMaintainableDatabase|DBError|null */
 	protected $conn;

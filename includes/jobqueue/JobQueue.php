@@ -61,9 +61,11 @@ abstract class JobQueue {
 
 	private JobFactory $jobFactory;
 
-	protected const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
+	/* Bit flag for "all-or-nothing" job insertions */
+	protected const QOS_ATOMIC = 1;
 
-	protected const ROOTJOB_TTL = 2_419_200; // integer; seconds to remember root jobs (28 days)
+	/* Seconds to remember root jobs (28 days) */
+	protected const ROOTJOB_TTL = 28 * 24 * 3600;
 
 	/**
 	 * @stable to call

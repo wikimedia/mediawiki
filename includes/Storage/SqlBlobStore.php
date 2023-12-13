@@ -53,6 +53,9 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	// Note: the name has been taken unchanged from the old Revision class.
 	public const TEXT_CACHE_GROUP = 'revisiontext:10';
 
+	/** @internal */
+	public const DEFAULT_TTL = 7 * 24 * 3600; // 7 days
+
 	/**
 	 * @var ILoadBalancer
 	 */
@@ -76,7 +79,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * @var int
 	 */
-	private $cacheExpiry = 604_800; // 7 days
+	private $cacheExpiry = self::DEFAULT_TTL;
 
 	/**
 	 * @var bool
@@ -117,28 +120,28 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
-	 * @return int time for which blobs can be cached, in seconds
+	 * @return int Time for which blobs can be cached, in seconds
 	 */
 	public function getCacheExpiry() {
 		return $this->cacheExpiry;
 	}
 
 	/**
-	 * @param int $cacheExpiry time for which blobs can be cached, in seconds
+	 * @param int $cacheExpiry Time for which blobs can be cached, in seconds
 	 */
 	public function setCacheExpiry( int $cacheExpiry ) {
 		$this->cacheExpiry = $cacheExpiry;
 	}
 
 	/**
-	 * @return bool whether blobs should be compressed for storage
+	 * @return bool Whether blobs should be compressed for storage
 	 */
 	public function getCompressBlobs() {
 		return $this->compressBlobs;
 	}
 
 	/**
-	 * @param bool $compressBlobs whether blobs should be compressed for storage
+	 * @param bool $compressBlobs Whether blobs should be compressed for storage
 	 */
 	public function setCompressBlobs( $compressBlobs ) {
 		$this->compressBlobs = $compressBlobs;

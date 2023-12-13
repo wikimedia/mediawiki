@@ -256,13 +256,14 @@ class Language implements Bcp47Code {
 	 * @since 1.35
 	 */
 	protected const DURATION_INTERVALS = [
-		'millennia' => 31_556_952_000,
-		'centuries' => 3_155_695_200,
-		'decades' => 315_569_520,
-		'years' => 31_556_952, // 86400 * ( 365 + ( 24 * 3 + 25 ) / 400 )
-		'weeks' => 604_800,
-		'days' => 86_400,
-		'hours' => 3_600,
+		'millennia' => 1000 * 31_556_952,
+		'centuries' => 100 * 31_556_952,
+		'decades' => 10 * 31_556_952,
+		// The average year is 365.2425 days (365 + (24 * 3 + 25) / 400)
+		'years' => 31_556_952, // 365.2425 * 24 * 3600
+		'weeks' => 7 * 24 * 3600,
+		'days' => 24 * 3600,
+		'hours' => 3600,
 		'minutes' => 60,
 		'seconds' => 1,
 	];
