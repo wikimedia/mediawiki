@@ -500,30 +500,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->conn->affectedRows(), 'Key conflict, nothing changed on database' );
 	}
 
-	public static function provideTableNames() {
-		// Note that newConnection() sets the table prefix to ''
-		return [
-			[ 'mw_page', 'quoted', '`mw_page`' ],
-			[ '`mw_page`', 'quoted', '`mw_page`' ],
-			[ 'my_wiki.mw_page', 'quoted', '`my_wiki`.`mw_page`' ],
-			[ 'my_wiki.`mw_page`', 'quoted', '`my_wiki`.`mw_page`' ],
-			[ '`my_wiki`.mw_page', 'quoted', '`my_wiki`.`mw_page`' ],
-			[ '`my_wiki`.`mw_page`', 'quoted', '`my_wiki`.`mw_page`' ],
-			[ '`my_``wiki`.`mw_page`', 'quoted', '`my_``wiki`.`mw_page`' ],
-			[ '`my_``wiki`.`mw_page`', 'quoted', '`my_``wiki`.`mw_page`' ],
-			[ '```my_``wiki`.`mw_page`', 'quoted', '```my_``wiki`.`mw_page`' ],
-			[ '`my_``wiki```.`mw_page`', 'quoted', '`my_``wiki```.`mw_page`' ],
-		];
-	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::tableName
-	 * @dataProvider provideTableNames
-	 */
-	public function testTableName( $table, $format, $expected ) {
-		$this->assertSame( $expected, $this->conn->tableName( $table, $format ) );
-	}
-
 	private function createSourceTable() {
 		global $wgDBname;
 

@@ -30,6 +30,16 @@ class SQLPlatformTestHelper extends SQLPlatform {
 	 */
 	protected $unionSupportsOrderAndLimit = true;
 
+	/**
+	 * TODO: remove
+	 *
+	 * This was previously a stub for an abstract method, but now this is the
+	 * only override. But many tests depend on unquoted table names appearing
+	 * in query strings.
+	 *
+	 * @param string $s
+	 * @return string
+	 */
 	public function addIdentifierQuotes( $s ) {
 		return $s;
 	}

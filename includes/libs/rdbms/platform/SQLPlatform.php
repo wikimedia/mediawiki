@@ -87,7 +87,21 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function addIdentifierQuotes( $s ) {
-		return '"' . str_replace( '"', '""', $s ) . '"';
+		if ( strcspn( $s, "\0\"`'." ) !== strlen( $s ) ) {
+			throw new DBLanguageError(
+				"Identifier must not contain quote, dot or null characters"
+			);
+		}
+		$quoteChar = $this->getIdentifierQuoteChar();
+		return $quoteChar . $s . $quoteChar;
+	}
+
+	/**
+	 * Get the character used for identifier quoting
+	 * @return string
+	 */
+	protected function getIdentifierQuoteChar() {
+		return '"';
 	}
 
 	/**
@@ -1049,73 +1063,20 @@ class SQLPlatform implements ISQLPlatform {
 	 * @return string[] Non-empty list of the identifiers included in the provided table name
 	 */
 	public function extractTableNameComponents( string $name ) {
-		return $this->extractTableNameComponentsSimple( $name, '"' );
-	}
-
-	/**
-	 * Extract identifiers from a table name assuming one combined quote/escape character
-	 *
-	 * @see extractTableNameComponents()
-	 *
-	 * @param string $name
-	 * @param string $quoteCh
-	 * @return string[]
-	 */
-	protected function extractTableNameComponentsSimple( $name, $quoteCh ) {
+		$quoteChar = $this->getIdentifierQuoteChar();
 		$components = [];
-
-		$length = strlen( $name );
-		// Keep fetching components until there is nothing left...
-		for ( $offset = 0; $offset < $length; ) {
-			if ( $name[$offset] === $quoteCh ) {
-				// Component is assumed to be fully escaped
-				$endQuotePos = false;
-				for ( $peekPos = $offset + 1; $peekPos < $length; ++$peekPos ) {
-					if ( $name[$peekPos] === $quoteCh ) {
-						if ( ( $name[$peekPos + 1] ?? '' ) === $quoteCh ) {
-							// This quote escapes a literal quote; skip over both
-							++$peekPos;
-						} else {
-							// This quote ends the identifier
-							$endQuotePos = $peekPos;
-							break;
-						}
-					}
-				}
-				if ( $endQuotePos === false ) {
-					throw new DBLanguageError( "Unterminated quote in table name '$name'" );
-				}
-				// Consume up to and including the end quote
-				$component = substr( $name, $offset, $endQuotePos - $offset + 1 );
-				$offset = $endQuotePos + 1;
-				if ( $offset < $length ) {
-					if ( $name[$offset] !== '.' ) {
-						throw new DBLanguageError( "Premature quote in table name '$name'" );
-					}
-					// Consume the dot
-					++$offset;
-				}
+		foreach ( explode( '.', $name ) as $component ) {
+			if ( $this->isQuotedIdentifier( $component ) ) {
+				$unquotedComponent = substr( $component, 1, -1 );
 			} else {
-				// Component is assumed to both not use nor need any escaping
-				$nextDotPos = strpos( $name, '.', $offset );
-				if ( $nextDotPos === false ) {
-					// Terminal component; consume everything left
-					$component = substr( $name, $offset );
-					$offset = $length;
-				} else {
-					// Non-terminal component; consume up to the next dot
-					$component = substr( $name, $offset, $nextDotPos - $offset );
-					// Consume and omit that dot
-					$offset = $nextDotPos + 1;
-				}
-				if ( strlen( $component ) !== strcspn( $component, $quoteCh ) ) {
-					throw new DBLanguageError( "Unexpected quote in table name '$name'" );
-				}
+				$unquotedComponent = $component;
 			}
-
+			if ( str_contains( $unquotedComponent, $quoteChar ) ) {
+				throw new DBLanguageError(
+					'Table name component contains unexpected quote or dot character' );
+			}
 			$components[] = $component;
 		}
-
 		return $components;
 	}
 
@@ -1160,7 +1121,8 @@ class SQLPlatform implements ISQLPlatform {
 	 * @return bool
 	 */
 	public function isQuotedIdentifier( $name ) {
-		return strlen( $name ) > 1 && $name[0] === '"' && $name[-1] === '"';
+		$quoteChar = $this->getIdentifierQuoteChar();
+		return strlen( $name ) > 1 && $name[0] === $quoteChar && $name[-1] === $quoteChar;
 	}
 
 	/**

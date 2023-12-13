@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Psr\Log\NullLogger;
@@ -55,11 +56,9 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function provideTableName() {
-		// Formatting is mostly ignored since addIdentifierQuotes is abstract.
-		// For testing of addIdentifierQuotes, see actual Database subclas tests.
 		return [
 			'local' => [
-				'tablename',
+				'"tablename"',
 				'tablename',
 				'quoted',
 			],
@@ -69,7 +68,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 				'raw',
 			],
 			'shared' => [
-				'sharedb.tablename',
+				'"sharedb"."tablename"',
 				'tablename',
 				'quoted',
 				[ 'dbname' => 'sharedb', 'schema' => null, 'prefix' => '' ],
@@ -81,7 +80,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 				[ 'dbname' => 'sharedb', 'schema' => null, 'prefix' => '' ],
 			],
 			'shared-prefix' => [
-				'sharedb.sh_tablename',
+				'"sharedb"."sh_tablename"',
 				'tablename',
 				'quoted',
 				[ 'dbname' => 'sharedb', 'schema' => null, 'prefix' => 'sh_' ],
@@ -93,7 +92,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 				[ 'dbname' => 'sharedb', 'schema' => null, 'prefix' => 'sh_' ],
 			],
 			'foreign' => [
-				'databasename.tablename',
+				'"databasename"."tablename"',
 				'databasename.tablename',
 				'quoted',
 			],
@@ -102,6 +101,16 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 				'databasename.tablename',
 				'raw',
 			],
+			'foreign only DB quoted' => [
+				'"databasename"."tablename"',
+				'"databasename".tablename',
+				'quoted',
+			],
+			'foreign only table quoted' => [
+				'"databasename"."tablename"',
+				'databasename."tablename"',
+				'quoted',
+			],
 		];
 	}
 
@@ -109,13 +118,42 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideTableName
 	 */
 	public function testTableName( $expected, $table, $format, array $alias = null ) {
+		// Use MockDatabase to avoid useless stub SQLPlatformTestHelper::addIdentifierQuotes
+		$db = new MockDatabase();
 		if ( $alias ) {
-			$this->db->setTableAliases( [ $table => $alias ] );
+			$db->setTableAliases( [ $table => $alias ] );
 		}
 		$this->assertEquals(
 			$expected,
-			$this->db->tableName( $table, $format ?: 'quoted' )
+			$db->tableName( $table, $format ?: 'quoted' )
 		);
+	}
+
+	public static function provideYagniTableName() {
+		$names = [
+			'"',
+			'a.b.c.d',
+			'"a.b".c',
+			'"my_""wiki"."mw_page"',
+			'"my_""wiki"."mw_page"',
+			'"""my_""wiki"."mw_page"',
+			'"my_""wiki"""."mw_page"',
+		];
+		foreach ( $names as $name ) {
+			yield [ $name ];
+		}
+	}
+
+	/**
+	 * Maybe these cases could be made to work, but YAGNI
+	 *
+	 * @dataProvider provideYagniTableName
+	 * @param string $table
+	 */
+	public function testYagniTableName( $table ) {
+		$this->expectException( DBLanguageError::class );
+		$db = new MockDatabase();
+		$db->tableName( $table );
 	}
 
 	public static function provideTableNamesWithIndexClauseOrJOIN() {

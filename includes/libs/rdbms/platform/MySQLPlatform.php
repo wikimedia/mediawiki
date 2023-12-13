@@ -27,28 +27,8 @@ use Wikimedia\Rdbms\Query;
  * @see ISQLPlatform
  */
 class MySQLPlatform extends SQLPlatform {
-	/**
-	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
-	 *
-	 * @param string $s
-	 * @return string
-	 */
-	public function addIdentifierQuotes( $s ) {
-		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
-		// Remove NUL bytes and escape backticks by doubling
-		return '`' . str_replace( [ "\0", '`' ], [ '', '``' ], $s ) . '`';
-	}
-
-	public function extractTableNameComponents( string $name ) {
-		return $this->extractTableNameComponentsSimple( $name, '`' );
-	}
-
-	/**
-	 * @param string $name
-	 * @return bool
-	 */
-	public function isQuotedIdentifier( $name ) {
-		return strlen( $name ) > 1 && $name[0] === '`' && $name[-1] === '`';
+	protected function getIdentifierQuoteChar() {
+		return '`';
 	}
 
 	public function buildStringCast( $field ) {
