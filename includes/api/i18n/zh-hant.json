@@ -52,6 +52,7 @@
 	"apihelp-main-paramvalue-errorformat-bc": "MediaWiki 1.29 之前使用的格式。會忽略 <var>errorlang</var> 與 <var>errorsuselocal</var>。",
 	"apihelp-main-param-errorlang": "警告與錯誤採用的語言。使用 <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> 與 <kbd>siprop=languages</kbd> 會回傳語言代碼清單、或指定 <kbd>content</kbd> 來使用此 wiki 的內容語言、或是指定 <kbd>uselang</kbd> 來使用與 <var>uselang</var> 參數相同的值。",
 	"apihelp-main-param-errorsuselocal": "若有指定，錯誤文字會使用來自 {{ns:MediaWiki}} 命名空間的本地自定義訊息。",
+	"apihelp-acquiretempusername-summary": "啟用建立臨時帳號功能且目前使用者已登出時，取得臨時使用者的使用者名稱並將其儲存在目前連線階段中。如果已儲存名稱則回傳相同名稱。",
 	"apihelp-block-summary": "封鎖使用者。",
 	"apihelp-block-param-user": "要封鎖的使用者。",
 	"apihelp-block-param-userid": "改成指定<kbd>$1user=#<var>ID</var></kbd>。",

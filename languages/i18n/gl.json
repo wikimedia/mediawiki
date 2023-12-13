@@ -36,7 +36,8 @@
 			"Xosecalvo",
 			"Xosé",
 			"לערי ריינהארט",
-			"No se"
+			"No se",
+			"O Breixo"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -4095,7 +4096,7 @@
 	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=usuario|2=lista de usuarios}}, {{PLURAL:$3|por|por calquera de}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nome de usuario",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"paramvalidator-help-type-user-subtype-cidr": "rango de IP",
+	"paramvalidator-help-type-user-subtype-cidr": "Rango de IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nome de interwiki (p. ex. \"prefixo>NomeExemplo\")",
 	"paramvalidator-help-type-user-subtype-id": "ID de usuario (p. ex. \"#12345\")",
 	"paramvalidator-badtitle": "O valor \"$2\" non é válido para o parámetro de título <var>$1</var>: non é unha cadea de título válida.",

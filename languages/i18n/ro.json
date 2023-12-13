@@ -2741,7 +2741,7 @@
 	"blocklist-editing-action": "acțiuni",
 	"ipblocklist-empty": "Lista blocărilor este goală.",
 	"ipblocklist-no-results": "Nu există blocări pentru adresa IP sau numele de utilizator cerute.",
-	"blocklink": "blochează",
+	"blocklink": "blocare",
 	"unblocklink": "deblochează",
 	"change-blocklink": "modifică blocarea",
 	"empty-username": "(nume de utilizator indisponibil)",
