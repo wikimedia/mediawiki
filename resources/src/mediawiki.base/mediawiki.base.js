@@ -508,8 +508,8 @@ mw.hook = function ( name ) {
 			 * Register a hook handler.
 			 *
 			 * @param {...Function} handler Function to bind.
-			 * @chainable
 			 * @memberof Hook
+			 * @return {Hook}
 			 */
 			add: function () {
 				for ( var i = 0; i < arguments.length; i++ ) {
@@ -528,8 +528,8 @@ mw.hook = function ( name ) {
 			 * Unregister a hook handler.
 			 *
 			 * @param {...Function} handler Function to unbind.
-			 * @chainable
 			 * @memberof Hook
+			 * @return {Hook}
 			 */
 			remove: function () {
 				for ( var i = 0; i < arguments.length; i++ ) {
