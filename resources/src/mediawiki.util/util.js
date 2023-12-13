@@ -911,23 +911,27 @@ var util = {
 	},
 
 	/**
-	 * Parse the URL of an image uploaded to MediaWiki, or a thumbnail for such an image,
-	 * and return the image name, thumbnail size and a template that can be used to resize
-	 * the image.
-	 *
-	 * @param {string} url URL to parse (URL-encoded)
-	 * @return {Object|null} URL data, or null if the URL is not a valid MediaWiki
-	 *   image/thumbnail URL.
-	 * @return {string} return.name File name (same format as Title.getMainText()).
-	 * @return {number} [return.width] Thumbnail width, in pixels. Null when the file is not
+	 * @typedef {Object} ResizeableThumbnailUrl
+	 * @property {string} name File name (same format as Title.getMainText()).
+	 * @property {number} [width] Thumbnail width, in pixels. Null when the file is not
 	 *   a thumbnail.
-	 * @return {function(number):string} [return.resizeUrl] A function that takes a width
+	 * @property {function(number):string} [resizeUrl] A function that takes a width
 	 *   parameter and returns a thumbnail URL (URL-encoded) with that width. The width
 	 *   parameter must be smaller than the width of the original image (or equal to it; that
 	 *   only works if MediaHandler::mustRender returns true for the file). Null when the
 	 *   file in the original URL is not a thumbnail.
 	 *   On wikis with $wgGenerateThumbnailOnParse set to true, this will fall back to using
 	 *   Special:Redirect which is less efficient. Otherwise, it is a direct thumbnail URL.
+	 */
+
+	/**
+	 * Parse the URL of an image uploaded to MediaWiki, or a thumbnail for such an image,
+	 * and return the image name, thumbnail size and a template that can be used to resize
+	 * the image.
+	 *
+	 * @param {string} url URL to parse (URL-encoded)
+	 * @return {ResizeableThumbnailUrl|null} null if the URL is not a valid MediaWiki
+	 *   image/thumbnail URL.
 	 */
 	parseImageUrl: function ( url ) {
 		var name, decodedName, width, urlTemplate;
@@ -993,7 +997,7 @@ var util = {
 			}
 			return {
 				name: decodedName.replace( /_/g, ' ' ),
-				width: width,
+				width,
 				resizeUrl: urlTemplate ? function ( w ) {
 					return urlTemplate.replace( '{width}', w );
 				} : null
