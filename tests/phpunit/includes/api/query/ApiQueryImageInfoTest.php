@@ -31,7 +31,7 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 	private const IMAGE_2_SIZE = 12345;
 
 	private $testUser = null;
-	private $anonUser = null;
+	private $tempUser = null;
 
 	public function addDBData() {
 		parent::addDBData();
