@@ -117,6 +117,26 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
+	 * Provides a caching key for an upload from url set of parameters
+	 * Used to set the status of an async job in UploadFromUrlJob
+	 * and retreive it in frontend clients like ApiUpload. Will return the
+	 * empty string if not all parameters are present.
+	 *
+	 * @param array $params
+	 * @return string
+	 */
+	public static function getCacheKey( $params ) {
+		if ( !isset( $params['filename'] ) || !isset( $params['url'] ) ) {
+			return "";
+		} else {
+			// We use sha1 here to ensure we have a fixed-length string of printable
+			// characters. There is no cryptography involved, so we just need a
+			// relatively fast function.
+			return sha1( sprintf( "%s|||%s", $params['filename'], $params['url'] ) );
+		}
+	}
+
+	/**
 	 * @return string[]
 	 */
 	private static function getAllowedHosts(): array {
