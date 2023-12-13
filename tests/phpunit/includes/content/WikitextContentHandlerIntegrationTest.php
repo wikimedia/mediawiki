@@ -78,7 +78,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'title' => 'WikitextContentTest_testGetParserOutput',
 			'model' => CONTENT_MODEL_WIKITEXT,
 			'text' => "#REDIRECT [[Main Page]]",
-			'expectedHtml' => '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr">' . "<div class=\"redirectMsg\"><p>Redirect to:</p><ul class=\"redirectText\"><li><a href=\"/index.php?title=Main_Page&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Main Page (page does not exist)\">Main Page</a></li></ul></div><section data-mw-section-id=\"0\" id=\"mwAQ\"><link rel=\"mw:PageProp/redirect\" href=\"./Main_Page\" id=\"mwAg\"></section></div>",
+			'expectedHtml' => '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr">' . "<div class=\"redirectMsg\"><p>Redirect to:</p><ul class=\"redirectText\"><li><a href=\"/w/index.php?title=Main_Page&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Main Page (page does not exist)\">Main Page</a></li></ul></div><section data-mw-section-id=\"0\" id=\"mwAQ\"><link rel=\"mw:PageProp/redirect\" href=\"./Main_Page\" id=\"mwAg\"></section></div>",
 			'expectedFields' => [
 				'Links' => [
 					[ 'Main_Page' => 0 ],
@@ -191,6 +191,12 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 	public function testGetParserOutput( $title, $model, $text, $expectedHtml,
 		$expectedFields = null, $options = null
 	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::FragmentMode => [ 'html5' ],
+		] );
+
 		$parserOptions = null;
 		if ( $options ) {
 			$parserOptions = ParserOptions::newFromAnon();
@@ -198,7 +204,6 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				$parserOptions->setOption( $key, $val );
 			}
 		}
-		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 'html5' ] );
 		parent::testGetParserOutput(
 			$title, $model, $text, $expectedHtml, $expectedFields, $parserOptions
 		);
