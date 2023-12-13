@@ -944,14 +944,6 @@ class SQLPlatform implements ISQLPlatform {
 			);
 		}
 
-		# Skip the entire process when we have a string quoted on both ends.
-		# Note that we check the end so that we will still quote any use of
-		# use of `database`.table. But won't break things if someone wants
-		# to query a database table with a dot in the name.
-		if ( $this->isQuotedIdentifier( $name ) ) {
-			return $name;
-		}
-
 		# Lets test for any bits of text that should never show up in a table
 		# name. Basically anything like JOIN or ON which are actually part of
 		# SQL queries, but may end up inside of the table value to combine
@@ -971,54 +963,54 @@ class SQLPlatform implements ISQLPlatform {
 			return $name;
 		}
 
-		# Split database and table into proper variables.
-		[ $database, $schema, $prefix, $table ] = $this->qualifiedTableComponents( $name );
-
-		# Quote $table and apply the prefix if not quoted.
-		# $tableName might be empty if this is called from Database::replaceVars()
-		$tableName = "{$prefix}{$table}";
-		if ( $format === 'quoted'
-			&& !$this->isQuotedIdentifier( $tableName )
-			&& $tableName !== ''
-		) {
-			$tableName = $this->addIdentifierQuotes( $tableName );
+		# Extract necessary database, schema, table identifiers and quote them as needed
+		$formattedComponents = [];
+		foreach ( $this->qualifiedTableComponents( $name ) as $component ) {
+			if ( $format === 'quoted' && !$this->isQuotedIdentifier( $component ) ) {
+				$formattedComponents[] = $this->addIdentifierQuotes( $component );
+			} else {
+				$formattedComponents[] = $component;
+			}
 		}
 
-		# Quote $schema and $database and merge them with the table name if needed
-		$tableName = $this->prependDatabaseOrSchema( $schema, $tableName, $format );
-		$tableName = $this->prependDatabaseOrSchema( $database, $tableName, $format );
-
-		return $tableName;
+		return implode( '.', $formattedComponents );
 	}
 
 	/**
 	 * Get the table components needed for a query given the currently selected database
 	 *
-	 * @param string $name Table name in the form of db.schema.table, db.table, or table
-	 * @return array (DB name or "" for default, schema name, table prefix, table name)
+	 * The resulting array will take one of the follow forms:
+	 *  - <table identifier>
+	 *  - <database identifier>.<table identifier> (e.g. non-Postgres)
+	 *  - <schema identifier>.<table identifier> (e.g. Postgres-only)
+	 *  - <database identifier>.<schema identifier>.<table identifier> (e.g. Postgres-only)
+	 *
+	 * If the provided table name only consists of an unquoted table identifier that has an
+	 * entry in ({@link getTableAliases()}), then, the resulting components will be determined
+	 * from the alias configuration. If such alias configuration does not specify the table
+	 * prefix, then the current DB domain prefix will be prepended to the table identifier.
+	 *
+	 * In all other cases where the provided table name only consists of an unquoted table
+	 * identifier, the current DB domain prefix will be prepended to the table identifier.
+	 *
+	 * @param string $name Table name as database.schema.table, database.table, or table
+	 * @return string[] Non-empty array of identifiers that compose the qualified table name
 	 */
 	public function qualifiedTableComponents( $name ) {
-		# We reverse the explode so that database.table and table both output the correct table.
-		$dbDetails = explode( '.', $name, 3 );
-		if ( $this->currentDomain ) {
-			$currentDomainPrefix = $this->currentDomain->getTablePrefix();
-		} else {
-			$currentDomainPrefix = null;
+		$identifiers = $this->extractTableNameComponents( $name );
+		if ( count( $identifiers ) > 3 ) {
+			throw new DBLanguageError( "Too many components in table name '$name'" );
 		}
-		if ( count( $dbDetails ) == 3 ) {
-			[ $database, $schema, $table ] = $dbDetails;
-			# We don't want any prefix added in this case
-			$prefix = '';
-		} elseif ( count( $dbDetails ) == 2 ) {
-			[ $database, $table ] = $dbDetails;
-			# We don't want any prefix added in this case
-			$prefix = '';
-			# In dbs that support it, $database may actually be the schema
-			# but that doesn't affect any of the functionality here
-			$schema = '';
-		} else {
-			[ $table ] = $dbDetails;
+		// Table alias config and prefixes only apply to unquoted single-identifier names
+		if ( count( $identifiers ) == 1 && !$this->isQuotedIdentifier( $identifiers[0] ) ) {
+			if ( $this->currentDomain ) {
+				$currentDomainPrefix = $this->currentDomain->getTablePrefix();
+			} else {
+				$currentDomainPrefix = null;
+			}
+			[ $table ] = $identifiers;
 			if ( isset( $this->tableAliases[$table] ) ) {
+				// This is an "alias" table that uses a different db/schema/prefix scheme
 				$database = $this->tableAliases[$table]['dbname'];
 				$schema = is_string( $this->tableAliases[$table]['schema'] )
 					? $this->tableAliases[$table]['schema']
@@ -1027,13 +1019,104 @@ class SQLPlatform implements ISQLPlatform {
 					? $this->tableAliases[$table]['prefix']
 					: $currentDomainPrefix;
 			} else {
+				// Use the current database domain to resolve the schema and prefix
 				$database = '';
-				$schema = $this->relationSchemaQualifier(); # Default schema
-				$prefix = $currentDomainPrefix; # Default prefix
+				$schema = $this->relationSchemaQualifier();
+				$prefix = $currentDomainPrefix;
 			}
+			$qualifierIdentifiers = [ $database, $schema ];
+			$tableIdentifier = $prefix . $table;
+		} else {
+			$qualifierIdentifiers = array_slice( $identifiers, 0, -1 );
+			$tableIdentifier = end( $identifiers );
 		}
 
-		return [ $database, $schema, $prefix, $table ];
+		$components = [];
+		foreach ( $qualifierIdentifiers as $identifier ) {
+			if ( $identifier !== null && $identifier !== '' ) {
+				$components[] = $identifier;
+			}
+		}
+		$components[] = $tableIdentifier;
+
+		return $components;
+	}
+
+	/**
+	 * Extract the dot-separated components of a table name, preserving identifier quotation
+	 *
+	 * @param string $name Table name, possible qualified with db or db+schema
+	 * @return string[] Non-empty list of the identifiers included in the provided table name
+	 */
+	public function extractTableNameComponents( string $name ) {
+		return $this->extractTableNameComponentsSimple( $name, '"' );
+	}
+
+	/**
+	 * Extract identifiers from a table name assuming one combined quote/escape character
+	 *
+	 * @see extractTableNameComponents()
+	 *
+	 * @param string $name
+	 * @param string $quoteCh
+	 * @return string[]
+	 */
+	protected function extractTableNameComponentsSimple( $name, $quoteCh ) {
+		$components = [];
+
+		$length = strlen( $name );
+		// Keep fetching components until there is nothing left...
+		for ( $offset = 0; $offset < $length; ) {
+			if ( $name[$offset] === $quoteCh ) {
+				// Component is assumed to be fully escaped
+				$endQuotePos = false;
+				for ( $peekPos = $offset + 1; $peekPos < $length; ++$peekPos ) {
+					if ( $name[$peekPos] === $quoteCh ) {
+						if ( ( $name[$peekPos + 1] ?? '' ) === $quoteCh ) {
+							// This quote escapes a literal quote; skip over both
+							++$peekPos;
+						} else {
+							// This quote ends the identifier
+							$endQuotePos = $peekPos;
+							break;
+						}
+					}
+				}
+				if ( $endQuotePos === false ) {
+					throw new DBLanguageError( "Unterminated quote in table name '$name'" );
+				}
+				// Consume up to and including the end quote
+				$component = substr( $name, $offset, $endQuotePos - $offset + 1 );
+				$offset = $endQuotePos + 1;
+				if ( $offset < $length ) {
+					if ( $name[$offset] !== '.' ) {
+						throw new DBLanguageError( "Premature quote in table name '$name'" );
+					}
+					// Consume the dot
+					++$offset;
+				}
+			} else {
+				// Component is assumed to both not use nor need any escaping
+				$nextDotPos = strpos( $name, '.', $offset );
+				if ( $nextDotPos === false ) {
+					// Terminal component; consume everything left
+					$component = substr( $name, $offset );
+					$offset = $length;
+				} else {
+					// Non-terminal component; consume up to the next dot
+					$component = substr( $name, $offset, $nextDotPos - $offset );
+					// Consume and omit that dot
+					$offset = $nextDotPos + 1;
+				}
+				if ( strlen( $component ) !== strcspn( $component, $quoteCh ) ) {
+					throw new DBLanguageError( "Unexpected quote in table name '$name'" );
+				}
+			}
+
+			$components[] = $component;
+		}
+
+		return $components;
 	}
 
 	/**
@@ -1045,23 +1128,6 @@ class SQLPlatform implements ISQLPlatform {
 			return $this->currentDomain->getSchema();
 		}
 		return null;
-	}
-
-	/**
-	 * @param string|null $namespace Database or schema
-	 * @param string $relation Name of table, view, sequence, etc...
-	 * @param string $format One of (raw, quoted)
-	 * @return string Relation name with quoted and merged $namespace as needed
-	 */
-	private function prependDatabaseOrSchema( $namespace, $relation, $format ) {
-		if ( $namespace !== null && $namespace !== '' ) {
-			if ( $format === 'quoted' && !$this->isQuotedIdentifier( $namespace ) ) {
-				$namespace = $this->addIdentifierQuotes( $namespace );
-			}
-			$relation = $namespace . '.' . $relation;
-		}
-
-		return $relation;
 	}
 
 	public function tableNames( ...$tables ) {

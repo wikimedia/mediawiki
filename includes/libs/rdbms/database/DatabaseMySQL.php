@@ -298,8 +298,8 @@ class DatabaseMySQL extends Database {
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		// Split database and table into proper variables as Database::tableName() returns
 		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
-		[ $database, , $prefix, $table ] = $this->platform->qualifiedTableComponents( $table );
-		$tableName = "{$prefix}{$table}";
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$tableName = end( $components );
 
 		if ( isset( $this->sessionTempTables[$tableName] ) ) {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
@@ -310,7 +310,8 @@ class DatabaseMySQL extends Database {
 		$encLike = $this->platform->escapeLikeInternal( $tableName, '\\' );
 
 		// If the database has been specified (such as for shared tables), use "FROM"
-		if ( $database !== '' ) {
+		if ( count( $components ) > 1 ) {
+			$database = reset( $components );
 			$encDatabase = $this->platform->addIdentifierQuotes( $database );
 			$sql = "SHOW TABLES FROM $encDatabase LIKE '$encLike'";
 		} else {
