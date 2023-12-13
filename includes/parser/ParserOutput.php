@@ -33,7 +33,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
-use Parser;
 use ParserOptions;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;

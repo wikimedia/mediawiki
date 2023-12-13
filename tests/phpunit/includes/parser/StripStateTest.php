@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Parser\Parser;
+
 /**
  * @covers StripState
  */

@@ -141,6 +141,7 @@ use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Parser\Parsoid\Config\DataAccess as MWDataAccess;

@@ -6,10 +6,10 @@ use Language;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\Linker;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Tidy\TidyDriverBase;
-use Parser;
 use ParserOptions;
 
 /**

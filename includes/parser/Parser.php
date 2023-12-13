@@ -21,6 +21,26 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use BadMethodCallException;
+use BlockLevelPass;
+use CoreMagicVariables;
+use CoreParserFunctions;
+use CoreTagHooks;
+use Exception;
+use File;
+use HtmlArmor;
+use ILanguageConverter;
+use ImageGalleryBase;
+use ImageGalleryClassNotFoundException;
+use InvalidArgumentException;
+use Language;
+use LanguageCode;
+use LinkHolderArray;
+use LogicException;
+use MapCacheLRU;
+use MediaHandler;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
@@ -41,11 +61,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Parser\MagicWordArray;
-use MediaWiki\Parser\MagicWordFactory;
-use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionAccessException;
@@ -66,7 +81,22 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
+use Message;
+use ParserFactory;
+use ParserOptions;
+use ParserOutput;
+use PPFrame;
+use PPNode;
+use Preprocessor;
+use Preprocessor_Hash;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
+use SectionProfiler;
+use StringUtils;
+use StripState;
+use TextContent;
+use UnexpectedValueException;
+use WANObjectCache;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\SectionMetadata;
@@ -75,6 +105,7 @@ use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\ScopedCallback;
+use Xml;
 
 /**
  * @defgroup Parser Parser
@@ -116,7 +147,7 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Parser
  */
-#[AllowDynamicProperties]
+#[\AllowDynamicProperties]
 class Parser {
 
 	# Flags for Parser::setFunctionHook
@@ -6437,3 +6468,9 @@ class Parser {
 		$this->logger->debug( __METHOD__ . ": set $flag flag on '$name'; $reason" );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.41
+ */
+class_alias( Parser::class, 'Parser' );

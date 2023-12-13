@@ -1796,6 +1796,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\MagicWord' => __DIR__ . '/includes/parser/MagicWord.php',
 	'MediaWiki\\Parser\\MagicWordArray' => __DIR__ . '/includes/parser/MagicWordArray.php',
 	'MediaWiki\\Parser\\MagicWordFactory' => __DIR__ . '/includes/parser/MagicWordFactory.php',
+	'MediaWiki\\Parser\\Parser' => __DIR__ . '/includes/parser/Parser.php',
 	'MediaWiki\\Parser\\ParserCacheFactory' => __DIR__ . '/includes/parser/ParserCacheFactory.php',
 	'MediaWiki\\Parser\\ParserCacheFilter' => __DIR__ . '/includes/parser/ParserCacheFilter.php',
 	'MediaWiki\\Parser\\ParserCacheMetadata' => __DIR__ . '/includes/parser/ParserCacheMetadata.php',

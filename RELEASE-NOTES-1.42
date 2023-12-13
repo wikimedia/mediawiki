@@ -504,6 +504,7 @@ because of Phabricator reports.
   - MediaWiki\Message:
     - Message
   - MediaWiki\Parser:
+    - Parser
     - ParserOutput
   - MediaWiki\PoolCounter:
     - PoolCounter

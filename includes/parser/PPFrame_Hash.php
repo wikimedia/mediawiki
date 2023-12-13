@@ -19,6 +19,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 
 /**

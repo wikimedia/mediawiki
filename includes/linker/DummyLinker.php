@@ -4,10 +4,10 @@ namespace MediaWiki\Linker;
 
 use Language;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Parser;
 
 /**
  * @since 1.18

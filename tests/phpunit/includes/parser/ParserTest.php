@@ -10,6 +10,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;

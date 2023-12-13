@@ -31,6 +31,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;

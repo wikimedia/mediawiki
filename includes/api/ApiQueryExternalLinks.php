@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ExternalLinks\LinkFilter;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;

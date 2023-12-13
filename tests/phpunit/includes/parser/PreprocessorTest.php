@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Parser\Parser;
 use MediaWiki\User\User;
 
 /**

@@ -21,6 +21,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Parser\Parser;
+
 /**
  * @ingroup Parser
  */

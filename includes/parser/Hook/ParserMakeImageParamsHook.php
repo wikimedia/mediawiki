@@ -3,8 +3,8 @@
 namespace MediaWiki\Hook;
 
 use File;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
-use Parser;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

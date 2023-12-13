@@ -13,6 +13,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
@@ -20,7 +21,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
-use Parser;
 use RepoGroup;
 use StringUtils;
 
