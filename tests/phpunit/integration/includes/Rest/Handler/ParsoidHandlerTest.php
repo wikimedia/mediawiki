@@ -1500,7 +1500,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$pageName = ( $attribs['pageName'] === '' ) ? 'Main Page' : $attribs['pageName'];
-		$this->assertSame( $pageName, $pageConfig->getTitle() );
+		$this->assertSame( $pageName, $pageConfig->getLinkTarget()->getPrefixedText() );
 
 		$this->assertSame( $expectedLanguage->getCode(), $pageConfig->getPageLanguageBcp47()->getCode() );
 	}
