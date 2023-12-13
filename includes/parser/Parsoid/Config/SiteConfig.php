@@ -477,7 +477,7 @@ class SiteConfig extends ISiteConfig {
 		return Title::newMainPage()->getPrefixedText();
 	}
 
-	public function mainPageAsLinkTarget(): Title {
+	public function mainPageLinkTarget(): Title {
 		// @todo Perhaps should inject TitleFactory here?
 		return Title::newMainPage();
 	}
