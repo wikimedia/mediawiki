@@ -1,10 +1,10 @@
 = MediaWiki 1.41 =
 
-== MediaWiki 1.41.0-PRERELEASE ==
+== MediaWiki 1.41.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.41 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.41 is an pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.41 ==
@@ -17,7 +17,6 @@ Some specific notes for MediaWiki 1.41 upgrades are below:
 * (T178356) MediaWiki now requires browsers to support ES6 for them to receive
   JavaScript, up from ES5. In practice, this primarily means that users of
   Internet Explorer 11 (EOL in 2022) will no longer get JavaScript tools.
-* …
 
 For notes on 1.40.x and older releases, see HISTORY.
 
@@ -37,7 +36,6 @@ For notes on 1.40.x and older releases, see HISTORY.
   ResourceLoader responses for JavaScript modules (T47514).
 * $wgVirtualDomainsMapping - Mapping of virtual domains to other dbs. It's
   useful to get connection to the external cluster.
-* …
 
 ==== Changed configuration ====
 * $wgAuthManagerAutoConfig – When using this setting to modify the
@@ -48,7 +46,6 @@ For notes on 1.40.x and older releases, see HISTORY.
   DBLoadBalancerFactory, not DBLoadBalancer, as a service.
 * $wgUseFileCache is no longer used for ResourceLoader module caching.
 * $wgLBFactoryConf['secret'] has been replaced by $wgChronologyProtectorSecret.
-* …
 
 ==== Removed configuration ====
 * $wgCommentTempTableSchemaMigrationStage – This temporary flag did let you
@@ -59,12 +56,10 @@ For notes on 1.40.x and older releases, see HISTORY.
 * $wgParserOutputHooks - This array interacted with
   ParserOutput::addOutputHook(), which has been deprecated since 1.38 and was
   removed in this release.
-* …
 
 === New user-facing features in 1.41 ===
 * Special:RandomPage can now take multiple namespaces in its URL, split by ','.
 * The aria-level HTML attribute is now allowed in wikitext by the Sanitizer.
-* …
 
 === New features for sysadmins in 1.41 ===
 * $wgDBssl can now enabled in the installer when the database type is
@@ -75,7 +70,6 @@ For notes on 1.40.x and older releases, see HISTORY.
 * MultiHttpClient will send X-Request-Id header and additionally will forward
   'tracestate' and/or 'traceparent' headers when those are present in the
   original request and $wgAllowExternalReqID is set to true.
-* …
 
 === New developer features in 1.41 ===
 * Added ForeignResourcesDir extension.json / skin.json attribute, which should
@@ -113,7 +107,6 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Html::noticeBox accepts new optional parameters, 'heading' & 'iconClassName'.
   'heading' allows to pass an string as title; 'iconClassName' overwrites the
   default info icon.
-* …
 
 === External library changes in 1.41 ===
 
@@ -122,9 +115,6 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Added symfony/polyfill-php81 at v1.28.0.
 * Added symfony/polyfill-php82 at v1.28.0.
 * Added symfony/polyfill-php83 at v1.28.0.
-
-===== New development-only external libraries =====
-* …
 
 ==== Changed external libraries ====
 * Updated codex, codex-design-tokens and codex-icons
@@ -148,12 +138,10 @@ For notes on 1.40.x and older releases, see HISTORY.
 * Updated wikimedia/remex-html from 3.0.3 to 4.0.1.
 * Updated wikimedia/timestamp from 4.1.0 to 4.1.1.
 * Updated wikimedia/utfnormal from 3.0.2 to 4.0.0.
-* …
 
 ===== Changed development-only external libraries =====
 * Updated mediawiki/mediawiki-codesniffer from 41.0.0 to 42.0.0.
 * Updated mediawiki/mediawiki-phan-config from 0.12.1 to 0.13.0.
-* …
 
 ==== Removed external libraries ====
 * jquery.hoverIntent was removed.
@@ -162,18 +150,10 @@ For notes on 1.40.x and older releases, see HISTORY.
 * jquery.color was removed.
 * jquery.fullscreen was removed.
 * jquery.form was removed.
-* …
-
-=== Bug fixes in 1.41 ===
-* …
 
 === Action API changes in 1.41 ===
 * (T322944) `Authorization` was added to the default list of headers
   allowed for cross-origin API requests ($wgAllowedCorsHeaders).
-* …
-
-=== Action API internal changes in 1.41 ===
-* …
 
 === Languages updated in 1.41 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -567,7 +547,6 @@ because of Phabricator reports.
   - ::parseMatch, now private
 * AbstractContent::getRedirectChain() and ::getUltimateRedirectTarget(), both
   deprecated in 1.38, have been removed.
-* …
 
 === Deprecations in 1.41 ===
 * The MessageCache::get hook is deprecated for performance reasons. Use
@@ -1077,7 +1056,6 @@ because of Phabricator reports.
   have been deprecated in favor of ChangeTagsStore::modifyDisplayQueryBuilder()
 * Calling SpecialRandomPage::__construct without services as parameters is
   deprecated and emit deprecation warnings.
-* …
 
 === Other changes in 1.41 ===
 * ExternalLinksLookup::getExternalLinksForPage() now exists to centralize
@@ -1101,7 +1079,6 @@ because of Phabricator reports.
   Title or PageReference. To change the relevant title used for methods
   that do not offer an option to set the page, call Parser::setPage.
   This affects the methods cleanSig, getSection and replaceSection.
-* …
 
 == Compatibility ==
 
