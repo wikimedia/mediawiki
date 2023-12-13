@@ -274,5 +274,12 @@
 			addDroppers( $previewArea, $previewArea.data( 'filedrop' ) );
 			renderLogo( $previewArea );
 		}
+
+		$( 'a.config-help-field-hint' ).on( 'click', function () {
+			// eslint-disable-next-line no-jquery/no-class-state
+			$( this )
+				.siblings( 'div.config-help-field-content' )
+				.toggleClass( 'config-help-field-content-hidden' );
+		} );
 	} );
 }() );

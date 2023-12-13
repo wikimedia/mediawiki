@@ -111,7 +111,8 @@ abstract class WebInstallerPage {
 				wfMessage( "config-$back" )->text(),
 				[
 					'name' => "submit-$back",
-					'tabindex' => $this->parent->nextTabIndex()
+					'tabindex' => $this->parent->nextTabIndex(),
+					'class' => 'cdx-button cdx-button--action-destructive'
 				]
 			) . "\n";
 		}
@@ -123,6 +124,7 @@ abstract class WebInstallerPage {
 				[
 					'name' => "submit-$continue",
 					'tabindex' => $this->parent->nextTabIndex(),
+					'class' => 'cdx-button cdx-button--action-progressive'
 				]
 			) . "\n";
 		}
@@ -171,7 +173,8 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	protected function getFieldsetStart( $legend ) {
-		return "\n<fieldset><legend>" . wfMessage( $legend )->escaped() . "</legend>\n";
+		return "\n<span class=\"cdx-card\"><span class=\"cdx-card__text\"><span class=\"cdx-card__text__title\">" .
+			wfMessage( $legend )->escaped() . "</span><span class=\"cdx-card__text__description\">\n";
 	}
 
 	/**
@@ -180,7 +183,7 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	protected function getFieldsetEnd() {
-		return "</fieldset>\n";
+		return "</span></span></span>\n";
 	}
 
 	/**

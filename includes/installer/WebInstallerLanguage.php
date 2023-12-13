@@ -108,6 +108,7 @@ class WebInstallerLanguage extends WebInstallerPage {
 
 		$select = new XmlSelect( $name, $name, $selectedCode );
 		$select->setAttribute( 'tabindex', $this->parent->nextTabIndex() );
+		$select->setAttribute( 'class', 'cdx-select' );
 
 		$languages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
