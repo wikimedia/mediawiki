@@ -100,6 +100,9 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param string $handler php serialize_handler to use
 	 */
 	public function testSessionHandling( $handler ) {
+		// Tracked under T352913
+		$this->markTestSkippedIfPhp( '>=', '8.3' );
+
 		$this->hideDeprecated( '$_SESSION' );
 		$reset = $this->getResetter( $staticAccess );
 
