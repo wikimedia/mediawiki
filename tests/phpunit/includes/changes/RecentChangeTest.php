@@ -100,6 +100,8 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 				'rc_title' => 'Log',
 				'rc_type' => RC_LOG,
 				'rc_source' => RecentChange::SRC_LOG,
+				'rc_log_type' => 'delete',
+				'rc_log_action' => 'delete',
 			] + $attribs
 		];
 
@@ -109,6 +111,8 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 				'rc_title' => '',
 				'rc_type' => RC_LOG,
 				'rc_source' => RecentChange::SRC_LOG,
+				'rc_log_type' => 'delete',
+				'rc_log_action' => 'delete',
 			] + $attribs
 		];
 	}
