@@ -126,7 +126,7 @@ class DeleteEqualMessages extends Maintenance {
 				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED );
 			if ( $langCode === '*' ) {
 				// All valid lang-code subpages in NS_MEDIAWIKI that
-				// override the messsages in that language
+				// override the messages in that language
 				foreach ( $langCodes as $key => $value ) {
 					$this->fetchMessageInfo( $key, $messageInfo );
 				}
