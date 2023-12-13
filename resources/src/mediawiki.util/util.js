@@ -426,7 +426,7 @@ var util = {
 	},
 
 	/**
-	 * The content wrapper of the skin (e.g. `.mw-body`).
+	 * The content wrapper of the skin (`.mw-body`, for example).
 	 *
 	 * Populated on document ready. To use this property,
 	 * wait for `$.ready` and be sure to have a module dependency on
