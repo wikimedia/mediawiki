@@ -14,6 +14,7 @@ module.exports = {
 	],
 	source: {
 		include: [
+			'resources/src/mediawiki.String.js',
 			'resources/src/jsdoc.types.js',
 			'resources/src/jquery.lengthLimit.js',
 			'resources/src/mediawiki.base',
@@ -41,9 +42,7 @@ module.exports = {
 			'resources/src/mediawiki.rcfilters',
 			'resources/src/mediawiki.ForeignUpload.js',
 			'resources/src/mediawiki.router',
-			'resources/src/mediawiki.String.js',
 			'resources/src/mediawiki.searchSuggest',
-			'resources/src/mediawiki.Title',
 			'resources/src/mediawiki.skinning',
 			'resources/src/mediawiki.Upload.BookletLayout',
 			'resources/src/mediawiki.special',
