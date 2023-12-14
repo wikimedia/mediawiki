@@ -47,6 +47,7 @@ use MediaWiki\ResourceLoader\UserStylesModule;
 use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Title\Title;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
@@ -1198,6 +1199,12 @@ return [
 				MainConfigNames::AutoCreateTempUser,
 			] ],
 			[ 'name' => 'portletLinkOptions.json', 'callback' => [ Skin::class, 'getPortletLinkOptions' ] ],
+			[
+				'name' => 'infinityValues.json',
+				'callback' => static function () {
+					return ExpiryDef::INFINITY_VALS;
+				}
+			]
 		],
 		'dependencies' => [
 			'jquery.client',

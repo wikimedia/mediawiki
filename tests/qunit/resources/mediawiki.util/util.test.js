@@ -834,4 +834,13 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 
 		assert.strictEqual( util.isTemporaryUser( username[ 1 ] ), username[ 2 ] );
 	} );
+
+	QUnit.test( 'isInfinity', function ( assert ) {
+		assert.true( util.isInfinity( 'indefinite' ) );
+		assert.true( util.isInfinity( 'infinite' ) );
+		assert.true( util.isInfinity( 'infinity' ) );
+		assert.true( util.isInfinity( 'never' ) );
+		assert.false( util.isInfinity( '' ) );
+		assert.false( util.isInfinity( null ) );
+	} );
 } );

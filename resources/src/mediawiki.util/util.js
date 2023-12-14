@@ -2,6 +2,7 @@
 
 var config = require( './config.json' );
 var portletLinkOptions = require( './portletLinkOptions.json' );
+var infinityValues = require( './infinityValues.json' );
 
 require( './jquery.accessKeyLabel.js' );
 
@@ -1147,6 +1148,17 @@ var util = {
 				( username.length >= prefix.length + suffix.length );
 		}
 		return match;
+	},
+
+	/**
+	 * Determine if input string represents a value of infinity.
+	 *
+	 * @param {string|null} str
+	 * @return {boolean}
+	 * @stable
+	 */
+	isInfinity: function ( str ) {
+		return infinityValues.indexOf( str ) !== -1;
 	}
 };
 
