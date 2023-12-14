@@ -40,7 +40,8 @@ class WebInstallerWelcome extends WebInstallerPage {
 			$this->parent->output->addWikiTextAsInterface(
 				wfMessage( 'config-welcome-section-copyright',
 					SpecialVersion::getCopyrightAndAuthorList(),
-					wfExpandUrl( $this->parent->getDocUrl( 'Copying' ) )
+					$this->parent->getVar( 'wgServer' ) .
+						$this->parent->getDocUrl( 'Copying' )
 				)->plain()
 			);
 			$this->startForm();
