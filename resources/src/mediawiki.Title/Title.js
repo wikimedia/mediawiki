@@ -411,7 +411,7 @@ var toUpperMap,
  * Note that in the constructor and [newFromText]{@link mw.Title.newFromText} method,
  * `namespace` is the **default** namespace only, and can be overridden by a namespace
  * prefix in `title`. If you do not want this behavior,
- * use #makeTitle.
+ * use [makeTitle]{@link mw.Title.makeTitle}.
  *
  * @example
  *     new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();                  // => 'Template:Foo'
@@ -476,11 +476,11 @@ Title.newFromText = function ( title, namespace ) {
 /**
  * Constructor for Title objects with predefined namespace.
  *
- * Unlike #newFromText or #constructor, this function doesn't allow the given `namespace` to be
- * overridden by a namespace prefix in `title`. See #constructor for details about this behavior.
+ * Unlike [newFromText]{@link mw.Title.newFromText} or the constructor, this function doesn't allow the given `namespace` to be
+ * overridden by a namespace prefix in `title`. See the constructor documentation for details about this behavior.
  *
  * The single exception to this is when `namespace` is 0, indicating the main namespace. The
- * function behaves like #newFromText in that case.
+ * function behaves like [newFromText]{@link mw.Title.makeTitle} in that case.
  *
  * @name mw.Title.makeTitle
  * @method
@@ -498,7 +498,7 @@ Title.makeTitle = function ( namespace, title ) {
 
 /**
  * Constructor for Title objects from user input altering that input to
- * produce a title that MediaWiki will accept as legal
+ * produce a title that MediaWiki will accept as legal.
  *
  * @name mw.Title.newFromUserInput
  * @method
@@ -601,8 +601,9 @@ Title.newFromFileName = function ( uncleanName ) {
 };
 
 /**
- * Get the file title from an image element
+ * Get the file title from an image element.
  *
+ * @example
  *     var title = mw.Title.newFromImg( imageNode );
  *
  * @name mw.Title.newFromImg
@@ -618,7 +619,7 @@ Title.newFromImg = function ( img ) {
 };
 
 /**
- * Check if a given namespace is a talk namespace
+ * Check if a given namespace is a talk namespace.
  *
  * See NamespaceInfo::isTalk in PHP
  *
@@ -632,7 +633,7 @@ Title.isTalkNamespace = function ( namespaceId ) {
 };
 
 /**
- * Check if signature buttons should be shown in a given namespace
+ * Check if signature buttons should be shown in a given namespace.
  *
  * See NamespaceInfo::wantSignatures in PHP
  *
@@ -766,7 +767,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	constructor: Title,
 
 	/**
-	 * Get the namespace number
+	 * Get the namespace number.
 	 *
 	 * Example: 6 for "File:Example_image.svg".
 	 *
@@ -777,7 +778,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the namespace prefix (in the content language)
+	 * Get the namespace prefix (in the content language).
 	 *
 	 * Example: "File:" for "File:Example_image.svg".
 	 * In #NS_MAIN this is '', otherwise namespace name plus ':'
@@ -791,10 +792,10 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	/**
 	 * Get the page name as if it is a file name, without extension or namespace prefix,
 	 * in the canonical form with underscores instead of spaces. For example, the title
-	 * "File:Example_image.svg" will be returned as "Example_image".
+	 * `File:Example_image.svg` will be returned as `Example_image`.
 	 *
 	 * Note that this method will work for non-file titles but probably give nonsensical results.
-	 * A title like "User:Dr._J._Fail" will be returned as "Dr._J"! Use #getMain instead.
+	 * A title like `User:Dr._J._Fail` will be returned as `Dr._J`! Use [getMain]{@link mw.Title#getMain} instead.
 	 *
 	 * @return {string}
 	 */
@@ -809,10 +810,10 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	/**
 	 * Get the page name as if it is a file name, without extension or namespace prefix,
 	 * in the human-readable form with spaces instead of underscores. For example, the title
-	 * "File:Example_image.svg" will be returned as "Example image".
+	 * `File:Example_image.svg` will be returned as "Example image".
 	 *
 	 * Note that this method will work for non-file titles but probably give nonsensical results.
-	 * A title like "User:Dr._J._Fail" will be returned as "Dr. J"! Use #getMainText instead.
+	 * A title like `User:Dr._J._Fail` will be returned as `Dr. J`! Use [getMainText]{@link mw.Title#getMainText} instead.
 	 *
 	 * @return {string}
 	 */
@@ -822,13 +823,13 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 
 	/**
 	 * Get the page name as if it is a file name, without extension or namespace prefix. Warning,
-	 * this is usually not what you want! A title like "User:Dr._J._Fail" will be returned as
-	 * "Dr. J"! Use #getMain or #getMainText for the actual page name.
+	 * this is usually not what you want! A title like `User:Dr._J._Fail` will be returned as
+	 * `Dr. J`! Use [getMain]{@link mw.Title#getMain} or [getMainText]{@link mw.Title#getMainText} for the actual page name.
 	 *
 	 * @return {string} File name without file extension, in the canonical form with underscores
-	 *  instead of spaces. For example, the title "File:Example_image.svg" will be returned as
-	 *  "Example_image".
-	 *  @deprecated since 1.40, use #getFileNameWithoutExtension instead
+	 *  instead of spaces. For example, the title `File:Example_image.svg` will be returned as
+	 *  `Example_image`.
+	 *  @deprecated since 1.40, use [getFileNameWithoutExtension]{@link mw.Title#getFileNameWithoutExtension} instead
 	 */
 	getName: function () {
 		return this.getFileNameWithoutExtension();
@@ -836,20 +837,20 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 
 	/**
 	 * Get the page name as if it is a file name, without extension or namespace prefix. Warning,
-	 * this is usually not what you want! A title like "User:Dr._J._Fail" will be returned as
-	 * "Dr. J"! Use #getMainText for the actual page name.
+	 * this is usually not what you want! A title like `User:Dr._J._Fail` will be returned as
+	 * `Dr. J`! Use [getMainText]{@link mw.Title#getMainText} for the actual page name.
 	 *
 	 * @return {string} File name without file extension, formatted with spaces instead of
-	 *  underscores. For example, the title "File:Example_image.svg" will be returned as
-	 *  "Example image".
-	 *  @deprecated since 1.40, use #getFileNameTextWithoutExtension instead
+	 *  underscores. For example, the title `File:Example_image.svg` will be returned as
+	 *  `Example image`.
+	 *  @deprecated since 1.40, use [getFileNameTextWithoutExtension]{@link mw.Title#getFileNameTextWithoutExtension} instead
 	 */
 	getNameText: function () {
 		return text( this.getFileNameTextWithoutExtension() );
 	},
 
 	/**
-	 * Get the extension of the page name (if any)
+	 * Get the extension of the page name (if any).
 	 *
 	 * @return {string|null} Name extension or null if there is none
 	 */
@@ -862,9 +863,9 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the main page name
+	 * Get the main page name.
 	 *
-	 * Example: "Example_image.svg" for "File:Example_image.svg".
+	 * Example: `Example_image.svg` for `File:Example_image.svg`.
 	 *
 	 * @return {string}
 	 */
@@ -880,9 +881,9 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the main page name (transformed by #text)
+	 * Get the main page name (transformed by text()).
 	 *
-	 * Example: "Example image.svg" for "File:Example_image.svg".
+	 * Example: `Example image.svg` for `File:Example_image.svg`.
 	 *
 	 * @return {string}
 	 */
@@ -891,9 +892,9 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the full page name
+	 * Get the full page name.
 	 *
-	 * Example: "File:Example_image.svg".
+	 * Example: `File:Example_image.svg`.
 	 * Most useful for API calls, anything that must identify the "title".
 	 *
 	 * @return {string}
@@ -903,9 +904,9 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the full page name (transformed by #text)
+	 * Get the full page name (transformed by [text]{@link mw.Title#text}).
 	 *
-	 * Example: "File:Example image.svg" for "File:Example_image.svg".
+	 * Example: `File:Example image.svg` for `File:Example_image.svg`.
 	 *
 	 * @return {string}
 	 */
@@ -914,7 +915,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the page name relative to a namespace
+	 * Get the page name relative to a namespace.
 	 *
 	 * Example:
 	 *
@@ -948,9 +949,9 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the URL to this title
+	 * Get the URL to this title.
 	 *
-	 * @see mediawiki.module:util.getUrl
+	 * @see [mw.util.getUrl]{@link mediawiki.module:util.getUrl}
 	 * @param {Object} [params] A mapping of query parameter names to values,
 	 *     e.g. `{ action: 'edit' }`.
 	 * @return {string}
@@ -965,7 +966,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Check if the title is in a talk namespace
+	 * Check if the title is in a talk namespace.
 	 *
 	 * @return {boolean} The title is in a talk namespace
 	 */
@@ -974,7 +975,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the title for the associated talk page
+	 * Get the title for the associated talk page.
 	 *
 	 * @return {mw.Title|null} The title for the associated talk page, null if not available
 	 */
@@ -988,7 +989,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Get the title for the subject page of a talk page
+	 * Get the title for the subject page of a talk page.
 	 *
 	 * @return {mw.Title|null} The title for the subject page of a talk page, null if not available
 	 */
@@ -999,7 +1000,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	},
 
 	/**
-	 * Check the title can have an associated talk page
+	 * Check the title can have an associated talk page.
 	 *
 	 * @return {boolean} The title can have an associated talk page
 	 */
@@ -1010,7 +1011,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	/**
 	 * Whether this title exists on the wiki.
 	 *
-	 * @see #static-method-exists
+	 * @see mw.Title.exists
 	 * @return {boolean|null} Boolean if the information is available, otherwise null
 	 */
 	exists: function () {
@@ -1019,7 +1020,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 };
 
 /**
- * Alias of [mw.Title#getPrefixedDb]{@link mw.Title#getPrefixedDb}
+ * Alias of [getPrefixedDb]{@link mw.Title#getPrefixedDb}.
  *
  * @name mw.Title.prototype.toString
  * @method
@@ -1027,7 +1028,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 Title.prototype.toString = Title.prototype.getPrefixedDb;
 
 /**
- * Alias of [mw.Title#getPrefixedText]{@link mw.Title#getPrefixedText}
+ * Alias of [getPrefixedText]{@link mw.Title#getPrefixedText}.
  *
  * @name mw.Title.prototype.toText
  * @method
