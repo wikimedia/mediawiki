@@ -14,6 +14,7 @@ module.exports = {
 	],
 	source: {
 		include: [
+			'resources/src/mediawiki.Title',
 			'resources/src/mediawiki.String.js',
 			'resources/src/jsdoc.types.js',
 			'resources/src/jquery.lengthLimit.js',
