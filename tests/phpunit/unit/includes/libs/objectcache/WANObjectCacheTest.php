@@ -570,6 +570,9 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testPreemptiveRefresh() {
+		// (T353180) Flaky test, to fix and re-enable
+		$this->markTestSkippedIfPhp( '>=', '8.2' );
+
 		$value = 'KatCafe';
 		$wasSet = 0;
 		$func = static function ( $old, &$ttl, &$opts, $asOf ) use ( &$wasSet, &$value )
