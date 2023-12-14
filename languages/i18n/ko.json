@@ -93,7 +93,8 @@
 			"양념파닭",
 			"콩가루",
 			"Adreamy",
-			"Amire80"
+			"Amire80",
+			"밥풀떼기"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -4103,6 +4104,7 @@
 	"skin-action-delete": "삭제",
 	"skin-action-move": "이동",
 	"parsoid-resource-limit-exceeded": "Parsoid의 리소스 제한을 초과했습니다: $1",
+	"parsoid-client-error": "유효하지 않은 입력 파소이드: $1",
 	"newpages-showhide-bots": "봇을 $1",
 	"newpages-showhide-patrolled": "점검한 편집을 $1",
 	"newpages-showhide-redirect": "넘겨주기를 $1",
@@ -4142,7 +4144,7 @@
 	"log-name-renameuser": "사용자 이름 바꾸기 기록",
 	"log-description-renameuser": "사용자 이름을 바꾼 기록입니다.",
 	"logentry-renameuser-renameuser": "$1님이 $4 ({{PLURAL:$6|편집 $6회}}) 사용자의 이름을 {{GENDER:$7|$5}}(으)로 {{GENDER:$2|바꾸었습니다}}",
-	"logentry-renameuser-renameuser-legacier": "$1님이 $4 사용자의 이름을 {{GENDER:$7|$5}}(으)로 바꾸었습니다",
+	"logentry-renameuser-renameuser-legacier": "$1님이 $4 사용자의 이름을 {{GENDER:$7|$5}}(으)로 {{GENDER:$2|바꾸었습니다}}",
 	"renameuser-move-log": "\"[[User:$1|$1]]\" {{GENDER:$2|사용자}}의 이름을 \"[[User:$2|$2]]\"(으)로 바꿀 때 문서를 자동으로 이동했습니다",
 	"action-renameuser": "사용자 이름을 바꿀",
 	"right-renameuser": "사용자 이름 바꾸기",

@@ -42,7 +42,7 @@
 	"paramvalidator-help-default-empty": "Стандартно: (порожнє)",
 	"paramvalidator-help-deprecated": "Цей параметр є застарілим.",
 	"paramvalidator-help-multi-separate": "Відокремлюйте значення за допомогою «|», або додавайте до списку префікс U+001F та використовуйте U+001F як роздільник.",
-	"paramvalidator-help-multi-max": "Максимальна кількість значень — {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} для клієнтів дозволено вищі ліміти).",
+	"paramvalidator-help-multi-max": "Максимальна кількість значень — {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} для клієнтів, яким дозволено вищі ліміти).",
 	"paramvalidator-help-multi-max-simple": "Максимальна кількість значень — {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-multi-all": "Щоб зазначити всі значення, використовуйте <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Цей параметр є обов'язковим.",

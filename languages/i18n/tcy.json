@@ -717,7 +717,7 @@
 	"postedit-confirmation-created": "ಈ ಪುಟೋನು ಉಂಡು ಮಾನ್ತುಂಡು.",
 	"postedit-confirmation-restored": "ಪುಟೊ ಪಿರತಾಪನೆ ಆತ್ಂಡ್.",
 	"postedit-confirmation-saved": "ಇರೇನಾ ಸಂಪಾದನೆನ್ ಒರಿಪಾತುಂಡು.",
-	"postedit-confirmation-published": "ಇರೆನ ಸಂಪಾದಿ ಪ್ರಕಟ ಆಂಡ್.",
+	"postedit-confirmation-published": "ಇರೆನ ಸಂಪೊಲಿಪು ಪ್ರಕಟ ಆಂಡ್.",
 	"edit-already-exists": "ಪೊಸ ಪುಟೋನು ಉಂಡು ಮಲ್ಪರೆ ಅಯಿಜಿ. ಅವ್ವು ದುಂಬೇ ಉಂಡು.",
 	"defaultmessagetext": "ಸ್ಥಿರರೂಪಿ ಸಂದೇಶ ಪಟ್ಯ",
 	"content-failed-to-parse": "$2 ವಿಂಗಡ ವಿಫಲ ಆಂಡ್ , ವಿಷಯಸೂಚಿ $1 ನಮೂನೆಗ್: $3",
@@ -892,7 +892,7 @@
 	"mergelog": "ಸೇರ್ಗೆದ ದಾಕಲೆ",
 	"revertmerge": "ಅನ್-ಮರ್ಜ್ ಮಲ್ಪುಲೆ",
 	"mergelogpagetext": "ತಿರ್ತ್'ದ ಪಟ್ಟಿಡ್  ಅತೀಇಂಚೊಗು  ಒಂಜಿ ಪುಟ ಚರಿತ್ರೆ  ಬೊಕೊಂಜೆಕ್  ಸಮ್ಮಿಲಾತಿನವು ಉಂಡು.",
-	"history-title": "\"$1\" ಪುಟೊತ ಆವೃತ್ತಿ ಇತಿಹಾಸೊ",
+	"history-title": "$1: ಆವೃತ್ತಿದ ಇತಿಹಾಸೊ",
 	"difference-title": "$1: ಆವೃತ್ತಿಲೆನ ನಡುತ ವ್ಯತ್ಯಾಸೊ",
 	"difference-title-multipage": "ಪುಟ \"$1\" ಬೊಕ \"$2\"ನಡುತ ವ್ಯತ್ಯಾಸ",
 	"difference-multipage": "(ಪುಟೊಲೆನ ನಡುಟು ಉಪ್ಪುನ ವ್ಯತ್ಯಾಸ)",
@@ -922,7 +922,7 @@
 	"nextn-title": "ಬೊಕ್ಕದ $1 {{PLURAL:$1|ಪಲಿತಾಂಸೊ|ಪಲಿತಾಂಸೊಲು}}",
 	"shown-title": "ಪ್ರತಿ ಪುಟೊಡುಲಾ $1 {{PLURAL:$1|result|ಪಲಿತಾಂಸೊ}} ತೋಜಪಾವು",
 	"viewprevnext": "ತೂಲೆ ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "<strong>ಈ ವಿಕಿಟ್ \"[[:$1]]\" ಪುದರ್ದ ಪುಟೊ ಉಂಡು.</strong> {{PLURAL:$2|0=|ನಾಡಿನ ಪುದರ್ಗ್ ತಿಕ್ಕಿನ ಬೇತೆ ಫಲಿತಾಶೊಲೆನ್ಲಾ ತೂಲೆ.}}",
+	"searchmenu-exists": "{{SITENAME}} ವಿಕಿಟ್ \"[[:$1]]\" ಪುದರ್ದ ಪುಟೊ ಉಂಡು.\n{{PLURAL:$2|0=|ನಾಡಿನ ಪುದರ್ಗ್ ತಿಕ್ಕಿನ ಬೇತೆ ಫಲಿತಾಶೊಲೆನ್ಲಾ ತೂಲೆ.}}",
 	"searchmenu-new": "<strong>\"[[:$1]]\" ಪುಟೊನು ಈ ವಿಕಿಟ್ ಉಂಡುಮಲ್ಪುಲೆ!</strong> {{PLURAL:$2|0=|ಈರ್ ನಾಡಿನ ವಿಸಯೊದೊಟ್ಟುಗು ತಿಕ್ಕಿನ ಪುಟೊನ್ಲಾ ತೂಲೆ.|ನಾಡಿನ ವಿಸಯೊಗು ತಿಕ್ಕಿನ ಪಲಿತಾಂಸೊಲೆನ್ಲಾ ತೂಲೆ}}",
 	"searchprofile-articles": "ವಿಸಯ ಪುಟೊಕುಲು",
 	"searchprofile-images": "ಮಲ್ಟಿಮೀಡಿಯೊ",
@@ -2184,5 +2184,7 @@
 	"skin-action-protect": "ಸಂರಕ್ಷಿಪುಲೆ",
 	"skin-action-undelete": "ಮಾಜಾವಡೆ",
 	"skin-action-delete": "ಮಾಜಾಲೆ",
-	"skin-action-move": "ಸ್ತಲಾಂತರೊ ಮಲ್ಪುಲೆ"
+	"skin-action-move": "ಸ್ತಲಾಂತರೊ ಮಲ್ಪುಲೆ",
+	"blockedtext-start-time": "ತಡೆ ಸುರುವಾಯಿನಿ: $1",
+	"blockedtext-expiration-time": "ತಡೆ ಕೈದಾಪಿನಿ: $1"
 }

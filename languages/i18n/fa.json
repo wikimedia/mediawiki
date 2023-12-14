@@ -3733,7 +3733,7 @@
 	"logentry-block-block": "$1 {{GENDER:$4|$3}} را $5 {{GENDER:$2|بست}} $6",
 	"logentry-block-unblock": "$1 {{GENDER:$4|$3}} را {{GENDER:$2|باز کرد}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|تنظیمات}} قطع دسترسی {{GENDER:$4|$3}} را به پایان قطع دسترسی $5 $6 تغییر داد.",
-	"logentry-partialblock-block-page": "{{PLURAL:$1|صفحه|صفحه‌ها}} $2",
+	"logentry-partialblock-block-page": "{{PLURAL:$1|صفحهٔ|صفحه‌های}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|فضای نام|فضاهای نام}} $2",
 	"logentry-partialblock-block-action": "{{PLURAL:$1|عمل|عمل‌های}} $2",
 	"logentry-partialblock-block": "$1 دسترسی ویرایشی {{GENDER:$4|$3}} در $7 را با انقضای $5 $6 {{GENDER:$2|قطع کرد}}",

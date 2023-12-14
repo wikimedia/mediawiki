@@ -36,7 +36,8 @@
 			"Xosé",
 			"לערי ריינהארט",
 			"Amire80",
-			"No se"
+			"No se",
+			"O Breixo"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -2382,8 +2383,8 @@
 	"enotif_body_intro_moved": "{{GENDER:$2|$2}} trasladou a páxina chamada \"$1\" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.",
 	"enotif_body_intro_restored": "{{GENDER:$2|$2}} restaurou a páxina \"$1\" de {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a versión actual.",
 	"enotif_body_intro_changed": "{{GENDER:$2|$2}} modificou a páxina chamada \"$1\" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.",
-	"enotif_lastvisited": "Consulte $1 para ver tódolos cambios desde a súa última visita",
-	"enotif_lastdiff": "Consulte $1 para ver este cambio",
+	"enotif_lastvisited": "Consulta $1 para ver tódolos cambios desde a túa última visita",
+	"enotif_lastdiff": "Consulta $1 para ver este cambio",
 	"enotif_anon_editor": "usuario anónimo $1",
 	"enotif_body": "Boas, $WATCHINGUSERNAME:\n\n$PAGEINTRO $NEWPAGE\n\nResumo de edición: $PAGESUMMARY $PAGEMINOREDIT\n\nPode contactar co editor:\npor correo electrónico: $PAGEEDITOR_EMAIL\nno wiki: $PAGEEDITOR_WIKI\n\nNon se producirán máis notificacións en caso de que haxa actividade nova ata que acceda ao sistema e visite a páxina. Pode restablecer os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.\n\nO sistema de avisos de {{SITENAME}}\n\n--\nPara cambiar as notificacións por correo electrónico, visite\n{{canonicalurl:{{#special:Preferences}}}}\n\n\nPara cambiar a súa lista de vixilancia, visite\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPara borrar a páxina da súa lista de vixilancia, visite\n$UNWATCHURL\n\nAxuda:\n$HELPPAGE",
 	"enotif_minoredit": "Esta é unha edición pequena",
@@ -4070,7 +4071,7 @@
 	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=usuario|2=lista de usuarios}}, {{PLURAL:$3|por|por calquera de}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nome de usuario",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"paramvalidator-help-type-user-subtype-cidr": "Rango de IPs",
+	"paramvalidator-help-type-user-subtype-cidr": "Rango de IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nome de interwiki (p. ex. \"prefixo>NomeExemplo\")",
 	"paramvalidator-help-type-user-subtype-id": "ID de usuario (p. ex. \"#12345\")",
 	"paramvalidator-badtitle": "O valor \"$2\" non é válido para o parámetro de título <var>$1</var>: non é unha cadea de título válida.",

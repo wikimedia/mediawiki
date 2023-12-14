@@ -599,6 +599,7 @@
 	"passwordreset-emailelement": "Notandanafn: \n$1\n\nBráðabirgðalykilorð: \n$2",
 	"passwordreset-success": "Þú baðst um endurstillingu lykilorðs.",
 	"passwordreset-success-info": "Upplýsingarnar sem þú sendir inn eru: $1",
+	"passwordreset-emailtext-require-email": "Hins vegar, ef þú sendir ekki þessa beiðni og vilt koma í veg fyrir óumbeðna tölvupósta, þá gætirðu uppfært valkosti þína fyrir tölvupóstsendingar á $1 .\nÞú getur krafist bæði notendanafns og tölvupóstfangs við gerð endurstillingarpóst. Það gæti dregið úr fjölda slíkra atvika.",
 	"passwordreset-nodata": "Hvorki notandanafn né tölvupóstfang var gefið upp",
 	"changeemail": "Breyta eða fjarlægja netfang",
 	"changeemail-header": "Fylltu út þetta eyðublað til að breyta netfanginu þínu. Ef þú vilt fjarlægja tengingu allra netfanga frá aðganginum þínum skildu þá netfangs reitinn eftir tóman.",

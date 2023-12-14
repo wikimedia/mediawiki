@@ -2427,7 +2427,7 @@
 	"notanarticle": "ليست صفحة محتوى",
 	"notvisiblerev": "المراجعة تم حذفها",
 	"watchlist-details": "{{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}} في قائمة مراقبتك (بالإضافة لصفحات النقاش).",
-	"watchlist-expiry-days-left": "بقي {{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يومًا|$1 يوم}}",
+	"watchlist-expiry-days-left": "بقي {{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يومًا|$1 يوم}}",
 	"watchlist-expiring-days-full-text": "{{PLURAL:$1|1 يوم|$1 أيام}} بقيت في قائمة مراقبتك",
 	"watchlist-expiry-hours-left": "بقيت بضع ساعات فقط",
 	"watchlist-expiring-hours-full-text": "بقيت بضع ساعات في قائمة مراقبتك",
@@ -3293,7 +3293,7 @@
 	"metadata-help": "هذا الملف يحتوي على معلومات إضافية، غالبا ما تكون أضيفت من قبل الكاميرا الرقمية أو الماسح الضوئي المستخدم في إنشاء الملف.\nإذا كان الملف قد عدل عن حالته الأصلية، فبعض التفاصيل قد لا تعبر عن الملف المعدل.",
 	"metadata-expand": "أظهر التفاصيل الممتدة",
 	"metadata-collapse": "أخفِ التفاصيل الممتدة",
-	"metadata-fields": "سيتم تضمين حقول البيانات الوصفية للصور المدرجة في هذه الرسالة في عرض صفحة الصورة عند طي جدول البيانات الوصفية.! N! سيتم إخفاء الحقول الأخرى افتراضيًا.! N! * make! N! * model! N! * datetimeoriginal! N! * exposuretime! N! * fnumber! N! * isospeedratings! N! * focallength! N! * فنان! N! * DC-rights! N! * copyright owner! N! * usageterms! N! * webstatement! N! N! * giffilecomment! N! * usercomment! N! * citydest! N! * citycreated! N! * headline! N! * source! N! * locationdest! N! ! * dc-publisher! N! * dc-Relations! N! * label! N! * nickname! N! * personinimage! N! * إخلاء المسؤولية! N! * event! N! * objectname",
+	"metadata-fields": "ستعرض حقول معطيات الميتا الموجودة في هذه الرسالة في صفحة الصورة عندما يكون جدول معطيات الميتا مطوياً.\nالحقول الأخرى ستكون مخفية افتراضياً.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"metadata-langitem": "<strong>$2:</strong> $1",
 	"namespacesall": "الكل",
 	"monthsall": "الكل",
@@ -4293,5 +4293,5 @@
 	"renameuser-move-log": "نقل الصفحة تلقائيا خلال إعادة تسمية {{GENDER:$1|المستخدم}} من \"[[User:$1|$1]]\" إلى \"[[User:$2|$2]]\"",
 	"action-renameuser": "إعادة تسمية المستخدمين",
 	"right-renameuser": "إعادة تسمية المستخدمين",
-	"renameuser-renamed-notice": "تمت إعادة تسمية هذا المستخدم.! N! تم توفير سجل إعادة التسمية أدناه كمرجع."
+	"renameuser-renamed-notice": "لقد تمت إعادة تسمية {{GENDER:$1|هذا المستخدم|هذه المستخدمة}}.\nسجل إعادة التسمية معروض بالأسفل كمرجع:"
 }
