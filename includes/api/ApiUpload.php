@@ -25,7 +25,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
-use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -400,15 +399,12 @@ class ApiUpload extends ApiBase {
 				// into job queue until after the current transaction has completed since
 				// this depends on values in uploadstash table that were updated during
 				// the current transaction. (T350917)
-				$this->jobQueueGroup->lazyPush( new AssembleUploadChunksJob(
-					Title::makeTitle( NS_FILE, $filekey ),
-					[
-						'filename' => $this->mParams['filename'],
-						'filekey' => $filekey,
-						'filesize' => $this->mParams['filesize'],
-						'session' => $this->getContext()->exportSession()
-					]
-				) );
+				$this->jobQueueGroup->lazyPush( new AssembleUploadChunksJob( [
+					'filename' => $this->mParams['filename'],
+					'filekey' => $filekey,
+					'filesize' => $this->mParams['filesize'],
+					'session' => $this->getContext()->exportSession()
+				] ) );
 				$this->log->info( "Received final chunk of {filename} for {user}, queuing assemble job",
 					[
 						'user' => $this->getUser()->getName(),
