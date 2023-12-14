@@ -115,13 +115,6 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	}
 
 	/**
-	 * @return string
-	 */
-	private function getApiUrl() {
-		return $this->mApiBase;
-	}
-
-	/**
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
 	 *
@@ -503,7 +496,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 */
 	public function getInfo() {
 		$info = parent::getInfo();
-		$info['apiurl'] = $this->getApiUrl();
+		$info['apiurl'] = $this->mApiBase;
 
 		$query = [
 			'format' => 'json',

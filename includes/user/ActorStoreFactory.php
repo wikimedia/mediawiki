@@ -104,7 +104,7 @@ class ActorStoreFactory {
 			$wikiId = WikiAwareEntity::LOCAL;
 		}
 
-		$storeCacheKey = $this->getStoreCacheKey( $wikiId );
+		$storeCacheKey = $wikiId === WikiAwareEntity::LOCAL ? 'LOCAL' : $wikiId;
 		if ( !isset( $this->storeCache[$storeCacheKey] ) ) {
 			$this->storeCache[$storeCacheKey] = new ActorStore(
 				$this->getLoadBalancerForTable( 'actor', $wikiId ),
@@ -126,14 +126,6 @@ class ActorStoreFactory {
 		$wikiId = WikiAwareEntity::LOCAL
 	): UserIdentityLookup {
 		return $this->getActorStore( $wikiId );
-	}
-
-	/**
-	 * @param string|false $wikiId
-	 * @return string
-	 */
-	private function getStoreCacheKey( $wikiId ): string {
-		return $wikiId === WikiAwareEntity::LOCAL ? 'LOCAL' : $wikiId;
 	}
 
 	/**

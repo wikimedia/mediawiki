@@ -56,7 +56,11 @@ class AtomFeed extends ChannelFeed {
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
 			'language' => $this->xmlEncode( $this->getLanguage() ),
-			'feedID' => $this->getFeedId(),
+			// Atom 1.0 requires a unique, opaque IRI as a unique identifier
+			// for every feed we create. For now just use the URL, but who
+			// can tell if that's right? If we put options on the feed, do we
+			// have to change the id? Maybe? Maybe not.
+			'feedID' => $this->getSelfUrl(),
 			'title' => $this->getTitle(),
 			'url' => $this->xmlEncode( wfExpandUrl( $this->getUrlUnescaped(), PROTO_CURRENT ) ),
 			'selfUrl' => $this->getSelfUrl(),
@@ -65,18 +69,6 @@ class AtomFeed extends ChannelFeed {
 			'version' => $this->xmlEncode( MW_VERSION ),
 		];
 		print $this->templateParser->processTemplate( 'AtomHeader', $templateParams );
-	}
-
-	/**
-	 * Atom 1.0 requires a unique, opaque IRI as a unique identifier
-	 * for every feed we create. For now just use the URL, but who
-	 * can tell if that's right? If we put options on the feed, do we
-	 * have to change the id? Maybe? Maybe not.
-	 *
-	 * @return string
-	 */
-	private function getFeedId() {
-		return $this->getSelfUrl();
 	}
 
 	/**

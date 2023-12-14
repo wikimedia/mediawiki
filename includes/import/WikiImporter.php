@@ -1050,8 +1050,10 @@ class WikiImporter {
 		}
 
 		$role = $contentInfo['role'] ?? SlotRecord::MAIN;
-		$model = $contentInfo['model'] ?? $this->getDefaultContentModel( $title, $role );
-		$handler = $this->getContentHandler( $model );
+		$model = $contentInfo['model'] ?? $this->slotRoleRegistry
+			->getRoleHandler( $role )
+			->getDefaultModel( $title );
+		$handler = $this->contentHandlerFactory->getContentHandler( $model );
 
 		$text = $handler->importTransform( $contentInfo['text'] );
 
@@ -1287,26 +1289,6 @@ class WikiImporter {
 		}
 
 		return [ $title, $foreignTitle ];
-	}
-
-	/**
-	 * @param string $model
-	 * @return ContentHandler
-	 */
-	private function getContentHandler( $model ) {
-		return $this->contentHandlerFactory->getContentHandler( $model );
-	}
-
-	/**
-	 * @param Title $title
-	 * @param string $role
-	 *
-	 * @return string
-	 */
-	private function getDefaultContentModel( $title, $role ) {
-		return $this->slotRoleRegistry
-			->getRoleHandler( $role )
-			->getDefaultModel( $title );
 	}
 
 	/**

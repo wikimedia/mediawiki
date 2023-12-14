@@ -108,14 +108,7 @@ class SiteImporter {
 		libxml_use_internal_errors( $oldLibXmlErrors );
 		// phpcs:ignore Generic.PHP.NoSilencedErrors
 		@libxml_disable_entity_loader( $oldDisable );
-		$this->importFromDOM( $document->documentElement );
-	}
-
-	/**
-	 * @param DOMElement $root
-	 */
-	private function importFromDOM( DOMElement $root ) {
-		$sites = $this->makeSiteList( $root );
+		$sites = $this->makeSiteList( $document->documentElement );
 		$this->store->saveSites( $sites );
 	}
 

@@ -220,7 +220,9 @@ class BlockManager {
 
 			// Case #1: checking the global user, including IP blocks
 			$ip = $request->getIP();
-			$applySoftBlocks = $this->applySoftBlockToUser( $user );
+			// For soft blocks, i.e. blocks that don't block logged-in users,
+			// temporary users are treated as anon users, and are blocked.
+			$applySoftBlocks = !$this->userIdentityUtils->isNamed( $user );
 
 			$xff = $request->getHeader( 'X-Forwarded-For' );
 
@@ -364,17 +366,6 @@ class BlockManager {
 	private function isIpBlockExempt( UserIdentity $user ) {
 		return MediaWikiServices::getInstance()->getPermissionManager()
 			->userHasRight( $user, 'ipblock-exempt' );
-	}
-
-	/**
-	 * For soft blocks, i.e. blocks that don't block logged-in users,
-	 * temporary users are treated as anon users, and are blocked.
-	 *
-	 * @param UserIdentity $user
-	 * @return bool
-	 */
-	private function applySoftBlockToUser( UserIdentity $user ): bool {
-		return !$this->userIdentityUtils->isNamed( $user );
 	}
 
 	/**
