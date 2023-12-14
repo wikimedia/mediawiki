@@ -1010,14 +1010,13 @@ function wfDebugBacktrace( $limit = 0 ) {
  * Get a debug backtrace as a string
  *
  * @param bool|null $raw If true, the return value is plain text. If false, HTML.
- *   Defaults to $wgCommandLineMode if unset.
+ *   Defaults to true if MW_ENTRY_POINT is 'cli', otherwise false.
  * @return string
  * @since 1.25 Supports $raw parameter.
  */
 function wfBacktrace( $raw = null ) {
-	global $wgCommandLineMode;
-
-	if ( $raw ?? $wgCommandLineMode ) {
+	$raw ??= MW_ENTRY_POINT === 'cli';
+	if ( $raw ) {
 		$frameFormat = "%s line %s calls %s()\n";
 		$traceFormat = "%s";
 	} else {

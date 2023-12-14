@@ -85,7 +85,7 @@ class MWDebug {
 	 */
 	public static function setup() {
 		global $wgDebugToolbar,
-			$wgUseCdn, $wgUseFileCache, $wgCommandLineMode;
+			$wgUseCdn, $wgUseFileCache;
 
 		if (
 			// Easy to forget to falsify $wgDebugToolbar for static caches.
@@ -94,7 +94,7 @@ class MWDebug {
 			$wgUseFileCache ||
 			// Keep MWDebug off on CLI. This prevents MWDebug from eating up
 			// all the memory for logging SQL queries in maintenance scripts.
-			$wgCommandLineMode
+			MW_ENTRY_POINT === 'cli'
 		) {
 			return;
 		}
