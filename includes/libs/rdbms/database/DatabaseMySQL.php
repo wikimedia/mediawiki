@@ -296,32 +296,28 @@ class DatabaseMySQL extends Database {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
-		// Split database and table into proper variables as Database::tableName() returns
-		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
 		$components = $this->platform->qualifiedTableComponents( $table );
-		$tableName = end( $components );
+		if ( count( $components ) === 1 ) {
+			$db = $this->currentDomain->getDatabase();
+			$tableName = $components[0];
+		} elseif ( count( $components ) === 2 ) {
+			[ $db, $tableName ] = $components;
+		} else {
+			throw new DBLanguageError( 'Too many table components' );
+		}
 
 		if ( isset( $this->sessionTempTables[$tableName] ) ) {
-			return true; // already known to exist and won't show in SHOW TABLES anyway
+			return true; // already known to exist and won't be found in the query anyway
 		}
-		// We can't use buildLike() here, because it specifies an escape character
-		// other than the backslash, which is the only one supported by SHOW TABLES
-		// TODO: Avoid using platform's internal methods
-		$encLike = $this->platform->escapeLikeInternal( $tableName, '\\' );
-
-		// If the database has been specified (such as for shared tables), use "FROM"
-		if ( count( $components ) > 1 ) {
-			$database = reset( $components );
-			$encDatabase = $this->platform->addIdentifierQuotes( $database );
-			$sql = "SHOW TABLES FROM $encDatabase LIKE '$encLike'";
-		} else {
-			$sql = "SHOW TABLES LIKE '$encLike'";
-		}
-
-		$query = new Query( $sql, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SHOW' );
-		$res = $this->query( $query, $fname );
-
-		return $res->numRows() > 0;
+		return (bool)$this->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'information_schema.tables' )
+			->where( [
+				'table_schema' => $db,
+				'table_name' => $tableName,
+			] )
+			->caller( $fname )
+			->fetchField();
 	}
 
 	/**
@@ -650,21 +646,20 @@ class DatabaseMySQL extends Database {
 	 * @return array
 	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
-		$query = new Query( "SHOW TABLES", self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SHOW' );
-		$result = $this->query( $query, $fname );
-
-		$endArray = [];
-
-		foreach ( $result as $table ) {
-			$vars = get_object_vars( $table );
-			$table = array_pop( $vars );
-
-			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
-				$endArray[] = $table;
-			}
+		$qb = $this->newSelectQueryBuilder()
+			->select( 'table_name' )
+			->from( 'information_schema.tables' )
+			->where( [
+				'table_schema' => $this->currentDomain->getDatabase(),
+				'table_type' => 'BASE TABLE'
+			] )
+			->caller( $fname );
+		if ( $prefix !== null && $prefix !== '' ) {
+			$qb->andWhere( $this->expr(
+				'table_name', IExpression::LIKE, new LikeValue( $prefix, $this->anyString() )
+			) );
 		}
-
-		return $endArray;
+		return $qb->fetchFieldValues();
 	}
 
 	/**
@@ -677,34 +672,18 @@ class DatabaseMySQL extends Database {
 	 * @since 1.22
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		// The name of the column containing the name of the VIEW
-		$propertyName = 'Tables_in_' . $this->getDBname();
-		$query = new Query(
-			'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"',
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SHOW'
-		);
-		// Query for the VIEWS
-		$res = $this->query( $query, $fname );
+		$qb = $this->newSelectQueryBuilder()
+			->select( 'table_name' )
+			->from( 'information_schema.views' )
+			->where( [ 'table_schema' => $this->currentDomain->getDatabase() ] )
+			->caller( $fname );
 
-		$allViews = [];
-		foreach ( $res as $row ) {
-			$allViews[] = $row->$propertyName;
+		if ( $prefix !== null && $prefix !== '' ) {
+			$qb->andWhere( $this->expr(
+				'table_name', IExpression::LIKE, new LikeValue( $prefix, $this->anyString() )
+			) );
 		}
-
-		if ( $prefix === null || $prefix === '' ) {
-			return $allViews;
-		}
-
-		$filteredViews = [];
-		foreach ( $allViews as $viewName ) {
-			// Does the name of this VIEW start with the table-prefix?
-			if ( strpos( $viewName, $prefix ) === 0 ) {
-				$filteredViews[] = $viewName;
-			}
-		}
-
-		return $filteredViews;
+		return $qb->fetchFieldValues();
 	}
 
 	public function selectSQLText(

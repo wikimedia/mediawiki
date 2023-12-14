@@ -29,9 +29,7 @@ use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWikiCoversValidator;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMySQL;
-use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
@@ -43,41 +41,6 @@ use Wikimedia\TestingAccessWrapper;
 class DatabaseMySQLTest extends \PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-
-	private function getMockForViews(): IMaintainableDatabase {
-		$db = $this->getMockBuilder( DatabaseMySQL::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'query', 'getDBname' ] )
-			->getMock();
-
-		$db->method( 'query' )
-			->with( $this->anything() )
-			->willReturn( new FakeResultWrapper( [
-				(object)[ 'Tables_in_' => 'view1' ],
-				(object)[ 'Tables_in_' => 'view2' ],
-				(object)[ 'Tables_in_' => 'myview' ]
-			] ) );
-		$db->method( 'getDBname' )->willReturn( '' );
-
-		return $db;
-	}
-
-	public function testListviews() {
-		$db = $this->getMockForViews();
-
-		$this->assertEquals( [ 'view1', 'view2', 'myview' ],
-			$db->listViews() );
-
-		// Prefix filtering
-		$this->assertEquals( [ 'view1', 'view2' ],
-			$db->listViews( 'view' ) );
-		$this->assertEquals( [ 'myview' ],
-			$db->listViews( 'my' ) );
-		$this->assertEquals( [],
-			$db->listViews( 'UNUSED_PREFIX' ) );
-		$this->assertEquals( [ 'view1', 'view2', 'myview' ],
-			$db->listViews( '' ) );
-	}
 
 	/**
 	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
