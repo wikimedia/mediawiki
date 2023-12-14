@@ -20,7 +20,7 @@ mw.requestIdleCallbackInternal = function ( callback ) {
  *
  * Basic logic is as follows:
  *
- * - User input event should be acknowledged within 100ms per [RAIL].
+ * - User input event should be acknowledged within 100ms per [RAIL][].
  * - Idle work should be grouped in blocks of upto 50ms so that enough time
  *   remains for the event handler to execute and any rendering to take place.
  * - Whenever a native event happens (e.g. user input), the deadline for any
@@ -33,6 +33,7 @@ mw.requestIdleCallbackInternal = function ( callback ) {
  * - <https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback>
  * - <https://w3c.github.io/requestidlecallback/>
  * - <https://developers.google.com/web/updates/2015/08/using-requestidlecallback>
+ *
  * [RAIL]: https://developers.google.com/web/fundamentals/performance/rail
  *
  * @memberof mw
