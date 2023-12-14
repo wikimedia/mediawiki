@@ -506,8 +506,7 @@ TXT;
 	 * Get a message formatting the throwable message and its origin.
 	 *
 	 * Despite the method name, this is not used for logging.
-	 * It is only used for HTML or CLI output, by MWExceptionRenderer
-	 * and MWException::getText, respectively.
+	 * It is only used for HTML or CLI output by MWExceptionRenderer.
 	 *
 	 * @since 1.22
 	 * @param Throwable $e

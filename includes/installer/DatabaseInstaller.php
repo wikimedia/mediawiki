@@ -26,7 +26,6 @@ namespace MediaWiki\Installer;
 
 use Exception;
 use MediaWiki\Status\Status;
-use MWException;
 use MWLBFactory;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
@@ -371,7 +370,6 @@ abstract class DatabaseInstaller {
 	 * Perform database upgrades
 	 *
 	 * @return bool
-	 * @suppress SecurityCheck-XSS Escaping provided by $this->outputHandler
 	 */
 	public function doUpgrade() {
 		$this->setupSchemaVars();
@@ -383,12 +381,8 @@ abstract class DatabaseInstaller {
 		try {
 			$up->doUpdates();
 			$up->purgeCache();
-		} catch ( MWException $e ) {
-			// TODO: Remove special casing in favour of MWExceptionRenderer
-			echo "\nAn error occurred:\n";
-			echo $e->getText();
-			$ret = false;
 		} catch ( Exception $e ) {
+			// TODO: Should this use MWExceptionRenderer?
 			echo "\nAn error occurred:\n";
 			echo $e->getMessage();
 			$ret = false;
