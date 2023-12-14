@@ -45,7 +45,7 @@ class TestSetup {
 		global $wgMWLoggerDefaultSpi;
 		global $wgAuthManagerConfig;
 		global $wgShowExceptionDetails, $wgShowHostnames;
-		global $wgDBStrictWarnings;
+		global $wgDBStrictWarnings, $wgUsePigLatinVariant;
 
 		$wgShowExceptionDetails = true;
 		$wgShowHostnames = true;
@@ -134,6 +134,9 @@ class TestSetup {
 			],
 			'secondaryauth' => [],
 		];
+
+		// This is often used for variant testing
+		$wgUsePigLatinVariant = true;
 
 		// xdebug's default of 100 is too low for MediaWiki
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
