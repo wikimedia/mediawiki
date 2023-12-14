@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Site\HashSiteStore;
+use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
 use MediaWiki\Site\SiteList;
 

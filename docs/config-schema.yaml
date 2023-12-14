@@ -4130,7 +4130,7 @@ config-schema:
             the URL.
     SiteTypes:
         default:
-            mediawiki: MediaWikiSite
+            mediawiki: MediaWiki\Site\MediaWikiSite
         type: object
         description: |-
             Register handlers for specific types of sites.

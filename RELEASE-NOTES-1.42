@@ -242,8 +242,16 @@ because of Phabricator reports.
     - UserEditCountInfo
     - UserEditCountUpdate
   - MediaWiki\Site:
+    - CachingSiteStore
+    - DBSiteStore
+    - HashSiteStore
+    - MediaWikiSite
     - Site
+    - SiteExporter
+    - SiteImporter
     - SiteList
+    - SiteLookup
+    - SiteStore
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
 * Using `new ImportReporter( … )` or `new ApiImportReporter( … )` without

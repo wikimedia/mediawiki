@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
 
 /**

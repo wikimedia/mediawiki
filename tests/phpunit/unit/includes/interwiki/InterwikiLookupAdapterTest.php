@@ -1,8 +1,10 @@
 <?php
 
 use MediaWiki\Interwiki\InterwikiLookupAdapter;
+use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
 use MediaWiki\Site\SiteList;
+use MediaWiki\Site\SiteLookup;
 
 /**
  * @covers MediaWiki\Interwiki\InterwikiLookupAdapter

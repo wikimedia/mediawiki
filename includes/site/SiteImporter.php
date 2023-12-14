@@ -18,7 +18,14 @@
  * @file
  */
 
-use MediaWiki\Site\Site;
+namespace MediaWiki\Site;
+
+use DOMDocument;
+use DOMElement;
+use Exception;
+use InvalidArgumentException;
+use MWException;
+use RuntimeException;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -274,3 +281,8 @@ class SiteImporter {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( SiteImporter::class, 'SiteImporter' );

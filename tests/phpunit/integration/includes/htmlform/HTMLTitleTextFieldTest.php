@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Interwiki\InterwikiLookupAdapter;
+use MediaWiki\Site\HashSiteStore;
 use MediaWiki\Site\Site;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;

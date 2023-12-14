@@ -757,7 +757,7 @@ return [
 			'InterwikiFallbackSite' => 'wiki',
 			'RedirectSources' => false,
 			'SiteTypes' => [
-				'mediawiki' => 'MediaWikiSite',
+				'mediawiki' => 'MediaWiki\\Site\\MediaWikiSite',
 			],
 			'MaxTocLevel' => 999,
 			'MaxPPNodeCount' => 1000000,

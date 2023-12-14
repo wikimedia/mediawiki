@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\Site\Site;
+namespace MediaWiki\Site;
 
 /**
  * Interface for storing and retrieving Site objects.
@@ -55,3 +55,8 @@ interface SiteStore extends SiteLookup {
 	 */
 	public function clear();
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( SiteStore::class, 'SiteStore' );

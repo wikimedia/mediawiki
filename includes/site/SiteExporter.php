@@ -18,8 +18,10 @@
  * @file
  */
 
-use MediaWiki\Site\Site;
-use MediaWiki\Site\SiteList;
+namespace MediaWiki\Site;
+
+use InvalidArgumentException;
+use Xml;
 
 /**
  * Utility for exporting site entries to XML.
@@ -116,3 +118,8 @@ class SiteExporter {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( SiteExporter::class, 'SiteExporter' );
