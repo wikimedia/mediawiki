@@ -22,7 +22,7 @@
 /**
  * @newable
  */
-class UploadChunkVerificationException extends MWException {
+class UploadChunkVerificationException extends RuntimeException {
 	public $msg;
 
 	/**

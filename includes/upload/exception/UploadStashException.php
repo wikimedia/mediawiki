@@ -24,7 +24,7 @@ use MediaWiki\Parser\Sanitizer;
  * @newable
  * @ingroup Upload
  */
-class UploadStashException extends MWException implements ILocalizedException {
+class UploadStashException extends RuntimeException implements ILocalizedException {
 	/** @var string|array|MessageSpecifier */
 	protected $messageSpec;
 
