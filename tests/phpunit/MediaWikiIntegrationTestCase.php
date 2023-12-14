@@ -2164,20 +2164,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$prefix = $db->tablePrefix();
 		$tables = $db->listTables( $prefix, __METHOD__ );
 
-		static $viewListCache = null;
-		if ( $viewListCache === null ) {
-			$viewListCache = $db->getType() === 'mysql'
-				? $db->listViews( null, __METHOD__ )
-				: [];
-		}
-
 		$ret = [];
 		foreach ( $tables as $table ) {
-			// T45571: cannot clone VIEWs under MySQL
-			if ( in_array( $table, $viewListCache ) ) {
-				continue;
-			}
-
 			// Remove the table prefix
 			$table = substr( $table, strlen( $prefix ) );
 
