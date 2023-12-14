@@ -42,7 +42,7 @@ if ( MW_ENTRY_POINT === 'index' ) {
  */
 
 global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
-	$wgCommandLineMode, $wgDebugLogFile,
+	$wgDebugLogFile,
 	$wgDBerrorLog, $wgDebugLogGroups;
 
 // Use of wfWarn() should cause tests to fail
@@ -55,7 +55,7 @@ $wgShowHostnames = true;
 // Enable log files
 $logDir = getenv( 'MW_LOG_DIR' );
 if ( $logDir ) {
-	if ( $wgCommandLineMode ) {
+	if ( MW_ENTRY_POINT === 'cli' ) {
 		$wgDebugLogFile = "$logDir/mw-debug-cli.log";
 	} else {
 		$wgDebugLogFile = "$logDir/mw-debug-www.log";
