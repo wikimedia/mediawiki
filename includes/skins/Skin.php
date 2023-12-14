@@ -36,7 +36,6 @@ use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\Skin\SkinComponentRegistryContext;
 use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Specials\SpecialEmailUser;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -1140,8 +1139,11 @@ abstract class Skin extends ContextSource {
 
 		# The sending user must have a confirmed email address and the receiving
 		# user must accept emails from the sender.
-		return $this->getUser()->canSendEmail()
-			&& SpecialEmailUser::validateTarget( $targetUser, $this->getUser() ) === '';
+		$emailUser = MediaWikiServices::getInstance()->getEmailUserFactory()
+			->newEmailUser( $this->getUser() );
+
+		return $emailUser->canSend()->isOK()
+			&& $emailUser->validateTarget( $targetUser )->isOK();
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */
