@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Site\Site;
+use MediaWiki\Site\SiteList;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 

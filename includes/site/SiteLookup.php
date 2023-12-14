@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Site\Site;
+use MediaWiki\Site\SiteList;
+
 /**
  * Interface to retrieve Site objects, for implementation by service classes.
  *

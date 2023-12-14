@@ -21,8 +21,8 @@
 namespace MediaWiki\Interwiki;
 
 use Interwiki;
+use MediaWiki\Site\Site;
 use MediaWikiSite;
-use Site;
 use SiteLookup;
 
 /**

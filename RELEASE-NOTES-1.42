@@ -241,6 +241,9 @@ because of Phabricator reports.
     - TransactionRoundDefiningUpdate
     - UserEditCountInfo
     - UserEditCountUpdate
+  - MediaWiki\Site:
+    - Site
+    - SiteList
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
 * Using `new ImportReporter( … )` or `new ApiImportReporter( … )` without

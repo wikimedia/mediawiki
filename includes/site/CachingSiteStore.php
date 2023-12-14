@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Site\Site;
+use MediaWiki\Site\SiteList;
+
 /**
  * Hold a configured list of sites (SiteList), with a caching layer.
  *

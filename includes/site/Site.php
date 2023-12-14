@@ -18,9 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Site;
+
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Site\MediaWikiPageNameNormalizer;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Represents a single site.
@@ -442,11 +446,8 @@ class Site {
 	 * @param string|null $languageCode
 	 */
 	public function setLanguageCode( $languageCode ) {
-		if ( $languageCode !== null
-			&& !MediaWikiServices::getInstance()
-				->getLanguageNameUtils()
-				->isValidCode( $languageCode )
-		) {
+		if ( $languageCode !== null &&
+			!MediaWikiServices::getInstance()->getLanguageNameUtils()->isValidCode( $languageCode ) ) {
 			throw new InvalidArgumentException( "$languageCode is not a valid language code." );
 		}
 		$this->languageCode = $languageCode;
@@ -622,7 +623,8 @@ class Site {
 	 */
 	public static function newForType( $siteType ) {
 		$siteTypes = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::SiteTypes );
+			MainConfigNames::SiteTypes
+		);
 
 		if ( array_key_exists( $siteType, $siteTypes ) ) {
 			return new $siteTypes[$siteType]();
@@ -674,3 +676,8 @@ class Site {
 		$this->setInternalId( $fields['internalid'] );
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( Site::class, 'Site' );

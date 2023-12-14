@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Site\Site;
+
 /**
  * Holds sites for testing purposes.
  *

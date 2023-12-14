@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Site\Site;
+
 /**
  * Interface for storing and retrieving Site objects.
  *
