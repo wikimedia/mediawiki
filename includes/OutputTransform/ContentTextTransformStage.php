@@ -2,8 +2,8 @@
 
 namespace Mediawiki\OutputTransform;
 
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * OutputTransformStages that only modify the content. It is expected that all inheriting classes call this class'

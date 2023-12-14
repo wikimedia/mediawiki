@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Revision;
 
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * A lazy provider of ParserOutput objects for a revision's individual slots.

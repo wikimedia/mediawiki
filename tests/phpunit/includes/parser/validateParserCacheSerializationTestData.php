@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Parser;
 use CacheTime;
 use Maintenance;
 use MediaWiki\Logger\ConsoleLogger;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Tests\SerializationTestUtils;
 
 define( 'MW_AUTOLOAD_TEST_CLASSES', true );

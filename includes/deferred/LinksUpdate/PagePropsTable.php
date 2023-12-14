@@ -6,7 +6,7 @@ use HTMLCacheUpdateJob;
 use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * page_props

@@ -4,7 +4,7 @@ namespace Mediawiki\OutputTransform\Stages;
 
 use Mediawiki\OutputTransform\OutputTransformStage;
 use Mediawiki\OutputTransform\OutputTransformStageTest;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \Mediawiki\OutputTransform\Stages\AddRedirectHeaderTest

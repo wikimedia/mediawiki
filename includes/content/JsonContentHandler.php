@@ -21,6 +21,7 @@
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * Content handler for JSON text.

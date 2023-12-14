@@ -42,6 +42,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\MagicWordArray;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Preferences\SignatureValidatorFactory;

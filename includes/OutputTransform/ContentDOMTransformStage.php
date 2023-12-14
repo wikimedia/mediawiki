@@ -2,8 +2,8 @@
 
 namespace Mediawiki\OutputTransform;
 
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 

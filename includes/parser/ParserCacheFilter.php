@@ -23,7 +23,6 @@ namespace MediaWiki\Parser;
 
 use MediaWiki\Page\PageRecord;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * Filter that decides whether a ParserOutput object should be stored in the

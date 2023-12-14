@@ -4,7 +4,7 @@ namespace Mediawiki\OutputTransform\Stages;
 
 use MediaWiki\MainConfigNames;
 use Mediawiki\OutputTransform\TestUtils;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use RequestContext;
 
 /**

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;

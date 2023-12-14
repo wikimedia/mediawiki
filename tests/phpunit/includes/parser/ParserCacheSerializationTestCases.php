@@ -5,12 +5,12 @@ namespace MediaWiki\Tests\Parser;
 use CacheTime;
 use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use MWDebug;
-use ParserOutput;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestUtils;
 

@@ -27,6 +27,7 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 
 /**

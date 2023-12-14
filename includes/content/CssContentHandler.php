@@ -26,6 +26,7 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use Wikimedia\Minify\CSSMin;
 

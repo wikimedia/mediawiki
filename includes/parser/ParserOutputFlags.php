@@ -44,50 +44,50 @@ class ParserOutputFlags {
 
 	/**
 	 * @var string No gallery on category page? (__NOGALLERY__).
-	 * @see \ParserOutput::getNoGallery()
-	 * @see \ParserOutput::setNoGallery()
+	 * @see ParserOutput::getNoGallery()
+	 * @see ParserOutput::setNoGallery()
 	 */
 	public const NO_GALLERY = 'mw-NoGallery';
 
 	/**
 	 * @var string Whether OOUI should be enabled.
-	 * @see \ParserOutput::getEnableOOUI()
-	 * @see \ParserOutput::setEnableOOUI()
+	 * @see ParserOutput::getEnableOOUI()
+	 * @see ParserOutput::setEnableOOUI()
 	 */
 	public const ENABLE_OOUI = 'mw-EnableOOUI';
 
 	/**
 	 * @var string Force index policy to be 'index'
-	 * @see \ParserOutput::getIndexPolicy()
-	 * @see \ParserOutput::setIndexPolicy()
+	 * @see ParserOutput::getIndexPolicy()
+	 * @see ParserOutput::setIndexPolicy()
 	 */
 	public const INDEX_POLICY = 'mw-IndexPolicy';
 
 	/**
 	 * @var string Force index policy to be 'noindex'
-	 * @see \ParserOutput::getIndexPolicy()
-	 * @see \ParserOutput::setIndexPolicy()
+	 * @see ParserOutput::getIndexPolicy()
+	 * @see ParserOutput::setIndexPolicy()
 	 */
 	public const NO_INDEX_POLICY = 'mw-NoIndexPolicy';
 
 	/**
 	 * @var string Show a new section link?
-	 * @see \ParserOutput::getNewSection()
-	 * @see \ParserOutput::setNewSection()
+	 * @see ParserOutput::getNewSection()
+	 * @see ParserOutput::setNewSection()
 	 */
 	public const NEW_SECTION = 'mw-NewSection';
 
 	/**
 	 * @var string Hide the new section link?
-	 * @see \ParserOutput::getHideNewSection()
-	 * @see \ParserOutput::setHideNewSection()
+	 * @see ParserOutput::getHideNewSection()
+	 * @see ParserOutput::setHideNewSection()
 	 */
 	public const HIDE_NEW_SECTION = 'mw-HideNewSection';
 
 	/**
 	 * @var string The prevent-clickjacking flag
-	 * @see \ParserOutput::getPreventClickjacking()
-	 * @see \ParserOutput::setPreventClickjacking()
+	 * @see ParserOutput::getPreventClickjacking()
+	 * @see ParserOutput::setPreventClickjacking()
 	 */
 	public const PREVENT_CLICKJACKING = 'mw-PreventClickjacking';
 

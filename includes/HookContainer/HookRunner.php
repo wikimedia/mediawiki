@@ -13,6 +13,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\ResourceLoader as RL;
@@ -3323,7 +3324,7 @@ class HookRunner implements
 	}
 
 	public function onSearchDataForIndex2( array &$fields, \ContentHandler $handler,
-		\WikiPage $page, \ParserOutput $output, \SearchEngine $engine, RevisionRecord $revision
+		\WikiPage $page, ParserOutput $output, \SearchEngine $engine, RevisionRecord $revision
 	) {
 		return $this->container->run(
 			'SearchDataForIndex2',

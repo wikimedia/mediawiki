@@ -5,7 +5,7 @@ namespace Mediawiki\OutputTransform\Stages;
 use Mediawiki\OutputTransform\OutputTransformStage;
 use Mediawiki\OutputTransform\OutputTransformStageTest;
 use Mediawiki\OutputTransform\TestUtils;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \Mediawiki\OutputTransform\Stages\HandleTOCMarkers

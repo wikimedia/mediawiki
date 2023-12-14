@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Output\OutputPage;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

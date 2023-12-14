@@ -6,9 +6,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOutput;
 use Message;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * Adds debug info to the output

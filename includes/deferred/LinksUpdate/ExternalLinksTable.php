@@ -3,7 +3,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\ExternalLinks\LinkFilter;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * externallinks

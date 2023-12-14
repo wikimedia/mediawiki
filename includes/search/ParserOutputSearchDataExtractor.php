@@ -3,8 +3,8 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\Category\Category;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
-use ParserOutput;
 
 /**
  * Extracts data from ParserOutput for indexing in the search engine.

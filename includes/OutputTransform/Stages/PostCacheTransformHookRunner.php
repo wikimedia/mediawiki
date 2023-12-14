@@ -5,8 +5,8 @@ namespace Mediawiki\OutputTransform\Stages;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * @internal

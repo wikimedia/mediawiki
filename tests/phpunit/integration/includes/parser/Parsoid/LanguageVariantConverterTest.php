@@ -4,8 +4,8 @@ namespace MediaWiki\Parser\Parsoid;
 
 use Language;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserOutput;
 use MediaWikiIntegrationTestCase;
-use ParserOutput;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Parsoid;

@@ -23,7 +23,7 @@ namespace MediaWiki\Pager;
 use IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use stdClass;
 use XmlSelect;
 

@@ -19,6 +19,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;

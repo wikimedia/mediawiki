@@ -21,6 +21,7 @@
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;

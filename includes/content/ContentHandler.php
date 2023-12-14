@@ -39,6 +39,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;

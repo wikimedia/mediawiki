@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Page\Hook;
 
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
-use ParserOutput;
 use WikiPage;
 
 /**

@@ -1683,6 +1683,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\ParserCacheFilter' => __DIR__ . '/includes/parser/ParserCacheFilter.php',
 	'MediaWiki\\Parser\\ParserCacheMetadata' => __DIR__ . '/includes/parser/ParserCacheMetadata.php',
 	'MediaWiki\\Parser\\ParserObserver' => __DIR__ . '/includes/parser/ParserObserver.php',
+	'MediaWiki\\Parser\\ParserOutput' => __DIR__ . '/includes/parser/ParserOutput.php',
 	'MediaWiki\\Parser\\ParserOutputFlags' => __DIR__ . '/includes/parser/ParserOutputFlags.php',
 	'MediaWiki\\Parser\\ParserOutputStringSets' => __DIR__ . '/includes/parser/ParserOutputStringSets.php',
 	'MediaWiki\\Parser\\Parsoid\\Config\\DataAccess' => __DIR__ . '/includes/parser/Parsoid/Config/DataAccess.php',

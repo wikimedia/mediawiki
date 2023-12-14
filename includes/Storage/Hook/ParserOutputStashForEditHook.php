@@ -3,8 +3,8 @@
 namespace MediaWiki\Storage\Hook;
 
 use Content;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\User\User;
-use ParserOutput;
 use WikiPage;
 
 /**

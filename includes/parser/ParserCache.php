@@ -28,6 +28,7 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFilter;
 use MediaWiki\Parser\ParserCacheMetadata;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
 

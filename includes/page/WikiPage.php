@@ -35,6 +35,7 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;

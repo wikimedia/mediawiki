@@ -5,11 +5,11 @@ namespace Mediawiki\OutputTransform\Stages;
 use Language;
 use MediaWiki\Linker\Linker;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Tidy\TidyDriverBase;
 use Parser;
 use ParserOptions;
-use ParserOutput;
 use RequestContext;
 
 /**

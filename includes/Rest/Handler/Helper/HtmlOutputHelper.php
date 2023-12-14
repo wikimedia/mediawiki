@@ -19,9 +19,9 @@
  */
 namespace MediaWiki\Rest\Handler\Helper;
 
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
-use ParserOutput;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Core\ClientError;
 

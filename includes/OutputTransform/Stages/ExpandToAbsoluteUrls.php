@@ -4,8 +4,8 @@ namespace Mediawiki\OutputTransform\Stages;
 
 use MediaWiki\Linker\Linker;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * Expand relative links to absolute URLs

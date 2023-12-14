@@ -4,8 +4,8 @@ namespace MediaWiki\Content\Renderer;
 use Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * A service to render content.
