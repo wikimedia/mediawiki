@@ -143,7 +143,7 @@ class CreateBotPassword extends Maintenance {
 		foreach ( $permissions as $permission ) {
 			$this->output(
 				str_pad( $permission, self::SHOWGRANTS_COLUMN_WIDTH ) . " " .
-				User::getRightDescription( $permission ) . "\n"
+				User::getRightDescriptionHtml( $permission ) . "\n"
 			);
 		}
 	}
