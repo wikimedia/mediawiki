@@ -939,6 +939,8 @@ class Article implements Page {
 	 */
 	protected function showDiffPage() {
 		$context = $this->getContext();
+		$outputPage = $context->getOutput();
+		$outputPage->addBodyClasses( 'mw-article-diff' );
 		$request = $context->getRequest();
 		$diff = $request->getVal( 'diff' );
 		$rcid = $request->getInt( 'rcid' );
@@ -957,12 +959,12 @@ class Article implements Page {
 				// Do nothing here.
 				// The $rev will later be used to create standard diff elements however.
 			} else {
-				$context->getOutput()->setPageTitleMsg( $context->msg( 'errorpagetitle' ) );
+				$outputPage->setPageTitleMsg( $context->msg( 'errorpagetitle' ) );
 				$msg = $context->msg( 'difference-missing-revision' )
 					->params( $oldid )
 					->numParams( 1 )
 					->parseAsBlock();
-				$context->getOutput()->addHTML( $msg );
+				$outputPage->addHTML( $msg );
 				return;
 			}
 		}
