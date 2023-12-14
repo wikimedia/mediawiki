@@ -194,7 +194,10 @@
 			"Amire80",
 			"淮南皓月",
 			"Vikarna",
-			"Googology"
+			"Googology",
+			"Anterdc99",
+			"Dream Star.cn",
+			"XtexChooser"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1337,7 +1340,7 @@
 	"gender-notknown": "中性称呼",
 	"gender-male": "男性称呼",
 	"gender-female": "女性称呼",
-	"prefs-help-gender": "此设置为可选项。软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。此项信息会被公开。",
+	"prefs-help-gender": "此设置为可选项。软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。该信息为公开信息。",
 	"email": "电子邮件",
 	"prefs-help-realname": "真实姓名是选填项目。\n如果提供，它可能用于署名您的贡献。",
 	"prefs-help-email": "电子邮件地址是选填项，但是当您忘记您的密码要重置密码时，需要该信息。",
@@ -1746,7 +1749,7 @@
 	"rcfilters-filter-watchlistactivity-unseen-label": "未查看更改",
 	"rcfilters-filter-watchlistactivity-unseen-description": "对自发生更改之后您未访问的页面的更改。",
 	"rcfilters-filter-watchlistactivity-seen-label": "已查看更改",
-	"rcfilters-filter-watchlistactivity-seen-description": "对自发生更改之后您未访问的页面的更改。",
+	"rcfilters-filter-watchlistactivity-seen-description": "对自发生更改之后您已访问的页面的更改。",
 	"rcfilters-filtergroup-changetype": "更改类型",
 	"rcfilters-filter-pageedits-label": "页面编辑",
 	"rcfilters-filter-pageedits-description": "对wiki内容、讨论、分类描述等的编辑",
@@ -2961,7 +2964,7 @@
 	"movepagetalktext": "如果您勾选此框，相关联的讨论页将被自动移动到新的标题，除非这里已经有了一个非空讨论页。\n\n在这种情况下，如有需要，您将不得不手动移动或合并页面。",
 	"moveuserpage-warning": "'''警告：'''你将移动一个用户页面。请注意，只有该页面会被移动，该用户'''不会'''被更名。",
 	"movecategorypage-warning": "<strong>警告：</strong>您将要移动分类页面。请注意，只有分类页面会被移动，而属于旧分类的任何页面<em>都不会</em>被重新归类到新分类内。",
-	"movenologintext": "您必须是一名登注册用户并且[[Special:UserLogin|登录]]后才可移动一个页面。",
+	"movenologintext": "您必须是一名注册用户并且[[Special:UserLogin|登录]]后才可移动一个页面。",
 	"movenotallowed": "您没有权限移动页面。",
 	"movenotallowedfile": "您没有权限移动文件。",
 	"cant-move-user-page": "您没有权限移动用户页面（子页面除外）。",
