@@ -21,7 +21,6 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use Psr\Log\LogLevel;
 use Wikimedia\NormalizedException\INormalizedException;
@@ -497,12 +496,10 @@ TXT;
 	 * @return string|false
 	 */
 	public static function getURL() {
-		global $wgRequest;
-
-		if ( !isset( $wgRequest ) || $wgRequest instanceof FauxRequest ) {
+		if ( MW_ENTRY_POINT === 'cli' ) {
 			return false;
 		}
-		return $wgRequest->getRequestURL();
+		return WebRequest::getGlobalRequestURL();
 	}
 
 	/**
