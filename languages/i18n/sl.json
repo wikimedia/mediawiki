@@ -831,7 +831,7 @@
 	"undo-main-slot-only": "Urejanja ni bilo mogoče razveljaviti, ker vključuje vsebino zunaj glavne reže.",
 	"undo-norev": "Urejanja ni bilo mogoče razveljaviti, ker ne obstaja ali je bilo izbrisano.",
 	"undo-nochange": "Zdi se, da je urejanje že razveljavljeno.",
-	"undo-summary": "razveljavitev redakcije [[Special:Diff/$1|$1]] {{gender:$2|uporabnika|uporabnice|uporabnika/ce}} [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]])",
+	"undo-summary": "razveljavitev redakcije [[Special:Diff/$1|$1]] {{gender:$2|uporabnika|uporabnice|uporabnika_ce}} [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]])",
 	"undo-summary-anon": "Razveljavitev redakcije [[Special:Diff/$1|$1]] uporabnika [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "razveljavitev uvožene redakcije [[Special:Diff/$1|$1]] uporabnika [[:$2|$3]]",
 	"undo-summary-import2": "razveljavitev uvožene redakcije [[Special:Diff/$1|$1]] uporabnika $2",

@@ -505,7 +505,7 @@
 	"missingcommentheader": "'''Achtung:''' Du host ken Betreff/Üwerschrift ingeb. Wenn du erneit uff \"$1\" klicke tust, weard dein Beoorbeitung ohne Üwerschrift gespeichert.",
 	"summary-preview": "Voarschau von der Zusammerfassungszeil:",
 	"blockedtitle": "Benutzer ist gesperrt",
-	"blockedtext": "'''Dein Benutzernaame odder dein IP-Adress waar gesperrd.'''\n\nDie Sperrung waar fum Administrator $1 dorrichgefihrt.\nAls Grund waar ''$2'' aangebb.\n\n* Die Sperr eere Beginn: $8\n* Die Sperr eere End: $6\n* Die Sperr betreffd: $7\n\nDu kannst $1 odder en fun de annre [[{{MediaWiki:Grouppage-sysop}}|Administratore]] kontakteere, um iwer die Sperr zu diskuteere.\nDu kannst die \"{{int:emailuser}}-Funkzion nutze, wenn en gellende E-Mail-Adress in dein [[Special:Preferences|Benutzerkonto-Instellunge]] ingedraa is odder die Funkzion fer dich gesperrd waar.\nDein aktuaal IP-Adresse is $3 un die Sperrkennung laud $5.\nBittscheen inschliss alle Informazione jede Aanfroh hinzu, wo du stellst.",
+	"blockedtext": "<strong>Dein Benutzernaame odder dein IP-Adress waar gesperrd.<strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nDu kannst die \"{{int:emailuser}}-Funkzion nutze, wenn en gellende E-Mail-Adress in dein [[Special:Preferences|Benutzerkonto-Instellunge]] ingedraa is odder die Funkzion fer dich net gesperrd waar.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "Dein IP-Adress woard automatisch gesperrt, wiel die von em annre Benutzer genutzt woard, wo von $1 gesperrt woard.\nAls Grund wurde angegeben:\n\n:''$2''\n\n* Die Sperr ehr Beginn: $8\n* Die Sperr ehr End: $6\n* Die Sperr betrifft: $7\n\nDu kannst $1 orrer en von der annre [[{{MediaWiki:Grouppage-sysop}}|Administratore]] kontaktiere, um üwer die Sperr zu diskutiere.\n\nDu kannst die \"E-Mail an den Benutzer\"-Funktion net nutze, solang ken gültiche E-Mail-Adress in dein [[Special:Preferences|Benutzerkonto-Einstellunge]] ingetrooht ist orrer die Funktion für dich gesperrt woard.\n\nDein aktuell IP-Adress ist $3, und die Sperr-ID ist $5.\nBittschön füch alle Informatione von jeder Oonfroch hinzu, wo du stelle tust.",
 	"blockednoreason": "ken Begründung oongeb",
 	"whitelistedittext": "Du musst dich $1, um Seite beoorbeite zu könne.",
@@ -738,7 +738,7 @@
 	"showhideselectedversions": "Gewählte Versione zeiche/verstecke",
 	"editundo": "rickgengich mache",
 	"diff-empty": "(ken Unnerschied)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Een dozwischerlehnde Vërsion|$1 dozwischerlehnde Vërsione}} fun de selwiche Benutzer werre net aangezeichd)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Een dozwischerlehnde Vërsion|$1 dozwischerlehnde Vërsione}} fun de selwiche {{GENDER:$3|Benutzer}} werre net aangezeichd)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Een dozwischerlehnde Vërsion|$1 dozwischerlehnde Vërsione}} fun {{PLURAL:$2|een annre Benutzer|$2 Benutzer}} {{PLURAL:$1|werd|werre}} net aangezeichd)",
 	"diff-multi-manyusers": "({{PLURAL:$1|$1 dozwischerlehnde Versione}} von meahr als {{PLURAL:$2|$2 Benutzer}}, die net oongezeicht sin)",
 	"difference-missing-revision": "{{PLURAL:$2|Ein Version|$2 Versione}} der Unnerschiedsoonzeich ($1) {{PLURAL:$2|woard|worre}} net gefund.\n\nDer Fehler weard normalerweis von en veraltete Link zur Versionsgeschicht von en Seit verursacht, wo zwischichzeitlich abgewischt woard.\nEinzelheite sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Abwasch-Logbuch] voarhand.",
@@ -2543,5 +2543,13 @@
 	"skin-action-protect": "Schütz",
 	"skin-action-undelete": "Wiederherstelle",
 	"skin-action-delete": "Lösche",
-	"skin-action-move": "Verschiebe"
+	"skin-action-move": "Verschiebe",
+	"blockedtext-made-by": "Die Sperr waar fun $1 dorrichgefeerd.",
+	"blockedtext-reason-comment": "De aangebbe Grund is <em>$1</em>",
+	"blockedtext-start-time": "Aanfang fum Abhallung: $1",
+	"blockedtext-expiration-time": "Ablaaf fum Abhallung: $1",
+	"blockedtext-intended-blockee": "Abhallung bedreffd: $1",
+	"blockedtext-contact-blocker-admin": "Du kannst $1 odder en annre [[{{MediaWiki:Grouppage-sysop}}|Administratoer]] kontakteere, um iwer das Abhallung se diskutiere.",
+	"blockedtext-block-ip": "Dein aktuaale IP-Adress is $1.",
+	"blockedtext-include-details-queries": "Bitte schliese alle Informazione in jeder Aanfroh in, wo du stellst."
 }
