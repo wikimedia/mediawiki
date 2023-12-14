@@ -257,6 +257,10 @@ because of Phabricator reports.
     - SiteStore
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
+* Overriding MWException::getHTML(), ::getText(), ::getPageTitle(), and
+  ::reportHTML() in order to display custom exception messages is now
+  deprecated. Provide the error message when constructing the Exception,
+  or if you need a whole custom error page, use ErrorPageError instead.
 * Using `new ImportReporter( … )` or `new ApiImportReporter( … )` without
   the $context parameter is now deprecated.
 * Using `WikiImporterFactory::getWikiImporter()` without the $performer

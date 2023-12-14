@@ -307,7 +307,10 @@ class MWExceptionRenderer {
 	 * @return Message
 	 */
 	private static function getExceptionTitle( Throwable $e ): Message {
-		if ( $e instanceof MWException ) {
+		if (
+			$e instanceof MWException &&
+			MWDebug::detectDeprecatedOverride( $e, MWException::class, 'getPageTitle', '1.42' )
+		) {
 			return ( new RawMessage( '$1' ) )->plaintextParams(
 				$e->getPageTitle() /* convert string title to Message */
 			);
@@ -381,7 +384,7 @@ class MWExceptionRenderer {
 		// NOTE: STDERR may not be available, especially if php-cgi is used from the
 		// command line (T17602). Try to produce meaningful output anyway. Using
 		// echo may corrupt output to STDOUT though.
-		if ( defined( 'STDERR' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && defined( 'STDERR' ) ) {
 			fwrite( STDERR, $message );
 		} else {
 			echo $message;

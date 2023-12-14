@@ -124,7 +124,7 @@ class MWExceptionHandler {
 	protected static function report( Throwable $e ) {
 		try {
 			// Try and show the exception prettily, with the normal skin infrastructure
-			if ( $e instanceof MWException ) {
+			if ( $e instanceof MWException && $e->hasOverriddenHandler() ) {
 				// Delegate to MWException until all subclasses are handled by
 				// MWExceptionRenderer and MWException::report() has been
 				// removed.

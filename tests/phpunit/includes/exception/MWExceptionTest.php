@@ -74,4 +74,57 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/**
+	 * @covers MWException::report
+	 */
+	public function testReport() {
+		// Turn off to keep mw-error.log file empty in CI (and thus avoid build failure)
+		$this->setMwGlobals( 'wgDebugLogGroups', [] );
+
+		global $wgOut;
+		$wgOut->disable();
+
+		$e = new class( 'Uh oh!' ) extends MWException {
+			public function report() {
+				global $wgOut;
+				$wgOut->addHTML( 'Oh no!' );
+			}
+		};
+
+		MWExceptionHandler::handleException( $e );
+
+		$this->assertStringContainsString( 'Oh no!', $wgOut->getHTML() );
+	}
+
+	/**
+	 * @covers MWException::report
+	 */
+	public function testReportDeprecated() {
+		// Turn off to keep mw-error.log file empty in CI (and thus avoid build failure)
+		$this->setMwGlobals( 'wgDebugLogGroups', [] );
+
+		global $wgOut;
+		$wgOut->disable();
+
+		$e = new class( 'Uh oh!' ) extends MWException {
+			public function getHTML() {
+				throw new LogicException( 'This should not be called' );
+			}
+
+			public function getText() {
+				return 'Oh no! ' . $this->getPageTitle();
+			}
+		};
+
+		$this->expectDeprecationAndContinue( '/overrides getHTML which was deprecated/' );
+		$this->expectDeprecationAndContinue( '/overrides getText which was deprecated/' );
+		$this->expectDeprecationAndContinue( '/Use of MWException::getPageTitle was deprecated/' );
+
+		ob_start();
+		MWExceptionHandler::handleException( $e );
+		ob_end_clean();
+
+		$this->assertStringContainsString( 'Oh no!', $wgOut->getHTML() );
+	}
+
 }
