@@ -313,6 +313,15 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Perform checks to see if the file can be fetched. Usually a no-op.
+	 * @stable to override
+	 * @return Status
+	 */
+	public function canFetchFile() {
+		return Status::newGood();
+	}
+
+	/**
 	 * Return true if the file is empty.
 	 * @return bool
 	 */
