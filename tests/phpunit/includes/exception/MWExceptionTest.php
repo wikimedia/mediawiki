@@ -62,28 +62,9 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers MWException::isLoggable
 	 */
-	public function testIsLogable() {
+	public function testIsLoggable() {
 		$e = new MWException();
 		$this->assertTrue( $e->isLoggable() );
-	}
-
-	/**
-	 * @dataProvider provideIsCommandLine
-	 * @covers MWException::isCommandLine
-	 */
-	public function testisCommandLine( $expected, $commandLineMode ) {
-		$this->setMwGlobals( [
-			'wgCommandLineMode' => $commandLineMode,
-		] );
-		$e = new MWException();
-		$this->assertEquals( $expected, $e->isCommandLine() );
-	}
-
-	public static function provideIsCommandLine() {
-		return [
-			[ false, null ],
-			[ true, true ],
-		];
 	}
 
 	/**

@@ -349,7 +349,7 @@ class MWExceptionRenderer {
 	 * @return bool
 	 */
 	private static function isCommandLine() {
-		return !empty( $GLOBALS['wgCommandLineMode'] );
+		return MW_ENTRY_POINT === 'cli';
 	}
 
 	/**

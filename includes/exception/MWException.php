@@ -243,7 +243,7 @@ class MWException extends Exception {
 	 * @return bool
 	 */
 	public static function isCommandLine() {
-		return !empty( $GLOBALS['wgCommandLineMode'] );
+		return MW_ENTRY_POINT === 'cli';
 	}
 
 	/**
