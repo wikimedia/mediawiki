@@ -2155,28 +2155,15 @@ abstract class UploadBase {
 	/**
 	 * Gets image info about the file just uploaded.
 	 *
-	 * Also has the effect of setting metadata to be an 'indexed tag name' in
-	 * returned API result if 'metadata' was requested. Oddly, we have to pass
-	 * the "result" object down just so it can do that with the appropriate
-	 * format, presumably.
+	 * @deprecated since 1.42, subclasses of ApiUpload can use
+	 * ApiUpload::getUploadImageInfo() instead.
 	 *
-	 * @param ApiResult $result
+	 * @param ?ApiResult $result unused since 1.42
 	 * @return array Image info
 	 */
-	public function getImageInfo( $result ) {
-		$stashFile = $this->getStashFile();
-		// Calling a different API module depending on whether the file was stashed is less than optimal.
-		// In fact, calling API modules here at all is less than optimal. Maybe it should be refactored.
-		if ( $stashFile ) {
-			$imParam = ApiQueryStashImageInfo::getPropertyNames();
-			$info = ApiQueryStashImageInfo::getInfo( $stashFile, array_fill_keys( $imParam, true ), $result );
-		} else {
-			$localFile = $this->getLocalFile();
-			$imParam = ApiQueryImageInfo::getPropertyNames();
-			$info = ApiQueryImageInfo::getInfo( $localFile, array_fill_keys( $imParam, true ), $result );
-		}
-
-		return $info;
+	public function getImageInfo( $result = null ) {
+		$apiUpload = ApiUpload::getDummyInstance();
+		return $apiUpload->getUploadImageInfo( $this );
 	}
 
 	/**

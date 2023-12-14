@@ -98,8 +98,8 @@ class PublishStashedFileJob extends Job {
 			}
 
 			// Build the image info array while we have the local reference handy
-			$apiMain = new ApiMain(); // dummy object (XXX)
-			$imageInfo = $upload->getImageInfo( $apiMain->getResult() );
+			$apiUpload = ApiUpload::getDummyInstance();
+			$imageInfo = $apiUpload->getUploadImageInfo( $upload );
 
 			// Cleanup any temporary local file
 			$upload->cleanupTempFile();

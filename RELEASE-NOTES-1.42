@@ -272,6 +272,8 @@ because of Phabricator reports.
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
   and will soon stop working due to schema changes. Instead use
   addDeletedUserFilter() or getBlockDetailsForRows().
+* UploadBase::getImageInfo was deprecated, subclasses of ApiUpload can use
+  ApiUpload::getUploadImageInfo() instead.
 * DatabaseBlockStore::updateTimestamp() is now internal and should not be
   called.
 * The module `mediawiki.icon` has been deprecated. Use the Codex mixin instead
