@@ -3634,6 +3634,8 @@ class OutputPage extends ContextSource {
 		$bodyClasses[] = $userdir;
 		$bodyClasses[] = "sitedir-$sitedir";
 
+		// See Article:showDiffPage for class to support article diff styling
+
 		$underline = $services->getUserOptionsLookup()->getOption( $this->getUser(), 'underline' );
 		if ( $underline < 2 ) {
 			// The following classes can be used here:
