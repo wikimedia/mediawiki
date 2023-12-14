@@ -882,7 +882,6 @@ class ApiUpload extends ApiBase {
 				[ 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() ]
 			);
 			$this->jobQueueGroup->push( new PublishStashedFileJob(
-				Title::makeTitle( NS_FILE, $this->mParams['filename'] ),
 				[
 					'filename' => $this->mParams['filename'],
 					'filekey' => $this->mParams['filekey'],

@@ -19,7 +19,6 @@
  */
 
 use MediaWiki\Status\Status;
-use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -28,9 +27,10 @@ use Wikimedia\ScopedCallback;
  * @ingroup Upload
  * @ingroup JobQueue
  */
-class PublishStashedFileJob extends Job {
-	public function __construct( Title $title, array $params ) {
-		parent::__construct( 'PublishStashedFile', $title, $params );
+class PublishStashedFileJob extends Job implements GenericParameterJob {
+
+	public function __construct( array $params ) {
+		parent::__construct( 'PublishStashedFile', $params );
 		$this->removeDuplicates = true;
 	}
 
