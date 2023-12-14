@@ -63,7 +63,6 @@ use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
 use OOUI\Widget;
 use Wikimedia\IPUtils;
-use XmlSelect;
 
 /**
  * A special page that allows users with 'block' right to block users from
@@ -240,7 +239,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		$user = $this->getUser();
 
-		$suggestedDurations = self::getSuggestedDurations();
+		$suggestedDurations = $this->getLanguage()->getBlockDurations();
 
 		$a = [];
 
@@ -967,6 +966,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Get an array of suggested block durations from MediaWiki:Ipboptions
 	 * @todo FIXME: This uses a rather odd syntax for the options, should it be converted
 	 *     to the standard "**<duration>|<displayname>" format?
+	 * @deprecated since 1.42, use Language::getBlockDurations() instead.
 	 * @param Language|null $lang The language to get the durations in, or null to use
 	 *     the wiki's content language
 	 * @param bool $includeOther Whether to include the 'other' option in the list of
@@ -974,23 +974,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string[]
 	 */
 	public static function getSuggestedDurations( Language $lang = null, $includeOther = true ) {
-		$msg = $lang === null
-			? wfMessage( 'ipboptions' )->inContentLanguage()->text()
-			: wfMessage( 'ipboptions' )->inLanguage( $lang )->text();
-
-		if ( $msg == '-' ) {
-			return [];
-		}
-
-		$a = XmlSelect::parseOptionsMessage( $msg );
-
-		if ( $a && $includeOther ) {
-			// If options exist, add other to the end instead of the beginning (which
-			// is what happens by default).
-			$a[ wfMessage( 'ipbother' )->text() ] = 'other';
-		}
-
-		return $a;
+		$lang ??= MediaWikiServices::getInstance()->getContentLanguage();
+		return $lang->getBlockDurations( $includeOther );
 	}
 
 	/**
