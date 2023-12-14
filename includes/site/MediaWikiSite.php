@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Site\MediaWikiPageNameNormalizer;
+use MediaWiki\Site\Site;
 use MediaWiki\Title\Title;
 
 /**

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Site\Site;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

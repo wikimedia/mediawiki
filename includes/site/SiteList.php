@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Site;
+
+use ArrayObject;
+use InvalidArgumentException;
+
 /**
  * Array-like collection of Site objects.
  *
@@ -148,8 +153,7 @@ class SiteList extends ArrayObject {
 	protected function setElement( $index, $site ) {
 		if ( !$this->hasValidType( $site ) ) {
 			throw new InvalidArgumentException(
-				'Can only add ' . $this->getObjectType() . ' implementing objects to '
-				. static::class . '.'
+				'Can only add ' . $this->getObjectType() . ' implementing objects to ' . static::class . '.'
 			);
 		}
 
@@ -426,3 +430,8 @@ class SiteList extends ArrayObject {
 		$this->byNavigationId = $serializationData['navigationIds'];
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( SiteList::class, 'SiteList' );

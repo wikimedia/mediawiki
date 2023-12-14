@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Site\Site;
+use MediaWiki\Site\SiteList;
+
 /**
  * In-memory SiteStore implementation, stored in an associative array.
  *
