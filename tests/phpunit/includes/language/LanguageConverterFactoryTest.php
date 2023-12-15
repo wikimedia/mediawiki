@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -27,10 +29,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	) {
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( $langCode );
 		$factory = new LanguageConverterFactory(
+			new ServiceOptions( LanguageConverterFactory::CONSTRUCTOR_OPTIONS, new HashConfig( [
+				MainConfigNames::UsePigLatinVariant => false,
+				MainConfigNames::DisableLangConversion => false,
+				MainConfigNames::DisableTitleConversion => false,
+			] ) ),
 			$this->getServiceContainer()->getObjectFactory(),
-			false,
-			false,
-			false,
 			static function () use ( $lang ) {
 				return $lang;
 			}
@@ -60,10 +64,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	public function testCreateFromCodeEnPigLatin() {
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
+			new ServiceOptions( LanguageConverterFactory::CONSTRUCTOR_OPTIONS, new HashConfig( [
+				MainConfigNames::UsePigLatinVariant => true,
+				MainConfigNames::DisableLangConversion => false,
+				MainConfigNames::DisableTitleConversion => false,
+			] ) ),
 			$this->getServiceContainer()->getObjectFactory(),
-			true,
-			false,
-			false,
 			static function () use ( $lang ) {
 				return $lang;
 			}
@@ -96,10 +102,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	public function testDisabledBooleans( $pigLatinDisabled, $conversionDisabled, $titleDisabled ) {
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
+			new ServiceOptions( LanguageConverterFactory::CONSTRUCTOR_OPTIONS, new HashConfig( [
+				MainConfigNames::UsePigLatinVariant => !$pigLatinDisabled,
+				MainConfigNames::DisableLangConversion => $conversionDisabled,
+				MainConfigNames::DisableTitleConversion => $titleDisabled,
+			] ) ),
 			$this->getServiceContainer()->getObjectFactory(),
-			!$pigLatinDisabled,
-			$conversionDisabled,
-			$titleDisabled,
 			static function () use ( $lang ) {
 				return $lang;
 			}
@@ -141,10 +149,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	public function testDefaultContentLanguageFallback() {
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
+			new ServiceOptions( LanguageConverterFactory::CONSTRUCTOR_OPTIONS, new HashConfig( [
+				MainConfigNames::UsePigLatinVariant => false,
+				MainConfigNames::DisableLangConversion => false,
+				MainConfigNames::DisableTitleConversion => false,
+			] ) ),
 			$this->getServiceContainer()->getObjectFactory(),
-			false,
-			false,
-			false,
 			static function () use ( $lang ) {
 				return $lang;
 			}

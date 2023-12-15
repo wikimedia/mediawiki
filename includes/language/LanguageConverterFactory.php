@@ -28,6 +28,8 @@ use ILanguageConverter;
 use IuConverter;
 use KuConverter;
 use Language;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\StubObject\StubUserLang;
 use ShConverter;
 use ShiConverter;
@@ -105,18 +107,17 @@ class LanguageConverterFactory {
 		'class' => EnConverter::class,
 	];
 
-	/** @var ObjectFactory */
-	private $objectFactory;
-
 	/**
-	 * @var bool Whether to disable language variant conversion.
+	 * @internal For use by ServiceWiring
 	 */
-	private $isConversionDisabled;
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::UsePigLatinVariant,
+		MainConfigNames::DisableLangConversion,
+		MainConfigNames::DisableTitleConversion,
+	];
 
-	/**
-	 * @var bool Whether to disable language variant conversion for links.
-	 */
-	private $isLinkConversionDisabled;
+	private ServiceOptions $options;
+	private ObjectFactory $objectFactory;
 
 	/**
 	 * @var callable callback of "() : Language"
@@ -124,26 +125,24 @@ class LanguageConverterFactory {
 	private $defaultLanguage;
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param ObjectFactory $objectFactory
-	 * @param bool $usePigLatinVariant should pig variant of English be used
-	 * @param bool $isConversionDisabled Whether to disable language variant conversion
-	 * @param bool $isLinkConversionDisabled Whether to disable language variant conversion for links
 	 * @param callable $defaultLanguage callback of "() : Language", should return
 	 *  default language. Used in getLanguageConverter when $language is null.
 	 *
 	 * @internal Should be called from MediaWikiServices only.
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		ObjectFactory $objectFactory,
-		$usePigLatinVariant, $isConversionDisabled, $isLinkConversionDisabled,
 		callable $defaultLanguage
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
 		$this->objectFactory = $objectFactory;
-		if ( $usePigLatinVariant ) {
+		if ( $options->get( MainConfigNames::UsePigLatinVariant ) ) {
 			$this->converterList['en'] = self::EN_CONVERTER;
 		}
-		$this->isConversionDisabled = $isConversionDisabled;
-		$this->isLinkConversionDisabled = $isLinkConversionDisabled;
 		$this->defaultLanguage = $defaultLanguage;
 	}
 
@@ -193,7 +192,7 @@ class LanguageConverterFactory {
 	 * @return bool
 	 */
 	public function isConversionDisabled() {
-		return $this->isConversionDisabled;
+		return $this->options->get( MainConfigNames::DisableLangConversion );
 	}
 
 	/**
@@ -202,6 +201,8 @@ class LanguageConverterFactory {
 	 * @return bool
 	 */
 	public function isLinkConversionDisabled() {
-		return $this->isConversionDisabled || $this->isLinkConversionDisabled;
+		return $this->options->get( MainConfigNames::DisableLangConversion ) ||
+			// Note that this configuration option is misnamed.
+			$this->options->get( MainConfigNames::DisableTitleConversion );
 	}
 }
