@@ -44,17 +44,12 @@
 	/**
 	 * Get, set, or remove a cookie.
 	 *
-	 * @method cookie
+	 * @ignore
 	 * @param {string} [key] Cookie name or (when getting) omit to return an object with all
 	 *  current cookie keys and values.
 	 * @param {string|null} [value] Cookie value to set. If `null`, this method will remove the cookie.
 	 *  If omited, this method will get and return the current value.
-	 * @param {Object} [options]
-	 * @param {string} [options.path] Custom scope for cookie key.
-	 * @param {string} [options.domain] Custom scope for cookie key.
-	 * @param {boolean} [options.secure] Custom scope for cookie key.
-	 * @param {string} [options.sameSite] Custom scope for cookie key.
-	 * @param {number} [options.expires] Number of days to store the value (when setting)
+	 * @param {mw.cookie.CookieOptions} [options]
 	 * @return {string|Object} The current value (if getting a cookie), or an internal `document.cookie`
 	 *  expression (if setting or removing).
 	 */
@@ -122,14 +117,11 @@
 	config.defaults = {};
 
 	/**
-	 * Remove a cookie by key
+	 * Remove a cookie by key.
 	 *
+	 * @ignore
 	 * @param {string} key
-	 * @param {Object} [options] Custom scope for cookie key, must match the way it was set.
-	 * @param {string} [options.path]
-	 * @param {string} [options.domain]
-	 * @param {boolean} [options.secure]
-	 * @param {string} [options.sameSite]
+	 * @param {mw.cookie.CookieOptions} options
 	 * @return {boolean} True if the cookie previously existed
 	 */
 	function removeCookie( key, options ) {
@@ -141,7 +133,7 @@
 	}
 
 	module.exports = {
-		cookie: cookie,
-		removeCookie: removeCookie
+		cookie,
+		removeCookie
 	};
 }() );

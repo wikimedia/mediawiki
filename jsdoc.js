@@ -15,6 +15,7 @@ module.exports = {
 	source: {
 		include: [
 			'resources/src/mediawiki.Title',
+			'resources/src/mediawiki.cookie',
 			'resources/src/mediawiki.String.js',
 			'resources/src/jsdoc.types.js',
 			'resources/src/jquery.lengthLimit.js',
@@ -68,7 +69,6 @@ module.exports = {
 			'resources/src/mediawiki.special.editrecovery',
 			'resources/src/mediawiki.confirmCloseWindow.js',
 			'resources/src/mediawiki.special.preferences.ooui',
-			'resources/src/mediawiki.cookie',
 			'resources/src/mediawiki.special.search',
 			'resources/src/mediawiki.debug',
 			'resources/src/mediawiki.special.search.commonsInterwikiWidget.js',
