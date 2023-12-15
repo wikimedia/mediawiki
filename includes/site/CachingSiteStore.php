@@ -18,8 +18,9 @@
  * @file
  */
 
-use MediaWiki\Site\Site;
-use MediaWiki\Site\SiteList;
+namespace MediaWiki\Site;
+
+use BagOStuff;
 
 /**
  * Hold a configured list of sites (SiteList), with a caching layer.
@@ -167,3 +168,8 @@ class CachingSiteStore implements SiteStore {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( CachingSiteStore::class, 'CachingSiteStore' );

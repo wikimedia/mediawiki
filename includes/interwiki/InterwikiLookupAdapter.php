@@ -21,9 +21,9 @@
 namespace MediaWiki\Interwiki;
 
 use Interwiki;
+use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
-use MediaWikiSite;
-use SiteLookup;
+use MediaWiki\Site\SiteLookup;
 
 /**
  * InterwikiLookupAdapter on top of SiteLookup

@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Site\MediaWikiSite;
+
 /**
  * Maintenance script for adding a site definition into the sites table.
  *

@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Site\SiteImporter;
+
 /**
  * Maintenance script for importing site definitions from XML into the sites table.
  *
