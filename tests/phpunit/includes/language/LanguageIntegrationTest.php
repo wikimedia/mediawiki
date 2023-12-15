@@ -2065,4 +2065,16 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->assertSame( 'Line 1:', $lang->msg( 'lineno', '1' )->text() );
 	}
 
+	/**
+	 * @covers Language::getBlockDurations
+	 */
+	public function testBlockDurations() {
+		$lang = $this->getLang();
+		$durations = $lang->getBlockDurations();
+
+		$this->assertContains( 'other', $durations );
+		$this->assertContains( 'infinite', $durations );
+		$this->assertContains( '1 day', $durations );
+	}
+
 }

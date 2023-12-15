@@ -42,7 +42,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
-use MediaWiki\Specials\SpecialBlock;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -3913,6 +3912,33 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * Get an array of suggested block durations from MediaWiki:Ipboptions
+	 * @todo FIXME: This uses a rather odd syntax for the options, should it be converted
+	 *     to the standard "**<duration>|<displayname>" format?
+	 * @since 1.42
+	 * @param bool $includeOther Whether to include the 'other' option in the list of
+	 *     suggestions
+	 * @return string[]
+	 */
+	public function getBlockDurations( $includeOther = true ): array {
+		$msg = $this->msg( 'ipboptions' )->text();
+
+		if ( $msg == '-' ) {
+			return [];
+		}
+
+		$a = XmlSelect::parseOptionsMessage( $msg );
+
+		if ( $a && $includeOther ) {
+			// If options exist, add other to the end instead of the beginning (which
+			// is what happens by default).
+			$a[ $this->msg( 'ipbother' )->text() ] = 'other';
+		}
+
+		return $a;
+	}
+
+	/**
 	 * @todo Maybe translate block durations.  Note that this function is somewhat misnamed: it
 	 * deals with translating the *duration* ("1 week", "4 days", etc.), not the expiry time
 	 * (which is an absolute timestamp). Please note: do NOT add this blindly, as it is used
@@ -3926,7 +3952,7 @@ class Language implements Bcp47Code {
 	 * @see LanguageFi.php file for an implementation example
 	 */
 	public function translateBlockExpiry( $str, UserIdentity $user = null, $now = 0 ) {
-		$duration = SpecialBlock::getSuggestedDurations( $this );
+		$duration = $this->getBlockDurations();
 		$show = array_search( $str, $duration, true );
 		if ( $show !== false ) {
 			return trim( $show );

@@ -286,6 +286,8 @@ because of Phabricator reports.
   (T351681).
 * Passing a WikiPage to PageEditStash::parseAndCache() has been deprecated.
   Use PageUpdater instance.
+* SpecialBlock::getSuggestedDurations() has been deprecated, use
+  Language::getBlockDurations() instead.
 * (T352284) Some user options-related classes were moved over to the existing
   MediaWiki\User\Options namespace. Old names are deprecated and kept as
   aliases for backwards-compatibility:
