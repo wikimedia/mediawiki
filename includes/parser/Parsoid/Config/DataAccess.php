@@ -152,7 +152,9 @@ class DataAccess extends IDataAccess {
 	/** @inheritDoc */
 	public function getPageInfo( $pageConfigOrTitle, array $titles ): array {
 		if ( $pageConfigOrTitle instanceof IPageConfig ) {
-			$context_title = Title::newFromTextThrow( $pageConfigOrTitle->getTitle() );
+			$context_title = Title::newFromLinkTarget(
+				$pageConfigOrTitle->getLinkTarget()
+			);
 		} elseif ( is_string( $pageConfigOrTitle ) ) {
 			// Temporary, deprecated.
 			$context_title = Title::newFromTextThrow( $pageConfigOrTitle );
@@ -219,7 +221,7 @@ class DataAccess extends IDataAccess {
 
 	/** @inheritDoc */
 	public function getFileInfo( IPageConfig $pageConfig, array $files ): array {
-		$page = Title::newFromText( $pageConfig->getTitle() );
+		$page = Title::newFromLinkTarget( $pageConfig->getLinkTarget() );
 
 		$keys = [];
 		foreach ( $files as $f ) {
@@ -321,7 +323,8 @@ class DataAccess extends IDataAccess {
 		// processing, for greater compatibility.
 		$this->parser ??= $this->parserFactory->create();
 		$this->parser->startExternalParse(
-			Title::newFromText( $pageConfig->getTitle() ), $pageConfig->getParserOptions(),
+			Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
+			$pageConfig->getParserOptions(),
 			$outputType, $clearState, $pageConfig->getRevisionId() );
 		$this->parser->resetOutput();
 
@@ -338,7 +341,7 @@ class DataAccess extends IDataAccess {
 		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
 		// This could use prepareParser(), but it's only called once per page,
 		// so it's not essential.
-		$titleObj = Title::newFromText( $pageConfig->getTitle() );
+		$titleObj = Title::newFromLinkTarget( $pageConfig->getLinkTarget() );
 		$user = $pageConfig->getParserOptions()->getUserIdentity();
 		$content = ContentHandler::makeContent( $wikitext, $titleObj, CONTENT_MODEL_WIKITEXT );
 		return $this->contentTransformer->preSaveTransform(
