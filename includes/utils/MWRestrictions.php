@@ -18,6 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use Wikimedia\IPSet;
@@ -29,6 +30,8 @@ use Wikimedia\IPUtils;
 class MWRestrictions {
 
 	private $ipAddresses = [ '0.0.0.0/0', '::/0' ];
+
+	private $pages = [];
 
 	public StatusValue $validity;
 
@@ -92,6 +95,18 @@ class MWRestrictions {
 			}
 		}
 		$this->ipAddresses = $restrictions['IPAddresses'];
+
+		if ( isset( $restrictions['Pages'] ) ) {
+			if ( !is_array( $restrictions['Pages'] ) ) {
+				throw new InvalidArgumentException( 'Pages is not an array of page names' );
+			}
+			foreach ( $restrictions['Pages'] as $page ) {
+				if ( !is_string( $page ) ) {
+					throw new InvalidArgumentException( "Pages contains non-string value: $page" );
+				}
+			}
+			$this->pages = $restrictions['Pages'];
+		}
 	}
 
 	/**
@@ -99,9 +114,11 @@ class MWRestrictions {
 	 * @return array
 	 */
 	public function toArray() {
-		return [
-			'IPAddresses' => $this->ipAddresses,
-		];
+		$arr = [ 'IPAddresses' => $this->ipAddresses ];
+		if ( count( $this->pages ) ) {
+			$arr['Pages'] = $this->pages;
+		}
+		return $arr;
 	}
 
 	/**
@@ -132,6 +149,20 @@ class MWRestrictions {
 	}
 
 	/**
+	 * Test whether an action on the target is allowed by the restrictions
+	 *
+	 * @internal
+	 * @param LinkTarget $target
+	 * @return StatusValue
+	 */
+	public function userCan( LinkTarget $target ) {
+		if ( !$this->checkPage( $target ) ) {
+			return StatusValue::newFatal( 'session-page-restricted' );
+		}
+		return StatusValue::newGood();
+	}
+
+	/**
 	 * Test if an IP address is allowed by the restrictions
 	 * @param string $ip
 	 * @return bool
@@ -139,5 +170,22 @@ class MWRestrictions {
 	public function checkIP( $ip ) {
 		$set = new IPSet( $this->ipAddresses );
 		return $set->match( $ip );
+	}
+
+	/**
+	 * Test if an action on a title is allowed by the restrictions
+	 *
+	 * @param LinkTarget $target
+	 * @return bool
+	 */
+	private function checkPage( LinkTarget $target ) {
+		if ( count( $this->pages ) === 0 ) {
+			return true;
+		}
+		$pagesNormalized = array_map( static function ( $titleText ) {
+			$title = Title::newFromText( $titleText );
+			return $title ? $title->getPrefixedText() : '';
+		}, $this->pages );
+		return in_array( Title::newFromLinkTarget( $target )->getPrefixedText(), $pagesNormalized, true );
 	}
 }

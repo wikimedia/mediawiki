@@ -27,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
+use MWRestrictions;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -181,6 +182,15 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 */
 	public function getAllowedUserRights() {
 		return $this->backend->getAllowedUserRights();
+	}
+
+	/**
+	 * Fetch any restrictions imposed on logins or actions when this
+	 * session is active.
+	 * @return MWRestrictions|null
+	 */
+	public function getRestrictions(): ?MWRestrictions {
+		return $this->backend->getRestrictions();
 	}
 
 	/**

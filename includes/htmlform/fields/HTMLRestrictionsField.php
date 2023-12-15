@@ -18,6 +18,7 @@ class HTMLRestrictionsField extends HTMLFormField {
 	protected const DEFAULT_ROWS = 5;
 
 	private HTMLTextAreaField $ipField;
+	private HTMLTagMultiselectField $pagesField;
 
 	/**
 	 * @stable to call
@@ -33,6 +34,18 @@ class HTMLRestrictionsField extends HTMLFormField {
 			'help-message' => 'restrictionsfield-help',
 			'label-message' => 'restrictionsfield-label',
 		] );
+
+		// Cannot really use a TitlesMultiselect field as the pages could be
+		// on other wikis!
+		$this->pagesField = new HTMLTagMultiselectField( [
+			'parent' => $params['parent'],
+			'fieldname' => $params['fieldname'] . '-pages',
+			'label-message' => 'restrictionsfields-pages-label',
+			'help-message' => 'restrictionsfields-pages-help',
+			'allowArbitrary' => true,
+			'required' => false,
+			'max' => 25,
+		] );
 	}
 
 	/**
@@ -46,7 +59,9 @@ class HTMLRestrictionsField extends HTMLFormField {
 
 		$ipValue = rtrim( $request->getText( $this->mName . '-ip' ), "\r\n" );
 		$ips = $ipValue === '' ? [] : explode( "\n", $ipValue );
-		return MWRestrictions::newFromArray( [ 'IPAddresses' => $ips ] );
+		$pagesValue = $request->getText( $this->mName . '-pages' );
+		$pageList = $pagesValue ? explode( "\n", $pagesValue ) : [];
+		return MWRestrictions::newFromArray( [ 'IPAddresses' => $ips, 'Pages' => $pageList ] );
 	}
 
 	/**
@@ -95,7 +110,11 @@ class HTMLRestrictionsField extends HTMLFormField {
 	 */
 	public function getInputHTML( $value ) {
 		$ipValue = implode( "\n", $value->toArray()['IPAddresses'] );
-		return $this->ipField->getDiv( $ipValue );
+		$pagesValue = implode( "\n", $value->toArray()['Pages'] ?? [] );
+		return (
+			$this->ipField->getDiv( $ipValue ) .
+			$this->pagesField->getDiv( $pagesValue )
+		);
 	}
 
 	/**
@@ -105,6 +124,10 @@ class HTMLRestrictionsField extends HTMLFormField {
 	 */
 	public function getInputOOUI( $value ) {
 		$ipValue = implode( "\n", $value->toArray()['IPAddresses'] );
-		return $this->ipField->getOOUI( $ipValue )->toString();
+		$pagesValue = implode( "\n", $value->toArray()['Pages'] ?? [] );
+		return (
+			$this->ipField->getOOUI( $ipValue ) .
+			$this->pagesField->getOOUI( $pagesValue )
+		);
 	}
 }

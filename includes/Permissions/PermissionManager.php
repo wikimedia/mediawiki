@@ -1228,6 +1228,16 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 
+		if ( $rigor !== self::RIGOR_QUICK && !defined( 'MW_NO_SESSION' ) ) {
+			$sessionRestrictions = $user->getRequest()->getSession()->getRestrictions();
+			if ( $sessionRestrictions ) {
+				$userCan = $sessionRestrictions->userCan( $title );
+				if ( !$userCan->isOK() ) {
+					$errors[] = [ $userCan->getErrors()[0]['message'] ];
+				}
+			}
+		}
+
 		if ( $action === 'protect' ) {
 			if ( count( $this->getPermissionErrorsInternal( 'edit', $user, $title, $rigor, true ) ) ) {
 				// If they can't edit, they shouldn't protect.
