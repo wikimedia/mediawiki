@@ -783,6 +783,12 @@ class ParserTestRunner {
 				'iw_url' => 'https://gerrit.wikimedia.org/$1',
 				'iw_local' => 1,
 			],
+			// Added to support T145590#8608455
+			[
+				'iw_prefix' => 'pmid',
+				'iw_url' => '//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract',
+				'iw_local' => 1,
+			],
 			// Deliberately missing a $1 in the URL to exercise a common
 			// misconfiguration.
 			[
