@@ -104,6 +104,7 @@ because of Phabricator reports.
 * (T351992) Added language support for Efik (efi).
 * (T352954) Added language support for Rutul (rut).
 * (T353307) Added language support for Guadeloupean Creole (gcf).
+* (T353500) Added language support for Southeastern Kolami (nit).
 * …
 
 === Breaking changes in 1.42 ===
