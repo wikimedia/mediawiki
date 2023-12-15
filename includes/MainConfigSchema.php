@@ -7734,6 +7734,7 @@ class MainConfigSchema {
 	 *         be zero-based array indexes.
 	 *       - uppercase: (bool) With "filtered-radix", whether to use uppercase
 	 *         letters, default false.
+	 *       - offset: (int) With "plain-numeric", a constant to add to the stored index.
 	 *    - expireAfterDays: (int|null, default null) If set, how many days should the temporary
 	 *      accounts expire? Require expireTemporaryAccounts.php to be periodically executed in
 	 *      order to work.
