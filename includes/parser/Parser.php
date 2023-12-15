@@ -2702,14 +2702,10 @@ class Parser {
 					 */
 					$s = rtrim( $s . $prefix ) . $trail; # T2087, T87753
 
-					if ( $wasblank ) {
-						$sortkey = $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
-					} else {
+					$sortkey = ''; // filled in by CategoryLinksTable
+					if ( !$wasblank ) {
 						$sortkey = $text;
 					}
-					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
-					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $this->getTargetLanguageConverter()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt, $sortkey );
 
 					continue;

@@ -42,7 +42,9 @@ class TrackingCategoriesTest extends MediaWikiLangTestCase {
 			->inContentLanguage()
 			->text();
 
+		// Note that the DEFAULTSORT is applied when the category links table
+		// is updated, so 'foobar' does not appear in the CategoryMap here.
 		$expected = strtr( $expected, ' ', '_' );
-		$this->assertSame( [ $expected => 'foobar' ], $po->getCategoryMap() );
+		$this->assertSame( [ $expected => '' ], $po->getCategoryMap() );
 	}
 }

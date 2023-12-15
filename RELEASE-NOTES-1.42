@@ -230,6 +230,19 @@ because of Phabricator reports.
   - ipblocks
 * ParserOutput::setFlag() and ::getFlag(), deprecated in 1.38, were removed. You
   should use ::setOutputFlag() and ::getOutputFlag() instead.
+* The parser does not substitute the default category sort key at
+  parse time; this is substituted when the category links table is
+  updated instead.  As a result {{DEFAULTSORT}} will affect all the
+  contents of the page (not just categories added after the location
+  of {{DEFAULTSORT}} in the article) and
+  ParserOutput::getCategorySortKey() will return the empty string
+  (still meaning "use the default sort key") instead of the immediate
+  value of {{DEFAULTSORT}}.  ParserOutput::getCategorySortKey() will
+  directly reflect the category link contents, instead of having
+  postprocessing done to it (character references decoded, newlines
+  replaced, language conversion).  That postprocessing is now done
+  when the category links table is updated, and so it consistently
+  applies even when categories are added directly via API.
 * PostgresUpdater::addPgEnumValue() unused everywhere, have been removed
   without deprecation. Use of ENUM is highly discouraged.
 * ILoadBalancer::getAnyOpenConnection() has been removed without deprecation,

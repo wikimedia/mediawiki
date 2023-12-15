@@ -7016,8 +7016,10 @@ parsoid=wt2html,html2html
 !! wikitext
 [[Category:Wikidata:Tools|
 *]]
+!! metadata
+cat=Wikidata:Tools sort=
+*
 !! html/php
-cat=Wikidata:Tools sort=*
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:Wikidata:Tools#*"/>
 !! end
@@ -7495,6 +7497,19 @@ Parsoid: Defaultsort (template-generated)
 {{{{1x|DEFAULTSORT}}:Foo}}
 !! html/parsoid+integrated
 <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{1x|DEFAULTSORT}}:Foo","function":"defaultsort"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+{{defaultsort}} should be location-independent (T353530)
+!! options
+cat
+!! wikitext
+[[Category:Foo]]
+{{DEFAULTSORT:Bar}}
+[[Category:Bat]]
+!! metadata
+cat=Foo sort=Bar
+cat=Bat sort=Bar
 !! end
 
 ###
