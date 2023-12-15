@@ -22,7 +22,6 @@ module.exports = {
 			 got round to reviewing them and incorporating them into the documentation page yet. */
 			'resources/src/codex',
 			'resources/src/codex-search',
-			'resources/src/mediawiki.ForeignApi',
 			'resources/src/mediawiki.ForeignStructuredUpload.BookletLayout',
 			'resources/src/mediawiki.rcfilters',
 			'resources/src/mediawiki.router',
