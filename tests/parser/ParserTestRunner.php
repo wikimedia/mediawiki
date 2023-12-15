@@ -1551,8 +1551,9 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['cat'] ) ) {
+			$defaultSortKey = $output->getPageProperty( 'defaultsort' ) ?? '';
 			foreach ( $output->getCategoryNames() as $name ) {
-				$sortkey = $output->getCategorySortKey( $name );
+				$sortkey = $output->getCategorySortKey( $name ) ?: $defaultSortKey;
 				$after[] = "cat=$name sort=$sortkey";
 			}
 		}
