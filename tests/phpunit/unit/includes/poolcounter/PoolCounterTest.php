@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\PoolCounter\PoolCounter;
+
 /**
  * @covers PoolCounter
  */

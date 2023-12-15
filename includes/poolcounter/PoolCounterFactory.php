@@ -1,9 +1,6 @@
 <?php
 namespace MediaWiki\PoolCounter;
 
-use PoolCounter;
-use PoolCounterNull;
-
 /**
  * @since 1.40
  */

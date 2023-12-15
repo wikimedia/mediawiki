@@ -23,6 +23,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Shell\Shell;
 
 /**

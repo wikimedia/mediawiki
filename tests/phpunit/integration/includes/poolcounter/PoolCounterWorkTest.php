@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\PoolCounter\PoolCounter;
+use MediaWiki\PoolCounter\PoolCounterWork;
 use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;

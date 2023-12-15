@@ -29,6 +29,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;

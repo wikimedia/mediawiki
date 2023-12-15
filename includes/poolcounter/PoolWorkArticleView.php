@@ -18,10 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\PoolCounter;
+
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
+use ParserOptions;
 
 /**
  * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.
@@ -108,3 +111,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( PoolWorkArticleView::class, 'PoolWorkArticleView' );

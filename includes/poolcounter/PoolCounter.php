@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\PoolCounter;
+
 use MediaWiki\Status\Status;
 
 /**
@@ -163,12 +165,16 @@ abstract class PoolCounter {
 				 * good idea then feel free to implement an unsafe flag or
 				 * something.
 				 */
-				return Status::newFatal( 'poolcounter-usage-error',
-					'You may only aquire a single non-nowait lock.' );
+				return Status::newFatal(
+					'poolcounter-usage-error',
+					'You may only aquire a single non-nowait lock.'
+				);
 			}
 		} elseif ( $this->timeout !== 0 ) {
-			return Status::newFatal( 'poolcounter-usage-error',
-				'Locks starting in nowait: must have 0 timeout.' );
+			return Status::newFatal(
+				'poolcounter-usage-error',
+				'Locks starting in nowait: must have 0 timeout.'
+			);
 		}
 		return Status::newGood();
 	}
@@ -215,3 +221,8 @@ abstract class PoolCounter {
 		return $this->fastStale;
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( PoolCounter::class, 'PoolCounter' );
