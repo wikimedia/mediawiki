@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWikiUnitTestCase;
-use ParserOutput;
 use Wikimedia\Parsoid\Core\PageBundle;
 
 /**

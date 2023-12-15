@@ -3,8 +3,8 @@
 namespace MediaWiki\Content\Hook;
 
 use ContentHandler;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
-use ParserOutput;
 use SearchEngine;
 use WikiPage;
 

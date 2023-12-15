@@ -241,6 +241,8 @@ because of Phabricator reports.
     - TransactionRoundDefiningUpdate
     - UserEditCountInfo
     - UserEditCountUpdate
+  - MediaWiki\Parser:
+    - ParserOutput
   - MediaWiki\Site:
     - CachingSiteStore
     - DBSiteStore

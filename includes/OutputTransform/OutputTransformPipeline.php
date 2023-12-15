@@ -2,8 +2,8 @@
 
 namespace Mediawiki\OutputTransform;
 
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * @unstable

@@ -5,7 +5,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * templatelinks

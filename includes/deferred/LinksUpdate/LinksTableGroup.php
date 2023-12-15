@@ -8,8 +8,8 @@ use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
-use ParserOutput;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\LBFactory;
 

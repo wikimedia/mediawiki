@@ -4,9 +4,9 @@ namespace Mediawiki\OutputTransform\Stages;
 
 use MediaWiki\Html\HtmlHelper;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOutput;
 use Parser;
 use ParserOptions;
-use ParserOutput;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
 /**

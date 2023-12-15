@@ -4,7 +4,7 @@ namespace MediaWiki\Diff\Hook;
 
 use DifferenceEngine;
 use MediaWiki\Output\OutputPage;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use WikiPage;
 
 /**

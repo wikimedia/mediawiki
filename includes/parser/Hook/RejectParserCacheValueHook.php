@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 use WikiPage;
 
 /**

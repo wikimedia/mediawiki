@@ -30,7 +30,6 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Utils\MWTimestamp;
 use ParserOptions;
-use ParserOutput;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 

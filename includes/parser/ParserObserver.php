@@ -33,7 +33,6 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use ParserOptions;
-use ParserOutput;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 

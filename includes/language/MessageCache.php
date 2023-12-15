@@ -33,6 +33,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\StubObject\StubUserLang;

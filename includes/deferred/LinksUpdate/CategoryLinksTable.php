@@ -7,9 +7,9 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use ParserOutput;
 use PurgeJobUtils;
 
 /**

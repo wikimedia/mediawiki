@@ -3,7 +3,7 @@
 namespace MediaWiki\Content\Hook;
 
 use ContentHandler;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use SearchEngine;
 use WikiPage;
 

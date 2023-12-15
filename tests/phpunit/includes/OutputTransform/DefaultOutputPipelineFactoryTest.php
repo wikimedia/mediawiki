@@ -4,8 +4,8 @@ namespace Mediawiki\OutputTransform;
 
 use LogicException;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOutput;
 use MediaWikiLangTestCase;
-use ParserOutput;
 use RequestContext;
 
 /**

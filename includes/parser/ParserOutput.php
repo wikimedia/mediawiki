@@ -18,16 +18,23 @@
  * @file
  */
 
+namespace MediaWiki\Parser;
+
+use CacheTime;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Json\JsonUnserializable;
 use MediaWiki\Json\JsonUnserializableTrait;
 use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
+use MediaWiki\Title\Title;
+use MWException;
+use Parser;
+use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
@@ -2731,3 +2738,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( ParserOutput::class, 'ParserOutput' );

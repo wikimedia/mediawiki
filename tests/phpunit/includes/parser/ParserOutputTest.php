@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use MediaWiki\Title\Title;
@@ -30,8 +31,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
 		);
 		// Serialization tests still use these methods.
-		$this->hideDeprecated( 'ParserOutput::setTOCHTML' );
-		$this->hideDeprecated( 'ParserOutput::getTOCHTML' );
+		$this->hideDeprecated( 'MediaWiki\Parser\ParserOutput::setTOCHTML' );
+		$this->hideDeprecated( 'MediaWiki\Parser\ParserOutput::getTOCHTML' );
 	}
 
 	/**

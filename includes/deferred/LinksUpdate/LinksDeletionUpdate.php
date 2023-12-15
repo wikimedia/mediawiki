@@ -29,8 +29,8 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\EnqueueableDataUpdate;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutput;
 use MWException;
-use ParserOutput;
 use WikiPage;
 
 /**

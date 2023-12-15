@@ -2,8 +2,8 @@
 
 namespace Mediawiki\OutputTransform;
 
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * Classes implementing the OutputTransformStage aim at being added to a pipeline of transformations that transform

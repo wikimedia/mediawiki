@@ -24,12 +24,12 @@ use ApiMessage;
 use ApiRawMessage;
 use Language;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\StubObject\StubUserLang;
 use Message;
 use MessageCache;
 use MessageLocalizer;
 use MessageSpecifier;
-use ParserOutput;
 use StatusValue;
 use UnexpectedValueException;
 

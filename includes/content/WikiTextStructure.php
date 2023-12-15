@@ -1,6 +1,7 @@
 <?php
 
 use HtmlFormatter\HtmlFormatter;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
 
 /**

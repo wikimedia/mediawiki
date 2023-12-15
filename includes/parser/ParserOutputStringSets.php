@@ -42,40 +42,40 @@ class ParserOutputStringSets {
 	/**
 	 * @var string ResourceLoader modules to load.
 	 * @see \MediaWiki\Output\OutputPage::addModules
-	 * @see \ParserOutput::addModules
-	 * @see \ParserOutput::getModules
+	 * @see ParserOutput::addModules
+	 * @see ParserOutput::getModules
 	 */
 	public const MODULE = 'mw-Module';
 
 	/**
 	 * @var string Style-only ResourceLoader modules to load.
 	 * @see \MediaWiki\Output\OutputPage::addModuleStyles
-	 * @see \ParserOutput::addModuleStyles
-	 * @see \ParserOutput::getModuleStyles
+	 * @see ParserOutput::addModuleStyles
+	 * @see ParserOutput::getModuleStyles
 	 */
 	public const MODULE_STYLE = 'mw-ModuleStyle';
 
 	/**
 	 * @var string Extra values for the Content-Security-Policy default-src
 	 *  directive.
-	 * @see \ParserOutput::addExtraCSPDefaultSrc
-	 * @see \ParserOutput::getExtraCSPDefaultSrcs
+	 * @see ParserOutput::addExtraCSPDefaultSrc
+	 * @see ParserOutput::getExtraCSPDefaultSrcs
 	 */
 	public const EXTRA_CSP_DEFAULT_SRC = 'mw-ExtraCSPDefaultSrc';
 
 	/**
 	 * @var string Extra values for the Content-Security-Policy script-src
 	 *  directive.
-	 * @see \ParserOutput::addExtraCSPScriptSrc
-	 * @see \ParserOutput::getExtraCSPScriptSrcs
+	 * @see ParserOutput::addExtraCSPScriptSrc
+	 * @see ParserOutput::getExtraCSPScriptSrcs
 	 */
 	public const EXTRA_CSP_SCRIPT_SRC = 'mw-ExtraCspScriptSrc';
 
 	/**
 	 * @var string Extra values for the Content-Security-Policy style-src
 	 *  directive.
-	 * @see \ParserOutput::addExtraCSPStyleSrc
-	 * @see \ParserOutput::getExtraCSPStyleSrcs
+	 * @see ParserOutput::addExtraCSPStyleSrc
+	 * @see ParserOutput::getExtraCSPStyleSrcs
 	 */
 	public const EXTRA_CSP_STYLE_SRC = 'mw-ExtraCspStyleSrc';
 

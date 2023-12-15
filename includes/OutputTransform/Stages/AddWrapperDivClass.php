@@ -6,8 +6,8 @@ use Language;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * Wrap the output in a div with the provided class name

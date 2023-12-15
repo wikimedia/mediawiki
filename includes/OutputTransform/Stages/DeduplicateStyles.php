@@ -4,9 +4,9 @@ namespace Mediawiki\OutputTransform\Stages;
 
 use MediaWiki\Html\Html;
 use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * Generates a list of unique style links

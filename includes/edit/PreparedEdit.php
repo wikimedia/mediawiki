@@ -21,8 +21,8 @@
 namespace MediaWiki\Edit;
 
 use Content;
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 use RuntimeException;
 
 /**

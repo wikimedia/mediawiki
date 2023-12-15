@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Edit;
 
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \MediaWiki\Edit\PreparedEdit

@@ -2,7 +2,7 @@
 
 namespace Mediawiki\OutputTransform;
 
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 
