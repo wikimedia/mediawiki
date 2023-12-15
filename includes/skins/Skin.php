@@ -480,8 +480,11 @@ abstract class Skin extends ContextSource {
 		// on every page is deprecated. Express a dependency instead.
 		// Limited to non-article namespaces in 1.41 where CSS bundle size is important,
 		// and for security (it can be used by vandals to render fake login buttons).
-		$ns = $this->getTitle()->getNamespace();
-		if ( $ns !== NS_MAIN && strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
+		$title = $this->getTitle();
+		if (
+			( !$title || $title->getNamespace() !== NS_MAIN ) &&
+			strpos( $out->getHTML(), 'mw-ui-button' ) !== false
+		) {
 			$modules['styles']['content'][] = 'mediawiki.ui.button';
 		}
 
