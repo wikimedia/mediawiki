@@ -22,6 +22,7 @@
 
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -138,12 +139,66 @@ class ApiUpload extends ApiBase {
 		// so otherwise when it exceeded $wgAPIMaxResultSize, no result would be returned (T143993).
 		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable False positive
 		if ( $result['result'] === 'Success' ) {
-			$imageinfo = $this->mUpload->getImageInfo( $this->getResult() );
+			$imageinfo = $this->getUploadImageInfo( $this->mUpload );
 			$this->getResult()->addValue( $this->getModuleName(), 'imageinfo', $imageinfo );
 		}
 
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
+	}
+
+	public static function getDummyInstance(): self {
+		$services = MediaWikiServices::getInstance();
+		$apiMain = new ApiMain(); // dummy object (XXX)
+		$apiUpload = new ApiUpload(
+			$apiMain,
+			'upload',
+			$services->getJobQueueGroup(),
+			$services->getWatchlistManager(),
+			$services->getUserOptionsLookup()
+		);
+
+		return $apiUpload;
+	}
+
+	/**
+	 * Gets image info about the file just uploaded.
+	 *
+	 * Also has the effect of setting metadata to be an 'indexed tag name' in
+	 * returned API result if 'metadata' was requested. Oddly, we have to pass
+	 * the "result" object down just so it can do that with the appropriate
+	 * format, presumably.
+	 *
+	 * @internal For use in upload jobs and a deprecated method on UploadBase.
+	 * @todo Extract the logic actually needed by the jobs, and separate it
+	 *       from the structure used in API responses.
+	 *
+	 * @return array Image info
+	 */
+	public function getUploadImageInfo( UploadBase $upload ): array {
+		$result = $this->getResult();
+		$stashFile = $upload->getStashFile();
+
+		// Calling a different API module depending on whether the file was stashed is less than optimal.
+		// In fact, calling API modules here at all is less than optimal. Maybe it should be refactored.
+		if ( $stashFile ) {
+			$imParam = ApiQueryStashImageInfo::getPropertyNames();
+			$info = ApiQueryStashImageInfo::getInfo(
+				$stashFile,
+				array_fill_keys( $imParam, true ),
+				$result
+			);
+		} else {
+			$localFile = $upload->getLocalFile();
+			$imParam = ApiQueryImageInfo::getPropertyNames();
+			$info = ApiQueryImageInfo::getInfo(
+				$localFile,
+				array_fill_keys( $imParam, true ),
+				$result
+			);
+		}
+
+		return $info;
 	}
 
 	/**
