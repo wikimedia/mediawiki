@@ -1,15 +1,3 @@
-/**
- * Fetch and display a preview of the current editing area.
- *
- * Usage:
- *
- *     var preview = require( 'mediawiki.page.preview' );
- *     preview.doPreview();
- *
- * @class mw.plugin.page.preview
- * @singleton
- * @stable for use in gadgets and extensions
- */
 ( function () {
 	var api = new mw.Api();
 
@@ -71,6 +59,15 @@
 				.get( 0 );
 		} );
 		if ( indicators.length ) {
+			/**
+			 * Fired when a page's
+			 * [status indicators]{@link https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Page_status_indicators}
+			 * are updated.
+			 *
+			 * @event ~'wikipage.indicators'
+			 * @memberof Hooks
+			 * @param {jQuery} $indicators jQuery object containing each indicator
+			 */
 			mw.hook( 'wikipage.indicators' ).fire( $( indicators ) );
 		}
 
@@ -369,6 +366,14 @@
 
 		// Table of contents.
 		if ( response.parse.sections ) {
+			/**
+			 * Fired when dynamic changes have been made to the table of contents.
+			 *
+			 * @event ~'wikipage.tableOfContents'
+			 * @memberof Hooks
+			 * @param {Object[]} sections Metadata about each section, as returned by
+			 *   [API:Parse]{@link https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parsing_wikitext}.
+			 */
 			mw.hook( 'wikipage.tableOfContents' ).fire(
 				response.parse.hidetoc ? [] : response.parse.sections
 			);
@@ -461,6 +466,16 @@
 			var diff = response[ 0 ].compare.bodies;
 
 			$table.find( 'tbody' ).html( diff.main );
+			/**
+			 * Fired when a diff is dynamically displayed to the user.
+			 *
+			 * Similar to the [wikipage.content hook]{@link Hooks~event:'wikipage.content'},
+			 * `$diff` may still be detached when the hook is fired.
+			 *
+			 * @event ~'wikipage.diff'
+			 * @memberof Hooks
+			 * @param {jQuery} $table The root element of the MediaWiki diff (`table.diff`).
+			 */
 			mw.hook( 'wikipage.diff' ).fire( $table );
 		} else {
 			// The diff is empty.
@@ -484,7 +499,9 @@
 	/**
 	 * Get the selectors of elements that should be grayed out while the preview is being generated.
 	 *
+	 * @memberof mediawiki.page.module:preview
 	 * @return {string[]}
+	 * @stable
 	 */
 	function getLoadingSelectors() {
 		return [
@@ -506,6 +523,7 @@
 	/**
 	 * Fetch and display a preview of the current editing area.
 	 *
+	 * @memberof mediawiki.page.module:preview
 	 * @param {Object} config Configuration options.
 	 * @param {jQuery} [config.$previewNode=$( '#wikiPreview' )] Where the preview should be displayed.
 	 * @param {jQuery} [config.$diffNode=$( '#wikiDiff' )] Where diffs should be displayed (if showDiff is set).
@@ -518,9 +536,15 @@
 	 *   fetched from `$( '#wpSummaryWidget' )`.
 	 * @param {boolean} [config.showDiff=false] Shows a diff in the preview area instead of the content.
 	 * @param {string} [config.title=mw.config.get( 'wgPageName' )] The title of the page being previewed
-	 * @param {Array} [config.loadingSelectors=getLoadingSelectors()] An array of query selectors
+	 * @param {string[]} [config.loadingSelectors=getLoadingSelectors()] An array of query selectors
 	 *   (i.e. '#catlinks') that should be grayed out while the preview is being generated.
-	 * @return {jQuery.Promise}
+	 * @return {jQuery.Promise|undefined} jQuery.Promise or `undefined` if no `$textareaNode` was provided in the config.
+	 * @fires Hooks~'wikipage.categories'
+	 * @fires Hooks~'wikipage.content'
+	 * @fires Hooks~'wikipage.diff'
+	 * @fires Hooks~'wikipage.indicators'
+	 * @fires Hooks~'wikipage.tableOfContents'
+	 * @stable
 	 */
 	function doPreview( config ) {
 		config = $.extend( {
@@ -653,7 +677,16 @@
 			} );
 	}
 
-	// Expose public methods.
+	/**
+	 * Fetch and display a preview of the current editing area.
+	 *
+	 * Usage:
+	 *
+	 *     var preview = require( 'mediawiki.page.preview' );
+	 *     preview.doPreview();
+	 *
+	 * @exports mediawiki.page.preview
+	 */
 	module.exports = {
 		doPreview: doPreview,
 		getLoadingSelectors: getLoadingSelectors
