@@ -110,6 +110,7 @@ $( function () {
 		 * @param {jQuery} $content The most appropriate element containing the content,
 		 *   such as #mw-content-text (regular content root) or #wikiPreview (live preview
 		 *   root)
+		 * @todo Remove duplicate doc block in jsdoc.types.js
 		 */
 		mw.hook( 'wikipage.content' ).fire( $content );
 	}
@@ -130,6 +131,7 @@ $( function () {
 		 * @member mw.hook
 		 * @param {jQuery} $content The most appropriate element containing the content,
 		 *   such as .catlinks
+		 * @todo Remove duplicate doc block in jsdoc.types.js
 		 */
 		mw.hook( 'wikipage.categories' ).fire( $nodes );
 	}
@@ -145,6 +147,7 @@ $( function () {
 		 * @event wikipage_diff
 		 * @member mw.hook
 		 * @param {jQuery} $diff The root element of the MediaWiki diff (`table.diff`).
+		 * @todo Remove duplicate doc block in jsdoc.types.js
 		 */
 		mw.hook( 'wikipage.diff' ).fire( $nodes.eq( 0 ) );
 	}
@@ -176,6 +179,7 @@ $( function () {
 	 * @event skin_logout
 	 * @member mw.hook
 	 * @param {string} href Full URL
+	 * @todo Remove duplicate doc block in jsdoc.types.js
 	 */
 	var LOGOUT_EVENT = 'skin.logout';
 	function logoutViaPost( href ) {
