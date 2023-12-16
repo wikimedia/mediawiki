@@ -122,4 +122,25 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '0', $row['false'] );
 		$this->assertSame( '1', $row['true'] );
 	}
+
+	public function testListTables() {
+		$prefix = $this->db->tablePrefix() . 'listtables_';
+		$table = $prefix . 'table';
+		$view = $prefix . 'view';
+		$allTables = $this->db->listTables();
+		$this->assertIsArray( $allTables );
+
+		$this->assertSame( [], $this->db->listTables( $prefix ) );
+
+		try {
+			$this->db->query( "CREATE TABLE $table (i INT)" );
+			$this->assertSame( [ $table ], $this->db->listTables( $prefix ) );
+			// Confirm that listTables() does not include views (T45571)
+			$this->db->query( "CREATE VIEW $view AS SELECT * FROM $table" );
+			$this->assertSame( [ $table ], $this->db->listTables( $prefix ) );
+		} finally {
+			$this->db->query( "DROP VIEW IF EXISTS $view" );
+			$this->db->query( "DROP TABLE IF EXISTS $table" );
+		}
+	}
 }
