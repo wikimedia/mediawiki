@@ -4,12 +4,9 @@ use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @covers MWExceptionHandler
  * @author Antoine Musso
- * @copyright Copyright © 2013, Antoine Musso
- * @copyright Copyright © 2013, Wikimedia Foundation Inc.
- * @file
  */
-
 class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 
 	private $oldSettingValue;
@@ -31,7 +28,6 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 	/**
 	 * Test end-to-end formatting of an exception, such as used by LogstashFormatter.
 	 *
-	 * @covers MWExceptionHandler
 	 * @see MWExceptionHandler::prettyPrintTrace
 	 */
 	public function testTraceFormatting() {
@@ -60,9 +56,6 @@ TEXT;
 		$this->assertEquals( $expected, $actual );
 	}
 
-	/**
-	 * @covers MWExceptionHandler::getRedactedTrace
-	 */
 	public function testGetRedactedTrace() {
 		$refvar = 'value';
 		try {
@@ -110,9 +103,6 @@ TEXT;
 		$this->assertEquals( 'value', $refvar, 'Reference variable' );
 	}
 
-	/**
-	 * @covers MWExceptionHandler::getLogNormalMessage
-	 */
 	public function testGetLogNormalMessage() {
 		$this->assertSame(
 			'[{reqId}] {exception_url}   Exception: message',
@@ -130,9 +120,6 @@ TEXT;
 		);
 	}
 
-	/**
-	 * @covers MWExceptionHandler::getLogContext
-	 */
 	public function testGetLogContext() {
 		$e = new Exception( 'message' );
 		$context = MWExceptionHandler::getLogContext( $e );
@@ -146,8 +133,6 @@ TEXT;
 
 	/**
 	 * @dataProvider provideJsonSerializedKeys
-	 * @covers MWExceptionHandler::jsonSerializeException
-	 *
 	 * @param string $expectedKeyType Type expected as returned by gettype()
 	 * @param string $exClass An exception class (ie: Exception, MWException)
 	 * @param string $key Name of the key to validate in the serialized JSON
@@ -178,8 +163,6 @@ TEXT;
 	/**
 	 * Given wgLogExceptionBacktrace is true
 	 * then serialized exception must have a backtrace
-	 *
-	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
 	public function testJsonserializeexceptionBacktracingEnabled() {
 		TestingAccessWrapper::newFromClass( MWExceptionHandler::class )
@@ -193,8 +176,6 @@ TEXT;
 	/**
 	 * Given wgLogExceptionBacktrace is false
 	 * then serialized exception must not have a backtrace
-	 *
-	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
 	public function testJsonserializeexceptionBacktracingDisabled() {
 		TestingAccessWrapper::newFromClass( MWExceptionHandler::class )
