@@ -304,9 +304,29 @@ class CodexModule extends FileModule {
 			}
 
 			// Add a synthetic top-level "exports" file
+			$syntheticExports = Html::encodeJsVar( HtmlJsCode::encodeObject( $exports ) );
+
+			// Proxy the synthetic exports object so that we can throw a useful error if a component
+			// is not defined in the module definition
+			$proxiedSyntheticExports = <<<JAVASCRIPT
+module.exports = new Proxy( $syntheticExports, {
+	get( target, prop ) {
+		if ( !(prop in target) ) {
+			throw new Error(
+				`Codex component "\${prop}" ` +
+				'is not listed in the "codexComponents" array ' +
+				'of the "{$this->getName()}" module in your module definition file'
+			);
+		}
+
+		return target [ prop ];
+	}
+} );
+JAVASCRIPT;
+
 			$this->packageFiles[] = [
 				'name' => 'codex.js',
-				'content' => 'module.exports = ' . Html::encodeJsVar( HtmlJsCode::encodeObject( $exports ) ) . ';'
+				'content' => $proxiedSyntheticExports
 			];
 
 			// Add each of the referenced scripts to the package
