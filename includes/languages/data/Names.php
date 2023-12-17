@@ -363,6 +363,7 @@ class Names {
 		'new' => 'नेपाल भाषा', # Newar / Nepal Bhasha
 		'ng' => 'Oshiwambo', # Ndonga
 		'nia' => 'Li Niha', # Nias, T263968
+		'nit' => 'కొలామి', # Southeastern Kolami
 		'niu' => 'Niuē', # Niuean
 		'nl' => 'Nederlands', # Dutch
 		'nl-informal' => 'Nederlands (informeel)', # Dutch (informal address ("je"))
