@@ -3,17 +3,11 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @covers MWException
  * @author Antoine Musso
- * @copyright Copyright © 2013, Antoine Musso
- * @copyright Copyright © 2013, Wikimedia Foundation Inc.
- * @file
  */
-
 class MWExceptionTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @covers MWException
-	 */
 	public function testMwexceptionThrowing() {
 		$this->expectException( MWException::class );
 		throw new MWException();
@@ -21,7 +15,6 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTextUseOutputPage
-	 * @covers MWException::useOutputPage
 	 */
 	public function testUseOutputPage( $expected, $langObj, $fullyInitialised, $outputPage ) {
 		if ( $langObj !== null ) {
@@ -51,17 +44,11 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers MWException::useMessageCache
-	 */
 	public function testUseMessageCache() {
 		$e = new MWException();
 		$this->assertTrue( $e->useMessageCache() );
 	}
 
-	/**
-	 * @covers MWException::isLoggable
-	 */
 	public function testIsLoggable() {
 		$e = new MWException();
 		$this->assertTrue( $e->isLoggable() );
@@ -70,7 +57,6 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Verify the exception classes are JSON serializabe.
 	 *
-	 * @covers MWExceptionHandler::jsonSerializeException
 	 * @dataProvider provideExceptionClasses
 	 */
 	public function testJsonSerializeExceptions( $exception_class ) {
