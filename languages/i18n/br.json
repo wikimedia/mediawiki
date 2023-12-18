@@ -211,7 +211,7 @@
 	"cactions": "Muioc'h",
 	"tool-link-userrights": "Kemmañ strolladoù an {{GENDER:$1|implijer|implijerez}}",
 	"tool-link-userrights-readonly": "Gwelet strolladoù an {{GENDER:$1|implijer|implijerez}}",
-	"tool-link-emailuser": "Kas ur postel d'an {{PLURAL:$1|an implijer-mañ|an implijerez-mañ}}",
+	"tool-link-emailuser": "Kas ur postel d'an {{GENDER:$1|implijer|implijerez}}-mañ",
 	"imagepage": "Gwelet pajenn ar restr",
 	"mediawikipage": "Sellet ouzh pajenn ar c'hemennadennoù",
 	"templatepage": "Gwelet patrom ar bajenn",

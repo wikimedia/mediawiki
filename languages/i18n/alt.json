@@ -264,6 +264,7 @@
 	"showtoc": "кӧргӱзер",
 	"hidetoc": "јажырар",
 	"collapsible-collapse": "Јажырар",
+	"collapsible-collapse-all-text": "Ончозын јууп салар",
 	"collapsible-expand": "Јаанадар",
 	"confirmable-confirm": "{{GENDER:$1|Слер}} алаҥзыбайдар ба?",
 	"confirmable-yes": "Эйе",

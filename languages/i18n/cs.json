@@ -4197,6 +4197,7 @@
 	"renameuser-error-same-user": "Nové uživatelské jméno je stejné jako dosavadní.",
 	"renameuser-error-temp-user": "Nemůžete přejmenovat dočasný účet „$1“.",
 	"renameuser-error-temp-user-reserved": "Nemůžete použít „$1“. To je vyhrazeno pro dočasné účty.",
+	"renameuser-error-self-rename": "Nemůžete přejmenovat sami sebe",
 	"renameusersuccess": "{{GENDER:$2|Uživatel|Uživatelka}} „<nowiki>$1</nowiki>“ {{GENDER:$2|byl úspěšně přejmenován|byla úspěšně přejmenována}} na „<nowiki>$2</nowiki>“",
 	"renameuser-page-exists": "Stránka $1 již existuje a nelze ji automaticky přepsat.",
 	"renameuser-page-moved": "Stránka $1 byla přesunuta na $2.",

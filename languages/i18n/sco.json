@@ -1788,7 +1788,7 @@
 	"protectedtitlesempty": "Naw titles ar the Nou protected wi thir parameters.",
 	"protectedtitles-submit": "Displey teetles",
 	"listusers": "Uiser leet",
-	"listusers-editsonly": "Shaw yinlie uisers wi eedits",
+	"listusers-editsonly": "Shaw anely uisers wi edits",
 	"listusers-creationsort": "Sort bi creation date",
 	"listusers-desc": "Sort in descendin order",
 	"usereditcount": "$1 {{PLURAL:$1|eedit|eedits}}",
