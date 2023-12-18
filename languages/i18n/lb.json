@@ -862,6 +862,7 @@
 	"revdelete-concurrent-change": "Feeler beim Ännere vum Element vum $1 ëm $2 Auer: säi Statut schéngt geännert ginn ze si wärend Dir versicht hutt et z'änneren.\nKuckt wgl. an de Logbicher no.",
 	"revdelete-only-restricted": "Feeler beim Verstoppe vum Element vum $2, $1: Dir kënnt keng Elementer virun den Administrateure verstoppen ouni och eng vun den aneren Optioune vum Weisen erauszesichen.",
 	"revdelete-reason-dropdown": "* Generell Läschgrënn\n** Verletzung vun den Auteursrechter\n** Bemierkung déi net ubruecht ass\n** Inadequate Benotzernumm\n** Informatioun déi beleidege kann",
+	"revdelete-reason-dropdown-suppress": "*Heefeg Ënnerdréckungsgrënn\n** Onpassend perséinlech Informatiounen",
 	"revdelete-otherreason": "Aneren/zousätzleche Grond:",
 	"revdelete-reasonotherlist": "Anere Grond:",
 	"revdelete-edit-reasonlist": "Läschgrënn änneren",
@@ -2110,6 +2111,7 @@
 	"notvisiblerev": "Versioun gouf geläscht",
 	"watchlist-details": "{{PLURAL:$1|1 Säit|$1 Säite}} sinn op Ärer Iwwerwaachungslëscht, (plus Diskussiounssäiten).",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|$1 Dag|$1 Deeg}} iwwreg",
+	"watchlist-expiring-days-full-text": "Nach {{PLURAL:$1|1 Dag|$1 Deeg}} op Ärer Iwwerwaachungslëscht",
 	"watchlist-expiry-hours-left": "E puer Stonnen iwwereg",
 	"watchlist-expiring-hours-full-text": "Nach e puer Stonnen op Ärer Iwwerwaachungslëscht",
 	"wlheader-enotif": "E-Mail-Notifikatioun ass ageschalt.",
@@ -3079,6 +3081,7 @@
 	"tag-mw-contentmodelchange": "Ännerung vum Modell vum Inhalt",
 	"tag-mw-contentmodelchange-description": "Ännerungen, déi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel de Modell vum Inhalt] vun enger Säit änneren",
 	"tag-mw-new-redirect": "Nei Viruleedung",
+	"tag-mw-new-redirect-description": "Ännerungen, déi eng nei Viruleedung uleeën oder eng Säit duerch eng Viruleedung ersetzt",
 	"tag-mw-removed-redirect": "Viruleedung gouf ewechgeholl",
 	"tag-mw-changed-redirect-target": "Viruleedung geännert",
 	"tag-mw-blank": "Eidelmaachen",
@@ -3455,6 +3458,7 @@
 	"log-action-filter-rights-autopromote": "Automatesch Ännerung",
 	"log-action-filter-upload-upload": "Neien Upload",
 	"log-action-filter-upload-overwrite": "Nees eroplueden",
+	"log-action-filter-upload-revert": "Zrécksetzen",
 	"authmanager-create-disabled": "D'Opmaache vu Benotzerkonten ass gespaart.",
 	"authmanager-create-from-login": "Fir Äre Benotzerkont unzeleeën fëllt wgl. d'Felder aus.",
 	"authmanager-autocreate-noperm": "Automatescht Uleeë vu Benotzerkonten ass net erlaabt.",
@@ -3513,6 +3517,7 @@
 	"gotointerwiki-external": "Dir sidd am Gaang {{SITENAME}} ze verloosse fir [[$2]] ze besichen, deen een externen Internetsite ass.\n\n'''[$1 Hei klicke fir op $1 virunzefueren]'''",
 	"undelete-cantedit": "Dir kënnt dës Säit net restauréiere well Dir dës Säit net änneren däerft.",
 	"undelete-cantcreate": "Dir kënnt dës Säit net restauréieren well et elo keng Säit mat deem Numm gëtt a well Dir dës Säit net uleeën däerft.",
+	"pagedata-bad-title": "Ongültegen Titel: $1.",
 	"unregistered-user-config": "Aus Sécherheetsgrënn kënne JavaScript, CSS an JSON Venotzer-Ënnersäite net fir net registréiert Benotzer geluede ginn.",
 	"passwordpolicies": "Richtlinne fir Passwierder",
 	"passwordpolicies-group": "Grupp",
@@ -3525,5 +3530,6 @@
 	"paramvalidator-help-type-user-subtype-name": "Benotzernumm",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP Adressberäich",
-	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Numm (z.B. \"prefix>BeispillNumm\")"
+	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Numm (z.B. \"prefix>BeispillNumm\")",
+	"paramvalidator-help-type-user-subtype-id": "Benotzer-ID (z. B. „#12345“)"
 }

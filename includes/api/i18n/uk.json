@@ -498,7 +498,7 @@
 	"apihelp-query+allimages-param-maxsize": "Обмежити до зображень, які мають максимум стільки байтів.",
 	"apihelp-query+allimages-param-sha1": "SHA1-хеш зображення. Перевизначає $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "SHA1-хеш зображення у base 36 (використано в MediaWiki).",
-	"apihelp-query+allimages-param-user": "Видати лише файли, завантажені цим користувачем. Можна використати лише з $1sort=timestamp. Не можна використати разом з $1filterbots.",
+	"apihelp-query+allimages-param-user": "Видати лише файли, остання версія яких завантажена цим користувачем. Можна використати лише з $1sort=timestamp. Не можна використати разом з $1filterbots.",
 	"apihelp-query+allimages-param-filterbots": "Як фільтрувати файли, завантажені ботами. Можна використати лише з $1sort=timestamp. Не можна використати разом з $1user.",
 	"apihelp-query+allimages-param-mime": "Які MIME-типи шукати, напр., <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "Скільки всього зображень видати.",

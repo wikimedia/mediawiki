@@ -2672,7 +2672,7 @@
 	"duration-hours": "$1 {{PLURAL:$1|နာရီ|နာရီ}}",
 	"duration-days": "$1 {{PLURAL:$1|ရက်|ရက်}}",
 	"duration-weeks": "$1 {{PLURAL:$1|ပတ်|ပတ်}}",
-	"duration-years": "$1 {{PLURAL:$1|ခုနှစ်|ခုနှစ်}}",
+	"duration-years": "$1 {{PLURAL:$1|နှစ်}}",
 	"duration-decades": "$1 {{PLURAL:$1|ဆယ်စုနှစ်|ဆယ်စုနှစ်များ}}",
 	"duration-centuries": "$1 {{PLURAL:$1|ရာစုနှစ်|ရာစုနှစ်များ}}",
 	"duration-millennia": "$1 {{PLURAL:$1|ထောင်စုနှစ်|ထောင်စုနှစ်များ}}",

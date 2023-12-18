@@ -195,7 +195,9 @@
 			"淮南皓月",
 			"Vikarna",
 			"Googology",
-			"Anterdc99"
+			"Anterdc99",
+			"Dream Star.cn",
+			"XtexChooser"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1306,7 +1308,7 @@
 	"gender-notknown": "中性称呼",
 	"gender-male": "男性称呼",
 	"gender-female": "女性称呼",
-	"prefs-help-gender": "此设置为可选项。软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。此项信息会被公开。",
+	"prefs-help-gender": "此设置为可选项。软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。该信息为公开信息。",
 	"email": "电子邮件",
 	"prefs-help-realname": "真实姓名是选填项目。\n如果提供，它可能用于署名您的贡献。",
 	"prefs-help-email": "电子邮件地址是选填项，但是当您忘记您的密码要重置密码时，需要该信息。",

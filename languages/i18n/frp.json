@@ -12,7 +12,8 @@
 			"Vlad5250",
 			"Wladek92",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -1650,7 +1651,7 @@
 	"uploaded-script-svg": "Na piéce ècrivâbla « $1 » est étâye trovâye dedens lo fichiér SVG chargiê.",
 	"uploaded-hostile-svg": "CSS pas de sûr est étâ trovâ dens la piéce de stilo d’un fichiér SVG chargiê.",
 	"uploaded-event-handler-on-svg": "La dèfenicion d’atributs de maneyor d’èvènament <code>$1=\"$2\"</code> est pas ôtorisâye dedens los fichiérs SVG.",
-	"uploaded-href-attribute-svg": "Les piéces <code>&lt;a&gt;</code> pôvont pas étre liyêes (per l’atribut « href ») qu’ux protocolos cibes « data: » (fichiér rapondu), « http:// » ou « https:// » ou ben a un bocon du mémo document (« # »). Por les ôtres piéces, coment <code>&lt;image&gt;</code>, mas que les cibes de tipo « data: » et los bocons sont ôtorisâs. Tâchiéd de rapondre les émâges pendent l’èxportacion de voutron fichiér SVG. <code>&lt;$1 $2=\"$3\"&gt;</code> est étâ trovâ.",
+	"uploaded-href-attribute-svg": "Les piéces <a> pôvont pas étre liyêes (per l’atribut « href ») qu’ux protocolos cibes « data: » (fichiér rapondu), « http:// » ou « https:// » ou ben a un bocon du mémo document (« # »). Por les ôtres piéces, coment <code>&lt;image&gt;</code>, mas que les cibes de tipo « data: » et los bocons sont ôtorisâs. Tâchiéd de rapondre les émâges pendent l’èxportacion de voutron fichiér SVG. <code>&lt;$1 $2=\"$3\"&gt;</code> est étâ trovâ.",
 	"uploaded-href-unsafe-target-svg": "Un atribut « href » de vers des balyês pas de sûr est étâ trovâ : URI ciba <code>&lt;$1 $2=\"$3\"&gt;</code> dedens lo fichiér SVG chargiê.",
 	"uploaded-animate-svg": "La balisa « animate » est étâye trovâye que porrêt changiér lo href en empleyent l’atribut « from » <code>&lt;$1 $2=\"$3\"&gt;</code> dedens lo fichiér SVG chargiê.",
 	"uploaded-setting-event-handler-svg": "La dèfenicion d’atributs de maneyor d’èvènament est blocâye, <code>&lt;$1 $2=\"$3\"&gt;</code> est étâ trovâ dedens lo fichiér SVG chargiê.",
