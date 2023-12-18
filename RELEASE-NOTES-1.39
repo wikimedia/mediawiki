@@ -13,11 +13,25 @@ THIS IS NOT A RELEASE YET
 * Localisation updates.
 * Updated symfony/polyfill-php80 from 1.26.0 to 1.28.0.
 * Updated symfony/polyfill-php81 from 1.26.0 to 1.28.0.
+* (T344912) mail: Encode period (ascii 46) if it appears in encoded email
+  header.
 * Added symfony/polyfill-php82.
 * Added symfony/polyfill-php83.
 * Updated symfony/yaml from 5.4.10 to 5.4.23.
+* (T329609) ApiQueryLanguageinfoTest: Do not pass a float to setFakeTime.
 * Updated wikimedia/timestamp from 4.0.0 to 4.1.1.
-* (T229992) LocalisationCache: Preserve fallback source language info [backport]
+* tests: Provide coverage for StatusValue::__toString.
+* StatusValue: Improve logging/debug output with multibyte characters.
+* logging: Fix non-escaped messages used in rights log.
+* Updated wikimedia/parsoid from 0.16.1 to 0.16.2.
+* (T229992) LocalisationCache: Preserve fallback source language info.
+* (T275085) Fix logging Status objects to 'authevents' channel.
+* (T341310) DEVELOPERS.md: mention git clone and WSL.
+* (T351758) DEVELOPERS.md: reword WSL instructions to include best practices.
+* (T349115) LocalisationCache: Fix a rare case in fallback source language.
+* SwiftFileBackend: Fix "PHP Deprecated: strlen(): Passing null to parameter #1
+  ($string) of type string is deprecated".
+* maintenance: Add missing parenthesis to SQL in attachLatest.php.
 
 == MediaWiki 1.39.5 ==
 
