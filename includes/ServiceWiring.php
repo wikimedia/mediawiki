@@ -485,7 +485,7 @@ return [
 		$chronologyProtector = new ChronologyProtector(
 			$cpStash,
 			$mainConfig->get( MainConfigNames::ChronologyProtectorSecret ),
-			$mainConfig->get( 'CommandLineMode' ),
+			MW_ENTRY_POINT === 'cli',
 			LoggerFactory::getInstance( 'rdbms' )
 		);
 
@@ -622,7 +622,7 @@ return [
 
 	'CriticalSectionProvider' => static function ( MediaWikiServices $services ): CriticalSectionProvider {
 		$config = $services->getMainConfig();
-		$limit = $GLOBALS[ 'wgCommandLineMode' ] ? INF : $config->get( MainConfigNames::CriticalSectionTimeLimit );
+		$limit = MW_ENTRY_POINT === 'cli' ? INF : $config->get( MainConfigNames::CriticalSectionTimeLimit );
 		return RequestTimeout::singleton()->createCriticalSectionProvider( $limit );
 	},
 
@@ -1209,7 +1209,7 @@ return [
 			'logger' => $logger,
 			'secret' => $mainConfig->get( MainConfigNames::SecretKey ),
 		];
-		if ( !$GLOBALS[ 'wgCommandLineMode' ] ) {
+		if ( MW_ENTRY_POINT !== 'cli' ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
 			$wanParams['stats'] = $services->getStatsdDataFactory();
 			// Let pre-emptive refreshes happen post-send on HTTP requests
@@ -1391,7 +1391,7 @@ return [
 			$services->getUserFactory(),
 			$services->getWikiPageFactory(),
 			$services->getHookContainer(),
-			defined( 'MEDIAWIKI_JOB_RUNNER' ) || $GLOBALS[ 'wgCommandLineMode' ]
+			defined( 'MEDIAWIKI_JOB_RUNNER' ) || MW_ENTRY_POINT === 'cli'
 				? PageEditStash::INITIATOR_JOB_OR_CLI
 				: PageEditStash::INITIATOR_USER
 		);
