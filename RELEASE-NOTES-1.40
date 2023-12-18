@@ -13,13 +13,34 @@ THIS IS NOT A RELEASE YET
 * Localisation updates.
 * Updated symfony/polyfill-php80 from 1.27.0 to 1.28.0.
 * Updated symfony/polyfill-php81 from 1.27.0 to 1.28.0.
+* (T344912) mail: Encode period (ascii 46) if it appears in encoded email
+  header.
 * Added symfony/polyfill-php82.
 * Added symfony/polyfill-php83.
 * Updated symfony/yaml from 5.4.17 to 5.4.23.
 * Updated wikimedia/timestamp from 4.1.0 to 4.1.1.
-* (T229992) LocalisationCache: Preserve fallback source language info [backport]
+* tests: Provide coverage for StatusValue::__toString.
+* StatusValue: Improve logging/debug output with multibyte characters.
+* logging: Fix non-escaped messages used in rights log.
+* Updated wikimedia/parsoid from 0.17.0 to 0.17.1.
+* (T229992) LocalisationCache: Preserve fallback source language info.
+* (T340840) Title: Check local fallbacks for system message.
+* (T346332) Installer: Make Minerva works correctly for $wgDefaultSkin.
+* specials: Use options-messages on Special:RevisionDelete.
+* Fix use of buildComparison() in uppercaseTitlesForUnicodeTransition.php.
+* (T275085) Fix logging Status objects to 'authevents' channel.
+* (T341310) DEVELOPERS.md: mention git clone and WSL.
+* (T351758) DEVELOPERS.md: reword WSL instructions to include best practices.
+* (T350615) PoolCounterConnectionManager: Add support for ipv6.
 * ParsoidCachePrewarmJob::newSpec() now requires a PageRecord as the second
   parameter instead of a page ID.
+* (T341123) ParsoidCachePrewarmJob: enable deduplication.
+* (T349115) LocalisationCache: Fix a rare case in fallback source language.
+* (T351848) language: Avoid multiple signs in Language::userAdjust.
+* SwiftFileBackend: Fix "PHP Deprecated: strlen(): Passing null to parameter #1
+  ($string) of type string is deprecated".
+* maintenance: Add missing parenthesis to SQL in attachLatest.php.
+* (T321234) Make MagicWordArray not fail on old revs with broken UTF-8.
 
 == MediaWiki 1.40.1 ==
 
