@@ -277,7 +277,7 @@ function wfStreamThumb( array $params ) {
 	// Get the normalized thumbnail name from the parameters...
 	try {
 		$thumbName = $img->thumbName( $params );
-		if ( !strlen( $thumbName ) ) { // invalid params?
+		if ( !strlen( $thumbName ?? '' ) ) { // invalid params?
 			throw new MediaTransformInvalidParametersException(
 				'Empty return from File::thumbName'
 			);
@@ -364,7 +364,7 @@ function wfStreamThumb( array $params ) {
 
 	$thumbProxyUrl = $img->getRepo()->getThumbProxyUrl();
 
-	if ( strlen( $thumbProxyUrl ) ) {
+	if ( strlen( $thumbProxyUrl ?? '' ) ) {
 		wfProxyThumbnailRequest( $img, $thumbName );
 		// No local fallback when in proxy mode
 		return;
@@ -427,7 +427,7 @@ function wfProxyThumbnailRequest( $img, $thumbName ) {
 	$secret = $img->getRepo()->getThumbProxySecret();
 
 	// Pass a secret key shared with the proxied service if any
-	if ( strlen( $secret ) ) {
+	if ( strlen( $secret ?? '' ) ) {
 		$req->setHeader( 'X-Swift-Secret', $secret );
 	}
 
