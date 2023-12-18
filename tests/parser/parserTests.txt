@@ -4938,12 +4938,12 @@ File:Foobar.jpg
 !! test
 int keyword
 !! wikitext
-{{int:youhavenewmessages|lots of money|not!}}
+{{int:new-messages|lots of money|not!}}
 !! html/php
 <p>You have lots of money (not!).
 </p>
 !! html/parsoid+integrated
-<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"int:youhavenewmessages","function":"int"},"params":{"1":{"wt":"lots of money"},"2":{"wt":"not!"}},"i":0}}]}'>You have lots of money (not!).</span></p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"int:new-messages","function":"int"},"params":{"1":{"wt":"lots of money"},"2":{"wt":"not!"}},"i":0}}]}'>You have lots of money (not!).</span></p>
 !! end
 
 !! test

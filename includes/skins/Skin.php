@@ -1820,14 +1820,14 @@ abstract class Skin extends ContextSource {
 			// "messages".
 			$newMessagesLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'newmessageslinkplural' )->params( $plural )->text(),
+				$this->msg( 'new-messages-link-plural' )->params( $plural )->text(),
 				[],
 				$uTalkTitle->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
 
 			$newMessagesDiffLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->text(),
+				$this->msg( 'new-messages-diff-link-plural' )->params( $plural )->text(),
 				[],
 				$lastSeenRev !== null
 					? [ 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' ]
@@ -1836,19 +1836,24 @@ abstract class Skin extends ContextSource {
 
 			if ( $numAuthors >= 1 && $numAuthors <= 10 ) {
 				$newMessagesAlert = $this->msg(
-					'youhavenewmessagesfromusers',
+					'new-messages-from-users'
+				)->rawParams(
 					$newMessagesLink,
 					$newMessagesDiffLink
-				)->numParams( $numAuthors, $plural );
+				)->numParams(
+					$numAuthors,
+					$plural
+				);
 			} else {
 				// $numAuthors === 11 signifies "11 or more" ("more than 10")
 				$newMessagesAlert = $this->msg(
-					$numAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
+					$numAuthors > 10 ? 'new-messages-from-many-users' : 'new-messages'
+				)->rawParams(
 					$newMessagesLink,
 					$newMessagesDiffLink
 				)->numParams( $plural );
 			}
-			$newMessagesAlert = $newMessagesAlert->text();
+			$newMessagesAlert = $newMessagesAlert->parse();
 		}
 
 		return $newMessagesAlert;

@@ -3166,8 +3166,6 @@ config-schema:
             - copyright
             - history_copyright
             - googlesearch
-            - youhavenewmessagesmanyusers
-            - youhavenewmessages
         type: array
         items:
             type: string
