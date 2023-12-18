@@ -39,8 +39,3 @@ $.cookie = jar.cookie;
  * @return {boolean} True if the cookie previously existed
  */
 $.removeCookie = jar.removeCookie;
-
-/**
- * @class jQuery
- * @mixins jQuery.plugin.cookie
- */
