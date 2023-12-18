@@ -61,12 +61,18 @@ class LogFormatter {
 	public static function newFromEntry( LogEntry $entry ) {
 		$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::LogActionsHandlers );
+		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+
 		$fulltype = $entry->getFullType();
 		$wildcard = $entry->getType() . '/*';
 		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
 
-		if ( $handler !== '' && is_string( $handler ) && class_exists( $handler ) ) {
-			return new $handler( $entry );
+		if ( $handler !== '' ) {
+			return $objectFactory->createObject( $handler, [
+				'extraArgs' => [ $entry ],
+				'allowClassName' => true,
+				'assertClass' => self::class,
+			] );
 		}
 
 		return new LegacyLogFormatter( $entry );
@@ -125,7 +131,7 @@ class LogFormatter {
 	 *
 	 * @param LogEntry $entry
 	 */
-	protected function __construct( LogEntry $entry ) {
+	public function __construct( LogEntry $entry ) {
 		$this->entry = $entry;
 		$this->context = RequestContext::getMain();
 	}

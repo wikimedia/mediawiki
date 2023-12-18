@@ -37,6 +37,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 
 ==== Changed configuration ====
 * $wgAutoCreateTempUser: 'matchPattern' now supports multiple match patterns.
+* $wgLogActionsHandlers is now ObjectFactory compatible.
 * …
 
 ==== Removed configuration ====
@@ -295,6 +296,8 @@ because of Phabricator reports.
 * The module `jquery.cookie` (deprecated as of 1.41) has been removed.  Please
   use `mediawiki.cookie` instead
 * The no-op module `es6-polyfills` (deprecated as of 1.41) has been removed.
+* Log formatters (as defined in $wgLogActionsHandlers) are now created by
+  ObjectFactory, which means their constructors must be public.
 * …
 
 === Deprecations in 1.42 ===

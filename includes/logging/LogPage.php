@@ -245,46 +245,40 @@ class LogPage {
 	) {
 		global $wgLang;
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$logActionsHandlers = $config->get( MainConfigNames::LogActionsHandlers );
 		$key = "$type/$action";
 
-		if ( isset( $logActionsHandlers[$key] ) ) {
-			$args = func_get_args();
-			$rv = call_user_func_array( $logActionsHandlers[$key], $args );
+		$logActions = $config->get( MainConfigNames::LogActions );
+
+		if ( isset( $logActions[$key] ) ) {
+			$message = $logActions[$key];
 		} else {
-			$logActions = $config->get( MainConfigNames::LogActions );
+			wfDebug( "LogPage::actionText - unknown action $key" );
+			$message = "log-unknown-action";
+			$params = [ $key ];
+		}
 
-			if ( isset( $logActions[$key] ) ) {
-				$message = $logActions[$key];
-			} else {
-				wfDebug( "LogPage::actionText - unknown action $key" );
-				$message = "log-unknown-action";
-				$params = [ $key ];
-			}
+		if ( $skin === null ) {
+			$langObj = MediaWikiServices::getInstance()->getContentLanguage();
+			$langObjOrNull = null;
+		} else {
+			// TODO Is $skin->getLanguage() safe here?
+			StubUserLang::unstub( $wgLang );
+			$langObj = $wgLang;
+			$langObjOrNull = $wgLang;
+		}
+		if ( $title === null ) {
+			$rv = wfMessage( $message )->inLanguage( $langObj )->escaped();
+		} else {
+			$titleLink = self::getTitleLink( $title, $langObjOrNull );
 
-			if ( $skin === null ) {
-				$langObj = MediaWikiServices::getInstance()->getContentLanguage();
-				$langObjOrNull = null;
+			if ( count( $params ) == 0 ) {
+				$rv = wfMessage( $message )->rawParams( $titleLink )
+					->inLanguage( $langObj )->escaped();
 			} else {
-				// TODO Is $skin->getLanguage() safe here?
-				StubUserLang::unstub( $wgLang );
-				$langObj = $wgLang;
-				$langObjOrNull = $wgLang;
-			}
-			if ( $title === null ) {
-				$rv = wfMessage( $message )->inLanguage( $langObj )->escaped();
-			} else {
-				$titleLink = self::getTitleLink( $title, $langObjOrNull );
+				array_unshift( $params, $titleLink );
 
-				if ( count( $params ) == 0 ) {
-					$rv = wfMessage( $message )->rawParams( $titleLink )
+				$rv = wfMessage( $message )->rawParams( $params )
 						->inLanguage( $langObj )->escaped();
-				} else {
-					array_unshift( $params, $titleLink );
-
-					$rv = wfMessage( $message )->rawParams( $params )
-							->inLanguage( $langObj )->escaped();
-				}
 			}
 		}
 
