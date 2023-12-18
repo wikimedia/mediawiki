@@ -1,11 +1,19 @@
 = MediaWiki 1.41 =
 
-== MediaWiki 1.41.0-rc.0 ==
-
-THIS IS NOT A RELEASE YET
-
 MediaWiki 1.41 is an pre-release testing branch, and is not recommended
 for use in production.
+
+== MediaWiki 1.40.0 ==
+
+=== Changes since MediaWiki 1.40.0-rc.0 ===
+* Localisation updates.
+* Update wikimedia/parsoid to 0.18.0.
+* (T351758) DEVELOPERS.md: reword WSL instructions to include best practices.
+* (T350615) PoolCounterConnectionManager: Add support for ipv6.
+* (T321234) Make MagicWordArray not fail on old revs with broken UTF-8.
+* (T344971) Maintenance: Fix RebuildTextIndex.
+
+== MediaWiki 1.41.0-rc.0 ==
 
 == Upgrading notes for 1.41 ==
 Don't forget to always back up your database before upgrading!
