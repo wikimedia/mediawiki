@@ -92,7 +92,8 @@ class RebuildTextIndex extends Maintenance {
 
 		$revStore = $this->getServiceContainer()->getRevisionStore();
 		$queryBuilderTemplate = $revStore->newSelectQueryBuilder( $dbw )
-			->joinPage();
+			->joinPage()
+			->joinComment();
 
 		while ( $n < $count ) {
 			if ( $n ) {
