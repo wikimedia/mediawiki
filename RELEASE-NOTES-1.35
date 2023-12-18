@@ -18,6 +18,9 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.13 ===
 * Localisation updates.
+* (T344912) mail: Encode period (ascii 46) if it appears in encoded email
+  header.
+* logging: Fix non-escaped messages used in rights log.
 
 == MediaWiki 1.35.13 ==
 
