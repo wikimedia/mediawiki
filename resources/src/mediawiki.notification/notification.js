@@ -20,7 +20,7 @@
 	 * @global
 	 * @hideconstructor
 	 * @param {mw.Message|jQuery|HTMLElement|string} message
-	 * @param {Object} options
+	 * @param {mw.notification.NotificationOptions} options
 	 */
 	function Notification( message, options ) {
 		var $notification, $notificationContent;
@@ -412,8 +412,9 @@
 		 *
 		 * @memberof mw.notification
 		 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
-		 * @param {Object} [options] The options to use for the notification.
-		 *  See [#defaults]{@link mw.notification.defaults} for details.
+		 * @param {mw.notification.NotificationOptions} [options] The options to use
+		 *  for the notification. Options not specified default to the values in
+		 *  [#defaults]{@link mw.notification.defaults}.
 		 * @return {Notification} Notification object
 		 */
 		notify: function ( message, options ) {
@@ -432,43 +433,34 @@
 		},
 
 		/**
-		 * @property {Object}
 		 * @memberof mw.notification
-		 * The defaults for #notify options parameter.
-		 *
-		 * - autoHide:
-		 *   A boolean indicating whether the notification should automatically
+		 * @typedef {Object} NotificationOptions
+		 * @property {boolean} autoHide Whether the notification should automatically
 		 *   be hidden after shown. Or if it should persist.
-		 *
-		 * - autoHideSeconds:
-		 *   Key to #autoHideSeconds for number of seconds for timeout of auto-hide
-		 *   notifications.
-		 *
-		 * - tag:
-		 *   An optional string. When a notification is tagged only one message
+		 * @property {string} autoHideSeconds Key to
+		 *   [#autoHideSeconds]{@link mw.notification.autoHideSeconds} for number of
+		 *   seconds for timeout of auto-hide notifications.
+		 * @property {string|null} tag When a notification is tagged only one message
 		 *   with that tag will be displayed. Trying to display a new notification
 		 *   with the same tag as one already being displayed will cause the other
 		 *   notification to be closed and this new notification to open up inside
 		 *   the same place as the previous notification.
-		 *
-		 * - title:
-		 *   An optional title for the notification. Will be displayed above the
-		 *   content. Usually in bold.
-		 *
-		 * - type:
-		 *   An optional string for the type of the message used for styling:
-		 *   Examples: 'info', 'warn', 'error', 'success'.
-		 *
-		 * - visibleTimeout:
-		 *   A boolean indicating if the autoHide timeout should be based on
-		 *   time the page was visible to user. Or if it should use wall clock time.
-		 *
-		 * - id:
-		 *   HTML ID to set on the notification element.
-		 *
-		 * - classes:
-		 *   CSS class names in the form of a single string or
-		 *   array of strings, to be set on the notification element.
+		 * @property {string|null} title Title for the notification. Will be displayed
+		 *   above the content. Usually in bold.
+		 * @property {string|null} type The type of the message used for styling.
+		 *   Examples: `info`, `warn`, `error`, `success`.
+		 * @property {boolean} visibleTimeout Whether the autoHide timeout should be
+		 *   based on time the page was visible to user. Or if it should use wall
+		 *   clock time.
+		 * @property {string|false} id HTML ID to set on the notification element.
+		 * @property {string|string[]|false} classes CSS class names to be set on the
+		 *   notification element.
+		 */
+
+		/**
+		 * The defaults for [#notify]{@link mw.notification.notify} options parameter.
+		 * @memberof mw.notification
+		 * @type {mw.notification.NotificationOptions}
 		 */
 		defaults: {
 			autoHide: true,
