@@ -101,7 +101,7 @@ class Sanitizer {
 	/**
 	 * Lazy-initialised attributes regex, see getAttribsRegex()
 	 */
-	private static $attribsRegex;
+	private static ?string $attribsRegex = null;
 
 	/**
 	 * Regular expression to match HTML/XML attribute pairs within a tag.
@@ -109,7 +109,7 @@ class Sanitizer {
 	 * Used in Sanitizer::decodeTagAttributes
 	 * @return string
 	 */
-	private static function getAttribsRegex() {
+	private static function getAttribsRegex(): string {
 		if ( self::$attribsRegex === null ) {
 			$spaceChars = '\x09\x0a\x0c\x0d\x20';
 			$space = "[{$spaceChars}]";
@@ -132,13 +132,13 @@ class Sanitizer {
 	/**
 	 * Lazy-initialised attribute name regex, see getAttribNameRegex()
 	 */
-	private static $attribNameRegex;
+	private static ?string $attribNameRegex = null;
 
 	/**
 	 * Used in Sanitizer::decodeTagAttributes to filter attributes.
 	 * @return string
 	 */
-	private static function getAttribNameRegex() {
+	private static function getAttribNameRegex(): string {
 		if ( self::$attribNameRegex === null ) {
 			$attribFirst = "[:_\p{L}\p{N}]";
 			$attrib = "[:_\.\-\p{L}\p{N}]";
@@ -154,7 +154,7 @@ class Sanitizer {
 	 * @return array
 	 * @internal
 	 */
-	public static function getRecognizedTagData( $extratags = [], $removetags = [] ) {
+	public static function getRecognizedTagData( array $extratags = [], array $removetags = [] ): array {
 		global $wgAllowImageTag;
 		static $commonCase, $staticInitialised;
 		$isCommonCase = ( $extratags === [] && $removetags === [] );
@@ -282,9 +282,9 @@ class Sanitizer {
 	 * @deprecated since 1.38. Use ::removeSomeTags(), which always gives
 	 * balanced/tidy HTML.
 	 */
-	public static function removeHTMLtags( $text, $processCallback = null,
-		$args = [], $extratags = [], $removetags = []
-	) {
+	public static function removeHTMLtags( string $text, ?callable $processCallback = null,
+		$args = [], array $extratags = [], array $removetags = []
+	): string {
 		wfDeprecated( __METHOD__, '1.38' );
 		return self::internalRemoveHtmlTags(
 			$text, $processCallback, $args, $extratags, $removetags
@@ -319,9 +319,9 @@ class Sanitizer {
 	 * @return-taint escaped
 	 * @internal
 	 */
-	public static function internalRemoveHtmlTags( $text, $processCallback = null,
-		$args = [], $extratags = [], $removetags = []
-	) {
+	public static function internalRemoveHtmlTags( string $text, ?callable $processCallback = null,
+		$args = [], array $extratags = [], array $removetags = []
+	): string {
 		$tagData = self::getRecognizedTagData( $extratags, $removetags );
 		$htmlsingle = $tagData['htmlsingle'];
 		$htmlsingleonly = $tagData['htmlsingleonly'];
@@ -443,7 +443,7 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 */
-	public static function removeHTMLcomments( $text ) {
+	public static function removeHTMLcomments( string $text ): string {
 		while ( ( $start = strpos( $text, '<!--' ) ) !== false ) {
 			$end = strpos( $text, '-->', $start + 4 );
 			if ( $end === false ) {
@@ -491,7 +491,7 @@ class Sanitizer {
 	 *
 	 * @see RemexRemoveTagHandler::validateTag()
 	 */
-	private static function validateTag( $params, $element ) {
+	private static function validateTag( string $params, string $element ): bool {
 		$params = self::decodeTagAttributes( $params );
 
 		if ( $element == 'meta' || $element == 'link' ) {
@@ -527,7 +527,7 @@ class Sanitizer {
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
 	 */
-	public static function validateTagAttributes( $attribs, $element ) {
+	public static function validateTagAttributes( array $attribs, string $element ): array {
 		return self::validateAttributes( $attribs,
 			self::attributesAllowedInternal( $element ) );
 	}
@@ -550,7 +550,7 @@ class Sanitizer {
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
 	 */
-	public static function validateAttributes( $attribs, $allowed ) {
+	public static function validateAttributes( array $attribs, array $allowed ): array {
 		if ( isset( $allowed[0] ) ) {
 			// Calling this function with a sequential array is
 			// deprecated.  For now just convert it.
@@ -656,7 +656,7 @@ class Sanitizer {
 	 * @param string $attr Attribute name.
 	 * @return bool
 	 */
-	public static function isReservedDataAttribute( $attr ) {
+	public static function isReservedDataAttribute( string $attr ): bool {
 		// data-ooui is reserved for ooui.
 		// data-mw and data-parsoid are reserved for parsoid.
 		// data-mw-<name here> is reserved for extensions (or core) if
@@ -677,7 +677,7 @@ class Sanitizer {
 	 * @param array $b
 	 * @return array
 	 */
-	public static function mergeAttributes( $a, $b ) {
+	public static function mergeAttributes( array $a, array $b ): array {
 		$out = array_merge( $a, $b );
 		if ( isset( $a['class'] ) && isset( $b['class'] )
 			&& is_string( $a['class'] ) && is_string( $b['class'] )
@@ -698,7 +698,7 @@ class Sanitizer {
 	 * @param string $value the css string
 	 * @return string normalized css
 	 */
-	public static function normalizeCss( $value ) {
+	public static function normalizeCss( string $value ): string {
 		// Decode character references like &#123;
 		$value = self::decodeCharReferences( $value );
 
@@ -796,7 +796,7 @@ class Sanitizer {
 	 * @param array $matches
 	 * @return string
 	 */
-	private static function cssDecodeCallback( $matches ) {
+	private static function cssDecodeCallback( array $matches ): string {
 		if ( $matches[1] !== '' ) {
 			// Line continuation
 			return '';
@@ -840,7 +840,7 @@ class Sanitizer {
 	 * @param bool $sorted Whether to sort the attributes (default: false)
 	 * @return string
 	 */
-	public static function fixTagAttributes( $text, $element, $sorted = false ) {
+	public static function fixTagAttributes( string $text, string $element, bool $sorted = false ): string {
 		if ( trim( $text ) == '' ) {
 			return '';
 		}
@@ -862,7 +862,7 @@ class Sanitizer {
 	 * @return string HTML-encoded text fragment
 	 * @return-taint escaped
 	 */
-	public static function encodeAttribute( $text ) {
+	public static function encodeAttribute( string $text ): string {
 		$encValue = htmlspecialchars( $text, ENT_QUOTES );
 
 		// Whitespace is normalized during attribute decoding,
@@ -885,7 +885,7 @@ class Sanitizer {
 	 * @param string $space Space character for the French spaces, defaults to '&#160;'
 	 * @return string Armored text
 	 */
-	public static function armorFrenchSpaces( $text, $space = '&#160;' ) {
+	public static function armorFrenchSpaces( string $text, string $space = '&#160;' ): string {
 		// Replace $ with \$ and \ with \\
 		$space = preg_replace( '#(?<!\\\\)(\\$|\\\\)#', '\\\\$1', $space );
 		$fixtags = [
@@ -906,7 +906,7 @@ class Sanitizer {
 	 * @return string HTML-encoded text fragment
 	 * @return-taint escaped
 	 */
-	public static function safeEncodeAttribute( $text ) {
+	public static function safeEncodeAttribute( string $text ): string {
 		$encValue = self::encodeAttribute( $text );
 
 		# Templates and links may be expanded in later parsing,
@@ -954,7 +954,7 @@ class Sanitizer {
 	 *
 	 * @since 1.30
 	 */
-	public static function escapeIdForAttribute( $id, $mode = self::ID_PRIMARY ) {
+	public static function escapeIdForAttribute( string $id, int $mode = self::ID_PRIMARY ) {
 		global $wgFragmentMode;
 
 		if ( !isset( $wgFragmentMode[$mode] ) ) {
@@ -981,7 +981,7 @@ class Sanitizer {
 	 *
 	 * @since 1.30
 	 */
-	public static function escapeIdForLink( $id ) {
+	public static function escapeIdForLink( string $id ): string {
 		global $wgFragmentMode;
 
 		if ( !isset( $wgFragmentMode[self::ID_PRIMARY] ) ) {
@@ -1004,7 +1004,7 @@ class Sanitizer {
 	 *
 	 * @since 1.30
 	 */
-	public static function escapeIdForExternalInterwiki( $id ) {
+	public static function escapeIdForExternalInterwiki( string $id ): string {
 		global $wgExternalInterwikiFragmentMode;
 
 		$id = self::escapeIdInternalUrl( $id, $wgExternalInterwikiFragmentMode );
@@ -1021,7 +1021,7 @@ class Sanitizer {
 	 * @param string $mode One of modes from $wgFragmentMode
 	 * @return string
 	 */
-	private static function escapeIdInternalUrl( $id, $mode ) {
+	private static function escapeIdInternalUrl( string $id, string $mode ): string {
 		$id = self::escapeIdInternal( $id, $mode );
 		if ( $mode === 'html5' ) {
 			$id = preg_replace( '/%([a-fA-F0-9]{2})/', '%25$1', $id );
@@ -1036,7 +1036,7 @@ class Sanitizer {
 	 * @param string $mode One of modes from $wgFragmentMode
 	 * @return string
 	 */
-	private static function escapeIdInternal( $id, $mode ) {
+	private static function escapeIdInternal( string $id, string $mode ): string {
 		// Truncate overly-long IDs.  This isn't an HTML limit, it's just
 		// griefer protection. [T251506]
 		$id = mb_substr( $id, 0, 1024 );
@@ -1073,7 +1073,7 @@ class Sanitizer {
 	 * @param string $referenceString Space delimited list of ids
 	 * @return string
 	 */
-	private static function escapeIdReferenceListInternal( $referenceString ) {
+	private static function escapeIdReferenceListInternal( string $referenceString ): string {
 		# Explode the space delimited list string into an array of tokens
 		$references = preg_split( '/\s+/', "{$referenceString}", -1, PREG_SPLIT_NO_EMPTY );
 
@@ -1100,7 +1100,7 @@ class Sanitizer {
 	 * @param string $class
 	 * @return string
 	 */
-	public static function escapeClass( $class ) {
+	public static function escapeClass( string $class ): string {
 		// Convert ugly stuff to underscores and kill underscores in ugly places
 		return rtrim( preg_replace(
 			[ '/(^[0-9\\-])|[\\x00-\\x20!"#$%&\'()*+,.\\/:;<=>?@[\\]^`{|}~]|\\xC2\\xA0/', '/_+/' ],
@@ -1117,7 +1117,7 @@ class Sanitizer {
 	 * @return string Escaped input
 	 * @return-taint escaped
 	 */
-	public static function escapeHtmlAllowEntities( $html ) {
+	public static function escapeHtmlAllowEntities( string $html ): string {
 		$html = self::decodeCharReferences( $html );
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
 		# hurt. Use ENT_SUBSTITUTE so that incorrectly truncated multibyte characters
@@ -1134,7 +1134,7 @@ class Sanitizer {
 	 * @param string $text
 	 * @return array
 	 */
-	public static function decodeTagAttributes( $text ) {
+	public static function decodeTagAttributes( string $text ): array {
 		if ( trim( $text ) == '' ) {
 			return [];
 		}
@@ -1176,7 +1176,7 @@ class Sanitizer {
 	 * @param array $assoc_array
 	 * @return string
 	 */
-	public static function safeEncodeTagAttributes( $assoc_array ) {
+	public static function safeEncodeTagAttributes( array $assoc_array ): string {
 		$attribs = [];
 		foreach ( $assoc_array as $attribute => $value ) {
 			$encAttribute = htmlspecialchars( $attribute, ENT_COMPAT );
@@ -1194,7 +1194,7 @@ class Sanitizer {
 	 * @param array $set
 	 * @return string
 	 */
-	private static function getTagAttributeCallback( $set ) {
+	private static function getTagAttributeCallback( array $set ): string {
 		if ( isset( $set[5] ) ) {
 			# No quotes.
 			return $set[5];
@@ -1218,7 +1218,7 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 */
-	private static function normalizeWhitespace( $text ) {
+	private static function normalizeWhitespace( string $text ): string {
 		return trim( preg_replace(
 			'/(?:\r\n|[\x20\x0d\x0a\x09])+/',
 			' ',
@@ -1233,7 +1233,7 @@ class Sanitizer {
 	 * @param string $section
 	 * @return string
 	 */
-	public static function normalizeSectionNameWhitespace( $section ) {
+	public static function normalizeSectionNameWhitespace( string $section ): string {
 		return trim( preg_replace( '/[ _]+/', ' ', $section ) );
 	}
 
@@ -1252,7 +1252,7 @@ class Sanitizer {
 	 * @return string
 	 * @internal
 	 */
-	public static function normalizeCharReferences( $text ) {
+	public static function normalizeCharReferences( string $text ): string {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
 			[ self::class, 'normalizeCharReferencesCallback' ],
@@ -1261,10 +1261,10 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param string $matches
+	 * @param array $matches
 	 * @return string
 	 */
-	private static function normalizeCharReferencesCallback( $matches ) {
+	private static function normalizeCharReferencesCallback( array $matches ): string {
 		$ret = null;
 		if ( isset( $matches[1] ) ) {
 			$ret = self::normalizeEntity( $matches[1] );
@@ -1290,7 +1290,7 @@ class Sanitizer {
 	 * @param string $name Semicolon-terminated name
 	 * @return string
 	 */
-	private static function normalizeEntity( $name ) {
+	private static function normalizeEntity( string $name ): string {
 		if ( isset( self::MW_ENTITY_ALIASES[$name] ) ) {
 			// Non-standard MediaWiki-specific entities
 			return '&' . self::MW_ENTITY_ALIASES[$name];
@@ -1308,10 +1308,10 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param int|string $codepoint
+	 * @param string $codepoint
 	 * @return null|string
 	 */
-	private static function decCharReference( $codepoint ) {
+	private static function decCharReference( string $codepoint ): ?string {
 		# intval() will (safely) saturate at the maximum signed integer
 		# value if $codepoint is too many digits
 		$point = intval( $codepoint );
@@ -1326,7 +1326,7 @@ class Sanitizer {
 	 * @param string $codepoint
 	 * @return null|string
 	 */
-	private static function hexCharReference( $codepoint ) {
+	private static function hexCharReference( string $codepoint ): ?string {
 		$point = hexdec( $codepoint );
 		// hexdec() might return a float if the string is too long
 		if ( is_int( $point ) && self::validateCodepoint( $point ) ) {
@@ -1342,7 +1342,7 @@ class Sanitizer {
 	 * @param int $codepoint
 	 * @return bool
 	 */
-	private static function validateCodepoint( $codepoint ) {
+	private static function validateCodepoint( int $codepoint ): bool {
 		# U+000C is valid in HTML5 but not allowed in XML.
 		# U+000D is valid in XML but not allowed in HTML5.
 		# U+007F - U+009F are disallowed in HTML5 (control characters).
@@ -1361,7 +1361,7 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 */
-	public static function decodeCharReferences( $text ) {
+	public static function decodeCharReferences( string $text ): string {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
 			[ self::class, 'decodeCharReferencesCallback' ],
@@ -1379,7 +1379,7 @@ class Sanitizer {
 	 * @param string $text Already normalized, containing entities
 	 * @return string Still normalized, without entities
 	 */
-	public static function decodeCharReferencesAndNormalize( $text ) {
+	public static function decodeCharReferencesAndNormalize( string $text ): string {
 		$text = preg_replace_callback(
 			self::CHAR_REFS_REGEX,
 			[ self::class, 'decodeCharReferencesCallback' ],
@@ -1394,10 +1394,10 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param string $matches
+	 * @param array $matches
 	 * @return string
 	 */
-	private static function decodeCharReferencesCallback( $matches ) {
+	private static function decodeCharReferencesCallback( array $matches ): string {
 		if ( isset( $matches[1] ) ) {
 			return self::decodeEntity( $matches[1] );
 		} elseif ( isset( $matches[2] ) ) {
@@ -1422,7 +1422,7 @@ class Sanitizer {
 	 * @return string
 	 * @internal
 	 */
-	private static function decodeChar( $codepoint ) {
+	private static function decodeChar( int $codepoint ): string {
 		if ( self::validateCodepoint( $codepoint ) ) {
 			return \UtfNormal\Utils::codepointToUtf8( $codepoint );
 		} else {
@@ -1438,7 +1438,7 @@ class Sanitizer {
 	 * @param string $name Semicolon-terminated entity name
 	 * @return string
 	 */
-	private static function decodeEntity( $name ) {
+	private static function decodeEntity( string $name ): string {
 		// These are MediaWiki-specific entities, not in the HTML standard
 		if ( isset( self::MW_ENTITY_ALIASES[$name] ) ) {
 			$name = self::MW_ENTITY_ALIASES[$name];
@@ -1454,7 +1454,7 @@ class Sanitizer {
 	 * @return array An associative array where keys are acceptable attribute
 	 *   names
 	 */
-	private static function attributesAllowedInternal( $element ) {
+	private static function attributesAllowedInternal( string $element ): array {
 		$list = self::setupAttributesAllowedInternal();
 		return $list[$element] ?? [];
 	}
@@ -1466,7 +1466,7 @@ class Sanitizer {
 	 *   values are associative arrays where the keys are allowed attribute
 	 *   names.
 	 */
-	private static function setupAttributesAllowedInternal() {
+	private static function setupAttributesAllowedInternal(): array {
 		static $allowed;
 
 		if ( $allowed !== null ) {
@@ -1715,7 +1715,7 @@ class Sanitizer {
 	 * @return string
 	 * @return-taint tainted
 	 */
-	public static function stripAllTags( $html ) {
+	public static function stripAllTags( string $html ): string {
 		// Use RemexHtml to tokenize $html and extract the text
 		$handler = new RemexStripTagHandler;
 		$tokenizer = new RemexTokenizer( $handler, $html, [
@@ -1742,7 +1742,7 @@ class Sanitizer {
 	 * @deprecated since 1.36; will be made private or removed in a future
 	 *    release.
 	 */
-	public static function hackDocType() {
+	public static function hackDocType(): string {
 		$out = "<!DOCTYPE html [\n";
 		foreach ( HTMLData::$namedEntityTranslations as $entity => $translation ) {
 			if ( substr( $entity, -1 ) !== ';' ) {
@@ -1764,9 +1764,9 @@ class Sanitizer {
 
 	/**
 	 * @param string $url
-	 * @return mixed|string
+	 * @return string
 	 */
-	public static function cleanUrl( $url ) {
+	public static function cleanUrl( string $url ): string {
 		# Normalize any HTML entities in input. They will be
 		# re-escaped by makeExternalLink().
 		$url = self::decodeCharReferences( $url );
@@ -1875,7 +1875,7 @@ class Sanitizer {
 	 * @param string $addr E-mail address
 	 * @return bool
 	 */
-	public static function validateEmail( $addr ) {
+	public static function validateEmail( string $addr ): bool {
 		$result = null;
 		// TODO This method should be non-static, and have a HookRunner injected
 		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
