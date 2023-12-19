@@ -86,8 +86,8 @@ $( function () {
 		/**
 		 * Fired when indicators are being added to the DOM
 		 *
-		 * @event wikipage_indicators
-		 * @member mw.hook
+		 * @event ~'wikipage.indicators'
+		 * @memberof Hooks
 		 * @param {jQuery} $content jQuery object with the elements of the indicators
 		 */
 		mw.hook( 'wikipage.indicators' ).fire( $( node.children ) );
@@ -105,12 +105,11 @@ $( function () {
 		 * This includes the ready event on a page load (including post-edit loads)
 		 * and when content has been previewed with LivePreview.
 		 *
-		 * @event wikipage_content
-		 * @member mw.hook
+		 * @event ~'wikipage.content'
+		 * @memberof Hooks
 		 * @param {jQuery} $content The most appropriate element containing the content,
 		 *   such as #mw-content-text (regular content root) or #wikiPreview (live preview
 		 *   root)
-		 * @todo Remove duplicate doc block in jsdoc.types.js
 		 */
 		mw.hook( 'wikipage.content' ).fire( $content );
 	}
@@ -127,11 +126,10 @@ $( function () {
 		 * This includes the ready event on a page load (including post-edit loads)
 		 * and when content has been previewed with LivePreview.
 		 *
-		 * @event wikipage_categories
-		 * @member mw.hook
+		 * @event ~'wikipage.categories'
+		 * @memberof Hooks
 		 * @param {jQuery} $content The most appropriate element containing the content,
 		 *   such as .catlinks
-		 * @todo Remove duplicate doc block in jsdoc.types.js
 		 */
 		mw.hook( 'wikipage.categories' ).fire( $nodes );
 	}
@@ -141,13 +139,12 @@ $( function () {
 		/**
 		 * Fired when the diff is added to a page containing a diff
 		 *
-		 * Similar to the {@link mw.hook#event-wikipage_content wikipage.content hook}
+		 * Similar to the {@link Hooks~'wikipage.content' wikipage.content hook}
 		 * $diff may still be detached when the hook is fired.
 		 *
-		 * @event wikipage_diff
-		 * @member mw.hook
+		 * @event ~'wikipage.diff'
+		 * @memberof Hooks
 		 * @param {jQuery} $diff The root element of the MediaWiki diff (`table.diff`).
-		 * @todo Remove duplicate doc block in jsdoc.types.js
 		 */
 		mw.hook( 'wikipage.diff' ).fire( $nodes.eq( 0 ) );
 	}
@@ -176,10 +173,9 @@ $( function () {
 	 * This will end the user session, and either redirect to the given URL
 	 * on success, or queue an error message via mw.notification.
 	 *
-	 * @event skin_logout
-	 * @member mw.hook
+	 * @event ~'skin.logout'
+	 * @memberof Hooks
 	 * @param {string} href Full URL
-	 * @todo Remove duplicate doc block in jsdoc.types.js
 	 */
 	var LOGOUT_EVENT = 'skin.logout';
 	function logoutViaPost( href ) {
@@ -214,11 +210,6 @@ $( function () {
 } );
 
 /**
- * @class mw.plugin.page.ready
- * @singleton
- */
-
-/**
  * @private
  * @param {HTMLElement} element
  * @return {boolean} Whether the element is a search input.
@@ -231,6 +222,7 @@ function isSearchInput( element ) {
 /**
  * Load a given module when a search input is focused.
  *
+ * @memberof mediawiki.page.module:ready
  * @param {string} moduleName Name of a module
  */
 function loadSearchModule( moduleName ) {
@@ -294,8 +286,17 @@ try {
 	}
 } catch ( err ) {}
 
+/**
+ * @exports mediawiki.page.ready
+ */
 module.exports = {
-	loadSearchModule: loadSearchModule,
+	loadSearchModule,
+	/** @type {CheckboxHack} */
 	checkboxHack: require( './checkboxHack.js' ),
+	/**
+	 * A container for displaying elements that overlay the page e.g. dialogs.
+	 *
+	 * @type {HTMLElement}
+	 */
 	teleportTarget: teleportTarget.target
 };

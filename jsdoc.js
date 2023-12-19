@@ -14,6 +14,7 @@ module.exports = {
 	],
 	source: {
 		include: [
+			'resources/src/mediawiki.page.ready',
 			'resources/src/mediawiki.Title',
 			'resources/src/mediawiki.cookie',
 			'resources/src/mediawiki.storage.js',
@@ -42,7 +43,6 @@ module.exports = {
 			'resources/src/mediawiki.page.media.js',
 			'resources/src/jquery/*',
 			'resources/src/jquery.spinner',
-			'resources/src/mediawiki.page.ready',
 			'resources/src/jquery.tablesorter',
 			'resources/src/mediawiki.page.watch.ajax',
 			'resources/src/mediawiki.ForeignApi',
@@ -132,6 +132,7 @@ module.exports = {
 				Array: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array',
 				Blob: 'https://developer.mozilla.org/en-US/docs/Web/API/Blob',
 				CSSStyleSheet: 'https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet',
+				Event: 'https://developer.mozilla.org/en-US/docs/Web/API/Event',
 				File: 'https://developer.mozilla.org/en-US/docs/Web/API/File',
 				HTMLElement: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement',
 				HTMLInputElement: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement',
@@ -140,6 +141,7 @@ module.exports = {
 				'jQuery.fn': 'https://api.jquery.com/jQuery/',
 				'jQuery.Event': 'https://api.jquery.com/Types/#Event',
 				'jQuery.Promise': 'https://api.jquery.com/Types/#Promise',
+				Node: 'https://developer.mozilla.org/en-US/docs/Web/API/Node',
 				Promise: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
 				Set: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set',
 				URLSearchParams: 'https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams'
