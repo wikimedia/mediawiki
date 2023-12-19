@@ -156,9 +156,10 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getRequest() {
 		if ( $this->request === null ) {
-			global $wgCommandLineMode;
 			// create the WebRequest object on the fly
-			if ( $wgCommandLineMode ) {
+			if ( MW_ENTRY_POINT === 'cli' ) {
+				// Don't use real WebRequest in CLI mode, it throws errors when trying to access
+				// things that don't exist, e.g. "Unable to determine IP".
 				$this->request = new FauxRequest( [] );
 			} else {
 				$this->request = new WebRequest();
