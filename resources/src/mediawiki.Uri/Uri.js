@@ -85,10 +85,9 @@
 	 * A factory method to create an {@link mw.Uri} class with a default location to resolve relative URLs
 	 * against (including protocol-relative URLs).
 	 *
-	 * @method
+	 * @memberof mw
 	 * @param {string|Function} documentLocation A full url, or function returning one.
 	 *  If passed a function, the return value may change over time and this will be honoured. (T74334)
-	 * @member mw
 	 * @return {Function} An mw.Uri class constructor
 	 */
 	mw.UriRelative = function ( documentLocation ) {
