@@ -1225,7 +1225,7 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Format an expiry timestamp for API output
 	 * @since 1.29
-	 * @param string $expiry Expiry timestamp, likely from the database
+	 * @param string|null|false $expiry Expiry timestamp, likely from the database
 	 * @param string $infinity Use this string for infinite expiry
 	 *  (only use this to maintain backward compatibility with existing output)
 	 * @return string Formatted expiry

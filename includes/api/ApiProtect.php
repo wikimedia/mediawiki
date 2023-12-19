@@ -23,12 +23,15 @@
 namespace MediaWiki\Api;
 
 use ChangeTags;
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * @ingroup API
@@ -97,7 +100,7 @@ class ApiProtect extends ApiBase {
 		);
 
 		$protections = [];
-		$expiryarray = [];
+		$expiries = [];
 		$resultProtections = [];
 		foreach ( $params['protections'] as $i => $prot ) {
 			$p = explode( '=', $prot );
@@ -117,23 +120,18 @@ class ApiProtect extends ApiBase {
 				$this->dieWithError( [ 'apierror-protect-invalidlevel', wfEscapeWikiText( $p[1] ) ] );
 			}
 
-			if ( wfIsInfinity( $expiry[$i] ) ) {
-				$expiryarray[$p[0]] = 'infinity';
-			} else {
-				$exp = strtotime( $expiry[$i] );
-				if ( $exp < 0 || !$exp ) {
-					$this->dieWithError( [ 'apierror-invalidexpiry', wfEscapeWikiText( $expiry[$i] ) ] );
-				}
-
-				$exp = wfTimestamp( TS_MW, $exp );
-				if ( $exp < wfTimestampNow() ) {
-					$this->dieWithError( [ 'apierror-pastexpiry', wfEscapeWikiText( $expiry[$i] ) ] );
-				}
-				$expiryarray[$p[0]] = $exp;
+			try {
+				$expiries[$p[0]] = ExpiryDef::normalizeExpiry( $expiry[$i], TS_MW );
+			} catch ( InvalidArgumentException $e ) {
+				$this->dieWithError( [ 'apierror-invalidexpiry', wfEscapeWikiText( $expiry[$i] ) ] );
 			}
+			if ( $expiries[$p[0]] < MWTimestamp::now( TS_MW ) ) {
+				$this->dieWithError( [ 'apierror-pastexpiry', wfEscapeWikiText( $expiry[$i] ) ] );
+			}
+
 			$resultProtections[] = [
 				$p[0] => $protections[$p[0]],
-				'expiry' => ApiResult::formatExpiry( $expiryarray[$p[0]], 'infinite' ),
+				'expiry' => ApiResult::formatExpiry( $expiries[$p[0]], 'infinite' ),
 			];
 		}
 
@@ -145,7 +143,7 @@ class ApiProtect extends ApiBase {
 
 		$status = $pageObj->doUpdateRestrictions(
 			$protections,
-			$expiryarray,
+			$expiries,
 			$cascade,
 			$params['reason'],
 			$user,
