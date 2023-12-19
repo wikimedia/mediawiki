@@ -32,6 +32,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MWException;
 use Parser;
 use UnexpectedValueException;
@@ -2246,6 +2247,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			);
 		}
 
+		foreach ( $this->mCategories as $cat => $key ) {
+			// Numeric category strings are going to come out of the
+			// `mCategories` array as ints; cast back to string.
+			// Also convert back to a LinkTarget!
+			$lt = TitleValue::tryNew( NS_CATEGORY, (string)$cat );
+			$metadata->addCategory( $lt, $key );
+		}
+
 		foreach ( $this->mJsConfigVars as $key => $value ) {
 			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
 				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
@@ -2315,12 +2324,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// here would lose some flexibility.
 
 		if ( $metadata instanceof ParserOutput ) {
-			foreach ( $this->mCategories as $cat => $key ) {
-				// Numeric category strings are going to come out of the
-				// `mCategories` array as ints; cast back to string.
-				$metadata->addCategory( (string)$cat, $key );
-			}
-
 			foreach ( $this->getUsedOptions() as $opt ) {
 				$metadata->recordOption( $opt );
 			}
