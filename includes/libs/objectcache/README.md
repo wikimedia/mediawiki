@@ -7,7 +7,7 @@ Sent to StatsD under MediaWiki's namespace.
 ### WANObjectCache
 
 The default WANObjectCache provided by MediaWikiServices disables these
-statistics in processes where `$wgCommandLineMode` is true.
+statistics in entry points where MW_ENTRY_POINT is 'cli'.
 
 #### `wanobjectcache.{kClass}.{cache_action_and_result}`
 
