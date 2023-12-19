@@ -16,6 +16,7 @@ module.exports = {
 		include: [
 			'resources/src/mediawiki.Title',
 			'resources/src/mediawiki.cookie',
+			'resources/src/mediawiki.storage.js',
 			'resources/src/mediawiki.String.js',
 			'resources/src/jsdoc.types.js',
 			'resources/src/jquery.lengthLimit.js',
@@ -85,7 +86,6 @@ module.exports = {
 			'resources/src/mediawiki.filewarning',
 			'resources/src/resources/src/mediawiki.special.watchlist',
 			'resources/src/mediawiki.helplink',
-			'resources/src/mediawiki.storage.js',
 			'resources/src/mediawiki.tempUserBanner',
 			'resources/src/mediawiki.htmlform',
 			'resources/src/mediawiki.tempUserCreated',

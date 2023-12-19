@@ -1785,18 +1785,6 @@
 		}
 	};
 
-	/**
-	 * On browsers that implement the localStorage API, the module store serves as a
-	 * smart complement to the browser cache. Unlike the browser cache, the module store
-	 * can slice a concatenated response from ResourceLoader into its constituent
-	 * modules and cache each of them separately, using each module's versioning scheme
-	 * to determine when the cache should be invalidated.
-	 *
-	 * @private
-	 * @singleton
-	 * @class mw.loader.store
-	 */
-
 	var hasPendingFlush = false,
 		hasPendingWrites = false;
 
@@ -1846,6 +1834,19 @@
 
 	// We use a local variable `store` so that its easier to access, but also need to set
 	// this in mw.loader so its exported - combine the two
+
+	/**
+	 * On browsers that implement the localStorage API, the module store serves as a
+	 * smart complement to the browser cache. Unlike the browser cache, the module store
+	 * can slice a concatenated response from ResourceLoader into its constituent
+	 * modules and cache each of them separately, using each module's versioning scheme
+	 * to determine when the cache should be invalidated.
+	 *
+	 * @private
+	 * @singleton
+	 * @class mw.loader.store
+	 * @ignore
+	 */
 	mw.loader.store = store = {
 		// Whether the store is in use on this page.
 		enabled: null,

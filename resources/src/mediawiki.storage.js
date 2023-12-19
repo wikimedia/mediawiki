@@ -22,9 +22,12 @@
 	 * A wrapper for the HTML5 Storage interface (`localStorage` or `sessionStorage`)
 	 * that is safe to call in all browsers.
 	 *
-	 * @class mw.SafeStorage
-	 * @private
+	 * The constructor is not publicly accessible. An instance can be accessed from
+	 * the {@link mw.storage} or {@link mediawiki.module:mediawiki.storage}
+	 *
+	 * @class SafeStorage
 	 * @param {Object|undefined} store The Storage instance to wrap around
+	 * @hideconstructor
 	 */
 	function SafeStorage( store ) {
 		this.store = store;
@@ -41,6 +44,7 @@
 	/**
 	 * Retrieve value from device storage.
 	 *
+	 * @memberof SafeStorage
 	 * @param {string} key Key of item to retrieve
 	 * @return {string|null|boolean} String value, null if no value exists, or false
 	 *  if storage is not available.
@@ -58,6 +62,7 @@
 	/**
 	 * Set a value in device storage.
 	 *
+	 * @memberof SafeStorage
 	 * @param {string} key Key name to store under
 	 * @param {string} value Value to be stored
 	 * @param {number} [expiry] Number of seconds after which this item can be deleted
@@ -84,6 +89,7 @@
 	/**
 	 * Remove a value from device storage.
 	 *
+	 * @memberof SafeStorage
 	 * @param {string} key Key of item to remove
 	 * @return {boolean} Whether the key was removed
 	 */
@@ -99,6 +105,7 @@
 	/**
 	 * Retrieve JSON object from device storage.
 	 *
+	 * @memberof SafeStorage
 	 * @param {string} key Key of item to retrieve
 	 * @return {Object|null|boolean} Object, null if no value exists or value
 	 *  is not JSON-parseable, or false if storage is not available.
@@ -120,6 +127,7 @@
 	/**
 	 * Set an object value in device storage by JSON encoding
 	 *
+	 * @memberof SafeStorage
 	 * @param {string} key Key name to store under
 	 * @param {Object} value Object value to be stored
 	 * @param {number} [expiry] Number of seconds after which this item can be deleted
@@ -137,6 +145,7 @@
 	/**
 	 * Set the expiry time for an item in the store
 	 *
+	 * @memberof SafeStorage
 	 * @param {string} key Key name
 	 * @param {number} [expiry] Number of seconds after which this item can be deleted,
 	 *  omit to clear the expiry (either making the item never expire, or to clean up
@@ -250,7 +259,7 @@
 	};
 
 	/**
-	 * A safe interface to HTML5 `localStorage`.
+	 * @classdesc A safe interface to HTML5 `localStorage` and `sessionStorage`.
 	 *
 	 * This normalises differences across browsers and silences any and all
 	 * exceptions that may occur.
@@ -273,26 +282,20 @@
 	 * manage or replace over time.
 	 * See also <https://phabricator.wikimedia.org/T121646>.
 	 *
-	 * Example:
-	 *
-	 *     mw.storage.set( key, value, expiry );
+	 * @example mw.storage.set( key, value, expiry );
 	 *     mw.storage.set( key, value ); // stored indefinitely
 	 *     mw.storage.get( key );
 	 *
-	 * Example:
-	 *
-	 *     var local = require( 'mediawiki.storage' ).local;
+	 * @example var local = require( 'mediawiki.storage' ).local;
 	 *     local.set( key, value, expiry );
 	 *     local.get( key );
 	 *
-	 * @class
-	 * @singleton
-	 * @extends mw.SafeStorage
-	 */
-	mw.storage = new SafeStorage( localStorage );
-
-	/**
-	 * A safe interface to HTML5 `sessionStorage`.
+	 * @example mw.storage.session.set( key, value );
+	 *     mw.storage.session.get( key );
+	 *
+	 * @example var session = require( 'mediawiki.storage' ).session;
+	 *     session.set( key, value );
+	 *     session.get( key );
 	 *
 	 * This normalises differences across browsers and silences any and all
 	 * exceptions that may occur.
@@ -301,25 +304,39 @@
 	 * of the browser *tab*, not the browser *window*.
 	 * For longer-lasting persistence across tabs, refer to mw.storage or mw.cookie instead.
 	 *
-	 * Example:
+	 * @class MwSafeStorage
+	 * @extends SafeStorage
+	 * @hideconstructor
+	 */
+
+	/**
+	 * @type {MwSafeStorage}
+	 */
+	mw.storage = new SafeStorage( localStorage );
+
+	/**
+	 * A safe interface to HTML5 `sessionStorage`.
 	 *
-	 *     mw.storage.session.set( key, value );
-	 *     mw.storage.session.get( key );
-	 *
-	 * Example:
-	 *
-	 *     var session = require( 'mediawiki.storage' ).session;
-	 *     session.set( key, value );
-	 *     session.get( key );
-	 *
-	 * @class
-	 * @singleton
-	 * @extends mw.SafeStorage
+	 * @name MwSafeStorage.session
+	 * @type {SafeStorage}
 	 */
 	mw.storage.session = new SafeStorage( sessionStorage );
 
+	/**
+	 * Provides safe access to HTML5 session storage and local storage.
+	 * @exports mediawiki.storage
+	 */
 	module.exports = {
+		/**
+		 * Safe access to localStorage.
+		 *
+		 * @type {SafeStorage}
+		 */
 		local: mw.storage,
+		/**
+		 * Safe access to sessionStorage.
+		 * @type {SafeStorage}
+		 */
 		session: mw.storage.session
 	};
 
