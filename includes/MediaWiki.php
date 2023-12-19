@@ -73,7 +73,7 @@ class MediaWiki {
 		$this->context = $context ?: RequestContext::getMain();
 		$this->config = $this->context->getConfig();
 
-		if ( $GLOBALS['wgCommandLineMode'] ) {
+		if ( MW_ENTRY_POINT === 'cli' ) {
 			$this->postSendStrategy = self::DEFER_CLI_MODE;
 		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
 			$this->postSendStrategy = self::DEFER_FASTCGI_FINISH_REQUEST;

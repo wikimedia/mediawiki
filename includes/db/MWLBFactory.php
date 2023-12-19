@@ -49,7 +49,6 @@ class MWLBFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
-		'CommandLineMode',
 		MainConfigNames::DBcompress,
 		MainConfigNames::DBDefaultGroup,
 		MainConfigNames::DBmwschema,
@@ -160,7 +159,7 @@ class MWLBFactory {
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
 			'statsdDataFactory' => $this->statsdDataFactory,
-			'cliMode' => $this->options->get( 'CommandLineMode' ),
+			'cliMode' => MW_ENTRY_POINT === 'cli',
 			'readOnlyReason' => $this->readOnlyMode->getReason(),
 			'defaultGroup' => $this->options->get( MainConfigNames::DBDefaultGroup ),
 			'criticalSectionProvider' => $this->csProvider
@@ -428,7 +427,7 @@ class MWLBFactory {
 		Config $config,
 		IBufferingStatsdDataFactory $stats
 	): void {
-		if ( $config->get( 'CommandLineMode' ) ) {
+		if ( MW_ENTRY_POINT === 'cli' ) {
 			$lbFactory->getMainLB()->setTransactionListener(
 				__METHOD__,
 				static function ( $trigger ) use ( $stats, $config ) {

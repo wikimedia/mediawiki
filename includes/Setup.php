@@ -271,7 +271,7 @@ if ( $wgBaseDirectory !== MW_INSTALL_PATH ) {
 }
 
 // Start time limit
-if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
+if ( $wgRequestTimeLimit && MW_ENTRY_POINT !== 'cli' ) {
 	RequestTimeout::singleton()->setWallTimeLimit( $wgRequestTimeLimit );
 }
 
@@ -465,7 +465,7 @@ if ( MW_ENTRY_POINT === 'index' ) {
  * @var MediaWiki\Session\SessionId|null $wgInitialSessionId The persistent session ID (if any) loaded at startup
  */
 $wgInitialSessionId = null;
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
 		HeaderCallback::warnIfHeadersSent();
@@ -574,7 +574,7 @@ unset( $func ); // no global pollution; destroy reference
 
 // If the session user has a 0 id but a valid name, that means we need to
 // autocreate it.
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
 	if ( $sessionUser->getId() === 0 &&
 		MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $sessionUser->getName() )
@@ -595,7 +595,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 }
 
 // Optimization: Avoid overhead from DeferredUpdates and Pingback deps when turned off.
-if ( !$wgCommandLineMode && $wgPingback ) {
+if ( MW_ENTRY_POINT !== 'cli' && $wgPingback ) {
 	// NOTE: Do not refactor to inject Config or otherwise make unconditional service call.
 	//
 	// On a plain install of MediaWiki, Pingback is likely the *only* feature
@@ -623,6 +623,6 @@ global $wgFullyInitialised;
 $wgFullyInitialised = true;
 
 // T264370
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	MediaWiki\Session\SessionManager::singleton()->logPotentialSessionLeakage();
 }

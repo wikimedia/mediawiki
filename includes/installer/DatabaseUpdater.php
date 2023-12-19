@@ -265,8 +265,7 @@ abstract class DatabaseUpdater {
 		if ( $this->maintenance->isQuiet() ) {
 			return;
 		}
-		global $wgCommandLineMode;
-		if ( !$wgCommandLineMode ) {
+		if ( MW_ENTRY_POINT !== 'cli' ) {
 			$str = htmlspecialchars( $str );
 		}
 		echo $str;

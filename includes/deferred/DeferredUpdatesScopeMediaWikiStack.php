@@ -53,9 +53,7 @@ class DeferredUpdatesScopeMediaWikiStack extends DeferredUpdatesScopeStack {
 	}
 
 	public function allowOpportunisticUpdates(): bool {
-		global $wgCommandLineMode;
-
-		if ( !$wgCommandLineMode ) {
+		if ( MW_ENTRY_POINT !== 'cli' ) {
 			// In web req
 			return false;
 		}
@@ -76,12 +74,10 @@ class DeferredUpdatesScopeMediaWikiStack extends DeferredUpdatesScopeStack {
 	}
 
 	public function onRunUpdateStart( DeferrableUpdate $update ): void {
-		global $wgCommandLineMode;
-
 		// Increment a counter metric
 		$type = get_class( $update )
 			. ( $update instanceof DeferrableCallback ? '_' . $update->getOrigin() : '' );
-		$httpMethod = $wgCommandLineMode ? 'cli' : strtolower( $_SERVER['REQUEST_METHOD'] ?? 'GET' );
+		$httpMethod = MW_ENTRY_POINT === 'cli' ? 'cli' : strtolower( $_SERVER['REQUEST_METHOD'] ?? 'GET' );
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$stats->increment( "deferred_updates.$httpMethod.$type" );
 

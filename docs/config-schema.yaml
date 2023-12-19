@@ -1890,7 +1890,7 @@ config-schema:
               - cliMode:     (optional) Connection handles will not assume that requests are short-lived
                              nor that INSERT..SELECT can be rewritten into a buffered SELECT and INSERT.
                              This is what DBO_DEFAULT uses to determine when a web request is present.
-                             [Default: uses value of $wgCommandLineMode]
+                             [Default: true if MW_ENTRY_POINT is 'cli', otherwise false]
               These and any other user-defined properties will be assigned to the mLBInfo member
               variable of the Database object.
             Leave at false to use the single-server variables above. If you set this
