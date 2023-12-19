@@ -868,10 +868,14 @@ mw.loader.getScript = function ( url ) {
  */
 mw.user = {
 	/**
+	 * Map of user preferences and their values.
+	 *
 	 * @property {mw.Map}
 	 */
 	options: new mw.Map(),
 	/**
+	 * Map of retrieved user tokens.
+	 *
 	 * @property {mw.Map}
 	 */
 	tokens: new mw.Map()

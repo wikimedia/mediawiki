@@ -1,4 +1,6 @@
 /**
+ * User library provided by 'mediawiki.user' ResourceLoader module.
+ *
  * @namespace mw.user
  */
 ( function () {

@@ -88,7 +88,7 @@
 	 * @memberof mw
 	 * @param {string|Function} documentLocation A full url, or function returning one.
 	 *  If passed a function, the return value may change over time and this will be honoured. (T74334)
-	 * @return {Function} An mw.Uri class constructor
+	 * @return {mw.Uri} An mw.Uri class constructor
 	 */
 	mw.UriRelative = function ( documentLocation ) {
 		var getDefaultUri = ( function () {
@@ -106,6 +106,8 @@
 			};
 		}() );
 		/**
+		 * Options for mw.Uri object.
+		 *
 		 * @typedef {Object} mw.Uri.UriOptions
 		 * @property {boolean} [strictMode=false] Trigger strict mode parsing of the url.
 		 * @property {boolean} [overrideKeys=false] Whether to let duplicate query parameters
@@ -117,8 +119,7 @@
 		 */
 
 		/**
-		 * @classdesc
-		 * Library for simple URI parsing and manipulation.
+		 * Create and manipulate MediaWiki URIs.
 		 *
 		 * Intended to be minimal, but featureful; do not expect full RFC 3986 compliance. The use cases we
 		 * have in mind are constructing 'next page' or 'previous page' URLs, detecting whether we need to
@@ -169,8 +170,10 @@
 		 * Construct a new URI object. Throws error if arguments are illegal/impossible, or
 		 * otherwise don't parse.
 		 *
-		 * @memberof mw
 		 * @constructor
+		 * @class
+		 * @classdesc Library for simple URI parsing and manipulation.
+		 * @name mw.Uri
 		 * @param {Object|string} [uri] URI string, or an Object with appropriate properties (especially
 		 *  another URI object to clone). Object must have non-blank `protocol`, `host`, and `path`
 		 *  properties. If omitted (or set to `undefined`, `null` or empty string), then an object
@@ -252,7 +255,8 @@
 		 * compliant with RFC 3986. Similar to rawurlencode from PHP and our JS library
 		 * {@link mediawiki.module:util.rawurlencode mw.util.rawurlencode}, except this also replaces spaces with `+`.
 		 *
-		 * @static
+		 * @function
+		 * @name mw.Uri.encode
 		 * @param {string} s String to encode
 		 * @return {string} Encoded string for URI
 		 */
@@ -269,7 +273,8 @@
 		 * Reversed {@link mw.Uri.encode encode}. Standard decodeURIComponent, with addition of replacing
 		 * `+` with a space.
 		 *
-		 * @static
+		 * @function
+		 * @name mw.Uri.decode
 		 * @param {string} s String to decode
 		 * @return {string} Decoded string
 		 * @throws {Error} when the string contains an unknown % sequence
@@ -278,7 +283,7 @@
 			return decodeURIComponent( s.replace( /\+/g, '%20' ) );
 		};
 
-		Uri.prototype = {
+		Uri.prototype = /** @lends mw.Uri.prototype */ {
 
 			/**
 			 * Parse a string and set our properties accordingly.
@@ -447,7 +452,7 @@
 			},
 
 			/**
-			 * Clone this URI
+			 * Clone this URI.
 			 *
 			 * @return {Object} New URI object with same properties
 			 */
@@ -471,7 +476,12 @@
 		return Uri;
 	};
 
-	// Default to the current browsing location (for relative URLs).
+	/**
+	 * Default to the current browsing location (for relative URLs).
+	 *
+	 * @ignore
+	 * @return {mw.Uri}
+	 */
 	mw.Uri = mw.UriRelative( function () {
 		return location.href;
 	} );

@@ -17,11 +17,10 @@
 	var defaultOptions;
 
 	/**
-	 * @classdesc Client library for the action API. See mw.Rest for the REST API.
-	 *
+	 * Client library for the action API. See mw.Rest for the REST API.
 	 * See also <https://www.mediawiki.org/wiki/API:Main_page>.
 	 *
-	 * Interact with the API of a particular MediaWiki site. mw.Api objects represent the API of
+	 * @classdesc Interact with the API of a particular MediaWiki site. mw.Api objects represent the API of
 	 * one particular MediaWiki site.
 	 *
 	 *     var api = new mw.Api();
