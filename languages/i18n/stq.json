@@ -219,7 +219,7 @@
 	"versionrequiredtext": "Version $1 fon MediaWiki is nöödich uum disse Siede tou nutsjen. Sjuch ju [[Special:Version|Versionssiede]]",
 	"ok": "OK",
 	"retrievedfrom": "Fon \"$1\"",
-	"youhavenewmessages": "Du hääst $1 ($2).",
+	"new-messages": "Du hääst $1 ($2).",
 	"editsection": "Beoarbaidje",
 	"editold": "Beoarbaidje",
 	"viewsourceold": "Wältext wiese",

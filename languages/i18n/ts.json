@@ -191,7 +191,7 @@
 	"versionrequiredtext": "Version $1 of MediaWiki is required to use this page.\nSee [[Special:Version|version page]].",
 	"ok": "Hiswona",
 	"retrievedfrom": "ku suka e \"$1\"",
-	"youhavenewmessages": "U na $1 ($2).",
+	"new-messages": "U na $1 ($2).",
 	"editsection": "Lulamisa",
 	"editold": "Lulamisa",
 	"viewsourceold": "Languta vutsari-ntumbuluko",

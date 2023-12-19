@@ -163,7 +163,7 @@
 	"versionrequiredtext": "Pane $1 di MediaWiki sa nidyisize di sebesize bye petulo. Kamukile [[Special:Version|pane]].",
 	"ok": "lumelisize",
 	"retrievedfrom": "Bulukezi ye ng'i di \"$1\"",
-	"youhavenewmessages": "A sa pozefisize $1 ($2).",
+	"new-messages": "A sa pozefisize $1 ($2).",
 	"editsection": "hloli ye ng'i",
 	"editold": "hloli ye ng'i",
 	"editsectionhint": "Hloli ye ng'i silami: $1",

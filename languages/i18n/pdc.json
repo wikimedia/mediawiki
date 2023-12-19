@@ -151,7 +151,7 @@
 	"versionrequiredtext": "Muss Version $1 vun MediaWiki sei, fer es Blatt zu yuuse.\nGuck aa [[Special:Version|Versionsblatt]]",
 	"ok": "OK",
 	"retrievedfrom": "Vun „$1“",
-	"youhavenewmessages": "Du hast $1 uff deinem $2.",
+	"new-messages": "Du hast $1 uff deinem $2.",
 	"editsection": "Ennere",
 	"editold": "Ennere",
 	"editlink": "ennere",

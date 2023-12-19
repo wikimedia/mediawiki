@@ -141,7 +141,7 @@
 	"badaccess-groups": "الفعل الذي طلبته مقصور على المستخدمين في {{PLURAL:$2||مجموعة|واحدة من مجموعتي|واحدة من مجموعات}}: $1.",
 	"versionrequired": "تلزم نسخة $1 من ميدياويكي",
 	"versionrequiredtext": "تلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]",
-	"youhavenewmessages": "{{PLURAL:$3|توجد لديك}} $1 ($2).",
+	"new-messages": "{{PLURAL:$3|توجد لديك}} $1 ($2).",
 	"editsection": "بدّل",
 	"editold": "بدّل",
 	"editlink": "بدّل",

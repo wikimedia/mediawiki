@@ -141,7 +141,7 @@
 	"privacypage": "Project:Privatuma politika",
 	"badaccess": "Atļuovis klaida",
 	"retrievedfrom": "Atdabuot nu \"$1\"",
-	"youhavenewmessages": "Tu dabuoji $1 ($2).",
+	"new-messages": "Tu dabuoji $1 ($2).",
 	"editsection": "pataiseit",
 	"editold": "pataiseit",
 	"editlink": "pataiseit",

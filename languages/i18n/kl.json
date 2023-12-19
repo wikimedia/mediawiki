@@ -118,7 +118,7 @@
 	"portal": "Allattartup saqqaa",
 	"privacy": "Namminermut paasissutissat",
 	"retrievedfrom": "Uannga aaneqartoq \"$1\"",
-	"youhavenewmessages": "<!-- This sentence shall be empty because of kl grammar. --> $1 ($2)",
+	"new-messages": "<!-- This sentence shall be empty because of kl grammar. --> $1 ($2)",
 	"editsection": "aaqqissoruk",
 	"editold": "aaqqissoruk",
 	"viewsourceold": "toqqavia takuuk",

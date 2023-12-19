@@ -181,7 +181,7 @@
 	"versionrequiredtext": "Versie $1 fu MediaWiki de fanowdu fu man kebroiki a papira disi. Luku ini a papira [[Special:Version|softwareversie]].",
 	"ok": "Abun",
 	"retrievedfrom": "Teki baka fu \"$1\"",
-	"youhavenewmessages": "Yu abi $1 ($2).",
+	"new-messages": "Yu abi $1 ($2).",
 	"editsection": "kenki",
 	"editold": "kenki",
 	"viewsourceold": "Luku a source",

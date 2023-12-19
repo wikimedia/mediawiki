@@ -133,7 +133,7 @@
 	"badaccess": "Lingud pangiabuloy",
 	"badaccess-group0": "Agmo sarag ya gaween so kiwas ya kekerewen mo.",
 	"ok": "OK",
-	"youhavenewmessages": "{{PLURAL:$3|Walay}} $1 ($2).",
+	"new-messages": "{{PLURAL:$3|Walay}} $1 ($2).",
 	"editsection": "dumaen",
 	"editold": "dumaen",
 	"viewsourceold": "nengnengen so pinanlapuan",

@@ -141,7 +141,7 @@
 	"badaccess-group0": "Du hast nich daut needje Rajcht fe dise Aktioon.",
 	"versionrequired": "Versioon $1 von MediaWiki es needich",
 	"retrievedfrom": "Von \"$1\"",
-	"youhavenewmessages": "Dü hast $1 ($2).",
+	"new-messages": "Dü hast $1 ($2).",
 	"editsection": "Beoabeide",
 	"editold": "endre",
 	"editsectionhint": "Aufschnett beoabeide: $1",

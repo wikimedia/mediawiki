@@ -216,7 +216,7 @@
 	"versionrequiredtext": "Voerjan $1 a MediaWiki rikwaya fi yuuz dis piej.\nSi [[Special:Version|voerjan piej]].",
 	"ok": "OK",
 	"retrievedfrom": "Fram \"$1\"",
-	"youhavenewmessages": "Yu gat $1 ($2).",
+	"new-messages": "Yu gat $1 ($2).",
 	"editsection": "change up",
 	"editold": "edit",
 	"viewsourceold": "vyuu suos",

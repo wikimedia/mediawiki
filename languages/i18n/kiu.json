@@ -215,7 +215,7 @@
 	"versionrequiredtext": "MediaWiki ra vurnaisê $1 lazımo ke na pele bıgurenê. Qaytê [[Special:Version|vurnaisê pele]] ke.",
 	"ok": "Temam",
 	"retrievedfrom": "\"$1\" ra ard",
-	"youhavenewmessages": "Yê sıma $1 ($2) esto.",
+	"new-messages": "Yê sıma $1 ($2) esto.",
 	"editsection": "bıvurne",
 	"editold": "bıvurne",
 	"viewsourceold": "çımey bıvêne",

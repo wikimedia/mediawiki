@@ -194,7 +194,7 @@
 	"versionrequiredtext": "Kayta MediaWiki $1 nishkawanlla ruranata ushapanki.\nAshtawan yachakunkapak, [[Special:Version|version page]] pankata rikukripay.",
 	"ok": "Ari nina",
 	"retrievedfrom": "$1 pankamanta hapishka",
-	"youhavenewmessages": "$1 charipanki ($2).",
+	"new-messages": "$1 charipanki ($2).",
 	"editsection": "Killkana",
 	"editold": "Killkana",
 	"viewsourceold": "Pukyu killkata rikuna",

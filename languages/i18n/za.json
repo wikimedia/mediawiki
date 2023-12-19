@@ -114,7 +114,7 @@
 	"badaccess-groups": "Cingjgouz mwngz hanh youq {{PLURAL:$2|neix|gijneix}} bouxyungh: $1",
 	"versionrequired": "Sihyau MediaWiki $1",
 	"versionrequiredtext": "Sihyau MediaWik $1 caengj daeng sawjyungh.",
-	"youhavenewmessages": "Mungz meiz $1（$2）。",
+	"new-messages": "Mungz meiz $1（$2）。",
 	"editsection": "gaij",
 	"editold": "gaij",
 	"editlink": "gaij",

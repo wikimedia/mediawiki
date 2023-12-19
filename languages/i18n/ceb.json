@@ -215,7 +215,7 @@
 	"versionrequiredtext": "Gikinahanglan ang Bersyong $1 sa MediaWiki aron magamit kining panid. Tan-awa ang [[Special:Version|panid sa bersyon]].",
 	"ok": "OK",
 	"retrievedfrom": "Gikuha gikan sa \"$1\"",
-	"youhavenewmessages": "Aduna kay $1 ($2).",
+	"new-messages": "Aduna kay $1 ($2).",
 	"editsection": "usba",
 	"editold": "usba",
 	"viewsourceold": "tan-awa ang ginikanan",

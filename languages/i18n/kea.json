@@ -225,7 +225,7 @@
 	"badaccess": "Eru di permison",
 	"ok": "OK",
 	"retrievedfrom": "Atxadu na \"$1\"",
-	"newmessageslinkplural": "{{PLURAL:$1|un mensajen|999=mensajens}} nobu",
+	"new-messages-link-plural": "{{PLURAL:$1|un mensajen|999=mensajens}} nobu",
 	"editsection": "muda",
 	"editold": "muda",
 	"viewsourceold": "odja kódigu-fonti",

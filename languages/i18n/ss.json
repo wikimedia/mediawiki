@@ -132,7 +132,7 @@
 	"badaccess-groups": "Lesento losicelile sincishiselwe bantfu labakule {{PLURAL:$2|ncumbi|labakunobe nguyiphi incumbi}}: $1.",
 	"ok": "Kulungile",
 	"retrievedfrom": "Kutsatfwe ku \"$1\"",
-	"youhavenewmessages": "Una $1 ($2).",
+	"new-messages": "Una $1 ($2).",
 	"editsection": "hlela",
 	"editold": "hlela",
 	"viewsourceold": "Bona kwakheka",

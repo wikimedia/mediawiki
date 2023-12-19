@@ -216,7 +216,7 @@
 	"versionrequiredtext": "$1版嗰mediawiki才用得正箇頁。參看[[Special:Version|版本頁]]。",
 	"ok": "做得",
 	"retrievedfrom": "版本頁「$1」",
-	"youhavenewmessages": "汝有 $1 （$2）.",
+	"new-messages": "汝有 $1 （$2）.",
 	"editsection": "編寫",
 	"editold": "編寫",
 	"viewsourceold": "望下原碼",

@@ -178,7 +178,7 @@
 	"badaccess-groups": "کاري که شمه خأنين، فقط {{PLURAL:$2|اي پأره|اي پأره'ن}} کارگيرؤنˇ شئه: $1.",
 	"ok": "خؤ",
 	"retrievedfrom": "«$1» جي وأىته",
-	"youhavenewmessagesfromusers": "شمه {{PLURAL:$4|ىکته دئه کارگير|$3 کارگير}} جي $1 دأنين ($2).",
+	"new-messages-from-users": "شمه {{PLURAL:$4|ىکته دئه کارگير|$3 کارگير}} جي $1 دأنين ($2).",
 	"editsection": "دچينواچين",
 	"editold": "دچينواچين",
 	"editlink": "دچينواچين",

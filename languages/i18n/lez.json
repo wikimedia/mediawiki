@@ -201,7 +201,7 @@
 	"badaccess": "Гьатунин гъалатӀдин",
 	"ok": "ОК",
 	"retrievedfrom": "Чешне \"$1\" я",
-	"youhavenewmessages": "Квез $1 ($2) атанва.",
+	"new-messages": "Квез $1 ($2) атанва.",
 	"editsection": "дуьзар хъувун",
 	"editold": "Дуьзар хъувун",
 	"viewsourceold": "сифте кьилин коддиз килига",

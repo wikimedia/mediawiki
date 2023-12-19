@@ -140,7 +140,7 @@
 	"badaccess": "Lupa ceeltistü",
 	"ok": "OK",
 	"retrievedfrom": "Jälcinnü adresissa \"$1\"",
-	"youhavenewmessages": "Teill on $1 ($2).",
+	"new-messages": "Teill on $1 ($2).",
 	"editsection": "muuttaa",
 	"editold": "muuttaa",
 	"viewsourceold": "lähtekoodi",

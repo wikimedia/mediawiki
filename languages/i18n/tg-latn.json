@@ -204,7 +204,7 @@
 	"versionrequiredtext": "Baroi istifodai in sahifa ba nusxai $1 az narmafzori MediaViki nijoz dored. Baroi ittiloo' az nusxai narmafzori nasbşuda dar in viki ba [[Special:Version|in sahifa]] nigared.",
 	"ok": "Boşad",
 	"retrievedfrom": "Bargirifta az \"$1\"",
-	"youhavenewmessages": "Şumo $1 ($2) dored.",
+	"new-messages": "Şumo $1 ($2) dored.",
 	"editsection": "viroiş",
 	"editold": "viroiş",
 	"viewsourceold": "namoişi manba'",

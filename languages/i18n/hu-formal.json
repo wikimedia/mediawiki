@@ -208,7 +208,7 @@
 	"versionrequiredtext": "A lap használatához a MediaWiki $1-s verziójára van szükség.\nTovábbi információkat a [[Special:Version|verzióinformációs lapon]] találhat.",
 	"ok": "OK",
 	"retrievedfrom": "A lap eredeti címe: „$1”",
-	"youhavenewmessages": "Új üzenet várja $1! (Az üzenetet $2.)",
+	"new-messages": "Új üzenet várja $1! (Az üzenetet $2.)",
 	"editsection": "szerkesztés",
 	"editold": "szerkesztés",
 	"viewsourceold": "lapforrás",

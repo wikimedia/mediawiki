@@ -208,7 +208,7 @@
 	"versionrequiredtext": "Versie $1 van MediaWiki is vereist om deêze pahina te gebruken. Meêr info is beschikbaer op de pahina [[Special:Version|softwareversie]].",
 	"ok": "OK",
 	"retrievedfrom": "Truggeplekt van \"$1\"",
-	"youhavenewmessages": "Je ei $1 ($2).",
+	"new-messages": "Je ei $1 ($2).",
 	"editsection": "bewerken",
 	"editold": "bewerk",
 	"viewsourceold": "brontekst bekieken",

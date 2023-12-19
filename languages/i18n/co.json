@@ -167,7 +167,7 @@
 	"versionrequired": "A version $1 di MediaWiki hè necessaria",
 	"ok": "D'accordu",
 	"retrievedfrom": "Ricacciatu da \"$1\"",
-	"youhavenewmessages": "{{PLURAL:$3|Ai}} $1 ($2).",
+	"new-messages": "{{PLURAL:$3|Ai}} $1 ($2).",
 	"editsection": "mudificà",
 	"editold": "mudificà",
 	"viewsourceold": "Vede a surghjente",

@@ -220,7 +220,7 @@
 	"versionrequiredtext": "$1版𠮶mediawiki才用得正个页。参看[[Special:Version|版本页]]。",
 	"ok": "做得",
 	"retrievedfrom": "版本页 \"$1\"",
-	"youhavenewmessages": "倷有 $1 （$2）.",
+	"new-messages": "倷有 $1 （$2）.",
 	"editsection": "编写",
 	"editold": "编写",
 	"viewsourceold": "眵吖源代码",

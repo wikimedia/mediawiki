@@ -133,7 +133,7 @@
 	"privacy": "Tasertit n tusligi",
 	"privacypage": "Project:Tasertit n tusligi",
 	"retrievedfrom": "Itwarr-d zi \"$1\"",
-	"youhavenewmessages": "{{PLURAL:$3|ⵖⴰⵔⴽ|ⵖⴰⵔⵎ}} $1 ($2).",
+	"new-messages": "{{PLURAL:$3|ⵖⴰⵔⴽ|ⵖⴰⵔⵎ}} $1 ($2).",
 	"editsection": "Snfi",
 	"editold": "ⵙⵏⴼⵍ",
 	"viewsourceold": "ⵥⵔ ⴰⵙⴰⴳⵎ",

@@ -181,7 +181,7 @@
 	"ok": "جارايدى",
 	"pagetitle": "$1 — {{SITENAME}}",
 	"retrievedfrom": "«$1» بەتىنەن الىنعان",
-	"youhavenewmessages": "سىزگە $1 بار ($2).",
+	"new-messages": "سىزگە $1 بار ($2).",
 	"editsection": "وڭدەۋ",
 	"editold": "وڭدەۋ",
 	"viewsourceold": "قاينار كوزىن قاراۋ",

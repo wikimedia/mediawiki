@@ -216,7 +216,7 @@
 	"versionrequiredtext": "এরে পাতা এহান ব্যবহারর কা মিডিয়াউইকির $1 নং সংস্করণহান দরকার। [[Special:Version|সংস্করণ পাতা]] চা।",
 	"ok": "চুমিসে",
 	"retrievedfrom": "'$1' -ত্ত আনানি অসে",
-	"youhavenewmessages": "তরতা $1 ($2) আসে।",
+	"new-messages": "তরতা $1 ($2) আসে।",
 	"editsection": "পতিক",
 	"editold": "পতিক",
 	"viewsourceold": "উৎস চা",

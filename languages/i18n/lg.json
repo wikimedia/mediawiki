@@ -209,7 +209,7 @@
 	"versionrequiredtext": "Olupapula luno lwetaagisa MediaWiki ey'oluwandika $1.<br />\nKebera ku [[Special:Version|lukalala lw'empandika za MediaWiki]].",
 	"ok": "Kale",
 	"retrievedfrom": "Bino bigyidwa ku \"$1\"",
-	"youhavenewmessages": "Ofunye $1 ($2).",
+	"new-messages": "Ofunye $1 ($2).",
 	"editsection": "kyusa",
 	"editold": "kyusa",
 	"viewsourceold": "kebera obulambike obw'ennono obw'olupapula luno",

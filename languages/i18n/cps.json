@@ -207,7 +207,7 @@
 	"versionrequiredtext": "Kinahanglan ang $1 nga bersyon sang MediaWiki para magamit ang mini nga pahina.\nTan-awon ang [[Special:Version|pahina sang bersyon]].",
 	"ok": "Sige",
 	"retrievedfrom": "Nakuha halin sa \"$1\"",
-	"youhavenewmessages": "May ara ka sang $1 ($2).",
+	"new-messages": "May ara ka sang $1 ($2).",
 	"editsection": "bag-uhon",
 	"editold": "bag-uhon",
 	"viewsourceold": "lantawon ang ginhalinan",

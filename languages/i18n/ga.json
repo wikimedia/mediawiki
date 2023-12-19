@@ -226,7 +226,7 @@
 	"versionrequiredtext": "Tá an leagan $1 de MediaWiki riachtanach chun an leathanach seo a úsáid. Féach ar [[Special:Version]]",
 	"ok": "Déan",
 	"retrievedfrom": "Aisghafa ó \"$1\"",
-	"youhavenewmessages": "Tá $1 agat ($2).",
+	"new-messages": "Tá $1 agat ($2).",
 	"editsection": "cuir in eagar",
 	"editold": "athraigh",
 	"viewsourceold": "féach ar an bhfoinse",

@@ -179,7 +179,7 @@
 	"versionrequiredtext": "Manesita i rebision $1 MediaWiki para un usa i påhina. Taitai [[Special:Version|i påhinan rebision]].",
 	"ok": "OK",
 	"retrievedfrom": "Ginen \"$1\"",
-	"youhavenewmessages": "Guåha $1 ($2).",
+	"new-messages": "Guåha $1 ($2).",
 	"editsection": "tulaika",
 	"editold": "tulaika",
 	"viewsourceold": "atan i code",

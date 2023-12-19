@@ -184,7 +184,7 @@
 	"versionrequiredtext": "MediaWiki-nin $1 versiyası läazım bu sayfayı kullanmaa deyni. Bak [[Special:Version|versiya sayfası]].",
 	"ok": "TAMAN",
 	"retrievedfrom": "Alındı \"$1\"dän",
-	"youhavenewmessages": "Var eni $1 ($2).",
+	"new-messages": "Var eni $1 ($2).",
 	"editsection": "diiştir",
 	"editold": "diiştir",
 	"editlink": "diiştir",

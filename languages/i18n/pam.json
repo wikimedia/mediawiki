@@ -203,7 +203,7 @@
 	"versionrequiredtext": "Ing bersion $1 ning MediaWiki ing kailangan ba yang magamit ing bulung a ini. Lon ya ing [[Special:Version|bulung da reng bersion]].",
 	"ok": "Sigi",
 	"retrievedfrom": "Mekua ya king \"$1\"",
-	"youhavenewmessages": "Atin kang $1 ($2).",
+	"new-messages": "Atin kang $1 ($2).",
 	"editsection": "mag-edit",
 	"editold": "alilan",
 	"viewsourceold": "lawen ya ing penibatan",

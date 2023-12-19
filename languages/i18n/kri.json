@@ -159,7 +159,7 @@
 	"versionrequiredtext": "Yu nid MediaWiki Versiòn $1 fòyuz dhis pej.\nLuk [[Special:Version|version page]].",
 	"ok": "OK",
 	"retrievedfrom": "Dèn dòn ritriv am na\"$1\"",
-	"youhavenewmessages": "{{PLURAL:$3|Yu gèt}} $1 ($2).",
+	"new-messages": "{{PLURAL:$3|Yu gèt}} $1 ($2).",
 	"editsection": "èdit",
 	"editold": "èdit",
 	"viewsourceold": "Luk dhi sòrs",

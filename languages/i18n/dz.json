@@ -112,7 +112,7 @@
 	"privacy": "སྒེར་གསང་སྲིད་བྱུས།",
 	"privacypage": "Project:སྒེར་གསང་སྲིད་བྱུས།",
 	"retrievedfrom": "\"$1\" ལས་ སླར་འདྲེན་འབད་ཡོདཔ།",
-	"youhavenewmessages": "ཁྱོད་ལུ་ $1 ($2) འདུག།",
+	"new-messages": "ཁྱོད་ལུ་ $1 ($2) འདུག།",
 	"editsection": "ཞུན་དག།",
 	"editold": "ཞུན་དག།",
 	"viewsourceold": "འབྱུང་ཚིག་བལྟ",

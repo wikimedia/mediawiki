@@ -173,7 +173,7 @@
 	"badaccess": "Kranki long tok orait.",
 	"ok": "OK",
 	"retrievedfrom": "Ikam long \"$1\"",
-	"youhavenewmessages": "$1 i kam ($2).",
+	"new-messages": "$1 i kam ($2).",
 	"editsection": "senisim",
 	"editold": "senisim",
 	"viewsourceold": "lukim as tok",

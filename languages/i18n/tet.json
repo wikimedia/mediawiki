@@ -164,7 +164,7 @@
 	"versionrequiredtext": "Presiza MediaWiki versaun $1 ba uza pájina ne'e. Haree [[Special:Version|pájina versaun]].",
 	"ok": "OK",
 	"retrievedfrom": "Husi \"$1\"",
-	"youhavenewmessages": "Ó iha $1 ($2).",
+	"new-messages": "Ó iha $1 ($2).",
 	"editsection": "edita",
 	"editold": "edita",
 	"viewsourceold": "lee testu",

@@ -213,7 +213,7 @@
 	"versionrequiredtext": "Lypet verzioni $1 i MediaWikit për me përdorë këtë faqe.\nShih [[Special:Version|faqen e verzionit]].",
 	"ok": "OK",
 	"retrievedfrom": "Marrë nga \"$1\"",
-	"youhavenewmessages": "Keni $1 ($2).",
+	"new-messages": "Keni $1 ($2).",
 	"editsection": "redakto",
 	"editold": "redakto",
 	"viewsourceold": "shih kodin",
