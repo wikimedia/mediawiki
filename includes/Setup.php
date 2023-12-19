@@ -427,10 +427,10 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 
 // Useful debug output
 ( static function () {
-	global $wgCommandLineMode, $wgRequest;
+	global $wgRequest;
 
 	$logger = LoggerFactory::getInstance( 'wfDebug' );
-	if ( $wgCommandLineMode ) {
+	if ( MW_ENTRY_POINT === 'cli' ) {
 		$self = $_SERVER['PHP_SELF'] ?? '';
 		$logger->debug( "\n\nStart command line script $self" );
 	} else {
