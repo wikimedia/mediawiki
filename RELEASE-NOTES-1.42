@@ -308,6 +308,8 @@ because of Phabricator reports.
 === Other changes in 1.42 ===
 * Gallery: Image captions are no longer wrapped in <p> tags. Skins that
   customize rendering for galleries may need to tweak their CSS.
+* Scripts under maintenance/dev/, for quickly setup a local MediaWiki for
+  development purposes, have been removed, see DEVELOPERS.md for alternatives.
 * …
 
 == Compatibility ==
