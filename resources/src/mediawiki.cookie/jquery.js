@@ -1,9 +1,3 @@
-/**
- * To use, load the `mediawiki.cookie` module.
- *
- * @class jQuery.plugin.cookie
- */
-
 var jar = require( './jar.js' );
 
 /**
