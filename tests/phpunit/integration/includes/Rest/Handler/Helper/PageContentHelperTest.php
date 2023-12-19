@@ -92,6 +92,23 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * Ensure we can load the page with title "0" (T353687).
+	 */
+	public function testT353687() {
+		$page = $this->getExistingTestPage( '0' );
+		$rev = $page->getRevisionRecord();
+
+		$helper = $this->newHelper( [ 'title' => $page->getTitle()->getPrefixedDBkey() ] );
+
+		// Key assertion: this should not throw!
+		$helper->checkAccess();
+
+		$targetRev = $helper->getTargetRevision();
+		$this->assertInstanceOf( RevisionRecord::class, $targetRev );
+		$this->assertSame( $rev->getId(), $targetRev->getId() );
+	}
+
 	public function testNoTitle() {
 		$helper = $this->newHelper();
 
