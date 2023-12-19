@@ -106,7 +106,7 @@ class PageContentHelper {
 	public function getPage(): ?ExistingPageRecord {
 		if ( $this->pageRecord === false ) {
 			$titleText = $this->getTitleText();
-			if ( !$titleText ) {
+			if ( $titleText === null ) {
 				return null;
 			}
 			$this->pageRecord = $this->pageLookup->getExistingPageByText( $titleText );
@@ -121,7 +121,7 @@ class PageContentHelper {
 
 		if ( $this->pageIdentity === null ) {
 			$titleText = $this->getTitleText();
-			if ( !$titleText ) {
+			if ( $titleText === null ) {
 				return null;
 			}
 			$this->pageIdentity = $this->pageLookup->getPageByText( $titleText );
