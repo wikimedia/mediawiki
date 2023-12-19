@@ -787,38 +787,6 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * @param int $key Number from 1 to 12
-	 * @return string
-	 */
-	private function getIranianCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::IRANIAN_CALENDAR_MONTHS_MESSAGES[$key - 1] );
-	}
-
-	/**
-	 * @param int $key Number from 1 to 14
-	 * @return string
-	 */
-	private function getHebrewCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::HEBREW_CALENDAR_MONTHS_MESSAGES[$key - 1] );
-	}
-
-	/**
-	 * @param int $key Number from 1 to 14
-	 * @return string
-	 */
-	private function getHebrewCalendarMonthNameGen( $key ) {
-		return $this->getMessageFromDB( self::HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES[$key - 1] );
-	}
-
-	/**
-	 * @param int $key Number from 1 to 12
-	 * @return string
-	 */
-	private function getHijriCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::HIJRI_CALENDAR_MONTH_MESSAGES[$key - 1] );
-	}
-
-	/**
 	 * Pass through the result from $dateTimeObj->format()
 	 *
 	 * @param DateTime|false|null &$dateTimeObj
@@ -998,7 +966,7 @@ class Language implements Bcp47Code {
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
-					$s .= $this->getHebrewCalendarMonthNameGen( $hebrew[1] );
+					$s .= $this->getMessageFromDB( self::HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES[$hebrew[1] - 1] );
 					break;
 
 				case 'd':
@@ -1059,7 +1027,7 @@ class Language implements Bcp47Code {
 					if ( !$iranian ) {
 						$iranian = self::tsToIranian( $ts );
 					}
-					$s .= $this->getIranianCalendarMonthName( $iranian[1] );
+					$s .= $this->getMessageFromDB( self::IRANIAN_CALENDAR_MONTHS_MESSAGES[$iranian[1] - 1] );
 					break;
 
 				case 'xmF':
@@ -1067,7 +1035,7 @@ class Language implements Bcp47Code {
 					if ( !$hijri ) {
 						$hijri = self::tsToHijri( $ts );
 					}
-					$s .= $this->getHijriCalendarMonthName( $hijri[1] );
+					$s .= $this->getMessageFromDB( self::HIJRI_CALENDAR_MONTH_MESSAGES[$hijri[1] - 1] );
 					break;
 
 				case 'xjF':
@@ -1075,7 +1043,7 @@ class Language implements Bcp47Code {
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
-					$s .= $this->getHebrewCalendarMonthName( $hebrew[1] );
+					$s .= $this->getMessageFromDB( self::HEBREW_CALENDAR_MONTHS_MESSAGES[$hebrew[1] - 1] );
 					break;
 
 				case 'm':

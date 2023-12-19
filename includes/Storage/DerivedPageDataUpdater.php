@@ -743,23 +743,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	}
 
 	/**
-	 * Returns the content model of the given slot
-	 *
-	 * @param string $role slot role name
-	 * @return string
-	 */
-	private function getContentModel( $role ) {
-		return $this->getRawSlot( $role )->getModel();
-	}
-
-	/**
 	 * @param string $role slot role name
 	 * @return ContentHandler
 	 * @throws MWUnknownContentModelException
 	 */
 	private function getContentHandler( $role ): ContentHandler {
 		return $this->contentHandlerFactory
-			->getContentHandler( $this->getContentModel( $role ) );
+			->getContentHandler( $this->getRawSlot( $role )->getModel() );
 	}
 
 	private function usePrimary() {

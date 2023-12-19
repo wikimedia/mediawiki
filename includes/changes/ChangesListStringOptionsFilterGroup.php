@@ -170,7 +170,8 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds,
 		FormOptions $opts, $isStructuredFiltersEnabled
 	) {
-		if ( !$this->isActive( $isStructuredFiltersEnabled ) ) {
+		// STRING_OPTIONS filter groups are exclusively active on Structured UI
+		if ( !$isStructuredFiltersEnabled ) {
 			return;
 		}
 
@@ -233,16 +234,5 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	 */
 	public function addOptions( FormOptions $opts, $allowDefaults, $isStructuredFiltersEnabled ) {
 		$opts->add( $this->getName(), $allowDefaults ? $this->getDefault() : '' );
-	}
-
-	/**
-	 * Check if this filter group is currently active
-	 *
-	 * @param bool $isStructuredUI Is structured filters UI current enabled
-	 * @return bool
-	 */
-	private function isActive( $isStructuredUI ) {
-		// STRING_OPTIONS filter groups are exclusively active on Structured UI
-		return $isStructuredUI;
 	}
 }

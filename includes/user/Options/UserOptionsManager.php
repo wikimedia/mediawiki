@@ -523,7 +523,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * Fetches the options directly from the database with no caches.
 	 *
 	 * @param UserIdentity $user
-	 * @param int $queryFlags
+	 * @param int $queryFlags a bit field composed of READ_XXX flags
 	 * @param array|null $prefetchedOptions
 	 * @return array
 	 */
@@ -534,7 +534,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	): array {
 		if ( $prefetchedOptions === null ) {
 			$this->logger->debug( 'Loading options from database', [ 'user_id' => $user->getId() ] );
-			[ $dbr, $options ] = $this->getDBAndOptionsForQueryFlags( $queryFlags );
+			[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
+			$dbr = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $mode );
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'up_property', 'up_value' ] )
 				->from( 'user_properties' )
@@ -662,15 +663,6 @@ class UserOptionsManager extends UserOptionsLookup {
 		} else {
 			return "u:{$user->getId()}";
 		}
-	}
-
-	/**
-	 * @param int $queryFlags a bit field composed of READ_XXX flags
-	 * @return array [ IDatabase $db, array $options ]
-	 */
-	private function getDBAndOptionsForQueryFlags( $queryFlags ): array {
-		[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		return [ DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $mode ), $options ];
 	}
 
 	/**

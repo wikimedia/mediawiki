@@ -22,7 +22,6 @@
 
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -89,7 +88,7 @@ class RCCacheEntryFactory {
 
 		// Make "cur" and "diff" links.  Do not use link(), it is too slow if
 		// called too many times (50% of CPU time on RecentChanges!).
-		$showDiffLinks = $this->showDiffLinks( $cacheEntry, $user );
+		$showDiffLinks = ChangesList::userCan( $cacheEntry, RevisionRecord::DELETED_TEXT, $user );
 
 		$cacheEntry->difflink = $this->buildDiffLink( $cacheEntry, $showDiffLinks );
 		$cacheEntry->curlink = $this->buildCurLink( $cacheEntry, $showDiffLinks );
@@ -127,16 +126,6 @@ class RCCacheEntryFactory {
 		}
 
 		return $cacheEntry;
-	}
-
-	/**
-	 * @param RecentChange $cacheEntry
-	 * @param Authority $performer
-	 *
-	 * @return bool
-	 */
-	private function showDiffLinks( RecentChange $cacheEntry, Authority $performer ) {
-		return ChangesList::userCan( $cacheEntry, RevisionRecord::DELETED_TEXT, $performer );
 	}
 
 	/**

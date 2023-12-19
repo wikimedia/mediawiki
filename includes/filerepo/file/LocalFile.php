@@ -1287,13 +1287,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Refresh metadata in memcached, but don't touch thumbnails or CDN
-	 */
-	private function purgeMetadataCache() {
-		$this->invalidateCache();
-	}
-
-	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the CDN.
 	 * @stable to override
 	 *
@@ -1302,9 +1295,9 @@ class LocalFile extends File {
 	 * @note This used to purge old thumbnails by default as well, but doesn't anymore.
 	 */
 	public function purgeCache( $options = [] ) {
-		// Refresh metadata cache
+		// Refresh metadata in memcached, but don't touch thumbnails or CDN
 		$this->maybeUpgradeRow();
-		$this->purgeMetadataCache();
+		$this->invalidateCache();
 
 		// Delete thumbnails
 		$this->purgeThumbnails( $options );

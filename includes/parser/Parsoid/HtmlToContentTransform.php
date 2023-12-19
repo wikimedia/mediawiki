@@ -90,10 +90,6 @@ class HtmlToContentTransform {
 		$this->metrics = $metrics;
 	}
 
-	private function startTiming(): Timing {
-		return Timing::start( $this->metrics );
-	}
-
 	private function incrementMetrics( string $key ) {
 		if ( $this->metrics ) {
 			$this->metrics->increment( $key );
@@ -510,7 +506,7 @@ class HtmlToContentTransform {
 		$this->incrementMetrics(
 			"downgrade.from.{$downgrade['from']}.to.{$downgrade['to']}"
 		);
-		$downgradeTiming = $this->startTiming();
+		$downgradeTiming = Timing::start( $this->metrics );
 		Parsoid::downgrade( $downgrade, $pb );
 		$downgradeTiming->end( 'downgrade.time' );
 

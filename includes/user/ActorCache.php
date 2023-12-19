@@ -134,19 +134,13 @@ class ActorCache {
 	private function getCachedValue( string $keyType, $keyValue ): ?array {
 		if ( isset( $this->cache[$keyType][$keyValue] ) ) {
 			$cached = $this->cache[$keyType][$keyValue];
-			$this->ping( $cached['actorId'] );
+			$actorId = $cached['actorId'];
+			// Record the actor with $actorId was recently used.
+			$item = $this->cache[self::KEY_ACTOR_ID][$actorId];
+			unset( $this->cache[self::KEY_ACTOR_ID][$actorId] );
+			$this->cache[self::KEY_ACTOR_ID][$actorId] = $item;
 			return $cached;
 		}
 		return null;
-	}
-
-	/**
-	 * Record the actor with $actorId was recently used.
-	 * @param int $actorId
-	 */
-	private function ping( int $actorId ) {
-		$item = $this->cache[self::KEY_ACTOR_ID][$actorId];
-		unset( $this->cache[self::KEY_ACTOR_ID][$actorId] );
-		$this->cache[self::KEY_ACTOR_ID][$actorId] = $item;
 	}
 }
