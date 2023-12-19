@@ -39,17 +39,6 @@
  */
 
 /**
- * Fired when the diff is added to a page containing a diff/
- *
- * Similar to the [wikipage.content hook]{@link Hooks~event:'wikipage.content'},
- * `$diff` may still be detached when the hook is fired.
- *
- * @event ~'wikipage.diff'
- * @memberof Hooks
- * @param {jQuery} $diff The root element of the MediaWiki diff (`table.diff`).
- */
-
-/**
  * Fired when a trusted UI element to perform a logout has been activated.
  *
  * This will end the user session, and either redirect to the given URL
