@@ -11,6 +11,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Tests\Rest\Handler\PageHandlerTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -26,6 +27,10 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 		$redirectStore = $this->createNoOpMock( RedirectStore::class, [ 'getRedirectTarget' ] );
 		$redirectStore->method( 'getRedirectTarget' )
 			->willReturnCallback( static function ( PageIdentity $page ) use ( $services ) {
+				if ( $page->getDBkey() === 'Redirect_to_self' ) {
+					return TitleValue::newFromPage( $page );
+				}
+
 				if ( str_starts_with( $page->getDBkey(), 'Redirect_to_' ) ) {
 					$titleParser = $services->getTitleParser();
 					return $titleParser->parseTitle( substr( $page->getDBkey(), 12 ), $page->getNamespace() );
@@ -141,10 +146,13 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideWikiRedirect() {
 		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_foo', false );
-		yield [ $page, '/api/test/Foo' ];
+		yield 'Wiki redirect' => [ $page, '/api/test/Foo' ];
+
+		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_self', false );
+		yield 'Self-redirect (T353688)' => [ $page, null ];
 
 		$page = new PageIdentityValue( 7, NS_MAIN, 'foo', false );
-		yield [ $page, null ];
+		yield 'no redirect' => [ $page, null ];
 	}
 
 	/**

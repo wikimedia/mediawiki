@@ -12,6 +12,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Title\TitleValue;
 
 /**
  * Helper class for handling page redirects, for use with REST Handlers that provide access
@@ -111,6 +112,12 @@ class PageRedirectHelper {
 		$redirectTarget = $this->redirectStore->getRedirectTarget( $page );
 
 		if ( $redirectTarget === null ) {
+			return null;
+		}
+
+		if ( $redirectTarget->isSameLinkAs( TitleValue::newFromPage( $page ) ) ) {
+			// This can happen if the current page is virtual file description
+			// page backed by a remote file repo (T353688).
 			return null;
 		}
 
