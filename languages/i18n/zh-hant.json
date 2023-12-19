@@ -662,7 +662,7 @@
 	"botpasswords-label-cancel": "取消",
 	"botpasswords-label-delete": "刪除",
 	"botpasswords-label-resetpassword": "重設密碼",
-	"botpasswords-label-grants": "適用的權限：",
+	"botpasswords-label-grants": "適用的授權：",
 	"botpasswords-help-grants": "授權可以允許您存取您的使用者帳號已經擁有的權限，但在此開啟授權並不會讓您的使用者帳號可以存取那些您並未擁有的權限。請參考[[Special:ListGrants|授權表]]取得更多資訊。",
 	"botpasswords-label-grants-column": "已授權",
 	"botpasswords-bad-appid": "機器人名稱 \"$1\" 無效。",

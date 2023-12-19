@@ -1640,7 +1640,7 @@
 	"uploaded-script-svg": "Trovou elemento de script \"$1\" into file caregou in formato SVG.",
 	"uploaded-hostile-svg": "Trovou CSS no seguo inte l'elemento de stile do file in formato SVG caregou.",
 	"uploaded-event-handler-on-svg": "Impostâ i attributi de gestion di eventi <code>$1=\"$2\"</code> no l'è consentio inti file SGV",
-	"uploaded-href-attribute-svg": "I elementi <code>&lt;a&gt;</code> no pœuan ese conligæ (con « href ») ch'a-i « data: » (file incorpoou), « http:// » ò « https:// » ò à 'n framento do mæximo documento (« # »). Pe-i atri elementi, comme <code>&lt;image&gt;</code>, solo« data: » et framenti son consentii. Prœuva a incorpoâ e inmaggine quande ti t'esporti o to SVG. Trovou <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "I elementi <a> no pœuan ese conligæ (con « href ») ch'a-i « data: » (file incorpoou), « http:// » ò « https:// » ò à 'n framento do mæximo documento (« # »). Pe-i atri elementi, comme <code>&lt;image&gt;</code>, solo« data: » et framenti son consentii. Prœuva a incorpoâ e inmaggine quande ti t'esporti o to SVG. Trovou <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Trovou href a dæti non segui: destinaçion URI <code>&lt;$1 $2=\"$3\"&gt;</code> caregou into file SVG",
 	"uploaded-animate-svg": "Trovou o tag \"animate\" ch'o poriæ cangiâ href, doeuviando l'attributo \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> into file SVG caregou.",
 	"uploaded-setting-event-handler-svg": "A configuaçion di attributi pe-o gestô di eventi a l'è bloccâ, trovou <code>&lt;$1 $2=\"$3\"&gt;</code> into file SVG caregou.",
