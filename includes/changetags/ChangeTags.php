@@ -646,7 +646,9 @@ class ChangeTags {
 	 * Get the name of the change_tag table to use for modifyDisplayQuery().
 	 * This also does first-call initialisation of the table in testing mode.
 	 *
-	 * @deprecated since 1.41 use ChangeTags::CHANGE_TAG instead
+	 * @deprecated since 1.41 use ChangeTags::CHANGE_TAG or 'change_tag' instead.
+	 *   Note that directly querying this table is discouraged, try using one of
+	 *   the existing functions instead.
 	 * @return string
 	 */
 	public static function getDisplayTableName() {
