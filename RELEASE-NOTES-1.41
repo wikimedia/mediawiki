@@ -3,15 +3,17 @@
 MediaWiki 1.41 is an pre-release testing branch, and is not recommended
 for use in production.
 
-== MediaWiki 1.40.0 ==
+== MediaWiki 1.41.0 ==
 
-=== Changes since MediaWiki 1.40.0-rc.0 ===
+=== Changes since MediaWiki 1.41.0-rc.0 ===
 * Localisation updates.
 * Update wikimedia/parsoid to 0.18.0.
 * (T351758) DEVELOPERS.md: reword WSL instructions to include best practices.
 * (T350615) PoolCounterConnectionManager: Add support for ipv6.
 * (T321234) Make MagicWordArray not fail on old revs with broken UTF-8.
+* thumb: Fix "PHP Deprecated: strlen(): Passing null to parameter".
 * (T344971) Maintenance: Fix RebuildTextIndex.
+* (T327007) htmlform: Correct validation for file input field.
 
 == MediaWiki 1.41.0-rc.0 ==
 
