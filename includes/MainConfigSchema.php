@@ -4068,8 +4068,7 @@ class MainConfigSchema {
 	 * should avoid main stash updates during non-POST requests. In any case, callers should
 	 * gracefully tolerate occasional key evictions, temporary inconsistencies among datacenters,
 	 * and violations of linearizability (e.g. during timeouts). Modules that can never handle
-	 * these
-	 * kind of anamolies should use other storage mediums.
+	 * these kinds of anomalies should use other storage mediums.
 	 *
 	 * Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
 	 *
