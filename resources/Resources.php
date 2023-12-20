@@ -1372,6 +1372,10 @@ return [
 			'edit.js',
 			'storage.js',
 			'LoadNotification.js',
+			[
+				'name' => 'config.json',
+				'config' => [ 'EditRecoveryExpiry' ],
+			],
 		],
 		'styles' => [
 			'styles.less',

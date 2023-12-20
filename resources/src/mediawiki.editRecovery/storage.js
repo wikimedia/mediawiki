@@ -2,8 +2,9 @@
  * Common indexedDB-access methods, only for use by the ResourceLoader modules this directory.
  */
 
+const config = require( './config.json' );
 const dbName = mw.config.get( 'wgDBname' ) + '_editRecovery';
-const editRecoveryExpiry = mw.config.get( 'wgEditRecoveryExpiry' );
+const editRecoveryExpiry = config.EditRecoveryExpiry;
 const objectStoreName = 'unsaved-page-data';
 
 var db = null;
@@ -117,7 +118,7 @@ function saveData( pageName, section, pageData ) {
 		// Add indexed fields.
 		pageData.pageName = pageName;
 		pageData.section = section || '';
-		pageData.expiryDate = getExpiryDate( editRecoveryExpiry );
+		pageData.expiry = getExpiryDate( editRecoveryExpiry );
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
