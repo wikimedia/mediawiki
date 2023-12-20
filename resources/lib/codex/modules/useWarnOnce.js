@@ -1,1 +1,1 @@
-"use strict";const n=require("vue");function u(r,t){if(r()){n.warn(t);return}const c=n.watch(r,e=>{e&&(n.warn(t),c())})}exports.useWarnOnce=u;
+"use strict";const t=require("vue");function i(n,r){if(n()){t.warn(r);return}const c=t.watch(n,e=>{e&&(t.warn(r),c())})}module.exports=i;

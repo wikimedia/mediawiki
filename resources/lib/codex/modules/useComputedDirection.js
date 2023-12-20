@@ -1,0 +1,1 @@
+"use strict";const u=require("vue");function o(n){const t=u.ref(null);return u.onMounted(()=>{const e=window.getComputedStyle(n.value).direction;t.value=e==="ltr"||e==="rtl"?e:null}),t}module.exports=o;
