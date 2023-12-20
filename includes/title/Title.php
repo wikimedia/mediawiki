@@ -3393,18 +3393,30 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		$conds = $this->pageCond();
+
+		// Periodically recompute page_random (T309477). This mitigates bias on
+		// Special:Random due deleted pages leaving "gaps" in the distribution.
+		//
+		// Optimization: Update page_random only for 10% of updates.
+		// Optimization: Do this outside the main transaction to avoid locking for too long.
+		// Optimization: Update page_random alongside page_touched to avoid extra database writes.
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
 				$this->getDbProvider()->getPrimaryDatabase(),
 				__METHOD__,
 				function ( IDatabase $dbw, $fname ) use ( $conds, $purgeTime ) {
 					$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
-					$dbw->newUpdateQueryBuilder()
+					$update = $dbw->newUpdateQueryBuilder()
 						->update( 'page' )
 						->set( [ 'page_touched' => $dbTimestamp ] )
 						->where( $conds )
-						->andWhere( $dbw->expr( 'page_touched', '<', $dbTimestamp ) )
-						->caller( $fname )->execute();
+						->andWhere( $dbw->expr( 'page_touched', '<', $dbTimestamp ) );
+
+					if ( mt_rand( 0, 10 ) === 1 ) {
+						$update->andSet( [ 'page_random' => wfRandom() ] );
+					}
+
+					$update->caller( $fname )->execute();
 
 					MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $this );
 
