@@ -37,11 +37,44 @@ use MediaWiki\User\User;
  * This job comes in a few variants:
  *
  * - a) Recursive jobs to update links for backlink pages for a given title.
- *      These jobs have (recursive:true,table:<table>) set.
+ *      Scheduled by {@see LinksUpdate::queueRecursiveJobsForTable()}; used to
+ *      refresh pages which link/transclude a given title.
+ *      These jobs have (recursive:true,table:<table>) set. They just look up
+ *      which pages link to the job title and schedule them as a set of non-recursive
+ *      RefreshLinksJob jobs (and possible one new recursive job as a way of
+ *      continuation).
  * - b) Jobs to update links for a set of pages (the job title is ignored).
  *      These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
- * - c) Jobs to update links for a single page (the job title)
+ * - c) Jobs to update links for a single page (the job title).
  *      These jobs need no extra fields set.
+ *
+ * Job parameters for all jobs:
+ * - recursive (bool): When false, updates the current page. When true, updates
+ *   the pages which link/transclude the current page.
+ * - triggeringRevisionId (int): The revision of the edit which caused the link
+ *   refresh. For manually triggered updates, the last revision of the page (at the
+ *   time of scheduling).
+ * - triggeringUser (array): The user who triggered the refresh, in the form of a
+ *   [ 'userId' => int, 'userName' => string ] array. This is not necessarily the user
+ *   who created the revision.
+ * - triggeredRecursive (bool): Set on all jobs which were partitioned from another,
+ *   recursive job. For debugging.
+ * - Standard deduplication params (see {@see JobQueue::deduplicateRootJob()}).
+ * For recursive jobs:
+ * - table (string): Which table to use (imagelinks or templatelinks) when searching for
+ *   affected pages.
+ * - range (array): Used for recursive jobs when some pages have already been partitioned
+ *    into separate jobs. Contains the list of ranges that still need to be partitioned.
+ *    See {@see BacklinkJobUtils::partitionBacklinkJob()}.
+ * - division: Number of times the job was partitioned already (for debugging).
+ * For non-recursive jobs:
+ * - pages (array): Associative array of [ <page ID> => [ <namespace>, <dbkey> ] ].
+ *   Might be omitted, then the job title will be used.
+ * - isOpportunistic (bool): Set for opportunistic single-page updates. These are "free"
+ *   updates that are queued when most of the work needed to be performed anyway for
+ *   non-linkrefresh-related reasons, and can be more easily discarded if they don't seem
+ *   useful. See {@see WikiPage::triggerOpportunisticLinksUpdate()}.
+ * - useRecursiveLinksUpdate (bool): When true, triggers recursive jobs for each page.
  *
  * Metrics:
  *
@@ -55,6 +88,8 @@ use MediaWiki\User\User;
  *    i.e. it was superseded.
  *
  * @ingroup JobQueue
+ * @see RefreshSecondaryDataUpdate
+ * @see WikiPage::doSecondaryDataUpdates()
  */
 class RefreshLinksJob extends Job {
 	/** @var int Lag safety margin when comparing root job times to last-refresh times */
