@@ -386,14 +386,16 @@ class DeferredUpdates {
 					$enqueuedUpdates[$type]++;
 				}
 			);
-			LoggerFactory::getInstance( 'DeferredUpdates' )->debug(
-				'Enqueued {enqueuedUpdatesCount} updates as jobs',
-				[
-					'enqueuedUpdatesCount' => array_sum( $enqueuedUpdates ),
-					'enqueuedUpdates' => implode( ', ',
-						array_map( fn ( $k, $v ) => "$k: $v", array_keys( $enqueuedUpdates ), $enqueuedUpdates ) ),
-				]
-			);
+			if ( $enqueuedUpdates ) {
+				LoggerFactory::getInstance( 'DeferredUpdates' )->debug(
+					'Enqueued {enqueuedUpdatesCount} updates as jobs',
+					[
+						'enqueuedUpdatesCount' => array_sum( $enqueuedUpdates ),
+						'enqueuedUpdates' => implode( ', ',
+							array_map( fn ( $k, $v ) => "$k: $v", array_keys( $enqueuedUpdates ), $enqueuedUpdates ) ),
+					]
+				);
+			}
 		}
 
 		return false;
