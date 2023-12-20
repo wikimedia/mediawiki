@@ -1629,6 +1629,7 @@
 	"rcfilters-liveupdates-button-title-off": "Керда хувцам бешше хьахьокха",
 	"rcfilters-watchlist-markseen-button": "Хьежад аьнна деррига хувцамаш белгалдаккха",
 	"rcfilters-watchlist-edit-watchlist-button": "Хьай зем-мугӀам тоабе",
+	"rcfilters-watchlist-showupdated": "Уж хийцача денз хьо хинна воацача оагӀоний хувцамаш <strong>ахсомача</strong> шрифтаца а белгалдаьхад, хьалбизача маркераца а белгалдаькхад.",
 	"rcfilters-preference-label": "Лелае JavaScript йоаца интерфейс",
 	"rcfilters-preference-help": "[[{{#special:RecentChanges}}|Керда хувцамаш]] а  [[{{#special:RecentChangesLinked}}|хетта хувцамаш]] а хьагойт укхо фильтрашца лахар а доацаш е корадаьр хьасийрдаде вӀаштӀехьа а доацаш.",
 	"rcfilters-watchlist-preference-label": "Лелае интерфейс JavaScript йоацаш",
