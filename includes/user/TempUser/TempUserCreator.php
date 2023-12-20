@@ -11,6 +11,7 @@ use MediaWiki\Session\Session;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
+use MediaWiki\Utils\MWTimestamp;
 use UnexpectedValueException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
@@ -200,11 +201,15 @@ class TempUserCreator implements TempUserConfig {
 	 *    already in use.
 	 */
 	private function acquireName(): ?string {
+		$year = null;
+		if ( $this->serialProviderConfig['useYear'] ?? false ) {
+			$year = MWTimestamp::getInstance()->format( 'Y' );
+		}
 		// Check if the temporary account name is already in use as the ID provided
 		// may not be properly collision safe (T353390)
-		$index = $this->getSerialProvider()->acquireIndex();
+		$index = $this->getSerialProvider()->acquireIndex( (int)$year );
 		$serialId = $this->getSerialMapping()->getSerialIdForIndex( $index );
-		$username = $this->config->getGeneratorPattern()->generate( $serialId );
+		$username = $this->config->getGeneratorPattern()->generate( $serialId, $year );
 
 		// Because the ::acquireIndex method may not always return a unique index,
 		// make sure that the temporary account name does not already exist. This

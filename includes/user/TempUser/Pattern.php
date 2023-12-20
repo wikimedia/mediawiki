@@ -52,11 +52,15 @@ class Pattern {
 	 * Substitute the serial number into the pattern.
 	 *
 	 * @param string $mappedSerial
+	 * @param ?string $year
 	 * @return string
 	 */
-	public function generate( $mappedSerial ) {
+	public function generate( $mappedSerial, ?string $year = null ) {
 		$this->init();
-		return $this->prefix . $mappedSerial . $this->suffix;
+		return $this->prefix .
+			( $year ? $year . '-' : '' ) .
+			$mappedSerial .
+			$this->suffix;
 	}
 
 	/**
@@ -92,7 +96,8 @@ class Pattern {
 	}
 
 	/**
-	 * Extract the part of the string matching $1, or null if there is no match
+	 * Extract the variable part of the string (matching $1 or YYYY-$1),
+	 * or null if there is no match
 	 *
 	 * @param string $name
 	 * @return ?string

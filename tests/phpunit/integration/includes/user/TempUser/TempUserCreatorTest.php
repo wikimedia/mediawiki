@@ -13,6 +13,7 @@ use MediaWiki\User\TempUser\SerialProvider;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Database
@@ -62,7 +63,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 				'test' => [
 					'factory' => static function () {
 						return new class implements SerialProvider {
-							public function acquireIndex(): int {
+							public function acquireIndex( int $year = 0 ): int {
 								return 1;
 							}
 						};
@@ -122,6 +123,26 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( '*Unregistered 1', $tuc->acquireName() );
 		$this->assertSame( '*Unregistered 2', $tuc->acquireName() );
+	}
+
+	public function testAcquireName_dbWithYear() {
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
+				'enabled' => true,
+				'serialProvider' => [ 'type' => 'local', 'useYear' => true ],
+			] + self::DEFAULTS
+		);
+
+		ConvertibleTimestamp::setFakeTime( '20000101000000' );
+		$tuc = TestingAccessWrapper::newFromObject(
+			$this->getServiceContainer()->getTempUserCreator()
+		);
+		$this->assertSame( '*Unregistered 2000-1', $tuc->acquireName() );
+		$this->assertSame( '*Unregistered 2000-2', $tuc->acquireName() );
+
+		ConvertibleTimestamp::setFakeTime( '20010101000000' );
+		$this->assertSame( '*Unregistered 2001-1', $tuc->acquireName() );
 	}
 
 	public function testAcquireNameOnDuplicate_db() {

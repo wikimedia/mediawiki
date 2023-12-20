@@ -1,0 +1,49 @@
+{
+	"comment": "Add uas_year to user_autocreate_serial table",
+	"before": {
+		"name": "user_autocreate_serial",
+		"comment": "Table for sequential name generation for auto-created temporary users",
+		"columns": [
+			{
+				"name": "uas_shard",
+				"comment": "The segment of ID space, ID mod N, referred to by this row",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "uas_value",
+				"comment": "The maximum allocated ID value",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [],
+		"pk": [ "uas_shard" ]
+	},
+	"after": {
+		"name": "user_autocreate_serial",
+		"comment": "Table for sequential name generation for auto-created temporary users",
+		"columns": [
+			{
+				"name": "uas_shard",
+				"comment": "The segment of ID space, ID mod N, referred to by this row",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "uas_year",
+				"comment": "The year to which this row belongs, if $wgAutoCreateTempUser['serialProvider']['useYear'] is true.",
+				"type": "smallint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "uas_value",
+				"comment": "The maximum allocated ID value",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [],
+		"pk": [ "uas_shard", "uas_year" ]
+	}
+}

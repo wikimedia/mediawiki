@@ -835,8 +835,9 @@ CREATE TABLE /*_*/user (
 
 CREATE TABLE /*_*/user_autocreate_serial (
   uas_shard INT UNSIGNED NOT NULL,
+  uas_year SMALLINT UNSIGNED NOT NULL,
   uas_value INT UNSIGNED NOT NULL,
-  PRIMARY KEY(uas_shard)
+  PRIMARY KEY(uas_shard, uas_year)
 ) /*$wgDBTableOptions*/;
 
 
