@@ -614,6 +614,13 @@ class ParserCache {
 				'message' => $e->getMessage()
 			] );
 			return null;
+		} catch ( Exception $e ) {
+			$this->logger->error( "Unexpected failure during cache load", [
+				'name' => $this->name,
+				'cache_key' => $key,
+				'message' => $e->getMessage()
+			] );
+			return null;
 		}
 	}
 
