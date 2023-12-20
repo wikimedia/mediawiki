@@ -6,6 +6,7 @@ use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\PoolCounter\PoolCounter;
 use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;

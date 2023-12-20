@@ -18,12 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\PoolCounter;
+
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
+use ParserOptions;
 
 /**
  * PoolWorkArticleView for an old revision of a page, using a simple cache.
@@ -85,3 +88,8 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( PoolWorkArticleViewOld::class, 'PoolWorkArticleViewOld' );

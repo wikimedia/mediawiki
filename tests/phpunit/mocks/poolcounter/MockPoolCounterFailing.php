@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\PoolCounter\PoolCounter;
 use MediaWiki\Status\Status;
 
 /**

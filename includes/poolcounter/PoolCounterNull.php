@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\PoolCounter;
+
 use MediaWiki\Status\Status;
 
 /**
@@ -44,3 +46,8 @@ class PoolCounterNull extends PoolCounter {
 		return Status::newGood( PoolCounter::RELEASED );
 	}
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( PoolCounterNull::class, 'PoolCounterNull' );

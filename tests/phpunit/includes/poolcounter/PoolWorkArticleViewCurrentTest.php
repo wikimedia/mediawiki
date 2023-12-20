@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\PoolCounter\PoolWorkArticleViewCurrent;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;

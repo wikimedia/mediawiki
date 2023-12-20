@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\PoolCounter;
+
+use InvalidArgumentException;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
@@ -26,6 +29,8 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
+use ParserCache;
+use ParserOptions;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 
@@ -118,8 +123,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			}
 
 			if ( $this->triggerLinksUpdate ) {
-				$this->wikiPageFactory->newFromTitle( $this->page )
-					->triggerOpportunisticLinksUpdate( $output );
+				$this->wikiPageFactory->newFromTitle( $this->page )->triggerOpportunisticLinksUpdate( $output );
 			}
 		}
 
@@ -167,7 +171,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
 				$logger->info(
 					'declining to send dirty output since cache time ' .
-						'{cacheTime} is before last write time {lastWriteTime}',
+					'{cacheTime} is before last write time {lastWriteTime}',
 					[
 						'workKey' => $this->workKey,
 						'cacheTime' => $cacheTime,
@@ -190,3 +194,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( PoolWorkArticleViewCurrent::class, 'PoolWorkArticleViewCurrent' );

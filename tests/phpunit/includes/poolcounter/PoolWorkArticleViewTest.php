@@ -2,6 +2,7 @@
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\PoolCounter\PoolWorkArticleView;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;

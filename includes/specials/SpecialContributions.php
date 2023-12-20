@@ -36,6 +36,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -53,7 +54,6 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
 use MWException;
-use PoolCounterWorkViaCallback;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 

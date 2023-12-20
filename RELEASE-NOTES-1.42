@@ -244,6 +244,15 @@ because of Phabricator reports.
     - UserEditCountUpdate
   - MediaWiki\Parser:
     - ParserOutput
+  - MediaWiki\PoolCounter:
+    - PoolCounter
+    - PoolCounterNull
+    - PoolCounterRedis
+    - PoolCounterWork
+    - PoolCounterWorkViaCallback
+    - PoolWorkArticleView
+    - PoolWorkArticleViewCurrent
+    - PoolWorkArticleViewOld
   - MediaWiki\Site:
     - CachingSiteStore
     - DBSiteStore

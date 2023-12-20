@@ -2,6 +2,7 @@
 
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\PoolCounter\PoolWorkArticleViewOld;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;

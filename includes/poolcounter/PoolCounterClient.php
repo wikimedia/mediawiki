@@ -21,7 +21,6 @@
 namespace MediaWiki\PoolCounter;
 
 use MediaWiki\Status\Status;
-use PoolCounter;
 
 /**
  * @since 1.16
