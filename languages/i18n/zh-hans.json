@@ -195,7 +195,9 @@
 			"魔琴",
 			"아라",
 			"Googology",
-			"Anterdc99"
+			"Anterdc99",
+			"Dream Star.cn",
+			"XtexChooser"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -724,7 +726,7 @@
 	"botpasswords-label-cancel": "取消",
 	"botpasswords-label-delete": "删除",
 	"botpasswords-label-resetpassword": "重置密码",
-	"botpasswords-label-grants": "应用授权：",
+	"botpasswords-label-grants": "适用的授权：",
 	"botpasswords-help-grants": "授权允许对您的用户账户已持有的权限进行访问。在此启用授权并不会提供您根本不会拥有的权限的访问权。参见[[Special:ListGrants|授权表]]以获取更多信息。",
 	"botpasswords-label-grants-column": "已授权",
 	"botpasswords-bad-appid": "机器人名“$1”无效。",
@@ -1346,7 +1348,7 @@
 	"gender-notknown": "中性称呼",
 	"gender-male": "男性称呼",
 	"gender-female": "女性称呼",
-	"prefs-help-gender": "此设置为可选项。软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。此项信息会被公开。",
+	"prefs-help-gender": "此设置为可选项。软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。该信息为公开信息。",
 	"email": "电子邮件",
 	"prefs-help-realname": "真实姓名是选填项目。\n如果提供，它可能用于署名您的贡献。",
 	"prefs-help-email": "电子邮件地址是选填项，但是当您忘记您的密码要重置密码时，需要该信息。",
