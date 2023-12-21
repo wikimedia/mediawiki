@@ -1148,6 +1148,46 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
+== MediaWiki 1.40.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.40 branch.
+
+=== Changes since MediaWiki 1.40.1 ===
+* Localisation updates.
+* Updated symfony/polyfill-php80 from 1.27.0 to 1.28.0.
+* Updated symfony/polyfill-php81 from 1.27.0 to 1.28.0.
+* (T344912) mail: Encode period (ascii 46) if it appears in encoded email
+  header.
+* Added symfony/polyfill-php82.
+* Added symfony/polyfill-php83.
+* Updated symfony/yaml from 5.4.17 to 5.4.23.
+* Updated wikimedia/timestamp from 4.1.0 to 4.1.1.
+* tests: Provide coverage for StatusValue::__toString.
+* StatusValue: Improve logging/debug output with multibyte characters.
+* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+  used in rights log.
+* Updated wikimedia/parsoid from 0.17.0 to 0.17.1.
+* (T229992) LocalisationCache: Preserve fallback source language info.
+* (T340840) Title: Check local fallbacks for system message.
+* (T346332) Installer: Make Minerva works correctly for $wgDefaultSkin.
+* specials: Use options-messages on Special:RevisionDelete.
+* Fix use of buildComparison() in uppercaseTitlesForUnicodeTransition.php.
+* (T275085) Fix logging Status objects to 'authevents' channel.
+* (T341310) DEVELOPERS.md: mention git clone and WSL.
+* (T351758) DEVELOPERS.md: reword WSL instructions to include best practices.
+* (T350615) PoolCounterConnectionManager: Add support for ipv6.
+* ParsoidCachePrewarmJob::newSpec() now requires a PageRecord as the second
+  parameter instead of a page ID.
+* (T341123) ParsoidCachePrewarmJob: enable deduplication.
+* (T349115) LocalisationCache: Fix a rare case in fallback source language.
+* (T351848) language: Avoid multiple signs in Language::userAdjust.
+* SwiftFileBackend: Fix "PHP Deprecated: strlen(): Passing null to parameter #1
+  ($string) of type string is deprecated".
+* maintenance: Add missing parenthesis to SQL in attachLatest.php.
+* (T321234) Make MagicWordArray not fail on old revs with broken UTF-8.
+* thumb: Fix "PHP Deprecated: strlen(): Passing null to parameter".
+* (T327007) htmlform: Correct validation for file input field.
+
 == MediaWiki 1.40.1 ==
 
 This is a security and maintenance release of the MediaWiki 1.40 branch.
@@ -1198,9 +1238,15 @@ This is a security and maintenance release of the MediaWiki 1.40 branch.
 * (T235207) Get correct main page in API call examples.
 * doc: Make extension.schema.v2.json a valid JSON schema.
 * (T326696) Add since tag to UserOptionsManager::MAX_BYTES_OPTION_VALUE.
+* (T310378) Ensure that installer i18n is loaded by update.php.
 * updateSpecialPages.php: Avoid implicit float conversion on modulo.
 * (T347227) ImportReporter: Make callback functions public.
 * (T346898) importDump: Unconditionally call $importer->setUsernamePrefix().
+* (T204470) Remove feedback messages from RawHtmlMessages.
+* (T127268) MainConfigSchema: Update doc for "ResourceLoader: Default File
+  modules to mobile and desktop targets".
+* (T264765, CVE-2023-45364) SECURITY: Article: Check permissions before
+  showing link to view deleted revision.
 * doc: Improve description of type in extension.schema.v1.json.
 * (T340217, CVE-2023-45359) SECURITY: Vector 2022: Numerous unescaped messages
   leading to potential XSS.
@@ -1367,7 +1413,9 @@ For notes on 1.39.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added codex-design-tokens at v0.6.2.
-* Added symfony/polyfill-php81 at v1.27.0.
+* Added symfony/polyfill-php81 at v1.28.0.
+* Added symfony/polyfill-php82 at v1.28.0.
+* Added symfony/polyfill-php83 at v1.28.0.
 * Added wikimedia/bcp-47-code at v1.0.0.
 
 ===== New development-only external libraries =====
@@ -1382,15 +1430,15 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated pear/mail from 1.4.1 to 1.5.1.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
 * Updated psr/container from 1.1.1 to 1.1.2.
-* Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
-* Updated symfony/yaml from 5.4.10 to 5.4.17.
+* Updated symfony/polyfill-php80 from 1.26.0 to 1.28.0.
+* Updated symfony/yaml from 5.4.10 to 5.4.23.
 * Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * Updated wikimedia/less.php from 3.1.0 to 4.0.0.
 * Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
 * Updated wikimedia/parsoid from 0.16.0 to 0.17.0.
 * Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
 * Updated wikimedia/shellbox from 3.0.0 to 4.0.0.
-* Updated wikimedia/timestamp from 4.0.0 to 4.1.0.
+* Updated wikimedia/timestamp from 4.0.0 to 4.1.1.
 * Updated wikimedia/xmp-reader from 0.8.4 to 0.9.1.
 
 ===== Changed development-only external libraries =====
@@ -1870,6 +1918,36 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
+== MediaWiki 1.39.6 ==
+
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since MediaWiki 1.39.5 ===
+* Localisation updates.
+* Updated symfony/polyfill-php80 from 1.26.0 to 1.28.0.
+* Updated symfony/polyfill-php81 from 1.26.0 to 1.28.0.
+* (T344912) mail: Encode period (ascii 46) if it appears in encoded email
+  header.
+* Added symfony/polyfill-php82.
+* Added symfony/polyfill-php83.
+* Updated symfony/yaml from 5.4.10 to 5.4.23.
+* (T329609) ApiQueryLanguageinfoTest: Do not pass a float to setFakeTime.
+* Updated wikimedia/timestamp from 4.0.0 to 4.1.1.
+* tests: Provide coverage for StatusValue::__toString.
+* StatusValue: Improve logging/debug output with multibyte characters.
+* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+  used in rights log.
+* Updated wikimedia/parsoid from 0.16.1 to 0.16.2.
+* (T229992) LocalisationCache: Preserve fallback source language info.
+* (T275085) Fix logging Status objects to 'authevents' channel.
+* (T341310) DEVELOPERS.md: mention git clone and WSL.
+* (T351758) DEVELOPERS.md: reword WSL instructions to include best practices.
+* (T349115) LocalisationCache: Fix a rare case in fallback source language.
+* SwiftFileBackend: Fix "PHP Deprecated: strlen(): Passing null to parameter #1
+  ($string) of type string is deprecated".
+* maintenance: Add missing parenthesis to SQL in attachLatest.php.
+* (T353472) maintenance: Fix join condition in DeduplicateArchiveRevId.
+
 == MediaWiki 1.39.5 ==
 
 This is a security and maintenance release of the MediaWiki 1.39 branch.
@@ -1894,6 +1972,10 @@ This is a security and maintenance release of the MediaWiki 1.39 branch.
 * (T343675) user: Use {@} to escape annotation when writting about annotation.
 * (T343797) LanguageWa: Fix double timezone adjustment.
 * (T326454) Update pear/mail to 1.5.1.
+* (T204470) Remove feedback messages from RawHtmlMessages.
+* (T264765, CVE-2023-45364) SECURITY: Article: Check permissions before
+  showing link to view deleted revision.
+* (T310378) Ensure that installer i18n is loaded by update.php.
 * (T343622) docs: Set the <comment> tag back to optional.
 * (T330528) Upgrade wikimedia/html-formatter from 3.0.1 to 4.0.3.
 * (T337463) wdio-mediawiki: await saveScreenshot.
@@ -2224,6 +2306,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 ==== New external libraries ====
 * Added Codex v0.1.1. This replaces the now deprecated wvui library.
 * Added symfony/polyfill-php81.
+* Added symfony/polyfill-php82.
+* Added symfony/polyfill-php83.
 
 ===== New development-only external libraries =====
 * Updated QUnit from 2.18.0 to 2.18.2.
@@ -2234,9 +2318,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated composer/semver from 3.2.6 to 3.3.2.
 * Updated cssjanus/cssjanus fromv2.1.0 to v2.1.1.
 * Updated pear/mail from v1.4.1 to v1.5.1.
-* Updated symfony/polyfill-php73 from 1.25.0 to 1.26.0.
-* Updated symfony/polyfill-php80 from 1.25.0 to 1.26.0.
-* Updated symfony/yaml from 5.4.3 to 5.4.10.
+* Updated symfony/polyfill-php80 from 1.25.0 to 1.28.0.
+* Updated symfony/yaml from 5.4.3 to 5.4.23.
 * Updated vue/compat from 3.2.23 to 3.2.37.
 * Updated wikimedia/base-convert from 2.0.1 to 2.0.2.
 * Updated wikimedia/html-formatter from 3.0.1 to 4.0.3.
@@ -2247,7 +2330,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/running-stat from 1.2.1 to 2.1.0.
 * Updated wikimedia/scoped-callback from 3.0.0 to 4.0.0.
 * Updated wikimedia/services from 2.0.1 to 3.0.0.
-* Updated wikimedia/timestamp from 3.0.0 to 4.0.0.
+* Updated wikimedia/timestamp from 3.0.0 to 4.1.1.
 * Updated wikimedia/xmp-reader from 0.8.1 to 0.8.6.
 
 ===== Changed development-only external libraries =====
@@ -5922,6 +6005,17 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
+== MediaWiki 1.35.14 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.13 ===
+* Localisation updates.
+* (T344912) mail: Encode period (ascii 46) if it appears in encoded email
+  header.
+* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+  used in rights log.
 
 == MediaWiki 1.35.13 ==
 
