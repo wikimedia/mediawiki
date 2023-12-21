@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+************** DEPRECATED! ****************
+This configuration file has been deprecated in favour of phpunit.xml.dist.
+-->
 <phpunit bootstrap="./bootstrap.integration.php"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
@@ -90,5 +94,6 @@
 	<extensions>
 		<extension class="MediaWikiLoggerPHPUnitExtension" />
 		<extension class="MediaWikiTeardownPHPUnitExtension" />
+		<extension class="MediaWikiDeprecatedConfigPHPUnitExtension" />
 	</extensions>
 </phpunit>
