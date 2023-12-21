@@ -21,6 +21,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use ExtensionRegistry;
+use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlJsCode;
@@ -72,6 +73,13 @@ class CodexModule extends FileModule {
 		}
 
 		if ( isset( $options[ 'codexComponents' ] ) ) {
+			if ( !is_array( $options[ 'codexComponents' ] ) || count( $options[ 'codexComponents' ] ) === 0 ) {
+				throw new InvalidArgumentException(
+					"All 'codexComponents' properties in your module definition file " .
+					'must either be omitted or be an array with at least one component name'
+				);
+			}
+
 			$this->codexComponents = $options[ 'codexComponents' ];
 		}
 
