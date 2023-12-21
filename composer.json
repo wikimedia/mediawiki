@@ -70,7 +70,7 @@
 		"wikimedia/parsoid": "0.19.0-a9",
 		"wikimedia/php-session-serializer": "2.0.1",
 		"wikimedia/purtle": "1.0.8",
-		"wikimedia/relpath": "3.0.0",
+		"wikimedia/relpath": "4.0.0",
 		"wikimedia/remex-html": "4.0.1",
 		"wikimedia/request-timeout": "1.2.0",
 		"wikimedia/running-stat": "2.1.0",
