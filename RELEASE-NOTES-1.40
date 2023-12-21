@@ -7,7 +7,7 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.40.2 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.40 branch.
 
 === Changes since MediaWiki 1.40.1 ===
 * Localisation updates.
@@ -21,7 +21,8 @@ THIS IS NOT A RELEASE YET
 * Updated wikimedia/timestamp from 4.1.0 to 4.1.1.
 * tests: Provide coverage for StatusValue::__toString.
 * StatusValue: Improve logging/debug output with multibyte characters.
-* logging: Fix non-escaped messages used in rights log.
+* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+  used in rights log.
 * Updated wikimedia/parsoid from 0.17.0 to 0.17.1.
 * (T229992) LocalisationCache: Preserve fallback source language info.
 * (T340840) Title: Check local fallbacks for system message.
@@ -41,6 +42,8 @@ THIS IS NOT A RELEASE YET
   ($string) of type string is deprecated".
 * maintenance: Add missing parenthesis to SQL in attachLatest.php.
 * (T321234) Make MagicWordArray not fail on old revs with broken UTF-8.
+* thumb: Fix "PHP Deprecated: strlen(): Passing null to parameter".
+* (T327007) htmlform: Correct validation for file input field.
 
 == MediaWiki 1.40.1 ==
 
