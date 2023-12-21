@@ -463,6 +463,9 @@ class EditPage implements IEditObject {
 	/** @var bool Whether temp user creation was successful */
 	private $tempUserCreateDone = false;
 
+	/** @var bool Whether temp username acquisition failed (false indicates no failure or not attempted) */
+	private $unableToAcquireTempName = false;
+
 	private LinkRenderer $linkRenderer;
 	private LinkBatchFactory $linkBatchFactory;
 	private RestrictionStore $restrictionStore;
@@ -634,7 +637,7 @@ class EditPage implements IEditObject {
 		// This allows anonymous users to edit via a temporary account, if the site is
 		// configured to (1) disallow anonymous editing and (2) autocreate temporary
 		// accounts on edit.
-		$this->maybeActivateTempUserCreate( !$this->firsttime );
+		$this->unableToAcquireTempName = !$this->maybeActivateTempUserCreate( !$this->firsttime )->isOK();
 
 		$permErrors = $this->getEditPermissionErrors(
 			$this->save ? PermissionManager::RIGOR_SECURE : PermissionManager::RIGOR_FULL
@@ -766,17 +769,23 @@ class EditPage implements IEditObject {
 	 * @param bool $doAcquire Whether to acquire a name for the temporary account
 	 *
 	 * @since 1.39
+	 * @return Status Will return a fatal status if $doAcquire was true and the acquire failed.
 	 */
-	public function maybeActivateTempUserCreate( $doAcquire ) {
+	public function maybeActivateTempUserCreate( $doAcquire ): Status {
 		if ( $this->tempUserCreateActive ) {
 			// Already done
-			return;
+			return Status::newGood();
 		}
 		$user = $this->context->getUser();
 		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			if ( $doAcquire ) {
 				$name = $this->tempUserCreator->acquireAndStashName(
 					$this->context->getRequest()->getSession() );
+				if ( $name === null ) {
+					$status = Status::newFatal( 'temp-user-unable-to-acquire' );
+					$status->value = self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT;
+					return $status;
+				}
 				$this->unsavedTempUser = $this->userFactory->newUnsavedTempUser( $name );
 				$this->tempUserName = $name;
 			} else {
@@ -784,6 +793,7 @@ class EditPage implements IEditObject {
 			}
 			$this->tempUserCreateActive = true;
 		}
+		return Status::newGood();
 	}
 
 	/**
@@ -1836,6 +1846,7 @@ class EditPage implements IEditObject {
 
 			case self::AS_PARSE_ERROR:
 			case self::AS_UNICODE_NOT_SUPPORTED:
+			case self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT:
 				$out->wrapWikiTextAsInterface( 'error',
 					$status->getWikiText( false, false, $this->context->getLanguage() )
 				);
@@ -2020,6 +2031,12 @@ class EditPage implements IEditObject {
 			# ...or the hook could be expecting us to produce an error
 			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return $status;
+		}
+
+		if ( $this->unableToAcquireTempName ) {
+			$status = Status::newFatal( 'temp-user-unable-to-acquire' );
+			$status->value = self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT;
 			return $status;
 		}
 

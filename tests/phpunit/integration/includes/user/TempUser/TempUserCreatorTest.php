@@ -6,6 +6,7 @@ use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\Session;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\SerialMapping;
 use MediaWiki\User\TempUser\SerialProvider;
@@ -98,6 +99,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			$this->createSimpleObjectFactory(),
 			$this->createMock( UserFactory::class ),
 			$this->createMock( AuthManager::class ),
+			$this->createMock( CentralIdLookup::class ),
 			null
 		);
 		return [ $creator, [ $scope1, $scope2 ] ];
@@ -120,6 +122,23 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( '*Unregistered 1', $tuc->acquireName() );
 		$this->assertSame( '*Unregistered 2', $tuc->acquireName() );
+	}
+
+	public function testAcquireNameOnDuplicate_db() {
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[ 'enabled' => true ] + self::DEFAULTS
+		);
+		$tuc = TestingAccessWrapper::newFromObject(
+			$this->getServiceContainer()->getTempUserCreator()
+		);
+		// Create a temporary account
+		$this->assertSame( '*Unregistered 1', $tuc->create()->value->getName() );
+		// Reset the user_autocreate_serial table
+		$this->truncateTable( 'user_autocreate_serial' );
+		// Because user_autocreate_serial was truncated, the ::acquireName method should
+		// return null as the code attempts to return a temporary account that already exists.
+		$this->assertSame( null, $tuc->acquireName() );
 	}
 
 	public function testAcquireAndStashName() {

@@ -114,4 +114,7 @@ interface IEditObject {
 
 	/** Status: edit rejected because browser doesn't support Unicode. */
 	public const AS_UNICODE_NOT_SUPPORTED = 242;
+
+	/** Status: edit rejected because server was unable to acquire a temporary account name for this user */
+	public const AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT = 243;
 }

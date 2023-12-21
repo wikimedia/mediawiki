@@ -1971,6 +1971,7 @@
 	"apierror-stashzerolength": "File is of zero length, and could not be stored in the stash: $1.",
 	"apierror-systemblocked": "You have been blocked automatically by MediaWiki.",
 	"apierror-tempuserdisabled": "Temporary user account creation is disabled.",
+	"apierror-tempuseracquirefailed": "Unable to acquire a temporary account username.",
 	"apierror-templateexpansion-notwikitext": "Template expansion is only supported for wikitext content. $1 uses content model $2.",
 	"apierror-toofewexpiries": "$1 expiry {{PLURAL:$1|timestamp was|timestamps were}} provided where $2 {{PLURAL:$2|was|were}} needed.",
 	"apierror-toomanyvalues": "Too many values supplied for parameter <var>$1</var>. The limit is $2.",

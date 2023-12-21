@@ -499,7 +499,10 @@ class ApiEditPage extends ApiBase {
 		$ep->setApiEditOverride( true );
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
-		$ep->maybeActivateTempUserCreate( true );
+		$tempUserCreateStatus = $ep->maybeActivateTempUserCreate( true );
+		if ( !$tempUserCreateStatus->isOK() ) {
+			$this->dieWithError( 'apierror-tempuseracquirefailed', 'tempuseracquirefailed' );
+		}
 
 		// T255700: Ensure content models of the base content
 		// and fetched revision remain the same before attempting to save.
