@@ -18,6 +18,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
@@ -45,6 +46,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mock->method( 'newUpdateQueryBuilder' )->willReturnCallback( static fn () => new UpdateQueryBuilder( $mock ) );
 		$mock->method( 'newDeleteQueryBuilder' )->willReturnCallback( static fn () => new DeleteQueryBuilder( $mock ) );
 		$mock->method( 'newReplaceQueryBuilder' )->willReturnCallback( static fn () => new ReplaceQueryBuilder( $mock ) );
+		$mock->method( 'newInsertQueryBuilder' )->willReturnCallback( static fn () => new InsertQueryBuilder( $mock ) );
 		return $mock;
 	}
 

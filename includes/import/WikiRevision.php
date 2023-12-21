@@ -684,17 +684,18 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 			return false;
 		}
 		$actorId = $services->getActorNormalization()->acquireActorId( $user, $dbw );
-		$data = [
-			'log_type' => $this->type,
-			'log_action' => $this->action,
-			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
-			'log_actor' => $actorId,
-			'log_namespace' => $this->getTitle()->getNamespace(),
-			'log_title' => $this->getTitle()->getDBkey(),
-			'log_params' => $this->params
-		] + $services->getCommentStore()->insert( $dbw, 'log_comment', $this->getComment() );
-		$dbw->insert( 'logging', $data, __METHOD__ );
-
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'logging' )
+			->row( [
+				'log_type' => $this->type,
+				'log_action' => $this->action,
+				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
+				'log_actor' => $actorId,
+				'log_namespace' => $this->getTitle()->getNamespace(),
+				'log_title' => $this->getTitle()->getDBkey(),
+				'log_params' => $this->params
+				] + $services->getCommentStore()->insert( $dbw, 'log_comment', $this->getComment() ) )
+			->caller( __METHOD__ )->execute();
 		return true;
 	}
 

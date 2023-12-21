@@ -379,7 +379,11 @@ TEXT
 			$this->numRowsProcessed += count( $rowsToInsert );
 		} else {
 			$this->beginTransaction( $this->dbw, __METHOD__ );
-			$this->dbw->insert( $this->targetTable, $rowsToInsert, __METHOD__, [ 'IGNORE' ] );
+			$this->dbw->newInsertQueryBuilder()
+				->insertInto( $this->targetTable )
+				->ignore()
+				->rows( $rowsToInsert )
+				->caller( __METHOD__ )->execute();
 			$this->numRowsProcessed += $this->dbw->affectedRows();
 			$this->commitTransaction( $this->dbw, __METHOD__ );
 		}

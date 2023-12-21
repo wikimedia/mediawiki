@@ -74,20 +74,18 @@ class AddRFCandPMIDInterwiki extends LoggedUpdateMaintenance {
 				->caller( __METHOD__ )->execute();
 		}
 
-		$dbw->insert(
-			'interwiki',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'interwiki' )
+			// If there's already a pmid interwiki link, don't overwrite it
+			->ignore()
+			->row( [
 				'iw_prefix' => 'pmid',
 				'iw_url' => 'https://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract',
 				'iw_api' => '',
 				'iw_wikiid' => '',
 				'iw_local' => 0,
-			],
-			__METHOD__,
-			// If there's already a pmid interwiki link, don't
-			// overwrite it
-			[ 'IGNORE' ]
-		);
+			] )
+			->caller( __METHOD__ )->execute();
 
 		return true;
 	}

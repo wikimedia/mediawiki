@@ -786,22 +786,25 @@ abstract class DatabaseInstaller {
 		$rows = file( "$IP/maintenance/interwiki.list",
 			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
 		AtEase::restoreWarnings();
-		$interwikis = [];
 		if ( !$rows ) {
 			return Status::newFatal( 'config-install-interwiki-list' );
 		}
+		$insert = $this->db->newInsertQueryBuilder()
+			->insertInto( 'interwiki' );
 		foreach ( $rows as $row ) {
 			$row = preg_replace( '/^\s*([^#]*?)\s*(#.*)?$/', '\\1', $row ); // strip comments - whee
 			if ( $row == "" ) {
 				continue;
 			}
 			$row .= "|";
-			$interwikis[] = array_combine(
-				[ 'iw_prefix', 'iw_url', 'iw_local', 'iw_api', 'iw_wikiid' ],
-				explode( '|', $row )
+			$insert->row(
+				array_combine(
+					[ 'iw_prefix', 'iw_url', 'iw_local', 'iw_api', 'iw_wikiid' ],
+					explode( '|', $row )
+				)
 			);
 		}
-		$this->db->insert( 'interwiki', $interwikis, __METHOD__ );
+		$insert->caller( __METHOD__ )->execute();
 
 		return Status::newGood();
 	}

@@ -50,7 +50,11 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
-		$db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, [ 'IGNORE' ] );
+		$db->newInsertQueryBuilder()
+			->insertInto( 'updatelog' )
+			->ignore()
+			->row( [ 'ul_key' => $key ] )
+			->caller( __METHOD__ )->execute();
 
 		return true;
 	}

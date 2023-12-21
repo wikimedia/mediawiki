@@ -327,7 +327,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		$row += $services->getCommentStore()->insert( $dbw, 'log_comment', $comment );
 
 		$dbw->newInsertQueryBuilder()
-			->insert( 'logging' )
+			->insertInto( 'logging' )
 			->row( $row )
 			->caller( __METHOD__ )
 			->execute();
@@ -353,7 +353,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		}
 		if ( count( $rows ) ) {
 			$dbw->newInsertQueryBuilder()
-				->insert( 'log_search' )
+				->insertInto( 'log_search' )
 				->ignore()
 				->rows( $rows )
 				->caller( __METHOD__ )
