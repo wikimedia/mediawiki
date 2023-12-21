@@ -439,7 +439,7 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 			}
 			$this->logger->warning( "Sub-optimal transaction [{dbs}]:\n{trace}", [
 				'dbs' => implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) ),
-				'trace' => $trace
+				'trace' => mb_substr( $trace, 0, 2000 )
 			] );
 		}
 		unset( $this->dbTrxHoldingLocks[$name] );
