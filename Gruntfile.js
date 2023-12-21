@@ -1,7 +1,6 @@
 'use strict';
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
@@ -140,16 +139,6 @@ module.exports = function ( grunt ) {
 			},
 			firefox: {
 				browsers: [ 'FirefoxHeadless' ]
-			}
-		},
-		copy: {
-			jsdoc: {
-				src: 'resources/**/*',
-				dest: 'docs/js/modules',
-				expand: true,
-				rename: function ( dest, src ) {
-					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
-				}
 			}
 		}
 	} );
