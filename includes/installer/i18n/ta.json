@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Fahimrazick",
 			"Jayarathina",
 			"Karthi.dr",
 			"Siddhan",
@@ -23,7 +24,7 @@
 	"config-page-dbconnect": "தரவுத் தளத்துடன் தொடர்பு கொள்ளவும்",
 	"config-page-dbsettings": "தரவுத் தள அமைப்புகள்",
 	"config-page-name": "பெயர்",
-	"config-page-options": "விருப்பத்தேர்வுகள்",
+	"config-page-options": "தெரிவுகள்",
 	"config-page-install": "நிறுவு",
 	"config-page-complete": "நிறைவு!",
 	"config-page-restart": "நிறுவலை மீண்டும் தொடங்கவும்",

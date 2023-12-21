@@ -1873,7 +1873,6 @@
 	"apierror-stashzerolength": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception text. Currently this is probably English, hopefully we'll fix that in the future.",
 	"apierror-systemblocked": "{{doc-apierror}}",
 	"apierror-tempuserdisabled": "{{doc-apierror}}",
-	"apierror-tempuseracquirefailed": "{{doc-apierror}}",
 	"apierror-templateexpansion-notwikitext": "{{doc-apierror}}\n\nParameters:\n* $1 - Page title.\n* $2 - Content model.",
 	"apierror-toofewexpiries": "{{doc-apierror}}\n\nParameters:\n* $1 - Number provided.\n* $2 - Number needed.",
 	"apierror-toomanyvalues": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n* $2 - Maximum number of values allowed.",
