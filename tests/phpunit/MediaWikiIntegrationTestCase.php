@@ -186,12 +186,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static ?array $additionalCliOptions;
 
 	/**
-	 * @var bool Whether the MW config files were already lazy-loaded if this test was invoked via the
-	 * "unit" entry point.
-	 */
-	private static bool $settingsLazyLoaded = false;
-
-	/**
 	 * @var string[] Used to store tables changed in the subclass addDBDataOnce method. These are only cleared in the
 	 * tearDownAfterClass method.
 	 */
@@ -211,13 +205,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'addCoreDBData', '1.41' );
 	}
 
-	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
-		if ( defined( 'MW_PHPUNIT_UNIT' ) && !self::$settingsLazyLoaded ) {
-			TestSetup::loadSettingsFiles();
-			self::$settingsLazyLoaded = true;
-		}
-	}
-
 	/**
 	 * The annotation causes this to be called immediately before setUpBeforeClass()
 	 * @beforeClass
@@ -231,7 +218,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				. ( new RuntimeException() )->getTraceAsString();
 			die();
 		}
-		self::initializeForStandardPhpunitEntrypointIfNeeded();
 
 		// Get the original service locator
 		if ( !self::$originalServices ) {
