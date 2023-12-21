@@ -1,0 +1,21 @@
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.0', '8.1', '8.2', '8.3']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: PHP ${{ matrix.php }} 
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }} 
+      - name: Run tests
+        run: |
+          bash phplint.sh
