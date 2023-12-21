@@ -78,14 +78,14 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 				->fetchRowCount();
 
 			// Figure out the ar_rev_ids we actually need to look at
-			$res = $dbw->newSelectQueryBuilder()
-				->select( [ 'rev_id', 'rev_timestamp', 'rev_sha1' ] + $revActorQuery['fields'] )
-				->tables( [ 'archive', 'revision' ] + $revActorQuery['tables'] )
-				->where( [ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ] )
-				->caller( __METHOD__ )
-				->distinct()
-				->joinConds( [ 'revision', [ 'ar_rev_id = rev_id' ] ] + $revActorQuery['joins'] )
-				->fetchResultSet();
+			$res = $dbw->select(
+				[ 'archive', 'revision' ] + $revActorQuery['tables'],
+				[ 'rev_id', 'rev_timestamp', 'rev_sha1' ] + $revActorQuery['fields'],
+				[ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ],
+				__METHOD__,
+				[ 'DISTINCT' ],
+				[ 'revision' => [ 'JOIN', 'ar_rev_id = rev_id' ] ] + $revActorQuery['joins']
+			);
 			$revRows = [];
 			foreach ( $res as $row ) {
 				$revRows[$row->rev_id] = $row;

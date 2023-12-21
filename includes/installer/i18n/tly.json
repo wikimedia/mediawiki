@@ -3,20 +3,21 @@
 		"authors": [
 			"Erdemaslancan",
 			"Patriot Kur",
-			"Patriot Kor"
+			"Patriot Kor",
+			"Гусейн"
 		]
 	},
 	"config-information": "Məlumot",
-	"config-page-language": "Zıvon",
-	"config-page-welcome": "Xəş oməyon bə MediaWiki!",
-	"config-page-name": "Nüm",
+	"config-page-language": "Zyvon",
+	"config-page-welcome": "Xəš oməjon bə MediaWiki!",
+	"config-page-name": "Nom",
 	"config-page-options": "Tənziməkon",
 	"config-ns-generic": "Naxşə",
 	"config-ns-other-default": "ÇəməWiki",
-	"config-admin-password": "Pərol:",
+	"config-admin-password": "Parol:",
 	"config-admin-password-confirm": "Təkror pərol:",
 	"config-admin-email": "E-nomə ünvon:",
 	"config-profile-wiki": "Ojə viki",
-	"config-logo-preview-main": "Sərlohə",
+	"config-logo-preview-main": "Vəsə",
 	"config-help": "koməq"
 }

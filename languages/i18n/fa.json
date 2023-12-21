@@ -95,7 +95,8 @@
 			"Af420",
 			"0PAWN0",
 			"Darknessswamp8",
-			"Havadar-hvac"
+			"Havadar-hvac",
+			"Rulebased"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -527,7 +528,7 @@
 	"createacct-another-submit": "ایجاد حساب",
 	"createacct-continue-submit": "ادامهٔ ايجاد حساب",
 	"createacct-another-continue-submit": "ادامهٔ ايجاد حساب",
-	"createacct-benefit-heading": "{{SITENAME}} توسط افرادی هچون شما ساخته شده است.",
+	"createacct-benefit-heading": "{{SITENAME}} توسط افرادی همچون شما ساخته شده است.",
 	"createacct-benefit-body1": "{{PLURAL:$1|ویرایش}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|صفحه}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|مشارکت‌کنندهٔ}} اخیر",
@@ -3699,7 +3700,7 @@
 	"logentry-block-block": "$1 {{GENDER:$4|$3}} را $5 {{GENDER:$2|بست}} $6",
 	"logentry-block-unblock": "$1 {{GENDER:$4|$3}} را {{GENDER:$2|باز کرد}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|تنظیمات}} قطع دسترسی {{GENDER:$4|$3}} را به پایان قطع دسترسی $5 $6 تغییر داد.",
-	"logentry-partialblock-block-page": "{{PLURAL:$1|صفحه|صفحه‌ها}} $2",
+	"logentry-partialblock-block-page": "{{PLURAL:$1|صفحهٔ|صفحه‌های}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|فضای نام|فضاهای نام}} $2",
 	"logentry-partialblock-block-action": "{{PLURAL:$1|عمل|عمل‌های}} $2",
 	"logentry-partialblock-block": "$1 دسترسی ویرایشی {{GENDER:$4|$3}} در $7 را با انقضای $5 $6 {{GENDER:$2|قطع کرد}}",

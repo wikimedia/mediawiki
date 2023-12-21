@@ -93,7 +93,8 @@
 			"콩가루",
 			"Cerulean",
 			"Adreamy",
-			"Amire80"
+			"Amire80",
+			"밥풀떼기"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -4071,6 +4072,7 @@
 	"skin-action-delete": "삭제",
 	"skin-action-move": "이동",
 	"parsoid-resource-limit-exceeded": "Parsoid의 리소스 제한을 초과했습니다: $1",
+	"parsoid-client-error": "유효하지 않은 입력 파소이드: $1",
 	"newpages-showhide-bots": "봇을 $1",
 	"newpages-showhide-patrolled": "점검한 편집을 $1",
 	"newpages-showhide-redirect": "넘겨주기를 $1",

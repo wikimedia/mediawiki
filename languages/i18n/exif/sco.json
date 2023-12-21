@@ -3,7 +3,8 @@
 		"authors": [
 			"Avicennasis",
 			"John Reid",
-			"MJL"
+			"MJL",
+			"CiphriusKane"
 		]
 	},
 	"exif-imagewidth": "Width",
@@ -142,7 +143,7 @@
 	"exif-fixtureidentifier": "Fixtur name",
 	"exif-locationdest": "Location depeected",
 	"exif-locationdestcode": "Code o location depeected",
-	"exif-objectcycle": "Time o day that media is intended fer",
+	"exif-objectcycle": "Time o day that media is intendit fur",
 	"exif-contact": "Contact information",
 	"exif-writer": "Writer",
 	"exif-languagecode": "Leid",
@@ -206,7 +207,7 @@
 	"exif-exposureprogram-2": "Ordinair program",
 	"exif-exposureprogram-3": "Apertur prioritie",
 	"exif-exposureprogram-4": "Shutter prioritie",
-	"exif-exposureprogram-5": "Cræftie program (biased thewaird the depth o field)",
+	"exif-exposureprogram-5": "Creative program (biast thewarts depth o field)",
 	"exif-exposureprogram-6": "Action program (biased thewaird fast shutter speed)",
 	"exif-exposureprogram-7": "Portrait mode (fer closeup photæs wi the backgroond oot o focus)",
 	"exif-exposureprogram-8": "Launnscape mode (fer launnscape photæs wi the backgroonn in focus)",
@@ -306,9 +307,9 @@
 	"exif-gpsdop-moderate": "Moderate ($1)",
 	"exif-gpsdop-fair": "Fair ($1)",
 	"exif-gpsdop-poor": "Puir ($1)",
-	"exif-objectcycle-a": "Mornin yinlie",
-	"exif-objectcycle-p": "Evenin yinlie",
-	"exif-objectcycle-b": "Baith mornin n evenin",
+	"exif-objectcycle-a": "Morn anely",
+	"exif-objectcycle-p": "Evenin anely",
+	"exif-objectcycle-b": "Baith morn an evenin",
 	"exif-gpsdirection-t": "True direction",
 	"exif-gpsdirection-m": "Magneteec direction",
 	"exif-ycbcrpositioning-1": "Centerit",
