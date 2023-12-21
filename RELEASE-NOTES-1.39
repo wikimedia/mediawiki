@@ -7,7 +7,7 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.39.6 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.5 ===
 * Localisation updates.
@@ -22,7 +22,8 @@ THIS IS NOT A RELEASE YET
 * Updated wikimedia/timestamp from 4.0.0 to 4.1.1.
 * tests: Provide coverage for StatusValue::__toString.
 * StatusValue: Improve logging/debug output with multibyte characters.
-* logging: Fix non-escaped messages used in rights log.
+* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+  used in rights log.
 * Updated wikimedia/parsoid from 0.16.1 to 0.16.2.
 * (T229992) LocalisationCache: Preserve fallback source language info.
 * (T275085) Fix logging Status objects to 'authevents' channel.
@@ -32,6 +33,7 @@ THIS IS NOT A RELEASE YET
 * SwiftFileBackend: Fix "PHP Deprecated: strlen(): Passing null to parameter #1
   ($string) of type string is deprecated".
 * maintenance: Add missing parenthesis to SQL in attachLatest.php.
+* (T353472) maintenance: Fix join condition in DeduplicateArchiveRevId.
 
 == MediaWiki 1.39.5 ==
 
