@@ -50,9 +50,9 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	/** @var bool */
 	private $recursive;
 
-	/** @var RevisionRecord|null */
+	/** @var RevisionRecord */
 	private $revisionRecord;
-	/** @var UserIdentity|null */
+	/** @var UserIdentity */
 	private $user;
 
 	/**
@@ -125,19 +125,13 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 					'namespace' => $this->page->getTitle()->getNamespace(),
 					'title' => $this->page->getTitle()->getDBkey(),
 					// Reuse the parser cache if it was saved
-					'rootJobTimestamp' => $this->revisionRecord
-						? $this->revisionRecord->getTimestamp()
-						: null,
+					'rootJobTimestamp' => $this->revisionRecord->getTimestamp(),
 					'useRecursiveLinksUpdate' => $this->recursive,
-					'triggeringUser' => $this->user
-						? [
-							'userId' => $this->user->getId(),
-							'userName' => $this->user->getName()
-						]
-						: null,
-					'triggeringRevisionId' => $this->revisionRecord
-						? $this->revisionRecord->getId()
-						: null,
+					'triggeringUser' => [
+						'userId' => $this->user->getId(),
+						'userName' => $this->user->getName()
+					],
+					'triggeringRevisionId' => $this->revisionRecord->getId(),
 					'causeAction' => $this->getCauseAction(),
 					'causeAgent' => $this->getCauseAgent()
 				],
