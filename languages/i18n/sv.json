@@ -97,7 +97,8 @@
 			"Cohan",
 			"Kitayama",
 			"Amire80",
-			"André Costa (WMSE)"
+			"André Costa (WMSE)",
+			"Ludvig Broman"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -1513,7 +1514,7 @@
 	"recentchanges-label-newpage": "Denna redigering skapade en ny sida",
 	"recentchanges-label-minor": "Detta är en mindre ändring",
 	"recentchanges-label-bot": "Denna redigering gjordes av en bot",
-	"recentchanges-label-unpatrolled": "Denna redigering har inte blivit patrullerad ännu",
+	"recentchanges-label-unpatrolled": "Denna redigering har ännu inte patrullerats",
 	"recentchanges-label-plusminus": "Sidans storlek ändrades med detta antal byte",
 	"recentchanges-legend-heading": "<strong>Teckenförklaring:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se även [[Special:NewPages|listan över nya sidor]])",
@@ -1645,7 +1646,7 @@
 	"rcfilters-liveupdates-button-title-off": "Visa nya ändringar när de händer",
 	"rcfilters-watchlist-markseen-button": "Markera alla ändringar som sedda",
 	"rcfilters-watchlist-edit-watchlist-button": "Redigera din lista över bevakade sidor",
-	"rcfilters-watchlist-showupdated": "Sidor som har ändrats sedan ditt senaste besök visas i <strong>fetstil</strong> med färgmarkering.",
+	"rcfilters-watchlist-showupdated": "Sidor som har ändrats sedan ditt senaste besök visas i <strong>fetstil</strong> och med fylld listpunkt.",
 	"rcfilters-preference-label": "Använd gränssnitt som inte använder JavaScript",
 	"rcfilters-preference-help": "Läser in [[{{#special:RecentChanges}}|senaste ändringarna]] och [[{{#special:RecentChangesLinked}}|relaterade ändringar]] utan filtersökning eller markeringsfunktionalitet.",
 	"rcfilters-watchlist-preference-label": "Använd gränssnitt som inte använder JavaScript",

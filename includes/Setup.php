@@ -547,7 +547,8 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		);
 		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Autocreation attempt', [
 			'event' => 'autocreate',
-			'status' => strval( $res ),
+			'successful' => $res->isGood(),
+			'status' => ( $res->getErrorsArray() ?: $res->getWarningsArray() )[0][0] ?? '-',
 		] );
 		unset( $res );
 	}

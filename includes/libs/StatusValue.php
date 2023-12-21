@@ -418,14 +418,14 @@ class StatusValue {
 				}
 
 				$type = $error['type'];
-				$keyChunks = str_split( $key, 25 );
-				$paramsChunks = str_split( $this->flattenParams( $params, " | " ), 36 );
+				$keyChunks = mb_str_split( $key, 25 );
+				$paramsChunks = mb_str_split( $this->flattenParams( $params, " | " ), 36 );
 
 				// array_map(null,...) is like Python's zip()
 				foreach ( array_map( null, [ $type ], $keyChunks, $paramsChunks )
 					as [ $typeChunk, $keyChunk, $paramsChunk ]
 				) {
-					$out .= sprintf( "| %-8s | %-25.25s | %-36.36s |\n",
+					$out .= sprintf( "| %-8s | %-25s | %-36s |\n",
 						$typeChunk,
 						$keyChunk,
 						$paramsChunk
@@ -457,7 +457,7 @@ class StatusValue {
 				$r = (string)$p;
 			}
 
-			$ret[] = strlen( $r ) > 100 ? substr( $r, 0, 99 ) . "..." : $r;
+			$ret[] = mb_strlen( $r ) > 100 ? mb_substr( $r, 0, 99 ) . "..." : $r;
 		}
 		return implode( $joiner, $ret );
 	}

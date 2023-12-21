@@ -2072,6 +2072,7 @@ class ParserTestRunner {
 		};
 		$reset = function () {
 			$mwServices = MediaWikiServices::getInstance();
+			$mwServices->resetServiceForTesting( 'MessageCache' );
 			$mwServices->resetServiceForTesting( 'MagicWordFactory' );
 			$this->resetTitleServices();
 			$mwServices->resetServiceForTesting( 'ParserFactory' );
