@@ -193,6 +193,7 @@ class LegacyLogger extends AbstractLogger {
 		if ( self::shouldEmit( $effectiveChannel, $message, $level, $context ) ) {
 			$text = self::format( $effectiveChannel, $message, $context );
 			$destination = self::destination( $effectiveChannel, $message, $context );
+			$this->maybeLogToStderr( $text );
 			self::emit( $text, $destination );
 		}
 		if ( !isset( $context['private'] ) || !$context['private'] ) {
@@ -520,6 +521,19 @@ class LegacyLogger extends AbstractLogger {
 				file_put_contents( $file, $text, FILE_APPEND );
 			}
 			AtEase::restoreWarnings();
+		}
+	}
+
+	/**
+	 * If MW_LOG_STDERR is set (used currently in `composer serve`) then also
+	 * emit to stderr using error_log().
+	 *
+	 * @param string $text
+	 * @return void
+	 */
+	private function maybeLogToStderr( string $text ): void {
+		if ( getenv( 'MW_LOG_STDERR' ) ) {
+			error_log( trim( $text ) );
 		}
 	}
 
