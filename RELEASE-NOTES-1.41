@@ -1089,6 +1089,8 @@ because of Phabricator reports.
   Title or PageReference. To change the relevant title used for methods
   that do not offer an option to set the page, call Parser::setPage.
   This affects the methods cleanSig, getSection and replaceSection.
+* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+  used in rights log.
 
 == Compatibility ==
 
