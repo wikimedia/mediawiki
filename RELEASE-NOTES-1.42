@@ -80,6 +80,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated symfony/yaml from 5.4.23 to 5.4.31.
 * Updated wikimedia/relpath from 3.0.0 to 4.0.0.
 * Updated guzzlehttp/guzzle from 7.5.3 to 7.7.1.
+* Updated psr/http-message from 1.0.1 to 1.1.
 * …
 
 ===== Changed development-only external libraries =====
