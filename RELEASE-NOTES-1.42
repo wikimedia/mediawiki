@@ -78,6 +78,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated pear/mail from 1.5.1 to 1.6.0.
 * Updated pear/net_smtp from 1.10.1 to 1.11.1.
 * Updated symfony/yaml from 5.4.23 to 5.4.31.
+* Updated wikimedia/relpath from 3.0.0 to 4.0.0.
 * …
 
 ===== Changed development-only external libraries =====
