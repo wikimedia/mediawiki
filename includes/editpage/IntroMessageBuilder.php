@@ -391,7 +391,10 @@ class IntroMessageBuilder {
 					$localizer->msg( new RawMessage(
 						// Added using template syntax, to take <noinclude>'s into account.
 						'<div class="mw-editintro">{{:' . $introTitle->getFullText() . '}}</div>'
-					) )->parse()
+					) )
+						// Parse as content to enable language conversion (T353870)
+						->inContentLanguage()
+						->parse()
 				);
 				return;
 			}
