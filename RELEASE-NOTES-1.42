@@ -75,6 +75,8 @@ For notes on 1.41.x and older releases, see HISTORY.
   from v1.0.0 to v1.2.0.
 * Updated wikimedia/minify from v2.5.1 to v2.7.0.
 * Updated Vue from v3.2.37-compat to v3.3.9.
+* Updated pear/mail from 1.5.1 to 1.6.0.
+* Updated pear/net_smtp from 1.10.1 to 1.11.1.
 * …
 
 ===== Changed development-only external libraries =====
