@@ -14,13 +14,14 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.35.14 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.13 ===
 * Localisation updates.
 * (T344912) mail: Encode period (ascii 46) if it appears in encoded email
   header.
-* logging: Fix non-escaped messages used in rights log.
+* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+  used in rights log.
 
 == MediaWiki 1.35.13 ==
 
