@@ -3,6 +3,13 @@
 MediaWiki 1.41 is an pre-release testing branch, and is not recommended
 for use in production.
 
+== MediaWiki 1.41.1 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.41.0 ===
+* Localisation updates.
+
 == MediaWiki 1.41.0 ==
 
 === Changes since MediaWiki 1.41.0-rc.0 ===
