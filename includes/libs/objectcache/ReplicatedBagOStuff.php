@@ -28,6 +28,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * In the WAN scenario (e.g. multi-datacenter case), this is useful when
  * writes are rare or they usually take place in the primary datacenter.
  *
+ * @deprecated since 1.42
  * @ingroup Cache
  * @since 1.26
  */
@@ -54,6 +55,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	 *   - sessionConsistencyWindow: Seconds to read from the master source for a key
 	 *      after writing to it. [Default: ReplicatedBagOStuff::MAX_WRITE_DELAY]
 	 *
+	 * @deprecated since 1.42
 	 * @param array $params
 	 * @throws InvalidArgumentException
 	 */

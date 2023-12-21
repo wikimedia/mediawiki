@@ -288,6 +288,7 @@ because of Phabricator reports.
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.
 * Title::getBrokenLinksFrom() has been deprecated.
+* ReplicatedBagOStuff has been deprecated since 1.42.
 * ParserOutput::setLanguageLinks() has been deprecated.
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
   and will soon stop working due to schema changes. Instead use
