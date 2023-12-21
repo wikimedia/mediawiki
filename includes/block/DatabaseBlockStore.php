@@ -456,7 +456,11 @@ class DatabaseBlockStore {
 					// Slightly weird, but who are we to argue?
 					/** @var UserIdentity $vagueUser */
 					$vagueUser = $target;
-					$userIds[] = $vagueUser->getId( $this->wikiId );
+					if ( $vagueUser->getId( $this->wikiId ) ) {
+						$userIds[] = $vagueUser->getId( $this->wikiId );
+					} else {
+						$userNames[] = $vagueUser->getName();
+					}
 					break;
 
 				case Block::TYPE_IP:
