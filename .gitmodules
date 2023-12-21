@@ -1,98 +1,86 @@
 [submodule "extensions/AbuseFilter"]
 	path = extensions/AbuseFilter
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/AbuseFilter
+	url = https://github.com/wikimedia/mediawiki-extensions-AbuseFilter
 	branch = REL1_40
 [submodule "extensions/CategoryTree"]
 	path = extensions/CategoryTree
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CategoryTree
+	url = https://github.com/wikimedia/mediawiki-extensions-CategoryTree
 	branch = REL1_40
 [submodule "extensions/Cite"]
 	path = extensions/Cite
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Cite
+	url = https://github.com/wikimedia/mediawiki-extensions-Cite
 	branch = REL1_40
 [submodule "extensions/CiteThisPage"]
 	path = extensions/CiteThisPage
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CiteThisPage
+	url = https://github.com/wikimedia/mediawiki-extensions-CiteThisPage
 	branch = REL1_40
 [submodule "extensions/CodeEditor"]
 	path = extensions/CodeEditor
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeEditor
+	url = https://github.com/wikimedia/mediawiki-extensions-CodeEditor
 	branch = REL1_40
 [submodule "extensions/ConfirmEdit"]
 	path = extensions/ConfirmEdit
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ConfirmEdit
-	branch = REL1_40
-[submodule "extensions/DiscussionTools"]
-	path = extensions/DiscussionTools
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/DiscussionTools
-	branch = REL1_40
-[submodule "extensions/Echo"]
-	path = extensions/Echo
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Echo
+	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit
 	branch = REL1_40
 [submodule "extensions/Gadgets"]
 	path = extensions/Gadgets
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Gadgets
+	url = https://github.com/wikimedia/mediawiki-extensions-Gadgets
 	branch = REL1_40
 [submodule "extensions/ImageMap"]
 	path = extensions/ImageMap
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ImageMap
+	url = https://github.com/wikimedia/mediawiki-extensions-Imagemap
 	branch = REL1_40
 [submodule "extensions/InputBox"]
 	path = extensions/InputBox
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/InputBox
+	url = https://github.com/wikimedia/mediawiki-extensions-InputBox
 	branch = REL1_40
 [submodule "extensions/Interwiki"]
 	path = extensions/Interwiki
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Interwiki
-	branch = REL1_40
-[submodule "extensions/Linter"]
-	path = extensions/Linter
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Linter
-	branch = REL1_40
-[submodule "extensions/LoginNotify"]
-	path = extensions/LoginNotify
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/LoginNotify
+	url = https://github.com/wikimedia/mediawiki-extensions-Interwiki
 	branch = REL1_40
 [submodule "extensions/Math"]
 	path = extensions/Math
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Math
+	url = https://github.com/wikimedia/mediawiki-extensions-Math
 	branch = REL1_40
 [submodule "extensions/MultimediaViewer"]
 	path = extensions/MultimediaViewer
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/MultimediaViewer
+	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
 	branch = REL1_40
 [submodule "extensions/Nuke"]
 	path = extensions/Nuke
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Nuke
+	url = https://github.com/wikimedia/mediawiki-extensions-Nuke
 	branch = REL1_40
 [submodule "extensions/OATHAuth"]
 	path = extensions/OATHAuth
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/OATHAuth
+	url = https://github.com/wikimedia/mediawiki-extensions-OATHAuth
 	branch = REL1_40
 [submodule "extensions/PageImages"]
 	path = extensions/PageImages
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages
+	url = https://github.com/wikimedia/mediawiki-extensions-PageImages
 	branch = REL1_40
 [submodule "extensions/ParserFunctions"]
 	path = extensions/ParserFunctions
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ParserFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-ParserFunctions
 	branch = REL1_40
 [submodule "extensions/PdfHandler"]
 	path = extensions/PdfHandler
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PdfHandler
+	url = https://github.com/wikimedia/mediawiki-extensions-PdfHandler
 	branch = REL1_40
 [submodule "extensions/Poem"]
 	path = extensions/Poem
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Poem
+	url = https://github.com/wikimedia/mediawiki-extensions-Poem
+	branch = REL1_40
+[submodule "extensions/Renameuser"]
+	path = extensions/Renameuser
+	url = https://github.com/wikimedia/mediawiki-extensions-Renameuser
 	branch = REL1_40
 [submodule "extensions/ReplaceText"]
 	path = extensions/ReplaceText
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ReplaceText
+	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText
 	branch = REL1_40
 [submodule "extensions/Scribunto"]
 	path = extensions/Scribunto
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Scribunto
+	url = https://github.com/wikimedia/mediawiki-extensions-Scribunto
 	branch = REL1_40
 [submodule "extensions/SecureLinkFixer"]
 	path = extensions/SecureLinkFixer
@@ -100,47 +88,43 @@
 	branch = REL1_40
 [submodule "extensions/SpamBlacklist"]
 	path = extensions/SpamBlacklist
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SpamBlacklist
+	url = https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist
 	branch = REL1_40
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SyntaxHighlight_GeSHi
+	url = https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi
 	branch = REL1_40
 [submodule "extensions/TemplateData"]
 	path = extensions/TemplateData
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateData
 	branch = REL1_40
 [submodule "extensions/TextExtracts"]
 	path = extensions/TextExtracts
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TextExtracts
-	branch = REL1_40
-[submodule "extensions/Thanks"]
-	path = extensions/Thanks
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Thanks
+	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts
 	branch = REL1_40
 [submodule "extensions/TitleBlacklist"]
 	path = extensions/TitleBlacklist
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TitleBlacklist
+	url = https://github.com/wikimedia/mediawiki-extensions-TitleBlacklist
 	branch = REL1_40
 [submodule "extensions/VisualEditor"]
 	path = extensions/VisualEditor
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/VisualEditor
+	url = https://github.com/wikimedia/mediawiki-extensions-VisualEditor
 	branch = REL1_40
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/WikiEditor
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor
 	branch = REL1_40
 [submodule "skins/MinervaNeue"]
 	path = skins/MinervaNeue
-	url = https://gerrit.wikimedia.org/r/mediawiki/skins/MinervaNeue
+	url = https://github.com/wikimedia/mediawiki-skins-MinervaNeue
 	branch = REL1_40
 [submodule "skins/MonoBook"]
 	path = skins/MonoBook
-	url = https://gerrit.wikimedia.org/r/mediawiki/skins/MonoBook
+	url = https://github.com/wikimedia/mediawiki-skins-MonoBook
 	branch = REL1_40
 [submodule "skins/Timeless"]
 	path = skins/Timeless
-	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Timeless
+	url = https://github.com/wikimedia/mediawiki-skins-Timeless
 	branch = REL1_40
 [submodule "skins/Vector"]
 	path = skins/Vector
@@ -148,5 +132,1072 @@
 	branch = REL1_40
 [submodule "vendor"]
 	path = vendor
-	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
+	url = https://github.com/wikimedia/mediawiki-vendor
 	branch = REL1_40
+[submodule "extensions/CheckUser"]
+	path = extensions/CheckUser
+	url = https://github.com/wikimedia/mediawiki-extensions-CheckUser
+	branch = REL1_40
+[submodule "extensions/CentralAuth"]
+	path = extensions/CentralAuth
+	url = https://github.com/wikimedia/mediawiki-extensions-CentralAuth
+	branch = REL1_40
+[submodule "extensions/AntiSpoof"]
+	path = extensions/AntiSpoof
+	url = https://github.com/wikimedia/mediawiki-extensions-AntiSpoof
+	branch = REL1_40
+[submodule "extensions/Babel"]
+	path = extensions/Babel
+	url = https://github.com/wikimedia/mediawiki-extensions-Babel
+	branch = REL1_40
+[submodule "extensions/Echo"]
+	path = extensions/Echo
+	url = https://github.com/wikimedia/mediawiki-extensions-Echo
+	branch = REL1_40
+[submodule "extensions/GlobalBlocking"]
+	path = extensions/GlobalBlocking
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalBlocking
+	branch = REL1_40
+[submodule "extensions/MassMessage"]
+	path = extensions/MassMessage
+	url = https://github.com/wikimedia/mediawiki-extensions-MassMessage
+	branch = REL1_40
+[submodule "extensions/MobileFrontend"]
+	path = extensions/MobileFrontend
+	url = https://github.com/wikimedia/mediawiki-extensions-MobileFrontend
+	branch = REL1_40
+[submodule "extensions/OAuth"]
+	path = extensions/OAuth
+	url = https://github.com/wikimedia/mediawiki-extensions-OAuth
+	branch = REL1_40
+[submodule "extensions/Thanks"]
+	path = extensions/Thanks
+	url = https://github.com/wikimedia/mediawiki-extensions-Thanks
+	branch = REL1_40
+[submodule "extensions/Translate"]
+	path = extensions/Translate
+	url = https://github.com/wikimedia/mediawiki-extensions-Translate
+	branch = master
+[submodule "extensions/UniversalLanguageSelector"]
+	path = extensions/UniversalLanguageSelector
+	url = https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector
+	branch = master
+[submodule "extensions/UrlShortener"]
+	path = extensions/UrlShortener
+	url = https://github.com/wikimedia/mediawiki-extensions-UrlShortener
+	branch = REL1_40
+[submodule "extensions/cldr"]
+	path = extensions/cldr
+	url = https://github.com/wikimedia/mediawiki-extensions-cldr
+	branch = master
+[submodule "skins/CologneBlue"]
+	path = skins/CologneBlue
+	url = https://github.com/wikimedia/mediawiki-skins-CologneBlue
+	branch = REL1_40
+[submodule "skins/Modern"]
+	path = skins/Modern
+	url = https://github.com/wikimedia/mediawiki-skins-Modern
+	branch = REL1_40
+[submodule "extensions/Flow"]
+	path = extensions/Flow
+	url = https://github.com/wikimedia/mediawiki-extensions-Flow
+	branch = REL1_40
+[submodule "extensions/FileStorageMonitor"]
+	path = extensions/FileStorageMonitor
+	url = https://github.com/Telepedia/FileStorageMonitor
+	branch = master
+[submodule "extensions/Timeline"]
+	path = extensions/Timeline
+	url = https://github.com/wikimedia/mediawiki-extensions-Timeline
+	branch = REL1_40
+[submodule "extensions/Disambiguator"]
+	path = extensions/Disambiguator
+	url = https://github.com/wikimedia/mediawiki-extensions-Disambiguator
+	branch = REL1_40
+[submodule "extensions/GlobalCssJs"]
+	path = extensions/GlobalCssJs
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalCssJs
+	branch = REL1_40
+[submodule "extensions/DynamicPageList"]
+	path = extensions/DynamicPageList
+	url = https://github.com/wikimedia/mediawiki-extensions-intersection
+	branch = REL1_40
+[submodule "extensions/TimedMediaHandler"]
+	path = extensions/TimedMediaHandler
+	url = https://github.com/wikimedia/mediawiki-extensions-TimedMediaHandler
+	branch = REL1_40
+[submodule "extensions/CollapsibleVector"]
+	path = extensions/CollapsibleVector
+	url = https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector
+	branch = REL1_40
+[submodule "extensions/SubpageFun"]
+	path = extensions/SubpageFun
+	url = https://github.com/wikimedia/mediawiki-extensions-SubpageFun
+	branch = REL1_40
+[submodule "extensions/DPLForum"]
+	path = extensions/DPLForum
+	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum
+	branch = REL1_40
+[submodule "extensions/AdminLinks"]
+	path = extensions/AdminLinks
+	url = https://github.com/wikimedia/mediawiki-extensions-AdminLinks
+	branch = REL1_40
+[submodule "extensions/SocialProfile"]
+	path = extensions/SocialProfile
+	url = https://github.com/wikimedia/mediawiki-extensions-SocialProfile
+	branch = master
+[submodule "extensions/Variables"]
+	path = extensions/Variables
+	url = https://github.com/wikimedia/mediawiki-extensions-Variables
+	branch = REL1_40
+[submodule "extensions/CharInsert"]
+	path = extensions/CharInsert
+	url = https://github.com/wikimedia/mediawiki-extensions-CharInsert
+	branch = REL1_40
+[submodule "extensions/NewUserMessage"]
+	path = extensions/NewUserMessage
+	url = https://github.com/wikimedia/mediawiki-extensions-NewUserMessage
+	branch = REL1_40
+[submodule "extensions/CSS"]
+	path = extensions/CSS
+	url = https://github.com/wikimedia/mediawiki-extensions-CSS
+	branch = REL1_40
+[submodule "extensions/Popups"]
+	path = extensions/Popups
+	url = https://github.com/wikimedia/mediawiki-extensions-Popups
+	branch = REL1_40
+[submodule "extensions/TitleKey"]
+	path = extensions/TitleKey
+	url = https://github.com/wikimedia/mediawiki-extensions-TitleKey
+	branch = REL1_40
+[submodule "extensions/MsUpload"]
+	path = extensions/MsUpload
+	url = https://github.com/wikimedia/mediawiki-extensions-MsUpload
+	branch = REL1_40
+[submodule "extensions/MsLinks"]
+	path = extensions/MsLinks
+	url = https://github.com/wikimedia/mediawiki-extensions-MsLinks
+	branch = REL1_40
+[submodule "extensions/MultiBoilerplate"]
+	path = extensions/MultiBoilerplate
+	url = https://github.com/wikimedia/mediawiki-extensions-MultiBoilerplate
+	branch = REL1_40
+[submodule "extensions/TemplateSandbox"]
+	path = extensions/TemplateSandbox
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox
+	branch = REL1_40
+[submodule "extensions/Josa"]
+	path = extensions/Josa
+	url = https://github.com/wikimedia/mediawiki-extensions-Josa
+	branch = REL1_40
+[submodule "extensions/PageTriage"]
+	path = extensions/PageTriage
+	url = https://github.com/wikimedia/mediawiki-extensions-PageTriage
+	branch = REL1_40
+[submodule "extensions/SubPageList3"]
+	path = extensions/SubPageList3
+	url = https://github.com/wikimedia/mediawiki-extensions-SubPageList3
+	branch = REL1_40
+[submodule "extensions/NoTitle"]
+	path = extensions/NoTitle
+	url = https://github.com/wikimedia/mediawiki-extensions-NoTitle
+	branch = REL1_40
+[submodule "extensions/OpenGraphMeta"]
+	path = extensions/OpenGraphMeta
+	url = https://github.com/wikimedia/mediawiki-extensions-OpenGraphMeta
+	branch = REL1_40
+[submodule "extensions/WikiLove"]
+	path = extensions/WikiLove
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiLove
+	branch = REL1_40
+[submodule "extensions/BetaFeatures"]
+	path = extensions/BetaFeatures
+	url = https://github.com/wikimedia/mediawiki-extensions-BetaFeatures
+	branch = REL1_40
+[submodule "extensions/SandboxLink"]
+	path = extensions/SandboxLink
+	url = https://github.com/wikimedia/mediawiki-extensions-SandboxLink
+	branch = REL1_40
+[submodule "extensions/ContactPage"]
+	path = extensions/ContactPage
+	url = https://github.com/wikimedia/mediawiki-extensions-ContactPage
+	branch = REL1_40
+[submodule "extensions/PageNotice"]
+	path = extensions/PageNotice
+	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice
+	branch = REL1_40
+[submodule "extensions/Loops"]
+	path = extensions/Loops
+	url = https://github.com/wikimedia/mediawiki-extensions-Loops
+	branch = REL1_40
+[submodule "extensions/NewestPages"]
+	path = extensions/NewestPages
+	url = https://github.com/wikimedia/mediawiki-extensions-NewestPages
+	branch = REL1_40
+[submodule "extensions/HeaderTabs"]
+	path = extensions/HeaderTabs
+	url = https://github.com/wikimedia/mediawiki-extensions-HeaderTabs
+	branch = REL1_40
+[submodule "extensions/VoteNY"]
+	path = extensions/VoteNY
+	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY
+	branch = master
+[submodule "skins/Metrolook"]
+	path = skins/Metrolook
+	url = https://github.com/wikimedia/mediawiki-skins-Metrolook
+	branch = REL1_40
+[submodule "extensions/AJAXPoll"]
+	path = extensions/AJAXPoll
+	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll
+	branch = master
+[submodule "extensions/BlogPage"]
+	path = extensions/BlogPage
+	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage
+	branch = master
+[submodule "extensions/WebChat"]
+	path = extensions/WebChat
+	url = https://github.com/wikimedia/mediawiki-extensions-WebChat
+	branch = REL1_40
+[submodule "extensions/MsCalendar"]
+	path = extensions/MsCalendar
+	url = https://github.com/wikimedia/mediawiki-extensions-MsCalendar
+	branch = REL1_40
+[submodule "extensions/AuthorProtect"]
+	path = extensions/AuthorProtect
+	url = https://github.com/wikimedia/mediawiki-extensions-AuthorProtect
+	branch = REL1_40
+[submodule "extensions/LinkSuggest"]
+	path = extensions/LinkSuggest
+	url = https://github.com/wikimedia/mediawiki-extensions-LinkSuggest
+	branch = REL1_40
+[submodule "skins/DuskToDawn"]
+	path = skins/DuskToDawn
+	url = https://github.com/wikimedia/mediawiki-skins-DuskToDawn
+	branch = REL1_40
+[submodule "skins/apex"]
+	path = skins/apex
+	url = https://github.com/wikimedia/mediawiki-skins-apex
+	branch = REL1_40
+[submodule "skins/erudite"]
+	path = skins/erudite
+	url = https://github.com/wikimedia/mediawiki-skins-erudite
+	branch = REL1_40
+[submodule "extensions/Tabs"]
+	path = extensions/Tabs
+	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
+	branch = REL1_40
+[submodule "extensions/AddHTMLMetaAndTitle"]
+	path = extensions/AddHTMLMetaAndTitle
+	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle
+	branch = REL1_40
+[submodule "extensions/HighlightLinksInCategory"]
+	path = extensions/HighlightLinksInCategory
+	url = https://github.com/labster/HighlightLinksInCategory
+	branch = master
+[submodule "extensions/SimpleTooltip"]
+	path = extensions/SimpleTooltip
+	url = https://github.com/Universal-Omega/SimpleTooltip
+	branch = master
+[submodule "extensions/Comments"]
+	path = extensions/Comments
+	url = https://github.com/wikimedia/mediawiki-extensions-Comments
+	branch = master
+[submodule "extensions/PDFEmbed"]
+	path = extensions/PDFEmbed
+	url = https://github.com/miraheze/PDFEmbed
+	branch = master
+[submodule "extensions/YouTube"]
+	path = extensions/YouTube
+	url = https://github.com/miraheze/YouTube
+	branch = master
+[submodule "extensions/LabeledSectionTransclusion"]
+	path = extensions/LabeledSectionTransclusion
+	url = https://github.com/wikimedia/mediawiki-extensions-LabeledSectionTransclusion
+	branch = REL1_40
+[submodule "extensions/JavascriptSlideshow"]
+	path = extensions/JavascriptSlideshow
+	url = https://gitlab.com/hydrawiki/extensions/javascriptslideshow
+	branch = master
+[submodule "extensions/Wikibase"]
+	path = extensions/Wikibase
+	url = https://github.com/wikimedia/Wikibase
+	branch = REL1_40
+[submodule "extensions/RSS"]
+	path = extensions/RSS
+	url = https://github.com/wikimedia/mediawiki-extensions-RSS
+	branch = REL1_40
+[submodule "extensions/Maps"]
+	path = extensions/Maps
+	url = https://github.com/ProfessionalWiki/Maps
+	branch = master
+[submodule "extensions/MassEditRegex"]
+	path = extensions/MassEditRegex
+	url = https://github.com/wikimedia/mediawiki-extensions-MassEditRegex
+	branch = REL1_40
+[submodule "extensions/HideSection"]
+	path = extensions/HideSection
+	url = https://github.com/labster/HideSection
+	branch = master
+[submodule "extensions/WikiTextLoggedInOut"]
+	path = extensions/WikiTextLoggedInOut
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiTextLoggedInOut
+	branch = REL1_40
+[submodule "skins/Refreshed"]
+	path = skins/Refreshed
+	url = https://github.com/wikimedia/mediawiki-skins-Refreshed
+	branch = REL1_40
+[submodule "extensions/MediaWikiChat"]
+	path = extensions/MediaWikiChat
+	url = https://github.com/wikimedia/mediawiki-extensions-MediaWikiChat
+	branch = REL1_40
+[submodule "extensions/ArticleRatings"]
+	path = extensions/ArticleRatings
+	url = https://github.com/wikimedia/mediawiki-extensions-ArticleRatings
+	branch = REL1_40
+[submodule "skins/Nostalgia"]
+	path = skins/Nostalgia
+	url = https://github.com/wikimedia/mediawiki-skins-Nostalgia
+	branch = REL1_40
+[submodule "extensions/FlaggedRevs"]
+	path = extensions/FlaggedRevs
+	url = https://github.com/wikimedia/mediawiki-extensions-FlaggedRevs
+	branch = REL1_40
+[submodule "extensions/TorBlock"]
+	path = extensions/TorBlock
+	url = https://github.com/wikimedia/mediawiki-extensions-TorBlock
+	branch = REL1_40
+[submodule "extensions/Newsletter"]
+	path = extensions/Newsletter
+	url = https://github.com/wikimedia/mediawiki-extensions-Newsletter
+	branch = REL1_40
+[submodule "extensions/CreatePage"]
+	path = extensions/CreatePage
+	url = https://github.com/wikimedia/mediawiki-extensions-CreatePage
+	branch = REL1_40
+[submodule "extensions/wikihiero"]
+	path = extensions/wikihiero
+	url = https://github.com/wikimedia/mediawiki-extensions-wikihiero
+	branch = REL1_40
+[submodule "extensions/Quiz"]
+	path = extensions/Quiz
+	url = https://github.com/wikimedia/mediawiki-extensions-Quiz
+	branch = REL1_40
+[submodule "extensions/ProtectSite"]
+	path = extensions/ProtectSite
+	url = https://github.com/wikimedia/mediawiki-extensions-ProtectSite
+	branch = master
+[submodule "extensions/Theme"]
+	path = extensions/Theme
+	url = https://github.com/wikimedia/mediawiki-extensions-Theme
+	branch = REL1_40
+[submodule "skins/Gamepress"]
+	path = skins/Gamepress
+	url = https://github.com/wikimedia/mediawiki-skins-Gamepress
+	branch = REL1_40
+[submodule "extensions/DismissableSiteNotice"]
+	path = extensions/DismissableSiteNotice
+	url = https://github.com/wikimedia/mediawiki-extensions-DismissableSiteNotice
+	branch = REL1_40
+[submodule "extensions/NewSignupPage"]
+	path = extensions/NewSignupPage
+	url = https://github.com/wikimedia/mediawiki-extensions-NewSignupPage
+	branch = REL1_40
+[submodule "extensions/Graph"]
+	path = extensions/Graph
+	url = https://github.com/wikimedia/mediawiki-extensions-Graph
+	branch = REL1_40
+[submodule "extensions/Spoilers"]
+	path = extensions/Spoilers
+	url = https://github.com/Telshin/Spoilers
+	branch = master
+[submodule "extensions/SimpleChanges"]
+	path = extensions/SimpleChanges
+	url = https://github.com/wikimedia/mediawiki-extensions-SimpleChanges
+	branch = REL1_40
+[submodule "extensions/CreateRedirect"]
+	path = extensions/CreateRedirect
+	url = https://github.com/wikimedia/mediawiki-extensions-CreateRedirect
+	branch = REL1_40
+[submodule "extensions/EditSubpages"]
+	path = extensions/EditSubpages
+	url = https://github.com/wikimedia/mediawiki-extensions-EditSubpages
+	branch = REL1_40
+[submodule "extensions/ProofreadPage"]
+	path = extensions/ProofreadPage
+	url = https://github.com/wikimedia/mediawiki-extensions-ProofreadPage
+	branch = REL1_40
+[submodule "extensions/PagedTiffHandler"]
+	path = extensions/PagedTiffHandler
+	url = https://github.com/wikimedia/mediawiki-extensions-PagedTiffHandler
+	branch = REL1_40
+[submodule "extensions/AutoCreateCategoryPages"]
+	path = extensions/AutoCreateCategoryPages
+	url = https://github.com/wikimedia/mediawiki-extensions-AutoCreateCategoryPages
+	branch = master
+[submodule "extensions/ContributionScores"]
+	path = extensions/ContributionScores
+	url = https://github.com/wikimedia/mediawiki-extensions-ContributionScores
+	branch = REL1_40
+[submodule "extensions/TocTree"]
+	path = extensions/TocTree
+	url = https://github.com/wikimedia/mediawiki-extensions-TocTree
+	branch = REL1_40
+[submodule "extensions/GroupsSidebar"]
+	path = extensions/GroupsSidebar
+	url = https://github.com/wikimedia/mediawiki-extensions-GroupsSidebar
+	branch = REL1_40
+[submodule "skins/Tweeki"]
+	path = skins/Tweeki
+	url = https://github.com/thaider/Tweeki
+	branch = master
+[submodule "extensions/GuidedTour"]
+	path = extensions/GuidedTour
+	url = https://github.com/wikimedia/mediawiki-extensions-GuidedTour
+	branch = REL1_40
+[submodule "extensions/EventLogging"]
+	path = extensions/EventLogging
+	url = https://github.com/wikimedia/mediawiki-extensions-EventLogging
+	branch = REL1_40
+[submodule "extensions/CentralNotice"]
+	path = extensions/CentralNotice
+	url = https://github.com/wikimedia/mediawiki-extensions-CentralNotice
+	branch = REL1_40
+[submodule "extensions/UrlGetParameters"]
+	path = extensions/UrlGetParameters
+	url = https://github.com/wikimedia/mediawiki-extensions-UrlGetParameters
+	branch = REL1_40
+[submodule "extensions/Moderation"]
+	path = extensions/Moderation
+	url = https://github.com/edwardspec/mediawiki-moderation
+	branch = master
+[submodule "extensions/ArticleToCategory2"]
+	path = extensions/ArticleToCategory2
+	url = https://github.com/wikimedia/mediawiki-extensions-ArticleToCategory2
+	branch = REL1_40
+[submodule "extensions/Score"]
+	path = extensions/Score
+	url = https://github.com/wikimedia/mediawiki-extensions-Score
+	branch = REL1_40
+[submodule "extensions/LoginNotify"]
+	path = extensions/LoginNotify
+	url = https://github.com/wikimedia/mediawiki-extensions-LoginNotify
+	branch = REL1_40
+[submodule "extensions/MagicNoCache"]
+	path = extensions/MagicNoCache
+	url = https://github.com/wikimedia/mediawiki-extensions-MagicNoCache
+	branch = REL1_40
+[submodule "extensions/WikiForum"]
+	path = extensions/WikiForum
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiForum
+	branch = master
+[submodule "extensions/HAWelcome"]
+	path = extensions/HAWelcome
+	url = https://github.com/wikimedia/mediawiki-extensions-HAWelcome
+	branch = master
+[submodule "extensions/GlobalUserPage"]
+	path = extensions/GlobalUserPage
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUserPage
+	branch = REL1_40
+[submodule "extensions/GlobalPreferences"]
+	path = extensions/GlobalPreferences
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalPreferences
+	branch = REL1_40
+[submodule "extensions/QuizGame"]
+	path = extensions/QuizGame
+	url = https://github.com/wikimedia/mediawiki-extensions-QuizGame
+	branch = master
+[submodule "extensions/Capiunto"]
+	path = extensions/Capiunto
+	url = https://github.com/wikimedia/mediawiki-extensions-Capiunto
+	branch = REL1_40
+[submodule "extensions/TemplateStyles"]
+	path = extensions/TemplateStyles
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateStyles
+	branch = REL1_40
+[submodule "extensions/WikiDiscover"]
+	path = extensions/WikiDiscover
+	url = https://github.com/miraheze/WikiDiscover
+	branch = master
+[submodule "extensions/PipeEscape"]
+	path = extensions/PipeEscape
+	url = https://github.com/wikimedia/mediawiki-extensions-PipeEscape
+	branch = REL1_40
+[submodule "extensions/Kartographer"]
+	path = extensions/Kartographer
+	url = https://github.com/wikimedia/mediawiki-extensions-Kartographer
+	branch = REL1_40
+[submodule "extensions/Description2"]
+	path = extensions/Description2
+	url = https://github.com/wikimedia/mediawiki-extensions-Description2
+	branch = REL1_40
+[submodule "extensions/GeoData"]
+	path = extensions/GeoData
+	url = https://github.com/wikimedia/mediawiki-extensions-GeoData
+	branch = REL1_40
+[submodule "extensions/TwoColConflict"]
+	path = extensions/TwoColConflict
+	url = https://github.com/wikimedia/mediawiki-extensions-TwoColConflict
+	branch = REL1_40
+[submodule "extensions/JSBreadCrumbs"]
+	path = extensions/JSBreadCrumbs
+	url = https://github.com/wikimedia/mediawiki-extensions-JSBreadCrumbs
+	branch = REL1_40
+[submodule "extensions/MyVariables"]
+	path = extensions/MyVariables
+	url = https://github.com/wikimedia/mediawiki-extensions-MyVariables
+	branch = REL1_40
+[submodule "extensions/RandomGameUnit"]
+	path = extensions/RandomGameUnit
+	url = https://github.com/wikimedia/mediawiki-extensions-RandomGameUnit
+	branch = REL1_40
+[submodule "extensions/NewUserNotif"]
+	path = extensions/NewUserNotif
+	url = https://github.com/wikimedia/mediawiki-extensions-NewUserNotif
+	branch = REL1_40
+[submodule "extensions/LinkTarget"]
+	path = extensions/LinkTarget
+	url = https://github.com/wikimedia/mediawiki-extensions-LinkTarget
+	branch = REL1_40
+[submodule "extensions/Listings"]
+	path = extensions/Listings
+	url = https://github.com/wikimedia/mediawiki-extensions-Listings
+	branch = REL1_40
+[submodule "extensions/UploadsLink"]
+	path = extensions/UploadsLink
+	url = https://github.com/wikimedia/mediawiki-extensions-UploadsLink
+	branch = REL1_40
+[submodule "extensions/RevisionSlider"]
+	path = extensions/RevisionSlider
+	url = https://github.com/wikimedia/mediawiki-extensions-RevisionSlider
+	branch = REL1_40
+[submodule "extensions/CodeMirror"]
+	path = extensions/CodeMirror
+	url = https://github.com/wikimedia/mediawiki-extensions-CodeMirror
+	branch = REL1_40
+[submodule "extensions/GeoCrumbs"]
+	path = extensions/GeoCrumbs
+	url = https://github.com/wikimedia/mediawiki-extensions-GeoCrumbs
+	branch = REL1_40
+[submodule "extensions/NukeDPL"]
+	path = extensions/NukeDPL
+	url = https://github.com/wikimedia/mediawiki-extensions-NukeDPL
+	branch = REL1_40
+[submodule "extensions/ImageRating"]
+	path = extensions/ImageRating
+	url = https://github.com/wikimedia/mediawiki-extensions-ImageRating
+	branch = REL1_40
+[submodule "extensions/RandomImage"]
+	path = extensions/RandomImage
+	url = https://github.com/wikimedia/mediawiki-extensions-RandomImage
+	branch = REL1_40
+[submodule "extensions/PollNY"]
+	path = extensions/PollNY
+	url = https://github.com/wikimedia/mediawiki-extensions-PollNY
+	branch = master
+[submodule "extensions/WikimediaIncubator"]
+	path = extensions/WikimediaIncubator
+	url = https://github.com/wikimedia/mediawiki-extensions-WikimediaIncubator
+	branch = REL1_40
+[submodule "extensions/ApprovedRevs"]
+	path = extensions/ApprovedRevs
+	url = https://github.com/wikimedia/mediawiki-extensions-ApprovedRevs
+	branch = master
+[submodule "extensions/Purge"]
+	path = extensions/Purge
+	url = https://github.com/Hutchy68/Purge
+	branch = master
+[submodule "extensions/RottenLinks"]
+	path = extensions/RottenLinks
+	url = https://github.com/miraheze/RottenLinks
+	branch = master
+[submodule "extensions/LinkTitles"]
+	path = extensions/LinkTitles
+	url = https://github.com/bovender/LinkTitles
+	branch = main
+[submodule "extensions/TemplateWizard"]
+	path = extensions/TemplateWizard
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard
+	branch = REL1_40
+[submodule "extensions/WikiSEO"]
+	path = extensions/WikiSEO
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO
+	branch = REL1_40
+[submodule "extensions/DummyFandoomMainpageTags"]
+	path = extensions/DummyFandoomMainpageTags
+	url = https://github.com/ciencia/mediawiki-extensions-DummyFandoomMainpageTags
+	branch = master
+[submodule "extensions/PortableInfobox"]
+	path = extensions/PortableInfobox
+	url = https://github.com/Universal-Omega/PortableInfobox
+	branch = master
+[submodule "extensions/MobileDetect"]
+	path = extensions/MobileDetect
+	url = https://github.com/wikimedia/mediawiki-extensions-MobileDetect
+	branch = master
+[submodule "extensions/Genealogy"]
+	path = extensions/Genealogy
+	url = https://github.com/wikimedia/mediawiki-extensions-Genealogy
+	branch = REL1_40
+[submodule "extensions/IncidentReporting"]
+	path = extensions/IncidentReporting
+	url = https://github.com/miraheze/IncidentReporting
+	branch = master
+[submodule "extensions/DataDump"]
+	path = extensions/DataDump
+	url = https://github.com/miraheze/DataDump
+	branch = master
+[submodule "extensions/DisplayTitle"]
+	path = extensions/DisplayTitle
+	url = https://github.com/wikimedia/mediawiki-extensions-DisplayTitle
+	branch = REL1_40
+[submodule "extensions/WikiCategoryTagCloud"]
+	path = extensions/WikiCategoryTagCloud
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiCategoryTagCloud
+	branch = master
+[submodule "skins/Mask"]
+	path = skins/Mask
+	url = https://github.com/wikimedia/mediawiki-skins-Mask
+	branch = REL1_40
+[submodule "extensions/JsonConfig"]
+	path = extensions/JsonConfig
+	url = https://github.com/wikimedia/mediawiki-extensions-JsonConfig
+	branch = REL1_40
+[submodule "extensions/CategorySortHeaders"]
+	path = extensions/CategorySortHeaders
+	url = https://github.com/wikimedia/mediawiki-extensions-CategorySortHeaders
+	branch = REL1_40
+[submodule "extensions/StopForumSpam"]
+	path = extensions/StopForumSpam
+	url = https://github.com/wikimedia/mediawiki-extensions-StopForumSpam
+	branch = REL1_40
+[submodule "extensions/SoftRedirector"]
+	path = extensions/SoftRedirector
+	url = https://github.com/wikimedia/mediawiki-extensions-SoftRedirector
+	branch = REL1_40
+[submodule "extensions/CommonsMetadata"]
+	path = extensions/CommonsMetadata
+	url = https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata
+	branch = REL1_40
+[submodule "extensions/AutoCreatePage"]
+	path = extensions/AutoCreatePage
+	url = https://github.com/Universal-Omega/AutoCreatePage
+	branch = master
+[submodule "extensions/LastModified"]
+	path = extensions/LastModified
+	url = https://github.com/wikimedia/mediawiki-extensions-LastModified
+	branch = REL1_40
+[submodule "extensions/CreatePageUw"]
+	path = extensions/CreatePageUw
+	url = https://github.com/wikimedia/mediawiki-extensions-CreatePageUw
+	branch = REL1_40
+[submodule "extensions/DarkMode"]
+	path = extensions/DarkMode
+	url = https://github.com/wikimedia/mediawiki-extensions-DarkMode
+	branch = REL1_40
+[submodule "extensions/FontAwesome"]
+	path = extensions/FontAwesome
+	url = https://github.com/ProfessionalWiki/FontAwesome
+	branch = master
+[submodule "extensions/SpriteSheet"]
+	path = extensions/SpriteSheet
+	url = https://github.com/miraheze/SpriteSheet
+	branch = master
+[submodule "extensions/LanguageSelector"]
+	path = extensions/LanguageSelector
+	url = https://github.com/wikimedia/mediawiki-extensions-LanguageSelector
+	branch = REL1_40
+[submodule "extensions/ForcePreview"]
+	path = extensions/ForcePreview
+	url = https://github.com/wikimedia/mediawiki-extensions-ForcePreview
+	branch = REL1_40
+[submodule "extensions/RegexFunctions"]
+	path = extensions/RegexFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-RegexFunctions
+	branch = REL1_40
+[submodule "extensions/CommentStreams"]
+	path = extensions/CommentStreams
+	url = https://github.com/wikimedia/mediawiki-extensions-CommentStreams
+	branch = REL1_40
+[submodule "extensions/VEForAll"]
+	path = extensions/VEForAll
+	url = https://github.com/wikimedia/mediawiki-extensions-VEForAll
+	branch = REL1_40
+[submodule "extensions/DataTransfer"]
+	path = extensions/DataTransfer
+	url = https://github.com/wikimedia/mediawiki-extensions-DataTransfer
+	branch = REL1_40
+[submodule "extensions/Calendar"]
+	path = extensions/Calendar
+	url = https://github.com/wikimedia/mediawiki-extensions-Calendar
+	branch = REL1_40
+[submodule "extensions/DynamicSidebar"]
+	path = extensions/DynamicSidebar
+	url = https://github.com/wikimedia/mediawiki-extensions-DynamicSidebar
+	branch = REL1_40
+[submodule "extensions/GlobalUsage"]
+	path = extensions/GlobalUsage
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUsage
+	branch = REL1_40
+[submodule "extensions/UserFunctions"]
+	path = extensions/UserFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-UserFunctions
+	branch = REL1_40
+[submodule "extensions/TreeAndMenu"]
+	path = extensions/TreeAndMenu
+	url = https://gitlab.com/organicdesign/TreeAndMenu
+	branch = master
+[submodule "extensions/Lingo"]
+	path = extensions/Lingo
+	url = https://github.com/wikimedia/mediawiki-extensions-Lingo
+	branch = REL1_40
+[submodule "extensions/TwitterTag"]
+	path = extensions/TwitterTag
+	url = https://github.com/wikimedia/mediawiki-extensions-TwitterTag
+	branch = master
+[submodule "extensions/MobileTabsPlugin"]
+	path = extensions/MobileTabsPlugin
+	url = https://github.com/fuerthwiki/MobileTabsPlugin
+	branch = master
+[submodule "skins/Medik"]
+	path = skins/Medik
+	url = https://bitbucket.org/wikiskripta/medik
+	branch = master
+[submodule "extensions/JsCalendar"]
+	path = extensions/JsCalendar
+	url = https://github.com/edwardspec/mediawiki-extension-JsCalendar
+	branch = master
+[submodule "extensions/Arrays"]
+	path = extensions/Arrays
+	url = https://github.com/wikimedia/mediawiki-extensions-Arrays
+	branch = REL1_40
+[submodule "extensions/RightFunctions"]
+	path = extensions/RightFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-RightFunctions
+	branch = REL1_40
+[submodule "extensions/DeleteUserPages"]
+	path = extensions/DeleteUserPages
+	url = https://github.com/wikimedia/mediawiki-extensions-DeleteUserPages
+	branch = REL1_40
+[submodule "extensions/OrphanedTalkPages"]
+	path = extensions/OrphanedTalkPages
+	url = https://github.com/wikimedia/mediawiki-extensions-OrphanedTalkPages
+	branch = REL1_40
+[submodule "extensions/Linter"]
+	path = extensions/Linter
+	url = https://github.com/wikimedia/mediawiki-extensions-Linter
+	branch = REL1_40
+[submodule "skins/Cosmos"]
+	path = skins/Cosmos
+	url = https://github.com/wikimedia/mediawiki-skins-Cosmos
+	branch = REL1_40
+[submodule "extensions/TranslationNotifications"]
+	path = extensions/TranslationNotifications
+	url = https://github.com/wikimedia/mediawiki-extensions-TranslationNotifications
+	branch = REL1_40
+[submodule "skins/Truglass"]
+	path = skins/Truglass
+	url = https://github.com/wikimedia/mediawiki-skins-Truglass
+	branch = master
+[submodule "extensions/EventStreamConfig"]
+	path = extensions/EventStreamConfig
+	url = https://github.com/wikimedia/mediawiki-extensions-EventStreamConfig
+	branch = REL1_40
+[submodule "extensions/SimpleBlogPage"]
+	path = extensions/SimpleBlogPage
+	url = https://github.com/Universal-Omega/SimpleBlogPage
+	branch = master
+[submodule "extensions/CleanChanges"]
+	path = extensions/CleanChanges
+	url = https://github.com/wikimedia/mediawiki-extensions-CleanChanges
+	branch = REL1_40
+[submodule "extensions/TimeMachine"]
+	path = extensions/TimeMachine
+	url = https://github.com/wikimedia/mediawiki-extensions-TimeMachine
+	branch = REL1_40
+[submodule "skins/Nimbus"]
+	path = skins/Nimbus
+	url = https://github.com/wikimedia/mediawiki-skins-Nimbus
+	branch = REL1_40
+[submodule "extensions/DiscussionTools"]
+	path = extensions/DiscussionTools
+	url = https://github.com/wikimedia/mediawiki-extensions-DiscussionTools
+	branch = REL1_40
+[submodule "extensions/GoogleNewsSitemap"]
+	path = extensions/GoogleNewsSitemap
+	url = https://github.com/wikimedia/mediawiki-extensions-GoogleNewsSitemap
+	branch = REL1_40
+[submodule "extensions/SnapProjectEmbed"]
+	path = extensions/SnapProjectEmbed
+	url = https://github.com/snapwiki/SnapProjectEmbed
+	branch = stable
+[submodule "extensions/DynamicPageList3"]
+	path = extensions/DynamicPageList3
+	url = https://github.com/Universal-Omega/DynamicPageList3
+	branch = master
+[submodule "extensions/Report"]
+	path = extensions/Report
+	url = https://github.com/wikimedia/mediawiki-extensions-Report
+	branch = master
+[submodule "extensions/EditNotify"]
+	path = extensions/EditNotify
+	url = https://github.com/wikimedia/mediawiki-extensions-EditNotify
+	branch = REL1_40
+[submodule "extensions/WikibaseQualityConstraints"]
+	path = extensions/WikibaseQualityConstraints
+	url = https://github.com/wikimedia/mediawiki-extensions-WikibaseQualityConstraints
+	branch = REL1_40
+[submodule "extensions/WikibaseLexeme"]
+	path = extensions/WikibaseLexeme
+	url = https://github.com/wikimedia/mediawiki-extensions-WikibaseLexeme
+	branch = REL1_40
+[submodule "extensions/Commentbox"]
+	path = extensions/Commentbox
+	url = https://github.com/wikimedia/mediawiki-extensions-Commentbox
+	branch = REL1_40
+[submodule "extensions/LogoFunctions"]
+	path = extensions/LogoFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-LogoFunctions
+	branch = REL1_40
+[submodule "extensions/ProtectionIndicator"]
+	path = extensions/ProtectionIndicator
+	url = https://github.com/wikimedia/mediawiki-extensions-ProtectionIndicator
+	branch = REL1_40
+[submodule "extensions/GeoGebra"]
+	path = extensions/GeoGebra
+	url = https://github.com/wikimedia/mediawiki-extensions-GeoGebra
+	branch = REL1_40
+[submodule "extensions/GlobalNewFiles"]
+	path = extensions/GlobalNewFiles
+	url = https://github.com/miraheze/GlobalNewFiles
+	branch = master
+[submodule "skins/HasSomeColours"]
+	path = skins/HasSomeColours
+	url = https://github.com/wikimedia/mediawiki-skins-HasSomeColours
+	branch = REL1_40
+[submodule "extensions/VariablesLua"]
+	path = extensions/VariablesLua
+	url = https://github.com/Liquipedia/VariablesLua
+	branch = master
+[submodule "extensions/MsCatSelect"]
+	path = extensions/MsCatSelect
+	url = https://github.com/wikimedia/mediawiki-extensions-MsCatSelect
+	branch = REL1_40
+[submodule "extensions/Editcount"]
+	path = extensions/Editcount
+	url = https://github.com/wikimedia/mediawiki-extensions-Editcount
+	branch = REL1_40
+[submodule "extensions/RandomSelection"]
+	path = extensions/RandomSelection
+	url = https://github.com/wikimedia/mediawiki-extensions-RandomSelection
+	branch = REL1_40
+[submodule "extensions/GoogleDocs4MW"]
+	path = extensions/GoogleDocs4MW
+	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
+	branch = REL1_40
+[submodule "extensions/3D"]
+	path = extensions/3D
+	url = https://github.com/wikimedia/mediawiki-extensions-3D
+	branch = REL1_40
+[submodule "extensions/ShortDescription"]
+	path = extensions/ShortDescription
+	url = https://github.com/StarCitizenTools/mediawiki-extensions-ShortDescription
+	branch = master
+[submodule "extensions/Video"]
+	path = extensions/Video
+	url = https://github.com/wikimedia/mediawiki-extensions-Video
+	branch = master
+[submodule "extensions/PageAssessments"]
+	path = extensions/PageAssessments
+	url = https://github.com/wikimedia/mediawiki-extensions-PageAssessments
+	branch = REL1_40
+[submodule "extensions/mw-ScratchBlocks4"]
+	path = extensions/mw-ScratchBlocks4
+	url = https://github.com/InternationalScratchWiki/mw-ScratchBlocks4
+	branch = master
+[submodule "extensions/RemovePII"]
+	path = extensions/RemovePII
+	url = https://github.com/miraheze/RemovePII
+	branch = master
+[submodule "skins/Monaco"]
+	path = skins/Monaco
+	url = https://github.com/Universal-Omega/Monaco
+	branch = master
+[submodule "extensions/UserPageEditProtection"]
+	path = extensions/UserPageEditProtection
+	url = https://github.com/wikimedia/mediawiki-extensions-UserPageEditProtection
+	branch = REL1_40
+[submodule "extensions/GlobalWatchlist"]
+	path = extensions/GlobalWatchlist
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalWatchlist
+	branch = REL1_40
+[submodule "extensions/CountDownClock"]
+	path = extensions/CountDownClock
+	url = https://github.com/wikimedia/mediawiki-extensions-CountDownClock
+	branch = REL1_40
+[submodule "skins/BlueSky"]
+	path = skins/BlueSky
+	url = https://github.com/wikimedia/mediawiki-skins-BlueSky
+	branch = REL1_40
+[submodule "extensions/TabberNeue"]
+	path = extensions/TabberNeue
+	url = https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue
+	branch = main
+[submodule "skins/chameleon"]
+	path = skins/chameleon
+	url = https://github.com/ProfessionalWiki/chameleon
+	branch = master
+[submodule "extensions/Bootstrap"]
+	path = extensions/Bootstrap
+	url = https://github.com/ProfessionalWiki/Bootstrap
+	branch = master
+[submodule "extensions/PageForms"]
+	path = extensions/PageForms
+	url = https://github.com/wikimedia/mediawiki-extensions-PageForms
+	branch = master
+[submodule "extensions/SkinPerPage"]
+	path = extensions/SkinPerPage
+	url = https://github.com/wikimedia/mediawiki-extensions-SkinPerPage
+	branch = REL1_40
+[submodule "extensions/ArticlePlaceholder"]
+	path = extensions/ArticlePlaceholder
+	url = https://github.com/wikimedia/mediawiki-extensions-ArticlePlaceholder
+	branch = REL1_40
+[submodule "skins/Anisa"]
+	path = skins/Anisa
+	url = https://github.com/wikimedia/mediawiki-skins-Anisa
+	branch = REL1_40
+[submodule "extensions/PageSchemas"]
+	path = extensions/PageSchemas
+	url = https://github.com/wikimedia/mediawiki-extensions-PageSchemas
+	branch = master
+[submodule "extensions/MintyDocs"]
+	path = extensions/MintyDocs
+	url = https://github.com/wikimedia/mediawiki-extensions-MintyDocs
+	branch = master
+[submodule "extensions/EmbedSpotify"]
+	path = extensions/EmbedSpotify
+	url = https://github.com/NessunKim/mediawiki-embed-spotify
+	branch = master
+[submodule "extensions/RatePage"]
+	path = extensions/RatePage
+	url = https://gitlab.com/nonsensopedia/extensions/ratepage
+	branch = master
+[submodule "extensions/ArticleCreationWorkflow"]
+	path = extensions/ArticleCreationWorkflow
+	url = https://github.com/wikimedia/mediawiki-extensions-ArticleCreationWorkflow
+	branch = REL1_40
+[submodule "skins/Mirage"]
+	path = skins/Mirage
+	url = https://github.com/wikimedia/mediawiki-skins-Mirage
+	branch = REL1_40
+[submodule "extensions/MixedNamespaceSearchSuggestions"]
+	path = extensions/MixedNamespaceSearchSuggestions
+	url = https://github.com/wikimedia/mediawiki-extensions-MixedNamespaceSearchSuggestions
+	branch = REL1_40
+[submodule "skins/WMAU"]
+	path = skins/WMAU
+	url = https://github.com/wikimedia/mediawiki-skins-WMAU
+	branch = master
+[submodule "extensions/LockAuthor"]
+	path = extensions/LockAuthor
+	url = https://github.com/wikimedia/mediawiki-extensions-LockAuthor
+	branch = REL1_40
+[submodule "extensions/TemplateStylesExtender"]
+	path = extensions/TemplateStylesExtender
+	url = https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender
+	branch = master
+[submodule "extensions/StandardDialogs"]
+	path = extensions/StandardDialogs
+	url = https://github.com/wikimedia/mediawiki-extensions-StandardDialogs
+	branch = master
+[submodule "extensions/StructuredNavigation"]
+	path = extensions/StructuredNavigation
+	url = https://github.com/wikimedia/mediawiki-extensions-StructuredNavigation
+	branch = REL1_40
+[submodule "extensions/PropertySuggester"]
+	path = extensions/PropertySuggester
+	url = https://github.com/wikimedia/mediawiki-extensions-PropertySuggester
+	branch = REL1_40
+[submodule "extensions/UploadWizard"]
+	path = extensions/UploadWizard
+	url = https://github.com/wikimedia/mediawiki-extensions-UploadWizard
+	branch = REL1_40
+[submodule "extensions/InterwikiSorting"]
+	path = extensions/InterwikiSorting
+	url = https://github.com/wikimedia/mediawiki-extensions-InterwikiSorting
+	branch = REL1_40
+[submodule "extensions/CreatedPagesList"]
+	path = extensions/CreatedPagesList
+	url = https://github.com/wikimedia/mediawiki-extensions-CreatedPagesList
+	branch = REL1_40
+[submodule "extensions/CategoryExplorer"]
+	path = extensions/CategoryExplorer
+	url = https://github.com/wikimedia/mediawiki-extensions-CategoryExplorer
+	branch = REL1_40
+[submodule "skins/NativeSvgHandler"]
+	path = skins/NativeSvgHandler
+	url = https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler
+	branch = REL1_40
+[submodule "extensions/ImportDump"]
+	path = extensions/ImportDump
+	url = https://github.com/miraheze/ImportDump
+	branch = master
+[submodule "extensions/Share"]
+	path = extensions/Share
+	url = https://github.com/AgentIsai/Share
+	branch = master
+[submodule "extensions/IPInfo"]
+	path = extensions/IPInfo
+	url = https://github.com/wikimedia/mediawiki-extensions-IPInfo
+	branch = REL1_40
+[submodule "extensions/FlexDiagrams"]
+	path = extensions/FlexDiagrams
+	url = https://github.com/wikimedia/mediawiki-extensions-FlexDiagrams
+	branch = master
+[submodule "skins/Pivot"]
+	path = skins/Pivot
+	url = https://github.com/wikimedia/mediawiki-skins-Pivot
+	branch = master
+[submodule "extensions/RemoveRedlinks"]
+	path = extensions/RemoveRedlinks
+	url = https://github.com/marohh/mediawikiRemoveRedlinks
+	branch = master
+[submodule "skins/Splash"]
+	path = skins/Splash
+	url = https://github.com/wikimedia/mediawiki-skins-Splash
+	branch = REL1_40
+[submodule "extensions/PageProperties"]
+	path = extensions/PageProperties
+	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
+	branch = master
+[submodule "extensions/AWS"]
+	path = extensions/AWS
+	url = https://github.com/edwardspec/mediawiki-aws-s3/
+	branch = master
+[submodule "extensions/CreateWiki"]
+	path = extensions/CreateWiki
+	url = https://github.com/Miraheze/CreateWiki/
+	branch = master
+[submodule "extensions/ManageWiki"]
+	path = extensions/ManageWiki
+	url = https://github.com/Telepedia/ManageWiki
+	branch = master
+[submodule "extensions/NativeSvgHandler"]
+	path = extensions/NativeSvgHandler
+	url = https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler
+	branch = REL1_40
+[submodule "extensions/GTag"]
+	path = extensions/GTag
+	url = https://github.com/Telepedia/mediawiki-GTag
+	branch = master 
+[submodule "extensions/TelepediaMagic"]
+	path = extensions/TelepediaMagic
+	url = https://gitlab.com/telepedia/extensions/TelepediaMagic
+	branch = main
+[submodule "extensions/TelepediaAds"]
+	path = extensions/TelepediaAds
+	url = https://gitlab.com/telepedia/extensions/telepediaads
+	branch = main
+[submodule "extensions/MigrateUserAccount"]
+	path = extensions/MigrateUserAccount
+	url = https://github.com/weirdgloop/mediawiki-extensions-MigrateUserAccount.git
