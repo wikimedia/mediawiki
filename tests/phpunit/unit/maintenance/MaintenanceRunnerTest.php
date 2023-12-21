@@ -2,6 +2,7 @@
 
 use MediaWiki\Extension\FakeExtension\Maintenance\FakeScript;
 use MediaWiki\Maintenance\MaintenanceRunner;
+use MediaWiki\Maintenance\Version;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,7 +33,7 @@ class MaintenanceRunnerTest extends TestCase {
 		//       otherwise we may trigger a "cannot re-declare class" error.
 
 		yield 'plain name'
-			=> [ 'version', Version::class ];
+			=> [ 'Version', Version::class ];
 
 		yield 'name with suffix'
 			=> [ 'edit.php', EditCLI::class ];
@@ -54,7 +55,7 @@ class MaintenanceRunnerTest extends TestCase {
 			=> [ MW_INSTALL_PATH . '/maintenance/blockUsers.php', BlockUsers::class ];
 
 		yield 'class name'
-			=> [ 'Version', Version::class ];
+			=> [ 'MediaWiki\Maintenance\Version', Version::class ];
 
 		yield 'extension script path, using prefix'
 			=> [ 'FakeExtension:fakeScript.php', FakeScript::class ];

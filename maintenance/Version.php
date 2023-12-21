@@ -23,6 +23,9 @@
  * @since 1.36
  */
 
+namespace MediaWiki\Maintenance;
+
+use Maintenance;
 use MediaWiki\Utils\GitInfo;
 
 require_once __DIR__ . '/Maintenance.php';
