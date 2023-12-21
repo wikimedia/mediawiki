@@ -283,6 +283,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/integration/includes/user
 	'MediaWiki\Tests\User\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
 
+	# tests/phpunit/integration/includes/user/TempUser
+	'MediaWiki\Tests\User\TempUser\TempUserTestTrait' => "$testDir/phpunit/integration/includes/user/TempUser/TempUserTestTrait.php",
+
 	# tests/phpunit/structure
 	'MediaWiki\Tests\Structure\BundleSizeTest' => "$testDir/phpunit/structure/BundleSizeTest.php",
 
