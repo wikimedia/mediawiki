@@ -49,6 +49,8 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	private $updater;
 	/** @var bool */
 	private $recursive;
+	/** @var string|false TS_MW */
+	private $freshness;
 
 	/** @var RevisionRecord */
 	private $revisionRecord;
@@ -61,7 +63,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	 * @param WikiPage $page Page we are updating
 	 * @param RevisionRecord $revisionRecord
 	 * @param DerivedPageDataUpdater $updater
-	 * @param array $options Options map; supports "recursive"
+	 * @param array $options Options map; supports "recursive" (bool) and "freshness" (string|false, TS_MW)
 	 */
 	public function __construct(
 		ILBFactory $lbFactory,
@@ -79,6 +81,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		$this->revisionRecord = $revisionRecord;
 		$this->updater = $updater;
 		$this->recursive = !empty( $options['recursive'] );
+		$this->freshness = $options['freshness'] ?? false;
 	}
 
 	public function getTransactionRoundRequirement() {
@@ -124,8 +127,8 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 				[
 					'namespace' => $this->page->getTitle()->getNamespace(),
 					'title' => $this->page->getTitle()->getDBkey(),
-					// Reuse the parser cache if it was saved
-					'rootJobTimestamp' => $this->revisionRecord->getTimestamp(),
+					// Ensure fresh data are used, for normal data reuse the parser cache if it was saved
+					'rootJobTimestamp' => $this->freshness ?: $this->revisionRecord->getTimestamp(),
 					'useRecursiveLinksUpdate' => $this->recursive,
 					'triggeringUser' => [
 						'userId' => $this->user->getId(),
