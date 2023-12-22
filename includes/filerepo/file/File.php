@@ -123,7 +123,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	/** @var string Text of last error */
 	protected $lastError;
 
-	/** @var string Main part of the title, with underscores (Title::getDBkey) */
+	/** @var ?string The name that was used to access the file, before
+	 *       resolving redirects. Main part of the title, with underscores
+	 *       per Title::getDBkey().
+	 */
 	protected $redirected;
 
 	/** @var Title */
@@ -374,7 +377,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return Title
 	 */
 	public function getOriginalTitle() {
-		if ( $this->redirected ) {
+		if ( $this->redirected !== null ) {
 			return $this->getRedirectedTitle();
 		}
 
@@ -2406,9 +2409,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * @return string
+	 * @return ?string The name that was used to access the file, before
+	 *         resolving redirects.
 	 */
-	public function getRedirected() {
+	public function getRedirected(): ?string {
 		return $this->redirected;
 	}
 
@@ -2416,7 +2420,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return Title|null
 	 */
 	protected function getRedirectedTitle() {
-		if ( $this->redirected ) {
+		if ( $this->redirected !== null ) {
 			if ( !$this->redirectTitle ) {
 				$this->redirectTitle = Title::makeTitle( NS_FILE, $this->redirected );
 			}
@@ -2428,10 +2432,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * @param string $from
-	 * @return void
+	 * @param string $from The name that was used to access the file, before
+	 *        resolving redirects.
 	 */
-	public function redirectedFrom( $from ) {
+	public function redirectedFrom( string $from ) {
 		$this->redirected = $from;
 	}
 
