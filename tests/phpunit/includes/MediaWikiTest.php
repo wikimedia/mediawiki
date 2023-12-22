@@ -204,6 +204,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideParseTitle() {
 		return [
+			// title
 			"No title means main page" => [
 				'query' => [],
 				'expected' => 'Main Page',
@@ -220,21 +221,85 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 				'query' => wfCgiToArray( '?title=[INVALID]' ),
 				'expected' => false,
 			],
+
+			// oldid
 			"Invalid 'oldid'… means main page? (we show an error elsewhere)" => [
 				'query' => wfCgiToArray( '?oldid=9999999' ),
 				'expected' => 'Main Page',
 			],
-			"Invalid 'diff'… means main page? (we show an error elsewhere)" => [
+			"Valid 'oldid'" => [
+				'query' => wfCgiToArray( '?oldid=1' ),
+				'expected' => 'Main Page',
+			],
+			"Invalid 'oldid' (contains letters that are not 'next', 'prev', 'cur')" => [
+				'query' => wfCgiToArray( '?oldid=abc' ),
+				'expected' => 'Main Page', // TODO: throw an error for this someday
+			],
+			"Invalid 'oldid' (equals zero)" => [
+				'query' => wfCgiToArray( '?oldid=0' ),
+				'expected' => 'Main Page', // TODO: throw an error for this someday
+			],
+			"Valid 'oldid' (is blank)" => [
+				'query' => wfCgiToArray( '?oldid=' ),
+				'expected' => 'Main Page',
+			],
+
+			// diff
+			"Invalid numeric 'diff'… means main page? (we show an error elsewhere)" => [
 				'query' => wfCgiToArray( '?diff=9999999' ),
 				'expected' => 'Main Page',
 			],
+			"Valid 'diff'" => [
+				'query' => wfCgiToArray( '?diff=1' ),
+				'expected' => 'Main Page',
+			],
+			"Invalid 'diff' (contains letters that are not 'next', 'prev', 'cur')" => [
+				'query' => wfCgiToArray( '?diff=abc' ),
+				'expected' => 'Main Page', // TODO: throw an error for this someday
+			],
+			"Invalid 'diff' (equals zero)" => [
+				'query' => wfCgiToArray( '?diff=0' ),
+				'expected' => 'Main Page', // TODO: throw an error for this someday
+			],
+			"Valid 'diff' (is blank)" => [
+				'query' => wfCgiToArray( '?diff=' ),
+				'expected' => 'Main Page',
+			],
+
+			// curid
 			"Invalid 'curid'" => [
 				'query' => wfCgiToArray( '?curid=9999999' ),
 				'expected' => false,
 			],
+
+			// search
 			"'search' parameter with no title provided forces Special:Search" => [
 				'query' => wfCgiToArray( '?search=foo' ),
 				'expected' => 'Special:Search',
+			],
+
+			// action
+			"No title with 'action' still means main page" => [
+				'query' => wfCgiToArray( '?action=history' ),
+				'expected' => 'Main Page',
+			],
+			"No title with 'action=delete' does not mean main page, because we want to discourage deleting it by accident :D" => [
+				'query' => wfCgiToArray( '?action=delete' ),
+				'expected' => false,
+			],
+
+			// multiple URI parameters
+			"Valid 'diff' (contains letters that are 'next', 'prev', 'cur')" => [
+				'query' => wfCgiToArray( '?title=Main_Page&diff=prev&oldid=1' ),
+				'expected' => 'Main Page',
+			],
+			"Valid 'diff' (is blank, has title)" => [
+				'query' => wfCgiToArray( '?title=Foo&diff=' ),
+				'expected' => 'Foo',
+			],
+			"Invalid 'diff' (contains letters, has title)" => [
+				'query' => wfCgiToArray( '?title=Main_Page&diff=abc' ),
+				'expected' => 'Main Page', // TODO: throw an error for this someday
 			],
 			"'action=revisiondelete' forces Special:RevisionDelete even with title" => [
 				'query' => wfCgiToArray( '?action=revisiondelete&title=Unused' ),
@@ -251,14 +316,6 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 			"'action=historysubmit&editchangetags=1' forces Special:EditTags even with title" => [
 				'query' => wfCgiToArray( '?action=historysubmit&editchangetags=1&title=Unused' ),
 				'expected' => 'Special:EditTags',
-			],
-			"No title with 'action' still means main page" => [
-				'query' => wfCgiToArray( '?action=history' ),
-				'expected' => 'Main Page',
-			],
-			"No title with 'action=delete' does not mean main page, because we want to discourage deleting it by accident :D" => [
-				'query' => wfCgiToArray( '?action=delete' ),
-				'expected' => false,
 			],
 		];
 	}
