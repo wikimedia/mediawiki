@@ -1456,7 +1456,6 @@ class ParserTestRunner {
 					'allowTOC' => !isset( $opts['notoc'] ),
 					'unwrap' => !isset( $opts['wrap'] ),
 					'skin' => $this->getSkin( $opts['skin'] ?? 'fallback' ),
-					'deduplicateStyles' => isset( $opts['deduplicateStyles'] ),
 				] );
 				$out = preg_replace( '/\s+$/', '', $out );
 			}

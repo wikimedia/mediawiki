@@ -75,9 +75,7 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 			true
 		);
 		$this->assertInstanceOf( ParserOutput::class, $parserOutput );
-		$this->assertEquals( $expected, $parserOutput->getText( [
-			'deduplicateStyles' => false,
-		] ) );
+		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
 
 	/**

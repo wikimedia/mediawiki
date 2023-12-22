@@ -937,9 +937,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$opt = $page->makeParserOptions( 'canonical' );
 		$po = $page->getParserOutput( $opt );
-		$text = $po->getText( [
-			'deduplicateStyles' => false,
-		] );
+		$text = $po->getText();
 
 		$text = trim( preg_replace( '/<!--.*?-->/sm', '', $text ) ); # strip injected comments
 		$text = preg_replace( '!\s*(</p>|</div>)!m', '\1', $text ); # don't let tidy confuse us

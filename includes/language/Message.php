@@ -1447,12 +1447,6 @@ class Message implements MessageSpecifier, Serializable {
 				// they're inside they already are from the outer div.
 				'unwrap' => true,
 				'userLang' => $this->getLanguage(),
-				// Although we *could* have template styles in messages,
-				// they are rare enough that it's not worth the performance
-				// hit on all messages to run deduplication (and the
-				// deduplication would only extend within the message anyway,
-				// not to the article content)
-				'deduplicateStyles' => false,
 			] )
 			: $out;
 	}
