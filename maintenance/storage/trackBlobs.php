@@ -205,7 +205,10 @@ class TrackBlobs extends Maintenance {
 					gmp_setbit( $this->trackedBlobs[$info['cluster']], $info['id'] );
 				}
 			}
-			$dbw->insert( 'blob_tracking', $insertBatch, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'blob_tracking' )
+				->rows( $insertBatch )
+				->caller( __METHOD__ )->execute();
 			$rowsInserted += count( $insertBatch );
 
 			++$batchesDone;
@@ -291,7 +294,10 @@ class TrackBlobs extends Maintenance {
 					gmp_setbit( $this->trackedBlobs[$info['cluster']], $info['id'] );
 				}
 			}
-			$dbw->insert( 'blob_tracking', $insertBatch, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'blob_tracking' )
+				->rows( $insertBatch )
+				->caller( __METHOD__ )->execute();
 
 			$rowsInserted += count( $insertBatch );
 			++$batchesDone;
@@ -391,7 +397,10 @@ class TrackBlobs extends Maintenance {
 					'bo_blob_id' => $id
 				];
 				if ( count( $insertBatch ) > $this->batchSize ) {
-					$dbw->insert( 'blob_orphans', $insertBatch, __METHOD__ );
+					$dbw->newInsertQueryBuilder()
+						->insertInto( 'blob_orphans' )
+						->rows( $insertBatch )
+						->caller( __METHOD__ )->execute();
 					$insertBatch = [];
 				}
 
@@ -399,7 +408,10 @@ class TrackBlobs extends Maintenance {
 				++$numOrphans;
 			}
 			if ( $insertBatch ) {
-				$dbw->insert( 'blob_orphans', $insertBatch, __METHOD__ );
+				$dbw->newInsertQueryBuilder()
+					->insertInto( 'blob_orphans' )
+					->rows( $insertBatch )
+					->caller( __METHOD__ )->execute();
 			}
 			echo "Found $numOrphans orphan(s) in $cluster\n";
 		}

@@ -1320,9 +1320,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
 		$pageIdForInsert = $pageId ? [ 'page_id' => $pageId ] : [];
-		$dbw->insert(
-			'page',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'page' )
+			->ignore()
+			->row( [
 				'page_namespace'    => $this->mTitle->getNamespace(),
 				'page_title'        => $this->mTitle->getDBkey(),
 				'page_is_redirect'  => 0, // Will set this shortly...
@@ -1331,10 +1332,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				'page_touched'      => $dbw->timestamp(),
 				'page_latest'       => 0, // Fill this in shortly...
 				'page_len'          => 0, // Fill this in shortly...
-			] + $pageIdForInsert,
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+			] + $pageIdForInsert )
+			->caller( __METHOD__ )->execute();
 
 		if ( $dbw->affectedRows() > 0 ) {
 			$newid = $pageId ? (int)$pageId : $dbw->insertId();

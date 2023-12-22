@@ -123,7 +123,10 @@ class LogPage {
 			'log_comment',
 			$this->comment
 		);
-		$dbw->insert( 'logging', $data, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'logging' )
+			->row( $data )
+			->caller( __METHOD__ )->execute();
 		$newId = $dbw->insertId();
 
 		# And update recentchanges
@@ -395,19 +398,13 @@ class LogPage {
 		if ( !strlen( $field ) || !$values ) {
 			return false;
 		}
-
-		$data = [];
-
+		$insert = wfGetDB( DB_PRIMARY )->newInsertQueryBuilder()
+			->insertInto( 'log_search' )
+			->ignore();
 		foreach ( $values as $value ) {
-			$data[] = [
-				'ls_field' => $field,
-				'ls_value' => $value,
-				'ls_log_id' => $logid
-			];
+			$insert->row( [ 'ls_field' => $field, 'ls_value' => $value, 'ls_log_id' => $logid ] );
 		}
-
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'log_search', $data, __METHOD__, [ 'IGNORE' ] );
+		$insert->caller( __METHOD__ )->execute();
 
 		return true;
 	}

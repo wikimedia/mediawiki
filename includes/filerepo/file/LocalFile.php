@@ -1985,15 +1985,14 @@ class LocalFile extends File {
 					->where( [ 'log_id' => $logId ] )
 					->caller( $fname )->execute();
 
-				$this->getRepo()->getPrimaryDB()->insert(
-					'log_search',
-					[
+				$this->getRepo()->getPrimaryDB()->newInsertQueryBuilder()
+					->insertInto( 'log_search' )
+					->row( [
 						'ls_field' => 'associated_rev_id',
 						'ls_value' => (string)$logEntry->getAssociatedRevId(),
 						'ls_log_id' => $logId,
-					],
-					$fname
-				);
+					] )
+					->caller( $fname )->execute();
 
 				# Add change tags, if any
 				if ( $tags ) {

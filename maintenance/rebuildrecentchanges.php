@@ -154,9 +154,9 @@ class RebuildRecentchanges extends Maintenance {
 		$inserted = 0;
 		foreach ( $res as $row ) {
 			$comment = $commentStore->getComment( 'rev_comment', $row );
-			$dbw->insert(
-				'recentchanges',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'recentchanges' )
+				->row( [
 					'rc_timestamp' => $row->rev_timestamp,
 					'rc_actor' => $row->rev_actor,
 					'rc_namespace' => $row->page_namespace,
@@ -170,9 +170,8 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 					'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 					'rc_deleted' => $row->rev_deleted
-				] + $commentStore->insert( $dbw, 'rc_comment', $comment ),
-				__METHOD__
-			);
+					] + $commentStore->insert( $dbw, 'rc_comment', $comment ) )
+				->caller( __METHOD__ )->execute();
 
 			$rcid = $dbw->insertId();
 			$dbw->newUpdateQueryBuilder()
@@ -325,9 +324,9 @@ class RebuildRecentchanges extends Maintenance {
 		$inserted = 0;
 		foreach ( $res as $row ) {
 			$comment = $commentStore->getComment( 'log_comment', $row );
-			$dbw->insert(
-				'recentchanges',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'recentchanges' )
+				->row( [
 					'rc_timestamp' => $row->log_timestamp,
 					'rc_actor' => $row->log_actor,
 					'rc_namespace' => $row->log_namespace,
@@ -348,9 +347,8 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_logid' => $row->log_id,
 					'rc_params' => $row->log_params,
 					'rc_deleted' => $row->log_deleted
-				] + $commentStore->insert( $dbw, 'rc_comment', $comment ),
-				__METHOD__
-			);
+					] + $commentStore->insert( $dbw, 'rc_comment', $comment ) )
+				->caller( __METHOD__ )->execute();
 
 			$rcid = $dbw->insertId();
 			$dbw->newUpdateQueryBuilder()

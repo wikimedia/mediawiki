@@ -218,7 +218,10 @@ class RecentChangesUpdateJob extends Job {
 				];
 			}
 			foreach ( array_chunk( $newRows, 500 ) as $rowBatch ) {
-				$dbw->insert( 'querycachetwo', $rowBatch, __METHOD__ );
+				$dbw->newInsertQueryBuilder()
+					->insertInto( 'querycachetwo' )
+					->rows( $rowBatch )
+					->caller( __METHOD__ )->execute();
 				$factory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}

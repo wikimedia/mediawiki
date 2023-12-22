@@ -635,7 +635,11 @@ abstract class DatabaseUpdater {
 		if ( $val && $this->canUseNewUpdatelog() ) {
 			$values['ul_value'] = $val;
 		}
-		$this->db->insert( 'updatelog', $values, __METHOD__, [ 'IGNORE' ] );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'updatelog' )
+			->ignore()
+			->row( $values )
+			->caller( __METHOD__ )->execute();
 		$this->db->setFlag( DBO_DDLMODE );
 	}
 

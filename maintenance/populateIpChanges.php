@@ -131,7 +131,11 @@ TEXT
 			}
 
 			if ( $insertRows ) {
-				$dbw->insert( 'ip_changes', $insertRows, __METHOD__, [ 'IGNORE' ] );
+				$dbw->newInsertQueryBuilder()
+					->insertInto( 'ip_changes' )
+					->ignore()
+					->rows( $insertRows )
+					->caller( __METHOD__ )->execute();
 
 				$inserted += $dbw->affectedRows();
 			}
