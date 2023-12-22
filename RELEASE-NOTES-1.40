@@ -28,7 +28,7 @@ This is a security and maintenance release of the MediaWiki 1.40 branch.
 * Updated wikimedia/timestamp from 4.1.0 to 4.1.1.
 * tests: Provide coverage for StatusValue::__toString.
 * StatusValue: Improve logging/debug output with multibyte characters.
-* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+* (T347726, CVE-2023-51704) SECURITY: logging: Fix non-escaped messages
   used in rights log.
 * Updated wikimedia/parsoid from 0.17.0 to 0.17.1.
 * (T229992) LocalisationCache: Preserve fallback source language info.
