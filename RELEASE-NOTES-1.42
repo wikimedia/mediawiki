@@ -95,6 +95,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated wikimedia/relpath from 3.0.0 to 4.0.0.
 * Updated guzzlehttp/guzzle from 7.5.3 to 7.7.1.
 * Updated psr/http-message from 1.0.1 to 1.1.
+* Updated monolog/monolog from 2.2.0 to 2.9.2.
 * …
 
 ===== Changed development-only external libraries =====
