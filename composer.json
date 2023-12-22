@@ -143,6 +143,7 @@
 		"serve": [
 			"Composer\\Config::disableProcessTimeout",
 			"@putenv MW_LOG_DIR=logs",
+			"@putenv MW_LOG_STDERR=1",
 			"@putenv PHP_CLI_SERVER_WORKERS=8",
 			"php -S 127.0.0.1:4000"
 		],
