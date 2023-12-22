@@ -1,21 +1,3 @@
-/**
- * Animate watch/unwatch links to use asynchronous API requests to
- * watch pages, rather than navigating to a different URI.
- *
- * Usage:
- *
- *     var watch = require( 'mediawiki.page.watch.ajax' );
- *     watch.updateWatchLink(
- *         $node,
- *         'watch',
- *         'loading'
- *     );
- *     // When the watch status of the page has been updated:
- *     watch.updatePageWatchStatus( true );
- *
- * @class mw.plugin.page.watch.ajax
- * @singleton
- */
 ( function () {
 	// The name of the page to watch or unwatch
 	var pageTitle = mw.config.get( 'wgRelevantPageName' ),
@@ -25,13 +7,13 @@
 		watchstarsByTitle = Object.create( null );
 
 	/**
-	 * Update the link text, link href attribute and (if applicable)
-	 * "loading" class.
+	 * Update the link text, link href attribute and (if applicable) "loading" class.
 	 *
 	 * @param {jQuery} $link Anchor tag of (un)watch link
 	 * @param {string} action One of 'watch', 'unwatch'
-	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
+	 * @param {string} [state='idle'] 'idle' or 'loading'. Default is 'idle'
 	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
+	 * @private
 	 */
 	function updateWatchLinkAttributes( $link, action, state, expiry ) {
 		// A valid but empty jQuery object shouldn't throw a TypeError
@@ -128,17 +110,31 @@
 	 * update a 'watch this page' checkbox.
 	 *
 	 * Users which change the watch status of the page without using a
-	 * watchstar (e.g edit forms again) should use the updatePageWatchStatus
+	 * watchstar (e.g. edit forms again) should use the updatePageWatchStatus
 	 * method to ensure watchstars are updated and this hook is fired.
 	 *
 	 * @param {boolean} isWatched The page is watched
 	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
 	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
+	 * @private
 	 */
 	function notifyPageWatchStatus( isWatched, expiry, expirySelected ) {
 		expiry = expiry || 'infinity';
 		expirySelected = expirySelected || 'infinite';
 
+		/**
+		 * Fires when the page watch status has changed.
+		 *
+		 * @event ~'wikipage.watchlistChange'
+		 * @memberof Hooks
+		 * @param {boolean} isWatched
+		 * @param {string} expiry The expiry date if the page is being watched temporarily.
+		 * @param {string} expirySelected The expiry length that was selected from a dropdown, e.g. '1 week'
+		 * @example
+		 * mw.hook( 'wikipage.watchlistChange' ).add( ( isWatched, expiry, expirySelected ) => {
+		 *     // Do things
+		 * } );
+		 */
 		mw.hook( 'wikipage.watchlistChange' ).fire(
 			isWatched,
 			expiry,
@@ -147,11 +143,14 @@
 	}
 
 	/**
-	 * Update the page watch status
+	 * Update the page watch status.
 	 *
+	 * @memberof mediawiki.page.watch.module:ajax
 	 * @param {boolean} isWatched The page is watched
 	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
 	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
+	 * @fires Hooks~'wikipage.watchlistChange'
+	 * @stable
 	 */
 	function updatePageWatchStatus( isWatched, expiry, expirySelected ) {
 		// Update all watchstars associated with the current page
@@ -163,18 +162,21 @@
 	}
 
 	/**
-	 * Update the link text, link href attribute and (if applicable) "loading" class.
+	 * Update the link text, link `href` attribute and (if applicable) "loading" class.
 	 *
 	 * For an individual link being set to 'loading', the first
-	 * argument can be a jQuery collection. When updating to a
+	 * argument can be a jQuery collection. When updating to an
 	 * "idle" state, an mw.Title object should be passed to that
 	 * all watchstars associated with that title are updated.
 	 *
+	 * @memberof mediawiki.page.watch.module:ajax
 	 * @param {mw.Title|jQuery} titleOrLink Title of watchlinks to update (when state is idle), or an individual watchlink
 	 * @param {string} action One of 'watch', 'unwatch'
 	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
 	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
 	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
+	 * @fires Hooks~'wikipage.watchlistChange'
+	 * @stable
 	 */
 	function updateWatchLink( titleOrLink, action, state, expiry, expirySelected ) {
 		if ( titleOrLink instanceof $ ) {
@@ -195,9 +197,9 @@
 	/**
 	 * TODO: This should be moved somewhere more accessible.
 	 *
-	 * @private
 	 * @param {string} url
 	 * @return {string} The extracted action, defaults to 'view'
+	 * @private
 	 */
 	function mwUriGetAction( url ) {
 		// TODO: Does MediaWiki give action path or query param
@@ -240,11 +242,10 @@
 	/**
 	 * Class representing an individual watchstar
 	 *
-	 * @class mw.plugin.page.watch.ajax.Watchstar
-	 * @constructor
 	 * @param {jQuery} $link Watch element
 	 * @param {mw.Title} title Title
-	 * @param {Function} [callback] Callback to run when updating
+	 * @param {mediawiki.page.watch.module:ajax~callback} [callback]
+	 * @private
 	 */
 	function Watchstar( $link, title, callback ) {
 		this.$link = $link;
@@ -257,11 +258,19 @@
 	 *
 	 * @param {boolean} isWatched The page is watched
 	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
+	 * @private
 	 */
 	Watchstar.prototype.update = function ( isWatched, expiry ) {
 		expiry = expiry || 'infinity';
 		updateWatchLinkAttributes( this.$link, isWatched ? 'unwatch' : 'watch', 'idle', expiry );
 		if ( this.callback ) {
+			/**
+			 * @callback mediawiki.page.watch.module:ajax~callback
+			 * @param {jQuery} $link The element being manipulated.
+			 * @param {boolean} isWatched Whether the page is now watched.
+			 * @param {string} expiry The expiry date if the page is being watched temporarily,
+			 *   or an 'infinity'-like value (see [mw.util.isIninity()]{@link mediawiki.module:util.isInfinity})
+			 */
 			this.callback( this.$link, isWatched, expiry );
 		}
 	};
@@ -276,15 +285,14 @@
 	 * "current page" watchstars picked up by #init (and not use #watchstar) sync it manually
 	 * from the callback #watchstar provides.
 	 *
+	 * @memberof mediawiki.page.watch.module:ajax
 	 * @param {jQuery} $links One or more anchor elements that must have an href
-	 *  with a url containing a `action=watch` or `action=unwatch` query parameter,
+	 *  with a URL containing a `action=watch` or `action=unwatch` query parameter,
 	 *  from which the current state will be learned (e.g. link to unwatch is currently watched)
 	 * @param {string} title Title of page that this watchstar will affect
-	 * @param {Function} [callback] Callback to run after the action has been processed and API
-	 *  request completed. The callback receives two parameters:
-	 * @param {jQuery} callback.$link The element being manipulated
-	 * @param {boolean} callback.isWatched Whether the article is now watched
-	 * @param {string} callback.expiry The expiry date if a page is being watched temporarily.
+	 * @param {mediawiki.page.watch.module:ajax~callback} [callback] Callback to run after the action has been
+	 *  processed and API request completed.
+	 * @stable
 	 */
 	function watchstar( $links, title, callback ) {
 		// Set up the ARIA connection between the watch link and the notification.
@@ -430,7 +438,23 @@
 
 	$( init );
 
-	// Expose public methods.
+	/**
+	 * Animate watch/unwatch links to use asynchronous API requests to
+	 * watch pages, rather than navigating to a different URI.
+	 *
+	 * Usage:
+	 *
+	 *     var watch = require( 'mediawiki.page.watch.ajax' );
+	 *     watch.updateWatchLink(
+	 *         $node,
+	 *         'watch',
+	 *         'loading'
+	 *     );
+	 *     // When the watch status of the page has been updated:
+	 *     watch.updatePageWatchStatus( true );
+	 *
+	 * @exports mediawiki.page.watch.ajax
+	 */
 	module.exports = {
 		watchstar: watchstar,
 		updateWatchLink: updateWatchLink,

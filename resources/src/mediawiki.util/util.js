@@ -59,10 +59,10 @@ function escapeIdInternal( str, mode ) {
  * or for gadgets as part of the [mw global object]{@link mw}.
  *
  * @example
- *   // Inside MediaWiki extensions
- *   const util = require( 'mediawiki.util' );
- *   // In gadgets
- *   const mwUtil = mw.util;
+ * // Inside MediaWiki extensions
+ * const util = require( 'mediawiki.util' );
+ * // In gadgets
+ * const mwUtil = mw.util;
  * @exports mediawiki.util
  */
 var util = {
