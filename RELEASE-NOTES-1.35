@@ -20,7 +20,7 @@ This is a security and maintenance release of the MediaWiki 1.35 branch.
 * Localisation updates.
 * (T344912) mail: Encode period (ascii 46) if it appears in encoded email
   header.
-* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+* (T347726, CVE-2023-51704) SECURITY: logging: Fix non-escaped messages
   used in rights log.
 
 == MediaWiki 1.35.13 ==
