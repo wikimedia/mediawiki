@@ -160,7 +160,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		// have access to the title.
 		$parserOutput->setExtensionData(
 			self::PARSOID_TITLE_KEY,
-			strtr( $pageConfig->getTitle(), ' ', '_', ) // pageConfig returns text, not dbkey
+			Title::newFromLinkTarget( $pageConfig->getLinkTarget() )->getPrefixedDBkey()
 		);
 
 		// Register a watcher again because the $parserOuptut arg

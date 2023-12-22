@@ -446,7 +446,9 @@ class DataAccess extends IDataAccess {
 		}
 
 		$revId = $pageConfig->getRevisionId();
-		$title = $pageConfig->getTitle();
+		$title = Title::newFromLinkTarget(
+			$pageConfig->getLinkTarget()
+		)->getPrefixedText();
 		$pageInfo = $this->getPageInfo( $pageConfig, [ $title ] );
 		$latest = $pageInfo[$title]['revId'];
 

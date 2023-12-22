@@ -50,6 +50,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Ext\ExtensionModule;
@@ -1510,13 +1511,13 @@ class ParserTestRunner {
 	 * @param string &$out The "actual" parser output
 	 * @param ParserOutput $output The "actual" parser metadata
 	 * @param array $opts Test options
-	 * @param LinkTarget $title
+	 * @param ParsoidLinkTarget $title
 	 * @param ?string $metadataExpected The contents of the !!metadata section,
 	 *   or null if it is missing
 	 * @param ?string &$metadataActual The "actual" metadata output
 	 */
 	private function addParserOutputInfo(
-		&$out, ParserOutput $output, array $opts, LinkTarget $title,
+		&$out, ParserOutput $output, array $opts, ParsoidLinkTarget $title,
 		?string $metadataExpected, ?string &$metadataActual
 	) {
 		$before = [];
@@ -1526,7 +1527,12 @@ class ParserTestRunner {
 			if ( $output->getTitleText() ) {
 				$titleText = $output->getTitleText();
 			} else {
-				$titleText = MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $title );
+				// TitleFormatter doesn't (yet) take ParsoidLinkTarget
+				// (which is identical to core's LinkTarget, but phan doesn't
+				// know that), so go through TitleValue for now.
+				$titleText = MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText(
+					TitleValue::newFromLinkTarget( $title )
+				);
 			}
 			$before[] = $titleText;
 		}
@@ -1749,7 +1755,7 @@ class ParserTestRunner {
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		$this->addParserOutputInfo(
 			$origOut, $metadata, $test->options,
-			$titleParser->parseTitle( $pageConfig->getTitle() ),
+			$pageConfig->getLinkTarget(),
 			$metadataExpected, $metadataActual
 		);
 
