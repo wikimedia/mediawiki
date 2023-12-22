@@ -420,6 +420,7 @@
 	"apierror-sectionsnotsupported-what": "$1 ne podpira razdelkov.",
 	"apierror-stashfailed-nosession": "Ne obstaja nobena razdeljena seja nalaganja s tem ključem.",
 	"apierror-tempuserdisabled": "Ustvarjanje začasnih uporabniških računov je onemogočeno.",
+	"apierror-tempuseracquirefailed": "Ni mogoče pridobiti začasnega uporabniškega imena za račun.",
 	"apierror-templateexpansion-notwikitext": "Razširitev predloge je podprta samo za vikibesedilno vsebino. $1 uporablja vsebinski model $2.",
 	"apierror-unknownerror-editpage": "Neznana napaka EditPage: $1",
 	"apierror-unknownerror-nocode": "Neznana napaka.",

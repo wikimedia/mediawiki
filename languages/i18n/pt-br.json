@@ -26,6 +26,7 @@
 			"Chicocvenancio",
 			"Claudio Emanuel Weiler",
 			"CoelhitaWingz223",
+			"CorraleH",
 			"Crazymadlover",
 			"Cristofer Alves",
 			"Daemorris",
@@ -4298,5 +4299,6 @@
 	"log-unknown-action": "realizou uma ação desconhecida \"$2\" em [[$1]]",
 	"createacct-benefit-heading-temp-user": "Obrigado por contribuir para {{SITENAME}}. Crie uma conta para acessar mais funcionalidades.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} está feito por pessoa como você. Com uma conta você pode ter uma identidade permanente e segura com acesso a funcionalidades como:",
-	"benefit-1-description": "Listas de seguimento que te permitem seguir páginas que te interessam."
+	"benefit-1-description": "Listas de seguimento que te permitem seguir páginas que te interessam.",
+	"temp-user-unable-to-acquire": "Não é possível adquirir um nome de usuário temporário para a conta. Por favor, tente novamente."
 }

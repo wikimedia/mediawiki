@@ -922,6 +922,7 @@
 	"apierror-sectionsnotsupported-what": "Sekcje nie są obsługiwane przez $1.",
 	"apierror-specialpage-cantexecute": "Nie masz uprawnień, aby zobaczyć wyniki tej strony specjalnej.",
 	"apierror-stashwrongowner": "Nieprawidłowy właściciel: $1",
+	"apierror-tempuseracquirefailed": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika.",
 	"apierror-toomanyvalues": "Podano zbyt wiele wartości dla parametru <var>$1</var>. Ograniczenie do $2.",
 	"apierror-unknownerror-nocode": "Nieznany błąd.",
 	"apierror-unknownerror": "Nieznany błąd: „$1”.",

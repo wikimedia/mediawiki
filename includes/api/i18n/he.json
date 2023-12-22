@@ -1866,6 +1866,7 @@
 	"apierror-stashzerolength": "קובץ באורך אפס, ולא יכול להיות מאוחסן במאגר ההעלאות: $1.",
 	"apierror-systemblocked": "נחסמת אוטומטית על־ידי מדיה־ויקי.",
 	"apierror-tempuserdisabled": "יצירת חשבונות משתמש זמניים כבויה.",
+	"apierror-tempuseracquirefailed": "לא ניתן לקבל שם חשבון זמני.",
 	"apierror-templateexpansion-notwikitext": "הרחבת תבניות נתמכת רק בתוכן קוד ויקי (wikitext). $1 משתמש במודל התוכן $2.",
 	"apierror-toofewexpiries": "{{PLURAL:$1|ניתן חותם־זמן תפוגה אחד|ניתנו $1 חותמי־זמן תפוגה}} כאשר {{PLURAL:$2|היה נחוץ אחד|היו נחוצים $1}}.",
 	"apierror-toomanyvalues": "יותר מדי ערכים סופקו לפרמטר <var>$1</var>. המגבלה היא $2.",

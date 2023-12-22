@@ -1875,6 +1875,7 @@
 	"apierror-stashzerolength": "檔案長度為零，且無法儲存於儲藏：$1。",
 	"apierror-systemblocked": "您已被 MediaWiki 給自動封鎖。",
 	"apierror-tempuserdisabled": "臨時使用者的帳號建立已禁用。",
+	"apierror-tempuseracquirefailed": "無法取得臨時帳號的使用者名稱。",
 	"apierror-templateexpansion-notwikitext": "模板擴展僅支援用於 wikitext 內容。$1使用內容模組 $2。",
 	"apierror-toofewexpiries": "提供了 $1 個逾期{{PLURAL:$1|時間戳記|時間戳記}}，所需要的{{PLURAL:$2|是|是}} $2 個。",
 	"apierror-toomanyvalues": "替參數 <var>$1</var> 提供太多的值。限制為 $2。",

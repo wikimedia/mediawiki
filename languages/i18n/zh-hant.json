@@ -4286,5 +4286,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}}是由像您這樣的人創建的。擁有帳號後，您可以獲得永久且安全的身份，並可以使用以下功能：",
 	"benefit-1-description": "監視列表，可讓您監視您感興趣的頁面。",
 	"benefit-2-description": "您對該專案所做貢獻的永久記錄。",
-	"benefit-3-description": "參數設置，讓您自訂使用體驗。"
+	"benefit-3-description": "參數設置，讓您自訂使用體驗。",
+	"temp-user-unable-to-acquire": "無法取得臨時帳號的使用者名稱，請再試一次。"
 }

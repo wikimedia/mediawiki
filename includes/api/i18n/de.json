@@ -1343,6 +1343,7 @@
 	"apierror-stashnosuchfilekey": "Kein derartiger Dateischlüssel: $1.",
 	"apierror-stashwrongowner": "Falscher Besitzer: $1",
 	"apierror-systemblocked": "Du wurdest von MediaWiki automatisch gesperrt.",
+	"apierror-tempuseracquirefailed": "Es ist nicht möglich, einen temporären Benutzernamen zu erstellen.",
 	"apierror-toomanyvalues": "Es wurden zu viele Werte für den Parameter <var>$1</var> angegeben. Die Obergrenze liegt bei $2.",
 	"apierror-unknownerror-editpage": "Unbekannter EditPage-Fehler: $1.",
 	"apierror-unknownerror-nocode": "Unbekannter Fehler.",

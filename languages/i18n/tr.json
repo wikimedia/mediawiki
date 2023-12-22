@@ -4298,5 +4298,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} sizin gibi insanlar tarafından yapılmıştır. Bir hesapla, aşağıdaki gibi özelliklere erişim sağlayan kalıcı ve güvenli bir kimliğe sahip olabilirsiniz:",
 	"benefit-1-description": "İlgilendiğiniz sayfaları takip etmenize olanak tanıyan izleme listeleri.",
 	"benefit-2-description": "Projeye yaptığınız katkıların kalıcı listesi.",
-	"benefit-3-description": "Deneyiminizi özelleştirmenize olanak tanıyan seçenekler."
+	"benefit-3-description": "Deneyiminizi özelleştirmenize olanak tanıyan seçenekler.",
+	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin."
 }
