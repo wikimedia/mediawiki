@@ -475,15 +475,10 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['content'][] = 'jquery.makeCollapsible.styles';
 		}
 
-		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
-		// on every page is deprecated. Express a dependency instead.
-		// Limited to non-article namespaces in 1.41 where CSS bundle size is important,
-		// and for security (it can be used by vandals to render fake login buttons).
-		$title = $this->getTitle();
-		if (
-			( !$title || $title->getNamespace() !== NS_MAIN ) &&
-			strpos( $out->getHTML(), 'mw-ui-button' ) !== false
-		) {
+		// Load relevant styles on wiki pages that use mw-ui-button.
+		// Since 1.26, this no longer loads unconditionally. Special pages
+		// and extensions should load this via addModuleStyles() instead.
+		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
 			$modules['styles']['content'][] = 'mediawiki.ui.button';
 		}
 
