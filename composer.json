@@ -139,13 +139,13 @@
 		]
 	},
 	"scripts": {
-		"mw-install:sqlite": "php maintenance/run.php install --server=http://localhost:4000 --dbtype sqlite --with-developmentsettings --dbpath cache/ --scriptpath= --pass adminpassword MediaWiki Admin",
+		"mw-install:sqlite": "@php maintenance/run.php install --server=http://localhost:4000 --dbtype sqlite --with-developmentsettings --dbpath cache/ --scriptpath= --pass adminpassword MediaWiki Admin",
 		"serve": [
 			"Composer\\Config::disableProcessTimeout",
 			"@putenv MW_LOG_DIR=logs",
 			"@putenv MW_LOG_STDERR=1",
 			"@putenv PHP_CLI_SERVER_WORKERS=8",
-			"php -S 127.0.0.1:4000"
+			"@php -S 127.0.0.1:4000"
 		],
 		"lint": "parallel-lint --exclude node_modules --exclude vendor",
 		"phan": "phan -d . --long-progress-bar",
