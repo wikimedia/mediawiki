@@ -1934,7 +1934,7 @@ abstract class Skin extends ContextSource {
 				}
 			}
 			if ( $siteNotice !== '' ) {
-				$siteNotice = Html::rawElement( 'div', [ 'id' => 'localNotice' ], $siteNotice );
+				$siteNotice = Html::rawElement( 'div', [ 'id' => 'localNotice', 'data-nosnippet' => '' ], $siteNotice );
 			}
 		}
 
