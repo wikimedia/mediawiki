@@ -185,7 +185,7 @@ class ActiveUsersPager extends UsersPager {
 				'qcc_title',
 				'user_name' => 'qcc_title',
 				'user_id' => 'user_id',
-				'recentedits' => 'COUNT(rc_id)'
+				'recentedits' => 'COUNT(DISTINCT rc_id)'
 			],
 			'options' => [ 'GROUP BY' => [ 'qcc_title', 'user_id' ] ],
 			'conds' => $conds,
