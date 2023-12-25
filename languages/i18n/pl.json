@@ -2647,7 +2647,7 @@
 	"ipbreason-dropdown": "*Najczęstsze przyczyny blokad\n** Ataki na innych użytkowników\n** Naruszenie praw autorskich\n** Niedozwolona nazwa użytkownika\n** Open proxy lub Tor\n** Spamowanie\n** Usuwanie treści stron\n** Wprowadzanie fałszywych informacji\n** Wulgaryzmy\n** Wypisywanie bzdur na stronach",
 	"ipb-hardblock": "Zastosuj blokadę do zalogowanych użytkowników z tego adresu IP.",
 	"ipbcreateaccount": "Blokada tworzenia konta",
-	"ipbemailban": "Blokada rozsyłania maili (przez wiki)",
+	"ipbemailban": "Blokada wysyłania maili (przez wiki)",
 	"ipbenableautoblock": "Zablokuj ostatni adres IP tego użytkownika i automatycznie wszystkie kolejne, z których będzie próbował edytować",
 	"ipbsubmit": "Zablokuj użytkownika",
 	"ipbother": "Inny okres",

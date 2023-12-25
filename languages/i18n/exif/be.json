@@ -10,7 +10,8 @@
 			"Chadyka",
 			"Maksim L.",
 			"Amire80",
-			"Plaga med"
+			"Plaga med",
+			"No Sleep till Krupki"
 		]
 	},
 	"exif-imagewidth": "Шырыня",
@@ -203,6 +204,8 @@
 	"exif-photometricinterpretation-5": "Падзеленая (імаверна, CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (кадзіраванне ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (кадзіраванне ITU)",
+	"exif-photometricinterpretation-32803": "Масіў каляровых фільтраў",
+	"exif-photometricinterpretation-34892": "Лінейны сырой",
 	"exif-unknowndate": "Невядомая дата",
 	"exif-orientation-1": "Звычайна",
 	"exif-orientation-2": "Адлюстравана злева ўправа",

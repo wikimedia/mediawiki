@@ -11,7 +11,8 @@
 			"Trengarasu",
 			"Ulmo",
 			"செல்வா",
-			"Siddhan"
+			"Siddhan",
+			"Fahimrazick"
 		]
 	},
 	"exif-imagewidth": "அகலம்",
@@ -173,7 +174,7 @@
 	"exif-copyrightowner": "காப்புரிமையாளர்",
 	"exif-usageterms": "உபயோக  விதிகள்",
 	"exif-webstatement": "ஆன்லைன் பதிப்புரிமை அறிக்கை",
-	"exif-originaldocumentid": "மூல ஆவணத்தின் பிரத்யேக ID",
+	"exif-originaldocumentid": "மூல ஆவணத்தின் தனித்துவ அடையாளம்",
 	"exif-licenseurl": "காப்புரிமை உரிமத்திற்கு URL",
 	"exif-morepermissionsurl": "மாற்றாக உரிமம் பெறுதலுக்கான தகவல்",
 	"exif-attributionurl": "இந்த பணியை  மறுபடியும் உபயோகிக்கும்போது ,தயவுசெய்து இணைக்கவும்",
@@ -340,7 +341,7 @@
 	"exif-dc-publisher": "பதிப்பாளர்",
 	"exif-dc-relation": "தொடர்புள்ள ஊடகம்",
 	"exif-dc-rights": "உரிமைகள்",
-	"exif-dc-source": "மூல ஊடகம்",
+	"exif-dc-source": "மூலவூடகம்",
 	"exif-dc-type": "ஊடகத்தின் வகை",
 	"exif-rating-rejected": "நிராகரித்தது",
 	"exif-isospeedratings-overflow": "65535க்கும்  அதிகமாக",

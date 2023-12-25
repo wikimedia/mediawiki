@@ -44,7 +44,8 @@
 			"Ekminarin",
 			"Amire80",
 			"Kaoavi",
-			"RidJasper"
+			"RidJasper",
+			"Thastp"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -1717,6 +1718,7 @@
 	"uploaded-script-svg": "พบองค์ประกอบที่สามารถใช้สคริปต์ \"$1\" ในไฟล์ SVG ที่อัปโหลด",
 	"uploaded-hostile-svg": "พบ CSS ที่ไม่ปลอดภัยในองค์ประกอบสไตล์ของไฟล์ SVG ที่คุณอัปโหลด",
 	"uploaded-event-handler-on-svg": "ไม่อนุญาตให้ตั้งค่าแอตทริบิวต์ตัวจัดการเหตุการณ์ <code>$1=\"$2\"</code> ในไฟล์ SVG",
+	"uploaded-href-attribute-svg": "อิลิเมนต์ <a> สามารถเชื่อมโยง (href) กับเฉพาะเป้าหมาย data: (ไฟล์ฝังตัว), http:// หรือ https://, หรือส่วนย่อย (#, เอกสารเดียวกัน) เท่านั้น สำหรับอิลิเมนต์อื่น ๆ เช่น <image> จะอนุญาตให้ใช้เฉพาะ data: และส่วนย่อยเท่านั้น โปรดลองฝังภาพเมื่อทำการส่งออก SVG ของคุณ พบ <code>&lt;$1 $2=\"$3\"&gt;</code>",
 	"uploaded-href-unsafe-target-svg": "พบว่า href เป็นข้อมูลที่ไม่ปลอดภัย:URI เป้าหมาย <code>&lt;$1 $2=\"$3\"&gt;</code> ใน SVG ไฟล์ที่อัพโหลด",
 	"uploadscriptednamespace": "ไฟล์ SVG นี้มีเนมสเปซไม่ถูกต้อง \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "ไม่สามารถตีความ XML ในไฟลืที่อัปโหลด",
@@ -2893,6 +2895,8 @@
 	"tooltip-ca-move": "ย้ายหน้านี้",
 	"tooltip-ca-watch": "เพิ่มหน้านี้เข้ารายการเฝ้าดู",
 	"tooltip-ca-unwatch": "นำหน้านี้ออกจากรายการเฝ้าดู",
+	"tooltip-ca-unwatch-expiring": "เหลือเวลาอีก {{PLURAL:$1|1 วัน|$1 วัน}}ในรายการเฝ้าดูของคุณ คลิกเพื่อลบออก",
+	"tooltip-ca-unwatch-expiring-hours": "เหลือเวลาอีกไม่กี่ชั่วโมงในรายการเฝ้าดูของคุณ คลิกเพื่อลบออก",
 	"tooltip-search": "ค้นหาใน {{SITENAME}}",
 	"tooltip-search-go": "ไปหน้าที่ตรงกับชื่อนี้ (ถ้ามี)",
 	"tooltip-search-fulltext": "ค้นหาหน้าที่มีข้อความนี้",

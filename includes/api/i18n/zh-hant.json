@@ -28,7 +28,8 @@
 			"Diskdance",
 			"Lakejason0",
 			"Willy1018",
-			"捍粵者"
+			"捍粵者",
+			"SunAfterRain"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>MediaWiki API 已是成熟、穩定，並積極支援以改善的介面。儘管我們儘可能避免，但仍偶有需要重大變更的情況，請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵寄清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當 API 收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的 HTTP 標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱 [[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>測試：</strong>要簡化 API 請求的測試過程，請見 [[Special:ApiSandbox]]。</p>",
@@ -501,7 +502,7 @@
 	"apihelp-query+allimages-param-maxsize": "限制圖片最多只能這樣多的位元組。",
 	"apihelp-query+allimages-param-sha1": "圖片的 SHA1 雜湊值。覆蓋 $1sha1base36。",
 	"apihelp-query+allimages-param-sha1base36": "以 base 36 的圖片 SHA1 雜湊值（使用在 MediaWiki）。",
-	"apihelp-query+allimages-param-user": "僅回傳由此使用者上傳的檔案。僅能與 $1sort=timestamp 一起使用，且不可與 $1filterbots 一起使用。",
+	"apihelp-query+allimages-param-user": "只返回此使用者上傳的最新版本的檔案。只能與$1sort=timestamp一起使用。不能與$1filterbots一起使用。",
 	"apihelp-query+allimages-param-filterbots": "如何篩選由機器人上傳的檔案。僅能與 $1sort=timestamp 一起使用，且不可與 $1user 一起使用。",
 	"apihelp-query+allimages-param-mime": "所要搜尋的 MIME 類型，例如：<kbd>image/jpeg</kbd>。",
 	"apihelp-query+allimages-param-limit": "要回傳的圖片總數。",
@@ -1553,7 +1554,7 @@
 	"api-help-datatypes-header": "資料類型",
 	"api-help-datatypes-top": "輸入到 MediaWiki 應為 NFC-標準化的 UTF-8。雖然 MediaWiki 會嘗試轉換成其它輸入，但這可能會引發一些操作上錯誤（例如像以 MD5 核對的[[Special:ApiHelp/edit|編輯]]）。\n\n帶有多項值的參數通常是以豎線字元做區分來提交，例如：<kbd>param=value1|value2</kbd> 或是 <kbd>param=value1%7Cvalue2</kbd>。如果值的內容必須包含豎線字元，請使用 U+001F（單位分隔）來做為區分，''並且''讓值的字首加上 U+001F，例如：<kbd>param=%1Fvalue1%1Fvalue2</kbd>。\n\n在 API 請求中的某些參數需要進一步解釋：",
 	"api-help-datatype-boolean": "布林值參數運作上就像 HTML 的勾選框：若有指定參數，不論值的內容為何都視為 true。對於 false 值，則是將參數整個省略。",
-	"api-help-datatype-expiry": "到期時間。可以是相對時間（例如：<kbd>5 months</kbd> 或 <kbd>2 weeks</kbd>）或是絕對時間（例如：<kbd>2014-09-18T12:34:56Z</kbd>）。如果要無期限，請使用 <kbd>infinite</kbd>、<kbd>indefinite</kbd>、<kbd>infinity</kbd>、或 <kbd>never</kbd>。",
+	"api-help-datatype-expiry": "到期時間可以是相對時間（例如：<kbd>5 months</kbd> 或 <kbd>2 weeks</kbd>）或是絕對時間（例如：<kbd>2014-09-18T12:34:56Z</kbd>）。如果要無期限，請使用 <kbd>infinite</kbd>、<kbd>indefinite</kbd>、<kbd>infinity</kbd>、或 <kbd>never</kbd>。",
 	"api-help-datatype-timestamp": "時間戳記能以數種格式指定，請查看[[mw:Special:MyLanguage/Timestamp|在 mediawiki.org 上的時間戳記函式庫輸入格式文件]]來獲得更多資訊。推薦採用 ISO 8601 日期與時間格式：<kbd><var>2001</var>-<var>01</var>-<var>15</var>T<var>14</var>:<var>56</var>:<var>00</var>Z</kbd>。另外，字串 <kbd>now</kbd> 能用來指定目前時刻的時間戳記。",
 	"api-help-templatedparams-header": "模板參數",
 	"api-help-templatedparams": "模板參數可支援當 API 模組需要替某些參數值給予值的情況。舉例來說，如果有個用來請求水果的 API 模組，可能會有一個用來指定水果的 <var>fruits</var> 參數，以及用來指定有多少顆水果的模板參數 <var>{fruit}-quantity</var>。若一個 API 客戶端想要 1 顆蘋果、5 條香蕉、以及 20 粒草莓時，可以做出像是 <kbd>fruits=apples|bananas|strawberries&apples-quantity=1&bananas-quantity=5&strawberries-quantity=20</kbd> 這樣的請求。",
