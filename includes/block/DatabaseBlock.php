@@ -234,17 +234,16 @@ class DatabaseBlock extends AbstractBlock {
 	 * block (same name and options) already in the database.
 	 *
 	 * @deprecated since 1.36 Use DatabaseBlockStore::insertBlock instead.
-	 *             Passing a custom db connection is throwing a deprecation warning since 1.41.
+	 *             Passing a custom db connection is no longer supported since 1.42.
 	 *
-	 * @param IDatabase|null $dbw If you have one available
 	 * @return bool|array False on failure, assoc array on success:
 	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
-	public function insert( IDatabase $dbw = null ) {
+	public function insert() {
 		return MediaWikiServices::getInstance()
 			->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
-			->insertBlock( $this, $dbw );
+			->insertBlock( $this );
 	}
 
 	/**

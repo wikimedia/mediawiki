@@ -1163,31 +1163,6 @@ class DatabaseBlockStore {
 			->execute();
 	}
 
-	/**
-	 * Throw an exception if the given database connection does not match the
-	 * given wiki ID.
-	 *
-	 * @param string|false $expectedWiki
-	 * @param ?IDatabase $db
-	 */
-	private function checkDatabaseDomain( $expectedWiki, ?IDatabase $db = null ) {
-		if ( $db ) {
-			$dbDomain = $db->getDomainID();
-			$storeDomain = $this->loadBalancer->resolveDomainID( $expectedWiki );
-			if ( $dbDomain !== $storeDomain ) {
-				throw new InvalidArgumentException(
-					"DB connection domain '$dbDomain' does not match '$storeDomain'"
-				);
-			}
-		} else {
-			if ( $expectedWiki !== $this->wikiId ) {
-				throw new InvalidArgumentException(
-					"Must provide a database connection for wiki '$expectedWiki'."
-				);
-			}
-		}
-	}
-
 	private function getReplicaDB(): IDatabase {
 		return $this->loadBalancer->getConnection( DB_REPLICA, [], $this->wikiId );
 	}
@@ -1201,10 +1176,6 @@ class DatabaseBlockStore {
 	 * block (same name and options) already in the database.
 	 *
 	 * @param DatabaseBlock $block
-	 * @param IDatabase|null $database Database to use if not the same as the one in the load
-	 *   balancer. Must connect to the wiki identified by $block->getBlocker->getWikiId().
-	 *   Deprecated since 1.41, should be null. Use DatabaseBlockStoreFactory to fetch a
-	 *   DatabaseBlockStore with a database injected.
 	 * @param int|null $expectedTargetCount The expected number of existing blocks
 	 *   on the specified target. If this is zero but there is an existing
 	 *   block, the insertion will fail.
@@ -1213,22 +1184,21 @@ class DatabaseBlockStore {
 	 */
 	public function insertBlock(
 		DatabaseBlock $block,
-		IDatabase $database = null,
 		$expectedTargetCount = 0
 	) {
+		$block->assertWiki( $this->wikiId );
+
 		$blocker = $block->getBlocker();
 		if ( !$blocker || $blocker->getName() === '' ) {
 			throw new InvalidArgumentException( 'Cannot insert a block without a blocker set' );
 		}
 
-		if ( $database !== null ) {
-			wfDeprecatedMsg(
-				'Old method signature: Passing a $database is no longer supported',
-				'1.41'
+		if ( $expectedTargetCount instanceof IDatabase ) {
+			throw new InvalidArgumentException(
+				'Old method signature: Passing a custom database connection to '
+					. 'DatabaseBlockStore::insertBlock is no longer supported'
 			);
 		}
-
-		$this->checkDatabaseDomain( $block->getWikiId(), $database );
 
 		$this->logger->debug( 'Inserting block; timestamp ' . $block->getTimestamp() );
 
@@ -1236,7 +1206,7 @@ class DatabaseBlockStore {
 		// is possible for expired blocks to conflict with inserted blocks below.
 		$this->purgeExpiredBlocks();
 
-		$dbw = $database ?: $this->getPrimaryDB();
+		$dbw = $this->getPrimaryDB();
 		$dbw->startAtomic( __METHOD__ );
 		$success = $this->attemptInsert( $block, $dbw, $expectedTargetCount );
 
@@ -1492,7 +1462,7 @@ class DatabaseBlockStore {
 	public function updateBlock( DatabaseBlock $block ) {
 		$this->logger->debug( 'Updating block; timestamp ' . $block->getTimestamp() );
 
-		$this->checkDatabaseDomain( $block->getWikiId() );
+		$block->assertWiki( $this->wikiId );
 
 		$blockId = $block->getId( $this->wikiId );
 		if ( !$blockId ) {
@@ -1654,7 +1624,7 @@ class DatabaseBlockStore {
 			return false;
 		}
 
-		$this->checkDatabaseDomain( $block->getWikiId() );
+		$block->assertWiki( $this->wikiId );
 
 		$blockId = $block->getId( $this->wikiId );
 
@@ -1925,7 +1895,7 @@ class DatabaseBlockStore {
 		if ( !$parentBlock->isAutoblocking() ) {
 			return false;
 		}
-		$this->checkDatabaseDomain( $parentBlock->getWikiId() );
+		$parentBlock->assertWiki( $this->wikiId );
 
 		[ $target, $type ] = $this->blockUtils->parseBlockTarget( $autoblockIP );
 		if ( $type != Block::TYPE_IP ) {
@@ -2018,7 +1988,7 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 */
 	public function updateTimestamp( DatabaseBlock $block ) {
-		$this->checkDatabaseDomain( $block->getWikiId() );
+		$block->assertWiki( $this->wikiId );
 		if ( $block->getType() !== Block::TYPE_AUTO ) {
 			return;
 		}
