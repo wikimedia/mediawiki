@@ -853,7 +853,7 @@
 	"expensive-parserfunction-category": "Sidor med för många resurskrävande parserfunktioner",
 	"post-expand-template-inclusion-warning": "Varning: Den här sidan innehåller för mycket mallinklusioner.\nNågra av mallarna kommer inte att inkluderas.",
 	"post-expand-template-inclusion-category": "Sidor som inkluderar för mycket mallkod",
-	"post-expand-template-argument-warning": "Varning: Sidan innehåller en eller flera mallparametrar som blir för långa när de expanderas.\nDessa parametrar har uteslutits.",
+	"post-expand-template-argument-warning": "<strong>Varning:</strong> Sidan innehåller minst en mallparameter som blir för lång när den expanderas.\nDessa parametrar har uteslutits.",
 	"post-expand-template-argument-category": "Sidor med uteslutna mallparametrar",
 	"parser-template-loop-warning": "Mall-loop upptäckt: [[$1]]",
 	"template-loop-category": "Sidor med loopade mallar",

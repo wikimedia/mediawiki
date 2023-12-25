@@ -4,7 +4,8 @@
 			"Ahmedadeljaff",
 			"Amire80",
 			"MRidhaAJ",
-			"Hubaishan"
+			"Hubaishan",
+			"Dr-Taher"
 		]
 	},
 	"tog-underline": "سطر جوا الوصلات:",
@@ -1763,7 +1764,7 @@
 	"tags-display-header": "الظهور في قوائم التغييرات",
 	"tags-active-yes": "اي",
 	"tags-active-no": "لا",
-	"tags-hitcount": "$1 {{PLURAL:$1|تغيير|تغييرات}}",
+	"tags-hitcount": "$1 {{PLURAL:$1|لا تغيير|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرًا|$1 تغييرٍ}}",
 	"htmlform-submit": "أرسل",
 	"htmlform-no": "لا",
 	"htmlform-yes": "اي",

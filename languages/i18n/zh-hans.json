@@ -728,7 +728,7 @@
 	"botpasswords-label-cancel": "取消",
 	"botpasswords-label-delete": "删除",
 	"botpasswords-label-resetpassword": "重置密码",
-	"botpasswords-label-grants": "应用授权：",
+	"botpasswords-label-grants": "适用的授权：",
 	"botpasswords-help-grants": "授权允许对您的用户账户已持有的权限进行访问。在此启用授权并不会提供您根本不会拥有的权限的访问权。参见[[Special:ListGrants|授权表]]以获取更多信息。",
 	"botpasswords-label-grants-column": "已授权",
 	"botpasswords-bad-appid": "机器人名“$1”无效。",

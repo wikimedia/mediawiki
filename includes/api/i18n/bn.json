@@ -6,12 +6,13 @@
 			"আজিজ",
 			"Elias Ahmmad",
 			"ZI Jony",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Aishik Rehman"
 		]
 	},
 	"apihelp-main-param-action": "যে কর্ম সঞ্চালন করতে হবে।",
 	"apihelp-main-param-format": "আউটপুটের বিন্যাস",
-	"apihelp-main-param-requestid": "এখানে প্রদত্ত যেকোন মান প্রতিক্রিয়ায় অন্তর্ভুক্ত করা হবে। অনুরোধের পার্থক্য করতে ব্যবহার করা যেতে পারে।",
+	"apihelp-main-param-requestid": "এখানে প্রদত্ত যেকোনো মান প্রতিক্রিয়ায় অন্তর্ভুক্ত করা হবে। অনুরোধের পার্থক্য করতে ব্যবহার করা যেতে পারে।",
 	"apihelp-block-summary": "ব্যবহারকারীকে বাধা দেয়।",
 	"apihelp-block-param-reason": "বাধা প্রদানের কারণ।",
 	"apihelp-checktoken-param-token": "পরীক্ষা করার জন্য টোকেন।",
