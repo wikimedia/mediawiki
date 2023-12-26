@@ -3173,10 +3173,10 @@
 	"tooltip-pt-watchlist": "您正在监视更改的页面列表",
 	"tooltip-pt-mycontris": "{{GENDER:|您}}的贡献列表",
 	"tooltip-pt-anoncontribs": "来自此IP地址的编辑列表",
-	"tooltip-pt-login": "我们建议您登录，不过这不是强制的",
+	"tooltip-pt-login": "我们推荐您登录，但这不是强制性的",
 	"tooltip-pt-login-private": "您需要登录以使用此wiki",
 	"tooltip-pt-logout": "退出",
-	"tooltip-pt-createaccount": "建议您创建一个账户并登录，不过这不是强制的",
+	"tooltip-pt-createaccount": "我们推荐您创建账号并登录，但这不是强制性的",
 	"tooltip-ca-talk": "关于内容页面的讨论",
 	"tooltip-ca-edit": "编辑本页",
 	"tooltip-ca-edit-local": "编辑本地描述页面",
@@ -4403,5 +4403,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}}是由像您这样的人创建的。拥有账号后，您可以获得永久且安全的身份，并可以使用以下功能：",
 	"benefit-1-description": "监视列表，可让您监视您感兴趣的页面。",
 	"benefit-2-description": "您对该项目所做贡献的永久记录。",
-	"benefit-3-description": "参数设置，允许您定制使用体验。"
+	"benefit-3-description": "参数设置，允许您定制使用体验。",
+	"temp-user-unable-to-acquire": "无法获取临时账号的用户名。请再试一次。"
 }

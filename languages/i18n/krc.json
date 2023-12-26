@@ -3921,6 +3921,7 @@
 	"mw-widgets-titlesmultiselect-placeholder": "Аслам къош...",
 	"date-range-from": "Бу датадан:",
 	"date-range-to": "Бу датагъа дери:",
+	"session-page-restricted": "Бар болгъан эркинликни хайырланыб бу бетни тюзетирге эркинлигигиз джокъду",
 	"sessionmanager-tie": "Бирден кёб излем аутентификация тип бирлешдирирча тюлдю:$1.",
 	"sessionprovider-generic": "$1 сессия",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "Куки тамаллы сессияла",
@@ -4054,6 +4055,8 @@
 	"restrictionsfield-badip": "Джараусуз IP-адрес неда диапазон: $1",
 	"restrictionsfield-label": "Эркинлик берилген IP диапазонла:",
 	"restrictionsfield-help": "Хар тизгиннге бир IP-адрес неда CIDR диапазон. Хар нени да тирилтлир ючюн, буну хайырланыгъыз:\n<pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfields-pages-label": "Тюзетиуге эркинлик берилген бетле:",
+	"restrictionsfields-pages-help": "Бютеу бетлени тюзетиуюне эркинлик берир ючюн бош къоюгъуз",
 	"specialmute": "Тауушсузлат",
 	"specialmute-success": "Тауушсузлукъ джарашдырыуларыгъыз тюрлендирилгендиле. Бютеу тауушсуз хайырланыучуланы [[Special:Preferences|джарашдырыуларыгъызда]] кёрюгюз.",
 	"specialmute-submit": "Къабыл эт",
@@ -4177,5 +4180,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} сизни кибик адамла этгендиле. Бир хыйсаб бла,тюбюндеги кибик энчиликлени хайырланыр амал берген дайым эмда ышангылы идентификаторгъа ие болургъа боллукъсуз:",
 	"benefit-1-description": "Ангарылгъан бетлеригизни тинтерге болушхан кёзде тутхан тизмеле.",
 	"benefit-2-description": "Проектге этген къошумугъузну дайым тизмеси.",
-	"benefit-3-description": "Сынамыгъызны энчилешдирирге амал берген джарашдырыула."
+	"benefit-3-description": "Сынамыгъызны энчилешдирирге амал берген джарашдырыула.",
+	"temp-user-unable-to-acquire": "Болджаллы хыйсаб хайырланыучу ат алыналмайды. Тилейбиз джангыдан сынагъыз."
 }

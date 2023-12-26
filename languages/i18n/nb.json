@@ -4227,5 +4227,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} lages av folk som deg. Med en konto kan du ha en permanent og sikker identitet med tilgang til funksjoner som:",
 	"benefit-1-description": "Overvåkningslister som lar deg følge med på sider du er interessert i.",
 	"benefit-2-description": "Permanent liste over dine bidrag til prosjektet.",
-	"benefit-3-description": "Innstillinger som lar deg tilpasse brukeropplevelsen din."
+	"benefit-3-description": "Innstillinger som lar deg tilpasse brukeropplevelsen din.",
+	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt."
 }

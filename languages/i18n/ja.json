@@ -3698,6 +3698,7 @@
 	"blankpage": "白紙ページ",
 	"intentionallyblankpage": "このページは意図的に白紙にされています。",
 	"iframeerror-title": "iframe エラー",
+	"iframeerror-message": "お使いのブラウザが[https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc iframeのsrcdoc属性]をサポートしていないため、このコンテンツを表示できません。",
 	"disabledspecialpage-disabled": "このページはシステム管理者により無効化されています。",
 	"external_image_whitelist": "  #この行はこのままにしておいてください<pre>\n#この下に正規表現 (//の間に入る記述) を置いてください\n#外部の (ホットリンクされている) 画像の URL と一致するか検査されます\n#一致する場合は画像として、一致しない場合は画像へのリンクとして表示されます\n#行の頭に # を付けるとコメントとして扱われます\n#大文字と小文字は区別されません\n\n#正規表現はすべてこの行の上に置いてください。この行はこのままにしておいてください</pre>",
 	"tags": "有効な変更タグ",
@@ -4414,5 +4415,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}}はあなたのような人々によって作られています。アカウントがあれば、永続的かつ安全に自己同一性を保証することができ、以下のような機能を利用することができます:",
 	"benefit-1-description": "興味のあるページを追跡することができるウォッチリスト。",
 	"benefit-2-description": "自分がそのプロジェクトで行った投稿の永続的な一覧。",
-	"benefit-3-description": "カスタマイズ可能な個人設定。"
+	"benefit-3-description": "カスタマイズ可能な個人設定。",
+	"temp-user-unable-to-acquire": "臨時アカウントの利用者名を取得できませんでした。もう一度お試しください。"
 }

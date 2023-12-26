@@ -1133,7 +1133,7 @@
 	"preferences": "Налаштування",
 	"mypreferences": "Налаштування",
 	"prefs-edits": "Кількість редагувань:",
-	"prefsnologintext2": "Будь ласка, увійдіть, щоб змінити ваші уподобання.",
+	"prefsnologintext2": "Будь ласка, увійдіть, щоб змінити Ваші налаштування.",
 	"prefs-skin": "Оформлення",
 	"prefs-skin-prefs": "Налаштування теми оформлення",
 	"prefs-skin-responsive": "Увімкнути адаптивний режим",
@@ -4080,6 +4080,7 @@
 	"mw-widgets-titlesmultiselect-placeholder": "Додати ще...",
 	"date-range-from": "Від дати:",
 	"date-range-to": "До дати:",
+	"session-page-restricted": "Ви не маєте права редагувати цю сторінку використовуючи поточний дозвіл",
 	"sessionmanager-tie": "Не можна поєднувати кілька типів автентифікації запиту: $1.",
 	"sessionprovider-generic": "сесій $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "сесій на основі кук",
@@ -4215,6 +4216,8 @@
 	"restrictionsfield-badip": "Недійсна IP-адреса або діапазон: $1",
 	"restrictionsfield-label": "Дозволені діапазони IP-адрес:",
 	"restrictionsfield-help": "Одна IP-адреса або CIDR-діапазон на рядок. Щоб увімкнути все, використайте:<pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfields-pages-label": "Дозволені сторінки для редагування:",
+	"restrictionsfields-pages-help": "Залиште порожнім, щоб дозволити редагування всіх сторінок",
 	"specialmute": "Вимкнути сповіщення",
 	"specialmute-success": "Ваші налаштування ігнорування сповіщень були оновлені. Перегляньте усіх ігнорованих користувачів у [[Special:Preferences|своїх налаштуваннях]].",
 	"specialmute-submit": "Підтвердити",
@@ -4321,6 +4324,7 @@
 	"renameuser-error-same-user": "Ви не можете змінити ім'я користувача на те саме, що було раніше.",
 	"renameuser-error-temp-user": "Ви не можете перейменувати тимчасовий обліковий запис «$1».",
 	"renameuser-error-temp-user-reserved": "Ви не можете використовувати «$1», він зарезервований для тимчасових облікових записів.",
+	"renameuser-error-self-rename": "Ви не можете перейменувати себе",
 	"renameusersuccess": "{{GENDER:$2|Користувача|Користувачку}} «<nowiki>$1</nowiki>» було перейменовано на «<nowiki>$2</nowiki>».",
 	"renameuser-page-exists": "Сторінка $1 вже існує і не може бути перезаписана автоматично.",
 	"renameuser-page-moved": "Сторінка $1 була перейменована на $2.",
@@ -4339,5 +4343,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} створено такими людьми, як ви. З обліковим записом ви можете мати постійну та безпечну ідентичність на сайті з доступом до таких функцій, як:",
 	"benefit-1-description": "Списки спостереження, які дозволяють відстежувати сторінки, які вас цікавлять.",
 	"benefit-2-description": "Постійний список внеску, який ви зробили в проєкті.",
-	"benefit-3-description": "Налаштування, які дозволяють персоналізувати свій досвід."
+	"benefit-3-description": "Налаштування, які дозволяють персоналізувати свій досвід.",
+	"temp-user-unable-to-acquire": "Не вдалося отримати тимчасове ім’я облікового запису. Будь ласка спробуйте ще раз."
 }

@@ -50,6 +50,7 @@
 	"apierror-mustbeloggedin": "நீர் $1 இற் புகுபதிந்து இருந்தாக வேண்டும்.",
 	"apierror-nochanges": "மாற்றங்களேதும் கோரப்படவில்லை.",
 	"apierror-permissiondenied-generic": "அனுமதி மறுக்கப்பட்டது.",
+	"apierror-tempuseracquirefailed": "ஒரு தற்காலிகக் கணக்குப் பயனர் பெயரைப் பெற முடியவில்லை.",
 	"apierror-unknownerror-nocode": "இனம்புரியாப் பிழை.",
 	"apierror-unknownerror": "இனமறியாப் பிழை:\"$1\".",
 	"apiwarn-invalidtitle": "\"$1\" என்பது செல்லும் தலைப்பல்ல.",

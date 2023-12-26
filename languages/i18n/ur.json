@@ -2333,6 +2333,8 @@
 	"contribute": "تعاون",
 	"contribsub2": "{{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "برائے {{GENDER:$2|$1}}",
+	"contributions-edit-count": "{{GENDER:$1|صارف}} کی {{PLURAL:$2|ترمیم|ترامیم}} کی تعداد $2 ہے۔",
+	"contributions-account-creation-date": "$1 کو کھاتہ بنایا گیا۔",
 	"contributions-userdoesnotexist": "«$1» کے نام سے صارف کھاتہ مندرج نہیں ہے۔",
 	"nocontribs": "اس معیار کے مطابق کوئی ترمیم دستیاب نہیں ہوئی۔",
 	"uctop": "موجودہ نسخہ",
