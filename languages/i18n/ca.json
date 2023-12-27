@@ -1017,6 +1017,8 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Hi ha una revisió intermèdia|Hi ha $1 revisions intermèdies}} sense mostrar fetes per més {{PLURAL:$2|d'un usuari|de $2 usuaris}})",
 	"diff-paragraph-moved-tonew": "S'ha mogut el paràgraf. Feu clic per a saltar una ubicació nova.",
 	"diff-paragraph-moved-toold": "S'ha mogut el paràgraf. Feu clic per a saltar la ubicació antiga.",
+	"diff-inline-tooltip-ins": "Contingut afegit",
+	"diff-inline-tooltip-del": "Contingut suprimit",
 	"diff-inline-format-label": "En línia",
 	"difference-missing-revision": "{{PLURAL:$2|Una revisió|$2 revisions}} d'aquesta diferència ($1) no {{PLURAL:$2|s'ha|s'han}} trobat.\n\nAixò passa generalment en seguir un enllaç obsolet de diferències a una pàgina que s'ha suprimit.\nEs pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].",
 	"difference-bad-old-revision": "El contingut de l'antiga revisió no hi és o bé és corrupte.",
