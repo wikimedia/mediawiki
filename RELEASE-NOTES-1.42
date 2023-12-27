@@ -183,6 +183,8 @@ because of Phabricator reports.
   has been removed. Use ::isLinkConversionDisabled() instead.
 * MediaWikiIntegrationTestCase::$tablesUsed has been deprecated. The framework
   now detects these automatically.
+* Passing an actor id to the constructor of UserIdentityValue, deprecated
+  since 1.36, is no longer being supported.
 * Support for setting dynamic property on StatusValue object has been removed.
   To pass your arbitrary data along the object, use StatusValue::statusData
   property (which is always declared).
