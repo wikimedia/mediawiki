@@ -2640,7 +2640,7 @@
 	"date": "Je dato (aŭ pli frue):",
 	"sp-contributions-blocklog": "protokolo de forbaroj",
 	"sp-contributions-suppresslog": "kaŝitaj kontribuoj de {{GENDER:$1|uzanto}}",
-	"sp-contributions-deleted": "forigitaj kontribuoj de {{GENDER:$1|uzanto}}",
+	"sp-contributions-deleted": "forigitaj kontribuoj de la {{GENDER:$1|uzanto|uzantino|uzanto}}",
 	"sp-contributions-uploads": "alŝutoj",
 	"sp-contributions-logs": "protokoloj",
 	"sp-contributions-talk": "diskuto",

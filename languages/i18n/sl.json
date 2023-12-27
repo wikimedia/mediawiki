@@ -4271,7 +4271,7 @@
 	"log-name-renameuser": "Dnevnik preimenovanj uporabnikov",
 	"log-description-renameuser": "Prikazan je dnevnik sprememb uporabniških imen.",
 	"logentry-renameuser-renameuser": "$1 je {{GENDER:$2|preimenoval|preimenovala|preimenoval_a}} {{GENDER:$7|uporabnika|uporabnico|uporabnika_co}} $4 ({{PLURAL:$6|$6 urejanje|$6 urejanji|$6 urejanja|$6 urejanj}}) v $5",
-	"logentry-renameuser-renameuser-legacier": "$1 je {{GENDER:$2|preimenoval|preimenovala|preimenoval(a)}} {{GENDER:$1|uporabnika|uporabnico}} $4 v {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 je {{GENDER:$2|preimenoval|preimenovala|preimenoval_a}} {{GENDER:$4|uporabnika|uporabnico|uporabnika_co}} $4 v {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Samodejno prestavljanje strani pri preimenovanju {{GENDER:$1|uporabnika|uporabnice}} »[[User:$1|$1]]« v »[[User:$2|$2]]«",
 	"action-renameuser": "preimenovanje uporabnikov",
 	"right-renameuser": "Preimenovanje uporabnikov",

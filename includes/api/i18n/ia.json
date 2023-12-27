@@ -1848,6 +1848,7 @@
 	"apierror-stashzerolength": "Le file es de grandor zero e non poteva esser immagazinate in le reserva: $1.",
 	"apierror-systemblocked": "Tu ha essite blocate automaticamente per MediaWiki.",
 	"apierror-tempuserdisabled": "Le creation de contos de usator temporari es disactivate.",
+	"apierror-tempuseracquirefailed": "Impossibile acquirer un nomine de usator pro le conto temporari.",
 	"apierror-templateexpansion-notwikitext": "Le expansion de patronos es solmente supportate pro contento in wikitexto. $1 usa le modello de contento $2.",
 	"apierror-toofewexpiries": "$1 {{PLURAL:$1|data e hora|datas e horas}} de expiration ha essite fornite ma $2 es necessari.",
 	"apierror-toomanyvalues": "Troppo de valores fornite pro le parametro <var>$1</var>. Le limite es $2.",

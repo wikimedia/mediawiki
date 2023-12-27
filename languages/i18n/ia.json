@@ -3887,6 +3887,7 @@
 	"mw-widgets-titlesmultiselect-placeholder": "Adder plus...",
 	"date-range-from": "A partir del:",
 	"date-range-to": "Usque al:",
+	"session-page-restricted": "Tu non es autorisate a modificar iste pagina usante le concession actual",
 	"sessionmanager-tie": "Impossibile combinar plure typos de authentication de requesta: $1.",
 	"sessionprovider-generic": "sessiones $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessiones basate sur cookies",
@@ -4020,6 +4021,8 @@
 	"restrictionsfield-badip": "Adresse o intervallo IP non valide: $1",
 	"restrictionsfield-label": "Intervallos IP permittite:",
 	"restrictionsfield-help": "Un adresse IP o intervallo CIDR per linea. Pro activar toto, usa:<pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfields-pages-label": "Paginas permittite pro modification:",
+	"restrictionsfields-pages-help": "Lassa vacue pro permitter le modification de tote le paginas",
 	"specialmute": "Silentio",
 	"specialmute-success": "Tu preferentias de silentio ha essite actualisate. Vide tote le usatores silentiate in [[Special:Preferences|tu preferentias]].",
 	"specialmute-submit": "Confirmar",
@@ -4143,5 +4146,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} es facite per gente como tu. Con un conto, tu pote haber un identitate permanente e secur con accesso a functiones como:",
 	"benefit-1-description": "Le observatorio, que te permitte sequer le paginas de tu interesse.",
 	"benefit-2-description": "Lista permanente del contributiones que tu ha apportate al projecto.",
-	"benefit-3-description": "Preferentias que te permitte personalisar tu experientia."
+	"benefit-3-description": "Preferentias que te permitte personalisar tu experientia.",
+	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo."
 }
