@@ -51,24 +51,13 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * @stable to call
 	 *
-	 * @note Signature in 1.35 was: ( $id, $name, $actor ). This is still supported for
-	 *        backwards compatibility. $actor is ignored. This has emitted deprecation
-	 *        warnings since 1.41.
+	 * @note Signature in 1.35 was: ( $id, $name, $actor ).
 	 *
 	 * @param int $id user ID
 	 * @param string $name user name
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
 	 */
 	public function __construct( int $id, string $name, $wikiId = self::LOCAL ) {
-		if ( is_int( $wikiId ) ) {
-			// Handle old signature: ( $id, $name, $actor, $wikiId )
-			$args = func_get_args();
-			$actor = $args[2];
-			$wikiId = $args[3] ?? self::LOCAL;
-
-			wfDeprecatedMsg( 'Old constructor signature: $actor is no longer supported', '1.36' );
-		}
-
 		$this->assertWikiIdParam( $wikiId );
 
 		$this->id = $id;
