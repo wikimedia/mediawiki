@@ -1562,6 +1562,7 @@ return [
 			LoggerFactory::getInstance( 'Parser' ),
 			$services->getBadFileLookup(),
 			$services->getLanguageConverterFactory(),
+			$services->getLanguageNameUtils(),
 			$services->getHookContainer(),
 			$services->getTidy(),
 			$services->getMainWANObjectCache(),

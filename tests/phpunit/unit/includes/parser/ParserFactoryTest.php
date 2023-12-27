@@ -7,6 +7,7 @@ use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Parser\MagicWord;
@@ -62,6 +63,7 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			new TestLogger(),
 			$this->createNoOpMock( BadFileLookup::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class, [ 'isConversionDisabled' ] ),
+			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createHookContainer(),
 			$this->createNoOpMock( TidyDriverBase::class ),
 			$this->createNoOpMock( WANObjectCache::class ),
