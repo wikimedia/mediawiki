@@ -192,7 +192,7 @@ class ApiMainTest extends ApiTestCase {
 	public function testAddRequestedFieldsCurTimestamp() {
 		// Fake timestamp for better testability, CI can sometimes take
 		// unreasonably long to run the simple test request here.
-		$reset = ConvertibleTimestamp::setFakeTime( '20190102030405' );
+		ConvertibleTimestamp::setFakeTime( '20190102030405' );
 
 		$req = new FauxRequest( [
 			'action' => 'query',

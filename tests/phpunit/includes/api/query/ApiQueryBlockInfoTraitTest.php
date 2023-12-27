@@ -24,7 +24,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::BlockTargetMigrationStage, $schema );
 
 		// Fake timestamp to show up in the queries
-		$reset = ConvertibleTimestamp::setFakeTime( '20190101000000' );
+		ConvertibleTimestamp::setFakeTime( '20190101000000' );
 
 		$authority = $this->mockRegisteredAuthorityWithPermissions(
 			$isAllowed ? [ 'hideuser' ] : [] );
