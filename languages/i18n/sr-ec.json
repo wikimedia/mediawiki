@@ -2594,6 +2594,7 @@
 	"whatlinkshere-page": "Страница:",
 	"linkshere": "Следеће странице воде на страницу <strong>$2</strong>:",
 	"nolinkshere": "Ништа не води на страницу <strong>$2</strong>.",
+	"nolinkshere-filter": "Нема веза ка <strong>$2</strong> са тренутним подешавањима претраге.",
 	"nolinkshere-ns": "У изабраном именском простору ништа не води на страницу <strong>$2</strong>.",
 	"isredirect": "преусмерење",
 	"istemplate": "укључивање",

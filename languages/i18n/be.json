@@ -4056,7 +4056,7 @@
 	"blockedtext-contact-blocker-admin": "Вы можаце звярнуцца да $1 або да іншага [[{{MediaWiki:Grouppage-sysop}}|адміністратара]], каб абмеркаваць блакаванне.",
 	"blockedtext-block-ip": "Ваш цяперашні IP-адрас — $1",
 	"blockedtext-block-id": "Ідэнтыфікатар блакавання #$1.",
-	"blockedtext-include-details-queries": "Уключайце ўсе пададзеныя вышэй звесткі ва ўсе вашы запыты.",
+	"blockedtext-include-details-queries": "Калі ласка, уключайце ўсе пададзеныя вышэй звесткі ва ўсе вашы запыты.",
 	"renameuser": "Перайменаваць удзельніка",
 	"renameuser-linkoncontribs": "перайменаваць {{GENDER:$1|удзельніка|удзельніцу}}",
 	"renameuserconfirm": "Так, перайменаваць удзельніка",

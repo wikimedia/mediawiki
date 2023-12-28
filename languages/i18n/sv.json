@@ -854,7 +854,7 @@
 	"expensive-parserfunction-category": "Sidor med för många resurskrävande parserfunktioner",
 	"post-expand-template-inclusion-warning": "Varning: Den här sidan innehåller för mycket mallinklusioner.\nNågra av mallarna kommer inte att inkluderas.",
 	"post-expand-template-inclusion-category": "Sidor som inkluderar för mycket mallkod",
-	"post-expand-template-argument-warning": "Varning: Sidan innehåller en eller flera mallparametrar som blir för långa när de expanderas.\nDessa parametrar har uteslutits.",
+	"post-expand-template-argument-warning": "<strong>Varning:</strong> Sidan innehåller minst en mallparameter som blir för lång när den expanderas.\nDessa parametrar har utelämnats.",
 	"post-expand-template-argument-category": "Sidor med uteslutna mallparametrar",
 	"template-equals-category": "Sidor som använder = som en mall",
 	"template-equals-category-desc": "Sidan innehåller <code><nowiki>{{=}}</nowiki></code> men på denna wiki gäller inte det <code>=</code>. Användning av detta är föråldrat; en framtida MediaWiki-version kommer implementera <code><nowiki>{{=}}</nowiki></code> som en tolkningsfunktion.",

@@ -242,7 +242,7 @@
 	"privacypage": "Project:Maxfiylik siyosati",
 	"badaccess": "Ruxsat yoʻq",
 	"badaccess-group0": "Sizda soʻralgan amallarni bajarish huquqi yoʻq.",
-	"badaccess-groups": "Soʻralgan amallarni kamida «$1» {{PLURAL:$2|guruhi|guruhlari}} aʼzosi amalga oshirishi mumkin.",
+	"badaccess-groups": "Soʻralgan amallarni kamida „$1“ {{PLURAL:$2|guruhi|guruhlari}} aʼzosi amalga oshirishi mumkin.",
 	"versionrequired": "$1 versiyasidagi MediaWiki talab etiladi",
 	"versionrequiredtext": "Bu sahifada ishlash uchun MediaWikining $1-versiyasi talab etiladi.\n[[Special:Version|Dasturiy taʼminot haqida axborot]]ni koʻring.",
 	"ok": "OK",
