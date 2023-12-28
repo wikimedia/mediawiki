@@ -6073,19 +6073,6 @@ class Parser {
 	}
 
 	/**
-	 * Mutator for the 'defaultsort' page property.
-	 *
-	 * @param string $sort New value
-	 * @since 1.0
-	 * @deprecated since 1.38, use
-	 * $parser->getOutput()->setPageProperty('defaultsort', $sort)
-	 */
-	public function setDefaultSort( $sort ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->mOutput->setPageProperty( 'defaultsort', $sort );
-	}
-
-	/**
 	 * Accessor for the 'defaultsort' page property.
 	 * Will use the empty string if none is set.
 	 *
@@ -6101,20 +6088,6 @@ class Parser {
 	public function getDefaultSort() {
 		wfDeprecated( __METHOD__, '1.38' );
 		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
-	}
-
-	/**
-	 * Accessor for the 'defaultsort' page property.
-	 * Unlike getDefaultSort(), will return false if none is set
-	 *
-	 * @return string|false
-	 * @since 1.14
-	 * @deprecated since 1.38, use
-	 * $parser->getOutput()->getPageProperty('defaultsort') ?? false
-	 */
-	public function getCustomDefaultSort() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? false;
 	}
 
 	private static function getSectionNameFromStrippedText( $text ) {
