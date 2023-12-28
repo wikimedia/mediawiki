@@ -2546,5 +2546,12 @@
 	"skin-action-protect": "Schütz",
 	"skin-action-undelete": "Wiederherstelle",
 	"skin-action-delete": "Lösche",
-	"skin-action-move": "Verschiebe"
+	"skin-action-move": "Verschiebe",
+	"blockedtext-made-by": "Die Sperr waar fun $1 dorrichgefeerd.",
+	"blockedtext-reason-comment": "De aangebbe Grund is <em>$1</em>",
+	"blockedtext-start-time": "Aanfang fum Abhallung: $1",
+	"blockedtext-expiration-time": "Ablaaf fum Abhallung: $1",
+	"blockedtext-intended-blockee": "Abhallung bedreffd: $1",
+	"blockedtext-contact-blocker-admin": "Du kannst $1 odder en annre [[{{MediaWiki:Grouppage-sysop}}|Administratoer]] kontakteere, um iwer das Abhallung se diskutiere.",
+	"blockedtext-include-details-queries": "Bitte schliese alle Informazione in jeder Aanfroh in, wo du stellst."
 }
