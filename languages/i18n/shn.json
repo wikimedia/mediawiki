@@ -904,7 +904,7 @@
 	"searchmenu-exists": "တီႈ {{SITENAME}} ၼၼ်ႉ မီးၼႃႈလိၵ်ႈ ဢၼ်ပၼ်ၸိုဝ်ႈဝႆႉဝႃႈ \"[[:$1]]\"။ {{PLURAL:$2|0=|တူၺ်းပႃး ၽွၼ်းၶူၼ်ႉႁႃတၢင်ႇၸိူဝ်း ဢၼ်ၶူၼ်ႉႁႃႁၼ်ဝႆႉ။}}",
 	"searchmenu-new": "သၢင်ႈၼႃႈလိၵ်ႈ \"[[:$1]]\" တီႈဝီႇၶီႇၼႆႉ {{PLURAL:$2|0=|တူၺ်းပႃး ၼႃႈလိၵ်ႈ ဢၼ်ၶူၼ်ႉႁႃၺႃး တီႈ ဢၼ်ၸဝ်ႈၵဝ်ႇ ၶူၼ်ႉႁႃ။|တူၺ်းပႃး ၽွၼ်းၶူၼ်ႉႁႃ ဢၼ်ႁႃႁၼ်ၺႃး။}}",
 	"searchprofile-articles": "ၼႃႈလိၵ်ႈ လမ်းၼႂ်း",
-	"searchprofile-images": "သႅၼ်သိုဝ်ႇၶၢဝ်ႇ",
+	"searchprofile-images": "မႃႇတီႇမီႇတီႇယႃႇ",
 	"searchprofile-everything": "ၵူႊဢၼ်",
 	"searchprofile-advanced": "ၸၼ်ႉသုင်",
 	"searchprofile-articles-tooltip": "ႁႃၼႂ်း $1",
