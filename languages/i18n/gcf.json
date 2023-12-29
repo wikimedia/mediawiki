@@ -822,6 +822,8 @@
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Katégori kaché}} ($1)",
 	"pageinfo-toolboxlink": "Paj informasyon",
 	"confirm-markpatrolled-button": "OK",
+	"previousdiff": "← Modifikasyon pli vyé",
+	"nextdiff": "Modifikasyon pli nouvo →",
 	"file-nohires": "Pa ni méyè rézolisyon",
 	"show-big-image": "Fichyé orijinal",
 	"show-big-image-preview": "Grandè a prévizyalizasyon-lasa: $1",
