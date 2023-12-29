@@ -224,6 +224,8 @@ because of Phabricator reports.
   - ApiQueryLogEvents
   - ApiQueryRecentChanges
   - APIs extended from ApiQueryRevisionsBase
+* Parser::getCustomDefaultSort() and ::setDefaultSort(), deprecated since 1.38,
+  have been removed.
 * …
 
 === Deprecations in 1.42 ===
