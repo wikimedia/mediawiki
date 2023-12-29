@@ -23,6 +23,7 @@ namespace MediaWiki;
 use BagOStuff;
 use CryptHKDF;
 use DateFormatterFactory;
+use ExtensionRegistry;
 use ExternalStoreAccess;
 use ExternalStoreFactory;
 use FileBackendGroup;
@@ -1080,6 +1081,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getEventRelayerGroup(): EventRelayerGroup {
 		return $this->getService( 'EventRelayerGroup' );
+	}
+
+	/**
+	 * @since 1.42
+	 */
+	public function getExtensionRegistry(): ExtensionRegistry {
+		return $this->getService( 'ExtensionRegistry' );
 	}
 
 	/**

@@ -776,6 +776,10 @@ return [
 		return new EventRelayerGroup( $services->getMainConfig()->get( MainConfigNames::EventRelayerConfig ) );
 	},
 
+	'ExtensionRegistry' => static function ( MediaWikiServices $services ): ExtensionRegistry {
+		return ExtensionRegistry::getInstance();
+	},
+
 	'ExternalStoreAccess' => static function ( MediaWikiServices $services ): ExternalStoreAccess {
 		return new ExternalStoreAccess(
 			$services->getExternalStoreFactory(),
