@@ -41,6 +41,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Sanitizer;
@@ -767,6 +768,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * - AuthManager is instructed to revoke access, to invalidate or remove
 	 *   passwords and other credentials.
 	 *
+	 * System users should usually be listed in $wgReservedUsernames.
+	 *
 	 * @param string $name Username
 	 * @param array $options Options are:
 	 *  - validate: Type of validation to use:
@@ -780,6 +783,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *    exists, default false
 	 * @return User|null
 	 * @since 1.27
+	 * @see self::isSystemUser()
+	 * @see MainConfigSchema::ReservedUsernames
 	 */
 	public static function newSystemUser( $name, $options = [] ) {
 		$options += [
