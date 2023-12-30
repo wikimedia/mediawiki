@@ -35,16 +35,6 @@ class OOUIHTMLForm extends HTMLForm {
 	private $oouiErrors;
 	private $oouiWarnings;
 
-	/**
-	 * @stable to call
-	 * @inheritDoc
-	 */
-	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
-		parent::__construct( $descriptor, $context, $messagePrefix );
-		$this->getOutput()->enableOOUI();
-		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
-	}
-
 	protected $displayFormat = 'ooui';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,
@@ -284,6 +274,17 @@ class OOUIHTMLForm extends HTMLForm {
 				'classes' => $classes,
 			]
 		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getHTML( $submitResult ) {
+		// Enable OOUI only if the form is going to be displayed (T352592).
+		$this->getOutput()->enableOOUI();
+		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
+
+		return parent::getHTML( $submitResult );
 	}
 
 	public function getBody() {
