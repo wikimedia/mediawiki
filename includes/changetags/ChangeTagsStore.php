@@ -134,12 +134,10 @@ class ChangeTagsStore {
 			array_keys( array_filter( $coreTags ) ) :
 			array_keys( $coreTags );
 
-		$softwareTags = array_intersect(
+		return array_intersect(
 			$availableSoftwareTags,
 			self::DEFINED_SOFTWARE_TAGS
 		);
-
-		return $softwareTags;
 	}
 
 	/**
