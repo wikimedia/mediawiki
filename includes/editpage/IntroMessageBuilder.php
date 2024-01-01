@@ -3,7 +3,7 @@
 namespace MediaWiki\EditPage;
 
 use LogEventsList;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
@@ -334,7 +334,7 @@ class IntroMessageBuilder {
 				);
 			} elseif (
 				$block !== null &&
-				$block->getType() !== DatabaseBlock::TYPE_AUTO &&
+				$block->getType() !== Block::TYPE_AUTO &&
 				(
 					$block->isSitewide() ||
 					$this->permManager->isBlockedFrom(
