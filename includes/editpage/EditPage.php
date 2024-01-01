@@ -2851,7 +2851,7 @@ class EditPage implements IEditObject {
 			$this->section !== '' ? $this->section : null
 		);
 
-		foreach ( $messages as $noticeName => $message ) {
+		foreach ( $messages as $message ) {
 			$this->context->getOutput()->addHTML( $message );
 		}
 	}
