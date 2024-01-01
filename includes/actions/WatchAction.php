@@ -95,6 +95,12 @@ class WatchAction extends FormAction {
 		return Status::wrap( $result );
 	}
 
+	/**
+	 * @throws UserNotLoggedIn
+	 * @throws PermissionsError
+	 * @throws ReadOnlyError
+	 * @throws UserBlockedError
+	 */
 	protected function checkCanExecute( User $user ) {
 		if ( !$user->isRegistered()
 			|| ( $user->isTemp() && !$user->isAllowed( 'editmywatchlist' ) )
