@@ -1090,7 +1090,7 @@
 	"right-reupload": "Pārrakstīt esošu failu",
 	"right-reupload-own": "Pārrakstīt paša augšuplādētu esošu failu",
 	"right-upload_by_url": "Augšupielādēt failus no URL",
-	"right-autoconfirmed": "Izmainīt daļēji aizsargātas lapas",
+	"right-autoconfirmed": "Neietekmē uz IP balstīti ātruma ierobežojumi",
 	"right-apihighlimits": "Izmantot augstākus ierobežojumus API vaicājumiem",
 	"right-writeapi": "Rakstīšanas API lietošana",
 	"right-delete": "Dzēst lapas",

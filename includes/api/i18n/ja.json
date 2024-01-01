@@ -24,7 +24,8 @@
 			"MathXplore",
 			"Yamagata Yusuke",
 			"Kokage si",
-			"Amire80"
+			"Amire80",
+			"Ant176"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> MediaWiki APIは、積極的にサポートされ、改善された成熟した安定したインターフェースです。避けようとはしていますが、時には壊れた変更が加えられるかもしれません。更新の通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -62,6 +63,8 @@
 	"apihelp-block-example-user-complex": "利用者 <kbd>Vandal</kbd> を何らかの理由で無期限ブロックし、新たなアカウント作成とメールの送信を禁止する。",
 	"apihelp-changeauthenticationdata-summary": "現在の利用者の認証データを変更します。",
 	"apihelp-changeauthenticationdata-example-password": "現在の利用者のパスワードを <kbd>ExamplePassword</kbd> に変更する。",
+	"apihelp-changecontentmodel-summary": "ページのコンテンツモデルを変更します。",
+	"apihelp-changecontentmodel-param-model": "新しいコンテンツのコンテンツモデル。",
 	"apihelp-checktoken-summary": "<kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> のトークンの妥当性を確認します。",
 	"apihelp-checktoken-param-type": "調べるトークンの種類。",
 	"apihelp-checktoken-param-token": "調べるトークン。",
@@ -863,8 +866,8 @@
 	"apihelp-query+revisions-example-first5-user": "<kbd>Main Page</kbd> の <kbd>MediaWiki default</kbd> による最初の5版を取得する。",
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "版のID。",
 	"apihelp-query+revisions+base-paramvalue-prop-timestamp": "版のタイムスタンプ。",
-	"apihelp-query+revisions+base-paramvalue-prop-user": "その版を作成した利用者。",
-	"apihelp-query+revisions+base-paramvalue-prop-userid": "その版の作成者の利用者ID。",
+	"apihelp-query+revisions+base-paramvalue-prop-user": "その版を作成した利用者。その利用者が版指定削除されていた場合、 <samp>userhidden</samp> プロパティが返されます。",
+	"apihelp-query+revisions+base-paramvalue-prop-userid": "その版の作成者の利用者ID。その利用者が版指定削除されていた場合、 <samp>userhidden</samp> プロパティが返されます。",
 	"apihelp-query+revisions+base-paramvalue-prop-size": "その版の長さ (バイト) 。",
 	"apihelp-query+revisions+base-paramvalue-prop-comment": "その版の利用者によるコメント。コメントが版指定削除されている場合、<samp>commenthidden</samp>プロパティを返します。",
 	"apihelp-query+revisions+base-paramvalue-prop-parsedcomment": "その版の利用者による、構文解析されたコメント。コメントが版指定削除されている場合、<samp>commenthidden</samp>プロパティを返します。",
