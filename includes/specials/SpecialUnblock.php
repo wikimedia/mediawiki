@@ -25,8 +25,8 @@ namespace MediaWiki\Specials;
 
 use HTMLForm;
 use LogEventsList;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockUtils;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Request\WebRequest;
@@ -49,7 +49,7 @@ class SpecialUnblock extends SpecialPage {
 	/** @var UserIdentity|string|null */
 	protected $target;
 
-	/** @var int|null DatabaseBlock::TYPE_ constant */
+	/** @var int|null Block::TYPE_ constant */
 	protected $type;
 
 	protected $block;
@@ -113,8 +113,8 @@ class SpecialUnblock extends SpecialPage {
 		$form = HTMLForm::factory( 'ooui', $this->getFields(), $this->getContext() )
 			->setWrapperLegendMsg( 'unblockip' )
 			->setSubmitCallback( function ( array $data, HTMLForm $form ) {
-				if ( $this->type != DatabaseBlock::TYPE_RANGE
-					&& $this->type != DatabaseBlock::TYPE_AUTO
+				if ( $this->type != Block::TYPE_RANGE
+					&& $this->type != Block::TYPE_AUTO
 					&& $data['Watch']
 				) {
 					$this->watchlistManager->addWatchIgnoringRights(
@@ -180,20 +180,20 @@ class SpecialUnblock extends SpecialPage {
 
 		if ( $form->show() ) {
 			switch ( $this->type ) {
-				case DatabaseBlock::TYPE_IP:
+				case Block::TYPE_IP:
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-ip', wfEscapeWikiText( $this->target ) );
 					break;
-				case DatabaseBlock::TYPE_USER:
+				case Block::TYPE_USER:
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
 					break;
-				case DatabaseBlock::TYPE_RANGE:
+				case Block::TYPE_RANGE:
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-range', wfEscapeWikiText( $this->target ) );
 					break;
-				case DatabaseBlock::TYPE_ID:
-				case DatabaseBlock::TYPE_AUTO:
+				case Block::TYPE_ID:
+				case Block::TYPE_AUTO:
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-id', wfEscapeWikiText( $this->target ) );
 					break;
@@ -267,7 +267,7 @@ class SpecialUnblock extends SpecialPage {
 			]
 		];
 
-		if ( $this->block instanceof DatabaseBlock ) {
+		if ( $this->block instanceof Block ) {
 			$type = $this->block->getType();
 			$targetName = $this->block->getTargetName();
 
@@ -275,21 +275,21 @@ class SpecialUnblock extends SpecialPage {
 			// User:Foo, and we've just got any block, auto or not, that applies to a target
 			// the user has specified.  Someone could be fishing to connect IPs to autoblocks,
 			// so don't show any distinction between unblocked IPs and autoblocked IPs
-			if ( $type == DatabaseBlock::TYPE_AUTO && $this->type == DatabaseBlock::TYPE_IP ) {
+			if ( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ) {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
 			} else {
 				$fields['Target']['default'] = $targetName;
 				$fields['Target']['type'] = 'hidden';
 				switch ( $type ) {
-					case DatabaseBlock::TYPE_IP:
+					case Block::TYPE_IP:
 						$fields['Name']['default'] = $this->getLinkRenderer()->makeKnownLink(
 							$this->getSpecialPageFactory()->getTitleForAlias( 'Contributions/' . $targetName ),
 							$targetName
 						);
 						$fields['Name']['raw'] = true;
 						break;
-					case DatabaseBlock::TYPE_USER:
+					case Block::TYPE_USER:
 						$fields['Name']['default'] = $this->getLinkRenderer()->makeLink(
 							new TitleValue( NS_USER, $targetName ),
 							$targetName
@@ -297,11 +297,11 @@ class SpecialUnblock extends SpecialPage {
 						$fields['Name']['raw'] = true;
 						break;
 
-					case DatabaseBlock::TYPE_RANGE:
+					case Block::TYPE_RANGE:
 						$fields['Name']['default'] = $targetName;
 						break;
 
-					case DatabaseBlock::TYPE_AUTO:
+					case Block::TYPE_AUTO:
 						$fields['Name']['default'] = $this->block->getRedactedName();
 						$fields['Name']['raw'] = true;
 						// Don't expose the real target of the autoblock
