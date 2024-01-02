@@ -759,11 +759,9 @@ class MaintenanceRunner {
 	 * @return bool
 	 */
 	public static function shouldExecute() {
-		global $wgCommandLineMode;
-
 		if ( !function_exists( 'debug_backtrace' ) ) {
 			// If someone has a better idea...
-			return $wgCommandLineMode;
+			return MW_ENTRY_POINT === 'cli';
 		}
 
 		$bt = debug_backtrace();
