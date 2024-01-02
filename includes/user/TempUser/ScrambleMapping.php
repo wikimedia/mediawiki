@@ -76,6 +76,9 @@ class ScrambleMapping implements SerialMapping {
 			return (string)$index;
 		}
 		$offset = $this->offset;
+		if ( $index - $offset < 0 ) {
+			throw new \MWException( __METHOD__ . ": The configured offset $offset is too large." );
+		}
 		foreach ( self::GENERATORS as [ $g, $p ] ) {
 			if ( $index - $offset < $p ) {
 				return (string)( $offset + $this->powmod( $g, $index - $offset, $p ) );
