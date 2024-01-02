@@ -1,5 +1,5 @@
 <?php
-/** Mon (ဘာသာ မန်)
+/** Mon (ဘာသာမန်)
  * @file
  * @ingroup Languages
  *

@@ -339,7 +339,7 @@ class Names {
 		'mnc-latn' => 'manju gisun', # Manchu (Latin script)
 		'mnc-mong' => 'ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ', # Manchu (Mongolian script)
 		'mni' => 'ꯃꯤꯇꯩ ꯂꯣꯟ', # Manipuri/Meitei
-		'mnw' => 'ဘာသာ မန်', # Mon, T201583
+		'mnw' => 'ဘာသာမန်', # Mon
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-Cyrl-MD)
 		'mos' => 'moore', # Mooré
 		'mr' => 'मराठी', # Marathi
