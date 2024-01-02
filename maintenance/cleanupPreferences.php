@@ -131,11 +131,10 @@ class CleanupPreferences extends Maintenance {
 				$deleteWhere[$row->up_user][$row->up_property] = true;
 			}
 			if ( $deleteWhere && !$dryRun ) {
-				$dbw->delete(
-					'user_properties',
-					$dbw->makeWhereFrom2d( $deleteWhere, 'up_user', 'up_property' ),
-					__METHOD__
-				);
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'user_properties' )
+					->where( $dbw->makeWhereFrom2d( $deleteWhere, 'up_user', 'up_property' ) )
+					->caller( __METHOD__ )->execute();
 
 				$this->waitForReplication();
 			}

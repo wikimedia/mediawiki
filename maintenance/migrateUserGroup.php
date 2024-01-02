@@ -80,11 +80,13 @@ class MigrateUserGroup extends Maintenance {
 			// This happens when a user is in both the old and new group.
 			// Updating the row for the old group membership failed since
 			// user/group is UNIQUE.
-			$dbw->delete( 'user_groups',
-				[ 'ug_group' => $oldGroup,
-					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'user_groups' )
+				->where( [
+					'ug_group' => $oldGroup,
+					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
+				] )
+				->caller( __METHOD__ )->execute();
 			$affected += $dbw->affectedRows();
 			$this->commitTransaction( $dbw, __METHOD__ );
 

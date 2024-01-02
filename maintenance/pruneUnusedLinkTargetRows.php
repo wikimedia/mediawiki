@@ -84,7 +84,10 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 			}
 
 			if ( !$this->getOption( 'dry' ) ) {
-				$dbw->delete( 'linktarget', [ 'lt_id' => $ltIdsToDelete ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'linktarget' )
+					->where( [ 'lt_id' => $ltIdsToDelete ] )
+					->caller( __METHOD__ )->execute();
 			}
 			$deleted += count( $ltIdsToDelete );
 			$ltCounter += $this->getBatchSize();

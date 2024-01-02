@@ -191,11 +191,10 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		$lb = $this->getServiceContainer()->getDBLoadBalancer();
 		$dbw = $lb->getConnectionRef( DB_PRIMARY );
 
-		$dbw->delete(
-			'logging',
-			[ 'log_id' => $rows ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'logging' )
+			->where( [ 'log_id' => $rows ] )
+			->caller( __METHOD__ )->execute();
 
 		$this->waitForReplication();
 	}

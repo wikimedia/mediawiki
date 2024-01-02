@@ -258,7 +258,10 @@ TEXT
 				// nothing can be categorised in them, and they can't have been changed
 				// recently, so we can just remove these rows.
 				$this->outputStatus( "Deleting invalid $table rows...\n" );
-				$dbw->delete( $table, [ $idField => $ids ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( $table )
+					->where( [ $idField => $ids ] )
+					->caller( __METHOD__ )->execute();
 				$this->waitForReplication();
 				$this->outputStatus( 'Deleted ' . $dbw->affectedRows() . " rows from $table.\n" );
 				break;
@@ -270,9 +273,10 @@ TEXT
 				$this->outputStatus( "Deleting invalid $table rows...\n" );
 				$affectedRowCount = 0;
 				foreach ( $res as $row ) {
-					$dbw->delete( $table,
-						[ $nsField => $row->ns, $titleField => $row->title ],
-						__METHOD__ );
+					$dbw->newDeleteQueryBuilder()
+						->deleteFrom( $table )
+						->where( [ $nsField => $row->ns, $titleField => $row->title ] )
+						->caller( __METHOD__ )->execute();
 					$affectedRowCount += $dbw->affectedRows();
 				}
 				$this->waitForReplication();
@@ -303,9 +307,10 @@ TEXT
 							$conds = [ $nsField => $row->ns, $titleField => $row->title ];
 						}
 						// This link entry points to a nonexistent page, so just get rid of it
-						$dbw->delete( $table,
-							array_merge( [ $idField => $row->id ], $conds ),
-							__METHOD__ );
+						$dbw->newDeleteQueryBuilder()
+							->deleteFrom( $table )
+							->where( array_merge( [ $idField => $row->id ], $conds ) )
+							->caller( __METHOD__ )->execute();
 					}
 				}
 				$this->waitForReplication();

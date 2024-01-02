@@ -93,7 +93,10 @@ class RemoveUnusedAccounts extends Maintenance {
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting unused accounts..." );
 			$dbw = $this->getDB( DB_PRIMARY );
-			$dbw->delete( 'user', [ 'user_id' => $delUser ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'user' )
+				->where( [ 'user_id' => $delUser ] )
+				->caller( __METHOD__ )->execute();
 			# Keep actor rows referenced from ipblocks
 			$stage = $this->getConfig()
 				->get( MainConfigNames::BlockTargetMigrationStage );
@@ -112,16 +115,34 @@ class RemoveUnusedAccounts extends Maintenance {
 			}
 			$del = array_diff( $delActor, $keep );
 			if ( $del ) {
-				$dbw->delete( 'actor', [ 'actor_id' => $del ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'actor' )
+					->where( [ 'actor_id' => $del ] )
+					->caller( __METHOD__ )->execute();
 			}
 			if ( $keep ) {
 				$dbw->update( 'actor', [ 'actor_user' => null ], [ 'actor_id' => $keep ], __METHOD__ );
 			}
-			$dbw->delete( 'user_groups', [ 'ug_user' => $delUser ], __METHOD__ );
-			$dbw->delete( 'user_former_groups', [ 'ufg_user' => $delUser ], __METHOD__ );
-			$dbw->delete( 'user_properties', [ 'up_user' => $delUser ], __METHOD__ );
-			$dbw->delete( 'logging', [ 'log_actor' => $delActor ], __METHOD__ );
-			$dbw->delete( 'recentchanges', [ 'rc_actor' => $delActor ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'user_groups' )
+				->where( [ 'ug_user' => $delUser ] )
+				->caller( __METHOD__ )->execute();
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'user_former_groups' )
+				->where( [ 'ufg_user' => $delUser ] )
+				->caller( __METHOD__ )->execute();
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'user_properties' )
+				->where( [ 'up_user' => $delUser ] )
+				->caller( __METHOD__ )->execute();
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'logging' )
+				->where( [ 'log_actor' => $delActor ] )
+				->caller( __METHOD__ )->execute();
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'recentchanges' )
+				->where( [ 'rc_actor' => $delActor ] )
+				->caller( __METHOD__ )->execute();
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
 			$users = $dbw->newSelectQueryBuilder()

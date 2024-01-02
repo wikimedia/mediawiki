@@ -114,11 +114,10 @@ class CleanupBlocks extends Maintenance {
 			}
 
 			if ( $delete ) {
-				$db->delete(
-					'ipblocks',
-					[ 'ipb_id' => $delete ],
-					__METHOD__
-				);
+				$db->newDeleteQueryBuilder()
+					->deleteFrom( 'ipblocks' )
+					->where( [ 'ipb_id' => $delete ] )
+					->caller( __METHOD__ )->execute();
 			}
 		}
 

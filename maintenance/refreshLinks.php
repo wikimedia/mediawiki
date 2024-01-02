@@ -209,7 +209,10 @@ class RefreshLinks extends Maintenance {
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'redirect' )
+				->where( [ 'rd_from' => $id ] )
+				->caller( __METHOD__ )->execute();
 			$fieldValue = 0;
 		} else {
 			$page->insertRedirectEntry( $rt );
@@ -336,7 +339,10 @@ class RefreshLinks extends Maintenance {
 				$numIds = count( $ids );
 				if ( $numIds ) {
 					$counter += $numIds;
-					$dbw->delete( $table, [ $field => $ids ], __METHOD__ );
+					$dbw->newDeleteQueryBuilder()
+						->deleteFrom( $table )
+						->where( [ $field => $ids ] )
+						->caller( __METHOD__ )->execute();
 					$this->output( ", $counter" );
 					$tableStart = $ids[$numIds - 1] + 1;
 					$this->waitForReplication();

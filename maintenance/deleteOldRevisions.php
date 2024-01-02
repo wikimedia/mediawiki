@@ -95,8 +95,14 @@ class DeleteOldRevisions extends Maintenance {
 		# Delete as appropriate
 		if ( $delete && $count ) {
 			$this->output( "Deleting..." );
-			$dbw->delete( 'revision', [ 'rev_id' => $oldRevs ], __METHOD__ );
-			$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $oldRevs ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'revision' )
+				->where( [ 'rev_id' => $oldRevs ] )
+				->caller( __METHOD__ )->execute();
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'ip_changes' )
+				->where( [ 'ipc_rev_id' => $oldRevs ] )
+				->caller( __METHOD__ )->execute();
 			$this->output( "done.\n" );
 		}
 

@@ -22,7 +22,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 	}
 
 	private function cleanLoggingTable() {
-		wfGetDB( DB_PRIMARY )->delete( 'logging', '*' );
+		$this->getDb()->delete( 'logging', '*' );
 	}
 
 	private function insertLoggingData() {
