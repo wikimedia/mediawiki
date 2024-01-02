@@ -67,7 +67,10 @@ class DeleteTag extends Maintenance {
 			if ( !$ids ) {
 				break;
 			}
-			$dbw->delete( 'change_tag', [ 'ct_id' => $ids ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'change_tag' )
+				->where( [ 'ct_id' => $ids ] )
+				->caller( __METHOD__ )->execute();
 			$count += $dbw->affectedRows();
 			$this->output( "$count\n" );
 			$lbFactory->waitForReplication( $options );

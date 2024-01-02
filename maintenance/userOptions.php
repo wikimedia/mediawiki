@@ -252,18 +252,13 @@ WARN
 			}
 
 			if ( !$dryRun ) {
-				$deleteConds = [
-					'up_property' => $option,
-					'up_user' => $userIds
-				];
+				$delete = $dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'user_properties' )
+					->where( [ 'up_property' => $option,  'up_user' => $userIds ] );
 				if ( $old ) {
-					$deleteConds['up_value'] = $old;
+					$delete->andWhere( [ 'up_value' => $old ] );
 				}
-				$dbw->delete(
-					'user_properties',
-					$deleteConds,
-					__METHOD__
-				);
+				$delete->caller( __METHOD__ )->execute();
 				$rowsInThisBatch = $dbw->affectedRows();
 			} else {
 				$rowsInThisBatch = count( $userIds );

@@ -159,7 +159,10 @@ class RebuildTextIndex extends Maintenance {
 	private function clearSearchIndex() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$this->output( 'Clearing searchindex table...' );
-		$dbw->delete( 'searchindex', '*', __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'searchindex' )
+			->where( '*' )
+			->caller( __METHOD__ )->execute();
 		$this->output( "Done\n" );
 	}
 }

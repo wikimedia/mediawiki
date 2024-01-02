@@ -105,7 +105,10 @@ class FixMergeHistoryCorruption extends Maintenance {
 					$this->output( "Would delete $titleText with page_id: $row->page_id\n" );
 				} else {
 					$this->output( "Deleting $titleText with page_id: $row->page_id\n" );
-					$dbw->delete( 'page', [ 'page_id' => $row->page_id ], __METHOD__ );
+					$dbw->newDeleteQueryBuilder()
+						->deleteFrom( 'page' )
+						->where( [ 'page_id' => $row->page_id ] )
+						->caller( __METHOD__ )->execute();
 				}
 				$numDeleted++;
 			} else {

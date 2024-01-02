@@ -120,7 +120,10 @@ class DeleteArchivedFiles extends Maintenance {
 			}
 
 			$count++;
-			$dbw->delete( 'filearchive', [ 'fa_id' => $id ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'filearchive' )
+				->where( [ 'fa_id' => $id ] )
+				->caller( __METHOD__ )->execute();
 			$file->releaseFileLock();
 		}
 
