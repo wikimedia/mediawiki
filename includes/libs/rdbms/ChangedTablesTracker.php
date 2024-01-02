@@ -15,7 +15,7 @@ use RuntimeException;
 class ChangedTablesTracker {
 	private const TRACKED_VERBS = [ 'INSERT', 'UPDATE', 'REPLACE' ];
 	private static bool $trackingEnabled = false;
-	/** @var array<string,true> Map of [ table name => true ] */
+	/** @var array<string,array<string,true>> Map of [ domain => [ table name => true ] ] */
 	private static array $tableMap = [];
 
 	/**
@@ -33,32 +33,39 @@ class ChangedTablesTracker {
 	}
 
 	/**
-	 * Returns a list of changed tables, resets the internal list and disables tracking.
+	 * Get the tables for a given domain ID
 	 *
+	 * @param string $domainId
 	 * @return string[]
 	 */
-	public static function getTablesAndStop(): array {
+	public static function getTables( string $domainId ): array {
+		$tableMap = self::$tableMap[$domainId] ?? [];
+		return array_keys( $tableMap );
+	}
+
+	/**
+	 * Reset the internal list and disable tracking.
+	 */
+	public static function stopTracking(): void {
 		if ( !self::$trackingEnabled ) {
 			throw new RuntimeException( "Tracking is not enabled" );
 		}
-		$ret = array_keys( self::$tableMap );
 		self::$tableMap = [];
 		self::$trackingEnabled = false;
-		return $ret;
 	}
 
 	/**
 	 * When tracking is enabled and a query alters tables, record the list of tables that are altered.
 	 * Any table that gets dropped gets removed from the list of altered tables.
 	 */
-	public static function recordQuery( Query $query ): void {
+	public static function recordQuery( DatabaseDomain $domain, Query $query ): void {
 		if ( !self::$trackingEnabled ) {
 			return;
 		}
 		if ( !$query->isWriteQuery() ) {
 			return;
 		}
-
+		$domainId = $domain->getId();
 		$queryVerb = $query->getVerb();
 		$tableName = $query->getWriteTable();
 		if ( $tableName === null ) {
@@ -66,13 +73,13 @@ class ChangedTablesTracker {
 		}
 		if ( $queryVerb === 'DROP' ) {
 			// Special case: if a table is being dropped, forget about it.
-			unset( self::$tableMap[$tableName] );
+			unset( self::$tableMap[$domainId][$tableName] );
 			return;
 		}
 		if ( !in_array( $queryVerb, self::TRACKED_VERBS, true ) ) {
 			return;
 		}
 
-		self::$tableMap[$tableName] = true;
+		self::$tableMap[$domainId][$tableName] = true;
 	}
 }

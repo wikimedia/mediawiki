@@ -32,7 +32,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 		$this->conn = $this->newConnection();
 		// FIXME: Tables used by this test aren't parsed correctly, see T344510.
-		ChangedTablesTracker::getTablesAndStop();
+		ChangedTablesTracker::stopTracking();
 	}
 
 	protected function tearDown(): void {

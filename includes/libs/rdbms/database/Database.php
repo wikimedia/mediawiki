@@ -674,7 +674,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$isPermWrite = false;
 		$isWrite = $sql->isWriteQuery();
 		if ( $isWrite ) {
-			ChangedTablesTracker::recordQuery( $sql );
+			ChangedTablesTracker::recordQuery( $this->currentDomain, $sql );
 			// Permit temporary table writes on replica connections, but require a writable
 			// master connection for writes to persistent tables.
 			if ( $this->hasPermanentTable( $sql ) ) {
