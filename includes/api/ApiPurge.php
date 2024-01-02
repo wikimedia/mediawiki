@@ -78,6 +78,7 @@ class ApiPurge extends ApiBase {
 
 		$result = $pageSet->getInvalidTitlesAndRevisions();
 		$userName = $authority->getUser()->getName();
+		$now = wfTimestampNow();
 
 		foreach ( $pageSet->getGoodPages() as $pageIdentity ) {
 			$title = $this->titleFormatter->getPrefixedText( $pageIdentity );
@@ -122,6 +123,7 @@ class ApiPurge extends ApiBase {
 						'causeAction' => 'api-purge',
 						'causeAgent' => $userName,
 						'defer' => DeferredUpdates::PRESEND,
+						'freshness' => $now,
 					] );
 					$r['linkupdate'] = true;
 				} else {

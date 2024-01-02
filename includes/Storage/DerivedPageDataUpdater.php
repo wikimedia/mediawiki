@@ -1792,11 +1792,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	 *     current page or otherwise depend on it (default: false)
 	 *   - defer: one of the DeferredUpdates constants, or false to run immediately after waiting
 	 *     for replication of the changes from the SecondaryDataUpdates hooks (default: false)
+	 *   - freshness: used with 'defer'; forces an update if the last update was before the given timestamp,
+	 *     even if the page and its dependencies didn't change since then (TS_MW; default: false)
 	 * @since 1.32
 	 */
 	public function doSecondaryDataUpdates( array $options = [] ) {
 		$this->assertHasRevision( __METHOD__ );
-		$options += [ 'recursive' => false, 'defer' => false ];
+		$options += [ 'recursive' => false, 'defer' => false, 'freshness' => false ];
 		$deferValues = [ false, DeferredUpdates::PRESEND, DeferredUpdates::POSTSEND ];
 		if ( !in_array( $options['defer'], $deferValues, true ) ) {
 			throw new InvalidArgumentException( 'Invalid value for defer: ' . $options['defer'] );
@@ -1819,7 +1821,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$this->wikiPage,
 			$this->revision,
 			$this,
-			[ 'recursive' => $options['recursive'] ]
+			[ 'recursive' => $options['recursive'], 'freshness' => $options['freshness'] ]
 		);
 		$update->setCause( $causeAction, $causeAgent );
 
