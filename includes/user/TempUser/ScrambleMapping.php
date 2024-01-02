@@ -31,8 +31,8 @@ namespace MediaWiki\User\TempUser;
  */
 class ScrambleMapping implements SerialMapping {
 	/**
-	 * Appropriately sized prime moduli and their associated largest primitive
-	 * root. Generated with this GP/PARI script:
+	 * Appropriately sized prime moduli and primitive roots. Generated with
+	 * this GP/PARI script:
 	 * s=0; \
 	 * for(q = 2, 10, \
 	 *   p=precprime(10^q - s); \
