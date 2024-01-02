@@ -895,8 +895,6 @@ abstract class Maintenance {
 		if ( ob_get_level() ) {
 			ob_end_flush();
 		}
-		# Same with these
-		$overrides['CommandLineMode'] = true;
 
 		# Override $wgServer
 		if ( $this->hasOption( 'server' ) ) {

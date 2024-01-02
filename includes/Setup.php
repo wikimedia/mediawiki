@@ -134,8 +134,9 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	trigger_error( $message, E_USER_ERROR );
 }
 
-// Set $wgCommandLineMode to false if it wasn't set to true.
-$wgCommandLineMode ??= false;
+// Deprecated global variable for backwards-compatibility.
+// New code should check MW_ENTRY_POINT directly.
+$wgCommandLineMode = MW_ENTRY_POINT === 'cli';
 
 /**
  * $wgConf hold the site configuration.
