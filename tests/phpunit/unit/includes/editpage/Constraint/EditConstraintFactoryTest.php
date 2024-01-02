@@ -31,6 +31,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\NullLogger;
@@ -60,7 +61,8 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( PermissionManager::class ),
 			$this->createMock( HookContainer::class ),
 			$this->createMock( ReadOnlyMode::class ),
-			$this->createMock( SpamChecker::class )
+			$this->createMock( SpamChecker::class ),
+			$this->createMock( RateLimiter::class ),
 		);
 
 		$user = $this->createMock( User::class );

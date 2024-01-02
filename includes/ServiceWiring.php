@@ -2546,7 +2546,10 @@ return [
 			$services->getReadOnlyMode(),
 
 			// SpamRegexConstraint
-			$services->getSpamChecker()
+			$services->getSpamChecker(),
+
+			// UserRateLimitConstraint
+			$services->getRateLimiter()
 		);
 	},
 

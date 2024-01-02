@@ -53,7 +53,6 @@ use MediaWiki\EditPage\Constraint\SelfRedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\Constraint\UserBlockConstraint;
-use MediaWiki\EditPage\Constraint\UserRateLimitConstraint;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
@@ -2119,7 +2118,11 @@ class EditPage implements IEditObject {
 			$constraintFactory->newReadOnlyConstraint()
 		);
 		$constraintRunner->addConstraint(
-			new UserRateLimitConstraint( $requestUser, $this->mTitle, $this->contentModel )
+			$constraintFactory->newUserRateLimitConstraint(
+				$requestUser->toRateLimitSubject(),
+				$this->mTitle->getContentModel(),
+				$this->contentModel
+			)
 		);
 		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
@@ -2503,8 +2506,9 @@ class EditPage implements IEditObject {
 
 		$result['nullEdit'] = !$doEditStatus->wasRevisionCreated();
 		if ( $result['nullEdit'] ) {
-			// We don't know if it was a null edit until now, so increment here
-			$requestUser->pingLimiter( 'linkpurge' );
+			// We didn't know if it was a null edit until now, so bump the rate limit now
+			$limitSubject = $requestUser->toRateLimitSubject();
+			MediaWikiServices::getInstance()->getRateLimiter()->limit( $limitSubject, 'linkpurge' );
 		}
 		$result['redirect'] = $content->isRedirect();
 
