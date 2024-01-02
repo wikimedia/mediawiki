@@ -1363,6 +1363,10 @@ return [
 		'packageFiles' => [
 			'postEdit.js',
 			'storage.js',
+			[
+				'name' => 'config.json',
+				'config' => [ 'EditRecoveryExpiry' ],
+			],
 		],
 	],
 	'mediawiki.editRecovery.edit' => [
@@ -2317,6 +2321,10 @@ return [
 			'resources/src/mediawiki.special.editrecovery/init.js',
 			'resources/src/mediawiki.special.editrecovery/SpecialEditRecovery.vue',
 			'resources/src/mediawiki.editRecovery/storage.js',
+			[
+				'name' => 'resources/src/mediawiki.editRecovery/config.json',
+				'config' => [ 'EditRecoveryExpiry' ],
+			],
 		],
 		'dependencies' => [
 			'vue',
