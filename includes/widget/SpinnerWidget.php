@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Widget;
 
+use Exception;
+use MediaWiki\Html\Html;
+
 /**
  * PHP version of jquery.spinner.
  *
@@ -47,7 +50,7 @@ class SpinnerWidget {
 	 * @return string HTML serialization
 	 */
 	public function toString() {
-		return \MediaWiki\Html\Html::rawElement( 'div', $this->attributes, $this->content );
+		return Html::rawElement( 'div', $this->attributes, $this->content );
 	}
 
 	/**
@@ -60,7 +63,7 @@ class SpinnerWidget {
 	public function __toString() {
 		try {
 			return $this->toString();
-		} catch ( \Exception $ex ) {
+		} catch ( Exception $ex ) {
 			trigger_error( (string)$ex, E_USER_ERROR );
 		}
 	}

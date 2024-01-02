@@ -2,13 +2,15 @@
 
 namespace MediaWiki\Widget;
 
+use OOUI\TextInputWidget;
+
 /**
  * Title input widget.
  *
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
-class TitleInputWidget extends \OOUI\TextInputWidget {
+class TitleInputWidget extends TextInputWidget {
 
 	protected $namespace = null;
 	protected $relative = null;

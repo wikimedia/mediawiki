@@ -3,6 +3,7 @@
 namespace MediaWiki\Widget;
 
 use OOUI\MultilineTextInputWidget;
+use OOUI\Widget;
 
 /**
  * Base class for widgets to select multiple users, titles,
@@ -11,7 +12,7 @@ use OOUI\MultilineTextInputWidget;
  * @copyright 2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
-class TagMultiselectWidget extends \OOUI\Widget {
+class TagMultiselectWidget extends Widget {
 	/** @var array */
 	protected $selectedArray;
 	/** @var string|null */

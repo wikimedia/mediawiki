@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Widget;
 
+use OOUI\Tag;
+
 /**
  * Search input widget.
  *
@@ -56,7 +58,7 @@ class SearchInputWidget extends TitleInputWidget {
 	}
 
 	protected function getInputElement( $config ) {
-		return ( new \OOUI\Tag( 'input' ) )->setAttributes( [ 'type' => 'search' ] );
+		return ( new Tag( 'input' ) )->setAttributes( [ 'type' => 'search' ] );
 	}
 
 	protected function getJavaScriptClassName() {

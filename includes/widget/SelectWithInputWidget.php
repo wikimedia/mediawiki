@@ -4,6 +4,7 @@ namespace MediaWiki\Widget;
 
 use OOUI\DropdownInputWidget;
 use OOUI\TextInputWidget;
+use OOUI\Widget;
 
 /**
  * Select and input widget.
@@ -11,7 +12,7 @@ use OOUI\TextInputWidget;
  * @copyright 2011-2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
-class SelectWithInputWidget extends \OOUI\Widget {
+class SelectWithInputWidget extends Widget {
 	/** @var array */
 	protected $config;
 	/** @var TextInputWidget */
