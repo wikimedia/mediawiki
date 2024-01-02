@@ -36,7 +36,7 @@ module.exports = {
 						editParams.section = d.section;
 					}
 					// Subtract expiry duration to get the time it was stored.
-					const recoveryTime = new Date( ( d.expiryDate - expiryTTL ) * 1000 );
+					const recoveryTime = new Date( ( d.expiry - expiryTTL ) * 1000 );
 					pages.value.push( {
 						title: title.getPrefixedText(),
 						url: title.getUrl(),
