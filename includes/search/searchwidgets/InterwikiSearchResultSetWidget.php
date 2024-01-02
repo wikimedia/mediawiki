@@ -6,6 +6,7 @@ use ISearchResultSet;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 use OOUI;
@@ -26,7 +27,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	protected $linkRenderer;
 	/** @var InterwikiLookup */
 	protected $iwLookup;
-	/** @var \MediaWiki\Output\OutputPage */
+	/** @var OutputPage */
 	protected $output;
 	/** @var bool */
 	protected $showMultimedia;
