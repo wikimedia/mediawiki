@@ -71,6 +71,10 @@ function onLoadHandler( $editForm ) {
 	// Open indexedDB database and load any saved data that might be there.
 	const pageName = mw.config.get( 'wgPageName' );
 	const section = inputFields.wpSection.value || null;
+	// Set a short-lived (5m / see postEdit.js) localStorage item to indicate which section is being edited.
+	if ( section ) {
+		mw.storage.session.set( pageName + '-editRecoverySection', section, 300 );
+	}
 	storage.openDatabase().then( function () {
 		// Check for, and delete, any expired data.
 		storage.deleteExpiredData();
@@ -84,6 +88,7 @@ function onLoadHandler( $editForm ) {
 			if ( data && data.action === 'discard' ) {
 				originalData = null;
 				storage.deleteData( pageName, section ).finally( function () {
+					mw.storage.session.remove( pageName + '-editRecoverySection' );
 					// Release the beforeunload handler from mediawiki.action.edit.editWarning,
 					// per the documentation there
 					$( window ).off( 'beforeunload.editwarning' );
