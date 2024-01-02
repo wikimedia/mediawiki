@@ -26,7 +26,8 @@ module.exports = {
 	setup() {
 		const pages = ref( [] );
 		const storage = require( '../mediawiki.editRecovery/storage.js' );
-		const expiryTTL = mw.config.get( 'wgEditRecoveryExpiry' );
+		const config = require( '../mediawiki.editRecovery/config.json' );
+		const expiryTTL = config.EditRecoveryExpiry;
 		storage.openDatabase().then( () => {
 			storage.loadAllData().then( ( allData ) => {
 				allData.forEach( ( d ) => {
