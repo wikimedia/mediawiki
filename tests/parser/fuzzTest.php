@@ -30,7 +30,7 @@ class ParserFuzzTest extends Maintenance {
 		$this->addOption( 'seed', 'Start the fuzz test from the specified seed', false, true );
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		// Make RequestContext::resetMain() happy
 		define( 'MW_PARSER_TEST', 1 );
 

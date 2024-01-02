@@ -875,17 +875,9 @@ abstract class Maintenance {
 	 *
 	 * @stable to override
 	 *
-	 * @param SettingsBuilder|null $settingsBuilder
+	 * @param SettingsBuilder $settingsBuilder
 	 */
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
-		if ( !$settingsBuilder ) {
-			// HACK for backwards compatibility. All subclasses that override
-			// finalSetup() should be updated to pass $settingsBuilder along.
-			// XXX: We don't want the parameter to be nullable! How can we make it required
-			//      without breaking backwards compatibility?
-			$settingsBuilder = $GLOBALS['wgSettings'];
-		}
-
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		$config = $settingsBuilder->getConfig();
 		$overrides = [];
 		$overrides['DBadminuser'] = $config->get( MainConfigNames::DBadminuser );

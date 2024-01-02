@@ -116,7 +116,7 @@ abstract class DumpIterator extends Maintenance {
 		$this->error( "Memory peak usage of " . memory_get_peak_usage() . " bytes\n" );
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		parent::finalSetup( $settingsBuilder );
 
 		if ( $this->getDbType() == Maintenance::DB_NONE ) {

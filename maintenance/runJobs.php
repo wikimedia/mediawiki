@@ -44,7 +44,7 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'wait', 'Wait for new jobs instead of exiting', false, false );
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		// So extensions (and other code) can check whether they're running in job mode.
 		// This is not defined if this script is included from installer/updater or phpunit.
 		define( 'MEDIAWIKI_JOB_RUNNER', true );

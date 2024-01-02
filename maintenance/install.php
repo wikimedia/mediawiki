@@ -106,11 +106,7 @@ class CommandLineInstaller extends Maintenance {
 		return true;
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
-		if ( !$settingsBuilder ) {
-			$settingsBuilder = SettingsBuilder::getInstance();
-		}
-
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		parent::finalSetup( $settingsBuilder );
 		Installer::overrideConfig( $settingsBuilder );
 	}

@@ -136,6 +136,10 @@ because of Phabricator reports.
   and MediaWikiPerformActionHook::onMediaWikiPerformAction changed from
   MediaWiki to ActionEntryPoint. Relevant methods are still available on
   the object.
+* Classes that override Maintenance::finalSetup() must now declare the
+  $settings parameter and pass it on when calling the parent implementation.
+  MaintenanceRunner will always provide this parameter when calling
+  finalSetup().
 * MediaWiki's virtualrest internal library has been removed in favor of the
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
 * Several deprecated methods have been removed from the Content interface,

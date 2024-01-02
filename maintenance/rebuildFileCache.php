@@ -47,7 +47,7 @@ class RebuildFileCache extends Maintenance {
 		$this->setBatchSize( 100 );
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		$this->enabled = $settingsBuilder->getConfig()->get( MainConfigNames::UseFileCache );
 		// Script will handle capturing output and saving it itself
 		$settingsBuilder->putConfigValue( MainConfigNames::UseFileCache, false );

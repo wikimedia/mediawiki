@@ -168,7 +168,7 @@ TEXT
 		}
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		parent::finalSetup( $settingsBuilder );
 
 		SevenZipStream::register();

@@ -176,7 +176,7 @@ abstract class BackupDumper extends Maintenance {
 		}
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		parent::finalSetup( $settingsBuilder );
 		// re-declare the --schema-version option to include the default schema version
 		// in the description.

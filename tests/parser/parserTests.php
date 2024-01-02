@@ -103,7 +103,7 @@ class ParserTestsMaintenance extends Maintenance {
 				'for finer grained editing of tests.' );
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		// Some methods which are discouraged for normal code throw exceptions unless
 		// we declare this is just a test.
 		define( 'MW_PARSER_TEST', true );
