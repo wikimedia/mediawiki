@@ -3942,6 +3942,7 @@
 	"mw-widgets-titlesmultiselect-placeholder": "Engadir máis...",
 	"date-range-from": "Dende a data:",
 	"date-range-to": "Ata a data:",
+	"session-page-restricted": "Non tes autorización para editar esta páxina usando os permisos actuais",
 	"sessionmanager-tie": "Non pode combinar peticións múltiples de tipos de autenticación: $1.",
 	"sessionprovider-generic": "sesións $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesións baseadas nas cookies",
@@ -4075,6 +4076,8 @@
 	"restrictionsfield-badip": "Enderezo IP ou rango de IP non válido: $1",
 	"restrictionsfield-label": "Rangos de IP permitidos:",
 	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utiliceː\n<pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfields-pages-label": "Páxinas nas que se permite a edición:",
+	"restrictionsfields-pages-help": "Déixao en branco para permitir a edición de todas as páxinas",
 	"specialmute": "Silenciar",
 	"specialmute-success": "Actualizáronse as túas preferencias de silencio. Olla todos os usuarios silenciados [[Special:Preferences|nas túas preferencias]].",
 	"specialmute-submit": "Confirmar",
@@ -4198,5 +4201,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} está feito por persoas coma ti. Cunha conta podes ter unha identidade permanente e segura con acceso a funcións como:",
 	"benefit-1-description": "Listas de vixilancia que che permiten facer un seguimento das páxinas que che interesan.",
 	"benefit-2-description": "Lista permanente de contribucións que fixeches ao proxecto.",
-	"benefit-3-description": "Preferencias que che permiten personalizar a túa experiencia."
+	"benefit-3-description": "Preferencias que che permiten personalizar a túa experiencia.",
+	"temp-user-unable-to-acquire": "Non se puido adquirir un nome de usuario para a conta temporal. Por favor, inténtao de novo."
 }

@@ -1310,7 +1310,7 @@
 	"prefs-custom-css": "Собственный CSS",
 	"prefs-custom-js": "Собственный JavaScript",
 	"prefs-custom-cssjs-safemode": "В настоящее время пользовательские CSS/JavaScript недоступны при включении безопасного режима. Пожалуйста, [[#mw-input-wpforcesafemode|отключите безопасный режим]], чтобы использовать CSS/JavaScript.",
-	"prefs-common-config": "Общие CSS/JavaScript для всех тем оформления:",
+	"prefs-common-config": "Общие CSS и JavaScript для всех тем оформления:",
 	"prefs-reset-intro": "Эта страница может быть использована для сброса ваших настроек на стандартные.\nУчтите, что это действие невозможно отменить.",
 	"prefs-reset-confirm": "Да, я хочу сбросить мои настройки.",
 	"prefs-emailconfirm-label": "Подтверждение электронной почты:",

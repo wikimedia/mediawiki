@@ -556,6 +556,8 @@
 	"resettokens-watchlist-token": "[[Special:Watchlist|كۆزىتىش تىزىملىكىڭىزدىكى بەتلەر ئۆزگىرىشى]] (Atom/RSS) تور مەنبەسىنىڭ ئاچقۇچلۇق بەلگىسى",
 	"resettokens-done": "ئاچقۇچلۇق بەلگىلەر قايتا بېكىتىلدى.",
 	"resettokens-resetbutton": "تاللانغان ئاچقۇچلۇق بەلگىلەرنى قايتا بېكىت",
+	"edit-recovery-special-view": "كۆرسەت",
+	"edit-recovery-special-edit": "تەھرىرلەش",
 	"summary": "ئۈزۈندە",
 	"subject": "ماۋزۇ:",
 	"minoredit": "بۇ ئازراقلا تەھرىرلەش",
