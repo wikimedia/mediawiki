@@ -28,8 +28,6 @@ class PHPUnitMaintClass {
 	}
 
 	public function prepareEnvironment() {
-		global $wgCommandLineMode;
-
 		# Disable the memory limit as it's not needed for tests.
 		ini_set( 'memory_limit', -1 );
 
@@ -37,8 +35,6 @@ class PHPUnitMaintClass {
 		# "When running PHP from the command line the default setting is 0."
 		# But sometimes this doesn't seem to be the case.
 		ini_set( 'max_execution_time', 0 );
-
-		$wgCommandLineMode = true;
 
 		# Turn off output buffering if it's on
 		while ( ob_get_level() > 0 ) {

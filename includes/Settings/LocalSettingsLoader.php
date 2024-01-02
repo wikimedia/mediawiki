@@ -52,7 +52,7 @@ class LocalSettingsLoader {
 		}
 
 		// make available some non-config globals available
-		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$wgCommandLineMode
+		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$wgCommandLineMode, MediaWiki.Usage.DeprecatedGlobalVariables
 		global $wgCommandLineMode;
 
 		// make additional variables available
