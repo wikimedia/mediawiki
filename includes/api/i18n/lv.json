@@ -13,6 +13,7 @@
 	"apihelp-emailuser-param-text": "E-pasta saturs.",
 	"apihelp-expandtemplates-param-title": "Lapas nosaukums.",
 	"apihelp-query+allrevisions-example-ns-any": "Saraksts ar pirmajām 50 versijām jebkurā vārdtelpā.",
+	"apihelp-query+watchlist-paramvalue-type-new": "Lapu veidošana.",
 	"apihelp-userrights-param-userid": "Lietotāja ID:",
 	"apierror-nosuchuserid": "Nav lietotāja ar ID $1."
 }
