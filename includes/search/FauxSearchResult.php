@@ -16,6 +16,7 @@ class FauxSearchResult extends SearchResult {
 		File $image = null,
 		$text = ''
 	) {
+		parent::__construct();
 		$this->mTitle = $title;
 		$this->mRevisionRecord = $revRecord;
 		$this->mImage = $image;
