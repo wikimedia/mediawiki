@@ -96,7 +96,7 @@ use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Output\IframeSandboxFactory;
-use Mediawiki\OutputTransform\OutputTransformPipeline;
+use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\File\BadFileLookup;

@@ -1,20 +1,20 @@
 <?php
 
-namespace Mediawiki\OutputTransform;
+namespace MediaWiki\OutputTransform;
 
 use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageFactory;
-use Mediawiki\OutputTransform\Stages\AddRedirectHeader;
-use Mediawiki\OutputTransform\Stages\AddWrapperDivClass;
-use Mediawiki\OutputTransform\Stages\DeduplicateStyles;
-use Mediawiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
-use Mediawiki\OutputTransform\Stages\ExtractBody;
-use Mediawiki\OutputTransform\Stages\HandleSectionLinks;
-use Mediawiki\OutputTransform\Stages\HandleTOCMarkers;
-use Mediawiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
-use Mediawiki\OutputTransform\Stages\PostCacheTransformHookRunner;
-use Mediawiki\OutputTransform\Stages\RenderDebugInfo;
+use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
+use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
+use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
+use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
+use MediaWiki\OutputTransform\Stages\ExtractBody;
+use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
+use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
+use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
+use MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner;
+use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
