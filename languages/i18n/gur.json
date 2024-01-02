@@ -10,6 +10,7 @@
 			"Apika29",
 			"Atalata Gumah",
 			"Ayire Adongo",
+			"Baba Ayɛ'ɛra",
 			"Dnshitobu",
 			"Tessyshe",
 			"Uprising Man"
@@ -788,9 +789,13 @@
 	"searchsuggest-search": "Ɛ {{SITENAME}}",
 	"searchsuggest-containing": "Ɛ pɛgesi'a n tari",
 	"duration-days": "{{PLURAL:$1|$1 dabeserɛ|dabesa $1}}",
+	"session-page-restricted": "Ba ka bo fu Yɔ'ɔ ti fu demese pɛgedina wa dɔla Nananewa Yɔ'ɔ",
+	"restrictionsfields-pages-label": "Bisɛ pɛgerɛ la ti ba dɛmesa",
+	"restrictionsfields-pages-help": "Dee pɛgepɛɛlaga pa'asɛ ti la bo fu Yɔ'ɔ ti fu ta'am demese pɛgera la za'a",
 	"skin-view-create-local": "Pa’asɛ yireduma pa’alegɔ la",
 	"nstab-mainpage": "Pɛgezure",
 	"skin-action-protect": "Gu-a",
 	"skin-action-delete": "Saalum",
-	"skin-action-move": "Lɛgum"
+	"skin-action-move": "Lɛgum",
+	"temp-user-unable-to-acquire": "A kan nyaŋɛ yo'e Nananewa akanti yu'urɛ, malum le zigɛ bisɛ"
 }

@@ -1713,7 +1713,7 @@
 	"enhancedrc-history": "historial",
 	"recentchanges": "Cambios recientes",
 	"recentchanges-legend": "Opciones sobre cambios recientes",
-	"recentchanges-summary": "Sigue en esta página los cambios más recientes de la wiki.",
+	"recentchanges-summary": "Sigue en esta página los cambios más recientes de {{SITENAME}}.",
 	"recentchanges-noresult": "No hubo cambios que respondan a esos criterios durante el período seleccionado.",
 	"recentchanges-timeout": "Se agotó el tiempo de espera de esta búsqueda. Puede que quieras probar con otros parámetros de búsqueda.",
 	"recentchanges-network": "No se cargó ningún resultado debido a un problema técnico. Prueba a volver a cargar la página.",
@@ -4124,6 +4124,7 @@
 	"mw-widgets-titlesmultiselect-placeholder": "Añadir más...",
 	"date-range-from": "Desde la fecha:",
 	"date-range-to": "Hasta la fecha:",
+	"session-page-restricted": "No estás autorizado a editar esta página utilizando el permiso actual",
 	"sessionmanager-tie": "No se pueden combinar múltiples tipos de autenticación de solicitudes: $1.",
 	"sessionprovider-generic": "sesiones $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesiones basadas en cookies",
@@ -4259,6 +4260,8 @@
 	"restrictionsfield-badip": "Dirección o intervalo IP no válidos: $1",
 	"restrictionsfield-label": "Intervalos de IP permitidos:",
 	"restrictionsfield-help": "Una dirección IP o intervalo de CIDR por renglón. Para activarlo todo, utiliza <pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfields-pages-label": "Páginas permitidas para editar:",
+	"restrictionsfields-pages-help": "Dejar en blanco para permitir la edición de todas las páginas.",
 	"specialmute": "Silenciar",
 	"specialmute-success": "Tus preferencias de silencio han sido actualizadas. Mira todos los usuarios silenciados en [[Special:Preferences|tus preferencias]].",
 	"specialmute-submit": "Confirmar",
@@ -4363,6 +4366,7 @@
 	"renameuser-error-same-user": "No puedes otorgar a un usuario un nombre que ya tenía.",
 	"renameuser-error-temp-user": "No puedes renombrar a la cuenta temporal «$1».",
 	"renameuser-error-temp-user-reserved": "No puedes usar «$1». Está reservado para cuentas temporales.",
+	"renameuser-error-self-rename": "No puedes renombrarte a ti mismo.",
 	"renameusersuccess": "{{GENDER:$2|El usuario|La usuaria}} «<nowiki>$1</nowiki>» se renombró a «<nowiki>$2</nowiki>».",
 	"renameuser-page-exists": "La página $1 ya existe y no puede ser reemplazada automáticamente.",
 	"renameuser-page-moved": "La página $1 ha sido trasladada a $2.",
@@ -4381,5 +4385,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} está hecho por gente como tú. Con una cuenta de usuario puedes tener una identidad permanente y segura con acceso a funciones como:",
 	"benefit-1-description": "Listas de seguimiento que te permiten realizar un seguimiento de las páginas que te interesan.",
 	"benefit-2-description": "Una lista permanente de contribuciones que has hecho al proyecto.",
-	"benefit-3-description": "Y preferencias que te ayudan a personalizar tu experiencia."
+	"benefit-3-description": "Y preferencias que te ayudan a personalizar tu experiencia.",
+	"temp-user-unable-to-acquire": "No se puede adquirir un nombre de usuario para una cuenta temporal. Por favor, inténtalo de nuevo."
 }
