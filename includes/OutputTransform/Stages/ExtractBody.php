@@ -1,9 +1,9 @@
 <?php
 
-namespace Mediawiki\OutputTransform\Stages;
+namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Html\HtmlHelper;
-use Mediawiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
 use Parser;
 use ParserOptions;
