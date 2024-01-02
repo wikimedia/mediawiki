@@ -2,6 +2,11 @@
 
 namespace MediaWiki\Widget;
 
+use OOUI\CheckboxInputWidget;
+use OOUI\Exception;
+use OOUI\FieldLayout;
+use OOUI\Widget;
+
 /**
  * Namespace input widget. Displays a dropdown box with the choice of available namespaces, plus two
  * checkboxes to include associated namespace or to invert selection.
@@ -9,7 +14,7 @@ namespace MediaWiki\Widget;
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
-class ComplexNamespaceInputWidget extends \OOUI\Widget {
+class ComplexNamespaceInputWidget extends Widget {
 
 	protected $config;
 	protected $namespace;
@@ -34,6 +39,8 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 	 *   - array $config['associatedLabel'] Configuration for the FieldLayout with label
 	 *     wrapping the "include associated namespace" checkbox
 	 *   - string $config['associatedLabel']['label'] Label text for the label
+	 *
+	 * @throws Exception
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
@@ -56,12 +63,12 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 
 		$this->namespace = new NamespaceInputWidget( $config['namespace'] );
 		if ( $config['associated'] !== null ) {
-			$this->associated = new \OOUI\CheckboxInputWidget( array_merge(
+			$this->associated = new CheckboxInputWidget( array_merge(
 				[ 'value' => '1' ],
 				$config['associated']
 			) );
 			// TODO Should use a LabelWidget? But they don't work like HTML <label>s yet
-			$this->associatedLabel = new \OOUI\FieldLayout(
+			$this->associatedLabel = new FieldLayout(
 				$this->associated,
 				array_merge(
 					[ 'align' => 'inline' ],
@@ -70,12 +77,12 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 			);
 		}
 		if ( $config['invert'] !== null ) {
-			$this->invert = new \OOUI\CheckboxInputWidget( array_merge(
+			$this->invert = new CheckboxInputWidget( array_merge(
 				[ 'value' => '1' ],
 				$config['invert']
 			) );
 			// TODO Should use a LabelWidget? But they don't work like HTML <label>s yet
-			$this->invertLabel = new \OOUI\FieldLayout(
+			$this->invertLabel = new FieldLayout(
 				$this->invert,
 				array_merge(
 					[ 'align' => 'inline' ],
