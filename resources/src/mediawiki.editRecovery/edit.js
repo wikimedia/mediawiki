@@ -97,6 +97,7 @@ function onLoadHandler( $editForm ) {
 function onLoadData( pageData ) {
 	// If there is data stored, load it into the form.
 	if ( pageData !== undefined ) {
+		const oldPageData = getFormData();
 		loadData( pageData );
 		const loadNotification = new LoadNotification();
 		const notification = loadNotification.getNotification();
@@ -106,7 +107,7 @@ function onLoadData( pageData ) {
 		} );
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', function () {
-			document.getElementById( 'editform' ).reset();
+			loadData( oldPageData );
 			storage.deleteData( mw.config.get( 'wgPageName' ) ).then( function () {
 				notification.close();
 			} );
