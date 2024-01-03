@@ -54,6 +54,9 @@ class BlockUtils {
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
+	/** @var string|false */
+	private $wikiId;
+
 	/**
 	 * @internal Only for use by ServiceWiring
 	 */
@@ -65,16 +68,19 @@ class BlockUtils {
 	 * @param ServiceOptions $options
 	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param UserNameUtils $userNameUtils
+	 * @param string|false $wikiId
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		$wikiId = Block::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->userNameUtils = $userNameUtils;
+		$this->wikiId = $wikiId;
 	}
 
 	/**
@@ -111,7 +117,7 @@ class BlockUtils {
 
 		if ( IPUtils::isValid( $target ) ) {
 			return [
-				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $target ) ),
+				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $target ), $this->wikiId ),
 				AbstractBlock::TYPE_IP
 			];
 
@@ -160,7 +166,7 @@ class BlockUtils {
 			return [ $row->bl_id, AbstractBlock::TYPE_AUTO ];
 		} elseif ( isset( $row->bt_user ) ) {
 			if ( isset( $row->bt_user_text ) ) {
-				$user = new UserIdentityValue( $row->bt_user, $row->bt_user_text );
+				$user = new UserIdentityValue( $row->bt_user, $row->bt_user_text, $this->wikiId );
 			} else {
 				$user = $this->userIdentityLookup->getUserIdentityByUserId( $row->bt_user );
 			}
@@ -169,7 +175,7 @@ class BlockUtils {
 			return [ null, null ];
 		} elseif ( IPUtils::isValid( $row->bt_address ) ) {
 			return [
-				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $row->bt_address ) ),
+				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $row->bt_address ), $this->wikiId ),
 				AbstractBlock::TYPE_IP
 			];
 		} elseif ( IPUtils::isValidRange( $row->bt_address ) ) {

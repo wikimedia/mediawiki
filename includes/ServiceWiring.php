@@ -54,6 +54,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\BlockUtilsFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
@@ -417,12 +418,16 @@ return [
 	},
 
 	'BlockUtils' => static function ( MediaWikiServices $services ): BlockUtils {
-		return new BlockUtils(
+		return $services->getBlockUtilsFactory()->getBlockUtils();
+	},
+
+	'BlockUtilsFactory' => static function ( MediaWikiServices $services ): BlockUtilsFactory {
+		return new BlockUtilsFactory(
 			new ServiceOptions(
-				BlockUtils::CONSTRUCTOR_OPTIONS,
+				BlockUtilsFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			$services->getUserIdentityLookup(),
+			$services->getActorStoreFactory(),
 			$services->getUserNameUtils()
 		);
 	},
@@ -666,7 +671,7 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getUserFactory(),
 			$services->getTempUserConfig(),
-			$services->getBlockUtils(),
+			$services->getBlockUtilsFactory(),
 			$services->getAutoblockExemptionList()
 		);
 	},
