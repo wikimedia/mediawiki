@@ -1,12 +1,9 @@
 /**
- * @private
- * @class mw.plugin.page.ready
- */
-/**
  * Enable checkboxes to be checked or unchecked in a row by clicking one,
  * holding shift and clicking another one.
  *
  * @method checkboxShift
+ * @memberof mediawiki.page.module:ready
  * @param {jQuery} $box
  */
 module.exports = function ( $box ) {
