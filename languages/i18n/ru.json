@@ -3536,7 +3536,7 @@
 	"watchlistedit-clear-jobqueue": "Ваш список наблюдения очищается. Это может занять некоторое время.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Была удалена|Были удалены|Было удалено}} $1 {{PLURAL:$1|запись|записи|записей}}:",
 	"watchlistedit-too-many": "Ваш список наблюдения был обновлён. Слишком много страниц для того, чтобы показать их здесь.",
-	"watchlisttools-clear": "Очистить список наблюдения",
+	"watchlisttools-clear": "Очистить список",
 	"watchlisttools-view": "Правки на страницах в списке",
 	"watchlisttools-edit": "Просмотреть и править список",
 	"watchlisttools-raw": "Править текстовый список",
