@@ -2,13 +2,15 @@
 
 namespace MediaWiki\Widget;
 
+use OOUI\TextInputWidget;
+
 /**
  * User input widget.
  *
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
-class UserInputWidget extends \OOUI\TextInputWidget {
+class UserInputWidget extends TextInputWidget {
 
 	/**
 	 * @param array $config Configuration options
