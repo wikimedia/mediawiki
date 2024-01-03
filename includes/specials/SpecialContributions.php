@@ -26,7 +26,7 @@ namespace MediaWiki\Specials;
 use HTMLForm;
 use HTMLMultiSelectField;
 use LogEventsList;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -464,8 +464,8 @@ class SpecialContributions extends IncludableSpecialPage {
 					$block = $this->blockStore->newFromTarget( $userObj, $userObj );
 				}
 
-				if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
-					if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
+				if ( $block !== null && $block->getType() != Block::TYPE_AUTO ) {
+					if ( $block->getType() == Block::TYPE_RANGE ) {
 						$nt = $this->namespaceInfo->getCanonicalName( NS_USER )
 							. ':' . $block->getTargetName();
 					}
@@ -584,7 +584,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		# Block / Change block / Unblock links
 		if ( $permissionManager->userHasRight( $sp->getUser(), 'block' ) ) {
-			if ( $target->getBlock() && $target->getBlock()->getType() != DatabaseBlock::TYPE_AUTO ) {
+			if ( $target->getBlock() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
 				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
 					SpecialPage::getTitleFor( 'Block', $username ),
 					$sp->msg( 'change-blocklink' )->text(),

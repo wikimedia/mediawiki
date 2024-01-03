@@ -20,8 +20,8 @@
  * @file
  */
 
+use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
@@ -124,13 +124,13 @@ class ApiUnblock extends ApiBase {
 
 		$block = $status->getValue();
 		$targetType = $block->getType();
-		$targetName = $targetType === DatabaseBlock::TYPE_AUTO ? '' : $block->getTargetName();
+		$targetName = $targetType === Block::TYPE_AUTO ? '' : $block->getTargetName();
 		$targetUserId = $block->getTargetUserIdentity() ? $block->getTargetUserIdentity()->getId() : 0;
 
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 		$watchuser = $params['watchuser'];
 		$userPage = Title::makeTitle( NS_USER, $targetName );
-		if ( $watchuser && $targetType !== DatabaseBlock::TYPE_RANGE && $targetType !== DatabaseBlock::TYPE_AUTO ) {
+		if ( $watchuser && $targetType !== Block::TYPE_RANGE && $targetType !== Block::TYPE_AUTO ) {
 			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );
 		} else {
 			$watchuser = false;

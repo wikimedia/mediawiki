@@ -25,7 +25,7 @@ namespace MediaWiki\Specials;
 
 use HTMLForm;
 use LogEventsList;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -250,8 +250,8 @@ class SpecialDeletedContributions extends SpecialPage {
 
 			// Show a note if the user is blocked and display the last block log entry.
 			$block = $this->blockStore->newFromTarget( $userObj, $userObj );
-			if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
-				if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
+			if ( $block !== null && $block->getType() != Block::TYPE_AUTO ) {
+				if ( $block->getType() == Block::TYPE_RANGE ) {
 					$nt = $this->namespaceInfo->getCanonicalName( NS_USER )
 						. ':' . $block->getTargetName();
 				}
