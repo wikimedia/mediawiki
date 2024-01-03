@@ -181,6 +181,55 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Assert that we return a 404 even if an associated remote file description
+	 * page exists (T353688).
+	 */
+	public function testRemoteDescriptionWithNonexistentFilePage() {
+		$name = 'JustSomeSillyFile.png';
+
+		$this->installMockFileRepo( $name );
+
+		$page = $this->getNonexistingTestPage( "File:$name" );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedDBkey() ] ]
+		);
+		$handler = $this->newHandler();
+		$exception = $this->executeHandlerAndGetHttpException( $handler, $request, [
+			'format' => 'with_html'
+		] );
+
+		$this->assertSame( 404, $exception->getCode() );
+	}
+
+	/**
+	 * Assert that we return the local page content even if an associated remote
+	 * file description page exists (T353688).
+	 */
+	public function testRemoteDescriptionWithExistingFilePage() {
+		$name = 'JustSomeSillyFile.png';
+
+		$this->installMockFileRepo( $name );
+
+		$pageName = "File:$name";
+		$this->editPage( $pageName, 'Local content' );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $pageName ] ]
+		);
+		$handler = $this->newHandler();
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [
+			'format' => 'with_html'
+		] );
+
+		$this->assertSame( $pageName, $data['key'] );
+		$this->assertSame( $pageName, $data['title'] );
+
+		$this->assertStringContainsString( '<html', $data['html'] );
+		$this->assertStringContainsString( 'Local content', $data['html'] );
+	}
+
+	/**
 	 * @dataProvider provideExecuteWithVariant
 	 */
 	public function testExecuteWithVariant(

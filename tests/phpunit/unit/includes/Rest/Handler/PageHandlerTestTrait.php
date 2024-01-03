@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use File;
+use FileRepo;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -23,6 +25,7 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use PHPUnit\Framework\MockObject\MockObject;
+use RepoGroup;
 use WANObjectCache;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -212,6 +215,40 @@ trait PageHandlerTestTrait {
 			$services->getTitleParser(),
 			$services->getPageStore(),
 			$services->getPageRestHelperFactory()
+		);
+	}
+
+	private function installMockFileRepo( string $fileName, ?string $redirectedFrom = null ): void {
+		$repo = $this->createNoOpMock(
+			FileRepo::class,
+			[]
+		);
+		$file = $this->createNoOpMock(
+			File::class,
+			[
+				'isLocal',
+				'exists',
+				'getRepo',
+				'getRedirected',
+				'getName',
+			]
+		);
+		$file->method( 'isLocal' )->willReturn( false );
+		$file->method( 'exists' )->willReturn( true );
+		$file->method( 'getRepo' )->willReturn( $repo );
+		$file->method( 'getRedirected' )->willReturn( $redirectedFrom );
+		$file->method( 'getName' )->willReturn( $fileName );
+
+		$repoGroup = $this->createNoOpMock(
+			RepoGroup::class,
+			[ 'findFile' ]
+		);
+		$repoGroup->expects( $this->atLeastOnce() )->method( 'findFile' )
+			->willReturn( $file );
+
+		$this->setService(
+			'RepoGroup',
+			$repoGroup
 		);
 	}
 
