@@ -91,7 +91,7 @@ class WikiFilePage extends WikiPage {
 		// Foreign image page
 		$from = $this->mFile->getRedirected();
 		$to = $this->mFile->getName();
-		if ( $from == $to ) {
+		if ( $from === null || $from === $to ) {
 			return null;
 		}
 		$this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
@@ -99,7 +99,7 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @return bool|mixed|Title
+	 * @return bool|Title|string False, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirect() {
 		$this->loadFile();
@@ -108,7 +108,7 @@ class WikiFilePage extends WikiPage {
 		}
 		$from = $this->mFile->getRedirected();
 		$to = $this->mFile->getName();
-		if ( $from == $to ) {
+		if ( $from === null || $from === $to ) {
 			return false;
 		}
 		return Title::makeTitle( NS_FILE, $to );
@@ -123,7 +123,7 @@ class WikiFilePage extends WikiPage {
 			return parent::isRedirect();
 		}
 
-		return (bool)$this->mFile->getRedirected();
+		return $this->mFile->getRedirected() !== null;
 	}
 
 	/**
