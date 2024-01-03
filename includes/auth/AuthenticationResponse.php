@@ -23,13 +23,14 @@
 
 namespace MediaWiki\Auth;
 
+use InvalidArgumentException;
 use Message;
 
 /**
  * This is a value object to hold authentication response data
  *
  * An AuthenticationResponse represents both the status of the authentication
- * (success, failure, in progress) and it its state (what data is needed to continue).
+ * (success, failure, in progress) and its state (what data is needed to continue).
  *
  * @ingroup Auth
  * @since 1.27
@@ -85,8 +86,8 @@ class AuthenticationResponse {
 	public $messageType = 'warning';
 
 	/**
-	 * @var string|null Local user name from authentication.
-	 * May be null if the authentication passed but no local user is known.
+	 * @var string|null Local username from authentication.
+	 * The value may be null if the authentication passed, but no local user is known.
 	 */
 	public $username = null;
 
@@ -194,10 +195,10 @@ class AuthenticationResponse {
 	 */
 	public static function newUI( array $reqs, Message $msg, $msgtype = 'warning' ) {
 		if ( !$reqs ) {
-			throw new \InvalidArgumentException( '$reqs may not be empty' );
+			throw new InvalidArgumentException( '$reqs may not be empty' );
 		}
 		if ( $msgtype !== 'warning' && $msgtype !== 'error' ) {
-			throw new \InvalidArgumentException( $msgtype . ' is not a valid message type.' );
+			throw new InvalidArgumentException( $msgtype . ' is not a valid message type.' );
 		}
 
 		$ret = new AuthenticationResponse;
@@ -217,7 +218,7 @@ class AuthenticationResponse {
 	 */
 	public static function newRedirect( array $reqs, $redirectTarget, $redirectApiData = null ) {
 		if ( !$reqs ) {
-			throw new \InvalidArgumentException( '$reqs may not be empty' );
+			throw new InvalidArgumentException( '$reqs may not be empty' );
 		}
 
 		$ret = new AuthenticationResponse;
