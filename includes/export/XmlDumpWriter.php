@@ -331,7 +331,7 @@ class XmlDumpWriter {
 			return null;
 		} catch ( Exception $ex ) {
 			if ( $ex instanceof MWException || $ex instanceof RuntimeException ||
-				$ex instanceof InvalidArgumentException ) {
+				$ex instanceof InvalidArgumentException || $ex instanceof ErrorException ) {
 				MWDebug::warning( $warning . ': ' . $ex->getMessage() );
 				return null;
 			} else {
