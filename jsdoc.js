@@ -31,6 +31,8 @@ module.exports = {
 			'resources/src/mediawiki.page.watch.ajax',
 			'resources/src/mediawiki.util',
 			'resources/src/startup',
+			'resources/src/mediawiki.template.js',
+			'resources/src/mediawiki.template.mustache.js',
 			'resources/src/mediawiki.user.js',
 			'resources/src/mediawiki.Uri'
 
@@ -90,8 +92,6 @@ module.exports = {
 			'resources/src/mediawiki.htmlform',
 			'resources/src/mediawiki.tempUserCreated',
 			'resources/src/mediawiki.htmlform.ooui',
-			'resources/src/mediawiki.template.js',
-			'resources/src/mediawiki.template.mustache.js',
 			'resources/src/mediawiki.toc',
 			'resources/src/mediawiki.inspect.js',
 			'resources/src/mediawiki.jqueryMsg',
