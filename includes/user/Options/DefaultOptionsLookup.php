@@ -151,9 +151,11 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 
 	/**
 	 * Checks if the DefaultOptionsLookup is usable as an instance of UserOptionsLookup.
+	 *
 	 * It only makes sense in an installer context when UserOptionsManager cannot be yet instantiated
 	 * as the database is not available. Thus, this can only be called for an anon user,
-	 * calling under different circumstances indicates a bug.
+	 * calling under different circumstances indicates a bug, or that a system user is being used.
+	 *
 	 * The only exception to this is database-less PHPUnit tests, where sometimes fake registered users are
 	 * used and end up being passed to this class. This should not be considered a bug, and using the default
 	 * preferences in this scenario is probably the intended behaviour.
@@ -162,10 +164,10 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	 * @param string $fname
 	 */
 	private function verifyUsable( UserIdentity $user, string $fname ) {
-		Assert::precondition(
-			$this->isDatabaselessTest || !$user->isRegistered(),
-			"$fname called on a registered user "
-		);
+		if ( $this->isDatabaselessTest || defined( 'MEDIAWIKI_INSTALL' ) ) {
+			return;
+		}
+		Assert::precondition( !$user->isRegistered(), "$fname called on a registered user" );
 	}
 }
 
