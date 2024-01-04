@@ -158,7 +158,7 @@ function loadData( pageData ) {
 		} else if ( field.nodeName === 'TEXTAREA' ) {
 			// Textareas (also reset caret location to top).
 			$field.textSelection( 'setContents', pageData[ fieldNamePrefix + fieldName ] );
-			$field.textSelection( 'setSelection' );
+			$field.textSelection( 'setSelection', { start: 0 } );
 		} else {
 			// Anything else.
 			field.value = pageData[ fieldNamePrefix + fieldName ];
