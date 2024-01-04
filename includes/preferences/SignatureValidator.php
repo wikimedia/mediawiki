@@ -33,6 +33,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
+use OOUI\ButtonWidget;
 use ParserFactory;
 use ParserOptions;
 use Wikimedia\Parsoid\Parsoid;
@@ -166,7 +167,7 @@ class SignatureValidator {
 				// * linterror-tidy-whitespace-bug
 				// * linterror-unclosed-quotes-in-heading
 				$label = $this->localizer->msg( "linterror-{$error['type']}" )->parse();
-				$docsLink = new \OOUI\ButtonWidget( [
+				$docsLink = new ButtonWidget( [
 					'href' =>
 						"https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Lint_errors/{$error['type']}",
 					'target' => '_blank',

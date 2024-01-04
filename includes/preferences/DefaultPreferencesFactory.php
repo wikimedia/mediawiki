@@ -55,6 +55,10 @@ use MediaWiki\User\UserTimeCorrection;
 use Message;
 use MessageLocalizer;
 use MWException;
+use OOUI\ButtonWidget;
+use OOUI\FieldLayout;
+use OOUI\HtmlSnippet;
+use OOUI\LabelWidget;
 use Parser;
 use ParserFactory;
 use ParserOptions;
@@ -553,7 +557,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$defaultPreferences['password'] = [
 				'type' => 'info',
 				'raw' => true,
-				'default' => (string)new \OOUI\ButtonWidget( [
+				'default' => (string)new ButtonWidget( [
 					'href' => SpecialPage::getTitleFor( 'ChangePassword' )->getLinkURL( [
 						'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
 					] ),
@@ -724,7 +728,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				// On initial page load, show the warnings as well
 				// (when posting, you get normal validation errors instead)
 				foreach ( $signatureErrors as &$sigError ) {
-					$sigError = new \OOUI\HtmlSnippet( $sigError );
+					$sigError = new HtmlSnippet( $sigError );
 				}
 				if ( !$context->getRequest()->wasPosted() ) {
 					$signatureFieldConfig = [
@@ -739,13 +743,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			// Normally HTMLFormFields do not display warnings, so we need to use 'rawrow'
 			// and provide the entire OOUI\FieldLayout here
 			'rawrow' => true,
-			'default' => new \OOUI\FieldLayout(
-				new \OOUI\LabelWidget( [
-					'label' => new \OOUI\HtmlSnippet( $oldsigHTML ),
+			'default' => new FieldLayout(
+				new LabelWidget( [
+					'label' => new HtmlSnippet( $oldsigHTML ),
 				] ),
 				[
 					'align' => 'top',
-					'label' => new \OOUI\HtmlSnippet( $context->msg( 'tog-oldsig' )->parse() )
+					'label' => new HtmlSnippet( $context->msg( 'tog-oldsig' )->parse() )
 				] + $signatureFieldConfig
 			),
 			'section' => 'personal/signature',
@@ -785,7 +789,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 				$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
 				if ( $canEditPrivateInfo && $this->authManager->allowsPropertyChange( 'emailaddress' ) ) {
-					$button = new \OOUI\ButtonWidget( [
+					$button = new ButtonWidget( [
 						'href' => SpecialPage::getTitleFor( 'ChangeEmail' )->getLinkURL( [
 							'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
 						] ),
@@ -836,7 +840,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					} else {
 						$disableEmailPrefs = true;
 						$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
-							new \OOUI\ButtonWidget( [
+							new ButtonWidget( [
 								'href' => SpecialPage::getTitleFor( 'Confirmemail' )->getLinkURL(),
 								'label' => $context->msg( 'emailconfirmlink' )->text(),
 							] );
@@ -1351,10 +1355,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			foreach ( $editWatchlistModes as $mode => $options ) {
 				// Messages: prefs-editwatchlist-edit, prefs-editwatchlist-raw, prefs-editwatchlist-clear
 				$editWatchlistLinks .=
-					new \OOUI\ButtonWidget( [
+					new ButtonWidget( [
 						'href' => SpecialPage::getTitleFor( 'EditWatchlist', $options['subpage'] )->getLinkURL(),
 						'flags' => $options[ 'flags' ],
-						'label' => new \OOUI\HtmlSnippet(
+						'label' => new HtmlSnippet(
 							$context->msg( "prefs-editwatchlist-{$mode}" )->parse()
 						),
 					] );
@@ -1481,7 +1485,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'api',
 		];
 
-		$tokenButton = new \OOUI\ButtonWidget( [
+		$tokenButton = new ButtonWidget( [
 			'href' => SpecialPage::getTitleFor( 'ResetTokens' )->getLinkURL( [
 				'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
 			] ),

@@ -24,6 +24,8 @@ use IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\ParserOutput;
+use OOUI\ButtonGroupWidget;
+use OOUI\ButtonWidget;
 use stdClass;
 use XmlSelect;
 
@@ -320,7 +322,7 @@ abstract class TablePager extends IndexPager {
 		$title = $this->getTitle();
 
 		foreach ( $types as $type ) {
-			$buttons[] = new \OOUI\ButtonWidget( [
+			$buttons[] = new ButtonWidget( [
 				// Messages used here:
 				// * table_pager_first
 				// * table_pager_prev
@@ -337,7 +339,7 @@ abstract class TablePager extends IndexPager {
 				'disabled' => $queries[ $type ] === false
 			] );
 		}
-		return new \OOUI\ButtonGroupWidget( [
+		return new ButtonGroupWidget( [
 			'classes' => [ $this->getNavClass() ],
 			'items' => $buttons,
 		] );

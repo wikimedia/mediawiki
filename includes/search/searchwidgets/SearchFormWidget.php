@@ -10,6 +10,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Widget\SearchInputWidget;
+use OOUI\ActionFieldLayout;
+use OOUI\ButtonInputWidget;
+use OOUI\CheckboxInputWidget;
+use OOUI\FieldLayout;
 use SearchEngineConfig;
 use Xml;
 
@@ -133,7 +137,7 @@ class SearchFormWidget {
 			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
 		] );
 
-		$html = new \OOUI\ActionFieldLayout( $searchWidget, new \OOUI\ButtonInputWidget( [
+		$html = new ActionFieldLayout( $searchWidget, new ButtonInputWidget( [
 			'type' => 'submit',
 			'label' => $this->specialSearch->msg( 'searchbutton' )->text(),
 			'flags' => [ 'progressive', 'primary' ],
@@ -313,8 +317,8 @@ class SearchFormWidget {
 	}
 
 	private function createPowerSearchRememberCheckBoxHtml(): string {
-		return new \OOUI\FieldLayout(
-			new \OOUI\CheckboxInputWidget( [
+		return new FieldLayout(
+			new CheckboxInputWidget( [
 				'name' => 'nsRemember',
 				'selected' => false,
 				'inputId' => 'mw-search-powersearch-remember',
@@ -359,8 +363,8 @@ class SearchFormWidget {
 	private function createNamespaceCheckbox( int $namespace, array $activeNamespaces ): string {
 		$namespaceDisplayName = $this->getNamespaceDisplayName( $namespace );
 
-		return new \OOUI\FieldLayout(
-			new \OOUI\CheckboxInputWidget( [
+		return new FieldLayout(
+			new CheckboxInputWidget( [
 				'name' => "ns{$namespace}",
 				'selected' => in_array( $namespace, $activeNamespaces ),
 				'inputId' => "mw-search-ns{$namespace}",
