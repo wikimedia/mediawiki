@@ -2295,7 +2295,17 @@ class Parser {
 			$end = $start;
 		}
 
-		# Scheme and path part - 'pchar'
+		# Path part - 'pchar', remove dot segments
+		# (find first '/' after the optional '//' after the scheme)
+		$start = strpos( $url, '//' );
+		$start = strpos( $url, '/', $start === false ? 0 : $start + 2 );
+		if ( $start !== false && $start < $end ) {
+			$ret = UrlUtils::removeDotSegments( self::normalizeUrlComponent(
+				substr( $url, $start, $end - $start ), '"#%<>[\]^`{|}/?' ) ) . $ret;
+			$end = $start;
+		}
+
+		# Scheme and host part - 'pchar'
 		# (we assume no userinfo or encoded colons in the host)
 		$ret = self::normalizeUrlComponent(
 			substr( $url, 0, $end ), '"#%<>[\]^`{|}/?' ) . $ret;
