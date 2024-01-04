@@ -10,12 +10,12 @@ use RequestContext;
 /**
  * This test does not extend OutputTransformStageTestBase because we're explicitly testing that
  * the options are modified during the pipeline run.
- * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner
+ * @covers \MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks
  */
-class PostCacheTransformHookRunnerTest extends \MediaWikiIntegrationTestCase {
+class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner::transform
+	 * @covers \MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks::transform
 	 */
 	public function testTransform(): void {
 		// Avoid other skins affecting the section edit links
@@ -57,10 +57,10 @@ class PostCacheTransformHookRunnerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner::shouldRun
+	 * @covers \MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks::shouldRun
 	 */
 	public function testShouldRun() {
-		$transform = new PostCacheTransformHookRunner( $this->getServiceContainer()->getHookContainer() );
+		$transform = new ExecutePostCacheTransformHooks( $this->getServiceContainer()->getHookContainer() );
 		$this->getServiceContainer()
 			->getHookContainer()
 			->register( 'ParserOutputPostCacheTransform',
@@ -72,10 +72,10 @@ class PostCacheTransformHookRunnerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner::shouldRun
+	 * @covers \MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks::shouldRun
 	 */
 	public function testShouldNotRun() {
-		$transform = new PostCacheTransformHookRunner( $this->getServiceContainer()->getHookContainer() );
+		$transform = new ExecutePostCacheTransformHooks( $this->getServiceContainer()->getHookContainer() );
 		$this->getServiceContainer()->getHookContainer()->clear( 'ParserOutputPostCacheTransform' );
 		$options = [];
 		self::assertFalse( $transform->shouldRun( new ParserOutput(), null, $options ) );

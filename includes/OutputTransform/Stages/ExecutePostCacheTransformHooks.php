@@ -12,7 +12,7 @@ use ParserOptions;
  * @internal
  * Runs the onParserOutputPostCacheTransform hook.
  */
-class PostCacheTransformHookRunner extends ContentTextTransformStage {
+class ExecutePostCacheTransformHooks extends ContentTextTransformStage {
 
 	private HookContainer $hookContainer;
 	private HookRunner $hookRunner;
