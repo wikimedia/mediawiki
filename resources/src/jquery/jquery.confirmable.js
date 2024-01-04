@@ -4,8 +4,6 @@
  * Released under the MIT License.
  *
  * @author Bartosz Dziewoński
- *
- * @class jQuery.plugin.confirmable
  */
 ( function () {
 	var identity = function ( data ) {
@@ -14,6 +12,7 @@
 
 	/**
 	 * Enable inline confirmation for given clickable element (like `<a />` or `<button />`).
+	 * Provided by the jquery.confirmable ResourceLoader module.
 	 *
 	 * An additional inline confirmation step being shown before the default action is carried out on
 	 * click.
@@ -26,6 +25,12 @@
 	 * If the computed values for the element are different when you make it confirmable, you might
 	 * encounter unexpected behavior.
 	 *
+	 * @example
+	 * mw.loader.using( 'jquery.confirmable' ).then( () => {
+	 *       $( 'button' ).confirmable();
+	 * } );
+	 * @memberof jQueryPlugins
+	 * @method confirmable
 	 * @param {Object} [options]
 	 * @param {string} [options.events='click'] Events to hook to.
 	 * @param {Function} [options.wrapperCallback] Callback to fire when preparing confirmable
@@ -43,8 +48,6 @@
 	 * @param {string} [options.i18n.no] Text to use for the 'No' button.
 	 * @param {string} [options.i18n.yesTitle] Title text to use for the 'Yes' button.
 	 * @param {string} [options.i18n.noTitle] Title text to use for the 'No' button.
-	 *
-	 * @chainable
 	 */
 	$.fn.confirmable = function ( options ) {
 		options = $.extend( true, {}, $.fn.confirmable.defaultOptions, options || {} );

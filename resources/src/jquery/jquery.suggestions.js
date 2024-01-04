@@ -1,21 +1,19 @@
 /**
  * This plugin provides a generic way to add suggestions to a text box.
+ * Provided by the jquery.suggestions ResourceLoader module.
  *
  * Set options:
  *
  *  $( '#textbox' ).suggestions( { option1: value1, option2: value2 } );
  *  $( '#textbox' ).suggestions( option, value );
  *
+ * @example
  * Initialize:
- *
+ * mw.loader.using( 'jquery.suggestions' ).then(()=> {
  *  $( '#textbox' ).suggestions();
- *
- * @class jQuery.plugin.suggestions
- */
-
-/**
+ * });
+ * @memberof jQueryPlugins
  * @method suggestions
- * @chainable
  * @return {jQuery}
  *
  * @param {Object} options

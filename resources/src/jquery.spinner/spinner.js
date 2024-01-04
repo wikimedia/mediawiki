@@ -2,8 +2,6 @@
  * jQuery Spinner
  *
  * Simple jQuery plugin to create, inject and remove spinners.
- *
- * @class jQuery.plugin.spinner
  */
 ( function () {
 
@@ -47,6 +45,7 @@
 		 *     $.createSpinner( 'magic' );
 		 *     $.createSpinner( { id: 'magic' } );
 		 *
+		 * @ignore
 		 * @static
 		 * @inheritable
 		 * @param {Object|string} [opts] Options. If a string is given, it will be treated as the value
@@ -89,7 +88,7 @@
 		/**
 		 * Remove a spinner element
 		 *
-		 * @static
+		 * @ignore
 		 * @inheritable
 		 * @param {string} id Id of the spinner, as passed to #createSpinner
 		 * @return {jQuery} The (now detached) spinner element
@@ -100,11 +99,18 @@
 	} );
 
 	/**
-	 * Inject a spinner after each element in the collection
+	 * Inject a spinner after each element in the collection.
+	 * Provided by the jquery.spinner ResourceLoader module.
 	 *
 	 * Inserts spinner as siblings (not children) of the target elements.
 	 * Collection contents remain unchanged.
 	 *
+	 * @example
+	 * mw.loader.using( 'jquery.spinner' ).then( () => {
+	 *       $( '#bodyContent' ).injectSpinner();
+	 * } );
+	 * @memberof jQueryPlugins
+	 * @method injectSpinner
 	 * @param {Object|string} [opts] See #createSpinner
 	 * @return {jQuery}
 	 */

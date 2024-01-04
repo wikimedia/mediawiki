@@ -1,4 +1,4 @@
-/*!
+/**
  * TableSorter for MediaWiki
  *
  * Written 2011 Leo Koppelkamm
@@ -12,36 +12,22 @@
  * and mw.language.months.
  *
  * Uses 'tableSorterCollation' in mw.config (if available)
- *
- * Create a sortable table with multi-column sorting capabilities
- *
- *      // Create a simple tablesorter interface
- *      $( 'table' ).tablesorter();
- *
- *      // Create a tablesorter interface, initially sorting on the first and second column
- *      $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } );
- *
- * @param {string} [cssHeader="headerSort"] A string of the class name to be appended to sortable
+ * @author Christian Bach/christian.bach@polyester.se
+ */
+/**
+ * @typedef {Object} jQueryPlugins~TableSorterOptions
+ * @property {string} [cssHeader="headerSort"] A string of the class name to be appended to sortable
  *         tr elements in the thead of the table.
- *
- * @param {string} [cssAsc="headerSortUp"] A string of the class name to be appended to
+ * @property {string} [cssAsc="headerSortUp"] A string of the class name to be appended to
  *         sortable tr elements in the thead on a ascending sort.
- *
- * @param {string} [cssDesc="headerSortDown"] A string of the class name to be appended to
+ * @property {string} [cssDesc="headerSortDown"] A string of the class name to be appended to
  *         sortable tr elements in the thead on a descending sort.
- *
- * @param {string} [sortMultisortKey="shiftKey"] A string of the multi-column sort key.
- *
- * @param {boolean} [cancelSelection=true] Boolean flag indicating iftablesorter should cancel
+ * @property {string} [sortMultisortKey="shiftKey"] A string of the multi-column sort key.
+ * @property {boolean} [cancelSelection=true] Boolean flag indicating iftablesorter should cancel
  *         selection of the table headers text.
- *
- * @param {Array} [sortList] An array containing objects specifying sorting. By passing more
+ * @property {Array} [sortList] An array containing objects specifying sorting. By passing more
  *         than one object, multi-sorting will be applied. Object structure:
  *         { <Integer column index>: <String 'asc' or 'desc'> }
- *
- * @event sortEnd.tablesorter: Triggered as soon as any sorting has been applied.
- *
- * @author Christian Bach/christian.bach@polyester.se
  */
 ( function () {
 	var ts,
@@ -1144,6 +1130,23 @@
 	ts = $.tablesorter;
 
 	// Register as jQuery prototype method
+	/**
+	 * Create a sortable table with multi-column sorting capabilities. Provided by jquery.tablesorter ResourceLoader module.
+	 *
+	 * @memberof jQueryPlugins
+	 * @method tablesorter
+	 * @example
+	 * mw.loader.using( 'jquery.tablesorter' ).then( () => {
+	 *      // Create a simple tablesorter interface
+	 *      $( 'table' ).tablesorter();
+	 *
+	 *      // Create a tablesorter interface, initially sorting on the first and second column
+	 *      $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } )
+	 *          .on( 'sortEnd.tablesorter', () => console.log( 'Triggered as soon as any sorting has been applied.' ) );
+	 * } );
+	 * @param {jQueryPlugins~TableSorterOptions} settings
+	 * @return {jQuery}
+	 */
 	$.fn.tablesorter = function ( settings ) {
 		return ts.construct( this, settings );
 	};

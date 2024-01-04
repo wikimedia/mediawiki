@@ -7,8 +7,6 @@
  * Dual licensed:
  * - CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>
  * - GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
- *
- * @class jQuery.plugin.makeCollapsible
  */
 ( function () {
 	/**
@@ -189,6 +187,7 @@
 
 	/**
 	 * Enable collapsible-functionality on all elements in the collection.
+	 * Provided by the jquery.makeCollapsible ResourceLoader module.
 	 *
 	 * - Will prevent binding twice to the same element.
 	 * - Initial state is expanded by default, this can be overridden by adding class
@@ -196,6 +195,10 @@
 	 * - Elements made collapsible have jQuery data "mw-made-collapsible" set to true.
 	 * - The inner content is wrapped in a "div.mw-collapsible-content" (except for tables and lists).
 	 *
+	 * @example
+	 * mw.loader.using( 'jquery.makeCollapsible' ).then( () => {
+	 *       $( 'table' ).makeCollapsible();
+	 * } );
 	 * @param {Object} [options]
 	 * @param {string} [options.collapseText] Text used for the toggler, when clicking it would
 	 *   collapse the element. Default: the 'data-collapsetext' attribute of the
@@ -215,7 +218,8 @@
 	 *   item separately for lists) and don't wrap other elements in
 	 *   div.mw-collapsible-content. May only be used with custom togglers.
 	 * @return {jQuery}
-	 * @chainable
+	 * @memberof jQueryPlugins
+	 * @method makeCollapsible
 	 */
 	$.fn.makeCollapsible = function ( options ) {
 		options = options || {};
