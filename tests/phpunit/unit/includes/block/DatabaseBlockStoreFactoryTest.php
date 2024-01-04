@@ -6,6 +6,7 @@ use MediaWiki\Block\AutoblockExemptionList;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\BlockUtilsFactory;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -43,6 +44,13 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			->with( $domain )
 			->willReturn( $blockRestrictionStore );
 
+		$blockUtils = $this->createMock( BlockUtils::class );
+		$blockUtilsFactory = $this->createMock( BlockUtilsFactory::class );
+		$blockUtilsFactory
+			->method( 'getBlockUtils' )
+			->with( $domain )
+			->willReturn( $blockUtils );
+
 		$factory = new DatabaseBlockStoreFactory(
 			new ServiceOptions(
 				DatabaseBlockStore::CONSTRUCTOR_OPTIONS,
@@ -61,7 +69,7 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( UserFactory::class ),
 			$this->createMock( TempUserConfig::class ),
-			$this->createMock( BlockUtils::class ),
+			$blockUtilsFactory,
 			$this->createMock( AutoblockExemptionList::class )
 		);
 

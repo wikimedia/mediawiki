@@ -48,6 +48,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\BlockUtilsFactory;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\Block\HideUserUtils;
@@ -816,6 +817,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlockUtils(): BlockUtils {
 		return $this->getService( 'BlockUtils' );
+	}
+
+	/**
+	 * @since 1.42
+	 */
+	public function getBlockUtilsFactory(): BlockUtilsFactory {
+		return $this->getService( 'BlockUtilsFactory' );
 	}
 
 	/**

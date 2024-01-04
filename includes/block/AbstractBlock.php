@@ -409,7 +409,8 @@ abstract class AbstractBlock implements Block {
 			$this->type = null;
 		} else {
 			[ $parsedTarget, $this->type ] = MediaWikiServices::getInstance()
-				->getBlockUtils()
+				->getBlockUtilsFactory()
+				->getBlockUtils( $this->wikiId )
 				->parseBlockTarget( $target );
 			if ( $parsedTarget !== null ) {
 				$this->assertWiki( is_string( $parsedTarget ) ? self::LOCAL : $parsedTarget->getWikiId() );

@@ -71,8 +71,8 @@ class DatabaseBlockStoreFactory {
 	/** @var TempUserConfig */
 	private $tempUserConfig;
 
-	/** @var BlockUtils */
-	private $blockUtils;
+	/** @var BlockUtilsFactory */
+	private $blockUtilsFactory;
 
 	/** @var AutoblockExemptionList */
 	private $autoblockExemptionList;
@@ -91,7 +91,7 @@ class DatabaseBlockStoreFactory {
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserFactory $userFactory
 	 * @param TempUserConfig $tempUserConfig
-	 * @param BlockUtils $blockUtils
+	 * @param BlockUtilsFactory $blockUtilsFactory
 	 * @param AutoblockExemptionList $autoblockExemptionList
 	 */
 	public function __construct(
@@ -105,7 +105,7 @@ class DatabaseBlockStoreFactory {
 		ReadOnlyMode $readOnlyMode,
 		UserFactory $userFactory,
 		TempUserConfig $tempUserConfig,
-		BlockUtils $blockUtils,
+		BlockUtilsFactory $blockUtilsFactory,
 		AutoblockExemptionList $autoblockExemptionList
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -120,7 +120,7 @@ class DatabaseBlockStoreFactory {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userFactory = $userFactory;
 		$this->tempUserConfig = $tempUserConfig;
-		$this->blockUtils = $blockUtils;
+		$this->blockUtilsFactory = $blockUtilsFactory;
 		$this->autoblockExemptionList = $autoblockExemptionList;
 	}
 
@@ -146,7 +146,7 @@ class DatabaseBlockStoreFactory {
 				$this->readOnlyMode,
 				$this->userFactory,
 				$this->tempUserConfig,
-				$this->blockUtils,
+				$this->blockUtilsFactory->getBlockUtils( $wikiId ),
 				$this->autoblockExemptionList,
 				$wikiId
 			);

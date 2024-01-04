@@ -939,6 +939,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Block\\BlockUser' => __DIR__ . '/includes/block/BlockUser.php',
 	'MediaWiki\\Block\\BlockUserFactory' => __DIR__ . '/includes/block/BlockUserFactory.php',
 	'MediaWiki\\Block\\BlockUtils' => __DIR__ . '/includes/block/BlockUtils.php',
+	'MediaWiki\\Block\\BlockUtilsFactory' => __DIR__ . '/includes/block/BlockUtilsFactory.php',
 	'MediaWiki\\Block\\CompositeBlock' => __DIR__ . '/includes/block/CompositeBlock.php',
 	'MediaWiki\\Block\\DatabaseBlock' => __DIR__ . '/includes/block/DatabaseBlock.php',
 	'MediaWiki\\Block\\DatabaseBlockStore' => __DIR__ . '/includes/block/DatabaseBlockStore.php',
