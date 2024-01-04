@@ -81,7 +81,8 @@
 			"Urhixidur",
 			"Weblars",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"Zakawer2"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -707,7 +708,7 @@
 	"summary-preview": "Forhåndsvisning af sammenfatning:",
 	"previewerrortext": "Der opstod en fejl under forsøget på at lave en forhåndsvisning af dine ændringer.",
 	"blockedtitle": "Bruger er blokeret",
-	"blockedtext-partial": "<strong> Dit brugernavn eller IP adresse er blevet blokeret fra at lave ændringer på denne side. Du kan stadigvæk redigere andre sider på denne wiki.</strong> Du kan se de fulde blokeringsdetaljer under dine [[Special:MyContributions|kontobidrag]].\n\nBlokeringen er foretaget af $1.\n\nDen anførte grund er <em>$2</em>.\n \n* Blokeringen starter: $8\n* Blokeringen udløber: $6\n* Blokeringen er rettet mod: $7\n* Blokerings ID #$5",
+	"blockedtext-partial": "<strong>Dit brugernavn eller IP-adresse er blokeret fra at gøre dette. Du kan muligvis stadig gøre andre ting på dette websted, såsom at redigere bestemte sider.</strong> \n\nDu kan se alle blokeringsdetaljerne under dine [[Special:MyContributions|kontobidrag]].\n\n{{int:blockedtext-made-by|$1}}\n\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n*{{int:blockedtext-block-id|$5}}",
 	"blockedtext": "<strong>Dit brugernavn eller din IP-adresse er blevet blokeret.</strong>\n\nBlokeringen er foretaget af $1.\n\nDen anførte grund er <em>$2</em>.\n \n* Blokeringen starter: $8\n* Blokeringen udløber: $6\n* Blokeringen er rettet mod: $7\n\n\nDu kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.\nDu kan bruge funktionen \"{{int:emailuser}}\" hvis der er angivet en gyldig e-mailadresse i dine [[Special:Preferences|kontoindstillinger]], og du ikke er blevet blokeret fra at bruge den.\n\nDin nuværende IP-adresse er $3, og blokerings-id er #$5.\nAngiv venligst alle ovenstående detaljer ved henvendelser om blokeringen.",
 	"autoblockedtext": "Din IP-adresse er blevet blokeret automatisk fordi den blev brugt af en anden bruger som er blevet blokeret af $1.\nDen givne begrundelse er:\n\n:<em>$2</em>\n\n* Blokeringen starter: $8\n* Blokeringen udløber: $6\n* Blokeringen er rettet mod: $7\n\nDu kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.\n\nBemærk at du kan bruge funktionen \"{{int:emailuser}}\" hvis du har en gyldig e-mailadresse registreret i dine [[Special:Preferences|brugerindstillinger]] og du ikke er blevet blokeret fra at bruge den.\n\nDin nuværende IP-adresse er $3, og blokerings-id'et er #$5.\nAngiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.",
 	"systemblockedtext": "Dit brugernavn eller din IP-adresse er automatisk blokeret af MediaWiki.\nBegrundelsen for det er:\n\n:<em>$2</em>\n\n* Blokeringsperiodens start: $8\n* Blokeringen udløber: $6\n* Blokeringen er ment for: $7\n\nDin nuværende IP-adresse er $3.\nAngiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.",

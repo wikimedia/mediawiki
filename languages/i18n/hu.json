@@ -760,7 +760,7 @@
 	"protectedpagewarning": "<strong>Figyelem: Ez a lap védett, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők módosíthatják.</strong>\nA legutolsó ide vonatkozó naplóbejegyzés alább látható:",
 	"semiprotectedpagewarning": "<strong>Megjegyzés:</strong> ez a lap védett, így regisztrálatlan vagy újonnan regisztrált szerkesztők nem módosíthatják.\nA lapra vonatkozó utolsó naplóbejegyzés alább látható:",
 	"cascadeprotectedwarning": "<strong>Figyelem:</strong> ez a lap le van zárva, csak [[Special:ListGroupRights|megfelelő jogosultságú]] felhasználók szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} be van illesztve:",
-	"titleprotectedwarning": "'''Figyelem: Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogosultságokkal]] rendelkező szerkesztők hozhatják létre.'''\nA legutolsó ide vonatkozó naplóbejegyzés alább látható:",
+	"titleprotectedwarning": "<strong>Figyelem: Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogosultságokkal]] rendelkező szerkesztők hozhatják létre.</strong>\nA legutolsó ide vonatkozó naplóbejegyzés alább látható:",
 	"templatesused": "A lapon használt {{PLURAL:$1|sablon|sablonok}}:",
 	"templatesusedpreview": "Az előnézet megjelenítésekor használt {{PLURAL:$1|sablon|sablonok}}:",
 	"templatesusedsection": "Az ebben a szakaszban használt {{PLURAL:$1|sablon|sablonok}}:",

@@ -1679,7 +1679,7 @@
 	"enhancedrc-history": "historial",
 	"recentchanges": "Cambios recientes",
 	"recentchanges-legend": "Opciones sobre cambios recientes",
-	"recentchanges-summary": "Sigue en esta página los cambios más recientes de la wiki.",
+	"recentchanges-summary": "Sigue en esta página los cambios más recientes de {{SITENAME}}.",
 	"recentchanges-noresult": "No hubo cambios que respondan a esos criterios durante el período seleccionado.",
 	"recentchanges-timeout": "Se agotó el tiempo de espera de esta búsqueda. Puede que quieras probar con otros parámetros de búsqueda.",
 	"recentchanges-network": "No se cargó ningún resultado debido a un problema técnico. Prueba a volver a cargar la página.",

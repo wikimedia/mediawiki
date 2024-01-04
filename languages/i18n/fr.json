@@ -196,7 +196,8 @@
 			"Горан Анђелковић",
 			"לערי ריינהארט",
 			"아라",
-			"Obscaeris"
+			"Obscaeris",
+			"Wnagxsi"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -3210,7 +3211,7 @@
 	"interlanguage-link-title-nonlang": "$1 – $2",
 	"common.css": "/* Le CSS placé ici sera appliqué à tous les habillages. */",
 	"print.css": "/* Le CSS placé ici affectera les impressions. */",
-	"noscript.css": "/* Le CSS placé ici affectera les utilisateurs ayant désactivé Javascript. */",
+	"noscript.css": "/* Le CSS placé ici affectera les utilisateurs ayant désactivé JavaScript. */",
 	"group-autoconfirmed.css": "/* Le CSS placé ici n’affectera que les utilisateurs autoconfirmés. */",
 	"group-user.css": "/* Le CSS placé ici n’affectera que les utilisateurs enregistrés. */",
 	"group-bot.css": "/* Le CSS placé ici n’affectera que les robots. */",

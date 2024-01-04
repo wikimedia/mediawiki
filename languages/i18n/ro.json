@@ -52,7 +52,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Amire80",
-			"Alesaru"
+			"Alesaru",
+			"Heron702"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -211,6 +212,7 @@
 	"permalink": "Legătură permanentă",
 	"print": "Tipărire",
 	"view": "Lectură",
+	"viewcontribs": "Vezi contribuțiile",
 	"skin-view-view": "Lectură",
 	"skin-view-foreign": "Vizualizare la $1",
 	"edit": "Modificare",
@@ -4071,6 +4073,7 @@
 	"skin-action-undelete": "Recuperare",
 	"skin-action-delete": "Ștergere",
 	"skin-action-move": "Redenumire",
+	"newpages-showhide-bots": "$1 roboți",
 	"renameuser": "Redenumire utilizator",
 	"renameuser-linkoncontribs": "redenumirea {{GENDER:$1|utilizatorului|utilizatoarei|utilizatorului}}",
 	"renameuser-linkoncontribs-text": "Redenumește {{GENDER:$1|acest utilizator|această utilizatoare|acest utilizator}}",

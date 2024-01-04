@@ -42,7 +42,8 @@
 			"Şeyx Şamil",
 			"לערי ריינהארט",
 			"아라",
-			"IBAnk"
+			"IBAnk",
+			"Atakhanli"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -1677,6 +1678,7 @@
 	"unwatchedpages": "İzlənməyən səhifələr",
 	"listredirects": "İstiqamətləndirmə siyahısı",
 	"unusedtemplates": "İstifadəsiz şablonlar",
+	"unusedtemplatestext": "Bu səhifə Şablon ad fəzasında heç bir digər səhifəyə daxil edilməyən bütün səhifələrin siyahısını verir. Şablonları silməzdən əvvəl digər keçidləri yoxlamağı unutmayın.",
 	"unusedtemplateswlh": "digər keçidlər",
 	"randompage": "Təsadüfi səhifə",
 	"randomincategory": "Kateqoriyada təsadüfi səhifə",
