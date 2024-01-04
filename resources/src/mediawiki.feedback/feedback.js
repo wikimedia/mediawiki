@@ -26,15 +26,17 @@
 	 * This feature works with any content model that defines a
 	 * `mw.messagePoster.MessagePoster`.
 	 *
-	 * Minimal usage example:
-	 *
+	 * @example Minimal usage example:
+	 * mw.loader.using( 'mediawiki.feedback').then(() => {
 	 *     var feedback = new mw.Feedback();
 	 *     $( '#myButton' ).click( function () { feedback.launch(); } );
-	 *
+	 * });
 	 * You can also launch the feedback form with a prefilled subject and body.
 	 * See the docs for the #launch() method.
 	 *
-	 * @class
+	 * @class mw.Feedback
+	 * @classdesc Simple mechanism for obtaining feedback from users. Functionality is provided by the mediawiki.feedback
+	 * ResourceLoader module.
 	 * @constructor
 	 * @param {Object} [config] Configuration object
 	 * @cfg {mw.Title} [title="Feedback"] The title of the page where you collect
@@ -78,8 +80,8 @@
 
 	/**
 	 * mw.Feedback Dialog
-	 *
-	 * @class
+	 * See FeedbackDialog.js for documentation
+	 * @ignore
 	 */
 	mw.Feedback.Dialog = FeedbackDialog;
 
