@@ -713,7 +713,7 @@
 	"missing-revision": "ไม่มีรุ่นแก้ไข #$1 ของหน้าชื่อ \"{{FULLPAGENAME}}\" \n\nปกติเกิดจากการตามการโยงประวัติเก่าไปยังหน้าที่ถูกลบแล้ว\nดูรายละเอียดได้ที่[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]",
 	"missing-revision-content": "โหลดเนื้อหาของรุ่นแก้ไข #$1 ของหน้าชื่อ \"$2\" ไม่ได้",
 	"userpage-userdoesnotexist": "บัญชีผู้ใช้ \"$1\" ไม่ได้ลงทะเบียนบนวิกินี้\nโปรดตรวจสอบหากคุณต้องการสร้าง/แก้ไขหน้านี้",
-	"userpage-userdoesnotexist-view": "บัญชีผู้ใช้ \"$1\" ยังมิได้ลงทะเบียน",
+	"userpage-userdoesnotexist-view": "บัญชีผู้ใช้ \"$1\" ยังมิได้ลงทะเบียนในวิกินี้",
 	"blocked-notice-logextract": "ปัจจุบัน{{GENDER:$1|ผู้ใช้}}นี้ถูกบล็อก\nรายการปูมการบล็อกล่าสุดถูกแสดงด้านล่างเพื่อการอ้างอิง:",
 	"clearyourcache": "<strong>หมายเหตุ:</strong> หลังเผยแพร่ คุณอาจต้องล้างแคชเว็บเบราว์เซอร์ของคุณเพื่อดูการเปลี่ยนแปลง\n* <strong>ไฟร์ฟอกซ์ / ซาฟารี:</strong> กด <em>Shift</em> ค้างขณะคลิก <em>Reload</em> หรือกด <em>Ctrl-F5</em> หรือ <em>Ctrl-R</em> (<em>⌘-R</em> บนแมค)\n* <strong>กูเกิล โครม:</strong> กด <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> บนแมค)\n* <strong>อินเทอร์เน็ตเอกซ์พลอเรอร์ และ Edge:</strong> กด <em>Ctrl</em> ค้างขณะคลิก <em>Refresh</em> หรือกด <em>Ctrl-F5</em>\n* <strong>โอเปร่า:</strong> กด <em>Ctrl-F5</em>",
 	"usercssyoucanpreview": "<strong>คำแนะนำ:</strong> กดปุ่ม \"{{int:showpreview}}\" เพื่อทดสอบ CSS ใหม่ของคุณก่อนเผยแพร่",
