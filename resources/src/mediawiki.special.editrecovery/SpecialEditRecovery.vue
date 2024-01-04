@@ -14,7 +14,9 @@
 			{{ $i18n( 'pipe-separator' ) }}
 			<a :href="page.editUrl">{{ $i18n( 'edit-recovery-special-edit' ) }}</a>
 			{{ $i18n( 'parentheses-end' ) }}
-			{{ $i18n( 'edit-recovery-special-recovered-on', page.timeStored ) }}
+			<span :title="$i18n( 'edit-recovery-special-recovered-on-tooltip' )">
+				{{ $i18n('edit-recovery-special-recovered-on', page.timeStored ) }}
+			</span>
 		</li>
 	</ol>
 </template>

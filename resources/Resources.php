@@ -2339,6 +2339,7 @@ return [
 			'edit-recovery-special-view',
 			'edit-recovery-special-edit',
 			'edit-recovery-special-recovered-on',
+			'edit-recovery-special-recovered-on-tooltip',
 		],
 	],
 	'mediawiki.special.search' => [

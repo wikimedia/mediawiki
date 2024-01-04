@@ -917,6 +917,7 @@
 	"edit-recovery-special-view": "Link text for the 'view' link.",
 	"edit-recovery-special-edit": "Link text for the 'edit' link.",
 	"edit-recovery-special-recovered-on": "Phrase to describe when the data for a particular list item was stored.\n\nParameters:\n\n* $1 The date and time that the item was stored.",
+	"edit-recovery-special-recovered-on-tooltip": "Tooltip text for the date added as parameter $1 in {{mw-msg|edit-recovery-special-recovered-on}}.",
 	"edit-recovery-loaded-title": "Title for a notification toast popup shown when an in-progress edit is recovered.",
 	"edit-recovery-loaded-message": "Message shown in a notification toast popup when an in-progress edit is recovered.",
 	"edit-recovery-loaded-show": "Button text in a notification toast popup shown when an in-progress edit is recovered, used to show changes.",
