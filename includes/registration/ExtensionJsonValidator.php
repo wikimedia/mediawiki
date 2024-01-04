@@ -20,6 +20,7 @@
 
 use Composer\Spdx\SpdxLicenses;
 use JsonSchema\Validator;
+use Seld\JsonLint\DuplicateKeyException;
 use Seld\JsonLint\JsonParser;
 use Seld\JsonLint\ParsingException;
 
@@ -88,7 +89,7 @@ class ExtensionJsonValidator {
 		try {
 			$data = $jsonParser->parse( $contents, JsonParser::DETECT_KEY_CONFLICTS );
 		} catch ( ParsingException $e ) {
-			if ( $e instanceof \Seld\JsonLint\DuplicateKeyException ) {
+			if ( $e instanceof DuplicateKeyException ) {
 				throw new ExtensionJsonValidationError( $e->getMessage() );
 			}
 			throw new ExtensionJsonValidationError( "$path is not valid JSON" );
