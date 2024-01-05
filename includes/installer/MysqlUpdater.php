@@ -159,7 +159,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	/**
-	 * Check whether an index contain a field
+	 * Check whether an index contains a field
 	 *
 	 * @param string $table Table name
 	 * @param string $index Index name to check
@@ -238,7 +238,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	/**
-	 * Drop a default value from a field
+	 * Drops the default value from a field
 	 *
 	 * @since 1.36
 	 * @param string $table

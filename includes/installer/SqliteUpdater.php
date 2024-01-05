@@ -141,7 +141,7 @@ class SqliteUpdater extends DatabaseUpdater {
 	}
 
 	/**
-	 * Check whether an index contain a field
+	 * Check whether an index contains a field
 	 *
 	 * @param string $table Table name
 	 * @param string $index Index name to check

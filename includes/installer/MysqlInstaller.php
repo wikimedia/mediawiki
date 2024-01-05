@@ -437,7 +437,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		// Validate engines and charsets
-		// This is done pre-submit already so it's just for security
+		// This is done pre-submit already, so it's just for security
 		$engines = $this->getEngines();
 		if ( !in_array( $this->getVar( '_MysqlEngine' ), $engines ) ) {
 			$this->setVar( '_MysqlEngine', reset( $engines ) );

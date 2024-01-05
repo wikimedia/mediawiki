@@ -140,7 +140,7 @@ class Pingback {
 		if ( $timestamp === false ) {
 			return false;
 		}
-		// send heartbeat ping if last ping was over a month ago
+		// send heartbeat ping if the last ping was over a month ago
 		if ( ConvertibleTimestamp::time() - (int)$timestamp > 60 * 60 * 24 * 30 ) {
 			return false;
 		}

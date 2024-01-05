@@ -144,23 +144,21 @@ class SqliteInstaller extends DatabaseInstaller {
 			if ( !is_readable( $dir ) ) {
 				return Status::newFatal( 'config-sqlite-dir-unwritable', $dir );
 			}
-		} else {
+		} elseif ( !is_writable( dirname( $dir ) ) ) {
 			// Check the parent directory if $dir not exists
-			if ( !is_writable( dirname( $dir ) ) ) {
-				$webserverGroup = Installer::maybeGetWebserverPrimaryGroup();
-				if ( $webserverGroup !== null ) {
-					return Status::newFatal(
-						'config-sqlite-parent-unwritable-group',
-						$dir, dirname( $dir ), basename( $dir ),
-						$webserverGroup
-					);
-				} else {
-					return Status::newFatal(
-						'config-sqlite-parent-unwritable-nogroup',
-						$dir, dirname( $dir ), basename( $dir )
-					);
-				}
+			$webserverGroup = Installer::maybeGetWebserverPrimaryGroup();
+			if ( $webserverGroup !== null ) {
+				return Status::newFatal(
+					'config-sqlite-parent-unwritable-group',
+					$dir, dirname( $dir ), basename( $dir ),
+					$webserverGroup
+				);
 			}
+
+			return Status::newFatal(
+				'config-sqlite-parent-unwritable-nogroup',
+				$dir, dirname( $dir ), basename( $dir )
+			);
 		}
 		return Status::newGood();
 	}
@@ -384,8 +382,8 @@ EOT;
 	public function getLocalSettings() {
 		$dir = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgSQLiteDataDir' ) );
 		// These tables have frequent writes and are thus split off from the main one.
-		// Since the code using these tables only uses transactions for writes then set
-		// them to using BEGIN IMMEDIATE. This avoids frequent lock errors on first write.
+		// Since the code using these tables only uses transactions for writes, then set
+		// them to using BEGIN IMMEDIATE. This avoids frequent lock errors on the first write action.
 		return "# SQLite-specific settings
 \$wgSQLiteDataDir = \"{$dir}\";
 \$wgObjectCaches[CACHE_DB] = [
