@@ -183,8 +183,11 @@ function saveFormData() {
 	if ( originalData === null || JSON.stringify( pageData ) === JSON.stringify( originalData ) ) {
 		// Delete the stored data if there's no change, or if we've flagged originalData as irrelevant.
 		storage.deleteData( pageName, section );
+		mw.storage.session.remove( 'EditRecovery-data-saved' );
 	} else {
 		storage.saveData( pageName, section, pageData );
+		// Flag the data for deletion in the postEdit handler in ./postEdit.js
+		mw.storage.session.set( 'EditRecovery-data-saved', true, 300 );
 	}
 }
 
