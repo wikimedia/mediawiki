@@ -72,6 +72,11 @@ class TextContentHandler extends ContentHandler {
 	 * @return Content|false
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
+		// No need for an expensive merge when the texts are identical anyway
+		if ( $myContent->equals( $yourContent ) ) {
+			return $myContent;
+		}
+
 		$this->checkModelID( $oldContent->getModel() );
 		$this->checkModelID( $myContent->getModel() );
 		$this->checkModelID( $yourContent->getModel() );
