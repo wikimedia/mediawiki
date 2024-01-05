@@ -25,7 +25,7 @@ use Wikimedia\NormalizedException\NormalizedExceptionTrait;
 /**
  * @newable
  */
-class UploadChunkFileException extends MWException implements INormalizedException {
+class UploadChunkFileException extends Exception implements INormalizedException {
 	use NormalizedExceptionTrait;
 
 	public function __construct( $message, array $context = [] ) {
