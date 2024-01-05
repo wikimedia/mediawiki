@@ -7714,6 +7714,9 @@ class MainConfigSchema {
 	 *       - numShards (int, default 1): A small integer. This can be set to a
 	 *         value greater than 1 to avoid acquiring a global lock when
 	 *         allocating IDs, at the expense of making the IDs be non-monotonic.
+	 *       - useYear: (bool) Restart at 1 each time the year changes (in UTC).
+	 *         To avoid naming conflicts, the year is included in the name after
+	 *         the prefix, in the form 'YYYY-'.
 	 *   - serialMapping: (array) Configuration for mapping integer indexes to strings
 	 *     to substitute into genPattern.
 	 *       - type: (string) May be

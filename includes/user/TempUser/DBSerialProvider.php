@@ -23,7 +23,7 @@ abstract class DBSerialProvider implements SerialProvider {
 		$this->numShards = $config['numShards'] ?? 1;
 	}
 
-	public function acquireIndex(): int {
+	public function acquireIndex( int $year = 0 ): int {
 		if ( $this->numShards ) {
 			$shard = mt_rand( 0, $this->numShards - 1 );
 		} else {
@@ -35,15 +35,20 @@ abstract class DBSerialProvider implements SerialProvider {
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newInsertQueryBuilder()
 			->insertInto( $table )
-			->row( [ 'uas_shard' => $shard, 'uas_value' => 1 ] )
+			->row( [
+				'uas_shard' => $shard,
+				'uas_year' => $year,
+				'uas_value' => 1
+			] )
 			->onDuplicateKeyUpdate()
-			->uniqueIndexFields( [ 'uas_shard' ] )
+			->uniqueIndexFields( [ 'uas_shard', 'uas_year' ] )
 			->set( [ 'uas_value=uas_value+1' ] )
 			->caller( __METHOD__ )->execute();
 		$value = $dbw->newSelectQueryBuilder()
 			->select( 'uas_value' )
 			->from( $table )
 			->where( [ 'uas_shard' => $shard ] )
+			->andWhere( [ 'uas_year' => $year ] )
 			->caller( __METHOD__ )
 			->fetchField();
 		$dbw->endAtomic( __METHOD__ );

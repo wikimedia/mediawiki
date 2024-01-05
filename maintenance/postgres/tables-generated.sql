@@ -902,8 +902,9 @@ CREATE INDEX user_email ON "user" (user_email);
 
 CREATE TABLE user_autocreate_serial (
   uas_shard INT NOT NULL,
+  uas_year SMALLINT NOT NULL,
   uas_value INT NOT NULL,
-  PRIMARY KEY(uas_shard)
+  PRIMARY KEY(uas_shard, uas_year)
 );
 
 

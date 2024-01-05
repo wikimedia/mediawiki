@@ -91,4 +91,12 @@ class PatternTest extends TestCase {
 		$pattern = new Pattern( 'test', $stringPattern );
 		$this->assertSame( $expected, $pattern->generate( $serial ) );
 	}
+
+	public function testGenerateWithYear() {
+		$pattern = new Pattern( 'test', '*$1*' );
+		$this->assertSame(
+			'*2000-123*',
+			$pattern->generate( '123', '2000' )
+		);
+	}
 }
