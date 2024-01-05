@@ -2449,7 +2449,7 @@ return [
 	/* MediaWiki UI */
 
 	'mediawiki.ui' => [
-		'deprecated' => '[1.31] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
+		'deprecated' => '[1.41] Please use Codex. See migration guidelines: https://w.wiki/7TAh',
 		'skinStyles' => [
 			'default' => [
 				'resources/src/mediawiki.ui/default.less',
