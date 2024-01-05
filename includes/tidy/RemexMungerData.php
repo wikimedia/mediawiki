@@ -2,6 +2,10 @@
 
 namespace MediaWiki\Tidy;
 
+use Exception;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
+use Wikimedia\RemexHtml\TreeBuilder\Element;
+
 /**
  * @internal
  */
@@ -11,7 +15,7 @@ class RemexMungerData {
 	 * this is set, inline insertions into this node will be diverted so that
 	 * they insert into the p-wrap.
 	 *
-	 * @var \Wikimedia\RemexHtml\TreeBuilder\Element|null
+	 * @var Element|null
 	 */
 	public $childPElement;
 
@@ -19,7 +23,7 @@ class RemexMungerData {
 	 * This tracks the mw:p-wrap node in the Serializer stack which is an
 	 * ancestor of this node. If there is no mw:p-wrap ancestor, it is null.
 	 *
-	 * @var \Wikimedia\RemexHtml\Serializer\SerializerNode|null
+	 * @var SerializerNode|null
 	 */
 	public $ancestorPNode;
 
@@ -29,7 +33,7 @@ class RemexMungerData {
 	 * or if a p-wrapper was closed due to a block element being encountered
 	 * inside it.
 	 *
-	 * @var \Wikimedia\RemexHtml\Serializer\SerializerNode|null
+	 * @var SerializerNode|null
 	 */
 	public $wrapBaseNode;
 
@@ -40,7 +44,7 @@ class RemexMungerData {
 	 * the original element. This is set to the newer clone if this node was
 	 * cloned, i.e. if there is an active diversion of the insertion location.
 	 *
-	 * @var \Wikimedia\RemexHtml\TreeBuilder\Element|null
+	 * @var Element|null
 	 */
 	public $currentCloneElement;
 
@@ -74,7 +78,7 @@ class RemexMungerData {
 
 	public function __set( $name, $value ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new \Exception( "Cannot set property \"$name\"" );
+		throw new Exception( "Cannot set property \"$name\"" );
 	}
 
 	/**
