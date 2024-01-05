@@ -44,7 +44,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
@@ -73,6 +73,7 @@ class InfoAction extends FormlessAction {
 	private RedirectLookup $redirectLookup;
 	private RestrictionStore $restrictionStore;
 	private LinksMigration $linksMigration;
+	private UserFactory $userFactory;
 
 	public function __construct(
 		Article $article,
@@ -91,7 +92,8 @@ class InfoAction extends FormlessAction {
 		WatchedItemStoreInterface $watchedItemStore,
 		RedirectLookup $redirectLookup,
 		RestrictionStore $restrictionStore,
-		LinksMigration $linksMigration
+		LinksMigration $linksMigration,
+		UserFactory $userFactory
 	) {
 		parent::__construct( $article, $context );
 		$this->contentLanguage = $contentLanguage;
@@ -109,6 +111,7 @@ class InfoAction extends FormlessAction {
 		$this->redirectLookup = $redirectLookup;
 		$this->restrictionStore = $restrictionStore;
 		$this->linksMigration = $linksMigration;
+		$this->userFactory = $userFactory;
 	}
 
 	/** @inheritDoc */
@@ -371,7 +374,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		if ( $title->inNamespace( NS_USER ) ) {
-			$pageUser = User::newFromName( $title->getRootText() );
+			$pageUser = $this->userFactory->newFromName( $title->getRootText() );
 			if ( $pageUser && $pageUser->getId() && !$pageUser->isHidden() ) {
 				$pageInfo['header-basic'][] = [
 					$this->msg( 'pageinfo-user-id' ),

@@ -32,7 +32,8 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * A simple method to retrieve the plain source of an article,
@@ -46,6 +47,7 @@ class RawAction extends FormlessAction {
 	private PermissionManager $permissionManager;
 	private RevisionLookup $revisionLookup;
 	private RestrictionStore $restrictionStore;
+	private UserFactory $userFactory;
 
 	/**
 	 * @param Article $article
@@ -54,6 +56,7 @@ class RawAction extends FormlessAction {
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
 	 * @param RestrictionStore $restrictionStore
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		Article $article,
@@ -61,13 +64,15 @@ class RawAction extends FormlessAction {
 		Parser $parser,
 		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
-		RestrictionStore $restrictionStore
+		RestrictionStore $restrictionStore,
+		UserFactory $userFactory
 	) {
 		parent::__construct( $article, $context );
 		$this->parser = $parser;
 		$this->permissionManager = $permissionManager;
 		$this->revisionLookup = $revisionLookup;
 		$this->restrictionStore = $restrictionStore;
+		$this->userFactory = $userFactory;
 	}
 
 	public function getName() {
@@ -141,7 +146,7 @@ class RawAction extends FormlessAction {
 			// not using getRootText() as we want this to work
 			// even if subpages are disabled.
 			$rootPage = strtok( $title->getText(), '/' );
-			$userFromTitle = User::newFromName( $rootPage, 'usable' );
+			$userFromTitle = $this->userFactory->newFromName( $rootPage, UserRigorOptions::RIGOR_USABLE );
 			if ( !$userFromTitle || !$userFromTitle->isRegistered() ) {
 				$elevated = $this->getAuthority()->isAllowed( 'editinterface' );
 				$elevatedText = $elevated ? 'by elevated ' : '';
