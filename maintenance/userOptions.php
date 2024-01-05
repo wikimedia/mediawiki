@@ -157,7 +157,7 @@ The new option is NOT validated.' );
 		$toUserId = (int)$this->getOption( 'touserid', 0 ) ?: null;
 
 		if ( !$dryRun ) {
-			$forUsers = $from ? "some users (ID $fromUserId-$toUserId)" : 'ALL USERS';
+			$forUsers = ( $fromUserId || $toUserId ) ? "some users (ID $fromUserId-$toUserId)" : 'ALL USERS';
 			$this->warn(
 				<<<WARN
 The script is about to change the options for $forUsers in the database.
@@ -217,7 +217,7 @@ WARN
 		$old = $this->getOption( 'old' );
 
 		if ( !$dryRun ) {
-			$forUsers = $fromUserId ? "some users (ID $fromUserId-$toUserId)" : 'ALL USERS';
+			$forUsers = ( $fromUserId || $toUserId ) ? "some users (ID $fromUserId-$toUserId)" : 'ALL USERS';
 			$this->warn( <<<WARN
 The script is about to delete '$option' option for $forUsers from user_properties table.
 This action is IRREVERSIBLE.
