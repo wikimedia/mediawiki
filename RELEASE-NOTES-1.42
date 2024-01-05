@@ -245,6 +245,26 @@ because of Phabricator reports.
   take conditional defaults for user properties into account. When conditional
   defaults are used, calling those methods without the UserIdentity might
   produce unexpected results.
+* Installer related classes have been namespaced without having aliases added.
+  The following have been moved to MediaWiki\Installer:
+  - WebInstaller
+  - WebInstallerComplete
+  - WebInstallerCopying
+  - WebInstallerDBConnect
+  - WebInstallerDBSettings
+  - WebInstallerDocument
+  - WebInstallerExistingWikis
+  - WebInstallerInstall
+  - WebInstallerLanguage
+  - WebInstallerName
+  - WebInstallerOptions
+  - WebInstallerOutput
+  - WebInstallerPage
+  - WebInstallerReleaseNotes
+  - WebInstallerRestart
+  - WebInstallerUpgrade
+  - WebInstallerUpgradeDoc
+  - WebInstallerWelcome
 * …
 
 === Deprecations in 1.42 ===

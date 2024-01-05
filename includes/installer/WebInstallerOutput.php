@@ -1,7 +1,6 @@
 <?php
+
 /**
- * Output handler for the web installer.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,11 +20,15 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use Language;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MWException;
 
 /**
  * Output class modelled on OutputPage.

@@ -1,8 +1,11 @@
 <?php
 
+use MediaWiki\Installer\WebInstaller;
+use MediaWiki\Installer\WebInstallerOutput;
+
 class WebInstallerOutputTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @covers WebInstallerOutput::getCSS
+	 * @covers \MediaWiki\Installer\WebInstallerOutput::getCSS
 	 */
 	public function testGetCSS() {
 		$_SERVER['DOCUMENT_ROOT'] = __DIR__ . '../../../';

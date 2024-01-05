@@ -1,7 +1,6 @@
 <?php
+
 /**
- * Base code for web installer pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,7 +20,10 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
 use MediaWiki\Html\Html;
+use Xml;
 
 /**
  * Abstract class to define pages for the web installer.
@@ -137,6 +139,7 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	public function getName() {
+		// TODO: Drop namespacing here too?
 		return str_replace( 'WebInstaller', '', static::class );
 	}
 

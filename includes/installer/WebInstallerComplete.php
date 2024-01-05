@@ -19,7 +19,11 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use HtmlArmor;
 use MediaWiki\Html\Html;
+use Message;
 
 class WebInstallerComplete extends WebInstallerPage {
 

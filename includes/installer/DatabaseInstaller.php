@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Installer\WebInstaller;
 use MediaWiki\Status\Status;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;

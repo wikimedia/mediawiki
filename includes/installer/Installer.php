@@ -32,6 +32,7 @@ use MediaWiki\Config\MultiConfig;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\Installer\WebInstaller;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
