@@ -172,7 +172,7 @@ class RecentChange implements Taggable {
 	 * Parsing text to RC_* constants
 	 * @since 1.24
 	 * @param string|array $type
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return int|array RC_TYPE
 	 */
 	public static function parseToRCType( $type ) {
@@ -186,7 +186,7 @@ class RecentChange implements Taggable {
 		}
 
 		if ( !array_key_exists( $type, self::CHANGE_TYPES ) ) {
-			throw new MWException( "Unknown type '$type'" );
+			throw new InvalidArgumentException( "Unknown type '$type'" );
 		}
 		return self::CHANGE_TYPES[$type];
 	}
