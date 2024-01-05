@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Rest;
 
+use LogicException;
+
 /**
  * A handler base class which unpacks parameters from the path template and
  * passes them as formal parameters to run().
@@ -29,7 +31,7 @@ abstract class SimpleHandler extends Handler {
 		}
 
 		if ( $unvalidatedParams ) {
-			throw new \LogicException(
+			throw new LogicException(
 				'Path parameters were not validated: ' . implode( ', ', $unvalidatedParams )
 			);
 		}
