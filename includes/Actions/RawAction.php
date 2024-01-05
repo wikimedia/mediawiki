@@ -151,23 +151,24 @@ class RawAction extends FormlessAction {
 		// but for now be more permissive. Allowing protected pages outside
 		// NS_USER and NS_MEDIAWIKI in particular should be considered a temporary
 		// allowance.
-		$pageRestrictions = $this->restrictionStore->getRestrictions( $title, 'edit' );
 		if (
 			$contentType === 'text/javascript' &&
 			!$title->isUserJsConfigPage() &&
-			!$title->inNamespace( NS_MEDIAWIKI ) &&
-			!in_array( 'sysop', $pageRestrictions ) &&
-			!in_array( 'editprotected', $pageRestrictions )
+			!$title->inNamespace( NS_MEDIAWIKI )
 		) {
-
-			$log = LoggerFactory::getInstance( "security" );
-			$log->info( "Blocked loading unprotected JS {title} for {user}",
-				[
-					'user' => $this->getUser()->getName(),
-					'title' => $title->getPrefixedDBkey(),
-				]
-			);
-			throw new HttpError( 403, wfMessage( 'unprotected-js' ) );
+			$pageRestrictions = $this->restrictionStore->getRestrictions( $title, 'edit' );
+			if ( !in_array( 'sysop', $pageRestrictions ) &&
+				!in_array( 'editprotected', $pageRestrictions )
+			) {
+				$log = LoggerFactory::getInstance( "security" );
+				$log->info( "Blocked loading unprotected JS {title} for {user}",
+					[
+						'user' => $this->getUser()->getName(),
+						'title' => $title->getPrefixedDBkey(),
+					]
+				);
+				throw new HttpError( 403, wfMessage( 'unprotected-js' ) );
+			}
 		}
 
 		// Content-Type: text/javascript should only work when the following are true:
