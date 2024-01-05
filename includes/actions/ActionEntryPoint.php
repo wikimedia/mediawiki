@@ -33,11 +33,11 @@ use WikiFilePage;
 use Wikimedia\Rdbms\DBConnectionError;
 
 /**
- * Implementation of the main entry point, for web browser navigations, usually via an
- * Action or SpecialPage subclass.
+ * The index.php entry point for web browser navigations, usually routed to
+ * an Action or SpecialPage subclass.
  *
- * @see /index.php The main web entry point.
- * @internal
+ * @internal For use in index.php
+ * @ingroup entrypoint
  */
 class ActionEntryPoint extends MediaWikiEntryPoint {
 
