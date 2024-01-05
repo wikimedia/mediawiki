@@ -15,15 +15,15 @@ var db = null;
  * @return {jQuery.Promise} Promise which resolves on success
  */
 function openDatabaseLocal() {
-	return new Promise( function ( resolve, reject ) {
+	return new Promise( ( resolve, reject ) => {
 		const schemaNumber = 3;
 		const openRequest = window.indexedDB.open( dbName, schemaNumber );
 		openRequest.addEventListener( 'upgradeneeded', upgradeDatabase );
-		openRequest.addEventListener( 'success', function ( event ) {
+		openRequest.addEventListener( 'success', ( event ) => {
 			db = event.target.result;
 			resolve();
 		} );
-		openRequest.addEventListener( 'error', function ( event ) {
+		openRequest.addEventListener( 'error', ( event ) => {
 			reject( 'EditRecovery error: ' + event.target.error );
 		} );
 	} );
@@ -71,7 +71,7 @@ function upgradeDatabase( versionChangeEvent ) {
  * @return {jQuery.Promise} Promise which resolves with the page data on success, or rejects with an error message.
  */
 function loadData( pageName, section ) {
-	return new Promise( function ( resolve, reject ) {
+	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
 		}
@@ -80,14 +80,14 @@ function loadData( pageName, section ) {
 		const findExisting = transaction
 			.objectStore( objectStoreName )
 			.get( key );
-		findExisting.addEventListener( 'success', function () {
+		findExisting.addEventListener( 'success', () => {
 			resolve( findExisting.result );
 		} );
 	} );
 }
 
 function loadAllData() {
-	return new Promise( function ( resolve, reject ) {
+	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
 		}
@@ -95,7 +95,7 @@ function loadAllData() {
 		const requestAll = transaction
 			.objectStore( objectStoreName )
 			.getAll();
-		requestAll.addEventListener( 'success', function () {
+		requestAll.addEventListener( 'success', () => {
 			resolve( requestAll.result );
 		} );
 	} );
@@ -110,7 +110,7 @@ function loadAllData() {
  * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
  */
 function saveData( pageName, section, pageData ) {
-	return new Promise( function ( resolve, reject ) {
+	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
 		}
@@ -124,10 +124,10 @@ function saveData( pageName, section, pageData ) {
 		const objectStore = transaction.objectStore( objectStoreName );
 
 		const request = objectStore.put( pageData );
-		request.addEventListener( 'success', function ( event ) {
+		request.addEventListener( 'success', ( event ) => {
 			resolve( event );
 		} );
-		request.addEventListener( 'error', function ( event ) {
+		request.addEventListener( 'error', ( event ) => {
 			reject( 'Error saving data: ' + event.target.errorCode );
 		} );
 	} );
@@ -141,7 +141,7 @@ function saveData( pageName, section, pageData ) {
  * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
  */
 function deleteData( pageName, section ) {
-	return new Promise( function ( resolve, reject ) {
+	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
 		}
@@ -151,7 +151,7 @@ function deleteData( pageName, section ) {
 
 		const request = objectStore.openCursor();
 
-		request.onsuccess = function ( event ) {
+		request.addEventListener( 'success', ( event ) => {
 			const cursor = event.target.result;
 			if ( cursor ) {
 				const key = cursor.key;
@@ -163,11 +163,11 @@ function deleteData( pageName, section ) {
 			} else {
 				resolve();
 			}
-		};
+		} );
 
-		request.onerror = function () {
+		request.addEventListener( 'error', () => {
 			reject( 'Error opening cursor' );
-		};
+		} );
 	} );
 }
 
@@ -187,7 +187,7 @@ function getExpiryDate( diff ) {
  * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
  */
 function deleteExpiredData() {
-	return new Promise( function ( resolve, reject ) {
+	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
 		}
@@ -199,20 +199,20 @@ function deleteExpiredData() {
 
 		const expired = expiry.getAll( IDBKeyRange.upperBound( now, true ) );
 
-		expired.onsuccess = function ( event ) {
+		expired.addEventListener( 'success', ( event ) => {
 			const cursors = event.target.result;
 			if ( cursors ) {
-				cursors.forEach( function ( cursor ) {
+				cursors.forEach( ( cursor ) => {
 					deleteData( cursor.pageName, cursor.section );
 				} );
 			} else {
 				resolve();
 			}
-		};
+		} );
 
-		expired.onerror = function () {
+		expired.addEventListener( 'error', () => {
 			reject( 'Error getting filtered data' );
-		};
+		} );
 	} );
 }
 
