@@ -31,6 +31,8 @@ use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
+use OOUI\FieldLayout;
+use OOUI\SearchInputWidget;
 use PermissionsError;
 use PreferencesFormOOUI;
 
@@ -123,8 +125,8 @@ class SpecialPreferences extends SpecialPage {
 		}
 		$out->addJsConfigVars( 'wgPreferencesTabs', $prefTabs );
 
-		$out->addHTML( new \OOUI\FieldLayout(
-			new \OOUI\SearchInputWidget( [
+		$out->addHTML( new FieldLayout(
+			new SearchInputWidget( [
 				'placeholder' => $this->msg( 'searchprefs' )->text(),
 			] ),
 			[
