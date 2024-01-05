@@ -130,6 +130,10 @@ because of Phabricator reports.
 * MagicWord::load() has been marked @internal and may change in the future
   without further notice.
 * BagOStuff::setNewPreparedValues() now emits deprecation warnings.
+* The type of the last parameter of BeforeInitializeHook::onBeforeInitialize
+  and MediaWikiPerformActionHook::onMediaWikiPerformAction changed from
+  MediaWiki to ActionEntryPoint. Relevant methods are still available on
+  the object.
 * MediaWiki's virtualrest internal library has been removed in favor of the
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
 * Several deprecated methods have been removed from the Content interface,
@@ -309,6 +313,10 @@ because of Phabricator reports.
 * Status::setMessageLocalizer is deprecated. Callers that want to control the
   localization of the Status object should obtain a StatusFormatter from
   the StatusFormatterFactory.
+* The MediaWiki class has been deprecated. Type hints in hooks should be
+  changed to refer to MediaWikiEntryPoint instead. Note that extensions should
+  not define their own entry points and should not interfere with the state of
+  MediaWikiEntryPoint instances.
 * Vuex has been deprecated in favor of its successor, Pinia. Though deprecated,
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.
