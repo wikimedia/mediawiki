@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MySQL-specific installer.
  *
@@ -21,8 +22,9 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
 use MediaWiki\Html\Html;
-use MediaWiki\Installer\LocalSettingsGenerator;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\Database;

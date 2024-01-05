@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MySQL-specific updater.
  *
@@ -21,12 +22,20 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use FixInconsistentRedirects;
+use MigrateExternallinks;
+use MigrateRevisionActorTemp;
+use MigrateRevisionCommentTemp;
+use UpdateRestrictions;
+
 /**
  * Mysql update list and mysql-specific update functions.
  *
  * @ingroup Installer
  * @since 1.17
- * @property Wikimedia\Rdbms\DatabaseMySQL $db
+ * @property \Wikimedia\Rdbms\DatabaseMySQL $db
  */
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
@@ -288,3 +297,8 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( MysqlUpdater::class, 'MysqlUpdater' );

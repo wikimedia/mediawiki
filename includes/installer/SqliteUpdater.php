@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Sqlite-specific updater.
  *
@@ -21,12 +22,20 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use FixInconsistentRedirects;
+use MigrateExternallinks;
+use MigrateRevisionActorTemp;
+use MigrateRevisionCommentTemp;
+use UpdateRestrictions;
+
 /**
  * Class for handling updates to Sqlite databases.
  *
  * @ingroup Installer
  * @since 1.17
- * @property Wikimedia\Rdbms\DatabaseSqlite $db
+ * @property \Wikimedia\Rdbms\DatabaseSqlite $db
  */
 class SqliteUpdater extends DatabaseUpdater {
 

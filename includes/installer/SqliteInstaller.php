@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Sqlite-specific installer.
  *
@@ -21,8 +22,8 @@
  * @ingroup Installer
  */
 
-use MediaWiki\Installer\Installer;
-use MediaWiki\Installer\LocalSettingsGenerator;
+namespace MediaWiki\Installer;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\AtEase\AtEase;

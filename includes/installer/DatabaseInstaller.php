@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DBMS-specific installation helper.
  *
@@ -21,9 +22,12 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use Exception;
 use MediaWiki\Html\Html;
-use MediaWiki\Installer\WebInstaller;
 use MediaWiki\Status\Status;
+use MWException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;

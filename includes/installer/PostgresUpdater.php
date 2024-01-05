@@ -21,6 +21,13 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use FixInconsistentRedirects;
+use MigrateExternallinks;
+use MigrateRevisionActorTemp;
+use MigrateRevisionCommentTemp;
+use UpdateRestrictions;
 use Wikimedia\Rdbms\DatabasePostgres;
 
 /**

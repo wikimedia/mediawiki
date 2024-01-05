@@ -19,6 +19,7 @@
  * @ingroup Testing
  */
 
+use MediaWiki\Installer\DatabaseUpdater;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class DbTestRecorder extends TestRecorder {
