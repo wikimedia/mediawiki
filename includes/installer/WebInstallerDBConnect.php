@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Installer;
 
-use Installer;
 use MediaWiki\Html\Html;
 use MediaWiki\Status\Status;
 use Xml;

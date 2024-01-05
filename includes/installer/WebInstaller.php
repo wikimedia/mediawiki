@@ -25,8 +25,6 @@ namespace MediaWiki\Installer;
 
 use Exception;
 use HtmlArmor;
-use Installer;
-use InstallerOverrides;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;

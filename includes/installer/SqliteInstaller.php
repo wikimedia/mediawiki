@@ -21,6 +21,8 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Installer\Installer;
+use MediaWiki\Installer\LocalSettingsGenerator;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\AtEase\AtEase;

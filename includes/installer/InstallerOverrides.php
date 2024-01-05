@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MediaWiki installer overrides. See mw-config/overrides/README for details.
  *
@@ -20,7 +21,8 @@
  * @file
  */
 
-use MediaWiki\Installer\WebInstaller;
+namespace MediaWiki\Installer;
+
 use MediaWiki\Request\WebRequest;
 
 /**

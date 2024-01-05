@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Installer;
 
-use Installer;
 use MediaWiki\Status\Status;
 
 class WebInstallerExistingWiki extends WebInstallerPage {

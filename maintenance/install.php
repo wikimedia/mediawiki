@@ -21,12 +21,15 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Installer\Installer;
+use MediaWiki\Installer\InstallerOverrides;
+use MediaWiki\Installer\InstallException;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
 
 require_once __DIR__ . '/Maintenance.php';
 
-define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
+define( 'MW_CONFIG_CALLBACK', [ Installer::class, 'overrideConfig' ] );
 define( 'MEDIAWIKI_INSTALL', true );
 
 /**
@@ -137,7 +140,7 @@ class CommandLineInstaller extends Maintenance {
 
 		try {
 			$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->parameters->getOptions() );
-		} catch ( \MediaWiki\Installer\InstallException $e ) {
+		} catch ( InstallException $e ) {
 			$this->error( $e->getStatus()->getMessage( false, false, 'en' )->text() . "\n" );
 			return false;
 		}

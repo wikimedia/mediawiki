@@ -1,8 +1,10 @@
 <?php
 
-class InstallDocFormatterTest extends \MediaWikiUnitTestCase {
+use MediaWiki\Installer\InstallDocFormatter;
+
+class InstallDocFormatterTest extends MediaWikiUnitTestCase {
 	/**
-	 * @covers InstallDocFormatter
+	 * @covers \MediaWiki\Installer\InstallDocFormatter
 	 * @dataProvider provideDocFormattingTests
 	 */
 	public function testFormat( $expected, $unformattedText, $message = '' ) {
