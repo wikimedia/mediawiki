@@ -6014,11 +6014,14 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If set to true, JavaScript modules loaded from wiki pages will be parsed
-	 * prior to minification to validate it.
+	 * Validate JavaScript code loaded from wiki pages.
 	 *
-	 * Parse errors will result in a JS exception being thrown during module load,
-	 * which avoids breaking other modules loaded in the same request.
+	 * If a syntax error is found, the script is replaced with a warning
+	 * logged to the browser console. This ensures errors are found early and
+	 * consistently (independent of the editor's own browser), and prevents
+	 * breaking other modules loaded in the same batch from load.php.
+	 *
+	 * @see \MediaWiki\ResourceLoader\Module::validateScriptFile
 	 */
 	public const ResourceLoaderValidateJS = [
 		'default' => true,
