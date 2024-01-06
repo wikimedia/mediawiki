@@ -48,6 +48,8 @@ class MediaWikiIntegrationTestCaseSchema1Test extends MediaWikiIntegrationTestCa
 	}
 
 	public function testTableWasAltered() {
+		// The sql file does ALTER which doesn't exist in sqlite
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		// Make sure pagelinks was altered
 		$this->assertTrue( $this->db->tableExists( 'pagelinks' ) );
 		$this->assertTrue( $this->db->fieldExists( 'pagelinks', 'pl_frobnitz' ) );
