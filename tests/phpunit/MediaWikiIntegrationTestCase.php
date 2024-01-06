@@ -675,6 +675,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			self::setupAllTestDBs(
 				$this->db, self::dbPrefix(), $useTemporaryTables
 			);
+			// Several tests might want to assume there is an initialized site_stats row
+			SiteStatsInit::doPlaceholderInit();
 		}
 
 		// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
