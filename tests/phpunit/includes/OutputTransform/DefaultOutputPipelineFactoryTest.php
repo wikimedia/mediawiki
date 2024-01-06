@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediawiki\OutputTransform;
+namespace MediaWiki\OutputTransform;
 
 use LogicException;
 use MediaWiki\MainConfigNames;
@@ -9,7 +9,7 @@ use MediaWikiLangTestCase;
 use RequestContext;
 
 /**
- * @covers \Mediawiki\OutputTransform\DefaultOutputPipelineFactory
+ * @covers \MediaWiki\OutputTransform\DefaultOutputPipelineFactory
  * The tests in this file are copied from the tests in ParserOutputTest. They aim at being the sole version
  * once we deprecate ParserOutput::getText. Some of them have been moved to their specific pipeline stage instead.
  * @group Database
@@ -18,7 +18,7 @@ use RequestContext;
 class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @covers \Mediawiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
+	 * @covers \MediaWiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
 	 * @dataProvider provideTransform
 	 * @param array $options Options to transform()
 	 * @param string $text Parser text
@@ -131,7 +131,7 @@ EOF
 	}
 
 	/**
-	 * @covers \Mediawiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
+	 * @covers \MediaWiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
 	 */
 	public function testTransform_failsIfNoText() {
 		$po = new ParserOutput( null );
