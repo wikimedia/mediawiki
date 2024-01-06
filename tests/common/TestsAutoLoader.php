@@ -135,8 +135,8 @@ $wgAutoloadClasses += [
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
 	# tests/phpunit/includes/OutputTransform
-	'Mediawiki\OutputTransform\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
-	'Mediawiki\OutputTransform\OutputTransformStageTest' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTest.php",
+	'MediaWiki\OutputTransform\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
+	'MediaWiki\OutputTransform\OutputTransformStageTest' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTest.php",
 
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",

@@ -1,21 +1,21 @@
 <?php
 
-namespace Mediawiki\OutputTransform\Stages;
+namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\MainConfigNames;
-use Mediawiki\OutputTransform\TestUtils;
+use MediaWiki\OutputTransform\TestUtils;
 use MediaWiki\Parser\ParserOutput;
 use RequestContext;
 
 /**
  * This test does not extend OutputTransformStageTest because we're explicitly testing that
  * the options are modified during the pipeline run.
- * @covers \Mediawiki\OutputTransform\Stages\PostCacheTransformHookRunner
+ * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner
  */
 class PostCacheTransformHookRunnerTest extends \MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \Mediawiki\OutputTransform\Stages\PostCacheTransformHookRunner::transform
+	 * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner::transform
 	 */
 	public function testTransform(): void {
 		// Avoid other skins affecting the section edit links
@@ -57,7 +57,7 @@ class PostCacheTransformHookRunnerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Mediawiki\OutputTransform\Stages\PostCacheTransformHookRunner::shouldRun
+	 * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner::shouldRun
 	 */
 	public function testShouldRun() {
 		$transform = new PostCacheTransformHookRunner( $this->getServiceContainer()->getHookContainer() );
@@ -72,7 +72,7 @@ class PostCacheTransformHookRunnerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Mediawiki\OutputTransform\Stages\PostCacheTransformHookRunner::shouldRun
+	 * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner::shouldRun
 	 */
 	public function testShouldNotRun() {
 		$transform = new PostCacheTransformHookRunner( $this->getServiceContainer()->getHookContainer() );

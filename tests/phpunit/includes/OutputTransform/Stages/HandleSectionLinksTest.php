@@ -1,14 +1,14 @@
 <?php
 
-namespace Mediawiki\OutputTransform\Stages;
+namespace MediaWiki\OutputTransform\Stages;
 
-use Mediawiki\OutputTransform\OutputTransformStage;
-use Mediawiki\OutputTransform\OutputTransformStageTest;
-use Mediawiki\OutputTransform\TestUtils;
+use MediaWiki\OutputTransform\OutputTransformStage;
+use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\TestUtils;
 use MediaWiki\Parser\ParserOutput;
 use Psr\Log\NullLogger;
 
-/** @covers \Mediawiki\OutputTransform\Stages\HandleSectionLinks */
+/** @covers \MediaWiki\OutputTransform\Stages\HandleSectionLinks */
 class HandleSectionLinksTest extends OutputTransformStageTest {
 
 	public function createStage(): OutputTransformStage {

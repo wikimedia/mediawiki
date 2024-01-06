@@ -1,14 +1,14 @@
 <?php
 
-namespace Mediawiki\OutputTransform\Stages;
+namespace MediaWiki\OutputTransform\Stages;
 
-use Mediawiki\OutputTransform\OutputTransformStage;
-use Mediawiki\OutputTransform\OutputTransformStageTest;
-use Mediawiki\OutputTransform\TestUtils;
+use MediaWiki\OutputTransform\OutputTransformStage;
+use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\TestUtils;
 use MediaWiki\Parser\ParserOutput;
 
 /**
- * @covers \Mediawiki\OutputTransform\Stages\HandleTOCMarkers
+ * @covers \MediaWiki\OutputTransform\Stages\HandleTOCMarkers
  */
 class HandleTOCMarkersTest extends OutputTransformStageTest {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediawiki\OutputTransform;
+namespace MediaWiki\OutputTransform;
 
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
