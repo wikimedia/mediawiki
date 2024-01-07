@@ -25,14 +25,6 @@
  * @file
  */
 
-/**
- * @defgroup entrypoint Entry points
- *
- * These primary scripts live in the root directory. They are the ones used by
- * web requests to interact with the wiki. Other PHP files in the repository
- * do not need to be accessed directly by the web.
- */
-
 # T17461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.

@@ -11,8 +11,8 @@
 // -------------------------------------------------
 
 /**
- * The main web entry point for web browser navigations, usually via an
- * Action or SpecialPage subclass.
+ * The.php entry point for web browser navigations, usually routed to
+ * an Action or SpecialPage subclass.
  *
  * @see MediaWiki\Actions\ActionEntryPoint The implementation.
  *

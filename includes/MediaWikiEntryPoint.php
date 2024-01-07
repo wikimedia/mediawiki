@@ -47,11 +47,21 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\ScopedCallback;
 
 /**
+ * @defgroup entrypoint Entry points
+ *
+ * Web entry points reside in top-level MediaWiki directory (i.e. installation path).
+ * These entry points handle web requests to interact with the wiki. Other PHP files
+ * in the repository are not accessed directly from the web, but instead included by
+ * an entry point.
+ */
+
+/**
  * Base class for entry point handlers.
  *
  * @note: This is not stable to extend by extensions, because MediaWiki does not
  * allow extensions to define new entry points.
  *
+ * @ingroup entrypoint
  * @since 1.42, factored out of the previously existing MediaWiki class.
  */
 abstract class MediaWikiEntryPoint {
