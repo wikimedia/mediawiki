@@ -44,6 +44,9 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * Consider using MediaWikiUnitTestCase and mocking dependencies if your code uses dependency
  * injection and does not access any globals.
  *
+ * Database changes and configuration changes will be rolled back at the end of each individual
+ * test.
+ *
  * @stable to extend
  */
 abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
