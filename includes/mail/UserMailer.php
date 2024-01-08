@@ -67,15 +67,18 @@ class UserMailer {
 	 * @return string
 	 */
 	private static function makeMsgId() {
-		$smtp = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SMTP );
-		$server = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Server );
+		$services = MediaWikiServices::getInstance();
+
+		$smtp = $services->getMainConfig()->get( MainConfigNames::SMTP );
+		$server = $services->getMainConfig()->get( MainConfigNames::Server );
 		$domainId = WikiMap::getCurrentWikiDbDomain()->getId();
 		$msgid = uniqid( $domainId . ".", true /** for cygwin */ );
+
 		if ( is_array( $smtp ) && isset( $smtp['IDHost'] ) && $smtp['IDHost'] ) {
 			$domain = $smtp['IDHost'];
 		} else {
-			$url = wfParseUrl( $server );
-			$domain = $url['host'];
+			$url = $services->getUrlUtils()->parse( $server );
+			$domain = $url !== null ? $url['host'] : '';
 		}
 		return "<$msgid@$domain>";
 	}
