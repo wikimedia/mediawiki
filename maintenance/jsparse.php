@@ -25,7 +25,7 @@ require_once __DIR__ . '/Maintenance.php';
  * Ad-hoc run ResourceLoader validation for user-supplied JavaScript.
  *
  * Matches the behaviour of ResourceLoader\Module::validateScriptFile, currently
- * powered by the the JSMinPlus library.
+ * powered by the the Peast library.
  *
  * @ingroup Maintenance
  */
@@ -41,7 +41,6 @@ class JSParseHelper extends Maintenance {
 	public function execute() {
 		$files = $this->getArgs();
 
-		$parser = new JSParser();
 		foreach ( $files as $filename ) {
 			$js = $filename === '-'
 				? stream_get_contents( STDIN )
@@ -54,11 +53,10 @@ class JSParseHelper extends Maintenance {
 			}
 
 			try {
-				// phpcs:ignore Generic.PHP.NoSilencedErrors
-				@$parser->parse( $js, $filename, 1 );
+				Peast\Peast::ES2016( $js )->parse();
 			} catch ( Exception $e ) {
 				$this->errs++;
-				$this->output( "$filename ERROR: " . $e->getMessage() . "\n" );
+				$this->output( "$filename ERROR: " . get_class( $e ) . ": " . $e->getMessage() . "\n" );
 				continue;
 			}
 
