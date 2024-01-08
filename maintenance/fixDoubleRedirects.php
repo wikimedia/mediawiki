@@ -62,10 +62,10 @@ class FixDoubleRedirects extends Maintenance {
 		// TODO: support batch querying
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [
-				'pa.page_namespace AS pa_namespace',
-				'pa.page_title AS pa_title',
-				'pb.page_namespace AS pb_namespace',
-				'pb.page_title AS pb_title',
+				'pa_namespace' => 'pa.page_namespace',
+				'pa_title' => 'pa.page_title',
+				'pb_namespace' => 'pb.page_namespace',
+				'pb_title' => 'pb.page_title',
 			] )
 			->from( 'redirect' )
 			->join( 'page', 'pa', 'rd_from = pa.page_id' )

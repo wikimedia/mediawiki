@@ -82,7 +82,7 @@ class RebuildTextIndex extends Maintenance {
 	protected function populateSearchIndex() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$res = $dbw->newSelectQueryBuilder()
-			->select( 'MAX(page_id) AS count' )
+			->select( [ 'count' => 'MAX(page_id)' ] )
 			->from( 'page' )
 			->caller( __METHOD__ )->fetchResultSet();
 		$s = $res->fetchObject();
