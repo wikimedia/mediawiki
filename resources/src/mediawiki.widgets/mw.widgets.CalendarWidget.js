@@ -90,10 +90,9 @@
 	/* Events */
 
 	/**
-	 * @event change
-	 *
 	 * A change event is emitted when the chosen date changes.
 	 *
+	 * @event mw.widgets.CalendarWidget.change
 	 * @param {string} date Day or month date, in the format 'YYYY-MM-DD' or 'YYYY-MM'
 	 */
 

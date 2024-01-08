@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.NamespacesMultiselectWidget object
+	 * Creates an mw.widgets.NamespacesMultiselectWidget object.
 	 *
 	 * TODO: A lot of this is duplicated in mw.widgets.UsersMultiselectWidget
 	 * and mw.widgets.TitlesMultiselectWidget. These classes should be

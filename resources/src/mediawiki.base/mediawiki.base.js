@@ -222,7 +222,16 @@ Message.prototype = {
  */
 mw.libs = {};
 
-// OOUI widgets specific to MediaWiki
+/**
+ * OOUI widgets specific to MediaWiki.
+ * Initially empty. To expand the amount of available widgets the `mediawiki.widget` module can be loaded.
+ *
+ * @namespace mw.widgets
+ * @example
+ * mw.loader.using('mediawiki.widget').then(() => {
+ *   OO.ui.getWindowManager().addWindows( [ new mw.widget.AbandonEditDialog() ] );
+ * });
+ */
 mw.widgets = {};
 
 /**

@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.TitlesMultiselectWidget object
+	 * Creates an mw.widgets.TitlesMultiselectWidget object.
 	 *
 	 * @class
 	 * @extends OO.ui.MenuTagMultiselectWidget
@@ -92,7 +92,7 @@
 	};
 
 	/**
-	 * @inheritdoc OO.ui.MenuTagMultiselectWidget
+	 * @inheritdoc
 	 */
 	mw.widgets.TitlesMultiselectWidget.prototype.onInputChange = function () {
 		var widget = this;
@@ -121,21 +121,21 @@
 	};
 
 	/**
-	 * @inheritdoc OO.ui.mixin.RequestManager
+	 * @inheritdoc
 	 */
 	mw.widgets.TitlesMultiselectWidget.prototype.getRequestQuery = function () {
 		return this.getQueryValue();
 	};
 
 	/**
-	 * @inheritdoc OO.ui.mixin.RequestManager
+	 * @inheritdoc
 	 */
 	mw.widgets.TitlesMultiselectWidget.prototype.getRequest = function () {
 		return this.getSuggestionsPromise();
 	};
 
 	/**
-	 * @inheritdoc OO.ui.mixin.RequestManager
+	 * @inheritdoc
 	 */
 	mw.widgets.TitlesMultiselectWidget.prototype.getRequestCacheDataFromResponse = function ( response ) {
 		return response.query || {};

@@ -78,20 +78,18 @@ mw.widgets.TableWidgetModel.static.getEntryFromPropsTable = function ( handle, t
 /* Events */
 
 /**
- * @event valueChange
- *
  * Fired when a value inside the table has changed.
  *
+ * @event mw.widgets.TableWidgetModel.valueChange
  * @param {number} row The row index of the updated cell
  * @param {number} column The column index of the updated cell
  * @param {Mixed} value The new value
  */
 
 /**
- * @event insertRow
- *
  * Fired when a new row is inserted into the table.
  *
+ * @event mw.widgets.TableWidgetModel.insertRow
  * @param {Array} data The initial data
  * @param {number} index The index in which to insert the new row
  * @param {string} key The row key
@@ -99,10 +97,9 @@ mw.widgets.TableWidgetModel.static.getEntryFromPropsTable = function ( handle, t
  */
 
 /**
- * @event insertColumn
- *
  * Fired when a new row is inserted into the table.
  *
+ * @event mw.widgets.TableWidgetModel.insertColumn
  * @param {Array} data The initial data
  * @param {number} index The index in which to insert the new column
  * @param {string} key The column key
@@ -110,28 +107,25 @@ mw.widgets.TableWidgetModel.static.getEntryFromPropsTable = function ( handle, t
  */
 
 /**
- * @event removeRow
- *
  * Fired when a row is removed from the table.
  *
+ * @event mw.widgets.TableWidgetModel.removeRow
  * @param {number} index The removed row index
  * @param {string} key The removed row key
  */
 
 /**
- * @event removeColumn
- *
  * Fired when a column is removed from the table.
  *
+ * @event mw.widgets.TableWidgetModel.removeColumn
  * @param {number} index The removed column index
  * @param {string} key The removed column key
  */
 
 /**
- * @event clear
- *
  * Fired when the table data is wiped.
  *
+ * @event mw.widgets.TableWidgetModel.clear
  * @param {boolean} clear Clear row/column properties
  */
 
@@ -177,7 +171,7 @@ mw.widgets.TableWidgetModel.prototype.initializeProps = function ( rowProps, col
 /**
  * Triggers the initialization process and builds the initial table.
  *
- * @fires insertRow
+ * @fires mw.widgets.TableWidgetModel.insertRow
  */
 mw.widgets.TableWidgetModel.prototype.setupTable = function () {
 	this.verifyData();
@@ -211,7 +205,7 @@ mw.widgets.TableWidgetModel.prototype.verifyData = function () {
  * Build initial table
  *
  * @private
- * @fires insertRow
+ * @fires mw.widgets.TableWidgetModel.insertRow
  */
 mw.widgets.TableWidgetModel.prototype.buildTable = function () {
 	var i, len;
@@ -225,7 +219,7 @@ mw.widgets.TableWidgetModel.prototype.buildTable = function () {
  * Refresh the entire table with new data
  *
  * @private
- * @fires insertRow
+ * @fires mw.widgets.TableWidgetModel.insertRow
  */
 mw.widgets.TableWidgetModel.prototype.refreshTable = function () {
 	// TODO: Clear existing table
@@ -234,12 +228,12 @@ mw.widgets.TableWidgetModel.prototype.refreshTable = function () {
 };
 
 /**
- * Set the value of a particular cell
+ * Set the value of a particular cell.
  *
  * @param {number|string} row The index or key of the row
  * @param {number|string} col The index or key of the column
  * @param {Mixed} value The new value
- * @fires valueChange
+ * @fires mw.widgets.TableWidgetModel.valueChange
  */
 mw.widgets.TableWidgetModel.prototype.setValue = function ( row, col, value ) {
 	var rowIndex, colIndex;
@@ -266,7 +260,7 @@ mw.widgets.TableWidgetModel.prototype.setValue = function ( row, col, value ) {
 };
 
 /**
- * Set the table data
+ * Set the table data.
  *
  * @param {Array} data The new table data
  */
@@ -290,7 +284,7 @@ mw.widgets.TableWidgetModel.prototype.setData = function ( data ) {
  * If unset or set to null, no key will be set.
  * @param {string} [label] A label to display next to the row.
  * If unset or set to null, the key will be used if there is one.
- * @fires insertRow
+ * @fires mw.widgets.TableWidgetModel.insertRow
  */
 mw.widgets.TableWidgetModel.prototype.insertRow = function ( data, index, key, label ) {
 	var insertIndex = ( typeof index === 'number' ) ? index : this.rows.length,
@@ -337,7 +331,7 @@ mw.widgets.TableWidgetModel.prototype.insertRow = function ( data, index, key, l
  * If unset or set to null, no key will be set.
  * @param {string} [label] A label to display next to the column.
  * If unset or set to null, the key will be used if there is one.
- * @fires insertColumn
+ * @fires mw.widgets.TableWidgetModel.insertColumn
  */
 mw.widgets.TableWidgetModel.prototype.insertColumn = function ( data, index, key, label ) {
 	var insertIndex = ( typeof index === 'number' ) ? index : this.cols.length,
@@ -376,7 +370,7 @@ mw.widgets.TableWidgetModel.prototype.insertColumn = function ( data, index, key
  * all the following rows will be shifted back one row.
  *
  * @param {number|string} handle The key or numerical index of the row to remove
- * @fires removeRow
+ * @fires mw.widgets.TableWidgetModel.removeRow
  */
 mw.widgets.TableWidgetModel.prototype.removeRow = function ( handle ) {
 	var rowProps = this.getRowProperties( handle ),
@@ -403,7 +397,7 @@ mw.widgets.TableWidgetModel.prototype.removeRow = function ( handle ) {
  * all the following columns will be shifted back one column.
  *
  * @param {number|string} handle The key or numerical index of the column to remove
- * @fires removeColumn
+ * @fires mw.widgets.TableWidgetModel.removeColumn
  */
 mw.widgets.TableWidgetModel.prototype.removeColumn = function ( handle ) {
 	var colProps = this.getColumnProperties( handle ),
@@ -429,9 +423,9 @@ mw.widgets.TableWidgetModel.prototype.removeColumn = function ( handle ) {
 };
 
 /**
- * Clears the table data
+ * Clears the table data.
  *
- * @fires clear
+ * @fires mw.widgets.TableWidgetModel.clear
  */
 mw.widgets.TableWidgetModel.prototype.clear = function () {
 	this.data = [];
@@ -441,9 +435,9 @@ mw.widgets.TableWidgetModel.prototype.clear = function () {
 };
 
 /**
- * Clears the table data, as well as all row and column properties
+ * Clears the table data, as well as all row and column properties.
  *
- * @fires clear
+ * @fires mw.widgets.TableWidgetModel.clear
  */
 mw.widgets.TableWidgetModel.prototype.clearWithProperties = function () {
 	this.data = [];
@@ -454,7 +448,7 @@ mw.widgets.TableWidgetModel.prototype.clearWithProperties = function () {
 };
 
 /**
- * Get all table properties
+ * Get all table properties.
  *
  * @return {Object}
  */
@@ -468,7 +462,7 @@ mw.widgets.TableWidgetModel.prototype.getTableProperties = function () {
 };
 
 /**
- * Get the validation pattern to test cells against
+ * Get the validation pattern to test cells against.
  *
  * @return {RegExp|Function|string}
  */
@@ -477,7 +471,7 @@ mw.widgets.TableWidgetModel.prototype.getValidationPattern = function () {
 };
 
 /**
- * Get properties of a given row
+ * Get properties of a given row.
  *
  * @param {string|number} handle The key (or numeric index) of the row
  * @return {Object|null} An object containing the `key`, `index` and `label` properties of the row.
@@ -488,7 +482,7 @@ mw.widgets.TableWidgetModel.prototype.getRowProperties = function ( handle ) {
 };
 
 /**
- * Get properties of all rows
+ * Get properties of all rows.
  *
  * @return {Array} An array of objects containing `key`, `index` and `label` properties for each row
  */
@@ -497,7 +491,7 @@ mw.widgets.TableWidgetModel.prototype.getAllRowProperties = function () {
 };
 
 /**
- * Get properties of a given column
+ * Get properties of a given column.
  *
  * @param {string|number} handle The key (or numeric index) of the column
  * @return {Object|null} An object containing the `key`, `index` and
@@ -509,7 +503,7 @@ mw.widgets.TableWidgetModel.prototype.getColumnProperties = function ( handle ) 
 };
 
 /**
- * Get properties of all columns
+ * Get properties of all columns.
  *
  * @return {Array} An array of objects containing `key`, `index` and
  *  `label` properties for each column

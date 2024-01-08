@@ -33,7 +33,7 @@
 
 	/**
 	 * Override parent method to set up the providers according to
-	 * the file repos
+	 * the file repos.
 	 *
 	 * @return {jQuery.Promise} Promise that resolves when the resources are set up
 	 */
@@ -64,7 +64,7 @@
 	};
 
 	/**
-	 * Set the user nae
+	 * Set the user name.
 	 *
 	 * @param {string} user User name
 	 */
@@ -73,7 +73,7 @@
 	};
 
 	/**
-	 * Get the user name
+	 * Get the user name.
 	 *
 	 * @return {string} API search query
 	 */

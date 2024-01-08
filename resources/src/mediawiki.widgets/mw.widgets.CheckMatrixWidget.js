@@ -102,7 +102,7 @@
 	/* Methods */
 
 	/**
-	 * Check whether the given tag is selected
+	 * Check whether the given tag is selected.
 	 *
 	 * @param {string} tagName Tag name
 	 * @return {boolean} Tag is selected
@@ -121,7 +121,7 @@
 	};
 
 	/**
-	 * Check whether the given tag is disabled
+	 * Check whether the given tag is disabled.
 	 *
 	 * @param {string} tagName Tag name
 	 * @return {boolean} Tag is disabled

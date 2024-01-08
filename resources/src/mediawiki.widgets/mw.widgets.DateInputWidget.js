@@ -251,7 +251,7 @@
 	 * Fired when the widget is deactivated (i.e. the calendar is closed). This can happen because
 	 * the user selected a value, or because the user blurred the widget.
 	 *
-	 * @event deactivate
+	 * @event mw.widgets.DateInputWidget.deactivate
 	 * @param {boolean} userSelected Whether the deactivation happened because the user selected a value
 	 */
 

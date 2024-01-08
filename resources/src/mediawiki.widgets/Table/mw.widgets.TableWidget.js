@@ -145,10 +145,9 @@ mw.widgets.TableWidget.static.patterns = {
 /* Events */
 
 /**
- * @event change
- *
  * Change when the data within the table has been updated.
  *
+ * @event mw.widgets.TableWidget.change
  * @param {number} rowIndex The index of the row that changed
  * @param {string} rowKey The key of the row that changed, or `undefined` if it doesn't exist
  * @param {number} columnIndex The index of the column that changed
@@ -157,10 +156,9 @@ mw.widgets.TableWidget.static.patterns = {
  */
 
 /**
- * @event removeRow
- *
  * Fires when a row is removed from the table
  *
+ * @event mw.widgets.TableWidget.removeRow
  * @param {number} index The index of the row being deleted
  * @param {string} key The key of the row being deleted
  */
@@ -168,7 +166,7 @@ mw.widgets.TableWidget.static.patterns = {
 /* Methods */
 
 /**
- * Set the value of a particular cell
+ * Set the value of a particular cell.
  *
  * @param {number|string} row The row containing the cell to edit. Can be either
  * the row index or string key if one has been set for the row.
@@ -181,7 +179,7 @@ mw.widgets.TableWidget.prototype.setValue = function ( row, col, value ) {
 };
 
 /**
- * Set the table data
+ * Set the table data.
  *
  * @param {Array} data The new table data
  * @return {boolean} The data has been successfully changed
@@ -255,14 +253,14 @@ mw.widgets.TableWidget.prototype.clear = function () {
 };
 
 /**
- * Clears the table data, as well as all row and column properties
+ * Clears the table data, as well as all row and column properties.
  */
 mw.widgets.TableWidget.prototype.clearWithProperties = function () {
 	this.model.clearWithProperties();
 };
 
 /**
- * Filter cell input once it is changed
+ * Filter cell input once it is changed.
  *
  * @param {string} value The input value
  * @return {string} The filtered input
@@ -325,7 +323,7 @@ mw.widgets.TableWidget.prototype.removeItems = function ( items ) {
  * @param {number} row The row index of the changed cell
  * @param {number} col The column index of the changed cell
  * @param {Mixed} value The new value
- * @fires change
+ * @fires mw.widgets.TableWidget.change
  */
 mw.widgets.TableWidget.prototype.onValueChange = function ( row, col, value ) {
 	var rowProps = this.model.getRowProperties( row ),
@@ -344,7 +342,7 @@ mw.widgets.TableWidget.prototype.onValueChange = function ( row, col, value ) {
  * @param {number} index The index in which the new row was inserted
  * @param {string} key The row key
  * @param {string} label The row label
- * @fires change
+ * @fires mw.widgets.TableWidget.change
  */
 mw.widgets.TableWidget.prototype.onInsertRow = function ( data, index, key, label ) {
 	var colProps = this.model.getAllColumnProperties(),
@@ -388,7 +386,7 @@ mw.widgets.TableWidget.prototype.onInsertRow = function ( data, index, key, labe
  * @param {string} key The row key
  * @param {string} label The row label
  *
- * @fires change
+ * @fires mw.widgets.TableWidget.change
  */
 mw.widgets.TableWidget.prototype.onInsertColumn = function ( data, index, key, label ) {
 	var tableProps = this.model.getTableProperties(),
@@ -423,7 +421,7 @@ mw.widgets.TableWidget.prototype.onInsertColumn = function ( data, index, key, l
  * @private
  * @param {number} index The removed row index
  * @param {string} key The removed row key
- * @fires removeRow
+ * @fires mw.widgets.TableWidget.removeRow
  */
 mw.widgets.TableWidget.prototype.onRemoveRow = function ( index, key ) {
 	this.removeItems( [ this.getItems()[ index ] ] );
@@ -436,7 +434,7 @@ mw.widgets.TableWidget.prototype.onRemoveRow = function ( index, key ) {
  * @private
  * @param {number} index The removed column index
  * @param {string} key The removed column key
- * @fires removeColumn
+ * @fires mw.widgets.TableWidget.removeColumn
  */
 mw.widgets.TableWidget.prototype.onRemoveColumn = function ( index, key ) {
 	var i, items = this.getItems();
@@ -475,7 +473,7 @@ mw.widgets.TableWidget.prototype.onClear = function ( withProperties ) {
  * @param {mw.widgets.RowWidget} row The row that changed
  * @param {number} colIndex The column index of the cell that changed
  * @param {string} value The new value of the input
- * @fires change
+ * @fires mw.widgets.TableWidget.change
  */
 mw.widgets.TableWidget.prototype.onRowInputChange = function ( row, colIndex, value ) {
 	var items = this.getItems(),
@@ -568,7 +566,7 @@ mw.widgets.TableWidget.prototype.setDisabled = function ( disabled ) {
 };
 
 /**
- * Refresh table header and insertion row
+ * Refresh table header and insertion row.
  */
 mw.widgets.TableWidget.prototype.refreshTableMarginals = function () {
 	var tableProps = this.model.getTableProperties(),

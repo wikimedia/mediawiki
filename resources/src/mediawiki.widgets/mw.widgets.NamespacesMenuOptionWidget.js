@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.NamespacesMenuOptionWidget object
+	 * Creates an mw.widgets.NamespacesMenuOptionWidget object.
 	 *
 	 * This MenuOptionWidget widget returns an item match text that includes
 	 * both the label and the data, so the menu can filter on either.

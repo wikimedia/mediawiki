@@ -58,14 +58,14 @@
 	/* Methods */
 
 	/**
-	 * @inheritdoc mw.widgets.TitleWidget
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleInputWidget.prototype.getQueryValue = function () {
 		return this.getValue();
 	};
 
 	/**
-	 * @inheritdoc mw.widgets.TitleWidget
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleInputWidget.prototype.setNamespace = function ( namespace ) {
 		// Mixin method
@@ -83,14 +83,14 @@
 	};
 
 	/**
-	 * @inheritdoc OO.ui.mixin.LookupElement
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
 		return response.query || {};
 	};
 
 	/**
-	 * @inheritdoc OO.ui.mixin.LookupElement
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleInputWidget.prototype.getLookupMenuOptionsFromData = function ( response ) {
 		return this.getOptionsFromData( response );

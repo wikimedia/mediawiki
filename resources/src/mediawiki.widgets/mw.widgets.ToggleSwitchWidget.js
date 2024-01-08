@@ -7,7 +7,7 @@
 ( function () {
 	/**
 	 * This extends ToggleSwitchWidget by adding an invisible checkbox
-	 * element which will be used to submit the value
+	 * element which will be used to submit the value.
 	 *
 	 * @class
 	 * @extends OO.ui.ToggleSwitchWidget

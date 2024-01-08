@@ -55,14 +55,14 @@
 	/* Methods */
 
 	/**
-	 * @inheritdoc mw.widgets.TitleWidget
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleSearchWidget.prototype.getQueryValue = function () {
 		return this.getQuery().getValue();
 	};
 
 	/**
-	 * Handle choose events from the result widget
+	 * Handle choose events from the result widget.
 	 *
 	 * @param {OO.ui.OptionWidget} item Chosen item
 	 */
@@ -89,19 +89,19 @@
 	};
 
 	/**
-	 * @inheritdoc OO.ui.mixin.RequestManager
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleSearchWidget.prototype.getRequestQuery = function () {
 		return this.getQueryValue();
 	};
 	/**
-	 * @inheritdoc OO.ui.mixin.RequestManager
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleSearchWidget.prototype.getRequest = function () {
 		return this.getSuggestionsPromise();
 	};
 	/**
-	 * @inheritdoc OO.ui.mixin.RequestManager
+	 * @inheritdoc
 	 */
 	mw.widgets.TitleSearchWidget.prototype.getRequestCacheDataFromResponse = function ( response ) {
 		return response.query || {};

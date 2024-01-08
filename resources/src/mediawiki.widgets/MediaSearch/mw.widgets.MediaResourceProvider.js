@@ -92,7 +92,7 @@
 	};
 
 	/**
-	 * Override parent method and get results from the source
+	 * Override parent method and get results from the source.
 	 *
 	 * @param {number} [howMany] The number of items to pull from the API
 	 * @return {jQuery.Promise} Promise that is resolved into an array
@@ -134,7 +134,7 @@
 	};
 
 	/**
-	 * Get continuation API data
+	 * Get continuation API data.
 	 *
 	 * @param {number} howMany The number of results to retrieve
 	 * @return {Object} API request data
@@ -144,7 +144,7 @@
 	};
 
 	/**
-	 * Set continuation data for the next page
+	 * Set continuation data for the next page.
 	 *
 	 * @param {Object} continueData Continuation data
 	 */
@@ -152,7 +152,7 @@
 	};
 
 	/**
-	 * Sort the results
+	 * Sort the results.
 	 *
 	 * @param {Object[]} results API results
 	 * @return {Object[]} Sorted results
@@ -222,7 +222,7 @@
 	};
 
 	/**
-	 * Set name
+	 * Set name.
 	 *
 	 * @param {string} name
 	 */
@@ -231,7 +231,7 @@
 	};
 
 	/**
-	 * Get name
+	 * Get name.
 	 *
 	 * @return {string} name
 	 */
@@ -252,7 +252,7 @@
 	};
 
 	/**
-	 * Get prop
+	 * Get prop.
 	 *
 	 * @return {string} prop
 	 */
@@ -261,7 +261,7 @@
 	};
 
 	/**
-	 * Set prop
+	 * Set prop.
 	 *
 	 * @param {string} prop
 	 */
@@ -270,7 +270,7 @@
 	};
 
 	/**
-	 * Set thumb sizes
+	 * Set thumb sizes.
 	 *
 	 * @param {number[]} sizes Available thumbnail sizes
 	 */
@@ -279,7 +279,7 @@
 	};
 
 	/**
-	 * Set image sizes
+	 * Set image sizes.
 	 *
 	 * @param {number[]} sizes Available image sizes
 	 */
@@ -288,7 +288,7 @@
 	};
 
 	/**
-	 * Get thumb sizes
+	 * Get thumb sizes.
 	 *
 	 * @return {number[]} sizes Available thumbnail sizes
 	 */
@@ -297,7 +297,7 @@
 	};
 
 	/**
-	 * Get image sizes
+	 * Get image sizes.
 	 *
 	 * @return {number[]} sizes Available image sizes
 	 */

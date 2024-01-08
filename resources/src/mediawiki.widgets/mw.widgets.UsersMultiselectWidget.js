@@ -87,7 +87,7 @@
 	/* Methods */
 
 	/**
-	 * Get currently selected usernames
+	 * Get currently selected usernames.
 	 *
 	 * @return {string[]} usernames
 	 */
@@ -96,7 +96,7 @@
 	};
 
 	/**
-	 * Update autocomplete menu with items
+	 * Update autocomplete menu with items.
 	 *
 	 * @private
 	 */

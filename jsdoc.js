@@ -38,7 +38,8 @@ module.exports = {
 			'resources/src/mediawiki.template.js',
 			'resources/src/mediawiki.template.mustache.js',
 			'resources/src/mediawiki.user.js',
-			'resources/src/mediawiki.Uri'
+			'resources/src/mediawiki.Uri',
+			'resources/src/mediawiki.widgets'
 
 		],
 		exclude: [
@@ -105,7 +106,6 @@ module.exports = {
 			'resources/src/mediawiki.libs.pluralruleparser',
 			'resources/src/mediawiki.watchstar.widgets',
 			'resources/src/mediawiki.messagePoster',
-			'resources/src/mediawiki.widgets',
 			'resources/src/mediawiki.misc-authed-curate',
 			'resources/src/mediawiki.widgets.datetime',
 			'resources/src/mediawiki.misc-authed-ooui',
@@ -142,7 +142,20 @@ module.exports = {
 				'jQuery.Event': 'https://api.jquery.com/Types/#Event',
 				'jQuery.Promise': 'https://api.jquery.com/Types/#Promise',
 				Node: 'https://developer.mozilla.org/en-US/docs/Web/API/Node',
+				'OO.ui.CopyTextLayout': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.CopyTextLayout',
+				'OO.ui.DropdownInputWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.DropdownInputWidget',
+				'OO.ui.MenuOptionWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.MenuOptionWidget',
+				'OO.ui.MenuTagMultiselectWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.MenuTagMultiselectWidget',
+				'OO.ui.MessageDialog': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.MessageDialog',
+				'OO.ui.OptionWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.OptionWidget',
 				'OO.ui.ProcessDialog': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.ProcessDialog',
+				'OO.ui.SearchWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.SearchWidget',
+				'OO.ui.SearchInputWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.SearchInputWidget',
+				'OO.ui.TagItemWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.TagItemWidget',
+				'OO.ui.TagMultiselectWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.TagMultiselectWidget',
+				'OO.ui.TextInputWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.TextInputWidget',
+				'OO.ui.ToggleSwitchWidget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.ToggleSwitchWidget',
+				'OO.ui.Widget': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.Widget',
 				Promise: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
 				Set: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set',
 				URLSearchParams: 'https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams'

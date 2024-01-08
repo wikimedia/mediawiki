@@ -42,43 +42,39 @@ OO.mixinClass( mw.widgets.RowWidgetModel, OO.EventEmitter );
 /* Events */
 
 /**
- * @event valueChange
- *
  * Fired when a value inside the row has changed.
  *
+ * @event mw.widgets.RowWidgetModel.valueChange
  * @param {number} index The column index of the updated cell
  * @param {number} value The new value
  */
 
 /**
- * @event insertCell
- *
  * Fired when a new cell is inserted into the row.
  *
+ * @event mw.widgets.RowWidgetModel.insertCell
  * @param {Array} data The initial data
  * @param {number} index The index in which to insert the new cell
  */
 
 /**
- * @event removeCell
- *
  * Fired when a cell is removed from the row.
  *
+ * @event mw.widgets.RowWidgetModel.removeCell
  * @param {number} index The removed cell index
  */
 
 /**
- * @event clear
+ * Fired when the row is cleared.
  *
- * Fired when the row is cleared
- *
+ * @event mw.widgets.RowWidgetModel.clear
  * @param {boolean} clear Clear cell properties
  */
 
 /**
- * @event labelUpdate
+ * Fired when the row label might need to be updated.
  *
- * Fired when the row label might need to be updated
+ * @event mw.widgets.RowWidgetModel.labelUpdate
  */
 
 /* Methods */
@@ -108,7 +104,7 @@ mw.widgets.RowWidgetModel.prototype.initializeProps = function ( props ) {
 /**
  * Triggers the initialization process and builds the initial row.
  *
- * @fires insertCell
+ * @fires mw.widgets.RowWidgetModel.insertCell
  */
 mw.widgets.RowWidgetModel.prototype.setupRow = function () {
 	this.verifyData();
@@ -136,7 +132,7 @@ mw.widgets.RowWidgetModel.prototype.verifyData = function () {
  * Build initial row
  *
  * @private
- * @fires insertCell
+ * @fires mw.widgets.RowWidgetModel.insertCell
  */
 mw.widgets.RowWidgetModel.prototype.buildRow = function () {
 	var i, len;
@@ -150,7 +146,7 @@ mw.widgets.RowWidgetModel.prototype.buildRow = function () {
  * Refresh the entire row with new data
  *
  * @private
- * @fires insertCell
+ * @fires mw.widgets.RowWidgetModel.insertCell
  */
 mw.widgets.RowWidgetModel.prototype.refreshRow = function () {
 	// TODO: Clear existing table
@@ -159,11 +155,11 @@ mw.widgets.RowWidgetModel.prototype.refreshRow = function () {
 };
 
 /**
- * Set the value of a particular cell
+ * Set the value of a particular cell.
  *
  * @param {number|string} handle The index or key of the cell
  * @param {Mixed} value The new value
- * @fires valueChange
+ * @fires mw.widgets.RowWidgetModel.valueChange
  */
 mw.widgets.RowWidgetModel.prototype.setValue = function ( handle, value ) {
 	var index;
@@ -183,7 +179,7 @@ mw.widgets.RowWidgetModel.prototype.setValue = function ( handle, value ) {
 };
 
 /**
- * Set the row data
+ * Set the row data.
  *
  * @param {Array} data The new row data
  */
@@ -197,10 +193,10 @@ mw.widgets.RowWidgetModel.prototype.setData = function ( data ) {
 };
 
 /**
- * Set the row index
+ * Set the row index.
  *
  * @param {number} index The new row index
- * @fires labelUpdate
+ * @fires mw.widgets.RowWidgetModel.labelUpdate
  */
 mw.widgets.RowWidgetModel.prototype.setIndex = function ( index ) {
 	this.index = index;
@@ -208,10 +204,10 @@ mw.widgets.RowWidgetModel.prototype.setIndex = function ( index ) {
 };
 
 /**
- * Set the row label
+ * Set the row label.
  *
  * @param {number} label The new row label
- * @fires labelUpdate
+ * @fires mw.widgets.RowWidgetModel.labelUpdate
  */
 mw.widgets.RowWidgetModel.prototype.setLabel = function ( label ) {
 	this.label = label;
@@ -227,7 +223,7 @@ mw.widgets.RowWidgetModel.prototype.setLabel = function ( label ) {
  * If unset or set to null, the cell will be added at the end of the row.
  * @param {string} [key] A key to quickly select this cell.
  * If unset or set to null, no key will be set.
- * @fires insertCell
+ * @fires mw.widgets.RowWidgetModel.insertCell
  */
 mw.widgets.RowWidgetModel.prototype.insertCell = function ( data, index, key ) {
 	var insertIndex = ( typeof index === 'number' ) ? index : this.cells.length,
@@ -256,7 +252,7 @@ mw.widgets.RowWidgetModel.prototype.insertCell = function ( data, index, key ) {
  * all the following  cells will be shifted back one cell.
  *
  * @param {number|string} handle The key or numerical index of the cell to remove
- * @fires removeCell
+ * @fires mw.widgets.RowWidgetModel.removeCell
  */
 mw.widgets.RowWidgetModel.prototype.removeCell = function ( handle ) {
 	var cellProps = this.getCellProperties( handle ),
@@ -279,9 +275,9 @@ mw.widgets.RowWidgetModel.prototype.removeCell = function ( handle ) {
 };
 
 /**
- * Clears the row data
+ * Clears the row data.
  *
- * @fires clear
+ * @fires mw.widgets.RowWidgetModel.clear
  */
 mw.widgets.RowWidgetModel.prototype.clear = function () {
 	this.data = [];
@@ -291,9 +287,9 @@ mw.widgets.RowWidgetModel.prototype.clear = function () {
 };
 
 /**
- * Clears the row data, as well as all cell properties
+ * Clears the row data, as well as all cell properties.
  *
- * @fires clear
+ * @fires mw.widgets.RowWidgetModel.clear
  */
 mw.widgets.RowWidgetModel.prototype.clearWithProperties = function () {
 	this.data = [];
@@ -303,7 +299,7 @@ mw.widgets.RowWidgetModel.prototype.clearWithProperties = function () {
 };
 
 /**
- * Get the validation pattern to test cells against
+ * Get the validation pattern to test cells against.
  *
  * @return {RegExp|Function|string}
  */
@@ -312,7 +308,7 @@ mw.widgets.RowWidgetModel.prototype.getValidationPattern = function () {
 };
 
 /**
- * Get all row properties
+ * Get all row properties.
  *
  * @return {Object}
  */
@@ -326,7 +322,7 @@ mw.widgets.RowWidgetModel.prototype.getRowProperties = function () {
 };
 
 /**
- * Get properties of a given cell
+ * Get properties of a given cell.
  *
  * @param {string|number} handle The key (or numeric index) of the cell
  * @return {Object|null} An object containing the `key` and `index` properties of the cell.
@@ -353,7 +349,7 @@ mw.widgets.RowWidgetModel.prototype.getCellProperties = function ( handle ) {
 };
 
 /**
- * Get properties of all cells
+ * Get properties of all cells.
  *
  * @return {Array} An array of objects containing `key` and `index` properties for each cell
  */
