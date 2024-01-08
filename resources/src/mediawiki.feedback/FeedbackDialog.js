@@ -1,7 +1,8 @@
 /**
- * FeedbackDialog
- *
- * @class mw.Feedback.Dialog
+ * @class Dialog
+ * @classdesc FeedbackDialog for use within the context mw.Feedback. Typically
+ * constructed using {@link mw.Feedback#launch} instead of directly using the constructor.
+ * @memberof mw.Feedback
  * @extends OO.ui.ProcessDialog
  *
  * @constructor
@@ -42,6 +43,9 @@ FeedbackDialog.static.actions = [
 ];
 
 /**
+ * Initializes the dialog.
+ *
+ * @ignore
  * @inheritdoc
  */
 FeedbackDialog.prototype.initialize = function () {
@@ -109,7 +113,7 @@ FeedbackDialog.prototype.initialize = function () {
 };
 
 /**
- * Validate the feedback form
+ * Validate the feedback form.
  */
 FeedbackDialog.prototype.validateFeedbackForm = function () {
 	var isValid = (
@@ -125,6 +129,7 @@ FeedbackDialog.prototype.validateFeedbackForm = function () {
 
 /**
  * @inheritdoc
+ * @ignore
  */
 FeedbackDialog.prototype.getBodyHeight = function () {
 	return this.feedbackPanel.$element.outerHeight( true );
@@ -132,6 +137,7 @@ FeedbackDialog.prototype.getBodyHeight = function () {
 
 /**
  * @inheritdoc
+ * @ignore
  */
 FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 	return FeedbackDialog.super.prototype.getSetupProcess.call( this, data )
@@ -190,6 +196,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 
 /**
  * @inheritdoc
+ * @ignore
  */
 FeedbackDialog.prototype.getReadyProcess = function ( data ) {
 	return FeedbackDialog.super.prototype.getReadyProcess.call( this, data )
@@ -200,6 +207,7 @@ FeedbackDialog.prototype.getReadyProcess = function ( data ) {
 
 /**
  * @inheritdoc
+ * @ignore
  */
 FeedbackDialog.prototype.getActionProcess = function ( action ) {
 	if ( action === 'cancel' ) {
@@ -300,6 +308,7 @@ FeedbackDialog.prototype.postMessage = function ( poster, subject, message ) {
 };
 
 /**
+ * @ignore
  * @inheritdoc
  */
 FeedbackDialog.prototype.getTeardownProcess = function ( data ) {
@@ -316,7 +325,7 @@ FeedbackDialog.prototype.getTeardownProcess = function ( data ) {
 };
 
 /**
- * Set the bug report link
+ * Set the bug report link.
  *
  * @param {string} link Link to the external bug report form
  */
@@ -325,7 +334,7 @@ FeedbackDialog.prototype.setBugReportLink = function ( link ) {
 };
 
 /**
- * Get the bug report link
+ * Get the bug report link.
  *
  * @return {string} Link to the external bug report form
  */

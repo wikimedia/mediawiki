@@ -31,6 +31,7 @@ module.exports = {
 			'resources/src/mediawiki.page.watch.ajax',
 			'resources/src/mediawiki.util',
 			'resources/src/startup',
+			'resources/src/mediawiki.feedback',
 			'resources/src/mediawiki.template.js',
 			'resources/src/mediawiki.template.mustache.js',
 			'resources/src/mediawiki.user.js',
@@ -82,7 +83,6 @@ module.exports = {
 			'resources/src/mediawiki.special.unwatchedPages',
 			'resources/src/mediawiki.editRecovery',
 			'resources/src/mediawiki.special.upload',
-			'resources/src/mediawiki.feedback',
 			'resources/src/mediawiki.feedlink',
 			'resources/src/mediawiki.special.userrights.js',
 			'resources/src/mediawiki.filewarning',
@@ -142,6 +142,7 @@ module.exports = {
 				'jQuery.Event': 'https://api.jquery.com/Types/#Event',
 				'jQuery.Promise': 'https://api.jquery.com/Types/#Promise',
 				Node: 'https://developer.mozilla.org/en-US/docs/Web/API/Node',
+				'OO.ui.ProcessDialog': 'https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.ProcessDialog',
 				Promise: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
 				Set: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set',
 				URLSearchParams: 'https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams'
