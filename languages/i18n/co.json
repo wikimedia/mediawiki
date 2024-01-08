@@ -3,6 +3,7 @@
 		"authors": [
 			"Ale Mister",
 			"Ale Mister (on co.wikipedia.org)",
+			"Iketsi",
 			"Img (on co.wikipedia.org)",
 			"Jumpy01",
 			"Jun Misugi",
@@ -349,6 +350,7 @@
 	"yourlanguage": "Lingua di l'interfaccia:",
 	"yourvariant": "Variante di lingua di cuntenutu:",
 	"yournick": "Signatura pè e discussioni:",
+	"prefs-i18n": "Internaziunalizazione",
 	"editinguser": "Mudifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 	"userrights-groupsmember": "Membru di:",
 	"userrights-reason": "Mutivu:",
