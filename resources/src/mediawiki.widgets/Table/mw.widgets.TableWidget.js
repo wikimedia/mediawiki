@@ -172,7 +172,7 @@ mw.widgets.TableWidget.static.patterns = {
  * the row index or string key if one has been set for the row.
  * @param {number|string} col The column containing the cell to edit. Can be either
  * the column index or string key if one has been set for the column.
- * @param {Mixed} value The new value
+ * @param {any} value The new value
  */
 mw.widgets.TableWidget.prototype.setValue = function ( row, col, value ) {
 	this.model.setValue( row, col, value );
@@ -322,7 +322,7 @@ mw.widgets.TableWidget.prototype.removeItems = function ( items ) {
  * @private
  * @param {number} row The row index of the changed cell
  * @param {number} col The column index of the changed cell
- * @param {Mixed} value The new value
+ * @param {any} value The new value
  * @fires mw.widgets.TableWidget.change
  */
 mw.widgets.TableWidget.prototype.onValueChange = function ( row, col, value ) {

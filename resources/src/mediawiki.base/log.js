@@ -92,7 +92,7 @@ mw.log.makeDeprecated = function ( key, msg ) {
  *
  * @param {Object} obj Host object of deprecated property
  * @param {string} key Name of property to create in `obj`
- * @param {Mixed} val The value this property should return when accessed
+ * @param {any} val The value this property should return when accessed
  * @param {string} [msg] Optional extra text to add to the deprecation warning
  * @param {string} [logName] Name of the feature for deprecation tracker.
  *  Tracking is disabled by default, except for global variables on `window`.

@@ -357,7 +357,7 @@
 	 * - zeropad: Whether to pad the number with zeros.
 	 *
 	 * @protected
-	 * @param {Mixed} v
+	 * @param {any} v
 	 * @return {string}
 	 */
 	mw.widgets.datetime.DateTimeFormatter.prototype.formatSpecValue = function ( v ) {

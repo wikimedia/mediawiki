@@ -304,7 +304,7 @@
 	 *
 	 * @param {Object} context
 	 * @param {string} property Name of property
-	 * @param {Mixed} value Value to set property with
+	 * @param {any} value Value to set property with
 	 */
 	function configure( context, property, value ) {
 

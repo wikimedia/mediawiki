@@ -12,7 +12,7 @@ function UtilMixin() {
 /**
  * Test an API boolean
  *
- * @param {Mixed} value
+ * @param {any} value
  * @return {boolean}
  */
 UtilMixin.prototype.apiBool = function ( value ) {

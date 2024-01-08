@@ -17,14 +17,14 @@ function TextParamMixin() {
 }
 
 /**
- * @return {Mixed}
+ * @return {any}
  */
 TextParamMixin.prototype.getApiValue = function () {
 	return this.getValue();
 };
 
 /**
- * @param {Mixed|undefined} newValue
+ * @param {any|undefined} newValue
  */
 TextParamMixin.prototype.setApiValue = function ( newValue ) {
 	if ( newValue === undefined ) {

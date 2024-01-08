@@ -1744,7 +1744,7 @@
 		 * @private
 		 * @since 1.27
 		 * @param {string} moduleName Module name
-		 * @return {Mixed} Exported value
+		 * @return {any} Exported value
 		 */
 		require: function ( moduleName ) {
 			var path;

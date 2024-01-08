@@ -194,6 +194,7 @@ function saveFormData() {
 /**
  * Get the current form data.
  *
+ * @ignore
  * @return {Object}
  */
 function getFormData() {

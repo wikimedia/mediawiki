@@ -12,6 +12,7 @@ var db = null;
 // TODO: Document Promise objects as native promises, not jQuery ones.
 
 /**
+ * @ignore
  * @return {jQuery.Promise} Promise which resolves on success
  */
 function openDatabaseLocal() {
@@ -66,6 +67,7 @@ function upgradeDatabase( versionChangeEvent ) {
 /**
  * Load data relating to a specific page and section
  *
+ * @ignore
  * @param {string} pageName The current page name (with underscores)
  * @param {string|null} section The section ID, or null if the whole page is being edited
  * @return {jQuery.Promise} Promise which resolves with the page data on success, or rejects with an error message.
@@ -104,6 +106,7 @@ function loadAllData() {
 /**
  * Save data for a specific page and section
  *
+ * @ignore
  * @param {string} pageName The current page name (with underscores)
  * @param {string|null} section The section ID, or null if the whole page is being edited
  * @param {Object} pageData The page data to save
@@ -136,6 +139,7 @@ function saveData( pageName, section, pageData ) {
 /**
  * Delete data relating to a specific page
  *
+ * @ignore
  * @param {string} pageName The current page name (with underscores)
  * @param {string|null} section The section ID, or null if the whole page is being edited
  * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
@@ -174,6 +178,7 @@ function deleteData( pageName, section ) {
 /**
  * Returns the date diff seconds in the future
  *
+ * @ignore
  * @param {number} diff Seconds in the future
  * @return {number} Timestamp of diff days in the future
  */
@@ -184,6 +189,7 @@ function getExpiryDate( diff ) {
 /**
  * Delete expired data
  *
+ * @ignore
  * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
  */
 function deleteExpiredData() {
@@ -218,6 +224,8 @@ function deleteExpiredData() {
 
 /**
  * Close database
+ *
+ * @ignore
  */
 function closeDatabase() {
 	if ( db ) {
@@ -227,10 +235,10 @@ function closeDatabase() {
 
 module.exports = {
 	openDatabase: openDatabaseLocal,
-	closeDatabase: closeDatabase,
-	loadData: loadData,
-	loadAllData: loadAllData,
-	saveData: saveData,
-	deleteData: deleteData,
-	deleteExpiredData: deleteExpiredData
+	closeDatabase,
+	loadData,
+	loadAllData,
+	saveData,
+	deleteData,
+	deleteExpiredData
 };

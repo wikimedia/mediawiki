@@ -102,6 +102,7 @@ $( function () {
 	/**
 	 * Builds a tooltip which is part of a banner for temporary account (IP masking) users.
 	 *
+	 * @ignore
 	 * @param {jQuery} $bannerEl
 	 * @param {jQuery} $tooltipEl
 	 * @param {jQuery} $buttonEl

@@ -260,7 +260,7 @@
 		/**
 		 * Test an API boolean
 		 *
-		 * @param {Mixed} value
+		 * @param {any} value
 		 * @return {boolean}
 		 */
 		apiBool: function ( value ) {

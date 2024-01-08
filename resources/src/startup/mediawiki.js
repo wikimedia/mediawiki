@@ -109,7 +109,7 @@
 		 *
 		 * @memberof mw.Map
 		 * @param {string|Object} selection Key to set value for, or object mapping keys to values
-		 * @param {Mixed} [value] Value to set (optional, only in use when key is a string)
+		 * @param {any} [value] Value to set (optional, only in use when key is a string)
 		 * @return {boolean} True on success, false on failure
 		 */
 		set: function ( selection, value ) {

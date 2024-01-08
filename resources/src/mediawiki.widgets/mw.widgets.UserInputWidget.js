@@ -87,7 +87,7 @@
 	 * Get lookup cache item from server response data.
 	 *
 	 * @method
-	 * @param {Mixed} response Response from server
+	 * @param {any} response Response from server
 	 * @return {Object}
 	 */
 	mw.widgets.UserInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {

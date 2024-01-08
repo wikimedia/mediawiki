@@ -26,14 +26,14 @@ UploadSelectFileParamWidget.prototype.requiresFormData = function () {
 };
 
 /**
- * @return {Mixed}
+ * @return {any}
  */
 UploadSelectFileParamWidget.prototype.getApiValue = function () {
 	return this.getValue();
 };
 
 /**
- * There should be `@param {Mixed} newValue` but that results in
+ * There should be `@param {any} newValue` but that results in
  * `no-unused-vars` eslint rule failing
  */
 UploadSelectFileParamWidget.prototype.setApiValue = function () {

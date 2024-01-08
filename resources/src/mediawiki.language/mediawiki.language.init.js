@@ -52,7 +52,7 @@
 		 *
 		 * @param {string} langCode
 		 * @param {string} dataKey
-		 * @return {Mixed} Value stored in the mw.Map (or `undefined` if there is no map for the
+		 * @return {any} Value stored in the mw.Map (or `undefined` if there is no map for the
 		 *  specified langCode)
 		 */
 		getData: function ( langCode, dataKey ) {
@@ -71,7 +71,7 @@
 		 *
 		 * @param {string} langCode
 		 * @param {string|Object} dataKey Key or object of key/values
-		 * @param {Mixed} [value] Value for dataKey, omit if dataKey is an object
+		 * @param {any} [value] Value for dataKey, omit if dataKey is an object
 		 */
 		setData: function ( langCode, dataKey, value ) {
 			var langData = mw.language.data;

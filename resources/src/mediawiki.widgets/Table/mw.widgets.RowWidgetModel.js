@@ -158,7 +158,7 @@ mw.widgets.RowWidgetModel.prototype.refreshRow = function () {
  * Set the value of a particular cell.
  *
  * @param {number|string} handle The index or key of the cell
- * @param {Mixed} value The new value
+ * @param {any} value The new value
  * @fires mw.widgets.RowWidgetModel.valueChange
  */
 mw.widgets.RowWidgetModel.prototype.setValue = function ( handle, value ) {

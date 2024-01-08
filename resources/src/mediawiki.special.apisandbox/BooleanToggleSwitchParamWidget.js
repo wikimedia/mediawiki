@@ -22,7 +22,7 @@ BooleanToggleSwitchParamWidget.prototype.getApiValue = function () {
 };
 
 /**
- * @param {Mixed} newValue
+ * @param {any} newValue
  */
 BooleanToggleSwitchParamWidget.prototype.setApiValue = function ( newValue ) {
 	this.setValue( this.apiBool( newValue ) );

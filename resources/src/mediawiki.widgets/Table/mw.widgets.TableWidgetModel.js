@@ -83,7 +83,7 @@ mw.widgets.TableWidgetModel.static.getEntryFromPropsTable = function ( handle, t
  * @event mw.widgets.TableWidgetModel.valueChange
  * @param {number} row The row index of the updated cell
  * @param {number} column The column index of the updated cell
- * @param {Mixed} value The new value
+ * @param {any} value The new value
  */
 
 /**
@@ -232,7 +232,7 @@ mw.widgets.TableWidgetModel.prototype.refreshTable = function () {
  *
  * @param {number|string} row The index or key of the row
  * @param {number|string} col The index or key of the column
- * @param {Mixed} value The new value
+ * @param {any} value The new value
  * @fires mw.widgets.TableWidgetModel.valueChange
  */
 mw.widgets.TableWidgetModel.prototype.setValue = function ( row, col, value ) {

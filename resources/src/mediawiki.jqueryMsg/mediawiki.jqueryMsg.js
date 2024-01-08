@@ -1019,7 +1019,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 * Must return a single node to parents -- a jQuery with synthetic span
 	 * However, unwrap any other synthetic spans in our children and pass them upwards
 	 *
-	 * @param {Mixed[]} nodes Some single nodes, some arrays of nodes
+	 * @param {any[]} nodes Some single nodes, some arrays of nodes
 	 * @return {jQuery}
 	 */
 	concat: function ( nodes ) {

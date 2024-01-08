@@ -320,7 +320,7 @@
 			 * @private
 			 * @param {Object} [options]
 			 * @param {Object} [options.startAndEnd=false] Return range of the selection rather than just start
-			 * @return {Mixed}
+			 * @return {number|number[]}
 			 *  - When `startAndEnd` is `false`: number
 			 *  - When `startAndEnd` is `true`: array with two numbers, for start and end of selection
 			 */

@@ -2,6 +2,7 @@
  * @class mw.widgets.EditRecovery.LoadNotification
  * @constructor
  * @extends OO.ui.Widget
+ * @ignore
  */
 const LoadNotification = function mwWidgetsEditRecoveryLoadNotification() {
 	LoadNotification.super.call( this, {} );
@@ -28,6 +29,7 @@ const LoadNotification = function mwWidgetsEditRecoveryLoadNotification() {
 OO.inheritClass( LoadNotification, OO.ui.Widget );
 
 /**
+ * @ignore
  * @return {mw.Notification}
  */
 LoadNotification.prototype.getNotification = function () {
@@ -38,6 +40,7 @@ LoadNotification.prototype.getNotification = function () {
 };
 
 /**
+ * @ignore
  * @return {OO.ui.ButtonWidget}
  */
 LoadNotification.prototype.getDiffButton = function () {
@@ -45,6 +48,7 @@ LoadNotification.prototype.getDiffButton = function () {
 };
 
 /**
+ * @ignore
  * @return {OO.ui.ButtonWidget}
  */
 LoadNotification.prototype.getDiscardButton = function () {

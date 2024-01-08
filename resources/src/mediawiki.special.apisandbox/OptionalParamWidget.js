@@ -81,14 +81,14 @@ OptionalParamWidget.prototype.setDisabled = function ( disabled ) {
 };
 
 /**
- * @return {Mixed|undefined}
+ * @return {any|undefined}
  */
 OptionalParamWidget.prototype.getApiValue = function () {
 	return this.isDisabled() ? undefined : this.widget.getApiValue();
 };
 
 /**
- * @param {Mixed|undefined} newValue
+ * @param {any|undefined} newValue
  */
 OptionalParamWidget.prototype.setApiValue = function ( newValue ) {
 	this.setDisabled( newValue === undefined );
