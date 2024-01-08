@@ -29,7 +29,6 @@ module.exports = {
 			'resources/src/mediawiki.Upload.BookletLayout',
 			'resources/src/mediawiki.Upload.Dialog.js',
 			'resources/src/mediawiki.htmlform.ooui',
-			'resources/src/mediawiki.jqueryMsg',
 			'resources/src/mediawiki.language.specialCharacters',
 			'resources/src/mediawiki.messagePoster',
 			'resources/src/mediawiki.widgets.datetime',

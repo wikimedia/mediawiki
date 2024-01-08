@@ -1,5 +1,5 @@
 ( function () {
-
+	const jqueryMsg = require( 'mediawiki.jqueryMsg' ).test;
 	QUnit.module( 'mediawiki' );
 
 	QUnit.test( 'Initial check', function ( assert ) {
@@ -37,8 +37,8 @@
 	QUnit.module( 'mw.Message', function ( hooks ) {
 		var parserDefaults;
 		hooks.before( function () {
-			parserDefaults = mw.jqueryMsg.getParserDefaults();
-			mw.jqueryMsg.setParserDefaults( {
+			parserDefaults = jqueryMsg.getParserDefaults();
+			jqueryMsg.setParserDefaults( {
 				magic: {
 					SITENAME: 'My Wiki'
 				}
@@ -49,7 +49,7 @@
 			} );
 		} );
 		hooks.after( function () {
-			mw.jqueryMsg.setParserDefaults( parserDefaults );
+			jqueryMsg.setParserDefaults( parserDefaults );
 			mw.config.set( 'wgUserLanguage', 'qqx' );
 		} );
 

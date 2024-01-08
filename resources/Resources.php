@@ -1524,6 +1524,8 @@ return [
 				( new RL\HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 					->onResourceLoaderJqueryMsgModuleMagicWords( $context, $magicWords );
 
+				// if changing this structure, please update the static JSON example file
+				// at resources/src/mediawiki.jqueryMsg
 				return [
 					'allowedHtmlElements' => $allowedHtmlElements,
 					'magic' => $magicWords,
