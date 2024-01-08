@@ -41,8 +41,6 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 			$this->mParams['options'][$code . ' - ' . $name] = $code;
 		}
 
-		if ( !array_key_exists( 'default', $params ) ) {
-			$this->mParams['default'] = $languageCode;
-		}
+		$this->mParams['default'] ??= $languageCode;
 	}
 }

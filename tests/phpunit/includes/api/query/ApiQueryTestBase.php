@@ -99,9 +99,7 @@ STR;
 		$appendModule = false, User $user = null
 	) {
 		[ $req, $exp ] = $this->validateRequestExpectedPair( $values );
-		if ( !array_key_exists( 'action', $req ) ) {
-			$req['action'] = 'query';
-		}
+		$req['action'] ??= 'query';
 		foreach ( $req as &$val ) {
 			if ( is_array( $val ) ) {
 				$val = implode( '|', array_unique( $val ) );

@@ -568,10 +568,6 @@ class Site {
 	 * @param string $fullUrl
 	 */
 	public function setPath( $pathType, string $fullUrl ) {
-		if ( !array_key_exists( 'paths', $this->extraData ) ) {
-			$this->extraData['paths'] = [];
-		}
-
 		$this->extraData['paths'][$pathType] = $fullUrl;
 	}
 

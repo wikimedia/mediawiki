@@ -599,13 +599,10 @@ class SpecialVersion extends SpecialPage {
 			return $out;
 		}
 
-		// Make sure the 'other' type is set to an array.
-		if ( !array_key_exists( 'other', $credits ) ) {
-			$credits['other'] = [];
-		}
 		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
 
 		// Find all extensions that do not have a valid type and give them the type 'other'.
+		$credits['other'] ??= [];
 		foreach ( $credits as $type => $extensions ) {
 			if ( !array_key_exists( $type, $extensionTypes ) ) {
 				$credits['other'] = array_merge( $credits['other'], $extensions );

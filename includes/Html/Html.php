@@ -1033,13 +1033,8 @@ class Html {
 			);
 		}
 
-		if ( !array_key_exists( 'id', $selectAttribs ) ) {
-			$selectAttribs['id'] = 'namespace';
-		}
-
-		if ( !array_key_exists( 'name', $selectAttribs ) ) {
-			$selectAttribs['name'] = 'namespace';
-		}
+		$selectAttribs['id'] ??= 'namespace';
+		$selectAttribs['name'] ??= 'namespace';
 
 		$ret = '';
 		if ( isset( $params['label'] ) ) {
