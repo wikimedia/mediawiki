@@ -88,14 +88,10 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 
 		// compile a mock repo with all NS_FILE pages known in self::TITLES
 		$thumbnails = array_map(
-			static function ( Title $title ) {
-				return $title->getDBkey();
-			},
+			static fn ( Title $title ) => $title->getDBkey(),
 			array_filter(
 				$this->titles,
-				static function ( Title $title ) {
-					return $title->getNamespace() === NS_FILE;
-				}
+				static fn ( Title $title ) => $title->inNamespace( NS_FILE )
 			)
 		);
 		$mockRepoGroup = $this->makeMockRepoGroup( $thumbnails );
@@ -151,7 +147,7 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 
 		foreach ( $thumbnails as $pageId => $thumbnail ) {
 			// confirm thumbnail matches what we expect
-			$expectedName = $this->titles[$pageId]->getNamespace() === NS_FILE
+			$expectedName = $this->titles[$pageId]->inNamespace( NS_FILE )
 				? $this->titles[$pageId]->getDBkey()
 				: $this->titles[self::HOOK_PROVIDED_THUMBNAILS_BY_ID[$pageId]]->getDBkey();
 			$this->assertEquals( $expectedName, $thumbnail->getName() );

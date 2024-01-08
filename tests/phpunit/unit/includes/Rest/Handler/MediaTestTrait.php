@@ -122,7 +122,7 @@ trait MediaTestTrait {
 				? $this->makeMockTitle( $title->getDBkey(), [ 'namespace' => $title->getNamespace() ] )
 				: $this->makeMockTitle( 'File:' . $title, [ 'namespace' => NS_FILE ] );
 
-			if ( !in_array( $title->getDBkey(), $existingFileDBKeys ) || $title->getNamespace() !== NS_FILE ) {
+			if ( !in_array( $title->getDBkey(), $existingFileDBKeys ) || !$title->inNamespace( NS_FILE ) ) {
 				return $this->makeMissingMockFile( $title );
 			} else {
 				return $this->makeMockFile( $title );
