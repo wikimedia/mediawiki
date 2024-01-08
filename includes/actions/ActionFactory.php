@@ -105,6 +105,7 @@ class ActionFactory {
 				'RedirectLookup',
 				'RestrictionStore',
 				'LinksMigration',
+				'UserFactory',
 			],
 		],
 		'markpatrolled' => [
@@ -142,6 +143,7 @@ class ActionFactory {
 				'PermissionManager',
 				'RevisionLookup',
 				'RestrictionStore',
+				'UserFactory',
 			],
 		],
 		'revert' => [
