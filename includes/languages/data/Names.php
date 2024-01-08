@@ -513,6 +513,7 @@ class Names {
 		'tt' => 'татарча / tatarça', # Tatar (multiple scripts - defaults to Cyrillic)
 		'tt-cyrl' => 'татарча', # Tatar (Cyrillic script) (default)
 		'tt-latn' => 'tatarça', # Tatar (Latin script)
+		'ttj' => 'Orutooro', # Tooro
 		'tum' => 'chiTumbuka', # Tumbuka
 		'tw' => 'Twi', # Twi
 		'ty' => 'reo tahiti', # Tahitian
