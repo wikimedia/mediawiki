@@ -185,7 +185,7 @@ class LinkFilter {
 		// versus "https://" prefix. If you change that, you'll likely need to update
 		// refreshExternallinksIndex.php accordingly.
 
-		$bits = wfParseUrl( $url );
+		$bits = MediaWikiServices::getInstance()->getUrlUtils()->parse( $url );
 		if ( !$bits ) {
 			return [];
 		}
@@ -262,7 +262,7 @@ class LinkFilter {
 	}
 
 	public static function reverseIndexes( $domainIndex ) {
-		$bits = wfParseUrl( $domainIndex );
+		$bits = MediaWikiServices::getInstance()->getUrlUtils()->parse( $domainIndex );
 		if ( !$bits ) {
 			return '';
 		}
@@ -436,12 +436,13 @@ class LinkFilter {
 	 * @return array|false Array to be passed to Database::buildLike() or false on error
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$services = MediaWikiServices::getInstance();
+		$db = $services->getDBLoadBalancerFactory()->getReplicaDatabase();
 		$likeDomain = [];
 		$likePath = [];
 
 		$target = $protocol . $filterEntry;
-		$bits = wfParseUrl( $target );
+		$bits = $services->getUrlUtils()->parse( $target );
 		if ( !$bits ) {
 			return false;
 		}
