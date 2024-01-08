@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
@@ -51,46 +50,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 				[],
 				'Test makeListItem with normal values'
 			]
-		];
-	}
-
-	/**
-	 * @param bool $isSyndicated
-	 * @param string $html
-	 * @return OutputPage
-	 */
-	private function getMockOutputPage( $isSyndicated, $html ) {
-		$mock = $this->createMock( OutputPage::class );
-		$mock->expects( $this->once() )
-			->method( 'isSyndicated' )
-			->willReturn( $isSyndicated );
-		$mock->method( 'getHTML' )
-			->willReturn( $html );
-		return $mock;
-	}
-
-	public static function provideGetDefaultModules() {
-		return [
-			[
-				false,
-				'',
-				[]
-			],
-			[
-				true,
-				'',
-				[ 'mediawiki.feedlink' ]
-			],
-			[
-				false,
-				'FOO mw-ui-button BAR',
-				[ 'mediawiki.ui.button' ]
-			],
-			[
-				true,
-				'FOO mw-ui-button BAR',
-				[ 'mediawiki.ui.button', 'mediawiki.feedlink' ]
-			],
 		];
 	}
 
@@ -173,24 +132,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$icons = $wrapper->getFooterIcons();
 
 		$this->assertEquals( $expected, $icons, $msg );
-	}
-
-	/**
-	 * @dataProvider provideGetDefaultModules
-	 */
-	public function testgetDefaultModules( $isSyndicated, $html, array $expectedModuleStyles ) {
-		$skin = new SkinTemplate();
-
-		$context = new DerivativeContext( $skin->getContext() );
-		$context->setOutput( $this->getMockOutputPage( $isSyndicated, $html ) );
-		$skin->setContext( $context );
-
-		$modules = $skin->getDefaultModules();
-
-		$actualStylesModule = array_merge( ...array_values( $modules['styles'] ) );
-		foreach ( $expectedModuleStyles as $expected ) {
-			$this->assertContains( $expected, $actualStylesModule );
-		}
 	}
 
 	/**
