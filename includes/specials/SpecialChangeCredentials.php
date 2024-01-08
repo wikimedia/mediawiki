@@ -158,27 +158,28 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	protected function getAuthFormDescriptor( $requests, $action ) {
 		if ( !static::$loadUserData ) {
 			return [];
-		} else {
-			$descriptor = parent::getAuthFormDescriptor( $requests, $action );
+		}
 
-			$any = false;
-			foreach ( $descriptor as &$field ) {
-				if ( $field['type'] === 'password' && $field['name'] !== 'retype' ) {
-					$any = true;
-					if ( isset( $field['cssclass'] ) ) {
-						$field['cssclass'] .= ' mw-changecredentials-validate-password';
-					} else {
-						$field['cssclass'] = 'mw-changecredentials-validate-password';
-					}
+		$descriptor = parent::getAuthFormDescriptor( $requests, $action );
+
+		$any = false;
+		foreach ( $descriptor as &$field ) {
+			if ( $field['type'] === 'password' && $field['name'] !== 'retype' ) {
+				$any = true;
+				if ( isset( $field['cssclass'] ) ) {
+					$field['cssclass'] .= ' mw-changecredentials-validate-password';
+				} else {
+					$field['cssclass'] = 'mw-changecredentials-validate-password';
 				}
 			}
-
-			if ( $any ) {
-				$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
-			}
-
-			return $descriptor;
 		}
+		unset( $field );
+
+		if ( $any ) {
+			$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
+		}
+
+		return $descriptor;
 	}
 
 	protected function getAuthForm( array $requests, $action ) {
@@ -291,8 +292,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			return null;
 		}
 
-		$title = Title::newFromText( $returnTo );
-		return $title->getFullUrlForRedirect( $returnToQuery );
+		return Title::newFromText( $returnTo )->getFullUrlForRedirect( $returnToQuery );
 	}
 
 	protected function getRequestBlacklist() {
