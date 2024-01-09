@@ -145,10 +145,10 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 1.2.0
+  version: 1.2.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.2.0.tgz
-  integrity: sha384-0QyXr1hubqX1P/2abV0m95Ea+JuWiMpSoId3HCrOkCoLfnF6VzLPi9rdlTIR7oba
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.2.1.tgz
+  integrity: sha384-k33npWIdQ5VchHSa/EbYlggF1mwfRUzwyQGkFZIWj9slLHnAHc4e6dHKufP328jS
   dest:
     package/dist/codex.js:
     package/dist/codex.mjs:
@@ -172,10 +172,10 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 1.2.0
+  version: 1.2.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.2.0.tgz
-  integrity: sha384-7+klmq8Dwu/BtsH1k4pDMrAgc0DrrpYZzkJBao8Y++Rq5MT+RfyUZdmLHAEephjM
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.2.1.tgz
+  integrity: sha384-7vQ8stTHhg3wmbjdwdHslNhURcsRltfkoSQ/6OqXZ5RgFvDQtF6c0xmupgnd49Rn
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -186,10 +186,10 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 1.2.0
+  version: 1.2.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.2.0.tgz
-  integrity: sha384-HmtUyGb7JrWnoP8FYiE1l5Ab7F0jnrwazCg1ece4N2hrvDichVVqWnnxL0aVMs9y
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.2.1.tgz
+  integrity: sha384-ZAY1DdWK6RXhbJHF30aVNp9BRPc0XSez5UDP94P3j8s1netUV/p6sGWIv9d16UB2
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:

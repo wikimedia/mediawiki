@@ -49,8 +49,8 @@ var __async = (__this, __arguments, generator) => {
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Fragment, createElementVNode, Comment, warn, watch, withKeys, renderSlot, getCurrentInstance, resolveComponent, createBlock, resolveDynamicComponent, withCtx, createVNode, withDirectives, vShow, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, vModelCheckbox, createSlots, withModifiers, nextTick, vModelDynamic, onUnmounted, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
-const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', f = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', n1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', A1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', C1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', c0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7z"/>', v0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 5h2v2H9zm0 4h2v6H9z"/>', g2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', f2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', J2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8z"/>', p5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20Zm-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10l5 5Z"/>', m4 = M, F4 = f, Q4 = s1, j4 = n1, z3 = A1, p3 = C1, P3 = c0, Q3 = {
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, getCurrentInstance, resolveComponent, createBlock, resolveDynamicComponent, withCtx, createVNode, createElementVNode, withDirectives, vShow, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, vModelCheckbox, createSlots, withModifiers, nextTick, vModelDynamic, onUnmounted, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
+const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', S = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', n1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', A1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', k1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', c0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', v0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', g2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', S2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', p5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', m3 = M, f3 = S, J3 = s1, j3 = n1, z4 = A1, p4 = k1, E4 = c0, J4 = {
   langCodeMap: {
     ar: p
   },
@@ -59,10 +59,10 @@ const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 
   ltr: g2,
   shouldFlip: true
 }, n7 = {
-  ltr: f2,
+  ltr: S2,
   shouldFlip: true
-}, L7 = J2, P7 = p5;
-function D8(c, s, h) {
+}, L7 = K2, E7 = p5;
+function U8(c, s, h) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -72,7 +72,7 @@ function D8(c, s, h) {
   const n = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
   return typeof n == "string" || "path" in n ? n : n.ltr;
 }
-function E8(c, s) {
+function D8(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -226,14 +226,14 @@ const _sfc_main$u = defineComponent({
     });
     const rootClasses = computed(() => {
       return {
-        "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && E8(props.icon, overriddenLang.value),
+        "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && D8(props.icon, overriddenLang.value),
         ["cdx-icon--".concat(props.size)]: true
       };
     });
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return D8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return U8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -281,20 +281,13 @@ function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
           1
           /* TEXT */
         )) : createCommentVNode("v-if", true),
-        createCommentVNode(" eslint-disable vue/no-v-html "),
         _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
           key: 1,
           innerHTML: _ctx.iconSvg
-        }, null, 8, _hoisted_3$a)) : (openBlock(), createElementBlock(
-          Fragment,
-          { key: 2 },
-          [
-            createCommentVNode(" eslint-enable vue/no-v-html "),
-            createElementVNode("path", { d: _ctx.iconPath }, null, 8, _hoisted_4$8)
-          ],
-          2112
-          /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-        ))
+        }, null, 8, _hoisted_3$a)) : (openBlock(), createElementBlock("path", {
+          key: 2,
+          d: _ctx.iconPath
+        }, null, 8, _hoisted_4$8))
       ], 8, _hoisted_1$s))
     ],
     2
@@ -449,7 +442,6 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
       onKeyup: _cache[2] || (_cache[2] = withKeys(($event) => _ctx.setActive(false), ["space", "enter"]))
     },
     [
-      createCommentVNode(" @slot Button content "),
       renderSlot(_ctx.$slots, "default")
     ],
     34
@@ -533,7 +525,7 @@ const _sfc_main$s = defineComponent({
       "cdx-accordion--has-icon": shouldShowActionButton
     }));
     return {
-      cdxIconExpand: p3,
+      cdxIconExpand: p4,
       emitActionButtonClick,
       isExpanded,
       rootClasses,
@@ -577,12 +569,10 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
                   size: "small"
                 }, null, 8, ["icon"]),
                 createElementVNode("span", _hoisted_2$j, [
-                  createCommentVNode(" @slot Customizable Accordion title "),
                   renderSlot(_ctx.$slots, "title")
                 ])
               ]),
               createElementVNode("span", _hoisted_3$9, [
-                createCommentVNode(" @slot Customizable Accordion description "),
                 renderSlot(_ctx.$slots, "description")
               ])
             ]),
@@ -618,7 +608,6 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
         class: "cdx-accordion__content",
         role: "region"
       }, [
-        createCommentVNode(" @slot Customizable Accordion content "),
         renderSlot(_ctx.$slots, "default")
       ], 8, _hoisted_4$7), [
         [vShow, _ctx.isExpanded]
@@ -695,7 +684,6 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
           onClick: ($event) => _ctx.$emit("click", button.value)
         }, {
           default: withCtx(() => [
-            createCommentVNode("\n				@slot Content of an individual button\n				@binding {ButtonGroupItem} button Object describing the button to display\n			"),
             renderSlot(_ctx.$slots, "default", { button }, () => [
               button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
                 key: 0,
@@ -734,7 +722,7 @@ const _sfc_main$q = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: P3
+      default: E4
     }
   },
   setup: (props) => {
@@ -899,15 +887,12 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
       createElementVNode("span", _hoisted_1$o, [
         createElementVNode("span", _hoisted_2$h, [
-          createCommentVNode(" @slot Card title "),
           renderSlot(_ctx.$slots, "title")
         ]),
         _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$8, [
-          createCommentVNode(" @slot Card description "),
           renderSlot(_ctx.$slots, "description")
         ])) : createCommentVNode("v-if", true),
         _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$6, [
-          createCommentVNode(" @slot Short supporting text "),
           renderSlot(_ctx.$slots, "supporting-text")
         ])) : createCommentVNode("v-if", true)
       ])
@@ -1078,103 +1063,76 @@ const _hoisted_8 = {
 };
 function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return openBlock(), createElementBlock(
-    Fragment,
-    null,
+  return !_ctx.isLegend ? (openBlock(), createElementBlock(
+    "div",
+    {
+      key: 0,
+      class: normalizeClass(["cdx-label", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
     [
-      createCommentVNode(" Separate <label> and description are wrapped in a <div>. "),
-      !_ctx.isLegend ? (openBlock(), createElementBlock(
-        "div",
-        {
+      createElementVNode("label", mergeProps({
+        class: "cdx-label__label",
+        for: _ctx.inputId ? _ctx.inputId : void 0
+      }, _ctx.otherAttrs), [
+        _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
           key: 0,
-          class: normalizeClass(["cdx-label", _ctx.rootClasses]),
-          style: normalizeStyle(_ctx.rootStyle)
-        },
-        [
-          createElementVNode("label", mergeProps({
-            class: "cdx-label__label",
-            for: _ctx.inputId ? _ctx.inputId : void 0
-          }, _ctx.otherAttrs), [
-            _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-              key: 0,
-              icon: _ctx.icon,
-              class: "cdx-label__label__icon"
-            }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-            createElementVNode("span", _hoisted_2$g, [
-              createCommentVNode(" @slot Label text. "),
-              renderSlot(_ctx.$slots, "default")
-            ]),
-            _ctx.optionalFlag ? (openBlock(), createElementBlock("span", _hoisted_3$7, [
-              createCommentVNode(" Add a space before the optional flag text. Vue strips whitespace\n					between everything except plain text, so we can't rely on a newline to\n					add a natural space here. "),
-              createCommentVNode(" eslint-disable-next-line vue/no-useless-mustaches "),
-              createTextVNode(
-                " " + toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
-                1
-                /* TEXT */
-              )
-            ])) : createCommentVNode("v-if", true)
-          ], 16, _hoisted_1$n),
-          createCommentVNode(" Include an ID attribute that will be used on the input for aria-describedby. "),
-          _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", {
-            key: 0,
-            id: _ctx.descriptionId || void 0,
-            class: "cdx-label__description"
-          }, [
-            createCommentVNode(" @slot Short description text. "),
-            renderSlot(_ctx.$slots, "description")
-          ], 8, _hoisted_4$5)) : createCommentVNode("v-if", true)
-        ],
-        6
-        /* CLASS, STYLE */
-      )) : (openBlock(), createElementBlock(
-        Fragment,
-        { key: 1 },
-        [
-          createCommentVNode(" <legend> must be the root element so it is a direct child of <fieldset>, and <legend>\n		contains the description. Both required for assistive technology support. "),
-          createElementVNode(
-            "legend",
-            mergeProps({
-              class: ["cdx-label", _ctx.rootClasses],
-              style: _ctx.rootStyle
-            }, _ctx.otherAttrs),
-            [
-              createElementVNode("span", _hoisted_5$4, [
-                _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-                  key: 0,
-                  icon: _ctx.icon,
-                  class: "cdx-label__label__icon"
-                }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-                createElementVNode("span", _hoisted_6$4, [
-                  createCommentVNode(" @slot Label text. "),
-                  renderSlot(_ctx.$slots, "default")
-                ]),
-                _ctx.optionalFlag ? (openBlock(), createElementBlock("span", _hoisted_7$1, [
-                  createCommentVNode(" Add a space before the optional flag text. Vue strips whitespace\n					between everything except plain text, so we can't rely on a newline to\n					add a natural space here. "),
-                  createCommentVNode(" eslint-disable-next-line vue/no-useless-mustaches "),
-                  createTextVNode(
-                    " " + toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
-                    1
-                    /* TEXT */
-                  )
-                ])) : createCommentVNode("v-if", true)
-              ]),
-              createCommentVNode(" For legends, the description needs to be inside the <legend> for\n			assistive technology support. "),
-              _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", _hoisted_8, [
-                createCommentVNode(" @slot Short description text. "),
-                renderSlot(_ctx.$slots, "description")
-              ])) : createCommentVNode("v-if", true)
-            ],
-            16
-            /* FULL_PROPS */
-          )
-        ],
-        2112
-        /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-      ))
+          icon: _ctx.icon,
+          class: "cdx-label__label__icon"
+        }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+        createElementVNode("span", _hoisted_2$g, [
+          renderSlot(_ctx.$slots, "default")
+        ]),
+        _ctx.optionalFlag ? (openBlock(), createElementBlock(
+          "span",
+          _hoisted_3$7,
+          toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
+          1
+          /* TEXT */
+        )) : createCommentVNode("v-if", true)
+      ], 16, _hoisted_1$n),
+      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", {
+        key: 0,
+        id: _ctx.descriptionId || void 0,
+        class: "cdx-label__description"
+      }, [
+        renderSlot(_ctx.$slots, "description")
+      ], 8, _hoisted_4$5)) : createCommentVNode("v-if", true)
     ],
-    2112
-    /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-  );
+    6
+    /* CLASS, STYLE */
+  )) : (openBlock(), createElementBlock(
+    "legend",
+    mergeProps({
+      key: 1,
+      class: ["cdx-label", _ctx.rootClasses],
+      style: _ctx.rootStyle
+    }, _ctx.otherAttrs),
+    [
+      createElementVNode("span", _hoisted_5$4, [
+        _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+          key: 0,
+          icon: _ctx.icon,
+          class: "cdx-label__label__icon"
+        }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+        createElementVNode("span", _hoisted_6$4, [
+          renderSlot(_ctx.$slots, "default")
+        ]),
+        _ctx.optionalFlag ? (openBlock(), createElementBlock(
+          "span",
+          _hoisted_7$1,
+          toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
+          1
+          /* TEXT */
+        )) : createCommentVNode("v-if", true)
+      ]),
+      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", _hoisted_8, [
+        renderSlot(_ctx.$slots, "description")
+      ])) : createCommentVNode("v-if", true)
+    ],
+    16
+    /* FULL_PROPS */
+  ));
 }
 const CdxLabel = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$o]]);
 function useLabelChecker(slot, attrs, componentName) {
@@ -1323,7 +1281,6 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
         [vModelCheckbox, _ctx.wrappedModel]
       ]),
       _hoisted_2$f,
-      createCommentVNode(" Only render a Label component if label text has been provided. This component can also\n			supply a description to the Checkbox if content is provided in the description slot. "),
       _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
         key: 0,
         class: "cdx-checkbox__label",
@@ -1340,7 +1297,6 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
         _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
           name: "description",
           fn: withCtx(() => [
-            createCommentVNode(" @slot Short description text. "),
             renderSlot(_ctx.$slots, "description")
           ]),
           key: "0"
@@ -1449,7 +1405,7 @@ const _sfc_main$m = defineComponent({
       rootElement,
       rootClasses,
       onKeydown,
-      cdxIconClose: j4
+      cdxIconClose: j3
     };
   },
   methods: {
@@ -1484,7 +1440,6 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
       size: "small"
     }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
     createElementVNode("span", _hoisted_2$e, [
-      createCommentVNode(" @slot Chip text. "),
       renderSlot(_ctx.$slots, "default")
     ]),
     createVNode(_component_cdx_button, {
@@ -1886,8 +1841,6 @@ const _hoisted_1$j = { class: "cdx-search-result-title" };
 const _hoisted_2$c = { class: "cdx-search-result-title__match" };
 function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", _hoisted_1$j, [
-    createCommentVNode(" All on one line to avoid introducing unwanted whitespace into the UI. "),
-    createCommentVNode("eslint-disable-next-line max-len"),
     createElementVNode("bdi", null, [
       createTextVNode(
         toDisplayString(_ctx.titleChunks[0]),
@@ -2132,7 +2085,6 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
     onMousedown: _cache[2] || (_cache[2] = withModifiers((...args) => _ctx.onMouseDown && _ctx.onMouseDown(...args), ["prevent"])),
     onClick: _cache[3] || (_cache[3] = (...args) => _ctx.onClick && _ctx.onClick(...args))
   }, [
-    createCommentVNode(" @slot Custom menu item content. "),
     renderSlot(_ctx.$slots, "default", {}, () => [
       (openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), {
         href: _ctx.url ? _ctx.url : void 0,
@@ -2141,7 +2093,6 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
         default: withCtx(() => {
           var _a, _b, _c, _d, _e, _f;
           return [
-            createCommentVNode(" Thumbnail, thumbnail placeholder, or icon. "),
             _ctx.showThumbnail ? (openBlock(), createBlock(_component_cdx_thumbnail, {
               key: 0,
               thumbnail: _ctx.thumbnail,
@@ -2151,9 +2102,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
               icon: _ctx.icon,
               class: "cdx-menu-item__icon"
             }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-            createCommentVNode(" Item text. "),
             createElementVNode("span", _hoisted_2$b, [
-              createCommentVNode(" Item label. "),
               _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                 key: 0,
                 title: _ctx.title,
@@ -2172,14 +2121,11 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                   /* TEXT */
                 )
               ], 8, _hoisted_3$5)),
-              createCommentVNode(" Item search query match (e.g. alias). "),
               _ctx.match ? (openBlock(), createElementBlock(
                 Fragment,
                 { key: 2 },
                 [
-                  createCommentVNode(" Add a space before the match. Vue strips whitespace between everything\n						except plain text, so we can't rely on a newline to add a natural space\n						here. "),
-                  createCommentVNode(" eslint-disable-next-line vue/no-useless-mustaches "),
-                  createTextVNode(" " + toDisplayString(" ") + " "),
+                  createTextVNode(toDisplayString(" ") + " "),
                   _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                     key: 0,
                     title: _ctx.match,
@@ -2202,13 +2148,11 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                 64
                 /* STABLE_FRAGMENT */
               )) : createCommentVNode("v-if", true),
-              createCommentVNode(" Item label supporting text. "),
               _ctx.supportingText ? (openBlock(), createElementBlock(
                 Fragment,
                 { key: 3 },
                 [
-                  createCommentVNode(" eslint-disable-next-line vue/no-useless-mustaches "),
-                  createTextVNode(" " + toDisplayString(" ") + " "),
+                  createTextVNode(toDisplayString(" ") + " "),
                   createElementVNode("span", {
                     class: "cdx-menu-item__text__supporting-text",
                     lang: (_e = _ctx.language) == null ? void 0 : _e.supportingText
@@ -2225,7 +2169,6 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                 64
                 /* STABLE_FRAGMENT */
               )) : createCommentVNode("v-if", true),
-              createCommentVNode(" Item description. "),
               _ctx.description ? (openBlock(), createElementBlock("span", {
                 key: 4,
                 class: "cdx-menu-item__text__description",
@@ -2302,21 +2245,12 @@ const _hoisted_3$4 = [
   _hoisted_2$a
 ];
 function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock(
-    Fragment,
-    null,
-    [
-      createCommentVNode(' ARIA progressbar default values are `aria-valuemin="0"` and `aria-valuemax="100"`,\n	hence omitting them here. '),
-      createElementVNode("div", {
-        class: normalizeClass(["cdx-progress-bar", _ctx.rootClasses]),
-        role: "progressbar",
-        "aria-hidden": _ctx.computedAriaHidden,
-        "aria-disabled": _ctx.disabled
-      }, _hoisted_3$4, 10, _hoisted_1$h)
-    ],
-    2112
-    /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-  );
+  return openBlock(), createElementBlock("div", {
+    class: normalizeClass(["cdx-progress-bar", _ctx.rootClasses]),
+    role: "progressbar",
+    "aria-hidden": _ctx.computedAriaHidden,
+    "aria-disabled": _ctx.disabled
+  }, _hoisted_3$4, 10, _hoisted_1$h);
 }
 const CdxProgressBar = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 function useIntersectionObserver(templateRef, observerOptions) {
@@ -2974,11 +2908,9 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-relevant": _ctx.showPending ? _ctx.ariaRelevant : void 0
       }, _ctx.otherAttrs), [
         _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$9, [
-          createCommentVNode("\n					@slot Message to indicate pending state.\n				"),
           renderSlot(_ctx.$slots, "pending")
         ])) : createCommentVNode("v-if", true),
         _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$3, [
-          createCommentVNode("\n					@slot Message to show if there are no menu items to display.\n				"),
           renderSlot(_ctx.$slots, "no-results")
         ])) : createCommentVNode("v-if", true),
         (openBlock(true), createElementBlock(
@@ -3004,7 +2936,6 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
               default: withCtx(() => {
                 var _a2, _b2;
                 return [
-                  createCommentVNode("\n					@slot Display of an individual item in the menu\n					@binding {MenuItem} menuItem The current menu item\n					@binding {boolean} active Whether the current item is visually active\n				"),
                   renderSlot(_ctx.$slots, "default", {
                     menuItem,
                     active: menuItem.value === ((_a2 = _ctx.activeMenuItem) == null ? void 0 : _a2.value) && menuItem.value === ((_b2 = _ctx.highlightedMenuItem) == null ? void 0 : _b2.value)
@@ -3231,7 +3162,7 @@ const _sfc_main$g = defineComponent({
       onKeydown,
       onFocus,
       onBlur,
-      cdxIconClear: Q4
+      cdxIconClear: J3
     };
   },
   // Public methods
@@ -3269,7 +3200,6 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
       style: normalizeStyle(_ctx.rootStyle)
     },
     [
-      createCommentVNode(' size="1" is to prevent the browser from setting an implicit min-width '),
       withDirectives(createElementVNode("input", mergeProps({
         id: _ctx.computedInputId,
         ref: "input",
@@ -4919,7 +4849,7 @@ const _sfc_main$f = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: p3,
+      cdxIconExpand: p4,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -4966,7 +4896,6 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
             onFocus: _ctx.onInputFocus,
             onBlur: _ctx.onInputBlur
           }), null, 16, ["modelValue", "aria-activedescendant", "aria-expanded", "aria-controls", "disabled", "status", "onKeydown", "onFocus", "onBlur"]),
-          createCommentVNode(' Button is only useful for mouse/touch users, hence skipping it for keyboard\n				(`tabindex="-1"`) and assistive technology users (`aria-hidden="true"`). '),
           createVNode(_component_cdx_button, {
             class: "cdx-combobox__expand-button",
             "aria-hidden": "true",
@@ -5001,11 +4930,9 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
         onLoadMore: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("load-more"))
       }), {
         default: withCtx(({ menuItem }) => [
-          createCommentVNode("\n					@slot Display of an individual item in the menu\n					@binding {MenuItemData} menu-item The current menu item\n				"),
           renderSlot(_ctx.$slots, "menu-item", { menuItem })
         ]),
         "no-results": withCtx(() => [
-          createCommentVNode("\n					@slot Message to show if there are no menu items to display.\n				"),
           renderSlot(_ctx.$slots, "no-results")
         ]),
         _: 3
@@ -5297,7 +5224,7 @@ const _sfc_main$e = defineComponent({
     });
     return {
       close,
-      cdxIconClose: j4,
+      cdxIconClose: j3,
       labelId,
       rootClasses,
       backdrop,
@@ -5360,7 +5287,6 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
             onKeyup: _cache[6] || (_cache[6] = withKeys((...args) => _ctx.close && _ctx.close(...args), ["escape"]))
           },
           [
-            createCommentVNode(" Focus trap start "),
             createElementVNode(
               "div",
               {
@@ -5390,7 +5316,6 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   class: normalizeClass(["cdx-dialog__header", { "cdx-dialog__header--default": !_ctx.$slots.header }])
                 },
                 [
-                  createCommentVNode(" @slot Customizable Dialog header "),
                   renderSlot(_ctx.$slots, "header", {}, () => [
                     !_ctx.hideTitle ? (openBlock(), createElementBlock("div", _hoisted_2$8, [
                       createElementVNode("h2", {
@@ -5444,7 +5369,6 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   }])
                 },
                 [
-                  createCommentVNode(" @slot Dialog content "),
                   renderSlot(_ctx.$slots, "default")
                 ],
                 2
@@ -5457,10 +5381,8 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   class: normalizeClass(["cdx-dialog__footer", { "cdx-dialog__footer--default": !_ctx.$slots.footer }])
                 },
                 [
-                  createCommentVNode(" @slot Customizable Dialog footer "),
                   renderSlot(_ctx.$slots, "footer", {}, () => [
                     _ctx.$slots["footer-text"] ? (openBlock(), createElementBlock("p", _hoisted_6$2, [
-                      createCommentVNode(" @slot Optional footer text "),
                       renderSlot(_ctx.$slots, "footer-text")
                     ])) : createCommentVNode("v-if", true),
                     _ctx.showFooterActions ? (openBlock(), createElementBlock("div", _hoisted_7, [
@@ -5505,7 +5427,6 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                 /* CLASS */
               )) : createCommentVNode("v-if", true)
             ], 16, _hoisted_1$d),
-            createCommentVNode(" Focus trap end "),
             createElementVNode(
               "div",
               {
@@ -5529,10 +5450,10 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$e]]);
 const iconMap$1 = {
-  notice: Q3,
-  error: z3,
-  warning: m4,
-  success: P7
+  notice: J4,
+  error: z4,
+  warning: m3,
+  success: E7
 };
 const _sfc_main$d = defineComponent({
   name: "CdxMessage",
@@ -5656,7 +5577,7 @@ const _sfc_main$d = defineComponent({
       leaveActiveClass,
       computedIcon,
       onDismiss,
-      cdxIconClose: j4
+      cdxIconClose: j3
     };
   }
 });
@@ -5683,7 +5604,6 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
           icon: _ctx.computedIcon
         }, null, 8, ["icon"]),
         createElementVNode("div", _hoisted_2$7, [
-          createCommentVNode(" @slot Message content. "),
           renderSlot(_ctx.$slots, "default")
         ]),
         _ctx.userDismissable ? (openBlock(), createBlock(_component_cdx_button, {
@@ -5840,7 +5760,6 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
         "is-legend": _ctx.isFieldset
       }, createSlots({
         default: withCtx(() => [
-          createCommentVNode(" @slot Label text. "),
           renderSlot(_ctx.$slots, "label")
         ]),
         _: 2
@@ -5849,7 +5768,6 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
         _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
           name: "description",
           fn: withCtx(() => [
-            createCommentVNode(" @slot Short description text. "),
             renderSlot(_ctx.$slots, "description")
           ]),
           key: "0"
@@ -5861,14 +5779,12 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass(["cdx-field__control", { "cdx-field__control--has-help-text": _ctx.$slots["help-text"] && _ctx.$slots["help-text"]().length > 0 || _ctx.validationMessage }])
         },
         [
-          createCommentVNode(" @slot Input, control, or input group. "),
           renderSlot(_ctx.$slots, "default")
         ],
         2
         /* CLASS */
       ),
       createElementVNode("div", _hoisted_1$b, [
-        createCommentVNode(" @slot Further explanation of how to use this field. "),
         renderSlot(_ctx.$slots, "help-text")
       ]),
       !_ctx.computedDisabled && _ctx.validationMessage ? (openBlock(), createElementBlock("div", _hoisted_2$6, [
@@ -5894,9 +5810,9 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Field = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$c]]);
 const iconMap = {
-  error: z3,
-  warning: m4,
-  success: P7
+  error: z4,
+  warning: m3,
+  success: E7
 };
 const _sfc_main$b = defineComponent({
   name: "CdxInfoChip",
@@ -5948,7 +5864,6 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
       icon: _ctx.computedIcon
     }, null, 8, ["class", "icon"])) : createCommentVNode("v-if", true),
     createElementVNode("span", _hoisted_2$5, [
-      createCommentVNode(" @slot Chip content. "),
       renderSlot(_ctx.$slots, "default")
     ])
   ]);
@@ -6212,11 +6127,9 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
         onLoadMore: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("load-more"))
       }), {
         default: withCtx(({ menuItem }) => [
-          createCommentVNode("\n					@slot Display of an individual item in the menu\n					@binding {MenuItemData} menu-item The current menu item\n				"),
           renderSlot(_ctx.$slots, "menu-item", { menuItem })
         ]),
         "no-results": withCtx(() => [
-          createCommentVNode("\n					@slot Message to show if there are no results to display.\n				"),
           renderSlot(_ctx.$slots, "no-results")
         ]),
         _: 3
@@ -6341,7 +6254,6 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
         [vModelRadio, _ctx.wrappedModel]
       ]),
       _hoisted_2$4,
-      createCommentVNode(" Only render a Label component if label text has been provided. This component can also\n			supply a description to the Radio if content is provided in the description slot. "),
       _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
         key: 0,
         class: "cdx-radio__label",
@@ -6359,7 +6271,6 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
         _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
           name: "description",
           fn: withCtx(() => [
-            createCommentVNode(" @slot Short description text. "),
             renderSlot(_ctx.$slots, "description")
           ]),
           key: "0"
@@ -6522,7 +6433,6 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
           onFocus: _cache[3] || (_cache[3] = ($event) => _ctx.$emit("focus", $event)),
           onBlur: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("blur", $event))
         }), null, 16, ["modelValue", "start-icon", "disabled", "status", "onKeydown"]),
-        createCommentVNode("\n				@slot A slot for passing in an options menu that needs to be positioned\n				relatively to the text input. See TypeaheadSearch for sample usage.\n			"),
         renderSlot(_ctx.$slots, "default")
       ]),
       _ctx.buttonLabel ? (openBlock(), createBlock(_component_cdx_button, {
@@ -6731,7 +6641,7 @@ const _sfc_main$7 = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: p3
+      cdxIconExpand: p4
     };
   }
 });
@@ -6761,7 +6671,6 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
       onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
       onKeydown: _cache[2] || (_cache[2] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
     }), [
-      createCommentVNode("\n				@slot Display of the current selection or default label\n				@binding {MenuItemData|undefined} selected-menu-item The currently selected menu\n				item\n				@binding {string} default-label The default label, provided via a prop\n			"),
       renderSlot(_ctx.$slots, "label", {
         selectedMenuItem: _ctx.selectedMenuItem,
         defaultLabel: _ctx.defaultLabel
@@ -6794,7 +6703,6 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
       onLoadMore: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("load-more"))
     }), {
       default: withCtx(({ menuItem }) => [
-        createCommentVNode("\n					@slot Display of an individual item in the menu\n					@binding {MenuItemData} menu-item The current menu item\n				"),
         renderSlot(_ctx.$slots, "menu-item", { menuItem })
       ]),
       _: 3
@@ -6864,7 +6772,6 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     role: "tabpanel",
     tabindex: "-1"
   }, [
-    createCommentVNode(" @slot Tab content "),
     renderSlot(_ctx.$slots, "default")
   ], 8, _hoisted_1$6)), [
     [vShow, _ctx.isActive]
@@ -7278,7 +7185,6 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
         ])
       ]),
       createElementVNode("div", _hoisted_6$1, [
-        createCommentVNode(" @slot One or more Tab components must be provided here "),
         renderSlot(_ctx.$slots, "default")
       ])
     ],
@@ -7524,7 +7430,6 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     onKeydown: _cache[1] || (_cache[1] = withKeys(($event) => _ctx.setActive(true), ["space", "enter"])),
     onKeyup: _cache[2] || (_cache[2] = withKeys(($event) => _ctx.setActive(false), ["space", "enter"]))
   }, [
-    createCommentVNode(" @slot Button content "),
     renderSlot(_ctx.$slots, "default")
   ], 42, _hoisted_1$3);
 }
@@ -7626,7 +7531,6 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
           "onUpdate:modelValue": ($event) => _ctx.onUpdate(button, $event)
         }, {
           default: withCtx(() => [
-            createCommentVNode("\n				@slot Content of an individual button\n				@binding {ButtonGroupItem} button Object describing the button to display\n				@binding {boolean} selected Whether the button is selected\n			"),
             renderSlot(_ctx.$slots, "default", {
               button,
               selected: _ctx.isSelected(button)
@@ -7783,7 +7687,6 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
         [vModelCheckbox, _ctx.wrappedModel]
       ]),
       _hoisted_2$1,
-      createCommentVNode(" Only render a Label component if label text has been provided. This component can also\n			supply a description to the input if content is provided in the description slot. "),
       _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
         key: 0,
         class: "cdx-toggle-switch__label",
@@ -7801,7 +7704,6 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
         _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
           name: "description",
           fn: withCtx(() => [
-            createCommentVNode(" @slot Short description text. "),
             renderSlot(_ctx.$slots, "description")
           ]),
           key: "0"
@@ -8180,7 +8082,7 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: F4
+      articleIcon: f3
     };
   },
   methods: {
@@ -8267,7 +8169,6 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                   },
                   [
                     createElementVNode("span", _hoisted_2, [
-                      createCommentVNode('\n									@slot A slot for a translated "Loading search results" message.\n								'),
                       renderSlot(_ctx.$slots, "search-results-pending")
                     ])
                   ],
@@ -8283,7 +8184,6 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                   },
                   [
                     createElementVNode("span", _hoisted_3, [
-                      createCommentVNode('\n									@slot A slot for passing in a translated "no results" message.\n								'),
                       renderSlot(_ctx.$slots, "search-no-results-text")
                     ])
                   ],
@@ -8300,14 +8200,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                   href: _ctx.asSearchResult(menuItem).url,
                   onClickCapture: withModifiers(($event) => _ctx.onSearchFooterClick(_ctx.asSearchResult(menuItem)), ["stop"])
                 }, [
-                  createCommentVNode(" eslint-disable max-len "),
                   createVNode(_component_cdx_icon, {
                     class: "cdx-menu-item__thumbnail cdx-typeahead-search__search-footer__icon",
                     icon: _ctx.articleIcon
                   }, null, 8, ["icon"]),
                   createElementVNode("span", _hoisted_5, [
-                    createCommentVNode(" eslint-enable max-len "),
-                    createCommentVNode("\n									@slot A slot for passing in translated search footer text.\n									@binding {string} search-query Input text entered by the user\n								"),
                     renderSlot(_ctx.$slots, "search-footer-text", { searchQuery: _ctx.searchQuery }, () => [
                       createElementVNode(
                         "strong",
@@ -8327,7 +8224,6 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           _: 3
           /* FORWARDED */
         }, 16, ["modelValue", "button-label", "aria-controls", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
-        createCommentVNode('\n				@slot A slot for passing hidden inputs, i.e.\n				`<input type="hidden" name="language" value="en">`\n			'),
         renderSlot(_ctx.$slots, "default")
       ], 40, _hoisted_1)
     ],
