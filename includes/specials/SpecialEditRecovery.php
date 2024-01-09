@@ -7,7 +7,6 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**
@@ -38,10 +37,5 @@ class SpecialEditRecovery extends SpecialPage {
 		);
 		$placeholder = Html::rawElement( 'div', [ 'class' => 'mw-EditRecovery-special' ], $noJs );
 		$this->getOutput()->addHTML( $placeholder );
-
-		$this->getOutput()->addJsConfigVars(
-			'wgEditRecoveryExpiry',
-			$this->getConfig()->get( MainConfigNames::EditRecoveryExpiry )
-		);
 	}
 }
