@@ -28,6 +28,7 @@ class HtmlHelper {
 	 *   serialization for the parsed HTML.  If set to false, uses a
 	 *   serialization which is more compatible with the output of the
 	 *   legacy parser; see RemexCompatFormatter for more details.
+	 *   When false, attributes and text nodes contain unexpanded character references (entities).
 	 * @return string
 	 */
 	public static function modifyElements(
@@ -46,9 +47,19 @@ class HtmlHelper {
 			};
 		}
 		$serializer = new Serializer( $formatter );
-		$treeBuilder = new TreeBuilder( $serializer );
+		$treeBuilder = new TreeBuilder( $serializer, $html5format ? [] : [
+			'ignoreErrors' => true,
+			'ignoreNulls' => true,
+		] );
 		$dispatcher = new Dispatcher( $treeBuilder );
-		$tokenizer = new Tokenizer( $dispatcher, $htmlFragment );
+		$tokenizer = new Tokenizer( $dispatcher, $htmlFragment, $html5format ? [] : [
+			// RemexCompatFormatter expects 'ignoreCharRefs' to be used (T354361). The other options are
+			// for consistency with RemexDriver and supposedly improve performance.
+			'ignoreErrors' => true,
+			'ignoreCharRefs' => true,
+			'ignoreNulls' => true,
+			'skipPreprocess' => true,
+		] );
 
 		$tokenizer->execute( [
 			'fragmentNamespace' => HTMLData::NS_HTML,
