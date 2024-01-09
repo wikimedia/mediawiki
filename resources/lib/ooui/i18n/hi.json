@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abijeet Patro",
 			"Ankita-ks",
 			"Ansumang",
 			"Devayon",
@@ -14,6 +15,7 @@
 			"Siddhartha Ghai"
 		]
 	},
+	"ooui-copytextlayout-copy": "प्रतिलिपि बनाएँ",
 	"ooui-outline-control-move-down": "आयटम को नीचे ले जाएँ",
 	"ooui-outline-control-move-up": "आयटम को ऊपर ले जाएँ",
 	"ooui-outline-control-remove": "आयटम को हटाएँ",
