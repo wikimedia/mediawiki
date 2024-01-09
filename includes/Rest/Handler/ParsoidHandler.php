@@ -139,7 +139,8 @@ abstract class ParsoidHandler extends Handler {
 		// since domain name support is provisional.
 		// TODO use a proper validator instead
 		$server = \RequestContext::getMain()->getConfig()->get( MainConfigNames::Server );
-		$expectedDomain = wfParseUrl( $server )['host'] ?? null;
+		$services = MediaWikiServices::getInstance();
+		$expectedDomain = $services->getUrlUtils()->parse( $server )['host'] ?? null;
 		if ( !$expectedDomain ) {
 			throw new LogicException( 'Cannot parse $wgServer' );
 		}
@@ -153,7 +154,7 @@ abstract class ParsoidHandler extends Handler {
 		if ( $this->extensionRegistry->isLoaded( 'MobileFrontend' ) ) {
 			// @phan-suppress-next-line PhanUndeclaredClassMethod
 			$mobileServer = MobileContext::singleton()->getMobileUrl( $server );
-			$expectedMobileDomain = wfParseUrl( $mobileServer )['host'] ?? null;
+			$expectedMobileDomain = $services->getUrlUtils()->parse( $mobileServer )['host'] ?? null;
 			if ( $expectedMobileDomain && strcasecmp( $expectedMobileDomain, $domain ) === 0 ) {
 				return;
 			}
