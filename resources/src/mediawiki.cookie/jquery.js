@@ -20,7 +20,7 @@ var jar = require( './jar.js' );
 $.cookie = jar.cookie;
 
 /**
- * Remove a cookie by key
+ * Remove a cookie by key.
  *
  * @example
  *    mw.loader.using( 'mediawiki.cookie' ).then( () => {

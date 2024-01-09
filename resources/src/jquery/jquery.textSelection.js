@@ -22,6 +22,7 @@
 ( function () {
 	/**
 	 * Do things to the selection in a `<textarea>`, or a textarea-like editable element.
+	 * Provided by the jquery.textSelection ResourceLoader module.
 	 *
 	 *     var $textbox = $( '#wpTextbox1' );
 	 *     $textbox.textSelection( 'setContents', 'This is bold!' );
@@ -29,6 +30,12 @@
 	 *     $textbox.textSelection( 'encapsulateSelection', { pre: '<b>', post: '</b>' } );
 	 *     // Result: Textbox contains 'This is <b>bold</b>!', with cursor before the '!'
 	 *
+	 * @memberof jQueryPlugins
+	 * @example
+	 * mw.loader.using( 'jquery.textSelection' ).then( () => {
+	 *       const contents = $( 'textarea' ).textSelection( 'getContents' );
+	 * } );
+	 * @method textSelection
 	 * @param {string} command Command to execute, one of:
 	 *
 	 *  - {@link jQuery.plugin.textSelection#getContents getContents}
@@ -41,8 +48,8 @@
 	 *  - {@link jQuery.plugin.textSelection#scrollToCaretPosition scrollToCaretPosition}
 	 *  - {@link jQuery.plugin.textSelection#register register}
 	 *  - {@link jQuery.plugin.textSelection#unregister unregister}
-	 * @param {Mixed} [commandOptions] Options to pass to the command
-	 * @return {Mixed} Depending on the command
+	 * @param {any} [commandOptions] Options to pass to the command
+	 * @return {any} Depending on the command
 	 */
 	$.fn.textSelection = function ( command, commandOptions ) {
 		// Checks if you can try to use insertText (it might still fail).
