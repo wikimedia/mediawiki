@@ -103,10 +103,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	) {
 		global $wgRequest;
 
-		if ( $session === null ) {
-			// re-use existing global session by default
-			$session = $wgRequest->getSessionArray();
-		}
+		// re-use existing global session by default
+		$session ??= $wgRequest->getSessionArray();
 
 		$sessionObj = SessionManager::singleton()->getEmptySession();
 
@@ -210,13 +208,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	protected static function getErrorFormatter() {
-		if ( self::$errorFormatter === null ) {
-			self::$errorFormatter = new ApiErrorFormatter(
-				new ApiResult( false ),
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
-				'none'
-			);
-		}
+		self::$errorFormatter ??= new ApiErrorFormatter(
+			new ApiResult( false ),
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			'none'
+		);
 		return self::$errorFormatter;
 	}
 

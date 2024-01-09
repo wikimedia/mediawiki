@@ -37,9 +37,7 @@ class TestUserRegistry {
 	public static function getMutableTestUser( $testName, $groups = [], $userPrefix = null ) {
 		$id = self::getNextId();
 		$testUserName = "$testName $id";
-		if ( $userPrefix === null ) {
-			$userPrefix = "TestUser";
-		}
+		$userPrefix ??= "TestUser";
 		$testUser = new TestUser(
 			"$userPrefix $testName $id",
 			"Name $id",

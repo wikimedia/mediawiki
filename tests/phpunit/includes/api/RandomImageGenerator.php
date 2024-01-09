@@ -138,9 +138,7 @@ class RandomImageGenerator {
 	 * @return string[]
 	 */
 	private function getRandomFilenames( $number, $extension = 'jpg', $dir = null ) {
-		if ( $dir === null ) {
-			$dir = getcwd();
-		}
+		$dir ??= getcwd();
 		$filenames = [];
 		$prefix = wfRandomString( 3 ) . '_' . gmdate( 'YmdHis' ) . '_';
 		foreach ( range( 1, $number ) as $offset ) {

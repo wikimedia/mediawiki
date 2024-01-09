@@ -142,9 +142,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	public function testFormat( $namespace, $text, $fragment, $interwiki, $lang, $expected,
 		$normalized = null
 	) {
-		if ( $normalized === null ) {
-			$normalized = $expected;
-		}
+		$normalized ??= $expected;
 
 		$codec = $this->makeCodec( $lang );
 		$actual = $codec->formatTitle( $namespace, $text, $fragment, $interwiki );
