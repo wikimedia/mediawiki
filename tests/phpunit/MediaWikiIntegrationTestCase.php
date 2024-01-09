@@ -281,9 +281,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.28
 	 *
 	 * @param string|string[] $groups User groups that the test user should be in.
+	 * @param string|null $userPrefix String to use as a user name prefix
 	 * @return TestUser
 	 */
-	protected function getMutableTestUser( $groups = [] ) {
+	protected function getMutableTestUser( $groups = [], $userPrefix = null ) {
 		if ( !self::needsDB() ) {
 			throw new LogicException(
 				'Test users get persisted in the test database and can only be used in tests having ' .
@@ -291,7 +292,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'mock a UserIdentity/Authority if the test doesn\'t need a real user account.'
 			);
 		}
-		return TestUserRegistry::getMutableTestUser( __CLASS__, $groups );
+
+		return TestUserRegistry::getMutableTestUser( __CLASS__, $groups, $userPrefix );
 	}
 
 	/**

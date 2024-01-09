@@ -28,15 +28,20 @@ class TestUserRegistry {
 	 *
 	 * @since 1.28
 	 *
-	 * @param string $testName Caller's __CLASS__. Used to generate the
+	 * @param string $testName Caller's __CLASS__ or arbitrary string. Used to generate the
 	 *  user's username.
 	 * @param string|string[] $groups Groups the test user should be added to.
+	 * @param string|null $userPrefix if non-null, the user prefix will be as specified instead of "TestUser"
 	 * @return TestUser
 	 */
-	public static function getMutableTestUser( $testName, $groups = [] ) {
+	public static function getMutableTestUser( $testName, $groups = [], $userPrefix = null ) {
 		$id = self::getNextId();
+		$testUserName = "$testName $id";
+		if ( $userPrefix === null ) {
+			$userPrefix = "TestUser";
+		}
 		$testUser = new TestUser(
-			"TestUser $testName $id",
+			"$userPrefix $testName $id",
 			"Name $id",
 			"$id@mediawiki.test",
 			(array)$groups

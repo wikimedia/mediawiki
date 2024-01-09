@@ -2,7 +2,6 @@
 
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
-use MediaWiki\User\User;
 
 /**
  * @group API
@@ -16,14 +15,16 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 
 	private const USER_PREFIX = 'ApiQueryAllUsersTest ';
 
+	private static $usersAdded = [];
+
 	public function addDBDataOnce() {
 		$groupManager = $this->getServiceContainer()->getUserGroupManager();
-
-		User::createNew( self::USER_PREFIX . 'A' );
-		$userB = User::createNew( self::USER_PREFIX . 'B' );
+		$userA = $this->getMutableTestUser( [], self::USER_PREFIX . 'A' )->getUser();
+		$userB = $this->getMutableTestUser( [], self::USER_PREFIX . 'B' )->getUser();
+		$userC = $this->getMutableTestUser( [], self::USER_PREFIX . 'C' )->getUser();
 		$groupManager->addUserToGroup( $userB, 'bot' );
-		$userC = User::createNew( self::USER_PREFIX . 'C' );
 		$groupManager->addUserToGroup( $userC, 'bot' );
+		self::$usersAdded = [ $userA, $userB, $userC ];
 	}
 
 	public function testPrefix() {
@@ -35,24 +36,23 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $result[0] );
 		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
-		$this->assertContains( self::USER_PREFIX . 'A', $result[0]['query']['allusers'][0] );
-		$this->assertContains( self::USER_PREFIX . 'B', $result[0]['query']['allusers'][1] );
-		$this->assertContains( self::USER_PREFIX . 'C', $result[0]['query']['allusers'][2] );
+		$this->assertContains( self::$usersAdded[0]->getName(), $result[0]['query']['allusers'][0] );
+		$this->assertContains( self::$usersAdded[1]->getName(), $result[0]['query']['allusers'][1] );
+		$this->assertContains( self::$usersAdded[2]->getName(), $result[0]['query']['allusers'][2] );
 	}
 
 	public function testImplicitRights() {
 		$result = $this->doApiRequest( [
 			'action' => 'query',
 			'list' => 'allusers',
-			'auprefix' => self::USER_PREFIX,
 			'aurights' => 'stashedit'
 		] );
 
 		$this->assertArrayHasKey( 'query', $result[0] );
 		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
-		$this->assertContains( self::USER_PREFIX . 'A', $result[0]['query']['allusers'][0] );
-		$this->assertContains( self::USER_PREFIX . 'B', $result[0]['query']['allusers'][1] );
-		$this->assertContains( self::USER_PREFIX . 'C', $result[0]['query']['allusers'][2] );
+		$this->assertContains( self::$usersAdded[0]->getName(), $result[0]['query']['allusers'][0] );
+		$this->assertContains( self::$usersAdded[1]->getName(), $result[0]['query']['allusers'][1] );
+		$this->assertContains( self::$usersAdded[2]->getName(), $result[0]['query']['allusers'][2] );
 	}
 
 	public function testPermissions() {
@@ -65,14 +65,13 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $result[0] );
 		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
-		$this->assertContains( self::USER_PREFIX . 'B', $result[0]['query']['allusers'][0] );
-		$this->assertContains( self::USER_PREFIX . 'C', $result[0]['query']['allusers'][1] );
+		$this->assertContains( self::$usersAdded[1]->getName(), $result[0]['query']['allusers'][0] );
+		$this->assertContains( self::$usersAdded[2]->getName(), $result[0]['query']['allusers'][1] );
 	}
 
 	public function testHiddenUser() {
-		$userFactory = $this->getServiceContainer()->getUserFactory();
-		$a = $userFactory->newFromName( self::USER_PREFIX . 'A' );
-		$b = $userFactory->newFromName( self::USER_PREFIX . 'B' );
+		$a = self::$usersAdded[0];
+		$b = self::$usersAdded[1];
 		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
 			->newBlockUser(
 				$b,
@@ -114,7 +113,7 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 				'userid' => $b->getId(),
 				'name' => $b->getName(),
 				'hidden' => true,
-				'blockedby' => 'ApiQueryAllUsersTest A',
+				'blockedby' => $a->getName(),
 				'blockreason' => '',
 				'blockexpiry' => 'infinite',
 				'blockpartial' => false,
@@ -124,10 +123,9 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 	}
 
 	public function testBlockInfo() {
-		$userFactory = $this->getServiceContainer()->getUserFactory();
-		$a = $userFactory->newFromName( self::USER_PREFIX . 'A' );
-		$b = $userFactory->newFromName( self::USER_PREFIX . 'B' );
-		$c = $userFactory->newFromName( self::USER_PREFIX . 'C' );
+		$a = self::$usersAdded[0];
+		$b = self::$usersAdded[1];
+		$c = self::$usersAdded[2];
 
 		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
 			->newBlockUser(
@@ -167,7 +165,7 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 			[
 				'userid' => $b->getId(),
 				'name' => $b->getName(),
-				'blockedby' => 'ApiQueryAllUsersTest A',
+				'blockedby' => $a->getName(),
 				'blockreason' => '',
 				'blockexpiry' => 'infinite',
 				'blockpartial' => false,
@@ -179,7 +177,7 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 			[
 				'userid' => $c->getId(),
 				'name' => $c->getName(),
-				'blockedby' => 'ApiQueryAllUsersTest A',
+				'blockedby' => $a->getName(),
 				'blockreason' => '',
 				'blockexpiry' => 'infinite',
 				'blockpartial' => false,
@@ -190,12 +188,9 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 	}
 
 	public function testUserRights() {
-		$userFactory = $this->getServiceContainer()->getUserFactory();
-		$userA = $userFactory->newFromName( self::USER_PREFIX . 'A' );
-		$userB = $userFactory->newFromName( self::USER_PREFIX . 'B' );
+		$userA = self::$usersAdded[0];
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// make the temp right last for the scope of this test
-		$scope = $permissionManager->addTemporaryUserRights( $userA, [ 'protect' ] );
+		$permissionManager->overrideUserRightsForTesting( $userA, [ 'protect' ] );
 
 		$result = $this->doApiRequest( [
 			'action' => 'query',
