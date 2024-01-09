@@ -1294,11 +1294,9 @@ return [
 		],
 		'messages' => [
 			'continue-editing',
-			'currentrev',
 			'otherlanguages',
 			'preview',
 			'previewerrortext',
-			'yourtext',
 		],
 	],
 	'mediawiki.action.history' => [
@@ -1737,6 +1735,8 @@ return [
 			'restriction-level-sysop',
 			'restriction-level-autoconfirmed',
 			'diff-empty',
+			'currentrev',
+			'yourtext',
 		]
 	],
 	'mediawiki.page.image.pagination' => [

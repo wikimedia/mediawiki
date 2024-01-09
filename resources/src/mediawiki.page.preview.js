@@ -435,6 +435,33 @@
 	}
 
 	/**
+	 * Get the required <table> structure for displaying diffs.
+	 *
+	 * @return {jQuery}
+	 */
+	function getDiffTable() {
+		return $( '<table>' ).addClass( 'diff' ).append(
+			$( '<col>' ).addClass( 'diff-marker' ),
+			$( '<col>' ).addClass( 'diff-content' ),
+			$( '<col>' ).addClass( 'diff-marker' ),
+			$( '<col>' ).addClass( 'diff-content' ),
+			$( '<thead>' ).append(
+				$( '<tr>' ).addClass( 'diff-title' ).append(
+					$( '<td>' )
+						.attr( 'colspan', 2 )
+						.addClass( 'diff-otitle diff-side-deleted' )
+						.text( mw.msg( 'currentrev' ) ),
+					$( '<td>' )
+						.attr( 'colspan', 2 )
+						.addClass( 'diff-ntitle diff-side-added' )
+						.text( mw.msg( 'yourtext' ) )
+				)
+			),
+			$( '<tbody>' )
+		);
+	}
+
+	/**
 	 * Get the unresolved promise of the diff view request.
 	 *
 	 * @private
@@ -442,8 +469,11 @@
 	 * @param {Object[]|null} response
 	 */
 	function handleDiffResponse( config, response ) {
-		var $table = config.$diffNode.find( 'table.diff' );
-
+		const $table = getDiffTable();
+		config.$diffNode
+			.hide()
+			.empty()
+			.append( $table );
 		if ( response && response[ 0 ].compare.bodies.main ) {
 			var diff = response[ 0 ].compare.bodies;
 
@@ -566,6 +596,25 @@
 
 		if ( config.showDiff ) {
 			config.$previewNode.hide();
+
+			// Add the diff node if it doesn't exist (directly after the preview node).
+			if ( config.$diffNode.length === 0 && config.$previewNode.length > 0 ) {
+				const rtlDir = $( '#wpTextbox1' ).attr( 'dir' ) === 'rtl';
+				const alignStart = rtlDir ? 'right' : 'left';
+				config.$diffNode = $( '<div>' )
+					.attr( 'id', 'wikiDiff' )
+					// The following classes are used here:
+					// * diff-editfont-monospace
+					// * diff-editfont-sans-serif
+					// * diff-editfont-serif
+					.addClass( 'diff-editfont-' + mw.user.options.get( 'editfont' ) )
+					// The following classes are used here:
+					// * diff-contentalign-left
+					// * diff-contentalign-right
+					.addClass( 'diff-contentalign-' + alignStart );
+				config.$previewNode.after( config.$diffNode );
+			}
+
 			// Hide the table of contents, in case it was previously shown after previewing.
 			mw.hook( 'wikipage.tableOfContents' ).fire( [] );
 
