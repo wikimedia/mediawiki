@@ -5,6 +5,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -467,6 +468,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$defaults = $services->getMainConfig()->get( 'DefaultUserOptions' );
 		$defaults['language'] = $services->getContentLanguage()->getCode();
 		$defaults['skin'] = Skin::normalizeKey( $services->getMainConfig()->get( 'DefaultSkin' ) );
+		( new HookRunner( $services->getHookContainer() ) )->onUserGetDefaultOptions( $defaults );
 		$userOptions += $defaults;
 
 		$mock = $this->createMock( UserOptionsManager::class );
