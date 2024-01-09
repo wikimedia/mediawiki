@@ -185,6 +185,15 @@ define( 'APCOND_ISBOT', 9 );
 /** @} */
 
 /** @{
+ * Conditional user defaults conditions
+ *
+ * Strings are used to make the values easier to use in extension.json
+ * @since 1.42
+ */
+define( 'CUDCOND_AFTER', 'registered-after' );
+/** @} */
+
+/** @{
  * Protocol constants for UrlUtils::expand()
  * PROTO_FALLBACK is @since 1.39
  */

@@ -207,6 +207,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
+use MediaWiki\User\Options\ConditionalDefaultsLookup;
 use MediaWiki\User\Options\DefaultOptionsLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
@@ -2519,12 +2520,24 @@ return [
 		);
 	},
 
+	'_ConditionalDefaultsLookup' => static function (
+		MediaWikiServices $services
+	): ConditionalDefaultsLookup {
+		return new ConditionalDefaultsLookup(
+			new ServiceOptions(
+				ConditionalDefaultsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getUserRegistrationLookup()
+		);
+	},
+
 	'_DefaultOptionsLookup' => static function ( MediaWikiServices $services ): DefaultOptionsLookup {
 		return new DefaultOptionsLookup(
 			new ServiceOptions( DefaultOptionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getHookContainer(),
 			$services->getNamespaceInfo(),
+			$services->get( '_ConditionalDefaultsLookup' ),
 			defined( 'MW_PHPUNIT_TEST' ) && $services->isStorageDisabled()
 		);
 	},

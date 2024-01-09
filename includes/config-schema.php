@@ -1106,6 +1106,8 @@ return [
 				'wlenhancedfilters-disable' => 0,
 				'wllimit' => 250,
 			],
+			'ConditionalUserOptions' => [
+			],
 			'HiddenPrefs' => [
 			],
 			'InvalidUsernameCharacters' => '@:>=',
@@ -2760,6 +2762,7 @@ return [
 			'SignatureAllowedLintErrors' => 'array',
 			'ReservedUsernames' => 'array',
 			'DefaultUserOptions' => 'object',
+			'ConditionalUserOptions' => 'object',
 			'HiddenPrefs' => 'array',
 			'AuthenticationTokenVersion' => [
 				0 => 'string',

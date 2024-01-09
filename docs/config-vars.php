@@ -2660,6 +2660,12 @@ $wgReservedUsernames = null;
 $wgDefaultUserOptions = null;
 
 /**
+ * Config variable stub for the ConditionalUserOptions setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ConditionalUserOptions
+ */
+$wgConditionalUserOptions = null;
+
+/**
  * Config variable stub for the HiddenPrefs setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::HiddenPrefs
  */

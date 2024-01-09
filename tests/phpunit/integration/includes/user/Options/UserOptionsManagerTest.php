@@ -96,6 +96,22 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
+	 * @param bool $expected
+	 * @param string $property
+	 * @param int $userId
+	 * @dataProvider provideConditionalDefaults
+	 */
+	public function testGetConditionalOption( bool $expected, string $property, int $userId ) {
+		$this->assertSame(
+			$expected,
+			$this->getLookup()->getOption(
+				new UserIdentityValue( $userId, 'Admin' ),
+				$property
+			)
+		);
+	}
+
+	/**
 	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionHiddenPref() {

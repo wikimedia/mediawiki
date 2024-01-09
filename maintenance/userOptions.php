@@ -81,7 +81,7 @@ The new option is NOT validated.' );
 	 */
 	private function listAvailableOptions() {
 		$userOptionsLookup = $this->getServiceContainer()->getUserOptionsLookup();
-		$def = $userOptionsLookup->getDefaultOptions();
+		$def = $userOptionsLookup->getDefaultOptions( null );
 		ksort( $def );
 		$maxOpt = 0;
 		foreach ( $def as $opt => $value ) {

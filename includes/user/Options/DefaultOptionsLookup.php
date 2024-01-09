@@ -49,6 +49,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	private ServiceOptions $serviceOptions;
 	private Language $contentLang;
 	private NamespaceInfo $nsInfo;
+	private ConditionalDefaultsLookup $conditionalDefaultsLookup;
 
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
@@ -65,6 +66,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	 * @param Language $contentLang
 	 * @param HookContainer $hookContainer
 	 * @param NamespaceInfo $nsInfo
+	 * @param ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup
 	 * @param bool $isDatabaselessTest
 	 */
 	public function __construct(
@@ -72,6 +74,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		Language $contentLang,
 		HookContainer $hookContainer,
 		NamespaceInfo $nsInfo,
+		ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup,
 		bool $isDatabaselessTest
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -79,13 +82,16 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		$this->contentLang = $contentLang;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->nsInfo = $nsInfo;
+		$this->conditionalDefaultsLookup = $conditionalUserOptionsDefaultsLookup;
 		$this->isDatabaselessTest = $isDatabaselessTest;
 	}
 
 	/**
-	 * @inheritDoc
+	 * Get default user options from $wgDefaultUserOptions (ignoring any conditional defaults)
+	 *
+	 * @return array
 	 */
-	public function getDefaultOptions(): array {
+	private function getGenericDefaultOptions(): array {
 		if ( $this->defaultOptions !== null ) {
 			return $this->defaultOptions;
 		}
@@ -118,6 +124,28 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		$this->hookRunner->onUserGetDefaultOptions( $this->defaultOptions );
 
 		return $this->defaultOptions;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getDefaultOptions( ?UserIdentity $userIdentity = null ): array {
+		$defaultOptions = $this->getGenericDefaultOptions();
+
+		// If requested, process any conditional defaults
+		if ( $userIdentity ) {
+			$conditionallyDefaultOptions = $this->conditionalDefaultsLookup->getConditionallyDefaultOptions();
+			foreach ( $conditionallyDefaultOptions as $optionName ) {
+				$conditionalDefault = $this->conditionalDefaultsLookup->getOptionDefaultForUser(
+					$optionName, $userIdentity
+				);
+				if ( $conditionalDefault !== null ) {
+					$defaultOptions[$optionName] = $conditionalDefault;
+				}
+			}
+		}
+
+		return $defaultOptions;
 	}
 
 	/**

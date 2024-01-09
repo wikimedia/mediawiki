@@ -125,8 +125,15 @@ class UserOptionsManager extends UserOptionsLookup {
 	/**
 	 * @inheritDoc
 	 */
-	public function getDefaultOptions(): array {
-		return $this->defaultOptionsLookup->getDefaultOptions();
+	public function getDefaultOptions( ?UserIdentity $userIdentity = null ): array {
+		return $this->defaultOptionsLookup->getDefaultOptions( $userIdentity );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getDefaultOption( string $opt, ?UserIdentity $userIdentity = null ) {
+		return $this->defaultOptionsLookup->getDefaultOption( $opt, $userIdentity );
 	}
 
 	/**
@@ -145,7 +152,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
 		if ( !$ignoreHidden && in_array( $oname, $this->serviceOptions->get( MainConfigNames::HiddenPrefs ) ) ) {
-			return $this->defaultOptionsLookup->getDefaultOption( $oname );
+			return $this->defaultOptionsLookup->getDefaultOption( $oname, $user );
 		}
 
 		$options = $this->loadUserOptions( $user, $queryFlags );
@@ -171,14 +178,16 @@ class UserOptionsManager extends UserOptionsLookup {
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
 		foreach ( $this->serviceOptions->get( MainConfigNames::HiddenPrefs ) as $pref ) {
-			$default = $this->defaultOptionsLookup->getDefaultOption( $pref );
+			$default = $this->defaultOptionsLookup->getDefaultOption( $pref, $user );
 			if ( $default !== null ) {
 				$options[$pref] = $default;
 			}
 		}
 
 		if ( $flags & self::EXCLUDE_DEFAULTS ) {
-			$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
+			// NOTE: This intentionally ignores conditional defaults, so that `mw.user.options`
+			// work correctly for options with conditional defaults.
+			$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( null );
 			foreach ( $options as $option => $value ) {
 				if ( array_key_exists( $option, $defaultOptions )
 					&& $this->isValueEqual( $value, $defaultOptions[$option] )
@@ -203,7 +212,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	public function setOption( UserIdentity $user, string $oname, $val ) {
 		// Explicitly NULL values should refer to defaults
 		if ( $val === null ) {
-			$val = $this->defaultOptionsLookup->getDefaultOption( $oname );
+			$val = $this->defaultOptionsLookup->getDefaultOption( $oname, $user );
 		}
 		$this->modifiedOptions[$this->getCacheKey( $user )][$oname] = $val;
 	}
@@ -228,7 +237,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
 	) {
 		$oldOptions = $this->loadUserOptions( $user, self::READ_LATEST );
-		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
+		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
 
 		if ( !is_array( $resetKinds ) ) {
 			$resetKinds = [ $resetKinds ];
@@ -431,7 +440,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$keysToDelete = [];
 		foreach ( $modifiedOptions as $key => $value ) {
 			// Don't store unchanged or default values
-			$defaultValue = $this->defaultOptionsLookup->getDefaultOption( $key );
+			$defaultValue = $this->defaultOptionsLookup->getDefaultOption( $key, $user );
 			$oldValue = $this->optionsFromDb[$userKey][$key] ?? null;
 			if ( $value === null || $this->isValueEqual( $value, $defaultValue ) ) {
 				if ( array_key_exists( $key, $this->optionsFromDb[$userKey] ) ) {
@@ -600,7 +609,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		array $data = null
 	): array {
 		$userKey = $this->getCacheKey( $user );
-		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
+		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
 		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			// For unlogged-in users, load language/variant options from request.
 			// There's no need to do it for logged-in users: they can set preferences,

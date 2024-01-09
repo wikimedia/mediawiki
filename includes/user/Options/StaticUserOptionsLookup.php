@@ -27,7 +27,7 @@ class StaticUserOptionsLookup extends UserOptionsLookup {
 	}
 
 	/** @inheritDoc */
-	public function getDefaultOptions(): array {
+	public function getDefaultOptions( ?UserIdentity $userIdentity = null ): array {
 		return $this->defaults;
 	}
 

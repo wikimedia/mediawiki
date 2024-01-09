@@ -29,6 +29,7 @@ class ExtensionProcessor implements Processor {
 		MainConfigNames::AvailableRights,
 		MainConfigNames::CentralIdLookupProviders,
 		MainConfigNames::ChangeCredentialsBlacklist,
+		MainConfigNames::ConditionalUserOptions,
 		MainConfigNames::ConfigRegistry,
 		MainConfigNames::ContentHandlers,
 		MainConfigNames::DefaultUserOptions,

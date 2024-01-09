@@ -2318,6 +2318,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\Hook\\UserSetEmailHook' => __DIR__ . '/includes/user/Hook/UserSetEmailHook.php',
 	'MediaWiki\\User\\Hook\\User__mailPasswordInternalHook' => __DIR__ . '/includes/user/Hook/User__mailPasswordInternalHook.php',
 	'MediaWiki\\User\\LoggedOutEditToken' => __DIR__ . '/includes/user/LoggedOutEditToken.php',
+	'MediaWiki\\User\\Options\\ConditionalDefaultsLookup' => __DIR__ . '/includes/user/Options/ConditionalDefaultsLookup.php',
 	'MediaWiki\\User\\Options\\DefaultOptionsLookup' => __DIR__ . '/includes/user/Options/DefaultOptionsLookup.php',
 	'MediaWiki\\User\\Options\\Hook\\LoadUserOptionsHook' => __DIR__ . '/includes/user/Options/Hook/LoadUserOptionsHook.php',
 	'MediaWiki\\User\\Options\\Hook\\SaveUserOptionsHook' => __DIR__ . '/includes/user/Options/Hook/SaveUserOptionsHook.php',
