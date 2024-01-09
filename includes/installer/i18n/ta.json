@@ -54,7 +54,7 @@
 	"config-admin-password": "கடவுச்சொல்:",
 	"config-admin-password-confirm": "கடவுச்சொல் மறுமுறையும்:",
 	"config-admin-name-blank": "நிருவாக அணுக்கம் உள்ள பயனர் பெயரை இடுக.",
-	"config-admin-password-blank": "நிருவாகி கணக்குக்கு கடவுச்சொல் ஒன்றை உள்ளிடவும்.",
+	"config-admin-password-blank": "நிருவாகிக் கணக்குக்கு ஒரு கடவுச்சொல்லை உள்ளிடுக.",
 	"config-admin-password-mismatch": "நீங்கள் பதிந்த கடவுச்சொற்கள் ஒன்றுக்கொன்று பொருந்தவில்லை.",
 	"config-admin-email": "மின்னஞ்சல் முகவரி:",
 	"config-admin-error-bademail": "நீங்கள் செல்லாத ஒரு மின்னஞ்சல் முகவரியைத் தந்துள்ளீர்கள்.",

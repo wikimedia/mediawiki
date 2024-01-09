@@ -936,7 +936,7 @@
 	"history-edit-tags": "عدّل وسوم المراجعات التي اخترتها",
 	"history-empty": "لم يتم العثور على التنقيحات المطابقة.",
 	"rev-deleted-comment": "(أزيل ملخص التعديل)",
-	"rev-deleted-user": "(اسم المستخدم تمت إزالته)",
+	"rev-deleted-user": "(أُزيل اسم المستخدم)",
 	"rev-deleted-event": "(تفاصيل السجل تمت إزالتها)",
 	"rev-deleted-user-contribs": "[اسم المستخدم أو عنوان الأيبي تمت إزالته - التعديل مخفي من المساهمات]",
 	"rev-deleted-text-permission": "<strong>حُذِفت</strong> مراجعة هذه الصفحة.\nيمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page=$1}} سجل الحذف].",

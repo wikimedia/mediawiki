@@ -396,5 +396,7 @@
 	"exif-usepanoramaviewer-true": "Да",
 	"exif-usepanoramaviewer-false": "Не",
 	"exif-exposurelockused-true": "Да",
-	"exif-exposurelockused-false": "Не"
+	"exif-exposurelockused-false": "Не",
+	"exif-posepitchdegrees": "Угао по вертикали (степени)",
+	"exif-poserolldegrees": "Нагиб (степени)"
 }
