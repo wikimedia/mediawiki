@@ -1,5 +1,11 @@
 # OOUI Release History
 
+## v0.48.4 / 2024-01-09
+
+### Code
+* build: Remove obsolete deprecated WikimediaUI Base token alias file (Volker E.)
+* build: Update 'svgo' to latest v3.2.0 (Volker E.)
+
 ## v0.48.3 / 2023-12-06
 
 ### Deprecating changes
