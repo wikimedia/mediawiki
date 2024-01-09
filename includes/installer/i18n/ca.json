@@ -12,7 +12,8 @@
 			"Pitort",
 			"Toniher",
 			"Xavier Dengra",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"SMP"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",
@@ -59,10 +60,11 @@
 	"config-env-good": "S'ha comprovat l'entorn.\nPodeu instal·lar el MediaWiki.",
 	"config-env-bad": "S'ha comprovat l'entorn.\nNo podeu instal·lar el MediaWiki.",
 	"config-env-php": "El PHP $1 està instal·lat.",
+	"config-env-icu": "ICU $1 està instal·lat (admet Unicode $2).",
 	"config-no-db": "No s'ha pogut trobar un controlador adequat per a la base de dades. Instal·leu-ne un per al PHP.\nHi ha suport per {{PLURAL:$2|al tipus de base de dades següent|als tipus de base de dades següents}}: $1\n\nSi heu compilat el PHP manualment, torneu a configurar-lo amb un client de base de dades habilitat, per exemple fent servir <code>./configure --with-mysqli</code>.\nSi heu instal·lat el PHP d'un paquet de Debian o Ubuntu, també cal que instal·leu, per exemple, el paquet <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Avís:</strong> teniu el SQLite $2, que és menor que la versió mínima necessària $1. SQLite no estarà disponible.",
 	"config-no-fts3": "<strong>Avís:</strong> SQLite està compilat sense el [//sqlite.org/fts3.html mòdul FTS3], per tant les funcionalitats de cerca no estaran disponibles en aquesta instal·lació.",
-	"config-pcre-invalid-newline": "<strong>Fatal:</strong> el mòdul PCRE de PHP sembla que s'ha compilat amb PCRE_CONFIG_NEWLINE = -1 per a ANY.\nMediaWiki no és compatible amb aquesta configuració.",
+	"config-pcre-invalid-newline": "<strong>Fatal:</strong> Sembla que la llibreria PCRE2 s'ha compilat amb <code>--enable-newline-is-any</code>.\nMediaWiki no és compatible amb aquesta configuració.",
 	"config-memory-raised": "El <code>memory_limit</code> del PHP és $1 i s'ha aixecat a $2.",
 	"config-memory-bad": "<strong>Avís:</strong> El <code>memory_limit</code> del PHP és $1.\nAixò és probablement massa baix.\nLa instal·lació pot fallar!",
 	"config-apc": "L'[https://www.php.net/apc APC] està instal·lat",
@@ -81,7 +83,9 @@
 	"config-using-server": "S'utilitza el nom del servidor «<nowiki>$1</nowiki>».",
 	"config-using-uri": "S'utilitza l'URL del servidor «<nowiki>$1$2</nowiki>».",
 	"config-uploads-not-safe": "<strong>Avís:</strong> El directori de càrregues per defecte <code>$1</code> és vulnerable a l'execució d'scripts arbitraris.\nEncara que el MediaWiki comprova tots els fitxers que es carreguen davant d'amenaces de seguretat, és molt recomanable [https://www.mediawiki.org/ wiki/Special:MyLanguage/Manual:Security#Upload_security tancar aquesta vulnerabilitat de seguretat] abans d'habilitar les càrregues.",
-	"config-no-cli-uploads-check": "<strong>Avís</strong>: no s'ha comprovat el directori per defecte per a càrregues (<code>$1/code>$) per vulnerabilitats en l'execució arbitrària durant la instal·lació amb la línia d'ordres.",
+	"config-uploads-security-headers": "<strong>Avís</strong>: les sol·licituds d'imatges al vostre directori de càrregues haurien de respondre amb la capçalera HTTP <code>$1</code> per a protegir els navegadors de fitxers potencialment insegurs.\nEs recomana molt que [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security configureu les capçaleres de resposta adequades al vostre servidor web] abans d'habilitar la càrrega de fitxers.",
+	"config-uploads-security-requesterror": "<strong>Avís</strong>: a causa d'un error de connexió, no s'ha pogut verificar que les imatges del directori de càrregues responguessin amb la capçalera HTTP <code>$1</code> per a protegir els navegadors de fitxers potencialment insegurs.\nEs molt recomanable que [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security configureu les capçaleres de resposta adequades al vostre servidor web] abans d'habilitar la càrrega de fitxers.",
+	"config-no-cli-uploads-check": "<strong>Avís</strong>: no s'ha comprovat si el directori per defecte de càrregues (<code>$1</code>) té vulnerabilitats en l'execució arbitrària de scripts durant la instal·lació per CLI.",
 	"config-using-32bit": "<strong>Avís</strong>: el vostre sistema sembla que s'executa amb enters de 32 bits. Això [https://www.mediawiki.org/wiki/special:MyLanguage/Manual:32-bit no és aconsellable].",
 	"config-db-type": "Tipus de base de dades:",
 	"config-db-host": "Servidor de la base de dades:",
@@ -101,7 +105,9 @@
 	"config-db-prefix": "Prefix de la base de dades (sense guionets):",
 	"config-db-prefix-help": "Si heu de compartir una base de dades entre diversos wikis, o entre el MediaWiki i una altra aplicació web, podeu afegir un prefix al tots els noms de taula per a evitar conflictes.\nNo utilitzeu espais.\n\nAquest camp acostuma a quedar en blanc.",
 	"config-mysql-old": "Cal el MySQL $1 o posterior. Teniu el $2.",
+	"config-mariadb-old": "Es requereix MariaDB $1 o posterior. Teniu $2.",
 	"config-db-port": "Port de la base de dades:",
+	"config-db-ssl": "Connexió per SSL",
 	"config-db-schema": "Esquema per a MediaWiki (sense guionets):",
 	"config-db-schema-help": "Aquest esquema normalment ja serveix.\nNomés canvieu-lo si sabeu què us feu.",
 	"config-pg-test-error": "No es pot connectar a la base de dades '''$1''': $2",
@@ -311,6 +317,7 @@
 	"config-screenshot": "captura de pantalla",
 	"config-extension-not-found": "No s'ha pogut trobar el fitxer de registre de l'extensió «$1»",
 	"config-extension-dependency": "S'ha produït un error de dependències mentre s'instal·lava l'extensió «$1»: $2",
+	"config-ext-skins-more-info": "més informació",
 	"mainpagetext": "<strong>MediaWiki s'ha instal·lat.</strong>",
 	"mainpagedocfooter": "Consulteu la [https://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar aquest programari wiki.\n\n== Primers passos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de paràmetres configurables]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Llista de correu per a anuncis del MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducció de MediaWiki en la vostra llengua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprengueu com combatre la brossa que pot atacar el vostre wiki]"
 }
