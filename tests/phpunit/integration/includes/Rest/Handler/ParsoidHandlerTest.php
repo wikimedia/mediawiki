@@ -29,13 +29,13 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\RestTestTrait;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
 use ParserCache;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\PageConfig;
@@ -52,6 +52,7 @@ use WikitextContent;
  * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
  */
 class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 	use RestTestTrait;
 
 	/**
@@ -276,15 +277,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$router = $this->createRouter( $authority, $request );
 		$config = [];
 
-		$formatter = new class implements ITextFormatter {
-			public function getLangCode() {
-				return 'qqx';
-			}
-
-			public function format( MessageValue $message ) {
-				return $message->dump();
-			}
-		};
+		$formatter = $this->getDummyTextFormatter( true );
 
 		/** @var ResponseFactory|MockObject $responseFactory */
 		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );

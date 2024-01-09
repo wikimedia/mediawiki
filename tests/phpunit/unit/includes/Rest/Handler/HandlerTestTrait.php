@@ -13,11 +13,10 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Message\ITextFormatter;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\ServiceContainer;
 
@@ -30,6 +29,7 @@ use Wikimedia\Services\ServiceContainer;
  * @package MediaWiki\Tests\Rest\Handler
  */
 trait HandlerTestTrait {
+	use DummyServicesTrait;
 	use MockAuthorityTrait;
 	use SessionHelperTestTrait;
 
@@ -52,15 +52,7 @@ trait HandlerTestTrait {
 		Authority $authority = null,
 		Session $session = null
 	) {
-		$formatter = new class implements ITextFormatter {
-			public function getLangCode() {
-				return 'qqx';
-			}
-
-			public function format( MessageValue $message ) {
-				return $message->dump();
-			}
-		};
+		$formatter = $this->getDummyTextFormatter( true );
 
 		/** @var ResponseFactory|MockObject $responseFactory */
 		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );

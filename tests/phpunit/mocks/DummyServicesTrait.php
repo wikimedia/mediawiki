@@ -458,6 +458,32 @@ trait DummyServicesTrait {
 	}
 
 	/**
+	 * @param bool $dumpMessages Whether MessageValue objects should be formatted by dumping
+	 *   them rather than just returning the key
+	 * @return ITextFormatter
+	 */
+	private function getDummyTextFormatter( bool $dumpMessages = false ): ITextFormatter {
+		return new class( $dumpMessages ) implements ITextFormatter {
+			private bool $dumpMessages;
+
+			public function __construct( bool $dumpMessages ) {
+				$this->dumpMessages = $dumpMessages;
+			}
+
+			public function getLangCode() {
+				return 'qqx';
+			}
+
+			public function format( MessageValue $message ) {
+				if ( $this->dumpMessages ) {
+					return $message->dump();
+				}
+				return $message->getKey();
+			}
+		};
+	}
+
+	/**
 	 * @param array $options Supported keys:
 	 *   - any of the configuration options used in the ServiceOptions
 	 *   - logger: logger to use, defaults to a NullLogger
@@ -490,15 +516,7 @@ trait DummyServicesTrait {
 
 		$logger = $options['logger'] ?? new NullLogger();
 
-		$textFormatter = $options['textFormatter'] ?? new class implements ITextFormatter {
-			public function getLangCode() {
-				return 'qqx';
-			}
-
-			public function format( MessageValue $message ) {
-				return $message->getKey();
-			}
-		};
+		$textFormatter = $options['textFormatter'] ?? $this->getDummyTextFormatter();
 
 		$titleParser = $options['titleParser'] ?? false;
 		if ( !$titleParser ) {

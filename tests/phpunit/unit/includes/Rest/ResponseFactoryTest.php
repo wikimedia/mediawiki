@@ -8,12 +8,14 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RedirectException;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiUnitTestCase;
-use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
 /** @covers \MediaWiki\Rest\ResponseFactory */
 class ResponseFactoryTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
+
 	public static function provideEncodeJson() {
 		return [
 			[ (object)[], '{}' ],
@@ -25,16 +27,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	private function createResponseFactory() {
-		$fakeTextFormatter = new class implements ITextFormatter {
-			public function getLangCode() {
-				return 'qqx';
-			}
-
-			public function format( MessageValue $message ) {
-				return $message->getKey();
-			}
-		};
-		return new ResponseFactory( [ $fakeTextFormatter ] );
+		return new ResponseFactory( [ $this->getDummyTextFormatter() ] );
 	}
 
 	/** @dataProvider provideEncodeJson */
