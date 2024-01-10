@@ -71,11 +71,16 @@ class WebInstallerDBConnect extends WebInstallerPage {
 		foreach ( $compiledDBs as $type ) {
 			$installer = $this->parent->getDBInstaller( $type );
 			$types .= "<span class=\"cdx-radio\">";
-			$types .= Xml::radio(
-				'DBType',
-				$type,
-				$type == $defaultType,
-				[ 'id' => "DBType_$type", 'class' => 'cdx-radio__input' ]
+			$types .=
+				Xml::radio(
+					'DBType',
+					$type,
+					$type == $defaultType,
+					[
+						'id' => "DBType_$type",
+						'class' => 'cdx-radio__input dbRadio',
+						'rel' => "DB_wrapper_$type",
+					]
 				) .
 				"\u{00A0}<span class=\"cdx-radio__icon\"></span>" .
 				Xml::label( $installer->getReadableName(), $type, [ 'class' => 'cdx-radio__label' ] );
