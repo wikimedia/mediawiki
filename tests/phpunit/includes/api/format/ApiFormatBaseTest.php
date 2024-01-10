@@ -374,6 +374,47 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$printer->closePrinter();
 		$text = ob_get_clean();
 		$this->assertStringContainsString( $expect, $text );
+		$this->assertSame( 'private, must-revalidate, max-age=0', $main->getContext()->getRequest()->response()->getHeader( 'Cache-Control' ) );
+	}
+
+	public static function provideHtmlIsPrivate() {
+		yield [ 'private', 'private' ];
+		yield [ 'public', 'anon-public-user-private' ];
+	}
+
+	/**
+	 * Assert that HTML output is not cacheable (T354045).
+	 * @dataProvider provideHtmlIsPrivate
+	 */
+	public function testHtmlIsPrivate( $moduleCacheMode, $expectedCacheMode ) {
+		$context = new RequestContext;
+		$request = new FauxRequest( [ 'uselang' => 'qqx' ] );
+		$request->setRequestURL( '/wx/api.php' );
+		$context->setRequest( $request );
+		$context->setLanguage( 'qqx' );
+		$main = new ApiMain( $context );
+
+		$printer = $this->getMockFormatter( $main, 'mockfm' );
+		$mm = $printer->getMain()->getModuleManager();
+		$mm->addModule( 'mockfm', 'format', [
+			'class' => ApiFormatBase::class,
+			'factory' => static function () {
+				return $mock;
+			}
+		] );
+
+		// pretend the output is cacheable
+		$main->setCacheMode( $moduleCacheMode );
+		$printer->initPrinter();
+
+		$mainAccess = TestingAccessWrapper::newFromObject( $main );
+		$this->assertSame( $expectedCacheMode, $main->getCacheMode() );
+
+		$mainAccess->sendCacheHeaders( false );
+		$this->assertSame(
+			'private, must-revalidate, max-age=0',
+			$request->response()->getHeader( 'cache-control' )
+		);
 	}
 
 	public static function provideHtmlHeader() {
