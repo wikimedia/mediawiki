@@ -803,6 +803,10 @@ class ApiMain extends ApiBase {
 		$this->mCacheMode = $mode;
 	}
 
+	public function getCacheMode() {
+		return $this->mCacheMode;
+	}
+
 	/**
 	 * Set directives (key/value pairs) for the Cache-Control header.
 	 * Boolean values will be formatted as such, by including or omitting
