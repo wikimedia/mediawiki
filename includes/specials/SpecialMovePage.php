@@ -39,6 +39,7 @@ use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Widget\ComplexTitleInputWidget;
@@ -108,6 +109,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	private SearchEngineFactory $searchEngineFactory;
 	private WatchlistManager $watchlistManager;
 	private RestrictionStore $restrictionStore;
+	private TitleFactory $titleFactory;
 
 	/**
 	 * @param MovePageFactory $movePageFactory
@@ -122,6 +124,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param WatchlistManager $watchlistManager
 	 * @param RestrictionStore $restrictionStore
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		MovePageFactory $movePageFactory,
@@ -135,7 +138,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		WikiPageFactory $wikiPageFactory,
 		SearchEngineFactory $searchEngineFactory,
 		WatchlistManager $watchlistManager,
-		RestrictionStore $restrictionStore
+		RestrictionStore $restrictionStore,
+		TitleFactory $titleFactory
 	) {
 		parent::__construct( 'Movepage' );
 		$this->movePageFactory = $movePageFactory;
@@ -150,6 +154,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->watchlistManager = $watchlistManager;
 		$this->restrictionStore = $restrictionStore;
+		$this->titleFactory = $titleFactory;
 	}
 
 	public function doesWrites() {
@@ -875,7 +880,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		$extraPages = [];
 		if ( $conds !== null ) {
-			$extraPages = new TitleArrayFromResult(
+			$extraPages = $this->titleFactory->newTitleArrayFromResult(
 				$dbr->newSelectQueryBuilder()
 					->select( [ 'page_id', 'page_namespace', 'page_title' ] )
 					->from( 'page' )

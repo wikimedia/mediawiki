@@ -225,10 +225,11 @@ class WikiFilePage extends WikiPage {
 		$this->loadFile();
 		$title = $this->mTitle;
 		$file = $this->mFile;
+		$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
 
 		if ( !$file instanceof LocalFile ) {
 			wfDebug( __METHOD__ . " is not supported for this file" );
-			return new TitleArrayFromResult( new FakeResultWrapper( [] ) );
+			return $titleFactory->newTitleArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 
 		/** @var LocalRepo $repo */
@@ -242,7 +243,7 @@ class WikiFilePage extends WikiPage {
 			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey(), ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
-		return new TitleArrayFromResult( $res );
+		return $titleFactory->newTitleArrayFromResult( $res );
 	}
 
 	/**

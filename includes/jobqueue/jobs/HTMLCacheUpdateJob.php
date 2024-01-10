@@ -22,7 +22,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArrayFromResult;
 
 /**
  * Job to purge the HTML/file cache for all pages that link to or use another page or file
@@ -165,10 +164,12 @@ class HTMLCacheUpdateJob extends Job {
 		if ( $config->get( MainConfigNames::PageLanguageUseDB ) ) {
 			$queryBuilder->field( 'page_lang' );
 		}
-		$titleArray = new TitleArrayFromResult( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
+		$titleArray = $services->getTitleFactory()->newTitleArrayFromResult(
+			$queryBuilder->caller( __METHOD__ )->fetchResultSet()
+		);
 
 		// Update CDN and file caches
-		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$htmlCache = $services->getHtmlCacheUpdater();
 		$htmlCache->purgeTitleUrls(
 			$titleArray,
 			$htmlCache::PURGE_NAIVE | $htmlCache::PURGE_URLS_LINKSUPDATE_ONLY,

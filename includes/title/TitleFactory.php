@@ -26,6 +26,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MessageLocalizer;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Creates Title objects.
@@ -186,6 +187,15 @@ class TitleFactory {
 	 */
 	public function newMainPage( MessageLocalizer $localizer = null ): Title {
 		return Title::newMainPage( $localizer );
+	}
+
+	/**
+	 * @since 1.42
+	 * @param IResultWrapper $result
+	 * @return TitleArrayFromResult
+	 */
+	public function newTitleArrayFromResult( IResultWrapper $result ) {
+		return new TitleArrayFromResult( $result );
 	}
 
 }

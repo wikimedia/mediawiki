@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
+use MediaWiki\Title\TitleFactory;
 use MWException;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -72,10 +73,14 @@ class Category {
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	private function __construct() {
 		$services = MediaWikiServices::getInstance();
 		$this->dbProvider = $services->getDBLoadBalancerFactory();
 		$this->readOnlyMode = $services->getReadOnlyMode();
+		$this->titleFactory = $services->getTitleFactory();
 	}
 
 	/**
@@ -340,9 +345,9 @@ class Category {
 			$queryBuilder->andWhere( $dbr->expr( 'cl_sortkey', '>', $offset ) );
 		}
 
-		$result = new TitleArrayFromResult( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
-
-		return $result;
+		return $this->titleFactory->newTitleArrayFromResult(
+			$queryBuilder->caller( __METHOD__ )->fetchResultSet()
+		);
 	}
 
 	/**

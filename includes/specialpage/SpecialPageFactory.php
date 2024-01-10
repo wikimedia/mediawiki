@@ -1104,6 +1104,7 @@ class SpecialPageFactory {
 				'SearchEngineFactory',
 				'WatchlistManager',
 				'RestrictionStore',
+				'TitleFactory',
 			]
 		],
 		'Mycontributions' => [

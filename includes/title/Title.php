@@ -2495,14 +2495,16 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$options['LIMIT'] = $limit;
 		}
 
-		$pageStore = MediaWikiServices::getInstance()->getPageStore();
+		$services = MediaWikiServices::getInstance();
+		$pageStore = $services->getPageStore();
+		$titleFactory = $services->getTitleFactory();
 		$query = $pageStore->newSelectQueryBuilder()
 			->fields( $pageStore->getSelectFields() )
 			->whereTitlePrefix( $this->getNamespace(), $this->getDBkey() . '/' )
 			->options( $options )
 			->caller( __METHOD__ );
 
-		return new TitleArrayFromResult( $query->fetchResultSet() );
+		return $titleFactory->newTitleArrayFromResult( $query->fetchResultSet() );
 	}
 
 	/**

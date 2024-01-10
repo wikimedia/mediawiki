@@ -2865,19 +2865,20 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return TitleArrayFromResult
 	 */
 	public function getCategories() {
+		$services = MediaWikiServices::getInstance();
 		$id = $this->getId();
 		if ( $id == 0 ) {
-			return new TitleArrayFromResult( new FakeResultWrapper( [] ) );
+			return $services->getTitleFactory()->newTitleArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $services->getDBLoadBalancer()->getMaintenanceConnectionRef( DB_REPLICA );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_title' => 'cl_to', 'page_namespace' => (string)NS_CATEGORY ] )
 			->from( 'categorylinks' )
 			->where( [ 'cl_from' => $id ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
-		return new TitleArrayFromResult( $res );
+		return $services->getTitleFactory()->newTitleArrayFromResult( $res );
 	}
 
 	/**
