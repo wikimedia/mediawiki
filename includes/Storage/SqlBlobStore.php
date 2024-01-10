@@ -383,8 +383,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		}
 		// Callers doing updates will pass in READ_LATEST as usual. Since the text/blob tables
 		// do not normally get rows changed around, set READ_LATEST_IMMUTABLE in those cases.
-		$queryFlags |= DBAccessObjectUtils::hasFlags( $queryFlags, self::READ_LATEST )
-			? self::READ_LATEST_IMMUTABLE
+		$queryFlags |= DBAccessObjectUtils::hasFlags( $queryFlags, IDBAccessObject::READ_LATEST )
+			? IDBAccessObject::READ_LATEST_IMMUTABLE
 			: 0;
 		[ $index, $options, $fallbackIndex, $fallbackOptions ] =
 			DBAccessObjectUtils::getDBOptions( $queryFlags );

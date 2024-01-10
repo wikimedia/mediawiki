@@ -96,7 +96,7 @@ class BotPassword implements IDBAccessObject {
 	 * @param bool $isSaved Whether the bot password was read from the database
 	 * @param int $flags IDBAccessObject read flags
 	 */
-	public function __construct( $row, $isSaved, $flags = self::READ_NORMAL ) {
+	public function __construct( $row, $isSaved, $flags = IDBAccessObject::READ_NORMAL ) {
 		$this->isSaved = $isSaved;
 		$this->flags = $flags;
 
@@ -125,7 +125,7 @@ class BotPassword implements IDBAccessObject {
 	 * @param int $flags IDBAccessObject read flags
 	 * @return BotPassword|null
 	 */
-	public static function newFromUser( UserIdentity $userIdentity, $appId, $flags = self::READ_NORMAL ) {
+	public static function newFromUser( UserIdentity $userIdentity, $appId, $flags = IDBAccessObject::READ_NORMAL ) {
 		return MediaWikiServices::getInstance()
 			->getBotPasswordStore()
 			->getByUser( $userIdentity, (string)$appId, (int)$flags );
@@ -138,7 +138,7 @@ class BotPassword implements IDBAccessObject {
 	 * @param int $flags IDBAccessObject read flags
 	 * @return BotPassword|null
 	 */
-	public static function newFromCentralId( $centralId, $appId, $flags = self::READ_NORMAL ) {
+	public static function newFromCentralId( $centralId, $appId, $flags = IDBAccessObject::READ_NORMAL ) {
 		return MediaWikiServices::getInstance()
 			->getBotPasswordStore()
 			->getByCentralId( (int)$centralId, (string)$appId, (int)$flags );
@@ -156,7 +156,7 @@ class BotPassword implements IDBAccessObject {
 	 * @param int $flags IDBAccessObject read flags
 	 * @return BotPassword|null
 	 */
-	public static function newUnsaved( array $data, $flags = self::READ_NORMAL ) {
+	public static function newUnsaved( array $data, $flags = IDBAccessObject::READ_NORMAL ) {
 		return MediaWikiServices::getInstance()
 			->getBotPasswordStore()
 			->newUnsavedBotPassword( $data, (int)$flags );

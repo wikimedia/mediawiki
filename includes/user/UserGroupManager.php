@@ -231,7 +231,7 @@ class UserGroupManager implements IDBAccessObject {
 	public function loadGroupMembershipsFromArray(
 		UserIdentity $user,
 		array $userGroups,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	) {
 		$user->assertWiki( $this->wikiId );
 		$membershipGroups = [];
@@ -261,7 +261,7 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public function getUserImplicitGroups(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL,
+		int $queryFlags = IDBAccessObject::READ_NORMAL,
 		bool $recache = false
 	): array {
 		$user->assertWiki( $this->wikiId );
@@ -306,7 +306,7 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public function getUserEffectiveGroups(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL,
+		int $queryFlags = IDBAccessObject::READ_NORMAL,
 		bool $recache = false
 	): array {
 		$user->assertWiki( $this->wikiId );
@@ -350,7 +350,7 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public function getUserFormerGroups(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$user->assertWiki( $this->wikiId );
 		$userKey = $this->getCacheKey( $user );
@@ -472,7 +472,7 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public function getUserPrivilegedGroups(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL,
+		int $queryFlags = IDBAccessObject::READ_NORMAL,
 		bool $recache = false
 	): array {
 		$userKey = $this->getCacheKey( $user );
@@ -728,7 +728,7 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public function getUserGroups(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		return array_keys( $this->getUserGroupMemberships( $user, $queryFlags ) );
 	}
@@ -743,7 +743,7 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public function getUserGroupMemberships(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$user->assertWiki( $this->wikiId );
 		$userKey = $this->getCacheKey( $user );
@@ -833,7 +833,7 @@ class UserGroupManager implements IDBAccessObject {
 			}
 		}
 
-		$oldUgms = $this->getUserGroupMemberships( $user, self::READ_LATEST );
+		$oldUgms = $this->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
 		$dbw->startAtomic( __METHOD__ );
@@ -895,7 +895,7 @@ class UserGroupManager implements IDBAccessObject {
 					$this->getCacheKey( $user ),
 					self::CACHE_MEMBERSHIP,
 					$oldUgms,
-					self::READ_LATEST
+					IDBAccessObject::READ_LATEST
 				);
 				$this->clearUserCacheForKind( $user, self::CACHE_EFFECTIVE );
 			}
@@ -962,8 +962,8 @@ class UserGroupManager implements IDBAccessObject {
 			);
 		}
 
-		$oldUgms = $this->getUserGroupMemberships( $user, self::READ_LATEST );
-		$oldFormerGroups = $this->getUserFormerGroups( $user, self::READ_LATEST );
+		$oldUgms = $this->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
+		$oldFormerGroups = $this->getUserFormerGroups( $user, IDBAccessObject::READ_LATEST );
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'user_groups' )
@@ -982,9 +982,9 @@ class UserGroupManager implements IDBAccessObject {
 
 		unset( $oldUgms[$group] );
 		$userKey = $this->getCacheKey( $user );
-		$this->setCache( $userKey, self::CACHE_MEMBERSHIP, $oldUgms, self::READ_LATEST );
+		$this->setCache( $userKey, self::CACHE_MEMBERSHIP, $oldUgms, IDBAccessObject::READ_LATEST );
 		$oldFormerGroups[] = $group;
-		$this->setCache( $userKey, self::CACHE_FORMER, $oldFormerGroups, self::READ_LATEST );
+		$this->setCache( $userKey, self::CACHE_FORMER, $oldFormerGroups, IDBAccessObject::READ_LATEST );
 		$this->clearUserCacheForKind( $user, self::CACHE_EFFECTIVE );
 		foreach ( $this->clearCacheCallbacks as $callback ) {
 			$callback( $user );
@@ -1246,11 +1246,11 @@ class UserGroupManager implements IDBAccessObject {
 			// so $queryFlags are ignored.
 			return true;
 		}
-		if ( $queryFlags >= self::READ_LOCKING ) {
+		if ( $queryFlags >= IDBAccessObject::READ_LOCKING ) {
 			return false;
 		}
 		$userKey = $this->getCacheKey( $user );
-		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey][$cacheKind] ?? self::READ_NONE;
+		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey][$cacheKind] ?? IDBAccessObject::READ_NONE;
 		return $queryFlagsUsed >= $queryFlags;
 	}
 }

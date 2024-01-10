@@ -104,7 +104,7 @@ class BotPasswordStore implements IDBAccessObject {
 	public function getByUser(
 		UserIdentity $userIdentity,
 		string $appId,
-		int $flags = self::READ_NORMAL
+		int $flags = IDBAccessObject::READ_NORMAL
 	): ?BotPassword {
 		if ( !$this->options->get( MainConfigNames::EnableBotPasswords ) ) {
 			return null;
@@ -128,7 +128,7 @@ class BotPasswordStore implements IDBAccessObject {
 	public function getByCentralId(
 		int $centralId,
 		string $appId,
-		int $flags = self::READ_NORMAL
+		int $flags = IDBAccessObject::READ_NORMAL
 	): ?BotPassword {
 		if ( !$this->options->get( MainConfigNames::EnableBotPasswords ) ) {
 			return null;
@@ -159,7 +159,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 */
 	public function newUnsavedBotPassword(
 		array $data,
-		int $flags = self::READ_NORMAL
+		int $flags = IDBAccessObject::READ_NORMAL
 	): ?BotPassword {
 		if ( isset( $data['user'] ) && ( !$data['user'] instanceof UserIdentity ) ) {
 			return null;

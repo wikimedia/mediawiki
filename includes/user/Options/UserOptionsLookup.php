@@ -77,7 +77,7 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 		string $oname,
 		$defaultOverride = null,
 		bool $ignoreHidden = false,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	);
 
 	/**
@@ -95,7 +95,7 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	abstract public function getOptions(
 		UserIdentity $user,
 		int $flags = 0,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array;
 
 	/**
@@ -110,7 +110,7 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	public function getBoolOption(
 		UserIdentity $user,
 		string $oname,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): bool {
 		return (bool)$this->getOption(
 			$user, $oname, null, false, $queryFlags );
@@ -130,7 +130,7 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 		UserIdentity $user,
 		string $oname,
 		int $defaultOverride = 0,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): int {
 		$val = $this->getOption(
 			$user, $oname, $defaultOverride, false, $queryFlags );

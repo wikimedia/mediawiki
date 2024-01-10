@@ -288,7 +288,7 @@ class RevisionStore
 	 * @return Title
 	 * @throws RevisionAccessException
 	 */
-	public function getTitle( $pageId, $revId, $queryFlags = self::READ_NORMAL ) {
+	public function getTitle( $pageId, $revId, $queryFlags = IDBAccessObject::READ_NORMAL ) {
 		// TODO: Hard-deprecate this once getPage() returns a PageRecord. T195069
 		if ( $this->wikiId !== WikiAwareEntity::LOCAL ) {
 			wfDeprecatedMsg( 'Using a Title object to refer to a page on another site.', '1.36' );
@@ -308,15 +308,15 @@ class RevisionStore
 	 * @return PageIdentity
 	 * @throws RevisionAccessException
 	 */
-	private function getPage( ?int $pageId, ?int $revId, int $queryFlags = self::READ_NORMAL ) {
+	private function getPage( ?int $pageId, ?int $revId, int $queryFlags = IDBAccessObject::READ_NORMAL ) {
 		if ( !$pageId && !$revId ) {
 			throw new InvalidArgumentException( '$pageId and $revId cannot both be 0 or null' );
 		}
 
 		// This method recalls itself with READ_LATEST if READ_NORMAL doesn't get us a Title
 		// So ignore READ_LATEST_IMMUTABLE flags and handle the fallback logic in this method
-		if ( DBAccessObjectUtils::hasFlags( $queryFlags, self::READ_LATEST_IMMUTABLE ) ) {
-			$queryFlags = self::READ_NORMAL;
+		if ( DBAccessObjectUtils::hasFlags( $queryFlags, IDBAccessObject::READ_LATEST_IMMUTABLE ) ) {
+			$queryFlags = IDBAccessObject::READ_NORMAL;
 		}
 
 		// Loading by ID is best
@@ -341,8 +341,8 @@ class RevisionStore
 		}
 
 		// If we still don't have a title, fallback to primary DB if that wasn't already happening.
-		if ( $queryFlags === self::READ_NORMAL ) {
-			$title = $this->getPage( $pageId, $revId, self::READ_LATEST );
+		if ( $queryFlags === IDBAccessObject::READ_NORMAL ) {
+			$title = $this->getPage( $pageId, $revId, IDBAccessObject::READ_LATEST );
 			if ( $title ) {
 				$this->logger->info(
 					__METHOD__ . ' fell back to READ_LATEST and got a Title.',
@@ -1070,7 +1070,7 @@ class RevisionStore
 		$oldRevision = $this->loadRevisionFromConds(
 			$dbw,
 			[ 'rev_id' => intval( $pageLatest ) ],
-			self::READ_LATEST,
+			IDBAccessObject::READ_LATEST,
 			$page
 		);
 
@@ -1448,7 +1448,7 @@ class RevisionStore
 			$revQuery['joins']
 		);
 
-		if ( !$res->numRows() && !( $queryFlags & self::READ_LATEST ) ) {
+		if ( !$res->numRows() && !( $queryFlags & IDBAccessObject::READ_LATEST ) ) {
 			// If we found no slots, try looking on the primary database (T212428, T252156)
 			$this->logger->info(
 				__METHOD__ . ' falling back to READ_LATEST.',
@@ -1459,7 +1459,7 @@ class RevisionStore
 			);
 			return $this->loadSlotRecordsFromDb(
 				$revId,
-				$queryFlags | self::READ_LATEST,
+				$queryFlags | IDBAccessObject::READ_LATEST,
 				$page
 			);
 		}
@@ -1791,7 +1791,7 @@ class RevisionStore
 						$db,
 						[ 'rev_id' => intval( $revId ) ]
 					);
-					if ( !$row && !( $queryFlags & self::READ_LATEST ) ) {
+					if ( !$row && !( $queryFlags & IDBAccessObject::READ_LATEST ) ) {
 						// If we found no slots, try looking on the primary database (T259738)
 						$this->logger->info(
 							'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
@@ -1800,7 +1800,7 @@ class RevisionStore
 								'exception' => new RuntimeException(),
 							]
 						);
-						$dbw = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
+						$dbw = $this->getDBConnectionRefForQueryFlags( IDBAccessObject::READ_LATEST );
 						$row = $this->fetchRevisionRowFromConds(
 							$dbw,
 							[ 'rev_id' => intval( $revId ) ]
@@ -2330,11 +2330,11 @@ class RevisionStore
 		// Make sure new pending/committed revision are visible later on
 		// within web requests to certain avoid bugs like T93866 and T94407.
 		if ( !$rev
-			&& !( $flags & self::READ_LATEST )
+			&& !( $flags & IDBAccessObject::READ_LATEST )
 			&& $this->loadBalancer->hasStreamingReplicaServers()
 			&& $this->loadBalancer->hasOrMadeRecentPrimaryChanges()
 		) {
-			$flags = self::READ_LATEST;
+			$flags = IDBAccessObject::READ_LATEST;
 			$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $page, $options );
 		}
@@ -2415,7 +2415,7 @@ class RevisionStore
 			->joinUser()
 			->where( $conditions )
 			->options( $options );
-		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
+		if ( ( $flags & IDBAccessObject::READ_LOCKING ) == IDBAccessObject::READ_LOCKING ) {
 			$queryBuilder->forUpdate();
 		}
 		return $queryBuilder->caller( __METHOD__ )->fetchRow();
@@ -2768,7 +2768,7 @@ class RevisionStore
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev, $flags = self::READ_NORMAL ) {
+	public function getPreviousRevision( RevisionRecord $rev, $flags = IDBAccessObject::READ_NORMAL ) {
 		return $this->getRelativeRevision( $rev, $flags, 'prev' );
 	}
 
@@ -2783,7 +2783,7 @@ class RevisionStore
 	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev, $flags = self::READ_NORMAL ) {
+	public function getNextRevision( RevisionRecord $rev, $flags = IDBAccessObject::READ_NORMAL ) {
 		return $this->getRelativeRevision( $rev, $flags, 'next' );
 	}
 

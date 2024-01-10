@@ -42,7 +42,7 @@ interface UserIdentityLookup extends IDBAccessObject {
 	 */
 	public function getUserIdentityByName(
 		string $name,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?UserIdentity;
 
 	/**
@@ -54,7 +54,7 @@ interface UserIdentityLookup extends IDBAccessObject {
 	 */
 	public function getUserIdentityByUserId(
 		int $userId,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?UserIdentity;
 
 	/**
@@ -64,5 +64,5 @@ interface UserIdentityLookup extends IDBAccessObject {
 	 *   or one of the self::READ_* constants.
 	 * @return UserSelectQueryBuilder
 	 */
-	public function newSelectQueryBuilder( $dbOrQueryFlags = self::READ_NORMAL ): UserSelectQueryBuilder;
+	public function newSelectQueryBuilder( $dbOrQueryFlags = IDBAccessObject::READ_NORMAL ): UserSelectQueryBuilder;
 }
