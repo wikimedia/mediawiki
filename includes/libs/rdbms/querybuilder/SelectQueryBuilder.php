@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Rdbms;
 
+use IDBAccessObject;
+
 /**
  * Build SELECT queries with a fluent interface.
  *
@@ -681,6 +683,19 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 */
 	public function options( array $options ) {
 		$this->options = array_merge( $this->options, $options );
+		return $this;
+	}
+
+	/**
+	 * @param int $recency Bitfield of IDBAccessObject::READ_* constants
+	 * @return $this
+	 */
+	public function recency( $recency ) {
+		if ( ( $recency & IDBAccessObject::READ_EXCLUSIVE ) == IDBAccessObject::READ_EXCLUSIVE ) {
+			$this->forUpdate();
+		} elseif ( ( $recency & IDBAccessObject::READ_LOCKING ) == IDBAccessObject::READ_LOCKING ) {
+			$this->lockInShareMode();
+		}
 		return $this;
 	}
 
