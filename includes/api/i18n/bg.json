@@ -67,7 +67,7 @@
 	"apihelp-protect-example-protect": "Защита на страница.",
 	"apihelp-query+allusers-param-prefix": "Търсене за всички потребители, които започват с тази стойност.",
 	"apihelp-query+allusers-param-dir": "Посока на сортиране.",
-	"apihelp-query+allusers-param-group": "Включване на потребители само от определените групи.",
+	"apihelp-query+allusers-param-group": "Включва само потребители от дадените групи. Не включва косвени или автоматично популяризирани групи като *, потребител или автоматично потвърдени.",
 	"apihelp-query+allusers-param-excludegroup": "Изключване на потребители от определените групи.",
 	"apihelp-query+allusers-param-prop": "Каква информация да включва:",
 	"apihelp-query+allusers-paramvalue-prop-blockinfo": "Добавя информация за текущото блокиране на потребителя.",
