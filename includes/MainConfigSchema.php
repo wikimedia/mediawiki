@@ -6598,7 +6598,7 @@ class MainConfigSchema {
 	 * Temporary flag to stop shipping the styles for the legacy media HTML structure
 	 * that has been replaced when $wgParserEnableLegacyMediaDOM is `false`.  This is
 	 * configured separately to give time for templates and extensions that mimic the
-	 * the parser output to be migrated away.  See T318433
+	 * parser output to be migrated away. See T318433
 	 *
 	 * @internal
 	 */
