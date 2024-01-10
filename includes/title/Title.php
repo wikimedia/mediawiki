@@ -3412,7 +3412,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 						->where( $conds )
 						->andWhere( $dbw->expr( 'page_touched', '<', $dbTimestamp ) );
 
-					if ( mt_rand( 0, 10 ) === 1 ) {
+					if ( mt_rand( 1, 10 ) === 1 ) {
 						$update->andSet( [ 'page_random' => wfRandom() ] );
 					}
 
