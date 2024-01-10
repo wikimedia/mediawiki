@@ -36,6 +36,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 ==== Changed configuration ====
+* $wgAutoCreateTempUser: 'matchPattern' now supports multiple match patterns.
 * …
 
 ==== Removed configuration ====
@@ -414,6 +415,8 @@ because of Phabricator reports.
   views out of the return value of Database::listTables(). Now listTables()
   will not include views. MediaWiki does not use views.
 * (T207621) UserMailer::rfc822Phrase() has been hard deprecated.
+* TempUserConfig::getMatchPattern has been deprecated, use
+  TempUserConfig::getMatchPatterns instead.
 * …
 
 === Other changes in 1.42 ===

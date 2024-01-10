@@ -826,6 +826,11 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		'prefix and suffix mismatch': [ '*$1*', 'Unregistered 123*', false, true ],
 		'prefix and suffix zero length match': [ '*$1*', '**', true, true ],
 		'prefix and suffix overlapping': [ '*$1*', '*', false, true ],
+		'multiple patterns prefix match': [ [ '*$1', '~$1' ], '~Some user', true, true ],
+		'multiple patterns prefix mismatch': [ [ '*$1', '~$1' ], 'Some user', false, true ],
+		'multiple patterns suffix match': [ [ '*$1', '$1~' ], 'Some user~', true, true ],
+		'multiple patterns suffix mismatch': [ [ '*$1', '$1~' ], 'Some user', false, true ],
+		'multiple patterns prefix and suffix match': [ [ '*$1*', '$1~' ], '*Unregistered 123*', true, true ],
 		'Auto create temporary user disabled': [ '*$1*', '*', false, false ]
 	}, function ( assert, username ) {
 		mw.util.setOptionsForTest( {

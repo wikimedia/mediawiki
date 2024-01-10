@@ -149,6 +149,10 @@ class TempUserCreator implements TempUserConfig {
 		return $this->config->getMatchPattern();
 	}
 
+	public function getMatchPatterns(): array {
+		return $this->config->getMatchPatterns();
+	}
+
 	public function getExpireAfterDays(): ?int {
 		return $this->config->getExpireAfterDays();
 	}

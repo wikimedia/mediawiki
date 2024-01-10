@@ -198,13 +198,15 @@ WARN
 		}
 
 		if ( $tempUserConfig->isEnabled() ) {
-			$queryBuilderTemplate->andWhere(
-				$dbr->expr(
-					'user_name',
-					IExpression::NOT_LIKE,
-					$tempUserConfig->getMatchPattern()->toLikeValue( $dbr )
-				)
-			);
+			foreach ( $tempUserConfig->getMatchPatterns() as $pattern ) {
+				$queryBuilderTemplate->andWhere(
+					$dbr->expr(
+						'user_name',
+						IExpression::NOT_LIKE,
+						$pattern->toLikeValue( $dbr )
+					)
+				);
+			}
 		}
 
 		do {

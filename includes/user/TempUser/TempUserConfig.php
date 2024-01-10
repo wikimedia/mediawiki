@@ -71,9 +71,20 @@ interface TempUserConfig {
 	 *
 	 * Used to avoid selecting a temp account via select queries.
 	 *
+	 * @deprecated since 1.42. Use ::getMatchPatterns as multiple patterns may be defined.
 	 * @return Pattern
 	 */
 	public function getMatchPattern(): Pattern;
+
+	/**
+	 * Get Patterns indicating how temporary account can be detected
+	 *
+	 * Used to avoid selecting a temp account via select queries.
+	 *
+	 * @since 1.42
+	 * @return Pattern[]
+	 */
+	public function getMatchPatterns(): array;
 
 	/**
 	 * After how many days do temporary users expire?

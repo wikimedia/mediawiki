@@ -7733,7 +7733,7 @@ class MainConfigSchema {
 	 *   - genPattern: (string) The pattern used when generating new usernames.
 	 *     This should have "$1" indicating the place where the serial string will
 	 *     be substituted.
-	 *   - matchPattern: (string) The pattern used when determining whether a
+	 *   - matchPattern: (string|string[]) The pattern used when determining whether a
 	 *     username is a temporary user. This affects the rights of the user
 	 *     and also prevents explicit creation of users with matching names.
 	 *     This is ignored if "enabled" is false.
@@ -7781,7 +7781,7 @@ class MainConfigSchema {
 			'enabled' => [ 'type' => 'bool', 'default' => false ],
 			'actions' => [ 'type' => 'list', 'default' => [ 'edit' ] ],
 			'genPattern' => [ 'type' => 'string', 'default' => '*Unregistered $1' ],
-			'matchPattern' => [ 'type' => 'string', 'default' => '*$1' ],
+			'matchPattern' => [ 'type' => 'string|array', 'default' => '*$1' ],
 			'reservedPattern' => [ 'type' => 'string|null', 'default' => null ],
 			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local' ] ],
 			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ],

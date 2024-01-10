@@ -1126,28 +1126,41 @@ var util = {
 	 * @return {boolean}
 	 */
 	isTemporaryUser: function ( username ) {
-		var autoCreateUserMatchPattern = config.AutoCreateTempUser.matchPattern;
-		var position = autoCreateUserMatchPattern.indexOf( '$1' );
-
+		// Just return early if temporary accounts are disabled.
 		if ( !config.AutoCreateTempUser.enabled ) {
 			return false;
 		}
-		// '$1' was not found in autoCreateUserMatchPattern
-		if ( position === -1 ) {
-			return false;
+		/** @type{string|string[]} */
+		var matchPatterns = config.AutoCreateTempUser.matchPattern;
+		if ( typeof matchPatterns === 'string' ) {
+			matchPatterns = [ matchPatterns ];
 		}
-		var prefix = autoCreateUserMatchPattern.slice( 0, position );
-		var suffix = autoCreateUserMatchPattern.slice( position + '$1'.length );
+		for ( var i = 0; i < matchPatterns.length; i++ ) {
+			var autoCreateUserMatchPattern = matchPatterns[ i ];
+			// Check each match pattern, and if any matches then return a match.
+			var position = autoCreateUserMatchPattern.indexOf( '$1' );
 
-		var match = true;
-		if ( prefix !== '' ) {
-			match = ( username.indexOf( prefix ) === 0 );
+			// '$1' was not found in autoCreateUserMatchPattern
+			if ( position === -1 ) {
+				return false;
+			}
+			var prefix = autoCreateUserMatchPattern.slice( 0, position );
+			var suffix = autoCreateUserMatchPattern.slice( position + '$1'.length );
+
+			var match = true;
+			if ( prefix !== '' ) {
+				match = ( username.indexOf( prefix ) === 0 );
+			}
+			if ( match && suffix !== '' ) {
+				match = ( username.slice( -suffix.length ) === suffix ) &&
+					( username.length >= prefix.length + suffix.length );
+			}
+			if ( match ) {
+				return true;
+			}
 		}
-		if ( match && suffix !== '' ) {
-			match = ( username.slice( -suffix.length ) === suffix ) &&
-				( username.length >= prefix.length + suffix.length );
-		}
-		return match;
+		// No match patterns matched the username, so the given username is not a temporary user.
+		return false;
 	},
 
 	/**
