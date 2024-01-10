@@ -66,7 +66,8 @@
 			"ViDam",
 			"Wolf Rex",
 			"Xbspiro",
-			"아라"
+			"아라",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2586,8 +2587,8 @@
 	"contribute": "Közreműködés",
 	"contribsub2": "$1 ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
-	"contributions-edit-count": "Egy {{GENDER:$1|felhasználó}} $2 {{PLURAL:$2|szerkesztéssel}}.",
-	"contributions-account-creation-date": "Fiók létrehozása ekkor: $1 .",
+	"contributions-edit-count": "$2 szerkesztéssel rendelkező felhasználó.",
+	"contributions-account-creation-date": "Fiók létrehozva: $1",
 	"contributions-userdoesnotexist": "Nincs regisztrálva „$1” szerkesztői azonosító.",
 	"negative-namespace-not-supported": "Negatív értékű névterek nem támogatottak.",
 	"nocontribs": "Nem található a feltételeknek megfelelő változtatás.",

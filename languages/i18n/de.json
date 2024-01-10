@@ -125,7 +125,8 @@
 			"Ziko",
 			"Zylbath",
 			"לערי ריינהארט",
-			"✓"
+			"✓",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1284,7 +1285,7 @@
 	"prefs-help-email-required": "Es wird eine gültige E-Mail-Adresse benötigt.",
 	"prefs-help-requireemail": "Dies verbessert die Privatsphäre und verhindert unerwünschte E-Mails.",
 	"prefs-info": "Basisinformationen",
-	"prefs-i18n": "Sprache",
+	"prefs-i18n": "Spracheinstellungen",
 	"prefs-signature": "Signatur",
 	"prefs-signature-invalid-warning": "Deine Unterschrift kann bei einigen Tools Probleme verursachen.",
 	"prefs-signature-invalid-new": "Deine aktuelle Unterschrift ist ungültig. Du kannst sie zwar noch verwenden, aber nicht mehr ändern, bis du sie korrigiert hast.",
