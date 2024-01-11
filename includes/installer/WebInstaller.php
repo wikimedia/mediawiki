@@ -868,6 +868,21 @@ class WebInstaller extends Installer {
 	}
 
 	/**
+	 * Add a class to an array of attributes. If the array already has a class,
+	 * append the new class to the list.
+	 *
+	 * @param array &$attribs
+	 * @param string $class
+	 */
+	private static function addClassAttrib( &$attribs, $class ) {
+		if ( isset( $attribs['class'] ) ) {
+			$attribs['class'] .= ' ' . $class;
+		} else {
+			$attribs['class'] = $class;
+		}
+	}
+
+	/**
 	 * Get a labelled checkbox to configure a boolean variable.
 	 *
 	 * @param mixed[] $params
@@ -902,6 +917,8 @@ class WebInstaller extends Installer {
 			$params['labelAttribs'] = [];
 		}
 		$labelText = $params['rawtext'] ?? $this->parse( wfMessage( $params['label'] )->plain() );
+		self::addClassAttrib( $params['attribs'], 'cdx-checkbox__input' );
+		self::addClassAttrib( $params['labelAttribs'], 'cdx-checkbox__label' );
 
 		return "<div class=\"cdx-checkbox\" style=\"margin-top: 12px; margin-bottom: 2px;\">\n" .
 			Xml::check(
@@ -909,14 +926,15 @@ class WebInstaller extends Installer {
 				$params['value'],
 				$params['attribs'] + [
 					'id' => $params['controlName'],
-					'tabindex' => $this->nextTabIndex(),
-					'class' => 'cdx-checkbox__input'
+					'tabindex' => $this->nextTabIndex()
 				]
 			) .
 			"<span class=\"cdx-checkbox__icon\"></span>" .
 			Html::rawElement(
 				'label',
-				$params['labelAttribs'] + [ 'class' => 'cdx-checkbox__label' ],
+				$params['labelAttribs'] + [
+					'for' => $params['controlName']
+				],
 				$labelText
 				) .
 			"</div>\n" . $params['help'];
@@ -998,7 +1016,7 @@ class WebInstaller extends Installer {
 			$id = $params['controlName'] . '_' . $value;
 			$itemAttribs['id'] = $id;
 			$itemAttribs['tabindex'] = $this->nextTabIndex();
-			$itemAttribs['class'] = "cdx-radio__input";
+			self::addClassAttrib( $itemAttribs, 'cdx-radio__input' );
 
 			$items[$value] =
 				'<span class="cdx-radio">' .
