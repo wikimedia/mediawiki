@@ -86,7 +86,7 @@ class ApiPageSet extends ApiBase {
 	/** @var int[][] [ns][dbkey] => page_id */
 	private $mGoodPages = [];
 
-	/** @var Title[] */
+	/** @var array<int,Title> */
 	private $mGoodTitles = [];
 
 	/** @var int[][] [ns][dbkey] => fake page_id */
@@ -485,7 +485,7 @@ class ApiPageSet extends ApiBase {
 	 * Title objects that were found in the database, including redirects.
 	 * If redirects are resolved, this will include existing redirect targets.
 	 * @deprecated since 1.37, use getGoodPages() instead.
-	 * @return Title[] Array page_id (int) => Title (obj)
+	 * @return array<int,Title> Array page_id (int) => Title (obj)
 	 */
 	public function getGoodTitles() {
 		return $this->mGoodTitles;
@@ -495,7 +495,7 @@ class ApiPageSet extends ApiBase {
 	 * Pages that were found in the database, including redirects.
 	 * If redirects are resolved, this will include existing redirect targets.
 	 * @since 1.37
-	 * @return PageIdentity[] Array page_id (int) => PageIdentity (obj)
+	 * @return array<int,PageIdentity> Array page_id (int) => PageIdentity (obj)
 	 */
 	public function getGoodPages(): array {
 		return $this->mGoodTitles;
