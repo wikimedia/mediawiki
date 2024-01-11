@@ -189,29 +189,6 @@ class WebInstaller extends Installer {
 
 		$lowestUnhappy = $this->getLowestUnhappy();
 
-		# Special case for Creative Commons partner chooser box.
-		if ( $this->request->getVal( 'SubmitCC' ) ) {
-			/** @var WebInstallerOptions $page */
-			$page = $this->getPageByName( 'Options' );
-			'@phan-var WebInstallerOptions $page';
-			$this->output->useShortHeader();
-			$this->output->allowFrames();
-			$page->submitCC();
-
-			return $this->finish();
-		}
-
-		if ( $this->request->getVal( 'ShowCC' ) ) {
-			/** @var WebInstallerOptions $page */
-			$page = $this->getPageByName( 'Options' );
-			'@phan-var WebInstallerOptions $page';
-			$this->output->useShortHeader();
-			$this->output->allowFrames();
-			$this->output->addHTML( $page->getCCDoneBox() );
-
-			return $this->finish();
-		}
-
 		# Get the page name.
 		$pageName = $this->request->getVal( 'page', '' );
 
