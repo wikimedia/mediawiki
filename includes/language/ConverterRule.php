@@ -19,6 +19,8 @@
  * @author fdcn <fdcn64@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * The rules used for language conversion, this processes the rules
  * extracted by Parser from the `-{ }-` wikitext syntax.
@@ -158,6 +160,19 @@ class ConverterRule {
 		// Split text according to $varsep_pattern, but ignore semicolons from HTML entities
 		$rules = preg_replace( '/(&[#a-zA-Z0-9]+);/', "$1\x01", $rules );
 		$choice = preg_split( $varsep_pattern, $rules );
+		// @phan-suppress-next-line PhanTypeComparisonFromArray
+		if ( $choice === false ) {
+			$error = preg_last_error();
+			$errorText = preg_last_error_msg();
+			LoggerFactory::getInstance( 'parser' )->warning(
+				'ConverterRule preg_split error: {code} {errorText}',
+				[
+					'code' => $error,
+					'errorText' => $errorText
+				]
+			);
+			$choice = [];
+		}
 		$choice = str_replace( "\x01", ';', $choice );
 
 		foreach ( $choice as $c ) {
