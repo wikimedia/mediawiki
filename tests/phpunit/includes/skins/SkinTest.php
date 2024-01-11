@@ -40,7 +40,68 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( isset( $modules['styles'] ), 'style key is set by default' );
 	}
 
-	public function provideGetDefaultModulesWatchWrite() {
+	/**
+	 * @param bool $isSyndicated
+	 * @param string $html
+	 * @return OutputPage
+	 */
+	private function getMockOutputPage( $isSyndicated, $html ) {
+		$mock = $this->createMock( OutputPage::class );
+		$mock->expects( $this->once() )
+			->method( 'isSyndicated' )
+			->willReturn( $isSyndicated );
+		$mock->method( 'getHTML' )
+			->willReturn( $html );
+		return $mock;
+	}
+
+	public static function provideGetDefaultModulesForOutput() {
+		return [
+			[
+				false,
+				'',
+				[]
+			],
+			[
+				true,
+				'',
+				[ 'mediawiki.feedlink' ]
+			],
+			[
+				false,
+				'FOO mw-ui-button BAR',
+				[ 'mediawiki.ui.button' ]
+			],
+			[
+				true,
+				'FOO mw-ui-button BAR',
+				[ 'mediawiki.ui.button', 'mediawiki.feedlink' ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetDefaultModulesForOutput
+	 */
+	public function testGetDefaultModulesForContent( $isSyndicated, $html, array $expectedModuleStyles ) {
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+		$fakeContext = new RequestContext();
+		$fakeContext->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
+		$fakeContext->setOutput( $this->getMockOutputPage( $isSyndicated, $html ) );
+		$skin->setContext( $fakeContext );
+
+		$modules = $skin->getDefaultModules();
+
+		$actualStylesModule = array_merge( ...array_values( $modules['styles'] ) );
+		foreach ( $expectedModuleStyles as $expected ) {
+			$this->assertContains( $expected, $actualStylesModule );
+		}
+	}
+
+	public function provideGetDefaultModulesForRights() {
 		yield 'no rights' => [
 			$this->mockRegisteredNullAuthority(), // $authority
 			false, // $hasModule
@@ -52,9 +113,9 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetDefaultModulesWatchWrite
+	 * @dataProvider provideGetDefaultModulesForRights
 	 */
-	public function testGetDefaultModulesWatchWrite( Authority $authority, bool $hasModule ) {
+	public function testGetDefaultModulesForRights( Authority $authority, bool $hasModule ) {
 		$skin = new class extends Skin {
 			public function outputPage() {
 			}
