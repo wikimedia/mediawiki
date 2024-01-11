@@ -55,7 +55,7 @@ class WebInstallerOutput {
 	private $contents = '';
 
 	/**
-	 * Has the header (or short header) been output?
+	 * Has the header been output?
 	 * @var bool
 	 */
 	private $headerDone = false;
@@ -64,20 +64,6 @@ class WebInstallerOutput {
 	 * @var string
 	 */
 	public $redirectTarget;
-
-	/**
-	 * Does the current page need to allow being used as a frame?
-	 * If not, X-Frame-Options will be output to forbid it.
-	 *
-	 * @var bool
-	 */
-	public $allowFrames = false;
-
-	/**
-	 * Whether to use the limited header (used during CC license callbacks)
-	 * @var bool
-	 */
-	private $useShortHeader = false;
 
 	/**
 	 * @param WebInstaller $parent
@@ -173,14 +159,6 @@ class WebInstallerOutput {
 		return Html::linkedStyle( $this->parent->getUrl( [ 'css' => 1 ] ) );
 	}
 
-	public function useShortHeader( $use = true ) {
-		$this->useShortHeader = $use;
-	}
-
-	public function allowFrames( $allow = true ) {
-		$this->allowFrames = $allow;
-	}
-
 	public function flush() {
 		if ( !$this->headerDone ) {
 			$this->outputHeader();
@@ -225,23 +203,13 @@ class WebInstallerOutput {
 	public function outputHeader() {
 		$this->headerDone = true;
 		$this->parent->request->response()->header( 'Content-Type: text/html; charset=utf-8' );
-
-		if ( !$this->allowFrames ) {
-			$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
-		}
+		$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
 
 		if ( $this->redirectTarget ) {
 			$this->parent->request->response()->header( 'Location: ' . $this->redirectTarget );
 
 			return;
 		}
-
-		if ( $this->useShortHeader ) {
-			$this->outputShortHeader();
-
-			return;
-		}
-
 ?>
 <?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
 
@@ -266,11 +234,6 @@ class WebInstallerOutput {
 	}
 
 	public function outputFooter() {
-		if ( $this->useShortHeader ) {
-			echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
-
-			return;
-		}
 ?>
 
 </div></div>
@@ -306,24 +269,6 @@ class WebInstallerOutput {
 
 <?php
 		echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
-	}
-
-	public function outputShortHeader() {
-?>
-<?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
-
-<head>
-	<meta name="robots" content="noindex, nofollow" />
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title><?php $this->outputTitle(); ?></title>
-	<?php echo $this->getCodex() . "\n"; ?>
-	<?php echo $this->getCssUrl() . "\n"; ?>
-	<?php echo $this->getJQuery() . "\n"; ?>
-	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
-</head>
-
-<body style="background-image: none">
-<?php
 	}
 
 	public function outputTitle() {

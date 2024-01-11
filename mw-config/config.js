@@ -38,19 +38,6 @@
 			this.scrollTop = this.scrollHeight;
 		} );
 
-		// Show/hide Creative Commons thingy
-		$( '.licenseRadio' ).on( 'click', function () {
-			var $wrapper = $( '#config-cc-wrapper' );
-			if ( $( '#config__LicenseCode_cc-choose' ).is( ':checked' ) ) {
-				// FIXME: Use CSS transition
-				// eslint-disable-next-line no-jquery/no-animate-toggle
-				$wrapper.show( 'slow' );
-			} else {
-				// eslint-disable-next-line no-jquery/no-animate-toggle
-				$wrapper.hide( 'slow' );
-			}
-		} );
-
 		// Show/hide random stuff (email, upload)
 		$( '.showHideRadio' ).on( 'click', function () {
 			var $wrapper = $( '#' + $( this ).attr( 'rel' ) );
