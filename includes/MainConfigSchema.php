@@ -50,6 +50,7 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Site\MediaWikiSite;
+use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\Registration\LocalUserRegistrationProvider;
@@ -1940,10 +1941,10 @@ class MainConfigSchema {
 	/**
 	 * Don't read SVG metadata beyond this point.
 	 *
-	 * Default is 1024*256 bytes
+	 * Default is 256 KiB
 	 */
 	public const SVGMetadataCutoff = [
-		'default' => 262_144,
+		'default' => 1024 * 256,
 	];
 
 	/**
@@ -3493,7 +3494,7 @@ class MainConfigSchema {
 	 * Set to 0 to disable, or number of seconds before cache expiry.
 	 */
 	public const RevisionCacheExpiry = [
-		'default' => 86400 * 7,
+		'default' => SqlBlobStore::DEFAULT_TTL,
 		'type' => 'integer',
 	];
 
@@ -12808,7 +12809,7 @@ class MainConfigSchema {
 	 * Number of seconds to keep edit recovery data after the edit is stored.
 	 */
 	public const EditRecoveryExpiry = [
-		'default' => 2_592_000,
+		'default' => 30 * 24 * 3600,
 		'type' => 'integer',
 	];
 
