@@ -1834,7 +1834,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( !$status->isOK() ) {
 				$this->logger->debug( __METHOD__ . ': cannot create or autocreate accounts', [
 					'username' => $username,
-					'creator' => $performer->getName(),
+					'creator' => $performer->getUser()->getName(),
 				] );
 				if ( $session ) {
 					$session->set( self::AUTOCREATE_BLOCKLIST, $status );
