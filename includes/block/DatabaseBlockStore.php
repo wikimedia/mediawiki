@@ -1205,7 +1205,7 @@ class DatabaseBlockStore {
 	 *   balancer. Must connect to the wiki identified by $block->getBlocker->getWikiId().
 	 *   Deprecated since 1.41, should be null. Use DatabaseBlockStoreFactory to fetch a
 	 *   DatabaseBlockStore with a database injected.
-	 * @param int $expectedTargetCount The expected number of existing blocks
+	 * @param int|null $expectedTargetCount The expected number of existing blocks
 	 *   on the specified target. If this is zero but there is an existing
 	 *   block, the insertion will fail.
 	 * @return bool|array False on failure, assoc array on success:
@@ -1275,7 +1275,7 @@ class DatabaseBlockStore {
 	 *
 	 * @param DatabaseBlock $block
 	 * @param IDatabase $dbw
-	 * @param int $expectedTargetCount
+	 * @param int|null $expectedTargetCount
 	 * @return bool True if block successfully inserted
 	 */
 	private function attemptInsert(
