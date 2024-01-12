@@ -449,7 +449,7 @@ class WebInstaller extends Installer {
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
-		$pageClass = 'WebInstaller' . $pageName;
+		$pageClass = 'MediaWiki\\Installer\\WebInstaller' . $pageName;
 
 		return new $pageClass( $this );
 	}

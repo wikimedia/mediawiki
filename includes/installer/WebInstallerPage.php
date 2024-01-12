@@ -139,8 +139,7 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	public function getName() {
-		// TODO: Drop namespacing here too?
-		return str_replace( 'WebInstaller', '', static::class );
+		return str_replace( 'MediaWiki\\Installer\\WebInstaller', '', static::class );
 	}
 
 	/**
