@@ -172,14 +172,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			$this->setParsoidRenderID( $pageConfig, $parserOutput );
 		}
 
-		// Copied from Parser.php::parse and should probably be abstracted
-		// into the parent base class (probably as part of T236809)
-		// Wrap non-interface parser output in a <div> so it can be targeted
-		// with CSS (T37247)
-		$class = $options->getWrapOutputClass();
-		if ( $class !== false && !$options->getInterfaceMessage() ) {
-			$parserOutput->addWrapperDivClass( $class );
-		}
+		$parserOutput->setFromParserOptions( $options );
 
 		$parserOutput->recordTimeProfile();
 		$this->makeLimitReport( $options, $parserOutput );

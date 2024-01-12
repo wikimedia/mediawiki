@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use MediaWiki\Title\Title;
@@ -1400,5 +1401,22 @@ EOF
 		// Parser cache used to contain extension data under a different name
 		$po->setExtensionData( 'parsoid-render-id', "1234/LegacyRenderId" );
 		$this->assertEquals( "LegacyRenderId", $po->getRenderId() );
+	}
+
+	public function testSetFromParserOptions() {
+		$pOptions = ParserOptions::newFromAnon();
+		$pOutput = new ParserOutput;
+		$pOutput->setFromParserOptions( $pOptions );
+		$this->assertSame( 'mw-parser-output', $pOutput->getWrapperDivClass() );
+		$this->assertFalse( $pOutput->getOutputFlag( ParserOutputFlags::IS_PREVIEW ) );
+		$this->assertTrue( $pOutput->isCacheable() );
+
+		$pOptions->setWrapOutputClass( 'test-wrapper' );
+		$pOptions->setIsPreview( true );
+		$pOutput = new ParserOutput;
+		$pOutput->setFromParserOptions( $pOptions );
+		$this->assertEquals( 'test-wrapper', $pOutput->getWrapperDivClass() );
+		$this->assertTrue( $pOutput->getOutputFlag( ParserOutputFlags::IS_PREVIEW ) );
+		$this->assertFalse( $pOutput->isCacheable() );
 	}
 }
