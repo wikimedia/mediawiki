@@ -376,67 +376,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/**
-	 * TODO: Move to DatabaseBlockStoreTest
-	 *
-	 * @covers ::insert
-	 */
-	public function testCrappyCrossWikiBlocks() {
-		$this->filterDeprecated( '/Passing a \$database is no longer supported/' );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		// Delete the last round's block if it's still there
-		$oldBlock = $blockStore->newFromTarget( 'UserOnForeignWiki' );
-		if ( $oldBlock ) {
-			// An old block will prevent our new one from saving.
-			$blockStore->deleteBlock( $oldBlock );
-		}
-
-		// Local perspective (blockee on current wiki)...
-		$user = User::newFromName( 'UserOnForeignWiki' );
-		$user->addToDatabase();
-		$userId = $user->getId();
-		$this->assertNotEquals( 0, $userId, 'Check user id is not 0' );
-
-		// Foreign perspective (blockee not on current wiki)...
-		$blockOptions = [
-			'address' => 'UserOnForeignWiki',
-			'reason' => 'crosswiki block...',
-			'timestamp' => wfTimestampNow(),
-			'expiry' => $this->db->getInfinity(),
-			'createAccount' => true,
-			'enableAutoblock' => true,
-			'hideName' => true,
-			'blockEmail' => true,
-			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
-		];
-		$block = new DatabaseBlock( $blockOptions );
-
-		$res = $blockStore->insertBlock( $block, $this->db );
-		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
-
-		$user = null; // clear
-
-		$block = $blockStore->newFromID( $res['id'] );
-		$this->assertEquals(
-			'UserOnForeignWiki',
-			$block->getTargetName(),
-			'Correct blockee name'
-		);
-		$this->assertEquals(
-			'UserOnForeignWiki',
-			$block->getTargetUserIdentity()->getName(),
-			'Correct blockee name'
-		);
-		$this->assertEquals( $userId, $block->getTargetUserIdentity()->getId(), 'Correct blockee id' );
-		$this->assertEquals( $userId, $block->getTargetUserIdentity()->getId(), 'Correct blockee id' );
-		$this->assertEquals( 'UserOnForeignWiki', $block->getTargetName(), 'Correct blockee name' );
-		$this->assertTrue( $block->isBlocking( 'UserOnForeignWiki' ), 'Is blocking blockee' );
-		$this->assertEquals( 'm>MetaWikiUser', $block->getBlocker()->getName(),
-			'Correct blocker name' );
-		$this->assertEquals( 'm>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
-		$this->assertSame( 0, $block->getBy(), 'Correct blocker id' );
-	}
-
 	public static function providerXff() {
 		return [
 			[ 'xff' => '1.2.3.4, 70.2.1.1, 60.2.1.1, 2.3.4.5',
