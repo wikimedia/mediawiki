@@ -4,8 +4,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserRigorOptions;
 use Psr\Log\LogLevel;
-use Wikimedia\Message\ITextFormatter;
-use Wikimedia\Message\MessageValue;
 
 /**
  * @covers MediaWiki\User\UserNameUtils
@@ -54,17 +52,12 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::isUsable
 	 */
 	public function testIsUsable( string $name, bool $result ) {
-		$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
-		$textFormatter->method( 'format' )
-			->with( MessageValue::new( 'reserved-user' ) )
-			->willReturn( 'reserved-user' );
-
 		$utils = $this->getDummyUserNameUtils( [
 			MainConfigNames::ReservedUsernames => [
 				'MediaWiki default',
 				'msg:reserved-user'
 			],
-			'textFormatter' => $textFormatter,
+			'textFormatter' => $this->getDummyTextFormatter(),
 		] );
 		$this->assertSame(
 			$result,
