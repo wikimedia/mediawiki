@@ -812,6 +812,7 @@
 	"edit-recovery-special-view": "查看",
 	"edit-recovery-special-edit": "编辑",
 	"edit-recovery-special-recovered-on": "恢复于$1",
+	"edit-recovery-special-recovered-on-tooltip": "上次恢复数据保存的日期和时间",
 	"edit-recovery-loaded-title": "更改已恢复",
 	"edit-recovery-loaded-message": "您未保存的更改已自动恢复。",
 	"edit-recovery-loaded-show": "显示更改",

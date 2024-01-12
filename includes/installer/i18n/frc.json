@@ -52,7 +52,6 @@
 	"config-enable-email": "Activer les emails sortants",
 	"config-email-user": "Activer les emails d'useur à useur",
 	"config-email-watchlist": "Activer la notification de la liste de suivi",
-	"config-cc-again": "Choisissez à nouveau...",
 	"config-install-step-done": "fait",
 	"config-install-step-failed": "échoué",
 	"config-install-extensions": "Inclusion des extensions",

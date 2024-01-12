@@ -72,7 +72,6 @@
 	"config-license-cc-by-nc-sa": "Creative Commons Attribution Non-Commercial Share Alike",
 	"config-license-cc-0": "Creative Commons Zero (dominju pubbliku)",
 	"config-license-pd": "Dominju pubbliku",
-	"config-license-cc-choose": "Agħżel waħda mil-liċenzji tal-Creative Commons",
 	"config-upload-deleted": "Direttorju għall-fajls imħassra:",
 	"config-upload-deleted-help": "Agħżel direttorju fejn iżżomm fajls imħassra.\nIdealment, dan m'għandux ikun aċċessibbli mill-web.",
 	"config-download-localsettings": "Niżżel <code>LocalSettings.php</code>",

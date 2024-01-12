@@ -812,6 +812,7 @@
 	"edit-recovery-special-intro-empty": "Vous n'avez aucune modification non sauvegardée.",
 	"edit-recovery-special-view": "afficher",
 	"edit-recovery-special-edit": "modifier",
+	"edit-recovery-special-recovered-on": "à partir du $1",
 	"edit-recovery-loaded-title": "Changements récupérés",
 	"edit-recovery-loaded-message": "Vos modifications non enregistrées ont été récupérées automatiquement.",
 	"edit-recovery-loaded-show": "Voir les modifications",

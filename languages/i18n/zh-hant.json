@@ -754,6 +754,7 @@
 	"edit-recovery-special-view": "檢視",
 	"edit-recovery-special-edit": "編輯",
 	"edit-recovery-special-recovered-on": "恢復於$1",
+	"edit-recovery-special-recovered-on-tooltip": "上次儲存恢復資料的日期和時間",
 	"edit-recovery-loaded-title": "更改已恢復",
 	"edit-recovery-loaded-message": "您未保存的更改已自動恢復。",
 	"edit-recovery-loaded-show": "顯示變更",

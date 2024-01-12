@@ -4320,6 +4320,7 @@
 	"renameuser-error-same-user": "لا يمكنك إعادة تسمية مستخدم بنفس الاسم كما كان من قبل.",
 	"renameuser-error-temp-user": "لا يمكنك إعادة تسمية الحساب المؤقت \"$1\".",
 	"renameuser-error-temp-user-reserved": "لا يمكنك استخدام \"$1\"، فهو محجوز للحسابات المؤقتة.",
+	"renameuser-error-self-rename": "لا يمكنك تغيير اسمك",
 	"renameusersuccess": "تمت إعادة تسمية {{GENDER:$1|المستخدم}} \"<nowiki>$1</nowiki>\" إلى \"<nowiki>$2</nowiki>\"",
 	"renameuser-page-exists": "الصفحة $1 موجودة بالفعل ولا يمكن إنشاء أخرى مكانها أوتوماتيكيا.",
 	"renameuser-page-moved": "تم نقل الصفحة $1 إلى $2.",

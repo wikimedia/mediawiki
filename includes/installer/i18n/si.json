@@ -96,7 +96,6 @@
 	"config-upload-enable": "ගොනු උඩුගත කිරීම් සක්‍රිය කරන්න",
 	"config-upload-deleted": "මැකූ ගොනු සඳහා නාමාවලිය:",
 	"config-instantcommons": "ක්ෂණික කොමන්ස් සක්‍රිය කරන්න",
-	"config-cc-again": "නැවත ඇහිඳගන්න...",
 	"config-advanced-settings": "උසස් වින්‍යාසගතකෙරුම",
 	"config-cache-options": "වස්තු කෑෂය සඳහා සැකසුම්:",
 	"config-memcached-servers": "මතකකෑෂිත සර්වරයන්:",

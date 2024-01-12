@@ -2972,7 +2972,7 @@
 	"table_pager_limit_submit": "چلیں",
 	"table_pager_empty": "کوئی نتیجہ برآمد نہیں ہوا",
 	"autosumm-blank": "تمام مندرجات حذف",
-	"autosumm-replace": "\"$1\" سے مواد کی تبدیلی",
+	"autosumm-replace": "\"$1\" سے مندرجات صفحہ کی تبدیلی",
 	"autoredircomment": "[[$1]] سے رجوع مکرر",
 	"autosumm-removed-redirect": "[[$1]] سے رجوع مکرر ہٹایا",
 	"autosumm-changed-redirect-target": "رجوع مکرر [[$1]] کو [[$2]] سے تبدیل کیا",
