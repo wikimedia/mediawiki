@@ -24,7 +24,7 @@ namespace MediaWiki\Block;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * @since 1.42
@@ -47,21 +47,27 @@ class BlockUtilsFactory {
 	/** @var BlockUtils[] */
 	private $storeCache;
 
+	/** @var LBFactory */
+	private $loadBalancerFactory;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param UserNameUtils $userNameUtils
+	 * @param LBFactory $loadBalancerFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ActorStoreFactory $actorStoreFactory,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		LBFactory $loadBalancerFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
 		$this->actorStoreFactory = $actorStoreFactory;
 		$this->userNameUtils = $userNameUtils;
+		$this->loadBalancerFactory = $loadBalancerFactory;
 	}
 
 	/**
@@ -69,7 +75,7 @@ class BlockUtilsFactory {
 	 * @return BlockUtils
 	 */
 	public function getBlockUtils( $wikiId = Block::LOCAL ): BlockUtils {
-		if ( is_string( $wikiId ) && WikiMap::getCurrentWikiId() === $wikiId ) {
+		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
 			$wikiId = Block::LOCAL;
 		}
 
