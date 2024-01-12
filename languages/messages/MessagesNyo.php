@@ -1,5 +1,5 @@
 <?php
-/** Tooro (Orutooro)
+/** Nyoro (Orunyoro)
  *
  * @file
  * @ingroup Languages
@@ -7,6 +7,6 @@
  * @author Jon Harald Søby
  */
 
-$fallback = 'nyo, nyn, lg, sw';
+$fallback = 'ttj, nyn, lg, sw';
 
 $linkTrail = '/^([a-z]+)(.*)$/sDu';

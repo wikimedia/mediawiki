@@ -380,6 +380,7 @@ class Names {
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
 		'nyn' => 'runyankore', # Nkore
+		'nyo' => 'Orunyoro', # Nyoro
 		'nys' => 'Nyunga', # Nyungar
 		'oc' => 'occitan', # Occitan
 		'ojb' => 'Ojibwemowin', # Ojibwe

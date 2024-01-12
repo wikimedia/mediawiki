@@ -126,6 +126,7 @@ because of Phabricator reports.
 * (T353307) Added language support for Guadeloupean Creole (gcf).
 * (T353500) Added language support for Southeastern Kolami (nit).
 * (T354519) Added language support for Tooro (ttj).
+* (T354926) Added language support for Nyoro (nyo).
 * …
 
 === Breaking changes in 1.42 ===
