@@ -185,10 +185,6 @@ return [
 		'styles' => 'resources/src/jquery/jquery.confirmable.css',
 		'dependencies' => 'mediawiki.jqueryMsg',
 	],
-	'jquery.cookie' => [
-		'deprecated' => 'Merged into "mediawiki.cookie", use that module instead (T271995)',
-		'dependencies' => 'mediawiki.cookie',
-	],
 	'jquery.highlightText' => [
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
 		'dependencies' => [
