@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -324,6 +325,15 @@ class UserMailer {
 		$ret = $hookRunner->onAlternateUserMailer( $headers, $to, $from, $subject, $body );
 		if ( $ret === false ) {
 			// the hook implementation will return false to skip regular mail sending
+			LoggerFactory::getInstance( 'usermailer' )->info(
+				"Email to {to} from {from} with subject {subject} handled by AlternateUserMailer",
+				[
+					'to' => $to[0]->toString(),
+					'allto' => implode( ', ', array_map( 'strval', $to ) ),
+					'from' => $from->toString(),
+					'subject' => $subject,
+				]
+			);
 			return Status::newGood();
 		} elseif ( $ret !== true ) {
 			// the hook implementation will return a string to pass an error message
@@ -401,6 +411,15 @@ class UserMailer {
 				wfDebug( "Unknown error sending mail" );
 				return Status::newFatal( 'php-mail-error-unknown' );
 			} else {
+				LoggerFactory::getInstance( 'usermailer' )->info(
+					"Email sent to {to} from {from} with subject {subject}",
+					[
+						'to' => $to[0]->toString(),
+						'allto' => implode( ', ', array_map( 'strval', $to ) ),
+						'from' => $from->toString(),
+						'subject' => $subject,
+					]
+				);
 				return Status::newGood();
 			}
 		}
