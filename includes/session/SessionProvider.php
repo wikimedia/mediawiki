@@ -660,6 +660,21 @@ abstract class SessionProvider implements SessionProviderInterface {
 	}
 
 	/**
+	 * Returns true if this provider is exempt from autocreate user permissions check
+	 *
+	 * By default returns false, meaning this provider respects the normal rights
+	 * of anonymous user creation. When true the permission checks will be bypassed
+	 * and the user will always be created (subject to other limitations, like read
+	 * only db and such).
+	 *
+	 * @stable to override
+	 * @since 1.42
+	 */
+	public function canAlwaysAutocreate(): bool {
+		return false;
+	}
+
+	/**
 	 * Hash data as a session ID
 	 *
 	 * Generally this will only be used when self::persistsSessionId() is false and

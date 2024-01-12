@@ -58,4 +58,12 @@ interface SessionProviderInterface {
 	 * @return bool
 	 */
 	public function safeAgainstCsrf();
+
+	/**
+	 * Returns true if this provider is exempt from autocreate user permissions check.
+	 *
+	 * @return bool
+	 * @since 1.42
+	 */
+	public function canAlwaysAutocreate(): bool;
 }

@@ -1830,7 +1830,8 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Is the IP user able to create accounts?
 		$performer ??= $this->userFactory->newAnonymous();
-		if ( $source !== self::AUTOCREATE_SOURCE_MAINT ) {
+		$bypassAuthorization = $session ? $session->getProvider()->canAlwaysAutocreate() : false;
+		if ( $source !== self::AUTOCREATE_SOURCE_MAINT && !$bypassAuthorization ) {
 			$status = $this->authorizeAutoCreateAccount( $performer );
 			if ( !$status->isOK() ) {
 				$this->logger->debug( __METHOD__ . ': cannot create or autocreate accounts', [
