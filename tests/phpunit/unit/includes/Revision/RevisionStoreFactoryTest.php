@@ -29,11 +29,11 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers \MediaWiki\Revision\RevisionStoreFactory
+ */
 class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers \MediaWiki\Revision\RevisionStoreFactory::__construct
-	 */
 	public function testValidConstruction_doesntCauseErrors() {
 		new RevisionStoreFactory(
 			$this->getMockLoadBalancerFactory(),
@@ -61,7 +61,6 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideWikiIds
-	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStore
 	 */
 	public function testGetRevisionStore( $wikiId ) {
 		$cache = $this->getHashWANObjectCache();
