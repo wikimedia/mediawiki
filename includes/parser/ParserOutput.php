@@ -815,6 +815,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @since 1.39 You can now pass null to this function
 	 * @param string|null $text HTML content of ParserOutput or null if not generated
+	 * @param-taint $text exec_html
 	 * @return string|null Previous value of ParserOutput's text
 	 */
 	public function setText( $text ) {
@@ -900,6 +901,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param string $id
 	 * @param string $content
+	 * @param-taint $content exec_html
 	 * @since 1.25
 	 */
 	public function setIndicator( $id, $content ): void {

@@ -819,4 +819,9 @@ class TaintCheckAnnotationsTest {
 		echo \Status::newGood( $_GET['a'] )->getValue();// Safe
 		echo \Status::newGood( $_GET['a'] )->setResult( true, $_GET['a'] );// Safe
 	}
+
+	function testParserOutput( ParserOutput $po ) {
+		$po->setIndicator( 'foo', $_GET['a'] ); //@phan-suppress-current-line SecurityCheck-XSS
+		$po->setText( $_GET['a'] ); //@phan-suppress-current-line SecurityCheck-XSS
+	}
 }
