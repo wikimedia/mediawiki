@@ -665,20 +665,19 @@ class ApiQuery extends ApiBase {
 		$modules = $continuationManager->getRunModules();
 		'@phan-var ApiQueryBase[] $modules';
 
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
 
 		if ( !$continuationManager->isGeneratorDone() ) {
 			// Query modules may optimize data requests through the $this->getPageSet()
 			// object by adding extra fields from the page table.
 			foreach ( $modules as $module ) {
-				$t = microtime( true );
-				$module->requestExtraData( $this->mPageSet );
-				$runTime = microtime( true ) - $t;
-
 				// Augment api-query.$module.executeTiming metric with timings for requestExtraData()
-				$stats->timing(
-					'api-query.' . $module->getModuleName() . '.extraDataTiming', 1000 * $runTime
-				);
+				$timer = $statsFactory->getTiming( 'api_query_extraDataTiming_seconds' )
+					->setLabel( 'module', $module->getModuleName() )
+					->copyToStatsdAt( 'api-query.' . $module->getModuleName() . '.extraDataTiming' );
+				$timer->start();
+				$module->requestExtraData( $this->mPageSet );
+				$timer->stop();
 			}
 			// Populate page/revision information
 			$this->mPageSet->execute();
@@ -692,18 +691,18 @@ class ApiQuery extends ApiBase {
 
 		// Execute all unfinished modules
 		foreach ( $modules as $module ) {
+			// Break down of the api.query.executeTiming metric by query module.
+			$timer = $statsFactory->getTiming( 'api_query_executeTiming_seconds' )
+				->setLabel( 'module', $module->getModuleName() )
+				->copyToStatsdAt( 'api-query.' . $module->getModuleName() . '.executeTiming' );
+			$timer->start();
+
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
-
-			$t = microtime( true );
 			$module->execute();
-			$runTime = microtime( true ) - $t;
 
-			// Break down of the api.query.executeTiming metric by query module.
-			$stats->timing(
-				'api-query.' . $module->getModuleName() . '.executeTiming', 1000 * $runTime
-			);
+			$timer->stop();
 
 			$this->getHookRunner()->onAPIQueryAfterExecute( $module );
 		}
