@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Installer\WebInstaller;
 use MediaWiki\Request\WebRequest;
 
 /**

@@ -19,6 +19,8 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
 class WebInstallerCopying extends WebInstallerDocument {
 
 	/**
