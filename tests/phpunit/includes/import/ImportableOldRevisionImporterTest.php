@@ -6,7 +6,7 @@ use Psr\Log\NullLogger;
 
 /**
  * @group Database
- * @coversDefaultClass ImportableOldRevisionImporter
+ * @covers ImportableOldRevisionImporter
  */
 class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
@@ -22,7 +22,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::import
 	 * @dataProvider provideTestCases
 	 */
 	public function testImport( $expectedTags ) {
