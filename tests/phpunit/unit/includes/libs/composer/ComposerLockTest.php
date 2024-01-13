@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Composer\ComposerLock;
+
 class ComposerLockTest extends PHPUnit\Framework\TestCase {
 
 	private $lock;
@@ -10,8 +12,8 @@ class ComposerLockTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers ComposerLock::__construct
-	 * @covers ComposerLock::getInstalledDependencies
+	 * @covers Wikimedia\Composer\ComposerLock::__construct
+	 * @covers Wikimedia\Composer\ComposerLock::getInstalledDependencies
 	 */
 	public function testGetInstalledDependencies() {
 		$lock = new ComposerLock( $this->lock );

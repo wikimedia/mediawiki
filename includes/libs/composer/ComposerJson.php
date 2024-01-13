@@ -1,5 +1,7 @@
 <?php
 
+namespace Wikimedia\Composer;
+
 /**
  * Reads a composer.json file and provides accessors to get
  * its hash and the required dependencies

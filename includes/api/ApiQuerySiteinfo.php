@@ -40,6 +40,7 @@ use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Composer\ComposerInstalled;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;

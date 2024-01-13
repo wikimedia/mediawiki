@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Composer\ComposerJson;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class ConvertExtensionToRegistration extends Maintenance {
@@ -340,9 +342,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 	protected function needsComposerAutoloader( $path ) {
 		$path .= '/composer.json';
 		if ( file_exists( $path ) ) {
-			// assume, that the composer.json file is in the root of the extension path
+			// assume that the composer.json file is in the root of the extension path
 			$composerJson = new ComposerJson( $path );
-			// check, if there are some dependencies in the require section
+			// check if there are some dependencies in the require section
 			if ( $composerJson->getRequiredDependencies() ) {
 				return true;
 			}

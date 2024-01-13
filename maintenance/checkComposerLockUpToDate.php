@@ -3,6 +3,8 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Composer\LockFileChecker;
+use Wikimedia\Composer\ComposerJson;
+use Wikimedia\Composer\ComposerLock;
 
 /**
  * Checks whether your composer-installed dependencies are up to date

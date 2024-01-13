@@ -19,6 +19,8 @@
  */
 
 use MediaWiki\Composer\LockFileChecker;
+use Wikimedia\Composer\ComposerJson;
+use Wikimedia\Composer\ComposerLock;
 
 /**
  * @covers \MediaWiki\Composer\LockFileChecker

@@ -1,5 +1,7 @@
 <?php
 
+namespace Wikimedia\Composer;
+
 /**
  * Reads an installed.json file and provides accessors to get what is
  * installed

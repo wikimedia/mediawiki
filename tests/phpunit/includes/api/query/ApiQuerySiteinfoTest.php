@@ -4,6 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\Title\Title;
+use Wikimedia\Composer\ComposerInstalled;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
