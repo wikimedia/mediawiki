@@ -193,8 +193,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			return null;
 		}
 		if ( !isset( $this->mParams['fields'][$find] ) ) {
-			if ( isset( $this->mParams['cloner'] ) ) {
-				return $this->mParams['cloner']->findNearestField( $this, $find );
+			$cloner = $this->mParams['cloner'] ?? null;
+			if ( $cloner instanceof self ) {
+				return $cloner->findNearestField( $this, $find );
 			}
 			return null;
 		}
@@ -208,8 +209,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 */
 	protected function getFieldPath( $field ) {
 		$path = [ $this->mParams['fieldname'], $field->mParams['cloner-key'] ];
-		if ( isset( $this->mParams['cloner'] ) ) {
-			$path = array_merge( $this->mParams['cloner']->getFieldPath( $this ), $path );
+		$cloner = $this->mParams['cloner'] ?? null;
+		if ( $cloner instanceof self ) {
+			$path = array_merge( $cloner->getFieldPath( $this ), $path );
 		}
 		return $path;
 	}
