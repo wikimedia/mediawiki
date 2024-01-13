@@ -131,8 +131,8 @@ class PHPVersionCheck {
 			$web['longHtml'] = <<<HTML
 		<p>
 			Please consider <a href="https://www.php.net/downloads.php">upgrading your copy of PHP</a>.
-			PHP versions less than v7.3.0 are no longer supported by the PHP Group and will not receive
-			security or bugfix updates.
+			PHP versions less than v8.1.0 are no longer <a href="https://www.php.net/supported-versions.php">supported</a>
+			by the PHP Group and will not receive security or bugfix updates.
 		</p>
 		<p>
 			If for some reason you are unable to upgrade your PHP version, you will need to
