@@ -113,7 +113,7 @@
 	};
 
 	/**
-	 * @see {@link OO.ui.SearchInputWidget#onChange https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.SearchInputWidget}
+	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.onChange = function () {
 		this.updateSearchIndicator();
