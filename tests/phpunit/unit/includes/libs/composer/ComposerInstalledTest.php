@@ -483,7 +483,6 @@ class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 		$root = __DIR__ . '/../../../../data/composer/';
 
 		return [
-			'Composer v1' => [ $root . '/installed.json' ],
 			'Composer v2' => [ $root . '/installed-v2.json' ]
 		];
 	}

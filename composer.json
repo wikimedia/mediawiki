@@ -155,6 +155,8 @@
 		"fix": [
 			"phpcbf"
 		],
+		"pre-install-cmd": "MediaWiki\\Composer\\VersionChecker::onEvent",
+		"pre-update-cmd": "MediaWiki\\Composer\\VersionChecker::onEvent",
 		"post-install-cmd": "MediaWiki\\Composer\\ComposerVendorHtaccessCreator::onEvent",
 		"post-update-cmd": "MediaWiki\\Composer\\ComposerVendorHtaccessCreator::onEvent",
 		"releasenotes": "@phpunit --group ReleaseNotes",
