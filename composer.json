@@ -128,9 +128,8 @@
 		"monolog/monolog": "Enable use of MonologSpi ($wgMWLoggerDefaultSpi)."
 	},
 	"autoload": {
-		"psr-0": {
-			"ComposerVendorHtaccessCreator": "includes/composer",
-			"ComposerPhpunitXmlCoverageEdit": "includes/composer"
+		"psr-4": {
+			"MediaWiki\\Composer\\": "includes/composer"
 		}
 	},
 	"autoload-dev": {
@@ -154,8 +153,8 @@
 		"fix": [
 			"phpcbf"
 		],
-		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
-		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
+		"post-install-cmd": "MediaWiki\\Composer\\ComposerVendorHtaccessCreator::onEvent",
+		"post-update-cmd": "MediaWiki\\Composer\\ComposerVendorHtaccessCreator::onEvent",
 		"releasenotes": "@phpunit --group ReleaseNotes",
 		"test": [
 			"@lint .",
