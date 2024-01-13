@@ -43,7 +43,12 @@ The new option is NOT validated.' );
 
 		$this->addOption( 'list', 'List available user options and their default value' );
 		$this->addOption( 'usage', 'Report all options statistics or just one if you specify it' );
-		$this->addOption( 'old', 'The value to look for', false, true );
+		$this->addOption(
+			'old',
+			'The value to look for. If it is a default value for the option, pass --old-is-default as well.',
+			false, true
+		);
+		$this->addOption( 'old-is-default', 'If passed, --old is interpreted as a default value.' );
 		$this->addOption( 'new', 'New value to update users with', false, true );
 		$this->addOption( 'delete', 'Delete the option instead of updating' );
 		$this->addOption( 'fromuserid', 'Start from this user ID when changing/deleting options',
@@ -148,6 +153,7 @@ The new option is NOT validated.' );
 		$dryRun = $this->hasOption( 'dry' );
 		$settingWord = $dryRun ? 'Would set' : 'Setting';
 		$option = $this->getArg( 0 );
+		$fromIsDefault = $this->hasOption( 'old-is-default' );
 		$from = $this->getOption( 'old' );
 		$to = $this->getOption( 'new' );
 
@@ -169,17 +175,17 @@ WARN
 		}
 
 		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDB( DB_REPLICA );
 		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
 		$queryBuilderTemplate
 			->table( 'user' )
-			->join( 'user_properties', null, [
+			->leftJoin( 'user_properties', null, [
 				'user_id = up_user',
 				'up_property' => $option,
 			] )
 			->fields( [ 'user_id', 'user_name' ] )
 			// up_value is unindexed so this can be slow, but should be acceptable in a script
-			->where( [ 'up_value' => $from ] )
+			->where( [ 'up_value' => $fromIsDefault ? null : $from ] )
 			// need to order by ID so we can use ID ranges for query continuation
 			// also needed for the fromuserid / touserid parameters to work
 			->orderBy( 'user_id', SelectQueryBuilder::SORT_ASC )
@@ -194,13 +200,24 @@ WARN
 			$queryBuilder->andWhere( "user_id > $fromUserId" );
 			$result = $queryBuilder->fetchResultSet();
 			foreach ( $result as $row ) {
-				$this->output( "$settingWord {$option} for {$row->user_name} from '{$from}' to '{$to}'\n" );
+				$fromUserId = (int)$row->user_id;
+
 				$user = UserIdentityValue::newRegistered( $row->user_id, $row->user_name );
+				if ( $fromIsDefault ) {
+					// $user has the default value for $option; skip if it doesn't match
+					// NOTE: This is intentionally a loose comparison. $from is always a string
+					// (coming from the command line), but the default value might be of a
+					// different type.
+					if ( $from != $userOptionsManager->getDefaultOption( $option, $user ) ) {
+						continue;
+					}
+				}
+
+				$this->output( "$settingWord {$option} for {$row->user_name} from '{$from}' to '{$to}'\n" );
 				if ( !$dryRun ) {
 					$userOptionsManager->setOption( $user, $option, $to );
 					$userOptionsManager->saveOptions( $user );
 				}
-				$fromUserId = (int)$row->user_id;
 			}
 			$this->waitForReplication();
 		} while ( $result->numRows() );
