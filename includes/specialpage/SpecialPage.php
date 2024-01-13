@@ -219,7 +219,7 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * Get the name of this Special Page.
+	 * Get the canonical, unlocalized name of this special page without namespace.
 	 * @return string
 	 */
 	public function getName() {
