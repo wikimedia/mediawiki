@@ -110,9 +110,11 @@
 	},
 	"suggest": {
 		"ext-apcu": "Faster web responses overall.",
+		"ext-bcmath": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-gmp are needed for scrambling Temporary Accounts.",
 		"ext-curl": "Faster HTTP services, e.g. when using InstantCommons, Swift, or Etcd.",
 		"ext-exif": "Enable processing of EXIF information in file uploads.",
 		"ext-gd": "Enable thumbnails for file uploads.",
+		"ext-gmp": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-bcmath are needed for scrambling Temporary Accounts.",
 		"ext-mysqli": "Enable the MySQL and MariaDB database type for MediaWiki.",
 		"ext-openssl": "Encrypt session data (or opt-out via $wgSessionInsecureSecrets).",
 		"ext-pdo": "Enable the SQLite database type for MediaWiki.",
