@@ -6,7 +6,7 @@
  */
 
 /**
- * Extends CopyTextLayout with MediaWiki notifications
+ * Extends CopyTextLayout with MediaWiki notifications.
  *
  * @class
  * @extends OO.ui.CopyTextLayout
@@ -35,7 +35,7 @@ OO.inheritClass( mw.widgets.CopyTextLayout, OO.ui.CopyTextLayout );
 /* Methods */
 
 /**
- * Handle copy events
+ * Handle copy events.
  *
  * @param {boolean} copied
  */

@@ -48,7 +48,7 @@
 	/* Methods */
 
 	/**
-	 * Get results from the source
+	 * Get results from the source.
 	 *
 	 * @param {number} howMany Number of results to ask for
 	 * @return {jQuery.Promise} Promise that is resolved into an array
@@ -70,7 +70,7 @@
 	};
 
 	/**
-	 * Set API url
+	 * Set api url.
 	 *
 	 * @param {string} apiurl API url
 	 */
@@ -79,7 +79,7 @@
 	};
 
 	/**
-	 * Set api url
+	 * Get api url.
 	 *
 	 * @return {string} API url
 	 */
@@ -88,7 +88,7 @@
 	};
 
 	/**
-	 * Get the static, non-changing data parameters sent to the API
+	 * Get the static, non-changing data parameters sent to the API.
 	 *
 	 * @return {Object} Data parameters
 	 */
@@ -97,7 +97,7 @@
 	};
 
 	/**
-	 * Get the user-inputted dynamic data parameters sent to the API
+	 * Get the user-inputted dynamic data parameters sent to the API.
 	 *
 	 * @return {Object} Data parameters
 	 */
@@ -106,7 +106,7 @@
 	};
 
 	/**
-	 * Set the data parameters sent to the API
+	 * Set the data parameters sent to the API.
 	 *
 	 * @param {Object} params User defined data parameters
 	 */
@@ -119,7 +119,7 @@
 	};
 
 	/**
-	 * Reset the provider
+	 * Reset the provider.
 	 */
 	mw.widgets.APIResultsProvider.prototype.reset = function () {
 		// Reset offset
@@ -139,7 +139,7 @@
 	};
 
 	/**
-	 * Set limit
+	 * Set limit.
 	 *
 	 * @param {number} limit Default number of results to fetch from the API
 	 */
@@ -148,7 +148,7 @@
 	};
 
 	/**
-	 * Get provider API language
+	 * Get provider API language.
 	 *
 	 * @return {string} Provider API language
 	 */
@@ -157,7 +157,7 @@
 	};
 
 	/**
-	 * Set provider API language
+	 * Set provider API language.
 	 *
 	 * @param {string} lang Provider API language
 	 */
@@ -166,7 +166,7 @@
 	};
 
 	/**
-	 * Get result offset
+	 * Get result offset.
 	 *
 	 * @return {number} Offset Results offset for the upcoming request
 	 */
@@ -175,7 +175,7 @@
 	};
 
 	/**
-	 * Set result offset
+	 * Set result offset.
 	 *
 	 * @param {number} offset Results offset for the upcoming request
 	 */
@@ -194,7 +194,7 @@
 	};
 
 	/**
-	 * Toggle depleted state
+	 * Toggle depleted state.
 	 *
 	 * @param {boolean} isDepleted The provider is depleted
 	 */
@@ -203,7 +203,7 @@
 	};
 
 	/**
-	 * Get the default ajax settings
+	 * Get the default ajax settings.
 	 *
 	 * @return {Object} Ajax settings
 	 */
@@ -212,7 +212,7 @@
 	};
 
 	/**
-	 * Get the default ajax settings
+	 * Set the default ajax settings.
 	 *
 	 * @param {Object} settings Ajax settings
 	 */

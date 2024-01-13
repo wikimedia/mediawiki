@@ -29,7 +29,7 @@
 
 	/**
 	 * Override parent method to set up the providers according to
-	 * the file repos
+	 * the file repos.
 	 *
 	 * @return {jQuery.Promise} Promise that resolves when the resources are set up
 	 */
@@ -60,7 +60,7 @@
 	};
 
 	/**
-	 * Set the search query
+	 * Set the search query.
 	 *
 	 * @param {string} searchQuery API search query
 	 */
@@ -69,7 +69,7 @@
 	};
 
 	/**
-	 * Get the search query
+	 * Get the search query.
 	 *
 	 * @return {string} API search query
 	 */

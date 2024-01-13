@@ -8,7 +8,7 @@
 	var hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
-	 * Mixin for title widgets
+	 * Mixin for title widgets.
 	 *
 	 * @class
 	 * @abstract
@@ -86,7 +86,7 @@
 	/* Methods */
 
 	/**
-	 * Get the current value of the search query
+	 * Get the current value of the search query.
 	 *
 	 * @abstract
 	 * @return {string} Search query
@@ -140,7 +140,7 @@
 	};
 
 	/**
-	 * Suggest link fragments from the sections API
+	 * Suggest link fragments from the sections API.
 	 *
 	 * @param {string} title Title, extracted form the user input
 	 * @param {string} fragmentQuery Partial link fragment, from the user input
@@ -304,7 +304,7 @@
 	};
 
 	/**
-	 * Get API params for a given query
+	 * Get API params for a given query.
 	 *
 	 * @param {string} query User query
 	 * @return {Object} API params
@@ -334,7 +334,7 @@
 	};
 
 	/**
-	 * Get the API object for title requests
+	 * Get the API object for title requests.
 	 *
 	 * @return {mw.Api} MediaWiki API
 	 */
@@ -343,7 +343,7 @@
 	};
 
 	/**
-	 * Get option widgets from the server response
+	 * Get option widgets from the server response.
 	 *
 	 * @param {Object} data Query result
 	 * @return {OO.ui.OptionWidget[]} Menu items
@@ -463,7 +463,7 @@
 	};
 
 	/**
-	 * Create a menu option widget with specified data
+	 * Create a menu option widget with specified data.
 	 *
 	 * @param {Object} data Data for option widget
 	 * @return {OO.ui.MenuOptionWidget} Data for option widget
@@ -473,7 +473,7 @@
 	};
 
 	/**
-	 * Get menu option widget data from the title and page data
+	 * Get menu option widget data from the title and page data.
 	 *
 	 * @param {string} title Title object
 	 * @param {Object} data Page data
@@ -516,7 +516,7 @@
 	};
 
 	/**
-	 * Check if the query is valid
+	 * Check if the query is valid.
 	 *
 	 * @return {boolean} The query is valid
 	 */

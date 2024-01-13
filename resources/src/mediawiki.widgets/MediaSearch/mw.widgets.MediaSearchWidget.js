@@ -189,7 +189,7 @@
 	};
 
 	/**
-	 * Process the media queue giving more items
+	 * Process the media queue giving more items.
 	 *
 	 * @method
 	 * @param {Object[]} items Given items by the media queue
@@ -227,7 +227,7 @@
 	};
 
 	/**
-	 * Get the sanitized query value from the input
+	 * Get the sanitized query value from the input.
 	 *
 	 * @return {string} Query value
 	 */
@@ -241,7 +241,7 @@
 	};
 
 	/**
-	 * Handle search value change
+	 * Handle search value change.
 	 *
 	 * @param {string} value New value
 	 */

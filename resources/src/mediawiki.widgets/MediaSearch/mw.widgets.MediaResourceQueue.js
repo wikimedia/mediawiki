@@ -58,7 +58,7 @@
 	};
 
 	/**
-	 * Get image maximum height
+	 * Get image maximum height.
 	 *
 	 * @return {string} Image max height
 	 */

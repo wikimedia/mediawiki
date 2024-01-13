@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * RadioSelectInputWidget and a TextInputWidget to set minimum or maximum byte size
+	 * RadioSelectInputWidget and a TextInputWidget to set minimum or maximum byte size.
 	 *
 	 *     mw.loader.using( 'mediawiki.widgets.SizeFilterWidget', function () {
 	 *       var sf = new mw.widgets.SizeFilterWidget();

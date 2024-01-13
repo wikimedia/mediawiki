@@ -113,7 +113,7 @@
 	};
 
 	/**
-	 * @see OO.ui.SearchInputWidget#onChange
+	 * @see {@link OO.ui.SearchInputWidget#onChange https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.SearchInputWidget}
 	 */
 	mw.widgets.SearchInputWidget.prototype.onChange = function () {
 		this.updateSearchIndicator();
@@ -139,7 +139,7 @@
 	};
 
 	/**
-	 * @inheritdoc mw.widgets.TitleWidget
+	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.getSuggestionsPromise = function () {
 		var api = this.getApi(),
@@ -164,7 +164,7 @@
 	};
 
 	/**
-	 * @inheritdoc mw.widgets.TitleInputWidget
+	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
 		// mw.widgets.TitleInputWidget uses response.query, which doesn't exist for opensearch,
@@ -184,7 +184,7 @@
 	};
 
 	/**
-	 * @inheritdoc mw.widgets.TitleWidget
+	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.getOptionsFromData = function ( data ) {
 		var items = [],

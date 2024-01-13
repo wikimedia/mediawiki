@@ -52,7 +52,7 @@
 	};
 
 	/**
-	 * Get items from the queue
+	 * Get items from the queue.
 	 *
 	 * @param {number} [howMany] How many items to retrieve. Defaults to the
 	 *  default limit supplied on initialization.
@@ -82,7 +82,7 @@
 	};
 
 	/**
-	 * Get results from all providers
+	 * Get results from all providers.
 	 *
 	 * @param {number} [howMany] How many items to retrieve. Defaults to the
 	 *  default limit supplied on initialization.
@@ -139,7 +139,7 @@
 	};
 
 	/**
-	 * Reset the queue and all its providers
+	 * Reset the queue and all its providers.
 	 */
 	mw.widgets.APIResultsQueue.prototype.reset = function () {
 		// Reset queue
@@ -155,7 +155,7 @@
 	};
 
 	/**
-	 * Get the data parameters sent to the API
+	 * Get the data parameters sent to the API.
 	 *
 	 * @return {Object} params API search parameters
 	 */
@@ -164,7 +164,7 @@
 	};
 
 	/**
-	 * Set the providers
+	 * Set the providers.
 	 *
 	 * @param {mw.widgets.APIResultsProvider[]} providers An array of providers
 	 */
@@ -177,7 +177,7 @@
 	};
 
 	/**
-	 * Add a provider to the group
+	 * Add a provider to the group.
 	 *
 	 * @param {mw.widgets.APIResultsProvider} provider A provider object
 	 */
@@ -188,7 +188,7 @@
 	};
 
 	/**
-	 * Set the providers
+	 * Set the providers.
 	 *
 	 * @return {mw.widgets.APIResultsProvider[]} providers An array of providers
 	 */
@@ -197,7 +197,7 @@
 	};
 
 	/**
-	 * Get the queue size
+	 * Get the queue size.
 	 *
 	 * @return {number} Queue size
 	 */
@@ -206,7 +206,7 @@
 	};
 
 	/**
-	 * Set queue threshold
+	 * Set queue threshold.
 	 *
 	 * @param {number} threshold Queue threshold, below which we will
 	 *  request more items
@@ -216,7 +216,7 @@
 	};
 
 	/**
-	 * Get queue threshold
+	 * Get queue threshold.
 	 *
 	 * @return {number} threshold Queue threshold, below which we will
 	 *  request more items
@@ -226,7 +226,7 @@
 	};
 
 	/**
-	 * Set language for the query results
+	 * Set language for the query results.
 	 *
 	 * @param {string|undefined} lang Language
 	 */
@@ -238,7 +238,7 @@
 	};
 
 	/**
-	 * Get language for the query results
+	 * Get language for the query results.
 	 *
 	 * @return {string|undefined} lang Language
 	 */

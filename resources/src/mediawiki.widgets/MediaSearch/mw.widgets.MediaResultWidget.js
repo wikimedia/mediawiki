@@ -159,7 +159,7 @@
 	};
 
 	/**
-	 * Retrieve the store dimensions object
+	 * Retrieve the store dimensions object.
 	 *
 	 * @return {Object} Thumb dimensions
 	 */
@@ -168,7 +168,7 @@
 	};
 
 	/**
-	 * Resize thumbnail and element according to the resize factor
+	 * Resize thumbnail and element according to the resize factor.
 	 *
 	 * @param {number} resizeFactor The resizing factor for the image
 	 */
@@ -194,7 +194,7 @@
 	};
 
 	/**
-	 * Adjust the wrapper padding for small images
+	 * Adjust the wrapper padding for small images.
 	 *
 	 * @param {Object} thumbDimensions Thumbnail dimensions
 	 * @return {Object} Css styling for the wrapper
@@ -215,7 +215,7 @@
 	};
 
 	/**
-	 * Set the row height for all size calculations
+	 * Set the row height for all size calculations.
 	 *
 	 * @return {number} rowHeight Row height
 	 */
@@ -224,7 +224,7 @@
 	};
 
 	/**
-	 * Set the row height for all size calculations
+	 * Set the row height for all size calculations.
 	 *
 	 * @param {number} rowHeight Row height
 	 */
@@ -258,7 +258,7 @@
 	};
 
 	/**
-	 * Check if the image has a src attribute already
+	 * Check if the image has a src attribute already.
 	 *
 	 * @return {boolean} Thumbnail has its source attribute set
 	 */
