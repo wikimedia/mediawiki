@@ -439,7 +439,7 @@ class ForeignResourceManager {
 		if ( !$licenses->validate( $info['license'] ) ) {
 			$this->error(
 				"Module '$moduleName' has an invalid SPDX license identifier '{$info['license']}', "
-				. 'see <https://spdx.org/licenses/>'
+				. "see <https://spdx.org/licenses/>.\n"
 			);
 		}
 	}
