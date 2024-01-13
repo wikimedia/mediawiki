@@ -119,9 +119,6 @@ return [
 			'resources/lib/jquery/jquery.js'
 		],
 	],
-	'es6-polyfills' => [
-		'deprecated' => 'No longer needed, MediaWiki requires ES6 now, see T178356',
-	],
 	'web2017-polyfills' => [
 		'scripts' => [
 			'resources/lib/intersection-observer/intersection-observer.js',

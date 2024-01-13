@@ -273,6 +273,7 @@ because of Phabricator reports.
   favor of mediawiki.skin.variables.less.
 * The module `jquery.cookie` (deprecated as of 1.41) has been removed.  Please
   use `mediawiki.cookie` instead
+* The no-op module `es6-polyfills` (deprecated as of 1.41) has been removed.
 * …
 
 === Deprecations in 1.42 ===
