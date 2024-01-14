@@ -251,6 +251,12 @@ because of Phabricator reports.
   produce unexpected results.
 * Installer related classes have been namespaced without having aliases added.
   The following have been moved to MediaWiki\Installer:
+  - CliInstaller
+  - InstallDocFormatter
+  - Installer
+  - InstallerOverrides
+  - InstallerSessionProvider
+  - LocalSettingsGenerator
   - WebInstaller
   - WebInstallerComplete
   - WebInstallerCopying

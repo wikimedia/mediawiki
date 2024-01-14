@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Installer;
+
+use InvalidArgumentException;
+
 /**
  * Generate the LocalSettings.php file.
  *

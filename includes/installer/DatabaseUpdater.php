@@ -24,6 +24,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\Installer\Installer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\MessageBlobStore;

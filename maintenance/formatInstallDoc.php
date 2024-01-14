@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Installer\InstallDocFormatter;
 use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/Maintenance.php';

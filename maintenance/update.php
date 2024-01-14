@@ -29,6 +29,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Installer\Installer;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DatabaseSqlite;

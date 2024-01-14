@@ -21,8 +21,6 @@
 
 namespace MediaWiki\Installer;
 
-use InstallDocFormatter;
-
 abstract class WebInstallerDocument extends WebInstallerPage {
 
 	/**

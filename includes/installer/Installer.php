@@ -24,7 +24,20 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use AutoLoader;
+use DatabaseInstaller;
+use EmptyBagOStuff;
+use Exception;
+use ExecutableFinder;
+use ExtensionDependencyError;
+use ExtensionProcessor;
+use ExtensionRegistry;
 use GuzzleHttp\Psr7\Header;
+use IntlChar;
+use InvalidArgumentException;
+use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Config\HashConfig;
@@ -32,7 +45,6 @@ use MediaWiki\Config\MultiConfig;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
-use MediaWiki\Installer\WebInstaller;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -42,7 +54,13 @@ use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MWCryptRand;
+use Parser;
+use ParserOptions;
+use RequestContext;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Services\ServiceDisabledException;
+use WikitextContent;
 
 /**
  * The Installer helps admins create or upgrade their wiki.
@@ -789,7 +807,7 @@ abstract class Installer {
 				'unwrap' => true,
 			] );
 			$html = Parser::stripOuterParagraph( $html );
-		} catch ( Wikimedia\Services\ServiceDisabledException $e ) {
+		} catch ( ServiceDisabledException $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 		}
 

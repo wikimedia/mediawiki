@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Installer-specific wikitext formatting.
  *
@@ -19,6 +20,8 @@
  *
  * @file
  */
+
+namespace MediaWiki\Installer;
 
 class InstallDocFormatter {
 	/** @var string */
