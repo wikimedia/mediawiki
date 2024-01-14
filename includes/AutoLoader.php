@@ -83,6 +83,7 @@ class AutoLoader {
 		'MediaWiki\\Utils\\' => __DIR__ . '/utils/',
 		'MediaWiki\\Widget\\' => __DIR__ . '/widget/',
 		'Wikimedia\\' => __DIR__ . '/libs/',
+		'Wikimedia\\Composer\\' => __DIR__ . '/libs/composer/',
 		'Wikimedia\\Http\\' => __DIR__ . '/libs/http/',
 		'Wikimedia\\Rdbms\\Platform\\' => __DIR__ . '/libs/rdbms/platform/',
 		'Wikimedia\\UUID\\' => __DIR__ . '/libs/uuid/',

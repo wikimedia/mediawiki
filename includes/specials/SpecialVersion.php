@@ -23,7 +23,6 @@
 namespace MediaWiki\Specials;
 
 use Closure;
-use ComposerInstalled;
 use ExtensionRegistry;
 use HtmlArmor;
 use Language;
@@ -47,6 +46,7 @@ use ObjectCache;
 use Parser;
 use ParserFactory;
 use Symfony\Component\Yaml\Yaml;
+use Wikimedia\Composer\ComposerInstalled;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IConnectionProvider;

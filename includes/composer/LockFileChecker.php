@@ -21,9 +21,9 @@
 namespace MediaWiki\Composer;
 
 use Composer\Semver\Semver;
-use ComposerJson;
-use ComposerLock;
 use Status;
+use Wikimedia\Composer\ComposerJson;
+use Wikimedia\Composer\ComposerLock;
 
 /**
  * Used to check whether composer-installed dependencies (no-dev) are up-to-date

@@ -1,9 +1,11 @@
 <?php
 
+use Wikimedia\Composer\ComposerInstalled;
+
 class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 	/**
-	 * @covers ComposerInstalled::__construct
-	 * @covers ComposerInstalled::getInstalledDependencies
+	 * @covers Wikimedia\Composer\ComposerInstalled::__construct
+	 * @covers Wikimedia\Composer\ComposerInstalled::getInstalledDependencies
 	 *
 	 * @dataProvider provideInstalled
 	 */
