@@ -27,7 +27,6 @@
 namespace MediaWiki\Installer;
 
 use AutoLoader;
-use DatabaseInstaller;
 use EmptyBagOStuff;
 use Exception;
 use ExecutableFinder;
@@ -645,7 +644,7 @@ abstract class Installer {
 	 * @since 1.30
 	 */
 	public static function getDBInstallerClass( $type ) {
-		return ucfirst( $type ) . 'Installer';
+		return '\\MediaWiki\\Installer\\' . ucfirst( $type ) . 'Installer';
 	}
 
 	/**

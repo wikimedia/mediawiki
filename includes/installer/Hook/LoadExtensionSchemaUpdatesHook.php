@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Installer\Hook;
 
-use DatabaseUpdater;
+use MediaWiki\Installer\DatabaseUpdater;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

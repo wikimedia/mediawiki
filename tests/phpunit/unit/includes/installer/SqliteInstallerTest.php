@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Installer\SqliteInstaller;
 use MediaWiki\Status\Status;
 
 /**
@@ -8,7 +9,7 @@ use MediaWiki\Status\Status;
  */
 class SqliteInstallerTest extends MediaWikiUnitTestCase {
 	/**
-	 * @covers SqliteInstaller::checkDataDir
+	 * @covers \MediaWiki\Installer\SqliteInstaller::checkDataDir
 	 */
 	public function testCheckDataDir() {
 		$method = new ReflectionMethod( SqliteInstaller::class, 'checkDataDir' );
@@ -38,7 +39,7 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SqliteInstaller::createDataDir
+	 * @covers \MediaWiki\Installer\SqliteInstaller::createDataDir
 	 */
 	public function testCreateDataDir() {
 		$method = new ReflectionMethod( SqliteInstaller::class, 'createDataDir' );

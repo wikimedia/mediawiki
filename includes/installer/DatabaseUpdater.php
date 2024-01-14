@@ -21,14 +21,38 @@
  * @ingroup Installer
  */
 
+namespace MediaWiki\Installer;
+
+use AddRFCandPMIDInterwiki;
+use AutoLoader;
+use CleanupEmptyCategories;
+use DeleteDefaultMessages;
+use Exception;
+use ExtensionRegistry;
+use FakeMaintenance;
+use FixDefaultJsonContentPages;
+use LogicException;
+use Maintenance;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\StaticHookRegistry;
-use MediaWiki\Installer\Installer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\SiteStats\SiteStatsInit;
+use MigrateLinksTable;
+use MWException;
+use PopulateBacklinkNamespace;
+use PopulateFilearchiveSha1;
+use PopulateImageSha1;
+use PopulateIpChanges;
+use PopulatePPSortKey;
+use PopulateRevisionLength;
+use PopulateRevisionSha1;
+use RebuildLocalisationCache;
+use RefreshImageMetadata;
+use RuntimeException;
+use UpdateCollation;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -228,7 +252,7 @@ abstract class DatabaseUpdater {
 	) {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {
-			$class = ucfirst( $type ) . 'Updater';
+			$class = '\\MediaWiki\\Installer\\' . ucfirst( $type ) . 'Updater';
 
 			return new $class( $db, $shared, $maintenance );
 		}
@@ -1324,3 +1348,8 @@ abstract class DatabaseUpdater {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( DatabaseUpdater::class, 'DatabaseUpdater' );

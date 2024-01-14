@@ -22,6 +22,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Installer\DatabaseUpdater;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**

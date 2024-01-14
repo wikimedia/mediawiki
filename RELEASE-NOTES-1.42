@@ -252,11 +252,17 @@ because of Phabricator reports.
 * Installer related classes have been namespaced without having aliases added.
   The following have been moved to MediaWiki\Installer:
   - CliInstaller
+  - DatabaseInstaller
   - InstallDocFormatter
   - Installer
   - InstallerOverrides
   - InstallerSessionProvider
   - LocalSettingsGenerator
+  - MysqlInstaller
+  - PostgresInstaller
+  - PostgresUpdater
+  - SqliteInstaller
+  - SqliteUpdater
   - WebInstaller
   - WebInstallerComplete
   - WebInstallerCopying
@@ -315,6 +321,9 @@ because of Phabricator reports.
     - TransactionRoundDefiningUpdate
     - UserEditCountInfo
     - UserEditCountUpdate
+  - MediaWiki\Installer:
+    - DatabaseUpdater
+    - MysqlUpdater
   - MediaWiki\Parser:
     - ParserOutput
   - MediaWiki\PoolCounter:
