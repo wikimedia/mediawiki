@@ -322,7 +322,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$opts->consumeValues( [ 'showlinkedto', 'target' ] );
 
 		$extraOpts['target'] = [ $this->msg( 'recentchangeslinked-page' )->escaped(),
-			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ) ) .
+			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ) ) . ' ' .
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], [ 'id' => 'showlinkedto' ] ) . ' ' .
 			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) ];
 
