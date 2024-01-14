@@ -163,7 +163,7 @@ class ForeignResourceManager {
 			$this->validateLicense( $moduleName, $info );
 
 			if ( $info['type'] === 'doc-only' ) {
-				$this->output( "... {$moduleName} is documentation-only, skipping\n" );
+				$this->output( "... {$moduleName} is documentation-only, skipping integrity checks.\n" );
 				continue;
 			}
 
