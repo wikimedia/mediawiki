@@ -16,6 +16,12 @@
  *
  */
 
+namespace MediaWiki\Composer;
+
+use DOMDocument;
+use DOMNode;
+use InvalidArgumentException;
+
 /**
  * Edit phpunit.xml to speed up code coverage generation.
  *
