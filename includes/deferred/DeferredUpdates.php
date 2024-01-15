@@ -189,7 +189,7 @@ class DeferredUpdates {
 		$type = get_class( $update )
 			. ( $update instanceof DeferrableCallback ? '_' . $update->getOrigin() : '' );
 		$updateId = spl_object_id( $update );
-		$logger->debug( __METHOD__ . ": started $type #$updateId" );
+		$logger->debug( "DeferredUpdates::run: started $type #{updateId}", [ 'updateId' => $updateId ] );
 
 		$updateException = null;
 
@@ -208,7 +208,10 @@ class DeferredUpdates {
 			self::getScopeStack()->onRunUpdateFailed( $update );
 		} finally {
 			$walltime = microtime( true ) - $startTime;
-			$logger->debug( __METHOD__ . ": ended $type #$updateId, processing time: $walltime" );
+			$logger->debug( "DeferredUpdates::run: ended $type #{updateId}, processing time: {walltime}", [
+				'updateId' => $updateId,
+				'walltime' => $walltime,
+			] );
 		}
 
 		// Try to push the update as a job so it can run later if possible
