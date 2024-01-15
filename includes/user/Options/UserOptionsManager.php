@@ -441,13 +441,13 @@ class UserOptionsManager extends UserOptionsLookup {
 		foreach ( $modifiedOptions as $key => $value ) {
 			// Don't store unchanged or default values
 			$defaultValue = $this->defaultOptionsLookup->getDefaultOption( $key, $user );
-			$oldValue = $this->optionsFromDb[$userKey][$key] ?? null;
+			$oldDbValue = $this->optionsFromDb[$userKey][$key] ?? null;
 			if ( $value === null || $this->isValueEqual( $value, $defaultValue ) ) {
 				if ( array_key_exists( $key, $this->optionsFromDb[$userKey] ) ) {
 					// Delete the default value from the database
 					$keysToDelete[] = $key;
 				}
-			} elseif ( !$this->isValueEqual( $value, $oldValue ) ) {
+			} elseif ( !$this->isValueEqual( $value, $oldDbValue ) ) {
 				// Update by deleting (if old value exists) and reinserting
 				$rowsToInsert[] = [
 					'up_user' => $user->getId(),
@@ -701,6 +701,11 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return bool
 	 */
 	private function isValueEqual( $a, $b ) {
+		// null is only equal to another null (T355086)g
+		if ( $a === null || $b === null ) {
+			return $a === $b;
+		}
+
 		if ( is_bool( $a ) ) {
 			$a = (int)$a;
 		}

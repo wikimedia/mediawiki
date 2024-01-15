@@ -88,6 +88,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$expected = [
 			// Note that the old, relaxed array_diff-approach considered null equal to false and ""
 			'null_vs_false' => false,
+			'null_vs_string' => '',
 			'language' => 'en',
 			'variant' => 'en',
 			'new_option' => 'new_value',
@@ -416,6 +417,55 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$manager->setOption( $user, 'set_default', 'default' );
 		$manager->setOption( $user, 'set_default_null', null );
 		$manager->setOption( $user, 'set_default_not_null', 'not_null' );
+		$manager->saveOptions( $user );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserOptionsManager::saveOptionsInternal
+	 */
+	public function testOptionsInsertFromDefaultValue() {
+		$user = $this->getTestUser()->getUser();
+		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb
+			->method( 'newSelectQueryBuilder' )
+			->willReturnCallback( static fn () => new SelectQueryBuilder( $mockDb ) );
+		$mockDb
+			->method( 'newInsertQueryBuilder' )
+			->willReturnCallback( static fn () => new InsertQueryBuilder( $mockDb ) );
+		$mockDb
+			->method( 'select' )
+			->willReturn( new FakeResultWrapper( [] ) );
+
+		// This is critical what we are testing
+		$mockDb->expects( $this->once() )
+			->method( 'insert' )
+			->with(
+				'user_properties',
+				[
+					[
+						'up_user' => $user->getId(),
+						'up_property' => 'set_empty',
+						'up_value' => '',
+					]
+				]
+			);
+
+		$mockDbProvider = $this->createMock( IConnectionProvider::class );
+		$mockDbProvider
+			->method( 'getPrimaryDatabase' )
+			->willReturn( $mockDb );
+		$mockDbProvider
+			->method( 'getReplicaDatabase' )
+			->willReturn( $mockDb );
+		$manager = $this->getManager( [
+			'dbp' => $mockDbProvider,
+			'defaults' => [
+				'set_empty' => 123,
+			]
+		] );
+
+		$manager->setOption( $user, 'set_empty', '' );
+		$this->assertSame( '', $manager->getOption( $user, 'set_empty' ) );
 		$manager->saveOptions( $user );
 	}
 
