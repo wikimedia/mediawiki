@@ -629,7 +629,8 @@
 	"edit-recovery-special-intro-empty": "Tu non ha cambiamentos non salveguardate.",
 	"edit-recovery-special-view": "vider",
 	"edit-recovery-special-edit": "modificar",
-	"edit-recovery-special-recovered-on": "Recuperate le $1",
+	"edit-recovery-special-recovered-on": "del $1",
+	"edit-recovery-special-recovered-on-tooltip": "Le data e hora in que tu datos de recuperation ha essite salveguardate pro le ultime vice",
 	"edit-recovery-loaded-title": "Cambiamentos recuperate",
 	"edit-recovery-loaded-message": "Tu cambiamentos non salveguardate ha essite automaticamente recuperate.",
 	"edit-recovery-loaded-show": "Detaliar modificationes",
@@ -4147,5 +4148,7 @@
 	"benefit-1-description": "Le observatorio, que te permitte sequer le paginas de tu interesse.",
 	"benefit-2-description": "Lista permanente del contributiones que tu ha apportate al projecto.",
 	"benefit-3-description": "Preferentias que te permitte personalisar tu experientia.",
-	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo."
+	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo.",
+	"composer-deps-outdated": "$1: $2 installate, $3 necessari.",
+	"composer-deps-notinstalled": "$1: non installate, $2 necessari."
 }

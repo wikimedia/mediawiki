@@ -441,7 +441,7 @@
 	"collapsible-collapse-all-tooltip": "Свернуть все сворачиваемые элементы на текущей странице",
 	"collapsible-expand": "развернуть",
 	"collapsible-expand-all-text": "Развернуть всё",
-	"collapsible-expand-all-tooltip": "Развернуть все свёртываемые элементы на текущей странице",
+	"collapsible-expand-all-tooltip": "Развернуть все сворачиваемые элементы на текущей странице",
 	"confirmable-confirm": "{{GENDER:$1|Вы}} уверены?",
 	"confirmable-yes": "Да",
 	"confirmable-no": "Нет",
@@ -798,7 +798,7 @@
 	"edit-recovery-special-intro-empty": "У вас нет несохранённых изменений.",
 	"edit-recovery-special-view": "посмотреть",
 	"edit-recovery-special-edit": "править",
-	"edit-recovery-special-recovered-on": "Восстановлено на $1",
+	"edit-recovery-special-recovered-on": "$1",
 	"edit-recovery-special-recovered-on-tooltip": "Дата и время последнего сохранения данных для восстановления.",
 	"edit-recovery-loaded-title": "Изменения восстановлены",
 	"edit-recovery-loaded-message": "Ваши несохранённые изменения были автоматически восстановлены.",
@@ -4410,5 +4410,7 @@
 	"benefit-1-description": "Списки наблюдения, которые позволяют отслеживать интересующие вас страницы.",
 	"benefit-2-description": "Постоянный список вклада, который вы внесли в проект.",
 	"benefit-3-description": "Настройки, которые позволяют вам персонализировать свой опыт.",
-	"temp-user-unable-to-acquire": "Не удалось получить имя участника для временной учётной записи. Пожалуйста, попробуйте ещё раз."
+	"temp-user-unable-to-acquire": "Не удалось получить имя участника для временной учётной записи. Пожалуйста, попробуйте ещё раз.",
+	"composer-deps-outdated": "$1: установлена $2, требуется $3.",
+	"composer-deps-notinstalled": "$1: не установлена, требуется $2."
 }

@@ -4300,5 +4300,7 @@
 	"benefit-1-description": "İlgilendiğiniz sayfaları takip etmenize olanak tanıyan izleme listeleri.",
 	"benefit-2-description": "Projeye yaptığınız katkıların kalıcı listesi.",
 	"benefit-3-description": "Deneyiminizi özelleştirmenize olanak tanıyan seçenekler.",
-	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin."
+	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin.",
+	"composer-deps-outdated": "$1: $2 kurulu, $3 gerekli.",
+	"composer-deps-notinstalled": "$1: kurulu değil, $2 gerekli."
 }

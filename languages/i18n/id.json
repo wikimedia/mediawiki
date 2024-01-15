@@ -345,8 +345,10 @@
 	"hidetoc": "sembunyikan",
 	"collapsible-collapse": "Ciutkan",
 	"collapsible-collapse-all-text": "Ciutkan semua",
+	"collapsible-collapse-all-tooltip": "Ciutkan semua elemen yang dapat diciutkan pada halaman saat ini",
 	"collapsible-expand": "Kembangkan",
 	"collapsible-expand-all-text": "Luaskan semua",
+	"collapsible-expand-all-tooltip": "Kembangkan semua elemen yang dapat diciutkan pada halaman saat ini",
 	"confirmable-confirm": "Apakah {{GENDER:$1|Anda}} yakin?",
 	"confirmable-yes": "Ya",
 	"confirmable-no": "Tidak",
@@ -703,7 +705,8 @@
 	"edit-recovery-special-intro-empty": "Anda tidak memiliki perubahan yang belum disimpan.",
 	"edit-recovery-special-view": "lihat",
 	"edit-recovery-special-edit": "sunting",
-	"edit-recovery-special-recovered-on": "Dipulihkan pada $1",
+	"edit-recovery-special-recovered-on": "dari $1",
+	"edit-recovery-special-recovered-on-tooltip": "Tanggal dan waktu data pemulihan Anda terakhir disimpan",
 	"edit-recovery-loaded-title": "Perubahan yang dipulihkan",
 	"edit-recovery-loaded-message": "Suntingan Anda yang belum disimpan telah dipulihkan secara otomatis.",
 	"edit-recovery-loaded-show": "Lihat perubahan",
@@ -4150,6 +4153,8 @@
 	"restrictionsfield-badip": "Alamat IP atau rentang IP tidak sah: $1",
 	"restrictionsfield-label": "Rentang IP yang diizinkan:",
 	"restrictionsfield-help": "Satu alamat IP atau rentang CIDR per baris. Untuk mengaktifkan semuanya, gunakan:\n<pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfields-pages-label": "Halaman yang diperbolehkan untuk disunting:",
+	"restrictionsfields-pages-help": "Kosongkan untuk mengizinkan penyuntingan semua halaman",
 	"specialmute": "Diam",
 	"specialmute-success": "Preferensi bisu Anda telah diperbarui. Lihat semua pengguna dibisukan dalam [[Special:Preferences|preferensi Anda]].",
 	"specialmute-submit": "Konfirmasi",
@@ -4273,5 +4278,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} dibuat oleh orang-orang seperti Anda. Dengan mempunyai akun, Anda dapat memiliki identitas permanen dan aman serta akses ke fitur-fitur seperti:",
 	"benefit-1-description": "Daftar pantauan yang memungkinkan Anda melacak halaman yang Anda minati.",
 	"benefit-2-description": "Daftar permanen berisi kontribusi yang Anda berikan pada suatu proyek.",
-	"benefit-3-description": "Preferensi yang memungkinkan Anda menyesuaikan pengalaman Anda."
+	"benefit-3-description": "Preferensi yang memungkinkan Anda menyesuaikan pengalaman Anda.",
+	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akun sementara. Silakan coba lagi."
 }

@@ -702,7 +702,8 @@
 	"edit-recovery-special-intro-empty": "Não tem mudanças por gravar.",
 	"edit-recovery-special-view": "ver",
 	"edit-recovery-special-edit": "editar",
-	"edit-recovery-special-recovered-on": "Recuperada a $1",
+	"edit-recovery-special-recovered-on": "a $1",
+	"edit-recovery-special-recovered-on-tooltip": "A data e hora em que os seus dados de recuperação foram gravados pela última vez",
 	"edit-recovery-loaded-title": "Mudanças recuperadas",
 	"edit-recovery-loaded-message": "As suas mudanças ainda não gravadas foram recuperadas automaticamente.",
 	"edit-recovery-loaded-show": "Mostrar as mudanças",
@@ -4225,5 +4226,7 @@
 	"benefit-1-description": "Listas de vigilância que lhe permitem acompanhar as alterações de páginas do seu interesse.",
 	"benefit-2-description": "Uma lista permanente das suas contribuições no projeto.",
 	"benefit-3-description": "Preferências que permitem personalizar a sua experiência.",
-	"temp-user-unable-to-acquire": "Não foi possível adquirir um nome de utilizador para a conta temporária. Tente novamente, por favor."
+	"temp-user-unable-to-acquire": "Não foi possível adquirir um nome de utilizador para a conta temporária. Tente novamente, por favor.",
+	"composer-deps-outdated": "$1: versão $2 instalada, $3 necessária.",
+	"composer-deps-notinstalled": "$1: não instalada, versão $2 necessária."
 }

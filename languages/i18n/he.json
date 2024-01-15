@@ -4266,5 +4266,7 @@
 	"benefit-1-description": "רשימות מעקב שמאפשרות לך לעקוב אחרי דפים שמעניינים אותך.",
 	"benefit-2-description": "רשימה קבועה של תרומות שלך למיזם.",
 	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך.",
-	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון זמני. נא לנסות שוב."
+	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון זמני. נא לנסות שוב.",
+	"composer-deps-outdated": "$1: מותקנת $2, נדרשת $3.",
+	"composer-deps-notinstalled": "$1: לא מותקנת, נדרשת גרסה $2."
 }

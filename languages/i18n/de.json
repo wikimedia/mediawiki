@@ -4282,5 +4282,7 @@
 	"benefit-1-description": "Beobachtungslisten, mit denen du den Überblick über die Seiten behältst, die dich interessieren.",
 	"benefit-2-description": "Permanente Liste deine Beiträge zum Projekt.",
 	"benefit-3-description": "Voreinstellungen, mit denen du dein Konto individuell gestalten kannst.",
-	"temp-user-unable-to-acquire": "Es ist nicht möglich, einen temporären Benutzernamen für das Konto zu erstellen. Bitte versuche es erneut."
+	"temp-user-unable-to-acquire": "Es ist nicht möglich, einen temporären Benutzernamen für das Konto zu erstellen. Bitte versuche es erneut.",
+	"composer-deps-outdated": "$1: $2 installiert, $3 erforderlich.",
+	"composer-deps-notinstalled": "$1: nicht installiert, $2 erforderlich."
 }

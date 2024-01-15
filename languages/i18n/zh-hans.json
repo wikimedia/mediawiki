@@ -4405,5 +4405,7 @@
 	"benefit-1-description": "监视列表，可让您监视您感兴趣的页面。",
 	"benefit-2-description": "您对该项目所做贡献的永久记录。",
 	"benefit-3-description": "参数设置，允许您定制使用体验。",
-	"temp-user-unable-to-acquire": "无法获取临时账号的用户名。请再试一次。"
+	"temp-user-unable-to-acquire": "无法获取临时账号的用户名。请再试一次。",
+	"composer-deps-outdated": "$1：安装的是$2，但需要版本$3。",
+	"composer-deps-notinstalled": "$1：未安装，需要版本$2。"
 }
