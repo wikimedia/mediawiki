@@ -284,7 +284,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 */
 	public function newFromConfirmationCode(
 		string $confirmationCode,
-		int $flags = self::READ_NORMAL
+		int $flags = IDBAccessObject::READ_NORMAL
 	) {
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 

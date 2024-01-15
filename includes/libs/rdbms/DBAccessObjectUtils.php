@@ -53,10 +53,10 @@ class DBAccessObjectUtils implements IDBAccessObject {
 	 *   - SELECT options array for the fallback query; empty if no fallback should happen
 	 */
 	public static function getDBOptions( $bitfield ) {
-		if ( self::hasFlags( $bitfield, self::READ_LATEST_IMMUTABLE ) ) {
+		if ( self::hasFlags( $bitfield, IDBAccessObject::READ_LATEST_IMMUTABLE ) ) {
 			$index = DB_REPLICA; // override READ_LATEST if set
 			$fallbackIndex = DB_PRIMARY;
-		} elseif ( self::hasFlags( $bitfield, self::READ_LATEST ) ) {
+		} elseif ( self::hasFlags( $bitfield, IDBAccessObject::READ_LATEST ) ) {
 			$index = DB_PRIMARY;
 			$fallbackIndex = null;
 		} else {
@@ -65,9 +65,9 @@ class DBAccessObjectUtils implements IDBAccessObject {
 		}
 
 		$lockingOptions = [];
-		if ( self::hasFlags( $bitfield, self::READ_EXCLUSIVE ) ) {
+		if ( self::hasFlags( $bitfield, IDBAccessObject::READ_EXCLUSIVE ) ) {
 			$lockingOptions[] = 'FOR UPDATE';
-		} elseif ( self::hasFlags( $bitfield, self::READ_LOCKING ) ) {
+		} elseif ( self::hasFlags( $bitfield, IDBAccessObject::READ_LOCKING ) ) {
 			$lockingOptions[] = 'LOCK IN SHARE MODE';
 		}
 

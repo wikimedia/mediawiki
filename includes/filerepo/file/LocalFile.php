@@ -327,7 +327,7 @@ class LocalFile extends File {
 
 		$key = $this->getCacheKey();
 		if ( !$key ) {
-			$this->loadFromDB( self::READ_NORMAL );
+			$this->loadFromDB( IDBAccessObject::READ_NORMAL );
 
 			return;
 		}
@@ -339,7 +339,7 @@ class LocalFile extends File {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
 				$setOpts += Database::getCacheSetOptions( $this->repo->getReplicaDB() );
 
-				$this->loadFromDB( self::READ_NORMAL );
+				$this->loadFromDB( IDBAccessObject::READ_NORMAL );
 
 				$fields = $this->getCacheFields( '' );
 				$cacheVal = [];
@@ -482,7 +482,7 @@ class LocalFile extends File {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
 
-		$dbr = ( $flags & self::READ_LATEST )
+		$dbr = ( $flags & IDBAccessObject::READ_LATEST )
 			? $this->repo->getPrimaryDB()
 			: $this->repo->getReplicaDB();
 		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
@@ -674,7 +674,7 @@ class LocalFile extends File {
 	 */
 	public function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
-			if ( $flags & self::READ_LATEST ) {
+			if ( $flags & IDBAccessObject::READ_LATEST ) {
 				$this->loadFromDB( $flags );
 			} else {
 				$this->loadFromCache();

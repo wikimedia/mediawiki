@@ -660,7 +660,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 
 		// Do not call WikiPage::clear(), since the caller may already have caused page data
 		// to be loaded with SELECT FOR UPDATE. Just assert it's loaded now.
-		$wikiPage->loadPageData( self::READ_LATEST );
+		$wikiPage->loadPageData( IDBAccessObject::READ_LATEST );
 		$current = $wikiPage->getRevisionRecord();
 
 		$this->pageState = [
@@ -754,7 +754,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 
 	private function usePrimary() {
 		// TODO: can we just set a flag to true in prepareContent()?
-		return $this->wikiPage->wasLoadedFrom( self::READ_LATEST );
+		return $this->wikiPage->wasLoadedFrom( IDBAccessObject::READ_LATEST );
 	}
 
 	/**

@@ -31,7 +31,7 @@ interface PageLookup extends IDBAccessObject {
 	 */
 	public function getPageForLink(
 		LinkTarget $link,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ProperPageIdentity;
 
 	/**
@@ -45,7 +45,7 @@ interface PageLookup extends IDBAccessObject {
 	 */
 	public function getPageById(
 		int $pageId,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?ExistingPageRecord;
 
 	/**
@@ -61,7 +61,7 @@ interface PageLookup extends IDBAccessObject {
 	public function getPageByName(
 		int $namespace,
 		string $dbKey,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?ExistingPageRecord;
 
 	/**
@@ -80,7 +80,7 @@ interface PageLookup extends IDBAccessObject {
 	public function getPageByText(
 		string $text,
 		int $defaultNamespace = NS_MAIN,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?ProperPageIdentity;
 
 	/**
@@ -100,7 +100,7 @@ interface PageLookup extends IDBAccessObject {
 	public function getExistingPageByText(
 		string $text,
 		int $defaultNamespace = NS_MAIN,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?ExistingPageRecord;
 
 	/**
@@ -118,7 +118,7 @@ interface PageLookup extends IDBAccessObject {
 	 */
 	public function getPageByReference(
 		PageReference $page,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?ExistingPageRecord;
 
 }

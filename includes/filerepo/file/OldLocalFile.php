@@ -214,7 +214,7 @@ class OldLocalFile extends LocalFile {
 	protected function loadFromDB( $flags = 0 ) {
 		$this->dataLoaded = true;
 
-		$dbr = ( $flags & self::READ_LATEST )
+		$dbr = ( $flags & IDBAccessObject::READ_LATEST )
 			? $this->repo->getPrimaryDB()
 			: $this->repo->getReplicaDB();
 		$queryBuilder = $this->buildQueryBuilderForLoad( $dbr, [] );

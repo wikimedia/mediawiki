@@ -52,7 +52,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 */
 	public function newRevisionFromRow(
 		$row,
-		$queryFlags = self::READ_NORMAL,
+		$queryFlags = IDBAccessObject::READ_NORMAL,
 		PageIdentity $page = null
 	);
 
@@ -78,7 +78,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 */
 	public function newRevisionFromArchiveRow(
 		$row,
-		$queryFlags = self::READ_NORMAL,
+		$queryFlags = IDBAccessObject::READ_NORMAL,
 		PageIdentity $page = null,
 		array $overrides = []
 	);
