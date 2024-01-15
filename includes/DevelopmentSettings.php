@@ -122,12 +122,13 @@ $wgVueDevelopmentMode = true;
  * (Must reference a Phabricator ticket)
  */
 
-global $wgSQLMode, $wgLocalisationCacheConf, $wgCiteBookReferencing,
+global $wgSQLMode, $wgDBStrictWarnings, $wgLocalisationCacheConf, $wgCiteBookReferencing,
 	$wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
 	$wgVisualEditorEnableWikitext, $wgDefaultUserOptions;
 
 // Enable MariaDB/MySQL strict mode (T108255)
 $wgSQLMode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY';
+$wgDBStrictWarnings = true;
 
 // Localisation Cache to StaticArray (T218207)
 $wgLocalisationCacheConf['store'] = 'array';

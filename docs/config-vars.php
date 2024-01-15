@@ -1104,6 +1104,12 @@ $wgDBssl = null;
 $wgDBcompress = null;
 
 /**
+ * Config variable stub for the DBStrictWarnings setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DBStrictWarnings
+ */
+$wgDBStrictWarnings = null;
+
+/**
  * Config variable stub for the DBadminuser setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DBadminuser
  */

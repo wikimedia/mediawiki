@@ -82,6 +82,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var bool Whether to use SSL connections */
 	protected $ssl;
+	/** @var bool Whether to check for warnings */
+	protected $strictWarnings;
 	/** @var array Current LoadBalancer tracking information */
 	protected $lbInfo = [];
 	/** @var string|false Current SQL query delimiter */
@@ -217,6 +219,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->agent = (string)$params['agent'];
 		$this->serverName = $params['serverName'];
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
+		$this->strictWarnings = !empty( $params['strictWarnings'] );
 
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->errorLogger = $params['errorLogger'];
@@ -1476,8 +1479,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return true;
 		}
 		$this->query( $query, $fname );
-
+		if ( $this->strictWarnings ) {
+			$this->checkInsertWarnings( $query, $fname );
+		}
 		return true;
+	}
+
+	/**
+	 * Check for warnings after performing an INSERT query, and throw exceptions
+	 * if necessary.
+	 *
+	 * @param Query $query
+	 * @param string $fname
+	 * @return void
+	 */
+	protected function checkInsertWarnings( Query $query, $fname ) {
 	}
 
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {

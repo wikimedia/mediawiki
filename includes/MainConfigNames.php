@@ -1119,6 +1119,12 @@ class MainConfigNames {
 	public const DBcompress = 'DBcompress';
 
 	/**
+	 * Name constant for the DBStrictWarnings setting, for use with Config::get()
+	 * @see MainConfigSchema::DBStrictWarnings
+	 */
+	public const DBStrictWarnings = 'DBStrictWarnings';
+
+	/**
 	 * Name constant for the DBadminuser setting, for use with Config::get()
 	 * @see MainConfigSchema::DBadminuser
 	 */

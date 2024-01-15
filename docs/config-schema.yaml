@@ -1771,6 +1771,16 @@ config-schema:
             '\Wikimedia\Rdbms\LBFactorySimple' and $wgDBservers is an empty array; otherwise
             the DBO_COMPRESS flag must be set in the 'flags' option of the database
             connection to achieve the same functionality.
+    DBStrictWarnings:
+        default: false
+        description: |-
+            Check for warnings after DB queries and throw an exception if an
+            unacceptable warning is detected.
+            This setting is only used if $wgLBFactoryConf['class'] is set to
+            '\Wikimedia\Rdbms\LBFactorySimple' and $wgDBservers is an empty array.
+            Otherwise, the 'strictWarnings' parameter of the server array must be set
+            to achieve the same functionality.
+            @since 1.42
     DBadminuser:
         default: null
         description: 'Separate username for maintenance tasks. Leave as null to use the default.'
