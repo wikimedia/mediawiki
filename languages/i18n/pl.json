@@ -1413,7 +1413,7 @@
 	"right-editmyusercss": "Edycja własnych plików CSS",
 	"right-editmyuserjson": "Edycja własnych plików JSON",
 	"right-editmyuserjs": "Edycja własnych plików JavaScript",
-	"right-editmyuserjsredirect": "Edycja własnych plików JavaScript które są przekierowaniami",
+	"right-editmyuserjsredirect": "Edycja własnych plików JavaScript będących przekierowaniami",
 	"right-viewmywatchlist": "Podgląd swojej listy obserwowanych stron",
 	"right-editmywatchlist": "Edycja swojej listy obserwowanych stron (niektóre akcje mogą dodawać strony do obserwowanych bez tego uprawnienia)",
 	"right-viewmyprivateinfo": "Podgląd swoich prywatnych danych (np. adres e-mail, prawdziwe imię i nazwisko)",
