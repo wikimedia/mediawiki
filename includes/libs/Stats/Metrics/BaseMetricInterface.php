@@ -70,6 +70,13 @@ interface BaseMetricInterface {
 	public function getSamples(): array;
 
 	/**
+	 * Returns a count of samples recorded by the metric.
+	 *
+	 * @return int
+	 */
+	public function getSampleCount(): int;
+
+	/**
 	 * Returns the Metric Name
 	 *
 	 * @return string

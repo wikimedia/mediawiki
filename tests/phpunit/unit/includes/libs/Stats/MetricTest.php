@@ -182,6 +182,11 @@ class MetricTest extends TestCase {
 		$this->assertLessThan( $rounds, count( $ten_percent_metrics->getSamples() ) ); // random
 		$this->assertCount( $rounds, $all_metrics->getSamples() );
 		$this->assertCount( 0, $zero_metrics->getSamples() );
+
+		# getSampleCount() should count all samples regardless of sample rate
+		$this->assertEquals( 10, $ten_percent_metrics->getSampleCount() );
+		$this->assertEquals( 10, $all_metrics->getSampleCount() );
+		$this->assertEquals( 10, $zero_metrics->getSampleCount() );
 	}
 
 	public function testTimerNotStarted() {

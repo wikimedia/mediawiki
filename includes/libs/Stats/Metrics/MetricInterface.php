@@ -55,6 +55,13 @@ interface MetricInterface {
 	public function getSamples(): array;
 
 	/**
+	 * Returns a count of samples recorded by the metric.
+	 *
+	 * @return int
+	 */
+	public function getSampleCount(): int;
+
+	/**
 	 * Sets sample rate on a new metric instance.
 	 *
 	 * @param float $sampleRate
