@@ -9,10 +9,8 @@ use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
-use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use ParserOptions;
-use Psr\Log\LoggerInterface;
 use Skin;
 
 /**
@@ -24,11 +22,9 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	private const HEADING_REGEX =
 		'/<H(?P<level>[1-6])(?P<attrib>(?:[^\'">]*|"([^"]*)"|\'([^\']*)\')*>)(?P<header>[\s\S]*?)<\/H[1-6] *>/i';
 
-	private LoggerInterface $logger;
 	private TitleFactory $titleFactory;
 
-	public function __construct( LoggerInterface $logger, TitleFactory $titleFactory ) {
-		$this->logger = $logger;
+	public function __construct( TitleFactory $titleFactory ) {
 		$this->titleFactory = $titleFactory;
 	}
 
@@ -120,19 +116,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		$skin = $this->resolveSkin( $options );
 		$titleText = $po->getTitleText();
 		return preg_replace_callback( self::EDITSECTION_REGEX, function ( $m ) use ( $skin, $titleText ) {
-			$editsectionPage = $this->titleFactory->newFromText( htmlspecialchars_decode( $m[1] ) );
-
-			if ( !$editsectionPage instanceof Title ) {
-				$this->logger
-					->error( 'AddSectionLinks::transform: bad title in editsection placeholder', [
-						'placeholder' => $m[0],
-						'editsectionPage' => $m[1],
-						'titletext' => $titleText,
-						'phab' => 'T261347',
-					] );
-
-				return '';
-			}
+			$editsectionPage = $this->titleFactory->newFromTextThrow( htmlspecialchars_decode( $m[1] ) );
 			$editsectionSection = htmlspecialchars_decode( $m[2] );
 			$editsectionContent = Sanitizer::decodeCharReferences( $m[3] );
 			return $skin->doEditSectionLink( $editsectionPage, $editsectionSection, $editsectionContent,
