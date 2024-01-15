@@ -71,7 +71,6 @@ use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -256,20 +255,23 @@ class RevisionStore
 	/**
 	 * @param int $queryFlags a bit field composed of READ_XXX flags
 	 *
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
 	private function getDBConnectionRefForQueryFlags( $queryFlags ) {
-		[ $mode, ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		return $this->getDBConnectionRef( $mode );
+		if ( ( $queryFlags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+			return $this->getDBConnection( DB_PRIMARY );
+		} else {
+			return $this->getDBConnection( DB_REPLICA );
+		}
 	}
 
 	/**
 	 * @param int $mode DB_PRIMARY or DB_REPLICA
 	 * @param string|array $groups
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
-	private function getDBConnectionRef( $mode, $groups = [] ) {
-		return $this->loadBalancer->getConnectionRef( $mode, $groups, $this->wikiId );
+	private function getDBConnection( $mode, $groups = [] ) {
+		return $this->loadBalancer->getConnection( $mode, $groups, $this->wikiId );
 	}
 
 	/**
@@ -1435,7 +1437,7 @@ class RevisionStore
 		$revQuery = $this->getSlotsQueryInfo( [ 'content' ] );
 
 		[ $dbMode, $dbOptions ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		$db = $this->getDBConnectionRef( $dbMode );
+		$db = $this->getDBConnection( $dbMode );
 
 		$res = $db->select(
 			$revQuery['tables'],
@@ -2335,7 +2337,7 @@ class RevisionStore
 			&& $this->loadBalancer->hasOrMadeRecentPrimaryChanges()
 		) {
 			$flags = IDBAccessObject::READ_LATEST;
-			$dbw = $this->getDBConnectionRef( DB_PRIMARY );
+			$dbw = $this->getDBConnection( DB_PRIMARY );
 			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $page, $options );
 		}
 
@@ -2672,7 +2674,7 @@ class RevisionStore
 	 *         of the corresponding revision.
 	 */
 	public function getRevisionSizes( array $revIds ) {
-		$dbr = $this->getDBConnectionRef( DB_REPLICA );
+		$dbr = $this->getDBConnection( DB_REPLICA );
 		$revLens = [];
 		if ( !$revIds ) {
 			return $revLens; // empty
@@ -2716,7 +2718,7 @@ class RevisionStore
 		}
 
 		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = $this->getDBConnectionRef( $dbType );
+		$db = $this->getDBConnection( $dbType );
 
 		$ts = $rev->getTimestamp() ?? $this->getTimestampFromId( $revisionIdValue, $flags );
 		if ( $ts === false ) {
@@ -2958,7 +2960,7 @@ class RevisionStore
 	 * @return RevisionRecord|false Returns false if missing
 	 */
 	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 ) {
-		$db = $this->getDBConnectionRef( DB_REPLICA );
+		$db = $this->getDBConnection( DB_REPLICA );
 		$revIdPassed = $revId;
 		$pageId = $this->getArticleId( $page );
 		if ( !$pageId ) {
@@ -3260,7 +3262,7 @@ class RevisionStore
 			}
 		}
 
-		$dbr = $this->getDBConnectionRef( DB_REPLICA );
+		$dbr = $this->getDBConnection( DB_REPLICA );
 		$conds = array_merge(
 			[
 				'rev_page' => $pageId,
@@ -3362,7 +3364,7 @@ class RevisionStore
 			return 0;
 		}
 
-		$dbr = $this->getDBConnectionRef( DB_REPLICA );
+		$dbr = $this->getDBConnection( DB_REPLICA );
 		$conds = array_merge(
 			[
 				'rev_page' => $pageId,
@@ -3401,7 +3403,7 @@ class RevisionStore
 		int $searchLimit
 	): ?RevisionRecord {
 		$revision->assertWiki( $this->wikiId );
-		$db = $this->getDBConnectionRef( DB_REPLICA );
+		$db = $this->getDBConnection( DB_REPLICA );
 		$revQuery = $this->getQueryInfo();
 		$subquery = $db->buildSelectSubquery(
 			$revQuery['tables'],

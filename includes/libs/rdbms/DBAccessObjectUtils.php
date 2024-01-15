@@ -100,4 +100,17 @@ class DBAccessObjectUtils implements IDBAccessObject {
 			throw new InvalidArgumentException( '$index must be either DB_REPLICA or DB_PRIMARY' );
 		}
 	}
+
+	/**
+	 * @param IConnectionProvider $dbProvider
+	 * @param int $recency IDBAccessObject::READ_* constant
+	 * @return IReadableDatabase
+	 * @since 1.42
+	 */
+	public static function getDBFromRecency( IConnectionProvider $dbProvider, int $recency ): IReadableDatabase {
+		if ( self::hasFlags( $recency, IDBAccessObject::READ_LATEST ) ) {
+			return $dbProvider->getPrimaryDatabase();
+		}
+		return $dbProvider->getReplicaDatabase();
+	}
 }

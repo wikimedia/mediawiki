@@ -163,9 +163,7 @@ class UserEditTracker {
 		if ( !$user->getId() ) {
 			return false;
 		}
-		[ $index ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
-
+		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $flags );
 		$actorWhere = $this->actorMigration->getWhere( $db, 'rev_user', $user );
 
 		$sortOrder = ( $type === self::FIRST_EDIT ) ? 'ASC' : 'DESC';

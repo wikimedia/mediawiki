@@ -400,8 +400,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$this->queryFlagsUsed = $flags;
 				}
 
-				[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-				$queryBuilder = wfGetDB( $index )->newSelectQueryBuilder()
+				$dbr = DBAccessObjectUtils::getDBFromRecency(
+					MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
+					$flags
+				);
+				$queryBuilder = $dbr->newSelectQueryBuilder()
 					->select( [ 'actor_id', 'actor_user', 'actor_name' ] )
 					->from( 'actor' )
 					->recency( $flags );
@@ -1094,9 +1097,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return false;
 		}
 
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = wfGetDB( $index );
-
+		$db = DBAccessObjectUtils::getDBFromRecency(
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
+			$flags
+		);
 		$row = self::newQueryBuilder( $db )
 			->where( [ 'user_id' => $this->mId ] )
 			->recency( $flags )
@@ -2557,9 +2561,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return 0;
 		}
 
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = wfGetDB( $index );
-
+		$db = DBAccessObjectUtils::getDBFromRecency(
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
+			$flags
+		);
 		$id = $db->newSelectQueryBuilder()
 			->select( 'user_id' )
 			->from( 'user' )

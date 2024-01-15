@@ -96,8 +96,7 @@ class LocalIdLookup extends CentralIdLookup {
 			return [];
 		}
 		$audience = $this->checkAudience( $audience );
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
+		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $flags );
 		$queryBuilder = $db->newSelectQueryBuilder();
 		$queryBuilder
 			->select( [ 'user_id', 'user_name' ] )
@@ -125,8 +124,7 @@ class LocalIdLookup extends CentralIdLookup {
 		}
 
 		$audience = $this->checkAudience( $audience );
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
+		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $flags );
 		$queryBuilder = $db->newSelectQueryBuilder();
 		$queryBuilder
 			->select( [ 'user_id', 'user_name' ] )
