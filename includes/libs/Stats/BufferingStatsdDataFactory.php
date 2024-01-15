@@ -25,16 +25,16 @@ use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
 /**
- * MediaWiki adaption of StatsdDataFactory that provides buffering and metric prefixing.
+ * MediaWiki's adaption of StatsdDataFactory that provides buffering and metric prefixing.
  *
  * The buffering functionality exists as a performance optimisation to reduce network
  * traffic and StatsD processing by maximally utilizing StatsdClient's ability to
  * compress counter increments, and send all data in a few large UDP packets
  * over a single connection.
  *
- * These buffers are sent from MediaWiki::emitBufferedStatsdData. For web requests,
- * this happens post-send. For command-line scripts, this happens periodically from a
- * database callback (see MWLBFactory::applyGlobalState).
+ * These buffers are sent from MediaWikiEntryPoint::emitBufferedStatsdData. For web requests,
+ * this happens post-send. For command-line scripts, this happens periodically from a database
+ * callback (see MWLBFactory::applyGlobalState).
  *
  * @todo Evaluate upstream's StatsdService class, which implements similar buffering logic
  * and was released in statsd-php-client 1.0.13, shortly after we implemented this here
