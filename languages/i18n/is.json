@@ -32,7 +32,8 @@
 			"Þjarkur",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"tog-underline": "Undirstrikun tengla:",
@@ -746,6 +747,7 @@
 	"confirmleave-warning": "Ef þú ferð af síðunni þá geta þær breytingar sem þú hefur gert tapast.",
 	"editpage-invalidcontentmodel-title": "Ekki er stuðningur við efnislíkanið",
 	"editpage-invalidcontentmodel-text": "Ekki er stuðningur við \"$1\" efnislíkanið.",
+	"editpage-notsupportedcontentformat-title": "Efnissnið ekki stutt",
 	"slot-name-main": "Aðal",
 	"content-model-wikitext": "wiki-texti",
 	"content-model-text": "hreinn texti",

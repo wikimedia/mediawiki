@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aefgh39622"
+		]
+	},
+	"rest-no-match": "เส้นทางสัมพัทธ์ที่ร้องขอ ($1) ไม่ตรงกับตัวจัดการใดที่รู้จัก",
+	"rest-nonexistent-revision": "รุ่นแก้ไขที่ระบุ ($1) ไม่มีอยู่",
+	"rest-nonexistent-user": "ผู้ใช้ที่ระบุ ($1) ไม่มีอยู่",
+	"rest-invalid-user": "ชื่อผู้ใช้ที่ระบุ ($1) ไม่ถูกต้อง",
+	"rest-permission-denied-anon": "ไม่สามารถเข้าถึงได้โดยผู้ใช้นิรนาม",
+	"rest-permission-denied-title": "ผู้ใช้ไม่มีสิทธิในการอ่านชื่อหน้า ($1)",
+	"rest-permission-denied-revision": "ผู้ใช้ไม่สามารถเข้าถึงรุ่นแก้ไขที่ร้องขอ ($1) ได้",
+	"rest-pagehistory-param-range-error": "ไอดีรุ่นแก้ไขต้องมีค่ามากกว่า 0",
+	"rest-pagehistorycount-parameters-invalid": "ไม่รองรับลำดับพารามิเตอร์ที่ระบุ",
+	"rest-compare-permission-denied": "ผู้ใช้ไม่สามารถเข้าถึงรุ่นแก้ไขที่ร้องขอได้",
+	"rest-cannot-load-file": "ไม่สามารถโหลดไฟล์ชื่อ \"$1\" ได้"
+}
