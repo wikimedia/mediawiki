@@ -657,6 +657,7 @@ abstract class MediaWikiEntryPoint {
 	) {
 		if ( $config->get( MainConfigNames::StatsdServer ) && $stats->hasData() ) {
 			try {
+				$stats->updateCount( 'stats.statsdclient.buffered', $stats->getDataCount() );
 				$statsdServer = explode( ':', $config->get( MainConfigNames::StatsdServer ), 2 );
 				$statsdHost = $statsdServer[0];
 				$statsdPort = $statsdServer[1] ?? 8125;
