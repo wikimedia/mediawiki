@@ -400,11 +400,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$this->queryFlagsUsed = $flags;
 				}
 
-				[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
+				[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
 				$queryBuilder = wfGetDB( $index )->newSelectQueryBuilder()
 					->select( [ 'actor_id', 'actor_user', 'actor_name' ] )
 					->from( 'actor' )
-					->options( $options );
+					->recency( $flags );
 				if ( $this->mFrom === 'name' ) {
 					// make sure to use normalized form of IP for anonymous users
 					$queryBuilder->where( [ 'actor_name' => IPUtils::sanitizeIP( $this->mName ) ] );
@@ -1094,12 +1094,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return false;
 		}
 
-		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
 		$row = self::newQueryBuilder( $db )
 			->where( [ 'user_id' => $this->mId ] )
-			->options( $options )
+			->recency( $flags )
 			->caller( __METHOD__ )
 			->fetchRow();
 
@@ -2557,14 +2557,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return 0;
 		}
 
-		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
 		$id = $db->newSelectQueryBuilder()
 			->select( 'user_id' )
 			->from( 'user' )
 			->where( [ 'user_name' => $s ] )
-			->options( $options )
+			->recency( $flags )
 			->caller( __METHOD__ )->fetchField();
 
 		return (int)$id;

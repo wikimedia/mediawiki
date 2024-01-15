@@ -190,13 +190,13 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		[ $mode, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
+		[ $mode, ] = \DBAccessObjectUtils::getDBOptions( $flags );
 		$db = \DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $mode );
 		return (bool)$db->newSelectQueryBuilder()
 			->select( [ 'user_id' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
-			->options( $options )
+			->recency( $flags )
 			->caller( __METHOD__ )->fetchField();
 	}
 

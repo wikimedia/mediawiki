@@ -134,13 +134,13 @@ class BotPasswordStore implements IDBAccessObject {
 			return null;
 		}
 
-		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = $this->getDatabase( $index );
 		$row = $db->newSelectQueryBuilder()
 			->select( [ 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ] )
 			->from( 'bot_passwords' )
 			->where( [ 'bp_user' => $centralId, 'bp_app_id' => $appId ] )
-			->options( $options )
+			->recency( $flags )
 			->caller( __METHOD__ )->fetchRow();
 		return $row ? new BotPassword( $row, true, $flags ) : null;
 	}

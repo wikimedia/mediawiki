@@ -96,14 +96,14 @@ class LocalIdLookup extends CentralIdLookup {
 			return [];
 		}
 		$audience = $this->checkAudience( $audience );
-		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
 		$queryBuilder = $db->newSelectQueryBuilder();
 		$queryBuilder
 			->select( [ 'user_id', 'user_name' ] )
 			->from( 'user' )
 			->where( [ 'user_id' => array_map( 'intval', array_keys( $idToName ) ) ] )
-			->options( $options );
+			->recency( $flags );
 
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
 			$this->hideUserUtils->addFieldToBuilder( $queryBuilder );
@@ -125,14 +125,14 @@ class LocalIdLookup extends CentralIdLookup {
 		}
 
 		$audience = $this->checkAudience( $audience );
-		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $index );
 		$queryBuilder = $db->newSelectQueryBuilder();
 		$queryBuilder
 			->select( [ 'user_id', 'user_name' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => array_map( 'strval', array_keys( $nameToId ) ) ] )
-			->options( $options );
+			->recency( $flags );
 
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
 			$queryBuilder->andWhere( $this->hideUserUtils->getExpression( $db ) );
