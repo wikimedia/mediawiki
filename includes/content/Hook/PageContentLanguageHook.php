@@ -21,7 +21,7 @@ interface PageContentLanguageHook {
 	 *
 	 * @param Title $title
 	 * @param Language &$pageLang Page content language
-	 * @param Language $userLang User language
+	 * @param mixed $userLang Unused (always null), T299369
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onPageContentLanguage( $title, &$pageLang, $userLang );

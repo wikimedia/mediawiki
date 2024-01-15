@@ -44,7 +44,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
-use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
@@ -734,7 +733,6 @@ abstract class ContentHandler {
 	 * @return Language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgLang;
 		$services = MediaWikiServices::getInstance();
 		$pageLang = $services->getContentLanguage();
 
@@ -744,11 +742,9 @@ abstract class ContentHandler {
 			$pageLang = $services->getLanguageFactory()->getLanguage( $lang );
 		}
 
-		// Simplify hook handlers by only passing objects of one type, in case nothing
-		// else has unstubbed the MediaWiki\StubObject\StubUserLang object by now.
-		StubObject::unstub( $wgLang );
-
-		$this->getHookRunner()->onPageContentLanguage( $title, $pageLang, $wgLang );
+		// Unused, T299369
+		$userLang = null;
+		$this->getHookRunner()->onPageContentLanguage( $title, $pageLang, $userLang );
 
 		if ( !$pageLang instanceof Language ) {
 			throw new MWException( 'onPageContentLanguage() hook provided an invalid $pageLang object.' );
