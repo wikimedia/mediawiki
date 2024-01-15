@@ -81,7 +81,9 @@
 			"Weblars",
 			"아라",
 			"SiGNOUT",
-			"Amire80"
+			"Amire80",
+			"Iketsi",
+			"Zakawer2"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -1155,7 +1157,7 @@
 	"prefs-help-email-required": "E-mailadresse er krævet.",
 	"prefs-help-requireemail": "Dette forbedrer privatlivssikkerheden og hjælper med at forhindre uønskede e-mails.",
 	"prefs-info": "Grundlæggende information",
-	"prefs-i18n": "Internationalisering:",
+	"prefs-i18n": "Internationalisering",
 	"prefs-signature": "Signatur",
 	"prefs-signature-highlight-error": "Vis fejlens placering",
 	"prefs-signature-error-details": "Lær mere",

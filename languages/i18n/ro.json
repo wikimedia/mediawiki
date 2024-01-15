@@ -52,7 +52,8 @@
 			"아라",
 			"Matěj Suchánek",
 			"Amire80",
-			"Alesaru"
+			"Alesaru",
+			"Heron702"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -1537,11 +1538,11 @@
 	"rcfilters-filter-editsbyother-label": "Contribuțiile altora",
 	"rcfilters-filter-editsbyother-description": "Toate modificările cu excepția celor proprii.",
 	"rcfilters-filtergroup-user-experience-level": "Nivelul de experiență a utilizatorilor",
-	"rcfilters-filter-user-experience-level-registered-label": "Înregistrat",
+	"rcfilters-filter-user-experience-level-registered-label": "Înregistrați",
 	"rcfilters-filter-user-experience-level-registered-description": "Editorii conectați.",
-	"rcfilters-filter-user-experience-level-unregistered-label": "Neînregistrat",
+	"rcfilters-filter-user-experience-level-unregistered-label": "Neînregistrați",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Editorii care nu sunt conectați.",
-	"rcfilters-filter-user-experience-level-newcomer-label": "Nou veniți",
+	"rcfilters-filter-user-experience-level-newcomer-label": "Nou-veniți",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Editorii înregistrați care au mai puțin de 10 editări sau 4 zile de activitate.",
 	"rcfilters-filter-user-experience-level-learner-label": "Cursanți",
 	"rcfilters-filter-user-experience-level-learner-description": "Editorii înregistrați a căror experiență este între „Noi veniți” și „Utilizatori experimentați”.",
@@ -4045,5 +4046,6 @@
 	"skin-action-protect": "Protejare",
 	"skin-action-undelete": "Recuperare",
 	"skin-action-delete": "Ștergere",
-	"skin-action-move": "Redenumire"
+	"skin-action-move": "Redenumire",
+	"newpages-showhide-bots": "$1 roboți"
 }

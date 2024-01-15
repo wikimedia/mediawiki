@@ -2309,7 +2309,7 @@
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|Kemmet eo bet}} patrom danvez ar bajenn $3 gant $1, eus \"$4\" da \"$5\"",
 	"logentry-contentmodel-change-revertlink": "disteuler",
 	"logentry-contentmodel-change-revert": "disteuler",
-	"protectlogpage": "Log_gwareziñ",
+	"protectlogpage": "Marilh ar gwarezoù",
 	"protectlogtext": "Setu aze a-is roll ar c'hemmoù degaset ouzh live gwareziñ ar pajennoù.\nSellet ouzh ar [[Special:ProtectedPages|roll ar pajennoù gwarezet]] evit kaout roll ar pajennoù gwarezet bremañ.",
 	"protectedarticle-comment": "{{GENDER:$2|En deus gwarezet|He deus gwarezet}} \"[[$1]]\"",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|En|He}} deus kemmet arventennoù gwareziñ \"[[$1]]\"",
