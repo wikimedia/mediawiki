@@ -196,7 +196,7 @@ class ArchivedFile {
 		}
 
 		if ( !$id && !$key && !( $title instanceof Title ) && !$sha1 ) {
-			throw new MWException( "No specifications provided to ArchivedFile constructor." );
+			throw new BadMethodCallException( "No specifications provided to ArchivedFile constructor." );
 		}
 
 		$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();

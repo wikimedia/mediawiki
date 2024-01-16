@@ -1977,11 +1977,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * @throws MWException
 	 * @return never
 	 */
 	protected function readOnlyError() {
-		throw new MWException( static::class . ': write operations are not supported' );
+		throw new LogicException( static::class . ': write operations are not supported' );
 	}
 
 	/**
@@ -2458,21 +2457,19 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 
 	/**
 	 * Assert that $this->repo is set to a valid FileRepo instance
-	 * @throws MWException
 	 */
 	protected function assertRepoDefined() {
 		if ( !( $this->repo instanceof $this->repoClass ) ) {
-			throw new MWException( "A {$this->repoClass} object is not set for this File.\n" );
+			throw new LogicException( "A {$this->repoClass} object is not set for this File.\n" );
 		}
 	}
 
 	/**
 	 * Assert that $this->title is set to a Title
-	 * @throws MWException
 	 */
 	protected function assertTitleDefined() {
 		if ( !( $this->title instanceof Title ) ) {
-			throw new MWException( "A Title object is not set for this File.\n" );
+			throw new LogicException( "A Title object is not set for this File.\n" );
 		}
 	}
 

@@ -175,7 +175,7 @@ class KuConverter extends LanguageConverterSpecific {
 		$this->loadTables();
 
 		if ( !isset( $this->mTables[$toVariant] ) ) {
-			throw new MWException( 'Broken variant table: ' . implode( ',', array_keys( $this->mTables ) ) );
+			throw new LogicException( 'Broken variant table: ' . implode( ',', array_keys( $this->mTables ) ) );
 		}
 
 		return parent::translate( $text, $toVariant );

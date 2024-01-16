@@ -3,7 +3,6 @@
 namespace MediaWiki\Content;
 
 use ContentHandler;
-use FatalError;
 use MWUnknownContentModelException;
 
 interface IContentHandlerFactory {
@@ -24,7 +23,6 @@ interface IContentHandlerFactory {
 	 * by this method.
 	 *
 	 * @return string[]
-	 * @throws FatalError
 	 */
 	public function getContentModels(): array;
 

@@ -196,8 +196,6 @@ class CrhConverter extends LanguageConverterSpecific {
 	 *
 	 * @param string $text
 	 * @param string $toVariant
-	 *
-	 * @throws MWException
 	 * @return string
 	 */
 	public function translate( $text, $toVariant ) {
@@ -212,7 +210,7 @@ class CrhConverter extends LanguageConverterSpecific {
 		$this->loadTables();
 
 		if ( !isset( $this->mTables[$toVariant] ) ) {
-			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
+			throw new LogicException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
 		}
 
 		switch ( $toVariant ) {

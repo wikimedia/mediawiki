@@ -43,7 +43,6 @@ class ForeignDBFile extends LocalFile {
 	 * @param int $flags
 	 * @param array $options
 	 * @return Status
-	 * @throws MWException
 	 */
 	public function publish( $srcPath, $flags = 0, array $options = [] ) {
 		$this->readOnlyError();
@@ -53,7 +52,6 @@ class ForeignDBFile extends LocalFile {
 	 * @param int[] $versions
 	 * @param bool $unsuppress
 	 * @return Status
-	 * @throws MWException
 	 */
 	public function restore( $versions = [], $unsuppress = false ) {
 		$this->readOnlyError();
@@ -64,7 +62,6 @@ class ForeignDBFile extends LocalFile {
 	 * @param UserIdentity $user
 	 * @param bool $suppress
 	 * @return Status
-	 * @throws MWException
 	 */
 	public function deleteFile( $reason, UserIdentity $user, $suppress = false ) {
 		$this->readOnlyError();
@@ -73,7 +70,6 @@ class ForeignDBFile extends LocalFile {
 	/**
 	 * @param Title $target
 	 * @return Status
-	 * @throws MWException
 	 */
 	public function move( $target ) {
 		$this->readOnlyError();

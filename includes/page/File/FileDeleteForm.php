@@ -32,7 +32,6 @@ use MediaWiki\Page\DeletePage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use MWException;
 
 /**
  * File deletion user interface
@@ -53,7 +52,6 @@ class FileDeleteForm {
 	 * @param bool $deleteTalk
 	 * @return Status The value can be an integer with the log ID of the deletion, or false in case of
 	 *   scheduled deletion.
-	 * @throws MWException
 	 */
 	public static function doDelete(
 		Title $title,

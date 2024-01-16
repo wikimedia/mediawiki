@@ -6,8 +6,10 @@
  * @ingroup FileRepo
  */
 class TempFileRepo extends FileRepo {
+	/**
+	 * @return never
+	 */
 	public function getTempRepo() {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new MWException( "Cannot get a temp repo from a temp repo." );
+		throw new LogicException( "Cannot get a temp repo from a temp repo." );
 	}
 }

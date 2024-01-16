@@ -69,13 +69,12 @@ class JobQueueFederated extends JobQueue {
 	 *                          different partition queues. This improves availability
 	 *                          during failure, at the cost of added latency and somewhat
 	 *                          less reliable job de-duplication mechanisms.
-	 * @throws MWException When the configuration is invalid.
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
 		$section = $params['sectionsByWiki'][$this->domain] ?? 'default';
 		if ( !isset( $params['partitionsBySection'][$section] ) ) {
-			throw new MWException( "No configuration for section '$section'." );
+			throw new InvalidArgumentException( "No configuration for section '$section'." );
 		}
 		$this->maxPartitionsTry = $params['maxPartitionsTry'] ?? 2;
 		// Get the full partition map
@@ -91,7 +90,7 @@ class JobQueueFederated extends JobQueue {
 		// Get the partition queue objects
 		foreach ( $partitionMap as $partition => $w ) {
 			if ( !isset( $params['configByPartition'][$partition] ) ) {
-				throw new MWException( "No configuration for partition '$partition'." );
+				throw new InvalidArgumentException( "No configuration for partition '$partition'." );
 			}
 			$this->partitionQueues[$partition] = JobQueue::factory(
 				$baseConfig + $params['configByPartition'][$partition] );
@@ -300,7 +299,7 @@ class JobQueueFederated extends JobQueue {
 	protected function doAck( RunnableJob $job ) {
 		$partition = $job->getMetadata( 'QueuePartition' );
 		if ( $partition === null ) {
-			throw new MWException( "The given job has no defined partition name." );
+			throw new UnexpectedValueException( "The given job has no defined partition name." );
 		}
 
 		$this->partitionQueues[$partition]->ack( $job );

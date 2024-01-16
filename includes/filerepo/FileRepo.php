@@ -1959,7 +1959,7 @@ class FileRepo {
 	 * Throw an exception if this repo is read-only by design.
 	 * This does not and should not check getReadOnlyReason().
 	 *
-	 * @throws MWException
+	 * @throws LogicException
 	 */
 	protected function assertWritableRepo() {
 	}

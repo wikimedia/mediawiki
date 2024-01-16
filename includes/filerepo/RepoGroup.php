@@ -420,17 +420,16 @@ class RepoGroup {
 	/**
 	 * Split a virtual URL into repo, zone and rel parts
 	 * @param string $url
-	 * @throws MWException
 	 * @return string[] Containing repo, zone and rel
 	 */
 	private function splitVirtualUrl( $url ) {
 		if ( !str_starts_with( $url, 'mwrepo://' ) ) {
-			throw new MWException( __METHOD__ . ': unknown protocol' );
+			throw new InvalidArgumentException( __METHOD__ . ': unknown protocol' );
 		}
 
 		$bits = explode( '/', substr( $url, 9 ), 3 );
 		if ( count( $bits ) != 3 ) {
-			throw new MWException( __METHOD__ . ": invalid mwrepo URL: $url" );
+			throw new InvalidArgumentException( __METHOD__ . ": invalid mwrepo URL: $url" );
 		}
 
 		return $bits;
