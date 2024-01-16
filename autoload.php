@@ -779,6 +779,7 @@ $wgAutoloadLocalClasses = [
 	'LoginHelper' => __DIR__ . '/includes/specials/helpers/LoginHelper.php',
 	'LoginSignupSpecialPage' => __DIR__ . '/includes/specialpage/LoginSignupSpecialPage.php',
 	'MSCompoundFileReader' => __DIR__ . '/includes/libs/mime/MSCompoundFileReader.php',
+	'MW' => __DIR__ . '/includes/debug/MW.php',
 	'MWCallableUpdate' => __DIR__ . '/includes/deferred/MWCallableUpdate.php',
 	'MWCallbackStream' => __DIR__ . '/includes/http/MWCallbackStream.php',
 	'MWContentSerializationException' => __DIR__ . '/includes/exception/MWContentSerializationException.php',
