@@ -111,7 +111,6 @@ class WikiModule extends Module {
 				case 'scripts':
 				case 'datas':
 				case 'group':
-				case 'targets':
 					$this->{$member} = $option;
 					break;
 			}

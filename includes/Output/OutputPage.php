@@ -627,29 +627,10 @@ class OutputPage extends ContextSource {
 			if ( $module instanceof RL\Module
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
 			) {
-				if ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) ) {
-					$this->warnModuleTargetFilter( $module->getName() );
-					continue;
-				}
 				$filteredModules[] = $val;
 			}
 		}
 		return $filteredModules;
-	}
-
-	private function warnModuleTargetFilter( $moduleName ) {
-		static $warnings = [];
-		if ( isset( $warnings[$this->mTarget][$moduleName] ) ) {
-			return;
-		}
-		$warnings[$this->mTarget][$moduleName] = true;
-		$this->getResourceLoader()->getLogger()->debug(
-			'Module "{module}" not loadable on target "{target}".',
-			[
-				'module' => $moduleName,
-				'target' => $this->mTarget,
-			]
-		);
 	}
 
 	/**
@@ -710,15 +691,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function getTarget() {
 		return $this->mTarget;
-	}
-
-	/**
-	 * Sets ResourceLoader target for load.php links. If null, will be omitted
-	 *
-	 * @param string|null $target
-	 */
-	public function setTarget( $target ) {
-		$this->mTarget = $target;
 	}
 
 	/**
@@ -3701,7 +3673,7 @@ class OutputPage extends ContextSource {
 	 * @return string|WrappedStringList HTML
 	 */
 	public function makeResourceLoaderLink( $modules, $only, array $extraQuery = [] ) {
-		// Apply 'target' and 'origin' filters
+		// Apply 'origin' filters
 		$modules = $this->filterModules( (array)$modules, null, $only );
 
 		return RL\ClientHtml::makeLoad(

@@ -502,16 +502,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	// @todo How to test filterModules(), warnModuleTargetFilter(), getModules(), etc.?
-
-	public function testSetTarget() {
-		$op = $this->newInstance();
-		$op->setTarget( 'foo' );
-
-		$this->assertSame( 'foo', $op->getTarget() );
-		// @todo What else?  Test some actual effect?
-	}
-
 	// @todo How to test addContentOverride(Callback)?
 
 	public function testHeadItems() {

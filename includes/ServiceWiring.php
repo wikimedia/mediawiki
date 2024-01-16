@@ -1868,7 +1868,6 @@ return [
 				],
 				$msgPosterAttrib['dependencies'] ?? []
 			),
-			'targets' => [ 'desktop', 'mobile' ],
 		] );
 
 		if ( $config->get( MainConfigNames::EnableJavaScriptTest ) === true ) {

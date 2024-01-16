@@ -218,7 +218,6 @@ class FileModule extends Module {
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
-				case 'targets':
 					// Normalise
 					$option = array_values( array_unique( (array)$option ) );
 					sort( $option );
@@ -602,7 +601,6 @@ class FileModule extends Module {
 			//    this affects 'scripts' and other file paths, getFileHashes accounts for that.)
 			// - remoteBasePath (Per T104950)
 			// - dependencies (provided via startup module)
-			// - targets
 			// - group (provided via startup module)
 			'styles',
 			'skinStyles',
@@ -1045,15 +1043,6 @@ class FileModule extends Module {
 	 */
 	public function getFlip( Context $context ) {
 		return $context->getDirection() === 'rtl' && !$this->noflip;
-	}
-
-	/**
-	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
-	 *
-	 * @return string[]
-	 */
-	public function getTargets() {
-		return $this->targets;
 	}
 
 	/**

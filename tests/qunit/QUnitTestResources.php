@@ -9,7 +9,6 @@ return [
 			'tests/qunit/data/sinonjs-local.js',
 			'resources/lib/sinonjs/sinon.js',
 		],
-		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	'mediawiki.qunit-testrunner' => [
@@ -20,7 +19,6 @@ return [
 			'mediawiki.page.ready',
 			'sinonjs',
 		],
-		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	'mediawiki.language.testdata' => [
