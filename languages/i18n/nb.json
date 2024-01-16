@@ -4229,5 +4229,7 @@
 	"benefit-1-description": "Overvåkningslister som lar deg følge med på sider du er interessert i.",
 	"benefit-2-description": "Permanent liste over dine bidrag til prosjektet.",
 	"benefit-3-description": "Innstillinger som lar deg tilpasse brukeropplevelsen din.",
-	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt."
+	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt.",
+	"composer-deps-outdated": "$1: $2 installert, $3 påkrevd.",
+	"composer-deps-notinstalled": "$1: ikke installert, $2 påkrevd."
 }

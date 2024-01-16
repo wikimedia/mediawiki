@@ -274,6 +274,7 @@
 	"databaseerror-function": "Fonksyon: $1",
 	"databaseerror-error": "Érè: $1",
 	"laggedreplicamode": "<strong>Atansyon:</strong> Pétèt paj-lasa pa ni nouvo modifikasyon.",
+	"readonly": "Bikadonné fèmé",
 	"internalerror": "Érè entèn",
 	"internalerror_info": "Érè entèn: $1",
 	"filecopyerror": "Nou pé pa kopyé fichyé \"$1\" a \"$2\".",

@@ -1624,7 +1624,7 @@
 	"activeusers-noresult": "ଜଣେ ବି ସଭ୍ୟ ମିଳିଲେ ନାହିଁ ।",
 	"listgrouprights": "ସଭ୍ୟ ଗୋଠ ଅଧିକାରସମୂହ",
 	"listgrouprights-summary": "ତଳେ ଉଇକି ସ୍ଥିର କରାଯାଇଥିବା ଏକ ଏକ ବ୍ୟବହାରକାରୀ ଗୋଠର ତାଲିକା ଦିଆଯାଇଛି, ସେଥିରେ ସେମାନଙ୍କ ବ୍ୟବହାର ଅଧିକାର ବାବଦରେ ମଧ୍ୟ ଦିଆଯାଇଛି ।\nସେଥିରେ ବୋଧେ [[{{MediaWiki:Listgrouprights-helppage}}|ଅଧିକ ବ୍ୟକ୍ତିଗତ ବିବରଣୀ ଥାଇପାରେ]] ।",
-	"listgrouprights-key": "* <span class=\"listgrouprights-granted\">ଅନୁମୋଦିର ଅଧିକାର</span>\n* <span class=\"listgrouprights-revoked\">ଅଟକାଯାଇଥିବା ଅଧିକାର</span>",
+	"listgrouprights-key": "* <span class=\"listgrouprights-granted\">ଅନୁମୋଦିତ ଅଧିକାର</span>\n* <span class=\"listgrouprights-revoked\">ଅଟକାଯାଇଥିବା ଅଧିକାର</span>",
 	"listgrouprights-group": "ଗୋଠ",
 	"listgrouprights-rights": "ଅଧିକାର",
 	"listgrouprights-helppage": "Help:ଗୋଠ ଅଧିକାର",

@@ -628,7 +628,8 @@
 	"edit-recovery-special-intro-empty": "ДӀаяздаь доаца хувцамаш дац.",
 	"edit-recovery-special-view": "хьажа",
 	"edit-recovery-special-edit": "тоаде",
-	"edit-recovery-special-recovered-on": "Меттаоттадаьд $1",
+	"edit-recovery-special-recovered-on": "$1",
+	"edit-recovery-special-recovered-on-tooltip": "Меттаоттадарá бола хоам тӀеххьара дӀаяьзбаь таьрахьи хаи.",
 	"edit-recovery-loaded-title": "Хувцамаш юхаметтаоттадаьд",
 	"edit-recovery-loaded-message": "Хьа дӀаяздаь доаца хувцамаш ши-шегӀа меттаоттадаьд.",
 	"edit-recovery-loaded-show": "Хувцамаш гойта",
@@ -2222,12 +2223,12 @@
 	"checkbox-all": "Деррига",
 	"checkbox-none": "Цхьаккха",
 	"checkbox-invert": "Инверт яр",
-	"allpages": "Масса оагӀонаш",
+	"allpages": "Массайола оагӀонаш",
 	"nextpage": "ТӀехьайоагӀа оагӀув ($1)",
 	"prevpage": "Хьалха йоагIа оагIув ($1)",
 	"allpagesfrom": "ОагӀонаш хьагойта, ишта дӀайолалуш:",
 	"allpagesto": "Гойтар соцаде укхун тӀа:",
-	"allarticles": "Масса оагӀонаш",
+	"allarticles": "Массайола оагӀонаш",
 	"allinnamespace": "Массайола оагӀонаш «$1» яхача цӀерий ара",
 	"allpagessubmit": "Кхоачашде",
 	"allpagesprefix": "ОагӀонаш лаха, ишта дӀайолалуш:",
@@ -4124,5 +4125,7 @@
 	"benefit-1-description": "Хьа хьашт дола оагӀонаш леха могийташ дола зем-листамаш.",
 	"benefit-2-description": "Проекте Ӏа баьча къахьегама массаза а бола листам.",
 	"benefit-3-description": "Хьа поалхама персонализаци яйташ дола оттамаш.",
-	"temp-user-unable-to-acquire": "Хаьдда ха йолча аккаунтá аьнна доакъашхочун цӀи хьаэцаеланзар."
+	"temp-user-unable-to-acquire": "Хаьдда ха йолча аккаунтá аьнна доакъашхочун цӀи хьаэцаеланзар.",
+	"composer-deps-outdated": "$1: дӀаоттадаьр да: $2, эшар да: $3.",
+	"composer-deps-notinstalled": "$1: дӀаоттадаьдац, эшаш да $2."
 }

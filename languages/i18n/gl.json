@@ -4203,5 +4203,7 @@
 	"benefit-1-description": "Listas de vixilancia que che permiten facer un seguimento das páxinas que che interesan.",
 	"benefit-2-description": "Lista permanente de contribucións que fixeches ao proxecto.",
 	"benefit-3-description": "Preferencias que che permiten personalizar a túa experiencia.",
-	"temp-user-unable-to-acquire": "Non se puido adquirir un nome de usuario para a conta temporal. Por favor, inténtao de novo."
+	"temp-user-unable-to-acquire": "Non se puido adquirir un nome de usuario para a conta temporal. Por favor, inténtao de novo.",
+	"composer-deps-outdated": "$1: versión $2 instalada, cómpre $3.",
+	"composer-deps-notinstalled": "$1: non instalada, cómpre $2."
 }
