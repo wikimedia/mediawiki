@@ -1,6 +1,5 @@
 # Upstream code
 /resources/lib/
-/resources/src/jquery.tipsy/
 /resources/src/mediawiki.libs.jpegmeta/
 
 # Skip functions
