@@ -618,7 +618,6 @@ return [
 
 	'@wikimedia/codex' => [
 		'packageFiles' => [
-			'resources/src/codex/codex.js',
 			'resources/lib/codex/codex.umd.js',
 		],
 		'dependencies' => [
@@ -646,7 +645,6 @@ return [
 
 	'@wikimedia/codex-search' => [
 		'packageFiles' => [
-			'resources/src/codex-search/codex-search.js',
 			'resources/lib/codex/codex-search.js',
 		],
 		'dependencies' => [
