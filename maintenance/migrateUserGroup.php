@@ -68,13 +68,15 @@ class MigrateUserGroup extends Maintenance {
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 
 			$this->beginTransaction( $dbw, __METHOD__ );
-			$dbw->update( 'user_groups',
-				[ 'ug_group' => $newGroup ],
-				[ 'ug_group' => $oldGroup,
-					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
-				__METHOD__,
-				[ 'IGNORE' ]
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user_groups' )
+				->ignore()
+				->set( [ 'ug_group' => $newGroup ] )
+				->where( [
+					'ug_group' => $oldGroup,
+					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
+				] )
+				->caller( __METHOD__ )->execute();
 			$affected += $dbw->affectedRows();
 			// Delete rows that the UPDATE operation above had to ignore.
 			// This happens when a user is in both the old and new group.

@@ -79,12 +79,11 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 			$last = null;
 			foreach ( $res as $row ) {
 				$last = $row->rev_id;
-				$dbw->update(
-					'revision',
-					[ 'rev_comment_id' => $row->revcomment_comment_id ],
-					[ 'rev_id' => $row->rev_id ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'revision' )
+					->set( [ 'rev_comment_id' => $row->revcomment_comment_id ] )
+					->where( [ 'rev_id' => $row->rev_id ] )
+					->caller( __METHOD__ )->execute();
 				$updated += $dbw->affectedRows();
 			}
 

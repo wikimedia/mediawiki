@@ -67,11 +67,12 @@ class CleanupPageLang extends TableCleanup {
 			$this->output( "DRY RUN: would update page_lang on $row->page_id from $oldPageLang to $newPageLang.\n" );
 		} else {
 			$this->output( "Update page_lang on $row->page_id from $oldPageLang to $newPageLang.\n" );
-			$dbw = $this->getDB( DB_PRIMARY );
-			$dbw->update( 'page',
-				[ 'page_lang' => $newPageLang ],
-				[ 'page_id' => $row->page_id ],
-				__METHOD__ );
+			$this->getDB( DB_PRIMARY )
+				->newUpdateQueryBuilder()
+				->update( 'page' )
+				->set( [ 'page_lang' => $newPageLang ] )
+				->where( [ 'page_id' => $row->page_id ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 }

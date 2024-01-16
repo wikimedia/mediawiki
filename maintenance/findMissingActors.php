@@ -304,7 +304,11 @@ class FindMissingActors extends Maintenance {
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
-		$dbw->update( $table, [ $actorField => $overwrite ], [ $idField => $ids ], __METHOD__ );
+		$dbw->newUpdateQueryBuilder()
+			->update( $table )
+			->set( [ $actorField => $overwrite ] )
+			->where( [ $idField => $ids ] )
+			->caller( __METHOD__ )->execute();
 
 		$count = $dbw->affectedRows();
 

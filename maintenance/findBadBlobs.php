@@ -477,12 +477,11 @@ class FindBadBlobs extends Maintenance {
 		$badAddress = substr( $badAddress, 0, 255 );
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		$dbw->update(
-			'content',
-			[ 'content_address' => $badAddress ],
-			[ 'content_id' => $slot->getContentId() ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'content' )
+			->set( [ 'content_address' => $badAddress ] )
+			->where( [ 'content_id' => $slot->getContentId() ] )
+			->caller( __METHOD__ )->execute();
 
 		return $badAddress;
 	}

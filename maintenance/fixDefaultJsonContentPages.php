@@ -99,12 +99,12 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 				// page_content_model because revision will automatically
 				// use the default, which is *now* JSON.
 				$this->output( "Setting page_content_model to json..." );
-				$dbw->update(
-					'page',
-					[ 'page_content_model' => CONTENT_MODEL_JSON ],
-					[ 'page_id' => $row->page_id ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'page' )
+					->set( [ 'page_content_model' => CONTENT_MODEL_JSON ] )
+					->where( [ 'page_id' => $row->page_id ] )
+					->caller( __METHOD__ )->execute();
+
 				$this->output( "done.\n" );
 				$this->waitForReplication();
 			} else {
@@ -120,12 +120,12 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 					->where( [ 'rev_page' => $row->page_id ] )
 					->caller( __METHOD__ )->fetchFieldValues();
 				foreach ( array_chunk( $ids, 50 ) as $chunk ) {
-					$dbw->update(
-						'revision',
-						[ 'rev_content_model' => CONTENT_MODEL_WIKITEXT ],
-						[ 'rev_page' => $row->page_id, 'rev_id' => $chunk ],
-						__METHOD__
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'revision' )
+						->set( [ 'rev_content_model' => CONTENT_MODEL_WIKITEXT ] )
+						->where( [ 'rev_page' => $row->page_id, 'rev_id' => $chunk ] )
+						->caller( __METHOD__ )->execute();
+
 					$this->waitForReplication();
 				}
 				$this->output( "done.\n" );
