@@ -205,9 +205,26 @@ class UserOptionsManager extends UserOptionsLookup {
 	 *
 	 * You need to call saveOptions() to actually write to the database.
 	 *
+	 * $val should be null or a string. Other types are accepted for B/C with legacy
+	 * code but can result in surprising behavior and are discouraged. Values are always
+	 * stored as strings in the database, so if you pass a non-string value, it will be
+	 * eventually converted; but before the call to saveOptions(), getOption() will return
+	 * the passed value from instance cache without any type conversion.
+	 *
+	 * A null value means resetting the option to its default value (removing the user_properties
+	 * row). Passing in the same value as the default value fo the user has the same result.
+	 * This behavior supports some level of type juggling - e.g. if the default value is 1,
+	 * and you pass in '1', the option will be reset to its default value.
+	 *
+	 * When an option is reset to its default value, that means whenever the default value
+	 * is changed in the site configuration, the user preference for this user will also change.
+	 * There is no way to set a user preference to be the same as the default but avoid it
+	 * changing when the default changes. You can instead use $wgConditionalUserOptions to
+	 * split the default based on user registration date.
+	 *
 	 * @param UserIdentity $user
 	 * @param string $oname The option to set
-	 * @param mixed $val New value to set
+	 * @param mixed $val New value to set.
 	 */
 	public function setOption( UserIdentity $user, string $oname, $val ) {
 		// Explicitly NULL values should refer to defaults
