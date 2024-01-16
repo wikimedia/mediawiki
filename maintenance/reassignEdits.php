@@ -167,6 +167,8 @@ class ReassignEdits extends Maintenance {
 					->deleteFrom( 'ip_changes' )
 					->where( [ 'ipc_hex' => IPUtils::toHex( $from->getName() ) ] )
 					->caller( __METHOD__ )->execute();
+
+				$this->output( "done.\n" );
 			}
 		}
 
