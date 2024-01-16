@@ -211,6 +211,7 @@ use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseFactory;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LBFactorySingle;
@@ -942,6 +943,13 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.42
+	 */
+	public function getConnectionProvider(): IConnectionProvider {
+		return $this->getService( 'ConnectionProvider' );
+	}
+
+	/**
 	 * @since 1.35
 	 */
 	public function getContentHandlerFactory(): IContentHandlerFactory {
@@ -1042,6 +1050,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
+	 * @note When possible, use {@link getConnectionProvider()} instead.
 	 */
 	public function getDBLoadBalancerFactory(): LBFactory {
 		return $this->getService( 'DBLoadBalancerFactory' );

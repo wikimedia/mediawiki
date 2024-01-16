@@ -240,6 +240,7 @@ use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseFactory;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -288,7 +289,7 @@ return [
 
 	'ArchivedRevisionLookup' => static function ( MediaWikiServices $services ): ArchivedRevisionLookup {
 		return new ArchivedRevisionLookup(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getRevisionStore()
 		);
 	},
@@ -334,7 +335,7 @@ return [
 			$services->getLinksMigration(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancerFactory()
+			$services->getConnectionProvider()
 		);
 	},
 
@@ -462,7 +463,7 @@ return [
 
 	'ChangeTagsStore' => static function ( MediaWikiServices $services ): ChangeTagsStore {
 		return new ChangeTagsStore(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getChangeTagDefStore(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
@@ -582,6 +583,10 @@ return [
 		);
 	},
 
+	'ConnectionProvider' => static function ( MediaWikiServices $services ): IConnectionProvider {
+		return $services->getDBLoadBalancerFactory();
+	},
+
 	'ContentHandlerFactory' => static function ( MediaWikiServices $services ): IContentHandlerFactory {
 		$contentHandlerConfig = $services->getMainConfig()->get( MainConfigNames::ContentHandlers );
 
@@ -620,7 +625,7 @@ return [
 			$services->getLinkRendererFactory(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getNamespaceInfo(),
 			$services->getCommentFormatter()
 		);
@@ -969,7 +974,7 @@ return [
 			$services->getContentLanguage(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancerFactory()
+			$services->getConnectionProvider()
 		);
 	},
 
@@ -1075,7 +1080,7 @@ return [
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -1118,7 +1123,7 @@ return [
 
 	'LinkTargetLookup' => static function ( MediaWikiServices $services ): LinkTargetLookup {
 		return new LinkTargetStore(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getLocalServerObjectCache(),
 			$services->getMainWANObjectCache()
 		);
@@ -1378,7 +1383,7 @@ return [
 		return new ImportableOldRevisionImporter(
 			true,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
@@ -1390,7 +1395,7 @@ return [
 	'PageEditStash' => static function ( MediaWikiServices $services ): PageEditStash {
 		return new PageEditStash(
 			ObjectCache::getLocalClusterInstance(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			LoggerFactory::getInstance( 'StashEdit' ),
 			$services->getStatsdDataFactory(),
 			$services->getUserEditTracker(),
@@ -1406,7 +1411,7 @@ return [
 	'PageProps' => static function ( MediaWikiServices $services ): PageProps {
 		return new PageProps(
 			$services->getLinkBatchFactory(),
-			$services->getDBLoadBalancerFactory()
+			$services->getConnectionProvider()
 		);
 	},
 
@@ -1452,7 +1457,7 @@ return [
 	): PageUpdaterFactory {
 		$editResultCache = new EditResultCache(
 			$services->getMainObjectStash(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
@@ -1671,7 +1676,7 @@ return [
 			LoggerFactory::getInstance( 'authentication' ),
 			$services->getAuthManager(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getUserFactory(),
 			$services->getUserNameUtils(),
 			$services->getUserOptionsLookup()
@@ -1712,7 +1717,7 @@ return [
 	'Pingback' => static function ( MediaWikiServices $services ): Pingback {
 		return new Pingback(
 			$services->getMainConfig(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			ObjectCache::getLocalClusterInstance(),
 			$services->getHttpRequestFactory(),
 			LoggerFactory::getInstance( 'Pingback' )
@@ -1895,7 +1900,7 @@ return [
 	'RevertedTagUpdateManager' => static function ( MediaWikiServices $services ): RevertedTagUpdateManager {
 		$editResultCache = new EditResultCache(
 			$services->getMainObjectStash(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
@@ -1977,7 +1982,7 @@ return [
 		return new SearchEngineFactory(
 			$services->getSearchEngineConfig(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancerFactory()
+			$services->getConnectionProvider()
 		);
 	},
 
@@ -2045,7 +2050,7 @@ return [
 	},
 
 	'SiteStore' => static function ( MediaWikiServices $services ): SiteStore {
-		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancerFactory() );
+		$rawSiteStore = new DBSiteStore( $services->getConnectionProvider() );
 
 		$cache = $services->getLocalServerObjectCache();
 		if ( $cache instanceof EmptyBagOStuff ) {
@@ -2181,7 +2186,7 @@ return [
 			new ServiceOptions(
 				TalkPageNotificationManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getReadOnlyMode(),
 			$services->getRevisionLookup(),
 			$services->getHookContainer(),
@@ -2304,7 +2309,7 @@ return [
 	'UserCache' => static function ( MediaWikiServices $services ): UserCache {
 		return new UserCache(
 			LoggerFactory::getInstance( 'UserCache' ),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getLinkBatchFactory()
 		);
 	},
@@ -2312,7 +2317,7 @@ return [
 	'UserEditTracker' => static function ( MediaWikiServices $services ): UserEditTracker {
 		return new UserEditTracker(
 			$services->getActorMigration(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getJobQueueGroup()
 		);
 	},
@@ -2365,7 +2370,7 @@ return [
 
 	'UserNamePrefixSearch' => static function ( MediaWikiServices $services ): UserNamePrefixSearch {
 		return new UserNamePrefixSearch(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getUserNameUtils(),
 			$services->getHideUserUtils()
 		);
@@ -2397,7 +2402,7 @@ return [
 			new ServiceOptions( UserOptionsManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->get( '_DefaultOptionsLookup' ),
 			$services->getLanguageConverterFactory(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			LoggerFactory::getInstance( 'UserOptionsManager' ),
 			$services->getHookContainer(),
 			$services->getUserFactory(),
@@ -2418,7 +2423,7 @@ return [
 
 	'WatchedItemQueryService' => static function ( MediaWikiServices $services ): WatchedItemQueryService {
 		return new WatchedItemQueryService(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getCommentStore(),
 			$services->getWatchedItemStore(),
 			$services->getHookContainer(),
@@ -2504,7 +2509,7 @@ return [
 		return new ImportableOldRevisionImporter(
 			false,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
