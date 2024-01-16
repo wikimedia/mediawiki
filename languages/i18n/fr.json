@@ -197,7 +197,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Obscaeris",
-			"Wnagxsi"
+			"Wnagxsi",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1349,7 +1350,7 @@
 	"prefs-help-email-required": "Une adresse de courriel est requise.",
 	"prefs-help-requireemail": "Cela améliore la confidentialité et aide à éviter les courriels non sollicités.",
 	"prefs-info": "Informations de base",
-	"prefs-i18n": "Internationalisation",
+	"prefs-i18n": "Préférences langagières",
 	"prefs-signature": "Signature",
 	"prefs-signature-invalid-warning": "Votre signature peut poser problème à certains outils.",
 	"prefs-signature-invalid-new": "Votre signature actuelle n’est pas valide. Bien que vous puissiez encore l’utiliser, pour ne pourrez pas en changer sans la corriger.",

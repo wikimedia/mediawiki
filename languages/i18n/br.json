@@ -3106,7 +3106,7 @@
 	"autosumm-changed-redirect-target": "Kemmet pal an adkas eus [[$1]] da [[$2]]",
 	"autosumm-new": "Pajenn krouet gant : \"$1\"",
 	"autosumm-newblank": "Krouet eo bet ur bajenn c'houllo",
-	"size-bytes": "$1 o",
+	"size-bytes": "$1 {{PLURAL:$1|okted}}",
 	"size-kilobytes": "$1 Kio",
 	"size-megabytes": "$1 Mio",
 	"size-gigabytes": "$1 Gio",
