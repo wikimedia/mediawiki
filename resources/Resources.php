@@ -2319,6 +2319,7 @@ return [
 		],
 		'dependencies' => [
 			'vue',
+			'moment',
 		],
 		'messages' => [
 			'editlink',
