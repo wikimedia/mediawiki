@@ -96,9 +96,7 @@ class ReflectionSchemaSource implements SettingsSource {
 						$this->normalizeDynamicDefault( $name, $schema['dynamicDefault'] );
 				}
 
-				if ( !array_key_exists( 'default', $schema ) ) {
-					$schema['default'] = null;
-				}
+				$schema['default'] ??= null;
 
 				$schema = self::normalizeJsonSchema( $schema );
 
