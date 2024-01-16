@@ -32,7 +32,8 @@
 			"Þjarkur",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"tog-underline": "Undirstrikun tengla:",
@@ -749,6 +750,7 @@
 	"confirmleave-warning": "Ef þú ferð af síðunni þá geta þær breytingar sem þú hefur gert tapast.",
 	"editpage-invalidcontentmodel-title": "Ekki er stuðningur við efnislíkanið",
 	"editpage-invalidcontentmodel-text": "Ekki er stuðningur við \"$1\" efnislíkanið.",
+	"editpage-notsupportedcontentformat-title": "Efnissnið ekki stutt",
 	"slot-name-main": "Aðal",
 	"content-model-wikitext": "wiki-texti",
 	"content-model-text": "hreinn texti",
@@ -1031,6 +1033,7 @@
 	"prefs-description-personal": "Stjórnaðu hvernig þú birtist, tengist og átt í samskiptum.",
 	"prefs-description-rendering": "Stilltu skinn, stærð og valkosti lestrar.",
 	"prefs-description-editing": "Sérsníddu hvernig þú gerir, rekur og yfirferð breytingar.",
+	"prefs-description-rc": "Sérsníða streymi nýlegra breytinga.",
 	"prefs-description-misc": "Sérsníddu efnisyfirlitið.",
 	"prefs-help-recentchangescount": "Hámarksfjöldi: 1000",
 	"prefs-help-tokenmanagement": "Þú getur séð og endurstillt leynilykilinn fyrir aðganginn þinn, teiknið sem hefur aðgang að vefstreymi vaktlistans þíns. Hver sá sem þekkir þennan lykil getur lesið vaktlistann þinn, þannig að þú ættir ekki að deila honum.",
