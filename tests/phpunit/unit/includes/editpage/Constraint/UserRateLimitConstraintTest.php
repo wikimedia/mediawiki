@@ -42,14 +42,19 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 	 */
 	private function getRateLimiter( $fail ) {
 		$mock = $this->createNoOpMock( RateLimiter::class, [ 'limit' ] );
+		$expectedArgs = [
+			[ 'edit', 1, false ],
+			[ 'linkpurge', 0, false ],
+			[ 'editcontentmodel', 1, $fail ]
+		];
 		$mock->expects( $this->exactly( 3 ) )
 			->method( 'limit' )
-			->withConsecutive(
-				[ $this->anything(), 'edit', 1 ],
-				[ $this->anything(), 'linkpurge', 0 ],
-				[ $this->anything(), 'editcontentmodel', 1 ]
-			)
-			->willReturnOnConsecutiveCalls( false, false, $fail );
+			->willReturnCallback( function ( $_, $action, $incrBy ) use ( &$expectedArgs ) {
+				$curExpectedArgs = array_shift( $expectedArgs );
+				$this->assertSame( $curExpectedArgs[0], $action );
+				$this->assertSame( $curExpectedArgs[1], $incrBy );
+				return $curExpectedArgs[2];
+			} );
 		return $mock;
 	}
 

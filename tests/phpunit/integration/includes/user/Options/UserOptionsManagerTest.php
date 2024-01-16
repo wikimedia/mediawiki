@@ -20,7 +20,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group Database
  * @covers MediaWiki\User\Options\UserOptionsManager
  */
-class UserOptionsManagerTest extends UserOptionsLookupTest {
+class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 
 	/**
 	 * @param array $overrides supported keys:

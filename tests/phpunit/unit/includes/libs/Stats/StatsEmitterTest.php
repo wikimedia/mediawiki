@@ -36,8 +36,8 @@ class StatsEmitterTest extends TestCase {
 		// transport
 		$transport = $this->createMock( UDPTransport::class );
 		$transport->expects( $this->once() )->method( "emit" )
-			->withConsecutive(
-				[ "mediawiki.test.bar:1|c\nmediawiki.test.bar:1|c\nmediawiki.test.foo:3.14|ms\nmediawiki.test.stats_buffered_total:3|c\n" ]
+			->with(
+				"mediawiki.test.bar:1|c\nmediawiki.test.bar:1|c\nmediawiki.test.foo:3.14|ms\nmediawiki.test.stats_buffered_total:3|c\n"
 			);
 		$emitter = $emitter->withTransport( $transport );
 

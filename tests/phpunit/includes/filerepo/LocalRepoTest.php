@@ -163,14 +163,14 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mockBag->expects( $this->never() )
 			->method( 'makeKey' )
-			->withConsecutive(
-				[ 'filerepo-file-redirect', 'local', md5( 'Redirect' ) ]
+			->with(
+				'filerepo-file-redirect', 'local', md5( 'Redirect' )
 			);
 		$mockBag->expects( $this->once() )
 			->method( 'makeGlobalKey' )
-			->withConsecutive(
-				[ 'filerepo-file-redirect', $dbDomain, md5( 'Redirect' ) ]
-			)->willReturnOnConsecutiveCalls(
+			->with(
+				'filerepo-file-redirect', $dbDomain, md5( 'Redirect' )
+			)->willReturn(
 				implode( ':', [ 'filerepo-file-redirect', $dbDomain, md5( 'Redirect' ) ] )
 			);
 
