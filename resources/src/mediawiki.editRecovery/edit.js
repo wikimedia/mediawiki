@@ -76,9 +76,10 @@ function onLoadHandler( $editForm ) {
 		mw.storage.session.set( pageName + '-editRecoverySection', section, 300 );
 	}
 	storage.openDatabase().then( function () {
-		// Check for, and delete, any expired data.
-		storage.deleteExpiredData();
-		storage.loadData( pageName, section ).then( onLoadData );
+		// Check for and delete any expired data for any page, before loading any saved data for the current page.
+		storage.deleteExpiredData().then( () => {
+			storage.loadData( pageName, section ).then( onLoadData );
+		} );
 	} );
 
 	// Set up cancel handler to delete data.

@@ -207,10 +207,12 @@ function deleteExpiredData() {
 
 		expired.addEventListener( 'success', ( event ) => {
 			const cursors = event.target.result;
-			if ( cursors ) {
+			if ( cursors.length > 0 ) {
+				const deletions = [];
 				cursors.forEach( ( cursor ) => {
-					deleteData( cursor.pageName, cursor.section );
+					deletions.push( deleteData( cursor.pageName, cursor.section ) );
 				} );
+				Promise.all( deletions ).then( resolve );
 			} else {
 				resolve();
 			}
