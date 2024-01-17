@@ -23,8 +23,8 @@ QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), function ( hook
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
 		// until after the server.respond call, which confuses sinon terribly. This sucks a lot.
-		api.badToken( 'options' );
-		api.getToken( 'options' );
+		api.badToken( 'csrf' );
+		api.getToken( 'csrf' );
 		this.server.respond(
 			/meta=tokens&type=csrf/,
 			[ 200, { 'Content-Type': 'application/json' },
@@ -76,8 +76,8 @@ QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), function ( hook
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
 		// until after the server.respond call, which confuses sinon terribly. This sucks a lot.
-		api.badToken( 'options' );
-		api.getToken( 'options' );
+		api.badToken( 'csrf' );
+		api.getToken( 'csrf' );
 		this.server.respond(
 			/meta=tokens&type=csrf/,
 			[ 200, { 'Content-Type': 'application/json' },
