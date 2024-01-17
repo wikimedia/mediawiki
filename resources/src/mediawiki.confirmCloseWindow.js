@@ -3,15 +3,19 @@
 	 * Prevent the closing of a window with a confirm message (the onbeforeunload event seems to
 	 * work in most browsers.)
 	 *
+	 * Provided by the mediawiki.confirmCloseWindow module.
+	 *
 	 * This supersedes any previous onbeforeunload handler. If there was a handler before, it is
 	 * restored when you execute the returned release() function.
 	 *
+	 * @example
+	 * mw.loader.using( 'mediawiki.confirmCloseWindow' ).then(() => {
 	 *     var allowCloseWindow = mw.confirmCloseWindow();
 	 *     // ... do stuff that can't be interrupted ...
 	 *     allowCloseWindow.release();
 	 *
-	 * The second function returned is a trigger function to trigger the check and an alert
-	 * window manually, e.g.:
+	 *    // The second function returned is a trigger function to trigger the check and an alert
+	 *    // window manually, e.g.:
 	 *
 	 *     var allowCloseWindow = mw.confirmCloseWindow();
 	 *     // ... do stuff that can't be interrupted ...
@@ -20,9 +24,9 @@
 	 *     } else {
 	 *         // do whatever you wanted to do
 	 *     }
-	 *
+	 * })
 	 * @method confirmCloseWindow
-	 * @member mw
+	 * @memberof mw
 	 * @param {Object} [options]
 	 * @param {string} [options.namespace] Optional jQuery event namespace, to allow loosely coupled
 	 *  external code to release your trigger. For example, the VisualEditor extension can use this

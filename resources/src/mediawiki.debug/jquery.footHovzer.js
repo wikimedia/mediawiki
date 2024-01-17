@@ -1,6 +1,5 @@
 /**
  * @private
- * @class jQuery.plugin.footHovzer
  */
 ( function () {
 	var $hovzer, footHovzer, $spacer;
@@ -21,6 +20,7 @@
 	 *     hovzer.$.append( $myCollection );
 	 *     hovzer.update();
 	 *
+	 * @private
 	 * @static
 	 * @inheritable
 	 * @return {jQuery.footHovzer}

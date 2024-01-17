@@ -1,5 +1,16 @@
 var pako = require( '../../lib/pako/pako_deflate.es5.js' );
 
+/**
+ * Convert a byte stream to base64 text.
+ * Before using load the mediawiki.deflate ResourceLoader module.
+ *
+ * @example
+ * return mw.loader.using( 'mediawiki.deflate' ).then( function () {
+ *    return mw.deflate( html );
+ * } );
+ * @param {string} data
+ * @return {string}
+ */
 mw.deflate = function ( data ) {
 	return 'rawdeflate,' + bytesToBase64( pako.deflateRaw( data, { level: 5 } ) );
 };
