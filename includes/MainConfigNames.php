@@ -3177,12 +3177,6 @@ class MainConfigNames {
 	public const CookieSameSite = 'CookieSameSite';
 
 	/**
-	 * Name constant for the UseSameSiteLegacyCookies setting, for use with Config::get()
-	 * @see MainConfigSchema::UseSameSiteLegacyCookies
-	 */
-	public const UseSameSiteLegacyCookies = 'UseSameSiteLegacyCookies';
-
-	/**
 	 * Name constant for the CacheVaryCookies setting, for use with Config::get()
 	 * @see MainConfigSchema::CacheVaryCookies
 	 */

@@ -3162,12 +3162,6 @@ $wgCookieHttpOnly = null;
 $wgCookieSameSite = null;
 
 /**
- * Config variable stub for the UseSameSiteLegacyCookies setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::UseSameSiteLegacyCookies
- */
-$wgUseSameSiteLegacyCookies = null;
-
-/**
  * Config variable stub for the CacheVaryCookies setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CacheVaryCookies
  */

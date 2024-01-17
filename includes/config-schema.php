@@ -1820,7 +1820,6 @@ return [
 			'CookiePrefix' => false,
 			'CookieHttpOnly' => true,
 			'CookieSameSite' => null,
-			'UseSameSiteLegacyCookies' => false,
 			'CacheVaryCookies' => [
 			],
 			'SessionName' => false,
@@ -2854,7 +2853,6 @@ return [
 				0 => 'string',
 				1 => 'null',
 			],
-			'UseSameSiteLegacyCookies' => 'boolean',
 			'CacheVaryCookies' => 'array',
 			'TrxProfilerLimits' => 'object',
 			'DebugLogGroups' => 'object',

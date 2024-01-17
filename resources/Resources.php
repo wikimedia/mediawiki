@@ -1217,7 +1217,6 @@ return [
 				'domain' => MainConfigNames::CookieDomain,
 				'path' => MainConfigNames::CookiePath,
 				'expires' => MainConfigNames::CookieExpiration,
-				'sameSiteLegacy' => MainConfigNames::UseSameSiteLegacyCookies,
 			] ],
 		],
 	],

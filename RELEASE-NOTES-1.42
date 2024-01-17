@@ -67,6 +67,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgUseMediaWikiUIEverywhere has been removed.
 * $wgOpenSearchTemplate, deprecated since 1.25, has been removed
   Use $wgOpenSearchTemplates['application/x-suggestions+json'] instead.
+* $wgUseSameSiteLegacyCookies has been removed.
 * …
 
 === New user-facing features in 1.42 ===
@@ -570,9 +571,9 @@ because of Phabricator reports.
 * Title::getCdnUrls(), deprecated in 1.35, now emits warnings.
 * The rarely-used convenience method Xml::wrapClass() is now deprecated. Instead
   you can use Xml::tags('span', ['class'=>'foo'], 'bar').
-* $wgUseSameSiteLegacyCookies has been deprecated and will be ignored.
-* WebRequest::getCrossSiteCookie() has been deprecated. It will emit deprecation
-  warnings. Use WebRequest::getCookie().
+* WebRequest::getCrossSiteCookie() has been deprecated due to the removal of
+  $wgUseSameSiteLegacyCookies. It will emit deprecation warnings. Use
+  WebRequest::getCookie().
 * Using the array_merge_recursive merge strategy in extension.json and skin.json
   has been hard deprecated
 * …
