@@ -3047,6 +3047,12 @@ class MainConfigNames {
 	public const GrantPermissionGroups = 'GrantPermissionGroups';
 
 	/**
+	 * Name constant for the GrantRiskGroups setting, for use with Config::get()
+	 * @see MainConfigSchema::GrantRiskGroups
+	 */
+	public const GrantRiskGroups = 'GrantRiskGroups';
+
+	/**
 	 * Name constant for the EnableBotPasswords setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableBotPasswords
 	 */

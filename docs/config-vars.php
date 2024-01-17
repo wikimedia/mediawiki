@@ -3032,6 +3032,12 @@ $wgGrantPermissions = null;
 $wgGrantPermissionGroups = null;
 
 /**
+ * Config variable stub for the GrantRiskGroups setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::GrantRiskGroups
+ */
+$wgGrantRiskGroups = null;
+
+/**
  * Config variable stub for the EnableBotPasswords setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableBotPasswords
  */

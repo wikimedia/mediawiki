@@ -5693,6 +5693,42 @@ config-schema:
             site administrators.
             @see self::GrantPermissions
             @since 1.27
+    GrantRiskGroups:
+        default:
+            basic: low
+            editpage: low
+            createeditmovepage: low
+            editprotected: vandalism
+            patrol: low
+            uploadfile: low
+            uploadeditmovefile: low
+            sendemail: security
+            viewmywatchlist: low
+            editviewmywatchlist: low
+            editmycssjs: security
+            editmyoptions: security
+            editinterface: vandalism
+            editsiteconfig: security
+            rollback: low
+            blockusers: vandalism
+            delete: vandalism
+            viewdeleted: vandalism
+            viewrestrictedlogs: security
+            protect: vandalism
+            oversight: security
+            createaccount: low
+            mergehistory: vandalism
+            import: security
+            highvolume: low
+            privateinfo: security
+        type: object
+        description: |-
+            Group grants by risk level. Keys are grant names (i.e. keys from GrantPermissions),
+            values are GrantsInfo::RISK_* constants.
+            Note that this classification is only informative; merely applying 'security' or 'internal'
+            to a grant won't prevent it from being available. It's used to give guidance to users
+            in various interfaces about the riskiness of the various grants.
+            @since 1.42
     EnableBotPasswords:
         default: true
         type: boolean

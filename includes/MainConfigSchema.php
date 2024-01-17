@@ -47,6 +47,7 @@ use LocalisationCache;
 use LocalRepo;
 use LogFormatter;
 use MediaWiki\Deferred\SiteStatsUpdate;
+use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Site\MediaWikiSite;
@@ -9061,7 +9062,7 @@ class MainConfigSchema {
 		'default' =>
 			[
 				// Hidden grants are implicitly present
-				'basic'            => 'hidden',
+				'basic'               => 'hidden',
 
 				'editpage'            => 'page-interaction',
 				'createeditmovepage'  => 'page-interaction',
@@ -9098,6 +9099,48 @@ class MainConfigSchema {
 			],
 		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'string', ],
+	];
+
+	/**
+	 * Group grants by risk level. Keys are grant names (i.e. keys from GrantPermissions),
+	 * values are GrantsInfo::RISK_* constants.
+	 *
+	 * Note that this classification is only informative; merely applying 'security' or 'internal'
+	 * to a grant won't prevent it from being available. It's used to give guidance to users
+	 * in various interfaces about the riskiness of the various grants.
+	 *
+	 * @since 1.42
+	 */
+	public const GrantRiskGroups = [
+		'default' => [
+			'basic'               => GrantsInfo::RISK_LOW,
+			'editpage'            => GrantsInfo::RISK_LOW,
+			'createeditmovepage'  => GrantsInfo::RISK_LOW,
+			'editprotected'       => GrantsInfo::RISK_VANDALISM,
+			'patrol'              => GrantsInfo::RISK_LOW,
+			'uploadfile'          => GrantsInfo::RISK_LOW,
+			'uploadeditmovefile'  => GrantsInfo::RISK_LOW,
+			'sendemail'           => GrantsInfo::RISK_SECURITY,
+			'viewmywatchlist'     => GrantsInfo::RISK_LOW,
+			'editviewmywatchlist' => GrantsInfo::RISK_LOW,
+			'editmycssjs'         => GrantsInfo::RISK_SECURITY,
+			'editmyoptions'       => GrantsInfo::RISK_SECURITY,
+			'editinterface'       => GrantsInfo::RISK_VANDALISM,
+			'editsiteconfig'      => GrantsInfo::RISK_SECURITY,
+			'rollback'            => GrantsInfo::RISK_LOW,
+			'blockusers'          => GrantsInfo::RISK_VANDALISM,
+			'delete'              => GrantsInfo::RISK_VANDALISM,
+			'viewdeleted'         => GrantsInfo::RISK_VANDALISM,
+			'viewrestrictedlogs'  => GrantsInfo::RISK_SECURITY,
+			'protect'             => GrantsInfo::RISK_VANDALISM,
+			'oversight'           => GrantsInfo::RISK_SECURITY,
+			'createaccount'       => GrantsInfo::RISK_LOW,
+			'mergehistory'        => GrantsInfo::RISK_VANDALISM,
+			'import'              => GrantsInfo::RISK_SECURITY,
+			'highvolume'          => GrantsInfo::RISK_LOW,
+			'privateinfo'         => GrantsInfo::RISK_SECURITY,
+		],
+		'type' => 'map',
 	];
 
 	/**
