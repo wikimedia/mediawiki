@@ -27,8 +27,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\User;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 // NOTE: MaintenanceParameters is needed in the constructor, and we may not have
 //       autoloading enabled at this point?
@@ -178,6 +180,7 @@ abstract class Maintenance {
 	 * @var array
 	 */
 	public $orderedOptions = [];
+	private ?IConnectionProvider $dbProvider = null;
 
 	/**
 	 * Default constructor. Children should call this *first* if implementing
@@ -716,6 +719,9 @@ abstract class Maintenance {
 		if ( $this->mDb !== null ) {
 			$child->setDB( $this->mDb );
 		}
+		if ( $this->dbProvider !== null ) {
+			$child->setDBProvider( $this->dbProvider );
+		}
 
 		return $child;
 	}
@@ -970,7 +976,7 @@ abstract class Maintenance {
 	 */
 	public function purgeRedundantText( $delete = true ) {
 		# Data should come off the master, wrapped in a transaction
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		# Get "active" text records via the content table
@@ -1034,6 +1040,8 @@ abstract class Maintenance {
 	 *
 	 * This function has the same parameters as LoadBalancer::getConnection().
 	 *
+	 * For simple cases, use ::getReplicaDB() or ::getPrimaryDB() instead.
+	 *
 	 * @stable to override
 	 *
 	 * @param int $db DB index (DB_REPLICA/DB_PRIMARY)
@@ -1060,6 +1068,37 @@ abstract class Maintenance {
 	 */
 	public function setDB( IMaintainableDatabase $db ) {
 		$this->mDb = $db;
+	}
+
+	/**
+	 * @return IReadableDatabase
+	 * @since 1.42
+	 */
+	protected function getReplicaDB(): IReadableDatabase {
+		if ( $this->dbProvider === null ) {
+			$this->dbProvider = $this->getServiceContainer()->getDBLoadBalancerFactory();
+		}
+		return $this->dbProvider->getReplicaDatabase();
+	}
+
+	/**
+	 * @return IDatabase
+	 * @since 1.42
+	 */
+	protected function getPrimaryDB(): IDatabase {
+		if ( $this->dbProvider === null ) {
+			$this->dbProvider = $this->getServiceContainer()->getDBLoadBalancerFactory();
+		}
+		return $this->dbProvider->getPrimaryDatabase();
+	}
+
+	/**
+	 * @internal
+	 * @param IConnectionProvider $dbProvider
+	 * @return void
+	 */
+	public function setDBProvider( IConnectionProvider $dbProvider ) {
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**

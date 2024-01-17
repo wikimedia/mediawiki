@@ -108,7 +108,7 @@ class CleanupSpam extends Maintenance {
 
 			$count = 0;
 			/** @var Database $dbr */
-			$dbr = $this->getDB( DB_REPLICA );
+			$dbr = $this->getReplicaDB();
 			foreach ( $protConds as $prot => $conds ) {
 				$res = $dbr->newSelectQueryBuilder()
 					->select( 'el_from' )
@@ -171,7 +171,7 @@ class CleanupSpam extends Maintenance {
 			// This happens e.g. when a link comes from a template rather than the page itself
 			$this->output( "False match\n" );
 		} else {
-			$dbw = $this->getDB( DB_PRIMARY );
+			$dbw = $this->getPrimaryDB();
 			$this->beginTransaction( $dbw, __METHOD__ );
 			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			if ( $rev ) {

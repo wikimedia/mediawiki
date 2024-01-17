@@ -53,7 +53,7 @@ class ShowSiteStats extends Maintenance {
 		];
 
 		// Get cached stats from a replica DB
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$stats = $dbr->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )

@@ -56,7 +56,7 @@ class FixDoubleRedirects extends Maintenance {
 			$title = null;
 		}
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		// See also SpecialDoubleRedirects
 		// TODO: support batch querying

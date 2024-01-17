@@ -43,8 +43,8 @@ class ResolveStubs extends Maintenance {
 	 * external pointers
 	 */
 	public function execute() {
-		$dbw = $this->getDB( DB_PRIMARY );
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbw = $this->getPrimaryDB();
+		$dbr = $this->getReplicaDB();
 		$maxID = $dbr->newSelectQueryBuilder()
 			->select( 'MAX(old_id)' )
 			->from( 'text' )
@@ -105,7 +105,7 @@ class ResolveStubs extends Maintenance {
 		$stub = unserialize( $row->old_text );
 		$flags = SqlBlobStore::explodeFlags( $row->old_flags );
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		if ( !( $stub instanceof HistoryBlobStub ) ) {
 			print "Error at old_id $id: found object of class " . get_class( $stub ) .

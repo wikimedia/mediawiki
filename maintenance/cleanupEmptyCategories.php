@@ -87,7 +87,7 @@ TEXT
 			return false;
 		}
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$throttle = intval( $throttle );
 

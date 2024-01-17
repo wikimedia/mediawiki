@@ -39,8 +39,8 @@ class InitUserPreference extends Maintenance {
 		$source = $this->getOption( 'source' );
 		$this->output( "Initializing '$target' based on the value of '$source'\n" );
 
-		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbr = $this->getReplicaDB();
+		$dbw = $this->getPrimaryDB();
 
 		$iterator = new BatchRowIterator(
 			$dbr,

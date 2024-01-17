@@ -45,10 +45,10 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 
 	public function doDBUpdates() {
 		$startTime = microtime( true );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$table = 'filearchive';
 
-		if ( !$dbw->fieldExists( $table, 'fa_sha1', __METHOD__ ) ) {
+		if ( !$this->getDB( DB_PRIMARY )->fieldExists( $table, 'fa_sha1', __METHOD__ ) ) {
 			$this->output( "fa_sha1 column does not exist\n\n", true );
 
 			return false;

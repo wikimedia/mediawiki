@@ -44,7 +44,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 	}
 
 	public function doDBUpdates() {
-		$db = $this->getDB( DB_PRIMARY );
+		$db = $this->getPrimaryDB();
 
 		$this->output( "Updating *_from_namespace fields in links tables.\n" );
 

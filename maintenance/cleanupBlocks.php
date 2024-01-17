@@ -42,7 +42,7 @@ class CleanupBlocks extends Maintenance {
 	}
 
 	public function execute() {
-		$db = $this->getDB( DB_PRIMARY );
+		$db = $this->getPrimaryDB();
 		$blockQuery = DatabaseBlock::getQueryInfo();
 
 		$max = $db->newSelectQueryBuilder()

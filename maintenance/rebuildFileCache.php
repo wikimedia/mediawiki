@@ -81,7 +81,7 @@ class RebuildFileCache extends Maintenance {
 
 		$this->output( "Building page file cache from page_id {$start}!\n" );
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$batchSize = $this->getBatchSize();
 		$overwrite = $this->hasOption( 'overwrite' );
 		$start = ( $start > 0 )
@@ -116,7 +116,7 @@ class RebuildFileCache extends Maintenance {
 		$blockStart = $start;
 		$blockEnd = $start + $batchSize - 1;
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages

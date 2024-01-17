@@ -71,7 +71,7 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 		$batchSize = $this->getBatchSize();
 		// BETWEEN is inclusive, let's subtract one.
 		$highId = $lowId + $batchSize - 1;
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$updated = 0;
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'el_id', 'el_to' ] )

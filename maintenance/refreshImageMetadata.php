@@ -121,7 +121,7 @@ class RefreshImageMetadata extends Maintenance {
 		$reserialize = $this->hasOption( 'convert-to-json' );
 		$oldimage = $this->hasOption( 'oldimage' );
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		if ( $oldimage ) {
 			$fieldPrefix = 'oi_';
 			$queryBuilderTemplate  = FileSelectQueryBuilder::newForOldFile( $dbw );

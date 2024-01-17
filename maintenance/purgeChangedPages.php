@@ -68,7 +68,7 @@ class PurgeChangedPages extends Maintenance {
 			}
 		}
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$minTime = $dbr->timestamp( $this->getOption( 'starttime' ) );
 		$maxTime = $dbr->timestamp( $this->getOption( 'endtime' ) );
 

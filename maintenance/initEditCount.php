@@ -38,7 +38,7 @@ class InitEditCount extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		// Autodetect mode...
 		if ( $this->hasOption( 'background' ) ) {
@@ -53,7 +53,7 @@ class InitEditCount extends Maintenance {
 		if ( $backgroundMode ) {
 			$this->output( "Using replication-friendly background mode...\n" );
 
-			$dbr = $this->getDB( DB_REPLICA );
+			$dbr = $this->getReplicaDB();
 			$chunkSize = 100;
 			$lastUser = $dbr->newSelectQueryBuilder()
 				->select( 'MAX(user_id)' )

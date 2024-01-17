@@ -46,7 +46,7 @@ class DumpLinks extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		$queryInfo = $linksMigration->getQueryInfo( 'pagelinks' );
 		$queryInfo['tables'] = array_diff( $queryInfo['tables'], [ 'pagelinks' ] );

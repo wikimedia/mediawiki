@@ -50,7 +50,7 @@ class WikiBirthday extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$revId = $dbr->newSelectQueryBuilder()
 			->table( 'revision' )

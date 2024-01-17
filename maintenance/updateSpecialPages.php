@@ -43,7 +43,7 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$config = $this->getConfig();
 		$specialPageFactory = $this->getServiceContainer()->getSpecialPageFactory();
 

@@ -39,7 +39,7 @@ class CheckBadRedirects extends Maintenance {
 
 	public function execute() {
 		$this->output( "Fetching redirects...\n" );
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$result = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title', 'page_latest' ] )
 			->from( 'page' )

@@ -31,7 +31,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	}
 
 	public function execute() {
-		$db = $this->getDB( DB_PRIMARY );
+		$db = $this->getPrimaryDB();
 		$key = $this->getUpdateKey();
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( '1' )

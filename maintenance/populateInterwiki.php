@@ -101,7 +101,7 @@ TEXT
 	 * @return bool
 	 */
 	protected function doPopulate( array $data, $force ) {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		if ( !$force ) {
 			$row = $dbw->newSelectQueryBuilder()

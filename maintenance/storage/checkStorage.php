@@ -64,7 +64,7 @@ class CheckStorage extends Maintenance {
 	];
 
 	public function check( $fix = false, $xml = '' ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		if ( $fix ) {
 			print "Checking, will fix errors if possible...\n";
 		} else {
@@ -160,7 +160,7 @@ class CheckStorage extends Maintenance {
 					// It's safe to just erase the old_flags field
 					if ( $fix ) {
 						$this->addError( 'fixed', "Warning: old_flags set to 0", $id );
-						$dbw = wfGetDB( DB_PRIMARY );
+						$dbw = $this->getPrimaryDB();
 						$dbw->ping();
 						$dbw->update( 'text', [ 'old_flags' => '' ],
 							[ 'old_id' => $id ], __METHOD__ );
@@ -497,8 +497,8 @@ class CheckStorage extends Maintenance {
 			return;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbr = $this->getReplicaDB();
+		$dbw = $this->getPrimaryDB();
 		$dbr->ping();
 		$dbw->ping();
 
@@ -548,7 +548,7 @@ class CheckStorage extends Maintenance {
 		}
 
 		// Find text row again
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'content_address' ] )
 			->from( 'slots' )
@@ -570,7 +570,7 @@ class CheckStorage extends Maintenance {
 		$flags = $blobStore->compressData( $text );
 
 		// Update the text row
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$dbw->update( 'text',
 			[ 'old_flags' => $flags, 'old_text' => $text ],
 			[ 'old_id' => $oldId ],

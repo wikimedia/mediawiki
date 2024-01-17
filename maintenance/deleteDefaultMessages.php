@@ -47,7 +47,7 @@ class DeleteDefaultMessages extends Maintenance {
 		$services = $this->getServiceContainer();
 
 		$this->output( "Checking existence of old default messages..." );
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$userFactory = $services->getUserFactory();
 		$actorQuery = ActorMigration::newMigration()
@@ -92,7 +92,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		// Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$wikiPageFactory = $services->getWikiPageFactory();
 		$delPageFactory = $services->getDeletePageFactory();

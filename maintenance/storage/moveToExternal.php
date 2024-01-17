@@ -80,7 +80,7 @@ class MoveToExternal extends Maintenance {
 		$this->resolveStubs = new ResolveStubs;
 		$this->esType = $this->getArg( 0 ); // e.g. "DB" or "mwstore"
 		$this->esLocation = $this->getArg( 1 ); // e.g. "cluster12" or "global-swift"
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$maxID = $this->getOption( 'end' );
 		if ( $maxID === null ) {
@@ -129,7 +129,7 @@ class MoveToExternal extends Maintenance {
 
 	private function doMoveToExternal() {
 		$success = true;
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$count = $this->maxID - $this->minID + 1;
 		$blockSize = $this->getBatchSize();
@@ -295,7 +295,7 @@ class MoveToExternal extends Maintenance {
 				"because the main blobs have not been moved to external storage.\n";
 		}
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->output( "Resolving " . count( $stubIDs ) . " stubs\n" );
 		$numResolved = 0;

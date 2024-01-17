@@ -36,7 +36,7 @@ class ClearInterwikiCache extends Maintenance {
 	public function execute() {
 		$lookup = $this->getServiceContainer()->getInterwikiLookup();
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$prefixes = $dbr->newSelectQueryBuilder()
 			->select( 'iw_prefix' )
 			->from( 'interwiki' )

@@ -39,7 +39,7 @@ class FixInconsistentRedirects extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$builder = $dbr->newSelectQueryBuilder()
 			->from( 'page' )

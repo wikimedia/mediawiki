@@ -97,7 +97,7 @@ class GrepPages extends Maintenance {
 	}
 
 	public function findPages( $prefixes = null ) {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$orConds = [];
 		if ( $prefixes !== null ) {
 			foreach ( $prefixes as $prefix ) {

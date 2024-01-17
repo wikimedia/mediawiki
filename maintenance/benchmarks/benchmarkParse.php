@@ -136,7 +136,7 @@ class BenchmarkParse extends Maintenance {
 	 * @return bool|string Revision ID, or false if not found or error
 	 */
 	private function getRevIdForTime( Title $title, $timestamp ) {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$id = $dbr->newSelectQueryBuilder()
 			->select( 'rev_id' )

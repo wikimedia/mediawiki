@@ -23,7 +23,6 @@
 
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LikeValue;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -108,10 +107,10 @@ ERROR
 	/**
 	 * Get the primary DB handle for the current user batch. This is provided for the benefit
 	 * of authentication extensions which subclass this and work with wiki farms.
-	 * @return IMaintainableDatabase
+	 * @return IDatabase
 	 */
 	protected function getUserDB() {
-		return $this->getDB( DB_PRIMARY );
+		return $this->getPrimaryDB();
 	}
 
 	protected function processUsers( array $userBatch, IDatabase $dbw ) {
@@ -167,7 +166,7 @@ ERROR
 		}
 
 		$lastUsername = '';
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		do {
 			$this->output( "\t ... querying from '$lastUsername'\n" );
 			$users = $dbw->newSelectQueryBuilder()

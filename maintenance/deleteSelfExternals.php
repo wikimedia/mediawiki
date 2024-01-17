@@ -49,7 +49,7 @@ class DeleteSelfExternals extends Maintenance {
 		}
 
 		$this->output( "Deleting self externals from $server\n" );
-		$db = $this->getDB( DB_PRIMARY );
+		$db = $this->getPrimaryDB();
 
 		// If it's protocol-relative, we need to do both http and https.
 		// Otherwise, just do the specified scheme.

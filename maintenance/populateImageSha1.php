@@ -70,7 +70,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$isRegen = ( $force || $file != '' ); // forced recalculation?
 
 		$t = -microtime( true );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		if ( $file != '' ) {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'img_name' ] )

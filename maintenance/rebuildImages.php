@@ -77,7 +77,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	public function execute() {
-		$this->dbw = $this->getDB( DB_PRIMARY );
+		$this->dbw = $this->getPrimaryDB();
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
 			$this->getServiceContainer()->getReadOnlyMode()
@@ -158,7 +158,7 @@ class ImageBuilder extends Maintenance {
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
 
-		$result = $this->getDB( DB_REPLICA )->select(
+		$result = $this->getReplicaDB()->select(
 			$queryInfo['tables'], $queryInfo['fields'], [], __METHOD__, [], $queryInfo['joins']
 		);
 
