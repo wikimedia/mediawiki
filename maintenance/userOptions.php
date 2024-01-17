@@ -26,6 +26,7 @@
 
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -175,6 +176,7 @@ WARN
 		}
 
 		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+		$tempUserConfig = $this->getServiceContainer()->getTempUserConfig();
 		$dbr = $this->getDB( DB_REPLICA );
 		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
 		$queryBuilderTemplate
@@ -193,6 +195,16 @@ WARN
 			->caller( __METHOD__ );
 		if ( $toUserId ) {
 			$queryBuilderTemplate->andWhere( "user_id <= $toUserId " );
+		}
+
+		if ( $tempUserConfig->isEnabled() ) {
+			$queryBuilderTemplate->andWhere(
+				$dbr->expr(
+					'user_name',
+					IExpression::NOT_LIKE,
+					$tempUserConfig->getMatchPattern()->toLikeValue( $dbr )
+				)
+			);
 		}
 
 		do {
