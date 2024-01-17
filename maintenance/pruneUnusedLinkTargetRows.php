@@ -48,8 +48,8 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 				->select( [ 'lt_id' ] )
 				->from( 'linktarget' );
 			$queryBuilder->where( [
-				'lt_id < ' . $dbr->addQuotes( $batchMaxLtId ),
-				'lt_id > ' . $dbr->addQuotes( $ltCounter )
+				$dbr->expr( 'lt_id', '<', $batchMaxLtId ),
+				$dbr->expr( 'lt_id', '>', $ltCounter )
 			] );
 			foreach ( $linksMigration::$mapping as $table => $tableData ) {
 				$queryBuilder->leftJoin( $table, null, $tableData['target_id'] . '=lt_id' );

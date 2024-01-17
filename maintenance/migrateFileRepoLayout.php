@@ -67,7 +67,7 @@ class MigrateFileRepoLayout extends Maintenance {
 		// Do current and archived versions...
 		$conds = [];
 		if ( $since ) {
-			$conds[] = 'img_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $since ) );
+			$conds[] = $dbw->expr( 'img_timestamp', '>=', $dbw->timestamp( $since ) );
 		}
 
 		$batchSize = $this->getBatchSize();
@@ -77,7 +77,7 @@ class MigrateFileRepoLayout extends Maintenance {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'img_name', 'img_sha1' ] )
 				->from( 'image' )
-				->where( 'img_name > ' . $dbw->addQuotes( $lastName ) )
+				->where( $dbw->expr( 'img_name', '>', $lastName ) )
 				->andWhere( $conds )
 				->orderBy( 'img_name' )
 				->limit( $batchSize )
@@ -161,7 +161,7 @@ class MigrateFileRepoLayout extends Maintenance {
 		// Do deleted versions...
 		$conds = [];
 		if ( $since ) {
-			$conds[] = 'fa_deleted_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $since ) );
+			$conds[] = $dbw->expr( 'fa_deleted_timestamp', '>=', $dbw->timestamp( $since ) );
 		}
 
 		$batch = [];
@@ -170,7 +170,7 @@ class MigrateFileRepoLayout extends Maintenance {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'fa_storage_key', 'fa_id', 'fa_name' ] )
 				->from( 'filearchive' )
-				->where( 'fa_id > ' . $dbw->addQuotes( $lastId ) )
+				->where( $dbw->expr( 'fa_id', '>', $lastId ) )
 				->andWhere( $conds )
 				->orderBy( 'fa_id' )
 				->limit( $batchSize )

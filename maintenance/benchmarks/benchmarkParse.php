@@ -143,7 +143,7 @@ class BenchmarkParse extends Maintenance {
 			->from( 'revision' )
 			->join( 'page', null, 'rev_page=page_id' )
 			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey() ] )
-			->andWhere( 'rev_timestamp <= ' . $dbr->addQuotes( $timestamp ) )
+			->andWhere( $dbr->expr( 'rev_timestamp', '<=', $timestamp ) )
 			->orderBy( 'rev_timestamp', SelectQueryBuilder::SORT_DESC )
 			->caller( __METHOD__ )->fetchField();
 

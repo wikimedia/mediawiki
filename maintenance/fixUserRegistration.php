@@ -47,7 +47,7 @@ class FixUserRegistration extends Maintenance {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( 'user_id' )
 				->from( 'user' )
-				->where( [ 'user_id > ' . $dbw->addQuotes( $lastId ), 'user_registration' => null ] )
+				->where( [ $dbw->expr( 'user_id', '>', $lastId ), 'user_registration' => null ] )
 				->orderBy( 'user_id' )
 				->limit( $this->getBatchSize() )
 				->caller( __METHOD__ )->fetchResultSet();

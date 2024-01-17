@@ -57,7 +57,7 @@ class CleanupUploadStash extends Maintenance {
 		$res = $dbr->newSelectQueryBuilder()
 			->select( 'us_key' )
 			->from( 'uploadstash' )
-			->where( 'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $cutoff ) ) )
+			->where( $dbr->expr( 'us_timestamp', '<', $dbr->timestamp( $cutoff ) ) )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 

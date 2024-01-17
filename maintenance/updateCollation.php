@@ -172,7 +172,7 @@ TEXT
 				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
 			} else {
 				$collationConds = [
-					0 => 'cl_collation != ' . $this->dbr->addQuotes( $this->collationName )
+					0 => $this->dbr->expr( 'cl_collation', '!=', $this->collationName )
 				];
 			}
 

@@ -45,7 +45,7 @@ class FindMissingFiles extends Maintenance {
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'name' => 'img_name' ] )
 			->from( 'image' )
-			->where( [ "img_name > " . $dbr->addQuotes( $lastName ) ] )
+			->where( $dbr->expr( 'img_name', '>', $lastName ) )
 			->groupBy( 'name' )
 			->orderBy( 'name' )
 			->limit( $batchSize );
@@ -57,10 +57,10 @@ class FindMissingFiles extends Maintenance {
 			$queryBuilder->join( 'logging', null, 'log_page = page_id' );
 			$queryBuilder->andWhere( [ 'log_type' => [ 'upload', 'move', 'delete' ] ] );
 			if ( $mtime1 ) {
-				$queryBuilder->andWhere( "log_timestamp > {$dbr->addQuotes($mtime1)}" );
+				$queryBuilder->andWhere( $dbr->expr( 'log_timestamp', '>', $mtime1 ) );
 			}
 			if ( $mtime2 ) {
-				$queryBuilder->andWhere( "log_timestamp < {$dbr->addQuotes($mtime2)}" );
+				$queryBuilder->andWhere( $dbr->expr( 'log_timestamp', '<', $mtime2 ) );
 			}
 		}
 

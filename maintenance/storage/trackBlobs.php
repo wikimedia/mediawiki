@@ -172,7 +172,7 @@ class TrackBlobs extends Maintenance {
 				->join( 'slots', null, 'rev_id=slot_revision_id' )
 				->join( 'content', null, 'content_id=slot_content_id' )
 				->join( 'text', null, 'SUBSTRING(content_address, 4)=old_id' )
-				->where( [ 'rev_id > ' . $dbr->addQuotes( $startId ) ] )
+				->where( $dbr->expr( 'rev_id', '>', $startId ) )
 				->andWhere( $conds )
 				->orderBy( 'rev_id' )
 				->limit( $this->batchSize )
@@ -358,7 +358,7 @@ class TrackBlobs extends Maintenance {
 				$res = $extDB->newSelectQueryBuilder()
 					->select( [ 'blob_id' ] )
 					->from( $table )
-					->where( [ 'blob_id > ' . $extDB->addQuotes( $startId ) ] )
+					->where( $extDB->expr( 'blob_id', '>', $startId ) )
 					->orderBy( 'blob_id' )
 					->limit( $this->batchSize )
 					->caller( __METHOD__ )->fetchResultSet();

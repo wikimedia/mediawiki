@@ -66,7 +66,7 @@ class TestCompression extends Maintenance {
 			->where( [
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
-				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $start ) ),
+				$dbr->expr( 'rev_timestamp', '>', $dbr->timestamp( $start ) ),
 			] )
 			->limit( $limit )
 			->caller( __FILE__ )->fetchResultSet();

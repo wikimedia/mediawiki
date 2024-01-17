@@ -386,8 +386,8 @@ SPARQL;
 	 */
 	private function addTimestampConditions( BatchRowIterator $it, IReadableDatabase $dbr ) {
 		$it->addConditions( [
-			'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $this->startTS ) ),
-			'rc_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $this->endTS ) ),
+			$dbr->expr( 'rc_timestamp', '>=', $dbr->timestamp( $this->startTS ) ),
+			$dbr->expr( 'rc_timestamp', '<', $dbr->timestamp( $this->endTS ) ),
 		] );
 	}
 

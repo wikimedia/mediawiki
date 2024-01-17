@@ -93,7 +93,7 @@ TEXT
 
 		if ( $mode === 'add' || $mode === 'both' ) {
 			if ( $begin !== '' ) {
-				$where = [ 'page_title > ' . $dbw->addQuotes( $begin ) ];
+				$where = [ $dbw->expr( 'page_title', '>', $begin ) ];
 			} else {
 				$where = [];
 			}
@@ -116,7 +116,7 @@ TEXT
 
 				foreach ( $rows as $row ) {
 					$name = $row->page_title;
-					$where = [ 'page_title > ' . $dbw->addQuotes( $name ) ];
+					$where = [ $dbw->expr( 'page_title', '>', $name ) ];
 
 					# Use the row to update the category count
 					$cat = Category::newFromName( $name );
@@ -138,7 +138,7 @@ TEXT
 
 		if ( $mode === 'remove' || $mode === 'both' ) {
 			if ( $begin !== '' ) {
-				$where = [ 'cat_title > ' . $dbw->addQuotes( $begin ) ];
+				$where = [ $dbw->expr( 'cat_title', '>', $begin ) ];
 			} else {
 				$where = [];
 			}
@@ -160,7 +160,7 @@ TEXT
 				}
 				foreach ( $rows as $row ) {
 					$name = $row->cat_title;
-					$where = [ 'cat_title > ' . $dbw->addQuotes( $name ) ];
+					$where = [ $dbw->expr( 'cat_title', '>', $name ) ];
 
 					# Use the row to update the category count
 					$cat = Category::newFromName( $name );
