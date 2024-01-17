@@ -68,7 +68,9 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	 * @param mixed|null $defaultOverride A default value returned if the option does not exist
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
 	 * @param int $queryFlags A bit field composed of READ_XXX flags
-	 * @return mixed|null User's current value for the option
+	 * @return mixed|null User's current value for the option,
+	 *   Note that while option values retrieved from the database are always strings, default
+	 *   values and values set within the current request and not yet saved may be of another type.
 	 * @see getBoolOption()
 	 * @see getIntOption()
 	 */

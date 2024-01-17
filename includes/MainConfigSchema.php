@@ -7513,6 +7513,15 @@ class MainConfigSchema {
 	 *
 	 * For instance, to disable editing on double clicks:
 	 * $wgDefaultUserOptions ['editondblclick'] = 0;
+	 *
+	 * To save storage space, no user_properties row will be stored for users with the
+	 * default setting for a given option, even if the user manually selects that option.
+	 * This means that a change to the defaults will change the setting for all users who
+	 * have been using the default setting; there is no way for users to opt out of this.
+	 * $wgConditionalUserOptions can be used to change the default value for future users
+	 * only.
+	 *
+	 * @see self::ConditionalUserOptions
 	 */
 	public const DefaultUserOptions = [
 		'default' =>
@@ -7614,6 +7623,7 @@ class MainConfigSchema {
 	 *   * CUDCOND_AFTER: user registered after given timestamp (args: string $timestamp)
 	 *
 	 * @since 1.42
+	 * @see self::DefaultUserOptions
 	 */
 	public const ConditionalUserOptions = [
 		'default' => [],
