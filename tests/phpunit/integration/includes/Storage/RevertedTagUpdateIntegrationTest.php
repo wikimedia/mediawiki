@@ -349,7 +349,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @param array $revisionIds
 	 */
 	private function verifyNoRevertedTags( array $revisionIds ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		foreach ( $revisionIds as $revisionId ) {
 			$this->assertNotContains(
 				'mw-reverted',
@@ -369,7 +369,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		array $revisionIds,
 		int $revertRevId
 	) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		// for each reverted revision
 		foreach ( $revisionIds as $revisionId ) {
 			$this->assertContains(

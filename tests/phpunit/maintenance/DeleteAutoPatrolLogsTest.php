@@ -26,7 +26,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 	}
 
 	private function insertLoggingData() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$logs = [];
 
 		$comment = \MediaWiki\MediaWikiServices::getInstance()->getCommentStore()

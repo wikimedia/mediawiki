@@ -235,7 +235,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		$processedProperty->setValue( $dumpScript, $preProcessed );
 
 		$output = fopen( "php://memory", "w+b" );
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDb();
 		/** @var CategoryChangesAsRdf $dumpScript */
 		$dumpScript->initialize();
 		$dumpScript->getRdf();
@@ -287,7 +287,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 			'type' => 'categoryMembershipChange'
 		] );
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDb();
 		$categoryChangesAsRdf = new CategoryChangesAsRdf();
 
 		$ref = new ReflectionObject( $categoryChangesAsRdf );
