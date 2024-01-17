@@ -98,4 +98,30 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		}
 		$this->assertEquals( $expected[ 'styles' ], $styleFilenames, 'Correct styleFiles added for ' . $testCase );
 	}
+
+	public function testMissingCodexComponentsDefinition() {
+		$moduleDefinition = [
+			'codexComponents' => [ 'CdxButton', 'CdxMessage' ]
+		];
+
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_MODULE_DIR = 'tests/phpunit/data/resourceloader/codexModules/';
+		};
+
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
+
+		$packageFiles = $testModule->getPackageFiles( $context );
+
+		$codexPackageFileContent = $packageFiles[ 'files' ][ 'codex.js' ][ 'content' ];
+		$expectedProxiedExports = '{"CdxButton":require( "./_codex/CdxButton.js" ),'
+			. '"CdxMessage":require( "./_codex/CdxMessage.js" )}';
+
+		// Components defined in the 'codexComponents' array should be proxied in the codex.js
+		// package file so that missing components will throw a custom error when required.
+		// By asserting what components are proxied, we are indirectly asserting that missing
+		// components would throw an error when required.
+		$this->assertStringContainsString( $expectedProxiedExports, $codexPackageFileContent );
+	}
 }
