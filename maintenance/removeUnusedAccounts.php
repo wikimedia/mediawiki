@@ -213,7 +213,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		$count += (int)$dbo->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
 			->from( 'logging' )
-			->where( [ 'log_actor' => $actor, 'log_type != ' . $dbo->addQuotes( 'newusers' ) ] )
+			->where( [ 'log_actor' => $actor, $dbo->expr( 'log_type', '!=', 'newusers' ) ] )
 			->caller( __METHOD__ )->fetchField();
 
 		$this->commitTransaction( $dbo, __METHOD__ );

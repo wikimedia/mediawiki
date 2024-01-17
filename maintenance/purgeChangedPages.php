@@ -87,8 +87,8 @@ class PurgeChangedPages extends Maintenance {
 				->from( 'revision' )
 				->join( 'page', null, 'rev_page=page_id' )
 				->where( [
-					"rev_timestamp > " . $dbr->addQuotes( $minTime ),
-					"rev_timestamp <= " . $dbr->addQuotes( $maxTime ),
+					$dbr->expr( 'rev_timestamp', '>', $minTime ),
+					$dbr->expr( 'rev_timestamp', '<=', $maxTime ),
 				] )
 				// Only get rows where the revision is the latest for the page.
 				// Other revisions would be duplicate and we don't need to purge if

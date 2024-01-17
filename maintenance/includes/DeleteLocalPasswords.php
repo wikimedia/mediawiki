@@ -131,7 +131,7 @@ ERROR
 						'user_password' ] ) ] )
 				->where( [
 					'NOT (user_password ' . $dbw->buildLike( ':null:', $dbw->anyString() ) . ')',
-					"user_password != " . $dbw->addQuotes( PasswordFactory::newInvalidPassword()->toString() ),
+					$dbw->expr( 'user_password', '!=', PasswordFactory::newInvalidPassword()->toString() ),
 					'user_password IS NOT NULL',
 					'user_name' => $userBatch,
 				] )
@@ -173,7 +173,7 @@ ERROR
 			$users = $dbw->newSelectQueryBuilder()
 				->select( 'user_name' )
 				->from( 'user' )
-				->where( [ 'user_name > ' . $dbw->addQuotes( $lastUsername ) ] )
+				->where( $dbw->expr( 'user_name', '>', $lastUsername ) )
 				->orderBy( 'user_name ASC' )
 				->limit( $this->getBatchSize() )
 				->caller( __METHOD__ )->fetchFieldValues();

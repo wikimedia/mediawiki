@@ -49,7 +49,7 @@ class CheckImages extends Maintenance {
 		do {
 			$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
 
-			$res = $queryBuilder->where( 'img_name > ' . $dbr->addQuotes( $start ) )
+			$res = $queryBuilder->where( $dbr->expr( 'img_name', '>', $start ) )
 				->limit( $this->getBatchSize() )
 				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {

@@ -105,8 +105,8 @@ class RebuildRecentchanges extends Maintenance {
 		$rcids = $dbw->newSelectQueryBuilder()
 			->select( 'rc_id' )
 			->from( 'recentchanges' )
-			->where( [ 'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ) ] )
-			->andWhere( [ 'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ) ] )
+			->where( $dbw->expr( 'rc_timestamp', '>', $dbw->timestamp( $this->cutoffFrom ) ) )
+			->andWhere( $dbw->expr( 'rc_timestamp', '<', $dbw->timestamp( $this->cutoffTo ) ) )
 			->caller( __METHOD__ )->fetchFieldValues();
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->newDeleteQueryBuilder()
@@ -143,8 +143,8 @@ class RebuildRecentchanges extends Maintenance {
 			->join( 'actor', 'actor_rev_user', 'actor_rev_user.actor_id = rev_actor' )
 			->where(
 				[
-					'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-					'rev_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
+					$dbw->expr( 'rev_timestamp', '>', $dbw->timestamp( $this->cutoffFrom ) ),
+					$dbw->expr( 'rev_timestamp', '<', $dbw->timestamp( $this->cutoffTo ) )
 				]
 			)
 			->orderBy( 'rev_timestamp', SelectQueryBuilder::SORT_DESC )
@@ -199,8 +199,8 @@ class RebuildRecentchanges extends Maintenance {
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'rc_cur_id', 'rc_this_oldid', 'rc_timestamp' ] )
 			->from( 'recentchanges' )
-			->where( [ "rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ) ] )
-			->andWhere( [ "rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ) ] )
+			->where( $dbw->expr( 'rc_timestamp', '>', $dbw->timestamp( $this->cutoffFrom ) ) )
+			->andWhere( $dbw->expr( 'rc_timestamp', '<', $dbw->timestamp( $this->cutoffTo ) ) )
 			->orderBy( [ 'rc_cur_id', 'rc_timestamp' ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
@@ -219,7 +219,7 @@ class RebuildRecentchanges extends Maintenance {
 				$revRow = $dbw->newSelectQueryBuilder()
 					->select( [ 'rev_id', 'rev_len' ] )
 					->from( 'revision' )
-					->where( [ 'rev_page' => $lastCurId, "rev_timestamp < " . $dbw->addQuotes( $emit ) ] )
+					->where( [ 'rev_page' => $lastCurId, $dbw->expr( 'rev_timestamp', '<', $emit ) ] )
 					->orderBy( 'rev_timestamp DESC' )
 					->caller( __METHOD__ )->fetchRow();
 				if ( $revRow ) {
@@ -310,8 +310,8 @@ class RebuildRecentchanges extends Maintenance {
 			->join( 'comment', 'comment_log_comment', 'comment_log_comment.comment_id = log_comment_id' )
 			->where(
 				[
-					'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-					'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+					$dbw->expr( 'log_timestamp', '>', $dbw->timestamp( $this->cutoffFrom ) ),
+					$dbw->expr( 'log_timestamp', '<', $dbw->timestamp( $this->cutoffTo ) ),
 					// Some logs don't go in RC since they are private, or are included in the filterable log types.
 					'log_type' => array_diff( LogPage::validTypes(), $nonRCLogs ),
 				]
@@ -383,8 +383,8 @@ class RebuildRecentchanges extends Maintenance {
 			->join( 'user_groups', null, 'ug_user=actor_user' )
 			->where( $conds )
 			->andWhere( [
-				"rc_timestamp > " . $db->addQuotes( $db->timestamp( $this->cutoffFrom ) ),
-				"rc_timestamp < " . $db->addQuotes( $db->timestamp( $this->cutoffTo ) ),
+				$db->expr( 'rc_timestamp', '>', $db->timestamp( $this->cutoffFrom ) ),
+				$db->expr( 'rc_timestamp', '<', $db->timestamp( $this->cutoffTo ) ),
 				'ug_group' => $groups
 			] )
 			->caller( __METHOD__ )->fetchFieldValues();
@@ -432,10 +432,10 @@ class RebuildRecentchanges extends Maintenance {
 			if ( !$wgUseRCPatrol ) {
 				$subConds = [];
 				if ( $wgUseNPPatrol ) {
-					$subConds[] = 'rc_source = ' . $dbw->addQuotes( RecentChange::SRC_NEW );
+					$subConds[] = $dbw->expr( 'rc_source', '=', RecentChange::SRC_NEW );
 				}
 				if ( $wgUseFilePatrol ) {
-					$subConds[] = 'rc_log_type = ' . $dbw->addQuotes( 'upload' );
+					$subConds[] = $dbw->expr( 'rc_log_type', '=', 'upload' );
 				}
 				$conds[] = $dbw->makeList( $subConds, IDatabase::LIST_OR );
 			}
@@ -467,9 +467,9 @@ class RebuildRecentchanges extends Maintenance {
 			->join( 'log_search', null, 'ls_log_id = log_id' )
 			->where( [
 				'ls_field' => 'associated_rev_id',
-				'log_type != ' . $dbw->addQuotes( 'create' ),
-				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+				$dbw->expr( 'log_type', '!=', 'create' ),
+				$dbw->expr( 'log_timestamp', '>', $dbw->timestamp( $this->cutoffFrom ) ),
+				$dbw->expr( 'log_timestamp', '<', $dbw->timestamp( $this->cutoffTo ) ),
 			] )
 			->caller( __METHOD__ )->fetchResultSet();
 

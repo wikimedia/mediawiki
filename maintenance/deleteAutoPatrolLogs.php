@@ -106,11 +106,11 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		];
 
 		if ( $fromId ) {
-			$conds[] = 'log_id > ' . $dbr->addQuotes( $fromId );
+			$conds[] = $dbr->expr( 'log_id', '>', $fromId );
 		}
 
 		if ( $before ) {
-			$conds[] = 'log_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $before ) );
+			$conds[] = $dbr->expr( 'log_timestamp', '<', $dbr->timestamp( $before ) );
 		}
 
 		return $dbr->newSelectQueryBuilder()
@@ -135,11 +135,11 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		];
 
 		if ( $fromId ) {
-			$conds[] = 'log_id > ' . $dbr->addQuotes( $fromId );
+			$conds[] = $dbr->expr( 'log_id', '>', $fromId );
 		}
 
 		if ( $before ) {
-			$conds[] = 'log_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $before ) );
+			$conds[] = $dbr->expr( 'log_timestamp', '<', $dbr->timestamp( $before ) );
 		}
 
 		$result = $dbr->newSelectQueryBuilder()

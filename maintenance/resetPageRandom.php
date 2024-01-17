@@ -82,7 +82,7 @@ class ResetPageRandom extends Maintenance {
 			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->select( 'page_id' )
 				->from( 'page' )
-				->where( [ 'page_id > ' . $dbr->addQuotes( $batchStart ) ] )
+				->where( $dbr->expr( 'page_id', '>', $batchStart ) )
 				->limit( $batchSize )
 				->orderBy( 'page_id' );
 			$subquery = $queryBuilder->newSubquery()

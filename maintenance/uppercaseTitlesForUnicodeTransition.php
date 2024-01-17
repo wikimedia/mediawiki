@@ -703,7 +703,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 					$newName = $this->charmap[$char] . mb_substr( $row->user_name, 1 );
 					fprintf( $fh, "%s\t%s\t%s\n", WikiMap::getCurrentWikiId(), $row->user_id, $newName );
 					$count++;
-					$cont = [ 'user_name > ' . $db->addQuotes( $row->user_name ) ];
+					$cont = [ $db->expr( 'user_name', '>', $row->user_name ) ];
 				}
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 				$this->output( "... at $row->user_name, $count names so far\n" );

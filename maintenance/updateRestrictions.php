@@ -72,8 +72,8 @@ class UpdateRestrictions extends Maintenance {
 				->from( 'page' )
 				->where( [
 					"page_restrictions != $escapedEmptyBlobValue",
-					'page_id > ' . $dbw->addQuotes( $batchMinPageId ),
-					'page_id <= ' . $dbw->addQuotes( $batchMaxPageId ),
+					$dbw->expr( 'page_id', '>', $batchMinPageId ),
+					$dbw->expr( 'page_id', '<=', $batchMaxPageId ),
 				] )
 				->caller( __METHOD__ )->fetchResultSet();
 

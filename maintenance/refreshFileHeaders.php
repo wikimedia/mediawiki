@@ -69,9 +69,9 @@ class RefreshFileHeaders extends Maintenance {
 		do {
 			$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
 
-			$queryBuilder->where( [ 'img_name > ' . $dbr->addQuotes( $start ) ] );
+			$queryBuilder->where( $dbr->expr( 'img_name', '>', $start ) );
 			if ( strlen( $end ) ) {
-				$queryBuilder->andWhere( 'img_name <= ' . $dbr->addQuotes( $end ) );
+				$queryBuilder->andWhere( $dbr->expr( 'img_name', '<=', $end ) );
 			}
 
 			if ( strlen( $media_type ) ) {

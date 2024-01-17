@@ -42,6 +42,8 @@
  */
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -277,9 +279,15 @@ class CompressOld extends Maintenance {
 			->join( 'content', null, 'content_id=slot_content_id' )
 			->join( 'text', null, 'SUBSTRING(content_address, 4)=old_id' )
 			->where(
-				'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'object', $dbr->anyString() )
-				. ' AND old_flags NOT '
-				. $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() )
+				$dbr->expr(
+					'old_flags',
+					IExpression::NOT_LIKE,
+					new LikeValue( $dbr->anyString(), 'object', $dbr->anyString() )
+				)->and(
+					'old_flags',
+					IExpression::NOT_LIKE,
+					new LikeValue( $dbr->anyString(), 'external', $dbr->anyString() )
+				)
 			)
 			->andWhere( [
 				'slot_role_id' => $slotRoleStore->getId( SlotRecord::MAIN ),

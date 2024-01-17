@@ -350,7 +350,7 @@ class RecompressTracked {
 				->select( [ 'bt_page' ] )
 				->distinct()
 				->from( 'blob_tracking' )
-				->where( [ 'bt_moved' => 0, 'bt_page > ' . $dbr->addQuotes( $startId ) ] )
+				->where( [ 'bt_moved' => 0, $dbr->expr( 'bt_page', '>', $startId ) ] )
 				->orderBy( 'bt_page' )
 				->limit( $this->batchSize )
 				->caller( __METHOD__ )->fetchResultSet();
@@ -417,7 +417,7 @@ class RecompressTracked {
 				->select( [ 'bt_text_id' ] )
 				->distinct()
 				->from( 'blob_tracking' )
-				->where( [ 'bt_moved' => 0, 'bt_page' => 0, 'bt_text_id > ' . $dbr->addQuotes( $startId ) ] )
+				->where( [ 'bt_moved' => 0, 'bt_page' => 0, $dbr->expr( 'bt_text_id', '>', $startId ) ] )
 				->orderBy( 'bt_text_id' )
 				->limit( $this->batchSize )
 				->caller( __METHOD__ )->fetchResultSet();
@@ -511,7 +511,7 @@ class RecompressTracked {
 				->join( 'text', null, 'bt_text_id=old_id' )
 				->where( [
 					'bt_page' => $pageId,
-					'bt_text_id > ' . $dbr->addQuotes( $startId ),
+					$dbr->expr( 'bt_text_id', '>', $startId ),
 					'bt_moved' => 0,
 					'bt_new_url' => null,
 				] )
@@ -613,7 +613,7 @@ class RecompressTracked {
 				->select( '*' )
 				->from( 'blob_tracking' )
 				->where( $conds )
-				->andWhere( [ 'bt_text_id > ' . $dbr->addQuotes( $startId ) ] )
+				->andWhere( $dbr->expr( 'bt_text_id', '>', $startId ) )
 				->orderBy( 'bt_text_id' )
 				->limit( $this->batchSize )
 				->caller( __METHOD__ )->fetchResultSet();
