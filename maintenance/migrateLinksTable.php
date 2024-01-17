@@ -116,13 +116,16 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			$this->output( "Starting backfill of $ns:$titleString " .
 				"title on pages between $lowPageId and $highPageId\n" );
 			$id = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId( $title, $dbw );
-			$conds = [
-				$targetColumn => [ null, 0 ],
-				$mapping[$table]['ns'] => $ns,
-				$mapping[$table]['title'] => $titleString,
-				"$pageIdColumn BETWEEN $lowPageId AND $highPageId"
-			];
-			$dbw->update( $table, [ $targetColumn => $id ], $conds, __METHOD__ );
+			$dbw->newUpdateQueryBuilder()
+				->update( $table )
+				->set( [ $targetColumn => $id ] )
+				->where( [
+					$targetColumn => [ null, 0 ],
+					$mapping[$table]['ns'] => $ns,
+					$mapping[$table]['title'] => $titleString,
+					"$pageIdColumn BETWEEN $lowPageId AND $highPageId"
+				] )
+				->caller( __METHOD__ )->execute();
 			$updatedInThisBatch = $dbw->affectedRows();
 			$updated += $updatedInThisBatch;
 			$this->output( "Updated $updatedInThisBatch rows\n" );

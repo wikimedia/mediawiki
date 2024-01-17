@@ -126,11 +126,12 @@ class TitleCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
-			$dbw = $this->getDB( DB_PRIMARY );
-			$dbw->update( 'page',
-				[ 'page_title' => $dest ],
-				[ 'page_id' => $row->page_id ],
-				__METHOD__ );
+			$this->getDB( DB_PRIMARY )
+				->newUpdateQueryBuilder()
+				->update( 'page' )
+				->set( [ 'page_title' => $dest ] )
+				->where( [ 'page_id' => $row->page_id ] )
+				->caller( __METHOD__ )->execute();
 		}
 	}
 
@@ -188,14 +189,15 @@ class TitleCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($ns,'$dest')\n" );
-			$dbw = $this->getDB( DB_PRIMARY );
-			$dbw->update( 'page',
-				[
+			$this->getDB( DB_PRIMARY )
+				->newUpdateQueryBuilder()
+				->update( 'page' )
+				->set( [
 					'page_namespace' => $ns,
 					'page_title' => $dest
-				],
-				[ 'page_id' => $row->page_id ],
-				__METHOD__ );
+				] )
+				->where( [ 'page_id' => $row->page_id ] )
+				->caller( __METHOD__ )->execute();
 			$this->getServiceContainer()->getLinkCache()->clear();
 		}
 	}

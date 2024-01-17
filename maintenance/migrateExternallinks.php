@@ -92,12 +92,16 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 			if ( !$paths ) {
 				continue;
 			}
-			// just take the first one, we are not sending proto-relative to LinkFilter
-			$update = [
-				'el_to_domain_index' => substr( $paths[0][0], 0, 255 ),
-				'el_to_path' => $paths[0][1]
-			];
-			$dbw->update( 'externallinks', $update, [ 'el_id' => $row->el_id ], __METHOD__ );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'externallinks' )
+				// just take the first one, we are not sending proto-relative to LinkFilter
+				->set( [
+					'el_to_domain_index' => substr( $paths[0][0], 0, 255 ),
+					'el_to_path' => $paths[0][1]
+				] )
+				->where( [ 'el_id' => $row->el_id ] )
+				->caller( __METHOD__ )->execute();
+
 			$updated += $dbw->affectedRows();
 		}
 		$this->output( "Updated $updated rows\n" );

@@ -65,12 +65,11 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 			foreach ( $res as $row ) {
 				$last = $row->rev_id;
 				if ( !$row->rev_actor ) {
-					$dbw->update(
-						'revision',
-						[ 'rev_actor' => $row->revactor_actor ],
-						[ 'rev_id' => $row->rev_id ],
-						__METHOD__
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'revision' )
+						->set( [ 'rev_actor' => $row->revactor_actor ] )
+						->where( [ 'rev_id' => $row->rev_id ] )
+						->caller( __METHOD__ )->execute();
 					$updated += $dbw->affectedRows();
 				} elseif ( $row->rev_actor !== $row->revactor_actor ) {
 					$this->error(

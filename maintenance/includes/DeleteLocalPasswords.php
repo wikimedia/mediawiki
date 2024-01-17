@@ -119,32 +119,32 @@ ERROR
 			return;
 		}
 		if ( $this->getOption( 'delete' ) ) {
-			$dbw->update( 'user',
-				[ 'user_password' => PasswordFactory::newInvalidPassword()->toString() ],
-				[ 'user_name' => $userBatch ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [ 'user_password' => PasswordFactory::newInvalidPassword()->toString() ] )
+				->where( [ 'user_name' => $userBatch ] )
+				->caller( __METHOD__ )->execute();
 		} elseif ( $this->getOption( 'prefix' ) ) {
-			$dbw->update( 'user',
-				[ 'user_password = ' . $dbw->buildConcat( [ $dbw->addQuotes( ':null:' ),
-						'user_password' ] ) ],
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [ 'user_password = ' . $dbw->buildConcat( [ $dbw->addQuotes( ':null:' ),
+						'user_password' ] ) ] )
+				->where( [
 					'NOT (user_password ' . $dbw->buildLike( ':null:', $dbw->anyString() ) . ')',
 					"user_password != " . $dbw->addQuotes( PasswordFactory::newInvalidPassword()->toString() ),
 					'user_password IS NOT NULL',
 					'user_name' => $userBatch,
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )->execute();
 		} elseif ( $this->getOption( 'unprefix' ) ) {
-			$dbw->update( 'user',
-				[ 'user_password = ' . $dbw->buildSubString( 'user_password', strlen( ':null:' ) + 1 ) ],
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [ 'user_password = ' . $dbw->buildSubString( 'user_password', strlen( ':null:' ) + 1 ) ] )
+				->where( [
 					$dbw->expr( 'user_password', IExpression::LIKE, new LikeValue( ':null:', $dbw->anyString() ) ),
 					'user_name' => $userBatch,
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )->execute();
 		}
 		$this->total += $dbw->affectedRows();
 		$this->waitForReplication();

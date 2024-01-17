@@ -42,15 +42,14 @@ class DeleteTag extends Maintenance {
 
 		// Make the tag impossible to add by users while we're deleting it and drop the
 		// usage counter to zero
-		$dbw->update(
-			'change_tag_def',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'change_tag_def' )
+			->set( [
 				'ctd_user_defined' => 0,
 				'ctd_count' => 0,
-			],
-			[ 'ctd_id' => $tagId ],
-			__METHOD__
-		);
+			] )
+			->where( [ 'ctd_id' => $tagId ] )
+			->caller( __METHOD__ )->execute();
 		ChangeTags::purgeTagCacheAll();
 
 		// Iterate over change_tag, deleting rows in batches
