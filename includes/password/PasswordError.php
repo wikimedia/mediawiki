@@ -26,6 +26,5 @@ declare( strict_types = 1 );
  * @newable
  * @ingroup Exception
  */
-class PasswordError extends MWException {
-	// NOP
+class PasswordError extends RuntimeException {
 }

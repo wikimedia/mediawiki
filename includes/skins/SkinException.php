@@ -26,5 +26,5 @@
  * @newable
  * @since 1.24
  */
-class SkinException extends MWException {
+class SkinException extends LogicException {
 }

@@ -5,5 +5,5 @@
  *
  * @since 1.38
  */
-class ImageGalleryClassNotFoundException extends MWException {
+class ImageGalleryClassNotFoundException extends LogicException {
 }
