@@ -281,15 +281,28 @@ class CodexModule extends FileModule {
 		);
 
 		// Generate an array of manifest keys that meet the following conditions:
-		// * Entry has a "file" property that matches one of the specified codexComponents (sans extension)
 		// * The "file" property has a ".js" file extension
+		// * Entry has a "file" property that matches one of the specified codexComponents (sans extension)
+		// * The manifest item is an intentional entry point and not a generated chunk
 		$manifestKeys = array_keys( array_filter( $manifest, function ( $val ) {
 			$file = pathinfo( $val[ 'file' ] );
-			return (
-				array_key_exists( 'extension', $file ) &&
-				$file[ 'extension' ] === 'js' &&
-				in_array( $file[ 'filename' ], $this->codexComponents )
-			);
+
+			if (
+				!array_key_exists( 'extension', $file ) ||
+				$file[ 'extension' ] !== 'js' ||
+				!in_array( $file[ 'filename' ], $this->codexComponents )
+			) {
+				return false;
+			}
+
+			if ( !$val[ 'isEntry' ] ) {
+				throw new InvalidArgumentException(
+					'"' . $file[ 'filename' ] . '"' .
+					' is not an export of Codex and cannot be included in the "codexComponents" array.'
+				);
+			}
+
+			return true;
 		} ) );
 
 		[ 'scripts' => $scripts, 'styles' => $styles ] = $this->resolveDependencies( $manifestKeys, $manifest );
