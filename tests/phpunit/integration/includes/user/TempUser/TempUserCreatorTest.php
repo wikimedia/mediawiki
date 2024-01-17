@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Tests\User\TempUser;
+namespace MediaWiki\Tests\Integration\User\TempUser;
 
 use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Session\Session;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\SerialMapping;
@@ -23,30 +23,11 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @covers \MediaWiki\User\TempUser\CreateStatus
  */
 class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
-	/** This is meant to be the default config from MainConfigSchema */
-	private const DEFAULTS = [
-		'enabled' => false,
-		'expireAfterDays' => null,
-		'actions' => [ 'edit' ],
-		'genPattern' => '*Unregistered $1',
-		'matchPattern' => '*$1',
-		'serialProvider' => [ 'type' => 'local' ],
-		'serialMapping' => [ 'type' => 'plain-numeric' ]
-	];
+
+	use TempUserTestTrait;
 
 	public function testCreate() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ]
-			]
-		);
+		$this->enableAutoCreateTempUser();
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
 		$this->assertTrue( $tuc->isTempName( '*Unregistered 1' ) );
@@ -88,13 +69,15 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 				]
 			]
 		);
-		$config = new RealTempUserConfig(
-			[
-				'enabled' => true,
-				'serialProvider' => [ 'type' => 'test' ],
-				'serialMapping' => [ 'type' => 'test' ]
-			] + self::DEFAULTS
-		);
+		$config = new RealTempUserConfig( [
+			'enabled' => true,
+			'expireAfterDays' => null,
+			'actions' => [ 'edit' ],
+			'genPattern' => '*Unregistered $1',
+			'matchPattern' => '*$1',
+			'serialProvider' => [ 'type' => 'test' ],
+			'serialMapping' => [ 'type' => 'test' ],
+		] );
 		$creator = new TempUserCreator(
 			$config,
 			$this->createSimpleObjectFactory(),
@@ -114,10 +97,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testAcquireName_db() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[ 'enabled' => true ] + self::DEFAULTS
-		);
+		$this->enableAutoCreateTempUser();
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
@@ -126,13 +106,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testAcquireName_dbWithYear() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'serialProvider' => [ 'type' => 'local', 'useYear' => true ],
-			] + self::DEFAULTS
-		);
+		$this->enableAutoCreateTempUser( [ 'serialProvider' => [ 'type' => 'local', 'useYear' => true ] ] );
 
 		ConvertibleTimestamp::setFakeTime( '20000101000000' );
 		$tuc = TestingAccessWrapper::newFromObject(
@@ -146,10 +120,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testAcquireNameOnDuplicate_db() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[ 'enabled' => true ] + self::DEFAULTS
-		);
+		$this->enableAutoCreateTempUser();
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);

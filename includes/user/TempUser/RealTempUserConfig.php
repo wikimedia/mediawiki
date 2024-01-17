@@ -26,8 +26,8 @@ class RealTempUserConfig implements TempUserConfig {
 	/** @var Pattern|null */
 	private $genPattern;
 
-	/** @var Pattern|null */
-	private $matchPattern;
+	/** @var Pattern[]|null */
+	private $matchPatterns;
 
 	/** @var Pattern|null */
 	private $reservedPattern;
@@ -43,7 +43,7 @@ class RealTempUserConfig implements TempUserConfig {
 	 *   - enabled: bool
 	 *   - actions: array
 	 *   - genPattern: string
-	 *   - matchPattern: string, optional
+	 *   - matchPattern: string|string[], optional
 	 *   - reservedPattern: string, optional
 	 *   - serialProvider: array
 	 *   - serialMapping: array
@@ -56,9 +56,16 @@ class RealTempUserConfig implements TempUserConfig {
 			$this->autoCreateActions = $config['actions'];
 			$this->genPattern = new Pattern( 'genPattern', $config['genPattern'] );
 			if ( isset( $config['matchPattern'] ) ) {
-				$this->matchPattern = new Pattern( 'matchPattern', $config['matchPattern'] );
+				$matchPatterns = $config['matchPattern'];
+				if ( !is_array( $config['matchPattern'] ) ) {
+					$matchPatterns = [ $matchPatterns ];
+				}
+				foreach ( $matchPatterns as &$pattern ) {
+					$pattern = new Pattern( 'matchPattern', $pattern );
+				}
+				$this->matchPatterns = $matchPatterns;
 			} else {
-				$this->matchPattern = $this->genPattern;
+				$this->matchPatterns = [ $this->genPattern ];
 			}
 			$this->serialProviderConfig = $config['serialProvider'];
 			$this->serialMappingConfig = $config['serialMapping'];
@@ -89,17 +96,23 @@ class RealTempUserConfig implements TempUserConfig {
 	}
 
 	public function isTempName( string $name ) {
-		return $this->enabled
-			&& $this->matchPattern->isMatch( $name );
+		if ( !$this->isEnabled() ) {
+			return false;
+		}
+		foreach ( $this->matchPatterns as $pattern ) {
+			if ( $pattern->isMatch( $name ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function isReservedName( string $name ) {
-		return ( $this->enabled && $this->matchPattern->isMatch( $name ) )
-			|| ( $this->reservedPattern && $this->reservedPattern->isMatch( $name ) );
+		return $this->isTempName( $name ) || ( $this->reservedPattern && $this->reservedPattern->isMatch( $name ) );
 	}
 
 	public function getPlaceholderName(): string {
-		if ( $this->enabled ) {
+		if ( $this->isEnabled() ) {
 			return $this->genPattern->generate( '*' );
 		} else {
 			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
@@ -107,8 +120,18 @@ class RealTempUserConfig implements TempUserConfig {
 	}
 
 	public function getMatchPattern(): Pattern {
-		if ( $this->enabled ) {
-			return $this->matchPattern;
+		if ( $this->isEnabled() ) {
+			// This method is deprecated to allow time for callers to update.
+			// This method only returns one Pattern, so just return the first one.
+			return $this->getMatchPatterns()[0];
+		} else {
+			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
+		}
+	}
+
+	public function getMatchPatterns(): array {
+		if ( $this->isEnabled() ) {
+			return $this->matchPatterns;
 		} else {
 			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
 		}
@@ -127,7 +150,7 @@ class RealTempUserConfig implements TempUserConfig {
 	 * @return Pattern
 	 */
 	public function getGeneratorPattern(): Pattern {
-		if ( $this->enabled ) {
+		if ( $this->isEnabled() ) {
 			return $this->genPattern;
 		} else {
 			throw new BadMethodCallException( __METHOD__ . ' is disabled' );

@@ -45,6 +45,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -729,6 +730,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		$this->includeRcFiltersApp();
+	}
+
+	/**
+	 * Set the temp user config.
+	 *
+	 * @internal
+	 * @param TempUserConfig $tempUserConfig
+	 * @since 1.42
+	 */
+	public function setTempUserConfig( TempUserConfig $tempUserConfig ) {
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -1826,8 +1838,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		) {
 			$conds[] = 'actor_user IS NOT NULL';
 			if ( $this->tempUserConfig->isEnabled() ) {
-				$conds[] = $dbr->expr( 'actor_name', IExpression::NOT_LIKE,
-					$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) );
+				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
+					$conds[] = $dbr->expr( 'actor_name', IExpression::NOT_LIKE, $pattern->toLikeValue( $dbr ) );
+				}
 			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 			return;
@@ -1835,14 +1848,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		if ( $selectedExpLevels === [ 'unregistered' ] ) {
 			if ( $this->tempUserConfig->isEnabled() ) {
-				$conds[] = $dbr->makeList(
-					[
-						'actor_user' => null,
-						$dbr->expr( 'actor_name', IExpression::LIKE,
-							$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) ),
-					],
-					IReadableDatabase::LIST_OR
-				);
+				$expressionGroup = new OrExpressionGroup();
+				$expressionGroup->or( 'actor_user', '=', null );
+				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
+					$expressionGroup->or(
+						'actor_name', IExpression::LIKE, $pattern->toLikeValue( $dbr )
+					);
+				}
+				$conds[] = $expressionGroup;
 			} else {
 				$conds['actor_user'] = null;
 			}
@@ -1890,14 +1903,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( in_array( 'unregistered', $selectedExpLevels ) ) {
 			$selectedExpLevels = array_diff( $selectedExpLevels, [ 'unregistered' ] );
 			if ( $this->tempUserConfig->isEnabled() ) {
-				$conditions[] = $dbr->makeList(
-					[
-						'actor_user' => null,
-						$dbr->expr( 'actor_name', IExpression::LIKE,
-							$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) ),
-					],
-					IReadableDatabase::LIST_OR
-				);
+				$expressionGroup = new OrExpressionGroup();
+				$expressionGroup->or( 'actor_user', '=', null );
+				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
+					$expressionGroup->or( 'actor_name', IExpression::LIKE, $pattern->toLikeValue( $dbr ) );
+				}
+				$conditions[] = $expressionGroup;
 			} else {
 				$conditions['actor_user'] = null;
 			}
@@ -1925,8 +1936,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner', 'newcomer' ] ) {
 			$conditions[] = 'actor_user IS NOT NULL';
 			if ( $this->tempUserConfig->isEnabled() ) {
-				$conditions[] = $dbr->expr( 'actor_name', IExpression::LIKE,
-					$this->tempUserConfig->getMatchPattern()->toLikeValue( $dbr ) );
+				$expressionGroup = new OrExpressionGroup();
+				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
+					$expressionGroup->or( 'actor_name', IExpression::LIKE, $pattern->toLikeValue( $dbr ) );
+				}
+				$conditions[] = $expressionGroup;
 			}
 			$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 		}
