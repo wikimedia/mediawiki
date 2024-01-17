@@ -377,6 +377,8 @@ because of Phabricator reports.
   phpunit.xml.dist.
 * The global variable $wgCommandLineMode is deprecated. In most cases checks
   for `$wgCommandLineMode` can be replaced with `MW_ENTRY_POINT === 'cli'`.
+* The global function wfUnpack is deprecated and emits deprecation
+  warnings. Use StringUtils::unpack instead.
 * User::isBlocked(), ::isBlockedFromCreateAccount() and ::isBlockedFrom() now
   emit deprecation warnings. They were deprecated since 1.34, 1.37 and 1.33
   respectively.

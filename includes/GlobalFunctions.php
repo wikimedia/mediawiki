@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Libs\UnpackFailedException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
@@ -2000,27 +2001,15 @@ function wfShorthandToInteger( ?string $string = '', int $default = -1 ): int {
  *
  * @throws MWException If $data not long enough, or if unpack fails
  * @return array Associative array of the extracted data
+ * @deprecated since 1.42 Use StringUtils::unpack instead
  */
 function wfUnpack( $format, $data, $length = false ) {
-	if ( $length !== false ) {
-		$realLen = strlen( $data );
-		if ( $realLen < $length ) {
-			throw new MWException( "Tried to use wfUnpack on a "
-				. "string of length $realLen, but needed one "
-				. "of at least length $length."
-			);
-		}
+	wfDeprecated( __FUNCTION__, '1.42' );
+	try {
+		return StringUtils::unpack( (string)$format, (string)$data, $length );
+	} catch ( UnpackFailedException $e ) {
+		throw new MWException( $e->getMessage(), 0, $e );
 	}
-
-	AtEase::suppressWarnings();
-	$result = unpack( $format, $data );
-	AtEase::restoreWarnings();
-
-	if ( $result === false ) {
-		// If it cannot extract the packed data.
-		throw new MWException( "unpack could not unpack binary data" );
-	}
-	return $result;
 }
 
 /**

@@ -1544,6 +1544,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Languages\\LanguageFallback' => __DIR__ . '/includes/language/LanguageFallback.php',
 	'MediaWiki\\Languages\\LanguageNameUtils' => __DIR__ . '/includes/language/LanguageNameUtils.php',
 	'MediaWiki\\Libs\\Emptiable' => __DIR__ . '/includes/libs/Emptiable.php',
+	'MediaWiki\\Libs\\UnpackFailedException' => __DIR__ . '/includes/libs/UnpackFailedException.php',
 	'MediaWiki\\Linker\\DummyLinker' => __DIR__ . '/includes/linker/DummyLinker.php',
 	'MediaWiki\\Linker\\Hook\\HtmlPageLinkRendererBeginHook' => __DIR__ . '/includes/linker/Hook/HtmlPageLinkRendererBeginHook.php',
 	'MediaWiki\\Linker\\Hook\\HtmlPageLinkRendererEndHook' => __DIR__ . '/includes/linker/Hook/HtmlPageLinkRendererEndHook.php',

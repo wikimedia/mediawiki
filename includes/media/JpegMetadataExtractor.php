@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\Libs\UnpackFailedException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
@@ -163,12 +164,16 @@ class JpegMetadataExtractor {
 			) {
 				// SOF0, SOF1, SOF2, ... (same list as getimagesize)
 				$temp = self::jpegExtractMarker( $fh );
-				$segments["SOF"] = wfUnpack( 'Cbits/nheight/nwidth/Ccomponents', $temp );
+				try {
+					$segments["SOF"] = StringUtils::unpack( 'Cbits/nheight/nwidth/Ccomponents', $temp );
+				} catch ( UnpackFailedException $e ) {
+					throw new InvalidJpegException( $e->getMessage() );
+				}
 			} else {
 				// segment we don't care about, so skip
 				try {
-					$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
-				} catch ( MWException $e ) {
+					$size = StringUtils::unpack( "nint", fread( $fh, 2 ), 2 );
+				} catch ( UnpackFailedException $e ) {
 					throw new InvalidJpegException( $e->getMessage() );
 				}
 				if ( $size['int'] < 2 ) {
@@ -191,8 +196,8 @@ class JpegMetadataExtractor {
 	 */
 	private static function jpegExtractMarker( &$fh ) {
 		try {
-			$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
-		} catch ( MWException $e ) {
+			$size = StringUtils::unpack( "nint", fread( $fh, 2 ), 2 );
+		} catch ( UnpackFailedException $e ) {
 			throw new InvalidJpegException( $e->getMessage() );
 		}
 		if ( $size['int'] < 2 ) {
@@ -269,8 +274,8 @@ class JpegMetadataExtractor {
 
 			// now length of data (unsigned long big endian)
 			try {
-				$lenData = wfUnpack( 'Nlen', substr( $app13, $offset, 4 ), 4 );
-			} catch ( MWException $e ) {
+				$lenData = StringUtils::unpack( 'Nlen', substr( $app13, $offset, 4 ), 4 );
+			} catch ( UnpackFailedException $e ) {
 				throw new InvalidPSIRException( $e->getMessage() );
 			}
 			// PHP can take issue with very large unsigned ints and make them negative.
