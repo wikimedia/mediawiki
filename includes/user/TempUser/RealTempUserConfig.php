@@ -85,7 +85,7 @@ class RealTempUserConfig implements TempUserConfig {
 		if ( $action === 'create' ) {
 			$action = 'edit';
 		}
-		return $this->enabled
+		return $this->isEnabled()
 			&& in_array( $action, $this->autoCreateActions, true );
 	}
 
