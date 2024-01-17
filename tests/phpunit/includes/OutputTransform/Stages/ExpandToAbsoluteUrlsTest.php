@@ -2,13 +2,13 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls
  */
-class ExpandToAbsoluteUrlsTest extends OutputTransformStageTest {
+class ExpandToAbsoluteUrlsTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new ExpandToAbsoluteUrls();

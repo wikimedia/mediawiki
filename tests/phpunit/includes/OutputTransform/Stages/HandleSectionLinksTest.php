@@ -3,13 +3,13 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\OutputTransform\TestUtils;
 use MediaWiki\Parser\ParserOutput;
 use Psr\Log\NullLogger;
 
 /** @covers \MediaWiki\OutputTransform\Stages\HandleSectionLinks */
-class HandleSectionLinksTest extends OutputTransformStageTest {
+class HandleSectionLinksTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new HandleSectionLinks( new NullLogger(), $this->getServiceContainer()->getTitleFactory() );

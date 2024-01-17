@@ -6,7 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 
-abstract class OutputTransformStageTest extends MediaWikiIntegrationTestCase {
+abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {
 	abstract public function createStage(): OutputTransformStage;
 
 	abstract public function provideShouldRun(): array;

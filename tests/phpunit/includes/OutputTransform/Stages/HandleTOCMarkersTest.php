@@ -3,14 +3,14 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\OutputTransform\TestUtils;
 use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\HandleTOCMarkers
  */
-class HandleTOCMarkersTest extends OutputTransformStageTest {
+class HandleTOCMarkersTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new HandleTOCMarkers( $this->getServiceContainer()->getTidy() );

@@ -3,14 +3,14 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\OutputTransform\TestUtils;
 use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\AddWrapperDivClass
  */
-class AddWrapperDivClassTest extends OutputTransformStageTest {
+class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 	public function createStage(): OutputTransformStage {
 		return new AddWrapperDivClass( $this->getServiceContainer()->getLanguageFactory(),
 			$this->getServiceContainer()->getContentLanguage() );

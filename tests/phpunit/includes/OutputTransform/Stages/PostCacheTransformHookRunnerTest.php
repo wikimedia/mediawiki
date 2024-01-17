@@ -8,7 +8,7 @@ use MediaWiki\Parser\ParserOutput;
 use RequestContext;
 
 /**
- * This test does not extend OutputTransformStageTest because we're explicitly testing that
+ * This test does not extend OutputTransformStageTestBase because we're explicitly testing that
  * the options are modified during the pipeline run.
  * @covers \MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner
  */

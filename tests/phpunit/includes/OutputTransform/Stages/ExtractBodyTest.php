@@ -3,13 +3,13 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ExtractBody
  */
-class ExtractBodyTest extends OutputTransformStageTest {
+class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new ExtractBody();

@@ -3,7 +3,7 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Parser\ParserOutput;
 
 /**
@@ -11,7 +11,7 @@ use MediaWiki\Parser\ParserOutput;
  * @group Database
  *        ^ Title shenanigans seem to require this
  */
-class AddRedirectHeaderTest extends OutputTransformStageTest {
+class AddRedirectHeaderTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new AddRedirectHeader();

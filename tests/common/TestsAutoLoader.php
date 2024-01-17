@@ -136,7 +136,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/OutputTransform
 	'MediaWiki\OutputTransform\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
-	'MediaWiki\OutputTransform\OutputTransformStageTest' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTest.php",
+	'MediaWiki\OutputTransform\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
 
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",

@@ -3,13 +3,13 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTest;
+use MediaWiki\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\RenderDebugInfo
  */
-class RenderDebugInfoTest extends OutputTransformStageTest {
+class RenderDebugInfoTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new RenderDebugInfo( $this->getServiceContainer()->getHookContainer() );
