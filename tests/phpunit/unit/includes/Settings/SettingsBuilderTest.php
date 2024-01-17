@@ -150,13 +150,19 @@ class SettingsBuilderTest extends TestCase {
 
 	public function testLoadingExtensions() {
 		$extensionRegistryMock = $this->createMock( ExtensionRegistry::class );
+		$expectedQueuePaths = [
+			'/test/extensions/Foo/extension.json',
+			'/test/extensions/Bar/extension.json',
+			'/test/skins/Quux/skin.json',
+		];
 		$extensionRegistryMock
 			->expects( $this->exactly( 3 ) )
-			->method( 'queue' )->withConsecutive(
-				[ '/test/extensions/Foo/extension.json' ],
-				[ '/test/extensions/Bar/extension.json' ],
-				[ '/test/skins/Quux/skin.json' ]
-			);
+			->method( 'queue' )
+			->willReturnCallback( function ( $path ) use ( &$expectedQueuePaths ) {
+				$this->assertContains( $path, $expectedQueuePaths );
+				$pathIdx = array_search( $path, $expectedQueuePaths, true );
+				unset( $expectedQueuePaths[$pathIdx] );
+			} );
 
 		$setting = $this->newSettingsBuilder( [
 			'extensionRegistry' => $extensionRegistryMock,

@@ -51,11 +51,18 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 
 	public function testHeader() {
 		$webResponse = $this->createWebResponse();
-		$webResponse->method( 'header' )
-			->withConsecutive(
-				[ 'HTTP/1.1 200 OK', true, null ],
-				[ 'Foo: Bar', true, null ]
-			);
+		$expectedHeaders = [
+			'HTTP/1.1 200 OK',
+			'Foo: Bar',
+		];
+		$webResponse->expects( $this->atLeast( count( $expectedHeaders ) ) )
+			->method( 'header' )
+			->willReturnCallback( static function ( $headerString ) use ( &$expectedHeaders ) {
+				$headerIdx = array_search( $headerString, $expectedHeaders, true );
+				if ( $headerIdx !== false ) {
+					unset( $expectedHeaders[$headerIdx] );
+				}
+			} );
 
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/header' ) ] );
 
@@ -67,7 +74,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			$this->createCorsUtils()
 		);
 		$entryPoint->execute();
-		$this->assertTrue( true );
+		$this->assertCount( 0, $expectedHeaders );
 	}
 
 	public static function mockHandlerBodyRewind() {
