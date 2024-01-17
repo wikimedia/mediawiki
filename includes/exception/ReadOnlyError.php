@@ -34,10 +34,11 @@ class ReadOnlyError extends ErrorPageError {
 	 * @stable to call
 	 */
 	public function __construct() {
+		$reason = MediaWikiServices::getInstance()->getReadOnlyMode()->getReason();
 		parent::__construct(
 			'readonly',
 			'readonlytext',
-			MediaWikiServices::getInstance()->getReadOnlyMode()->getReason() ?: []
+			$reason ? [ $reason ] : []
 		);
 	}
 }
