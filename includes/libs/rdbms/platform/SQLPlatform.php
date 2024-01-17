@@ -980,7 +980,7 @@ class SQLPlatform implements ISQLPlatform {
 		# Extract necessary database, schema, table identifiers and quote them as needed
 		$formattedComponents = [];
 		foreach ( $this->qualifiedTableComponents( $name ) as $component ) {
-			if ( $format === 'quoted' && !$this->isQuotedIdentifier( $component ) ) {
+			if ( $format === 'quoted' ) {
 				$formattedComponents[] = $this->addIdentifierQuotes( $component );
 			} else {
 				$formattedComponents[] = $component;
@@ -991,7 +991,7 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
-	 * Get the table components needed for a query given the currently selected database
+	 * Get the table components needed for a query given the currently selected database/schema
 	 *
 	 * The resulting array will take one of the follow forms:
 	 *  - <table identifier>
@@ -1007,8 +1007,10 @@ class SQLPlatform implements ISQLPlatform {
 	 * In all other cases where the provided table name only consists of an unquoted table
 	 * identifier, the current DB domain prefix will be prepended to the table identifier.
 	 *
+	 * Empty database/schema identifiers are ommitted from the resulting array.
+	 *
 	 * @param string $name Table name as database.schema.table, database.table, or table
-	 * @return string[] Non-empty array of identifiers that compose the qualified table name
+	 * @return string[] Non-empty list of unquoted identifiers that form the qualified table name
 	 */
 	public function qualifiedTableComponents( $name ) {
 		$identifiers = $this->extractTableNameComponents( $name );
@@ -1020,9 +1022,9 @@ class SQLPlatform implements ISQLPlatform {
 			if ( $this->currentDomain ) {
 				$currentDomainPrefix = $this->currentDomain->getTablePrefix();
 			} else {
-				$currentDomainPrefix = null;
+				$currentDomainPrefix = '';
 			}
-			[ $table ] = $identifiers;
+			$table = $identifiers[0];
 			if ( isset( $this->tableAliases[$table] ) ) {
 				// This is an "alias" table that uses a different db/schema/prefix scheme
 				$database = $this->tableAliases[$table]['dbname'];
@@ -1048,10 +1050,14 @@ class SQLPlatform implements ISQLPlatform {
 		$components = [];
 		foreach ( $qualifierIdentifiers as $identifier ) {
 			if ( $identifier !== null && $identifier !== '' ) {
-				$components[] = $identifier;
+				$components[] = $this->isQuotedIdentifier( $identifier )
+					? substr( $identifier, 1, -1 )
+					: $identifier;
 			}
 		}
-		$components[] = $tableIdentifier;
+		$components[] = $this->isQuotedIdentifier( $tableIdentifier )
+			? substr( $tableIdentifier, 1, -1 )
+			: $tableIdentifier;
 
 		return $components;
 	}
