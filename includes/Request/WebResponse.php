@@ -149,8 +149,7 @@ class WebResponse {
 	 *   - raw: bool, true to suppress encoding of the value
 	 *   - sameSite: string|null, SameSite attribute. May be "strict", "lax",
 	 *     "none", or null or "" for no attribute. (default absent)
-	 *   - sameSiteLegacy: bool|null, If true, SameSite=None cookies will be
-	 *     also be sent as a legacy cookie with an ss0 prefix
+	 *   - sameSiteLegacy: bool|null, this option is now ignored
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
@@ -162,7 +161,6 @@ class WebResponse {
 		$cookieSecure = $mainConfig->get( MainConfigNames::CookieSecure );
 		$cookieExpiration = $mainConfig->get( MainConfigNames::CookieExpiration );
 		$cookieHttpOnly = $mainConfig->get( MainConfigNames::CookieHttpOnly );
-		$useSameSiteLegacyCookies = $mainConfig->get( MainConfigNames::UseSameSiteLegacyCookies );
 		$options = array_filter( $options, static function ( $a ) {
 			return $a !== null;
 		} ) + [
@@ -173,17 +171,7 @@ class WebResponse {
 			'httpOnly' => $cookieHttpOnly,
 			'raw' => false,
 			'sameSite' => '',
-			'sameSiteLegacy' => $useSameSiteLegacyCookies
 		];
-
-		if ( strcasecmp( $options['sameSite'], 'none' ) === 0
-			&& !empty( $options['sameSiteLegacy'] )
-		) {
-			$legacyOptions = $options;
-			$legacyOptions['sameSiteLegacy'] = false;
-			$legacyOptions['sameSite'] = '';
-			$this->setCookie( "ss0-$name", $value, $expire, $legacyOptions );
-		}
 
 		if ( $expire === null ) {
 			$expire = 0; // Session cookie

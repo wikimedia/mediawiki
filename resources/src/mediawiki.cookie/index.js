@@ -7,8 +7,7 @@ var config = require( './config.json' ),
 		path: config.path,
 		expires: config.expires,
 		secure: false,
-		sameSite: '',
-		sameSiteLegacy: config.sameSiteLegacy
+		sameSite: ''
 	},
 	jar = require( './jar.js' );
 
@@ -56,7 +55,7 @@ mw.cookie = {
 	 */
 
 	set: function ( key, value, options ) {
-		var prefix, date, sameSiteLegacy;
+		var prefix, date;
 
 		// The 'options' parameter may be a shortcut for the expiry.
 		if ( arguments.length > 2 && ( !options || options instanceof Date || typeof options === 'number' ) ) {
@@ -80,7 +79,7 @@ mw.cookie = {
 			options.expires = date;
 		}
 
-		sameSiteLegacy = options.sameSiteLegacy;
+		// Ignore sameSiteLegacy (T344791)
 		delete options.sameSiteLegacy;
 
 		if ( value !== null ) {
@@ -88,12 +87,6 @@ mw.cookie = {
 		}
 
 		jar.cookie( prefix + key, value, options );
-		if ( sameSiteLegacy && options.sameSite && options.sameSite.toLowerCase() === 'none' ) {
-			// Make testing easy by not changing the object passed to the first jar.cookie call
-			options = Object.assign( {}, options );
-			delete options.sameSite;
-			jar.cookie( prefix + 'ss0-' + key, value, options );
-		}
 	},
 
 	/**
