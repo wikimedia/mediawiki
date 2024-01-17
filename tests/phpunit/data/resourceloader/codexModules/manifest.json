@@ -9,6 +9,8 @@
     ],
     "file": "Icon.js",
     "imports": [
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js"
     ]
@@ -22,49 +24,22 @@
   "_constants.js": {
     "file": "constants.js"
   },
-  "_useFieldData.js": {
-    "file": "useFieldData.js",
-    "imports": [
-      "_constants.js"
-    ]
-  },
-  "_useFloatingMenu.js": {
-    "file": "useFloatingMenu.js"
-  },
-  "_useGeneratedId.js": {
-    "file": "useGeneratedId.js",
-    "imports": [
-      "_constants.js"
-    ]
-  },
   "_useIconOnlyButton.js": {
     "file": "useIconOnlyButton.js",
     "imports": [
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ]
-  },
-  "_useIntersectionObserver.js": {
-    "file": "useIntersectionObserver.js"
   },
   "_useLabelChecker.js": {
     "file": "useLabelChecker.js",
     "imports": [
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ]
   },
-  "_useModelWrapper.js": {
-    "file": "useModelWrapper.js"
-  },
-  "_useSlotContents.js": {
-    "file": "useSlotContents.js"
-  },
-  "_useSplitAttributes.js": {
-    "file": "useSplitAttributes.js"
-  },
-  "_useWarnOnce.js": {
-    "file": "useWarnOnce.js"
+  "_useSlotContents2.js": {
+    "file": "useSlotContents2.js"
   },
   "src/components/accordion/Accordion.css": {
     "file": "CdxAccordion.css",
@@ -78,12 +53,14 @@
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
-      "_useGeneratedId.js",
+      "src/composables/useGeneratedId.ts",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/accordion/Accordion.vue"
@@ -104,8 +81,10 @@
       "__plugin-vue_export-helper.js",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts"
     ],
     "isEntry": true,
     "src": "src/components/button-group/ButtonGroup.vue"
@@ -123,8 +102,8 @@
       "_constants.js",
       "_useIconOnlyButton.js",
       "__plugin-vue_export-helper.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/button/Button.vue"
@@ -142,6 +121,8 @@
       "_Icon.js",
       "src/components/thumbnail/Thumbnail.vue",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js"
     ],
     "isEntry": true,
@@ -159,15 +140,18 @@
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
-      "_useModelWrapper.js",
-      "_useGeneratedId.js",
-      "_useFieldData.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useFieldData.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js",
       "_Icon.js",
-      "_useSplitAttributes.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
+      "src/composables/useSplitAttributes.ts",
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/checkbox/Checkbox.vue"
@@ -182,16 +166,18 @@
     ],
     "file": "CdxChipInput.js",
     "imports": [
-      "src/components/input-chip/InputChip.vue",
-      "_constants.js",
-      "_useSplitAttributes.js",
-      "_useFieldData.js",
+      "src/components/button/Button.vue",
       "_Icon.js",
       "__plugin-vue_export-helper.js",
-      "src/components/button/Button.vue",
+      "_constants.js",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useComputedDirection.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useComputedLanguage.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/chip-input/ChipInput.vue"
@@ -210,21 +196,24 @@
       "src/components/button/Button.vue",
       "src/components/menu/Menu.vue",
       "src/components/text-input/TextInput.vue",
-      "_useModelWrapper.js",
-      "_useGeneratedId.js",
-      "_useSplitAttributes.js",
-      "_useFieldData.js",
-      "_useFloatingMenu.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useFloatingMenu.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js",
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
       "src/components/menu-item/MenuItem.vue",
       "src/components/thumbnail/Thumbnail.vue",
       "src/components/search-result-title/SearchResultTitle.vue",
       "src/components/progress-bar/ProgressBar.vue",
-      "_useIntersectionObserver.js"
+      "src/composables/useIntersectionObserver.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/combobox/Combobox.vue"
@@ -241,12 +230,15 @@
     "imports": [
       "src/components/button/Button.vue",
       "_Icon.js",
-      "_useGeneratedId.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useResizeObserver.ts",
       "__plugin-vue_export-helper.js",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts"
     ],
     "isEntry": true,
     "src": "src/components/dialog/Dialog.vue"
@@ -264,15 +256,18 @@
       "src/components/label/Label.vue",
       "src/components/message/Message.vue",
       "_constants.js",
-      "_useGeneratedId.js",
-      "_useFieldData.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useComputedDisabled.ts",
       "__plugin-vue_export-helper.js",
       "_Icon.js",
-      "_useSplitAttributes.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useSplitAttributes.ts",
       "src/components/button/Button.vue",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/field/Field.vue"
@@ -282,6 +277,8 @@
     "imports": [
       "_Icon.js",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js"
     ],
     "isEntry": true,
@@ -299,31 +296,12 @@
     "imports": [
       "_constants.js",
       "_Icon.js",
-      "__plugin-vue_export-helper.js"
+      "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts"
     ],
     "isEntry": true,
     "src": "src/components/info-chip/InfoChip.vue"
-  },
-  "src/components/input-chip/InputChip.css": {
-    "file": "CdxInputChip.css",
-    "src": "src/components/input-chip/InputChip.css"
-  },
-  "src/components/input-chip/InputChip.vue": {
-    "css": [
-      "CdxInputChip.css"
-    ],
-    "file": "CdxInputChip.js",
-    "imports": [
-      "src/components/button/Button.vue",
-      "_Icon.js",
-      "__plugin-vue_export-helper.js",
-      "_constants.js",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
-    ],
-    "isEntry": true,
-    "src": "src/components/input-chip/InputChip.vue"
   },
   "src/components/label/Label.css": {
     "file": "CdxLabel.css",
@@ -336,10 +314,13 @@
     "file": "CdxLabel.js",
     "imports": [
       "_Icon.js",
-      "_useFieldData.js",
-      "_useSplitAttributes.js",
+      "src/composables/useFieldData.ts",
+      "src/composables/useSplitAttributes.ts",
       "__plugin-vue_export-helper.js",
-      "_constants.js"
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
+      "_constants.js",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/label/Label.vue"
@@ -356,20 +337,23 @@
     "imports": [
       "src/components/menu/Menu.vue",
       "src/components/text-input/TextInput.vue",
-      "_useGeneratedId.js",
-      "_useModelWrapper.js",
-      "_useSplitAttributes.js",
-      "_useFieldData.js",
-      "_useFloatingMenu.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useFloatingMenu.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js",
       "src/components/menu-item/MenuItem.vue",
       "_Icon.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "src/components/thumbnail/Thumbnail.vue",
       "src/components/search-result-title/SearchResultTitle.vue",
       "src/components/progress-bar/ProgressBar.vue",
-      "_useWarnOnce.js",
-      "_useIntersectionObserver.js"
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useIntersectionObserver.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/lookup/Lookup.vue"
@@ -388,6 +372,8 @@
       "src/components/thumbnail/Thumbnail.vue",
       "src/components/search-result-title/SearchResultTitle.vue",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js"
     ],
     "isEntry": true,
@@ -405,15 +391,17 @@
     "imports": [
       "src/components/menu-item/MenuItem.vue",
       "src/components/progress-bar/ProgressBar.vue",
-      "_useGeneratedId.js",
-      "_useIntersectionObserver.js",
-      "_useSplitAttributes.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useIntersectionObserver.ts",
+      "src/composables/useSplitAttributes.ts",
       "__plugin-vue_export-helper.js",
       "_Icon.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "src/components/thumbnail/Thumbnail.vue",
       "src/components/search-result-title/SearchResultTitle.vue",
-      "_useWarnOnce.js"
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/menu/Menu.vue"
@@ -432,9 +420,11 @@
       "src/components/button/Button.vue",
       "_constants.js",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/message/Message.vue"
@@ -449,7 +439,7 @@
     ],
     "file": "CdxProgressBar.js",
     "imports": [
-      "_useWarnOnce.js",
+      "src/composables/useWarnOnce.ts",
       "__plugin-vue_export-helper.js"
     ],
     "isEntry": true,
@@ -467,15 +457,18 @@
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
-      "_useModelWrapper.js",
-      "_useGeneratedId.js",
-      "_useFieldData.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useFieldData.ts",
       "__plugin-vue_export-helper.js",
       "_Icon.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js",
-      "_useSplitAttributes.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "src/composables/useSplitAttributes.ts",
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/radio/Radio.vue"
@@ -493,14 +486,17 @@
       "_Icon.js",
       "src/components/button/Button.vue",
       "src/components/text-input/TextInput.vue",
-      "_useModelWrapper.js",
-      "_useSplitAttributes.js",
-      "_useFieldData.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/search-input/SearchInput.vue"
@@ -532,19 +528,22 @@
     "imports": [
       "_Icon.js",
       "src/components/menu/Menu.vue",
-      "_useGeneratedId.js",
-      "_useModelWrapper.js",
-      "_useFieldData.js",
-      "_useSplitAttributes.js",
-      "_useFloatingMenu.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFloatingMenu.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "src/components/menu-item/MenuItem.vue",
       "src/components/thumbnail/Thumbnail.vue",
       "src/components/search-result-title/SearchResultTitle.vue",
       "src/components/progress-bar/ProgressBar.vue",
-      "_useWarnOnce.js",
-      "_useIntersectionObserver.js"
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useIntersectionObserver.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/select/Select.vue"
@@ -578,14 +577,16 @@
       "_Icon.js",
       "src/components/button/Button.vue",
       "src/components/tab/Tab.vue",
-      "_useGeneratedId.js",
-      "_useModelWrapper.js",
-      "_useIntersectionObserver.js",
-      "_useSlotContents.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useIntersectionObserver.ts",
+      "_useSlotContents2.js",
       "_constants.js",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedLanguage.ts",
       "_useIconOnlyButton.js",
-      "_useWarnOnce.js"
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/tabs/Tabs.vue"
@@ -601,11 +602,14 @@
     "file": "CdxTextArea.js",
     "imports": [
       "_Icon.js",
-      "_useSplitAttributes.js",
-      "_useModelWrapper.js",
-      "_useFieldData.js",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useFieldData.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js"
+      "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/text-area/TextArea.vue"
@@ -622,10 +626,13 @@
     "imports": [
       "_Icon.js",
       "_constants.js",
-      "_useModelWrapper.js",
-      "_useSplitAttributes.js",
-      "_useFieldData.js",
-      "__plugin-vue_export-helper.js"
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/text-input/TextInput.vue"
@@ -642,7 +649,9 @@
     "imports": [
       "_Icon.js",
       "_constants.js",
-      "__plugin-vue_export-helper.js"
+      "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts"
     ],
     "isEntry": true,
     "src": "src/components/thumbnail/Thumbnail.vue"
@@ -661,10 +670,12 @@
       "_Icon.js",
       "src/components/toggle-button/ToggleButton.vue",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/toggle-button-group/ToggleButtonGroup.vue"
@@ -681,8 +692,8 @@
     "imports": [
       "_useIconOnlyButton.js",
       "__plugin-vue_export-helper.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/toggle-button/ToggleButton.vue"
@@ -699,15 +710,18 @@
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
-      "_useModelWrapper.js",
-      "_useGeneratedId.js",
-      "_useSplitAttributes.js",
-      "_useFieldData.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
       "__plugin-vue_export-helper.js",
       "_Icon.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "_constants.js",
-      "_useSlotContents.js",
-      "_useWarnOnce.js"
+      "_useSlotContents2.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/toggle-switch/ToggleSwitch.vue"
@@ -725,24 +739,100 @@
       "_Icon.js",
       "src/components/menu/Menu.vue",
       "src/components/search-input/SearchInput.vue",
-      "_useGeneratedId.js",
-      "_useSplitAttributes.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useSplitAttributes.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
       "src/components/menu-item/MenuItem.vue",
       "src/components/thumbnail/Thumbnail.vue",
       "src/components/search-result-title/SearchResultTitle.vue",
       "src/components/progress-bar/ProgressBar.vue",
-      "_useWarnOnce.js",
-      "_useIntersectionObserver.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useIntersectionObserver.ts",
       "src/components/button/Button.vue",
       "_useIconOnlyButton.js",
-      "_useSlotContents.js",
+      "_useSlotContents2.js",
       "src/components/text-input/TextInput.vue",
-      "_useModelWrapper.js",
-      "_useFieldData.js"
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useComputedDisabled.ts"
     ],
     "isEntry": true,
     "src": "src/components/typeahead-search/TypeaheadSearch.vue"
+  },
+  "src/composables/useComputedDirection.ts": {
+    "file": "useComputedDirection.js",
+    "isEntry": true,
+    "src": "src/composables/useComputedDirection.ts"
+  },
+  "src/composables/useComputedDisabled.ts": {
+    "file": "useComputedDisabled.js",
+    "imports": [
+      "_constants.js"
+    ],
+    "isEntry": true,
+    "src": "src/composables/useComputedDisabled.ts"
+  },
+  "src/composables/useComputedLanguage.ts": {
+    "file": "useComputedLanguage.js",
+    "isEntry": true,
+    "src": "src/composables/useComputedLanguage.ts"
+  },
+  "src/composables/useFieldData.ts": {
+    "file": "useFieldData.js",
+    "imports": [
+      "src/composables/useComputedDisabled.ts",
+      "_constants.js"
+    ],
+    "isEntry": true,
+    "src": "src/composables/useFieldData.ts"
+  },
+  "src/composables/useFloatingMenu.ts": {
+    "file": "useFloatingMenu.js",
+    "isEntry": true,
+    "src": "src/composables/useFloatingMenu.ts"
+  },
+  "src/composables/useGeneratedId.ts": {
+    "file": "useGeneratedId.js",
+    "imports": [
+      "_constants.js"
+    ],
+    "isEntry": true,
+    "src": "src/composables/useGeneratedId.ts"
+  },
+  "src/composables/useIntersectionObserver.ts": {
+    "file": "useIntersectionObserver.js",
+    "isEntry": true,
+    "src": "src/composables/useIntersectionObserver.ts"
+  },
+  "src/composables/useModelWrapper.ts": {
+    "file": "useModelWrapper.js",
+    "isEntry": true,
+    "src": "src/composables/useModelWrapper.ts"
+  },
+  "src/composables/useResizeObserver.ts": {
+    "file": "useResizeObserver.js",
+    "isEntry": true,
+    "src": "src/composables/useResizeObserver.ts"
+  },
+  "src/composables/useSlotContents.ts": {
+    "file": "useSlotContents.js",
+    "imports": [
+      "_useSlotContents2.js"
+    ],
+    "isEntry": true,
+    "src": "src/composables/useSlotContents.ts"
+  },
+  "src/composables/useSplitAttributes.ts": {
+    "file": "useSplitAttributes.js",
+    "isEntry": true,
+    "src": "src/composables/useSplitAttributes.ts"
+  },
+  "src/composables/useWarnOnce.ts": {
+    "file": "useWarnOnce.js",
+    "isEntry": true,
+    "src": "src/composables/useWarnOnce.ts"
   }
 }

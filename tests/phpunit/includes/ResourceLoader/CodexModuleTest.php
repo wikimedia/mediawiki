@@ -22,15 +22,17 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 				[
 					'packageFiles' => [
 						'codex.js',
-						'_codex/useModelWrapper.js',
 						'_codex/constants.js',
-						'_codex/useSlotContents.js',
+						'_codex/useSlotContents2.js',
 						'_codex/useWarnOnce.js',
 						'_codex/useIconOnlyButton.js',
 						'_codex/_plugin-vue_export-helper.js',
 						'_codex/CdxButton.js',
+						'_codex/useComputedDirection.js',
+						'_codex/useComputedLanguage.js',
 						'_codex/Icon.js',
-						'_codex/CdxMessage.js'
+						'_codex/CdxMessage.js',
+						'_codex/useModelWrapper.js'
 					],
 					'styles' => [ 'CdxButton.css', 'CdxIcon.css', 'CdxMessage.css' ]
 				]
@@ -55,15 +57,17 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 				[
 					'packageFiles' => [
 						'codex.js',
-						'_codex/useModelWrapper.js',
 						'_codex/constants.js',
-						'_codex/useSlotContents.js',
+						'_codex/useSlotContents2.js',
 						'_codex/useWarnOnce.js',
 						'_codex/useIconOnlyButton.js',
 						'_codex/_plugin-vue_export-helper.js',
 						'_codex/CdxButton.js',
+						'_codex/useComputedDirection.js',
+						'_codex/useComputedLanguage.js',
 						'_codex/Icon.js',
-						'_codex/CdxMessage.js'
+						'_codex/CdxMessage.js',
+						'_codex/useModelWrapper.js'
 					],
 					'styles' => []
 				]
