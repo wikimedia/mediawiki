@@ -65,13 +65,13 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 	public function testGetGrantDescriptions() {
 		$this->assertSame(
 			[
-				( new Message( 'grant-blockusers' ) )->inLanguage( 'de' )->text(),
-				( new Message( 'grant-delete' ) )->inLanguage( 'de' )->text()
+				'blockusers' => ( new Message( 'grant-blockusers' ) )->inLanguage( 'de' )->text(),
+				'delete' => ( new Message( 'grant-delete' ) )->inLanguage( 'de' )->text(),
 			],
 			$this->grantsLocalization->getGrantDescriptions(
 				[
 					'blockusers',
-					'delete'
+					'delete',
 				],
 				'de'
 			)
@@ -85,7 +85,8 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			$this->getServiceContainer()->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Listgrants', false, 'delete' ),
-				( new Message( 'grant-delete' ) )->text()
+				( new Message( 'grant-delete' ) )->text(),
+				[ 'class' => 'mw-grantslink mw-grantriskgroup-vandalism' ]
 			),
 			$this->grantsLocalization->getGrantsLink( 'delete' )
 		);
@@ -96,7 +97,7 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetGrantsWikiText() {
 		$this->assertSame(
-			"*<span class=\"mw-grantgroup\">Perform high volume activity</span>\n:High-volume (bot) access\n\n",
+			"*<span class=\"mw-grantgroup\">Perform high volume activity</span>\n:<span class=\"mw-grant mw-grantriskgroup-low\">High-volume (bot) access</span>\n\n",
 			$this->grantsLocalization->getGrantsWikiText( [ 'highvolume' ] )
 		);
 	}
