@@ -177,7 +177,7 @@
 	"searchbutton": "Chwilio",
 	"go": "Mynd",
 	"searcharticle": "Iawn",
-	"skin-view-history": "Gweld yr hanes",
+	"skin-view-history": "Gweld hanes",
 	"history": "Hanes y dudalen",
 	"history_short": "Hanes",
 	"history_small": "hanes",
@@ -3692,6 +3692,7 @@
 	"unlinkaccounts-success": "Datgysylltwyd y cyfrif yn llwyddiannus.",
 	"restrictionsfield-badip": "Cyfeiriad neu ystod IP annilys: $1",
 	"restrictionsfield-label": "Ystodau IP a ganiateir:",
+	"restrictionsfields-pages-help": "Gadewch yn wag i ganiatáu golygu pob tudalen",
 	"specialmute": "Anwybyddu",
 	"specialmute-submit": "Cadarnhau",
 	"specialmute-label-mute-email": "Anwybyddu e-byst gan y {{GENDER:$1|defnyddiwr}} hwn",
@@ -3778,5 +3779,7 @@
 	"action-renameuser": "ail-enwi defnyddwyr",
 	"right-renameuser": "Ail-enwi defnyddwyr",
 	"renameuser-renamed-notice": "Mae'r defnyddiwr hwn wedi ei ail-enwi.\nMae'r lòg ail-enwi defnyddwyr i'w weld isod.",
-	"createacct-benefit-heading-temp-user": "Diolch am gyfrannu at {{SITENAME}}.\nCrëwch gyfrif i gael mynediad at ragor o nodweddion."
+	"createacct-benefit-heading-temp-user": "Diolch am gyfrannu at {{SITENAME}}.\nCrëwch gyfrif i gael mynediad at ragor o nodweddion.",
+	"composer-deps-outdated": "$1: $2 wedi'i osod, $3 sydd ei angen.",
+	"composer-deps-notinstalled": "$1: heb ei osod, $2 sydd ei angen."
 }
