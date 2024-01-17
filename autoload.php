@@ -2984,7 +2984,6 @@ $wgAutoloadLocalClasses = [
 	'UploadBase' => __DIR__ . '/includes/upload/UploadBase.php',
 	'UploadChunkFileException' => __DIR__ . '/includes/upload/exception/UploadChunkFileException.php',
 	'UploadChunkVerificationException' => __DIR__ . '/includes/upload/exception/UploadChunkVerificationException.php',
-	'UploadChunkZeroLengthFileException' => __DIR__ . '/includes/upload/exception/UploadChunkZeroLengthFileException.php',
 	'UploadForm' => __DIR__ . '/includes/specials/forms/UploadForm.php',
 	'UploadFromChunks' => __DIR__ . '/includes/upload/UploadFromChunks.php',
 	'UploadFromFile' => __DIR__ . '/includes/upload/UploadFromFile.php',
