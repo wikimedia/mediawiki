@@ -2695,7 +2695,7 @@
 	"sp-contributions-concurrency-user": "عذرا، يتم تقديم الكثير من الطلبات من حساب المستخدم الخاص بك؛ الرجاء معاودة المحاولة في وقت لاحق.",
 	"sp-contributions-concurrency-ip": "عذرا، يتم تقديم الكثير من الطلبات من عنوان الآيبي الخاص بك؛ الرجاء معاودة المحاولة في وقت لاحق.",
 	"whatlinkshere": "ماذا يصل هنا",
-	"whatlinkshere-count": "تعرض $1 {{PLURAL:$1|عنصر|عناصر}}.",
+	"whatlinkshere-count": "تعرض {{PLURAL:$1||عنصرًا واحدًا|عنصرين|$1 عناصر|$1 عنصرًا|$1 عنصرٍ}}.",
 	"whatlinkshere-title": "الصفحات التي تصل إلى «$1»",
 	"whatlinkshere-page": "الصفحة:",
 	"linkshere": "الصفحات التالية تصل إلى <strong>$2</strong>:",
