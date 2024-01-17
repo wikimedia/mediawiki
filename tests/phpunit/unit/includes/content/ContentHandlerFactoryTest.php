@@ -58,22 +58,22 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			$this->logger
 		);
 
-		$expectedParams = [];
+		$returnMap = [];
 		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
-			$expectedParams[] = [
+			$returnMap[] = [
 				$handlerSpec,
 				[
 					'assertClass' => ContentHandler::class,
 					'allowCallable' => true,
 					'allowClassName' => true,
 					'extraArgs' => [ $modelID ],
-				]
+				],
+				$contentHandlerExpected
 			];
 		}
 		$objectFactory
 			->method( 'createObject' )
-			->withConsecutive( ...$expectedParams )
-			->willReturn( $contentHandlerExpected );
+			->willReturnMap( $returnMap );
 
 		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
 			$this->assertSame( $contentHandlerExpected, $factory->getContentHandler( $modelID ) );

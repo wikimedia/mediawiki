@@ -327,12 +327,15 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$userMock = $this->createMock( User::class );
 
 		$userOptionsManagerMock = $this->createUserOptionsManagerMock( $oldOptions );
-		$userOptionsManagerMock->expects( $this->exactly( 2 ) )
+		$expectedOptions = $newOptions;
+		$userOptionsManagerMock->expects( $this->exactly( count( $newOptions ) ) )
 			->method( 'setOption' )
-			->withConsecutive(
-				[ $userMock, 'test', $newOptions[ 'test' ] ],
-				[ $userMock, 'option', $newOptions[ 'option' ] ]
-			);
+			->willReturnCallback( function ( $user, $oname, $val ) use ( $userMock, &$expectedOptions ) {
+				$this->assertSame( $userMock, $user );
+				$this->assertArrayHasKey( $oname, $expectedOptions );
+				$this->assertSame( $expectedOptions[$oname], $val );
+				unset( $expectedOptions[$oname] );
+			} );
 		$userMock->method( 'isAllowed' )->willReturnCallback(
 			static function ( $permission ) {
 				return $permission === 'editmyprivateinfo' || $permission === 'editmyoptions';
@@ -461,7 +464,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @param array $userOptions
 	 * @param bool $defaultOptions
-	 * @return UserOptionsManager
+	 * @return UserOptionsManager&MockObject
 	 */
 	private function createUserOptionsManagerMock( array $userOptions, bool $defaultOptions = false ) {
 		$services = $this->getServiceContainer();

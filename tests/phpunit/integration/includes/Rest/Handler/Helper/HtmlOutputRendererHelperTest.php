@@ -1091,11 +1091,19 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 	private function getResponseInterfaceMock( array $expectedCalls ) {
 		$responseInterface = $this->createNoOpMock( ResponseInterface::class, array_keys( $expectedCalls ) );
-		foreach ( $expectedCalls as $method => $argument ) {
+		foreach ( $expectedCalls as $method => $arguments ) {
 			$responseInterface
-				->expects( $this->exactly( count( $argument ) ) )
+				->expects( $this->exactly( count( $arguments ) ) )
 				->method( $method )
-				->withConsecutive( ...$argument );
+				->willReturnCallback( function ( ...$actualArgs ) use ( $arguments ) {
+					static $expectedArgs;
+					if ( $expectedArgs === null ) {
+						$expectedArgs = $arguments;
+					}
+					$this->assertContains( $actualArgs, $expectedArgs );
+					$argIdx = array_search( $actualArgs, $expectedArgs, true );
+					unset( $expectedArgs[$argIdx] );
+				} );
 		}
 
 		return $responseInterface;

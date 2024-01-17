@@ -47,11 +47,10 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			->willReturn( false );
 		$spamChecker->expects( $this->exactly( 2 ) )
 			->method( 'checkContent' )
-			->withConsecutive(
-				[ $sectionHeading ],
-				[ $text ]
-			)
-			->willReturn( false );
+			->willReturnMap( [
+				[ $sectionHeading, false ],
+				[ $text, false ],
+			] );
 
 		$title = $this->createMock( Title::class );
 		$title->expects( $this->never() )
