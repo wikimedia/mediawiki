@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
+use InvalidArgumentException;
 use MediaWiki\ResourceLoader\CodexModule;
 use ResourceLoaderTestCase;
 
@@ -71,6 +72,18 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 					],
 					'styles' => []
 				]
+			],
+			[ 'Exception thrown when a chunk is requested',
+				[
+					'codexComponents' => [ 'CdxButton', 'buttonHelpers' ],
+				],
+				[
+					'exception' => [
+						'class' => InvalidArgumentException::class,
+						'message' => '"buttonHelpers" is not an export of Codex and cannot be included in the "codexComponents" array.'
+					]
+				]
+
 			]
 		];
 	}
@@ -79,6 +92,11 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 	 * @dataProvider provideModuleConfig
 	 */
 	public function testCodexSubset( $testCase, $moduleDefinition, $expected ) {
+		if ( isset( $expected['exception'] ) ) {
+			$this->expectException( $expected['exception']['class'] );
+			$this->expectExceptionMessage( $expected['exception']['message'] );
+		}
+
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
 			public const CODEX_MODULE_DIR = 'tests/phpunit/data/resourceloader/codexModules/';
 		};
@@ -88,11 +106,12 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		$testModule->setConfig( $config );
 
 		$packageFiles = $testModule->getPackageFiles( $context );
+		$styleFiles = $testModule->getStyleFiles( $context );
+
 		// Style-only module will not have any packageFiles.
 		$packageFilenames = isset( $packageFiles ) ? array_keys( $packageFiles[ 'files' ] ) : [];
 		$this->assertEquals( $expected[ 'packageFiles' ], $packageFilenames, 'Correct packageFiles added for ' . $testCase );
 
-		$styleFiles = $testModule->getStyleFiles( $context );
 		// Script-only module will not have any styleFiles.
 		$styleFilenames = [];
 		if ( count( $styleFiles ) > 0 ) {
