@@ -28,7 +28,6 @@ class RealTempUserConfigTest extends MediaWikiUnitTestCase {
 	public static function provideMethodsThatThrowWhenTempUsersAreDisabled() {
 		return [
 			'getPlaceholderName' => [ 'getPlaceholderName' ],
-			'getMatchPattern' => [ 'getMatchPattern' ],
 			'getMatchPatterns' => [ 'getMatchPatterns' ],
 			'getGeneratorPattern' => [ 'getGeneratorPattern' ],
 		];

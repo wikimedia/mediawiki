@@ -237,6 +237,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMatchPattern() {
+		$this->expectDeprecation();
 		$this->enableAutoCreateTempUser( [ 'matchPattern' => [ '*$1', '~$1' ] ] );
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
 		$this->assertSame( '*$1', TestingAccessWrapper::newFromObject( $tuc->getMatchPattern() )->pattern );
