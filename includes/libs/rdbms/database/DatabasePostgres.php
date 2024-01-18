@@ -450,15 +450,6 @@ __INDEXATTR__;
 		}
 	}
 
-	/**
-	 * @param string $name
-	 * @param string $format
-	 * @return string Qualified and encoded (if requested) table name
-	 */
-	public function realTableName( $name, $format = 'quoted' ) {
-		return parent::tableName( $name, $format );
-	}
-
 	public function nextSequenceValue( $seqName ) {
 		return new NextSequenceValue;
 	}
@@ -877,7 +868,7 @@ __INDEXATTR__;
 		} else {
 			$schemas = [ $schema ];
 		}
-		$table = $this->realTableName( $table, 'raw' );
+		$table = $this->tableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		foreach ( $schemas as $schema ) {
 			$eschema = $this->addQuotes( $schema );
@@ -1117,7 +1108,7 @@ __INDEXATTR__;
 		$column = null;
 
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$encTable = $this->addQuotes( $this->realTableName( $table, 'raw' ) );
+		$encTable = $this->addQuotes( $this->tableName( $table, 'raw' ) );
 		foreach ( $this->getCoreSchemas() as $schema ) {
 			$encSchema = $this->addQuotes( $schema );
 			$query = new Query(
