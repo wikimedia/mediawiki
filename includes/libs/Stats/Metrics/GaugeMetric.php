@@ -71,7 +71,13 @@ class GaugeMetric implements MetricInterface {
 			$this->baseMetric->getStatsdDataFactory()->updateCount( $this->statsdNamespace, $value );
 			$this->statsdNamespace = null;
 		}
-		$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
+
+		try {
+			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
+		} catch ( IllegalOperationException $ex ) {
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
+		}
 	}
 
 	/** @inheritDoc */

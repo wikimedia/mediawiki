@@ -227,6 +227,30 @@ class MetricTest extends TestCase {
 		$this->assertInstanceOf( NullMetric::class, $timer );
 	}
 
+	public function testCounterHandleNotAllLabelsHaveValues() {
+		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();
+		$this->expectWarning();
+		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
+		$m->getCounter( 'testMetricCounter' )->increment();
+	}
+
+	public function testGaugeHandleNotAllLabelsHaveValues() {
+		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m->getGauge( 'testMetricGauge' )->setLabel( 'labelOne', 'a' )->set( 1 );
+		$this->expectWarning();
+		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
+		$m->getGauge( 'testMetricGauge' )->set( 1 );
+	}
+
+	public function testTimingHandleNotAllLabelsHaveValues() {
+		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observe( 1 );
+		$this->expectWarning();
+		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
+		$m->getTiming( 'testMetricTiming' )->observe( 1 );
+	}
+
 	public function testSampleRateOOB() {
 		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
 		$metric = @$m->getCounter( 'testMetricCounter' )->setSampleRate( 1.1 );
