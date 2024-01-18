@@ -1,12 +1,12 @@
 var HighlightColors = require( '../HighlightColors.js' );
 
 /**
- * List of changes
+ * List of changes.
  *
  * @class mw.rcfilters.ui.ChangesListWrapperWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel View model
  * @param {mw.rcfilters.dm.ChangesListViewModel} changesListViewModel View model
  * @param {mw.rcfilters.Controller} controller

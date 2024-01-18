@@ -1449,7 +1449,7 @@ HtmlEmitter.prototype = {
  * @name msg
  * @param {string} message key
  * @param {...string[]} arguments
- * @function
+ * @method
  * @example
  * mw.loader.using('mediawiki.jqueryMsg' ).then(() => {
  *        var $userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );

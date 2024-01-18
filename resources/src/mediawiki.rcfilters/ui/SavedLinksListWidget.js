@@ -2,16 +2,15 @@ var SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
 	SavedLinksListWidget;
 
 /**
- * Quick links widget
+ * Quick links widget.
  *
  * @class mw.rcfilters.ui.SavedLinksListWidget
+ * @ignore
  * @extends OO.ui.ButtonMenuSelectWidget
- *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.SavedQueriesModel} model View model
  * @param {Object} [config] Configuration object
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
 SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, model, config ) {
 	var $labelNoEntries = $( '<div>' )

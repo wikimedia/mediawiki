@@ -1,12 +1,12 @@
 var ViewSwitchWidget;
 
 /**
- * A widget for the footer for the default view, allowing to switch views
+ * A widget for the footer for the default view, allowing to switch views.
  *
  * @class mw.rcfilters.ui.ViewSwitchWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} [config] Configuration object

@@ -1,26 +1,26 @@
 /**
- * RCFilter base item model
+ * RCFilter base item model.
  *
  * @class mw.rcfilters.dm.ItemModel
+ * @ignore
  * @mixins OO.EventEmitter
  *
- * @constructor
  * @param {string} param Filter param name
  * @param {Object} config Configuration object
- * @cfg {string} [label] The label for the filter
- * @cfg {string} [description] The description of the filter
- * @cfg {string|Object} [labelPrefixKey] An i18n key defining the prefix label for this
+ * @param {string} [config.label] The label for the filter
+ * @param {string} [config.description] The description of the filter
+ * @param {string|Object} [config.labelPrefixKey] An i18n key defining the prefix label for this
  *  group. If the prefix has 'invert' state, the parameter is expected to be an object
  *  with 'default' and 'inverted' as keys.
- * @cfg {boolean} [active=true] The filter is active and affecting the result
- * @cfg {boolean} [selected] The item is selected
- * @cfg {*} [value] The value of this item
- * @cfg {string} [namePrefix='item_'] A prefix to add to the param name to act as a unique
+ * @param {boolean} [config.active=true] The filter is active and affecting the result
+ * @param {boolean} [config.selected] The item is selected
+ * @param {any} [config.value] The value of this item
+ * @param {string} [config.namePrefix='item_'] A prefix to add to the param name to act as a unique
  *  identifier
- * @cfg {string} [cssClass] The class identifying the results that match this filter
- * @cfg {string[]} [identifiers] An array of identifiers for this item. They will be
+ * @param {string} [config.cssClass] The class identifying the results that match this filter
+ * @param {string[]} [config.identifiers] An array of identifiers for this item. They will be
  *  added and considered in the view.
- * @cfg {string} [defaultHighlightColor=null] If set, highlight this filter by default with this color
+ * @param {string} [config.defaultHighlightColor=null] If set, highlight this filter by default with this color
  */
 var ItemModel = function MwRcfiltersDmItemModel( param, config ) {
 	config = config || {};
@@ -52,9 +52,10 @@ OO.mixinClass( ItemModel, OO.EventEmitter );
 /* Events */
 
 /**
- * @event update
+ * The state of this filter has changed.
  *
- * The state of this filter has changed
+ * @event update
+ * @ignore
  */
 
 /* Methods */
@@ -169,7 +170,7 @@ ItemModel.prototype.toggleSelected = function ( isSelected ) {
 /**
  * Get the value
  *
- * @return {*}
+ * @return {any}
  */
 ItemModel.prototype.getValue = function () {
 	return this.value;
@@ -178,8 +179,8 @@ ItemModel.prototype.getValue = function () {
 /**
  * Convert a given value to the appropriate representation based on group type
  *
- * @param {*} value
- * @return {*}
+ * @param {any} value
+ * @return {any}
  */
 ItemModel.prototype.coerceValue = function ( value ) {
 	return this.getGroupModel().getType() === 'any_value' ? value : !!value;
@@ -188,7 +189,7 @@ ItemModel.prototype.coerceValue = function ( value ) {
 /**
  * Set the value
  *
- * @param {*} newValue
+ * @param {any} newValue
  */
 ItemModel.prototype.setValue = function ( newValue ) {
 	newValue = this.coerceValue( newValue );

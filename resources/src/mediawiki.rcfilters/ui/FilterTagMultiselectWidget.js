@@ -5,21 +5,21 @@ var ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
 	FilterTagMultiselectWidget;
 
 /**
- * List displaying all filter groups
+ * List displaying all filter groups.
  *
  * @class mw.rcfilters.ui.FilterTagMultiselectWidget
+ * @ignore
  * @extends OO.ui.MenuTagMultiselectWidget
  * @mixins OO.ui.mixin.PendingElement
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
  * @param {Object} config Configuration object
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
- * @cfg {jQuery} [$wrapper] A jQuery object for the wrapper of the general
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
+ * @param {jQuery} [config.$wrapper] A jQuery object for the wrapper of the general
  *  system. If not given, falls back to this widget's $element
- * @cfg {boolean} [collapsed] Filter area is collapsed
+ * @param {boolean} [config.collapsed] Filter area is collapsed
  */
 FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
 	var $rcFiltersRow,
@@ -82,6 +82,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		 * rather than a text input. Mobile screens are too small to accommodate both an
 		 * onscreen keyboard and a popup-menu, so readyOnly is set to disable the keyboard.
 		 * A different icon and shorter message is used for mobile as well. (See T224655 for details).
+		 * @ignore
 		 */
 		input: {
 			icon: this.isMobile ? 'funnel' : 'menu',
@@ -394,6 +395,12 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 			this.focus();
 		}
 
+		/**
+		 * Fires when the RCFilters tag multi selector menu is toggled.
+		 *
+		 * @event ~'RcFilters.popup.open'
+		 * @memberof Hooks
+		 */
 		mw.hook( 'RcFilters.popup.open' ).fire();
 
 		if ( !this.getMenu().findSelectedItem() ) {

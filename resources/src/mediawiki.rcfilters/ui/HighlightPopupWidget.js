@@ -4,9 +4,9 @@ var HighlightColorPickerWidget = require( './HighlightColorPickerWidget.js' ),
  * A popup containing a color picker, for setting highlight colors.
  *
  * @class mw.rcfilters.ui.HighlightPopupWidget
+ * @ignore
  * @extends OO.ui.PopupWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {Object} [config] Configuration object
  */

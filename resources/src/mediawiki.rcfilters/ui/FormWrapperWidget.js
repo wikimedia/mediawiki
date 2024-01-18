@@ -3,9 +3,9 @@
  * Must be constructed after the model is initialized.
  *
  * @class mw.rcfilters.ui.FormWrapperWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Changes list view model
  * @param {mw.rcfilters.dm.ChangesListViewModel} changeListModel Changes list view model
  * @param {mw.rcfilters.Controller} controller RCfilters controller

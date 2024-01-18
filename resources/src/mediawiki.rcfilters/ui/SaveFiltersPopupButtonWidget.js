@@ -5,9 +5,9 @@
  * default.
  *
  * @class mw.rcfilters.ui.SaveFiltersPopupButtonWidget
+ * @ignore
  * @extends OO.ui.PopupButtonWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.SavedQueriesModel} model View model
  * @param {Object} [config] Configuration object

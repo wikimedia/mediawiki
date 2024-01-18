@@ -5,19 +5,19 @@ var FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
 	MenuSelectWidget;
 
 /**
- * A floating menu widget for the filter list
+ * A floating menu widget for the filter list.
  *
  * @class mw.rcfilters.ui.MenuSelectWidget
+ * @ignore
  * @extends OO.ui.MenuSelectWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} [config] Configuration object
- * @cfg {boolean} [isMobile] a boolean flag determining whether the menu
+ * @param {boolean} [config.isMobile] a boolean flag determining whether the menu
  * should display a header or not (the header is omitted on mobile).
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
- * @cfg {Object[]} [footers] An array of objects defining the footers for
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
+ * @param {Object[]} [config.footers] An array of objects defining the footers for
  *  this menu, with a definition whether they appear per specific views.
  *  The expected structure is:
  *  [
@@ -314,6 +314,7 @@ MenuSelectWidget.prototype.postProcessItems = function () {
 /**
  * Get the option widget that matches the model given
  *
+ * @ignore
  * @param {mw.rcfilters.dm.ItemModel} model Item model
  * @return {mw.rcfilters.ui.ItemMenuOptionWidget} Option widget
  */

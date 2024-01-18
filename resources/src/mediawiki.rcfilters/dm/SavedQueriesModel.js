@@ -2,16 +2,16 @@ var SavedQueryItemModel = require( './SavedQueryItemModel.js' ),
 	SavedQueriesModel;
 
 /**
- * View model for saved queries
+ * View model for saved queries.
  *
  * @class mw.rcfilters.dm.SavedQueriesModel
+ * @ignore
  * @mixins OO.EventEmitter
  * @mixins OO.EmitterList
  *
- * @constructor
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters model
  * @param {Object} [config] Configuration options
- * @cfg {string} [default] Default query ID
+ * @param {string} [config.default] Default query ID
  */
 SavedQueriesModel = function MwRcfiltersDmSavedQueriesModel( filtersModel, config ) {
 	config = config || {};
@@ -37,23 +37,26 @@ OO.mixinClass( SavedQueriesModel, OO.EmitterList );
 /* Events */
 
 /**
- * @event initialize
+ * Model is initialized.
  *
- * Model is initialized
+ * @event initialize
+ * @ignore
  */
 
 /**
+ * An item has changed.
+ *
  * @event itemUpdate
  * @param {mw.rcfilters.dm.SavedQueryItemModel} Changed item
- *
- * An item has changed
+ * @ignore
  */
 
 /**
+ * The default has changed.
+ *
  * @event default
  * @param {string} New default ID
- *
- * The default has changed
+ * @ignore
  */
 
 /* Methods */
@@ -287,6 +290,7 @@ SavedQueriesModel.prototype.removeQuery = function ( queryID ) {
  *
  * @param {Object} fullQueryComparison Object representing all filters and highlights to compare
  * @return {mw.rcfilters.dm.SavedQueryItemModel} Matching item model
+ * @ignore
  */
 SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison ) {
 	// Minimize before comparison
@@ -308,6 +312,7 @@ SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison )
 /**
  * Get query by its identifier
  *
+ * @ignore
  * @param {string} queryID Query identifier
  * @return {mw.rcfilters.dm.SavedQueryItemModel|undefined} Item matching
  *  the search. Undefined if not found.

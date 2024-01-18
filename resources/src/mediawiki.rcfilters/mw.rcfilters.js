@@ -33,6 +33,12 @@ const rcfilters = {
 	ui: {
 		MainWrapperWidget: require( './ui/MainWrapperWidget.js' )
 	},
+	/**
+	 * Utils used by RecentChanges Filters.
+	 *
+	 * @namespace rcfilters.ui
+	 * @private
+	 */
 	utils: require( './utils.js' )
 };
 
@@ -169,8 +175,8 @@ function init() {
 	/**
 	 * Fired when initialization of the filtering interface for changes list is complete.
 	 *
-	 * @event structuredChangeFilters_ui_initialized
-	 * @member mw.hook
+	 * @event ~'structuredChangeFilters.ui.initialized'
+	 * @memberof Hooks
 	 */
 	mw.hook( 'structuredChangeFilters.ui.initialized' ).fire();
 }

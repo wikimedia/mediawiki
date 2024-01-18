@@ -255,7 +255,7 @@
 		 * compliant with RFC 3986. Similar to rawurlencode from PHP and our JS library
 		 * {@link module:mediawiki.util.rawurlencode mw.util.rawurlencode}, except this also replaces spaces with `+`.
 		 *
-		 * @function
+		 * @method
 		 * @name mw.Uri.encode
 		 * @param {string} s String to encode
 		 * @return {string} Encoded string for URI
@@ -273,7 +273,7 @@
 		 * Reversed {@link mw.Uri.encode encode}. Standard decodeURIComponent, with addition of replacing
 		 * `+` with a space.
 		 *
-		 * @function
+		 * @method
 		 * @name mw.Uri.decode
 		 * @param {string} s String to decode
 		 * @return {string} Decoded string

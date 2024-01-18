@@ -1,14 +1,14 @@
 /**
- * A widget representing a menu section for filter groups
+ * A widget representing a menu section for filter groups.
  *
  * @class mw.rcfilters.ui.FilterMenuSectionOptionWidget
+ * @ignore
  * @extends OO.ui.MenuSectionOptionWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {mw.rcfilters.dm.FilterGroup} model Filter group model
  * @param {Object} config Configuration object
- * @cfg {jQuery} [$overlay] Overlay
+ * @param {jQuery} [config.$overlay] Overlay
  */
 var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptionWidget( controller, model, config ) {
 	var whatsThisMessages,

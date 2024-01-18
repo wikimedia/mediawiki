@@ -8,23 +8,23 @@ var SavedLinksListWidget = require( './SavedLinksListWidget.js' ),
 	MainWrapperWidget;
 
 /**
- * Wrapper for changes list content
+ * Wrapper for changes list content.
  *
  * @class mw.rcfilters.ui.MainWrapperWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
  * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel
  * @param {Object} config Configuration object
- * @cfg {jQuery} $topSection Top section container
- * @cfg {jQuery} $filtersContainer
- * @cfg {jQuery} $changesListContainer
- * @cfg {jQuery} $formContainer
- * @cfg {boolean} [collapsed] Filter area is collapsed
- * @cfg {jQuery} [$wrapper] A jQuery object for the wrapper of the general
+ * @param {jQuery} config.$topSection Top section container
+ * @param {jQuery} config.$filtersContainer
+ * @param {jQuery} config.$changesListContainer
+ * @param {jQuery} config.$formContainer
+ * @param {boolean} [config.collapsed] Filter area is collapsed
+ * @param {jQuery} [config.$wrapper] A jQuery object for the wrapper of the general
  *  system. If not given, falls back to this widget's $element
  */
 MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
@@ -129,6 +129,7 @@ MainWrapperWidget.prototype.onFilterMenuToggle = function ( isVisible ) {
 /**
  * Initialize FormWrapperWidget
  *
+ * @ignore
  * @return {mw.rcfilters.ui.FormWrapperWidget} Form wrapper widget
  */
 MainWrapperWidget.prototype.initFormWidget = function () {
