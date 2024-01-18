@@ -269,10 +269,10 @@ WARN
 				->select( 'up_user' )
 				->from( 'user_properties' )
 				->where( [ 'up_property' => $option, "up_user > $minUserId" ] );
-			if ( $toUserId ) {
+			if ( $this->hasOption( 'touserid' ) ) {
 				$queryBuilder->andWhere( "up_user < $toUserId" );
 			}
-			if ( $old ) {
+			if ( $this->hasOption( 'old' ) ) {
 				$queryBuilder->andWhere( [ 'up_value' => $old ] );
 			}
 
@@ -286,7 +286,7 @@ WARN
 				$delete = $dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'user_properties' )
 					->where( [ 'up_property' => $option,  'up_user' => $userIds ] );
-				if ( $old ) {
+				if ( $this->hasOption( 'old' ) ) {
 					$delete->andWhere( [ 'up_value' => $old ] );
 				}
 				$delete->caller( __METHOD__ )->execute();
