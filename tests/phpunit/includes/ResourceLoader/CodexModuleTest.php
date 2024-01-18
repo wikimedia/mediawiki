@@ -83,8 +83,31 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 						'message' => '"buttonHelpers" is not an export of Codex and cannot be included in the "codexComponents" array.'
 					]
 				]
-
-			]
+			],
+			[ 'Exception thrown when codexComponents is empty in the module definition',
+				[
+					'codexComponents' => []
+				],
+				[
+					'exception' => [
+						'class' => InvalidArgumentException::class,
+						'message' => "All 'codexComponents' properties in your module definition file " .
+						'must either be omitted or be an array with at least one component name'
+					]
+				]
+			],
+			[ 'Exception thrown when codexComponents is not an array in the module definition',
+				[
+					'codexComponents' => ''
+				],
+				[
+					'exception' => [
+						'class' => InvalidArgumentException::class,
+						'message' => "All 'codexComponents' properties in your module definition file " .
+						'must either be omitted or be an array with at least one component name'
+					]
+				]
+			],
 		];
 	}
 
