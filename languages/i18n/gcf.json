@@ -581,6 +581,8 @@
 	"compareselectedversions": "Konparé révizyion ki séléksyonné",
 	"editundo": "défèt",
 	"diff-empty": "(Pon diférans)",
+	"diff-inline-tooltip-ins": "Kontni ajouté",
+	"diff-inline-tooltip-del": "Kontni éfasé",
 	"diff-line-deleted": "⟵ éfasé",
 	"searchresults": "Rézilta a chèché aw",
 	"search-filter-title-prefix-reset": "Chèché tout sé paj-la",

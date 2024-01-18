@@ -108,6 +108,7 @@
 	"apihelp-opensearch-param-redirects-append": "Iz zgodovinskih razlogov je privzeta vrednost »return« za $1 format=json in »resolve« za druge formate.",
 	"apihelp-opensearch-param-format": "Oblika izhoda.",
 	"apihelp-opensearch-example-te": "Iskanje strani, ki se začnejo s <kbd>Te</kbd>.",
+	"apihelp-options-param-optionvalue": "Vrednost za možnost, ki jo določa <var>$1optionname</var>. Ko je nastavljeno <var>$1optionname,</var> vendar je <var>$1 optionvalue</var> izpuščeno, bo možnost ponastavljena na privzeto vrednost.",
 	"apihelp-paraminfo-param-helpformat": "Format nizov pomoči.",
 	"apihelp-parse-paramvalue-prop-categories": "Poda kategorije v razčlenjenem vikibesedilu.",
 	"apihelp-parse-paramvalue-prop-sections": "Poda razdelke v razčlenjenem vikibesedilu.",

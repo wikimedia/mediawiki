@@ -673,7 +673,7 @@
 	"botpasswords-label-delete": "刪除",
 	"botpasswords-label-resetpassword": "重設密碼",
 	"botpasswords-label-grants": "適用的授權：",
-	"botpasswords-help-grants": "授權可以允許您存取您的使用者帳號已經擁有的權限，但在此開啟授權並不會讓您的使用者帳號可以存取那些您並未擁有的權限。請參考[[Special:ListGrants|授權表]]取得更多資訊。",
+	"botpasswords-help-grants": "授權允許您存取使用者帳號已持有的權限。在此啟用授權並不會讓您可以存取您原本就未擁有的權限。參見[[Special:ListGrants|授權表]]以取得更多資訊。\n\n有風險的授權已做標記。未標記的授權在機器人被惡意人士劫持時通常難以濫用。標記為有造成破壞行為風險（<span class=\"mw-grantriskgroup-vandalism\"></span>）的授權可用於造成需要花費大量精力才能清理完成的破壞行為。標記為有造成安全問題風險（<span class=\"mw-grantriskgroup-security\"></span>）的授權可導致永續性危害（例如個人資料洩露）。內部使用授權（<span class=\"mw-grantriskgroup-internal\"></span>）是通常僅供站點運營方使用的授權。除非的確需要，否則請不要申請有風險的授權。",
 	"botpasswords-label-grants-column": "已授權",
 	"botpasswords-bad-appid": "機器人名稱 \"$1\" 無效。",
 	"botpasswords-toolong-restrictions": "輸入過多的 IP 位址或範圍。",

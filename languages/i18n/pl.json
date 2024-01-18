@@ -645,7 +645,7 @@
 	"botpasswords-label-delete": "Usuń",
 	"botpasswords-label-resetpassword": "Zresetuj hasło",
 	"botpasswords-label-grants": "Zastosowane uprawnienia:",
-	"botpasswords-help-grants": "Nadawane uprawnienia upoważniają do działań, które możesz już obecnie wykonywać. Wyrażenie zgody tutaj nie daje dostępu do nowych uprawnień. Zobacz [[Special:ListGrants|tabelę uprawnień]], aby uzyskać więcej informacji.",
+	"botpasswords-help-grants": "Nadawane uprawnienia upoważniają do działań, które możesz już obecnie wykonywać. Wyrażenie zgody tutaj nie daje dostępu do nowych uprawnień. Zobacz [[Special:ListGrants|tabelę uprawnień]], aby uzyskać więcej informacji.\n\nRyzykowne dostępu są stosownie oznaczone. Niezaznaczone dostępy zazwyczaj są trudne do nadużycia w przypadku przejęcia konta bota przez osobę o złośliwych zamiarach. Dostępy z ryzykiem wandalizmu (<span class=\"mw-grantriskgroup-vandalism\"></span>) mogą zostać wykorzystane do szkodliwych działań wymagających wiele wysiłku do naprawienia. Dostępy z ryzykiem bezpieczeństwa (<span class=\"mw-grantriskgroup-security\"></span>) mogą spowodować długotrwałe szkody (jak np. kradzież danych). Dostępy wewnętrzne (<span class=\"mw-grantriskgroup-internal\"></span>) zazwyczaj wykorzystywane są wyłącznie przez operatorów witryny. Nie wykorzystuj ryzykownych dostępów, o ile te nie są niezbędne.",
 	"botpasswords-label-grants-column": "Przyznane",
 	"botpasswords-bad-appid": "Nazwa bota \"$1\" nie jest prawidłowa.",
 	"botpasswords-toolong-restrictions": "Podano zbyt wiele adresów IP lub ich zakresów.",
@@ -1493,6 +1493,9 @@
 	"grant-viewdeleted": "Wyświetlanie usuniętych plików i stron",
 	"grant-viewmywatchlist": "Zobacz swoją listę obserwowanych",
 	"grant-viewrestrictedlogs": "Przeglądanie zastrzeżonych wpisów w rejestrach",
+	"grantriskgroup-vandalism": "(stopień ryzyka: wandalizm)",
+	"grantriskgroup-security": "(stopień ryzyka: bezpieczeństwo)",
+	"grantriskgroup-internal": "(stopień ryzyka: wewnętrzne)",
 	"newuserlogpage": "Rejestr nowych użytkowników",
 	"newuserlogpagetext": "To jest rejestr ostatnio utworzonych kont użytkowników",
 	"rightslog": "Rejestr uprawnień",
@@ -1580,6 +1583,7 @@
 	"action-override-export-depth": "eksportowania stron wraz z linkowanymi do głębokości 5 linków",
 	"action-suppressredirect": "przenoszenia stron bez tworzenia przekierowania w miejscu starej nazwy",
 	"nchanges": "$1 {{PLURAL:$1|zmiana|zmiany|zmian}}",
+	"ntimes": "$1&times;",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|od ostatniej wizyty}}",
 	"enhancedrc-history": "historia",
 	"recentchanges": "Ostatnie zmiany",
@@ -4287,5 +4291,7 @@
 	"benefit-1-description": "Lista obserwowanych, pozwalająca śledzić interesujące cię strony.",
 	"benefit-2-description": "Trwała lista edycji, które zostały przez Ciebie wniesione do projektu.",
 	"benefit-3-description": "Preferencje pozwalające dostosować twoje korzystanie z projektu.",
-	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie."
+	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie.",
+	"composer-deps-outdated": "$1: zainstalowano $2, wymagane $3.",
+	"composer-deps-notinstalled": "$1: nie zainstalowano, wymagane $2."
 }
