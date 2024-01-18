@@ -43,6 +43,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -552,6 +553,9 @@ class ApiMain extends ApiBase {
 	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
 	private $lacksSameOriginSecurity = null;
 
+	/** @var StatsFactory */
+	private $statsFactory;
+
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
@@ -603,6 +607,8 @@ class ApiMain extends ApiBase {
 			$this,
 			$services->getObjectFactory()
 		);
+
+		$this->statsFactory = $services->getStatsFactory();
 
 		$this->mResult =
 			new ApiResult( $this->getConfig()->get( MainConfigNames::APIMaxResultSize ) );
@@ -912,9 +918,11 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 			$runTime = microtime( true ) - $t;
 			$this->logRequest( $runTime );
-			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
-				'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
-			);
+
+			$this->statsFactory->getTiming( 'api_executeTiming_seconds' )
+				->setLabel( 'module', $this->mModule->getModuleName() )
+				->copyToStatsdAt( 'api.' . $this->mModule->getModuleName() . '.executeTiming' )
+				->observe( 1000 * $runTime );
 		} catch ( Throwable $e ) {
 			$this->handleException( $e );
 			$this->logRequest( microtime( true ) - $t, $e );
