@@ -430,7 +430,8 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getActorStoreFactory(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getDBLoadBalancerFactory()
 		);
 	},
 
