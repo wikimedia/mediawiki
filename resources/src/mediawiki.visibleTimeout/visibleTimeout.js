@@ -20,7 +20,10 @@ function init( overrideDoc ) {
 init();
 
 /**
- * @class mw.visibleTimeout
+ * A library similar to similar to setTimeout and clearTimeout,
+ * that pauses the time when page visibility is hidden.
+ *
+ * @exports mediawiki.visibleTimeout
  * @singleton
  */
 module.exports = {
