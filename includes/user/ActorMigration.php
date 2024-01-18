@@ -30,18 +30,7 @@ class ActorMigration extends ActorMigrationBase {
 	 */
 	public const FIELD_INFOS = [
 		// Deprecated since 1.39
-		'rev_user' => [
-			'tempTable' => [
-				'table' => 'revision_actor_temp',
-				'pk' => 'revactor_rev',
-				'field' => 'revactor_actor',
-				'joinPK' => 'rev_id',
-				'extra' => [
-					'revactor_timestamp' => 'rev_timestamp',
-					'revactor_page' => 'rev_page',
-				],
-			],
-		],
+		'rev_user' => [],
 
 		// Deprecated since 1.34
 		'ar_user' => [
@@ -133,14 +122,6 @@ class ActorMigration extends ActorMigrationBase {
 	 */
 	public function getInsertValues( IDatabase $dbw, $key, UserIdentity $user ) {
 		return parent::getInsertValues( $dbw, $key, $user );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @deprecated since 1.39 Use same replacement as getInsertValues().
-	 */
-	public function getInsertValuesWithTempTable( IDatabase $dbw, $key, UserIdentity $user ) {
-		return parent::getInsertValuesWithTempTable( $dbw, $key, $user );
 	}
 
 }
