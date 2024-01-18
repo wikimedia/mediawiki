@@ -2226,7 +2226,7 @@ return [
 				$accountCreationThrottle,
 				[
 					'type' => 'acctcreate',
-					'cache' => $services->getLocalServerObjectCache()
+					'cache' => ObjectCache::getLocalClusterInstance(),
 				]
 			)
 		);
