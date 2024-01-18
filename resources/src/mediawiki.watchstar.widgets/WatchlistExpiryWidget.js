@@ -3,7 +3,7 @@
  * with a selection widget that can determine how long the page will be watched.
  * If a page is being watched then a dropdown with expiry options is included.
  *
- * @class
+ * @exports mediawiki.watchstar.widgets
  * @extends OO.ui.Widget
  * @param {string} action One of 'watch', 'unwatch'
  * @param {string} pageTitle Title of page that this widget will watch or unwatch
