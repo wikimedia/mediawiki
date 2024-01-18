@@ -369,5 +369,8 @@
 	"exif-usepanoramaviewer-false": "না",
 	"exif-exposurelockused": "এক্সপোজার লক ব্যবহৃত",
 	"exif-exposurelockused-true": "হ্যাঁ",
-	"exif-exposurelockused-false": "না"
+	"exif-exposurelockused-false": "না",
+	"exif-posepitchdegrees": "পিচ (ডিগ্রি)",
+	"exif-poserolldegrees": "রোল (ডিগ্রি)",
+	"exif-sourcephotoscount": "উৎস ছবির গণনা"
 }

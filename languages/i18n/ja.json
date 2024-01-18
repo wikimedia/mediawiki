@@ -144,7 +144,8 @@
 			"赤城。",
 			"青子守歌",
 			"고솜",
-			"아라"
+			"아라",
+			"翻訳者a"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1912,7 +1913,7 @@
 	"upload-foreign-cant-load-config": "外部ファイルリポジトリへのファイルアップロードに使用される設定の読み込みに失敗しました。",
 	"upload-dialog-disabled": "このウィキでは、このダイアログを使用するファイルのアップロードが無効にされています。",
 	"upload-dialog-title": "ファイルをアップロード",
-	"upload-dialog-button-cancel": "中止",
+	"upload-dialog-button-cancel": "キャンセル",
 	"upload-dialog-button-back": "戻る",
 	"upload-dialog-button-done": "完了",
 	"upload-dialog-button-save": "保存",

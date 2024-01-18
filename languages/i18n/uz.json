@@ -2214,6 +2214,7 @@
 	"specialmute-label-mute-email": "Bu {{GENDER:$1|foydalanuvchi}}dan kelgan sukut qilingan e-maktublar",
 	"mute-preferences": "Sukut qilingan moslamalar",
 	"passwordpolicies-group": "Guruh",
+	"userlogout-continue": "Hisobingizdan chiqmoqchimisiz?",
 	"paramvalidator-help-type-user-subtype-id": "foydalanuvchi IDsi (masalan, \"#12345\")",
 	"changeslist-nocomment": "Tahrir izohi yoʻq",
 	"skin-view-create-local": "Mahalliy tavsifini qoʻshish",
