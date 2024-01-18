@@ -121,14 +121,14 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$queryConditions = $this->buildQuery( $requestOptions, $user );
 
 		$this->assertEquals(
-			self::normalizeCondition( $expected ),
-			self::normalizeCondition( $queryConditions ),
+			$this->normalizeCondition( $expected ),
+			$this->normalizeCondition( $queryConditions ),
 			$message
 		);
 	}
 
-	private static function normalizeCondition( array $conds ): array {
-		$dbr = wfGetDB( DB_REPLICA );
+	private function normalizeCondition( array $conds ): array {
+		$dbr = $this->getDb();
 		$normalized = array_map(
 			static function ( $k, $v ) use ( $dbr ) {
 				if ( is_array( $v ) ) {
@@ -731,7 +731,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	private function createUsers( array $specs, int $now ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDb();
 		foreach ( $specs as $name => $spec ) {
 			User::createNew(
 				$name,

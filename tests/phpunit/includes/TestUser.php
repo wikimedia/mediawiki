@@ -135,7 +135,9 @@ class TestUser {
 			throw new InvalidArgumentException( "Passed User has not been added to the database yet!" );
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$services = MediaWikiServices::getInstance();
+
+		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
 		$row = $dbw->newSelectQueryBuilder()
 			->select( [ 'user_password' ] )
 			->from( 'user' )
@@ -145,7 +147,7 @@ class TestUser {
 			throw new RuntimeException( "Passed User has an ID but is not in the database?" );
 		}
 
-		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
+		$passwordFactory = $services->getPasswordFactory();
 		if ( !$passwordFactory->newFromCiphertext( $row->user_password )->verify( $password ) ) {
 			$passwordHash = $passwordFactory->newFromPlaintext( $password );
 			$dbw->newUpdateQueryBuilder()
