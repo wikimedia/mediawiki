@@ -718,7 +718,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return bool
 	 */
 	private function isValueEqual( $a, $b ) {
-		// null is only equal to another null (T355086)g
+		// null is only equal to another null (T355086)
 		if ( $a === null || $b === null ) {
 			return $a === $b;
 		}
