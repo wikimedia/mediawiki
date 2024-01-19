@@ -33,7 +33,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
-use MWException;
 use MWExceptionHandler;
 use RepoGroup;
 use SpecialUploadStashTooLargeException;
@@ -216,7 +215,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * and output it to STDOUT.
 	 * @param File $file
 	 * @param array $params Scaling parameters ( e.g. [ width => '50' ] );
-	 * @throws MWException|UploadStashFileNotFoundException
 	 */
 	private function outputLocallyScaledThumb( $file, $params ) {
 		// n.b. this is stupid, we insist on re-transforming the file every time we are invoked. We rely
@@ -259,7 +257,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 *
 	 * @param File $file
 	 * @param array $params Scaling parameters ( e.g. [ width => '50' ] );
-	 * @throws MWException
 	 */
 	private function outputRemoteScaledThumb( $file, $params ) {
 		// We need to use generateThumbName() instead of thumbName(), because

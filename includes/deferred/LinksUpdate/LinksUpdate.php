@@ -38,7 +38,6 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use MWException;
 use RefreshLinksJob;
 use RuntimeException;
 use Wikimedia\Rdbms\IDatabase;
@@ -89,8 +88,6 @@ class LinksUpdate extends DataUpdate {
 	 * @param bool $recursive Queue jobs for recursive updates?
 	 * @param bool $maybeRedirectChanged True if the page's redirect target may have changed in the
 	 *   latest revision. If false, this is used as a hint to skip some unnecessary updates.
-	 *
-	 * @throws MWException
 	 */
 	public function __construct(
 		PageIdentity $page,

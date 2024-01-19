@@ -24,7 +24,6 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use InvalidArgumentException;
-use MWException;
 use RuntimeException;
 use Wikimedia\RequestTimeout\TimeoutException;
 
@@ -161,7 +160,6 @@ class SiteImporter {
 	 * @param DOMElement $siteElement
 	 *
 	 * @return Site
-	 * @throws InvalidArgumentException
 	 */
 	public function makeSite( DOMElement $siteElement ) {
 		if ( $siteElement->tagName !== 'site' ) {
@@ -208,7 +206,6 @@ class SiteImporter {
 	 * @param string|null|false $default
 	 *
 	 * @return null|string
-	 * @throws MWException If the attribute is not found and no default is provided
 	 */
 	private function getAttributeValue( DOMElement $element, $name, $default = false ) {
 		$node = $element->getAttributeNode( $name );
@@ -217,7 +214,7 @@ class SiteImporter {
 			if ( $default !== false ) {
 				return $default;
 			} else {
-				throw new MWException(
+				throw new RuntimeException(
 					'Required ' . $name . ' attribute not found in <' . $element->tagName . '> tag'
 				);
 			}
@@ -232,7 +229,6 @@ class SiteImporter {
 	 * @param string|null|false $default
 	 *
 	 * @return null|string
-	 * @throws MWException If the child element is not found and no default is provided
 	 */
 	private function getChildText( DOMElement $element, $name, $default = false ) {
 		$elements = $element->getElementsByTagName( $name );
@@ -241,7 +237,7 @@ class SiteImporter {
 			if ( $default !== false ) {
 				return $default;
 			} else {
-				throw new MWException(
+				throw new RuntimeException(
 					'Required <' . $name . '> tag not found inside <' . $element->tagName . '> tag'
 				);
 			}
@@ -256,7 +252,6 @@ class SiteImporter {
 	 * @param string $name
 	 *
 	 * @return bool
-	 * @throws MWException
 	 */
 	private function hasChild( DOMElement $element, $name ) {
 		return $this->getChildText( $element, $name, null ) !== null;

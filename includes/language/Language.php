@@ -871,7 +871,6 @@ class Language implements Bcp47Code {
 	 * Only makes sense if $ts is the current time.
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
 	 *
-	 * @throws MWException
 	 * @return string
 	 * @return-taint tainted
 	 */
@@ -910,11 +909,11 @@ class Language implements Bcp47Code {
 		$usedTennoYear = false;
 
 		if ( strlen( $ts ) !== 14 ) {
-			throw new MWException( __METHOD__ . ": The timestamp $ts should have 14 characters" );
+			throw new InvalidArgumentException( __METHOD__ . ": The timestamp $ts should have 14 characters" );
 		}
 
 		if ( !ctype_digit( $ts ) ) {
-			throw new MWException( __METHOD__ . ": The timestamp $ts should be a number" );
+			throw new InvalidArgumentException( __METHOD__ . ": The timestamp $ts should be a number" );
 		}
 
 		$formatLength = strlen( $format );
@@ -3721,7 +3720,6 @@ class Language implements Bcp47Code {
 	 * but uses pairs of regexes and replacements instead of code.
 	 *
 	 * @return array[] Array of grammar transformations.
-	 * @throws MWException
 	 * @since 1.28
 	 */
 	public function getGrammarTransformations() {
@@ -3736,7 +3734,7 @@ class Language implements Bcp47Code {
 			: [];
 
 		if ( $this->grammarTransformCache === null ) {
-			throw new MWException( "Invalid grammar data for \"{$this->getCode()}\"." );
+			throw new RuntimeException( "Invalid grammar data for \"{$this->getCode()}\"." );
 		}
 
 		return $this->grammarTransformCache;

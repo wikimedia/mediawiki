@@ -43,7 +43,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
-use MWException;
 use ParserFactory;
 use PrefixingStatsdDataFactoryProxy;
 use Psr\Log\LoggerInterface;
@@ -503,17 +502,13 @@ class SiteConfig extends ISiteConfig {
 		if ( $this->languageConverterFactory->isConversionDisabled() ) {
 			return false;
 		}
-		try {
-			$langObject = $this->languageFactory->getLanguage( $lang );
-			if ( !in_array( $langObject->getCode(), LanguageConverter::$languagesWithVariants, true ) ) {
-				return false;
-			}
-			$converter = $this->languageConverterFactory->getLanguageConverter( $langObject );
-			return $converter->hasVariants();
-		} catch ( MWException $ex ) {
-			// Probably a syntactically invalid language code
+
+		$langObject = $this->languageFactory->getLanguage( $lang );
+		if ( !in_array( $langObject->getCode(), LanguageConverter::$languagesWithVariants, true ) ) {
 			return false;
 		}
+		$converter = $this->languageConverterFactory->getLanguageConverter( $langObject );
+		return $converter->hasVariants();
 	}
 
 	public function script(): string {

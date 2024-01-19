@@ -162,7 +162,6 @@ class UploadFromUrl extends UploadBase {
 	 *
 	 * @param string $name
 	 * @param string $url
-	 * @throws MWException
 	 */
 	public function initialize( $name, $url ) {
 		$this->mUrl = $url;

@@ -8,24 +8,24 @@ use MediaWiki\MainConfigNames;
 class FileRepoTest extends MediaWikiIntegrationTestCase {
 
 	public function testFileRepoConstructionOptionCanNotBeNull() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new FileRepo();
 	}
 
 	public function testFileRepoConstructionOptionCanNotBeAnEmptyArray() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new FileRepo( [] );
 	}
 
 	public function testFileRepoConstructionOptionNeedNameKey() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new FileRepo( [
 			'backend' => 'foobar'
 		] );
 	}
 
 	public function testFileRepoConstructionOptionNeedBackendKey() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new FileRepo( [
 			'name' => 'foobar'
 		] );

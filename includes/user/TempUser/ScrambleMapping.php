@@ -2,6 +2,9 @@
 
 namespace MediaWiki\User\TempUser;
 
+use LogicException;
+use RuntimeException;
+
 /**
  * A mapping which converts sequential input into an output sequence that looks
  * pseudo-random, but preserves the base-10 length of the input number.
@@ -67,7 +70,7 @@ class ScrambleMapping implements SerialMapping {
 		$this->hasGmp = extension_loaded( 'gmp' );
 		$this->hasBcm = extension_loaded( 'bcmath' );
 		if ( !$this->hasGmp && !$this->hasBcm ) {
-			throw new \MWException( __CLASS__ . ' requires the bcmath or gmp extension' );
+			throw new RuntimeException( __CLASS__ . ' requires the bcmath or gmp extension' );
 		}
 	}
 
@@ -85,7 +88,7 @@ class ScrambleMapping implements SerialMapping {
 			}
 			$offset += $p - 1;
 		}
-		throw new \MWException( __METHOD__ . ": The index $index is too large" );
+		throw new RuntimeException( __METHOD__ . ": The index $index is too large" );
 	}
 
 	private function powmod( $num, $exponent, $modulus ) {
@@ -94,7 +97,7 @@ class ScrambleMapping implements SerialMapping {
 		} elseif ( $this->hasBcm ) {
 			return (int)\bcpowmod( (string)$num, (string)$exponent, (string)$modulus );
 		} else {
-			throw new \MWException( __CLASS__ . ' requires the bcmath or gmp extension' );
+			throw new LogicException( __CLASS__ . ' requires the bcmath or gmp extension' );
 		}
 	}
 }

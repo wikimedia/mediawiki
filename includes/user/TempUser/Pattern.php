@@ -2,6 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
+use UnexpectedValueException;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
@@ -118,7 +119,7 @@ class Pattern {
 		if ( $this->prefix === null ) {
 			$varPos = strpos( $this->pattern, '$1' );
 			if ( $varPos === false ) {
-				throw new \MWException( __CLASS__ .
+				throw new UnexpectedValueException( __CLASS__ .
 					"pattern {$this->debugName} must be of the form \"prefix \$1 suffix\"" );
 			}
 			$this->prefix = substr( $this->pattern, 0, $varPos );

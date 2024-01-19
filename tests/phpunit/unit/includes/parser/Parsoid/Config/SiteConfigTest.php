@@ -21,7 +21,6 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use MediaWikiUnitTestCase;
 use MessageCache;
-use MWException;
 use NullStatsdDataFactory;
 use Parser;
 use ParserFactory;
@@ -673,26 +672,6 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			LanguageConverterFactory::class => $langConverterFactoryMock
 		] );
 		$this->assertTrue( $config->langConverterEnabledBcp47( $langMock ) );
-	}
-
-	/**
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::langConverterEnabledBcp47
-	 */
-	public function testLangConverterEnabled_exception() {
-		$langFactoryMock = $this->createMock( LanguageFactory::class );
-		$langFactoryMock
-			->method( 'getLanguage' )
-			->with( 'zh' )
-			->willThrowException( new MWException( 'TEST' ) );
-		$langConverterFactoryMock = $this->createMock( LanguageConverterFactory::class );
-		$langConverterFactoryMock
-			->method( 'isConversionDisabled' )
-			->willReturn( false );
-		$config = $this->createSiteConfig( [], [], [
-			LanguageFactory::class => $langFactoryMock,
-			LanguageConverterFactory::class => $langConverterFactoryMock,
-		] );
-		$this->assertFalse( $config->langConverterEnabledBcp47( new Bcp47CodeValue( 'zh' ) ) );
 	}
 
 	/**

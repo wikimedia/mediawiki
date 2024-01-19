@@ -442,7 +442,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateTooShortTimestamp() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->getLang()->sprintfDate( 'xiY', '1234567890123' );
 	}
 
@@ -451,7 +451,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateTooLongTimestamp() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->getLang()->sprintfDate( 'xiY', '123456789012345' );
 	}
 
@@ -460,7 +460,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateNotAllDigitTimestamp() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->getLang()->sprintfDate( 'xiY', '-1234567890123' );
 	}
 

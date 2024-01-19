@@ -4,13 +4,14 @@ namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\User\TempUser\Pattern;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 /**
  * @covers \MediaWiki\User\TempUser\Pattern
  */
 class PatternTest extends TestCase {
 	public function testInvalid() {
-		$this->expectException( \MWException::class );
+		$this->expectException( RuntimeException::class );
 		$pattern = new Pattern( 'test', 'test' );
 		$pattern->isMatch( 'test' );
 	}

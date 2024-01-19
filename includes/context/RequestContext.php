@@ -257,14 +257,13 @@ class RequestContext implements IContextSource, MutableContext {
 	 * canUseWikiPage() to check whether this method can be called safely.
 	 *
 	 * @since 1.19
-	 * @throws MWException
 	 * @return WikiPage
 	 */
 	public function getWikiPage() {
 		if ( $this->wikipage === null ) {
 			$title = $this->getTitle();
 			if ( $title === null ) {
-				throw new MWException( __METHOD__ . ' called without Title object set' );
+				throw new BadMethodCallException( __METHOD__ . ' called without Title object set' );
 			}
 			$this->wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 		}
