@@ -638,6 +638,7 @@
 	"edit-recovery-special-recovered-on-tooltip": "Datum in čas, ko smo nazadnje shranili vaše podatke za obnovitev",
 	"edit-recovery-loaded-title": "Spremembe so obnovljene",
 	"edit-recovery-loaded-message": "Vaše neshranjene spremembe so bile samodejno obnovljene.",
+	"edit-recovery-loaded-message-different-rev": "Upoštevajte, da se je stran morda spremenila, odkar ste jo začeli urejati, zato preglejte svoje spremembe, preden jo shranite.",
 	"edit-recovery-loaded-show": "Prikaži spremembe",
 	"edit-recovery-loaded-discard": "Zavrzi spremembe",
 	"summary": "Povzetek urejanja:",

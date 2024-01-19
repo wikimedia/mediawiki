@@ -87,8 +87,6 @@
 	"login-migrated-generic": "Your account has been migrated, and your username no longer exists on this wiki.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
 	"botpasswords-label-resetpassword": "Reset password",
-	"edit-recovery-special-recovered-on": "from $1",
-	"edit-recovery-special-recovered-on-tooltip": "The date and time that your recovery data was last saved",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"prefs-description-editing": "Customise how you make, track, and review edits.",

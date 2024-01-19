@@ -2578,7 +2578,7 @@
 	"contribute": "Prisidėti",
 	"contribsub2": "Naudotojas: {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
-	"contributions-edit-count": "{{GENDER:$1|Naudotojas|Naudotoja}}, atlikęs $2 {{PLURAL:$2|pakeitimas|pakeitimų}}.",
+	"contributions-edit-count": "{{GENDER:$1|Naudotojo|Naudotojos}} pakeitimų skaičius – $2.",
 	"contributions-account-creation-date": "Paskyra sukurta $1",
 	"contributions-userdoesnotexist": "Naudotojo paskyra „$1“ neužregistruota.",
 	"negative-namespace-not-supported": "Vardų sritys su neigiamomis reikšmėmis nepalaikomos.",

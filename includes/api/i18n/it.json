@@ -222,7 +222,7 @@
 	"apihelp-opensearch-param-suggest": "Non più usato.",
 	"apihelp-opensearch-param-format": "Il formato dell'output.",
 	"apihelp-opensearch-example-te": "Trova le pagine che iniziano con <kbd>Te</kbd>.",
-	"apihelp-options-param-optionvalue": "Il valore per l'opzione specificata da <var>$1optionname</var>.",
+	"apihelp-options-param-optionvalue": "Il valore per l'opzione specificata da <var>$1optionname</var>. Quando è impostato <var>$1optionname</var> ma <var>$1optionvalue</var> viene omesso, l'opzione verrà ripristinata al suo valore predefinito.",
 	"apihelp-options-example-reset": "Reimposta tutte le preferenze.",
 	"apihelp-paraminfo-summary": "Ottieni informazioni sui moduli API.",
 	"apihelp-paraminfo-param-helpformat": "Formato delle stringhe di aiuto.",

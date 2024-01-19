@@ -672,6 +672,7 @@
 	"edit-recovery-special-recovered-on-tooltip": "התאריך והשעה שנתוני השחזור שלך נשמרו בהם בפעם האחרונה",
 	"edit-recovery-loaded-title": "השינויים שוחזרו",
 	"edit-recovery-loaded-message": "השינויים הלא־שמורים שלך שוחזרו אוטומטית.",
+	"edit-recovery-loaded-message-different-rev": "נא לשים לב לכך שהדף אולי השתנה מאז שהתחלת לערוך. יש לבדוק את השינויים שלך לפני השמירה.",
 	"edit-recovery-loaded-show": "הצגת שינויים",
 	"edit-recovery-loaded-discard": "זריקת שינויים",
 	"summary": "תקציר:",

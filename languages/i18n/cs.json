@@ -315,6 +315,7 @@
 	"showtoc": "zobrazit",
 	"hidetoc": "skrýt",
 	"collapsible-collapse": "sbalit",
+	"collapsible-collapse-all-text": "sbalit vše",
 	"collapsible-expand": "rozbalit",
 	"confirmable-confirm": "Jste si {{GENDER:$1|jist|jista|jisti}}?",
 	"confirmable-yes": "Ano",

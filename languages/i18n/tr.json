@@ -739,6 +739,7 @@
 	"edit-recovery-special-recovered-on-tooltip": "Kurtarma verinizin en son saklandığı tarih ve saat",
 	"edit-recovery-loaded-title": "Değişiklikler kurtarıldı",
 	"edit-recovery-loaded-message": "Kaydedilmemiş değişiklikleriniz kendiliğinden kurtarıldı.",
+	"edit-recovery-loaded-message-different-rev": "Düzenlemeye başladığınızdan bu yana sayfanın değişmiş olabileceğini unutmayın, lütfen saklamadan önce değişikliklerinizi gözden geçirin.",
 	"edit-recovery-loaded-show": "Değişiklikleri göster",
 	"edit-recovery-loaded-discard": "Değişiklikleri çıkar",
 	"summary": "Özet:",
