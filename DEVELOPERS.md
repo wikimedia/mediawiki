@@ -117,9 +117,9 @@ services:
   The first time, it may take a few minutes to download new Docker images.
 
   The `-d` argument stands for "detached" mode, which run the services in the background. If you suspect a problem with
-* one of the services, you can run it without `-d` to follow the server logs directly from your terminal. You don't have
-* to stop the services first, if you ran it with `-d` and then without, you'll get connected to the already running
-* containers including a decent back scroll of server logs.
+  one of the services, you can run it without `-d` to follow the server logs directly from your terminal. You don't have
+  to stop the services first, if you ran it with `-d` and then without, you'll get connected to the already running
+  containers including a decent back scroll of server logs.
 
   Note that MediaWiki debug logs go to `/cache/*.log` files (not sent to docker).
 
