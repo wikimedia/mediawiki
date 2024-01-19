@@ -33,7 +33,6 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
-use MWException;
 use Parser;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -1086,12 +1085,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param ParsoidLinkTarget $link must be an interwiki link
 	 *       (used to require Title until 1.38).
-	 *
-	 * @throws MWException If given invalid input
 	 */
 	public function addInterwikiLink( $link ): void {
 		if ( !$link->isExternal() ) {
-			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
+			throw new InvalidArgumentException( 'Non-interwiki link passed, internal parser error.' );
 		}
 		$prefix = $link->getInterwiki();
 		$this->mInterwikiLinks[$prefix][$link->getDBkey()] = 1;

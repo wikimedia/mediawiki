@@ -188,6 +188,7 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * @var string[] List of keys to try when fetching the message.
+	 * @phan-var non-empty-list<string>
 	 */
 	protected $keysToTry;
 
@@ -1476,7 +1477,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @return string|false
-	 * @throws MWException If message key array is empty.
 	 */
 	protected function fetchMessage() {
 		if ( $this->message === null ) {

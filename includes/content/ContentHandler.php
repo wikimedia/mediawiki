@@ -223,7 +223,6 @@ abstract class ContentHandler {
 	 * @param Content $content
 	 *
 	 * @return ContentHandler
-	 * @throws MWException
 	 * @throws MWUnknownContentModelException
 	 */
 	public static function getForContent( Content $content ) {

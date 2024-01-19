@@ -52,7 +52,6 @@ abstract class AbstractPbkdf2Password extends ParameterizedPassword {
 	 * @param array $config Array of engine configuration options for hashing
 	 * @param string|null $hash The raw hash, including the type
 	 * @return AbstractPbkdf2Password The created object
-	 * @throws Exception If $config does not contain required parameters
 	 */
 	public static function newInstance(
 		PasswordFactory $factory,

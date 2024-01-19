@@ -33,8 +33,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
-use MWException;
 use RepoGroup;
+use UnexpectedValueException;
 use UserCache;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -320,7 +320,6 @@ class ImageListPager extends TablePager {
 	 * @param int $limit
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper
-	 * @throws MWException
 	 */
 	public function reallyDoQuery( $offset, $limit, $order ) {
 		$dbr = $this->getDatabase();
@@ -341,10 +340,11 @@ class ImageListPager extends TablePager {
 		$oldIndex = $this->mIndexField;
 		foreach ( $this->mIndexField as &$index ) {
 			if ( !str_starts_with( $index, 'img_' ) ) {
-				throw new MWException( "Expected to be sorting on an image table field" );
+				throw new UnexpectedValueException( "Expected to be sorting on an image table field" );
 			}
 			$index = 'oi_' . substr( $index, 4 );
 		}
+		unset( $index );
 
 		[ $tables, $fields, $conds, $fname, $options, $join_conds ] =
 			$this->buildQueryInfo( $offset, $limit, $order );
@@ -436,7 +436,6 @@ class ImageListPager extends TablePager {
 	 * @param string $field
 	 * @param string|null $value
 	 * @return string
-	 * @throws MWException
 	 */
 	public function formatValue( $field, $value ) {
 		$linkRenderer = $this->getLinkRenderer();
@@ -520,7 +519,7 @@ class ImageListPager extends TablePager {
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value )->escaped();
 			default:
-				throw new MWException( "Unknown field '$field'" );
+				throw new UnexpectedValueException( "Unknown field '$field'" );
 		}
 	}
 

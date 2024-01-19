@@ -31,7 +31,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
-use MWException;
+use UnexpectedValueException;
 use UserCache;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -165,7 +165,6 @@ class ProtectedPagesPager extends TablePager {
 	 * @param string $field
 	 * @param string|null $value
 	 * @return string HTML
-	 * @throws MWException
 	 */
 	public function formatValue( $field, $value ) {
 		/** @var stdClass $row */
@@ -292,7 +291,7 @@ class ProtectedPagesPager extends TablePager {
 				break;
 
 			default:
-				throw new MWException( "Unknown field '$field'" );
+				throw new UnexpectedValueException( "Unknown field '$field'" );
 		}
 
 		return $formatted;

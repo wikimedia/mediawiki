@@ -169,7 +169,8 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @see JobQueue::doGetAbandonedCount()
 	 * @return int
-	 * @throws MWException on database error
+	 * @throws JobQueueConnectionError
+	 * @throws JobQueueError
 	 */
 	protected function doGetAbandonedCount() {
 		if ( $this->claimTTL <= 0 ) {
@@ -514,12 +515,13 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @see JobQueue::doAck()
 	 * @param RunnableJob $job
-	 * @throws MWException When the job is invalid or on database error.
+	 * @throws JobQueueConnectionError
+	 * @throws JobQueueError
 	 */
 	protected function doAck( RunnableJob $job ) {
 		$id = $job->getMetadata( 'id' );
 		if ( $id === null ) {
-			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
+			throw new UnexpectedValueException( "Job of type '{$job->getType()}' has no ID." );
 		}
 
 		$dbw = $this->getPrimaryDB();
@@ -541,7 +543,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @see JobQueue::doDeduplicateRootJob()
 	 * @param IJobSpecification $job
-	 * @throws MWException When a database or job error occurs.
+	 * @throws JobQueueConnectionError
 	 * @return bool
 	 */
 	protected function doDeduplicateRootJob( IJobSpecification $job ) {

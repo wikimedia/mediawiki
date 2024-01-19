@@ -22,13 +22,13 @@ namespace MediaWiki\Languages;
 
 use BagOStuff;
 use HashBagOStuff;
+use InvalidArgumentException;
 use LanguageCode;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\MediaWikiTitleCodec;
-use MWException;
 
 /**
  * A service that provides utilities to do with language names and codes.
@@ -302,12 +302,11 @@ class LanguageNameUtils {
 	 * @param string $prefix Prepend this to the filename
 	 * @param string $code Language code
 	 * @param string $suffix Append this to the filename
-	 * @throws MWException
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
 	public function getFileName( $prefix, $code, $suffix = '.php' ) {
 		if ( !$this->isValidBuiltInCode( $code ) ) {
-			throw new MWException( "Invalid language code \"$code\"" );
+			throw new InvalidArgumentException( "Invalid language code \"$code\"" );
 		}
 
 		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
@@ -327,13 +326,12 @@ class LanguageNameUtils {
 	/**
 	 * @param string $code
 	 * @return string
-	 * @throws MWException
 	 */
 	public function getJsonMessagesFileName( $code ) {
 		global $IP;
 
 		if ( !$this->isValidBuiltInCode( $code ) ) {
-			throw new MWException( "Invalid language code \"$code\"" );
+			throw new InvalidArgumentException( "Invalid language code \"$code\"" );
 		}
 
 		return "$IP/languages/i18n/$code.json";

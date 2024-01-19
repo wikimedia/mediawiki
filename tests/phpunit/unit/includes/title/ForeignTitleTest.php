@@ -70,7 +70,7 @@ class ForeignTitleTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testUnknownNamespaceError() {
-		$this->expectException( MWException::class );
+		$this->expectException( RuntimeException::class );
 		$title = new ForeignTitle( null, 'this', 'that' );
 		$title->getNamespaceId();
 	}

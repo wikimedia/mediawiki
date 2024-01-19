@@ -174,7 +174,6 @@ class CategoryMembershipChangeJob extends Job {
 	 * @param LBFactory $lbFactory
 	 * @param WikiPage $page
 	 * @param RevisionRecord $newRev
-	 * @throws MWException
 	 */
 	protected function notifyUpdatesForRevision(
 		LBFactory $lbFactory, WikiPage $page, RevisionRecord $newRev
