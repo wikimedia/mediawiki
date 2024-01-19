@@ -171,6 +171,14 @@ class BaseMetric implements BaseMetricInterface {
 	public function getLabelValues(): array {
 		$output = [];
 		$labels = StatsUtils::mergeLabels( $this->staticLabels, $this->workingLabels );
+
+		# make sure all labels are accounted for
+		if ( array_diff( $this->labelKeys, array_keys( $labels ) ) ) {
+			throw new IllegalOperationException(
+				"Stats: Cannot associate label keys with label values: "
+				. "Not all initialized labels have an assigned value." );
+		}
+
 		foreach ( $this->labelKeys as $labelKey ) {
 			$output[] = $labels[$labelKey];
 		}
