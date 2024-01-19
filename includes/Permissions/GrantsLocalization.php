@@ -20,7 +20,9 @@
 
 namespace MediaWiki\Permissions;
 
+use HtmlArmor;
 use Language;
+use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -118,18 +120,29 @@ class GrantsLocalization {
 	 * for styling. The HTML is wikitext-compatible.
 	 * @param string[] $grants
 	 * @param Language|string|null $lang
-	 * @return string[] Grant description HTML, keyed by grant name.
+	 * @return string[] Grant description HTML for each grant, in the same order
 	 */
 	public function getGrantDescriptionsWithClasses( array $grants, $lang = null ): array {
 		$riskGroupsByGrant = $this->grantsInfo->getRiskGroupsByGrant( 'unknown' );
 		$grantDescriptions = $this->getGrantDescriptions( $grants, $lang );
-		return array_map(
-			static function ( $grant, $description ) use ( $riskGroupsByGrant ) {
-				$riskGroup = $riskGroupsByGrant[$grant] ?? 'unknown';
-				return "<span class=\"mw-grant mw-grantriskgroup-$riskGroup\">$description</span>";
-			},
-			array_keys( $grantDescriptions ), array_values( $grantDescriptions )
-		);
+		$results = [];
+		foreach ( $grantDescriptions as $grant => $description ) {
+			$riskGroup = $riskGroupsByGrant[$grant] ?? 'unknown';
+			// Messages used here: grantriskgroup-vandalism, grantriskgroup-security,
+			// grantriskgroup-internal
+			$riskGroupMsg = wfMessage( "grantriskgroup-$riskGroup" );
+			if ( $lang ) {
+				$riskGroupMsg->inLanguage( $lang );
+			}
+			if ( $riskGroupMsg->exists() ) {
+				$riskDescription = $riskGroupMsg->text();
+			} else {
+				$riskDescription = '';
+			}
+			$results[] = htmlspecialchars( $description ) . ' ' .
+				Html::element( 'span', [ 'class' => "mw-grant mw-grantriskgroup-$riskGroup" ], $riskDescription );
+		}
+		return $results;
 	}
 
 	/**
@@ -147,8 +160,7 @@ class GrantsLocalization {
 		$riskGroup = $riskGroupsByGrant[$grant] ?? 'unknown';
 		return $this->linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Listgrants', false, $grant ),
-			$this->getGrantDescription( $grant, $lang ),
-			[ 'class' => "mw-grantslink mw-grantriskgroup-$riskGroup" ]
+			new HtmlArmor( $this->getGrantDescriptionsWithClasses( [ $grant ], $lang )[ 0 ] )
 		);
 	}
 

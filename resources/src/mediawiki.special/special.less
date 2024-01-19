@@ -208,43 +208,30 @@ th.mw-revdel-checkbox {
 }
 
 .mw-grantriskgroup- {
-	&vandalism::after {
+	&vandalism {
 		.cdx-mixin-css-icon( @cdx-icon-alert, @color-warning );
 	}
 
-	&security::after {
+	&security {
 		.cdx-mixin-css-icon( @cdx-icon-alert, @color-error );
 	}
 
-	&internal::after {
+	&internal {
 		.cdx-mixin-css-icon( @cdx-icon-error, @color-error );
 	}
 
-	&vandalism::after,
-	&security::after,
-	&internal::after {
-		content: '';
+	&vandalism,
+	&security,
+	&internal {
+		// Hide text, replaced with the icon
+		text-indent: -10000px;
 	}
 
 	.mw-htmlform-field-HTMLCheckMatrix & {
-		&vandalism::after,
-		&security::after,
-		&internal::after {
-			padding-left: 0.75em;
+		&vandalism,
+		&security,
+		&internal {
 			vertical-align: middle;
-			text-indent: -10000px;
-		}
-
-		&vandalism::after {
-			content: '@{msg-grantriskgroup-vandalism}';
-		}
-
-		&security::after {
-			content: '@{msg-grantriskgroup-security}';
-		}
-
-		&internal::after {
-			content: '@{msg-grantriskgroup-internal}';
 		}
 	}
 }
