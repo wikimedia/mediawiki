@@ -31,37 +31,6 @@ class ActorMigration extends ActorMigrationBase {
 	public const FIELD_INFOS = [
 		// Deprecated since 1.39
 		'rev_user' => [],
-
-		// Deprecated since 1.34
-		'ar_user' => [
-			'deprecatedVersion' => '1.37',
-		],
-		// Deprecated since 1.34
-		'img_user' => [
-			'deprecatedVersion' => '1.37',
-		],
-		// Deprecated since 1.34
-		'oi_user' => [
-			'deprecatedVersion' => '1.37',
-		],
-		// Deprecated since 1.34
-		'fa_user' => [
-			'deprecatedVersion' => '1.37',
-		],
-		// Deprecated since 1.34
-		'rc_user' => [
-			'deprecatedVersion' => '1.37',
-		],
-		// Deprecated since 1.34
-		'log_user' => [
-			'deprecatedVersion' => '1.37',
-		],
-		// Deprecated since 1.34
-		'ipb_by' => [
-			'deprecatedVersion' => '1.37',
-			'textField' => 'ipb_by_text',
-			'actorField' => 'ipb_by_actor',
-		],
 	];
 
 	/**
