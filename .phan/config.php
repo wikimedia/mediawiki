@@ -137,8 +137,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	// Directly references classes that only exist in Translate extension
 	'maintenance/language/',
 	// External class
-	'includes/libs/jsminplus.php',
-	// External class
 	'includes/libs/objectcache/utils/MemcachedClient.php',
 	// File may be valid, but may contain numerous "errors" such as iterating over an
 	// empty array due to the version checking in T246594 not being currently used.
