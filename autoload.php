@@ -281,6 +281,7 @@ $wgAutoloadLocalClasses = [
 	'CompressOld' => __DIR__ . '/maintenance/storage/compressOld.php',
 	'ConcatenatedGzipHistoryBlob' => __DIR__ . '/includes/historyblob/ConcatenatedGzipHistoryBlob.php',
 	'Config' => __DIR__ . '/includes/config/Config.php',
+	'ConfigDependency' => __DIR__ . '/includes/language/dependency/ConfigDependency.php',
 	'ConfigException' => __DIR__ . '/includes/config/ConfigException.php',
 	'ConfigFactory' => __DIR__ . '/includes/config/ConfigFactory.php',
 	'ConfiguredReadOnlyMode' => __DIR__ . '/includes/libs/rdbms/ConfiguredReadOnlyMode.php',

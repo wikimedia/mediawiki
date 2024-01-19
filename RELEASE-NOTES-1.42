@@ -407,6 +407,8 @@ because of Phabricator reports.
   ApiUpload::getUploadImageInfo() instead.
 * DatabaseBlockStore::updateTimestamp() is now internal and should not be
   called.
+* The LocalisationCache helper classes GlobalDependency and MainConfigDependency
+  are deprecated, use ConfigDependency instead.
 * The module `mediawiki.icon` has been deprecated. Use the Codex mixin instead
   (T351681).
 * Passing a WikiPage to PageEditStash::parseAndCache() has been deprecated.

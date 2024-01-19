@@ -1190,11 +1190,12 @@ class LocalisationCache {
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
 
-		# Add cache dependencies for any referenced globals
-		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
-		// The 'MessagesDirs' config setting is used in LocalisationCache::getMessagesDirs().
-		// We use the key 'wgMessagesDirs' for historical reasons.
-		$deps['wgMessagesDirs'] = new MainConfigDependency( MainConfigNames::MessagesDirs );
+		// Add cache dependencies for any referenced configs
+		// We use the keys prefixed with 'wg' for historical reasons.
+		$deps['wgExtensionMessagesFiles'] =
+			new ConfigDependency( MainConfigNames::ExtensionMessagesFiles, $this->options );
+		$deps['wgMessagesDirs'] =
+			new ConfigDependency( MainConfigNames::MessagesDirs, $this->options );
 		$deps['version'] = new ConstantDependency( self::class . '::VERSION' );
 
 		# Add dependencies to the cache entry

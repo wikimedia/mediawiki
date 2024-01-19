@@ -17,32 +17,25 @@
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Config\ServiceOptions;
 
 /**
- * Depend on a MediaWiki configuration variable from the global config.
+ * Depend on a MediaWiki configuration variable provided via ServiceOptions.
  *
- * @deprecated since 1.42
  * @ingroup Language
  */
-class MainConfigDependency extends CacheDependency {
+class ConfigDependency extends CacheDependency {
 	private $name;
 	private $value;
+	private $config;
 
-	public function __construct( $name ) {
+	public function __construct( $name, ServiceOptions $config ) {
 		$this->name = $name;
-		$this->value = $this->getConfig()->get( $this->name );
-	}
-
-	private function getConfig() {
-		return MediaWikiServices::getInstance()->getMainConfig();
+		$this->config = $config;
+		$this->value = $this->config->get( $this->name );
 	}
 
 	public function isExpired() {
-		if ( !$this->getConfig()->has( $this->name ) ) {
-			return true;
-		}
-
-		return $this->getConfig()->get( $this->name ) != $this->value;
+		return $this->config->get( $this->name ) != $this->value;
 	}
 }
