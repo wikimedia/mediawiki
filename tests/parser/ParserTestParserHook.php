@@ -35,6 +35,8 @@ class ParserTestParserHook {
 		$parser->setHook( 'tåg', [ __CLASS__, 'dumpHook' ] );
 		$parser->setHook( 'statictag', [ __CLASS__, 'staticTagHook' ] );
 		$parser->setHook( 'asidetag', [ __CLASS__, 'asideTagHook' ] );
+		$parser->setHook( 'pwraptest', [ __CLASS__, 'pWrapTestHook' ] );
+		$parser->setHook( 'spantag', [ __CLASS__, 'spanTagHook' ] );
 		return true;
 	}
 
@@ -76,5 +78,21 @@ class ParserTestParserHook {
 
 	public static function asideTagHook(): string {
 		return Html::element( 'aside', [], 'Some aside content' );
+	}
+
+	public static function pWrapTestHook(): string {
+		return '<!--CMT--><style>p{}</style>';
+	}
+
+	/**
+	 * @param string $in
+	 * @param array $argv
+	 * @param Parser $parser
+	 * @return string
+	 */
+	public static function spanTagHook( $in, $argv, $parser ): string {
+		return '<span>' .
+			Parser::stripOuterParagraph( $parser->recursiveTagParse( $in ) ) .
+			'</span>';
 	}
 }
