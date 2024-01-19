@@ -2680,6 +2680,10 @@ class EditPage implements IEditObject {
 
 		if ( $baseContent === null ) {
 			return false;
+		} elseif ( $baseRevRecord->isCurrent() ) {
+			// Impossible to have a conflict when the user just edited the latest revision. This can
+			// happen e.g. when $wgDiff3 is badly configured.
+			return [ $editContent, $baseRevRecord->getId() ];
 		}
 
 		// The current state, we want to merge updates into it

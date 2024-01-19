@@ -72,8 +72,13 @@ class TextContentHandler extends ContentHandler {
 	 * @return Content|false
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
-		// No need for an expensive merge when the texts are identical anyway
+		// Nothing to do when the unsaved edit is already identical to the latest revision
 		if ( $myContent->equals( $yourContent ) ) {
+			return $yourContent;
+		}
+		// Impossible to have a conflict when the user just edited the latest revision. This can
+		// happen e.g. when $wgDiff3 is badly configured.
+		if ( $oldContent->equals( $yourContent ) ) {
 			return $myContent;
 		}
 
