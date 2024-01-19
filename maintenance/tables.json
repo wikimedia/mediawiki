@@ -3788,7 +3788,7 @@
 			},
 			{
 				"name": "user_is_temp",
-				"comment": "A boolean value representing whether the user is a temporary user. Zero if any type of user other than a temporary user. This exists to allow temporary users to be identified from the database only, by external applications.",
+				"comment": "This exists to allow temporary users to be identified from the database only, by external applications, and is not for use within MediaWiki (see T333223). A boolean value representing whether the user is a temporary user. Zero if any type of user other than a temporary user.",
 				"type": "mwtinyint",
 				"options": {
 					"notnull": true,
