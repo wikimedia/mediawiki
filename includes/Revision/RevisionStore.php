@@ -773,13 +773,11 @@ class RevisionStore
 			$rev->getComment( RevisionRecord::RAW )
 		);
 
-		[ $actorFields, $actorCallback ] =
-			$this->actorMigration->getInsertValuesWithTempTable(
-				$dbw,
-				'rev_user',
-				$rev->getUser( RevisionRecord::RAW )
-			);
-		$revisionRow += $actorFields;
+		$revisionRow += $this->actorMigration->getInsertValues(
+			$dbw,
+			'rev_user',
+			$rev->getUser( RevisionRecord::RAW )
+		);
 
 		$dbw->newInsertQueryBuilder()
 			->insertInto( 'revision' )
@@ -867,8 +865,6 @@ class RevisionStore
 				}
 			}
 		}
-
-		$actorCallback( $revisionRow['rev_id'], $revisionRow );
 
 		return $revisionRow;
 	}
