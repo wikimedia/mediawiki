@@ -38,6 +38,7 @@ use IntlChar;
 use InvalidArgumentException;
 use Language;
 use LogicException;
+use MediaWiki\Composer\LockFileChecker;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Config\HashConfig;
@@ -63,6 +64,8 @@ use MWCryptRand;
 use ParserOptions;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Composer\ComposerJson;
+use Wikimedia\Composer\ComposerLock;
 use Wikimedia\Services\ServiceDisabledException;
 use WikitextContent;
 
@@ -162,6 +165,7 @@ abstract class Installer {
 	 * @var array
 	 */
 	protected $envChecks = [
+		'envCheckComposerDependency',
 		'envCheckLibicu',
 		'envCheckDB',
 		'envCheckPCRE',
@@ -1160,6 +1164,32 @@ abstract class Installer {
 	protected function envCheckLibicu() {
 		$unicodeVersion = implode( '.', array_slice( IntlChar::getUnicodeVersion(), 0, 3 ) );
 		$this->showMessage( 'config-env-icu', INTL_ICU_VERSION, $unicodeVersion );
+	}
+
+	/**
+	 * Check whether composer-installed dependencies (no-dev) are up-to-date
+	 */
+	protected function envCheckComposerDependency(): bool {
+		$IP = wfDetectInstallPath();
+
+		$lockLocation = "$IP/composer.lock";
+		if ( !file_exists( $lockLocation ) ) {
+			$lockLocation = "$IP/vendor/composer.lock";
+			if ( !file_exists( $lockLocation ) ) {
+				$this->showMessage( 'config-composerlock-missing' );
+				return true;
+			}
+		}
+
+		$lockFileChecker = new LockFileChecker(
+			new ComposerJson( "$IP/composer.json" ),
+			new ComposerLock( $lockLocation )
+		);
+		if ( $lockFileChecker->check() ) {
+			$this->showError( 'config-composerlock-stale' );
+			return false;
+		}
+		return true;
 	}
 
 	/**

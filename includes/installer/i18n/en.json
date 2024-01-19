@@ -303,6 +303,8 @@
 	"config-screenshot": "screenshot",
 	"config-extension-not-found": "Could not find the registration file for the extension \"$1\"",
 	"config-extension-dependency": "A dependency error was encountered while installing the extension \"$1\": $2",
+	"config-composerlock-missing": "<strong>Warning:</strong> Could not find composer dependencies. These are included with a MediaWiki download. If developing from Git, [https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries install Composer dependencies] before continuing.",
+	"config-composerlock-stale": "Your composer.lock file is not up to date. Please [https://www.mediawiki.org/wiki/Special:MyLanguage/Composer#Usage_in_MediaWiki_core update Composer dependencies] before continuing.",
 	"config-ext-skins-more-info": "more information",
 	"mainpagetext": "<strong>MediaWiki has been installed.</strong>",
 	"mainpagedocfooter": "Consult the [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] for information on using the wiki software.\n\n== Getting started ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Learn how to combat spam on your wiki]"
