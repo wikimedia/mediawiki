@@ -44,7 +44,7 @@ class FormOptionsTest extends MediaWikiUnitTestCase {
 	 * @covers MediaWiki\Html\FormOptions::guessType
 	 */
 	public function testGuessTypeOnNullThrowException() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Unsupported datatype' );
 		FormOptions::guessType( null );
 	}

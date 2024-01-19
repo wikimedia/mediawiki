@@ -60,12 +60,12 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use Message;
 use MWDebug;
-use MWException;
 use OOUI\Element;
 use OOUI\Theme;
 use Parser;
 use ParserOptions;
 use RequestContext;
+use RuntimeException;
 use Skin;
 use TextContent;
 use Wikimedia\AtEase\AtEase;
@@ -2036,8 +2036,6 @@ class OutputPage extends ContextSource {
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
 	 * @param PageReference|null $title Optional title to use; default of `null`
 	 *   means use current page title.
-	 * @throws MWException if $title is not provided and OutputPage::getTitle()
-	 *   is null
 	 * @since 1.32
 	 */
 	public function addWikiTextAsInterface(
@@ -2045,7 +2043,7 @@ class OutputPage extends ContextSource {
 	) {
 		$title ??= $this->getTitle();
 		if ( !$title ) {
-			throw new MWException( 'Title is null' );
+			throw new RuntimeException( 'Title is null' );
 		}
 		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/true );
 	}
@@ -2084,8 +2082,6 @@ class OutputPage extends ContextSource {
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
 	 * @param PageReference|null $title Optional title to use; default of `null`
 	 *   means use current page title.
-	 * @throws MWException if $title is not provided and OutputPage::getTitle()
-	 *   is null
 	 * @since 1.32
 	 */
 	public function addWikiTextAsContent(
@@ -2093,7 +2089,7 @@ class OutputPage extends ContextSource {
 	) {
 		$title ??= $this->getTitle();
 		if ( !$title ) {
-			throw new MWException( 'Title is null' );
+			throw new RuntimeException( 'Title is null' );
 		}
 		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/false );
 	}
@@ -2445,7 +2441,6 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text Wikitext in the page content language
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
-	 * @throws MWException
 	 * @return string HTML
 	 * @since 1.32
 	 */
@@ -2468,7 +2463,6 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text Wikitext in the user interface language
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
-	 * @throws MWException
 	 * @return string HTML
 	 * @since 1.32
 	 */
@@ -2493,7 +2487,6 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text Wikitext in the user interface language
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
-	 * @throws MWException
 	 * @return string HTML
 	 * @since 1.32
 	 */
@@ -2512,14 +2505,12 @@ class OutputPage extends ContextSource {
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
 	 *   LanguageConverter.
-	 * @throws MWException
 	 * @return ParserOutput
 	 */
 	private function parseInternal( $text, $title, $linestart, $interface ) {
 		if ( $title === null ) {
-			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
+			throw new RuntimeException( 'Empty $mTitle in ' . __METHOD__ );
 		}
-
 		$popts = $this->parserOptions();
 
 		$oldInterface = $popts->setInterfaceMessage( (bool)$interface );

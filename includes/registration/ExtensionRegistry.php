@@ -290,17 +290,13 @@ class ExtensionRegistry {
 		$this->lazyAttributes = [];
 	}
 
-	/**
-	 * @throws MWException If the queue is already marked as finished (no further things should
-	 *  be loaded then).
-	 */
 	public function loadFromQueue() {
 		if ( !$this->queued ) {
 			return;
 		}
 
 		if ( $this->finished ) {
-			throw new MWException(
+			throw new LogicException(
 				"The following paths tried to load late: "
 				. implode( ', ', array_keys( $this->queued ) )
 			);

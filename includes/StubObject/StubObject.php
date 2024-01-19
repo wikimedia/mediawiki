@@ -26,7 +26,7 @@
 
 namespace MediaWiki\StubObject;
 
-use MWException;
+use LogicException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -211,7 +211,6 @@ class StubObject {
 	 * @param int $level Level to go in the stack trace to get the function
 	 *   who called this function.
 	 * @return object The unstubbed version of itself
-	 * @throws MWException
 	 */
 	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _unstub( $name = '_unstub', $level = 2 ) {
@@ -224,7 +223,7 @@ class StubObject {
 		if ( get_class( $GLOBALS[$this->global] ) != $this->class ) {
 			$caller = wfGetCaller( $level );
 			if ( ++$recursionLevel > 2 ) {
-				throw new MWException( "Unstub loop detected on call of "
+				throw new LogicException( "Unstub loop detected on call of "
 					. "\${$this->global}->$name from $caller\n" );
 			}
 			wfDebug( "Unstubbing \${$this->global} on call of "

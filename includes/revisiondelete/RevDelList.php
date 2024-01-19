@@ -357,13 +357,12 @@ abstract class RevDelList extends RevisionListBase {
 	 *     comment:         The log comment
 	 *     authorActors:    The array of the actor IDs of the offenders
 	 *     tags:            The array of change tags to apply to the log entry
-	 * @throws MWException
 	 */
 	private function updateLog( $logType, $params ) {
 		// Get the URL param's corresponding DB field
 		$field = RevisionDeleter::getRelationType( $this->getType() );
 		if ( !$field ) {
-			throw new MWException( "Bad log URL param type!" );
+			throw new UnexpectedValueException( "Bad log URL param type!" );
 		}
 		// Add params for affected page and ids
 		$logParams = $this->getLogParams( $params );

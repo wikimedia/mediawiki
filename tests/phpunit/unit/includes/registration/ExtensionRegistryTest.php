@@ -7,7 +7,6 @@ use ExtensionRegistry;
 use LogicException;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWikiUnitTestCase;
-use MWException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -85,7 +84,7 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 		$registry = $this->getRegistry();
 		$registry->finish();
 		$registry->queue( "{$this->dataDir}/good.json" );
-		$this->expectException( MWException::class );
+		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage(
 			"The following paths tried to load late: {$this->dataDir}/good.json" );
 		$registry->loadFromQueue();

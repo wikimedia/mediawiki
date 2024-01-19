@@ -2648,15 +2648,10 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * TODO: $s is not always a string per T218883
-	 *
 	 * @param string $s
 	 * @return string
 	 */
-	public function checkTitleEncoding( $s ) {
-		if ( is_array( $s ) ) {
-			throw new MWException( 'Given array to checkTitleEncoding.' );
-		}
+	public function checkTitleEncoding( string $s ) {
 		if ( StringUtils::isUtf8( $s ) ) {
 			return $s;
 		}

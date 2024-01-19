@@ -21,6 +21,7 @@
 namespace MediaWiki\EditPage;
 
 use Article;
+use BadMethodCallException;
 use CategoryPage;
 use Content;
 use ContentHandler;
@@ -880,7 +881,7 @@ class EditPage implements IEditObject {
 			// fallback to a placeholder for this situation (T330943)
 			return $this->placeholderTempUser;
 		} elseif ( $this->tempUserCreateActive ) {
-			throw new MWException(
+			throw new BadMethodCallException(
 				"Can't use the request user for preview with IP masking enabled" );
 		} else {
 			return $this->context->getUser();
@@ -897,7 +898,7 @@ class EditPage implements IEditObject {
 		if ( $this->savedTempUser ) {
 			return $this->savedTempUser;
 		} elseif ( $this->tempUserCreateActive ) {
-			throw new MWException(
+			throw new BadMethodCallException(
 				"Can't use the request user for storage with IP masking enabled" );
 		} else {
 			return $this->context->getUser();

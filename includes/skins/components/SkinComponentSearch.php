@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Skin;
 
+use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -9,7 +10,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Message;
 use MessageLocalizer;
-use MWException;
 
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -90,7 +90,6 @@ class SkinComponentSearch implements SkinComponent {
 	 * @param string $mode representing the type of button wanted
 	 *  either `go` OR `fulltext`.
 	 * @param array $attrs (optional)
-	 * @throws MWException if bad value of $mode passed in
 	 * @return string of HTML button
 	 */
 	private function makeSearchButton( string $mode, array $attrs = [] ) {
@@ -114,7 +113,7 @@ class SkinComponentSearch implements SkinComponent {
 				);
 				return Html::element( 'input', $realAttrs );
 			default:
-				throw new MWException( 'Unknown mode passed to ' . __METHOD__ );
+				throw new InvalidArgumentException( 'Unknown mode passed to ' . __METHOD__ );
 		}
 	}
 

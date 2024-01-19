@@ -22,11 +22,11 @@
 namespace MediaWiki\Collation;
 
 use Collation;
+use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MWException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -137,7 +137,6 @@ class CollationFactory {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param string $collationName
 	 * @return Collation
 	 */
@@ -173,7 +172,7 @@ class CollationFactory {
 		$this->hookRunner->onCollation__factory( $collationName, $collationObject );
 
 		if ( !$collationObject instanceof Collation ) {
-			throw new MWException( __METHOD__ . ": unknown collation type \"$collationName\"" );
+			throw new InvalidArgumentException( __METHOD__ . ": unknown collation type \"$collationName\"" );
 		}
 
 		return $collationObject;

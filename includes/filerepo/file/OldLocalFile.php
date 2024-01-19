@@ -247,7 +247,7 @@ class OldLocalFile extends LocalFile {
 				$this->$name = $value;
 			}
 		} else {
-			throw new MWException( "Could not find data for image '{$this->archive_name}'." );
+			throw new RuntimeException( "Could not find data for image '{$this->archive_name}'." );
 		}
 	}
 
