@@ -107,7 +107,6 @@ class Sanitizer {
 	 * Regular expression to match HTML/XML attribute pairs within a tag.
 	 * Based on https://www.w3.org/TR/html5/syntax.html#before-attribute-name-state
 	 * Used in Sanitizer::decodeTagAttributes
-	 * @return string
 	 */
 	private static function getAttribsRegex(): string {
 		if ( self::$attribsRegex === null ) {
@@ -136,7 +135,6 @@ class Sanitizer {
 
 	/**
 	 * Used in Sanitizer::decodeTagAttributes to filter attributes.
-	 * @return string
 	 */
 	private static function getAttribNameRegex(): string {
 		if ( self::$attribNameRegex === null ) {
@@ -439,9 +437,6 @@ class Sanitizer {
 	 * To avoid leaving blank lines, when a comment is both preceded
 	 * and followed by a newline (ignoring spaces), trim leading and
 	 * trailing spaces and one of the newlines.
-	 *
-	 * @param string $text
-	 * @return string
 	 */
 	public static function removeHTMLcomments( string $text ): string {
 		while ( ( $start = strpos( $text, '<!--' ) ) !== false ) {
@@ -485,10 +480,6 @@ class Sanitizer {
 	 * where we may want to allow a tag within content but ONLY when it has
 	 * specific attributes set.
 	 *
-	 * @param string $params
-	 * @param string $element
-	 * @return bool
-	 *
 	 * @see RemexRemoveTagHandler::validateTag()
 	 */
 	private static function validateTag( string $params, string $element ): bool {
@@ -519,10 +510,6 @@ class Sanitizer {
 	 * - Discards attributes not allowed for the given element
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are re-encoded
-	 *
-	 * @param array $attribs
-	 * @param string $element
-	 * @return array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
@@ -673,9 +660,6 @@ class Sanitizer {
 	 * will be combined (if they're both strings).
 	 *
 	 * @todo implement merging for other attributes such as style
-	 * @param array $a
-	 * @param array $b
-	 * @return array
 	 */
 	public static function mergeAttributes( array $a, array $b ): array {
 		$out = array_merge( $a, $b );
@@ -792,10 +776,6 @@ class Sanitizer {
 		return $value;
 	}
 
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
 	private static function cssDecodeCallback( array $matches ): string {
 		if ( $matches[1] !== '' ) {
 			// Line continuation
@@ -1096,9 +1076,6 @@ class Sanitizer {
 	 * @todo For extra validity, input should be validated UTF-8.
 	 *
 	 * @see https://www.w3.org/TR/CSS21/syndata.html Valid characters/format
-	 *
-	 * @param string $class
-	 * @return string
 	 */
 	public static function escapeClass( string $class ): string {
 		// Convert ugly stuff to underscores and kill underscores in ugly places
@@ -1130,9 +1107,6 @@ class Sanitizer {
 	 * Return an associative array of attribute names and values from
 	 * a partial tag string. Attribute names are forced to lowercase,
 	 * character references are decoded to UTF-8 text.
-	 *
-	 * @param string $text
-	 * @return array
 	 */
 	public static function decodeTagAttributes( string $text ): array {
 		if ( trim( $text ) == '' ) {
@@ -1172,9 +1146,6 @@ class Sanitizer {
 	/**
 	 * Build a partial tag string from an associative array of attribute
 	 * names and values as returned by decodeTagAttributes.
-	 *
-	 * @param array $assoc_array
-	 * @return string
 	 */
 	public static function safeEncodeTagAttributes( array $assoc_array ): string {
 		$attribs = [];
@@ -1190,9 +1161,6 @@ class Sanitizer {
 	/**
 	 * Pick the appropriate attribute value from a match set from the
 	 * attribs regex matches.
-	 *
-	 * @param array $set
-	 * @return string
 	 */
 	private static function getTagAttributeCallback( array $set ): string {
 		if ( isset( $set[5] ) ) {
@@ -1214,10 +1182,6 @@ class Sanitizer {
 		}
 	}
 
-	/**
-	 * @param string $text
-	 * @return string
-	 */
 	private static function normalizeWhitespace( string $text ): string {
 		return trim( preg_replace(
 			'/(?:\r\n|[\x20\x0d\x0a\x09])+/',
@@ -1229,9 +1193,6 @@ class Sanitizer {
 	 * Normalizes whitespace in a section name, such as might be returned
 	 * by Parser::stripSectionName(), for use in the id's that are used for
 	 * section links.
-	 *
-	 * @param string $section
-	 * @return string
 	 */
 	public static function normalizeSectionNameWhitespace( string $section ): string {
 		return trim( preg_replace( '/[ _]+/', ' ', $section ) );
@@ -1248,8 +1209,6 @@ class Sanitizer {
 	 * c. use lower cased "&#x", not "&#X"
 	 * d. fix or reject non-valid attributes
 	 *
-	 * @param string $text
-	 * @return string
 	 * @internal
 	 */
 	public static function normalizeCharReferences( string $text ): string {
@@ -1260,10 +1219,6 @@ class Sanitizer {
 		);
 	}
 
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
 	private static function normalizeCharReferencesCallback( array $matches ): string {
 		$ret = null;
 		if ( isset( $matches[1] ) ) {
@@ -1307,10 +1262,6 @@ class Sanitizer {
 		}
 	}
 
-	/**
-	 * @param string $codepoint
-	 * @return null|string
-	 */
 	private static function decCharReference( string $codepoint ): ?string {
 		# intval() will (safely) saturate at the maximum signed integer
 		# value if $codepoint is too many digits
@@ -1322,10 +1273,6 @@ class Sanitizer {
 		}
 	}
 
-	/**
-	 * @param string $codepoint
-	 * @return null|string
-	 */
 	private static function hexCharReference( string $codepoint ): ?string {
 		$point = hexdec( $codepoint );
 		// hexdec() might return a float if the string is too long
@@ -1339,8 +1286,6 @@ class Sanitizer {
 	/**
 	 * Returns true if a given Unicode codepoint is a valid character in
 	 * both HTML5 and XML.
-	 * @param int $codepoint
-	 * @return bool
 	 */
 	private static function validateCodepoint( int $codepoint ): bool {
 		# U+000C is valid in HTML5 but not allowed in XML.
@@ -1357,9 +1302,6 @@ class Sanitizer {
 	/**
 	 * Decode any character references, numeric or named entities,
 	 * in the text and return a UTF-8 string.
-	 *
-	 * @param string $text
-	 * @return string
 	 */
 	public static function decodeCharReferences( string $text ): string {
 		return preg_replace_callback(
@@ -1393,10 +1335,6 @@ class Sanitizer {
 		}
 	}
 
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
 	private static function decodeCharReferencesCallback( array $matches ): string {
 		if ( isset( $matches[1] ) ) {
 			return self::decodeEntity( $matches[1] );
@@ -1418,8 +1356,6 @@ class Sanitizer {
 	/**
 	 * Return UTF-8 string for a codepoint if that is a valid
 	 * character reference, otherwise U+FFFD REPLACEMENT CHARACTER.
-	 * @param int $codepoint
-	 * @return string
 	 * @internal
 	 */
 	private static function decodeChar( int $codepoint ): string {
@@ -1738,7 +1674,6 @@ class Sanitizer {
 	 *
 	 * Use for passing XHTML fragments to PHP's XML parsing functions
 	 *
-	 * @return string
 	 * @deprecated since 1.36; will be made private or removed in a future
 	 *    release.
 	 */
@@ -1762,10 +1697,6 @@ class Sanitizer {
 		return $out;
 	}
 
-	/**
-	 * @param string $url
-	 * @return string
-	 */
 	public static function cleanUrl( string $url ): string {
 		# Normalize any HTML entities in input. They will be
 		# re-escaped by makeExternalLink().
