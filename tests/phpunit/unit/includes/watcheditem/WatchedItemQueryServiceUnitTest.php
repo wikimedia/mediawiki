@@ -24,8 +24,6 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	 */
 	private function getMockCommentStore() {
 		$mockStore = $this->createMock( CommentStore::class );
-		$mockStore->method( 'getFields' )
-			->willReturn( [ 'commentstore' => 'fields' ] );
 		$mockStore->method( 'getJoin' )
 			->willReturn( [
 				'tables' => [ 'commentstore' => 'table' ],

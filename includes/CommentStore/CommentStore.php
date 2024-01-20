@@ -78,26 +78,6 @@ class CommentStore {
 	}
 
 	/**
-	 * Get SELECT fields for the comment key
-	 *
-	 * Each resulting row should be passed to `self::getCommentLegacy()` to get the
-	 * actual comment.
-	 *
-	 * @note Use of this method may require a subsequent database query to
-	 *  actually fetch the comment. If possible, use `self::getJoin()` instead.
-	 *
-	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
-	 * @param string $key A key such as "rev_comment" identifying the comment
-	 *  field being fetched.
-	 * @return string[] to include in the `$vars` to `IDatabase->select()`. All
-	 *  fields are aliased, so `+` is safe to use.
-	 */
-	public function getFields( $key ) {
-		return [ "{$key}_id" => "{$key}_id" ];
-	}
-
-	/**
 	 * Get SELECT fields and joins for the comment key
 	 *
 	 * Each resulting row should be passed to `self::getComment()` to get the
