@@ -39,38 +39,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetFields
-	 * @param string $key
-	 * @param array $expect
-	 */
-	public function testGetFields( $key, $expect ) {
-		$store = $this->makeStore();
-		$result = $store->getFields( $key );
-		$this->assertEquals( $expect, $result );
-	}
-
-	public static function provideGetFields() {
-		return [
-			'Simple table' => [
-				'ipb_reason',
-				[ 'ipb_reason_id' => 'ipb_reason_id' ],
-			],
-
-			'Revision' => [
-				'rev_comment',
-				[ 'rev_comment_id' => 'rev_comment_id' ],
-			],
-
-			'Image' => [
-				'img_description',
-				[
-					'img_description_id' => 'img_description_id'
-				],
-			],
-		];
-	}
-
-	/**
 	 * @dataProvider provideGetJoin
 	 * @param string $key
 	 * @param array $expect
@@ -170,7 +138,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$rstore = $this->makeStore();
 
 		$fieldRow = $this->db->newSelectQueryBuilder()
-			->select( $rstore->getFields( $key ) )
+			->select( [ "{$key}_id" => "{$key}_id" ] )
 			->from( $table )
 			->where( [ $pk => $id ] )
 			->caller( __METHOD__ )->fetchRow();
