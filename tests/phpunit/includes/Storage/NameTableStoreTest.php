@@ -141,9 +141,6 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$name,
 		$expectedId
 	) {
-		// Make sure the table is empty!
-		$this->truncateTable( 'slot_roles' );
-
 		$this->populateTable( $existingValues );
 		$store = $this->getNameTableSqlStore( $cacheBag, (int)$needsInsert, $selectCalls );
 
