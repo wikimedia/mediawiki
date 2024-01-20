@@ -22,12 +22,6 @@ use PHPUnit\Framework\AssertionFailedError;
 class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 
-	protected function setUp(): void {
-		parent::setUp();
-		// tablesUsed don't clear up the database before the first test runs: T265033
-		$this->truncateTable( 'user_newtalk' );
-	}
-
 	private function editUserTalk( UserIdentity $user, string $text ): RevisionRecord {
 		// UserIdentity doesn't have getUserPage/getTalkPage, but we can easily recreate
 		// it, and its easier than needing to depend on a full user object

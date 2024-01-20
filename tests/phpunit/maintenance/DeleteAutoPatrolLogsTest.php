@@ -17,12 +17,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->cleanLoggingTable();
 		$this->insertLoggingData();
-	}
-
-	private function cleanLoggingTable() {
-		$this->getDb()->delete( 'logging', '*' );
 	}
 
 	private function insertLoggingData() {
