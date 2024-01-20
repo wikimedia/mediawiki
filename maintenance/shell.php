@@ -73,6 +73,10 @@ class MediaWikiShell extends Maintenance {
 		);
 	}
 
+	public function canExecuteWithoutLocalSettings() {
+		return true;
+	}
+
 	public function execute() {
 		if ( !class_exists( \Psy\Shell::class ) ) {
 			$this->fatalError( 'PsySH not found. Please run composer with the --dev option.' );
