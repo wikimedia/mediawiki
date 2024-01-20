@@ -220,9 +220,6 @@ class ApiMoveTest extends ApiTestCase {
 		} catch ( ApiUsageException $ex ) {
 			$this->assertApiErrorCode( 'blocked', $ex );
 			$this->assertNotNull( $blockStore->newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
-		} finally {
-			$blockStore->deleteBlock( $block );
-			$user->clearInstanceCache();
 			$this->assertSame( $id, $title->getArticleID( Title::READ_LATEST ) );
 		}
 	}

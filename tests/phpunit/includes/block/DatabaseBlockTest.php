@@ -22,7 +22,7 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class DatabaseBlockTest extends MediaWikiLangTestCase {
 
-	public function addDBDataOnce() {
+	public function addDBData() {
 		$blockList = [
 			[ 'target' => '70.2.0.0/16',
 				'type' => DatabaseBlock::TYPE_RANGE,
@@ -90,12 +90,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 */
 	private function addBlockForUser( UserIdentity $user ) {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		// Delete the last round's block if it's still there
-		$oldBlock = DatabaseBlock::newFromTarget( $user );
-		if ( $oldBlock ) {
-			// An old block will prevent our new one from saving.
-			$blockStore->deleteBlock( $oldBlock );
-		}
 
 		$blockOptions = [
 			'address' => $user,
@@ -157,8 +151,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			(bool)DatabaseBlock::newFromTarget( $blocker, '1.2.3.4' ),
 			'Logged-in user is not blocked by soft block'
 		);
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -255,11 +247,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			$expectedTarget,
 			$block->getTargetName()
 		);
-
-		foreach ( $targets as $target ) {
-			$block = DatabaseBlock::newFromTarget( $target );
-			$blockStore->deleteBlock( $block );
-		}
 	}
 
 	public static function provideNewFromTargetRangeBlocks() {
@@ -459,7 +446,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $block->getTargetName(), $badActor->getName() );
 		$this->assertTrue( $block->isBlocking( $badActor ), 'Is blocking expected user' );
 		$this->assertEquals( $block->getTargetUserIdentity()->getId(), $badActor->getId() );
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -632,7 +618,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$restrictions = $block->getRestrictions();
 		$this->assertCount( 1, $restrictions );
 		$this->assertTrue( $restriction->equals( $restrictions[0] ) );
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -667,8 +652,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			->where( [ 'ir_ipb_id' => 0 ] )
 			->caller( __METHOD__ )->fetchRowCount();
 		$this->assertSame( 0, $count );
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -696,8 +679,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		// appliesToTitle() ignores allowUsertalk
 		$title = $user->getTalkPage();
 		$this->assertTrue( $block->appliesToTitle( $title ) );
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -729,8 +710,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToTitle( $pageFoo->getTitle() ) );
 		$this->assertFalse( $block->appliesToTitle( $pageBar->getTitle() ) );
 		$this->assertTrue( $block->appliesToTitle( $pageJohn->getTitle() ) );
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -757,8 +736,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 		$this->assertTrue( $block->appliesToNamespace( NS_USER_TALK ) );
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -788,8 +765,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->getBlockRestrictionStore()->insert( [ $pageRestriction ] );
 
 		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -815,8 +790,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 		$this->assertFalse( $block->appliesToNamespace( NS_USER ) );
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**

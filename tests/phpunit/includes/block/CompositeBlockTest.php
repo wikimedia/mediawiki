@@ -38,13 +38,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	private function deleteBlocks( $blocks ) {
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		foreach ( $blocks as $block ) {
-			$blockStore->deleteBlock( $block );
-		}
-	}
-
 	/**
 	 * @dataProvider provideTestStrictestParametersApplied
 	 */
@@ -165,8 +158,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 
 		$this->assertTrue( $block->appliesToTitle( $pageFoo->getTitle() ) );
 		$this->assertTrue( $block->appliesToTitle( $pageBar->getTitle() ) );
-
-		$this->deleteBlocks( $blocks );
 	}
 
 	public function testBlockAppliesToUsertalk() {
@@ -192,8 +183,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		] );
 
 		$this->assertTrue( $block->appliesToUsertalk( $title ) );
-
-		$this->deleteBlocks( $blocks );
 	}
 
 	/**

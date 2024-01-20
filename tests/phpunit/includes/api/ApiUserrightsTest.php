@@ -149,12 +149,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		try {
-			$this->doSuccessfulRightsChange();
-		} finally {
-			$blockStore->deleteBlock( $block );
-			$user->clearInstanceCache();
-		}
+		$this->doSuccessfulRightsChange();
 	}
 
 	public function testBlockedWithoutUserrights() {
@@ -166,12 +161,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		try {
-			$this->doFailedRightsChange( 'blocked' );
-		} finally {
-			$blockStore->deleteBlock( $block );
-			$user->clearInstanceCache();
-		}
+		$this->doFailedRightsChange( 'blocked' );
 	}
 
 	public function testAddMultiple() {
