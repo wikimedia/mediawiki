@@ -11,7 +11,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
@@ -32,7 +31,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 				'isHardblock' => true,
 				'isAutoBlocking' => false,
 			],
-			[ 'target' => '2001:4860:4001::/48',
+			[ 'target' => '2001:4860:4001:0:0:0:0:0/48',
 				'type' => DatabaseBlock::TYPE_RANGE,
 				'desc' => 'Range6 Hardblock',
 				'ACDisable' => false,
@@ -65,16 +64,8 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blocker = $this->getTestUser()->getUser();
 		foreach ( $blockList as $insBlock ) {
-			$target = $insBlock['target'];
-
-			if ( $insBlock['type'] === DatabaseBlock::TYPE_IP ) {
-				$target = User::newFromName( IPUtils::sanitizeIP( $target ), false )->getName();
-			} elseif ( $insBlock['type'] === DatabaseBlock::TYPE_RANGE ) {
-				$target = IPUtils::sanitizeRange( $target );
-			}
-
 			$block = new DatabaseBlock();
-			$block->setTarget( $target );
+			$block->setTarget( $insBlock['target'] );
 			$block->setBlocker( $blocker );
 			$block->setReason( $insBlock['desc'] );
 			$block->setExpiry( 'infinity' );
