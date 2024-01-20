@@ -22,6 +22,7 @@ namespace MediaWiki\Rest\Handler\Helper;
 use Content;
 use HttpError;
 use IBufferingStatsdDataFactory;
+use InvalidArgumentException;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
@@ -203,7 +204,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	public function setFlavor( string $flavor ): void {
 		if ( !in_array( $flavor, self::OUTPUT_FLAVORS ) ) {
-			throw new LogicException( 'Invalid flavor supplied' );
+			throw new InvalidArgumentException( 'Invalid flavor supplied' );
 		}
 
 		if ( $this->stash ) {

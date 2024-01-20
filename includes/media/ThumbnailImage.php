@@ -124,7 +124,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		if ( func_num_args() === 2 ) {
-			throw new BadMethodCallException( __METHOD__ . ' called in the old style' );
+			throw new InvalidArgumentException( __METHOD__ . ' called in the old style' );
 		}
 
 		$query = $options['desc-query'] ?? '';

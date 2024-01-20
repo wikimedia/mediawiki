@@ -21,7 +21,6 @@
 
 namespace MediaWiki\ChangeTags;
 
-use BadMethodCallException;
 use InvalidArgumentException;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
@@ -155,7 +154,7 @@ class ChangeTagsStore {
 		IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
 	): array {
 		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new BadMethodCallException(
+			throw new InvalidArgumentException(
 				'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when loading tags from a change!' );
 		}
@@ -545,7 +544,7 @@ class ChangeTagsStore {
 		);
 
 		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new BadMethodCallException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
+			throw new InvalidArgumentException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when adding or removing a tag from a change!' );
 		}
 

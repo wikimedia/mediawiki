@@ -1583,7 +1583,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieStatus( StatusValue $status ) {
 		if ( $status->isGood() ) {
-			throw new LogicException( 'Successful status passed to ApiBase::dieStatus' );
+			throw new InvalidArgumentException( 'Successful status passed to ApiBase::dieStatus' );
 		}
 
 		foreach ( self::MESSAGE_CODE_MAP as $msg => [ $apiMsg, $code ] ) {

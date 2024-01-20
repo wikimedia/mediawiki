@@ -1224,7 +1224,7 @@ class FormatMetadata extends ContextSource {
 	 */
 	private function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false ) {
-			throw new BadMethodCallException( '$lang and $default cannot both be false.' );
+			throw new InvalidArgumentException( '$lang and $default cannot both be false.' );
 		}
 
 		if ( $noHtml ) {
