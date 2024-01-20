@@ -3184,23 +3184,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	/**
 	 * @inheritDoc
 	 * @since 1.36
-	 *
-	 * @param PageReference $other
-	 * @return bool
 	 */
 	public function isSamePageAs( PageReference $other ): bool {
-		// NOTE: keep in sync with PageIdentityValue::isSamePageAs()!
-
-		if ( $other->getWikiId() !== $this->getWikiId() ) {
-			return false;
-		}
-
-		if ( $other->getNamespace() !== $this->getNamespace()
-			|| $other->getDBkey() !== $this->getDBkey() ) {
-			return false;
-		}
-
-		return true;
+		// NOTE: keep in sync with PageReferenceValue::isSamePageAs()!
+		return $this->getWikiId() === $other->getWikiId()
+			&& $this->getNamespace() === $other->getNamespace()
+			&& $this->getDBkey() === $other->getDBkey();
 	}
 
 	/**
