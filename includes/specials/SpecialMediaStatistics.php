@@ -24,7 +24,6 @@
 
 namespace MediaWiki\Specials;
 
-use LogicException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Output\OutputPage;
@@ -32,7 +31,6 @@ use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MimeAnalyzer;
 use Skin;
-use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -382,17 +380,9 @@ class SpecialMediaStatistics extends QueryPage {
 		return 'media';
 	}
 
-	/**
-	 * This method isn't used, since we override outputResults, but
-	 * we need to implement since abstract in parent class.
-	 *
-	 * @param Skin $skin
-	 * @param stdClass $result Result row
-	 * @return bool|string|void
-	 * @suppress PhanPluginNeverReturnMethod
-	 */
+	/** @inheritDoc */
 	public function formatResult( $skin, $result ) {
-		throw new LogicException( "unimplemented" );
+		return false;
 	}
 
 	/**
