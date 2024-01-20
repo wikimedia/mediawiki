@@ -30,7 +30,7 @@ class DbTestPreviewer extends TestRecorder {
 	protected $curRun;
 	/** @var int|false run ID number for the previous run, if any */
 	protected $prevRun;
-	/** @var array Result array */
+	/** @var array<string,int> Result array */
 	protected $results;
 
 	/**
