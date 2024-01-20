@@ -48,7 +48,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$namespaces = [
 			NS_MEDIAWIKI => $dbr->expr(
 				'page_title',
@@ -92,7 +92,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 			->getRevisionLookup()
 			->getRevisionByTitle( $title );
 		$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		if ( $content instanceof JsonContent ) {
 			if ( $content->isValid() ) {
 				// Yay, actually JSON. We need to just change the

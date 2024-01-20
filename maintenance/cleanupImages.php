@@ -112,7 +112,7 @@ class CleanupImages extends TableCleanup {
 			$this->output( "DRY RUN: would delete bogus row '$name'\n" );
 		} else {
 			$this->output( "deleting bogus row '$name'\n" );
-			$db = $this->getDB( DB_PRIMARY );
+			$db = $this->getPrimaryDB();
 			$db->delete( 'image',
 				[ 'img_name' => $name ],
 				__METHOD__ );
@@ -161,7 +161,7 @@ class CleanupImages extends TableCleanup {
 			return;
 		}
 
-		$db = $this->getDB( DB_PRIMARY );
+		$db = $this->getPrimaryDB();
 
 		/*
 		 * To prevent key collisions in the update() statements below,

@@ -41,7 +41,7 @@ class RebuildAll extends Maintenance {
 
 	public function execute() {
 		// Rebuild the text index
-		if ( $this->getDB( DB_REPLICA )->getType() != 'postgres' ) {
+		if ( $this->getReplicaDB()->getType() != 'postgres' ) {
 			$this->output( "** Rebuilding fulltext search index (if you abort "
 				. "this will break searching; run this script again to fix):\n" );
 			$rebuildText = $this->runChild( RebuildTextIndex::class, 'rebuildtextindex.php' );

@@ -45,7 +45,7 @@ class NukePage extends Maintenance {
 		$name = $this->getArg( 0 );
 		$delete = $this->hasOption( 'delete' );
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		# Get page ID
@@ -114,7 +114,7 @@ class NukePage extends Maintenance {
 	}
 
 	public function deleteRevisions( $ids ) {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$dbw->newDeleteQueryBuilder()

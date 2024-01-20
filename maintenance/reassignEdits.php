@@ -77,7 +77,7 @@ class ReassignEdits extends Maintenance {
 	 * @return int The number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $updateRC = false, $report = false ) {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$this->beginTransaction( $dbw, __METHOD__ );
 		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$fromActorId = $actorNormalization->findActorId( $from, $dbw );

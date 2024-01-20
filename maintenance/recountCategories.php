@@ -170,7 +170,7 @@ TEXT
 		$this->minimumId = end( $idsToUpdate );
 
 		// Now, on master, find the correct counts for these categories.
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'count' => "($countingSubquery)" ] )
 			->from( 'category' )

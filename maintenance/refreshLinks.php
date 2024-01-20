@@ -304,7 +304,7 @@ class RefreshLinks extends Maintenance {
 	 * @param int $batchSize The size of deletion batches
 	 */
 	private function dfnCheckInterval( $start = null, $end = null, $batchSize = 100 ) {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 
 		$linksTables = [

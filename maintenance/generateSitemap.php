@@ -200,7 +200,7 @@ class GenerateSitemap extends Maintenance {
 		$this->identifier = $this->getOption( 'identifier', $dbDomain );
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->skipRedirects = $this->hasOption( 'skip-redirects' );
-		$this->dbr = $this->getDB( DB_REPLICA );
+		$this->dbr = $this->getReplicaDB();
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
 		$encIdentifier = rawurlencode( $this->identifier );

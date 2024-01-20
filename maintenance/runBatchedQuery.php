@@ -56,11 +56,9 @@ class RunBatchedQuery extends Maintenance {
 
 		$dbName = $this->getOption( 'db', null );
 		if ( $dbName === null ) {
-			$dbw = $this->getDB( DB_PRIMARY );
+			$dbw = $this->getPrimaryDB();
 		} else {
-			$lbf = $this->getServiceContainer()->getDBLoadBalancerFactory();
-			$lb = $lbf->getMainLB( $dbName );
-			$dbw = $lb->getConnectionRef( DB_PRIMARY, [], $dbName );
+			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $dbName );
 		}
 
 		$selectConds = $where;

@@ -92,7 +92,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		$pageIdColumn = $mapping[$table]['page_id'];
 		// BETWEEN is inclusive, let's subtract one.
 		$highPageId = $lowPageId + $batchSize - 1;
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$updated = 0;
 
 		while ( true ) {

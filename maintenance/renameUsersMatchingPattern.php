@@ -88,7 +88,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 		$this->suppressRedirect = $this->getOption( 'suppress-redirect' );
 		$this->skipPageMoves = $this->getOption( 'skip-page-moves' );
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$batchConds = [];
 		$batchSize = $this->getBatchSize();
 		$numRenamed = 0;

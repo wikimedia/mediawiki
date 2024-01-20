@@ -39,7 +39,7 @@ class PurgeModuleDeps extends Maintenance {
 	public function execute() {
 		$this->output( "Cleaning up module_deps table...\n" );
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'md_module', 'md_skin' ] )
 			->from( 'module_deps' )

@@ -78,7 +78,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
 	private function fetchUsed( $shared ) {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$result = $dbr->newSelectQueryBuilder()
 			->select( [ 'il_to', 'img_name' ] )
@@ -99,7 +99,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
 	private function fetchLocal( $shared ) {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$result = $dbr->newSelectQueryBuilder()
 			->select( 'img_name' )
 			->from( 'image' )

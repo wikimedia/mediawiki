@@ -47,8 +47,8 @@ class ResetPageRandom extends Maintenance {
 
 	public function execute() {
 		$batchSize = $this->getBatchSize();
-		$dbw = $this->getDB( DB_PRIMARY );
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbw = $this->getPrimaryDB();
+		$dbr = $this->getReplicaDB();
 		$from = wfTimestampOrNull( TS_MW, $this->getOption( 'from' ) );
 		$to = wfTimestampOrNull( TS_MW, $this->getOption( 'to' ) );
 

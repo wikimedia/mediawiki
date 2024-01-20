@@ -71,7 +71,7 @@ class TrackBlobs extends Maintenance {
 
 	private function checkIntegrity() {
 		echo "Doing integrity check...\n";
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		// Scan for HistoryBlobStub objects in the text table (T22757)
 
@@ -94,7 +94,7 @@ class TrackBlobs extends Maintenance {
 	}
 
 	private function initTrackingTable() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( $dbw->tableExists( 'blob_tracking', __METHOD__ ) ) {
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ), __METHOD__ );
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_orphans' ), __METHOD__ );
@@ -104,7 +104,7 @@ class TrackBlobs extends Maintenance {
 
 	private function getTextClause() {
 		if ( !$this->textClause ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->getReplicaDB();
 			$conds = [];
 			foreach ( $this->clusters as $cluster ) {
 				$conds[] = $dbr->expr(
@@ -135,8 +135,8 @@ class TrackBlobs extends Maintenance {
 	 *  Scan the revision table for rows stored in the specified clusters
 	 */
 	private function trackRevisions() {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbw = $this->getPrimaryDB();
+		$dbr = $this->getReplicaDB();
 
 		$textClause = $this->getTextClause();
 		$startId = 0;
@@ -228,8 +228,8 @@ class TrackBlobs extends Maintenance {
 	 */
 	private function trackOrphanText() {
 		# Wait until the blob_tracking table is available in the replica DB
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbw = $this->getPrimaryDB();
+		$dbr = $this->getReplicaDB();
 		$pos = $dbw->getPrimaryPos();
 		$dbr->primaryPosWait( $pos, 100_000 );
 
@@ -324,7 +324,7 @@ class TrackBlobs extends Maintenance {
 			return;
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		foreach ( $this->clusters as $cluster ) {

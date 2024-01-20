@@ -26,8 +26,8 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_PRIMARY );
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbw = $this->getPrimaryDB();
+		$dbr = $this->getReplicaDB();
 		$maxLtId = (int)$dbr->newSelectQueryBuilder()
 			->select( 'MAX(lt_id)' )
 			->from( 'linktarget' )

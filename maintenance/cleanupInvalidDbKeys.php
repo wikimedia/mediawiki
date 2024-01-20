@@ -210,7 +210,7 @@ TEXT
 		$services = $this->getServiceContainer();
 
 		// Fix the bad data, using different logic for the various tables
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		switch ( $table ) {
 			case 'page':
 			case 'redirect':

@@ -64,7 +64,7 @@ class RefreshFileHeaders extends Maintenance {
 		$minor_mime = str_replace( ' ', '_', $this->getOption( 'minor_mime', '' ) );
 
 		$count = 0;
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		do {
 			$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );

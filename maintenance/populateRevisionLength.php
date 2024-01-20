@@ -60,7 +60,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			'revision',
 			'rev_id',
 			'rev',
-			$revisionStore->newSelectQueryBuilder( $this->getDB( DB_REPLICA ) )->joinComment()
+			$revisionStore->newSelectQueryBuilder( $this->getReplicaDB() )->joinComment()
 		);
 
 		$this->output( "Populating ar_len column\n" );
@@ -68,7 +68,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			'archive',
 			'ar_id',
 			'ar',
-			$revisionStore->newArchiveSelectQueryBuilder( $this->getDB( DB_REPLICA ) )->joinComment()
+			$revisionStore->newArchiveSelectQueryBuilder( $this->getReplicaDB() )->joinComment()
 		);
 
 		$this->output( "rev_len and ar_len population complete "
@@ -85,8 +85,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 * @return int
 	 */
 	protected function doLenUpdates( $table, $idCol, $prefix, $queryBuilder ) {
-		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbr = $this->getReplicaDB();
+		$dbw = $this->getPrimaryDB();
 		$batchSize = $this->getBatchSize();
 		$start = $dbw->newSelectQueryBuilder()
 			->select( "MIN($idCol)" )
@@ -149,7 +149,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 * @return bool
 	 */
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$revFactory = $this->getServiceContainer()->getRevisionFactory();
 		if ( $table === 'archive' ) {

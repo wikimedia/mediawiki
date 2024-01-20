@@ -96,8 +96,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 	}
 
 	private function getRows( $fromId ) {
-		$lb = $this->getServiceContainer()->getDBLoadBalancer();
-		$dbr = $lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$before = $this->getOption( 'before', false );
 
 		$conds = [
@@ -124,8 +123,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 	}
 
 	private function getRowsOld( $fromId ) {
-		$lb = $this->getServiceContainer()->getDBLoadBalancer();
-		$dbr = $lb->getConnectionRef( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$batchSize = $this->getBatchSize();
 		$before = $this->getOption( 'before', false );
 
@@ -188,8 +186,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 	}
 
 	private function deleteRows( array $rows ) {
-		$lb = $this->getServiceContainer()->getDBLoadBalancer();
-		$dbw = $lb->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'logging' )

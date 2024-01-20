@@ -75,7 +75,7 @@ class MoveBatch extends Maintenance {
 		StubGlobalUser::setUser( $user );
 
 		# Setup complete, now start
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		for ( $lineNum = 1; !feof( $file ); $lineNum++ ) {
 			$line = fgets( $file );
 			if ( $line === false ) {

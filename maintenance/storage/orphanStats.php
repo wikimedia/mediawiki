@@ -44,10 +44,10 @@ class OrphanStats extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_REPLICA );
-		if ( !$dbr->tableExists( 'blob_orphans', __METHOD__ ) ) {
+		if ( !$this->getDB( DB_PRIMARY )->tableExists( 'blob_orphans', __METHOD__ ) ) {
 			$this->fatalError( "blob_orphans doesn't seem to exist, need to run trackBlobs.php first" );
 		}
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'blob_orphans' )

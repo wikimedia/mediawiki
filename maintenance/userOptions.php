@@ -177,7 +177,7 @@ WARN
 
 		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		$tempUserConfig = $this->getServiceContainer()->getTempUserConfig();
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
 		$queryBuilderTemplate
 			->table( 'user' )
@@ -258,8 +258,8 @@ WARN
 			);
 		}
 
-		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbr = $this->getReplicaDB();
+		$dbw = $this->getPrimaryDB();
 
 		$rowsNum = 0;
 		$rowsInThisBatch = -1;

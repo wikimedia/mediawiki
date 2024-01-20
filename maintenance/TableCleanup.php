@@ -109,7 +109,7 @@ class TableCleanup extends Maintenance {
 	 * @param array $params
 	 */
 	public function runTable( $params ) {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		if ( array_diff( array_keys( $params ),
 			[ 'table', 'conds', 'index', 'callback' ] )

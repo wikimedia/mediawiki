@@ -136,8 +136,8 @@ TEXT
 		$this->force = $this->getOption( 'force' );
 		$this->dryRun = $this->getOption( 'dry-run' );
 		$this->verboseStats = $this->getOption( 'verbose-stats' );
-		$this->dbw = $this->getDB( DB_PRIMARY );
-		$this->dbr = $this->getDB( DB_REPLICA );
+		$this->dbw = $this->getPrimaryDB();
+		$this->dbr = $this->getReplicaDB();
 		$this->targetTable = $this->getOption( 'target-table' );
 	}
 

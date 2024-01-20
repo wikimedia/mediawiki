@@ -67,7 +67,7 @@ class CleanupPageLang extends TableCleanup {
 			$this->output( "DRY RUN: would update page_lang on $row->page_id from $oldPageLang to $newPageLang.\n" );
 		} else {
 			$this->output( "Update page_lang on $row->page_id from $oldPageLang to $newPageLang.\n" );
-			$this->getDB( DB_PRIMARY )
+			$this->getPrimaryDB()
 				->newUpdateQueryBuilder()
 				->update( 'page' )
 				->set( [ 'page_lang' => $newPageLang ] )

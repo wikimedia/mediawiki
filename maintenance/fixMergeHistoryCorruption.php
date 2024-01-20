@@ -49,8 +49,8 @@ class FixMergeHistoryCorruption extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbr = $this->getReplicaDB();
+		$dbw = $this->getPrimaryDB();
 
 		$dryRun = true;
 		if ( $this->hasOption( 'dry-run' ) && $this->hasOption( 'delete' ) ) {

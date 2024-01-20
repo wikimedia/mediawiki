@@ -108,7 +108,7 @@ class CleanupPreferences extends Maintenance {
 		$iterator->addConditions( $where );
 		$iterator->setCaller( __METHOD__ );
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$total = 0;
 		foreach ( $iterator as $batch ) {
 			$numRows = count( $batch );

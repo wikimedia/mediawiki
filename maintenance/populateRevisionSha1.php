@@ -57,13 +57,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 		$this->output( "Populating rev_sha1 column\n" );
 		$rc = $this->doSha1Updates( $revStore, 'revision', 'rev_id',
-			$revStore->newSelectQueryBuilder( $this->getDB( DB_PRIMARY ) )->joinComment(),
+			$revStore->newSelectQueryBuilder( $this->getPrimaryDB() )->joinComment(),
 			'rev'
 		);
 
 		$this->output( "Populating ar_sha1 column\n" );
 		$ac = $this->doSha1Updates( $revStore, 'archive', 'ar_rev_id',
-			$revStore->newArchiveSelectQueryBuilder( $this->getDB( DB_PRIMARY ) )->joinComment(),
+			$revStore->newArchiveSelectQueryBuilder( $this->getPrimaryDB() )->joinComment(),
 			'ar'
 		);
 
@@ -82,7 +82,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 * @return int Rows changed
 	 */
 	protected function doSha1Updates( $revStore, $table, $idCol, $queryBuilder, $prefix ) {
-		$db = $this->getDB( DB_PRIMARY );
+		$db = $this->getPrimaryDB();
 		$batchSize = $this->getBatchSize();
 		$start = $db->newSelectQueryBuilder()
 			->select( "MIN($idCol)" )
@@ -136,7 +136,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 * @return bool
 	 */
 	protected function upgradeRow( $revStore, $row, $table, $idCol, $prefix ) {
-		$db = $this->getDB( DB_PRIMARY );
+		$db = $this->getPrimaryDB();
 
 		// Create a revision and use it to get the sha1 from the content table, if possible.
 		try {

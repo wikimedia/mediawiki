@@ -39,7 +39,7 @@ class FixUserRegistration extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$lastId = 0;
 		do {

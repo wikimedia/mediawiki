@@ -58,7 +58,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 	}
 
 	private function getQueryBuilder(): SelectQueryBuilder {
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		return $dbr->newSelectQueryBuilder()
 			->select( [ 'page_id' ] )

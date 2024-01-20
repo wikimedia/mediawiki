@@ -52,7 +52,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		$this->output( "Checking for unused user accounts...\n" );
 		$delUser = [];
 		$delActor = [];
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'user_id', 'user_name', 'user_touched', 'actor_id' ] )
 			->from( 'user' )
@@ -92,7 +92,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		# If required, go back and delete each marked account
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting unused accounts..." );
-			$dbw = $this->getDB( DB_PRIMARY );
+			$dbw = $this->getPrimaryDB();
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'user' )
 				->where( [ 'user_id' => $delUser ] )
@@ -178,7 +178,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			return true;
 		}
 
-		$dbo = $this->getDB( $primary ? DB_PRIMARY : DB_REPLICA );
+		$dbo = $primary ? $this->getPrimaryDB() : $this->getReplicaDB();
 		$checks = [
 			'archive' => 'ar',
 			'image' => 'img',

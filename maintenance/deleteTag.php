@@ -19,7 +19,7 @@ class DeleteTag extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$services = $this->getServiceContainer();
 		$defStore = $services->getChangeTagDefStore();
 		$lbFactory = $services->getDBLoadBalancerFactory();

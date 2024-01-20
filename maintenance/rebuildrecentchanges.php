@@ -81,7 +81,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 1: Insert `recentchanges` entries for page revisions.
 	 */
 	private function rebuildRecentChangesTablePass1() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$commentStore = $this->getServiceContainer()->getCommentStore();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
@@ -191,7 +191,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * (rc_last_oldid, rc_new etc.) and size differences (rc_old_len, rc_new_len).
 	 */
 	private function rebuildRecentChangesTablePass2() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$this->output( "Updating links and size differences...\n" );
 
@@ -396,7 +396,7 @@ class RebuildRecentchanges extends Maintenance {
 	private function rebuildRecentChangesTablePass4() {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol, $wgMiserMode;
 
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		# @FIXME: recognize other bot account groups (not the same as users with 'bot' rights)
 		# @NOTE: users with 'bot' rights choose when edits are bot edits or not. That information
@@ -457,7 +457,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * entry for a single action (upload, move, protect, import, etc.).
 	 */
 	private function rebuildRecentChangesTablePass5() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$this->output( "Removing duplicate revision and logging entries...\n" );
 

@@ -51,7 +51,7 @@ class RebuildTextIndex extends Maintenance {
 
 	public function execute() {
 		// Shouldn't be needed for Postgres
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		if ( $dbw->getType() == 'postgres' ) {
 			$this->fatalError( "This script is not needed when using Postgres.\n" );
 		}
@@ -80,7 +80,7 @@ class RebuildTextIndex extends Maintenance {
 	 * Populates the search index with content from all pages
 	 */
 	protected function populateSearchIndex() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'count' => 'MAX(page_id)' ] )
 			->from( 'page' )
@@ -144,7 +144,7 @@ class RebuildTextIndex extends Maintenance {
 	 * (MySQL only) Adds back fulltext index after populating the table.
 	 */
 	private function createMysqlTextIndex() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$searchindex = $dbw->tableName( 'searchindex' );
 		$this->output( "\nRebuild the index...\n" );
 		foreach ( [ 'si_title', 'si_text' ] as $field ) {
@@ -157,7 +157,7 @@ class RebuildTextIndex extends Maintenance {
 	 * Deletes everything from search index.
 	 */
 	private function clearSearchIndex() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$this->output( 'Clearing searchindex table...' );
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'searchindex' )

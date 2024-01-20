@@ -57,7 +57,7 @@ class TestCompression extends Maintenance {
 		}
 		$type = $this->getOption( 'type', ConcatenatedGzipHistoryBlob::class );
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$revStore = $this->getServiceContainer()->getRevisionStore();
 		$res = $revStore->newSelectQueryBuilder( $dbr )
