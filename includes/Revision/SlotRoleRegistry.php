@@ -47,24 +47,12 @@ use Wikimedia\Assert\Assert;
  */
 class SlotRoleRegistry {
 
-	/**
-	 * @var NameTableStore
-	 */
-	private $roleNamesStore;
+	private NameTableStore $roleNamesStore;
+	/** @var array<string,callable> */
+	private array $instantiators = [];
+	/** @var array<string,SlotRoleHandler> */
+	private array $handlers = [];
 
-	/**
-	 * @var callable[]
-	 */
-	private $instantiators = [];
-
-	/**
-	 * @var SlotRoleHandler[]
-	 */
-	private $handlers;
-
-	/**
-	 * @param NameTableStore $roleNamesStore
-	 */
 	public function __construct( NameTableStore $roleNamesStore ) {
 		$this->roleNamesStore = $roleNamesStore;
 	}
@@ -81,10 +69,10 @@ class SlotRoleRegistry {
 	 * @param callable $instantiator called with $role as a parameter;
 	 *        Signature: function ( string $role ): SlotRoleHandler
 	 */
-	public function defineRole( $role, callable $instantiator ) {
+	public function defineRole( string $role, callable $instantiator ): void {
 		$role = strtolower( $role );
 
-		if ( $this->isDefinedRole( $role ) ) {
+		if ( isset( $this->instantiators[$role] ) ) {
 			throw new LogicException( "Role $role is already defined" );
 		}
 
@@ -107,9 +95,12 @@ class SlotRoleRegistry {
 	 * @param bool $derived see SlotRoleHandler constructor
 	 * @since 1.36 optional $derived parameter added
 	 */
-	public function defineRoleWithModel( $role, $model, $layout = [], bool $derived = false ) {
-		$role = strtolower( $role );
-
+	public function defineRoleWithModel(
+		string $role,
+		string $model,
+		array $layout = [],
+		bool $derived = false
+	): void {
 		$this->defineRole(
 			$role,
 			static function ( $role ) use ( $model, $layout, $derived ) {
@@ -127,11 +118,11 @@ class SlotRoleRegistry {
 	 * @return SlotRoleHandler The handler to be used for $role. This may be a
 	 *         FallbackSlotRoleHandler if the slot is "known" but not "defined".
 	 */
-	public function getRoleHandler( $role ) {
+	public function getRoleHandler( string $role ): SlotRoleHandler {
 		$role = strtolower( $role );
 
 		if ( !isset( $this->handlers[$role] ) ) {
-			if ( !$this->isDefinedRole( $role ) ) {
+			if ( !isset( $this->instantiators[$role] ) ) {
 				if ( $this->isKnownRole( $role ) ) {
 					// The role has no handler defined, but is represented in the database.
 					// This may happen e.g. when the extension that defined the role was uninstalled.
@@ -168,7 +159,7 @@ class SlotRoleRegistry {
 	 *
 	 * @return string[]
 	 */
-	public function getAllowedRoles( PageIdentity $page ) {
+	public function getAllowedRoles( PageIdentity $page ): array {
 		// TODO: allow this to be overwritten per namespace (or page type)
 		// TODO: decide how to control which slots are offered for editing per default (T209927)
 		return $this->getDefinedRoles();
@@ -186,7 +177,7 @@ class SlotRoleRegistry {
 	 *
 	 * @return string[]
 	 */
-	public function getRequiredRoles( PageIdentity $page ) {
+	public function getRequiredRoles( PageIdentity $page ): array {
 		// TODO: allow this to be overwritten per namespace (or page type)
 		return [ SlotRecord::MAIN ];
 	}
@@ -198,7 +189,7 @@ class SlotRoleRegistry {
 	 *
 	 * @return string[]
 	 */
-	public function getDefinedRoles() {
+	public function getDefinedRoles(): array {
 		return array_keys( $this->instantiators );
 	}
 
@@ -211,7 +202,7 @@ class SlotRoleRegistry {
 	 *
 	 * @return string[]
 	 */
-	public function getKnownRoles() {
+	public function getKnownRoles(): array {
 		return array_unique( array_merge(
 			$this->getDefinedRoles(),
 			$this->roleNamesStore->getMap()
@@ -220,23 +211,17 @@ class SlotRoleRegistry {
 
 	/**
 	 * Whether the given role is defined, that is, it was defined by calling defineRole().
-	 *
-	 * @param string $role
-	 * @return bool
 	 */
-	public function isDefinedRole( $role ) {
+	public function isDefinedRole( string $role ): bool {
 		$role = strtolower( $role );
-		return in_array( $role, $this->getDefinedRoles(), true );
+		return isset( $this->instantiators[$role] );
 	}
 
 	/**
 	 * Whether the given role is known, that is, it's either defined or exist according to
 	 * the NameTableStore provided to the constructor.
-	 *
-	 * @param string $role
-	 * @return bool
 	 */
-	public function isKnownRole( $role ) {
+	public function isKnownRole( string $role ): bool {
 		$role = strtolower( $role );
 		return in_array( $role, $this->getKnownRoles(), true );
 	}
