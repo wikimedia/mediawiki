@@ -2,7 +2,6 @@
 
 namespace MediaWiki\User;
 
-use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -75,21 +74,12 @@ class ActorMigration extends ActorMigrationBase {
 	/**
 	 * @internal
 	 *
-	 * @param int $stage
 	 * @param ActorStoreFactory $actorStoreFactory
 	 */
-	public function __construct(
-		$stage,
-		ActorStoreFactory $actorStoreFactory
-	) {
-		if ( $stage & SCHEMA_COMPAT_OLD ) {
-			throw new InvalidArgumentException(
-				'The old actor table schema is no longer supported'
-			);
-		}
+	public function __construct( ActorStoreFactory $actorStoreFactory ) {
 		parent::__construct(
 			self::FIELD_INFOS,
-			$stage,
+			SCHEMA_COMPAT_NEW,
 			$actorStoreFactory
 		);
 	}
