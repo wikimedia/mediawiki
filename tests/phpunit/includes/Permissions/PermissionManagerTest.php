@@ -1024,12 +1024,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		try {
-			$this->assertSame( $expect, $this->getServiceContainer()->getPermissionManager()
-				->isBlockedFrom( $user, $title ) );
-		} finally {
-			$blockStore->deleteBlock( $block );
-		}
+		$this->assertSame( $expect, $this->getServiceContainer()->getPermissionManager()
+			->isBlockedFrom( $user, $title ) );
 	}
 
 	public static function provideIsBlockedFrom() {

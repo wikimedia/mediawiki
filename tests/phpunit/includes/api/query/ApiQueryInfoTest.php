@@ -242,8 +242,6 @@ class ApiQueryInfoTest extends ApiTestCase {
 				'intestactionsdetail' => 'full',
 		], null, false, $badActor );
 
-		$blockStore->deleteBlock( $block );
-
 		$this->assertArrayHasKey( 'query', $data );
 		$this->assertArrayHasKey( 'pages', $data['query'] );
 		$this->assertArrayHasKey( $page->getId(), $data['query']['pages'] );

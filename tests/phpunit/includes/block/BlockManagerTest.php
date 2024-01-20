@@ -132,8 +132,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			$user,
 			$user->getRequest()
 		) );
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -169,8 +167,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			$expectKeepCookie ? 0 : 1,
 			$response->getCookies()
 		);
-
-		$blockStore->deleteBlock( $block );
 	}
 
 	public static function provideBlocksForShouldApplyCookieBlock() {

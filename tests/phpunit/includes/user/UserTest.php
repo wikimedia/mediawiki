@@ -1109,11 +1109,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		try {
-			$this->assertSame( $expect, $user->isBlockedFrom( $title ) );
-		} finally {
-			$blockStore->deleteBlock( $block );
-		}
+		$this->assertSame( $expect, $user->isBlockedFrom( $title ) );
 	}
 
 	public static function provideIsBlockedFrom() {
@@ -1214,12 +1210,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		try {
-			$this->assertSame( $blockFromEmail, $user->isBlockedFromEmailuser() );
-			$this->assertSame( !$blockFromAccountCreation, $user->isAllowedToCreateAccount() );
-		} finally {
-			$blockStore->deleteBlock( $block );
-		}
+		$this->assertSame( $blockFromEmail, $user->isBlockedFromEmailuser() );
+		$this->assertSame( !$blockFromAccountCreation, $user->isAllowedToCreateAccount() );
 	}
 
 	public static function provideIsBlockedFromAction() {
@@ -1249,11 +1241,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		try {
-			$this->assertSame( $expected, $user->isBlockedFromUpload() );
-		} finally {
-			$blockStore->deleteBlock( $block );
-		}
+		$this->assertSame( $expected, $user->isBlockedFromUpload() );
 	}
 
 	public static function provideIsBlockedFromUpload() {
