@@ -151,19 +151,8 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 			return 0;
 		}
 
-		$expire = $this->mCacheExpiry;
-
-		if ( $expire === null ) {
-			$expire = $parserCacheExpireTime;
-		} else {
-			$expire = min( $expire, $parserCacheExpireTime );
-		}
-
-		if ( $expire <= 0 ) {
-			return 0; // not cacheable
-		} else {
-			return $expire;
-		}
+		$expire = min( $this->mCacheExpiry ?? $parserCacheExpireTime, $parserCacheExpireTime );
+		return $expire > 0 ? $expire : 0;
 	}
 
 	/**
