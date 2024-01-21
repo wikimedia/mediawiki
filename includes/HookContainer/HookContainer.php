@@ -684,7 +684,7 @@ class HookContainer implements SalvageableService {
 			return "$on::$func";
 		}
 
-		throw new LogicException( 'Unexpected kind of callable' );
+		throw new InvalidArgumentException( 'Unexpected kind of callable' );
 	}
 
 	/**

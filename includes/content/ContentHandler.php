@@ -157,17 +157,13 @@ abstract class ContentHandler {
 	 */
 	public static function makeContent( $text, Title $title = null,
 		$modelId = null, $format = null ) {
-		if ( $modelId === null ) {
-			if ( $title === null ) {
-				throw new BadMethodCallException( "Must provide a Title object or a content model ID." );
-			}
-
-			$modelId = $title->getContentModel();
+		if ( !$title && !$modelId ) {
+			throw new InvalidArgumentException( "Must provide a Title object or a content model ID." );
 		}
 
 		return MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
-			->getContentHandler( $modelId )
+			->getContentHandler( $modelId ?? $title->getContentModel() )
 			->unserializeContent( $text, $format );
 	}
 

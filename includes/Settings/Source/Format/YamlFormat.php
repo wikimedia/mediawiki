@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Settings\Source\Format;
 
+use InvalidArgumentException;
 use LogicException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
@@ -46,7 +47,7 @@ class YamlFormat implements SettingsFormat {
 			case self::PARSER_SYMFONY:
 				return true;
 			default:
-				throw new LogicException( 'Unknown parser: ' . $parser );
+				throw new InvalidArgumentException( 'Unknown parser: ' . $parser );
 		}
 	}
 
@@ -62,7 +63,7 @@ class YamlFormat implements SettingsFormat {
 			case self::PARSER_SYMFONY:
 				return $this->parseWithSymfony( $data );
 			default:
-				throw new LogicException( 'Unknown parser: ' . $parser );
+				throw new InvalidArgumentException( 'Unknown parser: ' . $parser );
 		}
 	}
 

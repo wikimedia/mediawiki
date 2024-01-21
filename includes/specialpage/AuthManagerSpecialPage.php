@@ -796,7 +796,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @param string $type
 	 *
 	 * @return string
-	 * @throws LogicException
 	 */
 	protected static function mapFieldInfoTypeToFormDescriptorType( $type ) {
 		$map = [
@@ -810,7 +809,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			'null' => 'info',
 		];
 		if ( !array_key_exists( $type, $map ) ) {
-			throw new LogicException( 'invalid field type: ' . $type );
+			throw new InvalidArgumentException( 'invalid field type: ' . $type );
 		}
 		return $map[$type];
 	}
