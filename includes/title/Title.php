@@ -3716,61 +3716,47 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function getEditNotices( $oldid = 0 ) {
 		$notices = [];
 
+		$editnotice_base = 'editnotice-' . $this->mNamespace;
 		// Optional notice for the entire namespace
-		$editnotice_ns = 'editnotice-' . $this->mNamespace;
-		$msg = wfMessage( $editnotice_ns )->page( $this );
-		if ( $msg->exists() ) {
-			$html = $msg->parseAsBlock();
-			// Edit notices may have complex logic, but output nothing (T91715)
-			if ( trim( $html ) !== '' ) {
-				$notices[$editnotice_ns] = Html::rawElement(
-					'div',
-					[ 'class' => [
-						'mw-editnotice',
-						'mw-editnotice-namespace',
-						Sanitizer::escapeClass( "mw-$editnotice_ns" )
-					] ],
-					$html
-				);
-			}
-		}
+		$messages = [ $editnotice_base => 'namespace' ];
 
 		if (
 			MediaWikiServices::getInstance()->getNamespaceInfo()->
 				hasSubpages( $this->mNamespace )
 		) {
 			// Optional notice for page itself and any parent page
-			$editnotice_base = $editnotice_ns;
 			foreach ( explode( '/', $this->mDbkeyform ) as $part ) {
 				$editnotice_base .= '-' . $part;
-				$msg = wfMessage( $editnotice_base )->page( $this );
-				if ( $msg->exists() ) {
-					$html = $msg->parseAsBlock();
-					if ( trim( $html ) !== '' ) {
-						$notices[$editnotice_base] = Html::rawElement(
-							'div',
-							[ 'class' => [
-								'mw-editnotice',
-								'mw-editnotice-base',
-								Sanitizer::escapeClass( "mw-$editnotice_base" )
-							] ],
-							$html
-						);
-					}
-				}
+				$messages[$editnotice_base] = 'base';
 			}
 		} else {
 			// Even if there are no subpages in namespace, we still don't want "/" in MediaWiki message keys
-			$editnoticeText = $editnotice_ns . '-' . strtr( $this->mDbkeyform, '/', '-' );
+			$messages[$editnotice_base . '-' . strtr( $this->mDbkeyform, '/', '-' )] = 'page';
+		}
+
+		foreach ( $messages as $editnoticeText => $class ) {
+			// The following messages are used here:
+			// * editnotice-0
+			// * editnotice-0-Title
+			// * editnotice-0-Title-Subpage
+			// * editnotice-…
 			$msg = wfMessage( $editnoticeText )->page( $this );
 			if ( $msg->exists() ) {
 				$html = $msg->parseAsBlock();
+				// Edit notices may have complex logic, but output nothing (T91715)
 				if ( trim( $html ) !== '' ) {
 					$notices[$editnoticeText] = Html::rawElement(
 						'div',
 						[ 'class' => [
 							'mw-editnotice',
-							'mw-editnotice-page',
+							// The following classes are used here:
+							// * mw-editnotice-namespace
+							// * mw-editnotice-base
+							// * mw-editnotice-page
+							"mw-editnotice-$class",
+							// The following classes are used here:
+							// * mw-editnotice-0
+							// * mw-editnotice-…
 							Sanitizer::escapeClass( "mw-$editnoticeText" )
 						] ],
 						$html
