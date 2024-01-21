@@ -607,7 +607,7 @@ class ParserCache {
 			/** @var CacheTime $obj */
 			$obj = $this->jsonCodec->unserialize( $jsonData, $expectedClass );
 			return $obj;
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( JsonException $e ) {
 			$this->logger->error( "Unable to unserialize JSON", [
 				'name' => $this->name,
 				'cache_key' => $key,
@@ -632,7 +632,7 @@ class ParserCache {
 	protected function convertForCache( CacheTime $obj, string $key ) {
 		try {
 			return $this->jsonCodec->serialize( $obj );
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( JsonException $e ) {
 			$this->logger->error( "Unable to serialize JSON", [
 				'name' => $this->name,
 				'cache_key' => $key,

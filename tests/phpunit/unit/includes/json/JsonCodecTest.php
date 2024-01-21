@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Json;
 
 use FormatJson;
 use InvalidArgumentException;
+use JsonException;
 use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Json\JsonConstants;
@@ -68,8 +69,9 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideSimpleTypes
 	 * @dataProvider provideInvalidJsonData
 	 */
-	public function testInvalidJsonDataForClassExpectation( $jsonData ) {
-		$this->expectException( InvalidArgumentException::class );
+	public function testInvalidJsonDataForClassExpectation( $jsonData, $simpleJsonData = null ) {
+		$jsonData = $simpleJsonData ?? $jsonData;
+		$this->expectException( JsonException::class );
 		$this->getCodec()->unserialize( $jsonData, JsonUnserializableSuperClass::class );
 	}
 
@@ -79,7 +81,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testUnexpectedClassUnserialized() {
-		$this->expectException( InvalidArgumentException::class );
+		$this->expectException( JsonException::class );
 		$superClassInstance = new JsonUnserializableSuperClass( 'Godzilla' );
 		$this->getCodec()->unserialize(
 			$superClassInstance->jsonSerialize(),
@@ -233,7 +235,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Json\JsonCodec::serialize
 	 */
 	public function testSerializeThrowsOnFailure( $value ) {
-		$this->expectException( InvalidArgumentException::class );
+		$this->expectException( JsonException::class );
 		$this->getCodec()->serialize( $value );
 	}
 
