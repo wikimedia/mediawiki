@@ -5,9 +5,9 @@ class TestFileEditor {
 	private $lines;
 	/** @var int */
 	private $numLines;
-	/** @var array */
+	/** @var array<string,true> */
 	private $deletions;
-	/** @var array */
+	/** @var array<string,array<string,array>> */
 	private $changes;
 	/** @var int */
 	private $pos = 0;

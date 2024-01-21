@@ -76,7 +76,7 @@ use Wikimedia\TestingAccessWrapper;
 class ParserTestRunner {
 
 	/**
-	 * @var array The status of each setup function
+	 * @var array<string,bool> The status of each setup function
 	 */
 	private $setupDone = [
 		'staticSetup' => false,
@@ -92,7 +92,7 @@ class ParserTestRunner {
 	private $options;
 
 	/**
-	 * @var array set of requested test modes
+	 * @var string[] Set of requested test modes
 	 */
 	private $requestedTestModes;
 
@@ -129,7 +129,7 @@ class ParserTestRunner {
 	/**
 	 * A list of normalization functions to apply to the expected and actual
 	 * output.
-	 * @var array
+	 * @var string[]
 	 */
 	private $normalizationFunctions = [];
 
@@ -170,7 +170,7 @@ class ParserTestRunner {
 	/**
 	 * Compute the set of valid test runner modes
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRequestedTestModes(): array {
 		return $this->requestedTestModes;
@@ -281,8 +281,8 @@ class ParserTestRunner {
 	/**
 	 * Get list of filenames to extension and core parser tests
 	 *
-	 * @param array $dirs
-	 * @return array
+	 * @param string[] $dirs
+	 * @return string[]
 	 */
 	public static function getParserTestFiles( array $dirs = [] ): array {
 		if ( $dirs ) {
@@ -861,7 +861,7 @@ class ParserTestRunner {
 	 *
 	 * Handles all setup and teardown.
 	 *
-	 * @param array $filenames Array of strings
+	 * @param string[] $filenames
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runTestsFromFiles( $filenames ) {
@@ -960,7 +960,7 @@ class ParserTestRunner {
 	/**
 	 * Determine whether the current parser has the hooks registered in it
 	 * that are required by a file read by TestFileReader.
-	 * @param array $requirements
+	 * @param array[] $requirements
 	 * @return bool
 	 */
 	public function meetsRequirements( $requirements ) {
@@ -1090,9 +1090,9 @@ class ParserTestRunner {
 
 	/**
 	 * Compute valid test modes based on requested modes and file-enabled modes
-	 * @param array $testModes
+	 * @param string[] $testModes
 	 * @param array $fileOptions
-	 * @return array
+	 * @return string[]
 	 */
 	public function computeValidTestModes( array $testModes, array $fileOptions ): array {
 		$modeRestriction = $fileOptions['parsoid-compatible'] ?? false;
@@ -2676,7 +2676,7 @@ class ParserTestRunner {
 
 	/**
 	 * Delete the specified files and their parent directories
-	 * @param array $files File backend URIs mwstore://...
+	 * @param string[] $files File backend URIs mwstore://...
 	 */
 	private function deleteFiles( $files ) {
 		// Delete the files
