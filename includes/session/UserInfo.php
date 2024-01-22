@@ -170,7 +170,7 @@ final class UserInfo {
 	 * @return User
 	 */
 	public function getUser() {
-		return $this->user ?? new User;
+		return $this->user ?? MediaWikiServices::getInstance()->getUserFactory()->newAnonymous();
 	}
 
 	/**

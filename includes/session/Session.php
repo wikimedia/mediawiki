@@ -276,7 +276,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 			$this->backend->dirty();
 		}
 		if ( $this->backend->canSetUser() ) {
-			$this->backend->setUser( new User );
+			$this->backend->setUser( MediaWikiServices::getInstance()->getUserFactory()->newAnonymous() );
 		}
 		$this->backend->save();
 	}

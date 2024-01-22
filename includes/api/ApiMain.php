@@ -36,7 +36,6 @@ use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\StubObject\StubGlobalUser;
-use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
@@ -588,21 +587,21 @@ class ApiMain extends ApiBase {
 		parent::__construct( $this, $this->mInternalMode ? 'main_int' : 'main' );
 
 		$config = $this->getConfig();
+		// TODO inject stuff, see T265644
+		$services = MediaWikiServices::getInstance();
 
 		if ( !$this->mInternalMode ) {
 			// If we're in a mode that breaks the same-origin policy, strip
 			// user credentials for security.
 			if ( $this->lacksSameOriginSecurity() ) {
 				wfDebug( "API: stripping user credentials when the same-origin policy is not applied" );
-				$user = new User();
+				$user = $services->getUserFactory()->newAnonymous();
 				StubGlobalUser::setUser( $user );
 				$derivativeContext->setUser( $user );
 				$request->response()->header( 'MediaWiki-Login-Suppressed: true' );
 			}
 		}
 
-		// TODO inject stuff, see T265644
-		$services = MediaWikiServices::getInstance();
 		$this->mParamValidator = new ApiParamValidator(
 			$this,
 			$services->getObjectFactory()

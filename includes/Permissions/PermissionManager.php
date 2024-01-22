@@ -1615,7 +1615,7 @@ class PermissionManager {
 					$userObj,
 					$isExempt ? null : $userObj->getRequest()
 				) ) {
-					$anon = new User;
+					$anon = $this->userFactory->newAnonymous();
 					$rights = array_intersect( $rights, $this->getUserPermissions( $anon ) );
 				}
 			}

@@ -170,7 +170,9 @@ final class SessionBackend {
 		}
 
 		$this->id = $id;
-		$this->user = $info->getUserInfo() ? $info->getUserInfo()->getUser() : new User;
+		$this->user = $info->getUserInfo()
+			? $info->getUserInfo()->getUser()
+			: MediaWikiServices::getInstance()->getUserFactory()->newAnonymous();
 		$this->store = $store;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );

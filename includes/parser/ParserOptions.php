@@ -28,7 +28,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\ScopedCallback;
@@ -1072,7 +1071,7 @@ class ParserOptions {
 	 * @return ParserOptions
 	 */
 	public static function newFromAnon() {
-		return new ParserOptions( new User,
+		return new ParserOptions( MediaWikiServices::getInstance()->getUserFactory()->newAnonymous(),
 			MediaWikiServices::getInstance()->getContentLanguage() );
 	}
 
