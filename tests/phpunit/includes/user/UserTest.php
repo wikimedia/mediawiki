@@ -1763,4 +1763,30 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user = new User;
 		$this->assertFalse( $user->isNamed() );
 	}
+
+	public static function provideAddToDatabase_temp() {
+		return [
+			[ '*Unregistered 1', '1' ],
+			[ 'Some user', '0' ]
+		];
+	}
+
+	/**
+	 * @covers User::addToDatabase
+	 * @dataProvider provideAddToDatabase_temp
+	 */
+	public function testAddToDatabase_temp( $name, $expected ) {
+		$this->enableAutoCreateTempUser();
+
+		$user = User::newFromName( $name );
+		$user->addToDatabase();
+		$field = $this->db->newSelectQueryBuilder()
+			->select( 'user_is_temp' )
+			->from( 'user' )
+			->where( [ 'user_name' => $name ] )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		$this->assertSame( $expected, $field );
+	}
 }

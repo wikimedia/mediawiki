@@ -2715,6 +2715,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					'user_registration' => $dbw->timestamp( $this->mRegistration ),
 					'user_editcount' => 0,
 					'user_touched' => $dbw->timestamp( $this->mTouched ),
+					'user_is_temp' => $this->isTemp(),
 				] )
 				->caller( $fname )->execute();
 			if ( !$dbw->affectedRows() ) {
