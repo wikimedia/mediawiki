@@ -1107,4 +1107,27 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 		return $this->IEAnalyzer;
 	}
+
+	/**
+	 * Check if major_mime has a value accepted by enum in a database schema.
+	 * @param string $type
+	 * @return bool
+	 */
+	public function isValidMajorMimeType( string $type ): bool {
+		// From maintenance/tables-generated.sql => img_major_mime
+		$types = [
+			'unknown',
+			'application',
+			'audio',
+			'image',
+			'text',
+			'video',
+			'message',
+			'model',
+			'multipart',
+			'chemical'
+		];
+
+		return in_array( $type, $types );
+	}
 }

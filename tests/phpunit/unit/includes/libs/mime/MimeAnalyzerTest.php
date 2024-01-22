@@ -261,4 +261,12 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'sgml', $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'text/sgml' ) );
 		$this->assertNull( $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'fake/mime' ) );
 	}
+
+	public function testIsValidMajorMimeTypeTrue() {
+		$this->assertTrue( $this->mimeAnalyzer->isValidMajorMimeType( 'image' ) );
+	}
+
+	public function testIsValidMajorMimeTypeFalse() {
+		$this->assertFalse( $this->mimeAnalyzer->isValidMajorMimeType( 'font' ) );
+	}
 }
