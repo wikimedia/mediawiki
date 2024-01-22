@@ -1516,6 +1516,7 @@
 	"action-override-export-depth": "eksportowania stron wraz z linkowanymi do głębokości 5 linków",
 	"action-suppressredirect": "przenoszenia stron bez tworzenia przekierowania w miejscu starej nazwy",
 	"nchanges": "$1 {{PLURAL:$1|zmiana|zmiany|zmian}}",
+	"ntimes": "$1&times;",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|od ostatniej wizyty}}",
 	"enhancedrc-history": "historia",
 	"recentchanges": "Ostatnie zmiany",
