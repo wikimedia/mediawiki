@@ -546,8 +546,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public static function newFromID( $id, $flags = 0 ) {
 		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
 		$pageStore = MediaWikiServices::getInstance()->getPageStore();
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$row = wfGetDB( $index )->newSelectQueryBuilder()
+		$dbr = DBAccessObjectUtils::getDBFromRecency(
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
+			$flags
+		);
+		$row = $dbr->newSelectQueryBuilder()
 			->select( $pageStore->getSelectFields() )
 			->from( 'page' )
 			->where( [ 'page_id' => $id ] )

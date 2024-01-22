@@ -560,8 +560,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	): array {
 		if ( $prefetchedOptions === null ) {
 			$this->logger->debug( 'Loading options from database', [ 'user_id' => $user->getId() ] );
-			[ $mode, ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-			$dbr = DBAccessObjectUtils::getDBFromIndex( $this->dbProvider, $mode );
+			$dbr = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags );
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'up_property', 'up_value' ] )
 				->from( 'user_properties' )

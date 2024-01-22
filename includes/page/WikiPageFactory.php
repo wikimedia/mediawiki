@@ -10,7 +10,7 @@ use MediaWiki\Title\TitleFactory;
 use stdClass;
 use WikiCategoryPage;
 use WikiFilePage;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use WikiPage;
 
 /**
@@ -23,22 +23,22 @@ class WikiPageFactory {
 	private $titleFactory;
 	/** @var WikiPageFactoryHook */
 	private $wikiPageFactoryHookRunner;
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
 	 * @param TitleFactory $titleFactory
 	 * @param WikiPageFactoryHook $wikiPageFactoryHookRunner
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		TitleFactory $titleFactory,
 		WikiPageFactoryHook $wikiPageFactoryHookRunner,
-		ILoadBalancer $loadBalancer
+		IConnectionProvider $dbProvider
 	) {
 		$this->titleFactory = $titleFactory;
 		$this->wikiPageFactoryHookRunner = $wikiPageFactoryHookRunner;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -127,10 +127,7 @@ class WikiPageFactory {
 		if ( $id < 1 ) {
 			return null;
 		}
-
-		$from = WikiPage::convertSelectType( $from );
-		[ $index ] = DBAccessObjectUtils::getDBOptions( $from );
-		$db = $this->loadBalancer->getMaintenanceConnectionRef( $index );
+		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, WikiPage::convertSelectType( $from ) );
 		$pageQuery = WikiPage::getQueryInfo();
 		$row = $db->selectRow(
 			$pageQuery['tables'], $pageQuery['fields'], [ 'page_id' => $id ], __METHOD__,
