@@ -73,7 +73,7 @@ class MediaWikiShell extends Maintenance {
 		);
 	}
 
-	public function canExecuteWithoutLocalSettings() {
+	public function canExecuteWithoutLocalSettings(): bool {
 		return true;
 	}
 
