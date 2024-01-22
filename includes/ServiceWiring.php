@@ -960,7 +960,8 @@ return [
 	'IframeSandboxFactory' => static function ( MediaWikiServices $services ): IframeSandboxFactory {
 		return new IframeSandboxFactory(
 			$services->getTitleFactory(),
-			$services->getSkinFactory()
+			$services->getSkinFactory(),
+			$services->getUserFactory()
 		);
 	},
 
