@@ -45,7 +45,7 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newLookup( array $configOverride = [] ) {
-		return new LocalIdLookup(
+		$lookup = new LocalIdLookup(
 			new HashConfig( [
 				MainConfigNames::SharedDB => null,
 				MainConfigNames::SharedTables => [],
@@ -54,6 +54,12 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$this->getServiceContainer()->getHideUserUtils()
 		);
+		$lookup->init(
+			'test',
+			$this->getServiceContainer()->getUserIdentityLookup(),
+			$this->getServiceContainer()->getUserFactory()
+		);
+		return $lookup;
 	}
 
 	public function testLookupCentralIds() {
