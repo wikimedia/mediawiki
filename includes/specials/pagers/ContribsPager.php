@@ -176,7 +176,7 @@ class ContribsPager extends RangeChronologicalPager {
 	) {
 		// Class is used directly in extensions - T266484
 		$services = MediaWikiServices::getInstance();
-		$dbProvider ??= $services->getDBLoadBalancerFactory();
+		$dbProvider ??= $services->getConnectionProvider();
 
 		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set

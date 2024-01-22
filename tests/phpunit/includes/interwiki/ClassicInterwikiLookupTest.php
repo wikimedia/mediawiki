@@ -38,7 +38,7 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			$lang,
 			WANObjectCache::newEmpty(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancerFactory()
+			$services->getConnectionProvider()
 		);
 	}
 

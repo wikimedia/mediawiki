@@ -90,7 +90,7 @@ class LocalRepo extends FileRepo {
 		$this->hasAccessibleSharedCache = true;
 
 		$this->hasSha1Storage = ( $info['storageLayout'] ?? null ) === 'sha1';
-		$this->dbProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$this->dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 
 		if ( $this->hasSha1Storage() ) {
 			$this->backend = new FileBackendDBRepoWrapper( [

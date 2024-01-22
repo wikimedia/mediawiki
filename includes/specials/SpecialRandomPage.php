@@ -58,7 +58,7 @@ class SpecialRandomPage extends SpecialPage {
 		$services = MediaWikiServices::getInstance();
 		$this->dbProvider = $dbProvider instanceof IConnectionProvider
 			? $dbProvider
-			: $services->getDBLoadBalancerFactory();
+			: $services->getConnectionProvider();
 		$nsInfo ??= $services->getNamespaceInfo();
 		$this->namespaces = $nsInfo->getContentNamespaces();
 	}

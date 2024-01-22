@@ -13,7 +13,7 @@ class SpecialRandomPageTest extends MediaWikiIntegrationTestCase {
 	public function setUp(): void {
 		$services = $this->getServiceContainer();
 		$this->page = new SpecialRandomPage(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getNamespaceInfo()
 		);
 		parent::setUp();

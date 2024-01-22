@@ -37,7 +37,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$importer = new ImportableOldRevisionImporter(
 			true,
 			new NullLogger(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),

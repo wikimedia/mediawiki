@@ -230,7 +230,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return IConnectionProvider
 	 */
 	private function getDbProvider(): IConnectionProvider {
-		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		return MediaWikiServices::getInstance()->getConnectionProvider();
 	}
 
 	/**
@@ -547,7 +547,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
 		$pageStore = MediaWikiServices::getInstance()->getPageStore();
 		$dbr = DBAccessObjectUtils::getDBFromRecency(
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
+			MediaWikiServices::getInstance()->getConnectionProvider(),
 			$flags
 		);
 		$row = $dbr->newSelectQueryBuilder()

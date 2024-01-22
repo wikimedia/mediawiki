@@ -39,7 +39,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$this->hookContainer = $services->getHookContainer();
 		$this->linkRenderer = $services->getLinkRenderer();
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();

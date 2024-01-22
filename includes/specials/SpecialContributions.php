@@ -111,7 +111,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$services = MediaWikiServices::getInstance();
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
 		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
-		$this->dbProvider = $dbProvider ?? $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $dbProvider ?? $services->getConnectionProvider();
 		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
 		$this->namespaceInfo = $namespaceInfo ?? $services->getNamespaceInfo();
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();

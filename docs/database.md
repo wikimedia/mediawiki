@@ -17,7 +17,7 @@ To make a read query, something like this usually suffices:
 
 ```php
 use MediaWiki\MediaWikiServices;
-$dbProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+$dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 ...
 $dbr = $dbProvider->getReplicaDatabase();
 $res = $dbr->newSelectQueryBuilder()
@@ -116,8 +116,8 @@ MediaWiki currently supports the following query groups:
 The below is how you specify a query group when obtaining a connection:
 
 ```php
-$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-$lb->getReplicaDatabase( false, 'vslow' );
+$dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+$dbProvider->getReplicaDatabase( false, 'vslow' );
 ```
 
 ## Supported DBMSs

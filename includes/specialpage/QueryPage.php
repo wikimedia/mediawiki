@@ -991,7 +991,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	final protected function getDatabaseProvider(): IConnectionProvider {
 		if ( $this->databaseProvider === null ) {
-			$this->databaseProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$this->databaseProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 		}
 		return $this->databaseProvider;
 	}

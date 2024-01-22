@@ -729,7 +729,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			RequestContext::getMain(),
 			$title,
 			[ $revisionId ],
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getHookContainer(),
 			$services->getHtmlCacheUpdater(),
 			$services->getRevisionStore()

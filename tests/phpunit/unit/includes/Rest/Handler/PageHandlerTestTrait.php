@@ -186,7 +186,7 @@ trait PageHandlerTestTrait {
 			$services->getRevisionStore(),
 			$services->getNameTableStoreFactory(),
 			$services->getGroupPermissionsLookup(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getPageStore(),
 			$services->getTitleFormatter(),
 			$services->getPageRestHelperFactory()
@@ -199,7 +199,7 @@ trait PageHandlerTestTrait {
 			$services->getRevisionStore(),
 			$services->getNameTableStoreFactory(),
 			$services->getGroupPermissionsLookup(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
 			$services->getPageStore(),
 			$services->getPageRestHelperFactory()
@@ -209,7 +209,7 @@ trait PageHandlerTestTrait {
 	public function newLanguageLinksHandler() {
 		$services = $this->getServiceContainer();
 		return new LanguageLinksHandler(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getLanguageNameUtils(),
 			$services->getTitleFormatter(),
 			$services->getTitleParser(),

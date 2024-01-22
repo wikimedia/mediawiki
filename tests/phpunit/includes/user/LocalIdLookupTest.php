@@ -51,7 +51,7 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 				MainConfigNames::SharedTables => [],
 				MainConfigNames::LocalDatabases => [],
 			] + $configOverride ),
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getHideUserUtils()
 		);
 	}

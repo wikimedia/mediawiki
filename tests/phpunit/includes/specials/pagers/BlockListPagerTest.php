@@ -67,7 +67,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->commentStore = $services->getCommentStore();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->linkRenderer = $services->getLinkRenderer();
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->rowCommentFormatter = $services->getRowCommentFormatter();
 		$this->specialPageFactory = $services->getSpecialPageFactory();
 	}

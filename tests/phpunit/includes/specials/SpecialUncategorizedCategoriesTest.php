@@ -21,7 +21,7 @@ class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$special = new SpecialUncategorizedCategories(
 			$services->getNamespaceInfo(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getLinkBatchFactory(),
 			$services->getLanguageConverterFactory()
 		);

@@ -38,7 +38,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	 * @return DBSiteStore
 	 */
 	private function newDBSiteStore() {
-		return new DBSiteStore( $this->getServiceContainer()->getDBLoadBalancerFactory() );
+		return new DBSiteStore( $this->getServiceContainer()->getConnectionProvider() );
 	}
 
 	/**

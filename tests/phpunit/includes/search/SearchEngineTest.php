@@ -31,7 +31,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		if ( !$dbSupported ) {
 			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
 		}
-		$dbProvider = $this->getServiceContainer()->getDBLoadBalancerFactory();
+		$dbProvider = $this->getServiceContainer()->getConnectionProvider();
 
 		$searchType = SearchEngineFactory::getSearchEngineClass( $dbProvider );
 		$this->overrideConfigValues( [

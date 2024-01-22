@@ -78,7 +78,7 @@ class RevertedTagUpdateJob extends Job implements GenericParameterJob {
 			$services->getRevisionStore(),
 			LoggerFactory::getInstance( 'RevertedTagUpdate' ),
 			$services->getChangeTagsStore(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			new ServiceOptions(
 				RevertedTagUpdate::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()

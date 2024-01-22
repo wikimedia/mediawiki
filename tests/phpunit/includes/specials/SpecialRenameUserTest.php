@@ -12,7 +12,7 @@ class SpecialRenameUserTest extends SpecialPageTestBase {
 	protected function newSpecialPage() {
 		$services = $this->getServiceContainer();
 		return new SpecialRenameUser(
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getContentLanguage(),
 			$services->getMovePageFactory(),
 			$services->getPermissionManager(),

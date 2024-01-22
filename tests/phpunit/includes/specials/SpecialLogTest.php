@@ -24,7 +24,7 @@ class SpecialLogTest extends SpecialPageTestBase {
 		$services = $this->getServiceContainer();
 		return new SpecialLog(
 			$services->getLinkBatchFactory(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getActorNormalization(),
 			$services->getUserIdentityLookup(),
 			$services->getUserNameUtils()

@@ -76,7 +76,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
@@ -151,7 +151,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getDBLoadBalancerFactory(),
+			$services->getConnectionProvider(),
 			$services->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);

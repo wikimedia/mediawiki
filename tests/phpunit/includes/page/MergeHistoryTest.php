@@ -92,7 +92,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				Title::makeTitle( NS_MAIN, 'Test2' ),
 				null,
-				$this->getServiceContainer()->getDBLoadBalancerFactory(),
+				$this->getServiceContainer()->getConnectionProvider(),
 				$this->getServiceContainer()->getContentHandlerFactory(),
 				$this->getServiceContainer()->getRevisionStore(),
 				$this->getServiceContainer()->getWatchedItemStore(),

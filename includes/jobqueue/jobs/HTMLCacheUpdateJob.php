@@ -140,9 +140,9 @@ class HTMLCacheUpdateJob extends Job {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 
-		$lbFactory = $services->getDBLoadBalancerFactory();
-		$dbw = $lbFactory->getPrimaryDatabase();
-		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$dbProvider = $services->getConnectionProvider();
+		$dbw = $dbProvider->getPrimaryDatabase();
+		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery; batch jobs are sized by that already.
 		$batches = array_chunk( $pageIds, $config->get( MainConfigNames::UpdateRowsPerQuery ) );
@@ -154,7 +154,7 @@ class HTMLCacheUpdateJob extends Job {
 				->andWhere( $dbw->expr( 'page_touched', '<', $dbw->timestamp( $casTsUnix ) ) )
 				->caller( __METHOD__ )->execute();
 			if ( count( $batches ) > 1 ) {
-				$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+				$dbProvider->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 		// Get the list of affected pages (races only mean something else did the purge)

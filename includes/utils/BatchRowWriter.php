@@ -77,8 +77,8 @@ class BatchRowWriter {
 	 * @phan-param array<int,array{primaryKey:array,changes:array}> $updates
 	 */
 	public function write( array $updates ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 
 		$caller = __METHOD__;
 		if ( (string)$this->caller !== '' ) {
@@ -93,6 +93,6 @@ class BatchRowWriter {
 				->caller( $caller )->execute();
 		}
 
-		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+		$dbProvider->commitAndWaitForReplication( __METHOD__, $ticket );
 	}
 }

@@ -282,7 +282,7 @@ class DifferenceEngine extends ContextSource {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->commentFormatter = $services->getCommentFormatter();
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->userGroupManager = $services->getUserGroupManager();
 		$this->userEditTracker = $services->getUserEditTracker();
 		$this->userIdentityUtils = $services->getUserIdentityUtils();
