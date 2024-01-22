@@ -247,7 +247,7 @@ class LocalFileDeleteBatch {
 			);
 
 			$dbw->insertSelect( 'filearchive', $tables, $fields,
-				[ 'img_name' => $this->file->getName() ], __METHOD__, [], [], $joins );
+				[ 'img_name' => $this->file->getName() ], __METHOD__, [ 'IGNORE' ], [], $joins );
 		}
 
 		if ( count( $oldRels ) ) {
@@ -292,6 +292,7 @@ class LocalFileDeleteBatch {
 
 			$dbw->newInsertQueryBuilder()
 				->insertInto( 'filearchive' )
+				->ignore()
 				->rows( $rowsInsert )
 				->caller( __METHOD__ )->execute();
 		}
