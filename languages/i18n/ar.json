@@ -109,7 +109,8 @@
 			"أيوب",
 			"أبو هشام",
 			"LaMagiaaa",
-			"Hanzo64"
+			"Hanzo64",
+			"Riad Salih"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1533,7 +1534,7 @@
 	"recentchanges-summary": "تابع آخر التغييرات في الويكي من هذه الصفحة.",
 	"recentchanges-noresult": "لا توجد تغييرات خلال الفترة المحددة تطابق هذه المعايير.",
 	"recentchanges-timeout": "البحث انتهى بدون نتائج. ربما تحب تجربة مدخلات بحث مختلفة.",
-	"recentchanges-network": "نتيجة لخطأ تقني، لم يمكن تحميل أي نتائج. من فضلك حاول إعادة تحديث الصفحة.",
+	"recentchanges-network": "نتيجة لخطأ تقني، تعذر تحميل النتائج. من فضلك حاول إعادة تحديث الصفحة.",
 	"recentchanges-notargetpage": "أدخل اسم صفحة بالأعلى لرؤية التغييرات المرتبطة بهذه الصفحة.",
 	"recentchanges-feed-description": "تابع أحدث التغييرات للويكي عبر هذه التلقيمة.",
 	"recentchanges-label-newpage": "أنشأ هذا التعديل صفحة جديدة",
@@ -2661,7 +2662,7 @@
 	"sp-contributions-concurrency-user": "عذرا، يتم تقديم الكثير من الطلبات من حساب المستخدم الخاص بك؛ الرجاء معاودة المحاولة في وقت لاحق.",
 	"sp-contributions-concurrency-ip": "عذرا، يتم تقديم الكثير من الطلبات من عنوان الآيبي الخاص بك؛ الرجاء معاودة المحاولة في وقت لاحق.",
 	"whatlinkshere": "ماذا يصل هنا",
-	"whatlinkshere-count": "تعرض $1 {{PLURAL:$1|عنصر|عناصر}}.",
+	"whatlinkshere-count": "تعرض {{PLURAL:$1||عنصرًا واحدًا|عنصرين|$1 عناصر|$1 عنصرًا|$1 عنصرٍ}}.",
 	"whatlinkshere-title": "الصفحات التي تصل إلى «$1»",
 	"whatlinkshere-page": "الصفحة:",
 	"linkshere": "الصفحات التالية تصل إلى <strong>$2</strong>:",
