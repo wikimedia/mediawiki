@@ -135,6 +135,21 @@ interface BaseMetricInterface {
 	public function getStatsdDataFactory();
 
 	/**
+	 * Validates and sets legacy StatsD namespaces.
+	 *
+	 * @param string|string[] $statsdNamespaces
+	 * @return void
+	 */
+	public function setStatsdNamespaces( $statsdNamespaces ): void;
+
+	/**
+	 * Returns the configured legacy StatsD namespaces.
+	 *
+	 * @return string[]
+	 */
+	public function getStatsdNamespaces(): array;
+
+	/**
 	 * StatsD Data Factory instance to copy metrics to.
 	 *
 	 * @param IBufferingStatsdDataFactory $statsdDataFactory

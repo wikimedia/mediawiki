@@ -88,10 +88,12 @@ interface MetricInterface {
 	/**
 	 * Copies metric operation to StatsD at provided namespace.
 	 *
-	 * @param string $statsdNamespace
+	 * Takes a namespace or multiple namespaces.
+	 *
+	 * @param string|string[] $statsdNamespaces
 	 * @return CounterMetric|GaugeMetric|TimingMetric|NullMetric
 	 */
-	public function copyToStatsdAt( string $statsdNamespace );
+	public function copyToStatsdAt( $statsdNamespaces );
 
 	/**
 	 * Returns metric with cleared labels.

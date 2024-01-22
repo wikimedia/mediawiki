@@ -2,10 +2,13 @@
 
 namespace Wikimedia\Tests\Stats;
 
+use IBufferingStatsdDataFactory;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Stats\Emitters\NullEmitter;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
+use Wikimedia\Stats\Metrics\BaseMetric;
+use Wikimedia\Stats\Metrics\CounterMetric;
 use Wikimedia\Stats\Metrics\NullMetric;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
@@ -271,6 +274,45 @@ class MetricTest extends TestCase {
 		$this->assertInstanceOf( NullMetric::class, $metric );
 		$m->getTiming( 'testMetricTiming' )->observe( 1 );
 		$metric = @$m->getTiming( 'testMetricTiming' )->setSampleRate( 0.5 );
+		$this->assertInstanceOf( NullMetric::class, $metric );
+	}
+
+	public function testCopyToStatsdAtEmptyArrayResetsValue() {
+		$baseMetric = new BaseMetric( '', 'testMetric' );
+		$metric = new CounterMetric(
+			$baseMetric->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) ),
+			new NullLogger
+		);
+		$metric->copyToStatsdAt( 'test' );
+		$this->assertEquals( [ 'test' ], $baseMetric->getStatsdNamespaces() );
+		$metric->copyToStatsdAt( [] );
+		$this->assertEquals( [], $baseMetric->getStatsdNamespaces() );
+	}
+
+	public function testHandleInvalidStatsdNamespace() {
+		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
+		$this->expectWarning();
+		$this->expectWarningMessage( 'Stats: StatsD namespace must be a string.' );
+		$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( null );
+		$this->assertInstanceOf( NullMetric::class, $metric );
+	}
+
+	public function testHandleEmptyStatsdNamespace() {
+		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
+		$this->expectWarning();
+		$this->expectWarningMessage( 'Stats: StatsD namespace cannot be empty.' );
+		$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( '' );
+		$this->assertInstanceOf( NullMetric::class, $metric );
+	}
+
+	public function testHandleNonStringStatsdNamespaceInArray() {
+		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
+		$this->expectWarning();
+		$this->expectWarningMessage( 'Stats: StatsD namespace must be a string.' );
+		$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( [ null ] );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 }
