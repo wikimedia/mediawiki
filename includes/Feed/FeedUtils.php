@@ -32,7 +32,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use RequestContext;
 use TextContent;
 use UtfNormal;
@@ -156,8 +155,8 @@ class FeedUtils {
 		// NOTE: Check permissions for anonymous users, not current user.
 		//       No "privileged" version should end up in the cache.
 		//       Most feed readers will not log in anyway.
-		$anon = new User();
 		$services = MediaWikiServices::getInstance();
+		$anon = $services->getUserFactory()->newAnonymous();
 		$permManager = $services->getPermissionManager();
 		$accErrors = $permManager->getPermissionErrors(
 			'read',

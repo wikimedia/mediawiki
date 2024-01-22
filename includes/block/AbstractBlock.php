@@ -27,7 +27,6 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Message;
 
@@ -292,7 +291,7 @@ abstract class AbstractBlock implements Block {
 			// If a block would disable login, then it should
 			// prevent any right that all users cannot do
 			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-			$anon = new User;
+			$anon = MediaWikiServices::getInstance()->getUserFactory()->newAnonymous();
 			$res = $permissionManager->userHasRight( $anon, $right ) ? $res : true;
 		}
 
