@@ -11,6 +11,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\CentralId\LocalIdLookup;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -62,7 +63,8 @@ class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 				]
 			),
 			$this->getDummyObjectFactory( $services ),
-			$this->createNoOpMock( UserIdentityLookup::class )
+			$this->createNoOpMock( UserIdentityLookup::class ),
+			$this->createNoOpMock( UserFactory::class )
 		);
 	}
 

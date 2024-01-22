@@ -27,7 +27,7 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use Throwable;
@@ -49,6 +49,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 
 	/** @var UserIdentityLookup */
 	private $userIdentityLookup;
+	private UserFactory $userFactory;
 
 	/**
 	 * Fetch a CentralIdLookup
@@ -97,13 +98,15 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 */
 	public function init(
 		string $providerId,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		UserFactory $userFactory
 	) {
 		if ( $this->providerId !== null ) {
 			throw new LogicException( "CentralIdProvider $providerId already initialized" );
 		}
 		$this->providerId = $providerId;
 		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -128,7 +131,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 		if ( $audience === self::AUDIENCE_PUBLIC ) {
 			// TODO: when available, inject AuthorityFactory
 			// via init and use it to create anon authority
-			return new User;
+			return $this->userFactory->newAnonymous();
 		}
 		if ( $audience === self::AUDIENCE_RAW ) {
 			return null;
