@@ -58,12 +58,7 @@
 			anonOnlyWidget.setDisabled( !isIp && !isEmpty );
 
 			if ( hideUserWidget ) {
-				hideUserWidget.setDisabled(
-					isNonEmptyIp ||
-					!isIndefinite ||
-					!isSitewide ||
-					mw.util.isTemporaryUser( blocktarget )
-				);
+				hideUserWidget.setDisabled( isNonEmptyIp || !isIndefinite || !isSitewide );
 			}
 
 			updateWatchOption( blocktarget );
