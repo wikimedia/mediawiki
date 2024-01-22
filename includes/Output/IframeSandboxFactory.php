@@ -3,6 +3,7 @@
 namespace MediaWiki\Output;
 
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\UserFactory;
 use RequestContext;
 use SkinFactory;
 
@@ -13,13 +14,16 @@ class IframeSandboxFactory {
 
 	private TitleFactory $titleFactory;
 	private SkinFactory $skinFactory;
+	private UserFactory $userFactory;
 
 	public function __construct(
 		TitleFactory $titleFactory,
-		SkinFactory $skinFactory
+		SkinFactory $skinFactory,
+		UserFactory $userFactory
 	) {
 		$this->titleFactory = $titleFactory;
 		$this->skinFactory = $skinFactory;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -31,6 +35,7 @@ class IframeSandboxFactory {
 		return new IframeSandbox(
 			$this->titleFactory,
 			$this->skinFactory,
+			$this->userFactory,
 			$context
 		);
 	}

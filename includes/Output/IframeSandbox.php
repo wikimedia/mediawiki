@@ -13,7 +13,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Specials\SpecialIframeError;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
 use RequestContext;
 use SkinFactory;
 use Wikimedia\Assert\Assert;
@@ -74,6 +74,7 @@ class IframeSandbox {
 	public function __construct(
 		TitleFactory $titleFactory,
 		SkinFactory $skinFactory,
+		UserFactory $userFactory,
 		IContextSource $outerContext
 	) {
 		$this->titleFactory = $titleFactory;
@@ -100,7 +101,7 @@ class IframeSandbox {
 
 		$this->iframeContext = new RequestContext();
 		$this->iframeContext->setConfig( $iframeConfig );
-		$this->iframeContext->setUser( new User() );
+		$this->iframeContext->setUser( $userFactory->newAnonymous() );
 		$this->iframeContext->setLanguage( $outerContext->getLanguage() );
 		$this->iframeContext->setRequest( $innerRequest );
 		$this->iframeContext->setTitle( $innerTitle );
