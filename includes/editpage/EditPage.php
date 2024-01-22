@@ -115,6 +115,7 @@ use WatchedItemStoreInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Rdbms\IConnectionProvider;
 use WikiPage;
 use Xml;
 
@@ -445,6 +446,7 @@ class EditPage implements IEditObject {
 	private UserOptionsLookup $userOptionsLookup;
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
+	private IConnectionProvider $connectionProvider;
 
 	/** @var User|null */
 	private $placeholderTempUser;
@@ -513,6 +515,7 @@ class EditPage implements IEditObject {
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->commentStore = $services->getCommentStore();
+		$this->connectionProvider = $services->getConnectionProvider();
 
 		// XXX: Restore this deprecation as soon as TwoColConflict is fixed (T305028)
 		// $this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
@@ -2265,7 +2268,7 @@ class EditPage implements IEditObject {
 				} elseif ( $this->section === ''
 					&& $this->edittime
 					&& $this->revisionStore->userWasLastToEdit(
-						wfGetDB( DB_PRIMARY ),
+						$this->connectionProvider->getPrimaryDatabase(),
 						$this->mTitle->getArticleID(),
 						$requestUser->getId(),
 						$this->edittime
@@ -3913,7 +3916,7 @@ class EditPage implements IEditObject {
 	 * @return stdClass|null
 	 */
 	private function getLastDelete(): ?stdClass {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->connectionProvider->getReplicaDatabase();
 		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
 		$data = $dbr->selectRow(
 			array_merge( [ 'logging' ], $commentQuery['tables'], [ 'actor' ] ),
