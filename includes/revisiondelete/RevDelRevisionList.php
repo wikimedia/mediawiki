@@ -164,7 +164,7 @@ class RevDelRevisionList extends RevDelList {
 		if ( isset( $row->rev_id ) ) {
 			return new RevDelRevisionItem( $this, $row );
 		} elseif ( isset( $row->ar_rev_id ) ) {
-			return new RevDelArchivedRevisionItem( $this, $row );
+			return new RevDelArchivedRevisionItem( $this, $row, $this->lbFactory );
 		} else {
 			// This shouldn't happen. :)
 			throw new InvalidArgumentException( 'Invalid row type in RevDelRevisionList' );
