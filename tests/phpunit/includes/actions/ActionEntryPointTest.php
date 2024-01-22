@@ -56,7 +56,10 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	 * @return ActionEntryPoint
 	 */
 	private function getEntryPoint(): ActionEntryPoint {
-		return new ActionEntryPoint( RequestContext::getMain() );
+		return new ActionEntryPoint(
+			RequestContext::getMain(),
+			$this->getServiceContainer()
+		);
 	}
 
 	public static function provideTryNormaliseRedirect() {
@@ -198,7 +201,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest( $req );
 		$context->setTitle( $titleObj );
 
-		$mw = new ActionEntryPoint( $context );
+		$mw = new ActionEntryPoint( $context, $this->getServiceContainer() );
 
 		$method = new ReflectionMethod( $mw, 'tryNormaliseRedirect' );
 		$method->setAccessible( true );
@@ -391,7 +394,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest( $req );
 		$context->setTitle( $specialTitle );
 
-		$mw = TestingAccessWrapper::newFromObject( new ActionEntryPoint( $context ) );
+		$mw = TestingAccessWrapper::newFromObject( new ActionEntryPoint( $context, $this->getServiceContainer() ) );
 
 		$this->expectException( BadTitleError::class );
 		$this->expectExceptionMessage( 'The requested page title contains invalid characters: "<".' );

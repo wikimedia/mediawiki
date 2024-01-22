@@ -41,8 +41,11 @@ use Wikimedia\Rdbms\DBConnectionError;
  */
 class ActionEntryPoint extends MediaWikiEntryPoint {
 
-	public function __construct( RequestContext $context ) {
-		parent::__construct( $context );
+	public function __construct(
+		$context,
+		MediaWikiServices $mediaWikiServices
+	) {
+		parent::__construct( $context, $mediaWikiServices );
 	}
 
 	/**
@@ -103,8 +106,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 		$trxLimits = $this->getConfig( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'rdbms' ) );
-		$statsFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$trxProfiler->setStatsdDataFactory( $statsFactory );
+		$trxProfiler->setStatsdDataFactory( $this->getStatsdDataFactory() );
 		$trxProfiler->setRequestMethod( $request->getMethod() );
 		if ( $request->hasSafeMethod() ) {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
