@@ -164,11 +164,11 @@ class DerivativeContext extends Context {
 		}
 		if ( $this->userObj === null ) {
 			$username = $this->getUser();
+			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 			if ( $username ) {
-				$this->userObj = User::newFromName( $username ) ?: new User;
-			} else {
-				$this->userObj = new User;
+				$this->userObj = $userFactory->newFromName( $username, UserRigorOptions::RIGOR_VALID );
 			}
+			$this->userObj ??= $userFactory->newAnonymous();
 		}
 		return $this->userObj;
 	}
