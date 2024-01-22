@@ -16,7 +16,7 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->db = MediaWikiServices::getInstance()
-			->getDBLoadBalancerFactory()
+			->getConnectionProvider()
 			->getPrimaryDatabase();
 	}
 

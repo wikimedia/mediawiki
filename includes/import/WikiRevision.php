@@ -646,7 +646,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public function importLogItem() {
 		$services = MediaWikiServices::getInstance();
-		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
 
 		$userName = $this->getUser();
 		if ( ExternalUserNames::isExternal( $userName ) ) {

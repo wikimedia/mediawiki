@@ -4115,7 +4115,7 @@ class Language implements Bcp47Code {
 	 */
 	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity', $user = null ) {
 		static $dbInfinity;
-		$dbInfinity ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+		$dbInfinity ??= MediaWikiServices::getInstance()->getConnectionProvider()
 			->getReplicaDatabase()
 			->getInfinity();
 

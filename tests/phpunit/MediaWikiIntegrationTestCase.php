@@ -234,7 +234,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	final public static function mediaWikiTearDownAfterClass(): void {
 		if ( static::$dbDataOnceTables ) {
-			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+			$db = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 			self::resetDB( $db, self::$dbDataOnceTables );
 		}
 	}
@@ -253,7 +253,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !self::needsDB() ) {
 			throw new LogicException( 'This test does not need DB but tried to access it anyway' );
 		}
-		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		return MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 	}
 
 	/**
@@ -2140,7 +2140,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param IDatabase|null $db
 	 */
 	protected static function truncateTables( array $tables, IDatabase $db = null ) {
-		$dbw = $db ?: MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = $db ?: MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		$dbw->truncate( $tables, __METHOD__ );
 

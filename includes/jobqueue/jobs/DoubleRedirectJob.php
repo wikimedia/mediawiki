@@ -95,7 +95,7 @@ class DoubleRedirectJob extends Job {
 	public static function fixRedirects( $reason, $redirTitle ) {
 		# Need to use the primary DB to get the redirect table updated in the same transaction
 		$services = MediaWikiServices::getInstance();
-		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
 			->from( 'redirect' )
@@ -236,7 +236,7 @@ class DoubleRedirectJob extends Job {
 	 *  the page is not a redirect or the redirect loops.
 	 */
 	public static function getFinalDestination( $title ) {
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		// Circular redirect check
 		$seenTitles = [];

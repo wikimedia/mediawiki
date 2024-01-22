@@ -43,7 +43,7 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 
 		$linksUpdate = new LinksUpdate( $title, $po, false );
 		$linksUpdate->setTransactionTicket(
-			$this->getServiceContainer()->getDBLoadBalancerFactory()->getEmptyTransactionTicket( __METHOD__ )
+			$this->getServiceContainer()->getConnectionProvider()->getEmptyTransactionTicket( __METHOD__ )
 		);
 		$linksUpdate->doUpdate();
 
@@ -68,7 +68,7 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 
 		$linksDeletionUpdate = new LinksDeletionUpdate( $wikiPage, $id );
 		$linksDeletionUpdate->setTransactionTicket(
-			$this->getServiceContainer()->getDBLoadBalancerFactory()->getEmptyTransactionTicket( __METHOD__ )
+			$this->getServiceContainer()->getConnectionProvider()->getEmptyTransactionTicket( __METHOD__ )
 		);
 		$linksDeletionUpdate->doUpdate();
 

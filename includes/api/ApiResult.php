@@ -1198,7 +1198,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public static function formatExpiry( $expiry, $infinity = 'infinity' ) {
 		static $dbInfinity;
-		$dbInfinity ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+		$dbInfinity ??= MediaWikiServices::getInstance()->getConnectionProvider()
 			->getReplicaDatabase()
 			->getInfinity();
 

@@ -1604,7 +1604,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return IReadableDatabase
 	 */
 	protected function getDB(): IReadableDatabase {
-		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		return MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	}
 
 	/**

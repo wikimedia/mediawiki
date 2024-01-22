@@ -233,13 +233,13 @@ class SiteStatsInit {
 
 	private static function getReplicaDB(): IReadableDatabase {
 		return MediaWikiServices::getInstance()
-			->getDBLoadBalancerFactory()
+			->getConnectionProvider()
 			->getReplicaDatabase( false, 'vslow' );
 	}
 
 	private static function getPrimaryDB(): IDatabase {
 		return MediaWikiServices::getInstance()
-			->getDBLoadBalancerFactory()
+			->getConnectionProvider()
 			->getPrimaryDatabase();
 	}
 }

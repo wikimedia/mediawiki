@@ -402,7 +402,7 @@ class RecentChange implements Taggable {
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
 		$putIPinRC = $mainConfig->get( MainConfigNames::PutIPinRC );
-		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
 		}
@@ -647,7 +647,7 @@ class RecentChange implements Taggable {
 	 * @return int Number of affected rows
 	 */
 	public function reallyMarkPatrolled() {
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'recentchanges' )
 			->set( [ 'rc_patrolled' => self::PRC_PATROLLED ] )
@@ -748,7 +748,7 @@ class RecentChange implements Taggable {
 				$rc->save();
 			},
 			DeferredUpdates::POSTSEND,
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase()
+			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
 		);
 
 		return $rc;
@@ -828,7 +828,7 @@ class RecentChange implements Taggable {
 				$rc->save();
 			},
 			DeferredUpdates::POSTSEND,
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase()
+			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
 		);
 
 		return $rc;
@@ -1157,7 +1157,7 @@ class RecentChange implements Taggable {
 				// NOTE: rc_actor exists in the database, but application logic should not use it.
 				wfDeprecatedMsg( 'Accessing deprecated field rc_actor', '1.36' );
 				$actorStore = MediaWikiServices::getInstance()->getActorStore();
-				$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+				$db = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 				return $actorStore->findActorId( $user, $db );
 			}
 		}
@@ -1398,7 +1398,7 @@ class RecentChange implements Taggable {
 				}
 			}
 		} elseif ( $actorId > 0 ) {
-			$db = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+			$db = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 			$user = $actorStore->getActorById( $actorId, $db );
 
 			if ( !$user ) {

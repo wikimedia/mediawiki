@@ -137,7 +137,7 @@ class TestUser {
 
 		$services = MediaWikiServices::getInstance();
 
-		$dbw = $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
 		$row = $dbw->newSelectQueryBuilder()
 			->select( [ 'user_password' ] )
 			->from( 'user' )

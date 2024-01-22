@@ -286,7 +286,7 @@ class ArchivedFile {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$queryInfo = ( FileSelectQueryBuilder::newForArchivedFile( $dbr ) )->getQueryInfo();
 		return [
 			'tables' => $queryInfo['tables'],

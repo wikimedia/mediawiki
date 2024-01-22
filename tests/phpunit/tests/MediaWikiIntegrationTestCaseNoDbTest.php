@@ -13,7 +13,7 @@ class MediaWikiIntegrationTestCaseNoDbTest extends MediaWikiIntegrationTestCase 
 	public function testDBLoadBalancerFactory() {
 		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'Database backend disabled' );
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	}
 
 	public function testDBLoadBalancer() {

@@ -52,7 +52,7 @@ class HistoryBlobCurStub {
 	 * @return string|false
 	 */
 	public function getText() {
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$row = $dbr->newSelectQueryBuilder()
 			->select( [ 'cur_text' ] )
 			->from( 'cur' )

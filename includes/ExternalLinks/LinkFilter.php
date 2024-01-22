@@ -348,7 +348,7 @@ class LinkFilter {
 		}
 
 		$domainConditions = [];
-		$db = $options['db'] ?: MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$db = $options['db'] ?: MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		foreach ( $options['protocol'] as $protocol ) {
 			$like = self::makeLikeArray( $filterEntry, $protocol );
 			if ( $like === false ) {
@@ -437,7 +437,7 @@ class LinkFilter {
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
 		$services = MediaWikiServices::getInstance();
-		$db = $services->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$db = $services->getConnectionProvider()->getReplicaDatabase();
 		$likeDomain = [];
 		$likePath = [];
 

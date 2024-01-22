@@ -276,7 +276,7 @@ class LocalFile extends File {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo( array $options = [] ) {
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$queryInfo = FileSelectQueryBuilder::newForFile( $dbr, $options )->getQueryInfo();
 		// needs remapping...
 		return [

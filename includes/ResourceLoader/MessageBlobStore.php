@@ -173,7 +173,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 	protected function recacheMessageBlob( $cacheKey, Module $module, $lang ) {
 		$blob = $this->generateMessageBlob( $module, $lang );
 		$cache = $this->wanCache;
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$cache->set( $cacheKey, $blob,
 			// Add part of a day to TTL to avoid all modules expiring at once
 			$cache::TTL_WEEK + mt_rand( 0, $cache::TTL_DAY ),
