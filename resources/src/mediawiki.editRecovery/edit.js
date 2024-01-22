@@ -87,6 +87,8 @@ function onLoadHandler( $editForm ) {
 	cancelButton.on( 'click', function () {
 		windowManager.openWindow( 'abandonedit' ).closed.then( function ( data ) {
 			if ( data && data.action === 'discard' ) {
+				// Note that originalData is used below in onLoadData() but that's always called before this method.
+				// Here we set originalData to null in order to signal to saveFormData() to deleted the stored data.
 				originalData = null;
 				storage.deleteData( pageName, section ).finally( function () {
 					mw.storage.session.remove( pageName + '-editRecoverySection' );
@@ -103,10 +105,9 @@ function onLoadHandler( $editForm ) {
 function onLoadData( pageData ) {
 	// If there is data stored, load it into the form.
 	if ( pageData !== undefined ) {
-		const oldPageData = getFormData();
 		loadData( pageData );
 		const loadNotification = new LoadNotification( {
-			differentRev: oldPageData.field_parentRevId !== pageData.field_parentRevId
+			differentRev: originalData.field_parentRevId !== pageData.field_parentRevId
 		} );
 		const notification = loadNotification.getNotification();
 		// On 'show changes'.
@@ -115,7 +116,7 @@ function onLoadData( pageData ) {
 		} );
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', function () {
-			loadData( oldPageData );
+			loadData( originalData );
 			storage.deleteData( mw.config.get( 'wgPageName' ) ).then( function () {
 				notification.close();
 			} );
