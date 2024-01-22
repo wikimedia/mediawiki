@@ -921,9 +921,11 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @deprecated since 1.42. Unused.
 	 * @since 1.32
 	 */
 	public function getConfigRepository(): ConfigRepository {
+		wfDeprecated( __METHOD__, '1.42' );
 		return $this->getService( 'ConfigRepository' );
 	}
 
