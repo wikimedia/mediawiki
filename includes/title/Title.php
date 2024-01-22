@@ -2930,7 +2930,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDbProvider()->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'pl_namespace', 'pl_title' ] )
 			->from( 'pagelinks' )
