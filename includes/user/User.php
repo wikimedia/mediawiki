@@ -832,8 +832,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			->caller( __METHOD__ );
 		$row = $userQuery->fetchRow();
 		if ( !$row ) {
-			// Try the primary database...
+			// Try the primary database
 			$userQuery->connection( $dbProvider->getPrimaryDatabase() );
+			// Lock the row to prevent insertNewUser() returning null due to race conditions
+			$userQuery->forUpdate();
 			$row = $userQuery->fetchRow();
 		}
 
@@ -2591,7 +2593,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param callable $insertActor ( UserIdentity $actor, IDatabase $dbw ): int actor ID,
 	 * @param string $name
 	 * @param array $params
-	 * @return User|null
+	 * @return User|null User object, or null if the username already exists.
 	 */
 	private static function insertNewUser( callable $insertActor, $name, $params = [] ) {
 		foreach ( [ 'password', 'newpassword', 'newpass_time', 'password_expires' ] as $field ) {
