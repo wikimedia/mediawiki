@@ -300,13 +300,13 @@ class Context implements MessageLocalizer {
 	public function getUserObj(): User {
 		if ( $this->userObj === null ) {
 			$username = $this->getUser();
+			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 			if ( $username ) {
 				// Use provided username if valid, fallback to anonymous user
-				$this->userObj = User::newFromName( $username ) ?: new User;
-			} else {
-				// Anonymous user
-				$this->userObj = new User;
+				$this->userObj = $userFactory->newFromName( $username, UserRigorOptions::RIGOR_VALID );
 			}
+			// Anonymous user
+			$this->userObj ??= $userFactory->newAnonymous();
 		}
 
 		return $this->userObj;
