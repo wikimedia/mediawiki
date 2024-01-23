@@ -137,7 +137,6 @@ class MoveToExternal extends Maintenance {
 		print "Moving text rows from {$this->minID} to {$this->maxID} to external storage\n";
 
 		$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$extStore = $esFactory->getStore( $this->esType );
 		$numMoved = 0;
 		$stubIDs = [];
@@ -148,7 +147,7 @@ class MoveToExternal extends Maintenance {
 
 			if ( $this->reportingInterval && !( $block % $this->reportingInterval ) ) {
 				$this->output( "oldid=$blockStart, moved=$numMoved\n" );
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 
 			$res = $dbr->newSelectQueryBuilder()
@@ -296,7 +295,6 @@ class MoveToExternal extends Maintenance {
 		}
 
 		$dbr = $this->getReplicaDB();
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->output( "Resolving " . count( $stubIDs ) . " stubs\n" );
 		$numResolved = 0;
 		$numTotal = 0;
@@ -313,7 +311,7 @@ class MoveToExternal extends Maintenance {
 					&& $numTotal % $this->reportingInterval == 0
 				) {
 					$this->output( "$numTotal stubs processed\n" );
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 			}
 		}

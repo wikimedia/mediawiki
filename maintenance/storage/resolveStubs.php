@@ -56,10 +56,9 @@ class ResolveStubs extends Maintenance {
 		$numBlocks = intval( $maxID / $blockSize ) + 1;
 		$numResolved = 0;
 		$numTotal = 0;
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		for ( $b = 0; $b < $numBlocks; $b++ ) {
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 
 			$this->output( sprintf( "%5.2f%%\n", $b / $numBlocks * 100 ) );
 			$start = $blockSize * $b + 1;

@@ -22,8 +22,6 @@ class DeleteTag extends Maintenance {
 		$dbw = $this->getPrimaryDB();
 		$services = $this->getServiceContainer();
 		$defStore = $services->getChangeTagDefStore();
-		$lbFactory = $services->getDBLoadBalancerFactory();
-		$options = [ 'domain' => $lbFactory->getLocalDomainID() ];
 
 		$tag = $this->getArg( 0 );
 		try {
@@ -72,7 +70,7 @@ class DeleteTag extends Maintenance {
 				->caller( __METHOD__ )->execute();
 			$count += $dbw->affectedRows();
 			$this->output( "$count\n" );
-			$lbFactory->waitForReplication( $options );
+			$this->waitForReplication();
 		} while ( true );
 		$this->output( "The tag has been removed from $count revisions, deleting the tag itself...\n" );
 

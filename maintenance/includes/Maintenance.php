@@ -1076,7 +1076,7 @@ abstract class Maintenance {
 	 */
 	protected function getReplicaDB(): IReadableDatabase {
 		if ( $this->dbProvider === null ) {
-			$this->dbProvider = $this->getServiceContainer()->getDBLoadBalancerFactory();
+			$this->dbProvider = $this->getServiceContainer()->getConnectionProvider();
 		}
 		return $this->dbProvider->getReplicaDatabase();
 	}
@@ -1087,7 +1087,7 @@ abstract class Maintenance {
 	 */
 	protected function getPrimaryDB(): IDatabase {
 		if ( $this->dbProvider === null ) {
-			$this->dbProvider = $this->getServiceContainer()->getDBLoadBalancerFactory();
+			$this->dbProvider = $this->getServiceContainer()->getConnectionProvider();
 		}
 		return $this->dbProvider->getPrimaryDatabase();
 	}

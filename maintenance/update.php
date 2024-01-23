@@ -120,7 +120,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( 'MediaWiki ' . MW_VERSION . " Updater\n\n" );
 
-		$this->getServiceContainer()->getDBLoadBalancerFactory()->waitForReplication();
+		$this->waitForReplication();
 
 		// Check external dependencies are up to date
 		if ( !$this->hasOption( 'skip-external-dependencies' ) ) {

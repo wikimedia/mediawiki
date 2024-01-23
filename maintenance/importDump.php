@@ -274,7 +274,7 @@ TEXT
 				$this->progress( "$this->revCount ($revrate revs/sec)" );
 			}
 		}
-		$this->getServiceContainer()->getDBLoadBalancerFactory()->waitForReplication();
+		$this->waitForReplication();
 	}
 
 	private function progress( $string ) {
