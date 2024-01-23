@@ -163,7 +163,6 @@ class TrackBlobs extends Maintenance {
 			'slot_role_id=' . $slotRoleStore->getId( SlotRecord::MAIN ),
 			'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
 		], $conds );
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		while ( true ) {
 			$res = $dbr->newSelectQueryBuilder()
@@ -215,7 +214,7 @@ class TrackBlobs extends Maintenance {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted revisions\n";
@@ -241,7 +240,6 @@ class TrackBlobs extends Maintenance {
 			->caller( __METHOD__ )->fetchField();
 		$rowsInserted = 0;
 		$batchesDone = 0;
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		echo "Finding orphan text...\n";
 
@@ -304,7 +302,7 @@ class TrackBlobs extends Maintenance {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted orphan text rows\n";

@@ -32,7 +32,6 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Maintenance script that will find all rows in the categorylinks table
@@ -70,9 +69,6 @@ class UpdateCollation extends Maintenance {
 
 	/** @var IMaintainableDatabase */
 	private $dbw;
-
-	/** @var LBFactory */
-	private $lbFactory;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
@@ -115,7 +111,6 @@ TEXT
 	private function init() {
 		$services = $this->getServiceContainer();
 		$this->namespaceInfo = $services->getNamespaceInfo();
-		$this->lbFactory = $services->getDBLoadBalancerFactory();
 
 		if ( $this->hasOption( 'target-collation' ) ) {
 			$this->collationName = $this->getOption( 'target-collation' );

@@ -585,7 +585,6 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		$batchSize = $this->getBatchSize();
 		$namespaces = $this->getNamespaces();
 		$likes = $this->getLikeBatches( $db, $titleField );
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		if ( is_int( $nsField ) ) {
 			$namespaces = array_intersect( $namespaces, [ $nsField ] );
@@ -643,10 +642,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 						$r = $cont ? json_encode( $row, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) : '<end>';
 						$this->output( "... $table: $count renames, $errors errors at $r\n" );
-						$lbFactory->waitForReplication(
-							[ 'timeout' => 30, 'ifWritesSince' => $lastReplicationWait ]
-						);
-						$lastReplicationWait = microtime( true );
+						$this->waitForReplication();
 					}
 				} while ( $cont );
 			}

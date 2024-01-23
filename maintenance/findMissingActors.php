@@ -24,8 +24,6 @@ use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
-use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\LoadBalancer;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -36,33 +34,11 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class FindMissingActors extends Maintenance {
 
-	/**
-	 * @var UserFactory|null
-	 */
-	private $userFactory;
+	private UserFactory $userFactory;
+	private UserNameUtils $userNameUtils;
+	private ActorNormalization $actorNormalization;
 
-	/**
-	 * @var UserNameUtils|null
-	 */
-	private $userNameUtils;
-
-	/**
-	 * @var LoadBalancer|null
-	 */
-	private $loadBalancer;
-
-	/**
-	 * @var LBFactory
-	 */
-	private $lbFactory;
-
-	/**
-	 * @var ActorNormalization
-	 */
-	private $actorNormalization;
-
-	/** @var array|null */
-	private $tables;
+	private ?array $tables;
 
 	public function __construct() {
 		parent::__construct();
@@ -84,23 +60,6 @@ class FindMissingActors extends Maintenance {
 			false, true );
 
 		$this->setBatchSize( 1000 );
-	}
-
-	public function initializeServices(
-		?UserFactory $userFactory = null,
-		?UserNameUtils $userNameUtils = null,
-		?LoadBalancer $loadBalancer = null,
-		?LBFactory $lbFactory = null,
-		?ActorNormalization $actorNormalization = null
-	) {
-		$services = $this->getServiceContainer();
-
-		$this->userFactory = $userFactory ?? $this->userFactory ?? $services->getUserFactory();
-		$this->userNameUtils = $userNameUtils ?? $this->userNameUtils ?? $services->getUserNameUtils();
-		$this->loadBalancer = $loadBalancer ?? $this->loadBalancer ?? $services->getDBLoadBalancer();
-		$this->lbFactory = $lbFactory ?? $this->lbFactory ?? $services->getDBLoadBalancerFactory();
-		$this->actorNormalization = $actorNormalization ?? $this->actorNormalization ??
-			$services->getActorNormalization();
 	}
 
 	/**
@@ -173,7 +132,7 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Unknown user: '$name'" );
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
 
 		if ( !$actorId ) {
@@ -185,7 +144,11 @@ class FindMissingActors extends Maintenance {
 	}
 
 	public function execute() {
-		$this->initializeServices();
+		$services = $this->getServiceContainer();
+		$this->userFactory = $services->getUserFactory();
+		$this->userNameUtils = $services->getUserNameUtils();
+		$this->actorNormalization = $services->getActorNormalization();
+		$this->setDBProvider( $services->getConnectionProvider() );
 
 		$field = $this->getOption( 'field' );
 		if ( !$this->getTableInfo( $field ) ) {
@@ -232,7 +195,7 @@ class FindMissingActors extends Maintenance {
 		[ $table, $actorField, $idField ] = $this->getTableInfo( $field );
 		$this->output( "Finding invalid actor IDs in $table.$actorField...\n" );
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA, 'vslow' );
+		$dbr = $this->getServiceContainer()->getDBLoadBalancer()->getConnectionRef( DB_REPLICA, 'vslow' );
 
 		/*
 		We are building an SQL query like this one here, performing a left join
@@ -302,7 +265,7 @@ class FindMissingActors extends Maintenance {
 		$count = count( $ids );
 		$this->output( "OVERWRITING $count actor IDs in $table.$actorField with $overwrite...\n" );
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$dbw->newUpdateQueryBuilder()
 			->update( $table )
@@ -312,7 +275,7 @@ class FindMissingActors extends Maintenance {
 
 		$count = $dbw->affectedRows();
 
-		$this->lbFactory->waitForReplication();
+		$this->waitForReplication();
 		$this->output( "\tUpdated $count rows.\n" );
 
 		return $count;
