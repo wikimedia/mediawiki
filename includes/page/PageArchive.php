@@ -81,7 +81,7 @@ class PageArchive {
 			return self::listPagesByPrefix( $term );
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$condTitles = array_values( array_unique( array_map( static function ( Title $t ) {
 			return $t->getDBkey();
 		}, $results ) ) );
@@ -103,7 +103,7 @@ class PageArchive {
 	 * @return IResultWrapper|bool
 	 */
 	public static function listPagesByPrefix( $prefix ) {
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 
 		$title = Title::newFromText( $prefix );
 		if ( $title ) {
@@ -152,7 +152,7 @@ class PageArchive {
 			return null;
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$queryBuilder = FileSelectQueryBuilder::newForArchivedFile( $dbr );
 		$queryBuilder->where( [ 'fa_name' => $this->title->getDBkey() ] )
 			->orderBy( 'fa_timestamp', SelectQueryBuilder::SORT_DESC );

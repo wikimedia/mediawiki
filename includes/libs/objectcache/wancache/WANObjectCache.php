@@ -705,7 +705,7 @@ class WANObjectCache implements
 	 *
 	 * Example usage:
 	 * @code
-	 *     $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *     $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *     $setOpts = Database::getCacheSetOptions( $dbr );
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
@@ -1274,7 +1274,7 @@ class WANObjectCache implements
 	 *         $cache::TTL_MINUTE,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
-	 *             $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -1292,7 +1292,7 @@ class WANObjectCache implements
 	 *         $cache::TTL_DAY,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
-	 *             $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -1319,7 +1319,7 @@ class WANObjectCache implements
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
-	 *             $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -1347,7 +1347,7 @@ class WANObjectCache implements
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
-	 *             $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -1356,7 +1356,7 @@ class WANObjectCache implements
 	 *         [
 	 *              // Get the highest timestamp of any of the cat's toys
 	 *             'touchedCallback' => function ( $value ) use ( $catId ) {
-	 *                 $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *                 $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *                 $ts = $dbr->selectField( 'cat_toys', 'MAX(ct_touched)', ... );
 	 *
 	 *                 return wfTimestampOrNull( TS_UNIX, $ts );
@@ -1376,7 +1376,7 @@ class WANObjectCache implements
 	 *         10,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
-	 *             $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -1983,7 +1983,7 @@ class WANObjectCache implements
 	 *         $cache::TTL_DAY,
 	 *         // Function that derives the new key value
 	 *         function ( $id, $oldValue, &$ttl, array &$setOpts ) {
-	 *             $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
@@ -2085,7 +2085,7 @@ class WANObjectCache implements
 	 *         $cache::TTL_DAY,
 	 *         // Function that derives the new key value
 	 *         function ( array $ids, array &$ttls, array &$setOpts ) {
-	 *             $dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *

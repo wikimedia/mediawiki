@@ -73,7 +73,7 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public static function suggestTarget( $target, array $ids ) {
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$result = $dbr->newSelectQueryBuilder()
 			->select( 'log_type' )
 			->distinct()

@@ -293,7 +293,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 */
 	public function insert( IDatabase $dbw = null ) {
 		$services = MediaWikiServices::getInstance();
-		$dbw = $dbw ?: $services->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = $dbw ?: $services->getConnectionProvider()->getPrimaryDatabase();
 
 		$this->timestamp ??= wfTimestampNow();
 		$actorId = $services->getActorStore()->acquireActorId( $this->getPerformerIdentity(), $dbw );

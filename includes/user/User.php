@@ -505,7 +505,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache, $wgFullyInitialised ) {
 				$setOpts += Database::getCacheSetOptions(
-					MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase()
+					MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase()
 				);
 				wfDebug( "User: cache miss for user {$this->mId}" );
 
@@ -914,7 +914,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( $groups === [] ) {
 			return UserArrayFromResult::newFromIDs( [] );
 		}
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( 'ug_user' )
 			->distinct()
@@ -2495,7 +2495,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// check against race conditions and replica DB lag.
 		$newTouched = $this->newTouchedTimestamp();
 
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $newTouched ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'user' )
@@ -2617,7 +2617,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				->loadUserOptions( $user, $user->queryFlagsUsed, $params['options'] );
 			unset( $params['options'] );
 		}
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
 
@@ -2700,7 +2700,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$this->mTouched = $this->newTouchedTimestamp();
 
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$status = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 			$noPass = PasswordFactory::newInvalidPassword()->toString();
 			$dbw->newInsertQueryBuilder()

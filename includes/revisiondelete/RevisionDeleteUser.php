@@ -50,7 +50,7 @@ class RevisionDeleteUser {
 			return false;
 		}
 		if ( !$dbw instanceof IDatabase ) {
-			$dbw = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+			$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		}
 
 		# To suppress, we OR the current bitfields with RevisionRecord::DELETED_USER

@@ -947,7 +947,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 	private function setTransactionTicket( LinksUpdate $update ) {
 		$update->setTransactionTicket(
-			$this->getServiceContainer()->getDBLoadBalancerFactory()->getEmptyTransactionTicket( __METHOD__ )
+			$this->getServiceContainer()->getConnectionProvider()->getEmptyTransactionTicket( __METHOD__ )
 		);
 	}
 }

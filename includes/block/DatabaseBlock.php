@@ -212,7 +212,7 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public static function newFromRow( $row ) {
 		$services = MediaWikiServices::getInstance();
-		$db = $services->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$db = $services->getConnectionProvider()->getReplicaDatabase();
 		return $services->getDatabaseBlockStore()->newFromRow( $db, $row );
 	}
 

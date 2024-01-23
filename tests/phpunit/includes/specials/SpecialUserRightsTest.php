@@ -148,7 +148,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		// FIXME: This should benefit from $tablesUsed; until this is possible, purge user_groups on
 		// the other wiki.
 		$externalDbw = $this->getServiceContainer()
-			->getDBLoadBalancerFactory()
+			->getConnectionProvider()
 			->getPrimaryDatabase( $externalDBname );
 		$externalDbw->truncate( 'user_groups', __METHOD__ );
 

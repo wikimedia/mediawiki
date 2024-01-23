@@ -166,7 +166,7 @@ class LinkHolderArray {
 		$output = $this->parent->getOutput();
 		$linkRenderer = $this->parent->getLinkRenderer();
 
-		$dbr = $services->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
 
 		# Sort by namespace
 		ksort( $this->internals );
@@ -390,7 +390,7 @@ class LinkHolderArray {
 		}
 
 		// construct query
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 
 		$varRes = $dbr->newSelectQueryBuilder()
 			->select( LinkCache::getSelectFields() )

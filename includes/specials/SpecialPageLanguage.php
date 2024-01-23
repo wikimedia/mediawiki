@@ -238,7 +238,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Load the page language from DB
-		$dbw ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getPrimaryDatabase();
+		$dbw ??= MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$oldLanguage = $dbw->newSelectQueryBuilder()
 			->select( 'page_lang' )
 			->from( 'page' )

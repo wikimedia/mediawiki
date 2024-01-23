@@ -171,7 +171,7 @@ class AllMessagesTablePager extends TablePager {
 	) {
 		// FIXME: This function should be moved to Language:: or something.
 		// Fallback to global state, if not provided
-		$dbr ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase();
+		$dbr ??= MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
 			->from( 'page' )
