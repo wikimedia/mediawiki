@@ -41,6 +41,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use RefreshLinksJob;
 use RuntimeException;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -83,6 +84,8 @@ class LinksUpdate extends DataUpdate {
 	/** @var LinksTableGroup */
 	private $tableFactory;
 
+	private IConnectionProvider $connectionProvider;
+
 	/**
 	 * @param PageIdentity $page The page we're updating
 	 * @param ParserOutput $parserOutput Output from a full parse of this page
@@ -116,6 +119,7 @@ class LinksUpdate extends DataUpdate {
 		);
 		// TODO: this does not have to be called in LinksDeletionUpdate
 		$this->tableFactory->setParserOutput( $parserOutput );
+		$this->connectionProvider = $services->getDBLoadBalancerFactory();
 	}
 
 	public function setTransactionTicket( $ticket ) {
@@ -537,7 +541,7 @@ class LinksUpdate extends DataUpdate {
 	 */
 	protected function getDB() {
 		if ( !$this->db ) {
-			$this->db = wfGetDB( DB_PRIMARY );
+			$this->db = $this->connectionProvider->getPrimaryDatabase();
 		}
 
 		return $this->db;
