@@ -376,11 +376,18 @@ class NamespaceDupes extends Maintenance {
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
 			$sqb->queryInfo( $linksMigration->getQueryInfo( $table ) );
 			[ $namespaceField, $titleField ] = $linksMigration->getTitleFields( $table );
+			$schemaMigrationStage = $this->getConfig()->get( $linksMigration::$mapping[$table]['config'] );
+			$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
+			$targetIdField = $linksMigration::$mapping[$table]['target_id'];
 		} else {
 			$sqb->table( $table );
 			$namespaceField = "{$fieldPrefix}_namespace";
 			$titleField = "{$fieldPrefix}_title";
 			$sqb->fields( [ $namespaceField, $titleField ] );
+			// Variables only used for links migration, init only
+			$schemaMigrationStage = -1;
+			$linkTargetLookup = null;
+			$targetIdField = '';
 		}
 		$sqb->andWhere( [
 				$namespaceField => 0,
@@ -418,7 +425,14 @@ class NamespaceDupes extends Maintenance {
 				}
 
 				if ( isset( $linksMigration::$mapping[$table] ) ) {
-					$setValue = $linksMigration->getLinksConditions( $table, $destTitle );
+					$setValue = [];
+					if ( $schemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+						$setValue[$targetIdField] = $linkTargetLookup->acquireLinkTargetId( $destTitle, $dbw );
+					}
+					if ( $schemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+						$setValue[$namespaceField] = $destTitle->getNamespace();
+						$setValue[$titleField] = $destTitle->getDBkey();
+					}
 					$whereCondition = $linksMigration->getLinksConditions(
 						$table,
 						new TitleValue( 0, $row->$titleField )
