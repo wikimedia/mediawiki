@@ -21,7 +21,6 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
@@ -89,7 +88,7 @@ class CategoryMembershipChangeJob extends Job {
 
 		$this->ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
-		$page = $services->getWikiPageFactory()->newFromID( $this->params['pageId'], WikiPage::READ_LATEST );
+		$page = $services->getWikiPageFactory()->newFromID( $this->params['pageId'], IDBAccessObject::READ_LATEST );
 		if ( !$page ) {
 			$this->setLastError( "Could not find page #{$this->params['pageId']}" );
 			return false; // deleted?
@@ -189,7 +188,7 @@ class CategoryMembershipChangeJob extends Job {
 		// Get the prior revision (the same for null edits)
 		if ( $newRev->getParentId() ) {
 			$oldRev = $services->getRevisionLookup()
-				->getRevisionById( $newRev->getParentId(), RevisionLookup::READ_LATEST );
+				->getRevisionById( $newRev->getParentId(), IDBAccessObject::READ_LATEST );
 			if ( !$oldRev || $oldRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				return;
 			}

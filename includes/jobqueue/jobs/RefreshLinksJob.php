@@ -215,7 +215,7 @@ class RefreshLinksJob extends Job {
 
 		// Load the page from the primary DB
 		$page = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 
 		if ( !$page->exists() ) {
 			// Probably due to concurrent deletion or renaming of the page
@@ -404,7 +404,7 @@ class RefreshLinksJob extends Job {
 		// Get the latest ID since acquirePageLock() in runForTitle() flushed the transaction.
 		// This is used to detect edits/moves after loadPageData() but before the scope lock.
 		// The works around the chicken/egg problem of determining the scope lock key name
-		$latest = $title->getLatestRevID( Title::READ_LATEST );
+		$latest = $title->getLatestRevID( IDBAccessObject::READ_LATEST );
 
 		$triggeringRevisionId = $this->params['triggeringRevisionId'] ?? null;
 		if ( $triggeringRevisionId && $triggeringRevisionId !== $latest ) {

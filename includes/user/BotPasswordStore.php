@@ -359,7 +359,7 @@ class BotPasswordStore implements IDBAccessObject {
 		$centralId = $this->centralIdLookup->centralIdFromName(
 			$username,
 			CentralIdLookup::AUDIENCE_RAW,
-			CentralIdLookup::READ_LATEST
+			IDBAccessObject::READ_LATEST
 		);
 		if ( !$centralId ) {
 			return false;
@@ -387,7 +387,7 @@ class BotPasswordStore implements IDBAccessObject {
 		$centralId = $this->centralIdLookup->centralIdFromName(
 			$username,
 			CentralIdLookup::AUDIENCE_RAW,
-			CentralIdLookup::READ_LATEST
+			IDBAccessObject::READ_LATEST
 		);
 		if ( !$centralId ) {
 			return false;

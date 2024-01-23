@@ -23,6 +23,7 @@ namespace MediaWiki\Storage;
 use ChangeTags;
 use Content;
 use ContentHandler;
+use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
@@ -981,7 +982,7 @@ class PageUpdater {
 		if ( $revId === 0 ) {
 			$revision = $this->grabParentRevision();
 		} else {
-			$revision = $this->revisionStore->getRevisionById( $revId, RevisionStore::READ_LATEST );
+			$revision = $this->revisionStore->getRevisionById( $revId, IDBAccessObject::READ_LATEST );
 		}
 		if ( $revision === null ) {
 			$status->fatal( 'edit-gone-missing' );
@@ -1171,7 +1172,7 @@ class PageUpdater {
 		) {
 			$titlePageId = $title->getArticleID();
 			$revPageId = $rev->getPageId();
-			$masterPageId = $title->getArticleID( Title::READ_LATEST );
+			$masterPageId = $title->getArticleID( IDBAccessObject::READ_LATEST );
 
 			if ( $revPageId === $masterPageId ) {
 				wfWarn( __METHOD__ . ": Encountered stale Title object: old ID was $titlePageId, "

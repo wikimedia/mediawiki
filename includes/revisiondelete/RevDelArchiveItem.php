@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**
@@ -32,7 +31,7 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 			->getRevisionFactory()
 			->newRevisionFromArchiveRow(
 				$row,
-				RevisionFactory::READ_NORMAL,
+				IDBAccessObject::READ_NORMAL,
 				null,
 				[ 'page_id' => $list->getPage()->getId() ]
 			);

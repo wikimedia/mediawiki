@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Page;
 
+use IDBAccessObject;
 use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
@@ -300,7 +301,7 @@ class RollbackPage {
 
 		// Generate the edit summary if necessary
 		$targetRevision = $this->revisionStore
-			->getRevisionById( $targetRevisionRow->rev_id, RevisionStore::READ_LATEST );
+			->getRevisionById( $targetRevisionRow->rev_id, IDBAccessObject::READ_LATEST );
 
 		// Save
 		$flags = EDIT_UPDATE | EDIT_INTERNAL;

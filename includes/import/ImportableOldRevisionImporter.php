@@ -69,7 +69,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		Title::clearCaches();
 
 		$page = $this->wikiPageFactory->newFromTitle( $importableRevision->getTitle() );
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$mustCreatePage = !$page->exists();
 		if ( $mustCreatePage ) {
 			$pageId = $page->insertOn( $dbw );
@@ -172,7 +172,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 			// Just to be on the safe side, even though it should always be found
 			$latestRevTimestamp = (int)$this->revisionStore->getTimestampFromId(
 				$latestRevId,
-				RevisionStore::READ_LATEST
+				IDBAccessObject::READ_LATEST
 			);
 		} else {
 			$latestRevTimestamp = 0;

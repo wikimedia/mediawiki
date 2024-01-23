@@ -24,6 +24,7 @@
 namespace MediaWiki\Specials;
 
 use HTMLForm;
+use IDBAccessObject;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -173,7 +174,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	private function attemptConfirm( $code ) {
 		$user = $this->userFactory->newFromConfirmationCode(
 			$code,
-			UserFactory::READ_LATEST
+			IDBAccessObject::READ_LATEST
 		);
 
 		if ( !is_object( $user ) ) {

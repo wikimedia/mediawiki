@@ -22,7 +22,7 @@ namespace MediaWiki\Specials;
 
 use DoubleRedirectJob;
 use ErrorPageError;
-use File;
+use IDBAccessObject;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -748,7 +748,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			// Delete an associated image if there is
 			if ( $nt->getNamespace() === NS_FILE ) {
 				$file = $this->repoGroup->getLocalRepo()->newFile( $nt );
-				$file->load( File::READ_LATEST );
+				$file->load( IDBAccessObject::READ_LATEST );
 				if ( $file->exists() ) {
 					$file->deleteFile( $reason, $user, false );
 				}

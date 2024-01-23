@@ -133,7 +133,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	/**
 	 * @var int One of the READ_* constants
 	 */
-	protected $mDataLoadedFrom = self::READ_NONE;
+	protected $mDataLoadedFrom = IDBAccessObject::READ_NONE;
 
 	/**
 	 * @var RevisionRecord|null
@@ -197,11 +197,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	public static function convertSelectType( $type ) {
 		switch ( $type ) {
 			case 'fromdb':
-				return self::READ_NORMAL;
+				return IDBAccessObject::READ_NORMAL;
 			case 'fromdbmaster':
-				return self::READ_LATEST;
+				return IDBAccessObject::READ_LATEST;
 			case 'forupdate':
-				return self::READ_LOCKING;
+				return IDBAccessObject::READ_LOCKING;
 			default:
 				// It may already be an integer or whatever else
 				return $type;
@@ -267,7 +267,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function clear() {
 		$this->mDataLoaded = false;
-		$this->mDataLoadedFrom = self::READ_NONE;
+		$this->mDataLoadedFrom = IDBAccessObject::READ_NONE;
 
 		$this->clearCacheFields();
 	}
@@ -407,9 +407,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @param stdClass|string|int $from One of the following:
 	 *   - A DB query result object.
-	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
-	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the primary DB.
-	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the primary DB
+	 *   - "fromdb" or IDBAccessObject::READ_NORMAL to get from a replica DB.
+	 *   - "fromdbmaster" or IDBAccessObject::READ_LATEST to get from the primary DB.
+	 *   - "forupdate"  or IDBAccessObject::READ_LOCKING to get from the primary DB
 	 *     using SELECT FOR UPDATE.
 	 *
 	 * @return void
@@ -432,7 +432,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				&& $loadBalancer->hasReplicaServers()
 				&& $loadBalancer->hasOrMadeRecentPrimaryChanges()
 			) {
-				$from = self::READ_LATEST;
+				$from = IDBAccessObject::READ_LATEST;
 				[ $index, $opts ] = DBAccessObjectUtils::getDBOptions( $from );
 				$db = $loadBalancer->getConnectionRef( $index );
 				$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
@@ -440,7 +440,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		} else {
 			// No idea from where the caller got this data, assume replica DB.
 			$data = $from;
-			$from = self::READ_NORMAL;
+			$from = IDBAccessObject::READ_NORMAL;
 		}
 
 		$this->loadFromRow( $data, $from );
@@ -452,9 +452,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.32
 	 *
 	 * @param string|int $from One of the following:
-	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
-	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the primary DB.
-	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the primary DB
+	 *   - "fromdb" or IDBAccessObject::READ_NORMAL to get from a replica DB.
+	 *   - "fromdbmaster" or IDBAccessObject::READ_LATEST to get from the primary DB.
+	 *   - "forupdate"  or IDBAccessObject::READ_LOCKING to get from the primary DB
 	 *     using SELECT FOR UPDATE.
 	 *
 	 * @return bool
@@ -464,7 +464,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		if ( !is_int( $from ) ) {
 			// No idea from where the caller got this data, assume replica DB.
-			$from = self::READ_NORMAL;
+			$from = IDBAccessObject::READ_NORMAL;
 		}
 
 		if ( $from <= $this->mDataLoadedFrom ) {
@@ -480,9 +480,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.20
 	 * @param stdClass|false $data DB row containing fields returned by getQueryInfo() or false
 	 * @param string|int $from One of the following:
-	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a replica DB
-	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the primary DB
-	 *        - "forupdate"  or WikiPage::READ_LOCKING if the data comes from
+	 *        - "fromdb" or IDBAccessObject::READ_NORMAL if the data comes from a replica DB
+	 *        - "fromdbmaster" or IDBAccessObject::READ_LATEST if the data comes from the primary DB
+	 *        - "forupdate"  or IDBAccessObject::READ_LOCKING if the data comes from
 	 *          the primary DB using SELECT FOR UPDATE
 	 */
 	public function loadFromRow( $data, $from ) {
@@ -698,7 +698,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return; // page doesn't exist or is missing page_latest info
 		}
 
-		if ( $this->mDataLoadedFrom == self::READ_LOCKING ) {
+		if ( $this->mDataLoadedFrom == IDBAccessObject::READ_LOCKING ) {
 			// T39225: if session S1 loads the page row FOR UPDATE, the result always
 			// includes the latest changes committed. This is true even within REPEATABLE-READ
 			// transactions, where S1 normally only sees changes committed before the first S1
@@ -707,13 +707,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// happened after the first S1 SELECT.
 			// https://dev.mysql.com/doc/refman/5.7/en/set-transaction.html#isolevel_repeatable-read
 			$revision = $this->getRevisionStore()
-				->getRevisionByPageId( $this->getId(), $latest, RevisionStore::READ_LOCKING );
-		} elseif ( $this->mDataLoadedFrom == self::READ_LATEST ) {
+				->getRevisionByPageId( $this->getId(), $latest, IDBAccessObject::READ_LOCKING );
+		} elseif ( $this->mDataLoadedFrom == IDBAccessObject::READ_LATEST ) {
 			// Bug T93976: if page_latest was loaded from the primary DB, fetch the
 			// revision from there as well, as it may not exist yet on a replica DB.
 			// Also, this keeps the queries in the same REPEATABLE-READ snapshot.
 			$revision = $this->getRevisionStore()
-				->getRevisionByPageId( $this->getId(), $latest, RevisionStore::READ_LATEST );
+				->getRevisionByPageId( $this->getId(), $latest, IDBAccessObject::READ_LATEST );
 		} else {
 			$revision = $this->getRevisionStore()->getKnownCurrentRevision( $this->getTitle(), $latest );
 		}
@@ -1533,7 +1533,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				&& $lb->hasOrMadeRecentPrimaryChanges()
 			) {
 				$rev = $this->getRevisionStore()->getRevisionByTimestamp(
-					$this->mTitle, $edittime, RevisionStore::READ_LATEST );
+					$this->mTitle, $edittime, IDBAccessObject::READ_LATEST );
 			}
 			if ( $rev ) {
 				$baseRevId = $rev->getId();

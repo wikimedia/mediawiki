@@ -67,7 +67,7 @@ interface Authority {
 	 * @return ?Block
 	 * @since 1.37
 	 */
-	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block;
+	public function getBlock( int $freshness = IDBAccessObject::READ_NORMAL ): ?Block;
 
 	/**
 	 * Checks whether this authority has the given permission in general.

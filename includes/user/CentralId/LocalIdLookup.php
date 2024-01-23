@@ -23,6 +23,7 @@
 namespace MediaWiki\User\CentralId;
 
 use DBAccessObjectUtils;
+use IDBAccessObject;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
@@ -90,7 +91,7 @@ class LocalIdLookup extends CentralIdLookup {
 	}
 
 	public function lookupCentralIds(
-		array $idToName, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
+		array $idToName, $audience = self::AUDIENCE_PUBLIC, $flags = IDBAccessObject::READ_NORMAL
 	): array {
 		if ( !$idToName ) {
 			return [];
@@ -117,7 +118,7 @@ class LocalIdLookup extends CentralIdLookup {
 	}
 
 	public function lookupUserNames(
-		array $nameToId, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
+		array $nameToId, $audience = self::AUDIENCE_PUBLIC, $flags = IDBAccessObject::READ_NORMAL
 	): array {
 		if ( !$nameToId ) {
 			return [];

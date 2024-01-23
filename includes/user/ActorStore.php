@@ -22,6 +22,7 @@ namespace MediaWiki\User;
 
 use CannotCreateActorException;
 use DBAccessObjectUtils;
+use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -214,7 +215,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			// The actor ID mostly comes from DB, so if we can't find an actor by ID,
 			// it's most likely due to lagged replica and not cause it doesn't actually exist.
 			// Probably we just inserted it? Try primary database.
-			$this->newSelectQueryBuilder( self::READ_LATEST )
+			$this->newSelectQueryBuilder( IDBAccessObject::READ_LATEST )
 				->caller( __METHOD__ )
 				->conds( [ 'actor_id' => $actorId ] )
 				->fetchUserIdentity();
@@ -227,7 +228,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param int $queryFlags one of IDBAccessObject constants
 	 * @return UserIdentity|null
 	 */
-	public function getUserIdentityByName( string $name, int $queryFlags = self::READ_NORMAL ): ?UserIdentity {
+	public function getUserIdentityByName(
+		string $name,
+		int $queryFlags = IDBAccessObject::READ_NORMAL
+	): ?UserIdentity {
 		$normalizedName = $this->normalizeUserName( $name );
 		if ( $normalizedName === null ) {
 			return null;
@@ -247,7 +251,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param int $queryFlags one of IDBAccessObject constants
 	 * @return UserIdentity|null
 	 */
-	public function getUserIdentityByUserId( int $userId, int $queryFlags = self::READ_NORMAL ): ?UserIdentity {
+	public function getUserIdentityByUserId(
+		int $userId,
+		int $queryFlags = IDBAccessObject::READ_NORMAL
+	): ?UserIdentity {
 		if ( !$userId ) {
 			return null;
 		}
@@ -697,7 +704,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 		$actor = new UserIdentityValue( 0, self::UNKNOWN_USER_NAME, $this->wikiId );
 
-		[ $db, ] = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
+		[ $db, ] = $this->getDBConnectionRefForQueryFlags( IDBAccessObject::READ_LATEST );
 		$this->acquireActorId( $actor, $db );
 		return $actor;
 	}
@@ -706,10 +713,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
 	 *
 	 * @param IReadableDatabase|int $dbOrQueryFlags The database connection to perform the query on,
-	 *   or one of self::READ_* constants.
+	 *   or one of IDBAccessObject::READ_* constants.
 	 * @return UserSelectQueryBuilder
 	 */
-	public function newSelectQueryBuilder( $dbOrQueryFlags = self::READ_NORMAL ): UserSelectQueryBuilder {
+	public function newSelectQueryBuilder( $dbOrQueryFlags = IDBAccessObject::READ_NORMAL ): UserSelectQueryBuilder {
 		if ( $dbOrQueryFlags instanceof IReadableDatabase ) {
 			[ $db, $options ] = [ $dbOrQueryFlags, [] ];
 			$this->checkDatabaseDomain( $db );

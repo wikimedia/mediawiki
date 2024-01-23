@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Auth;
 
+use IDBAccessObject;
 use Language;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
@@ -1064,7 +1065,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * Determine whether a particular account can be created
 	 * @param string $username MediaWiki username
 	 * @param array $options
-	 *  - flags: (int) Bitfield of User:READ_* constants, default User::READ_NORMAL
+	 *  - flags: (int) Bitfield of IDBAccessObject::READ_* constants, default IDBAccessObject::READ_NORMAL
 	 *  - creating: (bool) For internal use only. Never specify this.
 	 * @return Status
 	 */
@@ -1074,7 +1075,7 @@ class AuthManager implements LoggerAwareInterface {
 			$options = [ 'flags' => $options ];
 		}
 		$options += [
-			'flags' => User::READ_NORMAL,
+			'flags' => IDBAccessObject::READ_NORMAL,
 			'creating' => false,
 		];
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
@@ -1240,7 +1241,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		$status = $this->canCreateAccount(
-			$username, [ 'flags' => User::READ_LOCKING, 'creating' => true ]
+			$username, [ 'flags' => IDBAccessObject::READ_LOCKING, 'creating' => true ]
 		);
 		if ( !$status->isGood() ) {
 			$this->logger->debug( __METHOD__ . ': {user} cannot be created: {reason}', [
@@ -1378,7 +1379,7 @@ class AuthManager implements LoggerAwareInterface {
 			}
 
 			// Load from primary DB for existence check
-			$user->load( User::READ_LOCKING );
+			$user->load( IDBAccessObject::READ_LOCKING );
 
 			if ( $state['userid'] === 0 ) {
 				if ( $user->isRegistered() ) {
@@ -1749,7 +1750,7 @@ class AuthManager implements LoggerAwareInterface {
 		$localId = ( $localUserIdentity && $localUserIdentity->getId() )
 			? $localUserIdentity->getId()
 			: null;
-		$flags = User::READ_NORMAL;
+		$flags = IDBAccessObject::READ_NORMAL;
 
 		// Fetch the user ID from the primary, so that we don't try to create the user
 		// when they already exist, due to replication lag
@@ -1760,12 +1761,12 @@ class AuthManager implements LoggerAwareInterface {
 		) {
 			$localUserIdentity = $this->userIdentityLookup->getUserIdentityByName(
 				$username,
-				UserIdentityLookup::READ_LATEST
+				IDBAccessObject::READ_LATEST
 			);
 			$localId = ( $localUserIdentity && $localUserIdentity->getId() )
 				? $localUserIdentity->getId()
 				: null;
-			$flags = User::READ_LATEST;
+			$flags = IDBAccessObject::READ_LATEST;
 		}
 		// @codeCoverageIgnoreEnd
 
@@ -1860,7 +1861,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Denied by providers?
 		$options = [
-			'flags' => User::READ_LATEST,
+			'flags' => IDBAccessObject::READ_LATEST,
 			'creating' => true,
 		];
 		$providers = $this->getPreAuthenticationProviders() +
@@ -2395,10 +2396,10 @@ class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Determine whether a username exists
 	 * @param string $username
-	 * @param int $flags Bitfield of User:READ_* constants
+	 * @param int $flags Bitfield of IDBAccessObject::READ_* constants
 	 * @return bool
 	 */
-	public function userExists( $username, $flags = User::READ_NORMAL ) {
+	public function userExists( $username, $flags = IDBAccessObject::READ_NORMAL ) {
 		foreach ( $this->getPrimaryAuthenticationProviders() as $provider ) {
 			if ( $provider->testUserExists( $username, $flags ) ) {
 				return true;

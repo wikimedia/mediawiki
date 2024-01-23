@@ -1842,7 +1842,7 @@ class RevisionStore
 			$pageRec = $this->pageStore->getPageByName(
 				$page->getNamespace(),
 				$page->getDBkey(),
-				PageStore::READ_LATEST
+				IDBAccessObject::READ_LATEST
 			);
 			$masterPageId = $pageRec->getId( $this->wikiId );
 			$masterLatest = $pageRec->getLatest( $this->wikiId );

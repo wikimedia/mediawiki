@@ -2,7 +2,6 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -51,7 +50,7 @@ trait RevisionSearchResultTrait {
 			$this->mRevisionRecord = $services->getRevisionLookup()->getRevisionByTitle(
 				$title,
 				$id,
-				RevisionLookup::READ_NORMAL
+				IDBAccessObject::READ_NORMAL
 			);
 			if ( $title->getNamespace() === NS_FILE ) {
 				$this->mImage = $services->getRepoGroup()->findFile( $title );

@@ -25,7 +25,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
-use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Skin\SkinComponent;
 use MediaWiki\Skin\SkinComponentFooter;
@@ -1791,7 +1790,7 @@ abstract class Skin extends ContextSource {
 				$latestRev = $revStore->getRevisionByTitle(
 					$uTalkTitle,
 					0,
-					RevisionLookup::READ_NORMAL
+					IDBAccessObject::READ_NORMAL
 				);
 				if ( $latestRev !== null ) {
 					// Singular if only 1 unseen revision, plural if several unseen revisions.

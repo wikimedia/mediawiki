@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -201,7 +202,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			$this->isTimestampValid( $row->user_newpass_time );
 	}
 
-	public function testUserExists( $username, $flags = User::READ_NORMAL ) {
+	public function testUserExists( $username, $flags = IDBAccessObject::READ_NORMAL ) {
 		$username = $this->userNameUtils->getCanonical( $username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;

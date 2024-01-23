@@ -52,7 +52,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 				$localRepo, $archiveName );
 		} else {
 			$file = $localRepo->newFile( $importableRevision->getTitle() );
-			$file->load( File::READ_LATEST );
+			$file->load( IDBAccessObject::READ_LATEST );
 			$this->logger->debug( __METHOD__ . ': Importing new file as ' . $file->getName() );
 			if ( $file->exists() && $file->getTimestamp() > $importableRevision->getTimestamp() ) {
 				$archiveName = $importableRevision->getTimestamp() . '!' . $file->getName();
