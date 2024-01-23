@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -74,7 +73,8 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * set in setUp(). Using TitleArray.
 	 */
 	public function testGetSinglePropertyMultiplePagesTitleArray() {
-		$pageProps = $this->getServiceContainer()->getPageProps();
+		$services = $this->getServiceContainer();
+		$pageProps = $services->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
 		$rows = [
@@ -82,7 +82,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 			$this->createRowFromTitle( $this->title2 )
 		];
 		$resultWrapper = new FakeResultWrapper( $rows );
-		$titles = new TitleArrayFromResult( $resultWrapper );
+		$titles = $services->getTitleFactory()->newTitleArrayFromResult( $resultWrapper );
 		$result = $pageProps->getProperties( $titles, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );

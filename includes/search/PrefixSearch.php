@@ -24,7 +24,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -273,7 +272,8 @@ abstract class PrefixSearch {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$services = MediaWikiServices::getInstance();
+		$dbr = $services->getDBLoadBalancer()->getMaintenanceConnectionRef( DB_REPLICA );
 		// Often there is only one prefix that applies to all requested namespaces,
 		// but sometimes there are two if some namespaces do not always capitalize.
 		$conds = [];
@@ -298,6 +298,6 @@ abstract class PrefixSearch {
 			->offset( $offset );
 		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
-		return iterator_to_array( new TitleArrayFromResult( $res ) );
+		return iterator_to_array( $services->getTitleFactory()->newTitleArrayFromResult( $res ) );
 	}
 }
