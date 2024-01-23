@@ -7534,6 +7534,7 @@ class MainConfigSchema {
 				'disablemail' => 0,
 				'editfont' => 'monospace',
 				'editondblclick' => 0,
+				'editrecovery' => 0,
 				'editsectiononrightclick' => 0,
 				'email-allow-new-users' => 1,
 				'enotifminoredits' => 0,

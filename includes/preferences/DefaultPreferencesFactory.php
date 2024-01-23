@@ -133,6 +133,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		MainConfigNames::DefaultSkin,
 		MainConfigNames::EmailAuthentication,
 		MainConfigNames::EmailConfirmToEdit,
+		MainConfigNames::EnableEditRecovery,
 		MainConfigNames::EnableEmail,
 		MainConfigNames::EnableUserEmail,
 		MainConfigNames::EnableUserEmailMuteList,
@@ -1208,6 +1209,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'editing/editor',
 			'label-message' => 'tog-forceeditsummary',
 		];
+
+		// T350653
+		if ( $this->options->get( MainConfigNames::EnableEditRecovery ) ) {
+			$defaultPreferences['editrecovery'] = [
+				'type' => 'toggle',
+				'section' => 'editing/editor',
+				'label-message' => 'tog-editrecovery',
+			];
+		}
+
 		$defaultPreferences['useeditwarning'] = [
 			'type' => 'toggle',
 			'section' => 'editing/editor',

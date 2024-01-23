@@ -595,7 +595,9 @@ class Article implements Page {
 			$request->response()->clearCookie( $cookieKey );
 			$outputPage->addJsConfigVars( 'wgPostEdit', $postEdit );
 			$outputPage->addModules( 'mediawiki.action.view.postEdit' ); // FIXME: test this
-			if ( $this->getContext()->getConfig()->get( 'EnableEditRecovery' ) ) {
+			if ( $this->getContext()->getConfig()->get( 'EnableEditRecovery' )
+				&& $this->userOptionsLookup->getOption( $this->getContext()->getUser(), 'editrecovery' )
+			) {
 				$outputPage->addModules( 'mediawiki.editRecovery.postEdit' );
 			}
 		}
