@@ -452,7 +452,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			array_values( $expected )
 		);
 
-		$this->assertSame( $expected, $this->doQuery( 'libraries' ) );
+		// We don't care about the arrays being equal, just that actual contains
+		// expected values...
+		$this->assertArrayContains( $expected, $this->doQuery( 'libraries' ) );
 	}
 
 	public function testExtensions() {

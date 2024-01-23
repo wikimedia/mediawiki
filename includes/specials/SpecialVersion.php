@@ -656,12 +656,12 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate an HTML table for external server-side libraries that are installed
-	 *
+	 * @internal
+	 * @since 1.44
 	 * @param array $credits
-	 * @return string
+	 * @return array
 	 */
-	protected function getExternalLibraries( array $credits ) {
+	public static function parseComposerInstalled( array $credits ) {
 		$paths = [
 			MW_INSTALL_PATH . '/vendor/composer/installed.json'
 		];
@@ -691,11 +691,21 @@ class SpecialVersion extends SpecialPage {
 			$dependencies += $installed->getInstalledDependencies();
 		}
 
+		ksort( $dependencies );
+		return $dependencies;
+	}
+
+	/**
+	 * Generate an HTML table for external libraries that are installed
+	 *
+	 * @param array $credits
+	 * @return string
+	 */
+	protected function getExternalLibraries( array $credits ) {
+		$dependencies = self::parseComposerInstalled( $credits );
 		if ( $dependencies === [] ) {
 			return '';
 		}
-
-		ksort( $dependencies );
 
 		$this->addTocSubSection( $this->msg( 'version-libraries-server' )->text(), 'mw-version-libraries-server' );
 
