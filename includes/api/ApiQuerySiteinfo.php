@@ -159,6 +159,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'autocreatetempuser':
 					$fit = $this->appendAutoCreateTempUser( $p );
 					break;
+				case 'clientlibraries':
+					$fit = $this->appendInstalledClientLibraries( $p );
+					break;
 				case 'libraries':
 					$fit = $this->appendInstalledLibraries( $p );
 					break;
@@ -671,6 +674,20 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	protected function appendInstalledClientLibraries( $property ) {
+		$data = [];
+		foreach ( SpecialVersion::parseForeignResources() as $name => $info ) {
+			$data[] = [
+				// Can't use $name as it is version suffixed (as multiple versions
+				// of a library may exist, provided by different skins/extensions)
+				'name' => $info['name'],
+				'version' => $info['version'],
+			];
+		}
+		ApiResult::setIndexedTagName( $data, 'library' );
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	protected function appendInstalledLibraries( $property ) {
 		$path = MW_INSTALL_PATH . '/vendor/composer/installed.json';
 		if ( !file_exists( $path ) ) {
@@ -999,6 +1016,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'statistics',
 					'usergroups',
 					'autocreatetempuser',
+					'clientlibraries',
 					'libraries',
 					'extensions',
 					'fileextensions',

@@ -1230,6 +1230,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-dbrepllag": "{{doc-apihelp-paramvalue|query+siteinfo|prop|dbrepllag}}",
 	"apihelp-query+siteinfo-paramvalue-prop-usergroups": "{{doc-apihelp-paramvalue|query+siteinfo|prop|usergroups}}",
 	"apihelp-query+siteinfo-paramvalue-prop-autocreatetempuser": "{{doc-apihelp-paramvalue|query+siteinfo|prop|autocreatetempuser}}",
+	"apihelp-query+siteinfo-paramvalue-prop-clientlibraries": "{{doc-apihelp-paramvalue|query+siteinfo|prop|clientlibraries}}",
 	"apihelp-query+siteinfo-paramvalue-prop-libraries": "{{doc-apihelp-paramvalue|query+siteinfo|prop|libraries}}",
 	"apihelp-query+siteinfo-paramvalue-prop-extensions": "{{doc-apihelp-paramvalue|query+siteinfo|prop|extensions}}",
 	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "{{doc-apihelp-paramvalue|query+siteinfo|prop|fileextensions}}",

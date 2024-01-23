@@ -766,11 +766,11 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate an HTML table for client-side libraries that are installed
-	 *
-	 * @return string HTML output
+	 * @internal
+	 * @since 1.42
+	 * @return array
 	 */
-	private function getClientSideLibraries() {
+	public static function parseForeignResources() {
 		$registryDirs = [ 'MediaWiki' => MW_INSTALL_PATH . '/resources/lib' ]
 			+ ExtensionRegistry::getInstance()->getAttribute( 'ForeignResourcesDir' );
 
@@ -787,7 +787,15 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 		ksort( $modules );
+		return $modules;
+	}
 
+	/**
+	 * Generate an HTML table for client-side libraries that are installed
+	 *
+	 * @return string HTML output
+	 */
+	private function getClientSideLibraries() {
 		$this->addTocSection( 'version-libraries-client', 'mw-version-libraries-client' );
 
 		$out = Html::element(
@@ -807,7 +815,7 @@ class SpecialVersion extends SpecialPage {
 			. Html::element( 'th', [], $this->msg( 'version-libraries-source' )->text() )
 			. Html::closeElement( 'tr' );
 
-		foreach ( $modules as $name => $info ) {
+		foreach ( self::parseForeignResources() as $name => $info ) {
 			// We can safely assume that the libraries' names and descriptions
 			// are written in English and aren't going to be translated,
 			// so set appropriate lang and dir attributes
