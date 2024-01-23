@@ -468,7 +468,7 @@ class FileRepo {
 			$options['latest'] = $options['bypassCache']; // b/c
 		}
 		$time = $options['time'] ?? false;
-		$flags = !empty( $options['latest'] ) ? File::READ_LATEST : 0;
+		$flags = !empty( $options['latest'] ) ? IDBAccessObject::READ_LATEST : 0;
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {

@@ -665,7 +665,7 @@ abstract class UploadBase {
 		$warnings = [];
 
 		$localFile = $this->getLocalFile();
-		$localFile->load( File::READ_LATEST );
+		$localFile->load( IDBAccessObject::READ_LATEST );
 		$filename = $localFile->getName();
 		$hash = $this->getTempFileSha1Base36();
 
@@ -908,7 +908,7 @@ abstract class UploadBase {
 	public function performUpload(
 		$comment, $pageText, $watch, $user, $tags = [], ?string $watchlistExpiry = null
 	) {
-		$this->getLocalFile()->load( File::READ_LATEST );
+		$this->getLocalFile()->load( IDBAccessObject::READ_LATEST );
 		$props = $this->mFileProps;
 
 		$error = null;
@@ -1968,7 +1968,7 @@ abstract class UploadBase {
 	private function checkOverwrite( Authority $performer ) {
 		// First check whether the local file can be overwritten
 		$file = $this->getLocalFile();
-		$file->load( File::READ_LATEST );
+		$file->load( IDBAccessObject::READ_LATEST );
 		if ( $file->exists() ) {
 			if ( !self::userCanReUpload( $performer, $file ) ) {
 				return [ 'fileexists-forbidden', $file->getName() ];

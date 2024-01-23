@@ -92,15 +92,15 @@ interface RevisionLookup extends IDBAccessObject {
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
-	 *      RevisionLookup::READ_LATEST: Select the data from the primary DB
-	 *      RevisionLookup::READ_LOCKING: Select & lock the data from the primary DB
-	 *      Default: RevisionLookup::READ_NORMAL
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
+	 *      Default: IDBAccessObject::READ_NORMAL
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTimestamp(
 		$page,
 		string $timestamp,
-		int $flags = RevisionLookup::READ_NORMAL
+		int $flags = IDBAccessObject::READ_NORMAL
 	): ?RevisionRecord;
 
 	/**

@@ -1479,7 +1479,7 @@ abstract class ContentHandler {
 		if ( $revRecord == null ) {
 			// If the content represents a brand new page it's possible
 			// we need to fetch it from the primary.
-			$page->loadPageData( WikiPage::READ_LATEST );
+			$page->loadPageData( IDBAccessObject::READ_LATEST );
 			$revRecord = $page->getRevisionRecord();
 			if ( $revRecord == null ) {
 				$text = $page->getTitle()->getPrefixedText();

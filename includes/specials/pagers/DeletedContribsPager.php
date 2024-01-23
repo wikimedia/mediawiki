@@ -24,6 +24,7 @@ namespace MediaWiki\Pager;
 use ChangesList;
 use ChangeTags;
 use IContextSource;
+use IDBAccessObject;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
@@ -161,7 +162,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		foreach ( $revisionRows as $row ) {
 			$revisions[$row->ar_rev_id] = $this->revisionFactory->newRevisionFromArchiveRow(
 				$row,
-				RevisionFactory::READ_NORMAL,
+				IDBAccessObject::READ_NORMAL,
 				Title::makeTitle( $row->ar_namespace, $row->ar_title )
 			);
 		}
@@ -323,7 +324,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 
 		$revRecord = $this->revisions[$row->ar_rev_id] ?? $this->revisionFactory->newRevisionFromArchiveRow(
 				$row,
-				RevisionFactory::READ_NORMAL,
+				IDBAccessObject::READ_NORMAL,
 				$page
 			);
 

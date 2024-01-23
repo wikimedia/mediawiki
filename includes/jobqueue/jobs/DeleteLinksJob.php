@@ -53,7 +53,7 @@ class DeleteLinksJob extends Job {
 
 		$services = MediaWikiServices::getInstance();
 		$wikiPageFactory = $services->getWikiPageFactory();
-		if ( $wikiPageFactory->newFromID( $pageId, WikiPage::READ_LATEST ) ) {
+		if ( $wikiPageFactory->newFromID( $pageId, IDBAccessObject::READ_LATEST ) ) {
 			// The page was restored somehow or something went wrong
 			$this->setLastError( "deleteLinks: Page #$pageId exists" );
 			return false;

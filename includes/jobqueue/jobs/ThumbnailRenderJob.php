@@ -41,7 +41,7 @@ class ThumbnailRenderJob extends Job {
 
 		$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
 			->newFile( $this->title );
-		$file->load( File::READ_LATEST );
+		$file->load( IDBAccessObject::READ_LATEST );
 
 		if ( $file && $file->exists() ) {
 			if ( $uploadThumbnailRenderMethod === 'jobqueue' ) {

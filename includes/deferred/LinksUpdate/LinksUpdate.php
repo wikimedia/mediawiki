@@ -23,6 +23,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use BacklinkCache;
+use IDBAccessObject;
 use Job;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DataUpdate;
@@ -140,7 +141,7 @@ class LinksUpdate extends DataUpdate {
 	public function doUpdate() {
 		if ( !$this->mId ) {
 			// NOTE: subclasses may initialize mId directly!
-			$this->mId = $this->mTitle->getArticleID( Title::READ_LATEST );
+			$this->mId = $this->mTitle->getArticleID( IDBAccessObject::READ_LATEST );
 		}
 
 		if ( !$this->mId ) {

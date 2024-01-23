@@ -20,6 +20,7 @@
 
 namespace MediaWiki\User\Options;
 
+use IDBAccessObject;
 use Language;
 use LanguageConverter;
 use MediaWiki\Config\ServiceOptions;
@@ -156,7 +157,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		string $oname,
 		$defaultOverride = null,
 		bool $ignoreHidden = false,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	) {
 		$this->verifyUsable( $user, __METHOD__ );
 		return $this->getDefaultOption( $oname ) ?? $defaultOverride;
@@ -168,7 +169,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	public function getOptions(
 		UserIdentity $user,
 		int $flags = 0,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$this->verifyUsable( $user, __METHOD__ );
 		if ( $flags & self::EXCLUDE_DEFAULTS ) {

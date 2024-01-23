@@ -29,6 +29,7 @@ use ChangeTags;
 use DerivativeContext;
 use ErrorPageError;
 use File;
+use IDBAccessObject;
 use LinkBatch;
 use LocalRepo;
 use LogEventsList;
@@ -1237,7 +1238,7 @@ class SpecialUndelete extends SpecialPage {
 	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$revRecord = $this->revisionStore->newRevisionFromArchiveRow(
 				$row,
-				RevisionStore::READ_NORMAL,
+				IDBAccessObject::READ_NORMAL,
 				$this->mTargetObj
 			);
 

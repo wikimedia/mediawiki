@@ -848,7 +848,7 @@ class MessageCache implements LoggerAwareInterface {
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		foreach ( $replacements as [ $title ] ) {
 			$page = $wikiPageFactory->newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
-			$page->loadPageData( $page::READ_LATEST );
+			$page->loadPageData( IDBAccessObject::READ_LATEST );
 			$text = $this->getMessageTextFromContent( $page->getContent() );
 			// Remember the text for the blob store update later on
 			$newTextByTitle[$title] = $text ?? '';

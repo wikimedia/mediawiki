@@ -998,7 +998,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * Overridden by LocalFile to actually query the DB
 	 *
 	 * @stable to override
-	 * @param int $flags Bitfield of File::READ_* constants
+	 * @param int $flags Bitfield of IDBAccessObject::READ_* constants
 	 */
 	public function load( $flags = 0 ) {
 	}

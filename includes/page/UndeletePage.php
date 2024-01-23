@@ -21,8 +21,8 @@
 namespace MediaWiki\Page;
 
 use ChangeTags;
-use File;
 use HTMLCacheUpdateJob;
+use IDBAccessObject;
 use JobQueueGroup;
 use LocalFile;
 use ManualLogEntry;
@@ -309,7 +309,7 @@ class UndeletePage {
 		if ( $restoreFiles && $this->page->getNamespace() === NS_FILE ) {
 			/** @var LocalFile $img */
 			$img = $this->repoGroup->getLocalRepo()->newFile( $this->page );
-			$img->load( File::READ_LATEST );
+			$img->load( IDBAccessObject::READ_LATEST );
 			$this->fileStatus = $img->restore( $this->fileVersions, $this->unsuppress );
 			if ( !$this->fileStatus->isOK() ) {
 				return $this->fileStatus;
@@ -563,7 +563,7 @@ class UndeletePage {
 		# Does this page already exist? We'll have to update it...
 		if ( !$created ) {
 			# Load latest data for the current page (T33179)
-			$wikiPage->loadPageData( WikiPage::READ_EXCLUSIVE );
+			$wikiPage->loadPageData( IDBAccessObject::READ_EXCLUSIVE );
 			$pageId = $wikiPage->getId();
 			$oldcountable = $wikiPage->isCountable();
 
@@ -572,7 +572,7 @@ class UndeletePage {
 			if ( $latestRevId ) {
 				$previousTimestamp = $revisionStore->getTimestampFromId(
 					$latestRevId,
-					RevisionStore::READ_LATEST
+					IDBAccessObject::READ_LATEST
 				);
 			}
 			if ( $previousTimestamp === false ) {

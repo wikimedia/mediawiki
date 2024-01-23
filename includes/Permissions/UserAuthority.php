@@ -21,6 +21,7 @@
 namespace MediaWiki\Permissions;
 
 use IContextSource;
+use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -445,9 +446,9 @@ class UserAuthority implements Authority {
 	}
 
 	/** @inheritDoc */
-	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block {
+	public function getBlock( int $freshness = IDBAccessObject::READ_NORMAL ): ?Block {
 		// Cache block info, so we don't have to fetch it again unnecessarily.
-		if ( $this->userBlock === null || $freshness === self::READ_LATEST ) {
+		if ( $this->userBlock === null || $freshness === IDBAccessObject::READ_LATEST ) {
 			$this->userBlock = $this->actor->getBlock( $freshness );
 
 			// if we got null back, remember this as "false"

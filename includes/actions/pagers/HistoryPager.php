@@ -27,6 +27,7 @@ use ChangesList;
 use ChangeTags;
 use HistoryAction;
 use HtmlArmor;
+use IDBAccessObject;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
@@ -207,7 +208,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			}
 			$this->revisions[] = $this->revisionStore->newRevisionFromRow(
 				$row,
-				RevisionStore::READ_NORMAL,
+				IDBAccessObject::READ_NORMAL,
 				$title
 			);
 		}

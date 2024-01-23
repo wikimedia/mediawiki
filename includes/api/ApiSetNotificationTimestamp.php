@@ -136,12 +136,12 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				$timestamp = null;
 				$currRev = $this->revisionStore->getRevisionById(
 					$params['newerthanrevid'],
-					Title::READ_LATEST
+					IDBAccessObject::READ_LATEST
 				);
 				if ( $currRev ) {
 					$nextRev = $this->revisionStore->getNextRevision(
 						$currRev,
-						Title::READ_LATEST
+						IDBAccessObject::READ_LATEST
 					);
 					if ( $nextRev ) {
 						$timestamp = $dbw->timestamp( $nextRev->getTimestamp() );

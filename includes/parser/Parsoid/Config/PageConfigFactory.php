@@ -19,6 +19,7 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
+use IDBAccessObject;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
@@ -131,7 +132,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 				// were pending writes, but this codepath should be very rare.
 				// [T259855]
 				$revisionRecord = $this->revisionStore->getRevisionById(
-					$revision, RevisionStore::READ_LATEST
+					$revision, IDBAccessObject::READ_LATEST
 				);
 				$success = ( $revisionRecord !== null ) ? 'success' : 'failure';
 				LoggerFactory::getInstance( 'Parsoid' )->error(

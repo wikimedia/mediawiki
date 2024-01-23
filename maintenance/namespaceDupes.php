@@ -707,7 +707,7 @@ class NamespaceDupes extends Maintenance {
 		$sourceTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$sourceTitle->resetArticleID( $id );
 		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $sourceTitle );
-		$wikiPage->loadPageData( WikiPage::READ_LATEST );
+		$wikiPage->loadPageData( IDBAccessObject::READ_LATEST );
 
 		$destId = $newTitle->getArticleID();
 		$this->beginTransaction( $dbw, __METHOD__ );

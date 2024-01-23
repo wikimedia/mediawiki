@@ -2,6 +2,7 @@
 
 namespace MediaWiki\RenameUser;
 
+use IDBAccessObject;
 use JobQueueGroup;
 use JobSpecification;
 use ManualLogEntry;
@@ -9,7 +10,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Title\TitleFactory;
@@ -213,7 +213,7 @@ class RenameuserSQL {
 		// Again, avoids user being logged in with old name.
 		$user = $this->userFactory->newFromId( $this->uid );
 
-		$user->load( Authority::READ_LATEST );
+		$user->load( IDBAccessObject::READ_LATEST );
 		SessionManager::singleton()->invalidateSessionsForUser( $user );
 
 		// Purge user cache
@@ -370,7 +370,7 @@ class RenameuserSQL {
 				$dbw->startAtomic( $fname );
 				// Clear caches and inform authentication plugins
 				$user = $this->userFactory->newFromId( $this->uid );
-				$user->load( Authority::READ_LATEST );
+				$user->load( IDBAccessObject::READ_LATEST );
 				// Trigger the UserSaveSettings hook
 				$user->saveSettings();
 				$this->hookRunner->onRenameUserComplete( $this->uid, $this->old, $this->new );

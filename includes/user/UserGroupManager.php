@@ -628,7 +628,7 @@ class UserGroupManager implements IDBAccessObject {
 				// we stop checking for ipblock-exempt via here. We do this by setting the second
 				// param to true.
 				// See T270145.
-				$block = $user->getBlock( Authority::READ_LATEST, true );
+				$block = $user->getBlock( IDBAccessObject::READ_LATEST, true );
 				return $block && $block->isSitewide();
 			case APCOND_ISBOT:
 				return in_array( 'bot', $this->groupPermissionsLookup

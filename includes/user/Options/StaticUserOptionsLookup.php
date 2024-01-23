@@ -2,6 +2,7 @@
 
 namespace MediaWiki\User\Options;
 
+use IDBAccessObject;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -37,7 +38,7 @@ class StaticUserOptionsLookup extends UserOptionsLookup {
 		string $oname,
 		$defaultOverride = null,
 		bool $ignoreHidden = false,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	) {
 		$userOptions = $this->getOptions( $user );
 		if ( array_key_exists( $oname, $userOptions ) ) {
@@ -51,7 +52,7 @@ class StaticUserOptionsLookup extends UserOptionsLookup {
 	public function getOptions(
 		UserIdentity $user,
 		int $flags = 0,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$userOptions = [];
 		if ( $user->isRegistered() ) {

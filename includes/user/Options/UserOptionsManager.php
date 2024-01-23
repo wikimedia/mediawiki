@@ -25,6 +25,7 @@ use HTMLCheckMatrix;
 use HTMLFormField;
 use HTMLMultiSelectField;
 use IContextSource;
+use IDBAccessObject;
 use InvalidArgumentException;
 use LanguageCode;
 use LanguageConverter;
@@ -144,7 +145,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		string $oname,
 		$defaultOverride = null,
 		bool $ignoreHidden = false,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	) {
 		# We want 'disabled' preferences to always behave as the default value for
 		# users, even if they have set the option explicitly in their settings (ie they
@@ -168,7 +169,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	public function getOptions(
 		UserIdentity $user,
 		int $flags = 0,
-		int $queryFlags = self::READ_NORMAL
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$options = $this->loadUserOptions( $user, $queryFlags );
 
@@ -253,7 +254,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		IContextSource $context,
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
 	) {
-		$oldOptions = $this->loadUserOptions( $user, self::READ_LATEST );
+		$oldOptions = $this->loadUserOptions( $user, IDBAccessObject::READ_LATEST );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
 
 		if ( !is_array( $resetKinds ) ) {
@@ -524,7 +525,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	public function loadUserOptions(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL,
+		int $queryFlags = IDBAccessObject::READ_NORMAL,
 		array $data = null
 	): array {
 		$userKey = $this->getCacheKey( $user );
@@ -621,7 +622,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	private function loadOriginalOptions(
 		UserIdentity $user,
-		int $queryFlags = self::READ_NORMAL,
+		int $queryFlags = IDBAccessObject::READ_NORMAL,
 		array $data = null
 	): array {
 		$userKey = $this->getCacheKey( $user );
@@ -703,7 +704,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			return true;
 		}
 		$userKey = $this->getCacheKey( $user );
-		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey] ?? self::READ_NONE;
+		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey] ?? IDBAccessObject::READ_NONE;
 		return $queryFlagsUsed >= $queryFlags;
 	}
 

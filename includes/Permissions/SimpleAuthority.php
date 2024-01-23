@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Permissions;
 
+use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\Block;
 use MediaWiki\Page\PageIdentity;
@@ -67,7 +68,7 @@ class SimpleAuthority implements Authority {
 	}
 
 	/** @inheritDoc */
-	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block {
+	public function getBlock( int $freshness = IDBAccessObject::READ_NORMAL ): ?Block {
 		return null;
 	}
 

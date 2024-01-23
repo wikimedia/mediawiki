@@ -620,7 +620,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		}
 
 		$oldId = $this->revision->getParentId();
-		$flags = $this->usePrimary() ? RevisionStore::READ_LATEST : 0;
+		$flags = $this->usePrimary() ? IDBAccessObject::READ_LATEST : 0;
 		$this->parentRevision = $oldId
 			? $this->revisionStore->getRevisionById( $oldId, $flags )
 			: null;
@@ -1473,7 +1473,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		}
 
 		$wikiPage = $this->getWikiPage();
-		$wikiPage->loadPageData( WikiPage::READ_LATEST );
+		$wikiPage->loadPageData( IDBAccessObject::READ_LATEST );
 		if ( !$wikiPage->exists() ) {
 			// page deleted while deferring the update
 			return [];

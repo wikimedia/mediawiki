@@ -29,6 +29,7 @@ use DeprecationHelper;
 use DerivativeContext;
 use ErrorPageError;
 use IContextSource;
+use IDBAccessObject;
 use LogPage;
 use ManualLogEntry;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -2148,7 +2149,7 @@ class EditPage implements IEditObject {
 
 		// Load the page data from the primary DB. If anything changes in the meantime,
 		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->page->loadPageData( WikiPage::READ_LATEST );
+		$this->page->loadPageData( IDBAccessObject::READ_LATEST );
 		$new = !$this->page->exists();
 
 		// We do this last, as some of the other constraints are more specific
@@ -2691,7 +2692,7 @@ class EditPage implements IEditObject {
 		$currentRevisionRecord = $this->revisionStore->getRevisionByTitle(
 			$this->mTitle,
 			0,
-			RevisionStore::READ_LATEST
+			IDBAccessObject::READ_LATEST
 		);
 		$currentContent = $currentRevisionRecord
 			? $currentRevisionRecord->getContent( SlotRecord::MAIN )
@@ -2726,13 +2727,13 @@ class EditPage implements IEditObject {
 			if ( $this->editRevId ) {
 				$revRecord = $this->revisionStore->getRevisionById(
 					$this->editRevId,
-					RevisionStore::READ_LATEST
+					IDBAccessObject::READ_LATEST
 				);
 			} elseif ( $this->edittime ) {
 				$revRecord = $this->revisionStore->getRevisionByTimestamp(
 					$this->getTitle(),
 					$this->edittime,
-					RevisionStore::READ_LATEST
+					IDBAccessObject::READ_LATEST
 				);
 			}
 			$this->mExpectedParentRevision = $revRecord;

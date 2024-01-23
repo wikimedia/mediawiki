@@ -26,12 +26,12 @@
 namespace MediaWiki\Deferred;
 
 use Content;
+use IDBAccessObject;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageStore;
 use SearchEngine;
 
 /**
@@ -170,7 +170,7 @@ class SearchUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * Get ExistingPageRecord for the SearchUpdate $id using PageStore::READ_LATEST
+	 * Get ExistingPageRecord for the SearchUpdate $id using IDBAccessObject::READ_LATEST
 	 * and ensure using the same ExistingPageRecord object if there are multiple
 	 * SearchEngine types.
 	 *
@@ -181,7 +181,7 @@ class SearchUpdate implements DeferrableUpdate {
 	private function getLatestPage() {
 		if ( !isset( $this->latestPage ) ) {
 			$this->latestPage = MediaWikiServices::getInstance()->getPageStore()
-				->getPageById( $this->id, PageStore::READ_LATEST );
+				->getPageById( $this->id, IDBAccessObject::READ_LATEST );
 		}
 
 		return $this->latestPage;

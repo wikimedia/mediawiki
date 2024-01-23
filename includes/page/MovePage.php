@@ -23,6 +23,7 @@ namespace MediaWiki\Page;
 use ChangeTags;
 use ContentHandler;
 use File;
+use IDBAccessObject;
 use LogFormatter;
 use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
@@ -345,7 +346,7 @@ class MovePage {
 
 		if ( $this->oldTitle->equals( $this->newTitle ) ) {
 			$status->fatal( 'selfmove' );
-		} elseif ( $this->newTitle->getArticleID( Title::READ_LATEST /* T272386 */ )
+		} elseif ( $this->newTitle->getArticleID( IDBAccessObject::READ_LATEST /* T272386 */ )
 			&& !$this->isValidMoveTarget()
 		) {
 			// The move is allowed only if (1) the target doesn't exist, or (2) the target is a
@@ -429,7 +430,7 @@ class MovePage {
 		}
 
 		$file = $this->repoGroup->getLocalRepo()->newFile( $this->oldTitle );
-		$file->load( File::READ_LATEST );
+		$file->load( IDBAccessObject::READ_LATEST );
 		if ( $file->exists() ) {
 			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
 				$status->fatal( 'imageinvalidfilename' );
@@ -453,7 +454,7 @@ class MovePage {
 		# Is it an existing file?
 		if ( $this->newTitle->inNamespace( NS_FILE ) ) {
 			$file = $this->repoGroup->getLocalRepo()->newFile( $this->newTitle );
-			$file->load( File::READ_LATEST );
+			$file->load( IDBAccessObject::READ_LATEST );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists" );
 				return false;
@@ -468,7 +469,7 @@ class MovePage {
 		$rev = $this->revisionStore->getRevisionByTitle(
 			$this->newTitle,
 			0,
-			RevisionStore::READ_LATEST
+			IDBAccessObject::READ_LATEST
 		);
 		if ( !is_object( $rev ) ) {
 			return false;
@@ -695,7 +696,7 @@ class MovePage {
 
 		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $userObj );
 
-		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
+		$pageid = $this->oldTitle->getArticleID( IDBAccessObject::READ_LATEST );
 		$protected = $this->restrictionStore->isProtected( $this->oldTitle );
 
 		// Attempt the actual move
@@ -828,7 +829,7 @@ class MovePage {
 	 */
 	private function moveFile( $oldTitle, $newTitle ) {
 		$file = $this->repoGroup->getLocalRepo()->newFile( $oldTitle );
-		$file->load( File::READ_LATEST );
+		$file->load( IDBAccessObject::READ_LATEST );
 		if ( $file->exists() ) {
 			$status = $file->move( $newTitle );
 		} else {
@@ -866,7 +867,7 @@ class MovePage {
 		$createRedirect = true,
 		array $changeTags = []
 	): Status {
-		if ( $nt->getArticleID( Title::READ_LATEST ) ) {
+		if ( $nt->getArticleID( IDBAccessObject::READ_LATEST ) ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
 		} else {
@@ -971,7 +972,7 @@ class MovePage {
 			$user
 		);
 		if ( $nullRevision === null ) {
-			$id = $nt->getArticleID( Title::READ_EXCLUSIVE );
+			$id = $nt->getArticleID( IDBAccessObject::READ_EXCLUSIVE );
 			$msg = 'Failed to create null revision while moving page ID ' .
 				$oldid . ' to ' . $nt->getPrefixedDBkey() . " (page ID $id)";
 
@@ -997,7 +998,7 @@ class MovePage {
 		}
 
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
-		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
+		$newpage->loadPageData( IDBAccessObject::READ_LOCKING ); // T48397
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision, null, $isRedirect );
 
@@ -1024,7 +1025,7 @@ class MovePage {
 		$redirectRevision = null;
 		if ( $redirectContent ) {
 			$redirectArticle = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
-			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // T48397
+			$redirectArticle->loadFromRow( false, IDBAccessObject::READ_LOCKING ); // T48397
 			$redirectRevision = $redirectArticle->newPageUpdater( $user )
 				->setContent( SlotRecord::MAIN, $redirectContent )
 				->addTags( $changeTags )

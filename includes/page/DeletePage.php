@@ -8,6 +8,7 @@ use ChangeTags;
 use Content;
 use DeletePageJob;
 use Exception;
+use IDBAccessObject;
 use JobQueueGroup;
 use LogicException;
 use ManualLogEntry;
@@ -537,10 +538,10 @@ class DeletePage {
 		$dbw = $this->lbFactory->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$id = $page->getId();
 		// T98706: lock the page from various other updates but avoid using
-		// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
+		// IDBAccessObject::READ_LOCKING as that will carry over the FOR UPDATE to
 		// the revisions queries (which also JOIN on user). Only lock the page
 		// row and CAS check on page_latest to see if the trx snapshot matches.
 		$lockedLatest = $page->lockAndGetLatest();
@@ -893,7 +894,7 @@ class DeletePage {
 		);
 
 		// Reset the page object and the Title object
-		$page->loadFromRow( false, WikiPage::READ_LATEST );
+		$page->loadFromRow( false, IDBAccessObject::READ_LATEST );
 
 		// Search engine
 		DeferredUpdates::addUpdate( new SearchUpdate( $page->getId(), $page->getTitle() ) );

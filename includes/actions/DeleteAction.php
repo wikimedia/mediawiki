@@ -146,7 +146,7 @@ class DeleteAction extends FormAction {
 
 		# Better double-check that it hasn't been deleted yet!
 		$article->getPage()->loadPageData(
-			$request->wasPosted() ? WikiPage::READ_LATEST : WikiPage::READ_NORMAL
+			$request->wasPosted() ? IDBAccessObject::READ_LATEST : IDBAccessObject::READ_NORMAL
 		);
 		if ( !$article->getPage()->exists() ) {
 			$outputPage->setPageTitleMsg(

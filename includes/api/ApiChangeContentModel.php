@@ -2,7 +2,6 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\ContentModelChangeFactory;
-use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -88,9 +87,9 @@ class ApiChangeContentModel extends ApiBase {
 			'result' => 'Success',
 			'title' => $title->getPrefixedText(),
 			'pageid' => $title->getArticleID(),
-			'contentmodel' => $title->getContentModel( Title::READ_LATEST ),
+			'contentmodel' => $title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'logid' => $logid,
-			'revid' => $title->getLatestRevID( Title::READ_LATEST ),
+			'revid' => $title->getLatestRevID( IDBAccessObject::READ_LATEST ),
 		];
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );

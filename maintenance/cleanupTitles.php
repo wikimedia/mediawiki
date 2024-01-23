@@ -140,7 +140,7 @@ class TitleCleanup extends TableCleanup {
 	 * @param Title $title
 	 */
 	protected function moveInconsistentPage( $row, Title $title ) {
-		if ( $title->exists( Title::READ_LATEST )
+		if ( $title->exists( IDBAccessObject::READ_LATEST )
 			|| $title->getInterwiki()
 			|| !$title->canExist()
 		) {

@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Specials;
 
+use IDBAccessObject;
 use LogEventsList;
 use LogPage;
 use ManualLogEntry;
@@ -254,7 +255,7 @@ class SpecialUserRights extends SpecialPage {
 			$targetUser = $this->mFetchedUser;
 			$conflictCheck = $request->getVal( 'conflictcheck-originalgroups' );
 			$conflictCheck = ( $conflictCheck === '' ) ? [] : explode( ',', $conflictCheck );
-			$userGroups = $this->userGroupManager->getUserGroups( $targetUser, UserGroupManager::READ_LATEST );
+			$userGroups = $this->userGroupManager->getUserGroups( $targetUser, IDBAccessObject::READ_LATEST );
 
 			if ( $userGroups !== $conflictCheck ) {
 				$out->addHTML( Html::errorBox(

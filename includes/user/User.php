@@ -222,8 +222,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/** @var WebRequest|null */
 	private $mRequest;
 
-	/** @var int User::READ_* constant bitfield used to load data */
-	protected $queryFlagsUsed = self::READ_NORMAL;
+	/** @var int IDBAccessObject::READ_* constant bitfield used to load data */
+	protected $queryFlagsUsed = IDBAccessObject::READ_NORMAL;
 
 	/**
 	 * @var UserAuthority|null lazy-initialized Authority of this user
@@ -346,9 +346,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Load the user table data for this object from the source given by mFrom.
 	 *
-	 * @param int $flags User::READ_* constant bitfield
+	 * @param int $flags IDBAccessObject::READ_* constant bitfield
 	 */
-	public function load( $flags = self::READ_NORMAL ) {
+	public function load( $flags = IDBAccessObject::READ_NORMAL ) {
 		global $wgFullyInitialised;
 
 		if ( $this->mLoadedItems === true ) {
@@ -382,7 +382,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				if ( $this->mId != 0 ) {
 					$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 					if ( $lb->hasOrMadeRecentPrimaryChanges() ) {
-						$flags |= self::READ_LATEST;
+						$flags |= IDBAccessObject::READ_LATEST;
 						$this->queryFlagsUsed = $flags;
 					}
 				}
@@ -394,7 +394,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				// Make sure this thread sees its own changes
 				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 				if ( $lb->hasOrMadeRecentPrimaryChanges() ) {
-					$flags |= self::READ_LATEST;
+					$flags |= IDBAccessObject::READ_LATEST;
 					$this->queryFlagsUsed = $flags;
 				}
 
@@ -439,10 +439,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Load user table data, given mId has already been set.
-	 * @param int $flags User::READ_* constant bitfield
+	 * @param int $flags IDBAccessObject::READ_* constant bitfield
 	 * @return bool False if the ID does not exist, true otherwise
 	 */
-	public function loadFromId( $flags = self::READ_NORMAL ) {
+	public function loadFromId( $flags = IDBAccessObject::READ_NORMAL ) {
 		if ( $this->mId == 0 ) {
 			// Anonymous users are not in the database (don't need cache)
 			$this->loadDefaults();
@@ -451,7 +451,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		// Try cache (unless this needs data from the primary DB).
 		// NOTE: if this thread called saveSettings(), the cache was cleared.
-		$latest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
+		$latest = DBAccessObjectUtils::hasFlags( $flags, IDBAccessObject::READ_LATEST );
 		if ( $latest ) {
 			if ( !$this->loadFromDatabase( $flags ) ) {
 				// Can't load from ID
@@ -509,7 +509,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				);
 				wfDebug( "User: cache miss for user {$this->mId}" );
 
-				$this->loadFromDatabase( self::READ_NORMAL );
+				$this->loadFromDatabase( IDBAccessObject::READ_NORMAL );
 
 				$data = [];
 				foreach ( self::$mCacheVars as $name ) {
@@ -698,10 +698,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * @param string $code Confirmation code
-	 * @param int $flags User::READ_* bitfield
+	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 * @return User|null
 	 */
-	public static function newFromConfirmationCode( $code, $flags = self::READ_NORMAL ) {
+	public static function newFromConfirmationCode( $code, $flags = IDBAccessObject::READ_NORMAL ) {
 		return MediaWikiServices::getInstance()
 			->getUserFactory()
 			->newFromConfirmationCode( (string)$code, $flags );
@@ -1084,10 +1084,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Load user data from the database.
 	 * $this->mId must be set, this is how the user is identified.
 	 *
-	 * @param int $flags User::READ_* constant bitfield
+	 * @param int $flags IDBAccessObject::READ_* constant bitfield
 	 * @return bool True if the user exists, false if the user is anonymous
 	 */
-	public function loadFromDatabase( $flags = self::READ_LATEST ) {
+	public function loadFromDatabase( $flags = IDBAccessObject::READ_LATEST ) {
 		// Paranoia
 		$this->mId = intval( $this->mId );
 
@@ -1420,7 +1420,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
-	 * @param int|bool $freshness One of the Authority::READ_XXX constants.
+	 * @param int|bool $freshness One of the IDBAccessObject::READ_XXX constants.
 	 *                 For backwards compatibility, a boolean is also accepted,
 	 *                 with true meaning READ_NORMAL and false meaning
 	 *                 READ_LATEST.
@@ -1430,13 +1430,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return ?AbstractBlock
 	 */
 	public function getBlock(
-		$freshness = self::READ_NORMAL,
+		$freshness = IDBAccessObject::READ_NORMAL,
 		$disableIpBlockExemptChecking = false
 	): ?Block {
 		if ( is_bool( $freshness ) ) {
 			$fromReplica = $freshness;
 		} else {
-			$fromReplica = ( $freshness !== self::READ_LATEST );
+			$fromReplica = ( $freshness !== IDBAccessObject::READ_LATEST );
 		}
 
 		if ( $disableIpBlockExemptChecking ) {
@@ -2518,7 +2518,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				// Maybe the problem was a missed cache update; clear it to be safe
 				$this->clearSharedCache( 'refresh' );
 				// User was changed in the meantime or loaded with stale data
-				$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'primary' : 'replica';
+				$from = ( $this->queryFlagsUsed & IDBAccessObject::READ_LATEST ) ? 'primary' : 'replica';
 				LoggerFactory::getInstance( 'preferences' )->warning(
 					"CAS update failed on user_touched for user ID '{user_id}' ({db_flag} read)",
 					[ 'user_id' => $this->mId, 'db_flag' => $from ]
@@ -2550,10 +2550,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * If only this user's username is known, and it exists, return the user ID.
 	 *
-	 * @param int $flags Bitfield of User:READ_* constants; useful for existence checks
+	 * @param int $flags Bitfield of IDBAccessObject::READ_* constants; useful for existence checks
 	 * @return int
 	 */
-	public function idForName( $flags = self::READ_NORMAL ) {
+	public function idForName( $flags = IDBAccessObject::READ_NORMAL ) {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) {
 			return 0;
@@ -2655,7 +2655,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$dbw
 				);
 				// Load the user from primary DB to avoid replica lag
-				$newUser->load( self::READ_LATEST );
+				$newUser->load( IDBAccessObject::READ_LATEST );
 			} else {
 				$newUser = null;
 			}

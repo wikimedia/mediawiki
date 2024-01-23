@@ -25,7 +25,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -82,7 +81,7 @@ class ApiUserrights extends ApiBase {
 		// Deny if the user is blocked and doesn't have the full 'userrights' permission.
 		// This matches what Special:UserRights does for the web UI.
 		if ( !$this->getAuthority()->isAllowed( 'userrights' ) ) {
-			$block = $pUser->getBlock( Authority::READ_LATEST );
+			$block = $pUser->getBlock( IDBAccessObject::READ_LATEST );
 			if ( $block && $block->isSitewide() ) {
 				$this->dieBlocked( $block );
 			}

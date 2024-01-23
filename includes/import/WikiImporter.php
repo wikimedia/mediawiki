@@ -532,7 +532,7 @@ class WikiImporter {
 		if ( !$this->disableStatisticsUpdate ) {
 			$page = $this->wikiPageFactory->newFromTitle( $pageIdentity );
 
-			$page->loadPageData( WikiPage::READ_LATEST );
+			$page->loadPageData( IDBAccessObject::READ_LATEST );
 			$rev = $page->getRevisionRecord();
 			if ( $rev === null ) {
 

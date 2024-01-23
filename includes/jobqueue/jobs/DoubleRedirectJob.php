@@ -152,7 +152,7 @@ class DoubleRedirectJob extends Job {
 		}
 
 		$targetRev = $this->revisionLookup
-			->getRevisionByTitle( $this->title, 0, RevisionLookup::READ_LATEST );
+			->getRevisionByTitle( $this->title, 0, IDBAccessObject::READ_LATEST );
 		if ( !$targetRev ) {
 			wfDebug( __METHOD__ . ": target redirect already deleted, ignoring" );
 

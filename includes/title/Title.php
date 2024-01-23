@@ -94,7 +94,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Used to be GAID_FOR_UPDATE define(). Used with getArticleID() and friends
 	 * to use the primary DB and inject it into link cache.
-	 * @deprecated since 1.34, use Title::READ_LATEST instead.
+	 * @deprecated since 1.34, use IDBAccessObject::READ_LATEST instead.
 	 */
 	public const GAID_FOR_UPDATE = 512;
 
@@ -540,11 +540,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Create a new Title from an article ID
 	 *
 	 * @param int $id The page_id corresponding to the Title to create
-	 * @param int $flags Bitfield of class READ_* constants
+	 * @param int $flags Bitfield of IDBAccessObject::READ_* constants
 	 * @return Title|null The new object, or null on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
-		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? IDBAccessObject::READ_LATEST : 0; // b/c
 		$pageStore = MediaWikiServices::getInstance()->getPageStore();
 		$dbr = DBAccessObjectUtils::getDBFromRecency(
 			MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
@@ -1071,7 +1071,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *         read from the primary database, bypassing caches.
 	 */
 	private function shouldReadLatest( int $flags ) {
-		return ( $flags & ( self::READ_LATEST | self::GAID_FOR_UPDATE ) ) > 0;
+		return ( $flags & ( IDBAccessObject::READ_LATEST | self::GAID_FOR_UPDATE ) ) > 0;
 	}
 
 	/**
@@ -1079,7 +1079,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @todo Deprecate this in favor of SlotRecord::getModel()
 	 *
-	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 * @param int $flags Either a bitfield of IDBAccessObject::READ_* constants or GAID_FOR_UPDATE
 	 * @return string Content model id
 	 */
 	public function getContentModel( $flags = 0 ) {
@@ -2390,7 +2390,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @deprecated since 1.37, no public replacement
 	 *
-	 * @param int $flags A bit field. If self::READ_LATEST is set, skip replicas and read
+	 * @param int $flags A bit field. If IDBAccessObject::READ_LATEST is set, skip replicas and read
 	 *  from the primary DB.
 	 */
 	public function loadRestrictions( $flags = 0 ) {
@@ -2582,7 +2582,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
 	 *
-	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 * @param int $flags Either a bitfield of IDBAccessObject::READ_* constants or GAID_FOR_UPDATE
 	 * @return int The ID
 	 */
 	public function getArticleID( $flags = 0 ) {
@@ -2610,7 +2610,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * To find a redirect target, just call WikiPage::getRedirectTarget() and
 	 * check if it returns null, there's no need to call this first.
 	 *
-	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 * @param int $flags Either a bitfield of IDBAccessObject::READ_* constants or GAID_FOR_UPDATE
 	 * @return bool
 	 */
 	public function isRedirect( $flags = 0 ) {
@@ -2625,7 +2625,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * What is the length of this page?
 	 * Uses link cache, adding it if necessary
 	 *
-	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 * @param int $flags Either a bitfield of IDBAccessObject::READ_* constants or GAID_FOR_UPDATE
 	 * @return int
 	 */
 	public function getLength( $flags = 0 ) {
@@ -2643,7 +2643,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * What is the page_latest field for this page?
 	 *
-	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 * @param int $flags Either a bitfield of IDBAccessObject::READ_* constants or GAID_FOR_UPDATE
 	 * @return int Int or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
@@ -3084,7 +3084,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	public function isNewPage( $flags = self::READ_NORMAL ) {
+	public function isNewPage( $flags = IDBAccessObject::READ_NORMAL ) {
 		// NOTE: we rely on PHP casting "0" to false here.
 		return (bool)$this->getFieldFromPageStore( 'page_is_new', $flags );
 	}
@@ -3190,7 +3190,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * If you want to know if a title can be meaningfully viewed, you should
 	 * probably call the isKnown() method instead.
 	 *
-	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 * @param int $flags Either a bitfield of IDBAccessObject::READ_* constants or GAID_FOR_UPDATE
 	 * @return bool
 	 */
 	public function exists( $flags = 0 ): bool {
@@ -3448,7 +3448,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param int $flags one of the READ_XXX constants.
 	 * @return string|false Last-touched timestamp
 	 */
-	public function getTouched( int $flags = self::READ_NORMAL ) {
+	public function getTouched( int $flags = IDBAccessObject::READ_NORMAL ) {
 		$touched = $this->getFieldFromPageStore( 'page_touched', $flags );
 		return $touched ? MWTimestamp::convert( TS_MW, $touched ) : false;
 	}
@@ -3775,11 +3775,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * @param string $field
-	 * @param int $flags Bitfield of class READ_* constants
+	 * @param int $flags Bitfield of IDBAccessObject::READ_* constants
 	 * @return string|false
 	 */
 	private function getFieldFromPageStore( $field, $flags ) {
-		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? IDBAccessObject::READ_LATEST : 0; // b/c
 
 		$pageStore = MediaWikiServices::getInstance()->getPageStore();
 
@@ -3787,7 +3787,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			throw new InvalidArgumentException( "Unknown field: $field" );
 		}
 
-		if ( $flags === self::READ_NORMAL && $this->mArticleID === 0 ) {
+		if ( $flags === IDBAccessObject::READ_NORMAL && $this->mArticleID === 0 ) {
 			// page does not exist
 			return false;
 		}
@@ -3920,7 +3920,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @note For now, this method queries the database on every call.
 	 * @since 1.36
 	 *
-	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 * @param int $flags Either a bitfield of IDBAccessObject::READ_* constants or GAID_FOR_UPDATE
 	 *
 	 * @return ExistingPageRecord
 	 * @throws PreconditionException if the page does not exist, or is not a proper page,
