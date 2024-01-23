@@ -1581,7 +1581,7 @@ class PermissionManager {
 	public function getUserPermissions( UserIdentity $user ): array {
 		$rightsCacheKey = $this->getRightsCacheKey( $user );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
-			$userObj = User::newFromIdentity( $user );
+			$userObj = $this->userFactory->newFromUserIdentity( $user );
 			$rights = $this->groupPermissionsLookup->getGroupPermissions(
 				$this->userGroupManager->getUserEffectiveGroups( $user )
 			);
