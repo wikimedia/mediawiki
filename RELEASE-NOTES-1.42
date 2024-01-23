@@ -65,6 +65,12 @@ For notes on 1.41.x and older releases, see HISTORY.
   a new "silenced-error" channel.
 * (T347347) The CLI installer accepts a "--with-developmentsettings" argument
   to require the DevelopmentSettings.php file at install time.
+* (T350054) MediaWiki's ResourceLoader has been updated to add basic support
+  for code-splitting (aka "tree-shaking") when using the Codex component
+  library. A ResourceLoader module can now specify a list of "codexComponents"
+  in its module defintion and ensure that only the code for those components
+  gets sent to the client. More information:
+  https://www.mediawiki.org/wiki/Codex#Subset_of_components
 * …
 
 === External library changes in 1.42 ===
@@ -80,7 +86,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 * Updated OOUI from v0.48.1 to v0.48.4.
 * Updated codex, codex-design-tokens and codex-icons
-  from v1.0.0 to v1.2.1.
+  from v1.0.0 to v1.3.0.
 * Updated wikimedia/minify from v2.5.1 to v2.7.0.
 * Updated Vue from v3.2.37-compat to v3.3.9.
 * Updated pear/mail from 1.5.1 to 1.6.0.

@@ -27,19 +27,19 @@
   "_useIconOnlyButton.js": {
     "file": "useIconOnlyButton.js",
     "imports": [
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ]
   },
   "_useLabelChecker.js": {
     "file": "useLabelChecker.js",
     "imports": [
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ]
   },
-  "_useSlotContents2.js": {
-    "file": "useSlotContents2.js"
+  "_useSlotContents.js": {
+    "file": "useSlotContents.js"
   },
   "src/components/accordion/Accordion.css": {
     "file": "CdxAccordion-legacy.css",
@@ -49,17 +49,16 @@
     "css": [
       "CdxAccordion-legacy.css"
     ],
-    "file": "CdxAccordion.js",
+    "file": "CdxAccordion.cjs",
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
-      "src/composables/useGeneratedId.ts",
       "__plugin-vue_export-helper.js",
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
@@ -73,7 +72,7 @@
     "css": [
       "CdxButtonGroup-legacy.css"
     ],
-    "file": "CdxButtonGroup.js",
+    "file": "CdxButtonGroup.cjs",
     "imports": [
       "_buttonHelpers.js",
       "src/components/button/Button.vue",
@@ -81,7 +80,7 @@
       "__plugin-vue_export-helper.js",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts"
@@ -97,12 +96,12 @@
     "css": [
       "CdxButton-legacy.css"
     ],
-    "file": "CdxButton.js",
+    "file": "CdxButton.cjs",
     "imports": [
       "_constants.js",
       "_useIconOnlyButton.js",
       "__plugin-vue_export-helper.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
@@ -116,7 +115,7 @@
     "css": [
       "CdxCard-legacy.css"
     ],
-    "file": "CdxCard.js",
+    "file": "CdxCard.cjs",
     "imports": [
       "_Icon.js",
       "src/components/thumbnail/Thumbnail.vue",
@@ -136,7 +135,7 @@
     "css": [
       "CdxCheckbox-legacy.css"
     ],
-    "file": "CdxCheckbox.js",
+    "file": "CdxCheckbox.cjs",
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
@@ -149,7 +148,7 @@
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts",
       "src/composables/useSplitAttributes.ts",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/composables/useComputedDisabled.ts"
     ],
@@ -164,7 +163,7 @@
     "css": [
       "CdxChipInput-legacy.css"
     ],
-    "file": "CdxChipInput.js",
+    "file": "CdxChipInput.cjs",
     "imports": [
       "src/components/button/Button.vue",
       "_Icon.js",
@@ -174,7 +173,7 @@
       "src/composables/useFieldData.ts",
       "src/composables/useComputedDirection.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/composables/useComputedLanguage.ts",
       "src/composables/useComputedDisabled.ts"
@@ -190,7 +189,7 @@
     "css": [
       "CdxCombobox-legacy.css"
     ],
-    "file": "CdxCombobox.js",
+    "file": "CdxCombobox.cjs",
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
@@ -206,7 +205,7 @@
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/components/menu-item/MenuItem.vue",
       "src/components/thumbnail/Thumbnail.vue",
@@ -226,7 +225,7 @@
     "css": [
       "CdxDialog-legacy.css"
     ],
-    "file": "CdxDialog.js",
+    "file": "CdxDialog.cjs",
     "imports": [
       "src/components/button/Button.vue",
       "_Icon.js",
@@ -235,7 +234,7 @@
       "__plugin-vue_export-helper.js",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts"
@@ -251,7 +250,7 @@
     "css": [
       "CdxField-legacy.css"
     ],
-    "file": "CdxField.js",
+    "file": "CdxField.cjs",
     "imports": [
       "src/components/label/Label.vue",
       "src/components/message/Message.vue",
@@ -266,14 +265,14 @@
       "src/composables/useSplitAttributes.ts",
       "src/components/button/Button.vue",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
     "src": "src/components/field/Field.vue"
   },
   "src/components/icon/Icon.vue": {
-    "file": "CdxIcon.js",
+    "file": "CdxIcon.cjs",
     "imports": [
       "_Icon.js",
       "__plugin-vue_export-helper.js",
@@ -292,7 +291,7 @@
     "css": [
       "CdxInfoChip-legacy.css"
     ],
-    "file": "CdxInfoChip.js",
+    "file": "CdxInfoChip.cjs",
     "imports": [
       "_constants.js",
       "_Icon.js",
@@ -311,7 +310,7 @@
     "css": [
       "CdxLabel-legacy.css"
     ],
-    "file": "CdxLabel.js",
+    "file": "CdxLabel.cjs",
     "imports": [
       "_Icon.js",
       "src/composables/useFieldData.ts",
@@ -333,7 +332,7 @@
     "css": [
       "CdxLookup-legacy.css"
     ],
-    "file": "CdxLookup.js",
+    "file": "CdxLookup.cjs",
     "imports": [
       "src/components/menu/Menu.vue",
       "src/components/text-input/TextInput.vue",
@@ -366,7 +365,7 @@
     "css": [
       "CdxMenuItem-legacy.css"
     ],
-    "file": "CdxMenuItem.js",
+    "file": "CdxMenuItem.cjs",
     "imports": [
       "_Icon.js",
       "src/components/thumbnail/Thumbnail.vue",
@@ -387,7 +386,7 @@
     "css": [
       "CdxMenu-legacy.css"
     ],
-    "file": "CdxMenu.js",
+    "file": "CdxMenu.cjs",
     "imports": [
       "src/components/menu-item/MenuItem.vue",
       "src/components/progress-bar/ProgressBar.vue",
@@ -414,7 +413,7 @@
     "css": [
       "CdxMessage-legacy.css"
     ],
-    "file": "CdxMessage.js",
+    "file": "CdxMessage.cjs",
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
@@ -423,7 +422,7 @@
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
@@ -437,7 +436,7 @@
     "css": [
       "CdxProgressBar-legacy.css"
     ],
-    "file": "CdxProgressBar.js",
+    "file": "CdxProgressBar.cjs",
     "imports": [
       "src/composables/useWarnOnce.ts",
       "__plugin-vue_export-helper.js"
@@ -453,7 +452,7 @@
     "css": [
       "CdxRadio-legacy.css"
     ],
-    "file": "CdxRadio.js",
+    "file": "CdxRadio.cjs",
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
@@ -466,7 +465,7 @@
       "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "src/composables/useSplitAttributes.ts",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/composables/useComputedDisabled.ts"
     ],
@@ -481,7 +480,7 @@
     "css": [
       "CdxSearchInput-legacy.css"
     ],
-    "file": "CdxSearchInput.js",
+    "file": "CdxSearchInput.cjs",
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
@@ -494,7 +493,7 @@
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/composables/useComputedDisabled.ts"
     ],
@@ -509,7 +508,7 @@
     "css": [
       "CdxSearchResultTitle-legacy.css"
     ],
-    "file": "CdxSearchResultTitle.js",
+    "file": "CdxSearchResultTitle.cjs",
     "imports": [
       "__plugin-vue_export-helper.js"
     ],
@@ -524,7 +523,7 @@
     "css": [
       "CdxSelect-legacy.css"
     ],
-    "file": "CdxSelect.js",
+    "file": "CdxSelect.cjs",
     "imports": [
       "_Icon.js",
       "src/components/menu/Menu.vue",
@@ -556,7 +555,7 @@
     "css": [
       "CdxTab-legacy.css"
     ],
-    "file": "CdxTab.js",
+    "file": "CdxTab.cjs",
     "imports": [
       "_constants.js",
       "__plugin-vue_export-helper.js"
@@ -572,7 +571,7 @@
     "css": [
       "CdxTabs-legacy.css"
     ],
-    "file": "CdxTabs.js",
+    "file": "CdxTabs.cjs",
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
@@ -581,7 +580,7 @@
       "src/composables/useComputedDirection.ts",
       "src/composables/useModelWrapper.ts",
       "src/composables/useIntersectionObserver.ts",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "_constants.js",
       "__plugin-vue_export-helper.js",
       "src/composables/useComputedLanguage.ts",
@@ -599,7 +598,7 @@
     "css": [
       "CdxTextArea-legacy.css"
     ],
-    "file": "CdxTextArea.js",
+    "file": "CdxTextArea.cjs",
     "imports": [
       "_Icon.js",
       "src/composables/useSplitAttributes.ts",
@@ -622,7 +621,7 @@
     "css": [
       "CdxTextInput-legacy.css"
     ],
-    "file": "CdxTextInput.js",
+    "file": "CdxTextInput.cjs",
     "imports": [
       "_Icon.js",
       "_constants.js",
@@ -645,7 +644,7 @@
     "css": [
       "CdxThumbnail-legacy.css"
     ],
-    "file": "CdxThumbnail.js",
+    "file": "CdxThumbnail.cjs",
     "imports": [
       "_Icon.js",
       "_constants.js",
@@ -664,7 +663,7 @@
     "css": [
       "CdxToggleButtonGroup-legacy.css"
     ],
-    "file": "CdxToggleButtonGroup.js",
+    "file": "CdxToggleButtonGroup.cjs",
     "imports": [
       "_buttonHelpers.js",
       "_Icon.js",
@@ -674,7 +673,7 @@
       "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
@@ -688,11 +687,11 @@
     "css": [
       "CdxToggleButton-legacy.css"
     ],
-    "file": "CdxToggleButton.js",
+    "file": "CdxToggleButton.cjs",
     "imports": [
       "_useIconOnlyButton.js",
       "__plugin-vue_export-helper.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ],
     "isEntry": true,
@@ -706,7 +705,7 @@
     "css": [
       "CdxToggleSwitch-legacy.css"
     ],
-    "file": "CdxToggleSwitch.js",
+    "file": "CdxToggleSwitch.cjs",
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
@@ -719,7 +718,7 @@
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts",
       "_constants.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/composables/useWarnOnce.ts",
       "src/composables/useComputedDisabled.ts"
     ],
@@ -734,7 +733,7 @@
     "css": [
       "CdxTypeaheadSearch-legacy.css"
     ],
-    "file": "CdxTypeaheadSearch.js",
+    "file": "CdxTypeaheadSearch.cjs",
     "imports": [
       "_Icon.js",
       "src/components/menu/Menu.vue",
@@ -753,7 +752,7 @@
       "src/composables/useIntersectionObserver.ts",
       "src/components/button/Button.vue",
       "_useIconOnlyButton.js",
-      "_useSlotContents2.js",
+      "_useSlotContents.js",
       "src/components/text-input/TextInput.vue",
       "src/composables/useModelWrapper.ts",
       "src/composables/useFieldData.ts",
@@ -763,12 +762,12 @@
     "src": "src/components/typeahead-search/TypeaheadSearch.vue"
   },
   "src/composables/useComputedDirection.ts": {
-    "file": "useComputedDirection.js",
+    "file": "useComputedDirection.cjs",
     "isEntry": true,
     "src": "src/composables/useComputedDirection.ts"
   },
   "src/composables/useComputedDisabled.ts": {
-    "file": "useComputedDisabled.js",
+    "file": "useComputedDisabled.cjs",
     "imports": [
       "_constants.js"
     ],
@@ -776,12 +775,12 @@
     "src": "src/composables/useComputedDisabled.ts"
   },
   "src/composables/useComputedLanguage.ts": {
-    "file": "useComputedLanguage.js",
+    "file": "useComputedLanguage.cjs",
     "isEntry": true,
     "src": "src/composables/useComputedLanguage.ts"
   },
   "src/composables/useFieldData.ts": {
-    "file": "useFieldData.js",
+    "file": "useFieldData.cjs",
     "imports": [
       "src/composables/useComputedDisabled.ts",
       "_constants.js"
@@ -790,12 +789,12 @@
     "src": "src/composables/useFieldData.ts"
   },
   "src/composables/useFloatingMenu.ts": {
-    "file": "useFloatingMenu.js",
+    "file": "useFloatingMenu.cjs",
     "isEntry": true,
     "src": "src/composables/useFloatingMenu.ts"
   },
   "src/composables/useGeneratedId.ts": {
-    "file": "useGeneratedId.js",
+    "file": "useGeneratedId.cjs",
     "imports": [
       "_constants.js"
     ],
@@ -803,35 +802,35 @@
     "src": "src/composables/useGeneratedId.ts"
   },
   "src/composables/useIntersectionObserver.ts": {
-    "file": "useIntersectionObserver.js",
+    "file": "useIntersectionObserver.cjs",
     "isEntry": true,
     "src": "src/composables/useIntersectionObserver.ts"
   },
   "src/composables/useModelWrapper.ts": {
-    "file": "useModelWrapper.js",
+    "file": "useModelWrapper.cjs",
     "isEntry": true,
     "src": "src/composables/useModelWrapper.ts"
   },
   "src/composables/useResizeObserver.ts": {
-    "file": "useResizeObserver.js",
+    "file": "useResizeObserver.cjs",
     "isEntry": true,
     "src": "src/composables/useResizeObserver.ts"
   },
   "src/composables/useSlotContents.ts": {
-    "file": "useSlotContents.js",
+    "file": "useSlotContents.cjs",
     "imports": [
-      "_useSlotContents2.js"
+      "_useSlotContents.js"
     ],
     "isEntry": true,
     "src": "src/composables/useSlotContents.ts"
   },
   "src/composables/useSplitAttributes.ts": {
-    "file": "useSplitAttributes.js",
+    "file": "useSplitAttributes.cjs",
     "isEntry": true,
     "src": "src/composables/useSplitAttributes.ts"
   },
   "src/composables/useWarnOnce.ts": {
-    "file": "useWarnOnce.js",
+    "file": "useWarnOnce.cjs",
     "isEntry": true,
     "src": "src/composables/useWarnOnce.ts"
   }
