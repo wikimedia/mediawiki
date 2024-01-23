@@ -281,15 +281,16 @@ class CodexModule extends FileModule {
 		);
 
 		// Generate an array of manifest keys that meet the following conditions:
-		// * The "file" property has a ".js" file extension
+		// * The "file" property has a ".js", ".mjs", or ".cjs" file extension
 		// * Entry has a "file" property that matches one of the specified codexComponents (sans extension)
 		// * The manifest item is an intentional entry point and not a generated chunk
 		$manifestKeys = array_keys( array_filter( $manifest, function ( $val ) {
 			$file = pathinfo( $val[ 'file' ] );
+			$pattern = '/^(js|mjs|cjs)$/';
 
 			if (
 				!array_key_exists( 'extension', $file ) ||
-				$file[ 'extension' ] !== 'js' ||
+				!preg_match( $pattern, $file[ 'extension' ] ) ||
 				!in_array( $file[ 'filename' ], $this->codexComponents )
 			) {
 				return false;
@@ -315,12 +316,19 @@ class CodexModule extends FileModule {
 			}
 		}
 
-		// Add the JS files to the module's package file (unless this is a style-only module)
+		// Add the JS files to the module's package file (unless this is a style-only module).
 		if ( !( $this->isStyleOnly ) ) {
 			$exports = [];
 			foreach ( $this->codexComponents as $component ) {
+				// Don't make assumptions about the component filename or extension; instead
+				// consult the array of scripts for the exact name and extension of the file
+				// we care about
+				$componentFileName = current( array_filter( $scripts, static function ( $el ) use ( $component ) {
+					return str_contains( $el, $component );
+				} ) );
+
 				$exports[ $component ] = new HtmlJsCode(
-					'require( ' . Html::encodeJsVar( "./_codex/$component.js" ) . ' )'
+					'require( ' . Html::encodeJsVar( "./_codex/$componentFileName" ) . ' )'
 				);
 			}
 
