@@ -14,7 +14,18 @@ var changeDebounceTimer = null;
 // Number of miliseconds to debounce form input.
 const debounceTime = 5000;
 
-mw.hook( 'wikipage.editform' ).add( onLoadHandler );
+// This module is loaded for every edit form, but not all should have Edit Recovery functioning.
+const isUndo = $( 'input[name="wpUndoAfter"]' ).length > 0;
+const isOldRevision = $( 'input[name="oldid"]' ).val() > 0;
+const isConflict = mw.config.get( 'wgEditMessage' ) === 'editconflict';
+const useEditRecovery = !isUndo && !isOldRevision && !isConflict;
+if ( useEditRecovery ) {
+	mw.hook( 'wikipage.editform' ).add( onLoadHandler );
+} else {
+	// Always remove the data-saved flag when editing without Edit Recovery.
+	// It may have been set by a previous editing session (within 5 minutes) that did use ER.
+	mw.storage.session.remove( 'EditRecovery-data-saved' );
+}
 
 const windowManager = OO.ui.getWindowManager();
 windowManager.addWindows( [ new mw.widgets.AbandonEditDialog() ] );

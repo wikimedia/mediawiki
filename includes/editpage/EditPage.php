@@ -2764,9 +2764,6 @@ class EditPage implements IEditObject {
 
 		if ( $this->context->getConfig()->get( MainConfigNames::EnableEditRecovery )
 			&& $this->userOptionsLookup->getOption( $user, 'editrecovery' )
-			&& !$this->isConflict
-			&& !$this->context->getRequest()->getInt( 'undo' )
-			&& !$this->oldid
 		) {
 			$out->addModules( 'mediawiki.editRecovery.edit' );
 		}
