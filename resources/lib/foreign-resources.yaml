@@ -145,20 +145,20 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 1.2.1
+  version: 1.3.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.2.1.tgz
-  integrity: sha384-k33npWIdQ5VchHSa/EbYlggF1mwfRUzwyQGkFZIWj9slLHnAHc4e6dHKufP328jS
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.3.0.tgz
+  integrity: sha384-+SqmAnEtF/NG5z6CvM+UZ+cxPgKNLdgel1c0Slzpq+wv93mFFOJERrH2J/o48t33
   dest:
+    package/dist/codex.cjs:
     package/dist/codex.js:
-    package/dist/codex.mjs:
-    package/dist/codex.umd.js:
+    package/dist/codex.umd.cjs:
     package/dist/codex.style.css:
     package/dist/codex.style-rtl.css:
     package/dist/codex.style-legacy.css:
     package/dist/codex.style-legacy-rtl.css:
+    package/dist/codex-search.cjs:
     package/dist/codex-search.js:
-    package/dist/codex-search.mjs:
     package/dist/codex-search.style.css:
     package/dist/codex-search.style-rtl.css:
     package/dist/codex-search.style-legacy.css:
@@ -172,10 +172,10 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 1.2.1
+  version: 1.3.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.2.1.tgz
-  integrity: sha384-7vQ8stTHhg3wmbjdwdHslNhURcsRltfkoSQ/6OqXZ5RgFvDQtF6c0xmupgnd49Rn
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.3.0.tgz
+  integrity: sha384-mGZ15cOvTVl+42+AlrwRgXc8K1vYnAyiM6y5k/Er+8NQYWe3E+r7pJLwYxeYjWAC
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -186,10 +186,10 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
-  version: 1.2.1
+  version: 1.3.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.2.1.tgz
-  integrity: sha384-ZAY1DdWK6RXhbJHF30aVNp9BRPc0XSez5UDP94P3j8s1netUV/p6sGWIv9d16UB2
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.3.0.tgz
+  integrity: sha384-aGUQd/zDAtI/lE9A6Pt05h9+UpIQau2PJ+WJeO6EPKSY3qVIV5YS0iqXVdUEoN4t
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:

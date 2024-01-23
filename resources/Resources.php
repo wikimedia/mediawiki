@@ -618,7 +618,7 @@ return [
 
 	'@wikimedia/codex' => [
 		'packageFiles' => [
-			'resources/lib/codex/codex.umd.js',
+			'resources/lib/codex/codex.umd.cjs',
 		],
 		'dependencies' => [
 			'vue',
@@ -645,7 +645,7 @@ return [
 
 	'@wikimedia/codex-search' => [
 		'packageFiles' => [
-			'resources/lib/codex/codex-search.js',
+			'resources/lib/codex/codex-search.cjs',
 		],
 		'dependencies' => [
 			'vue',
