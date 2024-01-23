@@ -48,11 +48,11 @@ class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob 
 
 	public function run() {
 		$services = MediaWikiServices::getInstance();
-		$lbFactory = $services->getDBLoadBalancerFactory();
+		$dbProvider = $services->getConnectionProvider();
 		$rowsPerQuery = $services->getMainConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 
-		$dbw = $lbFactory->getPrimaryDatabase();
-		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$dbw = $dbProvider->getPrimaryDatabase();
+		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 		if ( !isset( $this->params['timestamp'] ) ) {
 			$timestamp = null;
 			$timestampCond = $dbw->expr( 'wl_notificationtimestamp', '!=', null );
@@ -84,7 +84,7 @@ class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob 
 					->andWhere( $casTimeCond )
 					->caller( __METHOD__ )->execute();
 				if ( !$firstBatch ) {
-					$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+					$dbProvider->commitAndWaitForReplication( __METHOD__, $ticket );
 				}
 				$firstBatch = false;
 			}

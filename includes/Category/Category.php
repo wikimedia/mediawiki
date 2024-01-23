@@ -78,7 +78,7 @@ class Category {
 
 	private function __construct() {
 		$services = MediaWikiServices::getInstance();
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->titleFactory = $services->getTitleFactory();
 	}

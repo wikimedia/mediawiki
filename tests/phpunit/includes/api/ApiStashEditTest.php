@@ -29,7 +29,7 @@ class ApiStashEditTest extends ApiTestCase {
 			->getUserEditTracker() );
 		$this->setService( 'PageEditStash', new PageEditStash(
 			new HashBagOStuff( [] ),
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getConnectionProvider(),
 			new NullLogger(),
 			new NullStatsdDataFactory(),
 			$this->getServiceContainer()->getUserEditTracker(),

@@ -68,7 +68,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 	protected function doIncrementalUpdate() {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
-		$lbFactory = $services->getDBLoadBalancerFactory();
+		$dbProvider = $services->getConnectionProvider();
 		$batchSize = $config->get( MainConfigNames::UpdateRowsPerQuery );
 
 		$id = $this->mId;
@@ -116,7 +116,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 				->where( [ 'rc_id' => $rcIdBatch ] )
 				->caller( __METHOD__ )->execute();
 			if ( count( $rcIdBatches ) > 1 ) {
-				$lbFactory->commitAndWaitForReplication(
+				$dbProvider->commitAndWaitForReplication(
 					__METHOD__, $this->ticket, [ 'domain' => $dbw->getDomainID() ]
 				);
 			}

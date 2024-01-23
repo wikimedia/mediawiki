@@ -81,14 +81,14 @@ class RecentChangesUpdateJob extends Job {
 			MainConfigNames::RCMaxAge );
 		$updateRowsPerQuery = $services->getMainConfig()->get(
 			MainConfigNames::UpdateRowsPerQuery );
-		$factory = $services->getDBLoadBalancerFactory();
-		$dbw = $factory->getPrimaryDatabase();
+		$dbProvider = $services->getConnectionProvider();
+		$dbw = $dbProvider->getPrimaryDatabase();
 		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
 			// already in progress
 			return;
 		}
-		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
+		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$cutoff = $dbw->timestamp( time() - $rcMaxAge );
 		$rcQuery = RecentChange::getQueryInfo();
@@ -114,7 +114,7 @@ class RecentChangesUpdateJob extends Job {
 					->caller( __METHOD__ )->execute();
 				$hookRunner->onRecentChangesPurgeRows( $rows );
 				// There might be more, so try waiting for replica DBs
-				if ( !$factory->commitAndWaitForReplication(
+				if ( !$dbProvider->commitAndWaitForReplication(
 					__METHOD__, $ticket, [ 'timeout' => 3 ]
 				) ) {
 					// Another job will continue anyway
@@ -135,9 +135,9 @@ class RecentChangesUpdateJob extends Job {
 		// Pull in the full window of active users in this update
 		$window = $activeUserDays * 86400;
 
-		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$dbw = $factory->getPrimaryDatabase();
-		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
+		$dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$dbw = $dbProvider->getPrimaryDatabase();
+		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 
 		$lockKey = $dbw->getDomainID() . '-activeusers';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
@@ -222,7 +222,7 @@ class RecentChangesUpdateJob extends Job {
 					->insertInto( 'querycachetwo' )
 					->rows( $rowBatch )
 					->caller( __METHOD__ )->execute();
-				$factory->commitAndWaitForReplication( __METHOD__, $ticket );
+				$dbProvider->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 

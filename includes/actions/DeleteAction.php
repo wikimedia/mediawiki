@@ -86,7 +86,7 @@ class DeleteAction extends FormAction {
 		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->titleFormatter = $services->getTitleFormatter();
 		$this->titleFactory = $services->getTitleFactory();
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 	}
 
 	public function getName() {

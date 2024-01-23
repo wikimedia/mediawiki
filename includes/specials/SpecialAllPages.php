@@ -70,7 +70,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		parent::__construct( 'Allpages' );
 		// This class is extended and therefore falls back to global state - T265309
 		$services = MediaWikiServices::getInstance();
-		$this->dbProvider = $dbProvider ?? $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $dbProvider ?? $services->getConnectionProvider();
 		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
 		$this->pageStore = $pageStore ?? $services->getPageStore();
 	}

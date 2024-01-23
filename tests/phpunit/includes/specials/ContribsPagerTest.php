@@ -53,7 +53,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->revisionStore = $services->getRevisionStore();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->hookContainer = $services->getHookContainer();
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->pager = $this->getContribsPager( [

@@ -45,7 +45,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 				$overrides['defaults'] ?? []
 			),
 			$services->getLanguageConverterFactory(),
-			$overrides['dbp'] ?? $services->getDBLoadBalancerFactory(),
+			$overrides['dbp'] ?? $services->getConnectionProvider(),
 			new NullLogger(),
 			$overrides['hookContainer'] ?? $services->getHookContainer(),
 			$services->getUserFactory(),

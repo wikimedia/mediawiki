@@ -25,7 +25,7 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 
 	private function newHandler() {
 		return new MediaLinksHandler(
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getConnectionProvider(),
 			$this->makeMockRepoGroup( [ 'Existing.jpg' ] ),
 			$this->getServiceContainer()->getPageStore()
 		);
@@ -145,7 +145,7 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 		$title = __CLASS__ . '_Foo';
 
 		$handler = new class (
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getConnectionProvider(),
 			$this->makeMockRepoGroup( [ 'Existing.jpg' ] ),
 			$this->getServiceContainer()->getPageStore()
 		) extends MediaLinksHandler {

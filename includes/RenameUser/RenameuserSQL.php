@@ -132,7 +132,7 @@ class RenameuserSQL {
 	public function __construct( $old, $new, $uid, User $renamer, $options = [] ) {
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->userFactory = $services->getUserFactory();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->titleFactory = $services->getTitleFactory();

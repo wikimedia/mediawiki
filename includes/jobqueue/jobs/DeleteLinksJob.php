@@ -59,12 +59,12 @@ class DeleteLinksJob extends Job {
 			return false;
 		}
 
-		$factory = $services->getDBLoadBalancerFactory();
+		$dbProvider = $services->getConnectionProvider();
 		$timestamp = $this->params['timestamp'] ?? null;
 		$page = $wikiPageFactory->newFromTitle( $this->title ); // title when deleted
 
 		$update = new LinksDeletionUpdate( $page, $pageId, $timestamp );
-		$update->setTransactionTicket( $factory->getEmptyTransactionTicket( __METHOD__ ) );
+		$update->setTransactionTicket( $dbProvider->getEmptyTransactionTicket( __METHOD__ ) );
 		$update->doUpdate();
 
 		return true;

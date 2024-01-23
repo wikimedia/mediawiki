@@ -169,7 +169,7 @@ class Article implements Page {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->archivedRevisionLookup = $services->getArchivedRevisionLookup();
-		$this->dbProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->blockStore = $services->getDatabaseBlockStore();
 	}
 

@@ -38,7 +38,7 @@ class RevDelFileItem extends RevDelItem {
 	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->file = static::initFile( $list, $row );
-		$this->dbProvider = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$this->dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 	}
 
 	/**

@@ -79,7 +79,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
 			->onlyMethods( $mockedMethods )
 			->setConstructorArgs( [
-				$mwServices->getDBLoadBalancerFactory(),
+				$mwServices->getConnectionProvider(),
 				$mwServices->getUserOptionsLookup(),
 				$params
 			] )
@@ -140,7 +140,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		] );
 
 		$provider = new TemporaryPasswordPrimaryAuthenticationProvider(
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getUserOptionsLookup()
 		);
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
@@ -150,7 +150,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$this->assertSame( 101, $providerPriv->passwordReminderResendTime );
 
 		$provider = new TemporaryPasswordPrimaryAuthenticationProvider(
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
+			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getUserOptionsLookup(),
 			[
 				'emailEnabled' => true,
