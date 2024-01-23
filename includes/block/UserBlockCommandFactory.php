@@ -25,7 +25,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -64,9 +63,6 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/** @var TitleFactory */
 	private $titleFactory;
 
-	/** @var TempUserConfig */
-	private $tempUserConfig;
-
 	/** @var BlockActionInfo */
 	private $blockActionInfo;
 
@@ -86,7 +82,6 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
-	 * @param TempUserConfig $tempUserConfig
 	 * @param BlockActionInfo $blockActionInfo
 	 */
 	public function __construct(
@@ -100,7 +95,6 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		UserEditTracker $userEditTracker,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
-		TempUserConfig $tempUserConfig,
 		BlockActionInfo $blockActionInfo
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -115,7 +109,6 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
-		$this->tempUserConfig = $tempUserConfig;
 		$this->blockActionInfo = $blockActionInfo;
 	}
 
@@ -153,7 +146,6 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->userEditTracker,
 			$this->logger,
 			$this->titleFactory,
-			$this->tempUserConfig,
 			$target,
 			$performer,
 			$expiry,

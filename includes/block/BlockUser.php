@@ -37,7 +37,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -103,9 +102,6 @@ class BlockUser {
 
 	/** @var TitleFactory */
 	private $titleFactory;
-
-	/** @var TempUserConfig */
-	private $tempUserConfig;
 
 	/** @var BlockActionInfo */
 	private $blockActionInfo;
@@ -191,7 +187,6 @@ class BlockUser {
 	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
-	 * @param TempUserConfig $tempUserConfig
 	 * @param string|UserIdentity $target Target of the block
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
@@ -222,7 +217,6 @@ class BlockUser {
 		UserEditTracker $userEditTracker,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
-		TempUserConfig $tempUserConfig,
 		$target,
 		Authority $performer,
 		string $expiry,
@@ -247,7 +241,6 @@ class BlockUser {
 		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
-		$this->tempUserConfig = $tempUserConfig;
 		$this->blockActionInfo = $blockActionInfo;
 
 		// Process block target
@@ -308,8 +301,7 @@ class BlockUser {
 
 		if (
 			isset( $blockOptions['isHideUser'] ) &&
-			$this->targetType === AbstractBlock::TYPE_USER &&
-			!$this->tempUserConfig->isTempName( $this->target->getName() )
+			$this->targetType === AbstractBlock::TYPE_USER
 		) {
 			$this->isHideUser = $blockOptions['isHideUser'];
 		}
