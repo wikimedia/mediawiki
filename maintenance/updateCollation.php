@@ -32,7 +32,6 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Maintenance script that will find all rows in the categorylinks table
@@ -48,10 +47,10 @@ class UpdateCollation extends Maintenance {
 	private $numRowsProcessed = 0;
 
 	/** @var bool */
-	private $dryRun;
+	private $force;
 
 	/** @var bool */
-	private $force;
+	private $dryRun;
 
 	/** @var bool */
 	private $verboseStats;
@@ -70,9 +69,6 @@ class UpdateCollation extends Maintenance {
 
 	/** @var IMaintainableDatabase */
 	private $dbw;
-
-	/** @var LBFactory */
-	private $lbFactory;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
@@ -115,7 +111,6 @@ TEXT
 	private function init() {
 		$services = $this->getServiceContainer();
 		$this->namespaceInfo = $services->getNamespaceInfo();
-		$this->lbFactory = $services->getDBLoadBalancerFactory();
 
 		if ( $this->hasOption( 'target-collation' ) ) {
 			$this->collationName = $this->getOption( 'target-collation' );
@@ -156,16 +151,6 @@ TEXT
 			}
 		}
 
-		// Locally at least, (my local is a rather old version of mysql)
-		// mysql seems to filesort if there is both an equality
-		// (but not for an inequality) condition on cl_collation in the
-		// WHERE and it is also the first item in the ORDER BY.
-		if ( $this->hasOption( 'previous-collation' ) ) {
-			$orderBy = 'cl_to, cl_type, cl_from';
-		} else {
-			$orderBy = 'cl_collation, cl_to, cl_type, cl_from';
-		}
-
 		$collationConds = [];
 		if ( !$this->force && !$this->targetTable ) {
 			if ( $this->hasOption( 'previous-collation' ) ) {
@@ -175,35 +160,14 @@ TEXT
 					0 => $this->dbr->expr( 'cl_collation', '!=', $this->collationName )
 				];
 			}
-
-			$count = $this->dbr->estimateRowCount(
-				'categorylinks',
-				'*',
-				$collationConds,
-				__METHOD__
-			);
-			// Improve estimate if feasible
-			if ( $count < 1_000_000 ) {
-				$count = $this->dbr->newSelectQueryBuilder()
-					->select( 'COUNT(*)' )
-					->from( 'categorylinks' )
-					->where( $collationConds )
-					->caller( __METHOD__ )->fetchField();
-			}
-			if ( $count == 0 ) {
-				$this->output( "Collations up-to-date.\n" );
-
-				return;
-			}
-			if ( $this->dryRun ) {
-				$this->output( "$count rows would be updated.\n" );
-			} else {
-				$this->output( "Fixing collation for $count rows.\n" );
-			}
 		}
-		$batchConds = [];
+		$maxPageId = (int)$this->dbr->newSelectQueryBuilder()
+			->select( 'MAX(page_id)' )
+			->from( 'page' )
+			->caller( __METHOD__ )->fetchField();
+		$batchValue = 0;
 		do {
-			$this->output( "Selecting next $batchSize rows..." );
+			$this->output( "Selecting next $batchSize pages from cl_from = $batchValue... " );
 
 			// cl_type must be selected as a number for proper paging because
 			// enums suck.
@@ -222,9 +186,11 @@ TEXT
 				// per T58041
 				->straightJoin( 'page', null, 'cl_from = page_id' )
 				->where( $collationConds )
-				->andWhere( $batchConds )
-				->limit( $batchSize )
-				->orderBy( $orderBy )
+				->andWhere(
+					$this->dbw->expr( 'cl_from', '>=', $batchValue )
+						->and( 'cl_from', '<', $batchValue + $this->getBatchSize() )
+				)
+				->orderBy( 'cl_from' )
 				->caller( __METHOD__ )->fetchResultSet();
 			$this->output( " processing..." );
 
@@ -234,17 +200,15 @@ TEXT
 				} else {
 					$this->updateBatch( $res );
 				}
-				$res->seek( $res->numRows() - 1 );
-				$lastRow = $res->fetchObject();
-				$batchConds = [ $this->getBatchCondition( $lastRow, $this->dbw ) ];
 			}
+			$batchValue += $this->getBatchSize();
 
 			if ( $this->dryRun ) {
 				$this->output( "{$this->numRowsProcessed} rows would be updated so far.\n" );
 			} else {
 				$this->output( "{$this->numRowsProcessed} done.\n" );
 			}
-		} while ( $res->numRows() == $batchSize );
+		} while ( $maxPageId >= $batchValue );
 
 		if ( !$this->dryRun ) {
 			$this->output( "{$this->numRowsProcessed} rows processed\n" );
@@ -254,34 +218,6 @@ TEXT
 			$this->output( "\n" );
 			$this->showSortKeySizeHistogram();
 		}
-	}
-
-	/**
-	 * Return an SQL expression selecting rows which sort above the given row,
-	 * assuming an ordering of cl_collation, cl_to, cl_type, cl_from
-	 * @param stdClass $row
-	 * @param IDatabase $dbw
-	 * @return string
-	 */
-	private function getBatchCondition( $row, $dbw ) {
-		if ( $this->hasOption( 'previous-collation' ) ) {
-			$fields = [ 'cl_to', 'cl_type', 'cl_from' ];
-		} else {
-			$fields = [ 'cl_collation', 'cl_to', 'cl_type', 'cl_from' ];
-		}
-		$conds = [];
-		foreach ( $fields as $field ) {
-			if ( $dbw->getType() === 'mysql' && $field === 'cl_type' ) {
-				// Range conditions with enums are weird in mysql
-				// This must be a numeric literal, or it won't work.
-				$value = intval( $row->cl_type_numeric );
-			} else {
-				$value = $row->$field;
-			}
-			$conds[ $field ] = $value;
-		}
-
-		return $dbw->buildComparison( '>', $conds );
 	}
 
 	/**
