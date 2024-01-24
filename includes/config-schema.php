@@ -34,7 +34,6 @@ return [
 			'FileCacheDirectory' => false,
 			'Logo' => false,
 			'Logos' => false,
-			'LogoHD' => false,
 			'Favicon' => '/favicon.ico',
 			'AppleTouchIcon' => false,
 			'ReferrerPolicy' => false,
@@ -2529,10 +2528,6 @@ return [
 				0 => 'object',
 				1 => 'boolean',
 			],
-			'LogoHD' => [
-				0 => 'object',
-				1 => 'boolean',
-			],
 			'ReferrerPolicy' => [
 				0 => 'array',
 				1 => 'string',
@@ -3240,9 +3235,6 @@ return [
 		],
 	],
 	'config-schema' => [
-		'LogoHD' => [
-			'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) using the static function MediaWiki\\ResourceLoader\\SkinModule::getAvailableLogos. $wgLogos should be used instead.',
-		],
 		'UploadStashScalerBaseUrl' => [
 			'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',
 		],

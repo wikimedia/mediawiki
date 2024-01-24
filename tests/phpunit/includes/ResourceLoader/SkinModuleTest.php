@@ -263,7 +263,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		$logos = SkinModule::getAvailableLogos( new HashConfig( [
 			MainConfigNames::Logo => false,
 			MainConfigNames::Logos => false,
-			MainConfigNames::LogoHD => false,
 		] ) );
 		$this->assertSame( [], $logos );
 	}
@@ -400,7 +399,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			MainConfigNames::BaseDirectory => '/dummy',
 			MainConfigNames::ResourceBasePath => '/w',
 			MainConfigNames::Logo => false,
-			MainConfigNames::LogoHD => false
 		] + self::getSettings() ) );
 
 		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );

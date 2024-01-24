@@ -169,15 +169,6 @@ $wgLogo = null;
 $wgLogos = null;
 
 /**
- * Config variable stub for the LogoHD setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::LogoHD
- * @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
- *    the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos.
- *    $wgLogos should be used instead.
- */
-$wgLogoHD = null;
-
-/**
  * Config variable stub for the Favicon setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::Favicon
  */

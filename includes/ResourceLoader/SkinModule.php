@@ -21,7 +21,6 @@ namespace MediaWiki\ResourceLoader;
 
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
-use MediaWiki\Config\ConfigException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use Wikimedia\Minify\CSSMin;
@@ -644,7 +643,7 @@ class SkinModule extends LessVarFileModule {
 		$logos = $conf->get( MainConfigNames::Logos );
 		if ( $logos === false ) {
 			// no logos were defined... this will either
-			// 1. Load from wgLogo and wgLogoHD
+			// 1. Load from wgLogo
 			// 2. Trigger runtime exception if those are not defined.
 			$logos = [];
 		}
@@ -660,17 +659,6 @@ class SkinModule extends LessVarFileModule {
 			if ( $logo ) {
 				$logos['1x'] = $logo;
 			}
-		}
-
-		try {
-			$logoHD = $conf->get( MainConfigNames::LogoHD );
-			// make sure not false
-			if ( $logoHD ) {
-				// wfDeprecated( __METHOD__ . ' with $wgLogoHD set instead of $wgLogos', '1.35', false, 1 );
-				$logos += $logoHD;
-			}
-		} catch ( ConfigException $e ) {
-			// no backwards compatibility changes needed.
 		}
 
 		if ( isset( $logos['wordmark'] ) ) {
