@@ -23,7 +23,7 @@
 		"dotenv": "8.2.0",
 		"eslint-config-wikimedia": "0.26.0",
 		"grunt": "1.6.1",
-		"grunt-banana-checker": "0.11.0",
+		"grunt-banana-checker": "0.11.1",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.3.0",
 		"grunt-karma": "4.0.2",
