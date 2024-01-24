@@ -165,7 +165,8 @@ class SpecialVersion extends SpecialPage {
 					$wikiText = str_replace(
 						[ '<!-- BEGIN CONTRIBUTOR LIST -->', '<!-- END CONTRIBUTOR LIST -->' ],
 						[ '<div class="mw-version-credits">', '</div>' ],
-						$wikiText );
+						$wikiText
+					);
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
 					$file = ExtensionInfo::getAuthorsFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
@@ -422,9 +423,11 @@ class SpecialVersion extends SpecialPage {
 		);
 
 		foreach ( $this->getSoftwareInformation() as $name => $version ) {
-			$out .= Html::rawElement( 'tr', [],
+			$out .= Html::rawElement(
+				'tr',
+				[],
 				Html::rawElement( 'td', [], $this->msg( new RawMessage( $name ) )->parse() ) .
-				Html::rawElement( 'td', [ 'dir' => 'ltr' ], $this->msg( new RawMessage( $version ) )->parse() )
+					Html::rawElement( 'td', [ 'dir' => 'ltr' ], $this->msg( new RawMessage( $version ) )->parse() )
 			);
 		}
 
@@ -469,14 +472,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	public static function getVersionLinked() {
-		$gitVersion = self::getVersionLinkedGit();
-		if ( $gitVersion ) {
-			$v = $gitVersion;
-		} else {
-			$v = MW_VERSION; // fallback
-		}
-
-		return $v;
+		return self::getVersionLinkedGit() ?: MW_VERSION;
 	}
 
 	/**
@@ -580,20 +576,20 @@ class SpecialVersion extends SpecialPage {
 		$this->addTocSection( 'version-extensions', 'mw-version-ext' );
 
 		$out = Html::element(
-				'h2',
-				[ 'id' => 'mw-version-ext' ],
-				$this->msg( 'version-extensions' )->text()
+			'h2',
+			[ 'id' => 'mw-version-ext' ],
+			$this->msg( 'version-extensions' )->text()
 		);
 
 		if (
 			!$credits ||
-				// Skins are displayed separately, see getSkinCredits()
-				( count( $credits ) === 1 && isset( $credits['skin'] ) )
+			// Skins are displayed separately, see getSkinCredits()
+			( count( $credits ) === 1 && isset( $credits['skin'] ) )
 		) {
 			$out .= Html::element(
-					'p',
-					[],
-					$this->msg( 'version-extensions-no-ext' )->text()
+				'p',
+				[],
+				$this->msg( 'version-extensions-no-ext' )->text()
 			);
 
 			return $out;
@@ -636,9 +632,9 @@ class SpecialVersion extends SpecialPage {
 		$this->addTocSection( 'version-skins', 'mw-version-skin' );
 
 		$out = Html::element(
-				'h2',
-				[ 'id' => 'mw-version-skin' ],
-				$this->msg( 'version-skins' )->text()
+			'h2',
+			[ 'id' => 'mw-version-skin' ],
+			$this->msg( 'version-skins' )->text()
 		);
 
 		if ( !isset( $credits['skin'] ) || !$credits['skin'] ) {
@@ -1436,8 +1432,13 @@ class SpecialVersion extends SpecialPage {
 			$url = $this->urlUtils->expand( $value, PROTO_RELATIVE );
 			$out .= Html::openElement( 'tr' ) .
 				Html::rawElement( 'td', [], $this->msg( $message )->parse() ) .
-				Html::rawElement( 'td', [], Html::rawElement( 'code', [],
-					$this->msg( new RawMessage( "[$url $value]" ) )->parse() ) ) .
+				Html::rawElement( 'td', [],
+					Html::rawElement(
+						'code',
+						[],
+						$this->msg( new RawMessage( "[$url $value]" ) )->parse()
+					)
+				) .
 				Html::closeElement( 'tr' );
 		}
 
