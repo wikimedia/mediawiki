@@ -24,18 +24,24 @@ use Exception;
 use IBufferingStatsdDataFactory;
 use IContextSource;
 use JobQueueGroup;
+use JobRunner;
 use Liuggio\StatsdClient\Sender\SocketSender;
 use LogicException;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Specials\SpecialRunJobs;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
+use MessageCache;
 use MWExceptionHandler;
 use Profiler;
 use Psr\Log\LoggerInterface;
@@ -44,7 +50,10 @@ use SamplingStatsdClient;
 use Throwable;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @defgroup entrypoint Entry points
@@ -84,11 +93,18 @@ abstract class MediaWikiEntryPoint {
 
 	private bool $preparedForOutput = false;
 
+	private MediaWikiServices $mediaWikiServices;
+
 	/**
 	 * @param IContextSource $context
+	 * @param MediaWikiServices $mediaWikiServices
 	 */
-	public function __construct( IContextSource $context ) {
+	public function __construct(
+		IContextSource $context,
+		MediaWikiServices $mediaWikiServices
+	) {
 		$this->context = $context;
+		$this->mediaWikiServices = $mediaWikiServices;
 		$this->config = $this->context->getConfig();
 
 		if ( MW_ENTRY_POINT === 'cli' ) {
@@ -205,7 +221,7 @@ abstract class MediaWikiEntryPoint {
 			// Post-send job running disabled
 			$jobRunRate <= 0 ||
 			// Jobs cannot run due to site read-only mode
-			MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ||
+			$this->getReadOnlyMode()->isReadOnly() ||
 			// HTTP response body and Content-Length headers likely to not match,
 			// causing post-send updates to block the client when using mod_php
 			$this->context->getRequest()->getMethod() === 'HEAD' ||
@@ -253,11 +269,11 @@ abstract class MediaWikiEntryPoint {
 		$config = $context->getConfig();
 		$request = $context->getRequest();
 		$output = $context->getOutput();
-		$services = MediaWikiServices::getInstance();
-		$lbFactory = $services->getDBLoadBalancerFactory();
 
 		// Try to make sure that all RDBMs, session, and other storage updates complete
 		ignore_user_abort( true );
+
+		$lbFactory = $this->getDBLoadBalancerFactory();
 
 		// Commit all RDBMs changes from the main transaction round
 		$lbFactory->commitPrimaryChanges(
@@ -353,7 +369,7 @@ abstract class MediaWikiEntryPoint {
 			}
 
 			// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
-			if ( $services->getMessageCache()->isDisabled() ) {
+			if ( $this->getMessageCache()->isDisabled() ) {
 				$maxAge = $config->get( MainConfigNames::CdnMaxageSubstitute );
 				$output->lowerCdnMaxage( $maxAge );
 				$request->response()->header( "X-Response-Substitute: true" );
@@ -371,8 +387,7 @@ abstract class MediaWikiEntryPoint {
 				// EditPage), or when the HTTP response is personalised for other reasons (e.g. viewing
 				// articles within the same browsing session after making an edit).
 				$user = $context->getUser();
-				$services->getBlockManager()
-					->trackBlockWithCookie( $user, $request->response() );
+				$this->getBlockManager()->trackBlockWithCookie( $user, $request->response() );
 			}
 		}
 	}
@@ -475,7 +490,7 @@ abstract class MediaWikiEntryPoint {
 		if (
 			!preg_match(
 				'#^https://#',
-				(string)MediaWikiServices::getInstance()->getUrlUtils()->expand(
+				(string)$this->getUrlUtils()->expand(
 					$request->getRequestURL(),
 					PROTO_HTTPS
 				)
@@ -588,9 +603,8 @@ abstract class MediaWikiEntryPoint {
 		// The latter should not be cancelled due to client disconnect.
 		ignore_user_abort( true );
 
-		$services = MediaWikiServices::getInstance();
-		$lbFactory = $services->getDBLoadBalancerFactory();
 		// Assure deferred updates are not in the main transaction
+		$lbFactory = $this->getDBLoadBalancerFactory();
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 
 		// Loosen DB query expectations since the HTTP client is unblocked
@@ -611,10 +625,10 @@ abstract class MediaWikiEntryPoint {
 		$profiler->logData();
 
 		// Send metrics gathered by StatsFactory
-		$services->getStatsFactory()->flush();
+		$this->getStatsFactory()->flush();
 
 		self::emitBufferedStatsdData(
-			$services->getStatsdDataFactory(),
+			$this->getStatsdDataFactory(),
 			$this->config
 		);
 
@@ -678,8 +692,7 @@ abstract class MediaWikiEntryPoint {
 	 */
 	protected function triggerSyncJobs( $n ) {
 		$scope = Profiler::instance()->getTransactionProfiler()->silenceForScope();
-		$runner = MediaWikiServices::getInstance()->getJobRunner();
-		$runner->run( [ 'maxJobs' => $n ] );
+		$this->getJobRunner()->run( [ 'maxJobs' => $n ] );
 		ScopedCallback::consume( $scope );
 	}
 
@@ -689,9 +702,8 @@ abstract class MediaWikiEntryPoint {
 	 * @return bool Success
 	 */
 	protected function triggerAsyncJobs( $n, LoggerInterface $runJobsLogger ) {
-		$services = MediaWikiServices::getInstance();
 		// Do not send request if there are probably no jobs
-		$group = $services->getJobQueueGroupFactory()->makeJobQueueGroup();
+		$group = $this->getJobQueueGroupFactory()->makeJobQueueGroup();
 		if ( !$group->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
 			return true;
 		}
@@ -702,7 +714,7 @@ abstract class MediaWikiEntryPoint {
 			$query, $this->config->get( MainConfigNames::SecretKey ) );
 
 		$errno = $errstr = null;
-		$info = $services->getUrlUtils()->parse( $this->config->get( MainConfigNames::CanonicalServer ) ) ?? [];
+		$info = $this->getUrlUtils()->parse( $this->config->get( MainConfigNames::CanonicalServer ) ) ?? [];
 		$https = ( $info['scheme'] ?? null ) === 'https';
 		$host = $info['host'] ?? null;
 		$port = $info['port'] ?? ( $https ? 443 : 80 );
@@ -720,7 +732,7 @@ abstract class MediaWikiEntryPoint {
 
 		$invokedWithSuccess = true;
 		if ( $sock ) {
-			$special = $services->getSpecialPageFactory()->getPage( 'RunJobs' );
+			$special = $this->getSpecialPageFactory()->getPage( 'RunJobs' );
 			$url = $special->getPageTitle()->getCanonicalURL( $query );
 			$req = (
 				"POST $url HTTP/1.1\r\n" .
@@ -767,7 +779,47 @@ abstract class MediaWikiEntryPoint {
 	 * @return MediaWikiServices
 	 */
 	protected function getServiceContainer(): MediaWikiServices {
-		return MediaWikiServices::getInstance();
+		return $this->mediaWikiServices;
+	}
+
+	protected function getUrlUtils(): UrlUtils {
+		return $this->mediaWikiServices->getUrlUtils();
+	}
+
+	protected function getReadOnlyMode(): ReadOnlyMode {
+		return $this->mediaWikiServices->getReadOnlyMode();
+	}
+
+	protected function getJobRunner(): JobRunner {
+		return $this->mediaWikiServices->getJobRunner();
+	}
+
+	protected function getDBLoadBalancerFactory(): LBFactory {
+		return $this->mediaWikiServices->getDBLoadBalancerFactory();
+	}
+
+	protected function getMessageCache(): MessageCache {
+		return $this->mediaWikiServices->getMessageCache();
+	}
+
+	protected function getBlockManager(): BlockManager {
+		return $this->mediaWikiServices->getBlockManager();
+	}
+
+	protected function getStatsFactory(): StatsFactory {
+		return $this->mediaWikiServices->getStatsFactory();
+	}
+
+	protected function getStatsdDataFactory(): IBufferingStatsdDataFactory {
+		return $this->mediaWikiServices->getStatsdDataFactory();
+	}
+
+	protected function getJobQueueGroupFactory(): JobQueueGroupFactory {
+		return $this->mediaWikiServices->getJobQueueGroupFactory();
+	}
+
+	protected function getSpecialPageFactory(): SpecialPageFactory {
+		return $this->mediaWikiServices->getSpecialPageFactory();
 	}
 
 	protected function getContext(): IContextSource {

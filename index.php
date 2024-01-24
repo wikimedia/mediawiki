@@ -35,6 +35,7 @@
  */
 
 use MediaWiki\Actions\ActionEntryPoint;
+use MediaWiki\MediaWikiServices;
 
 define( 'MW_ENTRY_POINT', 'index' );
 
@@ -47,4 +48,8 @@ wfEntryPointCheck( 'html', dirname( $_SERVER['SCRIPT_NAME'] ) );
 require __DIR__ . '/includes/WebStart.php';
 
 // Create the entry point object and call run() to handle the request.
-( new ActionEntryPoint( RequestContext::getMain() ) )->run();
+( new ActionEntryPoint(
+	RequestContext::getMain(),
+	// TODO: Maybe create a light-weight services container here instead.
+	MediaWikiServices::getInstance()
+) )->run();

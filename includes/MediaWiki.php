@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiEntryPoint;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Backwards compatibility shim for use by extensions that created a MediaWiki object just in order to call
@@ -33,7 +34,7 @@ class MediaWiki extends MediaWikiEntryPoint {
 	public function __construct( IContextSource $context = null ) {
 		$context ??= RequestContext::getMain();
 
-		parent::__construct( $context );
+		parent::__construct( $context, MediaWikiServices::getInstance() );
 	}
 
 	/**
