@@ -982,6 +982,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit' => __DIR__ . '/includes/composer/ComposerPhpunitXmlCoverageEdit.php',
 	'MediaWiki\\Composer\\ComposerVendorHtaccessCreator' => __DIR__ . '/includes/composer/ComposerVendorHtaccessCreator.php',
 	'MediaWiki\\Composer\\LockFileChecker' => __DIR__ . '/includes/composer/LockFileChecker.php',
+	'MediaWiki\\Composer\\VersionChecker' => __DIR__ . '/includes/composer/VersionChecker.php',
 	'MediaWiki\\Config\\Config' => __DIR__ . '/includes/config/Config.php',
 	'MediaWiki\\Config\\ConfigException' => __DIR__ . '/includes/config/ConfigException.php',
 	'MediaWiki\\Config\\ConfigFactory' => __DIR__ . '/includes/config/ConfigFactory.php',
