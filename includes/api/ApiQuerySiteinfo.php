@@ -207,6 +207,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'uploaddialog':
 					$fit = $this->appendUploadDialog( $p );
 					break;
+				case 'autopromote':
+					$fit = $this->appendAutoPromote( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ); // @codeCoverageIgnore
 			}
@@ -967,6 +970,76 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $config );
 	}
 
+	private function appendAutoPromote( $property ) {
+		$allowedConditions = [];
+		foreach ( get_defined_constants() as $constantName => $constantValue ) {
+			if ( strpos( $constantName, 'APCOND_' ) !== false ) {
+				$allowedConditions[$constantName] = $constantValue;
+			}
+		}
+
+		$data = [];
+		foreach ( $this->getConfig()->get( 'Autopromote' ) as $groupName => $conditions ) {
+			$row = $this->recAutopromote( $conditions, $allowedConditions );
+			if ( !isset( $row[0] ) || is_string( $row ) ) {
+				$row = [ $row ];
+			}
+			$data[$groupName] = $row;
+		}
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
+	/**
+	 * @param array|int|string $cond
+	 * @param array $allowedConditions
+	 * @return array|string
+	 */
+	private function recAutopromote( $cond, $allowedConditions ) {
+		$config = [];
+		// First, checks if $cond is an array
+		if ( is_array( $cond ) ) {
+			// Checks if $cond[0] is a valid operand
+			if ( in_array( $cond[0], UserGroupManager::VALID_OPS, true ) ) {
+				$config['operand'] = $cond[0];
+				// Traversal checks conditions
+				foreach ( array_slice( $cond, 1 ) as $value ) {
+					$config[] = $this->recAutopromote( $value, $allowedConditions );
+				}
+			} elseif ( is_string( $cond[0] ) ) {
+				// Returns $cond directly, if $cond[0] is a string
+				 $config = $cond;
+			} else {
+				// When $cond is equal to an APCOND_ constant value
+				$params = array_slice( $cond, 1 );
+				if ( $params === [ null ] ) {
+					// Special casing for these conditions and their default of null,
+					// to replace their values with $wgAutoConfirmCount/$AutoConfirmAge as appropriate
+					if ( $cond[0] === APCOND_EDITCOUNT ) {
+						$params = [ $this->getConfig()->get( MainConfigNames::AutoConfirmCount ) ];
+					} elseif ( $cond[0] === APCOND_AGE ) {
+						$params = [ $this->getConfig()->get( MainConfigNames::AutoConfirmAge ) ];
+					}
+				}
+				$config = [
+					'condname' => array_search( $cond[0], $allowedConditions ),
+					'params' => $params
+				];
+				ApiResult::setIndexedTagName( $config, 'params' );
+			}
+		} elseif ( is_string( $cond ) ) {
+			$config = $cond;
+		} else {
+			// When $cond is equal to an APCOND_ constant value
+			$config = [
+				'condname' => array_search( $cond, $allowedConditions ),
+				'params' => []
+			];
+			ApiResult::setIndexedTagName( $config, 'params' );
+		}
+
+		return $config;
+	}
+
 	public function appendSubscribedHooks( $property ) {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookNames = $hookContainer->getHookNames();
@@ -1032,6 +1105,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'protocols',
 					'defaultoptions',
 					'uploaddialog',
+					'autopromote',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
