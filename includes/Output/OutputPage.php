@@ -1962,7 +1962,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Set the timestamp of the revision which will be displayed. This is used
-	 * to avoid a extra DB call in Skin::lastModified().
+	 * to avoid a extra DB call in SkinComponentFooter::lastModified().
 	 *
 	 * @param string|null $timestamp
 	 * @return mixed Previous value

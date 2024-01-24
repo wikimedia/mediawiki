@@ -997,18 +997,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Get the timestamp of the latest revision, formatted in user language
-	 *
-	 * @internal
-	 * @deprecated since 1.40
-	 * @return string
-	 */
-	protected function lastModified() {
-		wfDeprecated( __METHOD__, '1.40' );
-		return $this->getFooterTemplateDataItem( 'data-info', 'lastmod' );
-	}
-
-	/**
 	 * @param string $align
 	 * @return string
 	 */
