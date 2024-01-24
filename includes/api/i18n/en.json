@@ -1298,6 +1298,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-dbrepllag": "Returns database server with the highest replication lag.",
 	"apihelp-query+siteinfo-paramvalue-prop-usergroups": "Returns user groups and the associated permissions.",
 	"apihelp-query+siteinfo-paramvalue-prop-autocreatetempuser": "Returns configuration for the automatic creation of temporary user accounts (also known as IP masking).",
+	"apihelp-query+siteinfo-paramvalue-prop-clientlibraries": "Returns client-side libraries installed on the wiki",
 	"apihelp-query+siteinfo-paramvalue-prop-libraries": "Returns libraries installed on the wiki.",
 	"apihelp-query+siteinfo-paramvalue-prop-extensions": "Returns extensions installed on the wiki.",
 	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "Returns list of file extensions (file types) allowed to be uploaded.",
