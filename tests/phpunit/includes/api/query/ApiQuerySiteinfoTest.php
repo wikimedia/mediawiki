@@ -1004,4 +1004,53 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		];
 	}
 
+	public function testAutopromoteOnceDefault() {
+		// PHP doesn't like empty nested arrays nested in arrays...
+		$value = [
+			'onEdit' => [],
+			'onView' => [],
+		];
+		$this->testAutopromoteOnce( $value, $value );
+	}
+
+	/**
+	 * @dataProvider provideAutopromoteOnce
+	 */
+	public function testAutopromoteOnce( $config, $expected ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::AutopromoteOnce => $config,
+			MainConfigNames::AutoConfirmCount => 10,
+			MainConfigNames::AutoConfirmAge => 345600,
+		] );
+		$this->assertSame( $expected, $this->doQuery( 'autopromoteonce' ) );
+	}
+
+	public static function provideAutopromoteOnce() {
+		yield 'simple' => [
+			[
+				'onEdit' => [
+					// edit count >= 10 and age >= 4 days
+					'simple' => [ '&',
+						[ APCOND_EDITCOUNT, 10 ],
+						[ APCOND_AGE, 345600 ],
+					],
+				],
+			],
+			[
+				'onEdit' => [
+					'simple' => [
+						'operand' => '&',
+						0 => [
+							'condname' => 'APCOND_EDITCOUNT',
+							'params' => [ 10 ]
+						],
+						1 => [
+							'condname' => 'APCOND_AGE',
+							'params' => [ 345600 ]
+						]
+					]
+				]
+			]
+		];
+	}
 }

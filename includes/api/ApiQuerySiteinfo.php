@@ -207,6 +207,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'autopromote':
 					$fit = $this->appendAutoPromote( $p );
 					break;
+				case 'autopromoteonce':
+					$fit = $this->appendAutoPromoteOnce( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ); // @codeCoverageIgnore
 			}
@@ -953,21 +956,44 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $config );
 	}
 
-	private function appendAutoPromote( $property ) {
+	private function getAutoPromoteConds() {
 		$allowedConditions = [];
 		foreach ( get_defined_constants() as $constantName => $constantValue ) {
 			if ( strpos( $constantName, 'APCOND_' ) !== false ) {
 				$allowedConditions[$constantName] = $constantValue;
 			}
 		}
+		return $allowedConditions;
+	}
 
+	private function processAutoPromote( $input, $allowedConditions ) {
 		$data = [];
-		foreach ( $this->getConfig()->get( 'Autopromote' ) as $groupName => $conditions ) {
+		foreach ( $input as $groupName => $conditions ) {
 			$row = $this->recAutopromote( $conditions, $allowedConditions );
 			if ( !isset( $row[0] ) || is_string( $row ) ) {
 				$row = [ $row ];
 			}
 			$data[$groupName] = $row;
+		}
+		return $data;
+	}
+
+	private function appendAutoPromote( $property ) {
+		return $this->getResult()->addValue(
+			'query',
+			$property,
+			$this->processAutoPromote(
+				$this->getConfig()->get( 'Autopromote' ),
+				$this->getAutoPromoteConds()
+			)
+		);
+	}
+
+	private function appendAutoPromoteOnce( $property ) {
+		$allowedConditions = $this->getAutoPromoteConds();
+		$data = [];
+		foreach ( $this->getConfig()->get( 'AutopromoteOnce' ) as $key => $value ) {
+			$data[$key] = $this->processAutoPromote( $value, $allowedConditions );
 		}
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -1088,6 +1114,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'defaultoptions',
 					'uploaddialog',
 					'autopromote',
+					'autopromoteonce',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
