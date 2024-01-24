@@ -693,43 +693,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Array with URL paths to HD versions of the wiki logo. The scaled logo size
-	 * should be under 135x155 pixels.
-	 * Only 1.5x and 2x versions are supported.
-	 *
-	 * @par Example:
-	 * @code
-	 * $wgLogoHD = [
-	 *  "1.5x" => "path/to/1.5x_version.png",
-	 *  "2x" => "path/to/2x_version.png"
-	 * ];
-	 * @endcode
-	 *
-	 * SVG is also supported but when enabled, it
-	 * disables 1.5x and 2x as svg will already
-	 * be optimised for screen resolution.
-	 *
-	 * @par Example:
-	 * @code
-	 * $wgLogoHD = [
-	 *  "svg" => "path/to/svg_version.svg",
-	 * ];
-	 * @endcode
-	 *
-	 * @since 1.25
-	 * @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
-	 *   the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos.
-	 *   $wgLogos should be used instead.
-	 */
-	public const LogoHD = [
-		'default' => false,
-		'type' => 'map|false',
-		'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) ' .
-			'using the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos. $wgLogos ' .
-			'should be used instead.',
-	];
-
-	/**
 	 * The URL path of the icon.
 	 *
 	 * @since 1.6
