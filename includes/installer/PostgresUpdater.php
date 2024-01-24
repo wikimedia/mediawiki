@@ -27,6 +27,7 @@ use FixInconsistentRedirects;
 use MigrateExternallinks;
 use MigrateRevisionActorTemp;
 use MigrateRevisionCommentTemp;
+use PopulateUserIsTemp;
 use UpdateRestrictions;
 use Wikimedia\Rdbms\DatabasePostgres;
 
@@ -469,6 +470,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addField', 'user_autocreate_serial', 'uas_year', 'patch-user_autocreate_serial-uas_year.sql' ],
 			[ 'addTable', 'block_target', 'patch-block_target.sql' ],
 			[ 'dropIndex', 'categorylinks', 'cl_collation_ext', 'patch-drop-cl_collation_ext.sql' ],
+			[ 'runMaintenance', PopulateUserIsTemp::class, 'maintenance/populateUserIsTemp.php' ],
 		];
 	}
 
