@@ -13,8 +13,8 @@
 		"specs/"
 	],
 	"engines": {
-		"node": ">=16.19.1",
-		"npm": ">=8.19.3"
+		"node": ">=18.17.0",
+		"npm": ">=9.6.7"
 	},
 	"dependencies": {
 		"mwbot": "2.1.3"
