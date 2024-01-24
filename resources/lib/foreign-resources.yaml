@@ -147,8 +147,8 @@ codex:
   authors: Design Systems team, Wikimedia Foundation
   version: 1.3.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.3.0.tgz
-  integrity: sha384-+SqmAnEtF/NG5z6CvM+UZ+cxPgKNLdgel1c0Slzpq+wv93mFFOJERrH2J/o48t33
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.3.1.tgz
+  integrity: sha384-wfjg2SztFpjNPCi9cfSL/EX3raAsSX5TtXhL6ZWIiM5h1Vaslvf5N8rsA+OmGJ/c
   dest:
     package/dist/codex.cjs:
     package/dist/codex.js:
@@ -174,8 +174,8 @@ codex-design-tokens:
   authors: Design Systems team, Wikimedia Foundation
   version: 1.3.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.3.0.tgz
-  integrity: sha384-mGZ15cOvTVl+42+AlrwRgXc8K1vYnAyiM6y5k/Er+8NQYWe3E+r7pJLwYxeYjWAC
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.3.1.tgz
+  integrity: sha384-Mt2ae2i4Ruvg0bTXHgyJlUv0w4GsK+uT4WxDKHqfUN5+1IHOIbuUBt8vtY4tT5CF
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/dist/theme-wikimedia-ui-legacy.less:
@@ -188,8 +188,8 @@ codex-icons:
   authors: Design Systems team, Wikimedia Foundation
   version: 1.3.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.3.0.tgz
-  integrity: sha384-aGUQd/zDAtI/lE9A6Pt05h9+UpIQau2PJ+WJeO6EPKSY3qVIV5YS0iqXVdUEoN4t
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.3.1.tgz
+  integrity: sha384-pmhYC2/9KGLD2+GlIcbIynOAlN9PvROOXNEzIjT9a2IcfMu3Ak5HMHOBfUcm9KK/
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
