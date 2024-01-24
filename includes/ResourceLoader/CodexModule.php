@@ -152,6 +152,12 @@ class CodexModule extends FileModule {
 		return parent::getDefinitionSummary( $context );
 	}
 
+	public function getFlip( Context $context ) {
+		// Never flip styles for Codex modules, because we already provide separate style files
+		// for LTR vs RTL
+		return false;
+	}
+
 	/**
 	 * @param Context $context
 	 * @return string Name of the manifest file to use
