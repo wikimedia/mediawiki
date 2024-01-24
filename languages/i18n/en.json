@@ -50,6 +50,7 @@
 	"tog-showrollbackconfirmation": "Show a confirmation prompt when clicking on a rollback link",
 	"tog-requireemail": "Send password reset emails only when both email address and username are provided.",
 	"tog-forcesafemode": "Always enable [[mw:Manual:Safemode|safe mode]]",
+	"tog-editrecovery": "Enable the [[Special:EditRecovery|{{int:editrecovery}}]] feature",
 	"underline-always": "Always",
 	"underline-never": "Never",
 	"underline-default": "Skin or browser default",
