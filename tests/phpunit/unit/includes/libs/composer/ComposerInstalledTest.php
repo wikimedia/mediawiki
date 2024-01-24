@@ -2,14 +2,13 @@
 
 use Wikimedia\Composer\ComposerInstalled;
 
+/**
+ * @covers \Wikimedia\Composer\ComposerInstalled
+ */
 class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
-	/**
-	 * @covers Wikimedia\Composer\ComposerInstalled::__construct
-	 * @covers Wikimedia\Composer\ComposerInstalled::getInstalledDependencies
-	 *
-	 * @dataProvider provideInstalled
-	 */
-	public function testGetInstalledDependencies( string $location ) {
+
+	public function testGetInstalledDependencies() {
+		$location = __DIR__ . '/../../../../data/composer/installed-v2.json';
 		$installed = new ComposerInstalled( $location );
 		$this->assertEquals( [
 		'leafo/lessphp' => [
@@ -479,11 +478,4 @@ class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 		], $installed->getInstalledDependencies() );
 	}
 
-	public static function provideInstalled(): array {
-		$root = __DIR__ . '/../../../../data/composer/';
-
-		return [
-			'Composer v2' => [ $root . '/installed-v2.json' ]
-		];
-	}
 }
