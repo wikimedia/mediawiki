@@ -178,3 +178,42 @@ main {
 .dbWrapper {
 	margin-bottom: 30px;
 }
+/* Logo preview  */
+.logo-preview-area {
+	display: flex;
+	padding: 20px;
+	margin: 20px 20px 0;
+}
+/* Logo preview (main) */
+.logo-main {
+	display: inline-flex;
+	max-height: 100px;
+	align-items: center;
+	margin-left: 20px;
+}
+
+.logo-icon {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+}
+
+.logo-tagline,
+.logo-wordmark {
+	display: block;
+	max-width: 130px;
+	max-height: 50px;
+}
+
+.logo-tagline {
+	font-size: 0.75em;
+	text-align: center;
+}
+
+.logo-dropper {
+	display: none;
+}
+
+.sidebar .cdx-card__text {
+	text-align: center;
+}
