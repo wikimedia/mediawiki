@@ -844,6 +844,7 @@
 	"apihelp-query+imageinfo-param-start": "Zeitstempel, von dem die Liste beginnen soll.",
 	"apihelp-query+imageinfo-param-end": "Zeitstempel, an dem die Liste enden soll.",
 	"apihelp-query+imageinfo-param-urlheight": "Ähnlich wie $1urlwidth.",
+	"apihelp-query+imageinfo-param-extmetadatafilter": "Falls angegeben und nicht leer, werden nur diese Schlüssel für $1prop=extmetadata zurückgegeben.",
 	"apihelp-query+imageinfo-param-badfilecontexttitle": "Falls <kbd>$2prop=badfile</kbd> festgelegt ist, ist dies der verwendete Seitentitel beim Auswerten der [[MediaWiki:Bad image list]].",
 	"apihelp-query+imageinfo-param-localonly": "Suche nur nach Dateien im lokalen Repositorium.",
 	"apihelp-query+imageinfo-example-simple": "Rufe Informationen über die aktuelle Version von [[:File:Albert Einstein Head.jpg]] ab.",
