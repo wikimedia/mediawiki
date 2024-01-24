@@ -336,22 +336,19 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage();
 		$talkTitle = $title->getTalkPageIfDefined();
-		$examples = [];
+		$examples = [
+			'action=query&prop=deletedrevisions&revids=123456'
+				=> 'apihelp-query+deletedrevisions-example-revids',
+		];
 
 		if ( $talkTitle ) {
 			$title = rawurlencode( $title->getPrefixedText() );
 			$talkTitle = rawurlencode( $talkTitle->getPrefixedText() );
-			$examples = [
-				"action=query&prop=deletedrevisions&titles={$title}|{$talkTitle}&" .
-					'drvslots=*&drvprop=user|comment|content'
-					=> 'apihelp-query+deletedrevisions-example-titles',
-			];
+			$examples["action=query&prop=deletedrevisions&titles={$title}|{$talkTitle}&" .
+				'drvslots=*&drvprop=user|comment|content'] = 'apihelp-query+deletedrevisions-example-titles';
 		}
 
-		return array_merge( $examples, [
-			'action=query&prop=deletedrevisions&revids=123456'
-				=> 'apihelp-query+deletedrevisions-example-revids',
-		] );
+		return $examples;
 	}
 
 	public function getHelpUrls() {
