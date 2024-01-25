@@ -55,9 +55,20 @@ class CommentStoreComment {
 	 * @param array|null $data
 	 */
 	public function __construct( $id, $text, Message $message = null, array $data = null ) {
-		$this->id = $id;
-		$this->text = $text;
-		$this->message = $message ?: new RawMessage( '$1', [ Message::plaintextParam( $text ) ] );
+		if ( $text === null ) {
+			// TODO: Turn this warning into a proper type hint once we have
+			// found and fixed any offenders (T355751).
+			wfLogWarning( 'Comment text should not be null!' );
+			$text = '';
+		}
+
+		$this->id = (int)$id;
+		$this->text = (string)$text;
+		$this->message = $message
+			?: new RawMessage(
+				'$1',
+				[ Message::plaintextParam( $this->text ) ]
+			);
 		$this->data = $data;
 	}
 
