@@ -2025,7 +2025,7 @@ class ParserTestRunner {
 		} else {
 			// this mode is a composite of multiple selser tests
 			$mode = new ParserTestMode( "selserAutoEdits" );
-			$numChanges = $runnerOpts['numchanges'] ?? 20; // default in Parsoid
+			$numChanges = $runnerOpts['numchanges'] ?: 20; // default in Parsoid
 			$bufOut = "";
 			$bufExpected = "";
 			for ( $i = 0; $i < $numChanges; $i++ ) {
