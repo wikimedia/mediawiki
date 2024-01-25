@@ -28,6 +28,7 @@ use Wikimedia\Services\SalvageableService;
 /**
  * Object which holds currently registered configuration options.
  *
+ * @deprecated Introduced but seems unused since inception.
  * @since 1.32
  */
 class ConfigRepository implements SalvageableService {

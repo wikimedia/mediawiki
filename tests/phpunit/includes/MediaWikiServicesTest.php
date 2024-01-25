@@ -19,6 +19,7 @@ use Wikimedia\Services\SalvageableService;
  */
 class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 	private $deprecatedServices = [
+		'ConfigRepository',
 		'ConfiguredReadOnlyMode',
 	];
 

@@ -447,6 +447,8 @@ because of Phabricator reports.
   are deprecated, use ConfigDependency instead.
 * The module `mediawiki.icon` has been deprecated. Use the Codex mixin instead
   (T351681).
+* ConfigRepository::class and MediaWikiServices::getConfigRepository() have been
+  deprecated, they are unused.
 * Passing a WikiPage to PageEditStash::parseAndCache() has been deprecated.
   Use PageUpdater instance.
 * SpecialBlock::getSuggestedDurations() has been deprecated, use
