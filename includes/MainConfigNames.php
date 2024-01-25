@@ -1278,13 +1278,6 @@ class MainConfigNames {
 	public const NamespaceContentModels = 'NamespaceContentModels';
 
 	/**
-	 * Name constant for the ContentHandlerTextFallback setting, for use with Config::get()
-	 * @see MainConfigSchema::ContentHandlerTextFallback
-	 * @deprecated since 1.37
-	 */
-	public const ContentHandlerTextFallback = 'ContentHandlerTextFallback';
-
-	/**
 	 * Name constant for the TextModelsToParse setting, for use with Config::get()
 	 * @see MainConfigSchema::TextModelsToParse
 	 */

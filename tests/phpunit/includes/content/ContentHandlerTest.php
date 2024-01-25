@@ -160,82 +160,29 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $lang->getCode() );
 	}
 
-	public static function dataGetContentText_Null() {
-		return [
-			[ 'fail' ],
-			[ 'serialize' ],
-			[ 'ignore' ],
-		];
-	}
-
 	/**
-	 * @dataProvider dataGetContentText_Null
 	 * @covers ContentHandler::getContentText
 	 */
-	public function testGetContentText_Null( $contentHandlerTextFallback ) {
-		$this->overrideConfigValue( MainConfigNames::ContentHandlerTextFallback, $contentHandlerTextFallback );
-
+	public function testGetContentText_Null() {
 		$content = null;
-
 		$text = ContentHandler::getContentText( $content );
 		$this->assertSame( '', $text );
 	}
 
-	public static function dataGetContentText_TextContent() {
-		return [
-			[ 'fail' ],
-			[ 'serialize' ],
-			[ 'ignore' ],
-		];
-	}
-
 	/**
-	 * @dataProvider dataGetContentText_TextContent
 	 * @covers ContentHandler::getContentText
 	 */
-	public function testGetContentText_TextContent( $contentHandlerTextFallback ) {
-		$this->overrideConfigValue( MainConfigNames::ContentHandlerTextFallback, $contentHandlerTextFallback );
-
+	public function testGetContentText_TextContent() {
 		$content = new WikitextContent( "hello world" );
-
 		$text = ContentHandler::getContentText( $content );
 		$this->assertEquals( $content->getText(), $text );
 	}
 
 	/**
-	 * ContentHandler::getContentText should have thrown an exception for non-text Content object
-	 *
 	 * @covers ContentHandler::getContentText
 	 */
-	public function testGetContentText_NonTextContent_fail() {
-		$this->overrideConfigValue( MainConfigNames::ContentHandlerTextFallback, 'fail' );
-
+	public function testGetContentText_NonTextContent() {
 		$content = new DummyContentForTesting( "hello world" );
-
-		$this->expectException( MWException::class );
-		ContentHandler::getContentText( $content );
-	}
-
-	/**
-	 * @covers ContentHandler::getContentText
-	 */
-	public function testGetContentText_NonTextContent_serialize() {
-		$this->overrideConfigValue( MainConfigNames::ContentHandlerTextFallback, 'serialize' );
-
-		$content = new DummyContentForTesting( "hello world" );
-
-		$text = ContentHandler::getContentText( $content );
-		$this->assertEquals( $content->serialize(), $text );
-	}
-
-	/**
-	 * @covers ContentHandler::getContentText
-	 */
-	public function testGetContentText_NonTextContent_ignore() {
-		$this->overrideConfigValue( MainConfigNames::ContentHandlerTextFallback, 'ignore' );
-
-		$content = new DummyContentForTesting( "hello world" );
-
 		$text = ContentHandler::getContentText( $content );
 		$this->assertNull( $text );
 	}

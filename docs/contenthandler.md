@@ -72,7 +72,7 @@ Most importantly, the following functions have been deprecated:
 
 Also, the old `Article::getContent()` (which returns text) is superceded by `Article::getContentObject()`. However, both methods should be avoided since they do not provide clean access to the page's actual content. For instance, they may return a system message for non-existing pages. Use `WikiPage::getContent()` instead.
 
-Code that relies on a textual representation of the page content should eventually be rewritten. However, `ContentHandler::getContentText()` provides a stop-gap that can be used to get text for a page. Its behavior is controlled by `$wgContentHandlerTextFallback`; per default it will return the text for text based content, and null for any other content.
+Code that relies on a textual representation of the page content should eventually be rewritten. However, `ContentHandler::getContentText()` provides a stop-gap that can be used to get text for a page. It will return the text for text based content, and null for any other content.
 
 For rendering page content, `Content::getParserOutput()` should be used instead of accessing the parser directly. `WikiPage::makeParserOptions()` can be used to construct appropriate options.
 
@@ -103,11 +103,6 @@ There are some new globals that can be used to control the behavior of the Conte
 * `$wgContentHandlers` associates content model IDs with the names of the appropriate ContentHandler subclasses or callbacks that create an instance of the appropriate ContentHandler subclass.
 
 * `$wgNamespaceContentModels` maps namespace IDs to a content model that should be the default for that namespace.
-
-* `$wgContentHandlerTextFallback` determines how the compatibility method `ContentHandler::getContentText()` will behave for non-text content:
-    * `'ignore'` causes null to be returned for non-text content (default).
-    * `'serialize'` causes the serialized form of any non-text content to be returned (scary).
-    * `'fail'` causes an exception to be thrown for non-text content (strict).
 
 ## Caveats
 
