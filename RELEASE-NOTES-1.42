@@ -80,7 +80,7 @@ For notes on 1.41.x and older releases, see HISTORY.
   gets sent to the client. More information:
   https://www.mediawiki.org/wiki/Codex#Subset_of_components
 * (T345185) The SessionProviderInterface now allows defining providers that
-  are except from rights checks when auto creating users..
+  are exempt from rights checks when auto creating users.
 * …
 
 === External library changes in 1.42 ===
