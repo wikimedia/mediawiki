@@ -48,12 +48,8 @@ class ComposerJson {
 	 * @return string
 	 */
 	public static function normalizeVersion( $version ) {
-		if ( strpos( $version, 'v' ) === 0 ) {
-			// Composer auto-strips the "v" in front of the tag name
-			$version = ltrim( $version, 'v' );
-		}
-
-		return $version;
+		// Composer auto-strips the "v" in front of the tag name
+		return ltrim( $version, 'v' );
 	}
 
 }
