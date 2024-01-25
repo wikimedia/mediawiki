@@ -568,7 +568,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 					}
 					$attr = $attrs[$attrName];
 					// Don't convert URLs
-					if ( !strpos( $attr, '://' ) ) {
+					if ( !str_contains( $attr, '://' ) ) {
 						$attr = $this->recursiveConvertTopLevel( $attr, $toVariant );
 					}
 

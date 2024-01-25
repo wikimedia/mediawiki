@@ -310,7 +310,7 @@ function wfUrlencode( $s ) {
 	if ( $needle === null ) {
 		$needle = [ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E' ];
 		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) ||
-			( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false )
+			!str_contains( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' )
 		) {
 			$needle[] = '%3A';
 		}
