@@ -834,7 +834,7 @@ class ParserTestRunner {
 	 * @return string
 	 */
 	public static function chomp( $s ) {
-		if ( substr( $s, -1 ) === "\n" ) {
+		if ( str_ends_with( $s, "\n" ) ) {
 			return substr( $s, 0, -1 );
 		} else {
 			return $s;

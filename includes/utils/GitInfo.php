@@ -150,7 +150,7 @@ class GitInfo {
 				$repoName = $repoDir;
 			}
 			$realIP = realpath( MW_INSTALL_PATH );
-			if ( strpos( $repoName, $realIP ) === 0 ) {
+			if ( str_starts_with( $repoName, $realIP ) ) {
 				// Strip MW_INSTALL_PATH from path
 				$repoName = substr( $repoName, strlen( $realIP ) );
 			}
@@ -351,7 +351,7 @@ class GitInfo {
 					$remote = $configArray['remote origin'];
 				} elseif ( is_array( $configArray ) ) {
 					foreach ( $configArray as $sectionName => $sectionConf ) {
-						if ( substr( $sectionName, 0, 6 ) == 'remote' ) {
+						if ( str_starts_with( $sectionName, 'remote' ) ) {
 							$remote = $sectionConf;
 						}
 					}

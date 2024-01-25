@@ -40,8 +40,8 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UseTagFilter, $useTags );
 		if (
 			$avoidReopeningTables &&
-			$this->db->getType() == 'mysql' &&
-			strpos( $this->db->getSoftwareLink(), 'MySQL' )
+			$this->db->getType() === 'mysql' &&
+			str_contains( $this->db->getSoftwareLink(), 'MySQL' )
 		) {
 			$this->markTestSkipped( 'See T256006' );
 		}

@@ -57,7 +57,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		if ( $this->db->getType() == 'mysql' && strpos( $this->db->getSoftwareLink(), 'MySQL' ) ) {
+		if ( $this->db->getType() === 'mysql' && str_contains( $this->db->getSoftwareLink(), 'MySQL' ) ) {
 			$this->markTestSkipped( 'See T256006' );
 		}
 

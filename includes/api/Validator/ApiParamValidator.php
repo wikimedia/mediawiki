@@ -434,7 +434,7 @@ class ApiParamValidator {
 		foreach ( $ret as &$m ) {
 			$k = $m->getKey();
 			$m = $this->messageConverter->convertMessageValue( $m );
-			if ( substr( $k, 0, 20 ) === 'paramvalidator-help-' ) {
+			if ( str_starts_with( $k, 'paramvalidator-help-' ) ) {
 				$m = new Message(
 					[ 'api-help-param-' . substr( $k, 20 ), $k ],
 					$m->getParams()

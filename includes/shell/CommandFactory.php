@@ -145,8 +145,8 @@ class CommandFactory {
 				// or relative paths, resolve them all.
 				$realIP = realpath( $IP );
 				$currentUser = posix_getpwuid( posix_geteuid() );
-				$this->useAllUsers = ( strpos( $realIP, '/home/' ) === 0 )
-					&& ( strpos( $realIP, $currentUser['dir'] ) !== 0 );
+				$this->useAllUsers = str_starts_with( $realIP, '/home/' )
+					&& !str_starts_with( $realIP, $currentUser['dir'] );
 				if ( $this->useAllUsers ) {
 					$this->logger->warning( 'firejail: MediaWiki is located ' .
 						'in a home directory that does not belong to the ' .
