@@ -2006,11 +2006,17 @@ class ParserTestRunner {
 	 * @return ParserTestResult|false false if skipped
 	 */
 	private function selserAutoEditComposite( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		$html = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
+		if ( $html === null ) {
+			// We currently don't run this in standalone mode.
+			// The expectation is to add html/parsoid sections
+			// if we want to run these tests.
+			return false;
+		}
 		Assert::invariant(
 			$test->wikitext !== null,
 			"All tests include a wikitext section"
 		);
-		$runnerOpts = $this->getOptions();
 
 		if ( $test->changetree ) {
 			// Apply edits to the HTML.
@@ -2025,6 +2031,7 @@ class ParserTestRunner {
 		} else {
 			// this mode is a composite of multiple selser tests
 			$mode = new ParserTestMode( "selserAutoEdits" );
+			$runnerOpts = $this->getOptions();
 			$numChanges = $runnerOpts['numchanges'] ?: 20; // default in Parsoid
 			$bufOut = "";
 			$bufExpected = "";
