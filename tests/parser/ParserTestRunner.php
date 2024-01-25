@@ -2184,6 +2184,14 @@ class ParserTestRunner {
 			case 'selser-auto':
 				$test->changetree = $mode->changetree;
 				$res = $this->selserAutoEdit( $parsoid, $pageConfig, $test, $mode );
+				if ( $res === false && !$test->changetree ) {
+					// TEMPORARY HACK
+					// If we don't run any selser tests, ensure changetree is not null
+					// because we are going to call Test::isDuplicateChangeTree() on it
+					// This ensures that we continue to crash if change tree is null
+					// for any other reason!
+					$test->changetree = [];
+				}
 				// Don't reset changetree here -- it is used to detect duplicate trees
 				// and stop selser test generation in Test.php::testAllModes
 				break;
