@@ -104,13 +104,18 @@ class DBAccessObjectUtils implements IDBAccessObject {
 	/**
 	 * @param IConnectionProvider $dbProvider
 	 * @param int $recency IDBAccessObject::READ_* constant
+	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return IReadableDatabase
 	 * @since 1.42
 	 */
-	public static function getDBFromRecency( IConnectionProvider $dbProvider, int $recency ): IReadableDatabase {
+	public static function getDBFromRecency(
+		IConnectionProvider $dbProvider,
+		int $recency,
+		$domain = false
+	): IReadableDatabase {
 		if ( self::hasFlags( $recency, IDBAccessObject::READ_LATEST ) ) {
-			return $dbProvider->getPrimaryDatabase();
+			return $dbProvider->getPrimaryDatabase( $domain );
 		}
-		return $dbProvider->getReplicaDatabase();
+		return $dbProvider->getReplicaDatabase( $domain );
 	}
 }

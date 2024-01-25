@@ -373,7 +373,7 @@ class UserGroupManager implements IDBAccessObject {
 			return [];
 		}
 
-		$res = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags )->newSelectQueryBuilder()
+		$res = $this->getDBConnectionRefForQueryFlags( $queryFlags )->newSelectQueryBuilder()
 			->select( 'ufg_group' )
 			->from( 'user_former_groups' )
 			->where( [ 'ufg_user' => $user->getId( $this->wikiId ) ] )
@@ -769,9 +769,7 @@ class UserGroupManager implements IDBAccessObject {
 			return [];
 		}
 
-		$queryBuilder = $this->newQueryBuilder(
-			DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags )
-		);
+		$queryBuilder = $this->newQueryBuilder( $this->getDBConnectionRefForQueryFlags( $queryFlags ) );
 		$res = $queryBuilder
 			->where( [ 'ug_user' => $user->getId( $this->wikiId ) ] )
 			->caller( __METHOD__ )
@@ -1216,6 +1214,14 @@ class UserGroupManager implements IDBAccessObject {
 		$userKey = $this->getCacheKey( $user );
 		unset( $this->userGroupCache[$userKey][$cacheKind] );
 		unset( $this->queryFlagsUsedForCaching[$userKey][$cacheKind] );
+	}
+
+	/**
+	 * @param int $queryFlags a bit field composed of READ_XXX flags
+	 * @return IReadableDatabase
+	 */
+	private function getDBConnectionRefForQueryFlags( int $queryFlags ): IReadableDatabase {
+		return DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags, $this->wikiId );
 	}
 
 	/**
