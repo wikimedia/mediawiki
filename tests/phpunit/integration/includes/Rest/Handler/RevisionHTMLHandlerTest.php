@@ -9,6 +9,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
@@ -259,7 +260,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			->willThrowException( $parsoidException );
 
 		// Install it in the ParsoidParser object
-		$reflector = new ReflectionClass( 'MediaWiki\Parser\Parsoid\ParsoidParser' );
+		$reflector = new ReflectionClass( ParsoidParser::class );
 		$prop = $reflector->getProperty( 'parsoid' );
 		$prop->setAccessible( true );
 		$prop->setValue( $parsoidParser, $mockParsoid );

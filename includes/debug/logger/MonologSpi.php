@@ -22,6 +22,7 @@ namespace MediaWiki\Logger;
 
 use DateTimeZone;
 use MediaWiki\Logger\Monolog\BufferHandler;
+use Monolog\Handler\FormattableHandlerInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -262,7 +263,7 @@ class MonologSpi implements Spi {
 			$handler = ObjectFactory::getObjectFromSpec( $spec );
 			if (
 				isset( $spec['formatter'] ) &&
-				is_subclass_of( $handler, 'Monolog\Handler\FormattableHandlerInterface' )
+				$handler instanceof FormattableHandlerInterface
 			) {
 				$handler->setFormatter(
 					$this->getFormatter( $spec['formatter'] )

@@ -198,7 +198,7 @@ class CachedSourceTest extends TestCase {
 			array_merge( [ 'get', 'makeGlobalKey', 'set' ], $methods )
 		);
 
-		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
+		$key = 'global:' . self::class . ':' . $hashKey;
 
 		$cache
 			->expects( $this->once() )
