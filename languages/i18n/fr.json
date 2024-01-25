@@ -76,6 +76,7 @@
 			"Hashar",
 			"Hello71",
 			"Hercule",
+			"Histnou",
 			"Houcinee1",
 			"Housterdam",
 			"Hégésippe Cormier",
@@ -4451,6 +4452,7 @@
 	"renameuser-error-same-user": "Vous ne pouvez pas renommer un utilisateur avec le même nom qu’auparavant.",
 	"renameuser-error-temp-user": "Vous ne pouvez pas renommer le compte temporaire « $1 ».",
 	"renameuser-error-temp-user-reserved": "Vous ne pouvez pas utiliser « $1 ». Il est réservé pour les comptes temporaires.",
+	"renameuser-error-self-rename": "Vous ne pouvez vous renommer vous-même.",
 	"renameusersuccess": "L’utilisat{{GENDER:$1|eur|rice}} « <nowiki>$1</nowiki> » a été renommé{{GENDER:$1||e}} en « <nowiki>$2</nowiki> ».",
 	"renameuser-page-exists": "La page $1 existe déjà et ne peut pas être automatiquement remplacée.",
 	"renameuser-page-moved": "La page $1 a été déplacée vers $2.",
@@ -4469,5 +4471,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} est fait par des gens comme vous. Avec un compte, vous pouvez avoir une identité permanente et sécurisée avec accès à des fonctionnalités comme :",
 	"benefit-1-description": "Listes de suivi qui vous permettent de garder trace des pages qui vous intéressent.",
 	"benefit-2-description": "Liste permanente des contributions que vous avez faites au projet.",
-	"benefit-3-description": "Préférences qui vous permettent de personnaliser votre expérience."
+	"benefit-3-description": "Préférences qui vous permettent de personnaliser votre expérience.",
+	"temp-user-unable-to-acquire": "Impossible d'acquérir un nom d'utilisateur temporaire. S'il vous plaît, réessayez."
 }

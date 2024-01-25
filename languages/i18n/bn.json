@@ -677,9 +677,11 @@
 	"edit-recovery-special-intro-empty": "আপনার কোনো অসংরক্ষিত পরিবর্তন নেই।",
 	"edit-recovery-special-view": "দেখুন",
 	"edit-recovery-special-edit": "সম্পাদনা",
-	"edit-recovery-special-recovered-on": "$1-এ পুনরুদ্ধার করা হয়েছে",
+	"edit-recovery-special-recovered-on": "$1 থেকে",
+	"edit-recovery-special-recovered-on-tooltip": "আপনার পুনরুদ্ধারকৃত উপাত্ত শেষ যে তারিখ এবং সময়ে সংরক্ষিত হয়েছিল",
 	"edit-recovery-loaded-title": "পরিবর্তন পুনরুদ্ধার করা হয়েছে",
 	"edit-recovery-loaded-message": "আপনার অসংরক্ষিত পরিবর্তনগুলি স্বয়ংক্রিয়ভাবে পুনরুদ্ধার করা হয়েছে।",
+	"edit-recovery-loaded-message-different-rev": "লক্ষ্য করুন যে আপনি সম্পাদনা শুরু করার পর থেকে হয়তো পৃষ্ঠাটি পরিবর্তিত হয়েছে। সংরক্ষণ করার আগে আপনার পরিবর্তন পর্যালোচনা করুন।",
 	"edit-recovery-loaded-show": "পরিবর্তনগুলি দেখুন",
 	"edit-recovery-loaded-discard": "পরিবর্তন বাতিল করুন",
 	"summary": "সারাংশ:",
@@ -1446,6 +1448,9 @@
 	"grant-viewdeleted": "অপসারিত ফাইল ও পাতাগুলি দেখুন",
 	"grant-viewmywatchlist": "আপনার নজরতালিকা দেখুন",
 	"grant-viewrestrictedlogs": "লগের সীমাবদ্ধ ভুক্তিগুলি দেখুন",
+	"grantriskgroup-vandalism": "(ঝুঁকির মাত্রা: ধ্বংসপ্রবণতা)",
+	"grantriskgroup-security": "(ঝুঁকির মাত্রা: নিরাপত্তা)",
+	"grantriskgroup-internal": "(ঝুঁকির মাত্রা: অভ্যন্তরীণ)",
 	"newuserlogpage": "ব্যবহারকারী সৃষ্টির লগ",
 	"newuserlogpagetext": "এটি নতুন ব্যবহারকারী সৃষ্টির লগ",
 	"rightslog": "ব্যবহারকারীর অধিকার লগ",
@@ -4272,5 +4277,7 @@
 	"benefit-1-description": "নজরতালিকা যার মাধ্যমে আপনি আপনার আগ্রহের পাতাগুলির উপর নজর রাখতে পারবেন।",
 	"benefit-2-description": "প্রকল্পে আপনার অবদানের স্থায়ী তালিকা।",
 	"benefit-3-description": "পছন্দগুলি যা আপনাকে আপনার অভিজ্ঞতা সাজাতে অনুমতি দেয়",
-	"temp-user-unable-to-acquire": "একটি অস্থায়ী অ্যাকাউন্টের ব্যবহারকারী নাম অর্জন করা যায়নি। অনুগ্রহপূর্বক পুনরায় চেষ্টা করুন।"
+	"temp-user-unable-to-acquire": "একটি অস্থায়ী অ্যাকাউন্টের ব্যবহারকারী নাম অর্জন করা যায়নি। অনুগ্রহপূর্বক পুনরায় চেষ্টা করুন।",
+	"composer-deps-outdated": "$1: $2 ইনস্টল করা হয়েছে, $3 প্রয়োজন৷",
+	"composer-deps-notinstalled": "$1: ইনস্টল করা হয়নি, $2 প্রয়োজন।"
 }

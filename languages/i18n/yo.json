@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aderiqueza",
 			"Amire80",
 			"Demmy",
 			"Fitoschido",
@@ -275,6 +276,7 @@
 	"red-link-title": "$1 (kò sí ojúewé yìí)",
 	"sort-descending": "Ìtò lọsisàlẹ̀",
 	"sort-ascending": "Ìtò lọsókè",
+	"sort-initial": "Too ibẹrẹ",
 	"nstab-main": "Ojúewé",
 	"nstab-user": "{{GENDER:$1|Ojúewé oníṣe}}",
 	"nstab-media": "Ojúewé amóhùnmáwòrán",

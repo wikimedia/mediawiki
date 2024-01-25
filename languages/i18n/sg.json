@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Daniel236",
 			"Ice201 (on sg.wikipedia.org)",
 			"Laurent Bouvier",
 			"Mdkidiri"
@@ -168,6 +169,7 @@
 	"nav-login-createaccount": "Linda wala Zî kônde",
 	"logout": "Sïgî",
 	"userlogout": "Sigî",
+	"pt-login": "Lingo na yâ ti site",
 	"watchthis": "Bâa pekô tî lêmbëtï sô",
 	"anoneditwarning": "'''Ânge:''' Mô de mo linda äpëe. Fade a sû lindosînga IP tî mo na mbai tî lêmbëtï sô.",
 	"editing": "Sëpëngö $1",
@@ -225,6 +227,7 @@
 	"others": "mbênî",
 	"bad_image_list": "Funda nî ayeke töngasô:\nGï âkâmba tî molongö (sô atö ndâ nî na *) laâ a yeke bâa lêgë nî. Kôzo gbê tî yâ tî kâmba ôko ôko adu tî gbùe na mbênî kpäkë kuru. Âtanga tî âgbê sô na yâ tî ôko kâmba nî sô, a bâa nî töngana yê ndê, sô ^tî tene, töngana âlêmbëtï sô kuru nî alîngbi tî tua daä na gbegbê nî.",
 	"specialpages": "Âlêmbëtï sô ayeke ndê",
+	"searchsuggest-containing": "Gi ambeti so ayeke na yâ ni",
 	"skin-action-undelete": "Kîri na nî",
 	"skin-action-delete": "Lungûla",
 	"skin-action-move": "Sanzêe ïrï"

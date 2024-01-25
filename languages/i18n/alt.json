@@ -624,7 +624,7 @@
 	"edit-recovery-special-intro-empty": "Слерде бичилбеген солынталар jок.",
 	"edit-recovery-special-view": "кӧрӧр",
 	"edit-recovery-special-edit": "тӱзедер",
-	"edit-recovery-special-recovered-on": "$1 ӧйдӧ болгон этире орныктырылган",
+	"edit-recovery-special-recovered-on": "алган јери $1",
 	"edit-recovery-loaded-title": "Тӱзедӱлер орныктырылды",
 	"edit-recovery-loaded-message": "Слердиҥ корулалбаган тӱзедӱлеригер автоматически орныктырылган.",
 	"edit-recovery-loaded-show": "Солынтыларды кӧргӱзер",

@@ -625,7 +625,7 @@
 	"botpasswords-label-delete": "Hapus",
 	"botpasswords-label-resetpassword": "Setel ulang kata sandi",
 	"botpasswords-label-grants": "Akses yang dapat diberikan:",
-	"botpasswords-help-grants": "Izin ke akses tertentu telah dimiliki oleh akun pengguna Anda. Mengaktifkan sebuah hak di sini tidak memberikan akses ke akses lain yang tidak dimiliki oleh akun pengguna Anda. Lihat [[Special:ListGrants|daftar hak akses]] untuk informasi selengkapnya.",
+	"botpasswords-help-grants": "Izin ke akses tertentu telah dimiliki oleh akun pengguna Anda. Mengaktifkan sebuah hak di sini tidak memberikan akses ke akses lain yang tidak dimiliki oleh akun pengguna Anda. Lihat [[Special:ListGrants|daftar hak akses]] untuk informasi selengkapnya.\n\nIzin yang berisiko telah diberi tanda. Izin tanpa tanda biasanya sulit disalahgunakan ketika bot dibajak oleh orang yang berniat buruk. Izin dengan risiko vandalisme (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) bisa digunakan untuk menyebabkan gangguan yang membutuhkan kerja keras untuk dibersihkan. Izin dengan risiko keamanan (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) bisa menyebabkan kerusakan yang berdampak lama (seperti pencurian data pribadi). Izin internal (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) biasanya hanya digunakan oleh operator situs. Tolong jangan meminta izin yang berisiko kecuai Anda benar-benar membutuhkannya.",
 	"botpasswords-label-grants-column": "Izin diberikan",
 	"botpasswords-bad-appid": "Nama bot \"$1\" tidak valid.",
 	"botpasswords-toolong-restrictions": "Terlalu banyak alamat atau jangkauan IP yang dimasukkan.",
@@ -709,6 +709,7 @@
 	"edit-recovery-special-recovered-on-tooltip": "Tanggal dan waktu data pemulihan Anda terakhir disimpan",
 	"edit-recovery-loaded-title": "Perubahan yang dipulihkan",
 	"edit-recovery-loaded-message": "Suntingan Anda yang belum disimpan telah dipulihkan secara otomatis.",
+	"edit-recovery-loaded-message-different-rev": "Perhatikan bahwa halaman ini mungkin telah berubah sejak Anda mulai menyunting. Harap tinjau perubahan Anda sebelum menyimpannya.",
 	"edit-recovery-loaded-show": "Lihat perubahan",
 	"edit-recovery-loaded-discard": "Buang suntingan",
 	"summary": "Ringkasan:",
@@ -1473,6 +1474,9 @@
 	"grant-viewdeleted": "Melihat halaman dan berkas yang dihapus",
 	"grant-viewmywatchlist": "Lihat daftar pantauan Anda",
 	"grant-viewrestrictedlogs": "Lihat entri log terbatas",
+	"grantriskgroup-vandalism": "(penilaian risiko: vandalisme)",
+	"grantriskgroup-security": "(penilaian risiko: keamanan)",
+	"grantriskgroup-internal": "(penilaian risiko: internal)",
 	"newuserlogpage": "Log pengguna baru",
 	"newuserlogpagetext": "Di bawah ini adalah log pendaftaran pengguna baru",
 	"rightslog": "Log perubahan hak akses",
@@ -4279,5 +4283,7 @@
 	"benefit-1-description": "Daftar pantauan yang memungkinkan Anda melacak halaman yang Anda minati.",
 	"benefit-2-description": "Daftar permanen berisi kontribusi yang Anda berikan pada suatu proyek.",
 	"benefit-3-description": "Preferensi yang memungkinkan Anda menyesuaikan pengalaman Anda.",
-	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akun sementara. Silakan coba lagi."
+	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akun sementara. Silakan coba lagi.",
+	"composer-deps-outdated": "$1: $2 terpasang, $3 diperlukan.",
+	"composer-deps-notinstalled": "$1: tidak terpasang, $2 diperlukan."
 }
