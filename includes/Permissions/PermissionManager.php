@@ -838,7 +838,7 @@ class PermissionManager {
 			);
 
 			foreach ( $messages as $message ) {
-				$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+				$errors[] = [ $message->getKey(), ...$message->getParams() ];
 			}
 		}
 

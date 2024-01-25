@@ -761,7 +761,7 @@ class ApiUpload extends ApiBase {
 			case UploadBase::VERIFICATION_ERROR:
 				$msg = ApiMessage::create( $verification['details'], 'verification-error' );
 				if ( $verification['details'][0] instanceof MessageSpecifier ) {
-					$details = array_merge( [ $msg->getKey() ], $msg->getParams() );
+					$details = [ $msg->getKey(), ...$msg->getParams() ];
 				} else {
 					$details = $verification['details'];
 				}

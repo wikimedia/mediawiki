@@ -431,7 +431,7 @@ abstract class AbstractBlock implements Block {
 				$context->getLanguage(),
 				$context->getRequest()->getIP()
 			);
-		return array_merge( [ $message->getKey() ], $message->getParams() );
+		return [ $message->getKey(), ...$message->getParams() ];
 	}
 
 	/**

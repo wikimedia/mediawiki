@@ -222,10 +222,7 @@ class OOUIHTMLForm extends HTMLForm {
 			if ( !$elements->isGood() ) {
 				$errors = $elements->getErrorsByType( $elementsType );
 				foreach ( $errors as &$error ) {
-					// Input:  [ 'message' => 'foo', 'params' => [ 'a', 'b', 'c' ] ]
-					// Output: [ 'foo', 'a', 'b', 'c' ]
-					$error = $this->getMessage(
-						array_merge( [ $error['message'] ], $error['params'] ) )->parse();
+					$error = $this->getMessage( [ $error['message'], ...$error['params'] ] )->parse();
 				}
 			}
 		} elseif ( $elementsType === 'error' ) {

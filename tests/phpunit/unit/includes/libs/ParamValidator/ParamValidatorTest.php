@@ -198,11 +198,11 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 			ParamValidator::PARAM_ISMULTI, ParamValidator::PARAM_SENSITIVE, ParamValidator::PARAM_DEPRECATED,
 			ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES,
 		];
-		$multiKeys = array_merge( $normalKeys, [
+		$multiKeys = [ ...$normalKeys,
 			ParamValidator::PARAM_ISMULTI_LIMIT1, ParamValidator::PARAM_ISMULTI_LIMIT2,
 			ParamValidator::PARAM_ALL, ParamValidator::PARAM_ALLOW_DUPLICATES
-		] );
-		$multiEnumKeys = array_merge( $multiKeys, [ TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ] );
+		];
+		$multiEnumKeys = [ ...$multiKeys, TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ];
 
 		return [
 			'Basic test' => [
@@ -307,7 +307,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					'issues' => [
 						ParamValidator::PARAM_DEFAULT => 'Value for PARAM_DEFAULT does not validate (code badvalue)',
 					],
-					'allowedKeys' => array_merge( $normalKeys, [ TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ] ),
+					'allowedKeys' => [ ...$normalKeys, TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ],
 					'messages' => [],
 				],
 			],

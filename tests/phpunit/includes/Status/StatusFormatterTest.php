@@ -386,12 +386,12 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 
 	public function testGetErrorMessage() {
 		$formatter = $this->getFormatter();
+		/** @var StatusFormatter $formatter */
 		$formatter = TestingAccessWrapper::newFromObject( $formatter );
 		$key = 'foo';
 		$params = [ 'bar' ];
 
-		/** @var Message $message */
-		$message = $formatter->getErrorMessage( array_merge( [ $key ], $params ) );
+		$message = $formatter->getErrorMessage( [ $key, ...$params ] );
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
@@ -399,12 +399,12 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 
 	public function testGetErrorMessageComplexParam() {
 		$formatter = $this->getFormatter();
+		/** @var StatusFormatter $formatter */
 		$formatter = TestingAccessWrapper::newFromObject( $formatter );
 		$key = 'foo';
 		$params = [ 'bar', Message::numParam( 5 ) ];
 
-		/** @var Message $message */
-		$message = $formatter->getErrorMessage( array_merge( [ $key ], $params ) );
+		$message = $formatter->getErrorMessage( [ $key, ...$params ] );
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
@@ -419,8 +419,8 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		/** @var Message[] $messageArray */
 		$messageArray = $formatter->getErrorMessageArray(
 			[
-				array_merge( [ $key ], $params ),
-				array_merge( [ $key ], $params )
+				[ $key, ...$params ],
+				[ $key, ...$params ],
 			]
 		);
 
