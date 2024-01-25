@@ -2034,13 +2034,13 @@ abstract class UploadBase {
 			return [ 'warning' => 'page-exists', 'file' => $file ];
 		}
 
-		if ( !strpos( $file->getName(), '.' ) ) {
+		$n = strrpos( $file->getName(), '.' );
+		if ( $n > 0 ) {
+			$partname = substr( $file->getName(), 0, $n );
+			$extension = substr( $file->getName(), $n + 1 );
+		} else {
 			$partname = $file->getName();
 			$extension = '';
-		} else {
-			$n = strrpos( $file->getName(), '.' );
-			$extension = substr( $file->getName(), $n + 1 );
-			$partname = substr( $file->getName(), 0, $n );
 		}
 		$normalizedExtension = File::normalizeExtension( $extension );
 		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
