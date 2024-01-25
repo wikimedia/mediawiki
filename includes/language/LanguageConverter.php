@@ -1186,7 +1186,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	public function markNoConversion( $text, $noParse = false ) {
 		# don't mark if already marked
-		if ( strpos( $text, '-{' ) || strpos( $text, '}-' ) ) {
+		if ( str_contains( $text, '-{' ) || str_contains( $text, '}-' ) ) {
 			return $text;
 		}
 
