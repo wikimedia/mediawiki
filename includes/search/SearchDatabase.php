@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Status\Status;
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -65,7 +66,21 @@ abstract class SearchDatabase extends SearchEngine {
 	 * @return ISearchResultSet|null
 	 */
 	final public function doSearchTitle( $term ) {
-		return $this->doSearchTitleInDB( $this->extractNamespacePrefix( $term ) );
+		try {
+			return $this->doSearchTitleInDB( $this->extractNamespacePrefix( $term ) );
+		} catch ( DBQueryError $dqe ) {
+			if ( $dqe->errno == 1064 ) {
+				throw new DBQueryError(
+					$dqe->db,
+					"Query incompatible with database engine. For more information: " .
+					"https://bugs.mysql.com/bug.php?id=78485 https://jira.mariadb.org/browse/MDEV-21750 / " .
+					"https://phabricator.wikimedia.org/T355096",
+					1064, $dqe->sql, __METHOD__
+					);
+			} else {
+				throw $dqe;
+			}
+		}
 	}
 
 	/**
