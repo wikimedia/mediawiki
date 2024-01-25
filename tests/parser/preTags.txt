@@ -415,7 +415,7 @@ HTML-pre: 3: other wikitext
 !! article
 Template:Pre
 !! text
-<pre<includeonly></includeonly> format="wikitext">{{{1}}}</pre>
+{{#tag:pre|{{{1}}}|format="wikitext"}}
 !! endarticle
 
 !! test
@@ -611,7 +611,7 @@ line}}
 === test ===
 line</pre>
 <pre>new
-<div class="mw-heading mw-heading3"><h3 id="test">test</h3></div>
+<div class="mw-heading mw-heading3"><h3 id="test">test</h3><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: test">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 line</pre>
 !! html/parsoid+integrated
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"new\n=== test ===\nline"}}'>new
@@ -629,7 +629,7 @@ Template:Nested template in pre
 {{1x|hi}}
 </pre>
 
-<pre<includeonly></includeonly> format="wikitext">
+<pre format="wikitext">
 {{1x|hi}}
 </pre>
 !! endarticle
@@ -645,7 +645,7 @@ Template pre: Nested template
 </pre>
 !! html/parsoid+integrated
 <pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt1" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n{{1x|hi}}\n"},"parts":[{"template":{"target":{"wt":"nested template in pre","href":"./Template:Nested_template_in_pre"},"params":{},"i":0}}]}'>{{1x|hi}}</pre><span about="#mwt1">
-</span><pre typeof="mw:Extension/pre" about="#mwt1" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\nhi\n"}}'>
+</span><pre typeof="mw:Extension/pre" about="#mwt1" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n{{1x|hi}}\n"}}'>
 
 hi</pre>
 !! end
@@ -669,7 +669,7 @@ Template pre: Nowiki
 </pre>
 !! html/parsoid+integrated
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>test&lt;/nowiki>\n"}}'>test</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n{{#parsoid\u0000fragment:0}}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>test&lt;/nowiki>\n"}},"i":0}}]}'>
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\ntest\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>test&lt;/nowiki>\n"}},"i":0}}]}'>
 
 test</pre>
 !! end

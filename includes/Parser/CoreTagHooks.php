@@ -59,22 +59,38 @@ class CoreTagHooks {
 	 * @param ?string $content
 	 * @param array $attribs
 	 * @param Parser $parser
+	 * @param PPFrame $frame
 	 * @return string HTML
 	 * @internal
 	 */
-	public static function pre( ?string $content, array $attribs, Parser $parser ): string {
-		// Backwards-compatibility hack
-		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $content ?? '', 'i' );
+	public static function pre(
+		?string $content, array $attribs, Parser $parser, PPFrame $frame
+	): string {
+		$content ??= '';
+
+		if ( ( $attribs['format'] ?? '' ) === 'wikitext' ) {
+			// T348722: $frame is omitted here.  Editors should
+			// use the tag parser function if they want access
+			// to template args, for compatibility with Parsoid
+			$content = $parser->recursiveTagParse( $content );
+		} else {
+			// Backwards-compatibility hack
+			$content = StringUtils::delimiterReplace(
+				'<nowiki>', '</nowiki>', '$1', $content, 'i'
+			);
+
+			// We need to let both '"' and '&' through,
+			// for strip markers and entities respectively.
+			$content = str_replace(
+				[ '>', '<' ],
+				[ '&gt;', '&lt;' ],
+				$content
+			);
+		}
 
 		$attribs = array_map( $parser->killMarkers( ... ), $attribs );
 		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
-		// We need to let both '"' and '&' through,
-		// for strip markers and entities respectively.
-		$content = str_replace(
-			[ '>', '<' ],
-			[ '&gt;', '&lt;' ],
-			$content
-		);
+
 		// @phan-suppress-next-line SecurityCheck-XSS escaped in previous line
 		return Html::rawElement( 'pre', $attribs, $content );
 	}

@@ -5164,7 +5164,7 @@ class Parser {
 		if ( isset( $params['caption'] ) ) {
 			// NOTE: We aren't passing a frame here or below.  Frame info
 			// is currently opaque to Parsoid, which acts on OT_PREPROCESS.
-			// See T107332#4030581
+			// See T107332#4030582
 			$caption = $this->recursiveTagParse( $params['caption'] );
 			$ig->setCaptionHtml( $caption );
 		}
