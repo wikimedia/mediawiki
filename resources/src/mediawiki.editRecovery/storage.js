@@ -38,9 +38,9 @@ function upgradeDatabase( versionChangeEvent ) {
 	const keyPathParts = [ 'pageName', 'section' ];
 	var objectStore;
 
-	if ( versionChangeEvent.oldVersion === 0 ) {
+	db = versionChangeEvent.target.result;
+	if ( !db.objectStoreNames.contains( objectStoreName ) ) {
 		// ObjectStore does not yet exist, create it.
-		db = versionChangeEvent.target.result;
 		objectStore = db.createObjectStore( objectStoreName, { keyPath: keyPathParts } );
 	} else {
 		// ObjectStore exists, but needs to be upgraded.
