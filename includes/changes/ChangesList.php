@@ -573,7 +573,7 @@ class ChangesList extends ContextSource {
 			);
 		}
 
-		$s .= Html::rawElement( 'div', [ 'class' => 'mw-changeslist-links' ],
+		$s .= Html::rawElement( 'span', [ 'class' => 'mw-changeslist-links' ],
 				Html::rawElement( 'span', [], $diffLink ) .
 				Html::rawElement( 'span', [], $histLink )
 			) .
