@@ -622,8 +622,8 @@ return [
 		],
 		'dependencies' => [
 			'vue',
-			'codex-styles'
-		]
+			'codex-styles',
+		],
 	],
 
 	'codex-styles' => [
@@ -637,37 +637,25 @@ return [
 			'wikimedia-ui-legacy' => [
 				'ltr' => 'resources/lib/codex/codex.style-legacy.css',
 				'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
-			]
+			],
 		],
 		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
-		'noflip' => true
+		'noflip' => true,
 	],
 
 	'@wikimedia/codex-search' => [
-		'packageFiles' => [
-			'resources/lib/codex/codex-search.cjs',
-		],
+		'class' => CodexModule::class,
+		'codexComponents' => [ 'CdxTypeaheadSearch' ],
+		'codexScriptOnly' => true,
 		'dependencies' => [
-			'vue',
-			'codex-search-styles'
-		]
+			'codex-search-styles',
+		],
 	],
 
 	'codex-search-styles' => [
 		'class' => CodexModule::class,
-		'themeStyles' => [
-			// Special syntax supported by CodexModule
-			'wikimedia-ui' => [
-				'ltr' => 'resources/lib/codex/codex-search.style.css',
-				'rtl' => 'resources/lib/codex/codex-search.style-rtl.css'
-			],
-			'wikimedia-ui-legacy' => [
-				'ltr' => 'resources/lib/codex/codex-search.style-legacy.css',
-				'rtl' => 'resources/lib/codex/codex-search.style-legacy-rtl.css'
-			]
-		],
-		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
-		'noflip' => true
+		'codexComponents' => [ 'CdxTypeaheadSearch' ],
+		'codexStyleOnly' => true,
 	],
 
 	/* MediaWiki */
