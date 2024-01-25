@@ -247,7 +247,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$pageWrapper = TestingAccessWrapper::newFromObject( $page );
 		$pageWrapper->mLatest = null;
 		$pageWrapper->mId = 0;
-		$pageWrapper->mDataLoadedFrom = WikiPage::READ_NORMAL;
+		$pageWrapper->mDataLoadedFrom = IDBAccessObject::READ_NORMAL;
 
 		$fileHandler = $this->getMockBuilder( FileContentHandler::class )
 			->disableOriginalConstructor()

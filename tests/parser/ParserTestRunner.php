@@ -2822,7 +2822,7 @@ class ParserTestRunner {
 		$performer = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
 
 		$page = $services->getWikiPageFactory()->newFromLinkTarget( $title );
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$newContent = $page->getContentHandler()->unserializeContent( $text );
 
 		if ( $page->exists() ) {

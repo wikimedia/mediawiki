@@ -115,7 +115,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
 		$this->assertSame(
 			'wikitext',
-			$wikipage->getTitle()->getContentModel( Title::READ_LATEST ),
+			$wikipage->getTitle()->getContentModel( IDBAccessObject::READ_LATEST ),
 			'`ExistingPage` should be wikitext'
 		);
 
@@ -166,7 +166,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame(
 			'wikitext',
-			$wikipage->getTitle()->getContentModel( Title::READ_LATEST ),
+			$wikipage->getTitle()->getContentModel( IDBAccessObject::READ_LATEST ),
 			'`ExistingPage` should be wikitext'
 		);
 
@@ -215,7 +215,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame(
 			'testing',
-			$title->getContentModel( Title::READ_LATEST ),
+			$title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'Dummy:NoDirectEditing should start with the `testing` content model'
 		);
 
@@ -263,7 +263,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	public function testCheckPermissions() {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
 		$title = $wikipage->getTitle();
-		$currentContentModel = $title->getContentModel( Title::READ_LATEST );
+		$currentContentModel = $title->getContentModel( IDBAccessObject::READ_LATEST );
 		$newContentModel = 'text';
 
 		$this->assertSame(

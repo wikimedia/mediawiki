@@ -234,7 +234,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( "== header ==\n\ntest", $text );
 
 		// Now on one that does
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 		[ $re2 ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $title->getPrefixedText(),
@@ -767,7 +767,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'contentformat' => 'text/x-wiki',
 		] );
 
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 	}
 
 	public function testUnsupportedContentFormat() {
@@ -783,7 +783,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'contentformat' => 'nonexistent format',
 			] );
 		} finally {
-			$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+			$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 		}
 	}
 
@@ -801,7 +801,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'contentformat' => 'text/plain',
 			] );
 		} finally {
-			$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+			$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 		}
 	}
 
@@ -1012,7 +1012,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testMd5Text() {
 		$title = Title::makeTitle( NS_HELP, 'TestMd5Text' );
 
-		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+		$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1021,7 +1021,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'md5' => md5( 'Some text' ),
 		] );
 
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 	}
 
 	public function testMd5PrependText() {
@@ -1123,7 +1123,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectApiErrorCode( 'articleexists' );
 
 		$this->editPage( $title, 'Some text' );
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -1146,7 +1146,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->expectApiErrorCode( 'missingtitle' );
 
-		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+		$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -1156,7 +1156,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'nocreate' => '',
 			] );
 		} finally {
-			$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+			$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 		}
 	}
 
@@ -1189,7 +1189,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testAppendInMediaWikiNamespace() {
 		$title = Title::makeTitle( NS_MEDIAWIKI, 'TestAppendInMediaWikiNamespace' );
 
-		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+		$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1197,7 +1197,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'appendtext' => 'Some text',
 		] );
 
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 	}
 
 	public function testAppendInMediaWikiNamespaceWithSerializationError() {
@@ -1467,7 +1467,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'recreate' => '',
 		] );
 
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 	}
 
 	public function testEditWatch() {
@@ -1483,7 +1483,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'watchlistexpiry' => '99990123000000',
 		] );
 
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
 		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
 	}
@@ -1505,7 +1505,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'unwatch' => '',
 		] );
 
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 		$this->assertFalse( $watchlistManager->isWatched( $user, $title ) );
 	}
 
@@ -1534,7 +1534,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->expectApiErrorCode( 'tags-apply-no-permission' );
 
-		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+		$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 
 		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 		$this->overrideConfigValue(
@@ -1550,7 +1550,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'tags' => 'custom tag',
 			] );
 		} finally {
-			$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+			$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 		}
 	}
 
@@ -1569,7 +1569,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => 'Some text',
 		] );
 
-		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+		$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 		$this->assertSame( [ 'edit' => [ 'msg' => 'A message for you!',
 			'result' => 'Failure' ] ], $res[0] );
 	}
@@ -1592,7 +1592,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'text' => 'Some text',
 			] );
 		} finally {
-			$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+			$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 		}
 	}
 

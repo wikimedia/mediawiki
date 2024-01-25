@@ -132,7 +132,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->assertSame(
 			'wikitext',
-			$title->getContentModel( Title::READ_LATEST ),
+			$title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'`ExistingPage` should be wikitext'
 		);
 
@@ -178,7 +178,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->assertSame(
 			'wikitext',
-			$title->getContentModel( Title::READ_LATEST ),
+			$title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'`ExistingPage` should be wikitext'
 		);
 
@@ -220,7 +220,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		);
 		$this->assertSame(
 			'testing',
-			$title->getContentModel( Title::READ_LATEST ),
+			$title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'Dummy:NoDirectEditing should start with the `testing` content model'
 		);
 
@@ -262,7 +262,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		);
 		$this->assertSame(
 			'wikitext',
-			$title->getContentModel( Title::READ_LATEST ),
+			$title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'`ExistingPage` should be wikitext'
 		);
 
@@ -278,7 +278,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->assertSame(
 			'text',
-			$title->getContentModel( Title::READ_LATEST ),
+			$title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'API can successfully change the content model'
 		);
 
@@ -299,7 +299,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->assertSame(
 			'wikitext',
-			$title->getContentModel( Title::READ_LATEST ),
+			$title->getContentModel( IDBAccessObject::READ_LATEST ),
 			'API can also change the content model back'
 		);
 
