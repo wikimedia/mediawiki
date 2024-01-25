@@ -162,7 +162,7 @@ class FindDeprecated extends Maintenance {
 			$file = $files[$i];
 			$code = file_get_contents( $file );
 
-			if ( strpos( $code, '@deprecated' ) === -1 ) {
+			if ( !str_contains( $code, '@deprecated' ) ) {
 				continue;
 			}
 
