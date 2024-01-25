@@ -286,31 +286,38 @@ class CodexModule extends FileModule {
 			true
 		);
 
-		// Generate an array of manifest keys that meet the following conditions:
-		// * The "file" property has a ".js", ".mjs", or ".cjs" file extension
-		// * Entry has a "file" property that matches one of the specified codexComponents (sans extension)
-		// * The manifest item is an intentional entry point and not a generated chunk
-		$manifestKeys = array_keys( array_filter( $manifest, function ( $val ) {
+		$manifestKeys = [];
+		$componentFileNames = [];
+		foreach ( $manifest as $key => $val ) {
 			$file = pathinfo( $val[ 'file' ] );
-			$pattern = '/^(js|mjs|cjs)$/';
 
+			// Find files with a JS extension (.js, .cjs or .mjs) whose file name matches
+			// a requested component. Skip other files that don't match these criteria.
 			if (
-				!array_key_exists( 'extension', $file ) ||
-				!preg_match( $pattern, $file[ 'extension' ] ) ||
+				!isset( $file[ 'extension' ] ) ||
+				!in_array( $file[ 'extension' ], [ 'js', 'cjs', 'mjs' ] ) ||
 				!in_array( $file[ 'filename' ], $this->codexComponents )
 			) {
-				return false;
+				continue;
 			}
 
+			$componentName = $file[ 'filename' ];
+
+			// Throw an error if a requested file is not an entry point file
 			if ( !isset( $val[ 'isEntry' ] ) || !$val[ 'isEntry' ] ) {
 				throw new InvalidArgumentException(
-					'"' . $file[ 'filename' ] . '"' .
-					' is not an export of Codex and cannot be included in the "codexComponents" array.'
+					"\"$componentName\" is not an export of Codex and cannot be included in the " .
+					'"codexComponents" array.'
 				);
 			}
 
-			return true;
-		} ) );
+			// Add this key to the list of keys we need dependency resolution for
+			$manifestKeys[] = $key;
+			// Record the relationship between the component name and the file name, so that we
+			// can look this up later.
+			$componentFileNames[ $componentName ] = $val[ 'file' ];
+
+		}
 
 		[ 'scripts' => $scripts, 'styles' => $styles ] = $this->resolveDependencies( $manifestKeys, $manifest );
 
@@ -326,15 +333,8 @@ class CodexModule extends FileModule {
 		if ( !( $this->isStyleOnly ) ) {
 			$exports = [];
 			foreach ( $this->codexComponents as $component ) {
-				// Don't make assumptions about the component filename or extension; instead
-				// consult the array of scripts for the exact name and extension of the file
-				// we care about
-				$componentFileName = current( array_filter( $scripts, static function ( $el ) use ( $component ) {
-					return str_contains( $el, $component );
-				} ) );
-
 				$exports[ $component ] = new HtmlJsCode(
-					'require( ' . Html::encodeJsVar( "./_codex/$componentFileName" ) . ' )'
+					'require( ' . Html::encodeJsVar( "./_codex/{$componentFileNames[ $component ]}" ) . ' )'
 				);
 			}
 
