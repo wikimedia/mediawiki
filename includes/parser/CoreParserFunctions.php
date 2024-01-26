@@ -922,7 +922,7 @@ class CoreParserFunctions {
 	public static function pagesize( $parser, $page = '', $raw = null ) {
 		$title = Title::newFromText( $page );
 
-		if ( !is_object( $title ) ) {
+		if ( !is_object( $title ) || $title->isExternal() ) {
 			return self::formatRaw( 0, $raw, $parser->getTargetLanguage() );
 		}
 
@@ -1352,7 +1352,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisionid( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 
@@ -1457,7 +1457,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisionday( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 		return strval( (int)self::getRevisionTimestampSubstring(
@@ -1474,7 +1474,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisionday2( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
@@ -1491,7 +1491,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisionmonth( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
@@ -1508,7 +1508,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisionmonth1( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 		return strval( (int)self::getRevisionTimestampSubstring(
@@ -1525,7 +1525,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisionyear( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
@@ -1542,7 +1542,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisiontimestamp( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
@@ -1559,7 +1559,7 @@ class CoreParserFunctions {
 	 */
 	public static function revisionuser( $parser, $title = null ) {
 		$t = self::makeTitle( $parser, $title );
-		if ( $t === null ) {
+		if ( $t === null || $t->isExternal() ) {
 			return '';
 		}
 		// VARY_USER informs the edit saving system that getting the canonical
