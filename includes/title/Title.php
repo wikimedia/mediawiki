@@ -3610,10 +3610,12 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * e.g. the user language (such as special pages).
 	 *
 	 * @deprecated since 1.42 Use ParserOutput::getLanguage instead. See also OutputPage::getContLangForJS.
+	 *   Hard-deprecated since 1.43.
 	 * @since 1.20
 	 * @return Language
 	 */
 	public function getPageViewLanguage() {
+		wfDeprecated( __METHOD__, '1.42' );
 		$services = MediaWikiServices::getInstance();
 
 		if ( $this->isSpecialPage() ) {

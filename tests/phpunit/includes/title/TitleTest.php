@@ -977,6 +977,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( Title::class, $title,
 			"Test must be passed a valid title text, you gave '$titleText'"
 		);
+		$this->hideDeprecated( Title::class . '::getPageViewLanguage' );
 		$this->assertEquals( $expected,
 			$title->getPageViewLanguage()->getCode(),
 			$msg
