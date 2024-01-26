@@ -25,7 +25,6 @@
 namespace MediaWiki\Title;
 
 use DBAccessObjectUtils;
-use DeprecationHelper;
 use HTMLCacheUpdateJob;
 use IDBAccessObject;
 use ILanguageConverter;
@@ -77,7 +76,6 @@ use WikiPage;
  *       and does not rely on global state or the database.
  */
 class Title implements LinkTarget, PageIdentity, IDBAccessObject {
-	use DeprecationHelper;
 	use WikiAwareEntityTrait;
 	use LinkTargetTrait;
 
@@ -251,15 +249,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	private function __construct() {
-		$this->deprecatePublicProperty( 'mTextform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mUrlform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mDbkeyform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNamespace', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mInterwiki', '1.37', __CLASS__ );
-
-		// Phan is being silly about callable|string, see T297352.
-		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
-		$this->deprecatePublicPropertyFallback( 'mFragment', '1.37', 'getFragment', 'setFragment' );
 	}
 
 	/**
