@@ -82,16 +82,7 @@ abstract class ContentHandler {
 	 * If $content is an instance of TextContent, this method returns the flat
 	 * text as returned by $content->getText().
 	 *
-	 * If $content is not a TextContent object, the behavior of this method
-	 * depends on the global $wgContentHandlerTextFallback:
-	 * - If $wgContentHandlerTextFallback is 'fail' and $content is not a
-	 *   TextContent object, an MWException is thrown.
-	 * - If $wgContentHandlerTextFallback is 'serialize' and $content is not a
-	 *   TextContent object, $content->serialize() is called to get a string
-	 *   form of the content.
-	 * - If $wgContentHandlerTextFallback is 'ignore' and $content is not a
-	 *   TextContent object, this method returns null.
-	 * - otherwise, the behavior is undefined.
+	 * If $content is not a TextContent object, this method returns null.
 	 *
 	 * @since 1.21
 	 *
@@ -99,15 +90,9 @@ abstract class ContentHandler {
 	 * instead
 	 *
 	 * @param Content|null $content
-	 *
-	 * @throws MWException If the content is not an instance of TextContent and
-	 * wgContentHandlerTextFallback was set to 'fail'.
 	 * @return string|null Textual form of the content, if available.
 	 */
 	public static function getContentText( Content $content = null ) {
-		$contentHandlerTextFallback = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::ContentHandlerTextFallback );
-
 		if ( $content === null ) {
 			return '';
 		}
@@ -117,18 +102,6 @@ abstract class ContentHandler {
 		}
 
 		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
-
-		if ( $contentHandlerTextFallback == 'fail' ) {
-			throw new MWException(
-				"Attempt to get text from Content with model " .
-				$content->getModel()
-			);
-		}
-
-		if ( $contentHandlerTextFallback == 'serialize' ) {
-			return $content->serialize();
-		}
-
 		return null;
 	}
 

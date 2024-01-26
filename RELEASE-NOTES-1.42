@@ -54,6 +54,8 @@ For notes on 1.41.x and older releases, see HISTORY.
   it wasn't used anywhere according to codesearch and any setups using this
   config will perform just fine but might be less performant.
 * $wgLogoHD, deprecated since 1.35, has been removed. Use $wgLogo instead.
+* $wgContentHandlerTextFallback, deprecated since 1.37, has been removed.
+  No longer customizable.
 * …
 
 === New user-facing features in 1.42 ===

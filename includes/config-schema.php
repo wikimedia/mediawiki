@@ -415,7 +415,6 @@ return [
 			],
 			'NamespaceContentModels' => [
 			],
-			'ContentHandlerTextFallback' => 'ignore',
 			'TextModelsToParse' => [
 				0 => 'wikitext',
 				1 => 'javascript',
@@ -3250,9 +3249,6 @@ return [
 			'items' => [
 				'type' => 'string',
 			],
-		],
-		'ContentHandlerTextFallback' => [
-			'deprecated' => 'since 1.37',
 		],
 		'ParserCacheFilterConfig' => [
 			'additionalProperties' => [

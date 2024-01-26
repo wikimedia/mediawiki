@@ -3362,22 +3362,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * How to react if a plain text version of a non-text Content object is requested using
-	 * ContentHandler::getContentText():
-	 *
-	 * * 'ignore': return null
-	 * * 'fail': throw an MWException
-	 * * 'serialize': serialize to default format
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.37
-	 */
-	public const ContentHandlerTextFallback = [
-		'default' => 'ignore',
-		'deprecated' => 'since 1.37',
-	];
-
-	/**
 	 * Determines which types of text are parsed as wikitext. This does not imply that these kinds
 	 * of texts are also rendered as wikitext, it only means that links, magic words, etc will have
 	 * the effect on the database they would have on a wikitext page.

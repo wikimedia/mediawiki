@@ -1263,13 +1263,6 @@ $wgContentHandlers = null;
 $wgNamespaceContentModels = null;
 
 /**
- * Config variable stub for the ContentHandlerTextFallback setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ContentHandlerTextFallback
- * @deprecated since 1.37
- */
-$wgContentHandlerTextFallback = null;
-
-/**
  * Config variable stub for the TextModelsToParse setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::TextModelsToParse
  */
