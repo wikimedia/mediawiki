@@ -2958,9 +2958,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Purge all applicable CDN URLs
-	 * @deprecated since 1.35 Use HtmlCacheUpdater
+	 * @deprecated since 1.35 Use HtmlCacheUpdater; hard-deprecated in 1.42
 	 */
 	public function purgeSquid() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$htmlCache->purgeTitleUrls( $this, $htmlCache::PURGE_INTENT_TXROUND_REFLECTED );
 	}
