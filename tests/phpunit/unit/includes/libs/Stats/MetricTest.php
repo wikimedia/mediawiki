@@ -315,4 +315,20 @@ class MetricTest extends TestCase {
 		$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( [ null ] );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
+
+	public function testCanChangeLabelsWhileTimerIsStarted() {
+		$cache = new StatsCache;
+		$formatter = OutputFormats::getNewFormatter( OutputFormats::getFormatFromString( 'dogstatsd' ) );
+		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $cache, $formatter );
+		$statsFactory = new StatsFactory( $cache, $emitter, new NullLogger );
+		$timer = $statsFactory->getTiming( 'test', )->setLabel( 'foo', 'bar' );
+
+		// start() and stop() called so close together here should be fractions of a millisecond
+		$timer->start();
+		$timer->setLabel( 'foo', 'baz' )->stop();
+		$this->assertMatchesRegularExpression(
+			'/^mediawiki\.test:(0\.[0-9]+)\|ms\|#foo:baz$/',
+			TestingAccessWrapper::newFromObject( $emitter )->render()[0]
+		);
+	}
 }
