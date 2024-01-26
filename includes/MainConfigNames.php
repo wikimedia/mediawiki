@@ -1746,13 +1746,6 @@ class MainConfigNames {
 	public const CdnServersNoPurge = 'CdnServersNoPurge';
 
 	/**
-	 * Name constant for the SquidPurgeUseHostHeader setting, for use with Config::get()
-	 * @see MainConfigSchema::SquidPurgeUseHostHeader
-	 * @deprecated since 1.33
-	 */
-	public const SquidPurgeUseHostHeader = 'SquidPurgeUseHostHeader';
-
-	/**
 	 * Name constant for the HTCPRouting setting, for use with Config::get()
 	 * @see MainConfigSchema::HTCPRouting
 	 */

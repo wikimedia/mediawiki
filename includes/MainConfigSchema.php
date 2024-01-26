@@ -4590,31 +4590,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to use a Host header in purge requests sent to the proxy servers
-	 * configured in $wgCdnServers. Set this to false to support a CDN
-	 * configured in forward-proxy mode.
-	 *
-	 * If this is set to true, a Host header will be sent, and only the path
-	 * component of the URL will appear on the request line, as if the request
-	 * were a non-proxy HTTP 1.1 request. Varnish only supports this style of
-	 * request. Squid supports this style of request only if reverse-proxy mode
-	 * (http_port ... accel) is enabled.
-	 *
-	 * If this is set to false, no Host header will be sent, and the absolute URL
-	 * will be sent in the request line, as is the standard for an HTTP proxy
-	 * request in both HTTP 1.0 and 1.1. This style of request is not supported
-	 * by Varnish, but is supported by Squid in either configuration (forward or
-	 * reverse).
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.33, will always be true in a future release.
-	 */
-	public const SquidPurgeUseHostHeader = [
-		'default' => true,
-		'deprecated' => 'since 1.33',
-	];
-
-	/**
 	 * Routing configuration for HTCP multicast purging. Add elements here to
 	 * enable HTCP and determine which purges are sent where. If set to an empty
 	 * array, HTCP is disabled.

@@ -56,6 +56,8 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgLogoHD, deprecated since 1.35, has been removed. Use $wgLogo instead.
 * $wgContentHandlerTextFallback, deprecated since 1.37, has been removed.
   No longer customizable.
+* $wgSquidPurgeUseHostHeader, deprecated since 1.33, has been removed.
+  No longer customizable and always true.
 * …
 
 === New user-facing features in 1.42 ===
