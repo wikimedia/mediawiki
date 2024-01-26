@@ -3855,7 +3855,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * If this ID is 0, this means the page does not exist.
 	 *
 	 * @see getArticleID()
-	 * @since 1.36, since 1.35.6 as an alias of getArticleId()
+	 * @since 1.36, since 1.35.6 as an alias of getArticleID()
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 *

@@ -531,8 +531,10 @@ class ParserTestRunner {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'NamespaceInfo' );
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageFactory' );
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
+			// Don't destroy the link cache, because various things hold a
+			// copy of it.  Just clear it.
+			MediaWikiServices::getInstance()->getLinkCache()->clear();
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
@@ -1096,7 +1098,7 @@ class ParserTestRunner {
 	 * @return string[]
 	 */
 	public function computeValidTestModes( array $testModes, array $fileOptions ): array {
-		$modeRestriction = $fileOptions['parsoid-compatible'] ?? false;
+		$modeRestriction = $fileOptions['parsoid-compatible'] ?: false;
 		if ( $modeRestriction !== false ) {
 			if ( is_string( $modeRestriction ) ) {
 				// shorthand
