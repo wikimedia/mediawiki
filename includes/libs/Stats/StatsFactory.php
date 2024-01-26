@@ -99,6 +99,7 @@ class StatsFactory {
 
 	/**
 	 * Adds a label key-value pair to all metrics created by this StatsFactory instance.
+	 * Note that the order in which labels are added is significant.
 	 *
 	 * @param string $key
 	 * @param string $value

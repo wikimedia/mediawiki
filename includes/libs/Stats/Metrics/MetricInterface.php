@@ -78,6 +78,7 @@ interface MetricInterface {
 
 	/**
 	 * Adds a label $key with $value.
+	 * Note that the order in which labels are added is significant.
 	 *
 	 * @param string $key
 	 * @param string $value

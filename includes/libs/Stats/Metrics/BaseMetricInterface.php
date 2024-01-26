@@ -93,7 +93,8 @@ interface BaseMetricInterface {
 	public function withStaticLabels( array $labelKeys, array $labelValues ): BaseMetricInterface;
 
 	/**
-	 * Add a label with key => value
+	 * Add a label with key => value.
+	 * Note that the order in which labels are added is significant.
 	 *
 	 * @param string $key
 	 * @param string $value
