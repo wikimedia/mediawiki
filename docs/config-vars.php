@@ -1731,13 +1731,6 @@ $wgCdnServers = null;
 $wgCdnServersNoPurge = null;
 
 /**
- * Config variable stub for the SquidPurgeUseHostHeader setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::SquidPurgeUseHostHeader
- * @deprecated since 1.33
- */
-$wgSquidPurgeUseHostHeader = null;
-
-/**
  * Config variable stub for the HTCPRouting setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::HTCPRouting
  */

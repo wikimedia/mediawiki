@@ -573,7 +573,6 @@ return [
 			],
 			'CdnServersNoPurge' => [
 			],
-			'SquidPurgeUseHostHeader' => true,
 			'HTCPRouting' => [
 			],
 			'HTCPMulticastTTL' => 1,
@@ -3264,9 +3263,6 @@ return [
 					],
 				],
 			],
-		],
-		'SquidPurgeUseHostHeader' => [
-			'deprecated' => 'since 1.33',
 		],
 		'RawHtmlMessages' => [
 			'items' => [
