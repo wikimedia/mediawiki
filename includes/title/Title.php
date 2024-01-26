@@ -2929,10 +2929,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get a list of URLs to purge from the CDN cache when this page changes.
 	 *
-	 * @deprecated since 1.35 Use HtmlCacheUpdater
+	 * @deprecated since 1.35 Use HtmlCacheUpdater; hard-deprecated in 1.42
 	 * @return string[]
 	 */
 	public function getCdnUrls() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		return $htmlCache->getUrls( $this );
 	}

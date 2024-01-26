@@ -1841,6 +1841,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\Title\Title::getCdnUrls
 	 */
 	public function testGetCdnUrls() {
+		$this->hideDeprecated( Title::class . '::getCdnUrls' );
 		$this->assertEquals(
 			[
 				'https://example.org/wiki/Example',

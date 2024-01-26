@@ -534,6 +534,7 @@ because of Phabricator reports.
 * TempUserConfig::getMatchPattern has been deprecated, use
   TempUserConfig::getMatchPatterns instead.
 * (T230025) Title::purgeSquid(), deprecated in 1.35, now emits warnings.
+* Title::getCdnUrls(), deprecated in 1.35, now emits warnings.
 * The rarely-used convenience method Xml::wrapClass() is now deprecated. Instead
   you can use Xml::tags('span', ['class'=>'foo'], 'bar').
 * $wgUseSameSiteLegacyCookies has been deprecated and will be ignored.
