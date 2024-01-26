@@ -464,6 +464,7 @@ because of Phabricator reports.
 * (T207621) UserMailer::rfc822Phrase() has been hard deprecated.
 * TempUserConfig::getMatchPattern has been deprecated, use
   TempUserConfig::getMatchPatterns instead.
+* (T230025) Title::purgeSquid(), deprecated in 1.35, now emits warnings.
 * …
 
 === Other changes in 1.42 ===
