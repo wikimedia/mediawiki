@@ -217,6 +217,25 @@ class MetricTest extends TestCase {
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 
+	public function testStaticLabelsPrecedeWorkingLabels() {
+		$cache = new StatsCache;
+		$formatter = OutputFormats::getNewFormatter( OutputFormats::getFormatFromString( 'statsd' ) );
+		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $cache, $formatter );
+		$statsFactory = new StatsFactory( $cache, $emitter, new NullLogger );
+		$statsFactory->withComponent( 'demo' )
+			->addStaticLabel( 'first', 'foo' )
+			->addStaticLabel( 'second', 'bar' )
+			->getCounter( 'testMetric_total' )
+			->setLabel( 'third', 'baz' )
+			->setLabel( 'fourth', 'qux' )
+			->increment();
+
+		$this->assertEquals(
+			'mediawiki.demo.testMetric_total.foo.bar.baz.qux:1|c',
+			TestingAccessWrapper::newFromObject( $emitter )->render()[0]
+		);
+	}
+
 	public function testChangingLabelsToUsedMetric() {
 		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
 		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();

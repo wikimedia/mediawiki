@@ -99,7 +99,19 @@ class StatsFactory {
 
 	/**
 	 * Adds a label key-value pair to all metrics created by this StatsFactory instance.
-	 * Note that the order in which labels are added is significant.
+	 * Note that the order in which labels are added is significant for StatsD output.
+	 *
+	 * Example:
+	 * ```php
+	 * $statsFactory->withComponent( 'demo' )
+	 *     ->addStaticLabel( 'first', 'foo' )
+	 *     ->addStaticLabel( 'second', 'bar' )
+	 *     ->getCounter( 'testMetric_total' )
+	 *     ->setLabel( 'third', 'baz' )
+	 *     ->increment();
+	 * ```
+	 * outputs statsd: "mediawiki.demo.testMetric_total.foo.bar.baz"
+	 * outputs prometheus: "mediawiki_demo_testMetric_total{first='foo',second='bar',third='baz'}
 	 *
 	 * @param string $key
 	 * @param string $value
