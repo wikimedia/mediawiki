@@ -477,9 +477,6 @@ CREATE TABLE /*_*/categorylinks (
     cl_to, cl_type, cl_sortkey, cl_from
   ),
   INDEX cl_timestamp (cl_to, cl_timestamp),
-  INDEX cl_collation_ext (
-    cl_collation, cl_to, cl_type, cl_from
-  ),
   PRIMARY KEY(cl_from, cl_to)
 ) /*$wgDBTableOptions*/;
 

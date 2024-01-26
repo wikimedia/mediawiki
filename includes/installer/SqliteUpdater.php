@@ -150,6 +150,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.42
 			[ 'addField', 'user_autocreate_serial', 'uas_year', 'patch-user_autocreate_serial-uas_year.sql' ],
 			[ 'addTable', 'block_target', 'patch-block_target.sql' ],
+			[ 'dropIndex', 'categorylinks', 'cl_collation_ext', 'patch-drop-cl_collation_ext.sql' ],
 		];
 	}
 

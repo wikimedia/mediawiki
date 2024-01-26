@@ -1578,12 +1578,6 @@
 				"comment": "Used by the API (and some extensions)",
 				"columns": [ "cl_to", "cl_timestamp" ],
 				"unique": false
-			},
-			{
-				"name": "cl_collation_ext",
-				"comment": "Used when updating collation (e.g. updateCollation.php)",
-				"columns": [ "cl_collation", "cl_to", "cl_type", "cl_from" ],
-				"unique": false
 			}
 		],
 		"pk": [ "cl_from", "cl_to" ]
