@@ -1953,7 +1953,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$protect = false;
 		$changed = false;
 
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
 
 		foreach ( $restrictionTypes as $action ) {
 			if ( !isset( $expiry[$action] ) || $expiry[$action] === $dbw->getInfinity() ) {
@@ -2139,7 +2139,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 			}
 		}
 
-		$this->mTitle->flushRestrictions();
+		$services->getRestrictionStore()->flushRestrictions( $this->mTitle );
+
 		InfoAction::invalidateCache( $this->mTitle );
 
 		if ( $logAction == 'unprotect' ) {
