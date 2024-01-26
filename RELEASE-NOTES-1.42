@@ -329,7 +329,8 @@ because of Phabricator reports.
   use `mediawiki.cookie` instead
 * The no-op module `es6-polyfills` (deprecated as of 1.41) has been removed.
 * Log formatters (as defined in $wgLogActionsHandlers) are now created by
-  ObjectFactory, which means their constructors must be public.
+  ObjectFactory, which means their constructors must be public. Legacy log
+  formatters using callbacks instead of class names are no longer supported.
 * (T318989) Skin::lastModified, deprecated since 1.40, has been removed.
 * Composer 1.x is no longer supported, and can no longer be used with MediaWiki.
 * …
