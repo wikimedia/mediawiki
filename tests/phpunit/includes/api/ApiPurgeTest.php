@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 
@@ -55,7 +54,7 @@ class ApiPurgeTest extends ApiTestCase {
 		$authority = $this->createNoOpMock(
 			Authority::class,
 			[
-				'authorizeWrite',
+				'authorizeAction',
 				'getUser',
 				'isAllowed',
 				'getBlock'
@@ -65,15 +64,9 @@ class ApiPurgeTest extends ApiTestCase {
 		$authority->method( 'getUser' )->willReturn( $user );
 		$authority->method( 'getBlock' )->willReturn( null );
 		$authority->method( 'isAllowed' )->willReturn( true );
-		$authority->method( 'authorizeWrite' )->willReturnCallback(
-			static function ( string $action, PageIdentity $page, PermissionStatus $status )
-				use ( $page1 )
-			{
-				if ( $page->getDBkey() === $page1 ) {
-					$status->fatal( 'permissionserrors' );
-				} else {
-					$status->setRateLimitExceeded();
-				}
+		$authority->method( 'authorizeAction' )->willReturnCallback(
+			static function ( string $action, PermissionStatus $status ) {
+				$status->setRateLimitExceeded();
 
 				return false;
 			}
@@ -87,7 +80,6 @@ class ApiPurgeTest extends ApiTestCase {
 		$this->assertNotEmpty( $data['warnings']['purge']['warnings'] );
 		$warnings = $data['warnings']['purge']['warnings'];
 
-		$this->assertStringContainsString( 'Permission error', $warnings );
 		$this->assertStringContainsString( 'exceeded your rate limit', $warnings );
 	}
 }

@@ -45,7 +45,7 @@ class PurgeAction extends FormAction {
 		$page = $this->getWikiPage();
 
 		$status = PermissionStatus::newEmpty();
-		if ( !$authority->authorizeWrite( 'purge', $page->getTitle(), $status ) ) {
+		if ( !$authority->authorizeAction( 'purge', $status ) ) {
 			return Status::wrap( $status );
 		}
 
