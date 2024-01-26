@@ -53,6 +53,7 @@ class ParsoidTestFileSuite extends TestSuite {
 			$this->ptRunner->getRequestedTestModes(), $this->ptFileInfo->fileOptions );
 
 		$suite = $this;
+		$runnerOpts = $this->ptRunner->getOptions();
 		foreach ( $this->ptFileInfo->testCases as $t ) {
 			$skipMessage = $this->ptRunner->getTestSkipMessage( $t, false );
 			if ( $skipMessage ) {
@@ -68,9 +69,8 @@ class ParsoidTestFileSuite extends TestSuite {
 						// $test could be a clone of $t
 						// Ensure that updates to knownFailures in $test are reflected in $t
 						$test->knownFailures = &$t->knownFailures;
-						$runner = $this->ptRunner;
 						$mode = new ParserTestMode( $modeStr, $test->changetree );
-						$pit = new ParserIntegrationTest( $runner, $fileName, $test, $mode, $skipMessage );
+						$pit = new ParserIntegrationTest( $this->ptRunner, $fileName, $test, $mode, $skipMessage );
 						$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
 					}
 				}
