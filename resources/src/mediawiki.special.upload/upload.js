@@ -52,9 +52,8 @@
 		},
 
 		setWarning: function ( warning ) {
-			var $warning = $( $.parseHTML( warning ) );
-			mw.hook( 'wikipage.content' ).fire( $warning );
-			$warningBox.empty().append( $warning );
+			$warningBox.empty().append( $.parseHTML( warning ) );
+			mw.hook( 'wikipage.content' ).fire( $warningBox );
 
 			// Set a value in the form indicating that the warning is acknowledged and
 			// doesn't need to be redisplayed post-upload
