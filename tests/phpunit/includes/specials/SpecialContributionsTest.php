@@ -26,7 +26,6 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		$this->setTemporaryHook(
 			'SpecialContributionsBeforeMainOutput',
 			static function () {
-				return;
 			}
 		);
 		$this->admin = new UltimateAuthority( $this->getTestSysop()->getUser() );

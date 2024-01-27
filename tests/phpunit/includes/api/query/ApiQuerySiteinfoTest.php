@@ -716,7 +716,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		// Make sure there's something to report on
 		$this->setTemporaryHook( 'somehook',
 			static function () {
-				return;
 			}
 		);
 
