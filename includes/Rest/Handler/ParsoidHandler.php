@@ -42,6 +42,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
@@ -794,7 +795,7 @@ abstract class ParsoidHandler extends Handler {
 				LoggerFactory::getInstance( 'slow-parsoid' )
 					->info( 'Parsing {title} was slow, took {time} seconds', [
 						'time' => number_format( $parseTime / 1000, 2 ),
-						'title' => $pageConfig->getTitle(),
+						'title' => Title::newFromLinkTarget( $pageConfig->getLinkTarget() )->getPrefixedText(),
 					] );
 			}
 
@@ -818,7 +819,7 @@ abstract class ParsoidHandler extends Handler {
 						->info( 'Parsing {title} was slow, timePerKB took {timePerKB} ms, total: {time} seconds', [
 							'time' => number_format( $parseTime / 1000, 2 ),
 							'timePerKB' => number_format( $timePerKB, 1 ),
-							'title' => $pageConfig->getTitle(),
+							'title' => Title::newFromLinkTarget( $pageConfig->getLinkTarget() )->getPrefixedText(),
 						] );
 				}
 			}
@@ -862,8 +863,7 @@ abstract class ParsoidHandler extends Handler {
 		if ( $page instanceof PageConfig ) {
 			// TODO: Deprecate passing a PageConfig.
 			//       Ideally, callers would use HtmlToContentTransform directly.
-			// XXX: This is slow, and we already have the parsed title and ID inside the PageConfig...
-			$page = Title::newFromTextThrow( $page->getTitle() );
+			$page = Title::newFromLinkTarget( $page->getLinkTarget() );
 		}
 
 		try {
@@ -1107,12 +1107,14 @@ abstract class ParsoidHandler extends Handler {
 	private function pageConfigToPageIdentity( PageConfig $page ): ProperPageIdentity {
 		$services = MediaWikiServices::getInstance();
 
-		$title = $page->getTitle();
-		$page = $services->getPageStore()->getPageByText( $title );
-
-		if ( !$page ) {
+		$title = $page->getLinkTarget();
+		try {
+			$page = $services->getPageStore()->getPageForLink( $title );
+		} catch ( MalformedTitleException | InvalidArgumentException $e ) {
+			// Note that even some well-formed links are still invalid
+			// parameters for getPageForLink(), e.g. interwiki links or special pages.
 			throw new HttpException(
-				"Bad title: $title",
+				"Bad title: $title", # uses LinkTarget::__toString()
 				400
 			);
 		}
