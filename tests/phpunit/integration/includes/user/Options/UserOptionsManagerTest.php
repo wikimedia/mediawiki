@@ -421,7 +421,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserOptionsManager::saveOptionsInternal
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::saveOptionsInternal
 	 */
 	public function testOptionsInsertFromDefaultValue() {
 		$user = $this->getTestUser()->getUser();

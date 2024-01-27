@@ -3,7 +3,7 @@
 use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
 
 /**
- * @covers TransactionRoundDefiningUpdate
+ * @covers \MediaWiki\Deferred\TransactionRoundDefiningUpdate
  */
 class TransactionRoundDefiningUpdateTest extends MediaWikiUnitTestCase {
 

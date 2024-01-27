@@ -26,7 +26,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 
 /**
- * @covers TitleValue
+ * @covers \MediaWiki\Title\TitleValue
  *
  * @group Title
  */

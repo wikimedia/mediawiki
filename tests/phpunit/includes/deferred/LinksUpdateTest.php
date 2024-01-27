@@ -78,7 +78,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::addLink
+	 * @covers \MediaWiki\Parser\ParserOutput::addLink
 	 */
 	public function testUpdate_pagelinks() {
 		/** @var Title $t */
@@ -166,7 +166,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::addExternalLink
+	 * @covers \MediaWiki\Parser\ParserOutput::addExternalLink
 	 */
 	public function testUpdate_externallinks() {
 		/** @var ParserOutput $po */
@@ -269,7 +269,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::addCategory
+	 * @covers \MediaWiki\Parser\ParserOutput::addCategory
 	 */
 	public function testUpdate_categorylinks() {
 		/** @var ParserOutput $po */
@@ -505,7 +505,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::addInterwikiLink
+	 * @covers \MediaWiki\Parser\ParserOutput::addInterwikiLink
 	 */
 	public function testUpdate_iwlinks() {
 		/** @var ParserOutput $po */
@@ -549,7 +549,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::addTemplate
+	 * @covers \MediaWiki\Parser\ParserOutput::addTemplate
 	 */
 	public function testUpdate_templatelinks() {
 		/** @var ParserOutput $po */
@@ -595,7 +595,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::addImage
+	 * @covers \MediaWiki\Parser\ParserOutput::addImage
 	 */
 	public function testUpdate_imagelinks() {
 		/** @var ParserOutput $po */
@@ -663,7 +663,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::addLanguageLink
+	 * @covers \MediaWiki\Parser\ParserOutput::addLanguageLink
 	 */
 	public function testUpdate_langlinks() {
 		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
@@ -706,7 +706,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::setPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setPageProperty
 	 */
 	public function testUpdate_page_props() {
 		/** @var ParserOutput $po */

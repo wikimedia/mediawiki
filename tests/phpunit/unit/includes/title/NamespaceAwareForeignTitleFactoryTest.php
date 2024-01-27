@@ -23,7 +23,7 @@ use MediaWiki\Title\ForeignTitle;
 use MediaWiki\Title\NamespaceAwareForeignTitleFactory;
 
 /**
- * @covers NamespaceAwareForeignTitleFactory
+ * @covers \MediaWiki\Title\NamespaceAwareForeignTitleFactory
  *
  * @group Title
  */

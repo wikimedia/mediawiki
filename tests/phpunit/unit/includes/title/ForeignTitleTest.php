@@ -22,7 +22,7 @@
 use MediaWiki\Title\ForeignTitle;
 
 /**
- * @covers ForeignTitle
+ * @covers \MediaWiki\Title\ForeignTitle
  *
  * @group Title
  */

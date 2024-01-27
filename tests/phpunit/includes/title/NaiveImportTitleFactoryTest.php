@@ -25,7 +25,7 @@ use MediaWiki\Title\NaiveImportTitleFactory;
 use MediaWiki\Title\Title;
 
 /**
- * @covers NaiveImportTitleFactory
+ * @covers \MediaWiki\Title\NaiveImportTitleFactory
  *
  * @group Title
  *

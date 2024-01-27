@@ -9,7 +9,7 @@ use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers LocalIdLookup
+ * @covers \MediaWiki\User\CentralId\LocalIdLookup
  * @group Database
  */
 class LocalIdLookupTest extends MediaWikiIntegrationTestCase {

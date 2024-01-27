@@ -29,7 +29,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Concurrency
- * @coversDefaultClass PoolCounterWork
+ * @coversDefaultClass \MediaWiki\PoolCounter\PoolCounterWork
  */
 class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 

@@ -14,7 +14,7 @@ use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * @group Database
- * @covers QueryPage<extended>
+ * @covers \MediaWiki\SpecialPage\QueryPage<extended>
  */
 class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 

@@ -3,7 +3,7 @@
 use MediaWiki\Parser\Sanitizer;
 
 /**
- * @covers Sanitizer::validateEmail
+ * @covers \MediaWiki\Parser\Sanitizer::validateEmail
  * @todo should be made a pure unit test once ::validateEmail is migrated to proper DI
  */
 class SanitizerValidateEmailTest extends MediaWikiIntegrationTestCase {

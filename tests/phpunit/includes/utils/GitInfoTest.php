@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\GitInfo;
 
 /**
- * @covers GitInfo
+ * @covers \MediaWiki\Utils\GitInfo
  */
 class GitInfoTest extends MediaWikiIntegrationTestCase {
 

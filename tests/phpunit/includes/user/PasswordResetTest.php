@@ -22,7 +22,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * TODO make this a unit test, all dependencies are injected, but DatabaseBlock::__construct()
  * can't be used in unit tests.
  *
- * @covers PasswordReset
+ * @covers \MediaWiki\User\PasswordReset
  * @group Database
  */
 class PasswordResetTest extends MediaWikiIntegrationTestCase {
@@ -211,7 +211,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	 * @param string|null $username
 	 * @param string|null $email
 	 * @param User[] $usersWithEmail
-	 * @covers SendPasswordResetEmailUpdate
+	 * @covers \MediaWiki\Deferred\SendPasswordResetEmailUpdate
 	 */
 	public function testExecute(
 		$expectedError,

@@ -16,7 +16,7 @@ use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers CentralIdLookup
+ * @covers \MediaWiki\User\CentralId\CentralIdLookup
  */
 class CentralIdLookupTest extends MediaWikiUnitTestCase {
 	use MockAuthorityTrait;

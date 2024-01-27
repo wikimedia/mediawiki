@@ -8,7 +8,7 @@ use MediaWiki\Site\SiteList;
 use MediaWiki\Site\SiteStore;
 
 /**
- * @covers CachingSiteStore
+ * @covers \MediaWiki\Site\CachingSiteStore
  * @group Site
  * @group Database
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >

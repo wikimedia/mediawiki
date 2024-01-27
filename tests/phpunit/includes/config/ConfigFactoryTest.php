@@ -7,7 +7,7 @@ use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Config\HashConfig;
 
 /**
- * @covers ConfigFactory
+ * @covers \MediaWiki\Config\ConfigFactory
  */
 class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 

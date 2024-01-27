@@ -35,7 +35,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 	abstract protected function newSpecialPage();
 
 	/**
-	 * @covers FormSpecialPage::checkExecutePermissions
+	 * @covers \MediaWiki\SpecialPage\FormSpecialPage::checkExecutePermissions
 	 */
 	public function testCheckExecutePermissionsSitewideBlock() {
 		$special = $this->newSpecialPage();
@@ -61,7 +61,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers FormSpecialPage::checkExecutePermissions
+	 * @covers \MediaWiki\SpecialPage\FormSpecialPage::checkExecutePermissions
 	 */
 	public function testCheckExecutePermissionsPartialBlock() {
 		$special = $this->newSpecialPage();

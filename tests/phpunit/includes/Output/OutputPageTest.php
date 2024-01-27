@@ -33,7 +33,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group Database
  * @group Output
- * @covers OutputPage
+ * @covers \MediaWiki\Output\OutputPage
  */
 class OutputPageTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;

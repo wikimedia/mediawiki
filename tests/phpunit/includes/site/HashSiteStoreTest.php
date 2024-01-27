@@ -32,7 +32,7 @@ use MediaWiki\Site\SiteList;
 class HashSiteStoreTest extends \MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers HashSiteStore::getSites
+	 * @covers \MediaWiki\Site\HashSiteStore::getSites
 	 */
 	public function testGetSites() {
 		$expectedSites = [];
@@ -48,8 +48,8 @@ class HashSiteStoreTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers HashSiteStore::saveSite
-	 * @covers HashSiteStore::getSite
+	 * @covers \MediaWiki\Site\HashSiteStore::saveSite
+	 * @covers \MediaWiki\Site\HashSiteStore::getSite
 	 */
 	public function testSaveSite() {
 		$store = new HashSiteStore();
@@ -66,7 +66,7 @@ class HashSiteStoreTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers HashSiteStore::saveSites
+	 * @covers \MediaWiki\Site\HashSiteStore::saveSites
 	 */
 	public function testSaveSites() {
 		$store = new HashSiteStore();
@@ -93,7 +93,7 @@ class HashSiteStoreTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers HashSiteStore::clear
+	 * @covers \MediaWiki\Site\HashSiteStore::clear
 	 */
 	public function testClear() {
 		$store = new HashSiteStore();

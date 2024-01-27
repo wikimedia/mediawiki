@@ -218,8 +218,8 @@ EOF
 	/**
 	 * @dataProvider provideUnknownUserHandling
 	 * @covers WikiImporter::setUsernamePrefix
-	 * @covers ExternalUserNames::addPrefix
-	 * @covers ExternalUserNames::applyPrefix
+	 * @covers \MediaWiki\User\ExternalUserNames::addPrefix
+	 * @covers \MediaWiki\User\ExternalUserNames::applyPrefix
 	 * @param bool $assign
 	 * @param bool $create
 	 */

@@ -10,7 +10,7 @@ namespace Wikimedia\Diff;
 class DiffTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @covers Diff::getEdits
+	 * @covers \Wikimedia\Diff\Diff::getEdits
 	 */
 	public function testGetEdits() {
 		$obj = new Diff( [], [] );

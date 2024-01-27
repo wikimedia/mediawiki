@@ -12,7 +12,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers BotPassword
+ * @covers \MediaWiki\User\BotPassword
  * @group Database
  */
 class BotPasswordTest extends MediaWikiIntegrationTestCase {

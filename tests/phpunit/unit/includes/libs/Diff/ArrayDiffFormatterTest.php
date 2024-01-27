@@ -13,7 +13,7 @@ class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
 	 * @param Diff $input
 	 * @param array $expectedOutput
 	 * @dataProvider provideTestFormat
-	 * @covers ArrayDiffFormatter::format
+	 * @covers \Wikimedia\Diff\ArrayDiffFormatter::format
 	 */
 	public function testFormat( Diff $input, array $expectedOutput ) {
 		$instance = new ArrayDiffFormatter();

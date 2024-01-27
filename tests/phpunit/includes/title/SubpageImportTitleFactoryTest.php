@@ -25,7 +25,7 @@ use MediaWiki\Title\SubpageImportTitleFactory;
 use MediaWiki\Title\Title;
 
 /**
- * @covers SubpageImportTitleFactory
+ * @covers \MediaWiki\Title\SubpageImportTitleFactory
  *
  * @group Title
  *

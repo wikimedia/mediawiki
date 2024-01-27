@@ -6,7 +6,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
 /**
- * @covers SpecialPage
+ * @covers \MediaWiki\SpecialPage\SpecialPage
  *
  * @group Database
  *

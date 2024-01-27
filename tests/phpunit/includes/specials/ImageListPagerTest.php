@@ -13,7 +13,7 @@ use MediaWiki\Pager\ImageListPager;
  */
 class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @covers ImageListPager::formatValue
+	 * @covers \MediaWiki\Pager\ImageListPager::formatValue
 	 */
 	public function testFormatValuesThrowException() {
 		$services = $this->getServiceContainer();
@@ -37,7 +37,7 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ImageListPager::formatValue
+	 * @covers \MediaWiki\Pager\ImageListPager::formatValue
 	 */
 	public function testFormatValues_img_timestamp() {
 		$services = $this->getServiceContainer();
@@ -60,7 +60,7 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ImageListPager::formatValue
+	 * @covers \MediaWiki\Pager\ImageListPager::formatValue
 	 */
 	public function testFormatValues_img_size() {
 		$services = $this->getServiceContainer();
@@ -103,7 +103,7 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ImageListPager::formatValue
+	 * @covers \MediaWiki\Pager\ImageListPager::formatValue
 	 */
 	public function testFormatValues_count() {
 		$services = $this->getServiceContainer();

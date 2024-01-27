@@ -78,7 +78,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ContribsPager::reallyDoQuery
+	 * @covers \MediaWiki\Pager\ContribsPager::reallyDoQuery
 	 * Tests enabling/disabling ContribsPager::reallyDoQuery hook via the revisionsOnly option to restrict
 	 * extensions are able to insert their own revisions
 	 */
@@ -99,7 +99,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ContribsPager::processDateFilter
+	 * @covers \MediaWiki\Pager\ContribsPager::processDateFilter
 	 * @dataProvider dateFilterOptionProcessingProvider
 	 * @param array $inputOpts Input options
 	 * @param array $expectedOpts Expected options
@@ -178,7 +178,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ContribsPager::isQueryableRange
+	 * @covers \MediaWiki\Pager\ContribsPager::isQueryableRange
 	 * @dataProvider provideQueryableRanges
 	 */
 	public function testQueryableRanges( $ipRange ) {
@@ -205,7 +205,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ContribsPager::isQueryableRange
+	 * @covers \MediaWiki\Pager\ContribsPager::isQueryableRange
 	 * @dataProvider provideUnqueryableRanges
 	 */
 	public function testUnqueryableRanges( $ipRange ) {
@@ -232,10 +232,10 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ContribsPager::getExtraSortFields
-	 * @covers \ContribsPager::getIndexField
-	 * @covers \ContribsPager::getQueryInfo
-	 * @covers \ContribsPager::getTargetTable
+	 * @covers \MediaWiki\Pager\ContribsPager::getExtraSortFields
+	 * @covers \MediaWiki\Pager\ContribsPager::getIndexField
+	 * @covers \MediaWiki\Pager\ContribsPager::getQueryInfo
+	 * @covers \MediaWiki\Pager\ContribsPager::getTargetTable
 	 */
 	public function testUniqueSortOrderWithoutIpChanges() {
 		$pager = $this->getContribsPager( [
@@ -255,10 +255,10 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ContribsPager::getExtraSortFields
-	 * @covers \ContribsPager::getIndexField
-	 * @covers \ContribsPager::getQueryInfo
-	 * @covers \ContribsPager::getTargetTable
+	 * @covers \MediaWiki\Pager\ContribsPager::getExtraSortFields
+	 * @covers \MediaWiki\Pager\ContribsPager::getIndexField
+	 * @covers \MediaWiki\Pager\ContribsPager::getQueryInfo
+	 * @covers \MediaWiki\Pager\ContribsPager::getTargetTable
 	 */
 	public function testUniqueSortOrderOnIpChanges() {
 		$pager = $this->getContribsPager( [
@@ -277,7 +277,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ContribsPager::tryCreatingRevisionRecord
+	 * @covers \MediaWiki\Pager\ContribsPager::tryCreatingRevisionRecord
 	 */
 	public function testCreateRevision() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
@@ -329,7 +329,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * stdClass as a row, and then manually formats its own row in ContributionsLineEnding.
 	 * Emulate this behaviour and check that it works.
 	 *
-	 * @covers ContribsPager::formatRow
+	 * @covers \MediaWiki\Pager\ContribsPager::formatRow
 	 */
 	public function testContribProvidedByHook() {
 		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', static function ( &$data ) {
@@ -374,12 +374,12 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * filter options, by running the query on an empty DB.
 	 *
 	 * @dataProvider provideEmptyResultIntegration
-	 * @covers \ContribsPager::__construct
-	 * @covers \ContribsPager::getQueryInfo
-	 * @covers \ContribsPager::getDatabase
-	 * @covers \ContribsPager::getIpRangeConds
-	 * @covers \ContribsPager::getNamespaceCond
-	 * @covers \ContribsPager::getIndexField
+	 * @covers \MediaWiki\Pager\ContribsPager::__construct
+	 * @covers \MediaWiki\Pager\ContribsPager::getQueryInfo
+	 * @covers \MediaWiki\Pager\ContribsPager::getDatabase
+	 * @covers \MediaWiki\Pager\ContribsPager::getIpRangeConds
+	 * @covers \MediaWiki\Pager\ContribsPager::getNamespaceCond
+	 * @covers \MediaWiki\Pager\ContribsPager::getIndexField
 	 */
 	public function testEmptyResultIntegration( $options ) {
 		if ( !empty( $options['testUser'] ) ) {
@@ -395,8 +395,8 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * DB integration test with a row in the result set.
 	 *
-	 * @covers \ContribsPager::formatRow
-	 * @covers \ContribsPager::doBatchLookups
+	 * @covers \MediaWiki\Pager\ContribsPager::formatRow
+	 * @covers \MediaWiki\Pager\ContribsPager::doBatchLookups
 	 */
 	public function testPopulatedIntegration() {
 		$user = $this->getTestUser()->getUser();

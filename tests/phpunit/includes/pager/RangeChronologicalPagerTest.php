@@ -13,7 +13,7 @@ use MediaWiki\Pager\RangeChronologicalPager;
 class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers RangeChronologicalPager::getDateCond
+	 * @covers \MediaWiki\Pager\RangeChronologicalPager::getDateCond
 	 * @dataProvider getDateCondProvider
 	 */
 	public function testGetDateCond( $inputYear, $inputMonth, $inputDay, $expected ) {
@@ -41,7 +41,7 @@ class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers RangeChronologicalPager::getDateRangeCond
+	 * @covers \MediaWiki\Pager\RangeChronologicalPager::getDateRangeCond
 	 * @dataProvider getDateRangeCondProvider
 	 */
 	public function testGetDateRangeCond( $start, $end, $expected ) {
@@ -83,7 +83,7 @@ class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers RangeChronologicalPager::getDateRangeCond
+	 * @covers \MediaWiki\Pager\RangeChronologicalPager::getDateRangeCond
 	 * @dataProvider getDateRangeCondInvalidProvider
 	 */
 	public function testGetDateRangeCondInvalid( $start, $end ) {

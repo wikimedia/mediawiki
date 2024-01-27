@@ -14,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
 
 /**
- * @covers ParserOutput
+ * @covers \MediaWiki\Parser\ParserOutput
  * @covers CacheTime
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
@@ -96,16 +96,16 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	/**
 	 * Test to make sure ParserOutput::isLinkInternal behaves properly
 	 * @dataProvider provideIsLinkInternal
-	 * @covers ParserOutput::isLinkInternal
+	 * @covers \MediaWiki\Parser\ParserOutput::isLinkInternal
 	 */
 	public function testIsLinkInternal( $shouldMatch, $server, $url ) {
 		$this->assertEquals( $shouldMatch, ParserOutput::isLinkInternal( $server, $url ) );
 	}
 
 	/**
-	 * @covers ParserOutput::appendJsConfigVar
-	 * @covers ParserOutput::setJsConfigVar
-	 * @covers ParserOutput::getJsConfigVars
+	 * @covers \MediaWiki\Parser\ParserOutput::appendJsConfigVar
+	 * @covers \MediaWiki\Parser\ParserOutput::setJsConfigVar
+	 * @covers \MediaWiki\Parser\ParserOutput::getJsConfigVars
 	 */
 	public function testJsConfigVars() {
 		$po = new ParserOutput();
@@ -131,9 +131,9 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::appendExtensionData
-	 * @covers ParserOutput::setExtensionData
-	 * @covers ParserOutput::getExtensionData
+	 * @covers \MediaWiki\Parser\ParserOutput::appendExtensionData
+	 * @covers \MediaWiki\Parser\ParserOutput::setExtensionData
+	 * @covers \MediaWiki\Parser\ParserOutput::getExtensionData
 	 */
 	public function testExtensionData() {
 		$po = new ParserOutput();
@@ -168,10 +168,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::setPageProperty
-	 * @covers ParserOutput::getPageProperty
-	 * @covers ParserOutput::unsetPageProperty
-	 * @covers ParserOutput::getPageProperties
+	 * @covers \MediaWiki\Parser\ParserOutput::setPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::unsetPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperties
 	 */
 	public function testProperties() {
 		$po = new ParserOutput();
@@ -196,8 +196,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::setLanguage
-	 * @covers ParserOutput::getLanguage
+	 * @covers \MediaWiki\Parser\ParserOutput::setLanguage
+	 * @covers \MediaWiki\Parser\ParserOutput::getLanguage
 	 */
 	public function testLanguage() {
 		$po = new ParserOutput();
@@ -218,10 +218,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::getWrapperDivClass
-	 * @covers ParserOutput::addWrapperDivClass
-	 * @covers ParserOutput::clearWrapperDivClass
-	 * @covers ParserOutput::getText
+	 * @covers \MediaWiki\Parser\ParserOutput::getWrapperDivClass
+	 * @covers \MediaWiki\Parser\ParserOutput::addWrapperDivClass
+	 * @covers \MediaWiki\Parser\ParserOutput::clearWrapperDivClass
+	 * @covers \MediaWiki\Parser\ParserOutput::getText
 	 */
 	public function testWrapperDivClass() {
 		$po = new ParserOutput();
@@ -273,7 +273,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	/**
 	 * This test aims at being replaced by its version in DefaultOutputTransformTest when ParserOutput::getText
 	 * gets deprecated.
-	 * @covers ParserOutput::getText
+	 * @covers \MediaWiki\Parser\ParserOutput::getText
 	 * @dataProvider provideGetText
 	 * @param array $options Options to getText()
 	 * @param string $text Parser text
@@ -467,7 +467,7 @@ EOF
 	}
 
 	/**
-	 * @covers ParserOutput::hasText
+	 * @covers \MediaWiki\Parser\ParserOutput::hasText
 	 */
 	public function testHasText() {
 		$po = new ParserOutput( '' );
@@ -494,7 +494,7 @@ EOF
 	/**
 	 * This test aims at being replaced by its version in DefaultOutputTransformTest when ParserOutput::getText
 	 * gets deprecated.
-	 * @covers ParserOutput::getText
+	 * @covers \MediaWiki\Parser\ParserOutput::getText
 	 */
 	public function testGetText_failsIfNoText() {
 		$po = new ParserOutput( null );
@@ -542,7 +542,7 @@ EOF
 	}
 
 	/**
-	 * @covers ParserOutput::getRawText
+	 * @covers \MediaWiki\Parser\ParserOutput::getRawText
 	 */
 	public function testGetRawText_failsIfNoText() {
 		$po = new ParserOutput( null );
@@ -747,7 +747,7 @@ EOF
 
 	/**
 	 * @dataProvider provideMergeHtmlMetaDataFrom
-	 * @covers ParserOutput::mergeHtmlMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::mergeHtmlMetaDataFrom
 	 *
 	 * @param ParserOutput $a
 	 * @param ParserOutput $b
@@ -793,8 +793,8 @@ EOF
 	}
 
 	/**
-	 * @covers ParserOutput::addLink
-	 * @covers ParserOutput::getLinks
+	 * @covers \MediaWiki\Parser\ParserOutput::addLink
+	 * @covers \MediaWiki\Parser\ParserOutput::getLinks
 	 */
 	public function testAddLink() {
 		$a = new ParserOutput();
@@ -941,7 +941,7 @@ EOF
 
 	/**
 	 * @dataProvider provideMergeTrackingMetaDataFrom
-	 * @covers ParserOutput::mergeTrackingMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::mergeTrackingMetaDataFrom
 	 *
 	 * @param ParserOutput $a
 	 * @param ParserOutput $b
@@ -1096,7 +1096,7 @@ EOF
 
 	/**
 	 * @dataProvider provideMergeInternalMetaDataFrom
-	 * @covers ParserOutput::mergeInternalMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::mergeInternalMetaDataFrom
 	 *
 	 * @param ParserOutput $a
 	 * @param ParserOutput $b
@@ -1114,9 +1114,9 @@ EOF
 	}
 
 	/**
-	 * @covers ParserOutput::mergeInternalMetaDataFrom
-	 * @covers ParserOutput::getTimes
-	 * @covers ParserOutput::resetParseStartTime
+	 * @covers \MediaWiki\Parser\ParserOutput::mergeInternalMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::getTimes
+	 * @covers \MediaWiki\Parser\ParserOutput::resetParseStartTime
 	 */
 	public function testMergeInternalMetaDataFrom_parseStartTime() {
 		/** @var object $a */
@@ -1180,11 +1180,11 @@ EOF
 	}
 
 	/**
-	 * @covers ParserOutput::mergeInternalMetaDataFrom
-	 * @covers ParserOutput::getTimes
-	 * @covers ParserOutput::resetParseStartTime
-	 * @covers ParserOutput::recordTimeProfile
-	 * @covers ParserOutput::getTimeProfile
+	 * @covers \MediaWiki\Parser\ParserOutput::mergeInternalMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::getTimes
+	 * @covers \MediaWiki\Parser\ParserOutput::resetParseStartTime
+	 * @covers \MediaWiki\Parser\ParserOutput::recordTimeProfile
+	 * @covers \MediaWiki\Parser\ParserOutput::getTimeProfile
 	 */
 	public function testMergeInternalMetaDataFrom_timeProfile() {
 		/** @var object $a */
@@ -1234,8 +1234,8 @@ EOF
 	}
 
 	/**
-	 * @covers ParserOutput::getCacheTime
-	 * @covers ParserOutput::setCacheTime
+	 * @covers \MediaWiki\Parser\ParserOutput::getCacheTime
+	 * @covers \MediaWiki\Parser\ParserOutput::setCacheTime
 	 */
 	public function testGetCacheTime() {
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
@@ -1258,12 +1258,12 @@ EOF
 	}
 
 	/**
-	 * @covers ParserOutput::addExtraCSPScriptSrc
-	 * @covers ParserOutput::addExtraCSPDefaultSrc
-	 * @covers ParserOutput::addExtraCSPStyleSrc
-	 * @covers ParserOutput::getExtraCSPScriptSrcs
-	 * @covers ParserOutput::getExtraCSPDefaultSrcs
-	 * @covers ParserOutput::getExtraCSPStyleSrcs
+	 * @covers \MediaWiki\Parser\ParserOutput::addExtraCSPScriptSrc
+	 * @covers \MediaWiki\Parser\ParserOutput::addExtraCSPDefaultSrc
+	 * @covers \MediaWiki\Parser\ParserOutput::addExtraCSPStyleSrc
+	 * @covers \MediaWiki\Parser\ParserOutput::getExtraCSPScriptSrcs
+	 * @covers \MediaWiki\Parser\ParserOutput::getExtraCSPDefaultSrcs
+	 * @covers \MediaWiki\Parser\ParserOutput::getExtraCSPStyleSrcs
 	 */
 	public function testCSPSources() {
 		$po = new ParserOutput;

@@ -9,7 +9,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideDecodeCharReferences
-	 * @covers Sanitizer::decodeCharReferences
+	 * @covers \MediaWiki\Parser\Sanitizer::decodeCharReferences
 	 */
 	public function testDecodeCharReferences( string $expected, string $input ) {
 		$this->assertSame( $expected, Sanitizer::decodeCharReferences( $input ) );
@@ -64,7 +64,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideTagAttributesToDecode
-	 * @covers Sanitizer::decodeTagAttributes
+	 * @covers \MediaWiki\Parser\Sanitizer::decodeTagAttributes
 	 */
 	public function testDecodeTagAttributes( $expected, $attributes, $message = '' ) {
 		$this->assertSame( $expected,
@@ -140,7 +140,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCssCommentsFixtures
-	 * @covers Sanitizer::checkCss
+	 * @covers \MediaWiki\Parser\Sanitizer::checkCss
 	 */
 	public function testCssCommentsChecking( $expected, $css, $message = '' ) {
 		$this->assertSame( $expected,
@@ -195,7 +195,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideEscapeHtmlAllowEntities
-	 * @covers Sanitizer::escapeHtmlAllowEntities
+	 * @covers \MediaWiki\Parser\Sanitizer::escapeHtmlAllowEntities
 	 */
 	public function testEscapeHtmlAllowEntities( $expected, $html ) {
 		$this->assertSame(
@@ -215,7 +215,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideIsReservedDataAttribute
-	 * @covers Sanitizer::isReservedDataAttribute
+	 * @covers \MediaWiki\Parser\Sanitizer::isReservedDataAttribute
 	 */
 	public function testIsReservedDataAttribute( $attr, $expected ) {
 		$this->assertSame( $expected, Sanitizer::isReservedDataAttribute( $attr ) );
@@ -238,7 +238,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideStripAllTags
 	 *
-	 * @covers Sanitizer::stripAllTags()
+	 * @covers \MediaWiki\Parser\Sanitizer::stripAllTags()
 	 * @covers \MediaWiki\Parser\RemexStripTagHandler
 	 *
 	 * @param string $input

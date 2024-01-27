@@ -32,7 +32,7 @@ use MediaWiki\Site\MediaWikiSite;
 class MediaWikiSiteTest extends SiteTest {
 
 	/**
-	 * @covers MediaWikiSite::normalizePageName
+	 * @covers \MediaWiki\Site\MediaWikiSite::normalizePageName
 	 */
 	public function testNormalizePageTitle() {
 		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
@@ -74,7 +74,7 @@ class MediaWikiSiteTest extends SiteTest {
 
 	/**
 	 * @dataProvider fileUrlProvider
-	 * @covers MediaWikiSite::getFileUrl
+	 * @covers \MediaWiki\Site\MediaWikiSite::getFileUrl
 	 */
 	public function testGetFileUrl( $url, $filePath, $pathArgument, $expected ) {
 		$site = new MediaWikiSite();
@@ -98,7 +98,7 @@ class MediaWikiSiteTest extends SiteTest {
 
 	/**
 	 * @dataProvider provideGetPageUrl
-	 * @covers MediaWikiSite::getPageUrl
+	 * @covers \MediaWiki\Site\MediaWikiSite::getPageUrl
 	 */
 	public function testGetPageUrl( $path, $page, $expected ) {
 		$site = new MediaWikiSite();

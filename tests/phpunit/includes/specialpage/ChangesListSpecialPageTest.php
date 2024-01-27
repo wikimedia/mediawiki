@@ -20,7 +20,7 @@ use Wikimedia\TestingAccessWrapper;
  * @author Matthew Flaschen
  * @group Database
  *
- * @covers ChangesListSpecialPage
+ * @covers \MediaWiki\SpecialPage\ChangesListSpecialPage
  */
 class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase {
 

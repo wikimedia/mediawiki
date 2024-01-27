@@ -8,7 +8,7 @@ use MediaWikiLangTestCase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
- * @covers CategoriesRdf
+ * @covers \MediaWiki\Category\CategoriesRdf
  * @covers DumpCategoriesAsRdf
  */
 class CategoriesRdfTest extends MediaWikiLangTestCase {

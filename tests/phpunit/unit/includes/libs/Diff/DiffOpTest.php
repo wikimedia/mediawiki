@@ -10,7 +10,7 @@ namespace Wikimedia\Diff;
 class DiffOpTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @covers DiffOp::getType
+	 * @covers \Wikimedia\Diff\DiffOp::getType
 	 */
 	public function testGetType() {
 		$obj = new FakeDiffOp();
@@ -19,7 +19,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers DiffOp::getOrig
+	 * @covers \Wikimedia\Diff\DiffOp::getOrig
 	 */
 	public function testGetOrig() {
 		$obj = new FakeDiffOp();
@@ -28,7 +28,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers DiffOp::getClosing
+	 * @covers \Wikimedia\Diff\DiffOp::getClosing
 	 */
 	public function testGetClosing() {
 		$obj = new FakeDiffOp();
@@ -37,7 +37,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers DiffOp::getClosing
+	 * @covers \Wikimedia\Diff\DiffOp::getClosing
 	 */
 	public function testGetClosingWithParameter() {
 		$obj = new FakeDiffOp();
@@ -49,7 +49,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers DiffOp::norig
+	 * @covers \Wikimedia\Diff\DiffOp::norig
 	 */
 	public function testNorig() {
 		$obj = new FakeDiffOp();
@@ -59,7 +59,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers DiffOp::nclosing
+	 * @covers \Wikimedia\Diff\DiffOp::nclosing
 	 */
 	public function testNclosing() {
 		$obj = new FakeDiffOp();

@@ -5,7 +5,7 @@ use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
 
 /**
- * @covers WebRequest
+ * @covers \MediaWiki\Request\WebRequest
  *
  * @group WebRequest
  */
