@@ -31,7 +31,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 
 /**
- * @covers MediaWikiTitleCodec
+ * @covers \MediaWiki\Title\MediaWikiTitleCodec
  *
  * @group Title
  * @group Database

@@ -10,9 +10,9 @@ use MediaWiki\Logger\LoggerFactory;
 
 /**
  * @group Database
- * @covers DeferredUpdates
- * @covers DeferredUpdatesScopeStack
- * @covers DeferredUpdatesScope
+ * @covers \MediaWiki\Deferred\DeferredUpdates
+ * @covers \MediaWiki\Deferred\DeferredUpdatesScopeStack
+ * @covers \MediaWiki\Deferred\DeferredUpdatesScope
  */
 class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
@@ -287,7 +287,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers TransactionRoundDefiningUpdate
+	 * @covers \MediaWiki\Deferred\TransactionRoundDefiningUpdate
 	 */
 	public function testRunOuterScopeUpdate() {
 		$cleanup = DeferredUpdates::preventOpportunisticUpdates();
@@ -378,7 +378,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MWCallableUpdate
+	 * @covers \MediaWiki\Deferred\MWCallableUpdate
 	 */
 	public function testCallbackUpdateRounds() {
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();

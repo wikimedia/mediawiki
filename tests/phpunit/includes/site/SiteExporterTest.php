@@ -30,7 +30,7 @@ use MediaWiki\Site\SiteStore;
  *
  * @group Site
  *
- * @covers SiteExporter
+ * @covers \MediaWiki\Site\SiteExporter
  *
  * @author Daniel Kinzler
  */

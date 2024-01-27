@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
- * @covers PoolWorkArticleView
+ * @covers \MediaWiki\PoolCounter\PoolWorkArticleView
  * @group Database
  */
 class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {

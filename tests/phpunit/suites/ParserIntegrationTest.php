@@ -26,7 +26,7 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
  * @covers LinkHolderArray
  * @covers StripState
  * @covers ParserOptions
- * @covers ParserOutput
+ * @covers \MediaWiki\Parser\ParserOutput
  */
 class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 

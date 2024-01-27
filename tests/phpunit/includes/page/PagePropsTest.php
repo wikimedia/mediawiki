@@ -4,7 +4,7 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
- * @covers PageProps
+ * @covers \MediaWiki\Page\PageProps
  * @group Database
  * @group medium
  */

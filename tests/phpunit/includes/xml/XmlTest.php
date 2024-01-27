@@ -79,7 +79,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers Xml::input
-	 * @covers Html::getTextInputAttributes
+	 * @covers \MediaWiki\Html\Html::getTextInputAttributes
 	 */
 	public function testInputWithMWUIEverywhere() {
 		$this->overrideConfigValues( [

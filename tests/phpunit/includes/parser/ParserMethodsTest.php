@@ -151,7 +151,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers Parser
-	 * @covers ParserOutput::getSections
+	 * @covers \MediaWiki\Parser\ParserOutput::getSections
 	 */
 	public function testGetSections() {
 		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 'html5' ] );

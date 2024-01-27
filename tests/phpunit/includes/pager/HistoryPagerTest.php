@@ -96,7 +96,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers HistoryPager::getBody
+	 * @covers \MediaWiki\Pager\HistoryPager::getBody
 	 */
 	public function testGetBodyEmpty() {
 		$pager = $this->getHistoryPager( [] );
@@ -106,7 +106,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers HistoryPager::getBody
+	 * @covers \MediaWiki\Pager\HistoryPager::getBody
 	 */
 	public function testGetBodyOneHeading() {
 		$pager = $this->getHistoryPager(
@@ -131,7 +131,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers HistoryPager::getBody
+	 * @covers \MediaWiki\Pager\HistoryPager::getBody
 	 */
 	public function testGetBodyTwoHeading() {
 		$pagerData = [
@@ -176,7 +176,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers HistoryPager::getBody
+	 * @covers \MediaWiki\Pager\HistoryPager::getBody
 	 */
 	public function testGetBodyLastItem() {
 		$pagerData = [

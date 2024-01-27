@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers Pingback
+ * @covers \MediaWiki\Installer\Pingback
  */
 class PingbackTest extends MediaWikiUnitTestCase {
 

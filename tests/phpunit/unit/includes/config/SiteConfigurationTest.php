@@ -120,7 +120,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration::siteFromDB
+	 * @covers \MediaWiki\Config\SiteConfiguration::siteFromDB
 	 */
 	public function testSiteFromDb() {
 		$this->assertSame(
@@ -148,7 +148,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration::getLocalDatabases
+	 * @covers \MediaWiki\Config\SiteConfiguration::getLocalDatabases
 	 */
 	public function testGetLocalDatabases() {
 		$this->assertEquals(
@@ -159,7 +159,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration::get
+	 * @covers \MediaWiki\Config\SiteConfiguration::get
 	 */
 	public function testGetConfVariables() {
 		// Simple
@@ -288,7 +288,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration::siteFromDB
+	 * @covers \MediaWiki\Config\SiteConfiguration::siteFromDB
 	 */
 	public function testSiteFromDbWithCallback() {
 		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
@@ -311,7 +311,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration
+	 * @covers \MediaWiki\Config\SiteConfiguration
 	 */
 	public function testParameterReplacement() {
 		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
@@ -362,7 +362,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration::getAll
+	 * @covers \MediaWiki\Config\SiteConfiguration::getAll
 	 */
 	public function testGetAllGlobals() {
 		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
@@ -415,7 +415,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration
+	 * @covers \MediaWiki\Config\SiteConfiguration
 	 */
 	public function testSuffixAndTagConflict() {
 		$conf = new SiteConfiguration;

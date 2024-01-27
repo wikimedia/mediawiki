@@ -22,7 +22,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
- * @coversDefaultClass BlockListPager
+ * @coversDefaultClass \MediaWiki\Pager\BlockListPager
  */
 class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 

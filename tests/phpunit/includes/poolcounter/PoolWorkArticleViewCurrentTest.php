@@ -9,7 +9,7 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers PoolWorkArticleViewCurrent
+ * @covers \MediaWiki\PoolCounter\PoolWorkArticleViewCurrent
  * @group Database
  */
 class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {

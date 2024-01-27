@@ -22,7 +22,7 @@ use MediaWiki\Site\Site;
 use MediaWiki\Site\SiteList;
 
 /**
- * @covers SiteList
+ * @covers \MediaWiki\Site\SiteList
  * @group Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */

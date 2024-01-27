@@ -29,7 +29,7 @@ use MediaWiki\Site\SiteStore;
  *
  * @group Site
  *
- * @covers SiteImporter
+ * @covers \MediaWiki\Site\SiteImporter
  *
  * @author Daniel Kinzler
  */

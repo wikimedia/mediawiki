@@ -42,7 +42,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DBSiteStore::getSites
+	 * @covers \MediaWiki\Site\DBSiteStore::getSites
 	 */
 	public function testGetSites() {
 		$expectedSites = TestSites::getSites();
@@ -69,7 +69,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DBSiteStore::saveSites
+	 * @covers \MediaWiki\Site\DBSiteStore::saveSites
 	 */
 	public function testSaveSites() {
 		$store = $this->newDBSiteStore();
@@ -102,7 +102,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DBSiteStore::reset
+	 * @covers \MediaWiki\Site\DBSiteStore::reset
 	 */
 	public function testReset() {
 		TestSites::insertIntoDb();
@@ -129,7 +129,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DBSiteStore::clear
+	 * @covers \MediaWiki\Site\DBSiteStore::clear
 	 */
 	public function testClear() {
 		$store = $this->newDBSiteStore();
@@ -143,7 +143,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DBSiteStore::getSites
+	 * @covers \MediaWiki\Site\DBSiteStore::getSites
 	 */
 	public function testGetSitesDefaultOrder() {
 		$store = $this->newDBSiteStore();

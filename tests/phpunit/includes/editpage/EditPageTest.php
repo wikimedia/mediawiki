@@ -875,7 +875,7 @@ hello
 		$this->doEditDummyNonTextPage( $edit );
 	}
 
-	/** @covers EditPage */
+	/** @covers \MediaWiki\EditPage\EditPage */
 	public function testShouldPreventChangingContentModelWhenUserCannotChangeModelForTitle() {
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
 			static function ( Title $page, $user, $action, &$result ) {
@@ -905,7 +905,7 @@ hello
 		$this->assertStatusValue( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status );
 	}
 
-	/** @covers EditPage */
+	/** @covers \MediaWiki\EditPage\EditPage */
 	public function testShouldPreventChangingContentModelWhenUserCannotEditTargetTitle() {
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
 			static function ( Title $page, $user, $action, &$result ) {

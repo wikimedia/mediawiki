@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
- * @covers SiteStatsUpdate
+ * @covers \MediaWiki\Deferred\SiteStatsUpdate
  * @covers MediaWiki\SiteStats\SiteStats
  * @covers MediaWiki\SiteStats\SiteStatsInit
  */

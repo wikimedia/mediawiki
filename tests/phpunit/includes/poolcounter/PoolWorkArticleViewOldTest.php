@@ -8,7 +8,7 @@ use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
 
 /**
- * @covers PoolWorkArticleViewOld
+ * @covers \MediaWiki\PoolCounter\PoolWorkArticleViewOld
  * @group Database
  */
 class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {

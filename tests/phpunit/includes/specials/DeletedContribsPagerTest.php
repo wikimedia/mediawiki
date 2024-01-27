@@ -65,7 +65,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * stdClass as a row, and then manually formats its own row in ContributionsLineEnding.
 	 * Emulate this behaviour and check that it works.
 	 *
-	 * @covers DeletedContribsPager::formatRow
+	 * @covers \MediaWiki\Pager\DeletedContribsPager::formatRow
 	 */
 	public function testDeletedContribProvidedByHook() {
 		$this->setTemporaryHook( 'DeletedContribsPager::reallyDoQuery', static function ( &$data ) {

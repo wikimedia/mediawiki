@@ -6,14 +6,14 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReferenceValue;
 
 /**
- * @covers ParserOutput
+ * @covers \MediaWiki\Parser\ParserOutput
  * @covers CacheTime
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */
 class TrackingCategoriesTest extends MediaWikiLangTestCase {
 	/**
-	 * @covers TrackingCategories::addTrackingCategory
+	 * @covers \MediaWiki\Category\TrackingCategories::addTrackingCategory
 	 */
 	public function testAddTrackingCategory() {
 		$services = $this->getServiceContainer();

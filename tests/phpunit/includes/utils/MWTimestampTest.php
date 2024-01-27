@@ -5,7 +5,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 
 /**
- * @covers MWTimestamp
+ * @covers \MediaWiki\Utils\MWTimestamp
  */
 class MWTimestampTest extends MediaWikiLangTestCase {
 

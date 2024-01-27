@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers ReverseChronologicalPager::getDateCond
+	 * @covers \MediaWiki\Pager\ReverseChronologicalPager::getDateCond
 	 * @dataProvider provideGetDateCond
 	 */
 	public function testGetDateCond( $params, $expected ) {
@@ -63,7 +63,7 @@ class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ReverseChronologicalPager::getDateCond
+	 * @covers \MediaWiki\Pager\ReverseChronologicalPager::getDateCond
 	 */
 	public function testGetDateCondSpecial() {
 		$pager = $this->getMockForAbstractClass( ReverseChronologicalPager::class );
