@@ -747,7 +747,10 @@ class AuthManager implements LoggerAwareInterface {
 				$this->logger->info( 'Auto-creating {user} on login', [
 					'user' => $user->getName(),
 				] );
-				$status = $this->autoCreateUser( $user, $state['primary'], false );
+				// Also use $user as performer, because the performer will be used for permission
+				// checks and global rights extensions might add rights based on the username,
+				// even if the user doesn't exist at this point.
+				$status = $this->autoCreateUser( $user, $state['primary'], false, true, $user );
 				if ( !$status->isGood() ) {
 					$ret = AuthenticationResponse::newFail(
 						Status::wrap( $status )->getMessage( 'authmanager-authn-autocreate-failed' )
@@ -1813,7 +1816,10 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// If there is a non-anonymous performer, don't use their session
-		$session = $performer ? null : $this->request->getSession();
+		$session = null;
+		if ( !$performer || $performer->getUser()->equals( $user ) ) {
+			$session = $this->request->getSession();
+		}
 
 		// Check the session, if we tried to create this user already there's
 		// no point in retrying.
