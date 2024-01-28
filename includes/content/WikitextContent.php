@@ -74,10 +74,8 @@ class WikitextContent extends TextContent {
 
 	/**
 	 * @param string|int|null|false $sectionId
-	 * @param Content $with
+	 * @param Content $with New section content, must have the same content model as $this.
 	 * @param string $sectionTitle
-	 *
-	 * @throws MWException
 	 * @return Content
 	 *
 	 * @see Content::replaceSection()
@@ -88,7 +86,7 @@ class WikitextContent extends TextContent {
 		$sectionModelId = $with->getModel();
 
 		if ( $sectionModelId != $myModelId ) {
-			throw new MWException( "Incompatible content model for section: " .
+			throw new InvalidArgumentException( "Incompatible content model for section: " .
 				"document uses $myModelId but " .
 				"section uses $sectionModelId." );
 		}

@@ -568,7 +568,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
 	 * @return bool
-	 * @throws MWException If $modelId has no known handler
+	 * @throws MWUnknownContentModelException If $modelId has no known handler
 	 */
 	private function isSupportedContentModel( string $modelId ): bool {
 		return $this->enableApiEditOverride === true ||

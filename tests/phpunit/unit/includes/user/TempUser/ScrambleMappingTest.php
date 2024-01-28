@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\User\TempUser\ScrambleMapping;
-use MWException;
+use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,7 +35,7 @@ class ScrambleMappingTest extends TestCase {
 
 	public function testOffsetTooLarge() {
 		$map = new ScrambleMapping( [ 'offset' => 10 ] );
-		$this->expectException( MWException::class );
+		$this->expectException( OutOfBoundsException::class );
 		$map->getSerialIdForIndex( 1 );
 	}
 }

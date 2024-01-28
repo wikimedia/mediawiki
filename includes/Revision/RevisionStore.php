@@ -2369,7 +2369,6 @@ class RevisionStore
 	 * RevisionStore is bound to.
 	 *
 	 * @param IReadableDatabase $db
-	 * @throws MWException
 	 */
 	private function checkDatabaseDomain( IReadableDatabase $db ) {
 		$dbDomain = $db->getDomainID();
@@ -2378,7 +2377,7 @@ class RevisionStore
 			return;
 		}
 
-		throw new MWException( "DB connection domain '$dbDomain' does not match '$storeDomain'" );
+		throw new RuntimeException( "DB connection domain '$dbDomain' does not match '$storeDomain'" );
 	}
 
 	/**

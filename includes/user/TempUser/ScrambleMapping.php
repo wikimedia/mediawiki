@@ -3,6 +3,7 @@
 namespace MediaWiki\User\TempUser;
 
 use LogicException;
+use OutOfBoundsException;
 use RuntimeException;
 
 /**
@@ -80,7 +81,7 @@ class ScrambleMapping implements SerialMapping {
 		}
 		$offset = $this->offset;
 		if ( $index - $offset < 0 ) {
-			throw new \MWException( __METHOD__ . ": The configured offset $offset is too large." );
+			throw new OutOfBoundsException( __METHOD__ . ": The configured offset $offset is too large." );
 		}
 		foreach ( self::GENERATORS as [ $g, $p ] ) {
 			if ( $index - $offset < $p ) {

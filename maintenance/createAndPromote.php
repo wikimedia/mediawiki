@@ -193,8 +193,6 @@ class CreateAndPromote extends Maintenance {
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param string $reason
-	 *
-	 * @throws MWException
 	 */
 	private function addLogEntry( $user, array $oldGroups, array $newGroups, string $reason ) {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );

@@ -633,7 +633,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$m = array_shift( $matches );
 		$this->loadTables();
 		if ( !isset( $this->mTables[$variant] ) ) {
-			throw new MWException( "Broken variant table: "
+			throw new RuntimeException( "Broken variant table: "
 				. implode( ',', array_keys( $this->mTables ) ) );
 		}
 		$ret = $this->mTables[$variant]->replace( $m[0] );
