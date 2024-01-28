@@ -85,6 +85,7 @@
 	"tog-showrollbackconfirmation": "Amosar unha mensaxe de confirmación ó facer clic nunha ligazón de reversión",
 	"tog-requireemail": "Enviar correos electrónicos de restablecemento de contrasinal só cando se proporcione o enderezo de correo electrónico e o nome de usuario.",
 	"tog-forcesafemode": "Activar sempre o [[mw:Manual:Safemode|modo seguro]]",
+	"tog-editrecovery": "Activar a función [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"underline-always": "Sempre",
 	"underline-never": "Nunca",
 	"underline-default": "Opcións predeterminadas de aparencia ou de navegador",

@@ -81,6 +81,7 @@
 	"tog-showrollbackconfirmation": "Прикажи потврдница при стискање на врската за отповикување",
 	"tog-requireemail": "Испраќај е-пошта за промена на лозинка само кога има укажано и е-пошта и корисничко име.",
 	"tog-forcesafemode": "Секогаш вклучувај [[mw:Manual:Safemode|безбеден режим]]",
+	"tog-editrecovery": "Овозможи ја функцијата [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"underline-always": "Секогаш",
 	"underline-never": "Никогаш",
 	"underline-default": "Според рувото или прелистувачот",

@@ -69,6 +69,7 @@
 	"tog-showrollbackconfirmation": "Ob kliku povezave za vrnitev prikaži potrditveni poziv",
 	"tog-requireemail": "Pošlji e-pošto za ponastavitev gesla samo, ko sta vnesena e-poštni naslov in uporabniško ime.",
 	"tog-forcesafemode": "Vedno omogoči [[mw:Manual:Safemode|varni način]]",
+	"tog-editrecovery": "Omogoči možnost [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"underline-always": "Vedno",
 	"underline-never": "Nikoli",
 	"underline-default": "V skladu s preobleko ali nastavitvami brskalnika",

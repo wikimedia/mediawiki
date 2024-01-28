@@ -189,6 +189,7 @@
 	"tog-showrollbackconfirmation": "當點擊回退連結時顯示確認提示",
 	"tog-requireemail": "僅在同時提供電子郵件位址與使用者名稱的情況下，發送重新設定密碼的電子郵件。",
 	"tog-forcesafemode": "始終啟用[[mw:Manual:Safemode|安全模式]]",
+	"tog-editrecovery": "啟用[[Special:EditRecovery|{{int:editrecovery}}]]功能",
 	"underline-always": "永遠使用",
 	"underline-never": "永不使用",
 	"underline-default": "外觀或瀏覽器預設",

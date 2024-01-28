@@ -233,6 +233,7 @@
 	"tog-showrollbackconfirmation": "Запрашивать подтверждение при нажатии ссылки для отката",
 	"tog-requireemail": "Отправлять письма для сброса пароля только тогда, когда указаны и адрес электронной почты, и имя участника.",
 	"tog-forcesafemode": "Включить [[mw:Manual:Safemode|безопасный режим]] навсегда",
+	"tog-editrecovery": "Включить функцию [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"underline-always": "Всегда",
 	"underline-never": "Никогда",
 	"underline-default": "Использовать настройки браузера",

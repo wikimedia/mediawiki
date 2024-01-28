@@ -163,6 +163,7 @@
 	"tog-showrollbackconfirmation": "Toon een bevestigingsvenster wanneer er op een terugdraaikoppeling wordt geklikt.",
 	"tog-requireemail": "Alleen wachtwoordreset-e-mails versturen wanneer zowel het e-mailadres en de gebruikersnaam worden opgegeven.",
 	"tog-forcesafemode": "[[mw:Manual:Safemode|Veilige modus]] altijd inschakelen",
+	"tog-editrecovery": "Schakel de functie [[Special:EditRecovery|{{int:editrecovery}}]] in",
 	"underline-always": "Altijd",
 	"underline-never": "Nooit",
 	"underline-default": "Standaardgedrag van vormgeving of webbrowser",

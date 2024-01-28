@@ -307,7 +307,7 @@
 	"tog-showrollbackconfirmation": "Toggle option used in [[Special:Preferences]] to enable/disable rollback confirmation prompt. Should be visible only to users with rollback rights.",
 	"tog-requireemail": "Toggle option used in [[Special:Preferences]].  Should be only visible to users who have confirmed their email address.\n\nSee also: {{msg-mw|prefs-help-requireemail}}",
 	"tog-forcesafemode": "Toggle option used in [[Special:Preferences]] to always enable safe mode.",
-	"tog-editrecovery": "Toggle option used in [[Special:Preferences]] to enable/disable the edit recovery feature.",
+	"tog-editrecovery": "Toggle option used in [[Special:Preferences]] to enable/disable the edit recovery feature. See also {{msg-mw|editrecovery}}.",
 	"underline-always": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"always underline links\", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-default}}.\n\n{{Gender}}\n{{Identical|Always}}",
 	"underline-never": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"never underline links\", there are also options {{msg-mw|Underline-always}} and {{msg-mw|Underline-default}}.\n\n{{Gender}}\n{{Identical|Never}}",
 	"underline-default": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"underline links as in your user skin or your browser\", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-always}}.\n\n{{Gender}}\n{{Identical|Browser default}}",

@@ -78,6 +78,7 @@
 	"tog-showrollbackconfirmation": "Wuhimi dihitabili bia din deei yi niŋ ka a yɛn dihi nyaaŋa labu zaŋ gɔhi linki",
 	"tog-requireemail": "Ti mi paswɛti malizali din deei yi niŋ ka emails mini ŋun su yuli yi bɛni.",
 	"tog-forcesafemode": "Sahakam che ka [[mw:Manual:Safemode|safe mode]] kuli nyɔ n-ʒiya",
+	"tog-editrecovery": "Piligimi [[Special:EditRecovery|{{int:editrecovery}}]] ŋɔ nahingbana",
 	"underline-always": "Sahakam",
 	"underline-never": "na Ʒin niŋ",
 	"underline-default": "Gban saɣambu",

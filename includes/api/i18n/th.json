@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Aefgh39622",
+			"Ekminarin",
 			"Patsagorn Y."
 		]
 	},
@@ -285,6 +286,7 @@
 	"apihelp-query+users-param-prop": "ส่วนของข้อมูลที่จะรวม:",
 	"apihelp-query+watchlist-paramvalue-prop-ids": "เพิ่มไอดีรุ่นแก้ไขและไอดีหน้า",
 	"apihelp-query+watchlist-paramvalue-prop-title": "เพิ่มชื่อหน้า",
+	"apihelp-query+watchlist-paramvalue-type-log": "ปูมบันทึก",
 	"apihelp-resetpassword-summary": "ส่งอีเมลตั้งรหัสผ่านใหม่ให้ผู้ใช้",
 	"apihelp-revisiondelete-summary": "ลบและกู้คืนรุ่นแก้ไข",
 	"apihelp-setpagelanguage-summary": "เปลี่ยนภาษาของหน้า",

@@ -170,6 +170,7 @@
 	"tog-showrollbackconfirmation": "Geri döndür bağlantısına tıklanınca bir onay istemi göster",
 	"tog-requireemail": "‎Parola sıfırlama e-postalarını yalnızca hem e-posta adresi hem de kullanıcı adı sağlandığında gönderin.‎",
 	"tog-forcesafemode": "[[mw:Manual:Safemode|Güvenli kipi]] her zaman etkinleştir",
+	"tog-editrecovery": "[[Special:EditRecovery|{{int:editrecovery}}]] özelliğini etkinleştir",
 	"underline-always": "Her zaman",
 	"underline-never": "Asla",
 	"underline-default": "Görünüm ya da tarayıcı varsayılanı",

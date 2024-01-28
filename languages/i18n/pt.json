@@ -139,6 +139,7 @@
 	"tog-showrollbackconfirmation": "Mostrar um pedido de confirmação ao clicar numa hiperligação de reversão",
 	"tog-requireemail": "Enviar mensagens de reinício da palavra-passe só quando o correio eletrónico e o nome de utilizador são ambos fornecidos.",
 	"tog-forcesafemode": "Ativar sempre o [[mw:Manual:Safemode|modo seguro]]",
+	"tog-editrecovery": "Ativar a funcionalidade [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"underline-always": "Sempre",
 	"underline-never": "Nunca",
 	"underline-default": "Usar opção padrão do tema ou do navegador",

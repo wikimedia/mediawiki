@@ -161,6 +161,7 @@
 	"tog-showrollbackconfirmation": "Wyświetl komunikat potwierdzający kliknięcie linku wycofującego edycje",
 	"tog-requireemail": "Wyślij wiadomość e-mail resetującą hasło tylko wtedy, gdy podany jest zarówno adres e-mail jak i nazwa użytkownika.",
 	"tog-forcesafemode": "Zawsze aktywuj [[mw:Manual:Safemode|tryb bezpieczny]]",
+	"tog-editrecovery": "Włącz funkcję [[Special:EditRecovery|odtwarzania zmian]].",
 	"underline-always": "Zawsze",
 	"underline-never": "Nigdy",
 	"underline-default": "według ustawień skórki lub przeglądarki",

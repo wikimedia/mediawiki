@@ -194,6 +194,7 @@
 	"tog-prefershttps": "Usa sempre una connessione sicura quando si effettua l'accesso",
 	"tog-showrollbackconfirmation": "Mostra una richiesta di conferma quando si clicca su un link di rollback",
 	"tog-requireemail": "Inviami una email per la reimpostazione della password solo quando sono stati forniti sia l'indirizzo di posta elettronica che il nome utente.",
+	"tog-editrecovery": "Abilita la funzione [[Special:EditRecovery|{{int:editrecovery}}]].",
 	"underline-always": "Sempre",
 	"underline-never": "Mai",
 	"underline-default": "Impostazioni predefinite del browser o del tema",

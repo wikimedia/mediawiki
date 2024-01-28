@@ -247,6 +247,7 @@
 	"tog-showrollbackconfirmation": "Afficher une demande de confirmation quand je clique sur un lien de révocation",
 	"tog-requireemail": "Envoyer les courriels de réinitialisation de mot de passe seulement quand l’adresse de messagerie et le nom d’utilisateur sont tous deux fournis.",
 	"tog-forcesafemode": "Toujours activer le [[mw:Manual:Safemode|mode sûreté]]",
+	"tog-editrecovery": "Activer la fonctionnalité [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"underline-always": "Toujours",
 	"underline-never": "Jamais",
 	"underline-default": "Valeur par défaut du thème ou du navigateur",
