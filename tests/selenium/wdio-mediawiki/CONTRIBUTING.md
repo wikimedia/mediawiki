@@ -29,7 +29,14 @@
 
 5. Set the next release version in [package.json](./package.json).
 
-6. Stage and save your commit, and submit it to Gerrit:
+6. Run `npm install` in the root of MediaWiki Core to update `package-lock.json` file.
+   Make sure the machine has the same versions of Node.js and npm as CI.
+   ```
+   # From mediawiki-core
+    npm install
+   ```
+
+7. Stage and save your commit, and submit it to Gerrit:
    ```
    # From mediawiki-core
    git add -p
@@ -39,7 +46,7 @@
 
 After the release commit has been merged by CI, perform the actual release:
 
-7. ```
+8. ```
    # From tests/selenium/wdio-mediawiki/
    npm publish
    ```
