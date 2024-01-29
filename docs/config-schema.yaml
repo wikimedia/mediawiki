@@ -7828,7 +7828,7 @@ config-schema:
             Whether to respect/honour
              - request ID provided by the incoming request via the `X-Request-Id`
              - trace context provided by the incoming request via the `tracestate` and `traceparent`
-            Set to `true` if the entity sitting in front of Mediawiki sanitises external requests.
+            Set to `true` if the entity sitting in front of MediaWiki sanitises external requests.
             Default: `false`.
     JobRunRate:
         default: 1

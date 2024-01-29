@@ -404,7 +404,7 @@ abstract class Installer {
 
 		// Load the installer's i18n.
 		$messageDirs = $baseConfig->get( MainConfigNames::MessagesDirs );
-		$messageDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
+		$messageDirs['MediaWikiInstaller'] = __DIR__ . '/i18n';
 
 		$configOverrides->set( MainConfigNames::MessagesDirs, $messageDirs );
 

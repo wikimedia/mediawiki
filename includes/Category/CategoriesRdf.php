@@ -27,11 +27,11 @@ use Wikimedia\Purtle\RdfWriter;
  */
 class CategoriesRdf {
 	/**
-	 * Prefix used for Mediawiki ontology in the dump.
+	 * Prefix used for MediaWiki ontology in the dump.
 	 */
 	private const ONTOLOGY_PREFIX = 'mediawiki';
 	/**
-	 * Base URL for Mediawiki ontology.
+	 * Base URL for MediaWiki ontology.
 	 */
 	private const ONTOLOGY_URL = 'https://www.mediawiki.org/ontology#';
 	/**
