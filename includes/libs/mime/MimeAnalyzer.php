@@ -1077,6 +1077,9 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 	/**
 	 * Check if major_mime has a value accepted by enum in a database schema.
+	 *
+	 * @since 1.42.0 (also backported to 1.39.7, 1.40.3 and 1.41.1)
+	 *
 	 * @param string $type
 	 * @return bool
 	 */
@@ -1092,7 +1095,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			'message',
 			'model',
 			'multipart',
-			'chemical'
+			'chemical',
 		];
 
 		return in_array( $type, $types );
