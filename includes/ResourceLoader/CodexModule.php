@@ -302,7 +302,7 @@ class CodexModule extends FileModule {
 				return false;
 			}
 
-			if ( !$val[ 'isEntry' ] ) {
+			if ( !isset( $val[ 'isEntry' ] ) || !$val[ 'isEntry' ] ) {
 				throw new InvalidArgumentException(
 					'"' . $file[ 'filename' ] . '"' .
 					' is not an export of Codex and cannot be included in the "codexComponents" array.'
