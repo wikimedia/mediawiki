@@ -78,9 +78,8 @@ class FileDeleteAction extends DeleteAction {
 	private function tempExecute( LocalFile $file ): void {
 		$context = $this->getContext();
 		$title = $this->getTitle();
-
+		$article = $this->getArticle();
 		$outputPage = $context->getOutput();
-
 		$request = $context->getRequest();
 
 		$checkFile = $this->oldFile ?: $file;
@@ -96,6 +95,13 @@ class FileDeleteAction extends DeleteAction {
 			!$request->wasPosted() ||
 			!$context->getUser()->matchEditToken( $token, [ 'delete', $title->getPrefixedText() ] )
 		) {
+			$this->showConfirm();
+			return;
+		}
+
+		// Check to make sure the page has not been edited while the deletion was being confirmed
+		if ( $article->getRevIdFetched() !== $request->getIntOrNull( 'wpConfirmationRevId' ) ) {
+			$this->showEditedWarning();
 			$this->showConfirm();
 			return;
 		}
@@ -155,6 +161,17 @@ class FileDeleteAction extends DeleteAction {
 	 */
 	private function showConfirm() {
 		$this->prepareOutputForForm();
+		$context = $this->getContext();
+		$article = $this->getArticle();
+
+		// oldid is set to the revision id of the page when the page was displayed.
+		// Check to make sure the page has not been edited between loading the page
+		// and clicking the delete link
+		$oldid = $context->getRequest()->getIntOrNull( 'oldid' );
+		if ( $oldid !== null && $oldid !== $article->getRevIdFetched() ) {
+			$this->showEditedWarning();
+		}
+
 		$this->showFormWarnings();
 		$form = $this->getForm();
 		if ( $form->show() ) {
