@@ -261,14 +261,14 @@ class DatabaseMySQL extends Database {
 			while ( !$done ) {
 				if ( in_array( $warnings->errno, [
 					// List based on https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html#ignore-effect-on-execution
-					1048 /* ER_BAD_NULL_ERROR */,
-					1526 /* ER_NO_PARTITION_FOR_GIVEN_VALUE */,
-					1748 /* ER_ROW_DOES_NOT_MATCH_GIVEN_PARTITION_SET */,
-					1242 /* ER_SUBQUERY_NO_1_ROW */,
-					1369 /* ER_VIEW_CHECK_FAILED */,
+					1048, /* ER_BAD_NULL_ERROR */
+					1526, /* ER_NO_PARTITION_FOR_GIVEN_VALUE */
+					1748, /* ER_ROW_DOES_NOT_MATCH_GIVEN_PARTITION_SET */
+					1242, /* ER_SUBQUERY_NO_1_ROW */
+					1369, /* ER_VIEW_CHECK_FAILED */
 					// Truncation and overflow per T108255
-					1264 /* ER_WARN_DATA_OUT_OF_RANGE */,
-					1265 /* WARN_DATA_TRUNCATED */,
+					1264, /* ER_WARN_DATA_OUT_OF_RANGE */
+					1265, /* WARN_DATA_TRUNCATED */
 				] ) ) {
 					$this->reportQueryError(
 						'Insert returned unacceptable warning: ' . $warnings->message,
