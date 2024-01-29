@@ -62,7 +62,8 @@
 			"아라",
 			"EdoAug",
 			"Amire80",
-			"TommyG"
+			"TommyG",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -3242,7 +3243,7 @@
 	"mcrundo-changed": "Siden har blitt endret siden du sist så diffen. Sjekk også den nye endringen.",
 	"mcrundo-parse-failed": "Parsing av den nye sideversjonen mislyktes: $1",
 	"ellipsis": "…",
-	"percent": "$1&nbsp;%",
+	"percent": "$1&#160;%",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "Ikke et tall",
 	"imgmultipageprev": "← forrige side",

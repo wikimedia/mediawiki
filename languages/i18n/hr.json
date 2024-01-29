@@ -52,7 +52,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Eleassar",
-			"Amire80"
+			"Amire80",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Podcrtavanje poveznica",
@@ -2964,7 +2965,7 @@
 	"confirm-rollback-button": "U redu",
 	"confirm-rollback-top": "Ukloniti uređivanja na ovoj stranici?",
 	"confirm-mcrundo-title": "Poništavanje izmjene",
-	"percent": "$1 %",
+	"percent": "$1&#160;%",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← prethodna slika",
 	"imgmultipagenext": "sljedeća slika →",

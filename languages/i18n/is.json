@@ -756,6 +756,7 @@
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Tómur hlutur",
 	"content-json-empty-array": "Tómt fylki",
+	"duplicate-args-warning": "<strong>Viðvörun:</strong> [[:$1]] notar [[:$2]] með fleiri en einu gildi fyrir \"$3\" stikann. Aðeins síðasta tilgreinda gildið verður notað.",
 	"duplicate-args-category": "Síður sem nota tvíteknar breytur við ítengingu sniðmáts",
 	"expensive-parserfunction-warning": "'''Viðvörun:''' Þessi síða inniheldur of mörg vinnslufrek aðgerðar þáttunar köll.\n\nHún ætti að innihalda minna en $2 {{PLURAL:$2|kall|köll}}, en {{PLURAL:$1|er nú $1 kall|eru nú $1 köll}}.",
 	"expensive-parserfunction-category": "Síður með of mörg vinnslufrek aðgerðar þáttunar köll",

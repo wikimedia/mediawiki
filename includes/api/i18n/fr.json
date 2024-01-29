@@ -42,7 +42,9 @@
 			"Yasten",
 			"Zetud",
 			"Amire80",
-			"Obscaeris"
+			"Obscaeris",
+			"Daniel236",
+			"Momo50WM"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:Etiquette|Étiquette et consignes d’utilisation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Liste de diffusion]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Suivi des anomalies et demandes d’amélioration]\n</div>\n<strong>État :</strong> l’API de MediaWiki est une interface stable et mature qui est prise en charge et améliorée de façon active. Bien que nous essayions de l’éviter, nous avons parfois besoin de faire des modifications non rétrocompatibles ; inscrivez-vous à [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ la liste de diffusion ''mediawiki-api-announce''] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> si des requêtes erronées sont envoyées à l’API, un entête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet entête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’informations, voyez [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erreurs et avertissements]].\n\n<p class=\"mw-apisandbox-link\"><strong>Test :</strong> pour faciliter le test des requêtes à l’API, utilisez le [[Special:ApiSandbox|bac à sable de l’API]].</p>",
@@ -278,7 +280,7 @@
 	"apihelp-help-param-submodules": "Inclure l’aide pour les sous-modules du module nommé.",
 	"apihelp-help-param-recursivesubmodules": "Inclure l’aide pour les sous-modules de façon récursive.",
 	"apihelp-help-param-helpformat": "Format de sortie de l’aide.",
-	"apihelp-help-param-wrap": "Emballer la sortie dans une structure standard de réponse API.",
+	"apihelp-help-param-wrap": "Inclure la sortie dans une structure standard de réponse API.",
 	"apihelp-help-param-toc": "Inclure une table des matières dans la sortie HTML.",
 	"apihelp-help-example-main": "Aide pour le module principal.",
 	"apihelp-help-example-submodules": "Aide pour <kbd>action=query</kbd> et tous ses sous-modules.",
@@ -291,7 +293,7 @@
 	"apihelp-imagerotate-example-simple": "Faire pivoter <kbd>File:Example.png</kbd> de <kbd>90</kbd> degrés.",
 	"apihelp-imagerotate-example-generator": "Faire pivoter toutes les images de <kbd>Category:Flip</kbd> de <kbd>180</kbd> degrés.",
 	"apihelp-import-summary": "Importer une page depuis un autre wiki ou depuis un fichier XML.",
-	"apihelp-import-extended-description": "Noter que la requête POST HTTP doit être effectuée comme un import de fichier (c’est-à-dire en utilisant <var>multipart/form-data</var>) lors de l’envoi d’un fichier pour le paramètre <var>xml</var>.",
+	"apihelp-import-extended-description": "Noter que la requête HTTP POST doit être effectuée comme un import de fichier (c’est-à-dire en utilisant <var>multipart/form-data</var>) lors de l’envoi d’un fichier pour le paramètre <var>xml</var>.",
 	"apihelp-import-param-summary": "Résumé de l’importation de l’entrée de journal.",
 	"apihelp-import-param-xml": "Fichier XML téléversé.",
 	"apihelp-import-param-interwikiprefix": "Pour les importations téléversées : le préfixe interwiki à appliquer aux noms d’utilisateurs inconnus (et aux utilisateurs connus si <var>$1assignknownusers</var> est positionné).",

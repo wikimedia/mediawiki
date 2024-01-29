@@ -243,7 +243,8 @@
 			"Dbsnp",
 			"MadriCR",
 			"Shyla summers",
-			"Hmonroy"
+			"Hmonroy",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -3436,7 +3437,7 @@
 	"mcrundo-parse-failed": "Error al analizar la nueva revisión: $1",
 	"comma-separator": ",&#32;",
 	"ellipsis": "…",
-	"percent": "$1 %",
+	"percent": "$1&#160;%",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "No es un número",
 	"imgmultipageprev": "← página anterior",

@@ -398,5 +398,7 @@
 	"exif-exposurelockused-true": "Да",
 	"exif-exposurelockused-false": "Не",
 	"exif-posepitchdegrees": "Угао по вертикали (степени)",
-	"exif-poserolldegrees": "Нагиб (степени)"
+	"exif-poserolldegrees": "Нагиб (степени)",
+	"exif-fullpanowidthpixels": "Панорама пуна ширина",
+	"exif-fullpanoheightpixels": "Панорама пуна висина"
 }

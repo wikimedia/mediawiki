@@ -3777,7 +3777,7 @@
 	"pipe-separator": "{{optional}}",
 	"word-separator": "{{optional}}\nThis is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.\n\nMost languages use a space, but some Asian languages, such as Thai and Chinese, do not.\n{{Format|plain}}",
 	"ellipsis": "{{optional}}",
-	"percent": "{{optional}}",
+	"percent": "{| class=\"wikitable\"\n|+\n!Type of space\n!Unicode\n!HTML\n!Breaks?\n|-\n|{{Smallcaps|space}}\n|U+0020\n|&amp;#32;\n|Yes\n|-\n|{{Smallcaps|no-break space}}\n|U+00A0\n|&amp;#160;\n|No\n|-\n|{{Smallcaps|thin space}}\n|U+2009\n|&amp;#8201;\n|Yes\n|-\n|{{Smallcaps|hair space}}\n|U+200A\n|&amp;#8202;\n|Yes\n|-\n|{{Smallcaps|narrow no-break space}}\n|U+202F\n|&amp;#8239;\n|No\n|}\n\nTranslations referenced by [[:commons:Template:i18n/%]].",
 	"parentheses": "{{optional}}",
 	"parentheses-start": "{{optional}}",
 	"parentheses-end": "{{optional}}",
