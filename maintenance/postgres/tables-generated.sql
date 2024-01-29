@@ -543,10 +543,6 @@ CREATE INDEX cl_sortkey ON categorylinks (
 
 CREATE INDEX cl_timestamp ON categorylinks (cl_to, cl_timestamp);
 
-CREATE INDEX cl_collation_ext ON categorylinks (
-  cl_collation, cl_to, cl_type, cl_from
-);
-
 
 CREATE TABLE logging (
   log_id SERIAL NOT NULL,
