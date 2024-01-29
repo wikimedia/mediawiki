@@ -37,14 +37,14 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			$loremIpsum->getArticleID(),
-			$loremIpsum->getArticleID( Title::READ_LATEST )
+			$loremIpsum->getArticleID( IDBAccessObject::READ_LATEST )
 		);
 
 		$categoryLoremIpsum = Title::makeTitle( NS_CATEGORY, 'Lorem ipsum' );
 
 		$this->assertSame(
 			$categoryLoremIpsum->getArticleID(),
-			$categoryLoremIpsum->getArticleID( Title::READ_LATEST )
+			$categoryLoremIpsum->getArticleID( IDBAccessObject::READ_LATEST )
 		);
 	}
 
@@ -59,14 +59,14 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			$loremIpsum->getArticleID(),
-			$loremIpsum->getArticleID( Title::READ_LATEST )
+			$loremIpsum->getArticleID( IDBAccessObject::READ_LATEST )
 		);
 
 		$categoryLoremIpsum = Title::makeTitle( NS_CATEGORY, 'Lorem ipsum' );
 
 		$this->assertSame(
 			$categoryLoremIpsum->getArticleID(),
-			$categoryLoremIpsum->getArticleID( Title::READ_LATEST )
+			$categoryLoremIpsum->getArticleID( IDBAccessObject::READ_LATEST )
 		);
 	}
 

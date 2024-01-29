@@ -2946,7 +2946,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$title = $store->getTitle( $page->getId(), 0, RevisionStore::READ_NORMAL );
+		$title = $store->getTitle( $page->getId(), 0, IDBAccessObject::READ_NORMAL );
 
 		$this->assertTrue( $page->isSamePageAs( $title ) );
 	}
@@ -2958,7 +2958,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$title = $store->getTitle( 0, $page->getLatest(), RevisionStore::READ_NORMAL );
+		$title = $store->getTitle( 0, $page->getLatest(), IDBAccessObject::READ_NORMAL );
 
 		$this->assertTrue( $page->isSamePageAs( $title ) );
 	}
@@ -2970,7 +2970,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getServiceContainer()->getRevisionStore();
 
 		$this->expectException( RevisionAccessException::class );
-		$store->getTitle( 113349857, 897234779, RevisionStore::READ_NORMAL );
+		$store->getTitle( 113349857, 897234779, IDBAccessObject::READ_NORMAL );
 	}
 
 	/**

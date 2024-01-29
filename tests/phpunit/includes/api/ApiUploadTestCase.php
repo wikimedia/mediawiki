@@ -57,7 +57,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 			$this->deletePage( $page, "removing for test" );
 		}
 
-		return !( $title && $title instanceof Title && $title->exists( Title::READ_LATEST ) );
+		return !( $title && $title instanceof Title && $title->exists( IDBAccessObject::READ_LATEST ) );
 	}
 
 	/**

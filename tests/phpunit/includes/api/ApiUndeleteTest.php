@@ -38,7 +38,7 @@ class ApiUndeleteTest extends ApiTestCase {
 		] );
 
 		// For good measure.
-		$this->assertFalse( $title->exists( Title::READ_LATEST ) );
+		$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 		$this->assertFalse( $watchlistManager->isWatched( $sysop, $title ) );
 
 		// Restore page, and watch with expiry.
@@ -49,7 +49,7 @@ class ApiUndeleteTest extends ApiTestCase {
 			'watchlistexpiry' => '99990123000000',
 		] );
 
-		$this->assertTrue( $title->exists( Title::READ_LATEST ) );
+		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
 		$this->assertTrue( $watchlistManager->isTempWatched( $sysop, $title ) );
 	}
 }

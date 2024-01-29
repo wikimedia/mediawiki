@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use IDBAccessObject;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\RevisionAccessException;
@@ -104,7 +105,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			] ) );
 
 		$store = $this->getRevisionStore();
-		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
+		$title = $store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
 
 		$this->assertSame( 3, $title->getNamespace() );
 		$this->assertSame( 'Food', $title->getDBkey() );
@@ -148,7 +149,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			);
 
 		$store = $this->getRevisionStore();
-		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
+		$title = $store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
 
 		$this->assertSame( 2, $title->getNamespace() );
 		$this->assertSame( 'Foodey', $title->getDBkey() );
@@ -185,7 +186,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			);
 
 		$store = $this->getRevisionStore();
-		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
+		$title = $store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
 
 		$this->assertSame( 1, $title->getNamespace() );
 		$this->assertSame( 'Food2', $title->getDBkey() );
@@ -236,7 +237,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			);
 
 		$store = $this->getRevisionStore();
-		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
+		$title = $store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
 
 		$this->assertSame( 2, $title->getNamespace() );
 		$this->assertSame( 'Foodey', $title->getDBkey() );
@@ -296,7 +297,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getRevisionStore( $mockLoadBalancer );
 
 		$this->expectException( RevisionAccessException::class );
-		$store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
+		$store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
 	}
 
 	public static function provideIsRevisionRow() {

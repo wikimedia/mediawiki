@@ -146,7 +146,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 		foreach ( $pageTitles as $name => $page ) {
 			$title = Title::newFromText( $page );
 
-			if ( !$title->exists( Title::READ_LATEST ) ) {
+			if ( !$title->exists( IDBAccessObject::READ_LATEST ) ) {
 				// map only existing pages, since only they can appear in a dump
 				continue;
 			}
