@@ -94,7 +94,21 @@ interface BaseMetricInterface {
 
 	/**
 	 * Add a label with key => value.
-	 * Note that the order in which labels are added is significant.
+	 * Note that the order in which labels are added is significant for StatsD output.
+	 *
+	 * Static Labels always appear first.
+	 *
+	 * Example:
+	 * ```php
+	 * $statsFactory->withComponent( 'demo' )
+	 *     ->addStaticLabel( 'first', 'foo' )
+	 *     ->addStaticLabel( 'second', 'bar' )
+	 *     ->getCounter( 'testMetric_total' )
+	 *     ->setLabel( 'third', 'baz' )
+	 *     ->increment();
+	 * ```
+	 * statsd: "mediawiki.demo.testMetric_total.foo.bar.baz"
+	 * prometheus: "mediawiki_demo_testMetric_total{first='foo',second='bar',third='baz'}
 	 *
 	 * @param string $key
 	 * @param string $value

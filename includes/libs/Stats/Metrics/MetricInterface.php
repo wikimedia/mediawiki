@@ -78,7 +78,17 @@ interface MetricInterface {
 
 	/**
 	 * Adds a label $key with $value.
-	 * Note that the order in which labels are added is significant.
+	 * Note that the order in which labels are added is significant for StatsD output.
+	 *
+	 * Example:
+	 * ```php
+	 * $statsFactory->getCounter( 'testMetric_total' )
+	 *     ->setLabel( 'first', 'foo' )
+	 *     ->setLabel( 'second', 'bar' )
+	 *     ->increment();
+	 * ```
+	 * statsd: "mediawiki.testMetric_total.foo.bar"
+	 * prometheus: "mediawiki_testMetric_total{ first='foo', second='bar' }
 	 *
 	 * @param string $key
 	 * @param string $value
