@@ -83,6 +83,14 @@
 		padding: 0.3em 1px;
 		text-decoration: none;
 		white-space: break-spaces;
+		// When JS is enabled, deleted and added content will show a popup explaining what the colors mean.
+		// Show a cursor pointer to make it clear it's clickable.
+		.client-js & {
+			// Note: This currently only happens at low resolutions.
+			@media only screen and ( max-width: @width-breakpoint-tablet ) {
+				cursor: pointer;
+			}
+		}
 	}
 }
 
@@ -353,4 +361,11 @@
 .mw-diff-usermetadata,
 .mw-diff-revision-history-links {
 	display: none;
+}
+
+// Hide the diff legend at lower resolutions.
+@media only screen and ( max-width: @width-breakpoint-tablet ) {
+	.mw-diff-inline-legend {
+		display: none;
+	}
 }

@@ -733,11 +733,16 @@ return [
 			'resources/src/mediawiki.diff/diff.js',
 			'resources/src/mediawiki.diff/inlineFormatToggle.js',
 		],
+		'styles' => [
+			'resources/src/mediawiki.diff/styles.less'
+		],
 		'dependencies' => [
 			'oojs-ui',
 			'mediawiki.api',
 		],
 		'messages' => [
+			'diff-inline-tooltip-ins',
+			'diff-inline-tooltip-del',
 			'diff-inline-format-label',
 			'diff-inline-switch-desc'
 		]
