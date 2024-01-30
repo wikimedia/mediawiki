@@ -45,7 +45,8 @@ class HeaderParserBase {
 		if ( substr_compare( $this->input, $s, $this->pos, strlen( $s ) ) === 0 ) {
 			$this->pos += strlen( $s );
 		} else {
-			$this->error( "Expected \"$s\"" );
+			// (T350852) Give full context for error
+			$this->error( "Expected \"$s\" to be a substring of \"$this->input\" from position \"$this->pos\"" );
 		}
 	}
 
