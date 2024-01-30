@@ -353,7 +353,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( !$storeStatus->isOK() ) {
 			$error = $this->logFileBackendStatus(
 				$storeStatus,
-				'[{type}] Error storing chunk in "{chunkKey}" for {fileKey} ({details})',
+				'[{type}] Error storing chunk in "{chunkPath}" for {fileKey} ({details})',
 				[ 'chunkPath' => $chunkPath, 'fileKey' => $fileKey ]
 			);
 			throw new UploadChunkFileException( "Error storing file in '{chunkPath}': " .
@@ -411,11 +411,11 @@ class UploadFromChunks extends UploadFromFile {
 			if ( $errorItem['type'] === 'error' ) {
 				// Use the first error of the list for the exception text
 				$errorToThrow ??= array_merge( [ $errorItem['message'] ], $errorItem['params'] );
-				$logger->error( $logMessage, $context );
+				$logger->error( $logMessageType, $context );
 			} else {
 				// When no error is found, fall back to the first warning
 				$warningToThrow ??= array_merge( [ $errorItem['message'] ], $errorItem['params'] );
-				$logger->warning( $logMessage, $context );
+				$logger->warning( $logMessageType, $context );
 			}
 		}
 		return $errorToThrow ?? $warningToThrow ?? [ 'unknown', 'no error recorded' ];
