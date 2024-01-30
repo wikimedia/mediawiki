@@ -248,6 +248,7 @@ $wgAutoloadLocalClasses = [
 	'CheckComposerLockUpToDate' => __DIR__ . '/maintenance/checkComposerLockUpToDate.php',
 	'CheckDependencies' => __DIR__ . '/maintenance/checkDependencies.php',
 	'CheckImages' => __DIR__ . '/maintenance/checkImages.php',
+	'CheckSignatures' => __DIR__ . '/maintenance/CheckSignatures.php',
 	'CheckStorage' => __DIR__ . '/maintenance/storage/checkStorage.php',
 	'CheckUsernames' => __DIR__ . '/maintenance/checkUsernames.php',
 	'ClassCollector' => __DIR__ . '/includes/utils/ClassCollector.php',
