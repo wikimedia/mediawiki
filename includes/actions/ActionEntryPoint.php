@@ -383,6 +383,12 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 		$user = $context->getUser();
 		$title = $context->getTitle();
 		$requestTitle = $title;
+
+		$userOptionsLookup = $this->getServiceContainer()->getUserOptionsLookup();
+		if ( $userOptionsLookup->getBoolOption( $user, 'forcesafemode' ) ) {
+			$request->setVal( 'safemode', '1' );
+		}
+
 		$this->getHookRunner()->onBeforeInitialize( $title, null, $output, $user, $request, $this );
 
 		// Invalid titles. T23776: The interwikis must redirect even if the page name is empty.
