@@ -192,7 +192,7 @@ TEXT
 				)
 				->orderBy( 'cl_from' )
 				->caller( __METHOD__ )->fetchResultSet();
-			$this->output( " processing..." );
+			$this->output( "processing... " );
 
 			if ( $res->numRows() ) {
 				if ( $this->targetTable ) {
