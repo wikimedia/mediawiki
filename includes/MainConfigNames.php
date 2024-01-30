@@ -2353,13 +2353,6 @@ class MainConfigNames {
 	public const EnableImageWhitelist = 'EnableImageWhitelist';
 
 	/**
-	 * Name constant for the AllowImageTag setting, for use with Config::get()
-	 * @see MainConfigSchema::AllowImageTag
-	 * @deprecated since 1.35; register an extension tag named <img> instead.
-	 */
-	public const AllowImageTag = 'AllowImageTag';
-
-	/**
 	 * Name constant for the TidyConfig setting, for use with Config::get()
 	 * @see MainConfigSchema::TidyConfig
 	 */

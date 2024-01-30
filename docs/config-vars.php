@@ -2338,13 +2338,6 @@ $wgAllowExternalImagesFrom = null;
 $wgEnableImageWhitelist = null;
 
 /**
- * Config variable stub for the AllowImageTag setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::AllowImageTag
- * @deprecated since 1.35; register an extension tag named <img> instead.
- */
-$wgAllowImageTag = null;
-
-/**
  * Config variable stub for the TidyConfig setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::TidyConfig
  */
