@@ -1039,7 +1039,7 @@ class Html {
 		if ( isset( $params['label'] ) ) {
 			$ret .= self::element(
 				'label', [
-					'for' => $selectAttribs['id'] ?? null,
+					'for' => $selectAttribs['id'],
 				], $params['label']
 			) . "\u{00A0}";
 		}
