@@ -2120,11 +2120,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// This should trigger a parser cache write, because we didn't set a write-ratio
 		$handler->wt2html( $pageConfig, $attribs );
-
-		$this->overrideConfigValue( 'TemporaryParsoidHandlerParserCacheWriteRatio', 0 );
-
-		// This should not trigger a parser cache write, because we set the write-ration to 0
-		$handler->wt2html( $pageConfig, $attribs );
 	}
 
 	public function testWt2html_BadContentModel() {

@@ -645,19 +645,6 @@ abstract class ParsoidHandler extends Handler {
 		}
 	}
 
-	private function allowParserCacheWrite() {
-		$config = RequestContext::getMain()->getConfig();
-
-		// HACK: remove before the release of MW 1.40 / early 2023.
-		if ( $config->has( 'TemporaryParsoidHandlerParserCacheWriteRatio' ) ) {
-			// We need to be careful about ramping up the cache writes,
-			// so we don't run out of disk space.
-			return wfRandom() < $config->get( 'TemporaryParsoidHandlerParserCacheWriteRatio' );
-		}
-
-		return true;
-	}
-
 	/**
 	 * Wikitext -> HTML helper.
 	 * Spec'd in https://phabricator.wikimedia.org/T75955 and the API tests.
@@ -714,13 +701,6 @@ abstract class ParsoidHandler extends Handler {
 			// the id and wikitext.
 			$pageConfig->getRevisionId() ?: null
 		);
-
-		if ( !$this->allowParserCacheWrite() ) {
-			// NOTE: In theory, we want to always write to the parser cache. However,
-			//       the ParserCache takes a lot of disk space, and we need to have fine grained control
-			//       over when we write to it, so we can avoid running out of disc space.
-			$helper->setUseParserCache( true, false );
-		}
 
 		$needsPageBundle = ( $format === ParsoidFormatHelper::FORMAT_PAGEBUNDLE );
 
