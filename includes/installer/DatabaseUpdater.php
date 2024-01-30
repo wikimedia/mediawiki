@@ -1198,8 +1198,11 @@ abstract class DatabaseUpdater {
 		}
 		$this->output( "Updating category collations...\n" );
 		$task = $this->maintenance->runChild( UpdateCollation::class );
-		$task->execute();
-		$this->output( "...done.\n" );
+		$ok = $task->execute();
+		if ( $ok !== false ) {
+			$this->output( "...done.\n" );
+			$this->insertUpdateRow( 'UpdateCollation::' . $wgCategoryCollation );
+		}
 	}
 
 	protected function doConvertDjvuMetadata() {
