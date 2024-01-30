@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 ( function () {
+	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
 	var itemData = {
 		params: {
 			param1: '1',
@@ -17,7 +18,7 @@
 	QUnit.test( 'Initializing and getters', function ( assert ) {
 		var model;
 
-		model = new mw.rcfilters.dm.SavedQueryItemModel(
+		model = new rcfilters.dm.SavedQueryItemModel(
 			'randomID',
 			'Some label',
 			$.extend( true, {}, itemData )
@@ -51,7 +52,7 @@
 	QUnit.test( 'Default', function ( assert ) {
 		var model;
 
-		model = new mw.rcfilters.dm.SavedQueryItemModel(
+		model = new rcfilters.dm.SavedQueryItemModel(
 			'randomID',
 			'Some label',
 			$.extend( true, {}, itemData )
@@ -78,7 +79,7 @@
 		);
 
 		// Reset
-		model = new mw.rcfilters.dm.SavedQueryItemModel(
+		model = new rcfilters.dm.SavedQueryItemModel(
 			'randomID',
 			'Some label',
 			$.extend( true, {}, itemData ),

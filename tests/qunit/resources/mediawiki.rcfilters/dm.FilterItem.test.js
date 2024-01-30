@@ -1,13 +1,14 @@
 /* eslint-disable camelcase */
 ( function () {
 	QUnit.module( 'mediawiki.rcfilters - FilterItem' );
+	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
 
 	QUnit.test( 'Initializing filter item', function ( assert ) {
 		var item,
-			group1 = new mw.rcfilters.dm.FilterGroup( 'group1' ),
-			group2 = new mw.rcfilters.dm.FilterGroup( 'group2' );
+			group1 = new rcfilters.dm.FilterGroup( 'group1' ),
+			group2 = new rcfilters.dm.FilterGroup( 'group2' );
 
-		item = new mw.rcfilters.dm.FilterItem( 'filter1', group1 );
+		item = new rcfilters.dm.FilterItem( 'filter1', group1 );
 		assert.strictEqual(
 			item.getName(),
 			'group1__filter1',
@@ -19,7 +20,7 @@
 			'Group name is retained.'
 		);
 
-		item = new mw.rcfilters.dm.FilterItem(
+		item = new rcfilters.dm.FilterItem(
 			'filter1',
 			group1,
 			{
@@ -38,7 +39,7 @@
 			'Description information is retained.'
 		);
 
-		item = new mw.rcfilters.dm.FilterItem(
+		item = new rcfilters.dm.FilterItem(
 			'filter1',
 			group1,
 			{
@@ -58,7 +59,7 @@
 		);
 
 		// Subsets
-		item = new mw.rcfilters.dm.FilterItem(
+		item = new rcfilters.dm.FilterItem(
 			'filter1',
 			group1,
 			{
@@ -94,7 +95,7 @@
 		);
 
 		// Conflicts
-		item = new mw.rcfilters.dm.FilterItem(
+		item = new rcfilters.dm.FilterItem(
 			'filter1',
 			group1,
 			{
@@ -115,12 +116,12 @@
 			'Conflict information is retained.'
 		);
 		assert.strictEqual(
-			item.existsInConflicts( new mw.rcfilters.dm.FilterItem( 'conflict1', group2 ) ),
+			item.existsInConflicts( new rcfilters.dm.FilterItem( 'conflict1', group2 ) ),
 			true,
 			'Specific item exists in conflicts.'
 		);
 		assert.strictEqual(
-			item.existsInConflicts( new mw.rcfilters.dm.FilterItem( 'conflict10', group1 ) ),
+			item.existsInConflicts( new rcfilters.dm.FilterItem( 'conflict10', group1 ) ),
 			false,
 			'Specific item does not exists in conflicts.'
 		);
@@ -138,7 +139,7 @@
 		);
 
 		// Fully covered
-		item = new mw.rcfilters.dm.FilterItem( 'filter1', group1 );
+		item = new rcfilters.dm.FilterItem( 'filter1', group1 );
 		assert.strictEqual(
 			item.isFullyCovered(),
 			false,
@@ -154,8 +155,8 @@
 	} );
 
 	QUnit.test( 'Emitting events', function ( assert ) {
-		var group1 = new mw.rcfilters.dm.FilterGroup( 'group1' ),
-			item = new mw.rcfilters.dm.FilterItem( 'filter1', group1 ),
+		var group1 = new rcfilters.dm.FilterGroup( 'group1' ),
+			item = new rcfilters.dm.FilterItem( 'filter1', group1 ),
 			events = [];
 
 		// Listen to update events
@@ -186,8 +187,8 @@
 	} );
 
 	QUnit.test( 'get/set boolean value', function ( assert ) {
-		var group = new mw.rcfilters.dm.FilterGroup( 'group1', { type: 'boolean' } ),
-			item = new mw.rcfilters.dm.FilterItem( 'filter1', group );
+		var group = new rcfilters.dm.FilterGroup( 'group1', { type: 'boolean' } ),
+			item = new rcfilters.dm.FilterItem( 'filter1', group );
 
 		item.setValue( '1' );
 
@@ -195,8 +196,8 @@
 	} );
 
 	QUnit.test( 'get/set any value', function ( assert ) {
-		var group = new mw.rcfilters.dm.FilterGroup( 'group1', { type: 'any_value' } ),
-			item = new mw.rcfilters.dm.FilterItem( 'filter1', group );
+		var group = new rcfilters.dm.FilterGroup( 'group1', { type: 'any_value' } ),
+			item = new rcfilters.dm.FilterItem( 'filter1', group );
 
 		item.setValue( '1' );
 

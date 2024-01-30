@@ -1,3 +1,5 @@
+var HighlightColors = require( '../HighlightColors.js' );
+
 /**
  * A widget representing a filter item highlight color picker
  *
@@ -10,7 +12,7 @@
  * @param {Object} [config] Configuration object
  */
 var HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidget( controller, config ) {
-	var colors = [ 'none' ].concat( mw.rcfilters.HighlightColors );
+	var colors = [ 'none' ].concat( HighlightColors );
 	config = config || {};
 
 	// Parent
