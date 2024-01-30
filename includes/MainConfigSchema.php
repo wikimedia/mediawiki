@@ -6500,22 +6500,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * A different approach to the above: simply allow the "<img>" tag to be used.
-	 *
-	 * This allows you to specify alt text and other attributes, copy-paste HTML to
-	 * your wiki more easily, etc.  However, allowing external images in any manner
-	 * will allow anyone with editing rights to snoop on your visitors' IP
-	 * addresses and so forth, if they wanted to, by inserting links to images on
-	 * sites they control.
-	 *
-	 * @deprecated since 1.35; register an extension tag named <img> instead.
-	 */
-	public const AllowImageTag = [
-		'default' => false,
-		'deprecated' => 'since 1.35; register an extension tag named <img> instead.',
-	];
-
-	/**
 	 * Configuration for HTML postprocessing tool. Set this to a configuration
 	 * array to enable an external tool. By default, we now use the RemexHtml
 	 * library; historically, other postprocessors were used.
