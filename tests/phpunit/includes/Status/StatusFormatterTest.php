@@ -22,6 +22,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$cache = $this->createNoOpMock( MessageCache::class, [ 'parse' ] );
 		$cache->method( 'parse' )->willReturnCallback(
 			static function ( $text ) {
+				$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5 );
 				return "<p>" . htmlspecialchars( trim( $text ) ) . "\n</p>";
 			}
 		);
@@ -115,9 +116,9 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 
 		$testCases['GoodStatus'] = [
 			new StatusValue(),
-			"Internal error: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, this is incorrect\n",
+			"Internal error: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, this is incorrect&#10;",
 			"(wrap-short: (internalerror_info: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, " .
-				"this is incorrect\n))",
+				"this is incorrect&#10;))",
 			"<p>Internal error: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, this is incorrect\n</p>",
 			"<p>(wrap-short: (internalerror_info: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, " .
 				"this is incorrect\n))\n</p>",
@@ -127,9 +128,9 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$status->setOK( false );
 		$testCases['GoodButNoError'] = [
 			$status,
-			"Internal error: MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: no error text but not OK\n",
+			"Internal error: MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: no error text but not OK&#10;",
 			"(wrap-short: (internalerror_info: MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: " .
-				"no error text but not OK\n))",
+				"no error text but not OK&#10;))",
 			"<p>Internal error: MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: no error text but not OK\n</p>",
 			"<p>(wrap-short: (internalerror_info: MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: " .
 				"no error text but not OK\n))\n</p>",
@@ -238,7 +239,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 
 		$testCases['GoodStatus'] = [
 			new StatusValue(),
-			[ "MediaWiki\Status\StatusFormatter::getMessage called for a good result, this is incorrect\n" ],
+			[ "MediaWiki\Status\StatusFormatter::getMessage called for a good result, this is incorrect&#10;" ],
 			'internalerror_info',
 			'wrapper-short'
 		];
@@ -247,7 +248,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$status->setOK( false );
 		$testCases['GoodButNoError'] = [
 			$status,
-			[ "MediaWiki\Status\StatusFormatter::getMessage: Invalid result object: no error text but not OK\n" ],
+			[ "MediaWiki\Status\StatusFormatter::getMessage: Invalid result object: no error text but not OK&#10;" ],
 			'internalerror_info',
 			'wrapper-short'
 		];
@@ -330,7 +331,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			// parameters to StatusValue::error() calls as array of arrays; expected message; expected context
 			'no errors' => [
 				[],
-				"Internal error: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, this is incorrect\n",
+				"Internal error: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, this is incorrect&#10;",
 				[],
 			],
 			// make sure that the rawmessage_2 hack works as the following tests rely on it
