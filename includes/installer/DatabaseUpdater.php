@@ -1196,7 +1196,7 @@ abstract class DatabaseUpdater {
 			$this->output( "...collations up-to-date.\n" );
 			return;
 		}
-		$this->output( "Updating category collations..." );
+		$this->output( "Updating category collations...\n" );
 		$task = $this->maintenance->runChild( UpdateCollation::class );
 		$task->execute();
 		$this->output( "...done.\n" );
