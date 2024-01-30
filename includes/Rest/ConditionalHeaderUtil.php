@@ -59,8 +59,8 @@ class ConditionalHeaderUtil {
 		if ( $this->eTag !== null ) {
 			$resourceTag = $parser->parseETag( $this->eTag );
 			if ( !$resourceTag ) {
-				throw new \Exception( 'Invalid ETag returned by handler: ' .
-					$parser->getLastError() );
+				throw new \Exception( 'Invalid ETag returned by handler: `' .
+					$parser->getLastError() . '`' );
 			}
 		} else {
 			$resourceTag = null;
