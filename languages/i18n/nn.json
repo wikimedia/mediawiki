@@ -35,7 +35,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Maddy from Celeste"
+			"Maddy from Celeste",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -2969,6 +2970,7 @@
 	"confirm-unwatch-top": "Fjern denne sida frå overvakingslista di?",
 	"confirm-rollback-button": "OK",
 	"confirm-mcrrestore-title": "Attopprett ein versjon",
+	"percent": "$1&#160;%",
 	"quotation-marks": "«$1»",
 	"imgmultipageprev": "← førre sida",
 	"imgmultipagenext": "neste side →",

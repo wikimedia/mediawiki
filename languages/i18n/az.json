@@ -2801,6 +2801,7 @@
 	"logentry-delete-delete_redir": "$1 $3 istiqamətləndirməsini yenidən yazmaq üçün {{GENDER:$2|sildi}}",
 	"logentry-delete-delete_redir2": "$1 $3 istiqamətləndirməsini yenidən yazmaq üçün {{GENDER:$2|sildi}}",
 	"logentry-delete-restore": "$1 $3 ($4) səhifəsini {{GENDER:$2|bərpa etdi}}",
+	"logentry-delete-event": "$1 $3 jurnalındakı {{PLURAL:$5|qeydin|$5 qeydin}} görünəbilərliyini {{GENDER:$2|dəyişdi}}: $4",
 	"logentry-delete-revision": "$1 $3 səhifəsindəki {{PLURAL:$5|bir redaktəni|$5 redaktəni}} {{GENDER:$2|gizlətdi}}: $4",
 	"logentry-suppress-delete": "$1 $3 səhifəsini {{GENDER:$2|gizlətdi}}",
 	"revdelete-content-hid": "məzmun gizlədildi",

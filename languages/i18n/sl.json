@@ -2265,7 +2265,7 @@
 	"listgrouprights-namespaceprotection-restrictedto": "Pravice, ki uporabniku omogočajo urejanje",
 	"listgrants": "Dovoljenja",
 	"listgrants-summary": "V nadaljevanju je seznam pravic z njihovim pripadajočim dostopom do uporabniških pravic. Uporabniki lahko overijo aplikacije za uporabo njihovega računa, toda z omejenimi pravicami glede na pooblastila, ki jih je uporabnik podelil aplikaciji. Aplikacija, ki deluje v imenu uporabnika, ne more uporabljati pravic, ki jih uporabnik nima.\nMorda so na voljo [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]] o posameznih pravicah.",
-	"listgrants-grant": "Dovoljenje",
+	"listgrants-grant": "Pooblastilo",
 	"listgrants-rights": "Pravice",
 	"listgrants-grant-display": "$1 <code>($2)</code>",
 	"trackingcategories": "Sledilne kategorije",

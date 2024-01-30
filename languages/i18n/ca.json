@@ -76,7 +76,8 @@
 			"Xð",
 			"Àlex",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -3305,6 +3306,7 @@
 	"mcrundo-changed": "La pàgina ha canviat d'ençà que heu vist la diferència. Reviseu el nou canvi.",
 	"mcrundo-parse-failed": "No s'ha pogut analitzar la revisió nova: $1",
 	"colon-separator": ":&#32;",
+	"percent": "$1&#160;%",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "No un nombre",
 	"imgmultipageprev": "← pàgina anterior",

@@ -110,7 +110,9 @@
 			"أبو هشام",
 			"LaMagiaaa",
 			"Hanzo64",
-			"Riad Salih"
+			"Riad Salih",
+			"Lolekek",
+			"عبد الإله صديقي"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1185,7 +1187,7 @@
 	"timezone-invalid": "المنطقة الزمنية غير صالحة أو إزاحة الوقت.",
 	"servertime": "وقت الخادم:",
 	"guesstimezone": "أدخل التوقيت من المتصفح",
-	"timezoneregion-africa": "أفريقيا",
+	"timezoneregion-africa": "إفريقيا",
 	"timezoneregion-america": "أمريكا",
 	"timezoneregion-antarctica": "أنتاركتيكا",
 	"timezoneregion-arctic": "القطب الشمالي",
@@ -2626,7 +2628,7 @@
 	"undelete-search-title": "البحث في الصفحات المحذوفة",
 	"undelete-search-box": "ابحث في الصفحات المحذوفة",
 	"undelete-search-prefix": "عرض الصفحات التي تبدأ بـ:",
-	"undelete-search-full": "اعرض عنوانين الصفحات التي تحتوي:",
+	"undelete-search-full": "اعرض عناوين الصفحات التي تحتوي:",
 	"undelete-search-submit": "بحث",
 	"undelete-no-results": "لم يتم العثور على صفحات مطابقة في أرشيف المحذوفات.",
 	"undelete-filename-mismatch": "لم يمكن استرجاع مراجعة الملف بتاريخ $1: اسم الملف لا يطابق",

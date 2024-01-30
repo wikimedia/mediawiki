@@ -36,7 +36,8 @@
 			"Xoser",
 			"ديفيد",
 			"아라",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"GolyatGeri"
 		]
 	},
 	"tog-underline": "Bınê gıreyi de xete bance:",
@@ -211,6 +212,7 @@
 	"skin-action-unprotect": "Şeveknayışi bıvurne",
 	"unprotect": "Şeveknayışi bıvurne",
 	"newpage": "Pela newiye",
+	"newpage-desc": "Waziyaye jew mewzu rê ju pela Newiye vırazê",
 	"view-missing-pages": "Pelanê nêmecetan bımocne",
 	"talkpagelinktext": "werênayış",
 	"specialpage": "Pela xısusiye",
@@ -4074,9 +4076,13 @@
 	"skin-action-undelete": "Meestere",
 	"skin-action-delete": "Bestere",
 	"skin-action-move": "Bıkırışe",
+	"blockedtext-made-by": "Bloqe terefê $1 biyo",
 	"blockedtext-reason-comment": "Sebebo ke mocniyayo <em>$1</em>",
 	"blockedtext-start-time": "Destpêkerdışê kılitkerdışi: $1",
-	"blockedtext-intended-blockee": "Kılitkerdışo meqsedkerde",
+	"blockedtext-expiration-time": "Bloqe qediyayış: $1",
+	"blockedtext-intended-blockee": "Kılitkerdışo meqsedkerde:$1",
+	"blockedtext-contact-blocker-admin": "Şoma eşkenê ke $1 ya ki yewbina [[{{MediaWiki:Grouppage-sysop}}|administoriya]] bloqeyi werênayış bıkerê",
+	"blockedtext-include-details-queries": "Kerem kerê persanê xo pêroyın dê detaya ilawe kerê",
 	"renameuser": "Karberi newe ra name ke",
 	"renameuser-linkoncontribs": "{{GENDER:$1|karberi}} reyna name ke",
 	"renameuser-linkoncontribs-text": "Nê {{GENDER:$1|karberi}} reyna name kerê",
