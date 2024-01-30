@@ -13,12 +13,16 @@ use MediaWiki\Page\WikiPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\MockEnvironment;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;
@@ -32,6 +36,7 @@ use Wikimedia\TestingAccessWrapper;
 class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
 	use DummyServicesTrait;
+	use MockAuthorityTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -440,6 +445,43 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( BadTitleError::class );
 		$this->expectExceptionMessage( 'The requested page title contains invalid characters: "<".' );
 		$mw->performRequest();
+	}
+
+	public function testForceSafeMode() {
+		$skin = Skin::normalizeKey( $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::DefaultSkin ) );
+		$this->setService( 'UserOptionsLookup', new StaticUserOptionsLookup(
+			[ 'FsmUser' => [ 'forcesafemode' => 1 ] ],
+			[
+				'forcesafemode' => 0,
+				'skin' => $skin
+			]
+		) );
+
+		$page = $this->getExistingTestPage();
+		$title = $page->getTitle();
+
+		$request = new FauxRequest( [ 'title' => $title->getPrefixedDBkey() ] );
+		$env = new MockEnvironment( $request );
+		$context = $env->makeFauxContext();
+		$context->setTitle( $title );
+		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $env, $context ) );
+		$mw->performRequest();
+		$this->assertSame( null, $request->getRawVal( 'safemode' ) );
+
+		$fsmRequest = new FauxRequest( [ 'title' => $title->getPrefixedDBkey() ] );
+		$fsmEnv = new MockEnvironment( $fsmRequest );
+		$fsmContext = $fsmEnv->makeFauxContext();
+		$fsmContext->setTitle( $title );
+		$fsmUser = $this->createMock( User::class );
+		$fsmUser->method( 'isRegistered' )->willReturn( true );
+		$fsmUser->method( 'getName' )->willReturn( 'FsmUser' );
+		$fsmContext->setUser( $fsmUser );
+		$fsmContext->setAuthority(
+			$this->mockUserAuthorityWithPermissions( $fsmUser, [ 'read' ] )
+		);
+		$fsmMw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $fsmEnv, $fsmContext ) );
+		$fsmMw->performRequest();
+		$this->assertSame( '1', $fsmRequest->getRawVal( 'safemode' ) );
 	}
 
 	public function testView() {
