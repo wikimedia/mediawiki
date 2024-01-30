@@ -37,7 +37,6 @@
 			"Josefine Hellroth Larsson (WMSE)",
 			"Josve05a",
 			"Kaganer",
-			"Kakan spelar",
 			"Kitayama",
 			"LPfi",
 			"Larske",
@@ -147,7 +146,6 @@
 	"tog-showrollbackconfirmation": "Visa en bekräftelsedialog när man klickar på en tillbakarullningslänk",
 	"tog-requireemail": "Skicka endast lösenordsåterställningar via e-postadress när både e-postadress och användarnamn anges.",
 	"tog-forcesafemode": "Aktivera alltid [[mw:Manual:Safemode|säkert läge]]",
-	"tog-editrecovery": "Aktivera [[Special:EditRecovery|{{int:editrecovery}}]] funktionen.",
 	"underline-always": "Alltid",
 	"underline-never": "Aldrig",
 	"underline-default": "Webbläsarens eller utseendets standardinställning",
@@ -711,11 +709,9 @@
 	"edit-recovery-special-intro-empty": "Du har inga osparade ändringar.",
 	"edit-recovery-special-view": "visa",
 	"edit-recovery-special-edit": "redigera",
-	"edit-recovery-special-recovered-on": "från $1",
-	"edit-recovery-special-recovered-on-tooltip": "Datum och tid då din återställningsdata senast sparades",
+	"edit-recovery-special-recovered-on": "Återställdes $1",
 	"edit-recovery-loaded-title": "Ändringar återställdes",
 	"edit-recovery-loaded-message": "Dina osparade ändringar har återställts automatiskt.",
-	"edit-recovery-loaded-message-different-rev": "Observera att sidan kan ha ändrats sedan du började redigera. Granska dina ändringar innan du sparar.",
 	"edit-recovery-loaded-show": "Visa ändringar",
 	"edit-recovery-loaded-discard": "Ignorera ändringar",
 	"summary": "Sammanfattning:",
@@ -4236,7 +4232,5 @@
 	"benefit-1-description": "Bevakningslistor som låter dig hålla reda på sidor som du är intresserad av.",
 	"benefit-2-description": "Permanent lista över dina bidrag till projektet.",
 	"benefit-3-description": "Inställningar som låter dig anpassa din upplevelse.",
-	"temp-user-unable-to-acquire": "Kunde inte skaffa ett tillfälligt kontoanvändarnamn. Var god försök igen.",
-	"composer-deps-outdated": "$1: $2 installerad, $3 krävs.",
-	"composer-deps-notinstalled": "$1: inte installerad, $2 krävs."
+	"temp-user-unable-to-acquire": "Kunde inte skaffa ett tillfälligt kontoanvändarnamn. Var god försök igen."
 }

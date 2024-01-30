@@ -111,7 +111,6 @@
 	"tog-showrollbackconfirmation": "একটি রোলব্যাক লিঙ্কে ক্লিক করার সময় একটি নিশ্চিতকরণ বার্তা দেখান",
 	"tog-requireemail": "পাসওয়ার্ড পুনঃস্থাপনের ইমেইল কেবল তখনি পাঠান যখন ইমেইল ঠিকানা ও ব্যবহারকারী নাম উভয় প্রদান করা হবে।",
 	"tog-forcesafemode": "সর্বদা [[mw:Manual:Safemode|নিরাপদ মোড]] সক্রিয় করুন",
-	"tog-editrecovery": "[[Special:EditRecovery|{{int:editrecovery}}]] বৈশিষ্ট্য সক্রিয় করুন",
 	"underline-always": "সবসময়",
 	"underline-never": "কখনো নয়",
 	"underline-default": "আবরণ বা ব্রাউজারে যেমনভাবে নির্দিষ্ট করা আছে",
