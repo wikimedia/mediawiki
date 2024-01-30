@@ -111,6 +111,7 @@
 	"tog-showrollbackconfirmation": "Be om bekreftelse når man klikker på en tilbakestillingslenke",
 	"tog-requireemail": "Kun send e-poster om tilbakestilling av passord når både e-postadresse og brukernavn angis.",
 	"tog-forcesafemode": "Aktiver alltid [[mw:Manual:Safemode|sikkerhetsmodus]].",
+	"tog-editrecovery": "Aktiver funksjonen for [[Special:EditRecovery|redigeringsgjenopprettelse]]",
 	"underline-always": "Alltid",
 	"underline-never": "Aldri",
 	"underline-default": "Drakta eller nettleserens standardinnstillinger",

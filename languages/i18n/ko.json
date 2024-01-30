@@ -704,6 +704,8 @@
 	"edit-recovery-nojs-placeholder": "편집 복구 기능에는 JavaScript가 필요합니다.",
 	"edit-recovery-special-intro": "다음 {{PLURAL:$1|문서 및 문단}}에 저장되지 않은 변경사항이 있습니다:",
 	"edit-recovery-special-intro-empty": "저장되지 않은 변경사항이 없습니다.",
+	"edit-recovery-special-view": "보기",
+	"edit-recovery-special-edit": "편집",
 	"edit-recovery-loaded-title": "변경사항 복구됨",
 	"edit-recovery-loaded-message": "저장되지 않은 변경사항은 자동으로 복구되었습니다.",
 	"edit-recovery-loaded-show": "차이 보기",
@@ -3518,6 +3520,7 @@
 	"specialpages-group-developer": "개발자 도구",
 	"blankpage": "빈 문서",
 	"intentionallyblankpage": "일부러 비워 둔 문서입니다.",
+	"iframeerror-title": "Iframe 오류",
 	"disabledspecialpage-disabled": "이 문서는 시스템 관리자가 비활성화했습니다.",
 	"external_image_whitelist": " #이 줄은 그대로 두십시오<pre>\n#정규 표현식(// 사이에 있는 부분)을 아래에 입력하세요.\n#이 목록은 외부 그림의 URL과 대조할 것입니다.\n#이 목록과 일치하는 것은 그림으로 표시되지만, 그렇지 않은 경우 그림을 가리키는 링크만 보이게 될 것입니다.\n#\"#\" 문자에서 줄의 끝까지는 주석입니다\n#이 목록은 대소문자를 구별하지 않습니다\n\n#모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>",
 	"tags": "올바른 편집 태그",
@@ -4202,6 +4205,7 @@
 	"renameuser-error-same-user": "이전의 이름과 같은 이름으로는 바꿀 수 없습니다.",
 	"renameuser-error-temp-user": "임시 계정 \"$1\"의 이름은 변경할 수 없습니다.",
 	"renameuser-error-temp-user-reserved": "\"$1\" 이름은 사용할 수 없습니다. 임시 계정을 위해 예약되어 있습니다.",
+	"renameuser-error-self-rename": "자기 자신의 이름을 바꿀 수 없습니다",
 	"renameusersuccess": "\"<nowiki>$1</nowiki>\" {{GENDER:$2|사용자}}를 \"<nowiki>$2</nowiki>\"(으)로 이름을 바꾸었습니다.",
 	"renameuser-page-exists": "$1 문서가 이미 존재하여 자동으로 이동하지 못했습니다.",
 	"renameuser-page-moved": "$1 문서를 $2 문서로 이동했습니다.",
@@ -4216,5 +4220,7 @@
 	"right-renameuser": "사용자 이름 바꾸기",
 	"renameuser-renamed-notice": "이 사용자의 이름을 바꾸었습니다.\n참조를 위해 아래에 이름 바꾸기 기록을 제공합니다.",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}}에 기여해 주셔서 감사합니다. 더 많은 기능에 접근하려면 계정을 만드세요.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}} 사이트는 여러분과 같은 사람들이 만듭니다. 계정을 사용하면 다음과 같은 기능에 접근하여 영구적이고 안전한 신원을 가질 수 있습니다:"
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} 사이트는 여러분과 같은 사람들이 만듭니다. 계정을 사용하면 다음과 같은 기능에 접근하여 영구적이고 안전한 신원을 가질 수 있습니다:",
+	"composer-deps-outdated": "$1: $2 설치됨, $3 필요함.",
+	"composer-deps-notinstalled": "$1: 설치되지 않음, $2 필요함."
 }
