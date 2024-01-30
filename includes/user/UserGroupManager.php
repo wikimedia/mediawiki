@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User;
 
-use DBAccessObjectUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
@@ -1217,11 +1216,14 @@ class UserGroupManager implements IDBAccessObject {
 	}
 
 	/**
-	 * @param int $queryFlags a bit field composed of READ_XXX flags
+	 * @param int $recency a bit field composed of IDBAccessObject::READ_XXX flags
 	 * @return IReadableDatabase
 	 */
-	private function getDBConnectionRefForQueryFlags( int $queryFlags ): IReadableDatabase {
-		return DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags, $this->wikiId );
+	private function getDBConnectionRefForQueryFlags( int $recency ): IReadableDatabase {
+		if ( ( IDBAccessObject::READ_LATEST & $recency ) == IDBAccessObject::READ_LATEST ) {
+			return $this->dbProvider->getPrimaryDatabase( $this->wikiId );
+		}
+		return $this->dbProvider->getReplicaDatabase( $this->wikiId );
 	}
 
 	/**
