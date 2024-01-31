@@ -184,7 +184,7 @@ class Shell {
 	 * @return Command
 	 */
 	public static function makeScriptCommand(
-		string $script, array $parameters, $options = []
+		string $script, array $parameters, array $options = []
 	): Command {
 		$services = MediaWikiServices::getInstance();
 		$phpCli = $services->getMainConfig()->get( MainConfigNames::PhpCli );

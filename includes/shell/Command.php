@@ -21,7 +21,6 @@
 namespace MediaWiki\Shell;
 
 use Exception;
-use MediaWiki\ProcOpenError;
 use MediaWiki\ShellDisabledError;
 use Profiler;
 use Psr\Log\LoggerInterface;
@@ -37,14 +36,12 @@ use Wikimedia\ScopedCallback;
  * @since 1.30
  */
 class Command extends UnboxedCommand {
-	/** @var bool */
-	private $everExecuted = false;
+	private bool $everExecuted = false;
 
 	/** @var string */
 	private $method;
 
-	/** @var LoggerInterface */
-	protected $logger;
+	protected LoggerInterface $logger;
 
 	/**
 	 * Don't call directly, instead use Shell::command()
@@ -57,7 +54,7 @@ class Command extends UnboxedCommand {
 			throw new ShellDisabledError();
 		}
 		parent::__construct( $executor );
-		$this->setLogger( new NullLogger );
+		$this->setLogger( new NullLogger() );
 	}
 
 	/**
@@ -76,6 +73,9 @@ class Command extends UnboxedCommand {
 		}
 	}
 
+	/**
+	 * @param LoggerInterface $logger
+	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 		if ( $this->executor ) {
@@ -206,8 +206,6 @@ class Command extends UnboxedCommand {
 	 *
 	 * @return UnboxedResult
 	 * @throws Exception
-	 * @throws ProcOpenError
-	 * @throws ShellDisabledError
 	 */
 	public function execute(): UnboxedResult {
 		$this->everExecuted = true;
