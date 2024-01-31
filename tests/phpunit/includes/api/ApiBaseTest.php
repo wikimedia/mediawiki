@@ -341,8 +341,8 @@ class ApiBaseTest extends ApiTestCase {
 				$this->assertSame( $expected, $result );
 			}
 			$actualWarnings = array_map( static function ( $warn ) {
-				return $warn instanceof Message
-					? array_merge( [ $warn->getKey() ], $warn->getParams() )
+				return $warn instanceof MessageSpecifier
+					? [ $warn->getKey(), ...$warn->getParams() ]
 					: $warn;
 			}, $mock->warnings );
 			$this->assertSame( $warnings, $actualWarnings );

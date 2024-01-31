@@ -410,11 +410,11 @@ class UploadFromChunks extends UploadFromFile {
 
 			if ( $errorItem['type'] === 'error' ) {
 				// Use the first error of the list for the exception text
-				$errorToThrow ??= array_merge( [ $errorItem['message'] ], $errorItem['params'] );
+				$errorToThrow ??= [ $errorItem['message'], ...$errorItem['params'] ];
 				$logger->error( $logMessageType, $context );
 			} else {
 				// When no error is found, fall back to the first warning
-				$warningToThrow ??= array_merge( [ $errorItem['message'] ], $errorItem['params'] );
+				$warningToThrow ??= [ $errorItem['message'], ...$errorItem['params'] ];
 				$logger->warning( $logMessageType, $context );
 			}
 		}

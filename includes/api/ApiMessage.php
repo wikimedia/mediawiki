@@ -46,11 +46,7 @@ class ApiMessage extends Message implements IApiMessage {
 		if ( is_array( $msg ) ) {
 			// From StatusValue
 			if ( isset( $msg['message'] ) ) {
-				if ( isset( $msg['params'] ) ) {
-					$msg = array_merge( [ $msg['message'] ], $msg['params'] );
-				} else {
-					$msg = [ $msg['message'] ];
-				}
+				$msg = [ $msg['message'], ...$msg['params'] ?? [] ];
 			}
 
 			// Weirdness that comes in sometimes, including the above
