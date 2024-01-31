@@ -2786,7 +2786,9 @@ class MainConfigSchema {
 	/**
 	 * Current wiki database name
 	 *
-	 * Should be alphanumeric, without spaces nor hyphens.
+	 * This should only contain alphanumeric and underscore characters ([A-Za-z0-9_]+).
+	 * Spaces, quotes, backticks, dots, and hyphens are likely to be problematic.
+	 *
 	 * This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDomain).
 	 *
 	 * This should still be set even if $wgLBFactoryConf is configured.
@@ -2798,7 +2800,9 @@ class MainConfigSchema {
 	/**
 	 * Current wiki database schema name
 	 *
-	 * Should be alphanumeric, without spaces nor hyphens.
+	 * This should only contain alphanumeric and underscore characters ([A-Za-z0-9_]+).
+	 * Spaces, quotes, backticks, dots, and hyphens are likely to be problematic.
+	 *
 	 * This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDomain).
 	 *
 	 * This should still be set even if $wgLBFactoryConf is configured.
@@ -2811,7 +2815,10 @@ class MainConfigSchema {
 	/**
 	 * Current wiki database table name prefix
 	 *
-	 * Should be alphanumeric, without spaces nor hyphens, preferably ending in an underscore.
+	 * This should only contain alphanumeric and underscore characters ([A-Za-z0-9_]+).
+	 * If it's a non-empty string, then it preferably should end with an underscore.
+	 * Spaces, quotes, backticks, dots, and hyphens are especially likely to be problematic.
+	 *
 	 * This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDomain).
 	 *
 	 * This should still be set even if $wgLBFactoryConf is configured.
