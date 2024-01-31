@@ -114,6 +114,3 @@ class OOUIFileModule extends FileModule {
 		return $skinSpecific;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( OOUIFileModule::class, 'ResourceLoaderOOUIFileModule' );

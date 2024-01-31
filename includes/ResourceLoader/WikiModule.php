@@ -715,6 +715,3 @@ class WikiModule extends Module {
 		return ( $this->styles && !$this->scripts ) ? self::LOAD_STYLES : self::LOAD_GENERAL;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( WikiModule::class, 'ResourceLoaderWikiModule' );

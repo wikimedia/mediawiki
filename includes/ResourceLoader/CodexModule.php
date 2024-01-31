@@ -374,6 +374,3 @@ JAVASCRIPT;
 		}
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( CodexModule::class, 'ResourceLoaderCodexModule' );

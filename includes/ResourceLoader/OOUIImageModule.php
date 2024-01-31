@@ -154,6 +154,3 @@ class OOUIImageModule extends ImageModule {
 		return $data;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( OOUIImageModule::class, 'ResourceLoaderOOUIImageModule' );

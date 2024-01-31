@@ -56,6 +56,3 @@ class SiteModule extends WikiModule {
 		return [ 'site.styles' ];
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( SiteModule::class, 'ResourceLoaderSiteModule' );

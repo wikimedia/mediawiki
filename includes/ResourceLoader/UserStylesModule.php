@@ -88,6 +88,3 @@ class UserStylesModule extends WikiModule {
 		return self::GROUP_USER;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( UserStylesModule::class, 'ResourceLoaderUserStylesModule' );

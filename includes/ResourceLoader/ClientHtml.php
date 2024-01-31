@@ -523,6 +523,3 @@ RLPAGEMODULES = {$pageModulesJson};
 		return new WrappedStringList( "\n", $chunks );
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( ClientHtml::class, 'ResourceLoaderClientHtml' );

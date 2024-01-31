@@ -34,6 +34,3 @@ class ForeignApiModule extends FileModule {
 		return $dependencies;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( ForeignApiModule::class, 'ResourceLoaderForeignApiModule' );

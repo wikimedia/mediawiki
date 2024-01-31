@@ -484,6 +484,3 @@ class ImageModule extends Module {
 		return self::LOAD_STYLES;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( ImageModule::class, 'ResourceLoaderImageModule' );

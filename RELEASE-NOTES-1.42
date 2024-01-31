@@ -333,6 +333,45 @@ because of Phabricator reports.
 * Log formatters (as defined in $wgLogActionsHandlers) are now created by
   ObjectFactory, which means their constructors must be public. Legacy log
   formatters using callbacks instead of class names are no longer supported.
+* The old aliases for the namespaced ResourceLoader classes, deprecated since
+  they were moved in MediaWiki 1.39, have now been dropped:
+  - ResourceLoader – use MediaWiki\ResourceLoader\ResourceLoader
+  - ResourceLoaderCircularDependencyError
+    – use MediaWiki\ResourceLoader\CircularDependencyError
+  - ResourceLoaderClientHtml – use MediaWiki\ResourceLoader\ClientHtml
+  - ResourceLoaderCodexModule – use MediaWiki\ResourceLoader\CodexModule
+  - ResourceLoaderContext – use MediaWiki\ResourceLoader\Context
+  - ResourceLoaderFileModule – use MediaWiki\ResourceLoader\FileModule
+  - ResourceLoaderFilePath – use MediaWiki\ResourceLoader\FilePath
+  - ResourceLoaderForeignApiModule
+    – use MediaWiki\ResourceLoader\ForeignApiModule
+  - ResourceLoaderImage – use MediaWiki\ResourceLoader\Image
+  - ResourceLoaderImageModule – use MediaWiki\ResourceLoader\ImageModule
+  - ResourceLoaderLessVarFileModule
+    – use MediaWiki\ResourceLoader\LessVarFileModule
+  - ResourceLoaderModule – use MediaWiki\ResourceLoader\Module
+  - ResourceLoaderMwUrlModule – use MediaWiki\ResourceLoader\MwUrlModule
+  - ResourceLoaderOOUIFileModule – use MediaWiki\ResourceLoader\OOUIFileModule
+  - ResourceLoaderOOUIIconPackModule
+    – use MediaWiki\ResourceLoader\OOUIIconPackModule
+  - ResourceLoaderOOUIImageModule
+    – use MediaWiki\ResourceLoader\OOUIImageModule
+  - ResourceLoaderOOUIModule – use MediaWiki\ResourceLoader\OOUIModule
+  - ResourceLoaderSiteModule – use MediaWiki\ResourceLoader\SiteModule
+  - ResourceLoaderSiteStylesModule
+    – use MediaWiki\ResourceLoader\SiteStylesModule
+  - ResourceLoaderSkinModule – use MediaWiki\ResourceLoader\SkinModule
+  - ResourceLoaderStartUpModule – use MediaWiki\ResourceLoader\StartUpModule
+  - ResourceLoaderUserModule – use MediaWiki\ResourceLoader\UserModule
+  - ResourceLoaderUserOptionsModule
+    – use MediaWiki\ResourceLoader\UserOptionsModule
+  - ResourceLoaderUserStylesModule
+    – use MediaWiki\ResourceLoader\UserStylesModule
+  - ResourceLoaderWikiModule – use MediaWiki\ResourceLoader\WikiModule
+  - DerivativeResourceLoaderContext
+    – use MediaWiki\ResourceLoader\DerivativeContext
+  - MessageBlobStore – use MediaWiki\ResourceLoader\MessageBlobStore
+  - VueComponentParser – use MediaWiki\ResourceLoader\VueComponentParser
 * (T318989) Skin::lastModified, deprecated since 1.40, has been removed.
 * Composer 1.x is no longer supported, and can no longer be used with MediaWiki.
 * …

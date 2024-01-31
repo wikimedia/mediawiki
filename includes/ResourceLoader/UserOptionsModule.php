@@ -89,6 +89,3 @@ class UserOptionsModule extends Module {
 		return self::GROUP_PRIVATE;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( UserOptionsModule::class, 'ResourceLoaderUserOptionsModule' );

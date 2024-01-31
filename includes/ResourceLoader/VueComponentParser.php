@@ -317,6 +317,3 @@ class VueComponentParser {
 		};
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( VueComponentParser::class, 'VueComponentParser' );

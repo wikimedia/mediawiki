@@ -179,6 +179,3 @@ trait OOUIModule {
 		return $this->getThemePath( $theme, 'images', $module );
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( OOUIModule::class, 'ResourceLoaderOOUIModule' );

@@ -133,6 +133,3 @@ class LessVarFileModule extends FileModule {
 		return $vars;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( LessVarFileModule::class, 'ResourceLoaderLessVarFileModule' );

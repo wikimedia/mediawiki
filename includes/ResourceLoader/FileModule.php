@@ -1510,6 +1510,3 @@ class FileModule extends Module {
 		return $input;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( FileModule::class, 'ResourceLoaderFileModule' );

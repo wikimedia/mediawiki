@@ -515,6 +515,3 @@ class Context implements MessageLocalizer {
 		return $json;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( Context::class, 'ResourceLoaderContext' );

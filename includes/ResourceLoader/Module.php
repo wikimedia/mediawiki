@@ -1133,6 +1133,3 @@ abstract class Module implements LoggerAwareInterface {
 		] );
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( Module::class, 'ResourceLoaderModule' );

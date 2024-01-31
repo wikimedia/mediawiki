@@ -112,6 +112,3 @@ class FilePath {
 		}
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( FilePath::class, 'ResourceLoaderFilePath' );

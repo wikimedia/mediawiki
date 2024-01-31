@@ -28,6 +28,3 @@ use Exception;
  */
 class CircularDependencyError extends Exception {
 }
-
-/** @deprecated since 1.39 */
-class_alias( CircularDependencyError::class, 'ResourceLoaderCircularDependencyError' );

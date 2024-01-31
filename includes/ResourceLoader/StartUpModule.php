@@ -451,6 +451,3 @@ class StartUpModule extends Module {
 		return true;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( StartUpModule::class, 'ResourceLoaderStartUpModule' );

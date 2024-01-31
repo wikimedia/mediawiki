@@ -274,6 +274,3 @@ class DerivativeContext extends Context {
 	}
 
 }
-
-/** @deprecated since 1.39 */
-class_alias( DerivativeContext::class, 'DerivativeResourceLoaderContext' );

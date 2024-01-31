@@ -64,6 +64,3 @@ class SiteStylesModule extends WikiModule {
 		return self::GROUP_SITE;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( SiteStylesModule::class, 'ResourceLoaderSiteStylesModule' );

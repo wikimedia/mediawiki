@@ -275,6 +275,3 @@ class MessageBlobStore implements LoggerAwareInterface {
 		return $json;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( MessageBlobStore::class, 'MessageBlobStore' );

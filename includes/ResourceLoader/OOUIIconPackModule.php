@@ -82,6 +82,3 @@ class OOUIIconPackModule extends OOUIImageModule {
 		return $localBasePath ?? $IP;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( OOUIIconPackModule::class, 'ResourceLoaderOOUIIconPackModule' );

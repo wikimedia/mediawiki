@@ -485,6 +485,3 @@ class Image {
 		return false;
 	}
 }
-
-/** @deprecated since 1.39 */
-class_alias( Image::class, 'ResourceLoaderImage' );
