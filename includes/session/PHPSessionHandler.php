@@ -28,14 +28,16 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use SessionHandlerInterface;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\PhpSessionSerializer;
 
 /**
  * Adapter for PHP's session handling
  * @ingroup Session
  * @since 1.27
  */
-class PHPSessionHandler implements \SessionHandlerInterface {
+class PHPSessionHandler implements SessionHandlerInterface {
 	/** @var PHPSessionHandler */
 	protected static $instance = null;
 
@@ -144,7 +146,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			session_cache_limiter( '' );
 
 			// Also set a serialization handler
-			\Wikimedia\PhpSessionSerializer::setSerializeHandler();
+			PhpSessionSerializer::setSerializeHandler();
 
 			// Register this as the save handler, and register an appropriate
 			// shutdown function.
@@ -172,7 +174,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			$this->manager = $manager;
 			$this->store = $store;
 			$this->logger = $logger;
-			\Wikimedia\PhpSessionSerializer::setLogger( $this->logger );
+			PhpSessionSerializer::setLogger( $this->logger );
 		}
 	}
 
@@ -231,7 +233,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 		$data = iterator_to_array( $session );
 		$this->sessionFieldCache[$id] = $data;
-		return (string)\Wikimedia\PhpSessionSerializer::encode( $data );
+		return (string)PhpSessionSerializer::encode( $data );
 	}
 
 	/**
@@ -265,7 +267,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		}
 
 		// First, decode the string PHP handed us
-		$data = \Wikimedia\PhpSessionSerializer::decode( $dataStr );
+		$data = PhpSessionSerializer::decode( $dataStr );
 		if ( $data === null ) {
 			// @codeCoverageIgnoreStart
 			return false;
@@ -309,10 +311,10 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		}
 		// Anything deleted in $_SESSION and unchanged in Session should be deleted too
 		// (but not if $_SESSION can't represent it at all)
-		\Wikimedia\PhpSessionSerializer::setLogger( new NullLogger() );
+		PhpSessionSerializer::setLogger( new NullLogger() );
 		foreach ( $cache as $key => $value ) {
 			if ( !array_key_exists( $key, $data ) && $session->exists( $key ) &&
-				\Wikimedia\PhpSessionSerializer::encode( [ $key => true ] )
+				PhpSessionSerializer::encode( [ $key => true ] )
 			) {
 				if ( $value === $session->get( $key ) ) {
 					// Unchanged in Session, delete it
@@ -326,7 +328,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 				}
 			}
 		}
-		\Wikimedia\PhpSessionSerializer::setLogger( $this->logger );
+		PhpSessionSerializer::setLogger( $this->logger );
 
 		// Save and update cache if anything changed
 		if ( $changed ) {
