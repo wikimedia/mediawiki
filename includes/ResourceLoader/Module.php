@@ -818,7 +818,7 @@ abstract class Module implements LoggerAwareInterface {
 	 * @return array
 	 */
 	final protected function buildContent( Context $context ) {
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
 		$statStart = microtime( true );
 
 		// This MUST build both scripts and styles, regardless of whether $context->getOnly()
@@ -903,10 +903,13 @@ abstract class Module implements LoggerAwareInterface {
 		}
 
 		$statTiming = microtime( true ) - $statStart;
-		$stats->timing( "resourceloader_build.all", 1000 * $statTiming );
-		$name = $this->getName();
-		$statName = strtr( $name, '.', '_' );
-		$stats->timing( "resourceloader_build.$statName", 1000 * $statTiming );
+		$statName = strtr( $this->getName(), '.', '_' );
+
+		$statsFactory->getTiming( 'resourceloader_build_seconds' )
+			->setLabel( 'name', $statName ?: 'na' )
+			->copyToStatsdAt( [ "resourceloader_build.$statName",
+						'resourceloader_build.all' ] )
+			->observe( 1000 * $statTiming );
 
 		return $content;
 	}
