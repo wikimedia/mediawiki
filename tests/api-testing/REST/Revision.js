@@ -21,7 +21,7 @@ describe( 'Revision', () => {
 	describe( 'GET /revision/{from}/compare/{to}', () => {
 		const pageOne = utils.title( 'RevisionCompare_1' );
 		const pageTwo = utils.title( 'RevisionCompare_2' );
-		const nonExistentRevId = 999;
+		const nonExistentRevId = 99999;
 		const validRevId = 1;
 		const invalidRevId = '#';
 
