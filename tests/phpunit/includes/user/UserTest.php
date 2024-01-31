@@ -241,6 +241,24 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers User::getRightDescription
+	 */
+	public function testGetRightDescription() {
+		$key = 'deletechangetags';
+		$parsedDescription = User::getRightDescription( $key );
+		$this->assertMatchesRegularExpression( '/[|]/', $parsedDescription );
+	}
+
+	/**
+	 * @covers User::getRightDescriptionHtml
+	 */
+	public function testGetParsedRightDescription() {
+		$key = 'deletechangetags';
+		$parsedDescription = User::getRightDescriptionHtml( $key );
+		$this->assertMatchesRegularExpression( '/<.*>/', $parsedDescription );
+	}
+
+	/**
 	 * Test password validity checks. There are 3 checks in core,
 	 *	- ensure the password meets the minimal length
 	 *	- ensure the password is not the same as the username

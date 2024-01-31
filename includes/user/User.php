@@ -3246,7 +3246,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get the description of a given right
+	 * Get the description of a given right as wikitext
 	 *
 	 * @since 1.29
 	 * @param string $right Right to query
@@ -3256,6 +3256,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$key = "right-$right";
 		$msg = wfMessage( $key );
 		return $msg->isDisabled() ? $right : $msg->text();
+	}
+
+	/**
+	 * Get the description of a given right as rendered HTML
+	 *
+	 * @since 1.42
+	 * @param string $right Right to query
+	 * @return string HTML description of the right
+	 */
+	public static function getRightDescriptionHtml( $right ) {
+		return wfMessage( "right-$right" )->parse();
 	}
 
 	/**
