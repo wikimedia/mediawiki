@@ -11,11 +11,9 @@ use MediaWiki\Settings\Source\SettingsFileUtils;
  */
 class LocalSettingsLoader {
 
-	/** @var SettingsBuilder */
-	private $settingsBuilder;
+	private SettingsBuilder $settingsBuilder;
 
-	/** @var string */
-	private $baseDir;
+	private string $baseDir;
 
 	/**
 	 * @param SettingsBuilder $settingsBuilder
