@@ -328,7 +328,7 @@ class CookieSessionProvider extends SessionProvider {
 
 	/**
 	 * Fetch the user identity from cookies
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @return array (string|null $id, string|null $username, string|null $token)
 	 */
 	protected function getUserInfoFromCookies( $request ) {
@@ -342,7 +342,7 @@ class CookieSessionProvider extends SessionProvider {
 
 	/**
 	 * Get a cookie. Contains an auth-specific hack.
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @param string $key
 	 * @param string $prefix
 	 * @param mixed|null $default
