@@ -29,7 +29,13 @@ use RuntimeException;
  */
 class VersionChecker {
 	public static function onEvent() {
-		if ( version_compare( Composer::VERSION, '2.0.0', '<' ) ) {
+		$version = Composer::VERSION;
+		if ( $version === '@package_version@' ) {
+			// In Composer 1.9+, unreleased git branches have this value in Composer::VERSION,
+			// and Composer::getVersion() was introduced to work around this.
+			$version = Composer::getVersion();
+		}
+		if ( version_compare( $version, '2.0.0', '<' ) ) {
 			throw new RuntimeException(
 				"MediaWiki requires Composer version 2 or later; version 1"
 				. " has been considered end of life since October 2020!"
