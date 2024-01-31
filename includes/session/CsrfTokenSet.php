@@ -35,10 +35,7 @@ class CsrfTokenSet {
 	 */
 	public const DEFAULT_FIELD_NAME = 'wpEditToken';
 
-	/**
-	 * @var WebRequest
-	 */
-	private $request;
+	private WebRequest $request;
 
 	/**
 	 * @param WebRequest $request
