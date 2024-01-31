@@ -35,6 +35,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ActorMigration;
+use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
@@ -146,6 +147,36 @@ class RevisionStoreFactory {
 	 * @return RevisionStore for the given wikiId with all necessary services
 	 */
 	public function getRevisionStore( $dbDomain = false ) {
+		return $this->getStore(
+			$dbDomain,
+			$this->actorStoreFactory->getActorStore( $dbDomain ),
+			$this->actorMigration
+		);
+	}
+
+	/**
+	 * @since 1.42
+	 *
+	 * @param false|string $dbDomain DB domain of the relevant wiki or false for the current one
+	 *
+	 * @return RevisionStore for the given wikiId with all necessary services
+	 */
+	public function getRevisionStoreForImport( $dbDomain = false ) {
+		return $this->getStore(
+			$dbDomain,
+			$this->actorStoreFactory->getActorStoreForImport( $dbDomain ),
+			ActorMigration::newMigrationForImport()
+		);
+	}
+
+	/**
+	 * @param false|string $dbDomain
+	 * @param ActorStore $actorStore
+	 * @param ActorMigration $actorMigration
+	 *
+	 * @return RevisionStore
+	 */
+	private function getStore( $dbDomain, ActorStore $actorStore, ActorMigration $actorMigration ) {
 		Assert::parameterType( [ 'string', 'false' ], $dbDomain, '$dbDomain' );
 
 		$store = new RevisionStore(
@@ -157,8 +188,8 @@ class RevisionStoreFactory {
 			$this->nameTables->getContentModels( $dbDomain ),
 			$this->nameTables->getSlotRoles( $dbDomain ),
 			$this->slotRoleRegistry,
-			$this->actorMigration,
-			$this->actorStoreFactory->getActorStore( $dbDomain ),
+			$actorMigration,
+			$actorStore,
 			$this->contentHandlerFactory,
 			$this->pageStoreFactory->getPageStore( $dbDomain ),
 			$this->titleFactory,

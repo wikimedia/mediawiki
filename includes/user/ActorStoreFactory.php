@@ -93,10 +93,39 @@ class ActorStoreFactory {
 	}
 
 	/**
+	 * @since 1.42
+	 * @param string|false $wikiId
+	 * @return ActorNormalization
+	 */
+	public function getActorNormalizationForImport(
+		$wikiId = WikiAwareEntity::LOCAL
+	): ActorNormalization {
+		return $this->getActorStoreForImport( $wikiId );
+	}
+
+	/**
 	 * @param string|false $wikiId
 	 * @return ActorStore
 	 */
 	public function getActorStore( $wikiId = WikiAwareEntity::LOCAL ): ActorStore {
+		return $this->getStore( $wikiId, false );
+	}
+
+	/**
+	 * @since 1.42
+	 * @param string|false $wikiId
+	 * @return ActorStore
+	 */
+	public function getActorStoreForImport( $wikiId = WikiAwareEntity::LOCAL ): ActorStore {
+		return $this->getStore( $wikiId, true );
+	}
+
+	/**
+	 * @param string|false $wikiId
+	 * @param bool $forImport
+	 * @return ActorStore
+	 */
+	private function getStore( $wikiId, $forImport ): ActorStore {
 		// During the transition from User, we still have old User objects
 		// representing users from a different wiki, so we still have IDatabase::getDomainId
 		// passed as $wikiId, so we need to remap it back to LOCAL.
@@ -104,9 +133,11 @@ class ActorStoreFactory {
 			$wikiId = WikiAwareEntity::LOCAL;
 		}
 
-		$storeCacheKey = $wikiId === WikiAwareEntity::LOCAL ? 'LOCAL' : $wikiId;
+		$storeCacheKey = ( $forImport ? 'import' : '' ) .
+			( $wikiId === WikiAwareEntity::LOCAL ? 'LOCAL' : $wikiId );
+
 		if ( !isset( $this->storeCache[$storeCacheKey] ) ) {
-			$this->storeCache[$storeCacheKey] = new ActorStore(
+			$store = $this->storeCache[$storeCacheKey] = new ActorStore(
 				$this->getLoadBalancerForTable( 'actor', $wikiId ),
 				$this->userNameUtils,
 				$this->tempUserConfig,
@@ -114,6 +145,10 @@ class ActorStoreFactory {
 				$this->hideUserUtils,
 				$wikiId
 			);
+			if ( $forImport ) {
+				$store->setAllowCreateIpActors( true );
+			}
+			$this->storeCache[$storeCacheKey] = $store;
 		}
 		return $this->storeCache[$storeCacheKey];
 	}

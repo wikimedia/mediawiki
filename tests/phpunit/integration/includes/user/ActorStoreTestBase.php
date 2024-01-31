@@ -44,6 +44,14 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param string|false $wikiId
+	 * @return ActorStore
+	 */
+	protected function getStoreForImport( $wikiId = UserIdentity::LOCAL ): ActorStore {
+		return $this->getServiceContainer()->getActorStoreFactory()->getActorStoreForImport( $wikiId );
+	}
+
+	/**
 	 * Execute the $callback passing it an ActorStore for $wikiId,
 	 * making sure no queries are made to local DB.
 	 * @param string|false $wikiId

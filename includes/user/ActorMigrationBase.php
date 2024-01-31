@@ -23,6 +23,7 @@
 namespace MediaWiki\User;
 
 use InvalidArgumentException;
+use LogicException;
 use ReflectionClass;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
@@ -45,12 +46,14 @@ class ActorMigrationBase {
 	/** @var int A combination of the SCHEMA_COMPAT_WRITE_* flags */
 	private $writeStage;
 
-	private ActorStoreFactory $actorStoreFactory;
+	protected ActorStoreFactory $actorStoreFactory;
 
 	/** @var array */
 	private $fieldInfos;
 
 	private bool $allowUnknown;
+
+	private bool $forImport = false;
 
 	/**
 	 * @param array $fieldInfos An array of associative arrays, giving configuration
@@ -107,6 +110,14 @@ class ActorMigrationBase {
 		$this->writeStage = $writeStage;
 
 		$this->actorStoreFactory = $actorStoreFactory;
+	}
+
+	/**
+	 * Get an instance that allows IP actor creation
+	 * @return self
+	 */
+	public static function newMigrationForImport() {
+		throw new LogicException( __METHOD__ . " must be overridden" );
 	}
 
 	/**
@@ -262,8 +273,7 @@ class ActorMigrationBase {
 			$ret[$text] = $user->getName();
 		}
 		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$ret[$actor] = $this->actorStoreFactory
-				->getActorNormalization( $dbw->getDomainID() )
+			$ret[$actor] = $this->getActorNormalization( $dbw->getDomainID() )
 				->acquireActorId( $user, $dbw );
 		}
 		return $ret;
@@ -323,8 +333,7 @@ class ActorMigrationBase {
 				// make sure to use normalized form of IP for anonymous users
 				$names[] = IPUtils::sanitizeIP( $user->getName() );
 			}
-			$actorId = $this->actorStoreFactory
-				->getActorNormalization( $db->getDomainID() )
+			$actorId = $this->getActorNormalization( $db->getDomainID() )
 				->findActorId( $user, $db );
 
 			if ( $actorId ) {
@@ -354,6 +363,26 @@ class ActorMigrationBase {
 			'orconds' => $conds,
 			'joins' => $joins,
 		];
+	}
+
+	/**
+	 * @internal For use immediately after construction only
+	 * @param bool $forImport
+	 */
+	public function setForImport( bool $forImport ): void {
+		$this->forImport = $forImport;
+	}
+
+	/**
+	 * @param string $domainId
+	 * @return ActorNormalization
+	 */
+	protected function getActorNormalization( $domainId ): ActorNormalization {
+		if ( $this->forImport ) {
+			return $this->actorStoreFactory->getActorNormalizationForImport( $domainId );
+		} else {
+			return $this->actorStoreFactory->getActorNormalization( $domainId );
+		}
 	}
 }
 

@@ -41,6 +41,18 @@ class ActorMigration extends ActorMigrationBase {
 	}
 
 	/**
+	 * Static constructor
+	 * @return self
+	 */
+	public static function newMigrationForImport() {
+		$migration = new self(
+			MediaWikiServices::getInstance()->getActorStoreFactory()
+		);
+		$migration->setForImport( true );
+		return $migration;
+	}
+
+	/**
 	 * @internal
 	 *
 	 * @param ActorStoreFactory $actorStoreFactory

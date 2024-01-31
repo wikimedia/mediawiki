@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use Psr\Log\NullLogger;
 
@@ -9,6 +10,7 @@ use Psr\Log\NullLogger;
  * @covers ImportableOldRevisionImporter
  */
 class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
+	use TempUserTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -38,7 +40,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 			true,
 			new NullLogger(),
 			$services->getConnectionProvider(),
-			$services->getRevisionStore(),
+			$services->getRevisionStoreFactory()->getRevisionStoreForImport(),
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
 			$services->getPageUpdaterFactory(),
@@ -53,5 +55,17 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 			$title->getLatestRevID()
 		);
 		$this->assertSame( $expectedTags, $tags );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStoreForImport
+	 * @covers \MediaWiki\User\ActorMigration::newMigrationForImport
+	 * @covers \MediaWiki\User\ActorStoreFactory::getActorStoreForImport
+	 * @covers \MediaWiki\User\ActorStoreFactory::getActorNormalizationForImport
+	 * @dataProvider provideTestCases
+	 */
+	public function testImportWithTempAccountsEnabled( $expectedTags ) {
+		$this->enableAutoCreateTempUser();
+		$this->testImport( $expectedTags );
 	}
 }
