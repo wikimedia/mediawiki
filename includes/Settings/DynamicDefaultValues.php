@@ -8,10 +8,7 @@ use MediaWiki\Settings\Config\ConfigSchema;
 
 class DynamicDefaultValues {
 
-	/**
-	 * @var ConfigSchema
-	 */
-	private $configSchema;
+	private ConfigSchema $configSchema;
 
 	/**
 	 * @var array

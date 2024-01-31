@@ -14,8 +14,7 @@ use MediaWiki\MainConfigNames;
  */
 class WikiFarmSettingsLoader {
 
-	/** @var SettingsBuilder */
-	private $settingsBuilder;
+	private SettingsBuilder $settingsBuilder;
 
 	/**
 	 * @param SettingsBuilder $settingsBuilder
