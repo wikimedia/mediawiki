@@ -2074,6 +2074,7 @@
 	"trackingcategories-name": "پیغام کا عنوان",
 	"trackingcategories-desc": "زمرہ کی شمولیت کا معیار",
 	"restricted-displaytitle-ignored": "صفحات مع نظرانداز کردہ عناوین",
+	"nonnumeric-formatnum": "غیر عددی صیغہ عدد کے حامل صفحات",
 	"broken-file-category-desc": "اس صفحہ میں کسی فائل کا شکستہ ربط موجود ہے (یعنی ایسی فائل کا ربط دیا گیا ہے جو موجود نہیں)۔",
 	"hidden-category-category-desc": "اس زمرہ میں ابتدائی طور پر <code><nowiki>__HIDDENCAT__</nowiki></code> کا کوڈ شامل ہے جو اس زمرہ کو صفحات میں ظاہر ہونے سے روکتا ہے۔",
 	"trackingcategories-nodesc": "کوئی وضاحت دستیاب نہیں۔",

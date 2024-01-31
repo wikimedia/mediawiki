@@ -23,7 +23,10 @@
 			"Mojaam",
 			"Nura A Sani",
 			"Omar Ali",
-			"아라"
+			"아라",
+			"Hamza DK",
+			"Juguson",
+			"Yusuf Sa'adu"
 		]
 	},
 	"tog-underline": "Zana layin link:",
@@ -43,14 +46,14 @@
 	"tog-watchrollback": "Sanya shafukan da na gudanar da sakiya agaresu a shafukan dana sanya wa ido",
 	"tog-minordefault": "A alamta duk gyaruka a matsayin ƙanana bisa manufa",
 	"tog-previewontop": "A nuna filin rigya-gani sama ga filin gyare-gyare",
-	"tog-previewonfirst": "A nuna rigya-gani tun gyaran farin",
+	"tog-previewonfirst": "nuna ka ɗauki kallon sa'ad da ka soma gyara",
 	"tog-enotifwatchlistpages": "A shaida mani ta Imel idan wani shafi ko fayil dake cikin wadanda na sanya wa ido aka sauya.",
 	"tog-enotifusertalkpages": "A shaida mani ta imel idan shafina na muhawara ya sauya",
 	"tog-enotifminoredits": "A shaida mani ta Imel game da ƙaramin gyara na shafuka da fayilolin",
 	"tog-enotifrevealaddr": "A bayyana Imel kina a cikin sak'wanni na shaidarwa",
 	"tog-shownumberswatching": "A nuna adadin ma'aikata masu bin sawun wannan shafi",
 	"tog-oldsig": "Sa hannun da kuke dashi",
-	"tog-fancysig": "A ɗauki matanin sa-hannu a matsayin matanin Wiki (ba tare da mahaɗin otomatik ba)",
+	"tog-fancysig": "dauki sa hannu a matsayin wikitext (ba tare da hanyar haɗin kai ta atomatik zuwa shafin mai amfani ba)",
 	"tog-uselivepreview": "A nuna shafin gwaji batare da sake sauyin shafi ba",
 	"tog-forceeditsummary": "A gargaɗe ni idan na ajiye kangon fili na  bayanai (ko dauwamammen korarrun bayanai)",
 	"tog-watchlisthideown": "A ɓoye sauye-sauyena daga jerin bin sawu",

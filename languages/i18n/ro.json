@@ -53,7 +53,8 @@
 			"XXN",
 			"לערי ריינהארט",
 			"아라",
-			"Heron702"
+			"Heron702",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -3298,7 +3299,7 @@
 	"pipe-separator": "&#32;|&#32;",
 	"word-separator": "&#32;",
 	"ellipsis": "...",
-	"percent": "$1&#32;%",
+	"percent": "$1&#160;%",
 	"quotation-marks": "„$1”",
 	"formatnum-nan": "Nu un număr",
 	"imgmultipageprev": "← pagina anterioară",

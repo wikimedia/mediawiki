@@ -21,7 +21,8 @@
 			"Tacsipacsi",
 			"Umherirrender",
 			"Verdy p",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Jon Harald Søby"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -1862,7 +1863,7 @@
 	"apierror-specialpage-cantexecute": "{{doc-apierror}}",
 	"apierror-stashedfilenotfound": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception text. Currently this is probably English, hopefully we'll fix that in the future.",
 	"apierror-stashedit-missingtext": "{{doc-apierror}}",
-	"apierror-stashexception": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception text. May be English or localized, may or may not end in punctuation.",
+	"apierror-stashexception": "{{ignored}}",
 	"apierror-stashfailed-complete": "{{doc-apierror}}",
 	"apierror-stashfailed-nosession": "{{doc-apierror}}",
 	"apierror-stashfilestorage": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception text, which may already end with punctuation. Currently this is probably English, hopefully we'll fix that in the future.",

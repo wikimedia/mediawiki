@@ -66,7 +66,8 @@
 			"Xð",
 			"לערי ריינהארט",
 			"아라",
-			"Pisceskaze"
+			"Pisceskaze",
+			"Doraemonluonbentoi"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -2622,7 +2623,7 @@
 	"contribute": "Đóng góp",
 	"contribsub2": "Của {{GENDER:$3}}$1 ($2)",
 	"contributions-subtitle": "Của {{GENDER:$2}}$1",
-	"contributions-edit-count": "Một {{GENDER:$1|thành viên}} với $2 {{PLURAL:$2|lần sửa đổi}}.",
+	"contributions-edit-count": "{{GENDER:$1|Thành viên}} với $2 {{PLURAL:$2|lần sửa đổi}}.",
 	"contributions-account-creation-date": "Đã mở tài khoản vào $1.",
 	"contributions-userdoesnotexist": "Chưa có tài khoản với tên “$1”.",
 	"negative-namespace-not-supported": "Không gian tên với giá trị âm không được hỗ trợ.",

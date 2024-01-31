@@ -22,7 +22,9 @@
 			"Urhixidur",
 			"Vipuser",
 			"Xiaomingyan",
-			"아라"
+			"아라",
+			"H78c67c",
+			"ZhuofanWu"
 		]
 	},
 	"tog-underline": "下划链接",
@@ -951,7 +953,7 @@
 	"protect-cascadeon": "下底𠮶{{PLURAL:$1|一只|多只}}页面含到个页，佢哈启动嘞连锁保护，故系个页也就拖保护到嘞，编伓正。倷能设过个页𠮶保护级别，但系个伓会影响到连锁保护。",
 	"protect-default": "（默认）",
 	"protect-fallback": "非要“$1”𠮶许可",
-	"protect-level-autoconfirmed": "禁止冇注册𠮶用户",
+	"protect-level-autoconfirmed": "仅允许自动确认嗰用户",
 	"protect-level-sysop": "只限操作员",
 	"protect-summary-cascade": "级联",
 	"protect-expiring": "$1 （UTC）到期",
