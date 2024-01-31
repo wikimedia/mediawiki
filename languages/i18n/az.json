@@ -1839,6 +1839,7 @@
 	"linksearch-pat": "Axtarış sxemi:",
 	"linksearch-ns": "Adlar fəzası:",
 	"linksearch-ok": "Axtar",
+	"linksearch-text": "\"*.wikipedia.org\" kimi joker işarələrdən istifadə edilə bilər.<br />\nDəstəklənən {{PLURAL:$2|protokol|protokollar}}: $1 (protokol təyin olunmadıqda standard olaraq http:// və https:// seçilir).",
 	"linksearch-line": "$2-dən $1 keçid verilib",
 	"listusersfrom": "İstifadəçi adı bununla başlayanlardan sonrakıları göstər:",
 	"listusers-submit": "Göstər",
