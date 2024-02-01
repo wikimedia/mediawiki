@@ -137,7 +137,11 @@ class HistoryBlobStub {
 			self::$blobCache = [ $this->mOldId => $obj ];
 		}
 
-		return $obj->getItem( $this->mHash );
+		if ( method_exists( $obj, 'getItem' ) ) {
+			return $obj->getItem( $this->mHash );
+		}
+
+		return false;
 	}
 
 	/**
