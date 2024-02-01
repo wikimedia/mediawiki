@@ -3967,7 +3967,7 @@
 	"specialmute-header": "Padol dah, pilih pengaturan meneng bakal pemaké <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Nama pemaké nyang diminta' kaga' ketemu.",
 	"specialmute-error-no-options": "Keboléan menengin kaga' derak.",
-	"specialmute-email-footer": "Bakal ngelola pengaturan surlès bakal pemaké {{BIDI:$2}}, padol dah, saba <$1>.",
+	"specialmute-email-footer": "Bakal ngelola pengaturan surlès bakal pemaké {{BIDI:$2}}, padol dah, saba dah ni URL:\n$1",
 	"specialmute-login-required": "Padol dah, masup bakal ngerobah lu punya pengaturan meneng.",
 	"mute-preferences": "Pengaturan meneng",
 	"revid": "perbaèkan $1",

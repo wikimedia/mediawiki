@@ -2168,7 +2168,7 @@
 	"ipb-blockingself": "Özünüzü bloklayacaqsınız! Bunu etmək istədiyinizdən əminsinizmi?",
 	"ipb-confirmhideuser": "Siz \"istifadəçini gizlə\" bəndini aktiv edərək istifadəçini bloklamaq üzrəsiniz. Bu halda istifadəçinin adı bütün siyahılarda və qeydiyyat jurnallarında görünməyəcək. Bunu etmək istədiyinizdən əminsinizmi?",
 	"ipb-edit-dropdown": "Bloklama səbəblərini redaktə et",
-	"ipb-unblock-addr": "$1 üzərindəki blok götürüldü",
+	"ipb-unblock-addr": "$1 üzərindəki bloku aç",
 	"ipb-unblock": "İstifadəçi adı və ya IP-ünvanının blokunu aradan qaldır",
 	"ipb-blocklist": "Mövcud blokları göstər",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}} istifadəçi hesabının fəaliyyətləri",

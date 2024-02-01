@@ -3493,6 +3493,7 @@
 	"scarytranscludefailed-httpstatus": "[Error de recuperación de plantilla para $1: HTTP $2]",
 	"scarytranscludetoolong": "[El URL es demasiado largo]",
 	"deletedwhileediting": "<strong>Aviso</strong>: se borró esta página después de que empezaras a editarla.",
+	"editedwhiledeleting": "La página que estás eliminando ha sido editada. Por favor reconfirma la eliminación.",
 	"confirmrecreate": "{{GENDER:$1|El usuario|La usuaria}} [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta página después de que comenzaras a editarla, por este motivo:\n: <em>$2</em>\nPor favor, confirma que realmente quieres volver a crear esta página.",
 	"confirmrecreate-noreason": "{{GENDER:$1|El usuario|La usuaria}} [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta página después de que comenzaras a editarla. Por favor confirma que realmente quieres recrear esta página.",
 	"recreate": "Recrear",

@@ -2460,7 +2460,7 @@
 	"sessionfailure-title": "Сесија је окончана",
 	"sessionfailure": "Изгледа да постоји проблем са сесијом;\nова радња је отказана да би се избегла злоупотреба.\nПоново пошаљите образац.",
 	"changecontentmodel": "Промена садржинског модела странице",
-	"changecontentmodel-legend": "Промени садржински модел",
+	"changecontentmodel-legend": "Промена садржинског модела",
 	"changecontentmodel-title-label": "Наслов странице:",
 	"changecontentmodel-model-label": "Нови садржински модел:",
 	"changecontentmodel-reason-label": "Разлог:",

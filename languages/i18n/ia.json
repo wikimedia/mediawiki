@@ -4038,7 +4038,7 @@
 	"specialmute-error-mutelist-disabled": "Le functionalitate de silentiamento es indisponibile perque le administrator del wiki ha disactivate le functionalitate de listas de silentiamento pro iste wiki.",
 	"specialmute-error-no-email-set": "Le functionalitate de silentiamento es indisponibile perque tu non ha confirmate tu adresse de e-mail.",
 	"specialmute-error-no-options": "Le functionalitate de silentiamento es indisponibile.",
-	"specialmute-email-footer": "Pro gerer le preferentias de e-mail pro le usator {{BIDI:$2}}, visita <$1>.",
+	"specialmute-email-footer": "Pro gerer le preferentias de e-mail pro le usator {{BIDI:$2}}, visita le adresse web sequente:\n$1",
 	"specialmute-login-required": "Es necessari aperir session pro cambiar le preferentias de silentio.",
 	"mute-preferences": "Preferentias de silentiamento",
 	"revid": "version $1",

@@ -1399,6 +1399,7 @@
 	"duration-days": "$1 {{PLURAL:$1|dabisili|dabisa}}",
 	"mw-widgets-tagmultiselect-placeholder": "Pahami pam...",
 	"randomrootpage": "Nyabili yaɣili din yamgili",
+	"specialmute-email-footer": "A yi bori ni a mali ŋun ni tooi taa email niŋ {{BIDI:$2}}, pahimi suɣilo nyini kpɛm URL: din doli na ŋɔ $1",
 	"skin-view-create-local": "Pahimi dundɔŋni buɣisibu",
 	"nstab-mainpage": "Solɔɣu",
 	"skin-view-edit-local": "Mali niŋ dundɔŋ buɣisibu",

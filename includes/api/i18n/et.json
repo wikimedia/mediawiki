@@ -240,7 +240,7 @@
 	"apihelp-query+revisions-param-end": "Ajatempel, milleni loetleda.",
 	"apihelp-query+revisions-param-tag": "Loetle ainult redaktsioonid, mille küljes on see märgis.",
 	"apihelp-query+revisions+base-param-prop": "Millised atribuudid iga redaktsiooni kohta hankida:",
-	"apihelp-query+revisions+base-param-limit": "Kui palju redaktsioone tagastada.",
+	"apihelp-query+revisions+base-param-limit": "Piira, mitu redaktsiooni tagastada. Kui kasutusel on parameeter <var>$3prop=content</var>, <var>$3prop=parsetree</var>, <var>$3diffto</var> või<var>$3difftotext</var>, siis on piirang $1. Kui kasutusel on parameeter <var>$3parse</var>, siis on piirang $2.",
 	"apihelp-query+search-summary": "Soorita täisteksti otsing.",
 	"apihelp-query+search-param-search": "Otsi lehekülgede pealkirju või sisu, mis vastab sellele väärtusele. Saad otsisõnes kasutada neid erifunktsioone, mida otsing selles vikis võimaldab.",
 	"apihelp-query+search-param-namespace": "Otsi ainult neist nimeruumidest.",
