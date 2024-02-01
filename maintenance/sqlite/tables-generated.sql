@@ -373,20 +373,6 @@ CREATE TABLE /*_*/sites (
 
 CREATE UNIQUE INDEX site_global_key ON /*_*/sites (site_global_key);
 
-CREATE INDEX site_type ON /*_*/sites (site_type);
-
-CREATE INDEX site_group ON /*_*/sites (site_group);
-
-CREATE INDEX site_source ON /*_*/sites (site_source);
-
-CREATE INDEX site_language ON /*_*/sites (site_language);
-
-CREATE INDEX site_protocol ON /*_*/sites (site_protocol);
-
-CREATE INDEX site_domain ON /*_*/sites (site_domain);
-
-CREATE INDEX site_forward ON /*_*/sites (site_forward);
-
 
 CREATE TABLE /*_*/user_newtalk (
   user_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
