@@ -390,20 +390,6 @@ CREATE TABLE sites (
 
 CREATE UNIQUE INDEX site_global_key ON sites (site_global_key);
 
-CREATE INDEX site_type ON sites (site_type);
-
-CREATE INDEX site_group ON sites (site_group);
-
-CREATE INDEX site_source ON sites (site_source);
-
-CREATE INDEX site_language ON sites (site_language);
-
-CREATE INDEX site_protocol ON sites (site_protocol);
-
-CREATE INDEX site_domain ON sites (site_domain);
-
-CREATE INDEX site_forward ON sites (site_forward);
-
 
 CREATE TABLE user_newtalk (
   user_id INT DEFAULT 0 NOT NULL, user_ip TEXT DEFAULT '' NOT NULL,
