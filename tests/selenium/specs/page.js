@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require( 'assert' );
+const BlankPage = require( 'wdio-mediawiki/BlankPage' );
 const Api = require( 'wdio-mediawiki/Api' );
 const DeletePage = require( '../pageobjects/delete.page' );
 const RestorePage = require( '../pageobjects/restore.page' );
@@ -18,10 +19,17 @@ describe( 'Page', () => {
 		bot = await Api.bot();
 	} );
 
-	beforeEach( async () => {
+	beforeEach( async function () {
 		await browser.deleteAllCookies();
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
+
+		// First try to load a blank page, so the next command works.
+		await BlankPage.open();
+		// Don't try to run wikitext-specific tests if the test namespace isn't wikitext by default.
+		if ( await Util.isTargetNotWikitext( name ) ) {
+			this.skip();
+		}
 	} );
 
 	it( 'should be previewable @daily', async () => {

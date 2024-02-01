@@ -29,7 +29,7 @@
 
 The wdio-mediawiki library now requires WebdriverIO async mode.
 
-* Util: Added `getMWApiResponse()` and `isTargetNotWikitext()`.
+* Util: Added `isTargetNotWikitext()`.
 * CreateAccountPage: Added initial version.
 
 ## 1.2.0 / 2021-01-11
