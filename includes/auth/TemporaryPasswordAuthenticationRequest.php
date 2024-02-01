@@ -75,7 +75,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		// get the min password length
-		$minLength = $config->get( MainConfigNames::MinimalPasswordLength );
+		$minLength = 0;
 		$policy = $config->get( MainConfigNames::PasswordPolicy );
 		foreach ( $policy['policies'] as $p ) {
 			foreach ( [ 'MinimalPasswordLength', 'MinimumPasswordLengthToLogin' ] as $check ) {

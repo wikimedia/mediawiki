@@ -2577,20 +2577,6 @@ class MainConfigNames {
 	public const RemoveCredentialsBlacklist = 'RemoveCredentialsBlacklist';
 
 	/**
-	 * Name constant for the MinimalPasswordLength setting, for use with Config::get()
-	 * @see MainConfigSchema::MinimalPasswordLength
-	 * @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
-	 */
-	public const MinimalPasswordLength = 'MinimalPasswordLength';
-
-	/**
-	 * Name constant for the MaximalPasswordLength setting, for use with Config::get()
-	 * @see MainConfigSchema::MaximalPasswordLength
-	 * @deprecated since 1.26, use $wgPasswordPolicy's MaximalPasswordLength.
-	 */
-	public const MaximalPasswordLength = 'MaximalPasswordLength';
-
-	/**
 	 * Name constant for the InvalidPasswordReset setting, for use with Config::get()
 	 * @see MainConfigSchema::InvalidPasswordReset
 	 */

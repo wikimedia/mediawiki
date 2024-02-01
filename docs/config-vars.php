@@ -2562,20 +2562,6 @@ $wgChangeCredentialsBlacklist = null;
 $wgRemoveCredentialsBlacklist = null;
 
 /**
- * Config variable stub for the MinimalPasswordLength setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::MinimalPasswordLength
- * @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
- */
-$wgMinimalPasswordLength = null;
-
-/**
- * Config variable stub for the MaximalPasswordLength setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::MaximalPasswordLength
- * @deprecated since 1.26, use $wgPasswordPolicy's MaximalPasswordLength.
- */
-$wgMaximalPasswordLength = null;
-
-/**
  * Config variable stub for the InvalidPasswordReset setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::InvalidPasswordReset
  */

@@ -867,22 +867,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
 			}
 		];
-		yield '$wgMinimalPasswordLength' => [
-			[ 'MinimalPasswordLength' => 17 ],
-			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
-				$testObj->assertSame( 17,
-					$vars['PasswordPolicy']['policies']['default']['MinimalPasswordLength'] );
-				return $expectedDefault;
-			},
-		];
-		yield '$wgMaximalPasswordLength' => [
-			[ 'MaximalPasswordLength' => 17 ],
-			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
-				$testObj->assertSame( 17,
-					$vars['PasswordPolicy']['policies']['default']['MaximalPasswordLength'] );
-				return $expectedDefault;
-			},
-		];
 		yield 'Bogus $wgPHPSessionHandling' => [
 			[ 'PHPSessionHandling' => 'bogus' ],
 			[ 'PHPSessionHandling' => 'warn' ],

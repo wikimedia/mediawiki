@@ -7208,33 +7208,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Specifies the minimal length of a user password. If set to 0, empty pass-
-	 * words are allowed.
-	 *
-	 * @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
-	 */
-	public const MinimalPasswordLength = [
-		'default' => false,
-		'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MinimalPasswordLength.',
-	];
-
-	/**
-	 * Specifies the maximal length of a user password (T64685).
-	 *
-	 * It is not recommended to make this greater than the default, as it can
-	 * allow DoS attacks by users setting really long passwords. In addition,
-	 * this should not be lowered too much, as it enforces weak passwords.
-	 *
-	 * @warning Unlike other password settings, user with passwords greater than
-	 * the maximum will not be able to log in.
-	 * @deprecated since 1.26, use $wgPasswordPolicy's MaximalPasswordLength.
-	 */
-	public const MaximalPasswordLength = [
-		'default' => false,
-		'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MaximalPasswordLength.',
-	];
-
-	/**
 	 * Specifies if users should be sent to a password-reset form on login, if their
 	 * password doesn't meet the requirements of User::isValidPassword().
 	 *

@@ -35,7 +35,6 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 		];
 
 		$this->overrideConfigValues( [
-			MainConfigNames::MinimalPasswordLength => 10,
 			MainConfigNames::PasswordPolicy => $policy,
 		] );
 

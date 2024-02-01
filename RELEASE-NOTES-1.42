@@ -60,6 +60,8 @@ For notes on 1.41.x and older releases, see HISTORY.
   No longer customizable and always true.
 * $wgAllowImageTag, deprecated since 1.35, has been removed.
   Register an extension tag named <img> instead.
+* $wgMinimalPasswordLength and $wgMaximalPasswordLength, deprecated since 1.26
+  have been dropped. Use $wgPasswordPolicy instead.
 * …
 
 === New user-facing features in 1.42 ===
