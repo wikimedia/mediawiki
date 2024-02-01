@@ -1777,7 +1777,8 @@ class AuthManager implements LoggerAwareInterface {
 			$user->setId( $localId );
 			$user->loadFromId( $flags );
 			if ( $login ) {
-				$this->setSessionDataForUser( $user );
+				$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
+				$this->setSessionDataForUser( $user, $remember );
 			}
 			return Status::newGood()->warning( 'userexists' );
 		}
@@ -1915,7 +1916,8 @@ class AuthManager implements LoggerAwareInterface {
 						'username' => $username,
 					] );
 					if ( $login ) {
-						$this->setSessionDataForUser( $user );
+						$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
+						$this->setSessionDataForUser( $user, $remember );
 					}
 					$status = Status::newGood()->warning( 'userexists' );
 				} else {
