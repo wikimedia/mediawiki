@@ -366,7 +366,7 @@ class NamespaceDupes extends Maintenance {
 
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
-		$batchSize = 500;
+		$batchSize = 100;
 		$sqb = $dbw->newSelectQueryBuilder()
 			->select( $fromField )
 			->where( $extraConds )
