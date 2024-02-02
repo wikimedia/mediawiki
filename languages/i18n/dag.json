@@ -501,6 +501,7 @@
 	"botpasswords-label-delete": "Nyahabu",
 	"botpasswords-label-resetpassword": "Lab taɣi adaa shili bihi",
 	"botpasswords-label-grants": "Laɣidihili din biɛni:",
+	"botpasswords-help-grants": "Doli nima nyɛla din tiri yu shɛli din yoogi akuanti ya'shɛli din pun ma la. A yi niŋ \"grant\" kpɛ bɛ yɛn ti a la soli ka a mali ya'shɛli a \"user account\" ni ka. Lihimi [[Special:ListGrants|table of grants]] ŋɔ nya lahabali pahi.\n\nNyɛvuli pɔhili dolibu nyɛ bɛn saɣiri n-tiri shɛli. Doli shɛŋa bɛ ni bɛ saɣi n-ti yala nyɛla din to di yi ti niŋ ka so yina n-ti mali di ninmohi. \"Grant\" shɛŋa din mali \"vandalism risk\" (<span class=\"mw-grantriskgroup-vandalism\"></span>) nyɛla bɛ ni tooi zaŋ shɛli nyɛhi binshɛŋa zaa din di yɛn di saha pɔi ka naayi nyɛhi. \"Grant\" shɛŋa din mali \"security risk\" (<span class=\"mw-grantriskgroup-security\"></span>) nyɛla din ni tooi tum barina din mali yaa  (kamani nayiɣi tali). \"Internal grants\"(<span class=\"mw-grantriskgroup-internal\"></span>) nyɛla  \"site operator\" koŋko ni mali shɛli, ka bɛ bi tooi n-tiri ninvuɣ shɛba ban bori li. Pahimi suɣulo di ti suhi m-bo \"risky grants\" di yi ti pala di gbaagi a la talahi",
 	"botpasswords-label-grants-column": "Tim soli",
 	"botpasswords-bad-appid": "Ŋarim maa yuli \"$1\" maa bi viɛla.",
 	"botpasswords-toolong-restrictions": "IP Addrɛɛsinima pam ka kpɛhi bee n-kpɛhi yaɣi.",

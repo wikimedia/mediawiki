@@ -3703,6 +3703,7 @@
 	"pagelang-reason": "Ástæða",
 	"pagelang-submit": "Senda inn",
 	"pagelang-nonexistent-page": "Síðan „$1“ er ekki til.",
+	"pagelang-unchanged-language": "Síðan $1 er nú þegar stillt á tungumálið $2.",
 	"right-pagelang": "Breyta tungumáli síðu",
 	"action-pagelang": "breyta tungumáli síðunnar",
 	"log-name-pagelang": "Annáll yfir breytingar á tungumáli",
