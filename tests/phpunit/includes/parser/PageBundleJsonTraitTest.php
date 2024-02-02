@@ -38,7 +38,7 @@ class PageBundleJsonTraitTest extends MediaWikiIntegrationTestCase {
 		};
 		$bundle = new PageBundle( ...array_values( $this->bundleData ) );
 		$json = $trait->jsonSerializePageBundle( $bundle );
-		$this->assertEquals( 'Wikimedia\Parsoid\Core\PageBundle', $json['_type_'] );
+		$this->assertEquals( PageBundle::class, $json['_type_'] );
 		$this->assertEquals( '<h1>woohoo</h1>', $json['html'] );
 		$this->assertNull( $json['mw'] );
 	}

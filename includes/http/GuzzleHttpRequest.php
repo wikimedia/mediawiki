@@ -19,6 +19,7 @@
  */
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
@@ -271,11 +272,8 @@ class GuzzleHttpRequest extends MWHttpRequest {
 		parent::prepare();
 	}
 
-	/**
-	 * @return bool
-	 */
-	protected function usingCurl() {
-		return ( $this->handler && is_a( $this->handler, 'GuzzleHttp\Handler\CurlHandler' ) ) ||
+	protected function usingCurl(): bool {
+		return $this->handler instanceof CurlHandler ||
 			( !$this->handler && extension_loaded( 'curl' ) );
 	}
 
