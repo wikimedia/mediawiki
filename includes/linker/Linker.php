@@ -1132,7 +1132,6 @@ class Linker {
 	 * @param string $url URL to link to
 	 * @param-taint $url escapes_html
 	 * @param string $text Text of link
-	 * @param-taint $text escapes_html
 	 * @param bool $escape Do we escape the link text?
 	 * @param-taint $escape none
 	 * @param string $linktype Type of external link. Gets added to the classes
