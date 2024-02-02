@@ -47,7 +47,7 @@ class SpecialEditRecovery extends SpecialPage {
 		$this->getOutput()->addModules( 'mediawiki.special.editrecovery' );
 		$noJs = Html::element(
 			'span',
-			[ 'class' => 'error mw-EditRecovery-special-nojs-notice' ],
+			[ 'class' => [ 'error', 'mw-EditRecovery-special-nojs-notice' ] ],
 			$this->msg( 'edit-recovery-nojs-placeholder' )
 		);
 		$placeholder = Html::rawElement( 'div', [ 'class' => 'mw-EditRecovery-special' ], $noJs );

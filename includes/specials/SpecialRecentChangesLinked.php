@@ -365,7 +365,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$this->getOutput()->addHTML(
 				Html::rawElement(
 					'div',
-					[ 'class' => 'mw-changeslist-empty mw-changeslist-notargetpage' ],
+					[ 'class' => [ 'mw-changeslist-empty', 'mw-changeslist-notargetpage' ] ],
 					$this->msg( 'recentchanges-notargetpage' )->parse()
 				)
 			);
@@ -373,7 +373,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$this->getOutput()->addHTML(
 				Html::rawElement(
 					'div',
-					[ 'class' => 'mw-changeslist-empty mw-changeslist-invalidtargetpage' ],
+					[ 'class' => [ 'mw-changeslist-empty', 'mw-changeslist-invalidtargetpage' ] ],
 					$this->msg( 'allpagesbadtitle' )->parse()
 				)
 			);

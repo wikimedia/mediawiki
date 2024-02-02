@@ -133,7 +133,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 
 			$legend = Html::rawElement(
 				'div',
-				[ 'class' => 'mw-changeslist-legend mw-specialpages-notes' ],
+				[ 'class' => [ 'mw-changeslist-legend', 'mw-specialpages-notes' ] ],
 				$legendHeading . implode( "\n", $notes )
 			);
 

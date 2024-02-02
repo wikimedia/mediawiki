@@ -642,7 +642,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( is_array( $optionRow ) ) {
 				$out .= Html::rawElement(
 					'td',
-					[ 'class' => 'mw-label mw-' . $name . '-label' ],
+					[ 'class' => [ 'mw-label', 'mw-' . $name . '-label' ] ],
 					$optionRow[0]
 				);
 				$out .= Html::rawElement(
@@ -762,7 +762,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 				$contentWrapper = Html::rawElement( 'div',
 					array_merge(
-						[ 'class' => 'mw-recentchanges-toplinks-content mw-collapsible-content' ],
+						[ 'class' => [ 'mw-recentchanges-toplinks-content', 'mw-collapsible-content' ] ],
 						$langAttributes
 					),
 					$content

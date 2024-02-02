@@ -1270,7 +1270,7 @@ class SpecialUndelete extends SpecialPage {
 					[
 						'name' => 'revdel',
 						'type' => 'submit',
-						'class' => 'deleterevision-log-submit mw-log-deleterevision-button'
+						'class' => [ 'deleterevision-log-submit', 'mw-log-deleterevision-button' ]
 					],
 					$this->msg( 'showhideselectedversions' )->text()
 				) . "\n";

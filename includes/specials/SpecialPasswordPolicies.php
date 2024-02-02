@@ -61,7 +61,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 		$this->addHelpLink( 'Manual:$wgPasswordPolicy' );
 
 		$out->addHTML(
-			Html::openElement( 'table', [ 'class' => 'wikitable mw-passwordpolicies-table' ] ) .
+			Html::openElement( 'table', [ 'class' => [ 'wikitable', 'mw-passwordpolicies-table' ] ] ) .
 				'<tr>' .
 			Html::element( 'th', [], $this->msg( 'passwordpolicies-group' )->text() ) .
 			Html::element( 'th', [], $this->msg( 'passwordpolicies-policies' )->text() ) .

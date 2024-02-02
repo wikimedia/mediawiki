@@ -736,7 +736,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$nondefaults = $opts->getChangedValues();
 		$cutofflinks = Html::rawElement(
 			'span',
-			[ 'class' => 'cldays cloption' ],
+			[ 'class' => [ 'cldays', 'cloption' ] ],
 			$this->msg( 'wlshowtime' ) . ' ' . $this->cutoffselector( $opts )
 		);
 
@@ -800,7 +800,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		] ) . '&nbsp;' . $this->msg( 'namespace_association' )->escaped() ) . "\n";
 		$form .= Html::rawElement(
 			'span',
-			[ 'class' => 'namespaceForm cloption' ],
+			[ 'class' => [ 'namespaceForm', 'cloption' ] ],
 			$namespaceForm
 		);
 
@@ -940,7 +940,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function showHideCheck( $options, $message, $name, $value, $inStructuredUi ) {
 		$options[$name] = 1 - (int)$value;
 
-		$attribs = [ 'class' => 'mw-input-with-label clshowhideoption cloption' ];
+		$attribs = [ 'class' => [ 'mw-input-with-label', 'clshowhideoption', 'cloption' ] ];
 		if ( $inStructuredUi ) {
 			$attribs[ 'data-feature-in-structured-ui' ] = true;
 		}

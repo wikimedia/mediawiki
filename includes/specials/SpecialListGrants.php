@@ -54,7 +54,7 @@ class SpecialListGrants extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		$out->addHTML(
-			Html::openElement( 'table', [ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
+			Html::openElement( 'table', [ 'class' => [ 'wikitable', 'mw-listgrouprights-table' ] ] ) .
 				'<tr>' .
 				Html::element( 'th', [], $this->msg( 'listgrants-grant' )->text() ) .
 				Html::element( 'th', [], $this->msg( 'listgrants-rights' )->text() ) .

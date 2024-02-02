@@ -931,7 +931,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		return Html::rawElement(
 			'span',
-			[ 'class' => 'mw-watchlist-toollinks mw-changeslist-links' ],
+			[ 'class' => [ 'mw-watchlist-toollinks', 'mw-changeslist-links' ] ],
 			implode( '', $tools )
 		);
 	}

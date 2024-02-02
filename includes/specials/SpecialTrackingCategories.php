@@ -60,7 +60,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		] );
 		$this->getOutput()->addModules( 'jquery.tablesorter' );
 		$this->getOutput()->addHTML(
-			Html::openElement( 'table', [ 'class' => 'mw-datatable sortable',
+			Html::openElement( 'table', [ 'class' => [ 'mw-datatable', 'sortable' ],
 				'id' => 'mw-trackingcategories-table' ] ) . "\n" .
 			'<thead><tr>' .
 			Html::element( 'th', [], $this->msg( 'trackingcategories-msg' )->text() ) .
