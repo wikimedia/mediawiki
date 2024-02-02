@@ -21,8 +21,7 @@ class LimitCondition {
 		$this->limit = (int)$limit;
 		$this->window = +$window;
 		if ( $this->window <= 0 ) {
-			throw new WRStatsError( __METHOD__ .
-				': window must be positive' );
+			throw new WRStatsError( 'Condition window must be positive' );
 		}
 	}
 

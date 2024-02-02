@@ -18,8 +18,7 @@ class LimitBatch {
 	private $operations = [];
 
 	/**
-	 * @internal
-	 *
+	 * @internal Use WRStatsFactory::createRateLimiter()->createBatch() instead
 	 * @param WRStatsRateLimiter $limiter
 	 * @param int $defaultAmount
 	 */
@@ -76,9 +75,8 @@ class LimitBatch {
 	private function queueOp( $type, $entity, $amount ) {
 		$amount ??= $this->defaultAmount;
 		if ( isset( $this->operations[$type] ) ) {
-			throw new WRStatsError( __METHOD__ .
-				': cannot queue multiple actions of the same type, ' .
-				'since the result array is indexed by type' );
+			throw new WRStatsError( 'Cannot queue multiple actions of the same type, ' .
+				'because the result array is indexed by type' );
 		}
 		$this->operations[$type] = new LimitOperation( $type, $entity, $amount );
 	}

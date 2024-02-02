@@ -26,8 +26,7 @@ class RatePromise {
 	private $total;
 
 	/**
-	 * @internal Constructed by WRStatsReader
-	 *
+	 * @internal Use via WRStatsReader from WRStatsFactory::createReader instead
 	 * @param WRStatsReader $reader
 	 * @param string $name
 	 * @param EntityKey $entity

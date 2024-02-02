@@ -3,7 +3,7 @@
 namespace Wikimedia\WRStats;
 
 /**
- * The narrow interface WRStats needs into a memcached-like key-value store.
+ * Narrow interface for WRStatsFactory to a memcached-like key-value store.
  *
  * @since 1.39
  */
@@ -11,8 +11,8 @@ interface StatsStore {
 	/**
 	 * Construct a string key from its components
 	 *
-	 * @param array $prefix The prefix components.
-	 * @param array $internals The internal components.
+	 * @param string[] $prefix The prefix components.
+	 * @param array<string|int> $internals The internal components.
 	 * @param EntityKey $entity The entity components. If $entity->isGlobal()
 	 *   is true, the key as a whole should be treated as global.
 	 * @return string

@@ -15,8 +15,7 @@ class LimitBatchResult {
 	private $allowed;
 
 	/**
-	 * @internal
-	 *
+	 * @internal Use WRStatsFactory::createRateLimiter() instead
 	 * @param LimitOperationResult[] $results
 	 */
 	public function __construct( $results ) {

@@ -11,7 +11,7 @@ namespace Wikimedia\WRStats;
 class WRStatsReader {
 	/** @var StatsStore */
 	private $store;
-	/** @var MetricSpec[] */
+	/** @var array<string,MetricSpec> */
 	private $metricSpecs;
 	/** @var string[] */
 	private $prefixComponents;
@@ -23,10 +23,9 @@ class WRStatsReader {
 	private $cachedValues = [];
 
 	/**
-	 * @internal
-	 *
+	 * @internal Use WRStatsFactory::createReader instead
 	 * @param StatsStore $store
-	 * @param array $specs
+	 * @param array<string,array> $specs
 	 * @param string|string[] $prefix
 	 */
 	public function __construct( StatsStore $store, $specs, $prefix ) {
@@ -77,7 +76,7 @@ class WRStatsReader {
 	public function getRate( $metricName, ?EntityKey $entity, TimeRange $range ) {
 		$metricSpec = $this->metricSpecs[$metricName] ?? null;
 		if ( $metricSpec === null ) {
-			throw new WRStatsError( __METHOD__ . ": Unrecognised metric \"$metricName\"" );
+			throw new WRStatsError( "Unrecognised metric \"$metricName\"" );
 		}
 		$entity ??= new LocalEntityKey;
 		$now = $this->now();
@@ -158,8 +157,7 @@ class WRStatsReader {
 	}
 
 	/**
-	 * @internal Method for promise resolution
-	 *
+	 * @internal Utility for resolution in RatePromise
 	 * @param string $metricName
 	 * @param EntityKey $entity
 	 * @param MetricSpec $metricSpec
@@ -231,8 +229,8 @@ class WRStatsReader {
 	 * Resolve a batch of RatePromise objects, returning their counter totals,
 	 * indexed as in the input array.
 	 *
-	 * @param RatePromise[] $rates
-	 * @return array<string,float|int>
+	 * @param array<mixed,RatePromise> $rates
+	 * @return array<mixed,float|int>
 	 */
 	public function total( $rates ) {
 		$result = [];
@@ -245,8 +243,8 @@ class WRStatsReader {
 	/**
 	 * Resolve a batch of RatePromise objects, returning their per-second rates.
 	 *
-	 * @param RatePromise[] $rates
-	 * @return float[]
+	 * @param array<mixed,RatePromise> $rates
+	 * @return array<mixed,float>
 	 */
 	public function perSecond( $rates ) {
 		$result = [];
@@ -259,8 +257,8 @@ class WRStatsReader {
 	/**
 	 * Resolve a batch of RatePromise objects, returning their per-minute rates.
 	 *
-	 * @param RatePromise[] $rates
-	 * @return float[]
+	 * @param array<mixed,RatePromise> $rates
+	 * @return array<mixed,float>
 	 */
 	public function perMinute( $rates ) {
 		$result = [];
@@ -273,8 +271,8 @@ class WRStatsReader {
 	/**
 	 * Resolve a batch of RatePromise objects, returning their per-hour rates.
 	 *
-	 * @param RatePromise[] $rates
-	 * @return float[]
+	 * @param array<mixed,RatePromise> $rates
+	 * @return array<mixed,float>
 	 */
 	public function perHour( $rates ) {
 		$result = [];
@@ -287,8 +285,8 @@ class WRStatsReader {
 	/**
 	 * Resolve a batch of RatePromise objects, returning their per-day rates.
 	 *
-	 * @param RatePromise[] $rates
-	 * @return float[]
+	 * @param array<mixed,RatePromise> $rates
+	 * @return array<mixed,float>
 	 */
 	public function perDay( $rates ) {
 		$result = [];

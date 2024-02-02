@@ -11,7 +11,7 @@ namespace Wikimedia\WRStats;
 class WRStatsWriter {
 	/** @var StatsStore */
 	private $store;
-	/** @var MetricSpec[] */
+	/** @var array<string,MetricSpec> */
 	private $metricSpecs;
 	/** @var float[][] Values indexed by TTL and storage key */
 	private $queuedValues = [];
@@ -21,10 +21,9 @@ class WRStatsWriter {
 	private $prefixComponents;
 
 	/**
-	 * @internal
-	 *
+	 * @internal Use WRStatsFactory::createWriter instead
 	 * @param StatsStore $store
-	 * @param array $specs
+	 * @param array<string,array> $specs
 	 * @param string|string[] $prefix
 	 */
 	public function __construct( StatsStore $store, $specs, $prefix ) {
@@ -51,7 +50,7 @@ class WRStatsWriter {
 		$metricSpec = $this->metricSpecs[$name] ?? null;
 		$entity ??= new LocalEntityKey;
 		if ( $metricSpec === null ) {
-			throw new WRStatsError( __METHOD__ . ": Unrecognised metric \"$name\"" );
+			throw new WRStatsError( "Unrecognised metric \"$name\"" );
 		}
 		$res = $metricSpec->resolution;
 		$scaledValue = $value / $res;

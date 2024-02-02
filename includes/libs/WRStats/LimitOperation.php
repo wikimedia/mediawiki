@@ -3,7 +3,11 @@
 namespace Wikimedia\WRStats;
 
 /**
- * Class representing one item in a limit batch
+ * One item in a LimitBatch.
+ *
+ * To perform a single operation, it is generally recommendeded to use
+ * the simpler interface of WRStatsRateLimiter::peek(), ::incr(), and
+ * ::tryIncr() instead of constructing LimitOperation objects.
  *
  * @newable
  * @since 1.39

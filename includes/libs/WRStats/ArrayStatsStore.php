@@ -3,7 +3,7 @@
 namespace Wikimedia\WRStats;
 
 /**
- * In memory stats store.
+ * In-memory stats store.
  */
 class ArrayStatsStore implements StatsStore {
 	/**

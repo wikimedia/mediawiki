@@ -3,7 +3,7 @@
 namespace Wikimedia\WRStats;
 
 /**
- * Entity key with global=false
+ * Entity key with isGlobal=false
  *
  * @newable
  * @since 1.39
