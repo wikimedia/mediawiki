@@ -61,31 +61,10 @@ class LogFormatter {
 	 * Constructs a new formatter suitable for given entry.
 	 * @param LogEntry $entry
 	 * @return LogFormatter
+	 * @deprecated since 1.42, use LogFormatterFactory instead
 	 */
 	public static function newFromEntry( LogEntry $entry ) {
-		$services = MediaWikiServices::getInstance();
-		$logActionsHandlers = $services->getMainConfig()
-			->get( MainConfigNames::LogActionsHandlers );
-		$objectFactory = $services->getObjectFactory();
-
-		$fulltype = $entry->getFullType();
-		$wildcard = $entry->getType() . '/*';
-		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
-
-		if ( $handler !== '' ) {
-			$formatter = $objectFactory->createObject( $handler, [
-				'extraArgs' => [ $entry ],
-				'allowClassName' => true,
-				'assertClass' => self::class,
-			] );
-		} else {
-			$formatter = new LegacyLogFormatter( $entry, $services->getHookContainer() );
-		}
-
-		$formatter->setContentLanguage( $services->getContentLanguage() );
-		$formatter->setCommentFormatter( $services->getCommentFormatter() );
-		$formatter->setUserEditTracker( $services->getUserEditTracker() );
-		return $formatter;
+		return MediaWikiServices::getInstance()->getLogFormatterFactory()->newFromEntry( $entry );
 	}
 
 	/**
@@ -94,6 +73,7 @@ class LogFormatter {
 	 * @param stdClass|array $row
 	 * @see DatabaseLogEntry::getSelectQueryData
 	 * @return LogFormatter
+	 * @deprecated since 1.42, use LogFormatterFactory instead
 	 */
 	public static function newFromRow( $row ) {
 		return self::newFromEntry( DatabaseLogEntry::newFromRow( $row ) );

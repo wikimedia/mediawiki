@@ -750,6 +750,7 @@ $wgAutoloadLocalClasses = [
 	'LogEntryBase' => __DIR__ . '/includes/logging/LogEntryBase.php',
 	'LogEventsList' => __DIR__ . '/includes/logging/LogEventsList.php',
 	'LogFormatter' => __DIR__ . '/includes/logging/LogFormatter.php',
+	'LogFormatterFactory' => __DIR__ . '/includes/logging/LogFormatterFactory.php',
 	'LogPage' => __DIR__ . '/includes/logging/LogPage.php',
 	'LogPager' => __DIR__ . '/includes/logging/LogPager.php',
 	'LoggedOutEditToken' => __DIR__ . '/includes/user/LoggedOutEditToken.php',
