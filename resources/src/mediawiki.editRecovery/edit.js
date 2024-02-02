@@ -115,7 +115,7 @@ function onLoadHandler( $editForm ) {
 
 function onLoadData( pageData ) {
 	// If there is data stored, load it into the form.
-	if ( pageData !== undefined ) {
+	if ( pageData !== undefined && !isSameAsOriginal( pageData ) ) {
 		loadData( pageData );
 		const loadNotification = new LoadNotification( {
 			differentRev: originalData.field_parentRevId !== pageData.field_parentRevId
@@ -189,6 +189,18 @@ function loadData( pageData ) {
 function fieldChangeHandler() {
 	clearTimeout( changeDebounceTimer );
 	changeDebounceTimer = setTimeout( saveFormData, debounceTime );
+}
+
+function isSameAsOriginal( pageData ) {
+	for ( const fieldName in inputFields ) {
+		if ( fieldName === 'editRevId' || fieldName === 'parentRevId' ) {
+			continue;
+		}
+		if ( pageData[ fieldNamePrefix + fieldName ] !== originalData[ fieldNamePrefix + fieldName ] ) {
+			return false;
+		}
+	}
+	return true;
 }
 
 function saveFormData() {
