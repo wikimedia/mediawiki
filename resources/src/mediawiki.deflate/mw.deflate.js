@@ -1,4 +1,4 @@
-var pako = require( '../../lib/pako/pako_deflate.es5.js' );
+var pako = require( '../../lib/pako/pako_deflate.js' );
 
 /**
  * Convert a byte stream to base64 text.

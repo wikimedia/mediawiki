@@ -410,20 +410,20 @@ pako:
   license: MIT AND Zlib
   homepage: https://github.com/nodeca/pako
   authors: Andrei Tuputcyn, Vitaly Puzrin, Friedel Ziegelmayer, Kirill Efimov, Jean-loup Gailly, and Mark Adler
-  version: 2.0.4
+  version: 2.1.0
   type: multi-file
   files:
-    pako_deflate.es5.js:
-      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/dist/pako_deflate.es5.js
-      integrity: sha384-msHzmf3Olqx90vEgQHrbqpn7Kx6Tv0L5VXKPQoq+yDnkrvKwzlufduA/rLk1suNV
-    pako_deflate.es5.min.js:
-      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/dist/pako_deflate.es5.min.js
-      integrity: sha384-pf3n4cvQTsHiADofGl9lD5qWFRGmwV+T/M/nzv8ep3YbDDJVo9Fov/rQ8JHuH74J
+    pako_deflate.js:
+      src: https://raw.githubusercontent.com/nodeca/pako/2.1.0/dist/pako_deflate.js
+      integrity: sha384-OnIes9Zm3mAxdP2URZyV1WjDdCm6WcghykNJeIHvUSGUBwAYJuBE9oIMyHkDgWmL
+    pako_deflate.min.js:
+      src: https://raw.githubusercontent.com/nodeca/pako/2.1.0/dist/pako_deflate.min.js
+      integrity: sha384-g47DZI9UNr0h29/i2S4PKozocdFoRssd5kkkeDdXjsIWnoRo0iNfgnaVvKFzhMr+
     README.md:
-      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/README.md
+      src: https://raw.githubusercontent.com/nodeca/pako/2.1.0/README.md
       integrity: sha384-mQ9cShSJ6yG8JTPL7LkbnfUnTmc7LA2hnBMSNfb5X7xk6pTFzVTurK9gcSMgJu3B
     LICENSE:
-      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/LICENSE
+      src: https://raw.githubusercontent.com/nodeca/pako/2.1.0/LICENSE
       integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
 
 pinia:
