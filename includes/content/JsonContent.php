@@ -100,7 +100,7 @@ class JsonContent extends TextContent {
 			$table = $this->arrayTable( [ $val ] );
 
 		} else {
-			$table = Html::rawElement( 'table', [ 'class' => 'mw-json mw-json-single-value' ],
+			$table = Html::rawElement( 'table', [ 'class' => [ 'mw-json', 'mw-json-single-value' ] ],
 				Html::rawElement( 'tbody', [],
 					Html::rawElement( 'tr', [],
 						Html::element( 'td', [], $this->primitiveValue( $val ) )

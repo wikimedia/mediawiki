@@ -150,7 +150,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 			// Return JavaScript wrapped in a <pre> tag.
 			$html = Html::element(
 				'pre',
-				[ 'class' => 'mw-code mw-js', 'dir' => 'ltr' ],
+				[ 'class' => [ 'mw-code', 'mw-js' ], 'dir' => 'ltr' ],
 				"\n" . $content->getText() . "\n"
 			) . "\n";
 		} else {

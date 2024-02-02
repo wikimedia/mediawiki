@@ -131,7 +131,7 @@ class CssContentHandler extends CodeContentHandler {
 			// Return CSS wrapped in a <pre> tag.
 			$html = Html::element(
 				'pre',
-				[ 'class' => 'mw-code mw-css', 'dir' => 'ltr' ],
+				[ 'class' => [ 'mw-code', 'mw-css' ], 'dir' => 'ltr' ],
 				"\n" . $content->getText() . "\n"
 			) . "\n";
 		} else {
