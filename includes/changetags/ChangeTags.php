@@ -707,7 +707,7 @@ class ChangeTags {
 		];
 
 		if ( $ooui ) {
-			$options = Xml::listDropDownOptionsOoui( $autocomplete );
+			$options = Html::listDropDownOptionsOoui( $autocomplete );
 
 			$data[] = new OOUI\ComboBoxInputWidget( [
 				'id' => 'tagfilter',

@@ -467,14 +467,14 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			]
 		);
 
-		$options = Xml::listDropDownOptions(
+		$options = Html::listDropDownOptions(
 			$this->msg( 'movepage-reason-dropdown' )
 				->page( $this->oldTitle )
 				->inContentLanguage()
 				->text(),
 			[ 'other' => $this->msg( 'movereasonotherlist' )->text() ]
 		);
-		$options = Xml::listDropDownOptionsOoui( $options );
+		$options = Html::listDropDownOptionsOoui( $options );
 
 		$fields[] = new FieldLayout(
 			new DropdownInputWidget( [
