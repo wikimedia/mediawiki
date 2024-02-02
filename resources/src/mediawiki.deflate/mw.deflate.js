@@ -1,4 +1,4 @@
-var pako = require( '../../lib/pako/pako_deflate.es5.js' );
+var pako = require( '../../lib/pako/pako_deflate.js' );
 
 mw.deflate = function ( data ) {
 	return 'rawdeflate,' + bytesToBase64( pako.deflateRaw( data, { level: 5 } ) );

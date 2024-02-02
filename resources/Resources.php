@@ -2977,11 +2977,11 @@ return [
 		'packageFiles' => [
 			'resources/src/mediawiki.deflate/mw.deflate.js',
 			[
-				'name' => 'resources/lib/pako/pako_deflate.es5.js',
+				'name' => 'resources/lib/pako/pako_deflate.js',
 				'callback' => static function ( Context $context, Config $config ) {
 					return new FilePath( $context->getDebug() ?
-						'resources/lib/pako/pako_deflate.es5.js' :
-						'resources/lib/pako/pako_deflate.es5.min.js' );
+						'resources/lib/pako/pako_deflate.js' :
+						'resources/lib/pako/pako_deflate.min.js' );
 				}
 			],
 		],
