@@ -69,6 +69,7 @@ use Wikimedia\Minify\JavaScriptMinifierState;
 use Wikimedia\Minify\MinifierState;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
 
@@ -122,6 +123,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $srvCache;
 	/** @var IBufferingStatsdDataFactory */
 	private $stats;
+	/** @var StatsFactory */
+	private $statsFactory;
 	/** @var int */
 	private $maxageVersioned;
 	/** @var int */
@@ -187,6 +190,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		$this->srvCache = $services->getLocalServerObjectCache();
 		$this->stats = $services->getStatsdDataFactory();
+		$this->statsFactory = $services->getStatsFactory();
 
 		// Add 'local' source first
 		$this->addSource( 'local', $params['loadScript'] ?? '/load.php' );
@@ -870,7 +874,10 @@ class ResourceLoader implements LoggerAwareInterface {
 		$statStart = $_SERVER['REQUEST_TIME_FLOAT'];
 		return new ScopedCallback( function () use ( $statStart ) {
 			$statTiming = microtime( true ) - $statStart;
-			$this->stats->timing( 'resourceloader.responseTime', $statTiming * 1000 );
+
+			$this->statsFactory->getTiming( 'resourceloader_response_time_seconds' )
+				->copyToStatsdAt( 'resourceloader.responseTime' )
+				->observe( 1000 * $statTiming );
 		} );
 	}
 
