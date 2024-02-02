@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Config\Config;
+use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
@@ -61,7 +62,7 @@ use MediaWiki\User\User;
  * @stable to type
  * @author Happy-melon
  */
-interface IContextSource extends MessageLocalizer, CsrfTokenSetProvider {
+interface IContextSource extends LocalizationContext, CsrfTokenSetProvider {
 
 	/**
 	 * @return WebRequest
@@ -121,7 +122,7 @@ interface IContextSource extends MessageLocalizer, CsrfTokenSetProvider {
 	public function getAuthority(): Authority;
 
 	/**
-	 * @return Language
+	 * @inheritDoc
 	 * @since 1.19
 	 */
 	public function getLanguage();

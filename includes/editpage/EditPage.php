@@ -32,6 +32,7 @@ use IContextSource;
 use IDBAccessObject;
 use LogPage;
 use ManualLogEntry;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -447,6 +448,7 @@ class EditPage implements IEditObject {
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
 	private IConnectionProvider $connectionProvider;
+	private BlockErrorFormatter $blockErrorFormatter;
 
 	/** @var User|null */
 	private $placeholderTempUser;
@@ -516,6 +518,8 @@ class EditPage implements IEditObject {
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->commentStore = $services->getCommentStore();
 		$this->connectionProvider = $services->getConnectionProvider();
+		$this->blockErrorFormatter = $services->getFormatterFactory()
+			->getBlockErrorFormatter( $this->context );
 
 		// XXX: Restore this deprecation as soon as TwoColConflict is fixed (T305028)
 		// $this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );

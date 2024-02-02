@@ -23,6 +23,7 @@ namespace MediaWiki\Tests\Integration\Permissions;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserIdentityValue;
@@ -101,7 +102,10 @@ class PermissionStatusIntegrationTest extends MediaWikiIntegrationTestCase {
 		$blockErrorFormatter = $this->createNoOpMock( BlockErrorFormatter::class, [ 'getMessages' ] );
 		$blockErrorFormatter->method( 'getMessages' )->willReturn( [ new RawMessage( 'testing' ) ] );
 
-		$this->setService( 'BlockErrorFormatter', $blockErrorFormatter );
+		$formatterFactory = $this->createNoOpMock( FormatterFactory::class, [ 'getBlockErrorFormatter' ] );
+		$formatterFactory->method( 'getBlockErrorFormatter' )->willReturn( $blockErrorFormatter );
+
+		$this->setService( 'FormatterFactory', $formatterFactory );
 
 		$status = $this->makeBlockedStatus();
 		$block = $status->getBlock();

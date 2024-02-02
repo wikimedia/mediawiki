@@ -25,6 +25,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -168,6 +169,16 @@ abstract class ContextSource implements IContextSource {
 	 */
 	public function getLanguage() {
 		return $this->getContext()->getLanguage();
+	}
+
+	/**
+	 * @since 1.42
+	 * @stable to override
+	 * @note When overriding, keep consistent with getLanguage()!
+	 * @return Bcp47Code
+	 */
+	public function getLanguageCode(): Bcp47Code {
+		return $this->getLanguage();
 	}
 
 	/**

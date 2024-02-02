@@ -3499,13 +3499,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$request = $this->getRequest();
 			$uiContext = RequestContext::getMain();
 
+			$services = MediaWikiServices::getInstance();
 			$this->mThisAsAuthority = new UserAuthority(
 				$this,
 				$request,
 				$uiContext,
-				MediaWikiServices::getInstance()->getPermissionManager(),
-				MediaWikiServices::getInstance()->getRateLimiter(),
-				MediaWikiServices::getInstance()->getBlockErrorFormatter()
+				$services->getPermissionManager(),
+				$services->getRateLimiter(),
+				$services->getFormatterFactory()->getBlockErrorFormatter( $uiContext )
 			);
 		}
 

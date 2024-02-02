@@ -833,7 +833,6 @@ class PermissionManager {
 			$messages = $this->blockErrorFormatter->getMessages(
 				$block,
 				$user,
-				$context->getLanguage(),
 				$context->getRequest()->getIP()
 			);
 
