@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\MediaWikiServices;
 
@@ -31,10 +32,14 @@ use MediaWiki\MediaWikiServices;
  */
 class MediaWiki extends MediaWikiEntryPoint {
 
-	public function __construct( IContextSource $context = null ) {
+	public function __construct(
+		?IContextSource $context = null,
+		?EntryPointEnvironment $environment = null
+	) {
 		$context ??= RequestContext::getMain();
+		$environment ??= new EntryPointEnvironment();
 
-		parent::__construct( $context, MediaWikiServices::getInstance() );
+		parent::__construct( $context, $environment, MediaWikiServices::getInstance() );
 	}
 
 	/**

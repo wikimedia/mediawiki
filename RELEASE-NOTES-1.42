@@ -177,6 +177,7 @@ because of Phabricator reports.
   $settings parameter and pass it on when calling the parent implementation.
   MaintenanceRunner will always provide this parameter when calling
   finalSetup().
+* WebResponse::disableForPostSend() is no longer static.
 * MediaWiki's virtualrest internal library has been removed in favor of the
   HTTP library like: Guzzle, MultiHttpClient or MwHttpRequest.
 * Several deprecated methods have been removed from the Content interface,

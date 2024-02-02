@@ -1124,6 +1124,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Edit\\SelserContext' => __DIR__ . '/includes/edit/SelserContext.php',
 	'MediaWiki\\Edit\\SimpleParsoidOutputStash' => __DIR__ . '/includes/edit/SimpleParsoidOutputStash.php',
 	'MediaWiki\\Emptiable' => __DIR__ . '/includes/libs/Emptiable.php',
+	'MediaWiki\\EntryPointEnvironment' => __DIR__ . '/includes/EntryPointEnvironment.php',
 	'MediaWiki\\Export\\WikiExporterFactory' => __DIR__ . '/includes/export/WikiExporterFactory.php',
 	'MediaWiki\\ExtensionInfo' => __DIR__ . '/includes/utils/ExtensionInfo.php',
 	'MediaWiki\\ExternalLinks\\ExternalLinksLookup' => __DIR__ . '/includes/ExternalLinks/ExternalLinksLookup.php',

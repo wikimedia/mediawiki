@@ -659,4 +659,34 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Title', $cdnUrls, /* matchOrder= */ true, false ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideRequestPathSuffix
+	 *
+	 * @param string $basePath
+	 * @param string $requestUrl
+	 * @param string|false $expected
+	 */
+	public function testRequestPathSuffix( string $basePath, string $requestUrl, $expected ) {
+		$suffix = WebRequest::getRequestPathSuffix( $basePath, $requestUrl );
+		$this->assertSame( $expected, $suffix );
+	}
+
+	public static function provideRequestPathSuffix() {
+		yield [
+			'/w/index.php',
+			'/w/index.php/Hello',
+			'Hello'
+		];
+		yield [
+			'/w/index.php',
+			'/w/index.php/Hello?x=y',
+			'Hello'
+		];
+		yield [
+			'/wiki/',
+			'/w/index.php/Hello?x=y',
+			false
+		];
+	}
 }

@@ -1,14 +1,26 @@
 <?php
 
+namespace MediaWiki\Tests\Action;
+
+use BadTitleError;
+use DeferredUpdates;
+use DeferredUpdatesScopeStack;
 use MediaWiki\Actions\ActionEntryPoint;
+use MediaWiki\Deferred\DeferredUpdatesScopeMediaWikiStack;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Request\WebResponse;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Tests\MockEnvironment;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\Assert;
+use ReflectionMethod;
+use RequestContext;
 use Wikimedia\TestingAccessWrapper;
+use WikiPage;
 
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 
@@ -17,10 +29,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MediaWiki\Actions\ActionEntryPoint
  */
 class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
-	private ?array $oldServer;
-	private ?array $oldGet;
-	private ?array $oldPost;
-
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -32,34 +40,41 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::ActionPaths => [],
 			MainConfigNames::LanguageCode => 'en',
 		] );
-
-		// phpcs:disable ActionEntryPoint.Usage.SuperGlobalsUsage.SuperGlobals
-		$this->oldServer = $_SERVER;
-		$this->oldGet = $_GET;
-		$this->oldPost = $_POST;
 	}
 
 	protected function tearDown(): void {
-		$_SERVER = $this->oldServer;
-		$_GET = $this->oldGet;
-		$_POST = $this->oldPost;
-		// The ActionEntryPoint class writes to $wgTitle. Revert any writes done in this test to make
-		// sure that they don't leak into other tests (T341951)
-		$GLOBALS['wgTitle'] = null;
-
 		// Restore a scope stack that will run updates immediately
 		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeMediaWikiStack() );
 		parent::tearDown();
 	}
 
 	/**
+	 * @param MockEnvironment|WebRequest|array|null $environment
+	 * @param RequestContext|null $context
+	 *
 	 * @return ActionEntryPoint
 	 */
-	private function getEntryPoint(): ActionEntryPoint {
-		return new ActionEntryPoint(
-			RequestContext::getMain(),
+	private function getEntryPoint( $environment = null, RequestContext $context = null ) {
+		if ( !$environment ) {
+			$environment = new MockEnvironment();
+		}
+
+		if ( is_array( $environment ) ) {
+			$environment = new FauxRequest( $environment );
+		}
+
+		if ( $environment instanceof WebRequest ) {
+			$environment = new MockEnvironment( $environment );
+		}
+
+		$entryPoint = new ActionEntryPoint(
+			$context ?? $environment->makeFauxContext(),
+			$environment,
 			$this->getServiceContainer()
 		);
+		$entryPoint->establishOutputBufferLevel();
+
+		return $entryPoint;
 	}
 
 	public static function provideTryNormaliseRedirect() {
@@ -186,22 +201,16 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		// Set SERVER because interpolateTitle() doesn't use getRequestURL(),
 		// whereas tryNormaliseRedirect does(). Also, using WebRequest allows
 		// us to test some quirks in that class.
-		$_SERVER['REQUEST_URI'] = $url;
-		$_POST = [];
-		$_GET = $query;
-		$req = new WebRequest;
-
-		// This adds a virtual 'title' query parameter. Normally called from Setup.php
-		$req->interpolateTitle();
+		$environment = new MockEnvironment();
+		$environment->setRequestInfo( $url, $query );
 
 		$titleObj = Title::newFromText( $title );
 
 		// Set global context since some involved code paths don't yet have context
-		$context = RequestContext::getMain();
-		$context->setRequest( $req );
+		$context = $environment->makeFauxContext();
 		$context->setTitle( $titleObj );
 
-		$mw = new ActionEntryPoint( $context, $this->getServiceContainer() );
+		$mw = $this->getEntryPoint( $environment, $context );
 
 		$method = new ReflectionMethod( $mw, 'tryNormaliseRedirect' );
 		$method->setAccessible( true );
@@ -286,7 +295,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$req = new FauxRequest( $query );
-		$mw = $this->getEntryPoint();
+		$mw = $this->getEntryPoint( $req );
 
 		$method = new ReflectionMethod( $mw, 'parseTitle' );
 		$method->setAccessible( true );
@@ -339,7 +348,10 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		// opportunistic updates.
 		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeStack() );
 
-		$response = new WebResponse;
+		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint() );
+
+		/** @var FauxResponse $response */
+		$response = $mw->getResponse();
 
 		// A update that attempts to set a cookie
 		$jobHasRun = false;
@@ -349,19 +361,8 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 			$response->header( 'Foo: baz' );
 		} );
 
-		$hookWasRun = false;
-		$this->setTemporaryHook( 'WebResponseSetCookie', static function () use ( &$hookWasRun ) {
-			$hookWasRun = true;
-			return true;
-		} );
-
-		$logger = new TestLogger();
-		$logger->setCollect( true );
-		$this->setLogger( 'cookie', $logger );
-		$this->setLogger( 'header', $logger );
-
-		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint() );
 		$mw->doPostOutputShutdown();
+
 		// restInPeace() might have been registered to a callback of
 		// register_postsend_function() and thus can not be triggered from
 		// PHPUnit.
@@ -370,15 +371,8 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertTrue( $jobHasRun, 'post-send job has run' );
-		$this->assertFalse( $hookWasRun,
-			'post-send job must not trigger WebResponseSetCookie hook' );
-		$this->assertEquals(
-			[
-				[ 'info', 'ignored post-send cookie {cookie}' ],
-				[ 'info', 'ignored post-send header {header}' ],
-			],
-			$logger->getBuffer()
-		);
+		$this->assertNull( $response->getCookie( 'JobCookie' ) );
+		$this->assertNull( $response->getHeader( 'Foo' ) );
 	}
 
 	public function testInvalidRedirectingOnSpecialPageWithPersonallyIdentifiableTarget() {
@@ -388,17 +382,30 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$req = new FauxRequest( [
 			'title' => $specialTitle->getPrefixedDbKey(),
 		] );
-		$req->setRequestURL( $specialTitle->getFullUrl() );
+		$req->setRequestURL( $specialTitle->getLinkURL() );
 
-		$context = new RequestContext();
-		$context->setRequest( $req );
+		$env = new MockEnvironment( $req );
+		$context = $env->makeFauxContext();
 		$context->setTitle( $specialTitle );
 
-		$mw = TestingAccessWrapper::newFromObject( new ActionEntryPoint( $context, $this->getServiceContainer() ) );
+		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $env, $context ) );
 
 		$this->expectException( BadTitleError::class );
 		$this->expectExceptionMessage( 'The requested page title contains invalid characters: "<".' );
 		$mw->performRequest();
+	}
+
+	public function testView() {
+		$page = $this->getExistingTestPage();
+
+		$request = new FauxRequest( [ 'title' => $page->getTitle()->getPrefixedDBkey() ] );
+		$env = new MockEnvironment( $request );
+
+		$entryPoint = $this->getEntryPoint( $env );
+		$entryPoint->run();
+
+		$expected = '<title>(pagetitle: ' . $page->getTitle()->getPrefixedText();
+		Assert::assertStringContainsString( $expected, $entryPoint->captureOutput() );
 	}
 
 }
