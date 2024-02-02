@@ -118,7 +118,6 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
 use WikiPage;
-use Xml;
 
 /**
  * The HTML user interface for page editing.
@@ -3015,13 +3014,13 @@ class EditPage implements IEditObject {
 
 		// Add an empty field to trip up spambots
 		$out->addHTML(
-			Xml::openElement( 'div', [ 'id' => 'antispam-container', 'style' => 'display: none;' ] )
+			Html::openElement( 'div', [ 'id' => 'antispam-container', 'style' => 'display: none;' ] )
 			. Html::rawElement(
 				'label',
 				[ 'for' => 'wpAntispam' ],
 				$this->context->msg( 'simpleantispam-label' )->parse()
 			)
-			. Xml::element(
+			. Html::element(
 				'input',
 				[
 					'type' => 'text',
@@ -3030,7 +3029,7 @@ class EditPage implements IEditObject {
 					'value' => ''
 				]
 			)
-			. Xml::closeElement( 'div' )
+			. Html::closeElement( 'div' )
 		);
 
 		$this->getHookRunner()->onEditPage__showEditForm_fields( $this, $out );
@@ -3043,7 +3042,7 @@ class EditPage implements IEditObject {
 			$comment = $this->commentStore->getComment( 'log_comment', $this->lastDelete )->text;
 
 			// It is better to not parse the comment at all than to have templates expanded in the middle
-			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
+			// TODO: can the label be moved outside of the div so that wrapWikiMsg could be used?
 			$key = $comment === ''
 				? 'confirmrecreate-noreason'
 				: 'confirmrecreate';
@@ -3054,12 +3053,20 @@ class EditPage implements IEditObject {
 					->params( $username )
 					->plaintextParams( $comment )
 					->parse() .
-					Xml::checkLabel(
-						$this->context->msg( 'recreate' )->text(),
-						'wpRecreate',
-						'wpRecreate',
-						false,
-						[ 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' ]
+					Html::rawElement(
+						'div',
+						[],
+						Html::check(
+							'wpRecreate',
+							false,
+							[ 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' ]
+						)
+						. "\u{00A0}" .
+						Html::label(
+							$this->context->msg( 'recreate' )->text(),
+							'wpRecreate',
+							[ 'title' => Linker::titleAttrib( 'recreate' ) ]
+						)
 					)
 			) );
 		}
@@ -3452,7 +3459,7 @@ class EditPage implements IEditObject {
 		$commentFormatter = MediaWikiServices::getInstance()->getCommentFormatter();
 		$summary = $this->context->msg( 'summary-preview' )->parse()
 			. $commentFormatter->formatBlock( $summary, $this->mTitle, $isSubjectPreview );
-		return Xml::tags( 'div', [ 'class' => 'mw-summary-preview' ], $summary );
+		return Html::rawElement( 'div', [ 'class' => 'mw-summary-preview' ], $summary );
 	}
 
 	private function showFormBeforeText(): void {
@@ -3547,7 +3554,7 @@ class EditPage implements IEditObject {
 		}
 
 		$out = $this->context->getOutput();
-		$out->addHTML( Xml::openElement( 'div', $attribs ) );
+		$out->addHTML( Html::openElement( 'div', $attribs ) );
 
 		if ( $this->formtype === 'preview' ) {
 			$this->showPreview( $previewOutput );
