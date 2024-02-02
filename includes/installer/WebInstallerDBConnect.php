@@ -80,7 +80,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 					$type == $defaultType,
 					[
 						'id' => $id,
-						'class' => 'cdx-radio__input dbRadio',
+						'class' => [ 'cdx-radio__input', 'dbRadio' ],
 						'rel' => "DB_wrapper_$type",
 						'value' => $type,
 					]

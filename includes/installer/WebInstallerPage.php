@@ -110,7 +110,7 @@ abstract class WebInstallerPage {
 				[
 					'name' => "submit-$back",
 					'tabindex' => $this->parent->nextTabIndex(),
-					'class' => 'cdx-button cdx-button--action-default'
+					'class' => [ 'cdx-button', 'cdx-button--action-default' ]
 				]
 			) . "\n";
 		}
@@ -122,7 +122,7 @@ abstract class WebInstallerPage {
 				[
 					'name' => "submit-$continue",
 					'tabindex' => $this->parent->nextTabIndex(),
-					'class' => 'cdx-button cdx-button--action-progressive'
+					'class' => [ 'cdx-button', 'cdx-button--action-progressive' ]
 				]
 			) . "\n";
 		}
