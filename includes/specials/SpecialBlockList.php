@@ -40,7 +40,7 @@ use MediaWiki\Pager\BlockListPager;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * A special page that lists existing blocks
@@ -352,7 +352,7 @@ class SpecialBlockList extends SpecialPage {
 	/**
 	 * Return a IDatabase object for reading
 	 *
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	protected function getDB() {
 		return $this->dbProvider->getReplicaDatabase();
