@@ -23,7 +23,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionMethod;
-use ResourceLoaderTestCase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;

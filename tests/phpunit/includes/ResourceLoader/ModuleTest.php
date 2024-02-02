@@ -9,9 +9,6 @@ use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use ReflectionMethod;
-use ResourceLoaderFileModuleTestingSubclass;
-use ResourceLoaderTestCase;
-use ResourceLoaderTestModule;
 
 /**
  * @covers \MediaWiki\ResourceLoader\Module

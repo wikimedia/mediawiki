@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\ResourceLoader;
 
 use MediaWiki\ResourceLoader\LessVarFileModule;
 use ReflectionMethod;
-use ResourceLoaderTestCase;
 
 /**
  * @group ResourceLoader

@@ -9,8 +9,6 @@ use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use ResourceLoaderFileTestModule;
-use ResourceLoaderTestCase;
 use RuntimeException;
 use SkinFactory;
 

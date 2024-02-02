@@ -10,7 +10,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
-use ResourceLoaderTestCase;
 
 /**
  * @group ResourceLoader

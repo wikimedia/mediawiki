@@ -2,13 +2,11 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use EmptyResourceLoader;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\Image;
 use MediaWiki\ResourceLoader\ImageModule;
-use ResourceLoaderTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

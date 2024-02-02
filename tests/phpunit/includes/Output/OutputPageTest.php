@@ -19,6 +19,8 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestCase;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestModule;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

@@ -18,8 +18,6 @@ use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\ResourceLoader\StartUpModule;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use NullStatsdDataFactory;
-use ResourceLoaderTestCase;
-use ResourceLoaderTestModule;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\Minify\IdentityMinifierState;

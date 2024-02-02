@@ -10,7 +10,6 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\SkinModule;
 use ReflectionClass;
-use ResourceLoaderTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

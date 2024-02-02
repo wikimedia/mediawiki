@@ -2,13 +2,11 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use EmptyResourceLoader;
 use HashBagOStuff;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiCoversValidator;
 use Psr\Log\NullLogger;
-use ResourceLoaderTestModule;
 use WANObjectCache;
 
 /**

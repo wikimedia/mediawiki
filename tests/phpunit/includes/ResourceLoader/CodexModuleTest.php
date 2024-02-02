@@ -215,9 +215,11 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	// Test that the manifest data structure is transformed correctly.
-	// This test relies on the fixture manifest data that lives in
-	// tests/phpunit/data/resourceloader/codexModules
+	/**
+	 * Test that the manifest data structure is transformed correctly.
+	 * This test relies on the fixture manifest data that lives in
+	 * tests/phpunit/data/resourceloader/codexModules
+	 */
 	public function testGetCodexFiles() {
 		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
 		$testModule = new class( $moduleDefinition ) extends CodexModule {

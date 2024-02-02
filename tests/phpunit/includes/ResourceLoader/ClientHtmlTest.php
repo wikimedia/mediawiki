@@ -9,8 +9,6 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiCoversValidator;
-use ResourceLoaderTestCase;
-use ResourceLoaderTestModule;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\ResourceLoader;
 use ExtensionRegistry;
 use MediaWiki\ResourceLoader\OOUIImageModule;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use ResourceLoaderTestCase;
 use SkinFactory;
 
 /**

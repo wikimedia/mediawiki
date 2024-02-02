@@ -5,8 +5,6 @@ namespace MediaWiki\Tests\ResourceLoader;
 use Exception;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\StartUpModule;
-use ResourceLoaderTestCase;
-use ResourceLoaderTestModule;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

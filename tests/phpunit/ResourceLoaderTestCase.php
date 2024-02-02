@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\ResourceLoader;
+
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
@@ -8,6 +10,7 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
 
 abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
@@ -239,3 +242,18 @@ class EmptyResourceLoader extends ResourceLoader {
 		parent::__construct( $config ?: ResourceLoaderTestCase::getMinimalConfig(), $logger );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( ResourceLoaderTestModule::class, 'ResourceLoaderTestModule' );
+
+/** @deprecated since 1.42 */
+class_alias( ResourceLoaderTestCase::class, 'ResourceLoaderTestCase' );
+
+/** @deprecated since 1.42 */
+class_alias( ResourceLoaderFileTestModule::class, 'ResourceLoaderFileTestModule' );
+
+/** @deprecated since 1.42 */
+class_alias( ResourceLoaderFileModuleTestingSubclass::class, 'ResourceLoaderFileModuleTestingSubclass' );
+
+/** @deprecated since 1.42 */
+class_alias( EmptyResourceLoader::class, 'EmptyResourceLoader' );
