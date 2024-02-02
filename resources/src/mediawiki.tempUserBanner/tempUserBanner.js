@@ -16,6 +16,7 @@ $( function () {
 	/**
 	 * Get the time since the account was created
 	 *
+	 * @ignore
 	 * @return {number} The duration since it was created until "now" in milliseconds
 	 */
 	function getTemporaryAccountDurationMs() {
@@ -26,6 +27,7 @@ $( function () {
 	 * Whether the account will expire within the period defined
 	 * by notifyBeforeExpirationDays in AutoCreateTempUser configuration
 	 *
+	 * @ignore
 	 * @return {boolean}
 	 */
 	function isWithinExpirationNotificationPeriod() {
@@ -37,6 +39,7 @@ $( function () {
 	/**
 	 * Get the time until the account will expire
 	 *
+	 * @ignore
 	 * @return {number} The duration from "now" until the account expiration in milliseconds
 	 */
 	function getTimeToExpirationMs() {
@@ -52,6 +55,7 @@ $( function () {
 	 *  - The user didn't proactively dismiss the tooltip clicking on the close button,
 	 *  see showTooltip()
 	 *
+	 * @ignore
 	 * @return {boolean}
 	 */
 	function shouldShowExpirationAlert() {
@@ -67,6 +71,7 @@ $( function () {
 	/**
 	 * Retrieve the expiration descriptive text
 	 *
+	 * @ignore
 	 * @return {string}
 	 */
 	function getExpirationDescriptionText() {
@@ -86,6 +91,7 @@ $( function () {
 	/**
 	 * Retrieve the tooltip content
 	 *
+	 * @ignore
 	 * @param {boolean} shouldShowExpiration
 	 * @return {jQuery}
 	 */
@@ -116,6 +122,7 @@ $( function () {
 
 		/**
 		 * Creates the tooltip if it doesn't already exist and toggles it.
+		 * @ignore
 		 */
 		function showTooltip() {
 			return mw.loader.using( [

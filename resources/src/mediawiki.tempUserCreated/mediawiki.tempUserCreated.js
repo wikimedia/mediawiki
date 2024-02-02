@@ -3,6 +3,9 @@
 
 	var contLangMessages = require( './contLangMessages.json' );
 
+	/**
+	 * @namespace mw.tempUserCreated
+	 */
 	mw.tempUserCreated = {};
 
 	/**
