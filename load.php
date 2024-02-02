@@ -1,7 +1,8 @@
 <?php
 /**
- * The web entry point for @ref ResourceLoader, which serves static CSS/JavaScript
- * via @ref MediaWiki\ResourceLoader\Module Module subclasses.
+ * The web entry point for @ref ResourceLoader, which serves static CSS/JavaScript.
+ *
+ * @see MediaWiki\ResourceLoader\ResourceEntryPoint The implementation.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +26,9 @@
  * @author Trevor Parscal
  */
 
+use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader\Context;
+use MediaWiki\ResourceLoader\ResourceEntryPoint;
 
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.
@@ -36,27 +38,8 @@ define( 'MW_ENTRY_POINT', 'load' );
 
 require __DIR__ . '/includes/WebStart.php';
 
-wfLoadMain();
-
-function wfLoadMain() {
-	global $wgRequest;
-
-	$services = MediaWikiServices::getInstance();
-	// Disable ChronologyProtector so that we don't wait for unrelated MediaWiki
-	// writes when getting database connections for ResourceLoader. (T192611)
-	$services->getChronologyProtector()->setEnabled( false );
-
-	$resourceLoader = $services->getResourceLoader();
-	$context = new Context( $resourceLoader, $wgRequest );
-
-	// Respond to ResourceLoader request
-	$resourceLoader->respond( $context );
-
-	// Append any visible profiling data in a manner appropriate for the Content-Type
-	$profiler = Profiler::instance();
-	$profiler->setAllowOutput();
-	$profiler->logDataPageOutputOnly();
-
-	$mediawiki = new MediaWiki();
-	$mediawiki->doPostOutputShutdown();
-}
+( new ResourceEntryPoint(
+	RequestContext::getMain(),
+	new EntryPointEnvironment(),
+	MediaWikiServices::getInstance()
+) )->run();

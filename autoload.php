@@ -1840,6 +1840,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\OOUIIconPackModule' => __DIR__ . '/includes/ResourceLoader/OOUIIconPackModule.php',
 	'MediaWiki\\ResourceLoader\\OOUIImageModule' => __DIR__ . '/includes/ResourceLoader/OOUIImageModule.php',
 	'MediaWiki\\ResourceLoader\\OOUIModule' => __DIR__ . '/includes/ResourceLoader/OOUIModule.php',
+	'MediaWiki\\ResourceLoader\\ResourceEntryPoint' => __DIR__ . '/includes/ResourceLoader/ResourceEntryPoint.php',
 	'MediaWiki\\ResourceLoader\\ResourceLoader' => __DIR__ . '/includes/ResourceLoader/ResourceLoader.php',
 	'MediaWiki\\ResourceLoader\\SiteModule' => __DIR__ . '/includes/ResourceLoader/SiteModule.php',
 	'MediaWiki\\ResourceLoader\\SiteStylesModule' => __DIR__ . '/includes/ResourceLoader/SiteStylesModule.php',
