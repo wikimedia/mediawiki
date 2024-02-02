@@ -471,7 +471,7 @@ class McrUndoAction extends FormAction {
 		];
 
 		if ( $request->getCheck( 'wpSummary' ) ) {
-			$ret['summarypreview']['default'] = Xml::tags(
+			$ret['summarypreview']['default'] = Html::rawElement(
 				'div',
 				[ 'class' => 'mw-summary-preview' ],
 				$this->commentFormatter->formatBlock(
