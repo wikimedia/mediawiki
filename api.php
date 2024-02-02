@@ -3,16 +3,7 @@
  * The web entry point for all %Action API queries, handled by ApiMain
  * and ApiBase subclasses.
  *
- * This is used by bots to fetch content and information about the wiki,
- * its pages, and its users. See <https://www.mediawiki.org/wiki/API> for more
- * information.
- *
- * It begins by constructing a new ApiMain using the parameter passed to it
- * as an argument in the URL ('?action='). It then invokes "execute()" on the
- * ApiMain object instance, which produces output in the format specified in
- * the URL.
- *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * @see ApiEntryPoint The corresponding entry point class
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,10 +25,9 @@
  * @ingroup API
  */
 
-use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Logger\LegacyLogger;
+use MediaWiki\Api\ApiEntryPoint;
+use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\Title;
 
 // So extensions (and other code) can check whether they're running in API mode
 define( 'MW_API', true );
@@ -45,87 +35,9 @@ define( 'MW_ENTRY_POINT', 'api' );
 
 require __DIR__ . '/includes/WebStart.php';
 
-wfApiMain();
-
-function wfApiMain() {
-	global $wgRequest, $wgTitle, $wgAPIRequestLog;
-
-	$starttime = microtime( true );
-
-	$services = MediaWikiServices::getInstance();
-
-	// PATH_INFO can be used for stupid things. We don't support it for api.php at
-	// all, so error out if it's present. (T128209)
-	if ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
-		$correctUrl = wfAppendQuery( wfScript( 'api' ), $wgRequest->getQueryValuesOnly() );
-		$correctUrl = (string)$services->getUrlUtils()->expand( $correctUrl, PROTO_CANONICAL );
-		header( "Location: $correctUrl", true, 301 );
-		echo 'This endpoint does not support "path info", i.e. extra text between "api.php"'
-			. 'and the "?". Remove any such text and try again.';
-		die( 1 );
-	}
-
-	// Set a dummy $wgTitle, because $wgTitle == null breaks various things
-	// In a perfect world this wouldn't be necessary
-	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for API calls set in api.php' );
-
-	// RequestContext will read from $wgTitle, but it will also whine about it.
-	// In a perfect world this wouldn't be necessary either.
-	RequestContext::getMain()->setTitle( $wgTitle );
-
-	try {
-		// Construct an ApiMain with the arguments passed via the URL. What we get back
-		// is some form of an ApiMain, possibly even one that produces an error message,
-		// but we don't care here, as that is handled by the constructor.
-		$processor = new ApiMain( RequestContext::getMain(), true );
-
-		// Last chance hook before executing the API
-		( new HookRunner( $services->getHookContainer() ) )->onApiBeforeMain( $processor );
-		if ( !$processor instanceof ApiMain ) {
-			throw new LogicException( 'ApiBeforeMain hook set $processor to a non-ApiMain class' );
-		}
-	} catch ( Throwable $e ) {
-		// Crap. Try to report the exception in API format to be friendly to clients.
-		ApiMain::handleApiBeforeMainException( $e );
-		$processor = false;
-	}
-
-	// Process data & print results
-	if ( $processor ) {
-		$processor->execute();
-	}
-
-	// Log what the user did, for book-keeping purposes.
-	$endtime = microtime( true );
-
-	// Log the request
-	if ( $wgAPIRequestLog ) {
-		$items = [
-			wfTimestamp( TS_MW ),
-			$endtime - $starttime,
-			$wgRequest->getIP(),
-			$wgRequest->getHeader( 'User-agent' )
-		];
-		$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
-		if ( $processor ) {
-			try {
-				$manager = $processor->getModuleManager();
-				$module = $manager->getModule( $wgRequest->getRawVal( 'action' ), 'action' );
-			} catch ( Throwable $ex ) {
-				$module = null;
-			}
-			if ( !$module || $module->mustBePosted() ) {
-				$items[] = "action=" . $wgRequest->getRawVal( 'action' );
-			} else {
-				$items[] = wfArrayToCgi( $wgRequest->getValues() );
-			}
-		} else {
-			$items[] = "failed in ApiBeforeMain";
-		}
-		LegacyLogger::emit( implode( ',', $items ) . "\n", $wgAPIRequestLog );
-		wfDebug( "Logged API request to $wgAPIRequestLog" );
-	}
-
-	$mediawiki = new MediaWiki();
-	$mediawiki->doPostOutputShutdown();
-}
+// Construct entry point object and call doRun() to handle the request.
+( new ApiEntryPoint(
+	RequestContext::getMain(),
+	new EntryPointEnvironment(),
+	MediaWikiServices::getInstance()
+) )->run();
