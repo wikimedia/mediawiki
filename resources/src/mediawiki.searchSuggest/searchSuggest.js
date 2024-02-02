@@ -25,20 +25,52 @@
 		queryToRenderMeasure = 'mwVectorLegacySearchQueryToRender',
 		loadStartToFirstRenderMeasure = 'mwVectorLegacySearchLoadStartToFirstRender';
 
+	/**
+	 * Convenience library for making searches for titles that match a string.
+	 * Loaded via the `mediawiki.searchSuggest` ResourceLoader library.
+	 * @example
+	 * mw.loader.using('mediawiki.searchSuggest').then(() => {
+	 *   var api = new mw.Api();
+	 *   mw.searchSuggest.request(api, 'Dogs that', ( results ) => {
+	 *     alert( `Results that match: ${results.join( '\n' );}` );
+	 *   });
+	 * });
+	 * @namespace mw.searchSuggest
+	 */
 	mw.searchSuggest = {
-		// queries the wiki and calls response with the result
-		request: function ( api, query, response, maxRows, namespace ) {
+		/**
+		 * @typedef {Object} ResponseMetaData
+		 * @property {string} type the contents of the X-OpenSearch-Type response header.
+		 * @property {string} searchId the contents of the X-Search-ID response header.
+		 * @property {string} query
+		 */
+		/**
+		 * @callback ResponseFunction
+		 * @param {string[]} titles titles of pages that match search
+		 * @param {ResponseMetaData} meta meta data relating to search.
+		 */
+		/**
+		 * Queries the wiki and calls response with the result
+		 *
+		 * @param {mw.Api} api
+		 * @param {string} query
+		 * @param {ResponseFunction} response
+		 * @param {string|number} [limit]
+		 * @param {string|number|string[]|number[]} [namespace]
+		 * @return {jQuery.Deferred}
+		 */
+		request: function ( api, query, response, limit, namespace ) {
 			return api.get( {
 				formatversion: 2,
 				action: 'opensearch',
 				search: query,
 				namespace: namespace || searchNS,
-				limit: maxRows
-			} ).done( function ( data, jqXHR ) {
+				limit
+			} ).then( function ( data, jqXHR ) {
 				response( data[ 1 ], {
 					type: jqXHR.getResponseHeader( 'X-OpenSearch-Type' ),
 					searchId: jqXHR.getResponseHeader( 'X-Search-ID' ),
-					query: query
+					query
 				} );
 			} );
 		}
