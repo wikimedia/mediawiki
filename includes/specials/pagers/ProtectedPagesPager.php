@@ -33,6 +33,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
 use UnexpectedValueException;
 use UserCache;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class ProtectedPagesPager extends TablePager {
@@ -115,11 +116,15 @@ class ProtectedPagesPager extends TablePager {
 		# Do a link batch query
 		$lb = $this->linkBatchFactory->newLinkBatch();
 		$userids = [];
+		$rowsWithComments = [];
 
 		foreach ( $result as $row ) {
 			$lb->add( $row->page_namespace, $row->page_title );
 			if ( $row->actor_user !== null ) {
 				$userids[] = $row->actor_user;
+			}
+			if ( $row->log_timestamp !== null ) {
+				$rowsWithComments[] = $row;
 			}
 		}
 
@@ -138,7 +143,13 @@ class ProtectedPagesPager extends TablePager {
 		$lb->execute();
 
 		// Format the comments
-		$this->formattedComments = $this->rowCommentFormatter->formatRows( $result, 'log_comment' );
+		$this->formattedComments = $this->rowCommentFormatter->formatRows(
+			new FakeResultWrapper( $rowsWithComments ),
+			'log_comment',
+			null,
+			null,
+			'pr_id'
+		);
 	}
 
 	protected function getFieldNames() {
@@ -280,7 +291,7 @@ class ProtectedPagesPager extends TablePager {
 						LogPage::DELETED_COMMENT,
 						$this->getAuthority()
 					) ) {
-						$formatted = $this->formattedComments[$this->getResultOffset()];
+						$formatted = $this->formattedComments[$row->pr_id];
 					} else {
 						$formatted = $this->msg( 'rev-deleted-comment' )->escaped();
 					}
