@@ -115,7 +115,7 @@ function onLoadHandler( $editForm ) {
 
 function onLoadData( pageData ) {
 	// If there is data stored, load it into the form.
-	if ( pageData !== undefined && !isSameAsOriginal( pageData ) ) {
+	if ( pageData !== undefined && !isSameAsOriginal( pageData, true ) ) {
 		loadData( pageData );
 		const loadNotification = new LoadNotification( {
 			differentRev: originalData.field_parentRevId !== pageData.field_parentRevId
@@ -191,12 +191,28 @@ function fieldChangeHandler() {
 	changeDebounceTimer = setTimeout( saveFormData, debounceTime );
 }
 
-function isSameAsOriginal( pageData ) {
+/**
+ * Compare a set of form field values to their original values (as at page load time).
+ *
+ * @param {Object} pageData The page data to compare to the original.
+ * @param {boolean} ignoreRevIds Do not use parent revision info when determining similarity.
+ * @return {boolean}
+ */
+function isSameAsOriginal( pageData, ignoreRevIds = false ) {
 	for ( const fieldName in inputFields ) {
-		if ( fieldName === 'editRevId' || fieldName === 'parentRevId' ) {
+		if ( ignoreRevIds && ( fieldName === 'editRevId' || fieldName === 'parentRevId' ) ) {
 			continue;
 		}
-		if ( pageData[ fieldNamePrefix + fieldName ] !== originalData[ fieldNamePrefix + fieldName ] ) {
+		// Trim trailing whitespace from string fields, to approximate what PHP does when saving.
+		let currentVal = pageData[ fieldNamePrefix + fieldName ];
+		if ( typeof currentVal === 'string' ) {
+			currentVal = currentVal.replace( /\s+$/, '' );
+		}
+		let originalVal = originalData[ fieldNamePrefix + fieldName ];
+		if ( typeof originalVal === 'string' ) {
+			originalVal = originalVal.replace( /\s+$/, '' );
+		}
+		if ( currentVal !== originalVal ) {
 			return false;
 		}
 	}
@@ -207,7 +223,7 @@ function saveFormData() {
 	const pageName = mw.config.get( 'wgPageName' );
 	const section = inputFields.wpSection.value !== undefined ? inputFields.wpSection.value : null;
 	const pageData = getFormData();
-	if ( originalData === null || JSON.stringify( pageData ) === JSON.stringify( originalData ) ) {
+	if ( originalData === null || isSameAsOriginal( pageData ) ) {
 		// Delete the stored data if there's no change, or if we've flagged originalData as irrelevant.
 		storage.deleteData( pageName, section );
 		mw.storage.session.remove( 'EditRecovery-data-saved' );
