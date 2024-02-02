@@ -68,7 +68,7 @@ class SQLPlatform implements ISQLPlatform {
 	) {
 		$this->quoter = $quoter;
 		$this->logger = $logger ?? new NullLogger();
-		$this->currentDomain = $currentDomain;
+		$this->currentDomain = $currentDomain ?: DatabaseDomain::newUnspecified();
 		$this->errorLogger = $errorLogger ?? static function ( Throwable $e ) {
 			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
@@ -1012,12 +1012,7 @@ class SQLPlatform implements ISQLPlatform {
 		}
 		// Table alias config and prefixes only apply to unquoted single-identifier names
 		if ( count( $identifiers ) == 1 && !$this->isQuotedIdentifier( $identifiers[0] ) ) {
-			if ( $this->currentDomain ) {
-				$currentDomainPrefix = $this->currentDomain->getTablePrefix();
-			} else {
-				$currentDomainPrefix = '';
-			}
-			$table = $identifiers[0];
+			[ $table ] = $identifiers;
 			if ( isset( $this->tableAliases[$table] ) ) {
 				// This is an "alias" table that uses a different db/schema/prefix scheme
 				$database = $this->tableAliases[$table]['dbname'];
@@ -1026,12 +1021,12 @@ class SQLPlatform implements ISQLPlatform {
 					: $this->relationSchemaQualifier();
 				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
 					? $this->tableAliases[$table]['prefix']
-					: $currentDomainPrefix;
+					: $this->currentDomain->getTablePrefix();
 			} else {
 				// Use the current database domain to resolve the schema and prefix
 				$database = '';
 				$schema = $this->relationSchemaQualifier();
-				$prefix = $currentDomainPrefix;
+				$prefix = $this->currentDomain->getTablePrefix();
 			}
 			$qualifierIdentifiers = [ $database, $schema ];
 			$tableIdentifier = $prefix . $table;
@@ -1084,10 +1079,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * @return string|null Schema to use to qualify relations in queries
 	 */
 	protected function relationSchemaQualifier() {
-		if ( $this->currentDomain ) {
-			return $this->currentDomain->getSchema();
-		}
-		return null;
+		return $this->currentDomain->getSchema();
 	}
 
 	public function tableNames( ...$tables ) {
