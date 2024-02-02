@@ -22,6 +22,7 @@
 namespace MediaWiki\Block;
 
 use ChangeTags;
+use InvalidArgumentException;
 use ManualLogEntry;
 use MediaWiki\Block\Restriction\AbstractRestriction;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -43,7 +44,7 @@ use MediaWiki\User\UserIdentity;
 use Message;
 use Psr\Log\LoggerInterface;
 use RevisionDeleteUser;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * Handles the backend logic of blocking users
@@ -328,18 +329,11 @@ class BlockUser {
 	 * @return string|false Timestamp (format TS_MW) or 'infinity' or false on error.
 	 */
 	public static function parseExpiryInput( string $expiry ) {
-		if ( wfIsInfinity( $expiry ) ) {
-			return 'infinity';
-		}
-
-		// ConvertibleTimestamp::time() used so we can fake the current time in tests
-		$expiry = strtotime( $expiry, ConvertibleTimestamp::time() );
-
-		if ( $expiry < 0 || $expiry === false ) {
+		try {
+			return ExpiryDef::normalizeExpiry( $expiry, TS_MW );
+		} catch ( InvalidArgumentException $e ) {
 			return false;
 		}
-
-		return wfTimestamp( TS_MW, $expiry );
 	}
 
 	/**
