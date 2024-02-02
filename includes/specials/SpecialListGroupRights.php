@@ -35,7 +35,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
-use Xml;
 
 /**
  * This special page lists all defined user groups and the associated rights.
@@ -85,10 +84,10 @@ class SpecialListGroupRights extends SpecialPage {
 		$out->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
 
 		$out->addHTML(
-			Xml::openElement( 'table', [ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
+			Html::openElement( 'table', [ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
 				'<tr>' .
-				Xml::element( 'th', null, $this->msg( 'listgrouprights-group' )->text() ) .
-				Xml::element( 'th', null, $this->msg( 'listgrouprights-rights' )->text() ) .
+				Html::element( 'th', [], $this->msg( 'listgrouprights-group' )->text() ) .
+				Html::element( 'th', [], $this->msg( 'listgrouprights-rights' )->text() ) .
 				'</tr>'
 		);
 
@@ -164,7 +163,7 @@ class SpecialListGroupRights extends SpecialPage {
 				'
 			) );
 		}
-		$out->addHTML( Xml::closeElement( 'table' ) );
+		$out->addHTML( Html::closeElement( 'table' ) );
 		$this->outputNamespaceProtectionInfo();
 	}
 
@@ -181,7 +180,7 @@ class SpecialListGroupRights extends SpecialPage {
 			Html::element( 'h2', [
 				'id' => Sanitizer::escapeIdForAttribute( $header )
 			], $header ) .
-			Xml::openElement( 'table', [ 'class' => 'wikitable' ] ) .
+			Html::openElement( 'table', [ 'class' => 'wikitable' ] ) .
 			Html::element(
 				'th',
 				[],
@@ -208,7 +207,7 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 
 			$out->addHTML(
-				Xml::openElement( 'tr' ) .
+				Html::openElement( 'tr' ) .
 				Html::rawElement(
 					'td',
 					[],
@@ -219,7 +218,7 @@ class SpecialListGroupRights extends SpecialPage {
 						[ 'namespace' => $namespace ]
 					)
 				) .
-				Xml::openElement( 'td' ) . Xml::openElement( 'ul' )
+				Html::openElement( 'td' ) . Html::openElement( 'ul' )
 			);
 
 			if ( !is_array( $rights ) ) {
@@ -239,12 +238,12 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 
 			$out->addHTML(
-				Xml::closeElement( 'ul' ) .
-				Xml::closeElement( 'td' ) .
-				Xml::closeElement( 'tr' )
+				Html::closeElement( 'ul' ) .
+				Html::closeElement( 'td' ) .
+				Html::closeElement( 'tr' )
 			);
 		}
-		$out->addHTML( Xml::closeElement( 'table' ) );
+		$out->addHTML( Html::closeElement( 'table' ) );
 	}
 
 	/**
