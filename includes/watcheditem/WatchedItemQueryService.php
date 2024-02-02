@@ -12,7 +12,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Class performing complex database queries related to WatchedItems.
@@ -454,7 +454,7 @@ class WatchedItemQueryService {
 	}
 
 	private function getWatchedItemsWithRCInfoQueryConds(
-		IDatabase $db,
+		IReadableDatabase $db,
 		User $user,
 		array $options
 	) {
@@ -564,7 +564,7 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getStartEndConds( IDatabase $db, array $options ) {
+	private function getStartEndConds( IReadableDatabase $db, array $options ) {
 		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
 			return [];
 		}
@@ -585,7 +585,7 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getUserRelatedConds( IDatabase $db, Authority $user, array $options ) {
+	private function getUserRelatedConds( IReadableDatabase $db, Authority $user, array $options ) {
 		if ( !array_key_exists( 'onlyByUser', $options ) && !array_key_exists( 'notByUser', $options ) ) {
 			return [];
 		}
@@ -612,7 +612,7 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getExtraDeletedPageLogEntryRelatedCond( IDatabase $db, Authority $user ) {
+	private function getExtraDeletedPageLogEntryRelatedCond( IReadableDatabase $db, Authority $user ) {
 		// LogPage::DELETED_ACTION hides the affected page, too. So hide those
 		// entirely from the watchlist, or someone could guess the title.
 		$bitmask = 0;
@@ -630,7 +630,7 @@ class WatchedItemQueryService {
 		return '';
 	}
 
-	private function getStartFromConds( IDatabase $db, array $options, array $startFrom ) {
+	private function getStartFromConds( IReadableDatabase $db, array $options, array $startFrom ) {
 		$op = $options['dir'] === self::DIR_OLDER ? '<=' : '>=';
 		[ $rcTimestamp, $rcId ] = $startFrom;
 		$rcTimestamp = $db->timestamp( $rcTimestamp );
@@ -642,7 +642,7 @@ class WatchedItemQueryService {
 	}
 
 	private function getWatchedItemsForUserQueryConds(
-		IDatabase $db, UserIdentity $user, array $options
+		IReadableDatabase $db, UserIdentity $user, array $options
 	) {
 		$conds = [ 'wl_user' => $user->getId() ];
 		if ( $options['namespaceIds'] ) {
@@ -677,12 +677,12 @@ class WatchedItemQueryService {
 	 * Creates a query condition part for getting only items before or after the given link target
 	 * (while ordering using $sort mode)
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param LinkTarget $target
 	 * @param string $op comparison operator to use in the conditions
 	 * @return string
 	 */
-	private function getFromUntilTargetConds( IDatabase $db, LinkTarget $target, $op ) {
+	private function getFromUntilTargetConds( IReadableDatabase $db, LinkTarget $target, $op ) {
 		return $db->buildComparison( $op, [
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),

@@ -16,6 +16,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -279,11 +280,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * if watchlist expiration is enabled
 	 *
 	 * @param SelectQueryBuilder $queryBuilder
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 */
 	private function modifyQueryBuilderForExpiry(
 		SelectQueryBuilder $queryBuilder,
-		IDatabase $db
+		IReadableDatabase $db
 	) {
 		if ( $this->expiryEnabled ) {
 			$queryBuilder->where( 'we_expiry IS NULL OR we_expiry > ' . $db->addQuotes( $db->timestamp() ) );
@@ -424,7 +425,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function countWatchedItems( UserIdentity $user ): int {
 		$dbr = $this->lbFactory->getReplicaDatabase();
-		$queryBuilder = $this->lbFactory->getReplicaDatabase()->newSelectQueryBuilder()
+		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
 			->from( 'watchlist' )
 			->where( [ 'wl_user' => $user->getId() ] )
@@ -637,13 +638,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * Generates condition for the query used in a batch count visiting watchers.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget|PageIdentity,
 	 *              last visit threshold) - deprecated passing LinkTarget since 1.36
 	 * @return string
 	 */
 	private function getVisitingWatchersCondition(
-		IDatabase $db,
+		IReadableDatabase $db,
 		array $targetsWithVisitThresholds
 	): string {
 		$missingTargets = [];
@@ -833,7 +834,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * If a $target is given, IDatabase::selectRow() is called, otherwise select().
 	 * If $wgWatchlistExpiry is enabled, expired items are not returned.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param UserIdentity $user
 	 * @param array $vars we_expiry is added when $wgWatchlistExpiry is enabled.
 	 * @param array $orderBy array of columns
@@ -842,7 +843,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @return IResultWrapper|stdClass|false
 	 */
 	private function fetchWatchedItems(
-		IDatabase $db,
+		IReadableDatabase $db,
 		UserIdentity $user,
 		array $vars,
 		array $orderBy = [],
@@ -1673,15 +1674,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param IDatabase $dbw
+	 * @param IReadableDatabase $dbr
 	 * @param LinkTarget|PageIdentity $target
 	 * @return IResultWrapper
 	 */
 	private function fetchWatchedItemsForPage(
-		IDatabase $dbw,
+		IReadableDatabase $dbr,
 		$target
 	): IResultWrapper {
-		$queryBuilder = $dbw->newSelectQueryBuilder()
+		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'wl_user', 'wl_notificationtimestamp' ] )
 			->from( 'watchlist' )
 			->where( [
