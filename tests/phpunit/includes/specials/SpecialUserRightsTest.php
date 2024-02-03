@@ -150,7 +150,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$externalDbw = $this->getServiceContainer()
 			->getConnectionProvider()
 			->getPrimaryDatabase( $externalDBname );
-		$externalDbw->truncate( 'user_groups', __METHOD__ );
+		$externalDbw->truncateTable( 'user_groups', __METHOD__ );
 
 		// ensure using SpecialUserRights with external usernames doesn't throw (T342747, T342322)
 		$performer = $this->getTestUser( [ 'bureaucrat' ] );
