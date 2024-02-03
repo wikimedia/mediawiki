@@ -101,12 +101,6 @@ class McrUndoAction extends FormAction {
 
 		$out = $this->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
-		if ( $this->getContext()->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
-			$out->addModuleStyles( [
-				'mediawiki.ui.input',
-				'mediawiki.ui.checkbox',
-			] );
-		}
 
 		// IP warning headers copied from EditPage
 		// (should more be copied?)

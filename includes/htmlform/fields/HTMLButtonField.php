@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
 
 /**
  * Adds a generic button inline to the form. Does not do anything, you must add
@@ -69,15 +68,11 @@ class HTMLButtonField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		$flags = '';
 		$prefix = 'mw-htmlform-';
-		$isCodexForm = $this->mParent instanceof CodexHTMLForm;
-		if ( $this->mParent instanceof VFormHTMLForm ||
-			( !$isCodexForm && $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) )
-		) {
+		if ( $this->mParent instanceof VFormHTMLForm ) {
 			$prefix = 'mw-ui-';
 			// add mw-ui-button separately, so the descriptor doesn't need to set it
 			$flags .= ' ' . $prefix . 'button';
-		}
-		if ( $isCodexForm ) {
+		} elseif ( $this->mParent instanceof CodexHTMLForm ) {
 			$flags .= ' cdx-button cdx-button--action-progressive cdx-button--weight-primary';
 		}
 		foreach ( $this->mFlags as $flag ) {

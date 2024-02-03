@@ -46,10 +46,6 @@ class VFormHTMLForm extends HTMLForm {
 	}
 
 	public function getHTML( $submitResult ) {
-		// This is required for VForm HTMLForms that use that style regardless
-		// of wgUseMediaWikiUIEverywhere (since they pre-date it).
-		// When wgUseMediaWikiUIEverywhere is removed, this should be consolidated
-		// with the addModuleStyles in SpecialPage->setHeaders.
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.ui',
 			'mediawiki.ui.button',

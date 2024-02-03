@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 
 /**
@@ -16,11 +15,6 @@ class HTMLCheckField extends HTMLFormField {
 	 * @stable to override
 	 */
 	public function getInputHTML( $value ) {
-		$useMediaWikiUIEverywhere = false;
-		if ( $this->mParent ) {
-			$useMediaWikiUIEverywhere = $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
-		}
-
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;
 		}
@@ -55,7 +49,7 @@ class HTMLCheckField extends HTMLFormField {
 			$chkDivider .
 			Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
-		if ( $isCodexForm || $useMediaWikiUIEverywhere || $isVForm ) {
+		if ( $isCodexForm || $isVForm ) {
 			$chkLabelClass = $isCodexForm ? 'cdx-checkbox' : 'mw-ui-checkbox';
 			$chkLabel = Html::rawElement(
 				'div',

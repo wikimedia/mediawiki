@@ -26,7 +26,6 @@
 namespace MediaWiki\Html;
 
 use FormatJson;
-use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\ContentSecurityPolicy;
@@ -109,75 +108,29 @@ class Html {
 	];
 
 	/**
-	 * Modifies a set of attributes meant for button elements
-	 * and apply a set of default attributes when $wgUseMediaWikiUIEverywhere enabled.
+	 * Modifies a set of attributes meant for button elements.
+	 *
 	 * @param array $attrs HTML attributes in an associative array
 	 * @param string[] $modifiers classes to add to the button
 	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return array Modified attributes array
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
-		$useMediaWikiUIEverywhere =
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
-		if ( $useMediaWikiUIEverywhere ) {
-			if ( isset( $attrs['class'] ) ) {
-				if ( is_array( $attrs['class'] ) ) {
-					$attrs['class'][] = 'mw-ui-button';
-					$attrs['class'] = array_merge( $attrs['class'], $modifiers );
-					// ensure compatibility with Xml
-					$attrs['class'] = implode( ' ', $attrs['class'] );
-				} else {
-					$attrs['class'] .= ' mw-ui-button ' . implode( ' ', $modifiers );
-				}
-			} else {
-				// ensure compatibility with Xml
-				$attrs['class'] = 'mw-ui-button ' . implode( ' ', $modifiers );
-			}
-		}
 		return $attrs;
 	}
 
 	/**
-	 * Modifies a set of attributes meant for text input elements
-	 * and apply a set of default attributes.
+	 * Modifies a set of attributes meant for text input elements.
 	 *
 	 * @param array $attrs An attribute array.
 	 * @return array Modified attributes array
 	 */
 	public static function getTextInputAttributes( array $attrs ) {
-		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
-		if ( $useMediaWikiUIEverywhere ) {
-			$cdxInputClass = 'cdx-text-input__input';
-			// This will only apply if the input is not using official Codex classes.
-			// In future this should trigger a deprecation warning.
-			if ( isset( $attrs['class'] ) ) { // see expandAttributes() for supported attr formats
-				if ( is_array( $attrs['class'] ) ) {
-					if (
-						!in_array( $cdxInputClass, $attrs['class'], true ) &&
-						!( $attrs['class'][$cdxInputClass] ?? false )
-					) {
-						$attrs['class']['mw-ui-input'] = true;
-					}
-				} elseif ( is_string( $attrs['class'] ) ) {
-					if ( !preg_match( "/(^| )$cdxInputClass($| )/", $attrs['class'] ) ) {
-						$attrs['class'] .= ' mw-ui-input';
-					}
-				} else {
-					throw new InvalidArgumentException(
-						'Unexpected class attr of type ' . gettype( $attrs['class'] )
-					);
-				}
-			} else {
-				$attrs['class'] = 'mw-ui-input';
-			}
-		}
 		return $attrs;
 	}
 
 	/**
-	 * Returns an HTML link element in a string styled as a button
-	 * (when $wgUseMediaWikiUIEverywhere is enabled).
+	 * Returns an HTML link element in a string.
 	 *
 	 * @param string $text The text of the element. Will be escaped (not raw HTML)
 	 * @param array $attrs Associative array of attributes, e.g., [
@@ -196,8 +149,7 @@ class Html {
 	}
 
 	/**
-	 * Returns an HTML link element in a string styled as a button
-	 * (when $wgUseMediaWikiUIEverywhere is enabled).
+	 * Returns an HTML link element in a string styled as a button.
 	 *
 	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!

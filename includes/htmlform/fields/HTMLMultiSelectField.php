@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 
 /**
@@ -145,11 +144,6 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 					[ 'for' => $attribs['id'] ],
 					$label
 				);
-			if ( $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
-				$checkbox = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
-					$checkbox .
-					Html::closeElement( 'div' );
-			}
 			return $checkbox;
 		}
 	}

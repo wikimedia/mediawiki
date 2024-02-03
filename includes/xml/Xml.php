@@ -295,8 +295,7 @@ class Xml {
 			$attributes['value'] = $value;
 		}
 
-		return self::element( 'input',
-			Html::getTextInputAttributes( $attributes + $attribs ) );
+		return self::element( 'input', $attributes + $attribs );
 	}
 
 	/**
@@ -430,17 +429,9 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = [] ) {
-		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::UseMediaWikiUIEverywhere );
-		$chkLabel = self::check( $name, $checked, [ 'id' => $id ] + $attribs ) .
+		return self::check( $name, $checked, [ 'id' => $id ] + $attribs ) .
 			"\u{00A0}" .
 			self::label( $label, $id, $attribs );
-
-		if ( $useMediaWikiUIEverywhere ) {
-			$chkLabel = self::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
-				$chkLabel . self::closeElement( 'div' );
-		}
-		return $chkLabel;
 	}
 
 	/**
@@ -464,27 +455,17 @@ class Xml {
 	}
 
 	/**
-	 * Convenience function to build an HTML submit button
-	 * When $wgUseMediaWikiUIEverywhere is true it will default to a progressive button
+	 * Convenience function to build an HTML submit button.
+	 *
 	 * @param string $value Label text for the button (unescaped)
 	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = [] ) {
-		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::UseMediaWikiUIEverywhere );
-		$baseAttrs = [
+		$attribs += [
 			'type' => 'submit',
 			'value' => $value,
 		];
-		// Done conditionally for time being as it is possible
-		// some submit forms
-		// might need to be mw-ui-destructive (e.g. delete a page)
-		if ( $useMediaWikiUIEverywhere ) {
-			$baseAttrs['class'] = 'mw-ui-button mw-ui-progressive';
-		}
-		// Any custom attributes will take precedence of anything in baseAttrs e.g. override the class
-		$attribs += $baseAttrs;
 		return Html::element( 'input', $attribs );
 	}
 
@@ -657,14 +638,12 @@ class Xml {
 	 */
 	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = [] ) {
 		return self::element( 'textarea',
-					Html::getTextInputAttributes(
-						[
-							'name' => $name,
-							'id' => $name,
-							'cols' => $cols,
-							'rows' => $rows
-						] + $attribs
-					),
+					[
+						'name' => $name,
+						'id' => $name,
+						'cols' => $cols,
+						'rows' => $rows
+					] + $attribs,
 					$content, false );
 	}
 
