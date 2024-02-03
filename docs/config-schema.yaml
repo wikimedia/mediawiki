@@ -3188,13 +3188,6 @@ config-schema:
             This global allows skins or extensions a means to force non-table based rendering.
             Setting to false forces form components to always render as div elements.
             @since 1.24
-    UseMediaWikiUIEverywhere:
-        default: false
-        description: |-
-            Temporary variable that applies MediaWiki UI wherever it can be supported.
-            Temporary variable that should be removed when mediawiki ui is more
-            stable and change has been communicated.
-            @since 1.24
     EditSubmitButtonLabelPublish:
         default: false
         description: |-

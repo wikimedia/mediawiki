@@ -62,6 +62,7 @@ For notes on 1.41.x and older releases, see HISTORY.
   Register an extension tag named <img> instead.
 * $wgMinimalPasswordLength and $wgMaximalPasswordLength, deprecated since 1.26
   have been dropped. Use $wgPasswordPolicy instead.
+* $wgUseMediaWikiUIEverywhere has been removed.
 * …
 
 === New user-facing features in 1.42 ===

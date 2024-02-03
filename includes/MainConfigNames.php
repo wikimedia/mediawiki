@@ -1956,12 +1956,6 @@ class MainConfigNames {
 	public const HTMLFormAllowTableFormat = 'HTMLFormAllowTableFormat';
 
 	/**
-	 * Name constant for the UseMediaWikiUIEverywhere setting, for use with Config::get()
-	 * @see MainConfigSchema::UseMediaWikiUIEverywhere
-	 */
-	public const UseMediaWikiUIEverywhere = 'UseMediaWikiUIEverywhere';
-
-	/**
 	 * Name constant for the EditSubmitButtonLabelPublish setting, for use with Config::get()
 	 * @see MainConfigSchema::EditSubmitButtonLabelPublish
 	 */

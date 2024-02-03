@@ -5135,18 +5135,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Temporary variable that applies MediaWiki UI wherever it can be supported.
-	 *
-	 * Temporary variable that should be removed when mediawiki ui is more
-	 * stable and change has been communicated.
-	 *
-	 * @since 1.24
-	 */
-	public const UseMediaWikiUIEverywhere = [
-		'default' => false,
-	];
-
-	/**
 	 * Whether to label the store-to-database-and-show-to-others button in the editor
 	 * as "Save page"/"Save changes" if false (the default) or, if true, instead as
 	 * "Publish page"/"Publish changes".

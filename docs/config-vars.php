@@ -1941,12 +1941,6 @@ $wgHtml5Version = null;
 $wgHTMLFormAllowTableFormat = null;
 
 /**
- * Config variable stub for the UseMediaWikiUIEverywhere setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::UseMediaWikiUIEverywhere
- */
-$wgUseMediaWikiUIEverywhere = null;
-
-/**
  * Config variable stub for the EditSubmitButtonLabelPublish setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EditSubmitButtonLabelPublish
  */

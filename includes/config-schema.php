@@ -625,7 +625,6 @@ return [
 			'MimeType' => 'text/html',
 			'Html5Version' => null,
 			'HTMLFormAllowTableFormat' => true,
-			'UseMediaWikiUIEverywhere' => false,
 			'EditSubmitButtonLabelPublish' => false,
 			'XhtmlNamespaces' => [
 			],
