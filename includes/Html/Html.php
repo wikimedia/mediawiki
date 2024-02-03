@@ -111,11 +111,12 @@ class Html {
 	 * Modifies a set of attributes meant for button elements.
 	 *
 	 * @param array $attrs HTML attributes in an associative array
-	 * @param string[] $modifiers classes to add to the button
-	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @param string[] $modifiers Unused
 	 * @return array Modified attributes array
+	 * @deprecated since 1.42 No-op
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return $attrs;
 	}
 
@@ -124,8 +125,10 @@ class Html {
 	 *
 	 * @param array $attrs An attribute array.
 	 * @return array Modified attributes array
+	 * @deprecated since 1.42 No-op
 	 */
 	public static function getTextInputAttributes( array $attrs ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return $attrs;
 	}
 
@@ -136,14 +139,13 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
-	 * @param string[] $modifiers classes to add to the button
-	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @param string[] $modifiers Unused
 	 * @return string Raw HTML
 	 */
 	public static function linkButton( $text, array $attrs, array $modifiers = [] ) {
 		return self::element(
 			'a',
-			self::buttonAttributes( $attrs, $modifiers ),
+			$attrs,
 			$text
 		);
 	}
@@ -156,14 +158,13 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
-	 * @param string[] $modifiers classes to add to the button
-	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @param string[] $modifiers Unused
 	 * @return string Raw HTML
 	 */
 	public static function submitButton( $contents, array $attrs, array $modifiers = [] ) {
 		$attrs['type'] = 'submit';
 		$attrs['value'] = $contents;
-		return self::element( 'input', self::buttonAttributes( $attrs, $modifiers ) );
+		return self::element( 'input', $attrs );
 	}
 
 	/**
@@ -665,24 +666,6 @@ class Html {
 		$attribs['type'] = $type;
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
-		$textInputAttributes = [
-			'text' => true,
-			'search' => true,
-			'email' => true,
-			'password' => true,
-			'number' => true,
-		];
-		if ( isset( $textInputAttributes[$type] ) ) {
-			$attribs = self::getTextInputAttributes( $attribs );
-		}
-		$buttonAttributes = [
-			'button' => true,
-			'reset' => true,
-			'submit' => true,
-		];
-		if ( isset( $buttonAttributes[$type] ) ) {
-			$attribs = self::buttonAttributes( $attribs );
-		}
 		return self::element( 'input', $attribs );
 	}
 
@@ -881,7 +864,7 @@ class Html {
 		} else {
 			$spacedValue = $value;
 		}
-		return self::element( 'textarea', self::getTextInputAttributes( $attribs ), $spacedValue );
+		return self::element( 'textarea', $attribs, $spacedValue );
 	}
 
 	/**
