@@ -53,7 +53,6 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
@@ -132,11 +131,6 @@ class RevisionStore
 	 */
 	private $commentStore;
 
-	/**
-	 * @var ActorMigration
-	 */
-	private $actorMigration;
-
 	/** @var ActorStore */
 	private $actorStore;
 
@@ -184,7 +178,6 @@ class RevisionStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param ActorMigration $actorMigration
 	 * @param ActorStore $actorStore
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param PageStore $pageStore
@@ -204,7 +197,6 @@ class RevisionStore
 		NameTableStore $contentModelStore,
 		NameTableStore $slotRoleStore,
 		SlotRoleRegistry $slotRoleRegistry,
-		ActorMigration $actorMigration,
 		ActorStore $actorStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		PageStore $pageStore,
@@ -222,7 +214,6 @@ class RevisionStore
 		$this->contentModelStore = $contentModelStore;
 		$this->slotRoleStore = $slotRoleStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
-		$this->actorMigration = $actorMigration;
 		$this->actorStore = $actorStore;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
@@ -775,12 +766,6 @@ class RevisionStore
 			$rev->getComment( RevisionRecord::RAW )
 		);
 
-		$revisionRow += $this->actorMigration->getInsertValues(
-			$dbw,
-			'rev_user',
-			$rev->getUser( RevisionRecord::RAW )
-		);
-
 		$dbw->newInsertQueryBuilder()
 			->insertInto( 'revision' )
 			->row( $revisionRow )
@@ -887,6 +872,10 @@ class RevisionStore
 		$revisionRow = [
 			'rev_page'       => $rev->getPageId( $this->wikiId ),
 			'rev_parent_id'  => $parentId,
+			'rev_actor'      => $this->actorStore->acquireActorId(
+				$rev->getUser( RevisionRecord::RAW ),
+				$dbw
+			),
 			'rev_minor_edit' => $rev->isMinor() ? 1 : 0,
 			'rev_timestamp'  => $dbw->timestamp( $rev->getTimestamp() ),
 			'rev_deleted'    => $rev->getVisibility(),
@@ -2442,10 +2431,16 @@ class RevisionStore
 			'joins'  => [],
 		];
 
-		$ret['tables'][] = 'revision';
+		$ret['tables'] = array_merge( $ret['tables'], [
+			'revision',
+			'actor_rev_user' => 'actor',
+		] );
 		$ret['fields'] = array_merge( $ret['fields'], [
 			'rev_id',
 			'rev_page',
+			'rev_actor' => 'rev_actor',
+			'rev_user' => 'actor_rev_user.actor_user',
+			'rev_user_text' => 'actor_rev_user.actor_name',
 			'rev_timestamp',
 			'rev_minor_edit',
 			'rev_deleted',
@@ -2453,16 +2448,12 @@ class RevisionStore
 			'rev_parent_id',
 			'rev_sha1',
 		] );
+		$ret['joins']['actor_rev_user'] = [ 'JOIN', "actor_rev_user.actor_id = rev_actor" ];
 
 		$commentQuery = $this->commentStore->getJoin( 'rev_comment' );
 		$ret['tables'] = array_merge( $ret['tables'], $commentQuery['tables'] );
 		$ret['fields'] = array_merge( $ret['fields'], $commentQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $commentQuery['joins'] );
-
-		$actorQuery = $this->actorMigration->getJoin( 'rev_user' );
-		$ret['tables'] = array_merge( $ret['tables'], $actorQuery['tables'] );
-		$ret['fields'] = array_merge( $ret['fields'], $actorQuery['fields'] );
-		$ret['joins'] = array_merge( $ret['joins'], $actorQuery['joins'] );
 
 		if ( in_array( 'page', $options, true ) ) {
 			$ret['tables'][] = 'page';
@@ -2482,8 +2473,10 @@ class RevisionStore
 			$ret['fields'] = array_merge( $ret['fields'], [
 				'user_name',
 			] );
-			$u = $actorQuery['fields']['rev_user'];
-			$ret['joins']['user'] = [ 'LEFT JOIN', [ "$u != 0", "user_id = $u" ] ];
+			$ret['joins']['user'] = [
+				'LEFT JOIN',
+				[ 'actor_rev_user.actor_user != 0', 'user_id = actor_rev_user.actor_user' ]
+			];
 		}
 
 		if ( in_array( 'text', $options, true ) ) {
@@ -3266,7 +3259,6 @@ class RevisionStore
 			$queryOpts['LIMIT'] = $max + 1;
 		}
 
-		$actorQuery = $this->actorMigration->getJoin( 'rev_user' );
 		return array_map( function ( $row ) {
 			return $this->actorStore->newActorFromRowFields(
 				$row->rev_user,
@@ -3274,11 +3266,16 @@ class RevisionStore
 				$row->rev_actor
 			);
 		}, iterator_to_array( $dbr->select(
-			array_merge( [ 'revision' ], $actorQuery['tables'] ),
-			$actorQuery['fields'],
-			$conds, __METHOD__,
+			[ 'revision', 'revision_actor' => 'actor' ],
+			[
+				'rev_actor',
+				'rev_user' => 'revision_actor.actor_user',
+				'rev_user_text' => 'revision_actor.actor_name',
+			],
+			$conds,
+			__METHOD__,
 			$queryOpts,
-			$actorQuery['joins']
+			[ 'revision_actor' => [ 'JOIN', 'revision_actor.actor_id = rev_actor' ] ]
 		) ) );
 	}
 
