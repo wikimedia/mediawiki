@@ -548,7 +548,7 @@ class DeleteAction extends FormAction {
 	protected function showLogEntries(): void {
 		$deleteLogPage = new LogPage( 'delete' );
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
+		$outputPage->addHTML( Html::element( 'h2', [], $deleteLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $outputPage, 'delete', $this->getTitle() );
 	}
 
