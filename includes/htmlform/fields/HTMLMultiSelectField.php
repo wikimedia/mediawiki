@@ -189,7 +189,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		// CheckboxMultiselectInputWidget.
 		foreach ( $options as $label => $section ) {
 			if ( is_array( $section ) ) {
-				$optionsOouiSections[ $label ] = Xml::listDropDownOptionsOoui( $section );
+				$optionsOouiSections[ $label ] = Html::listDropDownOptionsOoui( $section );
 				unset( $options[$label] );
 				$hasSections = true;
 			}
@@ -198,7 +198,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		// at the beginning.
 		if ( $options ) {
 			$optionsOouiSections = array_merge(
-				[ '' => Xml::listDropDownOptionsOoui( $options ) ],
+				[ '' => Html::listDropDownOptionsOoui( $options ) ],
 				$optionsOouiSections
 			);
 		}

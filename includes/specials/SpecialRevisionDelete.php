@@ -489,7 +489,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				'cssclass' => 'wpReasonDropDown',
 				'id' => 'wpRevDeleteReasonList',
 				'name' => 'wpRevDeleteReasonList',
-				'options' => Xml::listDropDownOptions(
+				'options' => Html::listDropDownOptions(
 					$dropDownReason,
 					[ 'other' => $this->msg( 'revdelete-reasonotherlist' )->text() ]
 				),

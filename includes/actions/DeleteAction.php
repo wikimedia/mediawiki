@@ -447,7 +447,7 @@ class DeleteAction extends FormAction {
 					->inContentLanguage()->text();
 		}
 
-		$options = Xml::listDropDownOptions(
+		$options = Html::listDropDownOptions(
 			$dropDownReason,
 			[ 'other' => $this->getFormMsg( self::MSG_REASON_DROPDOWN_OTHER )->text() ]
 		);

@@ -933,6 +933,67 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			Html::encodeJsVar( $obj )
 		);
 	}
+
+	public function testListDropDownOptions() {
+		$this->assertEquals(
+			[
+				'other reasons' => 'other',
+				'Empty group item' => 'Empty group item',
+				'Foo' => [
+					'Foo 1' => 'Foo 1',
+					'Example' => 'Example',
+				],
+				'Bar' => [
+					'Bar 1' => 'Bar 1',
+				],
+			],
+			Html::listDropDownOptions(
+				"*\n** Empty group item\n* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				[ 'other' => 'other reasons' ]
+			)
+		);
+	}
+
+	public function testListDropDownOptionsOthers() {
+		// Do not use the value for 'other' as option group - T251351
+		$this->assertEquals(
+			[
+				'other reasons' => 'other',
+				'Foo 1' => 'Foo 1',
+				'Example' => 'Example',
+				'Bar' => [
+					'Bar 1' => 'Bar 1',
+				],
+			],
+			Html::listDropDownOptions(
+				"* other reasons\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				[ 'other' => 'other reasons' ]
+			)
+		);
+	}
+
+	public function testListDropDownOptionsOoui() {
+		$this->assertEquals(
+			[
+				[ 'data' => 'other', 'label' => 'other reasons' ],
+				[ 'optgroup' => 'Foo' ],
+				[ 'data' => 'Foo 1', 'label' => 'Foo 1' ],
+				[ 'data' => 'Example', 'label' => 'Example' ],
+				[ 'optgroup' => 'Bar' ],
+				[ 'data' => 'Bar 1', 'label' => 'Bar 1' ],
+			],
+			Html::listDropDownOptionsOoui( [
+				'other reasons' => 'other',
+				'Foo' => [
+					'Foo 1' => 'Foo 1',
+					'Example' => 'Example',
+				],
+				'Bar' => [
+					'Bar 1' => 'Bar 1',
+				],
+			] )
+		);
+	}
 }
 
 class HtmlTestValue {

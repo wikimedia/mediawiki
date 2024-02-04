@@ -1219,6 +1219,86 @@ class Html {
 			return implode( ',', $args );
 		}
 	}
+
+	/**
+	 * Build options for a drop-down box from a textual list.
+	 *
+	 * The result of this function can be passed to XmlSelect::addOptions()
+	 * (to render a plain `<select>` dropdown box) or to Html::listDropDownOptionsOoui()
+	 * and then OOUI\DropdownInputWidget() (to render a pretty one).
+	 *
+	 * @param string $list Correctly formatted text (newline delimited) to be
+	 *   used to generate the options.
+	 * @param array $params Extra parameters:
+	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
+	 * @return array Array keys are textual labels, values are internal values
+	 */
+	public static function listDropDownOptions( $list, $params = [] ) {
+		$options = [];
+
+		if ( isset( $params['other'] ) ) {
+			$options[ $params['other'] ] = 'other';
+		}
+
+		$optgroup = false;
+		foreach ( explode( "\n", $list ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			}
+			if ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+				# A new group is starting...
+				$value = trim( substr( $value, 1 ) );
+				if ( $value !== '' &&
+					// Do not use the value for 'other' as option group - T251351
+					( !isset( $params['other'] ) || $value !== $params['other'] )
+				) {
+					$optgroup = $value;
+				} else {
+					$optgroup = false;
+				}
+			} elseif ( substr( $value, 0, 2 ) == '**' ) {
+				# groupmember
+				$opt = trim( substr( $value, 2 ) );
+				if ( $optgroup === false ) {
+					$options[$opt] = $opt;
+				} else {
+					$options[$optgroup][$opt] = $opt;
+				}
+			} else {
+				# groupless reason list
+				$optgroup = false;
+				$options[$option] = $option;
+			}
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Convert options for a drop-down box into a format accepted by OOUI\DropdownInputWidget etc.
+	 *
+	 * TODO Find a better home for this function.
+	 *
+	 * @param array $options Options, as returned e.g. by Html::listDropDownOptions()
+	 * @return array
+	 */
+	public static function listDropDownOptionsOoui( $options ) {
+		$optionsOoui = [];
+
+		foreach ( $options as $text => $value ) {
+			if ( is_array( $value ) ) {
+				$optionsOoui[] = [ 'optgroup' => (string)$text ];
+				foreach ( $value as $text2 => $value2 ) {
+					$optionsOoui[] = [ 'data' => (string)$value2, 'label' => (string)$text2 ];
+				}
+			} else {
+				$optionsOoui[] = [ 'data' => (string)$value, 'label' => (string)$text ];
+			}
+		}
+
+		return $optionsOoui;
+	}
 }
 
 /**

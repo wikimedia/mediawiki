@@ -1195,7 +1195,7 @@ abstract class HTMLFormField {
 				$this->mOptions = self::forceToStringRecursive( $this->mParams['options'] );
 			} elseif ( array_key_exists( 'options-message', $this->mParams ) ) {
 				$message = $this->getMessage( $this->mParams['options-message'] )->inContentLanguage()->plain();
-				$this->mOptions = Xml::listDropDownOptions( $message );
+				$this->mOptions = Html::listDropDownOptions( $message );
 			} else {
 				$this->mOptions = null;
 			}
@@ -1216,7 +1216,7 @@ abstract class HTMLFormField {
 			return null;
 		}
 
-		return Xml::listDropDownOptionsOoui( $oldoptions );
+		return Html::listDropDownOptionsOoui( $oldoptions );
 	}
 
 	/**
