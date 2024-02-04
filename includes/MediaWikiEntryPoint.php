@@ -925,8 +925,7 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * Returns the content of the current output buffer and resets the buffer
-	 * (but does not end it).
+	 * Returns the content of the current output buffer and ends the buffer.
 	 *
 	 * @see ob_get_clean
 	 * @return false|string
@@ -1021,10 +1020,6 @@ abstract class MediaWikiEntryPoint {
 	 * @see flush
 	 */
 	protected function flushOutputBuffer(): void {
-		if ( $this->inPostSendMode() && $this->getOutputBufferLevel() ) {
-			throw new RuntimeException( 'Output already sent!' );
-		}
-
 		while ( $this->getOutputBufferLevel() ) {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			@ob_end_flush();
