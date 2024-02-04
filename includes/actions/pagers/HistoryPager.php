@@ -45,7 +45,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Watchlist\WatchlistManager;
 use stdClass;
-use Xml;
 
 /**
  * @ingroup Pager
@@ -145,7 +144,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 	}
 
-	// For hook compatibility...
+	// For hook compatibility…
 	public function getArticle() {
 		return $this->historyPage->getArticle();
 	}
@@ -285,7 +284,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				] ) . "\n" . $s;
 				$s .= Html::hidden( 'type', 'revision', [ 'form' => 'mw-history-revisionactions' ] ) . "\n";
 
-				$this->buttons .= Xml::tags( 'div', [ 'class' =>
+				$this->buttons .= Html::rawElement( 'div', [ 'class' =>
 					'mw-history-revisionactions' ], $actionButtons );
 			}
 
@@ -409,18 +408,20 @@ class HistoryPager extends ReverseChronologicalPager {
 			if ( !$this->showTagEditUI
 				&& !$revRecord->userCan( RevisionRecord::DELETED_RESTRICTED, $this->getAuthority() )
 			) {
-				$del = Xml::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
-			// Otherwise, enable the checkbox...
+				$del = Html::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
+			// Otherwise, enable the checkbox…
 			} else {
-				$del = Xml::check( 'showhiderevisions', false,
-					[ 'name' => 'ids[' . $revRecord->getId() . ']', 'form' => 'mw-history-revisionactions' ] );
+				$del = Html::check(
+					'ids[' . $revRecord->getId() . ']', false,
+					[ 'form' => 'mw-history-revisionactions' ]
+				);
 			}
-		// User can only view deleted revisions...
+		// User can only view deleted revisions…
 		} elseif ( $revRecord->getVisibility() && $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
 			if ( !$revRecord->userCan( RevisionRecord::DELETED_RESTRICTED, $this->getAuthority() ) ) {
 				$del = Linker::revDeleteLinkDisabled( false );
-			// Otherwise, show the link...
+			// Otherwise, show the link…
 			} else {
 				$query = [
 					'type' => 'revision',
@@ -521,7 +522,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$attribs['class'] = implode( ' ', $classes );
 		}
 
-		return Xml::tags( 'li', $attribs, $s ) . "\n";
+		return Html::rawElement( 'li', $attribs, $s ) . "\n";
 	}
 
 	/**
@@ -613,7 +614,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$radio = [ 'type' => 'radio', 'value' => $id ];
 			/** @todo Move title texts to javascript */
 			if ( $firstInList ) {
-				$first = Xml::element( 'input',
+				$first = Html::element( 'input',
 					array_merge( $radio, [
 						// Disable the hidden radio because it can still
 						// be selected with arrow keys on Firefox
@@ -633,13 +634,13 @@ class HistoryPager extends ReverseChronologicalPager {
 				} else {
 					$checkmark = [];
 				}
-				$first = Xml::element( 'input',
+				$first = Html::element( 'input',
 					array_merge( $radio, $checkmark, [
 						'name' => 'oldid',
 						'id' => "mw-oldid-$id" ] ) );
 				$checkmark = [];
 			}
-			$second = Xml::element( 'input',
+			$second = Html::element( 'input',
 				array_merge( $radio, $checkmark, [
 					'name' => 'diff',
 					'id' => "mw-diff-$id" ] ) );
