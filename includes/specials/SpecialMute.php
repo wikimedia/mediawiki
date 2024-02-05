@@ -211,7 +211,7 @@ class SpecialMute extends FormSpecialPage {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-mutelist-disabled' );
 		}
 
-		if ( !$this->getUser()->getEmailAuthenticationTimestamp() ) {
+		if ( !$this->getUser()->isEmailConfirmed() ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-no-email-set' );
 		}
 
