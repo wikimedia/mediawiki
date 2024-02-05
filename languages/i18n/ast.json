@@ -3661,7 +3661,7 @@
 	"mw-widgets-usersmultiselect-placeholder": "Amestar más...",
 	"mw-widgets-titlesmultiselect-placeholder": "Amestar más...",
 	"date-range-from": "Dende la data:",
-	"date-range-to": "Ata la data:",
+	"date-range-to": "Hasta la data:",
 	"sessionmanager-tie": "Nun puen combinase dellos tipos de solicitú d'identificación: $1.",
 	"sessionprovider-generic": "sesiones $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesiones basaes en cookies",

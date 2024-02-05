@@ -3429,7 +3429,7 @@
 	"version-entrypoints-header-url": "URL",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Artikelpfad]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Skriptpfad]",
-	"version-libraries": "Installierte Bibliotheken",
+	"version-libraries": "Serverseitig installierte Bibliotheken",
 	"version-libraries-library": "Bibliothek",
 	"version-libraries-version": "Version",
 	"version-libraries-license": "Lizenz",
