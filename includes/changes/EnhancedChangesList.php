@@ -818,7 +818,7 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 		// $this->lastdate is kept up to date by recentChangesLine()
-		return Xml::element( 'h4', null, $this->lastdate ) . "\n<div>" . $blockOut . '</div>';
+		return Html::element( 'h4', [], $this->lastdate ) . "\n<div>" . $blockOut . '</div>';
 	}
 
 	/**
