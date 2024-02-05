@@ -8,6 +8,7 @@
 	 */
 
 	/**
+	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 * Add a visible byte limit label to a TextInputWidget.
 	 *
 	 * Uses jQuery#byteLimit to enforce the limit.
@@ -45,6 +46,7 @@
 	};
 
 	/**
+	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 * Add a visible codepoint (character) limit label to a TextInputWidget.
 	 *
 	 * Uses jQuery#codePointLimit to enforce the limit.
