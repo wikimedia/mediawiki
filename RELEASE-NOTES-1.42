@@ -477,6 +477,8 @@ because of Phabricator reports.
 * Status::setMessageLocalizer is deprecated. Callers that want to control the
   localization of the Status object should obtain a StatusFormatter from
   the StatusFormatterFactory.
+* Html::buttonAttributes() and Html::getTextInputAttributes() methods
+  no longer do anything and have been deprecated.
 * The MediaWiki class has been deprecated. Type hints in hooks should be
   changed to refer to MediaWikiEntryPoint instead. Note that extensions should
   not define their own entry points and should not interfere with the state of
