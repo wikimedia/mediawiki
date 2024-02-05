@@ -69,9 +69,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 		$parserOutput->addModules( $this->getModules() );
 		$parserOutput->addModuleStyles( [ 'mediawiki.page.gallery.styles' ] );
-		$output = Xml::openElement( 'ul', $attribs );
+		$output = Html::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
-			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
+			$output .= "\n\t" . Html::rawElement( 'li', [ 'class' => 'gallerycaption' ], $this->mCaption );
 		}
 
 		if ( $this->mShowFilename ) {
@@ -149,9 +149,14 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
 				}
 
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
-					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
-					. $thumbhtml . '</div>';
+				$thumbhtml = "\n\t\t\t" . Html::rawElement(
+					'div',
+					[
+						'class' => 'thumb',
+						'style' => 'height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;'
+					],
+					$thumbhtml
+				);
 
 				if ( !$img && $resolveFilesViaParser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
@@ -245,7 +250,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			}
 			$meta = $lang->semicolonList( $meta );
 			if ( $meta ) {
-				$meta .= "<br />\n";
+				$meta .= Html::rawElement( 'br', [] ) . "\n";
 			}
 
 			$textlink = $this->mShowFilename ?
@@ -257,16 +262,18 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$gbWidth = $this->getGBWidthOverwrite( $thumb ) ?: $this->getGBWidth( $thumb ) . 'px';
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
-			$output .= "\n\t\t" . '<li class="gallerybox" style="width: '
-				. $gbWidth . '">'
-				. ( $enableLegacyMediaDOM ? '<div style="width: ' . $gbWidth . '">' : '' )
-				. $thumbhtml
-				. $galleryText
-				. "\n\t\t"
-				. ( $enableLegacyMediaDOM ? '</div>' : '' )
-				. "</li>";
+			$output .= "\n\t\t" .
+			Html::rawElement(
+				'li',
+				[ 'class' => 'gallerybox', 'style' => 'width: ' . $gbWidth ],
+				( $enableLegacyMediaDOM ? Html::openElement( 'div', [ 'style' => 'width: ' . $gbWidth ] ) : '' )
+					. $thumbhtml
+					. $galleryText
+					. "\n\t\t"
+					. ( $enableLegacyMediaDOM ? Html::closeElement( 'div' ) : '' )
+			);
 		}
-		$output .= "\n</ul>";
+		$output .= "\n" . Html::closeElement( 'ul' );
 
 		return $output;
 	}
@@ -300,7 +307,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @return string
 	 */
 	protected function wrapGalleryText( $galleryText, $thumb ) {
-		return "\n\t\t\t" . '<div class="gallerytext">' . $galleryText . "</div>";
+		return "\n\t\t\t" . Html::rawElement( 'div', [ 'class' => "gallerytext" ], $galleryText );
 	}
 
 	/**
