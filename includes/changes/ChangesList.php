@@ -503,7 +503,7 @@ class ChangesList extends ContextSource {
 			if ( $this->lastdate != '' ) {
 				$s .= "</ul>\n";
 			}
-			$s .= Xml::element( 'h4', null, $date ) . "\n<ul class=\"special\">";
+			$s .= Html::element( 'h4', [], $date ) . "\n<ul class=\"special\">";
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
