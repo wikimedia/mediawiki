@@ -15,7 +15,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 
 		$this->overrideConfigValues( [
 			MainConfigNames::LanguageCode => 'en',
-			MainConfigNames::UseMediaWikiUIEverywhere => false,
 		] );
 
 		$langObj = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
@@ -74,21 +73,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 			'<input name="name" value="0" />',
 			Xml::input( 'name', false, 0 ),
 			'Input with a value of 0 (T25797)'
-		);
-	}
-
-	/**
-	 * @covers Xml::input
-	 * @covers \MediaWiki\Html\Html::getTextInputAttributes
-	 */
-	public function testInputWithMWUIEverywhere() {
-		$this->overrideConfigValues( [
-			MainConfigNames::UseMediaWikiUIEverywhere => true,
-		] );
-
-		$this->assertSame(
-			'<input name="name" class="foo mw-ui-input" />',
-			Xml::input( 'name', false, false, [ 'class' => 'foo' ] )
 		);
 	}
 

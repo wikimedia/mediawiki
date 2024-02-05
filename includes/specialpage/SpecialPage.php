@@ -700,13 +700,6 @@ class SpecialPage implements MessageLocalizer {
 			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
 		}
 		$out->setPageTitleMsg( $title );
-		if ( $this->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
-			$out->addModuleStyles( [
-				'mediawiki.ui.input',
-				'mediawiki.ui.radio',
-				'mediawiki.ui.checkbox',
-			] );
-		}
 	}
 
 	/**

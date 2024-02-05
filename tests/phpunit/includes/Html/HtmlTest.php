@@ -832,65 +832,6 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $html );
 	}
 
-	/** @dataProvider provideGetTextInputAttributes */
-	public function testGetTextInputAttributes(
-		bool $useMediaWikiUIEverywhere,
-		$classAttribute,
-		$expectedClassAttribute
-	) {
-		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, $useMediaWikiUIEverywhere );
-		$attrs = Html::getTextInputAttributes( [ 'class' => $classAttribute ] );
-		$this->assertSame( $expectedClassAttribute, $attrs['class'] );
-	}
-
-	public static function provideGetTextInputAttributes(): iterable {
-		yield 'MWUI everywhere, non-codex, class string' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => 'foo',
-			'expectedClassAttribute' => 'foo mw-ui-input',
-		];
-		yield 'MWUI everywhere, non-codex, class list' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => [ 'foo' ],
-			'expectedClassAttribute' => [ 'foo', 'mw-ui-input' => true ],
-		];
-		yield 'MWUI everywhere, non-codex, class dict' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => [ 'foo' => true ],
-			'expectedClassAttribute' => [ 'foo' => true, 'mw-ui-input' => true ],
-		];
-		yield 'MWUI everywhere, non-codex, class dict disables mw-ui-input' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => [ 'foo' => true, 'mw-ui-input' => false ],
-			'expectedClassAttribute' => [ 'foo' => true, 'mw-ui-input' => true ],
-		];
-		yield 'MWUI everywhere, codex, class string' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => 'foo cdx-text-input__input',
-			'expectedClassAttribute' => 'foo cdx-text-input__input',
-		];
-		yield 'MWUI everywhere, codex, class list' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => [ 'foo', 'cdx-text-input__input' ],
-			'expectedClassAttribute' => [ 'foo', 'cdx-text-input__input' ],
-		];
-		yield 'MWUI everywhere, codex, class dict' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => [ 'foo' => true, 'cdx-text-input__input' => true ],
-			'expectedClassAttribute' => [ 'foo' => true, 'cdx-text-input__input' => true ],
-		];
-		yield 'MWUI everywhere, class dict disables codex' => [
-			'useMediaWikiUIEverywhere' => true,
-			'classAttribute' => [ 'foo' => true, 'cdx-text-input__input' => false ],
-			'expectedClassAttribute' => [ 'foo' => true, 'cdx-text-input__input' => false, 'mw-ui-input' => true ],
-		];
-		yield 'not MWUI everywhere' => [
-			'useMediaWikiUIEverywhere' => false,
-			'classAttribute' => 'foo',
-			'expectedClassAttribute' => 'foo',
-		];
-	}
-
 	public static function provideEncodeJsVar() {
 		// $expected, $input
 		yield 'boolean' => [ 'true', true ];

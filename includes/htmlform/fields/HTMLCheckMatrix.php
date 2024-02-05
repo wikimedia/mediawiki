@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 
 /**
@@ -184,14 +183,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	}
 
 	protected function getOneCheckboxHTML( $checked, $attribs ) {
-		$checkbox = Xml::check( "{$this->mName}[]", $checked, $attribs );
-		if ( $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
-			$checkbox = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
-				$checkbox .
-				Html::element( 'label', [ 'for' => $attribs['id'] ] ) .
-				Html::closeElement( 'div' );
-		}
-		return $checkbox;
+		return Xml::check( "{$this->mName}[]", $checked, $attribs );
 	}
 
 	protected function isTagForcedOff( $tag ) {

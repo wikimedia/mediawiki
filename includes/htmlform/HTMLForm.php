@@ -1415,8 +1415,6 @@ class HTMLForm extends ContextSource {
 	 */
 	public function getButtons() {
 		$buttons = '';
-		$useMediaWikiUIEverywhere =
-			$this->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 
 		if ( $this->mShowSubmit ) {
 			$attribs = [];
@@ -1435,13 +1433,6 @@ class HTMLForm extends ContextSource {
 
 			$attribs['class'] = [ 'mw-htmlform-submit' ];
 
-			if ( $useMediaWikiUIEverywhere ) {
-				foreach ( $this->mSubmitFlags as $flag ) {
-					$attribs['class'][] = 'mw-ui-' . $flag;
-				}
-				$attribs['class'][] = 'mw-ui-button';
-			}
-
 			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}
 
@@ -1451,7 +1442,6 @@ class HTMLForm extends ContextSource {
 				[
 					'type' => 'reset',
 					'value' => $this->msg( 'htmlform-reset' )->text(),
-					'class' => $useMediaWikiUIEverywhere ? 'mw-ui-button' : null,
 				]
 			) . "\n";
 		}
@@ -1461,7 +1451,6 @@ class HTMLForm extends ContextSource {
 			$buttons .= Html::element(
 					'a',
 					[
-						'class' => $useMediaWikiUIEverywhere ? 'mw-ui-button' : null,
 						'href' => $target,
 					],
 					$this->msg( 'cancel' )->text()
@@ -1493,11 +1482,6 @@ class HTMLForm extends ContextSource {
 
 			if ( isset( $button['id'] ) ) {
 				$attrs['id'] = $button['id'];
-			}
-
-			if ( $useMediaWikiUIEverywhere ) {
-				$attrs['class'] = (array)( $attrs['class'] ?? [] );
-				$attrs['class'][] = 'mw-ui-button';
 			}
 
 			$buttons .= Html::rawElement( 'button', $attrs, $label ) . "\n";
