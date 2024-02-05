@@ -330,15 +330,6 @@ if ( $wgPageLanguageUseDB ) {
 	$wgLogActionsHandlers['pagelang/pagelang'] = PageLangLogFormatter::class;
 }
 
-// Backwards compatibility with old password limits
-if ( $wgMinimalPasswordLength !== false ) {
-	$wgPasswordPolicy['policies']['default']['MinimalPasswordLength'] = $wgMinimalPasswordLength;
-}
-
-if ( $wgMaximalPasswordLength !== false ) {
-	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
-}
-
 if ( $wgPHPSessionHandling !== 'enable' &&
 	$wgPHPSessionHandling !== 'warn' &&
 	$wgPHPSessionHandling !== 'disable'

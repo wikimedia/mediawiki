@@ -965,8 +965,6 @@ return [
 			'RemoveCredentialsBlacklist' => [
 				0 => 'MediaWiki\\Auth\\PasswordAuthenticationRequest',
 			],
-			'MinimalPasswordLength' => false,
-			'MaximalPasswordLength' => false,
 			'InvalidPasswordReset' => true,
 			'PasswordDefault' => 'pbkdf2',
 			'PasswordConfig' => [
@@ -3301,12 +3299,6 @@ return [
 			'items' => [
 				'type' => 'string',
 			],
-		],
-		'MinimalPasswordLength' => [
-			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MinimalPasswordLength.',
-		],
-		'MaximalPasswordLength' => [
-			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MaximalPasswordLength.',
 		],
 		'GroupPermissions' => [
 			'additionalProperties' => [

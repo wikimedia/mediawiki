@@ -379,8 +379,7 @@ class BotPassword implements IDBAccessObject {
 	 * @return string
 	 */
 	public static function generatePassword( $config ) {
-		return PasswordFactory::generateRandomPasswordString( max(
-			self::PASSWORD_MINLENGTH, $config->get( MainConfigNames::MinimalPasswordLength ) ) );
+		return PasswordFactory::generateRandomPasswordString( self::PASSWORD_MINLENGTH );
 	}
 
 	/**
