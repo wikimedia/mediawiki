@@ -1773,7 +1773,7 @@ return [
 				'mergehistory' => 'vandalism',
 				'import' => 'security',
 				'highvolume' => 'low',
-				'privateinfo' => 'security',
+				'privateinfo' => 'low',
 			],
 			'EnableBotPasswords' => true,
 			'BotPasswordsCluster' => false,
