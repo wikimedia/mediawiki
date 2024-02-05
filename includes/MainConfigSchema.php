@@ -9062,7 +9062,7 @@ class MainConfigSchema {
 			'mergehistory'        => GrantsInfo::RISK_VANDALISM,
 			'import'              => GrantsInfo::RISK_SECURITY,
 			'highvolume'          => GrantsInfo::RISK_LOW,
-			'privateinfo'         => GrantsInfo::RISK_SECURITY,
+			'privateinfo'         => GrantsInfo::RISK_LOW,
 		],
 		'type' => 'map',
 	];

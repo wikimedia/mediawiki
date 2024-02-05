@@ -5659,7 +5659,7 @@ config-schema:
             mergehistory: vandalism
             import: security
             highvolume: low
-            privateinfo: security
+            privateinfo: low
         type: object
         description: |-
             Group grants by risk level. Keys are grant names (i.e. keys from GrantPermissions),
