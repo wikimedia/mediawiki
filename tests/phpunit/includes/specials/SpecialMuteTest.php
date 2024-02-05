@@ -74,6 +74,20 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$this->executeSpecialPage( 'TestUser' );
 	}
 
+	public function testUserEmailNotConfirmed() {
+		$targetUser = $this->getTestUser()->getUser();
+
+		$loggedInUser = $this->getMutableTestUser()->getUser();
+		$this->userOptionsManager->setOption( $loggedInUser, 'email-blacklist', "999" );
+		$loggedInUser->invalidateEmail();
+		$loggedInUser->saveSettings();
+
+		$this->expectExceptionMessage( wfMessage( 'specialmute-error-no-email-set' ) );
+
+		$fauxRequest = new FauxRequest( [ 'wpemail-blacklist' => true ], true );
+		$this->executeSpecialPage( $targetUser->getName(), $fauxRequest, 'qqx', $loggedInUser );
+	}
+
 	/**
 	 * @covers \MediaWiki\Specials\SpecialMute::execute
 	 */
