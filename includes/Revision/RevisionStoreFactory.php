@@ -34,7 +34,6 @@ use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
@@ -69,8 +68,6 @@ class RevisionStoreFactory {
 
 	/** @var CommentStore */
 	private $commentStore;
-	/** @var ActorMigration */
-	private $actorMigration;
 	/** @var ActorStoreFactory */
 	private $actorStoreFactory;
 	/** @var NameTableStoreFactory */
@@ -99,7 +96,6 @@ class RevisionStoreFactory {
 	 * @param WANObjectCache $cache
 	 * @param BagOStuff $localCache
 	 * @param CommentStore $commentStore
-	 * @param ActorMigration $actorMigration
 	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param LoggerInterface $logger
 	 * @param IContentHandlerFactory $contentHandlerFactory
@@ -115,7 +111,6 @@ class RevisionStoreFactory {
 		WANObjectCache $cache,
 		BagOStuff $localCache,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration,
 		ActorStoreFactory $actorStoreFactory,
 		LoggerInterface $logger,
 		IContentHandlerFactory $contentHandlerFactory,
@@ -130,7 +125,6 @@ class RevisionStoreFactory {
 		$this->cache = $cache;
 		$this->localCache = $localCache;
 		$this->commentStore = $commentStore;
-		$this->actorMigration = $actorMigration;
 		$this->actorStoreFactory = $actorStoreFactory;
 		$this->logger = $logger;
 		$this->contentHandlerFactory = $contentHandlerFactory;
@@ -149,8 +143,7 @@ class RevisionStoreFactory {
 	public function getRevisionStore( $dbDomain = false ) {
 		return $this->getStore(
 			$dbDomain,
-			$this->actorStoreFactory->getActorStore( $dbDomain ),
-			$this->actorMigration
+			$this->actorStoreFactory->getActorStore( $dbDomain )
 		);
 	}
 
@@ -164,19 +157,17 @@ class RevisionStoreFactory {
 	public function getRevisionStoreForImport( $dbDomain = false ) {
 		return $this->getStore(
 			$dbDomain,
-			$this->actorStoreFactory->getActorStoreForImport( $dbDomain ),
-			ActorMigration::newMigrationForImport()
+			$this->actorStoreFactory->getActorStoreForImport( $dbDomain )
 		);
 	}
 
 	/**
 	 * @param false|string $dbDomain
 	 * @param ActorStore $actorStore
-	 * @param ActorMigration $actorMigration
 	 *
 	 * @return RevisionStore
 	 */
-	private function getStore( $dbDomain, ActorStore $actorStore, ActorMigration $actorMigration ) {
+	private function getStore( $dbDomain, ActorStore $actorStore ) {
 		Assert::parameterType( [ 'string', 'false' ], $dbDomain, '$dbDomain' );
 
 		$store = new RevisionStore(
@@ -188,7 +179,6 @@ class RevisionStoreFactory {
 			$this->nameTables->getContentModels( $dbDomain ),
 			$this->nameTables->getSlotRoles( $dbDomain ),
 			$this->slotRoleRegistry,
-			$actorMigration,
 			$actorStore,
 			$this->contentHandlerFactory,
 			$this->pageStoreFactory->getPageStore( $dbDomain ),
