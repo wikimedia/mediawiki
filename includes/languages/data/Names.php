@@ -118,6 +118,7 @@ class Names {
 		'ce' => 'нохчийн', # Chechen
 		'ceb' => 'Cebuano', # Cebuano
 		'ch' => 'Chamoru', # Chamorro
+		'chn' => 'chinuk wawa', # Chinook Jargon
 		'cho' => 'Chahta anumpa', # Choctaw
 		'chr' => 'ᏣᎳᎩ', # Cherokee
 		'chy' => 'Tsetsêhestâhese', # Cheyenne

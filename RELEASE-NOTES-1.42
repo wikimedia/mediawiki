@@ -164,6 +164,7 @@ because of Phabricator reports.
 * (T353500) Added language support for Southeastern Kolami (nit).
 * (T354519) Added language support for Tooro (ttj).
 * (T354926) Added language support for Nyoro (nyo).
+* (T356616) Added language support for Chinook Jargon (chn).
 * …
 
 === Breaking changes in 1.42 ===
