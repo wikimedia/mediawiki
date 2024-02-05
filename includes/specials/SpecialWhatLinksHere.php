@@ -26,6 +26,7 @@ use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\FormOptions;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Navigation\PagerNavigationBuilder;
@@ -564,9 +565,10 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			$this->msg( 'whatlinkshere-links' )->text(),
 			$this->msg( 'editlink' )->text()
 		);
-		$wlh = Xml::wrapClass(
-			$this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(),
-			'mw-whatlinkshere-tools'
+		$wlh = Html::rawElement(
+			'span',
+			[ 'class' => 'mw-whatlinkshere-tools' ],
+			$this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped()
 		);
 
 		return $notClose ?
