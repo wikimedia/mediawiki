@@ -238,8 +238,6 @@ CREATE TABLE iwlinks (
 
 CREATE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
 
-CREATE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
-
 
 CREATE TABLE category (
   cat_id SERIAL NOT NULL,

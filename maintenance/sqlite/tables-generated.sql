@@ -231,8 +231,6 @@ CREATE TABLE /*_*/iwlinks (
 
 CREATE INDEX iwl_prefix_title_from ON /*_*/iwlinks (iwl_prefix, iwl_title, iwl_from);
 
-CREATE INDEX iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, iwl_title);
-
 
 CREATE TABLE /*_*/category (
   cat_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

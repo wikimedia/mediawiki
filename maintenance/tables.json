@@ -698,12 +698,6 @@
 				"columns": [ "iwl_prefix", "iwl_title", "iwl_from" ],
 				"comment": "Index for ApiQueryIWBacklinks",
 				"unique": false
-			},
-			{
-				"name": "iwl_prefix_from_title",
-				"columns": [ "iwl_prefix", "iwl_from", "iwl_title" ],
-				"comment": "Index for ApiQueryIWLinks",
-				"unique": false
 			}
 		],
 		"pk": [ "iwl_from", "iwl_prefix", "iwl_title" ]
