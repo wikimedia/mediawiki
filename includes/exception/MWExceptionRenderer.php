@@ -274,6 +274,12 @@ class MWExceptionRenderer {
 			// Avoid live config as this must work before Setup/MediaWikiServices finish.
 			$res = new RawMessage( $fallback, $params );
 		}
+		// We are in an error state, best to minimize how much work we do.
+		$res->useDatabase( false );
+		$isSafeToLoad = RequestContext::getMain()->getUser()->isSafeToLoad();
+		if ( !$isSafeToLoad ) {
+			$res->inContentLanguage();
+		}
 		return $res;
 	}
 
