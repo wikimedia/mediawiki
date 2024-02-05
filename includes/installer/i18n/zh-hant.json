@@ -250,7 +250,7 @@
 	"config-logo-sidebar-help": "某些 MediaWiki 外觀的側欄選單會包含高度為 160 像素的標誌。若未定義，會與上方所定義的圖示相同。您可能會想要一個結合字標與圖示的專用圖形。",
 	"config-instantcommons": "開啟即時共享資源",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons 即時共享資源] 是允許 Wiki 使用來自 [https://commons.wikimedia.org/ Wikimedia Commons] 網站上的圖片、聲音以及其他媒體的一項功能。\n若要開啟此功能，您的 MediaWiki 必須能夠連線網際網路。\n更多有關此功能的訊息，包含如何存除了 Wikimedia Commons 之外其他網站的說明，請參考 \n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 操作手冊]。",
-	"config-advanced-settings": "進階設定",
+	"config-advanced-settings": "進階組態設定",
 	"config-cache-options": "物件快取設定：",
 	"config-cache-help": "物件快取是用來增進 MediaWiki 速度的一項功能，透過快取經常使用的資料。\n中型到大型的網站我們會建議開啟這個選項，對小型的網站也有一定程度的效果。",
 	"config-cache-none": "不快取 (不會影響功能，但在大型 Wiki 網站可能會有處理速度的問題)",

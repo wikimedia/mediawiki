@@ -4173,7 +4173,7 @@
 	"specialmute-error-mutelist-disabled": "Možnosti utišanja niso na voljo, ker je administrator vikija za ta viki onemogočil možnosti seznama utišanja e-pošte.",
 	"specialmute-error-no-email-set": "Možnosti utišanja niso na voljo, ker niste potrdili svojega e-poštnega naslova.",
 	"specialmute-error-no-options": "Možnosti utišanja niso na voljo.",
-	"specialmute-email-footer": "Za upravljanje e-poštnih nastavitev za uporabnika {{BIDI:$2}} obiščite <$1>.",
+	"specialmute-email-footer": "Za upravljanje e-poštnih nastavitev za uporabnika {{BIDI:$2}} obiščite naslednji URL:\n$1",
 	"specialmute-login-required": "Prosimo, prijavite se, da spremenite svoje nastavitve utišanja.",
 	"mute-preferences": "Nastavitve utišanja",
 	"revid": "redakcija $1",

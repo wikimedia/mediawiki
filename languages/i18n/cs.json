@@ -4123,7 +4123,7 @@
 	"specialmute-error-mutelist-disabled": "Funkce ztlumení uživatele není dostupná, protože administrátor wiki na této wiki vypnul listinu ztlumených e-mailů.",
 	"specialmute-error-no-email-set": "Funkce ztlumení uživatele není dostupná, protože jste neověřili svou e-mailovou adresu.",
 	"specialmute-error-no-options": "Funkce ztlumení uživatele není dostupná.",
-	"specialmute-email-footer": "Spravovat nastavení e-mailů od uživatele {{BIDI:$2}} můžete na <$1>.",
+	"specialmute-email-footer": "Spravovat nastavení e-mailů od uživatele {{BIDI:$2}} můžete na následující adrese:\n$1",
 	"specialmute-login-required": "Pro změnu ztlumení se musíte přihlásit.",
 	"mute-preferences": "Nastavení ztlumení",
 	"revid": "revize $1",
