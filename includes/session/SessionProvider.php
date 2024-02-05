@@ -23,6 +23,8 @@
 
 namespace MediaWiki\Session;
 
+use ApiUsageException;
+use ErrorPageError;
 use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
@@ -33,6 +35,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use MWRestrictions;
 use Psr\Log\LoggerInterface;
+use RequestContext;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session
@@ -711,6 +714,60 @@ abstract class SessionProvider implements SessionProviderInterface {
 			$hash = \Wikimedia\base_convert( $hash, 16, 32, 32 );
 		}
 		return substr( $hash, -32 );
+	}
+
+	/**
+	 * Throw an exception, later. Needed because during session initialization the framework
+	 * isn't quite ready to handle an exception.
+	 *
+	 * This should be called from provideSessionInfo() to fail in
+	 * a user-friendly way when a session mechanism is used in a way it's not supposed to be used
+	 * (e.g. invalid credentials or a non-API request when the session provider only supports
+	 * API requests), and the returned SessionInfo should be returned by provideSessionInfo().
+	 *
+	 * @param string $key Key for the error message
+	 * @param mixed ...$params Parameters as strings.
+	 * @return SessionInfo An anonymous session info with maximum priority, to force an
+	 *   anonymous session in case throwing the exception doesn't happen.
+	 */
+	protected function makeException( $key, ...$params ): SessionInfo {
+		$msg = wfMessage( $key, $params );
+
+		if ( defined( 'MW_API' ) ) {
+			$this->hookContainer->register(
+				'ApiBeforeMain',
+				// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
+				static function () use ( $msg ) {
+					throw ApiUsageException::newWithMessage( null, $msg );
+				}
+			);
+		} elseif ( defined( 'MW_REST_API' ) ) {
+			// There are no suitable hooks in the REST API (T252591)
+		} else {
+			$this->hookContainer->register(
+				'BeforeInitialize',
+				// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
+				static function () use ( $msg ) {
+					RequestContext::getMain()->getOutput()->setStatusCode( 400 );
+					throw new ErrorPageError( 'errorpagetitle', $msg );
+				}
+			);
+			// Disable file cache, which would be looked up before the BeforeInitialize hook call.
+			$this->hookContainer->register(
+				'HTMLFileCache__useFileCache',
+				static function () {
+					return false;
+				}
+			);
+		}
+
+		$id = $this->hashToSessionId( 'bogus' );
+		return new SessionInfo( SessionInfo::MAX_PRIORITY, [
+			'provider' => $this,
+			'id' => $id,
+			'userInfo' => UserInfo::newAnonymous(),
+			'persisted' => false,
+		] );
 	}
 
 }
