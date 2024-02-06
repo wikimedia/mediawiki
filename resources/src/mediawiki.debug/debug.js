@@ -27,21 +27,21 @@
 	 */
 	debug = mw.Debug = {
 		/**
-		 * Toolbar container element
+		 * Toolbar container element.
 		 *
 		 * @property {jQuery}
 		 */
 		$container: null,
 
 		/**
-		 * Object containing data for the debug toolbar
+		 * Object containing data for the debug toolbar.
 		 *
 		 * @property {Object}
 		 */
 		data: {},
 
 		/**
-		 * Initialize the debugging pane
+		 * Initialize the debugging pane.
 		 *
 		 * Shouldn't be called before the document is ready
 		 * (since it binds to elements on the page).
@@ -61,7 +61,7 @@
 		},
 
 		/**
-		 * Switch between panes
+		 * Switch between panes.
 		 *
 		 * Should be called with an HTMLElement as its thisArg,
 		 * because it's meant to be an event handler.
@@ -113,7 +113,7 @@
 		},
 
 		/**
-		 * Construct the HTML for the debugging toolbar
+		 * Construct the HTML for the debugging toolbar.
 		 */
 		buildHtml: function () {
 			var $container, $bits, panes, paneId, gitInfoText, $gitInfo;
@@ -244,7 +244,7 @@
 		},
 
 		/**
-		 * Build the console panel
+		 * Build the console panel.
 		 *
 		 * @return {jQuery} Console panel
 		 */
@@ -293,7 +293,7 @@
 		},
 
 		/**
-		 * Build query list pane
+		 * Build query list pane.
 		 *
 		 * @return {jQuery}
 		 */
@@ -325,7 +325,7 @@
 		},
 
 		/**
-		 * Build legacy debug log pane
+		 * Build legacy debug log pane.
 		 *
 		 * @return {jQuery}
 		 */
@@ -345,7 +345,7 @@
 		},
 
 		/**
-		 * Build request information pane
+		 * Build request information pane.
 		 *
 		 * @return {jQuery}
 		 */
@@ -382,7 +382,7 @@
 		},
 
 		/**
-		 * Build included files pane
+		 * Build included files pane.
 		 *
 		 * @return {jQuery}
 		 */

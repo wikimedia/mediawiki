@@ -4,7 +4,7 @@
 'use strict';
 
 /**
- * Fired when the editform is added to the edit page
+ * Fired when the editform is added to the edit page.
  *
  * Similar to the {@link mw.hook#event-wikipage_content wikipage.content hook}
  * $editForm can still be detached when this hook is fired.

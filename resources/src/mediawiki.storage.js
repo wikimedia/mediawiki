@@ -125,7 +125,7 @@
 	};
 
 	/**
-	 * Set an object value in device storage by JSON encoding
+	 * Set an object value in device storage by JSON encoding.
 	 *
 	 * @memberof SafeStorage
 	 * @param {string} key Key name to store under
@@ -143,7 +143,7 @@
 	};
 
 	/**
-	 * Set the expiry time for an item in the store
+	 * Set the expiry time for an item in the store.
 	 *
 	 * @memberof SafeStorage
 	 * @param {string} key Key name

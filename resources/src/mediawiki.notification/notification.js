@@ -186,7 +186,7 @@
 	};
 
 	/**
-	 * Pause any running auto-hide timer for this notification
+	 * Pause any running auto-hide timer for this notification.
 	 * @memberof Notification
 	 */
 	Notification.prototype.pause = function () {

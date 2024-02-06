@@ -70,18 +70,18 @@
 	};
 
 	/**
-	 * Set api url.
+	 * Set API URL.
 	 *
-	 * @param {string} apiurl API url
+	 * @param {string} apiurl API URL
 	 */
 	mw.widgets.APIResultsProvider.prototype.setAPIurl = function ( apiurl ) {
 		this.apiurl = apiurl;
 	};
 
 	/**
-	 * Get api url.
+	 * Get API URL.
 	 *
-	 * @return {string} API url
+	 * @return {string} API URL
 	 */
 	mw.widgets.APIResultsProvider.prototype.getAPIurl = function () {
 		return this.apiurl;
