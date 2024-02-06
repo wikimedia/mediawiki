@@ -152,7 +152,7 @@
 		},
 
 		/**
-		 * Get the current user's database id
+		 * Get the current user's database id.
 		 *
 		 * Not to be confused with {@link mw.user#id id}.
 		 *
@@ -163,7 +163,7 @@
 		},
 
 		/**
-		 * Is the user a normal non-temporary registered user?
+		 * Check whether the user is a normal non-temporary registered user.
 		 *
 		 * @return {boolean}
 		 */
@@ -172,7 +172,7 @@
 		},
 
 		/**
-		 * Is the user an autocreated temporary user?
+		 * Check whether the user is an autocreated temporary user.
 		 *
 		 * @return {boolean}
 		 */
@@ -181,7 +181,7 @@
 		},
 
 		/**
-		 * Get the current user's name
+		 * Get the current user's name.
 		 *
 		 * @return {string|null} User name string or null if user is anonymous
 		 */
@@ -228,7 +228,7 @@
 		},
 
 		/**
-		 * Get date user registered, if available
+		 * Get date user registered, if available.
 		 *
 		 * @return {boolean|null|Date} False for anonymous users, null if data is
 		 *  unavailable, or Date for when the user registered.
@@ -261,7 +261,7 @@
 		},
 
 		/**
-		 * Whether the current user is anonymous
+		 * Check whether the current user is anonymous.
 		 *
 		 * @return {boolean}
 		 */
@@ -270,7 +270,7 @@
 		},
 
 		/**
-		 * Retrieve a random ID, generating it if needed
+		 * Retrieve a random ID, generating it if needed.
 		 *
 		 * This ID is shared across windows, tabs, and page views. It is persisted
 		 * for the duration of one browser session (until the browser app is closed),
@@ -296,7 +296,7 @@
 		},
 
 		/**
-		 * Get the current user's name or the session ID
+		 * Get the current user's name or the session ID.
 		 *
 		 * Not to be confused with {@link mw.user#getId getId}.
 		 *
@@ -307,7 +307,7 @@
 		},
 
 		/**
-		 * Get the current user's groups
+		 * Get the current user's groups.
 		 *
 		 * @param {Function} [callback]
 		 * @return {jQuery.Promise}
@@ -320,7 +320,7 @@
 		},
 
 		/**
-		 * Get the current user's rights
+		 * Get the current user's rights.
 		 *
 		 * @param {Function} [callback]
 		 * @return {jQuery.Promise}
@@ -360,7 +360,7 @@
 		 */
 		clientPrefs: {
 			/**
-			 * Change the class on the HTML document element, and save the value in a cookie
+			 * Change the class on the HTML document element, and save the value in a cookie.
 			 *
 			 * @memberof mw.user.clientPrefs
 			 * @param {string} feature
@@ -400,7 +400,7 @@
 			},
 
 			/**
-			 * Retrieve the current value of the feature from the HTML document element
+			 * Retrieve the current value of the feature from the HTML document element.
 			 *
 			 * @memberof mw.user.clientPrefs
 			 * @param {string} feature

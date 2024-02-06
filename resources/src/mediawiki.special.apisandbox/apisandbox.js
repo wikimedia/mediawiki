@@ -717,7 +717,7 @@
 
 	var booklet, panel, oldhash;
 	/**
-	 * Interface to ApiSandbox UI
+	 * Interface to ApiSandbox UI.
 	 *
 	 * @class mw.special.ApiSandbox
 	 */

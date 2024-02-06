@@ -84,7 +84,7 @@ $( function () {
 	var node = document.querySelector( '.mw-indicators' );
 	if ( node && node.children.length ) {
 		/**
-		 * Fired when indicators are being added to the DOM
+		 * Fired when indicators are being added to the DOM.
 		 *
 		 * @event ~'wikipage.indicators'
 		 * @memberof Hooks
@@ -117,7 +117,7 @@ $( function () {
 	var $nodes = $( '.catlinks[data-mw="interface"]' );
 	if ( $nodes.length ) {
 		/**
-		 * Fired when categories are being added to the DOM
+		 * Fired when categories are being added to the DOM.
 		 *
 		 * It is encouraged to fire it before the main DOM is changed (when $content
 		 * is still detached).  However, this order is not defined either way, so you
@@ -137,7 +137,7 @@ $( function () {
 	$nodes = $( 'table.diff[data-mw="interface"]' );
 	if ( $nodes.length ) {
 		/**
-		 * Fired when the diff is added to a page containing a diff
+		 * Fired when the diff is added to a page containing a diff.
 		 *
 		 * Similar to the {@link Hooks~'wikipage.content' wikipage.content hook}
 		 * $diff may still be detached when the hook is fired.

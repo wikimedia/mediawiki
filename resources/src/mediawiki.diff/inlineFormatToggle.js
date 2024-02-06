@@ -163,7 +163,7 @@
 
 	/**
 	 * Fired when the diff type switch is present so others can decide
-	 * how to manipulate the DOM
+	 * how to manipulate the DOM.
 	 *
 	 * @event wikipage_diff_diffTypeSwitch
 	 * @member mw.hook

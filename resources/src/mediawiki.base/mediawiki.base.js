@@ -426,7 +426,7 @@ mw.trackSubscribe = function ( topic, callback ) {
 };
 
 /**
- * Stop handling events for a particular handler
+ * Stop handling events for a particular handler.
  *
  * @memberof mw
  * @param {Function} callback

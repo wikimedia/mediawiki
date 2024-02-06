@@ -399,7 +399,7 @@
 		window.addEventListener( 'hashchange', hashHandler );
 
 		/**
-		 * Fired after collapsible content has been initialized
+		 * Fired after collapsible content has been initialized.
 		 *
 		 * This gives an option to modify the collapsible behavior.
 		 *
