@@ -24,7 +24,6 @@ namespace MediaWiki\Installer;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Status\Status;
-use MediaWiki\Xml\Xml;
 
 class WebInstallerDBConnect extends WebInstallerPage {
 
@@ -76,18 +75,18 @@ class WebInstallerDBConnect extends WebInstallerPage {
 			$types .= "<div class=\"cdx-radio\"><div class=\"cdx-radio__wrapper\">";
 			$id = "DBType_$type";
 			$types .=
-				Xml::radio(
+				Html::radio(
 					'DBType',
-					$type,
 					$type == $defaultType,
 					[
 						'id' => $id,
 						'class' => 'cdx-radio__input dbRadio',
 						'rel' => "DB_wrapper_$type",
+						'value' => $type,
 					]
 				) .
 				"\u{00A0}<span class=\"cdx-radio__icon\"></span>" .
-				Xml::label( $installer->getReadableName(), $id, [ 'class' => 'cdx-radio__label' ] );
+				Html::label( $installer->getReadableName(), $id, [ 'class' => 'cdx-radio__label' ] );
 			$types .= "</div></div>";
 			// Messages: config-header-mysql, config-header-postgres, config-header-sqlite
 			$settings .= Html::openElement(
