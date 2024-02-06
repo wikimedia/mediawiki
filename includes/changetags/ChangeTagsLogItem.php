@@ -19,6 +19,7 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -105,6 +106,6 @@ class ChangeTagsLogItem extends RevisionItemBase {
 			$content .= " $tagSummary";
 			$attribs['class'] = implode( ' ', $classes );
 		}
-		return Xml::tags( 'li', $attribs, $content );
+		return Html::rawElement( 'li', $attribs, $content );
 	}
 }

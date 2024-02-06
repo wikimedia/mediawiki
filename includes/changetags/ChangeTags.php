@@ -170,7 +170,7 @@ class ChangeTags {
 			if ( $description === false ) {
 				continue;
 			}
-			$displayTags[] = Xml::tags(
+			$displayTags[] = Html::rawElement(
 				'span',
 				[ 'class' => 'mw-tag-marker ' .
 					Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
@@ -186,7 +186,7 @@ class ChangeTags {
 			->numParams( count( $displayTags ) )
 			->rawParams( implode( ' ', $displayTags ) )
 			->parse();
-		$markers = Xml::tags( 'span', [ 'class' => 'mw-tag-markers' ], $markers );
+		$markers = Html::rawElement( 'span', [ 'class' => 'mw-tag-markers' ], $markers );
 
 		return [ $markers, $classes ];
 	}
@@ -721,12 +721,13 @@ class ChangeTags {
 			$datalist->setTagName( 'datalist' );
 			$datalist->addOptions( $autocomplete );
 
-			$data[] = Xml::input(
+			$data[] = Html::input(
 				'tagfilter',
-				20,
 				$selected,
+				'text',
 				[
-					'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline',
+					'class' => [ 'mw-tagfilter-input', 'mw-ui-input', 'mw-ui-input-inline' ],
+					'size' => 20,
 					'id' => 'tagfilter',
 					'list' => 'tagfilter-datalist',
 				]

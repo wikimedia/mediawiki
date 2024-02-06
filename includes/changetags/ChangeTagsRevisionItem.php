@@ -19,6 +19,7 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 
@@ -62,6 +63,6 @@ class ChangeTagsRevisionItem extends RevisionItem {
 			$content .= " $tagSummary";
 			$attribs['class'] = implode( ' ', $classes );
 		}
-		return Xml::tags( 'li', $attribs, $content );
+		return Html::rawElement( 'li', $attribs, $content );
 	}
 }
