@@ -29,6 +29,7 @@
 namespace MediaWiki\Parser;
 
 use Content;
+use MapCacheLRU;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
@@ -47,17 +48,14 @@ class ParserObserver {
 	 */
 	private $logger;
 
-	/**
-	 * @var array
-	 */
-	private $previousParseStackTraces;
+	private MapCacheLRU $previousParseStackTraces;
 
 	/**
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct( LoggerInterface $logger ) {
 		$this->logger = $logger;
-		$this->previousParseStackTraces = [];
+		$this->previousParseStackTraces = new MapCacheLRU( 10 );
 	}
 
 	/**
@@ -84,7 +82,7 @@ class ParserObserver {
 		$index = $this->getParseId( $pageKey, $revId, $optionsHash, $contentSha1 );
 
 		$stackTrace = ( new RuntimeException() )->getTraceAsString();
-		if ( array_key_exists( $index, $this->previousParseStackTraces ) ) {
+		if ( $this->previousParseStackTraces->has( $index ) ) {
 
 			// NOTE: there may be legitimate changes to re-parse the same WikiText content,
 			// e.g. if predicted revision ID for the REVISIONID magic word mismatched.
@@ -97,11 +95,11 @@ class ParserObserver {
 					'options-hash' => $optionsHash,
 					'contentSha1' => $contentSha1,
 					'trace' => $stackTrace,
-					'previous-trace' => $this->previousParseStackTraces[$index],
+					'previous-trace' => $this->previousParseStackTraces->get( $index ),
 				]
 			);
 		}
-		$this->previousParseStackTraces[$index] = $stackTrace;
+		$this->previousParseStackTraces->set( $index, $stackTrace );
 	}
 
 	/**
