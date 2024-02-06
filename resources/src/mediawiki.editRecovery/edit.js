@@ -194,6 +194,7 @@ function fieldChangeHandler() {
 /**
  * Compare a set of form field values to their original values (as at page load time).
  *
+ * @ignore
  * @param {Object} pageData The page data to compare to the original.
  * @param {boolean} ignoreRevIds Do not use parent revision info when determining similarity.
  * @return {boolean}
