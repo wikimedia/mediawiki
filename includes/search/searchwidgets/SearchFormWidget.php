@@ -11,7 +11,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Widget\SearchInputWidget;
-use MediaWiki\Xml\Xml;
 use OOUI\ActionFieldLayout;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
@@ -76,7 +75,7 @@ class SearchFormWidget {
 	) {
 		$user = $this->specialSearch->getUser();
 
-		$form = Xml::openElement(
+		$form = Html::openElement(
 				'form',
 				[
 					'id' => $isPowerSearch ? 'powersearch' : 'search',
@@ -99,7 +98,7 @@ class SearchFormWidget {
 						Html::rawElement( 'div', [ 'style' => 'clear:both' ] )
 				) .
 				$this->optionsHtml( $term, $isPowerSearch, $profile ) .
-			Xml::closeElement( 'form' );
+			Html::closeElement( 'form' );
 
 		return Html::rawElement( 'div', [ 'class' => 'mw-search-form-wrapper' ], $form );
 	}
@@ -149,7 +148,7 @@ class SearchFormWidget {
 		}
 
 		if ( $totalResults > 0 && $offset < $totalResults ) {
-			$html .= Xml::tags(
+			$html .= Html::rawElement(
 				'div',
 				[
 					'class' => 'results-info',
@@ -191,7 +190,7 @@ class SearchFormWidget {
 			$tooltipParam = isset( $profileConfig['namespace-messages'] )
 				? $lang->commaList( $profileConfig['namespace-messages'] )
 				: null;
-			$items[] = Xml::tags(
+			$items[] = Html::rawElement(
 				'li',
 				[ 'class' => $profile === $id ? 'current' : 'normal' ],
 				$this->makeSearchLink(
@@ -237,7 +236,7 @@ class SearchFormWidget {
 			'fulltext' => 1,
 		];
 
-		return Xml::element(
+		return Html::element(
 			'a',
 			[
 				'href' => $this->specialSearch->getPageTitle()->getLocalURL( $params ),

@@ -23,10 +23,10 @@
  */
 
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
-use MediaWiki\Xml\Xml;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\HTTPFileStreamer;
 
@@ -263,14 +263,14 @@ abstract class MediaTransformOutput {
 	 */
 	protected function linkWrap( $linkAttribs, $contents ) {
 		if ( isset( $linkAttribs['href'] ) ) {
-			return Xml::tags( 'a', $linkAttribs, $contents );
+			return Html::rawElement( 'a', $linkAttribs, $contents );
 		}
 		$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 		if ( $parserEnableLegacyMediaDOM ) {
 			return $contents;
 		}
-		return Xml::tags( 'span', $linkAttribs ?: null, $contents );
+		return Html::rawElement( 'span', $linkAttribs ?: null, $contents );
 	}
 
 	/**

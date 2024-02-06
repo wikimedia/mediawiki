@@ -32,7 +32,6 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -164,7 +163,7 @@ class RevDelLogItem extends RevDelItem {
 			$content .= " $tagSummary";
 			$attribs['class'] = implode( ' ', $classes );
 		}
-		return Xml::tags( 'li', $attribs, $content );
+		return Html::rawElement( 'li', $attribs, $content );
 	}
 
 	public function getApiData( ApiResult $result ) {

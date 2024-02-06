@@ -32,7 +32,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
-use MediaWiki\Xml\Xml;
 use stdClass;
 use UploadBase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -190,9 +189,11 @@ class ImagePage extends Article {
 		$this->imageHistory();
 		// TODO: Cleanup the following
 
-		$out->addHTML( Xml::element( 'h2',
+		$out->addHTML( Html::element(
+			'h2',
 			[ 'id' => 'filelinks' ],
-				$context->msg( 'imagelinks' )->text() ) . "\n" );
+			$context->msg( 'imagelinks' )->text() ) . "\n"
+		);
 		$this->imageDupes();
 		# @todo FIXME: For some freaky reason, we can't redirect to foreign images.
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
@@ -206,10 +207,13 @@ class ImagePage extends Article {
 		}
 
 		if ( $formattedMetadata ) {
-			$out->addHTML( Xml::element(
-				'h2',
-				[ 'id' => 'metadata' ],
-					$context->msg( 'metadata' )->text() ) . "\n" );
+			$out->addHTML(
+				Html::element(
+					'h2',
+					[ 'id' => 'metadata' ],
+					$context->msg( 'metadata' )->text()
+				) . "\n"
+			);
 			$out->wrapWikiTextAsInterface(
 				'mw-imagepage-section-metadata',
 				$this->makeMetadataTable( $formattedMetadata )
@@ -554,9 +558,13 @@ class ImagePage extends Article {
 					];
 					$options = [];
 					for ( $i = 1; $i <= $count; $i++ ) {
-						$options[] = Xml::option( $lang->formatNum( $i ), (string)$i, $i == $page );
+						$options[] = Html::element(
+							'option',
+							[ 'value' => (string)$i, 'selected' => $i == $page ],
+							$lang->formatNum( $i )
+						);
 					}
-					$select = Xml::tags( 'select',
+					$select = Html::rawElement( 'select',
 						[ 'id' => 'pageselector', 'name' => 'page' ],
 						implode( "\n", $options ) );
 
@@ -568,7 +576,7 @@ class ImagePage extends Article {
 							Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 							$context->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
 							$context->msg( 'word-separator' )->escaped() .
-							Xml::submitButton( $context->msg( 'imgmultigo' )->text() )
+							Html::submitButton( $context->msg( 'imgmultigo' )->text() )
 						) .
 						"$thumbPrevPage\n$thumbNextPage\n$linkNext</div></div>"
 					);
@@ -1102,10 +1110,10 @@ EOT
 		// Allow for the default case in an svg <switch> that is displayed if no
 		// systemLanguage attribute matches
 		$opts .= "\n" .
-			Xml::option(
-				$context->msg( 'img-lang-default' )->text(),
-				'und',
-				$matchedRenderLang === null || $matchedRenderLang === 'und'
+			Html::element(
+				'option',
+				[ 'value' => 'und', 'selected' => $matchedRenderLang === null || $matchedRenderLang === 'und' ],
+				$context->msg( 'img-lang-default' )->text()
 			);
 
 		$select = Html::rawElement(
@@ -1113,7 +1121,7 @@ EOT
 			[ 'id' => 'mw-imglangselector', 'name' => 'lang' ],
 			$opts
 		);
-		$submit = Xml::submitButton( $context->msg( 'img-lang-go' )->text() );
+		$submit = Html::submitButton( $context->msg( 'img-lang-go' )->text(), [] );
 
 		$formContents = $context->msg( 'img-lang-info' )
 			->rawParams( $select, $submit )
@@ -1142,12 +1150,7 @@ EOT
 		} else {
 			$display = $lang;
 		}
-		return "\n" .
-			Xml::option(
-				$display,
-				$lang,
-				$selected
-			);
+		return "\n" . Html::element( 'option', [ 'value' => $lang, 'selected' => $selected ], $display );
 	}
 
 	/**

@@ -88,7 +88,7 @@ use Wikimedia\Message\ScalarParam;
  * Fetching a message text for interface message:
  *
  * @code
- *    $button = Xml::button(
+ *    $button = Html::submitButton(
  *         $context->msg( 'submit' )->text()
  *    );
  * @endcode

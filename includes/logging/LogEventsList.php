@@ -54,7 +54,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\Xml\Xml;
 use MessageLocalizer;
 use stdClass;
 
@@ -417,7 +416,7 @@ class LogEventsList extends ContextSource {
 
 		// If change tag editing is available to this user, return the checkbox
 		if ( $this->flags & self::USE_CHECKBOXES && $this->showTagEditUI ) {
-			return Xml::check(
+			return Html::check(
 				'showhiderevisions',
 				false,
 				[ 'name' => 'ids[' . $row->log_id . ']' ]
@@ -443,9 +442,9 @@ class LogEventsList extends ContextSource {
 				if ( $canHide && $this->flags & self::USE_CHECKBOXES && !$canViewThisSuppressedEntry ) {
 					// If event was hidden from sysops
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $authority ) ) {
-						$del = Xml::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
+						$del = Html::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 					} else {
-						$del = Xml::check(
+						$del = Html::check(
 							'showhiderevisions',
 							false,
 							[ 'name' => 'ids[' . $row->log_id . ']' ]

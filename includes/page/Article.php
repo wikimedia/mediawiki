@@ -60,7 +60,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\Xml\Xml;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -1647,7 +1646,7 @@ class Article implements Page {
 
 			$dir = $context->getLanguage()->getDir();
 			$lang = $context->getLanguage()->getHtmlCode();
-			$outputPage->addWikiTextAsInterface( Xml::openElement( 'div', [
+			$outputPage->addWikiTextAsInterface( Html::openElement( 'div', [
 				'class' => "noarticletext mw-content-$dir",
 				'dir' => $dir,
 				'lang' => $lang,

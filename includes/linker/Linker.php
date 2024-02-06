@@ -2048,7 +2048,7 @@ class Linker {
 		$html = wfMessage( $msgKey )->escaped();
 		$tag = $restricted ? 'strong' : 'span';
 		$link = self::link( $sp, $html, [], $query, [ 'known', 'noclasses' ] );
-		return Xml::tags(
+		return Html::rawElement(
 			$tag,
 			[ 'class' => 'mw-revdelundel-link' ],
 			wfMessage( 'parentheses' )->rawParams( $link )->escaped()
@@ -2070,7 +2070,7 @@ class Linker {
 		$msgKey = $delete ? 'rev-delundel' : 'rev-showdeleted';
 		$html = wfMessage( $msgKey )->escaped();
 		$htmlParentheses = wfMessage( 'parentheses' )->rawParams( $html )->escaped();
-		return Xml::tags( 'span', [ 'class' => 'mw-revdelundel-link' ], $htmlParentheses );
+		return Html::rawElement( 'span', [ 'class' => 'mw-revdelundel-link' ], $htmlParentheses );
 	}
 
 	/**

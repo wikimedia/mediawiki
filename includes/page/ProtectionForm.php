@@ -45,7 +45,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Watchlist\WatchlistManager;
-use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -619,7 +618,7 @@ class ProtectionForm {
 	private function showLogExtract() {
 		# Show relevant lines from the protection log:
 		$protectLogPage = new LogPage( 'protect' );
-		$this->mOut->addHTML( Xml::element( 'h2', null, $protectLogPage->getName()->text() ) );
+		$this->mOut->addHTML( Html::element( 'h2', [], $protectLogPage->getName()->text() ) );
 		/** @phan-suppress-next-line PhanTypeMismatchPropertyByRef */
 		LogEventsList::showLogExtract( $this->mOut, 'protect', $this->mTitle );
 		# Let extensions add other relevant log extracts

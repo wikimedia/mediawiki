@@ -60,7 +60,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserTimeCorrection;
-use MediaWiki\Xml\Xml;
 use MessageLocalizer;
 use OOUI\ButtonWidget;
 use OOUI\FieldLayout;
@@ -1070,7 +1069,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Info
 		$now = wfTimestampNow();
 		$lang = $context->getLanguage();
-		$nowlocal = Xml::element( 'span', [ 'id' => 'wpLocalTime' ],
+		$nowlocal = Html::element( 'span', [ 'id' => 'wpLocalTime' ],
 			$lang->userTime( $now, $user ) );
 		$nowserver = $lang->userTime( $now, $user,
 				[ 'format' => false, 'timecorrection' => false ] ) .
