@@ -4,10 +4,14 @@
 
 /* stylelint-disable selector-class-pattern */
 
-/* Hide, but keep accessible for screen-readers. */
-.redirectMsg p {
+/**
+ * Hide, but keep accessible for screen-readers.
+ * Prefix with .mw-body to override any skin defaults for `p` tag.
+*/
+.mw-body .redirectMsg p {
 	overflow: hidden;
 	height: 0;
+	padding: 0;
 }
 
 .redirectText {
