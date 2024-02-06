@@ -18,6 +18,7 @@ target.id = ID;
  * Skins should apply body content styles to this element so that
  * dialogs will use the same styles (font sizes, etc).
  *
+ * @ignore
  * @return {Object}
  * @return {HTMLDivElement} return.target The div element
  * @return {Function} return.attach Call this function to attach the div to the <body>

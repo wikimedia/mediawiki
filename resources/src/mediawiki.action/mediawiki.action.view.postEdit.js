@@ -111,6 +111,7 @@
 	 *
 	 * @class mw.plugin.action.view.postEdit
 	 * @singleton
+	 * @ignore
 	 */
 	module.exports = {
 
@@ -119,6 +120,7 @@
 		 *
 		 * This is just a shortcut for firing mw.hook#postEdit.
 		 *
+		 * @ignore
 		 * @param {string} [action] One of 'saved', 'created', 'restored'
 		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
 		 */
@@ -149,6 +151,7 @@
 		 * The necessary data is stored in session storage for up to 20 minutes, and cleared when the
 		 * page is loaded again.
 		 *
+		 * @ignore
 		 * @param {string} [action] One of 'saved', 'created', 'restored'
 		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
 		 */

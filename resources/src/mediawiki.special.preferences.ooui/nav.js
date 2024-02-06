@@ -4,6 +4,9 @@
 ( function () {
 	var switchingNoHash;
 	var session = require( 'mediawiki.storage' ).session;
+	/**
+	 * @ignore
+	 */
 	module.exports = {
 		switchingNoHash: switchingNoHash,
 		/**
@@ -11,6 +14,7 @@
 		 * but hide it by default to reduce visual clutter.
 		 * Make sure it becomes visible when focused.
 		 *
+		 * @ignore
 		 * @param {string} hintMsg the layout-specific navigation hint message
 		 */
 		insertHints: function ( hintMsg ) {
@@ -25,6 +29,7 @@
 		/**
 		 * Call layout-specific function for jumping to the correct section and manage hash state.
 		 *
+		 * @ignore
 		 * @param {Function} setSection callback for opening the section
 		 * @param {string} sectionName The name of a section
 		 * @param {string} [fieldset] A fieldset containing a subsection
@@ -45,6 +50,7 @@
 		 * Determine the correct section indicated by the hash.
 		 * This function is called onload and onhashchange.
 		 *
+		 * @ignore
 		 * @param {Function} setSection callback for opening the section
 		 */
 		detectHash: function ( setSection ) {
@@ -67,6 +73,7 @@
 		/**
 		 * Determine if there is a valid hash or default section.
 		 *
+		 * @ignore
 		 * @param {Function} setSection callback for opening the section
 		 * @param {string} defaultSectionName The name of a section to load by default
 		 */
@@ -82,6 +89,7 @@
 		/**
 		 * Trigger onHashChange onload to select the proper tab on startup.
 		 *
+		 * @ignore
 		 * @param {Function} setSection callback for opening the section
 		 * @param {string} defaultSection The name of a section to load by default
 		 */
@@ -93,6 +101,7 @@
 		/**
 		 * Restore the active tab after saving the preferences
 		 *
+		 * @ignore
 		 * @param {Function} setSection callback for opening the section
 		 * @param {Function} onSubmit callback for saving the active section name
 		 */
