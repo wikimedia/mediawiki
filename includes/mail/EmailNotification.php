@@ -146,8 +146,11 @@ class EmailNotification {
 
 		// update wl_notificationtimestamp for watchers
 		$watchers = [];
-		if ( $config->get( MainConfigNames::EnotifWatchlist ) ||
-			$config->get( MainConfigNames::ShowUpdatedMarker )
+		if (
+			(
+				$config->get( MainConfigNames::EnotifWatchlist ) ||
+				$config->get( MainConfigNames::ShowUpdatedMarker )
+			) && !$mwServices->getUserFactory()->newFromAuthority( $editor )->isBot()
 		) {
 			$watchers = $mwServices->getWatchedItemStore()->updateNotificationTimestamp(
 				$editor->getUser(),
