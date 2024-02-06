@@ -266,13 +266,16 @@ class Xml {
 
 	/**
 	 * Shortcut to make a specific element with a class attribute
+	 *
 	 * @param string $text Content of the element, will be escaped
 	 * @param string $class Class name of the span element
 	 * @param string $tag Element name
 	 * @param array $attribs Other attributes
 	 * @return string
+	 * @deprecated since 1.42, use {@link Xml::tags()} instead
 	 */
 	public static function wrapClass( $text, $class, $tag = 'span', $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return self::tags( $tag, [ 'class' => $class ] + $attribs, $text );
 	}
 
