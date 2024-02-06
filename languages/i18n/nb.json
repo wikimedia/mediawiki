@@ -63,7 +63,8 @@
 			"아라",
 			"Amire80",
 			"TommyG",
-			"Iketsi"
+			"Iketsi",
+			"Kimberli Mäkäräinen (WMNO)"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -2116,7 +2117,7 @@
 	"protectedpages-cascade": "Kun dypbeskyttelse",
 	"protectedpages-noredirect": "Skjul omdirigeringer",
 	"cachedspecial-viewing-cached-ttl": "Du ser en mellomlagret versjon av denne siden, som kan være opp til $1 gammel.",
-	"protectedpagesempty": "Ingen sider er for øyeblikket låst med disse paramterne.",
+	"protectedpagesempty": "Ingen sider er for øyeblikket låst med disse parameterne.",
 	"protectedpages-timestamp": "Tidsstempel",
 	"protectedpages-page": "Side",
 	"protectedpages-expiry": "Utløper",

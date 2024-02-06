@@ -1,10 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"apihelp-feedrecentchanges-param-showlinkedto": "Sýna í staðinn breytingar á síðum sem tengjast í völdu síðuna.",
+	"apihelp-query+alltransclusions-example-generator": "Sækja síður sem innihalda innifalningarnar.",
+	"apihelp-query+embeddedin-summary": "Finna allar síður sem innifela hinn tiltekna titil.",
+	"apihelp-query+embeddedin-example-simple": "Sýna síður sem innifela <kbd>Template:Stub</kbd>.",
+	"apihelp-query+embeddedin-example-generator": "Sækja upplýsingar um síður sem innifela <kbd>Template:Stub</kbd>.",
+	"apihelp-query+templates-summary": "Skilar öllum síðum innifaldar í eftirfarandi síðu.",
+	"apihelp-query+transcludedin-summary": "Finna allar síður sem innifela hina tilteknu síðu.",
+	"apihelp-query+transcludedin-example-simple": "Sækja lista yfir síður sem innifela [[{{MediaWiki:Mainpage}}]].",
+	"apihelp-query+transcludedin-example-generator": "Sækja upplýsingar um síður sem innifela [[{{MediaWiki:Mainpage}}]].",
 	"api-help-license": "Notkunarleyfi: [[$1|$2]]",
 	"api-help-license-noname": "Notkunarleyfi: [[$1|Sjá tengil]]",
 	"api-help-license-unknown": "Notkunarleyfi: <span class=\"apihelp-unknown\">óþekkt</span>",
