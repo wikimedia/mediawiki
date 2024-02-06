@@ -63,11 +63,11 @@ class ResourceEntryPointTest extends \MediaWikiIntegrationTestCase {
 		$env = new MockEnvironment( $request );
 		$entryPoint = $this->getEntryPoint( $env );
 
-		$entryPoint->establishOutputBufferLevel();
+		$entryPoint->enableOutputCapture();
 		$entryPoint->run();
 
 		// NOTE: MediaWikiEntryPoint::doPostOutputShutdown flushes all output buffers
-		$content = $entryPoint->captureOutput();
+		$content = $entryPoint->getCapturedOutput();
 
 		$this->assertStringContainsString( 'mw.loader.impl', $content );
 		$this->assertStringContainsString( 'site@', $content );
