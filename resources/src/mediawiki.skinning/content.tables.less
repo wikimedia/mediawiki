@@ -6,7 +6,7 @@
 @import 'mediawiki.skin.variables.less';
 
 .wikitable {
-	background-color: #f8f9fa;
+	background-color: @background-color-neutral-subtle;
 	color: @color-base;
 	margin: 1em 0;
 	border: @border-width-base @border-style-base @border-color-base;
@@ -22,7 +22,8 @@
 
 	> tr > th,
 	> * > tr > th {
-		background-color: #eaecf0;
+		background-color: @background-color-neutral;
+		color: @color-base;
 		text-align: center;
 	}
 
