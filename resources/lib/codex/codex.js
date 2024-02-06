@@ -258,7 +258,7 @@ const _export_sfc = (sfc, props) => {
 };
 const _hoisted_1$s = ["aria-hidden"];
 const _hoisted_2$k = { key: 0 };
-const _hoisted_3$9 = ["innerHTML"];
+const _hoisted_3$a = ["innerHTML"];
 const _hoisted_4$7 = ["d"];
 function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
@@ -277,7 +277,7 @@ function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
       _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
         key: 1,
         innerHTML: _ctx.iconSvg
-      }, null, 8, _hoisted_3$9)) : (openBlock(), createElementBlock("path", {
+      }, null, 8, _hoisted_3$a)) : (openBlock(), createElementBlock("path", {
         key: 2,
         d: _ctx.iconPath
       }, null, 8, _hoisted_4$7))
@@ -770,7 +770,7 @@ const _sfc_main$p = defineComponent({
 const Card_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$o = { class: "cdx-card__text" };
 const _hoisted_2$h = { class: "cdx-card__text__title" };
-const _hoisted_3$8 = {
+const _hoisted_3$9 = {
   key: 0,
   class: "cdx-card__text__description"
 };
@@ -804,7 +804,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
         createElementVNode("span", _hoisted_2$h, [
           renderSlot(_ctx.$slots, "title")
         ]),
-        _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$8, [
+        _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$9, [
           renderSlot(_ctx.$slots, "description")
         ])) : createCommentVNode("", true),
         _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$6, [
@@ -960,7 +960,7 @@ const _sfc_main$o = defineComponent({
 const Label_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$n = ["for"];
 const _hoisted_2$g = { class: "cdx-label__label__text" };
-const _hoisted_3$7 = {
+const _hoisted_3$8 = {
   key: 1,
   class: "cdx-label__label__optional-flag"
 };
@@ -994,7 +994,7 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("span", _hoisted_2$g, [
         renderSlot(_ctx.$slots, "default")
       ]),
-      _ctx.optionalFlag ? (openBlock(), createElementBlock("span", _hoisted_3$7, toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag), 1)) : createCommentVNode("", true)
+      _ctx.optionalFlag ? (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag), 1)) : createCommentVNode("", true)
     ], 16, _hoisted_1$n),
     _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", {
       key: 0,
@@ -1582,7 +1582,7 @@ const _hoisted_1$k = {
   "aria-orientation": "horizontal"
 };
 const _hoisted_2$d = ["disabled"];
-const _hoisted_3$6 = {
+const _hoisted_3$7 = {
   key: 0,
   class: "cdx-chip-input__separate-input"
 };
@@ -1631,7 +1631,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
         [vModelDynamic, _ctx.inputValue]
       ]) : createCommentVNode("", true)
     ]),
-    _ctx.separateInput ? (openBlock(), createElementBlock("div", _hoisted_3$6, [
+    _ctx.separateInput ? (openBlock(), createElementBlock("div", _hoisted_3$7, [
       withDirectives(createElementVNode("input", mergeProps({
         ref: "input",
         "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.inputValue = $event),
@@ -1920,7 +1920,7 @@ const _sfc_main$j = defineComponent({
 const MenuItem_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$i = ["id", "aria-disabled", "aria-selected"];
 const _hoisted_2$b = { class: "cdx-menu-item__text" };
-const _hoisted_3$5 = ["lang"];
+const _hoisted_3$6 = ["lang"];
 const _hoisted_4$3 = ["lang"];
 const _hoisted_5$3 = ["lang"];
 const _hoisted_6$3 = ["lang"];
@@ -1968,7 +1968,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                 lang: (_b = _ctx.language) == null ? void 0 : _b.label
               }, [
                 createElementVNode("bdi", null, toDisplayString(_ctx.title), 1)
-              ], 8, _hoisted_3$5)),
+              ], 8, _hoisted_3$6)),
               _ctx.match ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                 createTextVNode(toDisplayString(" ") + " "),
                 _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
@@ -2052,7 +2052,7 @@ const _sfc_main$i = defineComponent({
 const ProgressBar_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$h = ["aria-hidden", "aria-disabled"];
 const _hoisted_2$a = /* @__PURE__ */ createElementVNode("div", { class: "cdx-progress-bar__bar" }, null, -1);
-const _hoisted_3$4 = [
+const _hoisted_3$5 = [
   _hoisted_2$a
 ];
 function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
@@ -2061,7 +2061,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     role: "progressbar",
     "aria-hidden": _ctx.computedAriaHidden,
     "aria-disabled": _ctx.disabled
-  }, _hoisted_3$4, 10, _hoisted_1$h);
+  }, _hoisted_3$5, 10, _hoisted_1$h);
 }
 const CdxProgressBar = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 function useIntersectionObserver(templateRef, observerOptions) {
@@ -2697,7 +2697,7 @@ const _hoisted_2$9 = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
 };
-const _hoisted_3$3 = {
+const _hoisted_3$4 = {
   key: 1,
   class: "cdx-menu__no-results cdx-menu-item"
 };
@@ -2718,7 +2718,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
       _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$9, [
         renderSlot(_ctx.$slots, "pending")
       ])) : createCommentVNode("", true),
-      _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$3, [
+      _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$4, [
         renderSlot(_ctx.$slots, "no-results")
       ])) : createCommentVNode("", true),
       (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedMenuItems, (menuItem, index) => {
@@ -5021,7 +5021,7 @@ const _hoisted_2$8 = {
   key: 0,
   class: "cdx-dialog__header__title-group"
 };
-const _hoisted_3$2 = ["id"];
+const _hoisted_3$3 = ["id"];
 const _hoisted_4$2 = {
   key: 0,
   class: "cdx-dialog__header__subtitle"
@@ -5083,7 +5083,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   createElementVNode("h2", {
                     id: _ctx.labelId,
                     class: "cdx-dialog__header__title"
-                  }, toDisplayString(_ctx.title), 9, _hoisted_3$2),
+                  }, toDisplayString(_ctx.title), 9, _hoisted_3$3),
                   _ctx.subtitle ? (openBlock(), createElementBlock("p", _hoisted_4$2, toDisplayString(_ctx.subtitle), 1)) : createCommentVNode("", true)
                 ])) : createCommentVNode("", true),
                 _ctx.closeButtonLabel ? (openBlock(), createBlock(_component_cdx_button, {
@@ -5445,8 +5445,9 @@ const _sfc_main$c = defineComponent({
   }
 });
 const Field_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$b = { class: "cdx-field__help-text" };
-const _hoisted_2$6 = {
+const _hoisted_1$b = { class: "cdx-field__control" };
+const _hoisted_2$6 = { class: "cdx-field__help-text" };
+const _hoisted_3$2 = {
   key: 0,
   class: "cdx-field__validation-message"
 };
@@ -5482,15 +5483,13 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
           key: "0"
         } : void 0
       ]), 1032, ["id", "icon", "visually-hidden", "optional-flag", "input-id", "description-id", "disabled", "is-legend"]),
-      createElementVNode("div", {
-        class: normalizeClass(["cdx-field__control", { "cdx-field__control--has-help-text": _ctx.$slots["help-text"] && _ctx.$slots["help-text"]().length > 0 || _ctx.validationMessage }])
-      }, [
-        renderSlot(_ctx.$slots, "default")
-      ], 2),
       createElementVNode("div", _hoisted_1$b, [
+        renderSlot(_ctx.$slots, "default")
+      ]),
+      createElementVNode("div", _hoisted_2$6, [
         renderSlot(_ctx.$slots, "help-text")
       ]),
-      !_ctx.computedDisabled && _ctx.validationMessage ? (openBlock(), createElementBlock("div", _hoisted_2$6, [
+      !_ctx.computedDisabled && _ctx.validationMessage ? (openBlock(), createElementBlock("div", _hoisted_3$2, [
         createVNode(_component_cdx_message, {
           type: _ctx.validationMessageType,
           inline: true
