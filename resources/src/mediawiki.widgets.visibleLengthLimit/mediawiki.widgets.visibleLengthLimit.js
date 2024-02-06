@@ -4,10 +4,6 @@
 		codePointLength = require( 'mediawiki.String' ).codePointLength;
 
 	/**
-	 * @class mw.widgets
-	 */
-
-	/**
 	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 * Add a visible byte limit label to a TextInputWidget.
 	 *
