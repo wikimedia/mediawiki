@@ -255,7 +255,7 @@ class WebRequest {
 	 *   URL returned by getGlobalRequestURL() will be used.
 	 * @return string|false
 	 */
-	public static function getRequestPathSuffix( string $basePath, ?string $requestUrl ) {
+	public static function getRequestPathSuffix( string $basePath, ?string $requestUrl = null ) {
 		$basePath = rtrim( $basePath, '/' ) . '/';
 		$requestUrl ??= self::getGlobalRequestURL();
 		$qpos = strpos( $requestUrl, '?' );
