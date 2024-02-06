@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutput;
@@ -24,3 +24,8 @@ interface OutputPageParserOutputHook {
 	 */
 	public function onOutputPageParserOutput( $outputPage, $parserOutput ): void;
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( OutputPageParserOutputHook::class, 'MediaWiki\Hook\OutputPageParserOutputHook' );

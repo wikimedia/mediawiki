@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -22,3 +22,8 @@ interface AfterBuildFeedLinksHook {
 	 */
 	public function onAfterBuildFeedLinks( &$feedLinks );
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( AfterBuildFeedLinksHook::class, 'MediaWiki\Hook\AfterBuildFeedLinksHook' );

@@ -465,6 +465,22 @@ because of Phabricator reports.
     - UserOptionsLookup
     - UserOptionsManager
     - StaticUserOptionsLookup
+* Some hook classes have been moved from the generic MediaWiki\Hooks namespace
+  to live closer to the code which uses them:
+  - MediaWiki\Output\Hook:
+    - AfterBuildFeedLinksHook
+    - AfterFinalPageOutputHook
+    - BeforePageDisplayHook
+    - BeforePageRedirectHook
+    - GetCacheVaryCookiesHook
+    - LanguageLinksHook
+    - MakeGlobalVariablesScriptHook
+    - OutputPageAfterGetHeadLinksArrayHook
+    - OutputPageBeforeHTMLHook
+    - OutputPageBodyAttributesHook
+    - OutputPageCheckLastModifiedHook
+    - OutputPageMakeCategoryLinksHook
+    - OutputPageParserOutputHook
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
 * Overriding MWException::getHTML(), ::getText(), ::getPageTitle(), and

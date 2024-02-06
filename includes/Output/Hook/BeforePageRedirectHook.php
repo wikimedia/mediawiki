@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 
@@ -26,3 +26,8 @@ interface BeforePageRedirectHook {
 	 */
 	public function onBeforePageRedirect( $out, &$redirect, &$code );
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( BeforePageRedirectHook::class, 'MediaWiki\Hook\BeforePageRedirectHook' );

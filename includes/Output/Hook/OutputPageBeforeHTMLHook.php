@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 
@@ -24,3 +24,8 @@ interface OutputPageBeforeHTMLHook {
 	 */
 	public function onOutputPageBeforeHTML( $out, &$text );
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( OutputPageBeforeHTMLHook::class, 'MediaWiki\Hook\OutputPageBeforeHTMLHook' );
