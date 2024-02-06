@@ -7734,7 +7734,7 @@ class MainConfigSchema {
 	/**
 	 * Flag to enable partial blocks against performing certain actions.
 	 *
-	 * @unstable Temporary feature flag, to be removed before the release of 1.38: T280532
+	 * @unstable Temporary feature flag which will be removed in an upcoming release: T280532
 	 */
 	public const EnablePartialActionBlocks = [
 		'default' => false,
