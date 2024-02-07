@@ -254,7 +254,7 @@
 	"config-cc-error": "查無該創作共用授權條款，\n請手動輸入您的授權條款名稱。",
 	"config-cc-again": "請重新選取...",
 	"config-cc-not-chosen": "請選擇您要使用的創用CC授權條款，然後點選 \"proceed\"。",
-	"config-advanced-settings": "進階設定",
+	"config-advanced-settings": "進階組態設定",
 	"config-cache-options": "物件快取設定：",
 	"config-cache-help": "物件快取是用來增進 MediaWiki 速度的一項功能，透過快取經常使用的資料。\n中型到大型的網站我們會建議開啟這個選項，對小型的網站也有一定程度的效果。",
 	"config-cache-none": "不快取 (不會影響功能，但在大型 Wiki 網站可能會有處理速度的問題)",
