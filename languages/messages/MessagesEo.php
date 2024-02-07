@@ -77,6 +77,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Serĉi_pri_duoblaj_dosieroj' ],
 	'Filepath'                  => [ 'Pado_de_dosiero', 'Dosiero-pado' ],
 	'Import'                    => [ 'Enporti', 'Importi' ],
+	'Interwiki'                 => [ 'Intervikia_ligilo' ],
 	'Invalidateemail'           => [ 'Malvalidigi_retpoŝton' ],
 	'LinkSearch'                => [ 'Serĉi_ligilon' ],
 	'Listadmins'                => [ 'Listigi_administrantojn' ],

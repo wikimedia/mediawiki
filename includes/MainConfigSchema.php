@@ -27,6 +27,7 @@ use EnotifNotifyJob;
 use Generator;
 use HTMLCacheUpdateJob;
 use ImportLogFormatter;
+use InterwikiLogFormatter;
 use InvalidArgumentException;
 use JobQueueDB;
 use LocalisationCache;
@@ -11771,6 +11772,7 @@ class MainConfigSchema {
 			'upload',
 			'move',
 			'import',
+			'interwiki',
 			'patrol',
 			'merge',
 			'suppress',
@@ -11909,6 +11911,9 @@ class MainConfigSchema {
 			'delete/revision' => DeleteLogFormatter::class,
 			'import/interwiki' => ImportLogFormatter::class,
 			'import/upload' => ImportLogFormatter::class,
+			'interwiki/iw_add' => InterwikiLogFormatter::class,
+			'interwiki/iw_delete' => InterwikiLogFormatter::class,
+			'interwiki/iw_edit' => InterwikiLogFormatter::class,
 			'managetags/activate' => LogFormatter::class,
 			'managetags/create' => LogFormatter::class,
 			'managetags/deactivate' => LogFormatter::class,

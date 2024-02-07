@@ -7354,6 +7354,7 @@ config-schema:
             - upload
             - move
             - import
+            - interwiki
             - patrol
             - merge
             - suppress
@@ -7459,6 +7460,9 @@ config-schema:
             delete/revision: DeleteLogFormatter
             import/interwiki: ImportLogFormatter
             import/upload: ImportLogFormatter
+            interwiki/iw_add: InterwikiLogFormatter
+            interwiki/iw_delete: InterwikiLogFormatter
+            interwiki/iw_edit: InterwikiLogFormatter
             managetags/activate: LogFormatter
             managetags/create: LogFormatter
             managetags/deactivate: LogFormatter

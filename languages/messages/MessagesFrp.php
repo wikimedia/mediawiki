@@ -73,6 +73,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Rechèrche_des_fichiérs_en_doblo', 'RechèrcheDesFichiérsEnDoblo' ],
 	'Filepath'                  => [ 'Chemin_d\'accès_du_fichiér', 'CheminDAccèsDuFichiér' ],
 	'Import'                    => [ 'Importar', 'Importacion' ],
+	'Interwiki'                 => [ 'Entèrvouiqui' ],
 	'Invalidateemail'           => [ 'Envalidar_l\'adrèce_èlèctronica', 'EnvalidarLAdrèceÈlèctronica' ],
 	'LinkSearch'                => [ 'Rechèrche_de_lims', 'RechèrcheDeLims' ],
 	'Listadmins'                => [ 'Lista_ux_administrators', 'ListaUxAdministrators' ],

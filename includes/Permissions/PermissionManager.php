@@ -175,6 +175,7 @@ class PermissionManager {
 		'hideuser',
 		'import',
 		'importupload',
+		'interwiki',
 		'ipblock-exempt',
 		'managechangetags',
 		'markbotedits',

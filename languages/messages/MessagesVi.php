@@ -88,6 +88,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Tìm_tập_tin_trùng' ],
 	'Filepath'                  => [ 'Đường_dẫn_tập_tin', 'Đường_dẫn_file' ],
 	'Import'                    => [ 'Nhập' ],
+	'Interwiki'                 => [ 'Liên_wiki' ],
 	'Invalidateemail'           => [ 'Hủy_thư', 'Hủy_thư_điện_tử', 'Huỷ_thư', 'Huỷ_thư_điện_tử', 'Tắt_thư' ],
 	'JavaScriptTest'            => [ 'Thử_JavaScript' ],
 	'LinkSearch'                => [ 'Tìm_liên_kết' ],

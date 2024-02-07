@@ -220,6 +220,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Pencarian_berkas_duplikat', 'PencarianBerkasDuplikat' ],
 	'Filepath'                  => [ 'Lokasi_berkas', 'Lokasi_arsip', 'LokasiArsip' ],
 	'Import'                    => [ 'Impor_halaman', 'Impor' ],
+	'Interwiki'                 => [ 'Interwiki' ],
 	'Invalidateemail'           => [ 'Batalkan_validasi_surel', 'BatalkanValidasiSurel' ],
 	'LinkSearch'                => [ 'Pranala_luar', 'PranalaLuar', 'Pencarian_pranala', 'PencarianPranala' ],
 	'Listadmins'                => [ 'Daftar_pengurus', 'DaftarPengurus' ],

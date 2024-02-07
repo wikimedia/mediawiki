@@ -65,6 +65,7 @@ $specialPageAliases = [
 	'Export'                    => [ 'Toa' ],
 	'Fewestrevisions'           => [ 'MarejeoMadogo' ],
 	'Import'                    => [ 'Ingiza' ],
+	'Interwiki'                 => [ 'Viungovyawiki' ],
 	'LinkSearch'                => [ 'TafutaKiungo' ],
 	'Listadmins'                => [ 'OrodhayaWakabidhi' ],
 	'Listbots'                  => [ 'OrodhayaVikaragosi' ],

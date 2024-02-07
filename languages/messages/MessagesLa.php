@@ -93,6 +93,7 @@ $specialPageAliases = [
 	'Fewestrevisions'           => [ 'Paginae_minime_mutatae' ],
 	'FileDuplicateSearch'       => [ 'Quaerere_fasciculos_duplices', 'Quaerere_imagines_duplices' ],
 	'Import'                    => [ 'Importare', 'Paginas_importare' ],
+	'Interwiki'                 => [ 'Intervici' ],
 	'Invalidateemail'           => [ 'Adfimationem_inscriptionis_electronicae_abrogare' ],
 	'LinkSearch'                => [ 'Quaerere_nexus_externos' ],
 	'Listadmins'                => [ 'Magistratus' ],

@@ -85,6 +85,7 @@ use MediaWiki\Specials\SpecialFileDuplicateSearch;
 use MediaWiki\Specials\SpecialFilepath;
 use MediaWiki\Specials\SpecialGoToInterwiki;
 use MediaWiki\Specials\SpecialImport;
+use MediaWiki\Specials\SpecialInterwiki;
 use MediaWiki\Specials\SpecialJavaScriptTest;
 use MediaWiki\Specials\SpecialLinkAccounts;
 use MediaWiki\Specials\SpecialLinkSearch;
@@ -841,6 +842,16 @@ class SpecialPageFactory {
 		// Data and tools
 		'ApiSandbox' => [
 			'class' => SpecialApiSandbox::class,
+		],
+		'Interwiki' => [
+			'class' => SpecialInterwiki::class,
+			'services' => [
+				'ContentLanguage',
+				'InterwikiLookup',
+				'LanguageNameUtils',
+				'UrlUtils',
+				'ConnectionProvider',
+			]
 		],
 		'RestSandbox' => [
 			'class' => SpecialRestSandbox::class,

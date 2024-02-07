@@ -123,6 +123,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'ПребарувањеДупликатПодатотека' ],
 	'Filepath'                  => [ 'ПатДоПодатотека' ],
 	'Import'                    => [ 'Увоз' ],
+	'Interwiki'                 => [ 'Меѓувики' ],
 	'Invalidateemail'           => [ 'ПогрешнаЕпошта' ],
 	'JavaScriptTest'            => [ 'ПробаНаJavaСкрипта' ],
 	'LinkSearch'                => [ 'ПребарајВрска' ],

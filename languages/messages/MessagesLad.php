@@ -99,6 +99,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'BuscarDosyasDobles' ],
 	'Filepath'                  => [ 'Pozisyón_de_dosya' ],
 	'Import'                    => [ 'AktarearAriento' ],
+	'Interwiki'                 => [ 'Interviki' ],
 	'Invalidateemail'           => [ 'DesverdadearLetral' ],
 	'LinkSearch'                => [ 'Busqueda_de_atamientos' ],
 	'Listadmins'                => [ 'ListaDeAdministradores' ],

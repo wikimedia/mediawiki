@@ -79,6 +79,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'প্ৰতিলিপি_সনিবিষ্ট_নথি_অনুসন্ধান' ],
 	'Filepath'                  => [ 'ফাইলৰ_পথ' ],
 	'Import'                    => [ 'আমদানি' ],
+	'Interwiki'                 => [ 'আন্তঃৱিকি' ],
 	'Invalidateemail'           => [ 'অবৈধ_ই-মেইল' ],
 	'JavaScriptTest'            => [ 'জাভাস্ক্ৰীপ্ত_পৰীক্ষা' ],
 	'LinkSearch'                => [ 'সংযোগ_সন্ধান' ],

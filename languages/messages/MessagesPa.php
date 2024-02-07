@@ -93,6 +93,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'ਨਕਲੀ_ਫ਼ਾਈਲ_ਖੋਜੋ', 'ਨਕਲੀ_ਫ਼ਾਇਲ_ਖੋਜੋ' ],
 	'Filepath'                  => [ 'ਫ਼ਾਈਲ_ਪਥ', 'ਫ਼ਾਇਲ_ਪਥ' ],
 	'Import'                    => [ 'ਆਯਾਤ' ],
+	'Interwiki'                 => [ 'ਇੰਟਰਵਿਕੀ' ],
 	'Invalidateemail'           => [ 'ਗਲਤ_ਈ-ਮੇਲ_ਪਤਾ' ],
 	'JavaScriptTest'            => [ 'ਜਾਵਾਸਕ੍ਰਿਪਟ_ਪਰਖ' ],
 	'LinkSearch'                => [ 'ਲਿੰਕ_ਖੋਜੋ', 'ਕੜੀ_ਖੋਜੋ' ],

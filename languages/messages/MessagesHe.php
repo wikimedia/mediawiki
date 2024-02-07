@@ -78,6 +78,7 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'נתיב_לקובץ' ],
 	'GoToInterwiki'             => [ 'מעבר_לאתר_אחר' ],
 	'Import'                    => [ 'ייבוא', 'ייבוא_דפים' ],
+	'Interwiki'                 => [ 'בינוויקי' ],
 	'Invalidateemail'           => [ 'ביטול_דואר' ],
 	'JavaScriptTest'            => [ 'בדיקת_JavaScript' ],
 	'LinkAccounts'              => [ 'קישור_חשבונות' ],

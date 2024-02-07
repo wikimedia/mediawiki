@@ -59,6 +59,7 @@ $specialPageAliases = [
 	'Export'                    => [ 'ھەناردن' ],
 	'Fewestrevisions'           => [ 'کەمترین_پێداچوونەوەکان' ],
 	'Import'                    => [ 'ھاوردن' ],
+	'Interwiki'                 => [ 'نێوانویکی' ],
 	'Listadmins'                => [ 'لیستی_بەڕێوبەران' ],
 	'Listbots'                  => [ 'لیستی_بۆتەکان' ],
 	'Listfiles'                 => [ 'لیستی_پەڕگەکان' ],

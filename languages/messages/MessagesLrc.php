@@ -72,6 +72,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'پئی_جوٙری_دۊ_کوٙنە_جانیا' ],
 	'Filepath'                  => [ 'مأسیر_جانیا' ],
 	'Import'                    => [ 'ڤا_مین_آڤوردئن' ],
+	'Interwiki'                 => [ 'مینجا_ڤیکی' ],
 	'Invalidateemail'           => [ 'بی_ئتئڤار_کئردئن_ایمئیل' ],
 	'JavaScriptTest'            => [ 'ئزماشت_نیسئسە_یا_جاڤا' ],
 	'LinkSearch'                => [ 'پئی_جوٙری_ھوم_پئیڤأند' ],

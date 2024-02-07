@@ -79,6 +79,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Procura_de_ficheiros_duplicados', 'Busca_de_ficheiros_duplicados', 'Busca_de_arquivos_duplicados' ],
 	'Filepath'                  => [ 'Ruta_do_ficheiro' ],
 	'Import'                    => [ 'Importar' ],
+	'Interwiki'                 => [ 'Interwikis' ],
 	'Invalidateemail'           => [ 'Invalidar_o_enderezo_de_correo_electrónico', 'Invalidar_correo_electrónico', 'Invalidar_enderezo_de_correo_electrónico', 'Invalidar_enderezo_correo_electrónico' ],
 	'JavaScriptTest'            => [ 'Proba_do_JavaScript' ],
 	'LinkSearch'                => [ 'Buscar_ligazóns_web' ],

@@ -73,6 +73,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Paghahanap_ng_kamukhang_talaksan' ],
 	'Filepath'                  => [ 'Daanan_ng_talaksan' ],
 	'Import'                    => [ 'Pag-aangkat' ],
+	'Interwiki'                 => [ 'Kawing-wiki' ],
 	'Invalidateemail'           => [ 'Hindi_tanggap_na_e-liham' ],
 	'JavaScriptTest'            => [ 'Pagsubok_sa_JavaScript' ],
 	'LinkSearch'                => [ 'Paghahanap_ng_kawing' ],

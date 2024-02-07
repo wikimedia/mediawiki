@@ -160,6 +160,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Поиск_дубликатов_файлов' ],
 	'Filepath'                  => [ 'Путь_к_файлу' ],
 	'Import'                    => [ 'Импорт' ],
+	'Interwiki'                 => [ 'Интервики' ],
 	'Invalidateemail'           => [ 'Отменить_подтверждение_адреса' ],
 	'JavaScriptTest'            => [ 'Тестирование_JavaScript' ],
 	'LinkSearch'                => [ 'Поиск_ссылок' ],

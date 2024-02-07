@@ -450,6 +450,7 @@ $specialPageAliases = [
 	'Filepath'                   => [ 'FilePath' ],
 	'GoToInterwiki'              => [ 'GoToInterwiki' ],
 	'Import'                     => [ 'Import' ],
+	'Interwiki'                  => [ 'Interwiki' ],
 	'Invalidateemail'            => [ 'InvalidateEmail' ],
 	'JavaScriptTest'             => [ 'JavaScriptTest' ],
 	'LinkAccounts'               => [ 'LinkAccounts' ],

@@ -82,6 +82,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Hledání_duplicitních_souborů', 'Hledani_duplicitnich_souboru' ],
 	'Filepath'                  => [ 'Cesta_k_souboru' ],
 	'Import'                    => [ 'Importovat_stránky' ],
+	'Interwiki'                 => [ 'Mezijazykové_odkazy' ],
 	'Invalidateemail'           => [ 'Zneplatnit_e-mail', 'Zrušit_potvrzení_e-mailu' ],
 	'LinkSearch'                => [ 'Hledání_odkazů', 'Hledani_odkazu' ],
 	'Listadmins'                => [ 'Seznam_správců', 'Seznam_spravcu' ],

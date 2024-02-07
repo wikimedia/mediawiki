@@ -112,6 +112,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'പ്രമാണത്തിന്റെ_അപരനുള്ള_തിരച്ചിൽ' ],
 	'Filepath'                  => [ 'പ്രമാണവിലാസം' ],
 	'Import'                    => [ 'ഇറക്കുമതി' ],
+	'Interwiki'                 => [ 'അന്തർ‌വിക്കി' ],
 	'Invalidateemail'           => [ 'ഇമെയിൽഅസാധുവാക്കുക' ],
 	'JavaScriptTest'            => [ 'ജാവാസ്ക്രിപ്റ്റ്പരീക്ഷണം' ],
 	'LinkSearch'                => [ 'കണ്ണികൾ_തിരയുക' ],

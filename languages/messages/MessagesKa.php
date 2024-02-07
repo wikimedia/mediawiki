@@ -60,6 +60,7 @@ $specialPageAliases = [
 	'Export'                    => [ 'ექსპორტი' ],
 	'FileDuplicateSearch'       => [ 'ფაილის_დუბლიკატის_ძიება' ],
 	'Import'                    => [ 'იმპორტი' ],
+	'Interwiki'                 => [ 'ინტერვიკი' ],
 	'LinkSearch'                => [ 'ბმულის_ძიება' ],
 	'Listadmins'                => [ 'ადმინისტრატორების_სია' ],
 	'Listbots'                  => [ 'ბოტების_სია' ],

@@ -50,6 +50,12 @@ For notes on 1.43.x and older releases, see HISTORY.
   might conflict with a namespace on the local wiki.
 * (T326057) Attempting to create a redirect to a nonexistent page will now
   result in a warning.
+* (T33951) The Interwiki extension has been moved to MediaWiki core. It is now
+  possible to view and edit the interwiki table without installing an extension.
+  $wgInterwikiCentralDB and $wgInterwikiCentralInterlanguageDB have been
+  removed, use $wgVirtualDomainsMapping['virtual-interwiki'] and
+  $wgVirtualDomainsMapping['virtual-interwiki-interlanguage'] instead.
+  $wgInterwikiViewOnly has been removed, (un)assign "interwiki" right instead.
 * …
 
 === New features for sysadmins in 1.44 ===

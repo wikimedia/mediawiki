@@ -84,6 +84,7 @@ $specialPageAliases = [
 	'Export'                    => [ 'עקספארט' ],
 	'Fewestrevisions'           => [ 'ווייניגסטע_רעוויזיעס' ],
 	'Import'                    => [ 'אימפארט' ],
+	'Interwiki'                 => [ 'אינטערוויקי' ],
 	'Listadmins'                => [ 'ליסטע_פון_סיסאפן' ],
 	'Listbots'                  => [ 'ליסטע_פון_באטס' ],
 	'Listfiles'                 => [ 'בילדער' ],

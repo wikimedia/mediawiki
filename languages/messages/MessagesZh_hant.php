@@ -170,6 +170,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ '重複檔案搜尋', '搜尋重複檔案' ],
 	'Filepath'                  => [ '檔案路徑' ],
 	'Import'                    => [ '匯入', '匯入頁面' ],
+	'Interwiki'                 => [ '跨Wiki', '跨維基' ],
 	'Invalidateemail'           => [ '無效的信箱' ],
 	'JavaScriptTest'            => [ 'JavaScript測試' ],
 	'LinkSearch'                => [ '連結搜尋', '搜尋網頁連結' ],

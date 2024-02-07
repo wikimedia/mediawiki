@@ -62,6 +62,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Релъарал_файлал_хъирщи' ],
 	'Filepath'                  => [ 'Файлалде_нух' ],
 	'Import'                    => [ 'Импорт' ],
+	'Interwiki'                 => [ 'Интервики' ],
 	'Invalidateemail'           => [ 'Адрес_битІухъ_гьаби_нахъ_чІвазе' ],
 	'JavaScriptTest'            => [ 'JavaScript_хІалбихьи' ],
 	'LinkSearch'                => [ 'Ссылкаби_хъирщи' ],

@@ -1001,7 +1001,8 @@ return [
 			$services->getContentLanguage(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
-			$services->getConnectionProvider()
+			$services->getConnectionProvider(),
+			$services->getLanguageNameUtils()
 		);
 	},
 

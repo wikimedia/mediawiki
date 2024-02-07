@@ -2453,6 +2453,9 @@ return [
 	'mediawiki.special.import.styles.ooui' => [
 		'styles' => 'resources/src/mediawiki.special.import.styles.ooui.less',
 	],
+	'mediawiki.special.interwiki' => [
+		'styles' => 'resources/src/mediawiki.special.interwiki.less',
+	],
 	'mediawiki.special.changecredentials' => [
 		'scripts' => [ 'resources/src/mediawiki.special.changecredentails.js' ],
 	],

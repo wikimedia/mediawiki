@@ -100,6 +100,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'दुहेरी_संचिका_शोध' ],
 	'Filepath'                  => [ 'संचिकेचा_पत्ता_(पाथ)' ],
 	'Import'                    => [ 'आयात' ],
+	'Interwiki'                 => [ 'आंतरविकि' ],
 	'Invalidateemail'           => [ 'अग्राह्य_विपत्र' ],
 	'LinkSearch'                => [ 'दुवाशोध' ],
 	'Listadmins'                => [ 'प्रबंधकांची_यादी' ],

@@ -67,6 +67,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Dateiduplikatsuche', 'Datei-Duplikat-Suche' ],
 	'Filepath'                  => [ 'Dateipfad' ],
 	'Import'                    => [ 'Importieren' ],
+	'Interwiki'                 => [ 'Interwikitabelle', 'Interwiki-Tabelle' ],
 	'Invalidateemail'           => [ 'E-Mail_nicht_bestätigen', 'E-Mail_nicht_bestaetigen' ],
 	'JavaScriptTest'            => [ 'JavaScript-Test' ],
 	'LinkSearch'                => [ 'Weblinksuche', 'Weblink-Suche' ],
