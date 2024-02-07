@@ -217,7 +217,6 @@ class ImagePage extends Article {
 		}
 
 		$out->addModuleStyles( [
-			'filepage', // always show the local local Filepage.css, T31277
 			'mediawiki.action.view.filepage', // Add MediaWiki styles for a file page
 		] );
 	}
