@@ -27,7 +27,7 @@ interface OutputTransformStage {
 	 * The returned ParserOutput can explicitly be a modified version of the input ParserOutput; if modifications
 	 * to that object are unexpected, a copy should be made before passing it to this method.
 	 * TODO Some transformations require the possibility of modifying options (this is the case of
-	 * PostCacheTransformHookRunner in particular). We do NOT want to keep this mechanism for later versions of
+	 * ExecutePostCacheTransformHooks in particular). We do NOT want to keep this mechanism for later versions of
 	 * this interface - the currently foreseen goal is to not pass $options at all.
 	 * Modifying $options during this pass is considered deprecated.
 	 * @unstable

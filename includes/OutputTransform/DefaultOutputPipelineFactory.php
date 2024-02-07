@@ -8,12 +8,12 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
+use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
-use MediaWiki\OutputTransform\Stages\PostCacheTransformHookRunner;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\TitleFactory;
@@ -60,7 +60,7 @@ class DefaultOutputPipelineFactory {
 			->addStage( new ExtractBody() )
 			->addStage( new AddRedirectHeader() )
 			->addStage( new RenderDebugInfo( $this->hookContainer ) )
-			->addStage( new PostCacheTransformHookRunner( $this->hookContainer ) )
+			->addStage( new ExecutePostCacheTransformHooks( $this->hookContainer ) )
 			->addStage( new AddWrapperDivClass( $this->langFactory, $this->contentLang ) )
 			->addStage( new HandleSectionLinks( $this->logger, $this->titleFactory ) )
 			->addStage( new HandleTOCMarkers( $this->tidy ) )
