@@ -951,7 +951,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	/**
 	 * Get the URL to this title.
 	 *
-	 * @see [mw.util.getUrl]{@link mediawiki.module:util.getUrl}
+	 * @see [mw.util.getUrl]{@link module:mediawiki.util.getUrl}
 	 * @param {Object} [params] A mapping of query parameter names to values,
 	 *     e.g. `{ action: 'edit' }`.
 	 * @return {string}

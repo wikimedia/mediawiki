@@ -3,7 +3,7 @@
  * holding shift and clicking another one.
  *
  * @method checkboxShift
- * @memberof mediawiki.page.module:ready
+ * @memberof module:mediawiki.page.ready
  * @param {jQuery} $box
  */
 module.exports = function ( $box ) {

@@ -5,7 +5,7 @@
 	 * @author Jan Paul Posma, 2011
 	 * @author Timo Tijhof, 2012
 	 * @author David Chan, 2013
-	 * @memberof mediawiki.module:String
+	 * @memberof module:mediawiki.String
 	 * @param {string} str
 	 * @return {number}
 	 */
@@ -33,7 +33,7 @@
 	/**
 	 * Calculate the character length of a string (accounting for UTF-16 surrogates).
 	 *
-	 * @memberof mediawiki.module:String
+	 * @memberof module:mediawiki.String
 	 * @param {string} str
 	 * @return {number}
 	 */
@@ -47,7 +47,7 @@
 	/**
 	 * Like String#charAt, but return the pair of UTF-16 surrogates for characters outside of BMP.
 	 *
-	 * @memberof mediawiki.module:String
+	 * @memberof module:mediawiki.String
 	 * @param {string} string
 	 * @param {number} offset Offset to extract the character
 	 * @param {boolean} [backwards] Use backwards direction to detect UTF-16 surrogates,
@@ -70,7 +70,7 @@
 	/**
 	 * Lowercase the first character. Support UTF-16 surrogates for characters outside of BMP.
 	 *
-	 * @memberof mediawiki.module:String
+	 * @memberof module:mediawiki.String
 	 * @param {string} string
 	 * @return {string}
 	 */
@@ -82,7 +82,7 @@
 	/**
 	 * Uppercase the first character. Support UTF-16 surrogates for characters outside of BMP.
 	 *
-	 * @memberof mediawiki.module:String
+	 * @memberof module:mediawiki.String
 	 * @param {string} string
 	 * @return {string}
 	 */
@@ -166,7 +166,7 @@
 	}
 
 	/**
-	 * @typedef {Object} mediawiki.module:String~StringTrimmed
+	 * @typedef {Object} module:mediawiki.String~StringTrimmed
 	 * @property {string} newVal a trimmed version of the string
 	 * @property {boolean} trimmed whether the string is different from the original version.
 	 */
@@ -178,7 +178,7 @@
 	 * "fobo", not "foba". Basically emulating the native maxlength by
 	 * reconstructing where the insertion occurred.
 	 *
-	 * @memberof mediawiki.module:String
+	 * @memberof module:mediawiki.String
 	 * @param {string} safeVal Known value that was previously returned by this
 	 * function, if none, pass empty string.
 	 * @param {string} newVal New value that may have to be trimmed down.
@@ -206,7 +206,7 @@
 	 * "fobo", not "foba". Basically emulating the native maxlength by
 	 * reconstructing where the insertion occurred.
 	 *
-	 * @memberof mediawiki.module:String
+	 * @memberof module:mediawiki.String
 	 * @param {string} safeVal Known value that was previously returned by this
 	 * function, if none, pass empty string.
 	 * @param {string} newVal New value that may have to be trimmed down.

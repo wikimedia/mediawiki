@@ -499,7 +499,7 @@
 	/**
 	 * Get the selectors of elements that should be grayed out while the preview is being generated.
 	 *
-	 * @memberof mediawiki.page.module:preview
+	 * @memberof module:mediawiki.page.preview
 	 * @return {string[]}
 	 * @stable
 	 */
@@ -523,7 +523,7 @@
 	/**
 	 * Fetch and display a preview of the current editing area.
 	 *
-	 * @memberof mediawiki.page.module:preview
+	 * @memberof module:mediawiki.page.preview
 	 * @param {Object} config Configuration options.
 	 * @param {jQuery} [config.$previewNode=$( '#wikiPreview' )] Where the preview should be displayed.
 	 * @param {jQuery} [config.$diffNode=$( '#wikiDiff' )] Where diffs should be displayed (if showDiff is set).

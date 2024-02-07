@@ -23,7 +23,7 @@
 	 * that is safe to call in all browsers.
 	 *
 	 * The constructor is not publicly accessible. An instance can be accessed from
-	 * the {@link mw.storage} or {@link mediawiki.module:mediawiki.storage}
+	 * the {@link mw.storage} or {@link module:mediawiki.mediawiki.storage}
 	 *
 	 * @class SafeStorage
 	 * @param {Object|undefined} store The Storage instance to wrap around

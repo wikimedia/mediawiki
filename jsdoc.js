@@ -9,6 +9,7 @@ module.exports = {
 		template: 'node_modules/jsdoc-wmf-theme'
 	},
 	plugins: [
+		'jsdoc-plugin-allow-dots-in-modules',
 		'plugins/markdown',
 		'plugins/summarize'
 	],
