@@ -2771,10 +2771,6 @@ class EditPage implements IEditObject {
 			$out->addModules( 'mediawiki.editRecovery.edit' );
 		}
 
-		if ( $this->formtype === 'preview' && $this->mTitle->getNamespace() === NS_FILE ) {
-			$out->addModuleStyles( 'filepage' ); // local Filepage.css, T356505
-		}
-
 		# Enabled article-related sidebar, toplinks, etc.
 		$out->setArticleRelated( true );
 
