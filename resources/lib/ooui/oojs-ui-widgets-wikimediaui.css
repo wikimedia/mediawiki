@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.4
+ * OOUI v0.49.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-01-09T19:08:49Z
+ * Date: 2024-02-07T18:56:29Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -356,8 +356,7 @@
 
 .oo-ui-tabSelectWidget {
   text-align: left;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   -webkit-overflow-scrolling: auto;
 }
 .oo-ui-tabSelectWidget-mobile {
@@ -752,8 +751,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
 }
 .oo-ui-searchWidget-query {

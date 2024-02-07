@@ -105,7 +105,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* Updated OOUI from v0.48.1 to v0.48.4.
+* Updated OOUI from v0.48.1 to v0.49.0.
 * Updated codex, codex-design-tokens and codex-icons
   from v1.0.0 to v1.3.2.
 * Updated wikimedia/minify from v2.5.1 to v2.7.0.
