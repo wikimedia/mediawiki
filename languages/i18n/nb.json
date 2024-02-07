@@ -4123,7 +4123,7 @@
 	"specialmute-error-mutelist-disabled": "Funksjonene for demping er ikke tilgjengelige, fordi wikiadministratoren har deaktivert dem på denne wikien.",
 	"specialmute-error-no-email-set": "Funksjonene for demping er utilgjengelige, fordi du ikke har bekreftet e-postadressen din.",
 	"specialmute-error-no-options": "Dempingsfunksjoner er ikke tilgjengelige.",
-	"specialmute-email-footer": "Besøk <$1> for å behandle epostinnstillingene som gjelder brukeren {{BIDI:$2}}.",
+	"specialmute-email-footer": "Besøk følgende URL for å behandle e-postinnstillingene som gjelder brukeren {{BIDI:$2}}:\n$1",
 	"specialmute-login-required": "Logg inn for å endre dempingsinnstillingene dine.",
 	"mute-preferences": "Dempings&shy;innstillinger",
 	"revid": "sideversjon $1",
