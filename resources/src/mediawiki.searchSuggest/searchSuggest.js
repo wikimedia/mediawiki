@@ -66,7 +66,7 @@
 				search: query,
 				namespace: namespace || searchNS,
 				limit
-			} ).then( function ( data, jqXHR ) {
+			} ).done( function ( data, jqXHR ) {
 				response( data[ 1 ], {
 					type: jqXHR.getResponseHeader( 'X-OpenSearch-Type' ),
 					searchId: jqXHR.getResponseHeader( 'X-Search-ID' ),
