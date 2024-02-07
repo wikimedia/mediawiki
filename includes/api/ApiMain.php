@@ -23,12 +23,10 @@
 
 use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Html\Html;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
@@ -2344,37 +2342,19 @@ class ApiMain extends ApiBase {
 			$tocnumber = &$options['tocnumber'];
 
 			$header = $this->msg( 'api-help-datatypes-header' )->parse();
-
-			$id = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_PRIMARY );
-			$idFallback = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_FALLBACK );
-			$headline = Linker::makeHeadline( min( 6, $level ),
-				' class="apihelp-header">',
-				$id,
-				$header,
-				'',
-				$idFallback
+			$headline = Html::rawElement(
+				'h' . min( 6, $level ),
+				[ 'class' => 'apihelp-header', 'id' => 'main/datatypes' ],
+				$header
 			);
-			// Ensure we have a sensible anchor
-			if ( $id !== 'main/datatypes' && $idFallback !== 'main/datatypes' ) {
-				$headline = '<div id="main/datatypes"></div>' . $headline;
-			}
 			$help['datatypes'] .= $headline;
 			$help['datatypes'] .= $this->msg( 'api-help-datatypes-top' )->parseAsBlock();
 			$help['datatypes'] .= '<dl>';
 			foreach ( $this->getParamValidator()->knownTypes() as $type ) {
 				$m = $this->msg( "api-help-datatype-$type" );
 				if ( !$m->isDisabled() ) {
-					$id = "main/datatype/$type";
-					$help['datatypes'] .= '<dt id="' . htmlspecialchars( $id ) . '">';
-					$encId = Sanitizer::escapeIdForAttribute( $id, Sanitizer::ID_PRIMARY );
-					if ( $encId !== $id ) {
-						$help['datatypes'] .= '<span id="' . htmlspecialchars( $encId ) . '"></span>';
-					}
-					$encId2 = Sanitizer::escapeIdForAttribute( $id, Sanitizer::ID_FALLBACK );
-					if ( $encId2 !== $id && $encId2 !== $encId ) {
-						$help['datatypes'] .= '<span id="' . htmlspecialchars( $encId2 ) . '"></span>';
-					}
-					$help['datatypes'] .= htmlspecialchars( $type ) . '</dt><dd>' . $m->parseAsBlock() . "</dd>";
+					$help['datatypes'] .= Html::element( 'dt', [ 'id' => "main/datatype/$type" ], $type );
+					$help['datatypes'] .= Html::rawElement( 'dd', [], $m->parseAsBlock() );
 				}
 			}
 			$help['datatypes'] .= '</dl>';
@@ -2391,20 +2371,11 @@ class ApiMain extends ApiBase {
 			}
 
 			$header = $this->msg( 'api-help-templatedparams-header' )->parse();
-
-			$id = Sanitizer::escapeIdForAttribute( 'main/templatedparams', Sanitizer::ID_PRIMARY );
-			$idFallback = Sanitizer::escapeIdForAttribute( 'main/templatedparams', Sanitizer::ID_FALLBACK );
-			$headline = Linker::makeHeadline( min( 6, $level ),
-				' class="apihelp-header">',
-				$id,
-				$header,
-				'',
-				$idFallback
+			$headline = Html::rawElement(
+				'h' . min( 6, $level ),
+				[ 'class' => 'apihelp-header', 'id' => 'main/templatedparams' ],
+				$header
 			);
-			// Ensure we have a sensible anchor
-			if ( $id !== 'main/templatedparams' && $idFallback !== 'main/templatedparams' ) {
-				$headline = '<div id="main/templatedparams"></div>' . $headline;
-			}
 			$help['templatedparams'] .= $headline;
 			$help['templatedparams'] .= $this->msg( 'api-help-templatedparams' )->parseAsBlock();
 			if ( !isset( $tocData['main/templatedparams'] ) ) {
@@ -2420,19 +2391,11 @@ class ApiMain extends ApiBase {
 			}
 
 			$header = $this->msg( 'api-credits-header' )->parse();
-			$id = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_PRIMARY );
-			$idFallback = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_FALLBACK );
-			$headline = Linker::makeHeadline( min( 6, $level ),
-				' class="apihelp-header">',
-				$id,
-				$header,
-				'',
-				$idFallback
+			$headline = Html::rawElement(
+				'h' . min( 6, $level ),
+				[ 'class' => 'apihelp-header', 'id' => 'main/credits' ],
+				$header
 			);
-			// Ensure we have a sensible anchor
-			if ( $id !== 'main/credits' && $idFallback !== 'main/credits' ) {
-				$headline = '<div id="main/credits"></div>' . $headline;
-			}
 			$help['credits'] .= $headline;
 			$help['credits'] .= $this->msg( 'api-credits' )->useDatabase( false )->parseAsBlock();
 			if ( !isset( $tocData['main/credits'] ) ) {
