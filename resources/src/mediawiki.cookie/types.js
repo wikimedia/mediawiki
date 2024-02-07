@@ -10,9 +10,7 @@
  *   / 'Strict', case-insensitive; default is to omit the flag, which results in Lax on
  *   modern browsers). Set to None AND set secure=true if the cookie needs to be visible on
  *   cross-domain requests.
- * @property {boolean} [sameSiteLegacy] If true, sameSite=None
-*   cookies will also be sent as a non-SameSite cookie with an 'ss0-' prefix, to work around
-*   old browsers interpreting the standard differently. Defaults to $wgUseSameSiteLegacyCookies.
+ * @property {boolean} [sameSiteLegacy] Deprecated, ignored.
  * @property {Date|number|null} [expires] Number of days to store the value (when setting).
  *  The expiry date of the cookie, or lifetime in seconds.
  *  If null or 0, then a session cookie is set. Defaults to wgCookieExpiration.

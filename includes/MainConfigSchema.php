@@ -9401,6 +9401,7 @@ class MainConfigSchema {
 	 * cookie with an "ss0" prefix will also be sent, without SameSite=None. This
 	 * is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
 	 *
+	 * @deprecated since 1.42
 	 * @since 1.35
 	 */
 	public const UseSameSiteLegacyCookies = [
