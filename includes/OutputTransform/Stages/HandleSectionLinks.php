@@ -3,6 +3,9 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlHelper;
+use MediaWiki\Linker\Linker;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -14,11 +17,12 @@ use Psr\Log\LoggerInterface;
 use Skin;
 
 /**
- * Replace the section link placeholders by their proper value
+ * Add anchors and other heading formatting, and replace the section link placeholders.
  * @internal
  */
 class HandleSectionLinks extends ContentTextTransformStage {
 	private const EDITSECTION_REGEX = '#<mw:editsection page="(.*?)" section="(.*?)">(.*?)</mw:editsection>#s';
+	private const HEADING_REGEX = '/<H(?P<level>[1-6])(?P<attrib>.*?>)(?P<header>[\s\S]*?)<\/H[1-6] *>/i';
 
 	private LoggerInterface $logger;
 	private TitleFactory $titleFactory;
@@ -29,10 +33,13 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	}
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
-		return true;
+		$isParsoid = $options['isParsoidContent'] ?? false;
+		return !$isParsoid;
 	}
 
 	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+		$text = $this->replaceHeadings( $text );
+
 		if (
 			( $options['enableSectionEditLinks'] ?? true ) &&
 			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
@@ -41,6 +48,52 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		} else {
 			return preg_replace( self::EDITSECTION_REGEX, '', $text );
 		}
+	}
+
+	private function replaceHeadings( string $text ): string {
+		return preg_replace_callback( self::HEADING_REGEX, function ( $m ) {
+			// Parse attributes out of the <h#> tag. Do not actually use HtmlHelper's output,
+			// because EDITSECTION_REGEX is sensitive to quotes in HTML serialization.
+			$attrs = [];
+			HtmlHelper::modifyElements(
+				$m[0],
+				static fn ( $node ) => in_array( $node->name, [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ] ),
+				static function ( $node ) use ( &$attrs ) {
+					$attrs = $node->attrs->getValues();
+					return $node;
+				}
+			);
+
+			if ( !isset( $attrs['data-mw-anchor'] ) ) {
+				if ( str_contains( $m[0], '<span class="mw-headline"' ) ) {
+					// Old parser cache entry, already contains replaced headings
+					return $m[0];
+				}
+				// Shouldn't happen, output the node unchanged with a HTML comment to indicate this
+				return $m[0] . '<!-- HandleSectionLinks did not find data attributes -->';
+			}
+
+			$anchor = $attrs['data-mw-anchor'];
+			$fallbackAnchor = $attrs['data-mw-fallback-anchor'] ?? false;
+			unset( $attrs['data-mw-anchor'] );
+			unset( $attrs['data-mw-fallback-anchor'] );
+
+			// Split the heading content from the section edit link placeholder
+			$editlink = '';
+			$contents = preg_replace_callback( self::EDITSECTION_REGEX, static function ( $mm ) use ( &$editlink ) {
+				$editlink = $mm[0];
+				return '';
+			}, $m['header'] );
+
+			return Linker::makeHeadline(
+				(int)$m['level'],
+				Html::expandAttributes( $attrs ) . '>',
+				$anchor,
+				$contents,
+				$editlink,
+				$fallbackAnchor
+			);
+		}, $text );
 	}
 
 	private function addSectionLinks( string $text, ParserOutput $po, array $options ): string {
