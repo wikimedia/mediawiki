@@ -539,6 +539,8 @@ because of Phabricator reports.
 * $wgUseSameSiteLegacyCookies has been deprecated and will be ignored.
 * WebRequest::getCrossSiteCookie() has been deprecated. It will emit deprecation
   warnings. Use WebRequest::getCookie().
+* Using the array_merge_recursive merge strategy in extension.json and skin.json
+  has been hard deprecated
 * …
 
 === Other changes in 1.42 ===
