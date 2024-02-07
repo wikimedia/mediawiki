@@ -28,7 +28,6 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		$this->overrideConfigValues( [
 			MainConfigNames::EnableBotPasswords => true,
-			MainConfigNames::BotPasswordsDatabase => false,
 			MainConfigNames::CentralIdLookupProvider => 'BotPasswordTest OkMock',
 			MainConfigNames::GrantPermissions => [
 				'test' => [ 'read' => true ],

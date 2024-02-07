@@ -45,6 +45,8 @@ class MWLBFactory {
 	/** @var array Cache of already-logged deprecation messages */
 	private static $loggedDeprecations = [];
 
+	public const CORE_VIRTUAL_DOMAINS = [ 'virtual-botpasswords' ];
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -225,7 +227,7 @@ class MWLBFactory {
 		$lbConf['chronologyProtector'] = $this->chronologyProtector;
 		$lbConf['srvCache'] = $this->srvCache;
 		$lbConf['wanCache'] = $this->wanCache;
-		$lbConf['virtualDomains'] = $this->virtualDomains;
+		$lbConf['virtualDomains'] = array_merge( $this->virtualDomains, self::CORE_VIRTUAL_DOMAINS );
 		$lbConf['virtualDomainsMapping'] = $this->options->get( MainConfigNames::VirtualDomainsMapping );
 
 		return $lbConf;

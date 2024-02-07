@@ -39,7 +39,6 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->config = new HashConfig( [
 				MainConfigNames::CookiePrefix => 'wgCookiePrefix',
 				MainConfigNames::EnableBotPasswords => true,
-				MainConfigNames::BotPasswordsDatabase => false,
 				MainConfigNames::SessionProviders => $wgSessionProviders + [
 					BotPasswordSessionProvider::class => [
 						'class' => BotPasswordSessionProvider::class,
@@ -64,7 +63,6 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$this->overrideConfigValues( [
 			MainConfigNames::EnableBotPasswords => true,
-			MainConfigNames::BotPasswordsDatabase => false,
 			MainConfigNames::CentralIdLookupProvider => 'local',
 			MainConfigNames::GrantPermissions => [
 				'test' => [ 'read' => true ],

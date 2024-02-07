@@ -281,7 +281,6 @@ class ApiLoginTest extends ApiTestCase {
 				],
 			] ),
 			MainConfigNames::EnableBotPasswords => true,
-			MainConfigNames::BotPasswordsDatabase => false,
 			MainConfigNames::CentralIdLookupProvider => 'local',
 			MainConfigNames::GrantPermissions => [
 				'test' => [ 'read' => true ],

@@ -5655,6 +5655,7 @@ config-schema:
         description: |-
             Cluster for the bot_passwords table
             @since 1.27
+            @deprecated since 1.42 Use $wgVirtualDomainsMapping instead.
     BotPasswordsDatabase:
         default: false
         type:
@@ -5665,6 +5666,7 @@ config-schema:
             To use a database with a table prefix, set this variable to
             "{$database}-{$prefix}".
             @since 1.27
+            @deprecated since 1.42 Use $wgVirtualDomainsMapping instead.
     SecretKey:
         default: false
         description: 'This should always be customised in LocalSettings.php'

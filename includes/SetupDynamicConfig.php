@@ -341,3 +341,15 @@ if ( defined( 'MW_NO_SESSION' ) ) {
 	// specifically set it to the (undocumented) 'warn'.
 	$wgPHPSessionHandling = MW_NO_SESSION === 'warn' ? 'warn' : 'disable';
 }
+
+// Backwards compatibility with old bot passwords storage configs
+if ( !$wgVirtualDomainsMapping ) {
+	$wgVirtualDomainsMapping = [];
+}
+if ( $wgBotPasswordsCluster ) {
+	$wgVirtualDomainsMapping['virtual-botpasswords']['cluster'] = $wgBotPasswordsCluster;
+}
+
+if ( $wgBotPasswordsDatabase ) {
+	$wgVirtualDomainsMapping['virtual-botpasswords']['db'] = $wgBotPasswordsDatabase;
+}
