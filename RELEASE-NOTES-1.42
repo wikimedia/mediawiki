@@ -382,6 +382,14 @@ because of Phabricator reports.
 * Composer 1.x is no longer supported, and can no longer be used with MediaWiki.
 * Title::GAID_FOR_UPDATE, deprecated in 1.34, has been removed. Instead, your
   code should use IDBAccessObject::READ_LATEST.
+* Six private Title class members, deprecated in 1.37, are now fully private;
+  use their corresponding accessor methods:
+   - $mTextform   -> getText()
+   - $mUrlform    -> getPartialURL()
+   - $mDbkeyform  -> getDBkey()
+   - $mNamespace  -> getNamespace()
+   - $mInterwiki  -> getInterwiki()
+   - $mFragment   -> getFragment()
 * …
 
 === Deprecations in 1.42 ===
