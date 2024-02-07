@@ -380,6 +380,8 @@ because of Phabricator reports.
   - VueComponentParser – use MediaWiki\ResourceLoader\VueComponentParser
 * (T318989) Skin::lastModified, deprecated since 1.40, has been removed.
 * Composer 1.x is no longer supported, and can no longer be used with MediaWiki.
+* Title::GAID_FOR_UPDATE, deprecated in 1.34, has been removed. Instead, your
+  code should use IDBAccessObject::READ_LATEST.
 * …
 
 === Deprecations in 1.42 ===
