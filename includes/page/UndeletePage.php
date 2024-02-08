@@ -44,8 +44,8 @@ use RepoGroup;
 use StatusValue;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use WikiPage;
 
@@ -64,8 +64,8 @@ class UndeletePage {
 	private $hookRunner;
 	/** @var JobQueueGroup */
 	private $jobQueueGroup;
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 	/** @var LoggerInterface */
 	private $logger;
 	/** @var ReadOnlyMode */
@@ -109,7 +109,7 @@ class UndeletePage {
 	 * @internal Create via the UndeletePageFactory service.
 	 * @param HookContainer $hookContainer
 	 * @param JobQueueGroup $jobQueueGroup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RepoGroup $repoGroup
 	 * @param LoggerInterface $logger
@@ -126,7 +126,7 @@ class UndeletePage {
 	public function __construct(
 		HookContainer $hookContainer,
 		JobQueueGroup $jobQueueGroup,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		ReadOnlyMode $readOnlyMode,
 		RepoGroup $repoGroup,
 		LoggerInterface $logger,
@@ -142,7 +142,7 @@ class UndeletePage {
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->jobQueueGroup = $jobQueueGroup;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->repoGroup = $repoGroup;
 		$this->logger = $logger;
@@ -477,7 +477,7 @@ class UndeletePage {
 			throw new ReadOnlyError();
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		$oldWhere = [

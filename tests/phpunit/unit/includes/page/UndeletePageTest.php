@@ -22,7 +22,7 @@ use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
 use RepoGroup;
 use Wikimedia\Message\ITextFormatter;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use WikiPage;
 
@@ -46,7 +46,7 @@ class UndeletePageTest extends MediaWikiUnitTestCase {
 		return new UndeletePage(
 			$this->createHookContainer(),
 			$this->createMock( JobQueueGroup::class ),
-			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( RepoGroup::class ),
 			new NullLogger(),
