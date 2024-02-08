@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 

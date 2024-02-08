@@ -3,9 +3,10 @@
 namespace MediaWiki\Output;
 
 use DomainException;
-use IContextSource;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ContentSecurityPolicy;
@@ -14,7 +15,6 @@ use MediaWiki\Request\FauxResponse;
 use MediaWiki\Specials\SpecialIframeError;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
-use RequestContext;
 use SkinFactory;
 use Wikimedia\Assert\Assert;
 

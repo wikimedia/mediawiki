@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
-use IContextSource;
 use Language;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RateLimiter;

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\User\User;
 
 /**

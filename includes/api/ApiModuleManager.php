@@ -21,6 +21,7 @@
  * @since 1.21
  */
 
+use MediaWiki\Context\ContextSource;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectFactory\ObjectFactory;
 

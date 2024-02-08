@@ -23,6 +23,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Status\Status;

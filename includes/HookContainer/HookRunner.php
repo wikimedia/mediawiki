@@ -4,10 +4,10 @@ namespace MediaWiki\HookContainer;
 
 use Article;
 use File;
-use IContextSource;
 use JsonContent;
 use MailAddress;
 use ManualLogEntry;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Mail\UserEmailContact;

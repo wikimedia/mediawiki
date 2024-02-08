@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use Content;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 

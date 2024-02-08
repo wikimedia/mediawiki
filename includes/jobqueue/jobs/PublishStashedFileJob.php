@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Status\Status;
 use Wikimedia\ScopedCallback;
 

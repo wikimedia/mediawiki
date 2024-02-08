@@ -401,6 +401,12 @@ because of Phabricator reports.
   In this release of MediaWiki, XYZ classes now have a namespace and XYZ do
   not yet (XYZ% done, up from 63% in MediaWiki 1.41.0). The following have newly
   been moved:
+  - MediaWiki\Context:
+    - ContextSource
+    - DerivativeContextSource
+    - IContextSource
+    - MutableContext
+    - RequestContext
   - MediaWiki\Deferred:
     - AtomicSectionUpdate
     - AutoCommitUpdate

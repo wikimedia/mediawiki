@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Specials\SpecialUncategorizedCategories;
 use Wikimedia\Rdbms\Expression;

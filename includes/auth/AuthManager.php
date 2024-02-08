@@ -27,6 +27,7 @@ use IDBAccessObject;
 use Language;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
@@ -2324,7 +2325,7 @@ class AuthManager implements LoggerAwareInterface {
 	private function getAuthenticationRequestsInternal(
 		$providerAction, array $options, array $providers, UserIdentity $user = null
 	) {
-		$user = $user ?: \RequestContext::getMain()->getUser();
+		$user = $user ?: RequestContext::getMain()->getUser();
 		$options['username'] = $user->isRegistered() ? $user->getName() : null;
 
 		// Query them and merge results
@@ -2641,7 +2642,7 @@ class AuthManager implements LoggerAwareInterface {
 	private function setDefaultUserOptions( User $user, $useContextLang ) {
 		$user->setToken();
 
-		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $this->contentLanguage;
+		$lang = $useContextLang ? RequestContext::getMain()->getLanguage() : $this->contentLanguage;
 		$this->userOptionsManager->setOption(
 			$user,
 			'language',

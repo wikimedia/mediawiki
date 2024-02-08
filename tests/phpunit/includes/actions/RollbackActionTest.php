@@ -3,14 +3,14 @@
 namespace MediaWiki\Tests\Action;
 
 use Article;
-use DerivativeContext;
 use ErrorPageError;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use RequestContext;
 use RollbackAction;
 
 /**

@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
@@ -69,7 +70,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetGlobalSession() {
-		$context = \RequestContext::getMain();
+		$context = RequestContext::getMain();
 
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install( SessionManager::singleton() );

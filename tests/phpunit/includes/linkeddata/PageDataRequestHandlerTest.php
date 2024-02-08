@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\LinkedData\PageDataRequestHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;

@@ -26,6 +26,7 @@
  * @file
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;

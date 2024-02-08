@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Pager;
 
-use ContextSource;
 use HtmlArmor;
-use IContextSource;
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;

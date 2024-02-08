@@ -21,6 +21,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Installer\Installer;
 use MediaWiki\Installer\InstallerOverrides;
 use MediaWiki\MediaWikiServices;

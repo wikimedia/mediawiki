@@ -22,12 +22,12 @@
 
 namespace MediaWiki\User;
 
-use IContextSource;
 use InvalidArgumentException;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Message;
-use RequestContext;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging

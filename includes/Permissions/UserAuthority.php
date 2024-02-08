@@ -20,11 +20,11 @@
 
 namespace MediaWiki\Permissions;
 
-use IContextSource;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Request\WebRequest;

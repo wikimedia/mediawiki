@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\HookContainer\HookContainer;

@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Exception;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use RequestContext;
 use RevisionDeleter;
 use RuntimeException;
 use Wikimedia\Rdbms\IDatabase;

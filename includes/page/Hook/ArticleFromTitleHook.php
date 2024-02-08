@@ -3,7 +3,7 @@
 namespace MediaWiki\Page\Hook;
 
 use Article;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\Title;
 
 /**

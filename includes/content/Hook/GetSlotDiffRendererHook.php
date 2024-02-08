@@ -3,7 +3,7 @@
 namespace MediaWiki\Content\Hook;
 
 use ContentHandler;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use SlotDiffRenderer;
 
 /**

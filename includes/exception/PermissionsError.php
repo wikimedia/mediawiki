@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserGroupMembership;

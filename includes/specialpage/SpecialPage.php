@@ -24,10 +24,11 @@
 namespace MediaWiki\SpecialPage;
 
 use ErrorPageError;
-use IContextSource;
 use Language;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
@@ -47,7 +48,6 @@ use MessageSpecifier;
 use MWCryptRand;
 use PermissionsError;
 use ReadOnlyError;
-use RequestContext;
 use SearchEngineFactory;
 use Skin;
 use UserNotLoggedIn;

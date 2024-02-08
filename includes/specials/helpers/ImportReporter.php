@@ -19,6 +19,8 @@
  */
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;

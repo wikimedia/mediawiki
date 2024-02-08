@@ -27,6 +27,7 @@ use ApiUsageException;
 use ErrorPageError;
 use Language;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -35,7 +36,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use MWRestrictions;
 use Psr\Log\LoggerInterface;
-use RequestContext;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session

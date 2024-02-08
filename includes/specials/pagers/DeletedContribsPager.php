@@ -23,10 +23,10 @@ namespace MediaWiki\Pager;
 
 use ChangesList;
 use ChangeTags;
-use IContextSource;
 use IDBAccessObject;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;

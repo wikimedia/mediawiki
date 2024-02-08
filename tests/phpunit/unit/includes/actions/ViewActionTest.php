@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
+
 /**
  * @covers \ViewAction
  *

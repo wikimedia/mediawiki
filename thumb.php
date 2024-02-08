@@ -26,6 +26,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;

@@ -21,9 +21,9 @@
 
 namespace MediaWiki\Pager;
 
-use IContextSource;
 use Language;
 use LocalisationCache;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;

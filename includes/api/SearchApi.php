@@ -20,6 +20,7 @@
  * @since 1.28
  */
 
+use MediaWiki\Context\IContextSource;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

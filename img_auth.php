@@ -39,6 +39,7 @@
  * @ingroup entrypoint
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\Request\WebRequest;

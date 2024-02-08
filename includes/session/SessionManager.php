@@ -27,6 +27,7 @@ use BagOStuff;
 use CachedBagOStuff;
 use LogicException;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -146,7 +147,7 @@ class SessionManager implements SessionManagerInterface {
 			$id = session_id();
 		}
 
-		$request = \RequestContext::getMain()->getRequest();
+		$request = RequestContext::getMain()->getRequest();
 		if (
 			!self::$globalSession // No global session is set up yet
 			|| self::$globalSessionRequest !== $request // The global WebRequest changed

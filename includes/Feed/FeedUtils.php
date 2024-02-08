@@ -23,8 +23,9 @@
 
 namespace MediaWiki\Feed;
 
-use DerivativeContext;
 use LogFormatter;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -32,7 +33,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use RequestContext;
 use TextContent;
 use UtfNormal;
 

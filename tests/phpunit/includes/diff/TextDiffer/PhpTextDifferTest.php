@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Diff\TextDiffer\PhpTextDiffer;
 use MediaWiki\Tests\Diff\TextDiffer\TextDifferData;
 

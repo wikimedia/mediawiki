@@ -16,6 +16,7 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -747,7 +748,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	) {
 		$this->setContentLang( $contLang );
 		$this->initializeManager( true );
-		$context = \RequestContext::getMain();
+		$context = RequestContext::getMain();
 		$reset = new ScopedCallback( [ $context, 'setLanguage' ], [ $context->getLanguage() ] );
 		$context->setLanguage( 'de' );
 

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Output\OutputPage;

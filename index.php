@@ -35,6 +35,7 @@
  */
 
 use MediaWiki\Actions\ActionEntryPoint;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiServices;
 

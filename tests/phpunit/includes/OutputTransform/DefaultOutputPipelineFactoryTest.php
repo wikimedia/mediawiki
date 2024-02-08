@@ -3,10 +3,10 @@
 namespace MediaWiki\OutputTransform;
 
 use LogicException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
 use MediaWikiLangTestCase;
-use RequestContext;
 
 /**
  * @covers \MediaWiki\OutputTransform\DefaultOutputPipelineFactory

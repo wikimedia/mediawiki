@@ -23,11 +23,11 @@
 
 namespace MediaWiki\Specials;
 
-use DerivativeContext;
 use HTMLForm;
 use HTMLUserTextField;
-use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Pager\NewFilesPager;

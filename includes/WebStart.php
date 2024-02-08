@@ -25,11 +25,12 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
+use MediaWiki\Settings\SettingsBuilder;
+
 # T17461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.
-use MediaWiki\Settings\SettingsBuilder;
-
 header( 'X-Content-Type-Options: nosniff' );
 
 # Valid web server entry point, enable includes.

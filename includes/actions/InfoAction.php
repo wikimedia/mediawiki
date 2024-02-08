@@ -24,6 +24,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\Category;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\TemplatesOnThisPageFormatter;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;

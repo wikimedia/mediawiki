@@ -4,6 +4,7 @@ namespace MediaWiki\Session;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -868,7 +869,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
-		$request = \RequestContext::getMain()->getRequest();
+		$request = RequestContext::getMain()->getRequest();
 		$manager->globalSession = $backend->getSession( $request );
 		$manager->globalSessionRequest = $request;
 
@@ -907,7 +908,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
-		$request = \RequestContext::getMain()->getRequest();
+		$request = RequestContext::getMain()->getRequest();
 		$manager->globalSession = $backend->getSession( $request );
 		$manager->globalSessionRequest = $request;
 
@@ -944,7 +945,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
-		$request = \RequestContext::getMain()->getRequest();
+		$request = RequestContext::getMain()->getRequest();
 		$manager->globalSession = $backend->getSession( $request );
 		$manager->globalSessionRequest = $request;
 

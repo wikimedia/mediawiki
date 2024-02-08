@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\Context;
 
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
@@ -14,7 +15,6 @@ use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use RequestContext;
 use Skin;
 use SkinFallback;
 
@@ -26,7 +26,7 @@ use SkinFallback;
 class RequestContextTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \RequestContext::sanitizeLangCode
+	 * @covers \MediaWiki\Context\RequestContext::sanitizeLangCode
 	 *
 	 * @dataProvider provideSanitizeLangCode
 	 */

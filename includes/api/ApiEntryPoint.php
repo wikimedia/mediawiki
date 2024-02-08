@@ -29,6 +29,7 @@ namespace MediaWiki\Api;
 
 use ApiMain;
 use LogicException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LegacyLogger;
@@ -36,7 +37,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use RequestContext;
 use Throwable;
 
 /**

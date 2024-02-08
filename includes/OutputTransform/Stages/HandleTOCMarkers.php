@@ -3,6 +3,7 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use Language;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\Linker;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
@@ -10,7 +11,6 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Tidy\TidyDriverBase;
 use Parser;
 use ParserOptions;
-use RequestContext;
 
 /**
  * Inject table of contents (or empty string if there's no sections)

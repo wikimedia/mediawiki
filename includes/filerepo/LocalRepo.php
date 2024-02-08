@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;

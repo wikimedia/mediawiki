@@ -22,14 +22,15 @@
 
 namespace MediaWiki\Linker;
 
-use ContextSource;
-use DerivativeContext;
 use File;
 use HtmlArmor;
-use IContextSource;
 use Language;
 use MediaTransformError;
 use MediaTransformOutput;
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
@@ -45,7 +46,6 @@ use MediaWiki\User\User;
 use Message;
 use MessageLocalizer;
 use Parser;
-use RequestContext;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\TOCData;

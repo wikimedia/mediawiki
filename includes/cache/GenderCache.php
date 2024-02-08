@@ -19,6 +19,7 @@
  * @author Niklas Laxström
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\NamespaceInfo;

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;

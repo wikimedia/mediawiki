@@ -3,9 +3,10 @@
 namespace MediaWiki\Revision;
 
 use ChangeTags;
-use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Pager\ContribsPager;
@@ -14,7 +15,6 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
 use Message;
-use RequestContext;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

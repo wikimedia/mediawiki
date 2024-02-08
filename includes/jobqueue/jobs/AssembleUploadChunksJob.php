@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;

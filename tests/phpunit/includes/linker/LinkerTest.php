@@ -2,6 +2,7 @@
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\SiteConfiguration;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;

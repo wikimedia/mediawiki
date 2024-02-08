@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;

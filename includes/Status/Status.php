@@ -22,13 +22,13 @@
 
 namespace MediaWiki\Status;
 
-use IContextSource;
 use Language;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;
 use Message;
 use MessageLocalizer;
-use RequestContext;
 use RuntimeException;
 use StatusValue;
 
