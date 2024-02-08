@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\NamespaceInfo;

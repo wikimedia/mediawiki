@@ -21,7 +21,10 @@
  */
 
 use MediaWiki\Api\Validator\SubmoduleDef;
+use MediaWiki\Cache\GenderCache;
+use MediaWiki\Cache\LinkBatch;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

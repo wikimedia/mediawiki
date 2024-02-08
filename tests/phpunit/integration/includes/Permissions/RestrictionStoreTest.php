@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use IDBAccessObject;
-use LinkCache;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;

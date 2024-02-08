@@ -1,6 +1,9 @@
 <?php
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Cache\GenderCache;
+use MediaWiki\Cache\LinkBatch;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;

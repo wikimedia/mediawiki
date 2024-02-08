@@ -25,7 +25,10 @@
  * @copyright © 2011, Antoine Musso
  */
 
-use MediaWiki\Cache\CacheKeyHelper;
+namespace MediaWiki\Cache;
+
+use Iterator;
+use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -36,6 +39,9 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use RuntimeException;
+use stdClass;
+use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -553,3 +559,6 @@ class BacklinkCache {
 		return array_values( $mergedRes );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( BacklinkCache::class, 'BacklinkCache' );

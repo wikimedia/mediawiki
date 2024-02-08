@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Cache\GenderCache;
+
 /**
  * @group Database
  * @group Cache

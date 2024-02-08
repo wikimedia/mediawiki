@@ -19,6 +19,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;

@@ -30,8 +30,8 @@ namespace MediaWiki\Specials;
 
 use EditWatchlistCheckboxSeriesField;
 use EditWatchlistNormalHTMLForm;
-use GenderCache;
 use LogicException;
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Html\Html;

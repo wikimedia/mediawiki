@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;

@@ -24,6 +24,7 @@ namespace MediaWiki\Pager;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Cache\UserCache;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
@@ -32,7 +33,6 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
 use UnexpectedValueException;
-use UserCache;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 

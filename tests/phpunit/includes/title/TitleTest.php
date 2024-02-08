@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

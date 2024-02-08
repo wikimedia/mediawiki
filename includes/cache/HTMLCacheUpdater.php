@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Cache;
+
 use MediaWiki\Deferred\CdnCacheUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\HtmlFileCacheUpdate;
@@ -26,6 +28,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\TitleFactory;
+use Traversable;
 
 /**
  * Class to invalidate the CDN and HTMLFileCache entries associated with URLs/titles
@@ -33,7 +36,7 @@ use MediaWiki\Title\TitleFactory;
  * @ingroup Cache
  * @since 1.35
  */
-class HtmlCacheUpdater {
+class HTMLCacheUpdater {
 	/** @var int Seconds between initial and rebound purges; 0 if disabled */
 	private $reboundDelay;
 	/** @var bool Whether filesystem-based HTML output caching is enabled */
@@ -126,8 +129,8 @@ class HtmlCacheUpdater {
 	 *
 	 * @param string[]|string $urls URL or list of URLs
 	 * @param int $flags Bit field of class PURGE_* constants
-	 *  [Default: HtmlCacheUpdater::PURGE_PRESEND]
-	 * @param mixed[] $unless Optional map of (HtmlCacheUpdater::UNLESS_* constant => value)
+	 *  [Default: HTMLCacheUpdater::PURGE_PRESEND]
+	 * @param mixed[] $unless Optional map of (HTMLCacheUpdater::UNLESS_* constant => value)
 	 */
 	public function purgeUrls( $urls, $flags = self::PURGE_PRESEND, array $unless = [] ) {
 		$minFreshCacheMtime = $unless[self::UNLESS_CACHE_MTIME_AFTER] ?? null;
@@ -158,8 +161,8 @@ class HtmlCacheUpdater {
 	 * @param Traversable|PageReference[]|PageReference $pages PageReference or iterator yielding
 	 *        PageReference instances
 	 * @param int $flags Bit field of class PURGE_* constants
-	 *  [Default: HtmlCacheUpdater::PURGE_PRESEND]
-	 * @param mixed[] $unless Optional map of (HtmlCacheUpdater::UNLESS_* constant => value)
+	 *  [Default: HTMLCacheUpdater::PURGE_PRESEND]
+	 * @param mixed[] $unless Optional map of (HTMLCacheUpdater::UNLESS_* constant => value)
 	 */
 	public function purgeTitleUrls( $pages, $flags = self::PURGE_PRESEND, array $unless = [] ) {
 		$pages = is_iterable( $pages ) ? $pages : [ $pages ];
@@ -253,3 +256,6 @@ class HtmlCacheUpdater {
 		return $urls;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLCacheUpdater::class, 'HtmlCacheUpdater' );

@@ -30,8 +30,8 @@ use IDBAccessObject;
 use ILanguageConverter;
 use InvalidArgumentException;
 use Language;
-use LinkCache;
 use MapCacheLRU;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\AtomicSectionUpdate;
@@ -2929,7 +2929,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get a list of URLs to purge from the CDN cache when this page changes.
 	 *
-	 * @deprecated since 1.35 Use HtmlCacheUpdater; hard-deprecated in 1.42
+	 * @deprecated since 1.35 Use HTMLCacheUpdater; hard-deprecated in 1.42
 	 * @return string[]
 	 */
 	public function getCdnUrls() {
@@ -2940,7 +2940,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Purge all applicable CDN URLs
-	 * @deprecated since 1.35 Use HtmlCacheUpdater; hard-deprecated in 1.42
+	 * @deprecated since 1.35 Use HTMLCacheUpdater; hard-deprecated in 1.42
 	 */
 	public function purgeSquid() {
 		wfDeprecated( __METHOD__, '1.35' );

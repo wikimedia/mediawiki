@@ -21,8 +21,8 @@
 namespace MediaWiki\Tests\Unit\CommentFormatter;
 
 use Language;
-use LinkCache;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentFormatter\CommentParser;
 use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\HookContainer\HookContainer;

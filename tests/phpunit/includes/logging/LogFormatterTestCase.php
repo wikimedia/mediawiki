@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Cache\GenderCache;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRenderer;

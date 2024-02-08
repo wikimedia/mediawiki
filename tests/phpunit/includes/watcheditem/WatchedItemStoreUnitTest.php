@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Linker\LinksMigration;

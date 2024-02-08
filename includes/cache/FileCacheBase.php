@@ -21,10 +21,14 @@
  * @ingroup Cache
  */
 
+namespace MediaWiki\Cache;
+
+use BagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
+use ObjectCache;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
@@ -287,3 +291,6 @@ abstract class FileCacheBase {
 		return $cache->makeKey( static::class, 'misses', $this->mType, $this->mKey );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( FileCacheBase::class, 'FileCacheBase' );

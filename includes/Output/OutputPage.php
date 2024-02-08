@@ -33,7 +33,7 @@ use InvalidArgumentException;
 use JavaScriptContent;
 use Language;
 use LanguageCode;
-use LinkCache;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;

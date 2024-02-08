@@ -21,7 +21,8 @@
  * @ingroup Cache
  */
 
-use MediaWiki\Cache\LinkBatchFactory;
+namespace MediaWiki\Cache;
+
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -175,3 +176,6 @@ class UserCache {
 		return ( in_array( $type, $options ) && !isset( $this->typesCached[$uid][$type] ) );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( UserCache::class, 'UserCache' );

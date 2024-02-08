@@ -19,7 +19,7 @@ interface HtmlCacheUpdaterAppendUrlsHook {
 	 * re-render of the same content. For example, after a direct revision to the content the
 	 * history page will need to be purged. However when re-rendering after a cascading change
 	 * from a template, only URLs that render content need purging. The $mode will be either
-	 * HtmlCacheUpdater::PURGE_URLS_LINKSUPDATE_ONLY or 0.
+	 * HTMLCacheUpdater::PURGE_URLS_LINKSUPDATE_ONLY or 0.
 	 *
 	 * @since 1.35
 	 *

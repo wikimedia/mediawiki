@@ -4,8 +4,8 @@ namespace MediaWiki\Permissions;
 
 use DBAccessObjectUtils;
 use IDBAccessObject;
-use LinkCache;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;

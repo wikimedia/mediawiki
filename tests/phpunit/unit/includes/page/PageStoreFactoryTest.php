@@ -1,8 +1,8 @@
 <?php
 namespace MediaWiki\Tests\Page;
 
-use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageStore;

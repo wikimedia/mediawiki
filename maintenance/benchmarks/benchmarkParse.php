@@ -24,6 +24,7 @@
 
 require_once __DIR__ . '/../Maintenance.php';
 
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;

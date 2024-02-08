@@ -21,7 +21,10 @@
  * @ingroup Cache
  */
 
-use MediaWiki\Cache\CacheKeyHelper;
+namespace MediaWiki\Cache;
+
+use InvalidArgumentException;
+use Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentityValue;
@@ -30,6 +33,7 @@ use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -375,3 +379,6 @@ class LinkBatch {
 		return $db->makeWhereFrom2d( $this->data, $blNamespace, $blTitle );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( LinkBatch::class, 'LinkBatch' );

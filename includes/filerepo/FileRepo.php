@@ -887,7 +887,7 @@ class FileRepo {
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
 			// Must match canonical query parameter order for optimum caching
-			// See HtmlCacheUpdater::getUrls
+			// See HTMLCacheUpdater::getUrls
 			return $this->makeUrl( 'title=MediaWiki:Filepage.css&action=raw&ctype=text/css' );
 		}
 

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Linker\LinkTarget;

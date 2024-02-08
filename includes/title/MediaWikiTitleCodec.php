@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Title;
 
-use GenderCache;
 use InvalidArgumentException;
 use Language;
 use LogicException;
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Message\Message;

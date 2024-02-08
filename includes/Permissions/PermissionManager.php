@@ -26,6 +26,7 @@ use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
+use MediaWiki\Cache\UserCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -53,7 +54,6 @@ use MediaWiki\User\UserIdentity;
 use MessageSpecifier;
 use PermissionsError;
 use StatusValue;
-use UserCache;
 use Wikimedia\ScopedCallback;
 
 /**

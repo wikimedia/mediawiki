@@ -24,7 +24,7 @@
 namespace MediaWiki\Specials;
 
 use HTMLCheckField;
-use LinkCache;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Title\Title;
