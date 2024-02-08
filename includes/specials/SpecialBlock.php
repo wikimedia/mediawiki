@@ -277,7 +277,7 @@ class SpecialBlock extends FormSpecialPage {
 				$this->msg( 'ipb-partial' )->escaped() .
 					new LabelWidget( [
 						'classes' => [ 'oo-ui-inline-help' ],
-						'label' => $this->msg( 'ipb-partial-help' )->text(),
+						'label' => new HtmlSnippet( $this->msg( 'ipb-partial-help' )->parse() ),
 					] ) => 'partial',
 			],
 			'section' => 'actions',
