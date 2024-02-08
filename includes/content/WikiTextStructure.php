@@ -190,7 +190,7 @@ class WikiTextStructure {
 	 */
 	private function extractTextBeforeFirstHeading( $text ) {
 		$matches = [];
-		if ( !preg_match( '/<h[123456]>/', $text, $matches, PREG_OFFSET_CAPTURE ) ) {
+		if ( !preg_match( '/<h[123456]\b/', $text, $matches, PREG_OFFSET_CAPTURE ) ) {
 			// There isn't a first heading, so we interpret this as the article
 			// being entirely without heading.
 			return null;
