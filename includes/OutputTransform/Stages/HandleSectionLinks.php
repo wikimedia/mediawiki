@@ -5,7 +5,6 @@ namespace MediaWiki\OutputTransform\Stages;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
-use MediaWiki\Linker\Linker;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -81,15 +80,40 @@ class HandleSectionLinks extends ContentTextTransformStage {
 				return '';
 			}, $m['header'] );
 
-			return Linker::makeHeadline(
+			return $this->makeHeading(
 				(int)$m['level'],
-				Html::expandAttributes( $attrs ) . '>',
+				$attrs,
 				$anchor,
 				$contents,
 				$editlink,
 				$fallbackAnchor
 			);
 		}, $text );
+	}
+
+	/**
+	 * @param int $level The level of the headline (1-6)
+	 * @param array $attrs HTML attributes
+	 * @param string $anchor The anchor to give the headline (the bit after the #)
+	 * @param string $html HTML for the text of the header
+	 * @param string $link HTML to add for the section edit link
+	 * @param string|false $fallbackAnchor A second, optional anchor to give for
+	 *   backward compatibility (false to omit)
+	 * @return string HTML headline
+	 */
+	private function makeHeading( $level, $attrs, $anchor, $html,
+		$link, $fallbackAnchor = false
+	) {
+		$anchorEscaped = htmlspecialchars( $anchor, ENT_COMPAT );
+		$fallback = '';
+		if ( $fallbackAnchor !== false && $fallbackAnchor !== $anchor ) {
+			$fallbackAnchor = htmlspecialchars( $fallbackAnchor, ENT_COMPAT );
+			$fallback = "<span id=\"$fallbackAnchor\"></span>";
+		}
+		return "<h$level" . Html::expandAttributes( $attrs ) . ">"
+			. "$fallback<span class=\"mw-headline\" id=\"$anchorEscaped\">$html</span>"
+			. $link
+			. "</h$level>";
 	}
 
 	private function addSectionLinks( string $text, ParserOutput $po, array $options ): string {
