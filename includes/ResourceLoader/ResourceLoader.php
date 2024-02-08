@@ -30,6 +30,7 @@ use HttpStatus;
 use InvalidArgumentException;
 use Less_Environment;
 use Less_Parser;
+use LogicException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -1797,12 +1798,12 @@ MESSAGE;
 	 *
 	 * @param array $configuration List of configuration values keyed by variable name
 	 * @return string JavaScript code
-	 * @throws Exception
+	 * @throws LogicException
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
 		$json = self::encodeJsonForScript( $configuration );
 		if ( $json === false ) {
-			$e = new Exception(
+			$e = new LogicException(
 				'JSON serialization of config data failed. ' .
 				'This usually means the config data is not valid UTF-8.'
 			);

@@ -21,7 +21,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use Composer\Spdx\SpdxLicenses;
-use Exception;
+use LogicException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use PharData;
@@ -117,7 +117,7 @@ class ForeignResourceManager {
 	 * @param string $action
 	 * @param string $module
 	 * @return bool
-	 * @throws Exception
+	 * @throws LogicException
 	 */
 	public function run( $action, $module ) {
 		$actions = [ 'update', 'verify', 'make-sri' ];
@@ -157,7 +157,7 @@ class ForeignResourceManager {
 			// depending on action.
 
 			if ( !isset( $info['type'] ) ) {
-				throw new Exception( "Module '$moduleName' must have a 'type' key." );
+				throw new LogicException( "Module '$moduleName' must have a 'type' key." );
 			}
 
 			$this->validateLicense( $moduleName, $info );
@@ -177,7 +177,7 @@ class ForeignResourceManager {
 			$this->verbose( "... preparing {$this->tmpParentDir}\n" );
 			wfRecursiveRemoveDir( $this->tmpParentDir );
 			if ( !wfMkdirParents( $this->tmpParentDir ) ) {
-				throw new Exception( "Unable to create {$this->tmpParentDir}" );
+				throw new LogicException( "Unable to create {$this->tmpParentDir}" );
 			}
 
 			switch ( $info['type'] ) {
@@ -192,14 +192,14 @@ class ForeignResourceManager {
 					$this->handleTypeMultiFile( $moduleName, $destDir, $info );
 					break;
 				default:
-					throw new Exception( "Unknown type '{$info['type']}' for '$moduleName'" );
+					throw new LogicException( "Unknown type '{$info['type']}' for '$moduleName'" );
 			}
 
 			if ( $this->action === 'update' ) {
 				foreach ( $info['transforms'] ?? [] as $file => $transforms ) {
 					$fullFilePath = "$destDir/$file";
 					if ( !file_exists( $fullFilePath ) ) {
-						throw new Exception( "$moduleName: invalid transform target $file" );
+						throw new LogicException( "$moduleName: invalid transform target $file" );
 					}
 					if ( !is_array( $transforms ) || !array_is_list( $transforms ) ) {
 						$transforms = [ $transforms ];
@@ -209,7 +209,7 @@ class ForeignResourceManager {
 							// not super efficient but these files aren't expected to be large
 							file_put_contents( $fullFilePath, "/*@nomin*/\n" . file_get_contents( $fullFilePath ) );
 						} else {
-							throw new Exception( "$moduleName: invalid transform $transform" );
+							throw new LogicException( "$moduleName: invalid transform $transform" );
 						}
 					}
 				}
@@ -297,10 +297,10 @@ class ForeignResourceManager {
 		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()
 			->create( $src, [ 'method' => 'GET', 'followRedirects' => false ], __METHOD__ );
 		if ( !$req->execute()->isOK() ) {
-			throw new Exception( "Failed to download resource at {$src}" );
+			throw new LogicException( "Failed to download resource at {$src}" );
 		}
 		if ( $req->getStatus() !== 200 ) {
-			throw new Exception( "Unexpected HTTP {$req->getStatus()} response from {$src}" );
+			throw new LogicException( "Unexpected HTTP {$req->getStatus()} response from {$src}" );
 		}
 		$data = $req->getContent();
 		$algo = $integrity === null ? $this->defaultAlgo : explode( '-', $integrity )[0];
@@ -313,7 +313,7 @@ class ForeignResourceManager {
 			$this->output( "Integrity for {$src}\n\tintegrity: {$actualIntegrity}\n" );
 		} else {
 			$expectedIntegrity = $integrity ?? 'null';
-			throw new Exception( "Integrity check failed for {$src}\n" .
+			throw new LogicException( "Integrity check failed for {$src}\n" .
 				"\tExpected: {$expectedIntegrity}\n" .
 				"\tActual: {$actualIntegrity}"
 			);
@@ -328,7 +328,7 @@ class ForeignResourceManager {
 	 */
 	private function handleTypeFile( $moduleName, $destDir, array $info ) {
 		if ( !isset( $info['src'] ) ) {
-			throw new Exception( "Module '$moduleName' must have a 'src' key." );
+			throw new LogicException( "Module '$moduleName' must have a 'src' key." );
 		}
 		$data = $this->fetch( $info['src'], $info['integrity'] ?? null, $moduleName );
 		$dest = $info['dest'] ?? basename( $info['src'] );
@@ -349,11 +349,11 @@ class ForeignResourceManager {
 	 */
 	private function handleTypeMultiFile( $moduleName, $destDir, array $info ) {
 		if ( !isset( $info['files'] ) ) {
-			throw new Exception( "Module '$moduleName' must have a 'files' key." );
+			throw new LogicException( "Module '$moduleName' must have a 'files' key." );
 		}
 		foreach ( $info['files'] as $dest => $file ) {
 			if ( !isset( $file['src'] ) ) {
-				throw new Exception( "Module '$moduleName' file '$dest' must have a 'src' key." );
+				throw new LogicException( "Module '$moduleName' file '$dest' must have a 'src' key." );
 			}
 			$data = $this->fetch( $file['src'], $file['integrity'] ?? null, $moduleName );
 			$path = "$destDir/$dest";
@@ -375,7 +375,7 @@ class ForeignResourceManager {
 	private function handleTypeTar( $moduleName, $destDir, array $info, string $fileType ) {
 		$info += [ 'src' => null, 'integrity' => null, 'dest' => null ];
 		if ( $info['src'] === null ) {
-			throw new Exception( "Module '$moduleName' must have a 'src' key." );
+			throw new LogicException( "Module '$moduleName' must have a 'src' key." );
 		}
 		// Download the resource to a temporary file and open it
 		$data = $this->fetch( $info['src'], $info['integrity'], $moduleName );
@@ -397,7 +397,7 @@ class ForeignResourceManager {
 				// Use glob() to expand wildcards and check existence
 				$fromPaths = glob( "{$tmpDir}/{$fromSubPath}", GLOB_BRACE );
 				if ( !$fromPaths ) {
-					throw new Exception( "Path '$fromSubPath' of '$moduleName' not found." );
+					throw new LogicException( "Path '$fromSubPath' of '$moduleName' not found." );
 				}
 				foreach ( $fromPaths as $fromPath ) {
 					$toCopy[$fromPath] = $toSubPath === null
@@ -429,7 +429,7 @@ class ForeignResourceManager {
 				$this->verbose( "... moving $from to $to\n" );
 				wfMkdirParents( dirname( $to ) );
 				if ( !rename( $from, $to ) ) {
-					throw new Exception( "Could not move $from to $to." );
+					throw new LogicException( "Could not move $from to $to." );
 				}
 			}
 		}
@@ -484,7 +484,9 @@ class ForeignResourceManager {
 	 */
 	private function validateLicense( $moduleName, $info ) {
 		if ( !isset( $info['license'] ) || !is_string( $info['license'] ) ) {
-			throw new Exception( "Module '$moduleName' needs a valid SPDX license; no license is currently present" );
+			throw new LogicException(
+				"Module '$moduleName' needs a valid SPDX license; no license is currently present"
+			);
 		}
 		$licenses = new SpdxLicenses();
 		if ( !$licenses->validate( $info['license'] ) ) {

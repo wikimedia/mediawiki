@@ -167,7 +167,7 @@ class ParsoidOutputAccess {
 
 		try {
 			if ( $uncacheable ) {
-				$options = $options | ParserOutputAccess::OPT_NO_UPDATE_CACHE;
+				$options |= ParserOutputAccess::OPT_NO_UPDATE_CACHE;
 			}
 			// Since we know we are generating Parsoid output, explicitly
 			// call ParserOptions::setUseParsoid. This ensures that when

@@ -101,11 +101,12 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 	}
 
 	private function validateHasResponse( MWHttpRequest $mwHttpRequest ): void {
-		/**
+		/*
 		 * MWHttpRequest objects contain request information, but also contain response information after calling
 		 * `execute`. The best way of determining whether a MWHttpRequest contains response information is to check
 		 * whether its headers list is empty.
 		 */
+		// @phan-suppress-next-line MediaWikiNoEmptyIfDefined
 		if ( empty( $mwHttpRequest->getResponseHeaders() ) ) {
 			throw new LogicException( 'Trying to get response information from a request that was not yet executed' );
 		}

@@ -1950,13 +1950,11 @@ function wfMemoryLimit( $newLimit ) {
 		if ( $newLimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit" );
 			AtEase::suppressWarnings();
-			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 			ini_set( 'memory_limit', $newLimit );
 			AtEase::restoreWarnings();
 		} elseif ( $newLimit > $oldLimit ) {
 			wfDebug( "Raising PHP's memory limit to $newLimit bytes" );
 			AtEase::suppressWarnings();
-			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 			ini_set( 'memory_limit', $newLimit );
 			AtEase::restoreWarnings();
 		}

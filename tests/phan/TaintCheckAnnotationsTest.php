@@ -66,7 +66,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
-		echo $db->selectRowCount( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $db->selectRowCount( 'safe', 'safe' ); // Safe
 
 		$db->selectRow( $_GET['a'], '', [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRow( '', $_GET['a'], [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
@@ -262,7 +262,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
-		echo $db->selectRowCount( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $db->selectRowCount( 'safe', 'safe' ); // Safe
 
 		$db->selectRow( $_GET['a'], '', [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRow( '', $_GET['a'], [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
@@ -352,15 +352,15 @@ class TaintCheckAnnotationsTest {
 		$iqb->insert( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 		$iqb->insertInto( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 
-		$iqb->row( $_GET['a'] );// TODO: Unsafe
+		$iqb->row( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 		$iqb->row( [ 'bar' => $_GET['a'] ] );// Safe
-		$iqb->row( [ $_GET['a'] => 'foo' ] );// TODO: Unsafe
+		$iqb->row( [ $_GET['a'] => 'foo' ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 
-		$iqb->rows( $_GET['a'] );// TODO: Unsafe
-		$iqb->rows( [ $_GET['a'] ] );// TODO: Unsafe
+		$iqb->rows( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$iqb->rows( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 		$iqb->rows( [ $_GET['a'] => [] ] );// Safe
 		$iqb->rows( [ $_GET['a'] => [ 'foo' => $_GET['a'] ] ] );// Safe
-		$iqb->rows( [ $_GET['a'] => [ $_GET['a'] => 'foo' ] ] );// TODO: Unsafe
+		$iqb->rows( [ $_GET['a'] => [ $_GET['a'] => 'foo' ] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 
 		$iqb->set( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 		$iqb->set( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection

@@ -86,23 +86,23 @@ class PNGMetadataExtractor {
 		$colorType = 'unknown';
 
 		if ( !$filename ) {
-			throw new Exception( __METHOD__ . ": No file name specified" );
+			throw new InvalidArgumentException( __METHOD__ . ": No file name specified" );
 		}
 
 		if ( !file_exists( $filename ) || is_dir( $filename ) ) {
-			throw new Exception( __METHOD__ . ": File $filename does not exist" );
+			throw new InvalidArgumentException( __METHOD__ . ": File $filename does not exist" );
 		}
 
 		$fh = fopen( $filename, 'rb' );
 
 		if ( !$fh ) {
-			throw new Exception( __METHOD__ . ": Unable to open file $filename" );
+			throw new InvalidArgumentException( __METHOD__ . ": Unable to open file $filename" );
 		}
 
 		// Check for the PNG header
 		$buf = self::read( $fh, 8 );
 		if ( $buf !== self::$pngSig ) {
-			throw new Exception( __METHOD__ . ": Not a valid PNG file; header: $buf" );
+			throw new InvalidArgumentException( __METHOD__ . ": Not a valid PNG file; header: $buf" );
 		}
 
 		// Read chunks
@@ -114,7 +114,7 @@ class PNGMetadataExtractor {
 				wfDebug( __METHOD__ . ': Chunk size of ' . $chunk_size .
 					' too big, skipping. Max size is: ' . self::MAX_CHUNK_SIZE );
 				if ( fseek( $fh, 4 + $chunk_size + self::$crcSize, SEEK_CUR ) !== 0 ) {
-					throw new Exception( __METHOD__ . ': seek error' );
+					throw new InvalidArgumentException( __METHOD__ . ': seek error' );
 				}
 				continue;
 			}
@@ -414,10 +414,10 @@ class PNGMetadataExtractor {
 
 		$result = fread( $fh, $size );
 		if ( $result === false ) {
-			throw new Exception( __METHOD__ . ': read error' );
+			throw new InvalidArgumentException( __METHOD__ . ': read error' );
 		}
 		if ( strlen( $result ) < $size ) {
-			throw new Exception( __METHOD__ . ': unexpected end of file' );
+			throw new InvalidArgumentException( __METHOD__ . ': unexpected end of file' );
 		}
 		return $result;
 	}

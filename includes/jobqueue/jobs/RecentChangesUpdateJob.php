@@ -36,7 +36,7 @@ class RecentChangesUpdateJob extends Job {
 		parent::__construct( 'recentChangesUpdate', $title, $params );
 
 		if ( !isset( $params['type'] ) ) {
-			throw new Exception( "Missing 'type' parameter." );
+			throw new InvalidArgumentException( "Missing 'type' parameter." );
 		}
 
 		$this->executionFlags |= self::JOB_NO_EXPLICIT_TRX_ROUND;

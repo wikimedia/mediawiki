@@ -77,11 +77,11 @@ class ProfilerXhprof extends Profiler {
 				xhprof_enable( $flags, $options );
 			} elseif ( function_exists( 'tideways_xhprof_enable' ) ) {
 				if ( isset( $params['exclude'] ) ) {
-					throw new Exception( 'The exclude option is not supported in tideways_xhprof' );
+					throw new RuntimeException( 'The exclude option is not supported in tideways_xhprof' );
 				}
 				tideways_xhprof_enable( $flags );
 			} else {
-				throw new Exception( 'Neither xhprof nor tideways_xhprof is installed' );
+				throw new RuntimeException( 'Neither xhprof nor tideways_xhprof is installed' );
 			}
 		}
 
@@ -98,7 +98,7 @@ class ProfilerXhprof extends Profiler {
 			} elseif ( function_exists( 'tideways_xhprof_disable' ) ) {
 				$data = tideways_xhprof_disable();
 			} else {
-				throw new Exception( 'Neither xhprof nor tideways_xhprof is installed' );
+				throw new RuntimeException( 'Neither xhprof nor tideways_xhprof is installed' );
 			}
 			$this->xhprofData = new XhprofData( $data, $this->params );
 		}

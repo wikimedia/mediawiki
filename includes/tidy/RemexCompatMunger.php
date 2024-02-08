@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tidy;
 
+use InvalidArgumentException;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\Serializer;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
@@ -382,7 +383,7 @@ class RemexCompatMunger implements TreeHandler {
 		while ( $node !== $cloneEnd ) {
 			$nextParent = $serializer->getParentNode( $node );
 			if ( $nextParent === $root ) {
-				throw new \Exception( 'Did not find end of clone range' );
+				throw new InvalidArgumentException( 'Did not find end of clone range' );
 			}
 			$nodes[] = $node;
 			if ( $node->snData->nonblankNodeCount === 0 ) {

@@ -25,7 +25,6 @@
 namespace MediaWiki\Context;
 
 use BadMethodCallException;
-use Exception;
 use InvalidArgumentException;
 use Language;
 use LogicException;
@@ -46,6 +45,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Message;
 use MessageSpecifier;
+use RuntimeException;
 use Skin;
 use Timing;
 use Wikimedia\Assert\Assert;
@@ -214,7 +214,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );
 			$logger->info(
 				__METHOD__ . ' called with no title set.',
-				[ 'exception' => new Exception ]
+				[ 'exception' => new RuntimeException ]
 			);
 		}
 

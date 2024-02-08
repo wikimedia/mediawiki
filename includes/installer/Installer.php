@@ -37,6 +37,7 @@ use GuzzleHttp\Psr7\Header;
 use IntlChar;
 use InvalidArgumentException;
 use Language;
+use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Config\HashConfig;
@@ -57,6 +58,7 @@ use MediaWiki\User\User;
 use MWCryptRand;
 use Parser;
 use ParserOptions;
+use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Services\ServiceDisabledException;
 use WikitextContent;
@@ -700,7 +702,7 @@ abstract class Installer {
 		}
 
 		if ( !str_ends_with( $lsFile, '.php' ) ) {
-			throw new Exception(
+			throw new RuntimeException(
 				'The installer cannot yet handle non-php settings files: ' . $lsFile . '. ' .
 				'Use `php maintenance/run.php update` to update an existing installation.'
 			);
@@ -1348,7 +1350,7 @@ abstract class Installer {
 	 */
 	protected function getExtensionInfo( $type, $parentRelPath, $name ) {
 		if ( $this->getVar( 'IP' ) === null ) {
-			throw new Exception( 'Cannot find extensions since the IP variable is not yet set' );
+			throw new RuntimeException( 'Cannot find extensions since the IP variable is not yet set' );
 		}
 		if ( $type !== 'extension' && $type !== 'skin' ) {
 			throw new InvalidArgumentException( "Invalid extension type" );
@@ -1637,7 +1639,7 @@ abstract class Installer {
 	 */
 	public function getAutoExtensionHookContainer() {
 		if ( !$this->autoExtensionHookContainer ) {
-			throw new \Exception( __METHOD__ .
+			throw new LogicException( __METHOD__ .
 				': includeExtensions() has not been called' );
 		}
 		return $this->autoExtensionHookContainer;

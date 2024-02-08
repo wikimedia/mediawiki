@@ -139,13 +139,11 @@ class TestSetup {
 		$wgUsePigLatinVariant = true;
 
 		// xdebug's default of 100 is too low for MediaWiki
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'xdebug.max_nesting_level', 1000 );
 
 		// Make sure that serialize_precision is set to its default value
 		// so floating-point numbers within serialized or JSON-encoded data
 		// will match the expected string representations (T116683).
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'serialize_precision', -1 );
 	}
 

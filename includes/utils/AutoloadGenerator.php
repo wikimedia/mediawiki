@@ -141,15 +141,15 @@ class AutoloadGenerator {
 	 *
 	 * @param string $fqcn FQCN to force the location of
 	 * @param string $inputPath Full path to the file containing the class
-	 * @throws Exception
+	 * @throws InvalidArgumentException
 	 */
 	public function forceClassPath( $fqcn, $inputPath ) {
 		$path = self::normalizePathSeparator( realpath( $inputPath ) );
 		if ( !$path ) {
-			throw new \Exception( "Invalid path: $inputPath" );
+			throw new InvalidArgumentException( "Invalid path: $inputPath" );
 		}
 		if ( !str_starts_with( $path, $this->basepath ) ) {
-			throw new \Exception( "Path is not within basepath: $inputPath" );
+			throw new InvalidArgumentException( "Path is not within basepath: $inputPath" );
 		}
 		$shortpath = substr( $path, strlen( $this->basepath ) );
 		$this->overrides[$fqcn] = $shortpath;
@@ -157,7 +157,7 @@ class AutoloadGenerator {
 
 	/**
 	 * @param string $inputPath Path to a php file to find classes within
-	 * @throws Exception
+	 * @throws InvalidArgumentException
 	 */
 	public function readFile( $inputPath ) {
 		// NOTE: do NOT expand $inputPath using realpath(). It is perfectly
@@ -166,7 +166,7 @@ class AutoloadGenerator {
 		$inputPath = self::normalizePathSeparator( $inputPath );
 		$len = strlen( $this->basepath );
 		if ( !str_starts_with( $inputPath, $this->basepath ) ) {
-			throw new \Exception( "Path is not within basepath: $inputPath" );
+			throw new InvalidArgumentException( "Path is not within basepath: $inputPath" );
 		}
 		if ( $this->shouldExclude( $inputPath ) ) {
 			return;

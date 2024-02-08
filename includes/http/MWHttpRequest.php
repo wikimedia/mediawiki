@@ -262,7 +262,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected function setReverseProxy( string $proxy ) {
 		$parsedProxy = wfParseUrl( $proxy );
 		if ( $parsedProxy === false ) {
-			throw new Exception( "Invalid reverseProxy configured: $proxy" );
+			throw new InvalidArgumentException( "Invalid reverseProxy configured: $proxy" );
 		}
 		// Set the current host in the Host header
 		$this->setHeader( 'Host', $this->parsedUrl['host'] );

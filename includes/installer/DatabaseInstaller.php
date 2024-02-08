@@ -693,14 +693,12 @@ abstract class DatabaseInstaller {
 				wfMessage( 'config-db-install-account' )->text()
 			) .
 			"<span class=\"cdx-card__text__description\">" .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->getTextBox(
 				'_InstallUser',
 				'config-db-username',
 				[ 'dir' => 'ltr' ],
 				$this->parent->getHelpBox( 'config-db-install-username' )
 			) .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->getPasswordBox(
 				'_InstallPassword',
 				'config-db-password',

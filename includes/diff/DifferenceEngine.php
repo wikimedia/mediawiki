@@ -1631,7 +1631,7 @@ class DifferenceEngine extends ContextSource {
 			// called a DifferenceEngineSlotDiffRenderer that wraps the same DifferenceEngine class).
 			// This will happen when a content model has no custom slot diff renderer, it does have
 			// a custom difference engine, but that does not override this method.
-			throw new Exception( get_class( $this ) . ': could not maintain backwards compatibility. '
+			throw new LogicException( get_class( $this ) . ': could not maintain backwards compatibility. '
 				. 'Please use a SlotDiffRenderer.' );
 		}
 		return $slotDiffRenderer->getDiff( $old, $new ) . $this->getDebugString();
@@ -1643,7 +1643,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param string $otext Old text, must be already segmented
 	 * @param string $ntext New text, must be already segmented
 	 *
-	 * @throws Exception If content handling for text content is configured in a way
+	 * @throws LogicException If content handling for text content is configured in a way
 	 *   that makes maintaining B/C hard.
 	 * @return bool|string
 	 *
@@ -1656,7 +1656,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !( $slotDiffRenderer instanceof TextSlotDiffRenderer ) ) {
 			// Someone used the GetSlotDiffRenderer hook to replace the renderer.
 			// This is too unlikely to happen to bother handling properly.
-			throw new Exception( 'The slot diff renderer for text content should be a '
+			throw new LogicException( 'The slot diff renderer for text content should be a '
 				. 'TextSlotDiffRenderer subclass' );
 		}
 		return $slotDiffRenderer->getTextDiff( $otext, $ntext ) . $this->getDebugString();

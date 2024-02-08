@@ -2,6 +2,9 @@
 
 namespace Wikimedia\Rdbms;
 
+// Phan insists these are resources until we drop PHP 7.4
+/* @phan-file-suppress PhanTypeMismatchArgumentInternal */
+
 class PostgresResultWrapper extends ResultWrapper {
 	/** @var DatabasePostgres */
 	private $db;

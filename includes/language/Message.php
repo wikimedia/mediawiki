@@ -1388,7 +1388,7 @@ class Message implements MessageSpecifier, Serializable {
 				LoggerFactory::getInstance( 'Bug58676' )->warning(
 					'Invalid parameter for message "{msgkey}": {param}',
 					[
-						'exception' => new Exception,
+						'exception' => new RuntimeException,
 						'msgkey' => $this->getKey(),
 						'param' => htmlspecialchars( serialize( $param ) ),
 					]
@@ -1542,7 +1542,7 @@ class Message implements MessageSpecifier, Serializable {
 				. htmlspecialchars( $listType )
 				. ' (params are ' . htmlspecialchars( serialize( $params ) ) . ')';
 			trigger_error( $warning, E_USER_WARNING );
-			$e = new Exception;
+			$e = new InvalidArgumentException;
 			wfDebugLog( 'Bug58676', $warning . "\n" . $e->getTraceAsString() );
 			return [ 'before', '[INVALID]' ];
 		}

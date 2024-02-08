@@ -1500,7 +1500,7 @@ class MessageCache implements LoggerAwareInterface {
 			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );
 			$logger->info(
 				__METHOD__ . ' called with no title set.',
-				[ 'exception' => new Exception ]
+				[ 'exception' => new RuntimeException ]
 			);
 			$page = $wgTitle;
 		}
