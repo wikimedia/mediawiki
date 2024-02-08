@@ -34,6 +34,7 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Parser;
+use ParserOptions;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -2068,6 +2069,29 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$this->mMaxAdaptiveExpiry
 			);
 			$this->updateCacheExpiry( $adaptiveTTL );
+		}
+	}
+
+	/**
+	 * Transfer parser options which affect post-processing from ParserOptions
+	 * to this ParserOutput.
+	 * @param ParserOptions $parserOptions
+	 */
+	public function setFromParserOptions( ParserOptions $parserOptions ) {
+		// Copied from Parser.php::parse and should probably be abstracted
+		// into the parent base class (probably as part of T236809)
+		// Wrap non-interface parser output in a <div> so it can be targeted
+		// with CSS (T37247)
+		$class = $parserOptions->getWrapOutputClass();
+		if ( $class !== false && !$parserOptions->getInterfaceMessage() ) {
+			$this->addWrapperDivClass( $class );
+		}
+
+		// Record whether this is a preview parse in the output (T341010)
+		if ( $parserOptions->getIsPreview() ) {
+			$this->setOutputFlag( ParserOutputFlags::IS_PREVIEW, true );
+			// Ensure that previews aren't cacheable, just to be safe.
+			$this->updateCacheExpiry( 0 );
 		}
 	}
 

@@ -54,7 +54,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				'UsedOptions' => [
 					'useParsoid', 'suppressTOC', 'maxIncludeSize', 'maxPPNodeCount',
 					'targetLanguage', 'interfaceMessage', 'maxPPExpandDepth', 'disableTitleConversion',
-					'disableContentConversion', 'expensiveParserFunctionLimit', 'wrapclass'
+					'disableContentConversion', 'expensiveParserFunctionLimit', 'isPreview', 'wrapclass'
 				],
 			],
 		];
@@ -69,7 +69,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				'Sections' => [
 				],
 				'UsedOptions' => [
-					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'wrapclass'
+					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'isPreview',
+					'wrapclass'
 				],
 			],
 			'options' => [ 'useParsoid' => true ]
@@ -86,7 +87,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				'Sections' => [
 				],
 				'UsedOptions' => [
-					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'wrapclass'
+					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'isPreview',
+					'wrapclass'
 				],
 			],
 			'options' => [ 'useParsoid' => true ]

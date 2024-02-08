@@ -164,6 +164,15 @@ class ParserOutputFlags {
 	 */
 	public const USER_SIGNATURE = 'user-signature';
 
+	/**
+	 * @var string Set when the parse is done in "preview mode", in which
+	 * case various shortcuts are taken to work around the fact that the
+	 * parsed text does not yet have an actual revision ID, revision time,
+	 * etc.
+	 * @see ParserOptions::getIsPreview()
+	 */
+	public const IS_PREVIEW = 'is-preview';
+
 	public static function cases(): array {
 		return [
 			self::NO_GALLERY,
@@ -183,6 +192,7 @@ class ParserOutputFlags {
 			self::VARY_PAGE_ID,
 			self::VARY_USER,
 			self::USER_SIGNATURE,
+			self::IS_PREVIEW,
 		];
 	}
 }

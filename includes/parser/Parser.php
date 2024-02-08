@@ -689,10 +689,10 @@ class Parser {
 		$this->mOutput->finalizeAdaptiveCacheExpiry();
 
 		# Warn if too many heavyweight parser functions were used
-		if ( $this->mExpensiveFunctionCount > $this->mOptions->getExpensiveParserFunctionLimit() ) {
+		if ( $this->mExpensiveFunctionCount > $options->getExpensiveParserFunctionLimit() ) {
 			$this->limitationWarn( 'expensive-parserfunction',
 				$this->mExpensiveFunctionCount,
-				$this->mOptions->getExpensiveParserFunctionLimit()
+				$options->getExpensiveParserFunctionLimit()
 			);
 		}
 
@@ -701,12 +701,7 @@ class Parser {
 			$this->makeLimitReport();
 		}
 
-		# Wrap non-interface parser output in a <div> so it can be targeted
-		# with CSS (T37247)
-		$class = $this->mOptions->getWrapOutputClass();
-		if ( $class !== false && !$this->mOptions->getInterfaceMessage() ) {
-			$this->mOutput->addWrapperDivClass( $class );
-		}
+		$this->mOutput->setFromParserOptions( $options );
 
 		$this->mOutput->setText( $text );
 
