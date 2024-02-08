@@ -79,16 +79,6 @@ class ConnectionManager {
 	}
 
 	/**
-	 * @param int $i
-	 * @param string[]|null $groups
-	 * @return DBConnRef
-	 */
-	private function getConnectionRef( $i, array $groups = null ) {
-		$groups ??= $this->groups;
-		return $this->loadBalancer->getConnectionRef( $i, $groups, $this->domain );
-	}
-
-	/**
 	 * Returns a connection to the primary DB, for updating.
 	 *
 	 * @since 1.29
