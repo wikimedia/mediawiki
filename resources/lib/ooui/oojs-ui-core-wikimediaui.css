@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.4
+ * OOUI v0.49.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-01-09T19:08:49Z
+ * Date: 2024-02-07T18:56:29Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -667,10 +667,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-header {
   max-width: 50em;
 }
-.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-header .oo-ui-iconElement-icon {
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-header > .oo-ui-iconElement-icon {
   height: 1.4285714em;
 }
-.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header .oo-ui-iconElement-icon {
+.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header > .oo-ui-iconElement-icon {
   display: block;
 }
 .oo-ui-fieldsetLayout + .oo-ui-fieldsetLayout,
@@ -692,10 +692,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help,
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help:last-child {
   margin-right: -8px;
-}
-.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help .oo-ui-buttonElement-button {
-  padding-top: 1.4285714em;
-  padding-right: 0;
+  margin-top: calc( (  20px  -  2.14285714em  ) / 2 );
 }
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help .oo-ui-buttonElement-button:hover,
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help .oo-ui-buttonElement-button:active {

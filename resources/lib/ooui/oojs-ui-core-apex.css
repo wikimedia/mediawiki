@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.48.4
+ * OOUI v0.49.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-01-09T19:08:49Z
+ * Date: 2024-02-07T18:56:29Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -447,7 +447,7 @@
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline .oo-ui-fieldLayout-help {
-  margin-top: -0.3em;
+  margin-top: -0.5em;
   margin-right: -0.625em;
 }
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget {
@@ -572,11 +572,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-fieldsetLayout > .oo-ui-inline-help {
   margin-bottom: 0.5em;
 }
-.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header > .oo-ui-popupButtonWidget {
-  margin-right: 0;
-}
-.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header > .oo-ui-popupButtonWidget:last-child {
-  margin-right: 0;
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help,
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help:last-child {
+  margin-right: -0.625em;
 }
 
 .oo-ui-formLayout + .oo-ui-fieldsetLayout,

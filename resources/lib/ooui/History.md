@@ -1,5 +1,43 @@
 # OOUI Release History
 
+## v0.49.0 / 2024-02-06
+
+### Breaking changes
+* [BREAKING CHANGE] SelectWidget: Remove deprecated `mode = true` (Volker E.)
+* [BREAKING CHANGE] WindowManager: remove deprecated `toggleAriaIsolation` (Volker E.)
+* [BREAKING CHANGE] themes: Remove `@line-height-base` variable (Volker E.)
+* [BREAKING CHANGE] TextInputWidget: Use more inclusive language for variable names (Nardog)
+
+### Code
+* LabelElement: Make setLabelElement chainable (Ed Sanders)
+* FieldsetLayout: Fix position and padding of help button (Ed Sanders)
+* Re-apply "TextInputWidget: Use Custom Elements for #onElementAttach support" (Bartosz Dziewoński)
+* .nvmrc: Update now we're using Node 18 (James D. Forrester)
+* build: Updating mediawiki/mediawiki-phan-config to 0.14.0 ([BOT] libraryupgrader)
+* build: Upgrade eslint-config-wikimedia from 0.25.1 to 0.26.0 (James D. Forrester)
+* build: Upgrade grunt-banana-checker from 0.11.0 to 0.11.1 (James D. Forrester)
+* build: Upgrade grunt-eslint from 24.1.0 to 24.3.0 (James D. Forrester)
+* build: Upgrade jsdoc-wmf-theme from 0.0.11 to 0.0.12 (James D. Forrester)
+* build: Upgrade mediawiki/mediawiki-phan-config to 0.13.0 (James D. Forrester)
+* build: Upgrade phpunit to 9.6.16 (James D. Forrester)
+* build: Upgrade stylelint-config-wikimedia from 0.15.0 to 0.16.1 (James D. Forrester)
+* Upgrade @wikimedia/codex-design-tokens bundled version from v1.0.0 to v1.3.1 (James D. Forrester)
+* eslint: Switch to using const/let (James D. Forrester)
+* jsdoc: Fix '>> WARNING: Unknown link Event in Class: IndexLayout' (James D. Forrester)
+* doc: Fix @event and @fires tags for JSDoc (Bartosz Dziewoński)
+* doc: Fix @example blocks for JSDoc (Bartosz Dziewoński)
+* doc: Fix Markdown reference-style links (Bartosz Dziewoński)
+* doc: Fix documentation of namespaces in JSDoc (Bartosz Dziewoński)
+* doc: Fix incorrect event documentation (Bartosz Dziewoński)
+* doc: Fix some @link annotations for JSDoc (Bartosz Dziewoński)
+* doc: Restore documentation of static properties and methods (Bartosz Dziewoński)
+* doc: Switch from jsduck to jsdoc (James D. Forrester)
+* doc: Update doc-only method markup for JSDoc (Bartosz Dziewoński)
+* doc: Remove jsdoc patch from changelog for 0.47.1 (Ed Sanders)
+* README: Add VisualEditor update step (James D. Forrester)
+* README: Clarify the releasing instructions (Anne Tomasevich)
+* README: Drop shields.io, blocked by CSP on doc.wikimedia.org (James D. Forrester)
+
 ## v0.48.4 / 2024-01-09
 
 ### Code
@@ -127,7 +165,6 @@
 * TextInputWidget: Use Custom Elements for #onElementAttach support (Bartosz Dziewoński)
 
 ### Code
-* doc: Switch from jsduck to jsdoc (James D. Forrester)
 * doc: Document default values for all boolean method parameters (Thiemo Kreuz)
 * doc: TagMultiselectWidget: add `placeholder` cfg (Chlod Alejandro)
 * build: Upgrade eslint-config-wikimedia from 0.25.0 to 0.25.1 (James D. Forrester)
