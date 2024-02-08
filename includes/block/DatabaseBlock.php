@@ -281,7 +281,9 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return int|false ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
-		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
+		return MediaWikiServices::getInstance()
+			->getDatabaseBlockStoreFactory()
+			->getDatabaseBlockStore( $this->getWikiId() )
 			->doAutoblock( $this, $autoblockIP );
 	}
 
@@ -300,7 +302,9 @@ class DatabaseBlock extends AbstractBlock {
 	 * Update the timestamp on autoblocks.
 	 */
 	public function updateTimestamp() {
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()
+		MediaWikiServices::getInstance()
+			->getDatabaseBlockStoreFactory()
+			->getDatabaseBlockStore( $this->getWikiId() )
 			->updateTimestamp( $this );
 	}
 
