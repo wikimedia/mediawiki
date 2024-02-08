@@ -63,6 +63,8 @@ class SkinTemplate extends Skin {
 	private $templateContextSet = false;
 	/** @var array|null */
 	private $contentNavigationCached;
+	/** @var array|null */
+	private $portletsCached;
 
 	/**
 	 * Create the template engine object; we feed it a bunch of data
@@ -598,6 +600,9 @@ class SkinTemplate extends Skin {
 	 * @return array of portlet data for all portlets
 	 */
 	private function getPortletsTemplateData() {
+		if ( $this->portletsCached ) {
+			return $this->portletsCached;
+		}
 		$portlets = [];
 		$contentNavigation = $this->buildContentNavigationUrlsInternal();
 		$sidebar = [];
@@ -648,13 +653,14 @@ class SkinTemplate extends Skin {
 			)
 		);
 
-		return [
+		$this->portletsCached = [
 			'data-portlets' => $portlets,
 			'data-portlets-sidebar' => [
 				'data-portlets-first' => $sidebar[0] ?? null,
 				'array-portlets-rest' => array_slice( $sidebar, 1 ),
 			],
 		];
+		return $this->portletsCached;
 	}
 
 	/**
