@@ -21,7 +21,7 @@
 namespace MediaWiki\StubObject;
 
 use Language;
-use RequestContext;
+use MediaWiki\Context\RequestContext;
 
 /**
  * Stub object for the user language. Assigned to the $wgLang global.

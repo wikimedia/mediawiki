@@ -22,6 +22,13 @@
  * @file
  */
 
+namespace MediaWiki\Context;
+
+use BadMethodCallException;
+use Exception;
+use InvalidArgumentException;
+use Language;
+use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
@@ -32,15 +39,22 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
+use MediaWiki\Session\PHPSessionHandler;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Message;
+use MessageSpecifier;
+use Skin;
+use Timing;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ScopedCallback;
+use WikiPage;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance
@@ -638,7 +652,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @since 1.21
 	 */
 	public function exportSession() {
-		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$session = SessionManager::getGlobalSession();
 		return [
 			'ip' => $this->getRequest()->getIP(),
 			'headers' => $this->getRequest()->getAllHeaders(),
@@ -672,7 +686,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public static function importScopedSession( array $params ) {
 		if ( strlen( $params['sessionId'] ) &&
-			MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent()
+			SessionManager::getGlobalSession()->isPersistent()
 		) {
 			// Check to avoid sending random cookies for the wrong users.
 			// This method should only called by CLI scripts or by HTTP job runners.
@@ -697,7 +711,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$context = RequestContext::getMain();
 
 			// Commit and close any current session
-			if ( MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
+			if ( PHPSessionHandler::isEnabled() ) {
 				session_write_close(); // persist
 				session_id( '' ); // detach
 				$_SESSION = []; // clear in-memory array
@@ -706,7 +720,7 @@ class RequestContext implements IContextSource, MutableContext {
 			// Get new session, if applicable
 			$session = null;
 			if ( strlen( $params['sessionId'] ) ) { // don't make a new random ID
-				$manager = MediaWiki\Session\SessionManager::singleton();
+				$manager = SessionManager::singleton();
 				$session = $manager->getSessionById( $params['sessionId'], true )
 					?: $manager->getEmptySession();
 			}
@@ -722,7 +736,7 @@ class RequestContext implements IContextSource, MutableContext {
 			// of the User object being attached to the wrong IP, headers, or session.
 			$context->setUser( $user );
 			StubGlobalUser::setUser( $context->getUser() ); // b/c
-			if ( $session && MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
+			if ( $session && PHPSessionHandler::isEnabled() ) {
 				session_id( $session->getId() );
 				AtEase::quietCall( 'session_start' );
 			}
@@ -789,3 +803,6 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 }
+
+/** @deprecated since 1.42 */
+class_alias( RequestContext::class, 'RequestContext' );

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOutput;
 

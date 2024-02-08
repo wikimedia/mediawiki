@@ -4,12 +4,12 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\User;
 use PHPUnit\Framework\MockObject\MockObject;
-use RequestContext;
 use Wikimedia\TestingAccessWrapper;
 
 /**

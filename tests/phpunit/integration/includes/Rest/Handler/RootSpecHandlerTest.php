@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler\RootSpecHandler;
@@ -14,7 +15,6 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWikiIntegrationTestCase;
-use RequestContext;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 

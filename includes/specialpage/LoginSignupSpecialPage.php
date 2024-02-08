@@ -23,7 +23,6 @@
 
 namespace MediaWiki\SpecialPage;
 
-use DerivativeContext;
 use ErrorPageError;
 use Exception;
 use FatalError;
@@ -34,6 +33,8 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
@@ -48,7 +49,6 @@ use MediaWiki\User\User;
 use Message;
 use PermissionsError;
 use ReadOnlyError;
-use RequestContext;
 use Skin;
 use StatusValue;
 use Wikimedia\ScopedCallback;

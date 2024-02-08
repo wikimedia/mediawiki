@@ -6,10 +6,10 @@ use ApiBase;
 use ApiMain;
 use Exception;
 use Language;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
-use RequestContext;
 
 /**
  * A trait providing utility functions for testing Handler classes

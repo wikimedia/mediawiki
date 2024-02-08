@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Context\IContextSource;
+
 class PackedImageGallery extends TraditionalImageGallery {
 	public function __construct( $mode = 'traditional', IContextSource $context = null ) {
 		parent::__construct( $mode, $context );

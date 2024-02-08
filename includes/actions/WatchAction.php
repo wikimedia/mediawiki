@@ -20,6 +20,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;

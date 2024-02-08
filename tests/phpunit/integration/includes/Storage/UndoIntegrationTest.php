@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage;
 
 use Article;
 use McrUndoAction;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;
@@ -13,7 +14,6 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use RequestContext;
 use WikiPage;
 use WikitextContent;
 

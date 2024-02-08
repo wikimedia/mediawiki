@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\ExtensionInfo;

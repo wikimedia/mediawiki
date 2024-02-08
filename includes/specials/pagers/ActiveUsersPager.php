@@ -21,9 +21,9 @@
 
 namespace MediaWiki\Pager;
 
-use IContextSource;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;

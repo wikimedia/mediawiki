@@ -23,15 +23,15 @@
 namespace MediaWiki\Category;
 
 use Collation;
-use ContextSource;
 use DeprecationHelper;
 use HtmlArmor;
-use IContextSource;
 use ILanguageConverter;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
 use LinkCache;
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;

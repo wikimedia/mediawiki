@@ -26,6 +26,7 @@
  * @author Trevor Parscal
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\ResourceEntryPoint;

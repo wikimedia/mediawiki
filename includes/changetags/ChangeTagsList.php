@@ -19,6 +19,7 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;

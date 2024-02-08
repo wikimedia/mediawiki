@@ -25,6 +25,7 @@ use InvalidArgumentException;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -46,7 +47,6 @@ use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
-use RequestContext;
 use Wikimedia\Http\HttpAcceptParser;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
@@ -139,7 +139,7 @@ abstract class ParsoidHandler extends Handler {
 		// We are cutting some corners here (IDN, non-ASCII casing)
 		// since domain name support is provisional.
 		// TODO use a proper validator instead
-		$server = \RequestContext::getMain()->getConfig()->get( MainConfigNames::Server );
+		$server = RequestContext::getMain()->getConfig()->get( MainConfigNames::Server );
 		$services = MediaWikiServices::getInstance();
 		$expectedDomain = $services->getUrlUtils()->parse( $server )['host'] ?? null;
 		if ( !$expectedDomain ) {

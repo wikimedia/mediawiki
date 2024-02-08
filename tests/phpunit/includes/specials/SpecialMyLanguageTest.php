@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialMyLanguage;
 use MediaWiki\Specials\SpecialPageLanguage;

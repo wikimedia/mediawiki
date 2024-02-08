@@ -2,18 +2,18 @@
 
 namespace MediaWiki\Tests\Integration\Context;
 
-use DerivativeContext;
-use IContextSource;
 use Language;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use RequestContext;
 use WikiPage;
 
 /**

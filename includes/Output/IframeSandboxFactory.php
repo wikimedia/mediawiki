@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Output;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
-use RequestContext;
 use SkinFactory;
 
 /**

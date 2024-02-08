@@ -4,12 +4,12 @@ namespace MediaWiki\Tests;
 
 use Exception;
 use HashConfig;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MultiConfig;
 use PHPUnit\Framework\Assert;
-use RequestContext;
 
 /**
  * @internal For testing MediaWikiEntryPoint subclasses.

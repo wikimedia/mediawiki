@@ -6,6 +6,7 @@ use BadTitleError;
 use DeferredUpdates;
 use DeferredUpdatesScopeStack;
 use MediaWiki\Actions\ActionEntryPoint;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdatesScopeMediaWikiStack;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
@@ -18,7 +19,6 @@ use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use ReflectionMethod;
-use RequestContext;
 use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 

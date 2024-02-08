@@ -29,6 +29,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Installer\DatabaseInstaller;
 use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Installer;

@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\Api\ApiEntryPoint;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiServices;
 

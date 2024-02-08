@@ -22,6 +22,7 @@
  * @author PhiLiP <philip.npc@gmail.com>
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;

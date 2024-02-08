@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\MediaFileHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Title\Title;
-use RequestContext;
 use Wikimedia\Message\MessageValue;
 
 /**

@@ -21,6 +21,7 @@
  * @author Matthew Flaschen
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 
 /**

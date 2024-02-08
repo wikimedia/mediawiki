@@ -2,10 +2,10 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\TestUtils;
 use MediaWiki\Parser\ParserOutput;
-use RequestContext;
 
 /**
  * This test does not extend OutputTransformStageTestBase because we're explicitly testing that

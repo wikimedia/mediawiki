@@ -4,13 +4,13 @@ namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
-use RequestContext;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Diff\Hook;
 
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use TextSlotDiffRenderer;
 
 /**

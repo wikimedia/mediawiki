@@ -22,10 +22,10 @@
 namespace MediaWiki\Pager;
 
 use HTMLForm;
-use IContextSource;
 use LocalRepo;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;

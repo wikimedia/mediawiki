@@ -21,10 +21,10 @@
 
 namespace MediaWiki\Pager;
 
-use IContextSource;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Permissions\GroupPermissionsLookup;

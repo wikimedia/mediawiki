@@ -20,6 +20,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**

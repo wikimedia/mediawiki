@@ -3,10 +3,11 @@
 namespace MediaWiki\Rest;
 
 use ExtensionRegistry;
-use IContextSource;
 use MediaWiki;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebResponse;
@@ -16,7 +17,6 @@ use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Title\Title;
 use MWExceptionRenderer;
-use RequestContext;
 use Wikimedia\Message\ITextFormatter;
 
 class EntryPoint {

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;

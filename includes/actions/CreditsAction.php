@@ -23,6 +23,7 @@
  * @author <evan@wikitravel.org>
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;

@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Context;
+
 use MediaWiki\Config\Config;
 use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Output\OutputPage;
@@ -26,6 +28,9 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSetProvider;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Skin;
+use Timing;
+use WikiPage;
 
 /**
  * Interface for objects which can provide a MediaWiki context on request
@@ -156,3 +161,6 @@ interface IContextSource extends LocalizationContext, CsrfTokenSetProvider {
 	 */
 	public function exportSession();
 }
+
+/** @deprecated since 1.42 */
+class_alias( IContextSource::class, 'IContextSource' );

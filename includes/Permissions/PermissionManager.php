@@ -19,7 +19,6 @@
  */
 namespace MediaWiki\Permissions;
 
-use IContextSource;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
@@ -28,6 +27,8 @@ use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -51,7 +52,6 @@ use MediaWiki\User\UserIdentity;
 use Message;
 use MessageSpecifier;
 use PermissionsError;
-use RequestContext;
 use StatusValue;
 use UserCache;
 use Wikimedia\ScopedCallback;

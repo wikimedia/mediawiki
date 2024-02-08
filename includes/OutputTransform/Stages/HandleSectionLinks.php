@@ -2,6 +2,7 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
@@ -9,7 +10,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
-use RequestContext;
 use Skin;
 
 /**

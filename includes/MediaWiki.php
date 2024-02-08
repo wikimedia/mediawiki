@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\MediaWikiServices;

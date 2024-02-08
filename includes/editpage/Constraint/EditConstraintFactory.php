@@ -21,9 +21,9 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use Content;
-use IContextSource;
 use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;

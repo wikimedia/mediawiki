@@ -25,13 +25,13 @@ namespace MediaWiki\Installer;
 
 use Exception;
 use HtmlArmor;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use Message;
-use RequestContext;
 use Xml;
 
 /**

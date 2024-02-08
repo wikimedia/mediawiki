@@ -2,9 +2,9 @@
 
 namespace MediaWiki\OutputTransform;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
-use RequestContext;
 
 abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {
 	abstract public function createStage(): OutputTransformStage;
