@@ -360,7 +360,7 @@ class PageCommandFactory implements
 		return new UndeletePage(
 			$this->hookContainer,
 			$this->jobQueueGroup,
-			$this->lbFactory->getMainLB(),
+			$this->lbFactory,
 			$this->readOnlyMode,
 			$this->repoGroup,
 			$this->undeletePageLogger,
