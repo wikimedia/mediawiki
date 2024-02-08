@@ -104,9 +104,6 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @return Status
 	 */
 	public function doWork() {
-		// Reduce effects of race conditions for slow parses (T48014)
-		$cacheTime = wfTimestampNow();
-
 		$status = $this->renderRevision();
 		/** @var ParserOutput|null $output */
 		$output = $status->getValue();
@@ -116,9 +113,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 				$this->parserCache->save(
 					$output,
 					$this->page,
-					$this->parserOptions,
-					$cacheTime,
-					$this->revision->getId()
+					$this->parserOptions
 				);
 			}
 
