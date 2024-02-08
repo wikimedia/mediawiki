@@ -504,6 +504,8 @@ because of Phabricator reports.
   RevisionRecord or WikiRevision; passing an integer revision id has been
   deprecated and emits a warning.
 * ParserOutput::setLanguageLinks() has been deprecated.
+* ParserOutput::getTimestamp() and ::setTimestamp() have been deprecated; use
+  ::getRevisionTimestamp() and ::setRevisionTimestamp() instead.
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
   and will soon stop working due to schema changes. Instead use
   addDeletedUserFilter() or getBlockDetailsForRows().

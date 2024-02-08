@@ -131,7 +131,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$parserOutput->setRenderId( 'dummy-render-id' );
 		$parserOutput->setCacheRevisionId( 0 );
 		// ParserOutput::getCacheTime() also sets it as a side effect
-		$parserOutput->setTimestamp( $parserOutput->getCacheTime() );
+		$parserOutput->setRevisionTimestamp( $parserOutput->getCacheTime() );
 		return $parserOutput;
 	}
 

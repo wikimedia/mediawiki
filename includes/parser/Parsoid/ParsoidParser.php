@@ -70,7 +70,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	private function setParsoidRenderID( PageConfig $pageConfig, ParserOutput $parserOutput ): void {
 		$parserOutput->setRenderId( $this->globalIdGenerator->newUUIDv1() );
 		$parserOutput->setCacheRevisionId( $pageConfig->getRevisionId() );
-		$parserOutput->setTimestamp( $pageConfig->getRevisionTimestamp() );
+		$parserOutput->setRevisionTimestamp( $pageConfig->getRevisionTimestamp() );
 		$parserOutput->setCacheTime( wfTimestampNow() );
 	}
 

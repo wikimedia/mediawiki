@@ -228,7 +228,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mTOCHTML = '';
 
 	/**
-	 * @var string Timestamp of the revision.
+	 * @var ?string Timestamp of the revision.
 	 */
 	private $mTimestamp;
 
@@ -758,8 +758,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @return string|null TS_MW timestamp of the revision content
 	 */
-	public function getTimestamp() {
+	public function getRevisionTimestamp(): ?string {
 		return $this->mTimestamp;
+	}
+
+	/**
+	 * @return string|null TS_MW timestamp of the revision content
+	 * @deprecated since 1.42; use ::getRevisionTimestamp() instead
+	 */
+	public function getTimestamp() {
+		return $this->getRevisionTimestamp();
 	}
 
 	public function getLimitReportData() {
@@ -866,6 +874,19 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return wfSetVar( $this->mTOCHTML, $tochtml );
 	}
 
+	/**
+	 * @param ?string $timestamp TS_MW timestamp of the revision content
+	 */
+	public function setRevisionTimestamp( ?string $timestamp ): void {
+		$this->mTimestamp = $timestamp;
+	}
+
+	/**
+	 * @param ?string $timestamp TS_MW timestamp of the revision content
+	 *
+	 * @return ?string The previous value of the timestamp
+	 * @deprecated since 1.42; use ::setRevisionTimestamp() instead
+	 */
 	public function setTimestamp( $timestamp ) {
 		return wfSetVar( $this->mTimestamp, $timestamp );
 	}
@@ -2072,7 +2093,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function mergeInternalMetaDataFrom( ParserOutput $source ): void {
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
-		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getTimestamp() );
+		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getRevisionTimestamp() );
 		if ( $source->hasCacheTime() ) {
 			$sourceCacheTime = $source->getCacheTime();
 			if (
