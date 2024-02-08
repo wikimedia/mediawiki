@@ -3,7 +3,6 @@
 namespace MediaWiki\Hook;
 
 use File;
-use MediaWiki\Linker\DummyLinker;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 
@@ -22,7 +21,7 @@ interface ImageBeforeProduceHTMLHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param DummyLinker $linker Deprecated, do not use.
+	 * @param mixed $linker Unused (always null)
 	 * @param Title &$title Title object of the image
 	 * @param File|false &$file File object, or false if it doesn't exist
 	 * @param array &$frameParams Various parameters with special meanings; see documentation in
