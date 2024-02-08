@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Edit;
 
-use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use Wikimedia\Parsoid\Core\SelserData;
 
 /**

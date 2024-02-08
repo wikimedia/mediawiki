@@ -1,14 +1,14 @@
 <?php
 
-namespace MediaWiki\Tests\Unit\Parser\Parsoid;
+namespace MediaWiki\Tests\Unit\Edit;
 
-use MediaWiki\Parser\Parsoid\ParsoidRenderID;
+use MediaWiki\Edit\ParsoidRenderID;
 use MediaWikiUnitTestCase;
 
 class ParsoidRenderIdTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidRenderID
+	 * @covers \MediaWiki\Edit\ParsoidRenderID
 	 */
 	public function testConstruction() {
 		$renderID = new ParsoidRenderID( 1, '123-abc' );
@@ -18,7 +18,7 @@ class ParsoidRenderIdTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidRenderID::newFromKey
+	 * @covers \MediaWiki\Edit\ParsoidRenderID::newFromKey
 	 */
 	public function testRoundTrip() {
 		$renderID = new ParsoidRenderID( 1, '123-abc' );
@@ -31,9 +31,9 @@ class ParsoidRenderIdTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideETags
 	 *
 	 * @param string $eTag
-	 * @param ParsoidRenderID $renderId
+	 * @param \MediaWiki\Edit\ParsoidRenderID $renderId
 	 *
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidRenderID::newFromETag
+	 * @covers \MediaWiki\Edit\ParsoidRenderID::newFromETag
 	 */
 	public function testNewFromETag( $eTag, $renderId ) {
 		$actual = ParsoidRenderID::newFromETag( $eTag );
@@ -52,7 +52,7 @@ class ParsoidRenderIdTest extends MediaWikiUnitTestCase {
 	 *
 	 * @param string $eTag
 	 *
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidRenderID::newFromETag
+	 * @covers \MediaWiki\Edit\ParsoidRenderID::newFromETag
 	 */
 	public function testNewFromBadETag( $eTag ) {
 		// make sure it doesn't explode

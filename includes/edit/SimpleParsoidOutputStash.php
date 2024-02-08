@@ -5,7 +5,6 @@ namespace MediaWiki\Edit;
 use BagOStuff;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Parser\Parsoid\PageBundleJsonTrait;
-use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 
 /**
  * @internal

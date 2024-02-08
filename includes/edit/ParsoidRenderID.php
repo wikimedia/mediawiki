@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Parser\Parsoid;
+namespace MediaWiki\Edit;
 
 use InvalidArgumentException;
 use MediaWiki\Parser\ParserOutput;
@@ -120,3 +120,6 @@ class ParsoidRenderID {
 	}
 
 }
+
+/** @deprecated since 1.42 */
+class_alias( ParsoidRenderID::class, 'MediaWiki\\Parser\\Parsoid\\ParsoidRenderID' );
