@@ -101,6 +101,17 @@ class CodexModule extends FileModule {
 			) );
 		}
 
+		if (
+			array_key_exists( 'dependencies', $options ) &&
+			in_array( '@wikimedia/codex', $options[ 'dependencies' ] )
+		) {
+			throw new InvalidArgumentException(
+				'ResourceLoader modules using the CodexModule class cannot ' .
+				"list the '@wikimedia/codex' module as a dependency. " .
+				"Instead, use 'codexComponents' to require a subset of components."
+			);
+		}
+
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 	}
 

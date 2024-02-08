@@ -108,6 +108,20 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 					]
 				]
 			],
+			[ 'Exception thrown when the @wikimedia/codex module is required',
+				[
+					'codexComponents' => [ 'CdxButton', 'buttonHelpers' ],
+					'dependencies' => [ '@wikimedia/codex' ]
+				],
+				[
+					'exception' => [
+						'class' => InvalidArgumentException::class,
+						'message' => 'ResourceLoader modules using the CodexModule class cannot ' .
+							"list the '@wikimedia/codex' module as a dependency. " .
+							"Instead, use 'codexComponents' to require a subset of components."
+					]
+				]
+			],
 		];
 	}
 
