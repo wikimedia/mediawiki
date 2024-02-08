@@ -34,6 +34,7 @@ trait ApiMessageTrait {
 	protected static $messageMap = [
 		'actionthrottledtext' => 'ratelimited',
 		'autoblockedtext' => 'autoblocked',
+		'autoblockedtext-tempuser' => 'autoblocked',
 		'badaccess-group0' => 'permissiondenied',
 		'badaccess-groups' => 'permissiondenied',
 		'badipaddress' => 'invalidip',
@@ -41,6 +42,7 @@ trait ApiMessageTrait {
 		'blockedtext' => 'blocked',
 		'blockedtext-composite' => 'blocked',
 		'blockedtext-partial' => 'blocked',
+		'blockedtext-tempuser' => 'blocked',
 		'cannotdelete' => 'cantdelete',
 		'cannotundelete' => 'cantundelete',
 		'cantmove-titleprotected' => 'protectedtitle',
