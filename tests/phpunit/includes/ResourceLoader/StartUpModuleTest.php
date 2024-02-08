@@ -861,7 +861,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl1->getConfig() );
-		$module->setName( "" );
+		$module->setName( 'test' );
 		$version1 = $module->getVersionHash( $context1 );
 
 		$context2 = $this->getResourceLoaderContext();
@@ -872,7 +872,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl2->getConfig() );
-		$module->setName( "" );
+		$module->setName( 'test' );
 		$version2 = $module->getVersionHash( $context2 );
 
 		$context3 = $this->getResourceLoaderContext();
@@ -886,7 +886,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl3->getConfig() );
-		$module->setName( "" );
+		$module->setName( 'test' );
 		$version3 = $module->getVersionHash( $context3 );
 
 		// Module name *is* significant (T201686)
@@ -914,7 +914,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
-		$module->setName( "" );
+		$module->setName( 'test' );
 		$version1 = $module->getVersionHash( $context );
 
 		$context = $this->getResourceLoaderContext();
@@ -927,7 +927,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
-		$module->setName( "" );
+		$module->setName( 'test' );
 		$version2 = $module->getVersionHash( $context );
 
 		// Dependencies *are* significant (T201686)

@@ -906,9 +906,11 @@ abstract class Module implements LoggerAwareInterface {
 		$statName = strtr( $this->getName(), '.', '_' );
 
 		$statsFactory->getTiming( 'resourceloader_build_seconds' )
-			->setLabel( 'name', $statName ?: 'na' )
-			->copyToStatsdAt( [ "resourceloader_build.$statName",
-						'resourceloader_build.all' ] )
+			->setLabel( 'name', $statName )
+			->copyToStatsdAt( [
+				'resourceloader_build.all',
+				"resourceloader_build.$statName",
+			] )
 			->observe( 1000 * $statTiming );
 
 		return $content;
