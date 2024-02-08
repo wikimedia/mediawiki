@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\LinkedData\PageDataRequestHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;

@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\LinkedData;
+
+use HttpError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
@@ -183,3 +186,8 @@ class PageDataRequestHandler {
 	}
 
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( PageDataRequestHandler::class, 'PageDataRequestHandler' );
