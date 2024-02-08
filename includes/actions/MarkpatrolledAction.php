@@ -22,6 +22,7 @@
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**

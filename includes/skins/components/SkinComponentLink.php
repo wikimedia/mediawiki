@@ -20,7 +20,7 @@ namespace MediaWiki\Skin;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
-use Message;
+use MediaWiki\Message\Message;
 use MessageLocalizer;
 
 /**

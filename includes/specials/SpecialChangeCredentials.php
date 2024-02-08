@@ -9,11 +9,11 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\AuthManagerSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Message;
 
 /**
  * Special change to change credentials (such as the password).

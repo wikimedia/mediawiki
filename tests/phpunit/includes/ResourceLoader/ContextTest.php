@@ -5,13 +5,13 @@ namespace MediaWiki\Tests\ResourceLoader;
 use EmptyResourceLoader;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\User\User;
 use MediaWikiCoversValidator;
-use Message;
 
 /**
  * See also:

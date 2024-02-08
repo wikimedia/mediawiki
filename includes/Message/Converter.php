@@ -3,7 +3,6 @@
 namespace MediaWiki\Message;
 
 use InvalidArgumentException;
-use Message;
 use ReflectionClass;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\MessageParam;

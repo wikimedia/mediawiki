@@ -4,8 +4,8 @@ namespace MediaWiki\Skin;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
-use Message;
 use MessageLocalizer;
 
 /**

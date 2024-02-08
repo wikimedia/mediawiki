@@ -19,18 +19,28 @@
  * @author Niklas Laxström
  */
 
+namespace MediaWiki\Message;
+
+use Content;
+use InvalidArgumentException;
+use Language;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
+use MessageContent;
+use MessageSpecifier;
+use Parser;
+use RuntimeException;
+use Serializable;
+use Stringable;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -1578,3 +1588,6 @@ class Message implements MessageSpecifier, Serializable {
 		return $this->extractParam( new RawMessage( $vars, $params ), $format );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( Message::class, 'Message' );

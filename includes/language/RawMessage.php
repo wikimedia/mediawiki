@@ -21,7 +21,7 @@
 namespace MediaWiki\Language;
 
 use InvalidArgumentException;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * Variant of the Message class.

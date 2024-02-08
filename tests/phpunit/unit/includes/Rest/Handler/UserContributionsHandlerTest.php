@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\UserContributionsHandler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -14,7 +15,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use Message;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;

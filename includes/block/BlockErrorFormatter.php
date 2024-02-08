@@ -26,11 +26,11 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
-use Message;
 
 /**
  * A service class for getting formatted information about a block.

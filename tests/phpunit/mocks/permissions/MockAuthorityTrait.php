@@ -7,6 +7,7 @@ use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RateLimiter;
@@ -19,7 +20,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use Message;
 use PHPUnit\Framework\MockObject\MockObject;
 use StatusValue;
 

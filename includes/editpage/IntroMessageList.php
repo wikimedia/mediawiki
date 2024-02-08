@@ -3,7 +3,7 @@
 namespace MediaWiki\EditPage;
 
 use InvalidArgumentException;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * Encapsulates a list of edit form intro messages (as HTML) with their identifiers.

@@ -26,9 +26,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Message;
 
 /**
  * @note Extensions should not subclass this, as MediaWiki currently does not

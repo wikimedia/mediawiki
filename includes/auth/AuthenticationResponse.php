@@ -24,7 +24,7 @@
 namespace MediaWiki\Auth;
 
 use InvalidArgumentException;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * This is a value object to hold authentication response data

@@ -25,7 +25,7 @@ namespace MediaWiki\SpecialPage;
 
 use Closure;
 use MediaWiki\Html\Html;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * This class is a drop-in replacement for other special pages that need to be manually

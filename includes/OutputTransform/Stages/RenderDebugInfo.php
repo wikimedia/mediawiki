@@ -5,9 +5,9 @@ namespace MediaWiki\OutputTransform\Stages;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
-use Message;
 use ParserOptions;
 
 /**

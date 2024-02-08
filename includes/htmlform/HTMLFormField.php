@@ -10,9 +10,9 @@ use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
-use Message;
 use MessageSpecifier;
 use StatusValue;
 

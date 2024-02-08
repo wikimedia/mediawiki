@@ -7,8 +7,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
-use Message;
 use MessageLocalizer;
 
 /**

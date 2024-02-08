@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Hook;
 
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

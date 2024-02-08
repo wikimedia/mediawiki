@@ -4,9 +4,9 @@ namespace MediaWiki\Navigation;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
-use Message;
 use MessageLocalizer;
 use RuntimeException;
 

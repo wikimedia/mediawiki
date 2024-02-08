@@ -4,8 +4,8 @@ namespace MediaWiki\Api\Hook;
 
 use ApiBase;
 use IApiMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\User\User;
-use Message;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

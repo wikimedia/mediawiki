@@ -22,10 +22,10 @@
 
 namespace MediaWiki\Tests\Message;
 
+use MediaWiki\Message\Message;
 use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Message\TextFormatter;
 use MediaWikiIntegrationTestCase;
-use Message;
 
 /**
  * @covers \MediaWiki\Message\MessageFormatterFactory
