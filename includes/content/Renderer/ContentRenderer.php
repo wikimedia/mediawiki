@@ -54,7 +54,6 @@ class ContentRenderer {
 		$revId = null;
 		$revTimestamp = null;
 		if ( is_int( $revision ) ) {
-			wfDeprecated( __METHOD__ . ' with integer revision id', '1.42' );
 			$revId = $revision;
 		} elseif ( $revision !== null ) {
 			$revId = $revision->getId();

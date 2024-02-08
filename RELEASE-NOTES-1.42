@@ -500,7 +500,7 @@ because of Phabricator reports.
 * ReplicatedBagOStuff has been deprecated since 1.42.
 * The third argument to ContentRenderer::getParserOutput() now accepts a
   RevisionRecord or WikiRevision; passing an integer revision id has been
-  deprecated and emits a warning.
+  deprecated.
 * ParserOutput::setLanguageLinks() has been deprecated.
 * ParserOutput::getTimestamp() and ::setTimestamp() have been deprecated; use
   ::getRevisionTimestamp() and ::setRevisionTimestamp() instead.
