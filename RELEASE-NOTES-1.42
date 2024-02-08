@@ -450,13 +450,11 @@ because of Phabricator reports.
     - SiteList
     - SiteLookup
     - SiteStore
-* (T352284) Some user options-related classes were moved over to the existing
-  MediaWiki\User\Options namespace. Old names are deprecated and kept as
-  aliases for backwards-compatibility:
-   - DefaultOptionsLookup
-   - UserOptionsLookup
-   - UserOptionsManager
-   - StaticUserOptionsLookup
+  - (T352284) MediaWiki\User\Options:
+    - DefaultOptionsLookup
+    - UserOptionsLookup
+    - UserOptionsManager
+    - StaticUserOptionsLookup
 * API modules using ApiBase::requirePostedParameters() must also override
   mustBePosted() to return true.
 * Overriding MWException::getHTML(), ::getText(), ::getPageTitle(), and
@@ -525,13 +523,6 @@ because of Phabricator reports.
   Language::getBlockDurations() instead.
 * MediaWikiServices::getBlockErrorFormatter() has been deprecated, use
   MediaWikiServices::getFormatterFactory()->getBlockErrorFormatter() instead.
-* (T352284) Some user options-related classes were moved over to the existing
-  MediaWiki\User\Options namespace. Old names are deprecated and kept as
-  aliases for backwards-compatibility:
-   - DefaultOptionsLookup
-   - UserOptionsLookup
-   - UserOptionsManager
-   - StaticUserOptionsLookup
 * Database::listViews() has been deprecated. This was previously used to filter
   views out of the return value of Database::listTables(). Now listTables()
   will not include views. MediaWiki does not use views.
