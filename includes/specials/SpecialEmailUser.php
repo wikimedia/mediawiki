@@ -24,9 +24,9 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use HTMLForm;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

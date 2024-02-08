@@ -25,11 +25,11 @@ namespace MediaWiki\Specials;
 
 use ErrorPageError;
 use File;
-use HTMLForm;
 use LogEventsList;
 use LogPage;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;

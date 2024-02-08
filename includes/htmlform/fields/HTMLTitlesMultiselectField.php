@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Widget\TitlesMultiselectWidget;
 
 /**
@@ -145,3 +147,6 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 	}
 
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLTitlesMultiselectField::class, 'HTMLTitlesMultiselectField' );

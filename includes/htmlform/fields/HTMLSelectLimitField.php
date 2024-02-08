@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 /**
  * A limit dropdown, which accepts any valid number
  *
@@ -35,3 +37,6 @@ class HTMLSelectLimitField extends HTMLSelectField {
 		return true;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSelectLimitField::class, 'HTMLSelectLimitField' );

@@ -1,12 +1,15 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use InvalidArgumentException;
+use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\MediaWikiServices;
+
 /*
  * @stable to extend
  */
-
-use MediaWiki\Html\Html;
-use MediaWiki\MediaWikiServices;
-
 class HTMLTextAreaField extends HTMLFormField {
 	protected const DEFAULT_COLS = 80;
 	protected const DEFAULT_ROWS = 25;
@@ -145,11 +148,11 @@ class HTMLTextAreaField extends HTMLFormField {
 			'autofocus',
 		];
 
-		$attribs += OOUI\Element::configFromHtmlAttributes(
+		$attribs += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
-		return new OOUI\MultilineTextInputWidget( [
+		return new \OOUI\MultilineTextInputWidget( [
 			'id' => $this->mID,
 			'name' => $this->mName,
 			'value' => $value,
@@ -157,3 +160,6 @@ class HTMLTextAreaField extends HTMLFormField {
 		] + $attribs );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLTextAreaField::class, 'HTMLTextAreaField' );

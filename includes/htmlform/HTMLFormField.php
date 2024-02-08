@@ -1,10 +1,20 @@
 <?php
 
+namespace MediaWiki\HTMLForm;
+
+use FormatJson;
+use HtmlArmor;
+use HTMLCheckField;
+use HTMLFormFieldCloner;
+use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
+use Message;
+use MessageSpecifier;
+use StatusValue;
 
 /**
  * The parent class to generate form fields.  Any field type should
@@ -69,7 +79,7 @@ abstract class HTMLFormField {
 	 * @stable to override
 	 *
 	 * @param string $value
-	 * @return OOUI\Widget|string|false
+	 * @return \OOUI\Widget|string|false
 	 */
 	public function getInputOOUI( $value ) {
 		return false;
@@ -700,7 +710,7 @@ abstract class HTMLFormField {
 	 *
 	 * @param string $value The value to set the input to.
 	 *
-	 * @return OOUI\FieldLayout
+	 * @return \OOUI\FieldLayout
 	 */
 	public function getOOUI( $value ) {
 		$inputField = $this->getInputOOUI( $value );
@@ -710,7 +720,7 @@ abstract class HTMLFormField {
 			// generate the whole field, label and errors and all, then wrap it in a Widget.
 			// It might look weird, but it'll work OK.
 			return $this->getFieldLayoutOOUI(
-				new OOUI\Widget( [ 'content' => new OOUI\HtmlSnippet( $this->getDiv( $value ) ) ] ),
+				new \OOUI\Widget( [ 'content' => new \OOUI\HtmlSnippet( $this->getDiv( $value ) ) ] ),
 				[ 'align' => 'top' ]
 			);
 		}
@@ -720,7 +730,7 @@ abstract class HTMLFormField {
 			// We have an OOUI implementation, but it's not proper, and we got a load of HTML.
 			// Cheat a little and wrap it in a widget. It won't be infusable, though, since client-side
 			// JavaScript doesn't know how to rebuilt the contents.
-			$inputField = new OOUI\Widget( [ 'content' => new OOUI\HtmlSnippet( $inputField ) ] );
+			$inputField = new \OOUI\Widget( [ 'content' => new \OOUI\HtmlSnippet( $inputField ) ] );
 			$infusable = false;
 		}
 
@@ -728,13 +738,13 @@ abstract class HTMLFormField {
 		$help = $this->getHelpText();
 		$errors = $this->getErrorsRaw( $value );
 		foreach ( $errors as &$error ) {
-			$error = new OOUI\HtmlSnippet( $error );
+			$error = new \OOUI\HtmlSnippet( $error );
 		}
 
 		$config = [
 			'classes' => [ "mw-htmlform-field-$fieldType" ],
 			'align' => $this->getLabelAlignOOUI(),
-			'help' => ( $help !== null && $help !== '' ) ? new OOUI\HtmlSnippet( $help ) : null,
+			'help' => ( $help !== null && $help !== '' ) ? new \OOUI\HtmlSnippet( $help ) : null,
 			'errors' => $errors,
 			'infusable' => $infusable,
 			'helpInline' => $this->isHelpInline(),
@@ -757,7 +767,7 @@ abstract class HTMLFormField {
 		// the element could specify, that the label doesn't need to be added
 		$label = $this->getLabel();
 		if ( $label && $label !== "\u{00A0}" && $label !== '&#160;' ) {
-			$config['label'] = new OOUI\HtmlSnippet( $label );
+			$config['label'] = new \OOUI\HtmlSnippet( $label );
 		}
 
 		if ( $this->mCondState ) {
@@ -798,9 +808,9 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
-	 * @param OOUI\Widget $inputField
+	 * @param \OOUI\Widget $inputField
 	 * @param array $config
-	 * @return OOUI\FieldLayout
+	 * @return \OOUI\FieldLayout
 	 */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		return new HTMLFormFieldLayout( $inputField, $config );
@@ -1312,3 +1322,6 @@ abstract class HTMLFormField {
 		return (bool)$this->mCondState;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLFormField::class, 'HTMLFormField' );

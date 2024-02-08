@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\CodexHTMLForm;
+use MediaWiki\HTMLForm\HTMLFormField;
 use OOUI\Widget;
 
 /**
@@ -207,7 +211,7 @@ class HTMLTextField extends HTMLFormField {
 			'indicator',
 		];
 
-		$attribs += OOUI\Element::configFromHtmlAttributes(
+		$attribs += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
@@ -233,7 +237,7 @@ class HTMLTextField extends HTMLFormField {
 	 * @return Widget
 	 */
 	protected function getInputWidget( $params ) {
-		return new OOUI\TextInputWidget( $params );
+		return new \OOUI\TextInputWidget( $params );
 	}
 
 	/**
@@ -246,3 +250,6 @@ class HTMLTextField extends HTMLFormField {
 		return [];
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLTextField::class, 'HTMLTextField' );

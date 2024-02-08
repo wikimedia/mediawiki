@@ -24,9 +24,9 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ExternalLinks\LinkFilter;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\QueryPage;

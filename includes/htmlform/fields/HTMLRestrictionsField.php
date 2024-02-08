@@ -1,7 +1,12 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
+use Message;
+use MWRestrictions;
 
 /**
  * Class for updating an MWRestrictions value (which is, currently, basically just an IP address
@@ -131,3 +136,6 @@ class HTMLRestrictionsField extends HTMLFormField {
 		);
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLRestrictionsField::class, 'HTMLRestrictionsField' );

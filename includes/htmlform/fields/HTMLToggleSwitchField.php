@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Widget\ToggleSwitchWidget;
 
 class HTMLToggleSwitchField extends HTMLCheckField {
@@ -20,7 +22,7 @@ class HTMLToggleSwitchField extends HTMLCheckField {
 		$attr['id'] = $this->mID;
 		$attr['name'] = $this->mName;
 
-		$attr += OOUI\Element::configFromHtmlAttributes(
+		$attr += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		);
 
@@ -47,3 +49,6 @@ class HTMLToggleSwitchField extends HTMLCheckField {
 		return [ 'mediawiki.widgets.ToggleSwitchWidget' ];
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLToggleSwitchField::class, 'HTMLToggleSwitchField' );

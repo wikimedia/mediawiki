@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use LocalisationCache;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;

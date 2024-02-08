@@ -26,8 +26,8 @@
 namespace MediaWiki\Specials;
 
 use DifferenceEngine;
-use HTMLForm;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;

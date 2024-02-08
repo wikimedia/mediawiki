@@ -438,6 +438,59 @@ because of Phabricator reports.
     - TransactionRoundDefiningUpdate
     - UserEditCountInfo
     - UserEditCountUpdate
+  - MediaWiki\HTMLForm:
+    - CodexHTMLForm
+    - CollapsibleFieldsetLayout
+    - HTMLForm
+    - HTMLFormActionFieldLayout
+    - HTMLFormElement
+    - HTMLFormField
+    - HTMLFormFieldLayout
+    - HTMLFormFieldRequiredOptionsException
+    - HTMLNestedFilterable
+    - OOUIHTMLForm
+    - VFormHTMLForm
+    - MediaWiki\HTMLForm\Field:
+      - HTMLApiField
+      - HTMLAutoCompleteSelectField
+      - HTMLButtonField
+      - HTMLCheckField
+      - HTMLCheckMatrix
+      - HTMLComboboxField
+      - HTMLDateTimeField
+      - HTMLEditTools
+      - HTMLExpiryField
+      - HTMLFileField
+      - HTMLFloatField
+      - HTMLFormFieldCloner
+      - HTMLFormFieldWithButton
+      - HTMLHiddenField
+      - HTMLInfoField
+      - HTMLIntField
+      - HTMLMultiSelectField
+      - HTMLNamespacesMultiselectField
+      - HTMLRadioField
+      - HTMLRestrictionsField
+      - HTMLSelectAndOtherField
+      - HTMLSelectField
+      - HTMLSelectLanguageField
+      - HTMLSelectLimitField
+      - HTMLSelectNamespace
+      - HTMLSelectNamespaceWithButton
+      - HTMLSelectOrOtherField
+      - HTMLSizeFilterField
+      - HTMLSubmitField
+      - HTMLTagFilter
+      - HTMLTagMultiselectField
+      - HTMLTextAreaField
+      - HTMLTextField
+      - HTMLTextFieldWithButton
+      - HTMLTimezoneField
+      - HTMLTitleTextField
+      - HTMLTitlesMultiselectField
+      - HTMLToggleSwitchField
+      - HTMLUserTextField
+      - HTMLUsersMultiselectField
   - MediaWiki\Installer:
     - DatabaseUpdater
     - MysqlUpdater

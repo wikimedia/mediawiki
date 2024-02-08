@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 /**
  * A field that will contain a numeric value
  *
@@ -51,6 +53,9 @@ class HTMLFloatField extends HTMLTextField {
 	 * @stable to override
 	 */
 	protected function getInputWidget( $params ) {
-		return new OOUI\NumberInputWidget( $params );
+		return new \OOUI\NumberInputWidget( $params );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLFloatField::class, 'HTMLFloatField' );

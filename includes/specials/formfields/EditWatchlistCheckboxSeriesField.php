@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
+use MediaWiki\HTMLForm\HTMLFormField;
+
 class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 	/**
 	 * HTMLMultiSelectField throws validation errors if we get input data

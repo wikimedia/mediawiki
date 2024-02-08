@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
 
 /**
  * Enables HTMLFormField elements to be build with a button.
@@ -64,14 +67,14 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	}
 
 	public function getInputOOUI( $value ) {
-		return new OOUI\ButtonInputWidget( [
+		return new \OOUI\ButtonInputWidget( [
 			'name' => $this->mButtonName,
 			'value' => $this->mButtonValue,
 			'type' => $this->mButtonType,
 			'label' => $this->mButtonValue,
 			'flags' => $this->mButtonFlags,
 			'id' => $this->mButtonId ?: null,
-		] + OOUI\Element::configFromHtmlAttributes(
+		] + \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
 	}
@@ -85,3 +88,6 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 		return $element . "\u{00A0}" . $this->getInputHTML( '' );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLFormFieldWithButton::class, 'HTMLFormFieldWithButton' );

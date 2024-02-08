@@ -1,10 +1,12 @@
 <?php
 
+namespace MediaWiki\HTMLForm;
+
 /*
  * @stable to extend
  */
-class HTMLFormFieldLayout extends OOUI\FieldLayout {
-	use HTMLFormElement;
+class HTMLFormFieldLayout extends \OOUI\FieldLayout {
+	use \MediaWiki\HTMLForm\HTMLFormElement;
 
 	/**
 	 * @stable to call
@@ -21,3 +23,6 @@ class HTMLFormFieldLayout extends OOUI\FieldLayout {
 		return 'mw.htmlform.FieldLayout';
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLFormFieldLayout::class, 'HTMLFormFieldLayout' );

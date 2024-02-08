@@ -1,7 +1,15 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\CodexHTMLForm;
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\HTMLForm\OOUIHTMLForm;
+use MediaWiki\HTMLForm\VFormHTMLForm;
 use MediaWiki\Request\WebRequest;
+use Xml;
 
 /**
  * A checkbox field
@@ -66,7 +74,7 @@ class HTMLCheckField extends HTMLFormField {
 	 * @stable to override
 	 * @since 1.26
 	 * @param string $value
-	 * @return OOUI\CheckboxInputWidget The checkbox widget.
+	 * @return \OOUI\CheckboxInputWidget The checkbox widget.
 	 */
 	public function getInputOOUI( $value ) {
 		if ( !empty( $this->mParams['invert'] ) ) {
@@ -77,7 +85,7 @@ class HTMLCheckField extends HTMLFormField {
 		$attr['id'] = $this->mID;
 		$attr['name'] = $this->mName;
 
-		$attr += OOUI\Element::configFromHtmlAttributes(
+		$attr += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		);
 
@@ -88,7 +96,7 @@ class HTMLCheckField extends HTMLFormField {
 		$attr['selected'] = $value;
 		$attr['value'] = '1'; // Nasty hack, but needed to make this work
 
-		return new OOUI\CheckboxInputWidget( $attr );
+		return new \OOUI\CheckboxInputWidget( $attr );
 	}
 
 	/**
@@ -160,3 +168,6 @@ class HTMLCheckField extends HTMLFormField {
 		}
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLCheckField::class, 'HTMLCheckField' );

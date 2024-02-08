@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 /**
  * A field that must contain a number
  *
@@ -31,3 +33,6 @@ class HTMLIntField extends HTMLFloatField {
 		return true;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLIntField::class, 'HTMLIntField' );

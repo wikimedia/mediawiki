@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Parser\Sanitizer;
+use Xml;
 
 /**
  * Radio checkbox fields.
@@ -68,16 +72,16 @@ class HTMLRadioField extends HTMLFormField {
 			$options[] = [
 				'data' => $data,
 				// @phan-suppress-next-line SecurityCheck-XSS Labels are raw when not from message
-				'label' => $this->mOptionsLabelsNotFromMessage ? new OOUI\HtmlSnippet( $label ) : $label,
+				'label' => $this->mOptionsLabelsNotFromMessage ? new \OOUI\HtmlSnippet( $label ) : $label,
 			];
 		}
 
-		return new OOUI\RadioSelectInputWidget( [
+		return new \OOUI\RadioSelectInputWidget( [
 			'name' => $this->mName,
 			'id' => $this->mID,
 			'value' => $value,
 			'options' => $options,
-		] + OOUI\Element::configFromHtmlAttributes(
+		] + \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
 	}
@@ -114,3 +118,6 @@ class HTMLRadioField extends HTMLFormField {
 		return false;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLRadioField::class, 'HTMLRadioField' );

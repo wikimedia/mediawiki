@@ -20,8 +20,6 @@
 
 namespace MediaWiki\Preferences;
 
-use HTMLForm;
-use HTMLFormField;
 use ILanguageConverter;
 use Language;
 use LanguageCode;
@@ -34,6 +32,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -377,7 +378,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	public static function getPreferenceForField( $name, HTMLFormField $field, array $userOptions ) {
 		$val = $userOptions[$name] ?? null;
 
-		if ( $field instanceof \HTMLNestedFilterable ) {
+		if ( $field instanceof HTMLNestedFilterable ) {
 			$val = [];
 			$prefix = $field->mParams['prefix'] ?? $name;
 			// Fetch all possible preference keys of the given field on this wiki.

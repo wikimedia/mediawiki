@@ -1,7 +1,14 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use FormatJson;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\HTMLForm\HTMLFormFieldRequiredOptionsException;
+use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\Request\WebRequest;
+use Xml;
 
 /**
  * A checkbox matrix
@@ -166,7 +173,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	public function getInputOOUI( $value ) {
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
-		return new MediaWiki\Widget\CheckMatrixWidget(
+		return new \MediaWiki\Widget\CheckMatrixWidget(
 			[
 				'name' => $this->mName,
 				'infusable' => true,
@@ -178,7 +185,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				'forcedOff' => $this->mParams['force-options-off'] ?? [],
 				'forcedOn' => $this->mParams['force-options-on'] ?? [],
 				'values' => $value,
-			] + OOUI\Element::configFromHtmlAttributes( $attribs )
+			] + \OOUI\Element::configFromHtmlAttributes( $attribs )
 		);
 	}
 
@@ -289,3 +296,6 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		return true;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLCheckMatrix::class, 'HTMLCheckMatrix' );

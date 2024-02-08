@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Widget\TagMultiselectWidget;
 
 /**
@@ -131,3 +133,6 @@ class HTMLTagMultiselectField extends HTMLTextField {
 	}
 
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLTagMultiselectField::class, 'HTMLTagMultiselectField' );

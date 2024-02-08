@@ -23,8 +23,8 @@
 
 namespace MediaWiki\SpecialPage;
 
-use HTMLForm;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;

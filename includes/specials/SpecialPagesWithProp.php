@@ -24,8 +24,8 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
 use Skin;

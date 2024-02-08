@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use XmlSelect;
+
 /**
  * A combo box field.
  *
@@ -38,7 +42,7 @@ class HTMLComboboxField extends HTMLTextField {
 	public function getInputOOUI( $value ) {
 		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
-		$attribs = OOUI\Element::configFromHtmlAttributes(
+		$attribs = \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
@@ -54,7 +58,7 @@ class HTMLComboboxField extends HTMLTextField {
 			$attribs['placeholder'] = $this->mPlaceholder;
 		}
 
-		return new OOUI\ComboBoxInputWidget( [
+		return new \OOUI\ComboBoxInputWidget( [
 			'name' => $this->mName,
 			'id' => $this->mID,
 			'options' => $this->getOptionsOOUI(),
@@ -67,3 +71,6 @@ class HTMLComboboxField extends HTMLTextField {
 		return true;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLComboboxField::class, 'HTMLComboboxField' );

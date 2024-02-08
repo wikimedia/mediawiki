@@ -24,9 +24,9 @@
 namespace MediaWiki\Specials;
 
 use HTMLCheckField;
-use HTMLForm;
 use LinkCache;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;

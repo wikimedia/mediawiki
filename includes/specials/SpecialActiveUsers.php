@@ -23,11 +23,11 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ActiveUsersPager;
 use MediaWiki\SpecialPage\SpecialPage;

@@ -1,9 +1,11 @@
 <?php
 
+namespace MediaWiki\HTMLForm;
+
 /*
  * @stable to extend
  */
-class HTMLFormActionFieldLayout extends OOUI\ActionFieldLayout {
+class HTMLFormActionFieldLayout extends \OOUI\ActionFieldLayout {
 	use HTMLFormElement;
 
 	/**
@@ -21,3 +23,6 @@ class HTMLFormActionFieldLayout extends OOUI\ActionFieldLayout {
 		return 'mw.htmlform.ActionFieldLayout';
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLFormActionFieldLayout::class, 'HTMLFormActionFieldLayout' );

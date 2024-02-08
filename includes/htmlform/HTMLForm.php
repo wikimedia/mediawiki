@@ -21,10 +21,51 @@
  * @file
  */
 
+namespace MediaWiki\HTMLForm;
+
+use DomainException;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLApiField;
+use MediaWiki\HTMLForm\Field\HTMLAutoCompleteSelectField;
+use MediaWiki\HTMLForm\Field\HTMLCheckField;
+use MediaWiki\HTMLForm\Field\HTMLCheckMatrix;
+use MediaWiki\HTMLForm\Field\HTMLComboboxField;
+use MediaWiki\HTMLForm\Field\HTMLDateTimeField;
+use MediaWiki\HTMLForm\Field\HTMLEditTools;
+use MediaWiki\HTMLForm\Field\HTMLExpiryField;
+use MediaWiki\HTMLForm\Field\HTMLFileField;
+use MediaWiki\HTMLForm\Field\HTMLFloatField;
+use MediaWiki\HTMLForm\Field\HTMLFormFieldCloner;
+use MediaWiki\HTMLForm\Field\HTMLHiddenField;
+use MediaWiki\HTMLForm\Field\HTMLInfoField;
+use MediaWiki\HTMLForm\Field\HTMLIntField;
+use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
+use MediaWiki\HTMLForm\Field\HTMLNamespacesMultiselectField;
+use MediaWiki\HTMLForm\Field\HTMLRadioField;
+use MediaWiki\HTMLForm\Field\HTMLSelectAndOtherField;
+use MediaWiki\HTMLForm\Field\HTMLSelectField;
+use MediaWiki\HTMLForm\Field\HTMLSelectLanguageField;
+use MediaWiki\HTMLForm\Field\HTMLSelectLimitField;
+use MediaWiki\HTMLForm\Field\HTMLSelectNamespace;
+use MediaWiki\HTMLForm\Field\HTMLSelectNamespaceWithButton;
+use MediaWiki\HTMLForm\Field\HTMLSelectOrOtherField;
+use MediaWiki\HTMLForm\Field\HTMLSizeFilterField;
+use MediaWiki\HTMLForm\Field\HTMLSubmitField;
+use MediaWiki\HTMLForm\Field\HTMLTagFilter;
+use MediaWiki\HTMLForm\Field\HTMLTagMultiselectField;
+use MediaWiki\HTMLForm\Field\HTMLTextAreaField;
+use MediaWiki\HTMLForm\Field\HTMLTextField;
+use MediaWiki\HTMLForm\Field\HTMLTextFieldWithButton;
+use MediaWiki\HTMLForm\Field\HTMLTimezoneField;
+use MediaWiki\HTMLForm\Field\HTMLTitlesMultiselectField;
+use MediaWiki\HTMLForm\Field\HTMLTitleTextField;
+use MediaWiki\HTMLForm\Field\HTMLUsersMultiselectField;
+use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
@@ -33,6 +74,11 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use Message;
+use MessageSpecifier;
+use StatusValue;
+use Stringable;
+use Xml;
 
 /**
  * Object handling generic submission, CSRF protection, layout and
@@ -1362,7 +1408,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @stable to override
 	 * @param string $html HTML contents to wrap.
-	 * @return string|OOUI\Tag Wrapped HTML.
+	 * @return string|\OOUI\Tag Wrapped HTML.
 	 */
 	public function wrapForm( $html ) {
 		# Include a <fieldset> wrapper for style, if requested.
@@ -2220,3 +2266,6 @@ class HTMLForm extends ContextSource {
 		return false;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLForm::class, 'HTMLForm' );

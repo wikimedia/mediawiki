@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm;
+
 /**
  * HTML form generation and submission handling, OOUI style.
  *
@@ -21,6 +23,7 @@
  * @file
  */
 
+use DomainException;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Parser\Sanitizer;
@@ -83,18 +86,18 @@ class OOUIHTMLForm extends HTMLForm {
 				];
 			}
 
-			$buttons .= new OOUI\ButtonInputWidget( $attribs );
+			$buttons .= new \OOUI\ButtonInputWidget( $attribs );
 		}
 
 		if ( $this->mShowReset ) {
-			$buttons .= new OOUI\ButtonInputWidget( [
+			$buttons .= new \OOUI\ButtonInputWidget( [
 				'type' => 'reset',
 				'label' => $this->msg( 'htmlform-reset' )->text(),
 			] );
 		}
 
 		if ( $this->mShowCancel ) {
-			$buttons .= new OOUI\ButtonWidget( [
+			$buttons .= new \OOUI\ButtonWidget( [
 				'label' => $this->msg( 'cancel' )->text(),
 				'href' => $this->getCancelTargetURL(),
 			] );
@@ -114,18 +117,18 @@ class OOUIHTMLForm extends HTMLForm {
 			}
 
 			if ( isset( $button['label-message'] ) ) {
-				$label = new OOUI\HtmlSnippet( $this->getMessage( $button['label-message'] )->parse() );
+				$label = new \OOUI\HtmlSnippet( $this->getMessage( $button['label-message'] )->parse() );
 			} elseif ( isset( $button['label'] ) ) {
 				$label = $button['label'];
 			} elseif ( isset( $button['label-raw'] ) ) {
-				$label = new OOUI\HtmlSnippet( $button['label-raw'] );
+				$label = new \OOUI\HtmlSnippet( $button['label-raw'] );
 			} else {
 				$label = $button['value'];
 			}
 
 			$attrs['classes'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : [];
 
-			$buttons .= new OOUI\ButtonInputWidget( [
+			$buttons .= new \OOUI\ButtonInputWidget( [
 				'type' => 'submit',
 				'name' => $button['name'],
 				'value' => $button['value'],
@@ -147,22 +150,22 @@ class OOUIHTMLForm extends HTMLForm {
 
 	/**
 	 * @inheritDoc
-	 * @return OOUI\PanelLayout
+	 * @return \OOUI\PanelLayout
 	 */
 	protected function wrapFieldSetSection( $legend, $section, $attributes, $isRoot ) {
 		// to get a user visible effect, wrap the fieldset into a framed panel layout
-		$layout = new OOUI\PanelLayout( [
+		$layout = new \OOUI\PanelLayout( [
 			'expanded' => false,
 			'padded' => true,
 			'framed' => true,
 		] );
 
 		$layout->appendContent(
-			new OOUI\FieldsetLayout( [
+			new \OOUI\FieldsetLayout( [
 				'label' => $legend,
 				'items' => [
-					new OOUI\Widget( [
-						'content' => new OOUI\HtmlSnippet( $section )
+					new \OOUI\Widget( [
+						'content' => new \OOUI\HtmlSnippet( $section )
 					] ),
 				],
 			] + $attributes )
@@ -172,7 +175,7 @@ class OOUIHTMLForm extends HTMLForm {
 
 	/**
 	 * @inheritDoc
-	 * @return OOUI\FieldLayout HTML
+	 * @return \OOUI\FieldLayout HTML
 	 */
 	protected function formatField( HTMLFormField $field, $value ) {
 		return $field->getOOUI( $value );
@@ -180,7 +183,7 @@ class OOUIHTMLForm extends HTMLForm {
 
 	/**
 	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
-	 * @param OOUI\FieldLayout[] $fieldsHtml Array of outputs from formatField()
+	 * @param \OOUI\FieldLayout[] $fieldsHtml Array of outputs from formatField()
 	 * @param string $sectionName
 	 * @param bool $anyFieldHasLabel Unused
 	 * @return string HTML
@@ -236,7 +239,7 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 
 		foreach ( $errors as &$error ) {
-			$error = new OOUI\HtmlSnippet( $error );
+			$error = new \OOUI\HtmlSnippet( $error );
 		}
 
 		// Used in formatFormHeader()
@@ -268,11 +271,11 @@ class OOUIHTMLForm extends HTMLForm {
 		];
 		// if there's no header, don't create an (empty) LabelWidget, simply use a placeholder
 		if ( $this->mHeader ) {
-			$element = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ] );
+			$element = new \OOUI\LabelWidget( [ 'label' => new \OOUI\HtmlSnippet( $this->mHeader ) ] );
 		} else {
-			$element = new OOUI\Widget( [] );
+			$element = new \OOUI\Widget( [] );
 		}
-		return new OOUI\FieldLayout(
+		return new \OOUI\FieldLayout(
 			$element,
 			[
 				'align' => 'top',
@@ -289,27 +292,27 @@ class OOUIHTMLForm extends HTMLForm {
 
 	public function wrapForm( $html ) {
 		if ( is_string( $this->mWrapperLegend ) ) {
-			$phpClass = $this->mCollapsible ? CollapsibleFieldsetLayout::class : OOUI\FieldsetLayout::class;
+			$phpClass = $this->mCollapsible ? CollapsibleFieldsetLayout::class : \OOUI\FieldsetLayout::class;
 			$content = new $phpClass( [
 				'label' => $this->mWrapperLegend,
 				'collapsed' => $this->mCollapsed,
 				'items' => [
-					new OOUI\Widget( [
-						'content' => new OOUI\HtmlSnippet( $html )
+					new \OOUI\Widget( [
+						'content' => new \OOUI\HtmlSnippet( $html )
 					] ),
 				],
-			] + OOUI\Element::configFromHtmlAttributes( $this->mWrapperAttributes ) );
+			] + \OOUI\Element::configFromHtmlAttributes( $this->mWrapperAttributes ) );
 		} else {
-			$content = new OOUI\HtmlSnippet( $html );
+			$content = new \OOUI\HtmlSnippet( $html );
 		}
 
-		$form = new OOUI\FormLayout( $this->getFormAttributes() + [
+		$form = new \OOUI\FormLayout( $this->getFormAttributes() + [
 			'classes' => [ 'mw-htmlform', 'mw-htmlform-ooui' ],
 			'content' => $content,
 		] );
 
 		// Include a wrapper for style, if requested.
-		$form = new OOUI\PanelLayout( [
+		$form = new \OOUI\PanelLayout( [
 			'classes' => [ 'mw-htmlform-ooui-wrapper' ],
 			'expanded' => false,
 			'padded' => $this->mWrapperLegend !== false,
@@ -320,3 +323,6 @@ class OOUIHTMLForm extends HTMLForm {
 		return $form;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( OOUIHTMLForm::class, 'OOUIHTMLForm' );

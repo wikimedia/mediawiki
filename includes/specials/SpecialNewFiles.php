@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use HTMLUserTextField;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Pager\NewFilesPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Request\DerivativeRequest;

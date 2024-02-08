@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\Widget\UserInputWidget;
@@ -147,3 +149,6 @@ class HTMLUserTextField extends HTMLTextField {
 		return parent::getInputHTML( $value );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLUserTextField::class, 'HTMLUserTextField' );

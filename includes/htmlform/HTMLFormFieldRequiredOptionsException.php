@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\HTMLForm;
+
+use InvalidArgumentException;
+
 /**
  * @newable
  * @stable to extend
@@ -18,3 +22,6 @@ class HTMLFormFieldRequiredOptionsException extends InvalidArgumentException {
 			implode( ', ', $missing ) ) );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLFormFieldRequiredOptionsException::class, 'HTMLFormFieldRequiredOptionsException' );

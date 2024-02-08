@@ -23,12 +23,12 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use LogEventsList;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
