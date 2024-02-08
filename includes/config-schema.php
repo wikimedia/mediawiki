@@ -876,7 +876,6 @@ return [
 				'local' => [
 					'class' => 'MediaWiki\\User\\Registration\\LocalUserRegistrationProvider',
 					'services' => [
-						'UserFactory',
 						'ConnectionProvider',
 					],
 				],

@@ -2,16 +2,17 @@
 
 namespace MediaWiki\User\Registration;
 
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 
 	public const TYPE = 'local';
+	private const CACHE_MAX_SIZE = 100;
+
+	private array $cache = [];
 
 	public function __construct(
-		private readonly UserFactory $userFactory,
 		private readonly IConnectionProvider $connectionProvider
 	) {
 	}
@@ -20,9 +21,30 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 	 * @inheritDoc
 	 */
 	public function fetchRegistration( UserIdentity $user ) {
-		// TODO: Factor this out from User::getRegistration to this method (T352871)
-		$user = $this->userFactory->newFromUserIdentity( $user );
-		return $user->getRegistration();
+		$id = $user->getId();
+
+		if ( $id === 0 ) {
+			return false;
+		}
+
+		if ( !isset( $this->cache[$id] ) ) {
+			if ( count( $this->cache ) >= self::CACHE_MAX_SIZE ) {
+				$evictId = array_key_first( $this->cache );
+				unset( $this->cache[$evictId] );
+			}
+
+			$userRegistration = $this->connectionProvider->getReplicaDatabase()
+				->newSelectQueryBuilder()
+				->select( 'user_registration' )
+				->from( 'user' )
+				->where( [ 'user_id' => $id ] )
+				->caller( __METHOD__ )
+				->fetchField();
+
+			$this->cache[$id] = wfTimestampOrNull( TS_MW, $userRegistration );
+		}
+
+		return $this->cache[$id];
 	}
 
 	/**

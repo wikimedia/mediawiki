@@ -7004,10 +7004,9 @@ class MainConfigSchema {
 			LocalUserRegistrationProvider::TYPE => [
 				'class' => LocalUserRegistrationProvider::class,
 				'services' => [
-					'UserFactory',
 					'ConnectionProvider',
-				]
-			]
+				],
+			],
 		],
 		'type' => 'map',
 	];

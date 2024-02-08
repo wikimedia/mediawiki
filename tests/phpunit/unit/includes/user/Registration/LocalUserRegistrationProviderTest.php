@@ -4,8 +4,6 @@ namespace MediaWiki\Tests\User\Registration;
 
 use Exception;
 use MediaWiki\User\Registration\LocalUserRegistrationProvider;
-use MediaWiki\User\User;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\Assert\PreconditionException;
@@ -19,7 +17,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class LocalUserRegistrationProviderTest extends MediaWikiUnitTestCase {
 
-	private UserFactory $userFactory;
 	private IConnectionProvider $connectionProvider;
 
 	private LocalUserRegistrationProvider $provider;
@@ -27,26 +24,29 @@ class LocalUserRegistrationProviderTest extends MediaWikiUnitTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->userFactory = $this->createMock( UserFactory::class );
 		$this->connectionProvider = $this->createMock( IConnectionProvider::class );
-
-		$this->provider = new LocalUserRegistrationProvider( $this->userFactory, $this->connectionProvider );
+		$this->provider = new LocalUserRegistrationProvider( $this->connectionProvider );
 	}
 
 	public function testFetchRegistration() {
-		$userIdentity = new UserIdentityValue( 123, 'Admin' );
-		$userMock = $this->createMock( User::class );
-		$userMock->expects( $this->once() )
-			->method( 'getRegistration' )
+		$qbMock = $this->createMock( SelectQueryBuilder::class );
+		$qbMock->method( $this->anythingBut(
+			'fetchResultSet', 'fetchField', 'fetchFieldValues', 'fetchRow',
+			'fetchRowCount', 'estimateRowCount'
+		) )->willReturnSelf();
+		$qbMock->expects( $this->once() )
+			->method( 'fetchField' )
 			->willReturn( '20200102000000' );
+		$dbMock = $this->createMock( IDatabase::class );
+		$dbMock->expects( $this->once() )
+			->method( 'newSelectQueryBuilder' )
+			->willReturn( $qbMock );
 
-		$this->userFactory->method( 'newFromUserIdentity' )
-			->with( $userIdentity )
-			->willReturn( $userMock );
+		$this->connectionProvider->expects( $this->once() )
+			->method( 'getReplicaDatabase' )
+			->willReturn( $dbMock );
 
-		$this->connectionProvider->expects( $this->never() )
-			->method( $this->anything() );
-
+		$userIdentity = new UserIdentityValue( 123, 'Admin' );
 		$this->assertSame( '20200102000000', $this->provider->fetchRegistration( $userIdentity ) );
 	}
 
