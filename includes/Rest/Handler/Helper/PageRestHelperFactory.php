@@ -14,13 +14,13 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RedirectStore;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
-use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Bcp47Code\Bcp47Code;
 
@@ -37,13 +37,13 @@ class PageRestHelperFactory {
 
 	private ServiceOptions $options;
 	private RevisionLookup $revisionLookup;
+	private RevisionRenderer $revisionRenderer;
 	private TitleFormatter $titleFormatter;
 	private PageLookup $pageLookup;
 	private ParsoidOutputStash $parsoidOutputStash;
 	private StatsdDataFactoryInterface $stats;
 	private ParserOutputAccess $parserOutputAccess;
 	private ParsoidSiteConfig $parsoidSiteConfig;
-	private ParsoidParserFactory $parsoidParserFactory;
 	private HtmlTransformFactory $htmlTransformFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private LanguageFactory $languageFactory;
@@ -53,13 +53,13 @@ class PageRestHelperFactory {
 	/**
 	 * @param ServiceOptions $options
 	 * @param RevisionLookup $revisionLookup
+	 * @param RevisionRenderer $revisionRenderer
 	 * @param TitleFormatter $titleFormatter
 	 * @param PageLookup $pageLookup
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param ParsoidSiteConfig $parsoidSiteConfig
-	 * @param ParsoidParserFactory $parsoidParserFactory
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
@@ -69,13 +69,13 @@ class PageRestHelperFactory {
 	public function __construct(
 		ServiceOptions $options,
 		RevisionLookup $revisionLookup,
+		RevisionRenderer $revisionRenderer,
 		TitleFormatter $titleFormatter,
 		PageLookup $pageLookup,
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,
 		ParserOutputAccess $parserOutputAccess,
 		ParsoidSiteConfig $parsoidSiteConfig,
-		ParsoidParserFactory $parsoidParserFactory,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
@@ -84,13 +84,13 @@ class PageRestHelperFactory {
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
+		$this->revisionRenderer = $revisionRenderer;
 		$this->titleFormatter = $titleFormatter;
 		$this->pageLookup = $pageLookup;
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
 		$this->parserOutputAccess = $parserOutputAccess;
 		$this->parsoidSiteConfig = $parsoidSiteConfig;
-		$this->parsoidParserFactory = $parsoidParserFactory;
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
@@ -157,8 +157,8 @@ class PageRestHelperFactory {
 			$this->parserOutputAccess,
 			$this->pageLookup,
 			$this->revisionLookup,
+			$this->revisionRenderer,
 			$this->parsoidSiteConfig,
-			$this->parsoidParserFactory,
 			$this->htmlTransformFactory,
 			$this->contentHandlerFactory,
 			$this->languageFactory,

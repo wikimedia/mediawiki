@@ -165,11 +165,11 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$revTimestamp = null;
 		if ( $rev instanceof RevisionRecord ) {
 			$revTimestamp = $rev->getTimestamp();
-			$rev = $rev->getId();
+			$rev = $rev->getId() ?? 0;
 		}
 
 		$pout = new ParserOutput( $html );
-		$pout->setCacheRevisionId( $rev ?: $page->getLatest() );
+		$pout->setCacheRevisionId( $rev ?? $page->getLatest() );
 		$pout->setCacheTime( wfTimestampNow() ); // will use fake time
 		if ( $revTimestamp ) {
 			$pout->setRevisionTimestamp( $revTimestamp );
@@ -239,6 +239,10 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$services = $this->getServiceContainer();
 
+		if ( isset( $options['ParsoidParserFactory'] ) ) {
+			$this->resetServicesWithMockedParsoidParserFactory( $options['ParsoidParserFactory'] );
+		}
+
 		return new HtmlOutputRendererHelper(
 			$stash,
 			new NullStatsdDataFactory(),
@@ -247,8 +251,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			),
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
+			$services->getRevisionRenderer(),
 			$services->getParsoidSiteConfig(),
-			$options['ParsoidParserFactory'] ?? $services->getParsoidParserFactory(),
 			$options['HtmlTransformFactory'] ?? $services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory(),
@@ -587,17 +591,20 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		[ $fakePage, $fakeRevision ] = $this->getNonExistingPageWithFakeRevision( __METHOD__ );
 		$pp = $this->createMock( ParsoidParser::class );
 		$pp->expects( $this->once() )
-			->method( 'parseFakeRevision' )
+			->method( 'parse' )
 			->willReturnCallback( function (
-				RevisionRecord $rev,
+				string $text,
 				PageReference $page,
-				ParserOptions $parserOpts
+				ParserOptions $parserOpts,
+				bool $linestart = true,
+				bool $clearState = true,
+				?int $revId = null
 			) use ( $fakePage, $fakeRevision ) {
-				self::assertSame( $page, $fakePage, '$page and $fakePage should be the same' );
-				self::assertSame( $rev, $fakeRevision, '$rev and $fakeRevision should be the same' );
+				self::assertTrue( $page->isSamePageAs( $fakePage ), '$page and $fakePage should be the same' );
+				self::assertSame( $revId, $fakeRevision->getId(), '$rev and $fakeRevision should be the same' );
 
-				$html = $this->getMockHtml( $rev );
-				$pout = $this->makeParserOutput( $parserOpts, $html, $rev, $page );
+				$html = $this->getMockHtml( $fakeRevision );
+				$pout = $this->makeParserOutput( $parserOpts, $html, $fakeRevision, $page );
 				return $pout;
 			} );
 		$options['ParsoidParser'] = $pp;
@@ -806,6 +813,10 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$mockParsoidParserFactory = $this->newMockParsoidParserFactory( [
 			'Parsoid' => $mockParsoid,
 		] );
+		$this->resetServicesWithMockedParsoidParserFactory( $mockParsoidParserFactory );
+	}
+
+	private function resetServicesWithMockedParsoidParserFactory( ?ParsoidParserFactory $mockParsoidParserFactory = null ): void {
 		$this->setService( 'ParsoidParserFactory', $mockParsoidParserFactory );
 	}
 
