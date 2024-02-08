@@ -333,7 +333,8 @@ class Linker {
 	) {
 		$title = Title::newFromLinkTarget( $title );
 		$res = null;
-		$dummy = new DummyLinker;
+		// DummyLinker is deprecated since 1.42, $dummy will be replaced with null.
+		$dummy = new DummyLinker();
 		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 		if ( !$hookRunner->onImageBeforeProduceHTML( $dummy, $title,
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args

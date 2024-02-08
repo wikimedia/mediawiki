@@ -533,6 +533,8 @@ because of Phabricator reports.
   Language::getBlockDurations() instead.
 * MediaWikiServices::getBlockErrorFormatter() has been deprecated, use
   MediaWikiServices::getFormatterFactory()->getBlockErrorFormatter() instead.
+* DummyLinker has been deprecated. The DummyLinker parameter to the
+  'ImageBeforeProduceHTML' hook will become null in the future.
 * Database::listViews() has been deprecated. This was previously used to filter
   views out of the return value of Database::listTables(). Now listTables()
   will not include views. MediaWiki does not use views.
