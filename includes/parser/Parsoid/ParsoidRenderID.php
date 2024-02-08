@@ -3,6 +3,7 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use InvalidArgumentException;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * Represents the identity of a specific rendering of a specific revision
@@ -42,6 +43,23 @@ class ParsoidRenderID {
 		}
 
 		return new self( (int)$revisionID, $uniqueID );
+	}
+
+	/**
+	 * Create a ParsoidRenderID from the revision and render id stored in
+	 * a ParserOutput.
+	 * @param ParserOutput $parserOutput
+	 * @return self
+	 */
+	public static function newFromParserOutput( ParserOutput $parserOutput ): self {
+		$revisionID = $parserOutput->getCacheRevisionId();
+		$uniqueID = $parserOutput->getRenderId();
+
+		if ( $revisionID === null || $uniqueID === null ) {
+			throw new InvalidArgumentException( 'Missing render id' );
+		}
+
+		return new self( $revisionID, $uniqueID );
 	}
 
 	/**

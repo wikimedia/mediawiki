@@ -250,23 +250,19 @@ class RenderedRevision implements SlotRenderingProvider {
 	}
 
 	/**
-	 * @note This method exist to make duplicate parses easier to see during profiling
+	 * @note This method exists to make duplicate parses easier to see during profiling
 	 * @param Content $content
 	 * @param bool $withHtml
 	 * @return ParserOutput
 	 */
 	private function getSlotParserOutputUncached( Content $content, $withHtml ) {
-		$parserOutput = $this->contentRenderer->getParserOutput(
+		return $this->contentRenderer->getParserOutput(
 			$content,
 			$this->revision->getPage(),
-			$this->revision->getId(),
+			$this->revision,
 			$this->options,
 			$withHtml
 		);
-		// Save the rev_id and timestamp so that we don't have to load the revision row on view
-		$parserOutput->setCacheRevisionId( $this->revision->getId() );
-		$parserOutput->setTimestamp( $this->revision->getTimestamp() );
-		return $parserOutput;
 	}
 
 	/**

@@ -436,9 +436,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$this->authorizeWriteOrThrow( $this->authority, 'stashbasehtml', $this->page );
 
 			$isFakeRevision = $this->getRevisionId() === null;
-			$parsoidStashKey = ParsoidRenderID::newFromKey(
-				$this->parsoidOutputAccess->getParsoidRenderID( $parserOutput )
-			);
+			$parsoidStashKey = ParsoidRenderID::newFromParserOutput( $parserOutput );
 			$stashSuccess = $this->parsoidOutputStash->set(
 				$parsoidStashKey,
 				new SelserContext(
@@ -489,7 +487,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	public function getETag( string $suffix = '' ): ?string {
 		$parserOutput = $this->getParserOutput();
 
-		$renderID = $this->parsoidOutputAccess->getParsoidRenderID( $parserOutput )->getKey();
+		$renderID = ParsoidRenderID::newFromParserOutput( $parserOutput )->getKey();
 
 		if ( $suffix !== '' ) {
 			$eTag = "$renderID/{$this->flavor}/$suffix";

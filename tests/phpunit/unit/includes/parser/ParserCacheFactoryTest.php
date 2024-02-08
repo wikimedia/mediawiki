@@ -9,6 +9,7 @@ use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\NullLogger;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * @covers \MediaWiki\Parser\ParserCacheFactory
@@ -35,7 +36,8 @@ class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
 			new NullLogger(),
 			$options,
 			$this->createNoOpMock( TitleFactory::class ),
-			$this->createNoOpMock( WikiPageFactory::class )
+			$this->createNoOpMock( WikiPageFactory::class ),
+			$this->createNoOpMock( GlobalIdGenerator::class )
 		);
 	}
 

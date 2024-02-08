@@ -6,6 +6,7 @@ use MediaWiki\PoolCounter\PoolWorkArticleViewOld;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * @covers \MediaWiki\PoolCounter\PoolWorkArticleViewOld
@@ -58,6 +59,8 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 	 * @return RevisionOutputCache
 	 */
 	private function installRevisionOutputCache( $bag = null ) {
+		$globalIdGenerator = $this->createMock( GlobalIdGenerator::class );
+		$globalIdGenerator->method( 'newUUIDv1' )->willReturn( 'uuid-uuid' );
 		$this->cache = new RevisionOutputCache(
 			'test',
 			new WANObjectCache( [ 'cache' => $bag ?: new HashBagOStuff() ] ),
@@ -65,7 +68,8 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 			'20200101223344',
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
-			new NullLogger()
+			new NullLogger(),
+			$globalIdGenerator
 		);
 
 		return $this->cache;

@@ -669,7 +669,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$po = $this->contentRenderer->getParserOutput(
 					$content,
 					$title,
-					$revision->getId(),
+					$revision,
 					ParserOptions::newFromContext( $this->getContext() )
 				);
 				$text = $po->getText();

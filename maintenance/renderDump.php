@@ -29,6 +29,7 @@
  */
 
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\User\User;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -118,7 +119,16 @@ class DumpRenderer extends Maintenance {
 
 		$content = $rev->getContent();
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
-		$output = $contentRenderer->getParserOutput( $content, $title, null, $options );
+		// ContentRenderer expects a RevisionRecord, and all we have is a
+		// WikiRevision from the dump.  Make a fake MutableRevisionRecord to
+		// satisfy it -- the only thing ::getParserOutput actually needs is
+		// the revision ID and revision timestamp.
+		$mutableRev = new MutableRevisionRecord( $rev->getTitle() );
+		$mutableRev->setId( $rev->getID() );
+		$mutableRev->setTimestamp( $rev->getTimestamp() );
+		$output = $contentRenderer->getParserOutput(
+			$content, $title, $mutableRev, $options
+		);
 
 		file_put_contents( $filename,
 			"<!DOCTYPE html>\n" .

@@ -614,7 +614,10 @@ return [
 	},
 
 	'ContentRenderer' => static function ( MediaWikiServices $services ): ContentRenderer {
-		return new ContentRenderer( $services->getContentHandlerFactory() );
+		return new ContentRenderer(
+			$services->getContentHandlerFactory(),
+			$services->getGlobalIdGenerator()
+		);
 	},
 
 	'ContentTransformer' => static function ( MediaWikiServices $services ): ContentTransformer {
@@ -1536,7 +1539,8 @@ return [
 			LoggerFactory::getInstance( 'ParserCache' ),
 			$options,
 			$services->getTitleFactory(),
-			$services->getWikiPageFactory()
+			$services->getWikiPageFactory(),
+			$services->getGlobalIdGenerator()
 		);
 	},
 

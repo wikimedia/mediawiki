@@ -33,6 +33,7 @@ use MediaWiki\Utils\MWTimestamp;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * Cache for ParserOutput objects.
@@ -72,6 +73,8 @@ class RevisionOutputCache {
 	/** @var LoggerInterface */
 	private $logger;
 
+	private GlobalIdGenerator $globalIdGenerator;
+
 	/**
 	 * @param string $name
 	 * @param WANObjectCache $cache
@@ -80,6 +83,7 @@ class RevisionOutputCache {
 	 * @param JsonCodec $jsonCodec
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
+	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		string $name,
@@ -88,7 +92,8 @@ class RevisionOutputCache {
 		string $cacheEpoch,
 		JsonCodec $jsonCodec,
 		IBufferingStatsdDataFactory $stats,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->name = $name;
 		$this->cache = $cache;
@@ -97,6 +102,7 @@ class RevisionOutputCache {
 		$this->jsonCodec = $jsonCodec;
 		$this->stats = $stats;
 		$this->logger = $logger;
+		$this->globalIdGenerator = $globalIdGenerator;
 	}
 
 	/**
@@ -242,11 +248,24 @@ class RevisionOutputCache {
 
 		$cacheKey = $this->makeParserOutputKey( $revision, $parserOptions );
 
-		$output->setCacheTime( $cacheTime ?: wfTimestampNow() );
-		$output->setCacheRevisionId( $revision->getId() );
-
-		// Save the timestamp so that we don't have to load the revision row on view
-		$output->setTimestamp( $revision->getTimestamp() );
+		// Ensure cache properties are set in the ParserOutput
+		// T350538: These should be turned into assertions that the
+		// properties are already present (and the $cacheTime argument
+		// removed).
+		if ( $cacheTime ) {
+			$output->setCacheTime( $cacheTime );
+		} else {
+			$cacheTime = $output->getCacheTime();
+		}
+		if ( !$output->getCacheRevisionId() ) {
+			$output->setCacheRevisionId( $revision->getId() );
+		}
+		if ( !$output->getRenderId() ) {
+			$output->setRenderId( $this->globalIdGenerator->newUUIDv1() );
+		}
+		if ( !$output->getTimestamp() ) {
+			$output->setTimestamp( $revision->getTimestamp() );
+		}
 
 		$msg = "Saved in RevisionOutputCache with key $cacheKey" .
 			" and timestamp $cacheTime" .

@@ -64,17 +64,14 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 	/**
 	 * API users expect a ParsoidRenderID value set in the parser output's extension data.
-	 * @param int $revId
+	 * @param PageConfig $pageConfig
 	 * @param ParserOutput $parserOutput
 	 */
-	private function setParsoidRenderID( int $revId, ParserOutput $parserOutput ): void {
-		$parserOutput->setParsoidRenderId(
-			new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() )
-		);
-
-		$now = wfTimestampNow();
-		$parserOutput->setCacheRevisionId( $revId );
-		$parserOutput->setCacheTime( $now );
+	private function setParsoidRenderID( PageConfig $pageConfig, ParserOutput $parserOutput ): void {
+		$parserOutput->setRenderId( $this->globalIdGenerator->newUUIDv1() );
+		$parserOutput->setCacheRevisionId( $pageConfig->getRevisionId() );
+		$parserOutput->setTimestamp( $pageConfig->getRevisionTimestamp() );
+		$parserOutput->setCacheTime( wfTimestampNow() );
 	}
 
 	/**
@@ -169,7 +166,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		$revId = $pageConfig->getRevisionId();
 		if ( $revId !== null ) {
-			$this->setParsoidRenderID( $revId, $parserOutput );
+			// T350538: This shouldn't be necessary so long as ContentRenderer
+			// is involved in the call chain somewhere, and should be turned
+			// into an assertion (and ::setParsoidRenderID() removed).
+			$this->setParsoidRenderID( $pageConfig, $parserOutput );
 		}
 
 		// Copied from Parser.php::parse and should probably be abstracted
