@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Context;
 
+use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Output\OutputPage;
@@ -127,8 +128,8 @@ interface IContextSource extends LocalizationContext, CsrfTokenSetProvider {
 	public function getAuthority(): Authority;
 
 	/**
-	 * @inheritDoc
 	 * @since 1.19
+	 * @return Language
 	 */
 	public function getLanguage();
 
