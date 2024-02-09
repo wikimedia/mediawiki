@@ -123,7 +123,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function createDummyParserOutput(): ParserOutput {
 		$parserOutput = new ParserOutput();
-		$parserOutput->setText( 'TEST' );
+		$parserOutput->setRawText( 'TEST' );
 		foreach ( $this->getDummyUsedOptions() as $option ) {
 			$parserOutput->recordOption( $option );
 		}
@@ -785,7 +785,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$cache = $this->createParserCache( null, new HashBagOStuff() );
 
 		$parserOutput = $this->createDummyParserOutput();
-		$parserOutput->setText( $unicodeCharacter );
+		$parserOutput->setRawText( $unicodeCharacter );
 		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon() );
 		$json = $cache->getCacheStorage()->get(
 			$cache->makeParserOutputKey( $this->page, ParserOptions::newFromAnon() )

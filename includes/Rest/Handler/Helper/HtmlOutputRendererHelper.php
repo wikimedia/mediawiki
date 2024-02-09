@@ -463,7 +463,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			// XXX: Would be nice if we had a DOM handy.
 			$doc = DOMUtils::parseHTML( $parserOutput->getRawText() );
 			PageBundle::apply( $doc, $pb );
-			$parserOutput->setText( ContentUtils::toXML( $doc ) );
+			$parserOutput->setRawText( ContentUtils::toXML( $doc ) );
 		}
 
 		// Check if variant conversion has to be performed

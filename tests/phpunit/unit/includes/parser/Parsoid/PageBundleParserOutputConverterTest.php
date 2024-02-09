@@ -55,7 +55,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ 'test1', 'test2' ], $output->getUsedOptions() );
 
 		// Check that $original and $output can be modified independently of each other
-		$original->setText( 'new text version' );
+		$original->setRawText( 'new text version' );
 		$this->assertNotSame( 'new text version', $output->getRawText() );
 	}
 

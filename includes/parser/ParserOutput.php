@@ -98,7 +98,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @var string|null The output text
 	 */
-	private $mText = null;
+	private $mRawText = null;
 
 	/**
 	 * @var string[] List of the full text of language links, in the order they appear.
@@ -346,7 +346,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function __construct( $text = null, $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
-		$this->mText = $text;
+		$this->mRawText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
@@ -363,7 +363,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *         ParserOutput contains meta-data only.
 	 */
 	public function hasText(): bool {
-		return ( $this->mText !== null );
+		return ( $this->mRawText !== null );
 	}
 
 	/**
@@ -375,11 +375,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.27
 	 */
 	public function getRawText() {
-		if ( $this->mText === null ) {
+		if ( $this->mRawText === null ) {
 			throw new LogicException( 'This ParserOutput contains no text!' );
 		}
 
-		return $this->mText;
+		return $this->mRawText;
 	}
 
 	/**
@@ -425,7 +425,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function getText( $options = [] ) {
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-		$oldText = $this->mText; // T353257
+		$oldText = $this->mRawText; // T353257
 		$options += [
 			'suppressClone' => true, // T353257
 			'allowTOC' => true,
@@ -446,7 +446,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// T353257: for back-compat only mutations to metadata performed by
 		// the pipeline should be preserved; mutations to $mText should be
 		// discarded.
-		$this->setText( $oldText );
+		$this->setRawText( $oldText );
 		return $newText;
 	}
 
@@ -811,17 +811,31 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Set the text of the ParserOutput.
+	 * Set the raw text of the ParserOutput.
+	 *
+	 * If you did not generate html, pass null to mark it as such.
+	 *
+	 * @since 1.42
+	 * @param string|null $text HTML content of ParserOutput or null if not generated
+	 * @param-taint $text exec_html
+	 */
+	public function setRawText( ?string $text ): void {
+		$this->mRawText = $text;
+	}
+
+	/**
+	 * Set the raw text of the ParserOutput.
 	 *
 	 * If you did not generate html, pass null to mark it as such.
 	 *
 	 * @since 1.39 You can now pass null to this function
 	 * @param string|null $text HTML content of ParserOutput or null if not generated
 	 * @param-taint $text exec_html
-	 * @return string|null Previous value of ParserOutput's text
+	 * @return string|null Previous value of ParserOutput's raw text
+	 * @deprecated since 1.42; use ::setRawText() which matches the getter ::getRawText()
 	 */
 	public function setText( $text ) {
-		return wfSetVar( $this->mText, $text, true );
+		return wfSetVar( $this->mRawText, $text, true );
 	}
 
 	/**
@@ -2544,7 +2558,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
 		$data = [
-			'Text' => $this->mText,
+			'Text' => $this->mRawText,
 			'LanguageLinks' => $this->mLanguageLinks,
 			'Categories' => $this->mCategories,
 			'Indicators' => $this->mIndicators,
@@ -2634,7 +2648,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
-		$this->mText = $jsonData['Text'];
+		$this->mRawText = $jsonData['Text'];
 		$this->mLanguageLinks = $jsonData['LanguageLinks'];
 		$this->mCategories = $jsonData['Categories'];
 		$this->mIndicators = $jsonData['Indicators'];
@@ -2766,6 +2780,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $mModuleStyles !== null && $mModuleStyles !== [] ) {
 			$this->addModuleStyles( $mModuleStyles );
 		}
+		// Backwards compatibility, pre 1.42
+		$mText = $this->getGhostFieldValue( 'mText' );
+		if ( $mText !== null ) {
+			$this->setRawText( $mText );
+		}
 	}
 
 	public function __clone() {
@@ -2805,7 +2824,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @unstable
 	 */
 	public function setContentHolderText( string $s ): void {
-		$this->setText( $s );
+		$this->setRawText( $s );
 	}
 
 	public function __get( $name ) {

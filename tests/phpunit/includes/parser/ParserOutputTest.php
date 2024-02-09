@@ -228,7 +228,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	public function testWrapperDivClass() {
 		$po = new ParserOutput();
 
-		$po->setText( 'Kittens' );
+		$po->setRawText( 'Kittens' );
 		$this->assertStringContainsString( 'Kittens', $po->getText() );
 		$this->assertStringNotContainsString( '<div', $po->getText() );
 		$this->assertSame( 'Kittens', $po->getRawText() );
@@ -485,11 +485,11 @@ EOF
 		$this->assertTrue( $po->hasText() );
 
 		$po = new ParserOutput( null );
-		$po->setText( '' );
+		$po->setRawText( '' );
 		$this->assertTrue( $po->hasText() );
 
 		$po = new ParserOutput( 'foo' );
-		$po->setText( null );
+		$po->setRawText( null );
 		$this->assertFalse( $po->hasText() );
 	}
 
