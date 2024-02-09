@@ -253,7 +253,7 @@
 		 *
 		 * Standard encodeURIComponent, with extra stuff to make all browsers work similarly and more
 		 * compliant with RFC 3986. Similar to rawurlencode from PHP and our JS library
-		 * {@link mediawiki.module:util.rawurlencode mw.util.rawurlencode}, except this also replaces spaces with `+`.
+		 * {@link module:mediawiki.util.rawurlencode mw.util.rawurlencode}, except this also replaces spaces with `+`.
 		 *
 		 * @function
 		 * @name mw.Uri.encode

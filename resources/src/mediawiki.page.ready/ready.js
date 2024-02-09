@@ -222,7 +222,7 @@ function isSearchInput( element ) {
 /**
  * Load a given module when a search input is focused.
  *
- * @memberof mediawiki.page.module:ready
+ * @memberof module:mediawiki.page.ready
  * @param {string} moduleName Name of a module
  */
 function loadSearchModule( moduleName ) {

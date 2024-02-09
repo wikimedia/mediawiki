@@ -171,7 +171,7 @@ function updateTooltip( element ) {
 
 /**
  * Update the titles for all elements in a jQuery selection.
- * Installed by [mediawiki.util]{@link mediawiki.module:util} module.
+ * Installed by [mediawiki.util]{@link module:mediawiki.util} module.
  *
  * @memberof jQueryPlugins
  * @method updateTooltipAccessKeys

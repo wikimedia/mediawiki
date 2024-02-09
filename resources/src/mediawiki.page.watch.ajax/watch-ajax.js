@@ -145,7 +145,7 @@
 	/**
 	 * Update the page watch status.
 	 *
-	 * @memberof mediawiki.page.watch.module:ajax
+	 * @memberof module:mediawiki.page.watch.ajax
 	 * @param {boolean} isWatched The page is watched
 	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
 	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
@@ -169,7 +169,7 @@
 	 * "idle" state, an mw.Title object should be passed to that
 	 * all watchstars associated with that title are updated.
 	 *
-	 * @memberof mediawiki.page.watch.module:ajax
+	 * @memberof module:mediawiki.page.watch.ajax
 	 * @param {mw.Title|jQuery} titleOrLink Title of watchlinks to update (when state is idle), or an individual watchlink
 	 * @param {string} action One of 'watch', 'unwatch'
 	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
@@ -244,7 +244,7 @@
 	 *
 	 * @param {jQuery} $link Watch element
 	 * @param {mw.Title} title Title
-	 * @param {mediawiki.page.watch.module:ajax~callback} [callback]
+	 * @param {module:mediawiki.page.watch.ajax~callback} [callback]
 	 * @private
 	 */
 	function Watchstar( $link, title, callback ) {
@@ -265,11 +265,11 @@
 		updateWatchLinkAttributes( this.$link, isWatched ? 'unwatch' : 'watch', 'idle', expiry );
 		if ( this.callback ) {
 			/**
-			 * @callback mediawiki.page.watch.module:ajax~callback
+			 * @callback module:mediawiki.page.watch.ajax~callback
 			 * @param {jQuery} $link The element being manipulated.
 			 * @param {boolean} isWatched Whether the page is now watched.
 			 * @param {string} expiry The expiry date if the page is being watched temporarily,
-			 *   or an 'infinity'-like value (see [mw.util.isIninity()]{@link mediawiki.module:util.isInfinity})
+			 *   or an 'infinity'-like value (see [mw.util.isIninity()]{@link module:mediawiki.util.isInfinity})
 			 */
 			this.callback( this.$link, isWatched, expiry );
 		}
@@ -285,12 +285,12 @@
 	 * "current page" watchstars picked up by #init (and not use #watchstar) sync it manually
 	 * from the callback #watchstar provides.
 	 *
-	 * @memberof mediawiki.page.watch.module:ajax
+	 * @memberof module:mediawiki.page.watch.ajax
 	 * @param {jQuery} $links One or more anchor elements that must have an href
 	 *  with a URL containing a `action=watch` or `action=unwatch` query parameter,
 	 *  from which the current state will be learned (e.g. link to unwatch is currently watched)
 	 * @param {string} title Title of page that this watchstar will affect
-	 * @param {mediawiki.page.watch.module:ajax~callback} [callback] Callback to run after the action has been
+	 * @param {module:mediawiki.page.watch.ajax~callback} [callback] Callback to run after the action has been
 	 *  processed and API request completed.
 	 * @stable
 	 */
