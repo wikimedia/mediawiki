@@ -27,7 +27,9 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
@@ -357,6 +359,65 @@ class LinkRenderer {
 		$text ??= $this->getLinkText( $target );
 
 		return $this->buildAElement( $target, $text, $attribs, false );
+	}
+
+	/**
+	 * Make an external link
+	 *
+	 * @since 1.43
+	 * @param string $url URL to link to
+	 * @param-taint $url escapes_html
+	 * @param string|HtmlArmor|Message $text Text of link; will be escaped if
+	 *  a string.
+	 * @param-taint $text escapes_html
+	 * @param LinkTarget $title LinkTarget object used for title specific link attributes
+	 * @param-taint $title none
+	 * @param string $linktype Type of external link. Gets added to the classes
+	 * @param-taint $linktype escapes_html
+	 * @param array $attribs Array of extra attributes to <a>
+	 * @param-taint $attribs escapes_html
+	 * @return string
+	 */
+	public function makeExternalLink(
+		string $url, $text, LinkTarget $title, $linktype = '', $attribs = []
+	) {
+		$class = 'external';
+		if ( $linktype ) {
+			$class .= " $linktype";
+		}
+		if ( isset( $attribs['class'] ) && $attribs['class'] ) {
+			$class .= " {$attribs['class']}";
+		}
+		$attribs['class'] = $class;
+
+		if ( $text instanceof Message ) {
+			$text = $text->escaped();
+		} else {
+			$text = HtmlArmor::getHtml( $text );
+			// Tell phan that $text is non-null after ::getHtml()
+			'@phan-var string $text';
+		}
+
+		$newRel = Parser::getExternalLinkRel( $url, $title );
+		if ( !isset( $attribs['rel'] ) || $attribs['rel'] === '' ) {
+			$attribs['rel'] = $newRel;
+		} elseif ( $newRel !== null ) {
+			// Merge the rel attributes.
+			$newRels = explode( ' ', $newRel );
+			$oldRels = explode( ' ', $attribs['rel'] );
+			$combined = array_unique( array_merge( $newRels, $oldRels ) );
+			$attribs['rel'] = implode( ' ', $combined );
+		}
+		$link = '';
+		$success = $this->hookRunner->onLinkerMakeExternalLink(
+			$url, $text, $link, $attribs, $linktype );
+		if ( !$success ) {
+			wfDebug( "Hook LinkerMakeExternalLink changed the output of link "
+				. "with url {$url} and text {$text} to {$link}" );
+			return $link;
+		}
+		$attribs['href'] = $url;
+		return Html::rawElement( 'a', $attribs, $text );
 	}
 
 	/**

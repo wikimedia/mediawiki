@@ -4,7 +4,6 @@ namespace MediaWiki\Skin;
 
 use HtmlArmor;
 use MediaWiki\Config\Config;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -72,8 +71,11 @@ class SkinComponentCopyright implements SkinComponent {
 					new HtmlArmor( $config->get( MainConfigNames::RightsText ) ?: $title->getText() )
 				);
 		} elseif ( $config->get( MainConfigNames::RightsUrl ) ) {
-			$link = Linker::makeExternalLink( $config->get( MainConfigNames::RightsUrl ),
-					$config->get( MainConfigNames::RightsText ) );
+			$link = $linkRenderer->makeExternalLink(
+				$config->get( MainConfigNames::RightsUrl ),
+				$config->get( MainConfigNames::RightsText ),
+				$title
+			);
 		} elseif ( $config->get( MainConfigNames::RightsText ) ) {
 			$link = $config->get( MainConfigNames::RightsText );
 		} else {

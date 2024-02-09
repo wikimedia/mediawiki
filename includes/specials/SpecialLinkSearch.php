@@ -23,7 +23,6 @@ namespace MediaWiki\Specials;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parser;
 use MediaWiki\SpecialPage\QueryPage;
@@ -247,7 +246,7 @@ class SpecialLinkSearch extends QueryPage {
 		$pageLink = $this->getLinkRenderer()->makeLink( $title );
 		$url = LinkFilter::reverseIndexes( $result->urldomain ) . $result->urlpath;
 
-		$urlLink = Linker::makeExternalLink( $url, $url );
+		$urlLink = $this->getLinkRenderer()->makeExternalLink( $url, $url, $this->getFullTitle() );
 
 		return $this->msg( 'linksearch-line' )->rawParams( $urlLink, $pageLink )->escaped();
 	}

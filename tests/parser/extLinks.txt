@@ -321,7 +321,7 @@ External links: Free with trailing quotes (T113666)
 news:'a'b''c''d e
 !! html/php
 <p><b>News:</b> Stuff here
-</p><p><a rel="nofollow" class="external free" href="news:&#39;a&#39;b">news:'a'b</a><i>c</i>d e
+</p><p><a rel="nofollow" class="external free" href="news:&#39;a&#39;b">news:&#39;a&#39;b</a><i>c</i>d e
 </p>
 !! html/parsoid
 <p><b>News:</b> Stuff here</p>
