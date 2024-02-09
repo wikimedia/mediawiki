@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 use Skin;
@@ -28,3 +28,8 @@ interface OutputPageBodyAttributesHook {
 	 */
 	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ): void;
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( OutputPageBodyAttributesHook::class, 'MediaWiki\Hook\OutputPageBodyAttributesHook' );

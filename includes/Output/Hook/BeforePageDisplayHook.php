@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 use Skin;
@@ -24,3 +24,8 @@ interface BeforePageDisplayHook {
 	 */
 	public function onBeforePageDisplay( $out, $skin ): void;
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( BeforePageDisplayHook::class, 'MediaWiki\Hook\BeforePageDisplayHook' );

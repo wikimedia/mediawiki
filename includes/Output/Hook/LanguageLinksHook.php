@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Title\Title;
 
@@ -29,3 +29,8 @@ interface LanguageLinksHook {
 	 */
 	public function onLanguageLinks( $title, &$links, &$linkFlags );
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( LanguageLinksHook::class, 'MediaWiki\Hook\LanguageLinksHook' );

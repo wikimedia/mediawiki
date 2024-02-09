@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 
@@ -25,3 +25,8 @@ interface OutputPageAfterGetHeadLinksArrayHook {
 	 */
 	public function onOutputPageAfterGetHeadLinksArray( &$tags, $out );
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( OutputPageAfterGetHeadLinksArrayHook::class, 'MediaWiki\Hook\OutputPageAfterGetHeadLinksArrayHook' );

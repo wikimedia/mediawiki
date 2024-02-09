@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 
@@ -27,3 +27,8 @@ interface OutputPageMakeCategoryLinksHook {
 	 */
 	public function onOutputPageMakeCategoryLinks( $out, $categories, &$links );
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( OutputPageMakeCategoryLinksHook::class, 'MediaWiki\Hook\OutputPageMakeCategoryLinksHook' );

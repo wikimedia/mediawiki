@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Output\Hook;
 
 use MediaWiki\Output\OutputPage;
 
@@ -25,3 +25,8 @@ interface AfterFinalPageOutputHook {
 	 */
 	public function onAfterFinalPageOutput( $output ): void;
 }
+
+/**
+ * @deprecated since 1.42
+ */
+class_alias( AfterFinalPageOutputHook::class, 'MediaWiki\Hook\AfterFinalPageOutputHook' );
