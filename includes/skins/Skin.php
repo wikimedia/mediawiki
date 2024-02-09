@@ -510,7 +510,7 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['user'][] = 'mediawiki.tempUserBanner.styles';
 		}
 
-		if ( $this->getTitle()->getNamespace() === NS_FILE ) {
+		if ( $this->getTitle() && $this->getTitle()->getNamespace() === NS_FILE ) {
 			$modules['styles']['core'][] = 'filepage'; // local Filepage.css, T31277, T356505
 		}
 
