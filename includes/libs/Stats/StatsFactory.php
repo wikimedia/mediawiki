@@ -96,7 +96,8 @@ class StatsFactory {
 	 * @return StatsFactory
 	 */
 	public function withComponent( string $component ): StatsFactory {
-		return new StatsFactory( $this->cache, $this->emitter, $this->logger, $component );
+		$statsFactory = new StatsFactory( $this->cache, $this->emitter, $this->logger, $component );
+		return $statsFactory->withStatsdDataFactory( $this->statsdDataFactory );
 	}
 
 	/**
@@ -133,7 +134,7 @@ class StatsFactory {
 		return $this;
 	}
 
-	public function withStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory ): StatsFactory {
+	public function withStatsdDataFactory( ?IBufferingStatsdDataFactory $statsdDataFactory ): StatsFactory {
 		$this->statsdDataFactory = $statsdDataFactory;
 		return $this;
 	}

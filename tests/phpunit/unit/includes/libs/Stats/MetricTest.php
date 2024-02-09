@@ -350,4 +350,43 @@ class MetricTest extends TestCase {
 			TestingAccessWrapper::newFromObject( $emitter )->render()[0]
 		);
 	}
+
+	public function testStatsdDataFactoryPersistsWithComponent() {
+		$statsFactory = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+
+		$statsdMock = $this->createMock( IBufferingStatsdDataFactory::class );
+		$statsdMock->expects( $this->exactly( 2 ) )
+			->method( 'timing' )
+			->withConsecutive( [ 'test.timing.1', 1.0 ], [ 'test.timing.2', 1.0 ] );
+
+		$statsFactory = $statsFactory->withStatsdDataFactory( $statsdMock );
+
+		// withComponent() returns a whole new StatsFactory instance
+		$componentStatsFactory = $statsFactory->withComponent( 'TestComponent' );
+
+		$componentStatsFactory->getTiming( 'testMetricTiming' )
+			->copyToStatsdAt( [ 'test.timing.1', 'test.timing.2' ] )
+			->observe( 1 );
+
+		$componentStatsFactory = TestingAccessWrapper::newFromObject( $componentStatsFactory );
+		$this->assertNotNull( $componentStatsFactory->statsdDataFactory );
+		$this->assertInstanceOf(
+			IBufferingStatsdDataFactory::class, $componentStatsFactory->statsdDataFactory
+		);
+	}
+
+	public function testWithComponentNoStatsdDFactoryInjected() {
+		$statsFactory = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+
+		$componentStatsFactory = $statsFactory->withComponent( 'TestComponent' );
+
+		$componentStatsFactory->getTiming( 'testMetricTiming' )
+			->copyToStatsdAt( [ 'test.timing.1', 'test.timing.2' ] )
+			->observe( 1 );
+
+		$componentStatsFactory = TestingAccessWrapper::newFromObject( $componentStatsFactory );
+
+		// We should have a NULL value as statsdDataFactory.
+		$this->assertNull( $componentStatsFactory->statsdDataFactory );
+	}
 }
