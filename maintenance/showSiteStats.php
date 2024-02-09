@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  * @author Antoine Musso <hashar at free dot fr>
  * Based on initSiteStats.php by:
- * @author Brion Vibber
+ * @author Brooke Vibber
  * @author Rob Church <robchur@gmail.com>
  *
  * @license GPL-2.0-or-later

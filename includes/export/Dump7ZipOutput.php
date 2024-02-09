@@ -2,7 +2,7 @@
 /**
  * Sends dump output via the p7zip compressor.
  *
- * Copyright © 2003, 2005, 2006 Brion Vibber <brion@pobox.com>
+ * Copyright © 2003, 2005, 2006 Brooke Vibber <bvibber@wikimedia.org>
  * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify

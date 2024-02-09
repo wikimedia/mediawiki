@@ -19,7 +19,7 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Brion Vibber
+ * @author Brooke Vibber
  */
 
 namespace MediaWiki\Specials;

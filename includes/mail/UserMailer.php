@@ -19,7 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author <brion@pobox.com>
+ * @author Brooke Vibber
  * @author <mail@tgries.de>
  * @author Tim Starling
  * @author Luke Welling lwelling@wikimedia.org

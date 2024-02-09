@@ -348,7 +348,7 @@ class CommentFormatter {
 	) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
-		// compatibility, acc. to brion -ævar
+		// compatibility, acc. to [brooke] -ævar
 		if ( $formatted == '' || $formatted == '*' ) {
 			return '';
 		}

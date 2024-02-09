@@ -3,7 +3,7 @@
 -- for the main db while keeping the MyISAM fulltext index for
 -- search.
 
--- 2002-12-16, 2003-01-25 Brion VIBBER <brion@pobox.com>
+-- 2002-12-16, 2003-01-25 Brooke Vibber <bvibber@wikimedia.org>
 
 -- Creating searchindex table...
 DROP TABLE IF EXISTS /*$wgDBprefix*/searchindex;
