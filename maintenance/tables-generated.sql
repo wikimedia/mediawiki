@@ -212,7 +212,6 @@ CREATE TABLE /*_*/iwlinks (
   iwl_prefix VARBINARY(32) DEFAULT '' NOT NULL,
   iwl_title VARBINARY(255) DEFAULT '' NOT NULL,
   INDEX iwl_prefix_title_from (iwl_prefix, iwl_title, iwl_from),
-  INDEX iwl_prefix_from_title (iwl_prefix, iwl_from, iwl_title),
   PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
 ) /*$wgDBTableOptions*/;
 

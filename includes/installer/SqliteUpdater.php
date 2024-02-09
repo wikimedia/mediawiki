@@ -154,6 +154,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'categorylinks', 'cl_collation_ext', 'patch-drop-cl_collation_ext.sql' ],
 			[ 'runMaintenance', PopulateUserIsTemp::class, 'maintenance/populateUserIsTemp.php' ],
 			[ 'dropIndex', 'sites', 'site_type', 'patch-sites-drop_indexes.sql' ],
+			[ 'dropIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-iwlinks-drop-iwl_prefix_from_title.sql' ],
 		];
 	}
 
