@@ -2030,8 +2030,8 @@ class OutputPage extends ContextSource {
 		$text, $linestart = true, PageReference $title = null
 	) {
 		$title ??= $this->getTitle();
-		if ( !$title ) {
-			throw new RuntimeException( 'Title is null' );
+		if ( $title === null ) {
+			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
 		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/true );
 	}
@@ -2052,8 +2052,12 @@ class OutputPage extends ContextSource {
 	public function wrapWikiTextAsInterface(
 		$wrapperClass, $text
 	) {
+		$title = $this->getTitle();
+		if ( $title === null ) {
+			throw new RuntimeException( 'No title in ' . __METHOD__ );
+		}
 		$this->addWikiTextTitleInternal(
-			$text, $this->getTitle(),
+			$text, $title,
 			/*linestart*/true, /*interface*/true,
 			$wrapperClass
 		);
@@ -2077,7 +2081,7 @@ class OutputPage extends ContextSource {
 	) {
 		$title ??= $this->getTitle();
 		if ( !$title ) {
-			throw new RuntimeException( 'Title is null' );
+			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
 		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/false );
 	}
@@ -2095,7 +2099,8 @@ class OutputPage extends ContextSource {
 	 *   a `<div class="$wrapperClass">`
 	 */
 	private function addWikiTextTitleInternal(
-		$text, PageReference $title, $linestart, $interface, $wrapperClass = null
+		string $text, PageReference $title, bool $linestart, bool $interface,
+		?string $wrapperClass = null
 	) {
 		$parserOutput = $this->parseInternal(
 			$text, $title, $linestart, $interface
@@ -2433,8 +2438,12 @@ class OutputPage extends ContextSource {
 	 * @since 1.32
 	 */
 	public function parseAsContent( $text, $linestart = true ) {
+		$title = $this->getTitle();
+		if ( $title === null ) {
+			throw new RuntimeException( 'No title in ' . __METHOD__ );
+		}
 		return $this->parseInternal(
-			$text, $this->getTitle(), $linestart, /*interface*/false
+			$text, $title, $linestart, /*interface*/false
 		)->getText( [
 			'allowTOC' => false,
 			'enableSectionEditLinks' => false,
@@ -2455,8 +2464,12 @@ class OutputPage extends ContextSource {
 	 * @since 1.32
 	 */
 	public function parseAsInterface( $text, $linestart = true ) {
+		$title = $this->getTitle();
+		if ( $title === null ) {
+			throw new RuntimeException( 'No title in ' . __METHOD__ );
+		}
 		return $this->parseInternal(
-			$text, $this->getTitle(), $linestart, /*interface*/true
+			$text, $title, $linestart, /*interface*/true
 		)->getText( [
 			'allowTOC' => false,
 			'enableSectionEditLinks' => false,
@@ -2495,13 +2508,12 @@ class OutputPage extends ContextSource {
 	 *   LanguageConverter.
 	 * @return ParserOutput
 	 */
-	private function parseInternal( $text, $title, $linestart, $interface ) {
-		if ( $title === null ) {
-			throw new RuntimeException( 'Empty $mTitle in ' . __METHOD__ );
-		}
+	private function parseInternal(
+		string $text, PageReference $title, bool $linestart, bool $interface
+	) {
 		$popts = $this->parserOptions();
 
-		$oldInterface = $popts->setInterfaceMessage( (bool)$interface );
+		$oldInterface = $popts->setInterfaceMessage( $interface );
 
 		$parserOutput = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 			->parse(
