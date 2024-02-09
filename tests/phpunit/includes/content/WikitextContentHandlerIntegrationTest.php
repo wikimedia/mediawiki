@@ -72,7 +72,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'suppressSectionEditLinks', 'isPreview', 'wrapclass'
 				],
 			],
-			'options' => [ 'useParsoid' => true ]
+			'options' => [ 'useParsoid' => true, 'suppressSectionEditLinks' => true ],
 		];
 		yield 'Parsoid render (redirect page)' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
@@ -89,7 +89,34 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'suppressSectionEditLinks', 'isPreview', 'wrapclass'
 				],
 			],
-			'options' => [ 'useParsoid' => true ]
+			'options' => [ 'useParsoid' => true, 'suppressSectionEditLinks' => true ],
+		];
+		yield 'Parsoid render (section edit links)' => [
+			'title' => 'WikitextContentTest_testGetParserOutput',
+			'model' => CONTENT_MODEL_WIKITEXT,
+			'text' => "== Hello ==",
+			'expectedHtml' => '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr" id="mwAw"><section data-mw-section-id="0" id="mwAQ"></section><section data-mw-section-id="1" id="mwAg"><div class="mw-heading mw-heading2" id="mwBA"><h2 id="Hello">Hello</h2><span class="mw-editsection" id="mwBQ"><span class="mw-editsection-bracket" id="mwBg">[</span><a href="/w/index.php?title=WikitextContentTest_testGetParserOutput&amp;action=edit&amp;section=1" title="Edit section: Hello" id="mwBw"><span id="mwCA">edit</span></a><span class="mw-editsection-bracket" id="mwCQ">]</span></span></div></section></div>',
+			'expectedFields' => [
+				'Links' => [
+				],
+				'Sections' => [
+					[
+						'toclevel' => 1,
+						'level' => '2',
+						'line' => 'Hello',
+						'number' => '1',
+						'index' => '1',
+						'fromtitle' => 'WikitextContentTest_testGetParserOutput',
+						'byteoffset' => 0,
+						'anchor' => 'Hello',
+						'linkAnchor' => 'Hello',
+					],
+				],
+				'UsedOptions' => [
+					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'suppressSectionEditLinks', 'isPreview', 'wrapclass'
+				],
+			],
+			'options' => [ 'useParsoid' => true ],
 		];
 		yield 'Links' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',

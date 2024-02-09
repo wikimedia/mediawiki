@@ -11,6 +11,7 @@ use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
 use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
+use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
@@ -63,6 +64,7 @@ class DefaultOutputPipelineFactory {
 			->addStage( new ExecutePostCacheTransformHooks( $this->hookContainer ) )
 			->addStage( new AddWrapperDivClass( $this->langFactory, $this->contentLang ) )
 			->addStage( new HandleSectionLinks( $this->logger, $this->titleFactory ) )
+			->addStage( new HandleParsoidSectionLinks( $this->logger, $this->titleFactory ) )
 			->addStage( new HandleTOCMarkers( $this->tidy ) )
 			->addStage( new DeduplicateStyles() )
 			->addStage( new ExpandToAbsoluteUrls() )
