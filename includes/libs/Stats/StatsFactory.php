@@ -24,8 +24,10 @@ namespace Wikimedia\Stats;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use TypeError;
 use Wikimedia\Stats\Emitters\EmitterInterface;
+use Wikimedia\Stats\Emitters\NullEmitter;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
 use Wikimedia\Stats\Metrics\BaseMetric;
@@ -224,5 +226,19 @@ class StatsFactory {
 			$this->cache->set( $this->component, $name, $metric );
 		}
 		return $metric->fresh();
+	}
+
+	/**
+	 * Returns an instance of StatsFactory as a NULL value object
+	 * as a default for consumer code to fall back to. This can also
+	 * be used in tests environment where we don't need the full
+	 * UDP emitter object.
+	 *
+	 * @since 1.42
+	 *
+	 * @return self
+	 */
+	public static function newNull(): self {
+		return new self( new StatsCache(), new NullEmitter(), new NullLogger() );
 	}
 }

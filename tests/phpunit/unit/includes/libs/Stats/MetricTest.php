@@ -171,11 +171,11 @@ class MetricTest extends TestCase {
 
 	public function testSampledMetrics() {
 		$rounds = 10;
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$ten_percent_metrics = $m->getCounter( 'test.sampled.ten' )->setSampleRate( 0.1 );
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$all_metrics = $m->getCounter( 'test.sampled.hundred' )->setSampleRate( 1.0 );
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$zero_metrics = $m->getCounter( 'test.sampled.zero' )->setSampleRate( 0.0 );
 		for ( $i = 0; $i < $rounds; $i++ ) {
 			$ten_percent_metrics->increment();
@@ -193,14 +193,14 @@ class MetricTest extends TestCase {
 	}
 
 	public function testTimerNotStarted() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$this->expectWarning();
 		$this->expectWarningMessage( 'Stats: stop() called before start() for metric \'test\'' );
 		$m->getTiming( 'test' )->stop();
 	}
 
 	public function testErrorOnChangingStaticLabelsWithMetricsInCache() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m->getCounter( 'testMetric' );
 		$this->expectException( IllegalOperationException::class );
 		$m->addStaticLabel( 'a', '1' );
@@ -237,7 +237,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testChangingLabelsToUsedMetric() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();
 		$counter = @$m->getCounter( 'testMetricCounter' )->setLabel( 'labelTwo', 'b' );
 		$this->assertInstanceOf( NullMetric::class, $counter );
@@ -250,7 +250,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testCounterHandleNotAllLabelsHaveValues() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();
 		$this->expectWarning();
 		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
@@ -258,7 +258,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testGaugeHandleNotAllLabelsHaveValues() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m->getGauge( 'testMetricGauge' )->setLabel( 'labelOne', 'a' )->set( 1 );
 		$this->expectWarning();
 		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
@@ -266,7 +266,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testTimingHandleNotAllLabelsHaveValues() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observe( 1 );
 		$this->expectWarning();
 		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
@@ -274,7 +274,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testSampleRateOOB() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$metric = @$m->getCounter( 'testMetricCounter' )->setSampleRate( 1.1 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 		$metric = @$m->getGauge( 'testMetricGauge' )->setSampleRate( -1 );
@@ -284,7 +284,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testSampleRateDisallowed() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m->getCounter( 'testMetric' )->increment();
 		$metric = @$m->getCounter( 'testMetric' )->setSampleRate( 0.5 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
@@ -309,7 +309,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testHandleInvalidStatsdNamespace() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
 		$this->expectWarning();
 		$this->expectWarningMessage( 'Stats: StatsD namespace must be a string.' );
@@ -318,7 +318,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testHandleEmptyStatsdNamespace() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
 		$this->expectWarning();
 		$this->expectWarningMessage( 'Stats: StatsD namespace cannot be empty.' );
@@ -327,7 +327,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testHandleNonStringStatsdNamespaceInArray() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
 		$this->expectWarning();
 		$this->expectWarningMessage( 'Stats: StatsD namespace must be a string.' );

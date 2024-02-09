@@ -4,8 +4,6 @@ namespace Wikimedia\Tests\Stats;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\NullLogger;
-use Wikimedia\Stats\Emitters\NullEmitter;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Exceptions\UnsupportedFormatException;
 use Wikimedia\Stats\Metrics\CounterMetric;
@@ -24,17 +22,17 @@ use Wikimedia\Stats\StatsUtils;
 class StatsFactoryTest extends TestCase {
 
 	public function testGetCounter() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$this->assertInstanceOf( CounterMetric::class, $m->getCounter( 'test' ) );
 	}
 
 	public function testGetGauge() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$this->assertInstanceOf( GaugeMetric::class, $m->getGauge( 'test' ) );
 	}
 
 	public function testGetTiming() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$this->assertInstanceOf( TimingMetric::class, $m->getTiming( 'test' ) );
 	}
 
@@ -49,13 +47,13 @@ class StatsFactoryTest extends TestCase {
 	}
 
 	public function testUnsetNameConfig() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$this->expectException( InvalidArgumentException::class );
 		$m->getCounter( '' );
 	}
 
 	public function testDisallowSettingStaticLabelsOnUndefinedComponent() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		$this->expectException( IllegalOperationException::class );
 		$m->addStaticLabel( 'a', 'a' );
 	}
@@ -75,7 +73,7 @@ class StatsFactoryTest extends TestCase {
 	}
 
 	public function testGetNullMetricWithLabelMismatch() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		// initialize a counter and add a sample
 		$m->getCounter( 'test_metric' )->setLabel( 'a', 'a' )->increment();
 		// get the same counter and attempt to add a different label key
@@ -84,7 +82,7 @@ class StatsFactoryTest extends TestCase {
 	}
 
 	public function testGetNullMetricOnNameCollision() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = StatsFactory::newNull();
 		// define metric as counter 'test'
 		$m->getCounter( 'test' );
 		// redefine metric as timing 'test'
