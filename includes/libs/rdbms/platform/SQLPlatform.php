@@ -755,6 +755,47 @@ class SQLPlatform implements ISQLPlatform {
 			$sql = 'EXPLAIN ' . $sql;
 		}
 
+		if (
+			$fname === static::CALLER_UNKNOWN ||
+			str_starts_with( $fname, 'Wikimedia\\Rdbms\\' ) ||
+			$fname === '{closure}'
+		) {
+			$exception = new RuntimeException();
+
+			// Try to figure out and report the real caller
+			$caller = '';
+			foreach ( $exception->getTrace() as $call ) {
+				if ( str_ends_with( $call['file'] ?? '', 'Test.php' ) ) {
+					// Don't warn when called directly by test code, adding callers there is pointless
+					break;
+				} elseif ( str_starts_with( $call['class'] ?? '', 'Wikimedia\\Rdbms\\' ) ) {
+					// Keep looking for the caller of a rdbms method
+				} elseif ( str_ends_with( $call['class'] ?? '', 'SelectQueryBuilder' ) ) {
+					// Keep looking for the caller of any custom SelectQueryBuilder
+				} else {
+					// Warn about the external caller we found
+					$caller = implode( '::', array_filter( [ $call['class'] ?? null, $call['function'] ] ) );
+					break;
+				}
+			}
+
+			if ( $fname === '{closure}' ) {
+				// Someone did ->caller( __METHOD__ ) in a local function, e.g. in a callback to
+				// getWithSetCallback(), MWCallableUpdate or doAtomicSection(). That's not very helpful.
+				// Provide a more specific message. The caller has to be provided like this:
+				//   $method = __METHOD__;
+				//   function ( ... ) use ( $method ) { ... }
+				$warning = "SQL query with incorrect caller (__METHOD__ used inside a closure: {caller}): {sql}";
+			} else {
+				$warning = "SQL query did not specify the caller (guessed caller: {caller}): {sql}";
+			}
+
+			$this->logger->warning(
+				$warning,
+				[ 'sql' => $sql, 'caller' => $caller, 'exception' => $exception ]
+			);
+		}
+
 		return $sql;
 	}
 
@@ -1301,7 +1342,7 @@ class SQLPlatform implements ISQLPlatform {
 	) {
 		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->quoter->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $tables, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
 	public function buildSelectSubquery(

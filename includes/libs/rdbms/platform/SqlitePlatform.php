@@ -106,7 +106,7 @@ class SqlitePlatform extends SQLPlatform {
 	) {
 		$fld = "group_concat($field," . $this->quoter->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $tables, $fld, $conds, null, [], $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
 	protected function makeInsertNonConflictingVerbAndOptions() {

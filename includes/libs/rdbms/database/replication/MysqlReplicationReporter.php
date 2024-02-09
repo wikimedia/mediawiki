@@ -189,9 +189,10 @@ class MysqlReplicationReporter extends ReplicationReporter {
 
 	/**
 	 * @param IDatabase $conn To make queries
+	 * @param string $fname
 	 * @return stdClass Process cached row
 	 */
-	public function getReplicationSafetyInfo( IDatabase $conn ) {
+	public function getReplicationSafetyInfo( IDatabase $conn, $fname = __METHOD__ ) {
 		if ( $this->replicationInfoRow === null ) {
 			$this->replicationInfoRow = $conn->selectRow(
 				[],
@@ -200,7 +201,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 					'binlog_format' => '@@binlog_format',
 				],
 				[],
-				__METHOD__
+				$fname
 			);
 		}
 		return $this->replicationInfoRow;
