@@ -46,7 +46,7 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 * @param PageIdentity $page
 	 * @param array $ids
 	 * @return ChangeTagsList An instance of the requested subclass
-	 * @throws Exception If you give an unknown $typeName
+	 * @throws InvalidArgumentException If you give an unknown $typeName
 	 */
 	public static function factory( $typeName, IContextSource $context,
 		PageIdentity $page, array $ids
@@ -59,7 +59,7 @@ abstract class ChangeTagsList extends RevisionListBase {
 				$className = ChangeTagsLogList::class;
 				break;
 			default:
-				throw new Exception( "Class $typeName requested, but does not exist" );
+				throw new InvalidArgumentException( "Class $typeName requested, but does not exist" );
 		}
 
 		return new $className( $context, $page, $ids );
