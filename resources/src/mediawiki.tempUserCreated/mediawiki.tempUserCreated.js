@@ -4,6 +4,8 @@
 	var contLangMessages = require( './contLangMessages.json' );
 
 	/**
+	 * Respond to the creation of a temporary user.
+	 *
 	 * @namespace mw.tempUserCreated
 	 */
 	mw.tempUserCreated = {};
