@@ -9,7 +9,7 @@
  * @author Amgauna
  * @author Anaclaudiaml
  * @author Bani
- * @author Brion
+ * @author Brooke Vibber
  * @author BrunaaAa
  * @author Brunoy Anastasiya Seryozhenko
  * @author Cainamarques

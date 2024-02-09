@@ -28,7 +28,7 @@
  * @ingroup Maintenance
  *
  * @author Antoine Musso <hashar at free dot fr>
- * @author Brion Vibber
+ * @author Brooke Vibber
  * @author Alexandre Emsenhuber
  * @version first release
  */

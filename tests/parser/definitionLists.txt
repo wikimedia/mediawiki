@@ -86,7 +86,7 @@ Definition list with wikilink containing colon
 <dl><dt><a rel="mw:WikiLink" href="./Help:FAQ" title="Help:FAQ" data-parsoid='{"stx":"simple","a":{"href":"./Help:FAQ"},"sa":{"href":"Help:FAQ"}}'>Help:FAQ</a></dt><dd data-parsoid='{"stx":"row"}'>The least-read page on Wikipedia</dd></dl>
 !! end
 
-# At Brion's and JeLuF's insistence... :)
+# At Brooke's and JeLuF's insistence... :)
 !! test
 Definition list with news link containing colon
 !! options

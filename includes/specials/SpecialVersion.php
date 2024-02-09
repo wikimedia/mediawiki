@@ -353,7 +353,7 @@ class SpecialVersion extends SpecialPage {
 			wfMessage( 'version-poweredby-translators' )->plain() . ']';
 
 		$authorList = [
-			'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
+			'Magnus Manske', 'Brooke Vibber', 'Lee Daniel Crocker',
 			'Tim Starling', 'Erik Möller', 'Gabriel Wicke', 'Ævar Arnfjörð Bjarmason',
 			'Niklas Laxström', 'Domas Mituzas', 'Rob Church', 'Yuri Astrakhan',
 			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',

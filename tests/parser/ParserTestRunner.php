@@ -3,7 +3,7 @@
  * Generic backend for the MediaWiki parser test suite, used by both the
  * standalone parserTests.php and the PHPUnit "parsertests" suite.
  *
- * Copyright © 2004, 2010 Brion Vibber <brion@pobox.com>
+ * Copyright © 2004, 2010 Brooke Vibber <bvibber@wikimedia.org>
  * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify

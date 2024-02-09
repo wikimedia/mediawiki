@@ -19,7 +19,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Brion Vibber
+ * @author Brooke Vibber
  * @author Rob Church <robchur@gmail.com>
  */
 

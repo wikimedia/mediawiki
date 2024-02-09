@@ -2,7 +2,7 @@
 /**
  * HTML sanitizer for %MediaWiki.
  *
- * Copyright © 2002-2005 Brion Vibber <brion@pobox.com> et al
+ * Copyright © 2002-2005 Brooke Vibber <bvibber@wikimedia.org> et al
  * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify

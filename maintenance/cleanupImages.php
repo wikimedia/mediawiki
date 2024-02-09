@@ -2,7 +2,7 @@
 /**
  * Clean up broken, unparseable upload filenames.
  *
- * Copyright © 2005-2006 Brion Vibber <brion@pobox.com>
+ * Copyright © 2005-2006 Brooke Vibber <bvibber@wikimedia.org>
  * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Brion Vibber <brion at pobox.com>
+ * @author Brooke Vibber <bvibber@wikimedia.org>
  * @ingroup Maintenance
  */
 

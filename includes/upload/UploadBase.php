@@ -49,7 +49,7 @@ use Wikimedia\AtEase\AtEase;
  *
  * @stable to extend
  *
- * @author Brion Vibber
+ * @author Brooke Vibber
  * @author Bryan Tong Minh
  * @author Michael Dale
  */

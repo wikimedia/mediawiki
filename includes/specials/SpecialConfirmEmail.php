@@ -43,7 +43,7 @@ use Wikimedia\ScopedCallback;
  * processing of the confirmation code when the link in the email is followed
  *
  * @ingroup SpecialPage
- * @author Brion Vibber
+ * @author Brooke Vibber
  * @author Rob Church <robchur@gmail.com>
  */
 class SpecialConfirmEmail extends UnlistedSpecialPage {

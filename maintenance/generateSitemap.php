@@ -3,7 +3,7 @@
  * Creates a sitemap for the site.
  *
  * Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank <jeluf@gmx.de> and
- * Brion Vibber <brion@pobox.com>
+ * Brooke Vibber <bvibber@wikimedia.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
