@@ -442,7 +442,8 @@ class SpecialVersion extends SpecialPage {
 	 * @param string $flags If set to 'nodb', the language-specific parantheses are not used.
 	 * @param Language|string|null $lang Language in which to render the version; ignored if
 	 *   $flags is set to 'nodb'.
-	 * @return string
+	 * @return string A version string, as wikitext. This should be parsed
+	 *   (unless `nodb` is set) and escaped before being inserted as HTML.
 	 */
 	public static function getVersion( $flags = '', $lang = null ) {
 		$gitInfo = GitInfo::repo()->getHeadSHA1();
@@ -457,7 +458,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $lang !== null ) {
 				$msg->inLanguage( $lang );
 			}
-			$shortSha1 = $msg->params( $shortSha1 )->escaped();
+			$shortSha1 = $msg->params( $shortSha1 )->text();
 			$version = MW_VERSION . ' ' . $shortSha1;
 		}
 
