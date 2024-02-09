@@ -4306,7 +4306,7 @@
 	"specialmute-error-mutelist-disabled": "ウィキの管理者がメールミュートリスト機能を無効化したため、ミュート機能はご使用になれません。",
 	"specialmute-error-no-email-set": "メールアドレスが未確認のため、ミュート機能はご使用になれません。",
 	"specialmute-error-no-options": "ミュート機能はご使用になれません。",
-	"specialmute-email-footer": "{{BIDI:$2}}のメール発信者の個人設定を変更するには <$1> を開いてください。",
+	"specialmute-email-footer": "{{BIDI:$2}}のメール発信者の個人設定を変更するには次のURLを開いてください：\n$1",
 	"specialmute-login-required": "ミュートの個人設定を変更するにはログインしてください。",
 	"mute-preferences": "ミュート設定",
 	"revid": "版 $1",
@@ -4420,5 +4420,7 @@
 	"benefit-1-description": "興味のあるページを追跡することができるウォッチリスト。",
 	"benefit-2-description": "自分がそのプロジェクトで行った投稿の永続的な一覧。",
 	"benefit-3-description": "カスタマイズ可能な個人設定。",
-	"temp-user-unable-to-acquire": "臨時アカウントの利用者名を取得できませんでした。もう一度お試しください。"
+	"temp-user-unable-to-acquire": "臨時アカウントの利用者名を取得できませんでした。もう一度お試しください。",
+	"composer-deps-outdated": "$1：$2がインストールされていますが、$3が必要です",
+	"composer-deps-notinstalled": "$1：$2が必要ですが、インストールされていません"
 }

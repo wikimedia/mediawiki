@@ -66,6 +66,7 @@
 	"tog-showrollbackconfirmation": "Йухайоккхуш дӀахьедарде",
 	"tog-requireemail": "Пароль кхуссуш болу хаам бахьийта электронан адрес а, декъашхочун цӀе а йазйина йелахь.",
 	"tog-forcesafemode": "Латайе [[mw:Manual:Safemode|кхерамзаллин раж]] даиман",
+	"tog-editrecovery": "Латайе функци [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"underline-always": "Гуттар",
 	"underline-never": "Цкъа а",
 	"underline-default": "Лелайе браузеран нисйарца",
