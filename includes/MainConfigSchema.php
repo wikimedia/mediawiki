@@ -978,9 +978,10 @@ class MainConfigSchema {
 	 *   - thumbProxySecret Optional value of the X-Swift-Secret header to use in requests to
 	 *                      thumbProxyUrl
 	 *   - disableLocalTransform
-	 *                      If present and true, local image scaling will be disabled -- it will
-	 *                      throw an exception if attempted. thumbProxyUrl must be set for this
-	 *                      to work, as well as either transformVia404 (preferred) or thumbScriptUrl.
+	 *                      If present and true, local image scaling will be disabled. If attempted,
+	 *                      it will show an error to the user and log an error message. To avoid an
+	 *                      error, thumbProxyUrl must be set, as well as either transformVia404
+	 *                      (preferred) or thumbScriptUrl.
 	 *   - initialCapital   Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
 	 *                      determines whether filenames implicitly start with a capital letter.
 	 *                      The current implementation may give incorrect description page links

@@ -10,6 +10,7 @@ use MediaWiki\Config\ConfigException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -1245,6 +1246,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 
 				// Check to see if local transformation is disabled.
 				if ( !$this->repo->canTransformLocally() ) {
+					LoggerFactory::getInstance( 'thumbnail' )
+						->error( 'Local transform denied by configuration' );
 					$thumb = new MediaTransformError(
 						wfMessage(
 							'thumbnail_error',
@@ -1281,6 +1284,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			->get( MainConfigNames::IgnoreImageErrors );
 
 		if ( !$this->repo->canTransformLocally() ) {
+			LoggerFactory::getInstance( 'thumbnail' )
+				->error( 'Local transform denied by configuration' );
 			return new MediaTransformError(
 				wfMessage(
 					'thumbnail_error',
