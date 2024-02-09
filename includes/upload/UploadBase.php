@@ -1413,9 +1413,11 @@ abstract class UploadBase {
 	 * @return bool True if the file contains an encoding that could be misinterpreted
 	 */
 	public static function checkXMLEncodingMissmatch( $file ) {
-		$svgMetadataCutoff = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::SVGMetadataCutoff );
-		$contents = file_get_contents( $file, false, null, 0, $svgMetadataCutoff );
+		// https://mimesniff.spec.whatwg.org/#resource-header says browsers
+		// should read the first 1445 bytes. Do 4096 bytes for good measure.
+		// XML Spec says XML declaration if present must be first thing in file
+		// other than BOM
+		$contents = file_get_contents( $file, false, null, 0, 4096 );
 		$encodingRegex = '!encoding[ \t\n\r]*=[ \t\n\r]*[\'"](.*?)[\'"]!si';
 
 		if ( preg_match( "!<\?xml\b(.*?)\?>!si", $contents, $matches ) ) {
@@ -1427,7 +1429,7 @@ abstract class UploadBase {
 				return true;
 			}
 		} elseif ( preg_match( "!<\?xml\b!i", $contents ) ) {
-			// Start of XML declaration without an end in the first $wgSVGMetadataCutoff
+			// Start of XML declaration without an end in the first 4096 bytes
 			// bytes. There shouldn't be a legitimate reason for this to happen.
 			wfDebug( __METHOD__ . ": Unmatched XML declaration start" );
 
@@ -1455,7 +1457,7 @@ abstract class UploadBase {
 					return true;
 				}
 			} elseif ( $str != '' && preg_match( "!<\?xml\b!i", $str ) ) {
-				// Start of XML declaration without an end in the first $wgSVGMetadataCutoff
+				// Start of XML declaration without an end in the first 4096 bytes
 				// bytes. There shouldn't be a legitimate reason for this to happen.
 				wfDebug( __METHOD__ . ": Unmatched XML declaration start" );
 
