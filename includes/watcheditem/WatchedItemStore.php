@@ -1138,16 +1138,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$expiry = $dbw->timestamp( $expiry );
-
-		$weRows = array_map( static function ( $wlId ) use ( $expiry ) {
-			return [
+		$weRows = [];
+		foreach ( $wlIds as $wlId ) {
+			$weRows[] = [
 				'we_item' => $wlId,
 				'we_expiry' => $expiry
 			];
-		}, $wlIds );
+		}
 
 		// Insert into watchlist_expiry, updating the expiry for duplicate rows.
-		// @phan-suppress-next-line SecurityCheck-SQLInjection
 		$dbw->newInsertQueryBuilder()
 			->insertInto( 'watchlist_expiry' )
 			->rows( $weRows )
