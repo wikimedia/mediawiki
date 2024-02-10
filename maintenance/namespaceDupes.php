@@ -430,8 +430,8 @@ class NamespaceDupes extends Maintenance {
 						$setValue[$targetIdField] = $linkTargetLookup->acquireLinkTargetId( $destTitle, $dbw );
 					}
 					if ( $schemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-						$setValue[$namespaceField] = $destTitle->getNamespace();
-						$setValue[$titleField] = $destTitle->getDBkey();
+						$setValue["{$fieldPrefix}_namespace"] = $destTitle->getNamespace();
+						$setValue["{$fieldPrefix}_title"] = $destTitle->getDBkey();
 					}
 					$whereCondition = $linksMigration->getLinksConditions(
 						$table,
