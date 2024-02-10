@@ -815,8 +815,11 @@ class ParserOptions {
 	 * other metadata generated (like the table of contents).
 	 * @see T307691
 	 * @since 1.39
+	 * @deprecated since 1.42; just clear the metadata in the final
+	 *  parser output
 	 */
 	public function setSuppressTOC() {
+		wfDeprecated( __METHOD__, '1.42' );
 		$this->setOption( 'suppressTOC', true );
 	}
 

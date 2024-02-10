@@ -27,6 +27,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use Wikimedia\Minify\CSSMin;
 
@@ -137,5 +138,8 @@ class CssContentHandler extends CodeContentHandler {
 
 		$output->clearWrapperDivClass();
 		$output->setText( $html );
+		// Suppress the TOC (T307691)
+		$output->setOutputFlag( ParserOutputFlags::NO_TOC );
+		$output->setSections( [] );
 	}
 }
