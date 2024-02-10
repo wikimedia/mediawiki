@@ -952,6 +952,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$validSkinNames = $this->getValidSkinNames( $user, $context );
 		if ( $validSkinNames ) {
 			$defaultPreferences['skin'] = [
+				// @phan-suppress-next-line SecurityCheck-XSS False +ve, label is escaped in generateSkinOptions()
 				'type' => 'radio',
 				'options' => $this->generateSkinOptions( $user, $context, $validSkinNames ),
 				'section' => 'rendering/skin',

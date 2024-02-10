@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tidy;
 
-use Exception;
+use InvalidArgumentException;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Wikimedia\RemexHtml\TreeBuilder\Element;
 
@@ -78,7 +78,7 @@ class RemexMungerData {
 
 	public function __set( $name, $value ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new Exception( "Cannot set property \"$name\"" );
+		throw new InvalidArgumentException( "Cannot set property \"$name\"" );
 	}
 
 	/**

@@ -928,7 +928,6 @@ class OutputPage extends ContextSource {
 		# Not modified
 		# Give a 304 Not Modified response code and disable body output
 		wfDebug( __METHOD__ . ": NOT MODIFIED, $info", 'private' );
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 		ini_set( 'zlib.output_compression', 0 );
 		$this->getRequest()->response()->statusHeader( 304 );
 		$this->sendCacheControl();

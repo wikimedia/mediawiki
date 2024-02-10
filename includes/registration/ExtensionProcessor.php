@@ -769,7 +769,9 @@ class ExtensionProcessor implements Processor {
 		if ( isset( $this->credits[$name] ) ) {
 			$firstPath = $this->credits[$name]['path'];
 			$secondPath = $credits['path'];
-			throw new Exception( "It was attempted to load $name twice, from $firstPath and $secondPath." );
+			throw new InvalidArgumentException(
+				"It was attempted to load $name twice, from $firstPath and $secondPath."
+			);
 		}
 
 		$this->credits[$name] = $credits;
@@ -780,7 +782,7 @@ class ExtensionProcessor implements Processor {
 	protected function extractForeignResourcesDir( array $info, string $name, string $dir ): void {
 		if ( array_key_exists( 'ForeignResourcesDir', $info ) ) {
 			if ( !is_string( $info['ForeignResourcesDir'] ) ) {
-				throw new Exception( "Incorrect ForeignResourcesDir type, must be a string (in $name)" );
+				throw new InvalidArgumentException( "Incorrect ForeignResourcesDir type, must be a string (in $name)" );
 			}
 			$this->attributes['ForeignResourcesDir'][$name] = "{$dir}/{$info['ForeignResourcesDir']}";
 		}

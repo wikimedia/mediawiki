@@ -68,7 +68,6 @@ class ParserFuzzTest extends Maintenance {
 			'config' => [],
 		], [], '' );
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'memory_limit', $this->memoryLimit * 1048576 * 2 );
 
 		$numTotal = 0;

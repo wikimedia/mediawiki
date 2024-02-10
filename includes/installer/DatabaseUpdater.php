@@ -27,7 +27,6 @@ use AddRFCandPMIDInterwiki;
 use AutoLoader;
 use CleanupEmptyCategories;
 use DeleteDefaultMessages;
-use Exception;
 use ExtensionRegistry;
 use FakeMaintenance;
 use FixDefaultJsonContentPages;
@@ -184,7 +183,7 @@ abstract class DatabaseUpdater {
 			return $this->autoExtensionHookContainer;
 		}
 		if ( defined( 'MW_EXTENSIONS_LOADED' ) ) {
-			throw new Exception( __METHOD__ .
+			throw new LogicException( __METHOD__ .
 				' apparently called from installer but no hook container was injected' );
 		}
 		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {

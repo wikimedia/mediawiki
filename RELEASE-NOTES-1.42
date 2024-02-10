@@ -125,6 +125,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated doctrine/dbal from 3.4.2 to 3.7.2.
 * Updated doctrine/sql-formatter from 1.1.1 to 1.1.3.
 * Updated grunt-banana-checker from 0.11.0 to 0.11.1.
+* Updated mediawiki/mediawiki-phan-config from 0.13.0 to 0.14.0.
 * Updated psy/psysh from ^0.11.1 to ^0.12.0.
 * Updated seld/jsonlint from 1.8.3 to 1.10.1.
 * Updated wikimedia/testing-access-wrapper from 2.0.0 to 3.0.0.

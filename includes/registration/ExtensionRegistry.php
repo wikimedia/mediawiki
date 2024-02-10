@@ -410,7 +410,7 @@ class ExtensionRegistry {
 	 *
 	 * @param int[] $queue keys are filenames, values are ignored
 	 * @return array extracted info
-	 * @throws Exception
+	 * @throws InvalidArgumentException
 	 * @throws ExtensionDependencyError
 	 */
 	public function readFromQueue( array $queue ) {
@@ -421,16 +421,16 @@ class ExtensionRegistry {
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
-				throw new Exception( "Unable to read $path, does it exist?" );
+				throw new InvalidArgumentException( "Unable to read $path, does it exist?" );
 			}
 			$info = json_decode( $json, /* $assoc = */ true );
 			if ( !is_array( $info ) ) {
-				throw new Exception( "$path is not a valid JSON file." );
+				throw new InvalidArgumentException( "$path is not a valid JSON file." );
 			}
 
 			$version = $info['manifest_version'];
 			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
-				throw new Exception( "$path: unsupported manifest_version: {$version}" );
+				throw new InvalidArgumentException( "$path: unsupported manifest_version: {$version}" );
 			}
 
 			// get all requirements/dependencies for this extension
@@ -647,7 +647,7 @@ class ExtensionRegistry {
 		}
 		// @codeCoverageIgnoreEnd
 		if ( isset( $this->testAttributes[$name] ) ) {
-			throw new Exception( "The attribute '$name' has already been overridden" );
+			throw new InvalidArgumentException( "The attribute '$name' has already been overridden" );
 		}
 		$this->testAttributes[$name] = $value;
 		return new ScopedCallback( function () use ( $name ) {

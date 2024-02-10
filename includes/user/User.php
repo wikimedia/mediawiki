@@ -25,7 +25,6 @@ namespace MediaWiki\User;
 use AllowDynamicProperties;
 use ArrayIterator;
 use DBAccessObjectUtils;
-use Exception;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MailAddress;
@@ -364,7 +363,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
 			LoggerFactory::getInstance( 'session' )
 				->warning( 'User::loadFromSession called before the end of Setup.php', [
-					'exception' => new Exception(
+					'exception' => new RuntimeException(
 						'User::loadFromSession called before the end of Setup.php'
 					),
 				] );

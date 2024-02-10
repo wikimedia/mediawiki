@@ -67,33 +67,33 @@ class GIFMetadataExtractor {
 		$comment = [];
 
 		if ( !$filename ) {
-			throw new Exception( 'No file name specified' );
+			throw new InvalidArgumentException( 'No file name specified' );
 		}
 		if ( !file_exists( $filename ) || is_dir( $filename ) ) {
-			throw new Exception( "File $filename does not exist" );
+			throw new InvalidArgumentException( "File $filename does not exist" );
 		}
 
 		$fh = fopen( $filename, 'rb' );
 
 		if ( !$fh ) {
-			throw new Exception( "Unable to open file $filename" );
+			throw new InvalidArgumentException( "Unable to open file $filename" );
 		}
 
 		// Check for the GIF header
 		$buf = fread( $fh, 6 );
 		if ( !( $buf === 'GIF87a' || $buf === 'GIF89a' ) ) {
-			throw new Exception( "Not a valid GIF file; header: $buf" );
+			throw new InvalidArgumentException( "Not a valid GIF file; header: $buf" );
 		}
 
 		// Read width and height.
 		$buf = fread( $fh, 2 );
 		if ( strlen( $buf ) < 2 ) {
-			throw new Exception( "Not a valid GIF file; Unable to read width." );
+			throw new InvalidArgumentException( "Not a valid GIF file; Unable to read width." );
 		}
 		$width = unpack( 'v', $buf )[1];
 		$buf = fread( $fh, 2 );
 		if ( strlen( $buf ) < 2 ) {
-			throw new Exception( "Not a valid GIF file; Unable to read height." );
+			throw new InvalidArgumentException( "Not a valid GIF file; Unable to read height." );
 		}
 		$height = unpack( 'v', $buf )[1];
 
@@ -135,7 +135,9 @@ class GIFMetadataExtractor {
 			} elseif ( $buf === self::$gifExtensionSep ) {
 				$buf = fread( $fh, 1 );
 				if ( strlen( $buf ) < 1 ) {
-					throw new Exception( "Not a valid GIF file; Unable to read graphics control extension." );
+					throw new InvalidArgumentException(
+						"Not a valid GIF file; Unable to read graphics control extension."
+					);
 				}
 				$extension_code = unpack( 'C', $buf )[1];
 
@@ -150,7 +152,7 @@ class GIFMetadataExtractor {
 
 					$buf = fread( $fh, 2 ); // Delay, in hundredths of seconds.
 					if ( strlen( $buf ) < 2 ) {
-						throw new Exception( "Not a valid GIF file; Unable to read delay" );
+						throw new InvalidArgumentException( "Not a valid GIF file; Unable to read delay" );
 					}
 					$delay = unpack( 'v', $buf )[1];
 					$duration += $delay * 0.01;
@@ -160,17 +162,17 @@ class GIFMetadataExtractor {
 
 					$term = fread( $fh, 1 ); // Should be a terminator
 					if ( strlen( $term ) < 1 ) {
-						throw new Exception( "Not a valid GIF file; Unable to read terminator byte" );
+						throw new InvalidArgumentException( "Not a valid GIF file; Unable to read terminator byte" );
 					}
 					$term = unpack( 'C', $term )[1];
 					if ( $term != 0 ) {
-						throw new Exception( "Malformed Graphics Control Extension block" );
+						throw new InvalidArgumentException( "Malformed Graphics Control Extension block" );
 					}
 				} elseif ( $extension_code === 0xFE ) {
 					// Comment block(s).
 					$data = self::readBlock( $fh );
 					if ( $data === "" ) {
-						throw new Exception( 'Read error, zero-length comment block' );
+						throw new InvalidArgumentException( 'Read error, zero-length comment block' );
 					}
 
 					// The standard says this should be ASCII, however its unclear if
@@ -201,7 +203,7 @@ class GIFMetadataExtractor {
 					// or XMP (or theoretically any other type of extension block)
 					$blockLength = fread( $fh, 1 );
 					if ( strlen( $blockLength ) < 1 ) {
-						throw new Exception( "Not a valid GIF file; Unable to read block length" );
+						throw new InvalidArgumentException( "Not a valid GIF file; Unable to read block length" );
 					}
 					$blockLength = unpack( 'C', $blockLength )[1];
 					$data = fread( $fh, $blockLength );
@@ -218,13 +220,13 @@ class GIFMetadataExtractor {
 						$data = fread( $fh, 2 ); // Block length and introduction, should be 03 01
 
 						if ( $data !== "\x03\x01" ) {
-							throw new Exception( "Expected \x03\x01, got $data" );
+							throw new InvalidArgumentException( "Expected \x03\x01, got $data" );
 						}
 
 						// Unsigned little-endian integer, loop count or zero for "forever"
 						$loopData = fread( $fh, 2 );
 						if ( strlen( $loopData ) < 2 ) {
-							throw new Exception( "Not a valid GIF file; Unable to read loop count" );
+							throw new InvalidArgumentException( "Not a valid GIF file; Unable to read loop count" );
 						}
 						$loopCount = unpack( 'v', $loopData )[1];
 
@@ -244,7 +246,7 @@ class GIFMetadataExtractor {
 						if ( substr( $xmp, -257, 3 ) !== "\x01\xFF\xFE"
 							|| substr( $xmp, -4 ) !== "\x03\x02\x01\x00"
 						) {
-							throw new Exception( "XMP does not have magic trailer!" );
+							throw new InvalidArgumentException( "XMP does not have magic trailer!" );
 						}
 
 						// strip out trailer.
@@ -261,10 +263,10 @@ class GIFMetadataExtractor {
 				break;
 			} else {
 				if ( strlen( $buf ) < 1 ) {
-					throw new Exception( "Not a valid GIF file; Unable to read unknown byte." );
+					throw new InvalidArgumentException( "Not a valid GIF file; Unable to read unknown byte." );
 				}
 				$byte = unpack( 'C', $buf )[1];
-				throw new Exception( "At position: " . ftell( $fh ) . ", Unknown byte " . $byte );
+				throw new InvalidArgumentException( "At position: " . ftell( $fh ) . ", Unknown byte " . $byte );
 			}
 		}
 
@@ -300,7 +302,7 @@ class GIFMetadataExtractor {
 	 */
 	private static function decodeBPP( $data ) {
 		if ( strlen( $data ) < 1 ) {
-			throw new Exception( "Not a valid GIF file; Unable to read bits per channel." );
+			throw new InvalidArgumentException( "Not a valid GIF file; Unable to read bits per channel." );
 		}
 		$buf = unpack( 'C', $data )[1];
 		$bpp = ( $buf & 7 ) + 1;
@@ -319,7 +321,7 @@ class GIFMetadataExtractor {
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
 			if ( strlen( $buf ) < 1 ) {
-				throw new Exception( "Not a valid GIF file; Unable to read block length." );
+				throw new InvalidArgumentException( "Not a valid GIF file; Unable to read block length." );
 			}
 			$block_len = unpack( 'C', $buf )[1];
 			if ( $block_len == 0 ) {
@@ -352,10 +354,10 @@ class GIFMetadataExtractor {
 		while ( $subLength !== "\0" ) {
 			$blocks++;
 			if ( $blocks > self::MAX_SUBBLOCKS ) {
-				throw new Exception( "MAX_SUBBLOCKS exceeded (over $blocks sub-blocks)" );
+				throw new InvalidArgumentException( "MAX_SUBBLOCKS exceeded (over $blocks sub-blocks)" );
 			}
 			if ( feof( $fh ) ) {
-				throw new Exception( "Read error: Unexpected EOF." );
+				throw new InvalidArgumentException( "Read error: Unexpected EOF." );
 			}
 			if ( $includeLengths ) {
 				$data .= $subLength;

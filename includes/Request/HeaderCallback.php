@@ -3,6 +3,7 @@
 namespace MediaWiki\Request;
 
 use MediaWiki\Http\Telemetry;
+use RuntimeException;
 
 /**
  * @since 1.29
@@ -77,7 +78,7 @@ class HeaderCallback {
 		}
 
 		// Save a backtrace for logging in case it turns out that headers were sent prematurely
-		self::$headersSentException = new \Exception( 'Headers already sent from this point' );
+		self::$headersSentException = new RuntimeException( 'Headers already sent from this point' );
 	}
 
 	/**
@@ -94,7 +95,7 @@ class HeaderCallback {
 			$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'headers-sent' );
 			$logger->error( 'Warning: headers were already sent from the location below', [
 				'exception' => self::$headersSentException,
-				'detection-trace' => new \Exception( 'Detected here' ),
+				'detection-trace' => new RuntimeException( 'Detected here' ),
 			] );
 		}
 	}

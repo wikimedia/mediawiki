@@ -106,7 +106,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	public function validateKeyEncoding( $key ) {
 		if ( preg_match( '/[^\x21-\x7e]+/', $key ) ) {
-			throw new Exception( "Key contains invalid characters: $key" );
+			throw new InvalidArgumentException( "Key contains invalid characters: $key" );
 		}
 
 		return $key;

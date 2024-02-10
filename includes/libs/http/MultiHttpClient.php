@@ -121,7 +121,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		if ( isset( $options['caBundlePath'] ) ) {
 			$this->caBundlePath = $options['caBundlePath'];
 			if ( !file_exists( $this->caBundlePath ) ) {
-				throw new Exception( "Cannot find CA bundle: " . $this->caBundlePath );
+				throw new InvalidArgumentException( "Cannot find CA bundle: " . $this->caBundlePath );
 			}
 		}
 		static $opts = [
@@ -395,7 +395,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				) {
 					curl_setopt( $ch, CURLOPT_UPLOAD, true );
 				} else {
-					throw new Exception( "Missing 'Content-Length' or 'Transfer-Encoding' header." );
+					throw new InvalidArgumentException( "Missing 'Content-Length' or 'Transfer-Encoding' header." );
 				}
 			} elseif ( $req['body'] !== '' ) {
 				$fp = fopen( "php://temp", "wb+" );
@@ -418,7 +418,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		} else {
 			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 			if ( is_resource( $req['body'] ) || $req['body'] !== '' ) {
-				throw new Exception( "HTTP body specified for a non PUT/POST request." );
+				throw new InvalidArgumentException( "HTTP body specified for a non PUT/POST request." );
 			}
 			$req['headers']['content-length'] = 0;
 		}
@@ -430,7 +430,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		$headers = [];
 		foreach ( $req['headers'] as $name => $value ) {
 			if ( strpos( $name, ':' ) !== false ) {
-				throw new Exception( "Header name must not contain colon-space." );
+				throw new InvalidArgumentException( "Header name must not contain colon-space." );
 			}
 			$headers[] = $name . ': ' . trim( $value );
 		}
@@ -669,9 +669,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 				unset( $req[1] );
 			}
 			if ( !isset( $req['method'] ) ) {
-				throw new Exception( "Request has no 'method' field set." );
+				throw new InvalidArgumentException( "Request has no 'method' field set." );
 			} elseif ( !isset( $req['url'] ) ) {
-				throw new Exception( "Request has no 'url' field set." );
+				throw new InvalidArgumentException( "Request has no 'url' field set." );
 			}
 			if ( $this->localProxy !== false && $this->isLocalURL( $req['url'] ) ) {
 				$this->useReverseProxy( $req, $this->localProxy );
@@ -710,11 +710,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 	private function useReverseProxy( array &$req, $proxy ) {
 		$parsedProxy = wfParseUrl( $proxy );
 		if ( $parsedProxy === false ) {
-			throw new Exception( "Invalid reverseProxy configured: $proxy" );
+			throw new InvalidArgumentException( "Invalid reverseProxy configured: $proxy" );
 		}
 		$parsedUrl = wfParseUrl( $req['url'] );
 		if ( $parsedUrl === false ) {
-			throw new Exception( "Invalid url specified: {$req['url']}" );
+			throw new InvalidArgumentException( "Invalid url specified: {$req['url']}" );
 		}
 		// Set the current host in the Host header
 		$req['headers']['Host'] = $parsedUrl['host'];

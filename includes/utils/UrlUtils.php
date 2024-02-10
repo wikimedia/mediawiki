@@ -3,7 +3,6 @@
 namespace MediaWiki\Utils;
 
 use BadMethodCallException;
-use Exception;
 use InvalidArgumentException;
 use MediaWiki\MainConfigSchema;
 use MWDebug;
@@ -166,7 +165,7 @@ class UrlUtils {
 					// user to override the port number (T67184)
 					if ( $defaultProto === PROTO_HTTPS && $this->httpsPort != 443 ) {
 						if ( isset( $bits['port'] ) ) {
-							throw new Exception(
+							throw new InvalidArgumentException(
 								'A protocol-relative server may not contain a port number' );
 						}
 						$url = "$defaultProtoWithoutSlashes$serverUrl:{$this->httpsPort}$url";

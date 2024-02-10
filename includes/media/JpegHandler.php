@@ -270,12 +270,14 @@ class JpegHandler extends ExifBitmapHandler {
 		// Make a regex out of the source data to match it to an array of color
 		// spaces in a case-insensitive way
 		$colorSpaceRegex = '/' . preg_quote( $data[0], '/' ) . '/i';
+		// @phan-suppress-next-line MediaWikiNoEmptyIfDefined
 		if ( empty( preg_grep( $colorSpaceRegex, $colorSpaces ) ) ) {
 			// We can't establish that this file matches the color space, don't process it
 			return false;
 		}
 
 		$profileRegex = '/' . preg_quote( $data[1], '/' ) . '/i';
+		// @phan-suppress-next-line MediaWikiNoEmptyIfDefined
 		if ( empty( preg_grep( $profileRegex, $oldProfileStrings ) ) ) {
 			// We can't establish that this file has the expected ICC profile, don't process it
 			return false;

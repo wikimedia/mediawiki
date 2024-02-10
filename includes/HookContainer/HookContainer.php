@@ -403,6 +403,7 @@ class HookContainer implements SalvageableService {
 	 * @return bool Whether the hook has a handler registered to it
 	 */
 	public function isRegistered( string $hook ): bool {
+		// @phan-suppress-next-line MediaWikiNoEmptyIfDefined
 		return !empty( $this->getHandlers( $hook ) );
 	}
 
