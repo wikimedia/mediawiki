@@ -1,22 +1,5 @@
-'use strict';
-
-// Catch exceptions to avoid fatal in Chrome's "Block data storage" mode
-// which throws when accessing the localStorage property itself, as opposed
-// to the standard behaviour of throwing on getItem/setItem. (T148998)
-var
-	localStorage = ( function () {
-		try {
-			return window.localStorage;
-		} catch ( e ) {}
-	}() ),
-	sessionStorage = ( function () {
-		try {
-			return window.sessionStorage;
-		} catch ( e ) {}
-	}() );
-
 /**
- * @classdesc A safe interface to HTML5 `localStorage` and `sessionStorage`.
+ * A safe interface to HTML5 `localStorage` and `sessionStorage`.
  *
  * This normalises differences across browsers and silences any and all
  * exceptions that may occur.
@@ -54,45 +37,52 @@ var
  *     session.set( key, value );
  *     session.get( key );
  *
- * This normalises differences across browsers and silences any and all
- * exceptions that may occur.
- *
- * **Note**: Data persisted via `sessionStorage` will persist for the lifetime
- * of the browser *tab*, not the browser *window*.
- * For longer-lasting persistence across tabs, refer to mw.storage or mw.cookie instead.
- *
- * @class MwSafeStorage
- * @extends SafeStorage
- * @hideconstructor
+ * @module mediawiki.storage
  */
+'use strict';
+
+// Catch exceptions to avoid fatal in Chrome's "Block data storage" mode
+// which throws when accessing the localStorage property itself, as opposed
+// to the standard behaviour of throwing on getItem/setItem. (T148998)
+var
+	localStorage = ( function () {
+		try {
+			return window.localStorage;
+		} catch ( e ) {}
+	}() ),
+	sessionStorage = ( function () {
+		try {
+			return window.sessionStorage;
+		} catch ( e ) {}
+	}() );
+
 var SafeStorage = require( './SafeStorage.js' );
 
 /**
- * @type {MwSafeStorage}
+ * Alias for {@link module:mediawiki.storage.local}.
+ *
+ * @type {SafeStorage}
+ * @memberof mw
+ * @property {SafeStorage} session Alias for {@link module:mediawiki.storage.session}.
  */
 mw.storage = new SafeStorage( localStorage );
-
-/**
- * A safe interface to HTML5 `sessionStorage`.
- *
- * @name MwSafeStorage.session
- * @type {SafeStorage}
- */
 mw.storage.session = new SafeStorage( sessionStorage );
 
-/**
- * Provides safe access to HTML5 session storage and local storage.
- * @exports mediawiki.storage
- */
 module.exports = {
 	/**
-	 * Safe access to localStorage.
+	 * A safe interface to HTML5 `localStorage`.
 	 *
 	 * @type {SafeStorage}
 	 */
 	local: mw.storage,
+
 	/**
-	 * Safe access to sessionStorage.
+	 * A safe interface to HTML5 `sessionStorage`.
+	 *
+	 * **Note**: Data persisted via `sessionStorage` will persist for the lifetime
+	 * of the browser *tab*, not the browser *window*.
+	 * For longer-lasting persistence across tabs, refer to mw.storage or mw.cookie instead.
+	 *
 	 * @type {SafeStorage}
 	 */
 	session: mw.storage.session
