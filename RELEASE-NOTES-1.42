@@ -517,6 +517,8 @@ because of Phabricator reports.
   the StatusFormatterFactory.
 * Html::buttonAttributes() and Html::getTextInputAttributes() methods
   no longer do anything and have been deprecated.
+* DatabaseBlock::doAutoblock and ::updateTimestamp are now deprecated, use
+  DatabaseBlockStore::doAutoblock and ::updateTimestamp instead.
 * The MediaWiki class has been deprecated. Type hints in hooks should be
   changed to refer to MediaWikiEntryPoint instead. Note that extensions should
   not define their own entry points and should not interfere with the state of

@@ -277,6 +277,8 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Autoblocks the given IP, referring to this block.
 	 *
+	 * @deprecated since 1.42, use DatabaseBlockStore::doAutoblock instead
+	 *
 	 * @param string $autoblockIP The IP to autoblock.
 	 * @return int|false ID if an autoblock was inserted, false if not.
 	 */
@@ -300,6 +302,8 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Update the timestamp on autoblocks.
+	 *
+	 * @deprecated since 1.42, use DatabaseBlockStore::updateTimestamp instead
 	 */
 	public function updateTimestamp() {
 		MediaWikiServices::getInstance()
