@@ -34,7 +34,7 @@
 		"karma": "6.4.1",
 		"karma-chrome-launcher": "3.1.0",
 		"karma-mocha-reporter": "2.2.5",
-		"karma-qunit": "4.1.2",
+		"karma-qunit": "4.2.0",
 		"qunit": "2.20.0",
 		"stylelint-config-wikimedia": "0.16.1",
 		"svgo": "3.2.0",

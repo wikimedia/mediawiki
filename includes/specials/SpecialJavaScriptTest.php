@@ -103,17 +103,6 @@ class SpecialJavaScriptTest extends SpecialPage {
 			$rl->getConfig(),
 		] );
 
-		// Disable autostart because we load modules asynchronously. By default, QUnit would start
-		// at domready when there are no tests loaded and also fire 'QUnit.done' which then instructs
-		// Karma to exit the browser process before the tests even finished loading.
-		$qunitConfig = 'QUnit.config.autostart = false;'
-			. 'if (window.__karma__) {'
-			// karma-qunit's use of autostart=false and QUnit.start conflicts with ours.
-			// Hack around this by replacing 'karma.loaded' with a no-op and perform its duty of calling
-			// `__karma__.start()` ourselves. See <https://github.com/karma-runner/karma-qunit/issues/27>.
-			. 'window.__karma__.loaded = function () {};'
-			. '}';
-
 		// The below is essentially a pure-javascript version of OutputPage::headElement().
 		$startupModule = $rl->getModule( 'startup' );
 		$startupModule->setConfig( $config );
@@ -148,13 +137,12 @@ class SpecialJavaScriptTest extends SpecialPage {
 		);
 		$encModules = Html::encodeJsVar( $modules );
 		$code .= ResourceLoader::makeInlineCodeWithModule( 'mediawiki.base', <<<JAVASCRIPT
-	var start = window.__karma__ ? window.__karma__.start : QUnit.start;
 	// Wait for each module individually, so that partial failures wont break the page
 	// completely by rejecting the promise before all/ any modules are loaded.
 	var promises = $encModules.map( function( module ) {
 		return mw.loader.using( module ).promise();
 	} );
-	Promise.allSettled( promises ).then( start );
+	Promise.allSettled( promises ).then( QUnit.start );
 	mw.trackSubscribe( 'resourceloader.exception', function ( topic, err ) {
 		// Things like "dependency missing" or "unknown module".
 		// Re-throw so that they are reported as global exceptions by QUnit and Karma.
@@ -167,14 +155,12 @@ JAVASCRIPT
 
 		header( 'Content-Type: text/javascript; charset=utf-8' );
 		header( 'Cache-Control: private, no-cache, must-revalidate' );
-		echo $qunitConfig;
 		echo $code;
 	}
 
 	private function renderPage() {
 		$basePath = $this->getConfig()->get( MainConfigNames::ResourceBasePath );
 		$headHtml = implode( "\n", [
-			Html::linkedScript( "$basePath/resources/lib/qunitjs/qunit.js" ),
 			Html::linkedStyle( "$basePath/resources/lib/qunitjs/qunit.css" ),
 			Html::linkedStyle( "$basePath/resources/src/qunitjs/qunit-local.css" ),
 		] );
@@ -186,7 +172,11 @@ JAVASCRIPT
 		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
 			'debug' => (string)ResourceLoader::inDebugMode(),
 		] );
-		$script = Html::linkedScript( $scriptUrl );
+		$script = implode( "\n", [
+			Html::linkedScript( "$basePath/resources/lib/qunitjs/qunit.js" ),
+			Html::inlineScript( 'QUnit.config.autostart = false;' ),
+			Html::linkedScript( $scriptUrl ),
+		] );
 
 		header( 'Content-Type: text/html; charset=utf-8' );
 		echo <<<HTML

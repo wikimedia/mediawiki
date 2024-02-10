@@ -129,6 +129,12 @@ module.exports = function ( grunt ) {
 				}, ...qunitWatchFiles ],
 				logLevel: ( process.env.ZUUL_PROJECT ? 'DEBUG' : 'INFO' ),
 				frameworks: [ 'qunit' ],
+				// Disable autostart because we load modules asynchronously.
+				client: {
+					qunit: {
+						autostart: false
+					}
+				},
 				reporters: [ 'mocha' ],
 				singleRun: !qunitWatch,
 				autoWatch: qunitWatch,
