@@ -1405,19 +1405,24 @@ EOF
 	}
 
 	public function testSetFromParserOptions() {
+		// parser output set from canonical parser options
 		$pOptions = ParserOptions::newFromAnon();
 		$pOutput = new ParserOutput;
 		$pOutput->setFromParserOptions( $pOptions );
 		$this->assertSame( 'mw-parser-output', $pOutput->getWrapperDivClass() );
 		$this->assertFalse( $pOutput->getOutputFlag( ParserOutputFlags::IS_PREVIEW ) );
 		$this->assertTrue( $pOutput->isCacheable() );
+		$this->assertFalse( $pOutput->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ) );
 
+		// set the various parser options and verify in parser output
 		$pOptions->setWrapOutputClass( 'test-wrapper' );
 		$pOptions->setIsPreview( true );
+		$pOptions->setSuppressSectionEditLinks();
 		$pOutput = new ParserOutput;
 		$pOutput->setFromParserOptions( $pOptions );
 		$this->assertEquals( 'test-wrapper', $pOutput->getWrapperDivClass() );
 		$this->assertTrue( $pOutput->getOutputFlag( ParserOutputFlags::IS_PREVIEW ) );
 		$this->assertFalse( $pOutput->isCacheable() );
+		$this->assertTrue( $pOutput->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ) );
 	}
 }

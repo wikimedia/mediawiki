@@ -111,6 +111,14 @@ class ParserOutputFlags {
 	public const NO_TOC = 'no-toc';
 
 	/**
+	 * @var string Suppress the section edit links?
+	 *  This reflects the ParserOptions::getSuppressSectionEditLinks()
+	 *  flag and affects the default value of `enableSectionEditLinks`
+	 *  in ParserOutput::getText().
+	 */
+	public const NO_SECTION_EDIT_LINKS = 'no-section-edit-links';
+
+	/**
 	 * @var string
 	 */
 	public const VARY_REVISION = 'vary-revision';
@@ -183,6 +191,7 @@ class ParserOutputFlags {
 			self::HIDE_NEW_SECTION,
 			self::SHOW_TOC,
 			self::NO_TOC,
+			self::NO_SECTION_EDIT_LINKS,
 			self::PREVENT_CLICKJACKING,
 			self::VARY_REVISION,
 			self::VARY_REVISION_ID,

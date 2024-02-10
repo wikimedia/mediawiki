@@ -398,4 +398,13 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$options->setRenderReason( 'just a test' );
 		$this->assertIsString( 'just a test', $options->getRenderReason() );
 	}
+
+	public function testSuppressSectionEditLinks() {
+		$options = ParserOptions::newFromAnon();
+
+		$this->assertFalse( $options->getSuppressSectionEditLinks() );
+
+		$options->setSuppressSectionEditLinks();
+		$this->assertTrue( $options->getSuppressSectionEditLinks() );
+	}
 }

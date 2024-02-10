@@ -430,7 +430,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'suppressClone' => true, // T353257
 			'allowTOC' => true,
 			'injectTOC' => true,
-			'enableSectionEditLinks' => true,
+			'enableSectionEditLinks' => !$this->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ),
 			'userLang' => null,
 			'skin' => null,
 			'unwrap' => false,
@@ -2085,6 +2085,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$class = $parserOptions->getWrapOutputClass();
 		if ( $class !== false && !$parserOptions->getInterfaceMessage() ) {
 			$this->addWrapperDivClass( $class );
+		}
+
+		// Record whether we should suppress section edit links
+		if ( $parserOptions->getSuppressSectionEditLinks() ) {
+			$this->setOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS );
 		}
 
 		// Record whether this is a preview parse in the output (T341010)

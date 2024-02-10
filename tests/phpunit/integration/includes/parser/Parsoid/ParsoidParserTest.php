@@ -33,7 +33,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
 		);
 		$this->assertSame( [
-			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'isPreview', 'maxIncludeSize'
+			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'suppressSectionEditLinks', 'isPreview', 'maxIncludeSize'
 		], $output->getUsedOptions() );
 	}
 
@@ -70,7 +70,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
 		);
 		$this->assertSame( [
-			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'isPreview', 'maxIncludeSize'
+			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'suppressSectionEditLinks', 'isPreview', 'maxIncludeSize'
 		], $output->getUsedOptions() );
 	}
 }
