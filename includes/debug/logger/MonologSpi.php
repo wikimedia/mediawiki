@@ -22,7 +22,9 @@ namespace MediaWiki\Logger;
 
 use DateTimeZone;
 use MediaWiki\Logger\Monolog\BufferHandler;
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\FormattableHandlerInterface;
+use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -120,21 +122,20 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 class MonologSpi implements Spi {
 
 	/**
-	 * @var array
+	 * @var array{loggers:LoggerInterface[],handlers:HandlerInterface[],formatters:FormatterInterface[],processors:callable[]}
 	 */
 	protected $singletons;
 
 	/**
 	 * Configuration for creating new loggers.
-	 * @var array[][]
+	 * @var array<string,array<string,array>>
 	 */
-	protected $config;
+	protected array $config = [];
 
 	/**
 	 * @param array $config Configuration data.
 	 */
 	public function __construct( array $config ) {
-		$this->config = [];
 		$this->mergeConfig( $config );
 	}
 
@@ -156,12 +157,10 @@ class MonologSpi implements Spi {
 			$this->config['loggers']['@default'] = [
 				'handlers' => [ '@default' ],
 			];
-			if ( !isset( $this->config['handlers']['@default'] ) ) {
-				$this->config['handlers']['@default'] = [
-					'class' => StreamHandler::class,
-					'args' => [ 'php://stderr', Logger::ERROR ],
-				];
-			}
+			$this->config['handlers']['@default'] ??= [
+				'class' => StreamHandler::class,
+				'args' => [ 'php://stderr', Logger::ERROR ],
+			];
 		}
 		$this->reset();
 	}
@@ -246,6 +245,7 @@ class MonologSpi implements Spi {
 	public function getProcessor( $name ) {
 		if ( !isset( $this->singletons['processors'][$name] ) ) {
 			$spec = $this->config['processors'][$name];
+			/** @var callable $processor */
 			$processor = ObjectFactory::getObjectFromSpec( $spec );
 			$this->singletons['processors'][$name] = $processor;
 		}
@@ -255,11 +255,12 @@ class MonologSpi implements Spi {
 	/**
 	 * Create or return cached handler.
 	 * @param string $name Processor name
-	 * @return \Monolog\Handler\HandlerInterface
+	 * @return HandlerInterface
 	 */
 	public function getHandler( $name ) {
 		if ( !isset( $this->singletons['handlers'][$name] ) ) {
 			$spec = $this->config['handlers'][$name];
+			/** @var HandlerInterface $handler */
 			$handler = ObjectFactory::getObjectFromSpec( $spec );
 			if (
 				isset( $spec['formatter'] ) &&
@@ -280,11 +281,12 @@ class MonologSpi implements Spi {
 	/**
 	 * Create or return cached formatter.
 	 * @param string $name Formatter name
-	 * @return \Monolog\Formatter\FormatterInterface
+	 * @return FormatterInterface
 	 */
 	public function getFormatter( $name ) {
 		if ( !isset( $this->singletons['formatters'][$name] ) ) {
 			$spec = $this->config['formatters'][$name];
+			/** @var FormatterInterface $formatter */
 			$formatter = ObjectFactory::getObjectFromSpec( $spec );
 			$this->singletons['formatters'][$name] = $formatter;
 		}
