@@ -106,7 +106,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		# Filter out .txt files
 		$files = ParserTestRunner::getParserTestFiles();
 		foreach ( $files as $extName => $parserTestFile ) {
-			$isCore = ( strpos( $parserTestFile, $mwTestDir ) === 0 );
+			$isCore = str_starts_with( $parserTestFile, $mwTestDir );
 
 			if ( $isCore && $wantsCore ) {
 				self::debug( "included core parser tests: $parserTestFile" );
@@ -124,7 +124,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		$testList = [];
 		$counter = 0;
 		foreach ( $filesToTest as $extensionName => $fileName ) {
-			$isCore = ( strpos( $fileName, $mwTestDir ) === 0 );
+			$isCore = str_starts_with( $fileName, $mwTestDir );
 			if ( is_int( $extensionName ) ) {
 				// If there's no extension name because this is coming
 				// from the legacy global, then assume the next level directory

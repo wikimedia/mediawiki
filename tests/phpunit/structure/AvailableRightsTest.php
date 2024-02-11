@@ -90,7 +90,7 @@ class AvailableRightsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test, if for all rights an action- message exist,
+	 * Test, if for all rights an action- message exists,
 	 * which is used on Special:ListGroupRights as help text
 	 * Extensions and core
 	 *
@@ -101,7 +101,7 @@ class AvailableRightsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test, if for all rights a right- message exist,
+	 * Test, if for all rights a right- message exists,
 	 * which is used on Special:ListGroupRights as help text
 	 * Extensions and core
 	 */
@@ -120,8 +120,7 @@ class AvailableRightsTest extends MediaWikiIntegrationTestCase {
 
 		$messagesToCheck = [];
 		foreach ( $allMessageKeys as $message ) {
-			// === 0: must be at beginning of string (position 0)
-			if ( strpos( $message, $prefix ) === 0 ) {
+			if ( str_starts_with( $message, $prefix ) ) {
 				$messagesToCheck[] = substr( $message, strlen( $prefix ) );
 			}
 		}

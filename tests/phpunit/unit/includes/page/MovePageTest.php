@@ -26,7 +26,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			'authority' => $this->mockRegisteredUltimateAuthority(),
 			'good' => true,
 		];
-		yield 'can not move' => [
+		yield 'cannot move' => [
 			'authority' => $this->mockAnonAuthority( function (
 				string $permission,
 				PageIdentity $page,
@@ -41,7 +41,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			} ),
 			'good' => false,
 		];
-		yield 'can not edit old page' => [
+		yield 'cannot edit old page' => [
 			'authority' => $this->mockAnonAuthority( static function (
 				string $permission,
 				PageIdentity $page,
@@ -55,7 +55,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			} ),
 			'good' => false,
 		];
-		yield 'can not move-target' => [
+		yield 'cannot move-target' => [
 			'authority' => $this->mockAnonAuthority( function (
 				string $permission,
 				PageIdentity $page,
@@ -70,7 +70,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			} ),
 			'good' => false,
 		];
-		yield 'can not edit new page' => [
+		yield 'cannot edit new page' => [
 			'authority' => $this->mockAnonAuthority( static function (
 				string $permission,
 				PageIdentity $page,

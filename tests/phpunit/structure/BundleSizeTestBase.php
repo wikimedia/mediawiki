@@ -53,10 +53,10 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 		$projectName = $testCase['projectName'] ?? '';
 		$moduleName = $testCase['resourceModule'];
 		if ( is_string( $maxSize ) ) {
-			if ( strpos( $maxSize, 'KB' ) !== false || strpos( $maxSize, 'kB' ) !== false ) {
+			if ( str_contains( $maxSize, 'KB' ) || str_contains( $maxSize, 'kB' ) ) {
 				$maxSize = (float)str_replace( [ 'KB', 'kB', ' KB', ' kB' ], '', $maxSize );
 				$maxSize = $maxSize * 1024;
-			} elseif ( strpos( $maxSize, 'B' ) !== false ) {
+			} elseif ( str_contains( $maxSize, 'B' ) ) {
 				$maxSize = (float)str_replace( [ ' B', 'B' ], '', $maxSize );
 			}
 		}

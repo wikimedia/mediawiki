@@ -344,7 +344,7 @@ class MaintenanceParametersTest extends TestCase {
 
 	private function findInLines( array $lines, $regex, $start = 0 ) {
 		for ( $i = $start; $i < count( $lines ); $i++ ) {
-			if ( strpos( $lines[ $i ], $regex ) !== false ) {
+			if ( str_contains( $lines[ $i ], $regex ) ) {
 				return $i;
 			}
 		}

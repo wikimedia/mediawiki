@@ -107,7 +107,7 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 			return true;
 		}
 
-		if ( strpos( "$dirB/", $dirA ) === 0 ) {
+		if ( str_starts_with( "$dirB/", $dirA ) ) {
 			return true;
 		}
 

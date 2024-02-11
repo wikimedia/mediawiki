@@ -152,7 +152,7 @@ class ApiWatchTest extends ApiTestCase {
 			// Previous tests may insert an invalid title
 			// like ":ApiEditPageTest testNonTextEdit", which
 			// can't be cleared.
-			if ( strpos( $item['title'], ':' ) === 0 ) {
+			if ( str_starts_with( $item['title'], ':' ) ) {
 				unset( $data[0]['query']['watchlist'][$index] );
 			}
 		}

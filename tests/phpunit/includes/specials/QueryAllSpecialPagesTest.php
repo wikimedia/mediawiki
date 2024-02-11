@@ -23,7 +23,7 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $queryPages;
 
-	/** @var string[] List query pages that can not be tested automatically */
+	/** @var string[] List query pages that cannot be tested automatically */
 	protected $manualTest = [
 		SpecialLinkSearch::class
 	];
@@ -60,12 +60,12 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 			// With MySQL, skips special pages reopening a temporary table
 			// See https://bugs.mysql.com/bug.php?id=10327
 			if (
-				$this->db->getType() == 'mysql' &&
-				strpos( $this->db->getSoftwareLink(), 'MySQL' ) &&
+				$this->db->getType() === 'mysql' &&
+				str_contains( $this->db->getSoftwareLink(), 'MySQL' ) &&
 				in_array( $page->getName(), $this->reopensTempTable )
 			) {
 				$this->markTestSkipped( "SQL query for page {$page->getName()} "
-					. "can not be tested on MySQL backend (it reopens a temporary table)" );
+					. "cannot be tested on MySQL backend (it reopens a temporary table)" );
 				continue;
 			}
 

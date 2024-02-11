@@ -647,7 +647,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Tests that a RevisionRecord with no ID can not be rendered if OPT_NO_CACHE is not set.
+	 * Tests that a RevisionRecord with no ID cannot be rendered if OPT_NO_CACHE is not set.
 	 */
 	public function testFakeRevisionError() {
 		$access = $this->getParserOutputAccessNoCache();
