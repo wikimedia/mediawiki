@@ -750,7 +750,6 @@ class Sanitizer {
 			return '/* invalid control char */';
 		} elseif ( preg_match(
 			'! expression
-				| filter\s*:
 				| accelerator\s*:
 				| -o-link\s*:
 				| -o-link-source\s*:

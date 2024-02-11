@@ -70,6 +70,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.42 ===
+* (T308160) filter: is now allowed in inline CSS in wikitext
 * …
 
 === New features for sysadmins in 1.42 ===

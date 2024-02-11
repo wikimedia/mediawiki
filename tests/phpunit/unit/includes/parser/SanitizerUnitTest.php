@@ -165,16 +165,6 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 				'Remove anything after a comment-start token' ],
 			[ '', "\\2f\\2a unifinished comment'",
 				'Remove anything after a backslash-escaped comment-start token' ],
-			[
-				'/* insecure input */',
-				'filter: progid:DXImageTransform.Microsoft.AlphaImageLoader'
-					. '(src=\'asdf.png\',sizingMethod=\'scale\');'
-			],
-			[
-				'/* insecure input */',
-				'-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader'
-					. '(src=\'asdf.png\',sizingMethod=\'scale\')";'
-			],
 			[ '/* insecure input */', 'width: expression(1+1);' ],
 			[ '/* insecure input */', 'background-image: image(asdf.png);' ],
 			[ '/* insecure input */', 'background-image: -webkit-image(asdf.png);' ],
