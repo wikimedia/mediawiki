@@ -79,7 +79,7 @@ abstract class MediaWikiEntryPoint {
 
 	private IContextSource $context;
 	private Config $config;
-	private int $baseOutputBufferLevel;
+	private ?int $outputCaptureLevel = null;
 
 	private bool $postSendMode = false;
 
@@ -115,8 +115,6 @@ abstract class MediaWikiEntryPoint {
 		$this->config = $this->context->getConfig();
 		$this->environment = $environment;
 		$this->mediaWikiServices = $mediaWikiServices;
-
-		$this->baseOutputBufferLevel = 0;
 
 		if ( $environment->isCli() ) {
 			$this->postSendStrategy = self::DEFER_CLI_MODE;
@@ -336,7 +334,7 @@ abstract class MediaWikiEntryPoint {
 		);
 		$now = time();
 
-		$allowHeaders = !( $output->isDisabled() || $this->inPostSendMode() );
+		$allowHeaders = !( $output->isDisabled() || $this->getResponse()->headersSent() );
 
 		if ( $cpIndex > 0 ) {
 			if ( $allowHeaders ) {
@@ -452,6 +450,12 @@ abstract class MediaWikiEntryPoint {
 	 */
 	final protected function postOutputShutdown() {
 		$this->doPostOutputShutdown();
+
+		// Just in case doPostOutputShutdown() was overwritten...
+		if ( !$this->inPostSendMode() ) {
+			$this->flushOutputBuffer();
+			$this->enterPostSendMode();
+		}
 	}
 
 	/**
@@ -925,51 +929,53 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * Returns the content of the current output buffer and ends the buffer.
+	 * Returns the content of the current output buffer and clears it.
 	 *
 	 * @see ob_get_clean
 	 * @return false|string
 	 */
 	protected function drainOutputBuffer() {
-		return ob_get_clean();
+		// NOTE: The ob_get_clean() would *disable* the current buffer,
+		// we don't want that!
+
+		$contents = ob_get_contents();
+		ob_clean();
+		return $contents;
 	}
 
 	/**
-	 * Establishes the base buffer level.
-	 * The base buffer level controls whether flushOutputBuffer() actually sends
-	 * data to the client, or just commits the data to a parent buffer.
+	 * Enables output capture in the current output buffer.
+	 * The caller may need to call ob_start() to establish a buffer.
+	 * The captured output can be retrieved using getCapturedOutput().
+	 * When output capture is enabled, flushOutputBuffer() will not actually
+	 * send output.
 	 *
-	 * Per default, the base buffer level is initialized to 0.
-	 * Tests will have to establish a different base level, in order to be able
-	 * to capture output.
-	 *
-	 * @see captureOutput();
-	 *
-	 * @param int $offset The base level relative to the current level.
-	 *        Set to 0 if the current level should not be flushed by
-	 *        flushOutputBuffer(). Set to -1 if the current level should
-	 *        be flushed.
+	 * @see ob_start()
+	 * @see getCapturedOutput();
 	 */
-	public function establishOutputBufferLevel( int $offset = 0 ): void {
-		$level = ob_get_level() + $offset;
+	public function enableOutputCapture(): void {
+		$level = ob_get_level();
 
-		if ( $level < 0 ) {
+		if ( $level <= 0 ) {
 			throw new RuntimeException(
-				'Cannot set the output buffer base level to a negative number'
+				'No capture buffer available, call ob_start first.'
 			);
 		}
 
-		$this->baseOutputBufferLevel = $level;
+		$this->outputCaptureLevel = $level;
 	}
 
 	/**
-	 * Returns the output buffer level, taking into account the base buffer
+	 * Returns the output buffer level.
+	 *
+	 * If enableOutputCapture() has been called, the capture buffer
+	 * level is taking into account by subtracting it from the actual buffer
 	 * level.
 	 *
 	 * @see ob_get_level
 	 */
 	protected function getOutputBufferLevel(): int {
-		return max( 0, ob_get_level() - $this->baseOutputBufferLevel );
+		return max( 0, ob_get_level() - ( $this->outputCaptureLevel ?? 0 ) );
 	}
 
 	/**
@@ -992,19 +998,19 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * Commits all output buffers down to the base buffer level,
-	 * then ends the base level buffer and returns its contents.
+	 * Commits all output buffers down to the capture buffer level,
+	 * then clears the capture buffer and returns its contents.
 	 *
-	 * Intended for testing, to allow the generated output to be examined.
-	 * Needs establishOutputBufferLevel() to be called before run().
-	 * getOutputBufferLevel() will return 0 after this method returns.
+	 * Needs enableOutputCapture() to be called before run().
 	 *
-	 * @see establishOutputBufferLevel();
+	 * @see enableOutputCapture();
 	 * @see ob_end_clean
 	 */
-	public function captureOutput(): string {
-		if ( !$this->inPostSendMode() ) {
-			throw new RuntimeException( 'Output not yet sent!' );
+	public function getCapturedOutput(): string {
+		if ( $this->outputCaptureLevel === null ) {
+			throw new LogicException(
+				'getCapturedOutput() requires enableOutputCapture() to be called first'
+			);
 		}
 
 		$this->flushOutputBuffer();
@@ -1012,33 +1018,74 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * Commits all output buffers down to the base buffer level.
-	 * getOutputBufferLevel() will return 0 after this method returns.
-	 * If the base buffer level is 0, this sends data to the client.
+	 * Flush buffered output to the client.
+	 *
+	 * If enableOutputCapture() was called, buffered output is committed to
+	 * the capture buffer instead.
+	 *
+	 * If enterPostSendMode() was called before this method, a warning is
+	 * triggered and any buffered output is discarded.
 	 *
 	 * @see ob_end_flush
 	 * @see flush
 	 */
 	protected function flushOutputBuffer(): void {
-		while ( $this->getOutputBufferLevel() ) {
+		// NOTE: Use a for-loop, so we don't loop indefinitely in case
+		// we fail to delete a buffer. This will routinely happen for
+		// PHP's zlib.compression buffer.
+		// See https://www.php.net/manual/en/function.ob-end-flush.php#103387
+		$levels = $this->getOutputBufferLevel();
+
+		// If we are in post-send mode, throw away any buffered output.
+		// Only complain if there actually is buffered output.
+		if ( $this->inPostSendMode() ) {
+			for ( $i = 0; $i < $levels; $i++ ) {
+				$length = $this->getOutputBufferLength();
+
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@ob_end_clean();
+
+				if ( $length > 0 ) {
+					$this->triggerError(
+						__METHOD__ . ": suppressed $length byte(s)",
+						E_USER_NOTICE
+					);
+				}
+			}
+			return;
+		}
+
+		for ( $i = 0; $i < $levels; $i++ ) {
+			// Note that ob_end_flush() will fail for buffers created without
+			// the PHP_OUTPUT_HANDLER_FLUSHABLE flag. So we use a for-loop
+			// to avoid looping forever when ob_get_level() won't go down.
+
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			@ob_end_flush();
 		}
 
-		// If the true buffer level is 0, flush the system buffer as well,
-		// so we actually send data to the client.
-		if ( ob_get_level() === 0 ) {
-			// Flush the web server output buffer to the client/proxy if possible
+		// Flush the system buffer so the response is actually sent to the client,
+		// unless we intend to capture the output, for testing or otherwise.
+		// Capturing would be enabled by $this->outputCaptureLevel being set.
+		// Note that, when not capturing the output, we want to flush response
+		// to the client even if the loop above did not result in ob_get_level()
+		// to return 0. This would be the case e.g. when zlib.compression
+		// is enabled.
+		// See https://www.php.net/manual/en/function.ob-end-flush.php#103387
+		if ( $this->outputCaptureLevel === null || ob_get_level() === 0 ) {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			@flush();
 		}
 	}
 
 	/**
-	 * Discards all buffered output, down to the base buffer level.
+	 * Discards all buffered output, down to the capture buffer level.
 	 */
 	protected function discardAllOutput() {
-		while ( $this->getOutputBufferLevel() ) {
+		// NOTE: use a for-loop, in case one of the buffers is non-removable.
+		// In that case, getOutputBufferLevel() will never return 0.
+		$levels = $this->getOutputBufferLevel();
+		for ( $i = 0; $i < $levels; $i++ ) {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			@ob_end_clean();
 		}
@@ -1079,10 +1126,13 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * @see headers_sent
+	 * Whether enterPostSendMode() has been called.
+	 * Indicates whether more data can be sent to the client.
+	 * To determine whether more headers can be sent, use
+	 * $this->getResponse()->headersSent().
 	 */
 	protected function inPostSendMode(): bool {
-		return $this->postSendMode || $this->getResponse()->headersSent();
+		return $this->postSendMode;
 	}
 
 	/**
@@ -1147,7 +1197,7 @@ abstract class MediaWikiEntryPoint {
 	/**
 	 * Calls fastcgi_finish_request if possible. Reasons for not calling
 	 * fastcgi_finish_request include the fastcgi extension not being loaded
-	 * and the base buffer level being different from 0.
+	 * and the capture buffer level being different from 0.
 	 *
 	 * @see fastcgi_finish_request
 	 * @return bool true if fastcgi_finish_request was called and successful.
@@ -1184,6 +1234,7 @@ abstract class MediaWikiEntryPoint {
 
 	/**
 	 * Disables all output to the client.
+	 * After this, calling any output methods on this object will fail.
 	 */
 	protected function enterPostSendMode() {
 		$this->postSendMode = true;

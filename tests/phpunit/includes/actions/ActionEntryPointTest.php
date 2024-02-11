@@ -72,7 +72,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 			$environment,
 			$this->getServiceContainer()
 		);
-		$entryPoint->establishOutputBufferLevel();
+		$entryPoint->enableOutputCapture();
 
 		return $entryPoint;
 	}
@@ -405,7 +405,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$entryPoint->run();
 
 		$expected = '<title>(pagetitle: ' . $page->getTitle()->getPrefixedText();
-		Assert::assertStringContainsString( $expected, $entryPoint->captureOutput() );
+		Assert::assertStringContainsString( $expected, $entryPoint->getCapturedOutput() );
 	}
 
 }

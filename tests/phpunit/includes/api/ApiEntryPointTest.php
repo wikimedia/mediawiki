@@ -26,10 +26,10 @@ class ApiEntryPointTest extends ApiTestCase {
 			$this->getServiceContainer()
 		);
 
-		$entryPoint->establishOutputBufferLevel();
+		$entryPoint->enableOutputCapture();
 		$entryPoint->run();
 
-		$output = $entryPoint->captureOutput();
+		$output = $entryPoint->getCapturedOutput();
 		$this->assertStringContainsString( '<!DOCTYPE html>', $output );
 		$this->assertStringContainsString( '<title>(pagetitle: (api-help-title))</title>', $output );
 
