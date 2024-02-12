@@ -1,12 +1,10 @@
-/*
+/**
  * Methods for transforming message syntax.
+ *
+ * @namespace mw.language
  */
 ( function () {
-
-	/**
-	 * @class mw.language
-	 */
-	Object.assign( mw.language, {
+	Object.assign( mw.language, /** @lends mw.language */{
 
 		/**
 		 * Plural form transformations, needed for some languages.
