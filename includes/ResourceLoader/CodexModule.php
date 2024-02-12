@@ -91,20 +91,21 @@ class CodexModule extends FileModule {
 			$this->isScriptOnly = $options[ 'codexScriptOnly' ];
 		}
 
+		// Normalize $options[ 'dependencies' ] to always make it an array. It could be unset, or
+		// it could be a string.
+		$options[ 'dependencies' ] = (array)( $options[ 'dependencies' ] ?? [] );
+
 		// Unlike when the entire @wikimedia/codex module is depended on, when the codexComponents
 		// option is used, Vue is not automatically included, though it is required. Add it and
 		// other dependencies here.
 		if ( !$this->isStyleOnly && count( $this->codexComponents ) > 0 ) {
 			$options[ 'dependencies' ] = array_unique( array_merge(
-				$options[ 'dependencies' ] ?? [],
+				$options[ 'dependencies' ],
 				self::CODEX_MODULE_DEPENDENCIES
 			) );
 		}
 
-		if (
-			array_key_exists( 'dependencies', $options ) &&
-			in_array( '@wikimedia/codex', $options[ 'dependencies' ] )
-		) {
+		if ( in_array( '@wikimedia/codex', $options[ 'dependencies' ] ) ) {
 			throw new InvalidArgumentException(
 				'ResourceLoader modules using the CodexModule class cannot ' .
 				"list the '@wikimedia/codex' module as a dependency. " .
