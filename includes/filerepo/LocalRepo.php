@@ -522,8 +522,13 @@ class LocalRepo extends FileRepo {
 	 * @return Closure
 	 */
 	protected function getDBFactory() {
+		// TODO: DB_REPLICA/DB_PRIMARY shouldn't be passed around
 		return static function ( $index ) {
-			return wfGetDB( $index );
+			if ( $index === DB_PRIMARY ) {
+				return MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+			} else {
+				return MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+			}
 		};
 	}
 

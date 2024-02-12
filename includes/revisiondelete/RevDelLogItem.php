@@ -22,6 +22,7 @@
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Item class for a logging table row
@@ -30,19 +31,23 @@ class RevDelLogItem extends RevDelItem {
 
 	/** @var CommentStore */
 	private $commentStore;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param RevisionListBase $list
 	 * @param stdClass $row DB result row
 	 * @param CommentStore $commentStore
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		RevisionListBase $list,
 		$row,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( $list, $row );
 		$this->commentStore = $commentStore;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function getIdField() {
@@ -80,7 +85,7 @@ class RevDelLogItem extends RevDelItem {
 	}
 
 	public function setBits( $bits ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$dbw->newUpdateQueryBuilder()
 			->update( 'logging' )

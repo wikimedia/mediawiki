@@ -1284,7 +1284,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// Get a new user_touched that is higher than the old one
 		$newTouched = $this->newTouchedTimestamp();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_touched' => $dbw->timestamp( $newTouched ) ] )
@@ -1717,14 +1717,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return;
 		}
 
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $this->getCacheKey( $cache );
 
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 ); // low tombstone/"hold-off" TTL
 		} else {
-			$lb->getConnectionRef( DB_PRIMARY )->onTransactionPreCommitOrIdle(
+			$dbProvider->getPrimaryDatabase()->onTransactionPreCommitOrIdle(
 				static function () use ( $cache, $key ) {
 					$cache->delete( $key );
 				},

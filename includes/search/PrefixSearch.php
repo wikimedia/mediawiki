@@ -273,7 +273,7 @@ abstract class PrefixSearch {
 		}
 
 		$services = MediaWikiServices::getInstance();
-		$dbr = $services->getDBLoadBalancer()->getMaintenanceConnectionRef( DB_REPLICA );
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
 		// Often there is only one prefix that applies to all requested namespaces,
 		// but sometimes there are two if some namespaces do not always capitalize.
 		$conds = [];

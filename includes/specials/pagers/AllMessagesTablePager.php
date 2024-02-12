@@ -93,7 +93,7 @@ class AllMessagesTablePager extends TablePager {
 		LocalisationCache $localisationCache,
 		FormOptions $opts
 	) {
-		// Set database before parent constructor to avoid setting it there with wfGetDB
+		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct( $context, $linkRenderer );
 		$this->localisationCache = $localisationCache;

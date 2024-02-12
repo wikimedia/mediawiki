@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 
 /**
@@ -69,7 +70,8 @@ class ActivityUpdateJob extends Job {
 	protected function updateWatchlistNotification() {
 		$casTimestamp = $this->params['notifTime'] ?? $this->params['curTime'];
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		// TODO: Inject
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		// Add a "check and set" style comparison to handle conflicts.
 		// The inequality always avoids updates when the current value
 		// is already NULL per ANSI SQL. This is desired since NULL means
