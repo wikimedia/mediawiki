@@ -961,7 +961,10 @@ return [
 		],
 	],
 	'mediawiki.storage' => [
-		'scripts' => 'resources/src/mediawiki.storage.js',
+		'packageFiles' => [
+			'resources/src/mediawiki.storage/index.js',
+			'resources/src/mediawiki.storage/SafeStorage.js',
+		],
 		'dependencies' => [
 			'mediawiki.util',
 		],
