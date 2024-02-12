@@ -9947,22 +9947,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Template for OpenSearch suggestions, defaults to API action=opensearch
-	 *
-	 * Sites with heavy load would typically have these point to a custom
-	 * PHP wrapper to avoid firing up mediawiki for every keystroke
-	 *
-	 * Placeholders: {searchTerms}
-	 *
-	 * @deprecated since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json'] instead
-	 */
-	public const OpenSearchTemplate = [
-		'default' => false,
-		'deprecated' => 'since 1.25 ' .
-			'Use $wgOpenSearchTemplates[\'application/x-suggestions+json\'] instead',
-	];
-
-	/**
 	 * Templates for OpenSearch suggestions, defaults to API action=opensearch
 	 *
 	 * Sites with heavy load would typically have these point to a custom
