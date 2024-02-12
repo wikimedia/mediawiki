@@ -84,9 +84,15 @@ describe( 'User', () => {
 		await EditPage.openCreateAccountPageAsTempUser();
 
 		await CreateAccountPage.submitForm( username, password );
+		await browser.waitUntil(
+			async () => ( await LoginPage.getActualUsername() ) === username,
+			{
+				timeoutMsg: 'expected user is not logged in'
+			}
+		);
 
 		const actualUsername = await LoginPage.getActualUsername();
-		expect( actualUsername ).toBe( username );
+		await expect( actualUsername ).toBe( username );
 		await expect( CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
 	} );
 

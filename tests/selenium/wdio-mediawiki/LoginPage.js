@@ -49,7 +49,7 @@ class LoginPage extends Page {
 	}
 
 	async loginAdmin() {
-		await this.login( browser.config.mwUser, browser.config.mwPwd );
+		await this.login( browser.options.capabilities[ 'mw:user' ], browser.options.capabilities[ 'mw:pwd' ] );
 	}
 }
 

@@ -26,7 +26,7 @@ function testTitle( title ) {
  * @return {string} Full path of screenshot/video file
  */
 function filePath( title, extension ) {
-	return `${ browser.config.screenshotPath }/${ testTitle( title ) }-${ makeFilenameDate() }.${ extension }`;
+	return `${ browser.options.capabilities[ 'mw:screenshotPath' ] }/${ testTitle( title ) }-${ makeFilenameDate() }.${ extension }`;
 }
 
 /**
@@ -41,8 +41,7 @@ async function saveScreenshot( title ) {
 	const path = filePath( title, 'png' );
 
 	// eslint-disable-next-line security/detect-non-literal-fs-filename
-	await mkdir( browser.config.screenshotPath, { recursive: true } );
-
+	await mkdir( browser.options.capabilities[ 'mw:screenshotPath' ], { recursive: true } );
 	// Create and save screenshot
 	await browser.saveScreenshot( path );
 	return path;

@@ -9,12 +9,9 @@ exports.config = { ...config,
 	//
 	// Example:
 	// logLevel: 'info',
-
-	maxInstances: 4,
-
 	specs: [
-		'tests/selenium/docs/**/specs/*.js',
-		'tests/selenium/specs/**/*.js',
-		'tests/selenium/wdio-mediawiki/specs/*.js'
+		'docs/**/specs/*.js',
+		'specs/**/*.js',
+		'wdio-mediawiki/specs/*.js'
 	]
 };
