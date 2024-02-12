@@ -1929,3 +1929,51 @@ Out-of-order TOC heading levels
 <h5 id="5" data-parsoid="{}">5</h5>
 <h2 id="2_2" data-parsoid="{}">2</h2>
 !! end
+
+# Note that HTML (but not wikitext) allows the trailing semicolon to
+# be omitted from an entity, so we need to escape the ampersand in
+# situations where HTML would interpret a "semicolonless" entity.
+!! test
+TOC with HTML entities which are not wikitext entities (T355386)
+!! config
+wgFragmentMode=[ "html5" ]
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+__TOC__
+== F&GT ==
+Test
+!! metadata
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:8 anchor/linkAnchor:F&GT line:F&amp;GT
+!! end
+
+# Note that the metadata section below contains non-breaking spaces around
+# the french quotes, which also show up in the link anchor
+!! test
+TOC with french spacing (T324763)
+!! config
+wgFragmentMode=[ "html5" ]
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+__TOC__
+== Renommer la page « Informatique durable » en « Numérique responsable » ? ==
+Oui.
+!! metadata/php
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:8 anchor/linkAnchor:Renommer_la_page_«_Informatique_durable_»_en_«_Numérique_responsable_»_? line:Renommer la page « Informatique durable » en « Numérique responsable » ?
+!! metadata/parsoid
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:8 anchor/linkAnchor:Renommer_la_page_«_Informatique_durable_»_en_«_Numérique_responsable_»_? line:Renommer la page «<span> </span>Informatique durable<span> </span>» en «<span> </span>Numérique responsable<span> </span>»<span> </span>?
+!! end
