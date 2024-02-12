@@ -2,46 +2,33 @@
  * Add portlet link to toggle all collapsibles created by
  * the jquery.makeCollapsible module.
  */
-// @param {jQuery} $collapsible an element that has been made collapsible
-const addCollapsibleAll = function ( $collapsible ) {
+let toggleAll;
 
-	// get toolbox and page content
-	const toolboxId = 'p-tb',
-		toolbox = document.getElementById( toolboxId );
-
-	// return early if there isn't a toolbox
-	if ( !toolbox ) {
+mw.hook( 'wikipage.content' ).add( function () {
+	// return early if the link was already added
+	if ( toggleAll ) {
 		return;
 	}
 	// return early if there are no collapsibles within the parsed page content
-	if ( $collapsible.closest( '#mw-content-text .mw-parser-output' ).length === 0 ) {
-		return;
-	}
-
-	const portletId = 't-collapsible-toggle-all';
-
-	// return early if the link was already added
-	let portletLink = document.getElementById( portletId );
-	if ( portletLink ) {
+	if ( !document.querySelector( '#mw-content-text .mw-parser-output .mw-collapsible' ) ) {
 		return;
 	}
 
 	// create portlet link for expand/collapse all
-	portletLink = mw.util.addPortletLink(
-		toolboxId,
+	const portletLink = mw.util.addPortletLink(
+		'p-tb',
 		'#',
 		mw.msg( 'collapsible-expand-all-text' ),
-		portletId,
+		't-collapsible-toggle-all',
 		mw.msg( 'collapsible-expand-all-tooltip' )
 	);
-
-	// return early if no link was added
+	// return early if no link was added (e.g. no toolbox)
 	if ( !portletLink ) {
 		return;
 	}
 
 	// set up the toggle link
-	const toggleAll = portletLink.querySelector( 'a' );
+	toggleAll = portletLink.querySelector( 'a' );
 	toggleAll.setAttribute( 'role', 'button' );
 
 	// initially treat as collapsed
@@ -56,9 +43,9 @@ const addCollapsibleAll = function ( $collapsible ) {
 		if ( !allExpanded ) {
 			const collapsed = document.querySelectorAll( '#mw-content-text .mw-parser-output .mw-made-collapsible.mw-collapsed' );
 			Array.prototype.forEach.call( collapsed, function ( collapsible ) {
-				$( collapsible ).data( 'mwCollapsible' ).expand();
+				$( collapsible ).data( 'mw-collapsible' ).expand();
 			} );
-			toggleAll.innerText = mw.msg( 'collapsible-collapse-all-text' );
+			toggleAll.textContent = mw.msg( 'collapsible-collapse-all-text' );
 			toggleAll.title = mw.msg( 'collapsible-collapse-all-tooltip' );
 			toggleAll.setAttribute( 'aria-expanded', 'true' );
 			allExpanded = true;
@@ -66,17 +53,12 @@ const addCollapsibleAll = function ( $collapsible ) {
 		} else {
 			const expanded = document.querySelectorAll( '#mw-content-text .mw-parser-output .mw-made-collapsible:not( .mw-collapsed )' );
 			Array.prototype.forEach.call( expanded, function ( collapsible ) {
-				$( collapsible ).data( 'mwCollapsible' ).collapse();
+				$( collapsible ).data( 'mw-collapsible' ).collapse();
 			} );
-			toggleAll.innerText = mw.msg( 'collapsible-expand-all-text' );
+			toggleAll.textContent = mw.msg( 'collapsible-expand-all-text' );
 			toggleAll.title = mw.msg( 'collapsible-expand-all-tooltip' );
 			toggleAll.setAttribute( 'aria-expanded', 'false' );
 			allExpanded = false;
 		}
 	} );
-	// only run once
-	mw.hook( 'wikipage.collapsibleContent' ).remove( addCollapsibleAll );
-};
-
-// add listener to collapsible content
-mw.hook( 'wikipage.collapsibleContent' ).add( addCollapsibleAll );
+} );
