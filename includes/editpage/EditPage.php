@@ -2950,9 +2950,6 @@ class EditPage implements IEditObject {
 
 		$out = $this->context->getOutput();
 
-		// Add toolbox portlet to toggle all collapsibles if there are any
-		$out->addModules( 'mediawiki.toggleAllCollapsibles' );
-
 		// FlaggedRevs depends on running this hook before adding edit notices in showIntro() (T337637)
 		$this->getHookRunner()->onEditPage__showEditForm_initial( $this, $out );
 

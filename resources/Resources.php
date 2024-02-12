@@ -966,18 +966,6 @@ return [
 			'mediawiki.util',
 		],
 	],
-	'mediawiki.toggleAllCollapsibles' => [
-		'dependencies' => [
-			'mediawiki.util',
-		],
-		'scripts' => 'resources/src/mediawiki.toggleAllCollapsibles.js',
-		'messages' => [
-			'collapsible-collapse-all-text',
-			'collapsible-collapse-all-tooltip',
-			'collapsible-expand-all-text',
-			'collapsible-expand-all-tooltip',
-			],
-	],
 	'mediawiki.Title' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.Title',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.Title",
@@ -1644,6 +1632,7 @@ return [
 			'checkboxShift.js',
 			'checkboxHack.js',
 			'teleportTarget.js',
+			'toggleAllCollapsibles.js',
 			[ 'name' => 'config.json', 'callback' => static function (
 				Context $context,
 				Config $config
@@ -1665,6 +1654,10 @@ return [
 			'mediawiki.api'
 		],
 		'messages' => [
+			'collapsible-collapse-all-text',
+			'collapsible-collapse-all-tooltip',
+			'collapsible-expand-all-text',
+			'collapsible-expand-all-tooltip',
 			'logging-out-notify'
 		],
 		'skinStyles' => [
