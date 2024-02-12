@@ -352,7 +352,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function testStatsdDataFactoryPersistsWithComponent() {
-		$statsFactory = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$statsFactory = StatsFactory::newNull();
 
 		$statsdMock = $this->createMock( IBufferingStatsdDataFactory::class );
 		$statsdMock->expects( $this->exactly( 2 ) )
@@ -367,26 +367,27 @@ class MetricTest extends TestCase {
 		$componentStatsFactory->getTiming( 'testMetricTiming' )
 			->copyToStatsdAt( [ 'test.timing.1', 'test.timing.2' ] )
 			->observe( 1 );
-
-		$componentStatsFactory = TestingAccessWrapper::newFromObject( $componentStatsFactory );
-		$this->assertNotNull( $componentStatsFactory->statsdDataFactory );
-		$this->assertInstanceOf(
-			IBufferingStatsdDataFactory::class, $componentStatsFactory->statsdDataFactory
-		);
 	}
 
-	public function testWithComponentNoStatsdDFactoryInjected() {
-		$statsFactory = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+	public function testWithComponentStatsdFactoryChanges() {
+		$statsFactory = StatsFactory::newNull();
 
-		$componentStatsFactory = $statsFactory->withComponent( 'TestComponent' );
+		// statsdDataFactory should be null if withComponent called prior to calling withStatsdDataFactory()
+		$noStatsd = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
+		$this->assertNull( $noStatsd->statsdDataFactory );
 
-		$componentStatsFactory->getTiming( 'testMetricTiming' )
-			->copyToStatsdAt( [ 'test.timing.1', 'test.timing.2' ] )
-			->observe( 1 );
+		// call withStatsdDataFactory
+		$statsFactory = $statsFactory->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
 
-		$componentStatsFactory = TestingAccessWrapper::newFromObject( $componentStatsFactory );
+		// statsdDataFactory should be an instance of IBufferingStatsdDataFactory
+		$yesStatsd = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
+		$this->assertInstanceOf( IBufferingStatsdDataFactory::class, $yesStatsd->statsdDataFactory );
 
-		// We should have a NULL value as statsdDataFactory.
-		$this->assertNull( $componentStatsFactory->statsdDataFactory );
+		// disable statsdDataFactory
+		$statsFactory = $statsFactory->withStatsdDataFactory( null );
+
+		// statsdDataFactory should be null again
+		$noStatsdAgain = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
+		$this->assertNull( $noStatsdAgain->statsdDataFactory );
 	}
 }
