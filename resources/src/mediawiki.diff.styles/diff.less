@@ -363,6 +363,14 @@
 	display: none;
 }
 
+// The patrol link was traditionally hidden on the desktop site when the preview was not displayed,
+// On mobile the patrol link was shown unconditionally, and the preview was not shown.
+// For this reason we hide the link via CSS to allow skins to make this decision.
+// More context: T357213
+.patrollink-diffonly {
+	display: none;
+}
+
 // Hide the diff legend at lower resolutions.
 @media only screen and ( max-width: @width-breakpoint-tablet ) {
 	.mw-diff-inline-legend {
