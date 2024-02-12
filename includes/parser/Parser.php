@@ -4285,6 +4285,10 @@ class Parser {
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
 
+			// Run Tidy to convert wikitext entities to HTML entities (T355386),
+			// conveniently also giving us a way to handle French spaces (T324763)
+			$safeHeadline = $this->tidy->tidy( $safeHeadline, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+
 			// Parse the heading contents as HTML. This makes it easier to strip out some HTML tags,
 			// and ensures that we generate balanced HTML at the end (T218330).
 			$headlineDom = DOMUtils::parseHTMLToFragment( $domDocument, $safeHeadline );
