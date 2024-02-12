@@ -941,6 +941,32 @@ flags=vary-revision-sha1
 !! end
 
 !! test
+Parser functions with interwiki titles (T355706)
+!! wikitext
+* {{PAGEID:Parser test}} - {{PAGEID:wikipedia:Parser test}}
+* {{PAGESIZE:Parser test}} - {{PAGESIZE:wikipedia:Parser test}}
+* {{REVISIONID:Parser test}} - {{REVISIONID:wikipedia:Parser test}}
+* {{REVISIONDAY:Parser test}} - {{REVISIONDAY:wikipedia:Parser test}}
+* {{REVISIONDAY2:Parser test}} - {{REVISIONDAY2:wikipedia:Parser test}}
+* {{REVISIONMONTH:Parser test}} - {{REVISIONMONTH:wikipedia:Parser test}}
+* {{REVISIONMONTH1:Parser test}} - {{REVISIONMONTH1:wikipedia:Parser test}}
+* {{REVISIONYEAR:Parser test}} - {{REVISIONYEAR:wikipedia:Parser test}}
+* {{REVISIONTIMESTAMP:Parser test}} - {{REVISIONTIMESTAMP:wikipedia:Parser test}}
+* {{REVISIONUSER:Parser test}} - {{REVISIONUSER:wikipedia:Parser test}}
+!! html/php
+<ul><li>0 - 0</li>
+<li>0 - 0</li>
+<li>-</li>
+<li>1 -</li>
+<li>01 -</li>
+<li>01 -</li>
+<li>1 -</li>
+<li>1970 -</li>
+<li>19700101000203 -</li>
+<li>-</li></ul>
+!! end
+
+!! test
 Magic Word: {{SCRIPTPATH}}
 !! options
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
