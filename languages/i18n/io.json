@@ -1472,7 +1472,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nova uzeri",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Enrejistrita uzeri qui havas min kam 10 redakturi o 4 dii di aktiveso.",
 	"rcfilters-filter-user-experience-level-learner-label": "Lernanti",
-	"rcfilters-filter-user-experience-level-learner-description": "Redakteri enrejistrita kun konoco inter \"Nova uzeri\" ed \"experta uzeri.\"",
+	"rcfilters-filter-user-experience-level-learner-description": "Redakteri enrejistrita, qui havas konoci klasifikebla inter \"Nova uzeri\" ed \"experta uzeri.\"",
 	"rcfilters-filter-user-experience-level-experienced-label": "Experta uzeri",
 	"rcfilters-filter-user-experience-level-experienced-description": "Enrejistrita redakteri kun plu kam 500 redakturi, e 30 dii di agemeso.",
 	"rcfilters-filtergroup-automated": "Automatala kontributaji",
