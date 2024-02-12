@@ -225,7 +225,7 @@ return [
 			'SVGConverter' => 'ImageMagick',
 			'SVGConverterPath' => '',
 			'SVGMaxSize' => 5120,
-			'SVGMetadataCutoff' => 262144,
+			'SVGMetadataCutoff' => 5242880,
 			'SVGNativeRendering' => false,
 			'SVGNativeRenderingSizeLimit' => 51200,
 			'MediaInTargetLanguage' => true,

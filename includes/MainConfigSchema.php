@@ -1906,10 +1906,10 @@ class MainConfigSchema {
 	/**
 	 * Don't read SVG metadata beyond this point.
 	 *
-	 * Default is 256 KiB
+	 * Default is 5 MiB
 	 */
 	public const SVGMetadataCutoff = [
-		'default' => 1024 * 256,
+		'default' => 1024 * 1024 * 5,
 	];
 
 	/**
