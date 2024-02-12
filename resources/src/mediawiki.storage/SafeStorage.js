@@ -2,15 +2,18 @@
 var EXPIRY_PREFIX = '_EXPIRY_';
 
 /**
+ * @classdesc
  * A wrapper for the HTML5 Storage interface (`localStorage` or `sessionStorage`)
  * that is safe to call in all browsers.
  *
  * The constructor is not publicly accessible. An instance can be accessed from
- * the {@link mw.storage} or {@link module:mediawiki.mediawiki.storage}
+ * {@link mw.storage} or {@link module:mediawiki.storage}.
  *
- * @class SafeStorage
+ * @class
  * @param {Object|undefined} store The Storage instance to wrap around
  * @hideconstructor
+ * @memberof module:mediawiki.storage
+ * @inner
  */
 function SafeStorage( store ) {
 	this.store = store;
@@ -27,7 +30,6 @@ function SafeStorage( store ) {
 /**
  * Retrieve value from device storage.
  *
- * @memberof SafeStorage
  * @param {string} key Key of item to retrieve
  * @return {string|null|boolean} String value, null if no value exists, or false
  *  if storage is not available.
@@ -45,7 +47,6 @@ SafeStorage.prototype.get = function ( key ) {
 /**
  * Set a value in device storage.
  *
- * @memberof SafeStorage
  * @param {string} key Key name to store under
  * @param {string} value Value to be stored
  * @param {number} [expiry] Number of seconds after which this item can be deleted
@@ -72,7 +73,6 @@ SafeStorage.prototype.set = function ( key, value, expiry ) {
 /**
  * Remove a value from device storage.
  *
- * @memberof SafeStorage
  * @param {string} key Key of item to remove
  * @return {boolean} Whether the key was removed
  */
@@ -88,7 +88,6 @@ SafeStorage.prototype.remove = function ( key ) {
 /**
  * Retrieve JSON object from device storage.
  *
- * @memberof SafeStorage
  * @param {string} key Key of item to retrieve
  * @return {Object|null|boolean} Object, null if no value exists or value
  *  is not JSON-parseable, or false if storage is not available.
@@ -110,7 +109,6 @@ SafeStorage.prototype.getObject = function ( key ) {
 /**
  * Set an object value in device storage by JSON encoding.
  *
- * @memberof SafeStorage
  * @param {string} key Key name to store under
  * @param {Object} value Object value to be stored
  * @param {number} [expiry] Number of seconds after which this item can be deleted
@@ -128,7 +126,6 @@ SafeStorage.prototype.setObject = function ( key, value, expiry ) {
 /**
  * Set the expiry time for an item in the store.
  *
- * @memberof SafeStorage
  * @param {string} key Key name
  * @param {number} [expiry] Number of seconds after which this item can be deleted,
  *  omit to clear the expiry (either making the item never expire, or to clean up
