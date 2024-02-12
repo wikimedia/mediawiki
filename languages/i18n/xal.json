@@ -1156,7 +1156,7 @@
 	"badsiglength": "Тана һарин үзг дегд ут бәәнә.\nЭннь $1 {{PLURAL:$1|темдгт|}}-әс ут биш болх йоста.",
 	"badsiglinebreak": "Тана һарин үзг нег мөр викитекстәс бүрдх йоста.",
 	"linterror-bogus-image-options": "Файлын хуурмг чинр",
-	"linterror-big-tables": "Көдлгәнтә төкәрмҗин делгциг му болһдг ик көснгт",
+	"linterror-big-tables": "Көдллһтә төкәрмҗин делгциг му болһдг ик көснгт",
 	"linterror-deletable-table-tag": "Уга болһх йоста көснгтин тегмүд",
 	"linterror-html5-misnesting": "Буру оруллт (көдлҗәхш)",
 	"linterror-misc-tidy-replacement-issues": "Төрл болһна темдглһәнә алда",

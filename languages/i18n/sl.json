@@ -2607,7 +2607,7 @@
 	"contribute": "Prispevaj",
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
-	"contributions-edit-count": "{{GENDER:$1|Uporabnik|Uporabnica}} z $2 {{PLURAL:$2|urejanjem|urejanjema|urejanji}}.",
+	"contributions-edit-count": "{{GENDER:$1|Uporabnik|Uporabnica}} z/s $2 {{PLURAL:$2|urejanjem|urejanjema|urejanji}}.",
 	"contributions-account-creation-date": "Račun je bil ustvarjen dne $1.",
 	"contributions-userdoesnotexist": "Uporabniški račun »$1« ni registriran.",
 	"negative-namespace-not-supported": "Imenski prostori z negativnimi vrednostmi niso podprti.",

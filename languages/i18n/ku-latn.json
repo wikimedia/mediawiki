@@ -709,6 +709,7 @@
 	"showhideselectedversions": "Revîzyonên bijartî nîşan bide/veşêre",
 	"editundo": "betal bike",
 	"diff-empty": "(Cudahî nîne)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|guhartin}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Revîzyoneke navberî yê|$1 revîzyonên navberî yên}} ji aliyê eynî {{GENDER:$3|bikarhênerî|bikarhênerê}} ve nayê nîşandan)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Revîzyoneke navberî yê|$1 revîzyonên navberî yên}} ji {{PLURAL:$2|bikarhênerekî din|$2 bikarhênerên din}} nayên nîşandan)",
 	"searchresults": "Encamên lêgerînê",
