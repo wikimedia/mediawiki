@@ -49,26 +49,38 @@ interface ILBFactory extends IConnectionProvider {
 	/** Do not save "session consistency" DB replication positions */
 	public const SHUTDOWN_NO_CHRONPROT = 1;
 
-	/** @var string Default main LB cluster name (do not change this) */
+	/** @var string Default main cluster name (do not change this) */
 	public const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
 
 	/**
 	 * Sub-classes may extend the required keys in $conf with additional parameters
 	 *
 	 * @param array $conf Array with keys:
-	 *  - localDomain: A DatabaseDomain or database domain ID string.
-	 *  - readOnlyReason: Reason the primary server is read-only if so [optional]
+	 *  - localDomain: A DatabaseDomain or database domain ID string
+	 *  - virtualDomains: List of virtual database domain ID strings [optional].
+	 *     These can be passed to {@see ILBFactory::getPrimaryDatabase()} and
+	 *     {@see ILBFactory::getReplicaDatabase()}, with the actual cluster and database
+	 *     domain being automatically resolved via "virtualDomainsMapping". Virtual database
+	 *     domains not defined there will resolve to the local database domain.
+	 *  - virtualDomainsMapping: Map of (virtual database domain ID => config map) [optional].
+	 *     Each config map has a "db" key and an optional "cluster" key. The "db" key specifies
+	 *     the actual database domain configured for use, with false indicating that the local
+	 *     database domain is configured for use. The "cluster" key, if provided, specifies the
+	 *     name of the external cluster configured for use, otherwise, the main cluster for the
+	 *     actual database domain will be used.
+	 *  - chronologyProtector: ChronologyProtector instance [optional]
+	 *  - readOnlyReason: Reason the primary server is read-only (false if not)
 	 *  - srvCache: BagOStuff instance for server cache [optional]
-	 *  - cpStash: BagOStuff instance for ChronologyProtector store [optional]
+	 *  - cpStash: BagOStuff instance for ChronologyProtector store [optional].
 	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).
 	 *  - wanCache: WANObjectCache instance [optional]
-	 *  - cliMode: Whether the execution context is a CLI script. [optional]
+	 *  - cliMode: Whether the execution context is a CLI script [optional]
 	 *  - profiler: Callback that takes a profile section name and returns a ScopedCallback
 	 *     that ends the profile section in its destructor [optional]
-	 *  - trxProfiler: TransactionProfiler instance. [optional]
-	 *  - logger: PSR-3 logger instance. [optional]
-	 *  - errorLogger: Callback that takes an Exception and logs it. [optional]
-	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
+	 *  - trxProfiler: TransactionProfiler instance [optional]
+	 *  - logger: PSR-3 logger instance [optional]
+	 *  - errorLogger: Callback that takes an Exception and logs it [optional]
+	 *  - deprecationLogger: Callback to log a deprecation warning [optional]
 	 *  - secret: Secret string to use for HMAC hashing [optional]
 	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
 	 */

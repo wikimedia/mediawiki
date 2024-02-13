@@ -48,7 +48,7 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *      - is static: whether the dataset is static *and* this server has a copy [optional]
 	 *  - localDomain: A DatabaseDomain or domain ID string
 	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field [optional]
-	 *  - readOnlyReason : Reason the primary server is read-only if so [optional]
+	 *  - readOnlyReason : Reason the primary server is read-only (false if not) [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - databaseFactory: DatabaseFactory object [optional]
