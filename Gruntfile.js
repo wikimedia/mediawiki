@@ -107,6 +107,10 @@ module.exports = function ( grunt ) {
 		},
 		karma: {
 			options: {
+				plugins: [
+					'@wikimedia/karma-firefox-launcher',
+					'karma-*'
+				],
 				customLaunchers: {
 					ChromeCustom: {
 						base: 'ChromeHeadless',
