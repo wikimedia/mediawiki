@@ -29,19 +29,20 @@
 	}
 
 	/**
+	 * @typedef {Object} mw.language~Months
+	 * @property {Array} names Month names (in nominative case in languages which have the
+	 *   distinction), zero-indexed
+	 * @property {Array} genitive Month names in genitive case, zero-indexed
+	 * @property {Array} abbrev Three-letter-long abbreviated month names, zero-indexed
+	 * @property {Object} key Object with three keys like the above, containing zero-indexed arrays
+	 *   of message keys for appropriate messages which can be passed to mw.msg
+	 */
+
+	/**
 	 * Information about month names in current UI language.
 	 *
-	 * Object keys:
-	 *
-	 * - `names`: array of month names (in nominative case in languages which have the distinction),
-	 *   zero-indexed
-	 * - `genitive`: array of month names in genitive case, zero-indexed
-	 * - `abbrev`: array of three-letter-long abbreviated month names, zero-indexed
-	 * - `keys`: object with three keys like the above, containing zero-indexed arrays of message keys
-	 *   for appropriate messages which can be passed to mw.msg.
-	 *
-	 * @property {Object}
-	 * @member mw.language
+	 * @property {Months}
+	 * @namespace mw.language.months
 	 */
 	mw.language.months = {
 		keys: {

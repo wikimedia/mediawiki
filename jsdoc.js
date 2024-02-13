@@ -30,8 +30,6 @@ module.exports = {
 			'resources/src/mediawiki.Upload.Dialog.js',
 			'resources/src/mediawiki.htmlform.ooui',
 			'resources/src/mediawiki.jqueryMsg',
-			'resources/src/mediawiki.language',
-			'resources/src/mediawiki.language.months',
 			'resources/src/mediawiki.language.specialCharacters',
 			'resources/src/mediawiki.messagePoster',
 			'resources/src/mediawiki.widgets.datetime',
