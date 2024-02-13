@@ -103,8 +103,7 @@ class Linker {
 	 *     'broken': Page is known not to exist, so don't check if it does.
 	 *     'noclasses': Don't add any classes automatically (includes "new",
 	 *       "stub", "mw-redirect", "extiw").  Only use the class attribute
-	 *       provided, if any, so you get a simple blue link with no funny i-
-	 *       cons.
+	 *       provided, if any, so you get a simple blue link with no icons.
 	 *     'forcearticlepath': Use the article path always, even with a querystring.
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 *     'http': Force a full URL with http:// as the scheme.
