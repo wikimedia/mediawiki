@@ -1778,27 +1778,32 @@ class Linker {
 	/**
 	 * Add another level to the Table of Contents
 	 *
+	 * @deprecated since 1.42
 	 * @since 1.16.3
 	 * @return string
 	 */
 	public static function tocIndent() {
+		wfDeprecated( __METHOD__, '1.42' );
 		return "\n<ul>\n";
 	}
 
 	/**
 	 * Finish one or more sublevels on the Table of Contents
 	 *
+	 * @deprecated since 1.42
 	 * @since 1.16.3
 	 * @param int $level
 	 * @return string
 	 */
 	public static function tocUnindent( $level ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return "</li>\n" . str_repeat( "</ul>\n</li>\n", $level > 0 ? $level : 0 );
 	}
 
 	/**
 	 * parameter level defines if we are on an indentation level
 	 *
+	 * @deprecated since 1.42
 	 * @since 1.16.3
 	 * @param string $linkAnchor Identifier
 	 * @param string $tocline Properly escaped HTML
@@ -1808,6 +1813,7 @@ class Linker {
 	 * @return string
 	 */
 	public static function tocLine( $linkAnchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$classes = "toclevel-$level";
 
 		// Parser.php used to suppress tocLine by setting $sectionindex to false.
@@ -1832,22 +1838,26 @@ class Linker {
 	 * End a Table Of Contents line.
 	 * tocUnindent() will be used instead if we're ending a line below
 	 * the new level.
+	 * @deprecated since 1.42
 	 * @since 1.16.3
 	 * @return string
 	 */
 	public static function tocLineEnd() {
+		wfDeprecated( __METHOD__, '1.42' );
 		return "</li>\n";
 	}
 
 	/**
 	 * Wraps the TOC in a div with ARIA navigation role and provides the hide/collapse JavaScript.
 	 *
+	 * @deprecated since 1.42
 	 * @since 1.16.3
 	 * @param string $toc Html of the Table Of Contents
 	 * @param Language|null $lang Language for the toc title, defaults to user language
 	 * @return string Full html of the TOC
 	 */
 	public static function tocList( $toc, Language $lang = null ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$lang ??= RequestContext::getMain()->getLanguage();
 
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
@@ -1880,6 +1890,7 @@ class Linker {
 	 * @internal For use by ParserOutput and API modules
 	 * Generate a table of contents from a section tree.
 	 *
+	 * @deprecated since 1.42
 	 * @since 1.16.3. $lang added in 1.17. Parameters changed in 1.40.
 	 * @param ?TOCData $tocData Return value of ParserOutput::getSections()
 	 * @param Language|null $lang Language for the toc title, defaults to user language

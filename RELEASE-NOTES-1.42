@@ -616,6 +616,8 @@ because of Phabricator reports.
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.
 * Linker::makeHeadline() has been deprecated.
+* Linker::generateTOC(), Linker::tocIndent(), Linker::tocUnindent(),
+  Linker::tocLine(), Linker::tocLineEnd(), Linker::tocList() are deprecated.
 * Title::getBrokenLinksFrom() has been deprecated.
 * ReplicatedBagOStuff has been deprecated since 1.42.
 * The third argument to ContentRenderer::getParserOutput() now accepts a
