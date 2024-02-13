@@ -1,27 +1,13 @@
 ( function () {
 	/**
-	 * Factory for MessagePoster objects. This provides a pluggable to way to script the action
-	 * of adding a message to someone's talk page.
+	 * @classdesc Factory for MessagePoster objects. This provides a pluggable to way to script the
+	 * action of adding a message to someone's talk page.
 	 *
-	 * Usage example:
+	 * The constructor is not publicly accessible; use [mw.messagePoster.factory]{@link mw.messagePoster} instead.
 	 *
-	 *   function MyExamplePoster() {}
-	 *   OO.inheritClass( MyExamplePoster, mw.messagePoster.MessagePoster );
-	 *
-	 *   mw.messagePoster.factory.register( 'mycontentmodel', MyExamplePoster );
-	 *
-	 * The JavaScript files(s) that register message posters for additional content
-	 * models must be registered with MediaWiki via the `MessagePosterModule`
-	 * extension attribute, like follows:
-	 *
-	 *    "MessagePosterModule": {
-	 *         "localBasePath": "", // (required)
-	 *         "scripts": [], // relative file path(s) (required)
-	 *         "dependencies": [], // module name(s) (optional)
-	 *    }
-	 *
-	 * @class mw.messagePoster.factory
+	 * @class MessagePosterFactory
 	 * @singleton
+	 * @hideconstructor
 	 */
 	function MessagePosterFactory() {
 		this.contentModelToClass = Object.create( null );
@@ -35,6 +21,28 @@
 	/**
 	 * Register a MessagePoster subclass for a given content model.
 	 *
+	 * Usage example:
+	 *
+	 * ```js
+	 *   function MyExamplePoster() {}
+	 *   OO.inheritClass( MyExamplePoster, mw.messagePoster.MessagePoster );
+	 *
+	 *   mw.messagePoster.factory.register( 'mycontentmodel', MyExamplePoster );
+	 * ```
+	 *
+	 * The JavaScript files(s) that register message posters for additional content
+	 * models must be registered with MediaWiki via the `MessagePosterModule`
+	 * extension attribute, like follows:
+	 *
+	 * ```json
+	 *    "MessagePosterModule": {
+	 *         "localBasePath": "", // (required)
+	 *         "scripts": [], // relative file path(s) (required)
+	 *         "dependencies": [], // module name(s) (optional)
+	 *    }
+	 * ```
+	 *
+	 * @memberof MessagePosterFactory
 	 * @param {string} contentModel Content model of pages this MessagePoster can post to
 	 * @param {Function} constructor Constructor of a MessagePoster subclass
 	 */
@@ -50,6 +58,7 @@
 	 * Unregister a given content model.
 	 * This is exposed for testing and should not normally be used.
 	 *
+	 * @memberof MessagePosterFactory
 	 * @param {string} contentModel Content model to unregister
 	 */
 	MessagePosterFactory.prototype.unregister = function ( contentModel ) {
@@ -66,6 +75,7 @@
 	 * This does not require the message and should be called as soon as possible, so that the
 	 * API and ResourceLoader requests run in the background.
 	 *
+	 * @memberof MessagePosterFactory
 	 * @param {mw.Title} title Title that will be posted to
 	 * @param {string} [apiUrl] api.php URL if the title is on another wiki
 	 * @return {jQuery.Promise} Promise resolving to a mw.messagePoster.MessagePoster.
@@ -99,7 +109,11 @@
 		} );
 	};
 
+	/**
+	 * @namespace mw.messagePoster
+	 */
 	mw.messagePoster = {
+		/** @type {MessagePosterFactory} */
 		factory: new MessagePosterFactory()
 	};
 }() );

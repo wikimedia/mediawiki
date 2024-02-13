@@ -33,7 +33,6 @@ module.exports = {
 			'resources/src/mediawiki.language',
 			'resources/src/mediawiki.language.months',
 			'resources/src/mediawiki.language.specialCharacters',
-			'resources/src/mediawiki.messagePoster',
 			'resources/src/mediawiki.widgets.datetime',
 			'resources/src/moment',
 			'resources/src/oojs-global.js',
