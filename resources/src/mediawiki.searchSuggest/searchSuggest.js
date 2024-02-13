@@ -39,13 +39,13 @@
 	 */
 	mw.searchSuggest = {
 		/**
-		 * @typedef {Object} ResponseMetaData
+		 * @typedef {Object} mw.searchSuggest~ResponseMetaData
 		 * @property {string} type the contents of the X-OpenSearch-Type response header.
 		 * @property {string} searchId the contents of the X-Search-ID response header.
 		 * @property {string} query
 		 */
 		/**
-		 * @callback ResponseFunction
+		 * @callback mw.searchSuggest~ResponseFunction
 		 * @param {string[]} titles titles of pages that match search
 		 * @param {ResponseMetaData} meta meta data relating to search.
 		 */
