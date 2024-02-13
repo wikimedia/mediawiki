@@ -2750,20 +2750,22 @@ class ParserTestRunner {
 		// Avoid reuse of lazy-loaded Title::mArticleId after page creation
 		Title::clearCaches();
 
-		// Reset the service so that any "MediaWiki:bad image list" articles
-		// added get fetched
-		$teardown[] = static function () use ( $services ) {
+		$reset = static function () use ( $services ) {
+			// Reset the service so that any "MediaWiki:bad image list" articles
+			// added get fetched
 			$services->resetServiceForTesting( 'BadFileLookup' );
 			// Depends on BadFileLookup, also reset here in case it no longer
 			// depends on the legacy ParserFactory which reset per test.
 			$services->resetServiceForTesting( 'ParsoidDataAccess' );
 		};
+		$reset();
 
-		$this->executeSetupSnippets( $teardown );
-
-		return $this->createTeardownObject( [ function () use ( $articles ) {
+		$teardown[] = $reset;
+		$teardown[] = function () use ( $articles ) {
 			$this->cleanupArticles( $articles );
-		} ], $nextTeardown );
+		};
+
+		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}
 
 	/**
