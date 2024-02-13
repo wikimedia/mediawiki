@@ -435,7 +435,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 						$tags = $this->getTags();
 						if ( $tags && $canAddTags ) {
 							$revId = $this->getAssociatedRevId();
-							ChangeTags::addTags(
+							MediaWikiServices::getInstance()->getChangeTagsStore()->addTags(
 								$tags,
 								null,
 								$revId > 0 ? $revId : null,
@@ -450,7 +450,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 				}
 			},
 			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_PRIMARY )
+			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
 		);
 	}
 

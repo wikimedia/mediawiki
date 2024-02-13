@@ -125,7 +125,12 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public function newItem( $row ) {
-		return new RevDelLogItem( $this, $row, $this->commentStore );
+		return new RevDelLogItem(
+			$this,
+			$row,
+			$this->commentStore,
+			MediaWikiServices::getInstance()->getConnectionProvider()
+		);
 	}
 
 	public function getLogAction() {

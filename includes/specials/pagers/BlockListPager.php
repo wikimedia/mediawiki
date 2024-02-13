@@ -103,7 +103,7 @@ class BlockListPager extends TablePager {
 		SpecialPageFactory $specialPageFactory,
 		$conds
 	) {
-		// Set database before parent constructor to avoid setting it there with wfGetDB
+		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 		$this->readStage = $this->getConfig()->get( MainConfigNames::BlockTargetMigrationStage )
 			& SCHEMA_COMPAT_READ_MASK;

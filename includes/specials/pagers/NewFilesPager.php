@@ -68,7 +68,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		IConnectionProvider $dbProvider,
 		FormOptions $opts
 	) {
-		// Set database before parent constructor to avoid setting it there with wfGetDB
+		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 
 		parent::__construct( $context, $linkRenderer );

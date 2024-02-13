@@ -892,8 +892,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return bool
 	 */
 	public function isCountable( $editInfo = false ) {
-		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::ArticleCountMethod );
+		$mwServices = MediaWikiServices::getInstance();
+		$articleCountMethod = $mwServices->getMainConfig()->get( MainConfigNames::ArticleCountMethod );
 
 		// NOTE: Keep in sync with DerivedPageDataUpdater::isCountable.
 
@@ -929,7 +929,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			} else {
 				// NOTE: keep in sync with RevisionRenderer::getLinkCount
 				// NOTE: keep in sync with DerivedPageDataUpdater::isCountable
-				$hasLinks = (bool)wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+				$dbr = $mwServices->getConnectionProvider()->getReplicaDatabase();
+				$hasLinks = (bool)$dbr->newSelectQueryBuilder()
 					->select( '1' )
 					->from( 'pagelinks' )
 					->where( [ 'pl_from' => $this->getId() ] )
@@ -965,7 +966,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		// Query the redirect table
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$row = $dbr->newSelectQueryBuilder()
 			->select( [ 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
 			->from( 'redirect' )
@@ -1041,7 +1042,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
@@ -1134,7 +1135,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	public function getContributors() {
 		// @todo: This is expensive; cache this info somewhere.
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 
 		$actorMigration = ActorMigration::newMigration();
 		$actorQuery = $actorMigration->getJoin( 'rev_user' );
@@ -2095,7 +2096,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$protect = false;
 		$changed = false;
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		foreach ( $restrictionTypes as $action ) {
 			if ( !isset( $expiry[$action] ) || $expiry[$action] === $dbw->getInfinity() ) {
@@ -2364,7 +2365,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		string $reason,
 		UserIdentity $user
 	): ?RevisionRecord {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		// Prepare a null revision to be added to the history
 		$editComment = wfMessage(
@@ -2629,7 +2630,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.27
 	 */
 	public function lockAndGetLatest() {
-		return (int)wfGetDB( DB_PRIMARY )->newSelectQueryBuilder()
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+		return (int)$dbw->newSelectQueryBuilder()
 			->select( 'page_latest' )
 			->forUpdate()
 			->from( 'page' )
@@ -2885,7 +2887,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return [];
 		}
 
-		$res = wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'cl_to' ] )
 			->from( 'categorylinks' )
 			->join( 'page', null, 'page_title=cl_to' )

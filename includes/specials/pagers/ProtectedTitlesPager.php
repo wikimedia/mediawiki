@@ -71,7 +71,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$sizetype,
 		$size
 	) {
-		// Set database before parent constructor to avoid setting it there with wfGetDB
+		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 		$this->mConds = $conds;
 		$this->level = $level;

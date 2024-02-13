@@ -107,7 +107,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->maxRevId = $maxRevId;
 		$this->mergePointTimestamp = $mergePointTimestamp;
 
-		// Set database before parent constructor to avoid setting it there with wfGetDB
+		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbr;
 		parent::__construct( $context, $linkRenderer );
 		$this->linkBatchFactory = $linkBatchFactory;

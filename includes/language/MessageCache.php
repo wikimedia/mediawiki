@@ -1393,7 +1393,9 @@ class MessageCache implements LoggerAwareInterface {
 					self::WAN_TTL,
 					function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code, $fname ) {
 						// Try loading the message from the database
-						$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
+						$setOpts += Database::getCacheSetOptions(
+							MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase()
+						);
 						// Use newKnownCurrent() to avoid querying revision/user tables
 						$title = Title::makeTitle( NS_MEDIAWIKI, $dbKey );
 						// Injecting RevisionStore breaks installer since it

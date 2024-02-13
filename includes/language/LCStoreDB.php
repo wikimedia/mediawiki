@@ -55,7 +55,7 @@ class LCStoreDB implements LCStore {
 			// sure those changes are always visible.
 			$db = $this->getWriteConnection();
 		} else {
-			$db = wfGetDB( DB_REPLICA );
+			$db = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		}
 
 		$value = $db->newSelectQueryBuilder()

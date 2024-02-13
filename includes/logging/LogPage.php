@@ -393,7 +393,8 @@ class LogPage {
 		if ( !strlen( $field ) || !$values ) {
 			return false;
 		}
-		$insert = wfGetDB( DB_PRIMARY )->newInsertQueryBuilder()
+		$insert = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
+			->newInsertQueryBuilder()
 			->insertInto( 'log_search' )
 			->ignore();
 		foreach ( $values as $value ) {
