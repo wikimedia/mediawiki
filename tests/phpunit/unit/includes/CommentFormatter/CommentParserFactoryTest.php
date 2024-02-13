@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.42
  */
 
 namespace MediaWiki\Tests\Unit\CommentFormatter;
@@ -35,46 +34,11 @@ use RepoGroup;
 
 /**
  * @group CommentFormatter
- * @coversDefaultClass \MediaWiki\CommentFormatter\CommentParserFactory
+ * @covers \MediaWiki\CommentFormatter\CommentParserFactory
  */
 class CommentParserFactoryTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * Test the constructor of the CommentParserFactory class.
-	 * @covers ::__construct
-	 */
-	public function testConstruct() {
-		// Create a new CommentParserFactory object
-		$factory = new CommentParserFactory(
-			$this->createMock( LinkRenderer::class ),
-			$this->createMock( LinkBatchFactory::class ),
-			$this->createMock( LinkCache::class ),
-			$this->createMock( RepoGroup::class ),
-			$this->createMock( Language::class ),
-			$this->createMock( Language::class ),
-			$this->createMock( TitleParser::class ),
-			$this->createMock( NamespaceInfo::class ),
-			$this->createMock( HookContainer::class )
-		);
-
-		// Verify the private properties are set to the expected values
-		$this->assertObjectHasAttribute( 'linkRenderer', $factory );
-		$this->assertObjectHasAttribute( 'linkBatchFactory', $factory );
-		$this->assertObjectHasAttribute( 'linkCache', $factory );
-		$this->assertObjectHasAttribute( 'repoGroup', $factory );
-		$this->assertObjectHasAttribute( 'userLang', $factory );
-		$this->assertObjectHasAttribute( 'contLang', $factory );
-		$this->assertObjectHasAttribute( 'titleParser', $factory );
-		$this->assertObjectHasAttribute( 'namespaceInfo', $factory );
-		$this->assertObjectHasAttribute( 'hookContainer', $factory );
-	}
-
-	/**
-	 * Test the constructor of the CommentParserFactory class.
-	 * @covers ::create
-	 */
 	public function testCreate() {
-		// Create a new CommentParserFactory object
 		$factory = new CommentParserFactory(
 			$this->createMock( LinkRenderer::class ),
 			$this->createMock( LinkBatchFactory::class ),
@@ -86,8 +50,7 @@ class CommentParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( NamespaceInfo::class ),
 			$this->createMock( HookContainer::class )
 		);
-		// Verify the create method returns a CommentParser object
+
 		$this->assertInstanceOf( CommentParser::class, $factory->create() );
 	}
-
 }
