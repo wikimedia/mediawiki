@@ -185,7 +185,8 @@
 			"Tucvbif",
 			"Rich Flight22",
 			"Света Поторочина",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Butko"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -3232,7 +3233,7 @@
 	"pageinfo-watchers": "Число наблюдающих",
 	"pageinfo-visiting-watchers": "Количество участников, следящих за страницей и видевших последние правки",
 	"pageinfo-few-watchers": "Менее $1 {{PLURAL:$1|следящего|следящих}}",
-	"pageinfo-few-visiting-watchers": "Могут быть, а могут и не быть участники, следящие за страницей и видевших последние правки",
+	"pageinfo-few-visiting-watchers": "Наблюдающих за страницей, видевших последние правки, мало или нет совсем",
 	"pageinfo-redirects-name": "Количество перенаправлений на эту страницу",
 	"pageinfo-redirects-value": "$1",
 	"pageinfo-subpages-name": "Подстраницы данной страницы",

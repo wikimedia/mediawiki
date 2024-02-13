@@ -33,7 +33,9 @@
 			"Z423x5c6",
 			"和平至上",
 			"捍粵者",
-			"星海"
+			"星海",
+			"Cookai1205",
+			"H78c67c"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -268,6 +270,7 @@
 	"rc-change-size-new": "變更後為$1{{PLURAL:$1|}}",
 	"recentchangeslinked-toolbox": "相關變更",
 	"upload": "上載檔案",
+	"uploadbtn": "上載檔案",
 	"listfiles_user": "用戶",
 	"filehist": "檔案歷史",
 	"filehist-datetime": "日期/時間",
