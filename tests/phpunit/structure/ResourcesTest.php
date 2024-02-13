@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
@@ -168,6 +169,11 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	 * Check all resource files from RL\FileModule modules.
 	 */
 	public function testResourceFiles() {
+		$this->overrideConfigValues( [
+			MainConfigNames::Logo => false,
+			MainConfigNames::Logos => [],
+		] );
+
 		$data = self::getAllModules();
 
 		// See also RL\FileModule::__construct
@@ -177,6 +183,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 				'scripts',
 				'debugScripts',
 				'styles',
+				'packageFiles',
 			],
 
 			// Collated lists of file paths
@@ -198,6 +205,9 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 
 			foreach ( $filePathProps['lists'] as $propName ) {
 				$list = $moduleProxy->$propName;
+				if ( $list === null ) {
+					continue;
+				}
 				foreach ( $list as $key => $value ) {
 					// 'scripts' are numeral arrays.
 					// 'styles' can be numeral or associative.
