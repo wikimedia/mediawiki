@@ -78,8 +78,7 @@ class UserMailer {
 		if ( is_array( $smtp ) && isset( $smtp['IDHost'] ) && $smtp['IDHost'] ) {
 			$domain = $smtp['IDHost'];
 		} else {
-			$url = $services->getUrlUtils()->parse( $server );
-			$domain = $url !== null ? $url['host'] : '';
+			$domain = parse_url( $server, PHP_URL_HOST ) ?? '';
 		}
 		return "<$msgid@$domain>";
 	}

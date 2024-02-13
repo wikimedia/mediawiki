@@ -363,13 +363,11 @@ if ( $wgCanonicalServer === false ) {
 }
 $wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
 
-$serverParts = MediaWikiServices::getInstance()->getUrlUtils()->parse( $wgCanonicalServer ) ?? false;
 if ( $wgServerName !== false ) {
 	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, '
 		. 'not customized. Overwriting $wgServerName.' );
 }
-$wgServerName = $serverParts['host'];
-unset( $serverParts );
+$wgServerName = parse_url( $wgCanonicalServer, PHP_URL_HOST );
 
 // $wgEmergencyContact and $wgPasswordSender may be false or empty string (T104142)
 if ( !$wgEmergencyContact ) {
