@@ -3694,7 +3694,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function getBottomScripts() {
 		// Keep the hook appendage separate to preserve WrappedString objects.
-		// This enables Skin::bottomScripts() to merge them where possible.
+		// This enables to merge them where possible.
 		$extraHtml = '';
 		$this->getHookRunner()->onSkinAfterBottomScripts( $this->getSkin(), $extraHtml );
 

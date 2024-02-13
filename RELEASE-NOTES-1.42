@@ -392,6 +392,7 @@ because of Phabricator reports.
    - $mNamespace  -> getNamespace()
    - $mInterwiki  -> getInterwiki()
    - $mFragment   -> getFragment()
+* Skin::bottomScripts, deprecated since 1.37, has been removed.
 * …
 
 === Deprecations in 1.42 ===
