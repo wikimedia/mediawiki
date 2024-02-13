@@ -21,7 +21,7 @@ abstract class RequestBase implements RequestInterface {
 	 * @internal
 	 * @param string $cookiePrefix
 	 */
-	protected function __construct( $cookiePrefix ) {
+	public function __construct( $cookiePrefix ) {
 		$this->cookiePrefix = $cookiePrefix;
 	}
 
@@ -50,7 +50,7 @@ abstract class RequestBase implements RequestInterface {
 	 * @internal
 	 * @param string[] $headers The header lines
 	 */
-	protected function setHeaders( $headers ) {
+	public function setHeaders( $headers ) {
 		$this->headerCollection = new HeaderContainer;
 		$this->headerCollection->resetHeaders( $headers );
 	}
