@@ -235,7 +235,10 @@ class RecentChange implements Taggable {
 		$fname = __METHOD__,
 		$dbType = DB_REPLICA
 	) {
-		$db = wfGetDB( $dbType );
+		$icp = MediaWikiServices::getInstance()->getConnectionProvider();
+
+		$db = ( $dbType === DB_REPLICA ) ? $icp->getReplicaDatabase() : $icp->getPrimaryDatabase();
+
 		$rcQuery = self::getQueryInfo();
 		$row = $db->selectRow(
 			$rcQuery['tables'], $rcQuery['fields'], $conds, $fname, [], $rcQuery['joins']

@@ -78,8 +78,8 @@ class MWEval extends Maintenance {
 				MediaWikiServices::resetGlobalInstance();
 			}
 			if ( $d > 1 ) {
-				wfGetDB( DB_PRIMARY )->setFlag( DBO_DEBUG );
-				wfGetDB( DB_REPLICA )->setFlag( DBO_DEBUG );
+				$this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase()->setFlag( DBO_DEBUG );
+				$this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase()->setFlag( DBO_DEBUG );
 			}
 		}
 

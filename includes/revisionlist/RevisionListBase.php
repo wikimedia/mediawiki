@@ -22,6 +22,7 @@
 
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
@@ -116,7 +117,9 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 */
 	public function reset() {
 		if ( !$this->res ) {
-			$this->res = $this->doQuery( wfGetDB( DB_REPLICA ) );
+			$this->res = $this->doQuery(
+				MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase()
+			);
 		} else {
 			$this->res->rewind();
 		}

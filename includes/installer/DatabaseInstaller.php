@@ -386,7 +386,7 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Set up LBFactory so that wfGetDB() etc. works.
+	 * Set up LBFactory so that getPrimaryDatabase() etc. works.
 	 * We set up a special LBFactory instance which returns the current
 	 * installer connection.
 	 */

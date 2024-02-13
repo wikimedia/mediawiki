@@ -572,7 +572,9 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return array Loaded messages for storing in caches
 	 */
 	private function loadFromDB( $code, $mode = null ) {
-		$dbr = wfGetDB( ( $mode === self::FOR_UPDATE ) ? DB_PRIMARY : DB_REPLICA );
+		$icp = MediaWikiServices::getInstance()->getConnectionProvider();
+
+		$dbr = ( $mode === self::FOR_UPDATE ) ? $icp->getPrimaryDatabase() : $icp->getReplicaDatabase();
 
 		$cache = [];
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\RangeChronologicalPager;
 
 /**
@@ -53,29 +54,29 @@ class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 	 * Data provider in [ start, end, [ expected output has start condition, has end cond ] ] format
 	 */
 	public static function getDateRangeCondProvider() {
-		$db = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		return [
 			[
 				'20161201000000',
 				'20161202235959',
 				[
-					$db->buildComparison( '>=', [ '' => $db->timestamp( '20161201000000' ) ] ),
-					$db->buildComparison( '<', [ '' => $db->timestamp( '20161203000000' ) ] ),
+					$dbw->buildComparison( '>=', [ '' => $dbw->timestamp( '20161201000000' ) ] ),
+					$dbw->buildComparison( '<', [ '' => $dbw->timestamp( '20161203000000' ) ] ),
 				],
 			],
 			[
 				'',
 				'20161202235959',
 				[
-					$db->buildComparison( '<', [ '' => $db->timestamp( '20161203000000' ) ] ),
+					$dbw->buildComparison( '<', [ '' => $dbw->timestamp( '20161203000000' ) ] ),
 				],
 			],
 			[
 				'20161201000000',
 				'',
 				[
-					$db->buildComparison( '>=', [ '' => $db->timestamp( '20161201000000' ) ] ),
+					$dbw->buildComparison( '>=', [ '' => $dbw->timestamp( '20161201000000' ) ] ),
 				],
 			],
 			[ '', '', [] ],

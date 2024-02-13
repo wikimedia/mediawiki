@@ -10,6 +10,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
@@ -431,7 +432,7 @@ class IntroMessageBuilder {
 	): void {
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$page->exists() ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 
 			$messages->addWithKey(
 				'recreate-moveddeleted-warn',

@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Tests\AnsiTermColorer;
@@ -118,8 +119,8 @@ class ParserTestsMaintenance extends Maintenance {
 		// Cases of weird db corruption were encountered when running tests on earlyish
 		// versions of SQLite
 		if ( $wgDBtype == 'sqlite' ) {
-			$db = wfGetDB( DB_PRIMARY );
-			$version = $db->getServerVersion();
+			$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+			$version = $dbw->getServerVersion();
 			if ( version_compare( $version, '3.6' ) < 0 ) {
 				die( "Parser tests require SQLite version 3.6 or later, you have $version\n" );
 			}

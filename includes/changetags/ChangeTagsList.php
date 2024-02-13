@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
@@ -69,7 +70,7 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 * Reload the list data from the primary DB.
 	 */
 	public function reloadFromPrimary() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$this->res = $this->doQuery( $dbw );
 	}
 

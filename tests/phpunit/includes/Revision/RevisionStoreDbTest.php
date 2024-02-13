@@ -937,7 +937,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Redefine the DBLoadBalancer service to verify Title doesn't attempt to resolve its ID
-		// via wfGetDB()
+		// via getPrimaryDatabase() etc.
 		$localLoadBalancerMock = $this->createMock( ILoadBalancer::class );
 		$localLoadBalancerMock->expects( $this->never() )
 			->method( $this->anything() );

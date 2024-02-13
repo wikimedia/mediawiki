@@ -120,9 +120,15 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	}
 
 	public function getComment() {
-		return MediaWikiServices::getInstance()->getCommentStore()
+		$services = MediaWikiServices::getInstance();
+
+		return $services->getCommentStore()
 			// Legacy because the row may have used RecentChange::selectFields()
-			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'rc_comment', $this->row )->text;
+			->getCommentLegacy(
+				$services->getConnectionProvider()->getReplicaDatabase(),
+				'rc_comment',
+				$this->row
+			)->text;
 	}
 
 	public function getDeleted() {

@@ -109,7 +109,8 @@ The new option is NOT validated.' );
 		$defaultOptions = $userOptionsLookup->getDefaultOptions();
 
 		// We list user by user_id from one of the replica DBs
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase();
+
 		$result = $dbr->newSelectQueryBuilder()
 			->select( [ 'user_id' ] )
 			->from( 'user' )

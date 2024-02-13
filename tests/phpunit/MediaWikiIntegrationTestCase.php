@@ -2278,9 +2278,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			throw new LogicException( 'When testing database state, the test must use @group Database.' );
 		}
 
-		$db = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 
-		$res = $db->select(
+		$res = $dbr->select(
 			$table,
 			$fields,
 			$condition,
@@ -2288,7 +2288,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$options + [ 'ORDER BY' => $fields ],
 			$join_conds
 		);
-		$this->assertNotFalse( $res, "query failed: " . $db->lastError() );
+		$this->assertNotFalse( $res, "query failed: " . $dbr->lastError() );
 
 		$i = 0;
 
