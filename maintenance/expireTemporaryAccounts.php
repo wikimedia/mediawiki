@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Auth\AuthManager;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
@@ -46,7 +45,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 	 * @stable to override
 	 */
 	protected function initServices(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->userIdentityLookup = $services->getUserIdentityLookup();
 		$this->userFactory = $services->getUserFactory();
