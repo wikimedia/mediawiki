@@ -3399,14 +3399,6 @@ class MainConfigNames {
 	public const SearchHighlightBoundaries = 'SearchHighlightBoundaries';
 
 	/**
-	 * Name constant for the OpenSearchTemplate setting, for use with Config::get()
-	 * @see MainConfigSchema::OpenSearchTemplate
-	 * @deprecated since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json']
-	 *    instead
-	 */
-	public const OpenSearchTemplate = 'OpenSearchTemplate';
-
-	/**
 	 * Name constant for the OpenSearchTemplates setting, for use with Config::get()
 	 * @see MainConfigSchema::OpenSearchTemplates
 	 */

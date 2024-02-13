@@ -381,12 +381,6 @@ class ApiOpenSearch extends ApiBase {
 	 */
 	public static function getOpenSearchTemplate( $type ) {
 		$config = MediaWikiServices::getInstance()->getSearchEngineConfig();
-		$template = $config->getConfig()->get( MainConfigNames::OpenSearchTemplate );
-
-		if ( $template && $type === 'application/x-suggestions+json' ) {
-			return $template;
-		}
-
 		$ns = implode( '|', $config->defaultNamespaces() );
 		if ( !$ns ) {
 			$ns = '0';

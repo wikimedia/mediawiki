@@ -1905,7 +1905,6 @@ return [
 			'DisableTextSearch' => false,
 			'AdvancedSearchHighlighting' => false,
 			'SearchHighlightBoundaries' => '[\\p{Z}\\p{P}\\p{C}]',
-			'OpenSearchTemplate' => false,
 			'OpenSearchTemplates' => [
 				'application/x-suggestions+json' => false,
 				'application/x-suggestions+xml' => false,
@@ -3339,9 +3338,6 @@ return [
 			'additionalProperties' => [
 				'type' => 'string',
 			],
-		],
-		'OpenSearchTemplate' => [
-			'deprecated' => 'since 1.25 Use $wgOpenSearchTemplates[\'application/x-suggestions+json\'] instead',
 		],
 		'SoftwareTags' => [
 			'additionalProperties' => [

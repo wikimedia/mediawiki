@@ -65,6 +65,8 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgMinimalPasswordLength and $wgMaximalPasswordLength, deprecated since 1.26
   have been dropped. Use $wgPasswordPolicy instead.
 * $wgUseMediaWikiUIEverywhere has been removed.
+* $wgOpenSearchTemplate, deprecated since 1.25, has been removed
+  Use $wgOpenSearchTemplates['application/x-suggestions+json'] instead.
 * …
 
 === New user-facing features in 1.42 ===

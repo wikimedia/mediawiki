@@ -3384,14 +3384,6 @@ $wgAdvancedSearchHighlighting = null;
 $wgSearchHighlightBoundaries = null;
 
 /**
- * Config variable stub for the OpenSearchTemplate setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::OpenSearchTemplate
- * @deprecated since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json']
- *    instead
- */
-$wgOpenSearchTemplate = null;
-
-/**
  * Config variable stub for the OpenSearchTemplates setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::OpenSearchTemplates
  */
