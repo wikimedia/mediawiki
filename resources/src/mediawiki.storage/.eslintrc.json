@@ -1,5 +1,5 @@
 {
-	"env": {
-		"commonjs": true
+	"parserOptions": {
+		"sourceType": "commonjs"
 	}
 }

@@ -1,6 +1,6 @@
 {
-	"rules": {
-		"no-implicit-globals": "off"
+	"parserOptions": {
+		"sourceType": "commonjs"
 	},
 	"settings": {
 		"polyfills": [
