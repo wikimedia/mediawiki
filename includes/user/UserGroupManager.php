@@ -1136,6 +1136,7 @@ class UserGroupManager {
 	 *  'add-self' => [ addablegroups to self ],
 	 *  'remove-self' => [ removable groups from self ]
 	 * ]
+	 * @phan-return array{add:list<string>,remove:list<string>,add-self:list<string>,remove-self:list<string>}
 	 */
 	public function getGroupsChangeableBy( Authority $authority ): array {
 		if ( $authority->isAllowed( 'userrights' ) ) {

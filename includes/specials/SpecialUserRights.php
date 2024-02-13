@@ -412,11 +412,11 @@ class SpecialUserRights extends SpecialPage {
 	 * This function can be used without submitting the special page
 	 *
 	 * @param UserIdentity $user
-	 * @param array $add Array of groups to add
-	 * @param array $remove Array of groups to remove
+	 * @param string[] $add Array of groups to add
+	 * @param string[] $remove Array of groups to remove
 	 * @param string $reason Reason for group change
 	 * @param string[] $tags Array of change tags to add to the log entry
-	 * @param array $groupExpiries Associative array of (group name => expiry),
+	 * @param array<string,?string> $groupExpiries Associative array of (group name => expiry),
 	 *   containing only those groups that are to have new expiry values set
 	 * @return array Tuple of added, then removed groups
 	 */
@@ -1117,6 +1117,7 @@ class SpecialUserRights extends SpecialPage {
 	 *   'add-self' => [ addablegroups to self ],
 	 *   'remove-self' => [ removable groups from self ]
 	 *  ]
+	 * @phan-return array{add:list<string>,remove:list<string>,add-self:list<string>,remove-self:list<string>}
 	 */
 	protected function changeableGroups() {
 		return $this->userGroupManager->getGroupsChangeableBy( $this->getContext()->getAuthority() );
