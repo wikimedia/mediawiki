@@ -23,7 +23,6 @@
 
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -43,7 +42,7 @@ class DeleteSelfExternals extends Maintenance {
 	public function execute() {
 		// Extract the host and scheme from $wgServer
 		$server = $this->getConfig()->get( MainConfigNames::Server );
-		$bits = MediaWikiServices::getInstance()->getUrlUtils()->parse( $server );
+		$bits = $this->getServiceContainer()->getUrlUtils()->parse( $server );
 		if ( !$bits ) {
 			$this->fatalError( 'Could not parse $wgServer' );
 		}
