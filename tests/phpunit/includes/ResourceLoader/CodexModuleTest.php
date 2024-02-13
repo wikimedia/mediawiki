@@ -5,12 +5,15 @@ namespace MediaWiki\Tests\ResourceLoader;
 use InvalidArgumentException;
 use MediaWiki\ResourceLoader\CodexModule;
 use ResourceLoaderTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\CodexModule
  */
 class CodexModuleTest extends ResourceLoaderTestCase {
+
+	public const FIXTURE_PATH = 'tests/phpunit/data/resourceloader/codexModules/';
 
 	public static function provideModuleConfig() {
 		return [
@@ -84,6 +87,17 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 					]
 				]
 			],
+			[ 'Exception thrown when a nonexistent file is requested',
+				[
+					'codexComponents' => [ 'CdxButton', 'blahblahidontexistblah' ],
+				],
+				[
+					'exception' => [
+						'class' => InvalidArgumentException::class,
+						'message' => '"blahblahidontexistblah" is not an export of Codex and cannot be included in the "codexComponents" array.'
+					]
+				]
+			],
 			[ 'Exception thrown when codexComponents is empty in the module definition',
 				[
 					'codexComponents' => []
@@ -135,7 +149,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		}
 
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_MODULE_DIR = 'tests/phpunit/data/resourceloader/codexModules/';
+			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
@@ -147,7 +161,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 
 		// Style-only module will not have any packageFiles.
 		$packageFilenames = isset( $packageFiles ) ? array_keys( $packageFiles[ 'files' ] ) : [];
-		$this->assertEquals( $expected[ 'packageFiles' ], $packageFilenames, 'Correct packageFiles added for ' . $testCase );
+		$this->assertEquals( $expected[ 'packageFiles' ] ?? [], $packageFilenames, 'Correct packageFiles added for ' . $testCase );
 
 		// Script-only module will not have any styleFiles.
 		$styleFilenames = [];
@@ -156,7 +170,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 				return str_replace( $testModule::CODEX_MODULE_DIR, '', $filepath->getPath() );
 			}, $styleFiles[ 'all' ] );
 		}
-		$this->assertEquals( $expected[ 'styles' ], $styleFilenames, 'Correct styleFiles added for ' . $testCase );
+		$this->assertEquals( $expected[ 'styles' ] ?? [], $styleFilenames, 'Correct styleFiles added for ' . $testCase );
 	}
 
 	public function testMissingCodexComponentsDefinition() {
@@ -165,7 +179,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		];
 
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_MODULE_DIR = 'tests/phpunit/data/resourceloader/codexModules/';
+			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
@@ -183,5 +197,51 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		// By asserting what components are proxied, we are indirectly asserting that missing
 		// components would throw an error when required.
 		$this->assertStringContainsString( $expectedProxiedExports, $codexPackageFileContent );
+	}
+
+	public function testGetManifestFile() {
+		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+
+		$context = $this->getResourceLoaderContext();
+		$testWrapper = TestingAccessWrapper::newFromObject( $testModule );
+
+		// By default, look for a manifest file called "manifest.json"
+		$this->assertEquals(
+			MW_INSTALL_PATH . '/' . self::FIXTURE_PATH . 'manifest.json',
+			$testWrapper->getManifestFilePath( $context )
+		);
+	}
+
+	// Test that the manifest data structure is transformed correctly.
+	// This test relies on the fixture manifest data that lives in
+	// tests/phpunit/data/resourceloader/codexModules
+	public function testGetCodexFiles() {
+		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+
+		$context = $this->getResourceLoaderContext();
+		$testWrapper = TestingAccessWrapper::newFromObject( $testModule );
+		$codexFiles = $testWrapper->getCodexFiles( $context );
+
+		// The transformed data structure should have a "files" and a "components" array.
+		$this->assertIsArray( $codexFiles );
+		$this->assertArrayHasKey( 'files', $codexFiles );
+		$this->assertArrayHasKey( 'components', $codexFiles );
+
+		// The "components" array should contain keys like "CdxButton"
+		// with values like "CdxButton.js" (matching the names in the manifest)
+		$this->assertArrayHasKey( 'CdxButton', $codexFiles[ 'components' ] );
+		$this->assertEquals( 'CdxButton.js', $codexFiles[ 'components' ][ 'CdxButton' ] );
+
+		// The "files" array should contains keys like "CdxButton.js"
+		// Items in this array are themselves arrays with "styles" and "dependencies" keys.
+		$this->assertArrayHasKey( 'CdxButton.js', $codexFiles[ 'files' ] );
+		$this->assertArrayHasKey( 'styles', $codexFiles[ 'files' ][ 'CdxButton.js' ] );
+		$this->assertArrayHasKey( 'dependencies', $codexFiles[ 'files' ][ 'CdxButton.js' ] );
 	}
 }

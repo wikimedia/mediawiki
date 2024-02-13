@@ -40,13 +40,33 @@ class CodexModule extends FileModule {
 	protected const CODEX_MODULE_DIR = 'resources/lib/codex/modules/';
 	private const CODEX_MODULE_DEPENDENCIES = [ 'vue' ];
 
-	/** @var array<string,string> */
-	private array $themeMap = [];
+	/** @var array<string,string>|null */
+	private static ?array $themeMap = null;
+
+	/**
+	 * Cache for getCodexFiles(). Maps manifest file paths to outputs. For more information about
+	 * the structure of the outputs, see the documentation comment for getCodexFiles().
+	 *
+	 * This array looks like:
+	 *     [
+	 *         '/path/to/manifest.json' => [ 'files' => [ ... ], 'components' => [ ... ] ],
+	 *         '/path/to/manifest-rtl.json' => [ 'files' => [ ... ], 'components' => [ ... ] ],
+	 *         ...
+	 *     ]
+	 *
+	 * @var array<string,array{files:array<string,array{styles:string[],dependencies:string[]}>,components:array<string,string>}>
+	 */
+	private static array $codexFilesCache = [];
 
 	/** @var array<string,array> */
 	private array $themeStyles = [];
 
-	/** @var array<string> */
+	/**
+	 * Names of the requested components. Comes directly from the 'codexComponents' property in the
+	 * module definition.
+	 *
+	 * @var string[]
+	 */
 	private array $codexComponents = [];
 
 	private bool $hasThemeStyles = false;
@@ -64,9 +84,6 @@ class CodexModule extends FileModule {
 	 * @param string|null $remoteBasePath [optional]
 	 */
 	public function __construct( array $options = [], $localBasePath = null, $remoteBasePath = null ) {
-		$skinCodexThemes = ExtensionRegistry::getInstance()->getAttribute( 'SkinCodexThemes' );
-		$this->themeMap = [ 'default' => 'wikimedia-ui' ] + $skinCodexThemes;
-
 		if ( isset( $options['themeStyles'] ) ) {
 			$this->hasThemeStyles = true;
 			$this->themeStyles = $options[ 'themeStyles' ];
@@ -171,10 +188,28 @@ class CodexModule extends FileModule {
 	}
 
 	/**
+	 * Get the theme to use based on the current skin.
+	 *
+	 * @param Context $context
+	 * @return string Name of the current theme
+	 */
+	private function getTheme( Context $context ): string {
+		if ( self::$themeMap === null ) {
+			// Initialize self::$themeMap
+			$skinCodexThemes = ExtensionRegistry::getInstance()->getAttribute( 'SkinCodexThemes' );
+			self::$themeMap = [ 'default' => 'wikimedia-ui' ] + $skinCodexThemes;
+		}
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+		return self::$themeMap[ $context->getSkin() ] ?? self::$themeMap[ 'default' ];
+	}
+
+	/**
+	 * Decide which manifest file to use, based on the theme and the direction (LTR or RTL).
+	 *
 	 * @param Context $context
 	 * @return string Name of the manifest file to use
 	 */
-	private function getManifestFile( Context $context ): string {
+	private function getManifestFilePath( Context $context ): string {
 		$isRtl = $context->getDirection() === 'rtl';
 		$isLegacy = $this->getTheme( $context ) === 'wikimedia-ui-legacy';
 		$manifestFile = null;
@@ -189,15 +224,68 @@ class CodexModule extends FileModule {
 			$manifestFile = 'manifest.json';
 		}
 
-		return $manifestFile;
+		$manifestFilePath = MW_INSTALL_PATH . '/' . static::CODEX_MODULE_DIR . $manifestFile;
+		return $manifestFilePath;
 	}
 
 	/**
+	 * Get information about all available Codex files.
+	 *
+	 * This transforms the Codex manifest to a more useful format, and caches it so that different
+	 * instances of this class don't each parse the manifest separately.
+	 *
+	 * The returned data structure contains a 'files' key with dependency information about every
+	 * file (both entry point and non-entry point files), and a 'component' key that is an array
+	 * mapping component names to file names. The full data structure looks like this:
+	 *
+	 *     [
+	 *         'files' => [
+	 *             'CdxButtonGroup.js' => [
+	 *                 'styles' => [ 'CdxButtonGroup.css' ],
+	 *                 'dependencies' => [ 'CdxButton.js', 'buttonHelpers.js' ]
+	 *             ],
+	 *             // all files are listed here, both entry point and non-entry point files
+	 *         ],
+	 *         'components' => [
+	 *             'CdxButtonGroup' => 'CdxButtonGroup.js',
+	 *             // only entry point files are listed here
+	 *         ]
+	 *     ]
+	 *
 	 * @param Context $context
-	 * @return string Name of the current theme
+	 * @return array{files:array<string,array{styles:string[],dependencies:string[]}>,components:array<string,string>}
 	 */
-	private function getTheme( Context $context ): string {
-		return $this->themeMap[ $context->getSkin() ] ?? $this->themeMap[ 'default' ];
+	private function getCodexFiles( Context $context ): array {
+		$manifestFilePath = $this->getManifestFilePath( $context );
+
+		if ( isset( self::$codexFilesCache[ $manifestFilePath ] ) ) {
+			return self::$codexFilesCache[ $manifestFilePath ];
+		}
+
+		$manifest = json_decode( file_get_contents( $manifestFilePath ), true );
+		$files = [];
+		$components = [];
+		foreach ( $manifest as $key => $val ) {
+			$files[ $val[ 'file' ] ] = [
+				'styles' => $val[ 'css' ] ?? [],
+				// $val['imports'] is expressed as manifest keys, transform those to file names
+				'dependencies' => array_map( static function ( $manifestKey ) use ( $manifest ) {
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+					return $manifest[ $manifestKey ][ 'file' ];
+				}, $val[ 'imports' ] ?? [] )
+			];
+
+			$isComponent = isset( $val[ 'isEntry' ] ) && $val[ 'isEntry' ];
+			if ( $isComponent ) {
+				$fileInfo = pathinfo( $val[ 'file' ] );
+				// $fileInfo[ 'filename' ] is the file name without the extension.
+				// This is the component name (e.g. CdxButton.cjs -> CdxButton).
+				$components[ $fileInfo[ 'filename' ] ] = $val[ 'file' ];
+			}
+		}
+
+		self::$codexFilesCache[ $manifestFilePath ] = [ 'files' => $files, 'components' => $components ];
+		return self::$codexFilesCache[ $manifestFilePath ];
 	}
 
 	/**
@@ -243,43 +331,38 @@ class CodexModule extends FileModule {
 	}
 
 	/**
-	 * Resolve the dependencies for a list of keys in a given manifest,
-	 * and return flat arrays of both scripts and styles. Dependencies
-	 * are ordered.
+	 * Resolve the dependencies for a list of files, return flat arrays of both scripts and styles.
+	 * The returned arrays include the files in $requestedFiles, plus their dependencies, their
+	 * dependencies' dependencies, etc. The returned arrays are ordered in the order that the files
+	 * should be loaded in; in other words, the files are ordered such that each file appears after
+	 * all of its dependencies.
 	 *
-	 * @param array<string> $keys
-	 * @param array<string,array> $manifest
-	 * @return array<string,array>
+	 * @param string[] $requestedFiles File names whose dependencies to resolve
+	 * @phpcs:ignore Generic.Files.LineLength, MediaWiki.Commenting.FunctionComment.MissingParamName
+	 * @param array{files:array<string,array{styles:string[],dependencies:string[]}>,components:array<string,string>} $codexFiles
+	 *   Data structure returned by getCodexFiles()
+	 * @return array{scripts:string[],styles:string[]} Resolved dependencies, with script and style
+	 *   files listed separately.
 	 */
-	private function resolveDependencies( $keys, $manifest ): array {
-		$resolvedKeys = [];
+	private function resolveDependencies( array $requestedFiles, array $codexFiles ) {
 		$scripts = [];
 		$styles = [];
 
-		$gatherDependencies = static function ( $key ) use ( &$resolvedKeys, $manifest, &$gatherDependencies ) {
-			foreach ( $manifest[ $key ][ 'imports' ] ?? [] as $dep ) {
-				if ( !in_array( $dep, $resolvedKeys ) ) {
+		$gatherDependencies = static function ( $file ) use ( &$scripts, &$styles, $codexFiles, &$gatherDependencies ) {
+			foreach ( $codexFiles[ 'files' ][ $file ][ 'dependencies' ] as $dep ) {
+				if ( !in_array( $dep, $scripts ) ) {
 					$gatherDependencies( $dep );
 				}
 			}
-			$resolvedKeys[] = $key;
+			$scripts[] = $file;
+			$styles = array_merge( $styles, $codexFiles[ 'files' ][ $file ][ 'styles' ] );
 		};
 
-		foreach ( $keys as $key ) {
-			$gatherDependencies( $key );
+		foreach ( $requestedFiles as $requestedFile ) {
+			$gatherDependencies( $requestedFile );
 		}
 
-		foreach ( $resolvedKeys as $key ) {
-			$scripts[] = $manifest[ $key ][ 'file' ];
-			foreach ( $manifest[ $key ][ 'css'] ?? [] as $css ) {
-				$styles[] = $css;
-			}
-		}
-
-		return [
-			'scripts' => $scripts,
-			'styles' => $styles
-		];
+		return [ 'scripts' => $scripts, 'styles' => $styles ];
 	}
 
 	/**
@@ -291,50 +374,21 @@ class CodexModule extends FileModule {
 	 */
 	private function addComponentFiles( Context $context ) {
 		$remoteBasePath = $this->getConfig()->get( MainConfigNames::ResourceBasePath );
+		$codexFiles = $this->getCodexFiles( $context );
 
-		// Manifest data structure representing all Codex components in the library
-		$manifest = json_decode(
-			file_get_contents( MW_INSTALL_PATH . '/' . static::CODEX_MODULE_DIR . $this->getManifestFile( $context ) ),
-			true
-		);
-
-		$manifestKeys = [];
-		$componentFileNames = [];
-		foreach ( $manifest as $key => $val ) {
-			$file = pathinfo( $val[ 'file' ] );
-
-			// Find files with a JS extension (.js, .cjs or .mjs) whose file name matches
-			// a requested component. Skip other files that don't match these criteria.
-			if (
-				!isset( $file[ 'extension' ] ) ||
-				!in_array( $file[ 'extension' ], [ 'js', 'cjs', 'mjs' ] ) ||
-				!in_array( $file[ 'filename' ], $this->codexComponents )
-			) {
-				continue;
-			}
-
-			$componentName = $file[ 'filename' ];
-
-			// Throw an error if a requested file is not an entry point file
-			if ( !isset( $val[ 'isEntry' ] ) || !$val[ 'isEntry' ] ) {
+		$requestedFiles = array_map( static function ( $component ) use ( $codexFiles ) {
+			if ( !isset( $codexFiles[ 'components' ][ $component ] ) ) {
 				throw new InvalidArgumentException(
-					"\"$componentName\" is not an export of Codex and cannot be included in the " .
-					'"codexComponents" array.'
+					"\"$component\" is not an export of Codex and cannot be included in the \"codexComponents\" array."
 				);
 			}
+			return $codexFiles[ 'components' ][ $component ];
+		}, $this->codexComponents );
 
-			// Add this key to the list of keys we need dependency resolution for
-			$manifestKeys[] = $key;
-			// Record the relationship between the component name and the file name, so that we
-			// can look this up later.
-			$componentFileNames[ $componentName ] = $val[ 'file' ];
-
-		}
-
-		[ 'scripts' => $scripts, 'styles' => $styles ] = $this->resolveDependencies( $manifestKeys, $manifest );
+		[ 'scripts' => $scripts, 'styles' => $styles ] = $this->resolveDependencies( $requestedFiles, $codexFiles );
 
 		// Add the CSS files to the module's package file (unless this is a script-only module)
-		if ( !( $this->isScriptOnly ) ) {
+		if ( !$this->isScriptOnly ) {
 			foreach ( $styles as $fileName ) {
 				$this->styles[] = new FilePath( static::CODEX_MODULE_DIR .
 					$fileName, MW_INSTALL_PATH, $remoteBasePath );
@@ -342,11 +396,12 @@ class CodexModule extends FileModule {
 		}
 
 		// Add the JS files to the module's package file (unless this is a style-only module).
-		if ( !( $this->isStyleOnly ) ) {
+		if ( !$this->isStyleOnly ) {
 			$exports = [];
 			foreach ( $this->codexComponents as $component ) {
+				$componentFile = $codexFiles[ 'components' ][ $component ];
 				$exports[ $component ] = new HtmlJsCode(
-					'require( ' . Html::encodeJsVar( "./_codex/{$componentFileNames[ $component ]}" ) . ' )'
+					'require( ' . Html::encodeJsVar( "./_codex/$componentFile" ) . ' )'
 				);
 			}
 
@@ -358,15 +413,14 @@ class CodexModule extends FileModule {
 			$proxiedSyntheticExports = <<<JAVASCRIPT
 module.exports = new Proxy( $syntheticExports, {
 	get( target, prop ) {
-		if ( !(prop in target) ) {
+		if ( !( prop in target ) ) {
 			throw new Error(
 				`Codex component "\${prop}" ` +
 				'is not listed in the "codexComponents" array ' +
 				'of the "{$this->getName()}" module in your module definition file'
 			);
 		}
-
-		return target [ prop ];
+		return target[ prop ];
 	}
 } );
 JAVASCRIPT;
