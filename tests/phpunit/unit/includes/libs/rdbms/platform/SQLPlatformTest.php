@@ -1109,4 +1109,37 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->platform->makeWhereFrom2d( $data, 'ns', 'title' );
 	}
+
+	public static function provideQualifiedTableComponents() {
+		yield [
+			'table',
+			[ 'table' ],
+		];
+		yield [
+			'database.table',
+			[ 'database', 'table' ],
+		];
+		yield [
+			'database.schema.table',
+			[ 'database', 'schema', 'table' ],
+		];
+		yield [
+			'"database"."schema"."table"',
+			[ 'database', 'schema', 'table' ],
+		];
+		yield [
+			'"database".schema."table"',
+			[ 'database', 'schema', 'table' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideQualifiedTableComponents
+	 */
+	public function testQualifiedTableComponents( $tableName, $expectedComponents ) {
+		$this->assertSame(
+			$expectedComponents,
+			$this->platform->qualifiedTableComponents( $tableName )
+		);
+	}
 }
