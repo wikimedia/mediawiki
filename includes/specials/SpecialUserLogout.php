@@ -24,7 +24,7 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use HTMLForm;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;

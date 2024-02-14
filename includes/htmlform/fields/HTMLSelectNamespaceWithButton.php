@@ -1,4 +1,9 @@
 <?php
+
+namespace MediaWiki\HTMLForm\Field;
+
+use MediaWiki\HTMLForm\HTMLFormActionFieldLayout;
+
 /**
  * Creates a Html::namespaceSelector input field with a button assigned to the input field.
  *
@@ -26,3 +31,6 @@ class HTMLSelectNamespaceWithButton extends HTMLSelectNamespace {
 		return new HTMLFormActionFieldLayout( $inputField, $buttonWidget, $config );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSelectNamespaceWithButton::class, 'HTMLSelectNamespaceWithButton' );

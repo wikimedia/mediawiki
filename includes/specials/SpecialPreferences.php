@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\SpecialPage\SpecialPage;

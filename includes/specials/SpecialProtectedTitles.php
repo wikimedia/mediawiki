@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use HTMLSelectNamespace;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ProtectedTitlesPager;
 use MediaWiki\SpecialPage\SpecialPage;

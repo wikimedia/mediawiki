@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutput;

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Widget\UsersMultiselectWidget;
@@ -156,3 +158,6 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 	}
 
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLUsersMultiselectField::class, 'HTMLUsersMultiselectField' );

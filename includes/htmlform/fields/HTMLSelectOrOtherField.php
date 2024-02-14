@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Request\WebRequest;
+use XmlSelect;
 
 /**
  * Select dropdown field, with an additional "other" textbox.
@@ -113,7 +117,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			'tabindex',
 		];
 
-		$dropdownAttribs += OOUI\Element::configFromHtmlAttributes(
+		$dropdownAttribs += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
@@ -134,7 +138,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			'minlength',
 		];
 
-		$textAttribs += OOUI\Element::configFromHtmlAttributes(
+		$textAttribs += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
@@ -163,7 +167,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	}
 
 	public function getInputWidget( $params ) {
-		return new MediaWiki\Widget\SelectWithInputWidget( $params );
+		return new \MediaWiki\Widget\SelectWithInputWidget( $params );
 	}
 
 	/**
@@ -197,3 +201,6 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		return [ self::FIELD_CLASS ];
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSelectOrOtherField::class, 'HTMLSelectOrOtherField' );

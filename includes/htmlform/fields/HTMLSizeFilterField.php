@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Widget\SizeFilterWidget;
+use Xml;
 
 /**
  * A size filter field for use on query-type special pages. It looks a bit like:
@@ -60,7 +64,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 		$value = $params['value'];
 		$params['value'] = $value ? abs( $value ) : '';
 
-		return new MediaWiki\Widget\SizeFilterWidget( [
+		return new SizeFilterWidget( [
 			'selectMin' => $this->mSelectMin,
 			'textinput' => $params,
 			'radioselectinput' => [
@@ -95,3 +99,6 @@ class HTMLSizeFilterField extends HTMLIntField {
 		return false;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSizeFilterField::class, 'HTMLSizeFilterField' );

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 /**
  * Add a submit button inline in the form (as opposed to
  * HTMLForm::addButton(), which will add it at the end).
@@ -19,3 +21,6 @@ class HTMLSubmitField extends HTMLButtonField {
 		return $request->getCheck( $this->mName );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSubmitField::class, 'HTMLSubmitField' );

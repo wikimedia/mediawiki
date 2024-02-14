@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use MediaWiki\HTMLForm\HTMLFormField;
+use XmlSelect;
+
 /**
  * A select dropdown field.  Basically a wrapper for Xmlselect class
  *
@@ -60,7 +65,7 @@ class HTMLSelectField extends HTMLFormField {
 	public function getInputOOUI( $value ) {
 		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
-		$attribs = OOUI\Element::configFromHtmlAttributes(
+		$attribs = \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
@@ -72,7 +77,7 @@ class HTMLSelectField extends HTMLFormField {
 			$disabled = true;
 		}
 
-		return new OOUI\DropdownInputWidget( [
+		return new \OOUI\DropdownInputWidget( [
 			'name' => $this->mName,
 			'id' => $this->mID,
 			'options' => $this->getOptionsOOUI(),
@@ -89,3 +94,6 @@ class HTMLSelectField extends HTMLFormField {
 		return true;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSelectField::class, 'HTMLSelectField' );

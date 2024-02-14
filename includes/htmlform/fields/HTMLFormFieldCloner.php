@@ -1,8 +1,14 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use InvalidArgumentException;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\DerivativeRequest;
+use Xml;
 
 /**
  * A container for HTMLFormFields that allows for multiple copies of the set of
@@ -573,3 +579,6 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $html;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLFormFieldCloner::class, 'HTMLFormFieldCloner' );

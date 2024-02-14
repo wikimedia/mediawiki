@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Pager;
 
-use HTMLForm;
 use HTMLHiddenField;
 use HTMLInfoField;
 use HTMLSelectField;
@@ -36,6 +35,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;

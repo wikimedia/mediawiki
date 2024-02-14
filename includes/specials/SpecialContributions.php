@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use HTMLMultiSelectField;
 use LogEventsList;
 use MediaWiki\Block\Block;
@@ -32,6 +31,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;

@@ -27,9 +27,9 @@
 namespace MediaWiki\Specials;
 
 use Exception;
-use HTMLForm;
 use ImportReporter;
 use ImportStreamSource;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;

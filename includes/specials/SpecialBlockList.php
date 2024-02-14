@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
@@ -35,6 +34,7 @@ use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\BlockListPager;
 use MediaWiki\SpecialPage\SpecialPage;

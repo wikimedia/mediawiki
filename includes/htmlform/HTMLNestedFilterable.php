@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm;
+
 interface HTMLNestedFilterable {
 	/**
 	 * Support for separating multi-option preferences into multiple preferences
@@ -9,3 +11,6 @@ interface HTMLNestedFilterable {
 	 */
 	public function filterDataForSubmit( $data );
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLNestedFilterable::class, 'HTMLNestedFilterable' );

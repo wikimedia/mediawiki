@@ -2,7 +2,7 @@
 
 namespace MediaWiki\SpecialPage;
 
-use HTMLForm;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;

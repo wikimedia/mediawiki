@@ -24,9 +24,9 @@
 namespace MediaWiki\Specials;
 
 use ChangeTags;
-use HTMLForm;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use PermissionsError;

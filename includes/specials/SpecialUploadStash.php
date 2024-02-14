@@ -24,10 +24,10 @@ namespace MediaWiki\Specials;
 
 use Exception;
 use File;
-use HTMLForm;
 use HttpError;
 use LocalRepo;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;

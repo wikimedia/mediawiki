@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use FormatJson;
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
@@ -128,3 +132,6 @@ class HTMLTitleTextField extends HTMLTextField {
 		];
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLTitleTextField::class, 'HTMLTitleTextField' );

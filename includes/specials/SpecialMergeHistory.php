@@ -23,11 +23,11 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Pager\MergeHistoryPager;
 use MediaWiki\Revision\RevisionStore;

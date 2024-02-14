@@ -21,6 +21,8 @@
  * @file
  */
 
+namespace MediaWiki\HTMLForm;
+
 use MediaWiki\Html\Html;
 
 /**
@@ -66,3 +68,6 @@ class CodexHTMLForm extends HTMLForm {
 		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( CodexHTMLForm::class, 'CodexHTMLForm' );

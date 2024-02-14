@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\Title\Title;
 

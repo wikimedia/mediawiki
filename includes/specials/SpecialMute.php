@@ -22,7 +22,7 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use HTMLForm;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\SpecialPage\FormSpecialPage;

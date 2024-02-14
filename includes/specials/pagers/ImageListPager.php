@@ -21,12 +21,12 @@
 
 namespace MediaWiki\Pager;
 
-use HTMLForm;
 use LocalRepo;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;

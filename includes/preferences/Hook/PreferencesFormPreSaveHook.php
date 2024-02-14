@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Preferences\Hook;
 
-use HTMLForm;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\User\User;
 
 /**

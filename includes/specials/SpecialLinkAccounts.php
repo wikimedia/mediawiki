@@ -3,11 +3,11 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use HTMLForm;
 use LogicException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\AuthManagerSpecialPage;
 use StatusValue;

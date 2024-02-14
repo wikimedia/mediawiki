@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\HTMLForm;
+
 /**
  * HTML form generation and submission handling, vertical-form style.
  *
@@ -73,3 +75,6 @@ class VFormHTMLForm extends HTMLForm {
 		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( VFormHTMLForm::class, 'VFormHTMLForm' );

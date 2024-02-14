@@ -1,7 +1,13 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\CodexHTMLForm;
+use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\HTMLForm\VFormHTMLForm;
+use Message;
 
 /**
  * Adds a generic button inline to the form. Does not do anything, you must add
@@ -100,21 +106,21 @@ class HTMLButtonField extends HTMLFormField {
 	 * Get the OOUI widget for this field.
 	 * @stable to override
 	 * @param string $value
-	 * @return OOUI\ButtonInputWidget
+	 * @return \OOUI\ButtonInputWidget
 	 */
 	public function getInputOOUI( $value ) {
-		return new OOUI\ButtonInputWidget( [
+		return new \OOUI\ButtonInputWidget( [
 			'name' => $this->mName,
 			'value' => $this->getDefault(),
 			'label' => !$this->isBadIE() && $this->buttonLabel
-				? new OOUI\HtmlSnippet( $this->buttonLabel )
+				? new \OOUI\HtmlSnippet( $this->buttonLabel )
 				: $this->getDefault(),
 			'type' => $this->buttonType,
 			'classes' => [ 'mw-htmlform-submit', $this->mClass ],
 			'id' => $this->mID,
 			'flags' => $this->mFlags,
 			'useInputTag' => $this->isBadIE(),
-		] + OOUI\Element::configFromHtmlAttributes(
+		] + \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
 	}
@@ -151,3 +157,6 @@ class HTMLButtonField extends HTMLFormField {
 		return (bool)preg_match( '/MSIE [1-7]\./i', $request->getHeader( 'User-Agent' ) );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLButtonField::class, 'HTMLButtonField' );

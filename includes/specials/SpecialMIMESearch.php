@@ -26,10 +26,10 @@ namespace MediaWiki\Specials;
 
 use File;
 use HtmlArmor;
-use HTMLForm;
 use ILanguageConverter;
 use LocalFile;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;

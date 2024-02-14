@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use IDBAccessObject;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPage;

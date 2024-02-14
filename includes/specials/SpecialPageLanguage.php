@@ -26,12 +26,12 @@
 namespace MediaWiki\Specials;
 
 use ApiMessage;
-use HTMLForm;
 use LogEventsList;
 use LogPage;
 use ManualLogEntry;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;

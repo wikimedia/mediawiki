@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use LogEventsList;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Html\FormOptions;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Permissions\PermissionManager;

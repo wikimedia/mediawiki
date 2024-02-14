@@ -18,6 +18,10 @@
  * @file
  */
 
+use MediaWiki\HTMLForm\Field\HTMLCheckField;
+use MediaWiki\HTMLForm\Field\HTMLToggleSwitchField;
+use MediaWiki\HTMLForm\HTMLNestedFilterable;
+use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\User\User;
 
 /**

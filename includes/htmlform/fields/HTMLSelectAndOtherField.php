@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use InvalidArgumentException;
 use MediaWiki\Html\Html;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Widget\SelectWithInputWidget;
 
 /**
  * Double field with a dropdown list constructed from a system message in the format
@@ -106,7 +110,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'maxlength',
 		];
 
-		$textAttribs += OOUI\Element::configFromHtmlAttributes(
+		$textAttribs += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
@@ -122,7 +126,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'disabled',
 		];
 
-		$dropdownInputAttribs += OOUI\Element::configFromHtmlAttributes(
+		$dropdownInputAttribs += \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
 
@@ -155,7 +159,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 * @return \MediaWiki\Widget\SelectWithInputWidget
 	 */
 	public function getInputWidget( $params ) {
-		return new MediaWiki\Widget\SelectWithInputWidget( $params );
+		return new SelectWithInputWidget( $params );
 	}
 
 	/**
@@ -238,3 +242,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return true;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSelectAndOtherField::class, 'HTMLSelectAndOtherField' );

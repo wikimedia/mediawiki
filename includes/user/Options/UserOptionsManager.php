@@ -22,7 +22,6 @@ namespace MediaWiki\User\Options;
 
 use DBAccessObjectUtils;
 use HTMLCheckMatrix;
-use HTMLFormField;
 use HTMLMultiSelectField;
 use IDBAccessObject;
 use InvalidArgumentException;
@@ -32,6 +31,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\MediaWikiServices;
 
 /**

@@ -24,8 +24,8 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\SpecialPage\PageQueryPage;
 use MediaWiki\Title\NamespaceInfo;

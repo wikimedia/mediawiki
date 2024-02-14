@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
@@ -44,3 +47,6 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 		$this->mParams['default'] ??= $languageCode;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLSelectLanguageField::class, 'HTMLSelectLanguageField' );

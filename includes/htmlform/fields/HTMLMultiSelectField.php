@@ -1,7 +1,14 @@
 <?php
 
+namespace MediaWiki\HTMLForm\Field;
+
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\HTMLForm\HTMLNestedFilterable;
+use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\Request\WebRequest;
+use RuntimeException;
+use Xml;
 
 /**
  * Multi-select field
@@ -167,7 +174,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @stable to override
 	 * @since 1.28
 	 * @param string[] $value
-	 * @return string|OOUI\CheckboxMultiselectInputWidget
+	 * @return string|\OOUI\CheckboxMultiselectInputWidget
 	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function getInputOOUI( $value ) {
@@ -217,7 +224,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			unset( $option );
 			$attr['options'] = $options;
 
-			$attr += OOUI\Element::configFromHtmlAttributes(
+			$attr += \OOUI\Element::configFromHtmlAttributes(
 				$this->getAttributes( [ 'disabled', 'tabindex' ] )
 			);
 
@@ -225,12 +232,12 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				$attr['classes'] = [ $this->mClass ];
 			}
 
-			$widget = new OOUI\CheckboxMultiselectInputWidget( $attr );
+			$widget = new \OOUI\CheckboxMultiselectInputWidget( $attr );
 			if ( $sectionLabel ) {
-				$out[] = new OOUI\FieldsetLayout( [
+				$out[] = new \OOUI\FieldsetLayout( [
 					'items' => [ $widget ],
 					// @phan-suppress-next-line SecurityCheck-XSS Key is html, taint cannot track that
-					'label' => new OOUI\HtmlSnippet( $sectionLabel ),
+					'label' => new \OOUI\HtmlSnippet( $sectionLabel ),
 				] );
 			} else {
 				$out[] = $widget;
@@ -306,3 +313,6 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		return false;
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( HTMLMultiSelectField::class, 'HTMLMultiSelectField' );
