@@ -960,21 +960,14 @@ class SQLPlatform implements ISQLPlatform {
 
 		# Lets test for any bits of text that should never show up in a table
 		# name. Basically anything like JOIN or ON which are actually part of
-		# SQL queries, but may end up inside of the table value to combine
-		# sql. Such as how the API is doing.
+		# SQL queries, but may end up inside of the table value to combine SQL.
 		# Note that we use a whitespace test rather than a \b test to avoid
-		# any remote case where a word like on may be inside of a table name
+		# any remote case where a word like ON may be inside of a table name
 		# surrounded by symbols which may be considered word breaks.
 		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
-			$this->logger->warning(
-				__METHOD__ . ": use of subqueries is not supported this way",
-				[
-					'exception' => new RuntimeException(),
-					'db_log_category' => 'sql',
-				]
+			throw new DBLanguageError(
+				__METHOD__ . ": use of subqueries is not supported this way"
 			);
-
-			return $name;
 		}
 
 		# Extract necessary database, schema, table identifiers and quote them as needed
