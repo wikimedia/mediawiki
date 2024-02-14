@@ -42,7 +42,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\ExternalUserNames;
-use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 use Message;
 use MessageLocalizer;
 use Parser;
@@ -1251,7 +1251,11 @@ class Linker {
 	 *   red if the user has no edits?
 	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK
 	 *   and Linker::TOOL_LINKS_EMAIL).
-	 * @param int|null $edits User edit count (optional, for performance)
+	 * @param int|null $edits User edit count. If you enable $redContribsWhenNoEdits,
+	 *  you may pass a pre-computed edit count here, or 0 if the caller knows that
+	 *  the account has 0 edits. Otherwise, the value is unused and null may
+	 *  be passed. If $redContribsWhenNoEdits is enabled and null is passed, the
+	 *  edit count will be lazily fetched from UserEditTracker.
 	 * @return string[] Array of HTML fragments, each of them a link tag with a distinctive
 	 *   class; or a single string on error.
 	 */
@@ -1278,9 +1282,9 @@ class Linker {
 			$attribs = [];
 			$attribs['class'] = 'mw-usertoollinks-contribs';
 			if ( $redContribsWhenNoEdits ) {
-				if ( intval( $edits ) === 0 && $edits !== 0 ) {
-					$user = User::newFromId( $userId );
-					$edits = $user->getEditCount();
+				if ( $edits === null ) {
+					$user = UserIdentityValue::newRegistered( $userId, $userText );
+					$edits = $services->getUserEditTracker()->getUserEditCount( $user );
 				}
 				if ( $edits === 0 ) {
 					// Note: "new" class is inappropriate here, as "new" class
