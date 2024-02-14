@@ -5,19 +5,33 @@
 * @author neilk@wikimedia.org
 * @author mflaschen@wikimedia.org
 */
+/**
+ * @typedef {string|string[]} jQueryPlugins~Replacements
+ * @ignore
+ */
+/**
+ * @callback {Function} jQueryPlugins~MessageFormatterFunction
+ * @param {Array<jQueryPlugins~Replacements>} replacements Optional variable replacements (variadically or an array).
+ *   This is a mixed array of strings or arrays of string. This is equivalent to Array<string|string[]> but cannot be documented until the
+ *   jsdoc theme has been patched (T354716).
+ * @return {jQuery} Rendered HTML.
+ * @ignore
+ */
 
 /**
- * @class mw.jqueryMsg
- * @singleton
+ * @callback {Function} MessageFormatterFunctionGenerator
+ * @return {jQueryPlugins~MessageFormatterFunction}
+ * @ignore
  */
 
 var slice = Array.prototype.slice,
+	util = require( 'mediawiki.util' ),
 	mwString = require( 'mediawiki.String' ),
 	parserDefaults = {
 		// Magic words and their expansions. Server-side data is added to this below.
 		magic: {
 			PAGENAME: mw.config.get( 'wgPageName' ),
-			PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
+			PAGENAMEE: util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
 			SERVERNAME: mw.config.get( 'wgServerName' )
 		},
 		// Whitelist for allowed HTML elements in wikitext.
@@ -139,7 +153,7 @@ function textify( input ) {
  */
 function getFailableParserFn( options ) {
 	return function ( args ) {
-		var parser = new mw.jqueryMsg.Parser( options ),
+		var parser = new Parser( options ),
 			key = args[ 0 ],
 			argsArray = Array.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
 		try {
@@ -156,8 +170,6 @@ function getFailableParserFn( options ) {
 	};
 }
 
-mw.jqueryMsg = {};
-
 /**
  * Initialize parser defaults.
  *
@@ -167,7 +179,7 @@ mw.jqueryMsg = {};
  * @private
  * @param {Object} data New data to extend parser defaults with
  */
-mw.jqueryMsg.setParserDefaults = function ( data ) {
+const setParserDefaults = function ( data ) {
 	$.extend( parserDefaults, data );
 };
 
@@ -179,34 +191,18 @@ mw.jqueryMsg.setParserDefaults = function ( data ) {
  * @private
  * @return {Object}
  */
-mw.jqueryMsg.getParserDefaults = function () {
+const getParserDefaults = function () {
 	return $.extend( {}, parserDefaults );
 };
 
 /**
  * Returns a function suitable for static use, to construct strings from a message key (and optional replacements).
  *
- * Example:
- *
- *       var format = mediaWiki.jqueryMsg.getMessageFunction( options );
- *       $( '#example' ).text( format( 'hello-user', username ) );
- *
- * Tthis returns only strings, so it destroys any bindings. If you want to preserve bindings, use the
- * jQuery plugin version instead. This was originally created to ease migration from `window.gM()`,
- * from a time when the parser used by `mw.message` was not extendable.
- *
- * N.B. replacements are variadic arguments or an array in second parameter. In other words:
- *    somefunction( a, b, c, d )
- * is equivalent to
- *    somefunction( a, [b, c, d] )
- *
+ * @ignore
  * @param {Object} options parser options
- * @return {Function} Function The message formatter
- * @return {string} return.key Message key.
- * @return {Array|Mixed} return.replacements Optional variable replacements (variadically or an array).
- * @return {string} return.return Rendered HTML.
+ * @return {jQueryPlugins~MessageFormatterFunction}
  */
-mw.jqueryMsg.getMessageFunction = function ( options ) {
+const defaultMessageFunction = function ( options ) {
 	var failableParserFn, format;
 
 	if ( options && options.format !== undefined ) {
@@ -227,30 +223,43 @@ mw.jqueryMsg.getMessageFunction = function ( options ) {
 		}
 	};
 };
+/**
+ * @type {MessageFormatterFunctionGenerator}
+ * @ignore
+ */
+let messageFunction = defaultMessageFunction;
 
 /**
- * Returns a jQuery plugin which parses the message in the message key, doing replacements optionally, and appends the nodes to
- * the current selector. Bindings to passed-in jquery elements are preserved. Functions become click handlers for [$1 linktext] links.
- * e.g.
- *
- *        $.fn.msg = mediaWiki.jqueryMsg.getPlugin( options );
- *        var $userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );
- *        $( 'p#headline' ).msg( 'hello-user', $userlink );
- *
- * N.B. replacements are variadic arguments or an array in second parameter. In other words:
- *    somefunction( a, b, c, d )
- * is equivalent to
- *    somefunction( a, [b, c, d] )
- *
- * We append to 'this', which in a jQuery plugin context will be the selected elements.
- *
- * @param {Object} options Parser options
- * @return {Function} Function suitable for assigning to jQuery plugin, such as jQuery#msg
- * @return {string} return.key Message key.
- * @return {Array|Mixed} return.replacements Optional variable replacements (variadically or an array).
- * @return {jQuery} return.return
+ * @ignore
+ * @param {Object} options parser options
+ * @return {jQueryPlugins~MessageFormatterFunction} options
  */
-mw.jqueryMsg.getPlugin = function ( options ) {
+const getMessageFunction = function ( options ) {
+	return messageFunction( options );
+};
+
+/**
+ * Allows tests to override the message function.
+ *
+ * @ignore
+ * @param {MessageFormatterFunctionGenerator} msgFunction
+ * @return {Function} that allows you to restore the original message function.
+ */
+const setMessageFunction = function ( msgFunction ) {
+	messageFunction = msgFunction;
+	return function () {
+		messageFunction = defaultMessageFunction;
+	};
+};
+
+/**
+ * Returns a jQuery plugin.
+ *
+ * @ignore
+ * @param {Object} [options] Parser options
+ * @return {jQueryPlugins~MessageFormatterFunction}
+ */
+const getPlugin = function ( options ) {
 	var failableParserFn;
 
 	return function () {
@@ -270,18 +279,15 @@ mw.jqueryMsg.getPlugin = function ( options ) {
  * @private
  * @param {Object} options
  */
-mw.jqueryMsg.Parser = function ( options ) {
+function Parser( options ) {
 	this.settings = $.extend( {}, parserDefaults, options );
 	this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
 	this.astCache = {};
 
-	this.emitter = new mw.jqueryMsg.HtmlEmitter( this.settings.language, this.settings.magic );
-};
-// Backwards-compatible alias
-// @deprecated since 1.31
-mw.log.deprecate( mw.jqueryMsg, 'parser', mw.jqueryMsg.Parser, 'Use mw.jqueryMsg.Parser instead.', 'mw.jqueryMsg.parser' );
+	this.emitter = new HtmlEmitter( this.settings.language, this.settings.magic );
+}
 
-mw.jqueryMsg.Parser.prototype = {
+Parser.prototype = {
 	/**
 	 * Where the magic happens.
 	 * Parses a message from the key, and swaps in replacements as necessary, wraps in jQuery
@@ -329,7 +335,7 @@ mw.jqueryMsg.Parser.prototype = {
 	 *
 	 * @param {string} input Message string wikitext
 	 * @throws Error
-	 * @return {Mixed} abstract syntax tree
+	 * @return {any} abstract syntax tree
 	 */
 	wikiTextToAst: function ( input ) {
 		var pos,
@@ -913,7 +919,7 @@ mw.jqueryMsg.Parser.prototype = {
  * @param {Object} language
  * @param {Object} [magic]
  */
-mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
+function HtmlEmitter( language, magic ) {
 	var jmsg = this;
 	this.language = language;
 	Object.keys( magic || {} ).forEach( function ( key ) {
@@ -927,9 +933,9 @@ mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 	 * (We put this method definition here, and not in prototype, to make sure it's not overwritten by any magic.)
 	 * Walk entire node structure, applying replacements and template functions when appropriate
 	 *
-	 * @param {Mixed} node Abstract syntax tree (top node or subnode)
+	 * @param {any} node Abstract syntax tree (top node or subnode)
 	 * @param {Array} replacements for $1, $2, ... $n
-	 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
+	 * @return {any} single-string node or array of nodes suitable for jQuery appending
 	 */
 	this.emit = function ( node, replacements ) {
 		switch ( typeof node ) {
@@ -961,7 +967,7 @@ mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 				throw new Error( 'Unexpected type in AST: ' + typeof node );
 		}
 	};
-};
+}
 
 // BIDI utility function, copied from jquery.i18n.emitter.bidi.js
 //
@@ -993,8 +999,9 @@ var strongDirRegExp = new RegExp(
  * TODO: Does not handle BIDI control characters inside the text.
  * TODO: Does not handle unallocated characters.
  *
+ * @ignore
  * @param {string} text The text from which to extract initial directionality.
- * @return {string} Directionality (either 'ltr' or 'rtl')
+ * @return {string|null} Directionality (either 'ltr' or 'rtl')
  */
 function strongDirFromContent( text ) {
 	var m = text.match( strongDirRegExp );
@@ -1013,7 +1020,7 @@ function strongDirFromContent( text ) {
 //
 // An emitter method takes the parent node, the array of subnodes and the array of replacements (the values that $1, $2... should translate to).
 // Note: all such functions must be pure, with the exception of referring to other pure functions via this.language (convertPlural and so on)
-mw.jqueryMsg.HtmlEmitter.prototype = {
+HtmlEmitter.prototype = {
 	/**
 	 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
 	 * Must return a single node to parents -- a jQuery with synthetic span
@@ -1110,7 +1117,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 		if ( page.charAt( 0 ) === ':' ) {
 			page = page.slice( 1 );
 		}
-		var url = mw.util.getUrl( page );
+		var url = util.getUrl( page );
 
 		var anchor;
 		if ( nodes.length === 1 ) {
@@ -1352,7 +1359,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	int: function ( nodes ) {
 		var msg = textify( nodes[ 0 ] );
-		return mw.jqueryMsg.getMessageFunction()( mwString.lcFirst( msg ) );
+		return getMessageFunction()( mwString.lcFirst( msg ) );
 	},
 
 	/**
@@ -1435,11 +1442,28 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 };
 
 /**
- * @method
- * @member jQuery
- * @see mw.jqueryMsg#getPlugin
+ * Parses the message in the message key, doing replacements optionally, and appends the nodes to
+ * the current selector. Bindings to passed-in jquery elements are preserved. Functions become click handlers for [$1 linktext] links.
+ *
+ * @memberof jQueryPlugins
+ * @name msg
+ * @param {string} message key
+ * @param {...string[]} arguments
+ * @function
+ * @example
+ * mw.loader.using('mediawiki.jqueryMsg' ).then(() => {
+ *        var $userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );
+ *        $( 'p#headline' ).msg( 'hello-user', $userlink );
+ * } );
+ *
+ * // N.B. replacements are variadic arguments or an array in second parameter. In other words:
+ * somefunction( a, b, c, d )
+ * // is equivalent to
+ * somefunction( a, [b, c, d] )
+ *
+ * // Note: We append to 'this', which in a jQuery plugin context will be the selected elements.
  */
-$.fn.msg = mw.jqueryMsg.getPlugin();
+$.fn.msg = getPlugin();
 
 // Replace the default message parser with jqueryMsg
 var oldParser = mw.Message.prototype.parser;
@@ -1461,7 +1485,7 @@ mw.Message.prototype.parser = function ( format ) {
 	}
 
 	if ( !Object.prototype.hasOwnProperty.call( this.map, format ) ) {
-		this.map[ format ] = mw.jqueryMsg.getMessageFunction( {
+		this.map[ format ] = getMessageFunction( {
 			messages: this.map,
 			// For format 'escaped', escaping part is handled by mediawiki.js
 			format: format
@@ -1474,10 +1498,18 @@ mw.Message.prototype.parser = function ( format ) {
  * Parse the message to DOM nodes, rather than HTML string like #parse.
  *
  * This method is only available when jqueryMsg is loaded.
+ * @example
+ * const msg = mw.message( 'key' );
+ * mw.loader.using(`mediawiki.jqueryMsg`).then(() => {
+ *   if ( msg.isParseable() ) {
+ *     const $node = msg.parseDom();
+ *     $node.appendTo('body');
+ *   }
+ * })
  *
  * @since 1.27
  * @method parseDom
- * @member mw.Message
+ * @memberof mw.Message.prototype
  * @return {jQuery}
  */
 mw.Message.prototype.parseDom = ( function () {
@@ -1496,18 +1528,46 @@ mw.Message.prototype.parseDom = ( function () {
  * Check whether the message contains only syntax supported by jqueryMsg.
  *
  * This method is only available when jqueryMsg is loaded.
+ * @example
+ * const msg = mw.message( 'key' );
+ * mw.loader.using(`mediawiki.jqueryMsg`).then(() => {
+ *   if ( msg.isParseable() ) {
+ *     ...
+ *   }
+ * })
  *
  * @since 1.41
  * @method isParseable
- * @member mw.Message
+ * @memberof mw.Message.prototype
  * @return {boolean}
  */
 mw.Message.prototype.isParseable = function () {
-	var parser = new mw.jqueryMsg.Parser();
+	var parser = new Parser();
 	try {
 		parser.parse( this.key, this.parameters );
 		return true;
 	} catch ( e ) {
 		return false;
+	}
+};
+
+/**
+ * Can be deleted when MobileFrontend is updated.
+ * https://phabricator.wikimedia.org/T354540
+ *
+ * @private
+ */
+mw.jqueryMsg = {
+	Parser
+};
+mw.log.deprecate( mw, 'jqueryMsg', mw.jqueryMsg, 'mw.jqueryMsg is a @private library.' );
+// Expose for testing purposes only (not a stable API).
+module.exports = {
+	test: {
+		getMessageFunction,
+		setMessageFunction,
+		getParserDefaults,
+		setParserDefaults,
+		Parser
 	}
 };
