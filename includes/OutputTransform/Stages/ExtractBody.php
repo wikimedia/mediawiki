@@ -23,18 +23,11 @@ class ExtractBody extends ContentTextTransformStage {
 		'a' => true, 'img' => true, 'video' => true, 'audio' => true,
 	];
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
-		// T350952: temporary fix for subpage paths: use Parsoid's
-		// <base href> to expand relative links
-		$baseHref = '';
-		if ( preg_match( '{<base href=["\']([^"\']+)["\'][^>]+>}', $text, $matches ) === 1 ) {
-			$baseHref = $matches[1];
-		}
-		$text = Parser::extractBody( $text );
+	private static function expandRelativeAttrs( string $text, string $baseHref ): string {
 		// T350952: Expand relative links
 		// What we should be doing here is parsing as a title and then
 		// using Title::getLocalURL()
-		$text = HtmlHelper::modifyElements(
+		return HtmlHelper::modifyElements(
 			$text,
 			static function ( SerializerNode $node ): bool {
 				if ( !isset( self::EXPAND_ELEMENTS[$node->name] ) ) {
@@ -51,6 +44,19 @@ class ExtractBody extends ContentTextTransformStage {
 				return $node;
 			}
 		);
-		return $text;
+	}
+
+	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+		// T350952: temporary fix for subpage paths: use Parsoid's
+		// <base href> to expand relative links
+		$baseHref = '';
+		if ( preg_match( '{<base href=["\']([^"\']+)["\'][^>]+>}', $text, $matches ) === 1 ) {
+			$baseHref = $matches[1];
+		}
+		$text = Parser::extractBody( $text );
+		foreach ( $po->getIndicators() as $name => $html ) {
+			$po->setIndicator( $name, self::expandRelativeAttrs( $html, $baseHref ) );
+		}
+		return self::expandRelativeAttrs( $text, $baseHref );
 	}
 }
