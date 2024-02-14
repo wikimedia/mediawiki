@@ -18,7 +18,7 @@ class WfEscapeWikiTextTest extends MediaWikiUnitTestCase {
 		// Sanity check that the output can be decoded back to the input
 		// input as well.
 		$decoded = html_entity_decode( $actual, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5 );
-		$this->assertEquals( $decoded, $input );
+		$this->assertEquals( $decoded, (string)$input );
 		// And that the output was what we expected
 		$this->assertEquals( $expected, $actual );
 
@@ -28,6 +28,14 @@ class WfEscapeWikiTextTest extends MediaWikiUnitTestCase {
 
 	public function provideEscape() {
 		return [
+			'null' => [
+				null,
+				'',
+			],
+			'false' => [
+				false,
+				'',
+			],
 			'empty string' => [
 				'',
 				'',
