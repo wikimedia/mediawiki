@@ -1125,11 +1125,11 @@ function wfClientAcceptsGzip( $force = false ) {
  * is achieved by substituting certain characters with HTML entities.
  * As required by the callers, "<nowiki>" is not used.
  *
- * @param string $input Text to be escaped
+ * @param string|null|false $input Text to be escaped
  * @param-taint $input escapes_html
  * @return string
  */
-function wfEscapeWikiText( $input ) {
+function wfEscapeWikiText( $input ): string {
 	global $wgEnableMagicLinks;
 	static $repl = null, $repl2 = null, $repl3 = null, $repl4 = null;
 	if ( $repl === null || defined( 'MW_PARSER_TEST' ) || defined( 'MW_PHPUNIT_TEST' ) ) {
@@ -1196,12 +1196,9 @@ function wfEscapeWikiText( $input ) {
 	'@phan-var string $repl2';
 	'@phan-var string $repl3';
 	'@phan-var string $repl4';
-	if ( $input === '' ) {
-		return $input;
-	}
+	// This will also stringify input in case it's not a string
 	$text = substr( strtr( "\n$input", $repl ), 1 );
 	if ( $text === '' ) {
-		wfDebug( "(T357032) wfEscapeWikiText() fed input that turned to empty: '$input'" );
 		return $text;
 	}
 	$first = strtr( $text[0], $repl3 ); // protect first character
