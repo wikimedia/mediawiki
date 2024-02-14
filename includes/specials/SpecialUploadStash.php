@@ -30,17 +30,17 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\UploadStashPager;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
-use MWExceptionHandler;
 use RepoGroup;
 use SpecialUploadStashTooLargeException;
 use UnregisteredLocalFile;
 use UploadStash;
 use UploadStashBadPathException;
 use UploadStashFileNotFoundException;
-use Wikimedia\RequestTimeout\TimeoutException;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Web access for files temporarily stored by UploadStash.
@@ -62,6 +62,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	private LocalRepo $localRepo;
 	private HttpRequestFactory $httpRequestFactory;
 	private UrlUtils $urlUtils;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * Since we are directly writing the file to STDOUT,
@@ -79,16 +80,19 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param RepoGroup $repoGroup
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param UrlUtils $urlUtils
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		RepoGroup $repoGroup,
 		HttpRequestFactory $httpRequestFactory,
-		UrlUtils $urlUtils
+		UrlUtils $urlUtils,
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'UploadStash', 'upload' );
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->urlUtils = $urlUtils;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function doesWrites() {
@@ -425,34 +429,16 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$this->getPageTitle(),
 			$this->msg( 'uploadstash-refresh' )->text()
 		);
-		$files = $this->stash->listFiles();
-		if ( $files && count( $files ) ) {
-			sort( $files );
-			$fileListItemsHtml = '';
-			foreach ( $files as $file ) {
-				$itemHtml = $linkRenderer->makeKnownLink(
-					$this->getPageTitle( "file/$file" ),
-					$file
-				);
-				try {
-					$fileObj = $this->stash->getFile( $file );
-					$thumb = $fileObj->generateThumbName( $file, [ 'width' => 220 ] );
-					$itemHtml .=
-						$this->msg( 'word-separator' )->escaped() .
-						$this->msg( 'parentheses' )->rawParams(
-							$linkRenderer->makeKnownLink(
-								$this->getPageTitle( "thumb/$file/$thumb" ),
-								$this->msg( 'uploadstash-thumbnail' )->text()
-							)
-						)->escaped();
-				} catch ( TimeoutException $e ) {
-					throw $e;
-				} catch ( Exception $e ) {
-					MWExceptionHandler::logException( $e );
-				}
-				$fileListItemsHtml .= Html::rawElement( 'li', [], $itemHtml );
-			}
-			$this->getOutput()->addHTML( Html::rawElement( 'ul', [], $fileListItemsHtml ) );
+		$pager = new UploadStashPager(
+			$this->getContext(),
+			$linkRenderer,
+			$this->dbProvider,
+			$this->stash,
+			$this->localRepo
+		);
+		if ( $pager->getNumRows() ) {
+			$pager->getForm();
+			$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
 			$form->displayForm( $formResult );
 			$this->getOutput()->addHTML( Html::rawElement( 'p', [], $refreshHtml ) );
 		} else {
