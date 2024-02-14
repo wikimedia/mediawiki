@@ -627,7 +627,9 @@ because of Phabricator reports.
 * WebRequest::getCrossSiteCookie() has been deprecated. It will emit deprecation
   warnings. Use WebRequest::getCookie().
 * Using the array_merge_recursive merge strategy in extension.json and skin.json
-  has been hard deprecated
+  has been hard deprecated.
+* DBAccessObjectUtils::getDBFromIndex() is now deprecated, use
+  ::getDBFromRecency() instead.
 * …
 
 === Other changes in 1.42 ===
