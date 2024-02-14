@@ -519,6 +519,31 @@ abstract class Handler {
 	}
 
 	/**
+	 * @throws HttpException on failed check
+	 */
+	public function parseBodyData( RequestInterface $request ): ?array {
+		// Parse the body based on its content type
+		$contentType = $request->getBodyType();
+		switch ( $contentType ) {
+			case 'application/x-www-form-urlencoded':
+			case 'multipart/form-data':
+				return $request->getPostParams();
+			case 'application/json':
+				$parsedBody = json_decode( $request->getBody()->getContents(), true );
+				if ( !is_array( $parsedBody ) ) {
+					throw new LocalizedHttpException(
+					// Fixme: missing parameter
+						new MessageValue( 'rest-json-body-parse-error', [ "" ] ),
+						400
+					);
+				}
+				return $parsedBody;
+			default:
+				return null;
+		}
+	}
+
+	/**
 	 * Get a HookContainer, for running extension hooks or for hook metadata.
 	 *
 	 * @since 1.35

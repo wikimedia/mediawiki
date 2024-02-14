@@ -262,4 +262,10 @@ interface RequestInterface {
 	 * @return array The deserialized POST parameters
 	 */
 	public function getPostParams();
+
+	public function getParsedBody(): ?array;
+
+	public function setParsedBody( ?array $data );
+
+	public function getBodyType(): ?string;
 }

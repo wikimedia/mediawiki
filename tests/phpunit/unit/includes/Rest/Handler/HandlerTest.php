@@ -468,4 +468,48 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $response->getHeaderLine( 'Cache-Control' ) );
 	}
 
+	public static function provideParseBodyData() {
+		return [
+			'null body type' => [
+				new RequestData(),
+				null
+			],
+			'json body' => [
+				new RequestData( [
+					'bodyContents' => '{"foo":"bar"}',
+					'headers' => [ 'Content-Type' => 'application/json' ]
+				] ),
+				[ 'foo' => 'bar' ]
+			],
+			'unknown body type' => [
+				new RequestData( [
+					'headers' => [ 'Content-Type' => 'unknown/type' ]
+				] ),
+				null
+			],
+			'invalid json body' => [
+				new RequestData( [
+					'bodyContents' => '{"foo":"bar"',
+					'headers' => [ 'Content-Type' => 'application/json' ]
+				] ),
+				new LocalizedHttpException(
+					new MessageValue( 'rest-json-body-parse-error', [ '' ] ),
+					400
+				)
+			],
+		];
+	}
+
+	/** @dataProvider provideParseBodyData */
+	public function testParseBodyData( $requestData, $expectedResult ) {
+		$handler = $this->newHandler();
+		if ( $expectedResult instanceof LocalizedHttpException ) {
+			$this->expectException( LocalizedHttpException::class );
+			$handler->parseBodyData( $requestData );
+		} else {
+			$parsedBody = $handler->parseBodyData( $requestData );
+			$this->assertEquals( $expectedResult, $parsedBody );
+		}
+	}
+
 }

@@ -17,6 +17,8 @@ abstract class RequestBase implements RequestInterface {
 	/** @var string */
 	private $cookiePrefix;
 
+	protected ?array $parsedBody;
+
 	/**
 	 * @internal
 	 * @param string $cookiePrefix
@@ -107,5 +109,23 @@ abstract class RequestBase implements RequestInterface {
 		} else {
 			return $default;
 		}
+	}
+
+	public function getParsedBody(): ?array {
+		return $this->parsedBody;
+	}
+
+	public function setParsedBody( ?array $data ) {
+		$this->parsedBody = $data;
+	}
+
+	public function getBodyType(): ?string {
+		[ $ct ] = explode( ';', $this->getHeaderLine( 'Content-Type' ), 2 );
+		$ct = strtolower( trim( $ct ) );
+
+		if ( $ct === '' ) {
+			return null;
+		}
+		return $ct;
 	}
 }

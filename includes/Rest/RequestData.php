@@ -63,6 +63,7 @@ class RequestData extends RequestBase {
 		$this->postParams = $params['postParams'] ?? [];
 		$this->setPathParams( $params['pathParams'] ?? [] );
 		$this->setHeaders( $params['headers'] ?? [] );
+		$this->setParsedBody( $params['parsedBody'] ?? null );
 		parent::__construct( $params['cookiePrefix'] ?? '' );
 	}
 

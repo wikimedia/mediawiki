@@ -164,4 +164,61 @@ class RequestDataTest extends \MediaWikiUnitTestCase {
 		] );
 		$this->assertSame( 'bar', $request->getPathParam( 'foo' ) );
 	}
+
+	public function testDefaultParsedBody() {
+		$request = new RequestData( [] );
+		$this->assertNull( $request->getParsedBody() );
+	}
+
+	public function testSetParsedBody() {
+		$request = new RequestData( [] );
+		$request->setParsedBody( [ 'bodyData' ] );
+		$this->assertEquals( [ 'bodyData' ], $request->getParsedBody() );
+	}
+
+	public function testGetParsedBody() {
+		$request = new RequestData( [
+			'parsedBody' => [ 'bodyData' ]
+		] );
+		$this->assertEquals( [ 'bodyData' ], $request->getParsedBody() );
+	}
+
+	public static function provideBodyTypeBasedOnHeader() {
+		return [
+			'application/json' => [
+				[ 'Content-Type' => 'application/json' ],
+				'application/json'
+			],
+			'application/json with charset' => [
+				[ 'Content-Type' => 'application/json; charset=utf-8' ],
+				'application/json'
+			],
+			'application/form-urlencoded' => [
+				[ 'Content-Type' => 'application/x-www-form-urlencoded' ],
+				'application/x-www-form-urlencoded'
+			],
+			'multipart/form-data' => [
+				[ 'Content-Type' => 'multipart/form-data' ],
+				'multipart/form-data'
+			],
+			'no header' => [
+				[],
+				null
+			],
+			'empty header' => [
+				'headers' => [ 'Content-Type' => '' ],
+				null
+			],
+
+		];
+	}
+
+	/** @dataProvider provideBodyTypeBasedOnHeader */
+	public function testBodyTypeBasedOnHeader( $headers, $expectedResult ) {
+		$request = new RequestData( [
+			'headers' => $headers
+		] );
+		$this->assertSame( $expectedResult, $request->getBodyType() );
+	}
+
 }
