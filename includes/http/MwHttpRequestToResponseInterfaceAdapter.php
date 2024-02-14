@@ -106,8 +106,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 		 * `execute`. The best way of determining whether a MWHttpRequest contains response information is to check
 		 * whether its headers list is empty.
 		 */
-		// @phan-suppress-next-line MediaWikiNoEmptyIfDefined
-		if ( empty( $mwHttpRequest->getResponseHeaders() ) ) {
+		if ( !$mwHttpRequest->getResponseHeaders() ) {
 			throw new LogicException( 'Trying to get response information from a request that was not yet executed' );
 		}
 	}
