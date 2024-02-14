@@ -37,7 +37,6 @@ module.exports = {
 			'resources/src/oojs-global.js',
 			'resources/src/mediawiki.notification.convertmessagebox.js',
 			'resources/src/ooui-local.js',
-			'resources/src/mediawiki.page.gallery.slideshow.js',
 			'resources/src/vue'
 		]
 	},
