@@ -923,6 +923,8 @@
 	"edit-recovery-loaded-title": "Title for a notification toast popup shown when an in-progress edit is recovered.",
 	"edit-recovery-loaded-message": "Message shown in a notification toast popup when an in-progress edit is recovered.",
 	"edit-recovery-loaded-message-different-rev": "Additional note shown directly after {{mw-msg|edit-recovery-loaded-message}} when the current edit was based on a different parent revision to the stored data.",
+	"edit-recovery-loaded-message-different-rev-publish": "Shown directly after {{mw-msg|edit-recovery-loaded-message-different-rev}} when [[mw:Manual:$wgEditSubmitButtonLabelPublish|$wgEditSubmitButtonLabelPublish]] is true.",
+	"edit-recovery-loaded-message-different-rev-save": "Shown directly after {{mw-msg|edit-recovery-loaded-message-different-rev}} when [[mw:Manual:$wgEditSubmitButtonLabelPublish|$wgEditSubmitButtonLabelPublish]] is false.",
 	"edit-recovery-loaded-show": "Button text in a notification toast popup shown when an in-progress edit is recovered, used to show changes.",
 	"edit-recovery-loaded-discard": "Button text in a notification toast popup shown when an in-progress edit is recovered, used to cancel the recovery and delete the data.",
 	"summary": "The Summary text beside the edit summary field\n\nSee also:\n* {{msg-mw|Subject}}\nSee also:\n* {{msg-mw|Accesskey-summary}}\n* {{msg-mw|Tooltip-summary}}\n{{Identical|Summary}}",

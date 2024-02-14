@@ -1367,6 +1367,8 @@ return [
 			'edit-recovery-loaded-title',
 			'edit-recovery-loaded-message',
 			'edit-recovery-loaded-message-different-rev',
+			'edit-recovery-loaded-message-different-rev-publish',
+			'edit-recovery-loaded-message-different-rev-save',
 			'edit-recovery-loaded-show',
 			'edit-recovery-loaded-discard',
 		],
