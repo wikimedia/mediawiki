@@ -85,13 +85,14 @@ class DBAccessObjectUtils implements IDBAccessObject {
 	/**
 	 * Takes $index from ::getDBOptions() and return proper Database object
 	 *
-	 * Use of this function (and getDBOptions) is discouraged.
+	 * @deprecated since 1.42
 	 *
 	 * @param IConnectionProvider $dbProvider
 	 * @param int $index either DB_REPLICA or DB_PRIMARY
 	 * @return IReadableDatabase
 	 */
 	public static function getDBFromIndex( IConnectionProvider $dbProvider, int $index ): IReadableDatabase {
+		wfDeprecated( __METHOD__, '1.42' );
 		if ( $index === DB_PRIMARY ) {
 			return $dbProvider->getPrimaryDatabase();
 		} elseif ( $index === DB_REPLICA ) {
