@@ -1164,7 +1164,9 @@ var util = {
 	},
 
 	/**
-	 * Determine if input string represents a value of infinity.
+	 * Determine if an input string represents a value of infinity.
+	 * This is used when testing for infinity in the context of expiries,
+	 * such as watchlisting, page protection, and block expiries.
 	 *
 	 * @param {string|null} str
 	 * @return {boolean}
