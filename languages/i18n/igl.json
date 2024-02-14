@@ -2,9 +2,28 @@
 	"@metadata": {
 		"authors": [
 			"AgnesAbah",
-			"Amire80"
+			"Amire80",
+			"Peace"
 		]
 	},
+	"tog-underline": "éwú kíyà kámé wú dámá",
+	"tog-hideminor": "Dú májá émáwú kéké kú má kó kwáfá ító",
+	"tog-hidepatrolled": "Dú májá",
+	"tog-newpageshidepatrolled": "Dú májá kwá fú ákí bó",
+	"tog-hidecategorization": "Dú májá á kú má kó má",
+	"tog-extendwatchlist": "Ché kí náná ké dú nyá gbá",
+	"tog-editondblclick": "Kó ónú májí",
+	"tog-editsectiononrightclick": "Jé wú ké náké kó kpáí á dówó tó",
+	"tog-watchdefault": "Dá mó táídá dúfú",
+	"tog-watchmoves": "Dú máyú ótáídá kíbó",
+	"tog-watchdeletion": "Dú má yú à kú náké wó kwó",
+	"tog-watchuploads": "Dá ító máyú",
+	"tog-minordefault": "Dú kó tó má gbà",
+	"tog-previewontop": "Dú nyá táké dú táfí kpà",
+	"tog-previewonfirst": "Dú nyá",
+	"tog-enotifwatchlistpages": "Kó mí ké dú kpú shérúmí",
+	"tog-enotifusertalkpages": "Kó rú mí égbá ká bó mí á kóló",
+	"tog-enotifminoredits": "ékó rúmí núgó áméwú káká lé",
 	"underline-always": "Ikódū",
 	"underline-never": "Ógbegbeile",
 	"sunday": "Aladi",

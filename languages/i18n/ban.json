@@ -4145,7 +4145,7 @@
 	"specialmute-error-mutelist-disabled": "Pawigunan mendep nénten kasedia santukan prajuru wiki sampun ngamatiang pawigunan mendepang rerepél antuk wiki niki.",
 	"specialmute-error-no-email-set": "Pawigunan mendep nénten wénten, santukan nénten prasida ngapastika alamat rerepél ragané.",
 	"specialmute-error-no-options": "Fitur ngamendepang ten kasedia.",
-	"specialmute-email-footer": "Antuk mingaturin préférénsi rerepél antuk sang anganggé {{BIDI:$2}} durus rauhin URL:<$1>.",
+	"specialmute-email-footer": "Antuk mingaturin préférénsi rerepél antuk sang anganggé {{BIDI:$2}} durus rauhin URL:\n$1",
 	"specialmute-login-required": "Durus manjing log antuk ngentosin anggitan bisu ragané.",
 	"mute-preferences": "Pustaka bisu",
 	"revid": "révisi $1",
