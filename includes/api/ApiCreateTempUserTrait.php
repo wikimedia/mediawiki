@@ -56,14 +56,17 @@ trait ApiCreateTempUserTrait {
 		return [
 			'returnto' => [
 				ParamValidator::PARAM_TYPE => 'title',
+				ApiBase::PARAM_HELP_MSG => 'apihelp-edit-param-returnto',
 			],
 			'returntoquery' => [
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
+				ApiBase::PARAM_HELP_MSG => 'apihelp-edit-param-returntoquery',
 			],
 			'returntoanchor' => [
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
+				ApiBase::PARAM_HELP_MSG => 'apihelp-edit-param-returntoanchor',
 			],
 		];
 	}
