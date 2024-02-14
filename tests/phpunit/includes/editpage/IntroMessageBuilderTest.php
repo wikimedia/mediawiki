@@ -81,7 +81,8 @@ class IntroMessageBuilderTest extends MediaWikiIntegrationTestCase {
 			$services->getSpecialPageFactory(),
 			$repoGroup,
 			$services->getNamespaceInfo(),
-			$services->getSkinFactory()
+			$services->getSkinFactory(),
+			$services->getConnectionProvider()
 		);
 	}
 

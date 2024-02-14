@@ -1009,7 +1009,8 @@ return [
 			$services->getSpecialPageFactory(),
 			$services->getRepoGroup(),
 			$services->getNamespaceInfo(),
-			$services->getSkinFactory()
+			$services->getSkinFactory(),
+			$services->getConnectionProvider()
 		);
 	},
 

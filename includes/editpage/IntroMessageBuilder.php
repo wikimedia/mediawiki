@@ -10,7 +10,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
@@ -28,6 +27,7 @@ use MessageLocalizer;
 use RepoGroup;
 use Skin;
 use SkinFactory;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -58,6 +58,7 @@ class IntroMessageBuilder {
 	private RepoGroup $repoGroup;
 	private NamespaceInfo $namespaceInfo;
 	private SkinFactory $skinFactory;
+	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		Config $config,
@@ -72,7 +73,8 @@ class IntroMessageBuilder {
 		SpecialPageFactory $specialPageFactory,
 		RepoGroup $repoGroup,
 		NamespaceInfo $namespaceInfo,
-		SkinFactory $skinFactory
+		SkinFactory $skinFactory,
+		IConnectionProvider $dbProvider
 	) {
 		$this->config = $config;
 		$this->linkRenderer = $linkRenderer;
@@ -87,6 +89,7 @@ class IntroMessageBuilder {
 		$this->repoGroup = $repoGroup;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->skinFactory = $skinFactory;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -432,7 +435,7 @@ class IntroMessageBuilder {
 	): void {
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$page->exists() ) {
-			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+			$dbr = $this->dbProvider->getReplicaDatabase();
 
 			$messages->addWithKey(
 				'recreate-moveddeleted-warn',
