@@ -1253,6 +1253,7 @@ class DatabaseBlockStore {
 		IDatabase $dbw,
 		$expectedTargetCount
 	) {
+		$id = null;
 		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$row = $this->getArrayForBlockUpdate( $block, $dbw, self::SCHEMA_IPBLOCKS );
 			$dbw->newInsertQueryBuilder()
@@ -1263,6 +1264,7 @@ class DatabaseBlockStore {
 			if ( !$dbw->affectedRows() ) {
 				return false;
 			}
+			$id = $dbw->insertId();
 		}
 		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$targetId = $this->acquireTarget( $block, $dbw, $expectedTargetCount );
@@ -1270,6 +1272,10 @@ class DatabaseBlockStore {
 				return false;
 			}
 			$row = $this->getArrayForBlockUpdate( $block, $dbw, self::SCHEMA_BLOCK );
+			if ( $id !== null ) {
+				$row['bl_id'] = $id;
+			}
+
 			$row['bl_target'] = $targetId;
 			$dbw->newInsertQueryBuilder()
 				->insertInto( 'block' )
@@ -1278,9 +1284,15 @@ class DatabaseBlockStore {
 			if ( !$dbw->affectedRows() ) {
 				return false;
 			}
+			if ( $id === null ) {
+				$id = $dbw->insertId();
+			}
 		}
 
-		$block->setId( $dbw->insertId() );
+		if ( !$id ) {
+			throw new RuntimeException( 'block insert ID is falsey' );
+		}
+		$block->setId( $id );
 		$restrictions = $block->getRawRestrictions();
 		if ( $restrictions ) {
 			$this->blockRestrictionStore->insert( $restrictions );
