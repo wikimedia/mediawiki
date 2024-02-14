@@ -1,9 +1,11 @@
 ( function () {
 	/**
-	 * This is the abstract base class for MessagePoster implementations.
+	 * Abstract base class for posting messages to talk pages.
 	 *
 	 * @abstract
 	 * @class
+	 * @classdesc The abstract base class for MessagePoster implementations.
+	 * @type {mw.messagePoster.MessagePoster}
 	 *
 	 * @constructor
 	 * @param {mw.Title} title Title to post to

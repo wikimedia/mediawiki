@@ -31,7 +31,6 @@ module.exports = {
 			'resources/src/mediawiki.htmlform.ooui',
 			'resources/src/mediawiki.jqueryMsg',
 			'resources/src/mediawiki.language.specialCharacters',
-			'resources/src/mediawiki.messagePoster',
 			'resources/src/mediawiki.widgets.datetime',
 			'resources/src/moment',
 			'resources/src/oojs-global.js',
