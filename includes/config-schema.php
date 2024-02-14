@@ -66,7 +66,7 @@ return [
 			'SharedUploadDBprefix' => '',
 			'CacheSharedUploads' => true,
 			'ForeignUploadTargets' => [
-				0 => 'local',
+				'local',
 			],
 			'UploadDialog' => [
 				'fields' => [
@@ -111,76 +111,76 @@ return [
 			'SharedThumbnailScriptPath' => false,
 			'HashedUploadDirectory' => true,
 			'FileExtensions' => [
-				0 => 'png',
-				1 => 'gif',
-				2 => 'jpg',
-				3 => 'jpeg',
-				4 => 'webp',
+				'png',
+				'gif',
+				'jpg',
+				'jpeg',
+				'webp',
 			],
 			'ProhibitedFileExtensions' => [
-				0 => 'html',
-				1 => 'htm',
-				2 => 'js',
-				3 => 'jsb',
-				4 => 'mhtml',
-				5 => 'mht',
-				6 => 'xhtml',
-				7 => 'xht',
-				8 => 'php',
-				9 => 'phtml',
-				10 => 'php3',
-				11 => 'php4',
-				12 => 'php5',
-				13 => 'phps',
-				14 => 'phar',
-				15 => 'shtml',
-				16 => 'jhtml',
-				17 => 'pl',
-				18 => 'py',
-				19 => 'cgi',
-				20 => 'exe',
-				21 => 'scr',
-				22 => 'dll',
-				23 => 'msi',
-				24 => 'vbs',
-				25 => 'bat',
-				26 => 'com',
-				27 => 'pif',
-				28 => 'cmd',
-				29 => 'vxd',
-				30 => 'cpl',
-				31 => 'xml',
+				'html',
+				'htm',
+				'js',
+				'jsb',
+				'mhtml',
+				'mht',
+				'xhtml',
+				'xht',
+				'php',
+				'phtml',
+				'php3',
+				'php4',
+				'php5',
+				'phps',
+				'phar',
+				'shtml',
+				'jhtml',
+				'pl',
+				'py',
+				'cgi',
+				'exe',
+				'scr',
+				'dll',
+				'msi',
+				'vbs',
+				'bat',
+				'com',
+				'pif',
+				'cmd',
+				'vxd',
+				'cpl',
+				'xml',
 			],
 			'MimeTypeExclusions' => [
-				0 => 'text/html',
-				1 => 'application/javascript',
-				2 => 'text/javascript',
-				3 => 'text/x-javascript',
-				4 => 'application/x-shellscript',
-				5 => 'application/x-php',
-				6 => 'text/x-php',
-				7 => 'text/x-python',
-				8 => 'text/x-perl',
-				9 => 'text/x-bash',
-				10 => 'text/x-sh',
-				11 => 'text/x-csh',
-				12 => 'text/scriptlet',
-				13 => 'application/x-msdownload',
-				14 => 'application/x-msmetafile',
-				15 => 'application/java',
-				16 => 'application/xml',
-				17 => 'text/xml',
+				'text/html',
+				'application/javascript',
+				'text/javascript',
+				'text/x-javascript',
+				'application/x-shellscript',
+				'application/x-php',
+				'text/x-php',
+				'text/x-python',
+				'text/x-perl',
+				'text/x-bash',
+				'text/x-sh',
+				'text/x-csh',
+				'text/scriptlet',
+				'application/x-msdownload',
+				'application/x-msmetafile',
+				'application/java',
+				'application/xml',
+				'text/xml',
 			],
 			'CheckFileExtensions' => true,
 			'StrictFileExtensions' => true,
 			'DisableUploadScriptChecks' => false,
 			'UploadSizeWarning' => false,
 			'TrustedMediaFormats' => [
-				0 => 'BITMAP',
-				1 => 'AUDIO',
-				2 => 'VIDEO',
-				3 => 'image/svg+xml',
-				4 => 'application/pdf',
+				'BITMAP',
+				'AUDIO',
+				'VIDEO',
+				'image/svg+xml',
+				'application/pdf',
 			],
 			'MediaHandlers' => [
 			],
@@ -219,7 +219,7 @@ return [
 				'rsvg' => '$path/rsvg-convert -w $width -h $height -o $output $input',
 				'imgserv' => '$path/imgserv-wrapper -i svg -o png -w$width $input $output',
 				'ImagickExt' => [
-					0 => 'SvgHandler::rasterizeImagickExt',
+					'SvgHandler::rasterizeImagickExt',
 				],
 			],
 			'SVGConverter' => 'ImageMagick',
@@ -266,41 +266,41 @@ return [
 				'html' => 'text/html',
 			],
 			'ImageLimits' => [
-				0 => [
-					0 => 320,
-					1 => 240,
+				[
+					320,
+					240,
 				],
-				1 => [
-					0 => 640,
-					1 => 480,
+				[
+					640,
+					480,
 				],
-				2 => [
-					0 => 800,
-					1 => 600,
+				[
+					800,
+					600,
 				],
-				3 => [
-					0 => 1024,
-					1 => 768,
+				[
+					1024,
+					768,
 				],
-				4 => [
-					0 => 1280,
-					1 => 1024,
+				[
+					1280,
+					1024,
 				],
-				5 => [
-					0 => 2560,
-					1 => 2048,
+				[
+					2560,
+					2048,
 				],
 			],
 			'ThumbLimits' => [
-				0 => 120,
-				1 => 150,
-				2 => 180,
-				3 => 200,
-				4 => 250,
-				5 => 300,
+				120,
+				150,
+				180,
+				200,
+				250,
+				300,
 			],
 			'ThumbnailNamespaces' => [
-				0 => 6,
+				6,
 			],
 			'ThumbnailBuckets' => null,
 			'ThumbnailMinimumBucketDistance' => 50,
@@ -371,9 +371,9 @@ return [
 			'SharedDB' => null,
 			'SharedPrefix' => false,
 			'SharedTables' => [
-				0 => 'user',
-				1 => 'user_properties',
-				2 => 'user_autocreate_serial',
+				'user',
+				'user_properties',
+				'user_autocreate_serial',
 			],
 			'SharedSchema' => false,
 			'DBservers' => false,
@@ -398,13 +398,13 @@ return [
 				'wikitext' => [
 					'class' => 'WikitextContentHandler',
 					'services' => [
-						0 => 'TitleFactory',
-						1 => 'ParserFactory',
-						2 => 'GlobalIdGenerator',
-						3 => 'LanguageNameUtils',
-						4 => 'LinkRenderer',
-						5 => 'MagicWordFactory',
-						6 => 'ParsoidParserFactory',
+						'TitleFactory',
+						'ParserFactory',
+						'GlobalIdGenerator',
+						'LanguageNameUtils',
+						'LinkRenderer',
+						'MagicWordFactory',
+						'ParsoidParserFactory',
 					],
 				],
 				'javascript' => 'JavaScriptContentHandler',
@@ -416,9 +416,9 @@ return [
 			'NamespaceContentModels' => [
 			],
 			'TextModelsToParse' => [
-				0 => 'wikitext',
-				1 => 'javascript',
-				2 => 'css',
+				'wikitext',
+				'javascript',
+				'css',
 			],
 			'CompressRevisions' => false,
 			'ExternalStores' => [
@@ -446,7 +446,7 @@ return [
 			'PoolCounterConf' => null,
 			'PoolCountClientConf' => [
 				'servers' => [
-					0 => '127.0.0.1',
+					'127.0.0.1',
 				],
 				'timeout' => 0.1,
 			],
@@ -532,7 +532,7 @@ return [
 			'SuspiciousIpExpiry' => false,
 			'SessionPbkdf2Iterations' => 10001,
 			'MemCachedServers' => [
-				0 => '127.0.0.1:11211',
+				'127.0.0.1:11211',
 			],
 			'MemCachedPersistent' => false,
 			'MemCachedTimeout' => 500000,
@@ -614,9 +614,9 @@ return [
 			'ForceUIMsgAsContentMsg' => [
 			],
 			'RawHtmlMessages' => [
-				0 => 'copyright',
-				1 => 'history_copyright',
-				2 => 'googlesearch',
+				'copyright',
+				'history_copyright',
+				'googlesearch',
 			],
 			'Localtimezone' => null,
 			'LocalTZoffset' => null,
@@ -638,8 +638,8 @@ return [
 			],
 			'DisableOutputCompression' => false,
 			'FragmentMode' => [
-				0 => 'html5',
-				1 => 'legacy',
+				'html5',
+				'legacy',
 			],
 			'ExternalInterwikiFragmentMode' => 'legacy',
 			'FooterIcons' => [
@@ -729,18 +729,18 @@ return [
 				15 => true,
 			],
 			'ContentNamespaces' => [
-				0 => 0,
+				0,
 			],
 			'ShortPagesNamespaceExclusions' => [
 			],
 			'ExtraSignatureNamespaces' => [
 			],
 			'InvalidRedirectTargets' => [
-				0 => 'Filepath',
-				1 => 'Mypage',
-				2 => 'Mytalk',
-				3 => 'Redirect',
-				4 => 'Mylog',
+				'Filepath',
+				'Mypage',
+				'Mytalk',
+				'Redirect',
+				'Mylog',
 			],
 			'DisableHardRedirects' => false,
 			'FixDoubleRedirects' => false,
@@ -759,35 +759,35 @@ return [
 			'MaxTemplateDepth' => 100,
 			'MaxPPExpandDepth' => 100,
 			'UrlProtocols' => [
-				0 => 'bitcoin:',
-				1 => 'ftp://',
-				2 => 'ftps://',
-				3 => 'geo:',
-				4 => 'git://',
-				5 => 'gopher://',
-				6 => 'http://',
-				7 => 'https://',
-				8 => 'irc://',
-				9 => 'ircs://',
-				10 => 'magnet:',
-				11 => 'mailto:',
-				12 => 'matrix:',
-				13 => 'mms://',
-				14 => 'news:',
-				15 => 'nntp://',
-				16 => 'redis://',
-				17 => 'sftp://',
-				18 => 'sip:',
-				19 => 'sips:',
-				20 => 'sms:',
-				21 => 'ssh://',
-				22 => 'svn://',
-				23 => 'tel:',
-				24 => 'telnet://',
-				25 => 'urn:',
-				26 => 'worldwind://',
-				27 => 'xmpp:',
-				28 => '//',
+				'bitcoin:',
+				'ftp://',
+				'ftps://',
+				'geo:',
+				'git://',
+				'gopher://',
+				'http://',
+				'https://',
+				'irc://',
+				'ircs://',
+				'magnet:',
+				'mailto:',
+				'matrix:',
+				'mms://',
+				'news:',
+				'nntp://',
+				'redis://',
+				'sftp://',
+				'sip:',
+				'sips:',
+				'sms:',
+				'ssh://',
+				'svn://',
+				'tel:',
+				'telnet://',
+				'urn:',
+				'worldwind://',
+				'xmpp:',
+				'//',
 			],
 			'CleanSignatures' => true,
 			'AllowExternalImages' => false,
@@ -807,7 +807,7 @@ return [
 			'NoFollowNsExceptions' => [
 			],
 			'NoFollowDomainExceptions' => [
-				0 => 'mediawiki.org',
+				'mediawiki.org',
 			],
 			'RegisterInternalExternals' => false,
 			'AllowDisplayTitle' => true,
@@ -833,9 +833,9 @@ return [
 				'local' => [
 					'class' => 'MediaWiki\\User\\CentralId\\LocalIdLookup',
 					'services' => [
-						0 => 'MainConfig',
-						1 => 'DBLoadBalancerFactory',
-						2 => 'HideUserUtils',
+						'MainConfig',
+						'DBLoadBalancerFactory',
+						'HideUserUtils',
 					],
 				],
 			],
@@ -844,7 +844,7 @@ return [
 				'local' => [
 					'class' => 'MediaWiki\\User\\Registration\\LocalUserRegistrationProvider',
 					'services' => [
-						0 => 'UserFactory',
+						'UserFactory',
 					],
 				],
 			],
@@ -910,11 +910,11 @@ return [
 					'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider' => [
 						'class' => 'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider',
 						'services' => [
-							0 => 'DBLoadBalancerFactory',
-							1 => 'UserOptionsLookup',
+							'DBLoadBalancerFactory',
+							'UserOptionsLookup',
 						],
 						'args' => [
-							0 => [
+							[
 								'authoritative' => false,
 							],
 						],
@@ -923,10 +923,10 @@ return [
 					'MediaWiki\\Auth\\LocalPasswordPrimaryAuthenticationProvider' => [
 						'class' => 'MediaWiki\\Auth\\LocalPasswordPrimaryAuthenticationProvider',
 						'services' => [
-							0 => 'DBLoadBalancerFactory',
+							'DBLoadBalancerFactory',
 						],
 						'args' => [
-							0 => [
+							[
 								'authoritative' => true,
 							],
 						],
@@ -945,7 +945,7 @@ return [
 					'MediaWiki\\Auth\\EmailNotificationSecondaryAuthenticationProvider' => [
 						'class' => 'MediaWiki\\Auth\\EmailNotificationSecondaryAuthenticationProvider',
 						'services' => [
-							0 => 'DBLoadBalancerFactory',
+							'DBLoadBalancerFactory',
 						],
 						'sort' => 200,
 					],
@@ -959,10 +959,10 @@ return [
 				'default' => true,
 			],
 			'ChangeCredentialsBlacklist' => [
-				0 => 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest',
+				'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest',
 			],
 			'RemoveCredentialsBlacklist' => [
-				0 => 'MediaWiki\\Auth\\PasswordAuthenticationRequest',
+				'MediaWiki\\Auth\\PasswordAuthenticationRequest',
 			],
 			'InvalidPasswordReset' => true,
 			'PasswordDefault' => 'pbkdf2',
@@ -976,15 +976,15 @@ return [
 				'pbkdf2-legacyA' => [
 					'class' => 'LayeredParameterizedPassword',
 					'types' => [
-						0 => 'A',
-						1 => 'pbkdf2',
+						'A',
+						'pbkdf2',
 					],
 				],
 				'pbkdf2-legacyB' => [
 					'class' => 'LayeredParameterizedPassword',
 					'types' => [
-						0 => 'B',
-						1 => 'pbkdf2',
+						'B',
+						'pbkdf2',
 					],
 				],
 				'bcrypt' => [
@@ -993,8 +993,8 @@ return [
 				],
 				'pbkdf2' => [
 					'factory' => [
-						0 => 'AbstractPbkdf2Password',
-						1 => 'newInstance',
+						'AbstractPbkdf2Password',
+						'newInstance',
 					],
 					'algo' => 'sha512',
 					'cost' => '30000',
@@ -1012,25 +1012,25 @@ return [
 			'MaxSigChars' => 255,
 			'SignatureValidation' => 'warning',
 			'SignatureAllowedLintErrors' => [
-				0 => 'obsolete-tag',
+				'obsolete-tag',
 			],
 			'MaxNameChars' => 255,
 			'ReservedUsernames' => [
-				0 => 'MediaWiki default',
-				1 => 'Conversion script',
-				2 => 'Maintenance script',
-				3 => 'Template namespace initialisation script',
-				4 => 'ScriptImporter',
-				5 => 'Delete page script',
-				6 => 'Move page script',
-				7 => 'Command line script',
-				8 => 'Unknown user',
-				9 => 'msg:double-redirect-fixer',
-				10 => 'msg:usermessage-editor',
-				11 => 'msg:proxyblocker',
-				12 => 'msg:sorbs',
-				13 => 'msg:spambot_username',
-				14 => 'msg:autochange-username',
+				'MediaWiki default',
+				'Conversion script',
+				'Maintenance script',
+				'Template namespace initialisation script',
+				'ScriptImporter',
+				'Delete page script',
+				'Move page script',
+				'Command line script',
+				'Unknown user',
+				'msg:double-redirect-fixer',
+				'msg:usermessage-editor',
+				'msg:proxyblocker',
+				'msg:sorbs',
+				'msg:spambot_username',
+				'msg:autochange-username',
 			],
 			'DefaultUserOptions' => [
 				'ccmeonemails' => 0,
@@ -1113,7 +1113,7 @@ return [
 				'MediaWiki\\Session\\CookieSessionProvider' => [
 					'class' => 'MediaWiki\\Session\\CookieSessionProvider',
 					'args' => [
-						0 => [
+						[
 							'priority' => 30,
 						],
 					],
@@ -1121,12 +1121,12 @@ return [
 				'MediaWiki\\Session\\BotPasswordSessionProvider' => [
 					'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
 					'args' => [
-						0 => [
+						[
 							'priority' => 75,
 						],
 					],
 					'services' => [
-						0 => 'GrantsInfo',
+						'GrantsInfo',
 					],
 				],
 			],
@@ -1134,7 +1134,7 @@ return [
 			'AutoCreateTempUser' => [
 				'enabled' => false,
 				'actions' => [
-					0 => 'edit',
+					'edit',
 				],
 				'genPattern' => '*Unregistered $1',
 				'matchPattern' => '*$1',
@@ -1279,40 +1279,40 @@ return [
 				],
 			],
 			'PrivilegedGroups' => [
-				0 => 'bureaucrat',
-				1 => 'interface-admin',
-				2 => 'suppress',
-				3 => 'sysop',
+				'bureaucrat',
+				'interface-admin',
+				'suppress',
+				'sysop',
 			],
 			'RevokePermissions' => [
 			],
 			'GroupInheritsPermissions' => [
 			],
 			'ImplicitGroups' => [
-				0 => '*',
-				1 => 'user',
-				2 => 'autoconfirmed',
+				'*',
+				'user',
+				'autoconfirmed',
 			],
 			'GroupsAddToSelf' => [
 			],
 			'GroupsRemoveFromSelf' => [
 			],
 			'RestrictionTypes' => [
-				0 => 'create',
-				1 => 'edit',
-				2 => 'move',
-				3 => 'upload',
+				'create',
+				'edit',
+				'move',
+				'upload',
 			],
 			'RestrictionLevels' => [
-				0 => '',
-				1 => 'autoconfirmed',
-				2 => 'sysop',
+				'',
+				'autoconfirmed',
+				'sysop',
 			],
 			'CascadingRestrictionLevels' => [
-				0 => 'sysop',
+				'sysop',
 			],
 			'SemiprotectedRestrictionLevels' => [
-				0 => 'autoconfirmed',
+				'autoconfirmed',
 			],
 			'NamespaceProtection' => [
 			],
@@ -1322,14 +1322,14 @@ return [
 			'AutoConfirmCount' => 0,
 			'Autopromote' => [
 				'autoconfirmed' => [
-					0 => '&',
-					1 => [
-						0 => 1,
-						1 => null,
+					'&',
+					[
+						1,
+						null,
 					],
-					2 => [
-						0 => 2,
-						1 => null,
+					[
+						2,
+						null,
 					],
 				],
 			],
@@ -1350,7 +1350,7 @@ return [
 			'DeleteRevisionsBatchSize' => 1000,
 			'HideUserContribLimit' => 1000,
 			'AccountCreationThrottle' => [
-				0 => [
+				[
 					'count' => 0,
 					'seconds' => 86400,
 				],
@@ -1361,7 +1361,7 @@ return [
 			],
 			'EnableDnsBlacklist' => false,
 			'DnsBlacklistUrls' => [
-				0 => 'http.dnsbl.sorbs.net.',
+				'http.dnsbl.sorbs.net.',
 			],
 			'ProxyList' => [
 			],
@@ -1373,166 +1373,166 @@ return [
 			'RateLimits' => [
 				'edit' => [
 					'ip' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 					'newbie' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 					'user' => [
-						0 => 90,
-						1 => 60,
+						90,
+						60,
 					],
 				],
 				'move' => [
 					'newbie' => [
-						0 => 2,
-						1 => 120,
+						2,
+						120,
 					],
 					'user' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 				],
 				'upload' => [
 					'ip' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 					'newbie' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 				],
 				'rollback' => [
 					'user' => [
-						0 => 10,
-						1 => 60,
+						10,
+						60,
 					],
 					'newbie' => [
-						0 => 5,
-						1 => 120,
+						5,
+						120,
 					],
 				],
 				'mailpassword' => [
 					'ip' => [
-						0 => 5,
-						1 => 3600,
+						5,
+						3600,
 					],
 				],
 				'sendemail' => [
 					'ip' => [
-						0 => 5,
-						1 => 86400,
+						5,
+						86400,
 					],
 					'newbie' => [
-						0 => 5,
-						1 => 86400,
+						5,
+						86400,
 					],
 					'user' => [
-						0 => 20,
-						1 => 86400,
+						20,
+						86400,
 					],
 				],
 				'changeemail' => [
 					'ip-all' => [
-						0 => 10,
-						1 => 3600,
+						10,
+						3600,
 					],
 					'user' => [
-						0 => 4,
-						1 => 86400,
+						4,
+						86400,
 					],
 				],
 				'confirmemail' => [
 					'ip-all' => [
-						0 => 10,
-						1 => 3600,
+						10,
+						3600,
 					],
 					'user' => [
-						0 => 4,
-						1 => 86400,
+						4,
+						86400,
 					],
 				],
 				'purge' => [
 					'ip' => [
-						0 => 30,
-						1 => 60,
+						30,
+						60,
 					],
 					'user' => [
-						0 => 30,
-						1 => 60,
+						30,
+						60,
 					],
 				],
 				'linkpurge' => [
 					'ip' => [
-						0 => 30,
-						1 => 60,
+						30,
+						60,
 					],
 					'user' => [
-						0 => 30,
-						1 => 60,
+						30,
+						60,
 					],
 				],
 				'renderfile' => [
 					'ip' => [
-						0 => 700,
-						1 => 30,
+						700,
+						30,
 					],
 					'user' => [
-						0 => 700,
-						1 => 30,
+						700,
+						30,
 					],
 				],
 				'renderfile-nonstandard' => [
 					'ip' => [
-						0 => 70,
-						1 => 30,
+						70,
+						30,
 					],
 					'user' => [
-						0 => 70,
-						1 => 30,
+						70,
+						30,
 					],
 				],
 				'stashedit' => [
 					'ip' => [
-						0 => 30,
-						1 => 60,
+						30,
+						60,
 					],
 					'newbie' => [
-						0 => 30,
-						1 => 60,
+						30,
+						60,
 					],
 				],
 				'stashbasehtml' => [
 					'ip' => [
-						0 => 5,
-						1 => 60,
+						5,
+						60,
 					],
 					'newbie' => [
-						0 => 5,
-						1 => 60,
+						5,
+						60,
 					],
 				],
 				'changetags' => [
 					'ip' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 					'newbie' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 				],
 				'editcontentmodel' => [
 					'newbie' => [
-						0 => 2,
-						1 => 120,
+						2,
+						120,
 					],
 					'user' => [
-						0 => 8,
-						1 => 60,
+						8,
+						60,
 					],
 				],
 			],
@@ -1541,11 +1541,11 @@ return [
 			'PutIPinRC' => true,
 			'QueryPageDefaultLimit' => 50,
 			'PasswordAttemptThrottle' => [
-				0 => [
+				[
 					'count' => 5,
 					'seconds' => 300,
 				],
-				1 => [
+				[
 					'count' => 150,
 					'seconds' => 172800,
 				],
@@ -1914,7 +1914,7 @@ return [
 			'SearchSuggestCacheExpiry' => 1200,
 			'DisableSearchUpdate' => false,
 			'NamespacesToBeSearchedDefault' => [
-				0 => true,
+				true,
 			],
 			'DisableInternalSearch' => false,
 			'SearchForwardUrl' => null,
@@ -1947,17 +1947,17 @@ return [
 			'UnwatchedPageSecret' => 1,
 			'RCFilterByAge' => false,
 			'RCLinkLimits' => [
-				0 => 50,
-				1 => 100,
-				2 => 250,
-				3 => 500,
+				50,
+				100,
+				250,
+				500,
 			],
 			'RCLinkDays' => [
-				0 => 1,
-				1 => 3,
-				2 => 7,
-				3 => 14,
-				4 => 30,
+				1,
+				3,
+				7,
+				14,
+				30,
 			],
 			'RCFeeds' => [
 			],
@@ -1981,7 +1981,7 @@ return [
 				'atom' => 'MediaWiki\\Feed\\AtomFeed',
 			],
 			'AdvertisedFeedTypes' => [
-				0 => 'atom',
+				'atom',
 			],
 			'RCShowWatchingUsers' => false,
 			'RCShowChangedSize' => true,
@@ -2081,16 +2081,16 @@ return [
 				'sendMail' => [
 					'class' => 'EmaillingJob',
 					'services' => [
-						0 => 'Emailer',
+						'Emailer',
 					],
 				],
 				'enotifNotify' => 'EnotifNotifyJob',
 				'fixDoubleRedirect' => [
 					'class' => 'DoubleRedirectJob',
 					'services' => [
-						0 => 'RevisionLookup',
-						1 => 'MagicWordFactory',
-						2 => 'WikiPageFactory',
+						'RevisionLookup',
+						'MagicWordFactory',
+						'WikiPageFactory',
 					],
 					'needsPage' => true,
 				],
@@ -2114,23 +2114,23 @@ return [
 				'parsoidCachePrewarm' => [
 					'class' => 'ParsoidCachePrewarmJob',
 					'services' => [
-						0 => 'ParsoidOutputAccess',
-						1 => 'PageStore',
-						2 => 'RevisionLookup',
+						'ParsoidOutputAccess',
+						'PageStore',
+						'RevisionLookup',
 					],
 					'needsPage' => false,
 				],
 				'renameUser' => [
 					'class' => 'RenameUserJob',
 					'services' => [
-						0 => 'MainConfig',
-						1 => 'DBLoadBalancerFactory',
+						'MainConfig',
+						'DBLoadBalancerFactory',
 					],
 				],
 			],
 			'JobTypesExcludedFromDefaultQueue' => [
-				0 => 'AssembleUploadChunks',
-				1 => 'PublishStashedFile',
+				'AssembleUploadChunks',
+				'PublishStashedFile',
 			],
 			'JobBackoffThrottling' => [
 			],
@@ -2144,8 +2144,8 @@ return [
 			'JobQueueIncludeInMaxLagFactor' => false,
 			'SpecialPageCacheUpdates' => [
 				'Statistics' => [
-					0 => 'MediaWiki\\Deferred\\SiteStatsUpdate',
-					1 => 'cacheUpdate',
+					'MediaWiki\\Deferred\\SiteStatsUpdate',
+					'cacheUpdate',
 				],
 			],
 			'PagePropLinkInvalidations' => [
@@ -2159,21 +2159,21 @@ return [
 			'TrackingCategories' => [
 			],
 			'LogTypes' => [
-				0 => '',
-				1 => 'block',
-				2 => 'protect',
-				3 => 'rights',
-				4 => 'delete',
-				5 => 'upload',
-				6 => 'move',
-				7 => 'import',
-				8 => 'patrol',
-				9 => 'merge',
-				10 => 'suppress',
-				11 => 'tag',
-				12 => 'managetags',
-				13 => 'contentmodel',
-				14 => 'renameuser',
+				'',
+				'block',
+				'protect',
+				'rights',
+				'delete',
+				'upload',
+				'move',
+				'import',
+				'patrol',
+				'merge',
+				'suppress',
+				'tag',
+				'managetags',
+				'contentmodel',
+				'renameuser',
 			],
 			'LogRestrictions' => [
 				'suppress' => 'suppressionlog',
@@ -2254,134 +2254,134 @@ return [
 			'ActionFilteredLogs' => [
 				'block' => [
 					'block' => [
-						0 => 'block',
+						'block',
 					],
 					'reblock' => [
-						0 => 'reblock',
+						'reblock',
 					],
 					'unblock' => [
-						0 => 'unblock',
+						'unblock',
 					],
 				],
 				'contentmodel' => [
 					'change' => [
-						0 => 'change',
+						'change',
 					],
 					'new' => [
-						0 => 'new',
+						'new',
 					],
 				],
 				'delete' => [
 					'delete' => [
-						0 => 'delete',
+						'delete',
 					],
 					'delete_redir' => [
-						0 => 'delete_redir',
-						1 => 'delete_redir2',
+						'delete_redir',
+						'delete_redir2',
 					],
 					'restore' => [
-						0 => 'restore',
+						'restore',
 					],
 					'event' => [
-						0 => 'event',
+						'event',
 					],
 					'revision' => [
-						0 => 'revision',
+						'revision',
 					],
 				],
 				'import' => [
 					'interwiki' => [
-						0 => 'interwiki',
+						'interwiki',
 					],
 					'upload' => [
-						0 => 'upload',
+						'upload',
 					],
 				],
 				'managetags' => [
 					'create' => [
-						0 => 'create',
+						'create',
 					],
 					'delete' => [
-						0 => 'delete',
+						'delete',
 					],
 					'activate' => [
-						0 => 'activate',
+						'activate',
 					],
 					'deactivate' => [
-						0 => 'deactivate',
+						'deactivate',
 					],
 				],
 				'move' => [
 					'move' => [
-						0 => 'move',
+						'move',
 					],
 					'move_redir' => [
-						0 => 'move_redir',
+						'move_redir',
 					],
 				],
 				'newusers' => [
 					'create' => [
-						0 => 'create',
-						1 => 'newusers',
+						'create',
+						'newusers',
 					],
 					'create2' => [
-						0 => 'create2',
+						'create2',
 					],
 					'autocreate' => [
-						0 => 'autocreate',
+						'autocreate',
 					],
 					'byemail' => [
-						0 => 'byemail',
+						'byemail',
 					],
 				],
 				'protect' => [
 					'protect' => [
-						0 => 'protect',
+						'protect',
 					],
 					'modify' => [
-						0 => 'modify',
+						'modify',
 					],
 					'unprotect' => [
-						0 => 'unprotect',
+						'unprotect',
 					],
 					'move_prot' => [
-						0 => 'move_prot',
+						'move_prot',
 					],
 				],
 				'rights' => [
 					'rights' => [
-						0 => 'rights',
+						'rights',
 					],
 					'autopromote' => [
-						0 => 'autopromote',
+						'autopromote',
 					],
 				],
 				'suppress' => [
 					'event' => [
-						0 => 'event',
+						'event',
 					],
 					'revision' => [
-						0 => 'revision',
+						'revision',
 					],
 					'delete' => [
-						0 => 'delete',
+						'delete',
 					],
 					'block' => [
-						0 => 'block',
+						'block',
 					],
 					'reblock' => [
-						0 => 'reblock',
+						'reblock',
 					],
 				],
 				'upload' => [
 					'upload' => [
-						0 => 'upload',
+						'upload',
 					],
 					'overwrite' => [
-						0 => 'overwrite',
+						'overwrite',
 					],
 					'revert' => [
-						0 => 'revert',
+						'revert',
 					],
 				],
 			],
@@ -2421,8 +2421,8 @@ return [
 			'APIRequestLog' => false,
 			'APICacheHelpTimeout' => 3600,
 			'APIUselessQueryPages' => [
-				0 => 'MIMEsearch',
-				1 => 'LinkSearch',
+				'MIMEsearch',
+				'LinkSearch',
 			],
 			'AjaxLicensePreview' => true,
 			'CrossSiteAJAXdomains' => [
@@ -2430,17 +2430,17 @@ return [
 			'CrossSiteAJAXdomainExceptions' => [
 			],
 			'AllowedCorsHeaders' => [
-				0 => 'Accept',
-				1 => 'Accept-Language',
-				2 => 'Content-Language',
-				3 => 'Content-Type',
-				4 => 'Accept-Encoding',
-				5 => 'DNT',
-				6 => 'Origin',
-				7 => 'User-Agent',
-				8 => 'Api-User-Agent',
-				9 => 'Access-Control-Max-Age',
-				10 => 'Authorization',
+				'Accept',
+				'Accept-Language',
+				'Content-Language',
+				'Content-Type',
+				'Accept-Encoding',
+				'DNT',
+				'Origin',
+				'User-Agent',
+				'Api-User-Agent',
+				'Access-Control-Max-Age',
+				'Authorization',
 			],
 			'RestAPIAdditionalRouteFiles' => [
 			],
@@ -2497,8 +2497,8 @@ return [
 			'FeaturePolicyReportOnly' => [
 			],
 			'SkinsPreferred' => [
-				0 => 'vector-2022',
-				1 => 'vector',
+				'vector-2022',
+				'vector',
 			],
 			'SpecialContributeSkinsEnabled' => [
 			],
@@ -2510,44 +2510,44 @@ return [
 			'AssumeProxiesUseDefaultProtocolPorts' => 'boolean',
 			'ForceHTTPS' => 'boolean',
 			'ExtensionDirectory' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'StyleDirectory' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'Logos' => [
-				0 => 'object',
-				1 => 'boolean',
+				'object',
+				'boolean',
 			],
 			'ReferrerPolicy' => [
-				0 => 'array',
-				1 => 'string',
-				2 => 'boolean',
+				'array',
+				'string',
+				'boolean',
 			],
 			'ActionPaths' => 'object',
 			'MainPageIsDomainRoot' => 'boolean',
 			'ImgAuthUrlPathMap' => 'object',
 			'LocalFileRepo' => [
-				0 => 'object',
-				1 => 'boolean',
+				'object',
+				'boolean',
 			],
 			'ForeignFileRepos' => 'array',
 			'UseSharedUploads' => 'boolean',
 			'SharedUploadDirectory' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'SharedUploadPath' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'HashedSharedUploadDirectory' => 'boolean',
 			'FetchCommonsDescriptions' => 'boolean',
 			'SharedUploadDBname' => [
-				0 => 'boolean',
-				1 => 'string',
+				'boolean',
+				'string',
 			],
 			'SharedUploadDBprefix' => 'string',
 			'CacheSharedUploads' => 'boolean',
@@ -2557,12 +2557,12 @@ return [
 			'LockManagers' => 'array',
 			'CopyUploadsDomains' => 'array',
 			'CopyUploadTimeout' => [
-				0 => 'boolean',
-				1 => 'integer',
+				'boolean',
+				'integer',
 			],
 			'SharedThumbnailScriptPath' => [
-				0 => 'string',
-				1 => 'boolean',
+				'string',
+				'boolean',
 			],
 			'HashedUploadDirectory' => 'boolean',
 			'FileExtensions' => 'array',
@@ -2575,70 +2575,70 @@ return [
 			'MaxInterlacingAreas' => 'object',
 			'SVGConverters' => 'object',
 			'SVGNativeRendering' => [
-				0 => 'string',
-				1 => 'boolean',
+				'string',
+				'boolean',
 			],
 			'MaxImageArea' => [
-				0 => 'string',
-				1 => 'integer',
-				2 => 'boolean',
+				'string',
+				'integer',
+				'boolean',
 			],
 			'TiffThumbnailType' => 'array',
 			'GenerateThumbnailOnParse' => 'boolean',
 			'EnableAutoRotation' => [
-				0 => 'boolean',
-				1 => 'null',
+				'boolean',
+				'null',
 			],
 			'Antivirus' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'AntivirusSetup' => 'object',
 			'MimeDetectorCommand' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'XMLMimeTypes' => 'object',
 			'ImageLimits' => 'array',
 			'ThumbLimits' => 'array',
 			'ThumbnailNamespaces' => 'array',
 			'ThumbnailBuckets' => [
-				0 => 'array',
-				1 => 'null',
+				'array',
+				'null',
 			],
 			'UploadThumbnailRenderMap' => 'object',
 			'GalleryOptions' => 'object',
 			'DjvuDump' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'DjvuRenderer' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'DjvuTxt' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'DjvuPostProcessor' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'SMTP' => [
-				0 => 'boolean',
-				1 => 'object',
+				'boolean',
+				'object',
 			],
 			'EnotifFromEditor' => 'boolean',
 			'EnotifRevealEditorAddress' => 'boolean',
 			'UsersNotifiedOnAllChanges' => 'object',
 			'DBmwschema' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'SharedTables' => 'array',
 			'DBservers' => [
-				0 => 'boolean',
-				1 => 'array',
+				'boolean',
+				'array',
 			],
 			'LBFactoryConf' => 'object',
 			'LocalDatabases' => 'array',
@@ -2652,62 +2652,62 @@ return [
 			'ExternalStores' => 'array',
 			'ExternalServers' => 'object',
 			'DefaultExternalStore' => [
-				0 => 'array',
-				1 => 'boolean',
+				'array',
+				'boolean',
 			],
 			'RevisionCacheExpiry' => 'integer',
 			'PageLanguageUseDB' => 'boolean',
 			'DiffEngine' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'ExternalDiffEngine' => [
-				0 => 'string',
-				1 => 'boolean',
+				'string',
+				'boolean',
 			],
 			'Wikidiff2Options' => 'object',
 			'RequestTimeLimit' => [
-				0 => 'integer',
-				1 => 'null',
+				'integer',
+				'null',
 			],
 			'CriticalSectionTimeLimit' => 'number',
 			'PoolCounterConf' => [
-				0 => 'object',
-				1 => 'null',
+				'object',
+				'null',
 			],
 			'PoolCountClientConf' => 'object',
 			'MaxUserDBWriteDuration' => [
-				0 => 'integer',
-				1 => 'boolean',
+				'integer',
+				'boolean',
 			],
 			'MaxJobDBWriteDuration' => [
-				0 => 'integer',
-				1 => 'boolean',
+				'integer',
+				'boolean',
 			],
 			'MultiShardSiteStats' => 'boolean',
 			'ObjectCaches' => 'object',
 			'WANObjectCache' => 'object',
 			'MicroStashType' => [
-				0 => 'string',
-				1 => 'integer',
+				'string',
+				'integer',
 			],
 			'ParsoidCacheConfig' => 'object',
 			'ParserCacheFilterConfig' => 'object',
 			'ChronologyProtectorStash' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'ChronologyProtectorSecret' => 'string',
 			'PHPSessionHandling' => 'string',
 			'SuspiciousIpExpiry' => [
-				0 => 'integer',
-				1 => 'boolean',
+				'integer',
+				'boolean',
 			],
 			'MemCachedServers' => 'array',
 			'LocalisationCacheConf' => 'object',
 			'ExtensionInfoMTime' => [
-				0 => 'integer',
-				1 => 'boolean',
+				'integer',
+				'boolean',
 			],
 			'CdnServers' => 'object',
 			'CdnServersNoPurge' => 'object',
@@ -2734,8 +2734,8 @@ return [
 			'ResourceLoaderSources' => 'object',
 			'ResourceLoaderMaxage' => 'object',
 			'ResourceLoaderMaxQueryLength' => [
-				0 => 'integer',
-				1 => 'boolean',
+				'integer',
+				'boolean',
 			],
 			'CanonicalNamespaceNames' => 'object',
 			'ExtraNamespaces' => 'object',
@@ -2749,8 +2749,8 @@ return [
 			'InvalidRedirectTargets' => 'array',
 			'LocalInterwikis' => 'array',
 			'InterwikiCache' => [
-				0 => 'boolean',
-				1 => 'object',
+				'boolean',
+				'object',
 			],
 			'SiteTypes' => 'object',
 			'UrlProtocols' => 'array',
@@ -2766,8 +2766,8 @@ return [
 			'UserRegistrationProviders' => 'object',
 			'PasswordPolicy' => 'object',
 			'AuthManagerConfig' => [
-				0 => 'object',
-				1 => 'null',
+				'object',
+				'null',
 			],
 			'AuthManagerAutoConfig' => 'object',
 			'RememberMe' => 'string',
@@ -2783,8 +2783,8 @@ return [
 			'ConditionalUserOptions' => 'object',
 			'HiddenPrefs' => 'array',
 			'AuthenticationTokenVersion' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'SessionProviders' => 'object',
 			'AutoCreateTempUser' => 'object',
@@ -2812,15 +2812,15 @@ return [
 			'AvailableRights' => 'array',
 			'ImplicitRights' => 'array',
 			'AccountCreationThrottle' => [
-				0 => 'integer',
-				1 => 'array',
+				'integer',
+				'array',
 			],
 			'SpamRegex' => 'array',
 			'SummarySpamRegex' => 'array',
 			'DnsBlacklistUrls' => 'array',
 			'ProxyList' => [
-				0 => 'string',
-				1 => 'array',
+				'string',
+				'array',
 			],
 			'ProxyWhitelist' => 'array',
 			'SoftBlockRanges' => 'array',
@@ -2832,27 +2832,27 @@ return [
 			'GrantRiskGroups' => 'object',
 			'EnableBotPasswords' => 'boolean',
 			'BotPasswordsCluster' => [
-				0 => 'string',
-				1 => 'boolean',
+				'string',
+				'boolean',
 			],
 			'BotPasswordsDatabase' => [
-				0 => 'string',
-				1 => 'boolean',
+				'string',
+				'boolean',
 			],
 			'CSPHeader' => [
-				0 => 'boolean',
-				1 => 'object',
+				'boolean',
+				'object',
 			],
 			'CSPReportOnlyHeader' => [
-				0 => 'boolean',
-				1 => 'object',
+				'boolean',
+				'object',
 			],
 			'CSPFalsePositiveUrls' => 'object',
 			'AllowCrossOrigin' => 'boolean',
 			'RestAllowCrossOriginCookieAuth' => 'boolean',
 			'CookieSameSite' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'UseSameSiteLegacyCookies' => 'boolean',
 			'CacheVaryCookies' => 'array',
@@ -2862,23 +2862,23 @@ return [
 			'Profiler' => 'object',
 			'StatsdSamplingRates' => 'object',
 			'StatsTarget' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'StatsFormat' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'StatsPrefix' => 'string',
 			'OpenSearchTemplates' => 'object',
 			'NamespacesToBeSearchedDefault' => 'object',
 			'SitemapNamespaces' => [
-				0 => 'boolean',
-				1 => 'array',
+				'boolean',
+				'array',
 			],
 			'SitemapNamespacesPriorities' => [
-				0 => 'boolean',
-				1 => 'object',
+				'boolean',
+				'object',
 			],
 			'SpecialSearchFormOptions' => 'object',
 			'SearchMatchRedirectPreference' => 'boolean',
@@ -2898,8 +2898,8 @@ return [
 			'WatchlistExpiry' => 'boolean',
 			'WatchlistPurgeRate' => 'number',
 			'WatchlistExpiryMaxDuration' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'ImportSources' => 'object',
 			'ExtensionFunctions' => 'array',
@@ -2932,8 +2932,8 @@ return [
 			'NamespaceRobotPolicies' => 'object',
 			'ArticleRobotPolicies' => 'object',
 			'ExemptFromUserRobotsControl' => [
-				0 => 'array',
-				1 => 'null',
+				'array',
+				'null',
 			],
 			'APIModules' => 'object',
 			'APIFormatModules' => 'object',
@@ -2946,17 +2946,17 @@ return [
 			'AllowedCorsHeaders' => 'array',
 			'RestAPIAdditionalRouteFiles' => 'array',
 			'ShellRestrictionMethod' => [
-				0 => 'string',
-				1 => 'boolean',
+				'string',
+				'boolean',
 			],
 			'ShellboxUrls' => 'object',
 			'ShellboxSecretKey' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'ShellboxShell' => [
-				0 => 'string',
-				1 => 'null',
+				'string',
+				'null',
 			],
 			'HTTPTimeout' => 'number',
 			'HTTPConnectTimeout' => 'number',
@@ -2964,8 +2964,8 @@ return [
 			'HTTPMaxConnectTimeout' => 'number',
 			'LocalVirtualHosts' => 'object',
 			'LocalHTTPProxy' => [
-				0 => 'string',
-				1 => 'boolean',
+				'string',
+				'boolean',
 			],
 			'VirtualRestConfig' => 'object',
 			'EventRelayerConfig' => 'object',
@@ -2997,232 +2997,232 @@ return [
 		'dynamicDefault' => [
 			'UsePathInfo' => [
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultUsePathInfo',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultUsePathInfo',
 				],
 			],
 			'Script' => [
 				'use' => [
-					0 => 'ScriptPath',
+					'ScriptPath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultScript',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultScript',
 				],
 			],
 			'LoadScript' => [
 				'use' => [
-					0 => 'ScriptPath',
+					'ScriptPath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultLoadScript',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultLoadScript',
 				],
 			],
 			'RestPath' => [
 				'use' => [
-					0 => 'ScriptPath',
+					'ScriptPath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultRestPath',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultRestPath',
 				],
 			],
 			'StylePath' => [
 				'use' => [
-					0 => 'ResourceBasePath',
+					'ResourceBasePath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultStylePath',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultStylePath',
 				],
 			],
 			'LocalStylePath' => [
 				'use' => [
-					0 => 'ScriptPath',
+					'ScriptPath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultLocalStylePath',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultLocalStylePath',
 				],
 			],
 			'ExtensionAssetsPath' => [
 				'use' => [
-					0 => 'ResourceBasePath',
+					'ResourceBasePath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultExtensionAssetsPath',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultExtensionAssetsPath',
 				],
 			],
 			'ArticlePath' => [
 				'use' => [
-					0 => 'Script',
-					1 => 'UsePathInfo',
+					'Script',
+					'UsePathInfo',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultArticlePath',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultArticlePath',
 				],
 			],
 			'UploadPath' => [
 				'use' => [
-					0 => 'ScriptPath',
+					'ScriptPath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultUploadPath',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultUploadPath',
 				],
 			],
 			'UploadDirectory' => [
 				'use' => [
-					0 => 'BaseDirectory',
+					'BaseDirectory',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultUploadDirectory',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultUploadDirectory',
 				],
 			],
 			'FileCacheDirectory' => [
 				'use' => [
-					0 => 'UploadDirectory',
+					'UploadDirectory',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultFileCacheDirectory',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultFileCacheDirectory',
 				],
 			],
 			'Logo' => [
 				'use' => [
-					0 => 'ResourceBasePath',
+					'ResourceBasePath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultLogo',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultLogo',
 				],
 			],
 			'DeletedDirectory' => [
 				'use' => [
-					0 => 'UploadDirectory',
+					'UploadDirectory',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultDeletedDirectory',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultDeletedDirectory',
 				],
 			],
 			'LocalFileRepo' => [
 				'use' => [
-					0 => 'UploadDirectory',
-					1 => 'ScriptPath',
-					2 => 'Favicon',
-					3 => 'UploadBaseUrl',
-					4 => 'UploadPath',
-					5 => 'HashedUploadDirectory',
-					6 => 'ThumbnailScriptPath',
-					7 => 'GenerateThumbnailOnParse',
-					8 => 'DeletedDirectory',
-					9 => 'UpdateCompatibleMetadata',
+					'UploadDirectory',
+					'ScriptPath',
+					'Favicon',
+					'UploadBaseUrl',
+					'UploadPath',
+					'HashedUploadDirectory',
+					'ThumbnailScriptPath',
+					'GenerateThumbnailOnParse',
+					'DeletedDirectory',
+					'UpdateCompatibleMetadata',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultLocalFileRepo',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultLocalFileRepo',
 				],
 			],
 			'ShowEXIF' => [
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultShowEXIF',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultShowEXIF',
 				],
 			],
 			'SharedPrefix' => [
 				'use' => [
-					0 => 'DBprefix',
+					'DBprefix',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultSharedPrefix',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultSharedPrefix',
 				],
 			],
 			'SharedSchema' => [
 				'use' => [
-					0 => 'DBmwschema',
+					'DBmwschema',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultSharedSchema',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultSharedSchema',
 				],
 			],
 			'DBerrorLogTZ' => [
 				'use' => [
-					0 => 'Localtimezone',
+					'Localtimezone',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultDBerrorLogTZ',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultDBerrorLogTZ',
 				],
 			],
 			'Localtimezone' => [
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultLocaltimezone',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultLocaltimezone',
 				],
 			],
 			'LocalTZoffset' => [
 				'use' => [
-					0 => 'Localtimezone',
+					'Localtimezone',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultLocalTZoffset',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultLocalTZoffset',
 				],
 			],
 			'ResourceBasePath' => [
 				'use' => [
-					0 => 'ScriptPath',
+					'ScriptPath',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultResourceBasePath',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultResourceBasePath',
 				],
 			],
 			'MetaNamespace' => [
 				'use' => [
-					0 => 'Sitename',
+					'Sitename',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultMetaNamespace',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultMetaNamespace',
 				],
 			],
 			'CookieSecure' => [
 				'use' => [
-					0 => 'ForceHTTPS',
+					'ForceHTTPS',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultCookieSecure',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultCookieSecure',
 				],
 			],
 			'CookiePrefix' => [
 				'use' => [
-					0 => 'SharedDB',
-					1 => 'SharedPrefix',
-					2 => 'SharedTables',
-					3 => 'DBname',
-					4 => 'DBprefix',
+					'SharedDB',
+					'SharedPrefix',
+					'SharedTables',
+					'DBname',
+					'DBprefix',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultCookiePrefix',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultCookiePrefix',
 				],
 			],
 			'ReadOnlyFile' => [
 				'use' => [
-					0 => 'UploadDirectory',
+					'UploadDirectory',
 				],
 				'callback' => [
-					0 => 'MediaWiki\\MainConfigSchema',
-					1 => 'getDefaultReadOnlyFile',
+					'MediaWiki\\MainConfigSchema',
+					'getDefaultReadOnlyFile',
 				],
 			],
 		],
@@ -3376,9 +3376,9 @@ return [
 		'ShellboxUrls' => [
 			'additionalProperties' => [
 				'type' => [
-					0 => 'string',
-					1 => 'boolean',
-					2 => 'null',
+					'string',
+					'boolean',
+					'null',
 				],
 			],
 		],
