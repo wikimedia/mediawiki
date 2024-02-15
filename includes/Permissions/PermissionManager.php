@@ -242,7 +242,6 @@ class PermissionManager {
 		'viewmyprivateinfo',
 		'viewmywatchlist',
 		'viewsuppressed',
-		'writeapi',
 	];
 
 	/**

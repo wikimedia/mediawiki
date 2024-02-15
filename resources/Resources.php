@@ -2227,7 +2227,7 @@ return [
 	],
 	// This bundles various small scripts that relate to moderation or curation
 	// in some way, and:
-	// - .. are only loaded for a privileged subset of logged-in users.
+	// - .. only have an effect for a privileged subset of logged-in users.
 	// - .. may be loaded in the critical path on page views.
 	// - .. do NOT depend on OOUI or other "large" modules.
 	// - .. contain only UI initialisation code (e.g. no public exports)

@@ -54,7 +54,6 @@ class ApiMainTest extends ApiTestCase {
 				'*' => [
 					'read' => true,
 					'edit' => true,
-					'writeapi' => true,
 					'apihighlimits' => false,
 				],
 			]
@@ -745,19 +744,6 @@ class ApiMainTest extends ApiTestCase {
 			'text' => 'Some text',
 			'token' => '+\\',
 		] ) );
-		$main->execute();
-	}
-
-	public function testCheckExecutePermissionWriteApiProhibited() {
-		$this->expectApiErrorCode( 'writeapidenied' );
-		$this->setGroupPermissions( '*', 'writeapi', false );
-
-		$main = new ApiMain( new FauxRequest( [
-			'action' => 'edit',
-			'title' => 'Some page',
-			'text' => 'Some text',
-			'token' => '+\\',
-		] ), /* enableWrite = */ true );
 		$main->execute();
 	}
 

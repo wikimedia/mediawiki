@@ -505,10 +505,6 @@ class ApiMain extends ApiBase {
 	 * ];
 	 */
 	private const RIGHTS_MAP = [
-		'writeapi' => [
-			'msg' => 'right-writeapi',
-			'params' => []
-		],
 		'apihighlimits' => [
 			'msg' => 'api-help-right-apihighlimits',
 			'params' => [ ApiBase::LIMIT_SML2, ApiBase::LIMIT_BIG2 ]
@@ -1769,8 +1765,6 @@ class ApiMain extends ApiBase {
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
 				$this->dieWithError( 'apierror-noapiwrite' );
-			} elseif ( !$this->getAuthority()->isAllowed( 'writeapi' ) ) {
-				$this->dieWithError( 'apierror-writeapidenied' );
 			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
 				$this->dieWithError( 'apierror-promised-nonwrite-api' );
 			}

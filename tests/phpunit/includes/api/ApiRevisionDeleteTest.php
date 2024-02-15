@@ -33,7 +33,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testHidingRevisions() {
-		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
+		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'deleterevision' ] );
 		$revid = array_shift( $this->revs );
 		$out = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
@@ -93,7 +93,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testUnhidingOutput() {
-		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
+		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'deleterevision' ] );
 		$revid = array_shift( $this->revs );
 		// Hide revisions
 		$this->doApiRequestWithToken( [
@@ -127,7 +127,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 	public function testPartiallyBlockedPage() {
 		$this->expectApiErrorCode( 'blocked' );
-		$performer = $this->mockAnonAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
+		$performer = $this->mockAnonAuthorityWithPermissions( [ 'deleterevision' ] );
 
 		$block = new DatabaseBlock( [
 			'address' => $performer->getUser(),

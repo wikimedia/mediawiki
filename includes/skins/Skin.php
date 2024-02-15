@@ -510,7 +510,7 @@ abstract class Skin extends ContextSource {
 		$authority = $this->getAuthority();
 		$relevantTitle = $this->getRelevantTitle();
 		if ( $authority->getUser()->isRegistered()
-			&& $authority->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+			&& $authority->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' )
 			&& $relevantTitle && $relevantTitle->canExist()
 		) {
 			$modules['watch'][] = 'mediawiki.page.watch.ajax';

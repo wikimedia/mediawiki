@@ -47,7 +47,6 @@ class ApiBaseTest extends ApiTestCase {
 				'*' => [
 					'read' => true,
 					'edit' => true,
-					'writeapi' => true,
 					'apihighlimits' => false,
 				],
 			]

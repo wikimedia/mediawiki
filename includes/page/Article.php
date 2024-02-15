@@ -1453,9 +1453,7 @@ class Article implements Page {
 		}
 
 		$outputPage->setPreventClickjacking( true );
-		if ( $context->getAuthority()->isAllowed( 'writeapi' ) ) {
-			$outputPage->addModules( 'mediawiki.misc-authed-curate' );
-		}
+		$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 
 		$link = $this->linkRenderer->makeKnownLink(
 			$title,

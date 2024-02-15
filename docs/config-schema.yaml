@@ -5018,10 +5018,10 @@ config-schema:
             additionalProperties: { type: boolean }
         mergeStrategy: array_plus_2d
         default:
-            '*': { createaccount: true, read: true, edit: true, createpage: true, createtalk: true, writeapi: true, viewmyprivateinfo: true, editmyprivateinfo: true, editmyoptions: true }
-            user: { move: true, move-subpages: true, move-rootuserpages: true, move-categorypages: true, movefile: true, read: true, edit: true, createpage: true, createtalk: true, writeapi: true, upload: true, reupload: true, reupload-shared: true, minoredit: true, editmyusercss: true, editmyuserjson: true, editmyuserjs: true, editmyuserjsredirect: true, sendemail: true, applychangetags: true, changetags: true, editcontentmodel: true, viewmywatchlist: true, editmywatchlist: true }
+            '*': { createaccount: true, read: true, edit: true, createpage: true, createtalk: true, viewmyprivateinfo: true, editmyprivateinfo: true, editmyoptions: true }
+            user: { move: true, move-subpages: true, move-rootuserpages: true, move-categorypages: true, movefile: true, read: true, edit: true, createpage: true, createtalk: true, upload: true, reupload: true, reupload-shared: true, minoredit: true, editmyusercss: true, editmyuserjson: true, editmyuserjs: true, editmyuserjsredirect: true, sendemail: true, applychangetags: true, changetags: true, editcontentmodel: true, viewmywatchlist: true, editmywatchlist: true }
             autoconfirmed: { autoconfirmed: true, editsemiprotected: true }
-            bot: { bot: true, autoconfirmed: true, editsemiprotected: true, nominornewtalk: true, autopatrol: true, suppressredirect: true, apihighlimits: true, writeapi: true }
+            bot: { bot: true, autoconfirmed: true, editsemiprotected: true, nominornewtalk: true, autopatrol: true, suppressredirect: true, apihighlimits: true }
             sysop: { block: true, createaccount: true, delete: true, bigdelete: true, deletedhistory: true, deletedtext: true, undelete: true, editinterface: true, editsitejson: true, edituserjson: true, import: true, importupload: true, move: true, move-subpages: true, move-rootuserpages: true, move-categorypages: true, patrol: true, autopatrol: true, protect: true, editprotected: true, rollback: true, upload: true, reupload: true, reupload-shared: true, unwatchedpages: true, autoconfirmed: true, editsemiprotected: true, ipblock-exempt: true, blockemail: true, markbotedits: true, apihighlimits: true, browsearchive: true, noratelimit: true, movefile: true, unblockself: true, suppressredirect: true, mergehistory: true, managechangetags: true, deletechangetags: true }
             interface-admin: { editinterface: true, editsitecss: true, editsitejson: true, editsitejs: true, editusercss: true, edituserjson: true, edituserjs: true }
             bureaucrat: { userrights: true, noratelimit: true, renameuser: true }
@@ -5605,7 +5605,7 @@ config-schema:
             @warning Requires $wgMainCacheType to be enabled
     GrantPermissions:
         default:
-            basic: { autocreateaccount: true, autoconfirmed: true, autopatrol: true, editsemiprotected: true, ipblock-exempt: true, nominornewtalk: true, patrolmarks: true, read: true, writeapi: true, unwatchedpages: true }
+            basic: { autocreateaccount: true, autoconfirmed: true, autopatrol: true, editsemiprotected: true, ipblock-exempt: true, nominornewtalk: true, patrolmarks: true, read: true, unwatchedpages: true }
             highvolume: { bot: true, apihighlimits: true, noratelimit: true, markbotedits: true }
             import: { import: true, importupload: true }
             editpage: { edit: true, minoredit: true, applychangetags: true, changetags: true, editcontentmodel: true, pagelang: true }
