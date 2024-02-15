@@ -102,7 +102,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $channel
 	 */
 	public function __construct( $channel ) {
-		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups, $wgDebugToolbar, $wgDebugRawPage;
+		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups, $wgDebugToolbar, $wgDebugRawPage, $wgShowDebug;
 
 		$this->channel = $channel;
 		$this->isDB = ( $channel === 'rdbms' );
@@ -110,7 +110,7 @@ class LegacyLogger extends AbstractLogger {
 		// Calculate minimum level, duplicating some of the logic from log() and shouldEmit()
 		if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 			$this->minimumLevel = self::LEVEL_WARNING;
-		} elseif ( $wgDebugLogFile != '' || $wgDebugToolbar ) {
+		} elseif ( $wgDebugLogFile != '' || $wgShowDebug || $wgDebugToolbar ) {
 			// Log all messages if there is a debug log file or debug toolbar
 			$this->minimumLevel = self::LEVEL_DEBUG;
 		} elseif ( isset( $wgDebugLogGroups[$channel] ) ) {

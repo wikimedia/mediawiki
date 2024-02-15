@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
@@ -139,6 +141,20 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		@MWDebug::log( 'we could have logged something too' );
 		// Another deprecation (not silenced)
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+	}
+
+	public function testDebugMsg() {
+		$this->overrideConfigValue( MainConfigNames::ShowDebug, true );
+
+		// Generate a log to be sure there is at least one
+		$logger = LoggerFactory::getInstance( 'test-debug-channel' );
+		$logger->debug( 'My message', [] );
+		$debugLog = (string)MWDebug::getHTMLDebugLog();
+
+		$this->assertNotSame( '', $debugLog, 'MWDebug::getHTMLDebugLog() should not be an empty string' );
+		$this->assertStringNotContainsString( "<ul id=\"mw-debug-html\">\n</ul>", $debugLog,
+			'MWDebug::getHTMLDebugLog() should contain a non-empty debug log'
+		);
 	}
 
 	public function testAppendDebugInfoToApiResultXmlFormat() {
