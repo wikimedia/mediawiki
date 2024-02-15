@@ -2,15 +2,14 @@
 
 ## Getting started
 
-See <https://www.mediawiki.org/wiki/Selenium/Node.js> for how to best
+See <https://www.mediawiki.org/wiki/Selenium> for how to best
 run these locally. Below the internal prerequisites are documented,
 but you might not need to install these yourself.
 
 ## Prerequisites
 
-- [Chromium](https://www.chromium.org/) or [Chrome](https://www.google.com/chrome/)
-- [ChromeDriver](https://chromedriver.chromium.org/downloads)
-- [Node.js](https://nodejs.org/en/)
+- [Chromium](https://www.chromium.org/Home) or [Chrome](https://www.google.com/chrome)
+- [Node.js](https://nodejs.org)
 
 ## Usage
 
@@ -71,4 +70,4 @@ The following environment variables decide where to find MediaWiki and how to lo
 
 ## Further reading
 
-- [Selenium/Node.js](https://www.mediawiki.org/wiki/Selenium/Node.js) on mediawiki.org
+- [Selenium](https://www.mediawiki.org/wiki/Selenium) on mediawiki.org

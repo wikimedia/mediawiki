@@ -1,12 +1,12 @@
 # wdio-mediawiki
 
-A plugin for [WebdriverIO](http://webdriver.io/) providing utilities to simplify testing of MediaWiki features.
+A plugin for [WebdriverIO](https://webdriver.io) providing utilities to simplify testing of MediaWiki features.
 
 ## Getting Started
 
 ### Page
 
-The `Page` class is a base class for following the [Page Objects Pattern](http://webdriver.io/guide/testrunner/pageobjects.html).
+The `Page` class is a base class for following the [Page Objects Pattern](https://webdriver.io/docs/pageobjects).
 
 * `openTitle( title [, Object query [, string fragment ] ] )`
 
@@ -17,7 +17,7 @@ See [BlankPage](./BlankPage.js) and [specs/BlankPage](./specs/BlankPage.js) for 
 
 ### Api
 
-Utilities to interact with the MediaWiki API. Uses the [mwbot](https://github.com/Fannon/mwbot) library.
+Utilities to interact with the MediaWiki API. Uses the [mwbot](https://github.com/gesinn-it-pub/mwbot) library.
 
 Actions are performed logged-in using `browser.config.mwUser` and `browser.config.mwPwd`,
 which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment variables.
@@ -50,7 +50,7 @@ making assertions that depend on its outcome.
 
 ## Versioning
 
-This package follows [Semantic Versioning guidelines](https://semver.org/) for its releases. In
+This package follows [Semantic Versioning guidelines](https://semver.org) for its releases. In
 particular, its major version must be bumped when compatibility is removed for a previous of
 MediaWiki.
 
@@ -65,11 +65,11 @@ co-exists with its deprecated equivalent for at least one release.
 
 ## Issue tracker
 
-Please report issues to [Phabricator](https://phabricator.wikimedia.org/tag/mediawiki-core-tests/).
+Please report issues to [Phabricator](https://phabricator.wikimedia.org/tag/mediawiki-core-tests).
 
 ## Contributing
 
 This module is maintained in the MediaWiki core repository and published from there as a
 package to npmjs.org. To simplify development and to ensure changes are verified
 automatically, MediaWiki core itself uses this module directly from the working copy
-using [npm Local Paths](https://docs.npmjs.com/files/package.json#local-paths).
+using [npm Local Paths](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#local-paths).
