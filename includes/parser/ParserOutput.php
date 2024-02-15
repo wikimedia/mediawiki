@@ -939,7 +939,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addLanguageLink( $t ): void {
 		if ( $t instanceof ParsoidLinkTarget ) {
 			// language links are unusual in using 'text' rather than 'db key'
-			// T296023: This should be made more efficient so we don't need
+			// T296019: This should be made more efficient so we don't need
 			// a full title lookup.
 			$t = Title::newfromLinkTarget( $t )->getFullText();
 		}
@@ -1058,7 +1058,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return;
 		}
 		if ( $id === null ) {
-			// T296023: This actually kills performance; we should batch these.
+			// T357048: This actually kills performance; we should batch these.
 			$page = MediaWikiServices::getInstance()->getPageStore()->getPageForLink( $link );
 			$id = $page->getId();
 		}
@@ -1091,7 +1091,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addTemplate( $link, $page_id, $rev_id ): void {
 		$ns = $link->getNamespace();
 		$dbk = $link->getDBkey();
-		// T296023: Parsoid doesn't have page_id
+		// T357048: Parsoid doesn't have page_id
 		$this->mTemplates[$ns][$dbk] = $page_id;
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
 	}
