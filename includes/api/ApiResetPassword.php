@@ -64,6 +64,7 @@ class ApiResetPassword extends ApiBase {
 		return $this->hasAnyRoutes;
 	}
 
+	/** @inheritDoc */
 	protected function getExtendedDescription() {
 		if ( !$this->hasAnyRoutes() ) {
 			return 'apihelp-resetpassword-extended-description-noroutes';
@@ -71,6 +72,7 @@ class ApiResetPassword extends ApiBase {
 		return parent::getExtendedDescription();
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		if ( !$this->hasAnyRoutes() ) {
 			$this->dieWithError( 'apihelp-resetpassword-description-noroutes', 'moduledisabled' );
@@ -81,8 +83,6 @@ class ApiResetPassword extends ApiBase {
 			'user' => null,
 			'email' => null,
 		];
-
-		$this->requireOnlyOneParameter( $params, 'user', 'email' );
 
 		$status = $this->passwordReset->isAllowed( $this->getUser() );
 		if ( !$status->isOK() ) {
@@ -112,6 +112,7 @@ class ApiResetPassword extends ApiBase {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		if ( !$this->hasAnyRoutes() ) {
 			return [];
@@ -138,6 +139,7 @@ class ApiResetPassword extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$ret = [];
 		$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
@@ -153,6 +155,7 @@ class ApiResetPassword extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Manage_authentication_data';
 	}
