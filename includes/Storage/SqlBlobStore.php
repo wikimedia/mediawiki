@@ -390,7 +390,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			? IDBAccessObject::READ_LATEST_IMMUTABLE
 			: 0;
 		[ $index, $options, $fallbackIndex, $fallbackOptions ] =
-			DBAccessObjectUtils::getDBOptions( $queryFlags );
+			self::getDBOptions( $queryFlags );
 		// Text data is immutable; check replica DBs first.
 		$dbConnection = $this->getDBConnection( $index );
 		$rows = $dbConnection->newSelectQueryBuilder()
@@ -453,6 +453,36 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			}
 		}
 		return [ $result, $errors ];
+	}
+
+	private static function getDBOptions( $bitfield ) {
+		if ( DBAccessObjectUtils::hasFlags( $bitfield, IDBAccessObject::READ_LATEST_IMMUTABLE ) ) {
+			$index = DB_REPLICA; // override READ_LATEST if set
+			$fallbackIndex = DB_PRIMARY;
+		} elseif ( DBAccessObjectUtils::hasFlags( $bitfield, IDBAccessObject::READ_LATEST ) ) {
+			$index = DB_PRIMARY;
+			$fallbackIndex = null;
+		} else {
+			$index = DB_REPLICA;
+			$fallbackIndex = null;
+		}
+
+		$lockingOptions = [];
+		if ( DBAccessObjectUtils::hasFlags( $bitfield, IDBAccessObject::READ_EXCLUSIVE ) ) {
+			$lockingOptions[] = 'FOR UPDATE';
+		} elseif ( DBAccessObjectUtils::hasFlags( $bitfield, IDBAccessObject::READ_LOCKING ) ) {
+			$lockingOptions[] = 'LOCK IN SHARE MODE';
+		}
+
+		if ( $fallbackIndex !== null ) {
+			$options = []; // locks on DB_REPLICA make no sense
+			$fallbackOptions = $lockingOptions;
+		} else {
+			$options = $lockingOptions;
+			$fallbackOptions = []; // no fallback
+		}
+
+		return [ $index, $options, $fallbackIndex, $fallbackOptions ];
 	}
 
 	/**

@@ -22,7 +22,6 @@
 
 namespace MediaWiki\User;
 
-use DBAccessObjectUtils;
 use FormatJson;
 use IDBAccessObject;
 use MediaWiki\Config\ServiceOptions;
@@ -128,8 +127,7 @@ class BotPasswordStore implements IDBAccessObject {
 			return null;
 		}
 
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		if ( $index == DB_PRIMARY ) {
+		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
 			$db = $this->dbProvider->getPrimaryDatabase( 'virtual-botpasswords' );
 		} else {
 			$db = $this->dbProvider->getReplicaDatabase( 'virtual-botpasswords' );

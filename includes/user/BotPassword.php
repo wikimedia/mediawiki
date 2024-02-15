@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User;
 
-use DBAccessObjectUtils;
 use FormatJson;
 use IDBAccessObject;
 use InvalidPassword;
@@ -222,8 +221,7 @@ class BotPassword implements IDBAccessObject {
 	 * @return Password
 	 */
 	private function getPassword() {
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $this->flags );
-		if ( $index === DB_PRIMARY ) {
+		if ( ( $this->flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
 			$db = self::getPrimaryDatabase();
 		} else {
 			$db = self::getReplicaDatabase();

@@ -22,7 +22,6 @@
 
 namespace MediaWiki\User;
 
-use DBAccessObjectUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
@@ -286,9 +285,11 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		string $confirmationCode,
 		int $flags = IDBAccessObject::READ_NORMAL
 	) {
-		[ $index, ] = DBAccessObjectUtils::getDBOptions( $flags );
-
-		$db = $this->loadBalancer->getConnectionRef( $index );
+		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+			$db = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		} else {
+			$db = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		}
 
 		$id = $db->newSelectQueryBuilder()
 			->select( 'user_id' )
