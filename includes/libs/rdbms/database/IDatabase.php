@@ -505,7 +505,6 @@ interface IDatabase extends IReadableDatabase {
 	 *   buildExcludedValue() to reference the value of a column from the corresponding row
 	 *   in $rows that conflicts with the current row.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.22
 	 */
