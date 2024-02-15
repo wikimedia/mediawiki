@@ -93,6 +93,8 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			} );
 		$userFactory->method( 'newFromId' )->willReturnCallback( [ $origUserFactory, 'newFromId' ] );
 		$userFactory->method( 'newAnonymous' )->willReturnCallback( [ $origUserFactory, 'newAnonymous' ] );
+		$userFactory->method( 'newFromUserIdentity' )
+			->willReturnCallback( [ $origUserFactory, 'newFromUserIdentity' ] );
 		$this->setService( 'UserFactory', $userFactory );
 
 		// Replace gender cache to avoid gender DB lookups
