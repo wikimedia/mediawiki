@@ -398,7 +398,9 @@ class SkinModule extends LessVarFileModule {
 		];
 
 		foreach ( $featureStyles as $mediaType => $styles ) {
-			$outputStylesOrdered[ $mediaType ] = array_merge( $outputStylesOrdered[ $mediaType ], $styles );
+			// Note mediaType may not be one of all, screen, print or empty string.
+			// e.g. mediaType might be `screen and (min-width: 851px)"` for example.
+			$outputStylesOrdered[ $mediaType ] = array_merge( $outputStylesOrdered[ $mediaType ] ?? [], $styles );
 		}
 
 		foreach ( $parentStyles as $mediaType => $styles ) {
@@ -407,7 +409,7 @@ class SkinModule extends LessVarFileModule {
 			if ( $mediaType === 'all' ) {
 				$mediaType = '';
 			}
-			$outputStylesOrdered[ $mediaType ] = array_merge( $outputStylesOrdered[ $mediaType ], $styles );
+			$outputStylesOrdered[ $mediaType ] = array_merge( $outputStylesOrdered[ $mediaType ] ?? [], $styles );
 		}
 
 		// Remove any empty keys.
