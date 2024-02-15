@@ -95,10 +95,15 @@ class ApiParseTest extends ApiTestCase {
 	private function doAssertParsedTo( $expected, array $res, $warnings, callable $callback ) {
 		$html = $res[0]['parse']['text'];
 
-		$expectedStart = '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr">';
+		$expectedStart = '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"';
 		$this->assertSame( $expectedStart, substr( $html, 0, strlen( $expectedStart ) ) );
 
 		$html = substr( $html, strlen( $expectedStart ) );
+
+		# Parsoid-based transformations may add an ID attribute to the
+		# wrapper div
+		$possibleIdAttr = '/^( id="[^"]+")?>/';
+		$html = preg_replace( $possibleIdAttr, '', $html );
 
 		$possibleParserCache = '/\n<!-- Saved in (?>parser cache|RevisionOutputCache) (?>.*?\n -->)\n/';
 		$html = preg_replace( $possibleParserCache, '', $html );
