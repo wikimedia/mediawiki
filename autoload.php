@@ -494,6 +494,7 @@ $wgAutoloadLocalClasses = [
 	'FileOpBatch' => __DIR__ . '/includes/libs/filebackend/FileOpBatch.php',
 	'FileOpPerfTest' => __DIR__ . '/maintenance/fileOpPerfTest.php',
 	'FileRepo' => __DIR__ . '/includes/filerepo/FileRepo.php',
+	'FileStatePredicates' => __DIR__ . '/includes/libs/filebackend/fileop/FileStatePredicates.php',
 	'FindBadBlobs' => __DIR__ . '/maintenance/findBadBlobs.php',
 	'FindClasses' => __DIR__ . '/maintenance/findClasses.php',
 	'FindDeprecated' => __DIR__ . '/maintenance/findDeprecated.php',

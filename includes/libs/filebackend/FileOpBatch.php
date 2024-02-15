@@ -64,7 +64,7 @@ class FileOpBatch {
 		$ignoreErrors = !empty( $opts['force'] );
 		$maxConcurrency = $opts['concurrency'] ?? 1;
 
-		$predicates = FileOp::newPredicates(); // account for previous ops in prechecks
+		$predicates = new FileStatePredicates(); // account for previous ops in prechecks
 		$curBatch = []; // concurrent FileOp sub-batch accumulation
 		$curBatchDeps = FileOp::newDependencies(); // paths used in FileOp sub-batch
 		$pPerformOps = []; // ordered list of concurrent FileOp sub-batches
