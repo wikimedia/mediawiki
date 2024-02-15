@@ -1608,7 +1608,7 @@
 	"api-help-param-direction": "В каком порядке перечислять:",
 	"api-help-paramvalue-direction-newer": "Начать с самых старых. Обратите внимание: $1start должно быть раньше $1end.",
 	"api-help-paramvalue-direction-older": "Начать с самых новых (по умолчанию). Обратите внимание: $1start должно быть позже $1end.",
-	"api-help-param-continue": "Когда доступно больше результатов, используйте это для продолжения.",
+	"api-help-param-continue": "Когда доступно больше результатов, используйте это для продолжения.\nБолее подробную информацию о том, как продолжить запросы, [[mw:Special:MyLanguage/API:Continue|можно найти на mediawiki.org]].",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(описание отсутствует)</span>",
 	"api-help-examples": "Пример{{PLURAL:$1||ы}}:",
 	"api-help-permissions": "{{PLURAL:$1|Разрешение|Разрешения}}:",

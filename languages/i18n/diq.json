@@ -973,7 +973,7 @@
 	"showhideselectedversions": "weçinaye revizyona bımotne/bınımne",
 	"editundo": "peyser bıgê",
 	"diff-empty": "(Babetna niyo)",
-	"diff-multi-sameuser": "(Terefê eyni karberi ra {{PLURAL:$1|yew revizyono miyanên nêmocno|$1 revizyonê miyanêni}} {{GENDER:$3|karber}}nêmocnê)",
+	"diff-multi-sameuser": "(Terefê eyni {{GENDER:$3|karber}}i ra {{PLURAL:$1|yew revizyono miyanên nêmocno|$1 revizyonê miyanêni}} nêmocnê)",
 	"diff-multi-otherusers": "(Terefê {{PLURAL:$2|yew karberi|$2 karberan}} ra {{PLURAL:$1|yew revizyono miyanên nêmocno|$1 revizyonê miyanêni nêmocnê}})",
 	"diff-multi-manyusers": "({{PLURAL:$1|jew timar kerdışo qıckeko|$1 timar kerdışo qıckeko}} timar kerdo, $2 {{PLURAL:$2|Karber|karberi}} memocne)",
 	"diff-paragraph-moved-tonew": "Paragraf kırışiya. Ravêrdışê cayê neweyêni rê bıtıknê.",

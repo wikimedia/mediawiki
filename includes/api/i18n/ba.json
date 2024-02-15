@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Bashkorttan",
 			"Ilmira",
 			"Lizalizaufa",
 			"Sagan",
@@ -425,5 +426,6 @@
 	"apihelp-query+transcludedin-param-prop": "Ниндәй үҙенсәлектәрҙе алырға:",
 	"apihelp-query+transcludedin-param-limit": "Күпме кире ҡайтарырға.",
 	"apihelp-query+usercontribs-summary": "Ҡатнашыусының бөтә үҙгәртеүҙәрен алыу.",
-	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған үҙгәртеүҙәрҙең иң ҙур һаны."
+	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған үҙгәртеүҙәрҙең иң ҙур һаны.",
+	"apierror-ratelimited": "Һеҙ эш тиҙлеге сиген үттегеҙ. Бер аҙ көтөп, ҡабатлап ҡарағыҙ."
 }
