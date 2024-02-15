@@ -1142,9 +1142,9 @@ class Language implements Bcp47Code {
 				case 'xtY':
 					$usedTennoYear = true;
 					if ( !$tenno ) {
-						$tenno = self::tsToYear( $ts, 'tenno' );
+						$tenno = self::tsToJapaneseGengo( $ts );
 					}
-					$num = $tenno[0];
+					$num = $tenno;
 					break;
 
 				case 'y':
@@ -1705,7 +1705,6 @@ class Language implements Bcp47Code {
 	 *
 	 * Link: https://en.wikipedia.org/wiki/Thai_solar_calendar
 	 *       https://en.wikipedia.org/wiki/Minguo_calendar
-	 *       https://en.wikipedia.org/wiki/Japanese_era_name
 	 *
 	 * @param string $ts 14-character timestamp
 	 * @param string $cName Calender name
@@ -1734,74 +1733,63 @@ class Language implements Bcp47Code {
 			# Deduct 1911 years from the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy - 1911;
-		} elseif ( $cName === 'tenno' ) {
-			# Nengō dates up to Meiji period.
-			# Deduct years from the Gregorian calendar
-			# depending on the nengo periods
-			# The months and days are identical
-			if ( ( $gy < 1912 )
-				|| ( ( $gy == 1912 ) && ( $gm < 7 ) )
-				|| ( ( $gy == 1912 ) && ( $gm == 7 ) && ( $gd < 31 ) )
-			) {
-				# Meiji period
-				$gy_gannen = $gy - 1868 + 1;
-				$gy_offset = $gy_gannen;
-				if ( $gy_gannen == 1 ) {
-					$gy_offset = '元';
-				}
-				$gy_offset = '明治' . $gy_offset;
-			} elseif (
-				( ( $gy == 1912 ) && ( $gm == 7 ) && ( $gd == 31 ) ) ||
-				( ( $gy == 1912 ) && ( $gm >= 8 ) ) ||
-				( ( $gy > 1912 ) && ( $gy < 1926 ) ) ||
-				( ( $gy == 1926 ) && ( $gm < 12 ) ) ||
-				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd < 26 ) )
-			) {
-				# Taishō period
-				$gy_gannen = $gy - 1912 + 1;
-				$gy_offset = $gy_gannen;
-				if ( $gy_gannen == 1 ) {
-					$gy_offset = '元';
-				}
-				$gy_offset = '大正' . $gy_offset;
-			} elseif (
-				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd >= 26 ) ) ||
-				( ( $gy > 1926 ) && ( $gy < 1989 ) ) ||
-				( ( $gy == 1989 ) && ( $gm == 1 ) && ( $gd < 8 ) )
-			) {
-				# Shōwa period
-				$gy_gannen = $gy - 1926 + 1;
-				$gy_offset = $gy_gannen;
-				if ( $gy_gannen == 1 ) {
-					$gy_offset = '元';
-				}
-				$gy_offset = '昭和' . $gy_offset;
-			} elseif (
-				( ( $gy == 1989 ) && ( $gm == 1 ) && ( $gd >= 8 ) ) ||
-				( ( $gy > 1989 ) && ( $gy < 2019 ) ) ||
-				( ( $gy == 2019 ) && ( $gm < 5 ) )
-			) {
-				# Heisei period
-				$gy_gannen = $gy - 1989 + 1;
-				$gy_offset = $gy_gannen;
-				if ( $gy_gannen == 1 ) {
-					$gy_offset = '元';
-				}
-				$gy_offset = '平成' . $gy_offset;
-			} else {
-				# Reiwa period
-				$gy_gannen = $gy - 2019 + 1;
-				$gy_offset = $gy_gannen;
-				if ( $gy_gannen == 1 ) {
-					$gy_offset = '元';
-				}
-				$gy_offset = '令和' . $gy_offset;
-			}
 		} else {
 			$gy_offset = $gy;
 		}
 
 		return [ $gy_offset, $gm, $gd ];
+	}
+
+	/**
+	 * Algorithm to convert Gregorian dates to Japanese gengo year.
+	 *
+	 * Link: https://en.wikipedia.org/wiki/Japanese_era_name
+	 *
+	 * @param string $ts 14-character timestamp
+	 * @return string Converted year
+	 */
+	private static function tsToJapaneseGengo( $ts ) {
+		# Nengō dates up to Meiji period.
+		# Deduct years from the Gregorian calendar
+		# depending on the nengo periods
+		# The months and days are identical
+		$gy = (int)substr( $ts, 0, 4 );
+		$ts = (int)$ts;
+		if ( $ts >= 18730101000000 && $ts < 19120730000000 ) {
+			# Meiji period; start from meiji 6 (1873) it starts using gregorian year
+			return self::tsToJapaneseGengoCalculate( $gy, 1868, '明治' );
+		} elseif ( $ts >= 19120730000000 && $ts < 19261225000000 ) {
+			# Taishō period
+			return self::tsToJapaneseGengoCalculate( $gy, 1912, '大正' );
+		} elseif ( $ts >= 19261225000000 && $ts < 19890108000000 ) {
+			# Shōwa period
+			return self::tsToJapaneseGengoCalculate( $gy, 1926, '昭和' );
+		} elseif ( $ts >= 19890108000000 && $ts < 20190501000000 ) {
+			# Heisei period
+			return self::tsToJapaneseGengoCalculate( $gy, 1989, '平成' );
+		} elseif ( $ts >= 20190501000000 ) {
+			# Reiwa period
+			return self::tsToJapaneseGengoCalculate( $gy, 2019, '令和' );
+		}
+		return "西暦$gy";
+	}
+
+	/**
+	 * Calculate Gregorian year to Japanese gengo year.
+	 *
+	 * Link: https://en.wikipedia.org/wiki/Japanese_era_name
+	 *
+	 * @param int $gy 4-digit Gregorian year
+	 * @param int $startYear 4-digit Gengo start year
+	 * @param string $gengo Actual Gengo string
+	 * @return string Converted year
+	 */
+	private static function tsToJapaneseGengoCalculate( $gy, $startYear, $gengo ) {
+		$gy_offset = $gy - $startYear + 1;
+		if ( $gy_offset == 1 ) {
+			$gy_offset = '元';
+		}
+		return "$gengo$gy_offset";
 	}
 
 	/**

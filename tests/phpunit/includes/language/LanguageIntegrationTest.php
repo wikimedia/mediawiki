@@ -908,31 +908,115 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			],
 			[
 				'xtY',
-				'20120102090705',
-				'平成24',
-				'平成24',
-				'nengo'
+				'18660101000000',
+				'西暦1866',
+				'西暦1866',
+				'nengo - before meiji'
+			],
+			[
+				'xtY',
+				'18670101000000',
+				'西暦1867',
+				'西暦1867',
+				'nengo - before meiji'
+			],
+			[
+				'xtY',
+				'18721231235959',
+				'西暦1872',
+				'西暦1872',
+				'nengo - meiji, but Lunisolar calendar'
+			],
+			[
+				'xtY',
+				'18730101000000',
+				'明治6',
+				'明治6',
+				'nengo - meiji 6th'
+			],
+			[
+				'xtY',
+				'19120729235959',
+				'明治45',
+				'明治45',
+				'nengo - meiji 45th last day'
+			],
+			[
+				'xtY',
+				'19120730000000',
+				'大正元',
+				'大正元',
+				'nengo - taisho first day'
+			],
+			[
+				'xtY',
+				'19130101000000',
+				'大正2',
+				'大正2',
+				'nengo - taisho 2nd'
+			],
+			[
+				'xtY',
+				'19261224235959',
+				'大正15',
+				'大正15',
+				'nengo - taisho last day'
+			],
+			[
+				'xtY',
+				'19261225000000',
+				'昭和元',
+				'昭和元',
+				'nengo - first day of Showa'
+			],
+			[
+				'xtY',
+				'19270101000000',
+				'昭和2',
+				'昭和2',
+				'nengo - second year of Showa'
+			],
+			[
+				'xtY',
+				'19890107235959',
+				'昭和64',
+				'昭和64',
+				'nengo - last day of Showa'
+			],
+			[
+				'xtY',
+				'19890108000000',
+				'平成元',
+				'平成元',
+				'nengo - first day of Heisei'
+			],
+			[
+				'xtY',
+				'19900101000000',
+				'平成2',
+				'平成2',
+				'nengo - second year of Heisei'
 			],
 			[
 				'xtY',
 				'20190430235959',
 				'平成31',
 				'平成31',
-				'nengo - last day of heisei'
+				'nengo - last day of Heisei'
 			],
 			[
 				'xtY',
 				'20190501000000',
 				'令和元',
 				'令和元',
-				'nengo - first day of reiwa'
+				'nengo - first day of Reiwa'
 			],
 			[
 				'xtY',
 				'20200501000000',
 				'令和2',
 				'令和2',
-				'nengo - second year of reiwa'
+				'nengo - second year of Reiwa'
 			],
 			[
 				'xrxkYY',
