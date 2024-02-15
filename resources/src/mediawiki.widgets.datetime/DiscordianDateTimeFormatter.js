@@ -1,14 +1,15 @@
 ( function () {
 
 	/**
-	 * Provides various methods needed for formatting dates and times. This
-	 * implementation implements the [Discordian calendar][1], mainly for testing with
-	 * something very different from the usual Gregorian calendar.
+	 * A DateTimeFormatter for the Discordian calendar.
+	 *
+	 * @classdesc Provides various methods needed for formatting dates and times. This
+	 * implementation implements the [Discordian calendar](https://en.wikipedia.org/wiki/Discordian_calendar),
+	 * mainly for testing with something very different from the usual Gregorian
+	 * calendar.
 	 *
 	 * Being intended mainly for testing, niceties like i18n and better
 	 * configurability have been omitted.
-	 *
-	 * [1]: https://en.wikipedia.org/wiki/Discordian_calendar
 	 *
 	 * @class
 	 * @extends mw.widgets.datetime.DateTimeFormatter
@@ -42,7 +43,7 @@
 	/* Methods */
 
 	/**
-	 * @inheritdoc
+	 * Turn a tag into a field specification object.
 	 *
 	 * Additional fields implemented here are:
 	 * - ${year|#}: Year as a number
@@ -59,6 +60,11 @@
 	 * - ${second|0}: Second as a number with leading 0
 	 * - ${millisecond|#}: Millisecond as a number
 	 * - ${millisecond|0}: Millisecond as a number, zero-padded to 3 digits
+	 *
+	 * @protected
+	 * @param {string} tag
+	 * @param {string[]} params
+	 * @return {FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
 	 */
 	mw.widgets.datetime.DiscordianDateTimeFormatter.prototype.getFieldForTag = function ( tag, params ) {
 		var spec = null;
@@ -196,7 +202,7 @@
 	};
 
 	/**
-	 * Get components from a Date object
+	 * Get components from a Date object.
 	 *
 	 * Components are:
 	 * - Year {number}
@@ -272,7 +278,7 @@
 	};
 
 	/**
-	 * Adjust the components directly
+	 * Adjust the components directly.
 	 *
 	 * @private
 	 * @param {Object} components Modified in place
@@ -486,7 +492,7 @@
 	};
 
 	/**
-	 * Get whether the year is a leap year
+	 * Get whether the year is a leap year.
 	 *
 	 * @private
 	 * @param {number} year

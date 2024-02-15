@@ -1,7 +1,9 @@
 ( function () {
 
 	/**
-	 * Provides various methods needed for formatting dates and times. This
+	 * A DateTimeFormatter for the proleptic Gregorian calendar.
+	 *
+	 * @classdesc Provides various methods needed for formatting dates and times. This
 	 * implementation implements the proleptic Gregorian calendar over years
 	 * 0000–9999.
 	 *
@@ -144,7 +146,7 @@
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.dayLetters = null;
 
 	/**
-	 * Default AM/PM indicators
+	 * Default AM/PM indicators.
 	 *
 	 * @static
 	 * @inheritable
@@ -260,7 +262,7 @@
 	/* Methods */
 
 	/**
-	 * @inheritdoc
+	 * Turn a tag into a field specification object.
 	 *
 	 * Additional fields implemented here are:
 	 * - ${year|#}: Year as a number
@@ -284,6 +286,11 @@
 	 * - ${second|0}: Second as a number with leading 0
 	 * - ${millisecond|#}: Millisecond as a number
 	 * - ${millisecond|0}: Millisecond as a number, zero-padded to 3 digits
+	 *
+	 * @protected
+	 * @param {string} tag
+	 * @param {string[]} params
+	 * @return {FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getFieldForTag = function ( tag, params ) {
 		var spec = null;
@@ -404,7 +411,7 @@
 	};
 
 	/**
-	 * Get components from a Date object
+	 * Get components from a Date object.
 	 *
 	 * Components are:
 	 * - year {number}
@@ -583,7 +590,7 @@
 	};
 
 	/**
-	 * Get the number of days in a month
+	 * Get the number of days in a month.
 	 *
 	 * @protected
 	 * @param {number} month
