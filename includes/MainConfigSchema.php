@@ -9398,19 +9398,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If true, when a cross-site cookie with SameSite=None is sent, a legacy
-	 * cookie with an "ss0" prefix will also be sent, without SameSite=None. This
-	 * is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
-	 *
-	 * @deprecated since 1.42
-	 * @since 1.35
-	 */
-	public const UseSameSiteLegacyCookies = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * A list of cookies that vary the cache (for use by extensions)
 	 */
 	public const CacheVaryCookies = [

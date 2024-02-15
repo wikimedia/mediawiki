@@ -5878,15 +5878,6 @@ config-schema:
             This only applies to login cookies, since the correct value for other
             cookies depends on what kind of cookie it is.
             @since 1.35
-    UseSameSiteLegacyCookies:
-        default: false
-        type: boolean
-        description: |-
-            If true, when a cross-site cookie with SameSite=None is sent, a legacy
-            cookie with an "ss0" prefix will also be sent, without SameSite=None. This
-            is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
-            @deprecated since 1.42
-            @since 1.35
     CacheVaryCookies:
         default: []
         type: array
