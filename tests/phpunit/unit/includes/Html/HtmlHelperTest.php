@@ -51,7 +51,7 @@ class HtmlHelperTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedOutput, $output );
 
 		// "Legacy" output
-		$expectedOutput = '<link data-test="<style data-mw-deduplicate=&quot;&#160;&quot;>bar</style>" />';
+		$expectedOutput = '<link data-test="<style data-mw-deduplicate=&quot;&#160;&quot;&gt;bar</style&gt;" />';
 		$output = HtmlHelper::modifyElements( $input, $shouldModifyCallback, $modifyCallbackInPlace, false );
 		$this->assertSame( $expectedOutput, $output );
 	}
