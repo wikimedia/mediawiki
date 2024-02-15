@@ -333,15 +333,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 			],
 			[
 				[
-					// 'tables' with space prepended indicates pre-escaped table name
-					'tables' => ' table LEFT JOIN table2',
-					'fields' => [ 'field' ],
-					'conds' => [ 'field' => 'text' ],
-				],
-				"SELECT  field  FROM  table LEFT JOIN table2    WHERE field = 'text'"
-			],
-			[
-				[
 					// Empty 'tables' is allowed
 					'tables' => '',
 					'fields' => [ 'SPECIAL_QUERY()' ],
