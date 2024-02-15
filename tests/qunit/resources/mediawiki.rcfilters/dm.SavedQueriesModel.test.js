@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 ( function () {
+	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
 	var filterDefinition = [ {
 			name: 'group1',
 			type: 'send_unselected_if_any',
@@ -111,8 +112,8 @@
 	QUnit.module( 'mediawiki.rcfilters - SavedQueriesModel' );
 
 	QUnit.test( 'Initializing queries', function ( assert ) {
-		var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
-			queriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+		var filtersModel = new rcfilters.dm.FiltersViewModel(),
+			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			exampleQueryStructure = {
 				version: '2',
 				default: '1234',
@@ -215,8 +216,8 @@
 	} );
 
 	QUnit.test( 'Adding new queries', function ( assert ) {
-		var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
-			queriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+		var filtersModel = new rcfilters.dm.FiltersViewModel(),
+			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			cases = [
 				{
 					methodParams: [
@@ -316,8 +317,8 @@
 	QUnit.test( 'Manipulating queries', function ( assert ) {
 		var id1, id2, item1, matchingItem,
 			queriesStructure = {},
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
-			queriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel );
+			filtersModel = new rcfilters.dm.FiltersViewModel(),
+			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel );
 
 		filtersModel.initializeFilters( filterDefinition );
 
@@ -443,8 +444,8 @@
 
 	QUnit.test( 'Testing invert property', function ( assert ) {
 		var itemID, item,
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
-			queriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+			filtersModel = new rcfilters.dm.FiltersViewModel(),
+			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			viewsDefinition = {
 				namespace: {
 					label: 'Namespaces',

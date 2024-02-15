@@ -1,3 +1,5 @@
+var HighlightColors = require( '../HighlightColors.js' );
+
 /**
  * List of changes
  *
@@ -366,7 +368,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
  */
 ChangesListWrapperWidget.prototype.clearHighlight = function () {
 	// Remove highlight classes
-	mw.rcfilters.HighlightColors.forEach( function ( color ) {
+	HighlightColors.forEach( function ( color ) {
 		// The following classes are used here:
 		// * mw-rcfilters-highlight-color-c1
 		// * mw-rcfilters-highlight-color-c2

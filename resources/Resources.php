@@ -1772,6 +1772,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.rcfilters",
 		'packageFiles' => [
 			'mw.rcfilters.js',
+			'utils.js',
 			'Controller.js',
 			'UriProcessor.js',
 			'dm/ChangesListViewModel.js',

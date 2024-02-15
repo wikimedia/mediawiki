@@ -1,5 +1,6 @@
 var FilterGroup = require( './FilterGroup.js' ),
 	FilterItem = require( './FilterItem.js' ),
+	utils = require( '../utils.js' ),
 	FiltersViewModel;
 
 /**
@@ -897,7 +898,7 @@ FiltersViewModel.prototype.sanitizeStringOptionGroup = function ( groupName, val
 		return filterItem.getParamName();
 	} );
 
-	return mw.rcfilters.utils.normalizeParamOptions( valueArray, validNames );
+	return utils.normalizeParamOptions( valueArray, validNames );
 };
 
 /**

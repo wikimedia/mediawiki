@@ -1,3 +1,5 @@
+var HighlightColors = require( '../HighlightColors.js' );
+
 /**
  * A button to configure highlight for a filter item
  *
@@ -71,7 +73,7 @@ FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
 		currentColor !== null
 	);
 
-	mw.rcfilters.HighlightColors.forEach( function ( c ) {
+	HighlightColors.forEach( function ( c ) {
 		// The following classes are used here:
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c1
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c2

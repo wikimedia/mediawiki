@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint no-underscore-dangle: "off" */
 ( function () {
+	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
 	var mockFilterStructure = [ {
 			name: 'group1',
 			title: 'Group 1',
@@ -43,7 +44,7 @@
 	QUnit.module( 'mediawiki.rcfilters - UriProcessor' );
 
 	QUnit.test( 'getVersion', function ( assert ) {
-		var uriProcessor = new mw.rcfilters.UriProcessor( new mw.rcfilters.dm.FiltersViewModel() );
+		var uriProcessor = new rcfilters.UriProcessor( new rcfilters.dm.FiltersViewModel() );
 
 		assert.strictEqual(
 			uriProcessor.getVersion( { param1: 'foo', urlversion: '2' } ),
@@ -60,7 +61,7 @@
 
 	QUnit.test( 'getUpdatedUri', function ( assert ) {
 		var uriProcessor,
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			makeUri = function ( queryParams ) {
 				var uri = new mw.Uri( 'http://server/wiki/Special:RC' );
 				uri.query = queryParams;
@@ -68,7 +69,7 @@
 			};
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
+		uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		assert.deepEqual(
 			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).query,
@@ -103,10 +104,10 @@
 
 	QUnit.test( 'updateModelBasedOnQuery', function ( assert ) {
 		var uriProcessor,
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel();
+			filtersModel = new rcfilters.dm.FiltersViewModel();
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
+		uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		uriProcessor.updateModelBasedOnQuery( {} );
 		assert.deepEqual(
@@ -132,7 +133,7 @@
 
 	QUnit.test( 'isNewState', function ( assert ) {
 		var uriProcessor,
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			cases = [
 				{
 					states: {
@@ -185,7 +186,7 @@
 			];
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
+		uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		cases.forEach( function ( testCase ) {
 			assert.strictEqual(
@@ -198,7 +199,7 @@
 
 	QUnit.test( 'doesQueryContainRecognizedParams', function ( assert ) {
 		var uriProcessor,
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			cases = [
 				{
 					query: {},
@@ -228,7 +229,7 @@
 			];
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
+		uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		cases.forEach( function ( testCase ) {
 			assert.strictEqual(
@@ -241,7 +242,7 @@
 
 	QUnit.test( '_getNormalizedQueryParams', function ( assert ) {
 		var uriProcessor,
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			cases = [
 				{
 					query: {},
@@ -266,7 +267,7 @@
 			];
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
+		uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		cases.forEach( function ( testCase ) {
 			assert.deepEqual(
@@ -333,7 +334,7 @@
 		];
 
 		cases.forEach( function ( testCase ) {
-			var uriProcessor = new mw.rcfilters.UriProcessor(
+			var uriProcessor = new rcfilters.UriProcessor(
 				null,
 				{
 					normalizeTarget: testCase.normalizeTarget === undefined ?

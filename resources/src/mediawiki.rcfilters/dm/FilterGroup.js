@@ -1,4 +1,5 @@
 var FilterItem = require( './FilterItem.js' ),
+	utils = require( '../utils.js' ),
 	FilterGroup;
 
 /**
@@ -132,7 +133,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 				// make it easier to go through whether the item has any other items
 				// that affect it (and are selected) at any given time
 				supersetMap[ subsetName ] = supersetMap[ subsetName ] || [];
-				mw.rcfilters.utils.addArrayElementsUnique(
+				utils.addArrayElementsUnique(
 					supersetMap[ subsetName ],
 					filterItem.getName()
 				);
@@ -177,7 +178,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 		// Store the default parameter group state
 		// For this group, the parameter is group name and value is the names
 		// of selected items
-		this.defaultParams[ this.getName() ] = mw.rcfilters.utils.normalizeParamOptions(
+		this.defaultParams[ this.getName() ] = utils.normalizeParamOptions(
 			// Current values
 			groupDefault ?
 				groupDefault.split( this.getSeparator() ) :
@@ -703,7 +704,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 		currentValue = paramRepresentation[ this.getName() ] || '';
 
 		// Normalize the given parameter values
-		paramValues = mw.rcfilters.utils.normalizeParamOptions(
+		paramValues = utils.normalizeParamOptions(
 			// Given
 			currentValue.split(
 				this.getSeparator()

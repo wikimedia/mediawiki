@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 ( function () {
+	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
 	var filterDefinition = [ {
 			name: 'group1',
 			type: 'send_unselected_if_any',
@@ -276,14 +277,14 @@
 	} ) );
 
 	QUnit.test( 'Setting up filters', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		// Test that all items were created
 		assert.true(
 			Object.keys( baseFilterRepresentation ).every( function ( filterName ) {
-				return model.getItemByName( filterName ) instanceof mw.rcfilters.dm.FilterItem;
+				return model.getItemByName( filterName ) instanceof rcfilters.dm.FilterItem;
 			} ),
 			'Filters instantiated and stored correctly'
 		);
@@ -311,7 +312,7 @@
 	} );
 
 	QUnit.test( 'Default filters', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
@@ -324,7 +325,7 @@
 	} );
 
 	QUnit.test( 'Parameter minimal state', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel(),
+		var model = new rcfilters.dm.FiltersViewModel(),
 			cases = [
 				{
 					input: {},
@@ -407,7 +408,7 @@
 				group6option3: '1',
 				group7: 'group7option2'
 			},
-			model = new mw.rcfilters.dm.FiltersViewModel();
+			model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 		assert.deepEqual(
@@ -435,7 +436,7 @@
 		);
 
 		// Reset
-		model = new mw.rcfilters.dm.FiltersViewModel();
+		model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		parametersWithoutExcluded = $.extend( true, {}, appliedDefaultParameters );
@@ -451,7 +452,7 @@
 	} );
 
 	QUnit.test( 'Cleaning up parameter states', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel(),
+		var model = new rcfilters.dm.FiltersViewModel(),
 			cases = [
 				{
 					input: {},
@@ -519,7 +520,7 @@
 					reason: 'Finds no results if using namespaces prefix (:) to search for filter title'
 				}
 			],
-			model = new mw.rcfilters.dm.FiltersViewModel(),
+			model = new rcfilters.dm.FiltersViewModel(),
 			extractNames = function ( matches ) {
 				var result = {};
 				Object.keys( matches ).forEach( function ( groupName ) {
@@ -549,7 +550,7 @@
 	} );
 
 	QUnit.test( 'getParametersFromFilters', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
@@ -649,7 +650,7 @@
 		);
 
 		// Reset
-		model = new mw.rcfilters.dm.FiltersViewModel();
+		model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		// Select an option from single_option group
@@ -684,7 +685,7 @@
 		// on purpose, to verify that the values inserted as a custom object
 		// are the ones we expect in return
 		var originalState,
-			model = new mw.rcfilters.dm.FiltersViewModel(),
+			model = new rcfilters.dm.FiltersViewModel(),
 			definition = [ {
 				name: 'group1',
 				title: 'Group 1',
@@ -819,7 +820,7 @@
 	} );
 
 	QUnit.test( 'getFiltersFromParameters', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
@@ -889,7 +890,7 @@
 		);
 
 		// Reset
-		model = new mw.rcfilters.dm.FiltersViewModel();
+		model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		model.toggleFiltersSelected(
@@ -1011,7 +1012,7 @@
 	} );
 
 	QUnit.test( 'sanitizeStringOptionGroup', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
@@ -1035,7 +1036,7 @@
 	} );
 
 	QUnit.test( 'Filter interaction: subsets', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
@@ -1104,7 +1105,7 @@
 	} );
 
 	QUnit.test( 'Filter interaction: full coverage', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel(),
+		var model = new rcfilters.dm.FiltersViewModel(),
 			isCapsuleItemMuted = function ( filterName ) {
 				var itemModel = model.getItemByName( filterName ),
 					groupModel = itemModel.getGroupModel();
@@ -1205,7 +1206,7 @@
 	} );
 
 	QUnit.test( 'Filter interaction: conflicts', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
@@ -1257,7 +1258,7 @@
 		);
 
 		// Reset
-		model = new mw.rcfilters.dm.FiltersViewModel();
+		model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		// Select a filter that has a conflict with a specific filter
@@ -1369,7 +1370,7 @@
 
 		/* Simple case */
 		// Reset
-		model = new mw.rcfilters.dm.FiltersViewModel();
+		model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		// Select a filter that has a conflict with a specific filter
@@ -1422,7 +1423,7 @@
 					{ name: 'filter6', label: '6', description: '6' }
 				]
 			} ],
-			model = new mw.rcfilters.dm.FiltersViewModel();
+			model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( definition );
 
@@ -1478,7 +1479,7 @@
 		);
 
 		// Reset
-		model = new mw.rcfilters.dm.FiltersViewModel();
+		model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( definition );
 
 		model.setHighlightColor( 'group1__filter1', 'color1' );
@@ -1504,7 +1505,7 @@
 		);
 
 		// Reset
-		model = new mw.rcfilters.dm.FiltersViewModel();
+		model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( definition );
 
 		model.setHighlightColor( 'group1__filter1', 'color1' );
@@ -1522,7 +1523,7 @@
 	} );
 
 	QUnit.test( 'emptyAllFilters', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( shortFilterDefinition, null );
 
@@ -1545,7 +1546,7 @@
 	} );
 
 	QUnit.test( 'areVisibleFiltersEmpty', function ( assert ) {
-		var model = new mw.rcfilters.dm.FiltersViewModel();
+		var model = new rcfilters.dm.FiltersViewModel();
 		model.initializeFilters( shortFilterDefinition, null );
 
 		model.emptyAllFilters();
