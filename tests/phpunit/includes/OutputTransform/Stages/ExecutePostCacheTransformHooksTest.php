@@ -50,7 +50,6 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 				'deduplicateStyles' => false,
 				'absoluteURLs' => false,
 				'includeDebugInfo' => false,
-				'bodyContentOnly' => false,
 			]
 		);
 		$this->assertEquals( $expected, $res );

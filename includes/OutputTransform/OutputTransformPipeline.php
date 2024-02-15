@@ -57,7 +57,6 @@ class OutputTransformPipeline {
 	 *    of the `data-mw-deduplicate` attribute.
 	 *  - absoluteURLs: (bool) use absolute URLs in all links. Default: false
 	 *  - includeDebugInfo: (bool) render PP limit report in HTML. Default: false
-	 *  - bodyContentOnly: (bool) . Default: true
 	 */
 	public function run( ParserOutput $in, ?ParserOptions $popts, array $options ): ParserOutput {
 		if ( $options['suppressClone'] ?? false ) {

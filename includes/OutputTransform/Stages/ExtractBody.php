@@ -16,7 +16,7 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
 class ExtractBody extends ContentTextTransformStage {
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
-		return ( $options['isParsoidContent'] ?? false ) && ( $options['bodyContentOnly'] ?? true );
+		return ( $options['isParsoidContent'] ?? false );
 	}
 
 	private const EXPAND_ELEMENTS = [
@@ -53,10 +53,10 @@ class ExtractBody extends ContentTextTransformStage {
 		if ( preg_match( '{<base href=["\']([^"\']+)["\'][^>]+>}', $text, $matches ) === 1 ) {
 			$baseHref = $matches[1];
 		}
-		$text = Parser::extractBody( $text );
 		foreach ( $po->getIndicators() as $name => $html ) {
 			$po->setIndicator( $name, self::expandRelativeAttrs( $html, $baseHref ) );
 		}
+		$text = Parser::extractBody( $text );
 		return self::expandRelativeAttrs( $text, $baseHref );
 	}
 }

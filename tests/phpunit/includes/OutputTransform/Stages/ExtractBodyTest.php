@@ -17,19 +17,13 @@ class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function provideShouldRun(): array {
 		return [
-			[ new ParserOutput(), null, [ 'bodyContentOnly' => true, 'isParsoidContent' => true ] ],
 			[ new ParserOutput(), null, [ 'isParsoidContent' => true ] ],
 		];
 	}
 
 	public function provideShouldNotRun(): array {
 		return [
-			[ new ParserOutput(), null, [ 'bodyContentOnly' => false, 'isParsoidContent' => true ] ],
-			[ new ParserOutput(), null, [ 'bodyContentOnly' => false, 'isParsoidContent' => false ] ],
-			[ new ParserOutput(), null, [ 'bodyContentOnly' => true, 'isParsoidContent' => false ] ],
-			[ new ParserOutput(), null, [ 'bodyContentOnly' => false ] ],
 			[ new ParserOutput(), null, [ 'isParsoidContent' => false ] ],
-			[ new ParserOutput(), null, [ 'bodyContentOnly' => true ] ],
 			[ new ParserOutput(), null, [] ],
 		];
 	}

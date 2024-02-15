@@ -4,7 +4,6 @@ namespace MediaWiki\OutputTransform;
 
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use Parser;
 use ParserOptions;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\DOM\Document;
@@ -60,17 +59,13 @@ abstract class ContentDOMTransformStage implements OutputTransformStage {
 			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 				$pb, $po
 			);
-			$text = ContentUtils::toXML( $doc );
+			$text = ContentUtils::toXML( DOMCompat::getBody( $doc ), [
+				'innerXML' => true,
+			] );
 		} else {
-			$text = ContentUtils::ppToXML( $doc );
-		}
-		// Work around an ordering issue with the ExtractBody stage;
-		// will be fixed in a follow-up.
-		$bodyOnly =
-			( $options['isParsoidContent'] ?? false ) &&
-			( $options['bodyContentOnly'] ?? true );
-		if ( $bodyOnly ) {
-			$text = Parser::extractBody( $text );
+			$text = ContentUtils::ppToXML( DOMCompat::getBody( $doc ), [
+				'innerXML' => true,
+			] );
 		}
 		$po->setContentHolderText( $text );
 		return $po;
