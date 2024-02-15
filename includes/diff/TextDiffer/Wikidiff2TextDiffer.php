@@ -197,7 +197,7 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 		);
 		$hideDiffClass = $format === 'inline' ? '' : 'oo-ui-element-hidden';
 		$legend = Html::rawElement( 'div',
-			[ 'class' => 'mw-diff-inline-legend ' . $hideDiffClass ], "$ins $del"
+			[ 'class' => 'mw-diff-inline-legend ' . $hideDiffClass ], "$del $ins"
 		);
 		return [ TextSlotDiffRenderer::INLINE_LEGEND_KEY => $legend ];
 	}
