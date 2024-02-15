@@ -4363,7 +4363,6 @@ class Parser {
 			$sectionMetadata->anchor = $anchor;
 			$sectionMetadata->linkAnchor = $linkAnchor;
 
-			# give headline the correct <h#> tag
 			if ( $maybeShowEditLink && $sectionIndex !== false ) {
 				// Output edit section links as markers with styles that can be customized by skins
 				if ( $isTemplate ) {
@@ -4375,33 +4374,32 @@ class Parser {
 					$editsectionPage = $this->getTitle()->getPrefixedText();
 					$editsectionSection = $sectionIndex;
 				}
-				$editsectionContent = $headlineHint;
-				// We use a bit of pesudo-xml for editsection markers. The
-				// language converter is run later on. Using a UNIQ style marker
-				// leads to the converter screwing up the tokens when it
-				// converts stuff. And trying to insert strip tags fails too. At
-				// this point all real inputted tags have already been escaped,
-				// so we don't have to worry about a user trying to input one of
-				// these markers directly. We use a page and section attribute
-				// to stop the language converter from converting these
-				// important bits of data, but put the headline hint inside a
-				// content block because the language converter is supposed to
-				// be able to convert that piece of data.
-				// Gets replaced with html in ParserOutput::getText
+				// Construct a pseudo-HTML tag as a placeholder for the section edit link. It is replaced in
+				// MediaWiki\OutputTransform\Stages\HandleSectionLinks with the real link.
+				//
+				// Any HTML markup in the input has already been escaped,
+				// so we don't have to worry about a user trying to input one of these markers directly.
+				//
+				// We put the page and section in attributes to stop the language converter from
+				// converting them, but put the headline hint in tag content
+				// because it is supposed to be able to convert that.
 				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage, ENT_COMPAT );
 				$editlink .= '" section="' . htmlspecialchars( $editsectionSection, ENT_COMPAT ) . '"';
-				$editlink .= '>' . $editsectionContent . '</mw:editsection>';
+				$editlink .= '>' . $headlineHint . '</mw:editsection>';
 			} else {
 				$editlink = '';
 			}
-			$head[$headlineCount] = Linker::makeHeadline(
-				$level,
-				$matches['attrib'][$headlineCount],
-				$anchor,
-				$headline,
-				$editlink,
-				$fallbackAnchor
-			);
+			// Reconstruct the original <h#> tag with added attributes. It is replaced in
+			// MediaWiki\OutputTransform\Stages\HandleSectionLinks to add anchors and stuff.
+			//
+			// data-mw-... attributes are forbidden in Sanitizer::isReservedDataAttribute(),
+			// so we don't have to worry about a user trying to input one of these markers directly.
+			//
+			// We put the anchors in attributes to stop the language converter from converting them.
+			$head[$headlineCount] = "<h$level" . Html::expandAttributes( [
+				'data-mw-anchor' => $anchor,
+				'data-mw-fallback-anchor' => $fallbackAnchor,
+			] ) . $matches['attrib'][$headlineCount] . $headline . $editlink . "</h$level>";
 
 			$headlineCount++;
 		}
