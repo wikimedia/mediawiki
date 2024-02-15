@@ -6,7 +6,7 @@ namespace MediaWiki\Tests\Unit;
 
 use Language;
 use LanguageQqx;
-use Message;
+use MediaWiki\Message\Message;
 use MessageLocalizer;
 
 /**

@@ -27,9 +27,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use Message;
 use StatusValue;
 
 /**

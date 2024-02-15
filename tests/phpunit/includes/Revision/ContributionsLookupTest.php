@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Revision;
 
 use ChangeTags;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -12,7 +13,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use Message;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

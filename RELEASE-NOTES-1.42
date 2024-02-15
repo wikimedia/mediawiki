@@ -498,6 +498,8 @@ because of Phabricator reports.
     - PageDataRequestHandler
   - MediaWiki\Maintenance:
     - Version
+  - MediaWiki\Message:
+    - Message
   - MediaWiki\Parser:
     - ParserOutput
   - MediaWiki\PoolCounter:

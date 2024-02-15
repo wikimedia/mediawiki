@@ -20,11 +20,11 @@
 namespace MediaWiki\Rest\Handler\Helper;
 
 use LanguageCode;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Title\Title;
-use Message;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 

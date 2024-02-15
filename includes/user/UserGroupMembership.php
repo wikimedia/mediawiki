@@ -26,8 +26,8 @@ use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
-use Message;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging

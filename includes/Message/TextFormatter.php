@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Message;
 
-use Message;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 

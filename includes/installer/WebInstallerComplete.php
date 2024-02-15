@@ -23,7 +23,7 @@ namespace MediaWiki\Installer;
 
 use HtmlArmor;
 use MediaWiki\Html\Html;
-use Message;
+use MediaWiki\Message\Message;
 
 class WebInstallerComplete extends WebInstallerPage {
 

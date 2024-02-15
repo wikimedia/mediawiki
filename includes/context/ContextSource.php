@@ -22,13 +22,13 @@ namespace MediaWiki\Context;
 
 use Language;
 use MediaWiki\Config\Config;
+use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Message;
 use MessageSpecifier;
 use Skin;
 use Timing;

@@ -24,7 +24,7 @@ use FormatJson;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Language\RawMessage;
-use Message;
+use MediaWiki\Message\Message;
 use OverflowException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;

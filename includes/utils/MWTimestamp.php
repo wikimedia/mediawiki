@@ -31,10 +31,10 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
-use Message;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

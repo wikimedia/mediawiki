@@ -29,9 +29,9 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
-use Message;
 use Xml;
 
 /**

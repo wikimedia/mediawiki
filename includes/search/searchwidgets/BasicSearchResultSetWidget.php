@@ -4,9 +4,9 @@ namespace MediaWiki\Search\SearchWidgets;
 
 use ISearchResultSet;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Status\Status;
-use Message;
 
 /**
  * Renders the search result area. Handles Title and Full-Text search results,

@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\Unit\Message;
 
 use InvalidArgumentException;
 use MediaWiki\Message\Converter;
+use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
-use Message;
 use Wikimedia\Message\MessageValue;
 
 /**

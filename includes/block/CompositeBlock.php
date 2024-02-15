@@ -23,9 +23,9 @@
 namespace MediaWiki\Block;
 
 use InvalidArgumentException;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Message;
 
 /**
  * Multiple Block class.

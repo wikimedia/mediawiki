@@ -22,7 +22,7 @@ namespace MediaWiki\Title;
 
 use Exception;
 use ILocalizedException;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * MalformedTitleException is thrown when a TitleParser is unable to parse a title string.

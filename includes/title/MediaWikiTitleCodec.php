@@ -29,9 +29,9 @@ use Language;
 use LogicException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Sanitizer;
-use Message;
 use Wikimedia\IPUtils;
 
 /**
