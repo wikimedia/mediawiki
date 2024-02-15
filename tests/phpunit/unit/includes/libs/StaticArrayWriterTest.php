@@ -45,8 +45,8 @@ return [
 	'baz' => 'rawr',
 	'they\'re' => '"quoted properly"',
 	'nested' => [
-		0 => 'elements',
-		1 => 'work',
+		'elements',
+		'work',
 	],
 	'intlike' => [
 		'050' => true,
