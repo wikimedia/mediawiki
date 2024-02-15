@@ -1141,7 +1141,7 @@ function wfEscapeWikiText( $input ): string {
 			'{' => '&#123;', '|' => '&#124;', '}' => '&#125;',
 			';' => '&#59;', // a token inside language converter brackets
 			'!!' => '&#33;!', // a token inside table context
-			"\n!" => "\n&#33;", // a token inside table context
+			"\n!" => "\n&#33;", "\r!" => "\r&#33;", // a token inside table context
 			"\n#" => "\n&#35;", "\r#" => "\r&#35;",
 			"\n*" => "\n&#42;", "\r*" => "\r&#42;",
 			"\n:" => "\n&#58;", "\r:" => "\r&#58;",
