@@ -110,6 +110,8 @@
 	};
 
 	/**
+	 * Library for posting messages to talk pages.
+	 *
 	 * @namespace mw.messagePoster
 	 */
 	mw.messagePoster = {
