@@ -1,7 +1,9 @@
 ( function () {
 
 	/**
-	 * CalendarWidget displays a calendar that can be used to select a date. It
+	 * A widget for selecting a date from a calendar.
+	 *
+	 * @classdesc CalendarWidget displays a calendar that can be used to select a date. It
 	 * uses {@link mw.widgets.datetime.DateTimeFormatter DateTimeFormatter} to get the details of
 	 * the calendar.
 	 *
@@ -174,27 +176,30 @@
 	/* Events */
 
 	/**
-	 * A `change` event is emitted when the selected dates change
+	 * A `change` event is emitted when the selected dates change.
 	 *
-	 * @event change
+	 * @event mw.widgets.datetime.CalendarWidget.change
+	 * @param {Date|Date[]|null} dates The new date(s) or null
 	 */
 
 	/**
-	 * A `focusChange` event is emitted when the focused date changes
+	 * A `focusChanged` event is emitted when the focused date changes.
 	 *
-	 * @event focusChange
+	 * @event mw.widgets.datetime.CalendarWidget.focusChanged
+	 * @param {Date} date The newly focused date
 	 */
 
 	/**
-	 * A `page` event is emitted when the current "month" changes
+	 * A `page` event is emitted when the current "month" changes.
 	 *
-	 * @event page
+	 * @event mw.widgets.datetime.CalendarWidget.page
+	 * @param {Date} date The new date
 	 */
 
 	/* Methods */
 
 	/**
-	 * Return the current selected dates
+	 * Return the current selected dates.
 	 *
 	 * @return {Date[]}
 	 */
@@ -203,11 +208,12 @@
 	};
 
 	/**
-	 * Set the selected dates
+	 * Set the selected dates.
 	 *
 	 * @param {Date|Date[]|null} dates
-	 * @fires change
+	 * @fires mw.widgets.datetime.CalendarWidget.change
 	 * @chainable
+	 * @return {mw.widgets.datetime.CalendarWidget}
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.setSelected = function ( dates ) {
 		var i, changed = false;
@@ -244,7 +250,7 @@
 	};
 
 	/**
-	 * Return the currently-focused date
+	 * Return the currently-focused date.
 	 *
 	 * @return {Date}
 	 */
@@ -253,11 +259,13 @@
 	};
 
 	/**
-	 * Set the currently-focused date
+	 * Set the currently-focused date.
 	 *
 	 * @param {Date} date
-	 * @fires page
+	 * @fires mw.widgets.datetime.CalendarWidget.focusChanged
+	 * @fires mw.widgets.datetime.CalendarWidget.page
 	 * @chainable
+	 * @return {mw.widgets.datetime.CalendarWidget}
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.setFocusedDate = function ( date ) {
 		var changePage = false,
@@ -290,7 +298,7 @@
 	};
 
 	/**
-	 * Adjust a date
+	 * Adjust a date.
 	 *
 	 * @protected
 	 * @param {Date} date Date to adjust
@@ -340,7 +348,7 @@
 	};
 
 	/**
-	 * Update the user interface
+	 * Update the user interface.
 	 *
 	 * @protected
 	 */
@@ -431,7 +439,7 @@
 	};
 
 	/**
-	 * Handles formatter 'local' flag changing
+	 * Handles formatter 'local' flag changing.
 	 *
 	 * @protected
 	 */
@@ -444,7 +452,7 @@
 	};
 
 	/**
-	 * Handles previous button click
+	 * Handles previous button click.
 	 *
 	 * @protected
 	 */
@@ -456,7 +464,7 @@
 	};
 
 	/**
-	 * Handles next button click
+	 * Handles next button click.
 	 *
 	 * @protected
 	 */
@@ -468,7 +476,7 @@
 	};
 
 	/**
-	 * Handles day button click
+	 * Handles day button click.
 	 *
 	 * @protected
 	 * @param {OO.ui.ButtonWidget} button
@@ -542,7 +550,7 @@
 	};
 
 	/**
-	 * Handles focusout events in dependent mode
+	 * Handles focusout events in dependent mode.
 	 *
 	 * @private
 	 */

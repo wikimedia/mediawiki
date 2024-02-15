@@ -1,18 +1,19 @@
 ( function () {
 
 	/**
-	 * DateTimeInputWidgets can be used to input a date, a time, or a date and
-	 * time, in either UTC or the user's local timezone.
-	 * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
+	 * A widget with a series of inputs for date and time.
+	 *
+	 * @classdesc DateTimeInputWidgets can be used to input a date, a time, or
+	 * a date and time, in either UTC or the user's local timezone.
+	 * Please see the [OOUI documentation on MediaWiki](https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs)
+	 * for more information and examples.
 	 *
 	 * This widget can be used inside a HTML form, such as a OO.ui.FormLayout.
 	 *
-	 *     @example
-	 *     // Example of a text input widget
-	 *     var dateTimeInput = new mw.widgets.datetime.DateTimeInputWidget( {} )
-	 *     $( document.body ).append( dateTimeInput.$element );
-	 *
-	 * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
+	 * @example
+	 * // Example of a text input widget
+	 * var dateTimeInput = new mw.widgets.datetime.DateTimeInputWidget( {} )
+	 * $( document.body ).append( dateTimeInput.$element );
 	 *
 	 * @class
 	 * @extends OO.ui.InputWidget
@@ -187,7 +188,7 @@
 	/* Methods */
 
 	/**
-	 * Get the currently focused field, if any
+	 * Get the currently focused field, if any.
 	 *
 	 * @private
 	 * @return {jQuery}
@@ -197,7 +198,7 @@
 	};
 
 	/**
-	 * Convert a date string to a Date
+	 * Convert a date string to a Date.
 	 *
 	 * @private
 	 * @param {string} value
@@ -298,7 +299,7 @@
 	};
 
 	/**
-	 * Get the value of the input as a Date object
+	 * Get the value of the input as a Date object.
 	 *
 	 * @return {Date|null}
 	 */
@@ -307,7 +308,7 @@
 	};
 
 	/**
-	 * Set up the UI fields
+	 * Set up the UI fields.
 	 *
 	 * @private
 	 */
@@ -437,7 +438,7 @@
 	};
 
 	/**
-	 * Update the UI fields from the current value
+	 * Update the UI fields from the current value.
 	 *
 	 * @private
 	 */
@@ -501,7 +502,7 @@
 	};
 
 	/**
-	 * Update the value with data from the UI fields
+	 * Update the value with data from the UI fields.
 	 *
 	 * @private
 	 */
@@ -552,7 +553,7 @@
 	};
 
 	/**
-	 * Handle change event
+	 * Handle change event.
 	 *
 	 * @private
 	 */
@@ -571,7 +572,7 @@
 	};
 
 	/**
-	 * Handle clear button click event
+	 * Handle clear button click event.
 	 *
 	 * @private
 	 */
@@ -580,7 +581,7 @@
 	};
 
 	/**
-	 * Handle click on the widget background
+	 * Handle click on the widget background.
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Click event
@@ -765,7 +766,7 @@
 	};
 
 	/**
-	 * Handle calendar change event
+	 * Handle calendar change event.
 	 *
 	 * @private
 	 */
