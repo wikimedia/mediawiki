@@ -215,20 +215,27 @@ class CodexModule extends FileModule {
 	 * @return string Name of the manifest file to use
 	 */
 	private function getManifestFilePath( Context $context ): string {
-		$isRtl = $context->getDirection() === 'rtl';
-		$isLegacy = $this->getTheme( $context ) === 'wikimedia-ui-legacy';
-		$manifestFile = null;
+		$themeManifestNames = [
+			'wikimedia-ui' => [
+				'ltr' => 'manifest.json',
+				'rtl' => 'manifest-rtl.json',
+			],
+			'wikimedia-ui-legacy' => [
+				'ltr' => 'manifest-legacy.json',
+				'rtl' => 'manifest-legacy-rtl.json',
+			],
+			'experimental' => [
+				'ltr' => 'manifest-experimental.json',
+				'rtl' => 'manifest-experimental-rtl.json',
+			]
+		];
 
-		if ( $isRtl && $isLegacy ) {
-			$manifestFile = 'manifest-legacy-rtl.json';
-		} elseif ( $isRtl ) {
-			$manifestFile = 'manifest-rtl.json';
-		} elseif ( $isLegacy ) {
-			$manifestFile = 'manifest-legacy.json';
-		} else {
-			$manifestFile = 'manifest.json';
+		$theme = $this->getTheme( $context );
+		$direction = $context->getDirection();
+		if ( !isset( $themeManifestNames[ $theme ] ) ) {
+			throw new InvalidArgumentException( "Unknown Codex theme $theme" );
 		}
-
+		$manifestFile = $themeManifestNames[ $theme ][ $direction ];
 		$manifestFilePath = MW_INSTALL_PATH . '/' . static::CODEX_MODULE_DIR . $manifestFile;
 		return $manifestFilePath;
 	}
@@ -471,6 +478,10 @@ class CodexModule extends FileModule {
 					'ltr' => 'resources/lib/codex/codex.style-legacy.css',
 					'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
 				],
+				'experimental' => [
+					'ltr' => 'resources/lib/codex/codex.style-experimental.css',
+					'rtl' => 'resources/lib/codex/codex.style-experimental-rtl.css'
+				]
 			];
 
 			$theme = $this->getTheme( $context );

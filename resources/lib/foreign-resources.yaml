@@ -153,16 +153,10 @@ codex:
     package/dist/codex.cjs:
     package/dist/codex.js:
     package/dist/codex.umd.cjs:
-    package/dist/codex.style.css:
-    package/dist/codex.style-rtl.css:
-    package/dist/codex.style-legacy.css:
-    package/dist/codex.style-legacy-rtl.css:
+    package/dist/codex.*.css:
     package/dist/codex-search.cjs:
     package/dist/codex-search.js:
-    package/dist/codex-search.style.css:
-    package/dist/codex-search.style-rtl.css:
-    package/dist/codex-search.style-legacy.css:
-    package/dist/codex-search.style-legacy-rtl.css:
+    package/dist/codex-search.*.css:
     package/dist/modules/*: modules
     package/dist/mixins/*: mixins
     package/LICENSE:
@@ -177,8 +171,7 @@ codex-design-tokens:
   src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.3.3.tgz
   integrity: sha384-kGlOlWgbkORtiEoGUDC2W247JWevpIq/mtM/htJ/9YZJqDtRDvIRILxrNUPH8dhI
   dest:
-    package/dist/theme-wikimedia-ui.less:
-    package/dist/theme-wikimedia-ui-legacy.less:
+    package/dist/theme-*.less:
     package/LICENSE:
     package/README.md:
 
