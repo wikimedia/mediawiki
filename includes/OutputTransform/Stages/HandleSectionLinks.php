@@ -65,12 +65,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 			);
 
 			if ( !isset( $attrs['data-mw-anchor'] ) ) {
-				if ( str_contains( $m[0], '<span class="mw-headline"' ) ) {
-					// Old parser cache entry, already contains replaced headings
-					return $m[0];
-				}
-				// Shouldn't happen, output the node unchanged with a HTML comment to indicate this
-				return $m[0] . '<!-- HandleSectionLinks did not find data attributes -->';
+				return $m[0];
 			}
 
 			$anchor = $attrs['data-mw-anchor'];
