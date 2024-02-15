@@ -19,6 +19,10 @@ class ExtractBody extends ContentTextTransformStage {
 		return ( $options['isParsoidContent'] ?? false ) && ( $options['bodyContentOnly'] ?? true );
 	}
 
+	private const EXPAND_ELEMENTS = [
+		'a' => true, 'img' => true, 'video' => true, 'audio' => true,
+	];
+
 	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
 		// T350952: temporary fix for subpage paths: use Parsoid's
 		// <base href> to expand relative links
@@ -33,12 +37,16 @@ class ExtractBody extends ContentTextTransformStage {
 		$text = HtmlHelper::modifyElements(
 			$text,
 			static function ( SerializerNode $node ): bool {
-				return $node->name === 'a' &&
-					str_starts_with( $node->attrs['href'] ?? '', './' );
+				if ( !isset( self::EXPAND_ELEMENTS[$node->name] ) ) {
+					return false;
+				}
+				$attr = $node->name === 'a' ? 'href' : 'resource';
+				return str_starts_with( $node->attrs[$attr] ?? '', './' );
 			},
 			static function ( SerializerNode $node ) use ( $baseHref ): SerializerNode {
-				$href = $baseHref . $node->attrs['href'];
-				$node->attrs['href'] =
+				$attr = $node->name === 'a' ? 'href' : 'resource';
+				$href = $baseHref . $node->attrs[$attr];
+				$node->attrs[$attr] =
 					wfExpandUrl( $href, PROTO_RELATIVE );
 				return $node;
 			}
