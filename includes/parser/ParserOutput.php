@@ -416,7 +416,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *    of the `data-mw-deduplicate` attribute.
 	 *  - absoluteURLs: (bool) use absolute URLs in all links. Default: false
 	 *  - includeDebugInfo: (bool) render PP limit report in HTML. Default: false
-	 *  - bodyContentOnly: (bool) . Default: true
 	 * @return string HTML
 	 * @return-taint escaped
 	 * @deprecated since 1.42, this method has side-effects on the ParserOutput
@@ -438,7 +437,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'deduplicateStyles' => true,
 			'absoluteURLs' => false,
 			'includeDebugInfo' => false,
-			'bodyContentOnly' => true,
 			'isParsoidContent' => PageBundleParserOutputConverter::hasPageBundle( $this ),
 		];
 		$po = $pipeline->run( $this, null, $options );
