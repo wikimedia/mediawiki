@@ -2223,7 +2223,7 @@ class Parser {
 	 */
 	public function getExternalLinkAttribs( $url ) {
 		$attribs = [];
-		$rel = self::getExternalLinkRel( $url, $this->getTitle() );
+		$rel = self::getExternalLinkRel( $url, $this->getTitle() ) ?? '';
 
 		$target = $this->mOptions->getExternalLinkTarget();
 		if ( $target ) {
@@ -2238,7 +2238,9 @@ class Parser {
 				$rel .= 'noreferrer noopener';
 			}
 		}
-		$attribs['rel'] = $rel;
+		if ( $rel !== '' ) {
+			$attribs['rel'] = $rel;
+		}
 		return $attribs;
 	}
 
