@@ -21,6 +21,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Parser\Parser;
+
 /**
  * Differences from DOM schema:
  *   * attribute nodes are children

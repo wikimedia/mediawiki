@@ -3,6 +3,7 @@
 declare( strict_types = 1 );
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use Parser;
+use MediaWiki\Parser\Parser;
 use StripState;
 
 /**

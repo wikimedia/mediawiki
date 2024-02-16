@@ -13,6 +13,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\TestingAccessWrapper;

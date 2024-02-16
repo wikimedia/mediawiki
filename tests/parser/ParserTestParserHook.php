@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Parser\Parser;
 
 /**
  * A basic extension that's used by the parser tests to test whether input and

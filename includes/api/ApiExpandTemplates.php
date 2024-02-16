@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
