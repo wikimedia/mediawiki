@@ -1,7 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use DummyContentForTesting;
 use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Title\Title;
+use MediaWikiUnitTestCase;
+use ParserOptions;
+use ParserOutput;
+use TestLogger;
 
 /**
  * @covers \MediaWiki\Parser\ParserObserver

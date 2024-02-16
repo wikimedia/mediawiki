@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use Language;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
@@ -18,6 +21,10 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\UrlUtils;
+use MediaWikiUnitTestCase;
+use ParserFactory;
+use TestLogger;
+use WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
@@ -8,7 +11,11 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Title\TitleFactory;
+use MediaWikiUnitTestCase;
+use NullStatsdDataFactory;
+use ParserCache;
 use Psr\Log\NullLogger;
+use WANObjectCache;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
