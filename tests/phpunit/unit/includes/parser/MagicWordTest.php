@@ -1,6 +1,6 @@
 <?php
 
-namespace phpunit\unit\includes\parser;
+namespace MediaWiki\Tests\Parser;
 
 use Language;
 use MediaWiki\Parser\MagicWord;

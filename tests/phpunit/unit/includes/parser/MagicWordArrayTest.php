@@ -1,8 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use Language;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordArray;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

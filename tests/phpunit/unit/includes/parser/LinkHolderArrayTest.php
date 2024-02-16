@@ -2,13 +2,19 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Tests\Parser;
+
+use ILanguageConverter;
+use LinkHolderArray;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
+use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers LinkHolderArray
+ * @covers \LinkHolderArray
  */
 class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 
