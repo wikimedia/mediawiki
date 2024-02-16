@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -138,7 +139,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		// fragment stripped
 		if ( $target instanceof LinkTarget ) {
 			$this->assertEquals(
-				'<a href="/w/index.php?title=Foobar&amp;action=foobar" class="new" '
+				'<a href="/w/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" '
 				. 'title="Foobar (page does not exist)">Foobar</a>',
 				$linkRenderer->makeBrokenLink( $target->createFragmentTarget( 'foobar' ) )
 			);
