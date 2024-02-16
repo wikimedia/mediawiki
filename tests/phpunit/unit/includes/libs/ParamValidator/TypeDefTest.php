@@ -2,13 +2,14 @@
 
 namespace Wikimedia\ParamValidator;
 
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers Wikimedia\ParamValidator\TypeDef
  */
-class TypeDefTest extends \PHPUnit\Framework\TestCase {
+class TypeDefTest extends TestCase {
 
 	public function testMisc() {
 		$typeDef = $this->getMockBuilder( TypeDef::class )

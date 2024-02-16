@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use PHPUnit\Framework\Assert;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -209,7 +210,7 @@ trait TypeDefTestCaseTrait {
 		);
 
 		$actual = [];
-		$constraint = \PHPUnit\Framework\Assert::logicalOr(
+		$constraint = Assert::logicalOr(
 			$this->isNull(),
 			$this->isInstanceOf( MessageValue::class )
 		);
