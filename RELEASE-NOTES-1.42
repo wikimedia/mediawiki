@@ -242,6 +242,8 @@ because of Phabricator reports.
   should use ::setOutputFlag() and ::getOutputFlag() instead.
 * ParserOutput::getCategories(), deprecated in 1.40, has been removed. You
   should use ::getCategoryNames() and ::getCategorySortKey() instead.
+* ParserOutput::getTOCHTML(), deprecated in 1.40, has been removed. You should
+  use ::getTOCData() instead.
 * The parser does not substitute the default category sort key at
   parse time; this is substituted when the category links table is
   updated instead.  As a result {{DEFAULTSORT}} will affect all the

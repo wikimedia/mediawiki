@@ -37,9 +37,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			MainConfigNames::ParserCacheExpireTime,
 			ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
 		);
-		// Serialization tests still use these methods.
-		$this->hideDeprecated( 'MediaWiki\Parser\ParserOutput::setTOCHTML' );
-		$this->hideDeprecated( 'MediaWiki\Parser\ParserOutput::getTOCHTML' );
 	}
 
 	/**
@@ -725,7 +722,6 @@ EOF
 		$b->setSections( [ [ 'fromtitle' => 'B1' ], [ 'fromtitle' => 'B2' ] ] );
 
 		yield 'concat TOC' => [ $a, $b, [
-			'getTOCHTML' => '',
 			'getSections' => [
 				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A1' ] )->toLegacy(),
 				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A2' ] )->toLegacy(),
@@ -805,7 +801,6 @@ EOF
 		$a->mergeHtmlMetaDataFrom( $b );
 
 		// XXX: TOC joining should get smarter. Can we make it idempotent as well?
-		unset( $expected['getTOCHTML'] );
 		unset( $expected['getSections'] );
 
 		$this->assertFieldValues( $a, $expected );

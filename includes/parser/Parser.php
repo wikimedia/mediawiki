@@ -4502,9 +4502,6 @@ class Parser {
 			$this->mOutput->setTOCData( $tocData );
 
 			// T294950: Record a suggestion that the TOC should be shown.
-			// We shouldn't be looking at ::getTOCHTML() for this because
-			// that was replaced (T293513); and $tocData will contain sections
-			// even if there aren't $enoughToc to show (T332243).
 			// Skins are free to ignore this suggestion and implement their
 			// own criteria for showing/suppressing TOC (T318186).
 			if ( $enoughToc ) {
