@@ -662,6 +662,9 @@ because of Phabricator reports.
   has been hard deprecated
 * IMaintainableDatabase::truncate() has been deprecated. Use truncateTable()
   instead.
+* TextConflictHelper->incrementStatsByUserEdits() is now deprecated.  The
+  action this function previously handled should be moved into
+  incrementConflictStats() and incrementResolvedStats().
 * …
 
 === Other changes in 1.42 ===

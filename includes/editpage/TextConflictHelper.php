@@ -29,6 +29,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MWUnknownContentModelException;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Helper for displaying edit conflicts in text content models to users
@@ -59,7 +60,7 @@ class TextConflictHelper {
 	protected $out;
 
 	/**
-	 * @var IBufferingStatsdDataFactory
+	 * @var IBufferingStatsdDataFactory|StatsFactory
 	 */
 	protected $stats;
 
@@ -86,14 +87,14 @@ class TextConflictHelper {
 	/**
 	 * @param Title $title
 	 * @param OutputPage $out
-	 * @param IBufferingStatsdDataFactory $stats
+	 * @param IBufferingStatsdDataFactory|StatsFactory $stats
 	 * @param string $submitLabel
 	 * @param IContentHandlerFactory $contentHandlerFactory Required param with legacy support
 	 *
 	 * @throws MWUnknownContentModelException
 	 */
 	public function __construct(
-		Title $title, OutputPage $out, IBufferingStatsdDataFactory $stats, $submitLabel,
+		Title $title, OutputPage $out, $stats, $submitLabel,
 		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$this->title = $title;
@@ -136,18 +137,36 @@ class TextConflictHelper {
 	 * @param User|null $user
 	 */
 	public function incrementConflictStats( User $user = null ) {
-		$this->stats->increment( 'edit.failures.conflict' );
+		$namespace = 'n/a';
+		$userBucket = 'n/a';
+		$statsdMetrics = [ 'edit.failures.conflict' ];
+
 		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
 		if (
 			$this->title->getNamespace() >= NS_MAIN &&
 			$this->title->getNamespace() <= NS_CATEGORY_TALK
 		) {
-			$this->stats->increment(
-				'edit.failures.conflict.byNamespaceId.' . $this->title->getNamespace()
-			);
+			// getNsText() returns empty string if getNamespace() === NS_MAIN
+			$namespace = $this->title->getNsText() ?: 'Main';
+			$statsdMetrics[] = 'edit.failures.conflict.byNamespaceId.' . $this->title->getNamespace();
 		}
 		if ( $user ) {
-			$this->incrementStatsByUserEdits( $user->getEditCount(), 'edit.failures.conflict' );
+			$userBucket = $this->getUserBucket( $user->getEditCount() );
+			$statsdMetrics[] = 'edit.failures.conflict.byUserEdits.' . $userBucket;
+		}
+		if ( $this->stats instanceof StatsFactory ) {
+			$this->stats->getCounter( 'edit_failure_total' )
+				->setLabel( 'cause', 'conflict' )
+				->setLabel( 'namespace', $namespace )
+				->setLabel( 'user_bucket', $userBucket )
+				->copyToStatsdAt( $statsdMetrics )
+				->increment();
+		}
+
+		if ( $this->stats instanceof IBufferingStatsdDataFactory ) {
+			foreach ( $statsdMetrics as $metric ) {
+				$this->stats->increment( $metric );
+			}
 		}
 	}
 
@@ -156,41 +175,72 @@ class TextConflictHelper {
 	 * @param User|null $user
 	 */
 	public function incrementResolvedStats( User $user = null ) {
-		$this->stats->increment( 'edit.failures.conflict.resolved' );
+		$namespace = 'n/a';
+		$userBucket = 'n/a';
+		$statsdMetrics = [ 'edit.failures.conflict.resolved' ];
+
 		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
 		if (
 			$this->title->getNamespace() >= NS_MAIN &&
 			$this->title->getNamespace() <= NS_CATEGORY_TALK
 		) {
-			$this->stats->increment(
-				'edit.failures.conflict.resolved.byNamespaceId.' . $this->title->getNamespace()
-			);
+			// getNsText() returns empty string if getNamespace() === NS_MAIN
+			$namespace = $this->title->getNsText() ?: 'Main';
+			$statsdMetrics[] = 'edit.failures.conflict.resolved.byNamespaceId.' . $this->title->getNamespace();
 		}
+
 		if ( $user ) {
-			$this->incrementStatsByUserEdits(
-				$user->getEditCount(),
-				'edit.failures.conflict.resolved'
-			);
+			$userBucket = $this->getUserBucket( $user->getEditCount() );
+			$statsdMetrics[] = 'edit.failures.conflict.resolved.byUserEdits.' . $userBucket;
+		}
+
+		if ( $this->stats instanceof StatsFactory ) {
+			$this->stats->getCounter( 'edit_failure_resolved_total' )
+				->setLabel( 'cause', 'conflict' )
+				->setLabel( 'namespace', $namespace )
+				->setLabel( 'user_bucket', $userBucket )
+				->copyToStatsdAt( $statsdMetrics )
+				->increment();
+		}
+
+		if ( $this->stats instanceof IBufferingStatsdDataFactory ) {
+			foreach ( $statsdMetrics as $metric ) {
+				$this->stats->increment( $metric );
+			}
+		}
+	}
+
+	/**
+	 * Retained temporarily for backwards-compatibility.
+	 *
+	 * This action should be moved into incrementConflictStats, incrementResolvedStats.
+	 *
+	 * @deprecated since 1.42, do not use
+	 * @param int|null $userEdits
+	 * @param string $keyPrefixBase
+	 */
+	protected function incrementStatsByUserEdits( $userEdits, $keyPrefixBase ) {
+		if ( $this->stats instanceof IBufferingStatsdDataFactory ) {
+			$this->stats->increment( $keyPrefixBase . '.byUserEdits.' . $this->getUserBucket( $userEdits ) );
 		}
 	}
 
 	/**
 	 * @param int|null $userEdits
-	 * @param string $keyPrefixBase
+	 * @return string
 	 */
-	protected function incrementStatsByUserEdits( $userEdits, $keyPrefixBase ) {
+	protected function getUserBucket( ?int $userEdits ): string {
 		if ( $userEdits === null ) {
-			$userBucket = 'anon';
+			return 'anon';
 		} elseif ( $userEdits > 200 ) {
-			$userBucket = 'over200';
+			return 'over200';
 		} elseif ( $userEdits > 100 ) {
-			$userBucket = 'over100';
+			return 'over100';
 		} elseif ( $userEdits > 10 ) {
-			$userBucket = 'over10';
+			return 'over10';
 		} else {
-			$userBucket = 'under11';
+			return 'under11';
 		}
-		$this->stats->increment( $keyPrefixBase . '.byUserEdits.' . $userBucket );
 	}
 
 	/**

@@ -4115,6 +4115,8 @@ class EditPage implements IEditObject {
 		MediaWikiServices::getInstance()->getStatsFactory()
 			->getCounter( 'edit_failure_total' )
 			->setLabel( 'cause', $failureType )
+			->setLabel( 'namespace', 'n/a' )
+			->setLabel( 'user_bucket', 'n/a' )
 			->copyToStatsdAt( 'edit.failures.' . $failureType )
 			->increment();
 	}
@@ -4599,7 +4601,7 @@ class EditPage implements IEditObject {
 				$this->editConflictHelper = new TextConflictHelper(
 					$this->getTitle(),
 					$this->getContext()->getOutput(),
-					MediaWikiServices::getInstance()->getStatsdDataFactory(),
+					MediaWikiServices::getInstance()->getStatsFactory(),
 					$label,
 					MediaWikiServices::getInstance()->getContentHandlerFactory()
 				);
