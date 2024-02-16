@@ -67,7 +67,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {Object}
+	 * @type {Object}
+	 * @name mw.widgets.datetime.DateTimeFormatter.formats
 	 */
 	mw.widgets.datetime.DateTimeFormatter.static.formats = {};
 
@@ -76,7 +77,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {string[]}
+	 * @type {string[]}
+	 * @name mw.widgets.datetime.DateTimeFormatter.fullZones
 	 */
 	mw.widgets.datetime.DateTimeFormatter.static.fullZones = null;
 
@@ -85,7 +87,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {string[]}
+	 * @type {string[]}
+	 * @name mw.widgets.datetime.DateTimeFormatter.shortZones
 	 */
 	mw.widgets.datetime.DateTimeFormatter.static.shortZones = null;
 

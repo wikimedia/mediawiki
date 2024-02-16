@@ -57,31 +57,6 @@
 	];
 
 	/**
-	 * @property {string} protocol For example `http` (always present)
-	 */
-	/**
-	 * @property {string|undefined} user For example `usr`
-	 */
-	/**
-	 * @property {string|undefined} password For example `pwd`
-	 */
-	/**
-	 * @property {string} host For example `www.example.com` (always present)
-	 */
-	/**
-	 * @property {string|undefined} port For example `81`
-	 */
-	/**
-	 * @property {string} path For example `/dir/dir.2/index.htm` (always present)
-	 */
-	/**
-	 * @property {Object} query For example `{ a: '0', b: '', c: 'value' }` (always present)
-	 */
-	/**
-	 * @property {string|undefined} fragment For example `top`
-	 */
-
-	/**
 	 * A factory method to create an {@link mw.Uri} class with a default location to resolve relative URLs
 	 * against (including protocol-relative URLs).
 	 *
@@ -247,6 +222,48 @@
 				throw new Error( 'Bad constructor arguments' );
 			}
 		}
+
+		/**
+		 * For example `http` (always present).
+		 * @name mw.Uri.prototype.protocol
+		 * @type {string}
+		 */
+
+		/**
+		 * For example `usr`.
+		 * @name mw.Uri.prototype.user
+		 * @type {string|undefined}
+		 */
+		/**
+		 * For example `pwd`.
+		 * @name mw.Uri.prototype.password
+		 * @type {string|undefined}
+		 */
+		/**
+		 * For example `www.example.com` (always present).
+		 * @name mw.Uri.prototype.host
+		 * @type {string}
+		 */
+		/**
+		 * For example `81`.
+		 * @name mw.Uri.prototype.port
+		 * @type {string|undefined}
+		 */
+		/**
+		 * For example `/dir/dir.2/index.htm` (always present).
+		 * @name mw.Uri.prototype.path
+		 * @type {string}
+		 */
+		/**
+		 * For example `{ a: '0', b: '', c: 'value' }` (always present).
+		 * @name mw.Uri.prototype.query
+		 * @type {Object}
+		 */
+		/**
+		 * For example `top`.
+		 * @name mw.Uri.prototype.fragment
+		 * @type {string|undefined}
+		 */
 
 		/**
 		 * Encode a value for inclusion in a url.

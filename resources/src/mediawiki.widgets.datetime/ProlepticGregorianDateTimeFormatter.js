@@ -105,7 +105,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {Object}
+	 * @type {Object}
+	 * @name mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.fullMonthNames
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.fullMonthNames = null;
 
@@ -114,7 +115,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {Object}
+	 * @type {Object}
+	 * @name mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.shortMonthNames
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.shortMonthNames = null;
 
@@ -123,7 +125,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {Object}
+	 * @type {Object}
+	 * @name mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.fullDayNames
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.fullDayNames = null;
 
@@ -132,7 +135,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {Object}
+	 * @type {Object}
+	 * @name mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.shortDayNames
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.shortDayNames = null;
 
@@ -141,7 +145,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {string[]}
+	 * @type {string[]}
+	 * @name mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.dayLetters
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.dayLetters = null;
 
@@ -150,7 +155,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {string[]}
+	 * @type {string[]}
+	 * @name mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.hour12Periods
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.hour12Periods = null;
 
