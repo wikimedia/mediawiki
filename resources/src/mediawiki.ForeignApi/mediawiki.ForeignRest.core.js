@@ -1,7 +1,7 @@
 module.exports = ( function () {
 
 	/**
-	 * Create an object like mw.Rest, but automatically handling everything required to communicate
+	 * Create an object like {@link mw.Rest}, but automatically handling everything required to communicate
 	 * with another MediaWiki wiki via cross-origin requests (CORS).
 	 *
 	 *
@@ -27,11 +27,10 @@ module.exports = ( function () {
 	 * @extends mw.Rest
 	 * @since 1.36
 	 *
-	 * @constructor
 	 * @param {string} url URL pointing to another wiki's `rest.php` endpoint.
 	 * @param {mw.ForeignApi} foreignActionApi
-	 * @param {Object} [options] See mw.Rest.
-	 * @param {Object} [options.anonymous=false] Perform all requests anonymously. Use this option if
+	 * @param {Object} [options] See {@link mw.Rest}.
+	 * @param {boolean} [options.anonymous=false] Perform all requests anonymously. Use this option if
 	 *     the target wiki may otherwise not accept cross-origin requests, or if you don't need to
 	 *     perform write actions or read restricted information and want to avoid the overhead.
 	 *

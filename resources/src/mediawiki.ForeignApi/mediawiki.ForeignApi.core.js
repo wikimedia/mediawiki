@@ -1,7 +1,7 @@
 module.exports = ( function () {
 
 	/**
-	 * Create an object like mw.Api, but automatically handling everything required to communicate
+	 * Create an object like {@link mw.Api}, but automatically handling everything required to communicate
 	 * with another MediaWiki wiki via cross-origin requests (CORS).
 	 *
 	 * The foreign wiki must be configured to accept requests from the current wiki. See
@@ -33,10 +33,9 @@ module.exports = ( function () {
 	 * @extends mw.Api
 	 * @since 1.26
 	 *
-	 * @constructor
 	 * @param {string|mw.Uri} url URL pointing to another wiki's `api.php` endpoint.
-	 * @param {Object} [options] See mw.Api.
-	 * @param {Object} [options.anonymous=false] Perform all requests anonymously. Use this option if
+	 * @param {mw.Api.Options} [options] Also accepts all the options from {@link mw.Api.Options}.
+	 * @param {boolean} [options.anonymous=false] Perform all requests anonymously. Use this option if
 	 *     the target wiki may otherwise not accept cross-origin requests, or if you don't need to
 	 *     perform write actions or read restricted information and want to avoid the overhead.
 	 *
@@ -76,6 +75,7 @@ module.exports = ( function () {
 	 * Return the origin to use for API requests, in the required format (protocol, host and port, if
 	 * any).
 	 *
+	 * @memberof mw.ForeignApi.prototype
 	 * @protected
 	 * @return {string|undefined}
 	 */
