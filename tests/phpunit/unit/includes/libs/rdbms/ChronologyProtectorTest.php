@@ -21,6 +21,7 @@
  * @file
  */
 
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
@@ -28,7 +29,7 @@ use Wikimedia\Rdbms\MySQLPrimaryPos;
 /**
  * @covers \Wikimedia\Rdbms\ChronologyProtector
  */
-class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
+class ChronologyProtectorTest extends TestCase {
 	/**
 	 * @dataProvider clientIdProvider
 	 * @param array $client

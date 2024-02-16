@@ -1,7 +1,15 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use InvalidArgumentException;
+use LogicException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\DBReadOnlyRoleError;
+use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -10,7 +18,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * @covers \Wikimedia\Rdbms\DBConnRef
  */
-class DBConnRefTest extends PHPUnit\Framework\TestCase {
+class DBConnRefTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -175,7 +183,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	public function testClose() {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_PRIMARY );
-		$this->expectException( \Wikimedia\Rdbms\DBUnexpectedError::class );
+		$this->expectException( DBUnexpectedError::class );
 		$ref->close();
 	}
 
@@ -200,7 +208,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	public function testRoleExceptions( $method, $args ) {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
-		$this->expectException( Wikimedia\Rdbms\DBReadOnlyRoleError::class );
+		$this->expectException( DBReadOnlyRoleError::class );
 		$ref->$method( ...$args );
 	}
 

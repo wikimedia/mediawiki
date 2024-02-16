@@ -10,9 +10,9 @@ use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
-use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Tests\ParamValidator\TypeDef\TypeDefTestCase;
 
 /**
  * @covers \MediaWiki\Api\Validator\SubmoduleDef

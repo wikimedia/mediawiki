@@ -27,6 +27,7 @@ namespace Wikimedia\Tests\Rdbms;
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMySQL;
 use Wikimedia\Rdbms\IDatabase;
@@ -38,7 +39,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \Wikimedia\Rdbms\DatabaseMySQL
  */
-class DatabaseMySQLTest extends \PHPUnit\Framework\TestCase {
+class DatabaseMySQLTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

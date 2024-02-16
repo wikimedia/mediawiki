@@ -1,12 +1,13 @@
 <?php
 
-namespace Wikimedia\ParamValidator\TypeDef;
+namespace Wikimedia\Tests\ParamValidator\TypeDef;
 
 use InvalidArgumentException;
 use UnexpectedValueException;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
+use Wikimedia\ParamValidator\TypeDef\UploadDef;
 use Wikimedia\ParamValidator\Util\UploadedFile;
 use Wikimedia\ParamValidator\ValidationException;
 

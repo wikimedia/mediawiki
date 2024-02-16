@@ -1,9 +1,17 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use DatabaseTestHelper;
+use HashBagOStuff;
 use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
+use RuntimeException;
+use Throwable;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -27,7 +35,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \Wikimedia\Rdbms\Database\DatabaseFlags
  * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
  */
-class DatabaseTest extends PHPUnit\Framework\TestCase {
+class DatabaseTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

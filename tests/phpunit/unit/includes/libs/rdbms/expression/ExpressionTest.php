@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Libs\Rdbms;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\IExpression;
@@ -16,7 +17,7 @@ use Wikimedia\Rdbms\OrExpressionGroup;
  * @covers \Wikimedia\Rdbms\AndExpressionGroup
  * @covers \Wikimedia\Rdbms\OrExpressionGroup
  */
-class ExpressionTest extends \PHPUnit\Framework\TestCase {
+class ExpressionTest extends TestCase {
 
 	public static function provideSimple() {
 		return [

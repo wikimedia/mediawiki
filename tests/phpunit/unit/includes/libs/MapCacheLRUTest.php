@@ -1,9 +1,17 @@
 <?php
+
+namespace Wikimedia\Tests;
+
+use MapCacheLRU;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
+use UnexpectedValueException;
+
 /**
  * @group Cache
  * @covers \MapCacheLRU
  */
-class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
+class MapCacheLRUTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

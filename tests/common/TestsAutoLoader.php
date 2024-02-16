@@ -197,9 +197,9 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/libs
 	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
-	'Wikimedia\\Diff\\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
-	'Wikimedia\\ParamValidator\\TypeDef\\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
-	'Wikimedia\\ParamValidator\\TypeDef\\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
+	'Wikimedia\\Tests\\Diff\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
+	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
+	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
 
 	# tests/phpunit/includes/ParamValidator
 	'MediaWiki\\Tests\\ParamValidator\\TypeDef\\TypeDefIntegrationTestCase' => "$testDir/phpunit/includes/ParamValidator/TypeDef/TypeDefIntegrationTestCase.php",
@@ -249,7 +249,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\MockEnvironment' => "$testDir/phpunit/mocks/MockEnvironment.php",
 
 	# tests/phpunit/unit/includes
-	'Wikimedia\\Reflection\\GhostFieldTestClass' => "$testDir/phpunit/mocks/GhostFieldTestClass.php",
+	'Wikimedia\\Tests\\Reflection\\GhostFieldTestClass' => "$testDir/phpunit/mocks/GhostFieldTestClass.php",
 
 	# tests/phpunit/unit/includes/auth
 	'MediaWiki\\Tests\\Unit\\Auth\\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/auth/AuthenticationProviderTestTrait.php",
@@ -276,7 +276,7 @@ $wgAutoloadClasses += [
 	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageNameUtilsTestTrait.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
-	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
+	'Wikimedia\\Tests\\FileBackend\\FSFile\\TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\AddQuoterMock' => "$testDir/phpunit/unit/includes/libs/rdbms/AddQuoterMock.php",

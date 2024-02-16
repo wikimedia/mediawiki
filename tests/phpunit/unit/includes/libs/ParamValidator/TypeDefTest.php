@@ -1,9 +1,14 @@
 <?php
 
-namespace Wikimedia\ParamValidator;
+namespace Wikimedia\Tests\ParamValidator;
 
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Message\DataMessageValue;
+use Wikimedia\ParamValidator\Callbacks;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
+use Wikimedia\ParamValidator\TypeDef;
+use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\TestingAccessWrapper;
 
 /**

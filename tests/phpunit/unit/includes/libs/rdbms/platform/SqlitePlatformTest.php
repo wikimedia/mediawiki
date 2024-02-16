@@ -1,13 +1,18 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use InvalidArgumentException;
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
 
 /**
  * @covers \Wikimedia\Rdbms\Platform\SqlitePlatform
  */
-class SqlitePlatformTest extends PHPUnit\Framework\TestCase {
+class SqlitePlatformTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

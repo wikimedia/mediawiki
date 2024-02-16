@@ -1,12 +1,18 @@
 <?php
 
+namespace Wikimedia\Tests\Mime;
+
+use MediaWikiCoversValidator;
+use MimeAnalyzer;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Media
  * @covers \MimeAnalyzer
  */
-class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
+class MimeAnalyzerTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

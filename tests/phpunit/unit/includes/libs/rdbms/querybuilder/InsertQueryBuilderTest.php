@@ -1,9 +1,15 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use DatabaseTestHelper;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers \Wikimedia\Rdbms\InsertQueryBuilder
  */
-class InsertQueryBuilderTest extends PHPUnit\Framework\TestCase {
+class InsertQueryBuilderTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	/** @var DatabaseTestHelper */

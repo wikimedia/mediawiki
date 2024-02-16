@@ -1,5 +1,8 @@
 <?php
 
+namespace Wikimedia\Tests\Http;
+
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Http\HttpAcceptNegotiator;
 
 /**
@@ -7,7 +10,7 @@ use Wikimedia\Http\HttpAcceptNegotiator;
  *
  * @author Daniel Kinzler
  */
-class HttpAcceptNegotiatorTest extends \PHPUnit\Framework\TestCase {
+class HttpAcceptNegotiatorTest extends TestCase {
 
 	public static function provideGetFirstSupportedValue() {
 		return [

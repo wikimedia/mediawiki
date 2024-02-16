@@ -1,6 +1,6 @@
 <?php
 
-namespace Wikimedia\ParamValidator;
+namespace Wikimedia\Tests\ParamValidator;
 
 use DomainException;
 use InvalidArgumentException;
@@ -13,6 +13,10 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
+use Wikimedia\ParamValidator\TypeDef;
+use Wikimedia\ParamValidator\ValidationException;
 
 /**
  * @covers \Wikimedia\ParamValidator\ParamValidator

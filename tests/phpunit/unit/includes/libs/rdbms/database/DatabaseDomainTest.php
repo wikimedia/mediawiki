@@ -1,11 +1,16 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use InvalidArgumentException;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * @covers \Wikimedia\Rdbms\DatabaseDomain
  */
-class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
+class DatabaseDomainTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

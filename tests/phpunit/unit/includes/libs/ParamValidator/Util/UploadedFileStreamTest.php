@@ -1,6 +1,6 @@
 <?php
 
-namespace Wikimedia\ParamValidator\Util;
+namespace Wikimedia\Tests\ParamValidator\Util;
 
 require_once __DIR__ . '/UploadedFileTestBase.php';
 
@@ -8,6 +8,7 @@ use Error;
 use PHPUnit\Framework\AssertionFailedError;
 use RuntimeException;
 use TypeError;
+use Wikimedia\ParamValidator\Util\UploadedFileStream;
 use Wikimedia\TestingAccessWrapper;
 
 /**

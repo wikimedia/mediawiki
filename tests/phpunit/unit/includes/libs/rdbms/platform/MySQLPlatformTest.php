@@ -18,7 +18,11 @@
  * @file
  */
 
+namespace Wikimedia\Tests\Rdbms;
+
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
@@ -26,7 +30,7 @@ use Wikimedia\Rdbms\Platform\SqlitePlatform;
 /**
  * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
  */
-class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
+class MySQLPlatformTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

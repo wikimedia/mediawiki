@@ -23,8 +23,9 @@
 namespace MediaWiki\Tests\Unit\Libs\Rdbms;
 
 use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\Database\DbQuoter;
 
-class AddQuoterMock implements \Wikimedia\Rdbms\Database\DbQuoter {
+class AddQuoterMock implements DbQuoter {
 	/**
 	 * @inheritDoc
 	 * @stable to override

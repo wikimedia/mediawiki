@@ -1,12 +1,17 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use DatabaseTestHelper;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 /**
  * @covers \Wikimedia\Rdbms\UpdateQueryBuilder
  */
-class UpdateQueryBuilderTest extends PHPUnit\Framework\TestCase {
+class UpdateQueryBuilderTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	/** @var DatabaseTestHelper */

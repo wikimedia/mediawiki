@@ -1,9 +1,14 @@
 <?php
 
+namespace Wikimedia\Tests;
+
+use Cookie;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers \Cookie
  */
-class CookieTest extends \PHPUnit\Framework\TestCase {
+class CookieTest extends TestCase {
 
 	/**
 	 * @dataProvider cookieDomains

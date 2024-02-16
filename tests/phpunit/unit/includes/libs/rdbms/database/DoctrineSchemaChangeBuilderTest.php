@@ -1,7 +1,10 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
+use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\DoctrineSchemaChangeBuilder;
 use Wikimedia\Rdbms\MWPostgreSqlPlatform;
 

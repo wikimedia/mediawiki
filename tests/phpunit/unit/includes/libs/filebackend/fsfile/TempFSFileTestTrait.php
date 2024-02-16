@@ -1,5 +1,7 @@
 <?php
 
+namespace Wikimedia\Tests\FileBackend\FSFile;
+
 /**
  * Code shared between the unit and integration tests
  */

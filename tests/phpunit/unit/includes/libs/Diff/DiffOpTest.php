@@ -1,13 +1,15 @@
 <?php
 
-namespace Wikimedia\Diff;
+namespace Wikimedia\Tests\Diff;
+
+use MediaWikiUnitTestCase;
 
 /**
  * @author Addshore
  *
  * @group Diff
  */
-class DiffOpTest extends \MediaWikiUnitTestCase {
+class DiffOpTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers \Wikimedia\Diff\DiffOp::getType

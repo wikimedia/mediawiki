@@ -1,6 +1,9 @@
 <?php
 
+namespace Wikimedia\Tests\FileBackend\FSFile;
+
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\FileBackend\FSFile\TempFSFileFactory

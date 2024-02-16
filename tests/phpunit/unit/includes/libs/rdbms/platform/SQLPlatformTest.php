@@ -1,7 +1,14 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use Exception;
+use InvalidArgumentException;
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
+use MediaWikiCoversValidator;
+use MediaWikiTestCaseTrait;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\LikeMatch;
@@ -10,7 +17,7 @@ use Wikimedia\Rdbms\LikeMatch;
  * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
  * @covers \Wikimedia\Rdbms\Database
  */
-class SQLPlatformTest extends PHPUnit\Framework\TestCase {
+class SQLPlatformTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;

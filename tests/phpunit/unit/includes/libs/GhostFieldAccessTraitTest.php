@@ -3,7 +3,6 @@
 namespace Wikimedia\Tests\Reflection;
 
 use MediaWikiUnitTestCase;
-use Wikimedia\Reflection\GhostFieldTestClass;
 use Wikimedia\Tests\SerializationTestUtils;
 
 /**
@@ -22,7 +21,7 @@ class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 			'unserialize'
 		);
 		$instances = $serializationTestUtils
-			->getDeserializedInstancesForTestCase( 'GhostFieldTestClass', $testCaseName );
+			->getDeserializedInstancesForTestCase( GhostFieldTestClass::class, $testCaseName );
 		foreach ( $instances as $instance ) {
 			yield "{$instance->version}" => [ $instance->object ];
 		}

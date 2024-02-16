@@ -1,8 +1,11 @@
 <?php
 
+namespace Wikimedia\Tests\Composer;
+
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Composer\ComposerJson;
 
-class ComposerJsonTest extends PHPUnit\Framework\TestCase {
+class ComposerJsonTest extends TestCase {
 
 	private $json;
 

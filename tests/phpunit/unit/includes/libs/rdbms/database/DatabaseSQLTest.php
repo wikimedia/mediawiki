@@ -1,11 +1,19 @@
 <?php
 
+namespace Wikimedia\Tests\Rdbms;
+
+use DatabaseTestHelper;
+use MediaWikiCoversValidator;
+use MediaWikiTestCaseTrait;
+use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBTransactionError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\TestingAccessWrapper;
 
@@ -17,7 +25,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \Wikimedia\Rdbms\Subquery
  * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
  */
-class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
+class DatabaseSQLTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
@@ -25,7 +33,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/** @var DatabaseTestHelper|Database */
 	private $database;
 
-	/** @var \Wikimedia\Rdbms\Platform\SQLPlatform */
+	/** @var SQLPlatform */
 	private $platform;
 
 	protected function setUp(): void {
@@ -1141,7 +1149,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->database->begin( __METHOD__ );
 		$wrapper->transactionManager->setTransactionError( new DBUnexpectedError( null, 'error' ) );
-		$this->expectException( \Wikimedia\Rdbms\DBTransactionStateError::class );
+		$this->expectException( DBTransactionStateError::class );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
 	}
 

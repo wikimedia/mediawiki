@@ -21,12 +21,15 @@
  * @file
  */
 
+namespace Wikimedia\Tests\Rdbms;
+
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @covers \Wikimedia\Rdbms\FakeResultWrapper
  */
-class FakeResultWrapperTest extends PHPUnit\Framework\TestCase {
+class FakeResultWrapperTest extends TestCase {
 	public function testIteration() {
 		$res = new FakeResultWrapper( [
 			[ 'colA' => 1, 'colB' => 'a' ],

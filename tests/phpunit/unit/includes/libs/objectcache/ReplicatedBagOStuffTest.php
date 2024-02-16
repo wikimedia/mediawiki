@@ -1,12 +1,17 @@
 <?php
 
+namespace Wikimedia\Tests\ObjectCache;
+
+use HashBagOStuff;
+use MediaWikiUnitTestCase;
+use ReplicatedBagOStuff;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \ReplicatedBagOStuff
  */
-class ReplicatedBagOStuffTest extends \MediaWikiUnitTestCase {
+class ReplicatedBagOStuffTest extends MediaWikiUnitTestCase {
 	/** @var HashBagOStuff */
 	private $writeCache;
 	/** @var HashBagOStuff */

@@ -1,8 +1,15 @@
 <?php
+
+namespace Wikimedia\Tests;
+
+use ArrayUtils;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers \ArrayUtils
  */
-class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
+class ArrayUtilsTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

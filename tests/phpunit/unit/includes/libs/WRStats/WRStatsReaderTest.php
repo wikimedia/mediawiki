@@ -1,8 +1,14 @@
 <?php
 
-namespace Wikimedia\WRStats;
+namespace Wikimedia\Tests\WRStats;
 
 use PHPUnit\Framework\TestCase;
+use Wikimedia\WRStats\ArrayStatsStore;
+use Wikimedia\WRStats\GlobalEntityKey;
+use Wikimedia\WRStats\RatePromise;
+use Wikimedia\WRStats\TimeRange;
+use Wikimedia\WRStats\WRStatsReader;
+use Wikimedia\WRStats\WRStatsWriter;
 
 /**
  * @covers \Wikimedia\WRStats\WRStatsReader

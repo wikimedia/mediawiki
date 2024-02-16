@@ -1,6 +1,6 @@
 <?php
 
-namespace Wikimedia\ParamValidator\TypeDef;
+namespace Wikimedia\Tests\ParamValidator\TypeDef;
 
 use PHPUnit\Framework\Assert;
 use Wikimedia\Message\DataMessageValue;
@@ -13,7 +13,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * Test case infrastructure for TypeDef subclasses
  *
- * Generally you'll only need to implement self::getInstance() and
+ * Generally, you'll only need to implement self::getInstance() and
  * data providers methods.
  */
 trait TypeDefTestCaseTrait {

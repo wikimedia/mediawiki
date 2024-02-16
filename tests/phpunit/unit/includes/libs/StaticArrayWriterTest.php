@@ -18,12 +18,15 @@
  *
  */
 
+namespace Wikimedia\Tests;
+
+use PHPUnit\Framework\TestCase;
 use Wikimedia\StaticArrayWriter;
 
 /**
  * @covers \Wikimedia\StaticArrayWriter
  */
-class StaticArrayWriterTest extends PHPUnit\Framework\TestCase {
+class StaticArrayWriterTest extends TestCase {
 	public function testCreate() {
 		$data = [
 			'foo' => 'bar',

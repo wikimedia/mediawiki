@@ -1,9 +1,10 @@
 <?php
 
-namespace Wikimedia\ParamValidator\TypeDef;
+namespace Wikimedia\Tests\ParamValidator\TypeDef;
 
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
+use Wikimedia\ParamValidator\TypeDef\PresenceBooleanDef;
 
 /**
  * @covers \Wikimedia\ParamValidator\TypeDef\PresenceBooleanDef
