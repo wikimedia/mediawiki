@@ -339,7 +339,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test a post-send update can not set cookies (T191537).
+	 * Test a post-send update cannot set cookies (T191537).
 	 * @coversNothing
 	 */
 	public function testPostSendJobDoesNotSetCookie() {
@@ -364,7 +364,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$mw->doPostOutputShutdown();
 
 		// restInPeace() might have been registered to a callback of
-		// register_postsend_function() and thus can not be triggered from
+		// register_postsend_function() and thus cannot be triggered from
 		// PHPUnit.
 		if ( $jobHasRun === false ) {
 			$mw->restInPeace();

@@ -332,7 +332,7 @@ $wgAutoloadClasses += [
  * should be considered deprecated and eventually removed.
  */
 spl_autoload_register( static function ( $class ) {
-	if ( strpos( $class, 'PHPUnit_' ) !== 0 ) {
+	if ( !str_starts_with( $class, 'PHPUnit_' ) ) {
 		// Skip if it doesn't start with the old prefix
 		return;
 	}

@@ -223,8 +223,8 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	public function testServicesSorted( array $services ): void {
 		$sortedServices = $services;
 		usort( $sortedServices, function ( $serviceA, $serviceB ) {
-			$isExtensionServiceA = strpos( $serviceA, $this->serviceNamePrefix ) === 0;
-			$isExtensionServiceB = strpos( $serviceB, $this->serviceNamePrefix ) === 0;
+			$isExtensionServiceA = str_starts_with( $serviceA, $this->serviceNamePrefix );
+			$isExtensionServiceB = str_starts_with( $serviceB, $this->serviceNamePrefix );
 			if ( $isExtensionServiceA !== $isExtensionServiceB ) {
 				return $isExtensionServiceA ? 1 : -1;
 			}

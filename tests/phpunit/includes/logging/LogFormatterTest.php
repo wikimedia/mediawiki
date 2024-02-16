@@ -447,7 +447,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 * Third parties bots listen to those messages. They are clever enough
 	 * to fetch the i18n messages from the wiki and then analyze the IRC feed
 	 * to reverse engineer the $1, $2 messages.
-	 * One thing bots can not detect is when MediaWiki change the meaning of
+	 * One thing bots cannot detect is when MediaWiki change the meaning of
 	 * a message like what happened when we deployed 1.19. $1 became the user
 	 * performing the action which broke basically all bots around.
 	 *

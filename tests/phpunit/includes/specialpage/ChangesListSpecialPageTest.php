@@ -153,7 +153,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		if ( $var instanceof IExpression ) {
 			$var = $var->toGeneralizedSql();
 		}
-		return ( is_array( $var ) || strpos( (string)$var, 'rc_timestamp ' ) === false );
+		return is_array( $var ) || !str_contains( (string)$var, 'rc_timestamp ' );
 	}
 
 	public function testRcNsFilter() {

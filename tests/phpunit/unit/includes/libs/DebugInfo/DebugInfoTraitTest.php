@@ -10,7 +10,7 @@ class DebugInfoTraitTest extends \PHPUnit\Framework\TestCase {
 	public function setUp(): void {
 		if ( extension_loaded( 'xdebug' ) ) {
 			if ( version_compare( phpversion( 'xdebug' ), '3.0.0', '>=' ) ) {
-				if ( strpos( ini_get( 'xdebug.mode' ), 'develop' ) !== false ) {
+				if ( str_contains( ini_get( 'xdebug.mode' ), 'develop' ) ) {
 					$this->markTestSkipped( 'Can\'t run this test with xdebug.mode=develop. ' .
 					'Use xdebug.mode=coverage to do test coverage without overloading var_dump.' );
 				}

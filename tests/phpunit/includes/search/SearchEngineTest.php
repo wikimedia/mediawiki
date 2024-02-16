@@ -508,7 +508,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 */
 	public function testParseNamespacePrefix( array $params, $expected ) {
 		$this->setTemporaryHook( 'PrefixSearchExtractNamespace', static function ( &$namespaces, &$query ) {
-			if ( strpos( $query, 'hélp:' ) === 0 ) {
+			if ( str_starts_with( $query, 'hélp:' ) ) {
 				$namespaces = [ NS_HELP ];
 				$query = substr( $query, strlen( 'hélp:' ) );
 			}

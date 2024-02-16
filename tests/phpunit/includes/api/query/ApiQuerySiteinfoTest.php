@@ -432,7 +432,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 		$expected = array_filter( $expected,
 			static function ( $info ) {
-				return strpos( $info['type'], 'mediawiki-' ) !== 0;
+				return !str_starts_with( $info['type'], 'mediawiki-' );
 			}
 		);
 

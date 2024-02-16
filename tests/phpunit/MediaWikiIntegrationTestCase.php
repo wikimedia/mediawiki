@@ -611,7 +611,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	final protected function mediaWikiSetUp(): void {
 		$reflection = new ReflectionClass( $this );
 		// TODO: Eventually we should assert for test presence in /integration/
-		if ( strpos( $reflection->getFileName(), '/unit/' ) !== false ) {
+		if ( str_contains( $reflection->getFileName(), '/unit/' ) ) {
 			$this->fail( 'This integration test should not be in "tests/phpunit/unit" !' );
 		}
 		if ( $this->tablesUsed && !self::isTestInDatabaseGroup() ) {
@@ -1849,7 +1849,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$defaultArray = (array)$wgDefaultExternalStore;
 		$dbws = [];
 		foreach ( $defaultArray as $url ) {
-			if ( strpos( $url, 'DB://' ) === 0 ) {
+			if ( str_starts_with( $url, 'DB://' ) ) {
 				[ $proto, $cluster ] = explode( '://', $url, 2 );
 				// Avoid getPrimary() because setupDatabaseWithTestPrefix()
 				// requires Database instead of plain DBConnRef/IDatabase
@@ -1873,7 +1873,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$defaultArray = (array)$wgDefaultExternalStore;
 		foreach ( $defaultArray as $url ) {
-			if ( strpos( $url, 'DB://' ) === 0 ) {
+			if ( str_starts_with( $url, 'DB://' ) ) {
 				return true;
 			}
 		}

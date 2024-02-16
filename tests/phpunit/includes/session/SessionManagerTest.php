@@ -40,10 +40,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			]
 		] );
 		$this->logger = new \TestLogger( false, static function ( $m ) {
-			return ( strpos( $m, 'SessionBackend ' ) === 0
-				|| strpos( $m, 'SessionManager using store ' ) === 0
+			return ( str_starts_with( $m, 'SessionBackend ' )
+				|| str_starts_with( $m, 'SessionManager using store ' )
 				// These were added for T264793 and behave somewhat erratically, not worth testing
-				|| strpos( $m, 'Failed to load session, unpersisting' ) === 0
+				|| str_starts_with( $m, 'Failed to load session, unpersisting' )
 				|| preg_match( '/^(Persisting|Unpersisting) session (for|due to)/', $m )
 			) ? null : $m;
 		} );

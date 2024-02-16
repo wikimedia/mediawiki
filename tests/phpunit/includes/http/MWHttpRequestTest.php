@@ -43,7 +43,7 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 			// commented these out in order to remove @group Broken
 			// @todo are these valid tests? if so, fix MWHttpRequest::isValidURI so it can handle them
 			// [ false, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ],
-			// [ false, 'http://exam:ple.org/', 'hostname can not use colons!' ],
+			// [ false, 'http://exam:ple.org/', 'hostname cannot use colons!' ],
 
 			# (:[0-9]+)? - port number
 			[ true, 'http://example.org:80/' ],

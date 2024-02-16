@@ -262,7 +262,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			'<label for="id">name</label>',
 			Xml::label( 'name', 'id', [ 'generated' => true ] ),
-			'label() can not be given a generated attribute'
+			'label() cannot be given a generated attribute'
 		);
 		$this->assertEquals(
 			'<label for="id" class="nice">name</label>',
