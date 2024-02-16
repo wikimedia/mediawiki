@@ -4,7 +4,7 @@
 
 1. Look for any outstanding bugs.
    Especially (unreleased) regressions should be addressed before a release.
-   <https://phabricator.wikimedia.org/tag/mediawiki-core-testing/>
+   <https://phabricator.wikimedia.org/tag/mediawiki-core-tests>
 
 2. Create or reset your `release` branch to the latest head of the repository
    ```
