@@ -12,8 +12,8 @@ class ComposerJsonTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Composer\ComposerJson::__construct
-	 * @covers Wikimedia\Composer\ComposerJson::getRequiredDependencies
+	 * @covers \Wikimedia\Composer\ComposerJson::__construct
+	 * @covers \Wikimedia\Composer\ComposerJson::getRequiredDependencies
 	 */
 	public function testGetRequiredDependencies() {
 		$json = new ComposerJson( $this->json );
@@ -34,7 +34,7 @@ class ComposerJsonTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideNormalizeVersion
-	 * @covers Wikimedia\Composer\ComposerJson::normalizeVersion
+	 * @covers \Wikimedia\Composer\ComposerJson::normalizeVersion
 	 */
 	public function testNormalizeVersion( $input, $expected ) {
 		$this->assertEquals( $expected, ComposerJson::normalizeVersion( $input ) );

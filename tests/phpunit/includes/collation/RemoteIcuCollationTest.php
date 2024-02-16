@@ -3,7 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers RemoteIcuCollation
+ * @covers \RemoteIcuCollation
  */
 class RemoteIcuCollationTest extends MediaWikiLangTestCase {
 	public static function provideEncode() {

@@ -34,7 +34,7 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ContentHandler::getSlotDiffRenderer
+	 * @covers \ContentHandler::getSlotDiffRenderer
 	 */
 	public function testGetSlotDiffRenderer() {
 		$context = new RequestContext();
@@ -52,7 +52,7 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers FallbackContentHandler::fillParserOutput
+	 * @covers \FallbackContentHandler::fillParserOutput
 	 */
 	public function testGetParserOutput() {
 		$this->setUserLang( 'en' );

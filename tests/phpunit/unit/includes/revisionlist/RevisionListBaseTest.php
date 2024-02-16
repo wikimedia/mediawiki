@@ -4,7 +4,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers RevisionListBase
+ * @covers \RevisionListBase
  *
  * @author DannyS712
  */

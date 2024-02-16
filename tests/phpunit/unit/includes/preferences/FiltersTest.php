@@ -28,8 +28,8 @@ use MediaWiki\User\CentralId\CentralIdLookup;
  */
 class FiltersTest extends \MediaWikiUnitTestCase {
 	/**
-	 * @covers MediaWiki\Preferences\IntvalFilter::filterFromForm()
-	 * @covers MediaWiki\Preferences\IntvalFilter::filterForForm()
+	 * @covers \MediaWiki\Preferences\IntvalFilter::filterFromForm()
+	 * @covers \MediaWiki\Preferences\IntvalFilter::filterForForm()
 	 */
 	public function testIntvalFilter() {
 		$filter = new IntvalFilter();
@@ -39,7 +39,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Preferences\TimezoneFilter::filterFromForm()
+	 * @covers \MediaWiki\Preferences\TimezoneFilter::filterFromForm()
 	 * @dataProvider provideTimezoneFilter
 	 *
 	 * @param string $input
@@ -62,7 +62,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Preferences\MultiUsernameFilter::filterFromForm()
+	 * @covers \MediaWiki\Preferences\MultiUsernameFilter::filterFromForm()
 	 * @dataProvider provideMultiUsernameFilterFrom
 	 *
 	 * @param string $input
@@ -87,7 +87,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Preferences\MultiUsernameFilter::filterForForm()
+	 * @covers \MediaWiki\Preferences\MultiUsernameFilter::filterForForm()
 	 * @dataProvider provideMultiUsernameFilterFor
 	 *
 	 * @param string $input

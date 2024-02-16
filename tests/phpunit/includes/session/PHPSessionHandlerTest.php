@@ -16,7 +16,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
- * @covers MediaWiki\Session\PHPSessionHandler
+ * @covers \MediaWiki\Session\PHPSessionHandler
  */
 class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 

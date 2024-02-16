@@ -213,7 +213,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 
 	/**
 	 * @dataProvider provideGetParserOutput
-	 * @covers WikitextContentHandler::fillParserOutput
+	 * @covers \WikitextContentHandler::fillParserOutput
 	 */
 	public function testGetParserOutput( $title, $model, $text, $expectedHtml,
 		$expectedFields = null, $options = null
@@ -241,8 +241,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 	 * @param LinkTarget $target
 	 * @param string $expectedWT Serialized wikitext form of the content object built
 	 * @param string $expectedTarget Expected target string in the HTML redirect
-	 * @covers WikitextContentHandler::makeRedirectContent
-	 * @covers WikitextContentHandler::getParserOutput
+	 * @covers \WikitextContentHandler::makeRedirectContent
+	 * @covers \WikitextContentHandler::getParserOutput
 	 */
 	public function testMakeRedirectContent( LinkTarget $target, string $expectedWT, string $expectedTarget ) {
 		$this->getServiceContainer()->resetServiceForTesting( 'ContentLanguage' );

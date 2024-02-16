@@ -2,7 +2,7 @@
 
 /**
  * @group API
- * @covers ApiFormatRaw
+ * @covers \ApiFormatRaw
  */
 class ApiFormatRawTest extends ApiFormatTestBase {
 

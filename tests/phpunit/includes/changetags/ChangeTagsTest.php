@@ -5,7 +5,7 @@ use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
- * @covers ChangeTags
+ * @covers \ChangeTags
  * @group Database
  */
 class ChangeTagsTest extends MediaWikiIntegrationTestCase {
@@ -460,7 +460,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider dataGetSoftwareTags
-	 * @covers ChangeTags::getSoftwareTags
+	 * @covers \ChangeTags::getSoftwareTags
 	 */
 	public function testGetSoftwareTags( $softwareTags, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::SoftwareTags, $softwareTags );

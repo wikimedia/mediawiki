@@ -9,7 +9,7 @@ use MediaWikiUnitTestCase;
 use Wikimedia\Parsoid\Core\PageBundle;
 
 /**
- * @covers MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter
+ * @covers \MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter
  */
 class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	/** @dataProvider provideParserOutputFromPageBundle */

@@ -7,7 +7,7 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFormatter;
 
 /**
- * @covers MediaWiki\Linker\LinkRendererFactory
+ * @covers \MediaWiki\Linker\LinkRendererFactory
  */
 class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 

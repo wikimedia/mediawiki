@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers MergeLogFormatter
+ * @covers \MergeLogFormatter
  */
 class MergeLogFormatterTest extends LogFormatterTestCase {
 

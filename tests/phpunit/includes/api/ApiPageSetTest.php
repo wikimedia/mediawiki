@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group API
  * @group medium
  * @group Database
- * @covers ApiPageSet
+ * @covers \ApiPageSet
  */
 class ApiPageSetTest extends ApiTestCase {
 	use DummyServicesTrait;

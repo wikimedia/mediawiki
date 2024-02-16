@@ -7,7 +7,7 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
- * @covers MediaWiki\ExternalLinks\LinkFilter
+ * @covers \MediaWiki\ExternalLinks\LinkFilter
  * @group Database
  */
 class LinkFilterTest extends MediaWikiLangTestCase {

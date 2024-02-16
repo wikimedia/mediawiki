@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
 /**
- * @covers HTMLForm
+ * @covers \HTMLForm
  *
  * @license GPL-2.0-or-later
  * @author Gergő Tisza

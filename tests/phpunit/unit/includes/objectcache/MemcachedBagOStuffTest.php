@@ -1,6 +1,6 @@
 <?php
 /**
- * @covers MemcachedBagOStuff
+ * @covers \MemcachedBagOStuff
  * @group BagOStuff
  */
 class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {

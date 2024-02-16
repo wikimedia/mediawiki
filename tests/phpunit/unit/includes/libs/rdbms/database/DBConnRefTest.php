@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * @covers Wikimedia\Rdbms\DBConnRef
+ * @covers \Wikimedia\Rdbms\DBConnRef
  */
 class DBConnRefTest extends PHPUnit\Framework\TestCase {
 

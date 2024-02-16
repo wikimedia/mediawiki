@@ -3,7 +3,7 @@
 /**
  * @todo tests for HttpError::report
  *
- * @covers HttpError
+ * @covers \HttpError
  */
 class HttpErrorTest extends MediaWikiUnitTestCase {
 

@@ -10,7 +10,7 @@ use MockTitleTrait;
 
 /**
  * @group Database
- * @coversDefaultClass LogPage
+ * @coversDefaultClass \LogPage
  * @package MediaWiki\Tests\Log
  */
 class LogPageTest extends \MediaWikiIntegrationTestCase {

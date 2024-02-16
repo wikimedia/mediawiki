@@ -8,7 +8,7 @@ use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
- * @coversDefaultClass Language
+ * @coversDefaultClass \Language
  */
 class LanguageTest extends MediaWikiUnitTestCase {
 	/**

@@ -10,7 +10,7 @@ use WikiImporter;
 use WikiImporterFactory;
 
 /**
- * @covers WikiImporterFactory
+ * @covers \WikiImporterFactory
  */
 class WikiImporterFactoryTest extends MediaWikiUnitTestCase {
 	use FactoryArgTestTrait;

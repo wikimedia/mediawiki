@@ -4,7 +4,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\Title;
 
 /**
- * @covers WikiFilePage
+ * @covers \WikiFilePage
  * @group Database
  */
 class WikiFilePageTest extends MediaWikiLangTestCase {

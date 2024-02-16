@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers HtmlArmor
+ * @covers \HtmlArmor
  */
 class HtmlArmorTest extends PHPUnit\Framework\TestCase {
 

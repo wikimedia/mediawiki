@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers FormatJson
+ * @covers \FormatJson
  */
 class FormatJsonTest extends MediaWikiUnitTestCase {
 
@@ -223,7 +223,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers FormatJson::stripComments
+	 * @covers \FormatJson::stripComments
 	 * @dataProvider provideStripComments
 	 * @param string $json
 	 * @param string $expect
@@ -241,8 +241,8 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers FormatJson::parse
-	 * @covers FormatJson::stripComments
+	 * @covers \FormatJson::parse
+	 * @covers \FormatJson::stripComments
 	 * @dataProvider provideParseStripComments
 	 */
 	public function testParseStripComments( $json, $expect ) {
@@ -336,8 +336,8 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers FormatJson::encode
-	 * @covers FormatJson::decode
+	 * @covers \FormatJson::encode
+	 * @covers \FormatJson::decode
 	 * @dataProvider provideEmptyJsonKeyStrings
 	 *
 	 * Decoding behavior with empty keys can be surprising.

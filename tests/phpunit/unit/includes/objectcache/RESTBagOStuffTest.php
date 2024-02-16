@@ -2,7 +2,7 @@
 /**
  * @group BagOStuff
  *
- * @covers RESTBagOStuff
+ * @covers \RESTBagOStuff
  */
 class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 

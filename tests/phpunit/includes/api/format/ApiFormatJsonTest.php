@@ -2,7 +2,7 @@
 
 /**
  * @group API
- * @covers ApiFormatJson
+ * @covers \ApiFormatJson
  */
 class ApiFormatJsonTest extends ApiFormatTestBase {
 

@@ -25,7 +25,7 @@ use MediaWiki\User\User;
 
 /**
  * @group Database
- * @covers UserPasswordPolicy
+ * @covers \UserPasswordPolicy
  */
 class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 

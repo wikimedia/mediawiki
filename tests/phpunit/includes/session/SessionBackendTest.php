@@ -29,7 +29,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Session
  * @group Database
- * @covers MediaWiki\Session\SessionBackend
+ * @covers \MediaWiki\Session\SessionBackend
  */
 class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;

@@ -69,7 +69,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers JavaScriptContent::addSectionHeader
+	 * @covers \JavaScriptContent::addSectionHeader
 	 */
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
@@ -170,7 +170,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers JavaScriptContent::matchMagicWord
+	 * @covers \JavaScriptContent::matchMagicWord
 	 */
 	public function testMatchMagicWord() {
 		$mw = $this->getServiceContainer()->getMagicWordFactory()->get( "staticredirect" );
@@ -183,7 +183,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers JavaScriptContent::updateRedirect
+	 * @covers \JavaScriptContent::updateRedirect
 	 * @dataProvider provideUpdateRedirect
 	 */
 	public function testUpdateRedirect( $oldText, $expectedText ) {
@@ -216,7 +216,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers JavaScriptContent::getModel
+	 * @covers \JavaScriptContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
@@ -225,7 +225,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers JavaScriptContent::getContentHandler
+	 * @covers \JavaScriptContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
@@ -243,7 +243,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers JavaScriptContent::getRedirectTarget
+	 * @covers \JavaScriptContent::getRedirectTarget
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {

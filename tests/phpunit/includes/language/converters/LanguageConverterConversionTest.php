@@ -12,7 +12,7 @@ class LanguageConverterConversionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideConversionData
-	 * @covers LanguageConverter::convertTo
+	 * @covers \LanguageConverter::convertTo
 	 */
 	public function testConversion( $variant, $text, $expected ) {
 		$language = $this->getServiceContainer()->getLanguageFactory()->getParentLanguage(

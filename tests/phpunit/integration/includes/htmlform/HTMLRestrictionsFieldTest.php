@@ -6,7 +6,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 
 /**
- * @covers HTMLRestrictionsField
+ * @covers \HTMLRestrictionsField
  */
 class HTMLRestrictionsFieldTest extends MediaWikiIntegrationTestCase {
 

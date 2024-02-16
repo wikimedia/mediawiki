@@ -6,8 +6,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
- * @covers Wikimedia\Rdbms\ReadOnlyMode
- * @covers Wikimedia\Rdbms\ConfiguredReadOnlyMode
+ * @covers \Wikimedia\Rdbms\ReadOnlyMode
+ * @covers \Wikimedia\Rdbms\ConfiguredReadOnlyMode
  */
 class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 

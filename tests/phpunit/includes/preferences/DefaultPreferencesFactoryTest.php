@@ -53,7 +53,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Preferences
  * @group Database
- * @coversDefaultClass MediaWiki\Preferences\DefaultPreferencesFactory
+ * @coversDefaultClass \MediaWiki\Preferences\DefaultPreferencesFactory
  */
 class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;

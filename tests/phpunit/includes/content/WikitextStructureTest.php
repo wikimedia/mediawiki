@@ -4,7 +4,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @group Database
- * @covers WikiTextStructure
+ * @covers \WikiTextStructure
  */
 class WikitextStructureTest extends MediaWikiLangTestCase {
 

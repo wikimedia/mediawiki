@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @covers EncryptedPassword
- * @covers ParameterizedPassword
- * @covers Password
+ * @covers \EncryptedPassword
+ * @covers \ParameterizedPassword
+ * @covers \Password
  */
 class EncryptedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {

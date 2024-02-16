@@ -21,9 +21,9 @@ use WikitextContent;
  * Integration tests for undos.
  * TODO: This should also test edits with multiple slots.
  *
- * @covers McrUndoAction
- * @covers WikiPage
- * @covers MediaWiki\EditPage\EditPage
+ * @covers \McrUndoAction
+ * @covers \WikiPage
+ * @covers \MediaWiki\EditPage\EditPage
  *
  * @group Database
  * @group medium

@@ -6,7 +6,7 @@ use MediaWiki\MainConfigNames;
  * @group Search
  * @group Database
  *
- * @covers SearchEngine<extended>
+ * @covers \SearchEngine<extended>
  * @note Coverage will only ever show one of on of the Search* classes
  */
 class SearchEngineTest extends MediaWikiLangTestCase {
@@ -274,8 +274,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 * (in other test that the default search backend can benefit from wgCapitalLinksOverride)
 	 * Guard against regressions like T208255
 	 * @dataProvider provideCompletionSearchMustRespectCapitalLinkOverrides
-	 * @covers SearchEngine::completionSearch
-	 * @covers PrefixSearch::defaultSearchBackend
+	 * @covers \SearchEngine::completionSearch
+	 * @covers \PrefixSearch::defaultSearchBackend
 	 * @param string $search
 	 * @param string $expectedSuggestion
 	 * @param int[] $namespaces
@@ -292,7 +292,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers SearchEngine::getSearchIndexFields
+	 * @covers \SearchEngine::getSearchIndexFields
 	 */
 	public function testSearchIndexFields() {
 		/**

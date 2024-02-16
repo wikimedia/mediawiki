@@ -4,7 +4,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
- * @covers MediaWiki\FileBackend\LockManager\LockManagerGroupFactory
+ * @covers \MediaWiki\FileBackend\LockManager\LockManagerGroupFactory
  * @todo Should we somehow test that the LockManagerGroup objects are as we expect? How do we do
  *   that without getting into testing LockManagerGroup itself?
  */

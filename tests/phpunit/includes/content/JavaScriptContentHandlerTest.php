@@ -7,7 +7,7 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeRedirectContent
-	 * @covers JavaScriptContentHandler::makeRedirectContent
+	 * @covers \JavaScriptContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
 		$this->overrideConfigValues( [

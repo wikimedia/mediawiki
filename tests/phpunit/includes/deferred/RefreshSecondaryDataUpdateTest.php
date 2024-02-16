@@ -9,7 +9,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 
 /**
- * @covers RefreshSecondaryDataUpdate
+ * @covers \RefreshSecondaryDataUpdate
  * @group Database
  */
 class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {

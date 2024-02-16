@@ -971,8 +971,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param string[] $expectedText
 	 * @param string[] $expectedHeaders
 	 *
-	 * @covers MediaWiki\Parser\Parsoid\HtmlToContentTransform
-	 * @covers MediaWiki\Rest\Handler\ParsoidHandler::html2wt
+	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
+	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::html2wt
 	 */
 	public function testHtml2wt(
 		array $attribs,

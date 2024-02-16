@@ -32,7 +32,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	 * of UploadBase::getTitle() and then the actual returned title
 	 *
 	 * @dataProvider provideTestTitleValidation
-	 * @covers UploadBase::getTitle
+	 * @covers \UploadBase::getTitle
 	 */
 	public function testTitleValidation( $srcFilename, $dstFilename, $code, $msg ) {
 		/* Check the result code */
@@ -85,7 +85,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test the upload verification functions
-	 * @covers UploadBase::verifyUpload
+	 * @covers \UploadBase::verifyUpload
 	 */
 	public function testVerifyUpload() {
 		/* Setup with zero file size */
@@ -108,7 +108,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers UploadBase::verifyUpload
+	 * @covers \UploadBase::verifyUpload
 	 *
 	 * test uploading a 100 bytes file with $wgMaxUploadSize = 100
 	 *
@@ -133,7 +133,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers UploadBase::checkSvgScriptCallback
+	 * @covers \UploadBase::checkSvgScriptCallback
 	 * @dataProvider provideCheckSvgScriptCallback
 	 */
 	public function testCheckSvgScriptCallback( $svg, $wellFormed, $filterMatch, $message ) {
@@ -539,7 +539,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers UploadBase::detectScriptInSvg
+	 * @covers \UploadBase::detectScriptInSvg
 	 * @dataProvider provideDetectScriptInSvg
 	 */
 	public function testDetectScriptInSvg( $svg, $expected, $message ) {
@@ -585,7 +585,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers UploadBase::checkXMLEncodingMissmatch
+	 * @covers \UploadBase::checkXMLEncodingMissmatch
 	 * @dataProvider provideCheckXMLEncodingMissmatch
 	 */
 	public function testCheckXMLEncodingMissmatch( $fileContents, $evil ) {
@@ -604,7 +604,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers UploadBase::detectScript
+	 * @covers \UploadBase::detectScript
 	 * @dataProvider provideDetectScript
 	 */
 	public function testDetectScript( $filename, $mime, $extension, $expected, $message ) {

@@ -10,7 +10,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @group medium
  *
- * @covers ApiProtect
+ * @covers \ApiProtect
  */
 class ApiProtectTest extends ApiTestCase {
 
@@ -21,7 +21,7 @@ class ApiProtectTest extends ApiTestCase {
 	}
 
 	/**
-	 * @covers ApiProtect::execute()
+	 * @covers \ApiProtect::execute()
 	 */
 	public function testProtectWithWatch(): void {
 		$title = Title::makeTitle( NS_MAIN, 'TestProtectWithWatch' );

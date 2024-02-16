@@ -2,7 +2,7 @@
 /**
  * @author physikerwelt
  * @group Xml
- * @covers XmlTypeCheck
+ * @covers \XmlTypeCheck
  */
 class XmlTypeCheckTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;

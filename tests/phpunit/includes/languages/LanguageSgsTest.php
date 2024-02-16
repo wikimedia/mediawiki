@@ -13,7 +13,7 @@
 class LanguageSgsTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePluralAllForms
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testPluralAllForms( $result, $value ) {
 		$forms = [ 'one', 'two', 'few', 'other' ];
@@ -22,7 +22,7 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePluralAllForms
-	 * @covers Language::getPluralRuleType
+	 * @covers \Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
@@ -48,7 +48,7 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePluralTwoForms
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
 		$forms = [ 'one', 'other' ];

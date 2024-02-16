@@ -3,7 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MemoizedCallable
+ * @covers \MemoizedCallable
  */
 class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 

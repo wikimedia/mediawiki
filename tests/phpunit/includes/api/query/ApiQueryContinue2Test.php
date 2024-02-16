@@ -22,7 +22,7 @@
  * @group API
  * @group Database
  * @group medium
- * @covers ApiQuery
+ * @covers \ApiQuery
  */
 class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
 	protected $exceptionFromAddDBData;

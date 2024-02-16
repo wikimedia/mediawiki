@@ -47,7 +47,7 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MWLBFactory::getLBFactoryClass
+	 * @covers \MWLBFactory::getLBFactoryClass
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $config, $expected ) {
@@ -69,7 +69,7 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MWLBFactory::setDomainAliases()
+	 * @covers \MWLBFactory::setDomainAliases()
 	 * @dataProvider setDomainAliasesProvider
 	 */
 	public function testDomainAliases( $dbname, $prefix, $expectedDomain ) {

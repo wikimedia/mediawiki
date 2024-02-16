@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @covers LayeredParameterizedPassword
- * @covers Password
+ * @covers \LayeredParameterizedPassword
+ * @covers \Password
  */
 class LayeredParameterizedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
@@ -46,7 +46,7 @@ class LayeredParameterizedPasswordTest extends PasswordTestCase {
 	}
 
 	/**
-	 * @covers LayeredParameterizedPassword::partialCrypt
+	 * @covers \LayeredParameterizedPassword::partialCrypt
 	 */
 	public function testLargeLayeredPartialUpdate() {
 		/** @var ParameterizedPassword $partialPassword */

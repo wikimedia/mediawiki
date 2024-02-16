@@ -21,7 +21,7 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider providePixelFormats
-	 * @covers BitmapHandler::imageMagickSubsampling
+	 * @covers \BitmapHandler::imageMagickSubsampling
 	 */
 	public function testPixelFormatRendering( $sourceFile, $pixelFormat, $samplingFactor ) {
 		global $wgUseImageMagick, $wgUseImageResize;

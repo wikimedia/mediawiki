@@ -4,7 +4,7 @@ use MediaWiki\Title\TitleValue;
 
 /**
  * @group Database
- * @covers MediaWiki\Linker\LinkTargetStore
+ * @covers \MediaWiki\Linker\LinkTargetStore
  */
 class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
 

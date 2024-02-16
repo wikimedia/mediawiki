@@ -8,7 +8,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Http\HttpRequestFactory
+ * @covers \MediaWiki\Http\HttpRequestFactory
  * @todo Inject UrlUtils into MWHttpRequest and make this a unit test.
  */
 class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {

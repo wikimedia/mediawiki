@@ -7,7 +7,7 @@ use Psr\Log\NullLogger;
 
 /**
  * @group Database
- * @covers ImportableOldRevisionImporter
+ * @covers \ImportableOldRevisionImporter
  */
 class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;

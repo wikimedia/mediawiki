@@ -14,7 +14,7 @@ use Wikimedia\Parsoid\Parsoid;
 
 /**
  * @group Database
- * @covers MediaWiki\Parser\Parsoid\LanguageVariantConverter
+ * @covers \MediaWiki\Parser\Parsoid\LanguageVariantConverter
  */
 class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	public function setUp(): void {

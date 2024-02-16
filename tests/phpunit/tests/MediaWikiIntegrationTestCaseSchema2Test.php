@@ -7,7 +7,7 @@
  * test classes getting run in alpha-numerical order.
  * Order is checked by the testMediaWikiIntegrationTestCaseSchemaTestOrder test in both classes.
  *
- * @covers MediaWikiIntegrationTestCase
+ * @covers \MediaWikiIntegrationTestCase
  * @group Database
  */
 class MediaWikiIntegrationTestCaseSchema2Test extends MediaWikiIntegrationTestCase {

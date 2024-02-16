@@ -25,7 +25,7 @@ use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\PreconditionException;
 
 /**
- * @covers MediaWiki\Page\PageIdentityValue
+ * @covers \MediaWiki\Page\PageIdentityValue
  *
  * @group Title
  */

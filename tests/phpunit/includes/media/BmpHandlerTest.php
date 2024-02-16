@@ -27,7 +27,7 @@ use MediaHandlerState;
 use MediaWikiMediaTestCase;
 
 /**
- * @covers BmpHandler
+ * @covers \BmpHandler
  * @group Media
  */
 class BmpHandlerTest extends MediaWikiMediaTestCase {
@@ -42,21 +42,21 @@ class BmpHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers BmpHandler::mustRender
+	 * @covers \BmpHandler::mustRender
 	 */
 	public function testMustRender() {
 		$this->assertTrue( $this->handler->mustRender( $this->tempFile ) );
 	}
 
 	/**
-	 * @covers BmpHandler::getThumbType
+	 * @covers \BmpHandler::getThumbType
 	 */
 	public function testGetThumbType() {
 		$this->assertEquals( [ 'png', 'image/png' ], $this->handler->getThumbType( 'bmp', 'image/bmp' ) );
 	}
 
 	/**
-	 * @covers BmpHandler::getSizeAndMetadata
+	 * @covers \BmpHandler::getSizeAndMetadata
 	 * @dataProvider provideGetSizeAndMetadata
 	 */
 	public function testGetSizeAndMetadata( string $filename, array $expected ) {

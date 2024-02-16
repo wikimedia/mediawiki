@@ -10,7 +10,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider getBackendPathsProvider
-	 * @covers FileBackendDBRepoWrapper::getBackendPaths
+	 * @covers \FileBackendDBRepoWrapper::getBackendPaths
 	 */
 	public function testGetBackendPaths(
 		$mocks,
@@ -89,7 +89,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FileBackendDBRepoWrapper::getFileContentsMulti
+	 * @covers \FileBackendDBRepoWrapper::getFileContentsMulti
 	 */
 	public function testGetFileContentsMulti() {
 		[ $dbMock, $backendMock, $wrapperMock ] = $this->getMocks();

@@ -7,7 +7,7 @@ use MediaWiki\User\UserIdentityValue;
  * @group API
  * @group medium
  * @group Database
- * @covers ApiClearHasMsg
+ * @covers \ApiClearHasMsg
  */
 class ApiClearHasMsgTest extends ApiTestCase {
 

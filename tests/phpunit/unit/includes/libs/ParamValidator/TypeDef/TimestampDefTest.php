@@ -10,7 +10,7 @@ use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\TimestampDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\TimestampDef
  */
 class TimestampDefTest extends TypeDefTestCase {
 

@@ -24,7 +24,7 @@ use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Parsoid;
 
 /**
- * @covers MediaWiki\Parser\Parsoid\LanguageVariantConverter
+ * @covers \MediaWiki\Parser\Parsoid\LanguageVariantConverter
  */
 class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 

@@ -12,7 +12,7 @@ use MediaWiki\User\User;
  * @group API
  * @group Database
  *
- * @covers ApiQueryWatchlist
+ * @covers \ApiQueryWatchlist
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	// TODO: This test should use Authority, but can't due to User::saveSettings

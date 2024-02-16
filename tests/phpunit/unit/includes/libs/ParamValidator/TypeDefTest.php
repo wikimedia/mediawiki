@@ -7,7 +7,7 @@ use Wikimedia\Message\DataMessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef
+ * @covers \Wikimedia\ParamValidator\TypeDef
  */
 class TypeDefTest extends TestCase {
 

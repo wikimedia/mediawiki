@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers DnsSrvDiscoverer
+ * @covers \DnsSrvDiscoverer
  */
 class DnsSrvDiscovererTest extends PHPUnit\Framework\TestCase {
 

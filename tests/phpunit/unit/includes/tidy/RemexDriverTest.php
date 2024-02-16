@@ -340,10 +340,10 @@ MathML;
 
 	/**
 	 * @dataProvider provider
-	 * @covers MediaWiki\Tidy\RemexCompatFormatter
-	 * @covers MediaWiki\Tidy\RemexCompatMunger
-	 * @covers MediaWiki\Tidy\RemexDriver
-	 * @covers MediaWiki\Tidy\RemexMungerData
+	 * @covers \MediaWiki\Tidy\RemexCompatFormatter
+	 * @covers \MediaWiki\Tidy\RemexCompatMunger
+	 * @covers \MediaWiki\Tidy\RemexDriver
+	 * @covers \MediaWiki\Tidy\RemexMungerData
 	 */
 	public function testTidy( $desc, $input, $expected ) {
 		$r = new MediaWiki\Tidy\RemexDriver(

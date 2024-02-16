@@ -11,7 +11,7 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
 
 /**
- * @covers ParserOptions
+ * @covers \ParserOptions
  * @group Database
  */
 class ParserOptionsTest extends MediaWikiLangTestCase {

@@ -6,7 +6,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\PresenceBooleanDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\PresenceBooleanDef
  */
 class PresenceBooleanDefTest extends TypeDefTestCase {
 

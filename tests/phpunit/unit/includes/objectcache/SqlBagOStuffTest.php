@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers SqlBagOStuff
+ * @covers \SqlBagOStuff
  * @group BagOStuff
  */
 class SqlBagOStuffTest extends MediaWikiUnitTestCase {

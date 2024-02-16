@@ -3,7 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers RedisBagOStuff
+ * @covers \RedisBagOStuff
  * @group BagOStuff
  */
 class RedisBagOStuffTest extends MediaWikiUnitTestCase {

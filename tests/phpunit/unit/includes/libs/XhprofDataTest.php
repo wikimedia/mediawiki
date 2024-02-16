@@ -20,7 +20,7 @@
 
 /**
  * @copyright © 2014 Wikimedia Foundation and contributors
- * @covers XhprofData
+ * @covers \XhprofData
  */
 class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;

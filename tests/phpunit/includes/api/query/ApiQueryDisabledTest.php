@@ -4,7 +4,7 @@
  * @group API
  * @group medium
  *
- * @covers ApiQueryDisabled
+ * @covers \ApiQueryDisabled
  */
 class ApiQueryDisabledTest extends ApiTestCase {
 	public function testDisabled() {

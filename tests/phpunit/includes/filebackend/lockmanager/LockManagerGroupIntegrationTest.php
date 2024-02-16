@@ -7,7 +7,7 @@ use MediaWiki\WikiMap\WikiMap;
  * Most of the file is covered by the unit test and/or FileBackendTest. Here we fill in the missing
  * bits that don't work with unit tests yet.
  *
- * @covers LockManagerGroup
+ * @covers \LockManagerGroup
  */
 class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testWgLockManagers() {

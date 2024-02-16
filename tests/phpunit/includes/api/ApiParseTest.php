@@ -30,7 +30,7 @@ use MediaWiki\Title\TitleValue;
  * @group Database
  * @group medium
  *
- * @covers ApiParse
+ * @covers \ApiParse
  */
 class ApiParseTest extends ApiTestCase {
 	use DummyServicesTrait;

@@ -30,7 +30,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\BlockUser::placeBlock
+	 * @covers \MediaWiki\Block\BlockUser::placeBlock
 	 */
 	public function testValidTarget() {
 		$status = $this->blockUserFactory->newBlockUser(
@@ -51,7 +51,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\BlockUser::placeBlock
+	 * @covers \MediaWiki\Block\BlockUser::placeBlock
 	 */
 	public function testHideUser() {
 		$status = $this->blockUserFactory->newBlockUser(
@@ -71,7 +71,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\BlockUser::placeBlock
+	 * @covers \MediaWiki\Block\BlockUser::placeBlock
 	 */
 	public function testExistingPage() {
 		$this->getExistingTestPage( 'Existing Page' );
@@ -92,7 +92,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\BlockUser::placeBlock
+	 * @covers \MediaWiki\Block\BlockUser::placeBlock
 	 */
 	public function testNonexistentPage() {
 		$pageRestriction = PageRestriction::class;
@@ -109,7 +109,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\BlockUser::placeBlockInternal
+	 * @covers \MediaWiki\Block\BlockUser::placeBlockInternal
 	 */
 	public function testReblock() {
 		$blockStatus = $this->blockUserFactory->newBlockUser(
@@ -153,7 +153,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\BlockUser::placeBlockInternal
+	 * @covers \MediaWiki\Block\BlockUser::placeBlockInternal
 	 */
 	public function testPostHook() {
 		$hookBlock = false;
@@ -198,7 +198,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\BlockUser::placeBlockInternal
+	 * @covers \MediaWiki\Block\BlockUser::placeBlockInternal
 	 */
 	public function testIPBlockAllowedAutoblockPreserved() {
 		$blockStatus = $this->blockUserFactory->newBlockUser(

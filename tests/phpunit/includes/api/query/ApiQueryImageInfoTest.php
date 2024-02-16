@@ -6,7 +6,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 
 /**
- * @covers ApiQueryImageInfo
+ * @covers \ApiQueryImageInfo
  * @group API
  * @group medium
  * @group Database

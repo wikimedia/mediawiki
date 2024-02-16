@@ -8,8 +8,8 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\IntegerDef
- * @covers Wikimedia\ParamValidator\TypeDef\NumericDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\IntegerDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\NumericDef
  */
 class IntegerDefTest extends TypeDefTestCase {
 

@@ -3,7 +3,7 @@
 /**
  * @group Hash
  *
- * @covers MWCryptHash
+ * @covers \MWCryptHash
  */
 class MWCryptHashTest extends MediaWikiUnitTestCase {
 

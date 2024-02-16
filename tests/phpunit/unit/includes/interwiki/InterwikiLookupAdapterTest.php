@@ -7,7 +7,7 @@ use MediaWiki\Site\SiteList;
 use MediaWiki\Site\SiteLookup;
 
 /**
- * @covers MediaWiki\Interwiki\InterwikiLookupAdapter
+ * @covers \MediaWiki\Interwiki\InterwikiLookupAdapter
  * @group Interwiki
  */
 class InterwikiLookupAdapterTest extends \MediaWikiUnitTestCase {

@@ -21,7 +21,7 @@ use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers WatchAction
+ * @covers \WatchAction
  *
  * @group Action
  */
@@ -73,28 +73,28 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::getName()
+	 * @covers \WatchAction::getName()
 	 */
 	public function testGetName() {
 		$this->assertEquals( 'watch', $this->watchAction->getName() );
 	}
 
 	/**
-	 * @covers WatchAction::requiresUnblock()
+	 * @covers \WatchAction::requiresUnblock()
 	 */
 	public function testRequiresUnlock() {
 		$this->assertFalse( $this->watchAction->requiresUnblock() );
 	}
 
 	/**
-	 * @covers WatchAction::doesWrites()
+	 * @covers \WatchAction::doesWrites()
 	 */
 	public function testDoesWrites() {
 		$this->assertTrue( $this->watchAction->doesWrites() );
 	}
 
 	/**
-	 * @covers WatchAction::onSubmit()
+	 * @covers \WatchAction::onSubmit()
 	 */
 	public function testOnSubmit() {
 		/** @var Status $actual */
@@ -104,7 +104,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::onSubmit()
+	 * @covers \WatchAction::onSubmit()
 	 */
 	public function testOnSubmitHookAborted() {
 		// WatchlistExpiry feature flag.
@@ -149,7 +149,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::checkCanExecute()
+	 * @covers \WatchAction::checkCanExecute()
 	 */
 	public function testShowUserNotLoggedIn() {
 		$notLoggedInUser = new User();
@@ -165,7 +165,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::checkCanExecute()
+	 * @covers \WatchAction::checkCanExecute()
 	 */
 	public function testShowUserLoggedInNoException() {
 		$this->setService( 'PermissionManager', $this->createMock( PermissionManager::class ) );
@@ -190,7 +190,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::onSuccess()
+	 * @covers \WatchAction::onSuccess()
 	 */
 	public function testOnSuccessMainNamespaceTitle() {
 		/** @var MockObject|IContextSource $testContext */
@@ -215,7 +215,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::onSuccess()
+	 * @covers \WatchAction::onSuccess()
 	 */
 	public function testOnSuccessTalkPage() {
 		/** @var MockObject|IContextSource $testContext */
@@ -348,7 +348,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::getExpiryOptions()
+	 * @covers \WatchAction::getExpiryOptions()
 	 */
 	public function testGetExpiryOptions() {
 		// Fake current time to be 2020-06-10T00:00:00Z
@@ -425,7 +425,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::getExpiryOptions()
+	 * @covers \WatchAction::getExpiryOptions()
 	 */
 	public function testGetExpiryOptionsWithInvalidTranslations() {
 		$mockMessageLocalizer = $this->createMock( MockMessageLocalizer::class );
@@ -447,7 +447,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::getExpiryOptions()
+	 * @covers \WatchAction::getExpiryOptions()
 	 */
 	public function testGetExpiryOptionsWithPartialInvalidTranslations() {
 		$mockMessageLocalizer = $this->createMock( MockMessageLocalizer::class );

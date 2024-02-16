@@ -55,7 +55,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Preferences\SignatureValidator::applyPreSaveTransform()
+	 * @covers \MediaWiki\Preferences\SignatureValidator::applyPreSaveTransform()
 	 * @dataProvider provideApplyPreSaveTransform
 	 */
 	public function testApplyPreSaveTransform( $signature, $expected ) {
@@ -77,7 +77,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Preferences\SignatureValidator::checkUserLinks()
+	 * @covers \MediaWiki\Preferences\SignatureValidator::checkUserLinks()
 	 * @dataProvider provideCheckUserLinks
 	 */
 	public function testCheckUserLinks( $signature, $expected ) {
@@ -105,7 +105,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Preferences\SignatureValidator::checkLintErrors()
+	 * @covers \MediaWiki\Preferences\SignatureValidator::checkLintErrors()
 	 * @dataProvider provideCheckLintErrors
 	 */
 	public function testCheckLintErrors( $signature, $expected ) {
@@ -131,7 +131,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Preferences\SignatureValidator::checkLineBreaks()
+	 * @covers \MediaWiki\Preferences\SignatureValidator::checkLineBreaks()
 	 * @dataProvider provideCheckLineBreaks
 	 */
 	public function testCheckLineBreaks( $signature, $expected ) {

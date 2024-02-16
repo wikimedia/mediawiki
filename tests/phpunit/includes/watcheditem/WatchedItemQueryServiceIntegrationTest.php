@@ -8,7 +8,7 @@ use MediaWiki\User\User;
 /**
  * @group Database
  *
- * @covers WatchedItemQueryService
+ * @covers \WatchedItemQueryService
  */
 class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCase {
 

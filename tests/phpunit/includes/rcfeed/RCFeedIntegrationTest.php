@@ -7,11 +7,11 @@ use MediaWiki\Title\Title;
 /**
  * @group medium
  * @group Database
- * @covers FormattedRCFeed
- * @covers RecentChange
- * @covers JSONRCFeedFormatter
- * @covers MachineReadableRCFeedFormatter
- * @covers RCFeed
+ * @covers \FormattedRCFeed
+ * @covers \RecentChange
+ * @covers \JSONRCFeedFormatter
+ * @covers \MachineReadableRCFeedFormatter
+ * @covers \RCFeed
  */
 class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {

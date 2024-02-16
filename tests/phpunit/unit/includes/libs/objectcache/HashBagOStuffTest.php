@@ -4,9 +4,9 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers HashBagOStuff
- * @covers MediumSpecificBagOStuff
- * @covers BagOStuff
+ * @covers \HashBagOStuff
+ * @covers \MediumSpecificBagOStuff
+ * @covers \BagOStuff
  * @group BagOStuff
  */
 class HashBagOStuffTest extends PHPUnit\Framework\TestCase {

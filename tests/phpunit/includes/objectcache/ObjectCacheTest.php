@@ -3,7 +3,7 @@
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers ObjectCache
+ * @covers \ObjectCache
  * @group BagOStuff
  * @group Database
  */

@@ -7,7 +7,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 
 /**
- * @covers HTMLTitleTextFieldTest
+ * @covers \HTMLTitleTextFieldTest
  */
 class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 

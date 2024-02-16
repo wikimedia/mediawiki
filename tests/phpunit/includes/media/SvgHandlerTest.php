@@ -38,7 +38,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers SvgHandler::getMatchedLanguage()
+	 * @covers \SvgHandler::getMatchedLanguage()
 	 * @dataProvider provideGetMatchedLanguage
 	 *
 	 * @param string $userPreferredLanguage
@@ -200,7 +200,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers SvgHandler::normaliseParamsInternal()
+	 * @covers \SvgHandler::normaliseParamsInternal()
 	 * @dataProvider provideNormaliseParamsInternal
 	 */
 	public function testNormaliseParamsInternal( $message,
@@ -359,7 +359,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers SvgHandler::getLanguageFromParams()
+	 * @covers \SvgHandler::getLanguageFromParams()
 	 * @dataProvider provideGetLanguageFromParams
 	 *
 	 * @param array $params
@@ -384,7 +384,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers SvgHandler::parseParamString()
+	 * @covers \SvgHandler::parseParamString()
 	 * @dataProvider provideParseParamString
 	 *
 	 * @param string $paramString
@@ -423,7 +423,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers SvgHandler::allowRenderingByUserAgent()
+	 * @covers \SvgHandler::allowRenderingByUserAgent()
 	 * @dataProvider provideNativeSVGDataRendering
 	 *
 	 * @param string $filename of the file to test

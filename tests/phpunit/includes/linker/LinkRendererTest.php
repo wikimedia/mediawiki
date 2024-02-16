@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 
 /**
- * @covers MediaWiki\Linker\LinkRenderer
+ * @covers \MediaWiki\Linker\LinkRenderer
  */
 class LinkRendererTest extends MediaWikiLangTestCase {
 	use LinkCacheTestTrait;

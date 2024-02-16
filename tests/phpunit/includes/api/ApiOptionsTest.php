@@ -16,7 +16,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  * @group Database
  * @group medium
  *
- * @covers ApiOptions
+ * @covers \ApiOptions
  */
 class ApiOptionsTest extends ApiTestCase {
 	use MockAuthorityTrait;

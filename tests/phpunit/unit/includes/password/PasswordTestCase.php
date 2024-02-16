@@ -75,7 +75,7 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider providePasswordTests
-	 * @covers InvalidPassword
+	 * @covers \InvalidPassword
 	 */
 	public function testInvalidUnequalNormal( $shouldMatch, $hash, $password ) {
 		$invalid = $this->passwordFactory->newFromCiphertext( null );

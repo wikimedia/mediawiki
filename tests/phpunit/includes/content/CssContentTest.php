@@ -40,7 +40,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers CssContent::getModel
+	 * @covers \CssContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( 'hello world.' );
@@ -49,7 +49,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers CssContent::getContentHandler
+	 * @covers \CssContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( 'hello world.' );
@@ -70,7 +70,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers CssContent::getRedirectTarget
+	 * @covers \CssContent::getRedirectTarget
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
@@ -114,7 +114,7 @@ class CssContentTest extends TextContentTest {
 
 	/**
 	 * @dataProvider dataEquals
-	 * @covers CssContent::equals
+	 * @covers \CssContent::equals
 	 */
 	public function testEquals( Content $a, Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );

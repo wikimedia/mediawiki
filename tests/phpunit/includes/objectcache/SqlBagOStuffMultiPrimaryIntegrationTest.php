@@ -3,7 +3,7 @@
 /**
  * @group BagOStuff
  * @group Database
- * @covers SqlBagOStuff
+ * @covers \SqlBagOStuff
  */
 class SqlBagOStuffMultiPrimaryIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {

@@ -8,7 +8,7 @@ use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
 
 /**
- * @covers MWDebug
+ * @covers \MWDebug
  */
 class MWDebugTest extends MediaWikiIntegrationTestCase {
 

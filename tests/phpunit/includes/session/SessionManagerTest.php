@@ -33,7 +33,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Session
  * @group Database
- * @covers MediaWiki\Session\SessionManager
+ * @covers \MediaWiki\Session\SessionManager
  */
 class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;

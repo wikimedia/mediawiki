@@ -4,7 +4,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
- * @covers PrefixingStatsdDataFactoryProxy
+ * @covers \PrefixingStatsdDataFactoryProxy
  */
 class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 

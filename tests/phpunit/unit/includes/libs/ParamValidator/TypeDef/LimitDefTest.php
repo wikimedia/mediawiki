@@ -6,7 +6,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\LimitDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\LimitDef
  */
 class LimitDefTest extends TypeDefTestCase {
 

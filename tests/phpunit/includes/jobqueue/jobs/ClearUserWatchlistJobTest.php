@@ -6,7 +6,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers ClearUserWatchlistJob
+ * @covers \ClearUserWatchlistJob
  *
  * @group JobQueue
  * @group Database

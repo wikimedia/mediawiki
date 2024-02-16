@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group BagOStuff
  * @group Database
- * @covers SqlBagOStuff
+ * @covers \SqlBagOStuff
  */
 class SqlBagOStuffServerArrayTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {

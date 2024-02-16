@@ -12,7 +12,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group medium
  * @group Database
  *
- * @covers ApiQueryInfo
+ * @covers \ApiQueryInfo
  */
 class ApiQueryInfoTest extends ApiTestCase {
 

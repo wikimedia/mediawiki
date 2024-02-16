@@ -724,7 +724,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideErrorsWarningsOnly
 	 * @covers \MediaWiki\Status\Status::splitByErrorType
-	 * @covers StatusValue::splitByErrorType
+	 * @covers \StatusValue::splitByErrorType
 	 */
 	public function testGetErrorsWarningsOnlyStatus( $errorText, $warningText, $type, $errorResult,
 		$warningResult

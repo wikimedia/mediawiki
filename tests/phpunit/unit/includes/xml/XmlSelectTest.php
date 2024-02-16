@@ -6,7 +6,7 @@
 class XmlSelectTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers XmlSelect::__construct
+	 * @covers \XmlSelect::__construct
 	 */
 	public function testConstructWithoutParameters() {
 		$select = new XmlSelect();
@@ -16,7 +16,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 	/**
 	 * Parameters are $name (false), $id (false), $default (false)
 	 * @dataProvider provideConstructionParameters
-	 * @covers XmlSelect::__construct
+	 * @covers \XmlSelect::__construct
 	 */
 	public function testConstructParameters( $name, $id, $default, $expected ) {
 		$select = new XmlSelect( $name, $id, $default );
@@ -51,7 +51,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers XmlSelect::addOption
+	 * @covers \XmlSelect::addOption
 	 */
 	public function testAddOptionNoValue() {
 		$select = new XmlSelect();
@@ -64,7 +64,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideAddOption
-	 * @covers XmlSelect::addOption
+	 * @covers \XmlSelect::addOption
 	 */
 	public function testAddOption( $value, $expected ) {
 		$select = new XmlSelect();
@@ -79,7 +79,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers XmlSelect::setDefault
+	 * @covers \XmlSelect::setDefault
 	 */
 	public function testSetDefault() {
 		$select = new XmlSelect();
@@ -97,7 +97,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 	 * Adding default later on should set the correct selection or
 	 * raise an exception.
 	 * To handle this, we need to render the options in getHtml()
-	 * @covers XmlSelect::setDefault
+	 * @covers \XmlSelect::setDefault
 	 */
 	public function testSetDefaultAfterAddingOptions() {
 		$select = new XmlSelect();
@@ -112,8 +112,8 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers XmlSelect::setAttribute
-	 * @covers XmlSelect::getAttribute
+	 * @covers \XmlSelect::setAttribute
+	 * @covers \XmlSelect::getAttribute
 	 */
 	public function testGetAttributes() {
 		# create some attributes

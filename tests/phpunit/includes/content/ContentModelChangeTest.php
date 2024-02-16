@@ -44,7 +44,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test that the content model needs to change
 	 *
-	 * @covers ContentModelChange::doContentModelChange
+	 * @covers \ContentModelChange::doContentModelChange
 	 */
 	public function testChangeNeeded() {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
@@ -73,7 +73,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test that the content needs to be valid for the requested model
 	 *
-	 * @covers ContentModelChange::doContentModelChange
+	 * @covers \ContentModelChange::doContentModelChange
 	 */
 	public function testInvalidContent() {
 		$invalidJSON = 'Foo\nBar\nEaster egg\nT22281';
@@ -106,7 +106,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test the EditFilterMergedContent hook can be intercepted
 	 *
-	 * @covers ContentModelChange::doContentModelChange
+	 * @covers \ContentModelChange::doContentModelChange
 	 *
 	 * @dataProvider provideTestEditFilterMergedContent
 	 * @param string|bool $customMessage Hook message, or false
@@ -155,7 +155,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test the ContentModelCanBeUsedOn hook can be intercepted
 	 *
-	 * @covers ContentModelChange::doContentModelChange
+	 * @covers \ContentModelChange::doContentModelChange
 	 */
 	public function testContentModelCanBeUsedOn() {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
@@ -201,7 +201,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test that content handler must support direct editing
 	 *
-	 * @covers ContentModelChange::doContentModelChange
+	 * @covers \ContentModelChange::doContentModelChange
 	 */
 	public function testNoDirectEditing() {
 		$title = Title::newFromText( 'Dummy:NoDirectEditing' );
@@ -240,7 +240,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ContentModelChange::setTags
+	 * @covers \ContentModelChange::setTags
 	 */
 	public function testCannotApplyTags() {
 		ChangeTags::defineTag( 'edit content model tag' );
@@ -258,8 +258,8 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ContentModelChange::authorizeChange
-	 * @covers ContentModelChange::probablyCanChange
+	 * @covers \ContentModelChange::authorizeChange
+	 * @covers \ContentModelChange::probablyCanChange
 	 */
 	public function testCheckPermissions() {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
@@ -322,7 +322,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ContentModelChange::doContentModelChange
+	 * @covers \ContentModelChange::doContentModelChange
 	 */
 	public function testCheckPermissionsThrottle() {
 		$user = $this->getTestUser()->getUser();

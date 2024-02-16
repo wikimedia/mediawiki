@@ -4,8 +4,8 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group HKDF
- * @covers CryptHKDF
- * @covers MWCryptHKDF
+ * @covers \CryptHKDF
+ * @covers \MWCryptHKDF
  */
 class MWCryptHKDFTest extends MediaWikiIntegrationTestCase {
 

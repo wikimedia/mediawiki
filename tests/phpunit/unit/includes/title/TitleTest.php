@@ -31,7 +31,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 
 /**
- * @covers MediaWiki\Title\Title
+ * @covers \MediaWiki\Title\Title
  *
  * @author DannyS712
  */
@@ -71,7 +71,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::legalChars
+	 * @covers \MediaWiki\Title\Title::legalChars
 	 */
 	public function testLegalChars() {
 		$titlechars = Title::legalChars();
@@ -155,7 +155,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideConvertByteClassToUnicodeClass
-	 * @covers MediaWiki\Title\Title::convertByteClassToUnicodeClass
+	 * @covers \MediaWiki\Title\Title::convertByteClassToUnicodeClass
 	 */
 	public function testConvertByteClassToUnicodeClass( $byteClass, $unicodeClass ) {
 		$this->assertEquals( $unicodeClass, Title::convertByteClassToUnicodeClass( $byteClass ) );
@@ -170,7 +170,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::newFromLinkTarget
+	 * @covers \MediaWiki\Title\Title::newFromLinkTarget
 	 * @dataProvider provideNewFromTitleValue
 	 */
 	public function testNewFromLinkTarget( LinkTarget $value ) {
@@ -183,7 +183,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::newFromLinkTarget
+	 * @covers \MediaWiki\Title\Title::newFromLinkTarget
 	 */
 	public function testNewFromLinkTarget_clone() {
 		$title = Title::makeTitle( NS_MAIN, 'Example' );
@@ -200,7 +200,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::castFromLinkTarget
+	 * @covers \MediaWiki\Title\Title::castFromLinkTarget
 	 * @dataProvider provideCastFromLinkTarget
 	 */
 	public function testCastFromLinkTarget( $value ) {
@@ -226,9 +226,9 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::getFragment
-	 * @covers MediaWiki\Title\Title::setFragment
-	 * @covers MediaWiki\Title\Title::normalizeFragment
+	 * @covers \MediaWiki\Title\Title::getFragment
+	 * @covers \MediaWiki\Title\Title::setFragment
+	 * @covers \MediaWiki\Title\Title::normalizeFragment
 	 * @dataProvider provideDataForTestSetAndGetFragment
 	 */
 	public function testSetAndGetFragment( string $fragment, $expected ) {
@@ -246,7 +246,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::hasFragment
+	 * @covers \MediaWiki\Title\Title::hasFragment
 	 * @dataProvider provideTitleWithOrWithoutFragments
 	 */
 	public function testHasFragment( Title $title, $expected ) {
@@ -298,7 +298,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCompare
-	 * @covers MediaWiki\Title\Title::compare
+	 * @covers \MediaWiki\Title\Title::compare
 	 */
 	public function testCompare( $a, $b, $expected ) {
 		if ( $expected > 0 ) {
@@ -329,7 +329,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::castFromPageIdentity
+	 * @covers \MediaWiki\Title\Title::castFromPageIdentity
 	 * @dataProvider provideCastFromPageIdentity
 	 */
 	public function testCastFromPageIdentity( ?PageIdentity $value ) {
@@ -351,7 +351,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::castFromPageReference
+	 * @covers \MediaWiki\Title\Title::castFromPageReference
 	 * @dataProvider provideCastFromPageIdentity
 	 * @dataProvider provideCastFromPageReference
 	 */
@@ -378,7 +378,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::createFragmentTarget
+	 * @covers \MediaWiki\Title\Title::createFragmentTarget
 	 * @dataProvider provideCreateFragmentTitle
 	 */
 	public function testCreateFragmentTitle( $namespace, $title, $fragment ) {
@@ -472,7 +472,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::equals
+	 * @covers \MediaWiki\Title\Title::equals
 	 * @dataProvider provideEquals
 	 */
 	public function testEquals( Title $firstValue, $secondValue, $expectedSame ) {
@@ -516,7 +516,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::isSameLinkAs
+	 * @covers \MediaWiki\Title\Title::isSameLinkAs
 	 * @dataProvider provideIsSameLinkAs
 	 */
 	public function testIsSameLinkAs( Title $firstValue, $secondValue, $expectedSame ) {

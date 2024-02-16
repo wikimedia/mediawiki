@@ -11,7 +11,7 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
- * @covers MediaWiki\Storage\NameTableStoreFactory
+ * @covers \MediaWiki\Storage\NameTableStoreFactory
  * @group Database
  */
 class NameTableStoreFactoryTest extends MediaWikiIntegrationTestCase {

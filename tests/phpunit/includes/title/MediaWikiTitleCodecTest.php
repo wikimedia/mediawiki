@@ -522,9 +522,9 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideMakeTitleValueSafe
-	 * @covers MediaWiki\Title\Title::makeTitleSafe
-	 * @covers MediaWiki\Title\Title::makeName
-	 * @covers MediaWiki\Title\Title::secureAndSplit
+	 * @covers \MediaWiki\Title\Title::makeTitleSafe
+	 * @covers \MediaWiki\Title\Title::makeName
+	 * @covers \MediaWiki\Title\Title::secureAndSplit
 	 */
 	public function testMakeTitleSafe(
 		$expected, $ns, $text, $fragment = '', $interwiki = '', $lang = 'en'

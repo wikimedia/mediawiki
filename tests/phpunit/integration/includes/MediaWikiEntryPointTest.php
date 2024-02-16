@@ -9,7 +9,7 @@ use RequestContext;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\MediaWikiEntryPoint
+ * @covers \MediaWiki\MediaWikiEntryPoint
  */
 class MediaWikiEntryPointTest extends TestCase {
 

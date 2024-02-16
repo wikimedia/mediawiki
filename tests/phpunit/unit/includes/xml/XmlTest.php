@@ -32,7 +32,7 @@ use Xml;
 class XmlTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers Xml::expandAttributes
+	 * @covers \Xml::expandAttributes
 	 */
 	public function testExpandAttributes() {
 		$this->assertNull(
@@ -47,7 +47,7 @@ class XmlTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers Xml::escapeTagsOnly
+	 * @covers \Xml::escapeTagsOnly
 	 */
 	public function testEscapeTagsOnly() {
 		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),

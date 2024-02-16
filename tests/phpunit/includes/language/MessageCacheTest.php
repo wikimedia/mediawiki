@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  * @group Cache
- * @covers MessageCache
+ * @covers \MessageCache
  */
 class MessageCacheTest extends MediaWikiLangTestCase {
 

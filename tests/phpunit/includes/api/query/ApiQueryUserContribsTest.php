@@ -8,7 +8,7 @@ use MediaWiki\User\UserRigorOptions;
  * @group API
  * @group Database
  * @group medium
- * @covers ApiQueryUserContribs
+ * @covers \ApiQueryUserContribs
  */
 class ApiQueryUserContribsTest extends ApiTestCase {
 	public function addDBDataOnce() {

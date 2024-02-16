@@ -23,9 +23,9 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ParsoidCachePrewarmJob::doParsoidCacheUpdate
-	 * @covers ParsoidCachePrewarmJob::newSpec
-	 * @covers ParsoidCachePrewarmJob::run
+	 * @covers \ParsoidCachePrewarmJob::doParsoidCacheUpdate
+	 * @covers \ParsoidCachePrewarmJob::newSpec
+	 * @covers \ParsoidCachePrewarmJob::run
 	 */
 	public function testRun() {
 		$page = $this->getExistingTestPage( 'ParsoidPrewarmJob' )->toPageRecord();
@@ -99,7 +99,7 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ParsoidCachePrewarmJob::newSpec
+	 * @covers \ParsoidCachePrewarmJob::newSpec
 	 */
 	public function testEnqueueSpec() {
 		$page = $this->getExistingTestPage( 'ParsoidPrewarmJob' )->toPageRecord();

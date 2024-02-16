@@ -11,7 +11,7 @@
 class LanguageArqTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider provideNumber
-	 * @covers Language::formatNum
+	 * @covers \Language::formatNum
 	 */
 	public function testFormatNum( $value, $result ) {
 		$this->assertEquals( $result, $this->getLang()->formatNum( $value ) );

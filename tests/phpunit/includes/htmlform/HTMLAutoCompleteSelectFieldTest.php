@@ -1,6 +1,6 @@
 <?php
 /**
- * @covers HTMLAutoCompleteSelectField
+ * @covers \HTMLAutoCompleteSelectField
  */
 class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 

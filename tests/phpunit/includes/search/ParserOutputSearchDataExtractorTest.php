@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @group Search
- * @covers MediaWiki\Search\ParserOutputSearchDataExtractor
+ * @covers \MediaWiki\Search\ParserOutputSearchDataExtractor
  * @group Database
  */
 class ParserOutputSearchDataExtractorTest extends MediaWikiLangTestCase {

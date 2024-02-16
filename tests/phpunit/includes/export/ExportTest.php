@@ -19,7 +19,7 @@ class ExportTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers WikiExporter::pageByTitle
+	 * @covers \WikiExporter::pageByTitle
 	 */
 	public function testPageByTitle() {
 		$services = $this->getServiceContainer();
@@ -54,7 +54,7 @@ class ExportTest extends MediaWikiLangTestCase {
 	 * Regression test for T328503 to verify that custom content types
 	 * with a getNativeData() override that returns a non-string value export correctly.
 	 *
-	 * @covers XmlDumpWriter::writeText
+	 * @covers \XmlDumpWriter::writeText
 	 */
 	public function testShouldExportContentWithNonStringNativeData(): void {
 		// Make a mock ContentHandler for a Content that has a getNativeData() method

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers VersionChecker
+ * @covers \VersionChecker
  */
 class VersionCheckerTest extends MediaWikiUnitTestCase {
 

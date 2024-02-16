@@ -11,8 +11,8 @@ use GuzzleHttp\Psr7\Response;
  *
  * No actual requests are made herein - all external communications are mocked
  *
- * @covers GuzzleHttpRequest
- * @covers MWHttpRequest
+ * @covers \GuzzleHttpRequest
+ * @covers \MWHttpRequest
  */
 class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	/** @var int[] */

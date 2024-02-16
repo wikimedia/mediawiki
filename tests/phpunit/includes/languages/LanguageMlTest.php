@@ -7,13 +7,13 @@
 
 /**
  * @group Language
- * @covers LanguageMl
+ * @covers \LanguageMl
  */
 class LanguageMlTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideFormatNum
-	 * @covers Language::formatNum
+	 * @covers \Language::formatNum
 	 */
 	public function testFormatNum( $value, $result ) {
 		// For T31495
@@ -40,8 +40,8 @@ class LanguageMlTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers LanguageMl::normalize
-	 * @covers Language::normalize
+	 * @covers \LanguageMl::normalize
+	 * @covers \Language::normalize
 	 * @dataProvider provideNormalize
 	 */
 	public function testNormalize( $input, $expected ) {

@@ -20,7 +20,7 @@ use WikiExporter;
  *
  * @group Database
  * @group Dump
- * @covers BackupDumper
+ * @covers \BackupDumper
  */
 class BackupDumperLoggerTest extends DumpTestCase {
 

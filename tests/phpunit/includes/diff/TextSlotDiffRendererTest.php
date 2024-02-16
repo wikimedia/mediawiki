@@ -7,7 +7,7 @@ use MediaWiki\Tests\Diff\TextDiffer\TextDifferData;
 use Wikimedia\Assert\ParameterTypeException;
 
 /**
- * @covers TextSlotDiffRenderer
+ * @covers \TextSlotDiffRenderer
  */
 class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 

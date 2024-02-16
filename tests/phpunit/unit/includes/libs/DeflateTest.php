@@ -19,7 +19,7 @@
  */
 
 /**
- * @covers Deflate
+ * @covers \Deflate
  */
 class DeflateTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiTestCaseTrait;

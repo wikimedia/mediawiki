@@ -9,7 +9,7 @@ use MediaWiki\Title\Title;
  * @group API
  * @group Database
  * @group medium
- * @covers ApiQuery
+ * @covers \ApiQuery
  */
 class ApiQueryTest extends ApiTestCase {
 	use DummyServicesTrait;

@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\SessionConsistentConnectionManager;
 
 /**
- * @covers Wikimedia\Rdbms\SessionConsistentConnectionManager
+ * @covers \Wikimedia\Rdbms\SessionConsistentConnectionManager
  *
  * @author Daniel Kinzler
  */

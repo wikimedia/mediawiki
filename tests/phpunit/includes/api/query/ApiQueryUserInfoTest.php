@@ -6,12 +6,12 @@ use MediaWiki\Utils\MWTimestamp;
  * @group API
  * @group Database
  * @group medium
- * @covers ApiQueryUserInfo
+ * @covers \ApiQueryUserInfo
  */
 class ApiQueryUserInfoTest extends ApiTestCase {
 
 	/**
-	 * @covers ApiQueryUserInfo::getLatestContributionTime
+	 * @covers \ApiQueryUserInfo::getLatestContributionTime
 	 */
 	public function testTimestamp() {
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );

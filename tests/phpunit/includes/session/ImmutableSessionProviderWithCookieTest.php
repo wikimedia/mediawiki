@@ -24,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Session
  * @group Database
- * @covers MediaWiki\Session\ImmutableSessionProviderWithCookie
+ * @covers \MediaWiki\Session\ImmutableSessionProviderWithCookie
  */
 class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;

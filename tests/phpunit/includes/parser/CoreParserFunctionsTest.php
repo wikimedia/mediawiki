@@ -5,7 +5,7 @@ use MediaWiki\User\User;
 
 /**
  * @group Database
- * @covers CoreParserFunctions
+ * @covers \CoreParserFunctions
  */
 class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 

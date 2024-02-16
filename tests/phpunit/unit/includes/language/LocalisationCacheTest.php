@@ -9,7 +9,7 @@ use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers LocalisationCache
+ * @covers \LocalisationCache
  * @group Language
  */
 class LocalisationCacheTest extends MediaWikiUnitTestCase {

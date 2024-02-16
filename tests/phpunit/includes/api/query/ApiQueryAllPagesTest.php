@@ -7,7 +7,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @group medium
  *
- * @covers ApiQueryAllPages
+ * @covers \ApiQueryAllPages
  */
 class ApiQueryAllPagesTest extends ApiTestCase {
 	/**

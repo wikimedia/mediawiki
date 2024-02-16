@@ -83,7 +83,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::undeleteAsUser
+	 * @covers \PageArchive::undeleteAsUser
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
@@ -181,9 +181,9 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::listPagesBySearch
-	 * @covers PageArchive::listPagesByPrefix
-	 * @covers PageArchive::listPages
+	 * @covers \PageArchive::listPagesBySearch
+	 * @covers \PageArchive::listPagesByPrefix
+	 * @covers \PageArchive::listPages
 	 */
 	public function testListPagesBySearch() {
 		$pages = PageArchive::listPagesBySearch( 'PageArchiveTest_thePage' );
@@ -202,8 +202,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::listPagesByPrefix
-	 * @covers PageArchive::listPages
+	 * @covers \PageArchive::listPagesByPrefix
+	 * @covers \PageArchive::listPages
 	 */
 	public function testListPagesByPrefix() {
 		$pages = PageArchive::listPagesByPrefix( 'PageArchiveTest' );

@@ -3,7 +3,7 @@
 use MediaWiki\Parser\Parser;
 
 /**
- * @covers StripState
+ * @covers \StripState
  */
 class StripStateTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {

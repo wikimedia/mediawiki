@@ -4,7 +4,7 @@ use MediaWiki\Parser\Sanitizer;
 
 /**
  * @group Parser
- * @covers MWTidy
+ * @covers \MWTidy
  */
 class TidyTest extends \MediaWikiIntegrationTestCase {
 

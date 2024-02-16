@@ -7,7 +7,7 @@ use Psr\Http\Message\UploadedFileInterface;
 use Wikimedia\Message\DataMessageValue;
 
 /**
- * @covers Wikimedia\ParamValidator\SimpleCallbacks
+ * @covers \Wikimedia\ParamValidator\SimpleCallbacks
  */
 class SimpleCallbacksTest extends TestCase {
 

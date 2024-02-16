@@ -19,7 +19,7 @@ use Wikimedia\TestingAccessWrapper;
 class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers LinkHolderArray::merge
+	 * @covers \LinkHolderArray::merge
 	 */
 	public function testMerge() {
 		$link1 = new LinkHolderArray(
@@ -151,7 +151,7 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers LinkHolderArray::clear
+	 * @covers \LinkHolderArray::clear
 	 */
 	public function testClear() {
 		$linkHolderArray = new LinkHolderArray(
@@ -173,7 +173,7 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideReplaceText
-	 * @covers LinkHolderArray::replaceText
+	 * @covers \LinkHolderArray::replaceText
 	 *
 	 * @param string $input
 	 * @param string $expected
@@ -242,8 +242,8 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideReplace_external
-	 * @covers LinkHolderArray::replace
-	 * @covers LinkHolderArray::replaceInterwiki
+	 * @covers \LinkHolderArray::replace
+	 * @covers \LinkHolderArray::replaceInterwiki
 	 *
 	 * @param string $text
 	 * @param string $extended

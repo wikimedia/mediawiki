@@ -10,7 +10,7 @@ use MediaWiki\Title\TitleValue;
  * @group API
  * @group Database
  * @group medium
- * @covers ApiComparePages
+ * @covers \ApiComparePages
  */
 class ApiComparePagesTest extends ApiTestCase {
 

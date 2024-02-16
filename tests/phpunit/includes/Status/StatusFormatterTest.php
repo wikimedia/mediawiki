@@ -6,7 +6,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Status\StatusFormatter
+ * @covers \MediaWiki\Status\StatusFormatter
  */
 class StatusFormatterTest extends MediaWikiLangTestCase {
 

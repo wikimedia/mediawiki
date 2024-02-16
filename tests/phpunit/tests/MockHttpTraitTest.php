@@ -4,7 +4,7 @@ use PHPUnit\Framework\AssertionFailedError;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * @covers MockHttpTrait
+ * @covers \MockHttpTrait
  * @group MediaWikiIntegrationTestCaseTest
  */
 class MockHttpTraitTest extends MediaWikiIntegrationTestCase {

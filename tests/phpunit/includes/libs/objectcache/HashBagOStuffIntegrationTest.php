@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers HashBagOStuff
+ * @covers \HashBagOStuff
  */
 class HashBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {

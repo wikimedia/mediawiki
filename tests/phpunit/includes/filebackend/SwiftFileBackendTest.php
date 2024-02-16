@@ -7,10 +7,10 @@ use Wikimedia\TestingAccessWrapper;
  * @group FileBackend
  * @group medium
  *
- * @covers SwiftFileBackend
- * @covers SwiftFileBackendDirList
- * @covers SwiftFileBackendFileList
- * @covers SwiftFileBackendList
+ * @covers \SwiftFileBackend
+ * @covers \SwiftFileBackendDirList
+ * @covers \SwiftFileBackendFileList
+ * @covers \SwiftFileBackendList
  */
 class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	/** @var TestingAccessWrapper|SwiftFileBackend */

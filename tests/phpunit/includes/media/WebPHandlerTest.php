@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers WebPHandler
+ * @covers \WebPHandler
  */
 class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 

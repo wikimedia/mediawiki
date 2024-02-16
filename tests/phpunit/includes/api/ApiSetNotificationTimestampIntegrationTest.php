@@ -2,7 +2,7 @@
 
 /**
  * @author Addshore
- * @covers ApiSetNotificationTimestamp
+ * @covers \ApiSetNotificationTimestamp
  * @group API
  * @group medium
  * @group Database

@@ -18,7 +18,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
 /**
  * @group ContentHandler
  *
- * @covers FileContentHandler
+ * @covers \FileContentHandler
  */
 class FileContentHandlerTest extends MediaWikiUnitTestCase {
 	/**

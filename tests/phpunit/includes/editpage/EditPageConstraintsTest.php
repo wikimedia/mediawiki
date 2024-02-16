@@ -14,7 +14,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * Integration tests for the various edit constraints, ensuring
  * that they result in failures as expected
  *
- * @covers MediaWiki\EditPage\EditPage::internalAttemptSave
+ * @covers \MediaWiki\EditPage\EditPage::internalAttemptSave
  *
  * @group Editing
  * @group Database

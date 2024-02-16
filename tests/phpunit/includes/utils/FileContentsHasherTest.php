@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers FileContentsHasher
+ * @covers \FileContentsHasher
  */
 class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 

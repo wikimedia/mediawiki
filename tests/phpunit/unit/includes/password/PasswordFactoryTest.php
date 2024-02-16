@@ -4,7 +4,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers PasswordFactory
+ * @covers \PasswordFactory
  */
 class PasswordFactoryTest extends MediaWikiUnitTestCase {
 	public function testConstruct() {

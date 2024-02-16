@@ -17,7 +17,7 @@ use MediaWikiIntegrationTestCase;
 use WikiPage;
 
 /**
- * @covers DerivativeContext
+ * @covers \DerivativeContext
  */
 class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 

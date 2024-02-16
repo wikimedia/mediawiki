@@ -6,7 +6,7 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 
 /**
- * @covers EnhancedChangesList
+ * @covers \EnhancedChangesList
  *
  * @group Database
  *

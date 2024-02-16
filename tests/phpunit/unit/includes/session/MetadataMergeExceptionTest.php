@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * @group Session
- * @covers MediaWiki\Session\MetadataMergeException
+ * @covers \MediaWiki\Session\MetadataMergeException
  */
 class MetadataMergeExceptionTest extends MediaWikiUnitTestCase {
 

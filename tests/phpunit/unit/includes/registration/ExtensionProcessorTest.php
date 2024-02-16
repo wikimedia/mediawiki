@@ -13,7 +13,7 @@ use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ExtensionProcessor
+ * @covers \ExtensionProcessor
  */
 class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 

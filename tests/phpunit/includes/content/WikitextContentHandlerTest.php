@@ -58,7 +58,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataMerge3
-	 * @covers WikitextContentHandler::merge3
+	 * @covers \WikitextContentHandler::merge3
 	 */
 	public function testMerge3( $old, $mine, $yours, $expected ) {
 		$this->markTestSkippedIfNoDiff3();
@@ -124,7 +124,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetAutosummary
-	 * @covers WikitextContentHandler::getAutosummary
+	 * @covers \WikitextContentHandler::getAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
 		$oldContent = $old === null ? null : new WikitextContent( $old );
@@ -216,7 +216,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetChangeTag
-	 * @covers WikitextContentHandler::getChangeTag
+	 * @covers \WikitextContentHandler::getChangeTag
 	 */
 	public function testGetChangeTag( $old, $new, $flags, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::SoftwareTags, [
@@ -237,7 +237,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers WikitextContentHandler::getDataForSearchIndex
+	 * @covers \WikitextContentHandler::getDataForSearchIndex
 	 */
 	public function testDataIndexFieldsFile() {
 		$mockEngine = $this->createMock( SearchEngine::class );
@@ -270,7 +270,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers WikitextContentHandler::fillParserOutput
+	 * @covers \WikitextContentHandler::fillParserOutput
 	 */
 	public function testHadSignature() {
 		$services = $this->getServiceContainer();

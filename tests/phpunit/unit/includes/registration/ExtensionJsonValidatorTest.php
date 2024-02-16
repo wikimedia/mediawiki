@@ -19,7 +19,7 @@
  */
 
 /**
- * @covers ExtensionJsonValidator
+ * @covers \ExtensionJsonValidator
  */
 class ExtensionJsonValidatorTest extends MediaWikiUnitTestCase {
 

@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 class HTTPFileStreamerTest extends TestCase {
 
 	/**
-	 * @covers HTTPFileStreamer::preprocessHeaders
+	 * @covers \HTTPFileStreamer::preprocessHeaders
 	 * @dataProvider providePreprocessHeaders
 	 */
 	public function testPreprocessHeaders( array $input, array $expectedRaw, array $expectedOpt ) {

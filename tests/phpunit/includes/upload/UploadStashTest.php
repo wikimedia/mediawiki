@@ -5,7 +5,7 @@ use MediaWiki\Request\FauxRequest;
 /**
  * @group Database
  *
- * @covers UploadStash
+ * @covers \UploadStash
  */
 class UploadStashTest extends MediaWikiIntegrationTestCase {
 	/**

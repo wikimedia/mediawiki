@@ -13,8 +13,8 @@ use MediaWiki\User\UserIdentityValue;
 
 /**
  * @group Database
- * @covers Parser
- * @covers BlockLevelPass
+ * @covers \Parser
+ * @covers \BlockLevelPass
  */
 class ParserMethodsTest extends MediaWikiLangTestCase {
 	use MockTitleTrait;
@@ -151,7 +151,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Parser
+	 * @covers \Parser
 	 * @covers \MediaWiki\Parser\ParserOutput::getSections
 	 */
 	public function testGetSections() {

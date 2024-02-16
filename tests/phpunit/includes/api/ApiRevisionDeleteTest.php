@@ -9,7 +9,7 @@ use MediaWiki\Title\Title;
 
 /**
  * Tests for action=revisiondelete
- * @covers APIRevisionDelete
+ * @covers \APIRevisionDelete
  * @group API
  * @group medium
  * @group Database

@@ -3,7 +3,7 @@
 use MediaWiki\Actions\ActionInfo;
 
 /**
- * @covers MediaWiki\Actions\ActionInfo
+ * @covers \MediaWiki\Actions\ActionInfo
  *
  * @author Daniel Kinzler
  */

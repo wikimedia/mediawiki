@@ -3,7 +3,7 @@
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
- * @covers MediaWikiIntegrationTestCase
+ * @covers \MediaWikiIntegrationTestCase
  * @group Database
  */
 class MediaWikiIntegrationTestCaseSchema1Test extends MediaWikiIntegrationTestCase {

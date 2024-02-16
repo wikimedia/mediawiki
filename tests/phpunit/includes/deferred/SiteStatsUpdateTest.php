@@ -9,8 +9,8 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  * @covers \MediaWiki\Deferred\SiteStatsUpdate
- * @covers MediaWiki\SiteStats\SiteStats
- * @covers MediaWiki\SiteStats\SiteStatsInit
+ * @covers \MediaWiki\SiteStats\SiteStats
+ * @covers \MediaWiki\SiteStats\SiteStatsInit
  */
 class SiteStatsUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testFactoryAndMerge() {

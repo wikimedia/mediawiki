@@ -16,7 +16,7 @@ use XmlDumpWriter;
  *
  * @group Database
  * @group Dump
- * @covers BackupDumper
+ * @covers \BackupDumper
  */
 class BackupDumperPageTest extends DumpTestCase {
 

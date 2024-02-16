@@ -11,7 +11,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers ApiUserrights
+ * @covers \ApiUserrights
  */
 class ApiUserrightsTest extends ApiTestCase {
 

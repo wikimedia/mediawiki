@@ -5,7 +5,7 @@
  */
 class TextContentHandlerTest extends MediaWikiUnitTestCase {
 	/**
-	 * @covers TextContentHandler::supportsDirectEditing
+	 * @covers \TextContentHandler::supportsDirectEditing
 	 */
 	public function testSupportsDirectEditing() {
 		$handler = new TextContentHandler();
@@ -13,8 +13,8 @@ class TextContentHandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SearchEngine::makeSearchFieldMapping
-	 * @covers ContentHandler::getFieldsForSearchIndex
+	 * @covers \SearchEngine::makeSearchFieldMapping
+	 * @covers \ContentHandler::getFieldsForSearchIndex
 	 */
 	public function testFieldsForIndex() {
 		$handler = new TextContentHandler();

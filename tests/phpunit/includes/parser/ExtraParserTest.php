@@ -45,7 +45,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @see T10689
-	 * @covers Parser::parse
+	 * @covers \Parser::parse
 	 */
 	public function testLongNumericLinesDontKillTheParser() {
 		$longLine = '1.' . str_repeat( '1234567890', 100000 ) . "\n";
@@ -57,7 +57,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::braceSubstitution
+	 * @covers \Parser::braceSubstitution
 	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::capturePath
 	 */
 	public function testSpecialPageTransclusionRestoresGlobalState() {
@@ -73,7 +73,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test the parser entry points
-	 * @covers Parser::parse
+	 * @covers \Parser::parse
 	 */
 	public function testParse() {
 		$title = Title::newFromText( __FUNCTION__ );
@@ -85,7 +85,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::preSaveTransform
+	 * @covers \Parser::preSaveTransform
 	 */
 	public function testPreSaveTransform() {
 		$title = Title::newFromText( __FUNCTION__ );
@@ -108,7 +108,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::preprocess
+	 * @covers \Parser::preprocess
 	 */
 	public function testPreprocess() {
 		$title = Title::newFromText( __FUNCTION__ );
@@ -122,7 +122,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * cleanSig() makes all templates substs and removes tildes
-	 * @covers Parser::cleanSig
+	 * @covers \Parser::cleanSig
 	 */
 	public function testCleanSig() {
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
@@ -132,7 +132,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * cleanSig() should do nothing if disabled
-	 * @covers Parser::cleanSig
+	 * @covers \Parser::cleanSig
 	 */
 	public function testCleanSigDisabled() {
 		$this->overrideConfigValue( MainConfigNames::CleanSignatures, false );
@@ -145,7 +145,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * cleanSigInSig() just removes tildes
 	 * @dataProvider provideStringsForCleanSigInSig
-	 * @covers Parser::cleanSigInSig
+	 * @covers \Parser::cleanSigInSig
 	 */
 	public function testCleanSigInSig( $in, $out ) {
 		$this->assertEquals( Parser::cleanSigInSig( $in ), $out );
@@ -160,7 +160,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::getSection
+	 * @covers \Parser::getSection
 	 */
 	public function testGetSection() {
 		$outputText2 = $this->parser->getSection(
@@ -179,7 +179,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::replaceSection
+	 * @covers \Parser::replaceSection
 	 */
 	public function testReplaceSection() {
 		$outputText = $this->parser->replaceSection(
@@ -194,7 +194,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Templates and comments are not affected, but noinclude/onlyinclude is.
-	 * @covers Parser::getPreloadText
+	 * @covers \Parser::getPreloadText
 	 */
 	public function testGetPreloadText() {
 		$title = Title::newFromText( __FUNCTION__ );
@@ -224,7 +224,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::parse
+	 * @covers \Parser::parse
 	 */
 	public function testTrackingCategory() {
 		$title = Title::newFromText( __FUNCTION__ );
@@ -237,7 +237,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::parse
+	 * @covers \Parser::parse
 	 */
 	public function testTrackingCategorySpecial() {
 		// Special pages shouldn't have tracking cats.
@@ -248,7 +248,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::parseLinkParameter
+	 * @covers \Parser::parseLinkParameter
 	 * @dataProvider provideParseLinkParameter
 	 */
 	public function testParseLinkParameter( $input, $expected, $expectedLinks, $desc ) {

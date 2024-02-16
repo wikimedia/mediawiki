@@ -3,7 +3,7 @@
 use MediaWiki\Permissions\PermissionStatus;
 
 /**
- * @covers PermissionsError
+ * @covers \PermissionsError
  */
 class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 

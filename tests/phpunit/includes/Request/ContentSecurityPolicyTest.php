@@ -61,7 +61,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::getAdditionalSelfUrls
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::getAdditionalSelfUrls
 	 */
 	public function testGetAdditionalSelfUrlsRespectsUrlSettings() {
 		$this->overrideConfigValues( [
@@ -86,7 +86,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providerFalsePositiveBrowser
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::falsePositiveBrowser
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::falsePositiveBrowser
 	 */
 	public function testFalsePositiveBrowser( $ua, $expected ) {
 		$actual = ContentSecurityPolicy::falsePositiveBrowser( $ua );
@@ -108,8 +108,8 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::addScriptSrc
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::addScriptSrc
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
 	 */
 	public function testAddScriptSrc() {
 		$this->csp->addScriptSrc( 'https://example.com:71' );
@@ -122,8 +122,8 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::addStyleSrc
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::addStyleSrc
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
 	 */
 	public function testAddStyleSrc() {
 		$this->csp->addStyleSrc( 'style.example.com' );
@@ -136,8 +136,8 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::addDefaultSrc
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::addDefaultSrc
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
 	 */
 	public function testAddDefaultSrc() {
 		$this->csp->addDefaultSrc( '*.example.com' );
@@ -151,7 +151,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providerMakeCSPDirectives
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
 	 */
 	public function testMakeCSPDirectives(
 		$policy,
@@ -266,7 +266,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
 	 */
 	public function testMakeCSPDirectivesReportUri() {
 		$actual = $this->csp->makeCSPDirectives(
@@ -278,7 +278,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::getHeaderName
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::getHeaderName
 	 */
 	public function testGetHeaderName() {
 		$this->assertSame(
@@ -292,7 +292,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::getReportUri
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::getReportUri
 	 */
 	public function testGetReportUri() {
 		$full = $this->csp->getReportUri( ContentSecurityPolicy::FULL_MODE );
@@ -313,7 +313,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providerPrepareUrlForCSP
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::prepareUrlForCSP
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::prepareUrlForCSP
 	 */
 	public function testPrepareUrlForCSP( $url, $expected ) {
 		$actual = $this->csp->prepareUrlForCSP( $url );
@@ -344,7 +344,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::escapeUrlForCSP
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::escapeUrlForCSP
 	 */
 	public function testEscapeUrlForCSP() {
 		$escaped = $this->csp->escapeUrlForCSP( ',;%2B' );
@@ -353,7 +353,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsNonceRequired
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::isNonceRequired
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::isNonceRequired
 	 */
 	public function testIsNonceRequired( $main, $reportOnly, $expected ) {
 		$this->overrideConfigValues( [
@@ -380,7 +380,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::getDirectives
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::getDirectives
 	 */
 	public function testGetDirectives() {
 		$this->assertSame(
@@ -395,7 +395,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Request\ContentSecurityPolicy::sendHeaders
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::sendHeaders
 	 */
 	public function testSendHeaders() {
 		$this->csp->sendHeaders();

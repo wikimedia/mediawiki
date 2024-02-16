@@ -2,14 +2,14 @@
 
 /**
  * Class JobSpecificationTest
- * @covers JobSpecification
+ * @covers \JobSpecification
  */
 class JobSpecificationTest extends MediaWikiUnitTestCase {
 	private const JOB_TYPE = 'testJob';
 	private const JOB_PARAMS = [ 'param' => 'value' ];
 
 	/**
-	 * @covers JobSpecification::ignoreDuplicates
+	 * @covers \JobSpecification::ignoreDuplicates
 	 */
 	public function testNotRemoveDuplicates() {
 		$jobSpec = new JobSpecification(
@@ -21,7 +21,7 @@ class JobSpecificationTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers JobSpecification::ignoreDuplicates
+	 * @covers \JobSpecification::ignoreDuplicates
 	 */
 	public function testRemoveDuplicates() {
 		$jobSpec = new JobSpecification(
@@ -34,7 +34,7 @@ class JobSpecificationTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers JobSpecification::getDeduplicationInfo
+	 * @covers \JobSpecification::getDeduplicationInfo
 	 */
 	public function testGetDeduplicationInfo() {
 		$jobSpec = new JobSpecification(
@@ -49,7 +49,7 @@ class JobSpecificationTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers JobSpecification::getDeduplicationInfo
+	 * @covers \JobSpecification::getDeduplicationInfo
 	 */
 	public function testGetDeduplicationInfo_ignoreParams() {
 		$jobSpec = new JobSpecification(

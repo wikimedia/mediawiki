@@ -7,7 +7,7 @@ use MediaWiki\WikiMap\WikiReference;
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
- * @covers MediaWiki\WikiMap\WikiMap
+ * @covers \MediaWiki\WikiMap\WikiMap
  *
  * @group Database
  */
@@ -187,7 +187,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\WikiMap\WikiMap::getCanonicalServerInfoForAllWikis()
+	 * @covers \MediaWiki\WikiMap\WikiMap::getCanonicalServerInfoForAllWikis()
 	 */
 	public function testGetCanonicalServerInfoForAllWikis() {
 		$expected = [
@@ -234,7 +234,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetWikiFromUrl
-	 * @covers MediaWiki\WikiMap\WikiMap::getWikiFromUrl()
+	 * @covers \MediaWiki\WikiMap\WikiMap::getWikiFromUrl()
 	 */
 	public function testGetWikiFromUrl( $url, $wiki ) {
 		$this->assertEquals( $wiki, WikiMap::getWikiFromUrl( $url ) );
@@ -254,15 +254,15 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetWikiIdFromDbDomain
-	 * @covers MediaWiki\WikiMap\WikiMap::getWikiIdFromDbDomain()
+	 * @covers \MediaWiki\WikiMap\WikiMap::getWikiIdFromDbDomain()
 	 */
 	public function testGetWikiIdFromDbDomain( $domain, $wikiId ) {
 		$this->assertEquals( $wikiId, WikiMap::getWikiIdFromDbDomain( $domain ) );
 	}
 
 	/**
-	 * @covers MediaWiki\WikiMap\WikiMap::isCurrentWikiDbDomain()
-	 * @covers MediaWiki\WikiMap\WikiMap::getCurrentWikiDbDomain()
+	 * @covers \MediaWiki\WikiMap\WikiMap::isCurrentWikiDbDomain()
+	 * @covers \MediaWiki\WikiMap\WikiMap::getCurrentWikiDbDomain()
 	 */
 	public function testIsCurrentWikiDomain() {
 		$this->overrideConfigValue( MainConfigNames::DBmwschema, 'mediawiki' );
@@ -301,9 +301,9 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideIsCurrentWikiId
-	 * @covers MediaWiki\WikiMap\WikiMap::isCurrentWikiId()
-	 * @covers MediaWiki\WikiMap\WikiMap::getCurrentWikiDbDomain()
-	 * @covers MediaWiki\WikiMap\WikiMap::getWikiIdFromDbDomain()
+	 * @covers \MediaWiki\WikiMap\WikiMap::isCurrentWikiId()
+	 * @covers \MediaWiki\WikiMap\WikiMap::getCurrentWikiDbDomain()
+	 * @covers \MediaWiki\WikiMap\WikiMap::getWikiIdFromDbDomain()
 	 */
 	public function testIsCurrentWikiId( $wikiId, $db, $schema, $prefix ) {
 		$this->overrideConfigValues( [

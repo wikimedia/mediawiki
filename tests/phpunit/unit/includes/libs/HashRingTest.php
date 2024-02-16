@@ -2,7 +2,7 @@
 
 /**
  * @group HashRing
- * @covers HashRing
+ * @covers \HashRing
  */
 class HashRingTest extends PHPUnit\Framework\TestCase {
 

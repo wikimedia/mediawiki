@@ -35,7 +35,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsValidMerge
-	 * @covers MediaWiki\Page\MergeHistory::isValidMerge
+	 * @covers \MediaWiki\Page\MergeHistory::isValidMerge
 	 * @param string $source Source page
 	 * @param string $dest Destination page
 	 * @param string|bool $timestamp Timestamp up to which revisions are merged (or false for all)
@@ -82,7 +82,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test merge revision limit checking
-	 * @covers MediaWiki\Page\MergeHistory::isValidMerge
+	 * @covers \MediaWiki\Page\MergeHistory::isValidMerge
 	 */
 	public function testIsValidMergeRevisionLimit() {
 		$limit = MergeHistory::REVISION_LIMIT;
@@ -117,8 +117,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test user permission checking
-	 * @covers MediaWiki\Page\MergeHistory::authorizeMerge
-	 * @covers MediaWiki\Page\MergeHistory::probablyCanMerge
+	 * @covers \MediaWiki\Page\MergeHistory::authorizeMerge
+	 * @covers \MediaWiki\Page\MergeHistory::probablyCanMerge
 	 */
 	public function testCheckPermissions() {
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
@@ -145,7 +145,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test merged revision count
-	 * @covers MediaWiki\Page\MergeHistory::getMergedRevisionCount
+	 * @covers \MediaWiki\Page\MergeHistory::getMergedRevisionCount
 	 */
 	public function testGetMergedRevisionCount() {
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
@@ -163,7 +163,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * Test update to source page for pages with
 	 * content model that supports redirects
 	 *
-	 * @covers MediaWiki\Page\MergeHistory::merge
+	 * @covers \MediaWiki\Page\MergeHistory::merge
 	 */
 	public function testSourceUpdateWithRedirectSupport() {
 		$title = Title::makeTitle( NS_MAIN, 'Merge5' );
@@ -184,7 +184,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * Test update to source page for pages with
 	 * content model that does not support redirects
 	 *
-	 * @covers MediaWiki\Page\MergeHistory::merge
+	 * @covers \MediaWiki\Page\MergeHistory::merge
 	 */
 	public function testSourceUpdateForNoRedirectSupport() {
 		$this->overrideConfigValues( [
@@ -221,7 +221,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Page\MergeHistory::initTimestampLimits
+	 * @covers \MediaWiki\Page\MergeHistory::initTimestampLimits
 	 */
 	public function testSplitTimestamp() {
 		// Create the source page with two revisions with the same timestamp

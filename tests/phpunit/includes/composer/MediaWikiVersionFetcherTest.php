@@ -4,7 +4,7 @@
  * Note: this is not a unit test, as it touches the file system and reads an actual file.
  * If unit tests are added for MediaWikiVersionFetcher, this should be done in a distinct test case.
  *
- * @covers MediaWikiVersionFetcher
+ * @covers \MediaWikiVersionFetcher
  *
  * @group ComposerHooks
  *

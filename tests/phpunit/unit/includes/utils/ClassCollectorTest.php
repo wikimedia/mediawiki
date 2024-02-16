@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers ClassCollector
+ * @covers \ClassCollector
  */
 class ClassCollectorTest extends MediaWikiUnitTestCase {
 

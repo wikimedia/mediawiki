@@ -14,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  * @covers ::wfMessage
- * @covers Message
+ * @covers \Message
  */
 class MessageTest extends MediaWikiLangTestCase {
 
@@ -359,7 +359,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Language\RawMessage
+	 * @covers \MediaWiki\Language\RawMessage
 	 */
 	public function testRawMessage() {
 		$msg = new RawMessage( 'example &' );
@@ -368,8 +368,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Language\RawMessage
-	 * @covers CoreTagHooks::html
+	 * @covers \MediaWiki\Language\RawMessage
+	 * @covers \CoreTagHooks::html
 	 */
 	public function testRawHtmlInMsg() {
 		$this->overrideConfigValue( MainConfigNames::RawHtml, true );
@@ -725,8 +725,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Message
-	 * @covers LanguageQqx
+	 * @covers \Message
+	 * @covers \LanguageQqx
 	 */
 	public function testQqxPlaceholders() {
 		$this->assertSame(

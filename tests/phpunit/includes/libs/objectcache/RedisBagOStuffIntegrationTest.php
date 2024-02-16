@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers RedisBagOStuff
+ * @covers \RedisBagOStuff
  * @requires extension redis
  */
 class RedisBagOStuffIntegrationTest extends BagOStuffTestBase {

@@ -28,7 +28,7 @@ use WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ParserFactory
+ * @covers \ParserFactory
  */
 class ParserFactoryTest extends MediaWikiUnitTestCase {
 

@@ -7,8 +7,8 @@ use MediaWiki\WikiMap\WikiMap;
 
 /**
  * @group Database
- * @covers FileRepo
- * @covers LocalRepo
+ * @covers \FileRepo
+ * @covers \LocalRepo
  */
 class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	/**

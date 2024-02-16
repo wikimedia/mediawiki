@@ -58,7 +58,7 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideDataAndParserText
-	 * @covers JsonContentHandler::fillParserOutput
+	 * @covers \JsonContentHandler::fillParserOutput
 	 */
 	public function testFillParserOutput( $data, $expected ) {
 		if ( !is_string( $data ) ) {
@@ -79,7 +79,7 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers JsonContentHandler::validateSave
+	 * @covers \JsonContentHandler::validateSave
 	 */
 	public function testValidateSave() {
 		$handler = new JsonContentHandler();

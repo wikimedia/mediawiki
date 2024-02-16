@@ -14,7 +14,7 @@ use MediaWiki\User\User;
 class ImportTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @covers WikiImporter
+	 * @covers \WikiImporter
 	 * @dataProvider getUnknownTagsXML
 	 * @param string $xml
 	 * @param string $text
@@ -74,7 +74,7 @@ EOF
 	}
 
 	/**
-	 * @covers WikiImporter::handlePage
+	 * @covers \WikiImporter::handlePage
 	 * @dataProvider getRedirectXML
 	 * @param string $xml
 	 * @param string|null $redirectTitle
@@ -158,7 +158,7 @@ EOF
 	}
 
 	/**
-	 * @covers WikiImporter::handleSiteInfo
+	 * @covers \WikiImporter::handleSiteInfo
 	 * @dataProvider getSiteInfoXML
 	 * @param string $xml
 	 * @param array|null $namespaces
@@ -217,7 +217,7 @@ EOF
 
 	/**
 	 * @dataProvider provideUnknownUserHandling
-	 * @covers WikiImporter::setUsernamePrefix
+	 * @covers \WikiImporter::setUsernamePrefix
 	 * @covers \MediaWiki\User\ExternalUserNames::addPrefix
 	 * @covers \MediaWiki\User\ExternalUserNames::applyPrefix
 	 * @param bool $assign

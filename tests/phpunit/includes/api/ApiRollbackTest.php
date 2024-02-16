@@ -10,7 +10,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @group medium
  *
- * @covers ApiRollback
+ * @covers \ApiRollback
  */
 class ApiRollbackTest extends ApiTestCase {
 

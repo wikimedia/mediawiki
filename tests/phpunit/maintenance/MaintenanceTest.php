@@ -10,7 +10,7 @@ use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers Maintenance
+ * @covers \Maintenance
  */
 class MaintenanceTest extends MaintenanceBaseTestCase {
 
@@ -484,7 +484,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	}
 
 	/**
-	 * @covers Maintenance::getConfig
+	 * @covers \Maintenance::getConfig
 	 */
 	public function testGetConfig() {
 		$this->assertInstanceOf( Config::class, $this->maintenance->getConfig() );
@@ -495,7 +495,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	}
 
 	/**
-	 * @covers Maintenance::setConfig
+	 * @covers \Maintenance::setConfig
 	 */
 	public function testSetConfig() {
 		$conf = new HashConfig();

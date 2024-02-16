@@ -10,9 +10,9 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SearchResultSet::getIterator
-	 * @covers BaseSearchResultSet::next
-	 * @covers BaseSearchResultSet::rewind
+	 * @covers \SearchResultSet::getIterator
+	 * @covers \BaseSearchResultSet::next
+	 * @covers \BaseSearchResultSet::rewind
 	 */
 	public function testIterate() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
@@ -38,8 +38,8 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SearchResultSetTrait::augmentResult
-	 * @covers SearchResultSetTrait::setAugmentedData
+	 * @covers \SearchResultSetTrait::augmentResult
+	 * @covers \SearchResultSetTrait::setAugmentedData
 	 */
 	public function testDelayedResultAugment() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
@@ -55,9 +55,9 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SearchResultSet::shrink
-	 * @covers SearchResultSet::count
-	 * @covers SearchResultSet::hasMoreResults
+	 * @covers \SearchResultSet::shrink
+	 * @covers \SearchResultSet::count
+	 * @covers \SearchResultSet::hasMoreResults
 	 */
 	public function testHasMoreResults() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
@@ -72,7 +72,7 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SearchResultSet::shrink
+	 * @covers \SearchResultSet::shrink
 	 */
 	public function testShrink() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );

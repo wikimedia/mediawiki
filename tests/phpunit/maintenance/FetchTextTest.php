@@ -79,7 +79,7 @@ class SemiMockedFetchText extends FetchText {
  *
  * @group Database
  * @group Dump
- * @covers FetchText
+ * @covers \FetchText
  */
 class FetchTextTest extends MediaWikiIntegrationTestCase {
 

@@ -7,7 +7,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ApiBlockInfoTrait
+ * @covers \ApiBlockInfoTrait
  */
 class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;

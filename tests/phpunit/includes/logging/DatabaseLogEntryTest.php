@@ -24,8 +24,8 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseLogEntry::newFromId
-	 * @covers DatabaseLogEntry::getSelectQueryData
+	 * @covers \DatabaseLogEntry::newFromId
+	 * @covers \DatabaseLogEntry::getSelectQueryData
 	 *
 	 * @dataProvider provideNewFromId
 	 *
@@ -153,7 +153,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetPerformerIdentity
-	 * @covers DatabaseLogEntry::getPerformerIdentity
+	 * @covers \DatabaseLogEntry::getPerformerIdentity
 	 */
 	public function testGetPerformer( array $actorRowFields, UserIdentity $expected ) {
 		$logEntry = DatabaseLogEntry::newFromRow( [

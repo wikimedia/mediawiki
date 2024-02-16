@@ -13,7 +13,7 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ExtensionRegistry
+ * @covers \ExtensionRegistry
  */
 class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 

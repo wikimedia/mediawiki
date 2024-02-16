@@ -31,7 +31,7 @@ use Wikimedia\TestingAccessWrapper;
  * @author DannyS712
  * @todo This test should become unittest again once LinksMigration is done (T300222)
  *
- * @covers WatchedItemStore
+ * @covers \WatchedItemStore
  */
 class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;

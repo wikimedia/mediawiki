@@ -7,7 +7,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @group JobQueue
  * @group medium
  * @group Database
- * @covers JobQueue
+ * @covers \JobQueue
  */
 class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected $key;

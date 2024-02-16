@@ -2,7 +2,7 @@
 
 /**
  * @group API
- * @covers ApiFormatPhp
+ * @covers \ApiFormatPhp
  */
 class ApiFormatPhpTest extends ApiFormatTestBase {
 

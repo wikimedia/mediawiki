@@ -6,7 +6,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @coversDefaultClass FileBackendGroup
+ * @coversDefaultClass \FileBackendGroup
  */
 class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	use FileBackendGroupTestTrait;

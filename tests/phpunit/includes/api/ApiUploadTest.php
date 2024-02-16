@@ -10,7 +10,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @group Database
  * @group medium
  *
- * @covers ApiUpload
+ * @covers \ApiUpload
  */
 class ApiUploadTest extends ApiUploadTestCase {
 	private ?Authority $uploader = null;

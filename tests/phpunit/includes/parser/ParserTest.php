@@ -19,7 +19,7 @@ use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\UrlUtils;
 
 /**
- * @covers Parser::__construct
+ * @covers \Parser::__construct
  */
 class ParserTest extends MediaWikiIntegrationTestCase {
 	/**
@@ -71,7 +71,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::__construct
+	 * @covers \Parser::__construct
 	 */
 	public function testConstructorArguments() {
 		$args = $this->createConstructorArguments();
@@ -124,9 +124,9 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::setPage
-	 * @covers Parser::getPage
-	 * @covers Parser::getTitle
+	 * @covers \Parser::setPage
+	 * @covers \Parser::getPage
+	 * @covers \Parser::getTitle
 	 */
 	public function testSetPage() {
 		$parser = $this->newParser();
@@ -139,9 +139,9 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Parser::setPage
-	 * @covers Parser::getPage
-	 * @covers Parser::getTitle
+	 * @covers \Parser::setPage
+	 * @covers \Parser::getPage
+	 * @covers \Parser::getTitle
 	 */
 	public function testSetTitle() {
 		$parser = $this->newParser();

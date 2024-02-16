@@ -27,7 +27,7 @@ class FormOptionsInitializationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Html\FormOptions::add
+	 * @covers \MediaWiki\Html\FormOptions::add
 	 */
 	public function testAddStringOption() {
 		$this->object->add( 'foo', 'string value' );
@@ -45,7 +45,7 @@ class FormOptionsInitializationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Html\FormOptions::add
+	 * @covers \MediaWiki\Html\FormOptions::add
 	 */
 	public function testAddIntegers() {
 		$this->object->add( 'one', 1 );

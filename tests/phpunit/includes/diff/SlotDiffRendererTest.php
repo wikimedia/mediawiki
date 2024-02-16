@@ -4,7 +4,7 @@ use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers SlotDiffRenderer
+ * @covers \SlotDiffRenderer
  */
 class SlotDiffRendererTest extends \MediaWikiIntegrationTestCase {
 

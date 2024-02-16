@@ -8,7 +8,7 @@ use MediaWiki\Title\Title;
  * Class JobRunnerTest
  *
  * @group Database
- * @covers JobRunner
+ * @covers \JobRunner
  */
 class JobRunnerTest extends MediaWikiIntegrationTestCase {
 

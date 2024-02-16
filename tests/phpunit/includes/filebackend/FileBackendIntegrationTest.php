@@ -12,40 +12,40 @@ use Wikimedia\TestingAccessWrapper;
  * @group FileBackend
  * @group medium
  *
- * @covers FileBackend
+ * @covers \FileBackend
  *
- * @covers CopyFileOp
- * @covers CreateFileOp
- * @covers DeleteFileOp
- * @covers DescribeFileOp
- * @covers FSFile
- * @covers FSFileBackend
- * @covers FSFileBackendDirList
- * @covers FSFileBackendFileList
- * @covers FSFileBackendList
- * @covers FSFileOpHandle
- * @covers FileBackendDBRepoWrapper
- * @covers FileBackendError
- * @covers FileBackendGroup
- * @covers FileBackendMultiWrite
- * @covers FileBackendStore
- * @covers FileBackendStoreOpHandle
- * @covers FileBackendStoreShardDirIterator
- * @covers FileBackendStoreShardFileIterator
- * @covers FileBackendStoreShardListIterator
- * @covers FileOp
- * @covers FileOpBatch
- * @covers HTTPFileStreamer
- * @covers LockManagerGroup
- * @covers MemoryFileBackend
- * @covers MoveFileOp
- * @covers NullFileOp
- * @covers StoreFileOp
- * @covers TempFSFile
+ * @covers \CopyFileOp
+ * @covers \CreateFileOp
+ * @covers \DeleteFileOp
+ * @covers \DescribeFileOp
+ * @covers \FSFile
+ * @covers \FSFileBackend
+ * @covers \FSFileBackendDirList
+ * @covers \FSFileBackendFileList
+ * @covers \FSFileBackendList
+ * @covers \FSFileOpHandle
+ * @covers \FileBackendDBRepoWrapper
+ * @covers \FileBackendError
+ * @covers \FileBackendGroup
+ * @covers \FileBackendMultiWrite
+ * @covers \FileBackendStore
+ * @covers \FileBackendStoreOpHandle
+ * @covers \FileBackendStoreShardDirIterator
+ * @covers \FileBackendStoreShardFileIterator
+ * @covers \FileBackendStoreShardListIterator
+ * @covers \FileOp
+ * @covers \FileOpBatch
+ * @covers \HTTPFileStreamer
+ * @covers \LockManagerGroup
+ * @covers \MemoryFileBackend
+ * @covers \MoveFileOp
+ * @covers \NullFileOp
+ * @covers \StoreFileOp
+ * @covers \TempFSFile
  *
- * @covers FSLockManager
- * @covers LockManager
- * @covers NullLockManager
+ * @covers \FSLockManager
+ * @covers \LockManager
+ * @covers \NullLockManager
  */
 class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 

@@ -4,7 +4,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @coversDefaultClass MediaWiki\Languages\LanguageFallback
+ * @coversDefaultClass \MediaWiki\Languages\LanguageFallback
  * @covers ::__construct
  */
 class LanguageFallbackTest extends MediaWikiUnitTestCase {

@@ -8,7 +8,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
  * @group Database
  * @group medium
  *
- * @covers ApiQueryAllUsers
+ * @covers \ApiQueryAllUsers
  */
 class ApiQueryAllUsersTest extends ApiTestCase {
 	use MockAuthorityTrait;

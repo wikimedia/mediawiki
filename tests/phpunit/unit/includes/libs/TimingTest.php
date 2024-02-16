@@ -20,7 +20,7 @@
  */
 
 /**
- * @covers Timing
+ * @covers \Timing
  */
 class TimingTest extends PHPUnit\Framework\TestCase {
 

@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  * @group Cache
- * @covers LocalisationCache
+ * @covers \LocalisationCache
  * @author Niklas Laxström
  */
 class LocalisationCacheTest extends MediaWikiIntegrationTestCase {

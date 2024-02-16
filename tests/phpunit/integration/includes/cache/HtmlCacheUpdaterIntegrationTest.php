@@ -97,7 +97,7 @@ class HtmlCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePurgeTitleUrls
-	 * @covers HtmlCacheUpdater::purgeTitleUrls
+	 * @covers \HtmlCacheUpdater::purgeTitleUrls
 	 */
 	public function testPurgeTitleUrls( $pages, $expected ) {
 		$this->setService( 'EventRelayerGroup', $this->getEventRelayGroup( $expected ) );
@@ -107,7 +107,7 @@ class HtmlCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers HtmlCacheUpdater::purgeUrls
+	 * @covers \HtmlCacheUpdater::purgeUrls
 	 */
 	public function testPurgeUrls() {
 		$urls = [ 'https://acme.test/wiki/Foo', 'https://acme.test/wiki/Bar', ];

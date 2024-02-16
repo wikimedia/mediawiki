@@ -6,7 +6,7 @@ use MediaWiki\User\UserIdentityValue;
 class MailAddressTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers MailAddress::__construct
+	 * @covers \MailAddress::__construct
 	 */
 	public function testConstructor() {
 		$ma = new MailAddress( 'foo@bar.baz', 'UserName', 'Real name' );
@@ -14,7 +14,7 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MailAddress::newFromUser
+	 * @covers \MailAddress::newFromUser
 	 */
 	public function testNewFromUser() {
 		if ( wfIsWindows() ) {
@@ -40,7 +40,7 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MailAddress::equals
+	 * @covers \MailAddress::equals
 	 * @dataProvider provideEquals
 	 */
 	public function testEquals( MailAddress $first, MailAddress $second, bool $expected ) {
@@ -57,7 +57,7 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MailAddress::toString
+	 * @covers \MailAddress::toString
 	 * @dataProvider provideToString
 	 */
 	public function testToString( $useRealName, $address, $name, $realName, $expected ) {
@@ -92,7 +92,7 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MailAddress::__toString
+	 * @covers \MailAddress::__toString
 	 */
 	public function test__ToString() {
 		$ma = new MailAddress( 'some@email.com', 'UserName', 'A real name' );

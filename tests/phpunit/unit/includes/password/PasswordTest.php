@@ -21,7 +21,7 @@
  */
 
 /**
- * @covers Password
+ * @covers \Password
  */
 class PasswordTest extends \MediaWikiUnitTestCase {
 	public function testNoTypeThrows() {

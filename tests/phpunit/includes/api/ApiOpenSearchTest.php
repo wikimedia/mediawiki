@@ -6,7 +6,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 /**
  * TODO convert to unit test, no integration is needed
  *
- * @covers ApiOpenSearch
+ * @covers \ApiOpenSearch
  */
 class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 	public function testGetAllowedParams() {

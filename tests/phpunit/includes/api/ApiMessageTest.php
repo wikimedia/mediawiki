@@ -27,7 +27,7 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiMessageTrait
+	 * @covers \ApiMessageTrait
 	 * @dataProvider provideCodeDefaults
 	 */
 	public function testCodeDefaults( $msg, $expectedCode ) {
@@ -46,7 +46,7 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiMessageTrait
+	 * @covers \ApiMessageTrait
 	 * @dataProvider provideInvalidCode
 	 */
 	public function testInvalidCode( $code ) {
@@ -77,8 +77,8 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiMessage
-	 * @covers ApiMessageTrait
+	 * @covers \ApiMessage
+	 * @covers \ApiMessageTrait
 	 */
 	public function testApiMessage() {
 		$msg = new Message( [ 'foo', 'bar' ], [ 'baz' ] );
@@ -119,8 +119,8 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiRawMessage
-	 * @covers ApiMessageTrait
+	 * @covers \ApiRawMessage
+	 * @covers \ApiMessageTrait
 	 */
 	public function testApiRawMessage() {
 		$msg = new RawMessage( 'foo', [ 'baz' ] );
@@ -160,7 +160,7 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiMessage::create
+	 * @covers \ApiMessage::create
 	 */
 	public function testApiMessageCreate() {
 		$this->assertInstanceOf( ApiMessage::class, ApiMessage::create( new Message( 'mainpage' ) ) );

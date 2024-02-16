@@ -6,7 +6,7 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use PopulateUserIsTemp;
 
 /**
- * @covers PopulateUserIsTemp
+ * @covers \PopulateUserIsTemp
  * @group Database
  */
 class PopulateUserIsTempTest extends MaintenanceBaseTestCase {

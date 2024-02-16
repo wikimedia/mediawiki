@@ -11,7 +11,7 @@ use TypeError;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers Wikimedia\ParamValidator\Util\UploadedFileStream
+ * @covers \Wikimedia\ParamValidator\Util\UploadedFileStream
  */
 class UploadedFileStreamTest extends UploadedFileTestBase {
 

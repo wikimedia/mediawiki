@@ -3,7 +3,7 @@
 use Wikimedia\Http\HttpAcceptNegotiator;
 
 /**
- * @covers Wikimedia\Http\HttpAcceptNegotiator
+ * @covers \Wikimedia\Http\HttpAcceptNegotiator
  *
  * @author Daniel Kinzler
  */

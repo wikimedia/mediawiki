@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers ChangesListFilterGroup
+ * @covers \ChangesListFilterGroup
  */
 class ChangesListFilterGroupTest extends \MediaWikiUnitTestCase {
 	public function testReservedCharacter() {

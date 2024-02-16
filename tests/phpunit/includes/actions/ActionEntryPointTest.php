@@ -26,7 +26,7 @@ use WikiPage;
 
 /**
  * @group Database
- * @covers MediaWiki\Actions\ActionEntryPoint
+ * @covers \MediaWiki\Actions\ActionEntryPoint
  */
 class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {

@@ -4,7 +4,7 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 
 /**
- * @covers MediaWiki\Request\DerivativeRequest
+ * @covers \MediaWiki\Request\DerivativeRequest
  */
 class DerivativeRequestTest extends MediaWikiUnitTestCase {
 

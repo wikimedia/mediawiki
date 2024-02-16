@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\LBFactory;
  * ObjectCache and LoggerFactory that aren't yet compatible with proper unit tests. Those will be
  * tested in the integration test for now.
  *
- * @covers LockManagerGroup
+ * @covers \LockManagerGroup
  */
 class LockManagerGroupTest extends MediaWikiUnitTestCase {
 	private function getMockLBFactory() {

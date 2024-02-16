@@ -9,7 +9,7 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\EnumDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\EnumDef
  */
 class EnumDefTest extends TypeDefTestCase {
 

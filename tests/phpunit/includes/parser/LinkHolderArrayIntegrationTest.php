@@ -8,13 +8,13 @@ use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers LinkHolderArray
+ * @covers \LinkHolderArray
  */
 class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideIsBig
-	 * @covers LinkHolderArray::isBig
+	 * @covers \LinkHolderArray::isBig
 	 *
 	 * @param int $size
 	 * @param int $global
@@ -43,7 +43,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeHolder_withNsText
-	 * @covers LinkHolderArray::makeHolder
+	 * @covers \LinkHolderArray::makeHolder
 	 *
 	 * @param bool $isExternal
 	 * @param string $expected

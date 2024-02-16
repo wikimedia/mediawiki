@@ -9,8 +9,8 @@ use MediaWiki\Title\Title;
  *
  * @group large
  * @group Database
- * @covers ImportStreamSource
- * @covers ImportReporter
+ * @covers \ImportStreamSource
+ * @covers \ImportReporter
  *
  * @author mwjames
  */

@@ -20,7 +20,7 @@ use XmlDumpWriter;
  *
  * @group Database
  * @group Dump
- * @covers TextPassDumper
+ * @covers \TextPassDumper
  */
 class TextPassDumperDatabaseTest extends DumpTestCase {
 
@@ -481,7 +481,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
  * cannot bring this test case's tests into the above main test case.)
  *
  * @group Dump
- * @covers TextPassDumper
+ * @covers \TextPassDumper
  */
 class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	/**

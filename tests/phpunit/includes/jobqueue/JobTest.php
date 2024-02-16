@@ -6,7 +6,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @author Addshore
- * @covers Job
+ * @covers \Job
  */
 class JobTest extends MediaWikiIntegrationTestCase {
 

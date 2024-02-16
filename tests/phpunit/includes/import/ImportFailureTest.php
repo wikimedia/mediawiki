@@ -7,7 +7,7 @@ use MediaWiki\MainConfigNames;
  * Import failure test.
  *
  * @group Database
- * @covers WikiImporter
+ * @covers \WikiImporter
  */
 class ImportFailureTest extends MediaWikiLangTestCase {
 

@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class BacklinkCacheFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers MediaWiki\Cache\BacklinkCacheFactory::getBacklinkCache
+	 * @covers \MediaWiki\Cache\BacklinkCacheFactory::getBacklinkCache
 	 */
 	public function testGetBacklinkCache() {
 		$wanCache = new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] );

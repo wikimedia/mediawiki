@@ -3,7 +3,7 @@
 use MediaWiki\WikiMap\WikiReference;
 
 /**
- * @covers MediaWiki\WikiMap\WikiReference
+ * @covers \MediaWiki\WikiMap\WikiReference
  */
 class WikiReferenceTest extends MediaWikiUnitTestCase {
 

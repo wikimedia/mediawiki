@@ -5,7 +5,7 @@ use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MWHttpRequest
+ * @covers \MWHttpRequest
  */
 class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 
@@ -79,7 +79,7 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * T29854 : MWHttpRequest::isValidURI is too lax
 	 * @dataProvider provideURI
-	 * @covers MWHttpRequest::isValidURI
+	 * @covers \MWHttpRequest::isValidURI
 	 */
 	public function testIsValidUri( $expect, $uri, $message = '' ) {
 		$this->assertSame( $expect, MWHttpRequest::isValidURI( $uri ), $message );

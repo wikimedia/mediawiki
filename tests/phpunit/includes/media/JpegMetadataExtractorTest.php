@@ -7,7 +7,7 @@
  * solely on reading the standard, without any real world test files.
  *
  * @group Media
- * @covers JpegMetadataExtractor
+ * @covers \JpegMetadataExtractor
  */
 class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 

@@ -2,8 +2,8 @@
 
 class SearchResultTraitTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @covers SearchResultTrait::getExtensionData
-	 * @covers SearchResultTrait::setExtensionData
+	 * @covers \SearchResultTrait::getExtensionData
+	 * @covers \SearchResultTrait::setExtensionData
 	 */
 	public function testExtensionData() {
 		$result = new class() {
@@ -21,8 +21,8 @@ class SearchResultTraitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SearchResultTrait::getExtensionData
-	 * @covers SearchResultTrait::setExtensionData
+	 * @covers \SearchResultTrait::getExtensionData
+	 * @covers \SearchResultTrait::setExtensionData
 	 */
 	public function testExtensionDataArrayBC() {
 		$result = new class() {
