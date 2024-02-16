@@ -1,7 +1,8 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
+use MediaWiki\Session\UserInfo;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 

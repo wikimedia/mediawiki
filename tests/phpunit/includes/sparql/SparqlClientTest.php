@@ -1,8 +1,9 @@
 <?php
 
-namespace MediaWiki\Sparql;
+namespace MediaWiki\Tests\Sparql;
 
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Sparql\SparqlClient;
 use MWHttpRequest;
 
 /**

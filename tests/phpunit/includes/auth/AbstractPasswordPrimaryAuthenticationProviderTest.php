@@ -1,10 +1,15 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
+use MediaWiki\Auth\AbstractPasswordPrimaryAuthenticationProvider;
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
@@ -138,7 +143,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 
 		$services = $this->getServiceContainer();
 		$manager = new AuthManager(
-			new \MediaWiki\Request\FauxRequest(),
+			new FauxRequest(),
 			$services->getMainConfig(),
 			$services->getObjectFactory(),
 			$services->getHookContainer(),

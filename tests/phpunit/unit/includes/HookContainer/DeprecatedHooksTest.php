@@ -1,7 +1,8 @@
 <?php
 
-namespace MediaWiki\HookContainer;
+namespace MediaWiki\Tests\HookContainer;
 
+use MediaWiki\HookContainer\DeprecatedHooks;
 use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\ParamValidator\TypeDef;
+namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
 use MediaWikiIntegrationTestCase;
 use Wikimedia\ParamValidator\TypeDef\TypeDefTestCaseTrait;

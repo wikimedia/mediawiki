@@ -18,12 +18,13 @@
  * @file
  */
 
-namespace MediaWiki\Logger\Monolog;
+namespace MediaWiki\Tests\Logger\Monolog;
 
 use AssertionError;
 use InvalidArgumentException;
 use LengthException;
 use LogicException;
+use MediaWiki\Logger\Monolog\LineFormatter;
 use Wikimedia\TestingAccessWrapper;
 
 class LineFormatterTest extends \MediaWikiUnitTestCase {

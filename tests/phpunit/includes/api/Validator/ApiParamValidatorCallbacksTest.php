@@ -1,12 +1,13 @@
 <?php
 
-namespace MediaWiki\Api\Validator;
+namespace MediaWiki\Tests\Api\Validator;
 
 use ApiBase;
 use ApiMain;
 use ApiMessage;
 use ApiQueryBase;
 use ApiUploadTestCase;
+use MediaWiki\Api\Validator\ApiParamValidatorCallbacks;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Message\DataMessageValue;

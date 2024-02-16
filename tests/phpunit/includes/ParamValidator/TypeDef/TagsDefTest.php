@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\ParamValidator\TypeDef;
+namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
 use ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\ParamValidator\TypeDef\TagsDef;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;

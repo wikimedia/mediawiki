@@ -1,7 +1,11 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
+use MediaWiki\Session\PHPSessionHandler;
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionBackend;
+use MediaWiki\Session\SessionManager;
 use PHPUnit\Framework\Assert;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;

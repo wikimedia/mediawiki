@@ -17,7 +17,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionId;
-use MediaWiki\Session\TestUtils;
+use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

@@ -1,11 +1,12 @@
 <?php
 
-namespace MediaWiki\OutputTransform\Stages;
+namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTestBase;
-use MediaWiki\OutputTransform\TestUtils;
+use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
+use MediaWiki\Tests\OutputTransform\TestUtils;
 use Psr\Log\NullLogger;
 
 /** @covers \MediaWiki\OutputTransform\Stages\HandleSectionLinks */

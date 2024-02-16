@@ -1,7 +1,8 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
+use MediaWiki\Auth\AuthenticationRequest;
 use ReflectionMethod;
 use const E_USER_DEPRECATED;
 
@@ -120,3 +121,5 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiIntegrationTestCa
 		return $reflectionMethod->invoke( new static() );
 	}
 }
+
+class_alias( AuthenticationRequestTestCase::class, 'MediaWiki\\Auth\\AuthenticationRequestTestCase' );

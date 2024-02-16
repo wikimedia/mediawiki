@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
 use BagOStuff;
 use HashBagOStuff;
+use MediaWiki\Auth\Throttler;
 use MediaWiki\MainConfigNames;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;

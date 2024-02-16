@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaWiki\HookContainer {
+namespace MediaWiki\Tests\HookContainer {
 
 	use Error;
 	use InvalidArgumentException;
 	use LogicException;
+	use MediaWiki\HookContainer\HookContainer;
+	use MediaWiki\HookContainer\StaticHookRegistry;
 	use MediaWiki\Tests\Unit\DummyServicesTrait;
 	use MediaWikiUnitTestCase;
 	use stdClass;
@@ -25,8 +27,14 @@ namespace MediaWiki\HookContainer {
 			]
 		];
 
-		/*
+		/**
 		 * Creates a new hook container with StaticHookRegistry and empty ObjectFactory
+		 *
+		 * @param null|array $oldHooks
+		 * @param null|array $newHooks
+		 * @param array $deprecatedHooksArray
+		 *
+		 * @return HookContainer
 		 */
 		private function newHookContainer(
 			$oldHooks = null, $newHooks = null, $deprecatedHooksArray = []
@@ -63,7 +71,7 @@ namespace MediaWiki\HookContainer {
 			return [
 				'function' => [ 'strtoupper', 'strtoupper' ],
 				'object' => [ new \FooExtension\Hooks(), 'FooExtension\Hooks::onFooActionComplete' ],
-				'object and method' => [ [ new FooClass(), 'fooMethod' ], 'MediaWiki\HookContainer\FooClass::fooMethod' ],
+				'object and method' => [ [ new FooClass(), 'fooMethod' ], 'MediaWiki\Tests\HookContainer\FooClass::fooMethod' ],
 				'extension' => [
 					self::HANDLER_REGISTRATION,
 					'FooExtension\Hooks::onFooActionComplete'
@@ -94,7 +102,7 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerDescriptions
 		 */
 		public function testGetHandlerDescriptions() {
-			$handler = 'MediaWiki\HookContainer\FooClass::fooStaticMethod';
+			$handler = 'MediaWiki\Tests\HookContainer\FooClass::fooStaticMethod';
 			$expected = [ $handler ];
 
 			$hookContainer = $this->newHookContainer(
@@ -335,8 +343,8 @@ namespace MediaWiki\HookContainer {
 				// Callables
 				'Function' => [ 'fooGlobalFunction' ],
 				'Object and method' => [ [ $fooObj, 'fooMethod' ] ],
-				'Class name and static method' => [ [ 'MediaWiki\HookContainer\FooClass', 'fooStaticMethod' ] ],
-				'static method' => [ 'MediaWiki\HookContainer\FooClass::fooStaticMethod' ],
+				'Class name and static method' => [ [ 'MediaWiki\Tests\HookContainer\FooClass', 'fooStaticMethod' ] ],
+				'static method' => [ 'MediaWiki\Tests\HookContainer\FooClass::fooStaticMethod' ],
 				'Closure' => [ $closure ],
 
 				// Shorthand
@@ -370,7 +378,7 @@ namespace MediaWiki\HookContainer {
 			return [
 				// Handlers with extra data attached
 				'static method with extra data' => [
-					[ 'MediaWiki\HookContainer\FooClass::fooStaticMethodWithExtra', $extra ],
+					[ 'MediaWiki\Tests\HookContainer\FooClass::fooStaticMethodWithExtra', $extra ],
 					11
 				],
 				'Object and method with extra data' => [ [ [ $fooObj, 'fooMethodWithExtra' ], $extra ], 11 ],
@@ -397,10 +405,10 @@ namespace MediaWiki\HookContainer {
 				'Function in array' => [ [ 'fooGlobalFunction' ] ],
 				'Function in array in array' => [ [ [ 'fooGlobalFunction' ] ] ],
 				'static method as array in array' => [
-					[ [ 'MediaWiki\HookContainer\FooClass', 'fooStaticMethod' ] ]
+					[ [ 'MediaWiki\Tests\HookContainer\FooClass', 'fooStaticMethod' ] ]
 				],
 				'Object and fully-qualified non-static method' => [
-					[ $fooObj, 'MediaWiki\HookContainer\FooClass::fooMethod' ]
+					[ $fooObj, 'MediaWiki\Tests\HookContainer\FooClass::fooMethod' ]
 				]
 			];
 		}
@@ -461,8 +469,8 @@ namespace MediaWiki\HookContainer {
 				// Callables
 				'Function' => [ 'fooGlobalFunction' ],
 				'Object and method' => [ [ $fooObj, 'fooMethod' ] ],
-				'Class name and static method' => [ [ 'MediaWiki\HookContainer\FooClass', 'fooStaticMethod' ] ],
-				'static method' => [ 'MediaWiki\HookContainer\FooClass::fooStaticMethod' ],
+				'Class name and static method' => [ [ 'MediaWiki\Tests\HookContainer\FooClass', 'fooStaticMethod' ] ],
+				'static method' => [ 'MediaWiki\Tests\HookContainer\FooClass::fooStaticMethod' ],
 				'Closure' => [
 					static function ( &$count ) {
 						$count++;
@@ -1010,7 +1018,7 @@ namespace MediaWiki\HookContainer {
 				[ FooClass::class, 'fooStaticMethod', ],
 			];
 			yield 'static method as string' => [
-				'MediaWiki\HookContainer\FooClass::fooStaticMethod',
+				'MediaWiki\Tests\HookContainer\FooClass::fooStaticMethod',
 			];
 			yield 'callable referencing a class that extends an unknown class' => [
 				[ 'MediaWiki\Tests\BrokenClass', 'aMethod' ],
@@ -1034,7 +1042,7 @@ namespace MediaWiki\HookContainer {
 				[ [ new FooClass(), 'fooMethod' ], 'whatever' ],
 			];
 			yield 'non-existing static method on existing class' => [
-				'MediaWiki\HookContainer\FooClass::noSuchMethod',
+				'MediaWiki\Tests\HookContainer\FooClass::noSuchMethod',
 			];
 			yield 'global function with extra data in array' => [
 				[ 'strtoupper', 'extra' ],

@@ -1,6 +1,8 @@
 <?php
 
-namespace MediaWiki\Logger\Monolog;
+namespace MediaWiki\Tests\Logger\Monolog;
+
+use MediaWiki\Logger\Monolog\LogstashFormatter;
 
 class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 	/**

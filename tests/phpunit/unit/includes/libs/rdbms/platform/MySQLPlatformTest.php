@@ -21,6 +21,7 @@
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
+use Wikimedia\Rdbms\Platform\SqlitePlatform;
 
 /**
  * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform

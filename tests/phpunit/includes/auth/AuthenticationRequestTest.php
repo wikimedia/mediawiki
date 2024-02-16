@@ -1,6 +1,9 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
+
+use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 
 /**
  * @group AuthManager

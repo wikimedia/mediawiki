@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\Api\Validator;
+namespace MediaWiki\Tests\Api\Validator;
 
 use ApiMain;
 use ApiModuleManager;
+use MediaWiki\Api\Validator\SubmoduleDef;
 use MockApi;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;

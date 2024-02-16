@@ -1,9 +1,11 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
 use BadMethodCallException;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Session\PHPSessionHandler;
+use MediaWiki\Session\SessionManager;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use UnexpectedValueException;
@@ -156,7 +158,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$expect = [ 'AuthenticationSessionTest' => $rand ];
 		session_write_close();
 		$this->assertSame( [
-			[ LogLevel::DEBUG, 'SessionManager using store MediaWiki\Session\TestBagOStuff' ],
+			[ LogLevel::DEBUG, 'SessionManager using store MediaWiki\Tests\Session\TestBagOStuff' ],
 			[ LogLevel::WARNING, 'Something wrote to $_SESSION!' ],
 		], $logger->getBuffer() );
 

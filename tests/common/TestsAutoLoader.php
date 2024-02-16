@@ -91,6 +91,8 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/auth
 	'MediaWiki\\Auth\\AuthenticationRequestTestCase' =>
 		"$testDir/phpunit/includes/auth/AuthenticationRequestTestCase.php",
+	'MediaWiki\\Tests\\Auth\\AuthenticationRequestTestCase' =>
+		"$testDir/phpunit/includes/auth/AuthenticationRequestTestCase.php",
 
 	# tests/phpunit/includes/block
 	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/block/Restriction/RestrictionTestCase.php",
@@ -135,8 +137,8 @@ $wgAutoloadClasses += [
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
 	# tests/phpunit/includes/OutputTransform
-	'MediaWiki\OutputTransform\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
-	'MediaWiki\OutputTransform\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
+	'MediaWiki\Tests\OutputTransform\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
+	'MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
 
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
@@ -159,7 +161,8 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/session
 	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
-	'MediaWiki\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
+	'MediaWiki\\Tests\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
+	'MediaWiki\\Tests\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
 
 	# tests/phpunit/includes/site
 	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
@@ -190,10 +193,10 @@ $wgAutoloadClasses += [
 	'Wikimedia\ParamValidator\TypeDef\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
 
 	# tests/phpunit/includes/ParamValidator
-	'MediaWiki\ParamValidator\TypeDef\TypeDefIntegrationTestCase' => "$testDir/phpunit/includes/ParamValidator/TypeDef/TypeDefIntegrationTestCase.php",
+	'MediaWiki\Tests\ParamValidator\TypeDef\TypeDefIntegrationTestCase' => "$testDir/phpunit/includes/ParamValidator/TypeDef/TypeDefIntegrationTestCase.php",
 
 	# tests/phpunit/unit/includes/ParamValidator
-	'MediaWiki\ParamValidator\TypeDef\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
+	'MediaWiki\Tests\ParamValidator\TypeDef\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
 
 	# tests/phpunit/maintenance
 	'MediaWiki\Tests\Maintenance\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
@@ -207,7 +210,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/mocks
 	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
-	'MediaWiki\\Session\\DummySessionBackend' => "$testDir/phpunit/mocks/session/DummySessionBackend.php",
+	'MediaWiki\\Tests\\Session\\DummySessionBackend' => "$testDir/phpunit/mocks/session/DummySessionBackend.php",
 	'MediaWiki\\Tests\\BrokenClass' => "$testDir/phpunit/mocks/BrokenClass.php",
 	'MediaWiki\\Tests\\MockDatabase' => "$testDir/phpunit/mocks/MockDatabase.php",
 	'MediaWiki\\Tests\\Unit\\DummyServicesTrait' => "$testDir/phpunit/mocks/DummyServicesTrait.php",
@@ -313,7 +316,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Unit\Settings\Config\ConfigSinkTestTrait' => "$testDir/phpunit/unit/includes/Settings/Config/ConfigSinkTestTrait.php",
 
 	# tests/phpunit/unit/includes/session
-	'MediaWiki\Session\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",
+	'MediaWiki\Tests\Session\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",
 
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",

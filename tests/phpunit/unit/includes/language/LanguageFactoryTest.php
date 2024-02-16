@@ -15,7 +15,7 @@ use MediaWikiUnitTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
- * @coversDefaultClass MediaWiki\Languages\LanguageFactory
+ * @coversDefaultClass \MediaWiki\Languages\LanguageFactory
  */
 class LanguageFactoryTest extends MediaWikiUnitTestCase {
 	private function createFactory() {

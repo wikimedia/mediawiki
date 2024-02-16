@@ -5,7 +5,7 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
- * @coversDefaultClass MediaWiki\Languages\LanguageFactory
+ * @coversDefaultClass \MediaWiki\Languages\LanguageFactory
  */
 class LanguageFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 	private function createFactory() {

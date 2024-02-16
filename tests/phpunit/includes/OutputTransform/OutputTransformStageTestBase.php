@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\OutputTransform;
+namespace MediaWiki\Tests\OutputTransform;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWikiIntegrationTestCase;
 
 abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {

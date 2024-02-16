@@ -1,8 +1,10 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
 use InvalidArgumentException;
+use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Auth\ConfirmLinkAuthenticationRequest;
 
 /**
  * @group AuthManager
