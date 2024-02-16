@@ -53,6 +53,9 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	checkboxShift( $content.find( 'input[type="checkbox"]:not(.noshiftselect)' ) );
 } );
 
+// Add toolbox portlet to toggle all collapsibles if there are any
+require( './toggleAllCollapsibles.js' );
+
 // Handle elements outside the wikipage content
 $( function () {
 	/**
