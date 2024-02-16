@@ -24,6 +24,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
@@ -2250,6 +2251,39 @@ abstract class UploadBase {
 	public static function setSessionStatus( UserIdentity $user, $statusKey, $value ) {
 		$store = self::getUploadSessionStore();
 		$key = self::getUploadSessionKey( $store, $user, $statusKey );
+		$logger = LoggerFactory::getInstance( 'upload' );
+
+		if ( is_array( $value ) && ( $value['result'] ?? '' ) === 'Failure' ) {
+			$logger->info( 'Upload session {key} for {user} set to failure {status} at {stage}',
+				[
+					'result' => $value['result'] ?? '',
+					'stage' => $value['stage'] ?? 'unknown',
+					'user' => $user->getName(),
+					'status' => (string)( $value['status'] ?? '-' ),
+					'filekey' => $value['filekey'] ?? '',
+					'key' => $statusKey
+				]
+			);
+		} elseif ( is_array( $value ) ) {
+			$logger->debug( 'Upload session {key} for {user} changed {status} at {stage}',
+				[
+					'result' => $value['result'] ?? '',
+					'stage' => $value['stage'] ?? 'unknown',
+					'user' => $user->getName(),
+					'status' => (string)( $value['status'] ?? '-' ),
+					'filekey' => $value['filekey'] ?? '',
+					'key' => $statusKey
+				]
+			);
+		} else {
+			$logger->debug( "Upload session {key} deleted for {user}",
+				[
+					'value' => $value,
+					'key' => $statusKey,
+					'user' => $user->getName()
+				]
+			);
+		}
 
 		if ( $value === false ) {
 			$store->delete( $key );

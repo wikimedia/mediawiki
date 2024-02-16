@@ -5,6 +5,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
+use Psr\Log\LoggerInterface;
 
 /**
  * Backend for uploading files from chunks.
@@ -47,6 +48,8 @@ class UploadFromChunks extends UploadFromFile {
 	protected $mFileKey;
 	protected $mVirtualTempPath;
 
+	private LoggerInterface $logger;
+
 	/** @noinspection PhpMissingParentConstructorInspection */
 
 	/**
@@ -71,6 +74,8 @@ class UploadFromChunks extends UploadFromFile {
 			wfDebug( __METHOD__ . " creating new UploadFromChunks instance for " . $user->getId() );
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
+
+		$this->logger = LoggerFactory::getInstance( 'upload' );
 	}
 
 	/**
@@ -139,8 +144,14 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	public function concatenateChunks() {
 		$chunkIndex = $this->getChunkIndex();
-		wfDebug( __METHOD__ . " concatenate {$this->mChunkIndex} chunks:" .
-			$this->getOffset() . ' inx:' . $chunkIndex );
+		$this->logger->debug(
+			__METHOD__ . ' concatenate {totalChunks} chunks: {offset} inx: {curIndex}',
+			[
+				'offset' => $this->getOffset(),
+				'totalChunks' => $this->mChunkIndex,
+				'curIndex' => $chunkIndex,
+			]
+		);
 
 		// Concatenate all the chunks to mVirtualTempPath
 		$fileList = [];
@@ -158,6 +169,8 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $tmpFile ) {
 			// keep alive with $this
 			$tmpPath = $tmpFile->bind( $this )->getPath();
+		} else {
+			$this->logger->warning( "Error getting tmp file" );
 		}
 
 		// Concatenate the chunks at the temp file
@@ -182,7 +195,7 @@ class UploadFromChunks extends UploadFromFile {
 
 		$ret = $this->verifyUpload();
 		if ( $ret['status'] !== UploadBase::OK ) {
-			wfDebugLog( 'fileconcatenate', "Verification failed for chunked upload" );
+			$this->logger->info( "Verification failed for chunked upload", [ 'user' => $this->user->getName() ] );
 			$status->fatal( $this->getVerificationErrorCode( $ret['status'] ) );
 
 			return $status;
@@ -196,11 +209,26 @@ class UploadFromChunks extends UploadFromFile {
 		$error = $this->runUploadStashFileHook( $this->user );
 		if ( $error ) {
 			$status->fatal( ...$error );
+			$this->logger->info( "Aborting stash upload due to hook - {status}",
+				[
+					'status' => (string)$status,
+					'user' => $this->user->getName(),
+					'filekey' => $this->mFileKey
+				]
+			);
 			return $status;
 		}
 		try {
 			$this->mStashFile = parent::doStashFile( $this->user );
 		} catch ( UploadStashException $e ) {
+			$this->logger->warning( "Could not stash file for {user} because {error} {msg}",
+				[
+					'user' => $this->user->getName(),
+					'error' => get_class( $e ),
+					'msg' => $e->getMessage(),
+					'filekey' => $this->mFileKey
+				]
+			);
 			$status->fatal( 'uploadstash-exception', get_class( $e ), $e->getMessage() );
 			return $status;
 		}
@@ -253,6 +281,15 @@ class UploadFromChunks extends UploadFromFile {
 					$this->verifyChunk();
 					$this->mTempPath = $oldTemp;
 				} catch ( UploadChunkVerificationException $e ) {
+					$this->logger->info( "Error verifying upload chunk {msg}",
+						[
+							'user' => $this->user->getName(),
+							'msg' => $e->getMessage(),
+							'chunkIndex' => $this->mChunkIndex,
+							'filekey' => $this->mFileKey
+						]
+					);
+
 					return Status::newFatal( $e->msg );
 				}
 				$status = $this->outputChunk( $chunkPath );
@@ -274,8 +311,14 @@ class UploadFromChunks extends UploadFromFile {
 	 * Update the chunk db table with the current status:
 	 */
 	private function updateChunkStatus() {
-		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
-			$this->getOffset() . ' inx:' . $this->getChunkIndex() );
+		$this->logger->info( "update chunk status for {filekey} offset: {offset} inx: {inx}",
+			[
+				'offset' => $this->getOffset(),
+				'inx' => $this->getChunkIndex(),
+				'filekey' => $this->mFileKey,
+				'user' => $this->user->getName()
+			]
+		);
 
 		$dbw = $this->repo->getPrimaryDB();
 		$dbw->newUpdateQueryBuilder()
@@ -395,7 +438,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @return array
 	 */
 	private function logFileBackendStatus( Status $status, string $logMessage, array $context = [] ): array {
-		$logger = LoggerFactory::getInstance( 'upload' );
+		$logger = $this->logger;
 		$errorToThrow = null;
 		$warningToThrow = null;
 
@@ -407,6 +450,7 @@ class UploadFromChunks extends UploadFromFile {
 			// The message arguments often contains the name of the failing datacenter or file names
 			// and should not show up in aggregated stats, add to context
 			$context['details'] = implode( '; ', $errorItem['params'] );
+			$context['user'] = $this->user->getName();
 
 			if ( $errorItem['type'] === 'error' ) {
 				// Use the first error of the list for the exception text
