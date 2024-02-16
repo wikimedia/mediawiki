@@ -37,7 +37,7 @@
 		"guzzlehttp/guzzle": "7.7.1",
 		"justinrainbow/json-schema": "5.2.13",
 		"liuggio/statsd-php-client": "1.0.18",
-		"mck89/peast": "1.16.0",
+		"mck89/peast": "1.16.1",
 		"monolog/monolog": "2.9.2",
 		"oojs/oojs-ui": "0.49.0",
 		"pear/mail": "1.6.0",
