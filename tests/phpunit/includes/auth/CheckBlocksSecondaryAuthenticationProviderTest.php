@@ -12,6 +12,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -20,7 +21,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider
  */
-class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+class CheckBlocksSecondaryAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	use AuthenticationProviderTestTrait;
 
 	public function testConstructor() {

@@ -18,6 +18,7 @@ use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
+use MediaWikiIntegrationTestCase;
 use PasswordFactory;
 use StatusValue;
 use Wikimedia\ScopedCallback;
@@ -30,7 +31,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider
  */
-class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	use AuthenticationProviderTestTrait;
 	use DummyServicesTrait;
 
@@ -194,7 +195,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [
-				'user_newpassword' => \PasswordFactory::newInvalidPassword()->toString(),
+				'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
 				'user_newpass_time' => null,
 			] )
 			->where( [ 'user_id' => $user->getId() ] )
@@ -222,7 +223,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [
-				'user_newpassword' => \PasswordFactory::newInvalidPassword()->toString(),
+				'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
 				'user_newpass_time' => null,
 			] )
 			->where( [ 'user_id' => $user->getId() ] )
@@ -407,12 +408,12 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	 * @param callable $usernameGetter Function that takes the username of a sysop user and returns the username to
 	 *  use for testing.
 	 * @param Status $validity Result of the password validity check
-	 * @param \StatusValue $expect1 Expected result with $checkData = false
-	 * @param \StatusValue $expect2 Expected result with $checkData = true
+	 * @param StatusValue $expect1 Expected result with $checkData = false
+	 * @param StatusValue $expect2 Expected result with $checkData = true
 	 */
 	public function testProviderAllowsAuthenticationDataChange( $type, callable $usernameGetter,
 		Status $validity,
-		\StatusValue $expect1, \StatusValue $expect2
+		StatusValue $expect1, StatusValue $expect2
 	) {
 		$user = $usernameGetter( $this->getTestSysop()->getUserIdentity()->getName() );
 		if ( $type === PasswordAuthenticationRequest::class ||
@@ -433,7 +434,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	}
 
 	public static function provideProviderAllowsAuthenticationDataChange() {
-		$err = \StatusValue::newGood();
+		$err = StatusValue::newGood();
 		$err->error( 'arbitrary-warning' );
 
 		return [
@@ -626,13 +627,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-emaildisabled' ), $status );
+		$this->assertEquals( StatusValue::newFatal( 'passwordreset-emaildisabled' ), $status );
 
 		$provider = $this->getProvider( [
 			'emailEnabled' => true, 'passwordReminderResendTime' => 10
 		] );
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( \StatusValue::newFatal( 'throttled-mailpassword', 10 ), $status );
+		$this->assertEquals( StatusValue::newFatal( 'throttled-mailpassword', 10 ), $status );
 
 		$provider = $this->getProvider( [
 			'emailEnabled' => true, 'passwordReminderResendTime' => 3
@@ -653,25 +654,25 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$req->caller = null;
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-nocaller' ), $status );
+		$this->assertEquals( StatusValue::newFatal( 'passwordreset-nocaller' ), $status );
 
 		$req->caller = '127.0.0.256';
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-nosuchcaller', '127.0.0.256' ),
+		$this->assertEquals( StatusValue::newFatal( 'passwordreset-nosuchcaller', '127.0.0.256' ),
 			$status );
 
 		$req->caller = '<Invalid>';
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-nosuchcaller', '<Invalid>' ),
+		$this->assertEquals( StatusValue::newFatal( 'passwordreset-nosuchcaller', '<Invalid>' ),
 			$status );
 
 		$req->caller = '127.0.0.1';
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( \StatusValue::newGood(), $status );
+		$this->assertEquals( StatusValue::newGood(), $status );
 
 		$req->caller = $user->getName();
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( \StatusValue::newGood(), $status );
+		$this->assertEquals( StatusValue::newGood(), $status );
 
 		$mailed = false;
 		$resetMailer = $this->hookMailer( function ( $headers, $to, $from, $subject, $body )
@@ -701,19 +702,19 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$provider = $this->getProvider();
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testForAccountCreation( $user, $user, [] ),
 			'No password request'
 		);
 
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testForAccountCreation( $user, $user, $reqs ),
 			'Password request, validated'
 		);
 
 		$this->validity->error( 'arbitrary warning' );
-		$expect = \StatusValue::newGood();
+		$expect = StatusValue::newGood();
 		$expect->error( 'arbitrary warning' );
 		$this->assertEquals(
 			$expect,
@@ -794,15 +795,15 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
-		$this->assertEquals( \StatusValue::newFatal( 'emaildisabled' ), $status );
+		$this->assertEquals( StatusValue::newFatal( 'emaildisabled' ), $status );
 
 		$provider = $this->getProvider( [ 'emailEnabled' => true ] );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
-		$this->assertEquals( \StatusValue::newFatal( 'noemailcreate' ), $status );
+		$this->assertEquals( StatusValue::newFatal( 'noemailcreate' ), $status );
 
 		$user->setEmail( 'test@localhost.localdomain' );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
-		$this->assertEquals( \StatusValue::newGood(), $status );
+		$this->assertEquals( StatusValue::newGood(), $status );
 
 		$mailed = false;
 		$resetMailer = $this->hookMailer( function ( $headers, $to, $from, $subject, $body )

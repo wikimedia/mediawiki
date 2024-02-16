@@ -2,19 +2,24 @@
 
 namespace MediaWiki\Tests\Auth;
 
+use Exception;
+use InvalidArgumentException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWikiUnitTestCase;
+use Message;
 
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\AuthenticationResponse
  */
-class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
+class AuthenticationResponseTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideConstructors
+	 *
 	 * @param string $constructor
 	 * @param array $args
-	 * @param array|\Exception $expect
+	 * @param array|Exception $expect
 	 */
 	public function testConstructors( $constructor, $args, $expect ) {
 		if ( is_array( $expect ) ) {
@@ -29,7 +34,7 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 			try {
 				AuthenticationResponse::$constructor( ...$args );
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( \Exception $ex ) {
+			} catch ( Exception $ex ) {
 				$this->assertEquals( $expect, $ex );
 			}
 		}
@@ -37,7 +42,7 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 
 	public function provideConstructors() {
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$msg = new \Message( 'mainpage' );
+		$msg = new Message( 'mainpage' );
 
 		return [
 			[ 'newPass', [], [
@@ -89,7 +94,7 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 				'messageType' => 'error',
 			] ],
 			[ 'newUI', [ [], $msg ],
-				new \InvalidArgumentException( '$reqs may not be empty' )
+				new InvalidArgumentException( '$reqs may not be empty' )
 			],
 
 			[ 'newRedirect', [ [ $req ], 'http://example.org/redir' ], [
@@ -108,7 +113,7 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 				]
 			],
 			[ 'newRedirect', [ [], 'http://example.org/redir' ],
-				new \InvalidArgumentException( '$reqs may not be empty' )
+				new InvalidArgumentException( '$reqs may not be empty' )
 			],
 		];
 	}
