@@ -7,6 +7,7 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use ParserOptions;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Mocks\MockEnv;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -35,9 +36,9 @@ abstract class ContentDOMTransformStage implements OutputTransformStage {
 			$doc = DOMUtils::parseHTML( $po->getContentHolderText() );
 			PageBundle::apply( $doc, $pb );
 			DOMDataUtils::prepareDoc( $doc );
-			DOMDataUtils::visitAndLoadDataAttribs(
-				DOMCompat::getBody( $doc )
-			);
+			$body = DOMCompat::getBody( $doc );
+			'@phan-var Element $body'; // assert non-null
+			DOMDataUtils::visitAndLoadDataAttribs( $body );
 		} else {
 			$doc = ContentUtils::createAndLoadDocument(
 				$po->getContentHolderText(),
@@ -47,9 +48,11 @@ abstract class ContentDOMTransformStage implements OutputTransformStage {
 		$doc = $this->transformDOM( $doc, $po, $popts, $options );
 
 		// TODO will use HTMLHolder in the future
+		$body = DOMCompat::getBody( $doc );
+		'@phan-var Element $body'; // assert non-null
 		if ( $hasPageBundle ) {
 			DOMDataUtils::visitAndStoreDataAttribs(
-				DOMCompat::getBody( $doc ),
+				$body,
 				[
 					'storeInPageBundle' => true,
 					'env' => new MockEnv( [] ),
@@ -57,11 +60,11 @@ abstract class ContentDOMTransformStage implements OutputTransformStage {
 			);
 			$pb = DOMDataUtils::getPageBundle( $doc );
 			PageBundleParserOutputConverter::applyPageBundleDataToParserOutput( $pb, $po );
-			$text = ContentUtils::toXML( DOMCompat::getBody( $doc ), [
+			$text = ContentUtils::toXML( $body, [
 				'innerXML' => true,
 			] );
 		} else {
-			$text = ContentUtils::ppToXML( DOMCompat::getBody( $doc ), [
+			$text = ContentUtils::ppToXML( $body, [
 				'innerXML' => true,
 			] );
 		}

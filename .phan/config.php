@@ -147,6 +147,15 @@ $cfg['exclude_analysis_directory_list'] = [
 // should not be used. However, that would have unwanted side effects such as being unable to test
 // taint-check (T321806).
 $cfg['enable_class_alias_support'] = true;
+// Exclude Parsoid's src/DOM in favor of .phan/stubs/DomImpl.php
+$cfg['exclude_file_list'] = array_merge(
+	$cfg['exclude_file_list'],
+	array_map( fn ( $f ) => "vendor/wikimedia/parsoid/src/DOM/{$f}.php", [
+		'Attr', 'CharacterData', 'Comment', 'Document', 'DocumentFragment',
+		'DocumentType', 'Element', 'Node', 'ProcessingInstruction', 'Text',
+	] )
+);
+$cfg['file_list'][] = '.phan/stubs/DomImpl.php';
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
 // @todo It'd be great if we could just make phan read these from config-schema.php, to avoid

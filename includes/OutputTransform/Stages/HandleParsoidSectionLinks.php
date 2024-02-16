@@ -1,5 +1,8 @@
 <?php
-// Suppress UnusedPluginSuppression because Phan on PHP 7.4 and PHP 8.1 need different suppressions
+// Suppress UnusedPluginSuppression because Phan on PHP 8.1 needs more
+// suppressions than PHP 7.x due to tighter types on Element::insertBefore()
+// and Element::appendChild(): see comments marked PHP81 below.  The
+// Unused*Suppression can be removed once MW moves to >= PHP 8.1.
 // @phan-file-suppress UnusedPluginSuppression,UnusedPluginFileSuppression
 
 namespace MediaWiki\OutputTransform\Stages;
@@ -13,7 +16,6 @@ use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Skin;
 use Wikimedia\Parsoid\DOM\Document;
-use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
@@ -79,7 +81,6 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				continue;
 			}
 			$div = $dom->createElement( 'div' );
-			'@phan-var Element $div'; // assert Element
 			$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
 			$html = $skin->doEditSectionLink(
 				$editPage, $section->index, $h->textContent,
@@ -99,7 +100,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				// inserted immediately following the <h> tag
 				$ref = $h->nextSibling;
 				while ( $div->firstChild !== null ) {
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal firstChild is non-null (PHP81)
 					$maybeWrapper->insertBefore( $div->firstChild, $ref );
 				}
 				$div = $maybeWrapper; // for use below
@@ -118,7 +119,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				// "doEditSectionLink" returned nothing, for instance), but
 				// phan incorrectly thinks the second argument must be non-null.
 				$divFirstChild = $div->firstChild;
-				'@phan-var \DOMNode $divFirstChild'; // asserting non-null
+				'@phan-var \DOMNode $divFirstChild'; // asserting non-null (PHP81)
 				$div->insertBefore( $h, $divFirstChild );
 			}
 			// Create collapsible section wrapper if requested.
