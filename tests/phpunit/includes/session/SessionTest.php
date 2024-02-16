@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Session;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
+use TestLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -61,7 +62,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSecrets() {
-		$logger = new \TestLogger;
+		$logger = new TestLogger;
 		$session = TestUtils::getDummySession( null, -1, $logger );
 
 		// Simple defaulting

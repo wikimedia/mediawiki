@@ -8,6 +8,9 @@ use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionManager;
 use PHPUnit\Framework\Assert;
 use Psr\Log\LoggerInterface;
+use ReflectionClass;
+use TestLogger;
+use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -18,7 +21,7 @@ class TestUtils {
 	/**
 	 * Override the singleton for unit testing
 	 * @param SessionManager|null $manager
-	 * @return \Wikimedia\ScopedCallback|null
+	 * @return ScopedCallback|null
 	 */
 	public static function setSessionManagerSingleton( SessionManager $manager = null ) {
 		session_write_close();
@@ -40,7 +43,7 @@ class TestUtils {
 			PHPSessionHandler::install( $manager );
 		}
 
-		return new \Wikimedia\ScopedCallback( static function () use ( $reset, $staticAccess, $oldInstance ) {
+		return new ScopedCallback( static function () use ( $reset, $staticAccess, $oldInstance ) {
 			foreach ( $reset as [ $property, $oldValue ] ) {
 				$staticAccess->$property = $oldValue;
 			}
@@ -57,7 +60,7 @@ class TestUtils {
 	 *  fields necessary.
 	 */
 	public static function getDummySessionBackend() {
-		$rc = new \ReflectionClass( SessionBackend::class );
+		$rc = new ReflectionClass( SessionBackend::class );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
 			Assert::markTestSkipped(
 				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
@@ -65,7 +68,7 @@ class TestUtils {
 		}
 
 		$ret = $rc->newInstanceWithoutConstructor();
-		TestingAccessWrapper::newFromObject( $ret )->logger = new \TestLogger;
+		TestingAccessWrapper::newFromObject( $ret )->logger = new TestLogger;
 		return $ret;
 	}
 
@@ -79,13 +82,13 @@ class TestUtils {
 	 * @return Session
 	 */
 	public static function getDummySession( $backend = null, $index = -1, $logger = null ) {
-		$rc = new \ReflectionClass( Session::class );
+		$rc = new ReflectionClass( Session::class );
 
 		$session = $rc->newInstanceWithoutConstructor();
 		$priv = TestingAccessWrapper::newFromObject( $session );
 		$priv->backend = $backend ?? new DummySessionBackend();
 		$priv->index = $index;
-		$priv->logger = $logger ?? new \TestLogger();
+		$priv->logger = $logger ?? new TestLogger();
 		return $session;
 	}
 
