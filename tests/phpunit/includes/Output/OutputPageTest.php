@@ -2885,31 +2885,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 	}
 
-	public function testIsTOCEnabledBackCompat() {
-		// This tests backward compatibility: OutputPage *used* to use
-		// ParserOutput::getTOCHTML() to determine whether the TOC should
-		// be enabled, before ParserOutputFlags::SHOW_TOC was added in 1.39.
-		$op = $this->newInstance();
-		$this->assertFalse( $op->isTOCEnabled() );
-
-		$pOut1 = $this->createParserOutputStub( [
-			'getTOCHTML' => '',
-		] );
-		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertFalse( $op->isTOCEnabled() );
-
-		// Transitional: This is now a no-op and will be deleted in the next commit.
-		$pOut2 = $this->createParserOutputStub( [
-			'getTOCHTML' => 'stuff',
-		] );
-		$op->addParserOutput( $pOut2 );
-		$this->assertFalse( $op->isTOCEnabled() );
-
-		// The parser output doesn't somehow enable the TOC
-		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertFalse( $op->isTOCEnabled() );
-	}
-
 	public function testNoTOC() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );

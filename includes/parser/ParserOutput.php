@@ -223,11 +223,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mProperties = [];
 
 	/**
-	 * @var string HTML of the TOC.
-	 */
-	private $mTOCHTML = '';
-
-	/**
 	 * @var ?string Timestamp of the revision.
 	 */
 	private $mTimestamp;
@@ -741,14 +736,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @deprecated since 1.40; use ::getTOCData() instead
-	 */
-	public function getTOCHTML() {
-		wfDeprecated( __METHOD__, '1.40' );
-		return $this->mTOCHTML;
-	}
-
-	/**
 	 * @return string|null TS_MW timestamp of the revision content
 	 */
 	public function getRevisionTimestamp(): ?string {
@@ -866,19 +853,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->mIndexSet = true;
 		}
 		return $old;
-	}
-
-	/**
-	 * @internal
-	 * @deprecated since 1.40
-	 * T293513: We can remove this once we get rid of MW 1.38 and older
-	 * parsercache serialization tests since those serialized
-	 * files have artificial TOC data (which we cannot replicate
-	 * via on-demand TOC generation).
-	 */
-	public function setTOCHTML( $tochtml ) {
-		wfDeprecated( __METHOD__, '1.40' );
-		return wfSetVar( $this->mTOCHTML, $tochtml );
 	}
 
 	/**
@@ -2666,7 +2640,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'Warnings' => $this->mWarnings,
 			'Sections' => $this->getSections(),
 			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
-			'TOCHTML' => $this->mTOCHTML,
 			'Timestamp' => $this->mTimestamp,
 			'EnableOOUI' => $this->mEnableOOUI,
 			'IndexPolicy' => $this->getIndexPolicy(),
@@ -2771,7 +2744,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 		}
 		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
-		$this->mTOCHTML = $jsonData['TOCHTML'];
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
 		$this->setIndexPolicy( $jsonData['IndexPolicy'] );
