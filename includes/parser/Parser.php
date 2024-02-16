@@ -341,7 +341,7 @@ class Parser {
 	 * Shortcut alias, see Parser::setOutputType()
 	 * @deprecated since 1.35
 	 */
-	public $ot;
+	private array $ot;
 	/** ID to display in {{REVISIONID}} tags */
 	private ?int $mRevisionId = null;
 	/** The timestamp of the specified revision ID */
@@ -485,6 +485,8 @@ class Parser {
 		UserNameUtils $userNameUtils
 	) {
 		$this->deprecateDynamicPropertiesAccess( '1.42', __CLASS__ );
+		$this->deprecatePublicProperty( 'ot', '1.35', __CLASS__ );
+
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
 			// removed in 1.36; use a ParserFactory instead.
