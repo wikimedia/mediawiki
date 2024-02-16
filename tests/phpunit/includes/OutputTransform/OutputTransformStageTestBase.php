@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\OutputTransform;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\OutputTransformStage;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 
 abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {
@@ -48,6 +49,14 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 	 */
 	public function testTransform( $parserOutput, $parserOptions, $options, $expected ) {
 		$stage = $this->createStage();
-		$this->assertEquals( $expected, $stage->transform( $parserOutput, $parserOptions, $options ) );
+		$result = $stage->transform( $parserOutput, $parserOptions, $options );
+		// If this has Parsoid internal metadata, clear it in both the expected
+		// value and the result; these are internal implementation details
+		// that shouldn't be hardwired into tests.
+		if ( PageBundleParserOutputConverter::hasPageBundle( $result ) ) {
+			$key = PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY;
+			$expected->setExtensionData( $key, $result->getExtensionData( $key ) );
+		}
+		$this->assertEquals( $expected,  $result );
 	}
 }

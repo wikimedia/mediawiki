@@ -1,4 +1,6 @@
 <?php
+// Suppress UnusedPluginSuppression because Phan on PHP 7.4 and PHP 8.1 need different suppressions
+// @phan-file-suppress UnusedPluginSuppression,UnusedPluginFileSuppression
 
 namespace MediaWiki\OutputTransform\Stages;
 
@@ -60,6 +62,11 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		$sections = ( $toc !== null ) ? $toc->getSections() : [];
 		// use the TOC data to extract the headings:
 		foreach ( $sections as $section ) {
+			$fromTitle = $section->fromTitle;
+			if ( $fromTitle === null ) {
+				// T353489: don't wrap bare <h> tags
+				continue;
+			}
 			$h = $dom->getElementById( $section->anchor );
 			if ( $h === null ) {
 				$this->logger->error(
@@ -70,27 +77,46 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			}
 			$div = $dom->createElement( 'div' );
 			'@phan-var Element $div'; // assert Element
-			$div->setAttribute(
-				'class', 'mw-heading mw-heading' . $section->hLevel
+			$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
+			$html = $skin->doEditSectionLink(
+				$editPage, $section->index, $h->textContent,
+				$skin->getLanguage()
 			);
-			$fromTitle = $section->fromTitle;
-			if ( $fromTitle !== null ) {
-				$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
-				$html = $skin->doEditSectionLink(
-					$editPage, $section->index, $h->textContent,
-					$skin->getLanguage()
+			DOMCompat::setInnerHTML( $div, $html );
+
+			// Reuse existing wrapper if present.
+			$maybeWrapper = $h->parentNode;
+			'@phan-var \Wikimedia\Parsoid\DOM\Element $maybeWrapper';
+			if (
+				DOMCompat::nodeName( $maybeWrapper ) === 'div' &&
+				DOMCompat::getClassList( $maybeWrapper )->contains( 'mw-heading' )
+			) {
+				// Transfer section edit link children to existing wrapper
+				// All contents of the div (the section edit link) will be
+				// inserted immediately following the <h> tag
+				$ref = $h->nextSibling;
+				while ( $div->firstChild !== null ) {
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
+					$maybeWrapper->insertBefore( $div->firstChild, $ref );
+				}
+			} else {
+				// Move <hX> to new wrapper: the div contents are currently
+				// the section edit link. We first replace the h with the
+				// div, then insert the <h> as the first child of the div
+				// so the section edit link is immediately following the <h>.
+				$div->setAttribute(
+					'class', 'mw-heading mw-heading' . $section->hLevel
 				);
-				DOMCompat::setInnerHTML( $div, $html );
+				$h->parentNode->replaceChild( $div, $h );
+				// Work around bug in phan (https://github.com/phan/phan/pull/4837)
+				// by asserting that $div->firstChild is non-null here.  Actually,
+				// ::insertBefore will work fine if $div->firstChild is null (if
+				// "doEditSectionLink" returned nothing, for instance), but
+				// phan incorrectly thinks the second argument must be non-null.
+				$divFirstChild = $div->firstChild;
+				'@phan-var \DOMNode $divFirstChild'; // asserting non-null
+				$div->insertBefore( $h, $divFirstChild );
 			}
-			$h->parentNode->insertBefore( $div, $h );
-			// Work around bug in phan (https://github.com/phan/phan/pull/4837)
-			// by asserting that $div->firstChild is non-null here.  Actually,
-			// ::insertBefore will work fine if $div->firstChild is null (if
-			// "doEditSectionLink" returned nothing, for instance), but
-			// phan incorrectly thinks the second argument must be non-null.
-			$divFirstChild = $div->firstChild;
-			'@phan-var \DOMNode $divFirstChild'; // asserting non-null
-			$div->insertBefore( $h, $divFirstChild );
 		}
 		return $dom;
 	}
