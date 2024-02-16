@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\DataProviderTestSuite;
+use PHPUnit\Framework\Error\Error;
+
 /**
  * AutoLoader for the testing suite.
  *
@@ -128,7 +132,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/diff
 	'CustomDifferenceEngine' => "$testDir/phpunit/includes/diff/CustomDifferenceEngine.php",
-	'MediaWiki\Tests\Diff\TextDiffer\TextDifferData' => "$testDir/phpunit/includes/diff/TextDiffer/TextDifferData.php",
+	'MediaWiki\\Tests\\Diff\\TextDiffer\\TextDifferData' => "$testDir/phpunit/includes/diff/TextDiffer/TextDifferData.php",
 
 	# tests/phpunit/includes/externalstore
 	'ExternalStoreForTesting' => "$testDir/phpunit/includes/externalstore/ExternalStoreForTesting.php",
@@ -137,16 +141,16 @@ $wgAutoloadClasses += [
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
 	# tests/phpunit/includes/OutputTransform
-	'MediaWiki\Tests\OutputTransform\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
-	'MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
+	'MediaWiki\\Tests\\OutputTransform\\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
+	'MediaWiki\\Tests\\OutputTransform\\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
 
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
-	'MediaWiki\Tests\Parser\ParserCacheSerializationTestCases' =>
+	'MediaWiki\\Tests\\Parser\\ParserCacheSerializationTestCases' =>
 		"$testDir/phpunit/includes/parser/ParserCacheSerializationTestCases.php",
-	'Wikimedia\Tests\SerializationTestTrait' =>
+	'Wikimedia\\Tests\\SerializationTestTrait' =>
 		"$testDir/phpunit/includes/libs/serialization/SerializationTestTrait.php",
-	'Wikimedia\Tests\SerializationTestUtils' =>
+	'Wikimedia\\Tests\\SerializationTestUtils' =>
 		"$testDir/phpunit/includes/libs/serialization/SerializationTestUtils.php",
 
 	# tests/phpunit/includes/poolcounter
@@ -188,21 +192,21 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/libs
 	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
-	'Wikimedia\Diff\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
-	'Wikimedia\ParamValidator\TypeDef\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
-	'Wikimedia\ParamValidator\TypeDef\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
+	'Wikimedia\\Diff\\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
+	'Wikimedia\\ParamValidator\\TypeDef\\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
+	'Wikimedia\\ParamValidator\\TypeDef\\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
 
 	# tests/phpunit/includes/ParamValidator
-	'MediaWiki\Tests\ParamValidator\TypeDef\TypeDefIntegrationTestCase' => "$testDir/phpunit/includes/ParamValidator/TypeDef/TypeDefIntegrationTestCase.php",
+	'MediaWiki\\Tests\\ParamValidator\\TypeDef\\TypeDefIntegrationTestCase' => "$testDir/phpunit/includes/ParamValidator/TypeDef/TypeDefIntegrationTestCase.php",
 
 	# tests/phpunit/unit/includes/ParamValidator
-	'MediaWiki\Tests\ParamValidator\TypeDef\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
+	'MediaWiki\\Tests\\ParamValidator\\TypeDef\\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
 
 	# tests/phpunit/maintenance
-	'MediaWiki\Tests\Maintenance\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
-	'MediaWiki\Tests\Maintenance\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
-	'MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase' => "$testDir/phpunit/maintenance/MaintenanceBaseTestCase.php",
-	'MediaWiki\Tests\Maintenance\PageDumpTestDataTrait' => "$testDir/phpunit/maintenance/PageDumpTestDataTrait.php",
+	'MediaWiki\\Tests\\Maintenance\\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
+	'MediaWiki\\Tests\\Maintenance\\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
+	'MediaWiki\\Tests\\Maintenance\\MaintenanceBaseTestCase' => "$testDir/phpunit/maintenance/MaintenanceBaseTestCase.php",
+	'MediaWiki\\Tests\\Maintenance\\PageDumpTestDataTrait' => "$testDir/phpunit/maintenance/PageDumpTestDataTrait.php",
 
 	# tests/phpunit/media
 	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
@@ -237,16 +241,16 @@ $wgAutoloadClasses += [
 	'NullGuzzleClient' => "$testDir/phpunit/mocks/NullGuzzleClient.php",
 	'NullHttpRequestFactory' => "$testDir/phpunit/mocks/NullHttpRequestFactory.php",
 	'NullMultiHttpClient' => "$testDir/phpunit/mocks/NullMultiHttpClient.php",
-	'MediaWiki\Tests\MockEnvironment' => "$testDir/phpunit/mocks/MockEnvironment.php",
+	'MediaWiki\\Tests\\MockEnvironment' => "$testDir/phpunit/mocks/MockEnvironment.php",
 
 	# tests/phpunit/unit/includes
 	'Wikimedia\\Reflection\\GhostFieldTestClass' => "$testDir/phpunit/mocks/GhostFieldTestClass.php",
 
 	# tests/phpunit/unit/includes/auth
-	'MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/auth/AuthenticationProviderTestTrait.php",
+	'MediaWiki\\Tests\\Unit\\Auth\\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/auth/AuthenticationProviderTestTrait.php",
 
 	# tests/phpunit/unit/includes/CommentFormatter
-	'MediaWiki\Tests\Unit\CommentFormatter\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",
+	'MediaWiki\\Tests\\Unit\\CommentFormatter\\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",
 
 	# tests/phpunit/unit/includes/editpage/Constraint and tests/phpunit/integration/includes/editpage/Constraint
 	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/editpage/Constraint/EditConstraintTestTrait.php",
@@ -255,7 +259,7 @@ $wgAutoloadClasses += [
 	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/filebackend/FileBackendGroupTestTrait.php",
 
 	# tests/phpunit/unit/includes/HookContainer
-	'MediaWiki\Tests\HookContainer\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
+	'MediaWiki\\Tests\\HookContainer\\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
 
 	# tests/phpunit/unit/includes/json
 	'MediaWiki\\Tests\\Json\\JsonUnserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonUnserializableSuperClass.php",
@@ -281,42 +285,42 @@ $wgAutoloadClasses += [
 	'Pbkdf2PasswordTestCase' => "$testDir/phpunit/unit/includes/password/Pbkdf2PasswordTestCase.php",
 
 	# tests/phpunit/integration/includes
-	'MediaWiki\Tests\ExtensionJsonTestBase' => "$testDir/phpunit/integration/includes/ExtensionJsonTestBase.php",
-	'MediaWiki\Tests\ExtensionServicesTestBase' => "$testDir/phpunit/integration/includes/ExtensionServicesTestBase.php",
+	'MediaWiki\\Tests\\ExtensionJsonTestBase' => "$testDir/phpunit/integration/includes/ExtensionJsonTestBase.php",
+	'MediaWiki\\Tests\\ExtensionServicesTestBase' => "$testDir/phpunit/integration/includes/ExtensionServicesTestBase.php",
 
 	# tests/phpunit/integration/includes/user
-	'MediaWiki\Tests\User\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
+	'MediaWiki\\Tests\\User\\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
 
 	# tests/phpunit/integration/includes/user/TempUser
-	'MediaWiki\Tests\User\TempUser\TempUserTestTrait' => "$testDir/phpunit/integration/includes/user/TempUser/TempUserTestTrait.php",
+	'MediaWiki\\Tests\\User\\TempUser\\TempUserTestTrait' => "$testDir/phpunit/integration/includes/user/TempUser/TempUserTestTrait.php",
 
 	# tests/phpunit/structure
-	'MediaWiki\Tests\Structure\BundleSizeTest' => "$testDir/phpunit/structure/BundleSizeTestBase.php",
-	'MediaWiki\Tests\Structure\BundleSizeTestBase' => "$testDir/phpunit/structure/BundleSizeTestBase.php",
+	'MediaWiki\\Tests\\Structure\\BundleSizeTest' => "$testDir/phpunit/structure/BundleSizeTestBase.php",
+	'MediaWiki\\Tests\\Structure\\BundleSizeTestBase' => "$testDir/phpunit/structure/BundleSizeTestBase.php",
 
 	# tests/phpunit/unit/includes/Rest
-	'MediaWiki\Tests\Rest\RestTestTrait' => "$testDir/phpunit/unit/includes/Rest/RestTestTrait.php",
-	'MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait' => "$testDir/phpunit/unit/includes/Rest/SessionHelperTestTrait.php",
+	'MediaWiki\\Tests\\Rest\\RestTestTrait' => "$testDir/phpunit/unit/includes/Rest/RestTestTrait.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\SessionHelperTestTrait' => "$testDir/phpunit/unit/includes/Rest/SessionHelperTestTrait.php",
 
 	# tests/phpunit/unit/includes/Rest/Handler
-	'MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait' => "$testDir/phpunit/mocks/permissions/MockAuthorityTrait.php",
-	'MediaWiki\Tests\Rest\Handler\ActionModuleBasedHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/ActionModuleBasedHandlerTestTrait.php",
-	'MediaWiki\Tests\Rest\Handler\HTMLHandlerTestTrait' => "$testDir/phpunit/integration/includes/Rest/Handler/HTMLHandlerTestTrait.php",
-	'MediaWiki\Tests\Rest\Handler\HandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/HandlerTestTrait.php",
-	'MediaWiki\Tests\Rest\Handler\PageHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/PageHandlerTestTrait.php",
-	'MediaWiki\Tests\Rest\Handler\HelloHandler' => "$testDir/phpunit/unit/includes/Rest/Handler/HelloHandler.php",
-	'MediaWiki\Tests\Rest\Handler\MediaTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/MediaTestTrait.php",
+	'MediaWiki\\Tests\\Unit\\Permissions\\MockAuthorityTrait' => "$testDir/phpunit/mocks/permissions/MockAuthorityTrait.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\ActionModuleBasedHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/ActionModuleBasedHandlerTestTrait.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\HTMLHandlerTestTrait' => "$testDir/phpunit/integration/includes/Rest/Handler/HTMLHandlerTestTrait.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\HandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/HandlerTestTrait.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\PageHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/PageHandlerTestTrait.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\HelloHandler' => "$testDir/phpunit/unit/includes/Rest/Handler/HelloHandler.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\MediaTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/MediaTestTrait.php",
 
 	# tests/phpunit/unit/includes/Revision
-	'MediaWiki\Tests\Unit\Revision\RevisionRecordTests' => "$testDir/phpunit/unit/includes/Revision/RevisionRecordTests.php",
-	'MediaWiki\Tests\Unit\Revision\RevisionSlotsTest' => "$testDir/phpunit/unit/includes/Revision/RevisionSlotsTest.php",
-	'MediaWiki\Tests\Unit\Revision\RevisionStoreRecordTest' => "$testDir/phpunit/unit/includes/Revision/RevisionStoreRecordTest.php",
+	'MediaWiki\\Tests\\Unit\\Revision\\RevisionRecordTests' => "$testDir/phpunit/unit/includes/Revision/RevisionRecordTests.php",
+	'MediaWiki\\Tests\\Unit\\Revision\\RevisionSlotsTest' => "$testDir/phpunit/unit/includes/Revision/RevisionSlotsTest.php",
+	'MediaWiki\\Tests\\Unit\\Revision\\RevisionStoreRecordTest' => "$testDir/phpunit/unit/includes/Revision/RevisionStoreRecordTest.php",
 
 	# tests/phpunit/unit/includes/Settings/Config
-	'MediaWiki\Tests\Unit\Settings\Config\ConfigSinkTestTrait' => "$testDir/phpunit/unit/includes/Settings/Config/ConfigSinkTestTrait.php",
+	'MediaWiki\\Tests\\Unit\\Settings\\Config\\ConfigSinkTestTrait' => "$testDir/phpunit/unit/includes/Settings/Config/ConfigSinkTestTrait.php",
 
 	# tests/phpunit/unit/includes/session
-	'MediaWiki\Tests\Session\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",
+	'MediaWiki\\Tests\\Session\\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",
 
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
@@ -342,8 +346,8 @@ spl_autoload_register( static function ( $class ) {
 
 	// Classes that don't map 100%
 	$map = [
-		'PHPUnit_Framework_TestSuite_DataProvider' => 'PHPUnit\Framework\DataProviderTestSuite',
-		'PHPUnit_Framework_Error' => 'PHPUnit\Framework\Error\Error',
+		'PHPUnit_Framework_TestSuite_DataProvider' => DataProviderTestSuite::class,
+		'PHPUnit_Framework_Error' => Error::class,
 	];
 
 	$newForm = $map[$class] ?? str_replace( '_', '\\', $class );
