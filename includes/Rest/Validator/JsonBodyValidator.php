@@ -27,6 +27,10 @@ class JsonBodyValidator implements BodyValidator {
 		$this->bodyParamSettings = $bodyParamSettings;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @return array
+	 */
 	public function validateBody( RequestInterface $request ) {
 		$jsonStream = $request->getBody();
 		$status = FormatJson::parse( "$jsonStream", FormatJson::FORCE_ASSOC );

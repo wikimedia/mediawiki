@@ -60,7 +60,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideValidateBody
 	 */
-	public function testValidateBody( $settings, RequestData $requestData, $expected ) {
+	public function testValidateBody( array $settings, RequestData $requestData, array $expected ) {
 		$validator = new JsonBodyValidator( $settings );
 		$actual = $validator->validateBody( $requestData );
 		$this->assertArrayEquals( $expected, $actual, false, true );

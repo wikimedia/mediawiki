@@ -19,11 +19,14 @@ class CreationHandler extends EditHandler {
 	 * @inheritDoc
 	 */
 	protected function getTitleParameter() {
-		return $this->getValidatedBody()['title'];
+		$body = $this->getValidatedBody();
+		'@phan-var array $body';
+		return $body['title'];
 	}
 
 	/**
 	 * @inheritDoc
+	 * @return JsonBodyValidator
 	 */
 	public function getBodyValidator( $contentType ) {
 		if ( $contentType !== 'application/json' ) {
@@ -66,6 +69,7 @@ class CreationHandler extends EditHandler {
 	 */
 	protected function getActionModuleParameters() {
 		$body = $this->getValidatedBody();
+		'@phan-var array $body';
 
 		$title = $this->getTitleParameter();
 

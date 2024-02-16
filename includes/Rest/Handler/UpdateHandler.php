@@ -55,6 +55,7 @@ class UpdateHandler extends EditHandler {
 
 	/**
 	 * @inheritDoc
+	 * @return JsonBodyValidator
 	 */
 	public function getBodyValidator( $contentType ) {
 		if ( $contentType !== 'application/json' ) {
@@ -93,6 +94,7 @@ class UpdateHandler extends EditHandler {
 	 */
 	protected function getActionModuleParameters() {
 		$body = $this->getValidatedBody();
+		'@phan-var array $body';
 
 		$title = $this->getTitleParameter();
 		$baseRevId = $body['latest']['id'] ?? 0;
@@ -188,6 +190,7 @@ class UpdateHandler extends EditHandler {
 	 */
 	private function getConflictData() {
 		$body = $this->getValidatedBody();
+		'@phan-var array $body';
 		$baseRevId = $body['latest']['id'] ?? 0;
 		$title = $this->titleParser->parseTitle( $this->getValidatedParams()['title'] );
 

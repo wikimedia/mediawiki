@@ -48,7 +48,7 @@ abstract class Handler {
 	/** @var array|null */
 	private $validatedParams;
 
-	/** @var mixed */
+	/** @var mixed|null */
 	private $validatedBody;
 
 	/** @var ConditionalHeaderUtil */
@@ -212,10 +212,8 @@ abstract class Handler {
 	 * @throws HttpException On validation failure.
 	 */
 	public function validate( Validator $restValidator ) {
-		$validatedParams = $restValidator->validateParams( $this->getParamSettings() );
-		$validatedBody = $restValidator->validateBody( $this->request, $this );
-		$this->validatedParams = $validatedParams;
-		$this->validatedBody = $validatedBody;
+		$this->validatedParams = $restValidator->validateParams( $this->getParamSettings() );
+		$this->validatedBody = $restValidator->validateBody( $this->request, $this );
 		$this->postValidationSetup();
 	}
 
@@ -487,7 +485,9 @@ abstract class Handler {
 	 * @stable to override
 	 *
 	 * @param string $contentType Content type of the request.
-	 * @return BodyValidator
+	 * @return BodyValidator A {@see NullBodyValidator} in this default implementation
+	 * @throws HttpException It's possible to fail early here when e.g. $contentType is unsupported,
+	 *  or later when {@see BodyValidator::validateBody} is called
 	 */
 	public function getBodyValidator( $contentType ) {
 		// TODO: Create a JsonBodyValidator if getParamSettings() returns body params.
@@ -511,7 +511,7 @@ abstract class Handler {
 
 	/**
 	 * Fetch the validated body
-	 * @return mixed Value returned by the body validator, or null if validate() was
+	 * @return mixed|null Value returned by the body validator, or null if validate() was
 	 *  not called yet, validation failed, there was no body, or the body was form data.
 	 */
 	public function getValidatedBody() {

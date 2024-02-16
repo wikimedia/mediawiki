@@ -536,6 +536,7 @@ class Router {
 	 *
 	 * @param Handler $handler
 	 * @return ResponseInterface
+	 * @throws HttpException
 	 */
 	private function executeHandler( $handler ): ResponseInterface {
 		ProfilingContext::singleton()->init( MW_ENTRY_POINT, $handler->getPath() );
