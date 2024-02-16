@@ -307,7 +307,7 @@ class Parser {
 	 * @var ParserOptions|null
 	 * @deprecated since 1.35, use Parser::getOptions()
 	 */
-	public $mOptions;
+	private $mOptions;
 
 	# Deprecated "dynamic" properties
 	# These used to be dynamic properties added to the parser, but these
@@ -487,6 +487,7 @@ class Parser {
 		$this->deprecateDynamicPropertiesAccess( '1.42', __CLASS__ );
 		$this->deprecatePublicProperty( 'ot', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTitle', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mOptions', '1.35', __CLASS__ );
 
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
