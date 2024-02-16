@@ -2,6 +2,14 @@
  * JavaScript for Special:Watchlist
  */
 ( function () {
+	function trimStart( s ) {
+		return s.replace( /^ /, '' );
+	}
+
+	function trimEnd( s ) {
+		return s.endsWith( ' ' ) ? s.slice( 0, s.length - 1 ) : s;
+	}
+
 	$( function () {
 		var api = new mw.Api(), $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
 
@@ -138,7 +146,18 @@
 									$row.find( '.mw-changelist-line-inner-unwatched' )
 										.addBack( '.mw-enhanced-rc-nested' )
 										.removeClass( 'mw-changelist-line-inner-unwatched' );
-									$row.find( '.mw-changesList-watchlistExpiry' ).remove();
+									$row.find( '.mw-changesList-watchlistExpiry' ).each( function () {
+										// Add the missing semicolon (T266747)
+										var $expiry = $( this );
+										$expiry.next( '.mw-changeslist-separator' )
+											.addClass( 'mw-changeslist-separator--semicolon' )
+											.removeClass( 'mw-changeslist-separator' );
+										// Remove the spaces before and after the expiry icon
+										this.nextSibling.nodeValue = trimStart( this.nextSibling.nodeValue );
+										this.previousSibling.nodeValue = trimEnd( this.previousSibling.nodeValue );
+										// Remove the icon
+										$expiry.remove();
+									} );
 								} );
 
 							mw.notify(
