@@ -4,6 +4,8 @@ namespace Wikimedia\ParamValidator\Util;
 
 require_once __DIR__ . '/UploadedFileTestBase.php';
 
+use Error;
+use PHPUnit\Framework\AssertionFailedError;
 use RuntimeException;
 use TypeError;
 use Wikimedia\TestingAccessWrapper;
@@ -64,7 +66,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 	}
 
 	public function testToString_Error() {
-		if ( !class_exists( \Error::class ) ) {
+		if ( !class_exists( Error::class ) ) {
 			$this->markTestSkipped( 'No PHP Error class' );
 		}
 
@@ -75,7 +77,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 			->onlyMethods( [ 'getContents' ] )
 			->getMock();
 		$stream->method( 'getContents' )->willReturnCallback( static function () {
-			throw new \Error( 'Bogus' );
+			throw new Error( 'Bogus' );
 		} );
 		$this->assertSame( '', (string)$stream );
 	}
@@ -102,7 +104,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		// Stream operations now fail.
 		try {
 			$stream->seek( 0 );
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
@@ -160,13 +162,13 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->seek( 0 );
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 		try {
 			$stream->tell();
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
@@ -218,7 +220,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->rewind();
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
@@ -230,7 +232,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 
 		try {
 			$stream->write( 'foo' );
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
@@ -249,7 +251,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->read( 1 );
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
@@ -267,7 +269,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->getContents();
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
@@ -290,7 +292,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->getMetadata();
-		} catch ( \PHPUnit\Framework\AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError $ex ) {
 			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}

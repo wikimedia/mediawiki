@@ -2,6 +2,8 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use InvalidArgumentException;
+use UnexpectedValueException;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -133,7 +135,7 @@ class UploadDefTest extends TypeDefTestCase {
 		$callbacks = $this->getCallbacks( 'foo', [] );
 		$typeDef = $this->getInstance( $callbacks, [] );
 
-		$this->expectException( \InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( '$value must be UploadedFileInterface, got string' );
 		$typeDef->validate( 'test', 'foo', [], [] );
 	}
@@ -142,7 +144,7 @@ class UploadDefTest extends TypeDefTestCase {
 		$callbacks = $this->getCallbacks( 'foo', [] );
 		$typeDef = $this->getInstance( $callbacks, [] );
 
-		$this->expectException( \InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( '$value must be UploadedFileInterface, got NULL' );
 		$typeDef->validate( 'test', null, [], [] );
 	}
@@ -153,7 +155,7 @@ class UploadDefTest extends TypeDefTestCase {
 		$typeDef = $this->getInstance( $callbacks, [] );
 		$value = $typeDef->getValue( 'test', [], [] );
 
-		$this->expectException( \UnexpectedValueException::class );
+		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessage( 'Unrecognized PHP upload error value -43' );
 		$typeDef->validate( 'test', $value, [], [] );
 	}
@@ -164,7 +166,7 @@ class UploadDefTest extends TypeDefTestCase {
 		$typeDef = $this->getInstance( $callbacks, [] );
 		$value = $typeDef->getValue( 'test', [], [] );
 
-		$this->expectException( \UnexpectedValueException::class );
+		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessage(
 			'Unrecognized PHP upload error value -44 (UPLOAD_ERR_UPLOADDEFTEST?)'
 		);

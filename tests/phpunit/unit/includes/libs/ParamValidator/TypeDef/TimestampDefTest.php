@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use InvalidArgumentException;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -22,7 +23,7 @@ class TimestampDefTest extends TypeDefTestCase {
 		if ( $ok ) {
 			$this->assertTrue( true ); // dummy
 		} else {
-			$this->expectException( \InvalidArgumentException::class );
+			$this->expectException( InvalidArgumentException::class );
 		}
 		$this->getInstance( new SimpleCallbacks( [] ), $options );
 	}
