@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Api\ApiTestCase;
+use MockCompletionSearchEngine;
 
 /**
  * @group API

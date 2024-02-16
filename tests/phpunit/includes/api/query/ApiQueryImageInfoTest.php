@@ -1,6 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
+use ApiQueryImageInfo;
+use File;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;

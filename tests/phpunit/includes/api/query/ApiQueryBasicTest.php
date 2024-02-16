@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Api\Query;
+
+use Exception;
 use MediaWiki\Title\Title;
 
 /**

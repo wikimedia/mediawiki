@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
+use MediaWiki\Tests\Api\ApiTestCase;
 
 /**
  * @group API

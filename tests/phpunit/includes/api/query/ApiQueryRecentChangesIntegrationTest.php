@@ -1,11 +1,16 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use RecentChange;
+use WatchedItemQueryService;
 
 /**
  * @group API
@@ -412,7 +417,8 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 				[
 					'type' => 'new',
 					'oldlen' => 0,
-					'newlen' => 38,
+					// strlen( __CLASS__ ) - 2 = 64
+					'newlen' => 64,
 				],
 			],
 			$this->getItemsFromRecentChangesResult( $result )

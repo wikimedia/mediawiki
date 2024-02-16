@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiBase;
+
 class MockApi extends ApiBase {
 	public $warnings = [];
 

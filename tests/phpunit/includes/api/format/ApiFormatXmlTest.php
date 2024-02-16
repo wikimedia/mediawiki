@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Format;
+
+use ApiResult;
 use MediaWiki\Title\Title;
 
 /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 use MediaWiki\Api\ApiEntryPoint;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\MockEnvironment;

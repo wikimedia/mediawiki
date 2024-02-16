@@ -1,11 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Api\ApiTestCase;
 
 /**
  * @group API

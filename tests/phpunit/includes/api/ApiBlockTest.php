@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;

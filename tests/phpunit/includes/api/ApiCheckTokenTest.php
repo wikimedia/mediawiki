@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 use MediaWiki\Session\Token;
 
 /**

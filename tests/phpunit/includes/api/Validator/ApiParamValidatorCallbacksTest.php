@@ -6,10 +6,12 @@ use ApiBase;
 use ApiMain;
 use ApiMessage;
 use ApiQueryBase;
-use ApiUploadTestCase;
+use Generator;
 use MediaWiki\Api\Validator\ApiParamValidatorCallbacks;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Tests\Api\ApiUploadTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use Psr\Http\Message\UploadedFileInterface;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -150,16 +152,16 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		$this->assertNull( $callbacks->getUploadedFile( 'baz', [] ) );
 
 		$file = $callbacks->getUploadedFile( 'file', [] );
-		$this->assertInstanceOf( \Psr\Http\Message\UploadedFileInterface::class, $file );
+		$this->assertInstanceOf( UploadedFileInterface::class, $file );
 		$this->assertSame( UPLOAD_ERR_OK, $file->getError() );
 		$this->assertSame( 'TestUploadStash.jpg', $file->getClientFilename() );
 
 		$file = $callbacks->getUploadedFile( 'file2', [] );
-		$this->assertInstanceOf( \Psr\Http\Message\UploadedFileInterface::class, $file );
+		$this->assertInstanceOf( UploadedFileInterface::class, $file );
 		$this->assertSame( UPLOAD_ERR_NO_FILE, $file->getError() );
 
 		$file = $callbacks->getUploadedFile( 'file3', [] );
-		$this->assertInstanceOf( \Psr\Http\Message\UploadedFileInterface::class, $file );
+		$this->assertInstanceOf( UploadedFileInterface::class, $file );
 		$this->assertSame( UPLOAD_ERR_INI_SIZE, $file->getError() );
 	}
 
@@ -212,7 +214,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		);
 	}
 
-	public static function provideRecordCondition(): \Generator {
+	public static function provideRecordCondition(): Generator {
 		yield 'Deprecated param' => [
 			DataMessageValue::new(
 				'paramvalidator-param-deprecated', [],

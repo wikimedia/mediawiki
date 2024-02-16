@@ -1,7 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiCSPReport;
+use ApiResult;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWikiIntegrationTestCase;
+use Psr\Log\AbstractLogger;
 
 /**
  * @group API
@@ -77,7 +83,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
 	private function doExecute( array $params, array $cspReport ) {
 		$log = [];
-		$logger = $this->createMock( Psr\Log\AbstractLogger::class );
+		$logger = $this->createMock( AbstractLogger::class );
 		$logger->method( 'warning' )->willReturnCallback(
 			static function ( $msg, $ctx ) use ( &$log ) {
 				unset( $ctx['csp-report'] );

@@ -1,7 +1,19 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiErrorFormatter;
+use ApiErrorFormatter_BackCompat;
+use ApiMessage;
+use ApiResult;
+use Exception;
+use IApiMessage;
+use LocalizedException;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
+use MediaWikiLangTestCase;
+use RuntimeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**

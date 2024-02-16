@@ -1,9 +1,17 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
+use ExtensionRegistry;
+use LanguageCode;
+use LanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Message\Message;
 use MediaWiki\SiteStats\SiteStats;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\Title;
+use Skin;
 use Wikimedia\Composer\ComposerInstalled;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;

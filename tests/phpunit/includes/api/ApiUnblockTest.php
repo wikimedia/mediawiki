@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

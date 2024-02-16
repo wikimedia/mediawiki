@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Format;
+
+use ApiResult;
+
 /**
  * @group API
  * @covers \ApiFormatPhp

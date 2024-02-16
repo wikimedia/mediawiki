@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
+use WatchedItemQueryService;
 
 /**
  * @group API

@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiQueryBase;
+
 class MockApiQueryBase extends ApiQueryBase {
 	private $name;
 

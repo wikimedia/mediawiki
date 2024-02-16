@@ -1,7 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
+use ApiMain;
+use ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\Api\MockApiQueryBase;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 

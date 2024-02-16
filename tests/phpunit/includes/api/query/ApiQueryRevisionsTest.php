@@ -1,10 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
+use WikitextContent;
 
 /**
  * @group API

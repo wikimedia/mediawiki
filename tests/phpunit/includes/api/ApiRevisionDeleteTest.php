@@ -1,11 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MWCryptRand;
 
 /**
  * Tests for action=revisiondelete

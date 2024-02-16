@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\TempUser\TempUserCreator;

@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
+use MediaWiki\Tests\Api\ApiTestCase;
+
 /**
  * @group API
  * @group medium

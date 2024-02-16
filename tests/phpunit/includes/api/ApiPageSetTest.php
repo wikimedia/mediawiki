@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiMain;
+use ApiPageSet;
+use ApiResult;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
@@ -9,6 +14,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use RuntimeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -106,7 +112,7 @@ class ApiPageSetTest extends ApiTestCase {
 			"#REDIRECT [[$redirectOneTitle]]"
 		);
 		$pageSet->setRedirectMergePolicy( static function ( $cur, $new ) {
-			throw new \RuntimeException( 'unreachable, no merge when target is redirect loop' );
+			throw new RuntimeException( 'unreachable, no merge when target is redirect loop' );
 		} );
 		// This could infinite loop in a bugged impl, but php doesn't offer
 		// a great way to time constrain this.

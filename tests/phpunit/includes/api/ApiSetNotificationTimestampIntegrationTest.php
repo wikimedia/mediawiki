@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 /**
  * @author Addshore
  * @covers \ApiSetNotificationTimestamp

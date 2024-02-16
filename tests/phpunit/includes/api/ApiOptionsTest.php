@@ -1,5 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+namespace MediaWiki\Tests\Api;
+
+use ApiMain;
+use ApiOptions;
+use ApiUsageException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;

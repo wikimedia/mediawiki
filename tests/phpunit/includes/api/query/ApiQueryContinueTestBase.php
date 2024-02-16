@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
@@ -19,6 +20,11 @@
  *
  * @file
  */
+
+namespace MediaWiki\Tests\Api\Query;
+
+use Exception;
+
 abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**

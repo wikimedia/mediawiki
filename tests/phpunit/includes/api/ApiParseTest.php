@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApiParse check functions
  *
@@ -20,10 +21,16 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Api;
+
+use ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleValue;
+use MockPoolCounterFailing;
+use SkinFactory;
+use SkinFallback;
 
 /**
  * @group API

@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

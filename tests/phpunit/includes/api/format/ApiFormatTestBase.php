@@ -1,7 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Format;
+
+use ApiMain;
+use BadMethodCallException;
+use Exception;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
+use MediaWikiIntegrationTestCase;
 
 abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 

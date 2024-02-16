@@ -1,11 +1,16 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
+use RecentChange;
+use WatchedItemQueryService;
 
 /**
  * @group medium

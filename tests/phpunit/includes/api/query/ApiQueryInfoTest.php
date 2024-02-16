@@ -1,8 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Timestamp\ConvertibleTimestamp;

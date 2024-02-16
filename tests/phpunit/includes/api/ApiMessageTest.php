@@ -1,7 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiMessage;
+use ApiRawMessage;
+use InvalidArgumentException;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

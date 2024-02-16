@@ -1,6 +1,16 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use AllowDynamicProperties;
+use ApiErrorFormatter;
+use ApiResult;
+use Exception;
+use InvalidArgumentException;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * @covers \ApiResult
@@ -1351,8 +1361,8 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'ApiResultTestSerializableObject::serializeForApiResult() ' .
-					'returned an object of class ApiResultTestStringifiableObject',
+				'MediaWiki\Tests\Api\ApiResultTestSerializableObject::serializeForApiResult() ' .
+					'returned an object of class MediaWiki\Tests\Api\ApiResultTestStringifiableObject',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -1364,7 +1374,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'ApiResultTestSerializableObject::serializeForApiResult() ' .
+				'MediaWiki\Tests\Api\ApiResultTestSerializableObject::serializeForApiResult() ' .
 					'returned an invalid value: Cannot add non-finite floats to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
@@ -1397,7 +1407,7 @@ class ApiResultTestStringifiableObject {
 	}
 }
 
-#[\AllowDynamicProperties]
+#[AllowDynamicProperties]
 class ApiResultTestSerializableObject {
 	private $ret;
 

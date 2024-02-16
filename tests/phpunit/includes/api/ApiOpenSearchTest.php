@@ -1,6 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiMain;
+use ApiOpenSearch;
 use MediaWiki\Context\RequestContext;
+use MediaWikiIntegrationTestCase;
+use SearchEngine;
+use SearchEngineConfig;
+use SearchEngineFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

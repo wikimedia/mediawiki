@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiUsageException;
+use IDBAccessObject;
+use JavaScriptContent;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Context\RequestContext;
@@ -10,6 +15,9 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
+use RevisionDeleter;
+use WikiPage;
+use WikitextContent;
 
 /**
  * Tests for MediaWiki api.php?action=edit.

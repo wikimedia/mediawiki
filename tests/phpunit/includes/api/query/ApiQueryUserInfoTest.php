@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Utils\MWTimestamp;
 
 /**

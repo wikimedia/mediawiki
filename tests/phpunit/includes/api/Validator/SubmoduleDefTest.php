@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Api\Validator;
 use ApiMain;
 use ApiModuleManager;
 use MediaWiki\Api\Validator\SubmoduleDef;
-use MockApi;
+use MediaWiki\Tests\Api\MockApi;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;

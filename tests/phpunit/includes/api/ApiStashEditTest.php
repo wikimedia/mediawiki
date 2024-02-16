@@ -1,14 +1,21 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use CssContent;
+use HashBagOStuff;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
+use NullStatsdDataFactory;
 use Psr\Log\NullLogger;
+use stdClass;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use WikitextContent;
 
 /**
  * @covers \ApiStashEdit
@@ -19,6 +26,9 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @todo Expand tests for temporary users
  */
 class ApiStashEditTest extends ApiTestCase {
+
+	private const CLASS_NAME = 'ApiStashEditTest';
+
 	protected function setUp(): void {
 		parent::setUp();
 		// Hack to make user edit tracker survive service reset.
@@ -54,7 +64,7 @@ class ApiStashEditTest extends ApiTestCase {
 	) {
 		$params = array_merge( [
 			'action' => 'stashedit',
-			'title' => __CLASS__,
+			'title' => self::CLASS_NAME,
 			'contentmodel' => 'wikitext',
 			'contentformat' => 'text/x-wiki',
 			'baserevid' => 0,
@@ -123,7 +133,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 * @param User|null $user User who made edit
 	 * @return string
 	 */
-	protected function getStashKey( $title = __CLASS__, $text = 'Content', User $user = null ) {
+	protected function getStashKey( $title = self::CLASS_NAME, $text = 'Content', User $user = null ) {
 		$titleObj = Title::newFromText( $title );
 		$content = new WikitextContent( $text );
 		if ( !$user ) {
@@ -418,7 +428,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$editStash = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getPageEditStash() );
 		$cache = $editStash->cache;
-		$key = $this->getStashKey( __CLASS__, $text );
+		$key = $this->getStashKey( self::CLASS_NAME, $text );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $cache );
 

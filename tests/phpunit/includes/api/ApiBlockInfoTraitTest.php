@@ -1,9 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiBlockInfoTrait;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

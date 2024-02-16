@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 

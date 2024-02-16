@@ -1,13 +1,28 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiBase;
+use ApiErrorFormatter;
+use ApiMain;
+use ApiMessage;
+use ApiQueryTokens;
+use ApiResult;
+use ApiUsageException;
+use ArrayAccess;
+use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWikiLangTestCase;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Constraint\Constraint;
+use ReturnTypeWillChange;
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	use MockAuthorityTrait;
@@ -44,7 +59,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 				return isset( $this->getters[$offset] ) || isset( $this->extraUsers[$offset] );
 			}
 
-			#[\ReturnTypeWillChange]
+			#[ReturnTypeWillChange]
 			public function offsetGet( $offset ) {
 				if ( isset( $this->getters[$offset] ) ) {
 					return ( $this->getters[$offset] )();
@@ -74,7 +89,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	protected function tearDown(): void {
 		// Avoid leaking session over tests
-		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
+		SessionManager::getGlobalSession()->clear();
 
 		ApiBase::clearCacheForTest();
 
@@ -184,7 +199,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	/**
 	 * @since 1.37
 	 * @param array $params
-	 * @param MediaWiki\Session\Session|array|null $session
+	 * @param Session|array|null $session
 	 * @return FauxRequest
 	 */
 	protected function buildFauxRequest( $params, $session ) {
@@ -340,3 +355,5 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		);
 	}
 }
+
+class_alias( ApiTestCase::class, 'ApiTestCase' );

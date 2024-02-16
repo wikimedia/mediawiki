@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiUsageException;
+use IDBAccessObject;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\SlotRecord;

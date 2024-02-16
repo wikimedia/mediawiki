@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentityValue;
 

@@ -1,4 +1,9 @@
 <?php
+
+namespace MediaWiki\Tests\Api;
+
+use Maintenance;
+
 /**
  * Bootstrapping for test image file generation
  *

@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**

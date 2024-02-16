@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
@@ -17,6 +18,10 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+
+namespace MediaWiki\Tests\Api\Query;
+
+use Exception;
 
 /**
  * @group API

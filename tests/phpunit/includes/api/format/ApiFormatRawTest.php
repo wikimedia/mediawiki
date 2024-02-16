@@ -1,5 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Format;
+
+use ApiFormatJson;
+use ApiFormatRaw;
+use ApiMain;
+use MWException;
+
 /**
  * @group API
  * @covers \ApiFormatRaw

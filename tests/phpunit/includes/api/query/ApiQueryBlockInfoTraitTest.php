@@ -1,8 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Api\Query;
+
+use ApiQueryBase;
+use ApiQueryBlockInfoTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

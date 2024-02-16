@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Tests\Api;
+
 /**
  * RandomImageGenerator -- does what it says on the tin.
  * Requires Imagick, the ImageMagick library for PHP, or the command line
@@ -23,7 +26,13 @@
  * @author Neil Kandalgaonkar <neilk@wikimedia.org>
  */
 
+use Exception;
+use Imagick;
+use ImagickDraw;
+use ImagickPixel;
 use MediaWiki\Shell\Shell;
+use SimpleXMLElement;
+use UnexpectedValueException;
 
 /**
  * RandomImageGenerator: does what it says on the tin.
@@ -411,3 +420,5 @@ class RandomImageGenerator {
 		return 'rgb(' . implode( ', ', $components ) . ')';
 	}
 }
+
+class_alias( RandomImageGenerator::class, 'RandomImageGenerator' );

@@ -1,10 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use TestUserRegistry;
 
 /**
  * @group API

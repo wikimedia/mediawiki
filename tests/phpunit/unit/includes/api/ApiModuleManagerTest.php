@@ -1,8 +1,18 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiDisabled;
+use ApiFeedContributions;
+use ApiFeedRecentChanges;
+use ApiLogout;
+use ApiMain;
+use ApiModuleManager;
+use ApiRsd;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserFactory;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \ApiModuleManager

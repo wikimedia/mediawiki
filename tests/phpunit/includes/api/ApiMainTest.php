@@ -1,5 +1,18 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiBase;
+use ApiContinuationManager;
+use ApiErrorFormatter;
+use ApiErrorFormatter_BackCompat;
+use ApiMain;
+use ApiRawMessage;
+use ApiUsageException;
+use FormatJson;
+use Generator;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
@@ -10,9 +23,13 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\ShellDisabledError;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\User;
+use MWExceptionHandler;
+use StatusValue;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
@@ -1019,7 +1036,7 @@ class ApiMainTest extends ApiTestCase {
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
 		// The specific exception doesn't matter, as long as it's namespaced.
-		$nsex = new MediaWiki\ShellDisabledError();
+		$nsex = new ShellDisabledError();
 		$nstrace = wfMessage( 'api-exception-trace',
 			get_class( $nsex ),
 			$nsex->getFile(),
@@ -1098,7 +1115,7 @@ class ApiMainTest extends ApiTestCase {
 							'code' => 'internal_api_error_MediaWiki\ShellDisabledError',
 							'text' => "[$reqId] Exception caught: " . $nsex->getMessage(),
 							'data' => [
-								'errorclass' => MediaWiki\ShellDisabledError::class,
+								'errorclass' => ShellDisabledError::class,
 							],
 						]
 					],
@@ -1164,7 +1181,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testMatchRequestedHeaders() {
-		$api = Wikimedia\TestingAccessWrapper::newFromClass( ApiMain::class );
+		$api = TestingAccessWrapper::newFromClass( ApiMain::class );
 		$allowedHeaders = [ 'Accept', 'Origin', 'User-Agent' ];
 
 		$this->assertTrue( $api->matchRequestedHeaders( 'Accept', $allowedHeaders ) );

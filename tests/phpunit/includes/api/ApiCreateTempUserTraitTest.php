@@ -1,8 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiCreateTempUserTrait;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

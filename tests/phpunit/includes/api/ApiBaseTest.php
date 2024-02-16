@@ -1,20 +1,34 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use ApiBase;
+use ApiBlockInfoTrait;
+use ApiMain;
+use ApiMessage;
+use ApiUsageException;
+use DomainException;
+use Exception;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MessageSpecifier;
+use MWException;
+use StatusValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\TestingAccessWrapper;
+use WikiPage;
 
 /**
  * @group API

@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Api;
+
+use Exception;
+use FSFile;
+use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Title\Title;
@@ -165,3 +170,5 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 		$this->requestDataFiles = [];
 	}
 }
+
+class_alias( ApiUploadTestCase::class, 'ApiUploadTestCase' );
