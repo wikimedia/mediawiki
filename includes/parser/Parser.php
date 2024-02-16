@@ -28,6 +28,7 @@ use BlockLevelPass;
 use CoreMagicVariables;
 use CoreParserFunctions;
 use CoreTagHooks;
+use DeprecationHelper;
 use Exception;
 use File;
 use HtmlArmor;
@@ -153,6 +154,7 @@ use Xml;
  */
 #[\AllowDynamicProperties]
 class Parser {
+	use DeprecationHelper;
 
 	# Flags for Parser::setFunctionHook
 	public const SFH_NO_HASH = 1;
@@ -306,6 +308,26 @@ class Parser {
 	 * @deprecated since 1.35, use Parser::getOptions()
 	 */
 	public $mOptions;
+
+	# Deprecated "dynamic" properties
+	# These used to be dynamic properties added to the parser, but these
+	# have been deprecated since 1.42.
+	/** @deprecated since 1.42: T343229 */
+	public $scribunto_engine;
+	/** @deprecated since 1.42: T343230 */
+	public $extCite;
+	/** @deprecated since 1.42: T343226 */
+	public $extTemplateStylesCache;
+	/** @deprecated since 1.42: T357838 */
+	public $static_tag_buf;
+	/** @deprecated since 1.42: T203531 */
+	public $mExtVariables;
+	/** @deprecated since 1.42: T203532 */
+	public $mExtArrays;
+	/** @deprecated since 1.42: T359887 */
+	public $mExtHashTables;
+	/** @deprecated since 1.42: T203563 */
+	public $mExtLoopsCounter;
 
 	/**
 	 * Title context, used for self-link rendering and similar things
@@ -462,6 +484,7 @@ class Parser {
 		SignatureValidatorFactory $signatureValidatorFactory,
 		UserNameUtils $userNameUtils
 	) {
+		$this->deprecateDynamicPropertiesAccess( '1.42', __CLASS__ );
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
 			// removed in 1.36; use a ParserFactory instead.
