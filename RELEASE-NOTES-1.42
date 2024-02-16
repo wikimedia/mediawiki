@@ -635,6 +635,22 @@ because of Phabricator reports.
   has been hard deprecated.
 * DBAccessObjectUtils::getDBFromIndex() is now deprecated, use
   ::getDBFromRecency() instead.
+* Many Xml methods that are specific to HTML but not XML are deprecated:
+  - Xml::buildForm
+  - Xml::check
+  - Xml::checkLabel
+  - Xml::fieldset
+  - Xml::input
+  - Xml::inputLabel
+  - Xml::inputLabelSep
+  - Xml::label
+  - Xml::option
+  - Xml::password
+  - Xml::radio
+  - Xml::radioLabel
+  - Xml::span
+  - Xml::submitButton
+  - Xml::textarea
 * …
 
 === Other changes in 1.42 ===
