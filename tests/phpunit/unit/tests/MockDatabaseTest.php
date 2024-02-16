@@ -7,7 +7,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Ensure that MockDatabase methods can be called without triggering unit test
  * constraints, such as service container access.
  *
- * @covers MediaWiki\Tests\MockDatabase
+ * @covers \MediaWiki\Tests\MockDatabase
  */
 class MockDatabaseTest extends MediaWikiUnitTestCase {
 

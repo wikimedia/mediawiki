@@ -4,7 +4,7 @@ use MediaWiki\Parser\Parsoid\PageBundleJsonTrait;
 use Wikimedia\Parsoid\Core\PageBundle;
 
 /**
- * @covers MediaWiki\Parser\Parsoid\PageBundleJsonTrait
+ * @covers \MediaWiki\Parser\Parsoid\PageBundleJsonTrait
  */
 class PageBundleJsonTraitTest extends MediaWikiIntegrationTestCase {
 

@@ -9,7 +9,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * The urls herein are not actually called, because we mock the return results.
  *
- * @covers MultiHttpClient
+ * @covers \MultiHttpClient
  */
 class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	/**

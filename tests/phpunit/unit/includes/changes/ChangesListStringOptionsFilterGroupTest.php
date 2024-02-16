@@ -7,7 +7,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ChangesListStringOptionsFilterGroup
+ * @covers \ChangesListStringOptionsFilterGroup
  */
 class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 

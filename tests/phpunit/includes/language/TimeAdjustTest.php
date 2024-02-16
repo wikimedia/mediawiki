@@ -8,7 +8,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 	/**
 	 * Test offset usage for a given Language::userAdjust
 	 * @dataProvider dataUserAdjust
-	 * @covers Language::userAdjust
+	 * @covers \Language::userAdjust
 	 */
 	public function testUserAdjust( string $date, $correction, string $expected ) {
 		$this->overrideConfigValue( MainConfigNames::LocalTZoffset, self::LOCAL_TZ_OFFSET );

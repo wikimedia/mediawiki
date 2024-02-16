@@ -18,7 +18,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Database
- * @covers MediaWiki\User\Options\UserOptionsManager
+ * @covers \MediaWiki\User\Options\UserOptionsManager
  */
 class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 
@@ -64,7 +64,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionsExcludeDefaults() {
 		$manager = $this->getManager( [ 'defaults' => [
@@ -113,7 +113,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionHiddenPref() {
 		$user = $this->getAnon( __METHOD__ );
@@ -125,7 +125,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::setOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::setOption
 	 */
 	public function testSetOptionNullIsDefault() {
 		$user = $this->getAnon( __METHOD__ );
@@ -137,9 +137,9 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
-	 * @covers MediaWiki\User\Options\UserOptionsManager::setOption
-	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::setOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testGetSetSave() {
 		$user = $this->getTestUser()->getUser();
@@ -162,7 +162,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::loadUserOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::loadUserOptions
 	 */
 	public function testLoadUserOptionsHook() {
 		$user = UserIdentityValue::newRegistered( 42, 'Test' );
@@ -178,7 +178,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testSaveUserOptionsHookAbort() {
 		$manager = $this->getManager( [
@@ -195,7 +195,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testSaveUserOptionsHookModify() {
 		$user = UserIdentityValue::newRegistered( 42, 'Test' );
@@ -225,7 +225,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsManager::saveOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::saveOptions
 	 */
 	public function testSaveUserOptionsHookOriginal() {
 		$user = UserIdentityValue::newRegistered( 42, 'Test' );

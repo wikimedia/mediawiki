@@ -3,7 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ChangesListBooleanFilterGroup
+ * @covers \ChangesListBooleanFilterGroup
  */
 class ChangesListBooleanFilterGroupTest extends MediaWikiUnitTestCase {
 	public function testIsFullCoverage() {

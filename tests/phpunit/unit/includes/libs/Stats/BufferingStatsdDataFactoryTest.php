@@ -3,7 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers BufferingStatsdDataFactory
+ * @covers \BufferingStatsdDataFactory
  */
 class BufferingStatsdDataFactoryTest extends PHPUnit\Framework\TestCase {
 

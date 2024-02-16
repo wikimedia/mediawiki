@@ -3,7 +3,7 @@
 class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers ExternalStore::fetchFromURL
+	 * @covers \ExternalStore::fetchFromURL
 	 */
 	public function testExternalFetchFromURL_noExternalStores() {
 		$this->setService(
@@ -28,7 +28,7 @@ class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ExternalStore::fetchFromURL
+	 * @covers \ExternalStore::fetchFromURL
 	 * @dataProvider provideFetchFromURLWithStore
 	 */
 	public function testExternalFetchFromURL_someExternalStore( $expect, $url, $msg ) {

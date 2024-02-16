@@ -6,7 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @covers MediaWiki\Interwiki\ClassicInterwikiLookup
+ * @covers \MediaWiki\Interwiki\ClassicInterwikiLookup
  * @group Database
  */
 class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {

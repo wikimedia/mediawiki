@@ -4,10 +4,10 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 
 /**
- * @covers RevisionList
- * @covers RevisionListBase
- * @covers RevisionItem
- * @covers RevisionItemBase
+ * @covers \RevisionList
+ * @covers \RevisionListBase
+ * @covers \RevisionItem
+ * @covers \RevisionItemBase
  * @group Database
  *
  * @author DannyS712

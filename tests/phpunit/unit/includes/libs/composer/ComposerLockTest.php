@@ -12,8 +12,8 @@ class ComposerLockTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Composer\ComposerLock::__construct
-	 * @covers Wikimedia\Composer\ComposerLock::getInstalledDependencies
+	 * @covers \Wikimedia\Composer\ComposerLock::__construct
+	 * @covers \Wikimedia\Composer\ComposerLock::getInstalledDependencies
 	 */
 	public function testGetInstalledDependencies() {
 		$lock = new ComposerLock( $this->lock );

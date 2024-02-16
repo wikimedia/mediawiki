@@ -9,7 +9,7 @@ use Wikimedia\ParamValidator\Util\UploadedFile;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\UploadDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\UploadDef
  */
 class UploadDefTest extends TypeDefTestCase {
 

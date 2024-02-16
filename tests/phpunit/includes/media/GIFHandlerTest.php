@@ -22,7 +22,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers GIFHandler::getSizeAndMetadata
+	 * @covers \GIFHandler::getSizeAndMetadata
 	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getSizeAndMetadata( null, $this->filePath . '/README' );
@@ -33,7 +33,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename Basename of the file to check
 	 * @param bool $expected Expected result.
 	 * @dataProvider provideIsAnimated
-	 * @covers GIFHandler::isAnimatedImage
+	 * @covers \GIFHandler::isAnimatedImage
 	 */
 	public function testIsAnimated( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
@@ -52,7 +52,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param int $expected Total image area
 	 * @dataProvider provideGetImageArea
-	 * @covers GIFHandler::getImageArea
+	 * @covers \GIFHandler::getImageArea
 	 */
 	public function testGetImageArea( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
@@ -71,7 +71,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $metadata Serialized metadata
 	 * @param int $expected One of the class constants of GIFHandler
 	 * @dataProvider provideIsFileMetadataValid
-	 * @covers GIFHandler::isFileMetadataValid
+	 * @covers \GIFHandler::isFileMetadataValid
 	 */
 	public function testIsFileMetadataValid( $metadata, $expected ) {
 		$file = $this->getMockFileWithMetadata( $metadata );
@@ -97,7 +97,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param array $expected Unserialized metadata
 	 * @dataProvider provideGetSizeAndMetadata
-	 * @covers GIFHandler::getSizeAndMetadata
+	 * @covers \GIFHandler::getSizeAndMetadata
 	 */
 	public function testGetSizeAndMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
@@ -158,7 +158,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param string $expected Serialized array
 	 * @dataProvider provideGetIndependentMetaArray
-	 * @covers GIFHandler::getCommonMetaArray
+	 * @covers \GIFHandler::getCommonMetaArray
 	 */
 	public function testGetIndependentMetaArray( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
@@ -194,7 +194,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param float $expectedLength
 	 * @dataProvider provideGetLength
-	 * @covers GIFHandler::getLength
+	 * @covers \GIFHandler::getLength
 	 */
 	public function testGetLength( $filename, $expectedLength ) {
 		$file = $this->dataFile( $filename, 'image/gif' );

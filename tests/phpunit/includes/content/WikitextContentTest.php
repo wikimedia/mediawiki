@@ -47,7 +47,7 @@ just a test"
 
 	/**
 	 * @dataProvider dataGetSection
-	 * @covers WikitextContent::getSection
+	 * @covers \WikitextContent::getSection
 	 */
 	public function testGetSection( $text, $sectionId, $expectedText ) {
 		$content = $this->newContent( $text );
@@ -102,7 +102,7 @@ just a test"
 
 	/**
 	 * @dataProvider dataReplaceSection
-	 * @covers WikitextContent::replaceSection
+	 * @covers \WikitextContent::replaceSection
 	 */
 	public function testReplaceSection( $text, $section, $with, $sectionTitle, $expected ) {
 		$content = $this->newContent( $text );
@@ -113,7 +113,7 @@ just a test"
 	}
 
 	/**
-	 * @covers WikitextContent::addSectionHeader
+	 * @covers \WikitextContent::addSectionHeader
 	 */
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
@@ -217,7 +217,7 @@ just a test"
 	}
 
 	/**
-	 * @covers WikitextContent::matchMagicWord
+	 * @covers \WikitextContent::matchMagicWord
 	 */
 	public function testMatchMagicWord() {
 		$mw = $this->getServiceContainer()->getMagicWordFactory()->get( "staticredirect" );
@@ -233,7 +233,7 @@ just a test"
 	}
 
 	/**
-	 * @covers WikitextContent::updateRedirect
+	 * @covers \WikitextContent::updateRedirect
 	 */
 	public function testUpdateRedirect() {
 		$target = Title::makeTitle( NS_MAIN, 'TestUpdateRedirect_target' );
@@ -258,7 +258,7 @@ just a test"
 	}
 
 	/**
-	 * @covers WikitextContent::getModel
+	 * @covers \WikitextContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
@@ -267,7 +267,7 @@ just a test"
 	}
 
 	/**
-	 * @covers WikitextContent::getContentHandler
+	 * @covers \WikitextContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
@@ -276,8 +276,8 @@ just a test"
 	}
 
 	/**
-	 * @covers ParserOptions::getRedirectTarget
-	 * @covers ParserOptions::setRedirectTarget
+	 * @covers \ParserOptions::getRedirectTarget
+	 * @covers \ParserOptions::setRedirectTarget
 	 */
 	public function testRedirectParserOption() {
 		$title = Title::makeTitle( NS_MAIN, 'TestRedirectParserOption' );

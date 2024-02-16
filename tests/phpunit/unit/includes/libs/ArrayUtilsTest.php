@@ -1,6 +1,6 @@
 <?php
 /**
- * @covers ArrayUtils
+ * @covers \ArrayUtils
  */
 class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 

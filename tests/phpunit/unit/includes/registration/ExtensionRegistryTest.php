@@ -11,7 +11,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ExtensionRegistry
+ * @covers \ExtensionRegistry
  */
 class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 

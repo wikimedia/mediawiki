@@ -13,7 +13,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers ApiDelete
+ * @covers \ApiDelete
  */
 class ApiDeleteTest extends ApiTestCase {
 

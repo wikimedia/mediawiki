@@ -7,7 +7,7 @@ use MediaWiki\MainConfigNames;
  * @group medium
  * @group Database
  *
- * @covers ApiQueryPrefixSearch
+ * @covers \ApiQueryPrefixSearch
  */
 class ApiQueryPrefixSearchTest extends ApiTestCase {
 	private const TEST_QUERY = 'unittest';

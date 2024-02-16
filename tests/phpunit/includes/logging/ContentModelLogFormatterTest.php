@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers ContentModelLogFormatter
+ * @covers \ContentModelLogFormatter
  */
 class ContentModelLogFormatterTest extends LogFormatterTestCase {
 	public static function provideContentModelLogDatabaseRows() {

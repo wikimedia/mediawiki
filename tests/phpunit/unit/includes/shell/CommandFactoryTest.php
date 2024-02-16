@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 class CommandFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers MediaWiki\Shell\CommandFactory::create
+	 * @covers \MediaWiki\Shell\CommandFactory::create
 	 */
 	public function testCreate() {
 		$logger = new NullLogger();

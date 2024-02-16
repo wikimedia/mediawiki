@@ -5,7 +5,7 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
 
 /**
- * @covers Wikimedia\Rdbms\Platform\SqlitePlatform
+ * @covers \Wikimedia\Rdbms\Platform\SqlitePlatform
  */
 class SqlitePlatformTest extends PHPUnit\Framework\TestCase {
 

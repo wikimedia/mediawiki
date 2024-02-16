@@ -14,7 +14,7 @@ use MediaWikiIntegrationTestCase;
 use RollbackAction;
 
 /**
- * @covers RollbackAction
+ * @covers \RollbackAction
  * @group Database
  * @package MediaWiki\Tests\Action
  */

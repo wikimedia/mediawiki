@@ -8,7 +8,7 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
 require_once __DIR__ . '/StringDefTest.php';
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\PasswordDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\PasswordDef
  */
 class PasswordDefTest extends StringDefTest {
 

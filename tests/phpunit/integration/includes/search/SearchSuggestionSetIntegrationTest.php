@@ -49,7 +49,7 @@ class SearchSuggestionSetIntegrationTest extends MediaWikiIntegrationTestCase {
 	 *   in a unit test as services are not available. That's why this ends up being
 	 *   an integration test instead.
 	 *
-	 * @covers SearchSuggestionSet::fromTitles
+	 * @covers \SearchSuggestionSet::fromTitles
 	 * @dataProvider provideTitles
 	 */
 	public function testFromTitles( array $titles, $expected ): void {

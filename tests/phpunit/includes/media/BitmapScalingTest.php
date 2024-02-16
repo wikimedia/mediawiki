@@ -18,7 +18,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideNormaliseParams
-	 * @covers BitmapHandler::normaliseParams
+	 * @covers \BitmapHandler::normaliseParams
 	 */
 	public function testNormaliseParams( $fileDimensions, $expectedParams, $params, $msg ) {
 		$file = new FakeDimensionFile( $fileDimensions );
@@ -120,7 +120,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers BitmapHandler::doTransform
+	 * @covers \BitmapHandler::doTransform
 	 */
 	public function testTooBigImage() {
 		$file = new FakeDimensionFile( [ 4000, 4000 ] );
@@ -131,7 +131,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers BitmapHandler::doTransform
+	 * @covers \BitmapHandler::doTransform
 	 */
 	public function testTooBigMustRenderImage() {
 		$file = new FakeDimensionFile( [ 4000, 4000 ] );
@@ -143,7 +143,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers BitmapHandler::getImageArea
+	 * @covers \BitmapHandler::getImageArea
 	 */
 	public function testImageArea() {
 		$file = new FakeDimensionFile( [ 7, 9 ] );

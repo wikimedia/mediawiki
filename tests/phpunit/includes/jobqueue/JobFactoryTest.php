@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @author Addshore
- * @covers MediaWiki\JobQueue\JobFactory
+ * @covers \MediaWiki\JobQueue\JobFactory
  */
 class JobFactoryTest extends MediaWikiIntegrationTestCase {
 

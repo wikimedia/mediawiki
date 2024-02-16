@@ -2,7 +2,7 @@
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 
 /**
- * @covers DeleteUserEmail
+ * @covers \DeleteUserEmail
  * @group Database
  */
 class DeleteUserEmailTest extends MaintenanceBaseTestCase {

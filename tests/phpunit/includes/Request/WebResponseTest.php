@@ -3,7 +3,7 @@
 use MediaWiki\Request\WebResponse;
 
 /**
- * @covers MediaWiki\Request\WebResponse
+ * @covers \MediaWiki\Request\WebResponse
  *
  * @group WebRequest
  */

@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group medium
  *
- * @covers ApiLogin
+ * @covers \ApiLogin
  */
 class ApiLoginTest extends ApiTestCase {
 

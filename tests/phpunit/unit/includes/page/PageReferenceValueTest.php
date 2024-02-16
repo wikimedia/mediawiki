@@ -24,7 +24,7 @@ use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\Assert\ParameterAssertionException;
 
 /**
- * @covers MediaWiki\Page\PageReferenceValue
+ * @covers \MediaWiki\Page\PageReferenceValue
  *
  * @group Title
  */

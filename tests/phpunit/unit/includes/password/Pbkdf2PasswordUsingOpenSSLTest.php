@@ -2,8 +2,8 @@
 
 /**
  * @group large
- * @covers AbstractPbkdf2Password
- * @covers Pbkdf2PasswordUsingOpenSSL
+ * @covers \AbstractPbkdf2Password
+ * @covers \Pbkdf2PasswordUsingOpenSSL
  * @requires function openssl_pbkdf2
  */
 class Pbkdf2PasswordUsingOpenSSLTest extends Pbkdf2PasswordTestCase {

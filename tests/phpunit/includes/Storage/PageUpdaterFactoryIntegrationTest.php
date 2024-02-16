@@ -8,13 +8,13 @@ use MediaWikiIntegrationTestCase;
 use TextContent;
 
 /**
- * @covers MediaWiki\Storage\PageUpdaterFactory
+ * @covers \MediaWiki\Storage\PageUpdaterFactory
  * @group Database
  */
 class PageUpdaterFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers WikiPage::newPageUpdater
+	 * @covers \WikiPage::newPageUpdater
 	 */
 	public function testNewPageUpdater() {
 		$page = $this->getExistingTestPage();

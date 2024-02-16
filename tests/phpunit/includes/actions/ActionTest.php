@@ -12,7 +12,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
 /**
- * @covers Action
+ * @covers \Action
  *
  * @group Action
  * @group Database

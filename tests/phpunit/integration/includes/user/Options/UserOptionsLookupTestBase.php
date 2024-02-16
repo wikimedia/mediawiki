@@ -11,9 +11,9 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers MediaWiki\User\Options\DefaultOptionsLookup
- * @covers MediaWiki\User\Options\UserOptionsManager
- * @covers MediaWiki\User\Options\UserOptionsLookup
+ * @covers \MediaWiki\User\Options\DefaultOptionsLookup
+ * @covers \MediaWiki\User\Options\UserOptionsManager
+ * @covers \MediaWiki\User\Options\UserOptionsLookup
  */
 abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 
@@ -113,8 +113,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOption
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getDefaultOption
+	 * @covers \MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getDefaultOption
 	 * @dataProvider provideConditionalDefaults
 	 */
 	public function testGetConditionalDefaults( bool $expected, string $property, int $userId ) {
@@ -128,8 +128,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOptions
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getDefaultOptions
+	 * @covers \MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getDefaultOptions
 	 */
 	public function testGetDefaultOptions() {
 		$options = $this->getLookup()->getDefaultOptions();
@@ -139,8 +139,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOption
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getDefaultOption
+	 * @covers \MediaWiki\User\Options\DefaultOptionsLookup::getDefaultOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getDefaultOption
 	 */
 	public function testGetDefaultOption() {
 		$manager = $this->getLookup();
@@ -150,8 +150,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOptions
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getOptions
+	 * @covers \MediaWiki\User\Options\DefaultOptionsLookup::getOptions
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOptions
 	 */
 	public function testGetOptions() {
 		$options = $this->getLookup()->getOptions( $this->getAnon() );
@@ -161,8 +161,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOption
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
+	 * @covers \MediaWiki\User\Options\DefaultOptionsLookup::getOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefault() {
 		$manager = $this->getLookup();
@@ -173,8 +173,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOption
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
+	 * @covers \MediaWiki\User\Options\DefaultOptionsLookup::getOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefaultNotExist() {
 		$this->assertNull( $this->getLookup()
@@ -182,8 +182,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\DefaultOptionsLookup::getOption
-	 * @covers MediaWiki\User\Options\UserOptionsManager::getOption
+	 * @covers \MediaWiki\User\Options\DefaultOptionsLookup::getOption
+	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefaultNotExistDefaultOverride() {
 		$this->assertSame( 'override', $this->getLookup()
@@ -191,7 +191,7 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsLookup::getIntOption
+	 * @covers \MediaWiki\User\Options\UserOptionsLookup::getIntOption
 	 */
 	public function testGetIntOption() {
 		$this->assertSame(
@@ -202,7 +202,7 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\Options\UserOptionsLookup::getBoolOption
+	 * @covers \MediaWiki\User\Options\UserOptionsLookup::getBoolOption
 	 */
 	public function testGetBoolOption() {
 		$this->assertSame(

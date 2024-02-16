@@ -6,7 +6,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @group medium
- * @covers ApiQuerySearch
+ * @covers \ApiQuerySearch
  */
 class ApiQuerySearchTest extends ApiTestCase {
 

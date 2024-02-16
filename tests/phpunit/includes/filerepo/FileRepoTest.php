@@ -3,7 +3,7 @@
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers FileRepo
+ * @covers \FileRepo
  */
 class FileRepoTest extends MediaWikiIntegrationTestCase {
 

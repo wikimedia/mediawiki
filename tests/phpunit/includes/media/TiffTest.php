@@ -23,7 +23,7 @@ class TiffTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers TiffHandler::getSizeAndMetadata
+	 * @covers \TiffHandler::getSizeAndMetadata
 	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getSizeAndMetadata( null, $this->filePath . 'README' );
@@ -31,7 +31,7 @@ class TiffTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers TiffHandler::getSizeAndMetadata
+	 * @covers \TiffHandler::getSizeAndMetadata
 	 */
 	public function testTiffMetadataExtraction() {
 		$res = $this->handler->getSizeAndMetadata( null, $this->filePath . 'test.tiff' );

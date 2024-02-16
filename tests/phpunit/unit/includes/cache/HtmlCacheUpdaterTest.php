@@ -6,7 +6,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @group Cache
- * @covers HtmlCacheUpdater
+ * @covers \HtmlCacheUpdater
  */
 class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 

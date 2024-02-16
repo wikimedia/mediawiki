@@ -12,7 +12,7 @@ use MediaWiki\User\UserIdentityValue;
  * @group Database
  * @group medium
  *
- * @covers ApiQueryRecentChanges
+ * @covers \ApiQueryRecentChanges
  */
 class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 

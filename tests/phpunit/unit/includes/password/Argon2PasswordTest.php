@@ -2,9 +2,9 @@
 
 /**
  * @group large
- * @covers Argon2Password
- * @covers Password
- * @covers ParameterizedPassword
+ * @covers \Argon2Password
+ * @covers \Password
+ * @covers \ParameterizedPassword
  */
 class Argon2PasswordTest extends PasswordTestCase {
 

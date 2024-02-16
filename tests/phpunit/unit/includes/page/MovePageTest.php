@@ -88,9 +88,9 @@ class MovePageTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCheckPermissions
-	 * @covers MediaWiki\Page\MovePage::checkPermissions
-	 * @covers MediaWiki\Page\MovePage::authorizeMove
-	 * @covers MediaWiki\Page\MovePage::probablyCanMove
+	 * @covers \MediaWiki\Page\MovePage::checkPermissions
+	 * @covers \MediaWiki\Page\MovePage::authorizeMove
+	 * @covers \MediaWiki\Page\MovePage::probablyCanMove
 	 */
 	public function testCheckPermissions( Authority $authority, bool $good ) {
 		$spamChecker = $this->createNoOpMock( SpamChecker::class, [ 'checkSummary' ] );
@@ -110,9 +110,9 @@ class MovePageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Page\MovePage::checkPermissions
-	 * @covers MediaWiki\Page\MovePage::authorizeMove
-	 * @covers MediaWiki\Page\MovePage::probablyCanMove
+	 * @covers \MediaWiki\Page\MovePage::checkPermissions
+	 * @covers \MediaWiki\Page\MovePage::authorizeMove
+	 * @covers \MediaWiki\Page\MovePage::probablyCanMove
 	 */
 	public function testCheckPermissions_spam() {
 		$spamChecker = $this->createNoOpMock( SpamChecker::class, [ 'checkSummary' ] );

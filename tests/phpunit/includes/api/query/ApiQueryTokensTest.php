@@ -5,7 +5,7 @@ use MediaWiki\MainConfigNames;
 /**
  * @group API
  * @group medium
- * @covers ApiQueryTokens
+ * @covers \ApiQueryTokens
  */
 class ApiQueryTokensTest extends ApiTestCase {
 

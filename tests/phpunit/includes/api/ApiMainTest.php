@@ -25,7 +25,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group Database
  * @group medium
  *
- * @covers ApiMain
+ * @covers \ApiMain
  */
 class ApiMainTest extends ApiTestCase {
 	use MockAuthorityTrait;

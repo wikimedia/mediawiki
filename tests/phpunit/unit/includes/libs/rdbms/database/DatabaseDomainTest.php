@@ -3,7 +3,7 @@
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
- * @covers Wikimedia\Rdbms\DatabaseDomain
+ * @covers \Wikimedia\Rdbms\DatabaseDomain
  */
 class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 

@@ -6,7 +6,7 @@
 class MediaHandlerTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @covers MediaHandler::fitBoxWidth
+	 * @covers \MediaHandler::fitBoxWidth
 	 *
 	 * @dataProvider provideTestFitBoxWidth
 	 */

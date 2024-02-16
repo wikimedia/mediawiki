@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers HTMLFormField
+ * @covers \HTMLFormField
  */
 class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 
@@ -32,12 +32,12 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers HTMLFormField::isHidden
-	 * @covers HTMLFormField::isDisabled
-	 * @covers HTMLFormField::checkStateRecurse
-	 * @covers HTMLFormField::validateCondState
-	 * @covers HTMLFormField::getNearestField
-	 * @covers HTMLFormField::getNearestFieldValue
+	 * @covers \HTMLFormField::isHidden
+	 * @covers \HTMLFormField::isDisabled
+	 * @covers \HTMLFormField::checkStateRecurse
+	 * @covers \HTMLFormField::validateCondState
+	 * @covers \HTMLFormField::getNearestField
+	 * @covers \HTMLFormField::getNearestFieldValue
 	 * @dataProvider provideCondState
 	 */
 	public function testCondState( $fieldInfo, $requestData, $callback, $exception = null ) {
@@ -377,7 +377,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers HTMLFormField::parseCondState
+	 * @covers \HTMLFormField::parseCondState
 	 * @dataProvider provideParseCondState
 	 */
 	public function testParseCondState( $fieldName, $condState, $excepted ) {

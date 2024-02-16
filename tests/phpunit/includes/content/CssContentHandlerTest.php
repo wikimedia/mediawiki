@@ -7,7 +7,7 @@ class CssContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeRedirectContent
-	 * @covers CssContentHandler::makeRedirectContent
+	 * @covers \CssContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( int $namespace, string $title, $expected ) {
 		$this->overrideConfigValues( [

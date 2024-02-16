@@ -4,7 +4,7 @@ use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Sender\SenderInterface;
 
 /**
- * @covers SamplingStatsdClient
+ * @covers \SamplingStatsdClient
  */
 class SamplingStatsdClientTest extends PHPUnit\Framework\TestCase {
 

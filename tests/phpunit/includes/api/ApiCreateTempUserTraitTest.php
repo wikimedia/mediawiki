@@ -6,7 +6,7 @@ use MediaWiki\User\User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ApiCreateTempUserTrait
+ * @covers \ApiCreateTempUserTrait
  */
 class ApiCreateTempUserTraitTest extends MediaWikiIntegrationTestCase {
 

@@ -4,7 +4,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ReplicatedBagOStuff
+ * @covers \ReplicatedBagOStuff
  */
 class ReplicatedBagOStuffTest extends \MediaWikiUnitTestCase {
 	/** @var HashBagOStuff */

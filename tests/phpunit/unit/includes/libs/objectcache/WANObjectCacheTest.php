@@ -3,7 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers WANObjectCache
+ * @covers \WANObjectCache
  */
 class WANObjectCacheTest extends MediaWikiUnitTestCase {
 

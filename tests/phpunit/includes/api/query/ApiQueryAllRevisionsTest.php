@@ -6,7 +6,7 @@ use MediaWiki\Title\Title;
  * @group API
  * @group Database
  * @group medium
- * @covers ApiQueryAllRevisions
+ * @covers \ApiQueryAllRevisions
  */
 class ApiQueryAllRevisionsTest extends ApiTestCase {
 

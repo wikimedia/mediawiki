@@ -2,8 +2,8 @@
 
 /**
  * @group Language
- * @covers CrhConverter
- * @covers MediaWiki\Languages\Data\CrhExceptions
+ * @covers \CrhConverter
+ * @covers \MediaWiki\Languages\Data\CrhExceptions
  */
 class CrhConverterTest extends MediaWikiIntegrationTestCase {
 
@@ -11,7 +11,7 @@ class CrhConverterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAutoConvertToAllVariantsByWord
-	 * @covers CrhConverter::autoConvertToAllVariants
+	 * @covers \CrhConverter::autoConvertToAllVariants
 	 *
 	 * Test individual words and test minimal contextual transforms
 	 * by creating test strings "<cyrillic> <latin>" and
@@ -102,7 +102,7 @@ class CrhConverterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAutoConvertToAllVariantsByString
-	 * @covers CrhConverter::autoConvertToAllVariants
+	 * @covers \CrhConverter::autoConvertToAllVariants
 	 *
 	 * Run tests that require some context (like Roman numerals) or with
 	 * many-to-one mappings, or other asymmetric results (like smart quotes)

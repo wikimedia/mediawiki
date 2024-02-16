@@ -4,7 +4,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Media
- * @covers MimeAnalyzer
+ * @covers \MimeAnalyzer
  */
 class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 

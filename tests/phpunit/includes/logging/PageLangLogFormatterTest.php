@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 
 /**
- * @covers PageLangLogFormatter
+ * @covers \PageLangLogFormatter
  */
 class PageLangLogFormatterTest extends LogFormatterTestCase {
 

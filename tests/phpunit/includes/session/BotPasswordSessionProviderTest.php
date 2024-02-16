@@ -18,7 +18,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Session
  * @group Database
- * @covers MediaWiki\Session\BotPasswordSessionProvider
+ * @covers \MediaWiki\Session\BotPasswordSessionProvider
  */
 class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;

@@ -3,7 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers ChangesListFilter
+ * @covers \ChangesListFilter
  */
 class ChangesListFilterTest extends MediaWikiUnitTestCase {
 	/** @var MockChangesListFilterGroup */

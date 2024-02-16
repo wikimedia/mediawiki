@@ -7,7 +7,7 @@ use MediaWiki\Page\PageReferenceValue;
 
 /**
  * @covers \MediaWiki\Parser\ParserOutput
- * @covers CacheTime
+ * @covers \CacheTime
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */

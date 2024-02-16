@@ -9,7 +9,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @covers \MediaWiki\Category\CategoriesRdf
- * @covers DumpCategoriesAsRdf
+ * @covers \DumpCategoriesAsRdf
  */
 class CategoriesRdfTest extends MediaWikiLangTestCase {
 	public function getCategoryIterator() {

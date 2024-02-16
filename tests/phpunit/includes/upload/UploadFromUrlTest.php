@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Upload
  * @group Database
  *
- * @covers UploadFromUrl
+ * @covers \UploadFromUrl
  */
 class UploadFromUrlTest extends ApiTestCase {
 	use MockHttpTrait;

@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers APCUBagOStuff
+ * @covers \APCUBagOStuff
  * @requires extension apcu
  */
 class APCUBagOStuffTest extends BagOStuffTestBase {

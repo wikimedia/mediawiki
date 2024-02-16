@@ -9,7 +9,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers FileBackend
+ * @covers \FileBackend
  */
 class FileBackendTest extends MediaWikiUnitTestCase {
 	/**

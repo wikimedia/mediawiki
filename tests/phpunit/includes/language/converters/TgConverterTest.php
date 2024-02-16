@@ -2,14 +2,14 @@
 
 /**
  * @group Language
- * @covers TgConverter
+ * @covers \TgConverter
  */
 class TgConverterTest extends MediaWikiIntegrationTestCase {
 	use LanguageConverterTestTrait;
 
 	/**
 	 * @dataProvider provideAutoConvertToAllVariants
-	 * @covers TgConverter::autoConvertToAllVariants
+	 * @covers \TgConverter::autoConvertToAllVariants
 	 */
 	public function testAutoConvertToAllVariants( $result, $value ) {
 		$this->assertEquals( $result, $this->getLanguageConverter()->autoConvertToAllVariants( $value ) );

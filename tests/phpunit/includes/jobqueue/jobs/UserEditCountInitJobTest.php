@@ -14,7 +14,7 @@ class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers UserEditCountInitJob
+	 * @covers \UserEditCountInitJob
 	 * @dataProvider provideTestCases
 	 */
 	public function testUserEditCountInitJob( $startingEditCount, $setCount, $finalCount ) {

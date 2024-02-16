@@ -82,7 +82,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers WikitextContentHandler::makeEmptyContent
+	 * @covers \WikitextContentHandler::makeEmptyContent
 	 */
 	public function testMakeEmptyContent() {
 		$handler = $this->newWikitextContentHandler();

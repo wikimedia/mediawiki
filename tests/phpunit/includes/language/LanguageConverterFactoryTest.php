@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group large
  * @group Language
- * @coversDefaultClass MediaWiki\Languages\LanguageConverterFactory
+ * @coversDefaultClass \MediaWiki\Languages\LanguageConverterFactory
  */
 class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	/**

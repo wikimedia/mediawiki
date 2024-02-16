@@ -5,7 +5,7 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers WatchedItem
+ * @covers \WatchedItem
  */
 class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 

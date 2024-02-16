@@ -12,7 +12,7 @@ use MediaWiki\MainConfigNames;
  * @group Database
  * @group medium
  *
- * @covers ApiQueryBlocks
+ * @covers \ApiQueryBlocks
  */
 class ApiQueryBlocksTest extends ApiTestCase {
 

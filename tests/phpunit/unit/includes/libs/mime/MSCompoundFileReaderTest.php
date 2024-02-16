@@ -16,7 +16,7 @@
 
 /**
  * @group Media
- * @covers MSCompoundFileReader
+ * @covers \MSCompoundFileReader
  */
 class MSCompoundFileReaderTest extends PHPUnit\Framework\TestCase {
 	public static function provideValid() {

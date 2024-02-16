@@ -9,7 +9,7 @@ use MediaWiki\User\TempUser\TempUserCreator;
  * @group Database
  * @group medium
  *
- * @covers ApiAcquireTempUserName
+ * @covers \ApiAcquireTempUserName
  */
 class ApiAcquireTempUserNameTest extends ApiTestCase {
 	use MockAuthorityTrait;

@@ -8,7 +8,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers ApiQueryWatchlistRaw
+ * @covers \ApiQueryWatchlistRaw
  */
 class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	// TODO: This test should use Authority, but can't due to User::saveSettings

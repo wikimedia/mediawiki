@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers ApiStashEdit
+ * @covers \ApiStashEdit
  * @covers \MediaWiki\Storage\PageEditStash
  * @group API
  * @group medium

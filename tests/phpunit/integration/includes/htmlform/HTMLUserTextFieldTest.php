@@ -3,7 +3,7 @@
 use MediaWiki\User\UserFactory;
 
 /**
- * @covers HTMLUserTextFieldTest
+ * @covers \HTMLUserTextFieldTest
  */
 class HTMLUserTextFieldTest extends MediaWikiIntegrationTestCase {
 

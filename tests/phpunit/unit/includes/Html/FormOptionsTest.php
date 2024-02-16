@@ -12,7 +12,7 @@ use MediaWiki\Html\FormOptions;
 class FormOptionsTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers MediaWiki\Html\FormOptions::guessType
+	 * @covers \MediaWiki\Html\FormOptions::guessType
 	 * @dataProvider provideTypeDetection
 	 */
 	public function testGuessTypeDetection( $expectedType, $data ) {
@@ -41,7 +41,7 @@ class FormOptionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Html\FormOptions::guessType
+	 * @covers \MediaWiki\Html\FormOptions::guessType
 	 */
 	public function testGuessTypeOnNullThrowException() {
 		$this->expectException( InvalidArgumentException::class );

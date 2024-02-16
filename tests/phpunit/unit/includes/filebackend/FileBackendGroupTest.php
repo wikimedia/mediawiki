@@ -6,7 +6,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @coversDefaultClass FileBackendGroup
+ * @coversDefaultClass \FileBackendGroup
  */
 class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;

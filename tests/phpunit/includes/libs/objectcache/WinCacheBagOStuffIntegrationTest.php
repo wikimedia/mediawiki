@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers WinCacheBagOStuff
+ * @covers \WinCacheBagOStuff
  * @requires extension wincache
  */
 class WinCacheBagOStuffIntegrationTest extends BagOStuffTestBase {

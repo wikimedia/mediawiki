@@ -5,7 +5,7 @@ use MediaWiki\Request\PathRouter;
 /**
  * Tests for the MediaWiki\Request\PathRouter parsing.
  *
- * @covers MediaWiki\Request\PathRouter
+ * @covers \MediaWiki\Request\PathRouter
  */
 class PathRouterTest extends MediaWikiUnitTestCase {
 

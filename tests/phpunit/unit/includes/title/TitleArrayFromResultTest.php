@@ -5,7 +5,7 @@ use MediaWiki\Title\TitleArrayFromResult;
 
 /**
  * @author Addshore
- * @covers MediaWiki\Title\TitleArrayFromResult
+ * @covers \MediaWiki\Title\TitleArrayFromResult
  */
 class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 
@@ -28,7 +28,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\TitleArrayFromResult::__construct
+	 * @covers \MediaWiki\Title\TitleArrayFromResult::__construct
 	 */
 	public function testConstructionWithFalseRow() {
 		$row = false;
@@ -42,7 +42,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\TitleArrayFromResult::__construct
+	 * @covers \MediaWiki\Title\TitleArrayFromResult::__construct
 	 */
 	public function testConstructionWithRow() {
 		$namespace = 0;
@@ -69,7 +69,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideNumberOfRows
-	 * @covers MediaWiki\Title\TitleArrayFromResult::count
+	 * @covers \MediaWiki\Title\TitleArrayFromResult::count
 	 */
 	public function testCountWithVaryingValues( $numRows ) {
 		$object = new TitleArrayFromResult( $this->getMockResultWrapper(
@@ -80,7 +80,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\TitleArrayFromResult::current
+	 * @covers \MediaWiki\Title\TitleArrayFromResult::current
 	 */
 	public function testCurrentAfterConstruction() {
 		$namespace = 0;
@@ -101,7 +101,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideTestValid
-	 * @covers MediaWiki\Title\TitleArrayFromResult::valid
+	 * @covers \MediaWiki\Title\TitleArrayFromResult::valid
 	 */
 	public function testValid( $input, $expected ) {
 		$object = new TitleArrayFromResult( $this->getMockResultWrapper( $input ) );

@@ -6,7 +6,7 @@ use MediaWiki\Session\SessionId;
 
 /**
  * @group Session
- * @covers MediaWiki\Session\SessionId
+ * @covers \MediaWiki\Session\SessionId
  */
 class SessionIdTest extends \MediaWikiUnitTestCase {
 

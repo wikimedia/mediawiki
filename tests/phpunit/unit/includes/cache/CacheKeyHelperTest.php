@@ -24,7 +24,7 @@ class CacheKeyHelperTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideKeyForPage
-	 * @covers MediaWiki\Cache\CacheKeyHelper::getKeyForPage
+	 * @covers \MediaWiki\Cache\CacheKeyHelper::getKeyForPage
 	 */
 	public function testKeyForPage( $page, $key ) {
 		$this->assertSame( $key, CacheKeyHelper::getKeyForPage( $page ) );

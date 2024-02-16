@@ -14,7 +14,7 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers Skin
+ * @covers \Skin
  * @group Database
  */
 class SkinTest extends MediaWikiIntegrationTestCase {
@@ -22,7 +22,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	use MockBlockTrait;
 
 	/**
-	 * @covers Skin
+	 * @covers \Skin
 	 */
 	public function testGetSkinName() {
 		$skin = new SkinFallback();

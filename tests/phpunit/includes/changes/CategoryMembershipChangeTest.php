@@ -6,7 +6,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @covers CategoryMembershipChange
+ * @covers \CategoryMembershipChange
  *
  * @group Database
  *

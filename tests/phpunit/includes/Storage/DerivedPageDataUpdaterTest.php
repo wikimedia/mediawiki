@@ -1279,7 +1279,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
-	 * @covers ParsoidCachePrewarmJob::doParsoidCacheUpdate()
+	 * @covers \ParsoidCachePrewarmJob::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
 		$this->overrideConfigValue(
@@ -1374,7 +1374,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
-	 * @covers ParsoidCachePrewarmJob::doParsoidCacheUpdate()
+	 * @covers \ParsoidCachePrewarmJob::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdateForJavaScriptContent() {
 		$this->overrideConfigValue(

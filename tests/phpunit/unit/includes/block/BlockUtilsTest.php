@@ -11,7 +11,7 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Block\BlockUtils
+ * @covers \MediaWiki\Block\BlockUtils
  * @group Blocking
  * @author DannyS712
  */

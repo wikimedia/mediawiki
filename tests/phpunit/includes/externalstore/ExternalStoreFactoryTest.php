@@ -4,8 +4,8 @@ use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
- * @covers ExternalStoreFactory
- * @covers ExternalStoreAccess
+ * @covers \ExternalStoreFactory
+ * @covers \ExternalStoreAccess
  */
 class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -47,9 +47,9 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ExternalStoreFactory::getProtocols
-	 * @covers ExternalStoreFactory::getWriteBaseUrls
-	 * @covers ExternalStoreFactory::getStore
+	 * @covers \ExternalStoreFactory::getProtocols
+	 * @covers \ExternalStoreFactory::getWriteBaseUrls
+	 * @covers \ExternalStoreFactory::getStore
 	 */
 	public function testStoreFactoryBasic() {
 		$active = [ 'memory', 'mwstore' ];
@@ -94,8 +94,8 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ExternalStoreFactory::getStoreForUrl
-	 * @covers ExternalStoreFactory::getStoreLocationFromUrl
+	 * @covers \ExternalStoreFactory::getStoreForUrl
+	 * @covers \ExternalStoreFactory::getStoreLocationFromUrl
 	 */
 	public function testStoreFactoryReadWrite() {
 		$active = [ 'memory' ]; // active store types

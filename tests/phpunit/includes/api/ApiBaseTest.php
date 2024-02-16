@@ -21,7 +21,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group medium
  *
- * @covers ApiBase
+ * @covers \ApiBase
  */
 class ApiBaseTest extends ApiTestCase {
 
@@ -1574,7 +1574,7 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	/**
-	 * @covers ApiBase::extractRequestParams
+	 * @covers \ApiBase::extractRequestParams
 	 */
 	public function testExtractRequestParams() {
 		$request = new FauxRequest( [

@@ -3,7 +3,7 @@
 /**
  * TODO convert to a Unit test
  *
- * @covers CustomUppercaseCollation
+ * @covers \CustomUppercaseCollation
  */
 class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 

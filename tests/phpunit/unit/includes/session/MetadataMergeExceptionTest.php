@@ -6,7 +6,7 @@ use MediaWiki\Session\MetadataMergeException;
 
 /**
  * @group Session
- * @covers MediaWiki\Session\MetadataMergeException
+ * @covers \MediaWiki\Session\MetadataMergeException
  */
 class MetadataMergeExceptionTest extends \MediaWikiUnitTestCase {
 

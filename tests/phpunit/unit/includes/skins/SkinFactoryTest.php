@@ -3,7 +3,7 @@
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @covers SkinFactory
+ * @covers \SkinFactory
  */
 class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	use DummyServicesTrait;

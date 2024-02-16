@@ -4,7 +4,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers CachedBagOStuff
+ * @covers \CachedBagOStuff
  * @group BagOStuff
  */
 class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {

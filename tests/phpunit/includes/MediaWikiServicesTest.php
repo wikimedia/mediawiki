@@ -12,7 +12,7 @@ use Wikimedia\Services\DestructibleService;
 use Wikimedia\Services\SalvageableService;
 
 /**
- * @covers MediaWiki\MediaWikiServices
+ * @covers \MediaWiki\MediaWikiServices
  * @group Database
  * This test doesn't really make queries, but needs to be in the Database test to make sure
  * that storage isn't disabled on the original instance.

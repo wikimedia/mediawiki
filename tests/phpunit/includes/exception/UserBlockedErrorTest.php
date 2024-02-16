@@ -8,7 +8,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @covers UserBlockedError
+ * @covers \UserBlockedError
  */
 class UserBlockedErrorTest extends MediaWikiIntegrationTestCase {
 

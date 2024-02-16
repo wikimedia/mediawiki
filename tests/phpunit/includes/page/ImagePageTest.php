@@ -31,7 +31,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers ImagePage::getThumbSizes
+	 * @covers \ImagePage::getThumbSizes
 	 * @dataProvider providerGetThumbSizes
 	 * @param string $filename
 	 * @param int $expectedNumberThumbs How many thumbnails to show
@@ -56,7 +56,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers ImagePage::getLanguageForRendering()
+	 * @covers \ImagePage::getLanguageForRendering()
 	 * @dataProvider provideGetLanguageForRendering
 	 *
 	 * @param string|null $expected Expected IETF language code

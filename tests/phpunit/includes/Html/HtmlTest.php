@@ -5,7 +5,7 @@ use MediaWiki\Html\HtmlJsCode;
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers MediaWiki\Html\Html
+ * @covers \MediaWiki\Html\Html
  */
 class HtmlTest extends MediaWikiIntegrationTestCase {
 

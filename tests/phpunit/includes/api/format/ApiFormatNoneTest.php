@@ -2,7 +2,7 @@
 
 /**
  * @group API
- * @covers ApiFormatNone
+ * @covers \ApiFormatNone
  */
 class ApiFormatNoneTest extends ApiFormatTestBase {
 

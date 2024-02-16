@@ -28,7 +28,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideTwoPluralForms
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testTwoPluralForms( $result, $value ) {
 		$forms = [ 'one', 'other' ];
@@ -37,7 +37,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideThreePluralForms
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testThreePluralForms( $result, $value ) {
 		$forms = [ 'one', 'two', 'other' ];
@@ -46,7 +46,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideFourPluralForms
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testFourPluralForms( $result, $value ) {
 		$forms = [ 'one', 'two', 'many', 'other' ];
@@ -55,7 +55,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideFourPluralForms
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
@@ -96,7 +96,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideGrammar
-	 * @covers Language::convertGrammar
+	 * @covers \Language::convertGrammar
 	 */
 	public function testGrammar( $result, $word, $case ) {
 		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );

@@ -8,7 +8,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Dump
- * @covers BaseDump
+ * @covers \BaseDump
  */
 class BaseDumpTest extends MediaWikiIntegrationTestCase {
 

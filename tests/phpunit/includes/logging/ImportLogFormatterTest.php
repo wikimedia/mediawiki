@@ -3,7 +3,7 @@
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @covers ImportLogFormatter
+ * @covers \ImportLogFormatter
  */
 class ImportLogFormatterTest extends LogFormatterTestCase {
 	use DummyServicesTrait;

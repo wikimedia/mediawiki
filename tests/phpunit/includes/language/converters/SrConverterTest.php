@@ -2,21 +2,21 @@
 
 /**
  * @group Language
- * @covers SrConverter
+ * @covers \SrConverter
  */
 class SrConverterTest extends MediaWikiIntegrationTestCase {
 
 	use LanguageConverterTestTrait;
 
 	/**
-	 * @covers SrConverter::hasVariants
+	 * @covers \SrConverter::hasVariants
 	 */
 	public function testHasVariants() {
 		$this->assertTrue( $this->getLanguageConverter()->hasVariants(), 'sr has variants' );
 	}
 
 	/**
-	 * @covers SrConverter::hasVariant
+	 * @covers \SrConverter::hasVariant
 	 */
 	public function testHasVariantBogus() {
 		$variants = [
@@ -31,7 +31,7 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SrConverter::convertTo
+	 * @covers \SrConverter::convertTo
 	 */
 	public function testEasyConversions() {
 		$this->assertCyrillic(
@@ -45,7 +45,7 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SrConverter::convertTo
+	 * @covers \SrConverter::convertTo
 	 */
 	public function testMixedConversions() {
 		$this->assertCyrillic(
@@ -59,7 +59,7 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SrConverter::convertTo
+	 * @covers \SrConverter::convertTo
 	 */
 	public function testSameAmountOfLatinAndCyrillicGetConverted() {
 		$this->assertConverted(
@@ -74,7 +74,7 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @author Nikola Smolenski
-	 * @covers SrConverter::convertTo
+	 * @covers \SrConverter::convertTo
 	 */
 	public function testConversionToCyrillic() {
 		// A simple conversion of Latin to Cyrillic
@@ -120,7 +120,7 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SrConverter::convertTo
+	 * @covers \SrConverter::convertTo
 	 */
 	public function testConversionToLatin() {
 		// A simple conversion of Latin to Latin

@@ -13,9 +13,9 @@ use Wikimedia\TestingAccessWrapper;
  * Test the parts of the Database abstract class that deal
  * with creating SQL text.
  *
- * @covers Wikimedia\Rdbms\Database
- * @covers Wikimedia\Rdbms\Subquery
- * @covers Wikimedia\Rdbms\Platform\SQLPlatform
+ * @covers \Wikimedia\Rdbms\Database
+ * @covers \Wikimedia\Rdbms\Subquery
+ * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
  */
 class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 

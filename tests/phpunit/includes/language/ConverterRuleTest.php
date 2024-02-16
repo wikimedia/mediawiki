@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers ConverterRule
+ * @covers \ConverterRule
  */
 class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 

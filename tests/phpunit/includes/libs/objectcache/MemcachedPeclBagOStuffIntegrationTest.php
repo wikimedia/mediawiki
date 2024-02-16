@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers MemcachedPeclBagOStuff
+ * @covers \MemcachedPeclBagOStuff
  * @requires extension memcached
  */
 class MemcachedPeclBagOStuffIntegrationTest extends BagOStuffTestBase {

@@ -6,7 +6,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * @covers MigrateFileRepoLayout
+ * @covers \MigrateFileRepoLayout
  */
 class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 	protected $tmpPrefix;

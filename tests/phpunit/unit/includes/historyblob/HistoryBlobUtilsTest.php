@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers HistoryBlobUtils
+ * @covers \HistoryBlobUtils
  */
 class HistoryBlobUtilsTest extends MediaWikiUnitTestCase {
 	public static function provideUnserialize() {

@@ -242,7 +242,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getRightDescription
+	 * @covers \User::getRightDescription
 	 */
 	public function testGetRightDescription() {
 		$key = 'deletechangetags';
@@ -251,7 +251,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getRightDescriptionHtml
+	 * @covers \User::getRightDescriptionHtml
 	 */
 	public function testGetParsedRightDescription() {
 		$key = 'deletechangetags';

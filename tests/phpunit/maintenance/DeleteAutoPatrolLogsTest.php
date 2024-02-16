@@ -6,7 +6,7 @@ use DeleteAutoPatrolLogs;
 
 /**
  * @group Database
- * @covers DeleteAutoPatrolLogs
+ * @covers \DeleteAutoPatrolLogs
  */
 class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 

@@ -182,7 +182,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearch
-	 * @covers SearchEngine::defaultPrefixSearch
+	 * @covers \SearchEngine::defaultPrefixSearch
 	 */
 	public function testSearch( array $case ) {
 		$this->search->setLimitOffset( 3 );
@@ -200,7 +200,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearch
-	 * @covers SearchEngine::defaultPrefixSearch
+	 * @covers \SearchEngine::defaultPrefixSearch
 	 */
 	public function testSearchWithOffset( array $case ) {
 		$this->search->setLimitOffset( 3, 1 );
@@ -349,7 +349,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearchBackend
-	 * @covers PrefixSearch::searchBackend
+	 * @covers \PrefixSearch::searchBackend
 	 */
 	public function testSearchBackend( array $case ) {
 		$search = $this->mockSearchWithResults( $case['provision'] );
@@ -383,7 +383,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider paginationProvider
-	 * @covers SearchSuggestionSet::hasMoreResults
+	 * @covers \SearchSuggestionSet::hasMoreResults
 	 */
 	public function testPagination( $hasMoreResults, $provision ) {
 		$search = $this->mockSearchWithResults( $provision );

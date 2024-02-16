@@ -3,7 +3,7 @@
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers LanguageZh
+ * @covers \LanguageZh
  */
 class LanguageZhTest extends LanguageClassesTestCase {
 	public function testSegmentForDiff() {

@@ -8,7 +8,7 @@ use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
- * @covers SkinMustache
+ * @covers \SkinMustache
  * @group Skin
  * @group Database
  */
@@ -93,11 +93,11 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Skin
-	 * @covers MediaWiki\Skin\SkinComponentLogo
-	 * @covers MediaWiki\Skin\SkinComponentSearch
-	 * @covers MediaWiki\Skin\SkinComponentTableOfContents
-	 * @covers MediaWiki\Skin\SkinComponentFooter
+	 * @covers \Skin
+	 * @covers \MediaWiki\Skin\SkinComponentLogo
+	 * @covers \MediaWiki\Skin\SkinComponentSearch
+	 * @covers \MediaWiki\Skin\SkinComponentTableOfContents
+	 * @covers \MediaWiki\Skin\SkinComponentFooter
 	 */
 	public function testGetTemplateData() {
 		$config = $this->getServiceContainer()->getMainConfig();

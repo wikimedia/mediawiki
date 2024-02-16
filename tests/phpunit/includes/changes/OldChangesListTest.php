@@ -5,7 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
- * @covers OldChangesList
+ * @covers \OldChangesList
  *
  * @todo add tests to cover article link, timestamp, character difference,
  *       log entry, user tool links, direction marks, tags, rollback,

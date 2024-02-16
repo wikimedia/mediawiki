@@ -71,7 +71,7 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll
-	 * @covers MediaWiki\Languages\LanguageFallback::getFirst
+	 * @covers \MediaWiki\Languages\LanguageFallback::getFirst
 	 */
 	public function testGetFirst( $code, array $expected, array $options = [] ) {
 		$callee = $this->getCallee( $options );
@@ -84,7 +84,7 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll
-	 * @covers MediaWiki\Languages\LanguageFallback::getAll
+	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
 	 */
 	public function testGetAll( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
@@ -96,7 +96,7 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll
-	 * @covers MediaWiki\Languages\LanguageFallback::getAll
+	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
 	 */
 	public function testGetAll_messages( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
@@ -120,7 +120,7 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll_strict
-	 * @covers MediaWiki\Languages\LanguageFallback::getAll
+	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
 	 */
 	public function testGetAll_strict( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
@@ -140,7 +140,7 @@ trait LanguageFallbackTestTrait {
 	}
 
 	/**
-	 * @covers MediaWiki\Languages\LanguageFallback::getAll
+	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
 	 */
 	public function testGetAll_invalidMode() {
 		$this->expectException( InvalidArgumentException::class );
@@ -163,7 +163,7 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param int $expectedGets
 	 * @dataProvider provideGetAllIncludingSiteLanguage
-	 * @covers MediaWiki\Languages\LanguageFallback::getAllIncludingSiteLanguage
+	 * @covers \MediaWiki\Languages\LanguageFallback::getAllIncludingSiteLanguage
 	 */
 	public function testGetAllIncludingSiteLanguage(
 		$code, $siteLangCode, array $expected, $expectedGets = 1

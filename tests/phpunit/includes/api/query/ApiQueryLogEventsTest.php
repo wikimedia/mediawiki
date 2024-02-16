@@ -5,7 +5,7 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers ApiQueryLogEvents
+ * @covers \ApiQueryLogEvents
  * @group API
  * @group Database
  * @group medium

@@ -3,13 +3,13 @@
 use MediaWiki\Title\Title;
 
 /**
- * @covers ApiResult
+ * @covers \ApiResult
  * @group API
  */
 class ApiResultTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers ApiResult
+	 * @covers \ApiResult
 	 */
 	public function testStaticDataMethods() {
 		$arr = [];
@@ -234,7 +234,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiResult
+	 * @covers \ApiResult
 	 */
 	public function testInstanceDataMethods() {
 		$result = new ApiResult( 8_388_608 );
@@ -537,7 +537,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiResult
+	 * @covers \ApiResult
 	 */
 	public function testMetadata() {
 		$arr = [ 'foo' => [ 'bar' => [] ] ];
@@ -602,7 +602,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiResult
+	 * @covers \ApiResult
 	 */
 	public function testUtilityFunctions() {
 		$arr = [
@@ -691,7 +691,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiResult
+	 * @covers \ApiResult
 	 * @dataProvider provideTransformations
 	 * @param string $label
 	 * @param array $input
@@ -1257,7 +1257,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ApiResult
+	 * @covers \ApiResult
 	 */
 	public function testAddMetadataToResultVars() {
 		$arr = [

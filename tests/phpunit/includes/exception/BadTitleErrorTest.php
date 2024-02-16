@@ -3,7 +3,7 @@
 use MediaWiki\Output\OutputPage;
 
 /**
- * @covers BadTitleError
+ * @covers \BadTitleError
  * @author Addshore
  */
 class BadTitleErrorTest extends MediaWikiIntegrationTestCase {

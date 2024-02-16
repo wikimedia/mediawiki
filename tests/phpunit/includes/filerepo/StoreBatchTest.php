@@ -124,7 +124,7 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers FileRepo::store
+	 * @covers \FileRepo::store
 	 */
 	public function teststore() {
 		global $IP;

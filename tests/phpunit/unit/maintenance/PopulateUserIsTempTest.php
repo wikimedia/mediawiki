@@ -8,7 +8,7 @@ use PopulateUserIsTemp;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers PopulateUserIsTemp
+ * @covers \PopulateUserIsTemp
  */
 class PopulateUserIsTempTest extends MediaWikiUnitTestCase {
 	public function testUpdateKey() {

@@ -7,7 +7,7 @@ use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
- * @covers Wikimedia\Rdbms\DatabaseFactory
+ * @covers \Wikimedia\Rdbms\DatabaseFactory
  */
 class DatabaseFactoryTest extends PHPUnit\Framework\TestCase {
 

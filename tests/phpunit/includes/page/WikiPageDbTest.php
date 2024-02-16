@@ -20,7 +20,7 @@ use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers WikiPage
+ * @covers \WikiPage
  * @group Database
  */
 class WikiPageDbTest extends MediaWikiLangTestCase {
@@ -651,7 +651,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetRedirectTarget
-	 * @covers WikiPage
+	 * @covers \WikiPage
 	 * @covers \MediaWiki\Page\RedirectStore
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {

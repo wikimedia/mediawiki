@@ -23,9 +23,9 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @dataProvider provideAddQuotes
- * @covers Wikimedia\Rdbms\Database
- * @covers Wikimedia\Rdbms\Database\DatabaseFlags
- * @covers Wikimedia\Rdbms\Platform\SQLPlatform
+ * @covers \Wikimedia\Rdbms\Database
+ * @covers \Wikimedia\Rdbms\Database\DatabaseFlags
+ * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
  */
 class DatabaseTest extends PHPUnit\Framework\TestCase {
 

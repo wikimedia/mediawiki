@@ -75,8 +75,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Article::getOldId()
-	 * @covers Article::getRevIdFetched()
+	 * @covers \Article::getOldId()
+	 * @covers \Article::getRevIdFetched()
 	 */
 	public function testGetOldId() {
 		$revisions = [];
@@ -149,8 +149,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Article::getPage
-	 * @covers WikiPage::getRedirectTarget
+	 * @covers \Article::getPage
+	 * @covers \WikiPage::getRedirectTarget
 	 * @covers \MediaWiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testViewRedirect() {

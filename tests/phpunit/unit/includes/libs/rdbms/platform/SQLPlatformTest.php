@@ -7,8 +7,8 @@ use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
- * @covers Wikimedia\Rdbms\Platform\SQLPlatform
- * @covers Wikimedia\Rdbms\Database
+ * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
+ * @covers \Wikimedia\Rdbms\Database
  */
 class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 

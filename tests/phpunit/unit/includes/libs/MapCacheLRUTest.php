@@ -1,7 +1,7 @@
 <?php
 /**
  * @group Cache
- * @covers MapCacheLRU
+ * @covers \MapCacheLRU
  */
 class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 

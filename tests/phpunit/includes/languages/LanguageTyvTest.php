@@ -7,7 +7,7 @@ class LanguageTyvTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideGrammar
-	 * @covers Language::convertGrammar
+	 * @covers \Language::convertGrammar
 	 */
 	public function testGrammar( $result, $word, $case ) {
 		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );

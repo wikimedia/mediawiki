@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers RESTBagOStuff
+ * @covers \RESTBagOStuff
  */
 class RESTBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {

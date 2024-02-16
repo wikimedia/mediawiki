@@ -3,7 +3,7 @@
 class UserMailerTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers UserMailer::quotedPrintable
+	 * @covers \UserMailer::quotedPrintable
 	 */
 	public function testQuotedPrintable() {
 		$this->assertEquals(

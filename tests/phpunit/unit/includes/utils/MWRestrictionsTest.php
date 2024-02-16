@@ -20,8 +20,8 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MWRestrictions::newDefault
-	 * @covers MWRestrictions::__construct
+	 * @covers \MWRestrictions::newDefault
+	 * @covers \MWRestrictions::__construct
 	 */
 	public function testNewDefault() {
 		$ret = MWRestrictions::newDefault();
@@ -33,10 +33,10 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MWRestrictions::newFromArray
-	 * @covers MWRestrictions::__construct
-	 * @covers MWRestrictions::loadFromArray
-	 * @covers MWRestrictions::toArray
+	 * @covers \MWRestrictions::newFromArray
+	 * @covers \MWRestrictions::__construct
+	 * @covers \MWRestrictions::loadFromArray
+	 * @covers \MWRestrictions::toArray
 	 * @dataProvider provideArray
 	 * @param array $data
 	 * @param StatusValue|InvalidArgumentException $expect StatusValue if the call succeeds,
@@ -82,11 +82,11 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MWRestrictions::newFromJson
-	 * @covers MWRestrictions::__construct
-	 * @covers MWRestrictions::loadFromArray
-	 * @covers MWRestrictions::toJson
-	 * @covers MWRestrictions::__toString
+	 * @covers \MWRestrictions::newFromJson
+	 * @covers \MWRestrictions::__construct
+	 * @covers \MWRestrictions::loadFromArray
+	 * @covers \MWRestrictions::toJson
+	 * @covers \MWRestrictions::__toString
 	 * @dataProvider provideJson
 	 * @param string $json
 	 * @param array|null $restrictions
@@ -162,7 +162,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MWRestrictions::checkIP
+	 * @covers \MWRestrictions::checkIP
 	 * @dataProvider provideCheckIP
 	 * @param string $ip
 	 * @param bool $pass
@@ -183,7 +183,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MWRestrictions::check
+	 * @covers \MWRestrictions::check
 	 * @dataProvider provideCheck
 	 * @param WebRequest $request
 	 * @param Status $expect

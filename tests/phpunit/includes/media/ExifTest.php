@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Media
- * @covers Exif
+ * @covers \Exif
  * @requires extension exif
  */
 class ExifTest extends MediaWikiIntegrationTestCase {

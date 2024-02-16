@@ -8,7 +8,7 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
- * @covers Wikimedia\ParamValidator\TypeDef\FloatDef
+ * @covers \Wikimedia\ParamValidator\TypeDef\FloatDef
  */
 class FloatDefTest extends TypeDefTestCase {
 

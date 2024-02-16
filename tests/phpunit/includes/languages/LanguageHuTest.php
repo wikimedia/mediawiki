@@ -7,12 +7,12 @@
 
 /**
  * @group Language
- * @covers LanguageHu
+ * @covers \LanguageHu
  */
 class LanguageHuTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
 		$forms = [ 'one', 'other' ];
@@ -21,7 +21,7 @@ class LanguageHuTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePlural
-	 * @covers Language::getPluralRuleType
+	 * @covers \Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );

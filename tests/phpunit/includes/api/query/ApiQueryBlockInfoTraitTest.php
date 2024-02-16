@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers ApiQueryBlockInfoTrait
+ * @covers \ApiQueryBlockInfoTrait
  */
 class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;

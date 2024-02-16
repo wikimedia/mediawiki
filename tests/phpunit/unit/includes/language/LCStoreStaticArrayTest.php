@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers LCStoreStaticArray
+ * @covers \LCStoreStaticArray
  * @group Language
  */
 class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {

@@ -10,7 +10,7 @@ use ParserOptions;
 use Wikimedia\Tests\SerializationTestTrait;
 
 /**
- * @covers CacheTime
+ * @covers \CacheTime
  * @package MediaWiki\Tests\Parser
  */
 class CacheTimeTest extends MediaWikiIntegrationTestCase {

@@ -6,7 +6,7 @@ use Shellbox\RPC\RpcClient;
 
 /**
  * @group Shell
- * @covers MediaWiki\Shell\ShellboxClientFactory
+ * @covers \MediaWiki\Shell\ShellboxClientFactory
  */
 class ShellboxClientFactoryTest extends MediaWikiUnitTestCase {
 

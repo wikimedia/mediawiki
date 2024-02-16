@@ -6,7 +6,7 @@ use MediaWiki\MainConfigNames;
  * See also \MediaWiki\Tests\Unit\XmlTest for the pure unit tests
  *
  * @group Xml
- * @covers Xml
+ * @covers \Xml
  */
 class XmlTest extends MediaWikiIntegrationTestCase {
 

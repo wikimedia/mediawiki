@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers MWFileProps
+ * @covers \MWFileProps
  */
 class MWFilePropsTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetPropsFromPath() {

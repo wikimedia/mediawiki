@@ -11,7 +11,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @group Session
  * @group Database
- * @covers MediaWiki\Session\SessionInfo
+ * @covers \MediaWiki\Session\SessionInfo
  */
 class SessionInfoTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;

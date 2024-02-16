@@ -6,7 +6,7 @@
 class DiffHistoryBlobTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideXdiffAdler32
-	 * @covers DiffHistoryBlob::xdiffAdler32
+	 * @covers \DiffHistoryBlob::xdiffAdler32
 	 */
 	public function testXdiffAdler32( $input ) {
 		$xdiffHash = substr( xdiff_string_rabdiff( $input, '' ), 0, 4 );

@@ -5,7 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
- * @covers RCCacheEntryFactory
+ * @covers \RCCacheEntryFactory
  *
  * @group Database
  *

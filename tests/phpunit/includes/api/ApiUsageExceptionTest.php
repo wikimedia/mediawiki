@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers ApiUsageException
+ * @covers \ApiUsageException
  */
 class ApiUsageExceptionTest extends MediaWikiIntegrationTestCase {
 

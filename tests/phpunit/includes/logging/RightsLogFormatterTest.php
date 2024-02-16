@@ -4,7 +4,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
- * @covers RightsLogFormatter
+ * @covers \RightsLogFormatter
  */
 class RightsLogFormatterTest extends LogFormatterTestCase {
 

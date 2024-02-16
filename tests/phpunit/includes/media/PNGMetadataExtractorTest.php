@@ -2,7 +2,7 @@
 
 /**
  * @group Media
- * @covers PNGMetadataExtractor
+ * @covers \PNGMetadataExtractor
  */
 class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 

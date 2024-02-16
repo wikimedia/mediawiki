@@ -8,7 +8,7 @@ use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 
 /**
- * @covers Wikimedia\ParamValidator\Util\UploadedFile
+ * @covers \Wikimedia\ParamValidator\Util\UploadedFile
  */
 class UploadedFileTest extends UploadedFileTestBase {
 

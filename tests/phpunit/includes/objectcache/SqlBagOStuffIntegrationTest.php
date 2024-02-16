@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers SqlBagOStuff
+ * @covers \SqlBagOStuff
  */
 class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {

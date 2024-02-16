@@ -5,7 +5,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 
 /**
- * @covers ApiContinuationManager
+ * @covers \ApiContinuationManager
  * @group API
  */
 class ApiContinuationManagerTest extends ApiTestCase {

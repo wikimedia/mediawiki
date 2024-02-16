@@ -16,7 +16,7 @@ class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Content\Transform\ContentTransformer::preSaveTransform
+	 * @covers \MediaWiki\Content\Transform\ContentTransformer::preSaveTransform
 	 *
 	 * @dataProvider preSaveTransformProvider
 	 */
@@ -42,7 +42,7 @@ class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Content\Transform\ContentTransformer::preloadTransform
+	 * @covers \MediaWiki\Content\Transform\ContentTransformer::preloadTransform
 	 *
 	 * @dataProvider preloadTransformProvider
 	 */

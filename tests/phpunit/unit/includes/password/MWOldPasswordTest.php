@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @covers MWOldPassword
- * @covers ParameterizedPassword
- * @covers Password
+ * @covers \MWOldPassword
+ * @covers \ParameterizedPassword
+ * @covers \Password
  */
 class MWOldPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {

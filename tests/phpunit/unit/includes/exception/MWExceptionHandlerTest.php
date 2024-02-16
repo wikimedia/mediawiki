@@ -4,7 +4,7 @@ use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MWExceptionHandler
+ * @covers \MWExceptionHandler
  * @author Antoine Musso
  */
 class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {

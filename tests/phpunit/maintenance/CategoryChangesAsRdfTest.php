@@ -8,7 +8,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Tests for CategoryChangesAsRdf recent changes exporter.
- * @covers CategoryChangesAsRdf
+ * @covers \CategoryChangesAsRdf
  * @group Database
  */
 class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {

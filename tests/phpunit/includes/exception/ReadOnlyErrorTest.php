@@ -3,7 +3,7 @@
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @covers ReadOnlyError
+ * @covers \ReadOnlyError
  * @author Addshore
  */
 class ReadOnlyErrorTest extends MediaWikiIntegrationTestCase {

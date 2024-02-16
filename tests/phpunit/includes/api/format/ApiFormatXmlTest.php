@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 /**
  * @group API
  * @group Database
- * @covers ApiFormatXml
+ * @covers \ApiFormatXml
  */
 class ApiFormatXmlTest extends ApiFormatTestBase {
 

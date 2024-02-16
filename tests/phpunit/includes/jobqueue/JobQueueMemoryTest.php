@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @covers JobQueueMemory
+ * @covers \JobQueueMemory
  *
  * @group JobQueue
  *

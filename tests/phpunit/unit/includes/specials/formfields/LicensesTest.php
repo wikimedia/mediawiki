@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers Licenses
+ * @covers \Licenses
  */
 class LicensesTest extends MediaWikiUnitTestCase {
 

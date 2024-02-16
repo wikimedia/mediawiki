@@ -4,7 +4,7 @@ use MediaWiki\Language\RawMessage;
 
 /**
  * @group ContentHandler
- * @covers MessageContent
+ * @covers \MessageContent
  */
 class MessageContentTest extends MediaWikiLangTestCase {
 

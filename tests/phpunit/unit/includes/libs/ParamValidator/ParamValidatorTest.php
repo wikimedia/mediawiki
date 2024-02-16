@@ -11,7 +11,7 @@ use Wikimedia\Message\ScalarParam;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * @covers Wikimedia\ParamValidator\ParamValidator
+ * @covers \Wikimedia\ParamValidator\ParamValidator
  */
 class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 

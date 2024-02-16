@@ -5,8 +5,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
- * @covers Skin
- * @covers SkinTemplate
+ * @covers \Skin
+ * @covers \SkinTemplate
  * @group Skin
  * @group Database
  */

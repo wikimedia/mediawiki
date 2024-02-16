@@ -9,7 +9,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
- * @covers ProtectLogFormatter
+ * @covers \ProtectLogFormatter
  */
 class ProtectLogFormatterTest extends LogFormatterTestCase {
 
@@ -464,7 +464,7 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 	 * @param string[] $permissions
 	 * @param bool $shouldMatch
 	 * @dataProvider provideGetActionLinks
-	 * @covers ProtectLogFormatter::getActionLinks
+	 * @covers \ProtectLogFormatter::getActionLinks
 	 */
 	public function testGetActionLinks( array $permissions, $shouldMatch ) {
 		RequestContext::resetMain();

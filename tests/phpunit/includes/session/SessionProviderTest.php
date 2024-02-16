@@ -17,7 +17,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Session
  * @group Database
- * @covers MediaWiki\Session\SessionProvider
+ * @covers \MediaWiki\Session\SessionProvider
  */
 class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;

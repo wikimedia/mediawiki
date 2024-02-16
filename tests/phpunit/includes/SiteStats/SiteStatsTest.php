@@ -9,7 +9,7 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
 class SiteStatsTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers MediaWiki\SiteStats\SiteStats::jobs
+	 * @covers \MediaWiki\SiteStats\SiteStats::jobs
 	 */
 	public function testJobsCountGetCached() {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
@@ -39,7 +39,7 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\SiteStats\SiteStats
+	 * @covers \MediaWiki\SiteStats\SiteStats
 	 */
 	public function testInit() {
 		$this->db->delete( 'site_stats', ISQLPlatform::ALL_ROWS, __METHOD__ );

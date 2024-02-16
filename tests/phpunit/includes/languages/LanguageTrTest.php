@@ -7,7 +7,7 @@
 
 /**
  * @group Language
- * @covers LanguageTr
+ * @covers \LanguageTr
  */
 class LanguageTrTest extends LanguageClassesTestCase {
 
@@ -19,8 +19,8 @@ class LanguageTrTest extends LanguageClassesTestCase {
 	 *  - Emperyan
 	 * @see https://en.wikipedia.org/wiki/Dotted_and_dotless_I
 	 * @dataProvider provideDottedAndDotlessI
-	 * @covers Language::ucfirst
-	 * @covers Language::lcfirst
+	 * @covers \Language::ucfirst
+	 * @covers \Language::lcfirst
 	 */
 	public function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
 		if ( $func == 'ucfirst' ) {

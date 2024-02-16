@@ -8,7 +8,7 @@ class LanguageConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 	use LanguageConverterTestTrait;
 
 	/**
-	 * @covers LanguageConverter::hasVariant
+	 * @covers \LanguageConverter::hasVariant
 	 */
 	public function testHasVariant() {
 		// See LanguageSrTest::testHasVariant() for additional tests

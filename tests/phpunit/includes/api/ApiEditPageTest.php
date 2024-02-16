@@ -20,7 +20,7 @@ use MediaWiki\Utils\MWTimestamp;
  * @group Database
  * @group medium
  *
- * @covers ApiEditPage
+ * @covers \ApiEditPage
  */
 class ApiEditPageTest extends ApiTestCase {
 

@@ -15,7 +15,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers WatchedItemQueryService
+ * @covers \WatchedItemQueryService
  */
 class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 

@@ -9,7 +9,7 @@ use MediaWiki\Permissions\PermissionStatus;
  * @group Database
  * @group medium
  *
- * @covers ApiPurge
+ * @covers \ApiPurge
  */
 class ApiPurgeTest extends ApiTestCase {
 

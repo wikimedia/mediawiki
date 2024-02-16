@@ -6,7 +6,7 @@ use MediaWiki\Request\FauxRequest;
 /**
  * @group API
  * @group medium
- * @covers ApiCSPReport
+ * @covers \ApiCSPReport
  */
 class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 

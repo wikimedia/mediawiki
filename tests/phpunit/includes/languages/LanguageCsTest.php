@@ -11,7 +11,7 @@
 class LanguageCsTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
-	 * @covers Language::convertPlural
+	 * @covers \Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
 		$forms = [ 'one', 'few', 'other' ];
@@ -20,7 +20,7 @@ class LanguageCsTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePlural
-	 * @covers Language::getPluralRuleType
+	 * @covers \Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );

@@ -4,7 +4,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MultiWriteBagOStuff
+ * @covers \MultiWriteBagOStuff
  * @group BagOStuff
  * @group Database
  */

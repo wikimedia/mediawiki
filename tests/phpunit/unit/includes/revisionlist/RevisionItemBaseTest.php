@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers RevisionItemBase
+ * @covers \RevisionItemBase
  *
  * @author DannyS712
  */

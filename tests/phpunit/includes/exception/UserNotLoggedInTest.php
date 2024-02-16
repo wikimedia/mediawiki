@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers UserNotLoggedIn
+ * @covers \UserNotLoggedIn
  * @author Addshore
  */
 class UserNotLoggedInTest extends MediaWikiIntegrationTestCase {

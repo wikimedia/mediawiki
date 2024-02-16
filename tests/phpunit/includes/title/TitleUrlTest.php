@@ -8,12 +8,12 @@ use MediaWiki\Title\Title;
 /**
  * @group Database
  *
- * @covers MediaWiki\Title\Title::getLocalURL
- * @covers MediaWiki\Title\Title::getLinkURL
- * @covers MediaWiki\Title\Title::getFullURL
- * @covers MediaWiki\Title\Title::getFullUrlForRedirect
- * @covers MediaWiki\Title\Title::getCanonicalURL
- * @covers MediaWiki\Title\Title::getInternalURL
+ * @covers \MediaWiki\Title\Title::getLocalURL
+ * @covers \MediaWiki\Title\Title::getLinkURL
+ * @covers \MediaWiki\Title\Title::getFullURL
+ * @covers \MediaWiki\Title\Title::getFullUrlForRedirect
+ * @covers \MediaWiki\Title\Title::getCanonicalURL
+ * @covers \MediaWiki\Title\Title::getInternalURL
  */
 class TitleUrlTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;

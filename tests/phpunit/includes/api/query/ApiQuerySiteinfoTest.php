@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group medium
  * @group Database
  *
- * @covers ApiQuerySiteinfo
+ * @covers \ApiQuerySiteinfo
  */
 class ApiQuerySiteinfoTest extends ApiTestCase {
 	private $originalRegistryLoaded = null;

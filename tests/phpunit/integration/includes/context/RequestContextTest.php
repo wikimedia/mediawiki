@@ -19,7 +19,7 @@ use Skin;
 use SkinFallback;
 
 /**
- * @covers RequestContext
+ * @covers \RequestContext
  * @group Database
  * @group RequestContext
  */
@@ -65,8 +65,8 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test the relationship between title and wikipage in RequestContext
-	 * @covers RequestContext::getWikiPage
-	 * @covers RequestContext::getTitle
+	 * @covers \RequestContext::getWikiPage
+	 * @covers \RequestContext::getTitle
 	 */
 	public function testWikiPageTitle() {
 		$context = new RequestContext();
@@ -91,7 +91,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers RequestContext::importScopedSession
+	 * @covers \RequestContext::importScopedSession
 	 */
 	public function testImportScopedSession() {
 		// Make sure session handling is started
@@ -172,10 +172,10 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers RequestContext::getUser
-	 * @covers RequestContext::setUser
-	 * @covers RequestContext::getAuthority
-	 * @covers RequestContext::setAuthority
+	 * @covers \RequestContext::getUser
+	 * @covers \RequestContext::setUser
+	 * @covers \RequestContext::getAuthority
+	 * @covers \RequestContext::setAuthority
 	 */
 	public function testTestGetSetAuthority() {
 		$context = new RequestContext();
@@ -195,7 +195,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers RequestContext
+	 * @covers \RequestContext
 	 */
 	public function testGetActionName() {
 		$factory = $this->createMock( ActionFactory::class );
@@ -214,7 +214,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers RequestContext
+	 * @covers \RequestContext
 	 */
 	public function testSetActionName() {
 		$factory = $this->createMock( ActionFactory::class );
@@ -229,7 +229,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers RequestContext
+	 * @covers \RequestContext
 	 */
 	public function testOverideActionName() {
 		$factory = $this->createMock( ActionFactory::class );

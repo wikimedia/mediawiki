@@ -7,9 +7,9 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
  *
  * @group db
  *
- * @covers BatchRowUpdate
- * @covers BatchRowIterator
- * @covers BatchRowWriter
+ * @covers \BatchRowUpdate
+ * @covers \BatchRowIterator
+ * @covers \BatchRowWriter
  */
 class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 

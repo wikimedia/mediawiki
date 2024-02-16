@@ -5,7 +5,7 @@ use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Title\Title;
 
 /**
- * @covers RefreshLinksJob
+ * @covers \RefreshLinksJob
  *
  * @group JobQueue
  * @group Database

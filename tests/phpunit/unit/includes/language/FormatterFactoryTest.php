@@ -7,7 +7,7 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
 
 /**
- * @covers MediaWiki\Language\FormatterFactory
+ * @covers \MediaWiki\Language\FormatterFactory
  */
 class FormatterFactoryTest extends MediaWikiUnitTestCase {
 

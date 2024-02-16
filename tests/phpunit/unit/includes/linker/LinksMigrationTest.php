@@ -7,7 +7,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\TitleValue;
 
 /**
- * @covers MediaWiki\Linker\LinksMigration
+ * @covers \MediaWiki\Linker\LinksMigration
  */
 class LinksMigrationTest extends MediaWikiUnitTestCase {
 

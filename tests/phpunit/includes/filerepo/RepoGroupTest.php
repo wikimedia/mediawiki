@@ -3,7 +3,7 @@
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers RepoGroup
+ * @covers \RepoGroup
  */
 class RepoGroupTest extends MediaWikiIntegrationTestCase {
 

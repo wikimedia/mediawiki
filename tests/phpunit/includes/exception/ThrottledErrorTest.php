@@ -3,7 +3,7 @@
 use MediaWiki\Output\OutputPage;
 
 /**
- * @covers ThrottledError
+ * @covers \ThrottledError
  * @author Addshore
  */
 class ThrottledErrorTest extends MediaWikiIntegrationTestCase {

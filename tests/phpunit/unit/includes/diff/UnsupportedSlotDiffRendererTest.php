@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers UnsupportedSlotDiffRenderer
+ * @covers \UnsupportedSlotDiffRenderer
  */
 class UnsupportedSlotDiffRendererTest extends MediaWikiUnitTestCase {
 

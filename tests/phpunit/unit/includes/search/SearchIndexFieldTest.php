@@ -2,7 +2,7 @@
 
 /**
  * @group Search
- * @covers SearchIndexFieldDefinition
+ * @covers \SearchIndexFieldDefinition
  */
 class SearchIndexFieldTest extends \MediaWikiUnitTestCase {
 

@@ -17,7 +17,7 @@ class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Title\Title::getParentCategories
+	 * @covers \MediaWiki\Title\Title::getParentCategories
 	 */
 	public function testTemplateCategories() {
 		$user = new User();

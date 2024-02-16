@@ -3,7 +3,7 @@
 class JsonContentHandlerTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @covers JsonContentHandler::makeEmptyContent
+	 * @covers \JsonContentHandler::makeEmptyContent
 	 */
 	public function testMakeEmptyContent() {
 		$handler = new JsonContentHandler();

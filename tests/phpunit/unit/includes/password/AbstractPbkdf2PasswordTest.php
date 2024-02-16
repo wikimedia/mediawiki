@@ -2,7 +2,7 @@
 
 /**
  * @group large
- * @covers AbstractPbkdf2Password
+ * @covers \AbstractPbkdf2Password
  */
 class AbstractPbkdf2PasswordTest extends \PHPUnit\Framework\TestCase {
 	public function testNewInstanceUsesSpecifiedSubclass() {

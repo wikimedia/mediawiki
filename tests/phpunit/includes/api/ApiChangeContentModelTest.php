@@ -12,7 +12,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @group medium
  *
- * @covers ApiChangeContentModel
+ * @covers \ApiChangeContentModel
  * @author DannyS712
  */
 class ApiChangeContentModelTest extends ApiTestCase {

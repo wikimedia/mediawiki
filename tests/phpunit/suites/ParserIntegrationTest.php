@@ -15,17 +15,17 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
  * @group Parser
  * @group ParserTests
  *
- * @covers Parser
- * @covers BlockLevelPass
- * @covers CoreParserFunctions
- * @covers CoreTagHooks
- * @covers MediaWiki\Parser\Sanitizer
- * @covers Preprocessor
- * @covers Preprocessor_Hash
- * @covers DateFormatter
- * @covers LinkHolderArray
- * @covers StripState
- * @covers ParserOptions
+ * @covers \Parser
+ * @covers \BlockLevelPass
+ * @covers \CoreParserFunctions
+ * @covers \CoreTagHooks
+ * @covers \MediaWiki\Parser\Sanitizer
+ * @covers \Preprocessor
+ * @covers \Preprocessor_Hash
+ * @covers \DateFormatter
+ * @covers \LinkHolderArray
+ * @covers \StripState
+ * @covers \ParserOptions
  * @covers \MediaWiki\Parser\ParserOutput
  */
 class ParserIntegrationTest extends PHPUnit\Framework\TestCase {

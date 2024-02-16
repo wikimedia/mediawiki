@@ -6,7 +6,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group API
  * @group medium
  *
- * @covers ApiQueryLanguageinfo
+ * @covers \ApiQueryLanguageinfo
  */
 class ApiQueryLanguageinfoTest extends ApiTestCase {
 

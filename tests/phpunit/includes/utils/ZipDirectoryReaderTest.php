@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers ZipDirectoryReader
+ * @covers \ZipDirectoryReader
  */
 class ZipDirectoryReaderTest extends MediaWikiIntegrationTestCase {
 

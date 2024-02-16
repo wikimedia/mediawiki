@@ -3,7 +3,7 @@
 use Wikimedia\Http\HttpAcceptParser;
 
 /**
- * @covers Wikimedia\Http\HttpAcceptParser
+ * @covers \Wikimedia\Http\HttpAcceptParser
  *
  * @author Daniel Kinzler
  */

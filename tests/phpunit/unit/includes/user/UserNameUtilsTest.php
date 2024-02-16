@@ -6,7 +6,7 @@ use MediaWiki\User\UserRigorOptions;
 use Psr\Log\LogLevel;
 
 /**
- * @covers MediaWiki\User\UserNameUtils
+ * @covers \MediaWiki\User\UserNameUtils
  * @author DannyS712
  */
 class UserNameUtilsTest extends MediaWikiUnitTestCase {
@@ -14,7 +14,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideIsValid
-	 * @covers MediaWiki\User\UserNameUtils::isValid
+	 * @covers \MediaWiki\User\UserNameUtils::isValid
 	 */
 	public function testIsValid( string $name, bool $result ) {
 		$this->assertSame(
@@ -49,7 +49,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideIsUsable
-	 * @covers MediaWiki\User\UserNameUtils::isUsable
+	 * @covers \MediaWiki\User\UserNameUtils::isUsable
 	 */
 	public function testIsUsable( string $name, bool $result ) {
 		$utils = $this->getDummyUserNameUtils( [
@@ -77,7 +77,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserNameUtils::isCreatable
+	 * @covers \MediaWiki\User\UserNameUtils::isCreatable
 	 */
 	public function testIsCreatable() {
 		$logger = new TestLogger( true, static function ( $message ) {
@@ -126,7 +126,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideGetCanonical
-	 * @covers MediaWiki\User\UserNameUtils::getCanonical
+	 * @covers \MediaWiki\User\UserNameUtils::getCanonical
 	 */
 	public function testGetCanonical( string $name, array $expectedArray ) {
 		$utils = $this->getDummyUserNameUtils();
@@ -224,7 +224,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\UserNameUtils::getCanonical
+	 * @covers \MediaWiki\User\UserNameUtils::getCanonical
 	 */
 	public function testGetCanonical_bad() {
 		$this->expectException( InvalidArgumentException::class );
@@ -234,7 +234,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideIPs
-	 * @covers MediaWiki\User\UserNameUtils::isIP
+	 * @covers \MediaWiki\User\UserNameUtils::isIP
 	 */
 	public function testIsIP( string $value, bool $result ) {
 		$utils = $this->getDummyUserNameUtils();
@@ -265,7 +265,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideIPRanges
-	 * @covers MediaWiki\User\UserNameUtils::isValidIPRange
+	 * @covers \MediaWiki\User\UserNameUtils::isValidIPRange
 	 */
 	public function testIsValidIPRange( $value, $result ) {
 		$utils = $this->getDummyUserNameUtils();

@@ -23,7 +23,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	/**
 	 * Test that adding a new suggestion at the end
 	 * will keep proper score ordering
-	 * @covers SearchSuggestionSet::append
+	 * @covers \SearchSuggestionSet::append
 	 */
 	public function testAppend() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
@@ -55,9 +55,9 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	/**
 	 * Test that adding a new best suggestion will keep proper score
 	 * ordering
-	 * @covers SearchSuggestionSet::getWorstScore
-	 * @covers SearchSuggestionSet::getBestScore
-	 * @covers SearchSuggestionSet::prepend
+	 * @covers \SearchSuggestionSet::getWorstScore
+	 * @covers \SearchSuggestionSet::getBestScore
+	 * @covers \SearchSuggestionSet::prepend
 	 */
 	public function testInsertBest() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
@@ -93,7 +93,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SearchSuggestionSet::shrink
+	 * @covers \SearchSuggestionSet::shrink
 	 */
 	public function testShrink() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
@@ -112,7 +112,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SearchSuggestionSet::remove
+	 * @covers \SearchSuggestionSet::remove
 	 */
 	public function testRemove() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
@@ -138,7 +138,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SearchSuggestionSet::fromTitles
+	 * @covers \SearchSuggestionSet::fromTitles
 	 * @dataProvider provideNoTitles
 	 */
 	public function testFromNoTitles( array $titles ): void {

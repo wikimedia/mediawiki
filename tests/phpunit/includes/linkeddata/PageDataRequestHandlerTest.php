@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 
 /**
- * @covers PageDataRequestHandler
+ * @covers \PageDataRequestHandler
  * @group PageData
  */
 class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
