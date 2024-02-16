@@ -1383,6 +1383,7 @@ class DatabaseBlockStore {
 	) {
 		$isUser = $block->getType() === Block::TYPE_USER;
 		$isRange = $block->getType() === Block::TYPE_RANGE;
+		$isAuto = $block->getType() === Block::TYPE_AUTO;
 		$isSingle = !$isUser && !$isRange;
 		$targetAddress = $isUser ? null : $block->getTargetName();
 		$targetUserName = $isUser ? $block->getTargetName() : null;
@@ -1393,7 +1394,10 @@ class DatabaseBlockStore {
 		if ( $isUser ) {
 			$targetConds = [ 'bt_user' => $targetUserId ];
 		} else {
-			$targetConds = [ 'bt_address' => $targetAddress ];
+			$targetConds = [
+				'bt_address' => $targetAddress,
+				'bt_auto' => $isAuto,
+			];
 		}
 		$condsWithCount = $targetConds;
 		if ( $expectedTargetCount !== null ) {
@@ -1440,7 +1444,7 @@ class DatabaseBlockStore {
 				'bt_address' => $targetAddress,
 				'bt_user' => $targetUserId,
 				'bt_user_text' => $targetUserName,
-				'bt_auto' => $block->getType() === Block::TYPE_AUTO,
+				'bt_auto' => $isAuto,
 				'bt_range_start' => $isRange ? $block->getRangeStart() : null,
 				'bt_range_end' => $isRange ? $block->getRangeEnd() : null,
 				'bt_ip_hex' => $isSingle || $isRange ? $block->getRangeStart() : null,
