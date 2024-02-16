@@ -2,7 +2,7 @@
 ( function () {
 
 	/**
-	 * mw.ForeignStructuredUpload.BookletLayout encapsulates the process
+	 * @classdesc mw.ForeignStructuredUpload.BookletLayout encapsulates the process
 	 * of uploading a file to MediaWiki using the mw.ForeignStructuredUpload model.
 	 *
 	 *     var uploadDialog = new mw.Upload.Dialog( {
@@ -16,12 +16,11 @@
 	 *     windowManager.addWindows( [ uploadDialog ] );
 	 *
 	 * @class mw.ForeignStructuredUpload.BookletLayout
-	 * @uses mw.ForeignStructuredUpload
 	 * @extends mw.Upload.BookletLayout
 	 *
 	 * @constructor
 	 * @param {Object} config Configuration options
-	 * @cfg {string} [target] Used to choose the target repository.
+	 * @param {string} [config.target] Used to choose the target repository.
 	 *     If nothing is passed, the {@link mw.ForeignUpload#property-target default} is used.
 	 */
 	mw.ForeignStructuredUpload.BookletLayout = function ( config ) {
@@ -40,6 +39,7 @@
 
 	/**
 	 * @inheritdoc
+	 * @ignore
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.initialize = function () {
 		var booklet = this;
@@ -133,7 +133,7 @@
 
 	/**
 	 * Returns a {@link mw.ForeignStructuredUpload mw.ForeignStructuredUpload}
-	 * with the {@link #cfg-target target} specified in config.
+	 * with the `target` specified in config.
 	 *
 	 * @protected
 	 * @return {mw.Upload}
@@ -393,9 +393,9 @@
 	};
 
 	/**
-	 * Get original date from EXIF data
+	 * Get original date from EXIF data.
 	 *
-	 * @param {Object} file
+	 * @param {File} file
 	 * @return {jQuery.Promise} Promise resolved with the EXIF date
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getDateFromExif = function ( file ) {
@@ -447,10 +447,10 @@
 	};
 
 	/**
-	 * Get last modified date from file
+	 * Get last modified date from file.
 	 *
-	 * @param {Object} file
-	 * @return {Object} Last modified date from file
+	 * @param {File} file
+	 * @return {string|undefined} Last modified date from file
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getDateFromLastModified = function ( file ) {
 		if ( file && file.lastModified ) {
