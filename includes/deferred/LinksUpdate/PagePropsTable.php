@@ -129,7 +129,7 @@ class PagePropsTable extends LinksTable {
 	 * 1 or resp. 0 if it is a bool, and null otherwise.
 	 *
 	 * @note In the future, we may allow the sortkey to be specified explicitly
-	 *       in ParserOutput::setPageProperty.
+	 *       in ParserOutput::setPageProperty (T357783).
 	 *
 	 * @param mixed $value
 	 *
