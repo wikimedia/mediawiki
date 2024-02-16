@@ -889,17 +889,13 @@ abstract class ParsoidHandler extends Handler {
 
 		$revision = $opts['previous'] ?? $opts['original'] ?? null;
 		if ( !isset( $revision['html'] ) ) {
-			throw new HttpException(
-				'Missing revision html.', 400
-			);
+			throw new HttpException( 'Missing revision html.', 400 );
 		}
 
 		$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
 			$revision['html']['headers']['content-type'] ?? '' );
 		if ( $vOriginal === null ) {
-			throw new HttpException(
-				'Content-type of revision html is missing.', 400
-			);
+			throw new HttpException( 'Content-type of revision html is missing.', 400 );
 		}
 		$attribs['envOptions']['inputContentVersion'] = $vOriginal;
 		'@phan-var array<string,array|string> $attribs'; // @var array<string,array|string> $attribs
@@ -937,9 +933,7 @@ abstract class ParsoidHandler extends Handler {
 			} elseif ( isset( $opts['updates']['variant'] ) ) {
 				return $this->languageConversion( $pageConfig, $attribs, $revision );
 			} else {
-				throw new HttpException(
-					'Unknown transformation.', 400
-				);
+				throw new HttpException( 'Unknown transformation.', 400 );
 			}
 		}
 
@@ -962,9 +956,7 @@ abstract class ParsoidHandler extends Handler {
 			if ( !empty( $attribs['body_only'] ) ) {
 				$doc = $this->parseHTML( $pb->html );
 				$body = DOMCompat::getBody( $doc );
-				$pb->html = ContentUtils::toXML( $body, [
-					'innerXML' => true,
-				] );
+				$pb->html = ContentUtils::toXML( $body, [ 'innerXML' => true ] );
 			}
 
 			$response = $this->getResponseFactory()->createJson( $pb->responseData() );
@@ -978,9 +970,7 @@ abstract class ParsoidHandler extends Handler {
 			$pageConfig = $this->tryToCreatePageConfig( $attribs );
 			return $this->wt2html( $pageConfig, $attribs );
 		} else {
-			throw new HttpException(
-				'We do not know how to do this conversion.', 415
-			);
+			throw new HttpException( 'We do not know how to do this conversion.', 415 );
 		}
 	}
 
@@ -1006,9 +996,7 @@ abstract class ParsoidHandler extends Handler {
 			$revision['contentmodel'] ?? null
 		);
 
-		$out = $parsoid->pb2pb(
-			$pageConfig, 'redlinks', $pb, []
-		);
+		$out = $parsoid->pb2pb( $pageConfig, 'redlinks', $pb, [] );
 
 		$this->validatePb( $out, $attribs['envOptions']['inputContentVersion'] );
 
@@ -1037,9 +1025,7 @@ abstract class ParsoidHandler extends Handler {
 		$source = $opts['updates']['variant']['source'] ?? null;
 
 		if ( !$target ) {
-			throw new HttpException(
-				'Target variant is required.', 400
-			);
+			throw new HttpException( 'Target variant is required.', 400 );
 		}
 
 		$pageIdentity = $this->tryToCreatePageIdentity( $attribs );
