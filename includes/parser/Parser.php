@@ -334,7 +334,7 @@ class Parser {
 	 *
 	 * @deprecated since 1.35, use Parser::getPage()
 	 */
-	public Title $mTitle;
+	private Title $mTitle;
 	/** Output type, one of the OT_xxx constants */
 	private int $mOutputType;
 	/**
@@ -486,6 +486,7 @@ class Parser {
 	) {
 		$this->deprecateDynamicPropertiesAccess( '1.42', __CLASS__ );
 		$this->deprecatePublicProperty( 'ot', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTitle', '1.35', __CLASS__ );
 
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
