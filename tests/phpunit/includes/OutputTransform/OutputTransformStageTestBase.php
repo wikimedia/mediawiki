@@ -10,17 +10,18 @@ use MediaWikiIntegrationTestCase;
 abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {
 	abstract public function createStage(): OutputTransformStage;
 
-	abstract public function provideShouldRun(): array;
+	abstract public function provideShouldRun(): iterable;
 
-	abstract public function provideShouldNotRun(): array;
+	abstract public function provideShouldNotRun(): iterable;
 
-	abstract public function provideTransform(): array;
+	abstract public function provideTransform(): iterable;
 
-	public function testShouldRun() {
+	/**
+	 * @dataProvider provideShouldRun
+	 */
+	public function testShouldRun( $parserOutput, $parserOptions, $options ) {
 		$stage = $this->createStage();
-		foreach ( $this->provideShouldRun() as [ $parserOutput, $parserOptions, $options ] ) {
-			$this->assertTrue( $stage->shouldRun( $parserOutput, $parserOptions, $options ) );
-		}
+		$this->assertTrue( $stage->shouldRun( $parserOutput, $parserOptions, $options ) );
 	}
 
 	public function setUp(): void {
@@ -34,20 +35,19 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 		] );
 	}
 
-	public function testShouldNotRun() {
+	/**
+	 * @dataProvider provideShouldNotRun
+	 */
+	public function testShouldNotRun( $parserOutput, $parserOptions, $options ) {
 		$stage = $this->createStage();
-		foreach ( $this->provideShouldNotRun() as [ $parserOutput, $parserOptions, $options ] ) {
-			$this->assertFalse( $stage->shouldRun( $parserOutput, $parserOptions, $options ) );
-		}
-		if ( count( $this->provideShouldNotRun() ) === 0 ) {
-			$this->markTestSkipped( 'No case where the pass is not run' );
-		}
+		$this->assertFalse( $stage->shouldRun( $parserOutput, $parserOptions, $options ) );
 	}
 
-	public function testTransform() {
+	/**
+	 * @dataProvider provideTransform
+	 */
+	public function testTransform( $parserOutput, $parserOptions, $options, $expected ) {
 		$stage = $this->createStage();
-		foreach ( $this->provideTransform() as [ $parserOutput, $parserOptions, $options, $expected ] ) {
-			$this->assertEquals( $expected, $stage->transform( $parserOutput, $parserOptions, $options ) );
-		}
+		$this->assertEquals( $expected, $stage->transform( $parserOutput, $parserOptions, $options ) );
 	}
 }
