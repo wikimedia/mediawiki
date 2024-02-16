@@ -259,6 +259,7 @@ class Xml {
 	 * @param string $class Class name of the span element
 	 * @param array $attribs Other attributes
 	 * @return string
+	 * @deprecated since 1.42, use {@see Html::element} instead
 	 */
 	public static function span( $text, $class, $attribs = [] ) {
 		return self::element( 'span', [ 'class' => $class ] + $attribs, $text );
@@ -272,7 +273,7 @@ class Xml {
 	 * @param string $tag Element name
 	 * @param array $attribs Other attributes
 	 * @return string
-	 * @deprecated since 1.42, use {@link Xml::tags()} instead
+	 * @deprecated since 1.42, use {@see Xml::tags} instead
 	 */
 	public static function wrapClass( $text, $class, $tag = 'span', $attribs = [] ) {
 		wfDeprecated( __METHOD__, '1.42' );
@@ -286,6 +287,7 @@ class Xml {
 	 * @param string|false $value Value of the value attribute
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::input} instead
 	 */
 	public static function input( $name, $size = false, $value = false, $attribs = [] ) {
 		$attributes = [ 'name' => $name ];
@@ -308,6 +310,7 @@ class Xml {
 	 * @param string|false $value Value of the value attribute
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::input} instead
 	 */
 	public static function password( $name, $size = false, $value = false,
 		$attribs = []
@@ -334,6 +337,7 @@ class Xml {
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Array other attributes
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::check} instead
 	 */
 	public static function check( $name, $checked = false, $attribs = [] ) {
 		return self::element( 'input', array_merge(
@@ -352,6 +356,7 @@ class Xml {
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::radio} instead
 	 */
 	public static function radio( $name, $value, $checked = false, $attribs = [] ) {
 		return self::element( 'input', [
@@ -369,6 +374,7 @@ class Xml {
 	 *     so this function will cherry-pick appropriate attributes to
 	 *     apply to the label as well; only class and title are applied.
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::label} instead
 	 */
 	public static function label( $label, $id, $attribs = [] ) {
 		$a = [ 'for' => $id ];
@@ -391,6 +397,7 @@ class Xml {
 	 * @param string|false $value Value of the value attribute
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead
 	 */
 	public static function inputLabel( $label, $name, $id, $size = false,
 		$value = false, $attribs = []
@@ -410,6 +417,7 @@ class Xml {
 	 * @param array $attribs
 	 *
 	 * @return array
+	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead
 	 */
 	public static function inputLabelSep( $label, $name, $id, $size = false,
 		$value = false, $attribs = []
@@ -430,6 +438,7 @@ class Xml {
 	 * @param array $attribs
 	 *
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::check} and {@see Html::label} instead
 	 */
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = [] ) {
 		return self::check( $name, $checked, [ 'id' => $id ] + $attribs ) .
@@ -448,6 +457,7 @@ class Xml {
 	 * @param array $attribs
 	 *
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::radio} and {@see Html::label} instead
 	 */
 	public static function radioLabel( $label, $name, $value, $id,
 		$checked = false, $attribs = []
@@ -463,6 +473,7 @@ class Xml {
 	 * @param string $value Label text for the button (unescaped)
 	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::submitButton} instead
 	 */
 	public static function submitButton( $value, $attribs = [] ) {
 		$attribs += [
@@ -479,6 +490,7 @@ class Xml {
 	 * @param bool $selected If true, will be the default selected item
 	 * @param array $attribs Optional additional HTML attributes
 	 * @return string HTML
+	 * @deprecated since 1.42, use {@see Html::element} instead
 	 */
 	public static function option( $text, $value = null, $selected = false,
 			$attribs = [] ) {
@@ -612,6 +624,7 @@ class Xml {
 	 * @param array $attribs Any attributes to fieldset-element.
 	 *
 	 * @return string
+	 * @deprecated since 1.42, use {@see Html::element} instead
 	 */
 	public static function fieldset( $legend = false, $content = false, $attribs = [] ) {
 		$s = self::openElement( 'fieldset', $attribs ) . "\n";
@@ -638,6 +651,7 @@ class Xml {
 	 * @param array $attribs Any other attributes for the textarea
 	 *
 	 * @return string
+	 * @deprecated since 1.42, use {@see Html::textarea} instead
 	 */
 	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = [] ) {
 		return self::element( 'textarea',
@@ -662,7 +676,7 @@ class Xml {
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
 	 * @return-taint none
-	 * @deprecated since 1.41, use {@link Html::encodeJsVar()} instead
+	 * @deprecated since 1.41, use {@see Html::encodeJsVar} instead
 	 */
 	public static function encodeJsVar( $value, $pretty = false ) {
 		return Html::encodeJsVar( $value, $pretty );
@@ -681,7 +695,7 @@ class Xml {
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
 	 * @return-taint none
-	 * @deprecated since 1.41, use {@link Html::encodeJsCall()} instead
+	 * @deprecated since 1.41, use {@see Html::encodeJsCall} instead
 	 */
 	public static function encodeJsCall( $name, $args, $pretty = false ) {
 		return Html::encodeJsCall( $name, $args, $pretty );
@@ -760,6 +774,7 @@ class Xml {
 	 *   the submit button.
 	 * @param array $submitAttribs The attributes to add to the submit button
 	 * @return string HTML form.
+	 * @deprecated since 1.42, use OOUI or Codex widgets instead
 	 */
 	public static function buildForm( $fields, $submitLabel = null, $submitAttribs = [] ) {
 		$form = '';
