@@ -1,5 +1,5 @@
 /**
- * A wrapper for OO.ui.SelectFileWidget
+ * A wrapper for OO.ui.SelectFileInputWidget
  *
  * @class
  * @private
@@ -9,7 +9,7 @@ function UploadSelectFileParamWidget() {
 	UploadSelectFileParamWidget.super.call( this );
 }
 
-OO.inheritClass( UploadSelectFileParamWidget, OO.ui.SelectFileWidget );
+OO.inheritClass( UploadSelectFileParamWidget, OO.ui.SelectFileInputWidget );
 
 /**
  * @return {string}

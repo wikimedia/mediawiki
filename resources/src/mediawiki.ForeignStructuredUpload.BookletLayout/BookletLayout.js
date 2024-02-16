@@ -164,7 +164,7 @@
 		this.$notOwnWorkMessage = $( '<p>' );
 		this.$notOwnWorkLocal = $( '<p>' );
 
-		this.selectFileWidget = new OO.ui.SelectFileWidget( {
+		this.selectFileWidget = new OO.ui.SelectFileInputWidget( {
 			showDropTarget: true
 		} );
 		this.messageLabel = new OO.ui.LabelWidget( {

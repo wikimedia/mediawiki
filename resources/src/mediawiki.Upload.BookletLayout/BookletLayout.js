@@ -13,7 +13,7 @@
 	 *
 	 * The {@link OO.ui.BookletLayout booklet layout} has three steps:
 	 *
-	 *  - **Upload**: Has a {@link OO.ui.SelectFileWidget field} to get the file object.
+	 *  - **Upload**: Has a {@link OO.ui.SelectFileInputWidget field} to get the file object.
 	 *
 	 * - **Information**: Has a {@link OO.ui.FormLayout form} to collect metadata. This can be
 	 *   extended.
@@ -453,7 +453,7 @@
 	/**
 	 * Gets the widget for displaying or inputting the file to upload.
 	 *
-	 * @return {OO.ui.SelectFileWidget|mw.widgets.StashedFileWidget}
+	 * @return {OO.ui.SelectFileInputWidget|mw.widgets.StashedFileWidget}
 	 */
 	mw.Upload.BookletLayout.prototype.getFileWidget = function () {
 		if ( this.filekey ) {
@@ -462,7 +462,7 @@
 			} );
 		}
 
-		return new OO.ui.SelectFileWidget( {
+		return new OO.ui.SelectFileInputWidget( {
 			showDropTarget: true
 		} );
 	};
