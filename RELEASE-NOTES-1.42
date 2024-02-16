@@ -595,6 +595,11 @@ because of Phabricator reports.
 * The third argument to ContentRenderer::getParserOutput() now accepts a
   RevisionRecord or WikiRevision; passing an integer revision id has been
   deprecated and emits a warning.
+* Passing a null value to ParserOutput::setPageProperty() has been deprecated
+  and emits a warning; pass an empty string or use `::unsetPageProperty()`
+  instead.
+* Passing a non-scalar value to ParserOutput::setPageProperty() will emit
+  a warning (it has never worked).
 * ParserOutput::setLanguageLinks() has been deprecated.
 * ParserOutput::getTimestamp() and ::setTimestamp() have been deprecated; use
   ::getRevisionTimestamp() and ::setRevisionTimestamp() instead.

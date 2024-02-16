@@ -1438,7 +1438,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *     This is not actually implemented, yet but would be pretty cool.
 	 *
 	 * @note Use of non-scalar values (anything other than
-	 *  `string|int|float|bool`) is strongly discouraged.
+	 *  `string|int|float|bool`) has been deprecated in 1.42.
 	 *  Although any JSON-serializable value can be stored/fetched in
 	 *  ParserOutput, when the values are stored to the database
 	 *  (in `deferred/LinksUpdate/PagePropsTable.php`) they will be
@@ -1480,11 +1480,18 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *    $output->getExtensionData( 'my_ext_foo' );
 	 * @endcode
 	 *
+	 * @note The use of `null` as a value is deprecated since 1.42; use
+	 * the empty string instead if you need a placeholder value, or
+	 * ::unsetPageProperty() if you mean to remove a page property.
+	 *
 	 * @param string $name
 	 * @param int|float|string|bool|null $value
 	 * @since 1.38
 	 */
 	public function setPageProperty( string $name, $value ): void {
+		if ( !is_scalar( $value ) ) {
+			wfDeprecated( __METHOD__ . " with non-scalar value for $name" );
+		}
 		$this->mProperties[$name] = $value;
 	}
 
@@ -1496,7 +1503,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @note You would need to use ::getPageProperties() to test for an
 	 *  explicitly-set null value; but see the note in ::setPageProperty()
-	 *  about avoiding the use of non-scalar values.
+	 *  deprecating the use of null values.
 	 * @since 1.38
 	 */
 	public function getPageProperty( string $name ) {
