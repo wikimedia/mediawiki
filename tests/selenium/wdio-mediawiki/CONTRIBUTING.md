@@ -7,7 +7,8 @@
    <https://phabricator.wikimedia.org/tag/mediawiki-core-tests>
 
 2. Create or reset your `release` branch to the latest head of the repository
-   ```
+
+   ```bash
    # From mediawiki-core
    git remote update && git checkout -B release -t origin/HEAD
    ```
@@ -18,7 +19,8 @@
    (no "selenium:" or "wdio-mediawiki:"). Entries that add, remove, or change public methods should
    be their own bullet point, start with the class or module file that they are a part of,
    for example "Util: Added `foo()` method".
-   ```
+
+   ```bash
    # From tests/selenium/wdio-mediawiki/
    export LAST_RELEASE=$(git log --format='%h' --grep='wdio-mediawiki: Release' -n1 .)
    git log --format='* %s.' --no-merges --reverse "${LAST_RELEASE}...HEAD" . | sort | grep -vE '^\* (build|eslint|docs?|tests?):'
@@ -31,22 +33,24 @@
 
 6. Run `npm install` in the root of MediaWiki Core to update `package-lock.json` file.
    Make sure the machine has the same versions of Node.js and npm as CI.
-   ```
+
+   ```bash
    # From mediawiki-core
     npm install
    ```
 
 7. Stage and save your commit, and submit it to Gerrit:
-   ```
+
+   ```bash
    # From mediawiki-core
    git add -p
    git commit -m "wdio-mediawiki: Release X.Y.Z"
    git review
    ```
 
-After the release commit has been merged by CI, perform the actual release:
+8. After the release commit has been merged by CI, perform the actual release:
 
-8. ```
+   ```bash
    # From tests/selenium/wdio-mediawiki/
    npm publish
    ```
