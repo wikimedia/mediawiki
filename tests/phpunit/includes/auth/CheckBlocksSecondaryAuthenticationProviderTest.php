@@ -1,7 +1,10 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\RequestContext;

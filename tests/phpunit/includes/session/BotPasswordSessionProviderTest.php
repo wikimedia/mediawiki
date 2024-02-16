@@ -1,10 +1,15 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Session\BotPasswordSessionProvider;
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionInfo;
+use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\UserInfo;
 use MediaWiki\User\BotPassword;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;

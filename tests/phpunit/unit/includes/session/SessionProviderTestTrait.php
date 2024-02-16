@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionProvider;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

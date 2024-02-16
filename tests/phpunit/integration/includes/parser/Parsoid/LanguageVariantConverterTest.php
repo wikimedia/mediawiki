@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaWiki\Parser\Parsoid;
+namespace MediaWiki\Tests\Parser\Parsoid;
 
 use Language;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\LanguageVariantConverter;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\PageBundle;

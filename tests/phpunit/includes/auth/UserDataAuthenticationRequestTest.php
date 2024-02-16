@@ -1,7 +1,8 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
+use MediaWiki\Auth\UserDataAuthenticationRequest;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 

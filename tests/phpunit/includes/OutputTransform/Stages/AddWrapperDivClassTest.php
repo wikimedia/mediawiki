@@ -1,11 +1,12 @@
 <?php
 
-namespace MediaWiki\OutputTransform\Stages;
+namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTestBase;
-use MediaWiki\OutputTransform\TestUtils;
+use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
+use MediaWiki\Tests\OutputTransform\TestUtils;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\AddWrapperDivClass

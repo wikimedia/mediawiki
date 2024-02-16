@@ -18,8 +18,9 @@
  * @file
  */
 
-namespace MediaWiki\Logger;
+namespace MediaWiki\Tests\Logger;
 
+use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;

@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\ParamValidator\TypeDef;
+namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
 use ApiResult;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;

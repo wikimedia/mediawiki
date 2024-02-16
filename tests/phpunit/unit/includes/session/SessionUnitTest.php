@@ -1,14 +1,16 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionId;
 use MediaWikiUnitTestCase;
 use Psr\Log\LogLevel;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
- * @covers MediaWiki\Session\Session
+ * @covers \MediaWiki\Session\Session
  */
 class SessionUnitTest extends MediaWikiUnitTestCase {
 

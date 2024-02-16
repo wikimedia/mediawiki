@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\OutputTransform;
+namespace MediaWiki\Tests\OutputTransform;
 
 use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Parsoid\Core\SectionMetadata;

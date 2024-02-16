@@ -1,13 +1,14 @@
 <?php
 
-namespace MediaWiki\OutputTransform\Stages;
+namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTestBase;
+use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 
 /**
- * @covers \MediaWiki\OutputTransform\Stages\AddRedirectHeaderTest
+ * @covers \MediaWiki\OutputTransform\Stages\AddRedirectHeader
  * @group Database
  *        ^ Title shenanigans seem to require this
  */

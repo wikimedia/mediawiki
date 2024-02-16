@@ -1,7 +1,10 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\ThrottlePreAuthenticationProvider;
+use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;

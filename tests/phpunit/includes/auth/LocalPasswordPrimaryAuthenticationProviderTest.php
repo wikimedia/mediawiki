@@ -1,7 +1,14 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
+use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Auth\PasswordDomainAuthenticationRequest;
+use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;

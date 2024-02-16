@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
 use CachedBagOStuff;
 use HashBagOStuff;
@@ -83,3 +83,5 @@ class TestBagOStuff extends CachedBagOStuff {
 	}
 
 }
+
+class_alias( TestBagOStuff::class, 'MediaWiki\\Session\\TestBagOStuff' );

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\HookContainer;
 use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -13,7 +14,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @covers \MediaWiki\HookContainer\FauxHookHandlerArray
  * @package MediaWiki\Tests\HookContainer
  */
-class FauxGlobalHookArrayTest extends \MediaWikiUnitTestCase {
+class FauxGlobalHookArrayTest extends MediaWikiUnitTestCase {
 
 	public function testRegisterHandler() {
 		$this->expectDeprecationAndContinue( '/Accessing \$wgHooks directly is deprecated/' );

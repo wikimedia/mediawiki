@@ -1,10 +1,11 @@
 <?php
 
-namespace MediaWiki\OutputTransform\Stages;
+namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\OutputTransformStageTestBase;
+use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ExtractBody

@@ -1,8 +1,9 @@
 <?php
 
-namespace MediaWiki\ParamValidator\TypeDef;
+namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;

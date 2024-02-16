@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\HookContainer {
+namespace MediaWiki\Tests\HookContainer {
 
 	use ExtensionRegistry;
 	use Wikimedia\ScopedCallback;

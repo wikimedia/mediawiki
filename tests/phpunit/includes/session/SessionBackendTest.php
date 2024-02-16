@@ -1,11 +1,20 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Session\PHPSessionHandler;
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionBackend;
+use MediaWiki\Session\SessionId;
+use MediaWiki\Session\SessionInfo;
+use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionProvider;
+use MediaWiki\Session\UserInfo;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -86,7 +95,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 		$priv = TestingAccessWrapper::newFromObject( $backend );
 		$priv->persist = false;
-		$priv->requests = [ 100 => new \MediaWiki\Request\FauxRequest() ];
+		$priv->requests = [ 100 => new FauxRequest() ];
 		$priv->requests[100]->setSessionId( $id );
 		$priv->usePhpSessionHandling = false;
 
@@ -204,9 +213,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 
-		$request1 = new \MediaWiki\Request\FauxRequest();
+		$request1 = new FauxRequest();
 		$session1 = $backend->getSession( $request1 );
-		$request2 = new \MediaWiki\Request\FauxRequest();
+		$request2 = new FauxRequest();
 		$session2 = $backend->getSession( $request2 );
 
 		$this->assertInstanceOf( Session::class, $session1 );

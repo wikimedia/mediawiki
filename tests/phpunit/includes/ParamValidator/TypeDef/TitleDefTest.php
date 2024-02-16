@@ -1,8 +1,9 @@
 <?php
 
-namespace MediaWiki\ParamValidator\TypeDef;
+namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\ParamValidator\ParamValidator;

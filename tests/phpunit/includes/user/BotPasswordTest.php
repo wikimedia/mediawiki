@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
+use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use Wikimedia\ScopedCallback;
@@ -267,7 +268,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			'logger' => new Psr\Log\NullLogger,
 			'store' => new EmptyBagOStuff,
 		] );
-		$reset = MediaWiki\Session\TestUtils::setSessionManagerSingleton( $manager );
+		$reset = TestUtils::setSessionManagerSingleton( $manager );
 		$this->assertNull(
 			$manager->getProvider( MediaWiki\Session\BotPasswordSessionProvider::class )
 		);
@@ -291,7 +292,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			'logger' => new Psr\Log\NullLogger,
 			'store' => new EmptyBagOStuff,
 		] );
-		$reset = MediaWiki\Session\TestUtils::setSessionManagerSingleton( $manager );
+		$reset = TestUtils::setSessionManagerSingleton( $manager );
 
 		// No "@"-thing in the username
 		$status = BotPassword::login( $this->testUserName, 'foobaz', new FauxRequest );

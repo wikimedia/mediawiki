@@ -1,6 +1,8 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
+
+use MediaWiki\Session\MetadataMergeException;
 
 /**
  * @group Session

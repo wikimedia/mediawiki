@@ -1,14 +1,29 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
 
 use DynamicPropertyTestHelper;
 use Exception;
 use Language;
+use MediaWiki\Auth\AbstractPreAuthenticationProvider;
+use MediaWiki\Auth\AbstractPrimaryAuthenticationProvider;
+use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
+use MediaWiki\Auth\AuthenticationProvider;
+use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider;
+use MediaWiki\Auth\CreatedAccountAuthenticationRequest;
+use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
+use MediaWiki\Auth\CreationReasonAuthenticationRequest;
 use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
+use MediaWiki\Auth\PrimaryAuthenticationProvider;
+use MediaWiki\Auth\RememberMeAuthenticationRequest;
+use MediaWiki\Auth\UserDataAuthenticationRequest;
+use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -25,8 +40,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionInfo;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\Status\Status;
+use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
@@ -40,6 +57,7 @@ use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
+use ReflectionClass;
 use StatusValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -160,7 +178,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	private function assertResponseEquals(
 		AuthenticationResponse $expected, AuthenticationResponse $actual, $msg = ''
 	) {
-		foreach ( ( new \ReflectionClass( $expected ) )->getProperties() as $prop ) {
+		foreach ( ( new ReflectionClass( $expected ) )->getProperties() as $prop ) {
 			$name = $prop->getName();
 			$usedMsg = ltrim( "$msg ($name)" );
 			if ( $name === 'message' && $expected->message ) {
@@ -339,14 +357,14 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			} ],
 		] );
 
-		$manager = new \MediaWiki\Session\SessionManager( [
+		$manager = new SessionManager( [
 			'config' => $this->config,
 			'logger' => new \Psr\Log\NullLogger(),
 			'store' => new \HashBagOStuff(),
 		] );
 		TestingAccessWrapper::newFromObject( $manager )->getProvider( (string)$provider );
 
-		$reset = \MediaWiki\Session\TestUtils::setSessionManagerSingleton( $manager );
+		$reset = TestUtils::setSessionManagerSingleton( $manager );
 
 		if ( $this->request ) {
 			$manager->getSessionForRequest( $this->request );

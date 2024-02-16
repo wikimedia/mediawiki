@@ -1,11 +1,12 @@
 <?php
 
-namespace MediaWiki\OutputTransform\Stages;
+namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
-use MediaWiki\OutputTransform\TestUtils;
+use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Tests\OutputTransform\TestUtils;
 
 /**
  * This test does not extend OutputTransformStageTestBase because we're explicitly testing that

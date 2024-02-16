@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\OutputTransform;
+namespace MediaWiki\Tests\OutputTransform;
 
 use LogicException;
 use MediaWiki\Context\RequestContext;

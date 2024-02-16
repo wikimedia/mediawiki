@@ -1,6 +1,8 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Auth;
+
+use MediaWiki\Auth\UsernameAuthenticationRequest;
 
 /**
  * @group AuthManager

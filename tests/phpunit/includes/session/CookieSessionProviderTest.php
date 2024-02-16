@@ -1,9 +1,14 @@
 <?php
 
-namespace MediaWiki\Session;
+namespace MediaWiki\Tests\Session;
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Session\CookieSessionProvider;
+use MediaWiki\Session\SessionBackend;
+use MediaWiki\Session\SessionId;
+use MediaWiki\Session\SessionInfo;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;

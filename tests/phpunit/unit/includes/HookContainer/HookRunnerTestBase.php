@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\HookContainer;
 
+use Generator;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWikiUnitTestCase;
 use ReflectionClass;

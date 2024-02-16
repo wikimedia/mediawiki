@@ -18,8 +18,10 @@
  * @file
  */
 
-namespace MediaWiki\Logger;
+namespace MediaWiki\Tests\Logger;
 
+use MediaWiki\Logger\Monolog\WikiProcessor;
+use MediaWiki\Logger\MonologSpi;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -142,7 +144,7 @@ class MonologSpiTest extends \MediaWikiUnitTestCase {
 			],
 			'processors' => [
 				'myprocessor' => [
-					'class' => Monolog\WikiProcessor::class,
+					'class' => WikiProcessor::class,
 				],
 			],
 			'handlers' => [
@@ -162,7 +164,7 @@ class MonologSpiTest extends \MediaWikiUnitTestCase {
 
 		$actualProcessors = $logger->getProcessors();
 		$this->assertArrayHasKey( 0, $actualProcessors );
-		$this->assertInstanceOf( Monolog\WikiProcessor::class, $actualProcessors[0] );
+		$this->assertInstanceOf( WikiProcessor::class, $actualProcessors[0] );
 		$this->assertCount( 1, $wrapperMonologSpi->singletons['processors'] );
 		$this->assertArrayHasKey( 'myprocessor', $wrapperMonologSpi->singletons['processors'] );
 
