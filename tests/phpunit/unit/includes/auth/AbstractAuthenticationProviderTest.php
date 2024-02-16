@@ -7,6 +7,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\UserNameUtils;
+use MediaWikiUnitTestCase;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -14,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group AuthManager
  * @covers \MediaWiki\Auth\AbstractAuthenticationProvider
  */
-class AbstractAuthenticationProviderTest extends \MediaWikiUnitTestCase {
+class AbstractAuthenticationProviderTest extends MediaWikiUnitTestCase {
 	use AuthenticationProviderTestTrait;
 
 	public function testAbstractAuthenticationProvider() {

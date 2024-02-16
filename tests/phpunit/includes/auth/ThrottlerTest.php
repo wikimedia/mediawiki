@@ -4,8 +4,10 @@ namespace MediaWiki\Tests\Auth;
 
 use BagOStuff;
 use HashBagOStuff;
+use InvalidArgumentException;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\MainConfigNames;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -15,9 +17,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group AuthManager
  * @covers \MediaWiki\Auth\Throttler
  */
-class ThrottlerTest extends \MediaWikiIntegrationTestCase {
+class ThrottlerTest extends MediaWikiIntegrationTestCase {
 	public function testConstructor() {
-		$cache = new \HashBagOStuff();
+		$cache = new HashBagOStuff();
 		$logger = $this->getMockBuilder( AbstractLogger::class )
 			->onlyMethods( [ 'log' ] )
 			->getMockForAbstractClass();
@@ -56,7 +58,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 		try {
 			new Throttler( [], [ 'foo' => 1, 'bar' => 2, 'baz' => 3 ] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame( 'unrecognized parameters: foo, bar, baz', $ex->getMessage() );
 		}
 	}
@@ -95,7 +97,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testIncrease() {
-		$cache = new \HashBagOStuff();
+		$cache = new HashBagOStuff();
 		$throttler = new Throttler( [
 			[ 'count' => 2, 'seconds' => 10, ],
 			[ 'count' => 4, 'seconds' => 15, 'allIPs' => true ],
@@ -125,7 +127,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testZeroCount() {
-		$cache = new \HashBagOStuff();
+		$cache = new HashBagOStuff();
 		$throttler = new Throttler( [ [ 'count' => 0, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 		$throttler->setLogger( new NullLogger() );
 
@@ -140,7 +142,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testNamespacing() {
-		$cache = new \HashBagOStuff();
+		$cache = new HashBagOStuff();
 		$throttler1 = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ],
 			[ 'cache' => $cache, 'type' => 'foo' ] );
 		$throttler2 = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ],
@@ -183,12 +185,12 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	public function testException() {
 		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ] );
 		$throttler->setLogger( new NullLogger() );
-		$this->expectException( \InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$throttler->increase();
 	}
 
 	public function testLog() {
-		$cache = new \HashBagOStuff();
+		$cache = new HashBagOStuff();
 		$throttler = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 
 		$logger = $this->getMockBuilder( AbstractLogger::class )
@@ -217,7 +219,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testClear() {
-		$cache = new \HashBagOStuff();
+		$cache = new HashBagOStuff();
 		$throttler = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 		$throttler->setLogger( new NullLogger() );
 

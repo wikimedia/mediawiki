@@ -10,16 +10,20 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWikiIntegrationTestCase;
+use Password;
+use PasswordFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\AbstractPasswordPrimaryAuthenticationProvider
  */
-class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+class AbstractPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	use AuthenticationProviderTestTrait;
 
 	public function testConstructor() {
@@ -45,7 +49,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$obj = $providerPriv->getPasswordFactory();
-		$this->assertInstanceOf( \PasswordFactory::class, $obj );
+		$this->assertInstanceOf( PasswordFactory::class, $obj );
 		$this->assertSame( $obj, $providerPriv->getPasswordFactory() );
 	}
 
@@ -57,10 +61,10 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$obj = $providerPriv->getPassword( null );
-		$this->assertInstanceOf( \Password::class, $obj );
+		$this->assertInstanceOf( Password::class, $obj );
 
 		$obj = $providerPriv->getPassword( 'invalid' );
-		$this->assertInstanceOf( \Password::class, $obj );
+		$this->assertInstanceOf( Password::class, $obj );
 	}
 
 	public function testGetNewPasswordExpiry() {
@@ -99,7 +103,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 
 	public function testCheckPasswordValidity() {
 		$uppCalled = 0;
-		$uppStatus = \MediaWiki\Status\Status::newGood( [] );
+		$uppStatus = Status::newGood( [] );
 		$this->overrideConfigValue(
 			MainConfigNames::PasswordPolicy,
 			[
@@ -167,12 +171,12 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$manager->removeAuthenticationSessionData( null );
-		$status = \MediaWiki\Status\Status::newGood();
+		$status = Status::newGood();
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
 		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		$manager->removeAuthenticationSessionData( null );
-		$status = \MediaWiki\Status\Status::newGood( [ 'suggestChangeOnLogin' => true ] );
+		$status = Status::newGood( [ 'suggestChangeOnLogin' => true ] );
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
 		$ret = $manager->getAuthenticationSessionData( 'reset-pass' );

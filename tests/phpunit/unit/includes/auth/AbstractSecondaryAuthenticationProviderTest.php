@@ -2,17 +2,20 @@
 
 namespace MediaWiki\Tests\Unit\Auth;
 
+use BadMethodCallException;
 use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\User\User;
+use MediaWikiUnitTestCase;
+use StatusValue;
 
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\AbstractSecondaryAuthenticationProvider
  */
-class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase {
+class AbstractSecondaryAuthenticationProviderTest extends MediaWikiUnitTestCase {
 	public function testAbstractSecondaryAuthenticationProvider() {
 		$user = $this->createMock( User::class );
 
@@ -21,32 +24,32 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 		try {
 			$provider->continueSecondaryAuthentication( $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException $ex ) {
 		}
 
 		try {
 			$provider->continueSecondaryAccountCreation( $user, $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException $ex ) {
 		}
 
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
 
 		$this->assertTrue( $provider->providerAllowsPropertyChange( 'foo' ) );
 		$this->assertEquals(
-			\StatusValue::newGood( 'ignored' ),
+			StatusValue::newGood( 'ignored' ),
 			$provider->providerAllowsAuthenticationDataChange( $req )
 		);
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testForAccountCreation( $user, $user, [] )
 		);
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testUserForCreation( $user, AuthManager::AUTOCREATE_SOURCE_SESSION )
 		);
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testUserForCreation( $user, false )
 		);
 

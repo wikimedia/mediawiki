@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Auth;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\MainConfigNames;
+use Message;
 
 /**
  * @group AuthManager
@@ -90,10 +91,10 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 		$ret = $req->describeCredentials();
 		$this->assertIsArray( $ret );
 		$this->assertArrayHasKey( 'provider', $ret );
-		$this->assertInstanceOf( \Message::class, $ret['provider'] );
+		$this->assertInstanceOf( Message::class, $ret['provider'] );
 		$this->assertSame( 'authmanager-provider-temporarypassword', $ret['provider']->getKey() );
 		$this->assertArrayHasKey( 'account', $ret );
-		$this->assertInstanceOf( \Message::class, $ret['account'] );
+		$this->assertInstanceOf( Message::class, $ret['account'] );
 		$this->assertSame( [ $username ], $ret['account']->getParams() );
 	}
 }

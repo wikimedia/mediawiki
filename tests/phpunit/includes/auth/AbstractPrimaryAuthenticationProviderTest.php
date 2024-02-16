@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Auth;
 
+use BadMethodCallException;
 use MediaWiki\Auth\AbstractPrimaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
@@ -10,12 +11,14 @@ use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
+use StatusValue;
 
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\AbstractPrimaryAuthenticationProvider
  */
-class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+class AbstractPrimaryAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 	use AuthenticationProviderTestTrait;
 
@@ -27,26 +30,26 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 		try {
 			$provider->continuePrimaryAuthentication( [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException $ex ) {
 		}
 
 		try {
 			$provider->continuePrimaryAccountCreation( $user, $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException $ex ) {
 		}
 
 		$this->assertTrue( $provider->providerAllowsPropertyChange( 'foo' ) );
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testForAccountCreation( $user, $user, [] )
 		);
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testUserForCreation( $user, AuthManager::AUTOCREATE_SOURCE_SESSION )
 		);
 		$this->assertEquals(
-			\StatusValue::newGood(),
+			StatusValue::newGood(),
 			$provider->testUserForCreation( $user, false )
 		);
 
@@ -112,13 +115,13 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 		try {
 			$provider->beginPrimaryAccountLink( $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException $ex ) {
 			$this->assertSame( $msg1, $ex->getMessage() );
 		}
 		try {
 			$provider->continuePrimaryAccountLink( $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException $ex ) {
 			$this->assertSame( $msg2, $ex->getMessage() );
 		}
 	}
