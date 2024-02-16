@@ -300,13 +300,17 @@ class PPFrame_Hash implements PPFrame {
 				# HTML-style comment
 				# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
 				# Not in RECOVER_COMMENTS mode (msgnw) though.
-				if ( ( $this->parser->ot['html']
-					|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
+				if ( ( $this->parser->getOutputType() === Parser::OT_HTML
+					|| ( $this->parser->getOutputType() === Parser::OT_PREPROCESS &&
+						$this->parser->mOptions->getRemoveComments() )
 					|| ( $flags & PPFrame::STRIP_COMMENTS )
 					) && !( $flags & PPFrame::RECOVER_COMMENTS )
 				) {
 					$out .= '';
-				} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+				} elseif (
+					$this->parser->getOutputType() === Parser::OT_WIKI &&
+					!( $flags & PPFrame::RECOVER_COMMENTS )
+				) {
 					# Add a strip marker in PST mode so that pstPass2() can
 					# run some old-fashioned regexes on the result.
 					# Not in RECOVER_COMMENTS mode (extractSections) though.
@@ -320,7 +324,8 @@ class PPFrame_Hash implements PPFrame {
 				# OT_WIKI will only respect <ignore> in substed templates.
 				# The other output types respect it unless NO_IGNORE is set.
 				# extractSections() sets NO_IGNORE and so never respects it.
-				if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] )
+				if ( ( !isset( $this->parent ) &&
+					   $this->parser->getOutputType() === Parser::OT_WIKI )
 					|| ( $flags & PPFrame::NO_IGNORE )
 				) {
 					$out .= $contextChildren[0];
@@ -354,7 +359,7 @@ class PPFrame_Hash implements PPFrame {
 				}
 			} elseif ( $contextName === 'h' ) {
 				# Heading
-				if ( $this->parser->ot['html'] ) {
+				if ( $this->parser->getOutputType() === Parser::OT_HTML ) {
 					# Expand immediately and insert heading index marker
 					$s = $this->expand( $contextChildren, $flags );
 					$bits = PPNode_Hash_Tree::splitRawHeading( $contextChildren );
