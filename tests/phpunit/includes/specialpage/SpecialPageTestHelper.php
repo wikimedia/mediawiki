@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\SpecialPage;
+
 use MediaWiki\Specials\SpecialAllPages;
 
 /**

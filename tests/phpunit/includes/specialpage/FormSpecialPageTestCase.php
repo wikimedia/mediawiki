@@ -1,11 +1,16 @@
 <?php
 
+namespace MediaWiki\Tests\SpecialPage;
+
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
+use ReflectionMethod;
+use SpecialPageTestBase;
+use UserBlockedError;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

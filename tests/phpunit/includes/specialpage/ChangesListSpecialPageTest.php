@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\SpecialPage;
+
+use ChangesListBooleanFilterGroup;
+use ChangesListStringOptionsFilterGroup;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
