@@ -174,8 +174,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
 
 	# tests/phpunit/includes/site
-	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
 	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
+	'MediaWiki\\Tests\\Site\\SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
+	'MediaWiki\\Tests\\Site\\TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
 
 	# tests/phpunit/includes/specialpage
 	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",

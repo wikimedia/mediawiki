@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Site;
+
 use MediaWiki\Site\DBSiteStore;
 use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
 use MediaWiki\Site\SiteList;
+use MediaWikiIntegrationTestCase;
 
 /**
  * This program is free software; you can redistribute it and/or modify

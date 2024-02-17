@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Site;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Site\MediaWikiSite;
 

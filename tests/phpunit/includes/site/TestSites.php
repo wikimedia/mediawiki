@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Site;
+
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
 
@@ -108,8 +111,10 @@ class TestSites {
 	 * @since 0.1
 	 */
 	public static function insertIntoDb() {
-		$sitesTable = \MediaWiki\MediaWikiServices::getInstance()->getSiteStore();
+		$sitesTable = MediaWikiServices::getInstance()->getSiteStore();
 		$sitesTable->clear();
 		$sitesTable->saveSites( self::getSites() );
 	}
 }
+
+class_alias( TestSites::class, 'TestSites' );

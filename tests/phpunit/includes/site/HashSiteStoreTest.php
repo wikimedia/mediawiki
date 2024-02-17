@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Site;
+
 use MediaWiki\Site\HashSiteStore;
 use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
 use MediaWiki\Site\SiteList;
+use MediaWikiIntegrationTestCase;
 
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -29,7 +32,7 @@ use MediaWiki\Site\SiteList;
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class HashSiteStoreTest extends \MediaWikiIntegrationTestCase {
+class HashSiteStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Site\HashSiteStore::getSites

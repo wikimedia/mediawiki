@@ -1,7 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Site;
+
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Site\MediaWikiPageNameNormalizer;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Site\MediaWikiPageNameNormalizer
