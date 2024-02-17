@@ -2,11 +2,13 @@
 
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
+use Language;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
+use Skin;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\HandleTOCMarkers
@@ -34,7 +36,19 @@ class HandleTOCMarkersTest extends OutputTransformStageTestBase {
 		];
 	}
 
-	public function provideTransform(): array {
+	public function provideTransform(): iterable {
+		$lang = $this->createNoOpMock(
+			Language::class, [ 'getCode', 'getHtmlCode', 'getDir' ]
+		);
+		$lang->method( 'getCode' )->willReturn( 'en' );
+		$lang->method( 'getHtmlCode' )->willReturn( 'en' );
+		$lang->method( 'getDir' )->willReturn( 'ltr' );
+
+		$skin = $this->createNoOpMock(
+			Skin::class, [ 'getLanguage' ]
+		);
+		$skin->method( 'getLanguage' )->willReturn( $lang );
+
 		$withToc = <<<EOF
 <p>Test document.
 </p>
@@ -83,23 +97,19 @@ EOF;
 EOF;
 		$poTest1 = new ParserOutput( TestUtils::TEST_DOC );
 		TestUtils::initSections( $poTest1 );
-		$expectedWithout = new ParserOutput( $withoutToc );
-		TestUtils::initSections( $expectedWithout );
+		$expectedWith = new ParserOutput( $withToc );
+		TestUtils::initSections( $expectedWith );
+		yield [ $poTest1, null, [
+			'userLang' => $lang,
+			'skin' => $skin,
+			'allowTOC' => true,
+			'injectTOC' => true
+		], $expectedWith ];
 
 		$poTest2 = new ParserOutput( TestUtils::TEST_DOC );
 		TestUtils::initSections( $poTest2 );
-		$expectedWith = new ParserOutput( $withToc );
-		TestUtils::initSections( $expectedWith );
-		return [
-			[ $poTest1, null, [
-				'userLang' => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
-				'skin' =>
-					$this->getServiceContainer()->getSkinFactory()->makeSkin( 'fallback' ),
-				'allowTOC' => true,
-				'injectTOC' => true
-			], $expectedWith
-		],
-			[ $poTest2, null, [ 'allowTOC' => false ], $expectedWithout ],
-		];
+		$expectedWithout = new ParserOutput( $withoutToc );
+		TestUtils::initSections( $expectedWithout );
+		yield [ $poTest2, null, [ 'allowTOC' => false ], $expectedWithout ];
 	}
 }
