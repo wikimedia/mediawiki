@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
 use MediaWiki\Parser\Parser;
+use MediaWikiIntegrationTestCase;
+use StripState;
 
 /**
  * @covers \StripState

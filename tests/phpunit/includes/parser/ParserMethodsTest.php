@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use HtmlArmor;
+use LogicException;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -10,6 +14,10 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiLangTestCase;
+use MockTitleTrait;
+use ParserOptions;
+use WikitextContent;
 
 /**
  * @group Database

@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
 use MediaWiki\Parser\Parsoid\PageBundleJsonTrait;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\Parsoid\Core\PageBundle;
 
 /**

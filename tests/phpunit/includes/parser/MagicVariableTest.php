@@ -12,10 +12,14 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Parser;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
+use ParserOptions;
 use Wikimedia\TestingAccessWrapper;
 
 /**

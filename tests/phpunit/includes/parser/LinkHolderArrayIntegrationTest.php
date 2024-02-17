@@ -2,9 +2,14 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Tests\Parser;
+
+use ILanguageConverter;
+use LinkHolderArray;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
+use MediaWikiLangTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

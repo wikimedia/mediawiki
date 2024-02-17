@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use CoreParserFunctions;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\User\User;
+use MediaWikiLangTestCase;
 
 /**
  * @group Database

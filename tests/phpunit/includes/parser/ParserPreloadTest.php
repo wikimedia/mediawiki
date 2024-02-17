@@ -1,8 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
+use ParserOptions;
 
 /**
  * Basic tests for Parser::getPreloadText

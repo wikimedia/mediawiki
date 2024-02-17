@@ -1,7 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use InvalidArgumentException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
+use ParserOptions;
 
 /**
  * @group Database
