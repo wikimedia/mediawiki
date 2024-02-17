@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Specials\SpecialPasswordReset;
+use MediaWiki\Tests\SpecialPage\FormSpecialPageTestCase;
 
 class SpecialPasswordResetTest extends FormSpecialPageTestCase {
 	/**

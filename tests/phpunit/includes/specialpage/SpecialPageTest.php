@@ -1,9 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\SpecialPage;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
+use UserNotLoggedIn;
 
 /**
  * @covers \MediaWiki\SpecialPage\SpecialPage

@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\SpecialPage;
+
+use Exception;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -10,6 +13,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Specials\SpecialAllPages;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
+use RuntimeException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -66,13 +71,13 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 				return new SpecialAllPages();
 			}, false ],
 			'function' => [ [ $this, 'newSpecialAllPages' ], false ],
-			'callback string' => [ 'SpecialPageTestHelper::newSpecialAllPages', false ],
+			'callback string' => [ SpecialPageTestHelper::class . '::newSpecialAllPages', false ],
 			'callback with object' => [
 				[ $specialPageTestHelper, 'newSpecialAllPages' ],
 				false
 			],
 			'callback array' => [
-				[ 'SpecialPageTestHelper', 'newSpecialAllPages' ],
+				[ SpecialPageTestHelper::class, 'newSpecialAllPages' ],
 				false
 			],
 			'object factory spec' => [
