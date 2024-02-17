@@ -102,7 +102,8 @@
 	 * Positions to flip to if there isn't room in the container for the
 	 * menu in a specific direction.
 	 *
-	 * @property {Object.<string,string>}
+	 * @name mw.widgets.CalendarWidget.flippedPositions
+	 * @type {Object.<string,string>}
 	 */
 	mw.widgets.CalendarWidget.static.flippedPositions = {
 		below: 'above',

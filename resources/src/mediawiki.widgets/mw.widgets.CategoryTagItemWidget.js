@@ -169,7 +169,8 @@
 	 *
 	 * @static
 	 * @inheritable
-	 * @property {Object}
+	 * @type {Object}
+	 * @name mw.widgets.CategoryTagItemWidget.pageExistenceCaches
 	 */
 	mw.widgets.CategoryTagItemWidget.static.pageExistenceCaches = {
 		'': new PageExistenceCache()

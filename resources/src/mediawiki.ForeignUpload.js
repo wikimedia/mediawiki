@@ -95,8 +95,6 @@
 	OO.inheritClass( ForeignUpload, mw.Upload );
 
 	/**
-	 * @property {string} target
-	 *
 	 * Used to specify the target repository of the upload.
 	 *
 	 * If you set this to something that isn't 'local', you must be sure to
@@ -108,6 +106,9 @@
 	 *
 	 * Defaults to the first available foreign upload target,
 	 * or to local uploads if no foreign target is configured.
+	 *
+	 * @name mw.ForeignUpload.target
+	 * @type {string}
 	 */
 
 	/**

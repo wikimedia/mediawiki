@@ -483,7 +483,6 @@
 		},
 
 		/**
-		 * @property {number}
 		 * Maximum number of simultaneous notifications to start auto-hide timers for.
 		 * Only this number of notifications being displayed will be auto-hidden at one time.
 		 * Any additional notifications in the list will only start counting their timeout for
@@ -491,6 +490,9 @@
 		 *
 		 * This basically represents the minimal number of notifications the user should
 		 * be able to process during the {@link #defaults default} #autoHideSeconds time.
+		 *
+		 * @memberof mw.notification
+		 * @type {number}
 		 */
 		autoHideLimit: 3
 	};
