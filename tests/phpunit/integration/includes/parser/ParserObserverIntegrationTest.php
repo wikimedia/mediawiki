@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
 use MediaWiki\Parser\ParserObserver;
+use MediaWikiIntegrationTestCase;
+use TestLogger;
 
 /**
  * @covers \MediaWiki\Parser\ParserObserver

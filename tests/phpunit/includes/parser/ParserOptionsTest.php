@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use DummyContentForTesting;
+use InvalidArgumentException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
@@ -8,6 +12,9 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiLangTestCase;
+use ParserOptions;
+use stdClass;
 use Wikimedia\ScopedCallback;
 
 /**

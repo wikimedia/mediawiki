@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
 use MediaWiki\Parser\Sanitizer;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Parser\Sanitizer::validateEmail

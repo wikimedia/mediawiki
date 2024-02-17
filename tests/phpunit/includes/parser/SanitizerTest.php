@@ -1,7 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
+use MediaWikiIntegrationTestCase;
+use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
 
 /**

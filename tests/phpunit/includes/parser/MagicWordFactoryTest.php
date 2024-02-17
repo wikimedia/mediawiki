@@ -1,8 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Parser;
+
+use Language;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordArray;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWikiIntegrationTestCase;
+use UnexpectedValueException;
 
 /**
  * @covers \MediaWiki\Parser\MagicWordFactory
