@@ -1,11 +1,14 @@
 <?php
 
+namespace Wikimedia\Tests\Composer;
+
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Composer\ComposerInstalled;
 
 /**
  * @covers \Wikimedia\Composer\ComposerInstalled
  */
-class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
+class ComposerInstalledTest extends TestCase {
 
 	public function testGetInstalledDependencies() {
 		$location = __DIR__ . '/../../../../data/composer/installed-v2.json';

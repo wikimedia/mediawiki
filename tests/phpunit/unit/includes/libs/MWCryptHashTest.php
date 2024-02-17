@@ -1,5 +1,10 @@
 <?php
 
+namespace Wikimedia\Tests;
+
+use MediaWikiUnitTestCase;
+use MWCryptHash;
+
 /**
  * @group Hash
  *

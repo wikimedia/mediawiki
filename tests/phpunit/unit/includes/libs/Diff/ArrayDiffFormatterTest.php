@@ -1,13 +1,18 @@
 <?php
 
-namespace Wikimedia\Diff;
+namespace Wikimedia\Tests\Diff;
+
+use MediaWikiUnitTestCase;
+use Wikimedia\Diff\ArrayDiffFormatter;
+use Wikimedia\Diff\Diff;
+use Wikimedia\Diff\DiffOp;
 
 /**
  * @author Addshore
  *
  * @group Diff
  */
-class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
+class ArrayDiffFormatterTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param Diff $input

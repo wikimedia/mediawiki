@@ -19,10 +19,16 @@
  * @author Ori Livneh <ori@wikimedia.org>
  */
 
+namespace Wikimedia\Tests;
+
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
+use Timing;
+
 /**
  * @covers \Timing
  */
-class TimingTest extends PHPUnit\Framework\TestCase {
+class TimingTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

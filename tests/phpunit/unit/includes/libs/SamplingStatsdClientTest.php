@@ -1,12 +1,17 @@
 <?php
 
+namespace Wikimedia\Tests;
+
 use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Sender\SenderInterface;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
+use SamplingStatsdClient;
 
 /**
  * @covers \SamplingStatsdClient
  */
-class SamplingStatsdClientTest extends PHPUnit\Framework\TestCase {
+class SamplingStatsdClientTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

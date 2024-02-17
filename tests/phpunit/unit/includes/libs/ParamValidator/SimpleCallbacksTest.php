@@ -1,10 +1,11 @@
 <?php
 
-namespace Wikimedia\ParamValidator;
+namespace Wikimedia\Tests\ParamValidator;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use Wikimedia\Message\DataMessageValue;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 
 /**
  * @covers \Wikimedia\ParamValidator\SimpleCallbacks

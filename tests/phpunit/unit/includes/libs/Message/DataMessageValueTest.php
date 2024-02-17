@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Message;
 
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
@@ -9,7 +10,7 @@ use Wikimedia\Message\ScalarParam;
 /**
  * @covers \Wikimedia\Message\DataMessageValue
  */
-class DataMessageValueTest extends \PHPUnit\Framework\TestCase {
+class DataMessageValueTest extends TestCase {
 	public static function provideConstruct() {
 		return [
 			[

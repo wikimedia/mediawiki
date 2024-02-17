@@ -1,10 +1,17 @@
 <?php
+
+namespace Wikimedia\Tests;
+
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
+use XmlTypeCheck;
+
 /**
  * @author physikerwelt
  * @group Xml
  * @covers \XmlTypeCheck
  */
-class XmlTypeCheckTest extends PHPUnit\Framework\TestCase {
+class XmlTypeCheckTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	private const WELL_FORMED_XML = "<root><child /></root>";

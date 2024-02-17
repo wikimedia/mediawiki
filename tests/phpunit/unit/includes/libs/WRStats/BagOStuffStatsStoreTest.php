@@ -1,9 +1,13 @@
 <?php
 
-namespace Wikimedia\WRStats;
+namespace Wikimedia\Tests\WRStats;
 
 use HashBagOStuff;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\WRStats\BagOStuffStatsStore;
+use Wikimedia\WRStats\EntityKey;
+use Wikimedia\WRStats\GlobalEntityKey;
+use Wikimedia\WRStats\LocalEntityKey;
 
 /**
  * @covers \Wikimedia\WRStats\BagOStuffStatsStore

@@ -1,11 +1,12 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\ServerInfo;
 
 /**
  * @covers \Wikimedia\Rdbms\ServerInfo
  */
-class ServerInfoTest extends \PHPUnit\Framework\TestCase {
+class ServerInfoTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

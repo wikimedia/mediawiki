@@ -1,12 +1,13 @@
 <?php
 
-namespace Wikimedia\ParamValidator\Util;
+namespace Wikimedia\Tests\ParamValidator\Util;
 
 require_once __DIR__ . '/UploadedFileTestBase.php';
 
 use PHPUnit\Framework\AssertionFailedError;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
+use Wikimedia\ParamValidator\Util\UploadedFile;
 
 /**
  * @covers \Wikimedia\ParamValidator\Util\UploadedFile

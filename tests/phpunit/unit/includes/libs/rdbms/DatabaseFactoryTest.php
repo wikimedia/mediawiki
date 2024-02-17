@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\DatabaseMySQL;
@@ -9,7 +10,7 @@ use Wikimedia\Rdbms\DatabaseSqlite;
 /**
  * @covers \Wikimedia\Rdbms\DatabaseFactory
  */
-class DatabaseFactoryTest extends PHPUnit\Framework\TestCase {
+class DatabaseFactoryTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

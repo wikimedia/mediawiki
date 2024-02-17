@@ -18,11 +18,18 @@
  * @file
  */
 
+namespace Wikimedia\Tests;
+
+use LogicException;
+use MediaWikiCoversValidator;
+use Monolog\Test\TestCase;
+use XhprofData;
+
 /**
  * @copyright © 2014 Wikimedia Foundation and contributors
  * @covers \XhprofData
  */
-class XhprofDataTest extends PHPUnit\Framework\TestCase {
+class XhprofDataTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	/**

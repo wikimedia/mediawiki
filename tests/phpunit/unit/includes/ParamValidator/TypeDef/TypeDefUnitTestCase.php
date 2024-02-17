@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
 use MediaWikiUnitTestCase;
-use Wikimedia\ParamValidator\TypeDef\TypeDefTestCaseTrait;
+use Wikimedia\Tests\ParamValidator\TypeDef\TypeDefTestCaseTrait;
 
 abstract class TypeDefUnitTestCase extends MediaWikiUnitTestCase {
 	use TypeDefTestCaseTrait;

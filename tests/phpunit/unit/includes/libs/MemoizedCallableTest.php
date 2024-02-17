@@ -1,11 +1,18 @@
 <?php
 
+namespace Wikimedia\Tests;
+
+use InvalidArgumentException;
+use MediaWikiCoversValidator;
+use MemoizedCallable;
+use PHPUnit\Framework\TestCase;
+use stdClass;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MemoizedCallable
  */
-class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
+class MemoizedCallableTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

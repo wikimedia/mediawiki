@@ -1,6 +1,6 @@
 <?php
 
-namespace Wikimedia\ParamValidator\Util;
+namespace Wikimedia\Tests\ParamValidator\Util;
 
 use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;

@@ -1,12 +1,16 @@
 <?php
 
+namespace Wikimedia\Tests\Stats;
+
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use PrefixingStatsdDataFactoryProxy;
 
 /**
  * @covers \PrefixingStatsdDataFactoryProxy
  */
-class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
+class PrefixingStatsdDataFactoryProxyTest extends TestCase {
 
 	public static function provideMethodNames() {
 		return [
@@ -26,7 +30,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 	public function testPrefixingAndPassthrough( $method ) {
 		/** @var StatsdDataFactoryInterface|MockObject $innerFactory */
 		$innerFactory = $this->createMock(
-			\Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface::class
+			StatsdDataFactoryInterface::class
 		);
 		$innerFactory->expects( $this->once() )
 			->method( $method )
@@ -43,7 +47,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 	public function testPrefixIsTrimmed( $method ) {
 		/** @var StatsdDataFactoryInterface|MockObject $innerFactory */
 		$innerFactory = $this->createMock(
-			\Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface::class
+			StatsdDataFactoryInterface::class
 		);
 		$innerFactory->expects( $this->once() )
 			->method( $method )

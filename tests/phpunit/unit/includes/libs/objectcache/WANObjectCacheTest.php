@@ -1,5 +1,17 @@
-<?php /** @noinspection PhpStaticAsDynamicMethodCallInspection */
+<?php
 
+/** @noinspection PhpStaticAsDynamicMethodCallInspection */
+
+namespace Wikimedia\Tests\ObjectCache;
+
+use ArrayIterator;
+use BagOStuff;
+use EmptyBagOStuff;
+use HashBagOStuff;
+use MediaWikiUnitTestCase;
+use Psr\Log\NullLogger;
+use UnexpectedValueException;
+use WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -2120,7 +2132,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	 */
 	public function testSetLogger() {
 		[ $cache ] = $this->newWanCache();
-		$this->assertSame( null, $cache->setLogger( new Psr\Log\NullLogger ) );
+		$this->assertSame( null, $cache->setLogger( new NullLogger ) );
 	}
 
 	/**

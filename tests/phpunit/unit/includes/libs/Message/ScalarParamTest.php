@@ -3,6 +3,8 @@
 namespace Wikimedia\Tests\Message;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use stdClass;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
@@ -10,7 +12,7 @@ use Wikimedia\Message\ScalarParam;
 /**
  * @covers \Wikimedia\Message\ScalarParam
  */
-class ScalarParamTest extends \PHPUnit\Framework\TestCase {
+class ScalarParamTest extends TestCase {
 
 	public static function provideConstruct() {
 		return [
@@ -58,7 +60,7 @@ class ScalarParamTest extends \PHPUnit\Framework\TestCase {
 		$this->expectExceptionMessage(
 			'Scalar parameter must be a string, number, or MessageValue; got stdClass'
 		);
-		new ScalarParam( ParamType::TEXT, new \stdClass );
+		new ScalarParam( ParamType::TEXT, new stdClass );
 	}
 
 }

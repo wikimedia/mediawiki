@@ -1,6 +1,8 @@
 <?php
 
-namespace Wikimedia\Diff;
+namespace Wikimedia\Tests\Diff;
+
+use Wikimedia\Diff\DiffOp;
 
 /**
  * Class FakeDiffOp used to test abstract class DiffOp

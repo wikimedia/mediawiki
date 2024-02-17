@@ -1,6 +1,13 @@
 <?php
 
+namespace Wikimedia\Tests\ObjectCache;
+
+use BagOStuff;
+use HashBagOStuff;
+use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -9,7 +16,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \BagOStuff
  * @group BagOStuff
  */
-class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
+class HashBagOStuffTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	public function testConstruct() {

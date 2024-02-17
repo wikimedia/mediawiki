@@ -1,12 +1,13 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\TransactionProfiler;
 
 /**
  * @covers \Wikimedia\Rdbms\TransactionProfiler
  */
-class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
+class TransactionProfilerTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

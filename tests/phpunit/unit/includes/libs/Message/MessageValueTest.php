@@ -4,6 +4,7 @@ namespace Wikimedia\Tests\Message;
 
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\User\UserIdentityValue;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -12,7 +13,7 @@ use Wikimedia\Message\ScalarParam;
 /**
  * @covers \Wikimedia\Message\MessageValue
  */
-class MessageValueTest extends \PHPUnit\Framework\TestCase {
+class MessageValueTest extends TestCase {
 	public static function provideConstruct() {
 		return [
 			[

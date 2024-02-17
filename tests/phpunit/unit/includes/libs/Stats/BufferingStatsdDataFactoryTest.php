@@ -1,11 +1,15 @@
 <?php
 
+namespace Wikimedia\Tests\Stats;
+
+use BufferingStatsdDataFactory;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \BufferingStatsdDataFactory
  */
-class BufferingStatsdDataFactoryTest extends PHPUnit\Framework\TestCase {
+class BufferingStatsdDataFactoryTest extends TestCase {
 
 	public static function provideNormalizeMetricKey() {
 		// Reasonable and relied upon

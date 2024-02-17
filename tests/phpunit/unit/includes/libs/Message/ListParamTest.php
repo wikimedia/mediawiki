@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Message;
 
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageParam;
@@ -12,7 +13,7 @@ use Wikimedia\Message\ScalarParam;
 /**
  * @covers \Wikimedia\Message\ListParam
  */
-class ListParamTest extends \PHPUnit\Framework\TestCase {
+class ListParamTest extends TestCase {
 
 	public static function provideConstruct() {
 		return [

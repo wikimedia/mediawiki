@@ -1,8 +1,11 @@
 <?php
 
+namespace Wikimedia\Tests\Composer;
+
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Composer\ComposerLock;
 
-class ComposerLockTest extends PHPUnit\Framework\TestCase {
+class ComposerLockTest extends TestCase {
 
 	private $lock;
 
