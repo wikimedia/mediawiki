@@ -927,12 +927,13 @@ class MovePageForm extends UnlistedSpecialPage {
 	 * @param Title $title Page being moved.
 	 */
 	private function showSubpages( $title ) {
+		$maximumMovedPages = $this->getConfig()->get( MainConfigNames::MaximumMovedPages );
 		$nsHasSubpages = $this->nsInfo->hasSubpages( $title->getNamespace() );
-		$subpages = $title->getSubpages();
+		$subpages = $title->getSubpages( $maximumMovedPages + 1 );
 		$count = $subpages instanceof TitleArray ? $subpages->count() : 0;
 
 		$titleIsTalk = $title->isTalkPage();
-		$subpagesTalk = $title->getTalkPage()->getSubpages();
+		$subpagesTalk = $title->getTalkPage()->getSubpages( $maximumMovedPages + 1 );
 		$countTalk = $subpagesTalk instanceof TitleArray ? $subpagesTalk->count() : 0;
 		$totalCount = $count + $countTalk;
 
@@ -963,7 +964,19 @@ class MovePageForm extends UnlistedSpecialPage {
 			return;
 		}
 
-		$out->addWikiMsg( $wikiMsg, $this->getLanguage()->formatNum( $pagecount ) );
+		$maximumMovedPages = $this->getConfig()->get( MainConfigNames::MaximumMovedPages );
+
+		if ( $pagecount > $maximumMovedPages ) {
+			$subpages = $this->truncateSubpagesList( $subpages );
+			// TODO: Replace with a message key once this is uploaded to Gerrit. This is hardcoded to avoid
+			//  having the i18n rebuilt for all deployments due to this security patch.
+			$out->addWikiTextAsInterface(
+				"The first $maximumMovedPages {{PLURAL:$maximumMovedPages|subpage|subpages}} " .
+				( $noSubpageMsg ? 'for this page' : 'for the corresponding talk page' ) . ' are shown below.'
+			);
+		} else {
+			$out->addWikiMsg( $wikiMsg, $this->getLanguage()->formatNum( $pagecount ) );
+		}
 		$out->addHTML( "<ul>\n" );
 
 		$linkBatch = $this->linkBatchFactory->newLinkBatch( $subpages );
@@ -976,6 +989,17 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addHTML( "<li>$link</li>\n" );
 		}
 		$out->addHTML( "</ul>\n" );
+	}
+
+	private function truncateSubpagesList( iterable $subpages ): array {
+		$returnArray = [];
+		foreach ( $subpages as $subpage ) {
+			$returnArray[] = $subpage;
+			if ( count( $returnArray ) >= $this->getConfig()->get( MainConfigNames::MaximumMovedPages ) ) {
+				break;
+			}
+		}
+		return $returnArray;
 	}
 
 	/**
