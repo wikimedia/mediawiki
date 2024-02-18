@@ -744,6 +744,9 @@ class Article implements Page {
 		// we already checked in fetchRevisionRecord()
 		$opt |= ParserOutputAccess::OPT_NO_AUDIENCE_CHECK;
 
+		// enable stampede protection and allow stale content
+		$opt |= ParserOutputAccess::OPT_FOR_ARTICLE_VIEW;
+
 		// Attempt to trigger WikiPage::triggerOpportunisticLinksUpdate
 		// Ideally this should not be the responsibility of the ParserCache to control this.
 		// See https://phabricator.wikimedia.org/T329842#8816557 for more context.
