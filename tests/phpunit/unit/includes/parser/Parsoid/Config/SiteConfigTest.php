@@ -60,6 +60,11 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		MainConfigNames::NoFollowNsExceptions => [ 5 ],
 		MainConfigNames::NoFollowDomainExceptions => [ 'www.mediawiki.org' ],
 		MainConfigNames::ExternalLinkTarget => false,
+		MainConfigNames::EnableMagicLinks => [
+			'ISBN' => true,
+			'PMID' => true,
+			'RFC' => true,
+		],
 	];
 
 	private function createMockOrOverride( string $class, array $overrides ) {

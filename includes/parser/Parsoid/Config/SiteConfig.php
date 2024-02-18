@@ -93,6 +93,7 @@ class SiteConfig extends ISiteConfig {
 		MainConfigNames::NoFollowNsExceptions,
 		MainConfigNames::NoFollowDomainExceptions,
 		MainConfigNames::ExternalLinkTarget,
+		MainConfigNames::EnableMagicLinks,
 	];
 
 	private ServiceOptions $config;
@@ -385,6 +386,12 @@ class SiteConfig extends ISiteConfig {
 
 	public function interwikiMagic(): bool {
 		return $this->config->get( MainConfigNames::InterwikiMagic );
+	}
+
+	/** @inheritDoc */
+	public function magicLinkEnabled( string $which ): bool {
+		$m = $this->config->get( MainConfigNames::EnableMagicLinks );
+		return $m[$which] ?? true;
 	}
 
 	public function interwikiMap(): array {
