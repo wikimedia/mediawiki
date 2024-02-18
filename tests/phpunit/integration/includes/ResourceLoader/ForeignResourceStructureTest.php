@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\ResourceLoader\ForeignResourceManager;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Verify MediaWiki core's foreign-resources.yaml.
@@ -10,7 +11,7 @@ use MediaWiki\ResourceLoader\ForeignResourceManager;
  *
  * @coversNothing
  */
-class ForeignResourceStructureTest extends \PHPUnit\Framework\TestCase {
+class ForeignResourceStructureTest extends TestCase {
 
 	public function testVerifyIntegrity() {
 		global $IP;

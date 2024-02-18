@@ -4,12 +4,13 @@ namespace MediaWiki\Tests\Rest\PathTemplateMatcher;
 
 use MediaWiki\Rest\PathTemplateMatcher\PathConflict;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Rest\PathTemplateMatcher\PathMatcher
  * @covers \MediaWiki\Rest\PathTemplateMatcher\PathConflict
  */
-class PathMatcherTest extends \MediaWikiUnitTestCase {
+class PathMatcherTest extends MediaWikiUnitTestCase {
 	private static $normalRoutes = [
 		'/a/b',
 		'/b/{x}',

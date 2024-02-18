@@ -3,11 +3,12 @@
 namespace MediaWiki\Tests\Rest\HeaderParser;
 
 use MediaWiki\Rest\HeaderParser\HttpDate;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Rest\HeaderParser\HttpDate
  */
-class HttpDateTest extends \MediaWikiUnitTestCase {
+class HttpDateTest extends MediaWikiUnitTestCase {
 	public static function provideParse() {
 		return [
 			'RFC 7231 example 1' => [

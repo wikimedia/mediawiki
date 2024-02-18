@@ -11,12 +11,13 @@ use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint
  * @covers \MediaWiki\Rest\Router
  */
-class EntryPointTest extends \MediaWikiIntegrationTestCase {
+class EntryPointTest extends MediaWikiIntegrationTestCase {
 	use RestTestTrait;
 
 	private function createRouter( RequestInterface $request ) {

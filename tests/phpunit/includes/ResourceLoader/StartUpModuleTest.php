@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\ResourceLoader;
 use Exception;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\StartUpModule;
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -674,7 +675,7 @@ mw.loader.register([
 
 		// Disable log from getModuleRegistrations via MWExceptionHandler
 		// for case where getVersionHash() is expected to throw.
-		$this->setLogger( 'exception', new \Psr\Log\NullLogger() );
+		$this->setLogger( 'exception', new NullLogger() );
 
 		$this->assertEquals(
 			self::expandPlaceholders( $out ),
@@ -738,7 +739,7 @@ mw.loader.register([
 		$out = ltrim( $case['out'], "\n" );
 
 		// Tolerate exception logs for cases that expect getVersionHash() to throw.
-		$this->setLogger( 'exception', new \Psr\Log\NullLogger() );
+		$this->setLogger( 'exception', new NullLogger() );
 
 		$this->assertEquals(
 			self::expandPlaceholders( $out ),

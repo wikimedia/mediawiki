@@ -11,11 +11,12 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Rest\CorsUtils
  */
-class CorsUtilsTest extends \MediaWikiUnitTestCase {
+class CorsUtilsTest extends MediaWikiUnitTestCase {
 
 	private function createServiceOptions( array $options = [] ) {
 		$defaults = [

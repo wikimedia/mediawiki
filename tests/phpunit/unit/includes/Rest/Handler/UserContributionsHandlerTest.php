@@ -15,6 +15,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiUnitTestCase;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
@@ -22,7 +23,7 @@ use Wikimedia\Message\MessageValue;
 /**
  * @covers \MediaWiki\Rest\Handler\UserContributionsHandler
  */
-class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
+class UserContributionsHandlerTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 	use HandlerTestTrait;
 	use MockTitleTrait;

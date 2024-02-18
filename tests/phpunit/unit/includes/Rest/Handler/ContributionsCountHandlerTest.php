@@ -9,13 +9,14 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
 
 /**
  * @covers \MediaWiki\Rest\Handler\ContributionsCountHandler
  */
-class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
+class ContributionsCountHandlerTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 	use HandlerTestTrait;
 

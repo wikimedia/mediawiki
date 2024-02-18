@@ -14,6 +14,7 @@ use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
@@ -24,7 +25,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * @covers \MediaWiki\Rest\Handler\SearchHandler
  */
-class HandlerTest extends \MediaWikiUnitTestCase {
+class HandlerTest extends MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
 

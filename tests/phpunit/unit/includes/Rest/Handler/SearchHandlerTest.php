@@ -27,9 +27,11 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWikiUnitTestCase;
 use MockSearchResultSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use SearchEngine;
+use SearchEngineConfig;
 use SearchEngineFactory;
 use SearchResult;
 use SearchResultSet;
@@ -40,7 +42,7 @@ use Wikimedia\Message\MessageValue;
 /**
  * @covers \MediaWiki\Rest\Handler\SearchHandler
  */
-class SearchHandlerTest extends \MediaWikiUnitTestCase {
+class SearchHandlerTest extends MediaWikiUnitTestCase {
 
 	use DummyServicesTrait;
 	use MediaTestTrait;
@@ -86,7 +88,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$hookContainer ??= $this->createHookContainer();
 		/** @var UserOptionsLookup|MockObject $userOptionsLookup */
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$searchEngineConfig = new \SearchEngineConfig(
+		$searchEngineConfig = new SearchEngineConfig(
 			$config,
 			$language,
 			$hookContainer,

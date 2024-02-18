@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
+use Exception;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
@@ -33,7 +34,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @param array $params
 	 * @param Authority|null $authority
 	 * @return PageContentHelper
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	private function newHelper(
 		array $params = [],

@@ -4,9 +4,10 @@ namespace MediaWiki\Tests\Rest;
 
 use InvalidArgumentException;
 use MediaWiki\Rest\StringStream;
+use MediaWikiUnitTestCase;
 
 /** @covers \MediaWiki\Rest\StringStream */
-class StringStreamTest extends \MediaWikiUnitTestCase {
+class StringStreamTest extends MediaWikiUnitTestCase {
 	public static function provideSeekGetContents() {
 		return [
 			[ 'abcde', 0, SEEK_SET, 'abcde' ],

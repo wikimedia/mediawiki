@@ -8,6 +8,7 @@ use MediaWiki\Rest\Handler\MediaLinksHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -15,7 +16,7 @@ use Wikimedia\Message\MessageValue;
  *
  * @group Database
  */
-class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
+class MediaLinksHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use MediaTestTrait;
 

@@ -3,11 +3,12 @@
 namespace MediaWiki\Tests\Rest;
 
 use MediaWiki\Rest\HeaderContainer;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Rest\HeaderContainer
  */
-class HeaderContainerTest extends \MediaWikiUnitTestCase {
+class HeaderContainerTest extends MediaWikiUnitTestCase {
 	public static function provideSetHeader() {
 		return [
 			'simple' => [

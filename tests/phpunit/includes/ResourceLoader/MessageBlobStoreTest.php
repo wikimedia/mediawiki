@@ -6,6 +6,7 @@ use HashBagOStuff;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use WANObjectCache;
 
@@ -13,7 +14,7 @@ use WANObjectCache;
  * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\MessageBlobStore
  */
-class MessageBlobStoreTest extends \PHPUnit\Framework\TestCase {
+class MessageBlobStoreTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 

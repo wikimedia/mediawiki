@@ -5,11 +5,12 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Rest\ConditionalHeaderUtil;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Rest\ConditionalHeaderUtil
  */
-class ConditionalHeaderUtilTest extends \MediaWikiUnitTestCase {
+class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 	public static function provider() {
 		return [
 			'nothing' => [

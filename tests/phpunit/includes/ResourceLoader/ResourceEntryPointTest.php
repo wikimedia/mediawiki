@@ -2,11 +2,13 @@
 
 namespace MediaWiki\Tests\Rest;
 
+use HashBagOStuff;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\ResourceEntryPoint;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Tests\MockEnvironment;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 
@@ -14,7 +16,7 @@ use Wikimedia\DependencyStore\KeyValueDependencyStore;
  * @covers \MediaWiki\ResourceLoader\ResourceLoader
  * @group Database
  */
-class ResourceEntryPointTest extends \MediaWikiIntegrationTestCase {
+class ResourceEntryPointTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -27,7 +29,7 @@ class ResourceEntryPointTest extends \MediaWikiIntegrationTestCase {
 		$rl = new ResourceLoader(
 			$this->getServiceContainer()->getMainConfig(),
 			new NullLogger(),
-			new KeyValueDependencyStore( new \HashBagOStuff() ),
+			new KeyValueDependencyStore( new HashBagOStuff() ),
 			[
 				'loadScript' => '/w/load.php',
 				'maxageVersioned' => null,

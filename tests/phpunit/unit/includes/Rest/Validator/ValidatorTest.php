@@ -11,13 +11,14 @@ use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @covers \MediaWiki\Rest\Validator\Validator
  */
-class ValidatorTest extends \MediaWikiUnitTestCase {
+class ValidatorTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 

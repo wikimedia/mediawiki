@@ -20,6 +20,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWikiLangTestCase;
 use MockTitleTrait;
 use ParserFactory;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -34,7 +35,7 @@ use WikitextContentHandler;
  * @group Database
  * @covers \MediaWiki\Rest\Handler\UpdateHandler
  */
-class UpdateHandlerTest extends \MediaWikiLangTestCase {
+class UpdateHandlerTest extends MediaWikiLangTestCase {
 	use ActionModuleBasedHandlerTestTrait;
 	use DummyServicesTrait;
 	use MockTitleTrait;

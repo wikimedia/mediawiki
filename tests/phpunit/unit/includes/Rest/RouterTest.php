@@ -13,6 +13,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\Router;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Throwable;
@@ -20,7 +21,7 @@ use Throwable;
 /**
  * @covers \MediaWiki\Rest\Router
  */
-class RouterTest extends \MediaWikiUnitTestCase {
+class RouterTest extends MediaWikiUnitTestCase {
 	use RestTestTrait;
 
 	private const CANONICAL_SERVER = 'https://wiki.example.com';

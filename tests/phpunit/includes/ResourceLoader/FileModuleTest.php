@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\ResourceLoader;
 use LogicException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -582,7 +583,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$nosemiBScript = file_get_contents( "$basePathB/script-nosemi.js" );
 		$vueComponentDebug = trim( file_get_contents( "$basePath/vue-component-output-debug.js.txt" ) );
 		$vueComponentNonDebug = trim( file_get_contents( "$basePath/vue-component-output-nondebug.js.txt" ) );
-		$config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		return [
 			'plain package' => [
 				$base + [

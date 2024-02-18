@@ -6,6 +6,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWikiUnitTestCase;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
@@ -14,7 +15,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 /**
  * @covers \MediaWiki\Rest\Validator\JsonBodyValidator
  */
-class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
+class JsonBodyValidatorTest extends MediaWikiUnitTestCase {
 
 	public static function provideValidateBody() {
 		yield 'empty object' => [

@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use Exception;
 use HashBagOStuff;
+use IContextSource;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
@@ -36,7 +38,7 @@ trait HTMLHandlerTestTrait {
 		// We need a newly created user because we want IP and newbie to apply.
 			new User(),
 			new FauxRequest(),
-			$this->createMock( \IContextSource::class ),
+			$this->createMock( IContextSource::class ),
 			$services->getPermissionManager(),
 			$services->getRateLimiter(),
 			$this->createMock( BlockErrorFormatter::class )
@@ -49,7 +51,7 @@ trait HTMLHandlerTestTrait {
 	 * @param array $config
 	 *
 	 * @return array
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	private function executePageHTMLRequest(
 		WikiPage $page,
@@ -83,7 +85,7 @@ trait HTMLHandlerTestTrait {
 	 * @param array $config
 	 *
 	 * @return array
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	private function executeRevisionHTMLRequest(
 		int $revId,

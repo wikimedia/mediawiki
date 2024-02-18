@@ -12,6 +12,8 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\User\User;
 use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
 /**
  * See also:
@@ -20,7 +22,7 @@ use MediaWikiCoversValidator;
  * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\Context
  */
-class ContextTest extends \PHPUnit\Framework\TestCase {
+class ContextTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -62,7 +64,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase {
 		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
 		$this->assertInstanceOf( ResourceLoader::class, $ctx->getResourceLoader() );
 		$this->assertInstanceOf( WebRequest::class, $ctx->getRequest() );
-		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $ctx->getLogger() );
+		$this->assertInstanceOf( LoggerInterface::class, $ctx->getLogger() );
 	}
 
 	public function testTypicalRequest() {

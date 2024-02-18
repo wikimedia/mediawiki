@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest;
 
 use ArrayIterator;
+use Exception;
 use InvalidArgumentException;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RedirectException;
@@ -149,7 +150,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 
 	public function testCreateFromExceptionLogged() {
 		$rf = $this->createResponseFactory();
-		$response = $rf->createFromException( new \Exception( "hello", 415 ) );
+		$response = $rf->createFromException( new Exception( "hello", 415 ) );
 		$this->assertSame( 500, $response->getStatusCode() );
 		$body = $response->getBody();
 		$body->rewind();

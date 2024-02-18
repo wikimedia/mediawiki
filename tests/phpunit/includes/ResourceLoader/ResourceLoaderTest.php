@@ -18,6 +18,8 @@ use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\ResourceLoader\StartUpModule;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use NullStatsdDataFactory;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\Minify\IdentityMinifierState;
@@ -129,7 +131,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	public function testRegisterDuplicate() {
-		$logger = $this->createMock( \Psr\Log\LoggerInterface::class );
+		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->once() )
 			->method( 'warning' );
 		$resourceLoader = new EmptyResourceLoader( null, $logger );
@@ -837,7 +839,7 @@ END
 		);
 
 		// Disable log from makeModuleResponse via outputErrorAndLog
-		$this->setLogger( 'exception', new \Psr\Log\NullLogger() );
+		$this->setLogger( 'exception', new NullLogger() );
 
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$errors = $rl->getErrors();
@@ -875,7 +877,7 @@ END
 		);
 
 		// Disable log from makeModuleResponse via outputErrorAndLog
-		$this->setLogger( 'exception', new \Psr\Log\NullLogger() );
+		$this->setLogger( 'exception', new NullLogger() );
 
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$errors = $rl->getErrors();
@@ -926,7 +928,7 @@ END
 		);
 
 		// Disable log from makeModuleResponse via outputErrorAndLog
-		$this->setLogger( 'exception', new \Psr\Log\NullLogger() );
+		$this->setLogger( 'exception', new NullLogger() );
 
 		$modules = [ 'startup' => $rl->getModule( 'startup' ) ];
 		$response = $rl->makeModuleResponse( $context, $modules );
@@ -1160,7 +1162,7 @@ END
 			$rl
 		);
 		// Disable logging from outputErrorAndLog
-		$this->setLogger( 'exception', new \Psr\Log\NullLogger() );
+		$this->setLogger( 'exception', new NullLogger() );
 
 		$rl->expects( $this->once() )->method( 'preloadModuleInfo' )
 			->willThrowException( new Exception( 'Preload error' ) );
