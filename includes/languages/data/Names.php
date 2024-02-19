@@ -232,6 +232,7 @@ class Names {
 		'hyw' => 'Արեւմտահայերէն', # Western Armenian, T201276, T219975
 		'hz' => 'Otsiherero', # Herero
 		'ia' => 'interlingua', # Interlingua (IALA)
+		'ibb' => 'ibibio', # Ibibio
 		'id' => 'Bahasa Indonesia', # Indonesian
 		'ie' => 'Interlingue', # Interlingue (Occidental)
 		'ig' => 'Igbo', # Igbo

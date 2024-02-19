@@ -167,6 +167,7 @@ because of Phabricator reports.
 * (T354519) Added language support for Tooro (ttj).
 * (T354926) Added language support for Nyoro (nyo).
 * (T356616) Added language support for Chinook Jargon (chn).
+* (T357879) Added language support for Ibibio (ibb).
 * …
 
 === Breaking changes in 1.42 ===
