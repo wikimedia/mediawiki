@@ -26,7 +26,6 @@ use LanguageCode;
 use LanguageConverter;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
-use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
@@ -120,9 +119,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var SignatureValidatorFactory */
 	private $signatureValidatorFactory;
 
-	/** @var Config */
-	private $config;
-
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -155,7 +151,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		MainConfigNames::SecureLogin,
 		MainConfigNames::ScriptPath,
 		MainConfigNames::SignatureValidation,
+		MainConfigNames::SkinsPreferred,
 		MainConfigNames::ThumbLimits,
+		MainConfigNames::ThumbnailNamespaces,
 	];
 
 	/**
@@ -174,7 +172,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param SkinFactory|null $skinFactory
 	 * @param UserGroupManager|null $userGroupManager
 	 * @param SignatureValidatorFactory|null $signatureValidatorFactory
-	 * @param Config|null $config
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -191,8 +188,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		ParserFactory $parserFactory = null,
 		SkinFactory $skinFactory = null,
 		UserGroupManager $userGroupManager = null,
-		SignatureValidatorFactory $signatureValidatorFactory = null,
-		Config $config = null
+		SignatureValidatorFactory $signatureValidatorFactory = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -228,7 +224,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->userGroupManager = $userGroupManager ?? $services()->getUserGroupManager();
 		$this->signatureValidatorFactory = $signatureValidatorFactory
 			?? $services()->getSignatureValidatorFactory();
-		$this->config = $config ?? $services()->getMainConfig();
 	}
 
 	/**
@@ -1558,7 +1553,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// show a preference for thumbnails from namespaces other than NS_FILE,
 		// only when there they're actually configured to be served
-		$thumbNamespaces = $this->config->get( MainConfigNames::ThumbnailNamespaces );
+		$thumbNamespaces = $this->options->get( MainConfigNames::ThumbnailNamespaces );
 		$thumbNamespacesFormatted = array_combine(
 			$thumbNamespaces,
 			array_map(
@@ -1665,7 +1660,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 
-		$preferredSkins = $this->config->get( MainConfigNames::SkinsPreferred );
+		$preferredSkins = $this->options->get( MainConfigNames::SkinsPreferred );
 		// Sort by the internal name, so that the ordering is the same for each display language,
 		// especially if some skin names are translated to use a different alphabet and some are not.
 		uksort( $validSkinNames, function ( $a, $b ) use ( $currentUserSkin, $preferredSkins ) {
