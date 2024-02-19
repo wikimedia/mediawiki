@@ -1955,7 +1955,7 @@ class Language implements Bcp47Code {
 		if ( $tzObj ) {
 			$date = new DateTime( $ts, new DateTimeZone( 'UTC' ) );
 			$date->setTimezone( $tzObj );
-			return self::makeMediawikiTimestamp( $ts, $date );
+			return self::makeMediaWikiTimestamp( $ts, $date );
 		}
 		$minDiff = $timeCorrection->getTimeOffset();
 
@@ -1966,7 +1966,7 @@ class Language implements Bcp47Code {
 
 		$date = new DateTime( $ts );
 		$date->modify( "{$minDiff} minutes" );
-		return self::makeMediawikiTimestamp( $ts, $date );
+		return self::makeMediaWikiTimestamp( $ts, $date );
 	}
 
 	/**
@@ -1978,7 +1978,7 @@ class Language implements Bcp47Code {
 	 * @param DateTime $date The DateTime object to convert
 	 * @return string 14-character MW timestamp
 	 */
-	private static function makeMediawikiTimestamp( $fallback, $date ) {
+	private static function makeMediaWikiTimestamp( $fallback, $date ) {
 		$ts = $date->format( 'YmdHis' );
 		return strlen( $ts ) === 14 ? $ts : $fallback;
 	}

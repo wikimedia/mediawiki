@@ -12603,13 +12603,13 @@ http://www.example.org/pic.png　<-- U+3000 (vim: ^Vu3000)
 !! end
 
 !! article
-Mediawiki:loop1
+MediaWiki:loop1
 !! text
 {{Identical|A}}
 !! endarticle
 
 !! article
-Mediawiki:loop2
+MediaWiki:loop2
 !! text
 {{Identical|B}}
 !! endarticle

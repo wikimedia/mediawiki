@@ -914,7 +914,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public static function provideNewFromName() {
 		return [
 			[ 'Example1', 'Example1' ],
-			[ 'Mediawiki easter egg', 'Mediawiki_easter_egg' ],
+			[ 'MediaWiki easter egg', 'MediaWiki_easter_egg' ],
 			[ 'See T22281 for more', 'See_T22281_for_more' ],
 			[ 'DannyS712', 'DannyS712' ],
 		];
