@@ -815,7 +815,7 @@
 	"edit_form_incomplete": "<strong>部份編輯的內容未送至伺服器，請檢查您的編輯內容是否完整並再試一次。</strong>",
 	"editing": "正在編輯「$1」",
 	"edit-textarea-aria-label": "Wikitext 原始碼編輯器",
-	"creating": "正在建立 $1",
+	"creating": "正在建立「$1」",
 	"editingsection": "正在編輯 $1 （章節）",
 	"editingcomment": "正在編輯 $1 （新章節）",
 	"editconflict": "編輯衝突：$1",
