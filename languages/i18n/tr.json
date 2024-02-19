@@ -656,7 +656,7 @@
 	"botpasswords-label-delete": "Sil",
 	"botpasswords-label-resetpassword": "Parolayı sıfırla",
 	"botpasswords-label-grants": "Geçerli ayrıcalıklar:",
-	"botpasswords-help-grants": "Hibeler, kullanıcı hesabınızın sahip olduğu haklara erişim izni verir. Burada bir hibe sağlamak, kullanıcı hesabınızın sahip olamayacağı herhangi bir haklara erişim sağlamaz. Daha fazla bilgi için [[Special:ListGrants|hibe tablosuna]] bakınız.",
+	"botpasswords-help-grants": "İzinler, kullanıcı hesabınızın zaten sahip olduğu haklara erişim izni verir. Burada bir izin sağlamak, kullanıcı hesabınızın sahip olamayacağı herhangi bir hakka erişim sağlamaz. Daha fazla bilgi için [[Special:ListGrants|izin tablosuna]] bakın.\n\nÇekinceli izinler işaretlenmiştir. Bot kötü amaçlı biri tarafından ele geçirildiğinde, işaretlenmemiş izinlerin kötüye kullanılması genellikle zordur. Vandalizm riski taşıyan izinler (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>), temizlenmesi çok fazla çaba gerektiren aksaklığa neden olmak için kullanılabilir. Güvenlik riski taşıyan izinler (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) kalıcı zarara (özel verilerin çalınması gibi) neden olabilir. Dahili izinler (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) genellikle yalnızca site yöneticisi tarafından kullanılır. Lütfen gerçekten ihtiyacınız olmadığı sürece riskli izinler talep etmeyin.",
 	"botpasswords-label-grants-column": "Verildi",
 	"botpasswords-bad-appid": "Bot ismi \"$1\" geçerli değil.",
 	"botpasswords-toolong-restrictions": "Çok fazla IP adresi veya girilen aralık var.",

@@ -632,6 +632,7 @@
 	"difference-title-multipage": "\"$1\" va \"$2\" sahifalar orasidagi farq",
 	"difference-multipage": "(Sahifalar orasidagi farq)",
 	"lineno": "Qator $1:",
+	"lineno-inline": "Qator $1 ⟶ $2:",
 	"compareselectedversions": "Solishtirish",
 	"showhideselectedversions": "Oʻzgartirish",
 	"showhideselectedfileversions": "Tanlangan fayl versiyalarining koʻrinuvchanligini oʻzgartirish",
