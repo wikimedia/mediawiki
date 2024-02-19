@@ -3,7 +3,6 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
@@ -160,7 +159,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 			'Invalid confirmation codes result in null users when reading from replicas'
 		);
 
-		$user2 = $factory->newFromConfirmationCode( $fakeCode, UserFactory::READ_LATEST );
+		$user2 = $factory->newFromConfirmationCode( $fakeCode, IDBAccessObject::READ_LATEST );
 		$this->assertNull(
 			$user2,
 			'Invalid confirmation codes result in null users when reading from master'

@@ -49,7 +49,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * Manages user groups.
  * @since 1.35
  */
-class UserGroupManager implements IDBAccessObject {
+class UserGroupManager {
 
 	/**
 	 * @internal For use by ServiceWiring

@@ -104,7 +104,7 @@ use WikiPage;
  * @since 1.32
  * @ingroup Page
  */
-class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, PreparedUpdate {
+class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * @var UserIdentity|null

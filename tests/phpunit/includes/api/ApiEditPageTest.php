@@ -936,7 +936,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'undoafter' => $revId1,
 		] );
 
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$this->assertSame( '1', $page->getContent()->getText() );
 	}
 
@@ -957,7 +957,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'undo' => $revId,
 		] );
 
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$this->assertSame( '3', $page->getContent()->getText() );
 	}
 
@@ -977,7 +977,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'undoafter' => $revId2,
 		] );
 
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$this->assertSame( '2', $page->getContent()->getText() );
 	}
 

@@ -269,7 +269,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			] )
 		] );
 		$recursionCounter = 0;
-		$manager->loadUserOptions( $user, UserOptionsManager::READ_LATEST );
+		$manager->loadUserOptions( $user, IDBAccessObject::READ_LATEST );
 		$this->assertSame( 1, $recursionCounter );
 	}
 
@@ -320,7 +320,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			'test_option',
 			null,
 			false,
-			UserOptionsManager::READ_LOCKING
+			IDBAccessObject::READ_LOCKING
 		);
 		$manager->getOption( $user, 'test_option2' );
 		$manager->setOption( $user, 'test_option', 'test_value' );

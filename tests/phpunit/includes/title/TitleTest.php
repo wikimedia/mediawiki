@@ -1390,7 +1390,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'exists() should rely on link cache unless READ_LATEST is used'
 		);
 		$this->assertTrue(
-			$title->exists( Title::READ_LATEST ),
+			$title->exists( IDBAccessObject::READ_LATEST ),
 			'exists() should re-query database when READ_LATEST is used'
 		);
 	}

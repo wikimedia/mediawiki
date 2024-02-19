@@ -86,8 +86,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @note This was written to act as a drop-in replacement for the corresponding
  *       static methods in the old Revision class (which was later removed in 1.37).
  */
-class RevisionStore
-	implements IDBAccessObject, RevisionFactory, RevisionLookup, LoggerAwareInterface {
+class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInterface {
 
 	use LegacyArticleIdAccess;
 

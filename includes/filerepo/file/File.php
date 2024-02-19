@@ -70,7 +70,7 @@ use MediaWiki\User\UserIdentity;
  * @stable to extend
  * @ingroup FileAbstraction
  */
-abstract class File implements IDBAccessObject, MediaHandlerState {
+abstract class File implements MediaHandlerState {
 	use ProtectedHookAccessorTrait;
 
 	// Bitfield values akin to the revision deletion constants

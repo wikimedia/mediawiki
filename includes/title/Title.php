@@ -75,7 +75,7 @@ use WikiPage;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget, PageIdentity, IDBAccessObject {
+class Title implements LinkTarget, PageIdentity {
 	use WikiAwareEntityTrait;
 	use LinkTargetTrait;
 

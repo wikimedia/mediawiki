@@ -35,7 +35,7 @@ use MediaWiki\Page\PageIdentity;
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionLookup
  */
-interface RevisionLookup extends IDBAccessObject {
+interface RevisionLookup {
 
 	/**
 	 * Load a page revision from a given revision ID number.

@@ -39,7 +39,7 @@ use Throwable;
  * @since 1.27
  * @stable to extend
  */
-abstract class CentralIdLookup implements IDBAccessObject {
+abstract class CentralIdLookup {
 	// Audience options for accessors
 	public const AUDIENCE_PUBLIC = 1;
 	public const AUDIENCE_RAW = 2;

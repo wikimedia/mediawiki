@@ -180,6 +180,8 @@ because of Phabricator reports.
   boolean true. The false case has been removed.
 * MagicWord::load() has been marked @internal and may change in the future
   without further notice.
+* All classes that implemented IDBAccessObject interface and all interfaces
+  that extended it, no longer do that. See https://w.wiki/9DAX for more info.
 * BagOStuff::setNewPreparedValues() now emits deprecation warnings.
 * The type of the last parameter of BeforeInitializeHook::onBeforeInitialize
   and MediaWikiPerformActionHook::onMediaWikiPerformAction changed from

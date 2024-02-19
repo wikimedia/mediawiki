@@ -76,7 +76,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  *
  * @ingroup Page
  */
-class WikiPage implements Page, IDBAccessObject, PageRecord {
+class WikiPage implements Page, PageRecord {
 	use NonSerializableTrait;
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;

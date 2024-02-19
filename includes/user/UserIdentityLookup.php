@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @package MediaWiki\User
  * @since 1.36
  */
-interface UserIdentityLookup extends IDBAccessObject {
+interface UserIdentityLookup {
 
 	/**
 	 * Find an identity of a user by $name
