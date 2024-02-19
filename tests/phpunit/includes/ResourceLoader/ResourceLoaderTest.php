@@ -294,7 +294,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider provideMediaWikiVariablesCases
 	 */
-	public function testMediawikiVariablesDefault( array $config, array $importPaths, $skin, $expectedFile ) {
+	public function testMediaWikiVariablesDefault( array $config, array $importPaths, $skin, $expectedFile ) {
 		$this->overrideConfigValues( $config );
 		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
 
