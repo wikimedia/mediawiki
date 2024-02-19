@@ -378,51 +378,6 @@ class SkinModule extends LessVarFileModule {
 	}
 
 	/**
-	 * Organize stylesheets by media query in the following order:
-	 * 	- all
-	 *  - screen
-	 *  - print
-	 * Skin features are output before module styles
-	 * so that features such as normalize can be easily overridden by skins.
-	 * (see T269618 and T354975)
-	 * @param array $featureStyles skin features defined in options.
-	 * @param array $parentStyles Styles defined in module.
-	 * @return string[][]
-	 */
-	private function organizeStyles( $featureStyles, $parentStyles ) {
-		$outputStylesOrdered = [
-			'all' => [],
-			'screen' => [],
-			'print' => [],
-			'' => []
-		];
-
-		foreach ( $featureStyles as $mediaType => $styles ) {
-			// Note mediaType may not be one of all, screen, print or empty string.
-			// e.g. mediaType might be `screen and (min-width: 851px)"` for example.
-			$outputStylesOrdered[ $mediaType ] = array_merge( $outputStylesOrdered[ $mediaType ] ?? [], $styles );
-		}
-
-		foreach ( $parentStyles as $mediaType => $styles ) {
-			// Adds module styles to the *end* of the output to preserve the
-			// expected behavior that skin module styles should override skin feature styles.
-			if ( $mediaType === 'all' ) {
-				$mediaType = '';
-			}
-			$outputStylesOrdered[ $mediaType ] = array_merge( $outputStylesOrdered[ $mediaType ] ?? [], $styles );
-		}
-
-		// Remove any empty keys.
-		foreach ( $outputStylesOrdered as $mediaType => $styles ) {
-			if ( !$styles ) {
-				unset( $outputStylesOrdered[ $mediaType ] );
-			}
-		}
-
-		return $outputStylesOrdered;
-	}
-
-	/**
 	 * Get styles defined in the module definition, plus any enabled feature styles.
 	 *
 	 * @param Context $context
@@ -496,7 +451,15 @@ class SkinModule extends LessVarFileModule {
 			}
 		}
 
-		return self::organizeStyles( $featureFilePaths, $styles );
+		// Styles defines in options are added to the $featureFilePaths to ensure
+		// that $featureFilePaths styles precede module defined ones.
+		// This is particularly important given the `normalize` styles need to be the first
+		// outputted (see T269618).
+		foreach ( $styles as $mediaType => $paths ) {
+			$featureFilePaths[$mediaType] = array_merge( $featureFilePaths[$mediaType] ?? [], $paths );
+		}
+
+		return $featureFilePaths;
 	}
 
 	/**
