@@ -203,7 +203,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		// Set up LoadMonitor
 		$loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
-		$loadMonitorConfig += [ 'lagWarnThreshold' => self::MAX_LAG_DEFAULT ];
+		$loadMonitorConfig += [ 'maxConnCount' => 500 ];
 		$compat = [
 			'LoadMonitor' => LoadMonitor::class,
 			'LoadMonitorNull' => LoadMonitorNull::class
@@ -1846,8 +1846,29 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( !$this->hasReplicaServers() ) {
 			return [ ServerInfo::WRITER_INDEX => 0 ]; // no replication = no lag
 		}
-		[ $indexesWithLag, $knownLagTimes ] = $this->serverInfo->getLagTimes();
-		return $this->loadMonitor->getLagTimes( $indexesWithLag ) + $knownLagTimes;
+		return $this->wanCache->getWithSetCallback(
+			$this->wanCache->makeGlobalKey( 'rdbms-lags', $this->clusterName ?? '' ),
+			// Add jitter to avoid stampede
+			10 + mt_rand( 1, 10 ),
+			function () {
+				$lags = [];
+				foreach ( $this->serverInfo->getStreamingReplicaIndexes() as $i ) {
+					$conn = $this->getServerConnection(
+						$i,
+						self::DOMAIN_ANY,
+						self::CONN_SILENCE_ERRORS | self::CONN_UNTRACKED_GAUGE
+					);
+					if ( $conn ) {
+						$lags[$i] = $conn->getLag();
+						$conn->close();
+					} else {
+						$lags[$i] = false;
+					}
+				}
+				return $lags;
+			},
+			[ 'lockTSE' => 30 ]
+		);
 	}
 
 	public function waitForPrimaryPos( IDatabase $conn ) {

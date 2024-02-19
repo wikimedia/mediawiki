@@ -24,7 +24,6 @@ namespace Wikimedia\Rdbms;
  * @ingroup Database
  */
 class LoadMonitorNull extends LoadMonitor {
-	public function getServerStates( array $serverIndexes ): array {
-		return array_fill_keys( $serverIndexes, $this->newInitialServerState() );
+	public function scaleLoads( array &$weightByServer ) {
 	}
 }
