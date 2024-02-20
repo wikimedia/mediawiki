@@ -51,6 +51,7 @@
 	"tog-requireemail": "Send password reset emails only when both email address and username are provided.",
 	"tog-forcesafemode": "Always enable [[mw:Manual:Safemode|safe mode]]",
 	"tog-editrecovery": "Enable the [[Special:EditRecovery|{{int:editrecovery}}]] feature",
+	"tog-editrecovery-help": "You can give feedback on the [$1 project's talk page].",
 	"underline-always": "Always",
 	"underline-never": "Never",
 	"underline-default": "Skin or browser default",
