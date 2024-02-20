@@ -1,6 +1,6 @@
 <?php
 
-namespace phpunit\unit\includes\Settings;
+namespace MediaWiki\Tests\Unit\Settings;
 
 use ExtensionRegistry;
 use MediaWiki\Config\HashConfig;
