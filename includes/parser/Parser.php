@@ -4143,12 +4143,6 @@ class Parser {
 	}
 
 	private function cleanUpTocLine( DocumentFragment $container ) {
-		# Remove any <style> or <script> tags (T198618)
-		$removeNodes = DOMCompat::querySelectorAll( $container, 'style, script' );
-		foreach ( $removeNodes as $node ) {
-			$node->parentNode->removeChild( $node );
-		}
-
 		# Strip out HTML
 		# Allowed tags are:
 		# * <sup> and <sub> (T10393)
@@ -4163,12 +4157,16 @@ class Parser {
 		$allowedTags = [ 'span', 'sup', 'sub', 'bdi', 'i', 'b', 's', 'strike', 'q' ];
 		$allNodes = DOMCompat::querySelectorAll( $container, '*' );
 		foreach ( $allNodes as $node ) {
-			if ( in_array( strtolower( $node->tagName ), $allowedTags, true ) ) {
+			$nodeName = DOMCompat::nodeName( $node );
+			if ( in_array( $nodeName, [ 'style', 'script' ], true ) ) {
+				# Remove any <style> or <script> tags (T198618)
+				DOMCompat::remove( $node );
+			} elseif ( in_array( $nodeName, $allowedTags, true ) ) {
 				// Keep tag, remove attributes
 				$removeAttrs = [];
 				foreach ( $node->attributes as $attr ) {
 					if (
-						strtolower( $node->tagName ) === 'span' && $attr->name === 'dir'
+						$nodeName === 'span' && $attr->name === 'dir'
 						&& ( $attr->value === 'rtl' || $attr->value === 'ltr' )
 					) {
 						// Keep <span dir="rtl"> and <span dir="ltr">
@@ -4184,7 +4182,7 @@ class Parser {
 				while ( $childNode = $node->firstChild ) {
 					$node->parentNode->insertBefore( $childNode, $node );
 				}
-				$node->parentNode->removeChild( $node );
+				DOMCompat::remove( $node );
 			}
 		}
 
