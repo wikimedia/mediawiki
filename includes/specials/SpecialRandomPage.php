@@ -24,7 +24,6 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -43,23 +42,15 @@ class SpecialRandomPage extends SpecialPage {
 	private IConnectionProvider $dbProvider;
 
 	/**
-	 * @param IConnectionProvider|string|null $dbProvider
-	 * @param NamespaceInfo|null $nsInfo
+	 * @param IConnectionProvider $dbProvider
+	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
-		$dbProvider = null,
-		NamespaceInfo $nsInfo = null
+		IConnectionProvider $dbProvider,
+		NamespaceInfo $nsInfo
 	) {
-		parent::__construct( is_string( $dbProvider ) ? $dbProvider : 'Randompage' );
-		if ( !$dbProvider instanceof IConnectionProvider || !$nsInfo ) {
-			wfDeprecated( __METHOD__ . ' without injected services', '1.41' );
-		}
-		// This class is extended and therefor fallback to global state - T265308
-		$services = MediaWikiServices::getInstance();
-		$this->dbProvider = $dbProvider instanceof IConnectionProvider
-			? $dbProvider
-			: $services->getConnectionProvider();
-		$nsInfo ??= $services->getNamespaceInfo();
+		parent::__construct( 'Randompage' );
+		$this->dbProvider = $dbProvider;
 		$this->namespaces = $nsInfo->getContentNamespaces();
 	}
 
@@ -240,12 +231,6 @@ class SpecialRandomPage extends SpecialPage {
 		return 'redirects';
 	}
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.37
- */
-class_alias( SpecialRandomPage::class, 'RandomPage' );
 
 /**
  * Retain the old class name for backwards compatibility.

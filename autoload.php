@@ -2682,7 +2682,6 @@ $wgAutoloadLocalClasses = [
 	'RCFeedFormatter' => __DIR__ . '/includes/rcfeed/RCFeedFormatter.php',
 	'RESTBagOStuff' => __DIR__ . '/includes/libs/objectcache/RESTBagOStuff.php',
 	'RSSFeed' => __DIR__ . '/includes/Feed/RSSFeed.php',
-	'RandomPage' => __DIR__ . '/includes/specials/SpecialRandomPage.php',
 	'RangeChronologicalPager' => __DIR__ . '/includes/pager/RangeChronologicalPager.php',
 	'RawAction' => __DIR__ . '/includes/actions/RawAction.php',
 	'RawMessage' => __DIR__ . '/includes/language/RawMessage.php',

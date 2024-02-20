@@ -402,6 +402,10 @@ because of Phabricator reports.
 * Skin::bottomScripts, deprecated since 1.37, has been removed.
 * The return value of IDatabase::upsert(), deprecated since 1.33, has been
   removed.
+* The class name alias in the main namespace RandomPage, deprecated since 1.37,
+  has been removed. Use MediaWiki\Specials\SpecialRandomPage instead.
+* Instancing MediaWiki\Specials\SpecialRandomPage without injected services has
+  been removed.
 * …
 
 === Deprecations in 1.42 ===
