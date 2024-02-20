@@ -33,7 +33,9 @@
 .cdx-mixin-css-icon-background( @param-size-icon: @size-icon-medium, @param-background-position: @background-position-base, @param-is-button-icon: false ) {
 	.get-calculated-min-size-icon( @param-size-icon );
 
-	.set-background-rules() {
+	// Support Firefox v39-52: fall back to background rules.
+	// Support Chrome: Chrome requires the -webkit prefix so we must use it in all @supports queries.
+	@supports not ( ( -webkit-mask-image: none ) or ( mask-image: none ) ) {
 		background-position: @param-background-position;
 		background-repeat: no-repeat;
 		// Set background size to the relative @param-size-icon or to @calculated-min-size-icon, whichever is larger.
@@ -42,29 +44,18 @@
 		background-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
 	}
 
-	& when ( @param-is-button-icon = false ) {
-		.set-background-rules();
-	}
-
-	& when ( @param-is-button-icon = true ) {
-		// Fall back to background rules.
-		@supports not ( mask-image: none ) and ( -webkit-mask-image: none ) {
-			.set-background-rules();
-		}
-
-		@supports ( mask-image: none ) or ( -webkit-mask-image: none ) {
-			/* stylelint-disable plugin/no-unsupported-browser-features */
-			// Support Chrome
-			-webkit-mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
-			mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
-			// Support Chrome
-			-webkit-mask-repeat: no-repeat;
-			mask-repeat: no-repeat;
-			// Support Chrome
-			-webkit-mask-position: @param-background-position;
-			mask-position: @param-background-position;
-			/* stylelint-enable plugin/no-unsupported-browser-features */
-		}
+	@supports ( -webkit-mask-image: none ) or ( mask-image: none ) {
+		/* stylelint-disable plugin/no-unsupported-browser-features */
+		// Support Chrome
+		-webkit-mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
+		mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
+		// Support Chrome
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		// Support Chrome
+		-webkit-mask-position: @param-background-position;
+		mask-position: @param-background-position;
+		/* stylelint-enable plugin/no-unsupported-browser-features */
 	}
 }
 
@@ -97,7 +88,7 @@
 }
 
 //
-// Handle an icon within a button.
+// Set the icon image, either via mask-image or background-image.
 //
 // For browsers that support mask-image, this mixin will apply the background image as a mask, so
 // that background-color rules in the Button styles can set the icon color.
@@ -106,47 +97,57 @@
 // the color set via opacity.
 //
 // @param {string} icon - The icon to show
+// @param {hex} fill-color - The fill color of the icon (defaults to @color-base)
+// @param {boolean} is-button-icon - Whether this icon is inside of a <button> element
 //
-.cdx-mixin-css-icon-button-icon-background-image( @param-icon ) {
-	// TODO: remove in favor of a token.
-	@color-black: #000000;
-	// TODO: update variable name to match new token once it exists.
+.cdx-mixin-css-icon-try-mask-image( @param-icon, @param-fill-color, @param-is-button-icon ) {
+	@hex-color-black: #000000;
 	// Older versions of Less don't support using escape() on colors, so use %A instead
-	@escaped-color-black: %( '%A', @color-black );
-	@background-image-url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-color-black}">@{param-icon}</svg>';
+	@escaped-color-black: %( '%A', @hex-color-black );
+	@image-url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-color-black}">@{param-icon}</svg>';
 
-	// Chrome requires the -webkit prefix, so we must use it in all @supports queries.
-	@supports not ( mask-image: none ) and ( -webkit-mask-image: none ) {
-		// Support Firefox v39-52: Fallback for @color-base icons.
-		background-image: url( @background-image-url );
-		// Set icon color close to @color-base.
+	// Support Firefox v39-52: fall back to background-image.
+	// Support Chrome: Chrome requires the -webkit prefix so we must use it in all @supports queries.
+	@supports not ( ( -webkit-mask-image: none ) or ( mask-image: none ) ) {
+		background-image: url( @image-url );
+		// Set icon color to white in night mode.
+		filter: invert( @filter-invert-icon );
+		// Set icon color closer to @color-base.
 		opacity: @opacity-icon-base;
 
-		// Support Firefox v39-52: Fallback for @color-inverted icons.
-		.cdx-button:not( .cdx-button--type-quiet ):disabled &,
-		.cdx-button--type-primary.cdx-button--action-progressive &,
-		.cdx-button--type-primary.cdx-button--action-destructive & {
+		// Fallback for @color-inverted icons.
+		.cdx-button:not( .cdx-button--weight-quiet ):disabled &,
+		.cdx-button--weight-primary.cdx-button--action-progressive &,
+		.cdx-button--weight-primary.cdx-button--action-destructive & {
 			// Set icon color close to @color-inverted.
-			filter: invert( 1 );
+			filter: invert( @filter-invert-primary-button-icon );
 		}
 	}
 
 	// For browsers that support it, use mask-image to set the SVG so we can change the color with
-	// much more granularity in the Button styles via the background color.
-	@supports ( mask-image: none ) or ( -webkit-mask-image: none ) {
-		background-image: none;
+	// much more granularity.
+	@supports ( -webkit-mask-image: none ) or ( mask-image: none ) {
 		// Support Chrome
 		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-		-webkit-mask-image: url( @background-image-url );
+		-webkit-mask-image: url( @image-url );
 		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-		mask-image: url( @background-image-url );
-		transition-property: @transition-property-icon-css-only;
-		transition-duration: @transition-duration-base;
+		mask-image: url( @image-url );
+
+		// For icons outside of buttons, use background-color to set the icon color.
+		& when not ( @param-is-button-icon ) {
+			background-color: @param-fill-color;
+		}
+		// For icons within buttons, set transition rules. The icon color will be changed in the
+		// Button component depending on props and state.
+		& when ( @param-is-button-icon ) {
+			transition-property: @transition-property-icon-css-only;
+			transition-duration: @transition-duration-base;
+		}
 	}
 }
 
 //
-// Get a background image rule for an icon.
+// Get rules to set the appropriate image for the icon.
 //
 // Note that in RTL contexts, this mixin requires `dir="rtl"` either on the icon element itself
 // or on the <html> element.
@@ -164,6 +165,7 @@
 //
 // @param {string} icon - The icon to show (follows the pattern @cdx-icon-icon-name, e.g. @cdx-icon-info-filled )
 // @param {hex} fill-color - The fill color of the icon (defaults to @color-base)
+// @param {boolean} is-button-icon - Whether this icon is inside of a <button> element
 //
 .cdx-mixin-css-icon-background-image( @param-icon, @param-fill-color: @color-base, @param-is-button-icon: false ) {
 	// Extract icon data from the list.
@@ -173,17 +175,8 @@
 	@rtl-icon: extract( @param-icon, 4 );
 	@has-lang-variants: extract( @param-icon, 5 );
 
-	// Escape the hash in the hex code before we use it in the background-image rule.
-	// Older versions of Less don't support using escape() on colors, so use %A instead
-	@escaped-hex-code: %( '%A', @param-fill-color );
-
 	// Add default image.
-	& when not ( @param-is-button-icon ) {
-		background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{default-icon}</svg>' );
-	}
-	& when ( @param-is-button-icon ) {
-		.cdx-mixin-css-icon-button-icon-background-image( @default-icon );
-	}
+	.cdx-mixin-css-icon-try-mask-image( @default-icon, @param-fill-color, @param-is-button-icon );
 
 	// Flip icons with no shouldFlip exceptions.
 	& when ( @should-flip = 'true' ) and ( @flip-exceptions = 'false' ) {
@@ -211,12 +204,7 @@
 	& when not ( @rtl-icon = 'false' ) {
 		&[ dir='rtl' ],
 		html[ dir='rtl' ] &:not( [ dir='ltr' ] ) {
-			& when not ( @param-is-button-icon ) {
-				background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{rtl-icon}</svg>' );
-			}
-			& when ( @param-is-button-icon ) {
-				.cdx-mixin-css-icon-button-icon-background-image( @rtl-icon );
-			}
+			.cdx-mixin-css-icon-try-mask-image( @rtl-icon, @param-fill-color, @param-is-button-icon );
 		}
 	}
 
@@ -233,12 +221,7 @@
 			@lang-icon: extract( @lang-data, 2 );
 
 			&:lang( @{lang-code} ) {
-				& when not ( @param-is-button-icon ) {
-					background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-hex-code}">@{lang-icon}</svg>' );
-				}
-				& when ( @param-is-button-icon ) {
-					.cdx-mixin-css-icon-button-icon-background-image( @lang-icon );
-				}
+				.cdx-mixin-css-icon-try-mask-image( @lang-icon, @param-fill-color, @param-is-button-icon );
 			}
 			.get-lang-rules( @i + 1 );
 		}
