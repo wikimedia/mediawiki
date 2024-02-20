@@ -3007,23 +3007,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	public function truncate( $tables, $fname = __METHOD__ ) {
-		$tables = is_array( $tables ) ? $tables : [ $tables ];
-		if ( $tables ) {
-			$this->doTruncate( $tables, $fname );
-		}
+	public function truncateTable( $table, $fname = __METHOD__ ) {
+		$sql = "TRUNCATE TABLE " . $this->tableName( $table );
+		$query = new Query( $sql, self::QUERY_CHANGE_SCHEMA, 'TRUNCATE', $table );
+		$this->query( $query, $fname );
 	}
 
-	/**
-	 * @see Database::truncate()
-	 * @param string[] $tables
-	 * @param string $fname
-	 */
-	protected function doTruncate( array $tables, $fname ) {
+	public function truncate( $tables, $fname = __METHOD__ ) {
+		$tables = is_array( $tables ) ? $tables : [ $tables ];
 		foreach ( $tables as $table ) {
-			$sql = "TRUNCATE TABLE " . $this->tableName( $table );
-			$query = new Query( $sql, self::QUERY_CHANGE_SCHEMA, 'TRUNCATE', $table );
-			$this->query( $query, $fname );
+			$this->truncateTable( $table, $fname );
 		}
 	}
 

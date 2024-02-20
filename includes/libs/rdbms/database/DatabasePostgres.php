@@ -594,12 +594,10 @@ __INDEXATTR__;
 		return $ret;
 	}
 
-	protected function doTruncate( array $tables, $fname ) {
-		foreach ( $tables as $table ) {
-			$sql = "TRUNCATE TABLE " . $this->tableName( $table ) . " RESTART IDENTITY";
-			$query = new Query( $sql, self::QUERY_CHANGE_SCHEMA, 'TRUNCATE', $table );
-			$this->query( $query, $fname );
-		}
+	public function truncateTable( $table, $fname = __METHOD__ ) {
+		$sql = "TRUNCATE TABLE " . $this->tableName( $table ) . " RESTART IDENTITY";
+		$query = new Query( $sql, self::QUERY_CHANGE_SCHEMA, 'TRUNCATE', $table );
+		$this->query( $query, $fname );
 	}
 
 	/**

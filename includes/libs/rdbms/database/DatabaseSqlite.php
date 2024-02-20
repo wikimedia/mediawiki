@@ -878,26 +878,21 @@ class DatabaseSqlite extends Database {
 		return $endArray;
 	}
 
-	protected function doTruncate( array $tables, $fname ) {
+	public function truncateTable( $table, $fname = __METHOD__ ) {
 		$this->startAtomic( $fname );
-
-		$encSeqNames = [];
-		foreach ( $tables as $table ) {
-			// Use "truncate" optimization; https://www.sqlite.org/lang_delete.html
-			$query = new Query(
-				"DELETE FROM " . $this->tableName( $table ),
-				self::QUERY_CHANGE_SCHEMA,
-				'DELETE',
-				$table
-			);
-			$this->query( $query, $fname );
-
-			$encSeqNames[] = $this->addQuotes( $this->tableName( $table, 'raw' ) );
-		}
+		// Use "truncate" optimization; https://www.sqlite.org/lang_delete.html
+		$query = new Query(
+			"DELETE FROM " . $this->tableName( $table ),
+			self::QUERY_CHANGE_SCHEMA,
+			'DELETE',
+			$table
+		);
+		$this->query( $query, $fname );
 
 		$encMasterTable = $this->platform->addIdentifierQuotes( 'sqlite_sequence' );
+		$encSequenceName = $this->addQuotes( $this->tableName( $table, 'raw' ) );
 		$query = new Query(
-			"DELETE FROM $encMasterTable WHERE name IN(" . implode( ',', $encSeqNames ) . ")",
+			"DELETE FROM $encMasterTable WHERE name = $encSequenceName",
 			self::QUERY_CHANGE_SCHEMA,
 			'DELETE',
 			'sqlite_sequence'

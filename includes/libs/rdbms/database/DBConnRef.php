@@ -828,6 +828,12 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function truncateTable( $table, $fname = __METHOD__ ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function truncate( $tables, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 

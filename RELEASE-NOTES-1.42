@@ -654,6 +654,9 @@ because of Phabricator reports.
   - Xml::span
   - Xml::submitButton
   - Xml::textarea
+  has been hard deprecated
+* IMaintainableDatabase::truncate() has been deprecated. Use truncateTable()
+  instead.
 * …
 
 === Other changes in 1.42 ===

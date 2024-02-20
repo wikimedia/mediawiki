@@ -2142,8 +2142,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected static function truncateTables( array $tables, IDatabase $db = null ) {
 		$dbw = $db ?: MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
-
-		$dbw->truncate( $tables, __METHOD__ );
+		foreach ( $tables as $table ) {
+			$dbw->truncateTable( $table, __METHOD__ );
+		}
 
 		// re-initialize site_stats table
 		if ( in_array( 'site_stats', $tables ) ) {
