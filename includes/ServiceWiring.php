@@ -1773,8 +1773,7 @@ return [
 			$services->getParserFactory(),
 			$services->getSkinFactory(),
 			$services->getUserGroupManager(),
-			$services->getSignatureValidatorFactory(),
-			$services->getMainConfig()
+			$services->getSignatureValidatorFactory()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 

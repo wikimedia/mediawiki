@@ -2,7 +2,6 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\Config;
-use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -110,7 +109,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$params[] = $this->createMock( SkinFactory::class );
 		$params[] = $this->createMock( UserGroupManager::class );
 		$params[] = $this->createMock( SignatureValidatorFactory::class );
-		$params[] = new HashConfig();
 		$oldMwServices = MediaWikiServices::forceGlobalInstance(
 			$this->createNoOpMock( MediaWikiServices::class )
 		);
@@ -179,8 +177,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$services->getParserFactory(),
 			$services->getSkinFactory(),
 			$userGroupManager,
-			$services->getSignatureValidatorFactory(),
-			$services->getMainConfig()
+			$services->getSignatureValidatorFactory()
 		);
 	}
 
