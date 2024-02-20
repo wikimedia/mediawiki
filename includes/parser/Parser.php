@@ -4183,6 +4183,12 @@ class Parser {
 						$node->removeAttributeNode( $attr );
 					}
 					$this->cleanUpTocLine( $node );
+					# Strip '<span></span>', which is the result from the above if
+					# <span id="foo"></span> is used to produce an additional anchor
+					# for a section.
+					if ( $nodeName === 'span' && !$node->hasChildNodes() ) {
+						DOMCompat::remove( $node );
+					}
 				} else {
 					// Strip tag
 					$next = $node->firstChild;
@@ -4193,14 +4199,6 @@ class Parser {
 				}
 			}
 			$node = $next;
-		}
-
-		# Strip '<span></span>', which is the result from the above if
-		# <span id="foo"></span> is used to produce an additional anchor
-		# for a section.
-		$removeNodes = DOMCompat::querySelectorAll( $container, 'span:empty' );
-		foreach ( $removeNodes as $node ) {
-			$node->parentNode->removeChild( $node );
 		}
 	}
 
