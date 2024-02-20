@@ -371,7 +371,7 @@
 	"viewsourcetext": "Podètz veire e copiar lo contengut d'aquesta pagina.",
 	"viewyourtext": "Podètz veire e copiar lo contengut de <strong>vòstras modificacions</strong> a aquesta pagina.",
 	"protectedinterface": "Aquesta pagina provesís de tèxte d’interfàcia pel logicial susaqueste wiki, e es protegida per evitar los abuses.\nPer apondre o modificar de traduccions sus totes los wikis, utilizatz [https://translatewiki.net/ translatewiki.net], lo projècte de localizacion de MediaWiki.",
-	"editinginterface": "<strong>Atencion: sètz a mand de modificar una pagina utilizada per crear lo tèxt de l’interfàcia del logicial. Los cambiaments efectuats sus aquela pagina se repercutaràn sus l'aparéncia de l'interfàcia d'utilizaire pels autres utilizaires d'aquel Wiki.",
+	"editinginterface": "<strong>Atencion:</strong> sètz a mand de modificar una pagina utilizada per crear lo tèxt de l’interfàcia del logicial. Los cambiaments efectuats sus aquela pagina se repercutaràn sus l'aparéncia de l'interfàcia d'utilizaire pels autres utilizaires d'aquel Wiki.",
 	"translateinterface": "Per apondre o cambiar de traduccions per totes los wikis, utilizatz [https://translatewiki.net/ translatewiki.net], lo projècte de localizacion de MediaWiki.",
 	"cascadeprotected": "Aquesta pagina es protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta qu'es estada protegida|las paginas seguentas que son estadas protegidas}} amb l’opcion « proteccion en cascada » activada :\n$2",
 	"namespaceprotected": "Avètz pas la permission de modificar las paginas de l’espaci de noms « '''$1''' ».",
