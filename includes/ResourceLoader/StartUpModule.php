@@ -410,6 +410,12 @@ class StartUpModule extends Module {
 			'$CODE.consoleLog();' => $context->getDebug()
 				? 'console.log.apply( console, arguments );'
 				: '',
+
+			// As a paranoia measure, create a window.QUnit placeholder that shadows any
+			// DOM global (e.g. for <h2 id="QUnit">), to avoid test code in prod (T356768).
+			'$CODE.undefineQUnit();' => !$conf->get( MainConfigNames::EnableJavaScriptTest )
+				? 'window.QUnit = undefined;'
+				: '',
 		];
 		$mwLoaderCode = strtr( $mwLoaderCode, $mwLoaderPairs );
 
