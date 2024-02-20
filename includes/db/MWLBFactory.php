@@ -328,7 +328,7 @@ class MWLBFactory {
 			"\$wgDBprefix is set to '$prefix' but the database type is '$dbType'. " .
 			"MediaWiki does not support using a table prefix with this RDBMS type."
 		);
-		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW );
 		exit;
 	}
 
@@ -346,7 +346,7 @@ class MWLBFactory {
 			"use of Database::getDomainId(), and other features are not reliable when " .
 			"\$wgDBservers does not match the local wiki database/prefix."
 		);
-		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW );
 		exit;
 	}
 
@@ -364,7 +364,7 @@ class MWLBFactory {
 			"use of Database::getDomainId(), and other features are not reliable when " .
 			"\$wgDBservers does not match the local wiki database/prefix."
 		);
-		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW );
 		exit;
 	}
 
