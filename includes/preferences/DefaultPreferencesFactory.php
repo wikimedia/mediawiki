@@ -1213,6 +1213,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'type' => 'toggle',
 				'section' => 'editing/editor',
 				'label-message' => 'tog-editrecovery',
+				'help-message' => [
+					'tog-editrecovery-help',
+					'https://meta.wikimedia.org/wiki/Talk:Community_Wishlist_Survey_2023/Edit-recovery_feature',
+				],
 			];
 		}
 
