@@ -4829,12 +4829,6 @@ config-schema:
             used. Keys in the array are ignored; the class name is conventionally
             used as the key to avoid collisions. Order is not significant.
             @since 1.27
-    AllowRequiringEmailForResets:
-        default: false
-        description: |-
-            Whether users will see a checkbox allowing them to require providing email during password resets.
-            @unstable EXPERIMENTAL This feature is under development, don't assume this flag's existence
-            or function outside of Wikimedia Foundation wikis.
     AutoCreateTempUser:
         properties:
             known: { type: boolean, default: false }

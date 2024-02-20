@@ -55,9 +55,6 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	/** @var int */
 	protected $passwordReminderResendTime = null;
 
-	/** @var bool */
-	protected $allowRequiringEmail = null;
-
 	/** @var IConnectionProvider */
 	private $dbProvider;
 
@@ -89,9 +86,6 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		if ( isset( $params['passwordReminderResendTime'] ) ) {
 			$this->passwordReminderResendTime = $params['passwordReminderResendTime'];
 		}
-		if ( isset( $params['allowRequiringEmailForResets'] ) ) {
-			$this->allowRequiringEmail = $params['allowRequiringEmailForResets'];
-		}
 		$this->dbProvider = $dbProvider;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -101,8 +95,6 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$this->newPasswordExpiry ??= $this->config->get( MainConfigNames::NewPasswordExpiry );
 		$this->passwordReminderResendTime ??=
 			$this->config->get( MainConfigNames::PasswordReminderResendTime );
-		$this->allowRequiringEmail ??=
-			$this->config->get( MainConfigNames::AllowRequiringEmailForResets );
 	}
 
 	protected function getPasswordResetData( $username, $data ) {
@@ -474,9 +466,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			'<' . Title::newMainPage()->getCanonicalURL() . '>',
 			round( $this->newPasswordExpiry / 86400 ) )->text();
 
-		if ( $this->allowRequiringEmail && !$this->userOptionsLookup
-			->getBoolOption( $user, 'requireemail' )
-		) {
+		if ( !$this->userOptionsLookup->getBoolOption( $user, 'requireemail' ) ) {
 			$body .= "\n\n";
 			$url = SpecialPage::getTitleFor( 'Preferences', false, 'mw-prefsection-personal-email' )
 				->getCanonicalURL();

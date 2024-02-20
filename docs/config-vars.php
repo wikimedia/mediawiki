@@ -2664,12 +2664,6 @@ $wgAuthenticationTokenVersion = null;
 $wgSessionProviders = null;
 
 /**
- * Config variable stub for the AllowRequiringEmailForResets setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::AllowRequiringEmailForResets
- */
-$wgAllowRequiringEmailForResets = null;
-
-/**
  * Config variable stub for the AutoCreateTempUser setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AutoCreateTempUser
  */

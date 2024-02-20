@@ -7619,16 +7619,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether users will see a checkbox allowing them to require providing email during password resets.
-	 *
-	 * @unstable EXPERIMENTAL This feature is under development, don't assume this flag's existence
-	 * or function outside of Wikimedia Foundation wikis.
-	 */
-	public const AllowRequiringEmailForResets = [
-		'default' => false,
-	];
-
-	/**
 	 * Configuration for automatic creation of temporary accounts on page save.
 	 * This can be enabled to avoid exposing the IP addresses of casual editors who
 	 * do not explicitly create an account.

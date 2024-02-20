@@ -69,7 +69,6 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::AllowRequiringEmailForResets,
 		MainConfigNames::EnableEmail,
 		MainConfigNames::PasswordResetRoutes,
 	];
@@ -236,10 +235,8 @@ class PasswordReset implements LoggerAwareInterface {
 		} elseif ( $email !== null ) {
 			foreach ( $this->getUsersByEmail( $email ) as $userIdent ) {
 				// Skip users whose preference 'requireemail' is on since username was not submitted
-				if ( $this->config->get( MainConfigNames::AllowRequiringEmailForResets ) ) {
-					if ( $this->userOptionsLookup->getBoolOption( $userIdent, 'requireemail' ) ) {
-						continue;
-					}
+				if ( $this->userOptionsLookup->getBoolOption( $userIdent, 'requireemail' ) ) {
+					continue;
 				}
 				$users[] = $this->userFactory->newFromUserIdentity( $userIdent );
 			}
@@ -267,8 +264,7 @@ class PasswordReset implements LoggerAwareInterface {
 		// the key '0' might have been unset from $users array by a hook handler.
 		$firstUser = reset( $users );
 
-		$requireEmail = $this->config->get( MainConfigNames::AllowRequiringEmailForResets )
-			&& $username !== null
+		$requireEmail = $username !== null
 			&& $firstUser
 			&& $this->userOptionsLookup->getBoolOption( $firstUser, 'requireemail' );
 		if ( $requireEmail && $email === null ) {

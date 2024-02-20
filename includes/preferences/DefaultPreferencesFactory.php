@@ -127,7 +127,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::AllowRequiringEmailForResets,
 		MainConfigNames::AllowUserCss,
 		MainConfigNames::AllowUserCssPrefs,
 		MainConfigNames::AllowUserJs,
@@ -571,8 +570,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				] ),
 				'label-message' => 'yourpassword',
 				// email password reset feature only works for users that have an email set up
-				'help' => $this->options->get( MainConfigNames::AllowRequiringEmailForResets ) &&
-						$user->getEmail()
+				'help' => $user->getEmail()
 					? $context->msg( 'prefs-help-yourpassword',
 						'[[#mw-prefsection-personal-email|{{int:prefs-email}}]]' )->parse()
 					: '',
@@ -819,15 +817,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 			$disableEmailPrefs = false;
 
-			if ( $this->options->get( MainConfigNames::AllowRequiringEmailForResets ) ) {
-				$defaultPreferences['requireemail'] = [
-					'type' => 'toggle',
-					'label-message' => 'tog-requireemail',
-					'help-message' => 'prefs-help-requireemail',
-					'section' => 'personal/email',
-					'disabled' => !$user->getEmail(),
-				];
-			}
+			$defaultPreferences['requireemail'] = [
+				'type' => 'toggle',
+				'label-message' => 'tog-requireemail',
+				'help-message' => 'prefs-help-requireemail',
+				'section' => 'personal/email',
+				'disabled' => !$user->getEmail(),
+			];
 
 			if ( $this->options->get( MainConfigNames::EmailAuthentication ) ) {
 				if ( $user->getEmail() ) {

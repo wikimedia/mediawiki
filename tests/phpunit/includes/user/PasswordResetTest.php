@@ -38,7 +38,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	public function testIsAllowed( $passwordResetRoutes, $enableEmail,
 		$allowsAuthenticationDataChange, $canEditPrivate, $block, $isAllowed
 	) {
-		$config = $this->makeConfig( $enableEmail, $passwordResetRoutes, false );
+		$config = $this->makeConfig( $enableEmail, $passwordResetRoutes );
 
 		$authManager = $this->createMock( AuthManager::class );
 		$authManager->method( 'allowsAuthenticationDataChange' )
@@ -279,8 +279,8 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideExecute() {
-		$defaultConfig = $this->makeConfig( true, [ 'username' => true, 'email' => true ], false );
-		$emailRequiredConfig = $this->makeConfig( true, [ 'username' => true, 'email' => true ], true );
+		// 'User1' has the 'requireemail' preference set (see testExecute()). Other users do not.
+		$defaultConfig = $this->makeConfig( true, [ 'username' => true, 'email' => true ] );
 		$performingUser = $this->makePerformingUser( self::VALID_IP, false );
 		$throttledUser = $this->makePerformingUser( self::VALID_IP, true );
 
@@ -296,7 +296,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'Throttled, email required for resets, is invalid, pretend everything is ok' => [
 				'expectedError' => false,
-				'config' => $emailRequiredConfig,
+				'config' => $defaultConfig,
 				'performingUser' => $throttledUser,
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'User1',
@@ -323,7 +323,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'Email route not enabled' => [
 				'expectedError' => 'passwordreset-nodata',
-				'config' => $this->makeConfig( true, [ 'username' => true ], false ),
+				'config' => $this->makeConfig( true, [ 'username' => true ] ),
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
 				'username' => '',
@@ -332,7 +332,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'Username route not enabled' => [
 				'expectedError' => 'passwordreset-nodata',
-				'config' => $this->makeConfig( true, [ 'email' => true ], false ),
+				'config' => $this->makeConfig( true, [ 'email' => true ] ),
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'User1',
@@ -341,7 +341,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'No routes enabled' => [
 				'expectedError' => 'passwordreset-nodata',
-				'config' => $this->makeConfig( true, [], false ),
+				'config' => $this->makeConfig( true, [] ),
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'User1',
@@ -350,7 +350,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'Email required for resets but is empty, pretend everything is OK' => [
 				'expectedError' => false,
-				'config' => $emailRequiredConfig,
+				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'User1',
@@ -359,7 +359,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'Email required for resets but is invalid' => [
 				'expectedError' => 'passwordreset-invalidemail',
-				'config' => $emailRequiredConfig,
+				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'User1',
@@ -413,7 +413,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'Email required for resets, no match' => [
 				'expectedError' => false,
-				'config' => $emailRequiredConfig,
+				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'User1',
@@ -433,8 +433,8 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'expectedError' => 'passwordreset-ignored',
 				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
-				'authManager' => $this->makeAuthManager( [ 'User1' ], 0, [ 'User1' ] ),
-				'username' => 'User1',
+				'authManager' => $this->makeAuthManager( [ 'User2' ], 0, [ 'User2' ] ),
+				'username' => 'User2',
 				'email' => '',
 				'usersWithEmail' => [],
 			],
@@ -452,7 +452,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
-				'username' => 'User1',
+				'username' => 'User2',
 				'email' => '',
 				'usersWithEmail' => [],
 			],
@@ -479,23 +479,23 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'expectedError' => false,
 				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
-				'authManager' => $this->makeAuthManager( [ 'User1' ], 1 ),
+				'authManager' => $this->makeAuthManager( [ 'User2' ], 1 ),
 				'username' => '',
 				'email' => self::VALID_EMAIL,
-				'usersWithEmail' => [ 'User1' ],
+				'usersWithEmail' => [ 'User2' ],
 			],
 			'Reset multiple users via email' => [
 				'expectedError' => false,
 				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
-				'authManager' => $this->makeAuthManager( [ 'User1', 'User2' ], 2 ),
+				'authManager' => $this->makeAuthManager( [ 'User2', 'User3' ], 2 ),
 				'username' => '',
 				'email' => self::VALID_EMAIL,
-				'usersWithEmail' => [ 'User1', 'User2' ],
+				'usersWithEmail' => [ 'User2', 'User3' ],
 			],
-			"Email is required for resets, user didn't opt in" => [
+			"Email is not required for resets, this user didn't opt in" => [
 				'expectedError' => false,
-				'config' => $emailRequiredConfig,
+				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager( [ 'User2' ], 1 ),
 				'username' => 'User2',
@@ -504,7 +504,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			],
 			'Reset three users via email that did not opt in, multiple users with same email' => [
 				'expectedError' => false,
-				'config' => $emailRequiredConfig,
+				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager( [ 'User2', 'User3', 'User4' ], 3, [ 'User1' ] ),
 				'username' => '',
@@ -514,9 +514,8 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	private function makeConfig( $enableEmail, array $passwordResetRoutes, $emailForResets ) {
+	private function makeConfig( $enableEmail, array $passwordResetRoutes ) {
 		$hash = [
-			MainConfigNames::AllowRequiringEmailForResets => $emailForResets,
 			MainConfigNames::EnableEmail => $enableEmail,
 			MainConfigNames::PasswordResetRoutes => $passwordResetRoutes,
 		];
