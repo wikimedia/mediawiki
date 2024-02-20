@@ -10,6 +10,7 @@
 			"Joshateji",
 			"Medaho",
 			"Misteld",
+			"Reedy",
 			"Sagbosam",
 			"Samatics",
 			"Yemi festus"
@@ -1264,7 +1265,7 @@
 	"grant-createaccount": "Hùn adà yọyọ",
 	"grant-createeditmovepage": "Dá, jlado, bosọ sẹtẹ̀nna weda lẹ",
 	"grant-delete": "Súnsún weda lẹ, vọzepọn lẹ, po kandai lẹ po",
-	"grant-editinterface": "Basi vọjlado tenmẹyinkọ Mediawiki tọn podo nọtẹn gigblo/ tenmẹyinkọ JSON",
+	"grant-editinterface": "Basi vọjlado tenmẹyinkọ MediaWiki tọn podo nọtẹn gigblo/ tenmẹyinkọ JSON",
 	"grant-editmycssjs": "Jla zinzantọ towe do CSS/JSON/JavaScript",
 	"grant-editmyoptions": "Basi vọjlado nujlomẹ zinzantọ towe tọn lẹ po tito JSON po",
 	"grant-editmywatchlist": "basi vọjlado na todohukanji nupinpọn tọn towe",

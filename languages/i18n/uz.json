@@ -642,6 +642,7 @@
 	"diff-multi-otherusers": "({{PLURAL:$1|Bitta oraliq tahrir|$1 oraliq tahrir}} tomonidan {{PLURAL:$2|boshqa bir foydalanuvchi|$2 foydalanuvchi}} koʻrsatilmagan)",
 	"diff-inline-tooltip-ins": "Kontent qoʻshildi",
 	"diff-inline-tooltip-del": "Kontent oʻchirildi",
+	"diff-newline": "↲ yangi qator",
 	"searchresults": "Qidiruv natijalari",
 	"search-filter-title-prefix-reset": "Barcha sahifalardan qidirish",
 	"searchresults-title": "„$1“ uchun qidiruv natijalari",

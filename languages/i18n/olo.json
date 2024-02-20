@@ -10,6 +10,7 @@
 			"Matma Rex",
 			"Misosoof",
 			"Pyscowicz",
+			"Reedy",
 			"Ruppijeva"
 		]
 	},
@@ -1848,7 +1849,7 @@
 	"zip-file-open-error": "Tiijostos löyttih haireh, konzu avattih se ZIP-tarkastuksih niškoi.",
 	"zip-wrong-format": "Miärätty tiijosto ei ole ZIP-tiijosto.",
 	"zip-bad": "ZIP-tiijosto on rikkovunnuh libo sidä ei sua lugie. \nSidä ei voija tarvittavin tavoin tarkastua.",
-	"zip-unsupported": "Tämä ZIP-tiijosto käyttäy ZIP-ominažuksii, kudamii Mediawiki ei kannata.\nSidä ei voija tarkastua tarvittavin tavoin.",
+	"zip-unsupported": "Tämä ZIP-tiijosto käyttäy ZIP-ominažuksii, kudamii MediaWiki ei kannata.\nSidä ei voija tarkastua tarvittavin tavoin.",
 	"uploadstash": "Tallendus väliaigazeh varastoh",
 	"uploadstash-summary": "Tämä sivu andau mahton piästä tiijostoloih, kudamat on tallendettu libo niilöi parahimilleh tallendetah, ga net vie ei ole jullattu täs wikis. Vai tiijostoloi tallendannuh käyttäi voi kaččuo niilöi.",
 	"uploadstash-clear": "Ottua iäre väliaigazet tiijostot",
