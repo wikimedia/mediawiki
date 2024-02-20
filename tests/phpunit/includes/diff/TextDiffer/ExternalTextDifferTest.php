@@ -1,6 +1,6 @@
 <?php
 
-namespace phpunit\includes\diff\TextDiffer;
+namespace MediaWiki\Tests\Diff\TextDiffer;
 
 use MediaWiki\Diff\TextDiffer\ExternalTextDiffer;
 use MediaWikiIntegrationTestCase;
