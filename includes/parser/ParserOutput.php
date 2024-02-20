@@ -1411,13 +1411,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Set a page property to be stored in the page_props database table.
 	 *
-	 * page_props is a key value store indexed by the page ID. This allows
+	 * page_props is a key-value store indexed by the page ID. This allows
 	 * the parser to set a property on a page which can then be quickly
 	 * retrieved given the page ID or via a DB join when given the page
 	 * title.
 	 *
 	 * Since 1.23, page_props are also indexed by numeric value, to allow
 	 * for efficient "top k" queries of pages wrt a given property.
+	 * This only works if the value is passed as a int, float, or
+	 * bool.
 	 *
 	 * setPageProperty() is thus used to propagate properties from the parsed
 	 * page to request contexts other than a page view of the currently parsed
@@ -1435,24 +1437,36 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *     Wikimedia Commons.
 	 *     This is not actually implemented, yet but would be pretty cool.
 	 *
-	 * @note It is strongly recommended that only strings be used for $value.
+	 * @note Use of non-scalar values (anything other than
+	 *  `string|int|float|bool`) is strongly discouraged.
 	 *  Although any JSON-serializable value can be stored/fetched in
 	 *  ParserOutput, when the values are stored to the database
-	 *  (in deferred/LinksUpdate/PagePropsTable.php) they will be stringified:
-	 *  booleans will be converted to '0' and '1', null will become '',
-	 *  and everything else will be cast to string.  Page properties
-	 *  obtained from the PageProps service will always be strings.
+	 *  (in `deferred/LinksUpdate/PagePropsTable.php`) they will be
+	 *  converted: booleans will be converted to '0' and '1', null
+	 *  will become '', and everything else will be cast to string
+	 *  (not JSON-serialized).  Page properties obtained from the
+	 *  PageProps service will thus always be strings.
+	 *
+	 * @note The sort key stored in the database *will be NULL* unless
+	 *  the value passed here is an `int|float|bool`.  If you *do not*
+	 *  want your property value indexed and sorted (for example, the
+	 *  value is a title string which can be numeric but only
+	 *  incidentally, like when it gets retrieved from an array key)
+	 *  be sure to cast to string.  If you *do* want your property
+	 *  value indexed and sorted, be sure to cast to `int`, `float` or
+	 *  `bool` as appropriate.
+	 *
+	 * @note Note that `::getPageProperty()`/`::setPageProperty()` do
+	 *  not do any conversions themselves; you should therefore be
+	 *  careful to distinguish values returned from the PageProp
+	 *  service (always strings) from values retrieved from a
+	 *  ParserOutput.
 	 *
 	 * @note Do not use setPageProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
-	 * in the database since the text is already parsed. You can just hook
-	 * OutputPageParserOutput and get your data out of the ParserOutput object.
-	 *
-	 * If you are writing an extension where you want to set a property in the
-	 * parser which is used by an OutputPageParserOutput hook, you have to
-	 * associate the extension data directly with the ParserOutput object.
-	 * Since MediaWiki 1.21, you should use setExtensionData() to do this:
+	 * in the database since the text is already parsed; use
+	 * ::setExtensionData() instead.
 	 *
 	 * @par Example:
 	 * @code
@@ -1482,7 +1496,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @note You would need to use ::getPageProperties() to test for an
 	 *  explicitly-set null value; but see the note in ::setPageProperty()
-	 *  about avoiding the use of non-string values.
+	 *  about avoiding the use of non-scalar values.
 	 * @since 1.38
 	 */
 	public function getPageProperty( string $name ) {
