@@ -34,6 +34,7 @@ trait TempUserTestTrait {
 				'serialMapping' => [ 'type' => 'plain-numeric' ],
 			], $configOverrides )
 		);
+		$this->setGroupPermissions( '*', 'createaccount', true );
 	}
 
 	/**
