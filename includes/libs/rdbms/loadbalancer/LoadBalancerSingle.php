@@ -95,6 +95,3 @@ class LoadBalancerSingle extends LoadBalancer {
 		// do nothing since the connection was injected
 	}
 }
-
-/** @deprecated class alias since 1.29 */
-class_alias( LoadBalancerSingle::class, 'LoadBalancerSingle' );

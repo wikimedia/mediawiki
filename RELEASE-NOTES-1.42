@@ -415,10 +415,33 @@ because of Phabricator reports.
 * Skin::bottomScripts, deprecated since 1.37, has been removed.
 * Fallback index and options have been removed from
   DBAccessObjectUtils::getDBOptions() without deprecation.
+* The deprecated class aliases for now-namespaced or renamed PHP classes that
+  were added in or before 1.39 LTS have now been removed:
+   - Blob -> Wikimedia\Rdbms\Blob
+   - Block -> MediaWiki\Block\DatabaseBlock
+   - DBAccessError -> Wikimedia\Rdbms\DBAccessError
+   - DBConnectionError -> Wikimedia\Rdbms\DBConnectionError
+   - DBError -> Wikimedia\Rdbms\DBError
+   - DBExpectedError -> Wikimedia\Rdbms\DBExpectedError
+   - DBQueryError -> Wikimedia\Rdbms\DBQueryError
+   - DBReadOnlyError -> Wikimedia\Rdbms\DBReadOnlyError
+   - DBReplicationWaitError -> Wikimedia\Rdbms\DBReplicationWaitError
+   - DBTransactionError -> Wikimedia\Rdbms\DBTransactionError
+   - DBTransactionSizeError -> Wikimedia\Rdbms\DBTransactionSizeError
+   - DBUnexpectedError -> Wikimedia\Rdbms\DBUnexpectedError
+   - DatabaseMysqlBase -> Wikimedia\Rdbms\DatabaseMySQL
+   - DatabaseMysqli -> Wikimedia\Rdbms\DatabaseMySQL
+   - EasyDeflate -> Deflate
+   - Field -> Wikimedia\Rdbms\Field
+   - IMaintainableDatabase -> Wikimedia\Rdbms\IMaintainableDatabase
+   - LinksDeletionUpdate -> MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate
+   - LinksUpdate -> MediaWiki\Deferred\LinksUpdate\LinksUpdate
+   - LoadBalancer -> Wikimedia\Rdbms\LoadBalancer
+   - LoadBalancerSingle -> Wikimedia\Rdbms\LoadBalancerSingle
+   - RCFeedEngine -> FormattedRCFeed
+   - RandomPage -> MediaWiki\Specials\SpecialRandomPage
 * The return value of IDatabase::upsert(), deprecated since 1.33, has been
   removed.
-* The class name alias in the main namespace RandomPage, deprecated since 1.37,
-  has been removed. Use MediaWiki\Specials\SpecialRandomPage instead.
 * Instancing MediaWiki\Specials\SpecialRandomPage without injected services has
   been removed.
 * mediawiki.ui/utilities.less with its three layout CSS classes has been removed

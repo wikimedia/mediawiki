@@ -135,6 +135,3 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		];
 	}
 }
-
-/** @deprecated class alias since 1.38 */
-class_alias( LinksDeletionUpdate::class, 'LinksDeletionUpdate' );

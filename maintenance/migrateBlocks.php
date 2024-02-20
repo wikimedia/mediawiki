@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 require_once __DIR__ . "/Maintenance.php";
 

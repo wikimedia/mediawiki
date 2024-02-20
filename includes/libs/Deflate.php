@@ -68,6 +68,3 @@ class Deflate {
 		return StatusValue::newGood( $inflated );
 	}
 }
-
-/** @deprecated class alias since 1.35 */
-class_alias( Deflate::class, 'EasyDeflate' );

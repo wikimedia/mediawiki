@@ -49,6 +49,3 @@ class DBError extends RuntimeException {
 		$this->db = $db;
 	}
 }
-
-/** @deprecated class alias since 1.29 */
-class_alias( DBError::class, 'DBError' );

@@ -557,6 +557,3 @@ class LinksUpdate extends DataUpdate {
 		return $this->mRecursive;
 	}
 }
-
-/** @deprecated class alias since 1.38 */
-class_alias( LinksUpdate::class, 'LinksUpdate' );

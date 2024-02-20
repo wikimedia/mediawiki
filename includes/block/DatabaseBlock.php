@@ -749,6 +749,3 @@ class DatabaseBlock extends AbstractBlock {
 			->getConnectionRef( $i, [], $this->getWikiId() );
 	}
 }
-
-/** @deprecated class alias since 1.34 */
-class_alias( DatabaseBlock::class, 'Block' );

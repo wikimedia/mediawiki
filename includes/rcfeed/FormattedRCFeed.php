@@ -68,6 +68,3 @@ abstract class FormattedRCFeed extends RCFeed {
 		return $this->send( $params, $line );
 	}
 }
-
-/** @deprecated class alias since 1.22 */
-class_alias( FormattedRCFeed::class, 'RCFeedEngine' );

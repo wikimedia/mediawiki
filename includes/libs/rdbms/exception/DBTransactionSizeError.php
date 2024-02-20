@@ -28,6 +28,3 @@ class DBTransactionSizeError extends DBTransactionError {
 		return 'transaction-duration-limit-exceeded';
 	}
 }
-
-/** @deprecated class alias since 1.29 */
-class_alias( DBTransactionSizeError::class, 'DBTransactionSizeError' );

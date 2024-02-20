@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @covers \ExternalStoreFactory
@@ -77,7 +78,7 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$mwStore = $esFactory->getStore( 'mwstore' );
 		$this->assertTrue( $mwStore->isReadOnly( 'memstore1' ), "Location is read-only" );
 
-		$lb = $this->createMock( \Wikimedia\Rdbms\LoadBalancer::class );
+		$lb = $this->createMock( LoadBalancer::class );
 		$lb->method( 'getReadOnlyReason' )->willReturn( 'Locked' );
 		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getExternalLB' )->willReturn( $lb );

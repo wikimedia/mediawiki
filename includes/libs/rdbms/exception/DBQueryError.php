@@ -57,6 +57,3 @@ class DBQueryError extends DBExpectedError {
 		$this->fname = $fname;
 	}
 }
-
-/** @deprecated class alias since 1.29 */
-class_alias( DBQueryError::class, 'DBQueryError' );

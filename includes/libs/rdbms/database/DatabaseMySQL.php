@@ -903,9 +903,3 @@ class DatabaseMySQL extends Database {
 		return $conn->real_escape_string( (string)$s );
 	}
 }
-
-/** @deprecated class alias since 1.29 */
-class_alias( DatabaseMySQL::class, 'DatabaseMysqlBase' );
-
-/** @deprecated class alias since 1.29 */
-class_alias( DatabaseMySQL::class, 'DatabaseMysqli' );

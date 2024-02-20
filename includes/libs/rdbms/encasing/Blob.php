@@ -22,6 +22,3 @@ class Blob implements IBlob {
 		return $this->data;
 	}
 }
-
-/** @deprecated class alias since 1.29 */
-class_alias( Blob::class, 'Blob' );

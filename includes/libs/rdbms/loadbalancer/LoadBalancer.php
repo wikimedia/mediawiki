@@ -1992,6 +1992,3 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->loadMonitor->setMockTime( $time );
 	}
 }
-
-/** @deprecated class alias since 1.29 */
-class_alias( LoadBalancer::class, 'LoadBalancer' );
