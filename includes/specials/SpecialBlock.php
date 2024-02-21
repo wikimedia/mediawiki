@@ -141,6 +141,14 @@ class SpecialBlock extends FormSpecialPage {
 		$this->namespaceInfo = $namespaceInfo;
 	}
 
+	public function execute( $par ) {
+		parent::execute( $par );
+
+		if ( $this->getConfig()->get( 'UseCodexSpecialBlock' ) ) {
+			$this->getOutput()->addModules( 'mediawiki.special.block.codex' );
+		}
+	}
+
 	public function doesWrites() {
 		return true;
 	}
@@ -224,7 +232,7 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	protected function getDisplayFormat() {
-		return 'ooui';
+		return $this->getConfig()->get( 'UseCodexSpecialBlock' ) ? 'codex' : 'ooui';
 	}
 
 	/**

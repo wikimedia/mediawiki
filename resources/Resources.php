@@ -2195,6 +2195,30 @@ return [
 			'tags-edit-chosen-no-results',
 		],
 	],
+	'mediawiki.special.block.codex' => [
+		'packageFiles' => [
+			'resources/src/mediawiki.special.block/init.js',
+			'resources/src/mediawiki.special.block/components/UserLookup.vue',
+			'resources/src/mediawiki.special.block/SpecialBlock.vue',
+			[
+				'name' => 'resources/src/mediawiki.special.block/icons.json',
+				'callback' => 'MediaWiki\\ResourceLoader\\CodexModule::getIcons',
+				'callbackParam' => [
+					'cdxIconSearch'
+				]
+			]
+		],
+		'dependencies' => [
+			'vue',
+			'@wikimedia/codex',
+		],
+		'messages' => [
+			'block-user-label',
+			'block-user-description',
+			'block-user-placeholder',
+			'block-save'
+		],
+	],
 	'mediawiki.special.changeslist' => [
 		'styles' => [
 			'resources/src/mediawiki.special.changeslist/changeslist.less'
