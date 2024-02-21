@@ -4432,4 +4432,10 @@ class MainConfigNames {
 	 */
 	public const EditRecoveryExpiry = 'EditRecoveryExpiry';
 
+	/**
+	 * Name constant for the UseCodexSpecialBlock setting, for use with Config::get()
+	 * @see MainConfigSchema::UseCodexSpecialBlock
+	 */
+	public const UseCodexSpecialBlock = 'UseCodexSpecialBlock';
+
 }

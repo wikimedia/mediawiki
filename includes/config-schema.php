@@ -2503,6 +2503,7 @@ return [
 			],
 			'EnableEditRecovery' => false,
 			'EditRecoveryExpiry' => 2592000,
+			'UseCodexSpecialBlock' => false,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2976,6 +2977,7 @@ return [
 			'SpecialContributeSkinsEnabled' => 'array',
 			'EnableEditRecovery' => 'boolean',
 			'EditRecoveryExpiry' => 'integer',
+			'UseCodexSpecialBlock' => 'boolean',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

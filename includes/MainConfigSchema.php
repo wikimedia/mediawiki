@@ -12716,6 +12716,15 @@ class MainConfigSchema {
 		'type' => 'integer',
 	];
 
+	/**
+	 * Whether to use Codex in Special:Block form.
+	 * This is a temporary feature flag.
+	 */
+	public const UseCodexSpecialBlock = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
 	// endregion -- End Miscellaneous
 
 }
