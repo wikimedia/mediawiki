@@ -1634,7 +1634,7 @@
 	"ipb-confirm": "Chetlashtirishni tasdiqlash",
 	"ipb-sitewide": "Butun loyihada",
 	"ipb-partial": "Qisman",
-	"ipb-sitewide-help": "Barcha sahifalar va nomfazolarda tahrirlash imkoniyatidan chetlashtiriladi. Shuningdek, standart amallardan ham chetlashtiriladi.\n([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Yordam sahifasi])",
+	"ipb-sitewide-help": "Barcha sahifalar va nomfazolarda tahrirlash imkoniyatidan chetlashtiriladi. Shuningdek, standart amallardan ham chetlashtiriladi.\n([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Yordam sahifasi])",
 	"ipb-partial-help": "Chetlashtirish uchun sahifalar va nomfazolarni tanlashga izn beradi. Standart amallarni chetlashtirmaydi, ammo aniq amallarni chetlashtirishga imkon beradi.",
 	"ipb-pages-label": "Sahifalar",
 	"ipb-namespaces-label": "Nomfazolar",

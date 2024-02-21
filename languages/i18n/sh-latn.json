@@ -2613,7 +2613,7 @@
 	"ipb-confirm": "Potvrdite blokiranje",
 	"ipb-sitewide": "Na celom sajtu",
 	"ipb-partial": "Delimično",
-	"ipb-sitewide-help": "Blokira uređivanje na svim stranicama i imenskim prostorima. Također blokira zadane radnje ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Vidi pomoć])",
+	"ipb-sitewide-help": "Blokira uređivanje na svim stranicama i imenskim prostorima. Također blokira zadane radnje ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Vidi pomoć])",
 	"ipb-partial-help": "Omogućuje odabir stranica i imenskih prostora za blokirati. Ne blokira zadane radnje, ovdje su samo određene radnje.",
 	"ipb-action-create": "Pravljenje novih stranica i otpremanje novih datoteka",
 	"ipb-action-move": "Premještanje stranica i datoteka",

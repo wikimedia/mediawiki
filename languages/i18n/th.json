@@ -2699,7 +2699,7 @@
 	"ipb-confirm": "ยืนยันการบล็อก",
 	"ipb-sitewide": "ทั้งเว็บไซต์",
 	"ipb-partial": "บางส่วน",
-	"ipb-sitewide-help": "บล็อกการแก้ไขในทุกหน้าและทุกเนมสเปซ รวมถึงบล็อกการกระทำเริ่มต้น ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users ดูความช่วยเหลือ])",
+	"ipb-sitewide-help": "บล็อกการแก้ไขในทุกหน้าและทุกเนมสเปซ รวมถึงบล็อกการกระทำเริ่มต้น ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked ดูความช่วยเหลือ])",
 	"ipb-partial-help": "ให้คุณเลือกหน้าและเนมสเปซที่จะบล็อก ไม่บล็อกการกระทำเริ่มต้น แต่ให้คุณบล็อกการกระทำบางอย่าง",
 	"ipb-action-create": "การสร้างหน้าใหม่และอัปโหลดไฟล์ใหม่",
 	"ipb-action-move": "การย้ายหน้าและไฟล์",

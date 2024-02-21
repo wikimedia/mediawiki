@@ -643,7 +643,7 @@
 	"edit-recovery-special-recovered-on": "$1",
 	"edit-recovery-special-recovered-on-tooltip": "Y dyddiad a'r amser y cadwyd eich data adfer ddiwethaf",
 	"edit-recovery-loaded-title": "Adferwyd newidiadau",
-	"edit-recovery-loaded-message": "Mae eich newidiadau heb eu cadw wedi'u hadfer yn awtomatig.",
+	"edit-recovery-loaded-message": "Mae eich newidiadau heb eu cadw wedi'u hadfer yn awtomatig.&#32;",
 	"edit-recovery-loaded-show": "Dangos newidiadau",
 	"edit-recovery-loaded-discard": "Canslo newidiadau",
 	"summary": "Crynodeb:",

@@ -2652,7 +2652,7 @@
 	"ipb-confirm": "Sahkan sekatan",
 	"ipb-sitewide": "Seluruh tapak",
 	"ipb-partial": "Separa",
-	"ipb-sitewide-help": "Menyekat penyuntingan di semua halaman dan ruang nama. Juga menyekat tindakan lalai ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Lihat bantuan])",
+	"ipb-sitewide-help": "Menyekat penyuntingan di semua halaman dan ruang nama. Juga menyekat tindakan lalai ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Lihat bantuan])",
 	"ipb-partial-help": "Membolehkan anda memilih halaman dan ruang nama untuk disekat. Tidak menyekat tindakan lalai tetapi membenarkan anda menyekat tindakan spesifik yang tertentu.",
 	"ipb-action-create": "Mencipta laman baru",
 	"ipb-action-move": "Menamakan semula laman",

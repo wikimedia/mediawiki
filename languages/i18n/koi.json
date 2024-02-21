@@ -2646,7 +2646,7 @@
 	"ipb-confirm": "Вынсьӧтны тасалӧм",
 	"ipb-sitewide": "Быдӧс везгӧрӧдын",
 	"ipb-partial": "Абу дзоньнас",
-	"ipb-sitewide-help": "Тасалӧ быдӧс листбокын да ним пространствоын вежлалӧмсӧ. Сідзжӧ висьтавтӧг тасалӧ керӧммесӧ ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Видзӧт справка])",
+	"ipb-sitewide-help": "Тасалӧ быдӧс листбокын да ним пространствоын вежлалӧмсӧ. Сідзжӧ висьтавтӧг тасалӧ керӧммесӧ ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Видзӧт справка])",
 	"ipb-partial-help": "Сетӧ позянлун тасалӧм понда бӧрйыны листбоккез да ним пространствоэз . Оз тасав висьтавтӧг керӧммез, но сетӧ позянлун тасавны торья керӧммез.",
 	"ipb-action-create": "Виль листбоккез лӧсьӧтӧм да виль виль файллэз кӧрталӧм",
 	"ipb-action-move": "Листбоккез да файллэз вуджӧтӧм",

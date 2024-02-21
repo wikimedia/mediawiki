@@ -2721,7 +2721,7 @@
 	"ipb-confirm": "বাধা নিশ্চিতকরণ",
 	"ipb-sitewide": "সাইটব্যাপী",
 	"ipb-partial": "আংশিক",
-	"ipb-sitewide-help": "সমস্ত পাতা ও নামস্থানগুলিতে সম্পাদনায় বাধা দান করে। পূর্বনির্ধারিত ক্রিয়াকলাপগুলি করা থেকেও বাধা দান করে ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users/bn সাহায্য দেখুন])",
+	"ipb-sitewide-help": "সমস্ত পাতা ও নামস্থানগুলিতে সম্পাদনায় বাধা দান করে। পূর্বনির্ধারিত ক্রিয়াকলাপগুলি করা থেকেও বাধা দান করে ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked/bn সাহায্য দেখুন])",
 	"ipb-partial-help": "বাধাদানের জন্য আপনাকে পাতা ও নামস্থানগুলি নির্বাচন করার সুযোগ দেয়। পূর্বনির্ধারিত ক্রিয়াকলাপগুলিকে বাধা দেয় না তবে আপনাকে নির্দিষ্ট ক্রিয়াকলাপগুলি বাধাদান করতে দেয়।",
 	"ipb-action-create": "নতুন পাতা তৈরি করা ও নতুন ফাইল আপলোড করা",
 	"ipb-action-move": "পাতা ও ফাইল স্থানান্তর করা",

@@ -2509,7 +2509,7 @@
 	"ipb-confirm": "Staðfesta bann",
 	"ipb-sitewide": "Á öllum vefnum",
 	"ipb-partial": "Að hluta",
-	"ipb-sitewide-help": "Bannar breytingar á öllum síðum og nafnrýmum. Bannar einnig sjálfvirkar aðgerðir ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Sjá hjálp])",
+	"ipb-sitewide-help": "Bannar breytingar á öllum síðum og nafnrýmum. Bannar einnig sjálfvirkar aðgerðir ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Sjá hjálp])",
 	"ipb-partial-help": "Leyfir þér að tilgreina síður og nafnrými til að banna. Bannar ekki sjálfvirkar aðgerðir en leyfir þér að banna ákveðnar aðgerðir.",
 	"ipb-action-create": "Búa til nýjar síður og upphlaða nýjum skrám",
 	"ipb-action-move": "Færa síður og skrár",

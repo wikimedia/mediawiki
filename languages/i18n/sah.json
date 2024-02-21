@@ -2644,7 +2644,7 @@
 	"ipb-confirm": "Хааччаҕы бигэргэт",
 	"ipb-sitewide": "Барытыгар",
 	"ipb-partial": "Сороҕор",
-	"ipb-sitewide-help": "Баар сирэйдэргэ уонна аат далларыгар уларытыыны бобор. Ону таһынан атын дьайыылары бобор ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Сиһилии көмө сирэйин көр])",
+	"ipb-sitewide-help": "Баар сирэйдэргэ уонна аат далларыгар уларытыыны бобор. Ону таһынан атын дьайыылары бобор ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Сиһилии көмө сирэйин көр])",
 	"ipb-partial-help": "Сирэйдэри уонна аат далларын боборго талары көҥүллүүр. Туспа этиллибэтэх дьайыылары боппот, ол гынан баран сорох талбыт дьайыыларгын боборго аналлаах.",
 	"ipb-action-create": "Саҥа сирэйдэри оҥоруу уонна саҥа билэлэри киллэрии",
 	"ipb-action-move": "Сирэйдэр уонна билэлэр ааттарын уларытыы",

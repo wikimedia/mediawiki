@@ -2633,7 +2633,7 @@
 	"ipb-confirm": "నిరోధాన్ని ధృవపరచండి",
 	"ipb-sitewide": "సైట్ వ్యాప్తంగా",
 	"ipb-partial": "పాక్షికం",
-	"ipb-sitewide-help": "అన్ని పేజీల్లోను, అన్ని పేరుబరుల్లోనూ దిద్దుబాట్లు చెయ్యకుండా నిరోధిస్తుంది. డిఫాల్టు చర్యలను కూడా నిరోధిస్తుంది  ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users సహాయం చూడండి])",
+	"ipb-sitewide-help": "అన్ని పేజీల్లోను, అన్ని పేరుబరుల్లోనూ దిద్దుబాట్లు చెయ్యకుండా నిరోధిస్తుంది. డిఫాల్టు చర్యలను కూడా నిరోధిస్తుంది  ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked సహాయం చూడండి])",
 	"ipb-partial-help": "నిరోధించాల్సిన పేజీలు, పేరుబరులను ఎంచుకునే వీలు కలిగిస్తుంది. డిఫాల్టు చర్యలను నిరోధించదు గానీ, కొన్ని నిర్దుష్ట చర్యలను నిరోధించే వీలు కలిగిస్తుంది.",
 	"ipb-action-create": "కొత్త పేజీలను సృష్టించడం",
 	"ipb-action-move": "పేజీల పేరు మార్చడం",

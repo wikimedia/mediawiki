@@ -2657,7 +2657,7 @@
 	"ipb-confirm": "Тыюны раслау",
 	"ipb-sitewide": "Бөтен сайт буенча",
 	"ipb-partial": "Өлешчә",
-	"ipb-sitewide-help": "Барлык битләрдә һәм исемнәр киңлегендә үзгәртүне тыя. Шулай ук гамәлләрне килешү буенча тыя ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users See help])",
+	"ipb-sitewide-help": "Барлык битләрдә һәм исемнәр киңлегендә үзгәртүне тыя. Шулай ук гамәлләрне килешү буенча тыя ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked See help])",
 	"ipb-partial-help": "Блоклау өчен битләрне һәм исемлек пространстволарын сайларга мөмкинлек бирә.\nГамәлләрне килешү буенча блокламый, әмма билгеле бер гамәлләрне блокларга мөмкинлек бирә.",
 	"ipb-action-create": "Яңа битләр төзү һәм яңа файллар йөкләү",
 	"ipb-action-move": "Битләрне һәм файлларны күчерү",

@@ -2652,7 +2652,7 @@
 	"ipb-confirm": "Пацвердзіць блакіроўку",
 	"ipb-sitewide": "Ва ўсім праекце",
 	"ipb-partial": "Частковая",
-	"ipb-sitewide-help": "Блакуе праўку на ўсіх старонках і прасторах імёнаў. Таксама блакуе дзеянні па змаўчанні ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Гл. даведку])",
+	"ipb-sitewide-help": "Блакуе праўку на ўсіх старонках і прасторах імёнаў. Таксама блакуе дзеянні па змаўчанні ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Гл. даведку])",
 	"ipb-partial-help": "Дазваляе выбіраць старонкі і прасторы назваў для блакавання. Не блакуе дзеянні па змаўчанні, але дазваляе блакаваць некаторыя пэўныя дзеянні.",
 	"ipb-action-create": "Стварэнне новых старонак і загрузка новых файлаў",
 	"ipb-action-move": "Перанясенне старонак і файлаў",

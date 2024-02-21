@@ -462,7 +462,7 @@
 	"passwordreset-username": "Ahàǹjìème:",
 	"passwordreset-emailelement": "Áhà Ọ'banife: \n$1\n\nPasswod nke gi gbanwe: \n$2",
 	"changeemail-none": "(efù)",
-	"edit-recovery-loaded-message-different-rev": "Rịba ama na ibe ahụ nwere ike gbanwee kemgbe ịmalitere ndezi. Biko lelee mgbanwe gị tupu ịchekwaa.",
+	"edit-recovery-loaded-message-different-rev": "Rịba ama na ibe ahụ nwere ike gbanwee kemgbe ịmalitere ndezi.&#32; Biko lelee mgbanwe gị tupu ịchekwaa.&#32;",
 	"summary": "Mmẹkụwátá:",
 	"subject": "Isi ahịrị",
 	"minoredit": "Ihe bu orü ntakírí",

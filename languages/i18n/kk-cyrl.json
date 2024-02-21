@@ -639,7 +639,7 @@
 	"edit-recovery-special-intro": "Мына {{PLURAL:$1|бет не бөлімде|бет не бөлімдерде}} сақталмаған өңдеулеріңіз бар:",
 	"edit-recovery-special-intro-empty": "Сақталмаған өңдеулеріңіз жоқ.",
 	"edit-recovery-loaded-title": "Өзгерістер сақталды.",
-	"edit-recovery-loaded-message": "Сақталмаған өзгерістеріңіз автоматты түрде қалпына келтірілді.",
+	"edit-recovery-loaded-message": "Сақталмаған өзгерістеріңіз автоматты түрде қалпына келтірілді&#32;",
 	"edit-recovery-loaded-show": "Өзгерістерді көрсету",
 	"edit-recovery-loaded-discard": "Өзгерістерді болдырмау",
 	"summary": "Түйін:",
