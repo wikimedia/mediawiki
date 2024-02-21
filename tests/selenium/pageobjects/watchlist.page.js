@@ -8,8 +8,8 @@ class WatchlistPage extends Page {
 			.$$( '.mw-changeslist-line .mw-title' );
 	}
 
-	open() {
-		super.openTitle( 'Special:Watchlist' );
+	async open() {
+		return super.openTitle( 'Special:Watchlist' );
 	}
 
 }
