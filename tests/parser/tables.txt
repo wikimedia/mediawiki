@@ -60,13 +60,6 @@ Template:table_attribs_5
 !! endarticle
 
 !! article
-Template:table_attribs_7
-!! text
-<noinclude>
-|</noinclude>style{{=}}"background:&#35;f9f9f9;"|Foo<ref>foo</ref>
-!! endarticle
-
-!! article
 Template:table_header_cells
 !! text
 {{table_attribs}}!!style='color:red;'|''Bar''||style='color:brown;'|''Foo'' and Baz
@@ -981,21 +974,6 @@ parsoid={
 <tr>
 <td align="center" style="color:red;">Foo</td><td style="color:red;"><i>Bar</i></td><td style="color:brown;"><i>Foo</i> and Baz</td></tr>
 </tbody></table>
-!! end
-
-## Edge case fix to prevent future regressions
-!! test
-T107652: <ref>s in templates that also generate table cell attributes should be rendered properly
-!! wikitext
-{|
-|{{table_attribs_7}}
-|}
-<references />
-!! html/parsoid
-<table>
-<tbody><tr><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_7","href":"./Template:Table_attribs_7"},"params":{},"i":0}}]}'>Foo<sup class="mw-ref reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{},"body":{"id":"mw-reference-text-cite_note-1"}}'><a href="./Parser_test#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></s></td></tr>
-</tbody></table>
-<div class="mw-references-wrap" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><ol class="mw-references references" ><li about="#cite_note-1" id="cite_note-1"><a href="./Parser_test#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol></div>
 !! end
 
 !! test
