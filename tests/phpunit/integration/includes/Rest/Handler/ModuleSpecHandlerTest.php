@@ -27,13 +27,9 @@ use Wikimedia\Message\MessageValue;
 class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
-	/**
-	 * @param RequestInterface $request
-	 *
-	 * @return Router
-	 */
 	private function createRouter(
-		RequestInterface $request
+		RequestInterface $request,
+		$specFile
 	): Router {
 		$services = $this->getServiceContainer();
 		$context = RequestContext::getMain();
@@ -61,13 +57,8 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$responseFactory = new ResponseFactory( [ $formatter ] );
 
 		return ( new Router(
-			[ __DIR__ . '/SpecTestRoutes.json' ],
-			[
-				[
-					"path" => "/foo/bar",
-					"factory" => "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler",
-				],
-			],
+			[ $specFile ],
+			[],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
 			$responseFactory,
@@ -94,25 +85,33 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetInfoSpecSuccess() {
-		yield 'module and version' => [
+		yield 'named module' => [
 			[
-				'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
-			]
+				'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ],
+			],
+			__DIR__ . '/SpecTestRoutes.json'
+		];
+		yield 'OpenAPI module' => [
+			[
+				'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ],
+			],
+			__DIR__ . '/SpecTestOpenAPIModule.json'
 		];
 		yield 'prefix-less module' => [
 			[
-				'pathParams' => [ 'module' => '-' ]
-			]
+				'pathParams' => [ 'module' => '-' ],
+			],
+			__DIR__ . '/SpecTestFlatRoutes.json'
 		];
 	}
 
 	/**
 	 * @dataProvider provideGetInfoSpecSuccess
 	 */
-	public function testGetInfoSpecSuccess( $params ) {
+	public function testGetInfoSpecSuccess( $params, $specFile ) {
 		$request = new RequestData( $params );
 
-		$router = $this->createRouter( $request );
+		$router = $this->createRouter( $request, $specFile );
 
 		$handler = $this->newHandler();
 		$response = $this->executeHandler(

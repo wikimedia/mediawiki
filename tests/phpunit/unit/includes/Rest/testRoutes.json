@@ -1,73 +1,152 @@
 {
-	"module": "mock/v1",
-	"routes": [
-		{
-			"path": "/RouterTest/hello",
-			"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
-		},
-		{
-			"method": [ "GET", "POST", "PUT", "DELETE" ],
-			"path": "/RouterTest/echo",
-			"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
-		},
-		{
-			"method": [ "GET", "POST", "PUT", "DELETE" ],
-			"path": "/RouterTest/echo/{pathParam}",
-			"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
-		},
-		{
-			"method": [ "POST", "PUT" ],
-			"path": "/RouterTest/stream",
-			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::streamHandlerFactory"
-		},
-		{
-			"method": [ "POST", "PUT" ],
-			"path": "/RouterTest/old-body-validator",
-			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::oldBodyValidatorFactory"
-		},
-		{
-			"method": "POST",
-			"path": "/RouterTest/data-handler",
-			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::dataHandlerFactory"
-		},
-		{
-			"method": "POST",
-			"path": "/RouterTest/form-handler",
-			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::formHandlerFactory"
-		},
-		{
-			"path": "/EntryPoint/header",
-			"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
-		},
-		{
-			"path": "/EntryPoint/bodyRewind",
-			"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerBodyRewind"
-		},
-		{
-			"path": "/RouterTest/throw",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwHandlerFactory"
-		},
-		{
-			"path": "/RouterTest/fatal",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::fatalHandlerFactory"
-		},
-		{
-			"path": "/RouterTest/throwRedirect",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwRedirectHandlerFactory"
-		},
-		{
-			"path": "/RouterTest/redirect",
-			"redirect": {
-				"path": "/mock/RouterTest/redirectTarget"
+	"mwapi": "1.0.0",
+	"moduleId": "mock/v1",
+	"paths": {
+		"/RouterTest/hello": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
+					"hello": "ohi"
+				}
 			}
 		},
-		{
-			"path": "/RouterTest/throwWrapped",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+		"/RouterTest/echo": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			},
+			"post": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			},
+			"put": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			},
+			"delete": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			}
 		},
-		{
-			"path": "/MWBasicRequestAuthorizerTest/write",
-			"factory": "MediaWiki\\Tests\\Unit\\Rest\\BasicAccess\\MWBasicRequestAuthorizerTest::writeHandlerFactory"
+		"/RouterTest/echo/{pathParam}": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			},
+			"post": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			},
+			"put": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			},
+			"delete": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			}
+		},
+		"/RouterTest/stream": {
+			"post": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\RouterTest::streamHandlerFactory"
+				}
+			},
+			"put": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\RouterTest::streamHandlerFactory"
+				}
+			}
+		},
+		"/RouterTest/old-body-validator": {
+			"post": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\RouterTest::oldBodyValidatorFactory"
+				}
+			},
+			"put": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\RouterTest::oldBodyValidatorFactory"
+				}
+			}
+		},
+		"/RouterTest/data-handler": {
+			"post": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\RouterTest::dataHandlerFactory"
+				}
+			}
+		},
+		"/RouterTest/form-handler": {
+			"post": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\RouterTest::formHandlerFactory"
+				}
+			}
+		},
+		"/EntryPoint/header": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
+				}
+			}
+		},
+		"/EntryPoint/bodyRewind": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerBodyRewind"
+				}
+			}
+		},
+		"/RouterTest/throw": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwHandlerFactory"
+				}
+			}
+		},
+		"/RouterTest/fatal": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::fatalHandlerFactory"
+				}
+			}
+		},
+		"/RouterTest/throwRedirect": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwRedirectHandlerFactory"
+				}
+			}
+		},
+		"/RouterTest/redirect": {
+			"get": {
+				"redirect": {
+					"path": "/mock/RouterTest/redirectTarget"
+				}
+			}
+		},
+		"/RouterTest/throwWrapped": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+				}
+			}
+		},
+		"/MWBasicRequestAuthorizerTest/write": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Unit\\Rest\\BasicAccess\\MWBasicRequestAuthorizerTest::writeHandlerFactory"
+				}
+			}
 		}
-	]
+	}
 }

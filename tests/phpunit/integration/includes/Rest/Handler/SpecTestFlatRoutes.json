@@ -1,0 +1,6 @@
+[
+	{
+		"path": "/mock/v1/foo/bar",
+		"factory": "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler"
+	}
+]

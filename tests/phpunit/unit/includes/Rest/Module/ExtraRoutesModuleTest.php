@@ -5,8 +5,8 @@ namespace MediaWiki\Tests\Rest\Module;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\Module\ExtraRoutesModule;
 use MediaWiki\Rest\Module\Module;
-use MediaWiki\Rest\Module\RouteFileModule;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
@@ -25,9 +25,10 @@ use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MediaWiki\Rest\Module\RouteFileModule
+ * @covers \MediaWiki\Rest\Module\ExtraRoutesModule
+ * @covers \MediaWiki\Rest\Module\MatcherBasedModule
  */
-class RouteFileModuleTest extends \MediaWikiUnitTestCase {
+class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 	use RestTestTrait;
 	use DummyServicesTrait;
 
@@ -40,9 +41,9 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @param RequestInterface $request
 	 * @param string|null $authError
-	 * @param string[] $extraRoutes
+	 * @param array<int,array> $extraRoutes
 	 *
-	 * @return RouteFileModule
+	 * @return ExtraRoutesModule
 	 */
 	private function createRouteFileModule(
 		RequestInterface $request,
@@ -50,7 +51,6 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 		$extraRoutes = []
 	) {
 		$routeFiles = [
-			__DIR__ . '/moduleTestRoutes.json', // intermediate format with meta-data
 			__DIR__ . '/moduleFlatRoutes.json', // old, flat format
 		];
 
@@ -82,12 +82,14 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 			'validator' => $validator
 		] );
 
-		$module = new RouteFileModule(
+		$responseFactory = new ResponseFactory( [] );
+		$responseFactory->setShowExceptionDetails( true );
+
+		$module = new ExtraRoutesModule(
 			$routeFiles,
 			$extraRoutes,
 			$router,
-			'mock.v1',
-			new ResponseFactory( [] ),
+			$responseFactory,
 			$auth,
 			$objectFactory,
 			$validator,
@@ -116,57 +118,58 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 
 	public function testWrongMethod() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock.v1/ModuleTest/hello' ),
+			'uri' => new Uri( '/rest/ModuleTest/hello/dude' ),
 			'method' => 'TRACE'
 		] );
 		$module = $this->createRouteFileModule( $request );
-		$response = $module->execute( '/ModuleTest/hello', $request );
-		$this->assertSame( 405, $response->getStatusCode() );
+		$response = $module->execute( '/ModuleTest/hello/dude', $request );
+		$this->assertSame( 405, $response->getStatusCode(), (string)$response->getBody() );
 		$this->assertSame( 'Method Not Allowed', $response->getReasonPhrase() );
 		$this->assertSame( 'HEAD, GET', $response->getHeaderLine( 'Allow' ) );
 	}
 
 	public function testHeadToGet() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock.v1/ModuleTest/hello' ),
+			'uri' => new Uri( '/rest/ModuleTest/hello/dude' ),
 			'method' => 'HEAD'
 		] );
 		$module = $this->createRouteFileModule( $request );
-		$response = $module->execute( '/ModuleTest/hello', $request );
-		$this->assertSame( 200, $response->getStatusCode() );
+		$response = $module->execute( '/ModuleTest/hello/dude', $request );
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 	}
 
 	public function testFlatRouteFile() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/foobar/ModuleTest/greetings/you' ),
+			'uri' => new Uri( '/rest/ModuleTest/hello/dude' ),
 			'method' => 'HEAD'
 		] );
 		$module = $this->createRouteFileModule( $request );
 
 		$stats = $this->createMockStatsFactory(
-			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:mock_v1_foobar_ModuleTest_greetings_name,method:HEAD,status:200\nmediawiki\.stats_buffered_total:1\|c$/"
+			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:ModuleTest_hello_name,method:HEAD,status:200\nmediawiki\.stats_buffered_total:1\|c$/"
 		);
 		$module->setStats( $stats );
 
-		$response = $module->execute( '/foobar/ModuleTest/greetings/you', $request );
+		$response = $module->execute( '/ModuleTest/hello/two', $request );
 		$stats->flush();
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testNoMatch() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/Bogus' ) ] );
+		// The /hello path requires a path parameter.
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/hello' ) ] );
 		$module = $this->createRouteFileModule( $request );
-		$response = $module->execute( '/Bogus', $request );
+		$response = $module->execute( '/ModuleTest/hello', $request );
 		$this->assertSame( 404, $response->getStatusCode() );
 		// TODO: add more information to the response body and test for its presence here
 	}
 
 	public function testHttpException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/ModuleTest/throw' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/throw' ) ] );
 		$module = $this->createRouteFileModule( $request );
 
 		$stats = $this->createMockStatsFactory(
-			"/^mediawiki\.rest_api_errors_total:1\|c\|#path:mock_v1_ModuleTest_throw,method:GET,status:555\nmediawiki\.stats_buffered_total:1\|c$/"
+			"/^mediawiki\.rest_api_errors_total:1\|c\|#path:ModuleTest_throw,method:GET,status:555\nmediawiki\.stats_buffered_total:1\|c$/"
 		);
 		$module->setStats( $stats );
 
@@ -180,7 +183,7 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testFatalException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/ModuleTest/fatal' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/fatal' ) ] );
 		$module = $this->createRouteFileModule( $request );
 		$response = $module->execute( '/ModuleTest/fatal', $request );
 		$this->assertSame( 500, $response->getStatusCode() );
@@ -193,7 +196,7 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testRedirectException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/ModuleTest/throwRedirect' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/throwRedirect' ) ] );
 		$module = $this->createRouteFileModule( $request );
 		$response = $module->execute( '/ModuleTest/throwRedirect', $request );
 		$this->assertSame( 301, $response->getStatusCode() );
@@ -201,7 +204,7 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testResponseException() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/ModuleTest/throwWrapped' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/throwWrapped' ) ] );
 		$module = $this->createRouteFileModule( $request );
 		$response = $module->execute( '/ModuleTest/throwWrapped', $request );
 		$this->assertSame( 200, $response->getStatusCode() );
@@ -209,7 +212,7 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 
 	public function testBasicAccess() {
 		// Using the throwing handler is a way to assert that the handler is not executed
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/ModuleTest/throw' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/throw' ) ] );
 		$module = $this->createRouteFileModule( $request, 'test-error', [] );
 		$response = $module->execute( '/ModuleTest/throw', $request );
 		$this->assertSame( 403, $response->getStatusCode() );
@@ -221,7 +224,7 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 
 	public function testAdditionalEndpoints() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock.v1/ModuleTest/hello-again' )
+			'uri' => new Uri( '/rest/ModuleTest/hello-again' )
 		] );
 		$module = $this->createRouteFileModule(
 			$request,
@@ -253,7 +256,7 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testCacheData() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/route' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/route' ) ] );
 		$module1 = $this->createRouteFileModule( $request );
 		$module1wrapper = TestingAccessWrapper::newFromObject( $module1 );
 

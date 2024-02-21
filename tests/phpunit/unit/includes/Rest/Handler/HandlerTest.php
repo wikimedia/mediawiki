@@ -57,7 +57,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$hookContainer = $this->createHookContainer();
 
 		$session = $this->getSession( true );
-		$handler->initContext( $module, [] );
+		$handler->initContext( $module, 'test', [] );
 		$handler->initServices( $authority, $responseFactory, $hookContainer );
 		$handler->initSession( $session );
 
@@ -1072,6 +1072,179 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 		$this->assertArrayHasKey( 'test', $handler->getValidatedBody() );
 		$this->assertArrayNotHasKey( 'test', $handler->getValidatedParams() );
+	}
+
+	public static function provideGetOpenApiSpec() {
+		yield 'basic' => [
+			[
+				'q' => [
+					Handler::PARAM_SOURCE => 'query',
+					ParamValidator::PARAM_REQUIRED => false,
+				],
+				'p' => [
+					Handler::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+			],
+			[
+				'path' => 'test/{p}'
+			],
+			[
+				'parameters' => [
+					[
+						'name' => 'q',
+						'description' => 'q parameter',
+						'in' => 'query',
+						'schema' => [ 'type' => 'string', ],
+						'required' => false,
+					],
+					[
+						'name' => 'p',
+						'description' => 'p parameter',
+						'in' => 'path',
+						'schema' => [ 'type' => 'string', ],
+						'required' => true,
+					],
+				],
+				'responses' => [
+					200 => [ 'description' => 'OK', ],
+					400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+					500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+				],
+			],
+		];
+
+		yield 'optional path params' => [
+			[
+				'p' => [
+					Handler::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_REQUIRED => false,
+				],
+				'r' => [ // not in declared path, will be ignored
+					Handler::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_REQUIRED => false,
+				],
+			],
+			[
+				'path' => 'test/{p}'
+			],
+			[
+				'parameters' => [
+					[
+						'name' => 'p',
+						'description' => 'p parameter',
+						'in' => 'path',
+						'schema' => [ 'type' => 'string', ],
+						'required' => true, // required for this path
+					],
+				],
+				'responses' => [
+					200 => [ 'description' => 'OK', ],
+					400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+					500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+				],
+			]
+		];
+
+		yield 'OAS info' => [
+			[
+				'p' => [
+					Handler::PARAM_SOURCE => 'path',
+				],
+			],
+			[
+				'path' => 'test/{p}',
+				'OAS' => [
+					'title' => 'just a test',
+					'parameters' => 'will be ignored',
+				]
+			],
+			[
+				'parameters' => [
+					[
+						'name' => 'p',
+						'description' => 'p parameter',
+						'in' => 'path',
+						'schema' => [ 'type' => 'string', ],
+						'required' => true,
+					]
+				],
+				'responses' => [
+					200 => [ 'description' => 'OK', ],
+					400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+					500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+				],
+				'title' => 'just a test',
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetOpenApiSpec
+	 */
+	public function testGetOpenApiSpec( $paramSettings, $config, $expected ) {
+		$handler = $this->newHandler( [ 'getParamSettings', 'getBodyParamSettings' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+
+		$module = $this->newModule( [] );
+		$handler->initContext( $module, $config['path'] ?? 'test', $config );
+
+		$spec = $handler->getOpenApiSpec( 'GET' );
+		$this->assertSame( $expected, $spec );
+	}
+
+	public function testGetOpenApiSpec_post() {
+		$paramSettings = [
+			'p' => [
+				Handler::PARAM_SOURCE => 'path',
+			],
+		];
+		$bodySettings = [
+			'q' => [
+				Handler::PARAM_SOURCE => 'body',
+			]
+		];
+
+		$handler = $this->newHandler(
+			[
+				'getParamSettings',
+				'getBodyParamSettings',
+				'getSupportedRequestTypes',
+			]
+		);
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+		$handler->method( 'getBodyParamSettings' )->willReturn( $bodySettings );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( [
+			'text/foo',
+			'application/bar',
+		] );
+
+		$config = [
+			'path' => 'test/{p}'
+		];
+
+		$module = $this->newModule( [] );
+		$handler->initContext( $module, $config['path'], $config );
+
+		$spec = $handler->getOpenApiSpec( 'POST' );
+
+		$expected = [
+			'parameters' => [
+				[
+					'name' => 'p',
+					'description' => 'p parameter',
+					'in' => 'path',
+					'schema' => [ 'type' => 'string', ],
+					'required' => true,
+				]
+			],
+			'responses' => [
+				200 => [ 'description' => 'OK', ],
+				400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+				500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+			],
+		];
+		$this->assertSame( $expected, $spec );
 	}
 
 }

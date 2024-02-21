@@ -91,7 +91,7 @@ trait HandlerTestTrait {
 			$hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
 
 		$session ??= $this->getSession( true );
-		$handler->initContext( $module, $config );
+		$handler->initContext( $module, $config['path'] ?? 'test', $config );
 		$handler->initServices( $authority, $responseFactory, $hookContainer );
 		$handler->initSession( $session );
 		$handler->initForExecute( $request );

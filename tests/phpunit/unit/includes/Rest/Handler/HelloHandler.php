@@ -10,7 +10,8 @@ use MediaWiki\Rest\Handler;
  */
 class HelloHandler extends Handler {
 	public function execute() {
-		return [ 'message' => "Hello!" ];
+		$hello = $this->getConfig()['hello'] ?? 'Hello!';
+		return [ 'message' => $hello ];
 	}
 
 	public function needsWriteAccess() {

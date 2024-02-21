@@ -46,6 +46,9 @@ abstract class Handler {
 	/** @var Authority */
 	private $authority;
 
+	/** @var string */
+	private $path;
+
 	/** @var array */
 	private $config;
 
@@ -78,17 +81,19 @@ abstract class Handler {
 	 * initServices().
 	 *
 	 * @param Module $module
+	 * @param string $path
 	 * @param array $routeConfig information about the route declaration.
 	 *
 	 * @internal
 	 */
-	final public function initContext( Module $module, array $routeConfig ) {
+	final public function initContext( Module $module, string $path, array $routeConfig ) {
 		Assert::precondition(
 			$this->authority === null,
 			'initContext() must be called before initServices()'
 		);
 
 		$this->module = $module;
+		$this->path = $path;
 		$this->config = $routeConfig;
 	}
 
@@ -228,7 +233,7 @@ abstract class Handler {
 	 * @return string
 	 */
 	public function getPath(): string {
-		return $this->getConfig()['path'];
+		return $this->path;
 	}
 
 	/**
@@ -279,7 +284,7 @@ abstract class Handler {
 	 * @return string
 	 */
 	protected function getRouteUrl( $pathParams = [], $queryParams = [] ): string {
-		$path = $this->getConfig()['path'];
+		$path = $this->getPath();
 		return $this->getRouter()->getRouteUrl( $path, $pathParams, $queryParams );
 	}
 
@@ -634,7 +639,7 @@ abstract class Handler {
 
 		$spec = [
 			'parameters' => $parameters,
-			'responses' => $this->getResponseSpec(),
+			'responses' => $this->generateResponseSpec(),
 		];
 
 		$requestBody = $this->getRequestSpec();
@@ -644,12 +649,8 @@ abstract class Handler {
 
 		// TODO: Allow additional information about parameters and responses to
 		//       be provided in the route definition.
-		$overrides = array_intersect_key(
-			$this->getConfig(),
-			array_flip( [ 'description', 'summary', 'tags', 'deprecated', 'externalDocs', 'security' ] )
-		);
-
-		$spec = $overrides + $spec;
+		$oas = $this->getConfig()['OAS'] ?? [];
+		$spec += $oas;
 
 		return $spec;
 	}
@@ -717,7 +718,7 @@ abstract class Handler {
 	 * @stable to override
 	 * @return array
 	 */
-	protected function getResponseSpec(): array {
+	protected function generateResponseSpec(): array {
 		$ok = [ 'description' => 'OK' ];
 
 		$bodySchema = $this->getResponseBodySchema();
