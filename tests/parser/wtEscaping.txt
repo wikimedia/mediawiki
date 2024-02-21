@@ -1450,21 +1450,17 @@ parsoid=html2wt
 <i>a'</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
 <i>a'</i> foo <b><a rel="mw:WikiLink" href="Bar" title="Bar" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[bar]]"}},"i":0}}]}'>bar</a></b>
 <a rel="mw:WikiLink" href="Foo" title="Foo">foo</a> x'<i><a href="Bar" rel="mw:WikiLink" title="Bar">bar</a></i>
-'<i>foo</i> <span class="mw-ref reference" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
+'<i>foo</i> <span typeof="mw:Extension/spantag" about="#mwt3" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"test"}}'>test</span>
 '<i>foo</i> <div title="name">test</div>
 '<i>foo</i> and <br data-parsoid='{"stx":"html","noClose":true}'/> bar
-<div class="mw-references-wrap" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><ol class="mw-references references">
-<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">test</span></li>
-</ol></div>
 !! wikitext
 '''a'' foo ''[[bar]]''
 ''a''' foo ''[[bar]]''
 ''a''' foo '''{{1x|[[bar]]}}'''
 [[foo]] x'''[[bar]]''
-'''foo'' <ref>test</ref>
+'''foo'' <spantag>test</spantag>
 '''foo'' <div title="name">test</div>
 '''foo'' and <br> bar
-<references />
 !! end
 
 !! test
@@ -1601,15 +1597,11 @@ b
 !! options
 parsoid=html2wt
 !! html/parsoid
-<p>foo <span about="#mwt2" class="mw-ref reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
-<div class="mw-references-wrap" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><ol class="mw-references references">
-<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"><i>a</i>
- b</span></li>
-</ol></div>
+<p>foo <span typeof="mw:Extension/spantag" about="#mwt2" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"&apos;&apos;a&apos;&apos;\n b"}}'><i>a</i>
+ b</span></p>
 !! wikitext
-foo <ref>''a''
- b</ref>
-<references />
+foo <spantag>''a''
+ b</spantag>
 !! end
 
 !! test

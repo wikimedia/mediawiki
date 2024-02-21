@@ -299,37 +299,6 @@ Sections:
  h2 index:T-2 toclevel:1 number:2 title:Template:1x off:NULL anchor/linkAnchor:b line:b
 !! end
 
-# FIXME:
-# 1. This potentially exposes a subtle issue in the interaction between TOC, Cite, and
-#    localization. Parsoid doesn't localize numbers in Cite (at all!) since it relies on CSS.
-#    But, with the legacy parser, a wiki with localized numbers will have an anchor
-#    based off a localized number if a <ref> is used in a heading. Parsoid won't!.
-# 2. We probably should be a bit smarter about what to strip for tags when that output
-#    comes from extensions. Below, we have stripped all extension typeofs and info.
-#    But, depends on who uses this 'line' property and how.
-
-# FIXME: test disabled because CI doesn't have the Cite extension installed
-!! test
-Handle extension content in section headers properly
-!! config
-wgFragmentMode=[ "html5", "legacy" ]
-!! options
-nohtml
-showtocdata
-parsoid={
-	"modes": [ "wt2html" ],
-	"wrapSections": true
-}
-!! wikitext
-==c<ref>d</ref>==
-!! metadata/php+disabled
-Sections:
- h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:c[1] line:c<sup>&#91;1&#93;</sup>
-!! metadata/parsoid
-Sections:
- h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:c[1] line:c<sup><span>[1]</span></sup>
-!! end
-
 !! test
 Handle extension content in section headers properly (non-Cite version)
 !! config
@@ -1045,6 +1014,36 @@ flags=
 !! html/parsoid
 <section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id="One">One</h2>
 </section>
+!! end
+
+!! test
+T352467: synthetic sections shouldn't count towards "enough" sections
+!! options
+showflags
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+<div>
+==a==
+==b==
+</div>
+==c==
+!! metadata
+flags=
+!! html/php
+<div>
+<h2><span class="mw-headline" id="a">a</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="b">b</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+</div>
+<h2><span class="mw-headline" id="c">c</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: c">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<section data-mw-section-id="-1"></section><section data-mw-section-id="-2"><div>
+<section data-mw-section-id="1"><h2 id="a">a</h2>
+</section><section data-mw-section-id="-1"><h2 id="b">b</h2>
+</section></div>
+</section><section data-mw-section-id="3"><h2 id="c">c</h2></section>
 !! end
 
 !! test
@@ -1798,12 +1797,12 @@ section 6
 <h2 id="Underscore-Entity_between_Text">Underscore-Entity<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#95;","srcContent":"_"}'>_</span>between<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#95;","srcContent":"_"}'>_</span>Text</h2>
 <p>section 6</p>
 
-<p><a rel="mw:WikiLink" href="./Parser_test#Space_between_Text" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Space_between_Text"},"sa":{"href":"#Space between Text"}}'>#Space between Text</a>
-<a rel="mw:WikiLink" href="./Parser_test#Space-Entity_between_Text" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Space-Entity_between_Text"},"sa":{"href":"#Space-Entity&amp;#32;between&amp;#32;Text"}}'>#Space-Entity between Text</a>
-<a rel="mw:WikiLink" href="./Parser_test#Plus+between+Text" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Plus+between+Text"},"sa":{"href":"#Plus+between+Text"}}'>#Plus+between+Text</a>
-<a rel="mw:WikiLink" href="./Parser_test#Plus-Entity+between+Text" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Plus-Entity+between+Text"},"sa":{"href":"#Plus-Entity&amp;#43;between&amp;#43;Text"}}'>#Plus-Entity+between+Text</a>
-<a rel="mw:WikiLink" href="./Parser_test#Underscore_between_Text" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Underscore_between_Text"},"sa":{"href":"#Underscore_between_Text"}}'>#Underscore_between_Text</a>
-<a rel="mw:WikiLink" href="./Parser_test#Underscore-Entity_between_Text" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Underscore-Entity_between_Text"},"sa":{"href":"#Underscore-Entity&amp;#95;between&amp;#95;Text"}}'>#Underscore-Entity_between_Text</a></p>
+<p><a rel="mw:WikiLink" href="./Parser_test#Space_between_Text" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Space_between_Text"},"sa":{"href":"#Space between Text"}}'>#Space between Text</a>
+<a rel="mw:WikiLink" href="./Parser_test#Space-Entity_between_Text" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Space-Entity_between_Text"},"sa":{"href":"#Space-Entity&amp;#32;between&amp;#32;Text"}}'>#Space-Entity between Text</a>
+<a rel="mw:WikiLink" href="./Parser_test#Plus+between+Text" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Plus+between+Text"},"sa":{"href":"#Plus+between+Text"}}'>#Plus+between+Text</a>
+<a rel="mw:WikiLink" href="./Parser_test#Plus-Entity+between+Text" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Plus-Entity+between+Text"},"sa":{"href":"#Plus-Entity&amp;#43;between&amp;#43;Text"}}'>#Plus-Entity+between+Text</a>
+<a rel="mw:WikiLink" href="./Parser_test#Underscore_between_Text" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Underscore_between_Text"},"sa":{"href":"#Underscore_between_Text"}}'>#Underscore_between_Text</a>
+<a rel="mw:WikiLink" href="./Parser_test#Underscore-Entity_between_Text" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Underscore-Entity_between_Text"},"sa":{"href":"#Underscore-Entity&amp;#95;between&amp;#95;Text"}}'>#Underscore-Entity_between_Text</a></p>
 !! end
 
 # Parsoid html2wt disabled because it adds padding spaces around =
@@ -1976,4 +1975,107 @@ Sections:
 !! metadata/parsoid
 Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:8 anchor/linkAnchor:Renommer_la_page_«_Informatique_durable_»_en_«_Numérique_responsable_»_? line:Renommer la page «<span> </span>Informatique durable<span> </span>» en «<span> </span>Numérique responsable<span> </span>»<span> </span>?
+!! end
+
+### FIXME ptsync 2024-02-21 This test uses <poem> which isn't a
+### dependency of core; it should be rewritten to use one of the
+### special extensions defined by parser tests, like <spantag>;
+### marked html/php+disabled and metadata/php+disabled for now.
+
+!! test
+1. Ensure sections in extensions are ignored + TOC is inserted outside extensions
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+__FORCETOC__
+<poem>
+==poem h2==
+</poem>
+intro
+==page h2==
+blah
+!! html/php+disabled
+<div class="poem">
+<h2><span class="mw-headline" id="poem_h2">poem h2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: poem h2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+</div>
+<p>intro
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#page_h2"><span class="tocnumber">1</span> <span class="toctext">page h2</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="page_h2">page h2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: page h2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>blah
+</p>
+!! html/parsoid
+<section data-mw-section-id="-1"><meta property="mw:PageProp/forcetoc"/> </section><section data-mw-section-id="-2">
+<div class="poem" typeof="mw:Extension/poem" data-mw='{"name":"poem","attrs":{},"body":{"extsrc":"\n==poem h2==\n"}}'><section data-mw-section-id="-1"><h2 id="poem_h2">poem h2</h2></section></div>
+<p>intro</p>
+<meta property="mw:PageProp/toc" data-mw='{"autoGenerated":true}'/></section><section data-mw-section-id="1"><h2 id="page_h2">page h2</h2>
+<p>blah</p></section>
+!! metadata/php+disabled
+THIS SHOULD BE THE SAME AS THE METADATA BELOW; SEE FIXME ABOVE.
+!! metadata/parsoid
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:46 anchor/linkAnchor:page_h2 line:page h2
+!! end
+
+### FIXME ptsync 2024-02-21 This test uses <poem> which isn't a
+### dependency of core; it should be rewritten to use one of the
+### special extensions defined by parser tests, like <spantag>;
+### marked html/php+disabled and metadata/php+disabled for now.
+
+!! test
+2. Ensure sections in extensions are ignored + TOC is inserted outside extensions
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+__FORCETOC__
+{{1x|1=foo
+<poem>
+==poem h2==
+</poem>
+}}
+intro
+==page h2==
+blah
+!! html/php+disabled
+<p>foo
+</p>
+<div class="poem">
+<h2><span class="mw-headline" id="poem_h2">poem h2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: poem h2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+</div>
+<p>intro
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#page_h2"><span class="tocnumber">1</span> <span class="toctext">page h2</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="page_h2">page h2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: page h2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>blah
+</p>
+!! html/parsoid
+<section data-mw-section-id="-1" about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":["__FORCETOC__\n",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo\n&lt;poem>\n==poem h2==\n&lt;/poem>"}},"i":0}},"\nintro\n"]}'><meta property="mw:PageProp/forcetoc" />
+<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo\n&lt;poem>\n==poem h2==\n&lt;/poem>"}},"i":0}}]}'>foo</p><span about="#mwt2">
+</span></section><section data-mw-section-id="-2" about="#mwt4"><div class="poem" typeof="mw:Extension/poem" about="#mwt2" data-mw='{"name":"poem","attrs":{},"body":{"extsrc":"\n==poem h2==\n"}}'><section data-mw-section-id="-1"><h2 id="poem_h2">poem h2</h2></section></div>
+<p>intro</p>
+<meta property="mw:PageProp/toc" data-mw='{"autoGenerated":true}'/></section><section data-mw-section-id="1"><h2 id="page_h2">page h2</h2>
+<p>blah</p></section>
+!! metadata/php+disabled
+THIS SHOULD BE THE SAME AS THE METADATA BELOW; SEE FIXME ABOVE.
+!! metadata/parsoid
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:60 anchor/linkAnchor:page_h2 line:page h2
 !! end
