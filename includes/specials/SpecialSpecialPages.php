@@ -166,7 +166,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		$pout = new ParserOutput;
 		$pout->setTOCData( $tocData );
 		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
-		$pout->setText( Parser::TOC_PLACEHOLDER );
+		$pout->setRawText( Parser::TOC_PLACEHOLDER );
 		$out->addParserOutput( $pout );
 
 		// Format contents

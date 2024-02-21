@@ -276,7 +276,7 @@ class RevisionRenderer {
 				$combinedOutput->mergeHtmlMetaDataFrom( $out );
 			}
 
-			$combinedOutput->setText( $html );
+			$combinedOutput->setRawText( $html );
 		}
 
 		$options->registerWatcher( null );

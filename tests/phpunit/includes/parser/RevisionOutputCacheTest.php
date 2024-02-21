@@ -105,7 +105,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function createDummyParserOutput(): ParserOutput {
 		$parserOutput = new ParserOutput();
-		$parserOutput->setText( 'TEST' );
+		$parserOutput->setRawText( 'TEST' );
 		foreach ( $this->getDummyUsedOptions() as $option ) {
 			$parserOutput->recordOption( $option );
 		}
@@ -369,7 +369,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$unicodeCharacter = "Э";
 		$cache = $this->createRevisionOutputCache( new HashBagOStuff() );
 		$parserOutput = $this->createDummyParserOutput();
-		$parserOutput->setText( $unicodeCharacter );
+		$parserOutput->setRawText( $unicodeCharacter );
 		$cache->save( $parserOutput, $this->revision, ParserOptions::newFromAnon() );
 
 		$backend = TestingAccessWrapper::newFromObject( $cache )->cache;

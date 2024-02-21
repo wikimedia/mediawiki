@@ -102,7 +102,7 @@ abstract class TablePager extends IndexPager {
 		$body = parent::getBody();
 
 		$pout = new ParserOutput;
-		$pout->setText( $body );
+		$pout->setRawText( $body );
 		return $pout;
 	}
 
@@ -120,7 +120,7 @@ abstract class TablePager extends IndexPager {
 		$body = parent::getBody();
 
 		$pout = new ParserOutput;
-		$pout->setText( $navigation . $body . $navigation );
+		$pout->setRawText( $navigation . $body . $navigation );
 		$pout->addModuleStyles( $this->getModuleStyles() );
 		return $pout;
 	}

@@ -137,7 +137,7 @@ class CssContentHandler extends CodeContentHandler {
 		}
 
 		$output->clearWrapperDivClass();
-		$output->setText( $html );
+		$output->setRawText( $html );
 		// Suppress the TOC (T307691)
 		$output->setOutputFlag( ParserOutputFlags::NO_TOC );
 		$output->setSections( [] );

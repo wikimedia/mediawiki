@@ -83,7 +83,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 				$combinedOutput->mergeHtmlMetaDataFrom( $out );
 			}
 
-			$combinedOutput->setText( $html );
+			$combinedOutput->setRawText( $html );
 		}
 
 		return $combinedOutput;

@@ -605,6 +605,8 @@ because of Phabricator reports.
 * ParserOutput::setLanguageLinks() has been deprecated.
 * ParserOutput::getTimestamp() and ::setTimestamp() have been deprecated; use
   ::getRevisionTimestamp() and ::setRevisionTimestamp() instead.
+* ParserOutput::setText() has been deprecated; use ::setRawText() instead which
+  matches the name of the corresponding getter, ParserOutput::getRawText().
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
   and will soon stop working due to schema changes. Instead use
   addDeletedUserFilter() or getBlockDetailsForRows().

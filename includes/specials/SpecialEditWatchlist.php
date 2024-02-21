@@ -254,7 +254,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$pout = new ParserOutput;
 		$pout->setTOCData( $this->tocData );
 		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
-		$pout->setText( Parser::TOC_PLACEHOLDER );
+		$pout->setRawText( Parser::TOC_PLACEHOLDER );
 		$out->addParserOutput( $pout );
 
 		$form->displayForm( $result );

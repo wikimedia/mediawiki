@@ -365,7 +365,7 @@ class DataAccess extends IDataAccess {
 		// created (implicitly in ::prepareParser()/Parser::resetOutput() )
 		// which we then have to manually merge.
 		$out = $parser->getOutput();
-		$out->setText( $html );
+		$out->setRawText( $html );
 		$out->collectMetadata( $metadata ); # merges $out into $metadata
 		return Parser::extractBody( $out->getRawText() );
 	}

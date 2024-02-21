@@ -250,6 +250,6 @@ class TextContentHandler extends ContentHandler {
 		}
 
 		$output->clearWrapperDivClass();
-		$output->setText( $html );
+		$output->setRawText( $html );
 	}
 }

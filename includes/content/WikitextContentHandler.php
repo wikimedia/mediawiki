@@ -391,7 +391,7 @@ class WikitextContentHandler extends TextContentHandler {
 				);
 				$parserOutput->addModuleStyles( [ 'mediawiki.action.view.redirectPage' ] );
 			} else {
-				$parserOutput->setText( null );
+				$parserOutput->setRawText( null );
 			}
 		}
 
