@@ -44,10 +44,15 @@ class CheckComposerLockUpToDate extends Maintenance {
 			// We couldn't find any out-of-date dependencies, so assume everything is ok!
 			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
 		} else {
-			foreach ( $result->getErrors() as $error ) {
-				$this->error(
-					wfMessage( $error['message'], ...$error['params'] )->inLanguage( 'en' )->plain() . "\n"
-				);
+			// NOTE: wfMessage will fail if MediaWikiServices is not yet initialized.
+			// This can happen when this class is called directly from bootstrap code,
+			// e.g. by TestSetup. We get around this by having testSetup use quiet mode.
+			if ( !$this->isQuiet() ) {
+				foreach ( $result->getErrors() as $error ) {
+					$this->error(
+						wfMessage( $error['message'], ...$error['params'] )->inLanguage( 'en' )->plain() . "\n"
+					);
+				}
 			}
 			$this->fatalError(
 				'Error: your composer.lock file is not up to date. ' .
