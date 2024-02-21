@@ -3272,7 +3272,6 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
       i = -1;
-      continue;
     }
   }
   return {
@@ -3326,6 +3325,7 @@ function detectOverflow(state, options) {
       y: 1
     };
     const elementClientRect = rectToClientRect(platform2.convertOffsetParentRelativeRectToViewportRelativeRect ? yield platform2.convertOffsetParentRelativeRectToViewportRelativeRect({
+      elements,
       rect,
       offsetParent,
       strategy
@@ -3338,7 +3338,7 @@ function detectOverflow(state, options) {
     };
   });
 }
-const flip = function(options) {
+const flip$1 = function(options) {
   if (options === void 0) {
     options = {};
   }
@@ -3451,7 +3451,7 @@ function getSideOffsets(overflow, rect) {
 function isAnySideFullyClipped(overflow) {
   return sides.some((side) => overflow[side] >= 0);
 }
-const hide = function(options) {
+const hide$1 = function(options) {
   if (options === void 0) {
     options = {};
   }
@@ -3501,7 +3501,7 @@ const hide = function(options) {
     }
   };
 };
-const size = function(options) {
+const size$1 = function(options) {
   if (options === void 0) {
     options = {};
   }
@@ -3587,7 +3587,7 @@ function getNodeName(node) {
 }
 function getWindow(node) {
   var _node$ownerDocument;
-  return (node == null ? void 0 : (_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.defaultView) || window;
+  return (node == null || (_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.defaultView) || window;
 }
 function getDocumentElement(node) {
   var _ref;
@@ -3790,8 +3790,9 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
   if (domElement) {
     const win = getWindow(domElement);
     const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
-    let currentIFrame = win.frameElement;
-    while (currentIFrame && offsetParent && offsetWin !== win) {
+    let currentWin = win;
+    let currentIFrame = currentWin.frameElement;
+    while (currentIFrame && offsetParent && offsetWin !== currentWin) {
       const iframeScale = getScale(currentIFrame);
       const iframeRect = currentIFrame.getBoundingClientRect();
       const css = getComputedStyle(currentIFrame);
@@ -3803,7 +3804,8 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       height *= iframeScale.y;
       x += left;
       y += top;
-      currentIFrame = getWindow(currentIFrame).frameElement;
+      currentWin = getWindow(currentIFrame);
+      currentIFrame = currentWin.frameElement;
     }
   }
   return rectToClientRect({
@@ -3813,15 +3815,27 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     y
   });
 }
+const topLayerSelectors = [":popover-open", ":modal"];
+function isTopLayer(floating) {
+  return topLayerSelectors.some((selector) => {
+    try {
+      return floating.matches(selector);
+    } catch (e) {
+      return false;
+    }
+  });
+}
 function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
   let {
+    elements,
     rect,
     offsetParent,
     strategy
   } = _ref;
-  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const isFixed = strategy === "fixed";
   const documentElement = getDocumentElement(offsetParent);
-  if (offsetParent === documentElement) {
+  const topLayer = elements ? isTopLayer(elements.floating) : false;
+  if (offsetParent === documentElement || topLayer && isFixed) {
     return rect;
   }
   let scroll = {
@@ -3830,7 +3844,8 @@ function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
   };
   let scale = createCoords(1);
   const offsets = createCoords(0);
-  if (isOffsetParentAnElement || !isOffsetParentAnElement && strategy !== "fixed") {
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
     if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
       scroll = getNodeScroll(offsetParent);
     }
@@ -3988,7 +4003,14 @@ function getClippingRect(_ref) {
   };
 }
 function getDimensions(element) {
-  return getCssDimensions(element);
+  const {
+    width,
+    height
+  } = getCssDimensions(element);
+  return {
+    width,
+    height
+  };
 }
 function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
   const isOffsetParentAnElement = isHTMLElement(offsetParent);
@@ -4012,9 +4034,11 @@ function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
       offsets.x = getWindowScrollBarX(documentElement);
     }
   }
+  const x = rect.left + scroll.scrollLeft - offsets.x;
+  const y = rect.top + scroll.scrollTop - offsets.y;
   return {
-    x: rect.left + scroll.scrollLeft - offsets.x,
-    y: rect.top + scroll.scrollTop - offsets.y,
+    x,
+    y,
     width: rect.width,
     height: rect.height
   };
@@ -4030,7 +4054,7 @@ function getTrueOffsetParent(element, polyfill) {
 }
 function getOffsetParent(element, polyfill) {
   const window2 = getWindow(element);
-  if (!isHTMLElement(element)) {
+  if (!isHTMLElement(element) || isTopLayer(element)) {
     return window2;
   }
   let offsetParent = getTrueOffsetParent(element, polyfill);
@@ -4042,21 +4066,16 @@ function getOffsetParent(element, polyfill) {
   }
   return offsetParent || getContainingBlock(element) || window2;
 }
-const getElementRects = function(_ref) {
+const getElementRects = function(data) {
   return __async(this, null, function* () {
-    let {
-      reference,
-      floating,
-      strategy
-    } = _ref;
     const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
     const getDimensionsFn = this.getDimensions;
     return {
-      reference: getRectRelativeToOffsetParent(reference, yield getOffsetParentFn(floating), strategy),
+      reference: getRectRelativeToOffsetParent(data.reference, yield getOffsetParentFn(data.floating), data.strategy),
       floating: __spreadValues({
         x: 0,
         y: 0
-      }, yield getDimensionsFn(floating))
+      }, yield getDimensionsFn(data.floating))
     };
   });
 };
@@ -4080,8 +4099,9 @@ function observeMove(element, onMove) {
   let timeoutId;
   const root = getDocumentElement(element);
   function cleanup() {
+    var _io;
     clearTimeout(timeoutId);
-    io && io.disconnect();
+    (_io = io) == null || _io.disconnect();
     io = null;
   }
   function refresh(skip, threshold) {
@@ -4172,7 +4192,8 @@ function autoUpdate(reference, floating, update, options) {
         resizeObserver.unobserve(floating);
         cancelAnimationFrame(reobserveFrame);
         reobserveFrame = requestAnimationFrame(() => {
-          resizeObserver && resizeObserver.observe(floating);
+          var _resizeObserver;
+          (_resizeObserver = resizeObserver) == null || _resizeObserver.observe(floating);
         });
       }
       update();
@@ -4197,18 +4218,22 @@ function autoUpdate(reference, floating, update, options) {
   }
   update();
   return () => {
+    var _resizeObserver2;
     ancestors.forEach((ancestor) => {
       ancestorScroll && ancestor.removeEventListener("scroll", update);
       ancestorResize && ancestor.removeEventListener("resize", update);
     });
-    cleanupIo && cleanupIo();
-    resizeObserver && resizeObserver.disconnect();
+    cleanupIo == null || cleanupIo();
+    (_resizeObserver2 = resizeObserver) == null || _resizeObserver2.disconnect();
     resizeObserver = null;
     if (animationFrame) {
       cancelAnimationFrame(frameId);
     }
   };
 }
+const flip = flip$1;
+const size = size$1;
+const hide = hide$1;
 const computePosition = (reference, floating, options) => {
   const cache = /* @__PURE__ */ new Map();
   const mergedOptions = __spreadValues({
@@ -5676,6 +5701,7 @@ const _sfc_main$a = defineComponent({
     const pending = ref(false);
     const expanded = ref(false);
     const isActive = ref(false);
+    const initialMenuItems = ref(props.menuItems);
     const { computedDisabled } = useFieldData(toRef(props, "disabled"));
     const selectedProp = toRef(props, "selected");
     const modelWrapper = useModelWrapper(selectedProp, emit, "update:selected");
@@ -5702,7 +5728,7 @@ const _sfc_main$a = defineComponent({
       if (selectedMenuItem.value && selectedMenuItem.value.label !== newVal && selectedMenuItem.value.value !== newVal) {
         modelWrapper.value = null;
       }
-      if (newVal === "") {
+      if (newVal === "" && initialMenuItems.value.length === 0) {
         expanded.value = false;
         pending.value = false;
       } else {
@@ -5712,11 +5738,8 @@ const _sfc_main$a = defineComponent({
     }
     function onInputFocus(event) {
       isActive.value = true;
-      if (
-        // Input value is not null or an empty string.
-        inputValue.value !== null && inputValue.value !== "" && // There's either menu items to show or a no results message.
-        (props.menuItems.length > 0 || slots["no-results"])
-      ) {
+      const hasInputAndMenuItems = inputValue.value !== null && inputValue.value !== "" && !!(props.menuItems.length > 0 || slots["no-results"]);
+      if (hasInputAndMenuItems || initialMenuItems.value.length > 0) {
         expanded.value = true;
       }
       emit("focus", event);
