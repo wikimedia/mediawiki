@@ -358,7 +358,7 @@
 	"timeouterror-text": "Прекорачено максимално време захтева ($1 {{PLURAL:$1|секунди}}).",
 	"internalerror": "Унутрашња грешка",
 	"internalerror_info": "Унутрашња грешка: $1",
-	"internalerror-fatal-exception": "Грешка необрађеног изузетка врсте „$1”",
+	"internalerror-fatal-exception": "Фатална грешка типа „$1”",
 	"filecopyerror": "Није могуће копирати датотеку „$1” у „$2”.",
 	"filerenameerror": "Није могуће преименовати датотеку „$1” у „$2”.",
 	"filedeleteerror": "Није могуће избрисати датотеку „$1”.",

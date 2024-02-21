@@ -7,7 +7,8 @@
 			"Huñvreüs",
 			"Macofe",
 			"Y-M D",
-			"아라"
+			"아라",
+			"Reedy"
 		]
 	},
 	"config-desc": "Poellad staliañ MediaWiki",
@@ -163,7 +164,7 @@
 	"config-admin-error-password": "Fazi diabarzh o lakaat ur ger-tremen evit ar merour « <nowiki>$1</nowiki> » : <pre>$2</pre>",
 	"config-admin-error-bademail": "Ebarzhet hoc'h eus ur chomlec'h postel direizh.",
 	"config-subscribe": "Koumanantit d'ar [https://lists.wikimedia.org/mailman/listinfo/mediawiki-roll kemennoù evit ar stummoù nevez].",
-	"config-pingback": "Rannañ roadennoù diwar-benn ar staliadur-mañ gant diorroerien Mediawiki.",
+	"config-pingback": "Rannañ roadennoù diwar-benn ar staliadur-mañ gant diorroerien MediaWiki.",
 	"config-almost-done": "Kazi echu eo !\nGellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	"config-optional-continue": "Sevel muioc'h a goulennoù ouzhin.",
 	"config-optional-skip": "Aet on skuizh, staliañ ar wiki hepken.",

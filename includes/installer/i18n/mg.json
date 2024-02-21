@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Jagwar",
-			"Seb35"
+			"Seb35",
+			"Reedy"
 		]
 	},
 	"config-desc": "Fandaharana mametraka an'i MediaWiki",
@@ -35,7 +36,7 @@
 	"config-page-existingwiki": "Wiki efa misy",
 	"config-help-restart": "Tianao hofafana avokoa ve ny data voaangona natsofokao ary hamerina ny fizotran'ny fametrahana ?",
 	"config-restart": "Eny, avereno atao",
-	"config-welcome": "=== Fanamarinana mikasika ny tontolo ===\nNy fanamarihana tsotsotra dia atao hijerena raha mety ho ana rindrankajy Mediawiki ny tontolo.\nTadidio ny mametraka ireto torohay ireo raha mitady fanohanana mikasika ny fomba famaranana ny fametrahana ianao.",
+	"config-welcome": "=== Fanamarinana mikasika ny tontolo ===\nNy fanamarihana tsotsotra dia atao hijerena raha mety ho ana rindrankajy MediaWiki ny tontolo.\nTadidio ny mametraka ireto torohay ireo raha mitady fanohanana mikasika ny fomba famaranana ny fametrahana ianao.",
 	"config-welcome-section-copyright": "== Zom-pamorona ary fepetra ==\n\n$1\n\n\nIo fandaharana dia rindrambaiko maimaim-poana; dia afaka zarazarain ary ovaina araka ny fepetra ao amin'ny GNU General Public License navoakan'ny Free Software Foundation; na versiona 2 ao amin'ny lisansa, na (araka ny safidinao) versiona tatỳ aoriana.\n\nIo fandaharaa io dia zaraina amin'ny fanantenana fa ho ilaina, anefa kosa dia <strong>tsy misy fiantohana</strong>; tsy misy fiantohana mikasika ny <strong>fivarotana azy</strong> na <strong>famendrehana ho azo ampiasaina amin'ny tranga iray manokana</strong>.\nJereo ny GNU General Public License hahazoana zavatra amin'ny antsipiriany.\n\nIanao dia tokony nandray [$2  kôpian'nyGNU General Public License ] miaraka amin'ny fandaharana ity; raha tsy izany, manorata any amin'ny Free Software Foundation, Inc., 51 Franklin Street, Fahadimy Floor, Boston, MA 02110-1301, USA, na [https://www.gnu.org/copyleft/gpl.html vakio ao amin'ny Internet izany].",
 	"config-sidebar": "* [https://www.mediawiki.org MediaWiki fandraisana]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Torolalan'ny mampiasa]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Torolalan'ny mpandrindra]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Fanontaniana mipetraka matetika]\n----\n* <doclink href=Readme>Vakio aho</doclink>\n* <doclink href=ReleaseNotes>Naoty famoahana</doclink>\n* <doclink href=Copying>Fandikàna</doclink>\n* <doclink href=UpgradeDoc>Fampihatsaràna</doclink>",
 	"config-env-good": "Voamarina ny tontolo.\nAfaka apetrakao i MediaWiki.",
