@@ -48,7 +48,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * Utility class for bot passwords
  * @since 1.27
  */
-class BotPassword implements IDBAccessObject {
+class BotPassword {
 
 	public const APPID_MAXLENGTH = 32;
 

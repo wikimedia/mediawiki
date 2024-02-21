@@ -14,7 +14,7 @@ use MediaWiki\Linker\LinkTarget;
  * @since 1.36
  * @ingroup Page
  */
-interface PageLookup extends IDBAccessObject {
+interface PageLookup {
 
 	/**
 	 * Returns the PageIdentity for the given LinkTarget. The page does not have to exist.

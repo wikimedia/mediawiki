@@ -41,7 +41,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @author DannyS712
  * @since 1.37
  */
-class BotPasswordStore implements IDBAccessObject {
+class BotPasswordStore {
 
 	/**
 	 * @internal For use by ServiceWiring

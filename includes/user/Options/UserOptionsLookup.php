@@ -27,7 +27,7 @@ use MediaWiki\User\UserIdentity;
  * Provides access to user options
  * @since 1.35
  */
-abstract class UserOptionsLookup implements IDBAccessObject {
+abstract class UserOptionsLookup {
 
 	/**
 	 * Exclude user options that are set to their default value.

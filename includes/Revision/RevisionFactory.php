@@ -35,7 +35,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @note This was written to act as a drop-in replacement for the corresponding
  *       static methods in the old Revision class (which was later removed in 1.37).
  */
-interface RevisionFactory extends IDBAccessObject {
+interface RevisionFactory {
 
 	/**
 	 * Constructs a RevisionRecord given a database row and content slots.

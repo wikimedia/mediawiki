@@ -48,7 +48,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @note This was written to act as a drop-in replacement for the corresponding
  *       static methods in the old Revision class (which was later removed in 1.37).
  */
-class SqlBlobStore implements IDBAccessObject, BlobStore {
+class SqlBlobStore implements BlobStore {
 
 	// Note: the name has been taken unchanged from the old Revision class.
 	public const TEXT_CACHE_GROUP = 'revisiontext:10';

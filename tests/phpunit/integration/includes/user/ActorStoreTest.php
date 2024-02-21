@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\User;
 
 use CannotCreateActorException;
+use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
@@ -852,7 +853,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 
 	public function testNewSelectQueryBuilderWithQueryFlags() {
 		$store = $this->getStore();
-		$queryBuilder = $store->newSelectQueryBuilder( ActorStore::READ_NORMAL );
+		$queryBuilder = $store->newSelectQueryBuilder( IDBAccessObject::READ_NORMAL );
 		$this->assertInstanceOf( UserSelectQueryBuilder::class, $queryBuilder );
 	}
 }

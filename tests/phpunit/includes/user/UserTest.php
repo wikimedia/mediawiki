@@ -883,7 +883,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'Invalid confirmation codes result in null users when reading from replicas'
 		);
 
-		$user = User::newFromConfirmationCode( 'OtherFakeCode', User::READ_LATEST );
+		$user = User::newFromConfirmationCode( 'OtherFakeCode', IDBAccessObject::READ_LATEST );
 		$this->assertNull(
 			$user,
 			'Invalid confirmation codes result in null users when reading from master'

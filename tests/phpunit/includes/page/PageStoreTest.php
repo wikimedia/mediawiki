@@ -2,6 +2,7 @@
 namespace MediaWiki\Tests\Page;
 
 use Exception;
+use IDBAccessObject;
 use InvalidArgumentException;
 use LinkCacheTestTrait;
 use MediaWiki\Config\ServiceOptions;
@@ -712,7 +713,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 			[ 'dbLoadBalancer' => $lb ]
 		);
 
-		$pageStore->newSelectQueryBuilder( PageStore::READ_LATEST )
+		$pageStore->newSelectQueryBuilder( IDBAccessObject::READ_LATEST )
 			->fetchPageRecord();
 	}
 

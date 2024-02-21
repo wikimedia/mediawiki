@@ -38,7 +38,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @since 1.35
  */
-class UserFactory implements IDBAccessObject, UserRigorOptions {
+class UserFactory implements UserRigorOptions {
 
 	/**
 	 * RIGOR_* constants are inherited from UserRigorOptions
