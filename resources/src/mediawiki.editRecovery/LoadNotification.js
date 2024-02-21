@@ -22,15 +22,18 @@ const LoadNotification = function mwWidgetsEditRecoveryLoadNotification( config 
 			this.diffButton.$element,
 			this.discardButton.$element
 		);
-	let $differentRev = null;
+	let differentRev = null;
+	let differentRevSave = null;
 	if ( config.differentRev ) {
-		$differentRev = $( '<em>' )
-			.text( mw.message( 'edit-recovery-loaded-message-different-rev' ) );
+		differentRev = mw.message( 'edit-recovery-loaded-message-different-rev' ).parse();
+		differentRevSave = mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ?
+			mw.message( 'edit-recovery-loaded-message-different-rev-publish' ).parse() :
+			mw.message( 'edit-recovery-loaded-message-different-rev-save' ).parse();
 	}
 	this.$element.append(
 		mw.message( 'edit-recovery-loaded-message' ).escaped(),
-		' ',
-		$differentRev,
+		differentRev,
+		differentRevSave,
 		$buttons
 	);
 };
