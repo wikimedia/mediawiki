@@ -262,7 +262,7 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		// Init pageName if oldid is provided and is a valid revision
-		if ( empty( $attribs['pageName'] ) && $attribs['oldid'] ) {
+		if ( ( $attribs['pageName'] === '' ) && $attribs['oldid'] ) {
 			$rev = $this->revisionLookup->getRevisionById( $attribs['oldid'] );
 			if ( $rev ) {
 				$attribs['pageName'] = $rev->getPage()->getDBkey();
@@ -501,7 +501,7 @@ abstract class ParsoidHandler extends Handler {
 		$pagelanguageOverride = $attribs['pagelanguage'];
 		$title = $attribs['pageName'];
 
-		$title = $title ? Title::newFromText( $title ) : Title::newMainPage();
+		$title = ( $title !== '' ) ? Title::newFromText( $title ) : Title::newMainPage();
 		if ( !$title ) {
 			// TODO use proper validation
 			throw new LogicException( 'Title not found!' );
@@ -560,7 +560,7 @@ abstract class ParsoidHandler extends Handler {
 	 * @throws HttpException
 	 */
 	protected function tryToCreatePageIdentity( array $attribs ): PageIdentity {
-		if ( !isset( $attribs['pageName'] ) || $attribs['pageName'] === '' ) {
+		if ( $attribs['pageName'] === '' ) {
 			return Title::newMainPage();
 		}
 

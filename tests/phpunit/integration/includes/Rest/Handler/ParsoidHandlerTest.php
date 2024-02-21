@@ -1441,6 +1441,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'expected page language' => $de,
 		];
 
+		yield 'Try to create a page config with pageName set to zero string' => [
+			'attribs' => [ 'oldid' => 1, 'pageName' => '0', 'pagelanguage' => $de ],
+			'wikitext' => null,
+			'html2WtMode' => false,
+			'expected page language' => $de,
+		];
+
 		yield 'Try to create a page config with no page language' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => '', 'pagelanguage' => null ],
 			'wikitext' => null,
@@ -1471,6 +1478,9 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$expectedWikitext,
 			$pageConfig->getRevisionContent()->getContent( SlotRecord::MAIN )
 		);
+
+		$pageName = ( $attribs['pageName'] === '' ) ? 'Main Page' : $attribs['pageName'];
+		$this->assertSame( $pageName, $pageConfig->getTitle() );
 
 		$this->assertSame( $expectedLanguage->getCode(), $pageConfig->getPageLanguageBcp47()->getCode() );
 	}
