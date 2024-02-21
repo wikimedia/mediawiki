@@ -12,6 +12,7 @@ use MediaWiki\Tests\OutputTransform\TestUtils;
  * This test does not extend OutputTransformStageTestBase because we're explicitly testing that
  * the options are modified during the pipeline run.
  * @covers \MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks
+ * @group Database
  */
 class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 
