@@ -440,6 +440,7 @@ class ApiUpload extends ApiBase {
 							'filekey' => $this->mParams['filekey'] ?? '-',
 							'filesize' => $this->mParams['filesize'],
 							'chunkSize' => $chunkSize,
+							'status' => (string)$status
 						]
 					);
 					$this->dieStatusWithCode( $status, 'stashfailed' );

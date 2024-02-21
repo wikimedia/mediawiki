@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;
 use Wikimedia\ScopedCallback;
 
@@ -48,6 +49,27 @@ class PublishStashedFileJob extends Job implements GenericParameterJob {
 				$this->setLastError( "Could not load the author user from session." );
 
 				return false;
+			}
+
+			$startingStatus = UploadBase::getSessionStatus( $user, $this->params['filekey'] );
+			// Warn if in wrong stage, but still continue. User may be able to trigger
+			// this by retrying after failure.
+			if (
+				!$startingStatus ||
+				( $startingStatus['result'] ?? '' ) !== 'Poll' ||
+				( $startingStatus['stage'] ?? '' ) !== 'queued'
+			) {
+				$logger = LoggerFactory::getInstance( 'upload' );
+				$logger->warning( "Tried to publish upload that is in stage {stage}/{result}",
+					[
+						'stage' => $startingStatus['stage'] ?? '-',
+						'result' => $startingStatus['result'] ?? '-',
+						'status' => (string)( $startingStatus['status'] ?? '-' ),
+						'filekey' => $this->params['filekey'],
+						'filename' => $this->params['filename'],
+						'user' => $user->getName(),
+					]
+				);
 			}
 
 			UploadBase::setSessionStatus(
