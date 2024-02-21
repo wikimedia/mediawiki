@@ -32,7 +32,9 @@ const LoadNotification = function mwWidgetsEditRecoveryLoadNotification( config 
 	}
 	this.$element.append(
 		mw.message( 'edit-recovery-loaded-message' ).escaped(),
+		mw.message( 'word-separator' ).parse(),
 		differentRev,
+		mw.message( 'word-separator' ).parse(),
 		differentRevSave,
 		$buttons
 	);

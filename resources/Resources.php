@@ -1371,6 +1371,7 @@ return [
 			'edit-recovery-loaded-message-different-rev-save',
 			'edit-recovery-loaded-show',
 			'edit-recovery-loaded-discard',
+			'word-separator',
 		],
 	],
 
