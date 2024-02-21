@@ -31,7 +31,7 @@ class EditPage extends Page {
 	async openForEditing( title ) {
 		await super.openTitle( title, { action: 'submit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
 		// Compatibility with CodeMirror extension (T324879)
-		Util.waitForModuleState( 'mediawiki.base' );
+		await Util.waitForModuleState( 'mediawiki.base' );
 		const hasToolbar = await this.save.isExisting() && await browser.execute( () => {
 			return mw.loader.getState( 'ext.wikiEditor' ) !== null;
 		} );
