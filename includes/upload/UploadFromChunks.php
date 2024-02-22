@@ -143,6 +143,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @return Status
 	 */
 	public function concatenateChunks() {
+		$oldFileKey = $this->mFileKey;
 		$chunkIndex = $this->getChunkIndex();
 		$this->logger->debug(
 			__METHOD__ . ' concatenate {totalChunks} chunks: {offset} inx: {curIndex}',
@@ -150,6 +151,7 @@ class UploadFromChunks extends UploadFromFile {
 				'offset' => $this->getOffset(),
 				'totalChunks' => $this->mChunkIndex,
 				'curIndex' => $chunkIndex,
+				'filekey' => $oldFileKey
 			]
 		);
 
@@ -170,7 +172,7 @@ class UploadFromChunks extends UploadFromFile {
 			// keep alive with $this
 			$tmpPath = $tmpFile->bind( $this )->getPath();
 		} else {
-			$this->logger->warning( "Error getting tmp file" );
+			$this->logger->warning( "Error getting tmp file", [ 'filekey' => $oldFileKey ] );
 		}
 
 		// Concatenate the chunks at the temp file
@@ -183,7 +185,7 @@ class UploadFromChunks extends UploadFromFile {
 			$this->logFileBackendStatus(
 				$status,
 				'[{type}] Error on concatenate {chunks} stashed files ({details})',
-				[ 'chunks' => $chunkIndex ]
+				[ 'chunks' => $chunkIndex, 'filekey' => $oldFileKey ]
 			);
 			return $status;
 		}
@@ -195,7 +197,13 @@ class UploadFromChunks extends UploadFromFile {
 
 		$ret = $this->verifyUpload();
 		if ( $ret['status'] !== UploadBase::OK ) {
-			$this->logger->info( "Verification failed for chunked upload", [ 'user' => $this->user->getName() ] );
+			$this->logger->info(
+				"Verification failed for chunked upload {filekey}",
+				[
+					'user' => $this->user->getName(),
+					'filekey' => $oldFileKey
+				]
+			);
 			$status->fatal( $this->getVerificationErrorCode( $ret['status'] ) );
 
 			return $status;
@@ -236,6 +244,17 @@ class UploadFromChunks extends UploadFromFile {
 		$tAmount = microtime( true ) - $tStart;
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable tmpFile is set when tmpPath is set here
 		$this->mStashFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
+		$this->logger->info( "Stashed combined ({chunks} chunks) of {oldkey} under new name {filekey}",
+			[
+				'chunks' => $i,
+				'stashTime' => $tAmount,
+				'oldpath' => $this->mVirtualTempPath,
+				'filekey' => $this->mStashFile->getFileKey(),
+				'oldkey' => $oldFileKey,
+				'newpath' => $this->mStashFile->getPath(),
+				'user' => $this->user->getName()
+			]
+		);
 		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds." );
 
 		return $status;
