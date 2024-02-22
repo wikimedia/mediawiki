@@ -327,11 +327,11 @@
 		 * blank it out and start over.
 		 *
 		 * @example <caption>For example, to change a user option, you could do:</caption>
-		 *     new mw.Api().postWithToken( 'csrf', {
-		 *         action: 'options',
-		 *         optionname: 'gender',
-		 *         optionvalue: 'female'
-		 *     } );
+		 * new mw.Api().postWithToken( 'csrf', {
+		 *     action: 'options',
+		 *     optionname: 'gender',
+		 *     optionvalue: 'female'
+		 * } );
 		 *
 		 * @param {string} tokenType The name of the token, like options or edit.
 		 * @param {Object} params API parameters
@@ -481,18 +481,17 @@
 		 * Your user interface should have enough space for that.
 		 *
 		 * @example
-		 *
-		 *     var api = new mw.Api();
-		 *     // var title = 'Test valid title';
-		 *     var title = 'Test invalid title <>';
-		 *     api.postWithToken( 'watch', {
-		 *       action: 'watch',
-		 *       title: title
-		 *     } ).then( function ( data ) {
-		 *       mw.notify( 'Success!' );
-		 *     }, function ( code, data ) {
-		 *       mw.notify( api.getErrorMessage( data ), { type: 'error' } );
-		 *     } );
+		 * var api = new mw.Api();
+		 * // var title = 'Test valid title';
+		 * var title = 'Test invalid title <>';
+		 * api.postWithToken( 'watch', {
+		 *   action: 'watch',
+		 *   title: title
+		 * } ).then( function ( data ) {
+		 *   mw.notify( 'Success!' );
+		 * }, function ( code, data ) {
+		 *   mw.notify( api.getErrorMessage( data ), { type: 'error' } );
+		 * } );
 		 *
 		 * @param {Object} data API response indicating an error
 		 * @return {jQuery} Error messages, each wrapped in a `<div>`

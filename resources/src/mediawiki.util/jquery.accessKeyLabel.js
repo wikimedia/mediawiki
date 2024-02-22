@@ -177,11 +177,11 @@ function updateTooltip( element ) {
  * @method updateTooltipAccessKeys
  * @return {jQuery}
  * @example
- *   // Converts tooltip "[z]" to associated browser shortcut key e.g. "[ctrl-option-z]"
- *   mw.loader.using( 'mediawiki.util' ).then( () => {
+ * // Converts tooltip "[z]" to associated browser shortcut key e.g. "[ctrl-option-z]"
+ * mw.loader.using( 'mediawiki.util' ).then( () => {
  *     var $a = $('<a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a>');
  *     $a.updateTooltipAccessKeys();
- *   } );
+ * } );
  * @chainable
  */
 $.fn.updateTooltipAccessKeys = function () {

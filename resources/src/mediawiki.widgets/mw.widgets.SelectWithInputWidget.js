@@ -11,23 +11,24 @@
 	 * an OO.ui.DropdownInputWidget.
 	 * TODO Explain the OTHER option
 	 *
-	 *     mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', function () {
-	 *       var swi = new mw.widgets.SelectWithInputWidget( {
-	 *         or: true,
-	 *         dropdowninput: {
-	 *           options: [
-	 *             { data: 'other', label: 'Other' },
-	 *             { data: 'a', label: 'First' },
-	 *             { data: 'b', label: 'Second' },
-	 *             { data: 'c', label: 'Third' }
-	 *           ]
-	 *         },
-	 *         textinput: {
-	 *         }
-	 *       } );
+	 * @example
+	 * mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', function () {
+	 *   var swi = new mw.widgets.SelectWithInputWidget( {
+	 *     or: true,
+	 *     dropdowninput: {
+	 *       options: [
+	 *         { data: 'other', label: 'Other' },
+	 *         { data: 'a', label: 'First' },
+	 *         { data: 'b', label: 'Second' },
+	 *         { data: 'c', label: 'Third' }
+	 *       ]
+	 *     },
+	 *     textinput: {
+	 *     }
+	 *   } );
 	 *
-	 *       $( document.body ).append( swi.$element );
-	 *     } );
+	 *   $( document.body ).append( swi.$element );
+	 * } );
 	 *
 	 * @class mw.widgets.SelectWithInputWidget
 	 * @extends OO.ui.Widget

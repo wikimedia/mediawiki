@@ -680,10 +680,9 @@
 	/**
 	 * Fetch and display a preview of the current editing area.
 	 *
-	 * Usage:
-	 *
-	 *     var preview = require( 'mediawiki.page.preview' );
-	 *     preview.doPreview();
+	 * @example
+	 * var preview = require( 'mediawiki.page.preview' );
+	 * preview.doPreview();
 	 *
 	 * @exports mediawiki.page.preview
 	 */

@@ -46,7 +46,7 @@
 		 *   user is logged in but they see it logged in under a different username.
 		 *
 		 * @example
-		 *   api.postWithToken( 'csrf', api.assertCurrentUser( { action: 'edit', ... } ) )
+		 * api.postWithToken( 'csrf', api.assertCurrentUser( { action: 'edit', ... } ) )
 		 *
 		 * @since 1.27
 		 * @param {Object} query Query parameters. The object will not be changed.

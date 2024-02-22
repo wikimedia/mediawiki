@@ -10,12 +10,13 @@
 	 * to the revision associated with the edit that triggered the postEdit hook, then fire
 	 * the postEdit hook, e.g.:
 	 *
-	 *     mw.config.set( {
-	 *        wgCurRevisionId: data.newrevid,
-	 *        wgRevisionId: data.newrevid
-	 *     } );
-	 *     // Now fire the hook.
-	 *     mw.hook( 'postEdit' ).fire();
+	 * @example
+	 * mw.config.set( {
+	 *    wgCurRevisionId: data.newrevid,
+	 *    wgRevisionId: data.newrevid
+	 * } );
+	 * // Now fire the hook.
+	 * mw.hook( 'postEdit' ).fire();
 	 *
 	 * @event postEdit
 	 * @member mw.hook
@@ -104,10 +105,9 @@
 	/**
 	 * Show post-edit messages.
 	 *
-	 * Usage:
-	 *
-	 *     var postEdit = require( 'mediawiki.action.view.postEdit' );
-	 *     postEdit.fireHook( 'saved' );
+	 * @example
+	 * var postEdit = require( 'mediawiki.action.view.postEdit' );
+	 * postEdit.fireHook( 'saved' );
 	 *
 	 * @class mw.plugin.action.view.postEdit
 	 * @singleton

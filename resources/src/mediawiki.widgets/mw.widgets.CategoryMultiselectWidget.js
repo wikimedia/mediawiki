@@ -12,18 +12,19 @@
 	 * Category selector widget. Displays an OO.ui.MenuTagMultiselectWidget
 	 * and autocompletes with available categories.
 	 *
-	 *     mw.loader.using( 'mediawiki.widgets.CategoryMultiselectWidget', function () {
-	 *       var selector = new mw.widgets.CategoryMultiselectWidget( {
-	 *         searchTypes: [
-	 *           mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch,
-	 *           mw.widgets.CategoryMultiselectWidget.SearchType.InternalSearch
-	 *         ]
-	 *       } );
+	 * @example
+	 * mw.loader.using( 'mediawiki.widgets.CategoryMultiselectWidget', function () {
+	 *   var selector = new mw.widgets.CategoryMultiselectWidget( {
+	 *     searchTypes: [
+	 *       mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch,
+	 *       mw.widgets.CategoryMultiselectWidget.SearchType.InternalSearch
+	 *     ]
+	 *   } );
 	 *
-	 *       $( document.body ).append( selector.$element );
+	 *   $( document.body ).append( selector.$element );
 	 *
-	 *       selector.setSearchTypes( [ mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories ] );
-	 *     } );
+	 *   selector.setSearchTypes( [ mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories ] );
+	 * } );
 	 *
 	 * @class mw.widgets.CategoryMultiselectWidget
 	 * @uses mw.Api

@@ -49,18 +49,17 @@ mw.log.error = Function.prototype.bind.call( console.error, console );
  * Create a function that logs a deprecation warning when called.
  *
  * @example
+ * var deprecatedNoB = mw.log.makeDeprecated( 'hello_without_b', 'Use of hello without b is deprecated.' );
  *
- *     var deprecatedNoB = mw.log.makeDeprecated( 'hello_without_b', 'Use of hello without b is deprecated.' );
+ * function hello( a, b ) {
+ *   if ( b === undefined ) {
+ *     deprecatedNoB();
+ *     b = 0;
+ *   }
+ *   return a + b;
+ * }
  *
- *     function hello( a, b ) {
- *       if ( b === undefined ) {
- *         deprecatedNoB();
- *         b = 0;
- *       }
- *       return a + b;
- *     }
- *
- *     hello( 1 );
+ * hello( 1 );
  *
  * @since 1.38
  * @param {string|null} key Name of the feature for deprecation tracker,
@@ -85,10 +84,10 @@ mw.log.makeDeprecated = function ( key, msg ) {
  * a deprecation warning to the console.
  *
  * @example
+ * mw.log.deprecate( window, 'myGlobalFn', myGlobalFn );
  *
- *    mw.log.deprecate( window, 'myGlobalFn', myGlobalFn );
- *
- *    mw.log.deprecate( Thing, 'old', old, 'Use Other.thing instead', 'Thing.old'  );
+ * @example
+ * mw.log.deprecate( Thing, 'old', old, 'Use Other.thing instead', 'Thing.old'  );
  *
  * @param {Object} obj Host object of deprecated property
  * @param {string} key Name of property to create in `obj`

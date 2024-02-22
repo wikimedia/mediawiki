@@ -1,7 +1,6 @@
 /**
- * Usage:
- *
- *     var convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
+ * @example
+ * var convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
  *
  * @class mw.plugin.convertmessagebox
  * @singleton

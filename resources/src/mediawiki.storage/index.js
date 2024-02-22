@@ -23,19 +23,19 @@
  * See also <https://phabricator.wikimedia.org/T121646>.
  *
  * @example mw.storage.set( key, value, expiry );
- *     mw.storage.set( key, value ); // stored indefinitely
- *     mw.storage.get( key );
+ * mw.storage.set( key, value ); // stored indefinitely
+ * mw.storage.get( key );
  *
  * @example var local = require( 'mediawiki.storage' ).local;
- *     local.set( key, value, expiry );
- *     local.get( key );
+ * local.set( key, value, expiry );
+ * local.get( key );
  *
  * @example mw.storage.session.set( key, value );
- *     mw.storage.session.get( key );
+ * mw.storage.session.get( key );
  *
  * @example var session = require( 'mediawiki.storage' ).session;
- *     session.set( key, value );
- *     session.get( key );
+ * session.set( key, value );
+ * session.get( key );
  *
  * @module mediawiki.storage
  */
