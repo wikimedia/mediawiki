@@ -944,12 +944,19 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * Enables output capture in the current output buffer.
-	 * The caller may need to call ob_start() to establish a buffer.
-	 * The captured output can be retrieved using getCapturedOutput().
-	 * When output capture is enabled, flushOutputBuffer() will not actually
-	 * send output.
+	 * Enable capturing of the current output buffer.
 	 *
+	 * There may be mutiple levels of output buffering. The level
+	 * we are currently at, at the time of calling this method,
+	 * is the level that will be captured to later retrieve via
+	 * getCapturedOutput().
+	 *
+	 * When capturing is active, flushOutputBuffer() will not actually
+	 * write to the real STDOUT, but instead write only to the capture.
+	 *
+	 * This exists to ease testing.
+	 *
+	 * @internal For use in PHPUnit tests
 	 * @see ob_start()
 	 * @see getCapturedOutput();
 	 */
@@ -998,13 +1005,17 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * Commits all output buffers down to the capture buffer level,
-	 * then clears the capture buffer and returns its contents.
+	 * Stop capturing and return all output
 	 *
-	 * Needs enableOutputCapture() to be called before run().
+	 * It flushes and drains all output buffers, but lets it go
+	 * to a return value instead of the real STDOUT.
 	 *
+	 * You must call enableOutputCapture() and run() before getCapturedOutput().
+	 *
+	 * @internal For use in PHPUnit tests
 	 * @see enableOutputCapture();
 	 * @see ob_end_clean
+	 * @return string HTTP response body
 	 */
 	public function getCapturedOutput(): string {
 		if ( $this->outputCaptureLevel === null ) {

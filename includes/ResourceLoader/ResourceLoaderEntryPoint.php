@@ -1,10 +1,5 @@
 <?php
 /**
- * Entry point implementation for @ref ResourceLoader, which serves static CSS/JavaScript
- * via @ref MediaWiki\ResourceLoader\Module Module subclasses.
- *
- * @see /load.php The web entry point
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup entrypoint
- * @ingroup ResourceLoader
  */
 
 namespace MediaWiki\ResourceLoader;
@@ -30,7 +23,15 @@ namespace MediaWiki\ResourceLoader;
 use MediaWiki\MediaWikiEntryPoint;
 use Profiler;
 
-class ResourceEntryPoint extends MediaWikiEntryPoint {
+/**
+ * Entry point implementation for @ref ResourceLoader, which serves static CSS/JavaScript
+ * via @ref MediaWiki\ResourceLoader\Module Module subclasses.
+ *
+ * @see load.php
+ * @ingroup ResourceLoader
+ * @ingroup entrypoint
+ */
+class ResourceLoaderEntryPoint extends MediaWikiEntryPoint {
 
 	/**
 	 * Main entry point
