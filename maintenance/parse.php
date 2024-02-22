@@ -73,6 +73,7 @@ class CLIParser extends Maintenance {
 			true
 		);
 		$this->addArg( 'file', 'File containing wikitext (Default: stdin)', false );
+		$this->addOption( 'parsoid', 'Whether to use Parsoid', false, false, 'p' );
 	}
 
 	public function execute() {
@@ -106,7 +107,12 @@ class CLIParser extends Maintenance {
 	}
 
 	protected function initParser() {
-		$this->parser = $this->getServiceContainer()->getParserFactory()->create();
+		$services = $this->getServiceContainer();
+		if ( $this->hasOption( 'parsoid' ) ) {
+			$this->parser = $services->getParsoidParserFactory()->create();
+		} else {
+			$this->parser = $services->getParserFactory()->create();
+		}
 	}
 
 	/**
