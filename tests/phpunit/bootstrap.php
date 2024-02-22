@@ -90,6 +90,13 @@ if ( !$hasIntegrationTests ) {
 	// another process, not in this one, because loading setting files may have non-trivial side effects that could be
 	// hard to undo. This sucks, but there doesn't seem to be a way to get a list of extensions and skins without
 	// loading all of MediaWiki, which we don't want to do for unit tests.
+
+	// Disable XDEBUG, so it doesn't cause the sub-process to hang. T358097
+	$env = getenv();
+	unset( $env['XDEBUG_CONFIG'] );
+	unset( $env['XDEBUG_MODE'] );
+	unset( $env['XDEBUG_SESSION'] );
+
 	// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.proc_open
 	$process = proc_open(
 		__DIR__ . '/getPHPUnitExtensionsAndSkins.php',
@@ -98,13 +105,16 @@ if ( !$hasIntegrationTests ) {
 			1 => [ 'pipe', 'w' ],
 			2 => [ 'pipe', 'w' ]
 		],
-		$pipes
+		$pipes,
+		null,
+		$env
 	);
 
 	$extensionData = stream_get_contents( $pipes[1] );
 	fclose( $pipes[1] );
 	$cmdErr = stream_get_contents( $pipes[2] );
 	fclose( $pipes[2] );
+
 	$exitCode = proc_close( $process );
 	if ( $exitCode !== 0 ) {
 		echo "Cannot load list of extensions and skins. Output:\n$cmdErr\n";
