@@ -54,21 +54,29 @@ class ParserTestParserHook {
 	 * @param array $argv
 	 * @param Parser $parser
 	 * @return string
-	 * @suppress PhanUndeclaredProperty static_tag_buf is deliberately dynamic
 	 * @suppress SecurityCheck-XSS
 	 * @suppress UnusedSuppression
 	 */
 	public static function staticTagHook( $in, $argv, $parser ) {
+		$KEY = 'mw:tests:static-tag-hook';
+		$po = $parser->getOutput();
 		if ( !count( $argv ) ) {
-			$parser->static_tag_buf = $in;
+			$po->appendExtensionData( $KEY, $in );
 			return '';
 		} elseif ( count( $argv ) === 1 && isset( $argv['action'] )
 			&& $argv['action'] === 'flush' && $in === null
 		) {
-			// Clear the buffer, we probably don't need to
-			$tmp = $parser->static_tag_buf ?? '';
-			$parser->static_tag_buf = null;
-			return $tmp;
+			// This pattern is deprecated, since the order of parsing will
+			// in the future not be guaranteed.  A better approach is to
+			// collect/emit the buffered content in a post-processing pass
+			// over the document after parsing of the article and all contained
+			// fragments is completed and the fragments are merged.
+			// T357838, T300979
+			$vals = $po->getExtensionData( $KEY );
+			if ( $vals === null ) {
+				return '';
+			}
+			return array_key_last( $vals );
 		} else { // wtf?
 			return "\nCall this extension as <statictag>string</statictag> or as" .
 				" <statictag action=flush/>, not in any other way.\n" .
