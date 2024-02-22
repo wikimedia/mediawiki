@@ -543,7 +543,7 @@ class DatabaseBlockStore {
 				$autoBlocks[] = $block;
 			} else {
 				$blocks[] = $block;
-				$blockIds[] = $block->getId();
+				$blockIds[] = $block->getId( $this->wikiId );
 			}
 		}
 
