@@ -2,9 +2,6 @@
  * Number-related utilities for mediawiki.language.
  */
 ( function () {
-	/**
-	 * @namespace mw.language
-	 */
 
 	/**
 	 * Pad a string to guarantee that it is at least `size` length by

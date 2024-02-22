@@ -42,7 +42,6 @@
 	 * Information about month names in current UI language.
 	 *
 	 * @property {Months}
-	 * @namespace mw.language.months
 	 */
 	mw.language.months = {
 		keys: {

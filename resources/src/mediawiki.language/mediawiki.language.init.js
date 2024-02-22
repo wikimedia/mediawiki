@@ -1,5 +1,7 @@
 ( function () {
 	/**
+	 * Methods for transforming message syntax.
+	 *
 	 * Base language object with methods related to language support, attempting to mirror some of the
 	 * functionality of the Language class in MediaWiki:
 	 *
@@ -7,7 +9,7 @@
 	 *   - transforming message syntax (`{{PLURAL:}}`, `{{GRAMMAR:}}`, `{{GENDER:}}`)
 	 *   - formatting numbers
 	 *
-	 * @class
+	 * @namespace mw.language
 	 * @singleton
 	 */
 	mw.language = {

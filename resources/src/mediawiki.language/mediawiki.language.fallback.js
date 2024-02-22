@@ -2,9 +2,6 @@
  * Language-fallback-chain-related utilities for mediawiki.language.
  */
 ( function () {
-	/**
-	 * @namespace mw.language
-	 */
 
 	Object.assign( mw.language, {
 
