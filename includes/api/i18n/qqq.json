@@ -240,6 +240,7 @@
 	"apihelp-feedrecentchanges-param-hideminor": "{{doc-apihelp-param|feedrecentchanges|hideminor}}",
 	"apihelp-feedrecentchanges-param-hidebots": "{{doc-apihelp-param|feedrecentchanges|hidebots}}",
 	"apihelp-feedrecentchanges-param-hideanons": "{{doc-apihelp-param|feedrecentchanges|hideanons}}",
+	"apihelp-feedrecentchanges-param-hideanons-temp": "{{doc-apihelp-param|feedrecentchanges|hideanons}}",
 	"apihelp-feedrecentchanges-param-hideliu": "{{doc-apihelp-param|feedrecentchanges|hideliu}}",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "{{doc-apihelp-param|feedrecentchanges|hidepatrolled}}",
 	"apihelp-feedrecentchanges-param-hidemyself": "{{doc-apihelp-param|feedrecentchanges|hidemyself}}",

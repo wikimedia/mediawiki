@@ -203,6 +203,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiFeedRecentChanges::class,
 			'services' => [
 				'SpecialPageFactory',
+				'TempUserConfig',
 			]
 		],
 		'feedwatchlist' => [

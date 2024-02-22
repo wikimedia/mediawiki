@@ -25,6 +25,7 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -38,19 +39,23 @@ class ApiFeedRecentChanges extends ApiBase {
 	private $params;
 
 	private SpecialPageFactory $specialPageFactory;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param SpecialPageFactory $specialPageFactory
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		SpecialPageFactory $specialPageFactory
+		SpecialPageFactory $specialPageFactory,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->specialPageFactory = $specialPageFactory;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -183,7 +188,12 @@ class ApiFeedRecentChanges extends ApiBase {
 
 			'hideminor' => false,
 			'hidebots' => false,
-			'hideanons' => false,
+			'hideanons' => [
+				ParamValidator::PARAM_DEFAULT => false,
+				ApiBase::PARAM_HELP_MSG => $this->tempUserConfig->isEnabled() ?
+					'apihelp-feedrecentchanges-param-hideanons-temp' :
+					'apihelp-feedrecentchanges-param-hideanons',
+			],
 			'hideliu' => false,
 			'hidepatrolled' => false,
 			'hidemyself' => false,
