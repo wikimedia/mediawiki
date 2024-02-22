@@ -238,6 +238,7 @@
 	"apihelp-feedrecentchanges-param-hideminor": "Hide minor changes.",
 	"apihelp-feedrecentchanges-param-hidebots": "Hide changes made by bots.",
 	"apihelp-feedrecentchanges-param-hideanons": "Hide changes made by anonymous users.",
+	"apihelp-feedrecentchanges-param-hideanons-temp": "Hide changes made by anonymous users and temporary accounts.",
 	"apihelp-feedrecentchanges-param-hideliu": "Hide changes made by registered users.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Hide patrolled changes.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Hide changes made by the current user.",
