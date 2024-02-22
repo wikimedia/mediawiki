@@ -113,6 +113,11 @@ function onLoadHandler( $editForm ) {
 	} );
 }
 
+function track( metric, value ) {
+	const dbName = mw.config.get( 'wgDBname' );
+	mw.track( `counter.MediaWiki.edit_recovery.${ metric }.by_wiki.${ dbName }`, value );
+}
+
 function onLoadData( pageData ) {
 	// If there is data stored, load it into the form.
 	if ( pageData !== undefined && !isSameAsOriginal( pageData, true ) ) {
@@ -120,6 +125,10 @@ function onLoadData( pageData ) {
 		const loadNotification = new LoadNotification( {
 			differentRev: originalData.field_parentRevId !== pageData.field_parentRevId
 		} );
+
+		// statsv: Track the number of times the edit recovery notification is shown.
+		track( 'show', 1 );
+
 		const notification = loadNotification.getNotification();
 		// On 'show changes'.
 		loadNotification.getDiffButton().on( 'click', function () {
@@ -131,6 +140,8 @@ function onLoadData( pageData ) {
 			storage.deleteData( mw.config.get( 'wgPageName' ) ).then( function () {
 				notification.close();
 			} );
+			// statsv: Track the number of times the edit recovery data is discarded.
+			track( 'discard', 1 );
 		} );
 	}
 
