@@ -2303,7 +2303,6 @@
 	"filehist-nothumb": "Shown if no thumbnail is available in the file history list of a file desription page.\n\nExample: [[:Image:Addon-icn.png]]",
 	"filehist-user": "In image description page.\n\n{{Identical|User}}",
 	"filehist-dimensions": "Used as label in file description page.\n\nFollowed by length, or width x height, and filesize. e.g. \"1.5 s (13 KB)\".",
-	"filehist-filesize": "Used in image description page.\n{{Identical|File size}}",
 	"filehist-comment": "In file description page\n\n{{Identical|Comment}}",
 	"filehist-missing": "Used in file description page",
 	"imagelinks": "Appears on file description pages above the preview of the file in a box with:\n* {{msg-mw|file-anchor-link}}\n* {{msg-mw|filehist}}\n* {{msg-mw|metadata}}\n\nShows a list of pages where this file is used.\n\n{{Identical|File usage}}",
