@@ -1155,6 +1155,7 @@
 	"prefs-searchmisc": "General",
 	"searchprefs": "Search preferences",
 	"searchprefs-noresults": "No results",
+	"searchprefs-results": "$1 {{PLURAL:$1|result|results}}",
 	"saveprefs": "Save",
 	"restoreprefs": "Restore all default settings",
 	"prefs-editing": "Editing",

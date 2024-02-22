@@ -16,9 +16,10 @@
 		 *
 		 * @ignore
 		 * @param {string} hintMsg the layout-specific navigation hint message
+		 * @return {jQuery}
 		 */
 		insertHints: function ( hintMsg ) {
-			$( '<div>' ).addClass( 'mw-navigation-hint' )
+			return $( '<div>' ).addClass( 'mw-navigation-hint' )
 				.text( hintMsg )
 				.attr( {
 					tabIndex: 0
