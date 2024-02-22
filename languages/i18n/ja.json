@@ -760,7 +760,7 @@
 	"edit-recovery-special-recovered-on": "$1 より",
 	"edit-recovery-special-recovered-on-tooltip": "リカバリデータが最後に保存された日時",
 	"edit-recovery-loaded-title": "変更が復元されました",
-	"edit-recovery-loaded-message": "未保存の変更は自動で復元されました。&#32;",
+	"edit-recovery-loaded-message": "未保存の変更は自動で復元されました。",
 	"edit-recovery-loaded-show": "差分を表示",
 	"edit-recovery-loaded-discard": "変更内容を破棄",
 	"summary": "編集内容の要約:",

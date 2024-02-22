@@ -708,7 +708,7 @@
 	"edit-recovery-special-edit": "редагувати",
 	"edit-recovery-special-recovered-on": "Відновлено $1",
 	"edit-recovery-loaded-title": "Зміни відновлено",
-	"edit-recovery-loaded-message": "Ваші незбережені зміни відновлено автоматично&#32;",
+	"edit-recovery-loaded-message": "Ваші незбережені зміни відновлено автоматично",
 	"edit-recovery-loaded-show": "Показати зміни",
 	"edit-recovery-loaded-discard": "Відхилити зміни",
 	"summary": "Короткий опис змін:",

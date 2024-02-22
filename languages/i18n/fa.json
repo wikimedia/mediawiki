@@ -705,7 +705,7 @@
 	"edit-recovery-special-intro": "شما در {{PLURAL:$1|صفحه یا بخش|صفحه‌ها یا بخش‌های}} زیر تغییرات ذخیره‌نشده‌ای دارید:",
 	"edit-recovery-special-intro-empty": "شما هیچ تغییر ذخیره‌نشده‌ای ندارید.",
 	"edit-recovery-loaded-title": "تغییرات بازیابی شد",
-	"edit-recovery-loaded-message": "تغییرات ذخیره‌نشدهٔ شما به صورت خودکار بازیابی شد.&#32;",
+	"edit-recovery-loaded-message": "تغییرات ذخیره‌نشدهٔ شما به صورت خودکار بازیابی شد.",
 	"edit-recovery-loaded-show": "نمایش تغییرات",
 	"edit-recovery-loaded-discard": "دور ریختن تغییرات",
 	"summary": "خلاصه:",

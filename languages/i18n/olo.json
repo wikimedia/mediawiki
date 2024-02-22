@@ -616,7 +616,7 @@
 	"edit-recovery-special-intro": "Sinul on tallendamattomii kohenduksii {{PLURAL:$1|iellizel sivul libo iellizes ozas|iellizil sivuloil da/libo iellizis ozis}}:",
 	"edit-recovery-special-intro-empty": "Sinul ei ole tallendamattomii muutoksii.",
 	"edit-recovery-loaded-title": "Muutokset on suadu endizeh kundoh",
-	"edit-recovery-loaded-message": "Sinun tallendamattah olijat muutokset ollah avtomuattizesti suadu endizeh kundoh.&#32;",
+	"edit-recovery-loaded-message": "Sinun tallendamattah olijat muutokset ollah avtomuattizesti suadu endizeh kundoh.",
 	"edit-recovery-loaded-show": "Ozuta muutokset",
 	"edit-recovery-loaded-discard": "Kumata muutokset",
 	"summary": "Yhtehvedo:",

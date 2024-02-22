@@ -675,7 +675,7 @@
 	"edit-recovery-special-intro": "Bạn có những thay đổi chưa được lưu cho {{PLURAL:$1|trang hoặc đề mục|các trang và/hoặc đề mục}} sau:",
 	"edit-recovery-special-intro-empty": "Bạn không có thay đổi nào chưa được lưu.",
 	"edit-recovery-loaded-title": "Đã khôi phục các thay đổi",
-	"edit-recovery-loaded-message": "Các thay đổi chưa lưu của bạn đã được khôi phục tự động&#32;",
+	"edit-recovery-loaded-message": "Các thay đổi chưa lưu của bạn đã được khôi phục tự động",
 	"edit-recovery-loaded-show": "Xem thay đổi",
 	"edit-recovery-loaded-discard": "Hủy thay đổi",
 	"summary": "Tóm lược:",

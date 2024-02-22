@@ -673,7 +673,7 @@
 	"edit-recovery-special-intro": "Vi havas nekonservitajn ŝanĝojn al la {{PLURAL:$1| sekva paĝo aŭ sekcio|sekvaj paĝoj kaj/aŭ sekcioj}}:",
 	"edit-recovery-special-intro-empty": "Vi ne havas nekonservitajn ŝanĝojn.",
 	"edit-recovery-loaded-title": "Ŝanĝoj retroviĝis",
-	"edit-recovery-loaded-message": "Viaj nekonservitaj ŝanĝoj estis aŭtomate restaŭritaj.&#32;",
+	"edit-recovery-loaded-message": "Viaj nekonservitaj ŝanĝoj estis aŭtomate restaŭritaj.",
 	"edit-recovery-loaded-show": "Montri ŝanĝojn",
 	"edit-recovery-loaded-discard": "Ignori ŝanĝojn",
 	"summary": "Resumo:",

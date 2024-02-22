@@ -759,7 +759,7 @@
 	"edit-recovery-special-edit": "editar",
 	"edit-recovery-special-recovered-on": "Recuperado em $1",
 	"edit-recovery-loaded-title": "Mudanças recuperadas",
-	"edit-recovery-loaded-message": "As suas mudanças ainda não salvadas foram recuperadas automaticamente.&#32;",
+	"edit-recovery-loaded-message": "As suas mudanças ainda não salvadas foram recuperadas automaticamente.",
 	"edit-recovery-loaded-show": "Mostrar alterações",
 	"edit-recovery-loaded-discard": "Descartar alterações",
 	"summary": "Resumo da edição:",

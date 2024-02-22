@@ -707,7 +707,7 @@
 	"edit-recovery-special-view": "보기",
 	"edit-recovery-special-edit": "편집",
 	"edit-recovery-loaded-title": "변경사항 복구됨",
-	"edit-recovery-loaded-message": "저장되지 않은 변경사항은 자동으로 복구되었습니다.&#32;",
+	"edit-recovery-loaded-message": "저장되지 않은 변경사항은 자동으로 복구되었습니다.",
 	"edit-recovery-loaded-show": "차이 보기",
 	"edit-recovery-loaded-discard": "바뀜 버리기",
 	"summary": "요약:",
