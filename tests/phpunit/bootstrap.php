@@ -114,7 +114,7 @@ if ( !$hasIntegrationTests ) {
 		$env
 	);
 
-	$extensionData = stream_get_contents( $pipes[1] );
+	$pathsToJsonFilesStr = stream_get_contents( $pipes[1] );
 	fclose( $pipes[1] );
 	$cmdErr = stream_get_contents( $pipes[2] );
 	fclose( $pipes[2] );
@@ -125,11 +125,7 @@ if ( !$hasIntegrationTests ) {
 		exit( 1 );
 	}
 
-	// For simplicity, getPHPUnitExtensionsAndSkins uses `\n\nTESTPATHS\n\n` to separate the lists of JSON files and
-	// additional test paths, so split the output into the individual lists.
-	[ $pathsToJsonFilesStr, $testPathsStr ] = explode( "\n\nTESTPATHS\n\n", $extensionData );
 	$pathsToJsonFiles = $pathsToJsonFilesStr ? explode( "\n", $pathsToJsonFilesStr ) : [];
-	$testPaths = explode( "\n", $testPathsStr );
 
 	$extensionProcessor = new ExtensionProcessor();
 	foreach ( $pathsToJsonFiles as $filePath ) {
@@ -148,9 +144,6 @@ if ( !$hasIntegrationTests ) {
 	TestSetup::loadSettingsFiles();
 
 	$extensionRegistry = ExtensionRegistry::getInstance();
-	$extensionsAndSkins = $extensionRegistry->getQueue();
-
-	$pathsToJsonFiles = array_keys( $extensionsAndSkins );
 
 	$testPaths = [];
 	foreach ( $extensionRegistry->getAllThings() as $info ) {
@@ -159,10 +152,5 @@ if ( !$hasIntegrationTests ) {
 
 	( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsList( $testPaths );
 }
-
-/** @internal For use in ExtensionsUnitTestSuite only */
-define( 'MW_PHPUNIT_EXTENSIONS_PATHS', array_map( 'dirname', $pathsToJsonFiles ) );
-/** @internal For use in ExtensionsTestSuite only */
-define( 'MW_PHPUNIT_EXTENSIONS_TEST_PATHS', $testPaths );
 
 TestSetup::maybeCheckComposerLockUpToDate();

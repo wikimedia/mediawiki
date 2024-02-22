@@ -27,7 +27,7 @@
 			<directory>tests/phpunit/unit</directory>
 		</testsuite>
 		<testsuite name="extensions:unit">
-			<file>tests/phpunit/suites/ExtensionsUnitTestSuite.php</file>
+			<!-- The actual extension unit tests are added in generatePHPUnitConfig.php -->
 		</testsuite>
 		<testsuite name="includes">
 			<directory>tests/phpunit/includes</directory>
@@ -38,7 +38,7 @@
 		</testsuite>
 		<testsuite name="skins">
 			<directory>tests/phpunit/structure</directory>
-			<file>tests/phpunit/suites/ExtensionsTestSuite.php</file>
+			<!-- The actual skin tests are added in generatePHPUnitConfig.php -->
 		</testsuite>
 		<!-- As there is a class Maintenance, we cannot use the name "maintenance" directly -->
 		<testsuite name="maintenance_suite">
@@ -52,8 +52,8 @@
 		</testsuite>
 		<testsuite name="extensions">
 			<directory>tests/phpunit/structure</directory>
-			<file>tests/phpunit/suites/ExtensionsTestSuite.php</file>
 			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>
+			<!-- The actual extension tests are added in generatePHPUnitConfig.php -->
 		</testsuite>
 		<testsuite name="integration">
 			<directory>tests/phpunit/integration</directory>
