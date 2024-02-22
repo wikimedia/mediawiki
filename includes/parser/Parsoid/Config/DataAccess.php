@@ -254,6 +254,8 @@ class DataAccess extends IDataAccess {
 				'url' => $file->getFullUrl(),
 				'mustRender' => $file->mustRender(),
 				'badFile' => $this->badFileLookup->isBadFile( $filename, $page ),
+				'timestamp' => $file->getTimestamp(),
+				'sha1' => $file->getSha1(),
 			];
 
 			$length = $file->getLength();
