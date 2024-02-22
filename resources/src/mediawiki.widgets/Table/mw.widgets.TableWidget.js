@@ -156,7 +156,7 @@ mw.widgets.TableWidget.static.patterns = {
  */
 
 /**
- * Fires when a row is removed from the table
+ * Fires when a row is removed from the table.
  *
  * @event mw.widgets.TableWidget.removeRow
  * @param {number} index The index of the row being deleted

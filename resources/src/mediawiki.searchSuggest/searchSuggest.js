@@ -50,7 +50,7 @@
 		 * @param {ResponseMetaData} meta meta data relating to search.
 		 */
 		/**
-		 * Queries the wiki and calls response with the result
+		 * Queries the wiki and calls response with the result.
 		 *
 		 * @param {mw.Api} api
 		 * @param {string} query

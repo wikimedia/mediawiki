@@ -297,7 +297,7 @@ module.exports = {
 	/** @type {CheckboxHack} */
 	checkboxHack: require( './checkboxHack.js' ),
 	/**
-	 * A container for displaying elements that overlay the page e.g. dialogs.
+	 * A container for displaying elements that overlay the page, such as dialogs.
 	 *
 	 * @type {HTMLElement}
 	 */
