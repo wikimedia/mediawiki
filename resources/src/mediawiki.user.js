@@ -337,7 +337,7 @@
 		},
 
 		/**
-		 * Manage client preferences
+		 * Manage client preferences.
 		 *
 		 * For skins that enable the `clientPrefEnabled` option (see Skin class in PHP),
 		 * this feature allows you to store preferences in the browser session that will
