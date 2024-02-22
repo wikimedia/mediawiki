@@ -10,7 +10,7 @@
 	 *
 	 * A simple example:
 	 *
-	 *     var file = new OO.ui.SelectFileWidget(),
+	 *     var file = new OO.ui.SelectFileInputWidget(),
 	 *       button = new OO.ui.ButtonWidget( { label: 'Save' } ),
 	 *       upload = new mw.Upload;
 	 *
