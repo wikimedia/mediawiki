@@ -24,9 +24,9 @@ require( './jquery.js' );
  *
  * @namespace mw.cookie
  * @example
- *   mw.loader.using( 'mediawiki.cookie' ).then( () => {
- *     mw.cookie.set('hello', 'world' );
- *   })
+ * mw.loader.using( 'mediawiki.cookie' ).then( () => {
+ *   mw.cookie.set('hello', 'world' );
+ * })
  */
 mw.cookie = {
 	/**

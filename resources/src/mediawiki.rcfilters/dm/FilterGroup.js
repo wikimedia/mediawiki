@@ -391,21 +391,21 @@ FilterGroup.prototype.hasWhatsThis = function () {
  * Conflict object is set up by filter name keys and conflict
  * definition.
  *
- *     @example
- *     [
- *         {
- *             filterName: {
- *                 filter: filterName,
- *                 group: group1
- *             }
- *         },
- *         {
- *             filterName2: {
- *                 filter: filterName2,
- *                 group: group2
- *             }
+ * @example
+ * [
+ *     {
+ *         filterName: {
+ *             filter: filterName,
+ *             group: group1
  *         }
- *     ]
+ *     },
+ *     {
+ *         filterName2: {
+ *             filter: filterName2,
+ *             group: group2
+ *         }
+ *     }
+ * ]
  *
  * @return {Object} Conflict definition
  */

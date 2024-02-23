@@ -362,15 +362,14 @@
 		 * more, or conflicting, data to pass to the server.
 		 *
 		 * @example
-		 *
-		 *     // upload a file to the stash with a placeholder filename
-		 *     api.uploadToStash( file, { filename: 'testing.png' } ).done( function ( finish ) {
-		 *         // finish is now the function we can use to finalize the upload
-		 *         // pass it a new filename from user input to override the initial value
-		 *         finish( { filename: getFilenameFromUser() } ).done( function ( data ) {
-		 *             // the upload is complete, data holds the API response
-		 *         } );
+		 * // upload a file to the stash with a placeholder filename
+		 * api.uploadToStash( file, { filename: 'testing.png' } ).done( function ( finish ) {
+		 *     // finish is now the function we can use to finalize the upload
+		 *     // pass it a new filename from user input to override the initial value
+		 *     finish( { filename: getFilenameFromUser() } ).done( function ( data ) {
+		 *         // the upload is complete, data holds the API response
 		 *     } );
+		 * } );
 		 *
 		 * @param {File|HTMLInputElement} file
 		 * @param {Object} [data]

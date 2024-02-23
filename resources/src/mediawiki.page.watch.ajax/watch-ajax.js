@@ -442,16 +442,15 @@
 	 * Animate watch/unwatch links to use asynchronous API requests to
 	 * watch pages, rather than navigating to a different URI.
 	 *
-	 * Usage:
-	 *
-	 *     var watch = require( 'mediawiki.page.watch.ajax' );
-	 *     watch.updateWatchLink(
-	 *         $node,
-	 *         'watch',
-	 *         'loading'
-	 *     );
-	 *     // When the watch status of the page has been updated:
-	 *     watch.updatePageWatchStatus( true );
+	 * @example
+	 * var watch = require( 'mediawiki.page.watch.ajax' );
+	 * watch.updateWatchLink(
+	 *     $node,
+	 *     'watch',
+	 *     'loading'
+	 * );
+	 * // When the watch status of the page has been updated:
+	 * watch.updatePageWatchStatus( true );
 	 *
 	 * @exports mediawiki.page.watch.ajax
 	 */

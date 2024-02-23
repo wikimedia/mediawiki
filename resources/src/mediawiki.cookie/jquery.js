@@ -12,10 +12,11 @@ var jar = require( './jar.js' );
  * @param {mw.cookie.CookieOptions} [options]
  * @return {string|Object} The current value (if getting a cookie), or an internal `document.cookie`
  *  expression (if setting or removing).
+ *
  * @example
- *    mw.loader.using( 'mediawiki.cookie' ).then( () => {
- *       $.cookie( 'name', 'value', {} );
- *    } );
+ * mw.loader.using( 'mediawiki.cookie' ).then( () => {
+ *     $.cookie( 'name', 'value', {} );
+ * } );
  */
 $.cookie = jar.cookie;
 
@@ -23,9 +24,10 @@ $.cookie = jar.cookie;
  * Remove a cookie by key.
  *
  * @example
- *    mw.loader.using( 'mediawiki.cookie' ).then( () => {
- *       $.removeCookie( 'name', {} );
- *    } );
+ * mw.loader.using( 'mediawiki.cookie' ).then( () => {
+ *     $.removeCookie( 'name', {} );
+ * } );
+ *
  * @memberof jQueryPlugins
  * @method removeCookie
  * @param {string} key

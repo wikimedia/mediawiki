@@ -414,17 +414,27 @@ var toUpperMap,
  * use [makeTitle]{@link mw.Title.makeTitle}.
  *
  * @example
- *     new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();                  // => 'Template:Foo'
- *     mw.Title.newFromText( 'Foo', NS_TEMPLATE ).getPrefixedText();          // => 'Template:Foo'
- *     mw.Title.makeTitle( NS_TEMPLATE, 'Foo' ).getPrefixedText();            // => 'Template:Foo'
+ * new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();
+ * // => 'Template:Foo'
+ * mw.Title.newFromText( 'Foo', NS_TEMPLATE ).getPrefixedText();
+ * // => 'Template:Foo'
+ * mw.Title.makeTitle( NS_TEMPLATE, 'Foo' ).getPrefixedText();
+ * // => 'Template:Foo'
  *
- *     new mw.Title( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Category:Foo'
- *     mw.Title.newFromText( 'Category:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Category:Foo'
- *     mw.Title.makeTitle( NS_TEMPLATE, 'Category:Foo' ).getPrefixedText();   // => 'Template:Category:Foo'
+ * new mw.Title( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();
+ * // => 'Category:Foo'
+ * mw.Title.newFromText( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();
+ * // => 'Category:Foo'
+ * mw.Title.makeTitle( NS_TEMPLATE, 'Category:Foo' ).getPrefixedText();
+ * // => 'Template:Category:Foo'
  *
- *     new mw.Title( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Template:Foo'
- *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
- *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
+ * new mw.Title( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();
+ * // => 'Template:Foo'
+ * mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();
+ * // => 'Template:Foo'
+ * mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();
+ * // => 'Template:Template:Foo'
+ *
  * @class mw.Title
  * @classdesc Library for constructing MediaWiki titles.
  * @param {string} title Title of the page. If no second argument given,
@@ -604,7 +614,7 @@ Title.newFromFileName = function ( uncleanName ) {
  * Get the file title from an image element.
  *
  * @example
- *     var title = mw.Title.newFromImg( imageNode );
+ * var title = mw.Title.newFromImg( imageNode );
  *
  * @name mw.Title.newFromImg
  * @method

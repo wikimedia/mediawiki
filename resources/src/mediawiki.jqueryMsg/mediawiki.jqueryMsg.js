@@ -1268,12 +1268,13 @@ HtmlEmitter.prototype = {
 	/**
 	 * Transform parsed structure according to gender.
 	 *
-	 * Usage: {{gender:[ mw.user object | '' | 'male' | 'female' | 'unknown' ] | masculine form | feminine form | neutral form}}.
-	 *
 	 * The first node must be one of:
 	 * - the mw.user object (or a compatible one)
 	 * - an empty string - indicating the current user, same effect as passing the mw.user object
 	 * - a gender string ('male', 'female' or 'unknown')
+	 *
+	 * @example
+	 * {{gender:[ mw.user object | '' | 'male' | 'female' | 'unknown' ] | masculine form | feminine form | neutral form}}
 	 *
 	 * @param {Array} nodes List of nodes, [ {string|mw.user}, {string}, {string}, {string} ]
 	 * @return {string|jQuery} Selected gender form according to current language

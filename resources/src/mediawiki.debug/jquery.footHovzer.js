@@ -14,11 +14,10 @@
 	/**
 	 * Utility to stack stuff in an overlay fixed on the bottom of the page.
 	 *
-	 * Usage:
-	 *
-	 *     var hovzer = $.getFootHovzer();
-	 *     hovzer.$.append( $myCollection );
-	 *     hovzer.update();
+	 * @example
+	 * var hovzer = $.getFootHovzer();
+	 * hovzer.$.append( $myCollection );
+	 * hovzer.update();
 	 *
 	 * @private
 	 * @static

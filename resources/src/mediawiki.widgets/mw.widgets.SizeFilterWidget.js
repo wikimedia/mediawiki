@@ -9,10 +9,11 @@
 	/**
 	 * RadioSelectInputWidget and a TextInputWidget to set minimum or maximum byte size.
 	 *
-	 *     mw.loader.using( 'mediawiki.widgets.SizeFilterWidget', function () {
-	 *       var sf = new mw.widgets.SizeFilterWidget();
-	 *       $( document.body ).append( sf.$element );
-	 *     } );
+	 * @example
+	 * mw.loader.using( 'mediawiki.widgets.SizeFilterWidget', function () {
+	 *   var sf = new mw.widgets.SizeFilterWidget();
+	 *   $( document.body ).append( sf.$element );
+	 * } );
 	 *
 	 * @class mw.widgets.SizeFilterWidget
 	 * @extends OO.ui.Widget

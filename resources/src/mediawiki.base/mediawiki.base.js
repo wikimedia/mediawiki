@@ -14,40 +14,39 @@ require( './errorLogger.js' );
  * The constructor is not publicly accessible; use {@link mw.message} instead.
  *
  * @example
+ * var obj, str;
+ * mw.messages.set( {
+ *     'hello': 'Hello world',
+ *     'hello-user': 'Hello, $1!',
+ *     'welcome-user': 'Welcome back to $2, $1! Last visit by $1: $3',
+ *     'so-unusual': 'You will find: $1'
+ * } );
  *
- *     var obj, str;
- *     mw.messages.set( {
- *         'hello': 'Hello world',
- *         'hello-user': 'Hello, $1!',
- *         'welcome-user': 'Welcome back to $2, $1! Last visit by $1: $3',
- *         'so-unusual': 'You will find: $1'
- *     } );
+ * obj = mw.message( 'hello' );
+ * mw.log( obj.text() );
+ * // Hello world
  *
- *     obj = mw.message( 'hello' );
- *     mw.log( obj.text() );
- *     // Hello world
+ * obj = mw.message( 'hello-user', 'John Doe' );
+ * mw.log( obj.text() );
+ * // Hello, John Doe!
  *
- *     obj = mw.message( 'hello-user', 'John Doe' );
- *     mw.log( obj.text() );
- *     // Hello, John Doe!
+ * obj = mw.message( 'welcome-user', 'John Doe', 'Wikipedia', '2 hours ago' );
+ * mw.log( obj.text() );
+ * // Welcome back to Wikipedia, John Doe! Last visit by John Doe: 2 hours ago
  *
- *     obj = mw.message( 'welcome-user', 'John Doe', 'Wikipedia', '2 hours ago' );
- *     mw.log( obj.text() );
- *     // Welcome back to Wikipedia, John Doe! Last visit by John Doe: 2 hours ago
+ * // Using mw.msg shortcut, always in "text' format.
+ * str = mw.msg( 'hello-user', 'John Doe' );
+ * mw.log( str );
+ * // Hello, John Doe!
  *
- *     // Using mw.msg shortcut, always in "text' format.
- *     str = mw.msg( 'hello-user', 'John Doe' );
- *     mw.log( str );
- *     // Hello, John Doe!
+ * // Different formats
+ * obj = mw.message( 'so-unusual', 'Time "after" <time>' );
  *
- *     // Different formats
- *     obj = mw.message( 'so-unusual', 'Time "after" <time>' );
+ * mw.log( obj.text() );
+ * // You will find: Time "after" <time>
  *
- *     mw.log( obj.text() );
- *     // You will find: Time "after" <time>
- *
- *     mw.log( obj.escaped() );
- *     // You will find: Time &quot;after&quot; &lt;time&gt;
+ * mw.log( obj.escaped() );
+ * // You will find: Time &quot;after&quot; &lt;time&gt;
  *
  * @class mw.Message
  * @classdesc Describes a translateable text or HTML string. Similar to the Message class in MediaWiki PHP.
@@ -396,13 +395,13 @@ mw.track = function ( topic, data ) {
  * `data` event object. The `this` value for the callback is a plain object with `topic` and
  * `data` properties set to those same values.
  *
- * Example to monitor all topics for debugging:
+ * @example
+ * // To monitor all topics for debugging
+ * mw.trackSubscribe( '', console.log );
  *
- *     mw.trackSubscribe( '', console.log );
- *
- * Example to subscribe to any of `foo.*`, e.g. both `foo.bar` and `foo.quux`:
- *
- *     mw.trackSubscribe( 'foo.', console.log );
+ * @example
+ * // To subscribe to any of `foo.*`, e.g. both `foo.bar` and `foo.quux`
+ * mw.trackSubscribe( 'foo.', console.log );
  *
  * @memberof mw
  * @param {string} topic Handle events whose name starts with this string prefix
@@ -489,10 +488,9 @@ var hooks = Object.create( null );
  * Create an instance of {@link Hook}.
  *
  * @example
- *
- *   const hook = mw.hook( 'name' );
- *   hook.add( () => alert( 'Hook was fired' ) );
- *   hook.fire();
+ * const hook = mw.hook( 'name' );
+ * hook.add( () => alert( 'Hook was fired' ) );
+ * hook.fire();
  *
  * @param {string} name Name of hook.
  * @return {Hook}
@@ -575,15 +573,14 @@ mw.hook = function ( name ) {
 /**
  * HTML construction helper functions.
  *
- *     @example
+ * @example
+ * var Html, output;
  *
- *     var Html, output;
- *
- *     Html = mw.html;
- *     output = Html.element( 'div', {}, new Html.Raw(
- *         Html.element( 'img', { src: '<' } )
- *     ) );
- *     mw.log( output ); // <div><img src="&lt;"/></div>
+ * Html = mw.html;
+ * output = Html.element( 'div', {}, new Html.Raw(
+ *     Html.element( 'img', { src: '<' } )
+ * ) );
+ * mw.log( output ); // <div><img src="&lt;"/></div>
  *
  * @namespace mw.html
  * @singleton
@@ -676,9 +673,8 @@ mw.html = {
 	 * @param {string} value
 	 * @property {string} value
 	 * @example
-	 *
-	 *   const raw = new mw.html.Raw( 'Text' );
-	 *   mw.html.element( 'div', { class: 'html' }, raw );
+	 * const raw = new mw.html.Raw( 'Text' );
+	 * mw.html.element( 'div', { class: 'html' }, raw );
 	 */
 	Raw: function ( value ) {
 		this.value = value;

@@ -43,11 +43,11 @@
 	 * @class mw.Map
 	 * @classdesc Create an object that can be read from or written to via methods that allow
 	 * interaction both with single and multiple properties at once.
-	 * @example
 	 *
-	 *   const map = new mw.Map();
-	 *   map.set( 'foo', 5 );
-	 *   alert( 5 === map.get( 'foo' ) );
+	 * @example
+	 * const map = new mw.Map();
+	 * map.set( 'foo', 5 );
+	 * alert( 5 === map.get( 'foo' ) );
 	 */
 	function Map() {
 		this.values = Object.create( null );

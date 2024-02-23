@@ -37,23 +37,23 @@
 	 * mw.Rest objects represent the REST API of a particular MediaWiki server.
 	 *
 	 * @example
-	 *     var api = new mw.Rest();
-	 *     api.get( '/v1/page/Main_Page/html' )
-	 *     .done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
+	 * var api = new mw.Rest();
+	 * api.get( '/v1/page/Main_Page/html' )
+	 * .done( function ( data ) {
+	 *     console.log( data );
+	 * } );
 	 *
-	 *     api.post( '/v1/page/Main_Page', {
-	 *          token: 'anon_token',
-	 *          source: 'Lörem Ipsüm',
-	 *          comment: 'tästing',
-	 *          title: 'My_Page'
-	 *     }, {
-	 *         'authorization': 'token'
-	 *     } )
-	 *     .done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
+	 * api.post( '/v1/page/Main_Page', {
+	 *      token: 'anon_token',
+	 *      source: 'Lörem Ipsüm',
+	 *      comment: 'tästing',
+	 *      title: 'My_Page'
+	 * }, {
+	 *     'authorization': 'token'
+	 * } )
+	 * .done( function ( data ) {
+	 *     console.log( data );
+	 * } );
 	 *
 	 * @constructor
 	 * @param {mw.Rest.Options} [options] See {@link mw.Rest.Options}

@@ -84,28 +84,27 @@
 	 *
 	 * See #implement and #execute for exact details on support for script, style and messages.
 	 *
-	 *     @example Format:
+	 * @example // Format:
+	 * {
+	 *     'moduleName': {
+	 *         // From mw.loader.register()
+	 *         'version': '#####' (five-character hash)
+	 *         'dependencies': ['required.foo', 'bar.also', ...]
+	 *         'group': string, integer, (or) null
+	 *         'source': 'local', (or) 'anotherwiki'
+	 *         'skip': 'return !!window.Example;', (or) null, (or) boolean result of skip
+	 *         'module': export Object
 	 *
-	 *     {
-	 *         'moduleName': {
-	 *             // From mw.loader.register()
-	 *             'version': '#####' (five-character hash)
-	 *             'dependencies': ['required.foo', 'bar.also', ...]
-	 *             'group': string, integer, (or) null
-	 *             'source': 'local', (or) 'anotherwiki'
-	 *             'skip': 'return !!window.Example;', (or) null, (or) boolean result of skip
-	 *             'module': export Object
+	 *         // Set by execute() or mw.loader.state()
+	 *         // See mw.loader.getState() for documentation of the state machine
+	 *         'state': 'registered', 'loading', 'loaded', 'executing', 'ready', 'error', or 'missing'
 	 *
-	 *             // Set by execute() or mw.loader.state()
-	 *             // See mw.loader.getState() for documentation of the state machine
-	 *             'state': 'registered', 'loading', 'loaded', 'executing', 'ready', 'error', or 'missing'
-	 *
-	 *             // Optionally added at run-time by mw.loader.impl()
-	 *             'script': closure, array of urls, or string
-	 *             'style': { ... } (see #execute)
-	 *             'messages': { 'key': 'value', ... }
-	 *         }
+	 *         // Optionally added at run-time by mw.loader.impl()
+	 *         'script': closure, array of urls, or string
+	 *         'style': { ... } (see #execute)
+	 *         'messages': { 'key': 'value', ... }
 	 *     }
+	 * }
 	 *
 	 * @property {Object}
 	 * @private
@@ -135,13 +134,12 @@
 		 * Typically when a job is created for a module, the job's dependencies contain
 		 * both the required module and all its recursive dependencies.
 		 *
-		 *     @example Format:
-		 *
-		 *     {
-		 *         'dependencies': [ module names ],
-		 *         'ready': Function callback
-		 *         'error': Function callback
-		 *     }
+		 * @example // Format:
+		 * {
+		 *     'dependencies': [ module names ],
+		 *     'ready': Function callback
+		 *     'error': Function callback
+		 * }
 		 *
 		 * @property {Object[]} jobs
 		 * @private
@@ -1438,8 +1436,8 @@
 		 *
 		 * The #work() method will use this information to split up requests by source.
 		 *
-		 *     @example
-		 *     mw.loader.addSource( { mediawikiwiki: 'https://www.mediawiki.org/w/load.php' } );
+		 * @example
+		 * mw.loader.addSource( { mediawikiwiki: 'https://www.mediawiki.org/w/load.php' } );
 		 *
 		 * @private
 		 * @param {Object} ids An object mapping ids to load.php end point urls

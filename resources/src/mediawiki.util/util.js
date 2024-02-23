@@ -361,9 +361,10 @@ var util = {
 	/**
 	 * Get the value for a given URL query parameter.
 	 *
-	 *     mw.util.getParamValue( 'foo', '/?foo=x' ); // "x"
-	 *     mw.util.getParamValue( 'foo', '/?foo=' ); // ""
-	 *     mw.util.getParamValue( 'foo', '/' ); // null
+	 * @example
+	 * mw.util.getParamValue( 'foo', '/?foo=x' ); // "x"
+	 * mw.util.getParamValue( 'foo', '/?foo=' ); // ""
+	 * mw.util.getParamValue( 'foo', '/' ); // null
 	 *
 	 * @param {string} param The parameter name.
 	 * @param {string} [url=location.href] URL to search through, defaulting to the current browsing location.
@@ -394,9 +395,10 @@ var util = {
 	 * Currently this does not handle associative or multi-dimensional arrays, but that may be
 	 * improved in the future.
 	 *
-	 *     mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo[0]=a&foo[1]=b' ) ); // [ 'a', 'b' ]
-	 *     mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo[]=a&foo[]=b' ) ); // [ 'a', 'b' ]
-	 *     mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo=a' ) ); // null
+	 * @example
+	 * mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo[0]=a&foo[1]=b' ) ); // [ 'a', 'b' ]
+	 * mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo[]=a&foo[]=b' ) ); // [ 'a', 'b' ]
+	 * mw.util.getArrayParam( 'foo', new URLSearchParams( '?foo=a' ) ); // null
 	 *
 	 * @param {string} param The parameter name.
 	 * @param {URLSearchParams} [params] Parsed URL parameters to search through, defaulting to the current browsing location.
@@ -562,10 +564,11 @@ var util = {
 		 * @memberof Hooks
 		 * @param {HTMLElement} portlet the portlet that was created.
 		 * @param {string|null} before the css selector used to append to the DOM.
+		 *
 		 * @example
-		 *   mw.hook( 'util.addPortlet' ).add( ( p ) => {
-		 *    p.style.border = 'solid 1px black';
-		 *   } );
+		 * mw.hook( 'util.addPortlet' ).add( ( p ) => {
+		 *     p.style.border = 'solid 1px black';
+		 * } );
 		 */
 		mw.hook( 'util.addPortlet' ).fire( portlet, before );
 		return portlet;
@@ -727,11 +730,12 @@ var util = {
 		 * @memberof Hooks
 		 * @param {HTMLElement} item the portlet link that was created.
 		 * @param {Object} information about the item include id.
+		 *
 		 * @example
-		 *   mw.hook( 'util.addPortletLink' ).add( ( link ) => {
-		 *    const span = $( '<span class="icon">' );
-		 *    link.appendChild( span );
-		 *   } );
+		 * mw.hook( 'util.addPortletLink' ).add( ( link ) => {
+		 *     const span = $( '<span class="icon">' );
+		 *     link.appendChild( span );
+		 * } );
 		 */
 		mw.hook( 'util.addPortletLink' ).fire( item, {
 			id: id
@@ -744,7 +748,8 @@ var util = {
 	 *
 	 * This validation is based on the HTML5 specification.
 	 *
-	 *     mw.util.validateEmail( "me@example.org" ) === true;
+	 * @example
+	 * mw.util.validateEmail( "me@example.org" ) === true;
 	 *
 	 * @param {string} email E-mail address
 	 * @return {boolean|null} True if valid, false if invalid, null if `email` was empty.
@@ -809,13 +814,14 @@ var util = {
 	 *
 	 * Based on \Wikimedia\IPUtils::isIPv4 in PHP.
 	 *
-	 *     // Valid
-	 *     mw.util.isIPv4Address( '80.100.20.101' );
-	 *     mw.util.isIPv4Address( '192.168.1.101' );
+	 * @example
+	 * // Valid
+	 * mw.util.isIPv4Address( '80.100.20.101' );
+	 * mw.util.isIPv4Address( '192.168.1.101' );
 	 *
-	 *     // Invalid
-	 *     mw.util.isIPv4Address( '192.0.2.0/24' );
-	 *     mw.util.isIPv4Address( 'hello' );
+	 * // Invalid
+	 * mw.util.isIPv4Address( '192.0.2.0/24' );
+	 * mw.util.isIPv4Address( 'hello' );
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
@@ -841,13 +847,14 @@ var util = {
 	 *
 	 * Based on \Wikimedia\IPUtils::isIPv6 in PHP.
 	 *
-	 *     // Valid
-	 *     mw.util.isIPv6Address( '2001:db8:a:0:0:0:0:0' );
-	 *     mw.util.isIPv6Address( '2001:db8:a::' );
+	 * @example
+	 * // Valid
+	 * mw.util.isIPv6Address( '2001:db8:a:0:0:0:0:0' );
+	 * mw.util.isIPv6Address( '2001:db8:a::' );
 	 *
-	 *     // Invalid
-	 *     mw.util.isIPv6Address( '2001:db8:a::/32' );
-	 *     mw.util.isIPv6Address( 'hello' );
+	 * // Invalid
+	 * mw.util.isIPv6Address( '2001:db8:a::/32' );
+	 * mw.util.isIPv6Address( 'hello' );
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
