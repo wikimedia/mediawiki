@@ -1971,10 +1971,21 @@ class Title implements LinkTarget, PageIdentity {
 	 */
 	public function getRootTitle() {
 		$title = self::makeTitleSafe( $this->mNamespace, $this->getRootText() );
-		Assert::postcondition(
-			$title !== null,
-			'makeTitleSafe() should always return a Title for the text returned by getRootText().'
-		);
+
+		if ( !$title ) {
+			if ( !$this->isValid() ) {
+				// If the title wasn't valid in the first place, we can't expect
+				// to successfully parse it. T290194
+				return $this;
+			}
+
+			Assert::postcondition(
+				$title !== null,
+				'makeTitleSafe() should always return a Title for the text ' .
+					'returned by getRootText().'
+			);
+		}
+
 		return $title;
 	}
 
@@ -2021,10 +2032,21 @@ class Title implements LinkTarget, PageIdentity {
 	 */
 	public function getBaseTitle() {
 		$title = self::makeTitleSafe( $this->mNamespace, $this->getBaseText() );
-		Assert::postcondition(
-			$title !== null,
-			'makeTitleSafe() should always return a Title for the text returned by getBaseText().'
-		);
+
+		if ( !$title ) {
+			if ( !$this->isValid() ) {
+				// If the title wasn't valid in the first place, we can't expect
+				// to successfully parse it. T290194
+				return $this;
+			}
+
+			Assert::postcondition(
+				$title !== null,
+				'makeTitleSafe() should always return a Title for the text ' .
+					'returned by getBaseText().'
+			);
+		}
+
 		return $title;
 	}
 

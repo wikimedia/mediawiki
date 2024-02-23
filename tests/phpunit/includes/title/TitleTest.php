@@ -1241,6 +1241,16 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * Don't explode on invalid titles (T290194).
+	 * @covers \MediaWiki\Title\Title::getBaseTitle
+	 */
+	public function testGetBaseTitle_invalid() {
+		$title = Title::makeTitle( -23, 'Test' );
+		$base = $title->getBaseTitle();
+		$this->assertSame( $title, $base );
+	}
+
 	public static function provideRootTitleCases() {
 		return [
 			# Namespace, Title, expected base
@@ -1281,6 +1291,16 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue(
 			$root->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) )
 		);
+	}
+
+	/**
+	 * Don't explode on invalid titles (T290194).
+	 * @covers \MediaWiki\Title\Title::getRootTitle
+	 */
+	public function testGetRootTitle_invalid() {
+		$title = Title::makeTitle( -23, 'Test' );
+		$base = $title->getRootTitle();
+		$this->assertSame( $title, $base );
 	}
 
 	public static function provideSubpageTitleCases() {
