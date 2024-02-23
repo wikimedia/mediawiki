@@ -94,7 +94,16 @@ class AssembleUploadChunksJob extends Job {
 				$this->params['filekey'],
 				new WebRequestUpload( $context->getRequest(), 'null' )
 			);
-
+			if (
+				isset( $this->params['filesize'] ) &&
+				$this->params['filesize'] !== (int)$upload->getOffset()
+			) {
+				// Check to make sure we are not executing prior to the API's
+				// transaction being committed. (T350917)
+				throw new UnexpectedValueException(
+					"UploadStash file size does not match job's. Potential mis-nested transaction?"
+				);
+			}
 			// Combine all of the chunks into a local file and upload that to a new stash file
 			$status = $upload->concatenateChunks();
 			if ( !$status->isGood() ) {
@@ -103,7 +112,7 @@ class AssembleUploadChunksJob extends Job {
 					$this->params['filekey'],
 					[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
 				);
-				$logger->info( "Chunked upload assembly job failed for {img} because {status}",
+				$logger->info( "Chunked upload assembly job failed for {filekey} because {status}",
 					[
 						'filekey' => $this->params['filekey'],
 						'filename' => $this->params['filename'],
