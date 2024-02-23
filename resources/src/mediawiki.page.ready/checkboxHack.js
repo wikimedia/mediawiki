@@ -386,7 +386,9 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
 function bindDismissOnClickLink( checkbox, target ) {
 	function dismissIfClickLinkEvent( event ) {
 		// Handle clicks to links and link children elements
-		if ( event.target.nodeName === 'A' || event.target.parentNode.nodeName === 'A' ) {
+		if ( event.target &&
+			( event.target.nodeName === 'A' || event.target.parentNode.nodeName === 'A' )
+		) {
 			setCheckedState( checkbox, false );
 		}
 	}
