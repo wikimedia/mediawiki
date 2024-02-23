@@ -249,7 +249,8 @@ abstract class ContentHandler {
 	public static function getLocalizedName( $name, Language $lang = null ) {
 		// Messages: content-model-wikitext, content-model-text,
 		// content-model-javascript, content-model-css
-		$key = "content-model-$name";
+		// Lowercase the name as message keys need to be in lowercase, T358341
+		$key = "content-model-" . strtolower( $name ?? '' );
 
 		$msg = wfMessage( $key );
 		if ( $lang ) {
