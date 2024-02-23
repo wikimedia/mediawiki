@@ -2998,7 +2998,8 @@ class EditPage implements IEditObject {
 				'name' => self::EDITFORM_ID,
 				'method' => 'post',
 				'action' => $this->getActionURL( $this->getContextTitle() ),
-				'enctype' => 'multipart/form-data'
+				'enctype' => 'multipart/form-data',
+				'data-mw-editform-type' => $this->formtype
 			]
 		) );
 
