@@ -58,9 +58,6 @@ class CodexModule extends FileModule {
 	 */
 	private static array $codexFilesCache = [];
 
-	/** @var array<string,array> */
-	private array $themeStyles = [];
-
 	/**
 	 * Names of the requested components. Comes directly from the 'codexComponents' property in the
 	 * module definition.
@@ -69,26 +66,21 @@ class CodexModule extends FileModule {
 	 */
 	private array $codexComponents = [];
 
-	private bool $hasThemeStyles = false;
 	private bool $isStyleOnly = false;
 	private bool $isScriptOnly = false;
+	private bool $codexFullLibrary = false;
 	private bool $setupComplete = false;
 
 	/**
 	 * @param array $options [optional]
-	 *  - themeStyles: array of skin- or theme-specific files
 	 *  - codexComponents: array of Codex components to include
+	 *  - codexFullLibrary: whether to load the entire Codex library
 	 *  - codexStyleOnly: whether to include only style files
 	 *  - codexScriptOnly: whether to include only script files
 	 * @param string|null $localBasePath [optional]
 	 * @param string|null $remoteBasePath [optional]
 	 */
 	public function __construct( array $options = [], $localBasePath = null, $remoteBasePath = null ) {
-		if ( isset( $options['themeStyles'] ) ) {
-			$this->hasThemeStyles = true;
-			$this->themeStyles = $options[ 'themeStyles' ];
-		}
-
 		if ( isset( $options[ 'codexComponents' ] ) ) {
 			if ( !is_array( $options[ 'codexComponents' ] ) || count( $options[ 'codexComponents' ] ) === 0 ) {
 				throw new InvalidArgumentException(
@@ -98,6 +90,19 @@ class CodexModule extends FileModule {
 			}
 
 			$this->codexComponents = $options[ 'codexComponents' ];
+		}
+
+		if ( isset( $options['codexFullLibrary'] ) ) {
+			if ( isset( $options[ 'codexComponents' ] ) ) {
+				throw new InvalidArgumentException(
+					'ResourceLoader modules using the CodexModule class cannot ' .
+					"use both 'codexFullLibrary' and 'codexComponents' options. " .
+					"Instead, use 'codexFullLibrary' to load the entire library" .
+					"or 'codexComponents' to load a subset of components."
+				);
+			}
+
+			$this->codexFullLibrary = $options[ 'codexFullLibrary' ];
 		}
 
 		if ( isset( $options[ 'codexStyleOnly' ] ) ) {
@@ -319,12 +324,10 @@ class CodexModule extends FileModule {
 			$this->addComponentFiles( $context );
 		}
 
-		// If themestyles are present, add them to the module styles
-		if ( $this->hasThemeStyles ) {
-			$theme = $this->getTheme( $context );
-			$dir = $context->getDirection();
-			$styles = $this->themeStyles[ $theme ][ $dir ];
-			$this->styles = array_merge( $this->styles, (array)$styles );
+		// If we want to load the entire Codex library (no tree shaking)
+		if ( $this->codexFullLibrary ) {
+			$this->loadFullCodexLibrary( $context );
+
 		}
 
 		$this->setupComplete = true;
@@ -411,19 +414,19 @@ class CodexModule extends FileModule {
 			// Proxy the synthetic exports object so that we can throw a useful error if a component
 			// is not defined in the module definition
 			$proxiedSyntheticExports = <<<JAVASCRIPT
-module.exports = new Proxy( $syntheticExports, {
-	get( target, prop ) {
-		if ( !( prop in target ) ) {
-			throw new Error(
-				`Codex component "\${prop}" ` +
-				'is not listed in the "codexComponents" array ' +
-				'of the "{$this->getName()}" module in your module definition file'
-			);
-		}
-		return target[ prop ];
-	}
-} );
-JAVASCRIPT;
+			module.exports = new Proxy( $syntheticExports, {
+				get( target, prop ) {
+					if ( !( prop in target ) ) {
+						throw new Error(
+							`Codex component "\${prop}" ` +
+							'is not listed in the "codexComponents" array ' +
+							'of the "{$this->getName()}" module in your module definition file'
+						);
+					}
+					return target[ prop ];
+				}
+			} );
+			JAVASCRIPT;
 
 			$this->packageFiles[] = [
 				'name' => 'codex.js',
@@ -437,6 +440,47 @@ JAVASCRIPT;
 					'file' => new FilePath( static::CODEX_MODULE_DIR . $fileName, MW_INSTALL_PATH, $remoteBasePath )
 				];
 			}
+		}
+	}
+
+	/**
+	 * For loading the entire Codex library, rather than a subset module of it.
+	 *
+	 * @param Context $context
+	 */
+	private function loadFullCodexLibrary( Context $context ) {
+		$remoteBasePath = $this->getConfig()->get( MainConfigNames::ResourceBasePath );
+
+		// Add all Codex JS files to the module's package
+		if ( !$this->isStyleOnly ) {
+			$this->packageFiles[] = [
+				'name' => 'codex.js',
+				'file' => new FilePath( 'resources/lib/codex/codex.umd.cjs', MW_INSTALL_PATH, $remoteBasePath )
+			];
+		}
+
+		// Add all Codex CSS files to the module's package
+		if ( !$this->isScriptOnly ) {
+			// Theme-specific + direction style files
+			$themeStyles = [
+				'wikimedia-ui' => [
+					'ltr' => 'resources/lib/codex/codex.style.css',
+					'rtl' => 'resources/lib/codex/codex.style-rtl.css'
+				],
+				'wikimedia-ui-legacy' => [
+					'ltr' => 'resources/lib/codex/codex.style-legacy.css',
+					'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
+				],
+			];
+
+			$theme = $this->getTheme( $context );
+			$direction = $context->getDirection();
+			$styleFile = $themeStyles[ $theme ][ $direction ];
+			$this->styles[] = new FilePath(
+				$styleFile,
+				MW_INSTALL_PATH,
+				$remoteBasePath
+			);
 		}
 	}
 }

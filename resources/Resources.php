@@ -617,9 +617,9 @@ return [
 	],
 
 	'@wikimedia/codex' => [
-		'packageFiles' => [
-			'resources/lib/codex/codex.umd.cjs',
-		],
+		'class' => CodexModule::class,
+		'codexFullLibrary' => true,
+		'codexScriptOnly' => true,
 		'dependencies' => [
 			'vue',
 			'codex-styles',
@@ -628,17 +628,8 @@ return [
 
 	'codex-styles' => [
 		'class' => CodexModule::class,
-		'themeStyles' => [
-			// Special syntax supported by CodexModule
-			'wikimedia-ui' => [
-				'ltr' => 'resources/lib/codex/codex.style.css',
-				'rtl' => 'resources/lib/codex/codex.style-rtl.css'
-			],
-			'wikimedia-ui-legacy' => [
-				'ltr' => 'resources/lib/codex/codex.style-legacy.css',
-				'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
-			],
-		],
+		'codexFullLibrary' => true,
+		'codexStyleOnly' => true,
 		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
 		'noflip' => true,
 	],
