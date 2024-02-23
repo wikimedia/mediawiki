@@ -292,6 +292,7 @@ abstract class UploadBase {
 	protected function setTempFile( $tempPath, $fileSize = null ) {
 		$this->mTempPath = $tempPath ?? '';
 		$this->mFileSize = $fileSize ?: null;
+		$this->mFileProps = null;
 		if ( strlen( $this->mTempPath ) && file_exists( $this->mTempPath ) ) {
 			$this->tempFileObj = new TempFSFile( $this->mTempPath );
 			if ( !$fileSize ) {
@@ -333,6 +334,10 @@ abstract class UploadBase {
 	 * @return string|false
 	 */
 	public function getTempFileSha1Base36() {
+		// Use cached version if we already have it.
+		if ( $this->mFileProps && is_string( $this->mFileProps['sha1'] ) ) {
+			return $this->mFileProps['sha1'];
+		}
 		return FSFile::getSha1Base36FromPath( $this->mTempPath );
 	}
 
@@ -481,8 +486,12 @@ abstract class UploadBase {
 			return $status;
 		}
 
-		$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
-		$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		// Calculating props calculates the sha1 which is expensive.
+		// reuse props if we already have them
+		if ( !is_array( $this->mFileProps ) ) {
+			$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
+			$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		}
 		$mime = $this->mFileProps['mime'];
 
 		if ( $verifyMimeType ) {
@@ -1176,7 +1185,7 @@ abstract class UploadBase {
 	protected function doStashFile( User $user = null ) {
 		$stash = MediaWikiServices::getInstance()->getRepoGroup()
 			->getLocalRepo()->getUploadStash( $user );
-		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
+		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType(), $this->mFileProps );
 		$this->mStashFile = $file;
 
 		return $file;

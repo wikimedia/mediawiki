@@ -199,12 +199,13 @@ class UploadStash {
 	 * @param string $path Path to file you want stashed
 	 * @param string|null $sourceType The type of upload that generated this file
 	 *   (currently, I believe, 'file' or null)
+	 * @param array|null $fileProps File props or null to regenerate
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
 	 * @throws UploadStashNotLoggedInException
 	 * @return UploadStashFile|null File, or null on failure
 	 */
-	public function stashFile( $path, $sourceType = null ) {
+	public function stashFile( $path, $sourceType = null, $fileProps = null ) {
 		if ( !is_file( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist" );
 			throw new UploadStashBadPathException(
@@ -212,8 +213,11 @@ class UploadStash {
 			);
 		}
 
-		$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
-		$fileProps = $mwProps->getPropsFromPath( $path, true );
+		// File props is expensive to generate for large files, so reuse if possible.
+		if ( !$fileProps ) {
+			$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
+			$fileProps = $mwProps->getPropsFromPath( $path, true );
+		}
 		wfDebug( __METHOD__ . " stashing file at '$path'" );
 
 		// we will be initializing from some tmpnam files that don't have extensions.
@@ -543,7 +547,12 @@ class UploadStash {
 	 * @return bool
 	 */
 	protected function initFile( $key ) {
-		$file = new UploadStashFile( $this->repo, $this->fileMetadata[$key]['us_path'], $key );
+		$file = new UploadStashFile(
+			$this->repo,
+			$this->fileMetadata[$key]['us_path'],
+			$key,
+			$this->fileMetadata[$key]['us_sha1']
+		);
 		if ( $file->getSize() === 0 ) {
 			throw new UploadStashZeroLengthFileException(
 				wfMessage( 'uploadstash-zero-length' )
