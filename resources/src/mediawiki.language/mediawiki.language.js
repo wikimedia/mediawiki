@@ -1,8 +1,3 @@
-/**
- * Methods for transforming message syntax.
- *
- * @namespace mw.language
- */
 ( function () {
 	Object.assign( mw.language, /** @lends mw.language */{
 
