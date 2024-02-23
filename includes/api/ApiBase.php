@@ -261,6 +261,8 @@ abstract class ApiBase extends ContextSource {
 		'autoblockedtext' => true,
 		'systemblockedtext' => true,
 		'blockedtext-composite' => true,
+		'blockedtext-tempuser' => true,
+		'autoblockedtext-tempuser' => true,
 	];
 
 	/** @var array Map of web UI block messages to corresponding API messages and codes */
