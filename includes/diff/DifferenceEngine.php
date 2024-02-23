@@ -975,7 +975,7 @@ class DifferenceEngine extends ContextSource {
 			'</div>' .
 			'<div id="mw-diff-ntitle3">' . $newminor . $newRevComment . $rdel . '</div>' .
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
-			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink( $diffOnly ) . '</div>';
+			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
 
 		// Allow extensions to change the $newHeader variable
 		$this->hookRunner->onDifferenceEngineNewHeader( $this, $newHeader,
@@ -1034,7 +1034,7 @@ class DifferenceEngine extends ContextSource {
 			// Allow extensions to optionally not show the final patrolled link
 			if ( $this->hookRunner->onDifferenceEngineRenderRevisionShowFinalPatrolLink() ) {
 				# Add redundant patrol link on bottom...
-				$out->addHTML( $this->markPatrolledLink( $diffOnly ) );
+				$out->addHTML( $this->markPatrolledLink() );
 			}
 		}
 	}
@@ -1068,11 +1068,9 @@ class DifferenceEngine extends ContextSource {
 	 * Side effect: When the patrol link is build, this method will call
 	 * OutputPage::setPreventClickjacking(true) and load a JS module.
 	 *
-	 * @param bool $isDiffOnly (optional) let the link know the preview has been hidden.
-	 *   The visibility of the patrol link may change in skins where this is the case.
 	 * @return string HTML or empty string
 	 */
-	public function markPatrolledLink( $isDiffOnly = false ) {
+	public function markPatrolledLink() {
 		if ( $this->mMarkPatrolledLink === null ) {
 			$linkInfo = $this->getMarkPatrolledLinkInfo();
 			// If false, there is no patrol link needed/allowed
@@ -1080,9 +1078,6 @@ class DifferenceEngine extends ContextSource {
 				$this->mMarkPatrolledLink = '';
 			} else {
 				$patrolLinkClass = 'patrollink';
-				if ( $isDiffOnly ) {
-					$patrolLinkClass .= ' patrollink-diffonly';
-				}
 				$this->mMarkPatrolledLink = ' <span class="' . $patrolLinkClass . '" data-mw="interface">[' .
 					$this->linkRenderer->makeKnownLink(
 						$this->mNewPage,
