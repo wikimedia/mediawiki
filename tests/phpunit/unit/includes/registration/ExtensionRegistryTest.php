@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Registration;
 
 use Exception;
 use ExtensionRegistry;
+use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWikiUnitTestCase;
@@ -119,10 +120,16 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 
 	public function testReadFromQueue_nonexistent() {
 		$registry = $this->getRegistry();
-		$this->expectError();
-		$registry->readFromQueue( [
-			__DIR__ . '/doesnotexist.json' => 1
-		] );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Unable to read' );
+		$this->expectPHPError(
+			E_WARNING,
+			static function () use ( $registry ) {
+				$registry->readFromQueue( [
+					__DIR__ . '/doesnotexist.json' => 1
+				] );
+			}
+		);
 	}
 
 	public function testExportExtractedDataNamespaceAlreadyDefined() {

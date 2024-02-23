@@ -53,10 +53,13 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	public function testWarningDevelopment() {
 		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
 
-		$this->expectNotice();
-		$this->expectNoticeMessage( 'Ohnosecond!' );
-
-		MWDebug::warning( 'Ohnosecond!' );
+		$this->expectPHPError(
+			E_USER_NOTICE,
+			static function () {
+				MWDebug::warning( 'Ohnosecond!' );
+			},
+			'Ohnosecond!'
+		);
 	}
 
 	/**
@@ -103,22 +106,28 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 			}
 		};
 
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( '@anonymous' );
-
-		MWDebug::detectDeprecatedOverride(
-			$subclassInstance,
-			TitleValue::class,
-			'getNamespace',
-			MW_VERSION
+		$this->expectPHPError(
+			E_USER_DEPRECATED,
+			static function () use ( $subclassInstance ) {
+				MWDebug::detectDeprecatedOverride(
+					$subclassInstance,
+					TitleValue::class,
+					'getNamespace',
+					MW_VERSION
+				);
+			},
+			'@anonymous'
 		);
 	}
 
 	public function testDeprecated() {
-		$this->expectDeprecation();
-		$this->expectDeprecationMessage( 'wfOldFunction' );
-
-		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+		$this->expectPHPError(
+			E_USER_DEPRECATED,
+			static function () {
+				MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
+			},
+			'wfOldFunction'
+		);
 	}
 
 	/**

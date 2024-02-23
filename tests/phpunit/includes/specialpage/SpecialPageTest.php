@@ -43,19 +43,27 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testInvalidGetTitleFor() {
-		$this->expectNotice();
-		$title = SpecialPage::getTitleFor( 'cat' );
-		$expected = Title::makeTitle( NS_SPECIAL, 'Cat' );
-		$this->assertEquals( $expected, $title );
+		$this->expectPHPError(
+			E_USER_NOTICE,
+			function () {
+				$title = SpecialPage::getTitleFor( 'cat' );
+				$expected = Title::makeTitle( NS_SPECIAL, 'Cat' );
+				$this->assertEquals( $expected, $title );
+			}
+		);
 	}
 
 	/**
 	 * @dataProvider getTitleForWithWarningProvider
 	 */
 	public function testGetTitleForWithWarning( $expected, $name ) {
-		$this->expectNotice();
-		$title = SpecialPage::getTitleFor( $name );
-		$this->assertEquals( $expected, $title );
+		$this->expectPHPError(
+			E_USER_NOTICE,
+			function () use ( $name, $expected ) {
+				$title = SpecialPage::getTitleFor( $name );
+				$this->assertEquals( $expected, $title );
+			}
+		);
 	}
 
 	public static function getTitleForWithWarningProvider() {
