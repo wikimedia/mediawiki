@@ -1316,11 +1316,16 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
 	],
+
 	'mediawiki.action.history.styles' => [
+		'class' => CodexModule::class,
+		'codexComponents' => [ 'CdxButton' ],
+		'codexStyleOnly' => true,
 		'skinStyles' => [
 			'default' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.less',
 		],
 	],
+
 	'mediawiki.action.protect' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.action',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",
