@@ -32,7 +32,7 @@ class Deflate {
 	 *
 	 * @return bool
 	 */
-	public static function isDeflated( $data ) {
+	public static function isDeflated( string $data ): bool {
 		return substr( $data, 0, 11 ) === 'rawdeflate,';
 	}
 
@@ -54,7 +54,7 @@ class Deflate {
 	 * @return StatusValue Inflated data will be set as the value
 	 * @throws InvalidArgumentException If the data wasn't deflated
 	 */
-	public static function inflate( $data ) {
+	public static function inflate( string $data ): StatusValue {
 		if ( !self::isDeflated( $data ) ) {
 			throw new InvalidArgumentException( 'Data does not begin with deflated prefix' );
 		}
