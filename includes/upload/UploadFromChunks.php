@@ -177,7 +177,7 @@ class UploadFromChunks extends UploadFromFile {
 
 		// Concatenate the chunks at the temp file
 		$tStart = microtime( true );
-		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
+		$status = $this->repo->concatenate( $fileList, $tmpPath );
 		$tAmount = microtime( true ) - $tStart;
 		if ( !$status->isOK() ) {
 			// This is a backend error and not user-related, so log is safe
@@ -188,6 +188,29 @@ class UploadFromChunks extends UploadFromFile {
 				[ 'chunks' => $chunkIndex, 'filekey' => $oldFileKey ]
 			);
 			return $status;
+		} else {
+			// Delete old chunks in deferred job. Put in deferred job because deleting
+			// lots of chunks can take a long time, sometimes to the point of causing
+			// a timeout, and we do not want that to tank the operation. Note that chunks
+			// are also automatically deleted after a set time by cleanupUploadStash.php
+			// Additionally, using AutoCommitUpdate ensures that we do not delete files
+			// if the main transaction is rolled back for some reason.
+			DeferredUpdates::addUpdate( new AutoCommitUpdate(
+				$this->repo->getPrimaryDB(),
+				__METHOD__,
+				function () use( $fileList, $oldFileKey ) {
+					$status = $this->repo->quickPurgeBatch( $fileList );
+					if ( !$status->isOK() ) {
+						$this->logger->warning(
+							"Could not delete chunks of {filekey} - {status}",
+							[
+								'status' => (string)$status,
+								'filekey' => $oldFileKey,
+							]
+						);
+					}
+				}
+			) );
 		}
 
 		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds." );
