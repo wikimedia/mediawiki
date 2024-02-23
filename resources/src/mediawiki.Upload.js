@@ -9,39 +9,39 @@
 	 * actions in a logical way.
 	 *
 	 * A simple example:
+	 * ```
+	 * var file = new OO.ui.SelectFileWidget(),
+	 *   button = new OO.ui.ButtonWidget( { label: 'Save' } ),
+	 *   upload = new mw.Upload;
 	 *
-	 *     var file = new OO.ui.SelectFileInputWidget(),
-	 *       button = new OO.ui.ButtonWidget( { label: 'Save' } ),
-	 *       upload = new mw.Upload;
+	 * button.on( 'click', function () {
+	 *   upload.setFile( file.getValue() );
+	 *   upload.setFilename( file.getValue().name );
+	 *   upload.upload();
+	 * } );
 	 *
-	 *     button.on( 'click', function () {
-	 *       upload.setFile( file.getValue() );
-	 *       upload.setFilename( file.getValue().name );
-	 *       upload.upload();
-	 *     } );
-	 *
-	 *     $( document.body ).append( file.$element, button.$element );
-	 *
+	 * $( document.body ).append( file.$element, button.$element );
+	 * ```
 	 * You can also choose to {@link #uploadToStash stash the upload} and
 	 * {@link #finishStashUpload finalize} it later:
+	 * ```
+	 * var file, // Some file object
+	 *   upload = new mw.Upload,
+	 *   stashPromise = $.Deferred();
 	 *
-	 *     var file, // Some file object
-	 *       upload = new mw.Upload,
-	 *       stashPromise = $.Deferred();
+	 * upload.setFile( file );
+	 * upload.uploadToStash().then( function () {
+	 *   stashPromise.resolve();
+	 * } );
 	 *
-	 *     upload.setFile( file );
-	 *     upload.uploadToStash().then( function () {
-	 *       stashPromise.resolve();
-	 *     } );
-	 *
-	 *     stashPromise.then( function () {
-	 *       upload.setFilename( 'foo' );
-	 *       upload.setText( 'bar' );
-	 *       upload.finishStashUpload().then( function () {
-	 *         console.log( 'Done!' );
-	 *       } );
-	 *     } );
-	 *
+	 * stashPromise.then( function () {
+	 *   upload.setFilename( 'foo' );
+	 *   upload.setText( 'bar' );
+	 *   upload.finishStashUpload().then( function () {
+	 *     console.log( 'Done!' );
+	 *   } );
+	 * } );
+	 * ```
 	 * @class mw.Upload
 	 *
 	 * @constructor

@@ -455,9 +455,10 @@ trackCallbacks.fire( mw.trackQueue );
  * hooks accordingly to ensure everything still works as expected.
  *
  * Example usage:
- *
- *     mw.hook( 'wikipage.content' ).add( fn ).remove( fn );
- *     mw.hook( 'wikipage.content' ).fire( $content );
+ * ```
+ * mw.hook( 'wikipage.content' ).add( fn ).remove( fn );
+ * mw.hook( 'wikipage.content' ).fire( $content );
+ * ```
  *
  * Handlers can be added and fired for arbitrary event names at any time. The same
  * event can be fired multiple times. The last run of an event is memorized
@@ -470,8 +471,10 @@ trackCallbacks.fire( mw.trackQueue );
  * You can pass around the `add` and/or `fire` method to another piece of code
  * without it having to know the event name (or `mw.hook` for that matter).
  *
- *     var h = mw.hook( 'bar.ready' );
- *     new mw.Foo( .. ).fetch( { callback: h.fire } );
+ * ```
+ * var h = mw.hook( 'bar.ready' );
+ * new mw.Foo( .. ).fetch( { callback: h.fire } );
+ * ```
  *
  * See available global events below.
  */
