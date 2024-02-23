@@ -880,7 +880,6 @@
 	"filehist-nothumb": "Väikutpilti olõ-õi",
 	"filehist-user": "Pruukja",
 	"filehist-dimensions": "Suurus",
-	"filehist-filesize": "Teedüstü suurus",
 	"filehist-comment": "Seletüs:",
 	"imagelinks": "Teedüstüpruukminõ",
 	"linkstoimage": "Taa pildi pääle {{PLURAL:$1|näütäs lehekülg|näütäseq leheküleq}}:",

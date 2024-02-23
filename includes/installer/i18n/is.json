@@ -75,7 +75,7 @@
 	"config-admin-password": "Aðgangsorð:",
 	"config-admin-password-confirm": "Aðgangsorð aftur:",
 	"config-admin-email": "Tölvupóstfang:",
-	"config-profile": "Snið notandaréttinda:",
+	"config-profile": "Notendaréttindauppsetning:",
 	"config-profile-wiki": "Opið wiki",
 	"config-profile-no-anon": "Stofnun aðgangs krafist",
 	"config-profile-fishbowl": "Aðeins auðkenndir ritstjórar",

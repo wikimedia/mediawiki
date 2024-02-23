@@ -1239,7 +1239,6 @@
 	"filehist-nothumb": "Մանրապատկեր չկա",
 	"filehist-user": "Մասնակից",
 	"filehist-dimensions": "Օբյեկտի չափը",
-	"filehist-filesize": "Նիշքի չափ",
 	"filehist-comment": "Մեկնաբանություն",
 	"imagelinks": "Նիշքի օգտագործում",
 	"linkstoimage": "Հետևյալ {{PLURAL:$1|էջը հղվում է|$1 էջերը հղվում են}} այս նիշքին՝",

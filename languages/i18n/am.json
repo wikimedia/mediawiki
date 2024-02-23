@@ -934,7 +934,6 @@
 	"filehist-nothumb": "ናሙና የለም",
 	"filehist-user": "አቅራቢው",
 	"filehist-dimensions": "ክልሉ (በpixel)",
-	"filehist-filesize": "መጠን",
 	"filehist-comment": "ማጠቃለያ",
 	"imagelinks": "ይህን ፋይል የሚያጠቃልሉ ገጾች",
 	"linkstoimage": "{{PLURAL:$1|የሚከተለው ገጽ ወደዚሁ ፋይል ተያይዟል|የሚከተሉ $1 ገጾች ወደዚሁ ፋይል ተያይዘዋል}}፦",

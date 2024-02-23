@@ -738,7 +738,6 @@
 	"filehist-nothumb": "Ei peukalokuvaa",
 	"filehist-user": "Käyttäjä",
 	"filehist-dimensions": "Timensuunit",
-	"filehist-filesize": "Fiilikoko",
 	"filehist-comment": "Komentti",
 	"imagelinks": "Fiilin käyttö",
 	"linkstoimage": "{{PLURAL:$1|Seuraava sivu käytthää|Seuraavat $1 sivua käytthävät}} tätä fiilhiä:",

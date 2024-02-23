@@ -422,7 +422,6 @@
 	"filehist-thumbtext": "$1 versiyası için küçültülmüş halı",
 	"filehist-user": "Kullanıcı",
 	"filehist-dimensions": "Masştablar",
-	"filehist-filesize": "Fayl ölçüleri",
 	"filehist-comment": "Kommentariya",
 	"imagelinks": "Mediya faylına baalantı",
 	"linkstoimage": "Bu fayla {{PLURAL:$1|page links|$1 pages link}} baalantısı olan sayfalar:",

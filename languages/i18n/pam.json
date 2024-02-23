@@ -798,7 +798,6 @@
 	"filehist-thumbtext": "Thumbnail para king bersion aniang $1",
 	"filehist-user": "Talagamit",
 	"filehist-dimensions": "Sukad",
-	"filehist-filesize": "Dagul ning simpan (file size)",
 	"filehist-comment": "Komentu/Puna",
 	"imagelinks": "↓Suglung kareng simpan (''file links'')",
 	"linkstoimage": "Ing tutuking {{PLURAL:$1|page links|$1 pages link}} kaniting simpan (''file''):",

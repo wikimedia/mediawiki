@@ -235,7 +235,6 @@
 	"listfiles-summary": "Diese Spezialseite listet alle hochgeladenen Dateien auf.",
 	"listfiles_size": "Grösse",
 	"filehist-dimensions": "Masse",
-	"filehist-filesize": "Dateigrösse",
 	"filerevert": "Zurücksetzen von «$1»",
 	"filedelete": "Lösche «$1»",
 	"filedelete-intro": "Du löschst die Datei '''«[[Media:$1|$1]]»''' inklusive ihrer Versionsgeschichte.",

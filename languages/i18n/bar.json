@@ -683,7 +683,6 @@
 	"filehist-thumbtext": "Vorschaubuidl fia d Version vo $1",
 	"filehist-user": "Nutzer",
 	"filehist-dimensions": "Dimensióna",
-	"filehist-filesize": "Dateigreess",
 	"filehist-comment": "Kommentar",
 	"imagelinks": "Dateivawendung",
 	"linkstoimage": "{{PLURAL:$1|De foigende Seitn vawendt|De foigendn $1 Seitn vawendn}} de Datei:",

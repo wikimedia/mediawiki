@@ -525,7 +525,6 @@
 	"filehist-nothumb": "'Κ εν γραφικήν σύνοψην (thumbnail)",
 	"filehist-user": "Χρήστες",
 	"filehist-dimensions": "Διαστάσεις",
-	"filehist-filesize": "Μέγεθος",
 	"filehist-comment": "Σχόλιον",
 	"imagelinks": "Συνδέσμ αρχείων",
 	"linkstoimage": "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
