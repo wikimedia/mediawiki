@@ -1,8 +1,6 @@
 <?php
 /**
- * The web entry point for @ref ResourceLoader, which serves static CSS/JavaScript.
- *
- * @see MediaWiki\ResourceLoader\ResourceEntryPoint The implementation.
+ * @see MediaWiki\ResourceLoader\ResourceLoaderEntryPoint
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup entrypoint
- * @ingroup ResourceLoader
  * @author Roan Kattouw
  * @author Trevor Parscal
  */
@@ -29,7 +25,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader\ResourceEntryPoint;
+use MediaWiki\ResourceLoader\ResourceLoaderEntryPoint;
 
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.
@@ -39,7 +35,7 @@ define( 'MW_ENTRY_POINT', 'load' );
 
 require __DIR__ . '/includes/WebStart.php';
 
-( new ResourceEntryPoint(
+( new ResourceLoaderEntryPoint(
 	RequestContext::getMain(),
 	new EntryPointEnvironment(),
 	MediaWikiServices::getInstance()
