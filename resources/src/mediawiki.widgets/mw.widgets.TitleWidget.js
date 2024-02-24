@@ -89,6 +89,7 @@
 	 * Get the current value of the search query.
 	 *
 	 * @abstract
+	 * @function
 	 * @return {string} Search query
 	 */
 	mw.widgets.TitleWidget.prototype.getQueryValue = null;

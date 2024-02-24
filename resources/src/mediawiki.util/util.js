@@ -445,7 +445,7 @@ var util = {
 	 * allow your code to re-run when the page changes (e.g. live preview
 	 * or re-render after ajax save).
 	 *
-	 * @property {jQuery}
+	 * @type {jQuery}
 	 */
 	$content: null,
 

@@ -41,7 +41,7 @@
 	/**
 	 * Information about month names in current UI language.
 	 *
-	 * @property {Months}
+	 * @type {Months}
 	 */
 	mw.language.months = {
 		keys: {

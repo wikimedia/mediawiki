@@ -29,14 +29,14 @@
 		/**
 		 * Toolbar container element.
 		 *
-		 * @property {jQuery}
+		 * @type {jQuery}
 		 */
 		$container: null,
 
 		/**
 		 * Object containing data for the debug toolbar.
 		 *
-		 * @property {Object}
+		 * @type {Object}
 		 */
 		data: {},
 
