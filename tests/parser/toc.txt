@@ -208,6 +208,20 @@ Sections:
 !! end
 
 !! test
+Ensure comments in toc lines are stripped
+!! config
+wgRawHtml=1
+!! options
+nohtml
+showtocdata
+!! wikitext
+==hi<html><!--ho--></html>==
+!! metadata/php
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:hi line:hi
+!! end
+
+!! test
 Handle links in heading content
 !! options
 nohtml

@@ -102,6 +102,7 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
+use Wikimedia\Parsoid\DOM\Comment;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
@@ -4198,6 +4199,10 @@ class Parser {
 					}
 					DOMCompat::remove( $node );
 				}
+			} elseif ( $node instanceof Comment ) {
+				// Extensions may add comments to headings;
+				// these shouldn't appear in the ToC either.
+				DOMCompat::remove( $node );
 			}
 			$node = $next;
 		}
