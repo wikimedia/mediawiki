@@ -4416,3 +4416,9 @@ $wgEnableEditRecovery = null;
  * @see MediaWiki\MainConfigSchema::EditRecoveryExpiry
  */
 $wgEditRecoveryExpiry = null;
+
+/**
+ * Config variable stub for the UseCodexSpecialBlock setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseCodexSpecialBlock
+ */
+$wgUseCodexSpecialBlock = null;

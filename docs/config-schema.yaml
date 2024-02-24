@@ -7938,3 +7938,9 @@ config-schema:
         default: 2592000
         type: integer
         description: 'Number of seconds to keep edit recovery data after the edit is stored.'
+    UseCodexSpecialBlock:
+        default: false
+        type: boolean
+        description: |-
+            Whether to use Codex in Special:Block form.
+            This is a temporary feature flag.
