@@ -103,6 +103,8 @@ use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\DOM\Element;
+use Wikimedia\Parsoid\DOM\Node;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\ScopedCallback;
@@ -4143,7 +4145,8 @@ class Parser {
 			->page( $this->getPage() );
 	}
 
-	private function cleanUpTocLine( DocumentFragment $container ) {
+	private function cleanUpTocLine( Node $container ) {
+		'@phan-var Element|DocumentFragment $container';  // @var Element|DocumentFragment $container
 		# Strip out HTML
 		# Allowed tags are:
 		# * <sup> and <sub> (T10393)
@@ -4156,35 +4159,41 @@ class Parser {
 		# We strip any parameter from accepted tags, except dir="rtl|ltr" from <span>,
 		# to allow setting directionality in toc items.
 		$allowedTags = [ 'span', 'sup', 'sub', 'bdi', 'i', 'b', 's', 'strike', 'q' ];
-		$allNodes = DOMCompat::querySelectorAll( $container, '*' );
-		foreach ( $allNodes as $node ) {
-			$nodeName = DOMCompat::nodeName( $node );
-			if ( in_array( $nodeName, [ 'style', 'script' ], true ) ) {
-				# Remove any <style> or <script> tags (T198618)
-				DOMCompat::remove( $node );
-			} elseif ( in_array( $nodeName, $allowedTags, true ) ) {
-				// Keep tag, remove attributes
-				$removeAttrs = [];
-				foreach ( $node->attributes as $attr ) {
-					if (
-						$nodeName === 'span' && $attr->name === 'dir'
-						&& ( $attr->value === 'rtl' || $attr->value === 'ltr' )
-					) {
-						// Keep <span dir="rtl"> and <span dir="ltr">
-						continue;
+		$node = $container->firstChild;
+		while ( $node !== null ) {
+			$next = $node->nextSibling;
+			if ( $node instanceof Element ) {
+				$nodeName = DOMCompat::nodeName( $node );
+				if ( in_array( $nodeName, [ 'style', 'script' ], true ) ) {
+					# Remove any <style> or <script> tags (T198618)
+					DOMCompat::remove( $node );
+				} elseif ( in_array( $nodeName, $allowedTags, true ) ) {
+					// Keep tag, remove attributes
+					$removeAttrs = [];
+					foreach ( $node->attributes as $attr ) {
+						if (
+							$nodeName === 'span' && $attr->name === 'dir'
+							&& ( $attr->value === 'rtl' || $attr->value === 'ltr' )
+						) {
+							// Keep <span dir="rtl"> and <span dir="ltr">
+							continue;
+						}
+						$removeAttrs[] = $attr;
 					}
-					$removeAttrs[] = $attr;
+					foreach ( $removeAttrs as $attr ) {
+						$node->removeAttributeNode( $attr );
+					}
+					$this->cleanUpTocLine( $node );
+				} else {
+					// Strip tag
+					$next = $node->firstChild;
+					while ( $childNode = $node->firstChild ) {
+						$node->parentNode->insertBefore( $childNode, $node );
+					}
+					DOMCompat::remove( $node );
 				}
-				foreach ( $removeAttrs as $attr ) {
-					$node->removeAttributeNode( $attr );
-				}
-			} else {
-				// Strip tag
-				while ( $childNode = $node->firstChild ) {
-					$node->parentNode->insertBefore( $childNode, $node );
-				}
-				DOMCompat::remove( $node );
 			}
+			$node = $next;
 		}
 
 		# Strip '<span></span>', which is the result from the above if
