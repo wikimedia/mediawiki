@@ -288,7 +288,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'type' => 'select',
 			'label-message' => 'redirect-lookup',
 			'options' => [],
-			'default' => current( array_keys( $ns ) ),
+			'default' => $this->mType ?? current( array_keys( $ns ) ),
 		];
 		foreach ( $ns as $n => $m ) {
 			$m = $this->msg( $m )->text();
@@ -296,15 +296,10 @@ class SpecialRedirect extends FormSpecialPage {
 		}
 		$a['value'] = [
 			'type' => 'text',
-			'label-message' => 'redirect-value'
+			'label-message' => 'redirect-value',
+			'default' => $this->mValue ?? '',
+			'required' => true,
 		];
-		// set the defaults according to the parsed subpage path
-		if ( $this->mType ) {
-			$a['type']['default'] = $this->mType;
-		}
-		if ( $this->mValue ) {
-			$a['value']['default'] = $this->mValue;
-		}
 
 		return $a;
 	}
