@@ -69,9 +69,13 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testOpenElement() {
-		$this->expectNotice();
-		$this->expectNoticeMessage( 'given element name with space' );
-		Html::openElement( 'span id="x"' );
+		$this->expectPHPError(
+			E_USER_NOTICE,
+			static function () {
+				Html::openElement( 'span id="x"' );
+			},
+			'given element name with space'
+		);
 	}
 
 	public function testElementBasics() {

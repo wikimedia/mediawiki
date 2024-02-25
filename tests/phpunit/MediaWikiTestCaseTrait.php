@@ -478,4 +478,32 @@ trait MediaWikiTestCaseTrait {
 		);
 	}
 
+	/**
+	 * This method allows you to assert that the given callback emits a PHP error. It is a PHPUnit 10 compatible
+	 * replacement for expectNotice(), expectWarning(), expectError(), and the other methods deprecated in
+	 * https://github.com/sebastianbergmann/phpunit/issues/5062.
+	 *
+	 * @param int $errorLevel
+	 * @param callable $callback
+	 * @param string|null $msg String that must be contained in the error message
+	 */
+	protected function expectPHPError(
+		int $errorLevel,
+		callable $callback,
+		string $msg = null
+	): void {
+		try {
+			$errorEmitted = false;
+			set_error_handler( function ( $_, $actualMsg ) use ( $msg, &$errorEmitted ) {
+				if ( $msg !== null ) {
+					$this->assertStringContainsString( $msg, $actualMsg );
+				}
+				$errorEmitted = true;
+			}, $errorLevel );
+			$callback();
+			$this->assertTrue( $errorEmitted, "No PHP error was emitted." );
+		} finally {
+			restore_error_handler();
+		}
+	}
 }

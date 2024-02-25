@@ -194,9 +194,12 @@ class MetricTest extends TestCase {
 
 	public function testTimerNotStarted() {
 		$m = StatsFactory::newNull();
-		$this->expectWarning();
-		$this->expectWarningMessage( 'Stats: stop() called before start() for metric \'test\'' );
-		$m->getTiming( 'test' )->stop();
+		$this->expectPHPWarning(
+			'Stats: stop() called before start() for metric \'test\'',
+			static function () use ( $m ) {
+				$m->getTiming( 'test' )->stop();
+			}
+		);
 	}
 
 	public function testErrorOnChangingStaticLabelsWithMetricsInCache() {
@@ -252,25 +255,34 @@ class MetricTest extends TestCase {
 	public function testCounterHandleNotAllLabelsHaveValues() {
 		$m = StatsFactory::newNull();
 		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();
-		$this->expectWarning();
-		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
-		$m->getCounter( 'testMetricCounter' )->increment();
+		$this->expectPHPWarning(
+			'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.',
+			static function () use ( $m ) {
+				$m->getCounter( 'testMetricCounter' )->increment();
+			}
+		);
 	}
 
 	public function testGaugeHandleNotAllLabelsHaveValues() {
 		$m = StatsFactory::newNull();
 		$m->getGauge( 'testMetricGauge' )->setLabel( 'labelOne', 'a' )->set( 1 );
-		$this->expectWarning();
-		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
-		$m->getGauge( 'testMetricGauge' )->set( 1 );
+		$this->expectPHPWarning(
+			'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.',
+			static function () use ( $m ) {
+				$m->getGauge( 'testMetricGauge' )->set( 1 );
+			}
+		);
 	}
 
 	public function testTimingHandleNotAllLabelsHaveValues() {
 		$m = StatsFactory::newNull();
 		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observe( 1 );
-		$this->expectWarning();
-		$this->expectWarningMessage( 'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.' );
-		$m->getTiming( 'testMetricTiming' )->observe( 1 );
+		$this->expectPHPWarning(
+			'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.',
+			static function () use ( $m ) {
+				$m->getTiming( 'testMetricTiming' )->observe( 1 );
+			}
+		);
 	}
 
 	public function testSampleRateOOB() {
@@ -311,28 +323,37 @@ class MetricTest extends TestCase {
 	public function testHandleInvalidStatsdNamespace() {
 		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
-		$this->expectWarning();
-		$this->expectWarningMessage( 'Stats: StatsD namespace must be a string.' );
-		$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( null );
-		$this->assertInstanceOf( NullMetric::class, $metric );
+		$this->expectPHPWarning(
+			'Stats: StatsD namespace must be a string.',
+			function () use ( $m ) {
+				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( null );
+				$this->assertInstanceOf( NullMetric::class, $metric );
+			}
+		);
 	}
 
 	public function testHandleEmptyStatsdNamespace() {
 		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
-		$this->expectWarning();
-		$this->expectWarningMessage( 'Stats: StatsD namespace cannot be empty.' );
-		$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( '' );
-		$this->assertInstanceOf( NullMetric::class, $metric );
+		$this->expectPHPWarning(
+			'Stats: StatsD namespace cannot be empty.',
+			function () use ( $m ) {
+				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( '' );
+				$this->assertInstanceOf( NullMetric::class, $metric );
+			}
+		);
 	}
 
 	public function testHandleNonStringStatsdNamespaceInArray() {
 		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
-		$this->expectWarning();
-		$this->expectWarningMessage( 'Stats: StatsD namespace must be a string.' );
-		$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( [ null ] );
-		$this->assertInstanceOf( NullMetric::class, $metric );
+		$this->expectPHPWarning(
+			'Stats: StatsD namespace must be a string.',
+			function () use ( $m ) {
+				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( [ null ] );
+				$this->assertInstanceOf( NullMetric::class, $metric );
+			}
+		);
 	}
 
 	public function testCanChangeLabelsWhileTimerIsStarted() {
@@ -389,5 +410,26 @@ class MetricTest extends TestCase {
 		// statsdDataFactory should be null again
 		$noStatsdAgain = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
 		$this->assertNull( $noStatsdAgain->statsdDataFactory );
+	}
+
+	/**
+	 * PHPUnit 10 compatible replacement for expectWarning().
+	 *
+	 * @param string $msg
+	 * @param callable $callback
+	 * @return void
+	 */
+	private function expectPHPWarning( string $msg, callable $callback ): void {
+		try {
+			$errorEmitted = false;
+			set_error_handler( function ( $_, $actualMsg ) use ( $msg, &$errorEmitted ) {
+				$this->assertStringContainsString( $msg, $actualMsg );
+				$errorEmitted = true;
+			}, E_USER_WARNING );
+			$callback();
+			$this->assertTrue( $errorEmitted, "No PHP warning was emitted." );
+		} finally {
+			restore_error_handler();
+		}
 	}
 }

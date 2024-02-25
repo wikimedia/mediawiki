@@ -4,14 +4,14 @@ namespace MediaWiki\Tests;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
-use PHPUnit\Framework\TestCase;
+use MediaWikiIntegrationTestCase;
 use RequestContext;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\MediaWikiEntryPoint
  */
-class MediaWikiEntryPointTest extends TestCase {
+class MediaWikiEntryPointTest extends MediaWikiIntegrationTestCase {
 
 	private function newEntryPoint(): MediaWikiEntryPoint {
 		$context = new RequestContext();
@@ -69,8 +69,12 @@ class MediaWikiEntryPointTest extends TestCase {
 
 		$mw->enterPostSendMode();
 
-		$this->expectNotice();
-		$mw->flushOutputBuffer();
+		$this->expectPHPError(
+			E_USER_NOTICE,
+			static function () use ( $mw ) {
+				$mw->flushOutputBuffer();
+			}
+		);
 
 		$this->assertSame( '', $mw->drainOutputBuffer() );
 	}

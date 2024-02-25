@@ -360,9 +360,13 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheExpiredNoLockWarning() {
 		$mock = $this->createConfigMockWithNoLock();
 
-		$this->expectNotice();
-		$this->expectNoticeMessage( 'using stale data: lost lock' );
-		$mock->get( 'known' );
+		$this->expectPHPError(
+			E_USER_NOTICE,
+			static function () use ( $mock ) {
+				$mock->get( 'known' );
+			},
+			'using stale data: lost lock'
+		);
 	}
 
 	public static function provideFetchFromServer() {
