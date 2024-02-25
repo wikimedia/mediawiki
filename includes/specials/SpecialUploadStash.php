@@ -181,6 +181,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$handler = $file->getHandler();
 			if ( $handler ) {
 				$params = $handler->parseParamString( $paramString );
+				if ( $params === false ) {
+					// The params are invalid, but still try to show a thumb
+					$params = [];
+				}
 
 				return [ 'file' => $file, 'type' => $type, 'params' => $params ];
 			} else {
