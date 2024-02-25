@@ -806,6 +806,7 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'HttpRequestFactory',
 				'UrlUtils',
+				'ConnectionProvider',
 			]
 		],
 		'ListDuplicatedFiles' => [
