@@ -46,7 +46,9 @@ if ( $GLOBALS['argc'] === 1 ) {
 } else {
 	// PHPUnit has been invoked with arguments. This can be very complex to handle, so the heuristic below is meant
 	// to cover just the most common use cases.
-	$phpunitArgs = ( new Builder )->fromParameters( $GLOBALS['argv'], [] );
+	// Make PHPUnit not complain about unrecognized options when paratest options are passed in
+	$paratestArgs = [ 'runner', 'processes', 'passthru-php', 'write-to' ];
+	$phpunitArgs = ( new Builder )->fromParameters( $GLOBALS['argv'], $paratestArgs );
 	if ( $phpunitArgs->hasArgument() ) {
 		// A test or test directory was specified explicitly. Normalize line endings and case, and see if we likely
 		// got a directory of unit tests only (or a file therein).
