@@ -191,13 +191,13 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 			->whereTitlePrefix( NS_TALK, 'A' )
 			->fetchPageRecords();
 
-		$this->assertCount( 1, $recs );
+		$this->assertCount( 1, iterator_to_array( $recs ) );
 
 		$recs = $pageStore->newSelectQueryBuilder()
 			->whereTitlePrefix( NS_MAIN, 'XX' )
 			->fetchPageRecords();
 
-		$this->assertCount( 0, $recs );
+		$this->assertCount( 0, iterator_to_array( $recs ) );
 	}
 
 }

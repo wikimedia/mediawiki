@@ -744,7 +744,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $existingSubpageB->isSamePageAs( $subpages[1] ) );
 
 		// make sure the limit works as well
-		$this->assertCount( 1, $pageStore->getSubpages( $title, 1 ) );
+		$this->assertCount( 1, iterator_to_array( $pageStore->getSubpages( $title, 1 ) ) );
 	}
 
 	/**
