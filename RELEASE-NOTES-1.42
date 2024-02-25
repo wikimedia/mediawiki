@@ -122,6 +122,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated psr/http-message from 1.0.1 to 1.1.
 * Updated monolog/monolog from 2.2.0 to 2.9.2.
 * Updated mck89/peast from 1.16.0 to 1.16.1.
+* Updated wikimedia/less.php from 4.1.1 to 4.2.1.
 * Updated wikimedia/shellbox from 4.0.0 to 4.0.1.
 * …
 
