@@ -173,7 +173,7 @@ abstract class ParserCacheSerializationTestCases {
 	 * @return array[]
 	 */
 	public static function getParserOutputTestCases() {
-		MWDebug::filterDeprecationForTest( '/Use of MediaWiki\\Parser\\ParserOutput::setTOCHTML/' );
+		MWDebug::filterDeprecationForTest( '/Use of MediaWiki\\\\Parser\\\\ParserOutput::setTOCHTML/' );
 		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
 		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
 		$parserOutputWithCacheTimeProps->updateCacheExpiry( 10 );
@@ -266,6 +266,8 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadataPost1_34->addExtraCSPDefaultSrc( 'default1' );
 		$parserOutputWithMetadataPost1_34->addExtraCSPScriptSrc( 'script1' );
 		$parserOutputWithMetadataPost1_34->addLink( Title::makeTitle( NS_SPECIAL, 'Link3' ) );
+
+		MWDebug::clearDeprecationFilters();
 
 		return [
 			'empty' => [

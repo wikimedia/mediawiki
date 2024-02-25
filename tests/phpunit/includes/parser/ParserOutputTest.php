@@ -12,6 +12,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiLangTestCase;
+use MWDebug;
 use ParserOptions;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\SectionMetadata;
@@ -965,6 +966,8 @@ EOF
 	}
 
 	public function provideMergeInternalMetaDataFrom() {
+		MWDebug::filterDeprecationForTest( '/^CacheTime::setCacheTime called with -1 as an argument/' );
+
 		// flags & co
 		$a = new ParserOutput();
 
@@ -1135,6 +1138,8 @@ EOF
 				],
 			],
 		] ];
+
+		MWDebug::clearDeprecationFilters();
 	}
 
 	/**
