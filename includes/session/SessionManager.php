@@ -729,13 +729,16 @@ class SessionManager implements SessionManagerInterface {
 				// is no saved ID and the names match.
 				if ( $metadata['userId'] ) {
 					if ( $metadata['userId'] !== $userInfo->getId() ) {
+						// Maybe something like UserMerge changed the user ID. Or it's manual tampering.
 						$this->logger->warning(
 							'Session "{session}": User ID mismatch, {uid_a} !== {uid_b}',
 							[
 								'session' => $info->__toString(),
 								'uid_a' => $metadata['userId'],
 								'uid_b' => $userInfo->getId(),
-						] );
+								'uname_a' => $metadata['userName'] ?? '<null>',
+								'uname_b' => $userInfo->getName() ?? '<null>',
+							] );
 						return $failHandler();
 					}
 
@@ -749,7 +752,7 @@ class SessionManager implements SessionManagerInterface {
 								'session' => $info->__toString(),
 								'uname_a' => $metadata['userName'],
 								'uname_b' => $userInfo->getName(),
-						] );
+							] );
 						return $failHandler();
 					}
 
@@ -761,22 +764,25 @@ class SessionManager implements SessionManagerInterface {
 								'session' => $info->__toString(),
 								'uname_a' => $metadata['userName'],
 								'uname_b' => $userInfo->getName(),
-						] );
+							] );
 						return $failHandler();
 					}
 				} elseif ( !$userInfo->isAnon() ) {
-					// Metadata specifies an anonymous user, but the passed-in
-					// user isn't anonymous.
+					// The metadata in the session store entry indicates this is an anonymous session,
+					// but the request metadata (e.g. the username cookie) says otherwise. Maybe the
+					// user logged out but unsetting the cookies failed?
 					$this->logger->warning(
-						'Session "{session}": Metadata has an anonymous user, but a non-anon user was provided',
+						'Session "{session}": the session store entry is for an anonymous user, '
+							. 'but the session metadata indicates a non-anonynmous user',
 						[
 							'session' => $info->__toString(),
-					] );
+						] );
 					return $failHandler();
 				}
 			}
 
 			// And if we have a token in the metadata, it must match the loaded/provided user.
+			// A mismatch probably means the session was invalidated.
 			if ( $metadata['userToken'] !== null &&
 				$userInfo->getToken() !== $metadata['userToken']
 			) {
@@ -809,7 +815,7 @@ class SessionManager implements SessionManagerInterface {
 					'Session "{session}": Null provider and no metadata',
 					[
 						'session' => $info->__toString(),
-				] );
+					] );
 				return $failHandler();
 			}
 
@@ -818,20 +824,24 @@ class SessionManager implements SessionManagerInterface {
 				if ( $info->getProvider()->canChangeUser() ) {
 					$newParams['userInfo'] = UserInfo::newAnonymous();
 				} else {
+					// This is a session provider bug - providers with canChangeUser() === false
+					// should never return an anonymous SessionInfo.
 					$this->logger->info(
 						'Session "{session}": No user provided and provider cannot set user',
 						[
 							'session' => $info->__toString(),
-					] );
+						] );
 					return $failHandler();
 				}
 			} elseif ( !$info->getUserInfo()->isVerified() ) {
-				// probably just a session timeout
+				// The session was not found in the session store, and the request contains no
+				// information beyond the session ID that could be used to verify it.
+				// Probably just a session timeout.
 				$this->logger->info(
 					'Session "{session}": Unverified user provided and no metadata to auth it',
 					[
 						'session' => $info->__toString(),
-				] );
+					] );
 				return $failHandler();
 			}
 

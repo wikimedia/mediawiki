@@ -1267,8 +1267,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [
 			[
 				LogLevel::WARNING,
-				'Session "{session}": Metadata has an anonymous user, ' .
-				'but a non-anon user was provided',
+				'Session "{session}": the session store entry is for an anonymous user, ' .
+					'but the session metadata indicates a non-anonynmous user',
 			],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
