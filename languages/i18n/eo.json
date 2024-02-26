@@ -1915,7 +1915,6 @@
 	"uploadstash-badtoken": "Malsukcesis tiu ago, eble pro tio ke viaj ensalutiloj eksvalidiĝis. Bonvolu reprovi.",
 	"uploadstash-errclear": "Malsukcesis la forigo de la dosieroj.",
 	"uploadstash-refresh": "Aktualigi la dosierliston.",
-	"uploadstash-thumbnail": "vidi bildeton",
 	"uploadstash-exception": "Ne eblas alŝuti en kaŝkonservejon ($1): \"$2\".",
 	"uploadstash-bad-path": "Vojo ne ekzistas.",
 	"uploadstash-bad-path-invalid": "Vojo ne estas valida.",

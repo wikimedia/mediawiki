@@ -1738,7 +1738,6 @@
 	"uploadstash-nofiles": "ما عدك أي ملفات مضمومة.",
 	"uploadstash-errclear": "فشلت عملية مسح الملفات.",
 	"uploadstash-refresh": "تحديث قائمة الملفات",
-	"uploadstash-thumbnail": "اعرض صورة مصغرة",
 	"uploadstash-bad-path": "المسار مو موجود.",
 	"uploadstash-bad-path-invalid": "المسار مو صحيح.",
 	"uploadstash-bad-path-unknown-type": "نوع مو معروف \"$1\".",

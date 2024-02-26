@@ -1491,7 +1491,6 @@
 	"backend-fail-maxsize": "មិនអាចសរសេរឯកសារ \"$1\" បានទេពីព្រោះវាមានទំហំធំជាង {{PLURAL:$2|មួយបៃ|$2 បៃ}}.",
 	"uploadstash-errclear": "ការសម្អាតឯកសារមិនបានសម្រេច។",
 	"uploadstash-refresh": "ផ្ទុកបញ្ជីឯកសារឡើងវិញ",
-	"uploadstash-thumbnail": "មើលកូនរូបភាព",
 	"img-auth-accessdenied": "ហាមចូល",
 	"img-auth-badtitle": "មិនអាចបង្កើតចំណងជើងមានសុពលភាពពី \"$1\"។",
 	"img-auth-nofile": "គ្មានឯកសារឈ្មោះ \"$1\"ទេ។",

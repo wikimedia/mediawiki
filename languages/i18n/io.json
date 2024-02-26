@@ -1730,7 +1730,6 @@
 	"zip-unsupported": "Ca arkivo esas *.ZIP-arkivo, qua uzas resursi ZIP ne suportata da MediaWiki.\nOl ne povas verifikesar koncerne sekureso.",
 	"uploadstash-errclear": "Faliis l'efaco di arkivi.",
 	"uploadstash-refresh": "Aktualigo di la listo di arkivi",
-	"uploadstash-thumbnail": "videz miniaturo",
 	"uploadstash-exception": "Ne povas konservar en la rezervajo ($1): \"$2\".",
 	"uploadstash-bad-path": "La voyo ne existas.",
 	"uploadstash-bad-path-invalid": "La voyo esas nevalida.",

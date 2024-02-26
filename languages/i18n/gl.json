@@ -1900,7 +1900,6 @@
 	"uploadstash-badtoken": "A acción fallou, probablemente porque caducou a información de acceso. Por favor, inténteo de novo.",
 	"uploadstash-errclear": "Fallou o borrado de ficheiros.",
 	"uploadstash-refresh": "Actualizar a lista de ficheiros",
-	"uploadstash-thumbnail": "ver a miniatura",
 	"uploadstash-exception": "Imposible gardar a subida na reserva ($1): \"$2\".",
 	"uploadstash-bad-path": "A ruta non existe.",
 	"uploadstash-bad-path-invalid": "A ruta non é válida.",

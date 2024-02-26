@@ -1717,7 +1717,6 @@
 	"uploadstash-badtoken": "Obavljanje radnje nije bilo uspješno, moguće da su Vam istekla prava uređivanja. Pokušajte ponovno.",
 	"uploadstash-errclear": "Brisanje datoteka nije uspjelo.",
 	"uploadstash-refresh": "Osvježi popis datoteka",
-	"uploadstash-thumbnail": "pogledaj kao minijaturu",
 	"uploadstash-exception": "Postavljanje u zalihu nije bilo moguće ($1): »$2«.",
 	"uploadstash-bad-path": "Putanja ne postoji.",
 	"uploadstash-bad-path-invalid": "Putanja nije valjana.",

@@ -1561,7 +1561,6 @@
 	"uploadstash-badtoken": "It-twettiq ta' dik l-azzjoni ma kienx suċċess, probabilment minħabba li l-kredenzjali tiegħek tal-immodifikar skadew. Erġa' pprova.",
 	"uploadstash-errclear": "It-tħassir tal-fajls ma rnexxiex.",
 	"uploadstash-refresh": "Erġa' ġedded il-lista tal-fajls",
-	"uploadstash-thumbnail": "ara verzjoni żgħira",
 	"uploadstash-bad-path": "Dan il-path ma jeżistix.",
 	"uploadstash-bad-path-invalid": "Dan il-path huwa invalidu",
 	"uploadstash-bad-path-unknown-type": "\"$1\" mhux tip magħruf.",

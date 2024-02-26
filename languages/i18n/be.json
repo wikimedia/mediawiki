@@ -1873,7 +1873,6 @@
 	"uploadstash-badtoken": "Не атрымалася выканаць названыя дзеянні. Магчыма, скончыўся тэрмін дзеяння вашага жэтона бяспекі. Паспрабуйце яшчэ раз.",
 	"uploadstash-errclear": "Ачыстка файлаў не ўдалася",
 	"uploadstash-refresh": "Абнавіць спіс файлаў",
-	"uploadstash-thumbnail": "паказаць мініяцюру",
 	"uploadstash-exception": "Не атрымалася захаваць загрузку ў хованку ($1): «$2».",
 	"uploadstash-bad-path": "Такога шляху няма.",
 	"uploadstash-bad-path-invalid": "Няслушны шлях.",

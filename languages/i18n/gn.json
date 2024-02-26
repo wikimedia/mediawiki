@@ -621,7 +621,6 @@
 	"backend-fail-describe": "Ndaikatúi oñemoambue $1 apopyme'ẽ",
 	"backend-fail-store": "Ndaikatúi oñeñongatu \"$2\"-pe marandurenda \"$1\".",
 	"backend-fail-move": "Ndaikatúi oguerova \"$2\"-pe marandurenda \"$1\".",
-	"uploadstash-thumbnail": "ehecha michĩháicha",
 	"upload-curl-error6": "Ndaikatúi oñeguahẽ URL-pe",
 	"upload-curl-error6-text": "Ndaikatúi oñeguahẽ pe URL oñeme’ẽvape.\nEjesareko mokõi jey pe URL oĩporãpa ha pe sítio oikópa.",
 	"upload-curl-error28": "Ndaikatúi oha'ãrõve",

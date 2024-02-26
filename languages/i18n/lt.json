@@ -1905,7 +1905,6 @@
 	"uploadstash-badtoken": "Nepavyko atlikti šio veiksmo, galbūt todėl, kad jūsų redagavimo įgaliojimai pasibaigė. Prašome bandyti dar kartą.",
 	"uploadstash-errclear": "Išvalyti failų nepavyko.",
 	"uploadstash-refresh": "Atnaujinti failų sąrašą",
-	"uploadstash-thumbnail": "rodyti miniatiūrą",
 	"uploadstash-bad-path": "Kelias neegzistuoja.",
 	"uploadstash-bad-path-invalid": "Kelias negalimas.",
 	"uploadstash-bad-path-unknown-type": "Nežinomas tipas „$1“.",

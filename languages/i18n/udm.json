@@ -1878,7 +1878,6 @@
 	"uploadstash-badtoken": "Таэ лэсьтыны ӧз луы. Тӥляд ужоскеттылы висъям дыр йылпумъяськем, лэся. Выльысь оскалтэ,тауна.",
 	"uploadstash-errclear": "Файлъёсты сузяны ӧз луы.",
 	"uploadstash-refresh": "Файлъёсын лыдъетэз выльдоно",
-	"uploadstash-thumbnail": "Пичиятэм туссэ учконо",
 	"uploadstash-exception": "Инъянэз лушкем магазее  ($1): \"$2\" сакланы ӧз луы.",
 	"uploadstash-bad-path": "Таӵе мынонни ӧвӧл",
 	"uploadstash-bad-path-invalid": "Умойтэм мынонни",

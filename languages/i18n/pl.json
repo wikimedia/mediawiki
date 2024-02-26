@@ -1980,7 +1980,6 @@
 	"uploadstash-badtoken": "Operacja nie powiodła się. Być może Twoje upoważnienie do edytowania wygasło. Spróbuj ponownie.",
 	"uploadstash-errclear": "Czyszczenie plików nie powiodło się.",
 	"uploadstash-refresh": "Odśwież listę plików",
-	"uploadstash-thumbnail": "pokaż miniaturkę",
 	"uploadstash-exception": "Nie udało się zapisać przesyłanego pliku w magazynie tymczasowym ($1): „$2”.",
 	"uploadstash-bad-path": "Ścieżka nie istnieje.",
 	"uploadstash-bad-path-invalid": "Ścieżka jest nieprawidłowa.",

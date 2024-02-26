@@ -939,7 +939,6 @@
 	"upload-form-label-own-work-message-generic-local": "Sotinko, ka ikeldams ton abruozdieli darou ton palē {{SITENAME}} taisīklės.",
 	"backend-fail-notexists": "Abruozdielė „$1“ nie.",
 	"backend-fail-alreadyexists": "Abruozdielis „$1“ jau īr.",
-	"uploadstash-thumbnail": "veizietė somažinta",
 	"img-auth-accessdenied": "Ožgint prė̄tė",
 	"upload-curl-error6": "Napavīkst pasėiktė URL",
 	"upload-curl-error6-text": "Pataikts URL nagal būt pasėikts. Prašuom patėkrėntė, kū URL īr teisings ėr svetainė veik.",

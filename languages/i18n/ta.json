@@ -1631,7 +1631,6 @@
 	"uploadstash-badtoken": "அந்த செயலுக்கான நடவடிக்கை தோல்வியடைந்தது, ஒருவேளை ஏனென்றால் உங்கள் திருத்த அறிமுகசான்றுகள் காலாவதியாகிவிட்டது. மீண்டும் முயற்சி செய்.",
 	"uploadstash-errclear": "கோப்புகளை சரிசெய்தல் (Clearing) தோல்வியடைந்து விட்டது.",
 	"uploadstash-refresh": "கோப்புகள் உள்ள பட்டியலை புதுப்பி",
-	"uploadstash-thumbnail": "நகப்படத்தைக் காட்டு",
 	"uploadstash-bad-path": "வழி இடம்பெறவில்லை",
 	"uploadstash-bad-path-invalid": "வழி செல்லத்தாகது",
 	"uploadstash-file-not-found-no-thumb": "நகப்படத்தை பெறமுடியவில்லை",

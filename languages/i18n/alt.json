@@ -1874,7 +1874,6 @@
 	"uploadstash-badtoken": "Кӧргӱзилген эдимди бӱдӱрерге келишпеди.Айса болзо, слердиҥ аккаунттыҥ ӧйи ӧткӧн. База катап ченешкер.",
 	"uploadstash-errclear": "Файлдар арчылбады.",
 	"uploadstash-refresh": "Файлдардыҥ тизимин јаҥыртар",
-	"uploadstash-thumbnail": "миниатюразын кӧргӱзер",
 	"uploadstash-exception": "$1,$2 деп удурум кӧмзӧлӧргӧ кожулганы салынбады.",
 	"uploadstash-bad-path": "Јолы јок.",
 	"uploadstash-bad-path-invalid": "Јастыра јол.",

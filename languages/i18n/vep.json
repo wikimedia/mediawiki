@@ -1877,7 +1877,6 @@
 	"uploadstash-badtoken": "Ei sa tehta necidä radod, voib olda, lopihe aig, konz sinä void tehta vajehtusid. Ole hüvä, ladi möst.",
 	"uploadstash-errclear": "Ei sa puhtastada failad.",
 	"uploadstash-refresh": "Udišta failoiden lugetiž",
-	"uploadstash-thumbnail": "kacu kuvaine",
 	"uploadstash-exception": "Ei sa kaita sadud failad tedokaičuses ($1): \"$2\".",
 	"uploadstash-bad-path": "Mugošt ted ei ole.",
 	"uploadstash-bad-path-invalid": "Mugoine te om vär.",

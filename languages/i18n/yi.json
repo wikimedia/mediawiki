@@ -1604,7 +1604,6 @@
 	"uploadstash-nofiles": "איר האט נישט קיין טעקעס אין זאפאס.",
 	"uploadstash-errclear": "אוועקנעמען די טעקעס דורכגעפאלן.",
 	"uploadstash-refresh": "דערפֿרישן די רשימה פון טעקעס",
-	"uploadstash-thumbnail": "באקוקן קליינבילד",
 	"uploadstash-file-not-found-no-local-path": "קיין לאקאלער שטייג פֿאר סקאלירטן איינצל.",
 	"uploadstash-zero-length": "טעקע האט נול גרייס.",
 	"invalid-chunk-offset": "אומגילטיקער סטארטפונקט",

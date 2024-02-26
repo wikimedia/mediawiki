@@ -1826,7 +1826,6 @@
 	"uploadstash-badtoken": "Esecuzzion de l'azzion falada, forse perchè i to credenziai de modifica a inn scadude. Prova amò.",
 	"uploadstash-errclear": "El scancelament di fail l'è fallad",
 	"uploadstash-refresh": "Atualiza la lista di fail",
-	"uploadstash-thumbnail": "ved la miniadura",
 	"uploadstash-exception": "Impossibil memorizzà el caricamento in del stash ($1): \"$2\".",
 	"uploadstash-bad-path": "El percors l'esist minga",
 	"uploadstash-bad-path-invalid": "El percors l'è minga valid",

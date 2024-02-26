@@ -1964,7 +1964,6 @@
 	"uploadstash-badtoken": "فشل أداء ذلك العمل، ربما لأن وثائق تفويض التحرير الخاصة بك منتهية الصلاحية. من فضلك حاول مرة أخرى.",
 	"uploadstash-errclear": "فشلت عملية مسح الملفات.",
 	"uploadstash-refresh": "تحديث قائمة الملفات",
-	"uploadstash-thumbnail": "اعرض صورة مصغرة",
 	"uploadstash-exception": "لم يمكن تخزين الرفع في الstash ($1): \"$2\".",
 	"uploadstash-bad-path": "المسار غير موجود",
 	"uploadstash-bad-path-invalid": "المسار غير صحيح.",

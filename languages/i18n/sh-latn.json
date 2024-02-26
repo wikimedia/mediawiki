@@ -1837,7 +1837,6 @@
 	"uploadstash-badtoken": "Nisam uspio izvršiti zatraženu akciju, možda zato što su vaša sigurnosna šifra istekla. Pokušajte ponovo.",
 	"uploadstash-errclear": "Brisanje datoteka nije uspjelo.",
 	"uploadstash-refresh": "Osvježi listu datoteka",
-	"uploadstash-thumbnail": "pogl. minijaturu",
 	"uploadstash-exception": "Nisam mogao spremiti datoteku u spremište ($1): \"$2\".",
 	"uploadstash-bad-path": "Putanja ne postoji.",
 	"uploadstash-bad-path-invalid": "Putanja nije ispravna.",

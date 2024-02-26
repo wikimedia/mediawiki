@@ -1857,7 +1857,6 @@
 	"uploadstash-badtoken": "Tädä ruaduo ei suannuh ruadua. Vikse on loppenuhes sinun kohendamizen mahtoloin aigu. Ole hyvä, opi uvvessah.",
 	"uploadstash-errclear": "Tiijostoloi ei suannuh ottua iäre.",
 	"uploadstash-refresh": "Uvvista tiijostoloin luvettelu",
-	"uploadstash-thumbnail": "ozuta pieni kuva",
 	"uploadstash-exception": "Ei voidu tallendua tiijostuo väliaigazeh varastoh ($1): ”$2”.",
 	"uploadstash-bad-path": "Nengomua tiedy ei ole.",
 	"uploadstash-bad-path-invalid": "Nengoine tie ei päi.",

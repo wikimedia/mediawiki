@@ -1814,7 +1814,6 @@
 	"uploadstash-badtoken": "Ni lwyddodd y weithred. Efallai oherwydd bod eich cymwysterau golygu wedi dod i ben. Ceisiwch eto.",
 	"uploadstash-errclear": "Ni lwyddwyd i glirio'r ffeiliau.",
 	"uploadstash-refresh": "Adnewyddu rhestr y ffeiliau",
-	"uploadstash-thumbnail": "gweld y ciplun",
 	"uploadstash-bad-path": "'Dyw'r llwybr ddim yn bodoli.",
 	"uploadstash-bad-path-invalid": "'Dyw'r llwybr ddim yn gywir.",
 	"uploadstash-bad-path-unknown-type": "Math anhysbys \"$1\".",

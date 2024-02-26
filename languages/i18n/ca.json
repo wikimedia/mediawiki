@@ -1908,7 +1908,6 @@
 	"uploadstash-badtoken": "No s'ha pogut realitzar l'acció, possiblement perquè ha caducat la vostra identificació. Intenteu-ho de nou.",
 	"uploadstash-errclear": "S'estan netejant els fitxers que han fallat.",
 	"uploadstash-refresh": "Actualitza la llista de fitxers",
-	"uploadstash-thumbnail": "mostra una miniatura",
 	"uploadstash-exception": "No s'ha pogut emmagatzemar la càrrega en reserva ($1): «$2»",
 	"uploadstash-bad-path": "El camí no existeix.",
 	"uploadstash-bad-path-invalid": "El camí no és vàlid.",

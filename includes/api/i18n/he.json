@@ -236,6 +236,7 @@
 	"apihelp-feedrecentchanges-param-hideminor": "הסתרת שינויים משניים.",
 	"apihelp-feedrecentchanges-param-hidebots": "הסתרת שינויים שנעשו על ידי בוטים.",
 	"apihelp-feedrecentchanges-param-hideanons": "הסתרת שינויים שנעשו על ידי אנונימים.",
+	"apihelp-feedrecentchanges-param-hideanons-temp": "הסתרת שינויים שנעשו על־ידי משתמשים אלמוניים וחשבונות זמניים.",
 	"apihelp-feedrecentchanges-param-hideliu": "הסתרת שינויים שנעשו על ידי משתמשים רשומים.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "הסתרת שינויים שנבדקו.",
 	"apihelp-feedrecentchanges-param-hidemyself": "הסתרת שינויים שנעשו על־ידי המשתמש הנוכחי.",

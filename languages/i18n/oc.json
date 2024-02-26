@@ -1721,7 +1721,6 @@
 	"uploadstash-nofiles": "Avètz pas de fichièrs en cache d'impòrt.",
 	"uploadstash-errclear": "La supression dels fichièrs a fracassat.",
 	"uploadstash-refresh": "Actualizar la lista dels fichièrs",
-	"uploadstash-thumbnail": "afichar una miniatura",
 	"uploadstash-bad-path": "Lo camin existís pas.",
 	"uploadstash-bad-path-invalid": "Lo camin es pas valid.",
 	"uploadstash-bad-path-unknown-type": "Tipe « $1 » desconegut.",

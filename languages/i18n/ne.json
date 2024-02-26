@@ -1585,7 +1585,6 @@
 	"uploadstash-badtoken": "दिइएको कार्य असफलभयो , सायद तपाईंको सम्पादन अधिकार समाप्त भयो । पुन: प्रयास गर्नुहोस् ।",
 	"uploadstash-errclear": "चित्र हटाउने कार्य असफल भयो।",
 	"uploadstash-refresh": "फाइलहरूको सूची ताजा गर्नुहोस्",
-	"uploadstash-thumbnail": "चित्र हेर्नुहोस्",
 	"uploadstash-bad-path": "बाटो अवस्थित छैन।",
 	"invalid-chunk-offset": "अमान्य चंक अफसेट",
 	"img-auth-accessdenied": "पहुँच अस्वीकार",

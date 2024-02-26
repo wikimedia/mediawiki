@@ -1915,7 +1915,6 @@
 	"uploadstash-badtoken": "Tác vụ bị thất bại, có lẽ vì thông tin đăng nhập của bạn đã hết hạn. Hãy thử lại.",
 	"uploadstash-errclear": "Việc dọn sạch các tập tin bị thất bại.",
 	"uploadstash-refresh": "Làm mới danh sách tập tin",
-	"uploadstash-thumbnail": "xem hình thu nhỏ",
 	"uploadstash-exception": "Không thể lưu tập tin vào hàng đợi tải lên ($1): “$2”.",
 	"uploadstash-bad-path": "Đường dẫn không tồn tại.",
 	"uploadstash-bad-path-invalid": "Đường dẫn không hợp lệ.",

@@ -1879,7 +1879,6 @@
 	"uploadstash-badtoken": "Melaksanakan tindakan tersebut gagal, mungkin kerana kelayakan penyuntingan anda mansuh. Sila cuba lagi.",
 	"uploadstash-errclear": "Penghapusan fail gagal.",
 	"uploadstash-refresh": "Segarkan semula senarai fail",
-	"uploadstash-thumbnail": "lihat gambar kenit",
 	"uploadstash-exception": "Tidak dapat menyimpan muat naik dalam tempat sorokan ($1): \"$2\".",
 	"uploadstash-bad-path": "Laluan tidak wujud.",
 	"uploadstash-bad-path-invalid": "Laluan tidak sah.",

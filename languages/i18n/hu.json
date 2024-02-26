@@ -1910,7 +1910,6 @@
 	"uploadstash-badtoken": "A művelet végrehajtása sikertelen volt. Lehetséges, hogy lejártak a szerkesztést hitelesítő adataid. Próbáld újra!",
 	"uploadstash-errclear": "A fájlok törlése nem sikerült.",
 	"uploadstash-refresh": "Fájlok listájának frissítése",
-	"uploadstash-thumbnail": "bélyegkép megjelenítése",
 	"uploadstash-exception": "Nem sikerült eltárolni a feltöltést a stash-ben ($1): „$2”",
 	"uploadstash-bad-path": "Útvonal nem létezik",
 	"uploadstash-bad-path-invalid": "Érvénytelen útvonal",

@@ -1343,7 +1343,6 @@
 	"backend-fail-maxsize": "Á̱ si̱ mi̱n dyuut fail \"$1\" bah da̱nian ku shi swak {{PLURAL:$2|bait nyiung|a̱yaabait $2}}.",
 	"backend-fail-usable": "Á̱ si̱ mi̱n fang ku lyuut fail \"$1\" hu bah da̱nian a̱ka̱wat na lat ke nkwambwat a̱myim/a̱ka̱kurung na bwuk.",
 	"lockmanager-fail-openlock": "Á̱ si̱ mi̱n khwuk a̱nyanyang fail wu mat \"$1\" bah. Nwuak a̱cucuk nyia̱ á̱ nyia̱ seti kwambwat a̱myim kpa̱t ang hu ma̱ ca̱caat a̱wot sava a̱ma̱ntei ang hu byia̱ a̱wat lyuut ma̱ kwambwat a̱myim a̱hwa. Di https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory mat nkhang njhyang.",
-	"uploadstash-thumbnail": "di a̱gban ghwughwu",
 	"license": "Shyiat kwaa̱mbwat a̱ka̱wat:",
 	"license-header": "Shyiat kwaa̱mbwat a̱ka̱wat",
 	"listfiles-delete": "ti̱n",

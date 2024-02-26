@@ -1780,7 +1780,6 @@
 	"uploadstash-badtoken": "L'esecussion dë st'assion a l'ha falì, miraco përchè soe credensiaj ëd modìfica a son scadùe. Për piasì ch'a preuva torna.",
 	"uploadstash-errclear": "La scancelassion ëd j'archivi a l'é falìa.",
 	"uploadstash-refresh": "Agiorné la lista dj'archivi",
-	"uploadstash-thumbnail": "vardé la miniadura",
 	"uploadstash-exception": "As peul pa memorisé 'l cariament ant lë strem ($1): \"$2\".",
 	"uploadstash-bad-path": "Ël sënté a esist pa.",
 	"uploadstash-bad-path-invalid": "Ël sënté a va nen bin.",

@@ -1923,7 +1923,6 @@
 	"uploadstash-badtoken": "Operace se nezdařila. Možná vypršela platnost vašeho oprávnění k editaci. Zkuste to znovu.",
 	"uploadstash-errclear": "Soubory se nepodařilo vymazat.",
 	"uploadstash-refresh": "Aktualizovat seznam souborů",
-	"uploadstash-thumbnail": "zobrazit náhled",
 	"uploadstash-exception": "Načtený soubor se nepodařilo uložit do skrýše ($1): „$2“.",
 	"uploadstash-bad-path": "Cesta neexistuje.",
 	"uploadstash-bad-path-invalid": "Cesta není platná.",

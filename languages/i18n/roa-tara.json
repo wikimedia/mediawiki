@@ -1699,7 +1699,6 @@
 	"uploadstash-badtoken": "L'esecuzione de sta azione non g'ha riuscite, pò essere purcé le credenziale pe le cangiaminde onne scadute. Pruève arrete.",
 	"uploadstash-errclear": "'A pulizie de le file non g'ha riuscite.",
 	"uploadstash-refresh": "Aggiorne l'elenghe de le file",
-	"uploadstash-thumbnail": "'ndruche 'a miniature",
 	"uploadstash-bad-path": "'U percorse non g'esiste.",
 	"uploadstash-bad-path-invalid": "Percorse invalide.",
 	"uploadstash-bad-path-unknown-type": "Tipe scanusciute \"$1\".",

@@ -1408,7 +1408,6 @@
 	"uploadstash-badtoken": "د دې عمل تعقیب ناکام شو، شاید ممکن چې ستاسو د سمون اعتباري اسناد پای ته ورسیږي. مهرباني وکړئ بیا هڅه وکړئ.",
 	"uploadstash-errclear": "د دوتنو پاکول ناکام شول.",
 	"uploadstash-refresh": "د دوتنو لړليک بياتازه کول",
-	"uploadstash-thumbnail": "تڼۍ وګوره",
 	"uploadstash-exception": "د زیرمه د بار د ژغورلو توان نلري ($1): \"$2\".",
 	"uploadstash-bad-path": "نښان نشته",
 	"uploadstash-bad-path-invalid": "د پوست پېژند سم نه دی.",

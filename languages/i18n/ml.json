@@ -1746,7 +1746,6 @@
 	"uploadstash-badtoken": "പ്രവൃത്തി പരാജയപ്പെട്ടു, താങ്കളുടെ തിരുത്തുവാനുള്ള അവകാശങ്ങൾ ചിലപ്പോൾ കാലഹരണപ്പെട്ടിട്ടുണ്ടാകാം. വീണ്ടും ശ്രമിക്കുക.",
 	"uploadstash-errclear": "പ്രമാണങ്ങൾ ശൂന്യമാക്കൽ പരാജയപ്പെട്ടു.",
 	"uploadstash-refresh": "പ്രമാണങ്ങളുടെ പട്ടിക പുതുക്കുക",
-	"uploadstash-thumbnail": "ലഘുചിത്രം കാണുക",
 	"uploadstash-bad-path": "പഥം നിലവിലില്ല.",
 	"uploadstash-bad-path-invalid": "പാത്ത് അസാധുവാണ്.",
 	"uploadstash-bad-path-unknown-type": "അപരിചിതമായ തരം \"$1\".",

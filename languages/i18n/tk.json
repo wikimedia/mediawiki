@@ -1547,7 +1547,6 @@
 	"uploadstash-badtoken": "Bu hereketi ýerine ýetirmek başa barmady, belki redaktirleme maglumatlaryňyzyň möhleti gutarandyr. Gaýtadan synanyşyň.",
 	"uploadstash-errclear": "Faýllary arassalamak başa barmady.",
 	"uploadstash-refresh": "Faýllaryň sanawyny täzeläň",
-	"uploadstash-thumbnail": "kiçi surat",
 	"uploadstash-exception": "Ýüklemäni saklap bilmedi ($1): \"$2\".",
 	"uploadstash-bad-path-unknown-type": "Näbelli görnüş \"$1\".",
 	"uploadstash-zero-length": "Faýlyň uzynlygy nol.",

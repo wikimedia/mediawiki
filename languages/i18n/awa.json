@@ -1732,7 +1732,6 @@
 	"uploadstash-badtoken": "इ काम असफल रहा ,लागत है आप कय सम्पादन प्रमाणपत्र कय अवधि खतम होइ गवा है ।",
 	"uploadstash-errclear": "फाइल कय साफ करब असफल रहा ।",
 	"uploadstash-refresh": "फाइल कय सुची रिफ्रेश करा जाय ।",
-	"uploadstash-thumbnail": "छवि देखैं",
 	"uploadstash-exception": "गुप्त कोष में अपलोड स्टोर नहीं किया जा सका ($1): \"$2\".",
 	"uploadstash-bad-path": "पथ मौजद नाइ हय।",
 	"uploadstash-bad-path-invalid": "अमान्य रस्ता",

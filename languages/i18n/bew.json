@@ -1846,7 +1846,6 @@
 	"uploadstash-badtoken": "Gagal nglakonin tu piil. Barangkali, lantaran lu punya pemboléan bakal mermak udah kedaluwarsa. Padol dah, jal lagi.",
 	"uploadstash-errclear": "Gagal ngebersiin berekas.",
 	"uploadstash-refresh": "Segerin daptar berekas",
-	"uploadstash-thumbnail": "deleng longokan",
 	"uploadstash-exception": "Kaga' bisa nyimpen angkatan di penyimpenan ($1): \"$2\".",
 	"uploadstash-bad-path": "Jalur kaga' ada.",
 	"uploadstash-bad-path-invalid": "Jalur kaga' aci.",

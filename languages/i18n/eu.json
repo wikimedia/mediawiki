@@ -1814,7 +1814,6 @@
 	"uploadstash-badtoken": "Ekintza hori egitean huts egin du, zure edizio kredentzialak iraungi direlako. Saiatu berriro mesedez.",
 	"uploadstash-errclear": "Fitxategiak ezabatzeak akatsa eman du.",
 	"uploadstash-refresh": "Fitxategien zerrenda eguneratu",
-	"uploadstash-thumbnail": "Koadro txikia ikusi",
 	"uploadstash-exception": "Igoera ezin izan da ($1) biltegian gorde: \"$2\".",
 	"uploadstash-bad-path": "Bidea ez da existitzen.",
 	"uploadstash-bad-path-invalid": "Bideak ez du balio.",

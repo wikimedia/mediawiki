@@ -1989,7 +1989,6 @@
 	"uploadstash-badtoken": "Esecuzione dell'azione non riuscita, forse perché le tue credenziali di modifica sono scadute. Prova ancora.",
 	"uploadstash-errclear": "La pulizia dei file non è riuscita.",
 	"uploadstash-refresh": "Aggiorna l'elenco dei file",
-	"uploadstash-thumbnail": "vedi miniatura",
 	"uploadstash-exception": "Impossibile memorizzare il caricamento in stash ($1): \"$2\".",
 	"uploadstash-bad-path": "Il percorso non esiste.",
 	"uploadstash-bad-path-invalid": "Il percorso non è valido.",

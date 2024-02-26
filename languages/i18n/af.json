@@ -1508,7 +1508,6 @@
 	"uploadstash-badtoken": "Uitvoering van die aksie het misluk, moontlik omdat u \"editing credentials\" verstryk het. Probeer asseblief weer.",
 	"uploadstash-errclear": "Die skoonmaak van lêers het misluk.",
 	"uploadstash-refresh": "Verfris die lys van lêers",
-	"uploadstash-thumbnail": "wys duimnael",
 	"invalid-chunk-offset": "Ongeldige \"chunk offset\"",
 	"img-auth-accessdenied": "Toegang geweier",
 	"img-auth-notindir": "Die aangevraagde pad is nie die ingestelde oplaaigids nie.",

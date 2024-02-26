@@ -1544,7 +1544,6 @@
 	"zip-wrong-format": "Norādītais fails nebija ZIP fails.",
 	"uploadstash-errclear": "Failu tīrīšana neizdevās.",
 	"uploadstash-refresh": "Atsvaidzināt failu sarakstu",
-	"uploadstash-thumbnail": "aplūkot sīkbildi",
 	"uploadstash-bad-path": "Ceļš nepastāv.",
 	"uploadstash-bad-path-invalid": "Ceļš nav derīgs.",
 	"uploadstash-bad-path-unknown-type": "Nezināms tips \"$1\".",

@@ -1862,7 +1862,6 @@
 	"uploadstash-badtoken": "Ыйбыт дьайыыгын оҥорор табыллыбата. Арааһа киирбит аатыҥ болдьоҕо бүппүт быһыылаах. Хатылаан көр.",
 	"uploadstash-errclear": "Билэлэри сотор табыллыбата.",
 	"uploadstash-refresh": "Билэлэр тиһиликтэрин саҥардан биэр",
-	"uploadstash-thumbnail": "ойуучааны көрдөр",
 	"uploadstash-exception": "Суруттараргын быстах уурар сиргэ харайар сатаммата ($1): \"$2\".",
 	"uploadstash-bad-path": "Маннык суол суох.",
 	"uploadstash-bad-path-invalid": "Суол алҕастаах.",

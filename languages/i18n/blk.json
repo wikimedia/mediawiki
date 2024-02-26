@@ -1356,7 +1356,6 @@
 	"backend-fail-read": "ဟော်ꩻနွောင်ꩻတဝ်း ဖုဲင် \"$1\" သွူ။",
 	"backend-fail-create": "တဲမ်းနွောင်ꩻတဝ်း ဖုဲင် \"$1\" သွူ။",
 	"uploadstash-errclear": "သျင်ꩻကြောင်းထိုꩻ တအောင်ႏတဝ်းဒါႏဖုဲင်ဖိုင်ႏ။",
-	"uploadstash-thumbnail": "ထွားနမူႏနာႏပုင်ႏသီ",
 	"uploadstash-bad-path": "တဖူꩻခြောင်ꩻ တအဝ်ႏတဝ်း။",
 	"uploadstash-bad-path-invalid": "တဖူꩻခြောင်ꩻ ရော့ꩻသင်ꩻမုꩻအဝ်ႏတဝ်း။",
 	"uploadstash-bad-path-unknown-type": "သေတဝ်းအမိဉ်ꩻ အစွိုးအမျိုꩻ \"$1\"",

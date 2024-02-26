@@ -1932,7 +1932,6 @@
 	"uploadstash-badtoken": "Utføringen av handlingen feilet, kanskje fordi økten din har utløpt. Prøv igjen.",
 	"uploadstash-errclear": "Filene lot seg ikke fjerne.",
 	"uploadstash-refresh": "Oppdater listen over filer",
-	"uploadstash-thumbnail": "vis miniatyrbilde",
 	"uploadstash-exception": "Kunne ikke lagre opplastingen i stashen ($1): «$2».",
 	"uploadstash-bad-path": "Stien finnes ikke.",
 	"uploadstash-bad-path-invalid": "Stien er ugyldig.",

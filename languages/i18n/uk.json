@@ -1953,7 +1953,6 @@
 	"uploadstash-badtoken": "Не вдалося виконати вказану дію. Можливо, вичерпаний термін дії сесії редагування. Будь ласка, спробуйте ще раз.",
 	"uploadstash-errclear": "Очищення файлів зазнало невдачі.",
 	"uploadstash-refresh": "Оновити список файлів",
-	"uploadstash-thumbnail": "перегляд мініатюри",
 	"uploadstash-exception": "Не вдалося зберегти завантаження у сховку ($1): «$2».",
 	"uploadstash-bad-path": "Шлях не існує.",
 	"uploadstash-bad-path-invalid": "Неправильний шлях.",

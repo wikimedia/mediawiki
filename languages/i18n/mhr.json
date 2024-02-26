@@ -1861,7 +1861,6 @@
 	"uploadstash-badtoken": "Тидым ыштен шуктен кертме огыл. Очыни, тыйын ушнышо лӱметын ыштыме жапше эртен. Порылий, эше ик гана тӧчен ончо.",
 	"uploadstash-errclear": "Файл-влакым эрыктен кертме огыл.",
 	"uploadstash-refresh": "Файл спискым уэмдаш",
-	"uploadstash-thumbnail": "изисӱретым ончыкташ",
 	"uploadstash-exception": "Жаплан аралыме верыш вераҥдымашым арален кертме огыл ($1): «$2».",
 	"uploadstash-bad-path": "Корно уке.",
 	"uploadstash-bad-path-invalid": "Корно чын огыл.",

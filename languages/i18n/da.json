@@ -1795,7 +1795,6 @@
 	"uploadstash-badtoken": "Udførelsen af handlingen mislykkedes, måske fordi dine legitimationsoplysninger for redigering er udløbet. Prøv venligst igen.",
 	"uploadstash-errclear": "Rydning af filerne mislykkedes.",
 	"uploadstash-refresh": "Opdatér filoversigten",
-	"uploadstash-thumbnail": "vis miniature",
 	"uploadstash-bad-path": "Sti findes ikke.",
 	"uploadstash-bad-path-invalid": "Stien er ugyldig.",
 	"uploadstash-bad-path-unknown-type": "Ukendt type »$1«.",

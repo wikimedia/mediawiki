@@ -51,6 +51,7 @@
 	"apihelp-feedrecentchanges-param-hideminor": "Kleng Ännerunge verstoppen.",
 	"apihelp-feedrecentchanges-param-hidebots": "Ännerunge vu Botte verstoppen.",
 	"apihelp-feedrecentchanges-param-hideanons": "Ännerunge vun anonyme Benotzer verstoppen.",
+	"apihelp-feedrecentchanges-param-hideanons-temp": "Ännerunge vun anonymme Benotzer an temporäre Konte verstoppen.",
 	"apihelp-feedrecentchanges-param-hideliu": "Ännerunge vu registréierte Benotzer verstoppen.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Ännerunge vum aktuelle Benotzer verstoppen.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Ännerunge vun der Memberschaft a Kategorie verstoppen.",

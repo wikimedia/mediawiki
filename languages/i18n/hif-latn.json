@@ -1461,7 +1461,6 @@
 	"uploadstash-badtoken": "Aap uu chij nai kare saktaa hae, saait ii kaaran se ki aap ke ijaajat khalaas hoe gais hae. Fir se kosis karo.",
 	"uploadstash-errclear": "File ke hatawa nai jaae sakaa hae.",
 	"uploadstash-refresh": "File ke suchi ke fir se dekhao",
-	"uploadstash-thumbnail": "thumbnail ke dekho",
 	"invalid-chunk-offset": "Kharaab chunk offset",
 	"img-auth-accessdenied": "ijajat nai hae",
 	"img-auth-notindir": "Maanga gais path configured upload directory me me nai hae.",

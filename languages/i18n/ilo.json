@@ -1632,7 +1632,6 @@
 	"uploadstash-badtoken": "Napaay ti panagtungpal dayta nga aramid. Mabalin a ti talekmo nga agurnos ket nagpason. Pangngaasi a padasen manen.",
 	"uploadstash-errclear": "Napaay ti panagdalus kadagiti papeles.",
 	"uploadstash-refresh": "Pasadiwaen dagiti listaan ti papeles",
-	"uploadstash-thumbnail": "kitaen ti bassit a ladawan",
 	"uploadstash-exception": "Saan a naidulin ti panangikarga iti stash ($1): \"$2\".",
 	"uploadstash-bad-path": "Awan ti dalan.",
 	"uploadstash-bad-path-invalid": "Saan nga umiso ti dalan.",

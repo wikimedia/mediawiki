@@ -1621,7 +1621,6 @@
 	"uploadstash-badtoken": "Kin de hanjeling neet oetveure. Dit kump mesjien omdet dien bewèrkingsrefs verloupe zeen. Perbeer 't obbenuits.",
 	"uploadstash-errclear": "Wisse van bestenj mislök.",
 	"uploadstash-refresh": "Wèrk lies van bestenj bie",
-	"uploadstash-thumbnail": "Betrach miniatuuraafbeelding",
 	"uploadstash-exception": "Kós de upload neet opslaon in de opslaagplaats ($1): \"$2\".",
 	"uploadstash-bad-path": "Paad besteit neet.",
 	"uploadstash-bad-path-invalid": "Paad is óngeljig.",

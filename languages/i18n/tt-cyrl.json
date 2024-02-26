@@ -1874,7 +1874,6 @@
 	"uploadstash-badtoken": "Әлеге гамәлне башкарып булмады, сезнең хисап язмагызның гамәлдә булу вакыты тәмамлангандыр. Зинһар, яңадан кабатлап карагыз.",
 	"uploadstash-errclear": "Файлларны бетереп булмады.",
 	"uploadstash-refresh": "Файллар исемлеген яңарту",
-	"uploadstash-thumbnail": "кече рәсемне карау",
 	"uploadstash-exception": "($1) вакытлыча саклагычка йөкләүне саклап булмады: «$2».",
 	"uploadstash-bad-path": "Юл юк.",
 	"uploadstash-bad-path-invalid": "Юл дөрес түгел.",

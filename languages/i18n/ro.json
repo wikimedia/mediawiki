@@ -1889,7 +1889,6 @@
 	"uploadstash-badtoken": "Execuția acestei acțiuni nu a reușit, probabil deoarece informațiile dumneavoastră de identificare au expirat. Vă rugăm să încercați din nou.",
 	"uploadstash-errclear": "Golirea fișierelor nu a reușit.",
 	"uploadstash-refresh": "Reîmprospătează lista de fișiere",
-	"uploadstash-thumbnail": "arată miniatura",
 	"uploadstash-exception": "Nu pot stoca încărcare în spațiul temporar ($1): \"$2\"",
 	"uploadstash-bad-path": "Calea nu există.",
 	"uploadstash-bad-path-invalid": "Calea nu este validă.",

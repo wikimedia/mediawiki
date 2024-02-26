@@ -1397,7 +1397,6 @@
 	"backend-fail-closetemp": "ယာယီဖိုင်ကို မပိတ်နိုင်ခဲ့ပါ။",
 	"backend-fail-read": "ဖိုင် \"$1\" ကို မဖတ်နိုင်ခဲ့ပါ။",
 	"backend-fail-create": "ဖိုင် \"$1\" ကို မရေးနိုင်ခဲ့ပါ။",
-	"uploadstash-thumbnail": "နမူနာပုံသေးကြည့်ရန်",
 	"uploadstash-bad-path": "လမ်းကြောင်း မတည်ရှိပါ။",
 	"uploadstash-bad-path-invalid": "လမ်းကြောင်းသည် ဆီလျော်မှုမရှိပါ။",
 	"uploadstash-bad-path-unknown-type": "အမည်မသိအမျိုးအစား \"$1\"",

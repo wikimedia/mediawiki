@@ -1728,7 +1728,6 @@
 	"uploadstash-badtoken": "Izvršavanje ove radnje nije uspjelo, možda zato što su Vaša uređivačka odobrenja istekla. Pokušajte ponovo.",
 	"uploadstash-errclear": "Brisanje datoteka nije uspjelo.",
 	"uploadstash-refresh": "Osvježi spisak datoteka",
-	"uploadstash-thumbnail": "pogledaj minijaturu",
 	"uploadstash-exception": "Ne mogu sačuvati datoteku u skladište ($1): \"$2\".",
 	"uploadstash-bad-path": "Putanja ne postoji.",
 	"uploadstash-bad-path-invalid": "Putanja nije ispravna.",

@@ -1863,7 +1863,6 @@
 	"uploadstash-badtoken": "Кӧзіділген нимелер иділбеді. Арса, аккаунтыңарда тоғынар тус ирт парған. Хатап ит кӧріңер.",
 	"uploadstash-errclear": "Файллар арығлалбады.",
 	"uploadstash-refresh": "Файллар изерiзiн нааҷылирға",
-	"uploadstash-thumbnail": "миниатюра кӧзідерге",
 	"uploadstash-exception": "($1) тiп ӱр нимеске иділген чығҷаң орынзар файл ызылбады: \"$2\"",
 	"uploadstash-bad-path": "Чол чоғыл.",
 	"uploadstash-bad-path-invalid": "Чол саба.",

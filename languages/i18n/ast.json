@@ -1749,7 +1749,6 @@
 	"uploadstash-badtoken": "Nun pudo facese esa operación. Seique caducó la identificación pa editar. Vuelve a tentalo.",
 	"uploadstash-errclear": "Falló'l desaniciu de los ficheros.",
 	"uploadstash-refresh": "Anovar la llista de ficheros",
-	"uploadstash-thumbnail": "ver miniatura",
 	"uploadstash-exception": "Nun pudo guardase la subida nel almacén ($1): «$2».",
 	"uploadstash-bad-path": "La ruta nun esiste.",
 	"uploadstash-bad-path-invalid": "La ruta nun ye válida.",

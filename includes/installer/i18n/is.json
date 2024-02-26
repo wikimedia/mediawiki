@@ -54,7 +54,7 @@
 	"config-db-install-account": "Notandareikningur til að sækja",
 	"config-db-username": "Notandanafn á gagnagrunni:",
 	"config-db-password": "Gagnagrunnsaðgangsorð:",
-	"config-db-install-username": "Sláðu inn notandanafnið sem verður notað til að tengjast gagnagrunninum meðan á uppsetningarferlinu stendur.\nÞetta er ekki notendanafn MediaWiki reikningsins; þetta er notendanafnið fyrir gagnagrunninn þinn.",
+	"config-db-install-username": "Ritaðu aðgangsorðið sem verður notað til að tengjast gagnagrunninum meðan á uppsetningarferlinu stendur.\nÞetta er ekki aðgangsorðið fyrir MediaWiki-aðganginn; þetta er aðgangsorðið fyrir gagnagrunninn þinn.",
 	"config-db-install-password": "Ritaðu aðgangsorðið sem verður notað til að tengjast gagnagrunninum meðan á uppsetningarferlinu stendur.\nÞetta er ekki aðgangsorðið fyrir MediaWiki-aðganginn; þetta er aðgangsorðið fyrir gagnagrunninn þinn.",
 	"config-db-install-help": "Ritaðu notandanafn og aðgangsorð sem verður notað til að tengjast gagnagrunninum meðan á uppsetningarferlinu stendur.",
 	"config-db-port": "Gátt gagnagrunns:",

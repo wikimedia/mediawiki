@@ -1193,7 +1193,6 @@
 	"backend-fail-create": "\"$1\" ਫ਼ਾਈਲ ਲਿਖੀ ਨਾ ਜਾ ਸਕੀ।",
 	"zip-wrong-format": "ਦੱਸੀ ਗਈ ਫ਼ਾਈਲ ਜ਼ਿੱਪ ਫ਼ਾਈਲ ਨਹੀਂ ਸੀ।",
 	"uploadstash-refresh": "ਫ਼ਾਈਲਾਂ ਦੀ ਲਿਸਟ ਨੂੰ ਤਾਜ਼ਾ ਕਰੋ",
-	"uploadstash-thumbnail": "ਥੰਮਨੇਲ ਵੇਖੋ",
 	"img-auth-accessdenied": "ਪਹੁੰਚ ਨਕਾਰੀ ਗਈ",
 	"img-auth-nofile": "ਫ਼ਾਈਲ \"$1\" ਮੌਜੂਦ ਨਹੀਂ ਹੈ।",
 	"http-invalid-url": "ਗਲਤ URL: $1",

@@ -1599,7 +1599,6 @@
 	"uploadstash-badtoken": "Acel ata ia fali, cisa car tua identia ia desvalidi. Atenta denova, per favore.",
 	"uploadstash-errclear": "La vacui de la fixes ia fali.",
 	"uploadstash-refresh": "Refresci la lista de fixes",
-	"uploadstash-thumbnail": "regarda imajeta",
 	"uploadstash-exception": "Carga no ia pote es ajuntada a la cargas pendente ($1): \"$2\".",
 	"uploadstash-bad-path": "La adirije no esiste.",
 	"uploadstash-bad-path-invalid": "La adirije no es valida.",

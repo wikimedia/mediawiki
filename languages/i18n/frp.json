@@ -1796,7 +1796,6 @@
 	"uploadstash-badtoken": "L’ègzécucion de cel’accion at pas reussi, pôt-étre voutros identifients de changement ant èxpirâ. Se vos plét, tornâd èprovar.",
 	"uploadstash-errclear": "La vouegiê des fichiérs at pas reussi.",
 	"uploadstash-refresh": "Rafrèchir la lista des fichiérs",
-	"uploadstash-thumbnail": "vêre la miniatura",
 	"uploadstash-exception": "Y at pas moyen de stocar lo chargement dedens lo cacho ($1) : « $2 ».",
 	"uploadstash-bad-path": "Lo chemin ègziste pas.",
 	"uploadstash-bad-path-invalid": "Lo chemin est pas valido.",

@@ -1861,7 +1861,6 @@
 	"uploadstash-badtoken": "Эз аркмы керны иньдӧмсӧ. Вермас лоны, помасис  кадыс тіян пасйисян мыччӧттэзлӧн. Корам,пондылӧ эшӧ отпыр.",
 	"uploadstash-errclear": "Эз аркмы весавны файллэз.",
 	"uploadstash-refresh": "Вильмӧтны файллэзлісь нимлёдз",
-	"uploadstash-thumbnail": "Видзӧтны миниатюра",
 	"uploadstash-exception": "Эз аркмы видзны недырся видзанінын кӧрталӧмсӧ ($1): \"$2\".",
 	"uploadstash-bad-path": "Туйыс абу",
 	"uploadstash-bad-path-invalid": "Туйыс лӧсявтӧм.",

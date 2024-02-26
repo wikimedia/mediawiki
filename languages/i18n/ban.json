@@ -1881,7 +1881,6 @@
 	"uploadstash-badtoken": "Parilaksana tatindakan punika gagal. Minab mawinan hak pauahan Ida sampun kadaluwarsa. Durus coba malih.",
 	"uploadstash-errclear": "Risakin berkas gagal",
 	"uploadstash-refresh": "Segerang lis berkas",
-	"uploadstash-thumbnail": "cingak gambar alit",
 	"uploadstash-exception": "Nénten prasida nyimpen unggahan ring panyimpenan ($1): \"$2\".",
 	"uploadstash-bad-path": "Jalur nénten kasedia.",
 	"uploadstash-bad-path-invalid": "Jalur nénten sah.",

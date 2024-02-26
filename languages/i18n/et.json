@@ -1898,7 +1898,6 @@
 	"uploadstash-badtoken": "Toiming ebaõnnestus, võib-olla redigeerimismandaadi aegumise tõttu. Palun proovi uuesti.",
 	"uploadstash-errclear": "Failide eemaldamine ebaõnnestus.",
 	"uploadstash-refresh": "Värskenda faililoendit",
-	"uploadstash-thumbnail": "vaata pisipilti",
 	"uploadstash-exception": "Üleslaaditavat faili ei õnnestunud peithoidlas talletada ($1): \"$2\".",
 	"uploadstash-bad-path": "Teed pole olemas.",
 	"uploadstash-bad-path-invalid": "Tee pole sobiv.",

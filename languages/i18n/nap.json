@@ -1629,7 +1629,6 @@
 	"uploadstash-badtoken": "L'esecuzione 'e sta azione scassaje.\nForse pecché 'e credenziale 'e cagnamiento so' mmaturate.\nPruvate n'ata vota.",
 	"uploadstash-errclear": "'A pulezzia d' 'e file scassaje.",
 	"uploadstash-refresh": "Agghiuorna l'elenco d' 'e file",
-	"uploadstash-thumbnail": "vide miniatura",
 	"uploadstash-exception": "Nun s'è pututo sarvà 'a càrreca dint' 'a stash ($1): \"$2\".",
 	"uploadstash-bad-path-unknown-type": "Tipo \"$1\" scanosciuto",
 	"uploadstash-bad-path-bad-format": "'A chiave \"$1\" nun sta scritta bona.",

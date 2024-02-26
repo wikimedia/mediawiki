@@ -1471,7 +1471,6 @@
 	"backend-fail-stat": "Bé kloua kanganman \"$1\" floua i kè ôti noun.",
 	"uploadstash-errclear": "Floua moun bé nounnounlè wa nantiman.",
 	"uploadstash-refresh": "Nian floua moun bé nbga, sè ôti sou o",
-	"uploadstash-thumbnail": "fa vignetti fa klé",
 	"uploadstash-bad-path": "Ô leman i sô atin.",
 	"uploadstash-bad-path-invalid": "Atin nga timan sou.",
 	"uploadstash-zero-length": "Floua nga i tinndin ô ti n'gbin.",

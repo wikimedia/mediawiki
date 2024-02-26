@@ -1953,7 +1953,6 @@
 	"uploadstash-badtoken": "Não foi possível executar a operação. Talvez as suas credenciais de edição tenham expirado. Tente novamente.",
 	"uploadstash-errclear": "Não foi possível apagar os ficheiros.",
 	"uploadstash-refresh": "Atualizar a lista de ficheiros",
-	"uploadstash-thumbnail": "ver miniatura",
 	"uploadstash-exception": "Não foi possível gravar o carregamento na área de ficheiros escondidos ($1): \"$2\".",
 	"uploadstash-bad-path": "O caminho não existe.",
 	"uploadstash-bad-path-invalid": "O caminho não é válido.",

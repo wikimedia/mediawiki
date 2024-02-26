@@ -1812,7 +1812,6 @@
 	"uploadstash-badtoken": "वह कार्य असफल रहा, सम्भवतः आपके सम्पादन प्रमाणपत्र की अवधि समाप्त हो गई है। पुनः प्रयास करें।",
 	"uploadstash-errclear": "फ़ाइलों को साफ़ करना असफल रहा।",
 	"uploadstash-refresh": "फ़ाइलों की सूची रिफ़्रेश करें",
-	"uploadstash-thumbnail": "छवि देखें",
 	"uploadstash-exception": "गुप्त कोष में अपलोड स्टोर नहीं किया जा सका ($1): \"$2\".",
 	"uploadstash-bad-path": "पथ मौजूद नहीं है|",
 	"uploadstash-bad-path-invalid": "पथ मौजूद नहीं है|",

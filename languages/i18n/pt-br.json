@@ -2004,7 +2004,6 @@
 	"uploadstash-badtoken": "A realização daquela ação falhou, talvez porque suas credenciais de edição expiraram. Por favor, tente novamente.",
 	"uploadstash-errclear": "A limpeza dos arquivos falhou.",
 	"uploadstash-refresh": "Atualizar a lista de arquivos",
-	"uploadstash-thumbnail": "ver miniatura",
 	"uploadstash-exception": " Não foi possível armazenar o upload no cache ($1): \"$2\".",
 	"uploadstash-bad-path": "O caminho não existe.",
 	"uploadstash-bad-path-invalid": "O caminho não é válido.",

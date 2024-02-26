@@ -197,6 +197,7 @@
 	"apihelp-feedrecentchanges-param-hideminor": "پنهان کردن تغییرات جزئی.",
 	"apihelp-feedrecentchanges-param-hidebots": "پنهان کردن تغییرات انجام شده توسط ربات‌ها.",
 	"apihelp-feedrecentchanges-param-hideanons": "پنهان کردن ویرایش‌های کاربران ناشناس.",
+	"apihelp-feedrecentchanges-param-hideanons-temp": "نهفتن تغییرات اعمال‌شده توسط کاربران ناشناس و حساب‌های موقت.",
 	"apihelp-feedrecentchanges-param-hideliu": "پنهان کردن ویرایش‌های کاربران ثبت‌نام کرده.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "پنهان کردن ویرایش گشت‌زن‌ها.",
 	"apihelp-feedrecentchanges-param-hidemyself": "پنهان کردن ویرایش‌های کاربر فعلی.",

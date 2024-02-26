@@ -1866,7 +1866,6 @@
 	"uploadstash-badtoken": "Тана ясврлх иткмҗллин хуһцан дууссна төлә эн үүлдлиг кеҗ чадсн уга. Дәкн орлдтн.",
 	"uploadstash-errclear": "Файлмудыг цеврлҗ чадсн уга.",
 	"uploadstash-refresh": "Файлмудын җигсәлтиг шинрүлх",
-	"uploadstash-thumbnail": "өңгц зургиг үзх",
 	"uploadstash-exception": "Орулсн файлыг түр-зуурин саңд ($1) хадһлҗ чадсн уга: \"$2\".",
 	"uploadstash-bad-path": "Зам уга бәәнә.",
 	"uploadstash-bad-path-invalid": "Зам буру бәәнә.",

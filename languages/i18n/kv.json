@@ -1861,7 +1861,6 @@
 	"uploadstash-badtoken": "Эз артмы вӧчны кӧсъянторсӧ. Гашкӧ, помасис вына кадыс тіян пасйӧдчан мыччӧдъяслӧн. Корам видлыны нӧшта ӧтчыдысь.",
 	"uploadstash-errclear": "Эз артмы весавны файлъяссӧ.",
 	"uploadstash-refresh": "Выльмӧдны файлъяс лыддьӧг",
-	"uploadstash-thumbnail": "петкӧдлыны миниатюра",
 	"uploadstash-exception": "Эз артмы видзны недырся видзанінӧ пыртӧдӧмсӧ ($1): \"$2\".",
 	"uploadstash-bad-path": "Туйыс абу.",
 	"uploadstash-bad-path-invalid": "Туйыс абу колана.",

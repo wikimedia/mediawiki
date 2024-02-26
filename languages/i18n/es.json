@@ -2107,7 +2107,6 @@
 	"uploadstash-badtoken": "No se pudo realizar la acción. Es posible que haya finalizado el tiempo de espera de la sesión. Inténtalo de nuevo.",
 	"uploadstash-errclear": "Falló el borrado de los archivos.",
 	"uploadstash-refresh": "Actualizar la lista de archivos",
-	"uploadstash-thumbnail": "ver miniatura",
 	"uploadstash-exception": "No se pudo almacenar la carga en el área provisional ($1): «$2».",
 	"uploadstash-bad-path": "La ruta no existe.",
 	"uploadstash-bad-path-invalid": "La ruta no es válida.",

@@ -1881,7 +1881,6 @@
 	"uploadstash-badtoken": "Ишлеулени этиу джетишимсиз болду, тюзетиу хакъларыгъызны болджалы чыкъгъан болур. Тилейбиз, джангыдан кёрюгюз.",
 	"uploadstash-errclear": "Файлланы кетериую тындырылмады.",
 	"uploadstash-refresh": "Файлланы тизмесин джангырт",
-	"uploadstash-thumbnail": "гитче суратны кёргюзт",
 	"uploadstash-exception": "Джюклеу ($1) асырау джерде сакъланалмады: \"$2\".",
 	"uploadstash-bad-path": "Джол джокъду.",
 	"uploadstash-bad-path-invalid": "Джол джараулу тюлдю.",

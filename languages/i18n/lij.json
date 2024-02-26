@@ -1745,7 +1745,6 @@
 	"uploadstash-badtoken": "Esecuçion de l'açion non riuscia, foscia perché e to credençiale de modiffica son descheite. Proeuva ancon.",
 	"uploadstash-errclear": "O nettezzo di file o no l'è ariescio.",
 	"uploadstash-refresh": "Aggiorna l'elenco di file",
-	"uploadstash-thumbnail": "veddi miniatua",
 	"uploadstash-exception": "Imposcibile memoizâ o caregamento in stash ($1): \"$2\".",
 	"uploadstash-bad-path": "Sto percorso chie o no l'existe.",
 	"uploadstash-bad-path-invalid": "Sto percorso chie o no l'è vallido.",

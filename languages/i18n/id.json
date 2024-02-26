@@ -1956,7 +1956,6 @@
 	"uploadstash-badtoken": "Pelaksanaan tindakan tersebut gagal. Mungkin karena hak penyuntingan Anda telah kedaluwarsa. Silakan coba lagi.",
 	"uploadstash-errclear": "Penghapusan berkas gagal.",
 	"uploadstash-refresh": "Segarkan daftar berkas",
-	"uploadstash-thumbnail": "lihat miniatur",
 	"uploadstash-exception": "Tidak dapat menyimpan unggahan dalam simpanan ($1): \"$2\".",
 	"uploadstash-bad-path": "Jalur tidak tersedia.",
 	"uploadstash-bad-path-invalid": "Jalur tidak valid.",

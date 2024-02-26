@@ -1867,7 +1867,6 @@
 	"uploadstash-badtoken": "Аьтту ца баьлла гайтина белхаш дан. Тарло, Чоьтан хаамаш чекхбевлла. Дехар до, кхин а хьажа.",
 	"uploadstash-errclear": "Файлаш дӀацӀанъян ца йелира.",
 	"uploadstash-refresh": "Карлабаккха файлийн могӀам",
-	"uploadstash-thumbnail": "гайта миниатюра",
 	"uploadstash-exception": "Ханна йолу Ӏалашдойлин чохь аьтту ца баьлла чуйаккха ($1): «$2».",
 	"uploadstash-bad-path": "Некъ бац.",
 	"uploadstash-bad-path-invalid": "Некъ нийса бац.",

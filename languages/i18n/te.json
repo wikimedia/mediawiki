@@ -1857,7 +1857,6 @@
 	"uploadstash-badtoken": "ఆ చర్య విఫలమైంది. బహుశా మీ ఎడిటింగు అనుమతులకు కాలం చెల్లిందేమో. మళ్ళీ ప్రయత్నించండి.",
 	"uploadstash-errclear": "ఫైళ్ళ తీసివేత విఫలమైంది.",
 	"uploadstash-refresh": "దస్త్రాల జాబిజాను తాజాకరించు",
-	"uploadstash-thumbnail": "నఖచిత్రం చూడండి",
 	"uploadstash-exception": "ఎక్కించిన దాన్ని ($1) ఖజానాలో భద్రపరచలేక పోయాం: \"$2\".",
 	"uploadstash-bad-path": "పాత్ ఉనికిలో లేదు.",
 	"uploadstash-bad-path-invalid": "పాత్ సరైనది కాదు.",

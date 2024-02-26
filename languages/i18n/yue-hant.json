@@ -1695,7 +1695,6 @@
 	"uploadstash-badtoken": "爾個動作毋成功，可能係你嘅編輯資訊過咗期。再試吓喇。",
 	"uploadstash-errclear": "清除檔案唔成功。",
 	"uploadstash-refresh": "更新檔案清單",
-	"uploadstash-thumbnail": "睇縮圖",
 	"uploadstash-bad-path": "路徑唔存在。",
 	"uploadstash-bad-path-invalid": "路徑無效。",
 	"uploadstash-bad-path-unknown-type": "未知嘅類型「$1」。",

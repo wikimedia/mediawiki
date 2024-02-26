@@ -1491,7 +1491,6 @@
 	"uploadstash-badtoken": "ओ कार्यक सम्पादन असफल रहल, प्रायः अहाँक सम्पादन योग्यता खतम भऽ गेल अछि। फेर सँ प्रयास करी।",
 	"uploadstash-errclear": "फाइलसभके साफ करनाए असफल रहल।",
 	"uploadstash-refresh": "संचिका सभक सूचीकेँ ताजा करू।",
-	"uploadstash-thumbnail": "छवि देखी",
 	"uploadstash-bad-path": "पथ नै अछि ।",
 	"uploadstash-bad-path-unknown-type": "अज्ञात क्रिया \"$1\" ।",
 	"invalid-chunk-offset": "एकट्ठे अमान्य बौस्तु",

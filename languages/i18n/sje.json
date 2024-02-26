@@ -721,7 +721,6 @@
 	"backend-fail-alreadyexists": "Fijjla \"$1\" juo gävdnu.",
 	"backend-fail-read": "Ij äjbmuda fijlav \"$1\" låhkåt.",
 	"backend-fail-create": "Ij äjbmuda fijlav \"$1\" tjállet.",
-	"uploadstash-thumbnail": "vuosedä unnagåvåtjav",
 	"http-read-error": "HTTP-låhkåmvihke.",
 	"http-internal-error": "Sisŋeldis HTTP-vihke.",
 	"license": "Lisännsa:",

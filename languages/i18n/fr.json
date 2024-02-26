@@ -2068,7 +2068,6 @@
 	"uploadstash-badtoken": "L’exécution de cette action a échoué, peut-être parce que vos informations d’identification ont expiré. Veuillez réessayer.",
 	"uploadstash-errclear": "La suppression des fichiers a échoué.",
 	"uploadstash-refresh": "Actualiser la liste des fichiers",
-	"uploadstash-thumbnail": "afficher la vignette",
 	"uploadstash-exception": "Impossible de stocker le téléversement dans la réserve ($1) : « $2 ».",
 	"uploadstash-bad-path": "Le chemin n’existe pas.",
 	"uploadstash-bad-path-invalid": "Le chemin n’est pas valide.",

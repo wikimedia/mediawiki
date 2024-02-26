@@ -1795,7 +1795,6 @@
 	"uploadstash-badtoken": "Vykonanie operácie sa nepodarilo, možno preto, že platnosť vašich prihlasovacích údajov vypršala. Prosím, skúste to znova.",
 	"uploadstash-errclear": "Vymazanie súborov bolo neúspešné.",
 	"uploadstash-refresh": "Obnoviť zoznam súborov",
-	"uploadstash-thumbnail": "zobraziť náhľad",
 	"uploadstash-exception": "Načítaný súbor sa nepodarilo uložiť do skrýše ($1): „$2“.",
 	"uploadstash-bad-path": "Cesta neexistuje.",
 	"uploadstash-bad-path-invalid": "Cesta nie je platná.",

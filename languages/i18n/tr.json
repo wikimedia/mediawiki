@@ -1991,7 +1991,6 @@
 	"uploadstash-badtoken": "İşlemin gerçekleştirilmesi başarısız oldu, muhtemelen düzenleme yetkileriniz zaman aşımına uğradı. Lütfen yeniden deneyin.",
 	"uploadstash-errclear": "Dosyaların silinmesi başarısız oldu.",
 	"uploadstash-refresh": "Dosya listelerini yenile",
-	"uploadstash-thumbnail": "küçük resmi görüntüle",
 	"uploadstash-exception": "Yükleme ($1) deposunda saklanamadı: \"$2\".",
 	"uploadstash-bad-path": "Yol mevcut değil.",
 	"uploadstash-bad-path-invalid": "Yol geçerli değil.",

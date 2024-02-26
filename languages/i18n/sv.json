@@ -1961,7 +1961,6 @@
 	"uploadstash-badtoken": "Misslyckades att utföra åtgärden. Dina redigeringsrättigheter har kanske löpt ut. Försök igen.",
 	"uploadstash-errclear": "Rensning av filerna misslyckades.",
 	"uploadstash-refresh": "Uppdatera listan över filer",
-	"uploadstash-thumbnail": "visa miniatyr",
 	"uploadstash-exception": "Kunde inte lagra uppladdning i stash ($1): ”$2”.",
 	"uploadstash-bad-path": "Sökvägen finns inte",
 	"uploadstash-bad-path-invalid": "Sökvägen är ogiltig.",

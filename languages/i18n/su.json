@@ -1513,7 +1513,6 @@
 	"uploadstash-nofiles": "Anjeun teu boga berkas engkeunan.",
 	"uploadstash-errclear": "Mersihan berkas nu garagal.",
 	"uploadstash-refresh": "Nyegerken deui daptar berkas",
-	"uploadstash-thumbnail": "tempo miniatur",
 	"uploadstash-exception": "Teu bisa nyimpen unjalan di panyimpenan ($1): \"$2\".",
 	"uploadstash-bad-path": "Euweuh galur",
 	"uploadstash-bad-path-invalid": "Galur teu sah.",

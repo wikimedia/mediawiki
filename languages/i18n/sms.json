@@ -748,7 +748,6 @@
 	"backend-fail-create": "Teâttõõzz \"$1\" raajjmõš ij oʹnnstam.",
 	"lockmanager-fail-deletelock": "Lokkteâttõõzz \"$1\" jaukkummuš ij oʹnnstam.",
 	"uploadstash-refresh": "Peiʹvved teâttõsliist",
-	"uploadstash-thumbnail": "čuäʹjet snimldõõʹjje",
 	"uploadstash-file-not-found-no-thumb": "Snimldõõʹjje ij vuäittam raajjâd.",
 	"uploadstash-file-not-found-no-remote-thumb": "Snimldõõʹjje ooccmõš ij oʹnnstam: $1\nURL = $2",
 	"http-invalid-url": "Vââǥǥlaž URL: $1",

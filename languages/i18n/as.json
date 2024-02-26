@@ -1519,7 +1519,6 @@
 	"uploadstash-badtoken": "এই কাৰ্য্য অসফল হৈছে, কাৰণ সম্ভৱতঃ আপোনাৰ সম্পাদনাৰ নিৰ্ভৰযোগ্যতাৰ ম্যাদ উকলিছে । আকৌ চেষ্টা কৰক ।",
 	"uploadstash-errclear": "ফাইলসমূহৰ নিকাকৰণ ব্যৰ্থ হৈছে ।",
 	"uploadstash-refresh": "ফাইলৰ তালিকা ৰিফ্ৰে’চ কৰক",
-	"uploadstash-thumbnail": "থাম্বনেইল চাওক",
 	"uploadstash-bad-path-unknown-type": "অজ্ঞাত প্ৰকাৰ \"$1\"।",
 	"uploadstash-bad-path-unrecognized-thumb-name": "থাম্বৰ নাম অচিনাক্ত।",
 	"invalid-chunk-offset": "অবৈধ চাঙ্ক অফছেট্‌",
