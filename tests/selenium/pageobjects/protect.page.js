@@ -15,8 +15,8 @@ class ProtectPage extends Page {
 		return $( '#mw-Protect-submit' );
 	}
 
-	open( title ) {
-		super.openTitle( title, { action: 'protect' } );
+	async open( title ) {
+		return super.openTitle( title, { action: 'protect' } );
 	}
 
 	async protect( title, reason, editProtect ) {

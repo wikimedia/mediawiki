@@ -15,8 +15,8 @@ class RestorePage extends Page {
 		return $( '#mw-content-text' );
 	}
 
-	open( subject ) {
-		super.openTitle( 'Special:Undelete/' + subject );
+	async open( subject ) {
+		return super.openTitle( 'Special:Undelete/' + subject );
 	}
 
 	async restore( subject, reason ) {

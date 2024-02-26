@@ -19,8 +19,8 @@ class DeletePage extends Page {
 		return $( '#mw-content-text' );
 	}
 
-	open( title ) {
-		super.openTitle( title, { action: 'delete' } );
+	async open( title ) {
+		return super.openTitle( title, { action: 'delete' } );
 	}
 
 	async delete( title, reason ) {

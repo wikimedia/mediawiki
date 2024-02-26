@@ -11,8 +11,8 @@ class HistoryPage extends Page {
 		return $( '#pagehistory .comment' );
 	}
 
-	open( title ) {
-		super.openTitle( title, { action: 'history' } );
+	async open( title ) {
+		return super.openTitle( title, { action: 'history' } );
 	}
 }
 

@@ -15,8 +15,8 @@ class RecentChangesPage extends Page {
 		return this.changesList.$$( '.mw-changeslist-title' );
 	}
 
-	open() {
-		super.openTitle( 'Special:RecentChanges', { hidebots: 0 } );
+	async open() {
+		return super.openTitle( 'Special:RecentChanges', { hidebots: 0 } );
 	}
 
 }
