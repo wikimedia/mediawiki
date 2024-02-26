@@ -254,10 +254,13 @@ abstract class ParsoidHandler extends Handler {
 			}
 		}
 
-		$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;
-		if ( $acceptLanguage ) {
+		// For use in getHtmlOutputRendererHelper
+		$opts['accept-language'] = $request->getHeaderLine( 'Accept-Language' ) ?: null;
+
+		$acceptLanguage = null;
+		if ( $opts['accept-language'] !== null ) {
 			$acceptLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
-				$acceptLanguage
+				$opts['accept-language']
 			);
 		}
 
@@ -372,8 +375,8 @@ abstract class ParsoidHandler extends Handler {
 			$helper->setPageLanguage( $attribs['pagelanguage'] );
 		}
 
-		if ( isset( $attribs['envOptions']['htmlVariantLanguage'] ) ) {
-			$helper->setVariantConversionLanguage( $attribs['envOptions']['htmlVariantLanguage'] );
+		if ( isset( $attribs['opts']['accept-language'] ) ) {
+			$helper->setVariantConversionLanguage( $attribs['opts']['accept-language'] );
 		}
 
 		return $helper;

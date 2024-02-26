@@ -52,6 +52,7 @@ interface HtmlOutputHelper {
 	 * @see Handler::getETag()
 	 *
 	 * @param string $suffix A suffix to attach to the etag.
+	 *        Must consist of characters that are legal in ETags.
 	 *
 	 * @return string|null We return null when there is no etag.
 	 */
@@ -77,6 +78,12 @@ interface HtmlOutputHelper {
 
 	/**
 	 * Set the language to be used for variant conversion.
+	 *
+	 * If $targetLanguage is a string, it may be a list of language ranges as
+	 * specified by RFC 9110 for use in the Accept-Language header.
+	 * Implementations must be able to process this format, and may use the
+	 * information provided to choose a supported target language that is
+	 * desirable to the client.
 	 *
 	 * @param Bcp47Code|string $targetLanguage
 	 * @param Bcp47Code|string|null $sourceLanguage
