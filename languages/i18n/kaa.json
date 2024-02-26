@@ -2119,6 +2119,7 @@
 	"logentry-move-move_redir-noredirect": "$1 atlı paydalanıwshı $3 betin $4 betine {{GENDER:$2|kóshirdi}} (aldınǵı bette baǵdarlawshı silteme qaldırmadı)",
 	"logentry-newusers-newusers": "$1 paydalanıwshı akkauntı {{GENDER:$2|tazadan qosıldı}}",
 	"logentry-newusers-create": "$1 paydalanıwshı akkauntı {{GENDER:$2|tazadan qosıldı}}",
+	"logentry-newusers-create2": "$1 atlı paydalanıwshı $3 degen akkaunttı {{GENDER:$2|jarattı}}",
 	"logentry-protect-move_prot": "$1 paydalanıwshı qorǵaw sazlamaların $4 degennen $3 degenge {{GENDER:$2|kóshirdi}}",
 	"logentry-protect-unprotect": "$1 paydalanıwshı $3 betinen qorǵawdı {{GENDER:$2|alıp tasladı}}",
 	"logentry-protect-protect": "$1 paydalanıwshı $3 betine {{GENDER:$2|qorǵaw ornattı}} $4",

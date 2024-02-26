@@ -30,7 +30,8 @@
 			"Yakubu Fadilatu",
 			"Zak Raha",
 			"Attah Mohammed",
-			"Kalakpagh"
+			"Kalakpagh",
+			"Reedy"
 		]
 	},
 	"tog-underline": "Zaŋ gɔhi din gbunni booi",
@@ -1015,7 +1016,7 @@
 	"recentchanges-page-added-to-category": "[[:$1]] yaɣa ŋan pahi",
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] yaɣa din pahi [[Special:WhatLinksHere/$1|this page is included within other pages]]",
 	"recentchanges-page-removed-from-category": "[[:$1]] yaɣa din yihi",
-	"autochange-username": "Mediawiki taɣibu",
+	"autochange-username": "MediaWiki taɣibu",
 	"upload": "Zaŋ mi lahibaya kɔligu n pa pohim zuɣu",
 	"uploadbtn": "Zaŋ mi lahibaya kɔligu n pa pohim zuɣu",
 	"uploadnologin": "A bi kpe",

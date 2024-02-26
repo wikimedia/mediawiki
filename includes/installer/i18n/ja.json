@@ -245,6 +245,7 @@
 	"config-upload-deleted": "削除されたファイルのためのディレクトリ:",
 	"config-upload-deleted-help": "削除されるファイルを保存するためのディレクトリを選択してください。\nこれがウェブからアクセスできないことが理想です。",
 	"config-personalization-settings": "個人用設定",
+	"config-logo-summary": "これらの各欄について、適切なサイズの画像をアップロードし、以下のボックスに URL を入力する必要があります。ロゴがそれらのパスに対して相対的である場合は、<code>$wgStylePath</code> または <code>$wgScriptPath</code> を使用できます。これらのボックスのいずれかを空欄のままにしておくこともできます。",
 	"config-logo-preview-main": "メインページ",
 	"config-logo-icon": "ロゴ（アイコン）",
 	"config-logo-wordmark": "ワードマーク (任意):",

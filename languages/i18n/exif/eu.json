@@ -6,7 +6,8 @@
 			"Subi",
 			"Theklan",
 			"Unai Fdz. de Betoño",
-			"Xabier Armendaritz"
+			"Xabier Armendaritz",
+			"Atzerritik"
 		]
 	},
 	"exif-imagewidth": "Zabalera",
@@ -323,8 +324,8 @@
 	"exif-gpslatitude-s": "Hegoaldeko latitudea",
 	"exif-gpslongitude-e": "Ekialdeko longitudea",
 	"exif-gpslongitude-w": "Mendebaldeko longitudea",
-	"exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1|metro|metro}} itsasoaren mailaren gainetik",
-	"exif-gpsaltitude-below-sealevel": "$1 {{PLURAL:$1|metro|metro}} itsasoaren mailaren azpitik",
+	"exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1| metro|metro}} itsas mailaren gainetik",
+	"exif-gpsaltitude-below-sealevel": "$1 {{PLURAL:$1| metro|metro}} itsas mailaren azpitik",
 	"exif-gpsstatus-a": "Neurketa burutzen",
 	"exif-gpsstatus-v": "Neurketen interoperabilitatea",
 	"exif-gpsmeasuremode-2": "2 dimentsioko neurketa",

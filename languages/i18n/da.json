@@ -83,7 +83,8 @@
 			"SiGNOUT",
 			"Amire80",
 			"Iketsi",
-			"Zakawer2"
+			"Zakawer2",
+			"Reedy"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -2590,8 +2591,8 @@
 	"locknoconfirm": "Du har ikke bekræftet handlingen.",
 	"lockdbsuccesssub": "Databasen er nu låst",
 	"unlockdbsuccesssub": "Databasen er nu låst op",
-	"lockdbsuccesstext": "Mediawikidatabasen er låst. <br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
-	"unlockdbsuccesstext": "Mediawikidatabasen er låst op.",
+	"lockdbsuccesstext": "MediaWikidatabasen er låst. <br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
+	"unlockdbsuccesstext": "MediaWikidatabasen er låst op.",
 	"lockfilenotwritable": "Database-spærrefilen kan ikke ændres. Hvis databasen skal spærres eller frigives, skal webserveren kunne skrive i denne fil.",
 	"databaselocked": "Databasen er allerede låst.",
 	"databasenotlocked": "Databasen er ikke spærret.",
