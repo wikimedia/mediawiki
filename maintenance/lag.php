@@ -55,7 +55,12 @@ class DatabaseLag extends Maintenance {
 				unset( $lags[0] );
 				$this->output( gmdate( 'H:i:s' ) . ' ' );
 				foreach ( $lags as $lag ) {
-					$this->output( sprintf( "%-12s ", $lag === false ? 'false' : $lag ) );
+					$this->output(
+						sprintf(
+							"%-12s ",
+							$lag === false ? 'replication stopped or errored' : $lag
+						)
+					);
 				}
 				$this->output( "\n" );
 				sleep( 5 );
@@ -65,7 +70,13 @@ class DatabaseLag extends Maintenance {
 			$lags = $lb->getLagTimes();
 			foreach ( $lags as $i => $lag ) {
 				$name = $lb->getServerName( $i );
-				$this->output( sprintf( "%-20s %s\n", $name, $lag === false ? 'false' : $lag ) );
+				$this->output(
+					sprintf(
+						"%-20s %s\n",
+						$name,
+						$lag === false ? 'replication stopped or errored' : $lag
+					)
+				);
 			}
 		}
 	}

@@ -19,7 +19,8 @@ class DatabaseLagTest extends MaintenanceBaseTestCase {
 			'No lag' => [ 0, 'db-nolag-01', '/^db-nolag-01\s+0$/m' ],
 			'Some lag' => [ 42, 'db-somelag-02', '/^db-somelag-02\s+42$/m' ],
 			'Not replicating' => [
-				false, 'db-not-replicating-03', '/db-not-replicating-03\s+false$/m'
+				false, 'db-not-replicating-03',
+				'/db-not-replicating-03\s+replication stopped or errored$/m'
 			],
 		];
 	}
