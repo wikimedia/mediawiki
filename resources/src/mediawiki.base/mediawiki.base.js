@@ -94,7 +94,7 @@ Message.prototype = {
 	/**
 	 * Add (does not replace) parameters for `$N` placeholder values.
 	 *
-	 * @memberof mw.Message
+	 * @memberof mw.Message.prototype
 	 * @param {Array} parameters
 	 * @return {mw.Message}
 	 * @chainable
@@ -150,7 +150,7 @@ Message.prototype = {
 	 * If jqueryMsg is loaded, this transforms text and parses a subset of supported wikitext
 	 * into HTML. Without jqueryMsg, it is equivalent to #escaped.
 	 *
-	 * @memberof mw.Message
+	 * @memberof mw.Message.prototype
 	 * @return {string} String form of parsed message
 	 */
 	parse: function () {
@@ -163,7 +163,7 @@ Message.prototype = {
 	 * This substitutes parameters, but otherwise does not transform the
 	 * message content.
 	 *
-	 * @memberof mw.Message
+	 * @memberof mw.Message.prototype
 	 * @return {string} String form of plain message
 	 */
 	plain: function () {
@@ -177,7 +177,7 @@ Message.prototype = {
 	 * magic words such as `{{plural:}}`, `{{gender:}}`, and `{{int:}}`.
 	 * Without jqueryMsg, it is equivalent to #plain.
 	 *
-	 * @memberof mw.Message
+	 * @memberof mw.Message.prototype
 	 * @return {string} String form of text message
 	 */
 	text: function () {
@@ -189,7 +189,7 @@ Message.prototype = {
 	 *
 	 * This is equivalent to the #text format, which is then HTML-escaped.
 	 *
-	 * @memberof mw.Message
+	 * @memberof mw.Message.prototype
 	 * @return {string} String form of html escaped message
 	 */
 	escaped: function () {
@@ -199,7 +199,7 @@ Message.prototype = {
 	/**
 	 * Check if a message exists. Equivalent to {@link mw.Map#exists}.
 	 *
-	 * @memberof mw.Message
+	 * @memberof mw.Message.prototype
 	 * @return {boolean}
 	 */
 	exists: function () {
@@ -217,7 +217,7 @@ Message.prototype = {
  * want to add a new global, or the global is bad and needs containment
  * or wrapping.
  *
- * @property {Object}
+ * @type {Object}
  */
 mw.libs = {};
 
@@ -875,13 +875,13 @@ mw.user = {
 	/**
 	 * Map of user preferences and their values.
 	 *
-	 * @property {mw.Map}
+	 * @type {mw.Map}
 	 */
 	options: new mw.Map(),
 	/**
 	 * Map of retrieved user tokens.
 	 *
-	 * @property {mw.Map}
+	 * @type {mw.Map}
 	 */
 	tokens: new mw.Map()
 };

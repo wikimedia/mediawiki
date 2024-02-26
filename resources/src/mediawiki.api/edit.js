@@ -1,6 +1,13 @@
 ( function () {
 
 	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
+		/**
+		 * @callback mw.Api.EditTransform
+		 * @param {Object} revision Current revision
+		 * @param {string} revision.content Current revision content
+		 * @return {string|Object|jQuery.Promise} New content, object with edit
+		 *  API parameters, or promise providing one of those.
+		 */
 
 		/**
 		 * Post to API with `csrf` token. See [#postWithToken]{@link mw.Api#postWithToken}
@@ -103,11 +110,7 @@
 		 *
 		 * @since 1.28
 		 * @param {mw.Title|string} title Page title
-		 * @param {Function} transform Callback that prepares the edit
-		 * @param {Object} transform.revision Current revision
-		 * @param {string} transform.revision.content Current revision content
-		 * @param {string|Object|jQuery.Promise} transform.return New content, object with edit
-		 *  API parameters, or promise providing one of those.
+		 * @param {mw.Api.EditTransform} transform Callback that prepares the edit
 		 * @return {jQuery.Promise} Edit API response
 		 */
 		edit: function ( title, transform ) {
