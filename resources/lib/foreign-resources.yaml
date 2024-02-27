@@ -154,9 +154,6 @@ codex:
     package/dist/codex.js:
     package/dist/codex.umd.cjs:
     package/dist/codex.*.css:
-    package/dist/codex-search.cjs:
-    package/dist/codex-search.js:
-    package/dist/codex-search.*.css:
     package/dist/modules/*: modules
     package/dist/mixins/*: mixins
     package/LICENSE:
