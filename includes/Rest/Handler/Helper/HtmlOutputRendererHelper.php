@@ -30,6 +30,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
@@ -168,7 +169,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param bool $lenientRevHandling Should we ignore mismatches
 	 *    $page and the page that $revision belongs to? Usually happens
 	 *    because of page moves. This should be set to true only for
-	 *	  internal API calls.
+	 *    internal API calls.
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
@@ -447,10 +448,16 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			);
 			if ( !$stashSuccess ) {
 				$this->stats->increment( 'htmloutputrendererhelper.stash.fail' );
+
+				$errorData = [ 'parsoid-stash-key' => $parsoidStashKey ];
+				LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->error(
+					"Parsoid stash failure",
+					$errorData
+				);
 				throw new LocalizedHttpException(
-					MessageValue::new( 'rest-html-backend-error' ),
+					MessageValue::new( 'rest-html-stash-failure' ),
 					500,
-					[ 'reason' => 'Failed to stash parser output' ]
+					$errorData
 				);
 			}
 			$this->stats->increment( 'htmloutputrendererhelper.stash.save' );
@@ -572,7 +579,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			if ( !$status->isOK() ) {
 				if ( $status->hasMessage( 'parsoid-client-error' ) ) {
 					throw new LocalizedHttpException(
-						MessageValue::new( 'rest-html-backend-error' ),
+						MessageValue::new(
+							'rest-html-backend-error',
+							[ $this->getStatusAsString( $status ) ]
+						),
 						400,
 						[ 'reason' => $status->getErrors() ]
 					);
@@ -583,10 +593,19 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 						[ 'reason' => $status->getErrors() ]
 					);
 				} else {
+					$errorData = [ 'reason' => $status->getErrors() ];
+					LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->error(
+						"Parsoid backend error",
+						$errorData
+					);
+
 					throw new LocalizedHttpException(
-						MessageValue::new( 'rest-html-backend-error' ),
+						MessageValue::new(
+							'rest-html-backend-error',
+							[ $this->getStatusAsString( $status ) ]
+						),
 						500,
-						[ 'reason' => $status->getErrors() ]
+						$errorData
 					);
 				}
 			}
@@ -799,6 +818,16 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		}
 
 		return $status;
+	}
+
+	private function getStatusAsString( Status $status ): string {
+		// Ideally, we should be able to just use a Status object as a
+		// message parameter. Until we can do that, we are stuck with the
+		// deprecated method. The alternative would be to inject a
+		// StatusFormatter, but StatusFormatter depends on request data for
+		// the localization context, so it cannot be injected through service
+		// wiring.
+		return $status->getWikiText();
 	}
 
 }

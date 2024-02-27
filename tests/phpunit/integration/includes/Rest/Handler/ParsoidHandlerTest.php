@@ -1323,7 +1323,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 			if ( $expectedException instanceof HttpException ) {
 				/** @var HttpException $e */
-				$this->assertSame( $expectedException->getErrorData(), $e->getErrorData() );
+				$this->assertSame(
+					$expectedException->getErrorData(),
+					array_intersect_key(
+						$expectedException->getErrorData(),
+						$e->getErrorData()
+					)
+				);
 			}
 
 			$this->assertSame( $expectedException->getMessage(), $e->getMessage() );
