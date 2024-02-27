@@ -12064,6 +12064,21 @@ formatdate uses correct capitalisation in English
 <p><span class="mw-formatted-date" title="06-03" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#formatdate:june 3","function":"formatdate"},"params":{"1":{"wt":"dmy"}},"i":0}}]}'>3 June</span></p>
 !! end
 
+!! test
+formatdate formats ISO year 0 as 1 BC
+!! wikitext
+{{#formatdate:-0001-12-31|mdy}}
+{{#formatdate:0000-12-31|mdy}}
+{{#formatdate:0001-12-31|mdy}}
+!! html/php
+<p><span class="mw-formatted-date" title="-0001-12-31">December 31, 2 BC</span>
+<span class="mw-formatted-date" title="0000-12-31">December 31, 1 BC</span>
+<span class="mw-formatted-date" title="0001-12-31">December 31, 1</span>
+</p>
+!! html/parsoid+integrated
+<p><span class="mw-formatted-date" title="-0001-12-31" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#formatdate:-0001-12-31","function":"formatdate"},"params":{"1":{"wt":"mdy"}},"i":0}}]}'>December 31, 2 BC</span> <span class="mw-formatted-date" title="0000-12-31" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#formatdate:0000-12-31","function":"formatdate"},"params":{"1":{"wt":"mdy"}},"i":0}}]}'>December 31, 1 BC</span> <span class="mw-formatted-date" title="0001-12-31" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#formatdate:0001-12-31","function":"formatdate"},"params":{"1":{"wt":"mdy"}},"i":0}}]}'>December 31, 1</span></p>
+!! end
+
 #
 #
 #
