@@ -364,6 +364,7 @@ class RequestContext implements IContextSource, MutableContext {
 		// Invalidate cached user interface language and skin
 		$this->lang = null;
 		$this->skin = null;
+		$this->skinName = null;
 	}
 
 	/**
@@ -394,6 +395,7 @@ class RequestContext implements IContextSource, MutableContext {
 		// Invalidate cached user interface language and skin
 		$this->lang = null;
 		$this->skin = null;
+		$this->skinName = null;
 	}
 
 	/**
