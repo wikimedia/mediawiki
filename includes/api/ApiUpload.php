@@ -396,11 +396,16 @@ class ApiUpload extends ApiBase {
 					[ 'result' => 'Poll',
 						'stage' => 'queued', 'status' => Status::newGood() ]
 				);
-				$this->jobQueueGroup->push( new AssembleUploadChunksJob(
+				// It is important that this be lazyPush, as we do not want to insert
+				// into job queue until after the current transaction has completed since
+				// this depends on values in uploadstash table that were updated during
+				// the current transaction. (T350917)
+				$this->jobQueueGroup->lazyPush( new AssembleUploadChunksJob(
 					Title::makeTitle( NS_FILE, $filekey ),
 					[
 						'filename' => $this->mParams['filename'],
 						'filekey' => $filekey,
+						'filesize' => $this->mParams['filesize'],
 						'session' => $this->getContext()->exportSession()
 					]
 				) );
@@ -1063,7 +1068,7 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'],
 				[ 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() ]
 			);
-			$this->jobQueueGroup->push( new PublishStashedFileJob(
+			$this->jobQueueGroup->lazyPush( new PublishStashedFileJob(
 				[
 					'filename' => $this->mParams['filename'],
 					'filekey' => $this->mParams['filekey'],
