@@ -1813,6 +1813,7 @@
 	"uploadstash-errclear": "फ़ाइलों को साफ़ करना असफल रहा।",
 	"uploadstash-refresh": "फ़ाइलों की सूची रिफ़्रेश करें",
 	"uploadstash-exception": "गुप्त कोष में अपलोड स्टोर नहीं किया जा सका ($1): \"$2\".",
+	"uploadstash-header-date": "दिनांक",
 	"uploadstash-bad-path": "पथ मौजूद नहीं है|",
 	"uploadstash-bad-path-invalid": "पथ मौजूद नहीं है|",
 	"uploadstash-bad-path-unknown-type": "अज्ञात प्रकार \"$1\"",

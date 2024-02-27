@@ -227,6 +227,7 @@
 	"apihelp-feedrecentchanges-param-hideminor": "Skjul mindre endringer.",
 	"apihelp-feedrecentchanges-param-hidebots": "Skjul botendringer.",
 	"apihelp-feedrecentchanges-param-hideanons": "Skjul endringer gjort av anonyme brukere.",
+	"apihelp-feedrecentchanges-param-hideanons-temp": "Skjul endringer fra anonyme brukere og midlertidige kontoer.",
 	"apihelp-feedrecentchanges-param-hideliu": "Skjul endringer gjort av registrerte brukere.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Skjul patruljerte endringer.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Skjul endringer gjort av den aktuelle brukeren.",
