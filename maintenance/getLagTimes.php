@@ -61,8 +61,12 @@ class GetLagTimes extends Maintenance {
 						$ip = gethostbyname( $host );
 					}
 
-					$starLen = min( intval( $lag ), 40 );
-					$stars = str_repeat( '*', $starLen );
+					if ( $lag === false ) {
+						$stars = 'replication stopped or errored';
+					} else {
+						$starLen = min( intval( $lag ), 40 );
+						$stars = str_repeat( '*', $starLen );
+					}
 					$this->output( sprintf( "%10s %20s %3d %s\n", $ip, $host, $lag, $stars ) );
 
 					if ( $this->hasOption( 'report' ) ) {
