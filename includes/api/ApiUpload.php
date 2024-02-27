@@ -1068,7 +1068,10 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'],
 				[ 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() ]
 			);
-			$this->jobQueueGroup->lazyPush( new PublishStashedFileJob(
+			// Unlike AssembleUploadChunksJob, we do not do any writes on the main
+			// transaction (UploadBase::setSessionStatus uses the main stash) so we
+			// can push this job directly.
+			$this->jobQueueGroup->push( new PublishStashedFileJob(
 				[
 					'filename' => $this->mParams['filename'],
 					'filekey' => $this->mParams['filekey'],
