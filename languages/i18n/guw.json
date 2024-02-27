@@ -11,7 +11,9 @@
 			"Misteld",
 			"Sagbosam",
 			"Samatics",
-			"Yemi festus"
+			"Yemi festus",
+			"Medaho",
+			"Reedy"
 		]
 	},
 	"tog-underline": "Kọndopọ he tin to odo lẹ:",
@@ -752,8 +754,8 @@
 	"post-expand-template-argument-warning": "<strong>Avase:</strong> Weda ehe tindo e whe gbau ohia nudindọn dopo he tindo otẹn he yin adàgblona daho de.\nNudindọn ehelẹ ko yin jijodo.",
 	"post-expand-template-argument-category": "Weda he tindo ohia nudindọn le he yin jijodo",
 	"template-equals-category": "Weda he nọ zan = taidi ohia lẹ",
-	"template-equals-category-desc": "<strong>Avase:</strong> Weda ehe nọ zán<code><nowiki>{{=}}</nowiki></code> ṣigba to wiki ehe ji he ma nọ gblo jẹ  <code>=</code>. Nuyizán ehe nọ yin nukunpẹvi do pọ́n; adà Mediawiki sọgodo tọn na basi yizán  <code><nowiki>{{=}}</nowiki></code> taidi odinatẹẹ he nọ didẹ onu lẹ.",
-	"template-equals-warning": "<strong>Avase:</strong> Weda ehe nọ zán<code><nowiki>{{=}}</nowiki></code> ṣigba to wiki ehe ji he ma nọ gblo jẹ  <code>=</code>. Nuyizán ehe nọ yin nukunpẹvi do pọ́n; adà Mediawiki sọgodo tọn na basi yizán  <code><nowiki>{{=}}</nowiki></code> taidi odinatẹẹ he nọ didẹ onu lẹ.",
+	"template-equals-category-desc": "<strong>Avase:</strong> Weda ehe nọ zán<code><nowiki>{{=}}</nowiki></code> ṣigba to wiki ehe ji he ma nọ gblo jẹ  <code>=</code>. Nuyizán ehe nọ yin nukunpẹvi do pọ́n; adà MediaWiki sọgodo tọn na basi yizán  <code><nowiki>{{=}}</nowiki></code> taidi odinatẹẹ he nọ didẹ onu lẹ.",
+	"template-equals-warning": "<strong>Avase:</strong> Weda ehe nọ zán<code><nowiki>{{=}}</nowiki></code> ṣigba to wiki ehe ji he ma nọ gblo jẹ  <code>=</code>. Nuyizán ehe nọ yin nukunpẹvi do pọ́n; adà MediaWiki sọgodo tọn na basi yizán  <code><nowiki>{{=}}</nowiki></code> taidi odinatẹẹ he nọ didẹ onu lẹ.",
 	"parser-template-loop-warning": "Ohia he nọ zlọn jẹ nudevo ji ko yin mimọ: [[$1]]",
 	"template-loop-category": "Weda he tindo ohia he nọ zlọn lẹ",
 	"template-loop-category-desc": "Weda ehe tindo ohia dọvọddọ tọn,i.e. ohia he nọ ylọ ede dọ oylọbasitọ-mẹdetiti tọn.",
@@ -1266,7 +1268,7 @@
 	"grant-createaccount": "Hùn adà yọyọ",
 	"grant-createeditmovepage": "Dá, jlado, bosọ sẹtẹ̀nna weda lẹ",
 	"grant-delete": "Súnsún weda lẹ, vọzepọn lẹ, po kandai lẹ po",
-	"grant-editinterface": "Basi vọjlado tenmẹyinkọ Mediawiki tọn podo nọtẹn gigblo/ tenmẹyinkọ JSON",
+	"grant-editinterface": "Basi vọjlado tenmẹyinkọ MediaWiki tọn podo nọtẹn gigblo/ tenmẹyinkọ JSON",
 	"grant-editmycssjs": "Jla zinzantọ towe do CSS/JSON/JavaScript",
 	"grant-editmyoptions": "Basi vọjlado nujlomẹ zinzantọ towe tọn lẹ po tito JSON po",
 	"grant-editmywatchlist": "basi vọjlado na todohukanji nupinpọn tọn towe",

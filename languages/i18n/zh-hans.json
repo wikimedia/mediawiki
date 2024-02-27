@@ -197,7 +197,8 @@
 			"Googology",
 			"Anterdc99",
 			"Dream Star.cn",
-			"XtexChooser"
+			"XtexChooser",
+			"Aaron Liu"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -3873,7 +3874,7 @@
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|命名空间}}$2",
 	"logentry-partialblock-block-action": "{{PLURAL:$1|操作}}$2",
 	"logentry-partialblock-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}对$7的编辑，到期时间为$5$6",
-	"logentry-partialblock-reblock": "$1{{GENDER:$2|已更改}}{{GENDER:$4|$3}}在$7的封禁设定，终止时间至$5 $6",
+	"logentry-partialblock-reblock": "$1{{GENDER:$2|已更改}}{{GENDER:$4|$3}}在$7的封禁设置，终止时间至$5 $6",
 	"logentry-non-editing-block-block": "$1{{GENDER:$2|已封锁}}{{GENDER:$4|$3}}的指定非编辑操作，终止时间为$5 $6",
 	"logentry-non-editing-block-reblock": "$1{{GENDER:$2|已更改}}对{{GENDER:$4|$3}}指定非编辑操作的封禁设定，终止时间为$5 $6",
 	"logentry-suppress-block": "$1{{GENDER:$2|已封禁}}{{GENDER:$4|$3}}，到期时间为$5$6",

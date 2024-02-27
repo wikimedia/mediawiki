@@ -141,7 +141,8 @@
 			"H78c67c",
 			"LowensteinYang",
 			"Lionpancake",
-			"PB2008"
+			"PB2008",
+			"SupaplexTW"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -3569,7 +3570,7 @@
 	"tags-hitcount": "$1 次變更",
 	"tags-manage-no-permission": "您沒有權限管理變更標籤。",
 	"tags-manage-blocked": "您無法在{{GENDER:$1|您}}被封鎖的情況下管理變更標籤。",
-	"tags-create-heading": "建立新標籤",
+	"tags-create-heading": "新增標籤",
 	"tags-create-explanation": "在預設情況下，新建立的標籤可被使用者及機器人使用。",
 	"tags-create-tag-name": "標籤名稱：",
 	"tags-create-reason": "原因：",
