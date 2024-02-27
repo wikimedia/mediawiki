@@ -137,6 +137,29 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
+	 * Get the caching key from a web request
+	 * @param WebRequest &$request
+	 *
+	 * @return string
+	 */
+	public static function getCacheKeyFromRequest( &$request ) {
+		$uploadCacheKey = $request->getText( 'wpCacheKey', $request->getText( 'key', '' ) );
+		if ( $uploadCacheKey !== '' ) {
+			return $uploadCacheKey;
+		}
+		$desiredDestName = $request->getText( 'wpDestFile' );
+		if ( !$desiredDestName ) {
+			$desiredDestName = $request->getText( 'wpUploadFileURL' );
+		}
+		return self::getCacheKey(
+			[
+				'filename' => $desiredDestName,
+				'url' => trim( $request->getVal( 'wpUploadFileURL' ) )
+			]
+		);
+	}
+
+	/**
 	 * @return string[]
 	 */
 	private static function getAllowedHosts(): array {
@@ -176,6 +199,14 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		return self::$allowedUrls[$url];
+	}
+
+	/**
+	 * Get the URL of the file to be uploaded
+	 * @return string
+	 */
+	public function getUrl() {
+		return $this->mUrl;
 	}
 
 	/**

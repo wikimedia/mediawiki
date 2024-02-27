@@ -855,6 +855,15 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Enable the async processing of upload by url in Special:Upload.
+	 *
+	 * Only works if EnableAsyncUploads is also enabled
+	 */
+	public const EnableAsyncUploadsByURL = [
+		'default' => false,
+	];
+
+	/**
 	 * To disable file delete/restore temporarily
 	 */
 	public const UploadMaintenance = [

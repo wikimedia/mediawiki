@@ -236,6 +236,12 @@ $wgUploadStashMaxAge = null;
 $wgEnableAsyncUploads = null;
 
 /**
+ * Config variable stub for the EnableAsyncUploadsByURL setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableAsyncUploadsByURL
+ */
+$wgEnableAsyncUploadsByURL = null;
+
+/**
  * Config variable stub for the UploadMaintenance setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UploadMaintenance
  */

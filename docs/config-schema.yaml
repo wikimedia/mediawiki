@@ -386,6 +386,11 @@ config-schema:
             Enable deferred upload tasks that use the job queue.
             Only enable this if job runners are set up for both the
             'AssembleUploadChunks','PublishStashedFile' and 'UploadFromUrl' job types.
+    EnableAsyncUploadsByURL:
+        default: false
+        description: |-
+            Enable the async processing of upload by url in Special:Upload.
+            Only works if EnableAsyncUploads is also enabled
     UploadMaintenance:
         default: false
         description: 'To disable file delete/restore temporarily'

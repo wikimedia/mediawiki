@@ -251,6 +251,12 @@ class MainConfigNames {
 	public const EnableAsyncUploads = 'EnableAsyncUploads';
 
 	/**
+	 * Name constant for the EnableAsyncUploadsByURL setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableAsyncUploadsByURL
+	 */
+	public const EnableAsyncUploadsByURL = 'EnableAsyncUploadsByURL';
+
+	/**
 	 * Name constant for the UploadMaintenance setting, for use with Config::get()
 	 * @see MainConfigSchema::UploadMaintenance
 	 */

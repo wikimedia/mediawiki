@@ -625,7 +625,6 @@ class ApiUpload extends ApiBase {
 	 * otherwise true
 	 *
 	 * @return bool
-	 * @suppress PhanTypeArraySuspiciousNullable False positives
 	 */
 	protected function selectUploadModule() {
 		$request = $this->getMain()->getRequest();
@@ -1086,7 +1085,8 @@ class ApiUpload extends ApiBase {
 						'text' => $this->mParams['text'],
 						'watch' => $watch,
 						'watchlistexpiry' => $watchlistExpiry,
-						'session' => $this->getContext()->exportSession()
+						'session' => $this->getContext()->exportSession(),
+						'ignorewarnings' => $this->mParams['ignorewarnings']
 					]
 					);
 			} elseif ( $this->mParams['url'] ) {
@@ -1099,7 +1099,8 @@ class ApiUpload extends ApiBase {
 						'text' => $this->mParams['text'],
 						'watch' => $watch,
 						'watchlistexpiry' => $watchlistExpiry,
-						'session' => $this->getContext()->exportSession()
+						'session' => $this->getContext()->exportSession(),
+						'ignorewarnings' => $this->mParams['ignorewarnings']
 					]
 					);
 			} else {
