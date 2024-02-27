@@ -1180,8 +1180,14 @@ MESSAGE;
 		if ( $only === 'styles' ) {
 			$minifier = new IdentityMinifierState;
 			$this->addOneModuleResponse( $context, $minifier, $name, $module, $this->extraHeaders );
+			// NOTE: This is not actually "minified". IdentityMinifierState is a no-op wrapper
+			// to ease code reuse. The filter() call below performs CSS minification.
+			$styles = $minifier->getMinifiedOutput();
+			if ( $context->getDebug() ) {
+				return [ $styles, null ];
+			}
 			return [
-				self::filter( 'minify-css', $minifier->getMinifiedOutput(),
+				self::filter( 'minify-css', $styles,
 					[ 'cache' => $shouldCache ] ),
 				null
 			];
