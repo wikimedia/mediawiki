@@ -31,6 +31,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			'Contains slash' => [ 'Ab/cd', false ],
 			'Whitespace' => [ 'Ab cd', true ],
 			'IP' => [ '192.168.1.1', false ],
+			'IP dash range' => [ '111.222.333.444-555.666.777.888', false ],
 			'IP range' => [ '116.17.184.5/32', false ],
 			'IPv6 range' => [ '::e:f:2001/96', false ],
 			'Reserved Namespace' => [ 'User:Abcd', false ],
@@ -301,6 +302,29 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			[ '::6d:f:2001/*', false ],
 			[ '::86:f:2001/ab', false ],
 			[ '::23:f:2001/', false ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideIPv4DashRanges
+	 * @covers \MediaWiki\User\UserNameUtils::isLikeIPv4DashRange
+	 */
+	public function testIsLikeIPv4DashRange( $value, $result ) {
+		$utils = $this->getDummyUserNameUtils();
+		$this->assertSame(
+			$result,
+			$utils->isLikeIPv4DashRange( $value )
+		);
+	}
+
+	public static function provideIPv4DashRanges() {
+		return [
+			[ '1.2.3.4-5.6.7.8', true ],
+			[ '111.222.333.444-555.666.777.888', true ],
+			[ '128.128.128.0-128.128.128.1', true ],
+			[ '255.255.255.50-255.255.255.254', true ],
+			[ 'User 1.2.3.4-5.6.7.8', false ],
+			[ 'A string', false ]
 		];
 	}
 

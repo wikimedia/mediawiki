@@ -53,6 +53,11 @@ class UserNameUtils implements UserRigorOptions {
 	];
 
 	/**
+	 * For use by isIP() and isLikeIPv4DashRange()
+	 */
+	private const IPV4_ADDRESS = '\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})';
+
+	/**
 	 * RIGOR_* constants are inherited from UserRigorOptions
 	 */
 
@@ -102,9 +107,9 @@ class UserNameUtils implements UserRigorOptions {
 	 * Is the input a valid username?
 	 *
 	 * Checks if the input is a valid username, we don't want an empty string,
-	 * an IP address, anything that contains slashes (would mess up subpages),
-	 * is longer than the maximum allowed username size or doesn't begin with
-	 * a capital letter.
+	 * an IP address, any type of IP range, anything that contains slashes
+	 * (would mess up subpages), is longer than the maximum allowed username
+	 * size or doesn't begin with a capital letter.
 	 *
 	 * @param string $name Name to match
 	 * @return bool
@@ -112,6 +117,8 @@ class UserNameUtils implements UserRigorOptions {
 	public function isValid( string $name ): bool {
 		if ( $name === ''
 			|| $this->isIP( $name )
+			|| $this->isValidIPRange( $name )
+			|| $this->isLikeIPv4DashRange( $name )
 			|| str_contains( $name, '/' )
 			|| strlen( $name ) > $this->options->get( MainConfigNames::MaxNameChars )
 			|| $name !== $this->contentLang->ucfirst( $name )
@@ -331,7 +338,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * @return bool
 	 */
 	public function isIP( string $name ): bool {
-		$anyIPv4 = '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/';
+		$anyIPv4 = '/^' . self::IPV4_ADDRESS . '$/';
 		$validIP = IPUtils::isValid( $name );
 		return $validIP || preg_match( $anyIPv4, $name );
 	}
@@ -344,6 +351,21 @@ class UserNameUtils implements UserRigorOptions {
 	 */
 	public function isValidIPRange( string $range ): bool {
 		return IPUtils::isValidRange( $range );
+	}
+
+	/**
+	 * Validates IPv4 and IPv4-like ranges in the form of 1.2.3.4-5.6.7.8,
+	 * (which we'd like to avoid as a username/title pattern).
+	 *
+	 * @since 1.42
+	 * @param string $range IPv4 dash range to check
+	 * @return bool
+	 */
+	public function isLikeIPv4DashRange( string $range ): bool {
+		return preg_match(
+			'/^' . self::IPV4_ADDRESS . '-' . self::IPV4_ADDRESS . '$/',
+			$range
+		);
 	}
 
 	/**
