@@ -27,5 +27,5 @@ indent_size = 2
 
 # Trailing whitespace is intended in parser test files
 # T278066
-[**/tests/parser/*.txt]
+[tests/parser/*.txt]
 trim_trailing_whitespace = false
