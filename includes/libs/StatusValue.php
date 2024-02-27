@@ -41,14 +41,23 @@ use Wikimedia\Message\MessageValue;
  * The use of Message objects should be avoided when serializability is needed.
  *
  * @newable
+ * @stable to extend
  * @since 1.25
  */
 class StatusValue {
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal Only for use by Status. Use {@link self::isOK()} or {@link self::setOK()}.
+	 */
 	protected $ok = true;
 
-	/** @var array[] */
+	/**
+	 * @var array[]
+	 * @internal Only for use by Status. Use {@link self::getErrors()} (get full list),
+	 * {@link self::splitByErrorType()} (get errors/warnings), or
+	 * {@link self::fatal()}, {@link self::error()} or {@link self::warning()} (add error/warning).
+	 */
 	protected $errors = [];
 
 	/** @var mixed */
@@ -487,6 +496,7 @@ class StatusValue {
 	/**
 	 * Returns a list of status messages of the given type (or all if false)
 	 *
+	 * @internal Only for use by Status.
 	 * @note this handles RawMessage poorly
 	 *
 	 * @param string|bool $type
