@@ -128,4 +128,34 @@ abstract class RequestBase implements RequestInterface {
 		}
 		return $ct;
 	}
+
+	/**
+	 * Return true if the client provided a content-length header or a
+	 * transfer-encoding header.
+	 *
+	 * @see https://www.rfc-editor.org/rfc/rfc9110.html#name-content-length
+	 *
+	 * @return bool
+	 */
+	public function hasBody(): bool {
+		// From RFC9110, section 8.6: A user agent SHOULD send Content-Length
+		// in a request when the method defines a meaning for enclosed content
+		// and it is not sending Transfer-Encoding. [...]
+		// A user agent SHOULD NOT send a Content-Length header field when the
+		// request message does not contain content and the method semantics do
+		// not anticipate such data.
+
+		if ( $this->getHeaderLine( 'content-length' ) !== '' ) {
+			// If a content length is set, there is a body
+			return true;
+		}
+
+		if ( $this->getHeaderLine( 'transfer-encoding' ) !== '' ) {
+			// If a transfer encoding is set, there is a body
+			return true;
+		}
+
+		return false;
+	}
+
 }

@@ -64,4 +64,34 @@ class RequestBaseTest extends \MediaWikiUnitTestCase {
 		$rb->setHeaders( [ 'Content-type' => 'application/json' ] );
 		$this->assertSame( [ 'application/json' ], $rb->getHeaders()[ 'Content-type' ] );
 	}
+
+	public static function provideHasBody() {
+		yield 'nothing'
+		=> [ [], false ];
+
+		yield 'content-length: 1'
+		=> [ [ 'content-length' => '1' ], true ];
+
+		yield 'content-length: 0'
+		=> [ [ 'content-length' => '0' ], true ];
+
+		yield 'content-length empty'
+		=> [ [ 'content-length' => '' ], false ];
+
+		yield 'transfer-encoding: chunked'
+		=> [ [ 'transfer-encoding' => 'chunked' ], true ];
+
+		yield 'transfer-encoding empty'
+		=> [ [ 'transfer-encoding' => '' ], false ];
+	}
+
+	/**
+	 * @dataProvider provideHasBody
+	 */
+	public function testHasBody( $headers, $expected ) {
+		$rb = $this->getMockForAbstractClass( RequestBase::class, [ 'cookiePrefix' ] );
+		$rb->setHeaders( $headers );
+		$this->assertSame( $expected, $rb->hasBody() );
+	}
+
 }
