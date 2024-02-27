@@ -404,6 +404,8 @@ because of Phabricator reports.
    - $mInterwiki  -> getInterwiki()
    - $mFragment   -> getFragment()
 * Skin::bottomScripts, deprecated since 1.37, has been removed.
+* Fallback index and options have been removed from
+  DBAccessObjectUtils::getDBOptions() without deprecation.
 * The return value of IDatabase::upsert(), deprecated since 1.33, has been
   removed.
 * The class name alias in the main namespace RandomPage, deprecated since 1.37,

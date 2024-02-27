@@ -1113,7 +1113,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @return null|RecentChange
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
-		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
+		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+			$dbType = DB_PRIMARY;
+		} else {
+			$dbType = DB_REPLICA;
+		}
 
 		$rc = RecentChange::newFromConds(
 			[
@@ -2699,7 +2703,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 
-		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
+		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+			$dbType = DB_PRIMARY;
+		} else {
+			$dbType = DB_REPLICA;
+		}
 		$db = $this->getDBConnection( $dbType );
 
 		$ts = $rev->getTimestamp() ?? $this->getTimestampFromId( $revisionIdValue, $flags );
