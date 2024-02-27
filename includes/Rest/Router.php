@@ -436,11 +436,14 @@ class Router {
 			}
 		}
 
+		$pathForMetrics = '(unknown)';
 		$handler = null;
 		try {
 			// Use rawurldecode so a "+" in path params is not interpreted as a space character.
 			$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
 			$handler = $this->createHandler( $request, $match['userData'] );
+
+			$this->setBodyData( $request, $handler );
 
 			// Replace any characters that may have a special meaning in the metrics DB.
 			$pathForMetrics = $handler->getPath();
@@ -591,6 +594,33 @@ class Router {
 		$this->stats = $stats;
 
 		return $this;
+	}
+
+	private function setBodyData( RequestInterface $request, Handler $handler ) {
+		// fail if the request method is in nobodymethod but has body
+		$requestMethod = $request->getMethod();
+		if ( in_array( $requestMethod, RequestInterface::NO_BODY_METHODS ) ) {
+			// check if the request has a body
+			if ( $request->hasBody() ) {
+				throw new HttpException( "The request method does not accept a request body", 400 );
+			}
+
+		}
+
+		// fail if the request method expects a body but has no body
+		if ( in_array( $requestMethod, RequestInterface::BODY_METHODS ) ) {
+			// check if it has no body
+			if ( !$request->hasBody() ) {
+				throw new HttpException( "The request nethod expects a request body", 411 );
+			}
+		}
+
+		// call parsedbody
+		if ( $request->hasBody() ) {
+			$parsedBody = $handler->parseBodyData( $request );
+			// Set the parsed body data on the request object
+			$request->setParsedBody( $parsedBody );
+		}
 	}
 
 }

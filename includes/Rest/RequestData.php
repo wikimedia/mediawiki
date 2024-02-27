@@ -112,7 +112,7 @@ class RequestData extends RequestBase {
 			return true;
 		}
 
-		if ( $this->getBody()->getContents() !== '' ) {
+		if ( $this->getBody()->getSize() > 0 ) {
 			return true;
 		}
 

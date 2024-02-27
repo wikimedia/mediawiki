@@ -320,6 +320,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Rest\\Handler\\HandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/HandlerTestTrait.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\PageHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/PageHandlerTestTrait.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\HelloHandler' => "$testDir/phpunit/unit/includes/Rest/Handler/HelloHandler.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\EchoHandler' => "$testDir/phpunit/unit/includes/Rest/Handler/EchoHandler.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\MediaTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/MediaTestTrait.php",
 
 	# tests/phpunit/unit/includes/Revision

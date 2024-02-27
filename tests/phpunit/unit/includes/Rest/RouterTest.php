@@ -272,4 +272,95 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertStringContainsString( $expectedUrl, $uri );
 	}
 
+	public function testGetRequestFailsWithBody() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'GET',
+			'bodyContents' => '{"foo":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 400, $response->getStatusCode() );
+	}
+
+	public function testPostRequestFailsWithoutBody() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'POST',
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 411, $response->getStatusCode() );
+	}
+
+	public function testRequestBodyWithoutContentTypeFails() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"foo":"bar"}', // Request body without content-type
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 415, $response->getStatusCode() );
+	}
+
+	 public function testDeleteRequestWithoutBody() {
+		// Test DELETE request without body
+		$requestWithoutBody = new RequestData( [
+		'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+		'method' => 'DELETE',
+		] );
+		$router = $this->createRouter( $requestWithoutBody );
+		$responseWithoutBody = $router->execute( $requestWithoutBody );
+		$this->assertSame( 200, $responseWithoutBody->getStatusCode() );
+	 }
+
+	public function testDeleteRequestWithBody() {
+			// Test DELETE request with body
+			$requestWithBody = new RequestData( [
+				'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+				'method' => 'DELETE',
+				'bodyContents' => '{"foo":"bar"}',
+				'headers' => [ "content-type" => 'application/json' ]
+			] );
+			$router = $this->createRouter( $requestWithBody );
+			$responseWithBody = $router->execute( $requestWithBody );
+			$this->assertSame( 200, $responseWithBody->getStatusCode() );
+	}
+
+	public function testUnsupportedContentTypeReturns415() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"foo":"bar"}',
+			'headers' => [ "content-type" => 'text/plain' ] // Unsupported content type
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 415, $response->getStatusCode() );
+	}
+
+	public function testHandlerCanAccessParsedBodyForJsonRequest() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"foo":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		// Check if the response contains a field called 'parsedBody'
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertArrayHasKey( 'parsedBody', $data );
+
+		// Check the value of the 'parsedBody' field
+		$parsedBody = $data['parsedBody'];
+		$this->assertEquals( [ 'foo' => 'bar' ], $parsedBody );
+	}
+
 }

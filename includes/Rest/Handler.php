@@ -529,7 +529,8 @@ abstract class Handler {
 			case 'multipart/form-data':
 				return $request->getPostParams();
 			case 'application/json':
-				$parsedBody = json_decode( $request->getBody()->getContents(), true );
+				$jsonStream = $request->getBody();
+				$parsedBody = json_decode( "$jsonStream", true );
 				if ( !is_array( $parsedBody ) ) {
 					throw new LocalizedHttpException(
 					// Fixme: missing parameter

@@ -4,6 +4,11 @@
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
 	},
 	{
+		"method": [ "GET", "POST", "PUT", "DELETE" ],
+		"path": "/mock/RouterTest/echo",
+		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+	},
+	{
 		"path": "/mock/EntryPoint/header",
 		"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
 	},
