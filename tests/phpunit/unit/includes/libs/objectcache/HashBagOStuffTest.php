@@ -5,9 +5,15 @@ namespace Wikimedia\Tests\ObjectCache;
 use BagOStuff;
 use HashBagOStuff;
 use InvalidArgumentException;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWikiCoversValidator;
+use NullStatsdDataFactory;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
+use UDPTransport;
+use Wikimedia\Stats\Metrics\MetricInterface;
+use Wikimedia\Stats\OutputFormats;
+use Wikimedia\Stats\StatsCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -165,20 +171,34 @@ class HashBagOStuffTest extends TestCase {
 	 * Ensure updateOpStats doesn't get confused.
 	 */
 	public function testUpdateOpStats() {
-		$counts = [];
-
-		$stats = $this->createMock( StatsdDataFactoryInterface::class );
-		$stats->method( 'updateCount' )->willReturnCallback(
-			static function ( $name, $delta ) use ( &$counts ) {
-				$counts[$name] = ( $counts[$name] ?? 0 ) + $delta;
-			}
+		$statsCache = new StatsCache();
+		$emitter = OutputFormats::getNewEmitter(
+			'mediawiki',
+			$statsCache,
+			OutputFormats::getNewFormatter( OutputFormats::DOGSTATSD )
 		);
 
+		$transport = $this->createMock( UDPTransport::class );
+		$transport->expects( $this->once() )->method( "emit" )
+			->with(
+				"mediawiki.bagostuff_call_total:1|c|#keygroup:Foo,operation:frob
+mediawiki.bagostuff_call_total:1|c|#keygroup:Bar,operation:frob
+mediawiki.bagostuff_call_total:1|c|#keygroup:UNKNOWN,operation:frob
+mediawiki.bagostuff_bytes_sent_total:5|c|#keygroup:Bar,operation:frob
+mediawiki.bagostuff_bytes_sent_total:5|c|#keygroup:UNKNOWN,operation:frob
+mediawiki.bagostuff_bytes_read_total:3|c|#keygroup:Bar,operation:frob
+mediawiki.bagostuff_bytes_read_total:3|c|#keygroup:UNKNOWN,operation:frob
+mediawiki.stats_buffered_total:7|c\n"
+			);
+		$emitter = $emitter->withTransport( $transport );
+		$stats = new StatsFactory( $statsCache, $emitter, new NullLogger );
+
+		$stats->withStatsdDataFactory( new NullStatsdDataFactory() );
 		$cache = new HashBagOStuff( [
 			'stats' => $stats
 		] );
-		$cache = TestingAccessWrapper::newFromObject( $cache );
 
+		$cache = TestingAccessWrapper::newFromObject( $cache );
 		$cache->updateOpStats(
 			'frob',
 			[
@@ -193,13 +213,11 @@ class HashBagOStuffTest extends TestCase {
 			]
 		);
 
-		$this->assertSame( 1, $counts['objectcache.Foo.frob_call_rate'] );
-		$this->assertSame( 1, $counts['objectcache.Bar.frob_call_rate'] );
-		$this->assertSame( 1, $counts['objectcache.UNKNOWN.frob_call_rate'] );
+		/** @var MetricInterface[] $metrics */
+		$metrics = ( TestingAccessWrapper::newFromObject( $stats ) )->cache->getAllMetrics();
+		$this->assertCount( 3, $metrics );
 
-		$this->assertSame( 3, $counts['objectcache.Bar.frob_bytes_read'] );
-		$this->assertSame( 5, $counts['objectcache.Bar.frob_bytes_sent'] );
-		$this->assertSame( 3, $counts['objectcache.UNKNOWN.frob_bytes_read'] );
-		$this->assertSame( 5, $counts['objectcache.UNKNOWN.frob_bytes_sent'] );
+		// send metrics
+		$stats->flush();
 	}
 }

@@ -155,7 +155,7 @@ class ObjectCache {
 			'keyspace' => self::getDefaultKeyspace(),
 			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
 			'reportDupes' => true,
-			'stats' => $services->getStatsdDataFactory(),
+			'stats' => $services->getStatsFactory(),
 		];
 
 		if ( isset( $params['factory'] ) ) {
