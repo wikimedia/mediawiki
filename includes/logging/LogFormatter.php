@@ -23,6 +23,7 @@
  * @since 1.19
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
@@ -34,6 +35,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -61,23 +63,29 @@ class LogFormatter {
 	 * @return LogFormatter
 	 */
 	public static function newFromEntry( LogEntry $entry ) {
-		$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()
+		$services = MediaWikiServices::getInstance();
+		$logActionsHandlers = $services->getMainConfig()
 			->get( MainConfigNames::LogActionsHandlers );
-		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+		$objectFactory = $services->getObjectFactory();
 
 		$fulltype = $entry->getFullType();
 		$wildcard = $entry->getType() . '/*';
 		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
 
 		if ( $handler !== '' ) {
-			return $objectFactory->createObject( $handler, [
+			$formatter = $objectFactory->createObject( $handler, [
 				'extraArgs' => [ $entry ],
 				'allowClassName' => true,
 				'assertClass' => self::class,
 			] );
+		} else {
+			$formatter = new LegacyLogFormatter( $entry );
 		}
 
-		return new LegacyLogFormatter( $entry );
+		$formatter->setContentLanguage( $services->getContentLanguage() );
+		$formatter->setCommentFormatter( $services->getCommentFormatter() );
+		$formatter->setUserEditTracker( $services->getUserEditTracker() );
+		return $formatter;
 	}
 
 	/**
@@ -117,10 +125,17 @@ class LogFormatter {
 	/** @var bool */
 	protected $irctext = false;
 
-	/**
-	 * @var LinkRenderer|null
-	 */
+	/** @var LinkRenderer|null */
 	private $linkRenderer;
+
+	/** @var Language|null */
+	private $contentLanguage;
+
+	/** @var CommentFormatter|null */
+	private $commentFormatter;
+
+	/** @var UserEditTracker|null */
+	private $userEditTracker;
 
 	/**
 	 * @see LogFormatter::getMessageParameters
@@ -164,6 +179,72 @@ class LogFormatter {
 		} else {
 			return MediaWikiServices::getInstance()->getLinkRenderer();
 		}
+	}
+
+	/**
+	 * @internal For factory only
+	 * @since 1.42
+	 * @param Language $contentLanguage
+	 */
+	final public function setContentLanguage( Language $contentLanguage ) {
+		$this->contentLanguage = $contentLanguage;
+	}
+
+	/**
+	 * @since 1.42
+	 * @return Language
+	 */
+	final public function getContentLanguage(): Language {
+		if ( $this->contentLanguage === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+		}
+		return $this->contentLanguage;
+	}
+
+	/**
+	 * @internal For factory only
+	 * @since 1.42
+	 * @param CommentFormatter $commentFormatter
+	 */
+	final public function setCommentFormatter( CommentFormatter $commentFormatter ) {
+		$this->commentFormatter = $commentFormatter;
+	}
+
+	/**
+	 * @since 1.42
+	 * @return CommentFormatter
+	 */
+	final public function getCommentFormatter(): CommentFormatter {
+		if ( $this->commentFormatter === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->commentFormatter = MediaWikiServices::getInstance()->getCommentFormatter();
+		}
+		return $this->commentFormatter;
+	}
+
+	/**
+	 * @internal For factory only
+	 * @since 1.42
+	 * @param UserEditTracker $userEditTracker
+	 */
+	final public function setUserEditTracker( UserEditTracker $userEditTracker ) {
+		$this->userEditTracker = $userEditTracker;
+	}
+
+	/**
+	 * @since 1.42
+	 * @return UserEditTracker
+	 */
+	final public function getUserEditTracker(): UserEditTracker {
+		if ( $this->userEditTracker === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->userEditTracker = MediaWikiServices::getInstance()->getUserEditTracker();
+		}
+		return $this->userEditTracker;
 	}
 
 	/**
@@ -270,7 +351,7 @@ class LogFormatter {
 		// Text of title the action is aimed at.
 		$target = $entry->getTarget()->getPrefixedText();
 		$text = null;
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->getContentLanguage();
 		switch ( $entry->getType() ) {
 			case 'move':
 				switch ( $entry->getSubtype() ) {
@@ -744,7 +825,7 @@ class LogFormatter {
 	 */
 	public function getComment() {
 		if ( $this->canView( LogPage::DELETED_COMMENT ) ) {
-			$comment = MediaWikiServices::getInstance()->getCommentFormatter()
+			$comment = $this->getCommentFormatter()
 				->formatBlock( $this->entry->getComment() );
 			// No hard coded spaces thanx
 			$element = ltrim( $comment );
@@ -814,7 +895,7 @@ class LogFormatter {
 				$user->getName()
 			);
 			if ( $this->linkFlood ) {
-				$editCount = MediaWikiServices::getInstance()->getUserEditTracker()->getUserEditCount( $user );
+				$editCount = $this->getUserEditTracker()->getUserEditCount( $user );
 
 				$element .= Linker::userToolLinks(
 					$user->getId(),
