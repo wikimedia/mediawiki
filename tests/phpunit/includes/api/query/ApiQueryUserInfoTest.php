@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Utils\MWTimestamp;
 
 /**
@@ -12,6 +14,9 @@ use MediaWiki\Utils\MWTimestamp;
  * @covers \ApiQueryUserInfo
  */
 class ApiQueryUserInfoTest extends ApiTestCase {
+
+	use TempUserTestTrait;
+	use MockAuthorityTrait;
 
 	/**
 	 * @covers \ApiQueryUserInfo::getLatestContributionTime
@@ -84,5 +89,48 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'cancreateaccount', $apiResult[0]['query']['userinfo'] );
 		$this->assertFalse( $apiResult[0]['query']['userinfo']['cancreateaccount'] );
 		$this->assertArrayHasKey( 'cancreateaccounterror', $apiResult[0]['query']['userinfo'] );
+	}
+
+	public function testTempFlag() {
+		$this->enableAutoCreateTempUser();
+		$params = [
+			'action' => 'query',
+			'meta' => 'userinfo',
+		];
+		$user = $this->getServiceContainer()->getTempUserCreator()->create()->getUser();
+		$apiResult = $this->doApiRequest( $params, null, false, $user );
+
+		// Verify that the temp flag is set.
+		$this->assertArrayHasKey( 'query', $apiResult[0] );
+		$this->assertArrayHasKey( 'userinfo', $apiResult[0]['query'] );
+		$this->assertArrayHasKey( 'temp', $apiResult[0]['query']['userinfo'] );
+		$this->assertTrue( $apiResult[0]['query']['userinfo']['temp'] );
+
+		// Verify that the name is correct
+		$this->assertArrayHasKey( 'name', $apiResult[0]['query']['userinfo'] );
+		$this->assertSame( $user->getName(), $apiResult[0]['query']['userinfo']['name'] );
+
+		// Verify that the user ID is correct
+		$this->assertArrayHasKey( 'id', $apiResult[0]['query']['userinfo'] );
+		$this->assertSame( $user->getId(), $apiResult[0]['query']['userinfo']['id'] );
+	}
+
+	public function testAnonFlag() {
+		$this->disableAutoCreateTempUser();
+		$params = [
+			'action' => 'query',
+			'meta' => 'userinfo',
+		];
+		$user = $this->mockAnonUltimateAuthority();
+		$apiResult = $this->doApiRequest( $params, null, false, $user );
+
+		// Verify that the temp flag is not set.
+		$this->assertArrayHasKey( 'query', $apiResult[0] );
+		$this->assertArrayHasKey( 'userinfo', $apiResult[0]['query'] );
+		$this->assertArrayNotHasKey( 'temp', $apiResult[0]['query']['userinfo'] );
+
+		// Verify that the anon flag is set.
+		$this->assertArrayHasKey( 'anon', $apiResult[0]['query']['userinfo'] );
+		$this->assertTrue( $apiResult[0]['query']['userinfo']['anon'] );
 	}
 }

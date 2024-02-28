@@ -149,6 +149,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['anon'] = true;
 		}
 
+		if ( $user->isTemp() ) {
+			$vals['temp'] = true;
+		}
+
 		if ( isset( $this->prop['blockinfo'] ) ) {
 			$block = $user->getBlock();
 			if ( $block ) {
