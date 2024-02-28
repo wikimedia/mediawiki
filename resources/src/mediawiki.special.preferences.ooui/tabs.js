@@ -4,7 +4,7 @@
 ( function () {
 	var nav = require( './nav.js' );
 	$( function () {
-		nav.insertHints( mw.msg( 'prefs-tabs-navigation-hint' ) );
+		var $tabNavigationHint = nav.insertHints( mw.msg( 'prefs-tabs-navigation-hint' ) );
 
 		var tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
 
@@ -136,7 +136,8 @@
 			} );
 		}
 
-		var search = OO.ui.infuse( $( '.mw-prefs-search' ) ).fieldWidget;
+		var searchWrapper = OO.ui.infuse( $( '.mw-prefs-search' ) );
+		var search = searchWrapper.fieldWidget;
 		search.$input.on( 'focus', function () {
 			if ( !index ) {
 				// Lazy-build index on first focus
@@ -159,7 +160,7 @@
 
 			$( '.mw-prefs-search-matched' ).removeClass( 'mw-prefs-search-matched' );
 			$( '.mw-prefs-search-highlight' ).removeClass( 'mw-prefs-search-highlight' );
-			var hasResults = false;
+			var countResults = 0;
 			if ( isSearching ) {
 				val = val.toLowerCase();
 				texts.forEach( function ( text ) {
@@ -167,20 +168,47 @@
 					// but might be too slow.
 					if ( text.indexOf( val ) !== -1 ) {
 						index[ text ].forEach( function ( item ) {
+							// eslint-disable-next-line no-jquery/no-class-state
+							if ( !item.$field.hasClass( 'mw-prefs-search-matched' ) ) {
+								// Count each matched preference as one result, not the number of matches in the text
+								countResults++;
+							}
 							item.$highlight.addClass( 'mw-prefs-search-highlight' );
 							item.$field.addClass( 'mw-prefs-search-matched' );
 							item.$wrapper.addClass( 'mw-prefs-search-matched' );
 							item.$tabPanel.addClass( 'mw-prefs-search-matched' );
 						} );
-						hasResults = true;
 					}
 				} );
 			}
-			if ( isSearching && !hasResults ) {
+
+			// We hide the tabs when searching, so hide this tip about them as well
+			$tabNavigationHint.toggle( !isSearching );
+			// Update invisible label to give screenreader users live feedback while they're typing
+			if ( !isSearching ) {
+				searchWrapper.setLabel( mw.msg( 'searchprefs' ) );
+			} else if ( countResults === 0 ) {
+				searchWrapper.setLabel( mw.msg( 'searchprefs-noresults' ) );
+			} else {
+				searchWrapper.setLabel( mw.msg( 'searchprefs-results', countResults ) );
+			}
+
+			// Update visible label
+			if ( isSearching && countResults === 0 ) {
 				tabs.$element.append( $noResults );
 			} else {
 				$noResults.detach();
 			}
+
+			// Make Enter jump to the results, if there are any
+			if ( isSearching && countResults !== 0 ) {
+				search.on( 'enter', function () {
+					tabs.focusFirstFocusable();
+				} );
+			} else {
+				search.off( 'enter' );
+			}
+
 		} );
 
 		// Handle the initial value in case the user started typing before this JS code loaded,

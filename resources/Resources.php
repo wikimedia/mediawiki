@@ -2271,7 +2271,9 @@ return [
 			'prefs-sections-navigation-hint',
 			'prefs-signature-highlight-error',
 			'prefs-back-title',
+			'searchprefs',
 			'searchprefs-noresults',
+			'searchprefs-results',
 		],
 		'dependencies' => [
 			'mediawiki.language',
