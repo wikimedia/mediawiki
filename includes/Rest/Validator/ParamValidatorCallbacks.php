@@ -41,6 +41,9 @@ class ParamValidatorCallbacks implements Callbacks {
 			case 'post':
 				return $this->request->getPostParams();
 
+			case 'body':
+				return $this->request->getParsedBody() ?? [];
+
 			default:
 				throw new InvalidArgumentException( __METHOD__ . ": Invalid source '$source'" );
 		}
