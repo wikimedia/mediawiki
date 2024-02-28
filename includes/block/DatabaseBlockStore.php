@@ -1792,10 +1792,21 @@ class DatabaseBlockStore {
 				'ipb_sitewide'       => $block->isSitewide(),
 			];
 
+			if ( $block->getExpiry() !== 'infinity' ) {
+				// Shorten the autoblock expiry if the parent block expiry is sooner.
+				// Don't lengthen -- that is only done when the IP address is actually
+				// used by the blocked user.
+				$blockArray[] = 'ipb_expiry=' . $dbw->conditional(
+					$dbw->expr( 'ipb_expiry', '>', $dbw->timestamp( $block->getExpiry() ) ),
+					$dbw->addQuotes( $dbw->timestamp( $block->getExpiry() ) ),
+					'ipb_expiry'
+				);
+			}
+
 			$commentArray = $this->commentStore->insert(
 				$dbw,
 				'ipb_reason',
-				$block->getReasonComment()
+				$this->getAutoblockReason( $block )
 			);
 		} else {
 			$blockArray = [
@@ -1806,10 +1817,21 @@ class DatabaseBlockStore {
 				'bl_sitewide'       => $block->isSitewide(),
 			];
 
+			// Shorten the autoblock expiry if the parent block expiry is sooner.
+			// Don't lengthen -- that is only done when the IP address is actually
+			// used by the blocked user.
+			if ( $block->getExpiry() !== 'infinity' ) {
+				$blockArray[] = 'bl_expiry=' . $dbw->conditional(
+						$dbw->expr( 'bl_expiry', '>', $dbw->timestamp( $block->getExpiry() ) ),
+						$dbw->addQuotes( $dbw->timestamp( $block->getExpiry() ) ),
+						'bl_expiry'
+					);
+			}
+
 			$commentArray = $this->commentStore->insert(
 				$dbw,
 				'bl_reason',
-				$block->getReasonComment()
+				$this->getAutoblockReason( $block )
 			);
 		}
 
@@ -1955,28 +1977,12 @@ class DatabaseBlockStore {
 		}
 
 		$timestamp = wfTimestampNow();
-		if ( $parentBlock->getExpiry() == 'infinity' ) {
-			// Original block was indefinite, start an autoblock now
-			$expiry = $this->getAutoblockExpiry( $timestamp );
-		} else {
-			// If the user is already blocked with an expiry date, we don't
-			// want to pile on top of that.
-			$expiry = min(
-				$parentBlock->getExpiry(),
-				$this->getAutoblockExpiry( $timestamp )
-			);
-		}
-
+		$expiry = $this->getAutoblockExpiry( $timestamp, $parentBlock->getExpiry() );
 		$autoblock = new DatabaseBlock( [
 			'wiki' => $this->wikiId,
 			'address' => UserIdentityValue::newAnonymous( $target, $this->wikiId ),
 			'by' => $blocker,
-			'reason' =>
-				wfMessage(
-					'autoblocker',
-					$parentBlock->getTargetName(),
-					$parentBlock->getReasonComment()->text
-				)->inContentLanguage()->plain(),
+			'reason' => $this->getAutoblockReason( $parentBlock ),
 			'decodedTimestamp' => $timestamp,
 			'auto' => true,
 			'createAccount' => $parentBlock->isCreateAccountBlocked(),
@@ -1997,6 +2003,14 @@ class DatabaseBlockStore {
 			: false;
 	}
 
+	private function getAutoblockReason( DatabaseBlock $parentBlock ) {
+		return wfMessage(
+			'autoblocker',
+			$parentBlock->getTargetName(),
+			$parentBlock->getReasonComment()->text
+		)->inContentLanguage()->plain();
+	}
+
 	/**
 	 * Update the timestamp on autoblocks.
 	 *
@@ -2008,8 +2022,11 @@ class DatabaseBlockStore {
 		if ( $block->getType() !== Block::TYPE_AUTO ) {
 			return;
 		}
-		$block->setTimestamp( wfTimestamp() );
-		$block->setExpiry( $this->getAutoblockExpiry( $block->getTimestamp() ) );
+		$now = wfTimestamp();
+		$block->setTimestamp( $now );
+		// No need to reduce the autoblock expiry to the expiry of the parent
+		// block, since the caller already checked for that.
+		$block->setExpiry( $this->getAutoblockExpiry( $now ) );
 
 		$dbw = $this->getPrimaryDB();
 		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
@@ -2041,14 +2058,21 @@ class DatabaseBlockStore {
 	/**
 	 * Get the expiry timestamp for an autoblock created at the given time.
 	 *
+	 * If the parent block expiry is specified, the return value will be earlier
+	 * than or equal to the parent block expiry.
+	 *
 	 * @internal Public to support deprecated DatabaseBlock method
 	 * @param string|int $timestamp
+	 * @param string|null $parentExpiry
 	 * @return string
 	 */
-	public function getAutoblockExpiry( $timestamp ) {
-		$autoblockExpiry = $this->options->get( MainConfigNames::AutoblockExpiry );
-
-		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $autoblockExpiry );
+	public function getAutoblockExpiry( $timestamp, string $parentExpiry = null ) {
+		$maxDuration = $this->options->get( MainConfigNames::AutoblockExpiry );
+		$expiry = wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $maxDuration );
+		if ( $parentExpiry !== null && $parentExpiry !== 'infinity' ) {
+			$expiry = min( $parentExpiry, $expiry );
+		}
+		return $expiry;
 	}
 
 	// endregion -- end of database write methods

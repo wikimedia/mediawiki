@@ -124,6 +124,10 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $autoblock->isEmailBlocked(), $block->isEmailBlocked() );
 		$this->assertSame( $autoblock->isUsertalkEditAllowed(), $block->isUsertalkEditAllowed() );
 		$this->assertSame( $autoblock->isSitewide(), $block->isSitewide() );
+		$this->assertSame(
+			$autoblock->getReasonComment()->text,
+			wfMessage( 'autoblocker', $block->getTargetName(), $block->getReasonComment()->text )->text()
+		);
 
 		$restrictionStore = $this->getServiceContainer()->getBlockRestrictionStore();
 		$this->assertTrue(
@@ -470,15 +474,23 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function testUpdateBlock() {
 		$store = $this->getStore();
 		$existingBlock = $store->newFromTarget( $this->sysop );
+
+		// Insert an autoblock for T351173 regression testing
+		$autoblockId = $store->doAutoblock( $existingBlock, '127.0.0.1' );
+
+		// Modify a block option
 		$existingBlock->isUsertalkEditAllowed( true );
+		$newExpiry = wfTimestamp( TS_MW, time() + 1000 );
+		$existingBlock->setExpiry( $newExpiry );
 
 		$result = $store->updateBlock( $existingBlock );
 
 		$updatedBlock = $store->newFromID( $result['id'] );
-		$autoblock = $store->newFromID( $result['autoIds'][0] );
+		$autoblock = $store->newFromID( $autoblockId );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
 		$this->assertAutoblockEqualsBlock( $existingBlock, $autoblock );
+		$this->assertLessThanOrEqual( $newExpiry, $autoblock->getExpiry() );
 	}
 
 	public function testUpdateBlockAddOrRemoveAutoblock() {
