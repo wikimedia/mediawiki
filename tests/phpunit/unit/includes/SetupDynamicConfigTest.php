@@ -804,7 +804,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
 				$testObj->assertContains( 'pagelang', $vars['LogTypes'] );
 				$testObj->assertSame( PageLangLogFormatter::class,
-					$vars['LogActionsHandlers']['pagelang/pagelang'] );
+					$vars['LogActionsHandlers']['pagelang/pagelang']['class'] );
 
 				return $expectedDefault;
 			},

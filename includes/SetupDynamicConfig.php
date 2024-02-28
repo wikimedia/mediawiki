@@ -327,7 +327,12 @@ if ( $wgPageCreationLog ) {
 
 if ( $wgPageLanguageUseDB ) {
 	$wgLogTypes[] = 'pagelang';
-	$wgLogActionsHandlers['pagelang/pagelang'] = PageLangLogFormatter::class;
+	$wgLogActionsHandlers['pagelang/pagelang'] = [
+		'class' => PageLangLogFormatter::class,
+		'services' => [
+			'LanguageNameUtils',
+		]
+	];
 }
 
 if ( $wgPHPSessionHandling !== 'enable' &&
