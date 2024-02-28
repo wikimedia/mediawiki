@@ -5,15 +5,12 @@
 ( function () {
 
 	/**
-	 * @class jQuery.plugin.htmlform
-	 */
-
-	/**
 	 * jQuery plugin to fade or snap to visible state.
 	 *
+	 * @memberof jQueryPlugins
+	 * @method goIn
 	 * @param {boolean} [instantToggle=false]
 	 * @return {jQuery}
-	 * @chainable
 	 */
 	$.fn.goIn = function ( instantToggle ) {
 		if ( instantToggle === true ) {
@@ -25,9 +22,10 @@
 	/**
 	 * jQuery plugin to fade or snap to hiding state.
 	 *
+	 * @memberof jQueryPlugins
+	 * @method goOut
 	 * @param {boolean} [instantToggle=false]
 	 * @return {jQuery}
-	 * @chainable
 	 */
 	$.fn.goOut = function ( instantToggle ) {
 		if ( instantToggle === true ) {
