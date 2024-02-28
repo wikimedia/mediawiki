@@ -2,16 +2,16 @@
  * Extend OOUI's TagItemWidget to also display a popup on hover.
  *
  * @class mw.rcfilters.ui.TagItemWidget
+ * @ignore
  * @extends OO.ui.TagItemWidget
  * @mixins OO.ui.mixin.PopupElement
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
  * @param {mw.rcfilters.dm.FilterItem|null} invertModel
  * @param {mw.rcfilters.dm.FilterItem} itemModel Item model
  * @param {Object} config Configuration object
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
 var TagItemWidget = function MwRcfiltersUiTagItemWidget(
 	controller, filtersViewModel, invertModel, itemModel, config

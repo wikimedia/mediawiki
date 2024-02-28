@@ -1,10 +1,10 @@
 /**
- * Top section (between page title and filters) on Special:Recentchanges
+ * Top section (between page title and filters) on Special:Recentchanges.
  *
  * @class mw.rcfilters.ui.RcTopSectionWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.ui.SavedLinksListWidget} savedLinksListWidget
  * @param {jQuery} $topLinks Content of the community-defined links
  * @param {Object} [config] Configuration object

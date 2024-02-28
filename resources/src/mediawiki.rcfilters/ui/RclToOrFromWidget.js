@@ -1,11 +1,11 @@
 /**
  * Widget to select to view changes that link TO or FROM the target page
- * on Special:RecentChangesLinked (AKA Related Changes)
+ * on Special:RecentChangesLinked (AKA Related Changes).
  *
  * @class mw.rcfilters.ui.RclToOrFromWidget
+ * @ignore
  * @extends OO.ui.DropdownWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller
  * @param {mw.rcfilters.dm.FilterItem} showLinkedToModel model this widget is bound to
  * @param {Object} [config] Configuration object

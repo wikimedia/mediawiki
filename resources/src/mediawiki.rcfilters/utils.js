@@ -6,7 +6,7 @@
  */
 module.exports = {
 	/**
-	 * @param {Node[]} elements
+	 * @param {Node[]} arr
 	 * @param {Node[]|Node} elements
 	 * @return {{Node[]}
 	 */

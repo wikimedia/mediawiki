@@ -4,23 +4,23 @@ var FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
 	FilterWrapperWidget;
 
 /**
- * List displaying all filter groups
+ * List displaying all filter groups.
  *
  * @class mw.rcfilters.ui.FilterWrapperWidget
+ * @ignore
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.PendingElement
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
  * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel
  * @param {Object} [config] Configuration object
- * @cfg {Object} [filters] A definition of the filter groups in this list
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
- * @cfg {jQuery} [$wrapper] A jQuery object for the wrapper of the general
+ * @param {Object} [config.filters] A definition of the filter groups in this list
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
+ * @param {jQuery} [config.$wrapper] A jQuery object for the wrapper of the general
  *  system. If not given, falls back to this widget's $element
- * @cfg {boolean} [collapsed] Filter area is collapsed
+ * @param {boolean} [config.collapsed] Filter area is collapsed
  */
 FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 	controller, model, savedQueriesModel, changesListModel, config

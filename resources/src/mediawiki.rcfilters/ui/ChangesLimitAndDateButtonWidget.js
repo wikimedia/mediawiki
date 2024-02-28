@@ -3,16 +3,16 @@ var ChangesLimitPopupWidget = require( './ChangesLimitPopupWidget.js' ),
 	ChangesLimitAndDateButtonWidget;
 
 /**
- * Widget defining the button controlling the popup for the number of results
+ * Widget defining the button controlling the popup for the number of results.
  *
  * @class mw.rcfilters.ui.ChangesLimitAndDateButtonWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} [config] Configuration object
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
 ChangesLimitAndDateButtonWidget = function MwRcfiltersUiChangesLimitWidget( controller, model, config ) {
 	config = config || {};

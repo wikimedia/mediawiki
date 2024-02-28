@@ -1,10 +1,10 @@
 /**
- * Button for marking all changes as seen on the Watchlist
+ * Button for marking all changes as seen on the Watchlist.
  *
  * @class mw.rcfilters.ui.MarkSeenButtonWidget
+ * @ignore
  * @extends OO.ui.ButtonWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller
  * @param {mw.rcfilters.dm.ChangesListViewModel} model Changes list view model
  * @param {Object} [config] Configuration object

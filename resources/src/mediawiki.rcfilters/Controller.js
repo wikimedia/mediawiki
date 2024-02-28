@@ -4,21 +4,21 @@ var byteLength = require( 'mediawiki.String' ).byteLength,
 
 /* eslint no-underscore-dangle: "off" */
 /**
- * Controller for the filters in Recent Changes
+ * Controller for the filters in Recent Changes.
  *
- * @class mw.rcfilters.Controller
- *
- * @constructor
+ * @class Controller
+ * @memberof mw.rcfilters
+ * @ignore
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
  * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
  * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
  * @param {Object} config Additional configuration
- * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
- * @cfg {string} daysPreferenceName Preference name for the days filter
- * @cfg {string} limitPreferenceName Preference name for the limit filter
- * @cfg {string} collapsedPreferenceName Preference name for collapsing and showing
+ * @param {string} config.savedQueriesPreferenceName Where to save the saved queries
+ * @param {string} config.daysPreferenceName Preference name for the days filter
+ * @param {string} config.limitPreferenceName Preference name for the limit filter
+ * @param {string} config.collapsedPreferenceName Preference name for collapsing and showing
  *  the active filters area
- * @cfg {boolean} [normalizeTarget] Dictates whether or not to go through the
+ * @param {boolean} [config.normalizeTarget] Dictates whether or not to go through the
  *  title normalization to separate title subpage/parts into the target= url
  *  parameter
  */
@@ -558,6 +558,12 @@ Controller.prototype.toggleHighlight = function () {
 	this.uriProcessor.updateURL();
 
 	if ( this.filtersModel.isHighlightEnabled() ) {
+		/**
+		 * Fires when highlight feature is enabled.
+		 *
+		 * @event ~'RcFilters.highlight.enable'
+		 * @memberof Hooks
+		 */
 		mw.hook( 'RcFilters.highlight.enable' ).fire();
 	}
 };
@@ -848,6 +854,7 @@ Controller.prototype.applySavedQuery = function ( queryID ) {
  * Check whether the current filter and highlight state exists
  * in the saved queries model.
  *
+ * @ignore
  * @return {mw.rcfilters.dm.SavedQueryItemModel} Matching item model
  */
 Controller.prototype.findQueryMatchingCurrentState = function () {

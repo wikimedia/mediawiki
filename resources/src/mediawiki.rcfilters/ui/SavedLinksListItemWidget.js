@@ -1,13 +1,13 @@
 /**
- * Quick links menu option widget
+ * Quick links menu option widget.
  *
  * @class mw.rcfilters.ui.SavedLinksListItemWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.dm.SavedQueryItemModel} model View model
  * @param {Object} [config] Configuration object
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
 var SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model, config ) {
 	config = config || {};
@@ -123,23 +123,26 @@ OO.inheritClass( SavedLinksListItemWidget, OO.ui.MenuOptionWidget );
 /* Events */
 
 /**
- * @event delete
+ * The delete option was selected for this item.
  *
- * The delete option was selected for this item
+ * @event delete
+ * @ignore
  */
 
 /**
+ * The 'make default' option was selected for this item.
+ *
  * @event default
  * @param {boolean} default Item is default
- *
- * The 'make default' option was selected for this item
+ * @ignore
  */
 
 /**
+ * The label has been edited.
+ *
  * @event edit
  * @param {string} newLabel New label for the query
- *
- * The label has been edited
+ * @ignore
  */
 
 /* Methods */

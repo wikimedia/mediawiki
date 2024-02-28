@@ -3,44 +3,44 @@ var FilterItem = require( './FilterItem.js' ),
 	FilterGroup;
 
 /**
- * View model for a filter group
+ * View model for a filter group.
  *
  * @class mw.rcfilters.dm.FilterGroup
+ * @ignore
  * @mixins OO.EventEmitter
  * @mixins OO.EmitterList
  *
- * @constructor
  * @param {string} name Group name
  * @param {Object} [config] Configuration options
- * @cfg {string} [type='send_unselected_if_any'] Group type
- * @cfg {string} [view='default'] Name of the display group this group
+ * @param {string} [config.type='send_unselected_if_any'] Group type
+ * @param {string} [config.view='default'] Name of the display group this group
  *  is a part of.
- * @cfg {boolean} [sticky] This group is 'sticky'. It is synchronized
+ * @param {boolean} [config.sticky] This group is 'sticky'. It is synchronized
  *  with a preference, does not participate in Saved Queries, and is
  *  not shown in the active filters area.
- * @cfg {string} [title] Group title
- * @cfg {boolean} [hidden] This group is hidden from the regular menu views
+ * @param {string} [config.title] Group title
+ * @param {boolean} [config.hidden] This group is hidden from the regular menu views
  *  and the active filters area.
- * @cfg {boolean} [allowArbitrary] Allows for an arbitrary value to be added to the
+ * @param {boolean} [config.allowArbitrary] Allows for an arbitrary value to be added to the
  *  group from the URL, even if it wasn't initially set up.
- * @cfg {number} [range] An object defining minimum and maximum values for numeric
+ * @param {number} [config.range] An object defining minimum and maximum values for numeric
  *  groups. { min: x, max: y }
- * @cfg {number} [minValue] Minimum value for numeric groups
- * @cfg {string} [separator='|'] Value separator for 'string_options' groups
- * @cfg {boolean} [supportsAll=true] For 'string_options' groups, whether the magic 'all' value
+ * @param {number} [config.minValue] Minimum value for numeric groups
+ * @param {string} [config.separator='|'] Value separator for 'string_options' groups
+ * @param {boolean} [supportsAll=true] For 'string_options' groups, whether the magic 'all' value
  *  is understood to mean all options are selected.
- * @cfg {boolean} [active] Group is active
- * @cfg {boolean} [fullCoverage] This filters in this group collectively cover all results
- * @cfg {Object} [conflicts] Defines the conflicts for this filter group
- * @cfg {string|Object} [labelPrefixKey] An i18n key defining the prefix label for this
+ * @param {boolean} [config.active] Group is active
+ * @param {boolean} [config.fullCoverage] This filters in this group collectively cover all results
+ * @param {Object} [config.conflicts] Defines the conflicts for this filter group
+ * @param {string|Object} [config.labelPrefixKey] An i18n key defining the prefix label for this
  *  group. If the prefix has 'invert' state, the parameter is expected to be an object
  *  with 'default' and 'inverted' as keys.
- * @cfg {Object} [whatsThis] Defines the messages that should appear for the 'what's this' popup
- * @cfg {string} [whatsThis.header] The header of the whatsThis popup message
- * @cfg {string} [whatsThis.body] The body of the whatsThis popup message
- * @cfg {string} [whatsThis.url] The url for the link in the whatsThis popup message
- * @cfg {string} [whatsThis.linkMessage] The text for the link in the whatsThis popup message
- * @cfg {boolean} [visible=true] The visibility of the group
+ * @param {Object} [config.whatsThis] Defines the messages that should appear for the 'what's this' popup
+ * @param {string} [config.whatsThis.header] The header of the whatsThis popup message
+ * @param {string} [config.whatsThis.body] The body of the whatsThis popup message
+ * @param {string} [config.whatsThis.url] The url for the link in the whatsThis popup message
+ * @param {string} [config.whatsThis.linkMessage] The text for the link in the whatsThis popup message
+ * @param {boolean} [config.visible=true] The visibility of the group
  */
 FilterGroup = function MwRcfiltersDmFilterGroup( name, config ) {
 	config = config || {};
@@ -84,9 +84,10 @@ OO.mixinClass( FilterGroup, OO.EmitterList );
 /* Events */
 
 /**
- * @event update
+ * Group state has been updated.
  *
- * Group state has been updated
+ * @event update
+ * @ignore
  */
 
 /* Methods */
@@ -480,6 +481,7 @@ FilterGroup.prototype.areAllSelected = function () {
 /**
  * Get all selected items in this group
  *
+ * @ignore
  * @param {mw.rcfilters.dm.FilterItem} [excludeItem] Item to exclude from the list
  * @return {mw.rcfilters.dm.FilterItem[]} Selected items
  */
@@ -764,7 +766,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 };
 
 /**
- * @return {*} The appropriate falsy value for this group type
+ * @return {any} The appropriate falsy value for this group type
  */
 FilterGroup.prototype.getFalsyValue = function () {
 	return this.getType() === 'any_value' ? '' : false;
@@ -788,6 +790,7 @@ FilterGroup.prototype.getSelectedState = function () {
 /**
  * Get item by its filter name
  *
+ * @ignore
  * @param {string} filterName Filter name
  * @return {mw.rcfilters.dm.FilterItem} Filter item
  */
@@ -811,6 +814,7 @@ FilterGroup.prototype.selectItemByParamName = function ( paramName ) {
 /**
  * Get item by its parameter name
  *
+ * @ignore
  * @param {string} paramName Parameter name
  * @return {mw.rcfilters.dm.FilterItem} Filter item
  */

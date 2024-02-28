@@ -1,10 +1,10 @@
 /**
- * Widget to select and display target page on Special:RecentChangesLinked (AKA Related Changes)
+ * Widget to select and display target page on Special:RecentChangesLinked (AKA Related Changes).
  *
  * @class mw.rcfilters.ui.RclTargetPageWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller
  * @param {mw.rcfilters.dm.FilterItem} targetPageModel
  * @param {Object} [config] Configuration object

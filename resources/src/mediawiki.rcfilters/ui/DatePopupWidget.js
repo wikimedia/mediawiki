@@ -2,12 +2,12 @@ var ValuePickerWidget = require( './ValuePickerWidget.js' ),
 	DatePopupWidget;
 
 /**
- * Widget defining the popup to choose date for the results
+ * Widget defining the popup to choose date for the results.
  *
  * @class mw.rcfilters.ui.DatePopupWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.dm.FilterGroup} model Group model for 'days'
  * @param {Object} [config] Configuration object
  */
@@ -68,10 +68,11 @@ OO.mixinClass( DatePopupWidget, OO.ui.mixin.LabelElement );
 /* Events */
 
 /**
+ * A days item was chosen
+ *
  * @event days
  * @param {string} name Item name
- *
- * A days item was chosen
+ * @ignore
  */
 
 module.exports = DatePopupWidget;

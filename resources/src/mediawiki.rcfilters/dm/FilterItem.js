@@ -2,20 +2,20 @@ var ItemModel = require( './ItemModel.js' ),
 	FilterItem;
 
 /**
- * Filter item model
+ * Filter item model.
  *
  * @class mw.rcfilters.dm.FilterItem
+ * @ignore
  * @extends mw.rcfilters.dm.ItemModel
  *
- * @constructor
  * @param {string} param Filter param name
  * @param {mw.rcfilters.dm.FilterGroup} groupModel Filter group model
  * @param {Object} config Configuration object
- * @cfg {string[]} [excludes=[]] A list of filter names this filter, if
+ * @param {string[]} [config.excludes=[]] A list of filter names this filter, if
  *  selected, makes inactive.
- * @cfg {string[]} [subset] Defining the names of filters that are a subset of this filter
- * @cfg {Object} [conflicts] Defines the conflicts for this filter
- * @cfg {boolean} [visible=true] The visibility of the group
+ * @param {string[]} [config.subset] Defining the names of filters that are a subset of this filter
+ * @param {Object} [config.conflicts] Defines the conflicts for this filter
+ * @param {boolean} [config.visible=true] The visibility of the group
  */
 FilterItem = function MwRcfiltersDmFilterItem( param, groupModel, config ) {
 	config = config || {};
@@ -181,6 +181,7 @@ FilterItem.prototype.getStateMessage = function () {
 /**
  * Get the model of the group this filter belongs to
  *
+ * @ignore
  * @return {mw.rcfilters.dm.FilterGroup} Filter group model
  */
 FilterItem.prototype.getGroupModel = function () {

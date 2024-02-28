@@ -2,12 +2,12 @@ var ValuePickerWidget = require( './ValuePickerWidget.js' ),
 	ChangesLimitPopupWidget;
 
 /**
- * Widget defining the popup to choose number of results
+ * Widget defining the popup to choose number of results.
  *
  * @class mw.rcfilters.ui.ChangesLimitPopupWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.dm.FilterGroup} limitModel Group model for 'limit'
  * @param {mw.rcfilters.dm.FilterItem} groupByPageItemModel Group model for 'limit'
  * @param {Object} [config] Configuration object
@@ -67,17 +67,19 @@ OO.inheritClass( ChangesLimitPopupWidget, OO.ui.Widget );
 /* Events */
 
 /**
+ * A limit item was chosen.
+ *
  * @event limit
  * @param {string} name Item name
- *
- * A limit item was chosen
+ * @ignore
  */
 
 /**
+ * Results are grouped by page
+ *
  * @event groupByPage
  * @param {boolean} isGrouped The results are grouped by page
- *
- * Results are grouped by page
+ * @ignore
  */
 
 /**

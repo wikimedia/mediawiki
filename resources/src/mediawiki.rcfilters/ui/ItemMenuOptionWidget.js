@@ -3,12 +3,12 @@ var FilterItemHighlightButton = require( './FilterItemHighlightButton.js' ),
 	ItemMenuOptionWidget;
 
 /**
- * A widget representing a base toggle item
+ * A widget representing a base toggle item.
  *
  * @class mw.rcfilters.ui.ItemMenuOptionWidget
+ * @ignore
  * @extends OO.ui.MenuOptionWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
  * @param {mw.rcfilters.dm.ItemModel|null} invertModel

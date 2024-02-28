@@ -1,13 +1,13 @@
 var HighlightColors = require( '../HighlightColors.js' );
 
 /**
- * A widget representing a filter item highlight color picker
+ * A widget representing a filter item highlight color picker.
  *
  * @class mw.rcfilters.ui.HighlightColorPickerWidget
+ * @ignore
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.LabelElement
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {Object} [config] Configuration object
  */
@@ -66,10 +66,11 @@ OO.mixinClass( HighlightColorPickerWidget, OO.ui.mixin.LabelElement );
 /* Events */
 
 /**
+ * A color has been chosen
+ *
  * @event chooseColor
  * @param {string} The chosen color
- *
- * A color has been chosen
+ * @ignore
  */
 
 /* Methods */

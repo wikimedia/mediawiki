@@ -2,12 +2,12 @@ var ItemMenuOptionWidget = require( './ItemMenuOptionWidget.js' ),
 	FilterMenuOptionWidget;
 
 /**
- * A widget representing a single toggle filter
+ * A widget representing a single toggle filter.
  *
  * @class mw.rcfilters.ui.FilterMenuOptionWidget
+ * @ignore
  * @extends mw.rcfilters.ui.ItemMenuOptionWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
  * @param {mw.rcfilters.dm.FilterItem|null} invertModel

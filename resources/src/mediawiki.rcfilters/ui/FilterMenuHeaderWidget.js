@@ -1,14 +1,14 @@
 /**
- * Menu header for the RCFilters filters menu
+ * Menu header for the RCFilters filters menu.
  *
  * @class mw.rcfilters.ui.FilterMenuHeaderWidget
+ * @ignore
  * @extends OO.ui.Widget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} config Configuration object
- * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+ * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
 var FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( controller, model, config ) {
 	config = config || {};

@@ -1,15 +1,15 @@
 /**
- * View model for a single saved query
+ * View model for a single saved query.
  *
  * @class mw.rcfilters.dm.SavedQueryItemModel
+ * @ignore
  * @mixins OO.EventEmitter
  *
- * @constructor
  * @param {string} id Unique identifier
  * @param {string} label Saved query label
  * @param {Object} data Saved query data
  * @param {Object} [config] Configuration options
- * @cfg {boolean} [default] This item is the default
+ * @param {boolean} [config.default] This item is the default
  */
 var SavedQueryItemModel = function MwRcfiltersDmSavedQueriesModel( id, label, data, config ) {
 	config = config || {};
@@ -31,9 +31,10 @@ OO.mixinClass( SavedQueryItemModel, OO.EventEmitter );
 /* Events */
 
 /**
- * @event update
+ * Model has been updated.
  *
- * Model has been updated
+ * @event update
+ * @ignore
  */
 
 /* Methods */

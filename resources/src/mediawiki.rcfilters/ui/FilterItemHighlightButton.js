@@ -1,12 +1,12 @@
 var HighlightColors = require( '../HighlightColors.js' );
 
 /**
- * A button to configure highlight for a filter item
+ * A button to configure highlight for a filter item.
  *
  * @class mw.rcfilters.ui.FilterItemHighlightButton
+ * @ignore
  * @extends OO.ui.PopupButtonWidget
  *
- * @constructor
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {mw.rcfilters.dm.FilterItem} model Filter item model
  * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker
