@@ -22,6 +22,7 @@
 namespace MediaWiki\Pager;
 
 use LocalRepo;
+use MediaWiki\Cache\UserCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
@@ -35,7 +36,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use RepoGroup;
 use UnexpectedValueException;
-use UserCache;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;

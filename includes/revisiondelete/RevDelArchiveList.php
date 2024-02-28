@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
@@ -43,7 +44,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 	 * @param array $ids
 	 * @param LBFactory $lbFactory
 	 * @param HookContainer $hookContainer
-	 * @param HtmlCacheUpdater $htmlCacheUpdater
+	 * @param HTMLCacheUpdater $htmlCacheUpdater
 	 * @param RevisionStore $revisionStore
 	 */
 	public function __construct(
@@ -52,7 +53,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 		array $ids,
 		LBFactory $lbFactory,
 		HookContainer $hookContainer,
-		HtmlCacheUpdater $htmlCacheUpdater,
+		HTMLCacheUpdater $htmlCacheUpdater,
 		RevisionStore $revisionStore
 	) {
 		parent::__construct(

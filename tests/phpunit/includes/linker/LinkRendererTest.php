@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;

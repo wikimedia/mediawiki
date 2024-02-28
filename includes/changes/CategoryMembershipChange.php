@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;

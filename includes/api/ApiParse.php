@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;

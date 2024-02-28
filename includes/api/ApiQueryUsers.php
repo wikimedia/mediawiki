@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;

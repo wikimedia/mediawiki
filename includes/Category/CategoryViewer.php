@@ -29,7 +29,7 @@ use ILanguageConverter;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
-use LinkCache;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;

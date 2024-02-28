@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Page\PageIdentity;
@@ -37,7 +38,7 @@ class RevDelArchivedFileList extends RevDelFileList {
 	 * @param PageIdentity $page
 	 * @param array $ids
 	 * @param LBFactory $lbFactory
-	 * @param HtmlCacheUpdater $htmlCacheUpdater
+	 * @param HTMLCacheUpdater $htmlCacheUpdater
 	 * @param RepoGroup $repoGroup
 	 */
 	public function __construct(
@@ -45,7 +46,7 @@ class RevDelArchivedFileList extends RevDelFileList {
 		PageIdentity $page,
 		array $ids,
 		LBFactory $lbFactory,
-		HtmlCacheUpdater $htmlCacheUpdater,
+		HTMLCacheUpdater $htmlCacheUpdater,
 		RepoGroup $repoGroup
 	) {
 		parent::__construct(

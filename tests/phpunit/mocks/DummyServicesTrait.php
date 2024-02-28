@@ -21,11 +21,11 @@
 
 namespace MediaWiki\Tests\Unit;
 
-use GenderCache;
 use Interwiki;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\CommentFormatter\CommentParser;
 use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\CommentStore\CommentStore;

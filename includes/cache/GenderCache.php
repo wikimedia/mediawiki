@@ -19,6 +19,8 @@
  * @author Niklas Laxström
  */
 
+namespace MediaWiki\Cache;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -182,3 +184,6 @@ class GenderCache {
 		return strtr( $username, '_', ' ' );
 	}
 }
+
+/** @deprecated since 1.42 */
+class_alias( GenderCache::class, 'GenderCache' );

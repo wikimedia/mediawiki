@@ -27,13 +27,10 @@ use ExtensionRegistry;
 use ExternalStoreAccess;
 use ExternalStoreFactory;
 use FileBackendGroup;
-use GenderCache;
-use HtmlCacheUpdater;
 use IBufferingStatsdDataFactory;
 use JobQueueGroup;
 use JobRunner;
 use Language;
-use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
 use LogicException;
@@ -55,7 +52,11 @@ use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
+use MediaWiki\Cache\GenderCache;
+use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Cache\LinkCache;
+use MediaWiki\Cache\UserCache;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Collation\CollationFactory;
@@ -198,7 +199,6 @@ use SearchEngineConfig;
 use SearchEngineFactory;
 use SkinFactory;
 use UploadRevisionImporter;
-use UserCache;
 use WANObjectCache;
 use WatchedItemQueryService;
 use WatchedItemStoreInterface;
@@ -1192,7 +1192,7 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * @since 1.35
 	 */
-	public function getHtmlCacheUpdater(): HtmlCacheUpdater {
+	public function getHtmlCacheUpdater(): HTMLCacheUpdater {
 		return $this->getService( 'HtmlCacheUpdater' );
 	}
 

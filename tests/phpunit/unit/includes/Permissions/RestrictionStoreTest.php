@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Unit\Permissions;
 
 use DatabaseTestHelper;
-use LinkCache;
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;

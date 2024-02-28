@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use BacklinkCache;
 use IDBAccessObject;
 use Job;
+use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DataUpdate;
 use MediaWiki\Deferred\DeferredUpdates;

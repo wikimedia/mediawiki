@@ -61,8 +61,13 @@ use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Block\UserBlockCommandFactory;
+use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\Cache\BacklinkCacheFactory;
+use MediaWiki\Cache\GenderCache;
+use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Cache\LinkCache;
+use MediaWiki\Cache\UserCache;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Collation\CollationFactory;
@@ -938,10 +943,10 @@ return [
 		return $hookContainer;
 	},
 
-	'HtmlCacheUpdater' => static function ( MediaWikiServices $services ): HtmlCacheUpdater {
+	'HtmlCacheUpdater' => static function ( MediaWikiServices $services ): HTMLCacheUpdater {
 		$config = $services->getMainConfig();
 
-		return new HtmlCacheUpdater(
+		return new HTMLCacheUpdater(
 			$services->getHookContainer(),
 			$services->getTitleFactory(),
 			$config->get( MainConfigNames::CdnReboundPurgeDelay ),

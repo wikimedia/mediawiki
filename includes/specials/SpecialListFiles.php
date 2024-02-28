@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Cache\UserCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Pager\ImageListPager;
@@ -31,7 +32,6 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
 use RepoGroup;
-use UserCache;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialListFiles extends IncludableSpecialPage {

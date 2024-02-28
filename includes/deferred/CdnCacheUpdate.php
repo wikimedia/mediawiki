@@ -159,7 +159,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		$services = MediaWikiServices::getInstance();
 		/** @var PageReference $page */
 
-		// Avoid multiple queries for HtmlCacheUpdater::getUrls() call
+		// Avoid multiple queries for HTMLCacheUpdater::getUrls() call
 		$lb = $services->getLinkBatchFactory()->newLinkBatch();
 		foreach ( $this->pageTuples as [ $page, ] ) {
 			$lb->addObj( $page );

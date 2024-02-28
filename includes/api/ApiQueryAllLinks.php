@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Title\NamespaceInfo;
