@@ -59,6 +59,7 @@ class ApiQuery extends ApiBase {
 				'ActorMigration',
 				'UserGroupManager',
 				'GroupPermissionsLookup',
+				'TempUserConfig'
 			]
 		],
 		'deletedrevisions' => [

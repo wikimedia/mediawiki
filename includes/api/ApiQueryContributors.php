@@ -28,6 +28,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -49,6 +50,7 @@ class ApiQueryContributors extends ApiQueryBase {
 	private ActorMigration $actorMigration;
 	private UserGroupManager $userGroupManager;
 	private GroupPermissionsLookup $groupPermissionsLookup;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param ApiQuery $query
@@ -57,6 +59,7 @@ class ApiQueryContributors extends ApiQueryBase {
 	 * @param ActorMigration $actorMigration
 	 * @param UserGroupManager $userGroupManager
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -64,7 +67,8 @@ class ApiQueryContributors extends ApiQueryBase {
 		RevisionStore $revisionStore,
 		ActorMigration $actorMigration,
 		UserGroupManager $userGroupManager,
-		GroupPermissionsLookup $groupPermissionsLookup
+		GroupPermissionsLookup $groupPermissionsLookup,
+		TempUserConfig $tempUserConfig
 	) {
 		// "pc" is short for "page contributors", "co" was already taken by the
 		// GeoData extension's prop=coordinates.
@@ -73,6 +77,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		$this->actorMigration = $actorMigration;
 		$this->userGroupManager = $userGroupManager;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	public function execute() {
@@ -299,5 +304,12 @@ class ApiQueryContributors extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Contributors';
+	}
+
+	protected function getSummaryMessage() {
+		if ( $this->tempUserConfig->isEnabled() ) {
+			return 'apihelp-query+contributors-summary-tempusers-enabled';
+		}
+		return parent::getSummaryMessage();
 	}
 }
