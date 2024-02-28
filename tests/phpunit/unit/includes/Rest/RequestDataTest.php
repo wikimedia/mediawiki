@@ -221,4 +221,47 @@ class RequestDataTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( $expectedResult, $request->getBodyType() );
 	}
 
+	public static function provideHasBody() {
+		yield 'nothing'
+		=> [ [], false ];
+
+		yield 'content-length: 1'
+		=> [ [ 'content-length' => '1' ], true ];
+
+		yield 'content-length: 0'
+		=> [ [ 'content-length' => '0' ], true ];
+
+		yield 'content-length empty'
+		=> [ [ 'content-length' => '' ], false ];
+
+		yield 'transfer-encoding: chunked'
+		=> [ [ 'transfer-encoding' => 'chunked' ], true ];
+
+		yield 'transfer-encoding empty'
+		=> [ [ 'transfer-encoding' => '' ], false ];
+	}
+
+	/**
+	 * @dataProvider provideHasBody
+	 */
+	public function testHasBodyBasedOnHeader( $headers, $expected ) {
+		$request = new RequestData( [
+			'headers' => $headers
+		] );
+		$this->assertSame( $expected, $request->hasBody() );
+	}
+
+	public function testHasBodyWithContent() {
+		$request = new RequestData( [
+			'bodyContents' => 'test test test'
+		] );
+		$this->assertTrue( $request->hasBody() );
+	}
+
+	public function testHasBodyWithParsedBody() {
+		$request = new RequestData( [
+			'parsedBody' => [ 'foo' => 'bar' ]
+		] );
+		$this->assertTrue( $request->hasBody() );
+	}
 }

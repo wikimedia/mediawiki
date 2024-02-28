@@ -268,4 +268,12 @@ interface RequestInterface {
 	public function setParsedBody( ?array $data );
 
 	public function getBodyType(): ?string;
+
+	/**
+	 * Determines whether the request has body data associated with it.
+	 * Note that this method may return true even if the body is empty.
+	 *
+	 * @return bool
+	 */
+	public function hasBody(): bool;
 }

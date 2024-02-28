@@ -102,4 +102,21 @@ class RequestData extends RequestBase {
 	public function getPostParams() {
 		return $this->postParams;
 	}
+
+	public function hasBody(): bool {
+		if ( parent::hasBody() ) {
+			return true;
+		}
+
+		if ( $this->parsedBody !== null ) {
+			return true;
+		}
+
+		if ( $this->getBody()->getContents() !== '' ) {
+			return true;
+		}
+
+		return false;
+	}
+
 }
