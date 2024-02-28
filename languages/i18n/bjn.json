@@ -1858,6 +1858,8 @@
 	"mycontris": "Sumbangan",
 	"anoncontribs": "Sumbangan",
 	"contribsub2": "Gasan {{GENDER:$3|$1}} ($2)",
+	"contributions-edit-count": "{{GENDER:$1|Pamakai}} nang jumlah {{PLURAL:$2|babakannya}} $2.",
+	"contributions-account-creation-date": "Akun diulah wayah $1.",
 	"contributions-userdoesnotexist": "Pamakai \"$1\" kada tadaptar.",
 	"nocontribs": "Kadada paubahan nang rasuk lawan syarat itu.",
 	"uctop": "wayah ini",

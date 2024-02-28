@@ -1027,6 +1027,7 @@
 	"difference-title-multipage": "$1 ja $2: Erot sivujen välillä",
 	"difference-multipage": "(Sivujen välinen eroavaisuus)",
 	"lineno": "Rivi $1:",
+	"lineno-inline": "Rivi $1 ⟶ $2:",
 	"compareselectedversions": "Vertaile valittuja versioita",
 	"showhideselectedversions": "Näytä tai piilota valitut versiot",
 	"showhideselectedfileversions": "Muuta valittujen tiedostoversioiden näkyvyyttä",

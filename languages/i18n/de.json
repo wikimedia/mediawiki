@@ -668,7 +668,7 @@
 	"botpasswords-updated-body": "Das Botpasswort für den Botnamen „$1“ {{GENDER:$2|des Benutzers|der Benutzerin}} „$2“ wurde aktualisiert.",
 	"botpasswords-deleted-title": "Botpasswort gelöscht",
 	"botpasswords-deleted-body": "Das Botpasswort für den Botnamen „$1“ {{GENDER:$2|des Benutzers|der Benutzerin}} „$2“ wurde gelöscht.",
-	"botpasswords-newpassword": "Das neue Passwort zur Anmeldung mit <strong>$1</strong> ist <strong>$2</strong>. <em>Bitte halte dies für die Zukunft fest.</em><br>Für alte Bots, die erfordern, dass der Anmeldename mit dem späteren Benutzernamen identisch ist, kannst du auch <strong>$3</strong> als Benutzernamen und <strong>$4</strong> als Passwort verwenden.",
+	"botpasswords-newpassword": "Das neue Passwort zur Anmeldung mit <strong>$1</strong> ist <strong>$2</strong>. <em>Bitte speichere diese Anmeldeinformationen.</em><br>Für Bots, bei denen der Anmeldename mit dem späteren Benutzernamen identisch sein muss, kannst du <strong>$3</strong> als Benutzernamen und <strong>$4</strong> als Passwort verwenden.",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider ist nicht verfügbar.",
 	"botpasswords-restriction-failed": "Beschränkungen des Botpassworts verhindern diese Anmeldung.",
 	"botpasswords-invalid-name": "Der angegebene Benutzername enthält keinen Botpassworttrenner („$1“).",
