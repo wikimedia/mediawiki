@@ -539,7 +539,10 @@ abstract class Handler {
 				}
 				return $parsedBody;
 			default:
-				return null;
+				throw new LocalizedHttpException(
+					new MessageValue( 'rest-unsupported-content-type', [ $contentType ?? '(null)' ] ),
+					415
+				);
 		}
 	}
 
