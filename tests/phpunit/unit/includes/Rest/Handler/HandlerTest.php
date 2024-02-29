@@ -472,7 +472,10 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		return [
 			'null body type' => [
 				new RequestData(),
-				null
+				new LocalizedHttpException(
+					new MessageValue( 'rest-unsupported-content-type', [ '' ] ),
+					415
+				)
 			],
 			'json body' => [
 				new RequestData( [
@@ -485,7 +488,10 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				new RequestData( [
 					'headers' => [ 'Content-Type' => 'unknown/type' ]
 				] ),
-				null
+				new LocalizedHttpException(
+					new MessageValue( 'rest-unsupported-content-type', [ '' ] ),
+					415
+				)
 			],
 			'invalid json body' => [
 				new RequestData( [
@@ -505,6 +511,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler = $this->newHandler();
 		if ( $expectedResult instanceof LocalizedHttpException ) {
 			$this->expectException( LocalizedHttpException::class );
+			$this->expectExceptionCode( $expectedResult->getCode() );
+			$this->expectExceptionMessage( $expectedResult->getMessage() );
 			$handler->parseBodyData( $requestData );
 		} else {
 			$parsedBody = $handler->parseBodyData( $requestData );
