@@ -119,11 +119,12 @@
  * [0]: https://developer.mozilla.org/docs/Web/HTML/Element/details
  *
  * @namespace CheckboxHack
+ * @memberof module:mediawiki.page.ready
  */
 /**
  * Revise the button's `aria-expanded` state to match the checked state.
  *
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  */
@@ -216,7 +217,7 @@ function dismissIfExternalEventTarget( checkbox, button, target, event ) {
 /**
  * Update the `aria-expanded` attribute based on checkbox state (target visibility) changes.
  *
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @return {function(): void} Cleanup function that removes the added event listeners.
@@ -238,7 +239,7 @@ function bindUpdateAriaExpandedOnInput( checkbox, button ) {
 /**
  * Manually change the checkbox state to avoid a focus change when using a pointing device.
  *
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @return {function(): void} Cleanup function that removes the added event listeners.
@@ -261,7 +262,7 @@ function bindToggleOnClick( checkbox, button ) {
  * Manually change the checkbox state when the button is focused and SPACE is pressed.
  *
  * @deprecated Use `bindToggleOnEnter` instead.
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @return {function(): void} Cleanup function that removes the added event listeners.
@@ -311,7 +312,7 @@ function bindToggleOnSpaceEnter( checkbox, button ) {
 /**
  * Manually change the checkbox state when the button is focused and Enter is pressed.
  *
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  * @param {HTMLInputElement} checkbox
  * @return {function(): void} Cleanup function that removes the added event listeners.
  */
@@ -336,7 +337,7 @@ function bindToggleOnEnter( checkbox ) {
  * Dismiss the target when clicking elsewhere and update the `aria-expanded` attribute based on
  * checkbox state (target visibility).
  *
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  * @param {window} window
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
@@ -361,7 +362,7 @@ function bindDismissOnClickOutside( window, checkbox, button, target ) {
  * @param {HTMLElement} button
  * @param {Node} target
  * @return {function(): void} Cleanup function that removes the added event listeners.
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  */
 function bindDismissOnFocusLoss( window, checkbox, button, target ) {
 	// If focus is given to any element outside the target, dismiss the target. Setting a focusout
@@ -381,7 +382,7 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
  * @param {HTMLInputElement} checkbox
  * @param {Node} target
  * @return {function(): void} Cleanup function that removes the added event listeners.
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  */
 function bindDismissOnClickLink( checkbox, target ) {
 	function dismissIfClickLinkEvent( event ) {
@@ -407,7 +408,7 @@ function bindDismissOnClickLink( checkbox, target ) {
  * This function calls the other bind* functions and is the only expected interaction for most use
  * cases. It's constituents are provided distinctly for the other use cases.
  *
- * @memberof CheckboxHack
+ * @memberof module:mediawiki.page.ready.CheckboxHack
  * @param {window} window
  * @param {HTMLInputElement} checkbox The underlying hidden checkbox that controls target
  *   visibility.
