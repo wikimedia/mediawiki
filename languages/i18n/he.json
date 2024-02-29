@@ -1134,6 +1134,7 @@
 	"prefs-searchmisc": "כללי",
 	"searchprefs": "חיפוש בהעדפות",
 	"searchprefs-noresults": "אין תוצאות",
+	"searchprefs-results": "{{PLURAL:$1|תוצאה אחת|$1 תוצאות}}",
 	"saveprefs": "שמירה",
 	"restoreprefs": "שחזור הגדרות ברירת המחדל",
 	"prefs-editing": "עריכה",

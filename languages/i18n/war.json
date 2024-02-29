@@ -452,7 +452,7 @@
 	"noname": "Waray ka nakahatag hin maupay nga agnay-hit-gumaramit.",
 	"loginsuccesstitle": "Nakalog-in",
 	"loginsuccess": "'''Ikaw in nakalog-in ha {{SITENAME}} komo \"$1\".'''",
-	"nosuchuser": "Waray gumaramit an may-ada ngaran nga \"$1\".\nIt mga agnay-hi-gumaramit in case sensitive.\nPanginano-a it imo pagbaybay, o [[Special:CreateAccount|paghimo hin bag-o nga akawnt]].",
+	"nosuchuser": "Waray gumaramit an may-ada ngaran nga \"$1\".\nIt mga agnay-hi-gumaramit in case-sensitive.\nPanginano-a it imo pagbaybay, o [[Special:CreateAccount|paghimo hin bag-o nga akawnt]].",
 	"nosuchusershort": "Waray nagamit it may ngaran nga \"$1\".\nKitaa kun amo it im pagbaybay.",
 	"nouserspecified": "Dapat nim magbutang hin agnay hit gumaramit.",
 	"login-userblocked": "Ini nga gumaramit in ginpugngan.  Diri gintutugutan an pagsakob.",

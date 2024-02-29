@@ -31,7 +31,6 @@
 		]
 	},
 	"copyright": "Pod licencom / Под лиценцом: $1.",
-	"permissionserrorstext-withaction": "Nemate dopuštenje da $2 iz {{PLURAL:$1|sljedećeg|sljedećih}} razloga:",
 	"variantname-sh-latn": "Latinica",
 	"variantname-sh-cyrl": "Ћирилица"
 }
