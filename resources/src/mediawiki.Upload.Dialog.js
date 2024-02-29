@@ -1,6 +1,8 @@
 ( function () {
 
 	/**
+	 * Class for controlling a BookletLayout.
+	 *
 	 * @classdesc mw.Upload.Dialog controls a {@link mw.Upload.BookletLayout BookletLayout}.
 	 *
 	 * ## Usage
