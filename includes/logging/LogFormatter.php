@@ -79,7 +79,7 @@ class LogFormatter {
 				'assertClass' => self::class,
 			] );
 		} else {
-			$formatter = new LegacyLogFormatter( $entry );
+			$formatter = new LegacyLogFormatter( $entry, $services->getHookContainer() );
 		}
 
 		$formatter->setContentLanguage( $services->getContentLanguage() );
