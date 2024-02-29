@@ -29,7 +29,8 @@ class GetLagTimesTest extends MaintenanceBaseTestCase {
 			'No lag' => [ 0, '/localhost\s+0 $/m' ],
 			'Some lag' => [ 7, '/localhost\s+7 \*{7}$/m' ],
 			'More than 40 seconds lag' => [ 41, '/localhost\s+41 \*{40}$/m' ],
-			'Not replicating' => [ false, '/localhost\s+0 $/m' ],
+			'Not replicating' => [
+				false, '/localhost\s+0 replication stopped or errored$/m' ],
 		];
 	}
 
