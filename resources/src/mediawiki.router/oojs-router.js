@@ -7,9 +7,14 @@
  * http://oojs.mit-license.org
  *
  * Date: 2024-03-04T20:48:16Z
+ * @author Ed Sanders <esanders@wikimedia.org>
+ * @author James D. Forrester <jforrester@wikimedia.org>
+ * @author Jon Robson <jdlrobson@gmail.com>
+ * @author Kunal Mehta <legoktm@member.fsf.org>
+ * @author MarcoAurelio <maurelio@tools.wmflabs.org>
+ * @author Prateek Saxena <prtksxna@gmail.com>
+ * @author Timo Tijhof <krinklemail@gmail.com>
  */
-( function ( $ ) {
-
 'use strict';
 
 /**
@@ -227,5 +232,3 @@ OO.Router.prototype.isSupported = OO.Router.static.isSupported;
 if ( typeof module !== 'undefined' && module.exports ) {
 	module.exports = OO.Router;
 }
-
-}( jQuery ) );

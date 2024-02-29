@@ -3049,9 +3049,9 @@ return [
 	],
 
 	'mediawiki.router' => [
-		'scripts' => [
-			'resources/lib/oojs-router/oojs-router.js',
+		'packageFiles' => [
 			'resources/src/mediawiki.router/index.js',
+			'resources/src/mediawiki.router/oojs-router.js',
 		],
 		'dependencies' => [
 			'oojs',

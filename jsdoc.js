@@ -28,6 +28,10 @@ module.exports = {
 	source: {
 		include: [
 			'resources/src/'
+		],
+		exclude: [
+			// Will be fixed in I03750273f08dd04c349fa27be30fb8f3a7c3ff55
+			'resources/src/mediawiki.router/oojs-router.js'
 		]
 	},
 	templates: {

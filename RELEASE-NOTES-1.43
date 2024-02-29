@@ -59,6 +59,9 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 === External library changes in 1.43 ===
 
+* The OOjs Router library has been merged into core and will be archived
+  upstream.
+
 ==== New external libraries ====
 
 * …

@@ -1,7 +1,0 @@
-Ed Sanders <esanders@wikimedia.org>
-James D. Forrester <jforrester@wikimedia.org>
-Jon Robson <jdlrobson@gmail.com>
-Kunal Mehta <legoktm@member.fsf.org>
-MarcoAurelio <maurelio@tools.wmflabs.org>
-Prateek Saxena <prtksxna@gmail.com>
-Timo Tijhof <krinklemail@gmail.com>
