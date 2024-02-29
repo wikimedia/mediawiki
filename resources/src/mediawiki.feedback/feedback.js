@@ -26,7 +26,7 @@
 	 * This feature works with any content model that defines a
 	 * `mw.messagePoster.MessagePoster`.
 	 *
-	 * @example Minimal usage example:
+	 * @example // Minimal usage example
 	 * mw.loader.using( 'mediawiki.feedback').then(() => {
 	 *     var feedback = new mw.Feedback();
 	 *     $( '#myButton' ).click( function () { feedback.launch(); } );

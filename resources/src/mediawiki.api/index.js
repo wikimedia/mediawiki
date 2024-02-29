@@ -23,23 +23,27 @@
 	 * @classdesc Interact with the API of a particular MediaWiki site. mw.Api objects represent the API of
 	 * one particular MediaWiki site.
 	 *
-	 *     var api = new mw.Api();
-	 *     api.get( {
-	 *         action: 'query',
-	 *         meta: 'userinfo'
-	 *     } ).done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
+	 * ```
+	 * var api = new mw.Api();
+	 * api.get( {
+	 *     action: 'query',
+	 *     meta: 'userinfo'
+	 * } ).done( function ( data ) {
+	 *     console.log( data );
+	 * } );
+	 * ```
 	 *
 	 * Since MW 1.25, multiple values for a parameter can be specified using an array:
 	 *
-	 *     var api = new mw.Api();
-	 *     api.get( {
-	 *         action: 'query',
-	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 *     } ).done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
+	 * ```
+	 * var api = new mw.Api();
+	 * api.get( {
+	 *     action: 'query',
+	 *     meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
+	 * } ).done( function ( data ) {
+	 *     console.log( data );
+	 * } );
+	 * ```
 	 *
 	 * Since MW 1.26, boolean values for API parameters can be specified natively. Parameter
 	 * values set to `false` or `undefined` will be omitted from the request, as required by
@@ -473,9 +477,11 @@
 		 * For better quality of error messages, it's recommended to use the following options in your
 		 * API queries:
 		 *
-		 *     errorformat: 'html',
-		 *     errorlang: mw.config.get( 'wgUserLanguage' ),
-		 *     errorsuselocal: true,
+		 * ```
+		 * errorformat: 'html',
+		 * errorlang: mw.config.get( 'wgUserLanguage' ),
+		 * errorsuselocal: true,
+		 * ```
 		 *
 		 * Error messages, particularly for editing pages, may consist of multiple paragraphs of text.
 		 * Your user interface should have enough space for that.
