@@ -42,7 +42,8 @@ class UserStylesModule extends WikiModule {
 	 */
 	protected function getPages( Context $context ) {
 		$user = $context->getUserIdentity();
-		if ( !$user || !$user->isRegistered() ) {
+		$tempUserConfig = MediaWikiServices::getInstance()->getTempUserConfig();
+		if ( !$user || !$user->isRegistered() || $tempUserConfig->isTempName( $user->getName() ) ) {
 			return [];
 		}
 
