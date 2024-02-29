@@ -9130,7 +9130,7 @@ class MainConfigSchema {
 	 * attacks, such as edit pages. This prevents those pages from being displayed
 	 * in a frame or iframe. The options are:
 	 *
-	 * - 'DENY': Do not allow framing. This is recommended for most wikis.
+	 *   - 'DENY': Do not allow framing. This is recommended for most wikis.
 	 *
 	 *   - 'SAMEORIGIN': Allow framing by pages on the same domain. This can be used
 	 *         to allow framing within a trusted domain. This is insecure if there
