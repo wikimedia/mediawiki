@@ -1616,6 +1616,9 @@ class ParserTestRunner {
 				$after[] = $tocData->prettyPrint();
 			}
 		}
+		if ( isset( $opts['showmedia'] ) ) {
+			$after[] = 'images=' . implode( ', ', array_keys( $output->getImages() ) );
+		}
 		if ( $metadataExpected === null ) {
 			// legacy format, add $before and $after to $out
 			if ( $before ) {
