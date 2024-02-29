@@ -37,7 +37,7 @@ class ContentRenderer {
 	 *
 	 * @param Content $content
 	 * @param PageReference $page
-	 * @param RevisionRecord|int|null $revision
+	 * @param RevisionRecord|null $revision
 	 * @param ParserOptions|null $parserOptions
 	 * @param bool $generateHtml
 	 *
