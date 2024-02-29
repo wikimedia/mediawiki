@@ -1,7 +1,7 @@
 ( function () {
 
 	/**
-	 * mw.Upload.Dialog controls a {@link mw.Upload.BookletLayout BookletLayout}.
+	 * @classdesc mw.Upload.Dialog controls a {@link mw.Upload.BookletLayout BookletLayout}.
 	 *
 	 * ## Usage
 	 *
@@ -16,9 +16,9 @@
 	 *
 	 * The dialog's closing promise can be used to get details of the upload.
 	 *
-	 * If you want to use a different OO.ui.BookletLayout, for example the
-	 * mw.ForeignStructuredUpload.BookletLayout, like in the case of of the upload
-	 * interface in VisualEditor, you can pass it in the {@link #cfg-bookletClass}:
+	 * If you want to use a different {@link OO.ui.BookletLayout}, for example the
+	 * {@link mw.ForeignStructuredUpload.BookletLayout}, like in the case of the upload
+	 * interface in VisualEditor, you can pass it in through the `bookletClass` config option:
 	 *
 	 *     var uploadDialog = new mw.Upload.Dialog( {
 	 *         bookletClass: mw.ForeignStructuredUpload.BookletLayout
@@ -26,15 +26,13 @@
 	 *
 	 *
 	 * @class mw.Upload.Dialog
-	 * @uses mw.Upload
-	 * @uses mw.Upload.BookletLayout
 	 * @extends OO.ui.ProcessDialog
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Function} [bookletClass=mw.Upload.BookletLayout] Booklet class to be
+	 * @param {Function} [config.bookletClass=mw.Upload.BookletLayout] Booklet class to be
 	 *     used for the steps
-	 * @cfg {Object} [booklet] Booklet constructor configuration
+	 * @param {Object} [config.booklet] Booklet constructor configuration
 	 */
 	mw.Upload.Dialog = function ( config ) {
 		// Config initialization
@@ -108,6 +106,7 @@
 	/* Methods */
 
 	/**
+	 * @ignore
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.initialize = function () {
@@ -125,7 +124,7 @@
 	};
 
 	/**
-	 * Create an upload booklet
+	 * Create an upload booklet.
 	 *
 	 * @protected
 	 * @return {mw.Upload.BookletLayout} An upload booklet
@@ -138,6 +137,7 @@
 	};
 
 	/**
+	 * @ignore
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getBodyHeight = function () {
@@ -145,7 +145,7 @@
 	};
 
 	/**
-	 * Handle panelNameSet events from the upload booklet
+	 * Handle panelNameSet events from the upload booklet.
 	 *
 	 * @protected
 	 * @param {OO.ui.PageLayout} page Current page
@@ -156,7 +156,7 @@
 	};
 
 	/**
-	 * Handle uploadValid events
+	 * Handle uploadValid events.
 	 *
 	 * {@link OO.ui.ActionSet#setAbilities Sets abilities}
 	 * for the dialog accordingly.
@@ -169,7 +169,7 @@
 	};
 
 	/**
-	 * Handle infoValid events
+	 * Handle infoValid events.
 	 *
 	 * {@link OO.ui.ActionSet#setAbilities Sets abilities}
 	 * for the dialog accordingly.
@@ -182,6 +182,7 @@
 	};
 
 	/**
+	 * @ignore
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getSetupProcess = function ( data ) {
@@ -192,6 +193,7 @@
 	};
 
 	/**
+	 * @ignore
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getActionProcess = function ( action ) {
@@ -219,6 +221,7 @@
 	};
 
 	/**
+	 * @ignore
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getTeardownProcess = function ( data ) {

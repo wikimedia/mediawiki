@@ -11,7 +11,8 @@
 	 * **TODO: This currently only supports uploads under CC-BY-SA 4.0,
 	 * and should really have support for more licenses.**
 	 *
-	 * @class mw.ForeignStructuredUpload
+	 * @class ForeignStructuredUpload
+	 * @memberof mw
 	 * @extends mw.ForeignUpload
 	 *
 	 * @constructor

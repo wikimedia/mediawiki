@@ -2,7 +2,7 @@
 ( function () {
 
 	/**
-	 * mw.Upload.BookletLayout encapsulates the process of uploading a file
+	 * @classdesc mw.Upload.BookletLayout encapsulates the process of uploading a file
 	 * to MediaWiki using the {@link mw.Upload upload model}.
 	 * The booklet emits events that can be used to get the stashed
 	 * upload and the final file. It can be extended to accept
@@ -21,12 +21,12 @@
 	 * - **Insert**: Has details on how to use the file that was uploaded.
 	 *
 	 * Each step has a form associated with it defined in
-	 * {@link #renderUploadForm renderUploadForm},
-	 * {@link #renderInfoForm renderInfoForm}, and
-	 * {@link #renderInsertForm renderInfoForm}. The
-	 * {@link #getFile getFile},
-	 * {@link #getFilename getFilename}, and
-	 * {@link #getText getText} methods are used to get
+	 * {@link mw.Upload.BookletLayout#renderUploadForm renderUploadForm},
+	 * {@link mw.Upload.BookletLayout#renderInfoForm renderInfoForm}, and
+	 * {@link mw.Upload.BookletLayout#renderInsertForm renderInfoForm}. The
+	 * {@link mw.Upload.BookletLayout#getFile getFile},
+	 * {@link mw.Upload.BookletLayout#getFilename getFilename}, and
+	 * {@link mw.Upload.BookletLayout#getText getText} methods are used to get
 	 * the information filled in these forms, required to call
 	 * {@link mw.Upload mw.Upload}.
 	 *
@@ -34,34 +34,35 @@
 	 *
 	 * See the {@link mw.Upload.Dialog upload dialog}.
 	 *
-	 * The {@link #event-fileUploaded fileUploaded},
-	 * and {@link #event-fileSaved fileSaved} events can
+	 * The {@link mw.Upload.BookletLayout.event:fileUploaded fileUploaded},
+	 * and {@link mw.Upload.BookletLayout.event:fileSaved fileSaved} events can
 	 * be used to get details of the upload.
 	 *
 	 * ## Extending
 	 *
 	 * To extend using {@link mw.Upload mw.Upload}, override
-	 * {@link #renderInfoForm renderInfoForm} to render
+	 * {@link mw.Upload.BookletLayout#renderInfoForm renderInfoForm} to render
 	 * the form required for the specific use-case. Update the
-	 * {@link #getFilename getFilename}, and
-	 * {@link #getText getText} methods to return data
+	 * {@link mw.Upload.BookletLayout#getFilename getFilename}, and
+	 * {@link mw.Upload.BookletLayout#getText getText} methods to return data
 	 * from your newly created form. If you added new fields you'll also have
-	 * to update the {@link #clear} method.
+	 * to update the {@link mw.Upload.BookletLayout#clear} method.
 	 *
 	 * If you plan to use a different upload model, apart from what is mentioned
 	 * above, you'll also have to override the
-	 * {@link #createUpload createUpload} method to
+	 * {@link mw.Upload.BookletLayout#createUpload createUpload} method to
 	 * return the new model. The {@link #saveFile saveFile}, and
-	 * the {@link #uploadFile uploadFile} methods need to be
+	 * the {@link mw.Upload.BookletLayout#uploadFile uploadFile} methods need to be
 	 * overridden to use the new model and data returned from the forms.
 	 *
-	 * @class
+	 * @class mw.Upload.BookletLayout
 	 * @extends OO.ui.BookletLayout
 	 *
 	 * @constructor
-	 * @param {Object} config Configuration options
-	 * @cfg {jQuery} [$overlay] Overlay to use for widgets in the booklet
-	 * @cfg {string} [filekey] Sets the stashed file to finish uploading. Overrides most of the file selection process, and fetches a thumbnail from the server.
+	 * @param {Object} config Configuration options; see also the config parameter for the
+	 *  {@link mw.Upload.BookletLayout} constructor.
+	 * @param {jQuery} [config.$overlay] Overlay to use for widgets in the booklet
+	 * @param {string} [config.filekey] Sets the stashed file to finish uploading. Overrides most of the file selection process, and fetches a thumbnail from the server.
 	 */
 	mw.Upload.BookletLayout = function ( config ) {
 		// Parent constructor
@@ -106,64 +107,70 @@
 	/* Events */
 
 	/**
-	 * Progress events for the uploaded file
+	 * Progress events for the uploaded file.
 	 *
-	 * @event fileUploadProgress
+	 * @event mw.Upload.BookletLayout.fileUploadProgress
 	 * @param {number} progress In percentage
 	 * @param {Object} duration Duration object from `moment.duration()`
 	 */
 
 	/**
-	 * The file has finished uploading
+	 * The file has finished uploading.
 	 *
-	 * @event fileUploaded
+	 * @event mw.Upload.BookletLayout.fileUploaded
 	 */
 
 	/**
-	 * The file has been saved to the database
+	 * The file has been saved to the database.
 	 *
-	 * @event fileSaved
-	 * @param {Object} imageInfo See mw.Upload#getImageInfo
+	 * @event mw.Upload.BookletLayout.fileSaved
+	 * @param {Object} imageInfo See {@link mw.Upload#getImageInfo}
 	 */
 
 	/**
-	 * The upload form has changed
+	 * The upload form has changed.
 	 *
-	 * @event uploadValid
+	 * @event mw.Upload.BookletLayout.uploadValid
 	 * @param {boolean} isValid The form is valid
 	 */
 
 	/**
-	 * The info form has changed
+	 * The info form has changed.
 	 *
-	 * @event infoValid
+	 * @event mw.Upload.BookletLayout.infoValid
 	 * @param {boolean} isValid The form is valid
 	 */
 
 	/* Properties */
 
 	/**
-	 * @property {OO.ui.FormLayout} uploadForm
 	 * The form rendered in the first step to get the file object.
-	 * Rendered in {@link #renderUploadForm renderUploadForm}.
+	 * Rendered in {@link mw.Upload.BookletLayout#renderUploadForm renderUploadForm}.
+	 *
+	 * @name mw.Upload.BookletLayout.prototype.uploadForm
+	 * @type {OO.ui.FormLayout}
 	 */
 
 	/**
-	 * @property {OO.ui.FormLayout} infoForm
 	 * The form rendered in the second step to get metadata.
-	 * Rendered in {@link #renderInfoForm renderInfoForm}
+	 * Rendered in {@link mw.Upload.BookletLayout#renderInfoForm renderInfoForm}.
+	 *
+	 * @name mw.Upload.BookletLayout.prototype.infoForm
+	 * @type {OO.ui.FormLayout}
 	 */
 
 	/**
-	 * @property {OO.ui.FormLayout} insertForm
-	 * The form rendered in the third step to show usage
-	 * Rendered in {@link #renderInsertForm renderInsertForm}
+	 * The form rendered in the third step to show usage.
+	 * Rendered in {@link mw.Upload.BookletLayout#renderInsertForm renderInsertForm}.
+	 *
+	 * @name mw.Upload.BookletLayout.prototype.insertForm
+	 * @type {OO.ui.FormLayout}
 	 */
 
 	/* Methods */
 
 	/**
-	 * Initialize for a new upload
+	 * Initialize for a new upload.
 	 *
 	 * @return {jQuery.Promise} Promise resolved when everything is initialized
 	 */
@@ -211,7 +218,7 @@
 	};
 
 	/**
-	 * Create a new upload model
+	 * Create a new upload model.
 	 *
 	 * @protected
 	 * @return {mw.Upload} Upload model
@@ -231,12 +238,12 @@
 
 	/**
 	 * Uploads the file that was added in the upload form. Uses
-	 * {@link #getFile getFile} to get the HTML5
+	 * {@link mw.Upload.BookletLayout#getFile getFile} to get the HTML5
 	 * file object.
 	 *
 	 * @protected
-	 * @fires fileUploadProgress
-	 * @fires fileUploaded
+	 * @fires mw.Upload.BookletLayout.fileUploadProgress
+	 * @fires mw.Upload.BookletLayout.fileUploaded
 	 * @return {jQuery.Promise}
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
@@ -292,12 +299,12 @@
 
 	/**
 	 * Saves the stash finalizes upload. Uses
-	 * {@link #getFilename getFilename}, and
-	 * {@link #getText getText} to get details from
+	 * {@link mw.Upload.BookletLayout#getFilename getFilename}, and
+	 * {@link mw.Upload.BookletLayout#getText getText} to get details from
 	 * the form.
 	 *
 	 * @protected
-	 * @fires fileSaved
+	 * @fires mw.Upload.BookletLayout.fileSaved
 	 * @return {jQuery.Promise} Rejects the promise with an
 	 * {@link OO.ui.Error error}, or resolves if the upload was successful.
 	 */
@@ -425,10 +432,9 @@
 
 	/**
 	 * Renders and returns the upload form and sets the
-	 * {@link #uploadForm uploadForm} property.
+	 * {@link mw.Upload.BookletLayout#uploadForm uploadForm} property.
 	 *
 	 * @protected
-	 * @fires selectFile
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderUploadForm = function () {
@@ -490,10 +496,10 @@
 	};
 
 	/**
-	 * Handle change events to the upload form
+	 * Handle change events to the upload form.
 	 *
 	 * @protected
-	 * @fires uploadValid
+	 * @fires mw.Upload.BookletLayout.uploadValid
 	 */
 	mw.Upload.BookletLayout.prototype.onUploadFormChange = function () {
 		this.emit( 'uploadValid', !!this.selectFileWidget.getValue() );
@@ -501,7 +507,7 @@
 
 	/**
 	 * Renders and returns the information form for collecting
-	 * metadata and sets the {@link #infoForm infoForm}
+	 * metadata and sets the {@link mw.Upload.BookletLayout#infoForm infoForm}
 	 * property.
 	 *
 	 * @protected
@@ -561,10 +567,10 @@
 	};
 
 	/**
-	 * Handle change events to the info form
+	 * Handle change events to the info form.
 	 *
 	 * @protected
-	 * @fires infoValid
+	 * @fires mw.Upload.BookletLayout.infoValid
 	 */
 	mw.Upload.BookletLayout.prototype.onInfoFormChange = function () {
 		var layout = this;
@@ -580,7 +586,7 @@
 
 	/**
 	 * Renders and returns the insert form to show file usage and
-	 * sets the {@link #insertForm insertForm} property.
+	 * sets the {@link mw.Upload.BookletLayout#insertForm insertForm} property.
 	 *
 	 * @protected
 	 * @return {OO.ui.FormLayout}
@@ -607,7 +613,7 @@
 
 	/**
 	 * Gets the file object from the
-	 * {@link #uploadForm upload form}.
+	 * {@link mw.Upload.BookletLayout#uploadForm upload form}.
 	 *
 	 * @protected
 	 * @return {File|null}
@@ -618,7 +624,7 @@
 
 	/**
 	 * Gets the file name from the
-	 * {@link #infoForm information form}.
+	 * {@link mw.Upload.BookletLayout#infoForm information form}.
 	 *
 	 * @protected
 	 * @return {string}
@@ -632,7 +638,7 @@
 	};
 
 	/**
-	 * Prefills the {@link #infoForm information form} with the given filename.
+	 * Prefills the {@link mw.Upload.BookletLayout#infoForm information form} with the given filename.
 	 *
 	 * @protected
 	 * @param {string} filename
@@ -652,7 +658,7 @@
 
 	/**
 	 * Gets the page text from the
-	 * {@link #infoForm information form}.
+	 * {@link mw.Upload.BookletLayout#infoForm information form}.
 	 *
 	 * @protected
 	 * @return {string}
@@ -664,7 +670,7 @@
 	/* Setters */
 
 	/**
-	 * Sets the file object
+	 * Sets the file object.
 	 *
 	 * @protected
 	 * @param {File|null} file File to select
@@ -688,7 +694,7 @@
 	};
 
 	/**
-	 * Clear the values of all fields
+	 * Clear the values of all fields.
 	 *
 	 * @protected
 	 */

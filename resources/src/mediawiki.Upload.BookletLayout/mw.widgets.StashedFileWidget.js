@@ -7,10 +7,11 @@
 ( function () {
 
 	/**
-	 * Accepts a stashed file and displays the information for purposes of
+	 * @classdesc Accepts a stashed file and displays the information for purposes of
 	 * publishing the file at the behest of the user.
 	 *
 	 * Example use:
+	 *
 	 *     var widget = new mw.widgets.StashedFileWidget( {
 	 *       filekey: '12r9e4rugeec.ddtmmp.1.jpg',
 	 *     } );
@@ -19,19 +20,16 @@
 	 *     widget.setValue( '12r9epfbnskk.knfiy7.1.jpg' );
 	 *     widget.getValue(); // '12r9epfbnskk.knfiy7.1.jpg'
 	 *
-	 * Note that this widget will not finish an upload for you. Use mw.Upload
-	 * and mw.Upload#setFilekey, then mw.Upload#finishStashUpload to accomplish
+	 * Note that this widget will not finish an upload for you. Use {@link mw.Upload}
+	 * and {@link mw.Upload#setFilekey}, then {@link mw.Upload#finishStashUpload} to accomplish
 	 * that.
 	 *
 	 * @class mw.widgets.StashedFileWidget
 	 * @extends OO.ui.Widget
-	 */
-
-	/**
 	 * @constructor
 	 * @param {Object} config Configuration options
-	 * @cfg {string} filekey The filekey of the stashed file.
-	 * @cfg {Object} [api] API to use for thumbnails.
+	 * @param {string} [config.filekey] The filekey of the stashed file.
+	 * @param {Object} [config.api] API to use for thumbnails.
 	 */
 	mw.widgets.StashedFileWidget = function MWWStashedFileWidget( config ) {
 		if ( !config.api ) {
