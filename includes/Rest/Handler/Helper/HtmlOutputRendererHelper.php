@@ -32,6 +32,7 @@ use MediaWiki\Edit\SelserContext;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
@@ -596,10 +597,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			if ( !$status->isOK() ) {
 				if ( $status->hasMessage( 'parsoid-client-error' ) ) {
 					throw new LocalizedHttpException(
-						MessageValue::new(
-							'rest-html-backend-error',
-							[ $this->getStatusAsString( $status ) ]
-						),
+						MessageValue::new( 'rest-html-backend-error' )
+							->semicolonListParams( $this->convertStatusToMessageValues( $status ) ),
 						400,
 						[ 'reason' => $status->getErrors() ]
 					);
@@ -617,10 +616,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 					);
 
 					throw new LocalizedHttpException(
-						MessageValue::new(
-							'rest-html-backend-error',
-							[ $this->getStatusAsString( $status ) ]
-						),
+						MessageValue::new( 'rest-html-backend-error' )
+							->semicolonListParams( $this->convertStatusToMessageValues( $status ) ),
 						500,
 						$errorData
 					);
@@ -842,14 +839,18 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		return $status;
 	}
 
-	private function getStatusAsString( Status $status ): string {
-		// Ideally, we should be able to just use a Status object as a
-		// message parameter. Until we can do that, we are stuck with the
-		// deprecated method. The alternative would be to inject a
-		// StatusFormatter, but StatusFormatter depends on request data for
-		// the localization context, so it cannot be injected through service
-		// wiring.
-		return $status->getWikiText();
+	/**
+	 * Extract the error messages from a Status, as MessageValue objects.
+	 * @param Status $status
+	 * @return MessageValue[]
+	 */
+	private function convertStatusToMessageValues( Status $status ): array {
+		$conv = new \MediaWiki\Message\Converter;
+		return array_map( static function ( $error ) use ( $conv ) {
+			// TODO: It should be possible to do this without going through a Message object,
+			// but the internal format of parameters is different in MessageValue (T358779)
+			return $conv->convertMessage( Message::newFromSpecifier( [ $error['message'], ...$error['params'] ] ) );
+		}, $status->getErrors() );
 	}
 
 }
