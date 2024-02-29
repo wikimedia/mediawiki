@@ -736,7 +736,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * The local filesystem path to a temporary directory. This must not be web accessible.
+	 * The local filesystem path to a temporary directory. This must not be web-accessible.
 	 *
 	 * When this setting is set to false, its value will automatically be decided
 	 * through the first call to wfTempDir(). See that method's implementation for
@@ -747,7 +747,7 @@ class MainConfigSchema {
 	 *
 	 * The temporary directory is expected to be shared with other applications,
 	 * including other MediaWiki instances (which might not run the same version
-	 * or configution). When storing files here, take care to avoid conflicts
+	 * or configuration). When storing files here, take care to avoid conflicts
 	 * with other instances of MediaWiki. For example, when caching the result
 	 * of a computation, the file name should incorporate the input of the
 	 * computation so that it cannot be confused for the result of a similar
@@ -2401,7 +2401,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Default value for chmoding of new directories.
+	 * Default value for chmod-ing of new directories.
 	 */
 	public const DirectoryMode = [
 		'default' => 0777, // octal!
@@ -3072,7 +3072,7 @@ class MainConfigSchema {
 	 *                  may belong to several groups, the most specific group defined here is used.
 	 *
 	 *   - flags:       (optional) Bit field of properties:
-	 *                  - DBO_DEFAULT:    Transactionalize web requests and use autocommit otherwise
+	 *                  - DBO_DEFAULT:    Transactional-ize web requests and use autocommit otherwise
 	 *                  - DBO_DEBUG:      Equivalent of $wgDebugDumpSql
 	 *                  - DBO_SSL:        Use TLS connection encryption if available (deprecated)
 	 *                  - DBO_COMPRESS:   Use protocol compression with database connections
@@ -5179,12 +5179,12 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Override ability of certains browsers to attempt to autodetect dataformats in pages.
+	 * Override the ability of certain browsers to attempt to autodetect dataformats in pages.
 	 *
 	 * This is a default feature of many mobile browsers, but can have a lot of false positives,
-	 * where for instance year ranges are confused with phone numbers.
+	 * where for instance, year ranges are confused with phone numbers.
 	 * The default of this setting is to disable telephone number data detection.
-	 * Set BrowserFormatDetection to false to fallback to browser defaults.
+	 * Set BrowserFormatDetection to false to fallback to the browser defaults.
 	 *
 	 * @since 1.37
 	 * @see https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
@@ -11855,7 +11855,7 @@ class MainConfigSchema {
 
 	/**
 	 * Map of allowed values for the "title=foo&action=<action>" parameter.
-	 * to the corrspeonding handler code.
+	 * to the corresponding handler code.
 	 * See ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
 	 * anything here overrides that.
 	 */
@@ -12472,7 +12472,7 @@ class MainConfigSchema {
 
 	/**
 	 * Number of jobs to perform per request. May be less than one in which case jobs are
-	 * performed probabalistically. If this is zero, jobs will not be done during ordinary
+	 * performed probabilistically. If this is zero, jobs will not be done during ordinary
 	 * apache requests. In this case, maintenance/runJobs.php should be run in loop every
 	 * few seconds via a service or cron job. If using a cron job, be sure to handle the
 	 * case where the script is already running (e.g. via `/usr/bin/flock -n <lock_file>`).
@@ -12588,15 +12588,15 @@ class MainConfigSchema {
 	 *
 	 * By setting up a PubSub system (like Kafka) and enabling a corresponding EventRelayer class
 	 * that uses it, MediaWiki can broadcast events to all subscribers. Certain features like WAN
-	 * cache purging and CDN cache purging will emit events to this system. Appropriate listers can
-	 * subscribe to the channel and take actions based on the events. For example, a local daemon
+	 * cache purging and CDN cache purging will emit events to this system. Appropriate listeners
+	 * can subscribe to the channel and take actions based on the events. For example, a local daemon
 	 * can run on each CDN cache node and perform local purges based on the URL purge channel
 	 * events.
 	 *
 	 * Some extensions may want to use "channel categories" so that different channels can also
 	 * share the same custom relayer instance (e.g. when it's likely to be overridden). They can use
 	 * EventRelayerGroup::getRelayer() based on the category but call notify() on various different
-	 * actual channels. One reason for this would be that some system have very different
+	 * actual channels. One reason for this would be that some systems have very different
 	 * performance vs durability needs, so one system (e.g. Kafka) may not be suitable for all
 	 * uses.
 	 *
