@@ -18,9 +18,8 @@
  * @file
  */
 
-use MediaWiki\Message\Converter;
-use MediaWiki\Message\Message;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
@@ -36,12 +35,15 @@ use Wikimedia\Message\MessageValue;
  * informed as to what went wrong. Calling the fatal() function sets an error
  * message and simultaneously switches off the OK flag.
  *
- * The recommended pattern for Status objects is to return a StatusValue
- * unconditionally, i.e. both on success and on failure -- so that the
- * developer of the calling code is reminded that the function can fail, and
- * so that a lack of error-handling will be explicit.
+ * The recommended pattern for functions returning StatusValue objects is
+ * to return a StatusValue unconditionally, both on success and on failure
+ * (similarly to Option, Maybe, Promise etc. objects in other languages) --
+ * so that the developer of the calling code is reminded that the function
+ * can fail, and so that a lack of error-handling will be explicit.
  *
- * The use of Message objects should be avoided when serializability is needed.
+ * This class accepts any MessageSpecifier objects. The use of Message objects
+ * should be avoided when serializability is needed. Use MessageValue in that
+ * case instead.
  *
  * @newable
  * @stable to extend
@@ -229,7 +231,10 @@ class StatusValue implements Stringable {
 				$params = $key->getParams();
 				$key = $key->getKey();
 			}
-			if ( $newKey === $key && $newParams === $params ) {
+
+			// This uses loose equality as we must support equality between MessageParam objects
+			// (e.g. ScalarParam), including when they are created separate and not by-ref equal.
+			if ( $newKey === $key && $newParams == $params ) {
 				if ( $type === 'warning' && $newType === 'error' ) {
 					$type = 'error';
 				}
@@ -245,13 +250,11 @@ class StatusValue implements Stringable {
 	/**
 	 * Add a new warning
 	 *
-	 * @param string|MessageSpecifier|MessageValue $message Message key or object
+	 * @param string|MessageSpecifier $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
 	public function warning( $message, ...$parameters ) {
-		$message = $this->normalizeMessage( $message );
-
 		return $this->addError( [
 			'type' => 'warning',
 			'message' => $message,
@@ -263,13 +266,11 @@ class StatusValue implements Stringable {
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
 	 *
-	 * @param string|MessageSpecifier|MessageValue $message Message key or object
+	 * @param string|MessageSpecifier $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
 	public function error( $message, ...$parameters ) {
-		$message = $this->normalizeMessage( $message );
-
 		return $this->addError( [
 			'type' => 'error',
 			'message' => $message,
@@ -281,7 +282,7 @@ class StatusValue implements Stringable {
 	 * Add an error and set OK to false, indicating that the operation
 	 * as a whole was fatal
 	 *
-	 * @param string|MessageSpecifier|MessageValue $message Message key or object
+	 * @param string|MessageSpecifier $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
@@ -343,6 +344,9 @@ class StatusValue implements Stringable {
 	/**
 	 * Returns a list of error messages, optionally only those of the given type
 	 *
+	 * If the `warning()` or `error()` method was called with a MessageSpecifier object,
+	 * this method is guaranteed to return the same object.
+	 *
 	 * @since 1.43
 	 * @param ?string $type If provided, only return messages of the type 'warning' or 'error'
 	 * @phan-param null|'warning'|'error' $type
@@ -358,8 +362,7 @@ class StatusValue implements Stringable {
 				if ( $key instanceof MessageSpecifier ) {
 					$result[] = $key;
 				} else {
-					// TODO: Make MessageValue implement MessageSpecifier, and use a MessageValue here
-					$result[] = new Message( $key, $params );
+					$result[] = new MessageValue( $key, $params );
 				}
 			}
 		}
@@ -372,16 +375,12 @@ class StatusValue implements Stringable {
 	 * Any message using the same key will be found (ignoring the message parameters).
 	 *
 	 * @param string $message Message key to search for
-	 *   (this parameter used to allow MessageSpecifier|MessageValue too, deprecated since 1.43)
+	 *   (this parameter used to allow MessageSpecifier too, deprecated since 1.43)
 	 * @return bool
 	 */
 	public function hasMessage( $message ) {
 		if ( $message instanceof MessageSpecifier ) {
 			wfDeprecatedMsg( 'Passing MessageSpecifier to hasMessage()' .
-				' was deprecated in MediaWiki 1.43', '1.43' );
-			$message = $message->getKey();
-		} elseif ( $message instanceof MessageValue ) {
-			wfDeprecatedMsg( 'Passing MessageValue to hasMessage()' .
 				' was deprecated in MediaWiki 1.43', '1.43' );
 			$message = $message->getKey();
 		}
@@ -402,7 +401,7 @@ class StatusValue implements Stringable {
 	 * Any messages using the same keys will be found (ignoring the message parameters).
 	 *
 	 * @param string ...$messages Message keys to search for
-	 *   (this parameter used to allow MessageSpecifier|MessageValue too, deprecated since 1.43)
+	 *   (this parameter used to allow MessageSpecifier too, deprecated since 1.43)
 	 * @return bool
 	 */
 	public function hasMessagesExcept( ...$messages ) {
@@ -410,10 +409,6 @@ class StatusValue implements Stringable {
 		foreach ( $messages as $message ) {
 			if ( $message instanceof MessageSpecifier ) {
 				wfDeprecatedMsg( 'Passing MessageSpecifier to hasMessagesExcept()' .
-					' was deprecated in MediaWiki 1.43', '1.43' );
-				$message = $message->getKey();
-			} elseif ( $message instanceof MessageValue ) {
-				wfDeprecatedMsg( 'Passing MessageValue to hasMessagesExcept()' .
 					' was deprecated in MediaWiki 1.43', '1.43' );
 				$message = $message->getKey();
 			}
@@ -440,17 +435,14 @@ class StatusValue implements Stringable {
 	 * (regardless of whether it was stored as string or as MessageSpecifier, and ignoring the
 	 * message parameters).
 	 *
-	 * When using a MessageValue as the `$source` parameter, this function does not work. This is a
-	 * bug, but it's impractical to fix. Therefore, passing a MessageValue is deprecated (since 1.43).
-	 *
 	 * When using a MessageSpecifier as the `$source` parameter, the message will only be replaced
 	 * when the same MessageSpecifier object was stored in the StatusValue (compared with `===`).
 	 * Since the only reliable way to obtain one is to use getErrors(), which is deprecated,
-	 * passing a MessageSpecifier is deprecated as well (since 1.43).
+	 * passing a MessageSpecifier is deprecated (since 1.43).
 	 *
 	 * @param string $source Message key to search for
-	 *   (this parameter used to allow MessageSpecifier|MessageValue too, deprecated since 1.43)
-	 * @param MessageSpecifier|MessageValue|string $dest Replacement message key or object
+	 *   (this parameter used to allow MessageSpecifier too, deprecated since 1.43)
+	 * @param MessageSpecifier|string $dest Replacement message key or object
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	public function replaceMessage( $source, $dest ) {
@@ -459,13 +451,7 @@ class StatusValue implements Stringable {
 		if ( $source instanceof MessageSpecifier ) {
 			wfDeprecatedMsg( 'Passing MessageSpecifier as $source to replaceMessage()' .
 				' was deprecated in MediaWiki 1.43', '1.43' );
-		} elseif ( $source instanceof MessageValue ) {
-			wfDeprecatedMsg( 'Passing MessageValue as $source to replaceMessage()' .
-				' was deprecated in MediaWiki 1.43', '1.43' );
-			$source = $this->normalizeMessage( $source );
 		}
-
-		$dest = $this->normalizeMessage( $dest );
 
 		foreach ( $this->errors as [ 'message' => &$message, 'params' => &$params ] ) {
 			if ( $message === $source ||
@@ -548,6 +534,8 @@ class StatusValue implements Stringable {
 				$r = '[ ' . self::flattenParams( $p ) . ' ]';
 			} elseif ( $p instanceof MessageSpecifier ) {
 				$r = '{ ' . $p->getKey() . ': ' . self::flattenParams( $p->getParams() ) . ' }';
+			} elseif ( $p instanceof MessageParam ) {
+				$r = $p->dump();
 			} else {
 				$r = (string)$p;
 			}
@@ -579,19 +567,5 @@ class StatusValue implements Stringable {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * @param MessageSpecifier|MessageValue|string $message
-	 *
-	 * @return MessageSpecifier|string
-	 */
-	private function normalizeMessage( $message ) {
-		if ( $message instanceof MessageValue ) {
-			$converter = new Converter();
-			return $converter->convertMessageValue( $message );
-		}
-
-		return $message;
 	}
 }

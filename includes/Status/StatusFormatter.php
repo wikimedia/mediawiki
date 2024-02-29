@@ -32,6 +32,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use StatusValue;
 use UnexpectedValueException;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -259,9 +260,8 @@ class StatusFormatter {
 			$context = [];
 			$i = 1;
 			foreach ( $params as $param ) {
-				if ( is_array( $param ) && count( $param ) === 1 ) {
-					// probably Message::numParam() or similar
-					$param = reset( $param );
+				if ( $param instanceof MessageParam ) {
+					$param = $param->getValue();
 				}
 				if ( is_int( $param ) || is_float( $param ) || is_string( $param ) ) {
 					$context["parameter$i"] = $param;

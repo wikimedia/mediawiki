@@ -294,7 +294,9 @@ class SpecialBlock extends FormSpecialPage {
 			) );
 
 			if ( $this->useCodex ) {
-				$this->codexFormData[ 'blockPreErrors' ] = array_map( 'strval', $this->preErrors );
+				$this->codexFormData[ 'blockPreErrors' ] = array_map( function ( $errMsg ) {
+					return $this->msg( $errMsg )->parse();
+				}, $this->preErrors );
 			}
 		}
 	}

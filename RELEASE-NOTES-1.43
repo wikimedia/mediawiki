@@ -112,6 +112,11 @@ For notes on 1.42.x and older releases, see HISTORY.
         $this->getOutput()->addWikiMsg( $msg );
       }
     }
+* (T358779) The MessageValue class can now be used instead of Message in most
+  places (in methods that accept the MessageSpecifier interface). This allows
+  using localisation messages in code that doesn't know the user's language,
+  such as many hooks, without relying on global state. To convert between them,
+  use MessageValue::newFromSpecifier() and Message::newFromSpecifier().
 * The REST API framework now supports defining redirects in route definition
   files. See MediaWiki\Rest\Handler\RedirectHandler for details.
 * (T13555) Skins can enable the 'supportsMwHeading' option for new, more
@@ -259,6 +264,12 @@ because of Phabricator reports.
 
 === Breaking changes in 1.43 ===
 
+* (T358779) The format of parameters used by the Message class has changed.
+  Instead of arrays in a special format, they are now MessageParam objects.
+  Code that simply called methods like Message::numParam() and didn't look
+  inside the values they return should be unaffected. Code that depended on
+  the formatted params being arrays or accessed their keys will need updates.
+  Example patches: https://gerrit.wikimedia.org/r/q/topic:message-param
 * ErrorPageError public properties 'msg' and 'title' may now contain
   any MessageSpecifier object, not just Message.
 * Reset button functionality suppressReset() and $mShowReset from HTMLForm

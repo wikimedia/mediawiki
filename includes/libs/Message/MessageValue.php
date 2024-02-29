@@ -18,7 +18,7 @@ use Stringable;
  *
  * @newable
  */
-class MessageValue implements JsonDeserializable {
+class MessageValue implements JsonDeserializable, MessageSpecifier {
 	use JsonDeserializableTrait;
 
 	/** @var string */
@@ -31,7 +31,7 @@ class MessageValue implements JsonDeserializable {
 	 * @stable to call
 	 *
 	 * @param string $key
-	 * @param (MessageParam|MessageValue|string|int|float)[] $params Values that are not instances
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] $params Values that are not instances
 	 *  of MessageParam are wrapped using ParamType::TEXT.
 	 */
 	public function __construct( $key, $params = [] ) {
@@ -43,11 +43,27 @@ class MessageValue implements JsonDeserializable {
 	/**
 	 * Static constructor for easier chaining of `->params()` methods
 	 * @param string $key
-	 * @param (MessageParam|MessageValue|string|int|float)[] $params
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] $params
 	 * @return MessageValue
 	 */
 	public static function new( $key, $params = [] ) {
 		return new MessageValue( $key, $params );
+	}
+
+	/**
+	 * Convert from any MessageSpecifier to a MessageValue.
+	 *
+	 * When the given object is an instance of MessageValue, the same object is returned.
+	 *
+	 * @since 1.43
+	 * @param MessageSpecifier $spec
+	 * @return MessageValue
+	 */
+	public static function newFromSpecifier( MessageSpecifier $spec ) {
+		if ( $spec instanceof MessageValue ) {
+			return $spec;
+		}
+		return new MessageValue( $spec->getKey(), $spec->getParams() );
 	}
 
 	/**
@@ -71,7 +87,7 @@ class MessageValue implements JsonDeserializable {
 	/**
 	 * Chainable mutator which adds text parameters and MessageParam parameters
 	 *
-	 * @param MessageParam|MessageValue|string|int|float ...$values
+	 * @param MessageParam|MessageSpecifier|string|int|float ...$values
 	 * @return $this
 	 */
 	public function params( ...$values ) {
@@ -89,7 +105,7 @@ class MessageValue implements JsonDeserializable {
 	 * Chainable mutator which adds text parameters with a common type
 	 *
 	 * @param string $type One of the ParamType constants
-	 * @param MessageValue|string|int|float ...$values Scalar values
+	 * @param MessageSpecifier|string|int|float ...$values Scalar values
 	 * @return $this
 	 */
 	public function textParamsOfType( $type, ...$values ) {
@@ -118,7 +134,7 @@ class MessageValue implements JsonDeserializable {
 	 * Chainable mutator which adds list parameters with a common type
 	 *
 	 * @param string $listType One of the ListType constants
-	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return $this
 	 */
@@ -132,7 +148,7 @@ class MessageValue implements JsonDeserializable {
 	/**
 	 * Chainable mutator which adds parameters of type text (ParamType::TEXT).
 	 *
-	 * @param MessageValue|string|int|float ...$values
+	 * @param MessageSpecifier|string|int|float ...$values
 	 * @return $this
 	 */
 	public function textParams( ...$values ) {
@@ -287,7 +303,7 @@ class MessageValue implements JsonDeserializable {
 	 * The list parameters thus created are formatted as a comma-separated list,
 	 * or some local equivalent.
 	 *
-	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return $this
 	 */
@@ -301,7 +317,7 @@ class MessageValue implements JsonDeserializable {
 	 * The list parameters thus created are formatted as a semicolon-separated
 	 * list, or some local equivalent.
 	 *
-	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return $this
 	 */
@@ -315,7 +331,7 @@ class MessageValue implements JsonDeserializable {
 	 * The list parameters thus created are formatted as a pipe ("|") -separated
 	 * list, or some local equivalent.
 	 *
-	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return $this
 	 */

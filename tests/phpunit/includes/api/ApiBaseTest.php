@@ -357,7 +357,7 @@ class ApiBaseTest extends ApiTestCase {
 					? [ $warn->getKey(), ...$warn->getParams() ]
 					: $warn;
 			}, $mock->warnings );
-			$this->assertSame( $warnings, $actualWarnings );
+			$this->assertEquals( $warnings, $actualWarnings );
 		}
 
 		if ( !empty( $paramSettings[ParamValidator::PARAM_SENSITIVE] ) ||

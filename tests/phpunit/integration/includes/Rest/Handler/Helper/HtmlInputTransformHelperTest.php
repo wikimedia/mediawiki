@@ -10,7 +10,6 @@ use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
-use MediaWiki\Message\Converter;
 use MediaWiki\Message\TextFormatter;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -683,7 +682,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createResponse() {
-		$responseFactory = new ResponseFactory( [ new TextFormatter( 'qqx', new Converter() ) ] );
+		$responseFactory = new ResponseFactory( [ new TextFormatter( 'qqx' ) ] );
 		$response = $responseFactory->create();
 		return $response;
 	}

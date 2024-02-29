@@ -8,6 +8,7 @@ use LanguageQqx;
 use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 use MessageLocalizer;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * A MessageLocalizer that does not make database/service calls, for use in unit tests
@@ -30,6 +31,13 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 
 			protected function fetchMessage(): string {
 				return "($this->key$*)";
+			}
+
+			public static function newFromSpecifier( $value ) {
+				if ( $value instanceof MessageSpecifier ) {
+					return new self( $value );
+				}
+				return parent::newFromSpecifier( $value );
 			}
 
 			public function getLanguage(): Language {

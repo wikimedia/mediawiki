@@ -3427,7 +3427,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				'sysop',
 				true
 			],
-			'globally blocked' => [ 'global-ip', [], 'anon', false ],
+			'globally blocked' => [
+				'global-ip',
+				[ 'systemBlock' => 'test-systemBlock' ],
+				'anon',
+				false
+			],
 		];
 	}
 
