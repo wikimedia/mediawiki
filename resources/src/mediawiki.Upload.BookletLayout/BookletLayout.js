@@ -2,6 +2,8 @@
 ( function () {
 
 	/**
+	 * BookletLayout class for encapsulating the process of uploading a file.
+	 *
 	 * @classdesc mw.Upload.BookletLayout encapsulates the process of uploading a file
 	 * to MediaWiki using the {@link mw.Upload upload model}.
 	 * The booklet emits events that can be used to get the stashed
