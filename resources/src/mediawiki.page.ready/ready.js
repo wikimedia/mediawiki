@@ -294,7 +294,7 @@ try {
  */
 module.exports = {
 	loadSearchModule,
-	/** @type {CheckboxHack} */
+	/** @type {module:mediawiki.page.ready.CheckboxHack} */
 	checkboxHack: require( './checkboxHack.js' ),
 	/**
 	 * A container for displaying elements that overlay the page, such as dialogs.
