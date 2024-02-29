@@ -18,7 +18,9 @@
 'use strict';
 
 /**
- * Provides navigation routing and location information
+ * Create an instance of a router that responds to hashchange and popstate events.
+ *
+ * @classdesc Provides navigation routing and location information.
  *
  * @class OO.Router
  * @extends OO.Registry
@@ -74,21 +76,33 @@ OO.inheritClass( OO.Router, OO.Registry );
 
 /**
  * @event popstate
+ * @memberof OO.Router
  */
 
 /**
  * @event hashchange
+ * @memberof OO.Router
  */
 
 /**
  * @event route
  * @param {jQuery.Event} routeEvent
+ * @memberof OO.Router
+ */
+/**
+ * @typedef {Object} OO.Router~Static
+ * @property {Function} isSupported Determine if current browser supports this router.
  */
 
-/* Static Methods */
+/**
+ * Static Methods.
+ *
+ * @name OO.Router.static
+ * @type {OO.Router~Static}
+ */
 
 /**
- * Determine if current browser supports this router
+ * Determine if current browser supports this router.
  *
  * @return {boolean} The browser is supported
  */
@@ -117,18 +131,19 @@ OO.Router.prototype.checkRoute = function () {
 };
 
 /**
- * Bind a specific callback to a hash-based route, e.g.
+ * Bind a specific callback to a hash-based route.
  *
- *     @example
- *     addRoute( 'alert', function () { alert( 'something' ); } );
- *     addRoute( /hi-(.*)/, function ( name ) { alert( 'Hi ' + name ) } );
+ * ```
+ * addRoute( 'alert', function () { alert( 'something' ); } );
+ * addRoute( /hi-(.*)/, function ( name ) { alert( 'Hi ' + name ) } );
+ * ```
  *
  * Note that after defining all available routes it is up to the caller
  * to check the existing route via the checkRoute method.
  *
  * @param {string|RegExp} path Path to match, string or regular expression
  * @param {Function} callback Callback to be run when hash changes to one
- * that matches.
+ *  that matches.
  */
 OO.Router.prototype.addRoute = function ( path, callback ) {
 	const entry = {
@@ -142,7 +157,7 @@ OO.Router.prototype.addRoute = function ( path, callback ) {
 };
 
 /**
- * @deprecated Use #addRoute
+ * @deprecated Use {@link OO.Router#addRoute}
  */
 OO.Router.prototype.route = OO.Router.prototype.addRoute;
 
@@ -153,7 +168,7 @@ OO.Router.prototype.route = OO.Router.prototype.addRoute;
  * @param {Object} options
  * @param {string} options.path e.g. '/path/' or '/path/#foo'
  * @param {boolean} options.useReplaceState Set replaceStateState to use pushState when you want to
- *   avoid long history queues.
+ *  avoid long history queues.
  */
 OO.Router.prototype.navigateTo = function ( title, options ) {
 	if ( options.useReplaceState ) {
@@ -164,10 +179,10 @@ OO.Router.prototype.navigateTo = function ( title, options ) {
 };
 
 /**
- * Navigate to a specific ''hash fragment'' route.
+ * Navigate to a specific 'hash fragment' route.
  *
  * @param {string} path String with a route (hash without #).
- * @deprecated use navigateTo instead
+ * @deprecated Use {@link OO.Router#navigateTo} instead
  */
 OO.Router.prototype.navigate = function ( path ) {
 	// Take advantage of `pushState` when available, to clear the hash and
@@ -185,7 +200,7 @@ OO.Router.prototype.navigate = function ( path ) {
 };
 
 /**
- * Navigate to the previous route. This is a wrapper for window.history.back
+ * Navigate to the previous route. This is a wrapper for window.history.back.
  *
  * @return {jQuery.Promise} Promise which resolves when the back navigation is complete
  */
@@ -225,6 +240,8 @@ OO.Router.prototype.getPath = function () {
 };
 
 /**
+ * Deprecated alias for OO.Router.static.isSupported.
+ *
  * @deprecated Use static method
  */
 OO.Router.prototype.isSupported = OO.Router.static.isSupported;

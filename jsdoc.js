@@ -30,8 +30,6 @@ module.exports = {
 			'resources/src/'
 		],
 		exclude: [
-			// Will be fixed in I03750273f08dd04c349fa27be30fb8f3a7c3ff55
-			'resources/src/mediawiki.router/oojs-router.js'
 		]
 	},
 	templates: {
@@ -67,6 +65,7 @@ module.exports = {
 				number: 'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number',
 				Object: 'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object',
 				'OO.EventEmitter': 'https://doc.wikimedia.org/oojs/master/OO.EventEmitter.html',
+				'OO.Registry': 'https://doc.wikimedia.org/oojs/master/OO.Registry.html',
 				'OO.ui.mixin.ClippableElement': 'https://doc.wikimedia.org/oojs-ui/master/js/OO.ui.mixin.ClippableElement.html',
 				'OO.ui.mixin.FlaggedElement': 'https://doc.wikimedia.org/oojs-ui/master/js/OO.ui.mixin.FlaggedElement.html',
 				'OO.ui.mixin.FloatableElement': 'https://doc.wikimedia.org/oojs-ui/master/js/OO.ui.mixin.FloatableElement.html',
