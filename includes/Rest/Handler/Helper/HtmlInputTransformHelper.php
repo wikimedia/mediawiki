@@ -527,7 +527,7 @@ class HtmlInputTransformHelper {
 			return $this->transform->htmlToContent();
 		} catch ( ClientError $e ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-html-backend-error' ),
+				new MessageValue( 'rest-html-backend-error', [ $e->getMessage() ] ),
 				400,
 				[ 'reason' => $e->getMessage() ]
 			);
