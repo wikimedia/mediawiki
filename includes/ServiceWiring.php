@@ -2455,6 +2455,7 @@ return [
 			$services->getWatchedItemStore(),
 			$services->getHookContainer(),
 			$services->getUserOptionsLookup(),
+			$services->getTempUserConfig(),
 			$services->getMainConfig()->get( MainConfigNames::WatchlistExpiry ),
 			$services->getMainConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries )
 		);

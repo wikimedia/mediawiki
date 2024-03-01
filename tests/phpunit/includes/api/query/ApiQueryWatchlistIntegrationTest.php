@@ -7,6 +7,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use RecentChange;
@@ -18,8 +19,11 @@ use WatchedItemQueryService;
  * @group Database
  *
  * @covers \ApiQueryWatchlist
+ * @covers \WatchedItemQueryService
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
+	use TempUserTestTrait;
+
 	// TODO: This test should use Authority, but can't due to User::saveSettings
 	private $loggedInUser;
 	private $notLoggedInUser;
@@ -76,6 +80,17 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			$summary,
 			NS_MAIN,
 			$this->getServiceContainer()->getUserFactory()->newAnonymous()
+		);
+	}
+
+	// Requires call to $this->enableAutoCreateTempUser() first.
+	private function doTempPageEdit( LinkTarget $target, $content, $summary ) {
+		$this->editPage(
+			$target,
+			$content,
+			$summary,
+			NS_MAIN,
+			$this->getServiceContainer()->getTempUserCreator()->create()->getUser()
 		);
 	}
 
@@ -415,11 +430,13 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 				[
 					'type' => 'new',
 					'anon' => true,
+					'temp' => false,
 					'user' => $this->getServiceContainer()->getUserFactory()->newAnonymous()->getName(),
 				],
 				[
 					'type' => 'new',
 					'anon' => false,
+					'temp' => false,
 					'user' => $user->getName(),
 				],
 			],
@@ -745,6 +762,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 					'title' => $this->getPrefixedText( $talkTarget ),
 					'user' => $otherUser->getName(),
 					'anon' => false,
+					'temp' => false,
 				],
 			],
 			$this->getItemsFromApiResponse( $result )
@@ -783,6 +801,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 					'title' => $this->getPrefixedText( $subjectTarget ),
 					'user' => $user->getName(),
 					'anon' => false,
+					'temp' => false,
 				]
 			],
 			$this->getItemsFromApiResponse( $result )
@@ -878,9 +897,45 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$this->assertArraySubsetsEqual(
 			$this->getItemsFromApiResponse( $resultAnon ),
 			[
-				[ 'anon' => true ],
+				[
+					'anon' => true,
+					'temp' => false,
+				],
 			],
-			[ 'anon' ]
+			[ 'anon', 'temp' ]
+		);
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotAnon ) );
+	}
+
+	public function testShowAnonParamsTemp() {
+		$this->enableAutoCreateTempUser();
+		$user = $this->getLoggedInTestUser();
+		$target = new TitleValue( NS_MAIN, 'ApiQueryWatchlistIntegrationTestPage' );
+		$this->doTempPageEdit(
+			$target,
+			'Some more content',
+			'Add more content'
+		);
+		$this->watchPages( $user, [ $target ] );
+
+		$resultAnon = $this->doListWatchlistRequest( [
+			'wlprop' => 'user',
+			'wlshow' => WatchedItemQueryService::FILTER_ANON
+		] );
+		$resultNotAnon = $this->doListWatchlistRequest( [
+			'wlprop' => 'user',
+			'wlshow' => WatchedItemQueryService::FILTER_NOT_ANON
+		] );
+
+		$this->assertArraySubsetsEqual(
+			$this->getItemsFromApiResponse( $resultAnon ),
+			[
+				[
+					'anon' => false,
+					'temp' => true
+				],
+			],
+			[ 'anon', 'temp' ]
 		);
 		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotAnon ) );
 	}
