@@ -204,12 +204,32 @@ class ParserCache {
 
 	/**
 	 * @param PageRecord $page
-	 * @param string $metricSuffix
+	 * @return string
 	 */
-	private function incrementStats( PageRecord $page, $metricSuffix ) {
+	private function getContentModelFromPage( PageRecord $page ) {
 		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
-		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
+		return str_replace( '.', '_', $wikiPage->getContentModel() );
+	}
+
+	/**
+	 * @param PageRecord $page
+	 * @param string $status
+	 * @param string|null $reason
+	 */
+	private function incrementStats( PageRecord $page, $status, $reason = null ) {
+		$contentModel = $this->getContentModelFromPage( $page );
+		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
 		$this->stats->increment( "{$this->name}.{$contentModel}.{$metricSuffix}" );
+	}
+
+	/**
+	 * @param PageRecord $page
+	 * @param string $renderReason
+	 */
+	private function incrementRenderReasonStats( PageRecord $page, $renderReason ) {
+		$contentModel = $this->getContentModelFromPage( $page );
+		$renderReason = preg_replace( '/\W+/', '_', $renderReason );
+		$this->stats->increment( "{$this->name}.{$contentModel}.reason.{$renderReason}" );
 	}
 
 	/**
@@ -241,7 +261,7 @@ class ParserCache {
 		}
 
 		if ( $metadata === false ) {
-			$this->incrementStats( $page, "miss_absent_metadata" );
+			$this->incrementStats( $page, 'miss', 'absent_metadata' );
 			$this->logger->debug( 'ParserOutput metadata cache miss', [ 'name' => $this->name ] );
 			return null;
 		}
@@ -259,7 +279,7 @@ class ParserCache {
 		}
 
 		if ( !$metadata instanceof CacheTime ) {
-			$this->incrementStats( $page, 'miss_unserialize' );
+			$this->incrementStats( $page, 'miss', 'unserialize' );
 			return null;
 		}
 
@@ -329,13 +349,13 @@ class ParserCache {
 		$page->assertWiki( PageRecord::LOCAL );
 
 		if ( !$page->exists() ) {
-			$this->incrementStats( $page, 'miss_nonexistent' );
+			$this->incrementStats( $page, 'miss', 'nonexistent' );
 			return false;
 		}
 
 		if ( $page->isRedirect() ) {
 			// It's a redirect now
-			$this->incrementStats( $page, 'miss_redirect' );
+			$this->incrementStats( $page, 'miss', 'redirect' );
 			return false;
 		}
 
@@ -346,7 +366,7 @@ class ParserCache {
 		}
 
 		if ( !$popts->isSafeToCache( $parserOutputMetadata->getUsedOptions() ) ) {
-			$this->incrementStats( $page, 'miss_unsafe' );
+			$this->incrementStats( $page, 'miss', 'unsafe' );
 			return false;
 		}
 
@@ -358,7 +378,7 @@ class ParserCache {
 
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( $value === false ) {
-			$this->incrementStats( $page, "miss_absent" );
+			$this->incrementStats( $page, 'miss', 'absent' );
 			$this->logger->debug( 'ParserOutput cache miss', [ 'name' => $this->name ] );
 			return false;
 		}
@@ -376,7 +396,7 @@ class ParserCache {
 		}
 
 		if ( !$value instanceof ParserOutput ) {
-			$this->incrementStats( $page, 'miss_unserialize' );
+			$this->incrementStats( $page, 'miss', 'unserialize' );
 			return false;
 		}
 
@@ -390,7 +410,7 @@ class ParserCache {
 
 		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
 		if ( $this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false ) {
-			$this->incrementStats( $page, 'miss_rejected' );
+			$this->incrementStats( $page, 'miss', 'rejected' );
 			$this->logger->debug( 'key valid, but rejected by RejectParserCacheValue hook handler',
 				[ 'name' => $this->name ] );
 			return false;
@@ -442,7 +462,7 @@ class ParserCache {
 				'Parser options are not safe to cache and has not been saved',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $page, 'save_unsafe' );
+			$this->incrementStats( $page, 'save', 'unsafe' );
 			return;
 		}
 
@@ -451,7 +471,7 @@ class ParserCache {
 				'Parser output was marked as uncacheable and has not been saved',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $page, 'save_uncacheable' );
+			$this->incrementStats( $page, 'save', 'uncacheable' );
 			return;
 		}
 
@@ -460,7 +480,7 @@ class ParserCache {
 				'Parser output was filtered and has not been saved',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $page, 'save_filtered' );
+			$this->incrementStats( $page, 'save', 'filtered' );
 
 			// TODO: In this case, we still want to cache in RevisionOutputCache (T350669).
 			return;
@@ -501,7 +521,7 @@ class ParserCache {
 				'Parser output cannot be saved if the revision ID is not known',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $page, 'save_norevid' );
+			$this->incrementStats( $page, 'save', 'norevid' );
 			return;
 		}
 
@@ -548,7 +568,7 @@ class ParserCache {
 				'Parser output failed to serialize and was not saved',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $page, 'save_nonserializable' );
+			$this->incrementStats( $page, 'save', 'nonserializable' );
 			return;
 		}
 
@@ -574,10 +594,8 @@ class ParserCache {
 			'cache_time' => $cacheTime,
 			'rev_id' => $revId
 		] );
-		$this->incrementStats( $page, 'save_success' );
-
-		$reasonKey = preg_replace( '/\W+/', '_', $popts->getRenderReason() );
-		$this->incrementStats( $page, "reason.$reasonKey" );
+		$this->incrementStats( $page, 'save', 'success' );
+		$this->incrementRenderReasonStats( $page, $popts->getRenderReason() );
 	}
 
 	/**
@@ -608,7 +626,7 @@ class ParserCache {
 		string $cacheTier
 	): bool {
 		if ( $staleConstraint < self::USE_EXPIRED && $entry->expired( $page->getTouched() ) ) {
-			$this->incrementStats( $page, 'miss_expired' );
+			$this->incrementStats( $page, 'miss', 'expired' );
 			$this->logger->debug( "{$cacheTier} key expired", [
 				'name' => $this->name,
 				'touched' => $page->getTouched(),
@@ -637,7 +655,7 @@ class ParserCache {
 	): bool {
 		$latestRevId = $page->getLatest( PageRecord::LOCAL );
 		if ( $staleConstraint < self::USE_OUTDATED && $entry->isDifferentRevision( $latestRevId ) ) {
-			$this->incrementStats( $page, "miss_revid" );
+			$this->incrementStats( $page, 'miss', 'revid' );
 			$this->logger->debug( "{$cacheTier} key is for an old revision", [
 				'name' => $this->name,
 				'rev_id' => $latestRevId,
