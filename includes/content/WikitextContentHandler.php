@@ -28,6 +28,7 @@ use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -369,8 +370,23 @@ class WikitextContentHandler extends TextContentHandler {
 			$text = $contentWithoutRedirect->getText();
 		}
 
+		$time = -microtime( true );
+
 		$parserOutput = $parser
 			->parse( $text, $title, $parserOptions, true, true, $revId );
+		$time += microtime( true );
+
+		// Timing hack
+		if ( $time > 3 ) {
+			// TODO: Use Parser's logger (once it has one)
+			$channel = $parserOptions->getUseParsoid() ? 'slow-parsoid' : 'slow-parse';
+			$logger = LoggerFactory::getInstance( $channel );
+			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
+				'time' => number_format( $time, 2 ),
+				'title' => (string)$title,
+				'trigger' => $parserOptions->getRenderReason(),
+			] );
+		}
 
 		// T330667: Record the fact that we used the value of
 		// 'useParsoid' to influence this parse.  Note that

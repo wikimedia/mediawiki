@@ -84,6 +84,20 @@ class ParserOutputAccess {
 	 */
 	public const OPT_LINKS_UPDATE = 8;
 
+	/**
+	 * Apply page view semantics. This relaxes some guarantees, specifically:
+	 * - Use PoolCounter for stampede protection, causing the request to
+	 *   block until another process has finished rendering the content.
+	 * - Allow stale parser output to be returned to prevent long waits for
+	 *   slow renders.
+	 * - Allow cacheable placeholder output to be returned when PoolCounter
+	 *   fails to obtain a lock. See the PoolCounterConf setting for details.
+	 *
+	 * @see Bug T352837
+	 * @since 1.42
+	 */
+	public const OPT_FOR_ARTICLE_VIEW = 16;
+
 	/** @var string Do not read or write any cache */
 	private const CACHE_NONE = 'none';
 
@@ -302,11 +316,16 @@ class ParserOutputAccess {
 			}
 		}
 
-		$work = $this->newPoolWorkArticleView( $page, $parserOptions, $revision, $options );
-		/** @var Status $status */
-		$status = $work->execute();
+		if ( $options & self::OPT_FOR_ARTICLE_VIEW ) {
+			$work = $this->newPoolWorkArticleView( $page, $parserOptions, $revision, $options );
+			/** @var Status $status */
+			$status = $work->execute();
+		} else {
+			$status = $this->renderRevision( $page, $parserOptions, $revision, $options );
+		}
+
 		$output = $status->getValue();
-		Assert::postcondition( $output || !$status->isOK(), 'Worker returned invalid status' );
+		Assert::postcondition( $output || !$status->isOK(), 'Inconsistent status' );
 
 		if ( $output && !$isOld ) {
 			$primaryCache = $this->getPrimaryCache( $parserOptions );
@@ -323,6 +342,54 @@ class ParserOutputAccess {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Render the given revision.
+	 *
+	 * This method will update the parser cache if appropriate, and will
+	 * trigger a links update if OPT_LINKS_UPDATE is set.
+	 *
+	 * This method does not perform access checks, and will not load content
+	 * from caches. The caller is assumed to have taken care of that.
+	 *
+	 * @see PoolWorkArticleView::renderRevision
+	 */
+	private function renderRevision(
+		PageRecord $page,
+		ParserOptions $parserOptions,
+		RevisionRecord $revision,
+		int $options
+	): Status {
+		$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.None' );
+
+		$renderedRev = $this->revisionRenderer->getRenderedRevision(
+			$revision,
+			$parserOptions,
+			null,
+			[ 'audience' => RevisionRecord::RAW ]
+		);
+
+		$output = $renderedRev->getRevisionParserOutput();
+
+		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) && $output->isCacheable() ) {
+			$useCache = $this->shouldUseCache( $page, $revision );
+
+			if ( $useCache === self::CACHE_PRIMARY ) {
+				$primaryCache = $this->getPrimaryCache( $parserOptions );
+				$primaryCache->save( $output, $page, $parserOptions );
+			} elseif ( $useCache === self::CACHE_SECONDARY ) {
+				$secondaryCache = $this->getSecondaryCache( $parserOptions );
+				$secondaryCache->save( $output, $revision, $parserOptions );
+			}
+		}
+
+		if ( $options & self::OPT_LINKS_UPDATE ) {
+			$this->wikiPageFactory->newFromTitle( $page )
+				->triggerOpportunisticLinksUpdate( $output );
+		}
+
+		return Status::newGood( $output );
 	}
 
 	/**
@@ -377,7 +444,7 @@ class ParserOutputAccess {
 	 *
 	 * @return PoolCounterWork
 	 */
-	private function newPoolWorkArticleView(
+	protected function newPoolWorkArticleView(
 		PageRecord $page,
 		ParserOptions $parserOptions,
 		RevisionRecord $revision,

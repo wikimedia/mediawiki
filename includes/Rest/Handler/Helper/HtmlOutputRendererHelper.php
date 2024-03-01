@@ -764,6 +764,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		if ( $this->flavor === 'fragment' || $this->getRevisionId() === null ) {
 			$this->isCacheable = false;
 		}
+
+		// TODO: Decide whether we want to allow stale content for speed for the
+		// 'view' flavor. In that case, we would want to use PoolCounterWork,
+		// either directly or through ParserOutputAccess.
+
 		if ( $this->isCacheable ) {
 			$flags = $this->parsoidOutputAccessOptions;
 			$status = $this->parsoidOutputAccess->getParserOutput(
