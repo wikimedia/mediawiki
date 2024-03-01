@@ -184,8 +184,9 @@
 
 	/**
 	 * Create a new style element and add it to the DOM.
+	 * Stable for use in gadgets.
 	 *
-	 * @private
+	 * @name mw.loader.addStyleTag
 	 * @param {string} text CSS text
 	 * @param {Node|null} [nextNode] The element where the style tag
 	 *  should be inserted before
@@ -1350,10 +1351,13 @@
 
 		// Exposed for internal use only. Documented as @private.
 		addScriptTag: addScript,
+		// Exposed for internal use only. Documented as @private.
 		addLinkTag: addLink,
 
+		// Exposed for internal use only. Documented as @private.
 		enqueue: enqueue,
 
+		// Exposed for internal use only. Documented as @private.
 		resolve: resolve,
 
 		/**
@@ -2131,5 +2135,4 @@
 			}
 		}
 	};
-
 }() );
