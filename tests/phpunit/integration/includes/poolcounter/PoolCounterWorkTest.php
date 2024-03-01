@@ -52,11 +52,10 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		$logger = $this->createMock( LoggerInterface::class );
 		$this->configureMock( $logger, $loggerMethods );
 
-		$this->setLogger( 'poolcounter', $logger );
-
 		$poolCounter = $this->getMockBuilder( PoolCounter::class )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
+		$poolCounter->setLogger( $logger );
 
 		$this->configureMock( $poolCounter, $poolCounterMethods );
 

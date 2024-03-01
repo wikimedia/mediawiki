@@ -1,6 +1,8 @@
 <?php
 namespace MediaWiki\PoolCounter;
 
+use Psr\Log\LoggerInterface;
+
 /**
  * @since 1.40
  */
@@ -8,15 +10,18 @@ class PoolCounterFactory {
 	private ?PoolCounterConnectionManager $manager = null;
 	private ?array $typeConfigs;
 	private array $clientConf;
+	private LoggerInterface $logger;
 
 	/**
 	 * @internal For use by ServiceWiring
 	 * @param array|null $typeConfigs See $wgPoolCounterConf
 	 * @param array $clientConf See $wgPoolCountClientConf
+	 * @param LoggerInterface $logger
 	 */
-	public function __construct( ?array $typeConfigs, array $clientConf ) {
+	public function __construct( ?array $typeConfigs, array $clientConf, LoggerInterface $logger ) {
 		$this->typeConfigs = $typeConfigs;
 		$this->clientConf = $clientConf;
+		$this->logger = $logger;
 	}
 
 	private function getClientManager(): PoolCounterConnectionManager {
@@ -46,6 +51,7 @@ class PoolCounterFactory {
 		}
 		/** @var PoolCounter $poolCounter */
 		$poolCounter = new $class( $conf, $type, $key );
+		$poolCounter->setLogger( $this->logger );
 
 		// Support subclass for back-compat with the extension
 		if ( $poolCounter instanceof PoolCounterClient ) {

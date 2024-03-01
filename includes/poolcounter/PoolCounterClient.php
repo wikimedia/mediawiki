@@ -83,7 +83,7 @@ class PoolCounterClient extends PoolCounter {
 			return $status;
 		}
 		$conn = $status->value;
-		wfDebug( "Sending pool counter command: $cmd\n" );
+		$this->logger->debug( "Sending pool counter command: $cmd" );
 		if ( fwrite( $conn, "$cmd\n" ) === false ) {
 			return Status::newFatal( 'poolcounter-write-error', $this->hostName );
 		}
@@ -92,7 +92,7 @@ class PoolCounterClient extends PoolCounter {
 			return Status::newFatal( 'poolcounter-read-error', $this->hostName );
 		}
 		$response = rtrim( $response, "\r\n" );
-		wfDebug( "Got pool counter response: $response\n" );
+		$this->logger->debug( "Got pool counter response: $response" );
 		$parts = explode( ' ', $response, 2 );
 		$responseType = $parts[0];
 		switch ( $responseType ) {

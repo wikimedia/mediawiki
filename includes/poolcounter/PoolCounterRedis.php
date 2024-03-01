@@ -24,7 +24,6 @@ use ArrayUtils;
 use Exception;
 use HashRing;
 use MediaWiki\Status\Status;
-use Psr\Log\LoggerInterface;
 use RedisConnectionPool;
 use RedisConnRef;
 use RedisException;
@@ -65,8 +64,6 @@ class PoolCounterRedis extends PoolCounter {
 	protected $ring;
 	/** @var RedisConnectionPool */
 	protected $pool;
-	/** @var LoggerInterface */
-	protected $logger;
 	/** @var array (server label => host) map */
 	protected $serversByLabel;
 	/** @var string SHA-1 of the key */
@@ -100,7 +97,6 @@ class PoolCounterRedis extends PoolCounter {
 
 		$conf['redisConfig']['serializer'] = 'none'; // for use with Lua
 		$this->pool = RedisConnectionPool::singleton( $conf['redisConfig'] );
-		$this->logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'redis' );
 
 		$this->keySha1 = sha1( $this->key );
 		$met = ini_get( 'max_execution_time' ); // usually 0 in CLI mode
