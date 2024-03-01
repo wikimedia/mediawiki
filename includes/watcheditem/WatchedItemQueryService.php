@@ -15,7 +15,6 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Class performing complex database queries related to WatchedItems.
@@ -547,29 +546,17 @@ class WatchedItemQueryService {
 		// Treat temporary users as 'anon', to match ChangesListSpecialPage
 		if ( in_array( self::FILTER_ANON, $options['filters'] ) ) {
 			if ( $this->tempUserConfig->isEnabled() ) {
-				$expressionGroup = new OrExpressionGroup();
-				$expressionGroup->or( 'watchlist_actor.actor_user', '=', null );
-				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
-					$expressionGroup->or(
-						'watchlist_actor.actor_name',
-						IExpression::LIKE,
-						$pattern->toLikeValue( $dbr )
-					);
-				}
-				$conds[] = $expressionGroup;
+				$conds[] = $dbr->expr( 'watchlist_actor.actor_user', '=', null )
+					->orExpr( $this->tempUserConfig->getMatchCondition( $dbr,
+						'watchlist_actor.actor_name', IExpression::LIKE ) );
 			} else {
 				$conds[] = 'watchlist_actor.actor_user IS NULL';
 			}
 		} elseif ( in_array( self::FILTER_NOT_ANON, $options['filters'] ) ) {
 			$conds[] = 'watchlist_actor.actor_user IS NOT NULL';
 			if ( $this->tempUserConfig->isEnabled() ) {
-				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
-					$conds[] = $dbr->expr(
-						'watchlist_actor.actor_name',
-						IExpression::NOT_LIKE,
-						$pattern->toLikeValue( $dbr )
-					);
-				}
+				$conds[] = $this->tempUserConfig->getMatchCondition( $dbr,
+					'watchlist_actor.actor_name', IExpression::NOT_LIKE );
 			}
 		}
 

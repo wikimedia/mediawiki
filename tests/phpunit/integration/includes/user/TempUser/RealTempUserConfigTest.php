@@ -3,9 +3,11 @@
 namespace MediaWiki\Tests\Integration\User\TempUser;
 
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\TempUser\Pattern;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -241,5 +243,39 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		$this->enableAutoCreateTempUser( [ 'matchPattern' => [ '*$1', '~$1' ] ] );
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
 		$this->assertSame( '*$1', TestingAccessWrapper::newFromObject( $tuc->getMatchPattern() )->pattern );
+	}
+
+	public function testGetMatchCondition() {
+		$db = new MockDatabase;
+
+		$this->enableAutoCreateTempUser( [ 'matchPattern' => [ '*$1', '~$1' ] ] );
+		$tuc = $this->getServiceContainer()->getTempUserConfig();
+
+		$this->assertEquals(
+			"(foo LIKE '*%' ESCAPE '`' OR foo LIKE '~%' ESCAPE '`')",
+			$tuc->getMatchCondition( $db, 'foo', IExpression::LIKE )->toSql( $db ),
+			'LIKE allows any of the patterns'
+		);
+
+		$this->assertEquals(
+			"(foo NOT LIKE '*%' ESCAPE '`' AND foo NOT LIKE '~%' ESCAPE '`')",
+			$tuc->getMatchCondition( $db, 'foo', IExpression::NOT_LIKE )->toSql( $db ),
+			'NOT LIKE disallows all of the patterns'
+		);
+
+		$this->enableAutoCreateTempUser( [ 'matchPattern' => [ '*$1' ] ] );
+		$tuc = $this->getServiceContainer()->getTempUserConfig();
+
+		$this->assertEquals(
+			"foo LIKE '*%' ESCAPE '`'",
+			$tuc->getMatchCondition( $db, 'foo', IExpression::LIKE )->toSql( $db ),
+			'With a single pattern, parentheses are omitted'
+		);
+
+		$this->assertEquals(
+			"foo NOT LIKE '*%' ESCAPE '`'",
+			$tuc->getMatchCondition( $db, 'foo', IExpression::NOT_LIKE )->toSql( $db ),
+			'With a single pattern, parentheses are omitted'
+		);
 	}
 }

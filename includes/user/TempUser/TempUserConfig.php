@@ -3,6 +3,8 @@
 namespace MediaWiki\User\TempUser;
 
 use MediaWiki\Permissions\Authority;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Interface for temporary user creation config and name matching.
@@ -85,6 +87,17 @@ interface TempUserConfig {
 	 * @return Pattern[]
 	 */
 	public function getMatchPatterns(): array;
+
+	/**
+	 * Get a SQL query condition that will match (or not match) temporary accounts.
+	 *
+	 * @since 1.42
+	 * @param IReadableDatabase $db
+	 * @param string $field Database field to match against
+	 * @param string $op Operator: IExpression::LIKE or IExpression::NOT_LIKE
+	 * @return IExpression
+	 */
+	public function getMatchCondition( IReadableDatabase $db, string $field, string $op ): IExpression;
 
 	/**
 	 * After how many days do temporary users expire?

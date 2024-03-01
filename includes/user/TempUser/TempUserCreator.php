@@ -14,6 +14,8 @@ use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 use UnexpectedValueException;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Service for temporary user creation. For convenience this also proxies the
@@ -151,6 +153,10 @@ class TempUserCreator implements TempUserConfig {
 
 	public function getMatchPatterns(): array {
 		return $this->config->getMatchPatterns();
+	}
+
+	public function getMatchCondition( IReadableDatabase $db, string $field, string $op ): IExpression {
+		return $this->config->getMatchCondition( $db, $field, $op );
 	}
 
 	public function getExpireAfterDays(): ?int {

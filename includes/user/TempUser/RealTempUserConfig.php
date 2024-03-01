@@ -3,7 +3,12 @@
 namespace MediaWiki\User\TempUser;
 
 use BadMethodCallException;
+use InvalidArgumentException;
 use MediaWiki\Permissions\Authority;
+use Wikimedia\Rdbms\AndExpressionGroup;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * The real TempUserConfig including internal methods used by TempUserCreator.
@@ -133,6 +138,27 @@ class RealTempUserConfig implements TempUserConfig {
 	public function getMatchPatterns(): array {
 		if ( $this->isEnabled() ) {
 			return $this->matchPatterns;
+		} else {
+			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
+		}
+	}
+
+	public function getMatchCondition( IReadableDatabase $db, string $field, string $op ): IExpression {
+		if ( $this->isEnabled() ) {
+			$exprs = [];
+			foreach ( $this->getMatchPatterns() as $pattern ) {
+				$exprs[] = $db->expr( $field, $op, $pattern->toLikeValue( $db ) );
+			}
+			if ( count( $exprs ) === 1 ) {
+				return $exprs[0];
+			}
+			if ( $op === IExpression::LIKE ) {
+				return new OrExpressionGroup( ...$exprs );
+			} elseif ( $op === IExpression::NOT_LIKE ) {
+				return new AndExpressionGroup( ...$exprs );
+			} else {
+				throw new InvalidArgumentException( "Invalid operator $op" );
+			}
 		} else {
 			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
 		}
