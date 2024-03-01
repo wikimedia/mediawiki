@@ -22,7 +22,8 @@ use Skin;
  */
 class HandleSectionLinks extends ContentTextTransformStage {
 	private const EDITSECTION_REGEX = '#<mw:editsection page="(.*?)" section="(.*?)">(.*?)</mw:editsection>#s';
-	private const HEADING_REGEX = '/<H(?P<level>[1-6])(?P<attrib>.*?>)(?P<header>[\s\S]*?)<\/H[1-6] *>/i';
+	private const HEADING_REGEX =
+		'/<H(?P<level>[1-6])(?P<attrib>(?:[^\'">]*|"([^"]*)"|\'([^\']*)\')*>)(?P<header>[\s\S]*?)<\/H[1-6] *>/i';
 
 	private LoggerInterface $logger;
 	private TitleFactory $titleFactory;

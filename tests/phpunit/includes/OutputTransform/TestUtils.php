@@ -27,7 +27,6 @@ class TestUtils {
 <p>Three
 </p>
 EOF;
-
 	public const TEST_DOC_WITH_LINKS = <<<EOF
 <p>Test document.
 </p>
@@ -62,6 +61,19 @@ EOF;
 <p>Three
 </p>
 EOF;
+
+	// In this test, the `>` is not escaped in the 'data-mw-anchor' attribute and tag content, which
+	// is allowed in HTML, but it's not the serialization used by the Parser. Extensions that modify
+	// the HTML, e.g. DiscussionTools, can cause this to appear.
+	public const TEST_DOC_ANGLE_BRACKETS = <<<HTML
+<h2 data-mw-anchor=">">><mw:editsection page="Test Page" section="1">></mw:editsection></h2>
+HTML;
+	public const TEST_DOC_ANGLE_BRACKETS_WITH_LINKS = <<<HTML
+<h2><span class="mw-headline" id="&gt;">></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: &gt;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+HTML;
+	public const TEST_DOC_ANGLE_BRACKETS_WITHOUT_LINKS = <<<HTML
+<h2><span class="mw-headline" id="&gt;">></span></h2>
+HTML;
 
 	public const TEST_TO_DEDUP = <<<EOF
 <p>This is a test document.</p>

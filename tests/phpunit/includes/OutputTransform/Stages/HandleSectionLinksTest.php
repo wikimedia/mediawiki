@@ -41,6 +41,21 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 				null, [ 'enableSectionEditLinks' => true ],
 				new ParserOutput( TestUtils::TEST_DOC_WITH_LINKS )
 			],
+			[
+				new ParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS ),
+				null, [],
+				new ParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS_WITH_LINKS )
+			],
+			[
+				new ParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS ),
+				null, [ 'enableSectionEditLinks' => false ],
+				new ParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS_WITHOUT_LINKS )
+			],
+			[
+				new ParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS ),
+				null, [ 'enableSectionEditLinks' => true ],
+				new ParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS_WITH_LINKS )
+			],
 		];
 	}
 }
