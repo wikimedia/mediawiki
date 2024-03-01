@@ -98,6 +98,10 @@ class ApiUpload extends ApiBase {
 			$this->mParams['filekey'] = $this->mParams['sessionkey'];
 		}
 
+		if ( !$this->mParams['checkstatus'] ) {
+			$this->useTransactionalTimeLimit();
+		}
+
 		// Select an upload module
 		try {
 			if ( !$this->selectUploadModule() ) {
