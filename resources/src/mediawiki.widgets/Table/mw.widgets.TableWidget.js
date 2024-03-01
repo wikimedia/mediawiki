@@ -7,15 +7,7 @@
  * @mixins OO.ui.mixin.GroupElement
  *
  * @constructor
- * @param {Object} [config] Configuration options
- * @cfg {Array} [rows] An array of objects containing `key` and `label` properties for every row
- * @cfg {Array} [cols] An array of objects containing `key` and `label` properties for every column
- * @cfg {Array} [data] An array containing all values of the table
- * @cfg {RegExp|Function|string} [validate] Validation pattern to apply on every cell
- * @cfg {boolean} [showHeaders=true] Whether or not to show table headers. Defaults to true.
- * @cfg {boolean} [showRowLabels=true] Whether or not to show row labels. Defaults to true.
- * @cfg {boolean} [allowRowInsertion=true] Whether or not to enable row insertion. Defaults to true.
- * @cfg {boolean} [allowRowDeletion=true] Allow row deletion. Defaults to true.
+ * @param {mw.widgets.TableWidgetModel~Config} [config] Configuration options
  */
 mw.widgets.TableWidget = function MwWidgetsTableWidget( config ) {
 	var headerRowItems = [],

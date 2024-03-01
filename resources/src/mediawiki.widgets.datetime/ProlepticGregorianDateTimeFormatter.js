@@ -12,20 +12,20 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} [fullMonthNames] Mapping 1–12 to full month names.
-	 * @cfg {Object} [shortMonthNames] Mapping 1–12 to abbreviated month names.
+	 * @param {Object} [config.fullMonthNames] Mapping 1–12 to full month names.
+	 * @param {Object} [config.shortMonthNames] Mapping 1–12 to abbreviated month names.
 	 *  If {@link #fullMonthNames fullMonthNames} is given and this is not,
 	 *  defaults to the first three characters from that setting.
-	 * @cfg {Object} [fullDayNames] Mapping 0–6 to full day of week names. 0 is Sunday, 6 is Saturday.
-	 * @cfg {Object} [shortDayNames] Mapping 0–6 to abbreviated day of week names. 0 is Sunday, 6 is Saturday.
+	 * @param {Object} [config.fullDayNames] Mapping 0–6 to full day of week names. 0 is Sunday, 6 is Saturday.
+	 * @param {Object} [config.shortDayNames] Mapping 0–6 to abbreviated day of week names. 0 is Sunday, 6 is Saturday.
 	 *  If {@link #fullDayNames fullDayNames} is given and this is not, defaults to
 	 *  the first three characters from that setting.
-	 * @cfg {string[]} [dayLetters] Weekday column headers for a calendar. Array of 7 strings.
+	 * @param {string[]} [config.dayLetters] Weekday column headers for a calendar. Array of 7 strings.
 	 *  If {@link #fullDayNames fullDayNames} or {@link #shortDayNames shortDayNames}
 	 *  are given and this is not, defaults to the first character from
 	 *  shortDayNames.
-	 * @cfg {string[]} [hour12Periods] AM and PM texts. Array of 2 strings, AM and PM.
-	 * @cfg {number} [weekStartsOn=0] What day the week starts on: 0 is Sunday, 1 is Monday, 6 is Saturday.
+	 * @param {string[]} [config.hour12Periods] AM and PM texts. Array of 2 strings, AM and PM.
+	 * @param {number} [config.weekStartsOn=0] What day the week starts on: 0 is Sunday, 1 is Monday, 6 is Saturday.
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter = function MwWidgetsDatetimeProlepticGregorianDateTimeFormatter( config ) {
 		this.constructor.static.setupDefaults();

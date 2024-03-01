@@ -12,12 +12,12 @@
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {Array} [data] An array containing all values of the row
- * @cfg {Array} [keys] An array of keys for easy cell selection
- * @cfg {RegExp|Function|string} [validate] Validation pattern to apply on every cell
- * @cfg {string} [label=''] Row label. Defaults to empty string.
- * @cfg {boolean} [showLabel=true] Show row label. Defaults to true.
- * @cfg {boolean} [deletable=true] Allow row to be deleted. Defaults to true.
+ * @param {Array} [config.data] An array containing all values of the row
+ * @param {Array} [config.keys] An array of keys for easy cell selection
+ * @param {RegExp|Function|string} [config.validate] Validation pattern to apply on every cell
+ * @param {string} [config.label=''] Row label. Defaults to empty string.
+ * @param {boolean} [config.showLabel=true] Show row label. Defaults to true.
+ * @param {boolean} [config.deletable=true] Allow row to be deleted. Defaults to true.
  */
 mw.widgets.RowWidgetModel = function MwWidgetsRowWidgetModel( config ) {
 	config = config || {};

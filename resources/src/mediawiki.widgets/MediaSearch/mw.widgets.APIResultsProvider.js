@@ -14,13 +14,13 @@
 	 * @constructor
 	 * @param {string} apiurl The URL to the api
 	 * @param {Object} [config] Configuration options
-	 * @cfg {number} fetchLimit The default number of results to fetch
-	 * @cfg {string} lang The language of the API
-	 * @cfg {number} offset Initial offset, if relevant, to call results from
-	 * @cfg {Object} ajaxSettings The settings for the ajax call
-	 * @cfg {Object} staticParams The data parameters that are static and should
+	 * @param {number} config.fetchLimit The default number of results to fetch
+	 * @param {string} config.lang The language of the API
+	 * @param {number} config.offset Initial offset, if relevant, to call results from
+	 * @param {Object} config.ajaxSettings The settings for the ajax call
+	 * @param {Object} config.staticParams The data parameters that are static and should
 	 *  always be sent to the API request, as opposed to user parameters.
-	 * @cfg {Object} userParams Initial user parameters to be sent as data to
+	 * @param {Object} config.userParams Initial user parameters to be sent as data to
 	 *  the API request. These can change per request, like the search query term
 	 *  or sizing parameters for images, etc.
 	 */

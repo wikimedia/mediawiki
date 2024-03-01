@@ -15,28 +15,28 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {number} [limit=10] Number of results to show
-	 * @cfg {number} [namespace] Namespace to prepend to queries
-	 * @cfg {number} [maxLength=255] Maximum query length
-	 * @cfg {boolean} [relative=true] If a namespace is set, display titles relative to it
-	 * @cfg {boolean} [suggestions=true] Display search suggestions
-	 * @cfg {boolean} [showRedirectTargets=true] Show the targets of redirects
-	 * @cfg {boolean} [showImages=false] Show page images
-	 * @cfg {boolean} [showDescriptions=false] Show page descriptions
-	 * @cfg {boolean} [showDisambigsLast=false] Show disambiguation pages as the last results
-	 * @cfg {boolean} [showMissing] Show the user's input as a missing page when a page with this
+	 * @param {number} [config.limit=10] Number of results to show
+	 * @param {number} [config.namespace] Namespace to prepend to queries
+	 * @param {number} [config.maxLength=255] Maximum query length
+	 * @param {boolean} [config.relative=true] If a namespace is set, display titles relative to it
+	 * @param {boolean} [config.suggestions=true] Display search suggestions
+	 * @param {boolean} [config.showRedirectTargets=true] Show the targets of redirects
+	 * @param {boolean} [config.showImages=false] Show page images
+	 * @param {boolean} [config.showDescriptions=false] Show page descriptions
+	 * @param {boolean} [config.showDisambigsLast=false] Show disambiguation pages as the last results
+	 * @param {boolean} [config.showMissing] Show the user's input as a missing page when a page with this
 	 *  exact name doesn't exist. Disabled by default when the namespace option is used, otherwise
 	 *  enabled by default.
-	 * @cfg {boolean} [showInterwikis=false] Show pages with a valid interwiki prefix
-	 * @cfg {boolean} [searchFragments=false] Search for hash fragments on a specific page when typed
-	 * @cfg {boolean} [addQueryInput=true] Add exact user's input query to results
-	 * @cfg {boolean} [excludeCurrentPage=false] Exclude the current page from suggestions
-	 * @cfg {boolean} [excludeDynamicNamespaces=false] Exclude pages whose namespace is negative
-	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title
-	 * @cfg {boolean} [required=false] Whether the input must not be empty
-	 * @cfg {boolean} [highlightSearchQuery=true] Highlight the partial query the user used for this title
-	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
-	 * @cfg {mw.Api} [api] API object to use, creates a default mw.Api instance if not specified
+	 * @param {boolean} [config.showInterwikis=false] Show pages with a valid interwiki prefix
+	 * @param {boolean} [config.searchFragments=false] Search for hash fragments on a specific page when typed
+	 * @param {boolean} [config.addQueryInput=true] Add exact user's input query to results
+	 * @param {boolean} [config.excludeCurrentPage=false] Exclude the current page from suggestions
+	 * @param {boolean} [config.excludeDynamicNamespaces=false] Exclude pages whose namespace is negative
+	 * @param {boolean} [config.validateTitle=true] Whether the input must be a valid title
+	 * @param {boolean} [config.required=false] Whether the input must not be empty
+	 * @param {boolean} [config.highlightSearchQuery=true] Highlight the partial query the user used for this title
+	 * @param {Object} [config.cache] Result cache which implements a 'set' method, taking keyed values as an argument
+	 * @param {mw.Api} [config.api] API object to use, creates a default mw.Api instance if not specified
 	 */
 	mw.widgets.TitleWidget = function MwWidgetsTitleWidget( config ) {
 		// Config initialization

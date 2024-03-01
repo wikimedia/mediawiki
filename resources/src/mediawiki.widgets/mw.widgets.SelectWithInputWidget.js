@@ -35,11 +35,11 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} [dropdowninput] Config for the dropdown
-	 * @cfg {Object} [textinput] Config for the text input
-	 * @cfg {boolean} [or=false] Config for whether the widget is dropdown AND input
+	 * @param {Object} [config.dropdowninput] Config for the dropdown
+	 * @param {Object} [config.textinput] Config for the text input
+	 * @param {boolean} [config.or=false] Config for whether the widget is dropdown AND input
 	 *                           or dropdown OR input
-	 * @cfg {boolean} [required=false] Config for whether input is required
+	 * @param {boolean} [config.required=false] Config for whether input is required
 	 */
 	mw.widgets.SelectWithInputWidget = function MwWidgetsSelectWithInputWidget( config ) {
 		// Config initialization

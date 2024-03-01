@@ -17,17 +17,17 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object|mw.widgets.datetime.DateTimeFormatter} [formatter={}] Configuration options for
+	 * @param {Object|mw.widgets.datetime.DateTimeFormatter} [config.formatter={}] Configuration options for
 	 *  mw.widgets.datetime.ProlepticGregorianDateTimeFormatter, or an mw.widgets.datetime.DateTimeFormatter
 	 *  instance to use.
-	 * @cfg {OO.ui.Widget|null} [widget=null] Widget associated with the calendar.
+	 * @param {OO.ui.Widget|null} [config.widget=null] Widget associated with the calendar.
 	 *  Specifying this configures the calendar to be used as a popup from the
 	 *  specified widget (e.g. absolute positioning, automatic hiding when clicked
 	 *  outside).
-	 * @cfg {Date|null} [min=null] Minimum allowed date
-	 * @cfg {Date|null} [max=null] Maximum allowed date
-	 * @cfg {Date} [focusedDate] Initially focused date.
-	 * @cfg {Date|Date[]|null} [selected=null] Selected date(s).
+	 * @param {Date|null} [config.min=null] Minimum allowed date
+	 * @param {Date|null} [config.max=null] Maximum allowed date
+	 * @param {Date} [config.focusedDate] Initially focused date.
+	 * @param {Date|Date[]|null} [config.selected=null] Selected date(s).
 	 */
 	mw.widgets.datetime.CalendarWidget = function MwWidgetsDatetimeCalendarWidget( config ) {
 		var $colgroup, $headTR, headings, i;

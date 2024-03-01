@@ -20,13 +20,13 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {boolean} [lazyInitOnToggle=false] Don't build most of the interface until
+	 * @param {boolean} [config.lazyInitOnToggle=false] Don't build most of the interface until
 	 *     `.toggle( true )` is called. Meant to be used when the calendar is not immediately visible.
-	 * @cfg {string} [precision='day'] Date precision to use, 'day' or 'month'
-	 * @cfg {string|null} [duoDecade='prev'] Alignment of years to display in picker, use 'prev' or 'next'
+	 * @param {string} [config.precision='day'] Date precision to use, 'day' or 'month'
+	 * @param {string|null} [config.duoDecade='prev'] Alignment of years to display in picker, use 'prev' or 'next'
 	 *     'prev' is previous and current decades
 	 *     'next' is current and next decades
-	 * @cfg {string|null} [date=null] Day or month date (depending on `precision`), in the format
+	 * @param {string|null} [config.date=null] Day or month date (depending on `precision`), in the format
 	 *     'YYYY-MM-DD' or 'YYYY-MM'. When null, the calendar will show today's date, but not select
 	 *     it.
 	 */

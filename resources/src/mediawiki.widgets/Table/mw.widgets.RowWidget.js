@@ -10,14 +10,14 @@
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {Array} [data] The data of the cells
- * @cfg {Array} [keys] An array of keys for easy cell selection
- * @cfg {RegExp|Function|string} [validate] Validation pattern to apply on every cell
- * @cfg {number} [index] The row index.
- * @cfg {string} [label] The row label to display. If not provided, the row index will
+ * @param {Array} [config.data] The data of the cells
+ * @param {Array} [config.keys] An array of keys for easy cell selection
+ * @param {RegExp|Function|string} [config.validate] Validation pattern to apply on every cell
+ * @param {number} [config.index] The row index.
+ * @param {string} [config.label] The row label to display. If not provided, the row index will
  * be used be default. If set to null, no label will be displayed.
- * @cfg {boolean} [showLabel=true] Show row label. Defaults to true.
- * @cfg {boolean} [deletable=true] Whether the table should provide deletion UI tools
+ * @param {boolean} [config.showLabel=true] Show row label. Defaults to true.
+ * @param {boolean} [config.deletable=true] Whether the table should provide deletion UI tools
  * for this row or not. Defaults to true.
  */
 mw.widgets.RowWidget = function MwWidgetsRowWidget( config ) {

@@ -24,22 +24,22 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [type='datetime'] Whether to act like a 'date', 'time', or 'datetime' input.
+	 * @param {string} [config.type='datetime'] Whether to act like a 'date', 'time', or 'datetime' input.
 	 *  Affects values stored in the relevant `<input>` and the formatting and
 	 *  interpretation of values passed to/from getValue() and setValue(). It's up
 	 *  to the user to configure the DateTimeFormatter correctly.
-	 * @cfg {Object|mw.widgets.datetime.DateTimeFormatter} [formatter={}] Configuration options for
+	 * @param {Object|mw.widgets.datetime.DateTimeFormatter} [config.formatter={}] Configuration options for
 	 *  mw.widgets.datetime.ProlepticGregorianDateTimeFormatter (with 'format' defaulting to
 	 *  '@date', '@time', or '@datetime' depending on 'type'), or an
 	 *  mw.widgets.datetime.DateTimeFormatter instance to use.
-	 * @cfg {Object|null} [calendar={}] Configuration options for
+	 * @param {Object|null} [config.calendar={}] Configuration options for
 	 *  mw.widgets.datetime.CalendarWidget; note certain settings will be forced based on the
 	 *  settings passed to this widget. Set null to disable the calendar.
-	 * @cfg {boolean} [required=false] Whether a value is required.
-	 * @cfg {boolean} [clearable=true] Whether to provide for blanking the value.
-	 * @cfg {Date|null} [value=null] Default value for the widget
-	 * @cfg {Date|string|null} [min=null] Minimum allowed date
-	 * @cfg {Date|string|null} [max=null] Maximum allowed date
+	 * @param {boolean} [config.required=false] Whether a value is required.
+	 * @param {boolean} [config.clearable=true] Whether to provide for blanking the value.
+	 * @param {Date|null} [config.value=null] Default value for the widget
+	 * @param {Date|string|null} [config.min=null] Minimum allowed date
+	 * @param {Date|string|null} [config.max=null] Maximum allowed date
 	 */
 	mw.widgets.datetime.DateTimeInputWidget = function MwWidgetsDatetimeDateTimeInputWidget( config ) {
 		// Configuration initialization

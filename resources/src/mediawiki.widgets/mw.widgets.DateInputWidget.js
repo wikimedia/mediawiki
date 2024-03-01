@@ -61,33 +61,33 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [precision='day'] Date precision to use, 'day' or 'month'
-	 * @cfg {string} [value] Day or month date (depending on `precision`), in the format 'YYYY-MM-DD'
+	 * @param {string} [config.precision='day'] Date precision to use, 'day' or 'month'
+	 * @param {string} [config.value] Day or month date (depending on `precision`), in the format 'YYYY-MM-DD'
 	 *     or 'YYYY-MM'. If not given or empty string, no date is selected.
-	 * @cfg {string} [inputFormat] Date format string to use for the textual input field. Displayed
+	 * @param {string} [config.inputFormat] Date format string to use for the textual input field. Displayed
 	 *     while the widget is active, and the user can type in a date in this format. Should be short
 	 *     and easy to type. When not given, defaults to 'YYYY-MM-DD' or 'YYYY-MM', depending on
 	 *     `precision`.
-	 * @cfg {string} [displayFormat] Date format string to use for the clickable label. Displayed
+	 * @param {string} [config.displayFormat] Date format string to use for the clickable label. Displayed
 	 *     while the widget is inactive. Should be as unambiguous as possible (for example, prefer to
 	 *     spell out the month, rather than rely on the order), even if that makes it longer. When not
 	 *     given, the default is language-specific.
-	 * @cfg {boolean} [longDisplayFormat=false] If a custom displayFormat is not specified, use
+	 * @param {boolean} [config.longDisplayFormat=false] If a custom displayFormat is not specified, use
 	 *     unabbreviated day of the week and month names in the default language-specific displayFormat.
-	 * @cfg {string} [placeholderLabel=No date selected] Placeholder text shown when the widget is not
+	 * @param {string} [config.placeholderLabel=No date selected] Placeholder text shown when the widget is not
 	 *     selected. Default text taken from message `mw-widgets-dateinput-no-date`.
-	 * @cfg {string} [placeholderDateFormat] User-visible date format string displayed in the textual input
+	 * @param {string} [config.placeholderDateFormat] User-visible date format string displayed in the textual input
 	 *     field when it's empty. Should be the same as `inputFormat`, but translated to the user's
 	 *     language. When not given, defaults to a translated version of 'YYYY-MM-DD' or 'YYYY-MM',
 	 *     depending on `precision`.
-	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
-	 * @cfg {string} [mustBeAfter] Validates the date to be after this. In the 'YYYY-MM-DD' format.
-	 * @cfg {string} [mustBeBefore] Validates the date to be before this. In the 'YYYY-MM-DD' format.
-	 * @cfg {jQuery} [$overlay] Render the calendar into a separate layer. This configuration is
+	 * @param {boolean} [config.required=false] Mark the field as required. Implies `indicator: 'required'`.
+	 * @param {string} [config.mustBeAfter] Validates the date to be after this. In the 'YYYY-MM-DD' format.
+	 * @param {string} [config.mustBeBefore] Validates the date to be before this. In the 'YYYY-MM-DD' format.
+	 * @param {jQuery} [config.$overlay] Render the calendar into a separate layer. This configuration is
 	 *     useful in cases where the expanded calendar is larger than its container. The specified
 	 *     overlay layer is usually on top of the container and has a larger area. By default, the
 	 *     calendar uses relative positioning.
-	 * @cfg {Object} [calendar] Configuration options for the this input's
+	 * @param {Object} [config.calendar] Configuration options for the this input's
 	 *     {@link mw.widgets.CalendarWidget CalendarWidget}.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {

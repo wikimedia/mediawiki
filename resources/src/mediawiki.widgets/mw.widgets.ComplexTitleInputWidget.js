@@ -14,9 +14,9 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} namespace Configuration for the NamespaceInputWidget dropdown with list of
+	 * @param {Object} config.namespace Configuration for the NamespaceInputWidget dropdown with list of
 	 *     namespaces
-	 * @cfg {Object} title Configuration for the TitleInputWidget text field
+	 * @param {Object} config.title Configuration for the TitleInputWidget text field
 	 */
 	mw.widgets.ComplexTitleInputWidget = function MwWidgetsComplexTitleInputWidget( config ) {
 		// Parent constructor
