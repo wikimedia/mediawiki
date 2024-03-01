@@ -29,10 +29,12 @@
 :lang( syl ),
 :lang( ta ),
 :lang( te ) {
+	.mw-heading1&,
 	h1& {
 		line-height: 1.6em !important; /* stylelint-disable-line declaration-no-important */
 	}
 
+	.mw-heading&,
 	h2&,
 	h3&,
 	h4&,
@@ -43,6 +45,7 @@
 }
 
 // Increase for Nepalese on `h1`, See T333938.
+.mw-heading1:lang( ne ),
 h1:lang( ne ) {
 	line-height: 1.9;
 }
@@ -50,6 +53,8 @@ h1:lang( ne ) {
 // Increase `line-height` for Thai top vowel + top tone combination on `h2`,
 // for example on `ตั้`. See T285972.
 // Increase for Nepalese on `h2`, for example on `ि`. See T333938.
+.mw-heading2:lang( th ),
+.mw-heading2:lang( ne ),
 h2:lang( th ),
 h2:lang( ne ) {
 	line-height: 1.6;
