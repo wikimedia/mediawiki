@@ -1179,7 +1179,7 @@ function wfEscapeWikiText( $input ): string {
 		$repl4 = [
 			'_' => '&#95;', '~' => '&#126;',
 			"\n" => "&#10;", "\r" => "&#13;",
-			"\t" => "&#9;",  // "\n\t\n" is treated like "\n\n"
+			"\t" => "&#9;", // "\n\t\n" is treated like "\n\n"
 		];
 
 		// And handle protocols that don't use "://"

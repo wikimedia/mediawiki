@@ -117,50 +117,50 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 
 	public static function provideSourceLanguage() {
 		yield 'content-language in PageBundle' => [
-			'sr',    // PageBundle content-language
-			null,    // Title PageLanguage
-			null,    // PageLanguage override
+			'sr', // PageBundle content-language
+			null, // Title PageLanguage
+			null, // PageLanguage override
 			'sr-Cyrl', // target
 			'sr-Cyrl', // explicit source
 			'sr-Cyrl'  // expected source
 		];
 		yield 'content-language but no source language' => [
-			'en',    // PageBundle content-language
-			null,    // Title PageLanguage
-			null,    // PageLanguage override
-			'en',    // target
-			null,    // explicit source
+			'en', // PageBundle content-language
+			null, // Title PageLanguage
+			null, // PageLanguage override
+			'en', // target
+			null, // explicit source
 			null     // expected source
 		];
 		yield 'content-language is variant' => [
 			'en-ca', // PageBundle content-language
-			null,    // Title PageLanguage
-			null,    // PageLanguage override
-			'en',    // target
-			null,    // explicit source
+			null, // Title PageLanguage
+			null, // PageLanguage override
+			'en', // target
+			null, // explicit source
 			'en-ca'  // expected source
 		];
 		yield 'Source variant is given' => [
-			null,    // PageBundle content-language
-			null,    // Title PageLanguage
-			null,    // PageLanguage override
-			'en',    // target
+			null, // PageBundle content-language
+			null, // Title PageLanguage
+			null, // PageLanguage override
+			'en', // target
 			'en-ca', // explicit source
 			'en-ca'  // expected source
 		];
 		yield 'Source variant is a base language' => [
-			null,    // PageBundle content-language
-			null,    // Title PageLanguage
-			null,    // PageLanguage override
-			'en',    // target
-			'en',    // explicit source
+			null, // PageBundle content-language
+			null, // Title PageLanguage
+			null, // PageLanguage override
+			'en', // target
+			'en', // explicit source
 			null     // expected source
 		];
 		yield 'Page language override is variant' => [
-			null,    // PageBundle content-language
-			null,    // PageBundle content-language
+			null, // PageBundle content-language
+			null, // PageBundle content-language
 			'en-ca', // PageLanguage override
-			'en',    // target
+			'en', // target
 			'en-ca', // explicit source
 			'en-ca'  // expected source
 		];

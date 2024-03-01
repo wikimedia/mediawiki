@@ -289,7 +289,7 @@ WARN
 			if ( !$dryRun ) {
 				$delete = $dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'user_properties' )
-					->where( [ 'up_property' => $option,  'up_user' => $userIds ] );
+					->where( [ 'up_property' => $option, 'up_user' => $userIds ] );
 				if ( $this->hasOption( 'old' ) ) {
 					$delete->andWhere( [ 'up_value' => $old ] );
 				}

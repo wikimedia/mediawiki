@@ -57,6 +57,6 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 			$key = PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY;
 			$expected->setExtensionData( $key, $result->getExtensionData( $key ) );
 		}
-		$this->assertEquals( $expected,  $result );
+		$this->assertEquals( $expected, $result );
 	}
 }

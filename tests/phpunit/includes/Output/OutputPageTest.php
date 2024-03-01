@@ -3214,7 +3214,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			[ 'sr-ec', [ NS_FILE, 'Example' ], 'sr', 'sr', 'sr-ec' ],
 			[ 'sr', [ NS_FILE, 'Example' ], 'sr', 'sr', 'sr' ],
 			[ 'sr-ec', [ NS_MEDIAWIKI, 'Example' ], 'sr-ec', 'sr-ec', 'sr' ],
-			[ 'sr' , [ NS_MEDIAWIKI, 'Example' ], 'sr', 'sr', 'sr-ec' ],
+			[ 'sr', [ NS_MEDIAWIKI, 'Example' ], 'sr', 'sr', 'sr-ec' ],
 		];
 	}
 
