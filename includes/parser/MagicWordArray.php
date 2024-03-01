@@ -7,7 +7,6 @@
 namespace MediaWiki\Parser;
 
 use LogicException;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -264,19 +263,7 @@ class MagicWordArray {
 			return '';
 		}, $text );
 		// T321234: Don't try to fix old revisions with broken UTF-8, just return $text as is
-		if ( $res === null ) {
-			$error = preg_last_error();
-			$errorText = preg_last_error_msg();
-			LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all error: {code} {errorText}', [
-				'code' => $error,
-				'regex' => $regexes,
-				'text' => $text,
-				'errorText' => $errorText
-			] );
-			if ( $error !== PREG_BAD_UTF8_ERROR ) {
-				throw new LogicException( "preg_match_all error $error: $errorText" );
-			}
-		} else {
+		if ( $res !== null ) {
 			$text = $res;
 		}
 		return $found;

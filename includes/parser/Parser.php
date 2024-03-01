@@ -2088,7 +2088,8 @@ class Parser {
 	private function handleExternalLinks( $text ) {
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( $bits === false ) {
-			throw new RuntimeException( "PCRE failure" );
+			// T321234: Don't try to fix old revisions with broken UTF-8, just return $text as is
+			return $text;
 		}
 		$s = array_shift( $bits );
 
