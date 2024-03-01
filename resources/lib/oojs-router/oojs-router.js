@@ -1,12 +1,12 @@
 /*!
- * OOjs Router v0.3.0
+ * OOjs Router v0.4.0
  * https://www.mediawiki.org/wiki/OOjs_Router
  *
- * Copyright 2011-2021 OOjs Team and other contributors.
+ * Copyright 2011-2024 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-09-09T23:45:47Z
+ * Date: 2024-03-01T14:46:25Z
  */
 ( function ( $ ) {
 
@@ -27,11 +27,11 @@ OO.Router = function OoRouter() {
 	this.enabled = true;
 	this.oldHash = this.getPath();
 
-	$( window ).on( 'popstate', function () {
+	window.addEventListener( 'popstate', function () {
 		router.emit( 'popstate' );
 	} );
 
-	$( window ).on( 'hashchange', function () {
+	window.addEventListener( 'hashchange', function () {
 		router.emit( 'hashchange' );
 	} );
 
