@@ -410,6 +410,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$sourceLanguage = null
 	): void {
 		if ( is_string( $targetLanguage ) ) {
+			$targetLanguage = $this->getAcceptedTargetLanguage( $targetLanguage );
 			$targetLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
 				$targetLanguage
 			);
@@ -421,6 +422,22 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		}
 		$this->targetLanguage = $targetLanguage;
 		$this->sourceLanguage = $sourceLanguage;
+	}
+
+	/**
+	 * Get a target language from an accept header
+	 */
+	private function getAcceptedTargetLanguage( string $targetLanguage ): string {
+		// We could try to identify the most desirable language here,
+		// following the rules for Accept-Language headers in RFC9100.
+		// For now, just take the first language code.
+
+		if ( preg_match( '/^\s*([-\w]+)/', $targetLanguage, $m ) ) {
+			return $m[1];
+		} else {
+			// "undetermined" per RFC5646
+			return 'und';
+		}
 	}
 
 	/**

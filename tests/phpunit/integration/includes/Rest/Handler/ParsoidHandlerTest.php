@@ -2136,6 +2136,30 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler->wt2html( $pageConfig, $attribs );
 	}
 
+	public function testWt2html_variant_conversion() {
+		$page = $this->getExistingTestPage();
+		$pageConfig = $this->getPageConfig( $page );
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = 'wikitext';
+		$attribs['opts']['format'] = 'html';
+		$attribs['opts']['accept-language'] = 'en-x-piglatin';
+
+		$handler = $this->newParsoidHandler();
+
+		// This should trigger a parser cache write, because we didn't set a write-ratio
+		$response = $handler->wt2html( $pageConfig, $attribs );
+
+		$body = $response->getBody();
+		$body->rewind();
+		$data = $body->getContents();
+
+		$this->assertStringContainsString(
+			'<meta http-equiv="content-language" content="en-x-piglatin"/>',
+			$data
+		);
+	}
+
 	public function testWt2html_BadContentModel() {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, new JavaScriptContent( '"not wikitext"' ) );
