@@ -335,7 +335,7 @@ class ParserTestRunner {
 		return array_unique( $files );
 	}
 
-	public function getRecorder() {
+	public function getRecorder(): TestRecorder {
 		return $this->recorder;
 	}
 
@@ -875,8 +875,12 @@ class ParserTestRunner {
 		try {
 			$ok = true;
 			$inParsoidMode = $this->options['parsoid'];
-			$legacyMode = $inParsoidMode ? null : new ParserTestMode( 'legacy' );
-			$skipMode = $inParsoidMode ? new ParserTestMode( 'parsoid' ) : $legacyMode;
+			if ( $inParsoidMode ) {
+				$legacyMode = null;
+				$skipMode = new ParserTestMode( 'parsoid' );
+			} else {
+				$legacyMode = $skipMode = new ParserTestMode( 'legacy' );
+			}
 
 			foreach ( $filenames as $filename ) {
 				$this->recorder->startSuite( $filename );
@@ -1274,7 +1278,8 @@ class ParserTestRunner {
 	 * @param callable(IContextSource,LinkTarget,array):ParserOptions $parserOptionsCallback A callback to create the
 	 *   initial ParserOptions object.  This allows for some minor
 	 *   differences in how the legacy Parser and Parsoid create this.
-	 * @return array<LinkTarget,ParserOptions,int> An array of LinkTarget, ParserOptions, and integer revId.
+	 * @return array<LinkTarget|ParserOptions|int> An array of LinkTarget, ParserOptions, and integer revId.
+	 * @phan-return array{0:LinkTarget,1:ParserOptions,2:int}
 	 */
 	private function setupParserOptions( ParserTest $test, callable $parserOptionsCallback ) {
 		$opts = $test->options;
@@ -1395,9 +1400,9 @@ class ParserTestRunner {
 	 *
 	 * @param ParserTest $test The test parameters
 	 * @param ParserTestMode $mode The test mode
-	 * @return ParserTestResult|false false if skipped
+	 * @return ParserTestResult
 	 */
-	public function runLegacyTest( ParserTest $test, ParserTestMode $mode ) {
+	public function runLegacyTest( ParserTest $test, ParserTestMode $mode ): ParserTestResult {
 		$desc = ( $test->comment ?? '' ) . $test->testName;
 		wfDebug( __METHOD__ . ": running $desc" );
 		$teardownGuard = $this->perTestSetup( $test );
@@ -1456,7 +1461,7 @@ class ParserTestRunner {
 					'unwrap' => !isset( $opts['wrap'] ),
 					'skin' => $this->getSkin( $opts['skin'] ?? 'fallback' ),
 				] );
-				$out = preg_replace( '/\s+$/', '', $out );
+				$out = rtrim( $out );
 			}
 		}
 
@@ -2875,7 +2880,7 @@ class ParserTestRunner {
 		}
 
 		if ( !$status->isOK() ) {
-			throw new RuntimeException( $status->getWikiText( false, false, 'en' ) );
+			throw new RuntimeException( $status->__toString() );
 		}
 
 		// an edit always attempt to purge backlink links such as history

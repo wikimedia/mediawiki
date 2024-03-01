@@ -45,10 +45,18 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	/** @var string|null */
 	private $skipMessage;
 
-	public function __construct( $runner, $fileName, ParserTest $test, ParserTestMode $mode, $skipMessage = null ) {
-		parent::__construct( 'testParse',
+	public function __construct(
+		ParserTestRunner $runner,
+		string $fileName,
+		ParserTest $test,
+		ParserTestMode $mode,
+		string $skipMessage = null
+	) {
+		parent::__construct(
+			'testParse',
 			[ "$mode" ],
-			basename( $fileName ) . ': ' . $test->testName );
+			basename( $fileName ) . ': ' . $test->testName
+		);
 		$this->ptTest = $test;
 		$this->ptMode = $mode;
 		$this->ptRunner = $runner;
@@ -61,10 +69,6 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 		}
 		$this->ptRunner->getRecorder()->setTestCase( $this );
 		$result = $this->ptRunner->runTest( $this->ptTest, $this->ptMode );
-		if ( $result === false ) {
-			// Test intentionally skipped.
-			$result = new ParserTestResult( $this->ptTest, $this->ptMode, "SKIP", "SKIP" );
-		}
 		$this->assertEquals( $result->expected, $result->actual );
 	}
 }

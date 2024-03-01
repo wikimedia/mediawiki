@@ -15,17 +15,15 @@ use Wikimedia\ScopedCallback;
 class ParsoidTestFileSuite extends TestSuite {
 	use SuiteEventsTrait;
 
-	private $ptRunner;
-	private $ptFileName;
-	private $ptFileInfo;
+	private ParserTestRunner $ptRunner;
+	private TestFileReader $ptFileInfo;
 
 	/** @var ScopedCallback */
 	private $ptTeardownScope;
 
-	public function __construct( $runner, $name, $fileName ) {
+	public function __construct( ParserTestRunner $runner, string $name, string $fileName ) {
 		parent::__construct( $name );
 		$this->ptRunner = $runner;
-		$this->ptFileName = $fileName;
 		try {
 			$this->ptFileInfo = TestFileReader::read( $fileName, static function ( $msg ) {
 				wfDeprecatedMsg( $msg, '1.35', false, false );
