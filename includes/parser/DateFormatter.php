@@ -308,7 +308,7 @@ class DateFormatter {
 	 *   year number and 'BC' at the end otherwise.
 	 */
 	private function makeNormalYear( $iso ) {
-		if ( $iso[0] == '-' ) {
+		if ( $iso <= 0 ) {
 			$text = ( intval( substr( $iso, 1 ) ) + 1 ) . ' BC';
 		} else {
 			$text = intval( $iso );
