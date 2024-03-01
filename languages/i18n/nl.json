@@ -1193,6 +1193,7 @@
 	"prefs-searchmisc": "Algemeen",
 	"searchprefs": "Voorkeuren doorzoeken",
 	"searchprefs-noresults": "Geen resultaten",
+	"searchprefs-results": "$1 {{PLURAL:$1|resulaat|resultaten}}",
 	"saveprefs": "Opslaan",
 	"restoreprefs": "Alle standaardinstellingen terugzetten",
 	"prefs-editing": "Bewerken",

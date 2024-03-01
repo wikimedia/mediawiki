@@ -1206,6 +1206,7 @@
 	"prefs-searchmisc": "Generale",
 	"searchprefs": "Cerca preferenze",
 	"searchprefs-noresults": "Nessun risultato",
+	"searchprefs-results": "$1 {{PLURAL:$1|risultato|risultati}}",
 	"saveprefs": "Salva",
 	"restoreprefs": "Ripristina tutte le impostazioni predefinite",
 	"prefs-editing": "Casella di modifica",

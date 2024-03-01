@@ -1093,6 +1093,7 @@
 	"prefs-searchmisc": "Пӗтӗмӗшле",
 	"searchprefs": "Ҫак ӗнерлевсемпе шырамалла",
 	"searchprefs-noresults": "Нимӗн те тупӑнмарӗ",
+	"searchprefs-results": "$1 {{PLURAL:$1|результат}}",
 	"saveprefs": "Ҫырса хур",
 	"restoreprefs": "Пуҫламӑш ӗнерлевсене каялла тавӑрмалла",
 	"prefs-editing": "Тӳрлетни",

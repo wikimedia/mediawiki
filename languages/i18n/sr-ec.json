@@ -1119,6 +1119,7 @@
 	"prefs-searchmisc": "Опште",
 	"searchprefs": "Претрага подешавања",
 	"searchprefs-noresults": "Нема резултата",
+	"searchprefs-results": "$1 {{PLURAL:$1|резултат|резултата}}",
 	"saveprefs": "Сачувај",
 	"restoreprefs": "Врати све на подразумевано",
 	"prefs-editing": "Уређивање",

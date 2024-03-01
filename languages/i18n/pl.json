@@ -1191,6 +1191,7 @@
 	"prefs-searchmisc": "Ogólne",
 	"searchprefs": "Wyszukaj ustawienie",
 	"searchprefs-noresults": "Brak wyników",
+	"searchprefs-results": "$1 {{PLURAL:$1|wynik|wyniki|wyników}}",
 	"saveprefs": "Zapisz",
 	"restoreprefs": "Przywróć wszystkie domyślne preferencje",
 	"prefs-editing": "Edycja",

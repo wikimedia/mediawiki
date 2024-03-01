@@ -1142,6 +1142,7 @@
 	"prefs-searchmisc": "Generelt",
 	"searchprefs": "Søk i innstillingene",
 	"searchprefs-noresults": "Ingen resultater",
+	"searchprefs-results": "$1 {{PLURAL:$1|resultat|resultater}}",
 	"saveprefs": "Lagre",
 	"restoreprefs": "Nullstill alt til standardinnstillinger",
 	"prefs-editing": "Redigering",
