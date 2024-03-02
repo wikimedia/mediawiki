@@ -633,8 +633,16 @@ class RecentChange implements Taggable {
 		if ( $this->getAttribute( 'rc_patrolled' ) ) {
 			return [];
 		}
-		// Actually set the 'patrolled' flag in RC
-		$this->reallyMarkPatrolled();
+		// Attempt to set the 'patrolled' flag in RC database
+		$affectedRowCount = $this->reallyMarkPatrolled();
+
+		if ( $affectedRowCount === 0 ) {
+			// Query succeeded but no rows change, e.g. another request
+			// patrolled the same change just before us.
+			// Avoid duplicate log entry (T196182).
+			return [];
+		}
+
 		// Log this patrol event
 		PatrolLog::record( $this, false, $performer->getUser(), $tags );
 
@@ -646,15 +654,25 @@ class RecentChange implements Taggable {
 
 	/**
 	 * Mark this RecentChange patrolled, without error checking
-	 * @return int Number of affected rows
+	 *
+	 * @return int Number of database rows changed, usually 1, but 0 if
+	 * another request already patrolled it in the mean time.
 	 */
 	public function reallyMarkPatrolled() {
 		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'recentchanges' )
 			->set( [ 'rc_patrolled' => self::PRC_PATROLLED ] )
-			->where( [ 'rc_id' => $this->getAttribute( 'rc_id' ) ] )
+			->where( [
+				'rc_id' => $this->getAttribute( 'rc_id' ),
+				'rc_patrolled' => self::PRC_UNPATROLLED,
+			] )
 			->caller( __METHOD__ )->execute();
+		$affectedRowCount = $dbw->affectedRows();
+		// The change was patrolled already, do nothing
+		if ( $affectedRowCount === 0 ) {
+			return 0;
+		}
 		// Invalidate the page cache after the page has been patrolled
 		// to make sure that the Patrol link isn't visible any longer!
 		$this->getTitle()->invalidateCache();
@@ -667,7 +685,7 @@ class RecentChange implements Taggable {
 			$revertedTagUpdateManager->approveRevertedTagForRevision( $revisionId );
 		}
 
-		return $dbw->affectedRows();
+		return $affectedRowCount;
 	}
 
 	/**
