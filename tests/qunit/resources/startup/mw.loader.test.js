@@ -37,8 +37,18 @@
 		}
 	} ) );
 
+	// Full URL to $wgScriptPath with trailing slash.
+	// * $wgScriptPath is usually path-only, so we expand relative to $wgServer
+	//   to ensure consistent and portable results (even when tested through Karma).
+	// * $wgScriptPath is an empty string when installed at the document root
+	//   (as the case when using `composer serve`), we normalize to trailing slash.
+	const SCRIPT_PATH_URL = new URL(
+		mw.config.get( 'wgScriptPath' ) + '/',
+		mw.config.get( 'wgServer' )
+	).toString();
+
 	mw.loader.addSource( {
-		testloader: mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php'
+		testloader: SCRIPT_PATH_URL + 'tests/qunit/data/load.mock.php'
 	} );
 
 	/**
@@ -101,8 +111,7 @@
 	}
 
 	function urlStyleTest( selector, prop, val ) {
-		return mw.config.get( 'wgScriptPath' ) +
-			'/tests/qunit/data/styleTest.css.php?' +
+		return SCRIPT_PATH_URL + 'tests/qunit/data/styleTest.css.php?' +
 			$.param( {
 				selector: selector,
 				prop: prop,
@@ -115,7 +124,7 @@
 		mw.loader.testCallback = function () {
 			script++;
 		};
-		mw.loader.implement( 'test.promise', [ mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' ] );
+		mw.loader.implement( 'test.promise', [ SCRIPT_PATH_URL + 'tests/qunit/data/mwLoaderTestCallback.js' ] );
 
 		return mw.loader.using( 'test.promise', function () {
 			callback++;
@@ -130,7 +139,7 @@
 		mw.loader.testCallback = function () {
 			call++;
 		};
-		mw.loader.implement( 'hasOwnProperty', [ mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' ], {}, {} );
+		mw.loader.implement( 'hasOwnProperty', [ SCRIPT_PATH_URL + 'tests/qunit/data/mwLoaderTestCallback.js' ], {}, {} );
 
 		return mw.loader.using( 'hasOwnProperty', function () {
 			assert.strictEqual( call, 1, 'module script ran' );
@@ -819,14 +828,11 @@
 		);
 	} );
 
-	// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
-	QUnit.test( '.load( "//protocol-relative" ) - T32825', function ( assert ) {
-		var target,
-			done = assert.async();
-
-		// URL to the callback script
-		target = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js';
-		// Ensure a protocol-relative URL for this test
+	// This bug was fixed in MediaWiki 1.18 (T32825).
+	QUnit.test( '.load() [protocol-relative URL T32825]', function ( assert ) {
+		const done = assert.async();
+		let target = SCRIPT_PATH_URL + 'tests/qunit/data/mwLoaderTestCallback.js';
+		// Use a protocol-relative URL for this test
 		target = target.replace( /https?:/, '' );
 		assert.strictEqual( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
 
@@ -841,13 +847,9 @@
 		mw.loader.load( target );
 	} );
 
-	QUnit.test( '.load( "/absolute-path" )', function ( assert ) {
-		var target,
-			done = assert.async();
-
-		// URL to the callback script
-		target = mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js';
-		assert.strictEqual( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
+	QUnit.test( '.load() [absolute URL]', function ( assert ) {
+		const done = assert.async();
+		const target = SCRIPT_PATH_URL + 'tests/qunit/data/mwLoaderTestCallback.js';
 
 		mw.loader.testCallback = function () {
 			// Ensure once, delete now
@@ -1118,13 +1120,12 @@
 	} );
 
 	QUnit.test( 'require() in debug mode', function ( assert ) {
-		var path = mw.config.get( 'wgScriptPath' );
 		mw.loader.register( [
 			[ 'test.require.define', '0' ],
 			[ 'test.require.callback', '0', [ 'test.require.define' ] ]
 		] );
-		mw.loader.implement( 'test.require.callback', [ path + '/tests/qunit/data/requireCallMwLoaderTestCallback.js' ] );
-		mw.loader.implement( 'test.require.define', [ path + '/tests/qunit/data/defineCallMwLoaderTestCallback.js' ] );
+		mw.loader.implement( 'test.require.callback', [ SCRIPT_PATH_URL + 'tests/qunit/data/requireCallMwLoaderTestCallback.js' ] );
+		mw.loader.implement( 'test.require.define', [ SCRIPT_PATH_URL + 'tests/qunit/data/defineCallMwLoaderTestCallback.js' ] );
 
 		return mw.loader.using( 'test.require.callback' ).then( function ( require ) {
 			var cb = require( 'test.require.callback' );
@@ -1170,7 +1171,7 @@
 	} );
 
 	QUnit.test( '.getScript() - success', function ( assert ) {
-		var scriptUrl = mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mediawiki.loader.getScript.example.js';
+		var scriptUrl = SCRIPT_PATH_URL + 'tests/qunit/data/mediawiki.loader.getScript.example.js';
 
 		return mw.loader.getScript( scriptUrl ).then(
 			function () {
