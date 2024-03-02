@@ -22,9 +22,9 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} [radioselectinput] Config for the radio select input
-	 * @cfg {Object} [textinput] Config for the text input
-	 * @cfg {boolean} [selectMin=true] Whether to select 'min', false would select 'max'
+	 * @param {Object} [config.radioselectinput] Config for the radio select input
+	 * @param {Object} [config.textinput] Config for the text input
+	 * @param {boolean} [config.selectMin=true] Whether to select 'min', false would select 'max'
 	 */
 	mw.widgets.SizeFilterWidget = function MwWidgetsSizeFilterWidget( config ) {
 		// Config initialization

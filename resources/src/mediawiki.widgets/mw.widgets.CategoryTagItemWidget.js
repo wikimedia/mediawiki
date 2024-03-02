@@ -120,8 +120,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} config Configuration options
-	 * @cfg {mw.Title} title Page title to use (required)
-	 * @cfg {string} [apiUrl] API URL, if not the current wiki's API
+	 * @param {mw.Title} config.title Page title to use (required)
+	 * @param {string} [config.apiUrl] API URL, if not the current wiki's API
 	 */
 	mw.widgets.CategoryTagItemWidget = function MWWCategoryTagItemWidget( config ) {
 		var widget = this;

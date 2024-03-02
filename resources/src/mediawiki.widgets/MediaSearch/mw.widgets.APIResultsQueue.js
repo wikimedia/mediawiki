@@ -13,8 +13,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {number} limit The default number of results to fetch
-	 * @cfg {number} threshold The default number of extra results
+	 * @param {number} config.limit The default number of results to fetch
+	 * @param {number} config.threshold The default number of extra results
 	 *  that the queue should always strive to have on top of the
 	 *  individual requests for items.
 	 */

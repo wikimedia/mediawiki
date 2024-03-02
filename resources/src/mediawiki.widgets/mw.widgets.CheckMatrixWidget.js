@@ -7,17 +7,17 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} columns Required object mapping column labels (as HTML) to
+	 * @param {Object} config.columns Required object mapping column labels (as HTML) to
 	 *  their tags.
-	 * @cfg {Object} rows Required object mapping row labels (as HTML) to their
+	 * @param {Object} config.rows Required object mapping row labels (as HTML) to their
 	 *  tags.
-	 * @cfg {string[]} [forcedOn] Array of column-row tags to be displayed as
+	 * @param {string[]} [config.forcedOn] Array of column-row tags to be displayed as
 	 *  enabled but unavailable to change.
-	 * @cfg {string[]} [forcedOff] Array of column-row tags to be displayed as
+	 * @param {string[]} [config.forcedOff] Array of column-row tags to be displayed as
 	 *  disabled but unavailable to change.
-	 * @cfg {Object} [tooltips] Optional object mapping row labels to tooltips
+	 * @param {Object} [config.tooltips] Optional object mapping row labels to tooltips
 	 *  (as text, will be escaped).
-	 * @cfg {Object} [tooltipsHtml] Optional object mapping row labels to tooltips
+	 * @param {Object} [config.tooltipsHtml] Optional object mapping row labels to tooltips
 	 *  (as HTML). Takes precedence over text tooltips.
 	 */
 	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {

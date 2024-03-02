@@ -20,7 +20,7 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [name] Name of input to submit results (when used in HTML forms)
+	 * @param {string} [config.name] Name of input to submit results (when used in HTML forms)
 	 */
 	mw.widgets.TagMultiselectWidget = function MwWidgetsTagMultiselectWidget( config ) {
 		// Parent constructor

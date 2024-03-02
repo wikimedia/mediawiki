@@ -18,8 +18,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {boolean} [suggestions=true] Display search suggestions
-	 * @cfg {RegExp|Function|string} [validate] Perform title validation
+	 * @param {boolean} [config.suggestions=true] Display search suggestions
+	 * @param {RegExp|Function|string} [config.validate] Perform title validation
 	 */
 	mw.widgets.TitleInputWidget = function MwWidgetsTitleInputWidget( config ) {
 		config = config || {};

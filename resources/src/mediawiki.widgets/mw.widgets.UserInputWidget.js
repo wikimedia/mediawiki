@@ -15,8 +15,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {number} [limit=10] Number of results to show
-	 * @cfg {mw.Api} [api] API object to use, creates a default mw.Api instance if not specified
+	 * @param {number} [config.limit=10] Number of results to show
+	 * @param {mw.Api} [config.api] API object to use, creates a default mw.Api instance if not specified
 	 */
 	mw.widgets.UserInputWidget = function MwWidgetsUserInputWidget( config ) {
 		// Config initialization

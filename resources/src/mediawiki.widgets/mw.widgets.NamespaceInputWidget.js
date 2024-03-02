@@ -14,9 +14,9 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string|null} [includeAllValue] Value for "all namespaces" option, if any
-	 * @cfg {boolean} [userLang=false] Display namespaces in user language
-	 * @cfg {number[]} [exclude] List of namespace numbers to exclude from the selector
+	 * @param {string|null} [config.includeAllValue] Value for "all namespaces" option, if any
+	 * @param {boolean} [config.userLang=false] Display namespaces in user language
+	 * @param {number[]} [config.exclude] List of namespace numbers to exclude from the selector
 	 */
 	mw.widgets.NamespaceInputWidget = function MwWidgetsNamespaceInputWidget( config ) {
 		// Configuration initialization

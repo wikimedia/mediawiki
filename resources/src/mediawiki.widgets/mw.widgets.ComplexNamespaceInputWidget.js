@@ -15,20 +15,20 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} namespace Configuration for the NamespaceInputWidget dropdown with list
+	 * @param {Object} config.namespace Configuration for the NamespaceInputWidget dropdown with list
 	 *     of namespaces
-	 * @cfg {string} namespace.includeAllValue If specified, add a "all namespaces"
+	 * @param {string} config.namespace.includeAllValue If specified, add a "all namespaces"
 	 *     option to the dropdown, and use this as the input value for it
-	 * @cfg {Object} invert Configuration for the "invert selection" CheckboxInputWidget. If
+	 * @param {Object} config.invert Configuration for the "invert selection" CheckboxInputWidget. If
 	 *     null, the checkbox will not be generated.
-	 * @cfg {Object} associated Configuration for the "include associated namespace"
+	 * @param {Object} config.associated Configuration for the "include associated namespace"
 	 *     CheckboxInputWidget. If null, the checkbox will not be generated.
-	 * @cfg {Object} invertLabel Configuration for the FieldLayout with label wrapping the
+	 * @param {Object} config.invertLabel Configuration for the FieldLayout with label wrapping the
 	 *     "invert selection" checkbox
-	 * @cfg {string} invertLabel.label Label text for the label
-	 * @cfg {Object} associatedLabel Configuration for the FieldLayout with label wrapping
+	 * @param {string} config.invertLabel.label Label text for the label
+	 * @param {Object} config.associatedLabel Configuration for the FieldLayout with label wrapping
 	 *     the "include associated namespace" checkbox
-	 * @cfg {string} associatedLabel.label Label text for the label
+	 * @param {string} config.associatedLabel.label Label text for the label
 	 */
 	mw.widgets.ComplexNamespaceInputWidget = function MwWidgetsComplexNamespaceInputWidget( config ) {
 		// Configuration initialization

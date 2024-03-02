@@ -5,21 +5,26 @@
  */
 
 /**
+ * Configuration options
+ * @typedef {Object} mw.widgets.TableWidgetModel~Config
+ * @property {Array} [rows] An array of objects containing `key` and `label` properties for every row
+ * @property {Array} [cols] An array of objects containing `key` and `label` properties for every column
+ * @property {Array} [data] An array containing all values of the table
+ * @property {RegExp|Function|string} [validate] Validation pattern to apply on every cell
+ * @property {boolean} [showHeaders=true] Show table header row. Defaults to true.
+ * @property {boolean} [showRowLabels=true] Show row labels. Defaults to true.
+ * @property {boolean} [allowRowInsertion=true] Allow row insertion. Defaults to true.
+ * @property {boolean} [allowRowDeletion=true] Allow row deletion. Defaults to true.
+ */
+
+/**
  * TableWidget model.
  *
  * @class
  * @mixins OO.EventEmitter
  *
  * @constructor
- * @param {Object} [config] Configuration options
- * @cfg {Array} [rows] An array of objects containing `key` and `label` properties for every row
- * @cfg {Array} [cols] An array of objects containing `key` and `label` properties for every column
- * @cfg {Array} [data] An array containing all values of the table
- * @cfg {RegExp|Function|string} [validate] Validation pattern to apply on every cell
- * @cfg {boolean} [showHeaders=true] Show table header row. Defaults to true.
- * @cfg {boolean} [showRowLabels=true] Show row labels. Defaults to true.
- * @cfg {boolean} [allowRowInsertion=true] Allow row insertion. Defaults to true.
- * @cfg {boolean} [allowRowDeletion=true] Allow row deletion. Defaults to true.
+ * @param {mw.widgets.TableWidgetModel~Config} [config] Configuration options
  */
 mw.widgets.TableWidgetModel = function MwWidgetsTableWidgetModel( config ) {
 	config = config || {};

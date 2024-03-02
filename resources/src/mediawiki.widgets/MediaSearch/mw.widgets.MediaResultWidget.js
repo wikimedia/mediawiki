@@ -14,11 +14,11 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {number} [rowHeight] Height of the row this result is part of
-	 * @cfg {number} [maxRowWidth] A limit for the width of the row this
+	 * @param {number} [config.rowHeight] Height of the row this result is part of
+	 * @param {number} [config.maxRowWidth] A limit for the width of the row this
 	 *  result is a part of.
-	 * @cfg {number} [minWidth] Minimum width for the result
-	 * @cfg {number} [maxWidth] Maximum width for the result
+	 * @param {number} [config.minWidth] Minimum width for the result
+	 * @param {number} [config.maxWidth] Maximum width for the result
 	 */
 	mw.widgets.MediaResultWidget = function MwWidgetsMediaResultWidget( config ) {
 		// Configuration initialization

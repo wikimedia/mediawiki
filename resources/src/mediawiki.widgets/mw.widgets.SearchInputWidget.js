@@ -14,10 +14,10 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {boolean} [performSearchOnClick=true] If true, the script will start a search when-
+	 * @param {boolean} [config.performSearchOnClick=true] If true, the script will start a search when-
 	 *  ever a user hits a suggestion. If false, the text of the suggestion is inserted into the
 	 *  text field only.
-	 *  @cfg {string} [dataLocation='header'] Where the search input field will be
+	 * @param {string} [config.dataLocation='header'] Where the search input field will be
 	 *  used (header or content).
 	 */
 	mw.widgets.SearchInputWidget = function MwWidgetsSearchInputWidget( config ) {

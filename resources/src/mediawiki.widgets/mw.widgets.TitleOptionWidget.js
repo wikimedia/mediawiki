@@ -14,16 +14,16 @@
 	 *
 	 * @constructor
 	 * @param {Object} config Configuration options
-	 * @cfg {string} data Label to display
-	 * @cfg {string} url URL of page
-	 * @cfg {boolean} [showImages] Whether to attempt to show images
-	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
-	 * @cfg {string} [description] Page description
-	 * @cfg {boolean} [missing] Page doesn't exist
-	 * @cfg {boolean} [redirect] Page is a redirect
-	 * @cfg {boolean} [disambiguation] Page is a disambiguation page
-	 * @cfg {string} [query] Matching query string to highlight
-	 * @cfg {Function} [compare] String comparison function for query highlighting
+	 * @param {string} config.data Label to display
+	 * @param {string} config.url URL of page
+	 * @param {boolean} [config.showImages] Whether to attempt to show images
+	 * @param {string} [config.imageUrl] Thumbnail image URL with URL encoding
+	 * @param {string} [config.description] Page description
+	 * @param {boolean} [config.missing] Page doesn't exist
+	 * @param {boolean} [config.redirect] Page is a redirect
+	 * @param {boolean} [config.disambiguation] Page is a disambiguation page
+	 * @param {string} [config.query] Matching query string to highlight
+	 * @param {Function} [config.compare] String comparison function for query highlighting
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
 		var icon;

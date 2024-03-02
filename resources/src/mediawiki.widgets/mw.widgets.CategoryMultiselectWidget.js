@@ -33,9 +33,9 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {mw.Api} [api] Instance of mw.Api (or subclass thereof) to use for queries
-	 * @cfg {number} [limit=10] Maximum number of results to load
-	 * @cfg {mw.widgets.CategoryMultiselectWidget.SearchType[]} [searchTypes=[mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch]]
+	 * @param {mw.Api} [config.api] Instance of mw.Api (or subclass thereof) to use for queries
+	 * @param {number} [config.limit=10] Maximum number of results to load
+	 * @param {mw.widgets.CategoryMultiselectWidget.SearchType[]} [config.searchTypes=[mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch]]
 	 *   Default search API to use when searching.
 	 */
 	mw.widgets.CategoryMultiselectWidget = function MWCategoryMultiselectWidget( config ) {

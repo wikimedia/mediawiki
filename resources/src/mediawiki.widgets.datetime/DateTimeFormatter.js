@@ -10,15 +10,15 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [format='@default'] May be a key from the {@link #static-formats static formats},
+	 * @param {string} [config.format='@default'] May be a key from the {@link #static-formats static formats},
 	 *  or a format specification as defined by {@link #method-parseFieldSpec parseFieldSpec}
 	 *  and {@link #method-getFieldForTag getFieldForTag}.
-	 * @cfg {boolean} [local=false] Whether dates are local time or UTC
-	 * @cfg {string[]} [fullZones] Time zone indicators. Array of 2 strings, for
+	 * @param {boolean} [config.local=false] Whether dates are local time or UTC
+	 * @param {string[]} [config.fullZones] Time zone indicators. Array of 2 strings, for
 	 *  UTC and local time.
-	 * @cfg {string[]} [shortZones] Abbreviated time zone indicators. Array of 2
+	 * @param {string[]} [config.shortZones] Abbreviated time zone indicators. Array of 2
 	 *  strings, for UTC and local time.
-	 * @cfg {Date} [defaultDate] Default date, for filling unspecified components.
+	 * @param {Date} [config.defaultDate] Default date, for filling unspecified components.
 	 *  Defaults to the current date and time (with 0 milliseconds).
 	 */
 	mw.widgets.datetime.DateTimeFormatter = function MwWidgetsDatetimeDateTimeFormatter( config ) {

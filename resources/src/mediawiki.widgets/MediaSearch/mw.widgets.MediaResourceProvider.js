@@ -15,7 +15,7 @@
 	 * @constructor
 	 * @param {string} apiurl The API url
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [scriptDirUrl] The url of the API script
+	 * @param {string} [config.scriptDirUrl] The url of the API script
 	 */
 	mw.widgets.MediaResourceProvider = function MwWidgetsMediaResourceProvider( apiurl, config ) {
 		config = config || {};
