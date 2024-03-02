@@ -292,4 +292,15 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertUploadOk( $upload );
 	}
 
+	public function testUploadFromUrlCacheKey() {
+		// Test we get back a properly formatted sha1 key out
+		$key = UploadFromUrl::getCacheKey( [ 'filename' => 'test.png', 'url' => 'https://example.com/example.png' ] );
+		$this->assertNotEmpty( $key );
+		$this->assertMatchesRegularExpression( "/^[0-9a-f]{40}$/", $key );
+	}
+
+	public function testUploadFromUrlCacheKeyMissingParam() {
+		$this->assertSame( "", UploadFromUrl::getCacheKey( [] ) );
+	}
+
 }
