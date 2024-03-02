@@ -1672,19 +1672,19 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function testDoOperations() {
+	public function testDoOperationsSuccessful() {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestDoOperations();
+		$this->doTestDoOperationsSuccessful();
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestDoOperations();
+		$this->doTestDoOperationsSuccessful();
 		$this->tearDownFiles();
 	}
 
-	private function doTestDoOperations() {
+	private function doTestDoOperationsSuccessful() {
 		$base = self::baseStorePath();
 
 		$fileA = "$base/unittest-cont1/e/a/b/fileA.txt";

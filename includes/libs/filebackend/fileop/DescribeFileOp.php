@@ -30,11 +30,14 @@ class DescribeFileOp extends FileOp {
 		return [ [ 'src' ], [ 'headers' ], [ 'src' ] ];
 	}
 
-	protected function doPrecheck( array &$predicates ) {
+	protected function doPrecheck(
+		FileStatePredicates $opPredicates,
+		FileStatePredicates $batchPredicates
+	) {
 		$status = StatusValue::newGood();
 
 		// Check source file existence
-		$srcExists = $this->fileExists( $this->params['src'], $predicates );
+		$srcExists = $this->resolveFileExistence( $this->params['src'], $opPredicates );
 		if ( $srcExists === false ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 
@@ -46,11 +49,17 @@ class DescribeFileOp extends FileOp {
 		}
 
 		// Update file existence predicates since the operation is expected to be allowed to run
-		$predicates[self::ASSUMED_EXISTS][$this->params['src']] = $srcExists;
-		$predicates[self::ASSUMED_SIZE][$this->params['src']] =
-			$this->fileSize( $this->params['src'], $predicates );
-		$predicates[self::ASSUMED_SHA1][$this->params['src']] =
-			$this->fileSha1( $this->params['src'], $predicates );
+		$srcSize = function () use ( $opPredicates ) {
+			static $size = null;
+			$size ??= $this->resolveFileSize( $this->params['src'], $opPredicates );
+			return $size;
+		};
+		$srcSha1 = function () use ( $opPredicates ) {
+			static $sha1 = null;
+			$sha1 ??= $this->resolveFileSha1Base36( $this->params['src'], $opPredicates );
+			return $sha1;
+		};
+		$batchPredicates->assumeFileExists( $this->params['src'], $srcSize, $srcSha1 );
 
 		return $status; // safe to call attempt()
 	}

@@ -30,18 +30,19 @@ class DeleteFileOp extends FileOp {
 		return [ [ 'src' ], [ 'ignoreMissingSource' ], [ 'src' ] ];
 	}
 
-	protected function doPrecheck( array &$predicates ) {
+	protected function doPrecheck(
+		FileStatePredicates $opPredicates,
+		FileStatePredicates $batchPredicates
+	) {
 		$status = StatusValue::newGood();
 
 		// Check source file existence
-		$srcExists = $this->fileExists( $this->params['src'], $predicates );
+		$srcExists = $this->resolveFileExistence( $this->params['src'], $opPredicates );
 		if ( $srcExists === false ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
 				$this->cancelled = true; // no-op
 				// Update file existence predicates (cache 404s)
-				$predicates[self::ASSUMED_EXISTS][$this->params['src']] = false;
-				$predicates[self::ASSUMED_SIZE][$this->params['src']] = false;
-				$predicates[self::ASSUMED_SHA1][$this->params['src']] = false;
+				$batchPredicates->assumeFileDoesNotExist( $this->params['src'] );
 
 				return $status; // nothing to do
 			} else {
@@ -56,9 +57,7 @@ class DeleteFileOp extends FileOp {
 		}
 
 		// Update file existence predicates since the operation is expected to be allowed to run
-		$predicates[self::ASSUMED_EXISTS][$this->params['src']] = false;
-		$predicates[self::ASSUMED_SIZE][$this->params['src']] = false;
-		$predicates[self::ASSUMED_SHA1][$this->params['src']] = false;
+		$batchPredicates->assumeFileDoesNotExist( $this->params['src'] );
 
 		return $status; // safe to call attempt()
 	}
