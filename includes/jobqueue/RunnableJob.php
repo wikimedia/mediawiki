@@ -73,6 +73,9 @@ interface RunnableJob extends IJobSpecification {
 	public function getRequestId();
 
 	/**
+	 * @warning In some setups (i.e. when using change-propagation) jobs may
+	 *  still be retried even when this is false if the job fails due to a
+	 *  timeout unless it is also configured in change-prop config (T358939).
 	 * @return bool Whether this job can be retried on failure by job runners
 	 * @since 1.21
 	 */
