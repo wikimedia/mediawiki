@@ -156,9 +156,7 @@ TEXT
 			if ( $this->hasOption( 'previous-collation' ) ) {
 				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
 			} else {
-				$collationConds = [
-					0 => $this->dbr->expr( 'cl_collation', '!=', $this->collationName )
-				];
+				$collationConds[] = $this->dbr->expr( 'cl_collation', '!=', $this->collationName );
 			}
 		}
 		$maxPageId = (int)$this->dbr->newSelectQueryBuilder()
@@ -222,10 +220,8 @@ TEXT
 
 	/**
 	 * Update a set of rows in the categorylinks table
-	 *
-	 * @param IResultWrapper $res The rows to update
 	 */
-	private function updateBatch( $res ) {
+	private function updateBatch( IResultWrapper $res ) {
 		if ( !$this->dryRun ) {
 			$this->beginTransaction( $this->dbw, __METHOD__ );
 		}
@@ -234,12 +230,12 @@ TEXT
 			if ( !$row->cl_collation ) {
 				# This is an old-style row, so the sortkey needs to be
 				# converted.
-				if ( $row->cl_sortkey == $title->getText()
-					|| $row->cl_sortkey == $title->getPrefixedText()
+				if ( $row->cl_sortkey === $title->getText()
+					|| $row->cl_sortkey === $title->getPrefixedText()
 				) {
 					$prefix = '';
 				} else {
-					# Custom sortkey, use it as a prefix
+					# Custom sortkey, so use it as a prefix
 					$prefix = $row->cl_sortkey;
 				}
 			} else {
@@ -281,10 +277,8 @@ TEXT
 
 	/**
 	 * Copy a set of rows to the target table
-	 *
-	 * @param IResultWrapper $res
 	 */
-	private function copyBatch( $res ) {
+	private function copyBatch( IResultWrapper $res ) {
 		$sortKeyInputs = [];
 		foreach ( $res as $row ) {
 			$title = Title::newFromRow( $row );
@@ -327,10 +321,8 @@ TEXT
 
 	/**
 	 * Update the verbose statistics
-	 *
-	 * @param string $key
 	 */
-	private function updateSortKeySizeHistogram( $key ) {
+	private function updateSortKeySizeHistogram( string $key ) {
 		if ( !$this->verboseStats ) {
 			return;
 		}
@@ -349,7 +341,7 @@ TEXT
 			return;
 		}
 		$maxLength = max( array_keys( $this->sizeHistogram ) );
-		if ( $maxLength == 0 ) {
+		if ( $maxLength === 0 ) {
 			return;
 		}
 		$numBins = 20;
@@ -374,7 +366,7 @@ TEXT
 					break;
 				}
 			}
-			if ( $coarseIndex == $numBins - 1 ) {
+			if ( $coarseIndex === ( $numBins - 1 ) ) {
 				$coarseHistogram[$coarseIndex] += $val;
 			}
 			$raw .= $val;
@@ -389,10 +381,13 @@ TEXT
 			$val = $coarseHistogram[$coarseIndex] ?? 0;
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$boundary = $coarseBoundaries[$coarseIndex];
-			$this->output( sprintf( "%-10s %-10d |%s\n",
-				$prevBoundary . '-' . ( $boundary - 1 ) . ': ',
-				$val,
-				str_repeat( '*', $scale * $val ) ) );
+			$this->output(
+				sprintf( "%-10s %-10d |%s\n",
+					$prevBoundary . '-' . ( $boundary - 1 ) . ': ',
+					$val,
+					str_repeat( '*', $scale * $val )
+				)
+			);
 			$prevBoundary = $boundary;
 		}
 	}
