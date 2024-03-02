@@ -973,7 +973,7 @@ class ApiUpload extends ApiBase {
 		$this->log->info( "Upload stashing of {filename} failed for {user} because {error}",
 			[
 				'user' => $this->getUser()->getName(),
-				'status' => get_class( $e ),
+				'error' => get_class( $e ),
 				'filename' => $this->mParams['filename'] ?? '-',
 				'filekey' => $this->mParams['filekey'] ?? '-'
 			]
