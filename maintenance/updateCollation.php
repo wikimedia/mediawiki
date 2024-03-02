@@ -457,7 +457,7 @@ TEXT
 		$this->output( "Sort key size histogram\nRaw data: $raw\n\n" );
 
 		$maxBinVal = max( $coarseHistogram );
-		$scale = 60 / $maxBinVal;
+		$scale = (int)( 60 / $maxBinVal );
 		$prevBoundary = 0;
 		for ( $coarseIndex = 0; $coarseIndex < $numBins; $coarseIndex++ ) {
 			$val = $coarseHistogram[$coarseIndex] ?? 0;
