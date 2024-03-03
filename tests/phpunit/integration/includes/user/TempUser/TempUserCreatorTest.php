@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\User\TempUser;
 
 use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\CentralId\CentralIdLookup;
@@ -162,5 +163,23 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( '*Unregistered active aardvark', $name );
 		$name = $creator->acquireAndStashName( $session );
 		$this->assertSame( '*Unregistered active aardvark', $name );
+	}
+
+	public function testRateLimit() {
+		$this->enableAutoCreateTempUser();
+		$this->overrideConfigValue( 'AccountCreationThrottle', [
+			'count' => 10,
+			'seconds' => 86400
+		] );
+		$this->overrideConfigValue( 'TempAccountCreationThrottle', [
+			'count' => 1,
+			'seconds' => 86400
+		] );
+		$tuc = $this->getServiceContainer()->getTempUserCreator();
+		$status = $tuc->create( null, new FauxRequest() );
+		$this->assertSame( '*Unregistered 1', $status->getUser()->getName() );
+		$status = $tuc->create( null, new FauxRequest() );
+		// TODO: Use new message key (T357777, T357802)
+		$this->assertStatusError( 'acct_creation_throttle_hit', $status );
 	}
 }

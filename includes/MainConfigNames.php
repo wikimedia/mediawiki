@@ -2907,6 +2907,12 @@ class MainConfigNames {
 	public const AccountCreationThrottle = 'AccountCreationThrottle';
 
 	/**
+	 * Name constant for the TempAccountCreationThrottle setting, for use with Config::get()
+	 * @see MainConfigSchema::TempAccountCreationThrottle
+	 */
+	public const TempAccountCreationThrottle = 'TempAccountCreationThrottle';
+
+	/**
 	 * Name constant for the SpamRegex setting, for use with Config::get()
 	 * @see MainConfigSchema::SpamRegex
 	 */

@@ -8449,7 +8449,8 @@ class MainConfigSchema {
 	 *
 	 * @note For backwards compatibility reasons, this may also be given as a single
 	 *       integer, representing the number of account creations per day.
-	 *
+	 * @see self::TempAccountCreationThrottle for the temporary accounts version of
+	 *       this throttle
 	 * @warning Requires $wgMainCacheType to be enabled
 	 */
 	public const AccountCreationThrottle = [
@@ -8458,6 +8459,39 @@ class MainConfigSchema {
 			'seconds' => 86400,
 		] ],
 		'type' => 'int|list',
+	];
+
+	/**
+	 * Number of temporary accounts each IP address may create per specified period(s).
+	 *
+	 * **Example:**
+	 *
+	 * ```
+	 * $wgTempAccountCreationThrottle = [
+	 *  // no more than 100 per month
+	 *  [
+	 *   'count' => 100,
+	 *   'seconds' => 30*86400,
+	 *  ],
+	 *  // no more than 6 per day
+	 *  [
+	 *   'count' => 6,
+	 *   'seconds' => 86400,
+	 *  ],
+	 * ];
+	 * ```
+	 *
+	 * @see self::AccountCreationThrottle for the regular account version of this throttle.
+	 * @warning Requires $wgMainCacheType to be enabled
+	 *
+	 * @since 1.42
+	 */
+	public const TempAccountCreationThrottle = [
+		'default' => [ [
+			'count' => 6,
+			'seconds' => 86400,
+		] ],
+		'type' => 'list',
 	];
 
 	/**
