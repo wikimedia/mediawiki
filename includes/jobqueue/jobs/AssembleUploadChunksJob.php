@@ -22,7 +22,6 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
-use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -31,9 +30,9 @@ use Wikimedia\ScopedCallback;
  * @ingroup Upload
  * @ingroup JobQueue
  */
-class AssembleUploadChunksJob extends Job {
-	public function __construct( Title $title, array $params ) {
-		parent::__construct( 'AssembleUploadChunks', $title, $params );
+class AssembleUploadChunksJob extends Job implements GenericParameterJob {
+	public function __construct( array $params ) {
+		parent::__construct( 'AssembleUploadChunks', $params );
 		$this->removeDuplicates = true;
 	}
 
