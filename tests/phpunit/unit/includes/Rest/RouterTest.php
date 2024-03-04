@@ -13,10 +13,14 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\Router;
+use MediaWiki\Rest\StringStream;
+use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWikiUnitTestCase;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Throwable;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @covers \MediaWiki\Rest\Router
@@ -270,6 +274,95 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 		$uri = new Uri( $url );
 		$this->assertStringContainsString( $expectedUrl, $uri );
+	}
+
+	public function testHandlerDisablesBodyParsing() {
+		// This is valid JSON, but not an object.
+		// Automatic parsing will fail, since it re	requires
+		// an array to be returned.
+		$payload = '"just a test"';
+
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/stream' ),
+			'method' => 'PUT',
+			'bodyContents' => $payload,
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		$responseStream = $response->getBody();
+		$this->assertSame( $payload, "$responseStream" );
+	}
+
+	/**
+	 * Asserts that handlers can use a custom BodyValidator to add support for
+	 * additional mime types, without overriding parseBodyData(). This ensures
+	 * backwards compatibility with extensions that are not yet aware of
+	 * parseBodyData().
+	 */
+	public function testCustomBodyValidator() {
+		// This is valid JSON, but not an object.
+		// Automatic parsing will fail, since it re	requires
+		// an array to be returned.
+		$payload = '{ "test": "yes" }';
+
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/old-body-validator' ),
+			'method' => 'PUT',
+			'bodyContents' => $payload,
+			'headers' => [ "content-type" => 'application/json-patch+json' ]
+		] );
+
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+	}
+
+	public static function streamHandlerFactory() {
+		return new class extends Handler {
+			public function parseBodyData( RequestInterface $request ): ?array {
+				// Disable parsing
+				return null;
+			}
+
+			public function execute() {
+				Assert::assertNull( $this->getRequest()->getParsedBody() );
+				$body = $this->getRequest()->getBody();
+				$response = $this->getResponseFactory()->create();
+				$response->setBody( new StringStream( "$body" ) );
+				return $response;
+			}
+		};
+	}
+
+	public static function oldBodyValidatorFactory() {
+		return new class extends Handler {
+			public function getBodyValidator( $contentType ) {
+				if ( $contentType !== 'application/json-patch+json' ) {
+					throw new HttpException(
+						"Unsupported Content-Type",
+						415,
+					);
+				}
+
+				return new JsonBodyValidator( [
+					'test' => [
+						ParamValidator::PARAM_REQUIRED => true,
+						static::PARAM_SOURCE => 'body',
+					]
+				] );
+			}
+
+			public function execute() {
+				$body = $this->getValidatedBody();
+				Assert::assertIsArray( $body );
+				Assert::assertArrayHasKey( 'test', $body );
+				return "";
+			}
+		};
 	}
 
 	public function testGetRequestFailsWithBody() {

@@ -9,6 +9,16 @@
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
 	},
 	{
+		"method": [ "POST", "PUT" ],
+		"path": "/mock/RouterTest/stream",
+		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::streamHandlerFactory"
+	},
+	{
+		"method": [ "POST", "PUT" ],
+		"path": "/mock/RouterTest/old-body-validator",
+		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::oldBodyValidatorFactory"
+	},
+	{
 		"path": "/mock/EntryPoint/header",
 		"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
 	},
