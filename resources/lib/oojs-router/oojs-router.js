@@ -1,12 +1,12 @@
 /*!
- * OOjs Router v0.4.0
+ * OOjs Router v0.5.0
  * https://www.mediawiki.org/wiki/OOjs_Router
  *
  * Copyright 2011-2024 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-03-01T14:46:25Z
+ * Date: 2024-03-04T20:48:16Z
  */
 ( function ( $ ) {
 
@@ -19,10 +19,10 @@
  * @extends OO.Registry
  */
 OO.Router = function OoRouter() {
-	var router = this;
+	const router = this;
 
 	// Parent constructor
-	OO.Router.parent.call( this );
+	OO.Router.super.call( this );
 
 	this.enabled = true;
 	this.oldHash = this.getPath();
@@ -37,7 +37,7 @@ OO.Router = function OoRouter() {
 
 	this.on( 'hashchange', function () {
 		// event.originalEvent.newURL is undefined on Android 2.x
-		var routeEvent;
+		let routeEvent;
 
 		if ( router.enabled ) {
 			routeEvent = $.Event( 'route', {
@@ -97,8 +97,9 @@ OO.Router.static.isSupported = function () {
  * Check the current route and run appropriate callback if it matches.
  */
 OO.Router.prototype.checkRoute = function () {
-	var id, entry, match,
-		hash = this.getPath();
+	const hash = this.getPath();
+
+	let id, entry, match;
 
 	for ( id in this.registry ) {
 		entry = this.registry[ id ];
@@ -125,8 +126,9 @@ OO.Router.prototype.checkRoute = function () {
  * that matches.
  */
 OO.Router.prototype.addRoute = function ( path, callback ) {
-	var entry = {
+	const entry = {
 		path: typeof path === 'string' ?
+			// eslint-disable-next-line security/detect-non-literal-regexp
 			new RegExp( '^' + path.replace( /[\\^$*+?.()|[\]{}]/g, '\\$&' ) + '$' ) :
 			path,
 		callback: callback
@@ -183,11 +185,11 @@ OO.Router.prototype.navigate = function ( path ) {
  * @return {jQuery.Promise} Promise which resolves when the back navigation is complete
  */
 OO.Router.prototype.back = function () {
-	var timeoutID,
-		router = this,
+	const router = this,
 		deferred = $.Deferred();
 
 	this.once( 'popstate', function () {
+	// eslint-disable-next-line no-use-before-define
 		clearTimeout( timeoutID );
 		deferred.resolve();
 	} );
@@ -200,7 +202,7 @@ OO.Router.prototype.back = function () {
 	// and resolving the deferred request for them individually.
 	// See https://connect.microsoft.com/IE/feedback/details/793618/history-back-popstate-not-working-as-expected-in-webview-control
 	// Give browser a few ms to update its history.
-	timeoutID = setTimeout( function () {
+	const timeoutID = setTimeout( function () {
 		router.off( 'popstate' );
 		deferred.resolve();
 	}, 50 );

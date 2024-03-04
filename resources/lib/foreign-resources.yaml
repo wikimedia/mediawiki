@@ -350,10 +350,10 @@ oojs-router:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOjs_Router
   authors: OOjs Team and other contributors
-  version: 0.4.0
+  version: 0.5.0
   type: tar
-  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.4.0.tgz
-  integrity: sha384-do9NyRuQD+dlWmCJenCQWODQzlV8vK6H+8E4BneIsFZJ2w/V+1XL+2lLe5X6NpTJ
+  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.5.0.tgz
+  integrity: sha384-DhU20g/ayQzVWBjtflLRbk+deM1YBsIvYzjFthUOfQCXrYWJLH9bgm12eQZsC1gy
   dest:
     package/dist/oojs-router.js:
     package/LICENSE:
