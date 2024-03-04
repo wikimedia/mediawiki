@@ -43,23 +43,25 @@ abstract class FileOp {
 	/** @var array */
 	protected $params = [];
 
-	/** @var int */
+	/** @var int Stage in the operation life-cycle */
 	protected $state = self::STATE_NEW;
-	/** @var bool */
+	/** @var bool Whether the operation pre-check or attempt stage failed */
 	protected $failed = false;
-	/** @var bool */
+	/** @var bool Whether the operation is part of a concurrent sub-batch of operation */
 	protected $async = false;
-	/** @var bool */
-	protected $cancelled = false;
+	/** @var bool Whether the operation pre-check stage marked the attempt stage as a no-op */
+	protected $noOp = false;
 
 	/** @var bool|null */
 	protected $overwriteSameCase;
 	/** @var bool|null */
 	protected $destExists;
 
-	/* Object life-cycle */
+	/** Operation has not yet been pre-checked nor run */
 	private const STATE_NEW = 1;
+	/** Operation has been pre-checked but not yet attempted */
 	private const STATE_CHECKED = 2;
+	/** Operation has been attempted */
 	private const STATE_ATTEMPTED = 3;
 
 	/**
@@ -235,7 +237,7 @@ abstract class FileOp {
 			return StatusValue::newFatal( 'fileop-fail-attempt-precheck' );
 		}
 		$this->state = self::STATE_ATTEMPTED;
-		if ( $this->cancelled ) {
+		if ( $this->noOp ) {
 			$status = StatusValue::newGood(); // no-op
 		} else {
 			$status = $this->doAttempt();

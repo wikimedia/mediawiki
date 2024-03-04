@@ -44,7 +44,7 @@ class MoveFileOp extends FileOp {
 		$srcExists = $this->resolveFileExistence( $this->params['src'], $opPredicates );
 		if ( $srcExists === false ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
-				$this->cancelled = true; // no-op
+				$this->noOp = true; // no-op
 				// Update file existence predicates (cache 404s)
 				$batchPredicates->assumeFileDoesNotExist( $this->params['src'] );
 
