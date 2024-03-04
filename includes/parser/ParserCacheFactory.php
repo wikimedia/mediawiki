@@ -32,6 +32,7 @@ use MediaWiki\Title\TitleFactory;
 use ParserCache;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -59,7 +60,7 @@ class ParserCacheFactory {
 	/** @var JsonCodec */
 	private $jsonCodec;
 
-	/** @var IBufferingStatsdDataFactory */
+	/** @var IBufferingStatsdDataFactory|StatsFactory */
 	private $stats;
 
 	/** @var LoggerInterface */
@@ -96,7 +97,7 @@ class ParserCacheFactory {
 	 * @param WANObjectCache $revisionOutputCacheBackend
 	 * @param HookContainer $hookContainer
 	 * @param JsonCodec $jsonCodec
-	 * @param IBufferingStatsdDataFactory $stats
+	 * @param IBufferingStatsdDataFactory|StatsFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param ServiceOptions $options
 	 * @param TitleFactory $titleFactory
@@ -108,7 +109,7 @@ class ParserCacheFactory {
 		WANObjectCache $revisionOutputCacheBackend,
 		HookContainer $hookContainer,
 		JsonCodec $jsonCodec,
-		IBufferingStatsdDataFactory $stats,
+		$stats,
 		LoggerInterface $logger,
 		ServiceOptions $options,
 		TitleFactory $titleFactory,
