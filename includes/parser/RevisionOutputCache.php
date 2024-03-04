@@ -33,6 +33,7 @@ use MediaWiki\Utils\MWTimestamp;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -67,7 +68,7 @@ class RevisionOutputCache {
 	/** @var JsonCodec */
 	private $jsonCodec;
 
-	/** @var IBufferingStatsdDataFactory */
+	/** @var IBufferingStatsdDataFactory|StatsFactory */
 	private $stats;
 
 	/** @var LoggerInterface */
@@ -81,7 +82,7 @@ class RevisionOutputCache {
 	 * @param int $cacheExpiry Expiry for ParserOutput in $cache.
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
 	 * @param JsonCodec $jsonCodec
-	 * @param IBufferingStatsdDataFactory $stats
+	 * @param IBufferingStatsdDataFactory|StatsFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
@@ -91,7 +92,7 @@ class RevisionOutputCache {
 		int $cacheExpiry,
 		string $cacheEpoch,
 		JsonCodec $jsonCodec,
-		IBufferingStatsdDataFactory $stats,
+		$stats,
 		LoggerInterface $logger,
 		GlobalIdGenerator $globalIdGenerator
 	) {
@@ -111,7 +112,19 @@ class RevisionOutputCache {
 	 */
 	private function incrementStats( string $status, string $reason = null ) {
 		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
-		$this->stats->increment( "RevisionOutputCache.{$this->name}.{$metricSuffix}" );
+
+		if ( $this->stats instanceof StatsFactory ) {
+			$this->stats->getCounter( 'RevisionOutputCache_operation_total' )
+				->setLabel( 'name', $this->name )
+				->setLabel( 'status', $status )
+				->setLabel( 'reason', $reason ?: 'n/a' )
+				->copyToStatsdAt( "RevisionOutputCache.{$this->name}.{$metricSuffix}" )
+				->increment();
+		}
+
+		if ( $this->stats instanceof IBufferingStatsdDataFactory ) {
+			$this->stats->increment( "RevisionOutputCache.{$this->name}.{$metricSuffix}" );
+		}
 	}
 
 	/**
