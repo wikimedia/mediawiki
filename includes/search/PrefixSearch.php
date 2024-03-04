@@ -24,7 +24,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\OrExpressionGroup;
@@ -278,15 +277,15 @@ abstract class PrefixSearch {
 		// but sometimes there are two if some namespaces do not always capitalize.
 		$conds = [];
 		foreach ( $prefixes as $prefix => $namespaces ) {
-			$condition = [ $dbr->expr( 'page_namespace', '=', $namespaces ) ];
+			$expr = $dbr->expr( 'page_namespace', '=', $namespaces );
 			if ( $prefix !== '' ) {
-				$condition[] = $dbr->expr(
+				$expr = $expr->and(
 					'page_title',
 					IExpression::LIKE,
 					new LikeValue( $prefix, $dbr->anyString() )
 				);
 			}
-			$conds[] = new AndExpressionGroup( ...$condition );
+			$conds[] = $expr;
 		}
 
 		$queryBuilder = $dbr->newSelectQueryBuilder()
