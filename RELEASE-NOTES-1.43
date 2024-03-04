@@ -142,6 +142,13 @@ because of Phabricator reports.
 
 * Class aliases to support the old PHPUnit 4 style un-namespaced `PHPUnit_`
   classes (such as PHPUnit_Framework_Error) have been removed.
+* [Temporary accounts] If $wgAutoCreateTempUser is enabled, then MediaWiki
+  will create a temporary account and log the user in for unsuccessful edit
+  attempts and null edits, in addition to edits that change content. This is
+  a change from the previous paradigm, where temporary accounts were created
+  only for successful edits. This change is done to support better logging
+  support and moderation, to ensure that hooks run in a pre-save context have
+  a user object to associate log entries and other actions with.
 * …
 
 == Compatibility ==

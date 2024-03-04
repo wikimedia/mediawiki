@@ -81,7 +81,6 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -804,35 +803,26 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * If automatic user creation is enabled, create the user and adjust the
-	 * PageUpdater so that it has the new user/actor ID.
+	 * If automatic user creation is enabled, create the user.
 	 *
-	 * This is a helper for internalAttemptSave(). The name should have already
-	 * been acquired at this point for PST purposes, but if not, it will be
-	 * acquired here.
+	 * This is a helper for internalAttemptSave().
 	 *
 	 * If the edit is a null edit, the user will not be created.
 	 *
-	 * @param PageUpdater $pageUpdater
 	 * @return Status
 	 */
-	private function createTempUser( PageUpdater $pageUpdater ) {
+	private function createTempUser(): Status {
 		if ( !$this->tempUserCreateActive ) {
 			return Status::newGood();
 		}
-		if ( !$pageUpdater->isChange() ) {
-			$pageUpdater->preventChange();
-			return Status::newGood();
-		}
 		$status = $this->tempUserCreator->create(
-			$this->tempUserName, // acquire if null
+			$this->tempUserName,
 			$this->context->getRequest()
 		);
 		if ( $status->isOK() ) {
 			$this->placeholderTempUser = null;
 			$this->unsavedTempUser = null;
 			$this->savedTempUser = $status->getUser();
-			$pageUpdater->updateAuthor( $status->getUser() );
 			$this->tempUserCreateDone = true;
 		}
 		return $status;
@@ -2018,6 +2008,26 @@ class EditPage implements IEditObject {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
+		// If an attempt to acquire a temporary name failed, don't attempt to do anything else.
+		if ( $this->unableToAcquireTempName ) {
+			$status = Status::newFatal( 'temp-user-unable-to-acquire' );
+			$status->value = self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT;
+			return $status;
+		}
+		// Auto-create the temporary account user, if the feature is enabled.
+		// We create the account before any constraint checks or edit hooks fire, to ensure
+		// that we have an actor and user account that can be used for any logs generated
+		// by the edit attempt, and to ensure continuity in the user experience (if a constraint
+		// denies an edit to a logged-out user, that history should be associated with the
+		// eventually successful account creation)
+		$tempAccountStatus = $this->createTempUser();
+		if ( !$tempAccountStatus->isOK() ) {
+			return $tempAccountStatus;
+		}
+		if ( $tempAccountStatus instanceof CreateStatus ) {
+			$result['savedTempUser'] = $tempAccountStatus->getUser();
+		}
+
 		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseNPPatrol );
 		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
 		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
@@ -2038,12 +2048,6 @@ class EditPage implements IEditObject {
 			# ...or the hook could be expecting us to produce an error
 			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return $status;
-		}
-
-		if ( $this->unableToAcquireTempName ) {
-			$status = Status::newFatal( 'temp-user-unable-to-acquire' );
-			$status->value = self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT;
 			return $status;
 		}
 
@@ -2460,15 +2464,6 @@ class EditPage implements IEditObject {
 			return Status::wrap( $failed->getLegacyStatus() );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
-
-		// Auto-create the user if that is enabled
-		$status = $this->createTempUser( $pageUpdater );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		if ( $status instanceof CreateStatus ) {
-			$result['savedTempUser'] = $status->getUser();
-		}
 
 		if ( $this->undidRev && $this->isUndoClean( $content ) ) {
 			// As the user can change the edit's content before saving, we only mark
