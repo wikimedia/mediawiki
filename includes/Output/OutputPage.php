@@ -725,18 +725,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Copy content overrides (added via addContentOverride() or addContentOverrideCallback())
-	 * from another OutputPage object.
-	 * @param OutputPage $source
-	 * @since 1.42
-	 */
-	public function copyContentOverridesFrom( OutputPage $source ): void {
-		$this->contentOverrides = array_merge( $this->contentOverrides, $source->contentOverrides );
-		$this->contentOverrideCallbacks = array_merge( $this->contentOverrideCallbacks,
-			$source->contentOverrideCallbacks );
-	}
-
-	/**
 	 * Add a class to the <html> element. This should rarely be used.
 	 * Instead use OutputPage::addBodyClasses() if possible.
 	 *
@@ -3396,11 +3384,7 @@ class OutputPage extends ContextSource {
 		) );
 	}
 
-	/**
-	 * @return RL\Context|RL\DerivativeContext
-	 * @internal for use by IframeSandbox only
-	 */
-	public function getRlClientContext() {
+	private function getRlClientContext() {
 		if ( !$this->rlClientContext ) {
 			$query = ResourceLoader::makeLoaderQuery(
 				[], // modules; not relevant

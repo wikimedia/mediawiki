@@ -440,7 +440,6 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'FileDuplicateSearch' ],
 	'Filepath'                  => [ 'FilePath' ],
 	'GoToInterwiki'             => [ 'GoToInterwiki' ],
-	'IframeError'               => [ 'IframeError' ],
 	'Import'                    => [ 'Import' ],
 	'Invalidateemail'           => [ 'InvalidateEmail' ],
 	'JavaScriptTest'            => [ 'JavaScriptTest' ],

@@ -147,7 +147,6 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Filduplikatsøk' ],
 	'Filepath'                  => [ 'Filsti' ],
 	'GoToInterwiki'             => [ 'Gå_til_interwiki' ],
-	'IframeError'               => [ 'Iframe-feil' ],
 	'Import'                    => [ 'Importer' ],
 	'Invalidateemail'           => [ 'Ugyldiggjør_e-post', 'Ugyldiggjøre_e-post' ],
 	'JavaScriptTest'            => [ 'JavaScript-test' ],
