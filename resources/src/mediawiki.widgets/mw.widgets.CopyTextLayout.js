@@ -13,8 +13,10 @@
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @param {string} [config.successMessage=mw-widgets-copytextlayout-copy-success] Success message
- * @param {string} [config.failMessage=mw-widgets-copytextlayout-copy-fail] Failure message
+ * @param {string} [config.successMessage] Success message,
+ *  defaults to the {@link mw.Message} 'mw-widgets-copytextlayout-copy-success'.
+ * @param {string} [config.failMessage] Failure message,
+ *  defaults to the {@link mw.Message} 'mw-widgets-copytextlayout-copy-fail'.
  */
 mw.widgets.CopyTextLayout = function MwWidgetsCopyTextLayout( config ) {
 	// Parent constructor

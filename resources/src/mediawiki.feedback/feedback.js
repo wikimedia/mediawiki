@@ -48,7 +48,8 @@
 	 *  bugs can be posted
 	 * @param {boolean} [config.showUseragentCheckbox=false] Show a Useragent agreement checkbox as part of the form.
 	 * @param {boolean} [config.useragentCheckboxMandatory=false] Make the Useragent checkbox mandatory.
-	 * @param {string|jQuery} [config.useragentCheckboxMessage="feedback-terms"] Supply a custom message for the useragent checkbox.
+	 * @param {string|jQuery} [config.useragentCheckboxMessage] Supply a custom message for the useragent checkbox.
+	 *  Defaults to the {@link mw.Message} 'feedback-terms'.
 	 */
 	mw.Feedback = function MwFeedback( config ) {
 		config = config || {};
