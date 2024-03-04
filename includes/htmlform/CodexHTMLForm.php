@@ -54,8 +54,7 @@ class CodexHTMLForm extends HTMLForm {
 	 * @inheritDoc
 	 */
 	protected function formatField( HTMLFormField $field, $value ) {
-		// The "cdx-..." classes are added magically in the Html class. :(
-		return $field->getVForm( $value );
+		return $field->getCodex( $value );
 	}
 
 	protected function getFormAttributes() {

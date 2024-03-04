@@ -86,6 +86,19 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Same as getInputHTML, but for Codex. This is called by CodexHTMLForm.
+	 *
+	 * If not overridden, falls back to getInputHTML.
+	 *
+	 * @param string $value
+	 * @return string HTML
+	 */
+	public function getInputCodex( $value ) {
+		// If not overridden, fall back to getInputHTML()
+		return $this->getInputHTML( $value );
+	}
+
+	/**
 	 * True if this field type is able to display errors; false if validation errors need to be
 	 * displayed in the main HTMLForm error area.
 	 * @stable to override
@@ -783,6 +796,46 @@ abstract class HTMLFormField {
 		}
 
 		return $this->getFieldLayoutOOUI( $inputField, $config );
+	}
+
+	/**
+	 * Get the Codex version of the div.
+	 * @since 1.42
+	 *
+	 * @param string $value The value to set the input to.
+	 * @return string HTML
+	 */
+	public function getCodex( $value ) {
+		// TODO this is mostly copied from getDiv(), we need to customize this for Codex
+		// This should use a Codex CSS-only Field component instead (T359021)
+		[ $errors, $errorClass ] = $this->getErrorsAndErrorClass( $value );
+		$inputHtml = $this->getInputCodex( $value );
+		$fieldType = $this->getClassName();
+		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
+		$label = $this->getLabelHtml();
+
+		$outerDivClass = [
+			'mw-input',
+			'mw-htmlform-nolabel' => ( $label === '' )
+		];
+
+		$field = Html::rawElement(
+			'div',
+			[ 'class' => $outerDivClass ],
+			$inputHtml . "\n$errors"
+		);
+
+		$wrapperAttributes = [ 'class' => [
+			"mw-htmlform-field-$fieldType",
+			$this->mClass,
+			$errorClass,
+		] ];
+		if ( $this->mCondState ) {
+			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
+			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
+		}
+		return Html::rawElement( 'div', $wrapperAttributes, $label . $field ) .
+			$helptext;
 	}
 
 	/**
