@@ -88,5 +88,43 @@ module.exports = {
 			reason: 'browser test done',
 			token: adminBot.editToken
 		} );
+	},
+
+	/**
+	 * Assign a new user group to the given username.
+	 *
+	 * @since 2.7.0
+	 * @param {MWBot} adminBot
+	 * @param {string} username
+	 * @param {string} groupName
+	 */
+	async addUserToGroup( adminBot, username, groupName ) {
+		const userGroupsResponse = await adminBot.request( {
+			action: 'query',
+			list: 'users',
+			usprop: 'groups',
+			ususers: username,
+			formatversion: 2
+		} );
+
+		if (
+			userGroupsResponse.query.users.length &&
+                        userGroupsResponse.query.users[ 0 ].groups.includes( groupName )
+		) {
+			return;
+		}
+		const tokenResponse = await adminBot.request( {
+			action: 'query',
+			meta: 'tokens',
+			type: 'userrights'
+		} );
+		await adminBot.request( {
+			action: 'userrights',
+			user: username,
+			token: tokenResponse.query.tokens.userrightstoken,
+			add: groupName,
+			reason: 'Selenium testing'
+		} );
+		// If there is an error, the above already throws.
 	}
 };
