@@ -98,7 +98,8 @@
 			"Kitayama",
 			"Amire80",
 			"André Costa (WMSE)",
-			"Ludvig Broman"
+			"Ludvig Broman",
+			"Kakan spelar"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -1079,7 +1080,7 @@
 	"searchall": "alla",
 	"showingresults": "Nedan visas upp till {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resultat}} från och med nummer <strong>$2</strong>.",
 	"showingresultsinrange": "Nedan visas upp till {{PLURAL:$3|<strong>1</strong> resultat|<strong>$1</strong> resultat}} mellan nummer <strong>$2</strong> och nummer <strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> av <strong>$3</strong>|Resultat <strong>$1 – $2</strong> av <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> av <strong>$3</strong>|Resultat <strong>$1–$2</strong> av <strong>$3</strong>}}",
 	"search-nonefound": "Inga resultat matchade frågan.",
 	"search-nonefound-thiswiki": "Det fanns inga resultat som matchade frågan på den här webbplatsen.",
 	"powersearch-legend": "Avancerad sökning",

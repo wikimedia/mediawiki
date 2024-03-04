@@ -197,7 +197,9 @@
 			"Googology",
 			"Anterdc99",
 			"XtexChooser",
-			"Dream Star.cn"
+			"Dream Star.cn",
+			"Aaron Liu",
+			"Olvcpr423"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -879,11 +881,11 @@
 	"editingsection": "编辑“$1”（章节）",
 	"editingcomment": "编辑“$1”（新章节）",
 	"editconflict": "编辑冲突：$1",
-	"explainconflict": "其他用户在您开始编辑后更改了该页面。\n上面的文本区含有该页面当前的文字。\n下面的文本区显示您的更改。\n您必须把您的更改合并至现有文本。\n<strong>只有</strong>当您点击“$1”后，上面文本区中的文本才会被发布。",
+	"explainconflict": "其他用户在您开始编辑后更改了该页面。下方第一个文本区含有该页面当前的文本，第二个文本区显示您的更改。您需要把自己的更改合并至现有文本。在您点击“$1”后，<strong>只会</strong>发布第一个文本区中的文本。",
 	"yourtext": "您的文本",
 	"storedversion": "已保存的版本",
 	"editingold": "<strong>警告：您正在编辑的是本页面的旧版本。</strong>如果您发布该更改，该版本后的所有更改都会丢失。",
-	"unicode-support-fail": "看起来您的浏览器不支持Unicode。需要Unicode才能编辑页面，所以您的编辑无法发布。",
+	"unicode-support-fail": "您的浏览器似乎不支持Unicode。需要Unicode才能编辑页面，所以您的编辑无法发布。",
 	"yourdiff": "差异",
 	"copyrightwarning": "请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。如果您不希望您的文字被任意修改和再散布，请不要提交。<br />\n您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源。\n<strong>未经许可，请勿提交受版权保护的作品！</strong>",
 	"copyrightwarning2": "请注意，您对{{SITENAME}}的所有贡献都可能被其他贡献者编辑，修改或删除。如果您不希望您的文字被任意修改和再散布，请不要提交。<br />\n您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源（参阅$1的细节）。\n<strong>未经许可，请勿提交受版权保护的作品！</strong>",
@@ -3839,7 +3841,7 @@
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|命名空间}}$2",
 	"logentry-partialblock-block-action": "{{PLURAL:$1|操作}}$2",
 	"logentry-partialblock-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}对$7的编辑，到期时间为$5$6",
-	"logentry-partialblock-reblock": "$1{{GENDER:$2|已更改}}{{GENDER:$4|$3}}在$7的封禁设定，终止时间至$5 $6",
+	"logentry-partialblock-reblock": "$1{{GENDER:$2|已更改}}{{GENDER:$4|$3}}在$7的封禁设置，终止时间至$5 $6",
 	"logentry-non-editing-block-block": "$1{{GENDER:$2|已封锁}}{{GENDER:$4|$3}}的指定非编辑操作，终止时间为$5 $6",
 	"logentry-non-editing-block-reblock": "$1{{GENDER:$2|已更改}}对{{GENDER:$4|$3}}指定非编辑操作的封禁设定，终止时间为$5 $6",
 	"logentry-suppress-block": "$1{{GENDER:$2|已封禁}}{{GENDER:$4|$3}}，到期时间为$5$6",

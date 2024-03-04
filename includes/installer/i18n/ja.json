@@ -33,7 +33,8 @@
 			"아라",
 			"背番号4のエース",
 			"Kokage si",
-			"Ant176"
+			"Ant176",
+			"もなー(偽物)"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -248,10 +249,14 @@
 	"config-logo-summary": "これらの各欄について、適切なサイズの画像をアップロードし、以下のボックスに URL を入力する必要があります。ロゴがそれらのパスに対して相対的である場合は、<code>$wgStylePath</code> または <code>$wgScriptPath</code> を使用できます。これらのボックスのいずれかを空欄のままにしておくこともできます。",
 	"config-logo-preview-main": "メインページ",
 	"config-logo-icon": "ロゴ（アイコン）",
+	"config-logo-icon-help": "ロゴアイコンは四角形ある必要があります。\nまた、50px以上またはSVGであることを推奨します。",
 	"config-logo-wordmark": "ワードマーク (任意):",
 	"config-logo-wordmark-help": "サイト名。未入力の場合は、テキストを使用します。30pxもしくはそれ以下のサイズのSVGが望ましいです。",
 	"config-logo-tagline": "タグライン (任意):",
+	"config-logo-tagline-help": "サイトのキャッチコピー（サブタイトル）です。\n上でロゴタイプを定義した場合にのみ使用されます。\n定義されていない場合、通常の文に戻ります。\nキャッチコピーとロゴタイプの縦の長さは合計50pxを越えないでください。",
 	"config-logo-sidebar": "サイドバーのロゴ (任意):",
+	"config-logo-filedrop": "ここに画像ファイルをドロップしてください",
+	"config-logo-sidebar-help": "一部のMediaWikiのスキンは、サイドバーの一部として 160pxの高さのロゴを含んでいます。\n定義されていない場合、これは上記で定義されたアイコンと同じものになります。\nロゴタイプとアイコンが組み合わさった専用の画像を用意することをおすすめします。",
 	"config-instantcommons": "Instant Commons 機能を有効にする",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] は、[https://commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトにある画像、音声、その他のメディアをウィキ上で利用できるようにする機能です。\nこれを使用するには、MediaWiki がインターネットに接続できる必要があります。\n\nウィキメディア・コモンズ以外のウィキを同様に設定する手順など、この機能に関する詳細な情報は、[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos マニュアル]をご覧ください。",
 	"config-cc-error": "クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。\nライセンスの名前を手動で入力してください。",

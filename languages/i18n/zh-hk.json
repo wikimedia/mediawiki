@@ -166,7 +166,7 @@
 	"userlogin-loggedin": "您目前的用戶帳號為{{GENDER:$1|$1}}。請使用下列表單登錄另一用戶帳號。",
 	"wrongpassword": "您輸入的用戶名或密碼有錯誤，請再試一次。",
 	"pt-login": "登入",
-	"pt-createaccount": "建立賬號",
+	"pt-createaccount": "建立帳號",
 	"botpasswords": "機械人密碼",
 	"botpasswords-summary": "<em>機械人密碼</em>可在不使用帳號的主要登入密碼情況下，允許透過API存取用戶帳號。使用機械人密碼登入的用戶權限或會有所限制。\n\n若你並非必須設定此密碼，你便不應使用此功能。任何人都不會索取你的機械人密碼。",
 	"botpasswords-disabled": "機械人密碼已停用。",

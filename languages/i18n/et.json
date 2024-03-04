@@ -742,7 +742,7 @@
 	"modeleditnotsupported-text": "Sisumudeli $1 redigeerimise tugi puudub.",
 	"permissionserrors": "Loatõrge",
 	"permissionserrorstext": "Sul pole õigust seda teha {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:",
-	"permissionserrorstext-withaction": "Sul pole lubatud {{lcfirst:$2}} {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:",
+	"permissionserrorstext-withaction": "Sul pole lubatud $2 {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:",
 	"contentmodelediterror": "Sa ei saa seda redaktsiooni redigeerida, sest selle sisumudel <code>$1</code> erineb lehekülje praegusest sisumudelist <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Hoiatus: Lood uuesti lehekülge, mis on varem kustutatud.'''\n\nKaalu, kas lehekülje uuesti loomine on kohane.\nLehekülje eelnevad kustutamised ja teisaldamised:",
 	"moveddeleted-notice": "Seda lehekülge pole.\nAllpool on ära toodud selle lehekülje sissekanded teisaldamis-, kaitsmis- ja kustutamislogis.",

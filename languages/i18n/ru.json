@@ -186,7 +186,9 @@
 			"Света Поторочина",
 			"Rich Flight22",
 			"SaldırganSincap",
-			"Butko"
+			"Butko",
+			"Bashkorttan",
+			"Nkomarov"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2490,11 +2492,11 @@
 	"unwatching": "Удаление из списка наблюдения…",
 	"enotif_reset": "Отметить все страницы как просмотренные",
 	"enotif_impersonal_salutation": "Участник {{grammar:genitive|{{SITENAME}}}}",
-	"enotif_subject_deleted": "Страница проекта «{{SITENAME}}» с именем «$1» была удалена {{gender:$2|участником|участницей}} $2",
-	"enotif_subject_created": "Страница проекта «{{SITENAME}}» с именем «$1» была создана {{gender:$2|участником|участницей}} $2",
-	"enotif_subject_moved": "Страница проекта «{{SITENAME}}» с именем «$1» была переименована {{gender:$2|участником|участницей}} $2",
-	"enotif_subject_restored": "Страница проекта «{{SITENAME}}» с именем «$1» была восстановлена {{gender:$2|участником|участницей}} $2",
-	"enotif_subject_changed": "Страница проекта «{{SITENAME}}» с именем «$1» была изменена {{gender:$2|участником|участницей}} $2",
+	"enotif_subject_deleted": "Страница «$1» в проекте «{{SITENAME}}» удалена {{gender:$2|участником|участницей}} $2",
+	"enotif_subject_created": "Страница «$1» проекта «{{SITENAME}}» создана {{gender:$2|участником|участницей}} $2",
+	"enotif_subject_moved": "Страница «$1» проекта «{{SITENAME}}» переименована {{gender:$2|участником|участницей}} $2",
+	"enotif_subject_restored": "Страница «$1» проекта «{{SITENAME}}» восстановлена {{gender:$2|участником|участницей}} $2",
+	"enotif_subject_changed": "Страница «$1» проекта «{{SITENAME}}» изменена {{gender:$2|участником|участницей}} $2",
 	"enotif_body_intro_deleted": "$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была удалена страница проекта «{{SITENAME}}» с именем «$1», см. $3.",
 	"enotif_body_intro_created": "$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была создана страница проекта «{{SITENAME}}» с именем «$1», см. текущую версию по ссылке: $3",
 	"enotif_body_intro_moved": "$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была переименована страница проекта «{{SITENAME}}» с именем «$1», см. текущую версию по ссылке: $3",

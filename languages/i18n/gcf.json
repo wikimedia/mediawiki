@@ -8,7 +8,8 @@
 			"Laetitia Kb",
 			"LeGuyanaisPure",
 			"McDutchie",
-			"Mixeur"
+			"Mixeur",
+			"Jazminah"
 		]
 	},
 	"tog-underline": "Soulinyman a lyann",
@@ -46,6 +47,7 @@
 	"tog-watchlisthidepatrolled": "Kaché modifikasyon moun ja ba kat zyé an lis-an-ka-véyé an-mwen la",
 	"tog-watchlisthidecategorization": "Kaché katégorizasyon a sé paj-la",
 	"tog-ccmeonemails": "Voyé-mwen kopi a email an voyé a sé lézòt itilizatè",
+	"tog-diffonly": "Pa montré enfòmasyon ki ni asi sé paj-la anba dif-la",
 	"tog-showhiddencats": "Montré katégori ki kaché",
 	"tog-useeditwarning": "Di-mwen lè an ka kité on modifikasyon a on paj san an anréjistré sé modifikasyon-lasa",
 	"tog-prefershttps": "Toujou sèvi èvè on konnéksyon sékirizé lè an konnékté",
@@ -248,6 +250,7 @@
 	"red-link-title": "$1 (lapaj-la pa ka ègzisté)",
 	"sort-descending": "Tri dékwasan",
 	"sort-ascending": "Tri kwasan",
+	"sort-initial": "Tri inisyal",
 	"nstab-main": "Paj",
 	"nstab-user": "{{GENDER:$1|Paj a itilizatè}}",
 	"nstab-media": "Paj a médya",

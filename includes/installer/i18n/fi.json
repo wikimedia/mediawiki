@@ -121,6 +121,7 @@
 	"config-db-prefix": "Tietokantataulujen etuliite (ei väliviivoja):",
 	"config-db-prefix-help": "Jos tietokantaa käytetään useammalle wikille tai MediaWikille ja muille sovelluksille, suositellaan käytettäväksi tauluissa etuliitettä, joilla ne erotetaan toisistaan ja vältetään näin virheitä.\nÄlä käytä välilyöntejä.\n\nYleensä tämä kenttä jätetään tyhjäksi.",
 	"config-mysql-old": "MediaWiki tarvitsee MySQL:n version $1 tai uudemman. Nykyinen versio on $2.",
+	"config-mariadb-old": "MediaWiki tarvitsee MariaDB:n version $1 tai uudemman. Nykyinen versio on $2.",
 	"config-db-port": "Tietokannan portti:",
 	"config-db-schema": "MediaWikin rakenne (ei väliviivoja):",
 	"config-db-schema-help": "Tämä rakenne on normaalisti toimiva.\nMuuta rakennetta vain, mikäli on pakko ja tiedät, mitä teet.",
