@@ -4,7 +4,6 @@ namespace MediaWiki\Rest\Handler;
 
 use FormatJson;
 use IApiMessage;
-use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Revision\RevisionRecord;
@@ -59,7 +58,7 @@ class UpdateHandler extends EditHandler {
 	 */
 	public function getBodyValidator( $contentType ) {
 		if ( $contentType !== 'application/json' ) {
-			throw new HttpException( "Unsupported Content-Type",
+			throw new LocalizedHttpException( new MessageValue( "rest-unsupported-content-type", [ $contentType ] ),
 				415,
 				[ 'content_type' => $contentType ]
 			);
