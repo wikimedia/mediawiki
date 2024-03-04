@@ -172,27 +172,27 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		];
 	}
 
-	public static function provideGetStyles() {
+	public static function provideGetLogoStyles() {
 		return [
 			[
-				'parent' => [],
+				'features' => [],
 				'logo' => '/logo.png',
 				'expected' => [
 					'all' => [ '.mw-wiki-logo { background-image: url(/logo.png); }' ],
 				],
 			],
 			[
-				'parent' => [
+				'features' => [
 					'screen' => '.example {}',
 				],
 				'logo' => '/logo.png',
 				'expected' => [
-					'screen' => [ '.example {}' ],
+					'screen' => '.example {}',
 					'all' => [ '.mw-wiki-logo { background-image: url(/logo.png); }' ],
 				],
 			],
 			[
-				'parent' => [],
+				'features' => [],
 				'logo' => [
 					'1x' => '/logo.png',
 					'1.5x' => '/logo@1.5x.png',
@@ -211,7 +211,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 				],
 			],
 			[
-				'parent' => [],
+				'features' => [],
 				'logo' => [
 					'1x' => '/logo.png',
 					'svg' => '/logo.svg',
@@ -228,15 +228,13 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetStyles
+	 * @dataProvider provideGetLogoStyles
 	 */
-	public function testGetStyles( $parent, $logo, $expected ) {
+	public function testGenerateAndAppendLogoStyles( $features, $logo, $expected ) {
 		$module = $this->getMockBuilder( SkinModule::class )
-			->onlyMethods( [ 'readStyleFiles', 'getLogoData' ] )
+			->onlyMethods( [ 'getLogoData' ] )
 			->getMock();
-		$module->expects( $this->once() )->method( 'readStyleFiles' )
-			->willReturn( $parent );
-		$module->expects( $this->once() )->method( 'getLogoData' )
+		$module->expects( $this->atLeast( 1 ) )->method( 'getLogoData' )
 			->willReturn( $logo );
 		$module->setConfig( new HashConfig( [
 			MainConfigNames::ParserEnableLegacyMediaDOM => false,
@@ -246,7 +244,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 
 		$this->assertEquals(
 			$expected,
-			$module->getStyles( $ctx )
+			$module->generateAndAppendLogoStyles( $features, $ctx )
 		);
 	}
 
@@ -529,111 +527,99 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		}
 	}
 
-	public static function provideGetStyleFilesFeatureStylesOrder() {
+	public static function getSkinFeaturePath( $feature, $mediaType ) {
 		global $IP;
-		$featureFiles = ( new ReflectionClass( SkinModule::class ) )
-			->getConstant( 'FEATURE_FILES' );
+		$featureFiles = ( new ReflectionClass( SkinModule::class ) )->getConstant( 'FEATURE_FILES' );
+		return new FilePath( $featureFiles[ $feature ][ $mediaType ][ 0 ], $IP, '/w' );
+	}
 
-		$normalizePath = new FilePath(
-			$featureFiles['normalize']['all'][0],
-			$IP,
-			'/w'
-		);
-		$elementsPath = new FilePath(
-			$featureFiles['elements']['screen'][0],
-			$IP,
-			'/w'
-		);
-		$cbPath = new FilePath(
-			$featureFiles['content-body']['screen'][0],
-			$IP,
-			'/w'
-		);
-
+	public static function provideGetFeatureFilePathsOrder() {
 		return [
-			[
-				[ 'elements', 'normalize' ],
 				[
-					'test.styles/styles.css' => [
-						'media' => 'screen'
-					]
-				],
-				[ $normalizePath ],
-				[ $elementsPath, 'test.styles/styles.css' ],
-				'opt-out by default policy results in correct order'
-			],
-			[
-				[
-					'accessibility' => false,
-					'content-body' => false,
-					'elements' => true,
-					'normalize' => true,
-					'interface-core' => false,
-					'toc' => false,
+					'The "logo" skin-feature is loaded when the "features" key is absent',
+					[],
+					[
+						'all' => [ self::getSkinFeaturePath( 'logo', 'all' ) ],
+						'print' => [ self::getSkinFeaturePath( 'logo', 'print' ) ],
+					],
 				],
 				[
-					'test.styles/styles.css' => [
-						'media' => 'screen'
-					]
-				],
-				[ $normalizePath ],
-				[ $elementsPath, 'test.styles/styles.css' ],
-				'opt-in by default policy results in correct order'
-			],
-
-			[
-				[ 'content-parser-output' ],
-				[ 'test.styles/all.css' ],
+					'The "normalize" skin-feature is always output first',
+					[
+						'features' => [ 'elements', 'normalize' ],
+					],
+					[
+						'all' => [ self::getSkinFeaturePath( 'normalize', 'all' ) ],
+						'screen' => [ self::getSkinFeaturePath( 'elements', 'screen' ) ],
+						'print' => [ self::getSkinFeaturePath( 'elements', 'print' ) ],
+					],
 				[
-					$cbPath
+					'Empty media query blocks are not included in output',
+					[
+						'features' => [
+							'accessibility' => false,
+							'content-body' => false,
+							'interface-core' => false,
+							'toc' => false
+						],
+					],
+					[
+						'' => [ '' ],
+					],
 				],
-				[
-					'test.styles/all.css'
+				[ 'Empty "features" key outputs default skin-features',
+					[
+						'features' => [],
+					],
+					[
+						'all' => [
+							self::getSkinFeaturePath( 'accessibility', 'all' ),
+							self::getSkinFeaturePath( 'toc', 'all' )
+						],
+						'screen' => [
+							self::getSkinFeaturePath( 'content-body', 'screen' ),
+							self::getSkinFeaturePath( 'interface-core', 'screen' ),
+							self::getSkinFeaturePath( 'toc', 'screen' ),
+						],
+						'print' => [
+							self::getSkinFeaturePath( 'content-body', 'print' ),
+							self::getSkinFeaturePath( 'interface-core', 'print' ),
+							self::getSkinFeaturePath( 'toc', 'print' )
+						]
+					],
 				],
-				'content-parser-output mapped to content-body styles'
-			],
-
-			[
-				[ 'normalize' ],
-				[ 'test.styles/styles.css' => [ 'media' => 'screen' ] ],
-				[ $normalizePath ],
-				[ 'test.styles/styles.css' ],
-				'module provided styles come after skin defined'
-			],
+				[ 'skin-features are output in the order defined in SkinModule.php',
+					[
+						'features' => [ 'interface-message-box', 'normalize', 'accessibility' ],
+					],
+					[
+						'all' => [
+							self::getSkinFeaturePath( 'accessibility', 'all' ),
+							self::getSkinFeaturePath( 'normalize', 'all' ),
+							self::getSkinFeaturePath( 'interface-message-box', 'all' )
+						],
+					],
+				]
+			]
 		];
 	}
 
 	/**
-	 * @dataProvider provideGetStyleFilesFeatureStylesOrder
-	 * @param array $features
-	 * @param array $styles
-	 * @param array $expectedAllStyles array of styles
-	 * @param array $expectedScreenStyles array of styles
+	 * @dataProvider provideGetFeatureFilePathsOrder
 	 * @param string $msg to show for debugging
+	 * @param array $skinModuleConfig
+	 * @param array $expectedStyleOrder
 	 */
-	public function testGetStyleFilesFeatureStylesOrder(
-		$features, $styles, $expectedAllStyles, $expectedScreenStyles, $msg
+	public function testGetFeatureFilePathsOrder(
+		$msg, $skinModuleConfig, $expectedStyleOrder
 	): void {
-		$ctx = $this->createMock( Context::class );
-		$module = new SkinModule(
-			[
-				// The ordering should be controlled by SkinModule
-				// `normalize` will be outputted before `elements` despite the ordering
-				'features' => $features,
-				'styles' => $styles,
-			]
-		);
+		$module = new SkinModule( $skinModuleConfig );
 		$module->setConfig( self::getMinimalConfig() );
 
-		$expected = [
-			'all' => $expectedAllStyles,
-			'screen' => $expectedScreenStyles,
-		];
+		$actual = $module->getFeatureFilePaths();
 
-		$actual = $module->getStyleFiles( $ctx );
-		unset( $actual['print'] ); // not testing print for now
 		$this->assertEquals(
-			array_values( $expected ),
+			array_values( $expectedStyleOrder ),
 			array_values( $actual )
 		);
 	}
@@ -651,7 +637,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 		];
 
-		yield 'disbled unknown' => [
+		yield 'disabled unknown' => [
 			[
 				'logo' => true,
 				'toc' => false,

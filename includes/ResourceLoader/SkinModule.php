@@ -378,14 +378,11 @@ class SkinModule extends LessVarFileModule {
 	}
 
 	/**
-	 * Get styles defined in the module definition, plus any enabled feature styles.
+	 * Get styles defined in the module definition.
 	 *
-	 * @param Context $context
-	 * @return string[][]
+	 * @return array
 	 */
-	public function getStyleFiles( Context $context ) {
-		$styles = parent::getStyleFiles( $context );
-
+	public function getFeatureFilePaths() {
 		// Bypass the current module paths so that these files are served from core,
 		// instead of the individual skin's module directory.
 		[ $defaultLocalBasePath, $defaultRemoteBasePath ] =
@@ -450,16 +447,71 @@ class SkinModule extends LessVarFileModule {
 				}
 			}
 		}
+		return $featureFilePaths;
+	}
 
-		// Styles defines in options are added to the $featureFilePaths to ensure
-		// that $featureFilePaths styles precede module defined ones.
-		// This is particularly important given the `normalize` styles need to be the first
-		// outputted (see T269618).
-		foreach ( $styles as $mediaType => $paths ) {
-			$featureFilePaths[$mediaType] = array_merge( $featureFilePaths[$mediaType] ?? [], $paths );
+	/**
+	 * Combines feature styles and parent skin styles, ensuring that all
+	 * feature styles are output *first*, followed by skin related styles.
+	 *
+	 * @param array $featureStyles
+	 * @param array $parentStyles
+	 *
+	 * @return array
+	 */
+	private function combineFeatureAndParentStyles( $featureStyles, $parentStyles ) {
+		$combinedFeatureStyles = ResourceLoader::makeCombinedStyles( $featureStyles );
+		$combinedParentStyles = ResourceLoader::makeCombinedStyles( $parentStyles );
+		$combinedStyles = array_merge( $combinedFeatureStyles, $combinedParentStyles );
+		return [ '' => $combinedStyles ];
+	}
+
+	/**
+	 * Generates CSS for .mw-logo-logo styles and appends them
+	 * to the skin feature styles array.
+	 * @param array $featureStyles
+	 * @param Context $context
+	 * @return array
+	 */
+	public function generateAndAppendLogoStyles( $featureStyles, $context ) {
+		$logo = $this->getLogoData( $this->getConfig(), $context->getLanguage() );
+		$default = !is_array( $logo ) ? $logo : ( $logo['svg'] ?? $logo['1x'] ?? null );
+
+		// Can't add logo CSS if no logo defined.
+		if ( !$default ) {
+			return $featureStyles;
 		}
 
-		return $featureFilePaths;
+		$featureStyles['all'][] = '.mw-wiki-logo { background-image: ' .
+			CSSMin::buildUrlValue( $default ) .
+			'; }';
+
+		if ( is_array( $logo ) ) {
+			if ( isset( $logo['svg'] ) ) {
+				$featureStyles['all'][] = '.mw-wiki-logo { ' .
+					'background-size: 135px auto; }';
+			} else {
+				if ( isset( $logo['1.5x'] ) ) {
+					$featureStyles[
+						'(-webkit-min-device-pixel-ratio: 1.5), ' .
+						'(min-resolution: 1.5dppx), ' .
+						'(min-resolution: 144dpi)'
+					][] = '.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
+						'background-size: 135px auto; }';
+				}
+				if ( isset( $logo['2x'] ) ) {
+					$featureStyles[
+						'(-webkit-min-device-pixel-ratio: 2), ' .
+						'(min-resolution: 2dppx), ' .
+						'(min-resolution: 192dpi)'
+					][] = '.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
+						'background-size: 135px auto; }';
+				}
+			}
+		}
+		return $featureStyles;
 	}
 
 	/**
@@ -467,49 +519,19 @@ class SkinModule extends LessVarFileModule {
 	 * @return array
 	 */
 	public function getStyles( Context $context ) {
-		$logo = $this->getLogoData( $this->getConfig(), $context->getLanguage() );
-		$styles = parent::getStyles( $context );
-		$this->normalizeStyles( $styles );
+		$parentStyles = parent::getStyles( $context );
+		$featureFilePaths = $this->getFeatureFilePaths();
+		$featureStyles = $this->readStyleFiles( $featureFilePaths, $context );
+
+		$this->normalizeStyles( $featureStyles );
+		$this->normalizeStyles( $parentStyles );
 
 		$isLogoFeatureEnabled = in_array( 'logo', $this->features );
 		if ( $isLogoFeatureEnabled ) {
-			$default = !is_array( $logo ) ? $logo : ( $logo['svg'] ?? $logo['1x'] ?? null );
-			// Can't add logo CSS if no logo defined.
-			if ( !$default ) {
-				return $styles;
-			}
-			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $default ) .
-				'; }';
-
-			if ( is_array( $logo ) ) {
-				if ( isset( $logo['svg'] ) ) {
-					$styles['all'][] = '.mw-wiki-logo { ' .
-						'background-size: 135px auto; }';
-				} else {
-					if ( isset( $logo['1.5x'] ) ) {
-						$styles[
-							'(-webkit-min-device-pixel-ratio: 1.5), ' .
-							'(min-resolution: 1.5dppx), ' .
-							'(min-resolution: 144dpi)'
-						][] = '.mw-wiki-logo { background-image: ' .
-							CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
-							'background-size: 135px auto; }';
-					}
-					if ( isset( $logo['2x'] ) ) {
-						$styles[
-							'(-webkit-min-device-pixel-ratio: 2), ' .
-							'(min-resolution: 2dppx), ' .
-							'(min-resolution: 192dpi)'
-						][] = '.mw-wiki-logo { background-image: ' .
-							CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
-							'background-size: 135px auto; }';
-					}
-				}
-			}
+			$featureStyles = $this->generateAndAppendLogoStyles( $featureStyles, $context );
 		}
 
-		return $styles;
+		return $this->combineFeatureAndParentStyles( $featureStyles, $parentStyles );
 	}
 
 	/**
