@@ -45,7 +45,7 @@
 	"rest-page-source-type-error": "不支持请求的页面源的内容类型",
 	"rest-no-revision": "无法检索标题$1的修订",
 	"rest-media-too-many-links": "标题$1有过多媒体链接（允许$2个）",
-	"rest-html-backend-error": "无法抓取 Parsoid HTML",
+	"rest-html-backend-error": "无法获取 Parsoid HTML：$1",
 	"rest-bad-json-body": "无效请求正文，其必须是 JSON 对象。",
 	"rest-json-body-parse-error": "将请求正文解析成 JSON 时失败：$1",
 	"rest-missing-body-field": "请求正文缺失必填变量“$1”。",

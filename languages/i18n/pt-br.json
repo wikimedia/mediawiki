@@ -757,7 +757,7 @@
 	"edit-recovery-special-intro-empty": "Não há mudanças sem salvar.",
 	"edit-recovery-special-view": "visualizar",
 	"edit-recovery-special-edit": "editar",
-	"edit-recovery-special-recovered-on": "Recuperado em $1",
+	"edit-recovery-special-recovered-on": "de $1",
 	"edit-recovery-loaded-title": "Mudanças recuperadas",
 	"edit-recovery-loaded-message": "As suas mudanças ainda não salvadas foram recuperadas automaticamente.",
 	"edit-recovery-loaded-show": "Mostrar alterações",

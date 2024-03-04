@@ -3445,6 +3445,7 @@
 	"scarytranscludefailed-httpstatus": "[$1に対してテンプレートの取得に失敗しました: HTTP $2]",
 	"scarytranscludetoolong": "[URLが長すぎます]",
 	"deletedwhileediting": "<strong>警告:</strong> このページが、編集開始後に削除されました!",
+	"editedwhiledeleting": "削除しようとしているページが編集されており、内容が更新されています。削除する前に確認してください。",
 	"confirmrecreate": "あなたが編集を開始した後、[[User:$1|$1]] ([[User talk:$1|トーク]]) がこのページを以下の理由で{{GENDER:$1|削除しました}}:\n: <em>$2</em>\nこのままこのページを本当に再作成していいか確認してください。",
 	"confirmrecreate-noreason": "あなたが編集を開始した後、[[User:$1|$1]] ([[User talk:$1|トーク]]) がこのページを{{GENDER:$1|削除しました}}。このページを本当に再作成していいかご確認ください。",
 	"recreate": "再作成する",

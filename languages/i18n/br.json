@@ -1036,6 +1036,7 @@
 	"prefs-searchmisc": "Hollek",
 	"searchprefs": "Klask er penndibaboù",
 	"searchprefs-noresults": "Disoc'h ebet",
+	"searchprefs-results": "$1 {{PLURAL:$1|disoc'h|zisoc'h|a zisoc'hoù}}",
 	"saveprefs": "Enrollañ ar penndibaboù",
 	"restoreprefs": "Adlakaat an holl arventennoù dre ziouer",
 	"prefs-editing": "Prenestr skridaozañ",

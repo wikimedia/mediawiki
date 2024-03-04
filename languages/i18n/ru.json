@@ -1267,6 +1267,7 @@
 	"prefs-searchmisc": "Общие",
 	"searchprefs": "Искать по настройкам",
 	"searchprefs-noresults": "Ничего не найдено",
+	"searchprefs-results": "$1 {{PLURAL:$1|результат|результата|результатов}}",
 	"saveprefs": "Сохранить",
 	"restoreprefs": "Восстановить все настройки по умолчанию",
 	"prefs-editing": "Редактирование",

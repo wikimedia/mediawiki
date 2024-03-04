@@ -708,7 +708,7 @@
 	"apihelp-query+categorymembers-param-endsortkey": "Usar $1endhexsortkey in su loco.",
 	"apihelp-query+categorymembers-example-simple": "Obtener le prime 10 paginas in <kbd>Category:Physics</kbd>.",
 	"apihelp-query+categorymembers-example-generator": "Obtener information de pagina sur le prime 10 paginas in <kbd>Category:Physics</kbd>.",
-	"apihelp-query+contributors-summary": "Obtener le lista de contributores authenticate e le numero de contributores anonyme de un pagina.",
+	"apihelp-query+contributors-summary": "Obtener le lista de contributores authenticate e le numero de contributores non authenticate de un pagina.",
 	"apihelp-query+contributors-param-group": "Includer solmente le usatores in le gruppos date. Non include gruppos implicite o auto-promovite como *, user, o autoconfirmed.",
 	"apihelp-query+contributors-param-excludegroup": "Excluder usatores in le gruppos date. Non include gruppos implicite o auto-promovite como *, user, o autoconfirmed.",
 	"apihelp-query+contributors-param-rights": "Includer solmente le usatores con le derectos date. Non include derectos concedite per gruppos implicite o auto-promovite como *, user, o autoconfirmed.",

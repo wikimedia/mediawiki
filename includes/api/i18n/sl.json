@@ -160,6 +160,8 @@
 	"apihelp-query+blocks-param-prop": "Katere lastnosti naj se pridobijo:",
 	"apihelp-query+blocks-param-show": "Prikaži samo predmete, ki ustrezajo tem merilom.\nNa primer za ogled samo neomejenih blokiranj IP-naslovov nastavite <kbd>$1show=ip|!temp</kbd>.",
 	"apihelp-query+categorymembers-param-sort": "Lastnost za razvrščanje.",
+	"apihelp-query+contributors-summary": "Pridobitev seznama prijavljenih sodelavcev in števila odjavljenih sodelavcev na strani.",
+	"apihelp-query+contributors-summary-tempusers-enabled": "Pridobitev seznama prijavljenih sodelavcev (vključno z začasnimi uporabniki) in števila odjavljenih sodelavcev na strani.",
 	"apihelp-query+contributors-example-simple": "Prikaže sodelavce strani <kbd>[[{{MediaWiki:Mainpage}}]]</kbd>.",
 	"apihelp-query+deletedrevisions-example-titles": "Navedba izbrisanih redakcij strani [[{{MediaWiki:Mainpage}}]] in njene pogovorne strani z vsebino.",
 	"apihelp-query+deletedrevs-param-namespace": "Navedi samo strani v tem imenskem prostoru.",
