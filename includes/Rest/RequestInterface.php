@@ -37,7 +37,21 @@ use Psr\Http\Message\UriInterface;
  * A request interface similar to PSR-7's ServerRequestInterface
  */
 interface RequestInterface {
-	// RequestInterface
+	/** @var string[] HTTP request methods that we expect never to have a payload */
+	public const NO_BODY_METHODS = [ 'GET', 'HEAD' ];
+
+	/** @var string[] HTTP request methods that we expect always to have a payload */
+	public const BODY_METHODS = [ 'POST', 'PUT' ];
+
+	// NOTE: per RFC 7231 (https://www.rfc-editor.org/rfc/rfc7231#section-4.3.5), sending a body
+	// with the DELETE method "has no defined semantics". We allow it, as it is useful for
+	// passing the csrf token required by some authentication methods.
+
+	/** @var string[] Content types handled via $_POST */
+	public const FORM_DATA_CONTENT_TYPES = [
+		'application/x-www-form-urlencoded',
+		'multipart/form-data',
+	];
 
 	/**
 	 * Retrieves the HTTP method of the request.

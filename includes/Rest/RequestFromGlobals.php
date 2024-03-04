@@ -101,4 +101,5 @@ class RequestFromGlobals extends RequestBase {
 	public function getPostParams() {
 		return $_POST;
 	}
+
 }
