@@ -26,7 +26,6 @@ use MediaWiki\MediaWikiServices;
 use StringUtils;
 use TextContent;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\LikeValue;
@@ -360,21 +359,19 @@ class LinkFilter {
 				array_pop( $trimmedlikeDomain );
 			}
 			$index1 = implode( '', $trimmedlikeDomain );
-			$thisDomainConditions = [];
 			if ( $options['oneWildcard'] && $likePath[0] != '/' ) {
-				$thisDomainConditions[] = $db->expr( 'el_to_domain_index', '=', $index1 );
+				$thisDomainExpr = $db->expr( 'el_to_domain_index', '=', $index1 );
 			} else {
-				$thisDomainConditions[] = $db->expr(
+				$thisDomainExpr = $db->expr(
 					'el_to_domain_index',
 					IExpression::LIKE,
 					new LikeValue( $index1, $db->anyString() )
 				);
 			}
 			foreach ( $domainGaps[$index1] ?? [] as $from => $to ) {
-				$thisDomainConditions[] = $db->expr( 'el_id', '<', $from )->or( 'el_id', '>', $to );
+				$thisDomainExpr = $thisDomainExpr->andExpr( $db->expr( 'el_id', '<', $from )->or( 'el_id', '>', $to ) );
 			}
-			$domainConditions[] = new AndExpressionGroup( ...$thisDomainConditions );
-
+			$domainConditions[] = $thisDomainExpr;
 		}
 		if ( !$domainConditions ) {
 			return false;
