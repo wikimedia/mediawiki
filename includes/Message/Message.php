@@ -193,6 +193,12 @@ class Message implements MessageSpecifier, Serializable {
 	protected $language = null;
 
 	/**
+	 * @var callable|null A callable which returns the current user language,
+	 *   or null to get it from global state.
+	 */
+	protected $userLangCallback;
+
+	/**
 	 * @var string The message key. If $keysToTry has more than one element,
 	 * this may change to one of the keys to try when fetching the message text.
 	 */
@@ -400,7 +406,13 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function getLanguage() {
 		// Defaults to null which means current user language
-		return $this->language ?? RequestContext::getMain()->getLanguage();
+		if ( $this->language !== null ) {
+			return $this->language;
+		} elseif ( $this->userLangCallback ) {
+			return ( $this->userLangCallback )();
+		} else {
+			return RequestContext::getMain()->getLanguage();
+		}
 	}
 
 	/**
@@ -831,9 +843,11 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return self $this
 	 */
 	public function setContext( IContextSource $context ) {
-		$this->inLanguage( $context->getLanguage() );
+		$this->userLangCallback = static function () use ( $context ) {
+			return $context->getLanguage();
+		};
+		$this->inUserLanguage();
 		$this->page( $context->getTitle() );
-		$this->interface = true;
 
 		return $this;
 	}
@@ -870,6 +884,24 @@ class Message implements MessageSpecifier, Serializable {
 			$this->message = null;
 		}
 		$this->interface = false;
+		return $this;
+	}
+
+	/**
+	 * Request the message in the user's current language, overriding any
+	 * explicit language that was previously set. Set the interface flag to
+	 * true.
+	 *
+	 * @since 1.42
+	 * @return $this
+	 */
+	public function inUserLanguage(): self {
+		if ( $this->language ) {
+			// The language has changed. Clear the message cache.
+			$this->message = null;
+		}
+		$this->language = null;
+		$this->interface = true;
 		return $this;
 	}
 

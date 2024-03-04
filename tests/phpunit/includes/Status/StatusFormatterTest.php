@@ -433,4 +433,22 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	public function testUserLanguageNotLoaded() {
+		// Confirm that the user language is not loaded from the database when
+		// formatting an error in a specific language
+		$this->getServiceContainer()->disableService( 'UserOptionsLookup' );
+		$context = RequestContext::getMain();
+		$user = new User;
+		$user->setName( 'Test' );
+		$context->setUser( $user );
+		$this->getServiceContainer()
+			->getFormatterFactory()
+			->getStatusFormatter( RequestContext::getMain() )
+			->getWikiText(
+				StatusValue::newFatal( 'apierror-badquery' ),
+				[ 'lang' => 'en' ]
+			);
+		$this->assertTrue( true );
+	}
+
 }
