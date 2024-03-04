@@ -1060,6 +1060,18 @@ abstract class Module implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Whether to skip the structure test ResourcesTest::testRespond() for this
+	 * module.
+	 *
+	 * @since 1.42
+	 * @stable to override
+	 * @return bool
+	 */
+	public function shouldSkipStructureTest() {
+		return $this->getGroup() === self::GROUP_PRIVATE;
+	}
+
+	/**
 	 * Validate a user-provided JavaScript blob.
 	 *
 	 * @param string $fileName

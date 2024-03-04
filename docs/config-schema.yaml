@@ -3512,6 +3512,9 @@ config-schema:
             - es6 `{boolean}`:
               Since: MW 1.36; ignored since MW 1.41.
               Default: `true`
+             - skipStructureTest `{boolean}`:
+              Whether to skip ResourcesTest::testRespond(). Since MW 1.42.
+              Default: `false`.
             ## Examples
             **Example: Using an alternate subclass**
             ```

@@ -5620,6 +5620,11 @@ class MainConfigSchema {
 	 *
 	 *   Default: `true`
 	 *
+	 *  - skipStructureTest `{boolean}`:
+	 *   Whether to skip ResourcesTest::testRespond(). Since MW 1.42.
+	 *
+	 *   Default: `false`.
+	 *
 	 * ## Examples
 	 *
 	 * **Example: Using an alternate subclass**
