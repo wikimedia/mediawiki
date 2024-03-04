@@ -98,7 +98,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 					]
 				) .
 				Html::element( 'h3', [], wfMessage( 'config-header-' . $type )->text() ) .
-				$installer->getConnectForm() .
+				$installer->getConnectForm( $this->parent )->getHtml() .
 				"</div>\n";
 
 		}
@@ -126,7 +126,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 			return Status::newFatal( 'config-invalid-db-type' );
 		}
 
-		return $installer->submitConnectForm();
+		return $installer->getConnectForm( $this->parent )->submit();
 	}
 
 }

@@ -25,7 +25,6 @@
 namespace MediaWiki\Installer;
 
 use Exception;
-use MediaWiki\Html\Html;
 use MediaWiki\Status\Status;
 use MWException;
 use MWLBFactory;
@@ -49,7 +48,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * The Installer object.
 	 *
-	 * @var WebInstaller
+	 * @var Installer
 	 */
 	public $parent;
 
@@ -122,53 +121,12 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Get HTML for a web form that configures this database. Configuration
-	 * at this time should be the minimum needed to connect and test
-	 * whether install or upgrade is required.
-	 *
-	 * If this is called, $this->parent can be assumed to be a WebInstaller.
-	 */
-	abstract public function getConnectForm();
-
-	/**
-	 * Set variables based on the request array, assuming it was submitted
-	 * via the form returned by getConnectForm(). Validate the connection
-	 * settings by attempting to connect with them.
-	 *
-	 * If this is called, $this->parent can be assumed to be a WebInstaller.
-	 *
-	 * @return Status
-	 */
-	abstract public function submitConnectForm();
-
-	/**
-	 * Get HTML for a web form that retrieves settings used for installation.
-	 * $this->parent can be assumed to be a WebInstaller.
-	 * If the DB type has no settings beyond those already configured with
-	 * getConnectForm(), this should return false.
-	 * @return string|false
-	 */
-	public function getSettingsForm() {
-		return false;
-	}
-
-	/**
-	 * Set variables based on the request array, assuming it was submitted via
-	 * the form return by getSettingsForm().
-	 *
-	 * @return Status
-	 */
-	public function submitSettingsForm() {
-		return Status::newGood();
-	}
-
-	/**
 	 * Open a connection to the database using the administrative user/password
 	 * currently defined in the session, without any caching. Returns a status
 	 * object. On success, the status object will contain a Database object in
 	 * its value member.
 	 *
-	 * @return Status
+	 * @return ConnectionStatus
 	 */
 	abstract public function openConnection();
 
@@ -187,12 +145,11 @@ abstract class DatabaseInstaller {
 	 *
 	 * This will return a cached connection if one is available.
 	 *
-	 * @return Status
-	 * @suppress PhanUndeclaredMethod
+	 * @return ConnectionStatus
 	 */
 	public function getConnection() {
 		if ( $this->db ) {
-			return Status::newGood( $this->db );
+			return new ConnectionStatus( $this->db );
 		}
 
 		$status = $this->openConnection();
@@ -375,8 +332,7 @@ abstract class DatabaseInstaller {
 	public function setupSchemaVars() {
 		$status = $this->getConnection();
 		if ( $status->isOK() ) {
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			$status->value->setSchemaVars( $this->getSchemaVars() );
+			$status->getDB()->setSchemaVars( $this->getSchemaVars() );
 		} else {
 			$msg = __METHOD__ . ': unexpected error while establishing'
 				. ' a database connection with message: '
@@ -543,113 +499,9 @@ abstract class DatabaseInstaller {
 		$this->parent->setVar( $name, $value );
 	}
 
-	/**
-	 * Get a labelled text box to configure a local variable.
-	 *
-	 * @param string $var
-	 * @param string $label
-	 * @param array $attribs
-	 * @param string $helpData HTML
-	 * @return string HTML
-	 * @return-taint escaped
-	 */
-	public function getTextBox( $var, $label, $attribs = [], $helpData = "" ) {
-		$name = $this->getName() . '_' . $var;
-		$value = $this->getVar( $var );
-		if ( !isset( $attribs ) ) {
-			$attribs = [];
-		}
+	abstract public function getConnectForm( WebInstaller $webInstaller ): DatabaseConnectForm;
 
-		return $this->parent->getTextBox( [
-			'var' => $var,
-			'label' => $label,
-			'attribs' => $attribs,
-			'controlName' => $name,
-			'value' => $value,
-			'help' => $helpData
-		] );
-	}
-
-	/**
-	 * Get a labelled password box to configure a local variable.
-	 * Implements password hiding.
-	 *
-	 * @param string $var
-	 * @param string $label
-	 * @param array $attribs
-	 * @param string $helpData HTML
-	 * @return string HTML
-	 * @return-taint escaped
-	 */
-	public function getPasswordBox( $var, $label, $attribs = [], $helpData = "" ) {
-		$name = $this->getName() . '_' . $var;
-		$value = $this->getVar( $var );
-		if ( !isset( $attribs ) ) {
-			$attribs = [];
-		}
-
-		return $this->parent->getPasswordBox( [
-			'var' => $var,
-			'label' => $label,
-			'attribs' => $attribs,
-			'controlName' => $name,
-			'value' => $value,
-			'help' => $helpData
-		] );
-	}
-
-	/**
-	 * Get a labelled checkbox to configure a local boolean variable.
-	 *
-	 * @param string $var
-	 * @param string $label
-	 * @param array $attribs Optional.
-	 * @param string $helpData Optional.
-	 * @return string
-	 */
-	public function getCheckBox( $var, $label, $attribs = [], $helpData = "" ) {
-		$name = $this->getName() . '_' . $var;
-		$value = $this->getVar( $var );
-
-		return $this->parent->getCheckBox( [
-			'var' => $var,
-			'label' => $label,
-			'attribs' => $attribs,
-			'controlName' => $name,
-			'value' => $value,
-			'help' => $helpData
-		] );
-	}
-
-	/**
-	 * Get a set of labelled radio buttons.
-	 *
-	 * @param array $params Parameters are:
-	 *      var:            The variable to be configured (required)
-	 *      label:          The message name for the label (required)
-	 *      itemLabelPrefix: The message name prefix for the item labels (required)
-	 *      values:         List of allowed values (required)
-	 *      itemAttribs     Array of attribute arrays, outer key is the value name (optional)
-	 *
-	 * @return string
-	 */
-	public function getRadioSet( $params ) {
-		$params['controlName'] = $this->getName() . '_' . $params['var'];
-		$params['value'] = $this->getVar( $params['var'] );
-
-		return $this->parent->getRadioSet( $params );
-	}
-
-	/**
-	 * Convenience function to set variables based on form data.
-	 * Assumes that variables containing "password" in the name are (potentially
-	 * fake) passwords.
-	 * @param array $varNames
-	 * @return array
-	 */
-	public function setVarsFromRequest( $varNames ) {
-		return $this->parent->setVarsFromRequest( $varNames, $this->getName() . '_' );
-	}
+	abstract public function getSettingsForm( WebInstaller $webInstaller ): DatabaseSettingsForm;
 
 	/**
 	 * Determine whether an existing installation of MediaWiki is present in
@@ -678,99 +530,6 @@ abstract class DatabaseInstaller {
 
 		return $this->db->tableExists( 'cur', __METHOD__ ) ||
 			$this->db->tableExists( 'revision', __METHOD__ );
-	}
-
-	/**
-	 * Get a standard install-user fieldset.
-	 *
-	 * @return string
-	 */
-	public function getInstallUserBox() {
-		return "<span class=\"cdx-card\"><span class=\"cdx-card__text\">" .
-			Html::element(
-				'span',
-				[ 'class' => 'cdx-card__text__title' ],
-				wfMessage( 'config-db-install-account' )->text()
-			) .
-			"<span class=\"cdx-card__text__description\">" .
-			$this->getTextBox(
-				'_InstallUser',
-				'config-db-username',
-				[ 'dir' => 'ltr' ],
-				$this->parent->getHelpBox( 'config-db-install-username' )
-			) .
-			$this->getPasswordBox(
-				'_InstallPassword',
-				'config-db-password',
-				[ 'dir' => 'ltr' ],
-				$this->parent->getHelpBox( 'config-db-install-password' )
-			) .
-			"</span></span></span>";
-	}
-
-	/**
-	 * Submit a standard install user fieldset.
-	 * @return Status
-	 */
-	public function submitInstallUserBox() {
-		$this->setVarsFromRequest( [ '_InstallUser', '_InstallPassword' ] );
-
-		return Status::newGood();
-	}
-
-	/**
-	 * Get a standard web-user fieldset
-	 * @param string|false $noCreateMsg Message to display instead of the creation checkbox.
-	 *   Set this to false to show a creation checkbox (default).
-	 *
-	 * @return string
-	 */
-	public function getWebUserBox( $noCreateMsg = false ) {
-		$wrapperStyle = $this->getVar( '_SameAccount' ) ? 'display: none' : '';
-		$s = "<span class=\"cdx-card\"><span class=\"cdx-card__text\">" .
-			Html::element(
-				'span',
-				[ 'class' => 'cdx-card__text__title' ],
-				wfMessage( 'config-db-web-account' )->text()
-			) .
-			$this->getCheckBox(
-				'_SameAccount', 'config-db-web-account-same',
-				[ 'class' => 'hideShowRadio cdx-checkbox__input', 'rel' => 'dbOtherAccount' ]
-			) .
-			Html::openElement( 'div', [ 'id' => 'dbOtherAccount', 'style' => $wrapperStyle ] ) .
-			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
-			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
-			$this->parent->getHelpBox( 'config-db-web-help' );
-		if ( $noCreateMsg ) {
-			$s .= Html::warningBox( wfMessage( $noCreateMsg )->plain(), 'config-warning-box' );
-		} else {
-			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
-		}
-		$s .= Html::closeElement( 'div' ) . "</span></span></span>";
-
-		return $s;
-	}
-
-	/**
-	 * Submit the form from getWebUserBox().
-	 *
-	 * @return Status
-	 */
-	public function submitWebUserBox() {
-		$this->setVarsFromRequest(
-			[ 'wgDBuser', 'wgDBpassword', '_SameAccount', '_CreateDBAccount' ]
-		);
-
-		if ( $this->getVar( '_SameAccount' ) ) {
-			$this->setVar( 'wgDBuser', $this->getVar( '_InstallUser' ) );
-			$this->setVar( 'wgDBpassword', $this->getVar( '_InstallPassword' ) );
-		}
-
-		if ( $this->getVar( '_CreateDBAccount' ) && strval( $this->getVar( 'wgDBpassword' ) ) == '' ) {
-			return Status::newFatal( 'config-db-password-empty', $this->getVar( 'wgDBuser' ) );
-		}
-
-		return Status::newGood();
 	}
 
 	/**

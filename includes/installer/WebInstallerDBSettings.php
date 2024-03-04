@@ -28,10 +28,11 @@ class WebInstallerDBSettings extends WebInstallerPage {
 	 */
 	public function execute() {
 		$installer = $this->parent->getDBInstaller( $this->getVar( 'wgDBtype' ) );
+		$form = $installer->getSettingsForm( $this->parent );
 
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
-			$status = $installer->submitSettingsForm();
+			$status = $form->submit();
 			if ( $status === false ) {
 				return 'skip';
 			} elseif ( $status->isGood() ) {
@@ -41,13 +42,13 @@ class WebInstallerDBSettings extends WebInstallerPage {
 			}
 		}
 
-		$form = $installer->getSettingsForm();
-		if ( $form === false ) {
+		$formHtml = $form->getHtml();
+		if ( $formHtml === false ) {
 			return 'skip';
 		}
 
 		$this->startForm();
-		$this->addHTML( $form );
+		$this->addHTML( $formHtml );
 		$this->endForm();
 
 		return null;

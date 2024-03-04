@@ -60,6 +60,14 @@ class SqliteInstaller extends DatabaseInstaller {
 		return self::checkExtension( 'pdo_sqlite' );
 	}
 
+	public function getConnectForm( WebInstaller $webInstaller ): DatabaseConnectForm {
+		return new SqliteConnectForm( $webInstaller, $this );
+	}
+
+	public function getSettingsForm( WebInstaller $webInstaller ): DatabaseSettingsForm {
+		return new DatabaseSettingsForm( $webInstaller, $this );
+	}
+
 	/**
 	 * @return Status
 	 */
@@ -92,20 +100,6 @@ class SqliteInstaller extends DatabaseInstaller {
 		return $defaults;
 	}
 
-	public function getConnectForm() {
-		return $this->getTextBox(
-			'wgSQLiteDataDir',
-			'config-sqlite-dir', [],
-			$this->parent->getHelpBox( 'config-sqlite-dir-help' )
-		) .
-		$this->getTextBox(
-			'wgDBname',
-			'config-db-name',
-			[],
-			$this->parent->getHelpBox( 'config-sqlite-name-help' )
-		);
-	}
-
 	/**
 	 * Safe wrapper for PHP's realpath() that fails gracefully if it's unable to canonicalize the path.
 	 *
@@ -113,28 +107,8 @@ class SqliteInstaller extends DatabaseInstaller {
 	 *
 	 * @return string
 	 */
-	private static function realpath( $path ) {
+	public static function realpath( $path ) {
 		return realpath( $path ) ?: $path;
-	}
-
-	/**
-	 * @return Status
-	 */
-	public function submitConnectForm() {
-		$this->setVarsFromRequest( [ 'wgSQLiteDataDir', 'wgDBname' ] );
-
-		# Try realpath() if the directory already exists
-		$dir = self::realpath( $this->getVar( 'wgSQLiteDataDir' ) );
-		$result = self::checkDataDir( $dir );
-		if ( $result->isOK() ) {
-			# Try expanding again in case we've just created it
-			$dir = self::realpath( $dir );
-			$this->setVar( 'wgSQLiteDataDir', $dir );
-		}
-		# Table prefix is not used on SQLite, keep it empty
-		$this->setVar( 'wgDBprefix', '' );
-
-		return $result;
 	}
 
 	/**
@@ -142,7 +116,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	 * @param string $dir Path to the data directory
 	 * @return Status Return fatal Status if $dir un-writable or no permission to create a directory
 	 */
-	private static function checkDataDir( $dir ): Status {
+	public static function checkDataDir( $dir ): Status {
 		if ( is_dir( $dir ) ) {
 			if ( !is_readable( $dir ) ) {
 				return Status::newFatal( 'config-sqlite-dir-unwritable', $dir );
@@ -185,17 +159,17 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @return Status
+	 * @return ConnectionStatus
 	 */
 	public function openConnection() {
-		$status = Status::newGood();
+		$status = new ConnectionStatus;
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 		$dbName = $this->getVar( 'wgDBname' );
 		try {
 			$db = MediaWikiServices::getInstance()->getDatabaseFactory()->create(
 				'sqlite', [ 'dbname' => $dbName, 'dbDirectory' => $dir ]
 			);
-			$status->value = $db;
+			$status->setDB( $db );
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-sqlite-connection-error', $e->getMessage() );
 		}
@@ -314,7 +288,7 @@ EOT;
 		// when the DB is being read and written concurrently.
 		// This causes the DB to be created in this mode
 		// so we only have to do this on creation.
-		$mainConnStatus->value->query( "PRAGMA journal_mode=WAL", __METHOD__ );
+		$mainConnStatus->getDB()->query( "PRAGMA journal_mode=WAL", __METHOD__ );
 		return $mainConnStatus;
 	}
 
