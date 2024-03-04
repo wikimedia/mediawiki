@@ -481,7 +481,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				'name' => 'wpReasonList',
 				'inputId' => 'wpReasonList',
 				'infusable' => true,
-				'value' => 'other',
+				'value' => $this->getRequest()->getText( 'wpReasonList', 'other' ),
 				'options' => $options,
 			] ),
 			[
@@ -499,7 +499,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				'id' => 'wpReason',
 				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
-				'value' => $this->reason,
+				'value' => $this->getRequest()->getText( 'wpReason' ),
 			] ),
 			[
 				'label' => $this->msg( 'moveotherreason' )->text(),
