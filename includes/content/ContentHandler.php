@@ -1642,7 +1642,12 @@ abstract class ContentHandler {
 		}
 
 		$hookRunner = new HookRunner( $services->getHookContainer() );
+
 		$po = new ParserOutput();
+
+		// Initialize to the page language
+		$po->setLanguage( $title->getPageLanguage() );
+
 		$parserOptions->registerWatcher( [ &$po, 'recordOption' ] );
 		if ( $hookRunner->onContentGetParserOutput(
 			// FIXME $cpoParams->getRevId() may be null here?

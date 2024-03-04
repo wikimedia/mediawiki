@@ -236,6 +236,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 		if ( $expectedLanguage !== false ) {
 			$this->assertMatchesRegularExpression( "@^$expectedLanguage@i", $extensionData['headers']['content-language'] );
+			$this->assertSame( $expectedLanguage, (string)$modifiedParserOutput->getLanguage() );
 		}
 	}
 

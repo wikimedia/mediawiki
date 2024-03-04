@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use LanguageCode;
 use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Parsoid\Core\PageBundle;
 
@@ -61,6 +62,14 @@ final class PageBundleParserOutputConverter {
 			]
 		);
 
+		if ( isset( $pageBundle->headers['content-language'] ) ) {
+			$lang = LanguageCode::normalizeNonstandardCodeAndWarn(
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+				$pageBundle->headers['content-language']
+			);
+			$parserOutput->setLanguage( $lang );
+		}
+
 		return $parserOutput;
 	}
 
@@ -73,6 +82,14 @@ final class PageBundleParserOutputConverter {
 	 */
 	public static function pageBundleFromParserOutput( ParserOutput $parserOutput ): PageBundle {
 		$pageBundleData = $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY );
+		$lang = $parserOutput->getLanguage();
+
+		$headers = $pageBundleData['headers'] ?? [];
+
+		if ( $lang ) {
+			$headers['content-language'] = $lang;
+		}
+
 		return new PageBundle(
 			$parserOutput->getRawText(),
 			$pageBundleData['parsoid'] ?? [],
@@ -80,7 +97,7 @@ final class PageBundleParserOutputConverter {
 			// It would be nice to have this be "null", but PageBundle::responseData()
 			// chocks on that: T325137.
 			$pageBundleData['version'] ?? '0.0.0',
-			$pageBundleData['headers'] ?? [],
+			$pageBundleData['headers'] ?? $headers,
 			$pageBundleData['contentmodel'] ?? null
 		);
 	}

@@ -65,11 +65,15 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 			$data = FormatJson::encode( $data );
 		}
 
+		$title = $this->createMock( Title::class );
+		$title->method( 'getPageLanguage' )
+			->willReturn( $this->getServiceContainer()->getContentLanguage() );
+
 		$content = new JsonContent( $data );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		$parserOutput = $contentRenderer->getParserOutput(
 			$content,
-			$this->createMock( Title::class ),
+			$title,
 			null,
 			null,
 			true

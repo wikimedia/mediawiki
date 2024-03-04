@@ -25,7 +25,6 @@ use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SelserContext;
@@ -639,20 +638,26 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @return Bcp47Code The language, as a BCP-47 code
 	 */
 	public function getHtmlOutputContentLanguage(): Bcp47Code {
-		$pageBundleData = $this->getHtml()->getExtensionData(
-			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
-		);
+		$contentLanguage = $this->getHtml()->getLanguage();
 
-		// XXX: We need a canonical way of getting the output language from
-		//      ParserOutput since we may not be getting parser outputs from
-		//		Parsoid always in the future.
-		if ( !isset( $pageBundleData['headers']['content-language'] ) ) {
-			throw new LogicException( 'Failed to find content language in page bundle data' );
+		// This shouldn't happen, but don't crash if it does:
+		if ( !$contentLanguage ) {
+			if ( $this->pageLanguage ) {
+				LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->warning(
+					"ParserOutput does not specify a language"
+				);
+
+				$contentLanguage = $this->pageLanguage;
+			} else {
+				LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->warning(
+					"ParserOutput does not specify a language and no page language set in helper."
+				);
+
+				$title = Title::newFromPageIdentity( $this->page );
+				$contentLanguage = $title->getPageLanguage();
+			}
 		}
 
-		$contentLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
-			$pageBundleData['headers']['content-language']
-		);
 		return $contentLanguage;
 	}
 
