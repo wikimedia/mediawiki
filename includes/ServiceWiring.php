@@ -1534,7 +1534,7 @@ return [
 			$wanCache,
 			$services->getHookContainer(),
 			$services->getJsonCodec(),
-			$services->getStatsdDataFactory(),
+			$services->getStatsFactory(),
 			LoggerFactory::getInstance( 'ParserCache' ),
 			$options,
 			$services->getTitleFactory(),
