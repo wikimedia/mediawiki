@@ -263,7 +263,7 @@ return [
 	/* jQuery UI */
 
 	'jquery.ui' => [
-		'deprecated' => 'Please use OOUI instead.',
+		'deprecated' => 'Please use Codex instead.',
 		'scripts' => [
 			'resources/lib/jquery.ui/jquery.ui.core.js',
 			'resources/lib/jquery.ui/jquery.ui.widget.js',
