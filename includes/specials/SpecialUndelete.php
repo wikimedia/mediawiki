@@ -62,6 +62,7 @@ use MediaWiki\User\User;
 use OOUI\ActionFieldLayout;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
+use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
 use OOUI\FieldsetLayout;
 use OOUI\FormLayout;
@@ -230,7 +231,15 @@ class SpecialUndelete extends SpecialPage {
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mDiffOnly = $request->getBool( 'diffonly',
 			$this->userOptionsLookup->getOption( $this->getUser(), 'diffonly' ) );
-		$this->mComment = $request->getText( 'wpComment' );
+		$commentList = $request->getText( 'wpCommentList', 'other' );
+		$comment = $request->getText( 'wpComment' );
+		if ( $commentList === 'other' ) {
+			$this->mComment = $comment;
+		} elseif ( $comment !== '' ) {
+			$this->mComment = $commentList . $this->msg( 'colon-separator' )->inContentLanguage()->text() . $comment;
+		} else {
+			$this->mComment = $commentList;
+		}
 		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) &&
 			$this->permissionManager->userHasRight( $user, 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
@@ -1007,6 +1016,7 @@ class SpecialUndelete extends SpecialPage {
 		$out = $this->getOutput();
 		if ( $this->mAllowed ) {
 			$out->addModules( 'mediawiki.misc-authed-ooui' );
+			$out->addModuleStyles( 'mediawiki.special' );
 		}
 		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 		$out->wrapWikiMsg(
@@ -1074,22 +1084,31 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
+			$unsuppressAllowed = $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' );
 			$fields = [];
 			$fields[] = new Layout( [
 				'content' => new HtmlSnippet( $this->msg( 'undeleteextrahelp' )->parseAsBlock() )
 			] );
 
+			$dropDownComment = $this->msg( 'undelete-comment-dropdown' )->inContentLanguage()->text();
+			// Add additional specific reasons for unsuppress
+			if ( $unsuppressAllowed ) {
+				$dropDownComment .= "\n" . $this->msg( 'undelete-comment-dropdown-unsuppress' )
+					->inContentLanguage()->text();
+			}
+			$options = Xml::listDropDownOptions(
+				$dropDownComment,
+				[ 'other' => $this->msg( 'undeletecommentotherlist' )->text() ]
+			);
+			$options = Xml::listDropDownOptionsOoui( $options );
+
 			$fields[] = new FieldLayout(
-				new TextInputWidget( [
-					'name' => 'wpComment',
-					'inputId' => 'wpComment',
+				new DropdownInputWidget( [
+					'name' => 'wpCommentList',
+					'inputId' => 'wpCommentList',
 					'infusable' => true,
-					'value' => $this->mComment,
-					'autofocus' => true,
-					// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
-					// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-					// Unicode codepoints.
-					'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
+					'value' => $this->getRequest()->getText( 'wpCommentList', 'other' ),
+					'options' => $options,
 				] ),
 				[
 					'label' => $this->msg( 'undeletecomment' )->text(),
@@ -1097,7 +1116,25 @@ class SpecialUndelete extends SpecialPage {
 				]
 			);
 
-			if ( $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
+			$fields[] = new FieldLayout(
+				new TextInputWidget( [
+					'name' => 'wpComment',
+					'inputId' => 'wpComment',
+					'infusable' => true,
+					'value' => $this->getRequest()->getText( 'wpComment' ),
+					'autofocus' => true,
+					// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
+					// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
+					// Unicode codepoints.
+					'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
+				] ),
+				[
+					'label' => $this->msg( 'undeleteothercomment' )->text(),
+					'align' => 'top',
+				]
+			);
+
+			if ( $unsuppressAllowed ) {
 				$fields[] = new FieldLayout(
 					new CheckboxInputWidget( [
 						'name' => 'wpUnsuppress',
@@ -1158,6 +1195,27 @@ class SpecialUndelete extends SpecialPage {
 				'items' => $fields,
 			] );
 
+			$link = '';
+			if ( $this->getAuthority()->isAllowed( 'editinterface' ) ) {
+				if ( $unsuppressAllowed ) {
+					$link .= $this->getLinkRenderer()->makeKnownLink(
+						$this->msg( 'undelete-comment-dropdown-unsuppress' )->inContentLanguage()->getTitle(),
+						$this->msg( 'undelete-edit-commentlist-unsuppress' )->text(),
+						[],
+						[ 'action' => 'edit' ]
+					);
+					$link .= $this->msg( 'pipe-separator' )->escaped();
+				}
+				$link .= $this->getLinkRenderer()->makeKnownLink(
+					$this->msg( 'undelete-comment-dropdown' )->inContentLanguage()->getTitle(),
+					$this->msg( 'undelete-edit-commentlist' )->text(),
+					[],
+					[ 'action' => 'edit' ]
+				);
+
+				$link = Html::rawElement( 'p', [ 'class' => 'mw-undelete-editcomments' ], $link );
+			}
+
 			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable form is set, when used here
 			$form->appendContent(
 				new PanelLayout( [
@@ -1167,6 +1225,7 @@ class SpecialUndelete extends SpecialPage {
 					'content' => $fieldset,
 				] ),
 				new HtmlSnippet(
+					$link .
 					Html::hidden( 'target', $this->mTarget ) .
 					Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() )
 				)

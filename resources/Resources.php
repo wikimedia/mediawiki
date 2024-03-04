@@ -2140,7 +2140,7 @@ return [
 			'oojs-ui-core',
 		],
 		'messages' => [
-			// Used by action.delete.js, special.revisionDelete.js, special.movePage.js
+			// Used by action.delete.js, special.revisionDelete.js, special.movePage.js, special.undelete.js
 			// @todo Load this message in content language
 			'colon-separator',
 		],
