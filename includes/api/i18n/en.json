@@ -20,7 +20,7 @@
 	"apihelp-main-param-curtimestamp": "Include the current timestamp in the result.",
 	"apihelp-main-param-responselanginfo": "Include the languages used for <var>uselang</var> and <var>errorlang</var> in the result.",
 	"apihelp-main-param-origin": "When accessing the API using a cross-domain AJAX request (CORS), set this to the originating domain. This must be included in any pre-flight request, and therefore must be part of the request URI (not the POST body).\n\nFor authenticated requests, this must match one of the origins in the <code>Origin</code> header exactly, so it has to be set to something like <kbd>https://en.wikipedia.org</kbd> or <kbd>https://meta.wikimedia.org</kbd>. If this parameter does not match the <code>Origin</code> header, a 403 response will be returned. If this parameter matches the <code>Origin</code> header and the origin is allowed, the <code>Access-Control-Allow-Origin</code> and <code>Access-Control-Allow-Credentials</code> headers will be set.\n\nFor non-authenticated requests, specify the value <kbd>*</kbd>. This will cause the <code>Access-Control-Allow-Origin</code> header to be set, but <code>Access-Control-Allow-Credentials</code> will be <code>false</code> and all user-specific data will be restricted.",
-	"apihelp-main-param-uselang": "Language to use for message translations. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=languages</kbd> returns a list of language codes, or specify <kbd>user</kbd> to use the current user's language preference, or specify <kbd>content</kbd> to use this wiki's content language.",
+	"apihelp-main-param-uselang": "Language to use for message translations. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> returns a list of language codes, or specify <kbd>user</kbd> to use the current user's language preference, or specify <kbd>content</kbd> to use this wiki's content language.",
 	"apihelp-main-param-variant": "Variant of the language. Only works if the base language supports variant conversion.",
 	"apihelp-main-param-errorformat": "Format to use for warning and error text output",
 	"apihelp-main-paramvalue-errorformat-plaintext": "Wikitext with HTML tags removed and entities replaced.",
@@ -29,7 +29,7 @@
 	"apihelp-main-paramvalue-errorformat-raw": "Message key and parameters.",
 	"apihelp-main-paramvalue-errorformat-none": "No text output, only the error codes.",
 	"apihelp-main-paramvalue-errorformat-bc": "Format used prior to MediaWiki 1.29. <var>errorlang</var> and <var>errorsuselocal</var> are ignored.",
-	"apihelp-main-param-errorlang": "Language to use for warnings and errors. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=languages</kbd> returns a list of language codes, or specify <kbd>content</kbd> to use this wiki's content language, or specify <kbd>uselang</kbd> to use the same value as the <var>uselang</var> parameter.",
+	"apihelp-main-param-errorlang": "Language to use for warnings and errors. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> returns a list of language codes, or specify <kbd>content</kbd> to use this wiki's content language, or specify <kbd>uselang</kbd> to use the same value as the <var>uselang</var> parameter.",
 	"apihelp-main-param-errorsuselocal": "If given, error texts will use locally-customized messages from the {{ns:MediaWiki}} namespace.",
 
 	"apihelp-block-summary": "Block a user.",
