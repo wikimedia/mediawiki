@@ -267,7 +267,7 @@ trait UploadJobTrait {
 	 * @param mixed $error
 	 * @return void
 	 */
-	abstract protected function setLastError( $error ): void;
+	abstract protected function setLastError( $error );
 
 	/**
 	 * This is actually implemented in the Job class
@@ -275,6 +275,6 @@ trait UploadJobTrait {
 	 * @param callable $callback
 	 * @return void
 	 */
-	abstract protected function addTeardownCallback( $callback ): void;
+	abstract protected function addTeardownCallback( $callback );
 
 }
