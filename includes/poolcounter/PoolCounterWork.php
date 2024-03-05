@@ -101,8 +101,7 @@ abstract class PoolCounterWork {
 	public function logError( $status ) {
 		$key = $this->poolCounter->getKey();
 
-		wfDebugLog(
-			'poolcounter',
+		$this->poolCounter->getLogger()->info(
 			"Pool key '$key' ({$this->type}): " .
 			$status->getMessage()->inLanguage( 'en' )->useDatabase( false )->text()
 		);
