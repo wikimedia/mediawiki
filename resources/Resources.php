@@ -850,7 +850,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.util',
-			'jquery.lengthLimit',
+			'mediawiki.widgets.visibleLengthLimit',
 		],
 		'messages' => [
 			'htmlform-chosen-placeholder',
