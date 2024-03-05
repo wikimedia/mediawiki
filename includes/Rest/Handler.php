@@ -524,6 +524,17 @@ abstract class Handler {
 	public function parseBodyData( RequestInterface $request ): ?array {
 		// Parse the body based on its content type
 		$contentType = $request->getBodyType();
+
+		// HACK: If the Handler uses a custom BodyValidator, the
+		// getBodyValidator() is also responsible for checking whether
+		// the content type is valid, and for parsing the body.
+		// See T359149.
+		$bodyValidator = $this->getBodyValidator( $contentType ?? 'unknown/unknown' );
+		if ( !$bodyValidator instanceof NullBodyValidator ) {
+			// TODO: Trigger a deprecation warning.
+			return null;
+		}
+
 		switch ( $contentType ) {
 			case 'application/x-www-form-urlencoded':
 			case 'multipart/form-data':
