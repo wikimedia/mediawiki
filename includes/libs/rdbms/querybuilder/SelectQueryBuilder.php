@@ -191,7 +191,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add a single table to the SELECT query. Alias for table().
 	 *
-	 * @param string $table The table name
+	 * @param string|JoinGroup|SelectQueryBuilder $table The table, see table() for details
 	 * @param-taint $table exec_sql
 	 * @param string|null $alias The table alias, or null for no alias
 	 * @param-taint $alias exec_sql
@@ -500,9 +500,10 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * additional fields to it.
 	 *
 	 * @param string[]|string $fields The field or list of fields to order by.
-	 * @param string|null $direction self::SORT_ASC or self::SORT_DESC.
-	 * If this is null, then $fields is assumed to optionally contain ASC or DESC
-	 * after each field name.
+	 * @param string|null $direction Sorting direction applied to all fields,
+	 *   self::SORT_ASC or self::SORT_DESC. If different fields need to be sorted in opposite
+	 *   directions, then this parameter must be omitted, and $fields must contain 'ASC' or 'DESC'
+	 *   after each field name.
 	 * @return $this
 	 */
 	public function orderBy( $fields, $direction = null ) {
