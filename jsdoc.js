@@ -20,8 +20,6 @@ module.exports = {
 		exclude: [
 			/* The following modules are temporarily disabled as we haven't
 			 got round to reviewing them and incorporating them into the documentation page yet. */
-			'resources/src/codex',
-			'resources/src/codex-search',
 			'resources/src/mediawiki.router',
 			'resources/src/mediawiki.language.specialCharacters',
 			'resources/src/moment',
