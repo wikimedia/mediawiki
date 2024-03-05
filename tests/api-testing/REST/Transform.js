@@ -199,8 +199,8 @@ describe( '/transform/ endpoint', function () {
 				.expect( 406 )
 				.expect( function ( res ) {
 					// FIXME: See skipped html error test above
-					JSON.parse( res.error.text ).message.should.equal(
-						'Not acceptable'
+					JSON.parse( res.error.text ).errorKey.should.equal(
+						'rest-unsupported-target-format'
 					);
 				} )
 				.end( done );
@@ -2275,8 +2275,8 @@ describe( '/transform/ endpoint', function () {
 				.send( { wikitext: '== h2 ==' } )
 				.expect( 404 )
 				.expect( function ( res ) {
-					JSON.parse( res.error.text ).message.should.equal(
-						'Invalid transform: wikitext/to/pagebundle'
+					JSON.parse( res.error.text ).errorKey.should.equal(
+						'rest-invalid-transform'
 					);
 				} )
 				.end( done );

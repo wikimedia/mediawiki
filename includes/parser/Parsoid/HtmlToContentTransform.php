@@ -11,11 +11,13 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -279,7 +281,7 @@ class HtmlToContentTransform {
 			} catch ( RevisionAccessException $exception ) {
 				// TODO: Throw a different exception, this class should not know
 				//       about HTTP status codes.
-				throw new HttpException( 'The specified revision is deleted or suppressed.', 404 );
+				throw new LocalizedHttpException( new MessageValue( "rest-specified-revision-unavailable" ), 404 );
 			}
 		}
 
@@ -560,7 +562,7 @@ class HtmlToContentTransform {
 
 		if ( $knowsOriginal && !empty( $this->parsoidSettings['useSelser'] ) ) {
 			if ( !$this->getPageConfig()->getRevisionContent() ) {
-				throw new HttpException( 'Could not find previous revision. Has the page been locked / deleted?',
+				throw new LocalizedHttpException( new MessageValue( "rest-previous-revision-unavailable" ),
 					409 );
 			}
 

@@ -52,5 +52,19 @@
 	"rest-requires-safe-against-csrf": "This endpoint requires a CSRF-safe session provider.",
 	"rest-badtoken": "The CSRF token provided is invalid.",
 	"rest-badtoken-missing": "The <var>token</var> parameter is required unless using a CSRF-safe authentication method.",
-	"rest-badtoken-nosession": "CSRF error - no session."
+	"rest-badtoken-nosession": "CSRF error - no session.",
+	"rest-mock-error": "Mock error.",
+	"rest-specified-revision-unavailable": "The specified revision is deleted or suppressed.",
+	"rest-previous-revision-unavailable": "Could not find previous revision. Has the page been locked / deleted?",
+	"rest-requires-content-type-header": "A Content-Type header must be supplied with a request payload.",
+	"rest-transform-missing-html": "No html was supplied.",
+	"rest-transform-missing-title": "No title or wikitext was provided.",
+	"rest-unsupported-target-format": "The requested target format is not supported.",
+	"rest-parsoid-resource-exceeded": "Resource limit exceeeded",
+	"rest-parsoid-error": "Parsoid error.",
+	"rest-bad-stash-key": "Bad stash key.",
+	"rest-html-key-expected": "'Expected `html` key in body'",
+	"rest-invalid-transform": "Invalid transform: $1 to $2",
+	"rest-request-body-expected": "The $1 request method expects a request body",
+	"rest-request-body-unaccepted": "The $1 request method does not accept a request body"
 }
