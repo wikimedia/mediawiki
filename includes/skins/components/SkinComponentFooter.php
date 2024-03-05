@@ -169,7 +169,6 @@ class SkinComponentFooter implements SkinComponent {
 			'disclaimers' => [ 'disclaimers', 'disclaimerpage' ]
 		];
 		$localizer = $this->skinContext->getMessageLocalizer();
-		$title = null;
 
 		foreach ( $siteLinks as $key => $siteLink ) {
 			// Check if the link description has been disabled in the default language.
@@ -178,13 +177,14 @@ class SkinComponentFooter implements SkinComponent {
 				// Display the link for the user, described in their language (which may or may not be the same as the
 				// default language), but make the link target be the one site-wide page.
 				$title = Title::newFromText( $localizer->msg( $siteLink[1] )->inContentLanguage()->text() );
+				if ( $title !== null ) {
+					$siteLinksData[$key] = [
+						'id' => "footer-places-$key",
+						'text' => $localizer->msg( $siteLink[0] )->text(),
+						'href' => $title->fixSpecialName()->getLinkURL()
+					];
+				}
 			}
-
-			$siteLinksData[$key] = [
-				'id' => "footer-places-$key",
-				'text' => $localizer->msg( $siteLink[0] )->text(),
-				'href' => $title === null ? '' : $title->fixSpecialName()->getLinkURL()
-			];
 		}
 		return $siteLinksData;
 	}
