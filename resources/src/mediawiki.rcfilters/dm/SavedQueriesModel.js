@@ -6,8 +6,8 @@ var SavedQueryItemModel = require( './SavedQueryItemModel.js' ),
  *
  * @class mw.rcfilters.dm.SavedQueriesModel
  * @ignore
- * @mixins OO.EventEmitter
- * @mixins OO.EmitterList
+ * @mixes OO.EventEmitter
+ * @mixes OO.EmitterList
  *
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters model
  * @param {Object} [config] Configuration options

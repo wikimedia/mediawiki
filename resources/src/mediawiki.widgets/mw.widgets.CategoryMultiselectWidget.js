@@ -29,7 +29,7 @@
 	 * @class mw.widgets.CategoryMultiselectWidget
 	 * @uses mw.Api
 	 * @extends OO.ui.MenuTagMultiselectWidget
-	 * @mixins OO.ui.mixin.PendingElement
+	 * @mixes OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

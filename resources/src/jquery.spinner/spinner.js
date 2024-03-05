@@ -120,7 +120,7 @@
 
 	/**
 	 * @class jQuery
-	 * @mixins jQuery.plugin.spinner
+	 * @mixes jQuery.plugin.spinner
 	 */
 
 }() );

@@ -6,7 +6,7 @@ var HighlightColors = require( '../HighlightColors.js' );
  * @class mw.rcfilters.ui.HighlightColorPickerWidget
  * @ignore
  * @extends OO.ui.Widget
- * @mixins OO.ui.mixin.LabelElement
+ * @mixes OO.ui.mixin.LabelElement
  *
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {Object} [config] Configuration object

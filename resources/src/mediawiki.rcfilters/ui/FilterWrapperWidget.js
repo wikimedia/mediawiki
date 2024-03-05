@@ -9,7 +9,7 @@ var FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
  * @class mw.rcfilters.ui.FilterWrapperWidget
  * @ignore
  * @extends OO.ui.Widget
- * @mixins OO.ui.mixin.PendingElement
+ * @mixes OO.ui.mixin.PendingElement
  *
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model

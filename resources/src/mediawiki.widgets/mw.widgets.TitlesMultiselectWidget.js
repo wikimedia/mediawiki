@@ -11,9 +11,9 @@
 	 *
 	 * @class
 	 * @extends OO.ui.MenuTagMultiselectWidget
-	 * @mixins OO.ui.mixin.RequestManager
-	 * @mixins OO.ui.mixin.PendingElement
-	 * @mixins mw.widgets.TitleWidget
+	 * @mixes OO.ui.mixin.RequestManager
+	 * @mixes OO.ui.mixin.PendingElement
+	 * @mixes mw.widgets.TitleWidget
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

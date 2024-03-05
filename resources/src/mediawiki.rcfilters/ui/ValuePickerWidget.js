@@ -5,7 +5,7 @@
  * @class mw.rcfilters.ui.ValuePickerWidget
  * @ignore
  * @extends OO.ui.Widget
- * @mixins OO.ui.mixin.LabelElement
+ * @mixes OO.ui.mixin.LabelElement
  *
  * @param {mw.rcfilters.dm.FilterGroup} model Group model
  * @param {Object} [config] Configuration object

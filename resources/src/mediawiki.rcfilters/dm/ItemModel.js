@@ -3,7 +3,7 @@
  *
  * @class mw.rcfilters.dm.ItemModel
  * @ignore
- * @mixins OO.EventEmitter
+ * @mixes OO.EventEmitter
  *
  * @param {string} param Filter param name
  * @param {Object} config Configuration object

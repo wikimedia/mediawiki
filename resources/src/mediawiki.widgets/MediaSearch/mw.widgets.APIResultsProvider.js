@@ -9,7 +9,7 @@
 	 * API Results Provider object.
 	 *
 	 * @class
-	 * @mixins OO.EventEmitter
+	 * @mixes OO.EventEmitter
 	 *
 	 * @constructor
 	 * @param {string} apiurl The URL to the api

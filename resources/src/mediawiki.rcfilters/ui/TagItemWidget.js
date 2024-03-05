@@ -4,7 +4,7 @@
  * @class mw.rcfilters.ui.TagItemWidget
  * @ignore
  * @extends OO.ui.TagItemWidget
- * @mixins OO.ui.mixin.PopupElement
+ * @mixes OO.ui.mixin.PopupElement
  *
  * @param {mw.rcfilters.Controller} controller
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel

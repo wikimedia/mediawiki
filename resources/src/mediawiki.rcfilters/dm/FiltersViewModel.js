@@ -8,8 +8,8 @@ var FilterGroup = require( './FilterGroup.js' ),
  *
  * @class mw.rcfilters.dm.FiltersViewModel
  * @ignore
- * @mixins OO.EventEmitter
- * @mixins OO.EmitterList
+ * @mixes OO.EventEmitter
+ * @mixes OO.EmitterList
  *
  */
 FiltersViewModel = function MwRcfiltersDmFiltersViewModel() {

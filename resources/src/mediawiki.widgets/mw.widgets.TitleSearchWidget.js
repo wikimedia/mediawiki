@@ -11,8 +11,8 @@
 	 *
 	 * @class
 	 * @extends OO.ui.SearchWidget
-	 * @mixins OO.ui.mixin.RequestManager
-	 * @mixins mw.widgets.TitleWidget
+	 * @mixes OO.ui.mixin.RequestManager
+	 * @mixes mw.widgets.TitleWidget
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

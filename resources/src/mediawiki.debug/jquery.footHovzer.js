@@ -60,7 +60,7 @@
 
 	/**
 	 * @class jQuery
-	 * @mixins jQuery.plugin.footHovzer
+	 * @mixes jQuery.plugin.footHovzer
 	 */
 
 }() );

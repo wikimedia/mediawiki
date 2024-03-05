@@ -777,7 +777,7 @@
 
 	/**
 	 * @class jQuery
-	 * @mixins jQuery.plugin.suggestions
+	 * @mixes jQuery.plugin.suggestions
 	 */
 
 }() );

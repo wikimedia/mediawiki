@@ -3,7 +3,7 @@
  *
  * @class mw.rcfilters.dm.SavedQueryItemModel
  * @ignore
- * @mixins OO.EventEmitter
+ * @mixes OO.EventEmitter
  *
  * @param {string} id Unique identifier
  * @param {string} label Saved query label
