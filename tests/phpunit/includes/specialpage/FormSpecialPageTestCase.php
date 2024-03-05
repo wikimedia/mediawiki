@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\SpecialPage;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
@@ -51,6 +52,11 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 			->willReturn( $this->getMockMessage( 'test' ) );
 		$this->setService( 'BlockErrorFormatter', $blockErrorFormatter );
 
+		// Make the permission tests pass so we can check that the user is denied access because of their block.
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'userHasRight' )->willReturn( true );
+		$this->setService( 'PermissionManager', $permissionManager );
+
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getBlock', 'getWikiId' ] )
 			->getMock();
@@ -80,6 +86,11 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
 		$readOnlyMode->method( 'isReadOnly' )->willReturn( false );
 		$this->setService( 'ReadOnlyMode', $readOnlyMode );
+
+		// Make the permission tests pass so we can check that the user is denied access because of their block.
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'userHasRight' )->willReturn( true );
+		$this->setService( 'PermissionManager', $permissionManager );
 
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getBlock', 'getWikiId' ] )
