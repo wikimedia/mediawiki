@@ -11,6 +11,7 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.40.2 ===
 * Localisation updates.
+* (T359139) Restore ability to disable footer links with "-"
 
 == MediaWiki 1.40.2 ==
 
