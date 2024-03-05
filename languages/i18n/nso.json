@@ -243,7 +243,7 @@
 	"noname": "Gawa fana ka leina la mošomiši la go loka.",
 	"loginsuccesstitle": "O tsene",
 	"loginsuccess": "'''Bjale o tsene go {{SITENAME}} bjalo ka \"$1\".'''",
-	"nosuchuser": "Ga gona mošomiši wa leina la \"$1\".\nMaina a huduetša ke seemo sa ditlhaka (case sensitive).\nLebele mopeleto wa gago goba [[Special:CreateAccount|o tlhome mošomiši yo mophsa]].",
+	"nosuchuser": "Ga gona mošomiši wa leina la \"$1\".\nMaina a huduetša ke seemo sa ditlhaka (case-sensitive).\nLebele mopeleto wa gago goba [[Special:CreateAccount|o tlhome mošomiši yo mophsa]].",
 	"nosuchusershort": "Ga gona mošomiši wa leina la \"$1\". Hlokomela mopeleto wa gago.",
 	"nouserspecified": "O swanela ke go fana ka leina la mošomiši.",
 	"wrongpassword": "O loketše ditlhaka-tša-siphiri tšeo e sego tšona. Ka kgopelo, leka gape.",

@@ -77,7 +77,8 @@
 			"Àlex",
 			"לערי ריינהארט",
 			"아라",
-			"Iketsi"
+			"Iketsi",
+			"Lluis Cat"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -945,6 +946,8 @@
 	"revdelete-radio-same": "(no ho canviïs)",
 	"revdelete-radio-set": "Oculta",
 	"revdelete-radio-unset": "Visible",
+	"revdelete-radio-set-suppress": "Elimina",
+	"revdelete-radio-unset-suppress": "Restaura",
 	"revdelete-suppress": "Suprimeix també les dades dels administradors",
 	"revdelete-unsuppress": "Suprimir les restriccions de les revisions restaurades",
 	"revdelete-log": "Motiu:",
