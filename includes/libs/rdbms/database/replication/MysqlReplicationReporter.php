@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Query;
 
 /**
  * @internal
@@ -77,11 +78,14 @@ class MysqlReplicationReporter extends ReplicationReporter {
 	 * @return int|false Second of lag
 	 */
 	protected function getLagFromSlaveStatus( IDatabase $conn ) {
-		$res = $conn->query(
+		$query = new Query(
 			'SHOW SLAVE STATUS',
-			__METHOD__,
-			ISQLPlatform::QUERY_SILENCE_ERRORS | ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE
+			ISQLPlatform::QUERY_SILENCE_ERRORS | ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+			'SHOW',
+			null,
+			'SHOW SLAVE STATUS'
 		);
+		$res = $conn->query( $query );
 		$row = $res ? $res->fetchObject() : false;
 		// If the server is not replicating, there will be no row
 		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
@@ -150,12 +154,16 @@ class MysqlReplicationReporter extends ReplicationReporter {
 		);
 		// User mysql server time so that query time and trip time are not counted.
 		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
-		$res = $conn->query(
+		$query = new Query(
 			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS us_ago " .
 			"FROM heartbeat.heartbeat WHERE $where ORDER BY ts DESC LIMIT 1",
-			__METHOD__,
-			ISQLPlatform::QUERY_SILENCE_ERRORS | ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE
+			ISQLPlatform::QUERY_SILENCE_ERRORS | ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+			'SELECT',
+			null,
+			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS us_ago " .
+			"FROM heartbeat.heartbeat WHERE ? ORDER BY ts DESC LIMIT 1",
 		);
+		$res = $conn->query( $query );
 		$row = $res ? $res->fetchObject() : false;
 
 		return $row ? ( $row->us_ago / 1e6 ) : null;
@@ -256,10 +264,22 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			$gtidArg = $conn->addQuotes( implode( ',', $gtidsWait ) );
 			if ( strpos( $gtidArg, ':' ) !== false ) {
 				// MySQL GTIDs, e.g "source_id:transaction_id"
-				$sql = "SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)";
+				$query = new Query(
+					"SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)",
+					ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+					'SELECT',
+					null,
+					"SELECT WAIT_FOR_EXECUTED_GTID_SET(?, ?)"
+				);
 			} else {
 				// MariaDB GTIDs, e.g."domain:server:sequence"
-				$sql = "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)";
+				$query = new Query(
+					"SELECT MASTER_GTID_WAIT($gtidArg, $timeout)",
+					ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+					'SELECT',
+					null,
+					"SELECT MASTER_GTID_WAIT(?, ?)"
+				);
 			}
 			$waitPos = implode( ',', $gtidsWait );
 		} else {
@@ -267,13 +287,18 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			$encFile = $conn->addQuotes( $pos->getLogFile() );
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$encPos = intval( $pos->getLogPosition()[$pos::CORD_EVENT] );
-			$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
+			$query = new Query(
+				"SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)",
+				ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+				'SELECT',
+				null,
+				"SELECT MASTER_POS_WAIT(?, ?, ?)"
+			);
 			$waitPos = $pos->__toString();
 		}
 
 		$start = microtime( true );
-		$flags = ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE;
-		$res = $conn->query( $sql, __METHOD__, $flags );
+		$res = $conn->query( $query, __METHOD__ );
 		$row = $res->fetchRow();
 		$seconds = max( microtime( true ) - $start, 0 );
 
@@ -285,7 +310,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 				$this->getLogContext( $conn, [
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
-					'sql' => $sql,
+					'sql' => $query->getSQL(),
 					'seconds_waited' => $seconds,
 					'exception' => new RuntimeException()
 				] )
@@ -297,7 +322,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
 					'timeout' => $timeout,
-					'sql' => $sql,
+					'sql' => $query->getSQL(),
 					'seconds_waited' => $seconds,
 					'exception' => new RuntimeException()
 				] )
@@ -409,8 +434,14 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			$this->srvCache->makeGlobalKey( 'mysql-server-id', $conn->getServerName() ),
 			self::SERVER_ID_CACHE_TTL,
 			static function () use ( $conn, $fname ) {
-				$flags = ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE;
-				$res = $conn->query( "SELECT @@server_id AS id", $fname, $flags );
+				$query = new Query(
+					"SELECT @@server_id AS id",
+					ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+					'SELECT',
+					null,
+					"SELECT @@server_id AS id"
+				);
+				$res = $conn->query( $query, $fname );
 
 				return $res->fetchObject()->id;
 			}
@@ -428,8 +459,14 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			$this->srvCache->makeGlobalKey( 'mysql-server-uuid', $conn->getServerName() ),
 			self::SERVER_ID_CACHE_TTL,
 			static function () use ( $conn, $fname ) {
-				$flags = ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE;
-				$res = $conn->query( "SHOW GLOBAL VARIABLES LIKE 'server_uuid'", $fname, $flags );
+				$query = new Query(
+					"SHOW GLOBAL VARIABLES LIKE 'server_uuid'",
+					ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+					'SHOW',
+					null,
+					"SHOW GLOBAL VARIABLES LIKE 'server_uuid'"
+				);
+				$res = $conn->query( $query, $fname );
 				$row = $res->fetchObject();
 
 				return $row ? $row->Value : null;
@@ -448,12 +485,26 @@ class MysqlReplicationReporter extends ReplicationReporter {
 		$flags = ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE;
 
 		// Get global-only variables like gtid_executed
-		$res = $conn->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_%'", $fname, $flags );
+		$query = new Query(
+			"SHOW GLOBAL VARIABLES LIKE 'gtid_%'",
+			$flags,
+			'SHOW',
+			null,
+			"SHOW GLOBAL VARIABLES LIKE 'gtid_%'"
+		);
+		$res = $conn->query( $query, $fname );
 		foreach ( $res as $row ) {
 			$map[$row->Variable_name] = $row->Value;
 		}
 		// Get session-specific (e.g. gtid_domain_id since that is were writes will log)
-		$res = $conn->query( "SHOW SESSION VARIABLES LIKE 'gtid_%'", $fname, $flags );
+		$query = new Query(
+			"SHOW SESSION VARIABLES LIKE 'gtid_%'",
+			$flags,
+			'SHOW',
+			null,
+			"SHOW SESSION VARIABLES LIKE 'gtid_%'"
+		);
+		$res = $conn->query( $query, $fname );
 		foreach ( $res as $row ) {
 			$map[$row->Variable_name] = $row->Value;
 		}
@@ -468,9 +519,14 @@ class MysqlReplicationReporter extends ReplicationReporter {
 	 * @return array<string,mixed>|null Latest available server status row; false on failure
 	 */
 	protected function getServerRoleStatus( IDatabase $conn, $role, $fname = __METHOD__ ) {
-		$flags = ISQLPlatform::QUERY_SILENCE_ERRORS | ISQLPlatform::QUERY_IGNORE_DBO_TRX |
-			ISQLPlatform::QUERY_CHANGE_NONE;
-		$res = $conn->query( "SHOW $role STATUS", $fname, $flags );
+		$query = new Query(
+			"SHOW $role STATUS",
+			ISQLPlatform::QUERY_SILENCE_ERRORS | ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
+			'SHOW',
+			null,
+			"SHOW $role STATUS"
+		);
+		$res = $conn->query( $query, $fname );
 		$row = $res ? $res->fetchRow() : false;
 
 		return ( $row ?: null );
