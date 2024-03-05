@@ -37,6 +37,7 @@ module.exports = {
 			useLongnameInNav: true
 		},
 		wmf: {
+			repository: 'https://gerrit.wikimedia.org/g/mediawiki/core/',
 			linkMap: {
 				Array: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array',
 				Blob: 'https://developer.mozilla.org/en-US/docs/Web/API/Blob',
