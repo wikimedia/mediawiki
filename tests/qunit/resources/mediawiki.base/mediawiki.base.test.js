@@ -299,23 +299,19 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 
 	QUnit.test( 'RLQ.push', function ( assert ) {
 		/* global RLQ */
-		var loaded = 0,
-			called = 0,
-			done = assert.async();
-		mw.loader.testCallback = function () {
+		let loaded = 0;
+		mw.loader.implement( 'test.rlq-push', function () {
 			loaded++;
-			delete mw.loader.testCallback;
-		};
-		mw.loader.implement( 'test.rlq-push', [
-			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js'
-		] );
+		} );
 
 		// Regression test for T208093
+		let called = 0;
 		RLQ.push( function () {
 			called++;
 		} );
 		assert.strictEqual( called, 1, 'Invoke plain callbacks' );
 
+		const done = assert.async();
 		RLQ.push( [ 'test.rlq-push', function () {
 			assert.strictEqual( loaded, 1, 'Load the required module' );
 			done();
