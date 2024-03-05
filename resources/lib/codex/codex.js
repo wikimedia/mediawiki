@@ -5738,8 +5738,9 @@ const _sfc_main$a = defineComponent({
     }
     function onInputFocus(event) {
       isActive.value = true;
-      const hasInputAndMenuItems = inputValue.value !== null && inputValue.value !== "" && !!(props.menuItems.length > 0 || slots["no-results"]);
-      if (hasInputAndMenuItems || initialMenuItems.value.length > 0) {
+      const hasInput = inputValue.value !== null && inputValue.value !== "";
+      const hasMenuItems = !!(props.menuItems.length > 0 || slots["no-results"]);
+      if (hasMenuItems && (hasInput || initialMenuItems.value.length > 0)) {
         expanded.value = true;
       }
       emit("focus", event);

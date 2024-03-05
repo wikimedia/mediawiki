@@ -102,8 +102,7 @@
 //
 .cdx-mixin-css-icon-try-mask-image( @param-icon, @param-fill-color, @param-is-button-icon ) {
 	@hex-color-black: #000000;
-	// Older versions of Less don't support using escape() on colors, so use %A instead
-	@escaped-color-black: %( '%A', @hex-color-black );
+	@escaped-color-black: escape( @hex-color-black );
 	@image-url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="@{escaped-color-black}">@{param-icon}</svg>';
 
 	// Support Firefox v39-52: fall back to background-image.
