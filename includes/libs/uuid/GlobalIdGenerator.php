@@ -97,8 +97,14 @@ class GlobalIdGenerator {
 			throw new InvalidArgumentException( "No temp directory provided" );
 		}
 		$this->tmpDir = $tempDirectory;
-		// Check if getmyuid exists, it could be disabled for security reasons - T324513
-		$fileSuffix = function_exists( 'getmyuid' ) ? getmyuid() : '';
+		// Include the UID in the filename (T268420, T358768)
+		if ( function_exists( 'posix_geteuid' ) ) {
+			$fileSuffix = posix_geteuid();
+		} elseif ( function_exists( 'getmyuid' ) ) {
+			$fileSuffix = getmyuid();
+		} else {
+			$fileSuffix = '';
+		}
 		$this->uniqueFilePrefix = self::FILE_PREFIX . $fileSuffix;
 		$this->nodeIdFile = $tempDirectory . '/' . $this->uniqueFilePrefix . '-UID-nodeid';
 		// If different processes run as different users, they may have different temp dirs.
