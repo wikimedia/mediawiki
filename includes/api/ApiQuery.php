@@ -472,6 +472,7 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'GenderCache',
 				'CommentFormatter',
+				'TempUserConfig'
 			],
 		],
 		'watchlistraw' => [

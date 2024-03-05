@@ -4,6 +4,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -48,6 +49,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			$this->getMockWatchedItemStore(),
 			$this->createHookContainer(),
 			$userOptionsLookup ?? $this->createMock( UserOptionsLookup::class ),
+			$this->createMock( TempUserConfig::class ),
 			false
 		);
 	}

@@ -8,11 +8,14 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Class performing complex database queries related to WatchedItems.
@@ -80,6 +83,9 @@ class WatchedItemQueryService {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var TempUserConfig */
+	private $tempUserConfig;
+
 	/**
 	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
 	 */
@@ -96,6 +102,7 @@ class WatchedItemQueryService {
 		WatchedItemStoreInterface $watchedItemStore,
 		HookContainer $hookContainer,
 		UserOptionsLookup $userOptionsLookup,
+		TempUserConfig $tempUserConfig,
 		bool $expiryEnabled = false,
 		int $maxQueryExecutionTime = 0
 	) {
@@ -104,6 +111,7 @@ class WatchedItemQueryService {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->tempUserConfig = $tempUserConfig;
 		$this->expiryEnabled = $expiryEnabled;
 		$this->maxQueryExecutionTime = $maxQueryExecutionTime;
 	}
@@ -482,7 +490,7 @@ class WatchedItemQueryService {
 
 		$conds = array_merge(
 			$conds,
-			$this->getWatchedItemsWithRCInfoQueryFilterConds( $user, $options )
+			$this->getWatchedItemsWithRCInfoQueryFilterConds( $db, $user, $options )
 		);
 
 		$conds = array_merge( $conds, $this->getStartEndConds( $db, $options ) );
@@ -517,7 +525,11 @@ class WatchedItemQueryService {
 		return $user->getId();
 	}
 
-	private function getWatchedItemsWithRCInfoQueryFilterConds( User $user, array $options ) {
+	private function getWatchedItemsWithRCInfoQueryFilterConds(
+		IReadableDatabase $dbr,
+		User $user,
+		array $options
+	) {
 		$conds = [];
 
 		if ( in_array( self::FILTER_MINOR, $options['filters'] ) ) {
@@ -532,10 +544,33 @@ class WatchedItemQueryService {
 			$conds[] = 'rc_bot = 0';
 		}
 
+		// Treat temporary users as 'anon', to match ChangesListSpecialPage
 		if ( in_array( self::FILTER_ANON, $options['filters'] ) ) {
-			$conds[] = 'watchlist_actor.actor_user IS NULL';
+			if ( $this->tempUserConfig->isEnabled() ) {
+				$expressionGroup = new OrExpressionGroup();
+				$expressionGroup->or( 'watchlist_actor.actor_user', '=', null );
+				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
+					$expressionGroup->or(
+						'watchlist_actor.actor_name',
+						IExpression::LIKE,
+						$pattern->toLikeValue( $dbr )
+					);
+				}
+				$conds[] = $expressionGroup;
+			} else {
+				$conds[] = 'watchlist_actor.actor_user IS NULL';
+			}
 		} elseif ( in_array( self::FILTER_NOT_ANON, $options['filters'] ) ) {
 			$conds[] = 'watchlist_actor.actor_user IS NOT NULL';
+			if ( $this->tempUserConfig->isEnabled() ) {
+				foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
+					$conds[] = $dbr->expr(
+						'watchlist_actor.actor_name',
+						IExpression::NOT_LIKE,
+						$pattern->toLikeValue( $dbr )
+					);
+				}
+			}
 		}
 
 		if ( $user->useRCPatrol() || $user->useNPPatrol() ) {
