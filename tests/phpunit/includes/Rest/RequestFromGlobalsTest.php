@@ -50,7 +50,11 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			[
 				[],
 				'GET',
-			]
+			],
+			[
+				[ 'REQUEST_METHOD' => 'get' ],
+				'GET',
+			],
 		];
 	}
 

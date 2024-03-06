@@ -30,7 +30,9 @@ class RequestFromGlobals extends RequestBase {
 	// RequestInterface
 
 	public function getMethod() {
-		return $_SERVER['REQUEST_METHOD'] ?? 'GET';
+		// Even though the spec says that method names should always be
+		// upper case, some clients may send lower case method names (T359306).
+		return strtoupper( $_SERVER['REQUEST_METHOD'] ?? 'GET' );
 	}
 
 	public function getUri() {
