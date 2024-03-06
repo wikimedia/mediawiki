@@ -436,17 +436,20 @@ class BotPassword {
 			return Status::newFatal( 'botpasswords-no-provider' );
 		}
 
+		$performer = $request->getSession()->getUser();
 		// Split name into name+appId
 		$sep = self::getSeparator();
 		if ( !str_contains( $username, $sep ) ) {
-			return self::loginHook( $username, null, Status::newFatal( 'botpasswords-invalid-name', $sep ) );
+			return self::loginHook(
+				$username, null, $performer, Status::newFatal( 'botpasswords-invalid-name', $sep )
+			);
 		}
 		[ $name, $appId ] = explode( $sep, $username, 2 );
 
 		// Find the named user
 		$user = User::newFromName( $name );
 		if ( !$user || $user->isAnon() ) {
-			return self::loginHook( $user ?: $name, null, Status::newFatal( 'nosuchuser', $name ) );
+			return self::loginHook( $user ?: $name, null, $performer, Status::newFatal( 'nosuchuser', $name ) );
 		}
 
 		if ( $user->isLocked() ) {
@@ -462,38 +465,39 @@ class BotPassword {
 			$result = $throttle->increase( $user->getName(), $request->getIP(), __METHOD__ );
 			if ( $result ) {
 				$msg = wfMessage( 'login-throttled' )->durationParams( $result['wait'] );
-				return self::loginHook( $user, null, Status::newFatal( $msg ) );
+				return self::loginHook( $user, null, $performer, Status::newFatal( $msg ) );
 			}
 		}
 
 		// Get the bot password
 		$bp = self::newFromUser( $user, $appId );
 		if ( !$bp ) {
-			return self::loginHook( $user, $bp,
+			return self::loginHook( $user, $bp, $performer,
 				Status::newFatal( 'botpasswords-not-exist', $name, $appId ) );
 		}
 
 		// Check restrictions
 		$status = $bp->getRestrictions()->check( $request );
 		if ( !$status->isOK() ) {
-			return self::loginHook( $user, $bp, Status::newFatal( 'botpasswords-restriction-failed' ) );
+			return self::loginHook( $user, $bp, $performer,
+				Status::newFatal( 'botpasswords-restriction-failed' ) );
 		}
 
 		// Check the password
 		$passwordObj = $bp->getPassword();
 		if ( $passwordObj instanceof InvalidPassword ) {
-			return self::loginHook( $user, $bp,
+			return self::loginHook( $user, $bp, $performer,
 				Status::newFatal( 'botpasswords-needs-reset', $name, $appId ) );
 		}
 		if ( !$passwordObj->verify( $password ) ) {
-			return self::loginHook( $user, $bp, Status::newFatal( 'wrongpassword' ) );
+			return self::loginHook( $user, $bp, $performer, Status::newFatal( 'wrongpassword' ) );
 		}
 
 		// Ok! Create the session.
 		if ( $throttle ) {
 			$throttle->clear( $user->getName(), $request->getIP() );
 		}
-		return self::loginHook( $user, $bp,
+		return self::loginHook( $user, $bp, $performer,
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			Status::newGood( $provider->newSessionForRequest( $user, $bp, $request ) ) );
 	}
@@ -506,11 +510,14 @@ class BotPassword {
 	 *
 	 * @param User|string $user User being logged in
 	 * @param BotPassword|null $bp Bot sub-account, if it can be identified
+	 * @param User $performer User performing the request
 	 * @param Status $status Login status
 	 * @return Status The passed-in status
 	 */
-	private static function loginHook( $user, $bp, Status $status ) {
-		$extraData = [];
+	private static function loginHook( $user, $bp, User $performer, Status $status ) {
+		$extraData = [
+			'performer' => $performer
+		];
 		if ( $user instanceof User ) {
 			$name = $user->getName();
 			if ( $bp ) {

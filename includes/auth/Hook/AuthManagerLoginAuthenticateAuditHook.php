@@ -29,6 +29,7 @@ interface AuthManagerLoginAuthenticateAuditHook {
 	 * @param string[] $extraData Array (string => string) with extra information, intended to be
 	 *   added to log contexts. Fields it might include:
 	 *   - appId: application ID, only if the login was with a bot password
+	 *   - performer: the user performing the login authentication request
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAuthManagerLoginAuthenticateAudit( $response, $user,
