@@ -98,7 +98,6 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
-use MediaWiki\Output\IframeSandboxFactory;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
@@ -1208,14 +1207,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getHttpRequestFactory(): HttpRequestFactory {
 		return $this->getService( 'HttpRequestFactory' );
-	}
-
-	/**
-	 * @since 1.42
-	 * @return IframeSandboxFactory
-	 */
-	public function getIframeSandboxFactory(): IframeSandboxFactory {
-		return $this->getService( 'IframeSandboxFactory' );
 	}
 
 	/**

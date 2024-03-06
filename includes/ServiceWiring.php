@@ -127,7 +127,6 @@ use MediaWiki\Mail\IEmailer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
-use MediaWiki\Output\IframeSandboxFactory;
 use MediaWiki\OutputTransform\DefaultOutputPipelineFactory;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
@@ -976,14 +975,6 @@ return [
 			),
 			LoggerFactory::getInstance( 'http' ),
 			Telemetry::getInstance()
-		);
-	},
-
-	'IframeSandboxFactory' => static function ( MediaWikiServices $services ): IframeSandboxFactory {
-		return new IframeSandboxFactory(
-			$services->getTitleFactory(),
-			$services->getSkinFactory(),
-			$services->getUserFactory()
 		);
 	},
 
