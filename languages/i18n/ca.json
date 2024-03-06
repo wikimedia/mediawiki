@@ -77,7 +77,8 @@
 			"Àlex",
 			"לערי ריינהארט",
 			"아라",
-			"Iketsi"
+			"Iketsi",
+			"Lluis Cat"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -944,6 +945,8 @@
 	"revdelete-radio-same": "(no ho canviïs)",
 	"revdelete-radio-set": "Oculta",
 	"revdelete-radio-unset": "Visible",
+	"revdelete-radio-set-suppress": "Elimina",
+	"revdelete-radio-unset-suppress": "Restaura",
 	"revdelete-suppress": "Suprimeix també les dades dels administradors",
 	"revdelete-unsuppress": "Suprimir les restriccions de les revisions restaurades",
 	"revdelete-log": "Motiu:",
@@ -1939,10 +1942,11 @@
 	"licenses-edit": "Modifica les opcions de llicència",
 	"license-nopreview": "(Previsualització no disponible)",
 	"upload_source_url": " (el fitxer que heu seleccionat des d'un URL vàlid i accessible públicament)",
-	"upload_source_file": " (un fitxer triat del vostre ordinador)",
+	"upload_source_file": " (un fitxer triat del vostre dispositiu)",
 	"listfiles-delete": "elimina",
 	"listfiles-summary": "Aquesta pàgina especial mostra tots els fitxers carregats.",
 	"listfiles-userdoesnotexist": "El compte d’usuari «$1» no s’ha registrat.",
+	"listfiles-pager-submit": "Mostra la llista de fitxers",
 	"imgfile": "fitxer",
 	"listfiles": "Llista de fitxers",
 	"listfiles_subpage": "Càrregues per $1",

@@ -438,7 +438,7 @@
 	"noname": "Aap achchha user name ke nai specify karaa hai.",
 	"loginsuccesstitle": "Login safal bhais",
 	"loginsuccess": "'''Aap \"$1\" ke naam pe {{SITENAME}} me logged in hai.'''",
-	"nosuchuser": "\"$1\" naam ke koi sadasya nai hai.\nSadasya ke naam case sensitive hai.\nAapan spelling check karo nai to [[Special:CreateAccount|nawaa account banao]].",
+	"nosuchuser": "\"$1\" naam ke koi sadasya nai hai.\nSadasya ke naam case-sensitive hai.\nAapan spelling check karo nai to [[Special:CreateAccount|nawaa account banao]].",
 	"nosuchusershort": "\"$1\" naam ke koi sadasya nai hai.\nAapan spelling check karo.",
 	"nouserspecified": "Aap ke aapan username de ke parri.",
 	"login-userblocked": "Ii sadasya ke rok dewa gais hae.  Login kare ke ijajat nai hae.",
