@@ -2578,8 +2578,11 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.widgets",
 		'packageFiles' => [
 			'index.js',
-			[ 'name' => 'data.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
-				$userLang = $messageLocalizer->msg( 'unused' )->getLanguage();
+			[ 'name' => 'data.json', 'callback' => static function ( Context $context ) {
+				// $context only has a language code, we need to look up the language object
+				$langCode = $context->getLanguage();
+				$userLang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $langCode );
 				return [
 					'formattedNamespaces' => $userLang->getFormattedNamespaces(),
 				];
