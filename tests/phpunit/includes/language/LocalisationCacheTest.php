@@ -34,6 +34,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 			'manualRecache' => false,
 			'ExtensionMessagesFiles' => [],
 			'MessagesDirs' => [],
+			'TranslationAliasesDirs' => [],
 		];
 
 		$lc = $this->getMockBuilder( LocalisationCache::class )
@@ -140,6 +141,41 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 		// no recache this time, but load only the core data first by getting the fallbackSequence
 		$lc->getItem( 'de', 'fallbackSequence' );
 		$this->assertExtensionMessagesFiles( $lc );
+	}
+
+	public function testRecacheTranslationAliasesDirs(): void {
+		global $IP;
+
+		$lc = $this->getMockLocalisationCache( [], [
+			'TranslationAliasesDirs' => [
+				__METHOD__ => "$IP/tests/phpunit/data/localisationcache/translation-alias/"
+			]
+		] );
+
+		$lc->recache( 'nl' );
+		$specialPageAliases = $lc->getItem( 'nl', 'specialPageAliases' );
+		$this->assertSame(
+			[ "Vertalersmeldingen(TEST)", "NotifyTranslators(TEST)" ],
+			$specialPageAliases['NotifyTranslators'],
+			'specialPageAliases can be set in TranslationAliasesDirs'
+		);
+		$this->assertSame(
+			[ 'ActieveGebruikers(TEST)', 'ActieveGebruikers', 'ActiveUsers' ],
+			$specialPageAliases['Activeusers'],
+			'specialPageAliases from extension/core files are merged'
+		);
+
+		$lc->recache( 'pt' );
+		$specialPageAliases = $lc->getItem( 'pt', 'specialPageAliases' );
+		$this->assertSame(
+			[ 'Utilizadores_activos(TEST)', 'Utilizadores_activos', 'Usuários_ativos', 'ActiveUsers' ],
+			$specialPageAliases['Activeusers'],
+			'specialPageAliases from extension/core files and fallback languages are merged'
+		);
+
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessageMatches( '/invalid key:/i' );
+		$lc->recache( 'fr' );
 	}
 
 	/**

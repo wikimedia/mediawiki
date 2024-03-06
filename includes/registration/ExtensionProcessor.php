@@ -143,6 +143,7 @@ class ExtensionProcessor implements Processor {
 		'AutoloadClasses',
 		'AutoloadNamespaces',
 		'ExtensionMessagesFiles',
+		'TranslationAliasesDirs',
 		'ForeignResourcesDir',
 		'Hooks',
 		'MessagePosterModule',
@@ -165,6 +166,7 @@ class ExtensionProcessor implements Processor {
 	protected $globals = [
 		'wgExtensionMessagesFiles' => [],
 		'wgMessagesDirs' => [],
+		'TranslationAliasesDirs' => [],
 	];
 
 	/**
@@ -257,6 +259,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractHooks( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
+		$this->extractTranslationAliasesDirs( $dir, $info );
 		$this->extractSkins( $dir, $info );
 		$this->extractSkinImportPaths( $dir, $info );
 		$this->extractNamespaces( $info );
@@ -687,6 +690,21 @@ class ExtensionProcessor implements Processor {
 				foreach ( (array)$files as $file ) {
 					$this->globals["wgMessagesDirs"][$name][] = "$dir/$file";
 				}
+			}
+		}
+	}
+
+	/**
+	 * Set localization related settings, which need to be expanded to use
+	 * absolute paths
+	 *
+	 * @param string $dir
+	 * @param array $info
+	 */
+	protected function extractTranslationAliasesDirs( $dir, array $info ) {
+		foreach ( $info['TranslationAliasesDirs'] ?? [] as $name => $files ) {
+			foreach ( (array)$files as $file ) {
+				$this->globals['wgTranslationAliasesDirs'][$name][] = "$dir/$file";
 			}
 		}
 	}

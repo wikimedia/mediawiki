@@ -3864,6 +3864,12 @@ $wgExtensionMessagesFiles = null;
 $wgMessagesDirs = null;
 
 /**
+ * Config variable stub for the TranslationAliasesDirs setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::TranslationAliasesDirs
+ */
+$wgTranslationAliasesDirs = null;
+
+/**
  * Config variable stub for the ExtensionEntryPointListFiles setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ExtensionEntryPointListFiles
  */
