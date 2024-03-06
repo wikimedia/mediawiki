@@ -591,7 +591,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				"actor_name NOT LIKE '*%' ESCAPE '`' ",
+				"actor_name NOT LIKE '*%' ESCAPE '`'",
 				'actor_user IS NOT NULL',
 			],
 			[
@@ -620,7 +620,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				"(actor_user IS NULL OR actor_name LIKE '*%' ESCAPE '`' )",
+				"(actor_user IS NULL OR actor_name LIKE '*%' ESCAPE '`')",
 			],
 			[
 				'userExpLevel' => 'unregistered',
@@ -661,7 +661,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 
 		$this->assertMatchesRegularExpression(
-			'/\(\(actor_user IS NULL OR actor_name LIKE \'[^\']+\' ESCAPE \'`\' \)\) OR '
+			'/\(\(actor_user IS NULL OR actor_name LIKE \'[^\']+\' ESCAPE \'`\'\)\) OR '
 			. '\(\(user_editcount >= 500\) AND \(user_registration IS NULL OR '
 			. '\(user_registration <= \'[^\']+\'\)\)\)/',
 			reset( $conds ),

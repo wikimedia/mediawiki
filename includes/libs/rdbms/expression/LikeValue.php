@@ -49,7 +49,7 @@ class LikeValue {
 			}
 		}
 
-		return $dbQuoter->addQuotes( $s ) . ' ESCAPE ' . $dbQuoter->addQuotes( $escapeChar ) . ' ';
+		return $dbQuoter->addQuotes( $s ) . ' ESCAPE ' . $dbQuoter->addQuotes( $escapeChar );
 	}
 
 	private function escapeLikeInternal( $s, $escapeChar = '`' ) {

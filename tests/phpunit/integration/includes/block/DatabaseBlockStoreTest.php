@@ -294,14 +294,14 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		yield 'IPv4 start, same end' => [
 			$hex1,
 			null,
-			"(ipb_range_start  LIKE '0102%' ESCAPE '`' )"
+			"(ipb_range_start  LIKE '0102%' ESCAPE '`')"
 			. " AND (ipb_range_start <= '$hex1')"
 			. " AND (ipb_range_end >= '$hex1')"
 		];
 		yield 'IPv4 start, different end' => [
 			$hex1,
 			$hex2,
-			"(ipb_range_start  LIKE '0102%' ESCAPE '`' )"
+			"(ipb_range_start  LIKE '0102%' ESCAPE '`')"
 			. " AND (ipb_range_start <= '$hex1')"
 			. " AND (ipb_range_end >= '$hex2')"
 		];
@@ -310,14 +310,14 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		yield 'IPv6 start, same end' => [
 			$hex3,
 			null,
-			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`' )"
+			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`')"
 			. " AND (ipb_range_start <= '$hex3')"
 			. " AND (ipb_range_end >= '$hex3')"
 		];
 		yield 'IPv6 start, different end' => [
 			$hex3,
 			$hex4,
-			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`' )"
+			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`')"
 			. " AND (ipb_range_start <= '$hex3')"
 			. " AND (ipb_range_end >= '$hex4')"
 		];
