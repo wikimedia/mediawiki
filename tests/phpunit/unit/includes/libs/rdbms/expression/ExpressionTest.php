@@ -107,19 +107,19 @@ class ExpressionTest extends TestCase {
 			],
 			[
 				'user_name', IExpression::LIKE, new LikeValue( 'foo', new LikeMatch( '%' ) ),
-				"user_name LIKE 'foo%' ESCAPE '`' "
+				"user_name LIKE 'foo%' ESCAPE '`'"
 			],
 			[
 				'user_name', IExpression::NOT_LIKE, new LikeValue( new LikeMatch( '%' ), 'foo' ),
-				"user_name NOT LIKE '%foo' ESCAPE '`' "
+				"user_name NOT LIKE '%foo' ESCAPE '`'"
 			],
 			[
 				'user_name', IExpression::LIKE, new LikeValue( 'foo' ),
-				"user_name LIKE 'foo' ESCAPE '`' "
+				"user_name LIKE 'foo' ESCAPE '`'"
 			],
 			[
 				'user_name', IExpression::LIKE, new LikeValue( new LikeMatch( '_' ), '%_', new LikeMatch( '%' ) ),
-				"user_name LIKE '_`%`_%' ESCAPE '`' "
+				"user_name LIKE '_`%`_%' ESCAPE '`'"
 			],
 		];
 	}
