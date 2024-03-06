@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\CommentStore\CommentStoreComment;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -9,7 +7,6 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
-use MediaWiki\Rest\HttpException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -101,11 +98,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	private function getParsoidOutputAccessWithCache(): ParsoidOutputAccess {
 		$services = $this->getServiceContainer();
 		return new ParsoidOutputAccess(
-			new ServiceOptions(
-				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig(),
-				[ 'ParsoidWikiID' => 'MyWiki' ]
-			),
 			$services->getParsoidParserFactory(),
 			$services->getParserOutputAccess(),
 			$services->getPageStore(),
@@ -158,28 +150,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 
 		$this->expectException( RevisionAccessException::class );
-		$access->getParserOutput( $page, $parserOptions );
-	}
-
-	/**
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
-	 */
-	public function testGetParserOutputThrowsIfNotWikitext() {
-		$this->markTestSkipped( 'Broken by fix for T324711. Restore once we have T311728.' );
-
-		$this->resetServicesWithMockedParsoid( 0 );
-		$access = $this->getParsoidOutputAccessWithCache();
-		$parserOptions = $this->getParserOptions();
-
-		$page = $this->getNonexistingTestPage( __METHOD__ );
-		$updater = $page->newPageUpdater( $this->getTestUser()->getUserIdentity() );
-		$updater->setContent( SlotRecord::MAIN, new JavaScriptContent( '{}' ) );
-		$updater->saveRevision( CommentStoreComment::newUnsavedComment( 'testing' ) );
-
-		// NOTE: The fact that we throw an HttpException here is a code smell.
-		//       It should be a different exception which gets converted to an HttpException later.
-		$this->expectException( HttpException::class );
-		$this->expectExceptionCode( 400 );
 		$access->getParserOutput( $page, $parserOptions );
 	}
 
@@ -319,7 +289,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 */
-	public function testDummyContentForBadModel() {
+	public function testNonParsoidOutput() {
 		// Expect no cache writes!
 		$cacheBag = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'set', 'setMulti' ] )
@@ -336,19 +306,13 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( $page, new JavaScriptContent( '"not wikitext"' ) );
 
 		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertContainsHtml( 'Dummy output', $status );
+		$this->assertContainsHtml( 'not wikitext', $status );
 
 		/** @var ParserOutput $parserOutput */
 		$parserOutput = $status->getValue();
-		$this->assertSame( '0/dummy-output', ParsoidRenderID::newFromParserOutput( $parserOutput )->getKey() );
-
-		$expTime = $parserOutput->getCacheExpiry();
-		$this->assertSame( 0, $expTime );
-
-		// Get the ParserOutput again, this should trigger a new parse
-		// since we suppressed caching for non-wikitext content.
-		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertContainsHtml( 'Dummy output', $status );
+		$this->assertNotNull(
+			ParsoidRenderID::newFromParserOutput( $parserOutput )->getKey()
+		);
 	}
 
 	public function testOldRevisionIsCached() {

@@ -1611,11 +1611,6 @@ return [
 
 	'ParsoidOutputAccess' => static function ( MediaWikiServices $services ): ParsoidOutputAccess {
 		return new ParsoidOutputAccess(
-			new ServiceOptions(
-				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig(),
-				[ 'ParsoidWikiID' => WikiMap::getCurrentWikiId() ]
-			),
 			$services->getParsoidParserFactory(),
 			$services->getParserOutputAccess(),
 			$services->getPageStore(),

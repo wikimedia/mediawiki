@@ -52,6 +52,12 @@ use Wikimedia\Rdbms\ILBFactory;
  */
 class ParserOutputAccess {
 
+	/** @internal */
+	public const PARSOID_PCACHE_NAME = 'parsoid-' . ParserCacheFactory::DEFAULT_NAME;
+
+	/** @internal */
+	public const PARSOID_RCACHE_NAME = 'parsoid-' . ParserCacheFactory::DEFAULT_RCACHE_NAME;
+
 	/**
 	 * @var int Do not check the cache before parsing (force parse)
 	 */
@@ -509,12 +515,8 @@ class ParserOutputAccess {
 
 	private function getPrimaryCache( ParserOptions $pOpts ): ParserCache {
 		if ( $pOpts->getUseParsoid() ) {
-			// T331148: This is different from
-			// ParsoidOutputAccess::PARSOID_PARSER_CACHE_NAME; will be
-			// renamed once the contents cached on the read-views and
-			// the REST path are identical.
 			return $this->parserCacheFactory->getParserCache(
-				'parsoid-' . ParserCacheFactory::DEFAULT_NAME
+				self::PARSOID_PCACHE_NAME
 			);
 		}
 
@@ -526,7 +528,7 @@ class ParserOutputAccess {
 	private function getSecondaryCache( ParserOptions $pOpts ): RevisionOutputCache {
 		if ( $pOpts->getUseParsoid() ) {
 			return $this->parserCacheFactory->getRevisionOutputCache(
-				'parsoid-' . ParserCacheFactory::DEFAULT_RCACHE_NAME
+				self::PARSOID_RCACHE_NAME
 			);
 		}
 

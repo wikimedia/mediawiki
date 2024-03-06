@@ -108,11 +108,6 @@ trait PageHandlerTestTrait {
 		];
 
 		$parsoidOutputAccess = new ParsoidOutputAccess(
-			new ServiceOptions(
-				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig(),
-				[ 'ParsoidWikiID' => 'MyWiki' ]
-			),
 			$services->getParsoidParserFactory(),
 			$services->getParserOutputAccess(),
 			$services->getPageStore(),
