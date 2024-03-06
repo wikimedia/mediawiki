@@ -88,15 +88,13 @@
 	 *
 	 * @private
 	 * @param {Array} templates List of template titles.
-	 * @param {boolean} isSection Whether a section is currently being edited.
 	 */
-	function showTemplates( templates, isSection ) {
+	function showTemplates( templates ) {
 		// The .templatesUsed div can be empty, if no templates are in use.
 		// In that case, we have to create the required structure.
 		var $parent = $( '.templatesUsed' );
 
 		// Find or add the explanation text (the toggler for collapsing).
-		var explanationMsg = isSection ? 'templatesusedsection' : 'templatesusedpreview';
 		var $explanation = $parent.find( '.mw-templatesUsedExplanation p' );
 		if ( $explanation.length === 0 ) {
 			$explanation = $( '<p>' );
@@ -114,10 +112,7 @@
 		}
 
 		if ( templates.length === 0 ) {
-			// The following messages can be used here:
-			// * templatesusedpreview
-			// * templatesusedsection
-			$explanation.msg( explanationMsg, 0 );
+			$explanation.msg( 'templatesusedpreview', 0 );
 			$list.empty();
 			return;
 		}
@@ -176,10 +171,7 @@
 				.then( function () {
 					$list.html( $listNew.html() );
 				} );
-			// The following messages can be used here:
-			// * templatesusedpreview
-			// * templatesusedsection
-			$explanation.msg( explanationMsg, templatesAllInfo.length );
+			$explanation.msg( 'templatesusedpreview', templatesAllInfo.length );
 		} ).always( function () {
 			$parent.removeClass( 'mw-preview-loading-elements-loading' );
 		} );
@@ -334,9 +326,8 @@
 	 * @private
 	 * @param {Object} config
 	 * @param {Object} response
-	 * @param {boolean} isSection Whether a section is currently being edited.
 	 */
-	function handleParseResponse( config, response, isSection ) {
+	function handleParseResponse( config, response ) {
 		var $content;
 
 		// Js config variables and modules.
@@ -381,7 +372,7 @@
 
 		// Templates.
 		if ( response.parse.templates ) {
-			showTemplates( response.parse.templates, isSection );
+			showTemplates( response.parse.templates );
 		}
 
 		// Limit report.
@@ -664,7 +655,7 @@
 				if ( config.showDiff ) {
 					handleDiffResponse( config, diffResponse );
 				} else {
-					handleParseResponse( config, parseResponse[ 0 ], section !== '' );
+					handleParseResponse( config, parseResponse[ 0 ] );
 				}
 
 				mw.hook( 'wikipage.editform' ).fire( config.$formNode );

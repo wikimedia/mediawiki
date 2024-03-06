@@ -1720,7 +1720,6 @@ return [
 			'word-separator',
 			'comma-separator',
 			'templatesusedpreview',
-			'templatesusedsection',
 			'editlink',
 			'viewsourcelink',
 			'template-semiprotected',
