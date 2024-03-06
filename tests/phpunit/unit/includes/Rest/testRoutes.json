@@ -9,6 +9,11 @@
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
 	},
 	{
+		"method": [ "GET", "POST", "PUT", "DELETE" ],
+		"path": "/mock/RouterTest/echo/{pathParam}",
+		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+	},
+	{
 		"method": [ "POST", "PUT" ],
 		"path": "/mock/RouterTest/stream",
 		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::streamHandlerFactory"
