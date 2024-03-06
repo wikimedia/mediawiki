@@ -112,6 +112,10 @@
 		 * @return {jQuery.Promise}
 		 */
 		post: function ( path, body, headers ) {
+			if ( typeof body === 'undefined' ) {
+				body = {};
+			}
+
 			headers = objectKeysToLowerCase( headers );
 			return this.ajax( path, {
 				type: 'POST',
