@@ -1355,6 +1355,12 @@ return [
 					'seconds' => 86400,
 				],
 			],
+			'TempAccountCreationThrottle' => [
+				[
+					'count' => 6,
+					'seconds' => 86400,
+				],
+			],
 			'SpamRegex' => [
 			],
 			'SummarySpamRegex' => [
@@ -2815,6 +2821,7 @@ return [
 				'integer',
 				'array',
 			],
+			'TempAccountCreationThrottle' => 'array',
 			'SpamRegex' => 'array',
 			'SummarySpamRegex' => 'array',
 			'DnsBlacklistUrls' => 'array',

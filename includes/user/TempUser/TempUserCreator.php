@@ -95,6 +95,7 @@ class TempUserCreator implements TempUserConfig {
 			$result = $this->throttler->increase(
 				null, $request->getIP(), 'TempUserCreator' );
 			if ( $result ) {
+				// TODO: Use a custom message here (T357777, T357802)
 				$message = wfMessage( 'acct_creation_throttle_hit' )->params( $result['count'] )
 					->durationParams( $result['wait'] );
 				$status->fatal( $message );

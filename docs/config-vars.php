@@ -2892,6 +2892,12 @@ $wgHideUserContribLimit = null;
 $wgAccountCreationThrottle = null;
 
 /**
+ * Config variable stub for the TempAccountCreationThrottle setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::TempAccountCreationThrottle
+ */
+$wgTempAccountCreationThrottle = null;
+
+/**
  * Config variable stub for the SpamRegex setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SpamRegex
  */

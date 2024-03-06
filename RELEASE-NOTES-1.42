@@ -40,6 +40,8 @@ For notes on 1.41.x and older releases, see HISTORY.
   use-case is to enable a feature only for users created after a certain date.
 * $wgGrantRiskGroups: Grant risk levels, used to indicate on various UIs which
   grants should be considered risky. (T290790)
+* $wgTempAccountCreationThrottle: Like AccountCreationThrottle, but for managing
+  temporary account creations.
 * …
 
 ==== Changed configuration ====
