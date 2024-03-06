@@ -17,10 +17,10 @@
 	 *
 	 * @class
 	 * @extends OO.ui.InputWidget
-	 * @mixins OO.ui.mixin.IconElement
-	 * @mixins OO.ui.mixin.IndicatorElement
-	 * @mixins OO.ui.mixin.PendingElement
-	 * @mixins OO.ui.mixin.FlaggedElement
+	 * @mixes OO.ui.mixin.IconElement
+	 * @mixes OO.ui.mixin.IndicatorElement
+	 * @mixes OO.ui.mixin.PendingElement
+	 * @mixes OO.ui.mixin.FlaggedElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

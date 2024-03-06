@@ -6,7 +6,7 @@
 	 * @class
 	 * @classdesc Provides various methods needed for formatting dates and times.
 	 * @abstract
-	 * @mixins OO.EventEmitter
+	 * @mixes OO.EventEmitter
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

@@ -417,7 +417,7 @@
 
 	/**
 	 * @class jQuery
-	 * @mixins jQuery.plugin.makeCollapsible
+	 * @mixes jQuery.plugin.makeCollapsible
 	 */
 
 }() );

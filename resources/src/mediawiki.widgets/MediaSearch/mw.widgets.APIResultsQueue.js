@@ -9,7 +9,7 @@
 	 * API Results Queue object.
 	 *
 	 * @class
-	 * @mixins OO.EventEmitter
+	 * @mixes OO.EventEmitter
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

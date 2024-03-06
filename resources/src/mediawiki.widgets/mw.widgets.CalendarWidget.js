@@ -14,9 +14,9 @@
 	 *
 	 * @class
 	 * @extends OO.ui.Widget
-	 * @mixins OO.ui.mixin.TabIndexedElement
-	 * @mixins OO.ui.mixin.FloatableElement
-	 * @mixins OO.ui.mixin.ClippableElement
+	 * @mixes OO.ui.mixin.TabIndexedElement
+	 * @mixes OO.ui.mixin.FloatableElement
+	 * @mixes OO.ui.mixin.ClippableElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

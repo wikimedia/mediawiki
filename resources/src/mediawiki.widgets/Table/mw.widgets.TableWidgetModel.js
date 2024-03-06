@@ -21,7 +21,7 @@
  * TableWidget model.
  *
  * @class
- * @mixins OO.EventEmitter
+ * @mixes OO.EventEmitter
  *
  * @constructor
  * @param {mw.widgets.TableWidgetModel~Config} [config] Configuration options

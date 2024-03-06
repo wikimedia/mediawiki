@@ -57,7 +57,7 @@
 	 *
 	 * @class
 	 * @extends OO.ui.TextInputWidget
-	 * @mixins OO.ui.mixin.IndicatorElement
+	 * @mixes OO.ui.mixin.IndicatorElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

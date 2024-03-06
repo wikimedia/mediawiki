@@ -3,7 +3,7 @@
  *
  * @class mw.rcfilters.dm.ChangesListViewModel
  * @ignore
- * @mixins OO.EventEmitter
+ * @mixes OO.EventEmitter
  *
  * @param {jQuery} $initialFieldset The initial server-generated legacy form content
  */

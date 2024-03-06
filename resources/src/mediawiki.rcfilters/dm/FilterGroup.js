@@ -7,8 +7,8 @@ var FilterItem = require( './FilterItem.js' ),
  *
  * @class mw.rcfilters.dm.FilterGroup
  * @ignore
- * @mixins OO.EventEmitter
- * @mixins OO.EmitterList
+ * @mixes OO.EventEmitter
+ * @mixes OO.EmitterList
  *
  * @param {string} name Group name
  * @param {Object} [config] Configuration options

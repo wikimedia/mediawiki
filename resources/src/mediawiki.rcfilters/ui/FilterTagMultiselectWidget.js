@@ -10,7 +10,7 @@ var ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
  * @class mw.rcfilters.ui.FilterTagMultiselectWidget
  * @ignore
  * @extends OO.ui.MenuTagMultiselectWidget
- * @mixins OO.ui.mixin.PendingElement
+ * @mixes OO.ui.mixin.PendingElement
  *
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model

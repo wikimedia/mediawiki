@@ -13,8 +13,8 @@
 	 *
 	 * @class
 	 * @extends OO.ui.TextInputWidget
-	 * @mixins mw.widgets.TitleWidget
-	 * @mixins OO.ui.mixin.LookupElement
+	 * @mixes mw.widgets.TitleWidget
+	 * @mixes OO.ui.mixin.LookupElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
