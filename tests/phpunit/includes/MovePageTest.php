@@ -277,6 +277,30 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				'File:Non-file-new.png',
 				[],
 			],
+			'File too long' => [
+				'File:Existent.jpg',
+				'File:0123456789012345678901234567890123456789012345678901234567890123456789' .
+				'0123456789012345678901234567890123456789012345678901234567890123456789' .
+				'0123456789012345678901234567890123456789012345678901234567890123456789' .
+				'012345678901234567890123456789-long.jpg',
+				[ [ 'filename-toolong' ] ]
+			],
+			// The FileRepo mock does not return true for ->backendSupportsUnicodePaths()
+			'Non-ascii' => [
+				'File:Existent.jpg',
+				'File:🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈.jpg',
+				[ [ 'filename-toolong' ], [ 'windows-nonascii-filename' ] ]
+			],
+			'Non-file move long with unicode' => [
+				'File:Non-file.jpg',
+				'File:🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 🏳️‍🌈.jpg',
+				[]
+			],
+			'File just extension' => [
+				'File:Existent.jpg',
+				'File:.jpg',
+				[ [ 'filename-tooshort' ], [ 'imagetypemismatch' ] ]
+			],
 		];
 		return $ret;
 	}
