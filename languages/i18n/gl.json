@@ -3496,8 +3496,6 @@
 	"specialpages-group-developer": "Ferramentas dos desenvolvedores",
 	"blankpage": "Baleirar a páxina",
 	"intentionallyblankpage": "Esta páxina foi baleirada intencionadamente",
-	"iframeerror-title": "Erro no iframe",
-	"iframeerror-message": "Este contido non se pode amosar porque o teu navegador non admite o [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc atributo \"srcdoc\" do elemento \"iframe\"].",
 	"disabledspecialpage-disabled": "Un administrador do sistema deshabilitou esta páxina.",
 	"external_image_whitelist": " #Deixe esta liña tal e como está<pre>\n#Poña embaixo fragmentos de expresións regulares (tan só a parte que vai entre //)\n#Isto coincidirá cos enderezos URL das imaxes externas (hotlinked)\n#Aquelas que coincidan amosaranse como imaxes, se non, só se amosará unha ligazón cara a esta\n#As liñas que comecen por \"#\" son comentarios\n#Non diferencia entre maiúsculas e minúsculas\n\n#Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>",
 	"tags": "Etiquetas de cambios válidas",

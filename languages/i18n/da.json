@@ -3203,8 +3203,6 @@
 	"specialpages-group-developer": "Udviklerværktøjer",
 	"blankpage": "Blank side",
 	"intentionallyblankpage": "Denne side er bevidst uden indhold.",
-	"iframeerror-title": "Iframe-fejl",
-	"iframeerror-message": "Dette indhold kan ikke vises, fordi din browser ikke understøtter [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc »iframe srcdoc«-attributten].",
 	"disabledspecialpage-disabled": "Denne side er deaktiveret af en systemadministrator.",
 	"external_image_whitelist": " #Lad denne linje være som den er<pre>\n#Skriv dele af regulære uttryk (delen som er mellem //) nedenfor\n#Disse vil tjekkes mod URL'er for eksterne billeder\n#De som matcher, vil blive vist som billeder. Øvrige vil kun blive vist som henvisninger til billedet\n#Linjer som begynder med # behandles som kommentarer\n#Der skelnes ikke mellem store og små bogstaver\n\n#Skriv alle delene af regulære udtryk over denne linje. Lad denne linje være som den er</pre>",
 	"tags": "Tags til sideversioner",

@@ -3550,8 +3550,6 @@
 	"specialpages-group-developer": "Piranti pangembang",
 	"blankpage": "Kaca puyung",
 	"intentionallyblankpage": "Kaca puniki jelap kabangyang puyung.",
-	"iframeerror-title": "Galat iframe",
-	"iframeerror-message": "Kontén puniki nénten prasida katampi santukan pramban nénten nagdukung [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc atribut iframe srcdoc].",
 	"disabledspecialpage-disabled": "Kaca puniki sampun kapademang olih prajuru sistem.",
 	"external_image_whitelist": "#banggiang baris niki sapunapi kawentenanne<pre>\n#anggen fragmen akspresi reguler (wantah kepahan ring kekelaih//) ring sor puniki\n#fragmen-fragmen puniki jagi kaadungang sareng URL saking gambar-gambar eksternal (sane kasambungang langsung)\n#fragmen sane adung jagi katampilang dados gambar, sisanne wantah dados pranala kewanten\n#baris sane kakawitin antuk # jagi kadadosang baris komentar\n#niki nenten ngabinayang aksara ageng lan alit\n#genahang samian fragmen ekspresi reguler ring sor baris puniki. banggiang baris niki sapunapi kawentennane</pre>",
 	"tags": "Cihna gentosan patut",

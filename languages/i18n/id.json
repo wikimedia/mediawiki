@@ -3570,8 +3570,6 @@
 	"specialpages-group-developer": "Alat Pengembang",
 	"blankpage": "Halaman kosong",
 	"intentionallyblankpage": "Halaman ini sengaja dibiarkan kosong dan digunakan di antaranya untuk pengukuran kinerja, dan lain-lain.",
-	"iframeerror-title": "Galat iframe",
-	"iframeerror-message": "Konten ini tidak dapat ditampilkan karena peramban Anda tidak mendukung [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc atribut iframe srcdoc].",
 	"disabledspecialpage-disabled": "Halaman ini telah dinonaktifkan oleh administrator sistem.",
 	"external_image_whitelist": "#Biarkan baris ini sebagaimana adanya<pre>\n#Gunakan fragmen-fragmen ekspresi regular (hanya bagian di antara //) di bawah ini\n#Fragmen-fragmen ini akan dicocokkan dengan URL dari gambar-gambar eksternal (yang dihubungkan langsung)\n#Fragmen yang cocok akan ditampilkan sebagai gambar, sisanya hanya sebagai pranala saja\n#Baris yang diawali dengan # akan diperlakukan sebagai baris komentar\n#Ini tidak membedakan huruf besar dan kecil\n#Letakkan semua fragmen ekspresi regular di bawah baris ini. Biarkan baris ini sebagaimana adanya</pre>",
 	"tags": "Tag perubahan yang valid",

@@ -3100,7 +3100,6 @@
 	"specialpages-group-developer": "Handwierksgeschir fir Entwéckler (Programméierer)",
 	"blankpage": "Eidel Säit",
 	"intentionallyblankpage": "Dës Säit ass absichtlech eidel. Si gëtt fir Benchmarking an Änleches benotzt.",
-	"iframeerror-title": "Iframe-Feeler",
 	"disabledspecialpage-disabled": "Dës Säit gouf vun engem System-Administrateur desaktivéiert.",
 	"external_image_whitelist": "#Dës Zeil genee sou loosse wéi se ass<pre>\n#Schreift hei ënnendrënner Fragmenter vu regulären Ausdréck (just den Deel zwëscht den // aginn)\n#Dës gi mat den URLe vu Biller aus externe Quelle verglach\n#Wann d'Resultat positiv ass, gëtt d'Bild gewisen, soss gëtt d'Bild just als Link gewisen\n#Zeilen, déi mat engem # ufänken, ginn als Bemierkung behandelt\n#Et gëtt en Ënnerscheed tëscht groussen a klenge Buschtawe gemaach\n\n#All regulär Ausdréck ënner dëser Zeil androen. Dës Zeil genee sou loosse wéi se ass</pre>",
 	"tags": "Valabel Ännerungsmarkéierungen",

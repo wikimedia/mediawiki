@@ -3594,8 +3594,6 @@
 	"specialpages-group-developer": "開發人員工具",
 	"blankpage": "空白頁面",
 	"intentionallyblankpage": "此頁故意留白。",
-	"iframeerror-title": "Iframe 錯誤",
-	"iframeerror-message": "無法顯示此內容，因為您的瀏覽器不支持[https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc iframe標籤的srcdoc屬性]。",
 	"disabledspecialpage-disabled": "此頁面已被系統管理員給停用。",
 	"external_image_whitelist": " #請勿修改本行文字<pre>\n#請於下方填寫正規表示法 (只需 // 之間的內容)\n#將會檢查外部連結的圖片是否符合這些條件\n#符合條件的連結會以圖片顯示，否則只顯示連結\n#以 # 開頭的行會被做為註解\n#此條件不區分大小寫\n\n#請將所有正規表示法輸入在此行上方，請勿修改本行文字</pre>",
 	"tags": "已定義的變更標籤",

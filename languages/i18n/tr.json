@@ -3603,8 +3603,6 @@
 	"specialpages-group-developer": "Geliştirici araçları",
 	"blankpage": "Boş sayfa",
 	"intentionallyblankpage": "Bu sayfa özellikle boştur.",
-	"iframeerror-title": "Iframe hatası",
-	"iframeerror-message": "Tarayıcınız [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc iframe srcdoc niteliğini] desteklemediğinden bu içerik görüntülenemiyor.",
 	"disabledspecialpage-disabled": "Bu sayfa sistem hizmetlisi tarafından devre dışı bırakıldı.",
 	"external_image_whitelist": " #Bu satırı olduğu gibi bırakın<pre>\n#Düzenli ifade parçalarını (sadece // arasında kalan kısmı) aşağıya ekleyin\n#Bunlar harici (hotlink) resimlerin URLleri ile eşlenecektir\n#Eşleşenler resim olarak görünecek, aksi takdirde sadece resme bir bağlantı görünecektir\n#ile başlayan satırlar yorum olarak muamele görecektir\n#Büyük-küçük harf duyarsızdır\n\n#Bütün düzenli ifade parçalarını bu satırın üstüne ekleyin. Bu satırı olduğu gibi bırakın</pre>",
 	"tags": "Geçerli değişiklik etiketleri",

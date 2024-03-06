@@ -3678,8 +3678,6 @@
 	"specialpages-group-developer": "Herramientas para desarrolladores",
 	"blankpage": "Página vacía",
 	"intentionallyblankpage": "Esta página está en blanco de manera intencionada.",
-	"iframeerror-title": "Error de Iframe",
-	"iframeerror-message": "Este contenido no puede mostrarse porque tu navegador no es compatible con el [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc atributo iframe srcdoc].",
 	"disabledspecialpage-disabled": "Esta página ha sido desactivada por el administrador del sistema.",
 	"external_image_whitelist": " #Deja esta línea exactamente como está<pre>\n#Colocar fragmentos de expresiones regulares (sólo la parte que va entre los //) debajo\n#Estos coincidirán con los URLs de las imágenes externas (hotlinked)\n#Aquellos que coincidan serán mostrados como imágenes, de lo contrario solamente un vínculo a la imagen será mostrada\n#Las líneas que empiezan por «#» se consideran comentarios\n#Esta es insensible a las mayúsculas\n\n#Colocar todos los fragmentos regex arriba de esta línea. Deja esta línea exactamente como está</pre>",
 	"tags": "Etiquetas de cambios",

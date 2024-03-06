@@ -3707,8 +3707,6 @@
 	"specialpages-group-developer": "開発者用ツール",
 	"blankpage": "白紙ページ",
 	"intentionallyblankpage": "このページは意図的に白紙にされています。",
-	"iframeerror-title": "iframe エラー",
-	"iframeerror-message": "お使いのブラウザが[https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc iframeのsrcdoc属性]をサポートしていないため、このコンテンツを表示できません。",
 	"disabledspecialpage-disabled": "このページはシステム管理者により無効化されています。",
 	"external_image_whitelist": "  #この行はこのままにしておいてください<pre>\n#この下に正規表現 (//の間に入る記述) を置いてください\n#外部の (ホットリンクされている) 画像の URL と一致するか検査されます\n#一致する場合は画像として、一致しない場合は画像へのリンクとして表示されます\n#行の頭に # を付けるとコメントとして扱われます\n#大文字と小文字は区別されません\n\n#正規表現はすべてこの行の上に置いてください。この行はこのままにしておいてください</pre>",
 	"tags": "有効な変更タグ",

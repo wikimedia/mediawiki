@@ -3708,8 +3708,6 @@
 	"specialpages-group-developer": "开发者工具",
 	"blankpage": "空白页面",
 	"intentionallyblankpage": "此页特意留白。",
-	"iframeerror-title": "Iframe 错误",
-	"iframeerror-message": "无法显示此内容，因为您的浏览器不支持[https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc iframe标签的srcdoc属性]。",
 	"disabledspecialpage-disabled": "此页面已被系统管理员禁用。",
 	"external_image_whitelist": " #请原样保留本行文字<pre>\n#请在下面输入正则表达式片段（//之间的部分）\n#这些项目将会匹配外部图像的URL\n#匹配的项目将显示为图像，否则只会显示图像的链接\n#以#开头的行被视为注释\n#不区分大小写\n\n#请在本行上面输入所有正则表达式片段。请原样保留本行文字</pre>",
 	"tags": "有效的更改标签",

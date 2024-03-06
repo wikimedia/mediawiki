@@ -3255,7 +3255,6 @@
 	"specialpages-group-developer": "Arfau ar gyfer y Datblygwr",
 	"blankpage": "Tudalen wag",
 	"intentionallyblankpage": "Gadawyd y dudalen hon yn wag yn fwriadol",
-	"iframeerror-title": "Gwall iframe",
 	"disabledspecialpage-disabled": "Anallugwyd y dudalen gan weinyddwr y system.",
 	"external_image_whitelist": " #Leave this line exactly as it is<pre>\n#Gosodwch ddarnau o ymadroddion rheolaidd (y rhan sy'n cael ei osod rhwng y //) isod\n#Caiff y rhain eu cysefeillio gyda URL y delweddau allanol (a chyswllt poeth atynt)\n#Dangosir y rhai sy'n cysefeillio fel delweddau; dangosir cyswllt at y ddelwedd yn unig ar gyfer y lleill\n#Caiff y llinellau sy'n dechrau gyda # eu trin fel sylwadau\n#Nid yw'n gwahaniaethu rhwng llythrennau mawr a bach\n\n#Put all regex fragments above this line. Leave this line exactly as it is</pre>",
 	"tags": "Tagiau newidiadau",

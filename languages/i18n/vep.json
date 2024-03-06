@@ -3444,8 +3444,6 @@
 	"specialpages-group-developer": "Programmistan sideged",
 	"blankpage": "Puhtaz lehtpol'",
 	"intentionallyblankpage": "Nece lehtpol' om jättud puhthaks.",
-	"iframeerror-title": "Iframe-viga",
-	"iframeerror-message": "Nece kontent ei sa ozutada, sikš miše sinun brauzer ei el'genda [https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/srcdoc iframe srcdoc attribute].",
 	"disabledspecialpage-disabled": "Nece lehtpol' oli kel'tüd sistemohjandajan abul.",
 	"external_image_whitelist": "  #Jäta nece rivi mugoižeks, mitte se om<pre>\n#Pane alemba regulärižiden virkehiden fragmentad (vaiše mugoižen palan, mitte om // znaman keskes)\n#Ned rindatadas irdkuviden URL-adresoidenke\n#Ühtejiččed ozutadas kuvil, toižed ozutadas tarkendusil kuvile\n#Rived, miččed zavodisoiš # znamaspäi, ozutadas kut mel'pidod\n#Ei ole tärged, mitte om registr\n\n#Pane regulärižiden virkehiden kaik fragmentad necen riven päle. Jäta nece rivi mugoižeks, mitte se om</pre>",
 	"tags": "Aktualižed vajehtusiden teg-sanad",
