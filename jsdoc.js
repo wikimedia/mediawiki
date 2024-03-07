@@ -16,14 +16,6 @@ module.exports = {
 	source: {
 		include: [
 			'resources/src/'
-		],
-		exclude: [
-			/* The following modules are temporarily disabled as we haven't
-			 got round to reviewing them and incorporating them into the documentation page yet. */
-			'resources/src/mediawiki.router',
-			'resources/src/mediawiki.language.specialCharacters',
-			'resources/src/oojs-global.js',
-			'resources/src/ooui-local.js'
 		]
 	},
 	templates: {
