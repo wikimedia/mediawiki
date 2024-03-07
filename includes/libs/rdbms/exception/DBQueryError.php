@@ -49,7 +49,7 @@ class DBQueryError extends DBExpectedError {
 				"Query: $sql\n";
 		}
 
-		parent::__construct( $db, $message, [ 'dbName' => $db->getServerName() ] );
+		parent::__construct( $db, $message );
 
 		$this->error = $error;
 		$this->errno = $errno;
