@@ -3398,28 +3398,19 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	): ?RevisionRecord {
 		$revision->assertWiki( $this->wikiId );
 		$db = $this->getDBConnection( DB_REPLICA );
-		$revQuery = $this->getQueryInfo();
-		$subquery = $db->buildSelectSubquery(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[ 'rev_page' => $revision->getPageId( $this->wikiId ) ],
-			__METHOD__,
-			[
-				'ORDER BY' => [
-					'rev_timestamp DESC',
-					// for cases where there are multiple revs with same timestamp
-					'rev_id DESC'
-				],
-				// T354015
-				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
-				'LIMIT' => $searchLimit,
-				// skip the most recent edit, we can't revert to it anyway
-				'OFFSET' => 1
-			],
-			$revQuery['joins']
-		);
+		$subquery = $this->newSelectQueryBuilder( $db )
+			->joinComment()
+			->where( [ 'rev_page' => $revision->getPageId( $this->wikiId ) ] )
+			// Include 'rev_id' in the ordering in case there are multiple revs with same timestamp
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
+			// T354015
+			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
+			->limit( $searchLimit )
+			// skip the most recent edit, we can't revert to it anyway
+			->offset( 1 )
+			->caller( __METHOD__ );
 
-		// selectRow effectively uses LIMIT 1 clause, returning only the first result
+		// fetchRow effectively uses LIMIT 1 clause, returning only the first result
 		$revisionRow = $db->newSelectQueryBuilder()
 			->select( '*' )
 			->from( $subquery, 'recent_revs' )
