@@ -25,6 +25,7 @@ use MediaWiki\Logger\Monolog\BufferHandler;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\FormattableHandlerInterface;
 use Monolog\Handler\HandlerInterface;
+use Monolog\Handler\PsrHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -210,6 +211,8 @@ class MonologSpi implements Spi {
 	 * @return LoggerInterface
 	 */
 	protected function createLogger( $channel, $spec ): LoggerInterface {
+		global $wgShowDebug, $wgDebugToolbar;
+
 		$handlers = [];
 		if ( isset( $spec['handlers'] ) && $spec['handlers'] ) {
 			foreach ( $spec['handlers'] as $handler ) {
@@ -227,6 +230,12 @@ class MonologSpi implements Spi {
 		// Use UTC for logs instead of Monolog's default, which asks the
 		// PHP runtime, which MediaWiki sets to $wgLocaltimezone (T99581)
 		$obj = new Logger( $channel, $handlers, $processors, new DateTimeZone( 'UTC' ) );
+
+		if ( $wgShowDebug || $wgDebugToolbar ) {
+			$legacyLogger = new LegacyLogger( $channel );
+			$legacyPsrHandler = new PsrHandler( $legacyLogger );
+			$obj->pushHandler( $legacyPsrHandler );
+		}
 
 		if ( isset( $spec['calls'] ) ) {
 			foreach ( $spec['calls'] as $method => $margs ) {
