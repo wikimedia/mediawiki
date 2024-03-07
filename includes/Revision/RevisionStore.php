@@ -3410,6 +3410,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 					// for cases where there are multiple revs with same timestamp
 					'rev_id DESC'
 				],
+				// T354015
+				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
 				'LIMIT' => $searchLimit,
 				// skip the most recent edit, we can't revert to it anyway
 				'OFFSET' => 1
