@@ -24,22 +24,9 @@
 					mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', function () {
 						widget = OO.ui.Widget.static.infuse( $widget );
 						maxlengthUnit = widget.getData().maxlengthUnit;
-						lengthLimiter = maxlengthUnit === 'codepoints' ? 'visibleCodePointLimit' : 'visibleByteLimit ';
-						mw.widgets[ lengthLimiter ]( widget.textinput, null, function ( input ) {
-							// Should be built the same as in HTMLSelectAndOtherField::loadDataFromRequest
-							var comment = widget.dropdowninput.getValue();
-							if ( comment === 'other' ) {
-								comment = input;
-							} else if ( input !== '' ) {
-								// Entry from drop down menu + additional comment
-								comment += colonSeparator + input;
-							}
-							return comment;
-						} );
-						// Keep the remaining counter in sync when reason list changed
-						widget.dropdowninput.on( 'change', function () {
-							widget.textinput.emit( 'change' );
-						} );
+						lengthLimiter = maxlengthUnit === 'codepoints' ?
+							'visibleCodePointLimitWithDropdown' : 'visibleByteLimitWithDropdown';
+						mw.widgets[ lengthLimiter ]( widget.textinput, widget.dropdowninput );
 					} );
 				} else {
 					// cache the current selection to avoid expensive lookup

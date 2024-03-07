@@ -1312,8 +1312,6 @@ return [
 		],
 		'messages' => [
 			'protect-unchain-permissions',
-			// @todo Load this message in content language
-			'colon-separator',
 		],
 	],
 	'mediawiki.action.view.metadata' => [
@@ -2139,11 +2137,6 @@ return [
 			'mediawiki.widgets',
 			'oojs-ui-core',
 		],
-		'messages' => [
-			// Used by action.delete.js, special.revisionDelete.js, special.movePage.js, special.undelete.js
-			// @todo Load this message in content language
-			'colon-separator',
-		],
 	],
 	// This bundles various small (under 2 KB?) JavaScript files that:
 	// - .. are only used by logged-in users when a non-default preference was enabled.
@@ -2679,8 +2672,19 @@ return [
 		],
 	],
 	'mediawiki.widgets.visibleLengthLimit' => [
-		'scripts' => [
-			'resources/src/mediawiki.widgets.visibleLengthLimit/mediawiki.widgets.visibleLengthLimit.js'
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.widgets.visibleLengthLimit',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.widgets.visibleLengthLimit",
+		'packageFiles' => [
+			'mediawiki.widgets.visibleLengthLimit.js',
+			[
+				'name' => 'contentMessages.json',
+				'type' => 'data',
+				'callback' => static function ( Context $context ) {
+					return [
+						'colonSeparator' => $context->msg( 'colon-separator' )->inContentLanguage()->text(),
+					];
+				}
+			],
 		],
 		'dependencies' => [
 			'oojs-ui-core',
