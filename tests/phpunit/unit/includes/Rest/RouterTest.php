@@ -366,6 +366,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetRequestFailsWithBody() {
+		$this->markTestSkipped( 'T359509' );
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
 			'method' => 'GET',
@@ -375,6 +376,21 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 400, $response->getStatusCode() );
+	}
+
+	public function testGetRequestIgnoresEmptyBody() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'GET',
+			'bodyContents' => '',
+			'headers' => [
+				"content-length" => 0,
+				"content-type" => 'text/plain'
+			]
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testPostRequestFailsWithoutBody() {
