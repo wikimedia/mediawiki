@@ -676,6 +676,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param string|int|float|bool|Blob|null|LikeValue|non-empty-list<string|int|float|bool|Blob> $value
 	 * @param-taint $value escapes_sql
 	 * @return Expression
+	 * @phan-side-effect-free
 	 */
 	public function expr( string $field, string $op, $value ): Expression;
 
