@@ -2076,7 +2076,6 @@
 	"uploadstash-header-filekey": "Clé",
 	"uploadstash-header-thumb": "Vignette",
 	"uploadstash-header-dimensions": "Dimensions",
-	"uploadstash-pager-submit": "Afficher la liste des fichiers",
 	"uploadstash-bad-path": "Le chemin n’existe pas.",
 	"uploadstash-bad-path-invalid": "Le chemin n’est pas valide.",
 	"uploadstash-bad-path-unknown-type": "Type « $1 » inconnu.",
