@@ -153,10 +153,7 @@ class WikiTextStructure {
 		if ( $this->allText !== null ) {
 			return;
 		}
-		$text = $this->parserOutput->getText( [
-			'enableSectionEditTokens' => false,
-			'allowTOC' => false,
-		] );
+		$text = $this->parserOutput->getRawText();
 		if ( $text === '' ) {
 			$this->allText = "";
 			// empty text - nothing to seek here
