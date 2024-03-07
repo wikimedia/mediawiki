@@ -1350,31 +1350,26 @@ abstract class FileBackendStore extends FileBackend {
 		$maxConcurrency = $this->concurrency; // throttle
 		/** @var StatusValue[] $statuses */
 		$statuses = []; // array of (index => StatusValue)
-		$fileOpHandles = []; // list of (index => handle) arrays
-		$curFileOpHandles = []; // current handle batch
-		// Perform the sync-only ops and build up op handles for the async ops...
+		/** @var FileBackendStoreOpHandle[] $batch */
+		$batch = [];
 		foreach ( $fileOps as $index => $fileOp ) {
 			$subStatus = $async
 				? $fileOp->attemptAsyncQuick()
 				: $fileOp->attemptQuick();
 			if ( $subStatus->value instanceof FileBackendStoreOpHandle ) { // async
-				if ( count( $curFileOpHandles ) >= $maxConcurrency ) {
-					// We better stop queuing things and get some work done
-					// See T230245 for the issues caused by extreme laziness
-					$statuses += $this->executeOpHandlesInternal( $curFileOpHandles );
-					$curFileOpHandles = [];
+				if ( count( $batch ) >= $maxConcurrency ) {
+					// Execute this batch. Don't queue any more ops since they contain
+					// open filehandles which are a limited resource (T230245).
+					$statuses += $this->executeOpHandlesInternal( $batch );
+					$batch = [];
 				}
-				$curFileOpHandles[$index] = $subStatus->value; // keep index
+				$batch[$index] = $subStatus->value; // keep index
 			} else { // error or completed
 				$statuses[$index] = $subStatus; // keep index
 			}
 		}
-		if ( count( $curFileOpHandles ) ) {
-			$fileOpHandles[] = $curFileOpHandles; // last batch
-		}
-		// Do all the async ops that can be done concurrently...
-		foreach ( $fileOpHandles as $fileHandleBatch ) {
-			$statuses += $this->executeOpHandlesInternal( $fileHandleBatch );
+		if ( count( $batch ) ) {
+			$statuses += $this->executeOpHandlesInternal( $batch );
 		}
 		// Marshall and merge all the responses...
 		foreach ( $statuses as $index => $subStatus ) {
