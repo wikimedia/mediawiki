@@ -34,7 +34,5 @@ class DBAccessError extends DBUnexpectedError {
 	}
 }
 
-/**
- * @deprecated since 1.29
- */
+/** @deprecated class alias since 1.29 */
 class_alias( DBAccessError::class, 'DBAccessError' );

@@ -29,7 +29,5 @@ class EventRelayerNull extends EventRelayer {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( EventRelayerNull::class, 'EventRelayerNull' );

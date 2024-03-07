@@ -100,5 +100,5 @@ class HTMLExpiryField extends HTMLFormField {
 
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLExpiryField::class, 'HTMLExpiryField' );

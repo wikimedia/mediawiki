@@ -103,7 +103,5 @@ class TitleArrayFromResult implements Countable, Iterator {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( TitleArrayFromResult::class, 'TitleArrayFromResult' );

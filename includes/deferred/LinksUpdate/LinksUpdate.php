@@ -558,5 +558,5 @@ class LinksUpdate extends DataUpdate {
 	}
 }
 
-/** @deprecated since 1.38 */
+/** @deprecated class alias since 1.38 */
 class_alias( LinksUpdate::class, 'LinksUpdate' );

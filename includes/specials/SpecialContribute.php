@@ -101,7 +101,5 @@ class SpecialContribute extends IncludableSpecialPage {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialContribute::class, 'SpecialContribute' );

@@ -69,9 +69,5 @@ abstract class FormattedRCFeed extends RCFeed {
 	}
 }
 
-/**
- * Backward-compatibility alias.
- * @since 1.22
- * @deprecated since 1.29 Use FormattedRCFeed instead
- */
+/** @deprecated class alias since 1.22 */
 class_alias( FormattedRCFeed::class, 'RCFeedEngine' );

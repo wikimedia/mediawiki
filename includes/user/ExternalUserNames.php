@@ -168,8 +168,5 @@ class ExternalUserNames {
 
 }
 
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( ExternalUserNames::class, 'ExternalUserNames' );

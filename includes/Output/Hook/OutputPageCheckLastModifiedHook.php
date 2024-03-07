@@ -26,7 +26,5 @@ interface OutputPageCheckLastModifiedHook {
 	public function onOutputPageCheckLastModified( &$modifiedTimes, $out );
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( OutputPageCheckLastModifiedHook::class, 'MediaWiki\Hook\OutputPageCheckLastModifiedHook' );

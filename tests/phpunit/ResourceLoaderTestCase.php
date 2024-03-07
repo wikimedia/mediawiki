@@ -243,17 +243,17 @@ class EmptyResourceLoader extends ResourceLoader {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( ResourceLoaderTestModule::class, 'ResourceLoaderTestModule' );
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( ResourceLoaderTestCase::class, 'ResourceLoaderTestCase' );
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( ResourceLoaderFileTestModule::class, 'ResourceLoaderFileTestModule' );
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( ResourceLoaderFileModuleTestingSubclass::class, 'ResourceLoaderFileModuleTestingSubclass' );
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( EmptyResourceLoader::class, 'EmptyResourceLoader' );

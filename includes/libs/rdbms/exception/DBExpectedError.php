@@ -56,7 +56,5 @@ class DBExpectedError extends DBError implements MessageSpecifier {
 	}
 }
 
-/**
- * @deprecated since 1.29
- */
+/** @deprecated class alias since 1.29 */
 class_alias( DBExpectedError::class, 'DBExpectedError' );

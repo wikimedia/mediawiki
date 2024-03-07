@@ -30,7 +30,5 @@ interface LanguageLinksHook {
 	public function onLanguageLinks( $title, &$links, &$linkFlags );
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( LanguageLinksHook::class, 'MediaWiki\Hook\LanguageLinksHook' );

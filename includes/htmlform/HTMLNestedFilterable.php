@@ -12,5 +12,5 @@ interface HTMLNestedFilterable {
 	public function filterDataForSubmit( $data );
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLNestedFilterable::class, 'HTMLNestedFilterable' );

@@ -159,5 +159,5 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLUsersMultiselectField::class, 'HTMLUsersMultiselectField' );

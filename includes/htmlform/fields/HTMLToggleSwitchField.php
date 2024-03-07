@@ -50,5 +50,5 @@ class HTMLToggleSwitchField extends HTMLCheckField {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLToggleSwitchField::class, 'HTMLToggleSwitchField' );

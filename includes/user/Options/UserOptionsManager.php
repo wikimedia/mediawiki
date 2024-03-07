@@ -733,7 +733,5 @@ class UserOptionsManager extends UserOptionsLookup {
 	}
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( UserOptionsManager::class, 'MediaWiki\\User\\UserOptionsManager' );

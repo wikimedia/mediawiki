@@ -20,5 +20,5 @@ interface EnqueueableDataUpdate {
 	public function getAsJobSpecification();
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( EnqueueableDataUpdate::class, 'EnqueueableDataUpdate' );

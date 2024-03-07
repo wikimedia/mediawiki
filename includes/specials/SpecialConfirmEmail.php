@@ -207,7 +207,5 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialConfirmEmail::class, 'SpecialConfirmEmail' );

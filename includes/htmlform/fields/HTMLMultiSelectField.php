@@ -314,5 +314,5 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLMultiSelectField::class, 'HTMLMultiSelectField' );

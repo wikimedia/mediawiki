@@ -109,7 +109,5 @@ class AtomFeed extends ChannelFeed {
 	}
 }
 
-/**
- * @deprecated since 1.40
- */
+/** @deprecated class alias since 1.40 */
 class_alias( AtomFeed::class, 'AtomFeed' );

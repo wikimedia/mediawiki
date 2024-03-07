@@ -231,7 +231,5 @@ class OrderedStreamingForkController extends ForkController {
 	}
 }
 
-/**
- * @deprecated since 1.40
- */
+/** @deprecated class alias since 1.40 */
 class_alias( OrderedStreamingForkController::class, 'OrderedStreamingForkController' );

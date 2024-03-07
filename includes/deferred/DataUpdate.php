@@ -77,5 +77,5 @@ abstract class DataUpdate implements DeferrableUpdate {
 
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( DataUpdate::class, 'DataUpdate' );

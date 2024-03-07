@@ -29,7 +29,7 @@ declare( strict_types = 1 );
  * password hashes were generated using an algorithm not supported by OpenSSL, or the
  * OpenSSL PHP extension is unavailable, Pbkdf2PasswordUsingOpenSSL should be used.
  *
- * @since 1.40
+ * @since 1.40 (since 1.29 under the old name)
  */
 class Pbkdf2PasswordUsingHashExtension extends AbstractPbkdf2Password {
 	protected function getDigestAlgo( string $algo ): ?string {
@@ -54,12 +54,5 @@ class Pbkdf2PasswordUsingHashExtension extends AbstractPbkdf2Password {
 	}
 }
 
-/**
- * Retain the old class name for backwards compatibility.
- *
- * In particular, old LocalSettings.php files may reference the old class name.
- *
- * @deprecated since 1.40
- * @since 1.24
- */
+/** @deprecated class alias since 1.40 */
 class_alias( Pbkdf2PasswordUsingHashExtension::class, 'Pbkdf2Password' );

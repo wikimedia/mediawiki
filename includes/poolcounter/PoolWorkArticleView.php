@@ -103,7 +103,5 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( PoolWorkArticleView::class, 'PoolWorkArticleView' );

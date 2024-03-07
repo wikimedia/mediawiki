@@ -73,5 +73,5 @@ class HtmlFileCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HtmlFileCacheUpdate::class, 'HtmlFileCacheUpdate' );

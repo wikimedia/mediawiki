@@ -72,7 +72,5 @@ abstract class EventRelayer implements LoggerAwareInterface {
 	abstract protected function doNotify( $channel, array $events );
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( EventRelayer::class, 'EventRelayer' );

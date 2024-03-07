@@ -25,7 +25,5 @@ interface OutputPageBeforeHTMLHook {
 	public function onOutputPageBeforeHTML( $out, &$text );
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( OutputPageBeforeHTMLHook::class, 'MediaWiki\Hook\OutputPageBeforeHTMLHook' );

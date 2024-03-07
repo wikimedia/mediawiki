@@ -25,7 +25,5 @@ interface GetCacheVaryCookiesHook {
 	public function onGetCacheVaryCookies( $out, &$cookies );
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( GetCacheVaryCookiesHook::class, 'MediaWiki\Hook\GetCacheVaryCookiesHook' );

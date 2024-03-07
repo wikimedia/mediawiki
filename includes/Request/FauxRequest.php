@@ -327,7 +327,5 @@ class FauxRequest extends WebRequest {
 	}
 }
 
-/**
- * @deprecated since 1.40
- */
+/** @deprecated class alias since 1.40 */
 class_alias( FauxRequest::class, 'FauxRequest' );

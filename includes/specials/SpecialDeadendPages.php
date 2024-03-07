@@ -117,7 +117,5 @@ class SpecialDeadendPages extends PageQueryPage {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialDeadendPages::class, 'SpecialDeadendPages' );

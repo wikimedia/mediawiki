@@ -210,5 +210,5 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( SiteStatsUpdate::class, 'SiteStatsUpdate' );

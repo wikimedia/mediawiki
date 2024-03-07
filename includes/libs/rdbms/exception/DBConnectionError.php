@@ -39,7 +39,5 @@ class DBConnectionError extends DBExpectedError {
 	}
 }
 
-/**
- * @deprecated since 1.29
- */
+/** @deprecated class alias since 1.29 */
 class_alias( DBConnectionError::class, 'DBConnectionError' );

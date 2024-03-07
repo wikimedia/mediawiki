@@ -137,5 +137,5 @@ class HTMLRestrictionsField extends HTMLFormField {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLRestrictionsField::class, 'HTMLRestrictionsField' );

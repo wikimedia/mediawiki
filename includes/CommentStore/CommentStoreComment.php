@@ -107,7 +107,5 @@ class CommentStoreComment {
 	}
 }
 
-/**
- * @deprecated since 1.40
- */
+/** @deprecated class alias since 1.40 */
 class_alias( CommentStoreComment::class, 'CommentStoreComment' );

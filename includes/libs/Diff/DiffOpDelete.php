@@ -53,5 +53,5 @@ class DiffOpDelete extends DiffOp {
 	}
 }
 
-/** @deprecated since 1.41 */
+/** @deprecated class alias since 1.41 */
 class_alias( DiffOpDelete::class, 'DiffOpDelete' );

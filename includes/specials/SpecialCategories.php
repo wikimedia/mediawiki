@@ -83,7 +83,5 @@ class SpecialCategories extends SpecialPage {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialCategories::class, 'SpecialCategories' );

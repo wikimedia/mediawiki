@@ -47,7 +47,5 @@ class SpecialDeletePage extends SpecialRedirectWithAction {
 	// specialdeletepage-submit
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialDeletePage::class, 'SpecialDeletePage' );

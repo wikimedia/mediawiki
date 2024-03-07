@@ -227,7 +227,5 @@ class SpecialActiveUsers extends SpecialPage {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialActiveUsers::class, 'SpecialActiveUsers' );

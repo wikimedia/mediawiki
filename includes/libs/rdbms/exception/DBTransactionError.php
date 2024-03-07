@@ -52,7 +52,5 @@ class DBTransactionError extends DBExpectedError implements INormalizedException
 	}
 }
 
-/**
- * @deprecated since 1.29
- */
+/** @deprecated class alias since 1.29 */
 class_alias( DBTransactionError::class, 'DBTransactionError' );

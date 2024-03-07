@@ -174,5 +174,5 @@ class HTMLButtonField extends HTMLFormField {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLButtonField::class, 'HTMLButtonField' );

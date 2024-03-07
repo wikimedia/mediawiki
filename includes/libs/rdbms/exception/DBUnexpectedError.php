@@ -26,7 +26,5 @@ namespace Wikimedia\Rdbms;
 class DBUnexpectedError extends DBError {
 }
 
-/**
- * @deprecated since 1.29
- */
+/** @deprecated class alias since 1.29 */
 class_alias( DBUnexpectedError::class, 'DBUnexpectedError' );

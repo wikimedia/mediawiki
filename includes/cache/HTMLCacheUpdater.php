@@ -257,5 +257,5 @@ class HTMLCacheUpdater {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLCacheUpdater::class, 'HtmlCacheUpdater' );

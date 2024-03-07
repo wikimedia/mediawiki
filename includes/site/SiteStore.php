@@ -56,7 +56,5 @@ interface SiteStore extends SiteLookup {
 	public function clear();
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SiteStore::class, 'SiteStore' );

@@ -750,7 +750,5 @@ class DatabaseBlock extends AbstractBlock {
 	}
 }
 
-/**
- * @deprecated since 1.34
- */
+/** @deprecated class alias since 1.34 */
 class_alias( DatabaseBlock::class, 'Block' );

@@ -152,7 +152,5 @@ class SpecialListFiles extends IncludableSpecialPage {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialListFiles::class, 'SpecialListFiles' );

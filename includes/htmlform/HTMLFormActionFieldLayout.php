@@ -24,5 +24,5 @@ class HTMLFormActionFieldLayout extends \OOUI\ActionFieldLayout {
 	}
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( HTMLFormActionFieldLayout::class, 'HTMLFormActionFieldLayout' );

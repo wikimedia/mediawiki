@@ -91,7 +91,5 @@ class ProxyLookup {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( ProxyLookup::class, 'ProxyLookup' );

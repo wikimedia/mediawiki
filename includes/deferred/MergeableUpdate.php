@@ -29,5 +29,5 @@ interface MergeableUpdate extends DeferrableUpdate {
 	public function merge( MergeableUpdate $update );
 }
 
-/** @deprecated since 1.42 */
+/** @deprecated class alias since 1.42 */
 class_alias( MergeableUpdate::class, 'MergeableUpdate' );

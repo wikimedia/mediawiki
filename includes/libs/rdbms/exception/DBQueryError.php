@@ -58,7 +58,5 @@ class DBQueryError extends DBExpectedError {
 	}
 }
 
-/**
- * @deprecated since 1.29
- */
+/** @deprecated class alias since 1.29 */
 class_alias( DBQueryError::class, 'DBQueryError' );

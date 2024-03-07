@@ -300,7 +300,5 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	}
 }
 
-/**
- * @deprecated since 1.41
- */
+/** @deprecated class alias since 1.41 */
 class_alias( SpecialChangeCredentials::class, 'SpecialChangeCredentials' );

@@ -27,7 +27,5 @@ interface BeforePageRedirectHook {
 	public function onBeforePageRedirect( $out, &$redirect, &$code );
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( BeforePageRedirectHook::class, 'MediaWiki\Hook\BeforePageRedirectHook' );

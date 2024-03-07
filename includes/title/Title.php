@@ -3959,7 +3959,5 @@ class Title implements LinkTarget, PageIdentity {
 
 }
 
-/**
- * @deprecated since 1.40
- */
+/** @deprecated class alias since 1.40 */
 class_alias( Title::class, 'Title' );

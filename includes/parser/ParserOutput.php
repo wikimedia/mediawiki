@@ -2873,7 +2873,5 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 }
 
-/**
- * @deprecated since 1.42
- */
+/** @deprecated class alias since 1.41 */
 class_alias( ParserOutput::class, 'ParserOutput' );
