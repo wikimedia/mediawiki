@@ -25,7 +25,6 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -63,18 +62,13 @@ class PopulateUserIsTemp extends LoggedUpdateMaintenance {
 
 		// Generate a SelectQueryBuilder that selects all temporary users (based on the configured match patterns)
 		// which do have user_is_temp set to 0 (the default) in the the user table.
-		$temporaryAccountPatternOrGroup = new OrExpressionGroup();
-		foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
-			$temporaryAccountPatternOrGroup->or(
-				'user_name',
-				IExpression::LIKE,
-				$pattern->toLikeValue( $this->dbr )
-			);
-		}
 		$queryBuilder = $this->dbr->newSelectQueryBuilder()
 			->select( 'user_id' )
 			->from( 'user' )
-			->where( [ 'user_is_temp' => 0, $temporaryAccountPatternOrGroup ] )
+			->where( [
+				'user_is_temp' => 0,
+				$this->tempUserConfig->getMatchCondition( $this->dbr, 'user_name', IExpression::LIKE ),
+			] )
 			->limit( $this->getBatchSize() ?? 200 )
 			->caller( __METHOD__ );
 

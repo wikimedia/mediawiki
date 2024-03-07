@@ -202,15 +202,9 @@ WARN
 		}
 
 		if ( $tempUserConfig->isEnabled() ) {
-			foreach ( $tempUserConfig->getMatchPatterns() as $pattern ) {
-				$queryBuilderTemplate->andWhere(
-					$dbr->expr(
-						'user_name',
-						IExpression::NOT_LIKE,
-						$pattern->toLikeValue( $dbr )
-					)
-				);
-			}
+			$queryBuilderTemplate->andWhere(
+				$tempUserConfig->getMatchCondition( $dbr, 'user_name', IExpression::NOT_LIKE )
+			);
 		}
 
 		do {

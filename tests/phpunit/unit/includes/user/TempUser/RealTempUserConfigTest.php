@@ -3,8 +3,10 @@
 namespace MediaWiki\Tests\Unit\User\TempUser;
 
 use BadMethodCallException;
+use MediaWiki\Tests\MockDatabase;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWikiUnitTestCase;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -31,6 +33,18 @@ class RealTempUserConfigTest extends MediaWikiUnitTestCase {
 			'getMatchPatterns' => [ 'getMatchPatterns' ],
 			'getGeneratorPattern' => [ 'getGeneratorPattern' ],
 		];
+	}
+
+	public function testGetMatchConditionThrowsWhenTempUsersAreDisabled() {
+		$this->expectException( BadMethodCallException::class );
+		$objectUnderTest = $this->getMockBuilder( RealTempUserConfig::class )
+			->onlyMethods( [ 'isEnabled' ] )
+			->disableOriginalConstructor()
+			->getMock();
+		// Simulate that the AutoCreateTempUser config has 'enabled' as false.
+		$objectUnderTest->method( 'isEnabled' )
+			->willReturn( false );
+		$objectUnderTest->getMatchCondition( new MockDatabase, 'foo', IExpression::LIKE );
 	}
 
 	/** @dataProvider provideIsEnabled */

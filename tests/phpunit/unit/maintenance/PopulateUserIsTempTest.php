@@ -27,7 +27,7 @@ class PopulateUserIsTempTest extends MediaWikiUnitTestCase {
 		$mockTempUserConfig->method( 'isEnabled' )
 			->willReturn( false );
 		$mockTempUserConfig->expects( $this->never() )
-			->method( 'getMatchPatterns' );
+			->method( 'getMatchCondition' );
 		// Get the object under test and set the tempUserConfig property to the mock object.
 		$objectUnderTest = $this->getMockBuilder( PopulateUserIsTemp::class )
 			->onlyMethods( [ 'initServices' ] )

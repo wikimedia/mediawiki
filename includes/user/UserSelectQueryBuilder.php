@@ -28,7 +28,6 @@ use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class UserSelectQueryBuilder extends SelectQueryBuilder {
@@ -208,13 +207,10 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function named(): self {
 		if ( !$this->tempUserConfig->isEnabled() ) {
-			// nothing to do: getMatchPatterns throws if temp accounts aren't enabled
+			// nothing to do: getMatchCondition throws if temp accounts aren't enabled
 			return $this;
 		}
-
-		foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
-			$this->conds( $this->db->expr( 'actor_name', IExpression::NOT_LIKE, $pattern->toLikeValue( $this->db ) ) );
-		}
+		$this->conds( $this->tempUserConfig->getMatchCondition( $this->db, 'actor_name', IExpression::NOT_LIKE ) );
 		return $this;
 	}
 
@@ -225,15 +221,10 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function temp(): self {
 		if ( !$this->tempUserConfig->isEnabled() ) {
-			// nothing to do: getMatchPatterns throws if temp accounts aren't enabled
+			// nothing to do: getMatchCondition throws if temp accounts aren't enabled
 			return $this;
 		}
-
-		$expressionGroup = new OrExpressionGroup();
-		foreach ( $this->tempUserConfig->getMatchPatterns() as $pattern ) {
-			$expressionGroup->or( 'actor_name', IExpression::LIKE, $pattern->toLikeValue( $this->db ) );
-		}
-		$this->conds( $expressionGroup );
+		$this->conds( $this->tempUserConfig->getMatchCondition( $this->db, 'actor_name', IExpression::LIKE ) );
 		return $this;
 	}
 
