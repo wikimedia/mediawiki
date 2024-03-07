@@ -204,6 +204,7 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 /**
  * @class mw
  * @singleton
+ * @borrows mediawiki.inspect.runReports as inspect
  */
 
 /**
@@ -231,7 +232,7 @@ mw.widgets = {};
  * Generates a ResourceLoader report using the
  * {@link mediawiki.inspect.js.html|mediawiki.inspect module}.
  *
- * @memberof mw
+ * @ignore
  */
 mw.inspect = function () {
 	var args = arguments;
