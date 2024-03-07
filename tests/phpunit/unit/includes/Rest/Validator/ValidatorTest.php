@@ -2,8 +2,11 @@
 
 namespace MediaWiki\Tests\Rest;
 
+use Exception;
+use InvalidArgumentException;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
@@ -13,10 +16,12 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @covers \MediaWiki\Rest\Validator\Validator
+ * @covers \MediaWiki\Rest\Validator\ParamValidatorCallbacks
  */
 class ValidatorTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
@@ -256,4 +261,97 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( $expectedSpec, $spec, false, true );
 	}
 
+	public static function provideValidateParams() {
+		$sources = [ 'path', 'query', 'post', 'body' ];
+		$paramNames = [
+			"path" => "pathParams",
+			"query" => "queryParams",
+			"post" => "postParams",
+			"body" => "parsedBody"
+		];
+		foreach ( $sources as $source ) {
+			yield "default $source parameter is null" => [
+				[
+					'defaultparam' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						Validator::PARAM_SOURCE => $source,
+					]
+				],
+				new RequestData( [ 'pathParams' => [] ] ),
+				[ 'defaultparam' => null ]
+			];
+			yield "missing required $source parameter raises Exception" => [
+				[
+					'requiredparam' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						ParamValidator::PARAM_REQUIRED => true,
+						Validator::PARAM_SOURCE => $source,
+					]
+				],
+				new RequestData( [] ),
+				new LocalizedHttpException( new MessageValue( 'paramvalidator-missingparam' ), 400 )
+			];
+			yield "$source parameter" => [
+				[
+					'param' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						Validator::PARAM_SOURCE => $source,
+					]
+				],
+				new RequestData( [ $paramNames[ $source ] => [ 'param' => 'test' ] ] ),
+				[ 'param' => 'test' ]
+			];
+			yield "return default $source param set" => [
+				[
+					'param' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						Validator::PARAM_SOURCE => $source,
+						ParamValidator::PARAM_DEFAULT => "default$source"
+					]
+				],
+				new RequestData( [] ),
+				[ "param" => "default$source" ]
+			];
+			yield "throw on malformed $source param" => [
+				[
+					'param' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						Validator::PARAM_SOURCE => $source,
+					]
+				],
+				new RequestData( [ $paramNames[ $source ] => [ 'param' => [] ] ] ),
+				new LocalizedHttpException( new MessageValue( 'paramvalidator-notmulti' ), 400 )
+			];
+		}
+		yield 'unknown source' => [
+			[
+				'unknown source' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'unknown',
+				]
+			],
+			new RequestData( [ 'parsedBody' => [ 'simplebodyparam1' => 'test' ] ] ),
+			new InvalidArgumentException( "Invalid source 'unknown'" )
+		];
+	}
+
+	/**
+	 * If $expected is a string, it must be the name of the expected exception class.
+	 * Otherwise, it must match the returned body.
+	 *
+	 * @dataProvider provideValidateParams
+	 */
+	public function testValidateParams( $paramSetting, RequestData $requestData, $expected ) {
+		$objectFactory = $this->getDummyObjectFactory();
+		$validator = new Validator( $objectFactory, $requestData, $this->mockAnonNullAuthority() );
+
+		if ( $expected instanceof Exception ) {
+			$this->expectException( get_class( $expected ) );
+			$this->expectExceptionCode( $expected->getCode() );
+			$this->expectExceptionMessage( $expected->getMessage() );
+		}
+
+		$actual = $validator->validateParams( $paramSetting );
+		$this->assertEquals( $expected, $actual );
+	}
 }
