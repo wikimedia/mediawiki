@@ -9,19 +9,24 @@ module.exports = {
 	install: function ( app ) {
 		/**
 		 * Adds an `$i18n()` instance method that can be used in all components. This method is a
-		 * proxy to mw.message.
+		 * proxy to {@link mw.message}.
 		 *
 		 * Usage:
-		 *     `<p>{{ $i18n( 'my-message-key', param1, param2 ) }}</p>`
-		 *     or
-		 *     `<p>{{ $i18n( 'my-message-key' ).params( [ param1, param2 ] ) }}</p>`
+		 * ```
+		 * <p>{{ $i18n( 'my-message-key', param1, param2 ) }}</p>
+		 * ```
+		 * or
+		 * ```
+		 * <p>{{ $i18n( 'my-message-key' ).params( [ param1, param2 ] ) }}</p>
+		 * ```
 		 *
 		 * Note that this method only works for messages that return text. For messages that
-		 * need to be parsed to HTML, use the v-i18n-html directive.
+		 * need to be parsed to HTML, use the `v-i18n-html` directive.
 		 *
 		 * @param {string} key Key of message to get
-		 * @param {...Mixed} parameters Values for $N replacements
+		 * @param {...any} parameters Values for $N replacements
 		 * @return {mw.Message}
+		 * @memberof Vue.prototype
 		 */
 		function $i18n( key, ...parameters ) {
 			// eslint-disable-next-line mediawiki/msg-doc

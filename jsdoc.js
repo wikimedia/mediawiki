@@ -25,8 +25,7 @@ module.exports = {
 			'resources/src/moment',
 			'resources/src/oojs-global.js',
 			'resources/src/mediawiki.notification.convertmessagebox.js',
-			'resources/src/ooui-local.js',
-			'resources/src/vue'
+			'resources/src/ooui-local.js'
 		]
 	},
 	templates: {
