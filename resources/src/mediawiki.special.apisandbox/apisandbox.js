@@ -720,6 +720,7 @@
 	 * Interface to ApiSandbox UI.
 	 *
 	 * @class mw.special.ApiSandbox
+	 * @ignore
 	 */
 	ApiSandbox = {
 		/**
