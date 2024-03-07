@@ -49,22 +49,22 @@
 }
 
 .mw-notification.mw-notification-type-warn {
-	/* Yellow90 */
+	/* Yellow100 */
 	background-color: #fef6e7;
-	/* Yellow50 */
+	/* Yellow600 */
 	border-color: #fc3;
 }
 
 .mw-notification.mw-notification-type-error {
-	/* Red90 */
+	/* Red100 */
 	background-color: #fee7e6;
-	/* Red50 */
-	border-color: #d33;
+	/* Red600 */
+	border-color: #d73333;
 }
 
 .mw-notification.mw-notification-type-success {
-	/* Green90 */
+	/* Green100 */
 	background-color: #d5fdf4;
-	/* Green30 */
+	/* Green700 */
 	border-color: #14866d;
 }
