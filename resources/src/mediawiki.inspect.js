@@ -15,10 +15,10 @@
 	// and subsequently setting additional properties on the function object.
 
 	/**
-	 * Tools for inspecting page composition and performance.
+	 * @classdesc Tools for inspecting page composition and performance.
 	 *
-	 * @class mw.inspect
-	 * @singleton
+	 * @class mediawiki.inspect
+	 * @hideconstructor
 	 */
 
 	var inspect = mw.inspect,
@@ -58,6 +58,8 @@
 	 *
 	 * @return {Object} Maps module names to objects. Each sub-object has
 	 *  two properties, 'requires' and 'requiredBy'.
+	 * @memberof mediawiki.inspect
+	 * @method mediawiki.inspect.getDependencyGraph
 	 */
 	inspect.getDependencyGraph = function () {
 		var modules = inspect.getLoadedModules(),
@@ -86,6 +88,8 @@
 	 *
 	 * @param {string} moduleName The name of the module
 	 * @return {number|null} Module size in bytes or null
+	 * @memberof mediawiki.inspect
+	 * @method mediawiki.inspect.getModuleSize
 	 */
 	inspect.getModuleSize = function ( moduleName ) {
 		// We typically receive them from the server through batches from load.php,
@@ -114,6 +118,8 @@
 	 * @return {Object} Selector counts
 	 * @return {number} return.selectors Total number of selectors
 	 * @return {number} return.matched Number of matched selectors
+	 * @memberof mediawiki.inspect
+	 * @method mediawiki.inspect.auditSelectors
 	 */
 	inspect.auditSelectors = function ( css ) {
 		var selectors = { total: 0, matched: 0 },
@@ -143,6 +149,8 @@
 	 * Get a list of all loaded ResourceLoader modules.
 	 *
 	 * @return {Array} List of module names
+	 * @memberof mediawiki.inspect
+	 * @method mediawiki.inspect.getLoadedModules
 	 */
 	inspect.getLoadedModules = function () {
 		return mw.loader.getModuleNames().filter( function ( module ) {
@@ -155,6 +163,8 @@
 	 *
 	 * @param {Array} data Tabular data represented as an array of objects
 	 *  with common properties.
+	 * @memberof mediawiki.inspect
+	 * @method mediawiki.inspect.dumpTable
 	 */
 	inspect.dumpTable = console.table;
 
@@ -164,6 +174,8 @@
 	 * When invoked without arguments, prints all available reports.
 	 *
 	 * @param {...string} [reports] One or more of "size", "css", "store", or "time".
+	 * @memberof mediawiki.inspect
+	 * @method mediawiki.inspect.runReports
 	 */
 	inspect.runReports = function () {
 		var reports = arguments.length > 0 ?
@@ -190,6 +202,8 @@
 	 *
 	 * @param {string|RegExp} pattern String or regexp to match.
 	 * @return {Array} Array of the names of modules that matched.
+	 * @memberof mediawiki.inspect
+	 * @method mediawiki.inspect.grep
 	 */
 	inspect.grep = function ( pattern ) {
 		if ( typeof pattern.test !== 'function' ) {
