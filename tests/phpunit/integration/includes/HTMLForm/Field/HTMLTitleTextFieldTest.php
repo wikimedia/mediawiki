@@ -1,13 +1,20 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\HTMLForm\Field;
+
+use InvalidArgumentException;
+use MediaWiki\HTMLForm\Field\HTMLTitleTextField;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Interwiki\InterwikiLookupAdapter;
+use MediaWiki\Message\Message;
 use MediaWiki\Site\HashSiteStore;
 use MediaWiki\Site\Site;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \HTMLTitleTextFieldTest
+ * @covers \MediaWiki\HTMLForm\Field\HTMLTitleTextField
  */
 class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 

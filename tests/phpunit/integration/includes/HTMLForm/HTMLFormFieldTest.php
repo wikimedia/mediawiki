@@ -1,19 +1,27 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\HTMLForm;
+
+use DomainException;
+use InvalidArgumentException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HTMLForm\Field\HTMLFormFieldCloner;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWikiCoversValidator;
+use MediaWikiIntegrationTestCase;
+use StatusValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \HTMLFormField
+ * @covers \MediaWiki\HTMLForm\HTMLFormField
  */
-class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
+class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 
 	use MediaWikiCoversValidator;
 
