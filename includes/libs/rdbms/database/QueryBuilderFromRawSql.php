@@ -33,6 +33,14 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
  * @since 1.41
  */
 class QueryBuilderFromRawSql {
+	/** All the bits of QUERY_WRITE_* flags */
+	private const QUERY_CHANGE_MASK = (
+		SQLPlatform::QUERY_CHANGE_NONE |
+		SQLPlatform::QUERY_CHANGE_TRX |
+		SQLPlatform::QUERY_CHANGE_ROWS |
+		SQLPlatform::QUERY_CHANGE_SCHEMA |
+		SQLPlatform::QUERY_CHANGE_LOCKS
+	);
 
 	/**
 	 * @param string $sql
@@ -41,19 +49,24 @@ class QueryBuilderFromRawSql {
 	 * @return Query
 	 */
 	public static function buildQuery( string $sql, $flags, string $tablePrefix = '' ) {
-		if ( !$flags ) {
+		if ( ( $flags & self::QUERY_CHANGE_MASK ) == 0 ) {
 			if ( !self::isWriteQuery( $sql ) ) {
-				$flags = SQLPlatform::QUERY_CHANGE_NONE;
+				$flags |= SQLPlatform::QUERY_CHANGE_NONE;
 			} else {
-				$flags = SQLPlatform::QUERY_CHANGE_ROWS;
+				$flags |= SQLPlatform::QUERY_CHANGE_ROWS;
 			}
+
 			if ( self::isCreateTemporaryTable( $sql ) ) {
 				$flags |= SQLPlatform::QUERY_CREATE_TEMP;
 			}
 		}
-		$queryVerb = self::getQueryVerb( $sql );
-		$writeTable = self::getWriteTable( $sql, $tablePrefix );
-		return new Query( $sql, $flags, $queryVerb, $writeTable );
+
+		return new Query(
+			$sql,
+			$flags,
+			self::getQueryVerb( $sql ),
+			self::getWriteTable( $sql, $tablePrefix )
+		);
 	}
 
 	private static function isWriteQuery( $rawSql ) {

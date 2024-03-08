@@ -83,9 +83,8 @@ class Query {
 		) {
 			return true;
 		}
-		// Infer it from SQL itself.
-		// TODO: Get rid of all other flags
-		return QueryBuilderFromRawSql::buildQuery( $this->sql, 0 )->isWriteQuery();
+
+		throw new DBLanguageError( __METHOD__ . ' called with incorrect flags parameter' );
 	}
 
 	public function getVerb() {
