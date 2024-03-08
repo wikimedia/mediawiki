@@ -44,7 +44,7 @@
 	 * @internal
 	 * @param {string} lengthLimiter
 	 * @param {OO.ui.TextInputWidget} textInputWidget
-	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget Dropdown input widget
+	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget
 	 * @param {number} [limit]
 	 */
 	function internalVisibleLimitWithDropdown( lengthLimiter, textInputWidget, dropdownInputWidget, limit ) {
@@ -68,56 +68,64 @@
 	}
 
 	/**
-	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 * Add a visible byte limit label to a TextInputWidget.
 	 *
-	 * Uses jQuery#byteLimit to enforce the limit.
+	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 *
-	 * @param {OO.ui.TextInputWidget} textInputWidget Text input widget
-	 * @param {number} [limit] Byte limit, defaults to $input's maxlength
-	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
+	 * Uses {@link jQueryPlugins.byteLimit} to enforce the limit.
+	 *
+	 * @param {OO.ui.TextInputWidget} textInputWidget
+	 * @param {number} [limit] Byte limit, defaults to input's `maxlength` attribute
+	 * @param {Function} [filterFunction] Function to call on the string before assessing the length
 	 */
 	mw.widgets.visibleByteLimit = function ( textInputWidget, limit, filterFunction ) {
 		internalVisibleLimit( 'byteLimit', textInputWidget, limit, filterFunction );
 	};
 
 	/**
-	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 * Add a visible codepoint (character) limit label to a TextInputWidget.
 	 *
-	 * Uses jQuery#codePointLimit to enforce the limit.
+	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 *
-	 * @param {OO.ui.TextInputWidget} textInputWidget Text input widget
-	 * @param {number} [limit] Code point limit, defaults to $input's maxlength
-	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
+	 * Uses {@link jQueryPlugins.codePointLimit} to enforce the limit.
+	 *
+	 * @param {OO.ui.TextInputWidget} textInputWidget
+	 * @param {number} [limit] Code point limit, defaults to input's `maxlength` attribute
+	 * @param {Function} [filterFunction] Function to call on the string before assessing the length
 	 */
 	mw.widgets.visibleCodePointLimit = function ( textInputWidget, limit, filterFunction ) {
 		internalVisibleLimit( 'codePointLimit', textInputWidget, limit, filterFunction );
 	};
 
 	/**
+	 * Add a visible byte limit label to a TextInputWidget, assuming that the value of the
+	 * DropdownInputWidget will be added as a prefix. MediaWiki formats the comment fields for many
+	 * actions that way, e.g. for page deletion.
+	 *
 	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
-	 * Add a visible byte limit label to a TextInputWidget/DropdownInputWidget
 	 *
-	 * Uses jQuery#byteLimit to enforce the limit.
+	 * Uses {@link jQueryPlugins.byteLimit} to enforce the limit.
 	 *
-	 * @param {OO.ui.TextInputWidget} textInputWidget Text input widget
-	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget Dropdown input widget
-	 * @param {number} [limit] Code point limit, defaults to $input's maxlength
+	 * @param {OO.ui.TextInputWidget} textInputWidget
+	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget
+	 * @param {number} [limit] Code point limit, defaults to input's `maxlength` attribute
 	 */
 	mw.widgets.visibleByteLimitWithDropdown = function ( textInputWidget, dropdownInputWidget, limit ) {
 		internalVisibleLimitWithDropdown( 'byteLimit', textInputWidget, dropdownInputWidget, limit );
 	};
 
 	/**
+	 * Add a visible codepoint (character) limit label to a TextInputWidget, assuming that the value
+	 * of the DropdownInputWidget will be added as a prefix. MediaWiki formats the comment fields for
+	 * many actions that way, e.g. for page deletion.
+	 *
 	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
-	 * Add a visible codepoint (character) limit label to a TextInputWidget/DropdownInputWidget
 	 *
-	 * Uses jQuery#codePointLimit to enforce the limit.
+	 * Uses {@link jQueryPlugins.codePointLimit} to enforce the limit.
 	 *
-	 * @param {OO.ui.TextInputWidget} textInputWidget Text input widget
-	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget Dropdown input widget
-	 * @param {number} [limit] Code point limit, defaults to $input's maxlength
+	 * @param {OO.ui.TextInputWidget} textInputWidget
+	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget
+	 * @param {number} [limit] Code point limit, defaults to input's `maxlength` attribute
 	 */
 	mw.widgets.visibleCodePointLimitWithDropdown = function ( textInputWidget, dropdownInputWidget, limit ) {
 		internalVisibleLimitWithDropdown( 'codePointLimit', textInputWidget, dropdownInputWidget, limit );
