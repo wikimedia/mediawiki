@@ -6,61 +6,38 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 
 	const fs = require( 'fs' );
-	const path = require( 'path' );
 	const wgServer = process.env.MW_SERVER;
 	const wgScriptPath = process.env.MW_SCRIPT_PATH;
 	const karmaProxy = {};
 
-	let qunitPattern = wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export';
+	let qunitURL = wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export';
 
 	// "MediaWiki" for core, or extension/skin name (e.g. "GrowthExperiments")
 	const qunitComponent = grunt.option( 'qunit-component' );
 	const qunitWatch = grunt.option( 'qunit-watch' ) || false;
 	const qunitWatchFiles = [];
 	if ( qunitComponent ) {
-		let qunitWatchSourcePattern;
-		let qunitWatchTestPattern;
-		qunitPattern = qunitPattern + '&component=' + qunitComponent;
-		if ( qunitWatch ) {
-			// Special-case MediaWiki core.
-			if ( qunitComponent === 'MediaWiki' ) {
-				qunitWatchTestPattern = 'tests/qunit/**/*.js';
-				qunitWatchSourcePattern = 'resources/**/*.js';
-			} else {
-				let settingsJson,
-					basePath;
-				try {
-					basePath = 'extensions';
-					// eslint-disable-next-line security/detect-non-literal-fs-filename
-					settingsJson = fs.readFileSync(
-						path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/extension.json' )
-					);
-				} catch ( e ) {
-					basePath = 'skins';
-					// eslint-disable-next-line security/detect-non-literal-fs-filename
-					settingsJson = fs.readFileSync(
-						path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/skin.json' )
-					);
-				}
-				settingsJson = JSON.parse( settingsJson );
-				qunitWatchSourcePattern =
-					path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/' + settingsJson.ResourceFileModulePaths.localBasePath + '/**/*.js' );
-				qunitWatchTestPattern = path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/tests/qunit/**/*.js' );
+		qunitURL = qunitURL + '&component=' + qunitComponent;
+	}
+	if ( qunitWatch ) {
+		if ( !qunitComponent || qunitComponent === 'MediaWiki' ) {
+			// MediaWiki core
+			qunitWatchFiles.push( 'tests/qunit/**' );
+			qunitWatchFiles.push( 'resources/**' );
+		} else {
+			// one extension or skin
+			const extPath = __dirname + '/extensions/' + qunitComponent + '/extension.json';
+			const skinPath = __dirname + '/skins/' + qunitComponent + '/skin.json';
+			// eslint-disable-next-line security/detect-non-literal-fs-filename
+			if ( fs.existsSync( extPath ) ) {
+				qunitWatchFiles.push( 'extensions/' + qunitComponent + '/extension.json' );
+				qunitWatchFiles.push( 'extensions/' + qunitComponent + '/{modules,resources,tests}/**' );
 			}
-			qunitWatchFiles.push( {
-				pattern: qunitWatchSourcePattern,
-				type: 'js',
-				watched: true,
-				included: false,
-				served: false
-			} );
-			qunitWatchFiles.push( {
-				pattern: qunitWatchTestPattern,
-				type: 'js',
-				watched: true,
-				included: false,
-				served: false
-			} );
+			// eslint-disable-next-line security/detect-non-literal-fs-filename
+			if ( fs.existsSync( skinPath ) ) {
+				qunitWatchFiles.push( 'skins/' + qunitComponent + '/skin.json' );
+				qunitWatchFiles.push( 'skins/' + qunitComponent + '/{modules,resources,tests}/**' );
+			}
 		}
 	}
 
@@ -121,12 +98,18 @@ module.exports = function ( grunt ) {
 				},
 				proxies: karmaProxy,
 				files: [ {
-					pattern: qunitPattern,
+					pattern: qunitURL,
 					type: 'js',
 					watched: false,
 					included: true,
 					served: false
-				}, ...qunitWatchFiles ],
+				}, ...qunitWatchFiles.map( ( file ) => ( {
+					pattern: file,
+					type: 'js',
+					watched: true,
+					included: false,
+					served: false
+				} ) ) ],
 				logLevel: ( process.env.ZUUL_PROJECT ? 'DEBUG' : 'INFO' ),
 				frameworks: [ 'qunit' ],
 				// Disable autostart because we load modules asynchronously.
