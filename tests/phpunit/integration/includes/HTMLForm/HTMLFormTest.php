@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\HTMLForm;
+
+use LogicException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
@@ -9,9 +13,10 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \HTMLForm
+ * @covers \MediaWiki\HTMLForm\HTMLForm
  *
  * @license GPL-2.0-or-later
  * @author Gergő Tisza

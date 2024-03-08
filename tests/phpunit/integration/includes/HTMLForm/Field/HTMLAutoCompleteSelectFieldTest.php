@@ -1,6 +1,14 @@
 <?php
+
+namespace MediaWiki\Tests\Integration\HTMLForm\Field;
+
+use InvalidArgumentException;
+use MediaWiki\HTMLForm\Field\HTMLAutoCompleteSelectField;
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWikiIntegrationTestCase;
+
 /**
- * @covers \HTMLAutoCompleteSelectField
+ * @covers \MediaWiki\HTMLForm\Field\HTMLAutoCompleteSelectField
  */
 class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 

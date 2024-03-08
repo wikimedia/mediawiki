@@ -1,9 +1,15 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\HTMLForm\Field;
+
+use MediaWiki\HTMLForm\Field\HTMLUserTextField;
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Message\Message;
 use MediaWiki\User\UserFactory;
+use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \HTMLUserTextFieldTest
+ * @covers \MediaWiki\HTMLForm\Field\HTMLUserTextField
  */
 class HTMLUserTextFieldTest extends MediaWikiIntegrationTestCase {
 

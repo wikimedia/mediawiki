@@ -1,12 +1,24 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\HTMLForm\Field;
+
+use EmptyIterator;
+use Language;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Page\PageSelectQueryBuilder;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWikiCoversValidator;
+use MediaWikiIntegrationTestCase;
+use MWRestrictions;
+use StatusValue;
 
 /**
- * @covers \HTMLRestrictionsField
+ * @covers \MediaWiki\HTMLForm\Field\HTMLRestrictionsField
  */
 class HTMLRestrictionsFieldTest extends MediaWikiIntegrationTestCase {
 
