@@ -6,11 +6,10 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Rest\HttpException;
-use MediaWiki\Rest\LocalizedHttpException;
-use MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
 trait RestAuthorizeTrait {
+	use RestStatusTrait;
 
 	/**
 	 * Authorize an action
@@ -73,35 +72,18 @@ trait RestAuthorizeTrait {
 		$permission = $status->getPermission() ?: '(unknown)';
 
 		if ( $status->isRateLimitExceeded() ) {
-			throw new LocalizedHttpException(
+			$this->throwExceptionForStatus(
+				$status,
 				MessageValue::new( 'rest-rate-limit-exceeded', [ $permission ] ),
-				// See https://www.rfc-editor.org/rfc/rfc6585#section-4
-				429,
-				[ 'errors-keys' => $this->getStatusErrorKeys( $status ) ]
+				429 // See https://www.rfc-editor.org/rfc/rfc6585#section-4
 			);
 		}
 
-		throw new LocalizedHttpException(
+		$this->throwExceptionForStatus(
+			$status,
 			MessageValue::new( 'rest-permission-error', [ $permission ] ),
-			403,
-			[ 'errors-keys' => $this->getStatusErrorKeys( $status ) ]
+			403
 		);
-	}
-
-	private function getStatusErrorKeys( PermissionStatus $status ) {
-		$keys = [];
-
-		foreach ( $status->getErrors() as [ 'message' => $msg ] ) {
-			if ( is_string( $msg ) ) {
-				$keys[] = $msg;
-			} elseif ( is_array( $msg ) ) {
-				$keys[] = $msg[0];
-			} elseif ( $msg instanceof MessageSpecifier ) {
-				$keys[] = $msg->getKey();
-			}
-		}
-
-		return array_unique( $keys );
 	}
 
 }

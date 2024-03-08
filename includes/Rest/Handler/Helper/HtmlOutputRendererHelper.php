@@ -32,7 +32,6 @@ use MediaWiki\Edit\SelserContext;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
@@ -75,6 +74,7 @@ use Wikimedia\Parsoid\Utils\WTUtils;
  */
 class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	use RestAuthorizeTrait;
+	use RestStatusTrait;
 
 	/**
 	 * @internal
@@ -596,31 +596,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 			if ( !$status->isOK() ) {
 				if ( $status->hasMessage( 'parsoid-client-error' ) ) {
-					throw new LocalizedHttpException(
-						MessageValue::new( 'rest-html-backend-error' )
-							->semicolonListParams( $this->convertStatusToMessageValues( $status ) ),
-						400,
-						[ 'reason' => $status->getErrors() ]
-					);
+					$this->throwExceptionForStatus( $status, 'rest-html-backend-error', 400 );
 				} elseif ( $status->hasMessage( 'parsoid-resource-limit-exceeded' ) ) {
-					throw new LocalizedHttpException(
-						MessageValue::new( 'rest-resource-limit-exceeded' ),
-						413,
-						[ 'reason' => $status->getErrors() ]
-					);
+					$this->throwExceptionForStatus( $status, 'rest-resource-limit-exceeded', 413 );
 				} else {
-					$errorData = [ 'reason' => $status->getErrors() ];
-					LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->error(
-						"Parsoid backend error",
-						$errorData
-					);
-
-					throw new LocalizedHttpException(
-						MessageValue::new( 'rest-html-backend-error' )
-							->semicolonListParams( $this->convertStatusToMessageValues( $status ) ),
-						500,
-						$errorData
-					);
+					$this->logStatusError( $status, 'Parsoid backend error', 'HtmlOutputRendererHelper' );
+					$this->throwExceptionForStatus( $status, 'rest-html-backend-error', 500 );
 				}
 			}
 
@@ -837,20 +818,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * Extract the error messages from a Status, as MessageValue objects.
-	 * @param Status $status
-	 * @return MessageValue[]
-	 */
-	private function convertStatusToMessageValues( Status $status ): array {
-		$conv = new \MediaWiki\Message\Converter;
-		return array_map( static function ( $error ) use ( $conv ) {
-			// TODO: It should be possible to do this without going through a Message object,
-			// but the internal format of parameters is different in MessageValue (T358779)
-			return $conv->convertMessage( Message::newFromSpecifier( [ $error['message'], ...$error['params'] ] ) );
-		}, $status->getErrors() );
 	}
 
 }
