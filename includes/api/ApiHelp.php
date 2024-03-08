@@ -24,10 +24,11 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Title\Title;
@@ -190,8 +191,11 @@ class ApiHelp extends ApiBase {
 		$haveModules = [];
 		$html = self::getHelpInternal( $context, $modules, $options, $haveModules );
 		if ( !empty( $options['toc'] ) && $haveModules ) {
-			$tocData = TOCData::fromLegacy( array_values( $haveModules ) );
-			$out->addHTML( Linker::generateTOC( $tocData, $context->getLanguage() ) );
+			$pout = new ParserOutput;
+			$pout->setTOCData( TOCData::fromLegacy( array_values( $haveModules ) ) );
+			$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+			$pout->setText( Parser::TOC_PLACEHOLDER );
+			$out->addParserOutput( $pout );
 		}
 		$out->addHTML( $html );
 
