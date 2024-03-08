@@ -75,6 +75,8 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 		$form = $this->newInstance();
 		$form->setPreText( $preText );
 		$this->assertSame( $preText, $form->getPreText() );
+		$form->addPreText( $preText );
+		$this->assertSame( $preText . $preText, $form->getPreText() );
 	}
 
 	public function testGetPreHtml() {
@@ -82,6 +84,49 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 		$form = $this->newInstance();
 		$form->setPreHtml( $preHtml );
 		$this->assertSame( $preHtml, $form->getPreHtml() );
+		$preHtml = 'TEST2';
+		$form->setIntro( $preHtml );
+		$this->assertSame( $preHtml, $form->getPreHtml() );
+		$preHtml = 'TEST';
+		$form->addPreHtml( $preHtml );
+		$this->assertSame( $preHtml . '2' . $preHtml, $form->getPreHtml() );
+	}
+
+	public function testGetPostHtml() {
+		$postHtml = 'TESTED';
+		$form = $this->newInstance();
+		$form->setPostHtml( $postHtml );
+		$this->assertSame( $postHtml, $form->getPostHtml() );
+		$postHtml = 'TESTED2';
+		$form->setPostText( $postHtml );
+		$this->assertSame( $postHtml, $form->getPostHtml() );
+		$postHtml = 'TESTED';
+		$form->addPostHtml( $postHtml );
+		$this->assertSame( $postHtml . '2' . $postHtml, $form->getPostHtml() );
+		$form->addPostText( $postHtml );
+		$this->assertSame( $postHtml . '2' . $postHtml . $postHtml, $form->getPostHtml() );
+	}
+
+	public function testCollapsible() {
+		$form = $this->newInstance();
+		$form->prepareForm()->getHTML( '' );
+		$this->assertContains( 'mediawiki.htmlform', $form->getOutput()->getModules() );
+		$this->assertNotContains( 'jquery.makeCollapsible', $form->getOutput()->getModules() );
+
+		$form = $this->newInstance();
+		$form->setCollapsibleOptions( null );
+		$form->prepareForm()->getHTML( '' );
+		$this->assertContains( 'jquery.makeCollapsible', $form->getOutput()->getModules() );
+
+		$form = $this->newInstance();
+		$form->setCollapsibleOptions( false );
+		$form->prepareForm()->getHTML( '' );
+		$this->assertContains( 'jquery.makeCollapsible', $form->getOutput()->getModules() );
+
+		$form = $this->newInstance();
+		$form->setCollapsibleOptions( true );
+		$form->prepareForm()->getHTML( '' );
+		$this->assertContains( 'jquery.makeCollapsible', $form->getOutput()->getModules() );
 	}
 
 	public function testGetErrorsOrWarningsWithRawParams() {
