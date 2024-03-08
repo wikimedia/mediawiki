@@ -186,7 +186,7 @@
 	 * Create a new style element and add it to the DOM.
 	 * Stable for use in gadgets.
 	 *
-	 * @name mw.loader.addStyleTag
+	 * @method mw.loader.addStyleTag
 	 * @param {string} text CSS text
 	 * @param {Node|null} [nextNode] The element where the style tag
 	 *  should be inserted before

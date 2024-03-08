@@ -44,6 +44,7 @@ module.exports = {
 				File: 'https://developer.mozilla.org/en-US/docs/Web/API/File',
 				HTMLElement: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement',
 				HTMLInputElement: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement',
+				HTMLStyleElement: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement',
 				'JSON.parse': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse',
 				jQuery: 'https://api.jquery.com/jQuery/',
 				'jQuery.fn': 'https://api.jquery.com/jQuery/',
