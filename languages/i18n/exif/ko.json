@@ -370,9 +370,21 @@
 	"exif-urgency-other": "사용자 정의 ($1)",
 	"exif-firstphotodate": "첫 촬영일",
 	"exif-lastphotodate": "마지막 촬영일",
+	"exif-projectiontype": "프로젝션 유형",
+	"exif-projectiontype-equirectangular": "등장방형",
+	"exif-usepanoramaviewer": "파노라마 뷰어 사용",
 	"exif-usepanoramaviewer-true": "예",
 	"exif-usepanoramaviewer-false": "아니오",
 	"exif-exposurelockused": "노출 잠금 사용",
 	"exif-exposurelockused-true": "예",
-	"exif-exposurelockused-false": "아니오"
+	"exif-exposurelockused-false": "아니오",
+	"exif-sourcephotoscount": "원본 사진 수",
+	"exif-croppedareaimagewidthpixels": "파노라마 잘린 너비",
+	"exif-croppedareaimageheightpixels": "파노라마 잘린 높이",
+	"exif-fullpanowidthpixels": "파노라마 전체 너비",
+	"exif-fullpanoheightpixels": "파노라마 전체 높이",
+	"exif-croppedarealeftpixels": "파노라마 왼쪽 자르기",
+	"exif-croppedareatoppixels": "파노라마 위쪽 자르기",
+	"exif-initialcameradolly": "초기 카메라 돌리",
+	"exif-stitchingsoftware": "스티칭 소프트웨어"
 }

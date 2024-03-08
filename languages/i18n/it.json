@@ -2669,6 +2669,8 @@
 	"undelete-undeletetalk": "Ripristina tutte le versioni della pagina di discussione associata",
 	"undeleteinvert": "Inverti selezione",
 	"undeletecomment": "Motivo:",
+	"undeleteothercomment": "Altri motivi/dettagli:",
+	"undeletecommentotherlist": "Altra motivazione",
 	"cannotundelete": "Alcuni o tutti i ripristini non riusciti:\n$1",
 	"undeletedpage": "<strong>La pagina $1 è stata ripristinata</strong>\n\nConsulta il [[Special:Log/delete|registro delle cancellazioni]] per vedere le cancellazioni e i ripristini più recenti.",
 	"undelete-header": "Consulta il [[Special:Log/delete|registro delle cancellazioni]] per vedere le cancellazioni più recenti.",

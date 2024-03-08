@@ -3,6 +3,7 @@
 		"authors": [
 			"Aderiqueza",
 			"Amire80",
+			"BigDareLibrary",
 			"Demmy",
 			"Fitoschido",
 			"Kaganer",
@@ -1788,6 +1789,8 @@
 	"undeleteviewlink": "wo",
 	"undeleteinvert": "Pàṣípààrọ̀ àsàyàn",
 	"undeletecomment": "Ìdíẹ̀:",
+	"undeletecommentotherlist": "Idi miiran",
+	"undelete-edit-commentlist": "Ṣatunkọ awọn idi ti a ko paarẹ.",
 	"cannotundelete": "Díẹ̀ tàbí gbogbo ìdápadà ìparẹ́ kùnà:\n$1",
 	"undeletedpage": "'''$1 ti jẹ́ dídápadà'''\n\nẸ wo [[Special:Log/delete|àkọọ́lẹ̀ ìparẹ́]] fún àkọpamọ́ àwọn ìparẹ́ àti ìdápadà àìpẹ́.",
 	"undelete-header": "Ẹ wo [[Special:Log/delete|àkọọ́lẹ̀ ìparẹ́]] fún àwọn ojúewé píparẹ́ láìpẹ́",
