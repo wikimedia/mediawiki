@@ -1927,6 +1927,7 @@ class Linker {
 	/**
 	 * Create a headline for content
 	 *
+	 * @deprecated since 1.42
 	 * @since 1.16.3
 	 * @param int $level The level of the headline (1-6)
 	 * @param string $attribs Any attributes for the headline, starting with
@@ -1943,6 +1944,7 @@ class Linker {
 	public static function makeHeadline( $level, $attribs, $anchor, $html,
 		$link, $fallbackAnchor = false
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$anchorEscaped = htmlspecialchars( $anchor, ENT_COMPAT );
 		$fallback = '';
 		if ( $fallbackAnchor !== false && $fallbackAnchor !== $anchor ) {
