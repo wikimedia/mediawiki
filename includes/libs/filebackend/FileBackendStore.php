@@ -1361,7 +1361,9 @@ abstract class FileBackendStore extends FileBackend {
 				: $fileOp->attemptQuick();
 			if ( $subStatus->value instanceof FileBackendStoreOpHandle ) { // async
 				if ( count( $curFileOpHandles ) >= $maxConcurrency ) {
-					$fileOpHandles[] = $curFileOpHandles; // push this batch
+					// We better stop queuing things and get some work done
+					// See T230245 for the issues caused by extreme laziness
+					$statuses += $this->executeOpHandlesInternal( $curFileOpHandles );
 					$curFileOpHandles = [];
 				}
 				$curFileOpHandles[$index] = $subStatus->value; // keep index
