@@ -2198,6 +2198,11 @@ return [
 	'mediawiki.special.block.codex' => [
 		'packageFiles' => [
 			'resources/src/mediawiki.special.block/init.js',
+			'resources/src/mediawiki.special.block/components/BlockTypeField.vue',
+			'resources/src/mediawiki.special.block/components/ExpirationField.vue',
+			'resources/src/mediawiki.special.block/components/ReasonField.vue',
+			'resources/src/mediawiki.special.block/components/TargetActiveBlocks.vue',
+			'resources/src/mediawiki.special.block/components/TargetBlockLog.vue',
 			'resources/src/mediawiki.special.block/components/UserLookup.vue',
 			'resources/src/mediawiki.special.block/SpecialBlock.vue',
 			[
