@@ -528,14 +528,14 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 *
 	 * The return value is such that someone could theoretically do this:
 	 * @code
-	 * foreach ( $provider->getVaryHeaders() as $header ) {
+	 * foreach ( $provider->getVaryHeaders() as $header => $_ ) {
 	 *   $outputPage->addVaryHeader( $header );
 	 * }
 	 * @endcode
 	 *
 	 * @stable to override
 	 * @note For use by \MediaWiki\Session\SessionManager only
-	 * @return array
+	 * @return array<string,null>
 	 */
 	public function getVaryHeaders() {
 		return [];
