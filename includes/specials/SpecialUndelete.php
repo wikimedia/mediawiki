@@ -1090,18 +1090,18 @@ class SpecialUndelete extends SpecialPage {
 				'content' => new HtmlSnippet( $this->msg( 'undeleteextrahelp' )->parseAsBlock() )
 			] );
 
-			$dropDownComment = $this->msg( 'undelete-comment-dropdown' )
+			$dropdownComment = $this->msg( 'undelete-comment-dropdown' )
 				->page( $this->mTargetObj )->inContentLanguage()->text();
 			// Add additional specific reasons for unsuppress
 			if ( $unsuppressAllowed ) {
-				$dropDownComment .= "\n" . $this->msg( 'undelete-comment-dropdown-unsuppress' )
+				$dropdownComment .= "\n" . $this->msg( 'undelete-comment-dropdown-unsuppress' )
 					->page( $this->mTargetObj )->inContentLanguage()->text();
 			}
-			$options = Xml::listDropDownOptions(
-				$dropDownComment,
+			$options = Xml::listDropdownOptions(
+				$dropdownComment,
 				[ 'other' => $this->msg( 'undeletecommentotherlist' )->text() ]
 			);
-			$options = Xml::listDropDownOptionsOoui( $options );
+			$options = Xml::listDropdownOptionsOoui( $options );
 
 			$fields[] = new FieldLayout(
 				new DropdownInputWidget( [

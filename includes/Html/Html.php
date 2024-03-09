@@ -1159,7 +1159,7 @@ class Html {
 	 * Build options for a drop-down box from a textual list.
 	 *
 	 * The result of this function can be passed to XmlSelect::addOptions()
-	 * (to render a plain `<select>` dropdown box) or to Html::listDropDownOptionsOoui()
+	 * (to render a plain `<select>` dropdown box) or to Html::listDropdownOptionsOoui()
 	 * and then OOUI\DropdownInputWidget() (to render a pretty one).
 	 *
 	 * @param string $list Correctly formatted text (newline delimited) to be
@@ -1168,7 +1168,7 @@ class Html {
 	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
 	 * @return array Array keys are textual labels, values are internal values
 	 */
-	public static function listDropDownOptions( $list, $params = [] ) {
+	public static function listDropdownOptions( $list, $params = [] ) {
 		$options = [];
 
 		if ( isset( $params['other'] ) ) {
@@ -1215,10 +1215,10 @@ class Html {
 	 *
 	 * TODO Find a better home for this function.
 	 *
-	 * @param array $options Options, as returned e.g. by Html::listDropDownOptions()
+	 * @param array $options Options, as returned e.g. by Html::listDropdownOptions()
 	 * @return array
 	 */
-	public static function listDropDownOptionsOoui( $options ) {
+	public static function listDropdownOptionsOoui( $options ) {
 		$optionsOoui = [];
 
 		foreach ( $options as $text => $value ) {

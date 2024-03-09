@@ -570,7 +570,7 @@ class ProtectionForm {
 				'id' => 'wpProtectReasonSelection',
 				'name' => 'wpProtectReasonSelection',
 				'flatlist' => true,
-				'options' => Html::listDropDownOptions(
+				'options' => Html::listDropdownOptions(
 					$this->mContext->msg( 'protect-dropdown' )->inContentLanguage()->text(),
 					[ 'other' => $this->mContext->msg( 'protect-otherreason-op' )->text() ]
 				),
