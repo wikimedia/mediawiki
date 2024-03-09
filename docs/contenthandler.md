@@ -1,4 +1,5 @@
-# ContentHandler
+ContentHandler {#contenthandler}
+=====
 
 The *ContentHandler* facility adds support for arbitrary content types on wiki pages, instead of relying on wikitext for everything. It was introduced in MediaWiki 1.21.
 

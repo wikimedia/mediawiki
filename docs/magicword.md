@@ -1,4 +1,4 @@
-Magic Words
+Magic Words {#magicword}
 ====================================
 
 Magic words are localizable keywords used in wikitext. They are used for many
