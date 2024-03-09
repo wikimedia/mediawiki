@@ -56,8 +56,6 @@ class MWDocGen extends Maintenance {
 	private $template;
 	/** @var string[] */
 	private $excludes;
-	/** @var string[] */
-	private $excludePatterns;
 	/** @var bool */
 	private $doDot;
 
@@ -118,15 +116,14 @@ class MWDocGen extends Maintenance {
 			'cache',
 			'images',
 		];
-		$this->excludePatterns = [];
 		if ( $this->input === '' ) {
-			// If no explicit --file filter is set, we're indexing all of $IP,
-			// but any extension or skin submodules should be excluded by default.
+			// If no explicit --file filter is set, we're indexing all of MediaWiki core
+			// in $IP, but not extension and skin submodules (T317451).
 			if ( !$this->hasOption( 'extensions' ) ) {
-				$this->excludePatterns[] = 'extensions';
+				$this->excludes[] = 'extensions';
 			}
 			if ( !$this->hasOption( 'skins' ) ) {
-				$this->excludePatterns[] = 'skins';
+				$this->excludes[] = 'skins';
 			}
 		}
 
@@ -144,8 +141,6 @@ class MWDocGen extends Maintenance {
 			$exclude .= " $IP/$item";
 		}
 
-		$excludePatterns = implode( ' ', $this->excludePatterns );
-
 		$conf = strtr( file_get_contents( $this->template ),
 			[
 				'{{OUTPUT_DIRECTORY}}' => $this->output,
@@ -153,7 +148,6 @@ class MWDocGen extends Maintenance {
 				'{{CURRENT_VERSION}}' => $this->mwVersion,
 				'{{INPUT}}' => $this->input,
 				'{{EXCLUDE}}' => $exclude,
-				'{{EXCLUDE_PATTERNS}}' => $excludePatterns,
 				'{{HAVE_DOT}}' => $this->doDot ? 'YES' : 'NO',
 				'{{INPUT_FILTER}}' => $this->inputFilter,
 			]
