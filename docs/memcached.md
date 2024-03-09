@@ -1,4 +1,4 @@
-Memcached
+Memcached {#memcached}
 ====================================
 
 MediaWiki has optional support for memcached, a "high-performance,
@@ -251,5 +251,3 @@ Special:Recentchanges (feed):
 	calling Special:Recentchanges?action=purge&feed=rss,
 	Special:Recentchanges?action=purge&feed=atom,
 	but note need $wgGroupPermissions[...]['purge'] permission.
-
-... more to come ...
