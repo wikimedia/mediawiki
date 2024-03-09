@@ -459,9 +459,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
-		// Batched version of WikiModule::getTitleInfo
-		$dbr = wfGetDB( DB_REPLICA );
-		WikiModule::preloadTitleInfo( $context, $dbr, $moduleNames );
+		WikiModule::preloadTitleInfo( $context, $moduleNames );
 
 		// Prime in-object cache for message blobs for modules with messages
 		$modulesWithMessages = [];

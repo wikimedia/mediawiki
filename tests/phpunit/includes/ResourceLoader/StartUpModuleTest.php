@@ -6,18 +6,12 @@ use Exception;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\StartUpModule;
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\StartUpModule
  */
 class StartUpModuleTest extends ResourceLoaderTestCase {
-
-	protected function setUp(): void {
-		parent::setUp();
-		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
-	}
 
 	protected static function expandPlaceholders( $text ) {
 		return strtr( $text, [
