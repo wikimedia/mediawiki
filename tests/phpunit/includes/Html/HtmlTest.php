@@ -879,7 +879,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testListDropDownOptions() {
+	public function testListDropdownOptions() {
 		$this->assertEquals(
 			[
 				'other reasons' => 'other',
@@ -892,14 +892,14 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 					'Bar 1' => 'Bar 1',
 				],
 			],
-			Html::listDropDownOptions(
+			Html::listDropdownOptions(
 				"*\n** Empty group item\n* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
 				[ 'other' => 'other reasons' ]
 			)
 		);
 	}
 
-	public function testListDropDownOptionsOthers() {
+	public function testListDropdownOptionsOthers() {
 		// Do not use the value for 'other' as option group - T251351
 		$this->assertEquals(
 			[
@@ -910,14 +910,14 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 					'Bar 1' => 'Bar 1',
 				],
 			],
-			Html::listDropDownOptions(
+			Html::listDropdownOptions(
 				"* other reasons\n** Foo 1\n** Example\n* Bar\n** Bar 1",
 				[ 'other' => 'other reasons' ]
 			)
 		);
 	}
 
-	public function testListDropDownOptionsOoui() {
+	public function testListDropdownOptionsOoui() {
 		$this->assertEquals(
 			[
 				[ 'data' => 'other', 'label' => 'other reasons' ],
@@ -927,7 +927,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				[ 'optgroup' => 'Bar' ],
 				[ 'data' => 'Bar 1', 'label' => 'Bar 1' ],
 			],
-			Html::listDropDownOptionsOoui( [
+			Html::listDropdownOptionsOoui( [
 				'other reasons' => 'other',
 				'Foo' => [
 					'Foo 1' => 'Foo 1',

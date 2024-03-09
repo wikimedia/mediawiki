@@ -474,11 +474,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$out->addModuleStyles( [ 'mediawiki.special',
 				'mediawiki.interface.helpers.styles' ] );
 
-			$dropDownReason = $this->msg( 'revdelete-reason-dropdown' )
+			$dropdownReason = $this->msg( 'revdelete-reason-dropdown' )
 				->page( $this->targetObj )->inContentLanguage()->text();
 			// Add additional specific reasons for suppress
 			if ( $suppressAllowed ) {
-				$dropDownReason .= "\n" . $this->msg( 'revdelete-reason-dropdown-suppress' )
+				$dropdownReason .= "\n" . $this->msg( 'revdelete-reason-dropdown-suppress' )
 					->page( $this->targetObj )->inContentLanguage()->text();
 			}
 
@@ -490,8 +490,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				'cssclass' => 'wpReasonDropDown',
 				'id' => 'wpRevDeleteReasonList',
 				'name' => 'wpRevDeleteReasonList',
-				'options' => Html::listDropDownOptions(
-					$dropDownReason,
+				'options' => Html::listDropdownOptions(
+					$dropdownReason,
 					[ 'other' => $this->msg( 'revdelete-reasonotherlist' )->text() ]
 				),
 				'default' => $this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' )

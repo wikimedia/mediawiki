@@ -505,7 +505,7 @@ class Xml {
 
 	/**
 	 * Build a drop-down box from a textual list. This is a wrapper
-	 * for Xml::listDropDownOptions() plus the XmlSelect class.
+	 * for Xml::listDropdownOptions() plus the XmlSelect class.
 	 *
 	 * @param string $name Name and id for the drop-down
 	 * @param string $list Correctly formatted text (newline delimited) to be
@@ -516,10 +516,10 @@ class Xml {
 	 * @param int|null $tabindex Value of the tabindex attribute
 	 * @return string
 	 */
-	public static function listDropDown( $name = '', $list = '', $other = '',
+	public static function listDropdown( $name = '', $list = '', $other = '',
 		$selected = '', $class = '', $tabindex = null
 	) {
-		$options = self::listDropDownOptions( $list, [ 'other' => $other ] );
+		$options = self::listDropdownOptions( $list, [ 'other' => $other ] );
 
 		$xmlSelect = new XmlSelect( $name, $name, $selected );
 		$xmlSelect->addOptions( $options );
@@ -538,7 +538,7 @@ class Xml {
 	 * Build options for a drop-down box from a textual list.
 	 *
 	 * The result of this function can be passed to XmlSelect::addOptions()
-	 * (to render a plain `<select>` dropdown box) or to Xml::listDropDownOptionsOoui()
+	 * (to render a plain `<select>` dropdown box) or to Xml::listDropdownOptionsOoui()
 	 * and then OOUI\DropdownInputWidget() (to render a pretty one).
 	 *
 	 * @param string $list Correctly formatted text (newline delimited) to be
@@ -547,7 +547,7 @@ class Xml {
 	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
 	 * @return array Array keys are textual labels, values are internal values
 	 */
-	public static function listDropDownOptions( $list, $params = [] ) {
+	public static function listDropdownOptions( $list, $params = [] ) {
 		$options = [];
 
 		if ( isset( $params['other'] ) ) {
@@ -594,10 +594,10 @@ class Xml {
 	 *
 	 * TODO Find a better home for this function.
 	 *
-	 * @param array $options Options, as returned e.g. by Xml::listDropDownOptions()
+	 * @param array $options Options, as returned e.g. by Xml::listDropdownOptions()
 	 * @return array
 	 */
-	public static function listDropDownOptionsOoui( $options ) {
+	public static function listDropdownOptionsOoui( $options ) {
 		$optionsOoui = [];
 
 		foreach ( $options as $text => $value ) {

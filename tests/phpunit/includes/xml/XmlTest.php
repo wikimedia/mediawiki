@@ -296,7 +296,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testListDropDown() {
+	public function testListDropdown() {
 		$this->assertEquals(
 			'<select name="test-name" id="test-name" class="test-css" tabindex="2">' .
 				'<option value="other">other reasons</option>' . "\n" .
@@ -308,7 +308,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="Bar 1">Bar 1</option>' . "\n" .
 				'</optgroup>' .
 				'</select>',
-			Xml::listDropDown(
+			Xml::listDropdown(
 				// name
 				'test-name',
 				// source list
@@ -325,7 +325,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testListDropDownOptions() {
+	public function testListDropdownOptions() {
 		$this->assertEquals(
 			[
 				'other reasons' => 'other',
@@ -338,14 +338,14 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 					'Bar 1' => 'Bar 1',
 				],
 			],
-			Xml::listDropDownOptions(
+			Xml::listDropdownOptions(
 				"*\n** Empty group item\n* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
 				[ 'other' => 'other reasons' ]
 			)
 		);
 	}
 
-	public function testListDropDownOptionsOthers() {
+	public function testListDropdownOptionsOthers() {
 		// Do not use the value for 'other' as option group - T251351
 		$this->assertEquals(
 			[
@@ -356,14 +356,14 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 					'Bar 1' => 'Bar 1',
 				],
 			],
-			Xml::listDropDownOptions(
+			Xml::listDropdownOptions(
 				"* other reasons\n** Foo 1\n** Example\n* Bar\n** Bar 1",
 				[ 'other' => 'other reasons' ]
 			)
 		);
 	}
 
-	public function testListDropDownOptionsOoui() {
+	public function testListDropdownOptionsOoui() {
 		$this->assertEquals(
 			[
 				[ 'data' => 'other', 'label' => 'other reasons' ],
@@ -373,7 +373,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 				[ 'optgroup' => 'Bar' ],
 				[ 'data' => 'Bar 1', 'label' => 'Bar 1' ],
 			],
-			Xml::listDropDownOptionsOoui( [
+			Xml::listDropdownOptionsOoui( [
 				'other reasons' => 'other',
 				'Foo' => [
 					'Foo 1' => 'Foo 1',

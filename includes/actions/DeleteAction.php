@@ -442,15 +442,15 @@ class DeleteAction extends FormAction {
 
 		$fields = [];
 
-		$dropDownReason = $this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->text();
+		$dropdownReason = $this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->text();
 		// Add additional specific reasons for suppress
 		if ( $this->isSuppressionAllowed() ) {
-			$dropDownReason .= "\n" . $this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )
+			$dropdownReason .= "\n" . $this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )
 					->inContentLanguage()->text();
 		}
 
-		$options = Html::listDropDownOptions(
-			$dropDownReason,
+		$options = Html::listDropdownOptions(
+			$dropdownReason,
 			[ 'other' => $this->getFormMsg( self::MSG_REASON_DROPDOWN_OTHER )->text() ]
 		);
 
