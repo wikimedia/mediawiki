@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\ResourceLoader
  */
 class ResourceLoaderTest extends ResourceLoaderTestCase {

@@ -9,6 +9,7 @@ use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 
 /**
+ * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\UserOptionsModule
  */
 class UserOptionsModuleTest extends MediaWikiIntegrationTestCase {

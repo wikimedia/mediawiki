@@ -7,6 +7,7 @@ use MediaWikiUnitTestCase;
 use RuntimeException;
 
 /**
+ * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\FilePath
  */
 class FilePathTest extends MediaWikiUnitTestCase {

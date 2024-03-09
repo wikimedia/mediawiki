@@ -9,6 +9,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
+ * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\StartUpModule
  */
 class StartUpModuleTest extends ResourceLoaderTestCase {

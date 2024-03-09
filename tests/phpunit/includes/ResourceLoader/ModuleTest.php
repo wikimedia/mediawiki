@@ -11,6 +11,7 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use ReflectionMethod;
 
 /**
+ * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\Module
  */
 class ModuleTest extends ResourceLoaderTestCase {

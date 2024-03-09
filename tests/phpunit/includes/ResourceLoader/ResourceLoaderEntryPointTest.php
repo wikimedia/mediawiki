@@ -10,8 +10,9 @@ use MediaWiki\Tests\MockEnvironment;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\ResourceLoader\ResourceLoader
+ * @group ResourceLoader
  * @group Database
+ * @covers \MediaWiki\ResourceLoader\ResourceLoader
  */
 class ResourceLoaderEntryPointTest extends MediaWikiIntegrationTestCase {
 

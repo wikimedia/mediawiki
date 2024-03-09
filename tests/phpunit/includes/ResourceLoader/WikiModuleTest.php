@@ -29,8 +29,9 @@ use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
 /**
- * @covers \MediaWiki\ResourceLoader\WikiModule
+ * @group ResourceLoader
  * @group Database
+ * @covers \MediaWiki\ResourceLoader\WikiModule
  */
 class WikiModuleTest extends ResourceLoaderTestCase {
 	use LinkCacheTestTrait;
