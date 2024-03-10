@@ -280,7 +280,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 		$idA = $revisions[1]->getId();
-		$this->setMwGlobals( 'wgTitle', $page->getTitle() );
+		$context = RequestContext::getMain();
+		$context->setTitle( $page->getTitle() );
 
 		// View the revision once (to get it into the cache)
 		$article = new Article( $page->getTitle(), $idA );
@@ -288,7 +289,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		// Reset the output page and view the revision again (from ParserCache)
 		$article = new Article( $page->getTitle(), $idA );
-		$context = RequestContext::getMain();
 		$context->setOutput( new OutputPage( $context ) );
 		$article->setContext( $context );
 
