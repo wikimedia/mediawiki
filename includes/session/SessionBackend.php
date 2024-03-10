@@ -196,7 +196,7 @@ final class SessionBackend {
 				'SessionBackend "{session}" is unsaved, marking dirty in constructor',
 				[
 					'session' => $this->id->__toString(),
-			] );
+				] );
 		} else {
 			$this->data = $blob['data'];
 			if ( isset( $blob['metadata']['loggedOut'] ) ) {
@@ -209,9 +209,9 @@ final class SessionBackend {
 				$this->persistenceChangeType = 'no-expiry';
 				$this->logger->debug(
 					'SessionBackend "{session}" metadata dirty due to missing expiration timestamp',
-				[
-					'session' => $this->id->__toString(),
-				] );
+					[
+						'session' => $this->id->__toString(),
+					] );
 			}
 		}
 		$this->dataHash = md5( serialize( $this->data ) );
@@ -292,7 +292,7 @@ final class SessionBackend {
 				[
 					'session' => $this->id->__toString(),
 					'oldId' => $oldId,
-			] );
+				] );
 
 			if ( $restart ) {
 				session_id( (string)$this->id );
@@ -342,7 +342,7 @@ final class SessionBackend {
 				'SessionBackend "{session}" force-persist due to persist()',
 				[
 					'session' => $this->id->__toString(),
-			] );
+				] );
 			$this->autosave();
 		} else {
 			$this->renew();
@@ -400,7 +400,7 @@ final class SessionBackend {
 				'SessionBackend "{session}" metadata dirty due to remember-user change',
 				[
 					'session' => $this->id->__toString(),
-			] );
+				] );
 			$this->autosave();
 		}
 	}
@@ -470,7 +470,7 @@ final class SessionBackend {
 			'SessionBackend "{session}" metadata dirty due to user change',
 			[
 				'session' => $this->id->__toString(),
-		] );
+			] );
 		$this->autosave();
 	}
 
@@ -506,7 +506,7 @@ final class SessionBackend {
 				'SessionBackend "{session}" metadata dirty due to force-HTTPS change',
 				[
 					'session' => $this->id->__toString(),
-			] );
+				] );
 			$this->autosave();
 		}
 	}
@@ -531,7 +531,7 @@ final class SessionBackend {
 				'SessionBackend "{session}" metadata dirty due to logged-out-timestamp change',
 				[
 					'session' => $this->id->__toString(),
-			] );
+				] );
 			$this->autosave();
 		}
 	}
@@ -560,7 +560,7 @@ final class SessionBackend {
 				'SessionBackend "{session}" metadata dirty due to provider metadata change',
 				[
 					'session' => $this->id->__toString(),
-			] );
+				] );
 			$this->autosave();
 		}
 	}
@@ -596,7 +596,7 @@ final class SessionBackend {
 					[
 						'session' => $this->id->__toString(),
 						'callers' => wfGetAllCallers( 5 ),
-				] );
+					] );
 			}
 		}
 	}
@@ -612,7 +612,7 @@ final class SessionBackend {
 			[
 				'session' => $this->id->__toString(),
 				'callers' => wfGetAllCallers( 5 ),
-		] );
+			] );
 	}
 
 	/**
@@ -629,7 +629,7 @@ final class SessionBackend {
 				[
 					'session' => $this->id->__toString(),
 					'callers' => wfGetAllCallers( 5 ),
-			] );
+				] );
 			if ( $this->persist ) {
 				$this->persistenceChangeType = 'renew';
 				$this->forcePersist = true;
@@ -638,7 +638,7 @@ final class SessionBackend {
 					[
 						'session' => $this->id->__toString(),
 						'callers' => wfGetAllCallers( 5 ),
-				] );
+					] );
 			}
 		}
 		$this->autosave();
@@ -690,7 +690,7 @@ final class SessionBackend {
 				[
 					'session' => $this->id->__toString(),
 					'user' => $this->user->__toString(),
-			] );
+				] );
 			return;
 		}
 
@@ -707,7 +707,7 @@ final class SessionBackend {
 				[
 					'session' => $this->id->__toString(),
 					'user' => $this->user->__toString(),
-			] );
+				] );
 			$this->user->setToken();
 			if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 				// Promise that the token set here will be valid; save it at end of request
@@ -729,7 +729,7 @@ final class SessionBackend {
 					'session' => $this->id->__toString(),
 					'expected' => $this->dataHash,
 					'got' => md5( serialize( $this->data ) ),
-			] );
+				] );
 			$this->dataDirty = true;
 		}
 
@@ -745,7 +745,7 @@ final class SessionBackend {
 				'dataDirty' => (int)$this->dataDirty,
 				'metaDirty' => (int)$this->metaDirty,
 				'forcePersist' => (int)$this->forcePersist,
-		] );
+			] );
 
 		// Persist or unpersist to the provider, if necessary
 		if ( $this->metaDirty || $this->forcePersist ) {
@@ -833,7 +833,7 @@ final class SessionBackend {
 					'SessionBackend "{session}" Taking over PHP session',
 					[
 						'session' => $this->id->__toString(),
-				] );
+					] );
 				session_id( (string)$this->id );
 				AtEase::quietCall( 'session_start' );
 			}

@@ -293,7 +293,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 				'mailto:',
 				'//',
 				'file://', # Non-default
-		] );
+			] );
 
 		$index = LinkFilter::makeIndexes( $url );
 		$this->assertEquals( $expected, $index, "LinkFilter::makeIndexes(\"$url\")" );
@@ -390,7 +390,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			'mailto:',
 			'//',
 			'file://', # Non-default
-		] );
+			] );
 
 		$index = LinkFilter::reverseIndexes( $url );
 		$this->assertEquals( $expected, $index, "LinkFilter::reverseIndexe(\"$url\")" );

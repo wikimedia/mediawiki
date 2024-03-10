@@ -1560,41 +1560,41 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function setOutputFlag( string $name, bool $val = true ): void {
 		switch ( $name ) {
-		case ParserOutputFlags::NO_GALLERY:
-			$this->setNoGallery( $val );
-			break;
+			case ParserOutputFlags::NO_GALLERY:
+				$this->setNoGallery( $val );
+				break;
 
-		case ParserOutputFlags::ENABLE_OOUI:
-			$this->setEnableOOUI( $val );
-			break;
+			case ParserOutputFlags::ENABLE_OOUI:
+				$this->setEnableOOUI( $val );
+				break;
 
-		case ParserOutputFlags::NO_INDEX_POLICY:
-			$this->mNoIndexSet = $val;
-			break;
+			case ParserOutputFlags::NO_INDEX_POLICY:
+				$this->mNoIndexSet = $val;
+				break;
 
-		case ParserOutputFlags::INDEX_POLICY:
-			$this->mIndexSet = $val;
-			break;
+			case ParserOutputFlags::INDEX_POLICY:
+				$this->mIndexSet = $val;
+				break;
 
-		case ParserOutputFlags::NEW_SECTION:
-			$this->setNewSection( $val );
-			break;
+			case ParserOutputFlags::NEW_SECTION:
+				$this->setNewSection( $val );
+				break;
 
-		case ParserOutputFlags::HIDE_NEW_SECTION:
-			$this->setHideNewSection( $val );
-			break;
+			case ParserOutputFlags::HIDE_NEW_SECTION:
+				$this->setHideNewSection( $val );
+				break;
 
-		case ParserOutputFlags::PREVENT_CLICKJACKING:
-			$this->setPreventClickjacking( $val );
-			break;
+			case ParserOutputFlags::PREVENT_CLICKJACKING:
+				$this->setPreventClickjacking( $val );
+				break;
 
-		default:
-			if ( $val ) {
-				$this->mFlags[$name] = true;
-			} else {
-				unset( $this->mFlags[$name] );
-			}
-			break;
+			default:
+				if ( $val ) {
+					$this->mFlags[$name] = true;
+				} else {
+					unset( $this->mFlags[$name] );
+				}
+				break;
 		}
 	}
 
@@ -1612,29 +1612,29 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function getOutputFlag( string $name ): bool {
 		switch ( $name ) {
-		case ParserOutputFlags::NO_GALLERY:
-			return $this->getNoGallery();
+			case ParserOutputFlags::NO_GALLERY:
+				return $this->getNoGallery();
 
-		case ParserOutputFlags::ENABLE_OOUI:
-			return $this->getEnableOOUI();
+			case ParserOutputFlags::ENABLE_OOUI:
+				return $this->getEnableOOUI();
 
-		case ParserOutputFlags::INDEX_POLICY:
-			return $this->mIndexSet;
+			case ParserOutputFlags::INDEX_POLICY:
+				return $this->mIndexSet;
 
-		case ParserOutputFlags::NO_INDEX_POLICY:
-			return $this->mNoIndexSet;
+			case ParserOutputFlags::NO_INDEX_POLICY:
+				return $this->mNoIndexSet;
 
-		case ParserOutputFlags::NEW_SECTION:
-			return $this->getNewSection();
+			case ParserOutputFlags::NEW_SECTION:
+				return $this->getNewSection();
 
-		case ParserOutputFlags::HIDE_NEW_SECTION:
-			return $this->getHideNewSection();
+			case ParserOutputFlags::HIDE_NEW_SECTION:
+				return $this->getHideNewSection();
 
-		case ParserOutputFlags::PREVENT_CLICKJACKING:
-			return $this->getPreventClickjacking();
+			case ParserOutputFlags::PREVENT_CLICKJACKING:
+				return $this->getPreventClickjacking();
 
-		default:
-			return isset( $this->mFlags[$name] );
+			default:
+				return isset( $this->mFlags[$name] );
 
 		}
 	}

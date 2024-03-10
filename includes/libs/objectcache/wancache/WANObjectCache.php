@@ -2180,9 +2180,9 @@ class WANObjectCache implements
 					// T303092
 					$this->logger->warning(
 						$method . ' failed due to {id} not set in result {result}', [
-						'id' => $id,
-						'result' => json_encode( $result )
-					] );
+							'id' => $id,
+							'result' => json_encode( $result )
+						] );
 				}
 				$newValue = $result[$id];
 				$ttl = $ttls[$id];

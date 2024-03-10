@@ -260,7 +260,7 @@ class PHPSessionHandler implements SessionHandlerInterface {
 				__METHOD__ . ': Session "{session}" cannot be loaded, skipping write.',
 				[
 					'session' => $id,
-			] );
+				] );
 			return true;
 		}
 

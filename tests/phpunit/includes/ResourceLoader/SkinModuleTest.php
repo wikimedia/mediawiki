@@ -535,69 +535,69 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 
 	public static function provideGetFeatureFilePathsOrder() {
 		return [
+			[
+				'The "logo" skin-feature is loaded when the "features" key is absent',
+				[],
 				[
-					'The "logo" skin-feature is loaded when the "features" key is absent',
-					[],
-					[
-						'all' => [ self::getSkinFeaturePath( 'logo', 'all' ) ],
-						'print' => [ self::getSkinFeaturePath( 'logo', 'print' ) ],
-					],
+					'all' => [ self::getSkinFeaturePath( 'logo', 'all' ) ],
+					'print' => [ self::getSkinFeaturePath( 'logo', 'print' ) ],
+				],
+			],
+			[
+				'The "normalize" skin-feature is always output first',
+				[
+					'features' => [ 'elements', 'normalize' ],
 				],
 				[
-					'The "normalize" skin-feature is always output first',
-					[
-						'features' => [ 'elements', 'normalize' ],
-					],
-					[
-						'all' => [ self::getSkinFeaturePath( 'normalize', 'all' ) ],
-						'screen' => [ self::getSkinFeaturePath( 'elements', 'screen' ) ],
-						'print' => [ self::getSkinFeaturePath( 'elements', 'print' ) ],
-					],
+					'all' => [ self::getSkinFeaturePath( 'normalize', 'all' ) ],
+					'screen' => [ self::getSkinFeaturePath( 'elements', 'screen' ) ],
+					'print' => [ self::getSkinFeaturePath( 'elements', 'print' ) ],
+				],
+			],
+			[
+				'Empty media query blocks are not included in output',
 				[
-					'Empty media query blocks are not included in output',
-					[
-						'features' => [
-							'accessibility' => false,
-							'content-body' => false,
-							'interface-core' => false,
-							'toc' => false
-						],
-					],
-					[
-						'' => [ '' ],
+					'features' => [
+						'accessibility' => false,
+						'content-body' => false,
+						'interface-core' => false,
+						'toc' => false
 					],
 				],
-				[ 'Empty "features" key outputs default skin-features',
-					[
-						'features' => [],
-					],
-					[
-						'all' => [
-							self::getSkinFeaturePath( 'accessibility', 'all' ),
-							self::getSkinFeaturePath( 'toc', 'all' )
-						],
-						'screen' => [
-							self::getSkinFeaturePath( 'content-body', 'screen' ),
-							self::getSkinFeaturePath( 'interface-core', 'screen' ),
-							self::getSkinFeaturePath( 'toc', 'screen' ),
-						],
-						'print' => [
-							self::getSkinFeaturePath( 'content-body', 'print' ),
-							self::getSkinFeaturePath( 'interface-core', 'print' ),
-							self::getSkinFeaturePath( 'toc', 'print' )
-						]
-					],
+				[],
+			],
+			[
+				'Empty "features" key outputs default skin-features',
+				[
+					'features' => [],
 				],
-				[ 'skin-features are output in the order defined in SkinModule.php',
-					[
-						'features' => [ 'interface-message-box', 'normalize', 'accessibility' ],
+				[
+					'all' => [
+						self::getSkinFeaturePath( 'accessibility', 'all' ),
+						self::getSkinFeaturePath( 'toc', 'all' )
 					],
-					[
-						'all' => [
-							self::getSkinFeaturePath( 'accessibility', 'all' ),
-							self::getSkinFeaturePath( 'normalize', 'all' ),
-							self::getSkinFeaturePath( 'interface-message-box', 'all' )
-						],
+					'screen' => [
+						self::getSkinFeaturePath( 'content-body', 'screen' ),
+						self::getSkinFeaturePath( 'interface-core', 'screen' ),
+						self::getSkinFeaturePath( 'toc', 'screen' ),
+					],
+					'print' => [
+						self::getSkinFeaturePath( 'content-body', 'print' ),
+						self::getSkinFeaturePath( 'interface-core', 'print' ),
+						self::getSkinFeaturePath( 'toc', 'print' )
+					]
+				],
+			],
+			[
+				'skin-features are output in the order defined in SkinModule.php',
+				[
+					'features' => [ 'interface-message-box', 'normalize', 'accessibility' ],
+				],
+				[
+					'all' => [
+						self::getSkinFeaturePath( 'accessibility', 'all' ),
+						self::getSkinFeaturePath( 'normalize', 'all' ),
+						self::getSkinFeaturePath( 'interface-message-box', 'all' )
 					],
 				]
 			]

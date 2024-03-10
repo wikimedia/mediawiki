@@ -153,7 +153,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 					'session' => $info->__toString(),
 					'centralId' => $metadata['centralId'],
 					'appId' => $metadata['appId'],
-			] );
+				] );
 			return false;
 		}
 
@@ -175,7 +175,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 					'restrictions' => $status->getValue(),
 					'centralId' => $metadata['centralId'],
 					'appId' => $metadata['appId'],
-			] );
+				] );
 			return false;
 		}
 

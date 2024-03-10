@@ -398,7 +398,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 415, $response->getStatusCode() );
 	}
 
-	 public function testDeleteRequestWithoutBody() {
+	public function testDeleteRequestWithoutBody() {
 		// Test DELETE request without body
 		$requestWithoutBody = new RequestData( [
 		'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
@@ -407,7 +407,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$router = $this->createRouter( $requestWithoutBody );
 		$responseWithoutBody = $router->execute( $requestWithoutBody );
 		$this->assertSame( 200, $responseWithoutBody->getStatusCode() );
-	 }
+	}
 
 	public function testDeleteRequestWithBody() {
 			// Test DELETE request with body

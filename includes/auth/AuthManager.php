@@ -447,7 +447,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 				$ret, $user, $user->getName(), [
 					'performer' => $performer
-			] );
+				] );
 			return $ret;
 		}
 
@@ -589,7 +589,7 @@ class AuthManager implements LoggerAwareInterface {
 							$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 								$res, null, $guessUserName, [
 									'performer' => $session->getUser()
-							] );
+								] );
 							return $res;
 						case AuthenticationResponse::ABSTAIN:
 							// Continue loop
@@ -659,7 +659,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 							$res, null, $guessUserName, [
 								'performer' => $session->getUser()
-						] );
+							] );
 						return $res;
 					case AuthenticationResponse::REDIRECT:
 					case AuthenticationResponse::UI:
@@ -757,7 +757,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 						$ret, $user, $user->getName(), [
 							'performer' => $session->getUser()
-					] );
+						] );
 					return $ret;
 				}
 			}
@@ -793,7 +793,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 							$res, $user, $user->getName(), [
 								'performer' => $session->getUser()
-						] );
+							] );
 						return $res;
 					case AuthenticationResponse::REDIRECT:
 					case AuthenticationResponse::UI:
@@ -841,7 +841,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 				$ret, $user, $user->getName(), [
 					'performer' => $performer
-			] );
+				] );
 			return $ret;
 		} catch ( \Exception $ex ) {
 			$session->remove( self::AUTHN_STATE );

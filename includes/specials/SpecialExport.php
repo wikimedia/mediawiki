@@ -135,10 +135,10 @@ class SpecialExport extends SpecialPage {
 			// If not, we could deprecate them and do some cleanup, here and in WikiExporter.
 			LoggerFactory::getInstance( 'export' )->debug(
 				'Special:Export POST, dir: [{dir}], offset: [{offset}], limit: [{limit}]', [
-				'dir' => $request->getRawVal( 'dir' ),
-				'offset' => $request->getRawVal( 'offset' ),
-				'limit' => $request->getRawVal( 'limit' ),
-			] );
+					'dir' => $request->getRawVal( 'dir' ),
+					'offset' => $request->getRawVal( 'offset' ),
+					'limit' => $request->getRawVal( 'limit' ),
+				] );
 
 			$page = $request->getText( 'pages' );
 			$this->curonly = $request->getCheck( 'curonly' );
