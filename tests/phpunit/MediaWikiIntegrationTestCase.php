@@ -2228,7 +2228,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static function maybeInitCliArgs(): void {
 		self::$additionalCliOptions ??= [
 			'use-normal-tables' => (bool)getenv( 'PHPUNIT_USE_NORMAL_TABLES' ),
-			'use-filebackend' => getenv( 'PHPUNIT_USE_FILEBACKEND' ) ?: null,
 			'use-jobqueue' => getenv( 'PHPUNIT_USE_JOBQUEUE' ) ?: null,
 		];
 	}

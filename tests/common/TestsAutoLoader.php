@@ -268,6 +268,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/unit/includes/filebackend
 	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/filebackend/FileBackendGroupTestTrait.php",
+	'FileBackendIntegrationTestBase' => "$testDir/phpunit/integration/includes/libs/filebackend/FileBackendIntegrationTestBase.php",
 
 	# tests/phpunit/unit/includes/HookContainer
 	'MediaWiki\\Tests\\HookContainer\\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
