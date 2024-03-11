@@ -23,7 +23,6 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\Minify\IdentityMinifierState;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -36,7 +35,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::ShowExceptionDetails, true );
-		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
 	}
 
 	/**

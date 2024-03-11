@@ -3466,9 +3466,8 @@ class OutputPage extends ContextSource {
 			// Separate user-specific batch for improved cache-hit ratio.
 			$userBatch = [ 'user.styles', 'user' ];
 			$siteBatch = array_diff( $moduleStyles, $userBatch );
-			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-			RL\WikiModule::preloadTitleInfo( $context, $dbr, $siteBatch );
-			RL\WikiModule::preloadTitleInfo( $context, $dbr, $userBatch );
+			RL\WikiModule::preloadTitleInfo( $context, $siteBatch );
+			RL\WikiModule::preloadTitleInfo( $context, $userBatch );
 
 			// Filter out modules handled by buildExemptModules()
 			$moduleStyles = array_filter( $moduleStyles,

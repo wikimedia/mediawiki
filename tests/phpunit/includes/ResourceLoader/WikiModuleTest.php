@@ -23,7 +23,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionMethod;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
@@ -288,7 +287,6 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		);
 		TestResourceLoaderWikiModule::preloadTitleInfo(
 			$context,
-			$this->createMock( IDatabase::class ),
 			[ 'testmodule' ]
 		);
 
@@ -312,7 +310,6 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		// Act
 		TestResourceLoaderWikiModule::preloadTitleInfo(
 			$context,
-			$this->createMock( IDatabase::class ),
 			[ 'testmodule' ]
 		);
 
@@ -328,7 +325,6 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 			null,
 			WikiModule::preloadTitleInfo(
 				$context,
-				$this->createMock( IDatabase::class ),
 				[]
 			)
 		);

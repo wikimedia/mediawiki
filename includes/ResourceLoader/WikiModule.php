@@ -33,6 +33,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\WikiMap\WikiMap;
 use MemoizedCallable;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\Rdbms\Database;
@@ -579,17 +580,24 @@ class WikiModule extends Module {
 	}
 
 	/**
+	 * Batched version of WikiModule::getTitleInfo
+	 *
+	 * Title info for the passed modules is cached together. On index.php, OutputPage improves
+	 * cache use by having one batch shared between all users (site-wide modules) and a batch
+	 * for current-user modules.
+	 *
 	 * @since 1.28
+	 * @internal For use by ResourceLoader and OutputPage only
 	 * @param Context $context
-	 * @param IReadableDatabase $db
 	 * @param string[] $moduleNames
 	 */
 	public static function preloadTitleInfo(
-		Context $context, IReadableDatabase $db, array $moduleNames
+		Context $context, array $moduleNames
 	) {
 		$rl = $context->getResourceLoader();
 		// getDB() can be overridden to point to a foreign database.
-		// For now, only preload local. In the future, we could preload by wikiID.
+		// For now, only preload local. In the future, we could preload by domain ID.
+		$localDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$allPages = [];
 		/** @var WikiModule[] $wikiModules */
 		$wikiModules = [];
@@ -598,7 +606,7 @@ class WikiModule extends Module {
 			if ( $module instanceof self ) {
 				$mDB = $module->getDB();
 				// Subclasses may implement getDB differently
-				if ( $mDB->getDomainID() === $db->getDomainID() ) {
+				if ( $mDB->getDomainID() === $localDomain ) {
 					$wikiModules[] = $module;
 					$allPages += $module->getPages( $context );
 				}
@@ -620,16 +628,17 @@ class WikiModule extends Module {
 
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$allInfo = $cache->getWithSetCallback(
-			$cache->makeGlobalKey( 'resourceloader-titleinfo', $db->getDomainID(), $hash ),
+			$cache->makeGlobalKey( 'resourceloader-titleinfo', $localDomain, $hash ),
 			$cache::TTL_HOUR,
-			static function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $db, $fname ) {
-				$setOpts += Database::getCacheSetOptions( $db );
+			static function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $fname ) {
+				$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				return call_user_func( $func, $db, $pageNames, $fname );
+				return call_user_func( $func, $dbr, $pageNames, $fname );
 			},
 			[
 				'checkKeys' => [
-					$cache->makeGlobalKey( 'resourceloader-titleinfo', $db->getDomainID() ) ]
+					$cache->makeGlobalKey( 'resourceloader-titleinfo', $localDomain ) ]
 			]
 		);
 
