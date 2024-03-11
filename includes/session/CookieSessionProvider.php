@@ -135,7 +135,7 @@ class CookieSessionProvider extends SessionProvider {
 							'cookie_username' => $userName,
 							'username' => $userInfo->getName(),
 						],
-				] );
+					] );
 				return null;
 			}
 
@@ -147,7 +147,7 @@ class CookieSessionProvider extends SessionProvider {
 							'session' => $sessionId,
 							'userid' => $userId,
 							'username' => $userInfo->getName(),
-					] );
+						] );
 					return null;
 				}
 				$info['userInfo'] = $userInfo->verified();
@@ -169,7 +169,7 @@ class CookieSessionProvider extends SessionProvider {
 				'Session "{session}" requested without UserID cookie',
 				[
 					'session' => $info['id'],
-			] );
+				] );
 			$info['userInfo'] = UserInfo::newAnonymous();
 		} else {
 			// No session ID and no user is the same as an empty session, so

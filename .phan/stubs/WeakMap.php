@@ -2,7 +2,7 @@
 
 // Phan stub for PHP 8.0's WeakMap class
 
- final class WeakMap implements ArrayAccess, Countable, IteratorAggregate {
+final class WeakMap implements ArrayAccess, Countable, IteratorAggregate {
 
 	public function count(): int {
 	}
@@ -21,4 +21,4 @@
 
 	public function offsetUnset( object $object ): void {
 	}
- }
+}

@@ -492,17 +492,17 @@ class Exif {
 
 			if ( isset( $this->mFilteredExifData['GPSAltitudeRef'] ) ) {
 				switch ( $this->mFilteredExifData['GPSAltitudeRef'] ) {
-				case "\0":
-					// Above sea level
-					break;
-				case "\1":
-					// Below sea level
-					$this->mFilteredExifData['GPSAltitude'] *= -1;
-					break;
-				default:
-					// Invalid
-					unset( $this->mFilteredExifData['GPSAltitude'] );
-					break;
+					case "\0":
+						// Above sea level
+						break;
+					case "\1":
+						// Below sea level
+						$this->mFilteredExifData['GPSAltitude'] *= -1;
+						break;
+					default:
+						// Invalid
+						unset( $this->mFilteredExifData['GPSAltitude'] );
+						break;
 				}
 			}
 		}

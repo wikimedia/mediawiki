@@ -1265,7 +1265,7 @@ mw.foo()
 mw.foo()
 mw.loader.state({"test1":"ready","test2":"ready"});
 JS
-	);
+		);
 		$rl->respond( $context );
 
 		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;

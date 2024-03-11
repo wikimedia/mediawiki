@@ -358,16 +358,19 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( $this->context );
 
 		$this->setTemporaryHook( 'PreferencesFormPreSave',
-			function ( $formData, $form, $user, &$result, $oldUserOptions )
-				use ( $newOptions, $oldOptions, $userMock ) {
-					$this->assertSame( $userMock, $user );
-					foreach ( $newOptions as $option => $value ) {
-						$this->assertSame( $value, $formData[ $option ] );
-					}
-					foreach ( $oldOptions as $option => $value ) {
-						$this->assertSame( $value, $oldUserOptions[ $option ] );
-					}
-					$this->assertTrue( $result );
+			function (
+				$formData, $form, $user, &$result, $oldUserOptions
+			) use (
+				$newOptions, $oldOptions, $userMock
+			) {
+				$this->assertSame( $userMock, $user );
+				foreach ( $newOptions as $option => $value ) {
+					$this->assertSame( $value, $formData[ $option ] );
+				}
+				foreach ( $oldOptions as $option => $value ) {
+					$this->assertSame( $value, $oldUserOptions[ $option ] );
+				}
+				$this->assertTrue( $result );
 			}
 		);
 

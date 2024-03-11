@@ -2971,10 +2971,10 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		if ( !$revId ) {
 			$this->logger->warning(
 				'No latest revision known for page {page} even though it exists with page ID {page_id}', [
-				'page' => $page->__toString(),
-				'page_id' => $pageId,
-				'wiki_id' => $this->getWikiId() ?: 'local',
-			] );
+					'page' => $page->__toString(),
+					'page_id' => $pageId,
+					'wiki_id' => $this->getWikiId() ?: 'local',
+				] );
 			return false;
 		}
 

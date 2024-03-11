@@ -114,7 +114,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			new FauxRequest( [
 				'year' => $year,
 				'month' => $month,
-		] ) );
+			] ) );
 		if ( $expect ) {
 			$this->assertStringContainsString( $this->pageName, $html );
 		} else {

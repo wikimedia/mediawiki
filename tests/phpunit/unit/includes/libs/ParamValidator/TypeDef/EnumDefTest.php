@@ -35,12 +35,14 @@ class EnumDefTest extends TypeDefTestCase {
 			] ],
 			'Deprecated with message' => [
 				'b', 'b', $settings, [], [
-				[ 'code' => 'deprecated-value', 'data' => null ]
-			] ],
+					[ 'code' => 'deprecated-value', 'data' => null ]
+				]
+			],
 			'Deprecated with data message' => [
 				'e', 'e', $settings, [], [
-				[ 'code' => 'deprecated-value', 'data' => [ 'x' => 'y' ] ]
-			] ],
+					[ 'code' => 'deprecated-value', 'data' => [ 'x' => 'y' ] ]
+				]
+			],
 			'Deprecated, from default' => [
 				'c', 'c', $settings, [ 'is-default' => true ], []
 			],

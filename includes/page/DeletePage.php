@@ -589,7 +589,7 @@ class DeletePage {
 					LoggerFactory::getInstance( 'wfDebug' )->debug(
 						'explicit transaction active in ' . __METHOD__ . ' while deleting {title}', [
 						'title' => $title->getText(),
-					] );
+						] );
 				}
 				continue;
 			}

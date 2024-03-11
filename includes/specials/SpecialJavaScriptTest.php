@@ -151,7 +151,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		} );
 	} );
 JAVASCRIPT
-	);
+		);
 
 		header( 'Content-Type: text/javascript; charset=utf-8' );
 		header( 'Cache-Control: private, no-cache, must-revalidate' );
