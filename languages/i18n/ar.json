@@ -2644,6 +2644,7 @@
 	"undelete-undeletetalk": "استرجع جميع نسخ صفحة النقاش المرتبطة",
 	"undeleteinvert": "اعكس الاختيار",
 	"undeletecomment": "السبب:",
+	"undeletecommentotherlist": "سبب آخر",
 	"cannotundelete": "بعض أو كل عملية الاسترجاع فشلت:\n$1",
 	"undeletedpage": "<strong>أُلغي حذف $1</strong>\n\nراجع [[Special:Log/delete|سجل الحذف]] لمعاينة عمليات الحذف والاسترجاعات الحديثة.",
 	"undelete-header": "انظر الصفحات المحذوفة حديثا في [[Special:Log/delete|سجل الحذف]].",
