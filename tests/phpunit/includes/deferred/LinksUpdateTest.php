@@ -857,6 +857,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$po->setPageProperty( 'float', 2 / 3 );
 		$po->setPageProperty( 'true', true );
 		$po->setPageProperty( 'false', false );
+		$this->expectDeprecationAndContinue( '/::setPageProperty with non-scalar value/' );
 		$po->setPageProperty( 'null', null );
 
 		$update = new LinksUpdate( $t, $po );
