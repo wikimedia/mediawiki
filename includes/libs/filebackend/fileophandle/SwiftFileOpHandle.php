@@ -23,7 +23,7 @@
  */
 
 class SwiftFileOpHandle extends FileBackendStoreOpHandle {
-	/** @var array[] List of HTTP request maps for MultiHttpClient */
+	/** @var array[] List of HTTP request maps for SwiftFileBackend::requestWithAuth */
 	public $httpOp;
 	/** @var Closure Function to run after each HTTP request finishes */
 	public $callback;
@@ -45,7 +45,7 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	 *
 	 * @param SwiftFileBackend $backend
 	 * @param Closure $callback
-	 * @param array $httpOp MultiHttpClient op
+	 * @param array $httpOp Request to send via SwiftFileBackend::requestWithAuth()
 	 */
 	public function __construct( SwiftFileBackend $backend, Closure $callback, array $httpOp ) {
 		$this->backend = $backend;
