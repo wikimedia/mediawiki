@@ -6,16 +6,22 @@
 
 	/**
 	 * @class Vue
+	 * @classdesc Additional functions and plugins added to the Vue object. For documentation on
+	 *   Vue's built-in functions, see {@link https://vuejs.org/api/ Vue's API reference}.
+	 * @hideconstructor
 	 */
+
 	/**
-	 * Wrapper around Vue.createApp() that adds the i18n plugin and the error handler.
+	 * Wrapper around {@link https://vuejs.org/api/application.html#createapp Vue.createApp} that
+	 * adds the {@link Vue#$i18n i18n plugin} and the error handler. These were added
+	 * globally in Vue 2, but Vue 3 does not support global plugins.
 	 *
-	 * These were added globally in Vue 2, but Vue 3 does not support global plugins.
 	 * To ensure all Vue code has the i18n plugin and the error handler installed, use of
-	 * Vue.createMwApp() is recommended anywhere one would normally use Vue.createApp().
+	 * `Vue.createMwApp()` is recommended anywhere one would normally use `Vue.createApp()`.
 	 *
-	 * @param {...Mixed} args
+	 * @param {...any} args
 	 * @return {Object} Vue app instance
+	 * @memberof Vue
 	 */
 	Vue.createMwApp = function ( ...args ) {
 		const app = Vue.createApp( ...args );
