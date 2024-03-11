@@ -69,7 +69,11 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 		$res = $this->dbw->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'ipblocks' )
-			->where( "ipb_id > $lowId" )
+			->leftJoin( 'block', null, 'bl_id=ipb_id' )
+			->where( [
+				$this->dbw->expr( 'ipb_id', '>', $lowId ),
+				'bl_id' => null
+			] )
 			->orderBy( 'ipb_id' )
 			->limit( $this->getBatchSize() )
 			->caller( __METHOD__ )
@@ -140,11 +144,14 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 			];
 			$this->dbw->newInsertQueryBuilder()
 				->insertInto( 'block' )
+				->ignore()
 				->row( $block )
 				->caller( __METHOD__ )
 				->execute();
+			if ( $this->dbw->affectedRows() ) {
+				$migratedCount++;
+			}
 			$highestId = $row->ipb_id;
-			$migratedCount++;
 		}
 
 		$this->output( "Migrated $migratedCount blocks\n" );
