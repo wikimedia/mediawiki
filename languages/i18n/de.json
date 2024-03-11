@@ -2557,7 +2557,7 @@
 	"protect-cantedit": "Du kannst die Schutzeinstellungen dieser Seite nicht ändern, da du keine Berechtigung zum Bearbeiten der Seite hast.",
 	"protect-othertime": "Andere Sperrdauer:",
 	"protect-othertime-op": "andere Sperrdauer",
-	"protect-existing-expiry": "Aktuelles Seitenschutzende: $2, $3 Uhr",
+	"protect-existing-expiry": "Aktuelles Seitenschutzende (UTC): $2, $3 Uhr",
 	"protect-existing-expiry-infinity": "Vorhandene Ablaufzeit: unbeschränkt",
 	"protect-otherreason": "Anderer/ergänzender Grund:",
 	"protect-otherreason-op": "Anderer Grund",

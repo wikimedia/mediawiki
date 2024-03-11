@@ -43,7 +43,8 @@
 			"아라",
 			"Amire80",
 			"Atzerritik",
-			"Juele"
+			"Juele",
+			"Demonocrazy"
 		]
 	},
 	"tog-underline": "Lotura azpimarratuta:",
@@ -2310,7 +2311,7 @@
 	"delete-toobig": "Orrialde honek aldaketa historia luzea du, {{PLURAL:$1|berrikuspen batetik|$1 berrikuspenetik}} gorakoa.\nOrrialde horien ezabaketa mugatua dago {{SITENAME}}n ezbeharrak saihesteko.",
 	"delete-warning-toobig": "Orrialde honek aldaketa historia luzea du, {{PLURAL:$1|berrikuspen batetik|$1 berrikuspenetik}} gorakoa.\nEzabatzeak ezbeharrak eragin ditzake {{SITENAME}}ren datu-basean;\nkontu izan.",
 	"deleteprotected": "Ezin dezakezu orri hau ezabatu babestu egin delako.",
-	"deleting-backlinks-warning": "<strong>Abisua:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Beste orriek]] ezabatzear zauden orrira linkatu edo doaz.",
+	"deleting-backlinks-warning": "<strong>Abisua:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Beste orri batzuek]] estekak dituzte, ezabatzear zauden orrira.",
 	"deleting-subpages-warning": "<strong>Oharra:</strong> Ezabatuko duzun orrialdeak [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|a subpage|$1 subpages|51=over 50 subpages}}]] dauka.",
 	"rollback": "Desegin aldaketak",
 	"rollback-confirmation-confirm": "Mesedez baieztatu:",
@@ -3744,7 +3745,7 @@
 	"authmanager-provider-password-domain": "Pasahitza eta domeinuan oinarritutako baieztapena",
 	"authmanager-provider-temporarypassword": "Behin-behineko pasahitza",
 	"authprovider-confirmlink-message": "Zure azken saio-hasierako saiakeretan oinarrituta, hurrengo kontuak zure wiki-kontuarekin lotu daitezke. Estekatzeak kontu hauen bidez saioa hastea ahalbidetzen du. Hautatu zeintzuk diren lotu behar direnak mesedez.",
-	"authprovider-confirmlink-request-label": "Linkatu beharko ziren kontuak",
+	"authprovider-confirmlink-request-label": "Estekatu beharko liratekeen kontuak",
 	"authprovider-confirmlink-success-line": "$1: ondo estekatu da.",
 	"authprovider-confirmlink-failed": "Kontu-estekatzea ez da guztiz ondo egin: $1",
 	"authprovider-confirmlink-ok-help": "Jarraitu estekatze akats mezuak erakutsi ondoren.",

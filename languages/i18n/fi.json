@@ -2554,7 +2554,7 @@
 	"undeleterevdel": "Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain piilotettu. \nTässä tilanteessa älä valitse palautettavaksi näkyviin viimeisintä poistettua versiota tai poista version piilotus.",
 	"undeletehistorynoadmin": "Tämä sivu on poistettu. \nSyy sivun poistamiseen näkyy alla olevassa yhteenvedossa, jossa on myös tiedot, ketkä olivat muokanneet tätä sivua ennen poistamista. \nNäiden poistettujen versioiden tekstisisältö on vain ylläpitäjien luettavissa.",
 	"undelete-revision": "Poistettu versio sivusta $1 (aikaleima $4 kello $5). Version tekijä: $3.",
-	"undeleterevision-missing": "Virheellinen tai puuttuva versio. \nSinulla on kenties käytössä väärä linkki, tai sitten versio on saatettu palauttaa takaisin tai poistaa arkistosta.",
+	"undeleterevision-missing": "Virheellinen tai puuttuva versio. \nSinulla on kenties käytössä väärä linkki, tai sitten version poisto on saatettu perua tai poistaa arkistosta.",
 	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Yhtä versiota|$1 versiota}} ei voitu palauttaa, koska {{PLURAL:$1|sen|niiden}} <code>rev_id</code> oli jo käytössä.",
 	"undelete-nodiff": "Aikaisempaa versiota ei löytynyt.",
 	"undeletebtn": "Palauta",
