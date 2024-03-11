@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
@@ -18,7 +19,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
-use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
@@ -122,18 +122,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param LoggerInterface|null $logger
-	 *
-	 * @return LoggerSpi
-	 */
-	protected function getLoggerSpi( $logger = null ) {
-		$logger = $logger ?: new NullLogger();
-		$spi = $this->createNoOpMock( LoggerSpi::class, [ 'getLogger' ] );
-		$spi->method( 'getLogger' )->willReturn( $logger );
-		return $spi;
-	}
-
-	/**
 	 * @param ParserCache|null $parserCache
 	 * @param RevisionOutputCache|null $revisionOutputCache
 	 * @param int|bool $maxRenderCalls
@@ -207,7 +195,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 				new NullStatsdDataFactory(),
 				$this->getServiceContainer()->getDBLoadBalancerFactory(),
 				$this->getServiceContainer()->getChronologyProtector(),
-				$this->getLoggerSpi(),
+				LoggerFactory::getProvider(),
 				$this->getServiceContainer()->getWikiPageFactory(),
 				$this->getServiceContainer()->getTitleFormatter(),
 				$this
