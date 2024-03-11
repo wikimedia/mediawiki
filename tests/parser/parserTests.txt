@@ -7069,8 +7069,8 @@ Bar
  {{1x|[[Category:Baz]]}}
 [[Category:Baz]]
 !! html/php
-<p>Foo Bar
-</p><p>Foo
+<p>Foo  Bar
+</p><p>Foo 
 Bar
 </p><p>Foo
 Bar
@@ -7086,6 +7086,60 @@ Bar
 <p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
 <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Baz]]"}},"i":0}}]}'/>
 <link rel="mw:PageProp/Category" href="./Category:Baz"/>
+!! end
+
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+!! test
+Category / non-newline whitespace interactions (T359886)
+!! options
+parsoid=wt2html
+!! wikitext
+* Foo[[Category:Foo]]Bar
+* Foo[[Category:Foo]] Bar
+* Foo [[Category:Foo]]Bar
+* Foo [[Category:Foo]] Bar
+
+* Foo[[Category:Foo]][[Category:Bar]]Bar
+* Foo[[Category:Foo]][[Category:Bar]] Bar
+* Foo[[Category:Foo]] [[Category:Bar]]Bar
+* Foo[[Category:Foo]] [[Category:Bar]] Bar
+* Foo [[Category:Foo]][[Category:Bar]]Bar
+* Foo [[Category:Foo]][[Category:Bar]] Bar
+* Foo [[Category:Foo]] [[Category:Bar]]Bar
+* Foo [[Category:Foo]] [[Category:Bar]] Bar
+!! html/php
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li></ul>
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo  Bar</li>
+<li>Foo   Bar</li></ul>
+!! html/parsoid
+<ul>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/> Bar</li>
+</ul>
+<ul>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+</ul>
 !! end
 
 ## We used to, but no longer wt2wt this test since the default serializer

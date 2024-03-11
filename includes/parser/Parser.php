@@ -2697,10 +2697,10 @@ class Parser {
 						$this->makeImage( $nt, $text, $holders ) ) . $trail;
 					continue;
 				} elseif ( $ns === NS_CATEGORY ) {
-					/**
-					 * Strip the whitespace Category links produce, see T2087
-					 */
-					$s = rtrim( $s . $prefix ) . $trail; # T2087, T87753
+					# Strip newlines from the left hand context of Category
+					# links.
+					# See T2087, T87753, T174639, T359886
+					$s = preg_replace( '/\n\s*$/', '', $s . $prefix ) . $trail;
 
 					if ( $wasblank ) {
 						$sortkey = $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
