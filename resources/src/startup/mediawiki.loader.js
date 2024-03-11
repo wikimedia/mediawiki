@@ -913,7 +913,7 @@
 					markModuleReady();
 				}
 			} catch ( e ) {
-				// Use mw.track instead of mw.log because these errors are common in production mode
+				// Use mw.trackError instead of mw.log because these errors are common in production mode
 				// (e.g. undefined variable), and mw.log is only enabled in debug mode.
 				setAndPropagate( module, 'error' );
 				$CODE.profileScriptEnd();
