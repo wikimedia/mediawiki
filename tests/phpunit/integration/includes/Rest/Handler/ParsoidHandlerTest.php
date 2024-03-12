@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use Composer\Semver\Semver;
 use Exception;
+use ExtensionRegistry;
 use Generator;
 use JavaScriptContent;
 use Language;
@@ -1924,6 +1925,33 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		yield 'should lint the given wikitext' => [
+			$attribs,
+			$wikitext,
+			$expectedText,
+			$unexpectedText,
+			$lintHeaders
+		];
+
+		// should lint the given wikitext 2 ///////////////////////////////////
+		$wikitext = "{|\n|wide\n|wide\n|wide\n|wide\n|wide\n|wide\n|}";
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Linter' ) ) {
+			$expectedText = [];
+		} else {
+			$expectedText = [
+				'"type":"large-tables"',
+				'"dsr"'
+			];
+		}
+
+		$unexpectedText = [
+			'<html'
+		];
+
+		$attribs = [
+			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_LINT ]
+		];
+
+		yield 'should lint the given wikitext 2' => [
 			$attribs,
 			$wikitext,
 			$expectedText,
