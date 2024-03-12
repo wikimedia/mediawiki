@@ -150,8 +150,7 @@ EXCLUDE_PATTERNS       = LocalSettings.php \
                          */tests \
                          */vendor \
                          */includes/libs/*/README.md \
-                         */maintenance/*/README.md \
-                         {{EXCLUDE_PATTERNS}}
+                         */maintenance/*/README.md
 EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           =
 EXAMPLE_PATTERNS       = *
