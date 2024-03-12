@@ -84,8 +84,8 @@ trait RestStatusTrait {
 	}
 
 	private function logStatusError( StatusValue $status, string $message, string $channel ) {
-		LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->error(
-			"Parsoid backend error",
+		LoggerFactory::getInstance( $channel )->error(
+			$message,
 			[ 'reason' => $this->getStatusErrorKeys( $status ) ]
 		);
 	}
