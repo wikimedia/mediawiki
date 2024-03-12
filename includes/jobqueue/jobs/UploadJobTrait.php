@@ -22,7 +22,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;
-use Mediawiki\User\User;
+use MediaWiki\User\User;
 use Wikimedia\ScopedCallback;
 
 /**
