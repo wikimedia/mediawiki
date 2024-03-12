@@ -1039,7 +1039,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$params = array_slice( $cond, 1 );
 				if ( $params === [ null ] ) {
 					// Special casing for these conditions and their default of null,
-					// to replace their values with $wgAutoConfirmCount/$AutoConfirmAge as appropriate
+					// to replace their values with $wgAutoConfirmCount/$wgAutoConfirmAge as appropriate
 					if ( $cond[0] === APCOND_EDITCOUNT ) {
 						$params = [ $this->getConfig()->get( MainConfigNames::AutoConfirmCount ) ];
 					} elseif ( $cond[0] === APCOND_AGE ) {
