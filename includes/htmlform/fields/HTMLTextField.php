@@ -234,6 +234,7 @@ class HTMLTextField extends HTMLFormField {
 		if ( $this->mPlaceholder !== '' ) {
 			$attribs['placeholder'] = $this->mPlaceholder;
 		}
+		$attribs['class'] = $this->mClass ? [ $this->mClass ] : [];
 
 		$allowedParams = [
 			'type',
@@ -258,18 +259,28 @@ class HTMLTextField extends HTMLFormField {
 		// Extract 'type'.
 		$type = $this->getType( $attribs );
 
+		return static::buildCodexComponent( $value, $hasErrors, $type, $this->mName, $attribs );
+	}
+
+	/**
+	 * Build the markup of the Codex component
+	 *
+	 * @param string $value The value to set the input to
+	 * @param bool $hasErrors Whether there are validation errors.
+	 * @param string $type The input's type attribute
+	 * @param string $name The input's name attribute
+	 * @param array $inputAttribs Other input attributes
+	 * @return string Raw HTML
+	 */
+	public static function buildCodexComponent( $value, $hasErrors, $type, $name, $inputAttribs ) {
 		// Set up classes for the outer <div>.
 		$wrapperClass = [ 'cdx-text-input' ];
 		if ( $hasErrors ) {
 			$wrapperClass[] = 'cdx-text-input--status-error';
 		}
 
-		// Set up classes for the internal <input> element.
-		$attribs['class'] = [ 'cdx-text-input__input' ];
-		if ( $this->mClass !== '' ) {
-			$attribs['class'][] = $this->mClass;
-		}
-		$inputHtml = Html::input( $this->mName, $value, $type, $attribs );
+		$inputAttribs['class'][] = 'cdx-text-input__input';
+		$inputHtml = Html::input( $name, $value, $type, $inputAttribs );
 
 		return Html::rawElement( 'div', [ 'class' => $wrapperClass ], $inputHtml );
 	}

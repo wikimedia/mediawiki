@@ -2,6 +2,7 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
+use HTMLTextField;
 use InvalidArgumentException;
 use MediaWiki\Html\Html;
 use MediaWiki\Request\WebRequest;
@@ -160,6 +161,55 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 */
 	public function getInputWidget( $params ) {
 		return new SelectWithInputWidget( $params );
+	}
+
+	public function getInputCodex( $value, $hasErrors ) {
+		$select = parent::getInputCodex( $value[1], $hasErrors );
+
+		// Set up attributes for the text input.
+		$textInputAttribs = [
+			'size' => $this->getSize(),
+			'name' => $this->mName . '-other'
+		];
+
+		if ( isset( $this->mParams['maxlength-unit'] ) ) {
+			$textInputAttribs['data-mw-maxlength-unit'] = $this->mParams['maxlength-unit'];
+		}
+
+		$allowedParams = [
+			'required',
+			'autofocus',
+			'multiple',
+			'disabled',
+			'tabindex',
+			'maxlength', // gets dynamic with javascript, see mediawiki.htmlform.js
+			'maxlength-unit', // 'bytes' or 'codepoints', see mediawiki.htmlform.js
+		];
+
+		$textInputAttribs += $this->getAttributes( $allowedParams );
+
+		// Get text input HTML.
+		$textInput = HTMLTextField::buildCodexComponent(
+			$value[2],
+			$hasErrors,
+			'text',
+			$this->mName . '-other',
+			$textInputAttribs
+		);
+
+		// Set up the wrapper element and return the entire component.
+		$wrapperAttribs = [
+			'id' => $this->mID,
+			'class' => [ self::FIELD_CLASS ]
+		];
+		if ( $this->mClass !== '' ) {
+			$wrapperAttribs['class'][] = $this->mClass;
+		}
+		return Html::rawElement(
+			'div',
+			$wrapperAttribs,
+			"$select<br />\n$textInput"
+		);
 	}
 
 	/**
