@@ -63,7 +63,7 @@ class DefaultOutputPipelineFactory {
 			->addStage( new RenderDebugInfo( $this->hookContainer ) )
 			->addStage( new ExecutePostCacheTransformHooks( $this->hookContainer ) )
 			->addStage( new AddWrapperDivClass( $this->langFactory, $this->contentLang ) )
-			->addStage( new HandleSectionLinks( $this->logger, $this->titleFactory ) )
+			->addStage( new HandleSectionLinks( $this->titleFactory ) )
 			->addStage( new HandleParsoidSectionLinks( $this->logger, $this->titleFactory ) )
 			->addStage( new HandleTOCMarkers( $this->tidy ) )
 			->addStage( new DeduplicateStyles() )

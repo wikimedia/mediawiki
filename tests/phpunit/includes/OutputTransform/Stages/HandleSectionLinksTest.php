@@ -7,13 +7,12 @@ use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
-use Psr\Log\NullLogger;
 
 /** @covers \MediaWiki\OutputTransform\Stages\HandleSectionLinks */
 class HandleSectionLinksTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new HandleSectionLinks( new NullLogger(), $this->getServiceContainer()->getTitleFactory() );
+		return new HandleSectionLinks( $this->getServiceContainer()->getTitleFactory() );
 	}
 
 	public function provideShouldRun(): array {

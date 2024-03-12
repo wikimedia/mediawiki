@@ -43,7 +43,7 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 <h2 data-mw-anchor="Section_2">Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
 <p>Two
 </p>
-<h3 data-mw-anchor="Section_2.1">Section 2.1<mw:editsection page="Talk:User:Bug_T261347" section="3">Section 2.1</mw:editsection></h3>
+<h3 data-mw-anchor="Section_2.1">Section 2.1</h3>
 <p>Two point one
 </p>
 <h2 data-mw-anchor="Section_3">Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
