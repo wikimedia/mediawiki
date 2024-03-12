@@ -5,7 +5,6 @@ namespace MediaWiki\Rest\Handler;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
-use MediaWiki\Rest\Validator\JsonBodyValidator;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -25,17 +24,10 @@ class CreationHandler extends EditHandler {
 
 	/**
 	 * @inheritDoc
-	 * @return JsonBodyValidator
+	 * @return array
 	 */
-	public function getBodyValidator( $contentType ) {
-		if ( $contentType !== 'application/json' ) {
-			throw new LocalizedHttpException( new MessageValue( "rest-unsupported-content-type", [ $contentType ] ),
-				415,
-				[ 'content_type' => $contentType ]
-			);
-		}
-
-		return new JsonBodyValidator( [
+	public function getParamSettings() {
+		return [
 			'source' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
@@ -60,7 +52,9 @@ class CreationHandler extends EditHandler {
 				ParamValidator::PARAM_REQUIRED => false,
 				self::PARAM_DESCRIPTION => 'The content model to use to interpret the source',
 			],
-		] + $this->getTokenParamDefinition() );
+		]
+			+ $this->getTokenParamDefinition()
+			+ parent::getParamSettings();
 	}
 
 	/**
