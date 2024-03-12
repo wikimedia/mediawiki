@@ -34,7 +34,6 @@ use MediaWiki\User\UserIdentity;
 class UploadFromStash extends UploadBase {
 	protected $mFileKey;
 	protected $mVirtualTempPath;
-	protected $mFileProps;
 	protected $mSourceType;
 
 	/** @var UploadStash */
@@ -141,7 +140,14 @@ class UploadFromStash extends UploadBase {
 	 * @return string
 	 */
 	public function getTempFileSha1Base36() {
-		return $this->mFileProps['sha1'];
+		// phan doesn't like us accessing this directly since in
+		// parent class this can be null, however we always set this in
+		// this class so it is safe. Add a check to keep phan happy.
+		if ( !is_array( $this->mFileProps ) ) {
+			throw new LogicException( "mFileProps should never be null" );
+		} else {
+			return $this->mFileProps['sha1'];
+		}
 	}
 
 	/**

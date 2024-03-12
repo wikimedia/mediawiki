@@ -552,8 +552,12 @@ abstract class UploadBase {
 		# getTitle() sets some internal parameters like $this->mFinalExtension
 		$this->getTitle();
 
-		$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
-		$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		// Calculating props calculates the sha1 which is expensive.
+		// reuse props if we already have them (e.g. During stashed upload)
+		if ( !is_array( $this->mFileProps ) ) {
+			$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
+			$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		}
 
 		# check MIME type, if desired
 		$mime = $this->mFileProps['file-mime'];
