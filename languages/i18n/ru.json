@@ -2741,6 +2741,8 @@
 	"undelete-undeletetalk": "Восстановить все версии связанной страницы обсуждения",
 	"undeleteinvert": "Обратить выделение",
 	"undeletecomment": "Причина:",
+	"undeleteothercomment": "Другая/дополнительная причина:",
+	"undeletecommentotherlist": "Другая причина",
 	"cannotundelete": "Некоторые или все ваши восстановления не удались:\n$1",
 	"undeletedpage": "<strong>Страница «$1» была восстановлена.</strong>\n\nДля просмотра списка последних удалений и восстановлений см. [[Special:Log/delete|журнал удалений]].",
 	"undelete-header": "Список недавно удалённых страниц можно посмотреть в [[Special:Log/delete|журнале удалений]].",

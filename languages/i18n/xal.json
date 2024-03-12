@@ -61,6 +61,7 @@
 	"tog-requireemail": "Цәкм хәәрцгин хайг, кергләчин нериг зааҗ өгсн токалдлдл нууц үгиг дәкн тохрулхар бичг илгәх.",
 	"tog-forcesafemode": "Асах [[mw:Manual:Safemode|аюл уга җурм]]",
 	"tog-editrecovery": "Функциг асах\n[[Special:EditRecovery|{{int:editrecovery}}]]",
+	"tog-editrecovery-help": "Та [$1 төслин күүндәнә халх] деер санл-бодлан үлдәх болмҗта",
 	"underline-always": "Даңгин",
 	"underline-never": "Кезә чигн уга",
 	"underline-default": "Цәкм көтчин үндсн тохрлһ",

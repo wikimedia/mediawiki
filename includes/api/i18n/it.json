@@ -39,7 +39,7 @@
 	"apihelp-main-param-servedby": "Includi nel risultato il nome dell'host che ha servito la richiesta.",
 	"apihelp-main-param-curtimestamp": "Includi nel risultato il timestamp attuale.",
 	"apihelp-main-param-responselanginfo": "Includi la lingua utilizzata per <var>uselang</var> e <var>errorlang</var> nel risultato.",
-	"apihelp-main-param-uselang": "Lingua da utilizzare per la traduzione dei messaggi. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> restituisce un elenco di codici lingua, oppure specificare <kbd>user</kbd> per utilizzare la lingua preferita dell'utente corrente, oppure specificare <kbd>content</kbd> per utilizzare la lingua dei contenuti di questo wiki.",
+	"apihelp-main-param-uselang": "Lingua da utilizzare per la traduzione dei messaggi. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> restituisce un elenco di codici lingua. Puoi specificare <kbd>user</kbd> per utilizzare la lingua preferita dell'utente corrente, oppure <kbd>content</kbd> per utilizzare la lingua dei contenuti di questo wiki.",
 	"apihelp-main-param-variant": "Variante della lingua. Funziona solo se la lingua originale supporta la variante di conversione.",
 	"apihelp-main-param-errorformat": "Formato da utilizzare per generare un testo di avvertenza e errore",
 	"apihelp-main-paramvalue-errorformat-raw": "Chiave del messaggio e parametri.",

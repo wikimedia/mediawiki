@@ -1145,6 +1145,7 @@
 	"prefs-searchmisc": "সাধারণ",
 	"searchprefs": "পছন্দ অনুসন্ধান করুন",
 	"searchprefs-noresults": "কোনও ফলাফল নেই",
+	"searchprefs-results": "$1টি {{PLURAL:$1|ফলাফল}}",
 	"saveprefs": "সংরক্ষণ করুন",
 	"restoreprefs": "সকল পূর্বনির্ধারিত সেটিং ফিরিয়ে আনুন",
 	"prefs-editing": "সম্পাদনা",
