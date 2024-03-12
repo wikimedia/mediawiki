@@ -370,6 +370,8 @@ $wgExtensionFunctions[] = function() use ( &$wgGroupPermissions ) {
 };
 $wgShowExceptionDetails = true;
 
+$wgGrantPermissions['editprotected']['bureaucrat'] = true;
+
 // Non-Steward suppressors
 $wgGroupPermissions['non-stewardsuppress']['suppressionlog'] = true;
 $wgGroupsAddToSelf['non-stewardsuppress'] = array( 'suppress' );
