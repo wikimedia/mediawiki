@@ -80,6 +80,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 					'unittest-cont1' => [ 'levels' => 1, 'base' => 16, 'repeat' => 1 ]
 				];
 				$useConfig['lockManager'] = $lockManagerGroup->get( $useConfig['lockManager'] );
+				$useConfig['domainId'] = WikiMap::getCurrentWikiId();
 				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$this->singleBackend = self::$backendToUse;
@@ -1501,11 +1502,11 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$base = self::baseStorePath();
 
 		$tmpFile = $this->backend->getLocalCopy( [
-			'src' => "$base/unittest-cont1/not-there" ] );
+			'src' => "$base/unittest-cont1/a/not-there" ] );
 		$this->assertFalse( $tmpFile, "Local copy of not existing file is false ($backendName)." );
 
 		$tmpFile = $this->backend->getLocalReference( [
-			'src' => "$base/unittest-cont1/not-there" ] );
+			'src' => "$base/unittest-cont1/a/not-there" ] );
 		$this->assertFalse( $tmpFile, "Local ref of not existing file is false ($backendName)." );
 	}
 
@@ -1943,9 +1944,11 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$backendName = $this->backendClass();
 		$base = self::baseStorePath();
 
-		// Should return null, because it is not a valid container
+		// This is null on FSFileBackend, because it knows about all containers
+		// that exist, whereas Swift would need to do a remote request, so it
+		// just returns an empty iterator.
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont-notexists" ] );
-		$this->assertNull( $iter );
+		$this->assertThat( $iter, $this->logicalOr( $this->isNull(), $this->countOf( 0 ) ) );
 
 		$files = [
 			"$base/unittest-cont1/e/test1.txt",
