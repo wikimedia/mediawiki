@@ -135,6 +135,7 @@ wfLoadExtensions( array(
 	'DiscussionTools',
 	'DismissableSiteNotice',
 	'Echo',
+	'Editcount',
 	'FlaggedRevs',
 	'Gadgets',
 	'Interwiki',
