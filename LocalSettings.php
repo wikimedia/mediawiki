@@ -123,6 +123,8 @@ wfLoadSkins( array(
 # The following extensions were automatically enabled:
 wfLoadExtensions( array(
 	'AbuseFilter',
+	'AntiSpoof',
+	'Babel',
 	'CategoryTree',
 	'CheckUser',
 	'CharInsert',
