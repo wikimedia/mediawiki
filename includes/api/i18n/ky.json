@@ -17,5 +17,6 @@
 	"apihelp-edit-param-minor": "Майда түзөтүү.",
 	"apihelp-login-param-name": "Колдонуучунун аты.",
 	"apihelp-login-example-login": "Кирүү.",
-	"apihelp-userrights-param-user": "Колдонуучу."
+	"apihelp-userrights-param-user": "Колдонуучу.",
+	"api-feed-error-title": "Ката ($1)"
 }

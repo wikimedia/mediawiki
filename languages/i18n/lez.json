@@ -264,6 +264,7 @@
 	"notloggedin": "Куьн гьахьнавач",
 	"createaccount": "Аккаунт туькӀуьрун",
 	"createaccountmail": "Э-чар галаз",
+	"createacct-submit": "Аккаунт туькӀуьрун",
 	"createacct-benefit-body1": "{{PLURAL:$1|дуьзар хъувун}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|макъала}}",
 	"loginerror": "Гьахьунин гъалатӀ",
