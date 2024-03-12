@@ -230,35 +230,39 @@ class ApiMoveTest extends ApiTestCase {
 
 	// @todo File moving
 
-	public function testPingLimiter() {
-		$this->expectApiErrorCode( 'ratelimited' );
+	public function testRateLimit() {
+		$name1 = 'TestPingLimiter 1';
+		$name2 = 'TestPingLimiter 2';
+		$name3 = 'TestPingLimiter 3';
 
-		$title = Title::makeTitle( NS_MAIN, 'TestPingLimiter' );
-		$title2 = Title::makeTitle( NS_MAIN, 'TestPingLimiter 2' );
+		$title1 = Title::makeTitle( NS_MAIN, $name1 );
+		$title2 = Title::makeTitle( NS_MAIN, $name2 );
 
 		$this->overrideConfigValue( MainConfigNames::RateLimits,
 			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ]
 		);
 
-		$id = $this->createPage( $title );
-
+		$id = $this->createPage( $title1 );
 		$res = $this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $title->getPrefixedText(),
-			'to' => $title2->getPrefixedText(),
+			'from' => $name1,
+			'to' => $name2,
 		] );
-
-		$this->assertMoved( $title, $title2, $id );
+		$this->assertMoved( $title1, $title2, $id );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 
-		$title3 = Title::makeTitle( NS_MAIN, 'TestPingLimiter 3' );
 		try {
 			$this->doApiRequestWithToken( [
 				'action' => 'move',
-				'from' => $title2->getPrefixedText(),
-				'to' => $title3->getPrefixedText(),
+				'from' => $name2,
+				'to' => $name3,
 			] );
+
+			$this->fail( 'Rate limit was expected to trigger an exception' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertStatusError( 'apierror-ratelimited', $ex->getStatusValue() );
 		} finally {
+			$title3 = Title::makeTitle( NS_MAIN, $name3 );
 			$this->assertSame( $id, $title2->getArticleID( IDBAccessObject::READ_LATEST ) );
 			$this->assertFalse( $title3->exists( IDBAccessObject::READ_LATEST ),
 				"\"{$title3->getPrefixedText()}\" should not exist" );
