@@ -64,10 +64,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			__METHOD__ . ' comment',
 			false
 		);
-		$this->assertEquals(
-			Status::newFatal( 'apierror-nochanges' ),
-			$status
-		);
+		$this->assertStatusError( 'apierror-nochanges', $status );
 	}
 
 	/**
@@ -139,10 +136,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			__METHOD__ . ' comment',
 			false
 		);
-		$this->assertEquals(
-			Status::newFatal( $expectedMessage ),
-			$status
-		);
+		$this->assertStatusError( $expectedMessage, $status );
 	}
 
 	public static function provideTestEditFilterMergedContent() {
@@ -188,14 +182,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			__METHOD__ . ' comment',
 			false
 		);
-		$this->assertEquals(
-			Status::newFatal(
-				'apierror-changecontentmodel-cannotbeused',
-				'plain text',
-				Message::plaintextParam( $wikipage->getTitle()->getPrefixedText() )
-			),
-			$status
-		);
+		$this->assertStatusError( 'apierror-changecontentmodel-cannotbeused', $status );
 	}
 
 	/**
@@ -230,11 +217,8 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			__METHOD__ . ' comment',
 			false
 		);
-		$this->assertEquals(
-			Status::newFatal(
-				'apierror-changecontentmodel-nodirectediting',
-				ContentHandler::getLocalizedName( 'testing' )
-			),
+		$this->assertStatusError(
+			'apierror-changecontentmodel-nodirectediting',
 			$status
 		);
 	}
@@ -251,8 +235,8 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			'text'
 		);
 		$status = $change->setTags( [ 'edit content model tag' ] );
-		$this->assertEquals(
-			Status::newFatal( 'tags-apply-no-permission' ),
+		$this->assertStatusError(
+			'tags-apply-no-permission',
 			$status
 		);
 	}
