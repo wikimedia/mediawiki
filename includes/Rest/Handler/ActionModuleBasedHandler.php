@@ -11,14 +11,11 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebResponse;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Handler\Helper\RestStatusTrait;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
-use Wikimedia\Message\ListParam;
-use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\ScalarParam;
 
 /**
  * Base class for REST handlers that are implemented by mapping to an existing ApiModule.
@@ -26,6 +23,7 @@ use Wikimedia\Message\ScalarParam;
  * @stable to extend
  */
 abstract class ActionModuleBasedHandler extends Handler {
+	use RestStatusTrait;
 
 	/**
 	 * @var ApiMain|null
@@ -231,39 +229,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * @return MessageValue
 	 */
 	protected function makeMessageValue( IApiMessage $msg ) {
-		$params = [];
-
-		// TODO: find a better home for the parameter mapping logic
-		foreach ( $msg->getParams() as $p ) {
-			$params[] = $this->makeMessageParam( $p );
-		}
-
-		return new MessageValue( $msg->getKey(), $params );
-	}
-
-	/**
-	 * @param mixed $param
-	 *
-	 * @return MessageParam
-	 */
-	private function makeMessageParam( $param ) {
-		if ( is_array( $param ) ) {
-			foreach ( $param as $type => $value ) {
-				if ( $type === 'list' ) {
-					$paramList = [];
-
-					foreach ( $value as $v ) {
-						$paramList[] = $this->makeMessageParam( $v );
-					}
-
-					return new ListParam( ParamType::TEXT, $paramList );
-				} else {
-					return new ScalarParam( $type, $value );
-				}
-			}
-		} else {
-			return new ScalarParam( ParamType::TEXT, $param );
-		}
+		return $this->getMessageValueConverter()->convertMessage( $msg );
 	}
 
 }

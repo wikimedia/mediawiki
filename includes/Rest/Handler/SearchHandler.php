@@ -6,14 +6,13 @@ use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\Config;
-use MediaWiki\Context\RequestContext;
-use MediaWiki\Language\FormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Handler\Helper\RestStatusTrait;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
@@ -25,7 +24,6 @@ use SearchEngineFactory;
 use SearchResult;
 use SearchSuggestion;
 use StatusValue;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -33,6 +31,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  * Handler class for Core REST API endpoint that handles basic search
  */
 class SearchHandler extends Handler {
+	use RestStatusTrait;
 
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
@@ -91,7 +90,6 @@ class SearchHandler extends Handler {
 	 * @var int|null
 	 */
 	private $completionCacheExpiry;
-	private FormatterFactory $formatterFactory;
 
 	/**
 	 * @param Config $config
@@ -102,7 +100,6 @@ class SearchHandler extends Handler {
 	 * @param RedirectLookup $redirectLookup
 	 * @param PageStore $pageStore
 	 * @param TitleFormatter $titleFormatter
-	 * @param FormatterFactory $formatterFactory
 	 */
 	public function __construct(
 		Config $config,
@@ -112,8 +109,7 @@ class SearchHandler extends Handler {
 		PermissionManager $permissionManager,
 		RedirectLookup $redirectLookup,
 		PageStore $pageStore,
-		TitleFormatter $titleFormatter,
-		FormatterFactory $formatterFactory
+		TitleFormatter $titleFormatter
 	) {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->searchEngineConfig = $searchEngineConfig;
@@ -122,7 +118,6 @@ class SearchHandler extends Handler {
 		$this->redirectLookup = $redirectLookup;
 		$this->pageStore = $pageStore;
 		$this->titleFormatter = $titleFormatter;
-		$this->formatterFactory = $formatterFactory;
 
 		// @todo Avoid injecting the entire config, see T246377
 		$this->completionCacheExpiry = $config->get( MainConfigNames::SearchSuggestCacheExpiry );
@@ -168,11 +163,7 @@ class SearchHandler extends Handler {
 				if ( !$status->isOK() ) {
 					[ $error ] = $status->splitByErrorType();
 					if ( $error->getErrors() ) { // Only throw for errors, suppress warnings (for now)
-						$formatter = $this->formatterFactory->getStatusFormatter( RequestContext::getMain() );
-						$errorMessages = $formatter->getMessage( $error );
-						throw new LocalizedHttpException(
-							new MessageValue( "rest-search-error", [ $errorMessages->getKey() ] )
-						);
+						$this->throwExceptionForStatus( $status, 'rest-search-error', 500 );
 					}
 				}
 				$statusValue = $status->getValue();

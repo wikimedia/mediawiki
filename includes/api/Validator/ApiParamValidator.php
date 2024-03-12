@@ -128,7 +128,6 @@ class ApiParamValidator {
 				// Convert the message specification to a DataMessageValue. Flag in the data
 				// that it was so converted, so ApiParamValidatorCallbacks::recordCondition() can
 				// take that into account.
-				// @phan-suppress-next-line PhanTypeMismatchArgument
 				$msg = $this->messageConverter->convertMessage( ApiMessage::create( $v ) );
 				$v = DataMessageValue::new(
 					$msg->getKey(),

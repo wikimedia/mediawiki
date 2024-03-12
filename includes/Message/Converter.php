@@ -3,6 +3,7 @@
 namespace MediaWiki\Message;
 
 use InvalidArgumentException;
+use MessageSpecifier;
 use ReflectionClass;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\MessageParam;
@@ -46,10 +47,10 @@ class Converter {
 
 	/**
 	 * Convert a Message to a MessageValue
-	 * @param Message $m
+	 * @param MessageSpecifier $m
 	 * @return MessageValue
 	 */
-	public function convertMessage( Message $m ) {
+	public function convertMessage( MessageSpecifier $m ) {
 		$mv = new MessageValue( $m->getKey() );
 		foreach ( $m->getParams() as $param ) {
 			$mv->params( $this->convertParam( $param ) );
@@ -63,7 +64,7 @@ class Converter {
 	 * @return MessageParam
 	 */
 	private function convertParam( $param ) {
-		if ( $param instanceof Message ) {
+		if ( $param instanceof MessageSpecifier ) {
 			return new ScalarParam( ParamType::TEXT, $this->convertMessage( $param ) );
 		}
 		if ( !is_array( $param ) ) {
