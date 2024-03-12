@@ -33,7 +33,7 @@ $namespaceNames = [
 
 $namespaceAliases = [
 	'Razgovor_sa_korisnikom' => NS_USER_TALK,
-	'Mediawiki_razgovor' => NS_MEDIAWIKI_TALK,
+	'MediaWiki_razgovor' => NS_MEDIAWIKI_TALK,
 ];
 
 # Some dummy translations to prevent language fallback for now
