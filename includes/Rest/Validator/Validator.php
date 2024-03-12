@@ -9,6 +9,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BooleanDef;
@@ -113,7 +114,11 @@ class Validator {
 	}
 
 	/**
-	 * Validate parameters
+	 * Validate parameters.
+	 * Params with the source specified as 'body' will be ignored.
+	 * Use validateBodyParams() for these.
+	 *
+	 * @see validateBodyParams
 	 * @param array[] $paramSettings Parameter settings
 	 * @return array Validated parameters
 	 * @throws HttpException on validation failure
@@ -122,11 +127,62 @@ class Validator {
 		$validatedParams = [];
 		foreach ( $paramSettings as $name => $settings ) {
 			try {
+				$source = $settings[Handler::PARAM_SOURCE] ?? 'unspecified';
+				if ( $source === 'body' ) {
+					continue;
+				}
+
 				$validatedParams[$name] = $this->paramValidator->getValue( $name, $settings, [
-					'source' => $settings[Handler::PARAM_SOURCE] ?? 'unspecified',
+					'source' => $source,
 				] );
 			} catch ( ValidationException $e ) {
 				throw new LocalizedHttpException( $e->getFailureMessage(), 400, [
+					'error' => 'parameter-validation-failed',
+					'name' => $e->getParamName(),
+					'value' => $e->getParamValue(),
+					'failureCode' => $e->getFailureMessage()->getCode(),
+					'failureData' => $e->getFailureMessage()->getData(),
+				] );
+			}
+		}
+		return $validatedParams;
+	}
+
+	/**
+	 * Validate body fields.
+	 * Only params with the source specified as 'body' will be processed,
+	 * use validateParams() for parameters coming from the path, from query, etc.
+	 *
+	 * @since 1.42
+	 *
+	 * @see validateParams
+	 * @see validateBody
+	 * @param array[] $paramSettings Parameter settings.
+	 * @return array Validated parameters
+	 * @throws HttpException on validation failure
+	 */
+	public function validateBodyParams( array $paramSettings ) {
+		$validatedParams = [];
+		foreach ( $paramSettings as $name => $settings ) {
+			$source = $settings[Handler::PARAM_SOURCE] ?? 'body';
+			if ( $source !== 'body' ) {
+				continue;
+			}
+
+			try {
+				$validatedParams[$name] = $this->paramValidator->getValue( $name, $settings, [
+					'source' => $source,
+				] );
+			} catch ( ValidationException $e ) {
+				$msg = $e->getFailureMessage();
+				$wrappedMsg = new DataMessageValue(
+					'rest-body-validation-error',
+					[ $e->getFailureMessage() ],
+					$msg->getCode(),
+					$msg->getData()
+				);
+
+				throw new LocalizedHttpException( $wrappedMsg, 400, [
 					'error' => 'parameter-validation-failed',
 					'name' => $e->getParamName(),
 					'value' => $e->getParamValue(),

@@ -2,15 +2,21 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use LogicException;
 use MediaWiki\Rest\Handler;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * Example handler
- * @unstable
+ * Test mock for asserting parameter processing and validation in Handler and Router.
  */
 class EchoHandler extends Handler {
+	private $postValidationSetupCalled = false;
+
 	public function execute() {
+		if ( !$this->postValidationSetupCalled ) {
+			throw new LogicException( 'postValidationSetup was not called' );
+		}
+
 		$request = $this->getRequest();
 		return [
 			'method' => $request->getMethod(),
@@ -48,6 +54,10 @@ class EchoHandler extends Handler {
 				ParamValidator::PARAM_TYPE => 'string',
 			],
 		];
+	}
+
+	protected function postValidationSetup() {
+		$this->postValidationSetupCalled = true;
 	}
 
 	public function needsWriteAccess() {
