@@ -654,7 +654,7 @@ class WikiModule extends Module {
 					}
 					$infoKey = self::makeTitleKey( $title );
 					if ( isset( $allInfo[$infoKey] ) ) {
-						$info = $allInfo[$infoKey];
+						$info[$infoKey] = $allInfo[$infoKey];
 					}
 				}
 				$pageNames = array_keys( $pages );
