@@ -84,7 +84,7 @@ class MimeMap {
 		'application/octet-stream' => [ 'bin', 'dms', 'lha', 'lzh', 'exe', 'class', 'so', 'dll' ],
 		'application/oda' => [ 'oda' ],
 		'application/postscript' => [ 'ai', 'eps', 'ps' ],
-		'application/rdf+xml' => [ 'rdf' ],
+		'application/rdf+xml' => [ 'rdf', 'owl' ],
 		'application/smil' => [ 'smi', 'smil' ],
 		'application/srgs' => [ 'gram' ],
 		'application/srgs+xml' => [ 'grxml' ],
