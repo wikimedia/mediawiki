@@ -123,6 +123,38 @@ class MemoryFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	protected function doMoveInternal( array $params ) {
+		$status = $this->newStatus();
+
+		$src = $this->resolveHashKey( $params['src'] );
+		if ( $src === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
+			return $status;
+		}
+
+		$dst = $this->resolveHashKey( $params['dst'] );
+		if ( $dst === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
+			return $status;
+		}
+
+		if ( !isset( $this->files[$src] ) ) {
+			if ( empty( $params['ignoreMissingSource'] ) ) {
+				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+			}
+
+			return $status;
+		}
+
+		$this->files[$dst] = $this->files[$src];
+		unset( $this->files[$src] );
+		$this->files[$dst]['mtime'] = ConvertibleTimestamp::convert( TS_MW, time() );
+
+		return $status;
+	}
+
 	protected function doDeleteInternal( array $params ) {
 		$status = $this->newStatus();
 
