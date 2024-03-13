@@ -40,8 +40,8 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use stdClass;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -94,8 +94,8 @@ class DatabaseBlockStore {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
@@ -125,7 +125,7 @@ class DatabaseBlockStore {
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param CommentStore $commentStore
 	 * @param HookContainer $hookContainer
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserFactory $userFactory
 	 * @param TempUserConfig $tempUserConfig
@@ -140,7 +140,7 @@ class DatabaseBlockStore {
 		BlockRestrictionStore $blockRestrictionStore,
 		CommentStore $commentStore,
 		HookContainer $hookContainer,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		ReadOnlyMode $readOnlyMode,
 		UserFactory $userFactory,
 		TempUserConfig $tempUserConfig,
@@ -158,7 +158,7 @@ class DatabaseBlockStore {
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userFactory = $userFactory;
 		$this->tempUserConfig = $tempUserConfig;
@@ -1163,12 +1163,12 @@ class DatabaseBlockStore {
 			->execute();
 	}
 
-	private function getReplicaDB(): IDatabase {
-		return $this->loadBalancer->getConnection( DB_REPLICA, [], $this->wikiId );
+	private function getReplicaDB(): IReadableDatabase {
+		return $this->dbProvider->getReplicaDatabase( $this->wikiId );
 	}
 
 	private function getPrimaryDB(): IDatabase {
-		return $this->loadBalancer->getConnection( DB_PRIMARY, [], $this->wikiId );
+		return $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 	}
 
 	/**

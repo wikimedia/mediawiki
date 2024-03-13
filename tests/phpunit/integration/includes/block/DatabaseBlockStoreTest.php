@@ -73,7 +73,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'blockRestrictionStore' => $services->getBlockRestrictionStore(),
 			'commentStore' => $services->getCommentStore(),
 			'hookContainer' => $hookContainer,
-			'loadBalancer' => $services->getDBLoadBalancer(),
+			'dbProvider' => $services->getDBLoadBalancerFactory(),
 			'readOnlyMode' => $readOnlyMode,
 			'userFactory' => $services->getUserFactory(),
 			'tempUserConfig' => $services->getTempUserConfig(),
