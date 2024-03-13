@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group Media
+ * @group Mime
  * @covers \MSCompoundFileReader
  */
 class MSCompoundFileReaderTest extends TestCase {

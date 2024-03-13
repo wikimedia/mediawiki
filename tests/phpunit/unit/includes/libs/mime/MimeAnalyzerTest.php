@@ -10,6 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Media
+ * @group Mime
  * @covers \MimeAnalyzer
  */
 class MimeAnalyzerTest extends TestCase {
