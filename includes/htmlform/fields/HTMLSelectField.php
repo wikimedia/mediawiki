@@ -86,6 +86,29 @@ class HTMLSelectField extends HTMLFormField {
 		] + $attribs );
 	}
 
+	public function getInputCodex( $value, $hasErrors ) {
+		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
+
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$select->setAttribute( 'disabled', 'disabled' );
+		}
+
+		$allowedParams = [ 'tabindex', 'size' ];
+		$customParams = $this->getAttributes( $allowedParams );
+		foreach ( $customParams as $name => $value ) {
+			$select->setAttribute( $name, $value );
+		}
+
+		// TODO: Add support for error class once it's implemented in the Codex CSS-only Select.
+		$selectClass = 'cdx-select';
+		$selectClass .= $this->mClass !== '' ? ' ' . $this->mClass : '';
+		$select->setAttribute( 'class', $selectClass );
+
+		$select->addOptions( $this->getOptions() );
+
+		return $select->getHTML();
+	}
+
 	/**
 	 * @inheritDoc
 	 * @stable to override

@@ -70,6 +70,10 @@ class HTMLExpiryField extends HTMLFormField {
 		);
 	}
 
+	public function getInputCodex( $value, $hasErrors ) {
+		return $this->relativeField->getInputCodex( $value, $hasErrors );
+	}
+
 	/**
 	 * @inheritDoc
 	 */
