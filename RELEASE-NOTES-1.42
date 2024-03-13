@@ -49,6 +49,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgLogActionsHandlers is now ObjectFactory compatible.
 * $wgBotPasswordsCluster and $wgBotPasswordsDatabase have been deprecated
   use $wgVirtualDomainsMapping['virtual-botpasswords'] instead.
+* The MainPageIsDomainRoot setting is no longer considered experimental.
 * …
 
 ==== Removed configuration ====

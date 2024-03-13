@@ -198,9 +198,6 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTryNormaliseRedirect
 	 */
 	public function testTryNormaliseRedirect( $url, $query, $title, $expectedRedirect = false ) {
-		// Set SERVER because interpolateTitle() doesn't use getRequestURL(),
-		// whereas tryNormaliseRedirect does(). Also, using WebRequest allows
-		// us to test some quirks in that class.
 		$environment = new MockEnvironment();
 		$environment->setRequestInfo( $url, $query );
 
@@ -226,6 +223,22 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 			$expectedRedirect ?: '',
 			$context->getOutput()->getRedirect()
 		);
+	}
+
+	public function testMainPageIsDomainRoot() {
+		$this->overrideConfigValue( MainConfigNames::MainPageIsDomainRoot, true );
+
+		$environment = new MockEnvironment();
+		$environment->setRequestInfo( '/' );
+
+		// Set global context since some involved code paths don't yet have context
+		$context = $environment->makeFauxContext();
+
+		$entryPoint = $this->getEntryPoint( $environment, $context );
+		$entryPoint->run();
+
+		$expected = '<title>(pagetitle: Main Page)';
+		Assert::assertStringContainsString( $expected, $entryPoint->getCapturedOutput() );
 	}
 
 	public static function provideParseTitle() {
