@@ -6,7 +6,6 @@ use CssContent;
 use EmptyBagOStuff;
 use Exception;
 use HashBagOStuff;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\ParsoidRenderID;
@@ -811,9 +810,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		if ( isset( $overrides['parserCache'] ) ) {
 			$parserCache = $overrides['parserCache'];
 		} else {
-			$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'save' ] );
+			$parserCache = $this->createNoOpMock(
+				ParserCache::class,
+				[ 'get', 'save', 'makeParserOutputKey', ]
+			);
 			$parserCache->method( 'get' )->willReturn( false );
 			$parserCache->method( 'save' )->willReturn( null );
+			$parserCache->method( 'makeParserOutputKey' )->willReturn( 'test-key' );
 		}
 
 		if ( isset( $overrides['revisionCache'] ) ) {
@@ -843,11 +846,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		);
 
 		return new ParsoidOutputAccess(
-			new ServiceOptions(
-				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig(),
-				[ 'ParsoidWikiID' => 'MyWiki' ]
-			),
 			$services->getParsoidParserFactory(),
 			$parserOutputAccess,
 			$services->getPageStore(),
@@ -1168,7 +1166,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideFlavorsForBadModelOutput
 	 */
-	public function testDummyContentForBadModel( string $flavor ) {
+	public function testNonParsoidOutput( string $flavor ) {
 		$this->resetServicesWithMockedParsoid();
 		$helper = $this->newHelper( [
 			'cache' => new HashBagOStuff(),
@@ -1182,8 +1180,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->setFlavor( $flavor );
 
 		$output = $helper->getHtml();
-		$this->assertStringContainsString( 'Dummy output', $output->getText() );
-		$this->assertSame( '0/dummy-output', ParsoidRenderID::newFromParserOutput( $output )->getKey() );
+		$this->assertStringContainsString( 'not wikitext', $output->getRawText() );
+		$this->assertNotNull( ParsoidRenderID::newFromParserOutput( $output )->getKey() );
 	}
 
 	/**

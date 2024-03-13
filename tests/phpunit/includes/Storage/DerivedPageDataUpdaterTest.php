@@ -17,8 +17,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserCacheFactory;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionRecord;
@@ -1396,7 +1396,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Emulate update after edit ----------
 		$parserCacheFactory = $this->getServiceContainer()->getParserCacheFactory();
 		$parserCache = $parserCacheFactory->getParserCache( ParserCacheFactory::DEFAULT_NAME );
-		$parsoidCache = $parserCacheFactory->getParserCache( ParsoidOutputAccess::PARSOID_PARSER_CACHE_NAME );
+		$parsoidCache = $parserCacheFactory->getParserCache( ParserOutputAccess::PARSOID_PCACHE_NAME );
 
 		$parserCache->deleteOptionsKey( $page );
 		$parsoidCache->deleteOptionsKey( $page );

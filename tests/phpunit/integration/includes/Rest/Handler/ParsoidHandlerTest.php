@@ -2160,7 +2160,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testWt2html_BadContentModel() {
+	public function testWt2html_NonParsoidContentModel() {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, new JavaScriptContent( '"not wikitext"' ) );
 		$pageConfig = $this->getPageConfig( $page );
@@ -2182,7 +2182,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$jsonData = json_decode( $data, JSON_OBJECT_AS_ARRAY );
 
 		$this->assertIsArray( $jsonData );
-		$this->assertStringContainsString( "Dummy output", $jsonData['html']['body'] );
+		$this->assertStringContainsString( "not wikitext", $jsonData['html']['body'] );
 	}
 
 	// TODO: test wt2html failure modes
