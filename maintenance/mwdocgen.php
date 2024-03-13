@@ -95,13 +95,6 @@ class MWDocGen extends Maintenance {
 		$this->doxygen = $this->getOption( 'doxygen', 'doxygen' );
 		$this->mwVersion = $this->getOption( 'version', 'master' );
 
-		$this->input = '';
-		$inputs = explode( ',', $this->getOption( 'file', '' ) );
-		foreach ( $inputs as $input ) {
-			# Doxygen inputs are space separated and double quoted
-			$this->input .= " \"$input\"";
-		}
-
 		$this->output = $this->getOption( 'output', 'docs' );
 
 		// Do not use wfShellWikiCmd, because mwdoc-filter.php is not
@@ -120,9 +113,18 @@ class MWDocGen extends Maintenance {
 			'tests',
 			'vendor',
 		];
-		if ( $this->input === '' ) {
+
+		$file = $this->getOption( 'file' );
+		if ( $file !== null ) {
+			$this->input = '';
+			foreach ( explode( ',', $file ) as $input ) {
+				// Doxygen inputs are space separated and double quoted
+				$this->input .= " \"$input\"";
+			}
+		} else {
 			// If no explicit --file filter is set, we're indexing all of MediaWiki core
 			// in MW_INSTALL_PATH, but not extension and skin submodules (T317451).
+			$this->input = '';
 			if ( !$this->hasOption( 'extensions' ) ) {
 				$this->excludes[] = 'extensions';
 			}
