@@ -4,7 +4,6 @@ namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
-use MediaWiki\HTMLForm\CodexHTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\VFormHTMLForm;
 use Message;
@@ -79,8 +78,6 @@ class HTMLButtonField extends HTMLFormField {
 			$prefix = 'mw-ui-';
 			// add mw-ui-button separately, so the descriptor doesn't need to set it
 			$flags .= ' ' . $prefix . 'button';
-		} elseif ( $this->mParent instanceof CodexHTMLForm ) {
-			$flags .= ' cdx-button cdx-button--action-progressive cdx-button--weight-primary';
 		}
 		foreach ( $this->mFlags as $flag ) {
 			$flags .= ' ' . $prefix . $flag;
@@ -123,6 +120,25 @@ class HTMLButtonField extends HTMLFormField {
 		] + \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
+	}
+
+	public function getInputCodex( $value, $hasErrors ) {
+		$flags = ' cdx-button cdx-button--action-progressive cdx-button--weight-primary';
+		$attr = [
+			'class' => [ 'mw-htmlform-submit', $this->mClass . $flags ],
+			'id' => $this->mID,
+			'type' => $this->buttonType,
+			'name' => $this->mName,
+			'value' => $this->getDefault(),
+			'formnovalidate' => $this->mFormnovalidate,
+		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
+
+		if ( $this->isBadIE() ) {
+			return Html::element( 'input', $attr );
+		} else {
+			return Html::rawElement( 'button', $attr,
+				$this->buttonLabel ?: htmlspecialchars( $this->getDefault() ) );
+		}
 	}
 
 	/**

@@ -3,7 +3,6 @@
 namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\Html\Html;
-use MediaWiki\HTMLForm\CodexHTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use OOUI\Widget;
 
@@ -123,20 +122,9 @@ class HTMLTextField extends HTMLFormField {
 
 		# Extract 'type'
 		$type = $this->getType( $attribs );
-		$isCodexForm = $this->mParent && $this->mParent instanceof CodexHTMLForm;
-		if ( $isCodexForm ) {
-			$class = $attribs['class'] ?? [];
-			if ( is_string( $class ) ) {
-				$attribs['class'] .= ' cdx-text-input__input';
-			} else {
-				$class[] = 'cdx-text-input__input';
-				$attribs['class'] = $class;
-			}
-		}
+
 		$inputHtml = Html::input( $this->mName, $value, $type, $attribs );
-		return $isCodexForm
-			? Html::rawElement( 'div', [ 'class' => 'cdx-text-input' ], $inputHtml )
-			: $inputHtml;
+		return $inputHtml;
 	}
 
 	protected function getType( &$attribs ) {
@@ -227,6 +215,63 @@ class HTMLTextField extends HTMLFormField {
 			'type' => $type,
 			'dir' => $this->mDir,
 		] + $attribs );
+	}
+
+	public function getInputCodex( $value, $hasErrors ) {
+		if ( !$this->isPersistent() ) {
+			$value = '';
+		}
+
+		$attribs = [
+				'id' => $this->mID,
+				'name' => $this->mName,
+				'size' => $this->getSize(),
+				'value' => $value,
+				'dir' => $this->mDir,
+				'spellcheck' => $this->getSpellCheck(),
+			] + $this->getTooltipAndAccessKey() + $this->getDataAttribs();
+
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
+
+		$allowedParams = [
+			'type',
+			'min',
+			'max',
+			'step',
+			'title',
+			'maxlength',
+			'minlength',
+			'tabindex',
+			'disabled',
+			'required',
+			'autofocus',
+			'readonly',
+			'autocomplete',
+			'pattern',
+			'list',
+		];
+
+		$attribs += $this->getAttributes( $allowedParams );
+
+		// Extract 'type'.
+		$type = $this->getType( $attribs );
+
+		// Set up classes for the outer <div>.
+		$wrapperClass = [ 'cdx-text-input' ];
+		if ( $hasErrors ) {
+			$wrapperClass[] = 'cdx-text-input--status-error';
+		}
+
+		// Set up classes for the internal <input> element.
+		$attribs['class'] = [ 'cdx-text-input__input' ];
+		if ( $this->mClass !== '' ) {
+			$attribs['class'][] = $this->mClass;
+		}
+		$inputHtml = Html::input( $this->mName, $value, $type, $attribs );
+
+		return Html::rawElement( 'div', [ 'class' => $wrapperClass ], $inputHtml );
 	}
 
 	/**
