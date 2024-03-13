@@ -807,9 +807,9 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Option to whether serve the main page as the domain root
+	 * When enabled, the domain root will show the wiki's main page,
+	 * instead of redirecting to the main page.
 	 *
-	 * @warning EXPERIMENTAL!
 	 * @since 1.34
 	 */
 	public const MainPageIsDomainRoot = [

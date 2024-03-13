@@ -366,8 +366,8 @@ config-schema:
         default: false
         type: boolean
         description: |-
-            Option to whether serve the main page as the domain root
-            @warning EXPERIMENTAL!
+            When enabled, the domain root will show the wiki's main page,
+            instead of redirecting to the main page.
             @since 1.34
     EnableUploads:
         default: false
