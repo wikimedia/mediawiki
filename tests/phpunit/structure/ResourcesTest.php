@@ -297,7 +297,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	public function testRespond( $moduleName, $skin ) {
 		$rl = $this->getServiceContainer()->getResourceLoader();
 		$module = $rl->getModule( $moduleName );
-		if ( $module->getGroup() === RL\Module::GROUP_PRIVATE ) {
+		if ( $module->shouldSkipStructureTest() ) {
 			// Private modules cannot be served from load.php
 			$this->assertTrue( true );
 			return;

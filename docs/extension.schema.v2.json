@@ -435,6 +435,10 @@
 								"es6": {
 									"type": "boolean",
 									"description": "Deprecated flag as to whether this module requires an ES6-capable browser; ignored since MediaWiki 1.41. Default is true."
+								},
+								"skipStructureTest": {
+									"type": "boolean",
+									"description": "Whether to skip ResourcesTest::testRespond()"
 								}
 							}
 						},
