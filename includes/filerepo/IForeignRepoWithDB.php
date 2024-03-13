@@ -19,6 +19,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * A foreign repo that allows for direct access to the foreign MW database.
@@ -46,7 +47,7 @@ interface IForeignRepoWithDB {
 
 	/**
 	 * Get a connection to the replica DB for the foreign repo.
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 * @since 1.41
 	 */
 	public function getReplicaDB();

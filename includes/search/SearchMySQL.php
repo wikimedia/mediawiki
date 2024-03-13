@@ -26,6 +26,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -424,6 +425,8 @@ class SearchMySQL extends SearchDatabase {
 			$sql = "SHOW GLOBAL VARIABLES LIKE 'ft\\_min\\_word\\_len'";
 
 			$dbr = $this->dbProvider->getReplicaDatabase();
+			// The real type is still IDatabase, but IReplicaDatabase is used for safety.
+			'@phan-var IDatabase $dbr';
 			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 			$result = $dbr->query( $sql, __METHOD__ );
 			$row = $result->fetchObject();
