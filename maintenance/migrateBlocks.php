@@ -85,6 +85,7 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 
 		$highestId = $lowId;
 		foreach ( $res as $row ) {
+			$highestId = $row->ipb_id;
 			$isIP = IPUtils::isValid( $row->ipb_address );
 			$isRange = IPUtils::isValidRange( $row->ipb_address );
 			$isIPOrRange = $isIP || $isRange;
@@ -151,7 +152,6 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 			if ( $this->dbw->affectedRows() ) {
 				$migratedCount++;
 			}
-			$highestId = $row->ipb_id;
 		}
 
 		$this->output( "Migrated $migratedCount blocks\n" );
