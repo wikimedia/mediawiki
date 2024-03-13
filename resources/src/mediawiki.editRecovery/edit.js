@@ -119,8 +119,13 @@ function track( metric, value ) {
 }
 
 function onLoadData( pageData ) {
+	const wasPosted = mw.config.get( 'wgEditRecoveryWasPosted' );
+	if ( wasPosted ) {
+		// If this is a POST request, save the current data (e.g. from a preview).
+		saveFormData();
+	}
 	// If there is data stored, load it into the form.
-	if ( pageData !== undefined && !isSameAsOriginal( pageData, true ) ) {
+	if ( !wasPosted && pageData !== undefined && !isSameAsOriginal( pageData, true ) ) {
 		loadData( pageData );
 		const loadNotification = new LoadNotification( {
 			differentRev: originalData.field_parentRevId !== pageData.field_parentRevId
@@ -235,15 +240,9 @@ function saveFormData() {
 	const pageName = mw.config.get( 'wgPageName' );
 	const section = inputFields.wpSection.value !== undefined ? inputFields.wpSection.value : null;
 	const pageData = getFormData();
-	if ( originalData === null || isSameAsOriginal( pageData ) ) {
-		// Delete the stored data if there's no change, or if we've flagged originalData as irrelevant.
-		storage.deleteData( pageName, section );
-		mw.storage.session.remove( 'EditRecovery-data-saved' );
-	} else {
-		storage.saveData( pageName, section, pageData );
-		// Flag the data for deletion in the postEdit handler in ./postEdit.js
-		mw.storage.session.set( 'EditRecovery-data-saved', true, 300 );
-	}
+	storage.saveData( pageName, section, pageData );
+	// Flag the data for deletion in the postEdit handler in ./postEdit.js
+	mw.storage.session.set( 'EditRecovery-data-saved', true, 300 );
 }
 
 /**
