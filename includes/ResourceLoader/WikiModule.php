@@ -607,7 +607,10 @@ class WikiModule extends Module {
 				$domain = $db->getDomainID();
 
 				$byDomain[ $domain ] ??= [ 'db' => $db, 'pages' => [], 'modules' => [] ];
-				$byDomain[ $domain ]['pages'] += array_keys( $module->getPages( $context ) );
+				$byDomain[ $domain ]['pages'] = array_merge(
+					$byDomain[ $domain ]['pages'],
+					array_keys( $module->getPages( $context ) )
+				);
 				$byDomain[ $domain ]['modules'][] = $module;
 			}
 		}
