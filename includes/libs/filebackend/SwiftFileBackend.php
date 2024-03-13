@@ -1165,13 +1165,13 @@ class SwiftFileBackend extends FileBackendStore {
 		// Send the requested additional headers
 		if ( empty( $params['headless'] ) ) {
 			foreach ( $params['headers'] as $header ) {
-				header( $header );
+				$this->header( $header );
 			}
 		}
 
 		if ( empty( $params['allowOB'] ) ) {
 			// Cancel output buffering and gzipping if set
-			( $this->obResetFunc )();
+			$this->resetOutputBuffer();
 		}
 
 		$handle = fopen( 'php://output', 'wb' );

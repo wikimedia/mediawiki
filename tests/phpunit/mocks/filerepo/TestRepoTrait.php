@@ -132,7 +132,7 @@ trait TestRepoTrait {
 			"deletedHashLevels" => 0,
 			"updateCompatibleMetadata" => false,
 			"reserializeMetadata" => false,
-			"backend" => 'local-backend'
+			"backend" => 'local-backend',
 		];
 
 		if ( !$info['backend'] instanceof FileBackend ) {
@@ -152,6 +152,9 @@ trait TestRepoTrait {
 			'basePath' => $dir,
 			'obResetFunc' => static function () {
 				ob_end_flush();
+			},
+			'headerFunc' => function ( string $header ) {
+				$this->recordHeader( $header );
 			},
 			'containerPaths' => [
 				"$name-public" => "$dir",
@@ -210,6 +213,10 @@ trait TestRepoTrait {
 		}
 
 		return $file;
+	}
+
+	private function recordHeader( string $header ) {
+		// no-op
 	}
 
 }

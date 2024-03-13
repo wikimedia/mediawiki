@@ -24,7 +24,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Output\StreamFile;
 use MediaWiki\Status\Status;
 
 /**
@@ -218,14 +217,25 @@ abstract class MediaTransformOutput {
 		if ( !$this->path ) {
 			return Status::newFatal( 'backend-fail-stream', '<no path>' );
 		}
-		if ( FileBackend::isStoragePath( $this->path ) ) {
-			$be = $this->file->getRepo()->getBackend();
+
+		$repo = $this->file->getRepo();
+
+		if ( $repo && FileBackend::isStoragePath( $this->path ) ) {
 			return Status::wrap(
-				$be->streamFile( [ 'src' => $this->path, 'headers' => $headers ] ) );
+				$repo->getBackend()->streamFile(
+					[ 'src' => $this->path, 'headers' => $headers, ]
+				)
+			);
+		} else {
+			$streamer = new HTTPFileStreamer(
+				$this->getLocalCopyPath(),
+				$repo ? $repo->getBackend()->getStreamerOptions() : []
+			);
+
+			$success = $streamer->stream( $headers );
+			return $success ? Status::newGood()
+				: Status::newFatal( 'backend-fail-stream', $this->path );
 		}
-		// FS-file
-		$success = StreamFile::stream( $this->getLocalCopyPath(), $headers );
-		return $success ? Status::newGood() : Status::newFatal( 'backend-fail-stream', $this->path );
 	}
 
 	/**
