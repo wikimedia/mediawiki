@@ -28,3 +28,41 @@
 		background-image: url( images/sort_down.svg );
 	}
 }
+
+/* forced night mode */
+html.skin-night-mode-clientpref-1.client-js {
+	.sortable:not( .jquery-tablesorter ) > * > tr:first-child > th.headerSort,
+	.jquery-tablesorter th.headerSort {
+		background-image: url( images/sort_both_inverted.svg );
+	}
+
+	.jquery-tablesorter {
+		th.headerSortUp {
+			background-image: url( images/sort_up_inverted.svg );
+		}
+
+		th.headerSortDown {
+			background-image: url( images/sort_down_inverted.svg );
+		}
+	}
+}
+
+@media ( prefers-color-scheme: dark ) {
+	/* automatic mode */
+	html.skin-night-mode-clientpref-2.client-js {
+		.sortable:not( .jquery-tablesorter ) > * > tr:first-child > th.headerSort,
+		.jquery-tablesorter th.headerSort {
+			background-image: url( images/sort_both_inverted.svg );
+		}
+
+		.jquery-tablesorter {
+			th.headerSortUp {
+				background-image: url( images/sort_up_inverted.svg );
+			}
+
+			th.headerSortDown {
+				background-image: url( images/sort_down_inverted.svg );
+			}
+		}
+	}
+}
