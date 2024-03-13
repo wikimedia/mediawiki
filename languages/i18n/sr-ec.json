@@ -2957,7 +2957,7 @@
 	"tooltip-pt-mytalk": "{{GENDER:|Ваша}} страница за разговор",
 	"tooltip-pt-anontalk": "Разговор о изменама с ове IP адресе",
 	"tooltip-pt-preferences": "{{GENDER:|Ваша}} подешавања",
-	"tooltip-pt-watchlist": "Списак страница чије измене надгледате",
+	"tooltip-pt-watchlist": "Списак надгледања",
 	"tooltip-pt-mycontris": "Списак {{GENDER:|ваших}} доприноса",
 	"tooltip-pt-anoncontribs": "Списак измена с ове IP адресе",
 	"tooltip-pt-login": "Иако није обавезно, препоручујемо да се пријавите",

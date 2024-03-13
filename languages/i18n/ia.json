@@ -2308,7 +2308,7 @@
 	"emailccsubject": "Copia de tu message a $1: $2",
 	"emailsent": "E-mail inviate",
 	"emailsenttext": "Tu message de e-mail ha essite inviate.",
-	"emailuserfooter": "Iste e-mail ha essite {{GENDER:$1|inviate}} per $1 a {{GENDER:$2|$2}} con le function “{{int:emailuser}}” in {{SITENAME}}.\nSi {{GENDER:$2|tu}} responde a iste message, {{GENDER:$2|tu}} responsa essera inviate directemente al {{GENDER:$1|expeditor|expeditrice}} original, revelante {{GENDER:$2|tu}} adresse de e-mail a {{GENDER:$1|ille|illa}}.",
+	"emailuserfooter": "Iste e-mail ha essite inviate per $1 a $2 con le function “{{int:emailuser}}” in {{SITENAME}}.\nSi tu responde a iste message, tu responsa essera inviate directemente al {{GENDER:$1|expeditor|expeditrice}} original, revelante tu adresse de e-mail a {{GENDER:$1|ille|illa|iste persona}}.",
 	"usermessage-summary": "Lassante un message de systema.",
 	"usermessage-editor": "Messagero del systema",
 	"watchlist": "Observatorio",
