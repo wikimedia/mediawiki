@@ -208,6 +208,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			]
 		] );
 
+		$pout->setLanguage( new Bcp47CodeValue( $lang ) );
 		return $pout;
 	}
 
