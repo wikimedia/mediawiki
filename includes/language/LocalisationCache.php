@@ -1222,9 +1222,9 @@ class LocalisationCache {
 		// Add cache dependencies for any referenced configs
 		// We use the keys prefixed with 'wg' for historical reasons.
 		$deps['wgExtensionMessagesFiles'] =
-			new ConfigDependency( MainConfigNames::ExtensionMessagesFiles, $this->options );
+			new MainConfigDependency( MainConfigNames::ExtensionMessagesFiles );
 		$deps['wgMessagesDirs'] =
-			new ConfigDependency( MainConfigNames::MessagesDirs, $this->options );
+			new MainConfigDependency( MainConfigNames::MessagesDirs );
 		$deps['version'] = new ConstantDependency( self::class . '::VERSION' );
 
 		# Add dependencies to the cache entry
