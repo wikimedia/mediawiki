@@ -50,11 +50,13 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		yield 'real settings' => [ [ 'MediaWiki:Common.js' ] ];
 	}
 
-	private function prepareTitleInfo( array $mockInfo ) {
-		$module = TestingAccessWrapper::newFromClass( WikiModule::class );
+	private function makeTitleInfo( array $mockInfo ) {
+		$wikiModuleClass = TestingAccessWrapper::newFromClass( WikiModule::class );
 		$info = [];
-		foreach ( $mockInfo as $key => $val ) {
-			$info[ $module->makeTitleKey( Title::newFromText( $key ) ) ] = $val;
+		foreach ( $mockInfo as $val ) {
+			$title = $val['title'];
+			unset( $val['title'] );
+			$info[ $wikiModuleClass->makeTitleKey( $title ) ] = $val;
 		}
 		return $info;
 	}
@@ -154,7 +156,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 			->onlyMethods( [ 'getTitleInfo', 'getGroup', 'getDependencies' ] )
 			->getMock();
 		$module->method( 'getTitleInfo' )
-			->willReturn( $this->prepareTitleInfo( $titleInfo ) );
+			->willReturn( $this->makeTitleInfo( $titleInfo ) );
 		$module->method( 'getGroup' )
 			->willReturn( $group );
 		$module->method( 'getDependencies' )
@@ -173,7 +175,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		];
 
 		yield 'an empty page exists (no group)' => [
-			[ 'Project:Example/foo.js' => [ 'page_len' => 0 ] ],
+			[ [ 'title' => new TitleValue( NS_USER, 'Example/foo.js' ), 'page_len' => 0 ] ],
 			null,
 			[],
 			// There is an existing page, so we should let the module be queued.
@@ -181,14 +183,14 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 			false,
 		];
 		yield 'an empty page exists (site group)' => [
-			[ 'MediaWiki:Foo.js' => [ 'page_len' => 0 ] ],
+			[ [ 'title' => new TitleValue( NS_MEDIAWIKI, 'Foo.js' ), 'page_len' => 0 ] ],
 			'site',
 			[],
 			// There is an existing page, hence considered non-empty.
 			false,
 		];
 		yield 'an empty page exists (user group)' => [
-			[ 'User:Example/foo.js' => [ 'page_len' => 0 ] ],
+			[ [ 'title' => new TitleValue( NS_USER, 'Example/foo.js' ), 'page_len' => 0 ] ],
 			'user',
 			[],
 			// There is an existing page, but it is empty.
@@ -218,40 +220,17 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		];
 
 		yield 'a non-empty page exists (user group)' => [
-			[ 'User:Example/foo.js' => [ 'page_len' => 25 ] ],
+			[ [ 'title' => new TitleValue( NS_USER, 'Example/foo.js' ), 'page_len' => 25 ] ],
 			'user',
 			[],
 			false,
 		];
 		yield 'a non-empty page exists (site group)' => [
-			[ 'MediaWiki:Foo.js' => [ 'page_len' => 25 ] ],
+			[ [ 'title' => new TitleValue( NS_MEDIAWIKI, 'Foo.js' ), 'page_len' => 25 ] ],
 			'site',
 			[],
 			false,
 		];
-	}
-
-	public function testGetTitleInfo() {
-		$pages = [
-			'MediaWiki:Common.css' => [ 'type' => 'styles' ],
-			'mediawiki: fallback.css' => [ 'type' => 'styles' ],
-		];
-		$titleInfo = $this->prepareTitleInfo( [
-			'MediaWiki:Common.css' => [ 'page_len' => 1234 ],
-			'MediaWiki:Fallback.css' => [ 'page_len' => 0 ],
-		] );
-		$expected = $titleInfo;
-
-		$module = $this->getMockBuilder( WikiModule::class )
-			->onlyMethods( [ 'getPages', 'getTitleInfo' ] )
-			->getMock();
-		$module->method( 'getPages' )->willReturn( $pages );
-		$module->method( 'getTitleInfo' )->willReturn( $titleInfo );
-
-		$context = $this->createMock( Context::class );
-
-		$module = TestingAccessWrapper::newFromObject( $module );
-		$this->assertSame( $expected, $module->getTitleInfo( $context ), 'Title info' );
 	}
 
 	public function testGetPreloadedTitleInfo() {
@@ -263,9 +242,9 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 			// doing an intersect on the canonical result, producing an empty array.
 			'mediawiki: fallback.css' => [ 'type' => 'styles' ],
 		];
-		$titleInfo = $this->prepareTitleInfo( [
-			'MediaWiki:Common.css' => [ 'page_len' => 1234 ],
-			'MediaWiki:Fallback.css' => [ 'page_len' => 0 ],
+		$titleInfo = $this->makeTitleInfo( [
+			[ 'title' => new TitleValue( NS_MEDIAWIKI, 'Common.css' ), 'page_len' => 1234 ],
+			[ 'title' => new TitleValue( NS_MEDIAWIKI, 'Fallback.css' ), 'page_len' => 0 ],
 		] );
 		$expected = $titleInfo;
 
