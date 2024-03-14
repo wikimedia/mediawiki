@@ -21,10 +21,10 @@
 namespace Wikimedia\Mime;
 
 /**
- * MimeMap defines the mapping of MIME types to file extensions and media
- * types.
+ * Map of MIME types to file extensions and media types.
  *
  * @internal
+ * @ingroup Mime
  */
 class MimeMap {
 	/** @var array Map of MIME types to an array of file extensions */

@@ -1,7 +1,5 @@
 <?php
 /**
- * Module defining helper functions for detecting and dealing with MIME types.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -27,9 +25,16 @@ use Wikimedia\Mime\MimeMap;
 use Wikimedia\Mime\MimeMapMinimal;
 
 /**
- * Implements functions related to MIME types such as detection and mapping to file extension
+ * @defgroup Mime Mime
+ *
+ * @ingroup Media
+ */
+
+/**
+ * Detect MIME types of a file by mapping file extensions or parsing file contents.
  *
  * @since 1.28
+ * @ingroup Mime
  */
 class MimeAnalyzer implements LoggerAwareInterface {
 	/** @var string */

@@ -14,8 +14,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-use Wikimedia\AtEase\AtEase;
-
 /**
  * Read the directory of a Microsoft Compound File Binary file, a.k.a. an OLE
  * file, and detect the MIME type.
@@ -30,6 +28,7 @@ use Wikimedia\AtEase\AtEase;
  *    File Format https://www.openoffice.org/sc/compdocfileformat.pdf
  *
  * @since 1.33
+ * @ingroup Mime
  */
 class MSCompoundFileReader {
 	private $file;
@@ -218,9 +217,8 @@ class MSCompoundFileReader {
 
 	private function readOffset( $offset, $length ) {
 		$this->fseek( $offset );
-		AtEase::suppressWarnings();
-		$block = fread( $this->file, $length );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$block = @fread( $this->file, $length );
 		if ( $block === false ) {
 			$this->error( 'error reading from file', self::ERROR_READ );
 		}
@@ -245,9 +243,8 @@ class MSCompoundFileReader {
 	}
 
 	private function fseek( $offset ) {
-		AtEase::suppressWarnings();
-		$result = fseek( $this->file, $offset );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$result = @fseek( $this->file, $offset );
 		if ( $result !== 0 ) {
 			$this->error( "unable to seek to offset $offset", self::ERROR_SEEK );
 		}

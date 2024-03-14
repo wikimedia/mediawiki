@@ -1,12 +1,5 @@
 <?php
 /**
- * XML syntax and type checker.
- *
- * Since 1.24.2, it uses XMLReader instead of xml_parse, which gives us
- * more control over the expansion of XML entities. When passed to the
- * callback, entities will be fully expanded, but may report the XML is
- * invalid if expanding the entities are likely to cause a DoS.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,6 +18,18 @@
  * @file
  */
 
+/**
+ * XML syntax and type checker.
+ *
+ * Since MediaWiki 1.24.2, this uses XMLReader instead of xml_parse, which gives us
+ * more control over the expansion of XML entities. When passed to the
+ * callback, entities will be fully expanded, but may report the XML is
+ * invalid if expanding the entities are likely to cause a DoS.
+ *
+ * @newable
+ * @since 1.12.0
+ * @ingroup Mime
+ */
 class XmlTypeCheck {
 	/**
 	 * @var bool|null Will be set to true or false to indicate whether the file is
