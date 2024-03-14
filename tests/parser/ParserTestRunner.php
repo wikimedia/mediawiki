@@ -501,19 +501,6 @@ class ParserTestRunner {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'MediaHandlerFactory' );
 		};
 
-		// SqlBagOStuff broke when using temporary tables on r40209 (T17892).
-		// It seems to have been fixed since (r55079?), but regressed at some point before r85701.
-		// This works around it for now...
-		global $wgObjectCaches;
-		$setup['wgObjectCaches'] = [ CACHE_DB => $wgObjectCaches['hash'] ] + $wgObjectCaches;
-		if ( isset( ObjectCache::$instances[CACHE_DB] ) ) {
-			$savedCache = ObjectCache::$instances[CACHE_DB];
-			ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
-			$teardown[] = static function () use ( $savedCache ) {
-				ObjectCache::$instances[CACHE_DB] = $savedCache;
-			};
-		}
-
 		$teardown[] = $this->executeSetupSnippets( $setup );
 
 		// Schedule teardown snippets in reverse order
