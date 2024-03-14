@@ -263,7 +263,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				$sql
 			),
 			__METHOD__,
-			$dbw::QUERY_IGNORE_DBO_TRX
+			$dbw::QUERY_CHANGE_SCHEMA
 		);
 	}
 
