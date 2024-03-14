@@ -308,43 +308,68 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $handler->needsWriteAccess() );
 	}
 
-	public function testBodyValidation_extraneousToken() {
-		$requestData = [
-			'method' => 'POST',
-			'pathParams' => [ 'title' => 'Foo' ],
-			'headers' => [
-				'Content-Type' => 'application/json',
+	public static function provideBodyValidationFailure() {
+		yield 'extraneous token (bodyContents)' => [
+			[
+				'method' => 'POST',
+				'pathParams' => [ 'title' => 'Foo' ],
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
+				'bodyContents' => json_encode( [
+					'title' => 'Foo',
+					'token' => 'TOKEN',
+					'comment' => 'Testing',
+					'source' => 'Lorem Ipsum',
+					'content_model' => 'wikitext'
+				] ),
 			],
-			'bodyContents' => json_encode( [
-				'title' => 'Foo',
-				'token' => 'TOKEN',
-				'comment' => 'Testing',
-				'source' => 'Lorem Ipsum',
-				'content_model' => 'wikitext'
-			] ),
+			new MessageValue( 'rest-extraneous-csrf-token' )
 		];
+		yield 'extraneous token (parsedBody)' => [
+			[
+				'method' => 'POST',
+				'pathParams' => [ 'title' => 'Foo' ],
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
+				'parsedBody' => [
+					'title' => 'Foo',
+					'token' => 'TOKEN',
+					'comment' => 'Testing',
+					'source' => 'Lorem Ipsum',
+					'content_model' => 'wikitext'
+				],
+			],
+			new MessageValue( 'rest-extraneous-csrf-token' )
+		];
+	}
 
+	/**
+	 * @dataProvider provideBodyValidationFailure
+	 */
+	public function testBodyValidationFailure( $requestData, $expectedMessage ) {
 		$request = new RequestData( $requestData );
 
 		$handler = $this->newHandler();
 		$this->initHandler( $handler, $request, [], [], null, $this->getSession( true ) );
 
-		$validator = $this->getMockValidator( [], [ 'token' => 'TOKEN' ] );
+		// NOTE: initHandler() should be setting the parsed body if needed!
+		$validator = $this->getMockValidator( [], $request->getParsedBody() );
 		$handler->validate( $validator );
+
+		// sanity check
+		$this->assertTrue( $handler->getSession()->getProvider()->safeAgainstCsrf() );
 
 		try {
 			$handler->checkSession();
 			Assert::fail( 'Expected a LocalizedHttpException to be thrown' );
 		} catch ( HttpException $ex ) {
+			$this->assertSame( 400, $ex->getCode(), 'HTTP status' );
+			$this->assertInstanceOf( LocalizedHttpException::class, $ex );
+
+			$this->assertEquals( $expectedMessage, $ex->getMessageValue() );
 		}
-
-		$this->assertSame( 400, $ex->getCode(), 'HTTP status' );
-		$this->assertInstanceOf( LocalizedHttpException::class, $ex );
-
-		$expectedMessage = new MessageValue( 'rest-extraneous-csrf-token' );
-		$this->assertEquals( $expectedMessage, $ex->getMessageValue() );
-
-		$this->assertTrue( $handler->getSession()->getProvider()->safeAgainstCsrf() );
 	}
 
 	public function testCsrfUnsafeSessionProviderRejection() {

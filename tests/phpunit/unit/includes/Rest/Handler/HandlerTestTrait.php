@@ -78,6 +78,13 @@ trait HandlerTestTrait {
 			);
 		}
 
+		// call parseBodyData
+		if ( $request->hasBody() && !$request->getParsedBody() ) {
+			$parsedBody = $handler->parseBodyData( $request );
+			// Set the parsed body data on the request object
+			$request->setParsedBody( $parsedBody );
+		}
+
 		$authority ??= $this->mockAnonUltimateAuthority();
 		$hookContainer = $hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
 
