@@ -837,16 +837,26 @@ return [
 		],
 	],
 	'mediawiki.htmlform' => [
-		'scripts' => [
-			'resources/src/mediawiki.htmlform/htmlform.js',
-			'resources/src/mediawiki.htmlform/autocomplete.js',
-			'resources/src/mediawiki.htmlform/autoinfuse.js',
-			'resources/src/mediawiki.htmlform/cloner.js',
-			'resources/src/mediawiki.htmlform/cond-state.js',
-			'resources/src/mediawiki.htmlform/multiselect.js',
-			'resources/src/mediawiki.htmlform/selectandother.js',
-			'resources/src/mediawiki.htmlform/selectorother.js',
-			'resources/src/mediawiki.htmlform/timezone.js',
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.htmlform',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.htmlform",
+		'packageFiles' => [
+			'htmlform.js',
+			'autocomplete.js',
+			'autoinfuse.js',
+			'cloner.js',
+			'cond-state.js',
+			'multiselect.js',
+			'selectandother.js',
+			'selectorother.js',
+			'timezone.js',
+			[
+				'name' => 'contentMessages.json',
+				'callback' => static function ( Context $context ) {
+					return [
+						'colonSeparator' => $context->msg( 'colon-separator' )->inContentLanguage()->text(),
+					];
+				}
+			],
 		],
 		'dependencies' => [
 			'mediawiki.util',
@@ -854,8 +864,6 @@ return [
 		],
 		'messages' => [
 			'htmlform-chosen-placeholder',
-			// @todo Load this message in content language
-			'colon-separator',
 		],
 	],
 	'mediawiki.htmlform.ooui' => [
