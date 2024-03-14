@@ -239,10 +239,11 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 		$this->editPage( 'MediaWiki:TestA.css', '.mw-first {}', 'First' );
 		$this->editPage( 'MediaWiki:TestEmpty.css', '', 'Empty' );
+		$this->editPage( 'MediaWiki:TestB.css', '.mw-second {}', 'Second' );
 		$rl = new EmptyResourceLoader();
 		$rl->getConfig()->set( 'UseSiteJs', true );
 		$rl->getConfig()->set( 'UseSiteCss', true );
-		$rl->register( 'testmodule', [
+		$rl->register( 'testmodule1', [
 			'class' => TestResourceLoaderWikiModule::class,
 			'styles' => [
 				'MediaWiki:TestA.css',
@@ -253,20 +254,30 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 				'mediawiki: testEmpty.css',
 			],
 		] );
+		$rl->register( 'testmodule2', [
+			'class' => TestResourceLoaderWikiModule::class,
+			'styles' => [
+				'MediaWiki:TestB.css',
+			],
+		] );
 		$context = new Context( $rl, new FauxRequest() );
 
 		// Warm up the cache
 		WikiModule::preloadTitleInfo(
 			$context,
-			[ 'testmodule' ]
+			[ 'testmodule1', 'testmodule2' ]
 		);
 		// The module uses TestResourceLoaderWikiModule, which disables fetchTitleInfo() by default.
 		// If getTitleInfo() returns the data here, it means preloadTitleInfo succeeded.
-		$module = TestingAccessWrapper::newFromObject( $rl->getModule( 'testmodule' ) );
+		$module1 = TestingAccessWrapper::newFromObject( $rl->getModule( 'testmodule1' ) );
 		$this->assertArrayContains( [
 			'8:TestA.css' => [ 'page_len' => '12', 'page_touched' => '20110401090000' ],
 			'8:TestEmpty.css' => [ 'page_len' => '0', 'page_touched' => '20110401090000' ],
-		], $module->getTitleInfo( $context ), 'Title info' );
+		], $module1->getTitleInfo( $context ), 'Title info' );
+		$module2 = TestingAccessWrapper::newFromObject( $rl->getModule( 'testmodule2' ) );
+		$this->assertArrayContains( [
+			'8:TestB.css' => [ 'page_len' => '13', 'page_touched' => '20110401090000' ],
+		], $module2->getTitleInfo( $context ), 'Title info' );
 	}
 
 	public function testGetPreloadedBadTitle() {
