@@ -1787,6 +1787,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Pager\\TablePager' => __DIR__ . '/includes/pager/TablePager.php',
 	'MediaWiki\\Pager\\UploadStashPager' => __DIR__ . '/includes/specials/pagers/UploadStashPager.php',
 	'MediaWiki\\Pager\\UsersPager' => __DIR__ . '/includes/specials/pagers/UsersPager.php',
+	'MediaWiki\\ParamValidator\\TypeDef\\ArrayDef' => __DIR__ . '/includes/ParamValidator/TypeDef/ArrayDef.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\NamespaceDef' => __DIR__ . '/includes/ParamValidator/TypeDef/NamespaceDef.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\TagsDef' => __DIR__ . '/includes/ParamValidator/TypeDef/TagsDef.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\TitleDef' => __DIR__ . '/includes/ParamValidator/TypeDef/TitleDef.php',

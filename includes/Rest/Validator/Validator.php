@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Validator;
 
+use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\Authority;
@@ -80,6 +81,9 @@ class Validator {
 		'user' => [
 			'class' => UserDef::class,
 			'services' => [ 'UserIdentityLookup', 'TitleParser', 'UserNameUtils' ]
+		],
+		'array' => [
+			'class' => ArrayDef::class,
 		],
 	];
 
@@ -264,6 +268,7 @@ class Validator {
 		'expiry-param' => [ 'type' => 'string', 'format' => 'mw-expiry' ],
 		'title-param' => [ 'type' => 'string', 'format' => 'mw-title' ],
 		'user-param' => [ 'type' => 'string', 'format' => 'mw-user' ],
+		'array-param' => [ 'type' => 'object' ],
 	];
 
 	/**
