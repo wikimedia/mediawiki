@@ -21,10 +21,11 @@ use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
-use MediaWiki\WikiMap\WikiMap;
 use ReflectionMethod;
+use RuntimeException;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use WikitextContent;
 
 /**
@@ -234,43 +235,38 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 	}
 
 	public function testGetPreloadedTitleInfo() {
-		$pages = [
-			'MediaWiki:Common.css' => [ 'type' => 'styles' ],
-			// Regression against T145673. It's impossible to statically declare page names in
-			// a canonical way since the canonical prefix is localised. As such, the preload
-			// cache computed the right cache key, but failed to find the results when
-			// doing an intersect on the canonical result, producing an empty array.
-			'mediawiki: fallback.css' => [ 'type' => 'styles' ],
-		];
-		$titleInfo = $this->makeTitleInfo( [
-			[ 'title' => new TitleValue( NS_MEDIAWIKI, 'Common.css' ), 'page_len' => 1234 ],
-			[ 'title' => new TitleValue( NS_MEDIAWIKI, 'Fallback.css' ), 'page_len' => 0 ],
-		] );
-		$expected = $titleInfo;
-
-		$module = $this->getMockBuilder( TestResourceLoaderWikiModule::class )
-			->onlyMethods( [ 'getPages' ] )
-			->getMock();
-		$module->method( 'getPages' )->willReturn( $pages );
-		// Can't mock static methods
-		$module::$returnFetchTitleInfo = $titleInfo;
-
+		// Set up
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
+		$this->editPage( 'MediaWiki:TestA.css', '.mw-first {}', 'First' );
+		$this->editPage( 'MediaWiki:TestEmpty.css', '', 'Empty' );
 		$rl = new EmptyResourceLoader();
+		$rl->getConfig()->set( 'UseSiteJs', true );
+		$rl->getConfig()->set( 'UseSiteCss', true );
+		$rl->register( 'testmodule', [
+			'class' => TestResourceLoaderWikiModule::class,
+			'styles' => [
+				'MediaWiki:TestA.css',
+				// Regression against T145673. It's impossible to statically declare page names in
+				// a canonical way since the canonical prefix is localised. As such, the preload
+				// cache computed the right cache key, but failed to find the results when
+				// doing an intersect on the canonical result, producing an empty array.
+				'mediawiki: testEmpty.css',
+			],
+		] );
 		$context = new Context( $rl, new FauxRequest() );
 
-		TestResourceLoaderWikiModule::invalidateModuleCache(
-			new PageIdentityValue( 17, NS_MEDIAWIKI, 'Common.css', PageIdentity::LOCAL ),
-			null,
-			null,
-			WikiMap::getCurrentWikiId()
-		);
-		TestResourceLoaderWikiModule::preloadTitleInfo(
+		// Warm up the cache
+		WikiModule::preloadTitleInfo(
 			$context,
 			[ 'testmodule' ]
 		);
-
-		$module = TestingAccessWrapper::newFromObject( $module );
-		$this->assertSame( $expected, $module->getTitleInfo( $context ), 'Title info' );
+		// The module uses TestResourceLoaderWikiModule, which disables fetchTitleInfo() by default.
+		// If getTitleInfo() returns the data here, it means preloadTitleInfo succeeded.
+		$module = TestingAccessWrapper::newFromObject( $rl->getModule( 'testmodule' ) );
+		$this->assertArrayContains( [
+			'8:TestA.css' => [ 'page_len' => '12', 'page_touched' => '20110401090000' ],
+			'8:TestEmpty.css' => [ 'page_len' => '0', 'page_touched' => '20110401090000' ],
+		], $module->getTitleInfo( $context ), 'Title info' );
 	}
 
 	public function testGetPreloadedBadTitle() {
@@ -455,6 +451,10 @@ class TestResourceLoaderWikiModule extends WikiModule {
 	protected static function fetchTitleInfo( IReadableDatabase $db, array $pages, $fname = null ) {
 		$ret = self::$returnFetchTitleInfo;
 		self::$returnFetchTitleInfo = null;
+		if ( $ret === null ) {
+			// If a call is expected, a mock return value must be planted first
+			throw new RuntimeException( 'Unexpected fetchTitleInfo call' );
+		}
 		return $ret;
 	}
 }

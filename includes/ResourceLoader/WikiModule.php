@@ -569,7 +569,7 @@ class WikiModule extends Module {
 				$titleInfo[self::makeTitleKey( $title )] = [
 					'page_len' => $row->page_len,
 					'page_latest' => $row->page_latest,
-					'page_touched' => $row->page_touched,
+					'page_touched' => ConvertibleTimestamp::convert( TS_MW, $row->page_touched ),
 				];
 			}
 		}
