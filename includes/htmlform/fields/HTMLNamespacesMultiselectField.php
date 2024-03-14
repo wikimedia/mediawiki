@@ -122,6 +122,11 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		return [ 'mediawiki.widgets.NamespacesMultiselectWidget' ];
 	}
 
+	public function getInputCodex( $value, $hasErrors ) {
+		$textAreaField = new HTMLTextAreaField( $this->mParams );
+		return $textAreaField->getInputCodex( $value, $hasErrors );
+	}
+
 }
 
 /** @deprecated since 1.42 */
