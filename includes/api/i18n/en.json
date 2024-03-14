@@ -1706,7 +1706,7 @@
 	"api-help-undocumented-module": "No documentation for module $1.",
 	"api-help-flags": "",
 	"api-help-flag-deprecated": "This module is deprecated.",
-	"api-help-flag-internal": "<strong>This module is internal or unstable.</strong> Its operation may change without notice.",
+	"api-help-flag-internal": "<strong>This module is internal or unstable, and you should not use it.</strong> Its operation may change without notice.",
 	"api-help-flag-readrights": "This module requires read rights.",
 	"api-help-flag-writerights": "This module requires write rights.",
 	"api-help-flag-mustbeposted": "This module only accepts POST requests.",
