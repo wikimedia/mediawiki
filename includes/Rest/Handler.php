@@ -565,6 +565,12 @@ abstract class Handler {
 					);
 				}
 				return $parsedBody;
+			case null:
+				// Specifying no Content-Type is fine if the body is empty
+				if ( $request->getBody()->getSize() === 0 ) {
+					return null;
+				}
+				// no break, else fall through to the error below.
 			default:
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-unsupported-content-type', [ $contentType ?? '(null)' ] ),

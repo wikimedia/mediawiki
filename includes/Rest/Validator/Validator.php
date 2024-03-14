@@ -162,25 +162,17 @@ class Validator {
 		[ $ct ] = explode( ';', $request->getHeaderLine( 'Content-Type' ), 2 );
 		$ct = strtolower( trim( $ct ) );
 		if ( $ct === '' ) {
-			// No Content-Type was supplied. RFC 7231 § 3.1.1.5 allows this, but since it's probably a
-			// client error let's return a 415. But don't 415 for unknown methods and an empty body.
-			if ( !in_array( $method, self::BODY_METHODS, true ) ) {
-				$body = $request->getBody();
-				$size = $body->getSize();
-				if ( $size === null ) {
-					// No size available. Try reading 1 byte.
-					if ( $body->isSeekable() ) {
-						$body->rewind();
-					}
-					$size = $body->read( 1 ) === '' ? 0 : 1;
-				}
-				if ( $size === 0 ) {
-					return null;
-				}
+			// No Content-Type was supplied. RFC 7231 § 3.1.1.5 allows this, but
+			// since it's probably a client error let's return a 415, unless the
+			// body is known to be empty.
+			$body = $request->getBody();
+			if ( $body->getSize() === 0 ) {
+				return null;
+			} else {
+				throw new HttpException( "A Content-Type header must be supplied with a request payload.", 415, [
+					'error' => 'no-content-type',
+				] );
 			}
-			throw new HttpException( "A Content-Type header must be supplied with a request payload.", 415, [
-				'error' => 'no-content-type',
-			] );
 		}
 
 		// Form data is parsed into $_POST and $_FILES by PHP and from there is accessed as parameters,

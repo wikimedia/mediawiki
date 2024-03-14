@@ -403,6 +403,20 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 411, $response->getStatusCode() );
 	}
 
+	public function testEmptyBodyWithoutContentTypePasses() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'POST',
+			'headers' => [ 'content-length' => '0' ],
+			'bodyContent' => '',
+			// Should pass even without content-type!
+		] );
+
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+	}
+
 	public function testRequestBodyWithoutContentTypeFails() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),

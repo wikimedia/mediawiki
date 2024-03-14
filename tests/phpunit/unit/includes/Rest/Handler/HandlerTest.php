@@ -495,12 +495,22 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 	public static function provideParseBodyData() {
 		return [
-			'null body type' => [
-				new RequestData(),
+			'no body type with non-empty body' => [
+				new RequestData( [
+					'method' => 'POST',
+					'bodyContents' => '{"foo":"bar"}',
+				] ),
 				new LocalizedHttpException(
 					new MessageValue( 'rest-unsupported-content-type', [ '' ] ),
 					415
 				)
+			],
+			'no body type with empty body' => [
+				new RequestData( [
+					'headers' => [ 'content-length' => '0' ],
+					'bodyContent' => '',
+				] ),
+				null
 			],
 			'json body' => [
 				new RequestData( [
@@ -518,9 +528,29 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					415
 				)
 			],
-			'invalid json body' => [
+			'malformed json body' => [
 				new RequestData( [
 					'bodyContents' => '{"foo":"bar"',
+					'headers' => [ 'Content-Type' => 'application/json' ]
+				] ),
+				new LocalizedHttpException(
+					new MessageValue( 'rest-json-body-parse-error', [ '' ] ),
+					400
+				)
+			],
+			'empty json body' => [
+				new RequestData( [
+					'bodyContents' => '',
+					'headers' => [ 'Content-Type' => 'application/json' ]
+				] ),
+				new LocalizedHttpException(
+					new MessageValue( 'rest-json-body-parse-error', [ '' ] ),
+					400
+				)
+			],
+			'non-array json body' => [
+				new RequestData( [
+					'bodyContents' => '"foo"',
 					'headers' => [ 'Content-Type' => 'application/json' ]
 				] ),
 				new LocalizedHttpException(

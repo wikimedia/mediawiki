@@ -54,6 +54,9 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				'Content-Type' => 'application/json'
 			]
 		];
+		$nonEmptyBodyUnknownTypeParams = [
+			'bodyContents' => json_encode( (object)$bodyData ),
+		];
 
 		// Validator::validateBody() normalizes method for case and leading/trailing whitespace.
 		// Use various permutations herein to confirm that normalization is happy.
@@ -96,6 +99,12 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		yield 'POST request with empty body' => [
 			$nonEmptyBodyValidator,
 			new RequestData( $emptyBodyParams + [ 'method' => 'POST' ] ),
+			null
+		];
+
+		yield 'POST request with unknown type' => [
+			$emptyBodyValidator,
+			new RequestData( $nonEmptyBodyUnknownTypeParams + [ 'method' => 'POST' ] ),
 			HttpException::class
 		];
 
@@ -108,6 +117,12 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		yield 'PUT request with empty body' => [
 			$nonEmptyBodyValidator,
 			new RequestData( $emptyBodyParams + [ 'method' => 'PUT' ] ),
+			null
+		];
+
+		yield 'PUT request with unknown type' => [
+			$emptyBodyValidator,
+			new RequestData( $nonEmptyBodyUnknownTypeParams + [ 'method' => 'PUT' ] ),
 			HttpException::class
 		];
 
