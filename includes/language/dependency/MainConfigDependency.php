@@ -22,7 +22,6 @@ use MediaWiki\MediaWikiServices;
 /**
  * Depend on a MediaWiki configuration variable from the global config.
  *
- * @deprecated since 1.42
  * @ingroup Language
  */
 class MainConfigDependency extends CacheDependency {
