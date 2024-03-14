@@ -5,41 +5,5 @@
 		"services": [
 			"MainConfig"
 		]
-	},
-	{
-		"path": "/coredev/v0/me/contributions",
-		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
-		"services": [
-			"ContributionsLookup",
-			"UserNameUtils"
-		],
-		"mode": "me"
-	},
-	{
-		"path": "/coredev/v0/user/{user}/contributions",
-		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
-		"services": [
-			"ContributionsLookup",
-			"UserNameUtils"
-		],
-		"mode": "user"
-	},
-	{
-		"path": "/coredev/v0/me/contributions/count",
-		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
-		"services": [
-			"ContributionsLookup",
-			"UserNameUtils"
-		],
-		"mode": "me"
-	},
-	{
-		"path": "/coredev/v0/user/{user}/contributions/count",
-		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
-		"services": [
-			"ContributionsLookup",
-			"UserNameUtils"
-		],
-		"mode": "user"
 	}
 ]
