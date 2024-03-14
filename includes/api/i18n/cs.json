@@ -198,7 +198,7 @@
 	"apihelp-query+categorymembers-param-limit": "Maximální počet stránek k zobrazení.",
 	"apihelp-query+categorymembers-example-simple": "Zobrazit prvních 10 stránek v <kbd>Category:Physics</kbd>",
 	"apihelp-query+categorymembers-example-generator": "Získat informace o prvních 10 stránkách v <kbd>Category:Physics</kbd>.",
-	"apihelp-query+contributors-summary": "Zobrazit seznam registrovaných a počet registrovaných přispěvatelů stránky.",
+	"apihelp-query+contributors-summary": "Zobrazit seznam přihlášených a počet nepřihlášených přispěvatelů stránky.",
 	"apihelp-query+contributors-param-limit": "Kolik přispěvatelů má být zobrazeno.",
 	"apihelp-query+contributors-example-simple": "Zobrazit přispěvatele stránky <kbd>Main Page</kbd>.",
 	"apihelp-query+deletedrevs-param-excludeuser": "Nezahrnovat revize od tohoto uživatele.",

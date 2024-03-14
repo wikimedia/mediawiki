@@ -92,6 +92,8 @@
 	"apierror-articleexists": "Страница коју сте покушали направити већ је направљена.",
 	"apierror-badtoken": "Невалидан CSRF токен.",
 	"apierror-blocked-partial": "Блокирано вам је уређивање ове странице.",
+	"apierror-changecontentmodel-cannotbeused": "Садржински модел $1 не може се користити за $2",
+	"apierror-changecontentmodel-cannot-convert": "Промена садржинског модела $1 у $2 није успела",
 	"apierror-compare-relative-to-deleted": "Није могуће користити <kbd>torelative=$1</kbd> у односу на избрисану ревизију.",
 	"apierror-filedoesnotexist": "Датотека не постоји.",
 	"apierror-invalidmethod": "Неважећи HTTP метод. Размотрите коришћење команде GET или POST.",

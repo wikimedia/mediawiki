@@ -1480,7 +1480,7 @@
 	"backend-fail-notsame": "$1ত ইতিমধ্যে বেলেগ এটা ফাইল আছে।",
 	"backend-fail-invalidpath": "$1টো বৈধ সঞ্চয় পথ নহয়।",
 	"backend-fail-delete": "$1 ফাইলটো বিলোপ কৰিব পৰা নগল।",
-	"backend-fail-describe": "নথিৰ  \"$1\" মিডিয়া  তথ্য সলনি কৰিব পৰা নগ’ল",
+	"backend-fail-describe": "নথিৰ \"$1\" মিডিয়া তথ্য সলনি কৰিব পৰা নগ’ল",
 	"backend-fail-alreadyexists": "$1 ফাইলটো ইতিমধ্যে আছেই।",
 	"backend-fail-store": "$1 ফাইলটো $2ত সাঁচিব পৰা নগ'ল।",
 	"backend-fail-copy": "$1 ফাইলটো $2 লৈ প্ৰতিলিপি কৰিব পৰা নগ’ল",
