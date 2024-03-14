@@ -25,7 +25,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -174,7 +174,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 
 	/**
 	 * Do the DB query to iterate through the objects.
-	 * @param IDatabase $db DB object to use for the query
+	 * @param IReadableDatabase $db DB object to use for the query
 	 * @return IResultWrapper
 	 */
 	abstract public function doQuery( $db );

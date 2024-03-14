@@ -23,7 +23,7 @@ use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Page\PageIdentity;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -72,7 +72,7 @@ class RevDelArchivedFileList extends RevDelFileList {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
