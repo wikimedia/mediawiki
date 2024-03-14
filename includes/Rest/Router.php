@@ -602,10 +602,10 @@ class Router {
 		if ( in_array( $requestMethod, RequestInterface::NO_BODY_METHODS ) ) {
 			// check if the request has a body
 			if ( $request->hasBody() ) {
-				throw new HttpException(
-					"The $requestMethod request method does not accept a request body",
-					400
-				);
+				// NOTE: Don't throw, see T359509.
+				// TODO: Ignore only empty bodies, log a warning or fail if
+				//       there is actual content.
+				return;
 			}
 		}
 
