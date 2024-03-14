@@ -142,7 +142,7 @@ class DatabaseBlockStoreFactory {
 				$this->blockRestrictionStoreFactory->getBlockRestrictionStore( $wikiId ),
 				$this->commentStore,
 				$this->hookContainer,
-				$this->loadBalancerFactory->getMainLB( $wikiId ),
+				$this->loadBalancerFactory,
 				$this->readOnlyMode,
 				$this->userFactory,
 				$this->tempUserConfig,
