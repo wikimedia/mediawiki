@@ -318,7 +318,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
-		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 	}
 
 	public static function streamHandlerFactory() {
@@ -456,4 +456,52 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( [ 'foo' => 'bar' ], $parsedBody );
 	}
 
+	public function testHandlerCanAccessValidatedBodyForJsonRequest() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
+			'method' => 'POST',
+			'bodyContents' => '{"bodyParam":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+
+		// Check if the response contains a field called 'validatedBody'
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertArrayHasKey( 'validatedBody', $data );
+
+		// Check the value of the 'validatedBody' field
+		$validatedBody = $data['validatedBody'];
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $validatedBody );
+
+		// Check the value of the 'validatedParams' field.
+		// It should not contain bodyParam.
+		$validatedParams = $data['validatedParams'];
+		$this->assertArrayNotHasKey( 'bodyParam', $validatedParams );
+	}
+
+	public function testHandlerCanAccessValidatedParams() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/RouterTest/echo/bar' ),
+			'method' => 'POST',
+			'headers' => [ "content-type" => 'application/json' ],
+			'bodyContents' => '{}'
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+
+		// Check if the response contains a field called 'pathParams'
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertArrayHasKey( 'validatedParams', $data );
+
+		// Check the value of the 'pathParams' field
+		$validatedParams = $data['validatedParams'];
+		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ], (string)$response->getBody() );
+	}
 }

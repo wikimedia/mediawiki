@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\Rest\Handler;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Example handler
@@ -23,6 +24,29 @@ class EchoHandler extends Handler {
 			'pathParams' => $request->getPathParams(),
 			'headers' => $request->getHeaders(),
 			'parsedBody' => $request->getParsedBody(),
+			'validatedBody' => $this->getValidatedBody(),
+			'validatedParams' => $this->getValidatedParams(),
+		];
+	}
+
+	public function getParamSettings() {
+		return [
+			'q' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+			],
+			'pathParam' => [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_TYPE => 'string',
+			],
+			'postParam' => [
+				self::PARAM_SOURCE => 'post',
+				ParamValidator::PARAM_TYPE => 'integer',
+			],
+			'bodyParam' => [
+				self::PARAM_SOURCE => 'body',
+				ParamValidator::PARAM_TYPE => 'string',
+			],
 		];
 	}
 
