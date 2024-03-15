@@ -40,7 +40,7 @@ class QueryBuilderFromRawSql {
 		SQLPlatform::QUERY_CHANGE_ROWS |
 		SQLPlatform::QUERY_CHANGE_SCHEMA |
 		SQLPlatform::QUERY_CHANGE_LOCKS
-	);
+	) & ~SQLPlatform::QUERY_IGNORE_DBO_TRX;
 
 	/**
 	 * @param string $sql
