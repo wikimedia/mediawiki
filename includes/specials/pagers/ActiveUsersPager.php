@@ -43,9 +43,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup Pager
  */
 class ActiveUsersPager extends UsersPager {
-	/** @var HideUserUtils */
-	private $hideUserUtils;
-
 	/**
 	 * @var FormOptions
 	 */
@@ -94,11 +91,11 @@ class ActiveUsersPager extends UsersPager {
 			$dbProvider,
 			$userGroupManager,
 			$userIdentityLookup,
+			$hideUserUtils,
 			null,
 			null
 		);
 
-		$this->hideUserUtils = $hideUserUtils;
 		$this->RCMaxAge = $this->getConfig()->get( MainConfigNames::ActiveUserDays );
 		$this->requestedUser = '';
 

@@ -30,6 +30,7 @@ use HTMLInfoField;
 use HTMLSelectField;
 use HTMLSubmitField;
 use HTMLUserTextField;
+use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
@@ -82,6 +83,9 @@ class UsersPager extends AlphabeticPager {
 	/** @var int */
 	protected $blockTargetReadStage;
 
+	/** @var HideUserUtils */
+	protected $hideUserUtils;
+
 	private HookRunner $hookRunner;
 	private LinkBatchFactory $linkBatchFactory;
 	private UserGroupManager $userGroupManager;
@@ -94,6 +98,7 @@ class UsersPager extends AlphabeticPager {
 	 * @param IConnectionProvider $dbProvider
 	 * @param UserGroupManager $userGroupManager
 	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param HideUserUtils $hideUserUtils
 	 * @param string|null $par
 	 * @param bool|null $including Whether this page is being transcluded in
 	 * another page
@@ -105,6 +110,7 @@ class UsersPager extends AlphabeticPager {
 		IConnectionProvider $dbProvider,
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
+		HideUserUtils $hideUserUtils,
 		$par,
 		$including
 	) {
@@ -158,6 +164,7 @@ class UsersPager extends AlphabeticPager {
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->blockTargetReadStage = $this->getConfig()
 			->get( MainConfigNames::BlockTargetMigrationStage ) & SCHEMA_COMPAT_READ_MASK;
+		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/**
@@ -177,15 +184,23 @@ class UsersPager extends AlphabeticPager {
 
 		// Don't show hidden names
 		if ( !$this->canSeeHideuser() ) {
-			if ( $this->blockTargetReadStage === SCHEMA_COMPAT_READ_OLD ) {
-				$conds['ipb_deleted'] = [ null, 0 ];
-			} else {
-				// With multiblocks a target might be blocked with both deleted
-				// and non-deleted options. WHERE bl_deleted=0 would filter out
-				// deleted blocks but we would still see the user with a
-				// non-deleted block. So we need HAVING.
-				$options['HAVING']['deleted'] = [ null, 0 ];
-			}
+			$conds[] = $this->hideUserUtils->getExpression( $dbr );
+			$deleted = '1=0';
+		} else {
+			// In MySQL, there's no separate boolean type so getExpression()
+			// effectively returns an integer, and MAX() works on the result of it.
+			// In PostgreSQL, getExpression() returns a special boolean type which
+			// can't go into MAX(). So we have to cast it to support PostgreSQL.
+
+			// A neater PostgreSQL-only solution would be bool_or(), but MySQL
+			// doesn't have that or need it. We could add a wrapper to SQLPlatform
+			// which returns MAX() on MySQL and bool_or() on PostgreSQL.
+
+			// This would not be necessary if we used "GROUP BY user_name,user_id",
+			// but MariaDB forgets how to use indexes if you do that.
+			$deleted = 'MAX(' . $dbr->buildIntegerCast(
+				$this->hideUserUtils->getExpression( $dbr, 'user_id', HideUserUtils::HIDDEN_USERS )
+			) . ')';
 		}
 
 		if ( $this->requestedGroup != '' || $this->temporaryGroupsOnly ) {
@@ -226,7 +241,7 @@ class UsersPager extends AlphabeticPager {
 					'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
 					'edits' => 'MAX(user_editcount)',
 					'creation' => 'MIN(user_registration)',
-					'deleted' => 'MAX(ipb_deleted)', // block/hide status
+					'deleted' => $deleted, // block/hide status
 					'sitewide' => 'MAX(ipb_sitewide)'
 				],
 				'options' => $options,
@@ -256,7 +271,7 @@ class UsersPager extends AlphabeticPager {
 					'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
 					'edits' => 'MAX(user_editcount)',
 					'creation' => 'MIN(user_registration)',
-					'deleted' => 'MAX(bl_deleted)', // block/hide status
+					'deleted' => $deleted, // block/hide status
 					'sitewide' => 'MAX(bl_sitewide)'
 				],
 				'options' => $options,
