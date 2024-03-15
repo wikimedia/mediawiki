@@ -106,7 +106,7 @@ class ParserCache {
 	/** @var JsonCodec */
 	private $jsonCodec;
 
-	/** @var IBufferingStatsdDataFactory|StatsFactory */
+	/** @var StatsFactory */
 	private $stats;
 
 	/** @var LoggerInterface */
@@ -141,7 +141,7 @@ class ParserCache {
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
 	 * @param HookContainer $hookContainer
 	 * @param JsonCodec $jsonCodec
-	 * @param IBufferingStatsdDataFactory|StatsFactory $stats
+	 * @param StatsFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
 	 * @param WikiPageFactory $wikiPageFactory
@@ -153,7 +153,7 @@ class ParserCache {
 		string $cacheEpoch,
 		HookContainer $hookContainer,
 		JsonCodec $jsonCodec,
-		$stats,
+		StatsFactory $stats,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
 		WikiPageFactory $wikiPageFactory,
@@ -221,19 +221,13 @@ class ParserCache {
 		$contentModel = $this->getContentModelFromPage( $page );
 		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
 
-		if ( $this->stats instanceof StatsFactory ) {
-			$this->stats->getCounter( 'ParserCache_operation_total' )
-				->setLabel( 'name', $this->name )
-				->setLabel( 'contentModel', $contentModel )
-				->setLabel( 'status', $status )
-				->setLabel( 'reason', $reason ?: 'n/a' )
-				->copyToStatsdAt( "{$this->name}.{$contentModel}.{$metricSuffix}" )
-				->increment();
-		}
-
-		if ( $this->stats instanceof IBufferingStatsdDataFactory ) {
-			$this->stats->increment( "{$this->name}.{$contentModel}.{$metricSuffix}" );
-		}
+		$this->stats->getCounter( 'ParserCache_operation_total' )
+			->setLabel( 'name', $this->name )
+			->setLabel( 'contentModel', $contentModel )
+			->setLabel( 'status', $status )
+			->setLabel( 'reason', $reason ?: 'n/a' )
+			->copyToStatsdAt( "{$this->name}.{$contentModel}.{$metricSuffix}" )
+			->increment();
 	}
 
 	/**
@@ -244,18 +238,12 @@ class ParserCache {
 		$contentModel = $this->getContentModelFromPage( $page );
 		$renderReason = preg_replace( '/\W+/', '_', $renderReason );
 
-		if ( $this->stats instanceof StatsFactory ) {
-			$this->stats->getCounter( 'ParserCache_render_total' )
-				->setLabel( 'name', $this->name )
-				->setLabel( 'contentModel', $contentModel )
-				->setLabel( 'reason', $renderReason )
-				->copyToStatsdAt( "{$this->name}.{$contentModel}.reason.{$renderReason}" )
-				->increment();
-		}
-
-		if ( $this->stats instanceof IBufferingStatsdDataFactory ) {
-			$this->stats->increment( "{$this->name}.{$contentModel}.reason.{$renderReason}" );
-		}
+		$this->stats->getCounter( 'ParserCache_render_total' )
+			->setLabel( 'name', $this->name )
+			->setLabel( 'contentModel', $contentModel )
+			->setLabel( 'reason', $renderReason )
+			->copyToStatsdAt( "{$this->name}.{$contentModel}.reason.{$renderReason}" )
+			->increment();
 	}
 
 	/**

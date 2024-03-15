@@ -16,13 +16,13 @@ use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
-use NullStatsdDataFactory;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
 use WANObjectCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;
 
@@ -83,7 +83,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 			$expiry,
 			$epoch,
 			new JsonCodec(),
-			new NullStatsdDataFactory(),
+			StatsFactory::newNull(),
 			$logger ?: new NullLogger(),
 			$globalIdGenerator
 		);

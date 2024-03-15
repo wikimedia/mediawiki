@@ -12,10 +12,10 @@ use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
-use NullStatsdDataFactory;
 use ParserCache;
 use Psr\Log\NullLogger;
 use WANObjectCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -39,7 +39,7 @@ class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			$this->createHookContainer(),
 			new JsonCodec(),
-			new NullStatsdDataFactory(),
+			StatsFactory::newNull(),
 			new NullLogger(),
 			$options,
 			$this->createNoOpMock( TitleFactory::class ),

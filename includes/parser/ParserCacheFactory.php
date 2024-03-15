@@ -22,7 +22,6 @@
 namespace MediaWiki\Parser;
 
 use BagOStuff;
-use IBufferingStatsdDataFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\JsonCodec;
@@ -60,7 +59,7 @@ class ParserCacheFactory {
 	/** @var JsonCodec */
 	private $jsonCodec;
 
-	/** @var IBufferingStatsdDataFactory|StatsFactory */
+	/** @var StatsFactory */
 	private $stats;
 
 	/** @var LoggerInterface */
@@ -97,7 +96,7 @@ class ParserCacheFactory {
 	 * @param WANObjectCache $revisionOutputCacheBackend
 	 * @param HookContainer $hookContainer
 	 * @param JsonCodec $jsonCodec
-	 * @param IBufferingStatsdDataFactory|StatsFactory $stats
+	 * @param StatsFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param ServiceOptions $options
 	 * @param TitleFactory $titleFactory
@@ -109,7 +108,7 @@ class ParserCacheFactory {
 		WANObjectCache $revisionOutputCacheBackend,
 		HookContainer $hookContainer,
 		JsonCodec $jsonCodec,
-		$stats,
+		StatsFactory $stats,
 		LoggerInterface $logger,
 		ServiceOptions $options,
 		TitleFactory $titleFactory,

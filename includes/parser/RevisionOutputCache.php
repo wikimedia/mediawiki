@@ -24,7 +24,6 @@
 namespace MediaWiki\Parser;
 
 use CacheTime;
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use JsonException;
 use MediaWiki\Json\JsonCodec;
@@ -68,7 +67,7 @@ class RevisionOutputCache {
 	/** @var JsonCodec */
 	private $jsonCodec;
 
-	/** @var IBufferingStatsdDataFactory|StatsFactory */
+	/** @var StatsFactory */
 	private $stats;
 
 	/** @var LoggerInterface */
@@ -82,7 +81,7 @@ class RevisionOutputCache {
 	 * @param int $cacheExpiry Expiry for ParserOutput in $cache.
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
 	 * @param JsonCodec $jsonCodec
-	 * @param IBufferingStatsdDataFactory|StatsFactory $stats
+	 * @param StatsFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
@@ -92,7 +91,7 @@ class RevisionOutputCache {
 		int $cacheExpiry,
 		string $cacheEpoch,
 		JsonCodec $jsonCodec,
-		$stats,
+		StatsFactory $stats,
 		LoggerInterface $logger,
 		GlobalIdGenerator $globalIdGenerator
 	) {
@@ -113,18 +112,12 @@ class RevisionOutputCache {
 	private function incrementStats( string $status, string $reason = null ) {
 		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
 
-		if ( $this->stats instanceof StatsFactory ) {
-			$this->stats->getCounter( 'RevisionOutputCache_operation_total' )
-				->setLabel( 'name', $this->name )
-				->setLabel( 'status', $status )
-				->setLabel( 'reason', $reason ?: 'n/a' )
-				->copyToStatsdAt( "RevisionOutputCache.{$this->name}.{$metricSuffix}" )
-				->increment();
-		}
-
-		if ( $this->stats instanceof IBufferingStatsdDataFactory ) {
-			$this->stats->increment( "RevisionOutputCache.{$this->name}.{$metricSuffix}" );
-		}
+		$this->stats->getCounter( 'RevisionOutputCache_operation_total' )
+			->setLabel( 'name', $this->name )
+			->setLabel( 'status', $status )
+			->setLabel( 'reason', $reason ?: 'n/a' )
+			->copyToStatsdAt( "RevisionOutputCache.{$this->name}.{$metricSuffix}" )
+			->increment();
 	}
 
 	/**

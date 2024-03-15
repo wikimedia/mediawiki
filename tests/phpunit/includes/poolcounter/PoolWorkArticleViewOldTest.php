@@ -6,6 +6,7 @@ use MediaWiki\PoolCounter\PoolWorkArticleViewOld;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -67,7 +68,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 			60 * 60,
 			'20200101223344',
 			new JsonCodec(),
-			new NullStatsdDataFactory(),
+			StatsFactory::newNull(),
 			new NullLogger(),
 			$globalIdGenerator
 		);
