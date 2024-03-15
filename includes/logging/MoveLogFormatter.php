@@ -70,7 +70,7 @@ class MoveLogFormatter extends LogFormatter {
 
 		$params = $this->extractParameters();
 		$destTitle = Title::newFromText( $params[3] );
-		if ( !$destTitle ) {
+		if ( !$destTitle || !$destTitle->exists() ) {
 			return '';
 		}
 
