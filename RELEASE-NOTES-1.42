@@ -418,6 +418,7 @@ because of Phabricator reports.
   has been removed. Use MediaWiki\Specials\SpecialRandomPage instead.
 * Instancing MediaWiki\Specials\SpecialRandomPage without injected services has
   been removed.
+* mediawiki.ui/utilities.less with its three layout CSS classes has been removed
 * …
 
 === Deprecations in 1.42 ===
