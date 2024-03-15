@@ -163,6 +163,60 @@ class HTMLTextAreaField extends HTMLFormField {
 			'rows' => $this->getRows(),
 		] + $attribs );
 	}
+
+	public function getInputCodex( $value, $hasErrors ) {
+		$textareaClasses = [ 'cdx-text-area__textarea' ];
+		if ( $this->mClass !== '' ) {
+			$textareaClasses[] = $this->mClass;
+		}
+		if ( $this->mUseEditFont ) {
+			$userOptionsLookup = MediaWikiServices::getInstance()
+				->getUserOptionsLookup();
+			// The following classes can be used here:
+			// * mw-editfont-monospace
+			// * mw-editfont-sans-serif
+			// * mw-editfont-serif
+			$textareaClasses[] =
+				'mw-editfont-' .
+				$userOptionsLookup->getOption( $this->mParent->getUser(), 'editfont' );
+			$this->mParent->getOutput()->addModuleStyles( 'mediawiki.editfont.styles' );
+		}
+
+		$textareaAttribs = [
+			'id' => $this->mID,
+			'cols' => $this->getCols(),
+			'rows' => $this->getRows(),
+			'spellcheck' => $this->getSpellCheck(),
+			'class' => $textareaClasses
+		] + $this->getTooltipAndAccessKey();
+
+		if ( $this->mPlaceholder !== '' ) {
+			$textareaAttribs['placeholder'] = $this->mPlaceholder;
+		}
+
+		$allowedParams = [
+			'maxlength',
+			'minlength',
+			'tabindex',
+			'disabled',
+			'readonly',
+			'required',
+			'autofocus'
+		];
+		$textareaAttribs += $this->getAttributes( $allowedParams );
+
+		$textarea = Html::textarea( $this->mName, $value, $textareaAttribs );
+
+		$wrapperAttribs = [ 'class' => [ 'cdx-text-area' ] ];
+		if ( $hasErrors ) {
+			$wrapperAttribs['class'][] = 'cdx-text-area--status-error';
+		}
+		return Html::rawElement(
+			'div',
+			$wrapperAttribs,
+			$textarea
+		);
+	}
 }
 
 /** @deprecated since 1.42 */

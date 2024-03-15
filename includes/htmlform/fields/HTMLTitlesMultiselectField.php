@@ -146,6 +146,11 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		return [ 'mediawiki.widgets.TitlesMultiselectWidget' ];
 	}
 
+	public function getInputCodex( $value, $hasErrors ) {
+		$textAreaField = new HTMLTextAreaField( $this->mParams );
+		return $textAreaField->getInputCodex( $value, $hasErrors );
+	}
+
 }
 
 /** @deprecated since 1.42 */
