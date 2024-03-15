@@ -107,10 +107,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhere( $hideLogs );
 		}
 
-		$this->addTables( [ 'logging', 'actor' ] );
-		$this->addJoinConds( [
-			'actor' => [ 'JOIN', 'actor_id=log_actor' ],
-		] );
+		$this->addTables( 'logging' );
 
 		$this->addFields( [
 			'log_id',
@@ -119,6 +116,19 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_timestamp',
 			'log_deleted',
 		] );
+
+		$user = $params['user'];
+		if ( $this->fld_user || $this->fld_userid || $user !== null ) {
+			$this->addTables( 'actor' );
+			$this->addJoinConds( [
+				'actor' => [ 'JOIN', 'actor_id=log_actor' ],
+			] );
+			$this->addFieldsIf( [ 'actor_name', 'actor_user' ], $this->fld_user );
+			$this->addFieldsIf( 'actor_user', $this->fld_userid );
+			if ( $user !== null ) {
+				$this->addWhereFld( 'actor_name', $user );
+			}
+		}
 
 		if ( $this->fld_ids ) {
 			$this->addTables( 'page' );
@@ -132,8 +142,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			// scenarios, e.g. deletion, recreation.
 			$this->addFields( [ 'page_id', 'log_page' ] );
 		}
-		$this->addFieldsIf( [ 'actor_name', 'actor_user' ], $this->fld_user );
-		$this->addFieldsIf( 'actor_user', $this->fld_userid );
 		$this->addFieldsIf(
 			[ 'log_namespace', 'log_title' ],
 			$this->fld_title || $this->fld_parsedcomment
@@ -212,11 +220,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
-
-		$user = $params['user'];
-		if ( $user !== null ) {
-			$this->addWhereFld( 'actor_name', $user );
-		}
 
 		$title = $params['title'];
 		if ( $title !== null ) {
