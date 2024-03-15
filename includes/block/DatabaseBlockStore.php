@@ -478,12 +478,10 @@ class DatabaseBlockStore {
 
 		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
 			$userIdField = 'ipb_user';
-			$userNameField = 'ipb_address';
 			$addressField = 'ipb_address';
 			$schema = self::SCHEMA_IPBLOCKS;
 		} else {
 			$userIdField = 'bt_user';
-			$userNameField = 'bt_user_text';
 			$addressField = 'bt_address';
 			$schema = self::SCHEMA_BLOCK;
 		}
@@ -494,8 +492,15 @@ class DatabaseBlockStore {
 			$orConds[] = $db->expr( $userIdField, '=', array_unique( $userIds ) );
 		}
 		if ( $userNames ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument
-			$orConds[] = $db->expr( $userNameField, '=', array_unique( $userNames ) );
+			if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument -- array_unique() result is non-empty
+				$orConds[] = $db->expr( 'ipb_address', '=', array_unique( $userNames ) );
+			} else {
+				// Add bt_ip_hex to the condition since it is in the index
+				$orConds[] = $db->expr( 'bt_ip_hex', '=', null )
+					// @phan-suppress-next-line PhanTypeMismatchArgument -- array_unique() result is non-empty
+					->and( 'bt_user_text', '=', array_unique( $userNames ) );
+			}
 		}
 		if ( $addresses ) {
 			// @phan-suppress-next-line PhanTypeMismatchArgument
