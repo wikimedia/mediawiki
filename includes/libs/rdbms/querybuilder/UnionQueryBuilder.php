@@ -14,6 +14,12 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  * @ingroup Database
  */
 class UnionQueryBuilder {
+	/** @var string sort the results in ascending order */
+	public const SORT_ASC = 'ASC';
+
+	/** @var string sort the results in descending order */
+	public const SORT_DESC = 'DESC';
+
 	/**
 	 * @var SelectQueryBuilder[]
 	 */
@@ -162,12 +168,83 @@ class UnionQueryBuilder {
 	 * @return IResultWrapper
 	 */
 	public function fetchResultSet() {
+		$query = new Query( $this->getSQL(), ISQLPlatform::QUERY_CHANGE_NONE, 'SELECT' );
+		return $this->db->query( $query, $this->caller );
+	}
+
+	/**
+	 * Run the constructed UNION query, and return a single field extracted
+	 * from the first result row. If there were no result rows, false is
+	 * returned. This may only be called when only one field has been added to
+	 * the constituent queries.
+	 *
+	 * @since 1.42
+	 * @return mixed
+	 * @return-taint tainted
+	 */
+	public function fetchField() {
+		$this->limit( 1 );
+		foreach ( $this->fetchResultSet() as $row ) {
+			$row = (array)$row;
+			if ( count( $row ) !== 1 ) {
+				throw new \UnexpectedValueException(
+					__METHOD__ . ' expects the query to have only one field' );
+			}
+			return $row[ array_key_first( $row ) ];
+		}
+		return false;
+	}
+
+	/**
+	 * Run the constructed UNION query, and extract a single field from each
+	 * result row, returning an array containing all the values. This may only
+	 * be called when only one field has been added to the constituent queries.
+	 *
+	 * @since 1.42
+	 * @return array
+	 * @return-taint tainted
+	 */
+	public function fetchFieldValues() {
+		$values = [];
+		foreach ( $this->fetchResultSet() as $row ) {
+			$row = (array)$row;
+			if ( count( $row ) !== 1 ) {
+				throw new \UnexpectedValueException(
+					__METHOD__ . ' expects the query to have only one field' );
+			}
+			$values[] = $row[ array_key_first( $row ) ];
+		}
+		return $values;
+	}
+
+	/**
+	 * Run the constructed UNION query, and return the first result row. If
+	 * there were no results, return false.
+	 *
+	 * @since 1.42
+	 * @return \stdClass|false
+	 * @return-taint tainted
+	 */
+	public function fetchRow() {
+		$this->limit( 1 );
+		foreach ( $this->fetchResultSet() as $row ) {
+			return $row;
+		}
+		return false;
+	}
+
+	/**
+	 * Get the SQL query string which would be used by fetchResultSet().
+	 *
+	 * @since 1.42
+	 * @return string
+	 */
+	public function getSQL() {
 		$sqls = [];
 		foreach ( $this->sqbs as $sqb ) {
 			$sqls[] = $sqb->getSQL();
 		}
-		$sql = $this->db->unionQueries( $sqls, $this->all, $this->options );
-		$query = new Query( $sql, ISQLPlatform::QUERY_CHANGE_NONE, 'SELECT' );
-		return $this->db->query( $query, $this->caller );
+		return $this->db->unionQueries( $sqls, $this->all, $this->options );
 	}
+
 }
