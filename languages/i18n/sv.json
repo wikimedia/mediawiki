@@ -1857,7 +1857,7 @@
 	"uploaded-script-svg": "Hittade skriptelementet ”$1” i den uppladdade SVG-filen.",
 	"uploaded-hostile-svg": "Hittade osäker CSS i den uppladdade filens stilelement.",
 	"uploaded-event-handler-on-svg": "Att ange event-handler-attribut <code>$1=\"$2\"</code> är inte tillåtet i SVG-filer.",
-	"uploaded-href-attribute-svg": "Elementen <a> kan endast länkar (href) till data: (inbäddad fil), http:// eller https:// eller fragmentmål (#, inom samma dokument). För andra element, som <image>, endast data: och fragment är tillåtna. Försök att bädda in bilder när du exporterar din SVG. Hittade <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Elementen &lt;a&gt; kan endast länkar (href) till data: (inbäddad fil), http:// eller https:// eller fragmentmål (#, inom samma dokument). För andra element, som <image>, endast data: och fragment är tillåtna. Försök att bädda in bilder när du exporterar din SVG. Hittade <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Hittade href till osäker data: URI-mål <code>&lt;$1 $2=\"$3\"&gt;</code> i den uppladdade SVG-filen.",
 	"uploaded-animate-svg": "Hittades taggen ”animate” som kan ändra href med hjälp av attributen ”from” <code>&lt;$1 $2=\"$3\"&gt;</code> i den uppladdade SVG-filen.",
 	"uploaded-setting-event-handler-svg": "Att ange event-handler-attribut är blockerat. Hittade <code>&lt;$1 $2=\"$3\"&gt;</code> i den uppladdade SVG-filen.",

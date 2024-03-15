@@ -1903,7 +1903,7 @@
 	"uploaded-script-svg": "於已上傳的 SVG 檔案中找到可編寫腳本的標籤 \"$1\"。",
 	"uploaded-hostile-svg": "於已上傳的 SVG 檔案的樣式標籤中找到不安全的 CSS。",
 	"uploaded-event-handler-on-svg": "不允許在 SVG 檔案設定 event-handler 屬性 <code>$1=\"$2\"</code>。",
-	"uploaded-href-attribute-svg": "<a> 元素僅可用來連結（href）內嵌檔案（data:）、超文本傳輸協定（http://）、超文本傳輸安全協定（https://），或是片段（#，相同文件）目標。對於其它像是 <image> 元素僅允許內嵌檔案和片段。嘗試當匯出您的 SVG 時嵌入圖片。找尋<code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; 元素僅可用來連結（href）內嵌檔案（data:）、超文本傳輸協定（http://）、超文本傳輸安全協定（https://），或是片段（#，相同文件）目標。對於其它像是 <image> 元素僅允許內嵌檔案和片段。嘗試當匯出您的 SVG 時嵌入圖片。找尋<code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "於已上傳的 SVG 檔案中找到 href 連結至不安全的資料：URI 目標為 <code>&lt;$1 $2=\"$3\"&gt;</code>。",
 	"uploaded-animate-svg": "於已上傳的 SVG 檔案中找到 \"animate\" 標籤可能會使用 \"from\" 屬性 <code>&lt;$1 $2=\"$3\"&gt;</code> 更改 href。",
 	"uploaded-setting-event-handler-svg": "於已上傳的 SVG 檔案中找到 <code>&lt;$1 $2=\"$3\"&gt;</code>，已禁止設定 event-handler 屬性。",

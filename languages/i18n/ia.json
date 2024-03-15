@@ -1776,7 +1776,7 @@
 	"uploaded-script-svg": "Un elemento de script “$1” se trova in le file SVG incargate.",
 	"uploaded-hostile-svg": "Certe codice CSS insecur se trova in le elemento de stilo del file SVG incargate.",
 	"uploaded-event-handler-on-svg": "Fixar attributos de gestion de eventos <code>$1=\"$2\"</code> non es permittite in files SVG.",
-	"uploaded-href-attribute-svg": "Le elementos <a> in files SVG pote solmente ligar (href) a datos: files incastrate, adresses http:// o https:// o marcatores de fragmento (#, same-document). Pro altere elementos, solmente data: e fragmentos es permittite. Essaya a incastrar imagines quando tu exporta tu SVG. Trovate: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Le elementos &lt;a&gt; in files SVG pote solmente ligar (href) a datos: files incastrate, adresses http:// o https:// o marcatores de fragmento (#, same-document). Pro altere elementos, solmente data: e fragmentos es permittite. Essaya a incastrar imagines quando tu exporta tu SVG. Trovate: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Un href a datos non secur: le URI <code>&lt;$1 $2=\"$3\"&gt;</code> se trova in le file SVG incargate.",
 	"uploaded-animate-svg": "Un etiquetta “animate” que poterea cambiar le href, usante le attributo “from” <code>&lt;$1 $2=\"$3\"&gt;</code>, se trova in le file SVG incargate.",
 	"uploaded-setting-event-handler-svg": "Fixar le attributos de gestion de eventos non es permittite, ma le codice <code>&lt;$1 $2=\"$3\"&gt;</code> se trova in le file SVG incargate.",

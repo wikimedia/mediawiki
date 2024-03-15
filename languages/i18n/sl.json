@@ -1783,7 +1783,7 @@
 	"uploaded-script-svg": "V naloženi datoteki SVG je bil najden skriptni element »$1«.",
 	"uploaded-hostile-svg": "V slogovnem elementu naložene datoteke SVG je bil najden nevaren CSS.",
 	"uploaded-event-handler-on-svg": "Določanje atributov obravnavalnika dogodkov <code>$1=\"$2\"</code> v datotekah SVG ni dovoljeno.",
-	"uploaded-href-attribute-svg": "Elementi <a> se lahko povezujejo (href) samo na cilje data: (vdelana datoteka), http://, https:// ali sidro (#, v istem dokumentu). Za druge elemente, kot je <image>, sta dovoljena samo data: in sidro. Med izvozom svojega SVG poskusite slike vdelati. Najdeno je bilo <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Elementi &lt;a&gt; se lahko povezujejo (href) samo na cilje data: (vdelana datoteka), http://, https:// ali sidro (#, v istem dokumentu). Za druge elemente, kot je <image>, sta dovoljena samo data: in sidro. Med izvozom svojega SVG poskusite slike vdelati. Najdeno je bilo <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Najden je bil href na nevaren podatek: cilj URI <code>&lt;$1 $2=\"$3\"&gt;</code> v naloženi datoteki SVG.",
 	"uploaded-animate-svg": "V naloženi datoteki SVG smo našli značko »animate«, ki morda z uporabo atributa »from« <code>&lt;$1 $2=\"$3\"&gt;</code> spreminja href.",
 	"uploaded-setting-event-handler-svg": "Določanje atributov obravnavalnika dogodkov je blokirano; v naloženi datoteki SVG je bilo najdeno <code>&lt;$1 $2=\"$3\"&gt;</code>.",

@@ -1750,7 +1750,7 @@
 	"uploaded-script-svg": "Löydyi varattavu elementu $1 tallendetus SVG-tiijostos.",
 	"uploaded-hostile-svg": "Löydyi varattavu CSS-koudu tallendetun SVG-tiijoston stiilielementas.",
 	"uploaded-event-handler-on-svg": "Tapahtumien muokkuajan atribuuttoin azetus <code>$1=\"$2\"</code> ei ole luvalline SVG-tiijostoloih niškoi.",
-	"uploaded-href-attribute-svg": "<a>-elementat voijah linkuttua (href) vai kohtah data: (upotettu tiijosto), http://, https:// libo fragmentu (#, sama tiijosto). Toizis elementois, kui <image>, ollah luvallizet vai data: da fragmentu. Opi kuvien upottamistu, ku viet SVG-tiijostuo. Löydyi <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt;-elementat voijah linkuttua (href) vai kohtah data: (upotettu tiijosto), http://, https:// libo fragmentu (#, sama tiijosto). Toizis elementois, kui <image>, ollah luvallizet vai data: da fragmentu. Opi kuvien upottamistu, ku viet SVG-tiijostuo. Löydyi <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Tallendetus SVG-tiijostos lövvyttih varattavat tiijot: URI <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "Löydyi \"animate\"-tegmerki, kudai voi muuttua linkan \"from\"-atribuutan avul  <code>&lt;$1 $2=\"$3\"&gt;</code> tallendetus SVG-tiijostos.",
 	"uploaded-setting-event-handler-svg": "Tapahtumien muokkuajan atribuuttoin azetus on lukittu, tallendetus SVG-tiijostos löydyi koudu <code>&lt;$1 $2=\"$3\"&gt;</code>.",

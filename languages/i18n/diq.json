@@ -1719,7 +1719,7 @@
 	"uploaded-script-svg": "Bar biyaye dosyay SVG de kodbıyaye obce vineya: \"$1\"",
 	"uploaded-hostile-svg": "Bar bıyaye dosyay SVG de obcey  \"style\" de xırba CSS vineya .",
 	"uploaded-event-handler-on-svg": "Dosyay SVG de xas xısusiyetê event-handler  zey <code>$1=\"$2\"</code> eyar bıyayışi rê mısade nêdeyeno",
-	"uploaded-href-attribute-svg": "<a>obcey teyna (href) data: ( dosya), http:// ya zi https:// ya zi fragman (#, eyni dokuman) şena hedefanê gıre bo. Zey <image> u obceyê binan rê teyna data: u leteyan rê mısade deyeno. SVG teber dayış dê asayışi gum kerdışi bıcerrebnê. <code>&lt;$1 $2=\"$3\"&gt;</code> vineya.",
+	"uploaded-href-attribute-svg": "&lt;a&gt;obcey teyna (href) data: ( dosya), http:// ya zi https:// ya zi fragman (#, eyni dokuman) şena hedefanê gıre bo. Zey <image> u obceyê binan rê teyna data: u leteyan rê mısade deyeno. SVG teber dayış dê asayışi gum kerdışi bıcerrebnê. <code>&lt;$1 $2=\"$3\"&gt;</code> vineya.",
 	"uploaded-href-unsafe-target-svg": "Bar bıyaye dosyay SVG de <code>&lt;$1 $2=\"$3\"&gt;</code> hedefê href dê dataya bêemel: URI vineya.",
 	"uploaded-animate-svg": "Etiketê \"animate\" vineya , belka href'i vurneno ç. Barbiyaye Dosya da SVG de xısusê \"from\" karniyeno <code>&lt;$1 $2=\"$3\"&gt;</code>",
 	"uploaded-setting-event-handler-svg": "Weqa xas hunerê eyari bloqe beno, barbıyaye dosyay SVG <code>&lt;$1 $2=\"$3\"&gt;</code> vineyê.",

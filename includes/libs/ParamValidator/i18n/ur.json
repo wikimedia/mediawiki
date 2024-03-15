@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Muhammad Shuaib"
+		]
+	},
+	"paramvalidator-help-default": "طے شدہ: $1",
+	"paramvalidator-help-default-empty": "طے شدہ: (خالی)",
+	"paramvalidator-help-deprecated": "یہ پیرامیٹر اب متروک ہے۔",
+	"paramvalidator-help-multi-all": "تمام قدروں کی تعیین کے لیے <kbd>$1</kbd> کا استعمال کریں۔",
+	"paramvalidator-help-required": "یہ پیرامیٹر لازمی ہے۔",
+	"paramvalidator-help-type-boolean": "طرز: {{PLURAL:$1|1=بولین|2=بولین کی فہرست}}",
+	"paramvalidator-help-type-enum": "{{PLURAL:$1| 1 = ذیل کی قدروں میں سے کوئی ایک | 2 = قدریں (جنھیں U + 007C (پائپ) سے علاحدہ کیا گیا ہے، یا فہرست کو U + 001F سے شروع کریں اور U + 001F)}} سے علاحدہ کریں: $2",
+	"paramvalidator-help-type-limit": "طرز: عدد صحیح یا \"max\"",
+	"paramvalidator-help-type-presenceboolean": "طرز: بولین",
+	"paramvalidator-help-type-string-maxbytes": "$1 {{PLURAL:$1|بائٹ}} سے زیادہ نہیں ہو سکتا۔",
+	"paramvalidator-help-type-timestamp": "طرز: {{PLURAL:$1|1=مہر وقت|2=وقت کے مہر کی فہرست}}"
+}

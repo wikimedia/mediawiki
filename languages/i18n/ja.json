@@ -1898,7 +1898,7 @@
 	"uploaded-script-svg": "アップロードされたSVGファイルにスクリプト可能な要素「$1」が見つかりました。",
 	"uploaded-hostile-svg": "アップロードされたSVGファイルのスタイル要素に安全ではないCSSが見つかりました。",
 	"uploaded-event-handler-on-svg": "イベントハンドラをセットする属性 <code>$1=\"$2\"</code> は、SVGファイルを許可されていません。",
-	"uploaded-href-attribute-svg": "<a> 要素では、データ (埋め込みファイル)、http://、https://、フラグメント (#、ID 属性など) のターゲットにのみリンクできます。<image> などの他の要素では、データとフラグメントのみが使用できます。SVG をエクスポートする際は画像を埋め込むようにしてください。アップロードされたファイルには <code>&lt;$1 $2=\"$3\"&gt;</code> が含まれています。",
+	"uploaded-href-attribute-svg": "&lt;a&gt; 要素では、データ (埋め込みファイル)、http://、https://、フラグメント (#、ID 属性など) のターゲットにのみリンクできます。<image> などの他の要素では、データとフラグメントのみが使用できます。SVG をエクスポートする際は画像を埋め込むようにしてください。アップロードされたファイルには <code>&lt;$1 $2=\"$3\"&gt;</code> が含まれています。",
 	"uploaded-href-unsafe-target-svg": "アップロードされた SVG ファイルの、安全ではないデータ URI にターゲット <code>&lt;$1 $2=\"$3\"&gt;</code> の href が見つかりました。",
 	"uploaded-animate-svg": "アップロードされたSVGファイルに、「from」属性 <code>&lt;$1 $2=\"$3\"&gt;</code> を使用した、href を変更させる可能性がある「animate」タグが見つかりました。",
 	"uploaded-setting-event-handler-svg": "アップロードされたSVGファイルに、ブロックされているイベントハンドラ属性が設定された <code>&lt;$1 $2=\"$3\"&gt;</code> が見つかりました。",

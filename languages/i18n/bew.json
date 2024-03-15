@@ -1739,7 +1739,7 @@
 	"uploaded-script-svg": "Ada unsur nyang kena keserat \"$1\" di berekas SVG nyang diangkat.",
 	"uploaded-hostile-svg": "Ada CSS nyang kaga' aman di unsur setil deri berekas SVG nyang diangkat.",
 	"uploaded-event-handler-on-svg": "Penyetèlan terèmpèlan ''event-handler'' <code>$1=\"$2\"</code> kaga' diboléin di berekas SVG.",
-	"uploaded-href-attribute-svg": "<a> unsur cuman bolé sènggètan (href) ke data: (berekas ketanem), http:// atawa https://, atawa petilan sasaran (#, sama-warkat). Bakal laèn-laèn unsur, kaya' <image>, cuman data: èn petilan nyang diboléin. Jal tanem gambar pas ngèkspor lu punya SVG. Ditemuin <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; unsur cuman bolé sènggètan (href) ke data: (berekas ketanem), http:// atawa https://, atawa petilan sasaran (#, sama-warkat). Bakal laèn-laèn unsur, kaya' <image>, cuman data: èn petilan nyang diboléin. Jal tanem gambar pas ngèkspor lu punya SVG. Ditemuin <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Ada href ke data nyang kaga' aman nyang ketemu: Sasaran URI <code>&lt;$1 $2=\"$3\"&gt;</code> di berekas SVG nyang diangkat.",
 	"uploaded-animate-svg": "Ada ketemu tenger \"gerakin\" nyang barangkali ngerobah href, paké terèmpèlan \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> di berekas SVG nyang diangkat.",
 	"uploaded-setting-event-handler-svg": "Penyetèlan terèmpèlan ''event-handler'' diblokir, ada ketemu <code>&lt;$1 $2=\"$3\"&gt;</code> di berekas SVG nyang diangkat.",

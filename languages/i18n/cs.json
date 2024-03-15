@@ -1815,7 +1815,7 @@
 	"uploaded-script-svg": "V načteném SVG souboru byl nalezen skriptovatelný element „$1“.",
 	"uploaded-hostile-svg": "V načteném SVG souboru bylo v elementu se styly nalezeno nebezpečné CSS.",
 	"uploaded-event-handler-on-svg": "Nastavování atributů pro obsluhu událostí <code>$1=\"$2\"</code> není v SVG souborech dovoleno.",
-	"uploaded-href-attribute-svg": "Elementy <a> smějí odkazovat (atributem href) jen na cíle využívající data: (vložený soubor), http://, https:// nebo fragment (#, obsah ve stejném dokumentu). U jiných elementů, např. <image>, jsou dovoleny pouze cíle data: a fragmenty. Při exportu do SVG zkuste obrázky vložit. Nalezeno <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Elementy &lt;a&gt; smějí odkazovat (atributem href) jen na cíle využívající data: (vložený soubor), http://, https:// nebo fragment (#, obsah ve stejném dokumentu). U jiných elementů, např. <image>, jsou dovoleny pouze cíle data: a fragmenty. Při exportu do SVG zkuste obrázky vložit. Nalezeno <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "V načteném SVG souboru byl nalezen href odkazující na nebezpečný cíl s datovým URI <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "V načteném SVG souboru byla nalezena značka „animate“, která by mohla měnit href, s atributem „from“ <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "Nastavování atributů pro obsluhu událostí je zablokováno, v načteném SVG souboru bylo nalezeno <code>&lt;$1 $2=\"$3\"&gt;</code>.",

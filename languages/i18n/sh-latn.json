@@ -1730,7 +1730,7 @@
 	"uploaded-script-svg": "Pronađen skriptni element \"$1\" u postavljenoj SVG datoteci.",
 	"uploaded-hostile-svg": "Pronađen nesiguran CSS u stilskom elementu postavljene SVG datoteke.",
 	"uploaded-event-handler-on-svg": "Nije dozvoljeno postavljanje atributa koji kontroliraju događaje <code>$1=\"$2\"</code> u SVG datotekama.",
-	"uploaded-href-attribute-svg": "<a> elementi se mogu povezati (href) samo s data: (umetnuta datoteka), http:// ili https://, ili pak odredištima koja su fragment (#, isti dokument). Za ostale elemente kao <image> dopušteni su samo data: i fragment. Umetnite slike prilikom izvoza SVG-a. Pronađeno je <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; elementi se mogu povezati (href) samo s data: (umetnuta datoteka), http:// ili https://, ili pak odredištima koja su fragment (#, isti dokument). Za ostale elemente kao <image> dopušteni su samo data: i fragment. Umetnite slike prilikom izvoza SVG-a. Pronađeno je <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Našao sam href s nesigurnim podacima: URI-svrhu <code>&lt;$1 $2=\"$3\"&gt;</code> u postavljenoj SVG datoteci.",
 	"uploaded-animate-svg": "Pronađena \"animate\" oznaka koja možda mijenja href koristeći se \"from\" atributom <code>&lt;$1 $2=\"$3\"&gt;</code> u postavljenoj SVG datoteci.",
 	"uploaded-setting-event-handler-svg": "Postavljanje kontrole događaja je blokirano, pronađeno <code>&lt;$1 $2=\"$3\"&gt;</code> u postavljenoj SVG datoteci.",

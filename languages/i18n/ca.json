@@ -1807,7 +1807,7 @@
 	"uploaded-script-svg": "S’ha trobat l’element programable «$1» al fitxer SVG carregat.",
 	"uploaded-hostile-svg": "S’ha trobat codi CSS no segur a l’element d’estil del fitxer SVG carregat.",
 	"uploaded-event-handler-on-svg": "No es permet establir els atributs de gestió d’esdeveniments <code>$1=\"$2\"</code> en fitxers SVG.",
-	"uploaded-href-attribute-svg": "Els elements <a> només poden enllaçar (href) amb objectius «data:» (fitxer incrustat), «http://», «https://» o de fragment («#», «same-document»). Proveu d'incrustar les imatges en exportar el vostre SVG. S'ha trobat <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Els elements &lt;a&gt; només poden enllaçar (href) amb objectius «data:» (fitxer incrustat), «http://», «https://» o de fragment («#», «same-document»). Proveu d'incrustar les imatges en exportar el vostre SVG. S'ha trobat <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "S’ha trobat un element «href» amb dades no segures: destinació URI <code>&lt;$1 $2=\"$3\"&gt;</code> en el fitxer SVG carregat.",
 	"uploaded-animate-svg": "S'ha trobat l'etiqueta «animate» que pot estar canviant l'href mitjançant l'atribut <code>&lt;$1 $2=\"$3\"&gt;</code> en el fitxer SVG carregat.",
 	"uploaded-setting-event-handler-svg": "La configuració d'atributs per la gestió d'esdeveniments està bloquejada. S'ha trobat <code>&lt;$1 $2=\"$3\"&gt;</code> al fitxer SVG pujat.",

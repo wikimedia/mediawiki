@@ -1660,7 +1660,7 @@
 	"uploaded-script-svg": "Kavet ez eus bet ul elfenn skriptadus \"$1\" er restr SVG pellgaset.",
 	"uploaded-hostile-svg": "Kavet ez eus bet ur CSS diasur en elfenn stil ur restr SVG.",
 	"uploaded-event-handler-on-svg": "N'eo ket aotreet spisaat perzhioù merañ darvoudoù <code>$1=\"$2\"</code> er restroù SVG.",
-	"uploaded-href-attribute-svg": "Ne ra ar balizennoù <a> nemet liammañ (href) war-zu  palioù data: (restr enframmet), http:// pe https://, pe darnenn (#, same-document). Evit balizennoù all, evel <image>, n’eo aotreet nement data: ha darnenn. Klaskit enframmañ skeudennoù pa esporzhit ho SVG. Kavet <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Ne ra ar balizennoù &lt;a&gt; nemet liammañ (href) war-zu  palioù data: (restr enframmet), http:// pe https://, pe darnenn (#, same-document). Evit balizennoù all, evel <image>, n’eo aotreet nement data: ha darnenn. Klaskit enframmañ skeudennoù pa esporzhit ho SVG. Kavet <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Kavet ez eus bet un href war-zu roadennoù diasur er restr SVG bet pellgaset : URI pal <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "Kavet ez eus bet un dikedenn \"vevaet\" a c'hallfe cheñch an href, en ur ober gant ar perzh \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> er restr SVG pellgaset.",
 	"uploaded-setting-event-handler-svg": "Stanket eo kefluniañ perzhioù dre ar merer darvoudoù, <code>&lt;$1 $2=\"$3\"&gt;</code> kavet er restr SVG bet pellgaset.",

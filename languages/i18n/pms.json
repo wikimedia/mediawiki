@@ -1673,7 +1673,7 @@
 	"uploaded-script-svg": "Element ëscrivìbil «$1» trovà ant l'archivi SVG carià.",
 	"uploaded-hostile-svg": "CSS nen sigur trovà ant l'element dë stil ëd n'archivi SVG carià.",
 	"uploaded-event-handler-on-svg": "Fissé dj'atribù ëd gestion d'eveniment <code>$1=\"$2\"</code> a l'é nen përmëttù ant j'archivi SVG.",
-	"uploaded-href-attribute-svg": "<a> j'element a peulo mach coleghé (href) a dat: (archivi contnù), http:// o https://, o frament (#, midem-document) dëstinatari. Për d'àutri element, com na <image>, mach dat: e frament as peul. Ch'a preuva a buté dle plance quand a espòrta sò SVG. Trovà <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; j'element a peulo mach coleghé (href) a dat: (archivi contnù), http:// o https://, o frament (#, midem-document) dëstinatari. Për d'àutri element, com na <image>, mach dat: e frament as peul. Ch'a preuva a buté dle plance quand a espòrta sò SVG. Trovà <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Trovà href a dat nen sigur: URI destinatari <code>&lt;$1 $2=\"$3\"&gt;</code> ant l'archivi SVG carià.",
 	"uploaded-animate-svg": "Trovà na tichëtta «animate», ch'a podrìa modifiché ël href an dovrand l'atribù «from» <code>&lt;$1 $2=\"$3\"&gt;</code> ant l'archivi SVG carià.",
 	"uploaded-setting-event-handler-svg": "Ël posissionament dj'atribù ëd mansé a l'é blocà, <code>&lt;$1 $2=\"$3\"&gt;</code> trovà ant l'archivi SVG carià.",

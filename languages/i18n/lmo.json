@@ -1719,7 +1719,7 @@
 	"uploaded-script-svg": "Trovad element de script \"$1\" in del fail caregad in formad SVG.",
 	"uploaded-hostile-svg": "Trovà CSS minga sicur in del element de stil del fail in formad SVG caregad.",
 	"uploaded-event-handler-on-svg": "Impostazzion di atribud de gestion <code>$1=\"$2\"</code> a l'è minga permettud in di fail SGV.",
-	"uploaded-href-attribute-svg": "<a> element i poden doma conligà (href) a data: (fail incorporad), http:// o https://, o destinazzion frment (#, istess document). Per i alter element, compagn de <image>, doma data: e frament a inn permettud. Prova a incorporà i imagin quand che t'esportet el to SVG. Trovad <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; element i poden doma conligà (href) a data: (fail incorporad), http:// o https://, o destinazzion frment (#, istess document). Per i alter element, compagn de <image>, doma data: e frament a inn permettud. Prova a incorporà i imagin quand che t'esportet el to SVG. Trovad <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Trovad href a dati minga sicuri: destinazzion URI <code>&lt;$1 $2=\"$3\"&gt;</code> in del fail SVG caregad.",
 	"uploaded-animate-svg": "Trovada l'eticheta \"animate\" che la podariss cambià href, cont el doprà l'atribud \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> in del SVG caregad.",
 	"uploaded-setting-event-handler-svg": "La determinazzion de la posizzion di atribud  l'è blocada, trovad <code>&lt;$1 $2=\"$3\"&gt;</code> in del fail SVG caregad.",

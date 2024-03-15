@@ -1825,7 +1825,7 @@
 	"uploaded-script-svg": "Fant et skriptelement «$1» i den opplastede SVG-filen.",
 	"uploaded-hostile-svg": "Fant usikker CSS i stilelementet til opplastet SVG-fil",
 	"uploaded-event-handler-on-svg": "Å sette event-handler-attributtene <code>$1=\"$2\"</code> tillates ikke i SVG-filer.",
-	"uploaded-href-attribute-svg": "<a>-elementer kan bare lenke (href) til data:- (innbygde filer), http(s)://- eller fragmentmål (#, samme dokument). For andre elementer som <image> tillates bare data:- og fragmentlenker. Prøv å bygge inn bilder når du eksporterer SVG-en din. Fant <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt;-elementer kan bare lenke (href) til data:- (innbygde filer), http(s)://- eller fragmentmål (#, samme dokument). For andre elementer som <image> tillates bare data:- og fragmentlenker. Prøv å bygge inn bilder når du eksporterer SVG-en din. Fant <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Fant href til usikre data: URI-mål <code>&lt;$1 $2=\"$3\"&gt;</code> i den opplastede SVG-filen.",
 	"uploaded-animate-svg": "Fant en «animate»-tagg som kan endre href, bruk attributtet «from» <code>&lt;$1 $2=\"$3\"&gt;</code> i den opplastede SVG-fila.",
 	"uploaded-setting-event-handler-svg": "Setting av event-handler-attributter er blokkert, fant <code>&lt;$1 $2=\"$3\"&gt;</code> i den opplastede SVG-fila.",
