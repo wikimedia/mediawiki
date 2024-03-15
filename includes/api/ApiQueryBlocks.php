@@ -31,7 +31,6 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\IPUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -209,14 +208,31 @@ class ApiQueryBlocks extends ApiQueryBase {
 						$userNames[] = $target;
 					}
 				}
-				$orConds = [];
-				if ( $addresses ) {
-					$orConds['bt_address'] = $addresses;
+				if ( $addresses && $userNames ) {
+					// Use a union, not "OR" (T360088)
+					$ids = $db->newUnionQueryBuilder()
+						->add( $db->newSelectQueryBuilder()
+							->select( 'bt_id' )
+							->from( 'block_target' )
+							->where( [ 'bt_address' => $addresses ] )
+						)
+						->add( $db->newSelectQueryBuilder()
+							->select( 'bt_id' )
+							->from( 'block_target' )
+							->join( 'user', null, 'user_id=bt_user' )
+							->where( [ 'user_name' => $userNames ] )
+						)
+						->caller( __METHOD__ )
+						->fetchFieldValues();
+					$this->addWhere( [ 'bt_id' => $ids ] );
+				} elseif ( $addresses ) {
+					$this->addWhere( [ 'bt_address' => $addresses ] );
+				} elseif ( $userNames ) {
+					$this->addWhere( [ 'block_target_user.user_name' => $userNames ] );
+				} else {
+					// Unreachable since $params['users'] is non-empty
+					$this->addWhere( '1=0' );
 				}
-				if ( $userNames ) {
-					$orConds['block_target_user.user_name'] = $userNames;
-				}
-				$this->addWhere( $db->makeList( $orConds, IDatabase::LIST_OR ) );
 			}
 			$this->addWhereFld( $bt_auto, 0 );
 		}
