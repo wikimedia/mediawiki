@@ -7997,3 +7997,9 @@ config-schema:
         description: |-
             Whether to use Codex in Special:Block form.
             This is a temporary feature flag.
+    ShowLogoutConfirmation:
+        default: false
+        type: boolean
+        description: |-
+            Whether to display a confirmation screen during user log out.
+            This is a temporary feature flag.

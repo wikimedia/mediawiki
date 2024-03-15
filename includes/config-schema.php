@@ -2512,6 +2512,7 @@ return [
 			'EnableEditRecovery' => false,
 			'EditRecoveryExpiry' => 2592000,
 			'UseCodexSpecialBlock' => false,
+			'ShowLogoutConfirmation' => false,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2988,6 +2989,7 @@ return [
 			'EnableEditRecovery' => 'boolean',
 			'EditRecoveryExpiry' => 'integer',
 			'UseCodexSpecialBlock' => 'boolean',
+			'ShowLogoutConfirmation' => 'boolean',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

@@ -4450,4 +4450,10 @@ class MainConfigNames {
 	 */
 	public const UseCodexSpecialBlock = 'UseCodexSpecialBlock';
 
+	/**
+	 * Name constant for the ShowLogoutConfirmation setting, for use with Config::get()
+	 * @see MainConfigSchema::ShowLogoutConfirmation
+	 */
+	public const ShowLogoutConfirmation = 'ShowLogoutConfirmation';
+
 }
