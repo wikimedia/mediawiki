@@ -1642,7 +1642,7 @@
 	"uploaded-script-svg": "Alcontróse l'elementu «$1» que puede recibir scripts nel ficheru SVG xubíu.",
 	"uploaded-hostile-svg": "Alcontróse CSS inseguru nel elementu d'estilu del ficheru SVG xubíu.",
 	"uploaded-event-handler-on-svg": "Nun se permite configurar los atributos de controladores de socesos <code>$1=\"$2\"</code> nos ficheros SVG.",
-	"uploaded-href-attribute-svg": "<a> los elementos solo pueden enllazar (href) con destinos «data:» (ficheru incrustáu), «http://», «https://» o de fragmentu («#», «same-document»). Pa otros elementos como <image>, sólo se permiten «data:» y fragmentu. Tenta incrustar les imaxes al esportar el SVG. Atopóse <code>&lt;$1 $2=\"$3\"&gt;</code>",
+	"uploaded-href-attribute-svg": "&lt;a&gt; los elementos solo pueden enllazar (href) con destinos «data:» (ficheru incrustáu), «http://», «https://» o de fragmentu («#», «same-document»). Pa otros elementos como <image>, sólo se permiten «data:» y fragmentu. Tenta incrustar les imaxes al esportar el SVG. Atopóse <code>&lt;$1 $2=\"$3\"&gt;</code>",
 	"uploaded-href-unsafe-target-svg": "Alcontróse un href a datos inseguros: la URI de destín <code>&lt;$1 $2=\"$3\"&gt;</code> nel ficheru SVG xubíu.",
 	"uploaded-animate-svg": "Alcontróse la etiqueta \"animate\" que puede cambiar href, usando l'atributu \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> nel ficheru SVG xubíu.",
 	"uploaded-setting-event-handler-svg": "Ta torgada la configuración d'atributos del xestor de socesos. Alcontróse <code>&lt;$1 $2=\"$3\"&gt;</code> nel ficheru SVG xubíu.",

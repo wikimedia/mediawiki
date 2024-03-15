@@ -1796,7 +1796,7 @@
 	"uploaded-script-svg": "Atopouse un elemento de comandos \"$1\" no ficheiro SVG subido.",
 	"uploaded-hostile-svg": "Atopouse CSS non seguro no elemento de estilo do ficheiro SVG subido.",
 	"uploaded-event-handler-on-svg": "Non está permitido fixar atributos de xestión de eventos <code>$1=\"$2\"</code> nos ficheiros SVG.",
-	"uploaded-href-attribute-svg": "Os elementos <a> só poden ligar (href) a datos: obxectivos (ficheiro incluído), http:// ou https://, ou fragmentos (#, mesmo-documento). Para outros elementos, como <image>, datos únicos: e fragmentos están permitidos. Tenta incluír imaxes cando exportes o teu SVG. Atopouse <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Os elementos &lt;a&gt; só poden ligar (href) a datos: obxectivos (ficheiro incluído), http:// ou https://, ou fragmentos (#, mesmo-documento). Para outros elementos, como <image>, datos únicos: e fragmentos están permitidos. Tenta incluír imaxes cando exportes o teu SVG. Atopouse <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Atopouse un href a datos non seguros: un enderezo URI <code>&lt;$1 $2=\"$3\"&gt;</code> no ficheiro SVG subido.",
 	"uploaded-animate-svg": "Atopouse unha etiqueta \"animate\", que podería cambiar o seu href, usando o atributo \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> no ficheiro SVG subido.",
 	"uploaded-setting-event-handler-svg": "Non está permitido fixar os atributos de xestión de eventos, mais atopouse <code>&lt;$1 $2=\"$3\"&gt;</code> no ficheiro SVG subido.",

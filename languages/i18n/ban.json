@@ -1773,7 +1773,7 @@
 	"uploaded-script-svg": "Kawéntenan élemén \"$1\" ring berkas SVG unggah.",
 	"uploaded-hostile-svg": "Kawéntenan CSS sané nénten aman ring élemén gaya berkas SVG sané kaunggah.",
 	"uploaded-event-handler-on-svg": "Panetapan atribut <i>event-handler</i> $1=\"$2\" nénten kalugra ring berkas SVG.",
-	"uploaded-href-attribute-svg": "<a> élemén wantah marsidayang manautang (href) nuju data: (berkas kataném), http:// or https://, utawi fragmén (#, dokumén sané pateh). Antuk élemén tiosan, sekadi <image>, wantah data: miwah fragmén sané kalugra. Coba dagingin gambar rikala ngékspor SVG Ida. Katemuin <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; élemén wantah marsidayang manautang (href) nuju data: (berkas kataném), http:// or https://, utawi fragmén (#, dokumén sané pateh). Antuk élemén tiosan, sekadi <image>, wantah data: miwah fragmén sané kalugra. Coba dagingin gambar rikala ngékspor SVG Ida. Katemuin <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Katemuin href ring data nénten aman: URI nyasarang <code>&lt;$1 $2=\"$3\"&gt;</code> ring berkas SVG sané kaunggah.",
 	"uploaded-animate-svg": "Katemuin tag \"animasi\" sané prasida nguah href, nganggén atribut \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> ring berkas SVG sané kaunggah.",
 	"uploaded-setting-event-handler-svg": "Panyetélan atribut pabakta-acara kacadel, katemuin <code>&lt;$1 $2=\"$3\"&gt;</code> ring berkas SVG sané kaunggah.",

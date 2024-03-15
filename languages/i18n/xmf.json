@@ -1759,7 +1759,7 @@
 	"uploaded-script-svg": "ნაძირებუ რე \"$1\" ელემენტი ეხარგელჷ SVG ფაილს.",
 	"uploaded-hostile-svg": "ეხარგელჷ SVG-ფაილიშ style ელემენტის ნაძირებუ რე ოშქურანჯი მაკათური CSS-შ კოდი.",
 	"uploaded-event-handler-on-svg": "event-handler ატრიბუტეფიშ <code>$1=\"$2\"</code> მერჩქინა ვა რე ალობამეჩამილი SVG ფაილეფს.",
-	"uploaded-href-attribute-svg": "<a>ელემნტეფქ შილებე ქემიარსხუან (href) მუნაჩემეფს: (embedded file), http://, https://, ვარ-და ფრანგემენტის (#, same-document). შხვა ელემენტეფიშო, მუჭომით რე <image>, ხვალე მუნაჩემი: დო ფრანგმენტი რე ალობამეჩამილი. ქოცადით გჷმირინუათ embedding images, მუჟამსჷთ აკეთენთ თქვანი SVG-შ ექსპორტისჷნ. ნაძირებუ რე <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt;ელემნტეფქ შილებე ქემიარსხუან (href) მუნაჩემეფს: (embedded file), http://, https://, ვარ-და ფრანგემენტის (#, same-document). შხვა ელემენტეფიშო, მუჭომით რე <image>, ხვალე მუნაჩემი: დო ფრანგმენტი რე ალობამეჩამილი. ქოცადით გჷმირინუათ embedding images, მუჟამსჷთ აკეთენთ თქვანი SVG-შ ექსპორტისჷნ. ნაძირებუ რე <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "ნაძირებუ რე href ოშქურანჯ მუნაჩემს: URI <code>&lt;$1 $2=\"$3\"&gt;</code> ეხარგელჷ SVG ფაილს.",
 	"uploaded-animate-svg": "ნაძირებუ რე \"animate\" ხინტკი, ნამუთ შილებე თირანდას href-ს, \"from\" ატრიბუტიშ, <code>&lt;$1 $2=\"$3\"&gt;</code>, გჷმორინაფათ ეხარგელჷ SVG ფაილს.",
 	"uploaded-setting-event-handler-svg": "event-handler ატრიბუტეფიშ მერჩქინა ბლოკირი რე, ნაძირებუ რე <code>&lt;$1 $2=\"$3\"&gt;</code> ეხარგელჷ SVG ფაილს.",

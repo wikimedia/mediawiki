@@ -1728,7 +1728,7 @@
 	"uploaded-script-svg": "B yãee \"$1\" sẽn tõe n gʋlsd bũmbã SVG faayã pʋgẽ.",
 	"uploaded-hostile-svg": "B yãee CSS sẽn pa yɩ sõma ne siglgã sẽn talld SVG faayã pʋgẽ.",
 	"uploaded-event-handler-on-svg": "B pa sak n yãk yell-gũudb sõor sẽn yaa <code>$1=\"$2\"</code> SVG faayẽ wã pʋgẽ ye.",
-	"uploaded-href-attribute-svg": "<a>D tõe n paama d sẽn dat n bãng bũmb ning sẽn be Biiblã pʋgẽ wã. Sã n yaa ne bũmb a taab, wala , yaa datã la b pa tõe n yiis-a ye. Bao n tall fotã n tall f SVG wã. A yãame.<image/> <code>&Lt;$1 $2°\"$3\"&gt;</code>",
+	"uploaded-href-attribute-svg": "&lt;a&gt;D tõe n paama d sẽn dat n bãng bũmb ning sẽn be Biiblã pʋgẽ wã. Sã n yaa ne bũmb a taab, wala , yaa datã la b pa tõe n yiis-a ye. Bao n tall fotã n tall f SVG wã. A yãame.<image/> <code>&Lt;$1 $2°\"$3\"&gt;</code>",
 	"uploaded-href-unsafe-target-svg": "B yãee href n na n yã n yã n bãnge: URI target <code>&lt;$1 $2=\"$3\"&gt;</code> SVG faayã pʋgẽ.",
 	"uploaded-animate-svg": "B yãee \"animate\" tag sẽn tõe n toeem hrefã, n tũnug ne \"from\" tagrã <code>&lt;$1 $2=\"$3\"&gt;</code> sẽn be SVG faayã pʋgẽ.",
 	"uploaded-setting-event-handler-svg": "B gɩdgame tɩ b yãk bũmb ning b sẽn maand n na n wilg tɩ b pa tõe n maan <code>&lt;$1 $2=\"$3\"&gt;</code> bũmb ning b sã n dat n maan ye.",

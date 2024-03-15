@@ -1717,7 +1717,7 @@
 	"uploaded-script-svg": "Igotako SVG fitxategian \"$1\" elementu aldagarria aurkitu egin da.",
 	"uploaded-hostile-svg": "Igotako SVG fitxategiko estilo elementuan segurua ez den CSS-a aurkitu da.",
 	"uploaded-event-handler-on-svg": "Ekitaldiaren <code>$1=\"$2\"</code> kudeatze-atributuak ezartzea ez da onartzen SVG fitxategietan.",
-	"uploaded-href-attribute-svg": "<a> elementuek soilik (href) datuei lotu diezaiekete: (fitxategi kapsulatua), http: // edo https: //, edo fragment (#, same-document) helburuak. Beste elementu batzuetarako, adibidez, <image>, soilik datuak eta zatiak onartzen dira. Saiatu zure irudiak SVG esportatzerakoan txikiagotzen. <code>&lt;$1 $2=\"$3\"&gt; </code> aurkitua.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; elementuek soilik (href) datuei lotu diezaiekete: (fitxategi kapsulatua), http: // edo https: //, edo fragment (#, same-document) helburuak. Beste elementu batzuetarako, adibidez, <image>, soilik datuak eta zatiak onartzen dira. Saiatu zure irudiak SVG esportatzerakoan txikiagotzen. <code>&lt;$1 $2=\"$3\"&gt; </code> aurkitua.",
 	"uploaded-href-unsafe-target-svg": "Babesgabeko datuentzako aurkitutako href-a: URI <code>&lt;$1 $2=\"$3\"&gt;</code> xedea igotako SVG fitxategian.",
 	"uploaded-animate-svg": "Igotako SVG fitxategian <code>&lt;$1 $2=\"$3\"&gt;</code> atributua erabiltzen ari da, href aldatzen ari daitekeen \"animate\" aurkitu den etiketarekin.",
 	"uploaded-setting-event-handler-svg": "Ekitaldi-kudeatzailearen atributuak ezartzea blokeatuta, bilatu <code>&lt;$1 $2=\"$3\"&gt;</code> igotako SVG fitxategian.",

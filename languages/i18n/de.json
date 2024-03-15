@@ -1891,7 +1891,7 @@
 	"uploaded-script-svg": "Skriptelement „$1“ in der hochgeladenen SVG-Datei gefunden.",
 	"uploaded-hostile-svg": "Unsicheres CSS im Styleelement der hochgeladenen SVG-Datei gefunden.",
 	"uploaded-event-handler-on-svg": "Das Festlegen von Ereignis-Handler-Attributen <code>$1=\"$2\"</code> ist in SVG-Dateien nicht erlaubt.",
-	"uploaded-href-attribute-svg": "<a>-Elemente können nur auf Daten verlinken (href): (eingebettete Datei), http://, https:// oder fragment-Ziele (#, gleiches Dokument). Für andere Elemente wie <image> sind nur data: und fragment erlaubt. Versuche beim Exportieren deiner SVG-Datei Bilder einzubinden. <code>&lt;$1 $2=\"$3\"&gt;</code> gefunden.",
+	"uploaded-href-attribute-svg": "&lt;a&gt;-Elemente können nur auf Daten verlinken (href): (eingebettete Datei), http://, https:// oder fragment-Ziele (#, gleiches Dokument). Für andere Elemente wie <image> sind nur data: und fragment erlaubt. Versuche beim Exportieren deiner SVG-Datei Bilder einzubinden. <code>&lt;$1 $2=\"$3\"&gt;</code> gefunden.",
 	"uploaded-href-unsafe-target-svg": "href zu unsicheren Daten gefunden: URI-Ziel <code>&lt;$1 $2=\"$3\"&gt;</code> in der hochgeladenen SVG-Datei.",
 	"uploaded-animate-svg": "Tag „animate“ gefunden, das href mithilfe des Attributs „from“ <code>&lt;$1 $2=\"$3\"&gt;</code> in der hochgeladenen SVG-Datei ändern könnte.",
 	"uploaded-setting-event-handler-svg": "Das Festlegen von Ereignis-Handler-Attributen ist gesperrt. <code>&lt;$1 $2=\"$3\"&gt;</code> in der hochgeladenen SVG-Datei gefunden.",

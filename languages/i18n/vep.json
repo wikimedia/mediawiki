@@ -1770,7 +1770,7 @@
 	"uploaded-script-svg": "Om löutud skriptan element \"$1\" sadud SVG failas.",
 	"uploaded-hostile-svg": "Om löutud varumatoi CSS-stiliden element, mitte om sadud SVG failaspäi.",
 	"uploaded-event-handler-on-svg": "Azjtegoiden ohjandusen atribut <code>$1=\"$2\"</code> ei rada SVG failas.",
-	"uploaded-href-attribute-svg": "<a> elementad voiba oigetada vaiše (href) tarbhaižile failoile: (ližatud fail), http:// libo https://, libo (#, nece-žo azjbumag). Toižiden elementoiden täht, mugoižiden ku <image>, voiba olda vaiše tedod: da lasktud tedoiden palad. Ladi ližata kuvid sinun SVG vedändan aigan. Om löutud <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; elementad voiba oigetada vaiše (href) tarbhaižile failoile: (ližatud fail), http:// libo https://, libo (#, nece-žo azjbumag). Toižiden elementoiden täht, mugoižiden ku <image>, voiba olda vaiše tedod: da lasktud tedoiden palad. Ladi ližata kuvid sinun SVG vedändan aigan. Om löutud <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Om löutud varumatomad tedod: URI target <code>&lt;$1 $2=\"$3\"&gt;</code> sadud SVG failas.",
 	"uploaded-animate-svg": "Om löutud \"animate\" teg, mitte voib vajehtada href kävutades \"from\" atribut <code>&lt;$1 $2=\"$3\"&gt;</code> sadud SVG failas.",
 	"uploaded-setting-event-handler-svg": "Azjtegoiden ohjandusen atributoiden tegemine om saubatud, om löutud <code>&lt;$1 $2=\"$3\"&gt;</code> sadud SVG failas.",

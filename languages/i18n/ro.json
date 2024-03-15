@@ -1781,7 +1781,7 @@
 	"uploaded-script-svg": "S-a găsit elementul „$1” scriptabil în fișierul SVG încărcat.",
 	"uploaded-hostile-svg": "S-a descoperit CSS vulnerabil în elementul de stil al fișierului SVG încărcat.",
 	"uploaded-event-handler-on-svg": "Setarea atributelor <code>$1=„$2”</code> de gestionare a evenimentului nu este permisă pentru fișierele SVG.",
-	"uploaded-href-attribute-svg": "Elementele <a> pot avea legături (href) doar către adrese care încep cu \"data:\" (fișiere incluse), \"http://\" ori \"https://\", sau cu \"#\" (fragmente din același document). Pentru alte elemente, precum <image>, sunt permise doar cele care încep cu \"data:\" și \"#\" (fragmente). Încercați să includeți și imaginile când exportați SVG-ul dvs. Am găsit <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Elementele &lt;a&gt; pot avea legături (href) doar către adrese care încep cu \"data:\" (fișiere incluse), \"http://\" ori \"https://\", sau cu \"#\" (fragmente din același document). Pentru alte elemente, precum <image>, sunt permise doar cele care încep cu \"data:\" și \"#\" (fragmente). Încercați să includeți și imaginile când exportați SVG-ul dvs. Am găsit <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "S-a găsit href către informații nesigure: destinație URI <code>&lt;$1 $2=\"$3\"&gt;</code> în fișierul SVG încărcat.",
 	"uploaded-animate-svg": "S-a găsit în fișierul SVG încărcat eticheta „animate” care ar putea modifica valoarea href folosind atributul „from” <code>&lt;$1 $2=„$3”&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "Setarea atributelor de gestionare a evenimentului nu este permisă; s-a găsit <code>&lt;$1 $2=„$3”&gt;</code> în fișierul SVG încărcat.",

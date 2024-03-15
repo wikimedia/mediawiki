@@ -1848,7 +1848,7 @@
 	"uploaded-script-svg": "Terdapat elemen terskrip \"$1\" dalam berkas SVG yang diunggah.",
 	"uploaded-hostile-svg": "Terdapat CSS yang tidak aman dalam elemen gaya berkas SVG yang diunggah.",
 	"uploaded-event-handler-on-svg": "Penetapan atribut ''event-handler'' <code>$1=\"$2\"</code> tidak diizinkan dalam berkas SVG.",
-	"uploaded-href-attribute-svg": "Elemen <a> hanya diizinkan untuk ditautkan (href) ke target data: (berkas tertanam), http:// atau https://, atau fragmen (#, dokumen yang sama). Untuk element lainnya, seperti <image>, hanya data: dan fragmen yang diperbolehkan. Coba masukkan gambar ketika mengekspor SVG. Ditemukan <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Elemen &lt;a&gt; hanya diizinkan untuk ditautkan (href) ke target data: (berkas tertanam), http:// atau https://, atau fragmen (#, dokumen yang sama). Untuk element lainnya, seperti <image>, hanya data: dan fragmen yang diperbolehkan. Coba masukkan gambar ketika mengekspor SVG. Ditemukan <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Menemukan href ke data tidak aman: URI menarget <code>&lt;$1 $2=\"$3\"&gt;</code> dalam berkas SVG yang diunggah.",
 	"uploaded-animate-svg": "Ditemukan tag \"animasi\" yang mungkin dapat mengubah href, menggunakan atribut \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> dalam berkas SVG yang diunggah.",
 	"uploaded-setting-event-handler-svg": "Penyetelan atribut ''event-handler'' diblokir, menemukan <code>&lt;$1 $2=\"$3\"&gt;</code> dalam berkas SVG yang diunggah.",

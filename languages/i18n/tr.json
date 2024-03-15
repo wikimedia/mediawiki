@@ -1884,7 +1884,7 @@
 	"uploaded-script-svg": "Yüklenen SVG dosyasında betiklenebilir (scriptable) \"$1\" öğe bulundu.",
 	"uploaded-hostile-svg": "Yüklenen SVG dosyasının stil öğesinde güvenli olmayan CSS bulundu.",
 	"uploaded-event-handler-on-svg": "SVG dosyalarında event-handler özniteliğini <code>$1=\"$2\"</code> şeklinde ayarlanmasına izin verilmiyor.",
-	"uploaded-href-attribute-svg": "<a>öğeler yalnızca (href) veri: (gömülü dosya), http:// veya https:// veya fragman (#, aynı belge) hedeflerine bağlanabilir. <image> gibi diğer öğeler için yalnızca veri: ve parçalara izin verilir. SVG'nizi dışa aktarırken görüntü gömmeyi deneyin. <code>&lt;$1 $2=\"$3\"&gt;</code> bulundu.",
+	"uploaded-href-attribute-svg": "&lt;a&gt;öğeler yalnızca (href) veri: (gömülü dosya), http:// veya https:// veya fragman (#, aynı belge) hedeflerine bağlanabilir. <image> gibi diğer öğeler için yalnızca veri: ve parçalara izin verilir. SVG'nizi dışa aktarırken görüntü gömmeyi deneyin. <code>&lt;$1 $2=\"$3\"&gt;</code> bulundu.",
 	"uploaded-href-unsafe-target-svg": "Güvenli olmayan veriler için href bulundu: Yüklenen SVG dosyasında URI hedefi <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "\"animate\" etiketi bulundu, href'i değiştiriyor olabilir. Yüklenen SVG dosyasındaki \"from\" özniteliği kullanılıyor <code>&lt;$1 $2=\"$3\"&gt;</code>",
 	"uploaded-setting-event-handler-svg": "Olay işleyicisi özniteliklerini ayarlama engellenir, yüklenen SVG dosyasında <code>&lt;$1 $2=\"$3\"&gt;</code> bulundu.",

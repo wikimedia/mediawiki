@@ -1874,7 +1874,7 @@
 	"uploaded-script-svg": "Scriptbaar element \"$1\" in het geüploade SVG-bestand gevonden.",
 	"uploaded-hostile-svg": "Onveilige CSS in het \"style\"-element van het geüploade SVG-bestand gevonden.",
 	"uploaded-event-handler-on-svg": "Het instellen van de event-handlereigenschappen <code>$1=\"$2\"</code> is niet toegestaan in SVG-bestanden.",
-	"uploaded-href-attribute-svg": "<a> elementen kunnen alleen verwijzen (href) naar data: (ingebed bestand), http:// of https://, of een url-fragment (#, van het document zelf). Voor andere elementen zoals <image> zijn alleen data: en url-fragmenten toegestaan. Probeer afbeeldingen in te voegen wanneer u uw SVG exporteert. Aangetroffen is <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; elementen kunnen alleen verwijzen (href) naar data: (ingebed bestand), http:// of https://, of een url-fragment (#, van het document zelf). Voor andere elementen zoals <image> zijn alleen data: en url-fragmenten toegestaan. Probeer afbeeldingen in te voegen wanneer u uw SVG exporteert. Aangetroffen is <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "href naar onveilig gegevens: URI-doel <code>&lt;$1 $2=\"$3\"&gt;</code> in het geüploade SVG-bestand gevonden.",
 	"uploaded-animate-svg": "\"animate\"-label gevonden in het geüploade svg-bestand die href zou kunnen veranderen, met behulp van het \"from\"-attribuut <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "Het instellen van de event-handlereigenschappen is geblokkeerd, <code>&lt;$1 $2=\"$3\"&gt;</code> gevonden in het geüploade SVG-bestand.",
