@@ -24,7 +24,6 @@ module.exports = {
 			'resources/src/mediawiki.language.specialCharacters',
 			'resources/src/moment',
 			'resources/src/oojs-global.js',
-			'resources/src/mediawiki.notification.convertmessagebox.js',
 			'resources/src/ooui-local.js'
 		]
 	},
