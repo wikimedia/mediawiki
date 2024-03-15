@@ -189,12 +189,19 @@ abstract class PrefixSearch {
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
 		$keys = [];
-		foreach ( $spFactory->getNames() as $page ) {
+		$listedPages = $spFactory->getListedPages();
+		foreach ( $listedPages as $page => $_obj ) {
 			$keys[$contLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
 		}
 
 		foreach ( $contLang->getSpecialPageAliases() as $page => $aliases ) {
-			if ( !in_array( $page, $spFactory->getNames() ) ) {# T22885
+			// Exclude localisation aliases for pages that are not defined (T22885),
+			// e.g. if an extension registers a page based on site configuration.
+			if ( !in_array( $page, $spFactory->getNames() ) ) {
+				continue;
+			}
+			// Exclude aliases for unlisted pages
+			if ( !isset( $listedPages[ $page ] ) ) {
 				continue;
 			}
 

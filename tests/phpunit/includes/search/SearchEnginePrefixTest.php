@@ -135,11 +135,11 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				'results' => [
 					'Special:ActiveUsers',
 					'Special:AllMessages',
-					'Special:AllMyUploads',
+					'Special:AllPages',
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Special:AllPages',
+					'Special:AncientPages',
 				],
 			] ],
 			[ [
@@ -159,7 +159,6 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				'Special page name',
 				'query' => 'Special:EditWatchlist',
 				'results' => [
-					'Special:EditWatchlist',
 				],
 			] ],
 			[ [
