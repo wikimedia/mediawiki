@@ -8,7 +8,7 @@
 	 *
 	 * Code that fires the postEdit hook should first set `wgRevisionId` and `wgCurRevisionId`
 	 * to the revision associated with the edit that triggered the postEdit hook, then fire
-	 * the postEdit hook, e.g.:
+	 * the postEdit hook.
 	 *
 	 * @example
 	 * mw.config.set( {
@@ -18,8 +18,8 @@
 	 * // Now fire the hook.
 	 * mw.hook( 'postEdit' ).fire();
 	 *
-	 * @event postEdit
-	 * @member mw.hook
+	 * @event ~'postEdit'
+	 * @memberof Hooks
 	 * @param {Object} [data] Optional data
 	 * @param {string|jQuery|Array} [data.message] Message that listeners
 	 *  should use when displaying notifications. String for plain text,
@@ -33,8 +33,8 @@
 	 * After the listener for #postEdit removes the notification.
 	 *
 	 * @deprecated
-	 * @event postEdit_afterRemoval
-	 * @member mw.hook
+	 * @event ~'postEdit.afterRemoval'
+	 * @memberof Hooks
 	 */
 
 	var config = require( './config.json' );

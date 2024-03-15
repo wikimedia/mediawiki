@@ -9,8 +9,8 @@
  * Similar to the {@link mw.hook#event-wikipage_content wikipage.content hook}
  * $editForm can still be detached when this hook is fired.
  *
- * @event wikipage_editform
- * @member mw.hook
+ * @event ~'wikipage.editform'
+ * @memberof Hooks
  * @param {jQuery} $editForm The most appropriate element containing the
  *   editform, usually #editform.
  */
