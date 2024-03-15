@@ -164,8 +164,8 @@ function onLoadData( pageData ) {
 	/**
 	 * Fired after EditRecovery has loaded any recovery data, added event handlers, etc.
 	 *
-	 * @event editRecovery_loadEnd
-	 * @member mw.hook
+	 * @event ~'editRecovery.loadEnd'
+	 * @memberof Hooks
 	 * @param {Object} editRecovery
 	 * @param {Function} editRecovery.fieldChangeHandler
 	 */

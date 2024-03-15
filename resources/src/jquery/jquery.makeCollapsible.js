@@ -403,8 +403,8 @@
 		 *
 		 * This gives an option to modify the collapsible behavior.
 		 *
-		 * @event wikipage_collapsibleContent
-		 * @member mw.hook
+		 * @event ~'wikipage.collapsibleContent'
+		 * @memberof Hooks
 		 * @param {jQuery} $collapsible An element that has been made collapsible
 		 */
 		mw.hook( 'wikipage.collapsibleContent' ).fire( this );
