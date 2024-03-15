@@ -42,6 +42,22 @@ class QueryBuilderFromRawSql {
 		SQLPlatform::QUERY_CHANGE_LOCKS
 	);
 
+	private const SCHEMA_CHANGE_VERBS = [
+		'CREATE',
+		'CREATE TEMPORARY',
+		'ALTER',
+		'DROP',
+	];
+
+	private const TRX_VERBS = [
+		'BEGIN',
+		'COMMIT',
+		'ROLLBACK',
+		'SAVEPOINT',
+		'RELEASE',
+		'ROLLBACK TO SAVEPOINT',
+	];
+
 	/**
 	 * @param string $sql
 	 * @param int $flags
@@ -49,11 +65,22 @@ class QueryBuilderFromRawSql {
 	 * @return Query
 	 */
 	public static function buildQuery( string $sql, $flags, string $tablePrefix = '' ) {
+		$verb = self::getQueryVerb( $sql );
+
 		if ( ( $flags & self::QUERY_CHANGE_MASK ) == 0 ) {
-			if ( !self::isWriteQuery( $sql ) ) {
-				$flags |= SQLPlatform::QUERY_CHANGE_NONE;
+			$isWriteQuery = self::isWriteQuery( $sql );
+			if ( $isWriteQuery ) {
+				if ( in_array( $verb, self::SCHEMA_CHANGE_VERBS, true ) ) {
+					$flags |= SQLPlatform::QUERY_CHANGE_SCHEMA;
+				} else {
+					$flags |= SQLPlatform::QUERY_CHANGE_ROWS;
+				}
 			} else {
-				$flags |= SQLPlatform::QUERY_CHANGE_ROWS;
+				if ( in_array( $verb, self::TRX_VERBS, true ) ) {
+					$flags |= SQLPlatform::QUERY_CHANGE_TRX;
+				} else {
+					$flags |= SQLPlatform::QUERY_CHANGE_NONE;
+				}
 			}
 
 			if ( self::isCreateTemporaryTable( $sql ) ) {
@@ -64,7 +91,7 @@ class QueryBuilderFromRawSql {
 		return new Query(
 			$sql,
 			$flags,
-			self::getQueryVerb( $sql ),
+			$verb,
 			self::getWriteTable( $sql, $tablePrefix )
 		);
 	}
