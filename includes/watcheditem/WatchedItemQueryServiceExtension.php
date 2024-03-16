@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -25,7 +25,7 @@ interface WatchedItemQueryServiceExtension {
 	 * @param UserIdentity $user
 	 * @param array $options Options from
 	 *  WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo()
-	 * @param IDatabase $db Database connection being used for the query
+	 * @param IReadableDatabase $db Database connection being used for the query
 	 * @param array &$tables Tables for Database::select()
 	 * @param array &$fields Fields for Database::select()
 	 * @param array &$conds Conditions for Database::select()
@@ -33,7 +33,7 @@ interface WatchedItemQueryServiceExtension {
 	 * @param array &$joinConds Join conditions for Database::select()
 	 */
 	public function modifyWatchedItemsWithRCInfoQuery( UserIdentity $user, array $options,
-		IDatabase $db, array &$tables, array &$fields, array &$conds, array &$dbOptions,
+		IReadableDatabase $db, array &$tables, array &$fields, array &$conds, array &$dbOptions,
 		array &$joinConds
 	);
 
@@ -44,7 +44,7 @@ interface WatchedItemQueryServiceExtension {
 	 * @param UserIdentity $user
 	 * @param array $options Options from
 	 *  WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo()
-	 * @param IDatabase $db Database connection being used for the query
+	 * @param IReadableDatabase $db Database connection being used for the query
 	 * @param array &$items array of pairs ( WatchedItem $watchedItem, string[] $recentChangeInfo ).
 	 *  May be truncated if necessary, in which case $startFrom must be updated.
 	 * @param IResultWrapper|bool $res Database query result
@@ -52,7 +52,7 @@ interface WatchedItemQueryServiceExtension {
 	 *  [ $recentChangeInfo['rc_timestamp'], $recentChangeInfo['rc_id'] ] from the first item
 	 *  removed.
 	 */
-	public function modifyWatchedItemsWithRCInfo( UserIdentity $user, array $options, IDatabase $db,
+	public function modifyWatchedItemsWithRCInfo( UserIdentity $user, array $options, IReadableDatabase $db,
 		array &$items, $res, &$startFrom
 	);
 
