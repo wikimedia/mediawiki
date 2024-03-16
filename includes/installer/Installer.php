@@ -848,8 +848,7 @@ abstract class Installer {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		// @phan-suppress-next-line PhanUndeclaredMethod
-		$status->value->insert(
+		$status->getDB()->insert(
 			'site_stats',
 			[
 				'ss_row_id' => 1,
