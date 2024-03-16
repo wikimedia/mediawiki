@@ -20,6 +20,8 @@
 
 /**
  * Interface for generic jobs only uses the parameters field and are JSON serializable.
+ * Jobs using this interface require `needsPage: false` to be set
+ * in the JobClasses configuration of their extension.json declaration.
  *
  * @stable to implement
  * @since 1.33
