@@ -4434,3 +4434,9 @@ $wgEditRecoveryExpiry = null;
  * @see MediaWiki\MainConfigSchema::UseCodexSpecialBlock
  */
 $wgUseCodexSpecialBlock = null;
+
+/**
+ * Config variable stub for the ShowLogoutConfirmation setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ShowLogoutConfirmation
+ */
+$wgShowLogoutConfirmation = null;

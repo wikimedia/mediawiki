@@ -12795,6 +12795,14 @@ class MainConfigSchema {
 		'type' => 'boolean',
 	];
 
+	/**
+	 * Whether to display a confirmation screen during user log out.
+	 * This is a temporary feature flag.
+	 */
+	public const ShowLogoutConfirmation = [
+		'default' => false,
+		'type' => 'boolean',
+	];
 	// endregion -- End Miscellaneous
 
 }
