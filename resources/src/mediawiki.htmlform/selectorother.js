@@ -2,62 +2,59 @@
  * HTMLForm enhancements:
  * Animate the SelectOrOther fields, to only show the text field when 'other' is selected.
  */
-( function () {
 
+/**
+ * jQuery plugin to fade or snap to visible state.
+ *
+ * @memberof jQueryPlugins
+ * @method goIn
+ * @param {boolean} [instantToggle=false]
+ * @return {jQuery}
+ */
+$.fn.goIn = function ( instantToggle ) {
+	if ( instantToggle === true ) {
+		return this.show();
+	}
+	return this.stop( true, true ).fadeIn();
+};
+
+/**
+ * jQuery plugin to fade or snap to hiding state.
+ *
+ * @memberof jQueryPlugins
+ * @method goOut
+ * @param {boolean} [instantToggle=false]
+ * @return {jQuery}
+ */
+$.fn.goOut = function ( instantToggle ) {
+	if ( instantToggle === true ) {
+		return this.hide();
+	}
+	return this.stop( true, true ).fadeOut();
+};
+
+mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 	/**
-	 * jQuery plugin to fade or snap to visible state.
-	 *
-	 * @memberof jQueryPlugins
-	 * @method goIn
-	 * @param {boolean} [instantToggle=false]
-	 * @return {jQuery}
+	 * @ignore
+	 * @param {boolean|jQuery.Event} instant
 	 */
-	$.fn.goIn = function ( instantToggle ) {
-		if ( instantToggle === true ) {
-			return this.show();
+	function handleSelectOrOther( instant ) {
+		var $select = $( this ).find( 'select' ),
+			$other = $( this ).find( 'input' );
+		$other = $other.add( $other.siblings( 'br' ) );
+		if ( $select.val() === 'other' ) {
+			$other.goIn( instant );
+		} else {
+			$other.goOut( instant );
 		}
-		return this.stop( true, true ).fadeIn();
-	};
+	}
 
-	/**
-	 * jQuery plugin to fade or snap to hiding state.
-	 *
-	 * @memberof jQueryPlugins
-	 * @method goOut
-	 * @param {boolean} [instantToggle=false]
-	 * @return {jQuery}
-	 */
-	$.fn.goOut = function ( instantToggle ) {
-		if ( instantToggle === true ) {
-			return this.hide();
-		}
-		return this.stop( true, true ).fadeOut();
-	};
-
-	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		/**
-		 * @ignore
-		 * @param {boolean|jQuery.Event} instant
-		 */
-		function handleSelectOrOther( instant ) {
-			var $select = $( this ).find( 'select' ),
-				$other = $( this ).find( 'input' );
-			$other = $other.add( $other.siblings( 'br' ) );
-			if ( $select.val() === 'other' ) {
-				$other.goIn( instant );
-			} else {
-				$other.goOut( instant );
-			}
-		}
-
-		// Exclude OOUI widgets, since they're infused and SelectWithInputWidget
-		// is responsible for this logic.
-		$root
-			.on( 'change', '.mw-htmlform-select-or-other:not(.oo-ui-widget)', handleSelectOrOther )
-			.find( '.mw-htmlform-select-or-other:not(.oo-ui-widget)' )
-			.each( function () {
-				handleSelectOrOther.call( this, true );
-			} );
-	} );
-
-}() );
+	// Exclude OOUI widgets, since they're infused and SelectWithInputWidget
+	// is responsible for this logic.
+	$root
+		.on( 'change', '.mw-htmlform-select-or-other:not(.oo-ui-widget)', handleSelectOrOther )
+		.find( '.mw-htmlform-select-or-other:not(.oo-ui-widget)' )
+		.each( function () {
+			handleSelectOrOther.call( this, true );
+		} );
+} );
