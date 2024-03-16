@@ -52,7 +52,7 @@ interface IConnectionProvider {
 	 * @since 1.40
 	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @param string|null $group Query group; null for the default group
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	public function getReplicaDatabase( $domain = false, $group = null ): IReadableDatabase;
 

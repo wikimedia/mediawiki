@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Search engine hook for SQLite
@@ -191,6 +192,8 @@ class SearchSqlite extends SearchDatabase {
 		$filteredTerm =
 			$this->filter( MediaWikiServices::getInstance()->getContentLanguage()->lc( $term ) );
 		$dbr = $this->dbProvider->getReplicaDatabase();
+		// The real type is still IDatabase, but IReplicaDatabase is used for safety.
+		'@phan-var IDatabase $dbr';
 		// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 		$resultSet = $dbr->query( $this->getQuery( $filteredTerm, $fulltext ), __METHOD__ );
 
