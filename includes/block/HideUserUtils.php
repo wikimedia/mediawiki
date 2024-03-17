@@ -45,9 +45,9 @@ class HideUserUtils {
 		string $userIdField = 'user_id',
 		$status = self::SHOWN_USERS
 	) {
-		$cond = $status === self::HIDDEN_USERS ? '' : 'NOT ';
 		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
-			 $cond .= 'EXISTS (' .
+			$cond = $status === self::HIDDEN_USERS ? '' : 'NOT ';
+			$cond .= 'EXISTS (' .
 				 $dbr->newSelectQueryBuilder()
 					 ->select( '1' )
 					 ->from( 'ipblocks', 'hu_ipblocks' )
@@ -56,7 +56,8 @@ class HideUserUtils {
 					 ->getSQL() .
 				 ')';
 		} else {
-			$cond .= 'EXISTS (' .
+			// Use a scalar subquery, not IN/EXISTS, to avoid materialization (T360160)
+			$cond = '(' .
 				$dbr->newSelectQueryBuilder()
 					->select( '1' )
 					->from( 'block_target', 'hu_block_target' )
@@ -64,7 +65,8 @@ class HideUserUtils {
 					->where( [ "hu_block_target.bt_user=$userIdField", 'bl_deleted' => 1 ] )
 					->caller( __METHOD__ )
 					->getSQL() .
-				')';
+				') ' .
+				( $status === self::HIDDEN_USERS ? 'IS NOT NULL' : 'IS NULL' );
 		}
 		return $cond;
 	}
