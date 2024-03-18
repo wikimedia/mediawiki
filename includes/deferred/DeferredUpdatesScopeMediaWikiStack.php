@@ -78,8 +78,12 @@ class DeferredUpdatesScopeMediaWikiStack extends DeferredUpdatesScopeStack {
 		$type = get_class( $update )
 			. ( $update instanceof DeferrableCallback ? '_' . $update->getOrigin() : '' );
 		$httpMethod = MW_ENTRY_POINT === 'cli' ? 'cli' : strtolower( $_SERVER['REQUEST_METHOD'] ?? 'GET' );
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$stats->increment( "deferred_updates.$httpMethod.$type" );
+		$stats = MediaWikiServices::getInstance()->getStatsFactory();
+		$stats->getCounter( 'deferred_updates_total' )
+			->setLabel( 'http_method', $httpMethod )
+			->setLabel( 'type', $type )
+			->copyToStatsdAt( "deferred_updates.$httpMethod.$type" )
+			->increment();
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
