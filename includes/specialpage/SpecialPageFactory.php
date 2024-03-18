@@ -635,6 +635,7 @@ class SpecialPageFactory {
 				'ConnectionProvider',
 				'UserGroupManager',
 				'UserIdentityLookup',
+				'HideUserUtils',
 			]
 		],
 		'Listadmins' => [
