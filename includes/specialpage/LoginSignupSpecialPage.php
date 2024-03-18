@@ -233,8 +233,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$time = microtime( true );
 			$profilingScope = new ScopedCallback( function () use ( $time ) {
 				$time = microtime( true ) - $time;
-				$statsd = MediaWikiServices::getInstance()->getStatsdDataFactory();
-				$statsd->timing( "timing.login.ui.{$this->authAction}", $time * 1000 );
+				$stats = MediaWikiServices::getInstance()->getStatsFactory();
+				$stats->getTiming( 'auth_specialpage_executeTiming_seconds' )
+					->setLabel( 'action', $this->authAction )
+					->copyToStatsdAt( "timing.login.ui.{$this->authAction}" )
+					->observe( $time * 1000 );
 			} );
 		}
 
