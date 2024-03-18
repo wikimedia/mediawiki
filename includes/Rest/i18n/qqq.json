@@ -33,7 +33,7 @@
 	"rest-compare-wrong-content": "Error message for REST API debugging, shown when Content::convert() fails to convert the revision to text. Parameters:\n* $1: The slot role name, usually \"main\".\n* $2: The parameter name, either \"from\" or \"to\".",
 	"rest-compare-wikidiff2": "Error message for REST API debugging.",
 	"rest-pagehistorycount-too-many-revisions": "Error message for REST API debugging, shown when the page has too many revisions to retrieve the count.",
-	"rest-search-error": "Error message for REST API debugging, shown when an error occurs from search engine/database while searching for term. Parameters:\n* $1: The error message key.",
+	"rest-search-error": "Error message for REST API debugging, shown when an error occurs from search engine/database while searching for term. Parameters:\n* $1: The cause of the error.",
 	"rest-page-source-type-error": "Error message for REST API debugging, shown when trying to retrieve content for a page that has an unsupported content type",
 	"rest-no-revision": "Error message for REST API debugging, shown when fetching a revision by page ID fails. Parameters:\n* $1: The page ID we are getting revision from",
 	"rest-media-too-many-links": "Error message for REST API debugging, shown when there are too many media links on a page. Parameters:\n* $1: The page title.\n* $2: The number of links allowed.",

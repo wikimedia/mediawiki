@@ -2079,7 +2079,7 @@
 	"apisandbox-sending-request": "API pakičusen oigendamine...",
 	"apisandbox-loading-results": "API satusiden samine...",
 	"apisandbox-results-error": "Tegihe viga API - vastusen küzundaha samižen aigan: $1.",
-	"apisandbox-results-login-suppressed": "Necen pakičusen tegi kävutai, kudamb läksi sistemaspäi, miše ümbärta web-ecijan varumatomuden kaičendan funkcijad. Ota homaičushe, miše  API erigoittud avtomatine laskend ei anda rata mugoižile pakičusile, ole hüvä, kirjuta ned käzil.",
+	"apisandbox-results-login-suppressed": "Necen pakičusen tegi kävutai, kudamb läksi sistemaspäi, miše ümbärta web-ecijan varumatomuden kaičendan funkcijad. Ota homaičushe, miše API erigoittud avtomatine laskend ei anda rata mugoižile pakičusile, ole hüvä, kirjuta ned käzil.",
 	"apisandbox-request-selectformat-label": "Ozuta pakičusen tedod kut:",
 	"apisandbox-request-format-url-label": "URL adresan pakičusen rivi",
 	"apisandbox-request-url-label": "URL pakičusen adres:",

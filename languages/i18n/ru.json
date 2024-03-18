@@ -1940,7 +1940,7 @@
 	"backend-fail-sizes": "Не удалось получить размеры файлов для сравнения.",
 	"backend-fail-notsame": "Уже есть неидентичный файл $1.",
 	"backend-fail-invalidpath": "$1 — некорректный путь к хранилищу.",
-	"backend-fail-delete": "Не удалось удалить файл  $1.",
+	"backend-fail-delete": "Не удалось удалить файл $1.",
 	"backend-fail-describe": "Не удалось изменить метаданные файла «$1».",
 	"backend-fail-alreadyexists": "Файл $1 уже существует.",
 	"backend-fail-store": "Не удалось сохранить файл $1 на $2 .",

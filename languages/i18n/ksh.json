@@ -1408,7 +1408,7 @@
 	"backend-fail-read": "Mer kunnte di Dattei $1 nit lässe.",
 	"backend-fail-create": "Mer kunnte di Dattei $1 nit schrieve.",
 	"backend-fail-maxsize": "Mer kunnte di Dattei $1 nit schrieve, weil se jrüüßer wi {{PLURAL:$2|ein Byte|$2 Bytes|kein Byte}} es.",
-	"backend-fail-readonly": "Dem Wiki sing  Schpeischersysteem „$1“ es em Momang bloß för ze Lässe enjeschtallt.\nAls Jrond es aanjejovve: „$2“",
+	"backend-fail-readonly": "Dem Wiki sing Schpeischersysteem „$1“ es em Momang bloß för ze Lässe enjeschtallt.\nAls Jrond es aanjejovve: „$2“",
 	"backend-fail-synced": "Di Dattei „$1“ es em Momang en enem onklohre Zohschtand en dem Wiki singe ennere Schpeischersysteeme.",
 	"backend-fail-connect": "Mer kunnte kein Verbendong met däm Schpeischersysteem „$1“ opnämme.",
 	"backend-fail-internal": "Ene onklohre Fähler es opjetrodde met däm Schpeischersysteem „$1“.",

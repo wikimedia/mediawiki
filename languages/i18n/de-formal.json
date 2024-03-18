@@ -284,7 +284,7 @@
 	"changepassword-throttled": "Sie haben zu viele Anmeldeversuche unternommen.\nBitte warten Sie $1, bevor Sie es erneut versuchen.",
 	"botpasswords-summary": "<em>Botpasswörter</em> erlauben Zugriff auf ein Benutzerkonto über die API, ohne die Hauptanmeldeinformationen des Benutzerkontos zu verwenden. Die verfügbaren Benutzerrechte bei der Anmeldung mit einem Botpasswort können beschränkt sein.\n\nWenn Sie nicht wissen, warum Sie ein Passwort erstellen sollen, tun Sie es nicht. Sie sollten ein Passwort nie für einen anderen erzeugen und es an ihn übergeben.",
 	"botpasswords-no-central-id": "Um Botpasswörter zu verwenden, müssen Sie bei einem zentralisierten Benutzerkonto angemeldet sein.",
-	"botpasswords-newpassword": "Das neue Passwort zur Anmeldung mit <strong>$1</strong> ist <strong>$2</strong>. <em>Bitte speichern Sie diese Anmeldeinformationen.</em><br>Für Bots bei denen der Anmeldename mit dem späteren Benutzernamen identisch sein muss, können Sie <strong>$3</strong> als Benutzernamen und <strong>$4</strong> als Passwort verwenden.",
+	"botpasswords-newpassword": "Das neue Passwort zur Anmeldung mit <strong>$1</strong> ist <strong>$2</strong>. <em>Bitte speichern Sie diese Anmeldeinformationen.</em><br>Für Bots, bei denen der Anmeldename mit dem späteren Benutzernamen identisch sein muss, können Sie <strong>$3</strong> als Benutzernamen und <strong>$4</strong> als Passwort verwenden.",
 	"botpasswords-locked": "Sie können sich nicht mit einem Botpasswort anmelden, da Ihr Benutzerkonto gesperrt ist.",
 	"resetpass-no-info": "Sie müssen sich anmelden, um auf diese Seite direkt zuzugreifen.",
 	"resetpass-submit-cancel": "Abbrechen",

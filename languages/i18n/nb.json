@@ -1018,7 +1018,7 @@
 	"shown-title": "Vis $1 {{PLURAL:$1|resultat|resultater}} per side",
 	"viewprevnext": "Vis ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "Det er en side med navn «[[:$1]]» på {{SITENAME}}. {{PLURAL:$2|0=|Se også de andre søkeresultatene.}}",
-	"searchmenu-new": "Opprett siden \"[[:$1]]\" på denne wikien! {{PLURAL:$2|0=|Se også siden som ble funnet i søket ditt.|Se også sidene som ble funnet i søket.}}",
+	"searchmenu-new": "Opprett siden «[[:$1]]» på denne wikien! {{PLURAL:$2|0=|Se også siden som ble funnet i søket ditt.|Se også sidene som ble funnet i søket.}}",
 	"searchprofile-articles": "Innholdssider",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Alt",

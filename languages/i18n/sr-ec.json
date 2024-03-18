@@ -1612,7 +1612,7 @@
 	"rcfilters-filter-showlinkedto-label": "Прикажи измене на страницама ка којима воде везе",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Странице ка којима воде везе са</strong> изабране странице",
 	"rcfilters-target-page-placeholder": "Унесите име странице (или категорије)",
-	"rcfilters-allcontents-label": "Сва садржина",
+	"rcfilters-allcontents-label": "Све",
 	"rcfilters-alldiscussions-label": "Сви разговори",
 	"rcnotefrom": "Испод {{PLURAL:$5|је измена|су измене}} од <strong>$3, $4</strong> (до <strong>$1</strong> приказано).",
 	"rclistfromreset": "Ресетуј избор датума",

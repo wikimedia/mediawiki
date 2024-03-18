@@ -2772,7 +2772,7 @@
 	"allmessagesname": "Лем",
 	"allmessagesdefault": "Апак полавто текст",
 	"allmessagescurrent": "Неень текст",
-	"allmessagestext": "Те – системань сёрмадо лемрисьме, конатне муевить «MediaWiki» лемпотмосо.\nУлиндеряй мелеть теемс путовкс MediaWiki-нь кастомас, инескеть, совак  [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] лопас ды [https://translatewiki.net translatewiki.net] теварсевксэс.",
+	"allmessagestext": "Те – системань сёрмадо лемрисьме, конатне муевить «MediaWiki» лемпотмосо.\nУлиндеряй мелеть теемс путовкс MediaWiki-нь кастомас, инескеть, совак [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] лопас ды [https://translatewiki.net translatewiki.net] теварсевксэс.",
 	"allmessages-not-supported-database": "Те лопась а важоди, секс мекс лоткавтозь '''$wgUseDatabaseMessages''' опциясь.",
 	"allmessages-filter-legend": "Ванькскавтома",
 	"allmessages-filter": "Полавтомань статусонь коряс ванькскавтома:",

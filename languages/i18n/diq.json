@@ -1773,7 +1773,7 @@
 	"backend-fail-notexists": "Dosyaya $1 çıniya.",
 	"backend-fail-hashes": "Şınasiya dosyaya gırotışê cı nêgêriya.",
 	"backend-fail-sizes": "Pêverkerdışi rê ebatê dosyay nêgêriyay.",
-	"backend-fail-notsame": "Zey $1 ju dosya xora  esta.",
+	"backend-fail-notsame": "Zey $1 ju dosya xora esta.",
 	"backend-fail-invalidpath": "$1 rayê da depo kerdışa raştay niya.",
 	"backend-fail-delete": "$1 nê besterneyê",
 	"backend-fail-describe": "Qande dosya da \"$1\" metadata nêvurêna.",

@@ -209,6 +209,7 @@
 	"exif-photometricinterpretation-9": "CIE L*a*b* (codificación ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (codificación ITU)",
 	"exif-photometricinterpretation-32803": "Matriz de filtro de cor",
+	"exif-photometricinterpretation-34892": "Lineal en bruto",
 	"exif-unknowndate": "Data descoñecida",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Volteada horizontalmente",

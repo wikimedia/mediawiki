@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Aandeginini",
-			"Nibi-zhimaaganish"
+			"Nibi-zhimaaganish",
+			"Amire80"
 		]
 	},
 	"sunday": "Anama'e-giizhigad",
@@ -200,7 +201,7 @@
 	"anoneditwarning": "<strong>Ayaangwaamim:</strong> Wiin gaawiin biindigaw. Asab-asigibii'igan waabam akina anishinaabe giishpin gi ozhitoon aanji'. Giishpin gi <strong>[$1 biindigaw]</strong> gemaa <strong>[$2 ozhitoon asigibii'igewinini]</strong>, gi aanji' giinawind idan gi aanji' biindig wiin aabaji'-izhinikaazowin, wiiji-nawaj bakaan debi'.",
 	"loginreqlink": "biindigaw",
 	"newarticletext": "Giin maada'adoo biiwaabiko-zagapijigan biindig mazina'igan gaawiin ayaa mashi. Ozhitoon mazina'igan, maajii ozhibii'an maajiibii'amaw biindig gagwedaganaam anaamayi'ii (waabam [$1 wiiji' mazina'igan] nawaj mamizhim). Giishpin giin-bi biindig wani, ginjida' giin ningaasimoonowin <strong>azhe</strong> gibadoonh.",
-	"anontalkpagetext": "----\n<em>Wa'aw biindig idan mazina'igan biindig bezhig gaawin izhi-wiindan aabaji' awewin gawwin ozhitoon bezhig wigii-asigibii'igewinini mashi, gemaa awewin gaawin ozhitoon.</em>\nGiinawind oonji' ozhitoon asigibii'igan  asab-ganoodan izhi-wiindan wiinaawa.\nAyaan asab-ganoodan daa nawaj maada'ookii.\nIndigo gi ayaan behzig gaawin izhi-wiindan ozhitoon gaye mikoojiin a'aw bagwanawizi idan ayaan idan biminizhikaw biindig gi daga [[Special:CreateAccount|Ozhitoon bezhig wigii-asigibii'igewinini]] gemaa [[Special:UserLogin|biindigaw]] biindig nawaj gaawiin wii wanim wiji nawaj gaawin ozhitooned.",
+	"anontalkpagetext": "----\n<em>Wa'aw biindig idan mazina'igan biindig bezhig gaawin izhi-wiindan aabaji' awewin gawwin ozhitoon bezhig wigii-asigibii'igewinini mashi, gemaa awewin gaawin ozhitoon.</em>\nGiinawind oonji' ozhitoon asigibii'igan asab-ganoodan izhi-wiindan wiinaawa.\nAyaan asab-ganoodan daa nawaj maada'ookii.\nIndigo gi ayaan behzig gaawin izhi-wiindan ozhitoon gaye mikoojiin a'aw bagwanawizi idan ayaan idan biminizhikaw biindig gi daga [[Special:CreateAccount|Ozhitoon bezhig wigii-asigibii'igewinini]] gemaa [[Special:UserLogin|biindigaw]] biindig nawaj gaawiin wii wanim wiji nawaj gaawin ozhitooned.",
 	"noarticletext": "Aazha gaawiin ozhibii'an biindig mazina'igan.\nGiin gashkitoon [[Special:Search/{{PAGENAME}}|nandawaabam wa'aw mazina'igan izhinikaazowin]] biindig bakaan mazina'igan,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nandawaabam inawem gikinoo'amaadii-mazina'igan],\ngemaa [{{fullurl:{{FULLPAGENAME}}|action=edit}} ozhitoon wa'aw mazina'igan]</span>.",
 	"noarticletext-nopermission": "Aazha gaawiin ozhibii'an biindig mazina'igan.\nGi [[Special:Search/{{PAGENAME}}|nandawaabam wa'aw mazina'igan izhinikaazowin]] biindig bakaan mazina'igan, gemaa <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nandawaabam inawem gikinoo'amaadii-mazina'igan]</span>, aanawi gi gaawiin bagidin ozhitoon wa'aw mazina'igan.",
 	"userpage-userdoesnotexist-view": "Giin-aabaji \"$1\" ayaa gaawiin asab.",

@@ -1702,7 +1702,7 @@
 	"backend-fail-sizes": "तुलना करइ के ताईं फ़ाइल कय साइज नही मिल पावा।",
 	"backend-fail-notsame": "एकठु ग़ैर-समान फ़ाइल $1 पे पहिलवे से मौजूद है।",
 	"backend-fail-invalidpath": "$1 मान्य भंडारण पथ नाई है।",
-	"backend-fail-delete": "\"$1\" फ़ाइल कय नाइ मेटाई  गय।",
+	"backend-fail-delete": "\"$1\" फ़ाइल कय नाइ मेटाई गय।",
 	"backend-fail-describe": "फ़ाइल \"$1\" कय मेटाडाटा नाई बदल मिला।",
 	"backend-fail-alreadyexists": "फ़ाइल $1 पहिलवे से मौजूद है।",
 	"backend-fail-store": "फ़ाइल $1, $2 पे संग्रहीत नाई होई पाए।",

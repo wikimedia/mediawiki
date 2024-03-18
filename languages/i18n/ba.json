@@ -2529,7 +2529,7 @@
 	"date": "Датанан башлап (һәм элегерәк):",
 	"sp-contributions-blocklog": "бикләүҙәр",
 	"sp-contributions-suppresslog": "{{GENDER:$1|Ҡатнашыусының}} йәшерелгән өлөшө",
-	"sp-contributions-deleted": "{{GENDER:$1|Ҡатнашыусының}} юйылған өлөшө",
+	"sp-contributions-deleted": "{{GENDER:$1|Ҡатнашыусы}} юйған",
 	"sp-contributions-uploads": "йөкләүҙәр",
 	"sp-contributions-logs": "журналдар",
 	"sp-contributions-talk": "фекер алышыу",

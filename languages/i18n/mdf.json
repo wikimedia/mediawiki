@@ -1737,7 +1737,7 @@
 	"backend-fail-notsame": "Ули ни $1 аф фкя файла.",
 	"backend-fail-invalidpath": "$1 — ванфтома вастти аф прокс виде кись.",
 	"backend-fail-delete": "\"$1\" файлась изь нардав.",
-	"backend-fail-describe": "«$1» файлань уликсонзон эса уликсне  полафтомс изь лисе.",
+	"backend-fail-describe": "«$1» файлань уликсонзон эса уликсне полафтомс изь лисе.",
 	"backend-fail-alreadyexists": "$1 файлась ули ни.",
 	"backend-fail-store": "$1 файлась изь ванфтов $2 лангса.",
 	"backend-fail-copy": "$1-ста $2-ти файлать кучемс изь лисе.",

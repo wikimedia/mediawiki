@@ -244,7 +244,8 @@
 			"MadriCR",
 			"Shyla summers",
 			"Hmonroy",
-			"Iketsi"
+			"Iketsi",
+			"Eulalio"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1994,7 +1995,7 @@
 	"upload-form-label-not-own-work-local-generic-foreign": "Puede que también quieras usar [[Special:Upload|la página de subidas en {{SITENAME}}]], si se puede subir este archivo bajo sus políticas.",
 	"backend-fail-stream": "No se pudo transmitir el archivo «$1».",
 	"backend-fail-backup": "No se pudo hacer copia de seguridad del archivo «$1».",
-	"backend-fail-notexists": "El archivo  $1  no existe.",
+	"backend-fail-notexists": "El archivo $1 no existe.",
 	"backend-fail-hashes": "No se pudieron obtener los \"hashes\" de los archivos para compararlos.",
 	"backend-fail-sizes": "No se pudo obtener el tamaño de los archivos para compararlos.",
 	"backend-fail-notsame": "Ya existe un archivo distinto en \"$1\".",
