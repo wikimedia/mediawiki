@@ -65,7 +65,7 @@ class PublishStashedFileJob extends Job implements GenericParameterJob {
 	 *
 	 * @return UploadFromStash
 	 */
-	protected function getUpload() {
+	protected function getUpload(): UploadBase {
 		if ( $this->upload === null ) {
 			$this->upload = new UploadFromStash( $this->user );
 			// @todo initialize() causes a GET, ideally we could frontload the antivirus
