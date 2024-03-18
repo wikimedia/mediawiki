@@ -349,6 +349,20 @@ class HTMLForm extends ContextSource {
 	protected $mTokenSalt = '';
 
 	/**
+	 * Additional information about form sections. Only supported by CodexHTMLForm.
+	 *
+	 * Array is keyed on section name. Options per section include:
+	 * 'description'               -- Description text placed below the section label.
+	 * 'description-message'       -- The same, but a message key.
+	 * 'description-message-parse' -- Whether to parse the 'description-message'
+	 * 'optional'                  -- Whether the section should be marked as optional.
+	 *
+	 * @since 1.42
+	 * @var array[]
+	 */
+	protected $mSections = [];
+
+	/**
 	 * If true, sections that contain both fields and subsections will
 	 * render their subsections before their fields.
 	 *
@@ -1173,6 +1187,27 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setPostText( $msg ) {
 		return $this->setPostHtml( $msg );
+	}
+
+	/**
+	 * Set an array of information about sections.
+	 *
+	 * @since 1.42
+	 *
+	 * @param array[] $sections Array of section information, keyed on section name.
+	 *
+	 * @return HTMLForm $this for chaining calls
+	 */
+	public function setSections( $sections ) {
+		if ( $this->getDisplayFormat() !== 'codex' ) {
+			throw new \InvalidArgumentException(
+				"Non-Codex HTMLForms do not support additional section information."
+			);
+		}
+
+		$this->mSections = $sections;
+
+		return $this;
 	}
 
 	/**
