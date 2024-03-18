@@ -1820,7 +1820,7 @@
 	"uploaded-script-svg": "A feltöltött SVG fájlodban szkriptelemet találtunk: \"$1\".",
 	"uploaded-hostile-svg": "Nem biztonságos CSS kódot találtunk a feltöltött SVG fájlod stíluselemei között.",
 	"uploaded-event-handler-on-svg": "Az alábbi eseménykezelő-attribútum beállítása nem megengedett az SVG fájlokban: <code>$1=$2</code>.",
-	"uploaded-href-attribute-svg": "&lt;a&gt; elemek hivatkozásai (href) csak data: (beágyazott fájl), http://, https:// protokollú vagy dokumentumon belüli (#, töredék) célpontra mutathatnak. Más elemek (például <image>) csak data: és dokumentumon belüli célpontra mutathatnak. Próbáld beágyazni a képeket az SVG exportálásakor. <code>&lt;$1 $2=\"$3\"&gt;</code> található.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; elemek hivatkozásai (href) csak data: (beágyazott fájl), http://, https:// protokollú vagy dokumentumon belüli (#, töredék) célpontra mutathatnak. Más elemek (például &lt;image&gt;) csak data: és dokumentumon belüli célpontra mutathatnak. Próbáld beágyazni a képeket az SVG exportálásakor. <code>&lt;$1 $2=\"$3\"&gt;</code> található.",
 	"uploaded-href-unsafe-target-svg": "Nem biztonságos adatra mutató href-et találtunk a feltöltött SVG-fájlban: URI-cél <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "A feltöltött SVG fájlban \"animate\" taget találtam, ami az alábbi \"from\" attribútumával megváltoztathat egy href-et: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "Eseménykezelő attribútumok beállítása blokkolva van, <code>&lt;$1 $2=\"$3\"&gt;</code> található a feltöltendő SVG fájlban.",

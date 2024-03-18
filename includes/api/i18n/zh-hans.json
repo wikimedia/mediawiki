@@ -1642,7 +1642,7 @@
 	"api-help-main-header": "主模块",
 	"api-help-undocumented-module": "没有用于模块$1的文档。",
 	"api-help-flag-deprecated": "此模块已弃用。",
-	"api-help-flag-internal": "<strong>此模块是内部或不稳定的。</strong>它的操作可以更改而不另行通知。",
+	"api-help-flag-internal": "<strong>此模块是内部或不稳定的，不应该使用。</strong>它的操作可以更改而不另行通知。",
 	"api-help-flag-readrights": "此模块需要读取权限。",
 	"api-help-flag-writerights": "此模块需要写入权限。",
 	"api-help-flag-mustbeposted": "此模块只允许POST请求。",

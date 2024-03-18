@@ -493,7 +493,7 @@
 	"noemail": "Geavaheaddjái '''$1''' ii leat lasihuvvon e-poastačujuhus.",
 	"noemailcreate": "Don fertet čállit e-poastačujuhusa, mii lea dohkálaš.",
 	"passwordsent": "Ođđa beassansátni lea sáddejuvvon geavaheaddji <b>$1</b> e-poastačujuhussii.\nČálit sisa ođđasit, go leat ožžon dan.",
-	"blocked-mailpassword": "$1\n\nIt sáhte čálihit sisa dáinna beassansániin sihkkarvuođa dihte.  [$2 Bivdde e-poastta beassansáni rievdadan dihte].",
+	"blocked-mailpassword": "$1\n\nIt sáhte čálihit sisa dáinna beassansániin sihkkarvuođa dihte. [$2 Bivdde e-poastta beassansáni rievdadan dihte].",
 	"eauthentsent": "Duođaštandiehtu lea sáddejuvvon e-poastta bokte addon e-poastačujuhussii.\nOvdalgo eará e-poasta sáddejuvvo dan dovddaldahkii, don fertet čuovvut bagadusaid dan e-poasttas duođaštan dihte, ahte dovddaldat duođaidge lea du.",
 	"throttled-mailpassword": "Beassansáni máhcahanepoasta sáddejuvvui {{PLURAL:$1|ovtta diimmu|$1 diimmu}} áigi. \nVai garvit boastugeavaheami, de sáddejuvvo epoasta dušše oktii juohke {{PLURAL:$1|diimmu|$1 diimmu}} áiggis.",
 	"mailerror": "Feaila e-poastta sáddedettiin: $1",

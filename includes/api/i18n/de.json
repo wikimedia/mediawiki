@@ -1262,7 +1262,7 @@
 	"api-help-main-header": "Hauptmodul",
 	"api-help-undocumented-module": "Keine Dokumentation für das Modul „$1“.",
 	"api-help-flag-deprecated": "Dieses Modul ist veraltet.",
-	"api-help-flag-internal": "<strong>Dieses Modul ist intern oder instabil.</strong> Seine Operationen werden ohne Kenntnisnahme geändert.",
+	"api-help-flag-internal": "<strong>Dieses Modul ist intern oder instabil und sollte nicht verwendet werden.</strong> Seine Operationen können ohne Ankündigung geändert werden.",
 	"api-help-flag-readrights": "Dieses Modul erfordert Leserechte.",
 	"api-help-flag-writerights": "Dieses Modul erfordert Schreibrechte.",
 	"api-help-flag-mustbeposted": "Dieses Modul akzeptiert nur POST-Anfragen.",

@@ -661,7 +661,7 @@
 	"api-help-main-header": "Modulo principale",
 	"api-help-undocumented-module": "Nessuna documentazione per il modulo $1.",
 	"api-help-flag-deprecated": "Questo modulo è deprecato.",
-	"api-help-flag-internal": "<strong>Questo modulo è interno o instabile.</strong> Il suo funzionamento potrebbe variare senza preavviso.",
+	"api-help-flag-internal": "<strong>Questo modulo è interno o instabile e non dovresti usarlo.</strong> Il suo funzionamento potrebbe variare senza preavviso.",
 	"api-help-flag-readrights": "Questo modulo richiede i diritti di lettura.",
 	"api-help-flag-writerights": "Questo modulo richiede i diritti di scrittura.",
 	"api-help-flag-mustbeposted": "Questo modulo accetta solo richieste POST.",

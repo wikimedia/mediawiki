@@ -594,6 +594,7 @@
 	"resettokens-watchlist-token": "[[Special:Watchlist|儂關注列表當中頁面个改動]]个網絡feed（Atom/RSS）密鑰",
 	"resettokens-done": "密鑰已重設。",
 	"resettokens-resetbutton": "重設選中个密鑰",
+	"edit-recovery-special-edit": "編輯",
 	"summary": "摘要：",
 	"subject": "主題：",
 	"minoredit": "箇是小改",

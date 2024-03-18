@@ -2246,6 +2246,8 @@
 	"undelete-undeletetalk": "Əlaqəli müzakirə səhifəsinin bütün düzəlişlərini bərpa et",
 	"undeleteinvert": "Seçilən xaricindəkiləri",
 	"undeletecomment": "Səbəb:",
+	"undeleteothercomment": "Digər/əlavə səbəb:",
+	"undelete-edit-commentlist": "Bərpa səbəblərini redaktə et",
 	"cannotundelete": "Bərpa etmə proseslərindən bəziləri və ya hamısı uğursuz oldu.\n$1",
 	"undeletedpage": "<strong>$1 bərpa edildi</strong> \n\nSon silinmələrin və bərpaların jurnalı üçün [[Special:Log/delete|silmə jurnalına]] nəzər yetirin.",
 	"undelete-header": "Son silinmiş səhifələrə baxmaq üçün [[Special:Log/delete|silmə qeydlərinə]] bax.",

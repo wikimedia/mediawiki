@@ -1848,7 +1848,7 @@
 	"uploaded-script-svg": "업로드된 SVG 파일에서 스크립트로 만들 수 있는 \"$1\" 요소를 발견했습니다.",
 	"uploaded-hostile-svg": "업로드된 SVG 파일의 스타일 요소에 안전하지 않은 CSS가 있습니다.",
 	"uploaded-event-handler-on-svg": "이벤트 핸들러 속성 <code>$1=\"$2\"</code> 설정은 SVG 파일에서 사용할 수 없습니다.",
-	"uploaded-href-attribute-svg": "&lt;a&gt; 요소는 data: (내장 파일), http://, https://, 문서의 부분 (#, 동일 문서) 타겟만을 링크(href)할 수 있습니다. <image>와 같은 그 외 요소는 data:와 부분 타겟만 허용됩니다. SVG 파일을 내보낼 때 사진을 포함해 보세요. <code>&lt;$1 $2=\"$3\"&gt;</code>를 발견했습니다.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; 요소는 data: (내장 파일), http://, https://, 문서의 부분 (#, 동일 문서) 타겟만을 링크(href)할 수 있습니다. &lt;image&gt;와 같은 그 외 요소는 data:와 부분 타겟만 허용됩니다. SVG 파일을 내보낼 때 사진을 포함해 보세요. <code>&lt;$1 $2=\"$3\"&gt;</code>를 발견했습니다.",
 	"uploaded-href-unsafe-target-svg": "안전하지 않은 데이터를 가리키는 href를 발견했습니다: 업로드된 SVG 파일의 URI 대상 <code>&lt;$1 $2=\"$3\"&gt;</code>",
 	"uploaded-animate-svg": "업로드된 SVG 파일에서 \"from\" 특성 <code>&lt;$1 $2=\"$3\"&gt;</code>을 이용 중 \"animate\" 태그가 href를 변경할 수 있음을 발견했습니다.",
 	"uploaded-setting-event-handler-svg": "이벤트 핸들러 속성을 차단으로 설정한 상태에서 <code>&lt;$1 $2=\"$3\"&gt;</code>가 업로드된 SVG 파일에서 발견되었습니다.",

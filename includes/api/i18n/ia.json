@@ -1583,7 +1583,7 @@
 	"api-help-main-header": "Modulo principal",
 	"api-help-undocumented-module": "Il non ha documentation pro le modulo $1.",
 	"api-help-flag-deprecated": "Iste modulo es obsolescente.",
-	"api-help-flag-internal": "<strong>Iste module es interne o instabile.</strong> Su operation pote cambiar sin aviso previe.",
+	"api-help-flag-internal": "<strong>Iste modulo es interne o instabile, e non deberea esser usate.</strong> Su operation pote cambiar sin aviso previe.",
 	"api-help-flag-readrights": "Iste modulo require derectos de lectura.",
 	"api-help-flag-writerights": "Iste modulo require derectos de scriptura.",
 	"api-help-flag-mustbeposted": "Iste modulo accepta solmente le requestas POST.",

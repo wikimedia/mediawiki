@@ -375,7 +375,7 @@
 	"createacct-benefit-body1": "{{PLURAL:$1|ⴰⵙⵏⴼⵍ|ⵉⵙⵏⴼⴰⵍ}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|ⵜⴰⵙⵏⴰ|ⵜⴰⵙⵏⵉⵡⵉⵏ}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|ⴰⵏⴰⵎⵓ ⴰⵏⴳⴳⴰⵔⵓ|ⵉⵏⴰⵎⵓⵜⵏ ⵉⵏⴳⴳⵓⵔⴰ}}",
-	"badretype": "ⵜⴰⴳⵓⵔⵉ  ⵏ ⵓⵣⵔⴰⵢ ⵏⵏⴰ ⵜⵙⴽⵛⵎⴷ ⵓⵔ ⵜⵎⵙⴰⵙⴰ",
+	"badretype": "ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ ⵏⵏⴰ ⵜⵙⴽⵛⵎⴷ ⵓⵔ ⵜⵎⵙⴰⵙⴰ",
 	"usernameinprogress": "ⵉⵏⵜⴰ ⵢⴰⴷ ⵢⴰⵏ ⵓⵙⵏⵓⵍⴼⵓ ⵏ ⵓⵎⵉⴹⴰⵏ ⵉ ⵢⵉⵙⵎ ⵏ ⵓⵏⵙⵙⵎⵔⵙ ⴰⴷ. ⴰⵎⵓⵔ ⵏⵏⴽ ⵔⴰⵊⴰ.",
 	"userexists": "ⵉⵙⵎ ⵏ ⵓⵏⵙⵙⵎⵔⵙ ⵉ ⵜⵙⴽⵛⵎⴷ ⵉⵜⵜⵓⵙⵎⵔⵙ ⵢⴰⴷ.\nⴰⵎⵓⵔ ⵏⵏⴽ ⵙⵜⵉ ⵉⵙⵎ ⵢⴰⴹⵏ.",
 	"loginerror": "ⴰⵣⴳⴰⵍ ⴳ ⵓⴽⵛⵛⵓⵎ",
@@ -1207,7 +1207,7 @@
 	"blockedtext-start-time": "ⵜⵓⴷⴷⵎⴰ ⵏ ⵓⴳⴷⴷⵓⵍ: $1",
 	"blockedtext-expiration-time": "ⵜⵉⴳⵉⵔⴰ ⵏ ⵓⴳⴷⴷⵓⵍ: $1",
 	"blockedtext-intended-blockee": "ⴰⵎⴳⴷⴰⵍ ⵉⵜⵜⵡⴰⵜⵜⵙⵏ: $1",
-	"blockedtext-contact-blocker-admin": "ⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵎⵢⴰⵡⴰⴹⴷ ⴰⴽⴷ $1 ⵏⵖ  [[{{MediaWiki:Grouppage-sysop}}|ⴰⵎⵙⵙⵓⴳⵓⵔ]] ⵢⴰⴹⵏ ⵉ ⵓⵎⵙⴳⴷⴰⵍ ⵏ ⵓⴳⴷⴷⵓⵍ.",
+	"blockedtext-contact-blocker-admin": "ⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵎⵢⴰⵡⴰⴹⴷ ⴰⴽⴷ $1 ⵏⵖ [[{{MediaWiki:Grouppage-sysop}}|ⴰⵎⵙⵙⵓⴳⵓⵔ]] ⵢⴰⴹⵏ ⵉ ⵓⵎⵙⴳⴷⴰⵍ ⵏ ⵓⴳⴷⴷⵓⵍ.",
 	"blockedtext-block-ip": "ⴰⵏⵙⴰ ⵏ IP ⵏⵏⵓⵏ ⴰⵎⵉⵔⴰⵏ ⵉⴳⴰ $1.",
 	"blockedtext-include-details-queries": "ⵎⴽ ⵜⵓⴼⵉⴷ, ⵙⵙⴰⵎⵓ ⵉⴼⵔⵓⵔⵉⵜⵏ ⴰⴽⴽⵯ ⵏ ⵏⵏⵉⴳ ⴷⴰ ⴳ ⵜⵓⵜⵔⵉⵡⵉⵏ ⴰⴽⴽⵯ ⵏⵏⴰ ⵜⵙⴽⵔⴷ."
 }

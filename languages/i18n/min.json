@@ -1549,7 +1549,7 @@
 	"uploaded-script-svg": "Ado elemen taskrip \"$1\" dalam berkas SVG nan diunggah.",
 	"uploaded-hostile-svg": "Ado CSS nan indak aman dalam elemen gaya berkas SVG nan diunggah.",
 	"uploaded-event-handler-on-svg": "Panatapan atribut <i>event-handler</i> $1=\"$2\" indak diizinkan dalam berkas SVG.",
-	"uploaded-href-attribute-svg": "Elemen &lt;a&gt; hanyo dibuliahan untuak ditauikkan (href) ka target data: (berkas tatanam), http:// atau https://, atau fragmen (#, dokumen nan samo). Untuak elemen lainnyo, sarupo <image>, hanyo data: jo fragmen nan dipabuliahan. Cubo masuakan gambar katiko maekspor SVG. Ditamukan <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Elemen &lt;a&gt; hanyo dibuliahan untuak ditauikkan (href) ka target data: (berkas tatanam), http:// atau https://, atau fragmen (#, dokumen nan samo). Untuak elemen lainnyo, sarupo &lt;image&gt;, hanyo data: jo fragmen nan dipabuliahan. Cubo masuakan gambar katiko maekspor SVG. Ditamukan <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Manamukan href ka data indak aman: URI manarget <code>&lt;$1 $2=\"$3\"&gt;</code> dalam berkas SVG nan diunggah.",
 	"uploaded-animate-svg": "Ditamukan tag \"animasi\" nan mungkin dapek maubah href, manggunokan atribut \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> dalam berkas SVG nan diunggah.",
 	"uploaded-setting-event-handler-svg": "Panyetelan atribut event-handler disakek, manamukan <code>&lt;$1 $2=\"$3\"&gt;</code> dalam berkas SVG nan diunggah.",

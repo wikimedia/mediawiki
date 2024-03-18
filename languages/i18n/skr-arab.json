@@ -1243,7 +1243,7 @@
 	"upload-form-label-own-work": "یہ میݙا ذاتی کم ہے",
 	"upload-form-label-infoform-categories": "ونکیاں",
 	"upload-form-label-infoform-date": "تریخ",
-	"backend-fail-stream": "مسل \"$1\" کوں  سٹریم کائنی کر سڳیا۔",
+	"backend-fail-stream": "مسل \"$1\" کوں سٹریم کائنی کر سڳیا۔",
 	"backend-fail-backup": "مِسَل \"$1\" کوں بیک اپ کائنی کر سڳیا۔",
 	"backend-fail-notexists": "مسل $1 موجود کائنی۔",
 	"backend-fail-hashes": "موازنے کیتے فائلاں دے ہیشاں کائنی گھن سڳا۔",

@@ -1672,7 +1672,7 @@
 	"uploaded-script-svg": "تم العثور على عنصر سكربت \"$1\" في ملف الSVG المرفوع.",
 	"uploaded-hostile-svg": "تم العثور على CSS مو آمن في عنصر الشكل في ملف الSVG المرفوع.",
 	"uploaded-event-handler-on-svg": "ضبط سمات معالج الأحداث <code>$1=\"$2\"</code> مو مسموح بيه في ملفات SVG.",
-	"uploaded-href-attribute-svg": "&lt;a&gt; العناصر تكدر بس توصل (href) للبيانات: (ملف مضمن)، أهداف http:// لو https://, لو fragment (#, same-document). للعناصر الثانيه، مثل <image>، بس بيانات: و fragment مسموح بيها. جرب تضمين الصور من تصدر الSVG مالك. تم العثور على <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "&lt;a&gt; العناصر تكدر بس توصل (href) للبيانات: (ملف مضمن)، أهداف http:// لو https://, لو fragment (#, same-document). للعناصر الثانيه، مثل &lt;image&gt;، بس بيانات: و fragment مسموح بيها. جرب تضمين الصور من تصدر الSVG مالك. تم العثور على <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "تم العثور على href لبيانات مو آمنه: هدف URI <code>&lt;$1 $2=\"$3\"&gt;</code> في ملف SVG المرفوع.",
 	"uploaded-animate-svg": "تم العثور على وسم \"animate\" الذي يمكن يغير href, باستخدام سمة \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> في ملف SVG المرفوع.",
 	"uploaded-setting-event-handler-svg": "ضبط سمات معالج الأحداث ممنوع، تم العثور على <code>&lt;$1 $2=\"$3\"&gt;</code> في ملف SVG المرفوع.",
