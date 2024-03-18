@@ -238,7 +238,7 @@ class MagicWord {
 	/**
 	 * Get one of the synonyms
 	 *
-	 * This exists primarly for calling `getSynonym( 0 )`, which is how
+	 * This exists primarily for calling `getSynonym( 0 )`, which is how
 	 * you can obtain the preferred name of a magic word according to the
 	 * current wiki's content language. For example, when demonstrating or
 	 * semi-automatically creating content that uses a given magic word.

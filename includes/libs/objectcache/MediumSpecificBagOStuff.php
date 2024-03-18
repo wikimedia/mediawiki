@@ -301,7 +301,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 			// Derive the new value from the old value
 			$value = $callback( $this, $key, $currentValue, $exptime );
-			$keyWasNonexistant = ( $currentValue === false );
+			$keyWasNonexistent = ( $currentValue === false );
 			$valueMatchesOldValue = ( $value === $currentValue );
 			// free RAM in case the value is large
 			unset( $currentValue );
@@ -313,7 +313,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			} elseif ( $valueMatchesOldValue && $attemptsLeft !== $attempts ) {
 				// recently set by another thread to the same value
 				$success = true;
-			} elseif ( $keyWasNonexistant ) {
+			} elseif ( $keyWasNonexistent ) {
 				// Try to create the key, failing if it gets created in the meantime
 				$success = $this->add( $key, $value, $exptime, $flags );
 			} else {

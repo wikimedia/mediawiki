@@ -6649,7 +6649,7 @@ To enable it, set $wgWatchlistExpiry = true; in your LocalSettings.php.
 * Use IPset in MWRestrictions::checkIP.
 * (T259564) Fix race condition on edit page.
 * (T260759) Hide watchlist expiry label in edit form.
-* mime: Fix docs of MIME_EXTENSIONS, they're arrays, not space-seperated.
+* mime: Fix docs of MIME_EXTENSIONS, they're arrays, not space-separated.
 * (T260031) Add application/font-sfnt to MimeMap for ttf files.
 * (T259379) WatchedItemStore: Cache single WatchedItems with preexisting expiry.
 * Add a maintenance script to create bot passwords.
@@ -29297,7 +29297,7 @@ additional fields.
 ==== Directory traversal ====
 
 An unchecked parameter in image deletion could allow an authenticated
-administrator to delete arbitary files in directories writable by the
+administrator to delete arbitrary files in directories writable by the
 web server, and confirm existence of files not deletable.
 
 
@@ -29827,7 +29827,7 @@ to include the additional fields.
 
 === Directory traversal ===
 An unchecked parameter in image deletion could allow an authenticated
-administrator to delete arbitary files in directories writable by the web
+administrator to delete arbitrary files in directories writable by the web
 server, and confirm existence of files not deletable.
 
 == MediaWiki 1.3.10, 2005-02-03 ==

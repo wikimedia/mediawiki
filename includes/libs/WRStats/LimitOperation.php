@@ -5,7 +5,7 @@ namespace Wikimedia\WRStats;
 /**
  * One item in a LimitBatch.
  *
- * To perform a single operation, it is generally recommendeded to use
+ * To perform a single operation, it is generally recommended to use
  * the simpler interface of WRStatsRateLimiter::peek(), ::incr(), and
  * ::tryIncr() instead of constructing LimitOperation objects.
  *

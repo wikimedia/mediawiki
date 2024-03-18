@@ -73,7 +73,7 @@ class XhprofData {
 	 * Get raw data collected by xhprof.
 	 *
 	 * Each key in the returned array is an edge label for the call graph in
-	 * the form "caller==>callee". There is once special case edge labled
+	 * the form "caller==>callee". There is once special case edge labeled
 	 * simply "main()" which represents the global scope entry point of the
 	 * application.
 	 *
@@ -256,7 +256,7 @@ class XhprofData {
 					// Initialize exclusive data with inclusive totals
 					$this->complete[$func][$stat]['exclusive'] = $value['total'];
 				}
-				// Add sapce for call tree information to be filled in later
+				// Add space for call tree information to be filled in later
 				$this->complete[$func]['calls'] = [];
 				$this->complete[$func]['subcalls'] = [];
 			}
