@@ -147,7 +147,9 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 	}
 
 	public function getInputCodex( $value, $hasErrors ) {
-		$textAreaField = new HTMLTextAreaField( $this->mParams );
+		// HTMLTextAreaField defaults to 'rows' => 25, which is too big for this field
+		// Use 10 instead (but allow $this->mParams to override that value)
+		$textAreaField = new HTMLTextAreaField( $this->mParams + [ 'rows' => 10 ] );
 		return $textAreaField->getInputCodex( $value, $hasErrors );
 	}
 
