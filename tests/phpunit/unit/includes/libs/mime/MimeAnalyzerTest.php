@@ -176,7 +176,7 @@ class MimeAnalyzerTest extends TestCase {
 		return [
 			[
 				'An invalid ZIP file due to the signature being too close to the ' .
-					'end to accomodate an EOCDR',
+					'end to accommodate an EOCDR',
 				'zip-sig-near-end.png',
 				'image/png',
 			],

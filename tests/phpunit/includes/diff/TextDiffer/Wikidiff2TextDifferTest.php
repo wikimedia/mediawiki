@@ -134,11 +134,11 @@ class Wikidiff2TextDifferTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideAddLocalizedTitleTooltips() {
 		return [
-			'moved paragraph left shoud get new location title' => [
+			'moved paragraph left should get new location title' => [
 				'<a class="mw-diff-movedpara-left">⚫</a>',
 				'<a class="mw-diff-movedpara-left" title="(diff-paragraph-moved-tonew)">⚫</a>',
 			],
-			'moved paragraph right shoud get old location title' => [
+			'moved paragraph right should get old location title' => [
 				'<a class="mw-diff-movedpara-right">⚫</a>',
 				'<a class="mw-diff-movedpara-right" title="(diff-paragraph-moved-toold)">⚫</a>',
 			],

@@ -11,7 +11,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * This trait can be used on handlers that choose to support token-based CSRF protection. Note that doing so is
- * discouraged, and you should preferrably require that the endpoint be used with a session provider that is
+ * discouraged, and you should preferably require that the endpoint be used with a session provider that is
  * safe against CSRF, such as OAuth.
  * @see Handler::requireSafeAgainstCsrf()
  *

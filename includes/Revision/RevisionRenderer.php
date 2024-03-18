@@ -51,7 +51,7 @@ class RevisionRenderer {
 	private $loadBalancer;
 
 	/** @var SlotRoleRegistry */
-	private $roleRegistery;
+	private $roleRegistry;
 
 	/** @var ContentRenderer */
 	private $contentRenderer;
@@ -72,7 +72,7 @@ class RevisionRenderer {
 		$dbDomain = false
 	) {
 		$this->loadBalancer = $loadBalancer;
-		$this->roleRegistery = $roleRegistry;
+		$this->roleRegistry = $roleRegistry;
 		$this->contentRenderer = $contentRenderer;
 		$this->dbDomain = $dbDomain;
 		$this->saveParseLogger = new NullLogger();
@@ -251,7 +251,7 @@ class RevisionRenderer {
 			$first = true;
 			/** @var ParserOutput $out */
 			foreach ( $slotOutput as $role => $out ) {
-				$roleHandler = $this->roleRegistery->getRoleHandler( $role );
+				$roleHandler = $this->roleRegistry->getRoleHandler( $role );
 
 				// TODO: put more fancy layout logic here, see T200915.
 				$layout = $roleHandler->getOutputLayoutHints();

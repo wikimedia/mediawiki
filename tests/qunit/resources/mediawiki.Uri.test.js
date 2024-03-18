@@ -351,7 +351,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 
 		// Remove more query values, leaving an empty array
 		uri.query.m.splice( 0, 1 );
-		assert.strictEqual( uri.toString(), 'http://www.example.com/dir/', 'empty array value is ommitted' );
+		assert.strictEqual( uri.toString(), 'http://www.example.com/dir/', 'empty array value is omitted' );
 	} );
 
 	QUnit.test( 'Variable defaultUri', function ( assert ) {

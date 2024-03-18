@@ -647,7 +647,7 @@ abstract class BagOStuff implements
 	 * or to deal with size constraints (such as MemcachedBagOStuff). For example
 	 * by converting long components into hashes.
 	 *
-	 * If you overrride this method, you MUST override ::requireConvertGenericKey()
+	 * If you override this method, you MUST override ::requireConvertGenericKey()
 	 * to return true. This ensures that wrapping classes (e.g. MultiWriteBagOStuff)
 	 * know to re-encode keys before calling read/write methods. See also ::proxyCall().
 	 *

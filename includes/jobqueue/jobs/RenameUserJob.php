@@ -20,9 +20,9 @@ use Wikimedia\Rdbms\ILBFactory;
  *   - timestampColumn : The *_timestamp column
  *   - minTimestamp    : The minimum bound of the timestamp column range for this batch
  *   - maxTimestamp    : The maximum bound of the timestamp column range for this batch
- *   - uniqueKey       : A column that is unique (preferrably the PRIMARY KEY) [optional]
+ *   - uniqueKey       : A column that is unique (preferably the PRIMARY KEY) [optional]
  * b) The unique key based rename parameters:
- *   - uniqueKey : A column that is unique (preferrably the PRIMARY KEY)
+ *   - uniqueKey : A column that is unique (preferably the PRIMARY KEY)
  *   - keyId     : A list of values for this column to determine rows to update for this batch
  *
  * To avoid some race conditions, the following parameters should be set:
