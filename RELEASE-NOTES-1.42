@@ -186,6 +186,7 @@ because of Phabricator reports.
   have been removed.
 * TitleArray, deprecated since 1.41, has been removed.
 * UserRightsProxy, deprecated since 1.38, has been removed.
+* SiteConfiguration::getConfig(), deprecated in 1.41, has been removed.
 * UserLoginCompleteHook is always called with its $direct parameter set to
   boolean true. The false case has been removed.
 * MagicWord::load() has been marked @internal and may change in the future

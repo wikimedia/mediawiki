@@ -20,10 +20,6 @@
 
 namespace MediaWiki\Config;
 
-use MediaWiki\Shell\Shell;
-use MediaWiki\WikiMap\WikiMap;
-use RuntimeException;
-
 /**
  * Configuration holder, particularly for multi-wiki sites.
  *
@@ -573,72 +569,6 @@ class SiteConfiguration {
 		}
 
 		return [ null, null ];
-	}
-
-	/**
-	 * Get the resolved (post-setup) configuration of a potentially foreign wiki.
-	 * For foreign wikis, this is expensive, and only works if maintenance
-	 * scripts are setup to handle the --wiki parameter such as in wiki farms.
-	 *
-	 * @deprecated since 1.41. Use SiteConfiguration::get() instead.
-	 *
-	 * @param string $wiki
-	 * @param string|string[] $settings A setting name or array of setting names
-	 * @return mixed|mixed[] Array if $settings is an array, otherwise the value
-	 * @since 1.21
-	 */
-	public function getConfig( $wiki, $settings ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		$multi = is_array( $settings );
-		$settings = (array)$settings;
-		if ( WikiMap::isCurrentWikiId( $wiki ) ) { // $wiki is this wiki
-			$res = [];
-			foreach ( $settings as $name ) {
-				if ( !preg_match( '/^wg[A-Z]/', $name ) ) {
-					throw new ConfigException( "Variable '$name' does start with 'wg'." );
-				} elseif ( !isset( $GLOBALS[$name] ) ) {
-					throw new ConfigException( "Variable '$name' is not set." );
-				}
-				$res[$name] = $GLOBALS[$name];
-			}
-		} else { // $wiki is a foreign wiki
-			if ( isset( $this->cfgCache[$wiki] ) ) {
-				$res = array_intersect_key(
-					$this->cfgCache[$wiki],
-					array_fill_keys( $settings, true )
-				);
-				if ( count( $res ) == count( $settings ) ) {
-					return $multi ? $res : current( $res ); // cache hit
-				}
-			} elseif ( !in_array( $wiki, $this->wikis ) ) {
-				throw new ConfigException( "No such wiki '$wiki'." );
-			} else {
-				$this->cfgCache[$wiki] = [];
-			}
-			$result = Shell::makeScriptCommand(
-				'getConfiguration',
-				[
-					'--wiki', $wiki,
-					'--settings', implode( ' ', $settings ),
-					'--format', 'PHP',
-				]
-			)
-				// limit.sh breaks this call
-				->limits( [ 'memory' => 0, 'filesize' => 0 ] )
-				->execute();
-
-			$data = trim( $result->getStdout() );
-			if ( $result->getExitCode() || $data === '' ) {
-				throw new RuntimeException( "Failed to run getConfiguration.php: {$result->getStderr()}" );
-			}
-			$res = unserialize( $data );
-			if ( !is_array( $res ) ) {
-				throw new RuntimeException( "Failed to unserialize configuration array." );
-			}
-			$this->cfgCache[$wiki] += $res;
-		}
-
-		return $multi ? $res : current( $res );
 	}
 
 	/**
