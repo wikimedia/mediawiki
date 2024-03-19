@@ -224,7 +224,11 @@ class ApiQueryBlocks extends ApiQueryBase {
 						)
 						->caller( __METHOD__ )
 						->fetchFieldValues();
-					$this->addWhere( [ 'bt_id' => $ids ] );
+					if ( $ids ) {
+						$this->addWhere( [ 'bt_id' => $ids ] );
+					} else {
+						$this->addWhere( '1=0' );
+					}
 				} elseif ( $addresses ) {
 					$this->addWhere( [ 'bt_address' => $addresses ] );
 				} elseif ( $userNames ) {
