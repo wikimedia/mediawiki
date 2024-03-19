@@ -1377,7 +1377,6 @@
 	"uploadscripted": "Ii file me HTML nai to script code hai jiske web browser erroneously interpret kare sake hai.",
 	"upload-scripted-pi-callback": "File jisme XML-stylesheet processing instruction hai ke upload nai karaa jaae sake hai.",
 	"upload-scripted-dtd": "SVG files, jisme non-standard DTD declaration hai, ke upload nai kare saktaa hai.",
-	"uploaded-href-attribute-svg": "href attributes in SVG files are only allowed to link to http:// or https:// targets, found <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploadscriptednamespace": "Ii SVG file me illegal namespace \"<nowiki>$1</nowiki>\" hae.",
 	"uploadinvalidxml": "Upload karaa gais file ke XML ke parse nai karaa jaae sake hae.",
 	"uploadvirus": "Ii file me virus hai! Details: $1",
