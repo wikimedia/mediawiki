@@ -25,7 +25,8 @@
 			"V6rg",
 			"Vito Genovese",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Reedy"
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -2556,7 +2557,7 @@
 	"saturday-at": "Sanichar ke $1 baje",
 	"sunday-at": "Etwaar ke $1 baje",
 	"yesterday-at": "Kal $1 baje",
-	"bad_image_list": "Format ii rakam hai:\n\nKhaali suchi waala chij  (jon line * se suruu hoe hai) ke dekha jaai. Line me pahila jorr kharab file ke jorr hoe ke chaahi.\nWahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sake inline hoe.",
+	"bad_image_list": "Format ii rakam hai:\n\nKhaali suchi waala chij (jon line * se suruu hoe hai) ke dekha jaai. Line me pahila jorr kharab file ke jorr hoe ke chaahi.\nWahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sake inline hoe.",
 	"metadata": "Metadata",
 	"metadata-help": "Ii file me aur jaakari hai, sake hai ki digital camera nai to scanner se ii file ke banawa gais rahaa. Agar jo ii file ke original source se badal dewa gais hai tkorra kuch chij modified file se farak rahi.",
 	"metadata-expand": "Barrhaya gais jankari dekhao",
@@ -2664,7 +2665,7 @@
 	"version-poweredby-credits": "Ii wiki <strong>[https://www.mediawiki.org/ MediaWiki]</strong> se powered hae, copyright © 2001-$1 $2.",
 	"version-poweredby-others": "duusra waala",
 	"version-credits-summary": "Ham log ii sab jan ke [[Special:Version|MediaWiki]] me yogdaan ke khatir recognize kartaa hae.",
-	"version-license-info": "Mediawiki free software hae; jiske aap GNU General Public License as published by the Free Software Foundation; ke niche redistribute aur badle saktaa hae. Ii chaahe version 2 of the License, nai to (at your option) koi baad ke version ke apply hoe hae.\n\nMediawiki ii asha se distribute karaa jaawe hae ki ii aap ke kaam me aai, BINA KOI WARRANTY KE. Iske koi implied warranty of MERCHANTABILITY, nai to, FITNESS FOR A PARTICULAR PURPOSE bhi nai hae. Aur jaankari ke khatir GNU General Public License ke dekho.\n\nAapke ii program ke saathe {{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] mila hoi. Agar nai mila tab  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, nai to, [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online] ke lage likho.",
+	"version-license-info": "MediaWiki free software hae; jiske aap GNU General Public License as published by the Free Software Foundation; ke niche redistribute aur badle saktaa hae. Ii chaahe version 2 of the License, nai to (at your option) koi baad ke version ke apply hoe hae.\n\nMediaWiki ii asha se distribute karaa jaawe hae ki ii aap ke kaam me aai, BINA KOI WARRANTY KE. Iske koi implied warranty of MERCHANTABILITY, nai to, FITNESS FOR A PARTICULAR PURPOSE bhi nai hae. Aur jaankari ke khatir GNU General Public License ke dekho.\n\nAapke ii program ke saathe {{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] mila hoi. Agar nai mila tab  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, nai to, [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online] ke lage likho.",
 	"version-libraries-description": "Baare me",
 	"version-libraries-authors": "Likhe waale",
 	"redirect": "File, sadasya, panna, nai to, revision ID se redirect",

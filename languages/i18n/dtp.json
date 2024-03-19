@@ -1232,6 +1232,6 @@
 	"blockedtext-start-time": "Timpuunan do mangantob: $1",
 	"blockedtext-expiration-time": "Timpu aayi pagantaban: $1",
 	"blockedtext-intended-blockee": "Tulun di naantaban :$1",
-	"blockedtext-contact-blocker-admin": "Milo ko rumomut do $1 toi ko' suai  [[{{MediaWiki:Grouppage-sysop}}|admin]] montok mibooboros kokomoi pangantaban.",
+	"blockedtext-contact-blocker-admin": "Milo ko rumomut do $1 toi ko' suai [[{{MediaWiki:Grouppage-sysop}}|admin]] montok mibooboros kokomoi pangantaban.",
 	"blockedtext-include-details-queries": "Potonudo toinsanan butiran id sawat id suang do poguhatan di winonsoi nu."
 }

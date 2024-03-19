@@ -17,7 +17,8 @@
 			"Tocaibon",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sotlinee leams",
@@ -232,7 +233,7 @@
 	"privacy": "Politiche pe privacy",
 	"privacypage": "Project:Politiche_pe_privacy",
 	"badaccess": "Permès no suficients",
-	"badaccess-group0": "No tu sês autorizât a  eseguî la azion domandade",
+	"badaccess-group0": "No tu sês autorizât a eseguî la azion domandade",
 	"badaccess-groups": "La azione domandade è je pussibile dome dai utents {{PLURAL:$2|dal grup|di un di chescj grups}}: $1.",
 	"versionrequired": "E covente la version $1 di MediaWiki",
 	"versionrequiredtext": "La version $1 de MediaWiki a covente par doprâ cheste pagjine.\nCjale la [[Special:Version|pagjine de version]].",
@@ -1347,7 +1348,7 @@
 	"blockedtext-start-time": "Il bloc al tache: $1",
 	"blockedtext-expiration-time": "Il bloc al finis: $1",
 	"blockedtext-intended-blockee": "Destinatari dal bloc: $1",
-	"blockedtext-contact-blocker-admin": "Tu puedis contatâ $1 o un altri  [[{{MediaWiki:Grouppage-sysop}}|aministradôr]] par discuti dal bloc.",
+	"blockedtext-contact-blocker-admin": "Tu puedis contatâ $1 o un altri [[{{MediaWiki:Grouppage-sysop}}|aministradôr]] par discuti dal bloc.",
 	"blockedtext-block-ip": "La tô direzion IP atuâl e je $1",
 	"blockedtext-include-details-queries": "Par plasê copie ce che al è scrit ca parsore in ogni tô eventutâl richieste.",
 	"renameuser": "Cambie non par un utent",
