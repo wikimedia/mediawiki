@@ -10,6 +10,9 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
 use Wikimedia\Message\DataMessageValue;
+use Wikimedia\Message\ListParam;
+use Wikimedia\Message\ListType;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BooleanDef;
@@ -155,6 +158,45 @@ class Validator {
 			}
 		}
 		return $validatedParams;
+	}
+
+	/**
+	 * Throw an HttpException if there are unexpected body fields.
+	 *
+	 * Note that this will ignore all body fields if $paramSettings does not
+	 * declare any body parameters, to avoid failures when clients send spurious
+	 * data to handlers that do not support body validation at all. This
+	 * behavior may change in the future.
+	 *
+	 * @param array $paramSettings
+	 * @param array $parsedBody
+	 *
+	 * @throws LocalizedHttpException if there are unexpected body fields.
+	 */
+	public function detectExtraneousBodyFields( array $paramSettings, array $parsedBody ) {
+		$validatedKeys = [];
+		$remainingBodyFields = $parsedBody;
+		foreach ( $paramSettings as $name => $settings ) {
+			$source = $settings[Handler::PARAM_SOURCE] ?? 'unspecified';
+			if ( $source !== 'body' ) {
+				continue;
+			}
+
+			$validatedKeys[] = $name;
+			unset( $remainingBodyFields[$name] );
+		}
+		$unvalidatedKeys = array_keys( $remainingBodyFields );
+
+		// Throw if there are unvalidated keys left and there are body params defined.
+		if ( $validatedKeys && $unvalidatedKeys ) {
+			throw new LocalizedHttpException(
+				new MessageValue(
+					'rest-extraneous-body-fields',
+					[ new ListParam( ListType::COMMA, array_keys( $unvalidatedKeys ) ) ]
+				),
+				400
+			);
+		}
 	}
 
 	/**

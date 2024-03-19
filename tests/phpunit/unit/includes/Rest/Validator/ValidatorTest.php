@@ -16,6 +16,8 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Message\ListParam;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -417,9 +419,6 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * If $expected is a string, it must be the name of the expected exception class.
-	 * Otherwise, it must match the returned body.
-	 *
 	 * @dataProvider provideValidateBodyParams
 	 */
 	public function testValidateBodyParams( $paramSetting, RequestData $requestData, $expected ) {
@@ -446,6 +445,81 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				/** @var MessageValue $validationMessage */
 				$validationMessage = $param->getValue();
 				$this->assertSame( $expected->getMessageValue()->getKey(), $validationMessage->getKey() );
+			} else {
+				$this->fail( 'Unexpected exception: ' . $ex );
+			}
+		}
+	}
+
+	public static function provideDetectExtraneousBodyFields() {
+		yield 'known body params' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'body',
+				],
+				'pathfoo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'path',
+				],
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'test' ] ] )
+		];
+		yield 'no known body params' => [
+			[
+				'pathfoo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'path',
+				],
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'test' ] ] )
+		];
+		yield 'extraneous body params' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'body',
+				],
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'test', 'xyzzy' => 123 ] ] ),
+			new LocalizedHttpException(
+				new MessageValue(
+					'rest-extraneous-body-fields',
+					[ new ListParam( ListType::COMMA, array_keys( [ 'xyzzy' ] ) ) ]
+				),
+				400
+			)
+		];
+	}
+
+	/**
+	 * @dataProvider provideDetectExtraneousBodyFields
+	 */
+	public function testDetectExtraneousBodyFields( $paramSetting, RequestData $requestData, $expected = null ) {
+		$objectFactory = $this->getDummyObjectFactory();
+		$validator = new Validator( $objectFactory, $requestData, $this->mockAnonNullAuthority() );
+
+		try {
+			$validator->detectExtraneousBodyFields(
+				$paramSetting,
+				$requestData->getParsedBody()
+			);
+
+			if ( $expected instanceof Exception ) {
+				$this->fail( 'Expected exception: ' . $expected );
+			}
+
+			// all is fine
+			$this->addToAssertionCount( 1 );
+		} catch ( LocalizedHttpException $ex ) {
+			if ( $expected instanceof LocalizedHttpException ) {
+				$this->assertInstanceOf( get_class( $expected ), $ex );
+				$this->assertSame( $expected->getCode(), $ex->getCode() );
+				$this->assertStringContainsString( $expected->getMessage(), $ex->getMessage() );
+				$this->assertStringContainsString(
+					$expected->getMessageValue()->getKey(),
+					$ex->getMessageValue()->getKey()
+				);
 			} else {
 				$this->fail( 'Unexpected exception: ' . $ex );
 			}

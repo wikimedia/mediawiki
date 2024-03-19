@@ -451,7 +451,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			$requestWithBody = new RequestData( [
 				'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
 				'method' => 'DELETE',
-				'bodyContents' => '{"foo":"bar"}',
+				'bodyContents' => '{"bodyParam":"bar"}',
 				'headers' => [ "content-type" => 'application/json' ]
 			] );
 			$router = $this->createRouter( $requestWithBody );
@@ -475,7 +475,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
 			'method' => 'POST',
-			'bodyContents' => '{"foo":"bar"}',
+			'bodyContents' => '{"bodyParam":"bar"}',
 			'headers' => [ "content-type" => 'application/json' ]
 		] );
 		$router = $this->createRouter( $request );
@@ -490,7 +490,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 		// Check the value of the 'parsedBody' field
 		$parsedBody = $data['parsedBody'];
-		$this->assertEquals( [ 'foo' => 'bar' ], $parsedBody );
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $parsedBody );
 	}
 
 	public function testHandlerCanAccessValidatedBodyForJsonRequest() {

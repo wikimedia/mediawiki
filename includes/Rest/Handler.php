@@ -228,9 +228,37 @@ abstract class Handler {
 			$this->validatedBody = $legacyValidatedBody;
 		} else {
 			$this->validatedBody = $restValidator->validateBodyParams( $paramSettings );
+
+			// If there is a body, check if it contains extra fields.
+			if ( $this->getRequest()->hasBody() ) {
+				$this->detectExtraneousBodyFields( $restValidator );
+			}
 		}
 
 		$this->postValidationSetup();
+	}
+
+	/**
+	 * Subclasses may override this to disable or modify checks for extraneous
+	 * body fields.
+	 *
+	 * @since 1.42
+	 * @stable to override
+	 * @param Validator $restValidator
+	 * @throws HttpException On validation failure.
+	 */
+	protected function detectExtraneousBodyFields( Validator $restValidator ) {
+		$parsedBody = $this->getRequest()->getParsedBody();
+
+		if ( !$parsedBody ) {
+			// nothing to do
+			return;
+		}
+
+		$restValidator->detectExtraneousBodyFields(
+			$this->getParamSettings(),
+			$parsedBody
+		);
 	}
 
 	/**
