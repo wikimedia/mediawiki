@@ -86,6 +86,60 @@ class HTMLRadioField extends HTMLFormField {
 		) );
 	}
 
+	public function getInputCodex( $value, $hasErrors ) {
+		$html = '';
+		$elementFunc = [ Html::class, $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
+
+		// Iterate over an array of options and return the HTML markup.
+		foreach ( $this->getOptions() as $label => $radioValue ) {
+			// Attributes for the radio input.
+			$radioInputClasses = [ 'cdx-radio__input' ];
+			$radioInputAttribs = [
+				'id' => Sanitizer::escapeIdForAttribute( $this->mID . "-$radioValue" ),
+				'type' => 'radio',
+				'name' => $this->mName,
+				'class' => $radioInputClasses,
+				'value' => $radioValue
+			];
+			$radioInputAttribs += $this->getAttributes( [ 'disabled', 'tabindex' ] );
+
+			// Set the selected value as "checked".
+			if ( $radioValue === $value ) {
+				$radioInputAttribs['checked'] = true;
+			}
+
+			// Attributes for the radio icon.
+			$radioIconClasses = [ 'cdx-radio__icon' ];
+			$radioIconAttribs = [
+				'class' => $radioIconClasses,
+			];
+
+			// Attributes for the radio label.
+			$radioLabelClasses = [ 'cdx-radio__label' ];
+			$radioLabelAttribs = [
+				'class' => $radioLabelClasses,
+				'for' => $radioInputAttribs['id']
+			];
+
+			// HTML markup for radio input, radio icon, and radio label elements.
+			$radioInput = Html::element( 'input', $radioInputAttribs );
+			$radioIcon = Html::element( 'span', $radioIconAttribs );
+			$radioLabel = call_user_func( $elementFunc, 'label', $radioLabelAttribs, $label );
+
+			// HTML markup for CSS-only Codex Radio.
+			$radio = Html::rawElement(
+				'span',
+				[ 'class' => 'cdx-radio' ],
+				$radioInput . $radioIcon . $radioLabel
+			);
+
+			// Append the Codex Radio HTML markup to the initialized empty string variable.
+			$html .= $radio;
+		}
+
+		return $html;
+	}
+
 	public function formatOptions( $options, $value ) {
 		$html = '';
 
@@ -100,7 +154,9 @@ class HTMLRadioField extends HTMLFormField {
 			} else {
 				$id = Sanitizer::escapeIdForAttribute( $this->mID . "-$info" );
 				$classes = [ 'mw-htmlform-flatlist-item' ];
-				$radio = Xml::radio( $this->mName, $info, $info === $value, $attribs + [ 'id' => $id ] );
+				$radio = Xml::radio(
+					$this->mName, $info, $info === $value, $attribs + [ 'id' => $id ]
+				);
 				$radio .= "\u{00A0}" . call_user_func( $elementFunc, 'label', [ 'for' => $id ], $label );
 
 				$html .= ' ' . Html::rawElement(
