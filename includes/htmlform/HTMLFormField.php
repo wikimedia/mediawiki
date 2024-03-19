@@ -827,7 +827,7 @@ abstract class HTMLFormField {
 				// <label class="cdx-label__label" for="ID">
 				Html::rawElement( 'label', [ 'class' => 'cdx-label__label' ] + $labelFor,
 					// <span class="cdx-label__label__text">
-					Html::element( 'span', [ 'class' => 'cdx-label__label__text' ],
+					Html::rawElement( 'span', [ 'class' => 'cdx-label__label__text' ],
 						$labelValue
 					)
 				)
