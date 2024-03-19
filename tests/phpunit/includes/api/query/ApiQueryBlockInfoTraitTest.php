@@ -65,7 +65,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 					'fields' => [ 'hu_deleted' => '1=0' ],
 					'conds' => [
 						'NOT EXISTS (SELECT  1  FROM "ipblocks" "hu_ipblocks"    ' .
-						'WHERE (ipb_user=user_id) AND ipb_deleted = 1  )' ],
+						'WHERE (hu_ipblocks.ipb_user=user_id) AND hu_ipblocks.ipb_deleted = 1  )' ],
 					'options' => [],
 					'join_conds' => [],
 				],
@@ -76,7 +76,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 				[
 					'tables' => [ 'table' ],
 					'fields' => [ 'hu_deleted' => 'EXISTS (SELECT  1  FROM "ipblocks" "hu_ipblocks"    ' .
-						'WHERE (ipb_user=user_id) AND ipb_deleted = 1  )' ],
+						'WHERE (hu_ipblocks.ipb_user=user_id) AND hu_ipblocks.ipb_deleted = 1  )' ],
 					'conds' => [],
 					'options' => [],
 					'join_conds' => []
@@ -89,8 +89,8 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 					'tables' => [ 'table' ],
 					'fields' => [ 'hu_deleted' => '1=0' ],
 					'conds' => [ '(SELECT  1  FROM "block_target" "hu_block_target" ' .
-						'JOIN "block" ON ((bl_target=hu_block_target.bt_id))   ' .
-						'WHERE (hu_block_target.bt_user=user_id) AND bl_deleted = 1  ) IS NULL' ],
+						'JOIN "block" "hu_block" ON ((hu_block.bl_target=hu_block_target.bt_id))   ' .
+						'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ) IS NULL' ],
 					'options' => [],
 					'join_conds' => [],
 				],
@@ -101,8 +101,8 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 				[
 					'tables' => [ 'table' ],
 					'fields' => [ 'hu_deleted' => '(SELECT  1  FROM "block_target" "hu_block_target" ' .
-						'JOIN "block" ON ((bl_target=hu_block_target.bt_id))   ' .
-						'WHERE (hu_block_target.bt_user=user_id) AND bl_deleted = 1  ) IS NOT NULL' ],
+						'JOIN "block" "hu_block" ON ((hu_block.bl_target=hu_block_target.bt_id))   ' .
+						'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ) IS NOT NULL' ],
 					'conds' => [],
 					'options' => [],
 					'join_conds' => []

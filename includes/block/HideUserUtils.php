@@ -51,7 +51,7 @@ class HideUserUtils {
 				 $dbr->newSelectQueryBuilder()
 					 ->select( '1' )
 					 ->from( 'ipblocks', 'hu_ipblocks' )
-					 ->where( [ "ipb_user=$userIdField", 'ipb_deleted' => 1 ] )
+					 ->where( [ "hu_ipblocks.ipb_user=$userIdField", 'hu_ipblocks.ipb_deleted' => 1 ] )
 					 ->caller( __METHOD__ )
 					 ->getSQL() .
 				 ')';
@@ -60,9 +60,12 @@ class HideUserUtils {
 			$cond = '(' .
 				$dbr->newSelectQueryBuilder()
 					->select( '1' )
+					// $userIdField may be e.g. block_target.bt_user so an inner table
+					// alias is necessary to ensure that that refers to the outer copy
+					// of the block_target table.
 					->from( 'block_target', 'hu_block_target' )
-					->join( 'block', null, 'bl_target=hu_block_target.bt_id' )
-					->where( [ "hu_block_target.bt_user=$userIdField", 'bl_deleted' => 1 ] )
+					->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
+					->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
 					->caller( __METHOD__ )
 					->getSQL() .
 				') ' .
