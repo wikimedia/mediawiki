@@ -272,24 +272,41 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'target',
 		];
 
+		$editingRestrictionOptions = $this->getConfig()->get( 'UseCodexSpecialBlock' ) ?
+			// If we're using Codex, use the option-descriptions feature, which is only supported by Codex
+			[
+				'options-messages' => [
+					'ipb-sitewide' => 'sitewide',
+					'ipb-partial' => 'partial'
+				],
+				'option-descriptions-messages' => [
+					'sitewide' => 'ipb-sitewide-help',
+					'partial' => 'ipb-partial-help'
+				],
+				'option-descriptions-messages-parse' => true,
+			] :
+			// Otherwise, if we're using OOUI, add the options' descriptions as part of their labels
+			[
+				'options' => [
+					$this->msg( 'ipb-sitewide' )->escaped() .
+						new LabelWidget( [
+							'classes' => [ 'oo-ui-inline-help' ],
+							'label' => new HtmlSnippet( $this->msg( 'ipb-sitewide-help' )->parse() ),
+						] ) => 'sitewide',
+					$this->msg( 'ipb-partial' )->escaped() .
+						new LabelWidget( [
+							'classes' => [ 'oo-ui-inline-help' ],
+							'label' => new HtmlSnippet( $this->msg( 'ipb-partial-help' )->parse() ),
+						] ) => 'partial',
+				]
+			];
+
 		$a['EditingRestriction'] = [
 			'type' => 'radio',
 			'cssclass' => 'mw-block-editing-restriction',
 			'default' => 'sitewide',
-			'options' => [
-				$this->msg( 'ipb-sitewide' )->escaped() .
-					new LabelWidget( [
-						'classes' => [ 'oo-ui-inline-help' ],
-						'label' => new HtmlSnippet( $this->msg( 'ipb-sitewide-help' )->parse() ),
-					] ) => 'sitewide',
-				$this->msg( 'ipb-partial' )->escaped() .
-					new LabelWidget( [
-						'classes' => [ 'oo-ui-inline-help' ],
-						'label' => new HtmlSnippet( $this->msg( 'ipb-partial-help' )->parse() ),
-					] ) => 'partial',
-			],
 			'section' => 'actions',
-		];
+		] + $editingRestrictionOptions;
 
 		$a['PageRestrictions'] = [
 			'type' => 'titlesmultiselect',
