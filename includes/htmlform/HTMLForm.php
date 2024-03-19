@@ -114,7 +114,7 @@ use Xml;
  *    'cssclass'            -- CSS class
  *    'csshelpclass'        -- CSS class used to style help text
  *    'dir'                 -- Direction of the element.
- *    'options'             -- associative array mapping raw text labels to values.
+ *    'options'             -- associative array mapping raw HTML labels to values.
  *                             Some field types support multi-level arrays.
  *                             Overwrites 'options-message'.
  *    'options-messages'    -- associative array mapping message keys to values.
