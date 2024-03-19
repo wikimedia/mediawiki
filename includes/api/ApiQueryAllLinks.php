@@ -131,11 +131,18 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		$nsField = $pfx . 'namespace';
 		$titleField = $pfx . $this->fieldTitle;
+		$linktargetReadNew = false;
+		$targetIdColumn = '';
 		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
 			[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( $this->table );
-			$queryInfo = $this->linksMigration->getQueryInfo( $this->table );
+			$queryInfo = $this->linksMigration->getQueryInfo( $this->table, 'linktarget', 'STRAIGHT_JOIN' );
 			$this->addTables( $queryInfo['tables'] );
 			$this->addJoinConds( $queryInfo['joins'] );
+			if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+				$linktargetReadNew = true;
+				$targetIdColumn = "{$pfx}target_id";
+				$this->addFields( [ $targetIdColumn ] );
+			}
 		} else {
 			if ( $this->useIndex ) {
 				$this->addOption( 'USE INDEX', $this->useIndex );
@@ -178,10 +185,16 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if ( $params['unique'] ) {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
 				$this->addWhere( $db->expr( $titleField, $op, $cont[0] ) );
-			} else {
+			} elseif ( !$linktargetReadNew ) {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
 				$this->addWhere( $db->buildComparison( $op, [
 					$titleField => $cont[0],
+					"{$pfx}from" => $cont[1],
+				] ) );
+			} else {
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'int' ] );
+				$this->addWhere( $db->buildComparison( $op, [
+					$targetIdColumn => $cont[0],
 					"{$pfx}from" => $cont[1],
 				] ) );
 			}
@@ -215,7 +228,11 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		$orderBy = [];
-		$orderBy[] = $titleField . $sort;
+		if ( $linktargetReadNew ) {
+			$orderBy[] = $targetIdColumn;
+		} else {
+			$orderBy[] = $titleField . $sort;
+		}
 		if ( !$params['unique'] ) {
 			$orderBy[] = $pfx . 'from' . $sort;
 		}
@@ -238,12 +255,15 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$titles = [];
 		$count = 0;
 		$result = $this->getResult();
+
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
 				if ( $params['unique'] ) {
 					$this->setContinueEnumParameter( 'continue', $row->pl_title );
+				} elseif ( $linktargetReadNew ) {
+					$this->setContinueEnumParameter( 'continue', $row->{$targetIdColumn} . '|' . $row->pl_from );
 				} else {
 					$this->setContinueEnumParameter( 'continue', $row->pl_title . '|' . $row->pl_from );
 				}
@@ -270,6 +290,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				if ( !$fit ) {
 					if ( $params['unique'] ) {
 						$this->setContinueEnumParameter( 'continue', $row->pl_title );
+					} elseif ( $linktargetReadNew ) {
+						$this->setContinueEnumParameter( 'continue', $row->{$targetIdColumn} . '|' . $row->pl_from );
 					} else {
 						$this->setContinueEnumParameter( 'continue', $row->pl_title . '|' . $row->pl_from );
 					}
