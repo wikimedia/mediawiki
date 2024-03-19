@@ -1,3 +1,24 @@
+# 1.3.5 / 2024-03-19
+## Styles
+- styles: spacing between adjacent Field components (lwatson)
+- tokens: Add area background color tokens and apply (Volker E)
+
+## Code
+- build: update browserslist-config-wikimedia to latest version 0.6.1 (Volker E)
+- build: Token reorganization part 2 (Eric Gardner)
+- Table: Add initial, WIP component (Anne Tomasevich)
+- Table: Set min-height on footer (Anne Tomasevich)
+- tokens: expand the option tokens color palette (lwatson)
+- tokens: Make sure tokens in the JS output are always strings (Roan Kattouw)
+
+## Documentation
+- Field: Remove unused status class from CSS-only Field (Roan Kattouw)
+- Field: Remove unused cdx-field__control--has-help-text CSS class (Roan Kattouw)
+- docs: Add ADR for  CSS icon system (Anne Tomasevich)
+- docs: add Patchdemo instructions to the releasing doc (lwatson)
+- docs: unify link name (Volker E)
+- docs: Unify casing of component descriptions (Volker E)
+
 # 1.3.4 / 2024-03-05
 
 ## Features
