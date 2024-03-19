@@ -801,10 +801,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return string|null|bool The combined string, false if missing, null on error
 	 */
 	final protected function resolveSegments( $key, $mainValue ) {
-		if ( SerializedValueContainer::isUnified( $mainValue ) ) {
-			return $this->unserialize( $mainValue->{SerializedValueContainer::UNIFIED_DATA} );
-		}
-
 		if ( SerializedValueContainer::isSegmented( $mainValue ) ) {
 			$orderedKeys = array_map(
 				function ( $segmentHash ) use ( $key ) {
