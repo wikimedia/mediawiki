@@ -49,7 +49,7 @@ class PublishStashedFileJob extends Job implements GenericParameterJob {
 	 * @param Status[] $status
 	 * @return array
 	 */
-	public function logJobParams( $status ) {
+	public function logJobParams( $status ): array {
 		return [
 			'stage' => $status['stage'] ?? '-',
 			'result' => $status['result'] ?? '-',
