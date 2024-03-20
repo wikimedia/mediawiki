@@ -35,5 +35,5 @@
 	"config-env-php": "PHP $1 ਜੜਿਆ ਗਿਆ।",
 	"config-db-wiki-settings": "ਇਸ ਵਿਕੀ ਦੀ ਪਛਾਣ ਕਰਾਉ",
 	"config-db-name": "ਤੱਥ-ਅਧਾਰ ਦਾ ਨਾਂ:",
-	"mainpagetext": "'''ਮੀਡਿਆਵਿਕਿ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੋ ਗਿਆ ਹੈ।'''"
+	"mainpagetext": "<strong>ਮੀਡੀਆਵਿਕੀ ਨੂੰ ਸਥਾਪਿਤ ਕੀਤਾ ਗਿਆ ਹੈ।</strong>"
 }

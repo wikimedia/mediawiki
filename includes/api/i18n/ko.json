@@ -251,7 +251,7 @@
 	"apihelp-managetags-summary": "변경 태그에 관한 관리 작업을 수행합니다.",
 	"apihelp-mergehistory-summary": "문서 역사를 합칩니다.",
 	"apihelp-mergehistory-param-reason": "문서 병합 이유.",
-	"apihelp-move-summary": "문서 이동하기.",
+	"apihelp-move-summary": "문서를 이동합니다.",
 	"apihelp-move-param-reason": "제목을 변경하는 이유",
 	"apihelp-move-param-movetalk": "토론 문서가 존재한다면, 토론 문서도 이름을 변경해주세요.",
 	"apihelp-move-param-movesubpages": "하위 문서가 있다면, 하위 문서도 이름을 변경해주세요.",
