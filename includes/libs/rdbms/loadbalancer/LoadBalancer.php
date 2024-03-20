@@ -1983,6 +1983,14 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		);
 	}
 
+	/**
+	 * @param float|null &$time Mock UNIX timestamp for testing
+	 * @internal
+	 * @codeCoverageIgnore
+	 */
+	public function setMockTime( &$time ) {
+		$this->loadMonitor->setMockTime( $time );
+	}
 }
 
 /** @deprecated class alias since 1.29 */
