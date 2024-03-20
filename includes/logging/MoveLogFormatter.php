@@ -81,7 +81,7 @@ class MoveLogFormatter extends LogFormatter {
 			[
 				'wpOldTitle' => $destTitle->getPrefixedDBkey(),
 				'wpNewTitle' => $this->entry->getTarget()->getPrefixedDBkey(),
-				'wpReason' => $this->msg( 'revertmove' )->inContentLanguage()->text(),
+				'wpReason' => $this->msg( 'revertmove-summary' )->inContentLanguage()->text(),
 				'wpMovetalk' => 0
 			]
 		);
