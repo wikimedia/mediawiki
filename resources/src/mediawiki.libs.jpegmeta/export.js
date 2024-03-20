@@ -1,11 +1,13 @@
 /* global JpegMeta */
 
 /**
+ * Exposes a method for extracting metadata from JPEGs.
+ *
  * @module mediawiki.libs.jpegmeta
  */
 
 /**
- * Exposes a single function for extracting meta data from JPEGs.
+ * Extract metadata from a JPEG.
  *
  * @example
  * const binReader = new FileReader();
@@ -16,6 +18,7 @@
  * }
  * binReader.readAsBinaryString( upload.file );
  *
+ * @method (require("mediawiki.libs.jpegmeta"))
  * @param {string} fileReaderResult Binary string
  * @param {string} fileName
  * @return {Object} A {@link https://github.com/bennoleslie/jsjpegmeta JpegMeta.JpegFile} object

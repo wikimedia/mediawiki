@@ -1,4 +1,6 @@
 /**
+ * Exposes a method for converting a messagebox to a notification.
+ *
  * @module mediawiki.notification.convertmessagebox
  */
 
@@ -8,6 +10,7 @@
  * @example
  * var convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
  *
+ * @method (require("mediawiki.notification.convertmessagebox"))
  * @param {Object} [options] Options
  * @param {mw.Message} [options.msg] Message key (must be loaded already)
  */
