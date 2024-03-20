@@ -126,7 +126,7 @@
 	"userexists": "Al nòm utèint ch'èt siēlt l'è bèle stê druvê.\nCâten un èter, per piaşèir.",
 	"loginsuccess": "'''Adèsa t'é coleghê in {{SITENAME}} cun al nòm utèint \"$1\".'''",
 	"wrongpassword": "Nòm utèint o password che t'é més l'è şbaliêda. Prōva incòra.",
-	"blocked-mailpassword": "Al tó indirés IP l'é bluchê a la mudéfica.Per anticipêr abûş, an n'é mía permès druvêr  la funsiòun ed recóper 'password' da cl' indirés 'IP' ché.",
+	"blocked-mailpassword": "Al tó indirés IP l'é bluchê a la mudéfica.Per anticipêr abûş, an n'é mía permès druvêr la funsiòun ed recóper 'password' da cl' indirés 'IP' ché.",
 	"accountcreated": "T'é fât un nōv 'account'.",
 	"pt-login": "Intrèr",
 	"summary": "Mutîv d'al cambiamèint:",

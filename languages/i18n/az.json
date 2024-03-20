@@ -911,7 +911,7 @@
 	"revdelete-failure": "'''Versiyanın görünüşü dəyişdirilə bilməz:'''\n$1",
 	"logdelete-success": "Qeydin görünəbilərliyi təsdiqləndi.",
 	"logdelete-failure": "'''Jurnalın görünüşü tənzimlənməyib:'''\n$1",
-	"revdel-restore": "Görünüşü dəyiş",
+	"revdel-restore": "görünüşü dəyiş",
 	"pagehist": "Səhifənin tarixçəsi",
 	"deletedhist": "Silinmiş tarixçə",
 	"revdelete-hide-current": "$2, $1 tarixli elementin gizlədilməsi xətası: Bu, cari versiyadır.\nGizlədilə bilməz.",

@@ -3838,6 +3838,7 @@
 	"authmanager-provider-temporarypassword": "Kata laluan sementara",
 	"authprovider-resetpass-skip-label": "Langkau",
 	"specialpage-securitylevel-not-allowed-title": "Tidak dibenarkan",
+	"authpage-cannot-login": "Tidak dapat memulakan log masuk.",
 	"cannotauth-not-allowed-title": "Kebenaran ditolak",
 	"cannotauth-not-allowed": "Anda tidak dibenarkan menggunakan halaman ini.",
 	"changecredentials": "Ubah kelayakan",
