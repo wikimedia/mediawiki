@@ -1,7 +1,7 @@
 <?php
 /**
  * Deletes a batch of pages.
- * Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] [listfile]
+ * Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] [--by-id] [listfile]
  * where
  *   [listfile] is a file where each line contains the title of a page to be
  *     deleted, standard input is used if listfile is not given.
@@ -45,6 +45,7 @@ class DeleteBatch extends Maintenance {
 		$this->addOption( 'u', 'User to perform deletion', false, true );
 		$this->addOption( 'r', 'Reason to delete page', false, true );
 		$this->addOption( 'i', 'Interval to sleep (in seconds) between deletions' );
+		$this->addOption( 'by-id', 'Delete by page ID instead of by page name', false, false );
 		$this->addArg( 'listfile', 'File with titles to delete, separated by newlines. ' .
 			'If not given, stdin will be used.', false );
 	}
@@ -58,6 +59,7 @@ class DeleteBatch extends Maintenance {
 		$username = $this->getOption( 'u', false );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
+		$byId = $this->hasOption( 'by-id' );
 
 		if ( $username === false ) {
 			$user = User::newSystemUser( 'Delete page script', [ 'steal' => true ] );
@@ -91,26 +93,36 @@ class DeleteBatch extends Maintenance {
 			if ( $line == '' ) {
 				continue;
 			}
-			$title = Title::newFromText( $line );
-			if ( $title === null ) {
-				$this->output( "Invalid title '$line' on line $linenum\n" );
-				continue;
+			if ( $byId === false ) {
+				$target = Title::newFromText( $line );
+				if ( $target === null ) {
+					$this->output( "Invalid title '$line' on line $linenum\n" );
+					continue;
+				}
+				if ( !$target->exists() ) {
+					$this->output( "Skipping nonexistent page '$line'\n" );
+					continue;
+				}
+			} else {
+				$target = Title::newFromID( (int)$line );
+				if ( $target === null ) {
+					$this->output( "Invalid page ID '$line' on line $linenum\n" );
+					continue;
+				}
+				if ( !$target->exists() ) {
+					$this->output( "Skipping nonexistent page ID '$line'\n" );
+					continue;
+				}
 			}
-			if ( !$title->exists() ) {
-				$this->output( "Skipping nonexistent page '$line'\n" );
-				continue;
-			}
-
-			$this->output( $title->getPrefixedText() );
-			if ( $title->getNamespace() === NS_FILE ) {
+			if ( $target->getNamespace() === NS_FILE ) {
 				$img = $repoGroup->findFile(
-					$title, [ 'ignoreRedirect' => true ]
+					$target, [ 'ignoreRedirect' => true ]
 				);
 				if ( $img && $img->isLocal() && !$img->deleteFile( $reason, $user ) ) {
 					$this->output( " FAILED to delete associated file..." );
 				}
 			}
-			$page = $wikiPageFactory->newFromTitle( $title );
+			$page = $wikiPageFactory->newFromTitle( $target );
 			$error = '';
 			$status = $page->doDeleteArticleReal(
 				$reason,
