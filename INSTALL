@@ -2,8 +2,8 @@
 Installing MediaWiki
 ---
 
-Starting with MediaWiki 1.2.0, it's possible to install and configure the wiki
-"in-place", as long as you have the necessary prerequisites available.
+It is possible to install and configure the wiki "in-place", as long as you have
+the necessary prerequisites available.
 
 Required software as of MediaWiki 1.42.0:
 
@@ -48,7 +48,7 @@ ATTEMPTING TO INSTALL OR UPGRADE!!!
 ******************* WARNING *******************
 
 ----
-In-place web install
+In-place Web install
 ----
 
 Decompress the MediaWiki installation archive either on your server, or on your
@@ -89,8 +89,11 @@ help (please provide enough information to work with, and preferably be aware of
 what you're doing!) and keep track of major changes to the software, including
 performance improvements and security patches.
 
-https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce (low traffic)
+https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/
+  (low traffic)
 
-https://lists.wikimedia.org/mailman/listinfo/mediawiki-l (site admin support)
+https://lists.wikimedia.org/postorius/lists/mediawiki-l.lists.wikimedia.org/
+  (site admin support)
 
-https://lists.wikimedia.org/mailman/listinfo/wikitech-l (development)
+https://lists.wikimedia.org/postorius/lists/wikitech-l.lists.wikimedia.org/
+  (development)

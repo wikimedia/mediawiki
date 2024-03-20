@@ -146,10 +146,10 @@ list of developers can be found at <https://www.mediawiki.org/wiki/Developers>.
 MediaWiki's bug tracker is at <https://phabricator.wikimedia.org>. However, you
 might find that the best place to post if you want to get developers' attention
 is the wikitech-l mailing list
-<https://lists.wikimedia.org/mailman/listinfo/wikitech-l>. Posts to wikitech-l
-will inevitably be read by multiple experienced MediaWiki developers. There's
-also an active IRC chat at <irc://irc.libera.chat/mediawiki>, where there are
-usually several developers at reasonably busy times of day.
+<https://lists.wikimedia.org/postorius/lists/wikitech-l.lists.wikimedia.org/>.
+Posts to wikitech-l will inevitably be read by multiple experienced MediaWiki
+developers. There's also an active IRC chat at <irc://irc.libera.chat/mediawiki>,
+where there are usually several developers at reasonably busy times of day.
 
 Our Git repositories are hosted at <https://gerrit.wikimedia.org>, see
 <https://www.mediawiki.org/wiki/Gerrit> for more information. Patches should
@@ -157,9 +157,9 @@ be submitted there. If you know which developers are best suited to review your
 patch, add them to it, otherwise ask on IRC to get better review time.
 
 All redistributors of MediaWiki should be subscribed to mediawiki-announce
-<https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce>. It's
-extremely low-traffic, with an average of less than one post per month. All
-new releases are announced here, including critical security updates.
+<https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/>.
+It's extremely low-traffic, with an average of less than one post per month.
+All new releases are announced here, including critical security updates.
 
 == Useful software to install ==
 
