@@ -16,8 +16,6 @@
  *
  */
 
-use Wikimedia\AtEase\AtEase;
-
 /**
  * Server-side helper for client-side compressed content.
  *
@@ -62,9 +60,8 @@ class Deflate {
 		if ( $deflated === false ) {
 			return StatusValue::newFatal( 'deflate-invaliddeflate' );
 		}
-		AtEase::suppressWarnings();
-		$inflated = gzinflate( $deflated );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$inflated = @gzinflate( $deflated );
 		if ( $inflated === false ) {
 			return StatusValue::newFatal( 'deflate-invaliddeflate' );
 		}
