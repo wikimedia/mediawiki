@@ -38,6 +38,7 @@ use MediaWiki\Watchlist\WatchlistManager;
  * @ingroup Pager
  * @ingroup Actions
  */
+#[\AllowDynamicProperties]
 class HistoryPager extends ReverseChronologicalPager {
 
 	public $mGroupByDate = true;
