@@ -3959,9 +3959,6 @@ class MainConfigSchema {
 			CACHE_NONE => [ 'class' => EmptyBagOStuff::class, 'reportDupes' => false ],
 			CACHE_DB => [ 'class' => SqlBagOStuff::class, 'loggroup' => 'SQLBagOStuff' ],
 
-			CACHE_ANYTHING => [ 'factory' => 'ObjectCache::newAnything' ],
-			CACHE_ACCEL => [ 'factory' => 'ObjectCache::getLocalServerInstance' ],
-
 			'memcached-php' => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
 			'memcached-pecl' => [ 'class' => MemcachedPeclBagOStuff::class, 'loggroup' => 'memcached' ],
 			'hash' => [ 'class' => HashBagOStuff::class, 'reportDupes' => false ],

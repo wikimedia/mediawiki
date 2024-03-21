@@ -399,17 +399,6 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideConfigStructurePartialReplacement() {
-		yield 'ObjectCaches' => [
-			'ObjectCaches',
-			[ // the spec for each cache should be replaced entirely
-				1 => [ 'factory' => 'ObjectCache::newAnything' ],
-				'test' => [ 'factory' => 'Testing' ]
-			],
-			[
-				1 => [ 'factory' => 'ObjectCache::newAnything' ],
-				'test' => [ 'factory' => 'Testing' ]
-			],
-		];
 		yield 'GroupPermissions' => [
 			'GroupPermissions',
 			[ // permissions for each group should be merged

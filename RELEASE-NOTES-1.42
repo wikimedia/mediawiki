@@ -640,6 +640,15 @@ because of Phabricator reports.
   changed to refer to MediaWikiEntryPoint instead. Note that extensions should
   not define their own entry points and should not interfere with the state of
   MediaWikiEntryPoint instances.
+* Various methods in ObjectCache have been deprecated and their equivalent made
+  available in ObjectCacheFactory, use them instead:
+  - ::getInstance() -> ObjectCacheFactory::getInstance()
+  - ::newFromParams() -> ObjectCacheFactory::newFromParams()
+  - ::newAnything() -> ObjectCacheFactory::newInstance(
+         ObjectCache::getAnythingId() )
+  - ::getLocalServerInstance() -> ObjectCacheFactory::getLocalServerInstance()
+  - ::clear() -> ObjectCacheFactory::clear()
+  - In addition, the ObjectCache::$instances member has been deprecated as well.
 * Vuex has been deprecated in favor of its successor, Pinia. Though deprecated,
   Vuex 4 will remain accessible for the foreseeable future. Pinia should be used
   for new projects.

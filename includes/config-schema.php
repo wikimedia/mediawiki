@@ -471,12 +471,6 @@ return [
 					'class' => 'SqlBagOStuff',
 					'loggroup' => 'SQLBagOStuff',
 				],
-				-1 => [
-					'factory' => 'ObjectCache::newAnything',
-				],
-				3 => [
-					'factory' => 'ObjectCache::getLocalServerInstance',
-				],
 				'memcached-php' => [
 					'class' => 'MemcachedPhpBagOStuff',
 					'loggroup' => 'memcached',

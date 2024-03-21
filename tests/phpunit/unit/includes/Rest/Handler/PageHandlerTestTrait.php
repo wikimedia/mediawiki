@@ -94,11 +94,6 @@ trait PageHandlerTestTrait {
 	 * @return PageHTMLHandler
 	 */
 	public function newPageHtmlHandler( ?RequestInterface $request = null ) {
-		// ParserOutputAccess has a localCache which can return stale content.
-		// Resetting ensures that ParsoidCachePrewarmJob gets a fresh copy
-		// of ParserOutputAccess and ParsoidOutputAccess without these problems!
-		$this->resetServices();
-
 		$services = $this->getServiceContainer();
 		$config = [
 			'RightsUrl' => 'https://example.com/rights',
