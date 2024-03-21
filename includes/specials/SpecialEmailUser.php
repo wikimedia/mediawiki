@@ -171,6 +171,8 @@ class SpecialEmailUser extends SpecialPage {
 				# Wahey!
 				break;
 			case 'badaccess':
+			case 'badaccess-group0':
+			case 'badaccess-groups':
 				throw new PermissionsError( 'sendemail' );
 			case 'blockedemailuser':
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
