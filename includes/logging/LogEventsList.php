@@ -30,6 +30,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
@@ -216,8 +217,21 @@ class LogEventsList extends ContextSource {
 		// Load the log names
 		foreach ( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
+			$pageText = $page->getName()->text();
+			if ( in_array( $pageText, $typesByName ) ) {
+				LoggerFactory::getInstance( 'error' )->error(
+					'The log type {log_type_one} has the same translation as {log_type_two} for {lang}. ' .
+					'{log_type_one} will not be displayed in the drop down menu on Special:Log.',
+					[
+						'log_type_one' => $type,
+						'log_type_two' => array_search( $pageText, $typesByName ),
+						'lang' => $this->getLanguage()->getCode(),
+					]
+				);
+				continue;
+			}
 			if ( $this->getAuthority()->isAllowed( $page->getRestriction() ) ) {
-				$typesByName[$type] = $page->getName()->text();
+				$typesByName[$type] = $pageText;
 			}
 		}
 
