@@ -128,71 +128,51 @@ class LoadMonitor implements ILoadMonitor {
 		$shuffledServerIndexes = $serverIndexes;
 		shuffle( $shuffledServerIndexes );
 
-		$scopeLocks = [];
-		$serverIndexesCompute = [];
-		$scKeyByServerIndex = [];
-		$wcKeyByServerIndex = [];
 		foreach ( $shuffledServerIndexes as $i ) {
-			$scKeyByServerIndex[$i] = $this->makeStateKey( $this->srvCache, $i );
-			$stateByServerIndex[$i] = $this->srvCache->get( $scKeyByServerIndex[$i] ) ?: null;
-			if ( $this->isStateFresh( $stateByServerIndex[$i] ) ) {
+			$key = $this->makeStateKey( $this->srvCache, $i );
+			$state = $this->srvCache->get( $key ) ?: null;
+			if ( $this->isStateFresh( $state ) ) {
 				$this->logger->debug(
 					__METHOD__ . ": fresh local cache hit for '{db_server}'",
 					[ 'db_server' => $this->lb->getServerName( $i ) ]
 				);
 			} else {
-				$scopeLocks[$i] = $this->srvCache->getScopedLock( $scKeyByServerIndex[$i], 0, 10 );
-				if ( $scopeLocks[$i] || !$stateByServerIndex[$i] ) {
-					$wcKeyByServerIndex[$i] = $this->makeStateKey( $this->wanCache, $i );
+				$lock = $this->srvCache->getScopedLock( $key, 0, 10 );
+				if ( $lock || !$state ) {
+					$state = $this->getStateFromWanCache( $i, $state );
+					$this->srvCache->set( $key, $state, self::STATE_PRESERVE_TTL );
 				}
 			}
-		}
-
-		$valueByKey = $this->wanCache->getMulti( $wcKeyByServerIndex );
-		foreach ( $wcKeyByServerIndex as $i => $wcKey ) {
-			$value = $valueByKey[$wcKey] ?? null;
-			if ( $value ) {
-				$stateByServerIndex[$i] = $value;
-				if ( $scopeLocks[$i] ) {
-					$this->srvCache->set( $scKeyByServerIndex[$i], $value );
-				}
-				if ( $this->isStateFresh( $value ) ) {
-					$this->logger->debug(
-						__METHOD__ . ": fresh WAN cache hit for '{db_server}'",
-						[ 'db_server' => $this->lb->getServerName( $i ) ]
-					);
-				} elseif ( $scopeLocks[$i] ) {
-					$serverIndexesCompute[] = $i;
-				} else {
-					$this->logger->info(
-						__METHOD__ . ": mutex busy, stale WAN cache hit for '{db_server}'",
-						[ 'db_server' => $this->lb->getServerName( $i ) ]
-					);
-				}
-			} elseif ( $scopeLocks[$i] ) {
-				$serverIndexesCompute[] = $i;
-			} elseif ( $stateByServerIndex[$i] ) {
-				$this->logger->info(
-					__METHOD__ . ": mutex busy, stale local cache hit for '{db_server}'",
-					[ 'db_server' => $this->lb->getServerName( $i ) ]
-				);
-			} else {
-				$stateByServerIndex[$i] = $this->newInitialServerState();
-			}
-		}
-
-		foreach ( $serverIndexesCompute as $i ) {
-			$state = $this->computeServerState( $i, $stateByServerIndex[$i] );
 			$stateByServerIndex[$i] = $state;
-			$this->srvCache->set( $scKeyByServerIndex[$i], $state, self::STATE_PRESERVE_TTL );
-			$this->wanCache->set( $wcKeyByServerIndex[$i], $state, self::STATE_PRESERVE_TTL );
+		}
+		return $stateByServerIndex;
+	}
+
+	protected function getStateFromWanCache( $i, ?array $srvPrevState ) {
+		$hit = true;
+		$key = $this->makeStateKey( $this->wanCache, $i );
+		$state = $this->wanCache->getWithSetCallback(
+			$key,
+			self::STATE_PRESERVE_TTL,
+			function ( $wanPrevState ) use ( $srvPrevState, $i, &$hit ) {
+				$prevState = $wanPrevState ?: $srvPrevState ?: null;
+				$hit = false;
+				return $this->computeServerState( $i, $prevState );
+			},
+			[ 'lockTSE' => 30 ]
+		);
+		if ( $hit ) {
+			$this->logger->debug(
+				__METHOD__ . ": WAN cache hit for '{db_server}'",
+				[ 'db_server' => $this->lb->getServerName( $i ) ]
+			);
+		} else {
 			$this->logger->info(
 				__METHOD__ . ": mutex acquired; regenerated cache for '{db_server}'",
 				[ 'db_server' => $this->lb->getServerName( $i ) ]
 			);
 		}
-
-		return $stateByServerIndex;
+		return $state;
 	}
 
 	protected function makeStateKey( IStoreKeyEncoder $cache, int $i ) {
@@ -304,11 +284,7 @@ class LoadMonitor implements ILoadMonitor {
 		if ( !$state ) {
 			return false;
 		}
-		$age = max( $this->getCurrentTime() - $state[self::STATE_AS_OF], 0.0 );
-		if ( $age > self::STATE_TARGET_TTL || mt_rand( 1, 2000 ) === 42 ) {
-			return false;
-		}
-		return true;
+		return $this->getCurrentTime() - $state[self::STATE_AS_OF] > self::STATE_TARGET_TTL;
 	}
 
 	/**
