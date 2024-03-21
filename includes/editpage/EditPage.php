@@ -2768,6 +2768,8 @@ class EditPage implements IEditObject {
 		if ( $this->context->getConfig()->get( MainConfigNames::EnableEditRecovery )
 			&& $this->userOptionsLookup->getOption( $user, 'editrecovery' )
 		) {
+			$wasPosted = $this->getContext()->getRequest()->getMethod() === 'POST';
+			$out->addJsConfigVars( 'wgEditRecoveryWasPosted', $wasPosted );
 			$out->addModules( 'mediawiki.editRecovery.edit' );
 		}
 
