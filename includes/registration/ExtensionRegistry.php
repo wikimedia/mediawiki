@@ -4,6 +4,7 @@ use Composer\Semver\Semver;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -244,10 +245,15 @@ class ExtensionRegistry {
 
 	private function getCache(): BagOStuff {
 		if ( !$this->cache ) {
-			global $wgCachePrefix;
+			// NOTE: Copy of ObjectCacheFactory::getDefaultKeyspace
+			//
 			// Can't call MediaWikiServices here, as we must not cause services
 			// to be instantiated before extensions have loaded.
-			return ObjectCache::makeLocalServerCache( $wgCachePrefix );
+			global $wgCachePrefix;
+			$keyspace = ( is_string( $wgCachePrefix ) && $wgCachePrefix !== '' )
+				? $wgCachePrefix
+				: WikiMap::getCurrentWikiDbDomain()->getId();
+			return ObjectCache::makeLocalServerCache( $keyspace );
 		}
 
 		return $this->cache;

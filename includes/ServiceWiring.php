@@ -1382,7 +1382,8 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getStatsFactory(),
-			LoggerFactory::getProvider()
+			LoggerFactory::getProvider(),
+			WikiMap::getCurrentWikiDbDomain()->getId()
 		);
 	},
 

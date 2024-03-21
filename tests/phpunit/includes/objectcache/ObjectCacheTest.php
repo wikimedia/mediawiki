@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \ObjectCache
@@ -102,6 +104,37 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 			ObjectCache::newAnything(),
 			'No available types or DB. Fallback to none.'
 		);
+	}
+
+	public function provideLocalServerKeyspace() {
+		$dbDomain = static function ( $dbName, $dbPrefix ) {
+			global $wgDBmwschema;
+			return ( new DatabaseDomain( $dbName, $wgDBmwschema, $dbPrefix ) )->getId();
+		};
+		return [
+			'default' => [ false, 'my_wiki', '', $dbDomain( 'my_wiki', '' ) ],
+			'custom' => [ 'custom', 'my_wiki', '', 'custom' ],
+			'prefix' => [ false, 'my_wiki', 'nl_', $dbDomain( 'my_wiki', 'nl_' ) ],
+			'empty string' => [ '', 'my_wiki', 'nl_', $dbDomain( 'my_wiki', 'nl_' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLocalServerKeyspace
+	 * @covers \ObjectCache
+	 * @covers \ObjectCacheFactory
+	 * @covers \MediaWiki\WikiMap\WikiMap
+	 */
+	public function testLocalServerKeyspace( $cachePrefix, $dbName, $dbPrefix, $expect ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::CachePrefix => $cachePrefix,
+			MainConfigNames::DBname => $dbName,
+			MainConfigNames::DBprefix => $dbPrefix,
+		] );
+		// Regression against T247562 (2020), T361177 (2024).
+		$cache = $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_ACCEL );
+		$cache = TestingAccessWrapper::newFromObject( $cache );
+		$this->assertSame( $expect, $cache->keyspace );
 	}
 
 	public static function provideIsDatabaseId() {
