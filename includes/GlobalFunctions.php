@@ -1858,12 +1858,20 @@ function wfRelativePath( $path, $from ) {
  * administrative tasks. See the IMaintainableDatabase and IDatabase interfaces
  * for details.
  *
- * @deprecated since 1.39, use LoadBalancer::getConnection() on an injected
- * instance of LoadBalancer instead.
+ * @deprecated since 1.39, emitting warnings since 1.42; instead, you can use:
+ *   $services = MediaWikiServices::getInstance();
+ *   $dbr = $services->getConnectionProvider()->getReplicaDatabase();
+ *   $dbw = $services->getConnectionProvider()->getPrimaryDatabase();
+ *
+ * 	 … or, in rare circumstances, you may need to use:
+ *
+ *   $services->getDBLoadBalancer()->getConnection() / getMaintenanceConnectionRef()
  *
  * @return \Wikimedia\Rdbms\DBConnRef
  */
 function wfGetDB( $db, $groups = [], $wiki = false ) {
+	wfDeprecated( __FUNCTION__, '1.39' );
+
 	if ( $wiki === false ) {
 		return MediaWikiServices::getInstance()
 			->getDBLoadBalancer()
