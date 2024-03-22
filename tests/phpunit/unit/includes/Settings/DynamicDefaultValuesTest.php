@@ -6,12 +6,12 @@ use LogicException;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\DynamicDefaultValues;
-use PHPUnit\Framework\TestCase;
+use MediaWikiUnitTestCase;
 
 /**
- * @covers \MediaWiki\Settings\DynamicDefaultValuesTest
+ * @covers \MediaWiki\Settings\DynamicDefaultValues
  */
-class DynamicDefaultValuesTest extends TestCase {
+class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 
 	private const DEFAULT_VALUE = 'this is the default value';
 
