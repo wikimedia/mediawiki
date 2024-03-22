@@ -63,6 +63,10 @@ class HTMLHiddenField extends HTMLFormField {
 		return $this->getTableRow( $value );
 	}
 
+	public function getCodex( $value ) {
+		return $this->getTableRow( $value );
+	}
+
 	public function getInputHTML( $value ) {
 		return '';
 	}
