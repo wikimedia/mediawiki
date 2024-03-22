@@ -123,9 +123,24 @@ class HTMLButtonField extends HTMLFormField {
 	}
 
 	public function getInputCodex( $value, $hasErrors ) {
-		$flags = ' cdx-button cdx-button--action-progressive cdx-button--weight-primary';
+		$flags = [];
+		$flagClassMap = [
+			'progressive' => 'cdx-button--action-progressive',
+			'destructive' => 'cdx-button--action-destructive',
+			'primary' => 'cdx-button--weight-primary',
+			'quiet' => 'cdx-button--weight-quiet',
+		];
+
+		foreach ( $this->mFlags as $flag ) {
+			if ( isset( $flagClassMap[$flag] ) ) {
+				$flags[] = $flagClassMap[$flag];
+			}
+		}
+
+		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button', $this->mClass ];
+		$buttonClassesAndFlags = array_merge( $buttonClasses, $flags );
 		$attr = [
-			'class' => [ 'mw-htmlform-submit', $this->mClass . $flags ],
+			'class' => $buttonClassesAndFlags,
 			'id' => $this->mID,
 			'type' => $this->buttonType,
 			'name' => $this->mName,
