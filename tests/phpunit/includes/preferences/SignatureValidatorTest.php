@@ -33,7 +33,22 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [ 'linting' => true ] );
+		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
+			'linting' => true
+		] );
+		// For testing SignatureAllowedLintErrors in ::testValidateSignature
+		$this->overrideConfigValue( MainConfigNames::SignatureAllowedLintErrors, [
+			// No allowed lint errors in default set up
+		] );
+		// For testing hidden category support in ::testValidateSignature
+		$this->overrideConfigValue( 'LinterCategories', [
+			// No hidden categories in default set up
+		] );
+		$extReg = $this->createMock( ExtensionRegistry::class );
+		$extReg->method( 'isLoaded' )->willReturnCallback( static function ( string $which ) {
+			return $which == 'Linter';
+		} );
+		$this->setService( 'ExtensionRegistry', $extReg );
 		$this->validator = $this->getSignatureValidator();
 	}
 
@@ -128,6 +143,83 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 					]
 				]
 			];
+	}
+
+	/**
+	 * @covers \MediaWiki\Preferences\SignatureValidator::validateSignature()
+	 * @dataProvider provideValidateSignature
+	 */
+	public function testValidateSignature( string $signature, $expected ) {
+		$result = $this->validator->validateSignature( $signature );
+		if ( is_string( $expected ) ) {
+			// All special cases should report errors here.
+			$expected = true;
+		}
+		$this->assertSame( $expected, $result );
+	}
+
+	/**
+	 * @covers \MediaWiki\Preferences\SignatureValidator::validateSignature()
+	 * @dataProvider provideValidateSignature
+	 */
+	public function testValidateSignatureAllowed( string $signature, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::SignatureAllowedLintErrors, [
+			'obsolete-tag'
+		] );
+		$this->validator = $this->getSignatureValidator();
+		$result = $this->validator->validateSignature( $signature );
+		if ( $expected === 'allowed' ) {
+			$expected = false;
+		} elseif ( is_string( $expected ) ) {
+			$expected = true;
+		}
+		$this->assertSame( $expected, $result );
+	}
+
+	/**
+	 * @covers \MediaWiki\Preferences\SignatureValidator::validateSignature()
+	 * @dataProvider provideValidateSignature
+	 */
+	public function testValidateSignatureHidden( string $signature, $expected ) {
+		// For testing hidden category support in ::testValidateSignature
+		$this->overrideConfigValue( 'LinterCategories', [
+			'fostered' => [ 'priority' => 'medium' ],
+			// A hidden category, for testing.
+			'wikilink-in-extlink' => [ 'priority' => 'none' ],
+		] );
+		$this->validator = $this->getSignatureValidator();
+		$result = $this->validator->validateSignature( $signature );
+		if ( $expected === 'hidden' ) {
+			$expected = false;
+		} elseif ( is_string( $expected ) ) {
+			$expected = true;
+		}
+		$this->assertSame( $expected, $result );
+	}
+
+	public function provideValidateSignature() {
+		yield 'Perfect' => [
+			'[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])',
+			// no complaints from lint
+			false
+		];
+		yield 'Missing end tag' => [
+			'<span>[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])',
+			// missing-end-tag is never allowed
+			true
+		];
+		yield 'Obsolete tag' => [
+			'<font color="red">RED</font> [[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])',
+			// This is allowed by SignatureAllowedLintErrors
+			'allowed'
+		];
+		// Testing hidden category support; 'wikilink-in-extlink' has been
+		// made hidden.
+		yield 'Wikilink in Extlint (hidden)' => [
+			'[http://example.com [[Foo]]!] [[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])',
+			// This is allowed because the category is hidden
+			'hidden'
+		];
 	}
 
 	/**

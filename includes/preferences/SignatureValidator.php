@@ -20,9 +20,11 @@
 
 namespace MediaWiki\Preferences;
 
+use ExtensionRegistry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -66,6 +68,7 @@ class SignatureValidator {
 	private $specialPageFactory;
 	/** @var TitleFactory */
 	private $titleFactory;
+	private ExtensionRegistry $extensionRegistry;
 
 	/**
 	 * @param ServiceOptions $options
@@ -77,6 +80,7 @@ class SignatureValidator {
 	 * @param PageConfigFactory $pageConfigFactory
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
+	 * @param ExtensionRegistry $extensionRegistry
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -87,7 +91,8 @@ class SignatureValidator {
 		Parsoid $parsoid,
 		PageConfigFactory $pageConfigFactory,
 		SpecialPageFactory $specialPageFactory,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		ExtensionRegistry $extensionRegistry
 	) {
 		$this->user = $user;
 		$this->localizer = $localizer;
@@ -101,6 +106,7 @@ class SignatureValidator {
 		// TODO SpecialPage::getTitleFor should also be available via SpecialPageFactory
 		$this->specialPageFactory = $specialPageFactory;
 		$this->titleFactory = $titleFactory;
+		$this->extensionRegistry = $extensionRegistry;
 	}
 
 	/**
@@ -128,6 +134,17 @@ class SignatureValidator {
 
 		$errors = $this->localizer ? [] : false;
 
+		$hiddenCats = [];
+		if ( $this->extensionRegistry->isLoaded( 'Linter' ) ) { // T360809
+			$services = MediaWikiServices::getInstance();
+			$linterCategories = $services->getMainConfig()->get( 'LinterCategories' );
+			foreach ( $linterCategories as $name => $cat ) {
+				if ( $cat['priority'] === 'none' ) {
+					$hiddenCats[$name] = true;
+				}
+			}
+		}
+
 		$lintErrors = $this->checkLintErrors( $signature );
 		if ( $lintErrors ) {
 			$allowedLintErrors = $this->serviceOptions->get(
@@ -140,6 +157,9 @@ class SignatureValidator {
 					continue;
 				}
 				if ( in_array( $error['type'], $allowedLintErrors, true ) ) {
+					continue;
+				}
+				if ( $hiddenCats[$error['type']] ?? false ) {
 					continue;
 				}
 				if ( !$this->localizer ) {

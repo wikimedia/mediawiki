@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Preferences;
 
+use ExtensionRegistry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -50,6 +51,8 @@ class SignatureValidatorFactory {
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	private ExtensionRegistry $extensionRegistry;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param callable $parserFactoryClosure A function which returns a ParserFactory.
@@ -59,6 +62,7 @@ class SignatureValidatorFactory {
 	 * @param PageConfigFactory $pageConfigFactory
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
+	 * @param ExtensionRegistry $extensionRegistry
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -66,7 +70,8 @@ class SignatureValidatorFactory {
 		callable $parsoidClosure,
 		PageConfigFactory $pageConfigFactory,
 		SpecialPageFactory $specialPageFactory,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		ExtensionRegistry $extensionRegistry
 	) {
 		// Configuration
 		$this->serviceOptions = $options;
@@ -76,6 +81,7 @@ class SignatureValidatorFactory {
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->titleFactory = $titleFactory;
+		$this->extensionRegistry = $extensionRegistry;
 	}
 
 	/**
@@ -98,7 +104,8 @@ class SignatureValidatorFactory {
 			( $this->parsoidClosure )(),
 			$this->pageConfigFactory,
 			$this->specialPageFactory,
-			$this->titleFactory
+			$this->titleFactory,
+			$this->extensionRegistry
 		);
 	}
 }
