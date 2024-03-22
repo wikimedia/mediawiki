@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Page;
 
-use DBAccessObjectUtils;
 use EmptyIterator;
 use IDBAccessObject;
 use InvalidArgumentException;
@@ -403,24 +402,20 @@ class PageStore implements PageLookup {
 	public function newSelectQueryBuilder( $dbOrFlags = IDBAccessObject::READ_NORMAL ): PageSelectQueryBuilder {
 		if ( $dbOrFlags instanceof IReadableDatabase ) {
 			$db = $dbOrFlags;
-			$options = [];
+			$flags = IDBAccessObject::READ_NORMAL;
 		} else {
-			[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $dbOrFlags );
-			$db = $this->getDBConnectionRef( $mode );
+			if ( ( $dbOrFlags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+				$db = $this->dbLoadBalancer->getConnection( DB_PRIMARY, [], $this->wikiId );
+			} else {
+				$db = $this->dbLoadBalancer->getConnection( DB_REPLICA, [], $this->wikiId );
+			}
+			$flags = $dbOrFlags;
 		}
 
 		$queryBuilder = new PageSelectQueryBuilder( $db, $this, $this->linkCache );
-		$queryBuilder->options( $options );
+		$queryBuilder->recency( $flags );
 
 		return $queryBuilder;
-	}
-
-	/**
-	 * @param int $mode DB_PRIMARY or DB_REPLICA
-	 * @return IDatabase
-	 */
-	private function getDBConnectionRef( int $mode = DB_REPLICA ): IDatabase {
-		return $this->dbLoadBalancer->getConnectionRef( $mode, [], $this->wikiId );
 	}
 
 	/**
