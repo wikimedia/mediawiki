@@ -150,8 +150,12 @@ class Xml {
 	 *   Null to not include (default).
 	 * @param string $id Element identifier
 	 * @return string Html string containing the month selector
+	 *
+	 * @deprecated since 1.42
 	 */
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		global $wgLang;
 		$options = [];
 
@@ -173,8 +177,11 @@ class Xml {
 	 * @param int|string $month A month in the 1..12 range. Use '', 0 or -1 to start with no month
 	 *  preselected.
 	 * @return string Formatted HTML
+	 *
+	 * @deprecated since 1.42
 	 */
 	public static function dateMenu( $year, $month ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		# Offset overrides year/month selection
 		if ( $month && $month !== -1 ) {
 			$encMonth = intval( $month );
@@ -210,10 +217,13 @@ class Xml {
 	 * @param array $overrideAttrs Override the attributes of the select tag (since 1.20)
 	 * @param Message|null $msg Label message key (since 1.20)
 	 * @return array Array containing 2 items: label HTML and select list HTML
+	 *
+	 * @deprecated since 1.42
 	 */
 	public static function languageSelector( $selected, $customisedOnly = true,
 		$inLanguage = null, $overrideAttrs = [], Message $msg = null
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$languageCode = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::LanguageCode );
 
@@ -259,6 +269,7 @@ class Xml {
 	 * @param string $class Class name of the span element
 	 * @param array $attribs Other attributes
 	 * @return string
+	 *
 	 * @deprecated since 1.42, use {@see Html::element} instead
 	 */
 	public static function span( $text, $class, $attribs = [] ) {
@@ -273,6 +284,7 @@ class Xml {
 	 * @param string $tag Element name
 	 * @param array $attribs Other attributes
 	 * @return string
+	 *
 	 * @deprecated since 1.42, use {@see Xml::tags} instead
 	 */
 	public static function wrapClass( $text, $class, $tag = 'span', $attribs = [] ) {
@@ -287,6 +299,7 @@ class Xml {
 	 * @param string|false $value Value of the value attribute
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::input} instead
 	 */
 	public static function input( $name, $size = false, $value = false, $attribs = [] ) {
@@ -310,6 +323,7 @@ class Xml {
 	 * @param string|false $value Value of the value attribute
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::input} instead
 	 */
 	public static function password( $name, $size = false, $value = false,
@@ -326,6 +340,8 @@ class Xml {
 	 * @param bool $present
 	 *
 	 * @return array
+	 *
+	 * @deprecated since 1.42; only for use in methods being deprecated
 	 */
 	public static function attrib( $name, $present = true ) {
 		return $present ? [ $name => $name ] : [];
@@ -337,6 +353,7 @@ class Xml {
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Array other attributes
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::check} instead
 	 */
 	public static function check( $name, $checked = false, $attribs = [] ) {
@@ -356,6 +373,7 @@ class Xml {
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::radio} instead
 	 */
 	public static function radio( $name, $value, $checked = false, $attribs = [] ) {
@@ -374,6 +392,7 @@ class Xml {
 	 *     so this function will cherry-pick appropriate attributes to
 	 *     apply to the label as well; only class and title are applied.
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::label} instead
 	 */
 	public static function label( $label, $id, $attribs = [] ) {
@@ -397,6 +416,7 @@ class Xml {
 	 * @param string|false $value Value of the value attribute
 	 * @param array $attribs Other attributes
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead
 	 */
 	public static function inputLabel( $label, $name, $id, $size = false,
@@ -415,8 +435,8 @@ class Xml {
 	 * @param int|false $size
 	 * @param string|false $value
 	 * @param array $attribs
-	 *
 	 * @return array
+	 *
 	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead
 	 */
 	public static function inputLabelSep( $label, $name, $id, $size = false,
@@ -436,8 +456,8 @@ class Xml {
 	 * @param string $id
 	 * @param bool $checked
 	 * @param array $attribs
-	 *
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::check} and {@see Html::label} instead
 	 */
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = [] ) {
@@ -455,8 +475,8 @@ class Xml {
 	 * @param string $id
 	 * @param bool $checked
 	 * @param array $attribs
-	 *
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::radio} and {@see Html::label} instead
 	 */
 	public static function radioLabel( $label, $name, $value, $id,
@@ -473,6 +493,7 @@ class Xml {
 	 * @param string $value Label text for the button (unescaped)
 	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::submitButton} instead
 	 */
 	public static function submitButton( $value, $attribs = [] ) {
@@ -490,6 +511,7 @@ class Xml {
 	 * @param bool $selected If true, will be the default selected item
 	 * @param array $attribs Optional additional HTML attributes
 	 * @return string HTML
+	 *
 	 * @deprecated since 1.42, use {@see Html::element} instead
 	 */
 	public static function option( $text, $value = null, $selected = false,
@@ -515,6 +537,8 @@ class Xml {
 	 * @param string $class CSS classes for the drop-down
 	 * @param int|null $tabindex Value of the tabindex attribute
 	 * @return string
+	 *
+	 * @deprecated since 1.42; use the equivalent methods in Html without a wrapper
 	 */
 	public static function listDropdown( $name = '', $list = '', $other = '',
 		$selected = '', $class = '', $tabindex = null
@@ -546,6 +570,8 @@ class Xml {
 	 * @param array $params Extra parameters:
 	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
 	 * @return array Array keys are textual labels, values are internal values
+	 *
+	 * @deprecated since 1.42; use the equivalent method in Html
 	 */
 	public static function listDropdownOptions( $list, $params = [] ) {
 		$options = [];
@@ -596,6 +622,8 @@ class Xml {
 	 *
 	 * @param array $options Options, as returned e.g. by Xml::listDropdownOptions()
 	 * @return array
+	 *
+	 * @deprecated since 1.42; use the equivalent method in Html
 	 */
 	public static function listDropdownOptionsOoui( $options ) {
 		$optionsOoui = [];
@@ -622,8 +650,8 @@ class Xml {
 	 * @param string|false $content Pre-escaped content for the fieldset. If false,
 	 *   only open fieldset is returned.
 	 * @param array $attribs Any attributes to fieldset-element.
-	 *
 	 * @return string
+	 *
 	 * @deprecated since 1.42, use {@see Html::element} instead
 	 */
 	public static function fieldset( $legend = false, $content = false, $attribs = [] ) {
@@ -649,8 +677,8 @@ class Xml {
 	 * @param int $cols The number of columns for the textarea
 	 * @param int $rows The number of rows for the textarea
 	 * @param array $attribs Any other attributes for the textarea
-	 *
 	 * @return string
+	 *
 	 * @deprecated since 1.42, use {@see Html::textarea} instead
 	 */
 	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = [] ) {
@@ -676,6 +704,7 @@ class Xml {
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
 	 * @return-taint none
+	 *
 	 * @deprecated since 1.41, use {@see Html::encodeJsVar} instead
 	 */
 	public static function encodeJsVar( $value, $pretty = false ) {
@@ -695,6 +724,7 @@ class Xml {
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return string|false String if successful; false upon failure
 	 * @return-taint none
+	 *
 	 * @deprecated since 1.41, use {@see Html::encodeJsCall} instead
 	 */
 	public static function encodeJsCall( $name, $args, $pretty = false ) {
@@ -774,6 +804,7 @@ class Xml {
 	 *   the submit button.
 	 * @param array $submitAttribs The attributes to add to the submit button
 	 * @return string HTML form.
+	 *
 	 * @deprecated since 1.42, use OOUI or Codex widgets instead
 	 */
 	public static function buildForm( $fields, $submitLabel = null, $submitAttribs = [] ) {
@@ -813,6 +844,8 @@ class Xml {
 	 * @param array|null $attribs An array of attributes to apply to the table tag
 	 * @param array|null $headers An array of strings to use as table headers
 	 * @return string
+	 *
+	 * @deprecated since 1.42; use OOUI or Codex widgets instead
 	 */
 	public static function buildTable( $rows, $attribs = [], $headers = null ) {
 		$s = self::openElement( 'table', $attribs );
@@ -852,6 +885,8 @@ class Xml {
 	 * @param array|null $attribs An array of attributes to apply to the tr tag
 	 * @param string[] $cells An array of strings to put in <td>
 	 * @return string
+	 *
+	 * @deprecated since 1.42; use OOUI or Codex widgets instead
 	 */
 	public static function buildTableRow( $attribs, $cells ) {
 		$s = self::openElement( 'tr', $attribs );

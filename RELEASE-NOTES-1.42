@@ -737,13 +737,21 @@ because of Phabricator reports.
   ::getDBFromRecency() instead.
 * Many Xml methods that are specific to HTML but not XML are deprecated:
   - Xml::buildForm
+  - Xml::buildTable
+  - Xml::buildTableRow
   - Xml::check
   - Xml::checkLabel
+  - Xml::dateMenu
   - Xml::fieldset
   - Xml::input
   - Xml::inputLabel
   - Xml::inputLabelSep
   - Xml::label
+  - Xml::languageSelector
+  - Xml::listDropdown
+  - Xml::listDropdownOptions
+  - Xml::listDropdownOptionsOoui
+  - Xml::monthSelector
   - Xml::option
   - Xml::password
   - Xml::radio
@@ -751,7 +759,7 @@ because of Phabricator reports.
   - Xml::span
   - Xml::submitButton
   - Xml::textarea
-  has been hard deprecated
+  - Xml::attrib (only for use in HTML, not XML contexts)
 * IMaintainableDatabase::truncate() has been deprecated. Use truncateTable()
   instead.
 * TextConflictHelper->incrementStatsByUserEdits() is now deprecated.  The
