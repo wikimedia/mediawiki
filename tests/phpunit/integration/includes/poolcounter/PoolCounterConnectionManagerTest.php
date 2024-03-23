@@ -3,7 +3,7 @@
 use MediaWiki\PoolCounter\PoolCounterConnectionManager;
 
 /**
- * @covers \PoolCounterConnectionManagerTest
+ * @covers \MediaWiki\PoolCounter\PoolCounterConnectionManager
  * @group Database
  */
 class PoolCounterConnectionManagerTest extends MediaWikiIntegrationTestCase {
