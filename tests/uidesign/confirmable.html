@@ -6,9 +6,9 @@
 	The jquery.confirmable module uses some additional modules and files
 	for internationalization support. These are omitted here for simplicity.
 	-->
-	<script type="text/javascript" src="../../resources/lib/jquery/jquery.js"></script>
 	<link rel="stylesheet" href="../../resources/src/jquery/jquery.confirmable.css">
-	<script type="text/javascript" src="../../resources/src/jquery/jquery.confirmable.js"></script>
+	<script src="../../resources/lib/jquery/jquery.js"></script>
+	<script src="../../resources/src/jquery/jquery.confirmable.js"></script>
 	<style>
 	body {
 		font: small sans-serif;
@@ -71,7 +71,7 @@
 		</li>
 	</ul>
 
-	<script type="text/javascript">
+	<script>
 		$( 'ul[lang="en"] .mw-rollback-link a' )
 			.confirmable({ i18n: { confirm: 'Are you sure you want to rollback?' } });
 		$( 'ul[lang="en"] .mw-unwatch-link a' )
@@ -121,7 +121,7 @@
 		</li>
 	</ul>
 
-	<script type="text/javascript">
+	<script>
 		var hebrewI18n = {
 			confirm: 'האם ברצונך להמשיך?',
 			yes: 'כן',
@@ -135,7 +135,7 @@
 		$( 'ul[lang="he"] .mw-thanks-thank-link a' )
 			.confirmable({ i18n: hebrewI18n, handler: function(){ alert('Thanked!') } });
 	</script>
-	<style type="text/css">
+	<style>
 		/* This is normally handled by CSSJanus. */
 		ul[dir=rtl] .jquery-confirmable-button {
 			margin-left: 0;
