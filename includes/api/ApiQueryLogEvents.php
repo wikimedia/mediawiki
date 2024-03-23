@@ -328,7 +328,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		$authority = $this->getAuthority();
-		if ( $this->fld_title || $this->fld_ids || $this->fld_details && $row->log_params !== '' ) {
+		if ( $this->fld_title || $this->fld_ids || ( $this->fld_details && $row->log_params !== '' ) ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = true;
 				$anyHidden = true;

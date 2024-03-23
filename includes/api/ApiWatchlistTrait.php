@@ -137,8 +137,7 @@ trait ApiWatchlistTrait {
 				// If no user option was passed, use watchdefault and watchcreations
 				if ( $userOption === null ) {
 					return $this->userOptionsLookup->getBoolOption( $user, 'watchdefault' ) ||
-						$this->userOptionsLookup->getBoolOption( $user, 'watchcreations' ) &&
-						!$title->exists();
+						( $this->userOptionsLookup->getBoolOption( $user, 'watchcreations' ) && !$title->exists() );
 				}
 
 				// Watch the article based on the user preference

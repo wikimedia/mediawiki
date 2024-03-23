@@ -108,7 +108,7 @@ class SpecialBlockList extends SpecialPage {
 
 		$action = $request->getText( 'action' );
 
-		if ( $action == 'unblock' || $action == 'submit' && $request->wasPosted() ) {
+		if ( $action == 'unblock' || ( $action == 'submit' && $request->wasPosted() ) ) {
 			// B/C @since 1.18: Unblock interface is now at Special:Unblock
 			$title = $this->getSpecialPageFactory()->getTitleForAlias( 'Unblock/' . $this->target );
 			$out->redirect( $title->getFullURL() );

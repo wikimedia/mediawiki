@@ -349,7 +349,7 @@ class StatusValue {
 		}
 
 		foreach ( $this->errors as [ 'message' => $key ] ) {
-			if ( $key instanceof MessageSpecifier && $key->getKey() === $message ||
+			if ( ( $key instanceof MessageSpecifier && $key->getKey() === $message ) ||
 				$key === $message
 			) {
 				return true;
@@ -406,7 +406,7 @@ class StatusValue {
 
 		foreach ( $this->errors as [ 'message' => &$message ] ) {
 			if ( $message === $source ||
-				$message instanceof MessageSpecifier && $message->getKey() === $source
+				( $message instanceof MessageSpecifier && $message->getKey() === $source )
 			) {
 				$message = $dest;
 				$replaced = true;

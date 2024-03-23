@@ -179,8 +179,8 @@ abstract class AuthenticationRequest {
 			// might be boolean. Further, image buttons might submit the
 			// coordinates of the click rather than the expected value.
 			if ( $info['type'] === 'checkbox' || $info['type'] === 'button' ) {
-				$this->$field = isset( $data[$field] ) && $data[$field] !== false
-					|| isset( $data["{$field}_x"] ) && $data["{$field}_x"] !== false;
+				$this->$field = ( isset( $data[$field] ) && $data[$field] !== false )
+					|| ( isset( $data["{$field}_x"] ) && $data["{$field}_x"] !== false );
 				if ( !$this->$field && empty( $info['optional'] ) ) {
 					return false;
 				}
@@ -360,9 +360,9 @@ abstract class AuthenticationRequest {
 					$req->required === self::OPTIONAL
 					// If there is a primary not requiring this field, no matter how many others do,
 					// authentication can proceed without it.
-					|| $req->required === self::PRIMARY_REQUIRED
+					|| ( $req->required === self::PRIMARY_REQUIRED
 						// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
-						&& !in_array( $name, $sharedRequiredPrimaryFields, true )
+						&& !in_array( $name, $sharedRequiredPrimaryFields, true ) )
 				) {
 					$options['optional'] = true;
 				} else {

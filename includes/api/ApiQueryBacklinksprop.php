@@ -258,8 +258,8 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		if ( $params['show'] !== null ) {
 			// prop=redirects only
 			$show = array_fill_keys( $params['show'], true );
-			if ( isset( $show['fragment'] ) && isset( $show['!fragment'] ) ||
-				isset( $show['redirect'] ) && isset( $show['!redirect'] )
+			if ( ( isset( $show['fragment'] ) && isset( $show['!fragment'] ) ) ||
+				( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
 			) {
 				$this->dieWithError( 'apierror-show' );
 			}

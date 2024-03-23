@@ -560,7 +560,7 @@ class SkinTemplate extends Skin {
 			'text' => $this->msg( $loginlink )->text(),
 			'href' => SkinComponentUtils::makeSpecialUrl( 'Userlogin', $returnto ),
 			'active' => $title->isSpecial( 'Userlogin' )
-				|| $title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink,
+				|| ( $title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink ),
 			'icon' => 'logIn'
 		];
 

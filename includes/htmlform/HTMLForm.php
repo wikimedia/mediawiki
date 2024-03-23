@@ -632,7 +632,7 @@ class HTMLForm extends ContextSource {
 		if (
 			$this->mFormIdentifier === null ||
 			$this->getRequest()->getVal( 'wpFormIdentifier' ) === $this->mFormIdentifier ||
-			$this->mSingleForm && $this->getMethod() === 'get'
+			( $this->mSingleForm && $this->getMethod() === 'get' )
 		) {
 			$this->loadFieldData();
 		} else {

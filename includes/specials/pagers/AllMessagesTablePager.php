@@ -232,7 +232,7 @@ class AllMessagesTablePager extends TablePager {
 		foreach ( $messageNames as $key ) {
 			$customised = isset( $statuses['pages'][$key] );
 			if ( $customised !== $this->custom &&
-				( $asc && ( $key < $offset || !$offset ) || !$asc && $key > $offset ) &&
+				( ( $asc && ( $key < $offset || !$offset ) ) || ( !$asc && $key > $offset ) ) &&
 				( ( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
 			) {
 				$actual = $this->msg( $key )->inLanguage( $this->lang )->plain();

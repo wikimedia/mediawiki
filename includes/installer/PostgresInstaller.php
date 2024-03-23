@@ -243,7 +243,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	public function canCreateAccounts() {
 		$perms = $this->getInstallUserPermissions();
-		return $perms && $perms->rolsuper || $perms->rolcreaterole;
+		return ( $perms && $perms->rolsuper ) || $perms->rolcreaterole;
 	}
 
 	protected function isSuperUser() {

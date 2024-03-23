@@ -549,7 +549,7 @@ class SQLPlatform implements ISQLPlatform {
 				'$startPosition must be a positive integer'
 			);
 		}
-		if ( !( is_int( $length ) && $length >= 0 || $length === null ) ) {
+		if ( !( ( is_int( $length ) && $length >= 0 ) || $length === null ) ) {
 			throw new InvalidArgumentException(
 				'$length must be null or an integer greater than or equal to 0'
 			);
