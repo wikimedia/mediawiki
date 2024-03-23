@@ -27,10 +27,6 @@ require_once __DIR__ . '/Maintenance.php';
  * Maintenance script that refreshes category membership counts in the category
  * table.
  *
- * (The populateCategory.php script will also recalculate counts, but
- * recountCategories only updates rows that need to be updated, making it more
- * efficient.)
- *
  * @ingroup Maintenance
  */
 class RecountCategories extends Maintenance {
