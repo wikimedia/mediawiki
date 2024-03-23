@@ -192,7 +192,7 @@ class WatchedItemQueryService {
 			'must be DIR_OLDER or DIR_NEWER'
 		);
 		Assert::parameter(
-			!isset( $options['start'] ) && !isset( $options['end'] ) && $startFrom === null
+			( !isset( $options['start'] ) && !isset( $options['end'] ) && $startFrom === null )
 				|| isset( $options['dir'] ),
 			'$options[\'dir\']',
 			'must be provided when providing the "start" or "end" options or the $startFrom parameter'
@@ -323,8 +323,8 @@ class WatchedItemQueryService {
 			'must be FILTER_CHANGED or FILTER_NOT_CHANGED'
 		);
 		Assert::parameter(
-			!isset( $options['from'] ) && !isset( $options['until'] ) && !isset( $options['startFrom'] )
-			|| isset( $options['sort'] ),
+			( !isset( $options['from'] ) && !isset( $options['until'] ) && !isset( $options['startFrom'] ) )
+				|| isset( $options['sort'] ),
 			'$options[\'sort\']',
 			'must be provided if any of "from", "until", "startFrom" options is provided'
 		);

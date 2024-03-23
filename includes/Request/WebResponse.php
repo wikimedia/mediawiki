@@ -227,7 +227,7 @@ class WebResponse {
 		}
 
 		// PHP deletes if value is the empty string; also, a past expiry is deleting
-		$deleting = ( $value === '' || $setOptions['expires'] > 0 && $setOptions['expires'] <= time() );
+		$deleting = ( $value === '' || ( $setOptions['expires'] > 0 && $setOptions['expires'] <= time() ) );
 
 		$logDesc = "$func: \"$prefixedName\", \"$value\", \"" .
 			implode( '", "', array_map( 'strval', $setOptions ) ) . '"';

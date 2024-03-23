@@ -390,8 +390,8 @@ abstract class HTMLFormField {
 	public function isDisabled( $alldata ) {
 		return ( $this->mParams['disabled'] ?? false ) ||
 			$this->isHidden( $alldata ) ||
-			isset( $this->mCondState['disable'] ) &&
-			$this->checkStateRecurse( $alldata, $this->mCondState['disable'] );
+			( isset( $this->mCondState['disable'] )
+				&& $this->checkStateRecurse( $alldata, $this->mCondState['disable'] ) );
 	}
 
 	/**
@@ -501,7 +501,7 @@ abstract class HTMLFormField {
 	 */
 	protected function isSubmitAttempt( WebRequest $request ) {
 		// HTMLForm would add a hidden field of edit token for forms that require to be posted.
-		return $request->wasPosted() && $request->getCheck( 'wpEditToken' )
+		return ( $request->wasPosted() && $request->getCheck( 'wpEditToken' ) )
 			// The identifier matching or not has been checked in HTMLForm::prepareForm()
 			|| $request->getCheck( 'wpFormIdentifier' );
 	}

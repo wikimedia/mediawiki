@@ -206,7 +206,7 @@ class TalkPageNotificationManager {
 		// Don't use self::userHasNewMessages here to avoid an extra DB query
 		// in case the value is not cached already
 		if ( $this->isTalkDisabled( $user ) ||
-			isset( $this->userMessagesCache[$userKey] ) && !$this->userMessagesCache[$userKey]
+			( isset( $this->userMessagesCache[$userKey] ) && !$this->userMessagesCache[$userKey] )
 		) {
 			return null;
 		}

@@ -151,7 +151,7 @@ class SessionManager implements SessionManagerInterface {
 		if (
 			!self::$globalSession // No global session is set up yet
 			|| self::$globalSessionRequest !== $request // The global WebRequest changed
-			|| $id !== '' && self::$globalSession->getId() !== $id // Someone messed with session_id()
+			|| ( $id !== '' && self::$globalSession->getId() !== $id ) // Someone messed with session_id()
 		) {
 			self::$globalSessionRequest = $request;
 			if ( $id === '' ) {

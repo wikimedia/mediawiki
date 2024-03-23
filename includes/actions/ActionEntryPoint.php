@@ -289,12 +289,12 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 			$actionName = $request->getRawVal( 'action' );
 			if (
 				$actionName === 'revisiondelete' ||
-				$actionName === 'historysubmit' && $request->getBool( 'revisiondelete' )
+				( $actionName === 'historysubmit' && $request->getBool( 'revisiondelete' ) )
 			) {
 				$ret = SpecialPage::getTitleFor( 'Revisiondelete' );
 			} elseif (
 				$actionName === 'editchangetags' ||
-				$actionName === 'historysubmit' && $request->getBool( 'editchangetags' )
+				( $actionName === 'historysubmit' && $request->getBool( 'editchangetags' ) )
 			) {
 				$ret = SpecialPage::getTitleFor( 'EditTags' );
 			}

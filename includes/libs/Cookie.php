@@ -91,7 +91,7 @@ class Cookie {
 		// Don't allow a trailing dot or addresses without a or just a leading dot
 		if ( substr( $domain, -1 ) == '.' ||
 			count( $dc ) <= 1 ||
-			count( $dc ) == 2 && $dc[0] === ''
+			( count( $dc ) == 2 && $dc[0] === '' )
 		) {
 			return false;
 		}

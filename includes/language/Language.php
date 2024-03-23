@@ -2392,7 +2392,7 @@ class Language implements Bcp47Code {
 			$ts = $this->msg( 'yesterday-at' )
 				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
 				->text();
-		} elseif ( $diff->h > 1 || $diff->h == 1 && $diff->i > 30 ) {
+		} elseif ( $diff->h > 1 || ( $diff->h == 1 && $diff->i > 30 ) ) {
 			// Timestamp was today, but more than 90 minutes ago: say 'today' and the time.
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
 			$ts = $this->msg( 'today-at' )
