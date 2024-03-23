@@ -991,6 +991,7 @@ class SpecialPageFactory {
 				'UndeletePageFactory',
 				'ArchivedRevisionLookup',
 				'CommentFormatter',
+				'WatchlistManager',
 			],
 		],
 		'Whatlinkshere' => [

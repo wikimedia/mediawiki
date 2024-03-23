@@ -59,6 +59,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\Watchlist\WatchlistManager;
 use OOUI\ActionFieldLayout;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
@@ -146,6 +147,7 @@ class SpecialUndelete extends SpecialPage {
 	private UndeletePageFactory $undeletePageFactory;
 	private ArchivedRevisionLookup $archivedRevisionLookup;
 	private CommentFormatter $commentFormatter;
+	private WatchlistManager $watchlistManager;
 
 	/**
 	 * @param PermissionManager $permissionManager
@@ -162,6 +164,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param UndeletePageFactory $undeletePageFactory
 	 * @param ArchivedRevisionLookup $archivedRevisionLookup
 	 * @param CommentFormatter $commentFormatter
+	 * @param WatchlistManager $watchlistManager
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -177,7 +180,8 @@ class SpecialUndelete extends SpecialPage {
 		SearchEngineFactory $searchEngineFactory,
 		UndeletePageFactory $undeletePageFactory,
 		ArchivedRevisionLookup $archivedRevisionLookup,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		WatchlistManager $watchlistManager
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
@@ -194,6 +198,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->undeletePageFactory = $undeletePageFactory;
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 		$this->commentFormatter = $commentFormatter;
+		$this->watchlistManager = $watchlistManager;
 	}
 
 	public function doesWrites() {
@@ -1135,6 +1140,23 @@ class SpecialUndelete extends SpecialPage {
 				]
 			);
 
+			if ( $this->getUser()->isRegistered() ) {
+				$checkWatch = $this->watchlistManager->isWatched( $this->getUser(), $this->mTargetObj )
+					|| $this->getRequest()->getText( 'wpWatch' );
+				$fields[] = new FieldLayout(
+					new CheckboxInputWidget( [
+						'name' => 'wpWatch',
+						'inputId' => 'mw-undelete-watch',
+						'value' => '1',
+						'selected' => $checkWatch,
+					] ),
+					[
+						'label' => $this->msg( 'watchthis' )->text(),
+						'align' => 'inline',
+					]
+				);
+			}
+
 			if ( $unsuppressAllowed ) {
 				$fields[] = new FieldLayout(
 					new CheckboxInputWidget( [
@@ -1632,6 +1654,12 @@ class SpecialUndelete extends SpecialPage {
 
 			$link = $this->getLinkRenderer()->makeKnownLink( $this->mTargetObj );
 			$out->addWikiMsg( 'undeletedpage', Message::rawParam( $link ) );
+
+			$this->watchlistManager->setWatch(
+				$this->getRequest()->getCheck( 'wpWatch' ),
+				$this->getAuthority(),
+				$this->mTargetObj
+			);
 		}
 	}
 
