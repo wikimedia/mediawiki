@@ -464,31 +464,35 @@ class ChangesList extends ContextSource {
 	 * @param Language $lang
 	 * @param Title|null $title (optional) where Title does not match
 	 *   the Title associated with the RevisionRecord
-	 * @internal For usage by Pager classes only (e.g. HistoryPager and ContribsPager).
+	 * @param string $className (optional) to append to .mw-changelist-date element for access to the
+	 *   associated timestamp string.
+	 * @internal For usage by Pager classes only (e.g. HistoryPager, NewPagesPager and ContribsPager).
 	 * @return string HTML
 	 */
 	public static function revDateLink(
 		RevisionRecord $rev,
 		Authority $performer,
 		Language $lang,
-		$title = null
+		$title = null,
+		$className = ''
 	) {
 		$ts = $rev->getTimestamp();
 		$time = $lang->userTime( $ts, $performer->getUser() );
 		$date = $lang->userTimeAndDate( $ts, $performer->getUser() );
+		$class = trim( 'mw-changeslist-date ' . $className );
 		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $performer ) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$title ?? $rev->getPageAsLinkTarget(),
 				$date,
-				[ 'class' => 'mw-changeslist-date' ],
+				[ 'class' => $class ],
 				[ 'oldid' => $rev->getId() ]
 			);
 		} else {
 			$link = htmlspecialchars( $date );
 		}
 		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$deletedClass = Linker::getRevisionDeletedClass( $rev );
-			$link = "<span class=\"$deletedClass mw-changeslist-date\">$link</span>";
+			$class = Linker::getRevisionDeletedClass( $rev ) . " $class";
+			$link = "<span class=\"$class\">$link</span>";
 		}
 		return Html::element( 'span', [
 			'class' => 'mw-changeslist-time'
