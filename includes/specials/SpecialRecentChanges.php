@@ -816,10 +816,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$tagFilter = ChangeTags::buildTagFilterSelector(
 			$opts['tagfilter'], false, $this->getContext()
 		);
-		if ( count( $tagFilter ) ) {
+		if ( $tagFilter ) {
 			$tagFilter[1] .= ' ' . Html::rawElement( 'span', [ 'class' => [ 'mw-input-with-label' ] ],
-				Xml::checkLabel(
-					$this->msg( 'invert' )->text(), 'inverttags', 'inverttags', $opts['inverttags'] )
+				Html::element( 'input', [
+					'type' => 'checkbox', 'name' => 'inverttags', 'value' => '1', 'checked' => $opts['inverttags'],
+					'id' => 'inverttags'
+				] ) . '&nbsp;' . Html::label( $this->msg( 'invert' )->text(), 'inverttags' )
 			);
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
@@ -860,18 +862,17 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			[ 'selected' => $opts['namespace'], 'all' => '', 'in-user-lang' => true ],
 			[ 'name' => 'namespace', 'id' => 'namespace' ]
 		);
-		$nsLabel = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
-		$attribs = [ 'class' => [ 'mw-input-with-label' ] ];
-		$invert = Html::rawElement( 'span', $attribs, Xml::checkLabel(
-			$this->msg( 'invert' )->text(), 'invert', 'nsinvert',
-			$opts['invert'],
-			[ 'title' => $this->msg( 'tooltip-invert' )->text() ]
-		) );
-		$associated = Html::rawElement( 'span', $attribs, Xml::checkLabel(
-			$this->msg( 'namespace_association' )->text(), 'associated', 'nsassociated',
-			$opts['associated'],
-			[ 'title' => $this->msg( 'tooltip-namespace_association' )->text() ]
-		) );
+		$nsLabel = Html::label( $this->msg( 'namespace' )->text(), 'namespace' );
+		$invert = Html::rawElement( 'label', [
+			'class' => 'mw-input-with-label', 'title' => $this->msg( 'tooltip-invert' )->text(),
+		], Html::element( 'input', [
+			'type' => 'checkbox', 'name' => 'invert', 'value' => '1', 'checked' => $opts['invert'],
+		] ) . '&nbsp;' . $this->msg( 'invert' )->escaped() );
+		$associated = Html::rawElement( 'label', [
+			'class' => 'mw-input-with-label', 'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+		], Html::element( 'input', [
+			'type' => 'checkbox', 'name' => 'associated', 'value' => '1', 'checked' => $opts['associated'],
+		] ) . '&nbsp;' . $this->msg( 'namespace_association' )->escaped() );
 
 		return [ $nsLabel, "$nsSelect $invert $associated" ];
 	}
