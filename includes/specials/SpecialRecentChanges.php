@@ -645,36 +645,36 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts = $this->getExtraOptions( $opts );
 		$extraOptsCount = count( $extraOpts );
 		$count = 0;
-		$submit = ' ' . Xml::submitButton( $this->msg( 'recentchanges-submit' )->text() );
+		$submit = ' ' . Html::submitButton( $this->msg( 'recentchanges-submit' )->text() );
 
-		$out = Xml::openElement( 'table', [ 'class' => 'mw-recentchanges-table' ] );
+		$out = Html::openElement( 'table', [ 'class' => 'mw-recentchanges-table' ] );
 		foreach ( $extraOpts as $name => $optionRow ) {
 			# Add submit button to the last row only
 			++$count;
 			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
 
-			$out .= Xml::openElement( 'tr', [ 'class' => $name . 'Form' ] );
+			$out .= Html::openElement( 'tr', [ 'class' => $name . 'Form' ] );
 			if ( is_array( $optionRow ) ) {
-				$out .= Xml::tags(
+				$out .= Html::rawElement(
 					'td',
 					[ 'class' => 'mw-label mw-' . $name . '-label' ],
 					$optionRow[0]
 				);
-				$out .= Xml::tags(
+				$out .= Html::rawElement(
 					'td',
 					[ 'class' => 'mw-input' ],
 					$optionRow[1] . $addSubmit
 				);
 			} else {
-				$out .= Xml::tags(
+				$out .= Html::rawElement(
 					'td',
 					[ 'class' => 'mw-input', 'colspan' => 2 ],
 					$optionRow . $addSubmit
 				);
 			}
-			$out .= Xml::closeElement( 'tr' );
+			$out .= Html::closeElement( 'tr' );
 		}
-		$out .= Xml::closeElement( 'table' );
+		$out .= Html::closeElement( 'table' );
 
 		$unconsumed = $opts->getUnconsumedValues();
 		foreach ( $unconsumed as $key => $value ) {
@@ -683,7 +683,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$t = $this->getPageTitle();
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
-		$form = Xml::tags( 'form', [ 'action' => wfScript() ], $out );
+		$form = Html::rawElement( 'form', [ 'action' => wfScript() ], $out );
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
