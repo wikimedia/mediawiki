@@ -842,18 +842,8 @@ __INDEXATTR__;
 
 	public function getServerVersion() {
 		if ( !isset( $this->numericVersion ) ) {
-			$conn = $this->getBindingHandle();
-			$versionInfo = pg_version( $conn );
-			if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
-				// Old client, abort install
-				$this->numericVersion = '7.3 or earlier';
-			} elseif ( isset( $versionInfo['server'] ) ) {
-				// Normal client
-				$this->numericVersion = $versionInfo['server'];
-			} else {
-				// T18937: broken pgsql extension from PHP<5.3
-				$this->numericVersion = pg_parameter_status( $conn, 'server_version' );
-			}
+			// Works on PG 7.4+
+			$this->numericVersion = pg_version( $this->getBindingHandle() )['server'];
 		}
 
 		return $this->numericVersion;
