@@ -121,6 +121,14 @@ class HTMLInfoField extends HTMLFormField {
 		return parent::getOOUI( $value );
 	}
 
+	public function getCodex( $value ) {
+		if ( !empty( $this->mParams['rawrow'] ) ) {
+			return $value;
+		}
+
+		return parent::getCodex( $value );
+	}
+
 	/**
 	 * @inheritDoc
 	 * @stable to override
