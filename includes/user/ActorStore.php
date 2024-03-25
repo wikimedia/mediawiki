@@ -21,7 +21,6 @@
 namespace MediaWiki\User;
 
 use CannotCreateActorException;
-use DBAccessObjectUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\HideUserUtils;
@@ -671,15 +670,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
-	 * @param int $queryFlags a bit field composed of READ_XXX flags
-	 * @return array [ IDatabase $db, array $options ]
-	 */
-	private function getDBConnectionRefForQueryFlags( int $queryFlags ): array {
-		[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		return [ $this->loadBalancer->getConnectionRef( $mode, [], $this->wikiId ), $options ];
-	}
-
-	/**
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * ActorStore is bound to.
 	 *
@@ -708,7 +698,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 		$actor = new UserIdentityValue( 0, self::UNKNOWN_USER_NAME, $this->wikiId );
 
-		[ $db, ] = $this->getDBConnectionRefForQueryFlags( IDBAccessObject::READ_LATEST );
+		$db = $this->loadBalancer->getConnection( DB_PRIMARY, [], $this->wikiId );
 		$this->acquireActorId( $actor, $db );
 		return $actor;
 	}
@@ -722,10 +712,15 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 */
 	public function newSelectQueryBuilder( $dbOrQueryFlags = IDBAccessObject::READ_NORMAL ): UserSelectQueryBuilder {
 		if ( $dbOrQueryFlags instanceof IReadableDatabase ) {
-			[ $db, $options ] = [ $dbOrQueryFlags, [] ];
+			[ $db, $flags ] = [ $dbOrQueryFlags, IDBAccessObject::READ_NORMAL ];
 			$this->checkDatabaseDomain( $db );
 		} else {
-			[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $dbOrQueryFlags );
+			if ( ( $dbOrQueryFlags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+				$db = $this->loadBalancer->getConnection( DB_PRIMARY, [], $this->wikiId );
+			} else {
+				$db = $this->loadBalancer->getConnection( DB_REPLICA, [], $this->wikiId );
+			}
+			$flags = $dbOrQueryFlags;
 		}
 
 		$builder = new UserSelectQueryBuilder(
@@ -734,7 +729,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			$this->tempUserConfig,
 			$this->hideUserUtils
 		);
-		return $builder->options( $options );
+		return $builder->recency( $flags );
 	}
 
 	/**

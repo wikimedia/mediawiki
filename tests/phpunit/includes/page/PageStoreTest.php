@@ -701,7 +701,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		// Test that the load balancer is asked for a master connection
 		$lb = $this->createMock( LoadBalancer::class );
 		$lb->expects( $this->atLeastOnce() )
-			->method( 'getConnectionRef' )
+			->method( 'getConnection' )
 			->with( DB_PRIMARY )
 			->willReturn( $db );
 

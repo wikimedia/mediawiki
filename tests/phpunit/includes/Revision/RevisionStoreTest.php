@@ -40,10 +40,10 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	private function installMockLoadBalancer( IDatabase $db ) {
 		$lb = $this->createNoOpMock(
 			ILoadBalancer::class,
-			[ 'getConnectionRef', 'getLocalDomainID', 'reuseConnection' ]
+			[ 'getConnection', 'getLocalDomainID', 'reuseConnection' ]
 		);
 
-		$lb->method( 'getConnectionRef' )->willReturn( $db );
+		$lb->method( 'getConnection' )->willReturn( $db );
 		$lb->method( 'getLocalDomainID' )->willReturn( 'fake' );
 
 		$lbf = $this->createNoOpMock( LBFactory::class, [ 'getMainLB', 'getLocalDomainID' ] );
@@ -252,9 +252,9 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 
 		// Assert that the first call uses a REPLICA and the second falls back to master
 
-		// RevisionStore getTitle uses getConnectionRef
+		// RevisionStore getTitle uses getConnection
 		$mockLoadBalancer->expects( $this->exactly( 4 ) )
-			->method( 'getConnectionRef' )
+			->method( 'getConnection' )
 			->willReturnCallback( function ( $masterOrReplica ) use ( $db ) {
 				static $callCounter = 0;
 				$callCounter++;
