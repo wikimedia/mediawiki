@@ -3034,6 +3034,7 @@ $wgAutoloadLocalClasses = [
 	'UploadFromFile' => __DIR__ . '/includes/upload/UploadFromFile.php',
 	'UploadFromStash' => __DIR__ . '/includes/upload/UploadFromStash.php',
 	'UploadFromUrl' => __DIR__ . '/includes/upload/UploadFromUrl.php',
+	'UploadFromUrlJob' => __DIR__ . '/includes/jobqueue/jobs/UploadFromUrlJob.php',
 	'UploadJobTrait' => __DIR__ . '/includes/jobqueue/jobs/UploadJobTrait.php',
 	'UploadLogFormatter' => __DIR__ . '/includes/logging/UploadLogFormatter.php',
 	'UploadRevisionImporter' => __DIR__ . '/includes/import/UploadRevisionImporter.php',

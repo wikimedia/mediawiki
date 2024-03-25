@@ -385,7 +385,7 @@ config-schema:
         description: |-
             Enable deferred upload tasks that use the job queue.
             Only enable this if job runners are set up for both the
-            'AssembleUploadChunks' and 'PublishStashedFile' job types.
+            'AssembleUploadChunks','PublishStashedFile' and 'UploadFromUrl' job types.
     UploadMaintenance:
         default: false
         description: 'To disable file delete/restore temporarily'
@@ -7082,6 +7082,7 @@ config-schema:
             AssembleUploadChunks: AssembleUploadChunksJob
             PublishStashedFile: PublishStashedFileJob
             ThumbnailRender: ThumbnailRenderJob
+            UploadFromUrl: UploadFromUrlJob
             recentChangesUpdate: RecentChangesUpdateJob
             refreshLinksPrioritized: RefreshLinksJob
             refreshLinksDynamic: RefreshLinksJob
@@ -7118,6 +7119,7 @@ config-schema:
         default:
             - AssembleUploadChunks
             - PublishStashedFile
+            - UploadFromUrl
         type: array
         description: |-
             Jobs that must be explicitly requested, i.e. aren't run by job runners unless

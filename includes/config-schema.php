@@ -2098,6 +2098,7 @@ return [
 				'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 				'PublishStashedFile' => 'PublishStashedFileJob',
 				'ThumbnailRender' => 'ThumbnailRenderJob',
+				'UploadFromUrl' => 'UploadFromUrlJob',
 				'recentChangesUpdate' => 'RecentChangesUpdateJob',
 				'refreshLinksPrioritized' => 'RefreshLinksJob',
 				'refreshLinksDynamic' => 'RefreshLinksJob',
@@ -2132,6 +2133,7 @@ return [
 			'JobTypesExcludedFromDefaultQueue' => [
 				'AssembleUploadChunks',
 				'PublishStashedFile',
+				'UploadFromUrl',
 			],
 			'JobBackoffThrottling' => [
 			],
