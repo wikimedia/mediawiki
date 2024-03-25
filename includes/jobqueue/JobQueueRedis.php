@@ -1,7 +1,5 @@
 <?php
 /**
- * Redis-backed job queue code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,11 +23,14 @@ use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class to handle job queues stored in Redis
+ * Redis-backed job queue storage.
  *
  * This is a faster and less resource-intensive job queue than JobQueueDB.
  * All data for a queue using this class is placed into one redis server.
- * The mediawiki/services/jobrunner background service must be set up and running.
+ *
+ * When used on a wiki farm, you can optionally use the  `redisJobRunnerService` background
+ * service from the `mediawiki/services/jobrunner.git` repository, to run jobs from a central
+ * system rather than per-wiki via one of the default job runners (e.g. maintenance/runJobs.php).
  *
  * There are eight main redis keys (per queue) used to track jobs:
  *   - l-unclaimed  : A list of job IDs used for ready unclaimed jobs
@@ -40,6 +41,7 @@ use Psr\Log\LoggerInterface;
  *   - h-sha1ById   : A hash of (job ID => SHA1) for unclaimed jobs used for de-duplication
  *   - h-attempts   : A hash of (job ID => attempt count) used for job claiming/retries
  *   - h-data       : A hash of (job ID => serialized blobs) for job storage
+ *
  * A job ID can be in only one of z-delayed, l-unclaimed, z-claimed, and z-abandoned.
  * If an ID appears in any of those lists, it should have a h-data entry for its ID.
  * If a job has a SHA1 de-duplication value and its ID is in l-unclaimed or z-delayed, then
@@ -57,14 +59,14 @@ use Psr\Log\LoggerInterface;
  * Aside from root job keys, all keys have no expiry, and are only removed when jobs are run.
  * All the keys are prefixed with the relevant wiki ID information.
  *
- * This class requires Redis 2.6 as it makes use Lua scripts for fast atomic operations.
+ * This class requires Redis 2.6 or later as it uses Lua scripting for fast atomic operations.
  * Additionally, it should be noted that redis has different persistence modes, such
- * as rdb snapshots, journaling, and no persistence. Appropriate configuration should be
+ * as rdb snapshots, journaling, or no persistence. Appropriate configuration should be
  * made on the servers based on what queues are using it and what tolerance they have.
  *
+ * @since 1.22
  * @ingroup JobQueue
  * @ingroup Redis
- * @since 1.22
  */
 class JobQueueRedis extends JobQueue {
 	/** @var RedisConnectionPool */
@@ -234,7 +236,7 @@ class JobQueueRedis extends JobQueue {
 				count( $items ) - $failed - $pushed );
 			if ( $failed > 0 ) {
 				$err = "Could not insert {$failed} {$this->type} job(s).";
-				wfDebugLog( 'JobQueueRedis', $err );
+				wfDebugLog( 'JobQueue', $err );
 				throw new RedisException( $err );
 			}
 		} catch ( RedisException $e ) {
@@ -327,7 +329,7 @@ LUA;
 				$this->incrStats( 'pops', $this->type );
 				$item = $this->unserialize( $blob );
 				if ( $item === false ) {
-					wfDebugLog( 'JobQueueRedis', "Could not unserialize {$this->type} job." );
+					wfDebugLog( 'JobQueue', "Could not unserialize {$this->type} job." );
 					continue;
 				}
 
@@ -422,7 +424,7 @@ LUA;
 			);
 
 			if ( !$res ) {
-				wfDebugLog( 'JobQueueRedis', "Could not acknowledge {$this->type} job $uuid." );
+				wfDebugLog( 'JobQueue', "Could not acknowledge {$this->type} job $uuid." );
 
 				return false;
 			}

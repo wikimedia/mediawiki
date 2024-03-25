@@ -31,10 +31,10 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
- * Class to construct JobQueueGroups
+ * Factory for JobQueueGroup objects.
  *
- * @ingroup JobQueue
  * @since 1.37
+ * @ingroup JobQueue
  */
 class JobQueueGroupFactory {
 	/**

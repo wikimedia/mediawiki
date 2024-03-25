@@ -1,7 +1,5 @@
 <?php
 /**
- * Job queue runner utility methods
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -34,10 +31,10 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
- * Job queue runner utility methods
+ * Job queue runner utility methods.
  *
- * @ingroup JobQueue
  * @since 1.24
+ * @ingroup JobQueue
  */
 class JobRunner {
 

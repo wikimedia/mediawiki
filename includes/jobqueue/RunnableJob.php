@@ -1,7 +1,5 @@
 <?php
 /**
- * Job queue task instance that can be executed via a run() method
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,7 +19,7 @@
  */
 
 /**
- * Job that has a run() method and metadata accessors for JobQueue::pop() and JobQueue::ack()
+ * Job that has a run() method and metadata accessors for JobQueue::pop() and JobQueue::ack().
  *
  * Instances are not only enqueueable via JobQueue::push(), but they can also be executed by
  * calling their run() method. When constructing a job to be enqueued via JobQueue::push(), it
@@ -30,9 +28,8 @@
  * JobSpecification class can be used instead.
  *
  * @stable to implement
- *
- * @ingroup JobQueue
  * @since 1.33
+ * @ingroup JobQueue
  */
 interface RunnableJob extends IJobSpecification {
 	/** @var int Job must not be wrapped in the usual explicit LBFactory transaction round */

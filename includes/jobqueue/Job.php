@@ -1,7 +1,5 @@
 <?php
 /**
- * Job queue task base code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @defgroup JobQueue JobQueue
  */
 
 use MediaWiki\Http\Telemetry;
@@ -27,14 +24,17 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 
 /**
- * Class to both describe a background job and handle jobs.
- * To push jobs onto queues, use MediaWikiServices::getInstance()->getJobQueueGroup()->push();
+ * Describe and execute a background job.
  *
- * Job objects are constructed by the job queue, and must have an appropriate
- * constructor signature; see IJobSpecification.
+ * Push jobs onto queues via the JobQueueGroup service.
+ *
+ * Job objects must implement IJobSpecification to allow JobQueue to store the job,
+ * and later re-constructing the object from storage in a JobRunner.
+ *
+ * See [the architecture doc](@ref jobqueuearch) for more information.
  *
  * @stable to extend
- *
+ * @since 1.6
  * @ingroup JobQueue
  */
 abstract class Job implements RunnableJob {

@@ -1,7 +1,5 @@
 <?php
 /**
- * Database-backed job queue code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,10 +26,10 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 
 /**
- * Class to handle job queues stored in the DB
+ * Database-backed job queue storage.
  *
- * @ingroup JobQueue
  * @since 1.21
+ * @ingroup JobQueue
  */
 class JobQueueDB extends JobQueue {
 	/* seconds to cache info without re-validating */

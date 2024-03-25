@@ -1,7 +1,5 @@
 <?php
 /**
- * Job queue task description base code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,7 +23,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
 /**
- * Job queue task description base code
+ * Job queue task description base code.
  *
  * Example usage:
  * @code
@@ -37,8 +35,8 @@ use MediaWiki\Page\PageReferenceValue;
  * MediaWikiServices::getInstance()->getJobQueueGroup()->push( $job )
  * @endcode
  *
- * @ingroup JobQueue
  * @since 1.23
+ * @ingroup JobQueue
  */
 class JobSpecification implements IJobSpecification {
 	/** @var string */
