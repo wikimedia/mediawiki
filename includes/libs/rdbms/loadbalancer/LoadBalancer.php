@@ -202,13 +202,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->statsd = $params['statsdDataFactory'] ?? new NullStatsdDataFactory();
 
 		// Set up LoadMonitor
-		$loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
-		$loadMonitorConfig += [ 'maxConnCount' => 500 ];
+		$loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => LoadMonitorNull::class ];
 		$compat = [
 			'LoadMonitor' => LoadMonitor::class,
 			'LoadMonitorNull' => LoadMonitorNull::class
 		];
 		$class = $loadMonitorConfig['class'];
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( isset( $compat[$class] ) ) {
 			$class = $compat[$class];
 		}
