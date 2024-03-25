@@ -250,14 +250,22 @@ class SpecialBlockList extends SpecialPage {
 				$conds['bl_parent_block_id'] = null;
 			}
 		}
-		if ( in_array( 'addressblocks', $this->options ) ) {
+		if ( in_array( 'addressblocks', $this->options )
+			&& in_array( 'rangeblocks', $this->options )
+		) {
+			// Simpler conditions for only user blocks (T360864)
+			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
+				$conds[] = "ipb_user != 0";
+			} else {
+				$conds[] = "bt_user IS NOT NULL";
+			}
+		} elseif ( in_array( 'addressblocks', $this->options ) ) {
 			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
 				$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
 			} else {
 				$conds[] = "bt_user IS NOT NULL OR bt_range_start IS NOT NULL";
 			}
-		}
-		if ( in_array( 'rangeblocks', $this->options ) ) {
+		} elseif ( in_array( 'rangeblocks', $this->options ) ) {
 			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
 				$conds[] = "ipb_range_end = ipb_range_start";
 			} else {
