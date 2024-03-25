@@ -125,6 +125,15 @@ trait UploadJobTrait {
 	}
 
 	/**
+	 * Get the cache key used to store status
+	 *
+	 * @return string
+	 */
+	public function getCacheKey() {
+		return $this->cacheKey;
+	}
+
+	/**
 	 * Get user data from the session key
 	 *
 	 * @return User|null

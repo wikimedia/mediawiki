@@ -237,6 +237,19 @@ class UploadFromUrl extends UploadBase {
 	 * @return Status
 	 */
 	public function fetchFile( $httpOptions = [] ) {
+		$status = $this->canFetchFile();
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+		return $this->reallyFetchFile( $httpOptions );
+	}
+
+	/**
+	 * verify we can actually download the file
+	 *
+	 * @return Status
+	 */
+	public function canFetchFile() {
 		if ( !MWHttpRequest::isValidURI( $this->mUrl ) ) {
 			return Status::newFatal( 'http-invalid-url', $this->mUrl );
 		}
@@ -247,7 +260,7 @@ class UploadFromUrl extends UploadBase {
 		if ( !self::isAllowedUrl( $this->mUrl ) ) {
 			return Status::newFatal( 'upload-copy-upload-invalid-url' );
 		}
-		return $this->reallyFetchFile( $httpOptions );
+		return Status::newGood();
 	}
 
 	/**

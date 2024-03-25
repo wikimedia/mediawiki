@@ -20,6 +20,11 @@
  * @file
  */
 
+ /**
+  * @todo: create a UploadCommandFactory and UploadComand classes to share logic with Special:Upload
+  * @todo: split the different cases of upload in subclasses or submethods.
+  */
+
 use MediaWiki\Config\Config;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -116,8 +121,14 @@ class ApiUpload extends ApiBase {
 		$this->checkPermissions( $user );
 
 		// Fetch the file (usually a no-op)
+		// Skip for async upload from URL, where we just want to run checks.
 		/** @var Status $status */
-		$status = $this->mUpload->fetchFile();
+		if ( $this->mParams['async'] && $this->mParams['url'] ) {
+			$status = $this->mUpload->canFetchFile();
+		} else {
+			$status = $this->mUpload->fetchFile();
+		}
+
 		if ( !$status->isGood() ) {
 			$this->log->info( "Unable to fetch file {filename} for {user} because {status}",
 				[
@@ -625,9 +636,10 @@ class ApiUpload extends ApiBase {
 				'filekey', 'file', 'url' );
 		}
 
-		// Status report for "upload to stash"/"upload from stash"
-		if ( $this->mParams['filekey'] && $this->mParams['checkstatus'] ) {
-			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );
+		// Status report for "upload to stash"/"upload from stash"/"upload by url"
+		if ( $this->mParams['checkstatus'] && ( $this->mParams['filekey'] || $this->mParams['url'] ) ) {
+			$statusKey = $this->mParams['filekey'] ?: UploadFromUrl::getCacheKey( $this->mParams );
+			$progress = UploadBase::getSessionStatus( $this->getUser(), $statusKey );
 			if ( !$progress ) {
 				$this->log->info( "Cannot check upload status due to missing upload session for {user}",
 					[
@@ -785,8 +797,8 @@ class ApiUpload extends ApiBase {
 			if ( $verification === true ) {
 				return;
 			}
-		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
-			// file will be assembled in a background process, so we
+		} elseif ( $this->mParams['async'] && ( $this->mParams['filekey'] || $this->mParams['url'] ) ) {
+			// file will be assembled/downloaded in a background process, so we
 			// can only validate the name at this point
 			// file verification will happen in background process
 			$verification = $this->mUpload->validateName();
@@ -958,6 +970,10 @@ class ApiUpload extends ApiBase {
 				ApiResult::setIndexedTagName( $dupes, 'ver' );
 				$warnings['duplicateversions'] = $dupes;
 			}
+			// We haven't downloaded the file, so this will result in an empty file warning
+			if ( $this->mParams['async'] && $this->mParams['url'] ) {
+				unset( $warnings['empty-file'] );
+			}
 		}
 
 		return $warnings;
@@ -1059,37 +1075,59 @@ class ApiUpload extends ApiBase {
 		// No errors, no warnings: do the upload
 		$result = [];
 		if ( $this->mParams['async'] ) {
-			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );
+			// Only stash uploads and copy uploads support async
+			if ( $this->mParams['filekey'] ) {
+				$job = new PublishStashedFileJob(
+					[
+						'filename' => $this->mParams['filename'],
+						'filekey' => $this->mParams['filekey'],
+						'comment' => $this->mParams['comment'],
+						'tags' => $this->mParams['tags'] ?? [],
+						'text' => $this->mParams['text'],
+						'watch' => $watch,
+						'watchlistexpiry' => $watchlistExpiry,
+						'session' => $this->getContext()->exportSession()
+					]
+					);
+			} elseif ( $this->mParams['url'] ) {
+				$job = new UploadFromUrlJob(
+					[
+						'filename' => $this->mParams['filename'],
+						'url' => $this->mParams['url'],
+						'comment' => $this->mParams['comment'],
+						'tags' => $this->mParams['tags'] ?? [],
+						'text' => $this->mParams['text'],
+						'watch' => $watch,
+						'watchlistexpiry' => $watchlistExpiry,
+						'session' => $this->getContext()->exportSession()
+					]
+					);
+			} else {
+				$this->dieWithError( 'apierror-no-async-support', 'publishfailed' );
+				// We will never reach this, but it's here to help phan figure out
+				// $job is never null
+				// @phan-suppress-next-line PhanPluginUnreachableCode On purpose
+				return [];
+			}
+			$cacheKey = $job->getCacheKey();
+			// Check if an upload is already in progress.
+			// the result can be Poll / Failure / Success
+			$progress = UploadBase::getSessionStatus( $this->getUser(), $cacheKey );
 			if ( $progress && $progress['result'] === 'Poll' ) {
 				$this->dieWithError( 'apierror-upload-inprogress', 'publishfailed' );
 			}
 			UploadBase::setSessionStatus(
 				$this->getUser(),
-				$this->mParams['filekey'],
+				$cacheKey,
 				[ 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() ]
 			);
-			// Unlike AssembleUploadChunksJob, we do not do any writes on the main
-			// transaction (UploadBase::setSessionStatus uses the main stash) so we
-			// can push this job directly.
-			$this->jobQueueGroup->push( new PublishStashedFileJob(
-				[
-					'filename' => $this->mParams['filename'],
-					'filekey' => $this->mParams['filekey'],
-					'comment' => $this->mParams['comment'],
-					'tags' => $this->mParams['tags'] ?? [],
-					'text' => $this->mParams['text'],
-					'watch' => $watch,
-					'watchlistexpiry' => $watchlistExpiry,
-					'session' => $this->getContext()->exportSession()
-				]
-			) );
+
+			$this->jobQueueGroup->push( $job );
 			$this->log->info( "Sending publish job of {filename} for {user}",
 				[
 					'user' => $this->getUser()->getName(),
-					'filename' => $this->mParams['filename'] ?? '-',
-					'filekey' => $this->mParams['filekey'] ?? '-'
+					'filename' => $this->mParams['filename'] ?? '-'
 				]
-
 			);
 			$result['result'] = 'Poll';
 			$result['stage'] = 'queued';
