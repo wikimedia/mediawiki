@@ -104,8 +104,8 @@ For notes on 1.41.x and older releases, see HISTORY.
 === External library changes in 1.42 ===
 
 ==== New external libraries ====
-* Added mck89/peast at v1.16.2.
 * Added mediawiki/json-codec at v2.2.1.
+* Added mck89/peast at v1.16.2.
 * …
 
 ===== New development-only external libraries =====
@@ -116,18 +116,18 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated OOjs Router from 0.3.0 to 0.5.0.
 * Updated codex, codex-design-tokens and codex-icons
   from v1.0.0 to v1.3.5.
-* Updated wikimedia/minify from 2.5.1 to 2.7.0.
 * Updated Vue from v3.2.37-compat to v3.3.9.
+* Updated composer/semver from 3.3.2 to 3.4.0.
+* Updated guzzlehttp/guzzle from 7.5.3 to 7.7.1.
+* Updated monolog/monolog from 2.2.0 to 2.9.2.
 * Updated pear/mail from 1.5.1 to 1.6.0.
 * Updated pear/net_smtp from 1.10.1 to 1.11.1.
-* Updated symfony/yaml from 5.4.23 to 5.4.31.
-* Updated wikimedia/relpath from 3.0.0 to 4.0.0.
-* Updated guzzlehttp/guzzle from 7.5.3 to 7.7.1.
 * Updated psr/http-message from 1.0.1 to 1.1.
-* Updated monolog/monolog from 2.2.0 to 2.9.2.
-* Updated mck89/peast from 1.16.0 to 1.16.1.
+* Updated symfony/yaml from 5.4.23 to 5.4.31.
 * Updated wikimedia/less.php from 4.1.1 to 4.2.1.
 * Updated wikimedia/remex-html from 4.0.1 to 4.1.0.
+* Updated wikimedia/minify from 2.5.1 to 2.7.0.
+* Updated wikimedia/relpath from 3.0.0 to 4.0.0.
 * Updated wikimedia/shellbox from 4.0.0 to 4.0.1.
 * …
 
