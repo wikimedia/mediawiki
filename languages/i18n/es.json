@@ -3091,6 +3091,7 @@
 	"movepage-reason-dropdown": "* Motivos comunes de traslado\n** Título mal escrito",
 	"movepage-edit-reasonlist": "Editar razones para traslado",
 	"revertmove": "revertir",
+	"revertmove-summary": "Revertir",
 	"delete_and_move_text": "La página de destino «[[:$1]]» ya existe.\n¿Quieres borrarla para permitir el traslado?",
 	"delete_redirect_and_move_text": "La página de destino «[[:$1]]» ya existe como redirección.\n¿Quieres borrarla para permitir el traslado?",
 	"delete_and_move_confirm": "Sí, borrar la página",

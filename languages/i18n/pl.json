@@ -2968,6 +2968,7 @@
 	"movepage-reason-dropdown": "* Najczęstsze przyczyny przenoszenia\n** Błędna pisownia tytułu",
 	"movepage-edit-reasonlist": "Edytuj listę przyczyn przenoszenia",
 	"revertmove": "cofnij",
+	"revertmove-summary": "Cofnięcie edycji",
 	"delete_and_move_text": "Strona docelowa „[[:$1]]” już istnieje.\nCzy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?",
 	"delete_redirect_and_move_text": "Strona docelowa „[[:$1]]” już istnieje jako przekierowanie.\nCzy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?",
 	"delete_and_move_confirm": "Tak, usuń stronę",

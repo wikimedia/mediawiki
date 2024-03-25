@@ -2984,6 +2984,7 @@
 	"movepage-reason-dropdown": "* Genel taşıma nedenleri\n** Yanlış yazılmış sayfa adı\n** Yaygın kullanım",
 	"movepage-edit-reasonlist": "Taşıma nedenleri değiştir",
 	"revertmove": "geri al",
+	"revertmove-summary": "Geri alma",
 	"delete_and_move_text": "Hedef sayfa olan \"[[:$1]]\" zaten mevcut.\nTaşımayı gerçekleştirebilmek için mevcut sayfayı silmek ister misiniz?",
 	"delete_redirect_and_move_text": "\"[[:$1]]\" hedef sayfası zaten yönlendirme olarak var.\nTaşınmanın yolunu açmak için onu silmek ister misin?",
 	"delete_and_move_confirm": "Evet, sayfayı sil",

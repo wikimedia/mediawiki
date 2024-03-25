@@ -2970,6 +2970,7 @@
 	"movepage-reason-dropdown": "* Veelvoorkomende redenen om te hernoemen\n** Onjuist gespelde titel",
 	"movepage-edit-reasonlist": "Redenen voor hernoemen bewerken",
 	"revertmove": "terugdraaien",
+	"revertmove-summary": "Terugdraaien",
 	"delete_and_move_text": "Onder de naam \"[[:$1]]\" bestaat al een pagina.\nWilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?",
 	"delete_redirect_and_move_text": "De doelpagina \"[[:$1]]\" bestaat al als een doorverwijzing.\nWilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?",
 	"delete_and_move_confirm": "Ja, de pagina verwijderen",

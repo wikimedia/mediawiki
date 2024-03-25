@@ -2896,6 +2896,7 @@
 	"movepage-reason-dropdown": "* Běžné důvody přejmenování\n** Překlep v názvu",
 	"movepage-edit-reasonlist": "Editovat seznam důvodů přejmenování",
 	"revertmove": "vrátit",
+	"revertmove-summary": "Vrácení zpět",
 	"delete_and_move_text": "Cílová stránka „[[:$1]]“ již existuje.\nPřejete si ji smazat pro uvolnění místa pro přesun?",
 	"delete_redirect_and_move_text": "Cílová stránka „[[:$1]]“ již existuje jako přesměrování.\nPřejete si ji smazat pro uvolnění místa pro přesun?",
 	"delete_and_move_confirm": "Ano, smazat cílovou stránku",

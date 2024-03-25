@@ -2914,6 +2914,7 @@
 	"movepage-reason-dropdown": "* סיבות נפוצות להעברה\n** כותרת שאינה כתובה נכון",
 	"movepage-edit-reasonlist": "עריכת סיבות ההעברה",
 	"revertmove": "החזרה",
+	"revertmove-summary": "שחזור",
 	"delete_and_move_text": "דף היעד, \"[[:$1]]\", כבר קיים.\nהאם ברצונך למחוק אותו כדי לאפשר את ההעברה?",
 	"delete_redirect_and_move_text": "דף היעד \"[[:$1]]\" כבר קיים בתור דף הפניה.\nהאם ברצונך למחוק אותו כדי לפנות מקום להעברה?",
 	"delete_and_move_confirm": "אישור מחיקת הדף",

@@ -3063,6 +3063,7 @@
 	"movepage-reason-dropdown": "* 常见移动原因\n** 标题有错别字",
 	"movepage-edit-reasonlist": "编辑移动原因",
 	"revertmove": "恢复",
+	"revertmove-summary": "恢复",
 	"delete_and_move_text": "目标页面“[[:$1]]”已存在。\n您是否希望删除它以便移动？",
 	"delete_redirect_and_move_text": "目标页面[[:$1]]已存在，是重定向。\n你想删除它，以便移动吗？",
 	"delete_and_move_confirm": "是，删除该页面",

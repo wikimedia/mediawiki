@@ -2518,7 +2518,6 @@
 	"protect-fallback": "Autorizat doar pentru utilizatorii cu permisiunea „$1”",
 	"protect-level-autoconfirmed": "Autorizat doar pentru utilizatorii autoconfirmați",
 	"protect-level-sysop": "Autorizat doar pentru administratori",
-	"protect-summary-desc": "[$1 = $2] ($3)",
 	"protect-summary-cascade": "în cascadă",
 	"protect-expiring": "expiră $1 (UTC)",
 	"protect-expiring-local": "expiră pe $1",

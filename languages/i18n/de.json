@@ -2987,6 +2987,7 @@
 	"movepage-reason-dropdown": "* Häufige Verschiebegründe\n** Falsch geschriebener Name",
 	"movepage-edit-reasonlist": "Verschiebegründe bearbeiten",
 	"revertmove": "zurückverschieben",
+	"revertmove-summary": "Zurücksetzung",
 	"delete_and_move_text": "Die Seite „[[:$1]]“ existiert bereits.\nMöchtest du diese löschen, um die Seite verschieben zu können?",
 	"delete_redirect_and_move_text": "Die Zielseite „[[:$1]]“ existiert bereits als Weiterleitung.\nMöchtest du diese löschen, um die Seite verschieben zu können?",
 	"delete_and_move_confirm": "Ja, Seite löschen",

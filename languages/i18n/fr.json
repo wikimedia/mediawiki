@@ -2712,7 +2712,6 @@
 	"protect-fallback": "Autoriser seulement les utilisateurs ayant le droit « $1 »",
 	"protect-level-autoconfirmed": "Autoriser uniquement les utilisateurs autoconfirmés",
 	"protect-level-sysop": "Autoriser uniquement les administrateurs",
-	"protect-summary-desc": "[$1 = $2] ($3)",
 	"protect-summary-cascade": "protection en cascade",
 	"protect-expiring": "expire le $1 (UTC)",
 	"protect-expiring-local": "expire le $1",

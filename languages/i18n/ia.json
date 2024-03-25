@@ -2871,6 +2871,7 @@
 	"movepage-reason-dropdown": "* Motivos frequente de renomination\n** Titulo mal orthographiate",
 	"movepage-edit-reasonlist": "Modificar le motivos pro renominar",
 	"revertmove": "reverter",
+	"revertmove-summary": "Reverter",
 	"delete_and_move_text": "Le pagina de destination “[[:$1]]” jam existe.\nVole tu deler lo pro permitter iste renomination?",
 	"delete_redirect_and_move_text": "Le pagina de destination “[[:$1]]” jam existe como redirection.\nVole tu deler lo pro permitter iste renomination?",
 	"delete_and_move_confirm": "Si, deler le pagina",
