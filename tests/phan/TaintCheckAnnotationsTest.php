@@ -32,6 +32,7 @@ use Shellbox\Shellbox;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\InsertQueryBuilder;
+use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
@@ -446,9 +447,15 @@ class TaintCheckAnnotationsTest {
 		$orExpr->or( 'a', '=', $_GET['value'] ); // Safe
 
 		$unsafeExpr = new Expression( $_GET['a'], $_GET['a'], $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$unsafeRawSQL = new RawSQLExpression( $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$unsafeRawSQL->andExpr( new RawSQLExpression( 'b > ' . $_GET['a'] ) ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$unsafeRawSQL->andExpr( new RawSQLExpression( 'a > b ' ) ); // Safe
+
 		// Not validated at this point, only when building the Expression
 		$db->newSelectQueryBuilder()->where( $safeExpr );
 		$db->newSelectQueryBuilder()->where( $unsafeExpr );
+		$db->newSelectQueryBuilder()->where( $unsafeRawSQL );
 	}
 
 	function testMessage( Message $msg ) {
