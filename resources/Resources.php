@@ -2912,6 +2912,8 @@ return [
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
+			// FIXME: Only needs NamespaceInputWidget
+			'mediawiki.widgets',
 		],
 	],
 	'mediawiki.widgets.TitlesMultiselectWidget' => [
