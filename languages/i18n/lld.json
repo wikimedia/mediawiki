@@ -6,7 +6,8 @@
 			"JuaFlick",
 			"Nintendofan885",
 			"S4b1nuz E.656",
-			"Starladin"
+			"Starladin",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sotrissëia i lians",
@@ -302,7 +303,7 @@
 	"cannotdelete-title": "L ne ie nia puscibel a scancelé la plata \"$1\"",
 	"delete-scheduled": "La plata \"$1\" unirà scanceleda. Ebes pazienza.",
 	"badtitle": "Titul falé",
-	"badtitletext": "Le titul dla plata chirida é öt, falé o vëgn da n fal ti colegamënc  inter-lingaz o titul inter-wiki. AL podess porater ester lapró öna o deplü scritöres che ne vëgn nia azetades ti titui.",
+	"badtitletext": "Le titul dla plata chirida é öt, falé o vëgn da n fal ti colegamënc inter-lingaz o titul inter-wiki. AL podess porater ester lapró öna o deplü scritöres che ne vëgn nia azetades ti titui.",
 	"perfcached": "I dac suandënc é tuc fora da na copia ''cache'' dl database, y ai podess ester nia ajorná. N mascimo de {{PLURAL:$1|n resultat é desponibl|$1 resultac é desponibli}} tla cache.",
 	"viewsource": "Ciara ala funtana",
 	"skin-action-viewsource": "Ciara ala funtana",

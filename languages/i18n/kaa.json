@@ -2141,6 +2141,7 @@
 	"searchsuggest-containing": "Óz ishine alǵan betti izlew",
 	"searchlimit-label": "Hár bir bette kórsetiletuǵın izlew nátiyjeleriniń sanı:",
 	"searchlimit-help": "Maksimum:: $1",
+	"api-clientside-error-noconnect": "Serverge jalǵanbadı. Internetińiz islep turǵanlıǵın tekserip, qaytadan urınıp kórińiz.",
 	"duration-seconds": "$1 {{PLURAL:$1|sekund}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minut}}",
 	"duration-hours": "$1 {{PLURAL:$1|saat}}",

@@ -703,7 +703,7 @@
 	"preview": "Antevisão",
 	"showpreview": "Antever resultado",
 	"showdiff": "Mostrar alterações",
-	"blankarticle": "<strong>Aviso:</strong> A página que está prestes a criar está em branco.  \nSe clicar \"$1\" outra vez, a página será criada sem qualquer conteúdo.",
+	"blankarticle": "<strong>Aviso:</strong> A página que está prestes a criar está em branco. \nSe clicar \"$1\" outra vez, a página será criada sem qualquer conteúdo.",
 	"anoneditwarning": "<strong>Aviso</strong>: não iniciou uma sessão. O seu endereço IP poderá ser visto publicamente se realizar alguma edição. Se <strong>[$1 iniciar uma sessão]</strong> ou <strong>[$2 criar uma conta]</strong>, as suas edições serão registadas com o seu nome de utilizador, podendo ainda usufruir de outros benefícios.",
 	"autocreate-edit-warning": "<strong>Aviso:</strong> Não está autenticado. A sua edição será atribuída a <strong>um nome gerado automaticamente</strong> pela adição de um <i>cookie</i> ao <i>browser.</i> O seu endereço IP poderá ser visto por utilizadores de confiança. Se <strong>[$1 iniciar uma sessão]</strong> ou <strong>[$2 criar uma conta]</strong>, as suas edições serão atribuídas a um nome de sua escolha, entre outras vantagens.",
 	"anonpreviewwarning": "<em>Não iniciou uma sessão. Publicar registará o seu endereço IP no histórico de edições desta página.</em>",

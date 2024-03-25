@@ -17,7 +17,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"S4b1nuz E.656",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sotlinee leams",
@@ -232,7 +233,7 @@
 	"privacy": "Politiche pe privacy",
 	"privacypage": "Project:Politiche_pe_privacy",
 	"badaccess": "Permès no suficients",
-	"badaccess-group0": "No tu sês autorizât a  eseguî la azion domandade",
+	"badaccess-group0": "No tu sês autorizât a eseguî la azion domandade",
 	"badaccess-groups": "La azione domandade è je pussibile dome dai utents {{PLURAL:$2|dal grup|di un di chescj grups}}: $1.",
 	"versionrequired": "E covente la version $1 di MediaWiki",
 	"versionrequiredtext": "La version $1 de MediaWiki a covente par doprâ cheste pagjine.\nCjale la [[Special:Version|pagjine de version]].",

@@ -145,7 +145,10 @@
 			"Robertpontes",
 			"Saturnow",
 			"Stephanyb76",
-			"Trooper57"
+			"Trooper57",
+			"Brooke Vibber",
+			"CorraleH",
+			"Juwan"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -756,7 +759,7 @@
 	"preview": "Pré-visualização",
 	"showpreview": "Mostrar previsão",
 	"showdiff": "Mostrar alterações",
-	"blankarticle": "<strong>Aviso:</strong> A página que está prestes a criar está em branco.  \nSe clicar \"$1\" outra vez, a página será criada sem qualquer conteúdo.",
+	"blankarticle": "<strong>Aviso:</strong> A página que está prestes a criar está em branco. \nSe clicar \"$1\" outra vez, a página será criada sem qualquer conteúdo.",
 	"anoneditwarning": "<strong>Aviso:</strong> Você não está conectado. Seu endereço IP será visível publicamente se você fizer alguma edição. Se você <strong>[$1 fizer login]</strong> ou <strong>[$2 criar uma conta]</strong>, suas edições serão atribuídas ao seu nome de usuário, juntamente com outros benefícios.",
 	"autocreate-edit-warning": "<strong>Aviso:</strong> Não está autenticado. A sua edição será atribuída a <strong>um nome gerado automaticamente</strong> pela adição de um <i>cookie</i> ao <i>browser.</i> O seu endereço IP poderá ser visto por utilizadores de confiança. Se <strong>[$1 iniciar uma sessão]</strong> ou <strong>[$2 criar uma conta]</strong>, as suas edições serão atribuídas a um nome de sua escolha, entre outras vantagens.",
 	"anonpreviewwarning": "''Você não está entrado. Publicar registará o seu endereço IP no histórico de edições desta página.''",
@@ -1897,7 +1900,7 @@
 	"upload-form-label-own-work-message-generic-foreign": "Entendo que estou enviando este arquivo para um repositório compartilhado. Garanto que minha ação está em conformidade com os respectivos termos de serviço e políticas de licenciamento.",
 	"upload-form-label-not-own-work-message-generic-foreign": "Se não for possível enviar este arquivo sob as políticas desse repositório compartilhado, feche essa caixa de diálogo e tente outro método.",
 	"upload-form-label-not-own-work-local-generic-foreign": "Experimente também usar a [[Special:Upload|página de envios]] do site {{SITENAME}}, caso as políticas do mesmo permitam o envio.",
-	"backend-fail-stream": "Não foi possível transmitir o arquivo  $1.",
+	"backend-fail-stream": "Não foi possível transmitir o arquivo $1.",
 	"backend-fail-backup": "Não foi possível fazer backup do arquivo $1 .",
 	"backend-fail-notexists": "O arquivo $1 não existe.",
 	"backend-fail-hashes": "Não foi possível obter os hashes do arquivo para comparação.",

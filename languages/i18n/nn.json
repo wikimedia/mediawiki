@@ -36,7 +36,8 @@
 			"1233qwer1234qwer4",
 			"Harald Khan",
 			"Maddy from Celeste",
-			"Iketsi"
+			"Iketsi",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -496,7 +497,7 @@
 	"noemail": "Det er ikkje registrert noka e-postadresse åt brukaren «$1».",
 	"noemailcreate": "Du må oppgje ei gyldig e-postadresse",
 	"passwordsent": "Eit nytt passord er sendt åt e-postadressa registrert på brukaren «$1».",
-	"blocked-mailpassword": "IP-adressa di er blokkert frå å endre sider. For å hindre misbruk kan ein heller ikkje ikkje  få nytt passord frå denne adressa.",
+	"blocked-mailpassword": "IP-adressa di er blokkert frå å endre sider. For å hindre misbruk kan ein heller ikkje ikkje få nytt passord frå denne adressa.",
 	"eauthentsent": "Det er blitt send ein stadfestings-e-post til den oppgjevne e-postadressa. \n\nFør det blir send fleire e-postar til adressa, må du følgje instruksjonane i e-posten for å stadfeste at ho faktisk tilhøyrer deg.",
 	"throttled-mailpassword": "Ei passordpåminning er allereie sendt {{PLURAL:$1|den siste timen|dei siste $1 timane}}. \nFor å hindre misbruk vert det berre sendt ut nytt passord ein gong kvar {{PLURAL:$1|time|$1. timar}}.",
 	"mailerror": "Ein feil oppstod ved sending av e-post: $1",

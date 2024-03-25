@@ -227,7 +227,7 @@
 	"privacypage": "Project:Ndondomeko ya webusaiti",
 	"badaccess": "Chizomelezgo chayenda uheni",
 	"badaccess-group0": "Ndimwe ŵakuzomelezgeka yayi kupanga ntchito iyi mwapempha.",
-	"badaccess-groups": "Ivo mwate muchite vyakuzomelezgeka ku ŵagwiliski aŵo ŵali mu  {{PLURAL:$2|gulu la|limoza mwa magulu ngati ni}}: $1.",
+	"badaccess-groups": "Ivo mwate muchite vyakuzomelezgeka ku ŵagwiliski aŵo ŵali mu {{PLURAL:$2|gulu la|limoza mwa magulu ngati ni}}: $1.",
 	"versionrequired": "Mtundu $1 wa MediaWiki ukukhumbika",
 	"versionrequiredtext": "Mtundu $1 wa MediaWiki ukukhumbika kuti mugwiliske ntchito jani ili.\nWonani [[Special:Version|mtundu wa jani]].",
 	"ok": "Enya",

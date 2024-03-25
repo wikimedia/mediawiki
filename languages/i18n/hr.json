@@ -2133,7 +2133,7 @@
 	"watchlist-details": "Na popisu praćenja imate {{PLURAL:$1|$1 stranicu|$1 stranice|$1 stranica}} i {{PLURAL:$1|1=njenu stranicu za razgovor|njihove stranice za razgovor}}.",
 	"watchlist-expiry-days-left": "Preostalo {{PLURAL:$1|$1 dan|$1 dana}}",
 	"watchlist-expiring-days-full-text": "Preostalo {{PLURAL:$1|$1 dan|$1 dana}} na Vašem popisu praćenja",
-	"watchlist-expiry-hours-left": "Preostalo par sati",
+	"watchlist-expiry-hours-left": "Preostalo je nekoliko sati",
 	"watchlist-expiring-hours-full-text": "Još neko vrijeme bit će na popisu praćenja",
 	"wlheader-enotif": "Uključeno je izvješćivanje e-poštom.",
 	"wlheader-showupdated": "Stranice koje su promijenjene od Vašeg posljednjeg posjeta prikazane su '''podebljano'''.",

@@ -1717,6 +1717,7 @@
 	"logentry-delete-revision": "$1 {{GENDER:$2|nubástiti}} {{PLURAL:$5|versio|$5 versio}} uáinim siijđost $3: $4",
 	"revdelete-content-hid": "siskáldâs čiehhum",
 	"revdelete-summary-hid": "nubástusčuákánkiäsu čiehhum",
+	"revdelete-uname-hid": "kevtteenommâ čiehhum",
 	"logentry-block-block": "$1 {{GENDER:$2|eestij}} kevttee {{GENDER:$4|$3}}. Iästu pištem lii $5 $6",
 	"logentry-partialblock-block": "$1 {{GENDER:$2|eestij}} kevttee {{GENDER:$4|$3}} hammiimist $7. Iästu pištem lii $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|eestij}} kevttee {{GENDER:$4|$3}}. Iästu pištem lii $5 $6",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ftillimi",
-			"Martindimaggio"
+			"Martindimaggio",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sotulinia të kolegamenteve:",
@@ -260,7 +261,7 @@
 	"error": "Errori",
 	"databaseerror-error": "Errori: $1",
 	"badtitle": "Tituli i lik",
-	"badtitletext": "Titulu da pagina çë lipe ësht mbrazët, sgarrartur, o sistir gnatrë error te inter-language o inter-wiki.  \nMënd ket abrënda gnë o më karatere çë nëng mënd usaren te i tituli.",
+	"badtitletext": "Titulu da pagina çë lipe ësht mbrazët, sgarrartur, o sistir gnatrë error te inter-language o inter-wiki.\nMënd ket abrënda gnë o më karatere çë nëng mënd usaren te i tituli.",
 	"viewsource": "Vrej surgentin",
 	"skin-action-viewsource": "Vrej surgentin",
 	"viewsource-title": "Vrej surgentin pë $1",

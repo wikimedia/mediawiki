@@ -1073,7 +1073,7 @@
 	"yournick": "Sinadur :",
 	"prefs-help-signature": "Dleout a rafe an evezhiadennoù war ar pajennoù kaozeal bezañ sinet gant \"<nowiki>~~~~</nowiki>\" a vo treuzfurmet en ho sinadur hag euriet.",
 	"badsig": "Direizh eo ho sinadur kriz; gwiriit ho palizennoù HTML.",
-	"badsightml": "En ho sinadur ez eus  ereadur HTML fall pe dispredet:",
+	"badsightml": "En ho sinadur ez eus ereadur HTML fall pe dispredet:",
 	"badsiglinks": "En ho sinadur e rank bezañ ul liamm war-zu ho pajenn implijer, pajenn gaozeal pe degasadennoù er wiki-mañ. Ouzhpennit anezhañ mar plij, da skouer: <code>$1</code>.",
 	"badsiglength": "Re hir eo ho sinadur.\nDre ret e rank bezañ nebeutoc'h eget {{PLURAL:$1|arouezenn|arouezenn}} ennañ.",
 	"badsiglinebreak": "Rankout a ra ho sinadur bezañ ul linenn a wikidestenn nemetken.",

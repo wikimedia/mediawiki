@@ -1776,7 +1776,7 @@
 	"backend-fail-internal": "Vyskytla sa neznáma chyba v úložisku „$1“.",
 	"backend-fail-contenttype": "Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.",
 	"backend-fail-batchsize": "Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.",
-	"backend-fail-usable": "Nie je možné čítať alebo zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.",
+	"backend-fail-usable": "Nie je možné čítať alebo zapísať súbor $1 kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.",
 	"backend-fail-stat": "Nepodarilo sa načítať stav súboru „$1“.",
 	"backend-fail-hash": "Nepodarilo sa určiť kryptografický haš súboru „$1“.",
 	"lockmanager-notlocked": "Nepodarilo sa odomknúť zámok „$1“; nie je zamknutý.",

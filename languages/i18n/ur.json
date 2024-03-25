@@ -2205,7 +2205,7 @@
 	"logentry-create-create": "$1 نے صفحہ $3 {{GENDER:$2|تخلیق کیا}}",
 	"reverted": "ابتدائی نسخہ کی جانب واپس پھیر دیا گیا",
 	"deletecomment": "وجہ:",
-	"deleteotherreason": "دوسری/اِضافی وجہ:",
+	"deleteotherreason": "دیگر / اضافی وجوہات:",
 	"deletereasonotherlist": "دوسری وجہ",
 	"deletereason-dropdown": "* عمومی وجوہات حذف\n** فاضل کاری\n** تخریب کاری\n** کاپی رائٹ کی خلاف ورزی\n** مصنف کی درخواست\n** شکستہ روابط",
 	"delete-edit-reasonlist": "وجوہات حذف میں ترمیم کریں",

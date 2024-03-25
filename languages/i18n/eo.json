@@ -2829,7 +2829,7 @@
 	"immobile-source-page": "Ĉi tiu paĝo ne estas movebla.",
 	"immobile-target-page": "Ne povas movi al tiu destina titolo.",
 	"movepage-invalid-target-title": "La petita nomo estas nevalida.",
-	"bad-target-model": "La celo dezira uzas malakordan entenmodelon. Ne povas  ŝanĝi el $1 al $2.",
+	"bad-target-model": "La celo dezira uzas malakordan entenmodelon. Ne povas ŝanĝi el $1 al $2.",
 	"imagenocrossnamespace": "Ne povas movi dosieron al nedosiera nomspaco",
 	"nonfile-cannot-move-to-file": "Ne povas movi ne-dosieron al dosiera nomspaco",
 	"imagetypemismatch": "La nova dosierfinaĵo ne kongruas ĝian dosiertipon.",

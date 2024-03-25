@@ -1388,7 +1388,7 @@
 	"backend-fail-delete": "Inposibiłe scançełare el file \"$1\".",
 	"backend-fail-describe": "Inposibiłe modifegar i metadati del file \"$1\".",
 	"backend-fail-alreadyexists": "El file $1 existe xà.",
-	"backend-fail-store": "Inposibiłe memorixare el file  $1  in  $2 .",
+	"backend-fail-store": "Inposibiłe memorixare el file $1 in $2 .",
 	"backend-fail-copy": "Inposibiłe copiare el file \"$1\" in \"$2\".",
 	"backend-fail-move": "Inposibiłe spostare el file $1 in $2 .",
 	"backend-fail-opentemp": "Inposibiłe verxare el file tenporaneo",

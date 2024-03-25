@@ -3854,7 +3854,7 @@
 	"logentry-import-upload-details": "$1 がファイルのアップロードにより、$3 を{{GENDER:$2|インポートしました}} ({{PLURAL:$4|版}} $4)",
 	"logentry-import-interwiki": "$1 が他のウィキから $3 を{{GENDER:$2|インポートしました}}",
 	"logentry-import-interwiki-details": "$1 が $3 を $5 から{{GENDER:$2|取り込み}}ました ($4 {{PLURAL:$4|版}})",
-	"logentry-merge-merge": "$1{{GENDER:$2|統合元}} と$3を$4に統合(改訂版を$5に掲載)",
+	"logentry-merge-merge": "$1 が$3を$4に{{GENDER:$2|統合しました}}($5までの版)",
 	"logentry-move-move": "$1 がページ「$3」を「$4」に{{GENDER:$2|移動しました}}",
 	"logentry-move-move-noredirect": "$1 がページ「$3」を「$4」に、リダイレクトを残さずに{{GENDER:$2|移動しました}}",
 	"logentry-move-move_redir": "$1 がページ「$3」を「$4」に、リダイレクトを残して{{GENDER:$2|移動しました}}",

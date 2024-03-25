@@ -1592,7 +1592,7 @@
 	"backend-fail-internal": "W składowanskim backendźe \"$1\" je njeznaty zmylk wustupił.",
 	"backend-fail-contenttype": "Wobsahowy typ dataje, kotraž ma so na \"$1\" składować, njeda so zwěsćić.",
 	"backend-fail-batchsize": "Staplowa dataja, kotraž {{PLURAL:$1|jednu operaciju|$1 operaciji|$1 operacije|$1 operacijow}} wobsahuje, je so na składowanski backend pósłała; limit je $2 {{PLURAL:$2|operaciju|operaciji|operacije|operacijow}} .",
-	"backend-fail-usable": "Dataja \"$1\" njeda so njedosahacych prawow  abo falowacych zapisow dla ani čitać ani pisać.",
+	"backend-fail-usable": "Dataja \"$1\" njeda so njedosahacych prawow abo falowacych zapisow dla ani čitać ani pisać.",
 	"lockmanager-notlocked": "\"$1\" njeda so wotewrić; njeje zawrjeny.",
 	"lockmanager-fail-closelock": "Zawrjenska dataja njeda so za \"$1\" začinić.",
 	"lockmanager-fail-deletelock": "Zawrjenska dataja njeda so za \"$1\" zhašeć.",

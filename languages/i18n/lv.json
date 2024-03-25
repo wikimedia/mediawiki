@@ -983,7 +983,7 @@
 	"prefs-help-signature": "Komentāri diskusiju lapās ir jāparaksta, pievienojot simbolu virkni \"<nowiki>~~~~</nowiki>\", kas tiek automātiski aizstāta ar tavu parakstu un parakstīšanās laiku.",
 	"badsig": "Kļūdains ''paraksta'' kods; pārbaudi HTML (ja tāds ir lietots).",
 	"badsightml": "Parakstā ir nederīga vai novecojusi HTML sintakse:",
-	"badsiglength": "Paraksts ir pārāk garš.\nTam ir jābūt īsākam par  $1 {{PLURAL:$1|simboliem|simbolu|simboliem}}.",
+	"badsiglength": "Paraksts ir pārāk garš.\nTam ir jābūt īsākam par $1 {{PLURAL:$1|simboliem|simbolu|simboliem}}.",
 	"linterror-deletable-table-tag": "Tabulas iezīme, kas būtu jādzēš",
 	"linterror-obsolete-tag": "Novecojusi HTML iezīme",
 	"yourgender": "Kā tevi labāk aprakstīt?",

@@ -2391,7 +2391,7 @@
 	"exbeforeblank": "conținutul înainte de golire era: '$1'",
 	"delete-confirm": "Șterge \"$1\"",
 	"delete-legend": "Șterge",
-	"delete-talk-summary-prefix": "Șters împreună cu pagina asociată cu motivu: $1",
+	"delete-talk-summary-prefix": "Șters împreună cu pagina asociată cu motivul: $1",
 	"historywarning": "<strong>Atenție:</strong> istoricul paginii pe care o ștergeți conține $1 {{PLURAL:$1|versiune|versiuni|de versiuni}}:",
 	"historyaction-submit": "Afișează versiuni",
 	"confirmdeletetext": "Sunteți pe cale să ștergeți permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmați alegerea făcută de dvs., faptul că înțelegeți consecințele acestei acțiuni și faptul că o faceți în conformitate cu [[{{MediaWiki:Policy-url}}|Politica oficială]].",

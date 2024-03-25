@@ -198,7 +198,11 @@
 			"Eleassar",
 			"Obscaeris",
 			"Iketsi",
-			"Wnagxsi"
+			"Wnagxsi",
+			"Histnou",
+			"LD",
+			"MacOS Weed",
+			"TheresNoTime"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1093,7 +1097,7 @@
 	"revdelete-edit-reasonlist": "Modifier les motifs de suppression",
 	"revdelete-edit-reasonlist-suppress": "Motifs de suppression de modification",
 	"revdelete-offender": "Auteur de la version :",
-	"suppressionlog": "Journal des suppressions",
+	"suppressionlog": "Journal des masquages",
 	"suppressionlogtext": "Voici la liste des suppressions et des blocages qui portent sur du contenu caché aux administrateurs.\nVoir la [[Special:BlockList|liste des blocages]] pour la liste des bannissements et des blocages actuellement opérationnels.",
 	"mergehistory": "Fusionner les historiques des pages",
 	"mergehistory-header": "Cette page vous permet de fusionner des versions de l’historique d’une page d’origine vers une nouvelle page.\nAssurez-vous que cette opération conservera la continuité de l’historique de la page.",
