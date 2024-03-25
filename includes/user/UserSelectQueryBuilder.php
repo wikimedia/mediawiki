@@ -186,7 +186,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function registered(): self {
-		$this->conds( [ 'actor_user != 0' ] );
+		$this->conds( $this->db->expr( 'actor_user', '!=', null ) );
 		return $this;
 	}
 
