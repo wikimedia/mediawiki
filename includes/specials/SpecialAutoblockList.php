@@ -121,7 +121,6 @@ class SpecialAutoblockList extends SpecialPage {
 			->prepareForm()
 			->displayForm( false );
 
-		$this->showTotal( $pager );
 		$this->showList( $pager );
 	}
 
@@ -168,20 +167,6 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->rowCommentFormatter,
 			$this->getSpecialPageFactory(),
 			$conds
-		);
-	}
-
-	/**
-	 * Show total number of autoblocks on top of the table
-	 *
-	 * @param BlockListPager $pager The BlockListPager instance for this page
-	 */
-	protected function showTotal( BlockListPager $pager ) {
-		$out = $this->getOutput();
-		$out->addHTML(
-			Html::rawElement( 'div', [ 'style' => 'font-weight: bold;' ],
-				$this->msg( 'autoblocklist-total-autoblocks', $pager->getTotalAutoblocks() )->parse() )
-			. "\n"
 		);
 	}
 

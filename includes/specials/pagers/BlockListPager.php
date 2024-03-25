@@ -548,32 +548,6 @@ class BlockListPager extends TablePager {
 		return $info;
 	}
 
-	/**
-	 * Get total number of autoblocks at any given time
-	 *
-	 * @return int Total number of unexpired active autoblocks
-	 */
-	public function getTotalAutoblocks() {
-		$dbr = $this->getDatabase();
-		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
-			return (int)$dbr->newSelectQueryBuilder()
-				->select( 'COUNT(*)' )
-				->from( 'ipblocks' )
-				->where( [ 'ipb_auto' => '1', $dbr->expr( 'ipb_expiry', '>=', $dbr->timestamp() ), ] )
-				->caller( __METHOD__ )->fetchField();
-		} else {
-			return (int)$dbr->newSelectQueryBuilder()
-				->select( 'COUNT(*)' )
-				->from( 'block' )
-				->join( 'block_target', null, 'bt_id=bl_target' )
-				->where( [
-					'bt_auto' => '1',
-					$dbr->expr( 'bl_expiry', '>=', $dbr->timestamp() )
-				] )
-				->caller( __METHOD__ )->fetchField();
-		}
-	}
-
 	protected function getTableClass() {
 		return parent::getTableClass() . ' mw-blocklist';
 	}

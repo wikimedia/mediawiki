@@ -2882,7 +2882,6 @@
 	"autoblocklist-submit": "Search",
 	"autoblocklist-legend": "List autoblocks",
 	"autoblocklist-localblocks": "Local {{PLURAL:$1|autoblock|autoblocks}}",
-	"autoblocklist-total-autoblocks": "Total number of autoblocks: $1",
 	"autoblocklist-empty": "The autoblock list is empty.",
 	"autoblocklist-otherblocks": "Other {{PLURAL:$1|autoblock|autoblocks}}",
 	"ipblocklist": "Blocked users",

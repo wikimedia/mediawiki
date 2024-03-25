@@ -445,6 +445,7 @@ because of Phabricator reports.
 * Instancing MediaWiki\Specials\SpecialRandomPage without injected services has
   been removed.
 * mediawiki.ui/utilities.less with its three layout CSS classes has been removed
+* BlockListPager::getTotalAutoblocks() was removed.
 * …
 
 === Deprecations in 1.42 ===
