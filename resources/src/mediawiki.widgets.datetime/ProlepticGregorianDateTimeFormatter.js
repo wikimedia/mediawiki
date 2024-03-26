@@ -91,7 +91,13 @@
 	/* Static */
 
 	/**
-	 * @inheritdoc
+	 * Default format specifications.
+	 *
+	 * See the `format` parameter in {@link mw.widgets.datetime.DateTimeFormatter}.
+	 *
+	 * @memberof mw.widgets.datetime.ProlepticGregorianDateTimeFormatter
+	 * @type {Object.<string,string>}
+	 * @name formats
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.formats = {
 		'@time': '${hour|0}:${minute|0}:${second|0}',
