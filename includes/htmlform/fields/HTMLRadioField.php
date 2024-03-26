@@ -229,7 +229,7 @@ class HTMLRadioField extends HTMLFormField {
 			$optionDescriptions = [];
 			foreach ( $this->mParams['option-descriptions-messages'] as $value => $msgKey ) {
 				$msg = $this->msg( $msgKey );
-				$optionDescriptions[$value] = $needsParse ? $msg->parse() : $msg->text();
+				$optionDescriptions[$value] = $needsParse ? $msg->parse() : $msg->escaped();
 			}
 			return $optionDescriptions;
 		} elseif ( array_key_exists( 'option-descriptions', $this->mParams ) ) {
