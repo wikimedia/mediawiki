@@ -81,7 +81,7 @@ class SqlitePlatform extends SQLPlatform {
 		return 'CAST ( ' . $field . ' AS TEXT )';
 	}
 
-	public function tableName( $name, $format = 'quoted' ) {
+	public function tableName( string $name, $format = 'quoted' ) {
 		if ( preg_match( '/^sqlite_[a-z_]+$/', $name ) ) {
 			// Such names are reserved for internal SQLite tables
 			return $name;

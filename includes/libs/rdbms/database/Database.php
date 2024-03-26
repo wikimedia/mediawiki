@@ -3386,7 +3386,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->platform->buildIntegerCast( $field );
 	}
 
-	public function tableName( $name, $format = 'quoted' ) {
+	public function tableName( string $name, $format = 'quoted' ) {
 		return $this->platform->tableName( $name, $format );
 	}
 
