@@ -694,6 +694,7 @@ because of Phabricator reports.
 * TextConflictHelper->incrementStatsByUserEdits() is now deprecated.  The
   action this function previously handled should be moved into
   incrementConflictStats() and incrementResolvedStats().
+* SQLPlatform::getQueryVerb() is now deprecated.
 * …
 
 === Other changes in 1.42 ===

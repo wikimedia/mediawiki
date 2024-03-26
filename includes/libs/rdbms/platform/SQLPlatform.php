@@ -1579,8 +1579,10 @@ class SQLPlatform implements ISQLPlatform {
 	/**
 	 * @param string $sql SQL query
 	 * @return string|null
+	 * @deprecated Since 1.42
 	 */
 	public function getQueryVerb( $sql ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return QueryBuilderFromRawSql::buildQuery( $sql, 0 )->getVerb();
 	}
 
