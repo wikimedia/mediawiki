@@ -11,7 +11,44 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.40.2 ===
 * Localisation updates.
-* (T359139) Restore ability to disable footer links with "-"
+* (T296896) CategoryViewer::getSectionPagingLinks: Fix null array offset
+  warning.
+* CategoryViewer: Fix "count(): Argument #1 ($value) must be of type
+  Countable|array, null given".
+* (T334992) Headings in the license pickers should not be selected.
+* (T353929) ActiveUsersPager: Count actions only once.
+* composer: Use @php instead of php.
+* (T326065) Indent JsonContent using tabs.
+* (T309714, T354274) mime: Add support for 'font/woff' and 'font/woff2' mime
+  type.
+* (T353644) Update wikimedia/parsoid to 0.17.3.
+* (T354541) authmanager: Improve AuthenticationRequest docs.
+* (T330428) ForeignResourceManager: Add trailing newline in validateLicense.
+* (T355017) Add missing space in Special:RecentChangesLinked.
+* (T355003) composer.json Add ext-bcmath and ext-gmp to suggests.
+* PHPVersionCheck: Update text to match currently supported upstream PHP
+  versions (8.1+).
+* (T354045) API: mark HTML output as non-cacheable.
+* (T355530) filerepo: Fix img_major_mime for files with a non-standard
+  extensions.
+* (T355530) MimeAnalyzer: Add @since to isValidMajorMimeType.
+* (T352554) ZhConverter: Fix language variant fallback chain.
+* (T357668) Parser::getExternalLinkAttribs: Don't set rel attribute to null.
+* LockManagerGroupIntegrationTest: Remove test depending on DBLockManager.
+* (T357808) LinkRendererTest: Add missing import for LinkTarget.
+* (T353305) ApiResetPassword: Allow both user and email parameters to be passed
+  for reset.
+* (T358949) updateCollation: Explicitly cast $scale to int.
+* (T359055) api: Improve linking of language codes lists in top level i18n
+  messages.
+* (T359294) Make sure MovePage::isValidFileMove matches UploadBase::getTitle.
+* (T230245) Respect $maxConcurrency when queuing async FileOps.
+* (T352554) Follow-up "ZhConverter: Fix language variant fallback chain".
+* (T359139) Restore ability to disable footer links with "-".
+* (T292237, T317451) build: Restore Doxygen output for MediaWiki release tags.
+* (T324903) HistoryPager: Add #[AllowDynamicProperties].
+* (T360850) Update Apache config syntax in .htaccess files.
+* (T309714) mime: Make test cases use data provider.
 
 == MediaWiki 1.40.2 ==
 
