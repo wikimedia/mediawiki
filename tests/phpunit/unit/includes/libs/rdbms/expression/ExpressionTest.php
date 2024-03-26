@@ -16,6 +16,8 @@ use Wikimedia\Rdbms\OrExpressionGroup;
  * @covers \Wikimedia\Rdbms\ExpressionGroup
  * @covers \Wikimedia\Rdbms\AndExpressionGroup
  * @covers \Wikimedia\Rdbms\OrExpressionGroup
+ * @covers \Wikimedia\Rdbms\LikeMatch
+ * @covers \Wikimedia\Rdbms\LikeValue
  */
 class ExpressionTest extends TestCase {
 
