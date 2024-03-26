@@ -797,7 +797,7 @@
 	"slot-name-main": "Главни",
 	"content-model-wikitext": "викитекст",
 	"content-model-text": "обичан текст",
-	"content-model-javascript": "јаваскрипта",
+	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Празан објекат",

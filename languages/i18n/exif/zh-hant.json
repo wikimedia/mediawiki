@@ -13,7 +13,8 @@
 			"Pseudo Classes",
 			"Waihorace",
 			"Xiplus",
-			"捍粵者"
+			"捍粵者",
+			"H78c67c"
 		]
 	},
 	"exif-imagewidth": "寬度",
@@ -206,6 +207,8 @@
 	"exif-photometricinterpretation-5": "分隔（可能是 CMYK）",
 	"exif-photometricinterpretation-9": "CIE L*a*b*（ICC 編碼）",
 	"exif-photometricinterpretation-10": "CIE L*a*b*（ITU 編碼）",
+	"exif-photometricinterpretation-32803": "彩色濾光片陣列",
+	"exif-photometricinterpretation-34892": "線性 RAW",
 	"exif-unknowndate": "日期不明",
 	"exif-orientation-1": "標準",
 	"exif-orientation-2": "水平翻轉",

@@ -1863,7 +1863,7 @@
 	"unwatchthispage": "Ab dhyan nai rakkho",
 	"notanarticle": "Ii content panna nai hai",
 	"notvisiblerev": "Badlao ke mitae dewa gais hai",
-	"watchlist-details": "{{PLURAL:$1|$1 panna|$1 panna}} pe dhyan dewa jae hai (baat waala panna ke bhi).",
+	"watchlist-details": "{{PLURAL:$1|panna}} pe dhyan dewa jae hai (baat waala panna ke bhi).",
 	"wlheader-enotif": "E-mail notification ke enable kar dewa gais hai.",
 	"wlheader-showupdated": "Panna jiske aap ke pichhla visit ke ke baad badal dewa gais hia ke '''bold''' me dekhawa jaawe hai.",
 	"wlnote": "Niche ke {{PLURAL:$1|pahile waala badlao hai| pahile <strong>$1</strong> badlao hai}} pichhle {{PLURAL:$2|ghanta|<strong>$2</strong> ghanta}} me as of $3, $4.",
