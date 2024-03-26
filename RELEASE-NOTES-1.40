@@ -7,7 +7,7 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.40.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.40 branch.
 
 === Changes since MediaWiki 1.40.2 ===
 * Localisation updates.
@@ -49,6 +49,16 @@ THIS IS NOT A RELEASE YET
 * (T324903) HistoryPager: Add #[AllowDynamicProperties].
 * (T360850) Update Apache config syntax in .htaccess files.
 * (T309714) mime: Make test cases use data provider.
+* (T317489, T319202) Mark some parserTests on talk pages Parsoid only on
+  REL1_40.
+* Update wikimedia/parsoid to 0.17.4.
+* docs: Remove use of $IP from mwdocgen.php.
+* (T317451) build: Restore Doxygen output for MediaWiki release tags (take 3).
+* docs: Set stable permalink on markdown files.
+* (T357019) allow maintenance/deleteBatch.php to accept page ID.
+* (T355538 CVE-2024-PENDING) XSS in edit summary parser.
+* (T357760, CVE-2024-PENDING) Denial of service vector via GET request to
+  Special:MovePage on pages with thousands of subpages.
 
 == MediaWiki 1.40.2 ==
 
