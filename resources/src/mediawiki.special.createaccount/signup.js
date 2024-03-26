@@ -6,7 +6,7 @@ var HtmlformChecker = require( './HtmlformChecker.js' );
 // When sending password by email, hide the password input fields.
 $( function () {
 	// Always required if checked, otherwise it depends, so we use the original
-	var $emailLabel = $( 'label[for="wpEmail"]' ),
+	var $emailLabel = $( 'label[for="wpEmail"] .cdx-label__label__text' ),
 		originalText = $emailLabel.text(),
 		requiredText = mw.msg( 'createacct-emailrequired' ),
 		$createByMailCheckbox = $( '#wpCreateaccountMail' ),
@@ -17,6 +17,7 @@ $( function () {
 		var checked = $createByMailCheckbox.prop( 'checked' );
 		if ( checked ) {
 			$pwds = $( '.mw-row-password' ).detach();
+			// TODO when this uses the optional flag, show/hide that instead of changing the text
 			$emailLabel.text( requiredText );
 		} else {
 			if ( $pwds ) {
