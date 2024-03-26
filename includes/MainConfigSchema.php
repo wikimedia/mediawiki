@@ -5121,19 +5121,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Temporary variable that allows HTMLForms to be rendered as tables.
-	 *
-	 * Table based layouts cause various issues when designing for mobile.
-	 * This global allows skins or extensions a means to force non-table based rendering.
-	 * Setting to false forces form components to always render as div elements.
-	 *
-	 * @since 1.24
-	 */
-	public const HTMLFormAllowTableFormat = [
-		'default' => true,
-	];
-
-	/**
 	 * Whether to label the store-to-database-and-show-to-others button in the editor
 	 * as "Save page"/"Save changes" if false (the default) or, if true, instead as
 	 * "Publish page"/"Publish changes".

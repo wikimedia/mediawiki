@@ -3179,14 +3179,6 @@ config-schema:
             Correct current values are 'HTML+RDFa 1.0' or 'XHTML+RDFa 1.0'.
             See also https://www.w3.org/TR/rdfa-in-html/#document-conformance
             @since 1.16
-    HTMLFormAllowTableFormat:
-        default: true
-        description: |-
-            Temporary variable that allows HTMLForms to be rendered as tables.
-            Table based layouts cause various issues when designing for mobile.
-            This global allows skins or extensions a means to force non-table based rendering.
-            Setting to false forces form components to always render as div elements.
-            @since 1.24
     EditSubmitButtonLabelPublish:
         default: false
         description: |-

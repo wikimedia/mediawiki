@@ -1935,12 +1935,6 @@ $wgMimeType = null;
 $wgHtml5Version = null;
 
 /**
- * Config variable stub for the HTMLFormAllowTableFormat setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::HTMLFormAllowTableFormat
- */
-$wgHTMLFormAllowTableFormat = null;
-
-/**
  * Config variable stub for the EditSubmitButtonLabelPublish setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EditSubmitButtonLabelPublish
  */

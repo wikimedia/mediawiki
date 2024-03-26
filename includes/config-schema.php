@@ -618,7 +618,6 @@ return [
 			],
 			'MimeType' => 'text/html',
 			'Html5Version' => null,
-			'HTMLFormAllowTableFormat' => true,
 			'EditSubmitButtonLabelPublish' => false,
 			'XhtmlNamespaces' => [
 			],

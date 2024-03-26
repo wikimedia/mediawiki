@@ -452,15 +452,6 @@ class HTMLForm extends ContextSource {
 	) {
 		$this->setContext( $context );
 		$this->mMessagePrefix = $messagePrefix;
-
-		// Evil hack for mobile :(
-		if (
-			!$this->getConfig()->get( MainConfigNames::HTMLFormAllowTableFormat )
-			&& $this->displayFormat === 'table'
-		) {
-			$this->displayFormat = 'div';
-		}
-
 		$this->addFields( $descriptor );
 	}
 
@@ -549,12 +540,6 @@ class HTMLForm extends ContextSource {
 					),
 					true
 				) );
-		}
-
-		// Evil hack for mobile :(
-		if ( !$this->getConfig()->get( MainConfigNames::HTMLFormAllowTableFormat ) &&
-		$format === 'table' ) {
-			$format = 'div';
 		}
 
 		$this->displayFormat = $format;

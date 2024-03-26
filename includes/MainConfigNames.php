@@ -1950,12 +1950,6 @@ class MainConfigNames {
 	public const Html5Version = 'Html5Version';
 
 	/**
-	 * Name constant for the HTMLFormAllowTableFormat setting, for use with Config::get()
-	 * @see MainConfigSchema::HTMLFormAllowTableFormat
-	 */
-	public const HTMLFormAllowTableFormat = 'HTMLFormAllowTableFormat';
-
-	/**
 	 * Name constant for the EditSubmitButtonLabelPublish setting, for use with Config::get()
 	 * @see MainConfigSchema::EditSubmitButtonLabelPublish
 	 */
