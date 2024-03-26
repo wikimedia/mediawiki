@@ -107,7 +107,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function getSoftwareLink();
 
 	/**
-	 * A string describing the current software version, like from mysql_get_server_info()
+	 * A string describing the current software version
 	 *
 	 * @return string Version information from the database server.
 	 */
