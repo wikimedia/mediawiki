@@ -449,6 +449,9 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.42 ===
+* (T273239) wfGetDB(), deprecated in 1.39, now emits deprecation warnings. Most
+  code can migrate to MediaWikiServices::getInstance()->getConnectionProvider()
+  ->getReplicaDatabase() or …->getPrimaryDatabase() as appropriate.
 * (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
   namespace as appropriate, so that we can use PSR-4 auto-loading, which will
   speed up general code loading of MediaWiki. The old global namespace class
