@@ -7,7 +7,7 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.41.1 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.41 branch.
 
 === Changes since MediaWiki 1.41.0 ===
 * Localisation updates.
@@ -33,7 +33,6 @@ THIS IS NOT A RELEASE YET
 * (T355530) filerepo: Fix img_major_mime for files with a non-standard
   extensions.
 * (T355530) MimeAnalyzer: Add @since to isValidMajorMimeType.
-* Update wikimedia/parsoid to 0.18.1.
 * (T352554) ZhConverter: Fix language variant fallback chain.
 * (T347541) Add 'maxlength' and 'minlength' support to HTMLTextAreaField.
 * (T357668) Parser::getExternalLinkAttribs: Don't set rel attribute to null.
@@ -52,6 +51,16 @@ THIS IS NOT A RELEASE YET
 * (T292237, T317451) build: Restore Doxygen output for MediaWiki release tags.
 * (T324903) HistoryPager: Add #[AllowDynamicProperties].
 * (T360850) Update Apache config syntax in .htaccess files.
+* Update wikimedia/parsoid to 0.18.2.
+* docs: Remove use of $IP from mwdocgen.php.
+* (T317451) build: Restore Doxygen output for MediaWiki release tags (take 3).
+* docs: Set stable permalink on markdown files.
+* (T360608) WebRequest: detectServer appends default ports that should be
+  omitted.
+* (T357019) allow maintenance/deleteBatch.php to accept page ID.
+* (T355538 CVE-2024-PENDING) XSS in edit summary parser.
+* (T357760, CVE-2024-PENDING) Denial of service vector via GET request to
+  Special:MovePage on pages with thousands of subpages.
 
 == MediaWiki 1.41.0 ==
 
