@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @since 1.35 (also backported to 1.33.3 and 1.34.1)
  */
-define( 'MW_VERSION', '1.39.6' );
+define( 'MW_VERSION', '1.39.7' );
 
 /** @{
  * Obsolete IDatabase::makeList() constants
