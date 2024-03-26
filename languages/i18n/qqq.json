@@ -4350,6 +4350,7 @@
 	"htmlform-int-toohigh": "Used as error message in HTML forms. Parameters:\n* $1 - maximum value\nSee also:\n* {{msg-mw|Htmlform-invalid-input}}\n* {{msg-mw|Htmlform-required}}\n* {{msg-mw|Htmlform-float-invalid}}\n* {{msg-mw|Htmlform-int-invalid}}\n* {{msg-mw|Htmlform-int-toolow}}\n* {{msg-mw|Htmlform-select-badoption}}",
 	"htmlform-multiselect-toomany": "Used as error message in HTML forms when the number of selected items is above the maximum allowed limit. Parameters:\n* $1 - maximum value\nSee also:\n* {{msg-mw|Htmlform-int-toohigh}}\n* {{msg-mw|Htmlform-int-toolow}}",
 	"htmlform-required": "Used as error message in HTML forms.\n\n* {{msg-mw|Htmlform-invalid-input}}\n* {{msg-mw|Htmlform-float-invalid}}\n* {{msg-mw|Htmlform-int-invalid}}\n* {{msg-mw|Htmlform-int-toolow}}\n* {{msg-mw|Htmlform-int-toohigh}}\n* {{msg-mw|Htmlform-select-badoption}}",
+	"htmlform-optional-flag": "Flag that a field is optional, preferably in parentheses or brackets if applicable",
 	"htmlform-submit": "The \"Submit\" button on many forms. When the user clicks it, the filled form is sent for processing.\n\n{{Identical|Submit}}",
 	"htmlform-reset": "{{Identical|Undo}}",
 	"htmlform-selectorother-other": "Used in drop-down boxes in [[Special:Preferences]] as follows:\n* selection of timezone (date and time tab)\n\n{{Identical|Other}}",
