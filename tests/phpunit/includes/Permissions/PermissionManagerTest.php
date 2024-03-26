@@ -19,6 +19,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\Tests\Unit\MockBlockTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
@@ -37,6 +38,7 @@ use Wikimedia\TestingAccessWrapper;
 class PermissionManagerTest extends MediaWikiLangTestCase {
 	use TestAllServiceOptionsUsed;
 	use MockBlockTrait;
+	use TempUserTestTrait;
 
 	/** @var string */
 	protected $userName;
@@ -424,20 +426,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testAutocreatePermissionsHack() {
-		$this->overrideConfigValues( [
-			MainConfigNames::AutoCreateTempUser => [
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-				'matchPattern' => '*Unregistered $1',
-				'genPattern' => '*Unregistered $1'
-			],
-			MainConfigNames::GroupPermissions => [
-				'*' => [ 'edit' => false ],
-				'temp' => [ 'edit' => true, 'createpage' => true ],
-			]
+		$this->enableAutoCreateTempUser();
+		$this->overrideConfigValue( MainConfigNames::GroupPermissions, [
+			'*' => [ 'edit' => false ],
+			'temp' => [ 'edit' => true, 'createpage' => true ],
 		] );
 		$services = $this->getServiceContainer();
 		$permissionManager = $services->getPermissionManager();

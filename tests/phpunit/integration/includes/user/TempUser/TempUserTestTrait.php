@@ -26,11 +26,12 @@ trait TempUserTestTrait {
 			MainConfigNames::AutoCreateTempUser,
 			array_merge( [
 				'enabled' => true,
-				'expireAfterDays' => null,
+				'expireAfterDays' => 365,
+				'notifyBeforeExpirationDays' => 10,
 				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
+				'genPattern' => '~$1',
+				'reservedPattern' => '~$1',
+				'serialProvider' => [ 'type' => 'local', 'useYear' => true ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ],
 			], $configOverrides )
 		);

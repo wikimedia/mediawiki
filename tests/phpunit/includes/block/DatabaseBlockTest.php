@@ -7,6 +7,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -21,6 +22,7 @@ use Wikimedia\Rdbms\LBFactory;
  * @coversDefaultClass \MediaWiki\Block\DatabaseBlock
  */
 class DatabaseBlockTest extends MediaWikiLangTestCase {
+	use TempUserTestTrait;
 
 	public function addDBData() {
 		$blockList = [
@@ -115,18 +117,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 */
 	public function testHardBlocks() {
 		// Set up temp user config
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
+		$this->enableAutoCreateTempUser();
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blocker = $this->getTestUser()->getUser();
@@ -140,11 +131,11 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$blockStore->insertBlock( $block );
 
 		$this->assertFalse(
-			(bool)DatabaseBlock::newFromTarget( '*Unregistered 1' ),
+			(bool)DatabaseBlock::newFromTarget( '~1' ),
 			'Temporary user is not blocked directly'
 		);
 		$this->assertTrue(
-			(bool)DatabaseBlock::newFromTarget( '*Unregistered 1', '1.2.3.4' ),
+			(bool)DatabaseBlock::newFromTarget( '~1', '1.2.3.4' ),
 			'Temporary user is blocked by soft block'
 		);
 		$this->assertFalse(

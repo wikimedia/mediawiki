@@ -10,6 +10,7 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use Skin;
 use Wikimedia\Composer\ComposerInstalled;
@@ -24,6 +25,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \ApiQuerySiteinfo
  */
 class ApiQuerySiteinfoTest extends ApiTestCase {
+	use TempUserTestTrait;
+
 	private $originalRegistryLoaded = null;
 
 	protected function tearDown(): void {
@@ -375,35 +378,28 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testAutoCreateTempUser() {
-		$config = $expected = [ 'enabled' => false ];
-		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
+		$this->disableAutoCreateTempUser();
 		$this->assertSame(
-			$expected,
+			[ 'enabled' => false ],
 			$this->doQuery( 'autocreatetempuser' ),
 			'When disabled, no other properties are present'
 		);
 
-		$config = [
-			'enabled' => true,
-			'expireAfterDays' => null,
-			'actions' => [ 'edit' ],
-			'genPattern' => 'Unregistered $1',
+		$this->enableAutoCreateTempUser( [
 			'reservedPattern' => null,
-			'serialProvider' => [ 'type' => 'local' ],
-			'serialMapping' => [ 'type' => 'plain-numeric' ],
-		];
-		$expected = [
-			'enabled' => true,
-			'actions' => [ 'edit' ],
-			'genPattern' => 'Unregistered $1',
-			'matchPattern' => 'Unregistered $1',
-			'serialProvider' => [ 'type' => 'local' ],
-			'serialMapping' => [ 'type' => 'plain-numeric' ],
-		];
-		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
-		$this->assertSame(
-			$expected,
+		] );
+		$this->assertArrayEquals(
+			[
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'genPattern' => '~$1',
+				'matchPattern' => '~$1',
+				'serialProvider' => [ 'type' => 'local', 'useYear' => true ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			],
 			$this->doQuery( 'autocreatetempuser' ),
+			false,
+			true,
 			'When enabled, some properties are filled in or cleaned up'
 		);
 	}

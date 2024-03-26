@@ -4,9 +4,9 @@ namespace MediaWiki\Tests\Api\Query;
 
 use ApiQueryImageInfo;
 use File;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 
@@ -18,6 +18,7 @@ use MediaWiki\Utils\MWTimestamp;
  */
 class ApiQueryImageInfoTest extends ApiTestCase {
 	use MockAuthorityTrait;
+	use TempUserTestTrait;
 
 	private const IMAGE_NAME = 'Random-11m.png';
 
@@ -111,19 +112,10 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		);
 
 		// Set up temp user config
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
-		$this->tempUser = new UserIdentityValue( 1236764321, '*Unregistered 1' );
+		$this->enableAutoCreateTempUser();
+		$this->tempUser = $this->getServiceContainer()
+			->getTempUserCreator()
+			->create()->getUser();
 		$tempActorId = $this->getServiceContainer()
 			->getActorStore()
 			->acquireActorId( $this->tempUser, $this->db );

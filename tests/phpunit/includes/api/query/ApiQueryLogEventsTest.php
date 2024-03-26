@@ -21,7 +21,7 @@ class ApiQueryLogEventsTest extends ApiTestCase {
 	 */
 	public function testLogEventByTempUser() {
 		$this->enableAutoCreateTempUser();
-		$tempUser = new UserIdentityValue( 1236764321, '*Unregistered 1' );
+		$tempUser = new UserIdentityValue( 1236764321, '~1' );
 		$title = $this->getNonexistingTestPage( 'TestPage1' )->getTitle();
 		$this->editPage(
 			$title,

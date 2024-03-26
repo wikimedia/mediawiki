@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\Api;
 
 use CssContent;
 use HashBagOStuff;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -26,6 +26,7 @@ use WikitextContent;
  * @todo Expand tests for temporary users
  */
 class ApiStashEditTest extends ApiTestCase {
+	use TempUserTestTrait;
 
 	private const CLASS_NAME = 'ApiStashEditTest';
 
@@ -362,7 +363,7 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testCheckCacheAnon() {
-		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, [ 'enabled' => false ] );
+		$this->disableAutoCreateTempUser();
 		$user = $this->getServiceContainer()->getUserFactory()->newFromName( '174.5.4.6', UserRigorOptions::RIGOR_NONE );
 
 		$this->doStash( [], $user );
@@ -394,7 +395,7 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testCheckCacheOldNoEditsAnon() {
-		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, [ 'enabled' => false ] );
+		$this->disableAutoCreateTempUser();
 		// Specify a made-up IP address to make sure no edits are lying around
 		$user = $this->getServiceContainer()->getUserFactory()->newFromName( '172.0.2.77', UserRigorOptions::RIGOR_NONE );
 

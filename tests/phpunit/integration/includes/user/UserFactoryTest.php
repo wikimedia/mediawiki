@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
@@ -17,6 +17,7 @@ use Wikimedia\Rdbms\UpdateQueryBuilder;
  * @author DannyS712
  */
 class UserFactoryTest extends MediaWikiIntegrationTestCase {
+	use TempUserTestTrait;
 
 	private function getUserFactory() {
 		return $this->getServiceContainer()->getUserFactory();
@@ -191,18 +192,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewTempPlaceholder() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
+		$this->enableAutoCreateTempUser();
 		$user = $this->getUserFactory()->newTempPlaceholder();
 		$this->assertTrue( $user->isTemp() );
 		$this->assertFalse( $user->isRegistered() );
@@ -211,19 +201,8 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewUnsavedTempUser() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
-		$user = $this->getUserFactory()->newUnsavedTempUser( '*Unregistered 1234' );
+		$this->enableAutoCreateTempUser();
+		$user = $this->getUserFactory()->newUnsavedTempUser( '~1234' );
 		$this->assertTrue( $user->isTemp() );
 		$this->assertFalse( $user->isNamed() );
 	}

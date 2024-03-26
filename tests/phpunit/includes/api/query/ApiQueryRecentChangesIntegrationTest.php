@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
@@ -20,6 +20,7 @@ use WatchedItemQueryService;
  * @covers \ApiQueryRecentChanges
  */
 class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
+	use TempUserTestTrait;
 
 	private function getLoggedInTestUser() {
 		return $this->getTestUser()->getUser();
@@ -68,24 +69,13 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 
 	private function doTempPageEdit( LinkTarget $target, $summary ) {
 		// Set up temp user config
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
+		$this->enableAutoCreateTempUser();
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
 			$page->getContentHandler()->unserializeContent( __CLASS__ ),
 			$this->getServiceContainer()
 				->getUserFactory()
-				->newFromUserIdentity( new UserIdentityValue( 123456, '*Unregistered 1' ) ),
+				->newFromUserIdentity( new UserIdentityValue( 123456, '~1' ) ),
 			$summary
 		);
 	}
@@ -320,7 +310,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 				[
 					'type' => 'new',
 					'temp' => true,
-					'user' => '*Unregistered 1',
+					'user' => '~1',
 				],
 				[
 					'type' => 'new',

@@ -1130,17 +1130,18 @@ return [
 				'actions' => [
 					'edit',
 				],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'reservedPattern' => null,
+				'genPattern' => '~$1',
+				'matchPattern' => null,
+				'reservedPattern' => '~$1',
 				'serialProvider' => [
 					'type' => 'local',
+					'useYear' => true,
 				],
 				'serialMapping' => [
 					'type' => 'plain-numeric',
 				],
-				'expireAfterDays' => null,
-				'notifyBeforeExpirationDays' => null,
+				'expireAfterDays' => 365,
+				'notifyBeforeExpirationDays' => 10,
 			],
 			'AutoblockExpiry' => 86400,
 			'BlockAllowsUTEdit' => true,

@@ -2,9 +2,10 @@
 
 namespace MediaWiki\Tests\Api;
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\TempUser\TempUserCreator;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group API
@@ -15,14 +16,10 @@ use MediaWiki\User\TempUser\TempUserCreator;
  */
 class ApiAcquireTempUserNameTest extends ApiTestCase {
 	use MockAuthorityTrait;
+	use TempUserTestTrait;
 
 	public function testExecuteDiesWhenNotEnabled() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => false,
-			]
-		);
+		$this->disableAutoCreateTempUser();
 		$this->expectApiErrorCode( 'tempuserdisabled' );
 
 		$this->doApiRequestWithToken( [
@@ -31,18 +28,7 @@ class ApiAcquireTempUserNameTest extends ApiTestCase {
 	}
 
 	public function testExecuteDiesWhenUserIsRegistered() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
+		$this->enableAutoCreateTempUser();
 		$this->expectApiErrorCode( 'alreadyregistered' );
 
 		$this->doApiRequestWithToken(
@@ -80,21 +66,13 @@ class ApiAcquireTempUserNameTest extends ApiTestCase {
 	}
 
 	public function testExecuteForSuccessfulCall() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
+		ConvertibleTimestamp::setFakeTime( '20240405060708' );
+		$this->enableAutoCreateTempUser( [
+			'genPattern' => '~$1',
+		] );
 
 		$this->assertArrayEquals(
-			[ 'acquiretempusername' => '*Unregistered 1' ],
+			[ 'acquiretempusername' => '~2024-1' ],
 			$this->doApiRequestWithToken(
 				[
 					'action' => 'acquiretempusername',
