@@ -1480,14 +1480,14 @@ class LocalFile extends File {
 		$join_conds = $oldFileQuery['joins'];
 		$conds = $opts = [];
 		$eq = $inc ? '=' : '';
-		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBkey() );
+		$conds[] = $dbr->expr( 'oi_name', '=', $this->title->getDBkey() );
 
 		if ( $start ) {
-			$conds[] = "oi_timestamp <$eq " . $dbr->addQuotes( $dbr->timestamp( $start ) );
+			$conds[] = $dbr->expr( 'oi_timestamp', "<$eq", $dbr->timestamp( $start ) );
 		}
 
 		if ( $end ) {
-			$conds[] = "oi_timestamp >$eq " . $dbr->addQuotes( $dbr->timestamp( $end ) );
+			$conds[] = $dbr->expr( 'oi_timestamp', ">$eq", $dbr->timestamp( $end ) );
 		}
 
 		if ( $limit ) {

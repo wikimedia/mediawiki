@@ -592,16 +592,13 @@ class WatchedItemQueryService {
 		}
 
 		$conds = [];
-
 		if ( isset( $options['start'] ) ) {
 			$after = $options['dir'] === self::DIR_OLDER ? '<=' : '>=';
-			$conds[] = 'rc_timestamp ' . $after . ' ' .
-				$db->addQuotes( $db->timestamp( $options['start'] ) );
+			$conds[] = $db->expr( 'rc_timestamp', $after, $db->timestamp( $options['start'] ) );
 		}
 		if ( isset( $options['end'] ) ) {
 			$before = $options['dir'] === self::DIR_OLDER ? '>=' : '<=';
-			$conds[] = 'rc_timestamp ' . $before . ' ' .
-				$db->addQuotes( $db->timestamp( $options['end'] ) );
+			$conds[] = $db->expr( 'rc_timestamp', $before, $db->timestamp( $options['end'] ) );
 		}
 
 		return $conds;
@@ -617,7 +614,7 @@ class WatchedItemQueryService {
 		if ( array_key_exists( 'onlyByUser', $options ) ) {
 			$conds['watchlist_actor.actor_name'] = $options['onlyByUser'];
 		} elseif ( array_key_exists( 'notByUser', $options ) ) {
-			$conds[] = 'watchlist_actor.actor_name<>' . $db->addQuotes( $options['notByUser'] );
+			$conds[] = $db->expr( 'watchlist_actor.actor_name', '!=', $options['notByUser'] );
 		}
 
 		// Avoid brute force searches (T19342)

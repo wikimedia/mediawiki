@@ -152,9 +152,9 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 			$this->userJoined = true;
 		}
 
-		$this->conds( 'user_registration ' .
-			( $direction ? '< ' : '> ' ) .
-			$this->db->addQuotes( $this->db->timestamp( $timestamp ) ) );
+		$this->conds(
+			$this->db->expr( 'user_registration', ( $direction ? '< ' : '> ' ), $this->db->timestamp( $timestamp ) )
+		);
 		return $this;
 	}
 
