@@ -850,7 +850,7 @@ class SpecialUserRights extends SpecialPage {
 				Xml::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
 					"<tr>
 						<td class='mw-label'>" .
-							Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
+							Html::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
 						"</td>
 						<td class='mw-input'>" .
 							Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason' ) ?? false, [
@@ -865,7 +865,7 @@ class SpecialUserRights extends SpecialPage {
 					<tr>
 						<td></td>
 						<td class='mw-submit'>" .
-							Xml::submitButton( $this->msg( 'saveusergroups', $user->getName() )->text(),
+							Html::submitButton( $this->msg( 'saveusergroups', $user->getName() )->text(),
 								[ 'name' => 'saveusergroups' ] +
 									Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
 							) .
@@ -874,7 +874,8 @@ class SpecialUserRights extends SpecialPage {
 					<tr>
 						<td></td>
 						<td class='mw-input'>" .
-							Xml::checkLabel( $this->msg( 'userrights-watchuser' )->text(), 'wpWatch', 'wpWatch' ) .
+							Html::check( 'wpWatch', false, [ 'id' => 'wpWatch' ] ) .
+							'&nbsp;' . Html::label( $this->msg( 'userrights-watchuser' )->text(), 'wpWatch' ) .
 						"</td>
 					</tr>" .
 				Xml::closeElement( 'table' ) . "\n"
@@ -967,11 +968,6 @@ class SpecialUserRights extends SpecialPage {
 			}
 			$ret .= "\t<td style='vertical-align:top;'>\n";
 			foreach ( $column as $group => $checkbox ) {
-				$attr = [ 'class' => 'mw-userrights-groupcheckbox' ];
-				if ( $checkbox['disabled'] ) {
-					$attr['disabled'] = 'disabled';
-				}
-
 				$member = $uiLanguage->getGroupMemberName( $group, $userName );
 				if ( $checkbox['irreversible'] ) {
 					$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
@@ -980,8 +976,12 @@ class SpecialUserRights extends SpecialPage {
 				} else {
 					$text = $member;
 				}
-				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
-					"wpGroup-" . $group, $checkbox['set'], $attr );
+				$checkboxHtml = Html::element( 'input', [
+					'type' => 'checkbox', 'name' => "wpGroup-$group", 'value' => '1',
+					'id' => "wpGroup-$group", 'checked' => $checkbox['set'],
+					'class' => 'mw-userrights-groupcheckbox',
+					'disabled' => $checkbox['disabled'],
+				] ) . '&nbsp;' . Html::label( $text, "wpGroup-$group" );
 
 				if ( $this->canProcessExpiries() ) {
 					$uiUser = $this->getUser();
@@ -1050,14 +1050,12 @@ class SpecialUserRights extends SpecialPage {
 						$expiryHtml .= $expiryFormOptions->getHTML() . '<br />';
 
 						// Add custom expiry field
-						$attribs = [
+						$expiryHtml .= Html::element( 'input', [
+							'name' => "wpExpiry-$group-other", 'size' => 30, 'value' => '',
 							'id' => "mw-input-wpExpiry-$group-other",
 							'class' => 'mw-userrights-expiryfield',
-						];
-						if ( $checkbox['disabled-expiry'] ) {
-							$attribs['disabled'] = 'disabled';
-						}
-						$expiryHtml .= Xml::input( "wpExpiry-$group-other", 30, '', $attribs );
+							'disabled' => $checkbox['disabled-expiry'],
+						] );
 
 						// If the user group is set but the checkbox is disabled, mimic a
 						// checked checkbox in the form submission

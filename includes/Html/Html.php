@@ -151,17 +151,16 @@ class Html {
 	}
 
 	/**
-	 * Returns an HTML link element in a string styled as a button.
+	 * Returns an HTML input element in a string.
 	 *
-	 * @param string $contents The raw HTML contents of the element: *not*
-	 *   escaped!
+	 * @param string $contents Plain text label for the button value
 	 * @param array $attrs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
 	 * @param string[] $modifiers Unused
 	 * @return string Raw HTML
 	 */
-	public static function submitButton( $contents, array $attrs, array $modifiers = [] ) {
+	public static function submitButton( $contents, array $attrs = [], array $modifiers = [] ) {
 		$attrs['type'] = 'submit';
 		$attrs['value'] = $contents;
 		return self::element( 'input', $attrs );
@@ -652,7 +651,7 @@ class Html {
 	}
 
 	/**
-	 * Convenience function to produce an "<input>" element.  This supports the
+	 * Convenience function to produce an `<input>` element.  This supports the
 	 * new HTML5 input types and attributes.
 	 *
 	 * @param string $name Name attribute

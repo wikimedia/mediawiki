@@ -800,20 +800,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'class' => 'namespaceselector',
 			]
 		) . "\n";
-		$namespaceForm .= '<span class="mw-input-with-label">' . Xml::checkLabel(
-			$this->msg( 'invert' )->text(),
-			'invert',
-			'nsinvert',
-			$opts['invert'],
-			[ 'title' => $this->msg( 'tooltip-invert' )->text() ]
-		) . "</span>\n";
-		$namespaceForm .= '<span class="mw-input-with-label">' . Xml::checkLabel(
-			$this->msg( 'namespace_association' )->text(),
-			'associated',
-			'nsassociated',
-			$opts['associated'],
-			[ 'title' => $this->msg( 'tooltip-namespace_association' )->text() ]
-		) . "</span>\n";
+		$namespaceForm .= Html::rawElement( 'label', [
+			'class' => 'mw-input-with-label', 'title' => $this->msg( 'tooltip-invert' )->text(),
+		], Html::element( 'input', [
+			'type' => 'checkbox', 'name' => 'invert', 'value' => '1', 'checked' => $opts['invert'],
+		] ) . '&nbsp;' . $this->msg( 'invert' )->escaped() ) . "\n";
+		$namespaceForm .= Html::rawElement( 'label', [
+			'class' => 'mw-input-with-label', 'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+		], Html::element( 'input', [
+			'type' => 'checkbox', 'name' => 'associated', 'value' => '1', 'checked' => $opts['associated'],
+		] ) . '&nbsp;' . $this->msg( 'namespace_association' )->escaped() ) . "\n";
 		$form .= Html::rawElement(
 			'span',
 			[ 'class' => 'namespaceForm cloption' ],
@@ -964,7 +960,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return Html::rawElement(
 			'span',
 			$attribs,
-			// not using Html::checkLabel because that would escape the contents
+			// not using Html::label because that would escape the contents
 			Html::check( $name, (bool)$value, [ 'id' => $name ] ) . "\n" . Html::rawElement(
 				'label',
 				$attribs + [ 'for' => $name ],
