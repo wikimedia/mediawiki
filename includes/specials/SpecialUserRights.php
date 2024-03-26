@@ -813,7 +813,7 @@ class SpecialUserRights extends SpecialPage {
 		[ $groupCheckboxes, $canChangeAny ] =
 			$this->groupCheckboxes( $groupMemberships, $user );
 		$this->getOutput()->addHTML(
-			Xml::openElement(
+			Html::openElement(
 				'form',
 				[
 					'method' => 'post',
@@ -828,8 +828,8 @@ class SpecialUserRights extends SpecialPage {
 				'conflictcheck-originalgroups',
 				implode( ',', $this->userGroupManager->getUserGroups( $user ) )
 			) . // Conflict detection
-			Xml::openElement( 'fieldset' ) .
-			Xml::element(
+			Html::openElement( 'fieldset' ) .
+			Html::element(
 				'legend',
 				[],
 				$this->msg(
@@ -847,7 +847,7 @@ class SpecialUserRights extends SpecialPage {
 				$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
 				$grouplist .
 				$groupCheckboxes .
-				Xml::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
+				Html::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
 					"<tr>
 						<td class='mw-label'>" .
 							Html::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
@@ -1012,9 +1012,9 @@ class SpecialUserRights extends SpecialPage {
 							$currentExpiry ? 'existing' : 'infinite' );
 						$expiryHtml .= "<br />\n";
 					} else {
-						$expiryHtml = Xml::element( 'span', null,
+						$expiryHtml = Html::element( 'span', [],
 							$this->msg( 'userrights-expiry' )->text() );
-						$expiryHtml .= Xml::openElement( 'span' );
+						$expiryHtml .= Html::openElement( 'span' );
 
 						// add a form element to set the expiry date
 						$expiryFormOptions = new XmlSelect(
@@ -1063,23 +1063,23 @@ class SpecialUserRights extends SpecialPage {
 							$expiryHtml .= Html::hidden( "wpGroup-$group", 1 );
 						}
 
-						$expiryHtml .= Xml::closeElement( 'span' );
+						$expiryHtml .= Html::closeElement( 'span' );
 					}
 
 					$divAttribs = [
 						'id' => "mw-userrights-nested-wpGroup-$group",
 						'class' => 'mw-userrights-nested',
 					];
-					$checkboxHtml .= "\t\t\t" . Xml::tags( 'div', $divAttribs, $expiryHtml ) . "\n";
+					$checkboxHtml .= "\t\t\t" . Html::rawElement( 'div', $divAttribs, $expiryHtml ) . "\n";
 				}
 				$ret .= "\t\t" . ( ( $checkbox['disabled'] && $checkbox['disabled-expiry'] )
-					? Xml::tags( 'div', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
-					: Xml::tags( 'div', [], $checkboxHtml )
+					? Html::rawElement( 'div', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
+					: Html::rawElement( 'div', [], $checkboxHtml )
 				) . "\n";
 			}
 			$ret .= "\t</td>\n";
 		}
-		$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
+		$ret .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' );
 
 		return [ $ret, (bool)$columns['changeable'] ];
 	}
@@ -1147,7 +1147,7 @@ class SpecialUserRights extends SpecialPage {
 	 */
 	protected function showLogFragment( $user, $output ) {
 		$rightsLogPage = new LogPage( 'rights' );
-		$output->addHTML( Xml::element( 'h2', null, $rightsLogPage->getName()->text() ) );
+		$output->addHTML( Html::element( 'h2', [], $rightsLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $output, 'rights',
 			Title::makeTitle( NS_USER, $this->getDisplayUsername( $user ) ) );
 	}

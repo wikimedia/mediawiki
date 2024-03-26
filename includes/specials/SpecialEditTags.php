@@ -279,19 +279,19 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$out->wrapWikiMsg( '<p>$1</p>', "tags-edit-{$this->typeName}-explanation" );
 
 		// Show form
-		$form = Xml::openElement( 'form', [ 'method' => 'post',
+		$form = Html::openElement( 'form', [ 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
 				'id' => 'mw-revdel-form-revisions' ] ) .
 			Xml::fieldset( $this->msg( "tags-edit-{$this->typeName}-legend",
 				count( $this->ids ) )->text() ) .
 			$this->buildCheckBoxes() .
-			Xml::openElement( 'table' ) .
+			Html::openElement( 'table' ) .
 			"<tr>\n" .
 				'<td class="mw-label">' .
-					Xml::label( $this->msg( 'tags-edit-reason' )->text(), 'wpReason' ) .
+					Html::label( $this->msg( 'tags-edit-reason' )->text(), 'wpReason' ) .
 				'</td>' .
 				'<td class="mw-input">' .
-					Xml::input( 'wpReason', 60, $this->reason, [
+					Html::element( 'input', [ 'name' => 'wpReason', 'size' => 60, 'value' => $this->reason,
 						'id' => 'wpReason',
 						// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 						// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
@@ -302,17 +302,17 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			"</tr><tr>\n" .
 				'<td></td>' .
 				'<td class="mw-submit">' .
-					Xml::submitButton( $this->msg( "tags-edit-{$this->typeName}-submit",
+					Html::submitButton( $this->msg( "tags-edit-{$this->typeName}-submit",
 						$numRevisions )->text(), [ 'name' => 'wpSubmit' ] ) .
 				'</td>' .
 			"</tr>\n" .
-			Xml::closeElement( 'table' ) .
+			Html::closeElement( 'table' ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
 			Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 			Html::hidden( 'type', $this->typeName ) .
 			Html::hidden( 'ids', implode( ',', $this->ids ) ) .
-			Xml::closeElement( 'fieldset' ) . "\n" .
-			Xml::closeElement( 'form' ) . "\n";
+			Html::closeElement( 'fieldset' ) . "\n" .
+			Html::closeElement( 'form' ) . "\n";
 
 		$out->addHTML( $form );
 	}
