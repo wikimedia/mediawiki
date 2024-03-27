@@ -19,16 +19,18 @@
 		 * Exported dynamically by the ResourceLoader\LanguageDataModule class in PHP.
 		 *
 		 * To set data:
+		 * ```
+		 * // Override, extend or create the language data object of 'nl'
+		 * mw.language.setData( 'nl', 'myKey', 'My value' );
 		 *
-		 *     // Override, extend or create the language data object of 'nl'
-		 *     mw.language.setData( 'nl', 'myKey', 'My value' );
-		 *
-		 *     // Set multiple key/values pairs at once
-		 *     mw.language.setData( 'nl', { foo: 'X', bar: 'Y' } );
+		 * // Set multiple key/values pairs at once
+		 * mw.language.setData( 'nl', { foo: 'X', bar: 'Y' } );
+		 * ```
 		 *
 		 * To get GrammarForms data for language 'nl':
-		 *
-		 *     var grammarForms = mw.language.getData( 'nl', 'grammarForms' );
+		 * ```
+		 * var grammarForms = mw.language.getData( 'nl', 'grammarForms' );
+		 * ```
 		 *
 		 * Possible data keys:
 		 *
