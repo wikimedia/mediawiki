@@ -256,6 +256,7 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKSPACE","function":"talkspace"},"params":{},"i":0}}]}'>User talk</span></p>
 !! end
 
+## Parsoid only on REL1_40 due to T317489
 !! test
 Magic Word: {{TALKSPACE}}, same namespace
 !! options
@@ -263,7 +264,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"] }
 !! wikitext
 {{TALKSPACE}}
-!! html/php
+!! html/php+disabled
 <p>User talk
 </p>
 !! html/parsoid+integrated
@@ -298,6 +299,7 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKSPACEE","function":"talkspacee"},"params":{},"i":0}}]}'>User_talk</span></p>
 !! end
 
+## Parsoid only on REL1_40 due to T317489
 !! test
 Magic Word: {{SUBJECTSPACE}}
 !! options
@@ -305,7 +307,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"] }
 !! wikitext
 {{SUBJECTSPACE}}
-!! html/php
+!! html/php+disabled
 <p>User
 </p>
 !! html/parsoid+integrated
@@ -338,6 +340,7 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTSPACE","function":"subjectspace"},"params":{},"i":0}}]}'></span>
 !! end
 
+## Parsoid only on REL1_40 due to T317489
 !! test
 Magic Word: {{SUBJECTSPACEE}}
 !! options
@@ -345,7 +348,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"] }
 !! wikitext
 {{SUBJECTSPACEE}}
-!! html/php
+!! html/php+disabled
 <p>User
 </p>
 !! html/parsoid+integrated
@@ -506,6 +509,7 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKPAGENAMEE","function":"talkpagenamee"},"params":{},"i":0}}]}'>User_talk:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason</span></p>
 !! end
 
+## Parsoid only on REL1_40 due to T317489
 !! test
 Magic Word: {{SUBJECTPAGENAME}}
 !! options
@@ -513,13 +517,14 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTPAGENAME}}
-!! html/php
+!! html/php+disabled
 <p>User:Ævar Arnfjörð Bjarmason
 </p>
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTPAGENAME","function":"subjectpagename"},"params":{},"i":0}}]}'>User:Ævar Arnfjörð Bjarmason</span></p>
 !! end
 
+## Parsoid only on REL1_40 due to T317489
 !! test
 Magic Word: {{SUBJECTPAGENAMEE}}
 !! options
@@ -527,7 +532,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTPAGENAMEE}}
-!! html/php
+!! html/php+disabled
 <p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! html/parsoid+integrated
