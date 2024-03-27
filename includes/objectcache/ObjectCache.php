@@ -156,9 +156,7 @@ class ObjectCache {
 	}
 
 	/**
-	 * @deprecated since 1.42, Use ObjectCacheFactory::getLocaServerInstance()
-	 * @see ObjectCacheFactory::getLocalServerInstance()
-	 *
+	 * @deprecated since 1.42, Use ObjectCacheFactory::getLocalServerInstance()
 	 * @param int|string|array $fallback Fallback cache or parameter map with 'fallback'
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
