@@ -74,7 +74,7 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 			],
 			[
 				'RELEASE SAVEPOINT foo',
-				'RELEASE', SQLPlatform::QUERY_CHANGE_TRX,
+				'RELEASE SAVEPOINT', SQLPlatform::QUERY_CHANGE_TRX,
 			],
 			[
 				'ROLLBACK TO SAVEPOINT foo',
@@ -92,7 +92,7 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 			],
 			[
 				'CREATE INDEX foo ON bar (baz)',
-				'CREATE', SQLPlatform::QUERY_CHANGE_SCHEMA,
+				'CREATE INDEX', SQLPlatform::QUERY_CHANGE_SCHEMA,
 			],
 			[
 				'DROP TABLE foo',
@@ -100,11 +100,23 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 			],
 			[
 				'DROP INDEX foo ON bar',
-				'DROP', SQLPlatform::QUERY_CHANGE_SCHEMA,
+				'DROP INDEX', SQLPlatform::QUERY_CHANGE_SCHEMA,
 			],
 			[
 				'ALTER TABLE foo ADD COLUMN bar INT',
 				'ALTER', SQLPlatform::QUERY_CHANGE_SCHEMA,
+			],
+			[
+				'CREATE DATABASE foo',
+				'CREATE DATABASE', SQLPlatform::QUERY_CHANGE_SCHEMA,
+			],
+			[
+				'ALTER DATABASE foo',
+				'ALTER DATABASE', SQLPlatform::QUERY_CHANGE_SCHEMA,
+			],
+			[
+				'DROP DATABASE foo',
+				'DROP DATABASE', SQLPlatform::QUERY_CHANGE_SCHEMA,
 			],
 		];
 	}

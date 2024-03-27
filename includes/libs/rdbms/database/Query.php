@@ -30,6 +30,21 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
  */
 class Query {
 
+	/**
+	 * The possible multi-word values for getVerb().
+	 * @internal For use by Query and QueryBuilderFromRawSQL only.
+	 */
+	public const MULTIWORD_VERBS = [
+		'RELEASE SAVEPOINT',
+		'ROLLBACK TO SAVEPOINT',
+		'CREATE TEMPORARY',
+		'CREATE INDEX',
+		'DROP INDEX',
+		'CREATE DATABASE',
+		'ALTER DATABASE',
+		'DROP DATABASE',
+	];
+
 	private string $sql;
 	private int $flags;
 	private string $queryVerb;
@@ -40,16 +55,8 @@ class Query {
 	 * @param string $sql SQL statement text
 	 * @param int $flags Bit field of ISQLPlatform::QUERY_CHANGE_* constants
 	 * @param string $queryVerb The first words of the SQL statement that convey what kind of
-	 *  database/table/column/index command was specified. Except for the following cases, this
-	 *  will be the first word of the SQL statement:
-	 *   - "RELEASE SAVEPOINT"
-	 *   - "ROLLBACK TO SAVEPOINT"
-	 *   - "CREATE TEMPORARY"
-	 *   - "CREATE INDEX"
-	 *   - "DROP INDEX"
-	 *   - "CREATE DATABASE"
-	 *   - "ALTER DATABASE"
-	 *   - "DROP DATABASE"
+	 *  database/table/column/index command was specified. Except for the cases listed in
+	 *  {@see MULTIWORD_VERBS}, this will be the first word of the SQL statement.
 	 * @param string|null $writeTable The table targeted for writes, if any. Can be omitted if
 	 *   it would be hard to identify the table (e.g. when parsing an arbitrary SQL string).
 	 * @param string $cleanedSql Sanitized/simplified SQL statement text for logging.
