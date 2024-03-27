@@ -6,28 +6,31 @@ module.exports = ( function () {
 	 *
 	 * The foreign wiki must be configured to accept requests from the current wiki. See
 	 * <https://www.mediawiki.org/wiki/Manual:$wgCrossSiteAJAXdomains> for details.
-	 *
-	 *     var api = new mw.ForeignApi( 'https://commons.wikimedia.org/w/api.php' );
-	 *     api.get( {
-	 *         action: 'query',
-	 *         meta: 'userinfo'
-	 *     } ).done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
+	 * ```
+	 * var api = new mw.ForeignApi( 'https://commons.wikimedia.org/w/api.php' );
+	 * api.get( {
+	 *     action: 'query',
+	 *     meta: 'userinfo'
+	 * } ).done( function ( data ) {
+	 *     console.log( data );
+	 * } );
+	 * ```
 	 *
 	 * To ensure that the user at the foreign wiki is logged in, pass the `assert: 'user'` parameter
-	 * to #get/#post (since MW 1.23): if they are not, the API request will fail. (Note that this
-	 * doesn't guarantee that it's the same user. To assert that the user at the foreign wiki has
-	 * a specific username, pass the `assertuser` parameter with the desired username.)
+	 * to {@link mw.ForeignApi.get}/{@link mw.ForeignApi.post} (since MW 1.23), otherwise the API
+	 * request will fail. (Note that this doesn't guarantee that it's the same user. To assert that
+	 * the user at the foreign wiki has a specific username, pass the `assertuser` parameter with
+	 * the desired username.)
 	 *
 	 * Authentication-related MediaWiki extensions may extend this class to ensure that the user
 	 * authenticated on the current wiki will be automatically authenticated on the foreign one. These
 	 * extension modules should be registered using the ResourceLoaderForeignApiModules hook. See
 	 * CentralAuth for a practical example. The general pattern to extend and override the name is:
-	 *
-	 *     function MyForeignApi() {};
-	 *     OO.inheritClass( MyForeignApi, mw.ForeignApi );
-	 *     mw.ForeignApi = MyForeignApi;
+	 * ```
+	 * function MyForeignApi() {};
+	 * OO.inheritClass( MyForeignApi, mw.ForeignApi );
+	 * mw.ForeignApi = MyForeignApi;
+	 * ```
 	 *
 	 * @class mw.ForeignApi
 	 * @extends mw.Api

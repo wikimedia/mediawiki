@@ -10,19 +10,18 @@
 	 * @classdesc Accepts a stashed file and displays the information for purposes of
 	 * publishing the file at the behest of the user.
 	 *
-	 * Example use:
-	 *
-	 *     var widget = new mw.widgets.StashedFileWidget( {
-	 *       filekey: '12r9e4rugeec.ddtmmp.1.jpg',
-	 *     } );
-	 *
-	 *     widget.getValue(); // '12r9e4rugeec.ddtmmp.1.jpg'
-	 *     widget.setValue( '12r9epfbnskk.knfiy7.1.jpg' );
-	 *     widget.getValue(); // '12r9epfbnskk.knfiy7.1.jpg'
-	 *
 	 * Note that this widget will not finish an upload for you. Use {@link mw.Upload}
 	 * and {@link mw.Upload#setFilekey}, then {@link mw.Upload#finishStashUpload} to accomplish
 	 * that.
+	 *
+	 * @example
+	 * var widget = new mw.widgets.StashedFileWidget( {
+	 *   filekey: '12r9e4rugeec.ddtmmp.1.jpg',
+	 * } );
+	 *
+	 * widget.getValue(); // '12r9e4rugeec.ddtmmp.1.jpg'
+	 * widget.setValue( '12r9epfbnskk.knfiy7.1.jpg' );
+	 * widget.getValue(); // '12r9epfbnskk.knfiy7.1.jpg'
 	 *
 	 * @class mw.widgets.StashedFileWidget
 	 * @extends OO.ui.Widget

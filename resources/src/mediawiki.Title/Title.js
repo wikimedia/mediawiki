@@ -691,13 +691,15 @@ Title.exists = function ( title ) {
  *
  * @property {Function} set The setter function. Returns a boolean.
  *
- *  Example to declare existing titles:
+ * Example to declare existing titles:
+ * ```
+ * Title.exist.set( ['User:John_Doe', ...] );
+ * ```
  *
- *     Title.exist.set( ['User:John_Doe', ...] );
- *
- *  Example to declare titles nonexistent:
- *
- *     Title.exist.set( ['File:Foo_bar.jpg', ...], false );
+ * Example to declare titles nonexistent:
+ * ```
+ * Title.exist.set( ['File:Foo_bar.jpg', ...], false );
+ * ```
  *
  * @property {string|string[]} set.titles Title(s) in strict prefixedDb title form
  * @property {boolean} [set.state=true] State of the given titles

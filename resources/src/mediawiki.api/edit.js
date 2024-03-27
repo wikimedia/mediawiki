@@ -32,12 +32,11 @@
 		/**
 		 * Create a new page.
 		 *
-		 * Example:
-		 *
-		 *     new mw.Api().create( 'Sandbox',
-		 *         { summary: 'Load sand particles.' },
-		 *         'Sand.'
-		 *     );
+		 * @example
+		 * new mw.Api().create( 'Sandbox',
+		 *     { summary: 'Load sand particles.' },
+		 *     'Sand.'
+		 * );
 		 *
 		 * @since 1.28
 		 * @param {mw.Title|string} title Page title
@@ -65,48 +64,51 @@
 		 * To create a new page, use #create() instead.
 		 *
 		 * Simple transformation:
-		 *
-		 *     new mw.Api()
-		 *         .edit( 'Sandbox', function ( revision ) {
-		 *             return revision.content.replace( 'foo', 'bar' );
-		 *         } )
-		 *         .then( function () {
-		 *             console.log( 'Saved!' );
-		 *         } );
-		 *
-		 * Set save parameters by returning an object instead of a string:
-		 *
-		 *     new mw.Api().edit(
-		 *         'Sandbox',
-		 *         function ( revision ) {
-		 *             return {
-		 *                 text: revision.content.replace( 'foo', 'bar' ),
-		 *                 summary: 'Replace "foo" with "bar".',
-		 *                 assert: 'bot',
-		 *                 minor: true
-		 *             };
-		 *         }
-		 *     )
+		 * ```
+		 * new mw.Api()
+		 *     .edit( 'Sandbox', function ( revision ) {
+		 *         return revision.content.replace( 'foo', 'bar' );
+		 *     } )
 		 *     .then( function () {
 		 *         console.log( 'Saved!' );
 		 *     } );
+		 * ```
+		 *
+		 * Set save parameters by returning an object instead of a string:
+		 * ```
+		 * new mw.Api().edit(
+		 *     'Sandbox',
+		 *     function ( revision ) {
+		 *         return {
+		 *             text: revision.content.replace( 'foo', 'bar' ),
+		 *             summary: 'Replace "foo" with "bar".',
+		 *             assert: 'bot',
+		 *             minor: true
+		 *         };
+		 *     }
+		 * )
+		 * .then( function () {
+		 *     console.log( 'Saved!' );
+		 * } );
+		 * ```
 		 *
 		 * Transform asynchronously by returning a promise.
-		 *
-		 *     new mw.Api()
-		 *         .edit( 'Sandbox', function ( revision ) {
-		 *             return Spelling
-		 *                 .corrections( revision.content )
-		 *                 .then( function ( report ) {
-		 *                     return {
-		 *                         text: report.output,
-		 *                         summary: report.changelog
-		 *                     };
-		 *                 } );
-		 *         } )
-		 *         .then( function () {
-		 *             console.log( 'Saved!' );
-		 *         } );
+		 * ```
+		 * new mw.Api()
+		 *     .edit( 'Sandbox', function ( revision ) {
+		 *         return Spelling
+		 *             .corrections( revision.content )
+		 *             .then( function ( report ) {
+		 *                 return {
+		 *                     text: report.output,
+		 *                     summary: report.changelog
+		 *                 };
+		 *             } );
+		 *     } )
+		 *     .then( function () {
+		 *         console.log( 'Saved!' );
+		 *     } );
+		 * ```
 		 *
 		 * @since 1.28
 		 * @param {mw.Title|string} title Page title

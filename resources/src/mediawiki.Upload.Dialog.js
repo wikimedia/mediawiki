@@ -9,23 +9,24 @@
 	 *
 	 * To use, setup a {@link OO.ui.WindowManager window manager} like for normal
 	 * dialogs:
-	 *
-	 *     var uploadDialog = new mw.Upload.Dialog();
-	 *     var windowManager = new OO.ui.WindowManager();
-	 *     $( document.body ).append( windowManager.$element );
-	 *     windowManager.addWindows( [ uploadDialog ] );
-	 *     windowManager.openWindow( uploadDialog );
+	 * ```
+	 * var uploadDialog = new mw.Upload.Dialog();
+	 * var windowManager = new OO.ui.WindowManager();
+	 * $( document.body ).append( windowManager.$element );
+	 * windowManager.addWindows( [ uploadDialog ] );
+	 * windowManager.openWindow( uploadDialog );
+	 * ```
 	 *
 	 * The dialog's closing promise can be used to get details of the upload.
 	 *
 	 * If you want to use a different {@link OO.ui.BookletLayout}, for example the
 	 * {@link mw.ForeignStructuredUpload.BookletLayout}, like in the case of the upload
 	 * interface in VisualEditor, you can pass it in through the `bookletClass` config option:
-	 *
-	 *     var uploadDialog = new mw.Upload.Dialog( {
-	 *         bookletClass: mw.ForeignStructuredUpload.BookletLayout
-	 *     } );
-	 *
+	 * ```
+	 * var uploadDialog = new mw.Upload.Dialog( {
+	 *     bookletClass: mw.ForeignStructuredUpload.BookletLayout
+	 * } );
+	 * ```
 	 *
 	 * @class mw.Upload.Dialog
 	 * @extends OO.ui.ProcessDialog

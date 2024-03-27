@@ -604,8 +604,9 @@ mw.html = {
 	 *
 	 * Converts special characters to HTML entities.
 	 *
-	 *     mw.html.escape( '< > \' & "' );
-	 *     // Returns &lt; &gt; &#039; &amp; &quot;
+	 * @example
+	 * mw.html.escape( '< > \' & "' );
+	 * // Returns &lt; &gt; &#039; &amp; &quot;
 	 *
 	 * @param {string} s The string to escape
 	 * @return {string} HTML
@@ -781,16 +782,18 @@ mw.loader.getModuleNames = function () {
  * automatically re-used.
  *
  * Example of inline dependency on OOjs:
- *
- *     mw.loader.using( 'oojs', function () {
- *         OO.compare( [ 1 ], [ 1 ] );
- *     } );
+ * ```
+ * mw.loader.using( 'oojs', function () {
+ *     OO.compare( [ 1 ], [ 1 ] );
+ * } );
+ * ```
  *
  * Example of inline dependency obtained via `require()`:
- *
- *     mw.loader.using( [ 'mediawiki.util' ], function ( require ) {
- *         var util = require( 'mediawiki.util' );
- *     } );
+ * ```
+ * mw.loader.using( [ 'mediawiki.util' ], function ( require ) {
+ *     var util = require( 'mediawiki.util' );
+ * } );
+ * ```
  *
  * Since MediaWiki 1.23 this returns a promise.
  *
@@ -839,18 +842,17 @@ mw.loader.using = function ( dependencies, ready, error ) {
 /**
  * Load a script by URL.
  *
- * Example:
- *
- *     mw.loader.getScript(
- *         'https://example.org/x-1.0.0.js'
- *     )
- *         .then( function () {
- *             // Script succeeded. You can use X now.
- *         }, function ( e ) {
- *             // Script failed. X is not avaiable
- *             mw.log.error( e.message ); // => "Failed to load script"
- *         } );
+ * @example
+ * mw.loader.getScript(
+ *     'https://example.org/x-1.0.0.js'
+ * )
+ *     .then( function () {
+ *         // Script succeeded. You can use X now.
+ *     }, function ( e ) {
+ *         // Script failed. X is not avaiable
+ *         mw.log.error( e.message ); // => "Failed to load script"
  *     } );
+ * } );
  *
  * @memberof mw.loader
  * @param {string} url Script URL

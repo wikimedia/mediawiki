@@ -7,15 +7,16 @@
 	 * @classdesc mw.ForeignStructuredUpload.BookletLayout encapsulates the process
 	 * of uploading a file to MediaWiki using the mw.ForeignStructuredUpload model.
 	 *
-	 *     var uploadDialog = new mw.Upload.Dialog( {
-	 *         bookletClass: mw.ForeignStructuredUpload.BookletLayout,
-	 *         booklet: {
-	 *             target: 'local'
-	 *         }
-	 *     } );
-	 *     var windowManager = new OO.ui.WindowManager();
-	 *     $( document.body ).append( windowManager.$element );
-	 *     windowManager.addWindows( [ uploadDialog ] );
+	 * @example
+	 * var uploadDialog = new mw.Upload.Dialog( {
+	 *     bookletClass: mw.ForeignStructuredUpload.BookletLayout,
+	 *     booklet: {
+	 *         target: 'local'
+	 *     }
+	 * } );
+	 * var windowManager = new OO.ui.WindowManager();
+	 * $( document.body ).append( windowManager.$element );
+	 * windowManager.addWindows( [ uploadDialog ] );
 	 *
 	 * @class mw.ForeignStructuredUpload.BookletLayout
 	 * @extends mw.Upload.BookletLayout

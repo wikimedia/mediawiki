@@ -7,21 +7,23 @@ module.exports = ( function () {
 	 *
 	 * The foreign wiki must be configured to accept requests from the current wiki. See
 	 * <https://www.mediawiki.org/wiki/Manual:$wgCrossSiteAJAXdomains> for details.
-	 *
-	 *     var api = new mw.ForeignRest( 'https://commons.wikimedia.org/w/rest.php' );
-	 *     api.get( '/page/Main_Page/html' )
-	 *     .done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
+	 * ```
+	 * var api = new mw.ForeignRest( 'https://commons.wikimedia.org/w/rest.php' );
+	 * api.get( '/page/Main_Page/html' )
+	 * .done( function ( data ) {
+	 *     console.log( data );
+	 * } );
+	 * ```
 	 *
 	 * Authentication-related MediaWiki extensions may extend this class to ensure that the user
 	 * authenticated on the current wiki will be automatically authenticated on the foreign one. These
 	 * extension modules should be registered using the ResourceLoaderForeignApiModules hook. See
 	 * CentralAuth for a practical example. The general pattern to extend and override the name is:
-	 *
-	 *     function MyForeignRest() {};
-	 *     OO.inheritClass( MyForeignRest, mw.ForeignRest );
-	 *     mw.ForeignRest = MyForeignRest;
+	 * ```
+	 * function MyForeignRest() {};
+	 * OO.inheritClass( MyForeignRest, mw.ForeignRest );
+	 * mw.ForeignRest = MyForeignRest;
+	 * ```
 	 *
 	 * @class mw.ForeignRest
 	 * @extends mw.Rest

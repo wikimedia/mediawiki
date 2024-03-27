@@ -8,7 +8,7 @@
  *  $( '#textbox' ).suggestions( option, value );
  *
  * @example
- * Initialize:
+ * // Initialize:
  * mw.loader.using( 'jquery.suggestions' ).then(()=> {
  *  $( '#textbox' ).suggestions();
  * });

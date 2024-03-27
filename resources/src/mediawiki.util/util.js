@@ -337,16 +337,17 @@ var util = {
 	 * Append a new style block to the head and return the CSSStyleSheet object.
 	 *
 	 * To access the `<style>` element, reference `sheet.ownerNode`, or call
-	 * the mw.loader#addStyleTag method directly.
+	 * the {@link mw.loader.addStyleTag} method directly.
 	 *
-	 * This function returns the CSSStyleSheet object for convience with features
+	 * This function returns the CSSStyleSheet object for convenience with features
 	 * that are managed at that level, such as toggling of styles:
-	 *
-	 *     var sheet = util.addCSS( '.foobar { display: none; }' );
-	 *     $( '#myButton' ).click( function () {
-	 *         // Toggle the sheet on and off
-	 *         sheet.disabled = !sheet.disabled;
-	 *     } );
+	 * ```
+	 * var sheet = util.addCSS( '.foobar { display: none; }' );
+	 * $( '#myButton' ).click( function () {
+	 *     // Toggle the sheet on and off
+	 *     sheet.disabled = !sheet.disabled;
+	 * } );
+	 * ```
 	 *
 	 * See also [MDN: CSSStyleSheet](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet).
 	 *
@@ -578,10 +579,10 @@ var util = {
 	 *
 	 * The portlets that are supported include:
 	 *
-	 * - p-cactions (Content actions),
-	 * - p-personal (Personal tools),
-	 * - p-navigation (Navigation),
-	 * - p-tb (Toolbox).
+	 * - p-cactions (Content actions)
+	 * - p-personal (Personal tools)
+	 * - p-navigation (Navigation)
+	 * - p-tb (Toolbox)
 	 * - p-associated-pages (For namespaces and special page tabs on supported skins)
 	 * - p-namespaces (For namespaces on legacy skins)
 	 *
@@ -596,28 +597,30 @@ var util = {
 	 * By default, the new link will be added to the end of the menu. To
 	 * add the link before an existing item, pass the DOM node or a CSS selector
 	 * for that item, e.g. `'#foobar'` or `document.getElementById( 'foobar' )`.
+	 * ```
+	 * mw.util.addPortletLink(
+	 *     'p-tb', 'https://www.mediawiki.org/',
+	 *     'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
+	 * );
 	 *
-	 *     mw.util.addPortletLink(
-	 *         'p-tb', 'https://www.mediawiki.org/',
-	 *         'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
-	 *     );
-	 *
-	 *     var node = mw.util.addPortletLink(
-	 *         'p-tb',
-	 *         mw.util.getUrl( 'Special:Example' ),
-	 *         'Example'
-	 *     );
-	 *     $( node ).on( 'click', function ( e ) {
-	 *         console.log( 'Example' );
-	 *         e.preventDefault();
-	 *     } );
+	 * var node = mw.util.addPortletLink(
+	 *     'p-tb',
+	 *     mw.util.getUrl( 'Special:Example' ),
+	 *     'Example'
+	 * );
+	 * $( node ).on( 'click', function ( e ) {
+	 *     console.log( 'Example' );
+	 *     e.preventDefault();
+	 * } );
+	 * ```
 	 *
 	 * Remember that to call this inside a user script, you may have to ensure the
 	 * `mediawiki.util` is loaded first:
-	 *
-	 *     $.when( mw.loader.using( [ 'mediawiki.util' ] ), $.ready ).then( function () {
-	 *          mw.util.addPortletLink( 'p-tb', 'https://www.mediawiki.org/', 'mediawiki.org' );
-	 *     } );
+	 * ```
+	 * $.when( mw.loader.using( [ 'mediawiki.util' ] ), $.ready ).then( function () {
+	 *      mw.util.addPortletLink( 'p-tb', 'https://www.mediawiki.org/', 'mediawiki.org' );
+	 * } );
+	 * ```
 	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 * @param {string} href Link URL

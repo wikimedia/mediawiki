@@ -22,7 +22,7 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 * @param {mw.Api} [config.api] Instance of mw.Api (or subclass thereof) to use for queries
-	 * @param {number} [config.imit=10] Number of results to show in autocomplete menu
+	 * @param {number} [config.limit=10] Number of results to show in autocomplete menu
 	 * @param {string} [config.name] Name of input to submit results (when used in HTML forms)
 	 * @param {boolean} [config.ipAllowed=false] Show IP addresses in autocomplete menu
 	 *  If false, single IP addresses are not allowed, even if IP ranges are allowed.
