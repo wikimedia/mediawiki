@@ -43,30 +43,24 @@ class CheckComposerLockUpToDate extends Maintenance {
 
 		// Check all the dependencies to see if any are old
 		$checker = new LockFileChecker( $json, $lock );
-		$result = $checker->check();
-		if ( $result->isGood() ) {
-			// We couldn't find any out-of-date dependencies, so assume everything is ok!
-			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
-		} else {
-			// NOTE: wfMessage will fail if MediaWikiServices is not yet initialized.
-			// This can happen when this class is called directly from bootstrap code,
-			// e.g. by TestSetup. We get around this by having testSetup use quiet mode.
-			if ( !$this->isQuiet() ) {
-				foreach ( $result->getMessages() as $msg ) {
-					$this->error(
-						wfMessage( $msg )
-							// Avoid fatal error from a cache miss in MessageCache when called
-							// from maintenance/update.php
-							->useDatabase( false )
-							->inLanguage( 'en' )
-							->plain() . "\n"
-					);
-				}
+		$errors = $checker->check();
+
+		// NOTE: This is used by TestSetup before MediaWikiServices is initialized and thus
+		//       may not rely on global singletons.
+		// NOTE: This is used by maintenance/update.php and thus may not rely on
+		//       database connections, including e.g. interface messages without useDatabase=false,
+		//       which would call MessageCache.
+		if ( $errors ) {
+			foreach ( $errors as $error ) {
+				$this->error( $error . "\n" );
 			}
 			$this->fatalError(
 				'Error: your composer.lock file is not up to date. ' .
 				'Run "composer update --no-dev" to install newer dependencies'
 			);
+		} else {
+			// We couldn't find any out-of-date dependencies, so assume everything is ok!
+			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
 		}
 	}
 }

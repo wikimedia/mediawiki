@@ -30,32 +30,28 @@ class LockFileCheckerTest extends MediaWikiIntegrationTestCase {
 		$json = new ComposerJson( __DIR__ . '/composer-testcase1.json' );
 		$lock = new ComposerLock( __DIR__ . '/composer-testcase1.lock' );
 		$checker = new LockFileChecker( $json, $lock );
-		$status = $checker->check();
-		$this->assertTrue( $status->isGood() );
+		$errors = $checker->check();
+		$this->assertNull( $errors );
 	}
 
 	public function testOutdated() {
 		$json = new ComposerJson( __DIR__ . '/composer-testcase2.json' );
 		$lock = new ComposerLock( __DIR__ . '/composer-testcase2.lock' );
 		$checker = new LockFileChecker( $json, $lock );
-		$status = $checker->check();
-		$this->assertFalse( $status->isGood() );
-		$this->assertSame( 'wikimedia/relpath: 2.9.9 installed, 3.0.0 required.', $status->getMessage()->plain() );
+		$errors = $checker->check();
+		$this->assertArrayEquals( [
+			'wikimedia/relpath: 2.9.9 installed, 3.0.0 required.',
+		], $errors );
 	}
 
 	public function testNotInstalled() {
 		$json = new ComposerJson( __DIR__ . '/composer-testcase3.json' );
 		$lock = new ComposerLock( __DIR__ . '/composer-testcase3.lock' );
 		$checker = new LockFileChecker( $json, $lock );
-		$status = $checker->check();
-		$this->assertFalse( $status->isGood() );
-		$msgs = [];
-		foreach ( $status->getMessages() as $msg ) {
-			$msgs[] = wfMessage( $msg )->plain();
-		}
+		$errors = $checker->check();
 		$this->assertArrayEquals( [
 			'wikimedia/relpath: 2.9.9 installed, 3.0.0 required.',
 			'wikimedia/at-ease: not installed, 2.1.0 required.',
-		], $msgs );
+		], $errors );
 	}
 }

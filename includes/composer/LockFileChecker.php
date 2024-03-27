@@ -21,38 +21,29 @@
 namespace MediaWiki\Composer;
 
 use Composer\Semver\Semver;
-use Status;
 use Wikimedia\Composer\ComposerJson;
 use Wikimedia\Composer\ComposerLock;
 
 /**
  * Used to check whether composer-installed dependencies (no-dev) are up-to-date
+ *
+ * @internal For use by CheckComposerLockUpToDate and Installer
  * @since 1.42
  */
 class LockFileChecker {
-	/** @var ComposerJson */
-	private $composerJson;
+	private ComposerJson $composerJson;
+	private ComposerLock $composerLock;
 
-	/** @var ComposerJson */
-	private $composerLock;
-
-	/**
-	 * @param ComposerJson $composerJson
-	 * @param ComposerLock $composerLock
-	 */
 	public function __construct( ComposerJson $composerJson, ComposerLock $composerLock ) {
 		$this->composerJson = $composerJson;
 		$this->composerLock = $composerLock;
 	}
 
 	/**
-	 * This method will return a {@link Status} instance,
-	 * you can use {@link Status::isGood()} to simply determine that
-	 * the composer-installed dependencies are up-to-date.
-	 * @return Status
+	 * @return string[]|null Array of error messages, or null when Composer-installed dependencies are up-to-date.
 	 */
-	public function check(): Status {
-		$status = Status::newGood();
+	public function check(): ?array {
+		$errors = [];
 		$requiredButOld = [];
 		$requiredButMissing = [];
 
@@ -79,26 +70,21 @@ class LockFileChecker {
 			// We're happy; loop to the next dependency.
 		}
 
-		if ( count( $requiredButOld ) === 0 && count( $requiredButMissing ) === 0 ) {
-			// We couldn't find any out-of-date or missing dependencies, so assume everything is ok!
-			return $status;
-		}
-
 		foreach ( $requiredButOld as [
 			"name" => $name,
 			"suppliedVersion" => $suppliedVersion,
 			"wantedVersion" => $wantedVersion
 		] ) {
-			$status->error( 'composer-deps-outdated', $name, $suppliedVersion, $wantedVersion );
+			$errors[] = "$name: $suppliedVersion installed, $wantedVersion required.";
 		}
 
 		foreach ( $requiredButMissing as [
 			"name" => $name,
 			"wantedVersion" => $wantedVersion
 		] ) {
-			$status->error( 'composer-deps-notinstalled', $name, $wantedVersion );
+			$errors[] = "$name: not installed, $wantedVersion required.";
 		}
 
-		return $status;
+		return $errors ?: null;
 	}
 }
