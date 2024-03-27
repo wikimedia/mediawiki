@@ -548,7 +548,7 @@ interface ISQLPlatform {
 	 *   raw - Do not add identifier quotes to the table name
 	 * @return string Full database name
 	 */
-	public function tableName( $name, $format = 'quoted' );
+	public function tableName( string $name, $format = 'quoted' );
 
 	/**
 	 * Fetch a number of table names into an associative array

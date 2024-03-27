@@ -951,26 +951,8 @@ class SQLPlatform implements ISQLPlatform {
 		}
 	}
 
-	public function tableName( $name, $format = 'quoted' ) {
-		if ( $name instanceof Subquery ) {
-			throw new DBLanguageError(
-				__METHOD__ . ': got Subquery instance when expecting a string'
-			);
-		}
-
-		# Lets test for any bits of text that should never show up in a table
-		# name. Basically anything like JOIN or ON which are actually part of
-		# SQL queries, but may end up inside of the table value to combine SQL.
-		# Note that we use a whitespace test rather than a \b test to avoid
-		# any remote case where a word like ON may be inside of a table name
-		# surrounded by symbols which may be considered word breaks.
-		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
-			throw new DBLanguageError(
-				__METHOD__ . ": use of subqueries is not supported this way"
-			);
-		}
-
-		# Extract necessary database, schema, table identifiers and quote them as needed
+	public function tableName( string $name, $format = 'quoted' ) {
+		// Extract necessary database, schema, table identifiers and quote them as needed
 		$formattedComponents = [];
 		foreach ( $this->qualifiedTableComponents( $name ) as $component ) {
 			if ( $format === 'quoted' ) {
