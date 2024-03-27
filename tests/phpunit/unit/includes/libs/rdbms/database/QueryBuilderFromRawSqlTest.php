@@ -109,4 +109,31 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 		];
 	}
 
+	/**
+	 * @param string $sql
+	 * @param bool $res
+	 * @dataProvider provideIsWriteQuery
+	 */
+	public function testIsWriteQuery( string $sql, bool $res ) {
+		$query = QueryBuilderFromRawSql::buildQuery( $sql, 0 );
+		$this->assertSame( $res, $query->isWriteQuery() );
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function provideIsWriteQuery(): array {
+		return [
+			[ 'SELECT foo', false ],
+			[ '  SELECT foo FROM bar', false ],
+			[ 'BEGIN', false ],
+			[ 'SHOW EXPLAIN FOR 12;', false ],
+			[ 'USE foobar', false ],
+			[ '(SELECT 1)', false ],
+			[ 'INSERT INTO foo', true ],
+			[ 'TRUNCATE bar', true ],
+			[ 'DELETE FROM baz', true ],
+			[ 'CREATE TABLE foobar', true ]
+		];
+	}
 }
