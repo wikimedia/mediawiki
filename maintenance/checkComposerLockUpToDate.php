@@ -53,7 +53,14 @@ class CheckComposerLockUpToDate extends Maintenance {
 			// e.g. by TestSetup. We get around this by having testSetup use quiet mode.
 			if ( !$this->isQuiet() ) {
 				foreach ( $result->getMessages() as $msg ) {
-					$this->error( wfMessage( $msg )->inLanguage( 'en' )->plain() . "\n" );
+					$this->error(
+						wfMessage( $msg )
+							// Avoid fatal error from a cache miss in MessageCache when called
+							// from maintenance/update.php
+							->useDatabase( false )
+							->inLanguage( 'en' )
+							->plain() . "\n"
+					);
 				}
 			}
 			$this->fatalError(
