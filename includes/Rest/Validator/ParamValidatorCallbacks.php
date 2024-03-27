@@ -31,6 +31,7 @@ class ParamValidatorCallbacks implements Callbacks {
 	 * @return array
 	 */
 	private function getParamsFromSource( $source ) {
+		// This switch block must match Validator::KNOWN_PARAM_SOURCES
 		switch ( $source ) {
 			case 'path':
 				return $this->request->getPathParams();

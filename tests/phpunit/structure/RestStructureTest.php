@@ -16,6 +16,7 @@ use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
@@ -206,8 +207,6 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function assertParameter( string $name, $settings, $msg ) {
-		static $sources = [ 'path', 'query', 'post' ];
-
 		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 
 		$dataName = $this->dataName();
@@ -218,8 +217,8 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 		// REST-specific parameters
 		$ret['allowedKeys'][] = Handler::PARAM_SOURCE;
-		if ( !in_array( $settings[Handler::PARAM_SOURCE] ?? '', $sources, true ) ) {
-			$ret['issues'][Handler::PARAM_SOURCE] = "PARAM_SOURCE must be 'path', 'query', or 'post'";
+		if ( !in_array( $settings[Handler::PARAM_SOURCE] ?? '', Validator::KNOWN_PARAM_SOURCES, true ) ) {
+			$ret['issues'][Handler::PARAM_SOURCE] = "PARAM_SOURCE must be one of " . implode( ', ', Validator::KNOWN_PARAM_SOURCES );
 		}
 
 		// Warn about unknown keys. Don't fail, they might be for forward- or back-compat.
