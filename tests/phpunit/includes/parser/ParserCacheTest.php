@@ -20,13 +20,13 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
-use NullStatsdDataFactory;
 use ParserCache;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;
 use WikiPage;
@@ -99,7 +99,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			'19900220000000',
 			$hookContainer ?: $this->createHookContainer( [] ),
 			new JsonCodec(),
-			new NullStatsdDataFactory(),
+			StatsFactory::newNull(),
 			$logger ?: new NullLogger(),
 			$this->createMock( TitleFactory::class ),
 			$wikiPageFactory,
@@ -700,7 +700,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 				'19900220000000',
 				$this->createHookContainer( [] ),
 				new JsonCodec(),
-				new NullStatsdDataFactory(),
+				StatsFactory::newNull(),
 				new NullLogger(),
 				$this->createMock( TitleFactory::class ),
 				$wikiPageFactory,

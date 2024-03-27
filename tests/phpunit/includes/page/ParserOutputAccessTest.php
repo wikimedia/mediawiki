@@ -22,6 +22,7 @@ use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -95,7 +96,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			'19900220000000',
 			$this->getServiceContainer()->getHookContainer(),
 			new JsonCodec(),
-			new NullStatsdDataFactory(),
+			StatsFactory::newNull(),
 			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory(),
 			$this->getServiceContainer()->getWikiPageFactory(),
@@ -113,7 +114,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$expiry,
 			'19900220000000',
 			new JsonCodec(),
-			new NullStatsdDataFactory(),
+			StatsFactory::newNull(),
 			new NullLogger(),
 			$this->getServiceContainer()->getGlobalIdGenerator()
 		);

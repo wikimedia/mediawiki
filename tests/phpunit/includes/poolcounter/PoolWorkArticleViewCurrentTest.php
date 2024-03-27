@@ -6,6 +6,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -60,7 +61,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 			'',
 			$this->getServiceContainer()->getHookContainer(),
 			new JsonCodec(),
-			$this->getServiceContainer()->getStatsdDataFactory(),
+			StatsFactory::newNull(),
 			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory(),
 			$this->getServiceContainer()->getWikiPageFactory(),
