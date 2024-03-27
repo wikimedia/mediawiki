@@ -2543,8 +2543,7 @@ return [
 			$services->getContentLanguage(),
 			$services->getHookContainer(),
 			$services->getNamespaceInfo(),
-			$services->get( '_ConditionalDefaultsLookup' ),
-			defined( 'MW_PHPUNIT_TEST' ) && $services->isStorageDisabled()
+			$services->get( '_ConditionalDefaultsLookup' )
 		);
 	},
 
