@@ -78,7 +78,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Iketsi",
-			"Lluis Cat"
+			"Lluis Cat",
+			"V27t"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -125,6 +126,7 @@
 	"tog-prefershttps": "Utilitza sempre una connexió segura en iniciar una sessió",
 	"tog-showrollbackconfirmation": "Mostra una petició de confirmació en clicar un enllaç de reversió",
 	"tog-requireemail": "Envia correus electrònics per a restablir la contrasenya només quan s'hagin proporcionat tant l'adreça de correu electrònic i com el nom d'usuari.",
+	"tog-forcesafemode": "Habilita sempre el [[mw:Manual:Safemode|mode segur]]",
 	"underline-always": "Sempre",
 	"underline-never": "Mai",
 	"underline-default": "Aparença o navegació per defecte",
@@ -2908,6 +2910,7 @@
 	"allmessagescurrent": "Text actual",
 	"allmessagestext": "Tot seguit hi ha una llista dels missatges del sistema que es troben en l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó en la traducció del programari MediaWiki. Si voleu ajudar-hi, visiteu [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] i [https://translatewiki.net translatewiki.net].",
 	"allmessages-not-supported-database": "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''$wgUseDatabaseMessages''' està desactivada.",
+	"allmessages-unknown-language": "El codi d'idioma <code>$1</code> és desconegut.",
 	"allmessages-filter-legend": "Filtre",
 	"allmessages-filter": "Filtra per l'estat de personalització:",
 	"allmessages-filter-unmodified": "Sense modificar",
