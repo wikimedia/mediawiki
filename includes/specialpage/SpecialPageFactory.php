@@ -1553,7 +1553,7 @@ class SpecialPageFactory {
 	/**
 	 * Get listed special pages available to everyone by default.
 	 *
-	 * @return SpecialPage[]
+	 * @return array<string,SpecialPage>
 	 */
 	public function getRegularPages(): array {
 		$pages = [];
@@ -1564,6 +1564,23 @@ class SpecialPageFactory {
 			}
 		}
 
+		return $pages;
+	}
+
+	/**
+	 * Get listed special pages, including those that may require user rights.
+	 *
+	 * @since 1.42
+	 * @return array<string,SpecialPage>
+	 */
+	public function getListedPages(): array {
+		$pages = [];
+		foreach ( $this->getPageList() as $name => $rec ) {
+			$page = $this->getPage( $name );
+			if ( $page && $page->isListed() ) {
+				$pages[$name] = $page;
+			}
+		}
 		return $pages;
 	}
 
