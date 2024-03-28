@@ -4,12 +4,10 @@ use MediaWiki\Html\FormOptions;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * Test class for FormOptions initialization
- * Ensure the FormOptions::add() does what we want it to do.
- *
  * Copyright © 2011, Antoine Musso
  *
  * @author Antoine Musso
+ * @covers \MediaWiki\Html\FormOptions
  */
 class FormOptionsInitializationTest extends \MediaWikiUnitTestCase {
 	/**
@@ -17,18 +15,11 @@ class FormOptionsInitializationTest extends \MediaWikiUnitTestCase {
 	 */
 	protected $object;
 
-	/**
-	 * A new fresh and empty FormOptions object to test initialization
-	 * with.
-	 */
 	protected function setUp(): void {
 		parent::setUp();
 		$this->object = TestingAccessWrapper::newFromObject( new FormOptions() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Html\FormOptions::add
-	 */
 	public function testAddStringOption() {
 		$this->object->add( 'foo', 'string value' );
 		$this->assertEquals(
@@ -44,9 +35,6 @@ class FormOptionsInitializationTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Html\FormOptions::add
-	 */
 	public function testAddIntegers() {
 		$this->object->add( 'one', 1 );
 		$this->object->add( 'negone', -1 );

@@ -2,12 +2,10 @@
 
 /**
  * @group Xml
+ * @covers \XmlSelect
  */
 class XmlSelectTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers \XmlSelect::__construct
-	 */
 	public function testConstructWithoutParameters() {
 		$select = new XmlSelect();
 		$this->assertEquals( '<select></select>', $select->getHTML() );
@@ -16,7 +14,6 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 	/**
 	 * Parameters are $name (false), $id (false), $default (false)
 	 * @dataProvider provideConstructionParameters
-	 * @covers \XmlSelect::__construct
 	 */
 	public function testConstructParameters( $name, $id, $default, $expected ) {
 		$select = new XmlSelect( $name, $id, $default );
@@ -50,9 +47,6 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers \XmlSelect::addOption
-	 */
 	public function testAddOptionNoValue() {
 		$select = new XmlSelect();
 		$select->addOption( 'foo' );
@@ -64,7 +58,6 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideAddOption
-	 * @covers \XmlSelect::addOption
 	 */
 	public function testAddOption( $value, $expected ) {
 		$select = new XmlSelect();
@@ -78,9 +71,6 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 		yield 'zero' => [ 0, '<select><option value="0">foo</option></select>' ];
 	}
 
-	/**
-	 * @covers \XmlSelect::setDefault
-	 */
 	public function testSetDefault() {
 		$select = new XmlSelect();
 		$select->setDefault( 'bar1' );
@@ -97,7 +87,6 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 	 * Adding default later on should set the correct selection or
 	 * raise an exception.
 	 * To handle this, we need to render the options in getHtml()
-	 * @covers \XmlSelect::setDefault
 	 */
 	public function testSetDefaultAfterAddingOptions() {
 		$select = new XmlSelect();
@@ -111,10 +100,6 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 				'<option value="foo2">foo2</option></select>', $select->getHTML() );
 	}
 
-	/**
-	 * @covers \XmlSelect::setAttribute
-	 * @covers \XmlSelect::getAttribute
-	 */
 	public function testGetAttributes() {
 		# create some attributes
 		$select = new XmlSelect();

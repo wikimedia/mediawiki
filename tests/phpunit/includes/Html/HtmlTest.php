@@ -852,7 +852,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Html\Html::encodeJsVar
+	 * @covers \MediaWiki\Html\Html
+	 * @covers \MediaWiki\Html\HtmlJsCode
 	 * @dataProvider provideEncodeJsVar
 	 */
 	public function testEncodeJsVar( string $expect, $input ) {
@@ -863,8 +864,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Html\Html::encodeJsVar
-	 * @covers \MediaWiki\Html\HtmlJsCode::encodeObject
+	 * @covers \MediaWiki\Html\Html
+	 * @covers \MediaWiki\Html\HtmlJsCode
 	 */
 	public function testEncodeObject() {
 		$codeA = 'function () { foo( 42 ); }';
