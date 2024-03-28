@@ -217,33 +217,6 @@ class SQLPlatformTest extends TestCase {
 	}
 
 	/**
-	 * @param string $query
-	 * @param bool $res
-	 * @dataProvider provideIsWriteQuery
-	 */
-	public function testIsWriteQuery( string $query, bool $res ) {
-		$this->assertSame( $res, $this->platform->isWriteQuery( $query, 0 ) );
-	}
-
-	/**
-	 * @return array
-	 */
-	public static function provideIsWriteQuery(): array {
-		return [
-			[ 'SELECT foo', false ],
-			[ '  SELECT foo FROM bar', false ],
-			[ 'BEGIN', false ],
-			[ 'SHOW EXPLAIN FOR 12;', false ],
-			[ 'USE foobar', false ],
-			[ '(SELECT 1)', false ],
-			[ 'INSERT INTO foo', true ],
-			[ 'TRUNCATE bar', true ],
-			[ 'DELETE FROM baz', true ],
-			[ 'CREATE TABLE foobar', true ]
-		];
-	}
-
-	/**
 	 * @dataProvider provideSelect
 	 */
 	public function testSelect( $sql, $sqlText ) {

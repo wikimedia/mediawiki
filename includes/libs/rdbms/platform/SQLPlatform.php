@@ -1599,28 +1599,6 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
-	/**
-	 * Determine whether a query writes to the DB. When in doubt, this returns true.
-	 *
-	 * Main use cases:
-	 *
-	 * - Subsequent web requests should not need to wait for replication from
-	 *   the primary position seen by this web request, unless this request made
-	 *   changes to the primary DB. This is handled by ChronologyProtector by checking
-	 *   doneWrites() at the end of the request. doneWrites() returns true if any
-	 *   query set lastWriteTime; which query() does based on isWriteQuery().
-	 *
-	 * - Reject write queries to replica DBs, in query().
-	 *
-	 * @param string $sql SQL query
-	 * @param int $flags Query flags to query()
-	 * @return bool
-	 * @deprecated since 1.41
-	 */
-	public function isWriteQuery( $sql, $flags ) {
-		return QueryBuilderFromRawSql::buildQuery( $sql, $flags )->isWriteQuery();
-	}
-
 	public function buildExcludedValue( $column ) {
 		/* @see Database::upsert() */
 		// This can be treated like a single value since __VALS is a single row table

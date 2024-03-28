@@ -151,8 +151,4 @@ class SqlitePlatform extends SQLPlatform {
 				true
 			);
 	}
-
-	public function isWriteQuery( $sql, $flags ) {
-		return parent::isWriteQuery( $sql, $flags ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
-	}
 }
