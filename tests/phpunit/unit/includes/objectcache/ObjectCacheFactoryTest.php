@@ -12,7 +12,8 @@ class ObjectCacheFactoryTest extends MediaWikiUnitTestCase {
 		$factory = new ObjectCacheFactory(
 			$this->createMock( ServiceOptions::class ),
 			$this->createMock( StatsFactory::class ),
-			$this->createMock( Spi::class )
+			$this->createMock( Spi::class ),
+			'testWikiId'
 		);
 
 		return $factory;

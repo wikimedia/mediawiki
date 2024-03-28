@@ -223,14 +223,14 @@ class ObjectCache {
 	 *   cases whereby we want to build up local server cache without service
 	 *   wiring available.
 	 * @since 1.35
-	 * @param string|false $cachePrefix
+	 * @param string $keyspace
 	 * @return BagOStuff
 	 */
-	public static function makeLocalServerCache( $cachePrefix ): BagOStuff {
+	public static function makeLocalServerCache( $keyspace ): BagOStuff {
 		$params = [
 			'reportDupes' => false,
 			// Even simple caches must use a keyspace (T247562)
-			'keyspace' => $cachePrefix,
+			'keyspace' => $keyspace,
 		];
 		$class = self::getLocalServerCacheClass();
 		return new $class( $params );

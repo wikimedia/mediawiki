@@ -23,7 +23,6 @@ use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -53,16 +52,19 @@ class ObjectCacheFactory {
 	private Spi $logger;
 	/** @var BagOStuff[] */
 	private $instances = [];
+	private string $domainId;
 
 	public function __construct(
 		ServiceOptions $options,
 		StatsFactory $stats,
-		Spi $loggerSpi
+		Spi $loggerSpi,
+		string $domainId
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->stats = $stats;
 		$this->logger = $loggerSpi;
+		$this->domainId = $domainId;
 	}
 
 	/**
@@ -80,7 +82,7 @@ class ObjectCacheFactory {
 			return $cachePrefix;
 		}
 
-		return WikiMap::getCurrentWikiDbDomain()->getId();
+		return $this->domainId;
 	}
 
 	/**
@@ -88,7 +90,6 @@ class ObjectCacheFactory {
 	 *
 	 * @param string|int $id A key in $wgObjectCaches.
 	 * @return BagOStuff
-	 * @throws InvalidArgumentException
 	 */
 	private function newFromId( $id ): BagOStuff {
 		if ( $id === CACHE_ANYTHING ) {
@@ -102,9 +103,7 @@ class ObjectCacheFactory {
 			} elseif ( $id === CACHE_HASH ) {
 				return new HashBagOStuff();
 			} elseif ( $id === CACHE_ACCEL ) {
-				return ObjectCache::makeLocalServerCache(
-					$this->options->get( MainConfigNames::CachePrefix )
-				);
+				return ObjectCache::makeLocalServerCache( $this->getDefaultKeyspace() );
 			}
 
 			throw new InvalidArgumentException( "Invalid object cache type \"$id\" requested. " .
