@@ -32,8 +32,8 @@ class TempUserCreator implements TempUserConfig {
 	private UserFactory $userFactory;
 	private AuthManager $authManager;
 	private CentralIdLookup $centralIdLookup;
-	private ?Throttler $tempAccountCreationThrottler;
-	private ?Throttler $tempAccountNameAcquisitionThrottler;
+	private Throttler $tempAccountCreationThrottler;
+	private Throttler $tempAccountNameAcquisitionThrottler;
 	private array $serialProviderConfig;
 	private array $serialMappingConfig;
 	private ObjectFactory $objectFactory;
@@ -71,9 +71,8 @@ class TempUserCreator implements TempUserConfig {
 		UserFactory $userFactory,
 		AuthManager $authManager,
 		CentralIdLookup $centralIdLookup,
-		// TODO: Make account creation and account name acquisition throttlers required.
-		?Throttler $tempAccountCreationThrottler,
-		?Throttler $tempAccountNameAcquisitionThrottler
+		Throttler $tempAccountCreationThrottler,
+		Throttler $tempAccountNameAcquisitionThrottler
 	) {
 		$this->config = $config;
 		$this->objectFactory = $objectFactory;
@@ -90,46 +89,36 @@ class TempUserCreator implements TempUserConfig {
 	 * Acquire a serial number, create the corresponding user and log in.
 	 *
 	 * @param string|null $name Previously acquired name
-	 * @param WebRequest|null $request Request details, used for throttling
+	 * @param WebRequest $request Request details, used for throttling
 	 * @return CreateStatus
 	 */
-	public function create( $name = null, WebRequest $request = null ): CreateStatus {
+	public function create( ?string $name, WebRequest $request ): CreateStatus {
 		$status = new CreateStatus;
 
-		// Check name acquisition rate limits first, if we have a WebRequest
-		if ( $name === null && $request ) {
-			$ip = $request->getIP();
-			if ( !$ip ) {
-				// This is only the case for some tests that call create() with
-				// without a WebRequest object. In non-test usages, a request
-				// is always provided.
-				// TODO: Make $request a required parameter, so that this block
-				// of code can be simplified.
+		// Check name acquisition rate limits first.
+		if ( $name === null ) {
+			$name = $this->acquireName( $request->getIP() );
+			if ( $name === null ) {
+				// If the $name remains null after calling ::acquireName, then
+				// we cannot generate a username and therefore cannot create a user.
+				// This could also happen if acquiring the name was rate limited
+				// In this case return a CreateStatus indicating no user was created.
+				// TODO: Create a custom message to support workflows related to T357802
 				return CreateStatus::newFatal( 'temp-user-unable-to-acquire' );
 			}
-			$name = $this->acquireName( $ip );
-		}
-
-		if ( $name === null ) {
-			// If the $name remains null after calling ::acquireName, then
-			// we cannot generate a username and therefore cannot create a user.
-			// In this case return a CreateStatus indicating no user was created.
-			return CreateStatus::newFatal( 'temp-user-unable-to-acquire' );
 		}
 
 		// Check temp account creation rate limits.
-		if ( $request && $this->tempAccountCreationThrottler ) {
-			// TODO: This is duplicated from ThrottlePreAuthenticationProvider
-			// and should be factored out, see T261744
-			$result = $this->tempAccountCreationThrottler->increase(
-				null, $request->getIP(), 'TempUserCreator' );
-			if ( $result ) {
-				// TODO: Use a custom message here (T357777, T357802)
-				$message = wfMessage( 'acct_creation_throttle_hit' )->params( $result['count'] )
-					->durationParams( $result['wait'] );
-				$status->fatal( $message );
-				return $status;
-			}
+		// TODO: This is duplicated from ThrottlePreAuthenticationProvider
+		// and should be factored out, see T261744
+		$result = $this->tempAccountCreationThrottler->increase(
+			null, $request->getIP(), 'TempUserCreator' );
+		if ( $result ) {
+			// TODO: Use a custom message here (T357777, T357802)
+			$message = wfMessage( 'acct_creation_throttle_hit' )->params( $result['count'] )
+				->durationParams( $result['wait'] );
+			$status->fatal( $message );
+			return $status;
 		}
 
 		$createStatus = $this->attemptAutoCreate( $name );
@@ -231,7 +220,7 @@ class TempUserCreator implements TempUserConfig {
 	 *    already in use, or if the attempt trips the TempAccountNameAcquisitionThrottle limits.
 	 */
 	private function acquireName( string $ip ): ?string {
-		if ( $this->tempAccountNameAcquisitionThrottler && $this->tempAccountNameAcquisitionThrottler->increase(
+		if ( $this->tempAccountNameAcquisitionThrottler->increase(
 			null, $ip, 'TempUserCreator'
 		) ) {
 			return null;

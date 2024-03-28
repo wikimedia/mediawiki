@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\User\TempUser;
 
 use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\Throttler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\Session;
@@ -89,8 +90,8 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			$this->createMock( UserFactory::class ),
 			$this->createMock( AuthManager::class ),
 			$this->createMock( CentralIdLookup::class ),
-			null,
-			null
+			$this->createMock( Throttler::class ),
+			$this->createMock( Throttler::class )
 		);
 		return [ $creator, [ $scope1, $scope2 ] ];
 	}

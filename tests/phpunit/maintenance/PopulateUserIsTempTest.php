@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use PopulateUserIsTemp;
 
@@ -53,11 +54,11 @@ class PopulateUserIsTempTest extends MaintenanceBaseTestCase {
 			'matchPattern' => [ '*$1', '~$1' ],
 		] );
 		$tempUserCreator = $this->getServiceContainer()->getTempUserCreator();
-		$tempUserCreator->create( '*Unregistered 1' );
-		$tempUserCreator->create( '*Unregistered 2' );
-		$tempUserCreator->create( '~Unregistered 3' );
-		$tempUserCreator->create( '~Unregistered 4567' );
-		$tempUserCreator->create( '~Unregistered 456789' );
+		$tempUserCreator->create( '*Unregistered 1', new FauxRequest() );
+		$tempUserCreator->create( '*Unregistered 2', new FauxRequest() );
+		$tempUserCreator->create( '~Unregistered 3', new FauxRequest() );
+		$tempUserCreator->create( '~Unregistered 4567', new FauxRequest() );
+		$tempUserCreator->create( '~Unregistered 456789', new FauxRequest() );
 		$this->getDb()->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_is_temp' => 0 ] )
