@@ -617,9 +617,11 @@ class HtmlToContentTransform {
 				'htmlSize' => $htmlSize, // used to trigger status 413 if the input is too big
 			], $selserData );
 		} catch ( ClientError $e ) {
-			throw new HttpException( $e->getMessage(), 400 );
+			throw new LocalizedHttpException( new MessageValue( "rest-parsoid-error", [ $e->getMessage() ] ), 400 );
 		} catch ( ResourceLimitExceededException $e ) {
-			throw new HttpException( $e->getMessage(), 413 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-parsoid-resource-exceeded", [ $e->getMessage() ] ), 413
+			);
 		}
 
 		return $text;

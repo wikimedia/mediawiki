@@ -7,7 +7,6 @@ use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebResponse;
-use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\TokenAwareHandlerTrait;
@@ -94,7 +93,10 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 		if ( $data['edit']['result'] !== 'Success' ) {
 			// Probably an edit conflict
 			// TODO: which code for null edits?
-			throw new HttpException( $data['edit']['result'], 409 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-edit-conflict", [ $data['edit']['result'] ] ),
+				409
+			);
 		}
 
 		$title = $this->titleParser->parseTitle( $data['edit']['title'] );

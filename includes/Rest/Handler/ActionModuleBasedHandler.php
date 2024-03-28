@@ -121,8 +121,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 
 			// This should never happen, since ApiUsageExceptions should always
 			// have errors in their Status object.
-			throw new HttpException(
-				'Unmapped action module error: ' . $ex->getMessage(),
+			throw new LocalizedHttpException( new MessageValue( "rest-unmapped-action-error", [ $ex->getMessage() ] ),
 				$ex->getCode()
 			);
 		}

@@ -263,7 +263,9 @@ class HtmlInputTransformHelper {
 			$parameters['from'] !== ParsoidFormatHelper::FORMAT_HTML &&
 			$parameters['from'] !== ParsoidFormatHelper::FORMAT_PAGEBUNDLE
 		) {
-			throw new HttpException( 'Unsupported input: ' . $parameters['from'], 400 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-unsupported-transform-input", [ $parameters['from'] ] ), 400
+			);
 		}
 
 		if ( isset( $body['contentmodel'] ) && $body['contentmodel'] !== '' ) {
@@ -327,7 +329,7 @@ class HtmlInputTransformHelper {
 				$originalRendering = ParsoidRenderID::newFromETag( $key );
 
 				if ( !$originalRendering ) {
-					throw new HttpException( "Bad ETag: $key", 400 );
+					throw new LocalizedHttpException( new MessageValue( "rest-bad-etag", [ $key ] ), 400 );
 				}
 			} else {
 				$originalRendering = ParsoidRenderID::newFromKey( $key );
@@ -429,8 +431,8 @@ class HtmlInputTransformHelper {
 				//       On the other hand, of the client only provided a base revision ID,
 				//       we can re-parse and hope for the best.
 
-				throw new HttpException(
-					'No stashed content found for ' . $renderId, 412
+				throw new LocalizedHttpException(
+					new MessageValue( "rest-no-stashed-content", [ $renderId->getKey() ] ), 412
 				);
 
 				// TODO: This class should provide getETag and getLastModified methods for use by
@@ -537,7 +539,10 @@ class HtmlInputTransformHelper {
 				[ 'reason' => $e->getMessage() ]
 			);
 		} catch ( MWUnknownContentModelException $e ) {
-			throw new HttpException( $e->getMessage(), 400 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-unknown-content-model", [ $e->getModelId() ] ),
+				400
+			);
 		}
 	}
 

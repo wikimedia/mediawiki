@@ -49,6 +49,7 @@ use MediaWiki\WikiMap\WikiMap;
 use MobileContext;
 use Wikimedia\Http\HttpAcceptParser;
 use Wikimedia\Message\DataMessageValue;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\PageConfigFactory;
@@ -191,11 +192,15 @@ abstract class ParsoidHandler extends Handler {
 			case 'application/json':
 				$json = json_decode( $request->getBody()->getContents(), true );
 				if ( !is_array( $json ) ) {
-					throw new HttpException( 'Payload does not JSON decode to an array.', 400 );
+					throw new LocalizedHttpException(
+						new MessageValue( "rest-json-body-parse-error", [ 'not a valid JSON object' ] ), 400 );
 				}
 				return $json;
 			default:
-				throw new HttpException( 'Unsupported Media Type', 415 );
+				throw new LocalizedHttpException(
+					new MessageValue( "rest-unsupported-content-type", [ $contentType ?? '(null)' ] ),
+					415
+				);
 		}
 	}
 
@@ -544,9 +549,13 @@ abstract class ParsoidHandler extends Handler {
 				$ensureAccessibleContent
 			);
 		} catch ( SuppressedDataException $e ) {
-			throw new HttpException( $e->getMessage(), 403 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-permission-denied-revision", [ $e->getMessage() ] ), 403
+			);
 		} catch ( RevisionAccessException $e ) {
-			throw new HttpException( $e->getMessage(), 404 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-specified-revision-unavailable", [ $e->getMessage() ] ), 404
+			);
 		}
 
 		// All good!
@@ -574,7 +583,9 @@ abstract class ParsoidHandler extends Handler {
 		$page = $pageStore->getPageByText( $attribs['pageName'] );
 
 		if ( !$page ) {
-			throw new HttpException( 'Bad page name: ' . $attribs['pageName'], 400 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-invalid-title", [ 'pageName' ] ), 400
+			);
 		}
 
 		return $page;
@@ -641,9 +652,11 @@ abstract class ParsoidHandler extends Handler {
 			$parsoid = $this->newParsoid();
 			return $parsoid->wikitext2lint( $pageConfig, $envOptions );
 		} catch ( ClientError $e ) {
-			throw new HttpException( $e->getMessage(), 400 );
+			throw new LocalizedHttpException( new MessageValue( "rest-parsoid-error", [ $e->getMessage() ] ), 400 );
 		} catch ( ResourceLimitExceededException $e ) {
-			throw new HttpException( $e->getMessage(), 413 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-parsoid-resource-exceeded", [ $e->getMessage() ] ), 413
+			);
 		}
 	}
 
@@ -863,7 +876,7 @@ abstract class ParsoidHandler extends Handler {
 
 			return $response;
 		} catch ( ClientError $e ) {
-			throw new HttpException( $e->getMessage(), 400 );
+			throw new LocalizedHttpException( new MessageValue( "rest-parsoid-error", [ $e->getMessage() ] ), 400 );
 		}
 	}
 
@@ -879,13 +892,13 @@ abstract class ParsoidHandler extends Handler {
 
 		$revision = $opts['previous'] ?? $opts['original'] ?? null;
 		if ( !isset( $revision['html'] ) ) {
-			throw new HttpException( 'Missing revision html.', 400 );
+			throw new LocalizedHttpException( new MessageValue( "rest-missing-revision-html" ), 400 );
 		}
 
 		$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
 			$revision['html']['headers']['content-type'] ?? '' );
 		if ( $vOriginal === null ) {
-			throw new HttpException( 'Content-type of revision html is missing.', 400 );
+			throw new LocalizedHttpException( new MessageValue( "rest-missing-revision-html-content-type" ), 400 );
 		}
 		$attribs['envOptions']['inputContentVersion'] = $vOriginal;
 		'@phan-var array<string,array|string> $attribs'; // @var array<string,array|string> $attribs
@@ -923,7 +936,7 @@ abstract class ParsoidHandler extends Handler {
 			} elseif ( isset( $opts['updates']['variant'] ) ) {
 				return $this->languageConversion( $pageConfig, $attribs, $revision );
 			} else {
-				throw new HttpException( 'Unknown transformation.', 400 );
+				throw new LocalizedHttpException( new MessageValue( "rest-unknown-parsoid-transformation" ), 400 );
 			}
 		}
 
@@ -960,7 +973,7 @@ abstract class ParsoidHandler extends Handler {
 			$pageConfig = $this->tryToCreatePageConfig( $attribs );
 			return $this->wt2html( $pageConfig, $attribs );
 		} else {
-			throw new HttpException( 'We do not know how to do this conversion.', 415 );
+			throw new LocalizedHttpException( new MessageValue( "rest-unsupported-profile-conversion" ), 415 );
 		}
 	}
 
@@ -1015,7 +1028,7 @@ abstract class ParsoidHandler extends Handler {
 		$source = $opts['updates']['variant']['source'] ?? null;
 
 		if ( !$target ) {
-			throw new HttpException( 'Target variant is required.', 400 );
+			throw new LocalizedHttpException( new MessageValue( "rest-target-variant-required" ), 400 );
 		}
 
 		$pageIdentity = $this->tryToCreatePageIdentity( $attribs );
@@ -1042,8 +1055,8 @@ abstract class ParsoidHandler extends Handler {
 		try {
 			$out = $languageVariantConverter->convertPageBundleVariant( $pb, $target, $source );
 		} catch ( InvalidArgumentException $e ) {
-			throw new HttpException(
-				'Unsupported language conversion',
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-unsupported-language-conversion", [ $source ?? '(unspecified)', $target ] ),
 				400,
 				[ 'reason' => $e->getMessage() ]
 			);
@@ -1069,7 +1082,10 @@ abstract class ParsoidHandler extends Handler {
 	private function validatePb( PageBundle $pb, string $contentVersion ): void {
 		$errorMessage = '';
 		if ( !$pb->validate( $contentVersion, $errorMessage ) ) {
-			throw new HttpException( $errorMessage, 400 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-page-bundle-validation-error", [ $errorMessage ] ),
+				400
+			);
 		}
 	}
 
