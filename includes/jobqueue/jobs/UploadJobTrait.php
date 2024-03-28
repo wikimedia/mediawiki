@@ -216,6 +216,35 @@ trait UploadJobTrait {
 			$this->setLastError( "Could not verify upload." );
 			return false;
 		}
+		// Verify title permissions for this user
+		$titleVerification = $this->getUpload()->verifyTitlePermissions( $this->user );
+		if ( $titleVerification !== true ) {
+			$this->setStatus( 'publish', 'Failure', null, $titleVerification );
+			$this->setLastError( "Could not verify title permissions." );
+			return false;
+		}
+
+		// Verify if any upload warnings are present
+		$ignoreWarnings = $this->params['ignorewarnings'] ?? false;
+		$isReupload = $this->params['reupload'] ?? false;
+		if ( $ignoreWarnings ) {
+			// If we're ignoring warnings, we don't need to check them
+			return true;
+		}
+		$warnings = $this->getUpload()->checkWarnings( $this->user );
+		if ( $warnings ) {
+			// If the file exists and we're reuploading, ignore the warning
+			// and continue with the upload
+			if ( count( $warnings ) === 1 && isset( $warnings['exists'] ) && $isReupload ) {
+				return true;
+			}
+			// Make the array serializable
+			$serializableWarnings = UploadBase::makeWarningsSerializable( $warnings );
+			$this->setStatus( 'publish', 'Warning', null, [ 'warnings' => $serializableWarnings ] );
+			$this->setLastError( "Upload warnings present." );
+			return false;
+		}
+
 		return true;
 	}
 

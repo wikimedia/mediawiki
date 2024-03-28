@@ -246,6 +246,14 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Get the desired destination name.
+	 * @return string|null
+	 */
+	public function getDesiredDestName() {
+		return $this->mDesiredDestName;
+	}
+
+	/**
 	 * @stable to call
 	 */
 	public function __construct() {
@@ -757,6 +765,29 @@ abstract class UploadBase {
 					'Unexpected object of class ' . get_class( $param ) );
 			}
 		} );
+		return $warnings;
+	}
+
+	/**
+	 * Convert the serialized warnings array created by makeWarningsSerializable()
+	 * back to the output of checkWarnings().
+	 *
+	 * @param mixed[] $warnings
+	 * @return mixed[]
+	 */
+	public static function unserializeWarnings( $warnings ) {
+		foreach ( $warnings as $key => $value ) {
+			if ( is_array( $value ) ) {
+				if ( isset( $value['fileName'] ) && isset( $value['timestamp'] ) ) {
+					$warnings[$key] = MediaWikiServices::getInstance()->getRepoGroup()->findFile(
+						$value['fileName'],
+						[ 'time' => $value['timestamp'] ]
+					);
+				} else {
+					$warnings[$key] = self::unserializeWarnings( $value );
+				}
+			}
+		}
 		return $warnings;
 	}
 
@@ -2249,7 +2280,7 @@ abstract class UploadBase {
 	 *
 	 * @param UserIdentity $user
 	 * @param string $statusKey
-	 * @return Status[]|false
+	 * @return mixed[]|false
 	 */
 	public static function getSessionStatus( UserIdentity $user, $statusKey ) {
 		$store = self::getUploadSessionStore();
