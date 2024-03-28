@@ -32,11 +32,20 @@ use Wikimedia\ParamValidator\ValidationException;
 class Validator {
 
 	/**
-	 * (string) ParamValidator constant to specify the source of the parameter.
-	 * Value must be 'path', 'query', or 'body' ('post' is accepted as an alias for 'body').
+	 * (array) ParamValidator array to specify the known sources of the parameter.
 	 * 'post' refers to application/x-www-form-urlencoded or multipart/form-data encoded parameters
 	 * in the body of a POST request (in other words, parameters in PHP's $_POST). For other kinds
 	 * of POST parameters, such as JSON fields, use BodyValidator instead of ParamValidator.
+	 * This list must correspond to the switch statement in ParamValidatorCallbacks::getParamsFromSource.
+	 *
+	 * @since 1.42
+	 */
+	public const KNOWN_PARAM_SOURCES = [ 'path', 'query', 'body', 'post' ];
+
+	/**
+	 * (string) ParamValidator constant for use as a key in a param settings array
+	 * to specify the source of the parameter.
+	 * Value must be one of the values in KNOWN_PARAM_SOURCES.
 	 */
 	public const PARAM_SOURCE = 'rest-param-source';
 

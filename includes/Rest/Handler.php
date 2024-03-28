@@ -21,6 +21,11 @@ use Wikimedia\Message\MessageValue;
 abstract class Handler {
 
 	/**
+	 * @see Validator::KNOWN_PARAM_SOURCES
+	 */
+	public const KNOWN_PARAM_SOURCES = Validator::KNOWN_PARAM_SOURCES;
+
+	/**
 	 * @see Validator::PARAM_SOURCE
 	 */
 	public const PARAM_SOURCE = Validator::PARAM_SOURCE;
