@@ -103,16 +103,49 @@ class JsonSchemaTraitTest extends TestCase {
 				]
 			]
 		];
+
+		yield 'references' => [
+			[
+				'type' => 'object',
+				'properties' => [
+					'foo' => [
+						'$ref' => [
+							'class' => ExampleDefinitionsClass::class,
+							'field' => 'SOME_SCHEMA',
+						]
+					],
+				]
+			],
+			[
+				'type' => 'object',
+				'properties' => [
+					'foo' => [ '$ref' => '#/$defs/MediaWiki.Tests.Unit.Settings.Source.ExampleDefinitionsClass::SOME_SCHEMA' ],
+				]
+			],
+			[
+				'MediaWiki.Tests.Unit.Settings.Source.ExampleDefinitionsClass::SOME_SCHEMA' => [
+					'type' => 'string',
+				]
+			]
+		];
 	}
 
 	/**
 	 * @dataProvider provideNormalizeJsonSchema
 	 * @param array $schema
-	 * @param array $expected
+	 * @param array $expectedSchema
+	 * @param array $expectedDefs
 	 */
-	public function testNormalizeJsonSchema( $schema, $expected ) {
-		$actual = self::normalizeJsonSchema( $schema );
-		$this->assertSame( $expected, $actual );
+	public function testNormalizeJsonSchema( $schema, $expectedSchema, $expectedDefs = [] ) {
+		$actualDefs = [];
+		$actual = self::normalizeJsonSchema(
+			$schema,
+			$actualDefs,
+			'provideNormalizeJsonSchema-references',
+			'foo'
+		);
+		$this->assertSame( $expectedSchema, $actual );
+		$this->assertEquals( $expectedDefs, $actualDefs );
 	}
 
 	public static function provideJsonToPhpDoc() {

@@ -107,10 +107,18 @@ trait JsonSchemaTrait {
 	 * Recursively applies phpDocToJson() to type declarations in a JSON schema.
 	 *
 	 * @param array $schema JSON Schema structure with PHPDoc types
-	 *
+	 * @param array &$defs List of definitions (JSON schemas) referenced in the schema
+	 * @param string $source An identifier for the source schema being reflected, used
+	 * for error descriptions.
+	 * @param string $propertyName The name of the property the schema belongs to, used for error descriptions.
 	 * @return array JSON Schema structure using only proper JSON types
 	 */
-	private static function normalizeJsonSchema( array $schema ): array {
+	private static function normalizeJsonSchema(
+		array $schema,
+		array &$defs,
+		string $source,
+		string $propertyName
+	): array {
 		if ( isset( $schema['type'] ) ) {
 			// Support PHP Doc style types, for convenience.
 			$schema['type'] = self::phpDocToJson( $schema['type'] );
@@ -118,17 +126,26 @@ trait JsonSchemaTrait {
 
 		if ( isset( $schema['additionalProperties'] ) && is_array( $schema['additionalProperties'] ) ) {
 			$schema['additionalProperties'] =
-				self::normalizeJsonSchema( $schema['additionalProperties'] );
+				self::normalizeJsonSchema( $schema['additionalProperties'], $defs, $source, $propertyName );
 		}
 
 		if ( isset( $schema['items'] ) && is_array( $schema['items'] ) ) {
-			$schema['items'] = self::normalizeJsonSchema( $schema['items'] );
+			$schema['items'] = self::normalizeJsonSchema( $schema['items'], $defs, $source, $propertyName );
 		}
 
 		if ( isset( $schema['properties'] ) && is_array( $schema['properties'] ) ) {
 			foreach ( $schema['properties'] as $name => $propSchema ) {
-				$schema['properties'][$name] = self::normalizeJsonSchema( $propSchema );
+				$schema['properties'][$name] = self::normalizeJsonSchema( $propSchema, $defs, $source, $propertyName );
 			}
+		}
+
+		// Definitions need to be collected before normalizing the reference because
+		// JsonSchemaReferenceResolver expects the $ref to be an array with:
+		// [ "class" => "Some\\Class", "field" => "someField" ]
+		JsonSchemaReferenceResolver::getDefinitions( $schema, $defs, $source, $propertyName );
+
+		if ( isset( $schema['$ref'] ) ) {
+			$schema['$ref'] = JsonSchemaReferenceResolver::normalizeRef( $schema['$ref'] );
 		}
 
 		return $schema;
