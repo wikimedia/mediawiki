@@ -1,4 +1,4 @@
-Sitelist
+Sitelist {#sitelist}
 ========
 
 This document describes the XML format used to represent information about external sites known to a MediaWiki installation. This information about external sites is used to allow "inter-wiki" links, cross-language navigation, as well as close integration via direct access to the other site's web API or even directly to their database.

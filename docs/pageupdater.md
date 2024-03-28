@@ -1,4 +1,4 @@
-PageUpdater
+PageUpdater {#pageupdater}
 ===========
 
 This document provides an overview of the usage of PageUpdater and DerivedPageDataUpdater.
