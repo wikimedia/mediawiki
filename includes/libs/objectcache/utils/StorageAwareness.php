@@ -44,9 +44,6 @@ interface StorageAwareness {
 	/** Durability of writes; see QOS_DURABILITY_* (higher means stronger) */
 	public const ATTR_DURABILITY = 2;
 
-	/** @deprecated Since 1.41; Fallback disk-based SQL store */
-	public const QOS_EMULATION_SQL = 1;
-
 	/** Data is never saved to begin with (blackhole store) */
 	public const QOS_DURABILITY_NONE = 1;
 	/** Data is lost at the end of the current web request or CLI script */

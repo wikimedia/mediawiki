@@ -178,7 +178,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->multiPrimaryMode = $params['multiPrimaryMode'] ?? false;
 
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
-		$this->attrMap[self::ATTR_EMULATION] = self::QOS_EMULATION_SQL;
 
 		$this->hasZlib = extension_loaded( 'zlib' );
 	}
