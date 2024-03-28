@@ -247,32 +247,6 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * Set whether this page is listed in Special:Specialpages, at run-time
-	 * @since 1.3
-	 * @deprecated since 1.35
-	 * @param bool $listed Set via subclassing UnlistedSpecialPage, get via
-	 *  isListed()
-	 * @return bool
-	 */
-	public function setListed( $listed ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return wfSetVar( $this->mListed, $listed );
-	}
-
-	/**
-	 * Get or set whether this special page is listed in Special:SpecialPages
-	 * @since 1.6
-	 * @deprecated since 1.35 Set via subclassing UnlistedSpecialPage, get via
-	 *  isListed()
-	 * @param bool|null $x
-	 * @return bool
-	 */
-	public function listed( $x = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return wfSetVar( $this->mListed, $x );
-	}
-
-	/**
 	 * Whether it's allowed to transclude the special page via {{Special:Foo/params}}
 	 * @stable to override
 	 * @return bool

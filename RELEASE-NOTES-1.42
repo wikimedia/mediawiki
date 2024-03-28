@@ -446,6 +446,9 @@ because of Phabricator reports.
 * Instancing MediaWiki\Specials\SpecialRandomPage without injected services has
   been removed.
 * mediawiki.ui/utilities.less with its three layout CSS classes has been removed
+* SpecialPage::listed() and ::setListed(), deprecated since 1.35, have both been
+  removed. Use ::isListed() to read, and over-ride by implementing isListed() or
+  by sub-classing UnlistedSpecialPage.
 * BlockListPager::getTotalAutoblocks() was removed.
 * …
 
