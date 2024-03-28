@@ -2874,7 +2874,7 @@
 	"immobile-source-page": "Halaman ini tidak dapat dipindahkan.",
 	"immobile-target-page": "Tidak dapat memindahkan ke judul tujuan tersebut.",
 	"movepage-invalid-target-title": "Nama yang diminta tidak valid.",
-	"bad-target-model": "Tujuan yang diinginkan menggunakan model konten yang berbeda. Tidak dapat mengkonversi dari  $1  untuk  $2 .",
+	"bad-target-model": "Tujuan yang diinginkan menggunakan model konten yang berbeda. Tidak dapat mengkonversi dari $1 untuk $2 .",
 	"imagenocrossnamespace": "Tidak dapat memindahkan berkas ke ruang nama non-berkas",
 	"nonfile-cannot-move-to-file": "Tidak dapat memindahkan non-berkas ke ruang nama berkas",
 	"imagetypemismatch": "Ekstensi yang diberikan tidak cocok dengan tipe berkas",

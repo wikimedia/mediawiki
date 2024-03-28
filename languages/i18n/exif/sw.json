@@ -5,7 +5,8 @@
 			"Kwisha",
 			"Lloffiwr",
 			"Muddyb",
-			"Stephenwanjau"
+			"Stephenwanjau",
+			"Kisare"
 		]
 	},
 	"exif-imagewidth": "Upana",
@@ -52,7 +53,7 @@
 	"exif-countrydest": "Nchi inayoonyeshwa",
 	"exif-citydest": "Mji umeonyeshwa",
 	"exif-objectname": "Jina fupi",
-	"exif-specialinstructions": "Maelekezo maalum",
+	"exif-specialinstructions": "Maelekezo maalumu",
 	"exif-headline": "Kichwa",
 	"exif-source": "Chanzo",
 	"exif-urgency": "Umuhimu",
@@ -138,8 +139,8 @@
 	"exif-dc-date": "Tarehe",
 	"exif-dc-publisher": "Mchapishaji",
 	"exif-dc-rights": "Haki",
-	"exif-dc-source": "Chanzo cha media",
-	"exif-dc-type": "Aina ya media",
+	"exif-dc-source": "Midia ya chanzo",
+	"exif-dc-type": "Aina ya midia",
 	"exif-rating-rejected": "Ilikataliwa",
 	"exif-isospeedratings-overflow": "Zaidi ya 65535",
 	"exif-iimcategory-ace": "Sanaa, utamaduni na burudani",

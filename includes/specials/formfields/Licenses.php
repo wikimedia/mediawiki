@@ -182,12 +182,12 @@ class Licenses extends HTMLFormField {
 		$msgObj = $this->msg( $message );
 		$text = $msgObj->exists() ? $msgObj->text() : $message;
 		$attribs['value'] = $value;
-		if ( $value === $this->selected ) {
+		if ( $value === $this->selected && !isset( $attribs['disabled'] ) ) {
 			$attribs['selected'] = 'selected';
 		}
 
 		$val = str_repeat( /* &nbsp */ "\u{00A0}", $depth * 2 ) . $text;
-		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
+		return str_repeat( "\t", $depth ) . Html::element( 'option', $attribs, $val ) . "\n";
 	}
 
 	/** #@- */

@@ -63,7 +63,7 @@ class JsonContent extends TextContent {
 	 * @return string
 	 */
 	public function beautifyJSON() {
-		return FormatJson::encode( $this->getData()->getValue(), true, FormatJson::UTF8_OK );
+		return FormatJson::encode( $this->getData()->getValue(), "\t", FormatJson::UTF8_OK );
 	}
 
 	/**

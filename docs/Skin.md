@@ -1,4 +1,4 @@
-Skins
+Skins {#skin}
 =======
 
 ## Core Skins

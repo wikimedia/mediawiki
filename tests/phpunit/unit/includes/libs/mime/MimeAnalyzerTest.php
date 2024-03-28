@@ -228,22 +228,45 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( MEDIATYPE_OFFICE, $mimeAccess->findMediaType( '.fake_extension' ) );
 	}
 
-	public function testGetMimeTypesFromExtension() {
-		$this->assertSame(
-			[ 'video/webm', 'audio/webm' ], $this->mimeAnalyzer->getMimeTypesFromExtension( 'webm' ) );
+	public function testGetMimeTypesFromNoExtension() {
 		$this->assertSame( [], $this->mimeAnalyzer->getMimeTypesFromExtension( 'no_such_extension' ) );
 	}
 
-	public function testGetMimeTypesFromTTFExtension() {
-		$this->assertContains(
-			'font/sfnt', $this->mimeAnalyzer->getMimeTypesFromExtension( 'ttf' ) );
+	public static function provideFileExtensions() {
+		yield 'ttf file extension should output font/sfnt' => [ 'ttf', 'font/sfnt' ];
+		yield 'ttf file extension should output application/font-sfnt' => [ 'ttf', 'application/font-sfnt' ];
+		yield 'woff file extension should output font/woff' => [ 'woff', 'font/woff' ];
+		yield 'woff file extension should output application/font/woff' => [ 'woff', 'application/font-woff' ];
+		yield 'woff2 file extension should output font/woff' => [ 'woff2', 'font/woff2' ];
+		yield 'woff2 file extension should output application/font/woff' => [ 'woff2', 'application/font-woff2' ];
+		yield 'webm file extension should return video/webm' => [ 'webm', 'video/webm' ];
+		yield 'webm file extension should return audio/webm' => [ 'webm', 'audio/webm' ];
 	}
 
-	public function testGetExtensionsFromSfntMimeType() {
-		$this->assertSame(
-			[ 'ttf' ], $this->mimeAnalyzer->getExtensionsFromMimeType( 'font/sfnt' ) );
-		$this->assertSame(
-			[ 'ttf' ], $this->mimeAnalyzer->getExtensionsFromMimeType( 'application/font-sfnt' ) );
+	/**
+	 * @dataProvider provideFileExtensions
+	 */
+	public function testGetMimeTypesFromExtension( $inputFileExtension, $expectedOutput ) {
+		$actualOutput = $this->mimeAnalyzer->getMimeTypesFromExtension( $inputFileExtension );
+		$this->assertContains( $expectedOutput, $actualOutput );
+	}
+
+	public static function provideFileExtensionsForMimeType() {
+		yield 'font/sfnt should output ttf file extension' => [ 'font/sfnt', [ 'ttf' ] ];
+		yield 'application/font-sfnt should output ttf file extension' => [ 'application/font-sfnt', [ 'ttf' ] ];
+		yield 'font/woff should output woff file extension' => [ 'font/woff', [ 'woff' ] ];
+		yield 'application/font-woff should output woff file extension' => [ 'application/font-woff', [ 'woff' ] ];
+		yield 'font/woff2 should output woff2 file extension' => [ 'font/woff2', [ 'woff2' ] ];
+		yield 'application/font-woff2 should output woff2 file extension' => [ 'application/font-woff2', [ 'woff2' ] ];
+		yield 'text/sgml should output sgml file extension' => [ 'text/sgml', [ 'sgml', 'sgm' ] ];
+	}
+
+	/**
+	 * @dataProvider provideFileExtensionsForMimeType
+	 */
+	public function testGetExtensionsFromMimeType( $inputMimeType, $expectedOutput ) {
+		$actualOutput = $this->mimeAnalyzer->getExtensionsFromMimeType( $inputMimeType );
+		$this->assertSame( $expectedOutput, $actualOutput );
 	}
 
 	public function testGetMimeTypeFromExtensionOrNull() {
@@ -251,14 +274,20 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
 	}
 
-	public function testGetExtensionsFromMimeType() {
-		$this->assertSame(
-			[ 'sgml', 'sgm' ], $this->mimeAnalyzer->getExtensionsFromMimeType( 'text/sgml' ) );
+	public function testGetExtensionsFromFakeMimeType() {
 		$this->assertSame( [], $this->mimeAnalyzer->getExtensionsFromMimeType( 'fake/mime' ) );
 	}
 
 	public function testGetExtensionFromMimeTypeOrNull() {
 		$this->assertSame( 'sgml', $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'text/sgml' ) );
 		$this->assertNull( $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'fake/mime' ) );
+	}
+
+	public function testIsValidMajorMimeTypeTrue() {
+		$this->assertTrue( $this->mimeAnalyzer->isValidMajorMimeType( 'image' ) );
+	}
+
+	public function testIsValidMajorMimeTypeFalse() {
+		$this->assertFalse( $this->mimeAnalyzer->isValidMajorMimeType( 'font' ) );
 	}
 }

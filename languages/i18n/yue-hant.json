@@ -50,7 +50,8 @@
 			"Z423x5c6",
 			"捍粵者",
 			"아라",
-			"H78c67c"
+			"H78c67c",
+			"PB2008"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -837,7 +838,7 @@
 	"rev-deleted-text-view": "呢頁嘅修訂已經'''洗咗'''。\n你可以去睇吓佢；\n喺[{{fullurl:{{#Special:Log}}/delete|page=$1}} 刪除日誌]裏面可以搵到更詳細嘅資料。",
 	"rev-suppressed-text-view": "呢頁嘅修訂已經'''廢止咗'''。\n你可以去睇吓佢；\n喺[{{fullurl:{{#Special:Log}}/suppress|page=$1}} 廢止日誌]裏面可以搵到更詳細嘅資料。",
 	"rev-deleted-no-diff": "因為其中一次修訂'''洗咗'''，你唔可以睇呢個差異。\n響[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可以搵到更多嘅資料。",
-	"rev-suppressed-no-diff": "由於呢頁嘅其中一次修訂已經'''剷走咗'''，你唔可以睇呢次修訂。",
+	"rev-suppressed-no-diff": "由於其中一次修訂已經<strong>壓制咗</strong>，你唔睇得呢個修訂差異。",
 	"rev-deleted-unhide-diff": "呢頁嘅其中一次修訂已經'''洗咗'''。\n喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。\n如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
 	"rev-suppressed-unhide-diff": "呢頁嘅其中一次修訂已經'''廢止咗'''。\n喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可以搵到更詳細嘅資料。\n如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
 	"rev-deleted-diff-view": "呢個差異嘅其中一次修訂已經'''刪除咗'''。\n你可以去睇呢個差異；喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。",
@@ -886,7 +887,7 @@
 	"revdelete-no-change": "<strong>警告</strong>：響$1 $2嘅項目嘅可見度設定同請求咗嘅設定一樣。",
 	"revdelete-concurrent-change": "改緊響$1 $2嘅項目錯誤：當我哋試吓改佢嘅設定嗰陣，已經畀另一啲人改過。請檢查紀錄。",
 	"revdelete-only-restricted": "隱藏項目響$1 $2嘅項目：你唔可以廢止由管理員檢視，而唔同時再揀另外其中一個可見性選項。",
-	"revdelete-reason-dropdown": "*常用刪除原因\n** 侵犯版權\n** 唔合適嘅言論或者個人資料\n** 唔合適嘅用戶名\n** 可能係誹謗嘅資料",
+	"revdelete-reason-dropdown": "*常用刪除原因\n** 侵犯版權\n** 唔合適嘅言論\n** 唔合適嘅用戶名\n** 可能係誹謗嘅資料",
 	"revdelete-otherreason": "第啲／附加嘅原因：",
 	"revdelete-reasonotherlist": "第啲原因",
 	"revdelete-edit-reasonlist": "編輯剷咗嘅原因",

@@ -612,7 +612,7 @@
 	"missing-revision": "\"{{FULLPAGENAME}}\" पन्नाक अवतरण #$1 मौजूद नै अछि ।\n\nओन त ई एक मेटाएल पन्नाक पुराना कडीपर क्लिक करबाक कारण सँ होएत अछि।\nअधिक जानकारीक लेल अहाँ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} हटाबैक लग] देख सकै छी।",
 	"userpage-userdoesnotexist": "प्रयोक्ता खाता \"$1\" पञ्जीकृत नै अछि।\nनिश्चय करी जे की अहाँ ई पन्ना बनेबाक/ सम्पादित करबाक इच्छुक छी।",
 	"userpage-userdoesnotexist-view": "प्रयोक्ता खाता \"$1\" पञ्जीकृत नै अछि।",
-	"blocked-notice-logextract": "ई प्रयोक्ता अखन प्रतिबन्धित अछि।\nअद्यतन प्रतिबन्धित  वृत्तलेख लेखा सन्दर्भ लेल नीचाँ देल अछि:",
+	"blocked-notice-logextract": "ई प्रयोक्ता अखन प्रतिबन्धित अछि।\nअद्यतन प्रतिबन्धित वृत्तलेख लेखा सन्दर्भ लेल नीचाँ देल अछि:",
 	"clearyourcache": "<strong>टिप्पणी:</strong> संरक्षणक बाद, अहाँक परिवर्तन देखबा लेल अपन ब्राउजरक उपस्मृतिक हटबए पडत।\n<strong>फायरफक्स/ सफारी:<strong> <em>सिफ्ट</em>के दाबि <em>रिलोड</em>, वा <em>Ctrl-F5</em> वा <em>Ctrl-R</em> (म्याकपर <em>⌘-R</em>)\n<strong>गुगल क्रोम:</strong> <em>Ctrl-Shift-R</em> दाबी(म्याकपर <em>⌘-Shift-R</em>)\n<strong>इन्टरनेट एक्सप्लोरर:</strong> <em>Refresh</em> क्लिक करि <em>Ctrl</em> दाबि, वा <em>Ctrl-F5</em> दाबी\n<strong>ओपेरा:</strong> <em>Menu → Settings</em> पर जाए (म्याकपर <em>Opera → Preferences</em>) आ ओकर बाद <em>Privacy & security → Clear browsing data → Cached images and files</em>\n ।",
 	"usercssyoucanpreview": "<strong>सङ्केत:</strong> सङ्ग्रह करैसँ पहिने अहाँ अपन नव सियसयसक जाँच लेल \"{{int:पूर्वदृश्य देखाउ}}\" बटनक प्रयोग करी।",
 	"userjsyoucanpreview": "<strong>टिप</strong>  प्रयोग करी \"{{int:showpreview}}\" बटन अपन नव जावास्क्रिप्ट संरक्षण जँचबाक लेल।",

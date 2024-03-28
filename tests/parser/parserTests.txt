@@ -11163,6 +11163,7 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 </p>
 !! end
 
+## Parsoid only on REL1_39 due to T317489
 !! test
 Magic Word: {{TALKSPACE}}, same namespace
 !! options
@@ -11170,7 +11171,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{TALKSPACE}}
-!! html/*
+!! html/parsoid
 <p>User talk
 </p>
 !! end
@@ -11199,6 +11200,7 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 </p>
 !! end
 
+## Parsoid only on REL1_39 due to T317489
 !! test
 Magic Word: {{SUBJECTSPACE}}
 !! options
@@ -11206,7 +11208,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTSPACE}}
-!! html/*
+!! html/parsoid
 <p>User
 </p>
 !! end
@@ -11233,6 +11235,7 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! html/*
 !! end
 
+## Parsoid only on REL1_39 due to T317489
 !! test
 Magic Word: {{SUBJECTSPACEE}}
 !! options
@@ -11240,7 +11243,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTSPACEE}}
-!! html/*
+!! html/parsoid
 <p>User
 </p>
 !! end
@@ -11377,6 +11380,7 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 </p>
 !! end
 
+## Parsoid only on REL1_39 due to T317489
 !! test
 Magic Word: {{SUBJECTPAGENAME}}
 !! options
@@ -11384,11 +11388,12 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTPAGENAME}}
-!! html/*
+!! html/parsoid
 <p>User:Ævar Arnfjörð Bjarmason
 </p>
 !! end
 
+## Parsoid only on REL1_39 due to T317489
 !! test
 Magic Word: {{SUBJECTPAGENAMEE}}
 !! options
@@ -11396,7 +11401,7 @@ title=[[User talk:Ævar Arnfjörð Bjarmason]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTPAGENAMEE}}
-!! html/*
+!! html/parsoid
 <p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end

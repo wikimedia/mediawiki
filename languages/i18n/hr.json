@@ -52,7 +52,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Eleassar",
-			"Amire80"
+			"Amire80",
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Podcrtavanje poveznica",
@@ -234,7 +235,7 @@
 	"toolbox": "Pomagala",
 	"cactions": "Više",
 	"tool-link-userrights": "{{GENDER:$1|Suradnikova|Suradničina}} prava",
-	"tool-link-userrights-readonly": "Vidi {{GENDER:$1|suradnikovu|suradničinu|suradničku}} pripadnost skupinama",
+	"tool-link-userrights-readonly": "Vidi {{GENDER:$1|suradnička}} prava",
 	"tool-link-emailuser": "Pošalji e-poruku {{GENDER:$1|suradniku|suradnici}}",
 	"imagepage": "Vidi stranicu datoteke",
 	"mediawikipage": "Vidi stranicu poruke",
@@ -2132,7 +2133,7 @@
 	"watchlist-details": "Na popisu praćenja imate {{PLURAL:$1|$1 stranicu|$1 stranice|$1 stranica}} i {{PLURAL:$1|1=njenu stranicu za razgovor|njihove stranice za razgovor}}.",
 	"watchlist-expiry-days-left": "Preostalo {{PLURAL:$1|$1 dan|$1 dana}}",
 	"watchlist-expiring-days-full-text": "Preostalo {{PLURAL:$1|$1 dan|$1 dana}} na Vašem popisu praćenja",
-	"watchlist-expiry-hours-left": "Preostalo par sati",
+	"watchlist-expiry-hours-left": "Preostalo je nekoliko sati",
 	"watchlist-expiring-hours-full-text": "Još neko vrijeme bit će na popisu praćenja",
 	"wlheader-enotif": "Uključeno je izvješćivanje e-poštom.",
 	"wlheader-showupdated": "Stranice koje su promijenjene od Vašeg posljednjeg posjeta prikazane su '''podebljano'''.",
@@ -2964,7 +2965,7 @@
 	"confirm-rollback-button": "U redu",
 	"confirm-rollback-top": "Ukloniti uređivanja na ovoj stranici?",
 	"confirm-mcrundo-title": "Poništavanje izmjene",
-	"percent": "$1 %",
+	"percent": "$1&#160;%",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← prethodna slika",
 	"imgmultipagenext": "sljedeća slika →",

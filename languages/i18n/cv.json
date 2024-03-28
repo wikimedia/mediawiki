@@ -660,7 +660,7 @@
 	"missing-revision": "«{{FULLPAGENAME}}» страницӑн #$1 версийӗ ҫук.\n\nКун пекки чылай чухне кивелнӗ каҫӑпа кӑларса пенӗ страницӑна куҫсан пулса иртет.\nТӗплӗнрех [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} кӑларса пенин журналӗнче] пӗлме пулать.",
 	"missing-revision-content": "«$2» страницӑн #$1 версине тиеймерӗмӗр.",
 	"userpage-userdoesnotexist-view": "\"$1\" аккаунтне туман.",
-	"blocked-notice-logextract": "{{GENDER:$1|Ку хутшӑнакана}} ӗҫлеме хальхи вӑхӑтра   {{GENDER:$1|чарса лартнӑ}}.\nАяларах блокланин журналӗнчи юлашки йӗркесене илсе кӑтартнӑ:",
+	"blocked-notice-logextract": "{{GENDER:$1|Ку хутшӑнакана}} ӗҫлеме хальхи вӑхӑтра  {{GENDER:$1|чарса лартнӑ}}.\nАяларах блокланин журналӗнчи юлашки йӗркесене илсе кӑтартнӑ:",
 	"clearyourcache": "<strong>Асӑрхани:</strong> Улшӑнусене курмашкӑн, тен, сирӗн хӑвӑрӑн браузерӑн кэшне тасатма тивӗ.\n* <strong>Firefox / Safari:</strong> <em>Shift</em> пускӑч ҫине пусса тӑрса, хатӗр-хӗтӗрсен панелӗ ҫинче <em>Ҫӗнет</em> ҫине пусӑр, е <em>Ctrl+F5</em> (<em>Ctrl+R</em> / Mac ҫинче — <em>⌘+R</em>) пусӑр.\n* <strong>Google Chrome:</strong> <em>Ctrl+Shift+R</em> пусӑр (Mac ҫинче <em>⌘+Shift+R</em>)\n* <strong>Internet Explorer / Edge:</strong> <em>Ctrl</em> пусса тӑнӑ май <em>Ҫӗнет</em> ҫине пусӑр, е <em>Ctrl+F5</em> пусӑр.\n* <strong>Opera:</strong> <em>Ctrl+F5</em> пусӑр.",
 	"usercssyoucanpreview": "<strong>Пулӑшу.</strong> Хӑвӑрӑн CSS-файла тӗрӗслеме вырнаҫтарас умӗн «{{int:showpreview}}» пускӑч ҫине пусӑр.",
 	"userjsonyoucanpreview": "<strong>Пулӑшу.</strong> Хӑвӑрӑн JSON-файла тӗрӗслеме вырнаҫтарас умӗн «{{int:showpreview}}» пускӑч ҫине пусӑр.",

@@ -60,7 +60,7 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 		$dir = sys_get_temp_dir() . '/' . uniqid( 'MediaWikiTest' );
 		$status = $method->invoke( null, $dir );
 		$this->assertStatusGood( $status );
-		$this->assertSame( "Deny from all\n", file_get_contents( "$dir/.htaccess" ) );
+		$this->assertSame( "Require all denied\n", file_get_contents( "$dir/.htaccess" ) );
 		unlink( "$dir/.htaccess" );
 		rmdir( $dir );
 	}

@@ -388,6 +388,7 @@ class MovePage {
 	/**
 	 * Checks for when a file is being moved
 	 *
+	 * @see UploadBase::getTitle
 	 * @return Status
 	 */
 	protected function isValidFileMove() {
@@ -403,6 +404,20 @@ class MovePage {
 		if ( $file->exists() ) {
 			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
 				$status->fatal( 'imageinvalidfilename' );
+			}
+			if ( strlen( $this->newTitle->getText() ) > 240 ) {
+				$status->fatal( 'filename-toolong' );
+			}
+			if (
+				!$this->repoGroup->getLocalRepo()->backendSupportsUnicodePaths() &&
+				!preg_match( '/^[\x0-\x7f]*$/', $this->newTitle->getText() )
+			) {
+				$status->fatal( 'windows-nonascii-filename' );
+			}
+			if ( strrpos( $this->newTitle->getText(), '.' ) === 0 ) {
+				// Filename cannot only be its extension
+				// Will probably fail the next check too.
+				$status->fatal( 'filename-tooshort' );
 			}
 			if ( !File::checkExtensionCompatibility( $file, $this->newTitle->getDBkey() ) ) {
 				$status->fatal( 'imagetypemismatch' );
