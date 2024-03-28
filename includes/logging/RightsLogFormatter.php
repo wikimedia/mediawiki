@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -39,7 +38,7 @@ class RightsLogFormatter extends LogFormatter {
 			->get( MainConfigNames::UserrightsInterwikiDelimiter );
 
 		if ( !$this->plaintext ) {
-			$text = MediaWikiServices::getInstance()->getContentLanguage()->
+			$text = $this->getContentLanguage()->
 				ucfirst( $title->getDBkey() );
 			$parts = explode( $userrightsInterwikiDelimiter, $text, 2 );
 
