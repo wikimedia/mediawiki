@@ -276,68 +276,96 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( $expectedSpec, $spec, false, true );
 	}
 
+	/**
+	 * @param string $source
+	 * @param string $requestDataKey
+	 *
+	 * @return \Generator
+	 */
+	private static function generateParamValidationCases( string $source, $requestDataKey ): \Generator {
+		yield "default $source parameter is null" => [
+			[
+				'defaultparam' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => $source,
+				]
+			],
+			new RequestData( [ 'pathParams' => [] ] ),
+			[ 'defaultparam' => null ]
+		];
+		yield "missing required $source parameter raises Exception" => [
+			[
+				'requiredparam' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					Validator::PARAM_SOURCE => $source,
+				]
+			],
+			new RequestData( [] ),
+			new LocalizedHttpException(
+				new MessageValue( 'paramvalidator-missingparam' ),
+				400
+			)
+		];
+		yield "$source parameter" => [
+			[
+				'param' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => $source,
+				]
+			],
+			new RequestData( [ $requestDataKey => [ 'param' => 'test' ] ] ),
+			[ 'param' => 'test' ]
+		];
+		yield "return default $source param set" => [
+			[
+				'param' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => $source,
+					ParamValidator::PARAM_DEFAULT => "default$source"
+				]
+			],
+			new RequestData( [] ),
+			[ "param" => "default$source" ]
+		];
+		yield "throw on malformed $source param" => [
+			[
+				'param' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => $source,
+				]
+			],
+			new RequestData( [ $requestDataKey => [ 'param' => [] ] ] ),
+			new LocalizedHttpException(
+				new MessageValue( 'paramvalidator-notmulti' ),
+				400
+			)
+		];
+	}
+
 	public static function provideValidateParams() {
-		$sources = [ 'path', 'query', 'post', 'body' ];
+		$sources = [ 'path', 'query', 'post' ];
 		$paramNames = [
 			"path" => "pathParams",
 			"query" => "queryParams",
 			"post" => "postParams",
-			"body" => "parsedBody"
 		];
 		foreach ( $sources as $source ) {
-			yield "default $source parameter is null" => [
-				[
-					'defaultparam' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						Validator::PARAM_SOURCE => $source,
-					]
-				],
-				new RequestData( [ 'pathParams' => [] ] ),
-				[ 'defaultparam' => null ]
-			];
-			yield "missing required $source parameter raises Exception" => [
-				[
-					'requiredparam' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						ParamValidator::PARAM_REQUIRED => true,
-						Validator::PARAM_SOURCE => $source,
-					]
-				],
-				new RequestData( [] ),
-				new LocalizedHttpException( new MessageValue( 'paramvalidator-missingparam' ), 400 )
-			];
-			yield "$source parameter" => [
-				[
-					'param' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						Validator::PARAM_SOURCE => $source,
-					]
-				],
-				new RequestData( [ $paramNames[ $source ] => [ 'param' => 'test' ] ] ),
-				[ 'param' => 'test' ]
-			];
-			yield "return default $source param set" => [
-				[
-					'param' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						Validator::PARAM_SOURCE => $source,
-						ParamValidator::PARAM_DEFAULT => "default$source"
-					]
-				],
-				new RequestData( [] ),
-				[ "param" => "default$source" ]
-			];
-			yield "throw on malformed $source param" => [
-				[
-					'param' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						Validator::PARAM_SOURCE => $source,
-					]
-				],
-				new RequestData( [ $paramNames[ $source ] => [ 'param' => [] ] ] ),
-				new LocalizedHttpException( new MessageValue( 'paramvalidator-notmulti' ), 400 )
-			];
+			$cases = self::generateParamValidationCases( $source, $paramNames[ $source ] );
+			foreach ( $cases as $name => $case ) {
+				yield $name => $case;
+			}
 		}
+		yield 'ignore body param' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'test' ] ] ),
+			[]
+		];
 		yield 'unknown source' => [
 			[
 				'unknown source' => [
@@ -368,5 +396,59 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 
 		$actual = $validator->validateParams( $paramSetting );
 		$this->assertEquals( $expected, $actual );
+	}
+
+	public static function provideValidateBodyParams() {
+		$cases = self::generateParamValidationCases( 'body', 'parsedBody' );
+		foreach ( $cases as $name => $case ) {
+			yield $name => $case;
+		}
+
+		yield 'ignore path param' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'path',
+				]
+			],
+			new RequestData( [ 'pathParams' => [ 'foo' => 'test' ] ] ),
+			[] // The parameter from an unknown source should be ignored.
+		];
+	}
+
+	/**
+	 * If $expected is a string, it must be the name of the expected exception class.
+	 * Otherwise, it must match the returned body.
+	 *
+	 * @dataProvider provideValidateBodyParams
+	 */
+	public function testValidateBodyParams( $paramSetting, RequestData $requestData, $expected ) {
+		$objectFactory = $this->getDummyObjectFactory();
+		$validator = new Validator( $objectFactory, $requestData, $this->mockAnonNullAuthority() );
+
+		try {
+			$actual = $validator->validateBodyParams( $paramSetting );
+
+			if ( $expected instanceof Exception ) {
+				$this->fail( 'Expected exception: ' . $expected );
+			}
+
+			$this->assertEquals( $expected, $actual );
+		} catch ( LocalizedHttpException $ex ) {
+			if ( $expected instanceof LocalizedHttpException ) {
+				$this->assertInstanceOf( get_class( $expected ), $ex );
+				$this->assertSame( $expected->getCode(), $ex->getCode() );
+				$this->assertStringContainsString( 'rest-body-validation-error', $ex->getMessage() );
+
+				// Look at the original validation error that is wrapped inside
+				// the rest-body-validation-error as a parameter.
+				$param = $ex->getMessageValue()->getParams()[0];
+				/** @var MessageValue $validationMessage */
+				$validationMessage = $param->getValue();
+				$this->assertSame( $expected->getMessageValue()->getKey(), $validationMessage->getKey() );
+			} else {
+				$this->fail( 'Unexpected exception: ' . $ex );
+			}
+		}
 	}
 }

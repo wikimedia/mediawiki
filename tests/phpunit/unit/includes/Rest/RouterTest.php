@@ -340,6 +340,8 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public static function oldBodyValidatorFactory() {
 		return new class extends Handler {
+			private $postValidationSetupCalled = false;
+
 			public function getBodyValidator( $contentType ) {
 				if ( $contentType !== 'application/json-patch+json' ) {
 					throw new HttpException(
@@ -360,7 +362,12 @@ class RouterTest extends MediaWikiUnitTestCase {
 				$body = $this->getValidatedBody();
 				Assert::assertIsArray( $body );
 				Assert::assertArrayHasKey( 'test', $body );
+				Assert::assertTrue( $this->postValidationSetupCalled );
 				return "";
+			}
+
+			protected function postValidationSetup() {
+				$this->postValidationSetupCalled = true;
 			}
 		};
 	}

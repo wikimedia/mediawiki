@@ -217,23 +217,19 @@ abstract class Handler {
 	 * @throws HttpException On validation failure.
 	 */
 	public function validate( Validator $restValidator ) {
-		$this->validatedParams = [];
-		$this->validatedBody = [];
 		$paramSettings = $this->getParamSettings();
-		$validatedParams = $restValidator->validateParams( $paramSettings );
-		foreach ( $paramSettings as $name => $settings ) {
-			$source = $settings[self::PARAM_SOURCE];
-			$value = $validatedParams[$name];
-			if ( $source === 'body' ) {
-				$this->validatedBody[$name] = $value;
-			} else {
-				$this->validatedParams[$name] = $value;
-			}
-		}
 		$legacyValidatedBody = $restValidator->validateBody( $this->request, $this );
+
+		$this->validatedParams = $restValidator->validateParams( $paramSettings );
+
 		if ( $legacyValidatedBody !== null ) {
+			// TODO: warn if $bodyParamSettings is not empty
+			// TODO: trigger a deprecation warning
 			$this->validatedBody = $legacyValidatedBody;
+		} else {
+			$this->validatedBody = $restValidator->validateBodyParams( $paramSettings );
 		}
+
 		$this->postValidationSetup();
 	}
 
