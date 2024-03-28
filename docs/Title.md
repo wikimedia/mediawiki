@@ -1,3 +1,6 @@
+Title {#title}
+========
+
 The MediaWiki software's "Title" class represents article titles, which are used
 for many purposes: as the human-readable text title of the article, in the URL
 used to access the article, the wikitext link to the article, the key into the

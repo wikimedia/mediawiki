@@ -4,7 +4,8 @@
 			"1233qwer1234qwer4",
 			"Akamycoco",
 			"Amire80",
-			"Lalotahes"
+			"Lalotahes",
+			"Jack who built the house"
 		]
 	},
 	"sunday": "kaSangayan",
@@ -497,7 +498,7 @@
 	"whatlinkshere": " lotor ray hini ye:myen",
 	"whatlinkshere-title": " lomotor ray \"$1\" ka ye:myen",
 	"whatlinkshere-page": "ye:myen：",
-	"linkshere": "’anoka hini wahoer lomotor ray <strong>[[:$2]]</strong>：",
+	"linkshere": "’anoka hini wahoer lomotor ray <strong>$2</strong>：",
 	"isredirect": " papanra:an nahan ka ye:myen",
 	"istemplate": " Somibae:aeh ka pinayaka:i’  Somibae:aeh ka pinayaka:i’",
 	"isimage": " tang’an kalotoran",

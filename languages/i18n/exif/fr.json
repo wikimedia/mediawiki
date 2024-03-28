@@ -26,7 +26,8 @@
 			"Urhixidur",
 			"Verdy p",
 			"Wladek92",
-			"Wyz"
+			"Wyz",
+			"Iketsi"
 		]
 	},
 	"exif-imagewidth": "Largeur",
@@ -225,7 +226,7 @@
 	"exif-copyrighted-false": "État des droits d’auteur non défini",
 	"exif-photometricinterpretation-0": "Noir et blanc (le blanc est à 0)",
 	"exif-photometricinterpretation-1": "Noir et blanc (le noir est à 0)",
-	"exif-photometricinterpretation-2": "RGB",
+	"exif-photometricinterpretation-2": "RVB",
 	"exif-photometricinterpretation-3": "Palette",
 	"exif-photometricinterpretation-4": "Masque de transparence",
 	"exif-photometricinterpretation-5": "Séparé (probablement CMYK)",

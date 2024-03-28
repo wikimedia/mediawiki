@@ -1,4 +1,4 @@
-Hooks
+Hooks {#hooks}
 =====
 
 ## Introduction

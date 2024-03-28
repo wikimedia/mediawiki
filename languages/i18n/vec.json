@@ -30,7 +30,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sotołinea i lingambi:",
@@ -1382,14 +1383,14 @@
 	"backend-fail-backup": "Inposibiłe fare el backup del file $1.",
 	"backend-fail-notexists": "El file $1 no existe.",
 	"backend-fail-hashes": "Inposibiłe otegnere el hash dei file pa'l confronto.",
-	"backend-fail-notsame": "Existe xà un file no identico a  $1 .",
+	"backend-fail-notsame": "Existe xà un file no identico a $1 .",
 	"backend-fail-invalidpath": "$1 no xe un percorso de archiviasion vałido.",
 	"backend-fail-delete": "Inposibiłe scançełare el file \"$1\".",
 	"backend-fail-describe": "Inposibiłe modifegar i metadati del file \"$1\".",
 	"backend-fail-alreadyexists": "El file $1 existe xà.",
-	"backend-fail-store": "Inposibiłe memorixare el file  $1  in  $2 .",
+	"backend-fail-store": "Inposibiłe memorixare el file $1 in $2 .",
 	"backend-fail-copy": "Inposibiłe copiare el file \"$1\" in \"$2\".",
-	"backend-fail-move": "Inposibiłe spostare el file  $1  in  $2 .",
+	"backend-fail-move": "Inposibiłe spostare el file $1 in $2 .",
 	"backend-fail-opentemp": "Inposibiłe verxare el file tenporaneo",
 	"backend-fail-writetemp": "Inposibiłe creare el file tenporaneo.",
 	"backend-fail-closetemp": "Inposibiłe sarare el file tenporaneo",

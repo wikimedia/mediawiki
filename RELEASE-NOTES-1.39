@@ -11,6 +11,40 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.39.6 ===
 * Localisation updates.
+* (T334992) Headings in the license pickers should not be selected.
+* (T353929) ActiveUsersPager: Count actions only once.
+* composer: Use @php instead of php.
+* (T326065) Indent JsonContent using tabs.
+* (T354541) authmanager: Improve AuthenticationRequest docs.
+* (T355017) Add missing space in Special:RecentChangesLinked.
+* (T355003) composer.json Add ext-bcmath and ext-gmp to suggests.
+* PHPVersionCheck: Update text to match currently supported upstream PHP
+  versions (8.1+).
+* (T354045) API: mark HTML output as non-cacheable.
+* (T355530) filerepo: Fix img_major_mime for files with a non-standard
+  extensions.
+* (T355530) MimeAnalyzer: Add @since to isValidMajorMimeType.
+* (T317489, T319202) Mark some parserTests on talk pages Parsoid only on
+  REL1_39.
+* (T350594) Update wikimedia/parsoid to 0.16.3.
+* (T352554) ZhConverter: Fix language variant fallback chain.
+* (T357668) Parser::getExternalLinkAttribs: Don't set rel attribute to null.
+* LockManagerGroupIntegrationTest: Remove test depending on DBLockManager.
+* (T357808) LinkRendererTest: Add missing import for LinkTarget.
+* (T353305) ApiResetPassword: Allow both user and email parameters to be passed
+  for reset.
+* (T358949) updateCollation: Explicitly cast $scale to int.
+* (T359055) api: Improve linking of language codes lists in top level i18n
+  messages.
+* (T359294) Make sure MovePage::isValidFileMove matches UploadBase::getTitle.
+* (T230245) Respect $maxConcurrency when queuing async FileOps.
+* (T352554) Follow-up "ZhConverter: Fix language variant fallback chain".
+* (T292237, T317451) build: Restore Doxygen output for MediaWiki release tags.
+* (T324903) HistoryPager: Add #[AllowDynamicProperties].
+* (T360850) Update Apache config syntax in .htaccess files.
+* (T309714, T354274) mime: Add support for 'font/woff' and 'font/woff2' mime
+  type.
+* (T309714) mime: Make test cases use data provider.
 
 == MediaWiki 1.39.6 ==
 
@@ -29,7 +63,7 @@ This is a security and maintenance release of the MediaWiki 1.39 branch.
 * Updated wikimedia/timestamp from 4.0.0 to 4.1.1.
 * tests: Provide coverage for StatusValue::__toString.
 * StatusValue: Improve logging/debug output with multibyte characters.
-* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+* (T347726, CVE-2023-51704) SECURITY: logging: Fix non-escaped messages
   used in rights log.
 * Updated wikimedia/parsoid from 0.16.1 to 0.16.2.
 * (T229992) LocalisationCache: Preserve fallback source language info.

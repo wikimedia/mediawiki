@@ -6,7 +6,6 @@
 # Some placeholders have been added for MediaWiki usage:
 # OUTPUT_DIRECTORY = {{OUTPUT_DIRECTORY}}
 # CURRENT_VERSION  = {{CURRENT_VERSION}}
-# STRIP_FROM_PATH  = {{STRIP_FROM_PATH}}
 # INPUT            = {{INPUT}}
 #
 # To generate documentation run: php mwdocgen.php --no-extensions
@@ -38,7 +37,6 @@ ABBREVIATE_BRIEF       = "The $name class" \
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = NO
 FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        = {{STRIP_FROM_PATH}}
 STRIP_FROM_INC_PATH    =
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = YES
@@ -145,8 +143,7 @@ EXCLUDE_PATTERNS       = LocalSettings.php \
                          .svn \
                          */.git/* \
                          */includes/libs/*/README.md \
-                         */maintenance/*/README.md \
-                         {{EXCLUDE_PATTERNS}}
+                         */maintenance/*/README.md
 EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           =
 EXAMPLE_PATTERNS       = *

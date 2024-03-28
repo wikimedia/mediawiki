@@ -4,7 +4,8 @@
 			"Artsiom91",
 			"Mechanizatar",
 			"ZlyiLev",
-			"Чаховіч Уладзіслаў"
+			"Чаховіч Уладзіслаў",
+			"Plaga med"
 		]
 	},
 	"config-desc": "Інсталятар MediaWiki",
@@ -20,6 +21,7 @@
 	"config-subscribe": "Падпісацца на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ спіс распаўсюджання навін пра з’яўленне новых версій MediaWiki].",
 	"config-subscribe-help": "Гэта не вельмі актыўны спіс распаўсюджання навін пра з’яўленне новых версій, уключаючы важныя навіны пра бяспеку.\nВам неабходна падпісацца на яго і абнавіць Вашае ўсталяванне MediaWiki, калі з’явяцца новыя версіі.",
 	"config-upload-settings": "Загрузка выяў і файлаў",
+	"config-download-localsettings": "Спампаваць <code>LocalSettings.php</code>",
 	"config-help": "даведка",
 	"mainpagetext": "<strong>MediaWiki паспяхова ўсталяваная.</strong>",
 	"mainpagedocfooter": "Гл. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Дапаможнік карыстальніка (англ.)] для атрымання інфармацыі аб карыстанні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Пералік параметраў канфігурацыі (англ.)]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧАПЫ MediaWiki (англ.)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Ліставанне аб выпусках MediaWiki (англ.)]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на Вашу мову]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца са спамам у Вашай вікі]"

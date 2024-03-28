@@ -966,7 +966,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @return string
 	 */
 	protected function htaccessPrivate() {
-		return "Deny from all\n";
+		return "Require all denied\n";
 	}
 
 	/**

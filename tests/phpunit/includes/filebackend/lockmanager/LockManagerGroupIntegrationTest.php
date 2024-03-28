@@ -1,8 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Most of the file is covered by the unit test and/or FileBackendTest. Here we fill in the missing
@@ -48,23 +46,5 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 				->getLockManagerGroup( null )
 				->config( 'a' )['domain']
 		);
-	}
-
-	public function testGetDBLockManager() {
-		$this->markTestSkipped( 'DBLockManager case in LockManagerGroup::get appears to be ' .
-			'broken, tries to instantiate an abstract class' );
-
-		$mockLB = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnectionRef' ] );
-		$mockLB->expects( $this->once() )->method( 'getConnectionRef' )
-			->with( DB_PRIMARY, [], 'domain', $mockLB::CONN_TRX_AUTOCOMMIT )
-			->willReturn( 'bogus value' );
-
-		$mockLBFactory = $this->createNoOpMock( LBFactory::class, [ 'getMainLB' ] );
-		$mockLBFactory->expects( $this->once() )->method( 'getMainLB' )->with( 'domain' )
-			->willReturn( $mockLB );
-
-		$lmg = new LockManagerGroup( 'domain',
-			[ [ 'name' => 'a', 'class' => DBLockManager::class ] ], $mockLBFactory );
-		$this->assertSame( [], $lmg->get( 'a' ) );
 	}
 }

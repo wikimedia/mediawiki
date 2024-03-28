@@ -1776,7 +1776,7 @@
 	"backend-fail-delete": "Impossibil scancelà el fail \"$1\".",
 	"backend-fail-describe": "A l'è impossibil cambià i metadati per el fail \"$1\".",
 	"backend-fail-alreadyexists": "El fail $1 l'esist sgiamò.",
-	"backend-fail-store": "Impossibil memorizzà i fail $1  in  $2 .",
+	"backend-fail-store": "Impossibil memorizzà i fail $1 in $2 .",
 	"backend-fail-copy": "Impossibil copià el fail \"$1\" in \"$2\".",
 	"backend-fail-move": "Impossibil trasformà el fail \"$1\" in \"$2\" .",
 	"backend-fail-opentemp": "Impossibil dervì el fail provisori.",

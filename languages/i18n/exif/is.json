@@ -7,7 +7,8 @@
 			"S.Örvarr.S",
 			"Snævar",
 			"Steinninn",
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"exif-imagewidth": "Breidd",
@@ -167,7 +168,7 @@
 	"exif-datetimemetadata": "Lýsigögnum síðast breytt",
 	"exif-nickname": "Látlaust nafn myndar",
 	"exif-rating": "Einkunn (af 5 mögulegum)",
-	"exif-rightscertificate": "Skilríki fyrir réttindastýringu",
+	"exif-rightscertificate": "Réttindastjórnunarskírteini",
 	"exif-copyrighted": "Staða höfundaréttar",
 	"exif-copyrightowner": "Eigandi höfundaréttar",
 	"exif-usageterms": "Notkunarskilmálar",
@@ -365,7 +366,7 @@
 	"exif-dc-date": "Dagsetning(ar)",
 	"exif-dc-publisher": "Útgefandi",
 	"exif-dc-relation": "Tengd margmiðlunargögn",
-	"exif-dc-rights": "Réttindi",
+	"exif-dc-rights": "Réttur",
 	"exif-dc-source": "Uppruni margmiðlunarskrár",
 	"exif-dc-type": "Gerð miðlunarefnis",
 	"exif-rating-rejected": "Hafnað",

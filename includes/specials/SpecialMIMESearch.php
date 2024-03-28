@@ -24,6 +24,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -185,9 +186,10 @@ class SpecialMIMESearch extends QueryPage {
 		$this->mime = $par ?: $this->getRequest()->getText( 'mime' );
 		$this->mime = trim( $this->mime );
 		list( $this->major, $this->minor ) = File::splitMime( $this->mime );
+		$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();
 
 		if ( $this->major == '' || $this->minor == '' || $this->minor == 'unknown' ||
-			!self::isValidType( $this->major )
+			!$mimeAnalyzer->isValidMajorMimeType( $this->major )
 		) {
 			$this->setHeaders();
 			$this->outputHeader();
@@ -228,28 +230,6 @@ class SpecialMIMESearch extends QueryPage {
 		$time = htmlspecialchars( $time );
 
 		return "$download $plink . . $dimensions . . $bytes . . $user . . $time";
-	}
-
-	/**
-	 * @param string $type
-	 * @return bool
-	 */
-	protected static function isValidType( $type ) {
-		// From maintenance/tables.sql => img_major_mime
-		$types = [
-			'unknown',
-			'application',
-			'audio',
-			'image',
-			'text',
-			'video',
-			'message',
-			'model',
-			'multipart',
-			'chemical'
-		];
-
-		return in_array( $type, $types );
 	}
 
 	public function preprocessResults( $db, $res ) {

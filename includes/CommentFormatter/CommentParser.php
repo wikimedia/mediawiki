@@ -61,6 +61,8 @@ class CommentParser {
 
 	/** @var int The maximum number of digits in a marker ID */
 	private const MAX_ID_SIZE = 7;
+	/** @var string Prefix for marker. ' and " included to break attributes (T355538) */
+	private const MARKER_PREFIX = "\x1B\"'";
 
 	/**
 	 * @param LinkRenderer $linkRenderer
@@ -140,7 +142,7 @@ class CommentParser {
 	public function finalize( $comments ) {
 		$this->flushLinkBatches();
 		return preg_replace_callback(
-			'/\x1b([0-9]{' . self::MAX_ID_SIZE . '})/',
+			'/' . self::MARKER_PREFIX . '([0-9]{' . self::MAX_ID_SIZE . '})/',
 			function ( $m ) {
 				$callback = $this->links[(int)$m[1]] ?? null;
 				if ( $callback ) {
@@ -447,7 +449,7 @@ class CommentParser {
 			throw new \RuntimeException( 'Too many links in comment batch' );
 		}
 		$this->links[] = $callback;
-		return sprintf( "\x1b%0" . self::MAX_ID_SIZE . 'd', $nextId );
+		return sprintf( self::MARKER_PREFIX . "%0" . self::MAX_ID_SIZE . 'd', $nextId );
 	}
 
 	/**

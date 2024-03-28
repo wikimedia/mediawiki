@@ -38,6 +38,6 @@ class ComposerVendorHtaccessCreator {
 			return;
 		}
 
-		file_put_contents( $fname, "Deny from all\n" );
+		file_put_contents( $fname, "Require all denied\n" );
 	}
 }

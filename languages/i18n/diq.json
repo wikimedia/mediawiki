@@ -36,7 +36,8 @@
 			"Xoser",
 			"ديفيد",
 			"아라",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"GolyatGeri"
 		]
 	},
 	"tog-underline": "Bınê gıreyi de xete bance:",
@@ -991,7 +992,7 @@
 	"searchprofile-advanced-tooltip": "Cayê nameyanê xısusiyan de cı geyre",
 	"search-result-size": "$1 ({{PLURAL:$2|1 çekuye|$2 çekuyi}})",
 	"search-result-category-size": "{{PLURAL:$1|1 eza|$1 ezayi}} ({{PLURAL:$2|1 kategoriya bınêne|$2 kategoriyê bınêni}}, {{PLURAL:$3|1 dosya|$3 dosyeyi}})",
-	"search-redirect": "($1 ra kırışiyaya)",
+	"search-redirect": "($1 ra kırışiya)",
 	"search-section": "(leteyê $1)",
 	"search-category": "(kategoriye $1)",
 	"search-file-match": "(zerreyê dosya yewbini gêno)",
@@ -1772,7 +1773,7 @@
 	"backend-fail-notexists": "Dosyaya $1 çıniya.",
 	"backend-fail-hashes": "Şınasiya dosyaya gırotışê cı nêgêriya.",
 	"backend-fail-sizes": "Pêverkerdışi rê ebatê dosyay nêgêriyay.",
-	"backend-fail-notsame": "Zey $1 ju dosya xora  esta.",
+	"backend-fail-notsame": "Zey $1 ju dosya xora esta.",
 	"backend-fail-invalidpath": "$1 rayê da depo kerdışa raştay niya.",
 	"backend-fail-delete": "$1 nê besterneyê",
 	"backend-fail-describe": "Qande dosya da \"$1\" metadata nêvurêna.",
@@ -2882,7 +2883,7 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revizyon kewto|revizyoni kewtê}} zerre",
 	"import-logentry-interwiki-detail": "$2 pela $1 ra {{PLURAL:$1|revizyon kewto|revizyoni kewtê}} zerre",
 	"javascripttest": "Cerebnayışê JavaScripti",
-	"javascripttest-qunit-intro": "Mediawiki.org dı [dokumanê $1] bıvinê.",
+	"javascripttest-qunit-intro": "mediawiki.org de [dokumanê $1] bıvêne.",
 	"tooltip-pt-userpage": "Pela {{GENDER:|şımaya karberi}}",
 	"tooltip-pt-anonuserpage": "pelê karberê IPyi",
 	"tooltip-pt-mytalk": "Pela {{GENDER:|toya}} werênayışi",

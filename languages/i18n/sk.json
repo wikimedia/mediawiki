@@ -48,7 +48,9 @@
 			"Yardom78",
 			"Ата",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80",
+			"Jkjk"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -1767,14 +1769,14 @@
 	"backend-fail-closetemp": "Nebolo možné zatvoriť dočasný súbor.",
 	"backend-fail-read": "Nebolo možné prečítať súbor „$1“.",
 	"backend-fail-create": "Nebolo možné zapísať súbor $1.",
-	"backend-fail-maxsize": "Nie je možné zapísať súbor  $1  pretože je väčší ako  {{PLURAL:$2| jeden byte| $2  bajtov}}.",
+	"backend-fail-maxsize": "Nie je možné zapísať súbor $1 pretože je väčší ako {{PLURAL:$2| jeden byte| $2 bajtov}}.",
 	"backend-fail-readonly": "Úložisko „$1“ je momentálne v režime len na čítanie. Udaný dôvod: „<em>$2</em>“",
 	"backend-fail-synced": "Súbor „$1“ je v nekonzistentnom stave v rámci vnútorného úložiska",
 	"backend-fail-connect": "Nepodarilo sa pripojiť k úložisku „$1“.",
 	"backend-fail-internal": "Vyskytla sa neznáma chyba v úložisku „$1“.",
 	"backend-fail-contenttype": "Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.",
 	"backend-fail-batchsize": "Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.",
-	"backend-fail-usable": "Nie je možné čítať alebo zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.",
+	"backend-fail-usable": "Nie je možné čítať alebo zapísať súbor $1 kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.",
 	"backend-fail-stat": "Nepodarilo sa načítať stav súboru „$1“.",
 	"backend-fail-hash": "Nepodarilo sa určiť kryptografický haš súboru „$1“.",
 	"lockmanager-notlocked": "Nepodarilo sa odomknúť zámok „$1“; nie je zamknutý.",
