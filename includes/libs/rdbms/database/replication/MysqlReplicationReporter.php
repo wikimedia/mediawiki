@@ -316,7 +316,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 				] )
 			);
 		} elseif ( $status < 0 ) {
-			$this->logger->error(
+			$this->logger->info(
 				"Timed out waiting for replication to reach {wait_pos}",
 				$this->getLogContext( $conn, [
 					'raw_pos' => $pos,
@@ -324,7 +324,6 @@ class MysqlReplicationReporter extends ReplicationReporter {
 					'timeout' => $timeout,
 					'sql' => $query->getSQL(),
 					'seconds_waited' => $seconds,
-					'exception' => new RuntimeException()
 				] )
 			);
 		} elseif ( $status >= 0 ) {

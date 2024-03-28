@@ -568,19 +568,34 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		try {
 			$this->waitForPos = $pos;
 
-			$ok = true;
+			$failedReplicas = [];
 			foreach ( $this->serverInfo->getStreamingReplicaIndexes() as $i ) {
 				if ( $this->serverHasLoadInAnyGroup( $i ) ) {
 					$start = microtime( true );
-					$ok = $this->awaitSessionPrimaryPos( $i, $timeout ) && $ok;
-					$timeout -= intval( microtime( true ) - $start );
-					if ( $timeout <= 0 ) {
-						break; // timeout reached
+					$ok = $this->awaitSessionPrimaryPos( $i, $timeout );
+					if ( !$ok ) {
+						$failedReplicas[] = $this->getServerName( $i );
 					}
+					$timeout -= intval( microtime( true ) - $start );
 				}
 			}
 
-			return $ok;
+			// Stop spamming logs when only one replica is lagging and we have 5+ replicas.
+			// Mediawiki automatically stops sending queries to the lagged one.
+			$failed = $failedReplicas && ( count( $failedReplicas ) > 1 || $this->getServerCount() < 5 );
+			if ( $failed ) {
+				$this->logger->error(
+					"Timed out waiting for replication to reach {raw_pos}",
+					[
+						'raw_pos' => $pos->__toString(),
+						'failed_hosts' => $failedReplicas,
+						'timeout' => $timeout,
+						'exception' => new RuntimeException()
+					]
+				);
+			}
+
+			return !$failed;
 		} finally {
 			// Restore the old position; this is used for throttling, not lag-protection
 			$this->waitForPos = $oldPos;
