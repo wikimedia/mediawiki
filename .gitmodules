@@ -5,6 +5,8 @@
 [submodule "extensions"]
 	path = extensions
 	url = https://github.com/test-wiki/extensions
+	branch = master
 [submodule "skins"]
 	path = skins
 	url = https://github.com/test-wiki/skins
+	branch = master

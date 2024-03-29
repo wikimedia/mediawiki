@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Ella Lachow"
+			"Ella Lachow",
+			"Malaalaa"
 		]
 	},
 	"tog-underline": "Gattiyaagaa yafara:",
@@ -119,6 +120,7 @@
 	"noindex-category": "Kesuwaan xaafettibeenna sinttata",
 	"broken-file-category": "De'enna fayiletukko gattiyageetuura de'iya sinttata",
 	"about": "Aybatettaa",
+	"article": "Xuufe sintta",
 	"newwindow": "(ooratta maskootiyaan dooyettees)",
 	"cancel": "Qucca",
 	"moredotdotdot": "Aaruwassi...",
@@ -148,6 +150,7 @@
 	"history_small": "haydaa",
 	"updatedmarker": "Ne wurssetta xomoosuwaappe simmin ooraxxiis",
 	"printableversion": "Attamettiya birshshettata",
+	"printableversion-deprecated-warning": "Attamettiya birshshettay kaafettibeennanne balaa bessees. Hayyanintta kasetidi inttena bessiyaga oraxissite woykko bessiyaga attamiyo haggaazaa go'ettite.",
 	"permalink": "Eqqi de'iya gattiyaagaa",
 	"print": "Attama",
 	"view": "Be'a",
@@ -458,6 +461,9 @@
 	"botpasswords-bad-appid": "Bootiyaa sunttay \"$1\" likke gidenna.",
 	"botpasswords-toolong-restrictions": "Daro Ip qatoy gelis.",
 	"botpasswords-toolong-grants": "Daro kaafeti doorettidosona.",
+	"botpasswords-created-title": "Boottiyassi pino qaalay merettiis",
+	"botpasswords-updated-title": "Bootiya pino qaalay ooraxxiis",
+	"botpasswords-deleted-title": "Bootiya pino qaalay qucettiis",
 	"resetpass-submit-cancel": "Qucca",
 	"passwordreset": "Geliyo qaalaa laamma",
 	"passwordreset-username": "Yaraa sunttaa:",

@@ -313,4 +313,16 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		// Passing an unknown MIME type
 		$this->assertNull( $analyzer->isMatchingExtension( 'application/x-custom', 'jpg' ) );
 	}
+
+	public function testIsValidMajorMimeTypeTrue() {
+		$analyzer = $this->createMimeAnalyzer();
+
+		$this->assertTrue( $analyzer->isValidMajorMimeType( 'image' ) );
+	}
+
+	public function testIsValidMajorMimeTypeFalse() {
+		$analyzer = $this->createMimeAnalyzer();
+
+		$this->assertFalse( $analyzer->isValidMajorMimeType( 'font' ) );
+	}
 }

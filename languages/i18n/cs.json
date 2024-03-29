@@ -1273,7 +1273,7 @@
 	"userrights-expiry": "Čas vypršení:",
 	"userrights-expiry-existing": "Současný čas vypršení: $2, $3",
 	"userrights-expiry-othertime": "Jiný čas:",
-	"userrights-expiry-options": "1 den:1 day,1 týden:1 week,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 rok",
+	"userrights-expiry-options": "1 den:1 day,1 týden:1 week,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year",
 	"userrights-invalid-expiry": "Čas vypršení pro skupinu „$1“ je neplatný.",
 	"userrights-expiry-in-past": "Čas vypršení pro skupinu „$1“ je v minulosti.",
 	"userrights-cannot-shorten-expiry": "Čas do vypršení členství ve skupině „$1“ nemůžete zkrátit. To mohou provést pouze uživatelé oprávnění k jejímu přiřazení nebo odstranění.",

@@ -5,12 +5,69 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
-== MediaWiki 1.41.1 ==
+== MediaWiki 1.41.2 ==
 
 THIS IS NOT A RELEASE YET
 
+=== Changes since MediaWiki 1.41.1 ===
+* Localisation updates.
+
+== MediaWiki 1.41.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.41 branch.
+
 === Changes since MediaWiki 1.41.0 ===
 * Localisation updates.
+* CategoryViewer: Fix "count(): Argument #1 ($value) must be of type
+  Countable|array, null given".
+* (T353929) ActiveUsersPager: Count actions only once.
+* composer: Use @php instead of php.
+* (T334992) Headings in the license pickers should not be selected.
+* (T326065) Indent JsonContent using tabs.
+* Correct deprecation version of mediawiki.ui resource loader module.
+* Resources.php: Replace short urls with full urls.
+* (T354541) authmanager: Improve AuthenticationRequest docs.
+* Tweak docs for UseLegacyMediaStyles.
+* (T353870) Parse custom edit intro as content to enable language conversion.
+* (T330428) ForeignResourceManager: Add trailing newline in validateLicense.
+* ForeignResourceManager: Make it clearer what is being skipped for
+  documentation-only.
+* (T355017) Add missing space in Special:RecentChangesLinked.
+* (T355003) composer.json Add ext-bcmath and ext-gmp to suggests.
+* PHPVersionCheck: Update text to match currently supported upstream PHP
+  versions (8.1+).
+* (T354045) API: mark HTML output as non-cacheable.
+* (T355530) filerepo: Fix img_major_mime for files with a non-standard
+  extensions.
+* (T355530) MimeAnalyzer: Add @since to isValidMajorMimeType.
+* (T352554) ZhConverter: Fix language variant fallback chain.
+* (T347541) Add 'maxlength' and 'minlength' support to HTMLTextAreaField.
+* (T357668) Parser::getExternalLinkAttribs: Don't set rel attribute to null.
+* LockManagerGroupIntegrationTest: Remove test depending on DBLockManager.
+* (T357808) LinkRendererTest: Add missing import for LinkTarget.
+* (T353305) ApiResetPassword: Allow both user and email parameters to be passed
+  for reset.
+* (T358949) updateCollation: Explicitly cast $scale to int.
+* (T359055) api: Improve linking of language codes lists in top level i18n
+  messages.
+* (T359294) Make sure MovePage::isValidFileMove matches UploadBase::getTitle.
+* (T230245) Respect $maxConcurrency when queuing async FileOps.
+* (T352554) Follow-up "ZhConverter: Fix language variant fallback chain".
+* (T359139) Restore ability to disable footer links with "-".
+* Fix use of array keys in SessionManager::getVaryHeaders().
+* (T292237, T317451) build: Restore Doxygen output for MediaWiki release tags.
+* (T324903) HistoryPager: Add #[AllowDynamicProperties].
+* (T360850) Update Apache config syntax in .htaccess files.
+* Update wikimedia/parsoid to 0.18.2.
+* docs: Remove use of $IP from mwdocgen.php.
+* (T317451) build: Restore Doxygen output for MediaWiki release tags (take 3).
+* docs: Set stable permalink on markdown files.
+* (T360608) WebRequest: detectServer appends default ports that should be
+  omitted.
+* (T357019) allow maintenance/deleteBatch.php to accept page ID.
+* (T355538 CVE-2024-PENDING) XSS in edit summary parser.
+* (T357760, CVE-2024-PENDING) Denial of service vector via GET request to
+  Special:MovePage on pages with thousands of subpages.
 
 == MediaWiki 1.41.0 ==
 
@@ -1098,7 +1155,7 @@ because of Phabricator reports.
   Title or PageReference. To change the relevant title used for methods
   that do not offer an option to set the page, call Parser::setPage.
   This affects the methods cleanSig, getSection and replaceSection.
-* (T347726, CVE-2023-PENDING) SECURITY: logging: Fix non-escaped messages
+* (T347726, CVE-2023-51704) SECURITY: logging: Fix non-escaped messages
   used in rights log.
 
 == Compatibility ==

@@ -10,13 +10,14 @@
 			"Wikitanvir",
 			"আজিজ",
 			"আফতাবুজ্জামান",
-			"খাত্তাব হাসান"
+			"খাত্তাব হাসান",
+			"Aishik Rehman"
 		]
 	},
 	"config-desc": "মিডিয়াউইকির জন্য ইন্সটলকারী",
 	"config-title": "মিডিয়াউইকি $1 ইন্সটলকরণ",
 	"config-information": "তথ্য",
-	"config-localsettings-upgrade": "<code>LocalSettings.php</code> ফাইলটি মুছে ফেলা হয়েছে। এই ইন্সটলকরণ আরো উন্নত করতে দয়া করে <code>$wgUpgradeKey</code> কোডটি বাক্সে দিন। আপনি এটি <code>LocalSettings.php</code> -এ পাবেন।",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> ফাইলটি মুছে ফেলা হয়েছে। এই ইন্সটলকরণ আরও উন্নত করতে দয়া করে <code>$wgUpgradeKey</code> কোডটি বাক্সে দিন। আপনি এটি <code>LocalSettings.php</code> -এ পাবেন।",
 	"config-localsettings-cli-upgrade": "একটি <code>LocalSettings.php</code> ফাইল সনাক্ত করা হয়েছে।\nএই ইনস্টলেশন আপগ্রেড করতে, পরিবর্তে <code>update.php</code> চালান",
 	"config-localsettings-key": "হালনাগাদের চাবি:",
 	"config-localsettings-badkey": "আপনি হালনাগাদের যেই চাবিটি দিয়েছেন তা সঠিক নয়।",
@@ -52,7 +53,7 @@
 	"config-apc": "[https://www.php.net/apc এপিসি] ইনস্টল করা হয়েছে",
 	"config-apcu": "[https://www.php.net/apcu এপিসিu] ইনস্টল করা হয়েছে",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] ইনস্টল করা হয়েছে",
-	"config-diff3-bad": "GNU diff3 লেখা তুলনা করার কার্যকারিতা পাওয়া যায়নি। আপনি এখন এটিকে উপেক্ষা করতে পারেন, তবে এতে আপনি আরো ঘন ঘন সম্পাদনা সংঘাতের মধ্যে পড়তে পারেন।",
+	"config-diff3-bad": "GNU diff3 লেখা তুলনা করার কার্যকারিতা পাওয়া যায়নি। আপনি এখন এটিকে উপেক্ষা করতে পারেন, তবে এতে আপনি আরও ঘন ঘন সম্পাদনা সংঘাতের মধ্যে পড়তে পারেন।",
 	"config-git": "Git সংস্করণের নিয়ন্ত্রণ সফটওয়্যার পাওয়া গেছে: <code>$1</code>।",
 	"config-git-bad": "Git সংস্করণ নিয়ন্ত্রণের সফটওয়্যার পাওয়া যায়নি। টীকা Special:Version commit হ্যাশগুলি প্রদর্শন করবে না।",
 	"config-using-server": "ব্যবহার করা সার্ভারের নাম \"<nowiki>$1</nowiki>\"।",

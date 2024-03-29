@@ -2422,7 +2422,7 @@
 	"filedelete-current-unregistered": "Det datei „$1“ as ei diar uun a dootenbeenk.",
 	"filedelete-archive-read-only": "Det archiif-fertiaknis \"$1\" koon faan a webserver ei beskrewen wurd.",
 	"previousdiff": "← Leetst feranrang",
-	"nextdiff": "Naist wersioon →",
+	"nextdiff": "Naist wersion →",
 	"mediawarning": "'''Paase üüb:''' Son datei koon fülk programcode haa. Bi't deelloosin an eeben maagin koon dan reegner komer fu.",
 	"imagemaxsize": "Bil för dateibeskriiwangen mut ei grater wees üs:",
 	"thumbsize": "Grate faan sümnaielbilen:",

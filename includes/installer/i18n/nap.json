@@ -5,7 +5,8 @@
 			"Chelin",
 			"Fitoschido",
 			"Macofe",
-			"Ruthven"
+			"Ruthven",
+			"Reedy"
 		]
 	},
 	"config-desc": "'O prugramma d'istallazione 'e MediaWiki",
@@ -164,7 +165,7 @@
 	"config-subscribe-help": "Chest'è na mailing list a basso traffeco ca se dedicasse a se ffà annunzie 'e verziune nove, piglianno pure mpurtante nutarelle ca riguardassero 'a sicurezza.\nFosse cunzigliato 'e se nzegnà e s'agghiurnà l'installazione 'e MediaWiki quanno na verziona nova fosse pubbreca.",
 	"config-subscribe-noemail": "Vuje avite tentato 'e ve trasì dint' 'a mailing list addedecata a se fà annunzie ncopp' 'e verziune nove senza ve dà n'indirizzo email.\nNzertanno n'indirizzo email se vulite affettuà l'iscrizione dint'a mailing list.",
 	"config-pingback": "Sparte 'e date 'e st'installazione ch' 'e sviluppature 'e MediaWiki.",
-	"config-pingback-help": "Si vuje sciglite st'opzione, MediaWiki cuntattasse spisso https://www.mediawiki.org ch' 'e date 'e base e st'istanza MediaWiki. Dint' 'a sta categoria 'e date, tràseno, p'esempie, 'o tipo 'e sistema, 'a virziona 'e PHP e database 'e backend scigliuto. 'A Wikimedia Foundation spartisse sti date ch' 'e sviluppature Mediawiki p' 'a puté aiutà a guidà 'e fatiche 'e sviluppo future. P' 'o sistema d' 'o vuosto 'e date se mannan'accussì:\n<pre>$1</pre>",
+	"config-pingback-help": "Si vuje sciglite st'opzione, MediaWiki cuntattasse spisso https://www.mediawiki.org ch' 'e date 'e base e st'istanza MediaWiki. Dint' 'a sta categoria 'e date, tràseno, p'esempie, 'o tipo 'e sistema, 'a virziona 'e PHP e database 'e backend scigliuto. 'A Wikimedia Foundation spartisse sti date ch' 'e sviluppature MediaWiki p' 'a puté aiutà a guidà 'e fatiche 'e sviluppo future. P' 'o sistema d' 'o vuosto 'e date se mannan'accussì:\n<pre>$1</pre>",
 	"config-almost-done": "Avite quase fernuto!\nMo' putite zumpà 'a parta r' 'a configurazione e sempricemente installà 'a wiki.",
 	"config-optional-continue": "Spiate cchiù dimanne.",
 	"config-optional-skip": "Me so' scucciato già, installa surtanto 'o wiki.",
@@ -276,5 +277,5 @@
 	"config-extensions-requires": "$1 (vuless' 'o $2)",
 	"config-screenshot": "screenshot",
 	"mainpagetext": "<strong>MediaWiki è stato installato.</strong>",
-	"mainpagedocfooter": "Iate a cunzultà [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] pe' n'avé nfurmaziune ncopp' 'o modo aùso d' 'o software wiki.\n\n== P'accummincià ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Elenco 'e mpustaziune pe' sta configuraziona]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ 'e Mediawiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Elenco 'e nutizie 'e Mediawiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizzazzione 'e MediaWiki p' 'a lengua vuosta]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Mparate a cumbattere 'o spammo dint' 'a wiki d' 'a vosta]"
+	"mainpagedocfooter": "Iate a cunzultà [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] pe' n'avé nfurmaziune ncopp' 'o modo aùso d' 'o software wiki.\n\n== P'accummincià ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Elenco 'e mpustaziune pe' sta configuraziona]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ 'e MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Elenco 'e nutizie 'e MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizzazzione 'e MediaWiki p' 'a lengua vuosta]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Mparate a cumbattere 'o spammo dint' 'a wiki d' 'a vosta]"
 }

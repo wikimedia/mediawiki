@@ -1,4 +1,4 @@
-Language
+Language {#language}
 =======
 
 The Language object handles all readable text produced by the software.

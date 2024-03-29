@@ -1,4 +1,5 @@
-# Database Access
+Database Access {#database}
+=====
 
 *Some information about database access in MediaWiki. By Tim Starling, January 2006.*
 

@@ -243,7 +243,9 @@
 			"ديفيد",
 			"아라",
 			"Shyla summers",
-			"Hmonroy"
+			"Hmonroy",
+			"Iketsi",
+			"Eulalio"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1695,7 +1697,7 @@
 	"enhancedrc-history": "historial",
 	"recentchanges": "Cambios recientes",
 	"recentchanges-legend": "Opciones sobre cambios recientes",
-	"recentchanges-summary": "Sigue en esta página los cambios más recientes de la wiki.",
+	"recentchanges-summary": "Sigue en esta página los cambios más recientes de {{SITENAME}}.",
 	"recentchanges-noresult": "No hubo cambios que respondan a esos criterios durante el período seleccionado.",
 	"recentchanges-timeout": "Se agotó el tiempo de espera de esta búsqueda. Puede que quieras probar con otros parámetros de búsqueda.",
 	"recentchanges-network": "No se cargó ningún resultado debido a un problema técnico. Prueba a volver a cargar la página.",
@@ -2033,7 +2035,7 @@
 	"upload-form-label-not-own-work-local-generic-foreign": "Puede que también quieras usar [[Special:Upload|la página de subidas en {{SITENAME}}]], si se puede subir este archivo bajo sus políticas.",
 	"backend-fail-stream": "No se pudo transmitir el archivo «$1».",
 	"backend-fail-backup": "No se pudo hacer copia de seguridad del archivo «$1».",
-	"backend-fail-notexists": "El archivo  $1  no existe.",
+	"backend-fail-notexists": "El archivo $1 no existe.",
 	"backend-fail-hashes": "No se pudieron obtener los \"hashes\" de los archivos para compararlos.",
 	"backend-fail-sizes": "No se pudo obtener el tamaño de los archivos para compararlos.",
 	"backend-fail-notsame": "Ya existe un archivo distinto en \"$1\".",
@@ -3495,7 +3497,7 @@
 	"mcrundo-parse-failed": "Error al analizar la nueva revisión: $1",
 	"comma-separator": ",&#32;",
 	"ellipsis": "…",
-	"percent": "$1 %",
+	"percent": "$1&#160;%",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "No es un número",
 	"imgmultipageprev": "← página anterior",

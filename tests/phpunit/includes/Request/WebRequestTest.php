@@ -56,10 +56,25 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			[
 				'http://x',
 				[
+					'HTTP_HOST' => 'x:80',
+				],
+				'Host header with port'
+			],
+			[
+				'http://x',
+				[
 					'HTTP_HOST' => 'x',
 					'SERVER_PORT' => 80,
 				],
-				'Default SERVER_PORT',
+				'Default SERVER_PORT as int',
+			],
+			[
+				'http://x',
+				[
+					'HTTP_HOST' => 'x',
+					'SERVER_PORT' => '80',
+				],
+				'Default SERVER_PORT as string',
 			],
 			[
 				'http://x',

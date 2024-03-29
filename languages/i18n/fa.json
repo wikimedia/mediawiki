@@ -2101,7 +2101,7 @@
 	"statistics-edits-average": "متوسط ویرایش‌ها به ازای هر صفحه",
 	"statistics-users": "کاربران ثبت‌نام کرده",
 	"statistics-users-active": "کاربران فعال",
-	"statistics-users-active-desc": "کاربرانی که در {{PLURAL:$1|روز|$1 روز}} قبل فعالیتی انجام داده‌اند",
+	"statistics-users-active-desc": "کاربرانی که در {{PLURAL:$1|روز|$1 روز}} گذشته فعالیتی انجام داده‌اند",
 	"pageswithprop": "صفحه‌های دارای ویژگی صفحه",
 	"pageswithprop-legend": "صفحه‌های دارای یک ویژگی صفحه",
 	"pageswithprop-text": "این صفحه فهرست می‌کند صفحه‌هایی که یک ویژگی صفحه خاص را استفاده می‌کنند.",

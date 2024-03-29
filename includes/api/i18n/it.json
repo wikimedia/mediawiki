@@ -25,7 +25,8 @@
 			"Superpes15",
 			"Toadino2",
 			"Urielejh",
-			"Valepert"
+			"Valepert",
+			"Ontsed"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentazione]] (in inglese)\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & linee guida sull'utilizzo]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]] (in inglese)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Mailing list]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> l'API MediaWiki è un'interfaccia matura e stabile che è attivamente supportata e migliorata. Anche se cerchiamo di evitarlo, potremmo dover fare delle modifiche che causano malfunzionamenti; iscriviti alla [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mailing list sugli annunci delle API MediaWiki] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite alle API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e, sia il valore dell'intestazione, sia il codice d'errore, verranno impostati con lo stesso valore. Per maggiori informazioni leggi [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Errori ed avvertimenti]] (in inglese).\n\n<p class=\"mw-apisandbox-link\"><strong>Test:</strong> per testare facilmente le richieste API, vedi [[Special:ApiSandbox]].</p>",
@@ -428,6 +429,7 @@
 	"apihelp-query+filearchive-param-limit": "Quante immagini restituire in totale.",
 	"apihelp-query+filearchive-param-dir": "La direzione in cui elencare.",
 	"apihelp-query+filearchive-paramvalue-prop-mime": "Aggiunge MIME dell'immagine.",
+	"apihelp-query+filearchive-paramvalue-prop-metadata": "Elenca i metadati Exif per la versione dell'immagine.",
 	"apihelp-query+filearchive-paramvalue-prop-bitdepth": "Aggiunge la profondità di bit della versione.",
 	"apihelp-query+filearchive-example-simple": "Mostra un elenco di tutti i file cancellati.",
 	"apihelp-query+fileusage-summary": "Trova tutte le pagine che utilizzano il file specificato.",

@@ -91,6 +91,8 @@ class HTMLTextAreaField extends HTMLFormField {
 		}
 
 		$allowedParams = [
+			'maxlength',
+			'minlength',
 			'tabindex',
 			'disabled',
 			'readonly',
@@ -138,6 +140,8 @@ class HTMLTextAreaField extends HTMLFormField {
 		}
 
 		$allowedParams = [
+			'maxlength',
+			'minlength',
 			'tabindex',
 			'disabled',
 			'readonly',

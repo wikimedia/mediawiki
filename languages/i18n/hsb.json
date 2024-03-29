@@ -19,7 +19,8 @@
 			"Tlustulimu",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Reedy"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnyć:",
@@ -1588,7 +1589,7 @@
 	"backend-fail-internal": "W składowanskim backendźe \"$1\" je njeznaty zmylk wustupił.",
 	"backend-fail-contenttype": "Wobsahowy typ dataje, kotraž ma so na \"$1\" składować, njeda so zwěsćić.",
 	"backend-fail-batchsize": "Staplowa dataja, kotraž {{PLURAL:$1|jednu operaciju|$1 operaciji|$1 operacije|$1 operacijow}} wobsahuje, je so na składowanski backend pósłała; limit je $2 {{PLURAL:$2|operaciju|operaciji|operacije|operacijow}} .",
-	"backend-fail-usable": "Dataja \"$1\" njeda so njedosahacych prawow  abo falowacych zapisow dla ani čitać ani pisać.",
+	"backend-fail-usable": "Dataja \"$1\" njeda so njedosahacych prawow abo falowacych zapisow dla ani čitać ani pisać.",
 	"lockmanager-notlocked": "\"$1\" njeda so wotewrić; njeje zawrjeny.",
 	"lockmanager-fail-closelock": "Zawrjenska dataja njeda so za \"$1\" začinić.",
 	"lockmanager-fail-deletelock": "Zawrjenska dataja njeda so za \"$1\" zhašeć.",
@@ -1852,7 +1853,7 @@
 	"apihelp": "API-pomoc",
 	"apihelp-no-such-module": "Modul \"$1\" njeje so namakał.",
 	"apisandbox": "API-hrajkanišćo",
-	"apisandbox-intro": "Wužij tutu stronu, zo by z '''websłužbu Mediawiki API''' eksperimentował.\nHlej [https://www.mediawiki.org/wiki/API:Main_page API-dokumentaciju] za dalše podrobnosće za wužiwanje API. Přikład: [https://www.mediawiki.org/wiki/API#A_simple_example Wobsah hłowneje strony wotwołać]. Wubjer akciju, zo by dalše přikłady widźał.\n\nDźiwaj na to, zo, hačrunjež to je hrajkanišćo, akcije, kotrež na tutej stronje přewjedźeš, móhli wiki změnić.",
+	"apisandbox-intro": "Wužij tutu stronu, zo by z '''websłužbu MediaWiki API''' eksperimentował.\nHlej [https://www.mediawiki.org/wiki/API:Main_page API-dokumentaciju] za dalše podrobnosće za wužiwanje API. Přikład: [https://www.mediawiki.org/wiki/API#A_simple_example Wobsah hłowneje strony wotwołać]. Wubjer akciju, zo by dalše přikłady widźał.\n\nDźiwaj na to, zo, hačrunjež to je hrajkanišćo, akcije, kotrež na tutej stronje přewjedźeš, móhli wiki změnić.",
 	"apisandbox-submit": "Naprašowanje přewjesć",
 	"apisandbox-reset": "Wuprózdnić",
 	"apisandbox-examples": "Přikłady",
