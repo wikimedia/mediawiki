@@ -24,6 +24,8 @@
 namespace MediaWiki\HTMLForm;
 
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLSubmitField;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Parser\Sanitizer;
 
 /**
@@ -145,6 +147,112 @@ class CodexHTMLForm extends HTMLForm {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Get the submit and cancel buttons.
+	 * @stable to override
+	 * @return string HTML.
+	 */
+	public function getButtons() {
+		$buttons = [];
+		$buttonInfo = [];
+		$value = $this->getSubmitText();
+
+		if ( $this->mShowSubmit ) {
+			$buttonInfo = [
+				'flags' => $this->mSubmitFlags,
+				'buttonlabel' => $this->getSubmitText(),
+				'parent' => $this,
+			];
+
+			if ( isset( $this->mSubmitID ) ) {
+				$buttonInfo['id'] = $this->mSubmitID;
+			} else {
+				$buttonInfo['id'] = '';
+			}
+
+			if ( isset( $this->mSubmitName ) ) {
+				$buttonInfo['name'] = $this->mSubmitName;
+			} else {
+				$buttonInfo['name'] = '';
+			}
+
+			if ( isset( $this->mSubmitTooltip ) ) {
+				$buttonInfo += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
+			}
+
+			$buttonField = new HTMLSubmitField( $buttonInfo );
+			$buttons[] = $buttonField->getInputCodex( $value, false );
+		}
+
+		// The reset button is unused and will be removed from HTMLForm (T361032).
+
+		if ( $this->mShowCancel ) {
+			$target = $this->getCancelTargetURL();
+			$buttonClasses = [
+				'cdx-button',
+				'cdx-button--fake-button',
+				'cdx-button--fake-button--enabled',
+			];
+			$attr = [
+				'href' => $target,
+				'class' => $buttonClasses,
+				'role' => 'button',
+			];
+			$cancelButton = Html::element(
+				'a', $attr, $this->msg( 'cancel' )->text()
+			);
+			$buttons[] = $cancelButton;
+		}
+
+		foreach ( $this->mButtons as $button ) {
+			$attrs = [
+				'type' => 'submit',
+				'name' => $button['name'],
+				'value' => $button['value']
+			];
+
+			if ( isset( $button['label-message'] ) ) {
+				$label = $this->getMessage( $button['label-message'] )->parse();
+			} elseif ( isset( $button['label'] ) ) {
+				$label = htmlspecialchars( $button['label'] );
+			} elseif ( isset( $button['label-raw'] ) ) {
+				$label = $button['label-raw'];
+			} else {
+				$label = htmlspecialchars( $button['value'] );
+			}
+
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in self::addButton
+			if ( $button['attribs'] ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in self::addButton
+				$attrs += $button['attribs'];
+			}
+
+			if ( isset( $button['id'] ) ) {
+				$attrs['id'] = $button['id'];
+			}
+
+			if ( isset( $attrs['class'] ) ) {
+				// Ensure $attrs['class'] is always treated as an array whether it's initially set
+				// as an array or a string.
+				$attrs['class'] = (array)( $attrs['class'] ?? [] );
+			}
+
+			$attrs['class'][] = 'cdx-button';
+
+			$buttons[] = Html::rawElement( 'button', $attrs, $label ) . "\n";
+		}
+
+		if ( !$buttons ) {
+			return '';
+		}
+
+		return Html::rawElement(
+			'span',
+			[ 'class' => 'mw-htmlform-submit-buttons' ],
+			implode( "\n", $buttons )
+		) . "\n";
 	}
 }
 
