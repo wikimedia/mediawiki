@@ -288,7 +288,7 @@ class WebRequest {
 				$port = $stdPort;
 			} elseif ( $parts[1] === false ) {
 				if ( isset( $_SERVER['SERVER_PORT'] ) ) {
-					$port = $_SERVER['SERVER_PORT'];
+					$port = intval( $_SERVER['SERVER_PORT'] );
 				} // else leave it as $stdPort
 			} else {
 				$port = $parts[1];

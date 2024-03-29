@@ -25,7 +25,8 @@
 			"Tlustulimu",
 			"Tlustulimu Nepl1",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Reedy"
 		]
 	},
 	"tog-underline": "Wótkaze pódšmarnuś:",
@@ -1239,12 +1240,12 @@
 	"backend-fail-create": "Dataja $1 njedajo se pisaś.",
 	"backend-fail-maxsize": "Dataja $1 njedajo se pisaś, dokulaž jo wětša ako {{PLURAL:$2|jaden bajt|$2 bajta|$2 bajty|$2 bajtow}}.",
 	"backend-fail-readonly": "Składowański backend \"$1\" dajo se tuchylu jano cytaś. Pśicyna jo była: \"$2\"",
-	"backend-fail-synced": "Dataja \"$1\" jo  w internem składowańskem backenźe w inkonsistentnem stawje",
+	"backend-fail-synced": "Dataja \"$1\" jo w internem składowańskem backenźe w inkonsistentnem stawje",
 	"backend-fail-connect": "Zwisk z datajowym składowańskem backendom \"$1\" njejo móžno.",
 	"backend-fail-internal": "W składowańskem backenźe \"$1\" jo njeznata zmólka nastała.",
 	"backend-fail-contenttype": "Wopśimjeśowy typ dataje, kótaraž ma se na \"$1\" składowaś, njedajo se zwěsćiś.",
 	"backend-fail-batchsize": "Štapjelowa dataja, kótaraž wopśimujo {{PLURAL:$1|jadnu operaciju|$1 operaciji|$1 operacije|$1 operacijow}}, jo se na składowański backend pósłała; limit jo $2 {{PLURAL:$1|operaciju|operaciji|operacije|operacijow}}.",
-	"backend-fail-usable": "Dataja \"$1\" njedajo se dla njedosegajucych  pšawow abo felujucych zapisow daniž cytaś daniž pisaś.",
+	"backend-fail-usable": "Dataja \"$1\" njedajo se dla njedosegajucych pšawow abo felujucych zapisow daniž cytaś daniž pisaś.",
 	"lockmanager-notlocked": "\"$1\" njedajo se wótwóriś; njejo zastajony.",
 	"lockmanager-fail-closelock": "Zastajańska dataja njedajo se za \"$1\" zacyniś.",
 	"lockmanager-fail-deletelock": "Zastajańska dataja njedajo se za \"$1\" wulašowaś.",
@@ -1499,7 +1500,7 @@
 	"suppress": "Doglědowanje",
 	"querypage-disabled": "Toś ten specialny bok jo z wugbaśowych pśicynow znjemóžnjony.",
 	"apisandbox": "API-grajkanišćo",
-	"apisandbox-intro": "Wužyj toś ten bok, aby z '''websłužbu Mediawiki API''' eksperimentěrował.\nGlědaj [https://www.mediawiki.org/wiki/API:Main_page API-dokumentaciju] za dalšne drobnostki za wužywanje API. Pśikład: [https://www.mediawiki.org/wiki/API#A_simple_example Wopśimjeśe głownego boka wótwołaś]. Wubjeŕ akciju, aby dalšne pśikłady wiźeł.\n\nŹiwaj na to, až, lěcrownož to jo grajkanišćo, akcije, kótarež pśewjedujoš na toś tom boku, by mógli wiki změniś.",
+	"apisandbox-intro": "Wužyj toś ten bok, aby z '''websłužbu MediaWiki API''' eksperimentěrował.\nGlědaj [https://www.mediawiki.org/wiki/API:Main_page API-dokumentaciju] za dalšne drobnostki za wužywanje API. Pśikład: [https://www.mediawiki.org/wiki/API#A_simple_example Wopśimjeśe głownego boka wótwołaś]. Wubjeŕ akciju, aby dalšne pśikłady wiźeł.\n\nŹiwaj na to, až, lěcrownož to jo grajkanišćo, akcije, kótarež pśewjedujoš na toś tom boku, by mógli wiki změniś.",
 	"apisandbox-submit": "Napšašowanje pśewjasć",
 	"apisandbox-reset": "Wuprozniś",
 	"apisandbox-examples": "Pśikład",

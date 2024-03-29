@@ -12,7 +12,8 @@
 			"Peteris",
 			"Tīgelika",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Reedy"
 		]
 	},
 	"tog-underline": "Autengīnsenin paglaubasnā:",
@@ -206,7 +207,7 @@
 	"badaccess": "Preiwērpsenes blānda",
 	"badaccess-group0": "Ni assei enwarīntan kāi izpilninlai šin dīlasenin.",
 	"badaccess-groups": "Šisses dīlasenes izpilninsnā ast arāikintan prei tērpautajans en {{PLURAL:$2|ainassei iz gruppins|gruppei|ainassei iz gruppins}}: $1.",
-	"versionrequired": "Izkīninta Mediawikis $1 wersiōni: $1.",
+	"versionrequired": "Izkīninta MediaWikis $1 wersiōni: $1.",
 	"versionrequiredtext": "Mediawīkis $1 wersiōni ast izkīnintan, kāi tērpaulai šin pāusan. Wīdais [[Special:Version|wersiōni]]",
 	"ok": "Labbai",
 	"retrievedfrom": "Aps: \"$1\"",

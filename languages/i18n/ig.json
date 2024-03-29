@@ -26,7 +26,11 @@
 			"Ukabia",
 			"Uzoma Ozurumba",
 			"Weather Top Wizard",
-			"아라"
+			"아라",
+			"Excel mimi",
+			"Johnson milia55",
+			"Ngostary2k",
+			"PreshBliss"
 		]
 	},
 	"tog-underline": "Ahịrịàlà òjikọ:",
@@ -409,6 +413,9 @@
 	"createacct-email-ph": "Denye adreesị ozi ịntanetị gi",
 	"createaccountmail": "Jiri okwungafe enweghị nke nwa oge wee ziga ya na adreesị ozi-e akọwapụtara",
 	"createacct-submit": "Mehe ebe ọrụ",
+	"createacct-another-submit": "Nyefee bọtịnụ ọpụrụiche nke:CreateAccount mgbe onye ọrụ debanyere aha nwetara ya.\n\nNke mbụ pụtara \"mepee akaụntụ na mgbakwunye nke ị nwere\"; ọtụtụ oge, na-abụghị mgbe niile, ọ pụtara na ị ga-eme \"Emepe akaụntụ n'aha onye ọzọ\" ma ọ bụ \"Mepee akaụntụ maka onye ọzọ\"",
+	"createacct-continue-submit": "Nyefee bọtịnụ nke imepụta akaụntụ na nkeji ozugbo ma emecha bido nzọụkwụ nke imepụta akaụntụ n'ụzọ gbara mkpị",
+	"createacct-another-continue-submit": "mgbe e debanyechara aha onye ọrụ.",
 	"createacct-benefit-heading": "{{SITENAME}} sì nà aka ndị dị kà gị.",
 	"createacct-benefit-body1": "{{PLURAL:$1|ḿmezi}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|ihuakwụkwọ|ihuakwụkwọ ndi ọzọ}}",

@@ -33,7 +33,9 @@
 			"Z423x5c6",
 			"和平至上",
 			"捍粵者",
-			"星海"
+			"星海",
+			"Cookai1205",
+			"H78c67c"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -164,7 +166,7 @@
 	"userlogin-loggedin": "您目前的用戶帳號為{{GENDER:$1|$1}}。請使用下列表單登錄另一用戶帳號。",
 	"wrongpassword": "您輸入的用戶名或密碼有錯誤，請再試一次。",
 	"pt-login": "登入",
-	"pt-createaccount": "建立賬號",
+	"pt-createaccount": "建立帳號",
 	"botpasswords": "機械人密碼",
 	"botpasswords-summary": "<em>機械人密碼</em>可在不使用帳號的主要登入密碼情況下，允許透過API存取用戶帳號。使用機械人密碼登入的用戶權限或會有所限制。\n\n若你並非必須設定此密碼，你便不應使用此功能。任何人都不會索取你的機械人密碼。",
 	"botpasswords-disabled": "機械人密碼已停用。",
@@ -271,6 +273,7 @@
 	"rc-change-size-new": "變更後為$1{{PLURAL:$1|}}",
 	"recentchangeslinked-toolbox": "相關變更",
 	"upload": "上載檔案",
+	"uploadbtn": "上載檔案",
 	"listfiles_user": "用戶",
 	"filehist": "檔案歷史",
 	"filehist-datetime": "日期/時間",

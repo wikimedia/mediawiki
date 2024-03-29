@@ -1,3 +1,6 @@
+LinkCache {#linkcache}
+========
+
 The LinkCache class maintains a list of article titles and the information about
 whether or not the article exists in the database. This is used to mark up links
 when displaying a page. If the same link appears more than once on any page,
@@ -11,7 +14,7 @@ purposes of updating the link tables. This application is now deprecated.
 
 To create a batch, you can use the following code:
 
-~~~{.php}
+```php
 $pages = [ 'Main Page', 'Project:Help', /* ... */ ];
 $titles = [];
 
@@ -22,4 +25,4 @@ foreach( $pages as $page ){
 $linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 $batch = $linkBatchFactory->newLinkBatch( $titles );
 $batch->execute();
-~~~
+```

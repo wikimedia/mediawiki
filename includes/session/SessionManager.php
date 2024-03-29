@@ -387,6 +387,9 @@ class SessionManager implements SessionManagerInterface {
 		}
 	}
 
+	/**
+	 * @return array<string,null>
+	 */
 	public function getVaryHeaders() {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
@@ -396,9 +399,7 @@ class SessionManager implements SessionManagerInterface {
 		if ( $this->varyHeaders === null ) {
 			$headers = [];
 			foreach ( $this->getProviders() as $provider ) {
-				foreach ( $provider->getVaryHeaders() as $header => $options ) {
-					# Note that the $options value returned has been deprecated
-					# and is ignored.
+				foreach ( $provider->getVaryHeaders() as $header => $_ ) {
 					$headers[$header] = null;
 				}
 			}

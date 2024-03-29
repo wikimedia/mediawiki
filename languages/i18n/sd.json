@@ -13,7 +13,8 @@
 			"Mehtab ahmed",
 			"Sindhu",
 			"Tweety",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ڳنڍڻي هيٺان لڪير:",
@@ -754,6 +755,7 @@
 	"diff-multi-otherusers": "({{PLURAL:$2|ھڪ ٻي واپرائيندڙ|$2 واپرائيندڙن}} پاران {{PLURAL:$1|ھڪ وچيون ورجاءُ|$1 وچيان ورجاءَ}} نہ ڏيکاريل)",
 	"diff-inline-tooltip-ins": "شامل ڪيل مواد",
 	"diff-inline-tooltip-del": "ڊاٿل مواد",
+	"diff-inline-format-label": "سِٽَ وار",
 	"diff-table-format-label": "ٽيبل",
 	"diff-line-deleted": "ڊاهيو",
 	"diff-newline": "نئین لائن",
@@ -894,7 +896,7 @@
 	"yourlanguage": "ٻولي:",
 	"yournick": "نئون دستخط",
 	"prefs-help-signature": "بحث صفحن تي رايا هن \"<nowiki>~~~~</nowiki>\" ذريعي دستخط ڪرڻ گهرجن، جيڪي پاڻمرادو توهان جي دستخط ۽ وقت-ٺپي ۾ مٽجي ويندا.",
-	"badsiglength": "اهو دستخط هيڪاندو ڊگهو آهي.\nاھو وڌ۾وڌ $1 {{PLURAL:$1|حرف|حرفن}} تي ٻڌل ھئڻ  گهرجي.",
+	"badsiglength": "اهو دستخط هيڪاندو ڊگهو آهي.\nاھو وڌ۾وڌ $1 {{PLURAL:$1|حرف|حرفن}} تي ٻڌل ھئڻ گهرجي.",
 	"linterror-bogus-image-options": "بوگس فائيل چارو",
 	"linterror-deletable-table-tag": "اھا ٽيبل جيڪا ڊاھي ڇڏڻ گهرجي",
 	"linterror-missing-end-tag": "کٽل اختتام ٽيگ",
@@ -1786,6 +1788,8 @@
 	"contribute": "ڀاڱيداري ڪريو",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) لاءِ",
 	"contributions-subtitle": "{{GENDER:$2|$1}} لاءِ",
+	"contributions-edit-count": "$2 {{PLURAL:$2|سنوار|سنوارن}} رکندڙ {{GENDER:$1|واپرائيندڙ}}.",
+	"contributions-account-creation-date": "کاتو $1ع تي کوليو ويو.",
 	"contributions-userdoesnotexist": "واپرائيندڙ کاتو \"$1\" درج ٿيل نہ آهي.",
 	"nocontribs": "هن معيار سان ملندڙ ڪي بہ تبديليون نہ لڌيون ويون.",
 	"uctop": "موجود نسخو",
@@ -2168,6 +2172,7 @@
 	"watchlistedit-normal-legend": "نظر۾فھرست مان عنوان ھٽايو",
 	"watchlistedit-normal-explain": "توھان جي نظر۾فھرست ۾ موجود عنوان ھيٺ ڏيکاريو آھن. ڪنھن عنوان کي ھٽائڻ لاءِ، ان جي ڀرسان واري خاني تي نشان لڳايو، ۽ پوءِ \"{{int:Watchlistedit-normal-submit}}\" تي ڪلڪ ڪريو. توھان [[Special:EditWatchlist/raw|ڪچي فھرست کي پڻ سنواري]] سگهو ٿا.",
 	"watchlistedit-normal-submit": "عنوان ھٽايو",
+	"watchlistedit-normal-check-all": "سڀني کي نشان لڳايو",
 	"watchlistedit-normal-done": "توھان جي نظر۾فھرست مان{{PLURAL:$1|ھڪ صفحو ھٽايو ويو|$1 صفحا مٽايا ويا}}:",
 	"watchlistedit-raw-title": "ڪچي نظر۾فھرست سنواريو",
 	"watchlistedit-raw-legend": "ڪچي نظر۾فھرست سنواريو",

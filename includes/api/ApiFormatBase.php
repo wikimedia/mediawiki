@@ -203,6 +203,11 @@ abstract class ApiFormatBase extends ApiBase {
 			return;
 		}
 
+		if ( $this->getIsHtml() && $this->getMain()->getCacheMode() === 'public' ) {
+			// The HTML may contain user secrets! T354045
+			$this->getMain()->setCacheMode( 'anon-public-user-private' );
+		}
+
 		$mime = $this->getIsWrappedHtml()
 			? 'text/mediawiki-api-prettyprint-wrapped'
 			: ( $this->getIsHtml() ? 'text/html' : $this->getMimeType() );

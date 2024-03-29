@@ -5,7 +5,8 @@
 			"Moon0319",
 			"Winston Sung",
 			"Z423x5c6",
-			"捍粵者"
+			"捍粵者",
+			"H78c67c"
 		]
 	},
 	"config-desc": "MediaWiki安裝程式",
@@ -33,11 +34,11 @@
 	"config-page-existingwiki": "現有wiki",
 	"config-restart": "係，重新開始",
 	"config-env-php": "安裝咗PHP$1",
-	"config-outdated-sqlite": "<strong>警告：</strong>你安裝咗SQLite $1，但係佢嘅版本低過最低要求版本 $2。你將會用毋到SQLite。",
+	"config-outdated-sqlite": "<strong>警告：</strong>你安裝咗SQLite $2，低過最低要求版本 $1。你將會用唔到SQLite。",
 	"config-apc": "[https://www.php.net/apc APC]安裝咗",
 	"config-apcu": "[https://www.php.net/apcu APCu]安裝咗",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache]安裝咗",
-	"config-diff3-bad": "搵毋到GNU diff3。",
+	"config-diff3-bad": "搵唔到文字對比工具 GNU diff3。你可以忽略住先，但你可能會更常遇到編輯衝突。",
 	"config-using-server": "用緊伺服器名\"<nowiki>$1</nowiki>\"。",
 	"config-using-uri": "用緊伺服器URL\"<nowiki>$1$2</nowiki>\"。",
 	"config-db-type": "資料庫類型：",

@@ -544,7 +544,9 @@ class CategoryViewer extends ContextSource {
 	protected function getImageSection() {
 		$name = $this->getOutput()->getUnprefixedDisplayTitle();
 		$r = '';
-		$rescnt = $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery );
+		$rescnt = $this->showGallery ?
+			$this->gallery->count() :
+			count( $this->imgsNoGallery ?? [] );
 		$dbcnt = $this->cat->getFileCount();
 		// This function should be called even if the result isn't used, it has side-effects
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );

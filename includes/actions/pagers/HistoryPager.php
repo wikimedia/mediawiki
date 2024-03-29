@@ -49,6 +49,7 @@ use Xml;
  * @ingroup Pager
  * @ingroup Actions
  */
+#[\AllowDynamicProperties]
 class HistoryPager extends ReverseChronologicalPager {
 
 	public $mGroupByDate = true;

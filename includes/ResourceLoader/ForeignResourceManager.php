@@ -163,7 +163,7 @@ class ForeignResourceManager {
 			$this->validateLicense( $moduleName, $info );
 
 			if ( $info['type'] === 'doc-only' ) {
-				$this->output( "... {$moduleName} is documentation-only, skipping\n" );
+				$this->output( "... {$moduleName} is documentation-only, skipping integrity checks.\n" );
 				continue;
 			}
 
@@ -490,7 +490,7 @@ class ForeignResourceManager {
 		if ( !$licenses->validate( $info['license'] ) ) {
 			$this->error(
 				"Module '$moduleName' has an invalid SPDX license identifier '{$info['license']}', "
-				. 'see <https://spdx.org/licenses/>'
+				. "see <https://spdx.org/licenses/>.\n"
 			);
 		}
 	}

@@ -66,7 +66,7 @@
 		"wikimedia/minify": "2.5.1",
 		"wikimedia/normalized-exception": "1.0.1",
 		"wikimedia/object-factory": "5.0.1",
-		"wikimedia/parsoid": "0.18.0",
+		"wikimedia/parsoid": "0.18.2",
 		"wikimedia/php-session-serializer": "2.0.1",
 		"wikimedia/purtle": "1.0.8",
 		"wikimedia/relpath": "3.0.0",
@@ -110,9 +110,11 @@
 	},
 	"suggest": {
 		"ext-apcu": "Faster web responses overall.",
+		"ext-bcmath": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-gmp are needed for scrambling Temporary Accounts.",
 		"ext-curl": "Faster HTTP services, e.g. when using InstantCommons, Swift, or Etcd.",
 		"ext-exif": "Enable processing of EXIF information in file uploads.",
 		"ext-gd": "Enable thumbnails for file uploads.",
+		"ext-gmp": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-bcmath are needed for scrambling Temporary Accounts.",
 		"ext-mysqli": "Enable the MySQL and MariaDB database type for MediaWiki.",
 		"ext-openssl": "Encrypt session data (or opt-out via $wgSessionInsecureSecrets).",
 		"ext-pdo": "Enable the SQLite database type for MediaWiki.",
@@ -139,8 +141,8 @@
 		]
 	},
 	"scripts": {
-		"mw-install:sqlite": "php maintenance/install.php --server=http://localhost:4000 --dbtype sqlite --dbpath cache/ --scriptpath '' --pass adminpassword MediaWiki Admin",
-		"serve": "php -S localhost:4000",
+		"mw-install:sqlite": "@php maintenance/install.php --server=http://localhost:4000 --dbtype sqlite --dbpath cache/ --scriptpath '' --pass adminpassword MediaWiki Admin",
+		"serve": "@php -S localhost:4000",
 		"lint": "parallel-lint --exclude node_modules --exclude vendor",
 		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -p -s --cache",

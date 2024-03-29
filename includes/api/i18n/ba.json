@@ -15,7 +15,8 @@
 			"Ләйсән",
 			"Рустам Нурыев",
 			"Танзиля Кутлугильдина",
-			"Янмурза Баки"
+			"Янмурза Баки",
+			"Bashkorttan"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:Etiquette|Ҡулланыу буйынса этикет һәм ҡулланма]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https\n://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/Почта таратыу]\n* [https\n://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API яңылыҡтары]\n* [https\n://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Хаталар һәм һорауҙар]\n</div>\n<strong>Статус:</strong> Был биттә күрһәтелгән бар функциялар ҙа эшләргә тейеш, шулай ҙа API әүҙем эшкәртеү хәлендә тора һәм теләгән бер ваҡытта үҙгәрергә мөмкин. Яңыртылыуҙарҙы һәр саҡ белеп торор өсөн [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ почта таратыу mediawiki-api-announce], ошоға яҙыл.\n\n<strong>Хаталы һоратыуҙар:</strong> Әгәр API хаталы һоратыу алһа, HTTP баш һүҙе «MediaWiki-API-Error» асҡысы менән кире ҡайтарыла, бынан һуң баш һүҙҙең мәғәнәһе һәм хата коды кире ебәреләсәк һәм кире шул уҡ мәғәнәлә кире ҡуйыласаҡ. Киңерәк мәғлүмәтте ошонан ҡара [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Хаталар һәм иҫкәртеүҙәр]].\n\n<strong>Тестлау:</strong> API-һоратыуҙарҙы тестлау уңайлы булһын өсөн ҡара. [[Special:ApiSandbox]]",
@@ -425,5 +426,6 @@
 	"apihelp-query+transcludedin-param-prop": "Ниндәй үҙенсәлектәрҙе алырға:",
 	"apihelp-query+transcludedin-param-limit": "Күпме кире ҡайтарырға.",
 	"apihelp-query+usercontribs-summary": "Ҡатнашыусының бөтә үҙгәртеүҙәрен алыу.",
-	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған үҙгәртеүҙәрҙең иң ҙур һаны."
+	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған үҙгәртеүҙәрҙең иң ҙур һаны.",
+	"apierror-ratelimited": "Һеҙ эш тиҙлеге сиген үттегеҙ. Бер аҙ көтөп, ҡабатлап ҡарағыҙ."
 }

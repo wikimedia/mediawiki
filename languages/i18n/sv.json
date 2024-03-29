@@ -98,7 +98,8 @@
 			"WikiPhoenix",
 			"לערי ריינהארט",
 			"아라",
-			"Ludvig Broman"
+			"Ludvig Broman",
+			"Kakan spelar"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -862,7 +863,7 @@
 	"expensive-parserfunction-category": "Sidor med för många resurskrävande parserfunktioner",
 	"post-expand-template-inclusion-warning": "Varning: Den här sidan innehåller för mycket mallinklusioner.\nNågra av mallarna kommer inte att inkluderas.",
 	"post-expand-template-inclusion-category": "Sidor som inkluderar för mycket mallkod",
-	"post-expand-template-argument-warning": "Varning: Sidan innehåller en eller flera mallparametrar som blir för långa när de expanderas.\nDessa parametrar har uteslutits.",
+	"post-expand-template-argument-warning": "<strong>Varning:</strong> Sidan innehåller minst en mallparameter som blir för lång när den expanderas.\nDessa parametrar har utelämnats.",
 	"post-expand-template-argument-category": "Sidor med uteslutna mallparametrar",
 	"template-equals-category": "Sidor som använder = som en mall",
 	"template-equals-category-desc": "Sidan innehåller <code><nowiki>{{=}}</nowiki></code> men på denna wiki gäller inte det <code>=</code>. Användning av detta är föråldrat; en framtida MediaWiki-version kommer implementera <code><nowiki>{{=}}</nowiki></code> som en tolkningsfunktion.",
@@ -1102,7 +1103,7 @@
 	"searchrelated": "relaterad",
 	"searchall": "alla",
 	"showingresultsinrange": "Nedan visas upp till {{PLURAL:$3|<strong>1</strong> resultat|<strong>$1</strong> resultat}} mellan nummer <strong>$2</strong> och nummer <strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> av <strong>$3</strong>|Resultat <strong>$1 – $2</strong> av <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> av <strong>$3</strong>|Resultat <strong>$1–$2</strong> av <strong>$3</strong>}}",
 	"search-nonefound": "Inga resultat matchade frågan.",
 	"search-nonefound-thiswiki": "Det fanns inga resultat som matchade frågan på den här webbplatsen.",
 	"powersearch-legend": "Avancerad sökning",
