@@ -2198,6 +2198,7 @@ return [
 	'mediawiki.special.block.codex' => [
 		'packageFiles' => [
 			'resources/src/mediawiki.special.block/init.js',
+			'resources/src/mediawiki.special.block/components/BlockDetailsOptions.vue',
 			'resources/src/mediawiki.special.block/components/BlockTypeField.vue',
 			'resources/src/mediawiki.special.block/components/ExpirationField.vue',
 			'resources/src/mediawiki.special.block/components/ReasonField.vue',
@@ -2218,10 +2219,16 @@ return [
 			'@wikimedia/codex',
 		],
 		'messages' => [
+			'block-details',
+			'block-details-description',
 			'block-user-label',
 			'block-user-description',
 			'block-user-placeholder',
-			'block-save'
+			'block-save',
+			'htmlform-optional-flag',
+			'ipbcreateaccount',
+			'ipbemailban',
+			'ipb-disableusertalk'
 		],
 	],
 	'mediawiki.special.changeslist' => [

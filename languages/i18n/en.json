@@ -2874,6 +2874,7 @@
 	"ipb-blocklist-duration-left": "$1 left",
 	"block-actions": "Block type",
 	"block-details": "Block details",
+	"block-details-description": "What actions do you want to block?",
 	"block-expiry": "Expiration:",
 	"block-options": "Additional options:",
 	"block-reason": "Reason:",
