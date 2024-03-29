@@ -3,6 +3,7 @@
 use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
@@ -35,19 +36,29 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->getDb()->newReplaceQueryBuilder()
-			->replaceInto( 'interwiki' )
-			->uniqueIndexFields( [ 'iw_prefix' ] )
-			->row( [
+		// Set up 'linksupdatetest' as a interwiki prefix for testing
+		// See ParserTestRunner:appendInterwikiSetup for similar test code
+		static $testInterwikis = [
+			[
 				'iw_prefix' => 'linksupdatetest',
 				'iw_url' => 'http://testing.com/wiki/$1',
-				'iw_api' => 'http://testing.com/w/api.php',
+				// 'iw_api' => 'http://testing.com/w/api.php',
 				'iw_local' => 0,
-				'iw_trans' => 0,
-				'iw_wikiid' => 'linksupdatetest',
-			] )
-			->caller( __METHOD__ )->execute();
-		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
+			],
+		];
+		$GLOBAL_SCOPE = 2; // See ParserTestRunner::appendInterwikiSetup
+		$this->overrideConfigValues( [
+			MainConfigNames::InterwikiScopes => $GLOBAL_SCOPE,
+			MainConfigNames::InterwikiCache =>
+			ClassicInterwikiLookup::buildCdbHash( $testInterwikis, $GLOBAL_SCOPE ),
+			MainConfigNames::RCWatchCategoryMembership => true,
+		] );
+		// Reset title services after interwiki prefixes change
+		$services = MediaWikiServices::getInstance();
+		$services->resetServiceForTesting( 'InterwikiLookup' );
+		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
+		$services->resetServiceForTesting( 'TitleFormatter' );
+		$services->resetServiceForTesting( 'TitleParser' );
 	}
 
 	public function addDBDataOnce() {
