@@ -128,10 +128,10 @@ class PasswordReset implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param User $user
+	 * @since 1.42
 	 * @return StatusValue
 	 */
-	private function computeIsAllowed( User $user ): StatusValue {
+	public function isEnabled(): StatusValue {
 		$resetRoutes = $this->config->get( MainConfigNames::PasswordResetRoutes );
 		$status = StatusValue::newGood();
 
@@ -149,6 +149,20 @@ class PasswordReset implements LoggerAwareInterface {
 		} elseif ( !$this->config->get( MainConfigNames::EnableEmail ) ) {
 			// Maybe email features have been disabled
 			$status = StatusValue::newFatal( 'passwordreset-emaildisabled' );
+		}
+		return $status;
+	}
+
+	/**
+	 * @param User $user
+	 * @return StatusValue
+	 */
+	private function computeIsAllowed( User $user ): StatusValue {
+		$status = StatusValue::newGood();
+
+		$enabledStatus = $this->isEnabled();
+		if ( !$enabledStatus->isGood() ) {
+			return $enabledStatus;
 		} elseif ( !$user->isAllowed( 'editmyprivateinfo' ) ) {
 			// Maybe not all users have permission to change private data
 			$status = StatusValue::newFatal( 'badaccess' );
