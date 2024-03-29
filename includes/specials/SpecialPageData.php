@@ -24,7 +24,7 @@ namespace MediaWiki\Specials;
 
 use HttpError;
 use MediaWiki\LinkedData\PageDataRequestHandler;
-use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
 /**
  * Special page to act as an endpoint for accessing raw page data.
@@ -33,7 +33,7 @@ use MediaWiki\SpecialPage\SpecialPage;
  *
  * @ingroup SpecialPage
  */
-class SpecialPageData extends SpecialPage {
+class SpecialPageData extends UnlistedSpecialPage {
 
 	/**
 	 * @var PageDataRequestHandler|null
@@ -103,12 +103,6 @@ class SpecialPageData extends SpecialPage {
 	public function showForm() {
 		$this->getOutput()->showErrorPage( 'pagedata-title', 'pagedata-text' );
 	}
-
-	public function isListed() {
-		// Do not list this page in Special:SpecialPages
-		return false;
-	}
-
 }
 
 /**
