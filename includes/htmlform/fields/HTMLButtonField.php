@@ -2,7 +2,6 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\VFormHTMLForm;
@@ -91,12 +90,8 @@ class HTMLButtonField extends HTMLFormField {
 			'formnovalidate' => $this->mFormnovalidate,
 		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
-		if ( $this->isBadIE() ) {
-			return Html::element( 'input', $attr );
-		} else {
-			return Html::rawElement( 'button', $attr,
-				$this->buttonLabel ?: htmlspecialchars( $this->getDefault() ) );
-		}
+		return Html::rawElement( 'button', $attr,
+			$this->buttonLabel ?: htmlspecialchars( $this->getDefault() ) );
 	}
 
 	/**
@@ -109,14 +104,13 @@ class HTMLButtonField extends HTMLFormField {
 		return new \OOUI\ButtonInputWidget( [
 			'name' => $this->mName,
 			'value' => $this->getDefault(),
-			'label' => !$this->isBadIE() && $this->buttonLabel
+			'label' => $this->buttonLabel
 				? new \OOUI\HtmlSnippet( $this->buttonLabel )
 				: $this->getDefault(),
 			'type' => $this->buttonType,
 			'classes' => [ 'mw-htmlform-submit', $this->mClass ],
 			'id' => $this->mID,
 			'flags' => $this->mFlags,
-			'useInputTag' => $this->isBadIE(),
 		] + \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
@@ -148,12 +142,8 @@ class HTMLButtonField extends HTMLFormField {
 			'formnovalidate' => $this->mFormnovalidate,
 		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
-		if ( $this->isBadIE() ) {
-			return Html::element( 'input', $attr );
-		} else {
-			return Html::rawElement( 'button', $attr,
-				$this->buttonLabel ?: htmlspecialchars( $this->getDefault() ) );
-		}
+		return Html::rawElement( 'button', $attr,
+			$this->buttonLabel ?: htmlspecialchars( $this->getDefault() ) );
 	}
 
 	/**
@@ -175,17 +165,6 @@ class HTMLButtonField extends HTMLFormField {
 	 */
 	public function validate( $value, $alldata ) {
 		return true;
-	}
-
-	/**
-	 * IE<8 has bugs with <button>, so we'll need to avoid them.
-	 * @return bool Whether the request is from a bad version of IE
-	 */
-	private function isBadIE() {
-		$request = $this->mParent
-			? $this->mParent->getRequest()
-			: RequestContext::getMain()->getRequest();
-		return (bool)preg_match( '/MSIE [1-7]\./i', $request->getHeader( 'User-Agent' ) );
 	}
 }
 
