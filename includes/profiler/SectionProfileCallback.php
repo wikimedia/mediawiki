@@ -26,16 +26,15 @@ use Wikimedia\ScopedCallback;
  * @internal For use by SectionProfiler
  */
 class SectionProfileCallback extends ScopedCallback {
-	/** @var SectionProfiler */
-	protected $profiler;
-	/** @var string */
-	protected $section;
+
+	protected SectionProfiler $profiler;
+	protected string $section;
 
 	/**
 	 * @param SectionProfiler $profiler
 	 * @param string $section
 	 */
-	public function __construct( SectionProfiler $profiler, $section ) {
+	public function __construct( SectionProfiler $profiler, string $section ) {
 		parent::__construct( null );
 		$this->profiler = $profiler;
 		$this->section = $section;
