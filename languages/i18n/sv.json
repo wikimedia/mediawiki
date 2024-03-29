@@ -2796,7 +2796,6 @@
 	"autoblocklist-submit": "Sök",
 	"autoblocklist-legend": "Lista autoblockeringar",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Lokal autoblockering|Lokala autoblockeringar}}",
-	"autoblocklist-total-autoblocks": "Totalt antal autoblockeringar: $1",
 	"autoblocklist-empty": "Listan över autoblockeringar är tom.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Annan autoblockering|Andra autoblockeringar}}",
 	"ipblocklist": "Blockerade användare",

@@ -2533,7 +2533,6 @@
 	"autoblocklist-submit": "Leita",
 	"autoblocklist-legend": "Sýna sjálfvirk bönn",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Staðbundið sjálfhindrun|Staðbundin sjálfhindranir}}",
-	"autoblocklist-total-autoblocks": "Heildarfjöldi sjálfhindrana: $1",
 	"autoblocklist-empty": "Listinn yfir sjálfvirk bönn er tómur.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Önnur sjálfhindrun|Aðrar sjálfhindranir}}",
 	"ipblocklist": "Hindraðir notendur",

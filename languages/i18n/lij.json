@@ -2722,7 +2722,6 @@
 	"autoblocklist-submit": "Riçèrca",
 	"autoblocklist-legend": "Lìsta di outoblòcchi",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Outoblòcco locâle|Outoblòcchi locâli}}",
-	"autoblocklist-total-autoblocks": "Nùmero totâ di outoblòcchi: $1",
 	"autoblocklist-empty": "A lìsta di outoblòcchi a l'é vêua.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Âtro outoblòcco|Âtri outoblòcchi}}",
 	"ipblocklist": "Uténti blocæ",

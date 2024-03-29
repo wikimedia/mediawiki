@@ -2688,7 +2688,6 @@
 	"autoblocklist-submit": "Муаш",
 	"autoblocklist-legend": "Вигак петырымаш списке",
 	"autoblocklist-localblocks": "Верысе вигак {{PLURAL:$1|петырымаш|петырымаш-влак}}",
-	"autoblocklist-total-autoblocks": "Чыла вигак петырымаш: $1",
 	"autoblocklist-empty": "Вигак петырымаш списке яра.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|вес вигак петырымаш}}",
 	"ipblocklist": "Петырыме ушнышо-влак",

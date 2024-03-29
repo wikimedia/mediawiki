@@ -2761,7 +2761,6 @@
 	"autoblocklist-submit": "Hae",
 	"autoblocklist-legend": "Automaattisten estojen lista",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Paikallinen automaattinen esto|Paikalliset automaattiset estot}}",
-	"autoblocklist-total-autoblocks": "Automaattisten estojen kokonaismäärä: $1",
 	"autoblocklist-empty": "Automaattisten estojen lista on tyhjä.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Muu automaattinen esto|Muut automaattiset estot}}",
 	"ipblocklist": "Estetyt käyttäjät",

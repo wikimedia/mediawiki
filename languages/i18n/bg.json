@@ -2665,7 +2665,6 @@
 	"autoblocklist-submit": "Търсене",
 	"autoblocklist-legend": "Списък на автоматични блокирания",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Локално автоматично блокиране|Локални автоматични блокирания}}",
-	"autoblocklist-total-autoblocks": "Общ брой автоматични блокирания: $1",
 	"autoblocklist-empty": "Списъкът на автоматичните блокирания е празен.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Друго автоматично блокиране|Други автоматични блокирания}}",
 	"ipblocklist": "Блокирани потребители",

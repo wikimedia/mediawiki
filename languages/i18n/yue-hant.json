@@ -2416,7 +2416,6 @@
 	"autoblocklist-submit": "揾",
 	"autoblocklist-legend": "列出自動封鎖",
 	"autoblocklist-localblocks": "本地{{PLURAL:$1|自動封鎖}}",
-	"autoblocklist-total-autoblocks": "自動封鎖總數：$1",
 	"autoblocklist-empty": "自動封鎖一覽係空嘅。",
 	"autoblocklist-otherblocks": "其他{{PLURAL:$1|自動封鎖}}",
 	"ipblocklist": "封咗嘅用戶",

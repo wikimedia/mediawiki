@@ -2489,7 +2489,6 @@
 	"autoblocklist-submit": "തിരയുക",
 	"autoblocklist-legend": "സ്വതേതടയലുകളുടെ പട്ടിക",
 	"autoblocklist-localblocks": "പ്രാദേശിക {{PLURAL:$1|സ്വതേതടയൽ|സ്വതേതടയലുകൾ}}",
-	"autoblocklist-total-autoblocks": "ആകെ സ്വതേതടയലുകൾ: $1",
 	"autoblocklist-empty": "സ്വതേതടയൽപ്പട്ടിക ശൂന്യമാണ്‌.",
 	"autoblocklist-otherblocks": "മറ്റ് {{PLURAL:$1|സ്വതേതടയൽ|സ്വതേതടയലുകൾ}}",
 	"ipblocklist": "തടയപ്പെട്ട ഉപയോക്താക്കൾ",

@@ -2359,7 +2359,6 @@
 	"autoblocklist-submit": "Zeuk",
 	"autoblocklist-legend": "Autematiesche blokkades tuine",
 	"autoblocklist-localblocks": "Lokale autematiesche {{PLURAL:$1|blokkaasj|blokkades}}",
-	"autoblocklist-total-autoblocks": "Totaal aontal autoblokkades: $1",
 	"autoblocklist-empty": "De lies mit autematiesche blokkades is laeg.",
 	"autoblocklist-otherblocks": "Anger {{PLURAL:$1|autoblokkaasj|autoblokkaazjes}}",
 	"ipblocklist": "Geblokkerde gebroekers",

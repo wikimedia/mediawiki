@@ -2732,7 +2732,6 @@
 	"autoblocklist-submit": "Otsi",
 	"autoblocklist-legend": "Automaatblokeeringute loend",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Kohalik automaatblokeering|Kohalikud automaatblokeeringud}}",
-	"autoblocklist-total-autoblocks": "Kokku automaatblokeeringuid: $1",
 	"autoblocklist-empty": "Automaatblokeeringute loend on tühi.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Muu automaatblokeering|Muud automaatblokeeringud}}",
 	"ipblocklist": "Blokeeritud kasutajad",

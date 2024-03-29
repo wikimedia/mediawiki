@@ -2638,7 +2638,6 @@
 	"autoblocklist-submit": "Cerca",
 	"autoblocklist-legend": "Fa la lista di autobloch",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Autobloch local|Autobloch locai}}",
-	"autoblocklist-total-autoblocks": "Numer complessiv di autobloch: $1",
 	"autoblocklist-empty": "La lista di autobloch l'è voeuja.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Alter autobloch|Atri autobloch}}",
 	"ipblocklist": "Utencc blocad",

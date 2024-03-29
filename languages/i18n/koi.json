@@ -2684,7 +2684,6 @@
 	"autoblocklist-submit": "Адззыны",
 	"autoblocklist-legend": "Автотасалӧмлӧм нимлёдз",
 	"autoblocklist-localblocks": "Торья ина{{PLURAL:$1|автотасалӧм|автотасалӧммез}}",
-	"autoblocklist-total-autoblocks": "Дзоньнас автотасалӧмыс: $1",
 	"autoblocklist-empty": "Автотасалӧмлӧн нимлёдзыс тырттӧм",
 	"autoblocklist-otherblocks": "Мӧдік{{PLURAL:$1|автотасалӧм|автотасалӧммез}}",
 	"ipblocklist": "Тасалӧм уджкериссез",

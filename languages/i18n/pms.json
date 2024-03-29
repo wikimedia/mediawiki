@@ -2571,7 +2571,6 @@
 	"autoblocklist-submit": "Sërché",
 	"autoblocklist-legend": "Listé j'autoblocagi",
 	"autoblocklist-localblocks": "Autoblocagi {{PLURAL:$1|local|locaj}}",
-	"autoblocklist-total-autoblocks": "Nùmer total d'autoblocagi: $1",
 	"autoblocklist-empty": "La lista dj'autoblocagi a l'é veujda.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Àutr|Àutri}} autoblocagi",
 	"ipblocklist": "Utent blocà",

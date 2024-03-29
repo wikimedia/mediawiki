@@ -2723,7 +2723,6 @@
 	"autoblocklist-submit": "Табырға",
 	"autoblocklist-legend": "Автобикләүҙәр исемлеге",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Локаль автобикләү|Локаль автобикләүҙәр}}",
-	"autoblocklist-total-autoblocks": "Барлыҡ автобикләүҙәр: $1",
 	"autoblocklist-empty": "Автобикләүҙәр исемлеге буш.",
 	"autoblocklist-otherblocks": "Башҡа {{PLURAL:$1|автобикләү}}",
 	"ipblocklist": "Бикләнгән ҡатнашыусылар",

@@ -2767,7 +2767,6 @@
 	"autoblocklist-submit": "Αναζήτηση",
 	"autoblocklist-legend": "Κατάλογος αυτόματων φραγών",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Τοπική αυτόματη φραγή|Τοπικές αυτόματες φραγές}}",
-	"autoblocklist-total-autoblocks": "Συνολικός αριθμός αυτόματων φραγών: $1",
 	"autoblocklist-empty": "Η αυτόματη λίστα αποκλεισμών είναι κενή.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Άλλη αυτόματη φραγή|Άλλες αυτόματες φραγές}}",
 	"ipblocklist": "Αποκλεισμένοι χρήστες",

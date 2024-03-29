@@ -2744,7 +2744,6 @@
 	"autoblocklist-submit": "Tìm kiếm",
 	"autoblocklist-legend": "Xem danh sách các tác vụ cấm tự động",
 	"autoblocklist-localblocks": "{{PLURAL:$1}}Tác vụ cấm tự động cục bộ",
-	"autoblocklist-total-autoblocks": "Tổng số cấm tự động: $1",
 	"autoblocklist-empty": "Danh sách cấm tự động hiện đang trống.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1}}Tác vụ cấm tự động khác",
 	"ipblocklist": "Người dùng bị cấm",

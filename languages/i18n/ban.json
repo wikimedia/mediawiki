@@ -2710,7 +2710,6 @@
 	"autoblocklist-submit": "Rereh",
 	"autoblocklist-legend": "Lis pacadelan otomatis",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Cadel otomatis}} lokal",
-	"autoblocklist-total-autoblocks": "Akéh sané kacadel otomatis: $1",
 	"autoblocklist-empty": "Lis pacadelan otomatis puyung.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|pacadelan otomatis}} liyanan",
 	"ipblocklist": "Sang anganggé sané kaempetin",

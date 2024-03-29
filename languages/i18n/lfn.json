@@ -2333,7 +2333,6 @@
 	"autoblocklist-submit": "Xerca",
 	"autoblocklist-legend": "Lista autoimpedis",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Autoimpedi|Autoimpedis}} local",
-	"autoblocklist-total-autoblocks": "Cuantia intera de autoimpedis: $1",
 	"autoblocklist-empty": "La lista de autoimpedis es vacua.",
 	"autoblocklist-otherblocks": "Otra {{PLURAL:$1|autoimpedi|autoimpedis}}",
 	"ipblocklist": "Usores impedida",

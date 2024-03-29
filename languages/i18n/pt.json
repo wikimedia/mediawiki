@@ -2778,7 +2778,6 @@
 	"autoblocklist-submit": "Pesquisar",
 	"autoblocklist-legend": "Lista de bloqueios automáticos",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Bloqueio automático local|Bloqueios automáticos locais}}",
-	"autoblocklist-total-autoblocks": "Número total de bloqueios automáticos: $1",
 	"autoblocklist-empty": "A lista de bloqueio automático está vazia.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Outro bloqueio automático|Outros bloqueios automáticos}}",
 	"ipblocklist": "Utilizadores bloqueados",

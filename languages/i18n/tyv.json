@@ -2678,7 +2678,6 @@
 	"autoblocklist-submit": "Дилээр",
 	"autoblocklist-legend": "Автоблоктаашкыннар даңзызы",
 	"autoblocklist-localblocks": "Тус {{PLURAL:$1|автоблоктаашкын|автоблоктаашкыннар}}",
-	"autoblocklist-total-autoblocks": "Автоблоктаашкыннарның ниити саны: $1",
 	"autoblocklist-empty": "Автоблоктаашкыннар даңзызы куруг.",
 	"autoblocklist-otherblocks": "Өске {{PLURAL:$1|автоблоктаашкын|автоблоктаашкыннар}}",
 	"ipblocklist": "Блоктаттынган ажыглакчылар",

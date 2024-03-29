@@ -2695,7 +2695,6 @@
 	"autoblocklist-submit": "Эзләү",
 	"autoblocklist-legend": "Автотыелу исемлеге",
 	"autoblocklist-localblocks": "Локаль {{PLURAL:$1|автомат рәвештә блоклау}}",
-	"autoblocklist-total-autoblocks": "Автомат рәвештә блоклауның гомуми саны: $1",
 	"autoblocklist-empty": "Автомат рәвештә блоклаулар исемлеге буш.",
 	"autoblocklist-otherblocks": "Башка {{PLURAL:$1|автомат рәвештә блоклау|автомат рәвештә блоклаулар}}",
 	"ipblocklist": "Тыелган кулланучылар",

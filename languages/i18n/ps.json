@@ -2011,7 +2011,6 @@
 	"autoblocklist-submit": "پلټل",
 	"autoblocklist-legend": "د خپلواک بنديزونو لړليک",
 	"autoblocklist-localblocks": "ځایي {{PLURAL:$1|خپلواک بنديز|خپلواک بنديزونه}}",
-	"autoblocklist-total-autoblocks": "د خپلواک بنديز ټول لړليک: $1",
 	"autoblocklist-empty": "د بنديز لړليک تش دی",
 	"autoblocklist-otherblocks": "نور {{PLURAL:$1|خپلواک بنديز|خپلواک بنديزونه}}",
 	"ipblocklist": "بنديز لگېدلي کارنان",

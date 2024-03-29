@@ -2510,7 +2510,6 @@
 	"autoblocklist-submit": "खोजा जाय",
 	"autoblocklist-legend": "स्वतः अवरोध सूची",
 	"autoblocklist-localblocks": "स्थानीय {{PLURAL:$1|स्वतः अवरोध}}",
-	"autoblocklist-total-autoblocks": "स्वतःअवरोध की कुल संख्या: $1",
 	"autoblocklist-empty": "स्वतः अवरोध सूची खाली है।",
 	"autoblocklist-otherblocks": "अन्य {{PLURAL:$1|स्वतःअवरोध}}",
 	"ipblocklist": "अवरोधित आईपी ठहर या सदस्यनाँव",

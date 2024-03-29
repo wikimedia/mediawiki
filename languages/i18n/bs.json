@@ -2486,7 +2486,6 @@
 	"autoblocklist-submit": "Pretraži",
 	"autoblocklist-legend": "Ispis autoblokova",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Lokalni autoblok|Lokalni autoblokovi}}",
-	"autoblocklist-total-autoblocks": "Ukupno autoblokova: $1",
 	"autoblocklist-empty": "Spisak autoblokova je prazan.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Drugi autoblok|Drugi autoblokovi}}",
 	"ipblocklist": "Blokirani korisnici",

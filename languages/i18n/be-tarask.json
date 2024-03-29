@@ -2646,7 +2646,6 @@
 	"autoblocklist-submit": "Шукаць",
 	"autoblocklist-legend": "Сьпіс аўтаблякаваньняў",
 	"autoblocklist-localblocks": "{{PLURAL:$1|1=Лякальнае аўтаблякаваньне|Лякальныя аўтаблякаваньні}}",
-	"autoblocklist-total-autoblocks": "Агульная колькасьць аўтаматычных блякаваньняў: $1",
 	"autoblocklist-empty": "Сьпіс аўтаблякаваньняў пусты.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|1=Іншае аўтаблякаваньне|Іншыя аўтаблякаваньні}}",
 	"ipblocklist": "Заблякаваныя ўдзельнікі",

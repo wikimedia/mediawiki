@@ -1872,7 +1872,6 @@
 	"autoblocklist-submit": "ڳولو",
 	"autoblocklist-legend": "خود کار پابندی لڳیاں دی تندیر",
 	"autoblocklist-localblocks": "مقامی {{PLURAL:$1|خود کار پابندی|خودکار پابندیاں}}",
-	"autoblocklist-total-autoblocks": "خودکار پابندیاں دی کُل تعداد: $1",
 	"autoblocklist-empty": "خود کار پابندی تندیر خالی ہے۔",
 	"autoblocklist-otherblocks": "ٻئی {{PLURAL:$1|خود کار پابندی|خودکار پابندیاں}}",
 	"ipblocklist": "پابندی لڳے ورتݨ آلے",

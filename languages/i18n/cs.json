@@ -2746,7 +2746,6 @@
 	"autoblocklist-submit": "Hledat",
 	"autoblocklist-legend": "Seznam automatických blokování",
 	"autoblocklist-localblocks": "Místní {{PLURAL:$1|automatické|automatická}} blokování",
-	"autoblocklist-total-autoblocks": "Celkový počet automatických blokování: $1",
 	"autoblocklist-empty": "Seznam automatických blokování je prázdný.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Jiné automatické|Jiná automatická}} blokování",
 	"ipblocklist": "Zablokovaní uživatelé",

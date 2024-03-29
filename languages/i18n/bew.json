@@ -2664,7 +2664,6 @@
 	"autoblocklist-submit": "Penyarian",
 	"autoblocklist-legend": "Daptar penggibangan-sendèwèk",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Penggibangan-sendèwèk}} setempat",
-	"autoblocklist-total-autoblocks": "Jumblah penggibangan-sendèwèk: $1",
 	"autoblocklist-empty": "Daptar penggibangan-sendèwèk – kosong.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Penggibangan-sendèwèk}} laènnya",
 	"ipblocklist": "Pemaké nyang digibang",

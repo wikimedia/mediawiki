@@ -2744,7 +2744,6 @@
 	"autoblocklist-submit": "Procura",
 	"autoblocklist-legend": "Listar autobloqueos",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Autobloqueo local|Autobloqueos locais}}",
-	"autoblocklist-total-autoblocks": "Número total de bloques automáticos: $1",
 	"autoblocklist-empty": "A lista de autobloqueos está baleira.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Outro autobloqueo|Outros autobloqueos}}",
 	"ipblocklist": "Usuarios bloqueados",

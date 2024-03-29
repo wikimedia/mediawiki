@@ -2711,7 +2711,6 @@
 	"autoblocklist-submit": "Бедреш",
 	"autoblocklist-legend": "Автотуйукташтыҥ тизими",
 	"autoblocklist-localblocks": "Локальный {{PLURAL:$1|автотуйукташ}}",
-	"autoblocklist-total-autoblocks": "Ончо јаба автотуйукташ: $1",
 	"autoblocklist-empty": "Автотуйукташтыҥ тизими куру.",
 	"autoblocklist-otherblocks": "Ӧскӧ {{PLURAL:$1|автотуйукташ}}",
 	"ipblocklist": "Туйуктаган туружаачылар",

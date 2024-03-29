@@ -2792,7 +2792,6 @@
 	"autoblocklist-submit": "검색",
 	"autoblocklist-legend": "자동차단 목록",
 	"autoblocklist-localblocks": "로컬 자동 차단 {{PLURAL:$1|기록|기록들}}",
-	"autoblocklist-total-autoblocks": "총 자동 차단의 수: $1",
 	"autoblocklist-empty": "자동차단 목록이 비어 있습니다.",
 	"autoblocklist-otherblocks": "다른 자동 차단 {{PLURAL:$1|기록|기록들}}",
 	"ipblocklist": "차단된 사용자",

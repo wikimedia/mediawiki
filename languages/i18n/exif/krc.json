@@ -195,6 +195,8 @@
 	"exif-photometricinterpretation-5": "Айрылгъанды (Эшта CMYK болур)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC кодлау)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU кодлау)",
+	"exif-photometricinterpretation-32803": "Бояулу фильтрлени массиви",
+	"exif-photometricinterpretation-34892": "Сызлы RAW",
 	"exif-unknowndate": "Билинмеген заман",
 	"exif-orientation-1": "Нормал",
 	"exif-orientation-2": "Горизонтал бла кёргюзюлгенди",

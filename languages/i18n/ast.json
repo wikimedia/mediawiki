@@ -2525,7 +2525,6 @@
 	"autoblocklist-submit": "Guetar",
 	"autoblocklist-legend": "Llista de bloqueos automáticos",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Bloquéu automáticu llocal|Bloqueos automáticos llocales}}",
-	"autoblocklist-total-autoblocks": "Númberu total de bloqueos automáticos: $1",
 	"autoblocklist-empty": "La llista de bloqueos automáticos ta balera.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Otru bloquéu automáticu|Otros bloqueos automáticos}}",
 	"ipblocklist": "Usuarios bloquiaos",

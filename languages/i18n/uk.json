@@ -2782,7 +2782,6 @@
 	"autoblocklist-submit": "Пошук",
 	"autoblocklist-legend": "Вивести список автоблокувань",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Локальне|Локальні}} автоблокування",
-	"autoblocklist-total-autoblocks": "Загальна кількість автоблокувань: $1",
 	"autoblocklist-empty": "Список автоблокувань порожній.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Інше|Інші}} автоблокування",
 	"ipblocklist": "Список заблокованих адрес та користувачів",

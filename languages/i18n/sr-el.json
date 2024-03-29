@@ -2694,7 +2694,6 @@
 	"autoblocklist-submit": "Pretraži",
 	"autoblocklist-legend": "Spisak autoblokiranja",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Lokalna autoblokada|Lokalne autoblokade}}",
-	"autoblocklist-total-autoblocks": "Ukupno autoblokova: $1",
 	"autoblocklist-empty": "Spisak autoblokiranja je prazan.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Druga autoblokada|Druge autoblokade}}",
 	"ipblocklist": "Blokirani korisnici",

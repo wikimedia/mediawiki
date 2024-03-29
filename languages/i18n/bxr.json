@@ -2685,7 +2685,6 @@
 	"autoblocklist-submit": "Олохо",
 	"autoblocklist-legend": "Автобүһэлэлгэнүүдэй список",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Тогтомол автобүһэлэлгэ|Тогтомол автобүһэлэлгэнүүд}}",
-	"autoblocklist-total-autoblocks": "Автобүһэлэлгэнүүдэй бүхэли тоо: $1",
 	"autoblocklist-empty": "Автобүһэлэлгэнүүдэй список хооһон.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Ондоо автобүһэлэлгэ|Ондоо автобүһэлэлгэнүүд}}",
 	"ipblocklist": "Бүһэлэгдэһэн хабаадагшад",

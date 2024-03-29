@@ -2050,7 +2050,6 @@
 	"autoblocklist-submit": "ရှာဖွေရန်",
 	"autoblocklist-legend": "အလိုအလျောက် ပိတ်ပင်မှုများ စာရင်း",
 	"autoblocklist-localblocks": "ဒေသဆိုင်ရာ {{PLURAL:$1|အလိုအလျောက် ပိတ်ပင်မှု|အလိုအလျောက် ပိတ်ပင်မှုများ}}",
-	"autoblocklist-total-autoblocks": "အလိုအလျက်ပိတ်ပင်မှုများ စုစုပေါင်း: $1",
 	"autoblocklist-empty": "အလိုအလျောက် ပိတ်ပင်ထားမှုစာရင်းသည် ဗလာဖြစ်နေသည်။",
 	"autoblocklist-otherblocks": "အခြား {{PLURAL:$1|အလိုအလျောက် ပိတ်ပင်မှု|အလိုအလျောက် ပိတ်ပင်မှုများ}}",
 	"ipblocklist": "ပိတ်ပင်ထားသော အသုံးပြုသူများ",

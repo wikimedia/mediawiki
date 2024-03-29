@@ -2701,7 +2701,6 @@
 	"autoblocklist-submit": "Ecind",
 	"autoblocklist-legend": "Avtosaubatusiden lugetiž",
 	"autoblocklist-localblocks": "Sijaline {{PLURAL:$1|avtosaubatuz|avtosaubatused}}",
-	"autoblocklist-total-autoblocks": "Avtosaubatusiden üleine mär: $1",
 	"autoblocklist-empty": "Avtosaubatusiden lugetiž om tühj.",
 	"autoblocklist-otherblocks": "Toine {{PLURAL:$1|avtosaubatuz|avtosaubatused}}",
 	"ipblocklist": "Saubatud kävutajad",

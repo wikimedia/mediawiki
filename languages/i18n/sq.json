@@ -2241,7 +2241,6 @@
 	"autoblocklist-submit": "Kërko",
 	"autoblocklist-legend": "Rreshto autobllokimet",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Autoblloku lokal|Autobllokimet lokale}}",
-	"autoblocklist-total-autoblocks": "Numri i përgjithshëm i vet-bllokimeve: $1",
 	"autoblocklist-empty": "Lista e autobllokimeve është e zbrazët.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Autoblloku tjetër|Autoblloqet tjera}}",
 	"ipblocklist": "Përdorues i Bllokuar",

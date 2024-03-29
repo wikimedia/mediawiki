@@ -2784,7 +2784,6 @@
 	"autoblocklist-submit": "Pencarian",
 	"autoblocklist-legend": "Daftar pemblokiran otomatis",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Blokir otomatis|Blokir otomatis}} lokal",
-	"autoblocklist-total-autoblocks": "Total blokir otomatis: $1",
 	"autoblocklist-empty": "Daftar pemblokiran otomatis kosong.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Blokir otomatis|Blokir otomatis}} lainnya",
 	"ipblocklist": "Daftar pemblokiran pengguna",

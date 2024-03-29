@@ -2736,7 +2736,6 @@
 	"autoblocklist-submit": "Cerca",
 	"autoblocklist-legend": "Llista els blocatges automàtics",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Blocatge automàtic local|Blocatges automàtics locals}}",
-	"autoblocklist-total-autoblocks": "Nombre total de blocatges automàtics: $1",
 	"autoblocklist-empty": "La llista de blocatges automàtics és buida.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Un altre blocatge automàtic|Uns altres blocatges automàtics}}",
 	"ipblocklist": "Usuaris blocats",

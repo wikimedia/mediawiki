@@ -2752,7 +2752,6 @@
 	"autoblocklist-submit": "Keresés",
 	"autoblocklist-legend": "Autoblokkok listája",
 	"autoblocklist-localblocks": "Helyi {{PLURAL:$1|autoblokk|autoblokkok}}",
-	"autoblocklist-total-autoblocks": "Autoblokkok száma: $1",
 	"autoblocklist-empty": "Az autoblokklista üres.",
 	"autoblocklist-otherblocks": "Egyéb {{PLURAL:$1|autoblokk|autoblokkok}}",
 	"ipblocklist": "Blokkolt felhasználók",

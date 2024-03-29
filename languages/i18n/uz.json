@@ -1665,7 +1665,6 @@
 	"autoblocklist-submit": "Qidirish",
 	"autoblocklist-legend": "Avtobloklar roʻyxati",
 	"autoblocklist-localblocks": "Mahalliy {{PLURAL:$1|avtoblok|avtobloklar}}",
-	"autoblocklist-total-autoblocks": "Jami avtobloklar soni: $1",
 	"autoblocklist-empty": "Avtobloklar roʻyxati boʻsh.",
 	"autoblocklist-otherblocks": "Boshqa {{PLURAL:$1|avtochetlashtirish|avtochetlashtirishlar}}",
 	"ipblocklist": "Chetlashtirilgan foydalanuvchilar",

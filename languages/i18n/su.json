@@ -2180,7 +2180,6 @@
 	"autoblocklist-submit": "Paluruh",
 	"autoblocklist-legend": "Daptar otomatis peungpeuk",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Otomatis peungpeuk}} lokal",
-	"autoblocklist-total-autoblocks": "Total peungeukan otomatis: $1",
 	"autoblocklist-empty": "Daptar peungpeukan otomatis kosong.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Sapeungpeukan otomatis|Peungpeukan otomatis}} lianna",
 	"ipblocklist": "Pamaké nu dipeungpeuk",

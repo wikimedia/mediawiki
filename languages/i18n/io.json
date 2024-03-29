@@ -2455,7 +2455,6 @@
 	"autoblocklist-submit": "Serchez",
 	"autoblocklist-legend": "Listo pri su-blokusi",
 	"autoblocklist-localblocks": "Lokala {{PLURAL:$1|su-blokuso|su-blokusi}}",
-	"autoblocklist-total-autoblocks": "Quanto di su-blokusi (personi qui blokusis su): $1",
 	"autoblocklist-empty": "La listo pri su-blokusi esas vakua.",
 	"autoblocklist-otherblocks": "Altra {{PLURAL:$1|su-blokuso|su-blokusi}}",
 	"ipblocklist": "Blokusita uzeri",

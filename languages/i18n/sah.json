@@ -2682,7 +2682,6 @@
 	"autoblocklist-submit": "Бул",
 	"autoblocklist-legend": "Аптамаатынан хааччах тиһилигэ",
 	"autoblocklist-localblocks": "Олохтоох аптамаатынан {{PLURAL:$1|хааччахтааһын|хааччахтааһыннар}}",
-	"autoblocklist-total-autoblocks": "Аптамаатынан хааччах ахсаана: $1",
 	"autoblocklist-empty": "Аптамаатынан хааччах тиһилигэ кураанах.",
 	"autoblocklist-otherblocks": "Атын аптамаатынан {{PLURAL:$1|хааччахтааһын|хааччахтааһыннар}}",
 	"ipblocklist": "Бобуллубут кыттааччылар",

@@ -2739,7 +2739,6 @@
 	"autoblocklist-submit": "Serĉi",
 	"autoblocklist-legend": "Listi aŭtomatajn forbarojn",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Loka aŭtomata forbaro|Lokaj aŭtomataj forbaroj}}",
-	"autoblocklist-total-autoblocks": "Suma nombro de aŭtomataj forbaroj: $1",
 	"autoblocklist-empty": "La listo de aŭtomataj forbaroj estas malplena.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Alia aŭtomata forbaro|Aliaj aŭtomataj forbaroj}}",
 	"ipblocklist": "Forbaritaj uzantoj",

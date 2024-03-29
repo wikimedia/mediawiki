@@ -2419,7 +2419,6 @@
 	"autoblocklist-submit": "Cirche",
 	"autoblocklist-legend": "Elenghe de l'autoblocche",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Autoblocche}} locale",
-	"autoblocklist-total-autoblocks": "Numere totale de auyoblocche: $1",
 	"autoblocklist-empty": "L'elenghe de le autoblocche jè vacande.",
 	"autoblocklist-otherblocks": "Otre {{PLURAL:$1|autoblocche}}",
 	"ipblocklist": "Utinde bloccate",

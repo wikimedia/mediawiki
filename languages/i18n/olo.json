@@ -2680,7 +2680,6 @@
 	"autoblocklist-submit": "Eči",
 	"autoblocklist-legend": "Avtomuattizien lukičuksien luvettelu",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Paikalline avtomuattine lukičus|Paikallizet avtomuattizet lukičukset}}",
-	"autoblocklist-total-autoblocks": "Avtomuattizii lukičuksii kaikkiedah: $1",
 	"autoblocklist-empty": "Avtomuattizien lukičuksien luvettelu on tyhjy.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Muu avtomuattine lukičus|Muut avtomuattizet lukičukset}}",
 	"ipblocklist": "Lukitut käyttäjät",

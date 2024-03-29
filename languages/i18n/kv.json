@@ -2684,7 +2684,6 @@
 	"autoblocklist-submit": "Корсьны",
 	"autoblocklist-legend": "Автоблокируйтӧмъяс лыддьӧг",
 	"autoblocklist-localblocks": "Локальнӧй {{PLURAL:$1|автоблокируйтӧм|автоблокируйтӧмъяс}}",
-	"autoblocklist-total-autoblocks": "Ставнас автоблокируйтӧмыс: $1",
 	"autoblocklist-empty": "Автоблокируйтан лыддьӧгыс тыртӧм.",
 	"autoblocklist-otherblocks": "Мӧд {{PLURAL:$1|автоблокируйтӧм|автоблокируйтӧмъяс}}",
 	"ipblocklist": "Блокируйтӧм пырӧдчысьяс",

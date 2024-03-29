@@ -2274,7 +2274,6 @@
 	"autoblocklist-submit": "शोधा",
 	"autoblocklist-legend": "स्वयंचलितरोध यादी",
 	"autoblocklist-localblocks": "स्थानिक {{PLURAL:$1|स्वयंचलितरोध}}",
-	"autoblocklist-total-autoblocks": "स्वयंचलित रोधांची एकूण संख्या:$1",
 	"autoblocklist-empty": "स्वयंरोध यादी रिकामी आहे.",
 	"autoblocklist-otherblocks": "इतर {{PLURAL:$1|स्वयंचलितरोध}}",
 	"ipblocklist": "प्रतिबंधित केलेले सदस्य",

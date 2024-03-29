@@ -2686,7 +2686,6 @@
 	"autoblocklist-submit": "Тілирге",
 	"autoblocklist-legend": "Пос алынҷа пиктеглер изерiзi",
 	"autoblocklist-localblocks": "Орындағы {{PLURAL:$1|пос алынҷа идiлген пиктег}}",
-	"autoblocklist-total-autoblocks": "Пос алынҷа идiлген прай пиктеглер: $1",
 	"autoblocklist-empty": "Пос алынҷа идiлген пиктеглер изерізінде пiр дее ниме чоғыл.",
 	"autoblocklist-otherblocks": "Пасха {{PLURAL:$1|пос алынҷа идiлген пиктег}}",
 	"ipblocklist": "Пиктелген араласчылар",

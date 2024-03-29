@@ -2389,7 +2389,6 @@
 	"autoblocklist-submit": "Agbiruk",
 	"autoblocklist-legend": "Listaan dagiti automatiko a serra",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Lokal nga automatiko a serra|Dagiti lokal nga automatiko a serra}}",
-	"autoblocklist-total-autoblocks": "Dagup a bilang dagiti automatiko a serra: $1",
 	"autoblocklist-empty": "Awan linaon ti listaan ti automatiko a serra.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Dadduma nga automatiko a serra|Dagiti dadduma nga automatiko a serra}}",
 	"ipblocklist": "Dagiti naserraan nga agar-aramat",

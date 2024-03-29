@@ -2430,7 +2430,6 @@
 	"autoblocklist-submit": "ძიება",
 	"autoblocklist-legend": "ავტობლოკირებების სია",
 	"autoblocklist-localblocks": "ადგილობრივი {{PLURAL:$1|ავტობლოკი|ავტობლოკირებები}}",
-	"autoblocklist-total-autoblocks": "ავტობლოკების საერთო რაოდენობა: $1",
 	"autoblocklist-empty": "ავტობლოკირებების სია ცარიელია.",
 	"autoblocklist-otherblocks": "სხვა {{PLURAL:$1|ავტობლოკი|ავტობლოკირებები}}",
 	"ipblocklist": "დაბლოკილი მომხმარებლები",

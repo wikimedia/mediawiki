@@ -2625,7 +2625,6 @@
 	"autoblocklist-submit": "Cı geyre",
 	"autoblocklist-legend": "Lista blokanê otomatikan",
 	"autoblocklist-localblocks": "{{PLURAL:$1|otoblokoyo lokal|otoblokeyê lokali}}",
-	"autoblocklist-total-autoblocks": "Amarê kılitkerdışê xoseri pêro piya: $1",
 	"autoblocklist-empty": "Lista otobloki venga.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|otobloqeyo bin|otobloqeyê bini}}",
 	"ipblocklist": "Karberê kılitbiyayey",

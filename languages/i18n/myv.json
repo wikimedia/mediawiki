@@ -2695,7 +2695,6 @@
 	"autoblocklist-submit": "Вешнемс",
 	"autoblocklist-legend": "Автоматикасо кардазтнеде лемрисьме",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Тонадомань автоматикань|Тонадомань автоматикань кардамот}}",
-	"autoblocklist-total-autoblocks": "Весемезэ кардамотнеде: $1",
 	"autoblocklist-empty": "Автоматикань кардамонь лемлувось чаво.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Автоматикань лия кардамо|Автоматикань лия кардамот}}",
 	"ipblocklist": "Кардазь совицят",

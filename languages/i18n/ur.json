@@ -2502,7 +2502,6 @@
 	"autoblocklist-submit": "تلاش",
 	"autoblocklist-legend": "خودکار پابندیوں کی فہرست",
 	"autoblocklist-localblocks": "{{PLURAL:$1|خودکار مقامی پابندی|خودکار مقامی پابندیاں}}",
-	"autoblocklist-total-autoblocks": "خودکار پابندیوں کی کُل تعداد: $1",
 	"autoblocklist-empty": "خودکار پابندی کی فہرست خالی ہے۔",
 	"autoblocklist-otherblocks": "دیگر {{PLURAL:$1|خودکار مقامی پابندی|خودکار مقامی پابندیاں}}",
 	"ipblocklist": "ممنوع صارفین",

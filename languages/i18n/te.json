@@ -2671,7 +2671,6 @@
 	"autoblocklist-submit": "వెతుకు",
 	"autoblocklist-legend": "ఆటోబ్లాకుల జాబితా",
 	"autoblocklist-localblocks": "స్థానిక {{PLURAL:$1|ఆటోబ్లాకు|ఆటోబ్లాకులు}}",
-	"autoblocklist-total-autoblocks": "ఆటోబ్లాకుల మొత్తం సంఖ్య: $1",
 	"autoblocklist-empty": "ఆటోబ్లాకుల జాబితా ఖాళీగా ఉంది.",
 	"autoblocklist-otherblocks": "ఇతర {{PLURAL:$1|ఆటోబ్లాకు|ఆటోబ్లాకులు}}",
 	"ipblocklist": "నిరోధించబడిన వాడుకరులు",

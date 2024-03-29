@@ -2570,7 +2570,6 @@
 	"autoblocklist-submit": "Chwilio",
 	"autoblocklist-legend": "Rhestru blociau awtomatig",
 	"autoblocklist-localblocks": "{{PLURAL:$1|autoblock|autoblocks}} lleol",
-	"autoblocklist-total-autoblocks": "Cyfanswm y blociau awtomatig: $1",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Bloc awtomatig arall|Blociau awtomatig eraill}}",
 	"ipblocklist": "Defnyddwyr a rwystrwyd",
 	"ipblocklist-legend": "Dod o hyd i ddefnyddiwr a rwystrwyd",

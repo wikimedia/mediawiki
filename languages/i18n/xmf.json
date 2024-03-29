@@ -2732,7 +2732,6 @@
 	"autoblocklist-submit": "გორუა",
 	"autoblocklist-legend": "ავტობლოკუეფიშ ერკებული",
 	"autoblocklist-localblocks": "აბანობური {{PLURAL:$1|ავტობლოკუა}}",
-	"autoblocklist-total-autoblocks": "ავტობლოკუეფიშ ედომუშამი მუდანობა: $1",
 	"autoblocklist-empty": "ავტობლოკუეფიშ ერკებული ცაიორი რე.",
 	"autoblocklist-otherblocks": "შხვა {{PLURAL:$1|ავტობლოკუა}}",
 	"ipblocklist": "ბლოკირი მახვარებუეფი",

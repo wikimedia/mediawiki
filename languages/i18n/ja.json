@@ -2846,7 +2846,6 @@
 	"autoblocklist-submit": "検索",
 	"autoblocklist-legend": "自動ブロックの一覧",
 	"autoblocklist-localblocks": "ローカルの{{PLURAL:$1|自動ブロック|自動ブロック}}",
-	"autoblocklist-total-autoblocks": "自動ブロックの総数: $1",
 	"autoblocklist-empty": "自動ブロック一覧は空です。",
 	"autoblocklist-otherblocks": "他の{{PLURAL:$1|自動ブロック|自動ブロック}}",
 	"ipblocklist": "ブロックされている利用者",

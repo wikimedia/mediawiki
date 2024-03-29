@@ -2715,7 +2715,6 @@
 	"autoblocklist-submit": "Шыра",
 	"autoblocklist-legend": "Хӑй тӗллӗн блокласа хунисен списокӗ",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Вырӑнти хӑй тӗллӗн блоклани|Вырӑнти хӑй тӗллӗн блокланисем}}",
-	"autoblocklist-total-autoblocks": "Хӑй тӗллӗн блокланнисен шучӗ: $1",
 	"autoblocklist-empty": "Хӑй тӗллӗн блокланнисен списокӗ пушӑ.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Урӑх хӑй тӗллӗн блоклани|Урӑх хӑй тӗллӗн блокланисем}}",
 	"ipblocklist": "Блокланӑ хутшӑнакансем",

@@ -2723,7 +2723,6 @@
 	"autoblocklist-submit": "Ieškoti",
 	"autoblocklist-legend": "Automatinių blokavimų sąrašas",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Vietinis automatinis blokavimas|Vietiniai automatiniai blokavimai}}",
-	"autoblocklist-total-autoblocks": "Viso automatinių blokavimų: $1",
 	"autoblocklist-empty": "Automatinių blokavimų sąrašas tuščias.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Kitas automatinis blokavimas|Kiti automatiniai blokavimai}}",
 	"ipblocklist": "Blokuoti naudotojai",

@@ -2716,7 +2716,6 @@
 	"autoblocklist-submit": "Caută",
 	"autoblocklist-legend": "Listează autoblocările",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Autoblocare|Autoblocări}} locale",
-	"autoblocklist-total-autoblocks": "Număr total de autoblocări: $1",
 	"autoblocklist-empty": "Lista blocărilor automate este goală.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Altă autoblocare|Alte autoblocări}}",
 	"ipblocklist": "Utilizatori blocați",
