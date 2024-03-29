@@ -7142,6 +7142,57 @@ parsoid=wt2html
 </ul>
 !! end
 
+## Same as the above test, but with equally-invisible interlanguage links
+!! test
+Language link / non-newline whitespace interactions (T359886)
+!! options
+parsoid=wt2html
+!! wikitext
+* Foo[[es:Foo]]Bar
+* Foo[[es:Foo]] Bar
+* Foo [[es:Foo]]Bar
+* Foo [[es:Foo]] Bar
+
+* Foo[[es:Foo]][[es:Bar]]Bar
+* Foo[[es:Foo]][[es:Bar]] Bar
+* Foo[[es:Foo]] [[es:Bar]]Bar
+* Foo[[es:Foo]] [[es:Bar]] Bar
+* Foo [[es:Foo]][[es:Bar]]Bar
+* Foo [[es:Foo]][[es:Bar]] Bar
+* Foo [[es:Foo]] [[es:Bar]]Bar
+* Foo [[es:Foo]] [[es:Bar]] Bar
+!! html/php
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li></ul>
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo  Bar</li>
+<li>Foo   Bar</li></ul>
+!! html/parsoid
+<ul>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> Bar</li>
+</ul>
+<ul>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+</ul>
+!! end
+
 ## We used to, but no longer wt2wt this test since the default serializer
 ## will normalize all categories to serialize on their own line.
 ## This wikitext usage is going to be fairly uncommon in production and
