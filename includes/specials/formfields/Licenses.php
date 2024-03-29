@@ -154,8 +154,7 @@ class Licenses extends HTMLFormField {
 				$html .= $this->outputOption(
 					$key, '',
 					[
-						'disabled' => 'disabled',
-						'style' => 'color: GrayText', // for MSIE
+						'disabled' => 'disabled'
 					],
 					$depth
 				);
