@@ -24,6 +24,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\Query;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -256,14 +257,22 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 		$rawTable = $this->getTable( $dbw, $cluster ); // e.g. "blobs_cluster23"
 		$encTable = $dbw->tableName( $rawTable );
+
+		$sqlWithReplacedVars = str_replace(
+			[ '/*$wgDBprefix*/blobs', '/*_*/blobs' ],
+			[ $encTable, $encTable ],
+			$sql
+		);
+
 		$dbw->query(
-			str_replace(
-				[ '/*$wgDBprefix*/blobs', '/*_*/blobs' ],
-				[ $encTable, $encTable ],
-				$sql
+			new Query(
+				$sqlWithReplacedVars,
+				$dbw::QUERY_CHANGE_SCHEMA,
+				'CREATE',
+				$rawTable,
+				$sqlWithReplacedVars
 			),
-			__METHOD__,
-			$dbw::QUERY_CHANGE_SCHEMA
+			__METHOD__
 		);
 	}
 
