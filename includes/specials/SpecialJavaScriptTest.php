@@ -143,13 +143,6 @@ class SpecialJavaScriptTest extends SpecialPage {
 		return mw.loader.using( module ).promise();
 	} );
 	Promise.allSettled( promises ).then( QUnit.start );
-	mw.trackSubscribe( 'resourceloader.exception', function ( topic, err ) {
-		// Things like "dependency missing" or "unknown module".
-		// Re-throw so that they are reported as global exceptions by QUnit and Karma.
-		setTimeout( function () {
-			throw err;
-		} );
-	} );
 JAVASCRIPT
 		);
 

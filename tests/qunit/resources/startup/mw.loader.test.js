@@ -173,9 +173,8 @@
 			[ 'test.load.circleB', '0', [ 'test.load.circleC' ] ],
 			[ 'test.load.circleC', '0', [ 'test.load.circleA' ] ]
 		] );
-		this.sandbox.stub( mw, 'trackError', function ( topic, data ) {
+		this.sandbox.stub( mw, 'trackError', function ( data ) {
 			capture.push( {
-				topic: topic,
 				error: data.exception && data.exception.message,
 				source: data.source
 			} );
@@ -183,12 +182,11 @@
 
 		mw.loader.load( 'test.load.circleC' );
 		assert.deepEqual(
+			capture,
 			[ {
-				topic: 'resourceloader.exception',
 				error: 'Circular reference detected: test.load.circleB -> test.load.circleC',
 				source: 'resolve'
 			} ],
-			capture,
 			'Detect circular dependency'
 		);
 	} );
@@ -198,9 +196,8 @@
 		mw.loader.register( [
 			[ 'test.load.circleDirect', '0', [ 'test.load.circleDirect' ] ]
 		] );
-		this.sandbox.stub( mw, 'trackError', function ( topic, data ) {
+		this.sandbox.stub( mw, 'trackError', function ( data ) {
 			capture.push( {
-				topic: topic,
 				error: data.exception && data.exception.message,
 				source: data.source
 			} );
@@ -208,12 +205,11 @@
 
 		mw.loader.load( 'test.load.circleDirect' );
 		assert.deepEqual(
+			capture,
 			[ {
-				topic: 'resourceloader.exception',
 				error: 'Circular reference detected: test.load.circleDirect -> test.load.circleDirect',
 				source: 'resolve'
 			} ],
-			capture,
 			'Detect a direct self-dependency'
 		);
 	} );
@@ -244,9 +240,8 @@
 	// Regression test for T36853
 	QUnit.test( '.load() - Error: Missing dependency', function ( assert ) {
 		var capture = [];
-		this.sandbox.stub( mw, 'trackError', function ( topic, data ) {
+		this.sandbox.stub( mw, 'trackError', function ( data ) {
 			capture.push( {
-				topic: topic,
 				error: data.exception && data.exception.message,
 				source: data.source
 			} );
@@ -258,12 +253,11 @@
 		] );
 		mw.loader.load( 'test.load.missingdep' );
 		assert.deepEqual(
+			capture,
 			[ {
-				topic: 'resourceloader.exception',
 				error: 'Unknown module: test.load.missingdep2',
 				source: 'resolve'
-			} ],
-			capture
+			} ]
 		);
 	} );
 
