@@ -113,7 +113,6 @@ class HTMLRadioField extends HTMLFormField {
 	public function getInputCodex( $value, $hasErrors ) {
 		$optionDescriptions = $this->getOptionDescriptions();
 		$html = '';
-		$elementFunc = [ Html::class, $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
 
 		// Iterate over an array of options and return the HTML markup.
 		foreach ( $this->getOptions() as $label => $radioValue ) {
@@ -157,7 +156,9 @@ class HTMLRadioField extends HTMLFormField {
 			// HTML markup for radio input, radio icon, and radio label elements.
 			$radioInput = Html::element( 'input', $radioInputAttribs );
 			$radioIcon = Html::element( 'span', $radioIconAttribs );
-			$radioLabel = call_user_func( $elementFunc, 'label', $radioLabelAttribs, $label );
+			$radioLabel = $this->mOptionsLabelsNotFromMessage
+				? Html::rawElement( 'label', $radioLabelAttribs, $label )
+				: Html::element( 'label', $radioLabelAttribs, $label );
 
 			$radioDescription = '';
 			if ( isset( $optionDescriptions[$radioValue] ) ) {
