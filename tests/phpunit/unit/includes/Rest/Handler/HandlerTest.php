@@ -7,12 +7,12 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\BodyValidator;
-use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\Assert;
@@ -232,16 +232,105 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function testGetValidatedBody() {
-		$validator = $this->createMock( Validator::class );
-		$validator->method( 'validateBody' )->willReturn( [ 'VALIDATED BODY' ] );
+	public static function provideValidateBodyParams() {
+		yield 'no body parameter' => [
+			[
+				'pathfoo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_SOURCE => 'path',
+				],
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'kittens' ] ] ),
+			[] // extra parameter should be ignored if no body param is defined
+		];
 
-		$handler = $this->newHandler();
-		$this->initHandler( $handler, new RequestData() );
-		$handler->validate( $validator );
+		yield 'parameter' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				],
+				'pathfoo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_SOURCE => 'path',
+				],
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'kittens' ] ] ),
+			[ 'foo' => 'kittens' ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideValidateBodyParams
+	 */
+	public function testValidateBodyParams( $paramSettings, $request, $expected ) {
+		$handler = $this->newHandler( [ 'getParamSettings' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+
+		$params = $handler->getValidatedBody();
+		$this->assertSame( $expected, $params );
+	}
+
+	public function provideValidateBodyParams_invalid() {
+		$paramSettings = [
+			'foo' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_SOURCE => 'body',
+			]
+		];
+
+		$request = new RequestData(
+			[
+				'parsedBody' => [
+					'foo' => 'kittens',
+					'xyzzy' => 'lizzards',
+				],
+			]
+		);
+
+		$handler = $this->newHandler( [ 'getParamSettings' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+
+		try {
+			$this->initHandler( $handler, $request );
+			$this->validateHandler( $handler );
+			$this->fail( 'Expected LocalizedHttpException' );
+		} catch ( LocalizedHttpException $ex ) {
+			$this->assertSame( 'paramvalidator-missingparam', $ex->getMessageValue()->getKey() );
+		}
+	}
+
+	public function testBodyValidator() {
+		$request = new RequestData( [
+			'method' => 'POST',
+			'headers' => [
+				'Content-Type' => 'test/test'
+			],
+			'bodyContents' => 'test test test'
+		] );
+
+		$bodyValidator = new class () implements BodyValidator {
+
+			public function validateBody( RequestInterface $request ) {
+				return 'VALIDATED BODY';
+			}
+		};
+
+		$handler = $this->newHandler( [ 'getBodyValidator' ] );
+		$handler->method( 'getBodyValidator' )->willReturn( $bodyValidator );
+
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
 
 		$body = $handler->getValidatedBody();
-		$this->assertSame( [ 'VALIDATED BODY' ], $body );
+		$this->assertSame( 'VALIDATED BODY', $body );
 	}
 
 	public function testGetRequest() {

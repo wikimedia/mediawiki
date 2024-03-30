@@ -52,6 +52,7 @@ class EchoHandler extends Handler {
 			'bodyParam' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false
 			],
 		];
 	}
