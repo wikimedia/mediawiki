@@ -169,16 +169,27 @@ class SignatureValidator {
 
 				$details = $this->getLintErrorDetails( $error );
 				$location = $this->getLintErrorLocation( $error );
+				// THESE MESSAGE IDS SHOULD BE KEPT IN SYNC WITH
+				// those declared in Extension:Linter -- in particular
+				// there should be a linterror-<cat> declared here for every
+				// linter-pager-<cat>-details declared in Linter's qqq.json.
+				// T360809: this redundancy should be eventually eliminated
+
 				// Messages used here:
 				// * linterror-bogus-image-options
 				// * linterror-deletable-table-tag
+				// * linterror-fostered
 				// * linterror-html5-misnesting
+				// * linterror-inline-media-caption
+				// * linterror-large-tables
 				// * linterror-misc-tidy-replacement-issues
 				// * linterror-misnested-tag
 				// * linterror-missing-end-tag
+				// * linterror-missing-end-tag-in-heading
 				// * linterror-multi-colon-escape
 				// * linterror-multiline-html-table-in-list
 				// * linterror-multiple-unclosed-formatting-tags
+				// * linterror-night-mode-unaware-background-color
 				// * linterror-obsolete-tag
 				// * linterror-pwrap-bug-workaround
 				// * linterror-self-closed-tag
@@ -186,6 +197,7 @@ class SignatureValidator {
 				// * linterror-tidy-font-bug
 				// * linterror-tidy-whitespace-bug
 				// * linterror-unclosed-quotes-in-heading
+				// * linterror-wikilink-in-extlink
 				$label = $this->localizer->msg( "linterror-{$error['type']}" )->parse();
 				$docsLink = new ButtonWidget( [
 					'href' =>
