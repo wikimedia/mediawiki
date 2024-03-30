@@ -107,7 +107,7 @@
 		 *
 		 * @method
 		 * @param {string} path
-		 * @param {Object} body
+		 * @param {Object} [body]
 		 * @param {Object} [headers]
 		 * @return {jQuery.Promise}
 		 */
