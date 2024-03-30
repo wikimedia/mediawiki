@@ -2,6 +2,8 @@
  * Basic styles for the edit revision history page 'HistoryAction.php'
  */
 
+@import 'mediawiki.skin.variables.less';
+
 /* stylelint-disable selector-class-pattern */
 
 .mw-history-compareselectedversions {
@@ -27,7 +29,7 @@
 	}
 
 	li.selected {
-		background-color: #f8f9fa;
+		background-color: @background-color-neutral-subtle;
 		color: #202122;
 		outline: 1px dashed #a2a9b1;
 	}

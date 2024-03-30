@@ -1,3 +1,4 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
 /* stylelint-disable selector-class-pattern */
@@ -54,11 +55,11 @@
 		}
 
 		tbody tr:nth-child( even ) td {
-			background-color: #f8f9fa;
+			background-color: @background-color-neutral-subtle;
 		}
 
 		tbody tr:hover td {
-			background-color: #eaecf0;
+			background-color: @background-color-neutral;
 		}
 
 		.oo-ui-fieldLayout-help {
