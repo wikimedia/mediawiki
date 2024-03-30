@@ -3,14 +3,6 @@
  */
 @import 'mediawiki.skin.variables.less';
 
-// OOUIHTMLForm styles.
-@ooui-font-size-browser: 16; // Assumed browser default of `16px`.
-@ooui-font-size-base: 0.875 / 1em; // Equals `14px` at browser default of `16px`.
-
-@ooui-spacing-small: 8 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `0.57142857em`≈`8px`.
-@ooui-spacing-medium: 12 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `0.8571429em`≈`12px`.
-@ooui-spacing-large: 16 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.1428571em`≈`16px`.
-
 .mw-special-Contributions {
 	.oo-ui-fieldsetLayout-group {
 		max-width: 50em;
@@ -27,17 +19,17 @@
 	}
 
 	.mw-autocomplete-user.oo-ui-fieldLayout {
-		margin-top: @ooui-spacing-small;
+		margin-top: @spacing-50;
 	}
 
 	// Higher specificity needed to override OOUIHTMLForm styles.
 	.mw-htmlform-field-HTMLMultiSelectField.mw-htmlform-flatlist.oo-ui-fieldLayout {
-		margin-top: @ooui-spacing-small;
+		margin-top: @spacing-50;
 	}
 
 	.mw-htmlform-field-HTMLTagFilter ~ .mw-htmlform-field-HTMLCheckField.oo-ui-fieldLayout {
 		display: inline-block;
-		padding-right: @ooui-spacing-large;
+		padding-right: @spacing-100;
 	}
 
 	// Clearfix for floated `.mw-htmlform-field-HTMLDateTimeField` below.
@@ -49,7 +41,7 @@
 
 	.oo-ui-fieldLayout.oo-ui-labelElement.mw-htmlform-field-HTMLDateTimeField {
 		margin: 0;
-		margin-right: @ooui-spacing-large;
+		margin-right: @spacing-100;
 	}
 
 	@media all and ( min-width: @width-breakpoint-tablet ) {

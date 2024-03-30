@@ -6,10 +6,6 @@
 @ooui-font-size-browser: 16; // assumed browser default of `16px`
 @ooui-font-size-base: 0.875 / 1em; // equals `14px` at browser default of `16px`
 
-@ooui-spacing-small: 8 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.57142857em`≈`8px`
-@ooui-spacing-medium: 12 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.8571429em`≈`12px`
-@ooui-spacing-large: 16 / @ooui-font-size-browser / @ooui-font-size-base; // equals `1.1428571em`≈`16px`
-
 @ooui-spacing-radio-label: 26 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.85714286em`≈`26px`.
 
 .mw-htmlform-ooui {
@@ -25,7 +21,7 @@
 
 	// Default OOUI styles produce a larger margin here
 	.mw-htmlform-field-HTMLSizeFilterField {
-		margin-top: @ooui-spacing-medium;
+		margin-top: @spacing-75;
 	}
 
 	.mw-htmlform-matrix {
@@ -36,7 +32,7 @@
 		}
 
 		td {
-			padding: @ooui-spacing-small @ooui-spacing-medium;
+			padding: @spacing-50 @spacing-75;
 			text-align: center;
 			transition: background-color 250ms;
 
@@ -92,7 +88,7 @@
 	.oo-ui-radioOptionWidget,
 	.oo-ui-checkboxMultioptionWidget {
 		display: inline-block;
-		margin-right: @ooui-spacing-medium;
+		margin-right: @spacing-75;
 	}
 
 	// Reduce label distance in flatlist
@@ -105,5 +101,5 @@
 .mw-htmlform-field-HTMLMultiSelectField.oo-ui-fieldLayout,
 .mw-htmlform-ooui .htmlform-tip,
 .mw-htmlform-ooui .mw-htmlform-submit-buttons {
-	margin-top: @ooui-spacing-medium;
+	margin-top: @spacing-75;
 }
