@@ -670,7 +670,7 @@ abstract class ParsoidHandler extends Handler {
 		if ( $format === ParsoidFormatHelper::FORMAT_LINT ) {
 			$lints = $this->wtLint( $pageConfig, $attribs, $wikitext );
 
-			if ( $this->extensionRegistry->isLoaded( 'Linter' ) ) {
+			if ( $this->extensionRegistry->isLoaded( 'Linter' ) ) { // T360809
 				$services = MediaWikiServices::getInstance();
 				$linterCategories = $services->getMainConfig()->get( 'LinterCategories' );
 				$hiddenCats = [];

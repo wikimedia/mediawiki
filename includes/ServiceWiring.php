@@ -2049,7 +2049,8 @@ return [
 			},
 			$services->getParsoidPageConfigFactory(),
 			$services->getSpecialPageFactory(),
-			$services->getTitleFactory()
+			$services->getTitleFactory(),
+			$services->getExtensionRegistry()
 		);
 	},
 
