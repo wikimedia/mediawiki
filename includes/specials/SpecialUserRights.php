@@ -710,7 +710,7 @@ class SpecialUserRights extends SpecialPage {
 				'user',
 				'username',
 				30,
-				$this->mTarget ? str_replace( '_', ' ', $this->mTarget ) : '',
+				$this->mTarget !== null ? str_replace( '_', ' ', $this->mTarget ) : '',
 				[
 					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 				] + (
