@@ -1704,7 +1704,7 @@ class MainConfigSchema {
 	/**
 	 * Toggles native image lazy loading, via the "loading" attribute.
 	 *
-	 * @warning EXPERIMENTAL!
+	 * @unstable EXPERIMENTAL
 	 * @since 1.34
 	 */
 	public const NativeImageLazyLoading = [
@@ -2452,8 +2452,9 @@ class MainConfigSchema {
 	/** @name   DJVU settings */
 
 	/**
-	 * Whether to use BoxedCommand or not. Temporary feature flag for T352515
+	 * Whether to use BoxedCommand or not.
 	 *
+	 * @unstable Temporary feature flag for T352515
 	 * @since 1.42
 	 */
 	public const DjvuUseBoxedCommand = [
@@ -5897,8 +5898,8 @@ class MainConfigSchema {
 	/**
 	 * Use the main stash instead of the module_deps table for indirect dependency tracking
 	 *
+	 * @unstable EXPERIMENTAL
 	 * @since 1.35
-	 * @warning EXPERIMENTAL
 	 */
 	public const ResourceLoaderUseObjectCacheForDeps = [
 		'default' => false,
@@ -6537,8 +6538,8 @@ class MainConfigSchema {
 	 * alternative modern HTML structure that replaces it is described at
 	 * https://www.mediawiki.org/wiki/Parsing/Media_structure
 	 *
-	 * @since 1.36
 	 * @deprecated since 1.41
+	 * @since 1.36
 	 */
 	public const ParserEnableLegacyMediaDOM = [
 		'default' => false,
@@ -6546,13 +6547,14 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Temporary flag to ship the styles for the media HTML structure that replaces
+	 * Enable shipping the styles for the media HTML structure that replaces
 	 * legacy, when $wgParserEnableLegacyMediaDOM is `false`.  This is configured
 	 * separately so that it can continue to be served after the latter is disabled
 	 * but still in the cache.
 	 *
-	 * @internal
 	 * @deprecated since 1.41
+	 * @internal Temporary flag, T51097.
+	 * @since 1.38
 	 */
 	public const UseContentMediaStyles = [
 		'default' => false,
@@ -6560,12 +6562,13 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Temporary flag to stop shipping the styles for the legacy media HTML structure
+	 * Disable shipping the styles for the legacy media HTML structure
 	 * that has been replaced when $wgParserEnableLegacyMediaDOM is `false`.  This is
 	 * configured separately to give time for templates and extensions that mimic the
-	 * parser output to be migrated away. See T318433
+	 * parser output to be migrated away.
 	 *
-	 * @internal
+	 * @internal Temporary feature flag for T318433.
+	 * @since 1.41
 	 */
 	public const UseLegacyMediaStyles = [
 		'default' => false,
@@ -7593,11 +7596,10 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Temporary feature flag that controls whether users will see a checkbox allowing them to
-	 * require providing email during password resets.
+	 * Whether users will see a checkbox allowing them to require providing email during password resets.
 	 *
-	 * @unstable This feature is under development, don't assume this flag's existence or function
-	 *          outside of Wikimedia.
+	 * @unstable EXPERIMENTAL This feature is under development, don't assume this flag's existence
+	 * or function outside of Wikimedia Foundation wikis.
 	 */
 	public const AllowRequiringEmailForResets = [
 		'default' => false,
@@ -7608,7 +7610,7 @@ class MainConfigSchema {
 	 * This can be enabled to avoid exposing the IP addresses of casual editors who
 	 * do not explicitly create an account.
 	 *
-	 * EXPERIMENTAL -- enabling may break extensions.
+	 * @warning This is EXPERIMENTAL, enabling may break extensions.
 	 *
 	 * An associative array with the following keys:
 	 *
@@ -7659,6 +7661,7 @@ class MainConfigSchema {
 	 *      accounts expire? Require expireTemporaryAccounts.php to be periodically executed in
 	 *      order to work.
 	 *
+	 * @unstable EXPERIMENTAL
 	 * @since 1.39
 	 */
 	public const AutoCreateTempUser = [
@@ -7734,7 +7737,8 @@ class MainConfigSchema {
 	/**
 	 * Flag to enable partial blocks against performing certain actions.
 	 *
-	 * @unstable Temporary feature flag which will be removed in an upcoming release: T280532
+	 * @unstable Temporary feature flag, T280532
+	 * @since 1.37
 	 */
 	public const EnablePartialActionBlocks = [
 		'default' => false,
@@ -9197,11 +9201,13 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Controls Content-Security-Policy header [Experimental]
+	 * Controls Content-Security-Policy header
 	 *
-	 * @see https://www.w3.org/TR/CSP2/
-	 * @since 1.32
 	 * @warning May cause slowness on Windows due to slow random number generator.
+	 *
+	 * @unstable EXPERIMENTAL
+	 * @since 1.32
+	 * @see https://www.w3.org/TR/CSP2/
 	 */
 	public const CSPHeader = [
 		'default' => false,
@@ -10984,12 +10990,12 @@ class MainConfigSchema {
 	/** @name   Wiki Farm */
 
 	/**
-	 * EXPERIMENTAL: A directory that contains site-specific
-	 * configuration files. Setting this will enable multi-tenant ("wiki farm")
-	 * mode, causing site-specific settings to be loaded based on information from
-	 * the web request.
+	 * A directory that contains site-specific configuration files.
 	 *
-	 * @unstable
+	 * Setting this will enable multi-tenant ("wiki farm") mode, causing
+	 * site-specific settings to be loaded based on information from the web request.
+	 *
+	 * @unstable EXPERIMENTAL
 	 * @since 1.38
 	 */
 	public const WikiFarmSettingsDirectory = [
@@ -10997,11 +11003,10 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * EXPERIMENTAL: The file extension to be used when looking up
-	 * site-specific settings files in $wgWikiFarmSettingsDirectory, such as 'json'
-	 * or 'yaml'.
+	 * The file extension to be used when looking up site-specific settings files in
+	 * $wgWikiFarmSettingsDirectory, such as 'json' or 'yaml'.
 	 *
-	 * @unstable
+	 * @unstable EXPERIMENTAL
 	 * @since 1.38
 	 */
 	public const WikiFarmSettingsExtension = [
@@ -11111,7 +11116,7 @@ class MainConfigSchema {
 	 *  }
 	 *  ```
 	 *
-	 * @warning EXPERIMENTAL!
+	 * @unstable EXPERIMENTAL
 	 * @since 1.42
 	 */
 	public const TranslationAliasesDirs = [
@@ -12712,7 +12717,7 @@ class MainConfigSchema {
 	/**
 	 * Expiry of the endpoint definition for the Reporting API.
 	 *
-	 * @warning EXPERIMENTAL!
+	 * @unstable EXPERIMENTAL
 	 * @since 1.34
 	 */
 	public const ReportToExpiry = [
@@ -12723,7 +12728,7 @@ class MainConfigSchema {
 	/**
 	 * List of endpoints for the Reporting API.
 	 *
-	 * @warning EXPERIMENTAL!
+	 * @unstable EXPERIMENTAL
 	 * @since 1.34
 	 */
 	public const ReportToEndpoints = [
@@ -12736,7 +12741,7 @@ class MainConfigSchema {
 	 *
 	 * Each entry is turned into a Feature-Policy-Report-Only header.
 	 *
-	 * @warning EXPERIMENTAL!
+	 * @unstable EXPERIMENTAL
 	 * @since 1.34
 	 */
 	public const FeaturePolicyReportOnly = [
@@ -12766,7 +12771,9 @@ class MainConfigSchema {
 
 	/**
 	 * Whether to enable the client-side edit recovery feature.
-	 * This is a temporary feature flag.
+	 *
+	 * @unstable Temporary feature flag, T341844
+	 * @since 1.41
 	 */
 	public const EnableEditRecovery = [
 		'default' => false,
@@ -12783,7 +12790,9 @@ class MainConfigSchema {
 
 	/**
 	 * Whether to use Codex in Special:Block form.
-	 * This is a temporary feature flag.
+	 *
+	 * @unstable Temporary feature flag, T358153
+	 * @since 1.42
 	 */
 	public const UseCodexSpecialBlock = [
 		'default' => false,
@@ -12792,7 +12801,9 @@ class MainConfigSchema {
 
 	/**
 	 * Whether to display a confirmation screen during user log out.
-	 * This is a temporary feature flag.
+	 *
+	 * @unstable Temporary feature flag, T357484
+	 * @since 1.42
 	 */
 	public const ShowLogoutConfirmation = [
 		'default' => false,
