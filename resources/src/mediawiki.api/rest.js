@@ -112,7 +112,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		post: function ( path, body, headers ) {
-			if ( typeof body === 'undefined' ) {
+			if ( body === undefined ) {
 				body = {};
 			}
 
