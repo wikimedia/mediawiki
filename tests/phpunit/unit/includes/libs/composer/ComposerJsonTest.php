@@ -5,6 +5,9 @@ namespace Wikimedia\Tests\Composer;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Composer\ComposerJson;
 
+/**
+ * @covers \Wikimedia\Composer\ComposerJson
+ */
 class ComposerJsonTest extends TestCase {
 
 	private $json;
@@ -14,10 +17,6 @@ class ComposerJsonTest extends TestCase {
 		$this->json = __DIR__ . "/../../../../data/composer/composer.json";
 	}
 
-	/**
-	 * @covers \Wikimedia\Composer\ComposerJson::__construct
-	 * @covers \Wikimedia\Composer\ComposerJson::getRequiredDependencies
-	 */
 	public function testGetRequiredDependencies() {
 		$json = new ComposerJson( $this->json );
 		$this->assertEquals( [
@@ -37,7 +36,6 @@ class ComposerJsonTest extends TestCase {
 
 	/**
 	 * @dataProvider provideNormalizeVersion
-	 * @covers \Wikimedia\Composer\ComposerJson::normalizeVersion
 	 */
 	public function testNormalizeVersion( $input, $expected ) {
 		$this->assertEquals( $expected, ComposerJson::normalizeVersion( $input ) );
