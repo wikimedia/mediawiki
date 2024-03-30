@@ -877,6 +877,11 @@ return [
 	'mediawiki.htmlform.styles' => [
 		'styles' => 'resources/src/mediawiki.htmlform.styles/styles.less',
 	],
+	'mediawiki.htmlform.codex.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.htmlform.codex.styles.less'
+		],
+	],
 	'mediawiki.htmlform.ooui.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.collapsiblefieldsetlayout.styles.less',
