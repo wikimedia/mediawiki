@@ -3,16 +3,14 @@
 use MediaWiki\Html\FormOptions;
 
 /**
- * Test class for FormOptions methods.
- *
  * Copyright © 2011, Antoine Musso
  *
  * @author Antoine Musso
+ * @covers \MediaWiki\Html\FormOptions
  */
 class FormOptionsTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers \MediaWiki\Html\FormOptions::guessType
 	 * @dataProvider provideTypeDetection
 	 */
 	public function testGuessTypeDetection( $expectedType, $data ) {
@@ -40,9 +38,6 @@ class FormOptionsTest extends MediaWikiUnitTestCase {
 		yield [ FormOptions::ARR, [ 'foo' ] ];
 	}
 
-	/**
-	 * @covers \MediaWiki\Html\FormOptions::guessType
-	 */
 	public function testGuessTypeOnNullThrowException() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Unsupported datatype' );

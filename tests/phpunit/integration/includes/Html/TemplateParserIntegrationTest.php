@@ -5,7 +5,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Templates
- * @coversDefaultClass \MediaWiki\Html\TemplateParser
+ * @covers \MediaWiki\Html\TemplateParser
  */
 class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
@@ -20,9 +20,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::SecretKey, self::SECRET_KEY );
 	}
 
-	/**
-	 * @covers ::getTemplate
-	 */
 	public function testGetTemplateNeverCacheWithoutSecretKey() {
 		$this->overrideConfigValue( MainConfigNames::SecretKey, false );
 
@@ -35,9 +32,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( self::RESULT, $tp->processTemplate( self::NAME, [] ) );
 	}
 
-	/**
-	 * @covers ::getTemplate
-	 */
 	public function testGetTemplateCachesCompilationResult() {
 		$store = null;
 
@@ -93,9 +87,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( self::RESULT, $tp2->processTemplate( self::NAME, [] ) );
 	}
 
-	/**
-	 * @covers ::getTemplate
-	 */
 	public function testGetTemplateInvalidatesCacheWhenFilesHashIsInvalid() {
 		$store = null;
 
@@ -131,9 +122,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( self::RESULT, $tp2->processTemplate( self::NAME, [] ) );
 	}
 
-	/**
-	 * @covers ::getTemplate
-	 */
 	public function testGetTemplateInvalidatesCacheWhenIntegrityHashIsInvalid() {
 		$store = null;
 
@@ -171,7 +159,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideProcessTemplate
-	 * @covers \MediaWiki\Html\TemplateParser
 	 */
 	public function testProcessTemplate( $name, $args, $result, $exception = false ) {
 		$tp = new TemplateParser( self::DIR, new EmptyBagOStuff );
@@ -277,9 +264,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::enableRecursivePartials
-	 */
 	public function testEnableRecursivePartials() {
 		$tp = new TemplateParser( self::DIR, new EmptyBagOStuff );
 		$data = [ 'r' => [ 'r' => [ 'r' => [] ] ] ];
@@ -292,9 +276,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$tp->processTemplate( 'recurse', $data );
 	}
 
-	/**
-	 * @covers \MediaWiki\Html\TemplateParser::compile
-	 */
 	public function testCompileReturnsPHPCodeAndMetadata() {
 		$store = null;
 
@@ -325,9 +306,6 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getTemplate
-	 */
 	public function testGetTemplateCachingHandlesRecursivePartials() {
 		$store = null;
 

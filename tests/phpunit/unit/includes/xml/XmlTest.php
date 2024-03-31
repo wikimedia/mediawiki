@@ -28,12 +28,10 @@ use Xml;
  * Split from \XmlTest integration tests
  *
  * @group Xml
+ * @covers \Xml
  */
 class XmlTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers \Xml::expandAttributes
-	 */
 	public function testExpandAttributes() {
 		$this->assertNull(
 			Xml::expandAttributes( null ),
@@ -46,13 +44,9 @@ class XmlTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \Xml::escapeTagsOnly
-	 */
 	public function testEscapeTagsOnly() {
 		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
 			'replace " > and < with their HTML entitites'
 		);
 	}
-
 }

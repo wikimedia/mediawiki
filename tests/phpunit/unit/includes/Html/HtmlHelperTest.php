@@ -8,11 +8,11 @@ use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 
+/**
+ * @covers \MediaWiki\Html\HtmlHelper
+ */
 class HtmlHelperTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers \MediaWiki\Html\HtmlHelper::modifyElements
-	 */
 	public function testModifyElements() {
 		$shouldModifyCallback = static function ( SerializerNode $node ) {
 			return $node->namespace === HTMLData::NS_HTML

@@ -22,7 +22,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\HTMLForm\HTMLFormField
  */
 class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
-
 	use MediaWikiCoversValidator;
 
 	public function getNewForm( $descriptor, $requestData = [] ) {
@@ -40,12 +39,6 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \HTMLFormField::isHidden
-	 * @covers \HTMLFormField::isDisabled
-	 * @covers \HTMLFormField::checkStateRecurse
-	 * @covers \HTMLFormField::validateCondState
-	 * @covers \HTMLFormField::getNearestField
-	 * @covers \HTMLFormField::getNearestFieldValue
 	 * @dataProvider provideCondState
 	 */
 	public function testCondState( $fieldInfo, $requestData, $callback, $exception = null ) {
@@ -385,7 +378,6 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \HTMLFormField::parseCondState
 	 * @dataProvider provideParseCondState
 	 */
 	public function testParseCondState( $fieldName, $condState, $excepted ) {
