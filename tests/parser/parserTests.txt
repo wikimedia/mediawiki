@@ -20,7 +20,8 @@ version=2
 #  msg        apply message transform
 #  comment    run through MediaWiki\CommentFormatter\CommentFormatter::format() instead of main parser
 #
-# Options for adding metadata to the output:
+# Options for adding metadata to the metadata section:
+# (Previously, these options pre- or post- pended to the html section)
 #
 # cat           add category links
 #               (ignored by Parsoid, since it emits <link>s)
@@ -30,8 +31,11 @@ version=2
 #               This can also be a comma-separated list.
 # extension=XXX add the JSON-encoded value of the given extension data.
 #               This can also be a comma-separated list.
-# showtitle     make the first line the title
-# showindicators make the first lines the page status indicators
+# showtitle     add the rendered title
+# showflags     add the set parser output flags
+# showtocdata   add table of contents data
+# showindicators add the page status indicators
+# showmedia     add the titles of the rendered media
 #
 # Parser parameters:
 #
@@ -4152,7 +4156,7 @@ Namespace 0 {{ns:0}} (T6783)
 Namespace 0 {{ns:00}} (T6783)
 !! wikitext
 {{ns:00}}
-!! html
+!! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"ns:00","function":"ns"},"params":{},"i":0}}]}'></span>
 !! end
@@ -6967,12 +6971,26 @@ Link to category
 Simple category
 !! options
 cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=
 !! wikitext
 [[Category:MediaWiki User's Guide]]
 !! html/php
-cat=MediaWiki_User's_Guide sort=
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide" data-parsoid='{"stx":"simple","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+!! end
+
+!! test
+Simple category with whitespace as sort key
+!! options
+cat
+!! metadata
+cat=Foo sort= 
+!! wikitext
+[[Category:Foo| ]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo#%20" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo#%20"},"sa":{"href":"Category:Foo#%20"}}'/>
 !! end
 
 !! test
@@ -6988,10 +7006,11 @@ PAGESINCATEGORY invalid title fatal (r33546 fix)
 Category with different sort key
 !! options
 cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=Foo
 !! wikitext
 [[Category:MediaWiki User's Guide|Foo]]
 !! html/php
-cat=MediaWiki_User's_Guide sort=Foo
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#Foo" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
 !! end
@@ -7000,12 +7019,26 @@ cat=MediaWiki_User's_Guide sort=Foo
 Category with identical sort key
 !! options
 cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=MediaWiki User's Guide
 !! wikitext
 [[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
 !! html/php
-cat=MediaWiki_User's_Guide sort=MediaWiki User's Guide
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20User's%20Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+!! end
+
+!! test
+Category with identical sort key, except underscores
+!! options
+cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=MediaWiki_User's_Guide
+!! wikitext
+[[Category:MediaWiki User's Guide|MediaWiki_User's_Guide]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki_User's_Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
 !! end
 
 !! test
@@ -7013,11 +7046,12 @@ Category with newline in sort key
 !! options
 cat
 parsoid=wt2html,html2html
+!! metadata
+cat=Wikidata:Tools sort=*
 !! wikitext
 [[Category:Wikidata:Tools|
 *]]
 !! html/php
-cat=Wikidata:Tools sort=*
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:Wikidata:Tools#*"/>
 !! end
@@ -7026,10 +7060,11 @@ cat=Wikidata:Tools sort=*
 Category with template-generated sort key
 !! options
 cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=MediaWiki Foo Guide
 !! wikitext
 [[Category:MediaWiki User's Guide|MediaWiki {{1x|Foo}} Guide]]
 !! html/php
-cat=MediaWiki_User's_Guide sort=MediaWiki Foo Guide
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20Foo%20Guide" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"mw:sortKey"},{"html":"MediaWiki &lt;span typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foo\"}},\"i\":0}}]}&apos;>Foo&lt;/span> Guide"}]]}'/>
 !! end
@@ -16593,6 +16628,11 @@ wgRawHtml=1
 Decoding of HTML entities in headings and links for IDs and link fragments (T103714)
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
+!! options
+showtocdata
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 ==A&B&amp;C&amp;amp;D&amp;amp;amp;E==
 [[#A&B&amp;C&amp;amp;D&amp;amp;amp;E]]
@@ -16601,8 +16641,11 @@ wgFragmentMode=[ "html5", "legacy" ]
 <p><a href="#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E">#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</a>
 </p>
 !! html/parsoid
-<h2 id="A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E"><span id="A.26B.26C.26amp.3BD.26amp.3Bamp.3BE" typeof="mw:FallbackId"></span>A&amp;B<span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;"}'>&amp;</span>C<span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;"}'>&amp;</span>amp;D<span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;"}'>&amp;</span>amp;amp;E</h2>
-<p><a rel="mw:WikiLink" href="./Parser_test#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E"},"sa":{"href":"#A&amp;B&amp;amp;C&amp;amp;amp;D&amp;amp;amp;amp;E"}}'>#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</a></p>
+<section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id="A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E"><span id="A.26B.26C.26amp.3BD.26amp.3Bamp.3BE" typeof="mw:FallbackId"></span>A&amp;B<span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;"}'>&amp;</span>C<span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;"}'>&amp;</span>amp;D<span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;"}'>&amp;</span>amp;amp;E</h2>
+<p><a rel="mw:WikiLink" href="./Parser_test#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E"},"sa":{"href":"#A&amp;B&amp;amp;C&amp;amp;amp;D&amp;amp;amp;amp;E"}}'>#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</a></p></section>
+!! metadata
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:A&B&C&amp;D&amp;amp;E line:A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E
 !! end
 
 !! test
