@@ -1971,7 +1971,7 @@
 	"apihelp-no-such-module": "ماڈیول \"$1\" نہیں ملا",
 	"apisandbox": "اے پی آئی کا تختۂ مشق",
 	"apisandbox-jsonly": "اے پی آئی کے تختۂ مشق کو استعمال کرنے کے لیے جاوا اسکرپٹ درکار ہے۔",
-	"apisandbox-intro": "<strong>میڈیاویکی ویب سروس اےپی آئی</strong> کا تجربہ کرنے کے لیے اس صفحہ کو استعمال کریں۔\nاےپی آئی کے استعمال کے متعلق مزید تفصیلات کے لیے [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page the API documentation] سے رجوع کریں۔ مثال: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query مخصوص لفظوں پر مشتمل صفحات کے عناوین کی تلاش]۔ مزید مثالوں کے لیے کسی اقدام کو منتخب کریں۔\n\nملحوظ رہے کہ گرچہ یہ تختۂ مشق ہے لیکن اس صفحہ پر کیے جانے والے آپ کے اقدامات سے ویکی میں تبدیلی ہو سکتی ہے۔",
+	"apisandbox-intro": "<strong>میڈیاویکی ویب سروس اےپی آئی</strong> کا تجربہ کرنے کے لیے اس صفحہ کو استعمال کریں۔\nاےپی آئی کے استعمال کے متعلق مزید تفصیلات کے لیے [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API documentation] سے رجوع کریں۔ مثال: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query مخصوص لفظوں پر مشتمل صفحات کے عناوین کی تلاش]۔ مزید مثالوں کے لیے کسی اقدام کو منتخب کریں۔\n\nگو کہ یہ تختۂ مشق ہے لیکن اس صفحہ پر کیے جانے والے آپ کے اقدامات سے ویکی میں تبدیلی ہو سکتی ہے۔",
 	"apisandbox-submit": "درخواست دیں",
 	"apisandbox-reset": "صاف کریں",
 	"apisandbox-retry": "دوبارہ کوشش کریں",
