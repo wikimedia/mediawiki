@@ -10,6 +10,7 @@ use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
@@ -1261,8 +1262,21 @@ abstract class HTMLFormField {
 		$ret = [];
 		foreach ( $options as $key => $value ) {
 			$msg = $this->msg( $key );
-			$key = $needsParse ? $msg->parse() : $msg->plain();
-			$ret[$key] = is_array( $value )
+			$msgAsText = $needsParse ? $msg->parse() : $msg->plain();
+			if ( array_key_exists( $msgAsText, $ret ) ) {
+				LoggerFactory::getInstance( 'error' )->error(
+					'The option that uses the message key {msg_key_one} has the same translation as ' .
+					'another option in {lang}. This means that {msg_key_one} will not be used as an option.',
+					[
+						'msg_key_one' => $key,
+						'lang' => $this->mParent ?
+							$this->mParent->getLanguageCode()->toBcp47Code() :
+							RequestContext::getMain()->getLanguageCode()->toBcp47Code(),
+					]
+				);
+				continue;
+			}
+			$ret[$msgAsText] = is_array( $value )
 				? $this->lookupOptionsKeys( $value, $needsParse )
 				: strval( $value );
 		}

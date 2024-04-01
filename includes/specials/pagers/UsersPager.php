@@ -38,6 +38,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
@@ -410,6 +411,18 @@ class UsersPager extends AlphabeticPager {
 
 		$groupOptions = [ $this->msg( 'group-all' )->text() => '' ];
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
+			if ( array_key_exists( $groupText, $groupOptions ) ) {
+				LoggerFactory::getInstance( 'error' )->error(
+					'The group {group_one} has the same translation as {group_two} for {lang}. ' .
+					'{group_one} will not be displayed in group dropdown of the UsersPager.',
+					[
+						'group_one' => $group,
+						'group_two' => $groupOptions[$groupText],
+						'lang' => $this->getLanguage()->getCode(),
+					]
+				);
+				continue;
+			}
 			$groupOptions[ $groupText ] = $group;
 		}
 
