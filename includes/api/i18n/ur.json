@@ -53,6 +53,7 @@
 	"apihelp-help-example-main": "اصل ماڈیول کی رہنما تفصیلات۔",
 	"apihelp-help-example-recursive": "ایک صفحہ میں تمام رہنمائیاں۔",
 	"apihelp-import-summary": "کسی دوسری ویکی سے یا XML فائل سے صفحہ درآمد کرتا ہے۔",
+	"apihelp-linkaccount-summary": "کھاتے کو کسی دوسرے فراہم کنندہ سے ہٹا کر موجودہ صارف سے مربوط کرتا ہے۔",
 	"apihelp-login-summary": "لاگ ان ہو کر توثیقی کوکیز حاصل کرتا ہے۔",
 	"apihelp-logout-summary": "لاگ آؤٹ ہو کر نشست کے سارے ڈیٹا کو صاف کرتا ہے۔",
 	"apihelp-managetags-summary": "ٹیگوں کی تبدیلی سے متعلق انتظامی امور انجام دیتا ہے۔",

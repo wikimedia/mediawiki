@@ -210,7 +210,7 @@
 	"prefs-user-pages": "用戶頁面",
 	"prefs-personal": "用戶檔案",
 	"username": "{{GENDER:$1|用戶名稱}}：",
-	"linterror-big-tables": "在流動裝置上導致頁面顯示異常的過大表格",
+	"linterror-large-tables": "在流動裝置上導致頁面顯示異常的過大表格",
 	"gender-unknown": "當提到您時，本軟件會盡可能使用性別中性詞彙",
 	"gender-notknown": "此人",
 	"gender-male": "他",
