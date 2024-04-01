@@ -14,20 +14,16 @@ use MediaWiki\Html\TemplateParser;
  * @internal
  */
 class MissingExtensionException extends Exception {
-	/** @var bool */
-	private $isSkin;
-	/** @var string */
-	private $extName = 'unknown';
-	/** @var string */
-	private $path;
-	/** @var string */
-	private $error;
+	private bool $isSkin;
+	private string $extName = 'unknown';
+	private string $path;
+	private string $error;
 
 	/**
 	 * @param string $path Path of file that cannot be read
 	 * @param string $error Text of error mtime gave
 	 */
-	public function __construct( $path, $error ) {
+	public function __construct( string $path, string $error ) {
 		$this->isSkin = str_ends_with( $path, "/skin.json" );
 		$m = [];
 		preg_match( "!/([^/]*)/[^/]*.json$!", $path, $m );
