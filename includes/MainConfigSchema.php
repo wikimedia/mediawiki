@@ -7499,6 +7499,8 @@ class MainConfigSchema {
 	 *
 	 * List of valid conditions:
 	 *   * CUDCOND_AFTER: user registered after given timestamp (args: string $timestamp)
+	 *   * CUDCOND_ANON: allows specifying a default for anonymous (logged-out, non-temporary) users
+	 *   * CUDCOND_NAMED: allows specifying a default for named (registered, non-temporary) users
 	 *
 	 * @since 1.42
 	 * @see self::DefaultUserOptions

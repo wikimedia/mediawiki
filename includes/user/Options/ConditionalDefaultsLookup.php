@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class ConditionalDefaultsLookup {
@@ -20,15 +21,18 @@ class ConditionalDefaultsLookup {
 
 	private ServiceOptions $options;
 	private UserRegistrationLookup $userRegistrationLookup;
+	private UserIdentityUtils $userIdentityUtils;
 
 	public function __construct(
 		ServiceOptions $options,
-		UserRegistrationLookup $userRegistrationLookup
+		UserRegistrationLookup $userRegistrationLookup,
+		UserIdentityUtils $userIdentityUtils
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
 		$this->userRegistrationLookup = $userRegistrationLookup;
+		$this->userIdentityUtils = $userIdentityUtils;
 	}
 
 	/**
@@ -127,6 +131,10 @@ class ConditionalDefaultsLookup {
 					(int)ConvertibleTimestamp::convert( TS_UNIX, $registration ) -
 					(int)ConvertibleTimestamp::convert( TS_UNIX, $cond[0] )
 				) > 0;
+			case CUDCOND_ANON:
+				return !$userIdentity->isRegistered();
+			case CUDCOND_NAMED:
+				return $this->userIdentityUtils->isNamed( $userIdentity );
 			default:
 				throw new InvalidArgumentException( 'Unsupported condition ' . $condName );
 		}
