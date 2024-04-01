@@ -541,54 +541,60 @@ parsoid={
 [[Image:Foobar.jpg|alt=123|<nowiki>|</nowiki>]]
 !! end
 
-# wgExternalLinkTarget not supported by Parsoid
 !! test
 Image with link parameter, wgExternalLinkTarget
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/]]
+[[File:Foobar.jpg|link=http://example.com/]]
 !! config
 wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/" rel="nofollow noreferrer noopener" target="foobar"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
 !! test
 Image with link parameter, wgNoFollowLinks set to false
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/]]
+[[File:Foobar.jpg|link=http://example.com/]]
 !! config
 wgNoFollowLinks=false
 wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
 !! test
 Image with link parameter, wgNoFollowDomainExceptions
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/]]
+[[File:Foobar.jpg|link=http://example.com/]]
 !! config
 wgNoFollowDomainExceptions="example.com"
 wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
-# wgExternalLinkTarget not supported by Parsoid
 !! test
 Image with link parameter, wgExternalLinkTarget, unnamed parameter
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/|Title]]
+[[File:Foobar.jpg|link=http://example.com/|Title]]
 !! config
 wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/" title="Title" target="foobar" rel="nofollow noreferrer noopener"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"Title"}'><a href="http://example.com/" rel="nofollow noreferrer noopener" target="foobar" title="Title"><img alt="Title" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
 !! test

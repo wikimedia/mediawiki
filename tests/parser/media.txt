@@ -588,66 +588,73 @@ parsoid={
 [[Image:Foobar.jpg|alt=123|<nowiki>|</nowiki>]]
 !! end
 
-# wgExternalLinkTarget not supported by Parsoid
 !! test
 Image with link parameter, wgExternalLinkTarget
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/]]
+[[File:Foobar.jpg|link=http://example.com/]]
 !! config
 wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/" rel="nofollow noreferrer noopener" target="foobar"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
-# wgExternalLinkTarget not supported by Parsoid
 !! test
 Thumb with link parameter, wgExternalLinkTarget
 !! wikitext
-[[Image:foobar.jpg|thumb|link=http://example.com/]]
+[[File:Foobar.jpg|link=http://example.com/|thumb]]
 !! config
 wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img resource="/wiki/File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption></figcaption></figure>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="http://example.com/" rel="nofollow noreferrer noopener" target="foobar"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption></figcaption></figure>
 !! end
 
 !! test
 Image with link parameter, wgNoFollowLinks set to false
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/]]
+[[File:Foobar.jpg|link=http://example.com/]]
 !! config
 wgNoFollowLinks=false
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
 !! test
 Image with link parameter, wgNoFollowDomainExceptions
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/]]
+[[File:Foobar.jpg|link=http://example.com/]]
 !! config
 wgNoFollowDomainExceptions="example.com"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
-# wgExternalLinkTarget not supported by Parsoid
 !! test
 Image with link parameter, wgExternalLinkTarget, unnamed parameter
 !! wikitext
-[[Image:foobar.jpg|link=http://example.com/|Title]]
+[[File:Foobar.jpg|link=http://example.com/|Title]]
 !! config
 wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/" title="Title" target="foobar" rel="nofollow noreferrer noopener"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"Title"}'><a href="http://example.com/" rel="nofollow noreferrer noopener" target="foobar" title="Title"><img alt="Title" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end
 
 !! test
@@ -4328,4 +4335,21 @@ wgParserEnableLegacyMediaDOM=false
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"&lt;b data-parsoid=&apos;{\"dsr\":[18,29,3,3]}&apos;>thumb&lt;/b>"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="thumb"><img alt="thumb" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
+!! end
+
+!! test
+Collect media metadata
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! options
+showmedia
+!! wikitext
+[[File:Foobar.jpg|123]]
+!! metadata
+images=Foobar.jpg
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"123"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
+!! html/php
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+</p>
 !! end
