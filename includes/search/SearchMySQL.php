@@ -326,7 +326,7 @@ class SearchMySQL extends SearchDatabase {
 		$this->dbProvider->getPrimaryDatabase()->newReplaceQueryBuilder()
 			->replaceInto( 'searchindex' )
 			->uniqueIndexFields( [ 'si_page' ] )
-			->rows( [
+			->row( [
 				'si_page' => $id,
 				'si_title' => $this->normalizeText( $title ),
 				 'si_text' => $this->normalizeText( $text )

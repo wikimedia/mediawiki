@@ -233,7 +233,7 @@ class RecentChangesUpdateJob extends Job {
 		// Touch the data freshness timestamp
 		$dbw->newReplaceQueryBuilder()
 			->replaceInto( 'querycache_info' )
-			->rows( [
+			->row( [
 				'qci_type' => 'activeusers',
 				'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ), // not always $now
 			] )
