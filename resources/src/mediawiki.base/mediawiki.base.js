@@ -147,7 +147,7 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 	 * Parse message as wikitext and return HTML.
 	 *
 	 * If jqueryMsg is loaded, this transforms text and parses a subset of supported wikitext
-	 * into HTML. Without jqueryMsg, it is equivalent to #escaped.
+	 * into HTML. Without jqueryMsg, it is equivalent to {@link mw.Message#escaped}.
 	 *
 	 * @return {string} String form of parsed message
 	 */
@@ -172,7 +172,7 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 	 *
 	 * If jqueryMsg is loaded, `{{`-transformation is done for supported
 	 * magic words such as `{{plural:}}`, `{{gender:}}`, and `{{int:}}`.
-	 * Without jqueryMsg, it is equivalent to #plain.
+	 * Without jqueryMsg, it is equivalent to {@link mw.Message#plain}.
 	 *
 	 * @return {string} String form of text message
 	 */
@@ -192,7 +192,7 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 	},
 
 	/**
-	 * Check if a message exists. Equivalent to {@link mw.Map#exists}.
+	 * Check if a message exists. Equivalent to {@link mw.Map.exists}.
 	 *
 	 * @return {boolean}
 	 */
@@ -287,7 +287,7 @@ mw.internalWikiUrlencode = function ( str ) {
 /**
  * Format a string. Replace $1, $2 ... $N with positional arguments.
  *
- * Used by Message#parser().
+ * Used by {@link mw.Message#parse}.
  *
  * @memberof mw
  * @since 1.25
@@ -342,7 +342,7 @@ mw.msg = function () {
 
 /**
  * Convenience method for loading and accessing the
- * {@link module:mw.notification#notify|mw.notification module}.
+ * {@link mw.notification.notify|mw.notification module}.
  *
  * @memberof mw
  * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
@@ -467,10 +467,10 @@ trackCallbacks.fire( mw.trackQueue );
  * This means if an event is fired, and a handler added afterwards, the added
  * function will be fired right away with the last given event data.
  *
- * Like Deferreds and Promises, the mw.hook object is both detachable and chainable.
+ * Like Deferreds and Promises, the {@link mw.hook} object is both detachable and chainable.
  * Thus allowing flexible use and optimal maintainability and authority control.
  * You can pass around the `add` and/or `fire` method to another piece of code
- * without it having to know the event name (or `mw.hook` for that matter).
+ * without it having to know the event name (or {@link mw.hook} for that matter).
  *
  * ```
  * var h = mw.hook( 'bar.ready' );
@@ -667,7 +667,7 @@ mw.html = {
 	},
 
 	/**
-	 * @classdesc Wrapper object for raw HTML. Can be used with [mw.html.element()]{@link mw.html}.
+	 * @classdesc Wrapper object for raw HTML. Can be used with {@link mw.html.element}.
 	 * @class mw.html.Raw
 	 * @param {string} value
 	 * @property {string} value

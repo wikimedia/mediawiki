@@ -51,7 +51,7 @@
 		/**
 		 * Register a new compiler.
 		 *
-		 * A compiler is any object that implements a compile() method. The compile() method must
+		 * A compiler is any object that implements a {@link mw.template.compile} method. The compile() method must
 		 * return a Template interface with a method render() that returns HTML.
 		 *
 		 * The compiler name must correspond with the name suffix of templates that use this compiler.

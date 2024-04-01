@@ -153,7 +153,7 @@
 		 *  another URI object to clone). Object must have non-blank `protocol`, `host`, and `path`
 		 *  properties. If omitted (or set to `undefined`, `null` or empty string), then an object
 		 *  will be created for the default `uri` of this constructor (`location.href` for mw.Uri,
-		 *  other values for other instances -- see mw.UriRelative for details).
+		 *  other values for other instances -- see {@link mw.UriRelative} for details).
 		 * @param {mw.Uri.UriOptions|boolean} [options] Object with options, or (backwards compatibility) a boolean
 		 *  for strictMode
 		 * @throws {Error} when the query string or fragment contains an unknown % sequence
