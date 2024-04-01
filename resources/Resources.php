@@ -1029,7 +1029,7 @@ return [
 			'resources/src/mediawiki.Upload.BookletLayout/BookletLayout.js',
 		],
 		'styles' => [
-			'resources/src/mediawiki.Upload.BookletLayout/BookletLayout.css',
+			'resources/src/mediawiki.Upload.BookletLayout/BookletLayout.less',
 		],
 		'skinStyles' => [
 			'default' => [
@@ -2874,7 +2874,7 @@ return [
 		],
 		'styles' => [
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchWidget.css',
-			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResultWidget.css',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResultWidget.less',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',

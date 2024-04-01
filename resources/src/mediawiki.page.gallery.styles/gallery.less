@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 /* stylelint-disable selector-class-pattern */
 
 /* Galleries */
@@ -196,7 +198,7 @@ ul.gallery.gallery.gallery.mw-gallery-slideshow {
 @media screen {
 	/* Background and border colors are defined separately for print mode */
 	li.gallerybox div.thumb {
+		background-color: @background-color-neutral-subtle;
 		border: 1px solid #c8ccd1;
-		background-color: #f8f9fa;
 	}
 }
