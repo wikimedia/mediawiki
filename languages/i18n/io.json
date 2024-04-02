@@ -2207,7 +2207,7 @@
 	"deletecomment": "Motivo:",
 	"deleteotherreason": "Altra/suplementala motivo:",
 	"deletereasonotherlist": "Altra motivo",
-	"deletereason-dropdown": "*Ordinara motivi por efaco\n** \"Spam\" (nedezirata mesaji)\n** Vandalismo\n** Kopiyuro violaco\n** Demandata dal autoro\n** Nefuncionanta ligilo",
+	"deletereason-dropdown": "*Ordinara motivi por efaco\n** \"Spam\" (nedezirata mesaji)\n** Vandalismo\n** Kopiyuro violaco\n** Demando dal autoro\n** Nefuncionanta ligilo\n** Skribita nekorekte",
 	"delete-edit-reasonlist": "Informar motivi por efaco",
 	"delete-edit-reasonlist-suppress": "Informar motivi pri supreso",
 	"delete-toobig": "Ca pagino modifikesis multafoye, plu kam $1 {{PLURAL:$1|revizo|revizi}}.\nL'efaco di pagini tante modifikita restriktesis, por preventar acidentala disrupto di {{SITENAME}}.",

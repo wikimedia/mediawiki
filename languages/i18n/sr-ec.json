@@ -1319,7 +1319,7 @@
 	"right-editprotected": "уређивање страница под заштитом „{{int:protect-level-sysop}}“",
 	"right-editsemiprotected": "уређивање страница под заштитом „{{int:protect-level-autoconfirmed}}“",
 	"right-editcontentmodel": "мењање садржинског модела странице",
-	"right-editinterface": "уређивање корисничког окружења",
+	"right-editinterface": "уређивање корисничког интерфејса",
 	"right-editusercss": "уређивање CSS датотека других корисника",
 	"right-edituserjson": "уређивање туђих JSON датотека",
 	"right-edituserjs": "уређивање туђих JavaScript датотека",

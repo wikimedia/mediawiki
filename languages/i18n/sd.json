@@ -1231,7 +1231,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "پنھنجي نظر۾رکيل صفحن جي فھرست سنواريو",
 	"rcfilters-watchlist-showupdated": "انھن صفحن ۾ تبديليون جن تي توھان نہ ويا آھيو جڏھن کان تبديليون آيون آھن، <strong>ٿلھي لکت</strong> ۾ آھن، واضع نشانن سان.",
 	"rcfilters-preference-label": "غير-جاوااسڪرپٽ انٽرفيس استعمال ڪريو",
-	"rcfilters-preference-help": "تازيون تبديليون، نظر۾فھرست، ۽ انھن جھڙن ٻين صفحن کي بغير ڇاڻيل ڳولا يا نمايان ڪرڻ جي فنڪشنلٽي جي لاھي ٿو.",
+	"rcfilters-preference-help": "[[{{#special:RecentChanges}}|تازين تبديلين]] ۽ [[{{#special:RecentChangesLinked}}|لاڳاپيل تبديلين]] کي بغير ڇاڻيل ڳولا يا نمايان ڪرڻ جي فنڪشنلٽي جي لاھي ٿو.",
 	"rcfilters-watchlist-preference-label": "غير-جاوااسڪرپٽ انٽرفيس استعمال ڪريو",
 	"rcfilters-watchlist-preference-help": "[[{{#special:Watchlist}}|نظر۾فھرست]] کي بغير ڇاڻيل ڳولا يا نمايان ڪرڻ جي فنڪشنلٽي جي لاھي ٿو.",
 	"rcfilters-filter-showlinkedfrom-label": "کان ڳنڍيل صفحن تي تبديليون ڏيکاريو",

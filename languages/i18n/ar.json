@@ -492,7 +492,7 @@
 	"logout-failed": "لا يمكن تسجيل الخروج الآن: $1",
 	"cannotlogoutnow-title": "لا يمكن تسجيل الخروج الآن",
 	"cannotlogoutnow-text": "لا يمكن تسجيل الخروج عند استخدام $1",
-	"welcomeuser": "أهلاً بك يا $1!",
+	"welcomeuser": "مرحبًا، $1!",
 	"welcomecreation-msg": "تم إنشاء حسابك.\nلا تنس تعديل [[Special:Preferences|تفضيلاتك في {{SITENAME}}]].",
 	"yourname": "اسم المستخدم:",
 	"userlogin-yourname": "اسم المستخدم",
