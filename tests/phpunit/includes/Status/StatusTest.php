@@ -666,25 +666,6 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Status\Status::getErrorsByType
-	 */
-	public function testGetErrorsByType() {
-		$status = new Status();
-		$warning = new Message( 'warning111' );
-		$error = new Message( 'error111' );
-		$status->warning( $warning );
-		$status->error( $error );
-
-		$warnings = $status->getErrorsByType( 'warning' );
-		$errors = $status->getErrorsByType( 'error' );
-
-		$this->assertCount( 1, $warnings );
-		$this->assertCount( 1, $errors );
-		$this->assertEquals( $warning, $warnings[0]['message'] );
-		$this->assertEquals( $error, $errors[0]['message'] );
-	}
-
-	/**
 	 * @covers \MediaWiki\Status\Status::__wakeup
 	 */
 	public function testWakeUpSanitizesCallback() {

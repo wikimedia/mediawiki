@@ -284,6 +284,7 @@ class Status extends StatusValue {
 	/**
 	 * Get the list of errors (but not warnings)
 	 *
+	 * @deprecated since 1.43 Use `->getMessages( 'error' )` instead
 	 * @return array[] A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 * @phan-return non-empty-array[]
@@ -295,6 +296,7 @@ class Status extends StatusValue {
 	/**
 	 * Get the list of warnings (but not errors)
 	 *
+	 * @deprecated since 1.43 Use `->getMessages( 'warning' )` instead
 	 * @return array[] A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 * @phan-return non-empty-array[]

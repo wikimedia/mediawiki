@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Unit;
 
+use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
 use StatusValue;
 
@@ -186,6 +187,31 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 		}
 
 		$this->assertEquals( $expected, $status->__toString(), $testExplanation );
+	}
+
+	/**
+	 * @covers \StatusValue::getErrors
+	 * @covers \StatusValue::getErrorsByType
+	 * @covers \StatusValue::getMessages
+	 */
+	public function testGetErrorsByType() {
+		$status = new StatusValue();
+		$warning = new Message( 'warning111' );
+		$error = new Message( 'error111' );
+		$status->warning( $warning );
+		$status->error( $error );
+
+		$this->assertCount( 2, $status->getErrors() );
+		$this->assertCount( 1, $status->getErrorsByType( 'warning' ) );
+		$this->assertCount( 1, $status->getErrorsByType( 'error' ) );
+		$this->assertEquals( $warning, $status->getErrorsByType( 'warning' )[0]['message'] );
+		$this->assertEquals( $error, $status->getErrorsByType( 'error' )[0]['message'] );
+
+		$this->assertCount( 2, $status->getMessages() );
+		$this->assertCount( 1, $status->getMessages( 'warning' ) );
+		$this->assertCount( 1, $status->getMessages( 'error' ) );
+		$this->assertEquals( 'warning111', $status->getMessages( 'warning' )[0]->getKey() );
+		$this->assertEquals( 'error111', $status->getMessages( 'error' )[0]->getKey() );
 	}
 
 }

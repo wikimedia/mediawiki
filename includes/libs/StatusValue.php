@@ -19,6 +19,8 @@
  */
 
 use MediaWiki\Message\Converter;
+use MediaWiki\Message\Message;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -159,6 +161,7 @@ class StatusValue {
 	 *
 	 * Each error is a (message:string or MessageSpecifier,params:array) map
 	 *
+	 * @deprecated since 1.43 Use `->getMessages()` instead
 	 * @return array[]
 	 * @phan-return array{type:'warning'|'error', message:string|MessageSpecifier, params:array}[]
 	 */
@@ -321,6 +324,7 @@ class StatusValue {
 	 *   - message: string message key or MessageSpecifier
 	 *   - params: array list of parameters
 	 *
+	 * @deprecated since 1.43 Use `->getMessages( $type )` instead
 	 * @param string $type
 	 * @return array[]
 	 * @phan-return array{type:'warning'|'error', message:string|MessageSpecifier, params:array}[]
@@ -330,6 +334,33 @@ class StatusValue {
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
 				$result[] = $error;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns a list of error messages, optionally only those of the given type
+	 *
+	 * @since 1.43
+	 * @param ?string $type If provided, only return messages of the type 'warning' or 'error'
+	 * @phan-param null|'warning'|'error' $type
+	 * @return MessageSpecifier[]
+	 */
+	public function getMessages( ?string $type = null ): array {
+		Assert::parameter( $type === null || $type === 'warning' || $type === 'error',
+			'$type', "must be null, 'warning', or 'error'" );
+		$result = [];
+		foreach ( $this->errors as $error ) {
+			if ( $type === null || $error['type'] === $type ) {
+				[ 'message' => $key, 'params' => $params ] = $error;
+				if ( $key instanceof MessageSpecifier ) {
+					$result[] = $key;
+				} else {
+					// TODO: Make MessageValue implement MessageSpecifier, and use a MessageValue here
+					$result[] = new Message( $key, $params );
+				}
 			}
 		}
 
