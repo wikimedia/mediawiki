@@ -1124,7 +1124,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - options  : HTTP request header map with lower case keys (since 1.28). Supports:
 	 *                range             : format is "bytes=(\d*-\d*)"
 	 *                if-modified-since : format is an HTTP date
-	 *   - headless : only include the body (and headers from "headers") (since 1.28)
+	 *   - headless : do not send HTTP headers (including those of "headers") (since 1.28)
 	 *   - latest   : use the latest available data
 	 *   - allowOB  : preserve any output buffers (since 1.28)
 	 * @return StatusValue
