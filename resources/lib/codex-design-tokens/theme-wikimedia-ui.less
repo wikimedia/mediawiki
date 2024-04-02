@@ -1,16 +1,8 @@
 
-// Codex Design Tokens v1.3.5
+// Codex Design Tokens v1.3.6
 // Design System for Wikimedia
 // See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
 
-@font-size-base: 16px; // This token is targeted exclusively for font-size derived calculations. Apply `font-size-medium` and similar for component font size property use.
-@font-size-x-small: 0.75em; // `x` stands for extra. In this case extra small.
-@font-size-small: 0.875em;
-@font-size-medium: 1em;
-@font-size-large: 1.125em;
-@font-size-x-large: 1.25em;
-@font-size-xx-large: 1.5em;
-@font-size-xxx-large: 1.75em;
 @color-base: #202122;
 @color-base--hover: #404244; // Aimed to be replaced by `color.gray600` in future.
 @color-emphasized: #000;
@@ -64,25 +56,25 @@
 @z-index-stacking-3: 3;
 @box-sizing-base: border-box;
 @size-0: 0;
-@size-6: 0.0625em;
-@size-12: 0.125em;
-@size-25: 0.25em;
-@size-50: 0.5em;
-@size-75: 0.75em;
-@size-100: 1em;
-@size-125: 1.25em;
-@size-150: 1.5em;
-@size-200: 2em;
-@size-250: 2.5em;
-@size-275: 2.75em;
-@size-300: 3em;
-@size-400: 4em;
-@size-800: 8em;
-@size-1600: 16em;
-@size-2400: 24em;
-@size-2800: 28em;
-@size-3200: 32em;
-@size-5600: 56em;
+@size-6: 0.0625rem;
+@size-12: 0.125rem;
+@size-25: 0.25rem;
+@size-50: 0.5rem;
+@size-75: 0.75rem;
+@size-100: 1rem;
+@size-125: 1.25rem;
+@size-150: 1.5rem;
+@size-200: 2rem;
+@size-250: 2.5rem;
+@size-275: 2.75rem;
+@size-300: 3rem;
+@size-400: 4rem;
+@size-800: 8rem;
+@size-1600: 16rem;
+@size-2400: 24rem;
+@size-2800: 28rem;
+@size-3200: 32rem;
+@size-5600: 56rem;
 @size-viewport-width-full: 100vw;
 @size-viewport-height-full: 100vh;
 @size-absolute-1: 1px;
@@ -91,15 +83,15 @@
 @size-half: 50%;
 @size-full: 100%;
 @size-double: 200%;
-@size-search-figure: 2.5em; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
-@size-icon-x-small: 0.75em;
-@size-icon-small: 1em;
-@size-icon-medium: 1.25em;
+@size-search-figure: 2.5rem; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
+@size-icon-x-small: 0.75rem;
+@size-icon-small: 1rem;
+@size-icon-medium: 1.25rem;
 @max-width-base: none;
 @max-width-breakpoint-mobile: calc( 640px - 1px ); // A mobile device's maximum available screen width. Many older feature phones have screens smaller than this value.
 @max-width-breakpoint-tablet: calc( 1120px - 1px ); // A tablet device's maximum available screen width. Note, the size chosen is eager to be re-evaluated with Web team and Product Analytics.
 @max-width-breakpoint-desktop: calc( 1680px - 1px ); // A desktop device's maximum available screen width.
-@max-width-button: 28em; // Note, that this is a slight amendment from WikimediaUI Base from `28.75em` = `460px` to `448px` – `dimension.2800`
+@max-width-button: 28rem; // Note, that this is a slight amendment from WikimediaUI Base from `28.75em` = `460px` to `448px` – `dimension.2800`
 @border-style-base: solid;
 @border-style-dashed: dashed;
 @box-shadow-drop-small: 0 1px 1px rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
@@ -128,6 +120,13 @@
 @font-family-serif--fallback: serif;
 @font-family-monospace--fallback: monospace, monospace;
 @font-family-heading-main: 'Linux Libertine', 'Georgia', 'Times', 'Source Serif Pro', serif; // Legacy value from WikimediaUI Base. Use for first heading special treatment.
+@font-size-x-small: 0.75rem; // `x` stands for extra. In this case extra small.
+@font-size-small: 0.875rem;
+@font-size-medium: 1rem;
+@font-size-large: 1.125rem;
+@font-size-x-large: 1.25rem;
+@font-size-xx-large: 1.5rem;
+@font-size-xxx-large: 1.75rem;
 @font-weight-hairline: 100;
 @font-weight-light: 300;
 @font-weight-normal: 400;
@@ -173,8 +172,6 @@
 @cursor-text: text;
 @cursor-zoom-in: zoom-in;
 @cursor-zoom-out: zoom-out;
-@unit-absolute: px;
-@unit-relative: em;
 @accent-color-base: #36c;
 @background-color-interactive: #eaecf0;
 @background-color-interactive-subtle: #f8f9fa;
@@ -229,7 +226,6 @@
 @min-width-breakpoint-desktop-wide: 1680px; // A wider desktop's minimum available screen width.
 @min-width-toggle-switch: 48px;
 @position-offset-border-width-base: -1px;
-@position-offset-input-radio--focus: -0.25em;
 @spacing-0: 0;
 @spacing-12: 2px;
 @spacing-25: 4px;
@@ -249,7 +245,7 @@
 @spacing-horizontal-button: 12px - 1px; // Padding should equal 12px of spacing minus the width of the border
 @spacing-horizontal-button-icon-only: 6px - 1px; // Padding should equal 6px of spacing minus the width of the border
 @spacing-horizontal-button-large: 16px - 1px; // Padding should equal 16px of spacing minus the width of the border
-@spacing-horizontal-input-text-two-end-icons: calc( 8px * 2 + 1em ); // Rely on `calc()` to make token output usable in all formats. When there are two end icons, (i.e. a clear icon and an end icon), we need to double the horizontal padding and account for the size of the extra icon. This token can be used to calculate the horizontal position of the clear icon and the padding-end of the text input.
+@spacing-horizontal-input-text-two-end-icons: calc( 8px * 2 + 1rem ); // Rely on `calc()` to make token output usable in all formats. When there are two end icons, (i.e. a clear icon and an end icon), we need to double the horizontal padding and account for the size of the extra icon. This token can be used to calculate the horizontal position of the clear icon and the padding-end of the text input.
 @spacing-start-typeahead-search-figure: 12px; // The amount of space between the TypeaheadSearch figure's parent component and the TypeaheadSearch figure (input icon container, search result thumbnail, and footer icon container). We want this space to be uniform so that the figures vertically line up nicely. We use the same horizontal padding as the MenuItem.
 @spacing-start-typeahead-search-icon: calc( 12px + ( 40px - 20px ) / 2 ); // The padding required for the icon to center align with the menu item thumbnail. We calculate the difference in size and add it to the expected spacing.
 @spacing-typeahead-search-focus-addition: calc( ( 12px + 40px ) - ( 20px + 8px ) ); // The amount the width of the input increases when it is focused to allow for the extra spacing around the search figures. The caret position should remain static. This calculates the padding-left of the input when expanded minus the padding-left of the input when not expanded. (Note that both padding values actually include `@spacing-50` as well, but it was left out of the calculation for simplicity's sake.)
@@ -317,3 +313,5 @@
 @width-breakpoint-desktop-wide: 1200px;
 // Warning: the following token name is deprecated (Legacy breakpoint. Use `min-width`/`max-width` breakpoint token instead. An extra wide desktop's screen width.)
 @width-breakpoint-desktop-extrawide: 2000px;
+// Warning: the following token name is deprecated
+@position-offset-input-radio--focus: -0.25rem;
