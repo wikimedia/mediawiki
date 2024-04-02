@@ -441,7 +441,7 @@ trackCallbacks.fire( mw.trackQueue );
 
 /**
  * @namespace Hooks
- * @classdesc Registry and firing of events.
+ * @description Registry and firing of events.
  *
  * MediaWiki has various interface components that are extended, enhanced
  * or manipulated in some other way by extensions, gadgets and even
@@ -478,6 +478,8 @@ trackCallbacks.fire( mw.trackQueue );
  * ```
  *
  * See available global events below.
+ *
+ * @See {@link Hook}
  */
 
 var hooks = Object.create( null );
