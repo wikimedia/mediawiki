@@ -249,7 +249,7 @@ class CodexHTMLForm extends HTMLForm {
 		}
 
 		return Html::rawElement(
-			'span',
+			'div',
 			[ 'class' => 'mw-htmlform-submit-buttons' ],
 			implode( "\n", $buttons )
 		) . "\n";
