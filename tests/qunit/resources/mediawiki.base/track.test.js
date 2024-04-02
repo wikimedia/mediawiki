@@ -53,4 +53,34 @@ QUnit.module( 'mediawiki.base/track', () => {
 			[ 'unsub', { key: 2 } ]
 		], 'Stop when unsubscribing' );
 	} );
+
+	QUnit.test( 'trackError', function ( assert ) {
+		var fn = mw.track;
+		this.sandbox.stub( console, 'log' );
+
+		// Simulate startup time
+		mw.track = undefined;
+
+		assert.step( 'emit1' );
+		mw.trackError( 'test.early', 'foo' );
+
+		// Simulate mediawiki.base arriving
+		mw.track = fn;
+
+		assert.step( 'sub' );
+		mw.trackSubscribe( 'test.early', function ( topic, data ) {
+			assert.step( data );
+		} );
+
+		assert.step( 'emit2' );
+		mw.trackError( 'test.early', 'bar' );
+
+		assert.verifySteps( [
+			'emit1',
+			'sub',
+			'foo',
+			'emit2',
+			'bar'
+		] );
+	} );
 } );

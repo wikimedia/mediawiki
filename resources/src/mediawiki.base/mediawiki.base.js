@@ -5,9 +5,7 @@ var slice = Array.prototype.slice;
 // Apply site-level data
 mw.config.set( require( './config.json' ) );
 
-// Load other files in the package
 require( './log.js' );
-require( './errorLogger.js' );
 
 /**
  * Object constructor for messages.
@@ -356,7 +354,6 @@ mw.notify = function ( message, options ) {
 	} );
 };
 
-var mwLoaderTrack = mw.track;
 var trackCallbacks = $.Callbacks( 'memory' );
 var trackHandlers = [];
 
@@ -378,7 +375,7 @@ var trackHandlers = [];
  * @param {Object|number|string} [data] Data describing the event.
  */
 mw.track = function ( topic, data ) {
-	mwLoaderTrack( topic, data );
+	mw.trackQueue.push( { topic: topic, data: data } );
 	trackCallbacks.fire( mw.trackQueue );
 };
 
@@ -436,7 +433,8 @@ mw.trackUnsubscribe = function ( callback ) {
 	} );
 };
 
-// Fire events from before track() triggered fire()
+// Notify subscribers of any mw.trackQueue.push() calls
+// from the startup module before mw.track() is defined.
 trackCallbacks.fire( mw.trackQueue );
 
 /**
@@ -921,3 +919,6 @@ while ( queue[ 0 ] ) {
 		$( document.body ).append( $.parseHTML( slice.call( arguments ).join( '' ) ) );
 	}, 'Use jQuery or mw.loader.load instead.', 'document.' + func );
 } );
+
+// Load other files in the package
+require( './errorLogger.js' );
