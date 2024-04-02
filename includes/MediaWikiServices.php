@@ -33,6 +33,7 @@ use JobRunner;
 use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
+use LogFormatterFactory;
 use LogicException;
 use MediaHandlerFactory;
 use MediaWiki\Actions\ActionFactory;
@@ -1360,6 +1361,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLockManagerGroupFactory(): LockManagerGroupFactory {
 		return $this->getService( 'LockManagerGroupFactory' );
+	}
+
+	/**
+	 * @since 1.42
+	 */
+	public function getLogFormatterFactory(): LogFormatterFactory {
+		return $this->getService( 'LogFormatterFactory' );
 	}
 
 	/**

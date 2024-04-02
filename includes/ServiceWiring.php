@@ -1190,6 +1190,17 @@ return [
 		);
 	},
 
+	'LogFormatterFactory' => static function ( MediaWikiServices $services ): LogFormatterFactory {
+		return new LogFormatterFactory(
+			new ServiceOptions( LogFormatterFactory::SERVICE_OPTIONS, $services->getMainConfig() ),
+			$services->getObjectFactory(),
+			$services->getHookContainer(),
+			$services->getContentLanguage(),
+			$services->getCommentFormatter(),
+			$services->getUserEditTracker()
+		);
+	},
+
 	'MagicWordFactory' => static function ( MediaWikiServices $services ): MagicWordFactory {
 		return new MagicWordFactory(
 			$services->getContentLanguage(),
