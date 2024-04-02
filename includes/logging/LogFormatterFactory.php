@@ -3,6 +3,7 @@
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserEditTracker;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -16,6 +17,7 @@ class LogFormatterFactory {
 	private ServiceOptions $serviceOptions;
 	private ObjectFactory $objectFactory;
 	private HookContainer $hookContainer;
+	private LinkRenderer $linkRenderer;
 	private Language $contentLanguage;
 	private CommentFormatter $commentFormatter;
 	private UserEditTracker $userEditTracker;
@@ -24,6 +26,7 @@ class LogFormatterFactory {
 		ServiceOptions $options,
 		ObjectFactory $objectFactory,
 		HookContainer $hookContainer,
+		LinkRenderer $linkRenderer,
 		Language $contentLanguage,
 		CommentFormatter $commentFormatter,
 		UserEditTracker $userEditTracker
@@ -32,6 +35,7 @@ class LogFormatterFactory {
 		$this->serviceOptions = $options;
 		$this->objectFactory = $objectFactory;
 		$this->hookContainer = $hookContainer;
+		$this->linkRenderer = $linkRenderer;
 		$this->contentLanguage = $contentLanguage;
 		$this->commentFormatter = $commentFormatter;
 		$this->userEditTracker = $userEditTracker;
@@ -57,6 +61,7 @@ class LogFormatterFactory {
 			$formatter = new LegacyLogFormatter( $entry, $this->hookContainer );
 		}
 
+		$formatter->setLinkRenderer( $this->linkRenderer );
 		$formatter->setContentLanguage( $this->contentLanguage );
 		$formatter->setCommentFormatter( $this->commentFormatter );
 		$formatter->setUserEditTracker( $this->userEditTracker );
