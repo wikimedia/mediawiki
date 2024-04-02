@@ -389,7 +389,7 @@
 					} catch ( e ) {
 						// A user-defined callback raised an exception.
 						// Swallow it to protect our state machine!
-						mw.trackError( 'resourceloader.exception', {
+						mw.trackError( {
 							exception: e,
 							source: 'load-callback'
 						} );
@@ -548,7 +548,7 @@
 				// was circular or invalid dependencies. What the above scenarios have in
 				// common is that they don't register the module client-side.
 				if ( modules[ i ] in registry ) {
-					mw.trackError( 'resourceloader.exception', {
+					mw.trackError( {
 						exception: err,
 						source: 'resolve'
 					} );
@@ -917,7 +917,7 @@
 				// (e.g. undefined variable), and mw.log is only enabled in debug mode.
 				setAndPropagate( module, 'error' );
 				$CODE.profileScriptEnd();
-				mw.trackError( 'resourceloader.exception', {
+				mw.trackError( {
 					exception: e,
 					module: module,
 					source: 'module-execute'
@@ -1421,7 +1421,7 @@
 				// risks and clear everything in this cache.
 				store.clear();
 
-				mw.trackError( 'resourceloader.exception', {
+				mw.trackError( {
 					exception: err,
 					source: 'store-eval'
 				} );
@@ -1823,7 +1823,7 @@
 					asOf: Math.ceil( Date.now() / 1e7 )
 				} ) );
 			} catch ( e ) {
-				mw.trackError( 'resourceloader.exception', {
+				mw.trackError( {
 					exception: e,
 					source: 'store-localstorage-update'
 				} );

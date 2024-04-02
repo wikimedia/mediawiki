@@ -56,24 +56,25 @@ QUnit.module( 'mediawiki.base/track', () => {
 
 	QUnit.test( 'trackError', function ( assert ) {
 		var fn = mw.track;
+		function logError( topic, data ) {
+			assert.step( data );
+		}
 		this.sandbox.stub( console, 'log' );
 
 		// Simulate startup time
 		mw.track = undefined;
 
 		assert.step( 'emit1' );
-		mw.trackError( 'test.early', 'foo' );
+		mw.trackError( 'foo' );
 
 		// Simulate mediawiki.base arriving
 		mw.track = fn;
 
 		assert.step( 'sub' );
-		mw.trackSubscribe( 'test.early', function ( topic, data ) {
-			assert.step( data );
-		} );
+		mw.trackSubscribe( 'resourceloader.exception', logError );
 
 		assert.step( 'emit2' );
-		mw.trackError( 'test.early', 'bar' );
+		mw.trackError( 'bar' );
 
 		assert.verifySteps( [
 			'emit1',
@@ -82,5 +83,8 @@ QUnit.module( 'mediawiki.base/track', () => {
 			'emit2',
 			'bar'
 		] );
+
+		// Teardown
+		mw.trackUnsubscribe( logError );
 	} );
 } );
