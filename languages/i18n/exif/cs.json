@@ -198,6 +198,8 @@
 	"exif-photometricinterpretation-5": "Separované (pravděpodobně CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (kódování ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (kódování ITU)",
+	"exif-photometricinterpretation-32803": "Pole barevných filtrů",
+	"exif-photometricinterpretation-34892": "Lineární surová",
 	"exif-unknowndate": "neznámé datum",
 	"exif-orientation-1": "Normální",
 	"exif-orientation-2": "Vodorovně převráceno",

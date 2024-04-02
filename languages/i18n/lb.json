@@ -1084,6 +1084,7 @@
 	"linterror-missing-end-tag": "Schluss-Tag feelt",
 	"linterror-obsolete-tag": "Vereelzten HTML-Tag",
 	"linterror-stripped-tag": "Eidelen Tag",
+	"linterror-wikilink-in-extlink": "Linken a Linken",
 	"yourgender": "Wéi wëllt Dir beschriwwe ginn?",
 	"gender-unknown": "Wann Dir ernimmt gitt da benotzt d'Software do wou et méiglech ass geschlechtsneutral Wierder",
 	"gender-notknown": "Si ännere Wikisäiten",
