@@ -3,7 +3,8 @@
 namespace Wikimedia\Tests\Message;
 
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
+use MediaWiki\Json\JsonCodec;
+use MediaWikiUnitTestCase;
 use stdClass;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -12,27 +13,50 @@ use Wikimedia\Message\ScalarParam;
 /**
  * @covers \Wikimedia\Message\ScalarParam
  */
-class ScalarParamTest extends TestCase {
+class ScalarParamTest extends MediaWikiUnitTestCase {
+	use MessageSerializationTestTrait;
+
+	/**
+	 * Overrides SerializationTestTrait::getClassToTest
+	 * @return string
+	 */
+	public static function getClassToTest(): string {
+		return ScalarParam::class;
+	}
 
 	public static function provideConstruct() {
 		return [
-			[
-				ParamType::NUM, 1,
+			'num' => [
+				[ ParamType::NUM, 1, ],
 				'<num>1</num>',
 			],
-			[
-				ParamType::PLAINTEXT, 'foo & bar',
+			'plain' => [
+				[ ParamType::PLAINTEXT, 'foo & bar', ],
 				'<plaintext>foo &amp; bar</plaintext>',
 			],
-			[
-				ParamType::TEXT, new MessageValue( 'key' ),
+			'text' => [
+				[ ParamType::TEXT, new MessageValue( 'key' ), ],
 				'<text><message key="key"></message></text>',
 			],
 		];
 	}
 
 	/** @dataProvider provideConstruct */
-	public function testConstruct( $type, $value, $expected ) {
+	public function testSerialize( $args, $_ ) {
+		[ $type, $value ] = $args;
+		$codec = new JsonCodec;
+		$obj = new ScalarParam( $type, $value );
+
+		$serialized = $codec->serialize( $obj );
+		$newObj = $codec->deserialize( $serialized );
+
+		// XXX: would be nice to have a proper ::equals() method.
+		$this->assertEquals( $obj->dump(), $newObj->dump() );
+	}
+
+	/** @dataProvider provideConstruct */
+	public function testConstruct( $args, $expected ) {
+		[ $type, $value ] = $args;
 		$mp = new ScalarParam( $type, $value );
 		$this->assertSame( $type, $mp->getType() );
 		$this->assertSame( $value, $mp->getValue() );

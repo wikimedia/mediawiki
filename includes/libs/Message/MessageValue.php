@@ -2,6 +2,9 @@
 
 namespace Wikimedia\Message;
 
+use MediaWiki\Json\JsonDeserializable;
+use MediaWiki\Json\JsonDeserializableTrait;
+use MediaWiki\Json\JsonDeserializer;
 use Stringable;
 
 /**
@@ -11,11 +14,13 @@ use Stringable;
  * to a string in a particular language using formatters obtained from an
  * IMessageFormatterFactory.
  *
- * MessageValues are pure value objects and are safely newable.
+ * MessageValues are pure value objects and are newable and (de)serializable.
  *
  * @newable
  */
-class MessageValue {
+class MessageValue implements JsonDeserializable {
+	use JsonDeserializableTrait;
+
 	/** @var string */
 	private $key;
 
@@ -344,5 +349,20 @@ class MessageValue {
 		}
 		return '<message key="' . htmlspecialchars( $this->key ) . '">' .
 			$contents . '</message>';
+	}
+
+	public function toJsonArray(): array {
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		return [
+			'key' => $this->key,
+			'params' => $this->params,
+		];
+	}
+
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		return new self( $json['key'], $json['params'] );
 	}
 }

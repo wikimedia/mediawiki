@@ -29,6 +29,7 @@ use MediaWiki\Json\JsonDeserializableTrait;
 use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Converter;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
@@ -37,6 +38,7 @@ use ParserOptions;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
@@ -977,6 +979,19 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Add a warning to the output for this page.
+	 * @param MessageValue $mv Note that the parameters must be serializable/deserializable
+	 *   with JsonCodec; see the @note on ParserOutput::setExtensionData(). MessageValue guarantees
+	 *   that unless the deprecated ParamType::OBJECT or the ->objectParams() method is used.
+	 * @since 1.43
+	 */
+	public function addWarningMsgVal( MessageValue $mv ) {
+		$m = ( new Converter() )->convertMessageValue( $mv );
+		// These can eventually be stored as MessageValue instead of converting to Message.
+		$this->addWarningMsg( $m->getKey(), ...$m->getParams() );
+	}
+
+	/**
+	 * Add a warning to the output for this page.
 	 * @param string $msg The localization message key for the warning
 	 * @param mixed|JsonDeserializable ...$args Optional arguments for the
 	 *   message. These arguments must be serializable/deserializable with
@@ -984,6 +999,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.38
 	 */
 	public function addWarningMsg( string $msg, ...$args ): void {
+		// MessageValue objects are defined in core and thus not visible
+		// to Parsoid or to its ContentMetadataCollector interface.
+		// Eventually this method (defined in ContentMetadataCollector) should
+		// call ::addWarningMsgVal() instead of the other way around.
+
 		// preserve original arguments in $mWarningMsgs to allow merge
 		// @todo: these aren't serialized/deserialized yet -- before we
 		// turn on serialization of $this->mWarningMsgs we need to ensure
