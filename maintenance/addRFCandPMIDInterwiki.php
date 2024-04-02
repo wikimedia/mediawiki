@@ -64,7 +64,7 @@ class AddRFCandPMIDInterwiki extends LoggedUpdateMaintenance {
 			$dbw->newReplaceQueryBuilder()
 				->replaceInto( 'interwiki' )
 				->uniqueIndexFields( [ 'iw_prefix' ] )
-				->rows( [
+				->row( [
 					'iw_prefix' => 'rfc',
 					'iw_url' => 'https://tools.ietf.org/html/rfc$1',
 					'iw_api' => '',
