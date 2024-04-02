@@ -613,8 +613,7 @@ class Router {
 		if ( in_array( $requestMethod, RequestInterface::BODY_METHODS ) ) {
 			// check if it has no body
 			if ( !$request->hasBody() ) {
-				throw new HttpException(
-					"The $requestMethod request method expects a request body",
+				throw new LocalizedHttpException( new MessageValue( "rest-request-body-expected", [ $requestMethod ] ),
 					411
 				);
 			}

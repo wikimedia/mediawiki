@@ -56,5 +56,19 @@
 	"rest-requires-safe-against-csrf": "Error message for REST API debugging, shown when a handler requires a [[:w:Cross-site request forgery|CSRF]]-safe session provider, but a non-CSRF-safe session provider was used.",
 	"rest-badtoken": "Error message for REST API debugging, shown when an invalid CSRF token was provided.",
 	"rest-badtoken-missing": "Error message for REST API debugging, shown when no anti-CSRF security token was provided.\n\n'''Note: CSRF is a type of attack ([[:w:Cross-site request forgery|Cross-Site Request Forgery]]), so \"CSRF-safe\" means \"safe against CSRF attacks\".'''",
-	"rest-badtoken-nosession": "Error message for REST API debugging, shown when an invalid CSRF token was provided and it seems like the client failed to include authentication information."
+	"rest-badtoken-nosession": "Error message for REST API debugging, shown when an invalid CSRF token was provided and it seems like the client failed to include authentication information.",
+	"rest-mock-error": "Error message for REST API debugging, shown when there is an error mocking",
+	"rest-specified-revision-unavailable": "Error message for REST API debugging, shown when the specified revision is deleted or suppressed",
+	"rest-previous-revision-unavailable": "Error message for REST API debugging, shown when the previous revision can not be found",
+	"rest-requires-content-type-header": "Error message for REST API debugging, shown when a request payload requires a Content-Type header but none is provided.",
+	"rest-transform-missing-html": "Error message for REST API debugging, shown when no html is supplied",
+	"rest-transform-missing-title": "Error message for REST API debugging, shown when no title or wikitext is provided",
+	"rest-unsupported-target-format": "Error message for REST API debugging, shown when the requested target format is not supported",
+	"rest-parsoid-resource-exceeded": "Error message for REST API debugging, shown when a resource limit is exceeeded while converting between wikitext and HTML.",
+	"rest-parsoid-error": "Error message for REST API debugging, indicating the an unspecified backend error occurred while converting between wikitext and HTML.",
+	"rest-bad-stash-key": "Error message for REST API debugging, shown when When the rednerid or etag given in the request is not a valid stash key.",
+	"rest-html-key-expected": "Error message for REST API debugging, shown when when the \"html\" key is missing from the request body",
+	"rest-invalid-transform": "Error message for REST API debugging, shown when an unsupported transformation is requested from the transform handler. Parameters:\n* $1: The source format \n* $2: The target format",
+	"rest-request-body-expected": "Error message for REST API debugging, shown when the request method expects a request body",
+	"rest-request-body-unaccepted": "Error message for REST API debugging, shown when the request method does not accept a request body"
 }

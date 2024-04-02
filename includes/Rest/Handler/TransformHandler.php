@@ -22,7 +22,9 @@ namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -94,11 +96,11 @@ class TransformHandler extends ParsoidHandler {
 		if ( !isset( $validTransformations[$from] ) || !in_array( $format,
 				$validTransformations[$from],
 				true ) ) {
-			throw new HttpException( "Invalid transform: {$from}/to/{$format}", 404 );
+			throw new LocalizedHttpException( new MessageValue( "rest-invalid-transform", [ $from, $format ] ), 404 );
 		}
 		$attribs = &$this->getRequestAttributes();
 		if ( !$this->acceptable( $attribs ) ) { // mutates $attribs
-			throw new HttpException( 'Not acceptable', 406 );
+			throw new LocalizedHttpException( new MessageValue( "rest-unsupported-target-format" ), 406 );
 		}
 		if ( $from === ParsoidFormatHelper::FORMAT_WIKITEXT ) {
 			// Accept wikitext as a string or object{body,headers}
@@ -120,7 +122,7 @@ class TransformHandler extends ParsoidHandler {
 			}
 			// Abort if no wikitext or title.
 			if ( $wikitext === null && empty( $attribs['pageName'] ) ) {
-				throw new HttpException( 'No title or wikitext was provided.', 400 );
+				throw new LocalizedHttpException( new MessageValue( "rest-transform-missing-title" ), 400 );
 			}
 			$pageConfig = $this->tryToCreatePageConfig( $attribs, $wikitext );
 
@@ -134,7 +136,7 @@ class TransformHandler extends ParsoidHandler {
 				$html = $html['body'];
 			}
 			if ( $html === null ) {
-				throw new HttpException( 'No html was supplied.', 400 );
+				throw new LocalizedHttpException( new MessageValue( "rest-transform-missing-html" ), 400 );
 			}
 
 			// TODO: use ETag from If-Match header, for compat!

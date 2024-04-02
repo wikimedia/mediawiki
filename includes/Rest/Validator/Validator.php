@@ -276,7 +276,7 @@ class Validator {
 			if ( $body->getSize() === 0 ) {
 				return null;
 			} else {
-				throw new HttpException( "A Content-Type header must be supplied with a request payload.", 415, [
+				throw new LocalizedHttpException( new MessageValue( "rest-requires-content-type-header" ), 415, [
 					'error' => 'no-content-type',
 				] );
 			}

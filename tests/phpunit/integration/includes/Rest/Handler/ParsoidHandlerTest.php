@@ -1165,8 +1165,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'Could not find previous revision' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'The specified revision is deleted or suppressed.',
+			new LocalizedHttpException( new MessageValue( "rest-specified-revision-unavailable" ),
 				404
 			)
 		];
