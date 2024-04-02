@@ -1496,7 +1496,7 @@ mw.Message.prototype.parser = function ( format ) {
 };
 
 /**
- * Parse the message to DOM nodes, rather than HTML string like #parse.
+ * Parse the message to DOM nodes, rather than HTML string like {@link mw.Message#parse}.
  *
  * This method is only available when jqueryMsg is loaded.
  * @example

@@ -490,7 +490,7 @@ Title.newFromText = function ( title, namespace ) {
  * overridden by a namespace prefix in `title`. See the constructor documentation for details about this behavior.
  *
  * The single exception to this is when `namespace` is 0, indicating the main namespace. The
- * function behaves like [newFromText]{@link mw.Title.makeTitle} in that case.
+ * function behaves like [newFromText]{@link mw.Title.newFromText} in that case.
  *
  * @name mw.Title.makeTitle
  * @method
