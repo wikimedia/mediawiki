@@ -299,22 +299,20 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$config->get( MainConfigNames::CapitalLinks ) ? 'first-letter' : 'case-sensitive';
 		$data['lang'] = $config->get( MainConfigNames::LanguageCode );
 
-		$fallbacks = [];
+		$data['fallback'] = [];
 		foreach ( $this->contentLanguage->getFallbackLanguages() as $code ) {
-			$fallbacks[] = [ 'code' => $code ];
+			$data['fallback'][] = [ 'code' => $code ];
 		}
-		$data['fallback'] = $fallbacks;
 		ApiResult::setIndexedTagName( $data['fallback'], 'lang' );
 
 		if ( $contLangConverter->hasVariants() ) {
-			$variants = [];
+			$data['variants'] = [];
 			foreach ( $contLangConverter->getVariants() as $code ) {
-				$variants[] = [
+				$data['variants'][] = [
 					'code' => $code,
 					'name' => $this->contentLanguage->getVariantname( $code ),
 				];
 			}
-			$data['variants'] = $variants;
 			ApiResult::setIndexedTagName( $data['variants'], 'lang' );
 		}
 
@@ -353,11 +351,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		ApiResult::setArrayType( $data['thumblimits'], 'BCassoc' );
 		ApiResult::setIndexedTagName( $data['thumblimits'], 'limit' );
 		$data['imagelimits'] = [];
-		ApiResult::setArrayType( $data['imagelimits'], 'BCassoc' );
-		ApiResult::setIndexedTagName( $data['imagelimits'], 'limit' );
 		foreach ( $config->get( MainConfigNames::ImageLimits ) as $k => $limit ) {
 			$data['imagelimits'][$k] = [ 'width' => $limit[0], 'height' => $limit[1] ];
 		}
+		ApiResult::setArrayType( $data['imagelimits'], 'BCassoc' );
+		ApiResult::setIndexedTagName( $data['imagelimits'], 'limit' );
 
 		$favicon = $config->get( MainConfigNames::Favicon );
 		if ( $favicon ) {
