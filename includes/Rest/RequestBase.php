@@ -17,7 +17,7 @@ abstract class RequestBase implements RequestInterface {
 	/** @var string */
 	private $cookiePrefix;
 
-	protected ?array $parsedBody;
+	protected ?array $parsedBody = null;
 
 	/**
 	 * @internal
