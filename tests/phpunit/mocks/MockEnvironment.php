@@ -136,7 +136,8 @@ class MockEnvironment extends EntryPointEnvironment {
 
 	public function assertStatusCode( int $expected, $message = null ) {
 		$message ??= "HTTP status";
-		Assert::assertSame( $expected, $this->getFauxResponse()->getStatusCode(), $message );
+		$code = $this->getFauxResponse()->getStatusCode() ?? 200;
+		Assert::assertSame( $expected, $code, $message );
 	}
 
 	public function assertHeaderValue( ?string $expected, string $name, $message = null ) {

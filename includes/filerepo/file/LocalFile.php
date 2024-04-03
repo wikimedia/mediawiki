@@ -1729,16 +1729,17 @@ class LocalFile extends File {
 		$props['description'] = $comment;
 		$props['timestamp'] = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
 		$this->setProps( $props );
-		$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();
-		if ( !$mimeAnalyzer->isValidMajorMimeType( $this->major_mime ) ) {
-			$this->major_mime = 'unknown';
-		}
 
 		# Fail now if the file isn't there
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!" );
 
 			return Status::newFatal( 'filenotfound', $this->getRel() );
+		}
+
+		$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();
+		if ( !$mimeAnalyzer->isValidMajorMimeType( $this->major_mime ) ) {
+			$this->major_mime = 'unknown';
 		}
 
 		$actorNormalizaton = MediaWikiServices::getInstance()->getActorNormalization();

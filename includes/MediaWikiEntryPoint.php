@@ -201,6 +201,7 @@ abstract class MediaWikiEntryPoint {
 			// Prepare for flushing the output. Will do nothing if it was already called by execute().
 			$this->prepareForOutput();
 		} catch ( Throwable $e ) {
+			$this->status( 500 );
 			$this->handleTopLevelError( $e );
 		}
 
@@ -1202,7 +1203,7 @@ abstract class MediaWikiEntryPoint {
 	 * @see HttpStatus
 	 */
 	protected function status( int $code ): void {
-		$this->header( HttpStatus::getHeader( $code ) );
+		$this->header( HttpStatus::getHeader( $code ), true, $code );
 	}
 
 	/**

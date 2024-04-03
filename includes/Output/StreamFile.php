@@ -79,6 +79,9 @@ class StreamFile {
 	 * @return null|string
 	 */
 	public static function contentTypeFromPath( $filename, $safe = true ) {
+		// NOTE: TrivialMimeDetection is forced by ThumbnailEntryPoint. When this
+		// code is moved to a non-static method in a service object, we can no
+		// longer rely on that.
 		$trivialMimeDetection = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::TrivialMimeDetection );
 
