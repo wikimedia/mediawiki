@@ -1,3 +1,40 @@
+# 1.3.6 / 2024-04-02
+## Styles
+- Field: Update spacing between fields from 24px to 16px (Roan Kattouw)
+- [DEPRECATING CHANGE] tokens: Deprecate unused position-offset-input-radio--focus (Roan Kattouw)
+- tokens: Add a new format for experimental CSS output (Eric Gardner)
+- tokens: Use the built-in CSS formatter for the experimental build (Roan Kattouw)
+- tokens: Rename experimental output to theme-codex-wikimedia-experimental (Roan Kattouw)
+- tokens: Produce CSS vars file with overrides for dark mode (Eric Gardner)
+- tokens: Add Less mixin version of dark mode build (Roan Kattouw)
+
+## Icons
+- icons: Add 'sortVertical' (Volker E.)
+
+## Code
+- Table: Make it possible to set text alignment per column (Anne Tomasevich)
+- build: Fix bug in diff-release.sh caused by prepack/postpack scripts (Roan Kattouw)
+- build: Make "legacy" build redundant (Eric Gardner)
+- build: Update floating-ui to 1.0.6 (Roan Kattouw)
+- build: Update vite to 4.5.2 (Roan Kattouw)
+- build: Silence nonsensical CSS syntax errors (Roan Kattouw)
+
+## Documentation
+- demos: Remove superflous self-closing syntax (Volker E.)
+- docs: Update components guidelines for Link, Button, and ButtonGroup components. (Bárbara Martínez Calvo)
+- docs: Update components guidelines for Select, Combobox, TextInput, and TextArea. (Bárbara Martínez Calvo)
+- docs: Remove the using.svg images from Button, ButtonGroup, and Link. (Bárbara Martínez Calvo)
+- docs: Change spacing guidance on forms from 24 to 16 between fields (Derek Torsani)
+- docs: Update components guidelines for Checkbox, Radio, and ToggleSwitch. (Bárbara Martínez Calvo)
+- docs: Update components guidelines for SearchInput and TypeaheadSearch. (Bárbara Martínez Calvo)
+- docs: Update components guidelines for Field, Label, Lookup, and ChipInput. (Bárbara Martínez Calvo)
+- docs: Update components guidelines for Accordion, Card, Icon, InfoChip, and Thumbnail. (Bárbara Martínez Calvo)
+- docs: Update components guidelines for ToggleButton and ToggleButtonGroup. (Bárbara Martínez Calvo)
+- docs: Update components guidelines for Message and Dialog. (Bárbara Martínez Calvo)
+- docs: Update components guidelines for Menu, MenuItem, Tabs, Tab, ProgressBar. (Bárbara Martínez Calvo)
+- docs: Add note about limited use of SearchInput in Field (Volker E.)
+- docs: Fix links to validation section in Field docs (Roan Kattouw)
+
 # 1.3.5 / 2024-03-19
 ## Styles
 - styles: spacing between adjacent Field components (lwatson)

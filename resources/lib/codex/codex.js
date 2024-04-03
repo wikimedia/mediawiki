@@ -50,19 +50,19 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, withModifiers, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
-const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', S = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', n1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', A1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', k1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', c0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', v0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', g2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', S2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', p5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', m3 = M, f3 = S, J3 = s1, j3 = n1, z4 = A1, p4 = k1, E4 = c0, J4 = {
+const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', S = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', n1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', A1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', k1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', c0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', v0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', g2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', S2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', m5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', M3 = M, S3 = S, Y3 = s1, X3 = n1, i4 = A1, m4 = k1, P4 = c0, Y4 = {
   langCodeMap: {
     ar: p
   },
   default: v0
-}, Y6 = {
+}, j6 = {
   ltr: g2,
   shouldFlip: true
-}, n7 = {
+}, v7 = {
   ltr: S2,
   shouldFlip: true
-}, L7 = K2, E7 = p5;
-function U8(c, s, h) {
+}, I7 = K2, N7 = m5;
+function E8(c, s, h) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -72,7 +72,7 @@ function U8(c, s, h) {
   const n = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
   return typeof n == "string" || "path" in n ? n : n.ltr;
 }
-function D8(c, s) {
+function P8(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -228,14 +228,14 @@ const _sfc_main$u = defineComponent({
     });
     const rootClasses = computed(() => {
       return {
-        "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && D8(props.icon, overriddenLang.value),
+        "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && P8(props.icon, overriddenLang.value),
         ["cdx-icon--".concat(props.size)]: true
       };
     });
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return U8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return E8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -644,7 +644,7 @@ const _sfc_main$q = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: E4
+      default: P4
     }
   },
   setup: (props) => {
@@ -1293,7 +1293,7 @@ const _sfc_main$m = defineComponent({
       rootElement,
       rootClasses,
       onKeydown,
-      cdxIconClose: j3
+      cdxIconClose: X3
     };
   },
   methods: {
@@ -2958,7 +2958,7 @@ const _sfc_main$g = defineComponent({
       onKeydown,
       onFocus,
       onBlur,
-      cdxIconClear: J3
+      cdxIconClear: Y3
     };
   },
   // Public methods
@@ -4246,9 +4246,15 @@ const computePosition = (reference, floating, options) => {
     platform: platformWithCache
   }));
 };
-function unwrapElement$1(element) {
-  var _$el;
-  return (_$el = element == null ? void 0 : element.$el) != null ? _$el : element;
+function isComponentPublicInstance(target) {
+  return target != null && typeof target === "object" && "$el" in target;
+}
+function unwrapElement$1(target) {
+  if (isComponentPublicInstance(target)) {
+    const element = target.$el;
+    return isNode(element) && getNodeName(element) === "#comment" ? null : element;
+  }
+  return target;
 }
 function getDPR(element) {
   if (typeof window === "undefined") {
@@ -4662,7 +4668,7 @@ const _sfc_main$f = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: p4,
+      cdxIconExpand: m4,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -5023,7 +5029,7 @@ const _sfc_main$e = defineComponent({
     });
     return {
       close,
-      cdxIconClose: j3,
+      cdxIconClose: X3,
       labelId,
       rootClasses,
       backdrop,
@@ -5189,10 +5195,10 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$e]]);
 const iconMap$1 = {
-  notice: J4,
-  error: z4,
-  warning: m3,
-  success: E7
+  notice: Y4,
+  error: i4,
+  warning: M3,
+  success: N7
 };
 const _sfc_main$d = defineComponent({
   name: "CdxMessage",
@@ -5316,7 +5322,7 @@ const _sfc_main$d = defineComponent({
       leaveActiveClass,
       computedIcon,
       onDismiss,
-      cdxIconClose: j3
+      cdxIconClose: X3
     };
   }
 });
@@ -5531,9 +5537,9 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Field = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$c]]);
 const iconMap = {
-  error: z4,
-  warning: m3,
-  success: E7
+  error: i4,
+  warning: M3,
+  success: N7
 };
 const _sfc_main$b = defineComponent({
   name: "CdxInfoChip",
@@ -6085,7 +6091,7 @@ const _sfc_main$8 = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: L7
+      searchIcon: I7
     };
   },
   methods: {
@@ -6324,7 +6330,7 @@ const _sfc_main$7 = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: p4
+      cdxIconExpand: m4
     };
   }
 });
@@ -6640,8 +6646,8 @@ const _sfc_main$5 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: n7,
-      cdxIconNext: Y6
+      cdxIconPrevious: v7,
+      cdxIconNext: j6
     };
   },
   /**
@@ -7690,7 +7696,7 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: f3
+      articleIcon: S3
     };
   },
   methods: {
