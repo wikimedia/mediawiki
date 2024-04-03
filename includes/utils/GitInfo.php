@@ -156,8 +156,8 @@ class GitInfo {
 			}
 			// Transform git repo path to something we can safely embed in a filename
 			// Windows supports both backslash and forward slash, ensure both are substituted.
-			// @phan-suppress-next-line PhanPluginDuplicateArrayKey
-			$repoName = strtr( $repoName, [ '/' => '-', DIRECTORY_SEPARATOR => '-' ] );
+			$repoName = strtr( $repoName, [ '/' => '-' ] );
+			$repoName = strtr( $repoName, [ DIRECTORY_SEPARATOR => '-' ] );
 			$fileName = 'info' . $repoName . '.json';
 			$cachePath = "{$gitInfoCacheDirectory}/{$fileName}";
 			if ( is_readable( $cachePath ) ) {
