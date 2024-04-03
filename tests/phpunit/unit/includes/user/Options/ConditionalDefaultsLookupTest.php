@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\ConditionalDefaultsLookup;
 use MediaWiki\User\Registration\UserRegistrationLookup;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 
@@ -20,6 +21,32 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 			'new accounts',
 			[ CUDCOND_AFTER, '20231215000000' ],
 		],
+		[
+			'anonymous users',
+			[ CUDCOND_ANON ],
+		],
+		[
+			'named users',
+			[ CUDCOND_NAMED ],
+		],
+	];
+	private const CONDITIONAL_USER_DEFAULTS_AFTER = [
+		[
+			'new accounts',
+			[ CUDCOND_AFTER, '20231215000000' ],
+		]
+	];
+	private const CONDITIONAL_USER_DEFAULTS_ANON = [
+		[
+			'anonymous users',
+			[ CUDCOND_ANON ],
+		]
+	];
+	private const CONDITIONAL_USER_DEFAULTS_NAMED = [
+		[
+			'named users',
+			[ CUDCOND_NAMED ],
+		]
 	];
 
 	/**
@@ -54,7 +81,8 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 					],
 				]
 			] ),
-			$this->createNoOpMock( UserRegistrationLookup::class )
+			$this->createNoOpMock( UserRegistrationLookup::class ),
+			$this->createNoOpMock( UserIdentityUtils::class )
 		);
 
 		$this->assertSame(
@@ -77,7 +105,8 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	public function testGetOptionDefaultForUser__notConditionallyDefault() {
 		$lookup = new ConditionalDefaultsLookup(
 			$this->getServiceOptions(),
-			$this->createNoOpMock( UserRegistrationLookup::class )
+			$this->createNoOpMock( UserRegistrationLookup::class ),
+			$this->createNoOpMock( UserIdentityUtils::class )
 		);
 
 		$this->assertNull( $lookup->getOptionDefaultForUser(
@@ -114,7 +143,8 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 					'foo-option' => $conditions,
 				]
 			] ),
-			$registrationLookup
+			$registrationLookup,
+			$this->createNoOpMock( UserIdentityUtils::class )
 		);
 
 		$this->assertSame(
@@ -125,9 +155,75 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 
 	public static function provideGetOptionDefaultForUser__registration(): array {
 		return [
-			[ null, '20231101000000', self::CONDITIONAL_USER_DEFAULTS ],
-			[ 'new accounts', '20241101000000', self::CONDITIONAL_USER_DEFAULTS ],
-			[ null, null, self::CONDITIONAL_USER_DEFAULTS ],
+			[ null, '20231101000000', self::CONDITIONAL_USER_DEFAULTS_AFTER ],
+			[ 'new accounts', '20241101000000', self::CONDITIONAL_USER_DEFAULTS_AFTER ],
+			[ null, null, self::CONDITIONAL_USER_DEFAULTS_AFTER ],
+		];
+	}
+
+	/**
+	 * @covers ::getOptionDefaultForUser
+	 * @covers ::checkConditionsForUser
+	 * @covers ::checkConditionForUser
+	 * @dataProvider provideGetOptionDefaultForUser__anon
+	 * @param int $id the user ID
+	 * @param string|null $expected the default option or null if none apply
+	 */
+	public function testGetOptionDefaultForUser__anon( int $id, ?string $expected ) {
+		$userIdentity = new UserIdentityValue( $id, 'test user' );
+
+		$options = $this->getServiceOptions( [
+			MainConfigNames::ConditionalUserOptions => [
+				'test-option' => self::CONDITIONAL_USER_DEFAULTS_ANON,
+			]
+		] );
+		$registrationLookup = $this->createNoOpMock( UserRegistrationLookup::class );
+		$userIdentityUtils = $this->createNoOpMock( UserIdentityUtils::class );
+
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils );
+
+		$this->assertSame( $expected, $lookup->getOptionDefaultForUser( 'test-option', $userIdentity ) );
+	}
+
+	public static function provideGetOptionDefaultForUser__anon(): array {
+		return [
+			[ 0, 'anonymous users' ],
+			[ 1, null ],
+		];
+	}
+
+	/**
+	 * @covers ::getOptionDefaultForUser
+	 * @covers ::checkConditionsForUser
+	 * @covers ::checkConditionForUser
+	 * @dataProvider provideGetOptionDefaultForUser__named
+	 * @param bool $isNamed whether the user is named or not (logged in and not temporary)
+	 * @param string|null $expected the default option or null if none apply
+	 */
+	public function testGetOptionDefaultForUser__named( bool $isNamed, ?string $expected ) {
+		$userIdentity = new UserIdentityValue( 1, 'test user' );
+
+		$options = $this->getServiceOptions( [
+			MainConfigNames::ConditionalUserOptions => [
+				'test-option' => self::CONDITIONAL_USER_DEFAULTS_NAMED,
+			]
+		] );
+		$registrationLookup = $this->createNoOpMock( UserRegistrationLookup::class );
+		$userIdentityUtils = $this->createMock( UserIdentityUtils::class );
+		$userIdentityUtils->expects( $this->once() )
+			->method( 'isNamed' )
+			->with( $userIdentity )
+			->willReturn( $isNamed );
+
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils );
+
+		$this->assertSame( $expected, $lookup->getOptionDefaultForUser( 'test-option', $userIdentity ) );
+	}
+
+	public static function provideGetOptionDefaultForUser__named(): array {
+		return [
+			[ true, 'named users' ],
+			[ false, null ],
 		];
 	}
 }

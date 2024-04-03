@@ -191,6 +191,8 @@ define( 'APCOND_ISBOT', 9 );
  * @since 1.42
  */
 define( 'CUDCOND_AFTER', 'registered-after' );
+define( 'CUDCOND_ANON', 'anonymous-user' );
+define( 'CUDCOND_NAMED', 'named-user' );
 /** @} */
 
 /** @{

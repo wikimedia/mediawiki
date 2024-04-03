@@ -2546,7 +2546,8 @@ return [
 			new ServiceOptions(
 				ConditionalDefaultsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
-			$services->getUserRegistrationLookup()
+			$services->getUserRegistrationLookup(),
+			$services->getUserIdentityUtils()
 		);
 	},
 
