@@ -1,6 +1,8 @@
 /*!
  * JavaScript for diff views
  */
+const inlineFormatToggle = require( './inlineFormatToggle.js' );
+
 ( function () {
 	$( function setDiffSideProtection() {
 		/**
@@ -109,4 +111,13 @@
 			}
 		);
 	} );
+
+	// If there is a diff present on page, load the toggle.
+	const $inlineToggleSwitchLayout = $( '#mw-diffPage-inline-toggle-switch-layout' );
+	// Return if inline switch is not displaying.
+	if ( $inlineToggleSwitchLayout.length ) {
+		mw.loader.using( 'oojs-ui' ).then( () => {
+			inlineFormatToggle( $inlineToggleSwitchLayout );
+		} );
+	}
 }() );

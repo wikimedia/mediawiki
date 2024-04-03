@@ -1,12 +1,7 @@
 /*!
  * JavaScript for diff inline toggle
  */
-( function () {
-	var $inlineToggleSwitchLayout = $( '#mw-diffPage-inline-toggle-switch-layout' );
-	// Return if inline switch is not displaying.
-	if ( !$inlineToggleSwitchLayout.length ) {
-		return;
-	}
+module.exports = function ( $inlineToggleSwitchLayout ) {
 	var $wikitextDiffContainer, $wikitextDiffHeader, $wikitextDiffBody,
 		$wikitextDiffBodyInline, $wikitextDiffBodyTable,
 		url = new URL( location.href ),
@@ -170,4 +165,4 @@
 	 * @param {OO.ui.ToggleSwitchWidget} inlineToggleSwitch
 	 */
 	mw.hook( 'wikipage.diff.diffTypeSwitch' ).fire( inlineToggleSwitch );
-}() );
+};

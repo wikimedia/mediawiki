@@ -720,7 +720,7 @@ return [
 		],
 	],
 	'mediawiki.diff' => [
-		'scripts' => [
+		'packageFiles' => [
 			'resources/src/mediawiki.diff/diff.js',
 			'resources/src/mediawiki.diff/inlineFormatToggle.js',
 		],
@@ -728,7 +728,6 @@ return [
 			'resources/src/mediawiki.diff/styles.less'
 		],
 		'dependencies' => [
-			'oojs-ui',
 			'mediawiki.api',
 		],
 		'messages' => [
