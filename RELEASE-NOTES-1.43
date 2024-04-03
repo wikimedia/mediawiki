@@ -90,6 +90,8 @@ because of Phabricator reports.
 
 === Breaking changes in 1.43 ===
 
+* ErrorPageError public properties 'msg' and 'title' may now contain
+  any MessageSpecifier object, not just Message.
 * …
 
 === Deprecations in 1.43 ===

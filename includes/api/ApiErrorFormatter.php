@@ -150,7 +150,7 @@ class ApiErrorFormatter {
 	/**
 	 * Add a warning to the result
 	 * @param string|null $modulePath
-	 * @param Message|array|string $msg Warning message. See ApiMessage::create().
+	 * @param MessageSpecifier|array|string $msg Warning message. See ApiMessage::create().
 	 * @param string|null $code See ApiMessage::create().
 	 * @param array|null $data See ApiMessage::create().
 	 */
@@ -165,7 +165,7 @@ class ApiErrorFormatter {
 	/**
 	 * Add an error to the result
 	 * @param string|null $modulePath
-	 * @param Message|array|string $msg Warning message. See ApiMessage::create().
+	 * @param MessageSpecifier|array|string $msg Warning message. See ApiMessage::create().
 	 * @param string|null $code See ApiMessage::create().
 	 * @param array|null $data See ApiMessage::create().
 	 */

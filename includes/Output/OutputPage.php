@@ -61,6 +61,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
+use MessageSpecifier;
 use MWDebug;
 use OOUI\Element;
 use OOUI\Theme;
@@ -3064,8 +3065,8 @@ class OutputPage extends ContextSource {
 	 * showErrorPage( 'titlemsg', $messageObject );
 	 * showErrorPage( $titleMessageObject, $messageObject );
 	 *
-	 * @param string|Message $title Message key (string) for page title, or a Message object
-	 * @param string|Message $msg Message key (string) for page text, or a Message object
+	 * @param string|MessageSpecifier $title Message key (string) for page title, or a MessageSpecifier
+	 * @param string|MessageSpecifier $msg Message key (string) for page text, or a MessageSpecifier
 	 * @param array $params Message parameters; ignored if $msg is a Message object
 	 * @param PageReference|LinkTarget|string|null $returnto Page to show a return link to;
 	 *   defaults to the 'returnto' URL parameter
@@ -3347,7 +3348,7 @@ class OutputPage extends ContextSource {
 	 * @param string $fallbackUrl URL to redirect to if the user doesn't have JavaScript
 	 *  or ResourceLoader available; this should ideally be to a page that provides similar
 	 *  functionality without requiring JavaScript
-	 * @param string|Message $msg Message key (string) for page text, or a Message object
+	 * @param string|MessageSpecifier $msg Message key (string) for page text, or a MessageSpecifier
 	 * @param mixed ...$params Message parameters; ignored if $msg is a Message object
 	 */
 	public function showPendingTakeover(
@@ -4665,7 +4666,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a wikitext-formatted message to the output.
 	 *
-	 * @param string $name Message key
+	 * @param string|MessageSpecifier $name Message key
 	 * @param mixed ...$args Message parameters. Unlike wfMessage(), this method only accepts
 	 *     variadic parameters (they can't be passed as a single array parameter).
 	 */
@@ -4676,7 +4677,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a wikitext-formatted message to the output.
 	 *
-	 * @param string $name Message key
+	 * @param string|MessageSpecifier $name Message key
 	 * @param array $args Message parameters. Unlike wfMessage(), this method only accepts
 	 *     the parameters as an array (they can't be passed as variadic parameters),
 	 *     or just a single parameter (this only works by accident, don't rely on it).

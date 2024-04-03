@@ -37,8 +37,8 @@ class ErrorPageError extends MWException implements ILocalizedException {
 	 *
 	 * @stable to call
 	 *
-	 * @param string|Message $title Message key (string) for page title, or a Message object
-	 * @param string|Message $msg Message key (string) for error text, or a Message object
+	 * @param string|MessageSpecifier $title Message key (string) for page title, or a MessageSpecifier
+	 * @param string|MessageSpecifier $msg Message key (string) for error text, or a MessageSpecifier
 	 * @param array $params Array with parameters to wfMessage()
 	 */
 	public function __construct( $title, $msg, $params = [] ) {
