@@ -195,6 +195,24 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			]
 		];
 
+		yield 'array parameter' => [
+			[
+				ParamValidator::PARAM_TYPE => 'array',
+				Validator::PARAM_SOURCE => 'body',
+				Validator::PARAM_DESCRIPTION => 'just a test',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+			[
+				'schema' => [
+					'type' => 'object',
+				],
+				'required' => true,
+				'description' => 'just a test',
+				'in' => 'body',
+				'name' => 'test',
+			]
+		];
+
 		yield 'enum parameter' => [
 			[
 				ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c' ],
@@ -350,7 +368,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		$paramNames = [
 			"path" => "pathParams",
 			"query" => "queryParams",
-			"post" => "postParams",
+			"post" => "postParams"
 		];
 		foreach ( $sources as $source ) {
 			$cases = self::generateParamValidationCases( $source, $paramNames[ $source ] );
@@ -415,6 +433,46 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			],
 			new RequestData( [ 'pathParams' => [ 'foo' => 'test' ] ] ),
 			[] // The parameter from an unknown source should be ignored.
+		];
+
+		yield "valid complex value" => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'array',
+					Validator::PARAM_SOURCE => 'body',
+					ParamValidator::PARAM_REQUIRED => true
+				]
+			],
+			new RequestData( [ 'parsedBody' => [
+				'foo' => [ 'x' => 1 ] // this is a complex value
+			] ] ),
+			[ 'foo' => [ 'x' => 1 ] ]
+		];
+
+		yield "invalid complex value" => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'array',
+					Validator::PARAM_SOURCE => 'body',
+					ParamValidator::PARAM_REQUIRED => true
+				]
+			],
+			new RequestData( [ 'parsedBody' => [
+				'foo' => 'xyzzy' // not a complex value
+			] ] ),
+			new LocalizedHttpException( new MessageValue( 'paramvalidator-notarray' ), 400 )
+		];
+
+		yield "default complex value" => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'array',
+					Validator::PARAM_SOURCE => 'body',
+					ParamValidator::PARAM_DEFAULT => []
+				]
+			],
+			new RequestData( [] ),
+			[ 'foo' => [] ]
 		];
 	}
 
