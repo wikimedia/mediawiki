@@ -1522,7 +1522,7 @@
 	"apihelp-userrights-summary": "Endre en brukers gruppemedlemskap.",
 	"apihelp-userrights-param-user": "Bruker.",
 	"apihelp-userrights-param-userid": "Angi <kbd>$1user=#<var>ID</var></kbd> i stedet.",
-	"apihelp-userrights-param-add": "Legg til brukeren i disse gruppene, eller hvis han/hun allerede er medlem, oppdater utløpsdatoen for medlemskapet deres i den gruppa.",
+	"apihelp-userrights-param-add": "Legg til brukeren i disse gruppene, eller hvis hen allerede er medlem, oppdater utløpsdatoen for medlemskapet hens i den gruppa.",
 	"apihelp-userrights-param-expiry": "Utløpstidsstempler. Kan være relative (f.eks. <kbd>5 months</kbd> eller <kbd>2 weeks</kbd>) eller absolutte (f.eks. <kbd>2014-09-18-T12:34:56Z</kbd>). Hvis bare ett tidsstempel settes blir det brukt for alle gruppene som sendes i parameteren <var>$1add</var>. Bruk <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> eller <kbd>never</kbd> for varig gruppemedlemskap.",
 	"apihelp-userrights-param-remove": "Fjern brukeren fra disse gruppene.",
 	"apihelp-userrights-param-reason": "Årsak for endringen.",

@@ -6,7 +6,8 @@
 			"John Reid",
 			"Macofe",
 			"Seb35",
-			"CiphriusKane"
+			"CiphriusKane",
+			"Amire80"
 		]
 	},
 	"config-desc": "The installer fer MediaWiki",
@@ -180,7 +181,7 @@
 	"config-license-gfdl": "GNU Free Documentâtion License 1.3 or later",
 	"config-license-pd": "Public Domain",
 	"config-license-cc-choose": "Select ae custom Creative Commons license",
-	"config-license-help": "Monie publeec wikis pit aw contreebutions unner ae [https://freedomdefined.org/Defineetion free license].\nThis heelps tae creaut ae sense o communitie ainership n encoorages lang-term contreebution.\nIt's naw generallie necessair fer ae preevate or corporate wiki.\n\nGif ye wish tae be able tae uise tex fae Wikipædia, n ye want Wikipædia tae be able tae accept tex copied fae yer wiki, than ye shid chuise <strong>Creative Commons Attribution Shair Alike</strong>.\n\nWikipædia preeveeooslie uised the GNU Free Documentation License.\nThe GFDL is ae valid license, but it's difficult tae unnerstaunn.\nMairower, it's difficult tae reuise content licensed unner the GFDL.",
+	"config-license-help": "Monie publeec wikis pit aw contreebutions unner ae [https://freedomdefined.org/Defineetion free license].\nThis heelps tae creaut ae sense o communitie ainership n encoorages lang-term contreebution.\nIt's naw generallie necessair fer ae preevate or corporate wiki.\n\nGif ye wish tae be able tae uise tex fae Wikipaedia, n ye want Wikipaedia tae be able tae accept tex copied fae yer wiki, than ye shid chuise <strong>Creative Commons Attribution Shair Alike</strong>.\n\nWikipaedia preeveeooslie uised the GNU Free Documentation License.\nThe GFDL is ae valid license, but it's difficult tae unnerstaunn.\nMairower, it's difficult tae reuise content licensed unner the GFDL.",
 	"config-email-settings": "Wab-mail settins",
 	"config-enable-email": "Enable ootboond wab-mail",
 	"config-enable-email-help": "Gif ye want wab-mail tae wark, [https://www.php.net/manual/en/mail.configuration.php PHP's mail settins] need tae be confeegured jyst richt.\nGif ye dinna want oni wab-mail features, ye can disable theim here.",

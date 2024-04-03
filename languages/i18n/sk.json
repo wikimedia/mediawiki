@@ -50,7 +50,8 @@
 			"Yardom78",
 			"Ата",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Martin Urbanec"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -1175,7 +1176,7 @@
 	"userrights-changeable-col": "Skupiny, ktoré môžete zmeniť",
 	"userrights-unchangeable-col": "Skupiny, ktoré nemôžete zmeniť",
 	"userrights-expiry-current": "Vyprší $1",
-	"userrights-expiry-none": "Bez exspirácie",
+	"userrights-expiry-none": "Bez expirácie",
 	"userrights-expiry": "Vyprší:",
 	"userrights-expiry-existing": "Súčasný čas ukončenia: $2, $3",
 	"userrights-expiry-othertime": "Iný čas:",

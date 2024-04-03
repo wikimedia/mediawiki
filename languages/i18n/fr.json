@@ -3230,7 +3230,7 @@
 	"tooltip-undo": "« Annuler » rétablit la modification précédente et ouvre la fenêtre de modification en mode prévisualisation. Il est possible d’ajouter une raison dans le résumé.",
 	"tooltip-preferences-save": "Enregistrer les préférences",
 	"tooltip-summary": "Entrez un bref résumé",
-	"interlanguage-link-title": "$1 – $2",
+	"interlanguage-link-title": "$1 – $2",
 	"interlanguage-link-title-nonlang": "$1 – $2",
 	"common.css": "/* Le CSS placé ici sera appliqué à tous les habillages. */",
 	"print.css": "/* Le CSS placé ici affectera les impressions. */",

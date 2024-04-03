@@ -300,7 +300,7 @@
 	"databaseerror-textcl": "有一个資料庫的查詢錯誤。",
 	"databaseerror-query": "揣：$1",
 	"databaseerror-function": "功能：$1",
-	"databaseerror-error": "chhò-gō͘",
+	"databaseerror-error": "Chhò-gō͘: $1",
 	"transaction-duration-limit-exceeded": "Ūi tio̍h mài sán-seng koân liōng ê têng-hok iân-sî, pún kài choán-sàng in-ūi sia-ji̍p sî-kan ($1) chhiau-kòe {{PLURAL:$2|bió-cheng}} ê chè-hān, í-keng hong hòng-khì.\nNā chún lí sī beh chi̍t kái kái-tōng kúi--a-ê hāng-bo̍k, chhì ēng chē pái sió chhau-chok khòaⁿ-māi.",
 	"laggedreplicamode": "'''提醒：'''頁內容可能毋是上新的。",
 	"readonly": "Chu-liāu-khò· só tiâu leh",

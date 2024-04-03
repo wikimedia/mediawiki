@@ -2283,7 +2283,7 @@
 	"feedback-submit": "ਹਵਾਲੇ ਕਰੋ",
 	"feedback-thanks-title": "ਧੰਨਵਾਦ!",
 	"feedback-useragent": "ਉਪਭੋਗੀ ਏਜੰਟ:",
-	"searchsuggest-search": "ਖੋਜ {{SITENAME}}",
+	"searchsuggest-search": "{{SITENAME}} ਖੋਜੋ",
 	"searchsuggest-containing": "ਵਾਲੇ ਪੰਨਿਆਂ ਦੀ ਖੋਜ ਕਰੋ",
 	"api-clientside-error-timeout": "ਸਰਵਰ ਨੇ ਉਮੀਦ ਕੀਤੇ ਸਮੇਂ ਦੇ ਅੰਦਰ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ।",
 	"api-error-badtoken": "ਅੰਦਰੂਨੀ ਦੋਸ਼: ਗ਼ਲਤ ਟੋਕਨ",

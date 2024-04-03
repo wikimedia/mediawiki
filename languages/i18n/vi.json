@@ -67,7 +67,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Pisceskaze",
-			"Doraemonluonbentoi"
+			"Doraemonluonbentoi",
+			"Hide on Rosé"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1096,6 +1097,7 @@
 	"prefs-help-skin-responsive": "Điều chỉnh bố cục theo kích thước màn hình trên thiết bị di động.",
 	"skin-preview": "Xem trước",
 	"datedefault": "Không tùy biến",
+	"prefs-help-forcesafemode": "Tắt tập lệnh và bảng định kiểu trên wiki.",
 	"prefs-labs": "Tính năng phòng thí nghiệm",
 	"prefs-user-pages": "Trang cá nhân",
 	"prefs-personal": "Thông tin cá nhân",
@@ -1172,6 +1174,7 @@
 	"prefs-files": "Tập tin",
 	"prefs-custom-css": "sửa CSS",
 	"prefs-custom-js": "sửa JavaScript",
+	"prefs-custom-cssjs-safemode": "CSS/JavaScript tùy chỉnh hiện không khả dụng vì chế độ an toàn đã được bật. Vui lòng [[#mw-input-wpforcesafemode|tắt chế độ an toàn]] để sử dụng CSS/JavaScript tùy chỉnh.",
 	"prefs-common-config": "CSS/JavaScript chung cho mọi giao diện:",
 	"prefs-reset-intro": "Có thể mặc định lại toàn bộ tùy chọn dùng trang này. Điều này không thể hoàn tác.",
 	"prefs-reset-confirm": "Có, tôi muốn đặt lại tất cả tùy chọn.",
@@ -4211,6 +4214,7 @@
 	"skin-action-move": "Di chuyển",
 	"parsoid-stash-rate-limit-error": "Stashing không thành công vì giới hạn tốc độ đã bị vượt quá. Vui lòng thử lại sau.",
 	"parsoid-resource-limit-exceeded": "Đã vượt quá giới hạn tài nguyên Parsoid: $1",
+	"parsoid-revision-access": "Parsoid không thể truy cập bản sửa đổi: $1",
 	"parsoid-client-error": "Thông tin nhập vào Parsoid không hợp lệ: $1",
 	"newpages-showhide-bots": "$1 bot",
 	"newpages-showhide-patrolled": "$1 sửa đổi đã tuần tra",
@@ -4244,6 +4248,7 @@
 	"renameuser-error-request": "Có trục trặc trong tiếp nhận yêu cầu. Xin hãy quay lại và thử lần nữa.",
 	"renameuser-error-same-user": "Bạn không thể đổi tên thành viên thành tên mới giống với tên cũ.",
 	"renameuser-error-temp-user": "Bạn không thể đổi tên tài khoản tạm thời \"$1\".",
+	"renameuser-error-temp-user-reserved": "Bạn không thể sử dụng \"$1\". Nó được dành riêng cho các tài khoản tạm thời.",
 	"renameusersuccess": "Thành viên “<nowiki>$1</nowiki>” đã được đổi tên thành “<nowiki>$2</nowiki>”.",
 	"renameuser-page-exists": "Trang $1 đã tồn tại và không thể bị tự động ghi đè.",
 	"renameuser-page-moved": "Trang $1 đã được di chuyển đến $2.",
@@ -4256,5 +4261,6 @@
 	"renameuser-move-log": "Đã tự động di chuyển trang khi đổi tên thành viên “[[User:$1|$1]]” thành “[[User:$2|$2]]”",
 	"action-renameuser": "đổi tên thành viên",
 	"right-renameuser": "Đổi tên thành viên",
-	"renameuser-renamed-notice": "Thành viên này đã được đổi tên.\nNhật trình đổi tên được ghi ở dưới để tiện theo dõi."
+	"renameuser-renamed-notice": "Thành viên này đã được đổi tên.\nNhật trình đổi tên được ghi ở dưới để tiện theo dõi.",
+	"log-unknown-action": "đã thực hiện hành động không xác định \"$2\" tại [[$1]]"
 }
