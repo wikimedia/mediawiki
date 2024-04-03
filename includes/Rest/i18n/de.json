@@ -52,5 +52,19 @@
 	"rest-requires-safe-against-csrf": "Dieser Endpunkt erfordert einen CSRF-sicheren Sitzungsanbieter.",
 	"rest-badtoken": "Das angegebene CSRF-Token ist ungültig.",
 	"rest-badtoken-missing": "Der <var>token</var>-Parameter ist erforderlich, es sei denn, es wird eine CSRF-sichere Authentifizierungsmethode verwendet.",
-	"rest-badtoken-nosession": "CSRF-Fehler – keine Session."
+	"rest-badtoken-nosession": "CSRF-Fehler – keine Session.",
+	"rest-mock-error": "Mock-Fehler.",
+	"rest-specified-revision-unavailable": "Die angegebene Version ist gelöscht oder unterdrückt.",
+	"rest-previous-revision-unavailable": "Vorherige Version konnte nicht gefunden werden. Wurde die Seite gesperrt/gelöscht?",
+	"rest-requires-content-type-header": "Mit dem Payload muss ein Content-Type-Header bereitgestellt werden.",
+	"rest-transform-missing-html": "Es wurde kein HTML bereitgestellt.",
+	"rest-transform-missing-title": "Es wurde kein Titel oder Wikitext angegeben.",
+	"rest-unsupported-target-format": "Das angeforderte Zielformat wird nicht unterstützt.",
+	"rest-parsoid-resource-exceeded": "Ressourcenlimit überschritten",
+	"rest-parsoid-error": "Parsoidfehler.",
+	"rest-bad-stash-key": "Ungültiger Stash-Schlüssel.",
+	"rest-html-key-expected": "'Schlüssel `html` im Textkörper erwartet'",
+	"rest-invalid-transform": "Ungültige Transformation: $1 in $2",
+	"rest-request-body-expected": "Die Anfragemethode $1 erwartet einen Anfragetext",
+	"rest-request-body-unaccepted": "Die $1 Anfragemethode akzeptiert keinen Anfragetext"
 }

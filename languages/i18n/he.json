@@ -841,7 +841,7 @@
 	"duplicate-args-category": "דפים שמשתמשים בפרמטרים כפולים בקריאות לתבניות",
 	"duplicate-args-category-desc": "הדף מכיל קריאות לתבניות שמשתמשות בפרמטרים כפולים, כגון <code><nowiki>{{תאריך|יום=1|יום=2}}</nowiki></code> או <code><nowiki>{{שעה|חמש|1=שש}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "<strong>אזהרה:</strong> הדף הזה כולל יותר מדי קריאות לפונקציות מפענח שגוזלות משאבים.\n\nרצוי {{PLURAL:$2|שתהיה בו לכל היותר קריאה אחת בלבד|שתהיינה בו לכל היותר $2 קריאות}} לפונקציות כאלו, אך כרגע יש בו {{PLURAL:$1|קריאה אחת|$1 קריאות}}.",
-	"expensive-parserfunction-category": "דפים עם יותר מדי קריאות לפונקציות מפענח שגולות משאבים",
+	"expensive-parserfunction-category": "דפים עם יותר מדי קריאות לפונקציות מפענח שגוזלות משאבים",
 	"post-expand-template-inclusion-warning": "<strong>אזהרה:</strong> אורך הכללת התבניות גדול מדי.\nחלק מהתבניות לא יוכללו.",
 	"post-expand-template-inclusion-category": "דפים שאורך הכללת התבניות בהם גדול מדי",
 	"post-expand-template-argument-warning": "<strong>אזהרה:</strong> הדף הזה מכיל לפחות פרמטר תבנית אחד שיש לו התרחבות גדולה מדי.\nהפרמטרים אלה הושמטו.",

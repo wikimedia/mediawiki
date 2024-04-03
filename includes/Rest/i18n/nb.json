@@ -41,6 +41,7 @@
 	"rest-bad-json-body": "Ugyldig forespørselsinnhold, må være JSON-objekt.",
 	"rest-json-body-parse-error": "Tolkning av forespørselsinnhold som JSON feilet: $1",
 	"rest-missing-body-field": "Påkrevd felt «$1» mangler fra forespørselsinnholdet.",
+	"rest-body-validation error": "Ugyldig forespørselstekst: $1",
 	"rest-extraneous-body-fields": "Overflødige felter funnet i forespørselsteksten: $1",
 	"rest-bad-content-model": "Ugyldig innholdsmodell: $1",
 	"rest-update-cannot-create-page": "Siden «$1» kan ikke opprettes fordi den allerede finnes. For å oppdatere den eksisterende siden, angi grunnversjons-ID-en i strukturen under «latest»-nøkkelen i forespørselsinnholdet.",

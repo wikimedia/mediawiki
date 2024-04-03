@@ -76,6 +76,7 @@
 	"apihelp-rsd-summary": "RSD خاکہ کو برآمد کرتا ہے۔",
 	"apihelp-setnotificationtimestamp-summary": "زیر نظر صفحات کے اطلاع نامہ کے وقت و تاریخ کو تازہ کرتا ہے۔",
 	"apihelp-setpagelanguage-summary": "صفحہ کی زبان تبدیل کرتا ہے۔",
+	"apihelp-tag-summary": "انفرادی نوشتوں یا نوشتہ کے اندراجات سے تبدیلی کے ٹیگوں کو ہٹاتا یا ان میں ٹیگوں کو شامل کرتا ہے۔",
 	"apihelp-json-summary": "ڈیٹا کو JSON شکل میں دیتا ہے۔",
 	"apihelp-json-param-formatversion": "حاصل شدہ مواد کی شکل صورت",
 	"apihelp-jsonfm-summary": "ڈیٹا کو JSON شکل میں دیتا ہے (ایچ ٹی ایم ایل کے خوب صورت انداز میں)",

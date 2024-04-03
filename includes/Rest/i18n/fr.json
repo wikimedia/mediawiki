@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
+			"Hecatonchire",
 			"McDutchie",
 			"Thibaut120094",
 			"Verdy p",
@@ -50,5 +51,11 @@
 	"rest-requires-safe-against-csrf": "Ce point de terminaison exige un fournisseur de session qui protège des usurpations de sites (CSRF).",
 	"rest-badtoken": "Le jeton CSRF fourni n’est pas valide.",
 	"rest-badtoken-missing": "Le paramètre <var>token</var> est obligatoire à moins d’utiliser une méthode d’authentification sécurisée contre les attaques CSRF.",
-	"rest-badtoken-nosession": "Erreur CSRF — aucune session."
+	"rest-badtoken-nosession": "Erreur CSRF — aucune session.",
+	"rest-specified-revision-unavailable": "La modification spécifiée est supprimée.",
+	"rest-previous-revision-unavailable": "Impossible de trouver la modification précédente. La page a-t-elle été verrouillée/supprimée ?",
+	"rest-parsoid-resource-exceeded": "Limite de ressources dépassée",
+	"rest-html-key-expected": "'Clé `html` attendue dans le corps'",
+	"rest-invalid-transform": "Transformation non valide : $1 à $2",
+	"rest-request-body-expected": "La méthode de requête $1 nécessite un corps de requête"
 }
