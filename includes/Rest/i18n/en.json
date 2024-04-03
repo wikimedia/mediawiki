@@ -63,7 +63,7 @@
 	"rest-parsoid-resource-exceeded": "Resource limit exceeeded",
 	"rest-parsoid-error": "Parsoid error.",
 	"rest-bad-stash-key": "Bad stash key.",
-	"rest-html-key-expected": "'Expected `html` key in body'",
+	"rest-html-key-expected": "Expected <var>html</var> key in body",
 	"rest-invalid-transform": "Invalid transform: $1 to $2",
 	"rest-request-body-expected": "The $1 request method expects a request body",
 	"rest-request-body-unaccepted": "The $1 request method does not accept a request body"
