@@ -48,6 +48,7 @@ class CodexHTMLForm extends HTMLForm {
 	public function getHTML( $submitResult ) {
 		$this->getOutput()->addModuleStyles( [
 			'codex-styles',
+			'mediawiki.htmlform.codex.styles',
 		] );
 
 		return parent::getHTML( $submitResult );
