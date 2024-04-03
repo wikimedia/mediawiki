@@ -5,7 +5,6 @@ namespace MediaWiki\Rest\Handler;
 use FormatJson;
 use IApiMessage;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Utils\MWTimestamp;
@@ -49,22 +48,6 @@ class UpdateHandler extends EditHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
-		];
-	}
-
-	/**
-	 * @inheritDoc
-	 * @return JsonBodyValidator
-	 */
-	public function getBodyValidator( $contentType ) {
-		if ( $contentType !== 'application/json' ) {
-			throw new LocalizedHttpException( new MessageValue( "rest-unsupported-content-type", [ $contentType ] ),
-				415,
-				[ 'content_type' => $contentType ]
-			);
-		}
-
-		return new JsonBodyValidator( [
 			'source' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
@@ -85,7 +68,10 @@ class UpdateHandler extends EditHandler {
 				ParamValidator::PARAM_TYPE => 'array',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
-		] + $this->getTokenParamDefinition() );
+
+		]
+			+ $this->getTokenParamDefinition()
+			+ parent::getParamSettings();
 	}
 
 	/**
