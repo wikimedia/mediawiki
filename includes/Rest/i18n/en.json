@@ -55,7 +55,7 @@
 	"rest-badtoken-nosession": "CSRF error - no session.",
 	"rest-mock-error": "Mock error.",
 	"rest-specified-revision-unavailable": "The specified revision is deleted or suppressed.",
-	"rest-previous-revision-unavailable": "Could not find previous revision. Has the page been locked / deleted?",
+	"rest-previous-revision-unavailable": "Could not find previous revision. Has the page been locked or deleted?",
 	"rest-requires-content-type-header": "A Content-Type header must be supplied with a request payload.",
 	"rest-transform-missing-html": "No html was supplied.",
 	"rest-transform-missing-title": "No title or wikitext was provided.",
