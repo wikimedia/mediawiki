@@ -1195,6 +1195,7 @@ return [
 			new ServiceOptions( LogFormatterFactory::SERVICE_OPTIONS, $services->getMainConfig() ),
 			$services->getObjectFactory(),
 			$services->getHookContainer(),
+			$services->getLinkRenderer(),
 			$services->getContentLanguage(),
 			$services->getCommentFormatter(),
 			$services->getUserEditTracker()

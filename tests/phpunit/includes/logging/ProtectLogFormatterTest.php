@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -489,7 +490,12 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 			return $ret;
 		} );
 		$this->setService( 'TitleFactory', $titleFactory );
-		$this->setService( 'LinkCache', $this->createMock( LinkCache::class ) );
+		$formatter->setLinkRenderer( ( new LinkRendererFactory(
+			$this->getServiceContainer()->getTitleFormatter(),
+			$this->createMock( LinkCache::class ),
+			$this->getServiceContainer()->getSpecialPageFactory(),
+			$this->getServiceContainer()->getHookContainer()
+		) )->create() );
 		if ( $shouldMatch ) {
 			$this->assertStringMatchesFormat(
 				'%Aaction=protect%A', $formatter->getActionLinks() );
