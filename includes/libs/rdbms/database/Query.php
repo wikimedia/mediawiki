@@ -29,10 +29,11 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
  * @since 1.41
  */
 class Query {
-	private $sql;
-	private $flags;
-	private $queryVerb;
-	private $writeTable;
+
+	private string $sql;
+	private int $flags;
+	private string $queryVerb;
+	private ?string $writeTable;
 	private string $cleanedSql;
 
 	/**
@@ -49,8 +50,11 @@ class Query {
 	 *   - "CREATE DATABASE"
 	 *   - "ALTER DATABASE"
 	 *   - "DROP DATABASE"
-	 * @param string|null $writeTable The table targeted for writes, if any
-	 * @param string $cleanedSql Sanitized/simplified SQL statement text for logging
+	 * @param string|null $writeTable The table targeted for writes, if any. Can be omitted if
+	 *   it would be hard to identify the table (e.g. when parsing an arbitrary SQL string).
+	 * @param string $cleanedSql Sanitized/simplified SQL statement text for logging.
+	 *   Typically, this means replacing variables / parameter values with placeholders.
+	 *   Can be omitted, in which case the code using the Query is responsible for sanitizing.
 	 */
 	public function __construct(
 		string $sql,
@@ -66,7 +70,7 @@ class Query {
 		$this->cleanedSql = substr( $cleanedSql, 0, 255 );
 	}
 
-	public function isWriteQuery() {
+	public function isWriteQuery(): bool {
 		// Check if a SQL wrapper method already flagged the query as a non-write
 		if (
 			$this->fieldHasBit( $this->flags, SQLPlatform::QUERY_CHANGE_NONE ) ||
@@ -87,20 +91,19 @@ class Query {
 		throw new DBLanguageError( __METHOD__ . ' called with incorrect flags parameter' );
 	}
 
-	public function getVerb() {
+	public function getVerb(): string {
 		return $this->queryVerb;
 	}
 
-	private function fieldHasBit( int $flags, int $bit ) {
+	private function fieldHasBit( int $flags, int $bit ): bool {
 		return ( ( $flags & $bit ) === $bit );
 	}
 
-	public function getSQL() {
+	public function getSQL(): string {
 		return $this->sql;
 	}
 
-	/** @return int */
-	public function getFlags() {
+	public function getFlags(): int {
 		// The whole concept of flags is terrible. This should be deprecated.
 		return $this->flags;
 	}
@@ -108,13 +111,15 @@ class Query {
 	/**
 	 * Get the table which is being written to, or null for a read query or if
 	 * the destination is unknown.
-	 *
-	 * @return string|null
 	 */
-	public function getWriteTable() {
+	public function getWriteTable(): ?string {
 		return $this->writeTable;
 	}
 
+	/**
+	 * Get the cleaned/sanitized SQL statement text for logging.
+	 * Might return an empty string, which means sanitization is the caller's responsibility.
+	 */
 	public function getCleanedSql(): string {
 		return $this->cleanedSql;
 	}
