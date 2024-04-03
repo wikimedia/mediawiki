@@ -110,18 +110,24 @@ class PathMatcher {
 		}
 		$part = $parts[$index];
 		$result = false;
+
 		if ( $this->isParam( $part ) ) {
 			foreach ( $node as $childNode ) {
-				$result = $this->findConflict( $childNode, $parts, $index + 1 );
-				if ( $result !== false ) {
-					break;
+				// Params and tree entries for trailing empty slashes ('=') do not conflict
+				if ( !isset( $node['='] ) ) {
+					$result = $this->findConflict( $childNode, $parts, $index + 1 );
+					if ( $result !== false ) {
+						break;
+					}
 				}
 			}
 		} else {
 			if ( isset( $node["=$part"] ) ) {
 				$result = $this->findConflict( $node["=$part"], $parts, $index + 1 );
 			}
-			if ( $result === false && isset( $node['*'] ) ) {
+
+			// Trailing empty slashes (aka an empty $part) do not conflict with params
+			if ( $result === false && isset( $node['*'] ) && $part !== '' ) {
 				$result = $this->findConflict( $node['*'], $parts, $index + 1 );
 			}
 		}
@@ -144,15 +150,24 @@ class PathMatcher {
 	 * @param string $template The path template
 	 * @param mixed $userData User data used to identify the matched route to
 	 *   the caller of match()
-	 * @throws PathConflict
+	 * @throws PathConflict|PathSegmentException
 	 */
 	public function add( $template, $userData ) {
+		// This will produce an empty part before any leading slash and after any trailing slash
 		$parts = explode( '/', $template );
 		$length = count( $parts );
 		if ( !isset( $this->treesByLength[$length] ) ) {
 			$this->treesByLength[$length] = [];
 		}
 		$tree =& $this->treesByLength[$length];
+
+		// Disallow empty path parts within the path (but not leading or trailing).
+		for ( $i = 1; $i < $length - 1; $i++ ) {
+			if ( $parts[$i] == '' ) {
+				throw new PathSegmentException( $template, $userData );
+			}
+		}
+
 		$conflict = $this->findConflict( $tree, $parts );
 		if ( $conflict !== false ) {
 			throw new PathConflict( $template, $userData, $conflict );

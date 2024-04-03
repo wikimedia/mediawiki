@@ -384,6 +384,13 @@ abstract class Handler {
 	 * multipart/form-data POST body (i.e. parameters which would be present in PHP's $_POST
 	 * array). For validating other kinds of request bodies, override getBodyValidator().
 	 *
+	 * For "query" and "body" parameters, a PARAM_REQUIRED setting of "false" means the caller
+	 * does not have to supply the parameter. For "path" parameters, the path matcher will always
+	 * require the caller to supply all path parameters for a route, regardless of the
+	 * PARAM_REQUIRED setting. However, "path" parameters may be specified in getParamSettings()
+	 * as non-required to indicate that the handler services multiple routes, some of which may
+	 * not supply the parameter.
+	 *
 	 * @stable to override
 	 *
 	 * @return array[] Associative array mapping parameter names to

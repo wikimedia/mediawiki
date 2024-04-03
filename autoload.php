@@ -1981,6 +1981,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\LocalizedHttpException' => __DIR__ . '/includes/Rest/LocalizedHttpException.php',
 	'MediaWiki\\Rest\\PathTemplateMatcher\\PathConflict' => __DIR__ . '/includes/Rest/PathTemplateMatcher/PathConflict.php',
 	'MediaWiki\\Rest\\PathTemplateMatcher\\PathMatcher' => __DIR__ . '/includes/Rest/PathTemplateMatcher/PathMatcher.php',
+	'MediaWiki\\Rest\\PathTemplateMatcher\\PathSegmentException' => __DIR__ . '/includes/Rest/PathTemplateMatcher/PathSegmentException.php',
 	'MediaWiki\\Rest\\RedirectException' => __DIR__ . '/includes/Rest/RedirectException.php',
 	'MediaWiki\\Rest\\Reporter\\ErrorReporter' => __DIR__ . '/includes/Rest/Reporter/ErrorReporter.php',
 	'MediaWiki\\Rest\\Reporter\\MWErrorReporter' => __DIR__ . '/includes/Rest/Reporter/MWErrorReporter.php',
