@@ -1159,7 +1159,7 @@
 	"search-result-category-size": "$1 位成員 ($2 個子分類，$3 個檔案)",
 	"search-redirect": "（重新導向自$1）",
 	"search-section": "(章節 $1)",
-	"search-category": "(分類 $1)",
+	"search-category": "（分類「$1」）",
 	"search-file-match": "(符合檔案內容)",
 	"search-suggest": "您指的是不是：$1",
 	"search-rewritten": "找不到$2的結果，顯示$1的結果。",

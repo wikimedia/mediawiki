@@ -3,7 +3,8 @@
 		"authors": [
 			"Amire80",
 			"Guycn2",
-			"Rotemliss"
+			"Rotemliss",
+			"יוסף בן מלמד"
 		]
 	},
 	"rest-prefix-mismatch": "הנתיב המבוקש ($1) לא היה בתוך נתיב השורש ($2) של ה־REST API",
@@ -53,5 +54,19 @@
 	"rest-requires-safe-against-csrf": "נקודת הקצה הזאת דורשת ספק התחברויות מאובטח־CSRF.",
 	"rest-badtoken": "אסימון ה־CSRF שסופק אינו תקין.",
 	"rest-badtoken-missing": "פרמטר <var>token</var> נדרש אלא אם נעשה שימוש בשיטת אימות שבטוחה עם CSRF.",
-	"rest-badtoken-nosession": "שגיאת CSRF – אין התחברות."
+	"rest-badtoken-nosession": "שגיאת CSRF – אין התחברות.",
+	"rest-mock-error": "שגיאת־דמה.",
+	"rest-specified-revision-unavailable": "הגרסה שצוינה נמחקה או הועלמה.",
+	"rest-previous-revision-unavailable": "לא היה אפשר למצוא את הגרסה הקודמת. האם הדף ננעל / נמחק?",
+	"rest-requires-content-type-header": "חובה לספק כותר Content-Type עם המטען של הבקשה.",
+	"rest-transform-missing-html": "לא סופק html.",
+	"rest-transform-missing-title": "לא סופק title או wikitext.",
+	"rest-unsupported-target-format": "אין תמיכה בתסדיר היעד המבוקש.",
+	"rest-parsoid-resource-exceeded": "חרגת ממגבלת המשאבים",
+	"rest-parsoid-error": "שגיאת פרסואיד.",
+	"rest-bad-stash-key": "מפתח מאגר פלט גרוע.",
+	"rest-html-key-expected": "מפתח `html` צפוי בגוף",
+	"rest-invalid-transform": "התמרה בלתי־תקינה: מתסדיר $1 לתסדיר $2",
+	"rest-request-body-expected": "שיטת הבקשה $1 מצפה לגוף הבקשה",
+	"rest-request-body-unaccepted": "שיטת הבקשה $1 אינה מצפה לגוף הבקשה"
 }

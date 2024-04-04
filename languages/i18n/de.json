@@ -4244,6 +4244,7 @@
 	"paramvalidator-help-type-user-subtype-id": "Benutzer-ID (z.B. \"#12345\")",
 	"paramvalidator-badtitle": "Ungültiger Wert „$2“ für Titel-Parameter <var>$1<var>: kein gültiger Titelstring.",
 	"paramvalidator-missingtitle": "Ungültiger Wert „$2“ für den Titelparameter <var>$1</var>: Die Seite existiert nicht.",
+	"paramvalidator-notarray": "Ungültiger Wert für Parameter <var>$1</var>: Array erwartet.",
 	"paramvalidator-help-type-title": "Typ: Seitenname",
 	"paramvalidator-help-type-title-must-exist": "Es werden nur Seiten akzeptiert, die existieren.",
 	"paramvalidator-help-type-title-no-must-exist": "Akzeptiert nicht existierende Seiten.",

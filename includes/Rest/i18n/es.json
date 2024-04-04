@@ -37,5 +37,19 @@
 	"rest-body-validation error": "Cuerpo de solicitud no válido: $1",
 	"rest-extraneous-body-fields": "Campos extraños encontrados en el cuerpo de la solicitud: $1",
 	"rest-bad-content-model": "Modelo de contenido malo: $1",
-	"rest-cannot-load-file": "No se puede cargar el archivo con el título «$1»."
+	"rest-cannot-load-file": "No se puede cargar el archivo con el título «$1».",
+	"rest-mock-error": "Error simulado.",
+	"rest-specified-revision-unavailable": "La revisión especificada se elimina o suprime.",
+	"rest-previous-revision-unavailable": "No se pudo encontrar la revisión anterior. ¿Se ha \nbloqueado/eliminado la página?",
+	"rest-requires-content-type-header": "Se debe proporcionar un encabezado de tipo de contenido con una carga útil de solicitud.",
+	"rest-transform-missing-html": "No se proporcionó ningún html.",
+	"rest-transform-missing-title": "No se proporcionó ningún título ni wikitexto.",
+	"rest-unsupported-target-format": "El formato de destino solicitado no es compatible.",
+	"rest-parsoid-resource-exceeded": "Se superó el límite de recursos",
+	"rest-parsoid-error": "Error parsoide.",
+	"rest-bad-stash-key": "Mala clave escondida.",
+	"rest-html-key-expected": "'Se supone clave `html` en el cuerpo'",
+	"rest-invalid-transform": "Transformación inválida: $1 a $2",
+	"rest-request-body-expected": "El método de solicitud $1 espera un cuerpo de solicitud",
+	"rest-request-body-unaccepted": "El método de solicitud $1 no acepta un cuerpo de solicitud"
 }

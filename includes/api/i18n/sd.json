@@ -5,6 +5,7 @@
 			"Mehtab ahmed"
 		]
 	},
+	"apihelp-changecontentmodel-summary": "صفحي جي مواد ماڊل کي تبديل ڪريو",
 	"apihelp-edit-param-minor": "ھن سنوار کي معمولي سنوار طور نشان لڳايو.",
 	"apihelp-edit-param-contentmodel": "نئين مواد جو مواد نمونو.",
 	"apihelp-feedcontributions-summary": "ڪنھن واپرائيندڙ جي ڀاڱيدارين جي رسد ورائي ٿو.",
@@ -26,6 +27,7 @@
 	"apihelp-query+allusers-example-y": "<kbd>ب</kbd> تي شروع ٿيندڙ واپرائيندڙن جي فھرست ٺاھيو.",
 	"apihelp-query+categorymembers-summary": "ڏنل زمري ۾ سڀني صفحن جي فھرست ڏيو.",
 	"apihelp-query+categorymembers-param-sort": "خصوصيت جنھن سان مرتب ڪجي.",
+	"apihelp-query+duplicatefiles-example-generated": "سڀني فائيلن جي نقلن لاءِ ڏسو.",
 	"apihelp-query+linkshere-summary": "صفحا لھو جيڪي ڏنل صفحن ڏانھن ڳنڍن ٿا.",
 	"apihelp-query+pageswithprop-summary": "انھن سڀني صفحن جي فھرست ڏيو جن ۾ ڪا ڏنل صفحي خصوصيت استعمال ۾ آھي",
 	"apihelp-query+usercontribs-example-user": "ڪنھن واپرائيندڙ جون ڀاڱيداريون ڏيکاريو <kbd>مثال</kbd>.",
@@ -36,6 +38,7 @@
 	"apihelp-query+watchlist-paramvalue-type-external": "ٻاھريون تبديليون.",
 	"apihelp-query+watchlist-paramvalue-type-new": "صفحي سرجايون.",
 	"apihelp-query+watchlist-paramvalue-type-log": "لاگ داخلائون.",
+	"apihelp-revisiondelete-summary": "ورجاءَ ڊاهيو ۽ اڻ‌ڊاهيو.",
 	"apihelp-rollback-summary": "صفحي ۾ آخري سنوار اڻڪريو.",
 	"apihelp-rollback-param-markbot": "موٽايل سنوارن کي نشان لڳايو ۽ بطور بوٽ سنوارون موٽايو.",
 	"apihelp-stashedit-param-contentmodel": "نئين مواد جو مواد نمونو.",

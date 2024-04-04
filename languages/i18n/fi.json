@@ -3686,6 +3686,7 @@
 	"htmlform-int-toohigh": "Annettu arvo on suurempi kuin yläraja $1",
 	"htmlform-multiselect-toomany": "Antamiesi kohtien lukumäärä on suurempi kuin yläraja, joka on $1.",
 	"htmlform-required": "Tämä arvo on pakollinen",
+	"htmlform-optional-flag": "(valinnainen)",
 	"htmlform-submit": "Lähetä",
 	"htmlform-reset": "Kumoa muutokset",
 	"htmlform-selectorother-other": "Muu",

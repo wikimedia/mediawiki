@@ -1280,6 +1280,7 @@
 	"linterror-multi-colon-escape": "Koppeling die begint met meerdere dubbele punten",
 	"linterror-multiline-html-table-in-list": "HTML5 tabel met meerdere regels in een lijst",
 	"linterror-multiple-unclosed-formatting-tags": "Meerdere niet-afgesloten opmaakelementen op de pagina",
+	"linterror-night-mode-unaware-background-color": "De inlinestijl voor de achtergrondkleur heeft een tekstkleur nodig",
 	"linterror-obsolete-tag": "Verouderd HTML element",
 	"linterror-pwrap-bug-workaround": "Tijdelijke oplossing voor de alinea-omwikkelingsbug",
 	"linterror-self-closed-tag": "Zelfsluitend element",
