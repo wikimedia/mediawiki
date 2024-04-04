@@ -3,6 +3,7 @@
 // phpcs:disable
 
 /* @phan-file-suppress PhanTypeSuspiciousEcho, PhanTypeConversionFromArray, PhanPluginUseReturnValueInternalKnown, PhanNoopNew */
+/* @phan-file-suppress PhanTypeMismatchArgument Ignore list/array mismatch for taint checks */
 
 /*
  * This test ensures that taint-check knows about unsafe methods in MediaWiki. Knowledge about those methods

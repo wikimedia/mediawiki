@@ -25,7 +25,7 @@ class ReplaceQueryBuilder {
 	private $table = '';
 
 	/**
-	 * @var array The rows to be passed to IDatabase::replace()
+	 * @var list<array> The rows to be passed to IDatabase::replace()
 	 */
 	private $rows = [];
 
@@ -124,7 +124,7 @@ class ReplaceQueryBuilder {
 	/**
 	 * Add rows to be inserted.
 	 *
-	 * @param array $rows
+	 * @param list<array> $rows
 	 *   $rows should be an integer-keyed list of such string-keyed maps, defining a list of new rows.
 	 *   The keys in each map must be identical to each other and in the same order.
 	 *   The rows must not collide with each other.
