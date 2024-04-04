@@ -87,11 +87,12 @@ $( function () {
 	var node = document.querySelector( '.mw-indicators' );
 	if ( node && node.children.length ) {
 		/**
-		 * Fired when indicators are being added to the DOM.
+		 * Fired when a page's status indicators are being added to the DOM.
 		 *
 		 * @event ~'wikipage.indicators'
 		 * @memberof Hooks
 		 * @param {jQuery} $content jQuery object with the elements of the indicators
+		 * @see https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Page_status_indicators
 		 */
 		mw.hook( 'wikipage.indicators' ).fire( $( node.children ) );
 	}

@@ -59,15 +59,6 @@
 				.get( 0 );
 		} );
 		if ( indicators.length ) {
-			/**
-			 * Fired when a page's
-			 * [status indicators]{@link https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Page_status_indicators}
-			 * are updated.
-			 *
-			 * @event ~'wikipage.indicators'
-			 * @memberof Hooks
-			 * @param {jQuery} $indicators jQuery object containing each indicator
-			 */
 			mw.hook( 'wikipage.indicators' ).fire( $( indicators ) );
 		}
 
@@ -457,16 +448,6 @@
 			var diff = response[ 0 ].compare.bodies;
 
 			$table.find( 'tbody' ).html( diff.main );
-			/**
-			 * Fired when a diff is dynamically displayed to the user.
-			 *
-			 * Similar to the [wikipage.content hook]{@link Hooks~event:'wikipage.content'},
-			 * `$diff` may still be detached when the hook is fired.
-			 *
-			 * @event ~'wikipage.diff'
-			 * @memberof Hooks
-			 * @param {jQuery} $table The root element of the MediaWiki diff (`table.diff`).
-			 */
 			mw.hook( 'wikipage.diff' ).fire( $table );
 		} else {
 			// The diff is empty.
