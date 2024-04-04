@@ -368,8 +368,8 @@ ooui:
   authors: OOUI Team and other contributors
   version: 0.49.0
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.49.0.tgz
-  integrity: sha384-WrQ9wfnb6i6aROXjh8/QNpKzeMXFd9XEfd9UyKblYRhVZ1E082dZro+YUo69/9Hi
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.49.1.tgz
+  integrity: sha384-A+rqZuEBs57mX/Q5XApnmUG+jbQvq6GwA0Wi6Fipc7gpLqRORooUlm5aT3hFav75
 
   dest:
     # Main stuff

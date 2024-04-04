@@ -18,20 +18,20 @@ Quick start
 
 The library is available on [npm](https://www.npmjs.com/package/oojs-ui). To install:
 
-<pre lang="bash">
+```bash
 $ npm install oojs-ui
-</pre>
+```
 
 Once installed, include the following scripts and styles to get started:
 
-<pre lang="html">
+```html
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/oojs/dist/oojs.min.js"></script>
 
 <script src="node_modules/oojs-ui/dist/oojs-ui.min.js"></script>
 <script src="node_modules/oojs-ui/dist/oojs-ui-wikimediaui.min.js"></script>
 <link rel="stylesheet" href="node_modules/oojs-ui/dist/oojs-ui-wikimediaui.min.css">
-</pre>
+```
 
 
 Loading the library

@@ -12,10 +12,10 @@
 			"global": true
 		},
 		"destructive": {
-			"color": "#d33"
+			"color": "#d73333"
 		},
 		"error": {
-			"color": "#d33"
+			"color": "#d73333"
 		},
 		"warning": {
 			"color": "#edab00"
