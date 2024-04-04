@@ -2672,9 +2672,10 @@ class Parser {
 					}
 
 					/**
-					 * Strip the whitespace interwiki links produce, see T10897
+					 * Strip the whitespace interlanguage links produce, see
+					 * T10897, T175416, and T359886.
 					 */
-					$s = rtrim( $s . $prefix ) . $trail; # T175416
+					$s = preg_replace( '/\n\s*$/', '', $s . $prefix ) . $trail;
 					continue;
 				}
 
