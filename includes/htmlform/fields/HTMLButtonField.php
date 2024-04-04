@@ -117,24 +117,11 @@ class HTMLButtonField extends HTMLFormField {
 	}
 
 	public function getInputCodex( $value, $hasErrors ) {
-		$flags = [];
-		$flagClassMap = [
-			'progressive' => 'cdx-button--action-progressive',
-			'destructive' => 'cdx-button--action-destructive',
-			'primary' => 'cdx-button--weight-primary',
-			'quiet' => 'cdx-button--weight-quiet',
-		];
-
-		foreach ( $this->mFlags as $flag ) {
-			if ( isset( $flagClassMap[$flag] ) ) {
-				$flags[] = $flagClassMap[$flag];
-			}
-		}
-
+		$flags = $this->mFlags;
+		$buttonLabel = $this->buttonLabel ?: htmlspecialchars( $this->getDefault() );
 		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button', $this->mClass ];
-		$buttonClassesAndFlags = array_merge( $buttonClasses, $flags );
-		$attr = [
-			'class' => $buttonClassesAndFlags,
+		$buttonAttribs = [
+			'class' => $buttonClasses,
 			'id' => $this->mID,
 			'type' => $this->buttonType,
 			'name' => $this->mName,
@@ -142,8 +129,48 @@ class HTMLButtonField extends HTMLFormField {
 			'formnovalidate' => $this->mFormnovalidate,
 		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
-		return Html::rawElement( 'button', $attr,
-			$this->buttonLabel ?: htmlspecialchars( $this->getDefault() ) );
+		return static::buildCodexComponent(
+			$flags,
+			$buttonLabel,
+			$buttonAttribs
+		);
+	}
+
+	/**
+	 * Build the markup of the Codex component
+	 *
+	 * @param array $flags The button's flag classes.
+	 * @param string $buttonLabel The button's label attribute.
+	 * @param array $attribs The button's list of attributes.
+	 * @return string Raw HTML.
+	 */
+	public static function buildCodexComponent(
+		$flags,
+		$buttonLabel,
+		$attribs
+	) {
+		$flagClasses = [];
+		$flagClassMap = [
+			'progressive' => 'cdx-button--action-progressive',
+			'destructive' => 'cdx-button--action-destructive',
+			'primary' => 'cdx-button--weight-primary',
+			'quiet' => 'cdx-button--weight-quiet',
+		];
+
+		foreach ( $flags as $flag ) {
+			if ( isset( $flagClassMap[$flag] ) ) {
+				$flagClasses[] = $flagClassMap[$flag];
+			}
+		}
+
+		$buttonClassesAndFlags = array_merge( $attribs[ 'class' ], $flagClasses );
+		$attribs['class'] = $buttonClassesAndFlags;
+
+		$buttonHtml = Html::rawElement(
+			'button', $attribs, $buttonLabel
+		);
+
+		return $buttonHtml;
 	}
 
 	/**
