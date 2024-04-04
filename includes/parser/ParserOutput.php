@@ -1102,6 +1102,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param int $rev_id
 	 */
 	public function addTemplate( $link, $page_id, $rev_id ): void {
+		if ( $link->isExternal() ) {
+			// Will throw an InvalidArgumentException in a future release.
+			wfDeprecated( __METHOD__ . " with interwiki link", '1.42' );
+			return;
+		}
 		$ns = $link->getNamespace();
 		$dbk = $link->getDBkey();
 		// T357048: Parsoid doesn't have page_id
