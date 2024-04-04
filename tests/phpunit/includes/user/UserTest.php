@@ -12,6 +12,7 @@ use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
@@ -25,6 +26,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class UserTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
+	use TempUserTestTrait;
 
 	/** Constant for self::testIsBlockedFrom */
 	private const USER_TALK_PAGE = '<user talk page>';
@@ -555,7 +557,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		// IP is in $wgSoftBlockRanges and user is temporary
 		$this->enableAutoCreateTempUser();
-		$user = ( new TestUser( '*Unregistered 1' ) )->getUser();
+		$user = ( new TestUser( '~1' ) )->getUser();
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
 		$this->setSessionUser( $user, $request );
@@ -1730,25 +1732,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $isAllowed, $unserializedUser->isAllowed( 'read' ) );
 	}
 
-	private function enableAutoCreateTempUser() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
-	}
-
 	public static function provideIsTemp() {
 		return [
-			[ '*Unregistered 1', true ],
-			[ 'Some user', false ]
+			[ '~2024-1', true ],
+			[ '~1', true ],
+			[ 'Some user', false ],
 		];
 	}
 
@@ -1771,7 +1759,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		// Temp user is not named
 		$user = new User;
-		$user->setName( '*Unregistered 1' );
+		$user->setName( '~1' );
 		$this->assertFalse( $user->isNamed() );
 
 		// Registered user is named
@@ -1785,7 +1773,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideAddToDatabase_temp() {
 		return [
-			[ '*Unregistered 1', '1' ],
+			[ '~1', '1' ],
 			[ 'Some user', '0' ]
 		];
 	}

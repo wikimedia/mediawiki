@@ -28,14 +28,17 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
 
 	public function testCreate() {
-		$this->enableAutoCreateTempUser();
+		$this->enableAutoCreateTempUser( [
+			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
+			'matchPattern' => '~$1',
+		] );
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
-		$this->assertTrue( $tuc->isTempName( '*Unregistered 1' ) );
+		$this->assertTrue( $tuc->isTempName( '~1' ) );
 		$status = $tuc->create();
-		$this->assertSame( '*Unregistered 1', $status->getUser()->getName() );
+		$this->assertSame( '~1', $status->getUser()->getName() );
 		$status = $tuc->create();
-		$this->assertSame( '*Unregistered 2', $status->getUser()->getName() );
+		$this->assertSame( '~2', $status->getUser()->getName() );
 	}
 
 	private function getTempUserCreatorUnit() {
@@ -98,12 +101,15 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testAcquireName_db() {
-		$this->enableAutoCreateTempUser();
+		$this->enableAutoCreateTempUser( [
+			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
+			'matchPattern' => '~$1',
+		] );
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
-		$this->assertSame( '*Unregistered 1', $tuc->acquireName() );
-		$this->assertSame( '*Unregistered 2', $tuc->acquireName() );
+		$this->assertSame( '~1', $tuc->acquireName() );
+		$this->assertSame( '~2', $tuc->acquireName() );
 	}
 
 	public function testAcquireName_dbWithYear() {
@@ -113,20 +119,23 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
-		$this->assertSame( '*Unregistered 2000-1', $tuc->acquireName() );
-		$this->assertSame( '*Unregistered 2000-2', $tuc->acquireName() );
+		$this->assertSame( '~2000-1', $tuc->acquireName() );
+		$this->assertSame( '~2000-2', $tuc->acquireName() );
 
 		ConvertibleTimestamp::setFakeTime( '20010101000000' );
-		$this->assertSame( '*Unregistered 2001-1', $tuc->acquireName() );
+		$this->assertSame( '~2001-1', $tuc->acquireName() );
 	}
 
 	public function testAcquireNameOnDuplicate_db() {
-		$this->enableAutoCreateTempUser();
+		$this->enableAutoCreateTempUser( [
+			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
+			'matchPattern' => '~$1',
+		] );
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
 		// Create a temporary account
-		$this->assertSame( '*Unregistered 1', $tuc->create()->value->getName() );
+		$this->assertSame( '~1', $tuc->create()->value->getName() );
 		// Reset the user_autocreate_serial table
 		$this->truncateTable( 'user_autocreate_serial' );
 		// Because user_autocreate_serial was truncated, the ::acquireName method should
@@ -166,7 +175,10 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testRateLimit() {
-		$this->enableAutoCreateTempUser();
+		$this->enableAutoCreateTempUser( [
+			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
+			'matchPattern' => '~$1',
+		] );
 		$this->overrideConfigValue( 'AccountCreationThrottle', [
 			'count' => 10,
 			'seconds' => 86400
@@ -177,7 +189,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		] );
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$status = $tuc->create( null, new FauxRequest() );
-		$this->assertSame( '*Unregistered 1', $status->getUser()->getName() );
+		$this->assertSame( '~1', $status->getUser()->getName() );
 		$status = $tuc->create( null, new FauxRequest() );
 		// TODO: Use new message key (T357777, T357802)
 		$this->assertStatusError( 'acct_creation_throttle_hit', $status );

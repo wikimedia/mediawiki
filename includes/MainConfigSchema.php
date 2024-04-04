@@ -7622,10 +7622,11 @@ class MainConfigSchema {
 	 *   - genPattern: (string) The pattern used when generating new usernames.
 	 *     This should have "$1" indicating the place where the serial string will
 	 *     be substituted.
-	 *   - matchPattern: (string|string[]) The pattern used when determining whether a
+	 *   - matchPattern: (string|string[]|null) The pattern used when determining whether a
 	 *     username is a temporary user. This affects the rights of the user
 	 *     and also prevents explicit creation of users with matching names.
-	 *     This is ignored if "enabled" is false.
+	 *     This is ignored if "enabled" is false. If the value is null, the
+	 *     the genPattern value is used as the matchPattern.
 	 *   - reservedPattern: (string) A pattern used to determine whether a
 	 *     username should be denied for explicit creation, in addition to
 	 *     matchPattern. This is used even if "enabled" is false.
@@ -7659,9 +7660,11 @@ class MainConfigSchema {
 	 *       - uppercase: (bool) With "filtered-radix", whether to use uppercase
 	 *         letters, default false.
 	 *       - offset: (int) With "plain-numeric", a constant to add to the stored index.
-	 *    - expireAfterDays: (int|null, default null) If set, how many days should the temporary
-	 *      accounts expire? Require expireTemporaryAccounts.php to be periodically executed in
+	 *    - expireAfterDays: (int|null, default 365) If not null, how many days should the temporary
+	 *      accounts expire? Requires expireTemporaryAccounts.php to be periodically executed in
 	 *      order to work.
+	 *    - notifyBeforeExpirationDays: (int|null, default 10) If not null, how many days before the
+	 *      expiration of a temporary account should it be notified that their account is to be expired.
 	 *
 	 * @unstable EXPERIMENTAL
 	 * @since 1.39
@@ -7670,13 +7673,13 @@ class MainConfigSchema {
 		'properties' => [
 			'enabled' => [ 'type' => 'bool', 'default' => false ],
 			'actions' => [ 'type' => 'list', 'default' => [ 'edit' ] ],
-			'genPattern' => [ 'type' => 'string', 'default' => '*Unregistered $1' ],
-			'matchPattern' => [ 'type' => 'string|array', 'default' => '*$1' ],
-			'reservedPattern' => [ 'type' => 'string|null', 'default' => null ],
-			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local' ] ],
+			'genPattern' => [ 'type' => 'string', 'default' => '~$1' ],
+			'matchPattern' => [ 'type' => 'string|array|null', 'default' => null ],
+			'reservedPattern' => [ 'type' => 'string|null', 'default' => '~$1' ],
+			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local', 'useYear' => true ] ],
 			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ],
-			'expireAfterDays' => [ 'type' => 'int|null', 'default' => null ],
-			'notifyBeforeExpirationDays' => [ 'type' => 'int|null', 'default' => null ],
+			'expireAfterDays' => [ 'type' => 'int|null', 'default' => 365 ],
+			'notifyBeforeExpirationDays' => [ 'type' => 'int|null', 'default' => 10 ],
 		],
 		'type' => 'object',
 	];

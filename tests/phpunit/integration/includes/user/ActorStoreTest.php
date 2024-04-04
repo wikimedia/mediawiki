@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -22,6 +23,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @group Database
  */
 class ActorStoreTest extends ActorStoreTestBase {
+	use TempUserTestTrait;
 
 	public static function provideGetActorById() {
 		yield 'getActorById, registered' => [
@@ -619,35 +621,13 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	public function testAcquireActorId_autocreateTempIP() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
+		$this->enableAutoCreateTempUser();
 		$this->expectException( CannotCreateActorException::class );
 		$this->getStore()->createNewActor( new UserIdentityValue( 0, '127.3.2.1' ), $this->db );
 	}
 
 	public function testAcquireActorId_autocreateTempIPallowed() {
-		$this->overrideConfigValue(
-			MainConfigNames::AutoCreateTempUser,
-			[
-				'enabled' => true,
-				'expireAfterDays' => null,
-				'actions' => [ 'edit' ],
-				'genPattern' => '*Unregistered $1',
-				'matchPattern' => '*$1',
-				'serialProvider' => [ 'type' => 'local' ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			]
-		);
+		$this->enableAutoCreateTempUser();
 		$actorId = $this->getStoreForImport()->createNewActor( new UserIdentityValue( 0, '127.3.2.1' ), $this->db );
 		$this->assertTrue( $actorId > 0 );
 	}

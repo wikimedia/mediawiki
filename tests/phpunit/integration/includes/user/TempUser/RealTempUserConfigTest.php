@@ -9,6 +9,7 @@ use MediaWiki\User\TempUser\Pattern;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \MediaWiki\User\TempUser\RealTempUserConfig
@@ -138,7 +139,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		return [
 			'disabled' => [
 				'enabled' => false,
-				'name' => '*Some user',
+				'name' => '~Some user',
 				'expected' => false,
 			],
 			'default mismatch' => [
@@ -148,9 +149,9 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 			],
 			'default match' => [
 				'enabled' => true,
-				'name' => '*Some user',
+				'name' => '~Some user',
 				'expected' => true,
-			]
+			],
 		];
 	}
 
@@ -170,16 +171,18 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $tuc->isTempName( $name ) );
 	}
 
-	private function getTempUserConfig() {
-		$this->enableAutoCreateTempUser();
-		return $this->getServiceContainer()->getTempUserConfig();
+	/** @dataProvider provideGetPlaceholderName */
+	public function testGetPlaceholderName( $useYear, $expected ) {
+		$this->enableAutoCreateTempUser( [ 'serialProvider' => [ 'type' => 'local', 'useYear' => $useYear ] ] );
+		ConvertibleTimestamp::setFakeTime( '20210101000000' );
+		$this->assertSame( $expected, $this->getServiceContainer()->getTempUserConfig()->getPlaceholderName() );
 	}
 
-	public function testGetPlaceholderName() {
-		$this->assertSame(
-			'*Unregistered *',
-			$this->getTempUserConfig()->getPlaceholderName()
-		);
+	public static function provideGetPlaceholderName() {
+		return [
+			'no year' => [ false, '~*' ],
+			'with year' => [ true, '~2021-*' ],
+		];
 	}
 
 	public static function provideIsReservedName() {
@@ -187,25 +190,25 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 			'no matchPattern when disabled' => [
 				'enabled' => false,
 				'configOverrides' => [],
-				'name' => '*Unregistered 39',
+				'name' => '~39',
 				'expected' => false,
 			],
 			'matchPattern match' => [
 				'enabled' => true,
 				'configOverrides' => [],
-				'name' => '*Unregistered 39',
+				'name' => '~39',
 				'expected' => true,
 			],
 			'genPattern match' => [
 				'enabled' => true,
 				'configOverrides' => [ 'matchPattern' => null ],
-				'name' => '*Unregistered 39',
+				'name' => '~39',
 				'expected' => true,
 			],
 			'reservedPattern match with enabled=false' => [
 				'enabled' => false,
-				'configOverrides' => [ 'reservedPattern' => '*$1' ],
-				'name' => '*Foo*',
+				'configOverrides' => [ 'reservedPattern' => '~$1' ],
+				'name' => '~Foo*',
 				'expected' => true
 			]
 		];

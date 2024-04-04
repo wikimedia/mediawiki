@@ -5,6 +5,7 @@ namespace MediaWiki\User\TempUser;
 use BadMethodCallException;
 use InvalidArgumentException;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -117,8 +118,12 @@ class RealTempUserConfig implements TempUserConfig {
 	}
 
 	public function getPlaceholderName(): string {
+		$year = null;
+		if ( $this->serialProviderConfig['useYear'] ?? false ) {
+			$year = MWTimestamp::getInstance()->format( 'Y' );
+		}
 		if ( $this->isEnabled() ) {
-			return $this->genPattern->generate( '*' );
+			return $this->genPattern->generate( '*', $year );
 		} else {
 			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
 		}

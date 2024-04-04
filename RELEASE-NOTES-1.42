@@ -50,6 +50,11 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgBotPasswordsCluster and $wgBotPasswordsDatabase have been deprecated
   use $wgVirtualDomainsMapping['virtual-botpasswords'] instead.
 * The MainPageIsDomainRoot setting is no longer considered experimental.
+* $wgAutoCreateTempUser is updated to use a different format for temporary
+  accounts. This configuration value is marked as unstable, so breaking
+  changes were expected. If your wiki used temporary accounts before
+  1.42, you will need to override the configuration value to also match
+  the old format of *$1.
 * …
 
 ==== Removed configuration ====

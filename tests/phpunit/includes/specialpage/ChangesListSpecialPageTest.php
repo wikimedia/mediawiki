@@ -588,10 +588,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelRegisteredTempAccountsEnabled() {
 		$this->enableAutoCreateTempUser();
+		$tempUserMatchPattern = $this->getServiceContainer()->getTempUserConfig()
+			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::NOT_LIKE )
+			->toSql( $this->getDb() );
 		$this->assertConditions(
 			[
 				# expected
-				"(((actor_user IS NOT NULL AND actor_name NOT LIKE '*%' ESCAPE '`')))",
+				"(((actor_user IS NOT NULL AND $tempUserMatchPattern)))",
 			],
 			[
 				'userExpLevel' => 'registered',
@@ -616,10 +619,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelUnregisteredTempAccountsEnabled() {
 		$this->enableAutoCreateTempUser();
+		$tempUserMatchPattern = $this->getServiceContainer()->getTempUserConfig()
+			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::LIKE )
+			->toSql( $this->getDb() );
 		$this->assertConditions(
 			[
 				# expected
-				"(((actor_user IS NULL OR actor_name LIKE '*%' ESCAPE '`')))",
+				"(((actor_user IS NULL OR $tempUserMatchPattern)))",
 			],
 			[
 				'userExpLevel' => 'unregistered',
@@ -659,9 +665,17 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testFilterUserExpLevelUnregisteredOrExperiencedWhenTemporaryAccountsEnabled() {
 		$this->enableAutoCreateTempUser();
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
+		$notLikeTempUserMatchExpression = $this->getServiceContainer()->getTempUserConfig()
+			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::NOT_LIKE )
+			->toSql( $this->getDb() );
+		$notLikeTempUserMatchExpression = preg_quote( $notLikeTempUserMatchExpression );
+		$likeTempUserMatchExpression = $this->getServiceContainer()->getTempUserConfig()
+			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::LIKE )
+			->toSql( $this->getDb() );
+		$likeTempUserMatchExpression = preg_quote( $likeTempUserMatchExpression );
 		$this->assertMatchesRegularExpression(
-			'/\(\(\(actor_user IS NULL OR actor_name LIKE \'[^\']+\' ESCAPE \'`\'\)\)\) OR '
-				. '\(\(\(actor_user IS NOT NULL AND actor_name NOT LIKE \'[^\']+\' ESCAPE \'`\'\)\) AND \(\('
+			"/\(\(\(actor_user IS NULL OR $likeTempUserMatchExpression\)\)\) OR "
+				. "\(\(\(actor_user IS NOT NULL AND $notLikeTempUserMatchExpression\)\) AND \(\("
 					. 'user_editcount >= 500 AND \(user_registration IS NULL OR '
 					. 'user_registration <= \'[^\']+\'\)'
 				. '\)\)\)/',
