@@ -4,6 +4,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -123,12 +124,12 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $paramsWithoutTools[1], $paramsWithTools[1] );
 		$this->assertEquals( $paramsWithoutTools[2], $paramsWithTools[2] );
 
-		$this->assertEquals( $userLink, $paramsWithoutTools[0]['raw'] );
-		$this->assertEquals( $userLink . $userTools, $paramsWithTools[0]['raw'] );
+		$this->assertEquals( Message::rawParam( $userLink ), $paramsWithoutTools[0] );
+		$this->assertEquals( Message::rawParam( $userLink . $userTools ), $paramsWithTools[0] );
 
 		$this->assertEquals( $this->user->getName(), $paramsWithoutTools[1] );
 
-		$this->assertEquals( $titleLink, $paramsWithoutTools[2]['raw'] );
+		$this->assertEquals( Message::rawParam( $titleLink ), $paramsWithoutTools[2] );
 	}
 
 	/**

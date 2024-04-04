@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use ApiUsageException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Rest\Handler\CreationHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -466,7 +467,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		yield "badtoken" => [
 			new ApiUsageException(
 				null,
-				Status::newFatal( 'apierror-badtoken', [ 'plaintext' => 'BAD' ] )
+				Status::newFatal( 'apierror-badtoken', Message::plaintextParam( 'BAD' ) )
 			),
 			new LocalizedHttpException(
 				new MessageValue(

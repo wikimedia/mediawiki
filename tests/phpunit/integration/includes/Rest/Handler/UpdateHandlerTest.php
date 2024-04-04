@@ -8,6 +8,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\UpdateHandler;
@@ -569,7 +570,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 		yield "badtoken" => [
 			new ApiUsageException(
 				null,
-				Status::newFatal( 'apierror-badtoken', [ 'plaintext' => 'BAD' ] )
+				Status::newFatal( 'apierror-badtoken', Message::plaintextParam( 'BAD' ) )
 			),
 			new LocalizedHttpException(
 				new MessageValue(
