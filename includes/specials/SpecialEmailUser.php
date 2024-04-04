@@ -181,7 +181,7 @@ class SpecialEmailUser extends SpecialPage {
 	 * @param string $target Target user name
 	 * @param User $sender User sending the email
 	 * @return User|string User object on success or a string on error
-	 * @todo Deprecate this once we have a better factory/lookup for UserEmailContact
+	 * @deprecated since 1.42 Use UserFactory::newFromName() and EmailUser::validateTarget()
 	 */
 	public static function getTarget( $target, User $sender ) {
 		$targetObject = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $target );
