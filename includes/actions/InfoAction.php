@@ -203,9 +203,7 @@ class InfoAction extends FormlessAction {
 					continue;
 				}
 				$name = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->escaped() : $infoRow[0];
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$value = ( $infoRow[1] instanceof Message ) ? $infoRow[1]->escaped() : $infoRow[1];
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$id = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->getKey() : null;
 				$rows .= $this->getRow( $name, $value, $id ) . "\n";
 			}
@@ -273,6 +271,7 @@ class InfoAction extends FormlessAction {
 	 * interpreted as raw HTML) or messages (will be interpreted as plain text and escaped).
 	 *
 	 * @return array
+	 * @phan-return array<string, list<array{0:string|Message, 1:string|Message}>>
 	 */
 	private function pageInfo() {
 		$user = $this->getUser();
