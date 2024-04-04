@@ -51,9 +51,6 @@ class BaseMetric implements BaseMetricInterface {
 	/** @var string */
 	private string $component;
 
-	/** @var array key-value pairs of static labels */
-	private array $staticLabels = [];
-
 	/** @var array key-value pairs of metric-specific labels */
 	private array $workingLabels = [];
 
@@ -111,13 +108,6 @@ class BaseMetric implements BaseMetricInterface {
 	}
 
 	/** @inheritDoc */
-	public function withStaticLabels( array $labelKeys, array $labelValues ): BaseMetricInterface {
-		$this->labelKeys = $labelKeys;
-		$this->staticLabels = array_combine( $labelKeys, $labelValues );
-		return $this;
-	}
-
-	/** @inheritDoc */
 	public function addLabel( string $key, string $value ): void {
 		StatsUtils::validateLabelValue( $value );
 		$key = StatsUtils::normalizeString( $key );
@@ -167,11 +157,6 @@ class BaseMetric implements BaseMetricInterface {
 	 * @return void
 	 */
 	private function addLabelKey( string $key ): void {
-		if ( array_key_exists( $key, $this->staticLabels ) ) {
-			throw new IllegalOperationException(
-				"Stats: Cannot add a label already declared as a static label for '" . $this->name . "'"
-			);
-		}
 		if ( in_array( $key, $this->labelKeys, true ) ) {
 			return;  // key already exists
 		}
@@ -189,25 +174,21 @@ class BaseMetric implements BaseMetricInterface {
 	}
 
 	/**
-	 * Combines the provided associative array of labels
-	 * with the associative array of staticLabels and returns
-	 * the values in the order of labelKeys.
+	 * Get label values in the order of labelKeys.
 	 *
 	 * @return string[]
 	 */
 	public function getLabelValues(): array {
 		$output = [];
-		$labels = StatsUtils::mergeLabels( $this->staticLabels, $this->workingLabels );
-
 		# make sure all labels are accounted for
-		if ( array_diff( $this->labelKeys, array_keys( $labels ) ) ) {
+		if ( array_diff( $this->labelKeys, array_keys( $this->workingLabels ) ) ) {
 			throw new IllegalOperationException(
 				"Stats: Cannot associate label keys with label values: "
 				. "Not all initialized labels have an assigned value." );
 		}
 
 		foreach ( $this->labelKeys as $labelKey ) {
-			$output[] = $labels[$labelKey];
+			$output[] = $this->workingLabels[$labelKey];
 		}
 		return $output;
 	}

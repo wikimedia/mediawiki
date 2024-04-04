@@ -84,26 +84,15 @@ interface BaseMetricInterface {
 	public function getName(): string;
 
 	/**
-	 * Configures the metric with static labels.
-	 *
-	 * @param string[] $labelKeys
-	 * @param string[] $labelValues
-	 * @return BaseMetricInterface
-	 */
-	public function withStaticLabels( array $labelKeys, array $labelValues ): BaseMetricInterface;
-
-	/**
 	 * Add a label with key => value.
 	 * Note that the order in which labels are added is significant for StatsD output.
-	 *
-	 * Static Labels always appear first.
 	 *
 	 * Example:
 	 * ```php
 	 * $statsFactory->withComponent( 'demo' )
-	 *     ->addStaticLabel( 'first', 'foo' )
-	 *     ->addStaticLabel( 'second', 'bar' )
 	 *     ->getCounter( 'testMetric_total' )
+	 *     ->setLabel( 'first', 'foo' )
+	 *     ->setLabel( 'second', 'bar' )
 	 *     ->setLabel( 'third', 'baz' )
 	 *     ->increment();
 	 * ```
@@ -124,7 +113,7 @@ interface BaseMetricInterface {
 	public function getLabelKeys(): array;
 
 	/**
-	 * Returns an array of label values with static label values in the order of label keys.
+	 * Returns an array of label values in the order of label keys.
 	 *
 	 * @return string[]
 	 */

@@ -28,7 +28,6 @@ use Psr\Log\NullLogger;
 use TypeError;
 use Wikimedia\Stats\Emitters\EmitterInterface;
 use Wikimedia\Stats\Emitters\NullEmitter;
-use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
 use Wikimedia\Stats\Metrics\BaseMetric;
 use Wikimedia\Stats\Metrics\CounterMetric;
@@ -50,12 +49,6 @@ class StatsFactory {
 
 	/** @var string */
 	private string $component;
-
-	/** @var string[] */
-	private array $staticLabelKeys = [];
-
-	/** @var string[] */
-	private array $staticLabelValues = [];
 
 	/** @var StatsCache */
 	private StatsCache $cache;
@@ -98,40 +91,6 @@ class StatsFactory {
 	public function withComponent( string $component ): StatsFactory {
 		$statsFactory = new StatsFactory( $this->cache, $this->emitter, $this->logger, $component );
 		return $statsFactory->withStatsdDataFactory( $this->statsdDataFactory );
-	}
-
-	/**
-	 * Adds a label key-value pair to all metrics created by this StatsFactory instance.
-	 * Note that the order in which labels are added is significant for StatsD output.
-	 *
-	 * Example:
-	 * ```php
-	 * $statsFactory->withComponent( 'demo' )
-	 *     ->addStaticLabel( 'first', 'foo' )
-	 *     ->addStaticLabel( 'second', 'bar' )
-	 *     ->getCounter( 'testMetric_total' )
-	 *     ->setLabel( 'third', 'baz' )
-	 *     ->increment();
-	 * ```
-	 * outputs statsd: "mediawiki.demo.testMetric_total.foo.bar.baz"
-	 * outputs prometheus: "mediawiki_demo_testMetric_total{first='foo',second='bar',third='baz'}
-	 *
-	 * @param string $key
-	 * @param string $value
-	 * @return $this
-	 */
-	public function addStaticLabel( string $key, string $value ): StatsFactory {
-		if ( !$this->component ) {
-			throw new IllegalOperationException( 'Stats: cannot set static labels with undefined component.' );
-		}
-		if ( count( $this->cache->getAllMetrics() ) > 0 ) {
-			throw new IllegalOperationException( 'Stats: cannot set static labels when metrics are in the cache.' );
-		}
-		$key = StatsUtils::normalizeString( $key );
-		StatsUtils::validateLabelKey( $key );
-		$this->staticLabelKeys[] = $key;
-		$this->staticLabelValues[] = StatsUtils::normalizeString( $value );
-		return $this;
 	}
 
 	public function withStatsdDataFactory( ?IBufferingStatsdDataFactory $statsdDataFactory ): StatsFactory {
@@ -218,12 +177,7 @@ class StatsFactory {
 		}
 		if ( $metric === null ) {
 			$baseMetric = new BaseMetric( $this->component, $name );
-			$metric = new $className(
-				$baseMetric
-					->withStatsdDataFactory( $this->statsdDataFactory )
-					->withStaticLabels( $this->staticLabelKeys, $this->staticLabelValues ),
-				$this->logger
-			);
+			$metric = new $className( $baseMetric->withStatsdDataFactory( $this->statsdDataFactory ), $this->logger );
 			$this->cache->set( $this->component, $name, $metric );
 		}
 		return $metric->fresh();
