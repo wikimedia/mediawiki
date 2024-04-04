@@ -2,6 +2,16 @@
  * Styles for Special:Block
  */
 
+.mw-special-Block .mw-htmlform {
+	> .oo-ui-panelLayout-framed {
+		border: 0;
+	}
+
+	> .oo-ui-panelLayout-padded {
+		padding: 0;
+	}
+}
+
 // Affects sitewide/partial radio, partial action checkboxes, and block detail checkboxes
 .mw-block-editing-restriction.oo-ui-fieldLayout,
 .mw-block-action-restriction .oo-ui-checkboxMultioptionWidget,
@@ -16,12 +26,22 @@
 	}
 }
 
-.mw-special-Block .mw-htmlform {
-	> .oo-ui-panelLayout-framed {
-		border: 0;
-	}
+.mw-block-hideuser,
+.mw-block-confirm {
+	font-weight: bold;
+}
 
-	> .oo-ui-panelLayout-padded {
-		padding: 0;
-	}
+#mw-input-wpReason .oo-ui-dropdownInputWidget,
+#mw-input-wpReason .oo-ui-textInputWidget {
+	display: block;
+	max-width: 50em;
+}
+
+#mw-input-wpReason .oo-ui-textInputWidget {
+	margin-top: 0.5em;
+}
+
+.mw-ipb-conveniencelinks {
+	font-size: 90%;
+	text-align: right;
 }
