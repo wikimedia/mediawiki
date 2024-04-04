@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\Response;
 use MediaWiki\Http\GuzzleHttpRequest;
 use MediaWiki\Http\MWCallbackStream;
 use Wikimedia\CookieJar;
+use Wikimedia\Message\MessageValue;
 
 /**
  * class for tests of GuzzleHttpRequest
@@ -117,6 +118,34 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( 200, $r->getStatus() );
 		$this->assertEquals( $this->exampleBodyText, $this->bodyTextReceived );
+	}
+
+	public function testRedirectValidatorCanRejectTarget() {
+		$redirectUrl = 'http://redirected.example.test/file';
+		$mockHandler = new MockHandler( [
+			new Response( 302, [ 'Location' => $redirectUrl ] ),
+			new Response( 200, [], 'unexpected response' ),
+		] );
+		$handler = HandlerStack::create( $mockHandler );
+		$request = new GuzzleHttpRequest( $this->exampleUrl, [
+			'followRedirects' => true,
+			'redirectValidator' => function ( string $url ) use ( $redirectUrl ) {
+				$this->assertSame( $redirectUrl, $url );
+				return StatusValue::newFatal( 'http-invalid-url', $url );
+			},
+			'handler' => $handler,
+		] + $this->timeoutOptions );
+
+		$status = $request->execute();
+
+		$this->assertStatusError( 'http-redirect-rejected', $status );
+		$actualMessage = MessageValue::newFromSpecifier( $status->getMessages( 'error' )[0] );
+		$expectedMessage = new MessageValue( 'http-redirect-rejected', [
+			new MessageValue( 'http-invalid-url', [ $redirectUrl ] ),
+		] );
+		$this->assertTrue( $actualMessage->isSameAs( $expectedMessage ), 'Rejection details reported' );
+		$this->assertSame( 0, $request->getStatus() );
+		$this->assertCount( 1, $mockHandler );
 	}
 
 	public function testBadUrl() {

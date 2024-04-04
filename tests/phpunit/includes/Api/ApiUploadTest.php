@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\Api;
 
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
@@ -838,7 +840,9 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
 
-		$this->installMockHttp( file_get_contents( $filePath ) );
+		$this->installMockHttp( new MockHandler( [
+			new Response( 200, [], file_get_contents( $filePath ) )
+		] ) );
 		[ $result ] = $this->doApiRequestWithToken( [
 			'action' => 'upload',
 			'url' => 'https://example.com/' . $fileName,
@@ -868,7 +872,9 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
 
-		$this->installMockHttp( file_get_contents( $filePath ) );
+		$this->installMockHttp( new MockHandler( [
+			new Response( 200, [], file_get_contents( $filePath ) )
+		] ) );
 		[ $result ] = $this->doApiRequestWithToken( [
 			'action' => 'upload',
 			'async' => 1,

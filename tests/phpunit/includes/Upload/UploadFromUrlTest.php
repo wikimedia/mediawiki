@@ -1,5 +1,7 @@
 <?php
 
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Language\MessageCache;
 use MediaWiki\MainConfigNames;
@@ -9,6 +11,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Upload\UploadBase;
 use MediaWiki\Upload\UploadFromUrl;
 use MediaWiki\User\User;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -237,7 +240,9 @@ class UploadFromUrlTest extends ApiTestCase {
 			MainConfigNames::CopyUploadsDomains => [ 'upload.wikimedia.org' ],
 		] );
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
-		$this->installMockHttp( file_get_contents( $file ) );
+		$this->installMockHttp( new MockHandler( [
+			new Response( 200, [], file_get_contents( $file ) )
+		] ) );
 
 		$this->getServiceContainer()->getUserGroupManager()->addUserToGroup( $this->user, 'users' );
 		$data = $this->doApiRequestWithToken( [
@@ -271,7 +276,9 @@ class UploadFromUrlTest extends ApiTestCase {
 			MainConfigNames::CopyUploadsDomains => [ 'www.example.com' ],
 		] );
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
-		$this->installMockHttp( file_get_contents( $file ) );
+		$this->installMockHttp( new MockHandler( [
+			new Response( 200, [], file_get_contents( $file ) )
+		] ) );
 
 		$upload = new UploadFromUrl();
 		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
@@ -286,18 +293,12 @@ class UploadFromUrlTest extends ApiTestCase {
 			MainConfigNames::CopyUploadsDomains => [ '*.example.com' ],
 		] );
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
-		$this->installMockHttp( [
+		$this->installMockHttp( new MockHandler( [
 			// First response is a redirect
-			$this->makeFakeHttpRequest(
-				'Blaba',
-				302,
-				[ 'Location' => 'http://static.example.com/files/test.png' ]
-			),
+			new Response( 302, [ 'Location' => 'http://static.example.com/files/test.png' ], 'Blaba' ),
 			// Second response is a file
-			$this->makeFakeHttpRequest(
-				file_get_contents( $file )
-			),
-		] );
+			new Response( 200, [], file_get_contents( $file ) ),
+		] ) );
 
 		$upload = new UploadFromUrl();
 		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
@@ -312,20 +313,22 @@ class UploadFromUrlTest extends ApiTestCase {
 			MainConfigNames::CopyUploadsDomains => [ 'www.example.com' ],
 		] );
 
-		$this->installMockHttp( [
+		$this->installMockHttp( new MockHandler( [
 			// Redirect from an allowed host to a disallowed host.
-			$this->makeFakeHttpRequest(
-				'redirecting',
-				302,
-				[ 'Location' => 'http://evil.example.org/test.png' ]
-			),
-		] );
+			new Response( 302, [ 'Location' => 'http://evil.example.org/test.png' ], 'redirecting' ),
+			new Response( 200, [], 'evil content' ),
+		] ) );
 
 		$upload = new UploadFromUrl();
 		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
 		$status = $upload->fetchFile();
 
-		$this->assertStatusError( 'upload-copy-upload-invalid-domain', $status );
+		$this->assertStatusError( 'http-redirect-rejected', $status );
+		$actualMessage = MessageValue::newFromSpecifier( $status->getMessages( 'error' )[0] );
+		$expectedMessage = new MessageValue( 'http-redirect-rejected', [
+			new MessageValue( 'upload-copy-upload-invalid-domain' ),
+		] );
+		$this->assertTrue( $actualMessage->isSameAs( $expectedMessage ), 'Rejection details reported' );
 	}
 
 	public function testUploadFromUrlTooManyRedirectsFails() {
@@ -334,33 +337,21 @@ class UploadFromUrlTest extends ApiTestCase {
 		] );
 
 		// Default maxRedirects is 5. Queue 6 consecutive same-host redirects so the
-		// allowed-host check passes each time and $attemptsLeft drains to 0.
-		$this->installMockHttp( [
-			$this->makeFakeHttpRequest(
-				'redirect 1', 302, [ 'Location' => 'http://www.example.com/redirect-1.png' ]
-			),
-			$this->makeFakeHttpRequest(
-				'redirect 2', 302, [ 'Location' => 'http://www.example.com/redirect-2.png' ]
-			),
-			$this->makeFakeHttpRequest(
-				'redirect 3', 302, [ 'Location' => 'http://www.example.com/redirect-3.png' ]
-			),
-			$this->makeFakeHttpRequest(
-				'redirect 4', 302, [ 'Location' => 'http://www.example.com/redirect-4.png' ]
-			),
-			$this->makeFakeHttpRequest(
-				'redirect 5', 302, [ 'Location' => 'http://www.example.com/redirect-5.png' ]
-			),
-			$this->makeFakeHttpRequest(
-				'redirect 6', 302, [ 'Location' => 'http://www.example.com/redirect-6.png' ]
-			),
-		] );
+		// allowed-host check passes each time.
+		$this->installMockHttp( new MockHandler( [
+			new Response( 302, [ 'Location' => 'http://www.example.com/redirect-1.png' ], 'redirect 1' ),
+			new Response( 302, [ 'Location' => 'http://www.example.com/redirect-2.png' ], 'redirect 2' ),
+			new Response( 302, [ 'Location' => 'http://www.example.com/redirect-3.png' ], 'redirect 3' ),
+			new Response( 302, [ 'Location' => 'http://www.example.com/redirect-4.png' ], 'redirect 4' ),
+			new Response( 302, [ 'Location' => 'http://www.example.com/redirect-5.png' ], 'redirect 5' ),
+			new Response( 302, [ 'Location' => 'http://www.example.com/redirect-6.png' ], 'redirect 6' ),
+		] ) );
 
 		$upload = new UploadFromUrl();
 		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
 		$status = $upload->fetchFile();
 
-		$this->assertStatusError( 'upload-too-many-redirects', $status );
+		$this->assertStatusError( 'http-too-many-redirects', $status );
 	}
 
 	public function testUploadFromUrlCacheKey() {
