@@ -31,6 +31,7 @@ use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -38,10 +39,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
-use PermissionsError;
 use StatusValue;
-use ThrottledError;
-use UserBlockedError;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -145,32 +143,29 @@ class SpecialEmailUser extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		// Error out if sending user cannot do this. Don't authorize yet.
-		$error = self::getPermissionsError(
+		$emailUser = $this->emailUserFactory->newEmailUserBC(
 			$this->getUser(),
-			$this->getRequest()->getVal( 'wpEditToken' ),
 			$this->getConfig()
 		);
+		$emailUser->setEditToken( (string)$request->getVal( 'wpEditToken' ) );
+		$status = $emailUser->canSend();
 
-		switch ( $error ) {
-			case null:
-				# Wahey!
-				break;
-			case 'badaccess':
-			case 'badaccess-group0':
-			case 'badaccess-groups':
-				throw new PermissionsError( 'sendemail' );
-			case 'blockedemailuser':
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
-				throw new UserBlockedError( $this->getUser()->getBlock() );
-			case 'actionthrottledtext':
-				throw new ThrottledError;
-			case 'mailnologin':
-			case 'usermaildisabled':
-				throw new ErrorPageError( $error, "{$error}text" );
-			default:
-				# It's a hook error
-				[ $title, $msg, $params ] = $error;
-				throw new ErrorPageError( $title, $msg, $params );
+		if ( !$status->isGood() ) {
+			if ( $status instanceof PermissionStatus ) {
+				$status->throwErrorPageError();
+			} elseif ( $status->hasMessage( 'mailnologin' ) ) {
+				throw new ErrorPageError( 'mailnologin', 'mailnologintext' );
+			} elseif ( $status->hasMessage( 'usermaildisabled' ) ) {
+				throw new ErrorPageError( 'usermaildisabled', 'usermaildisabledtext' );
+			} elseif ( $status->getValue() !== null ) {
+				// BC for deprecated hook errors
+				// (to be removed when UserCanSendEmail and EmailUserPermissionsErrors are removed)
+				$error = $status->getErrors()[0];
+				throw new ErrorPageError( $status->getValue(), $error['message'], $error['params'] );
+			} else {
+				// Fallback in case new error types are added in EmailUser
+				throw new ErrorPageError( $this->getDescription(), Status::wrap( $status )->getMessage() );
+			}
 		}
 
 		// Always go through the userform, it will do validations on the target
