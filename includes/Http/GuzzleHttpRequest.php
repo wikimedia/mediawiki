@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\TooManyRedirectsException;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
@@ -18,7 +19,9 @@ use GuzzleHttp\Psr7\Request;
 use MediaWiki\Profiler\Profiler;
 use MediaWiki\Status\Status;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriInterface;
 use Psr\Log\NullLogger;
 
 /**
@@ -40,7 +43,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 	/** @var callable|null */
 	protected $handler = null;
-	protected ?StreamInterface $sink = null;
+	protected StreamInterface|string|null $sink = null;
 	protected array $guzzleOptions = [ 'http_errors' => false ];
 
 	/**
@@ -132,6 +135,18 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			$this->guzzleOptions['allow_redirects'] = [
 				'max' => $this->maxRedirects
 			];
+			if ( $this->redirectValidator !== null ) {
+				$this->guzzleOptions['allow_redirects']['on_redirect'] = function (
+					RequestInterface $_request,
+					ResponseInterface $_response,
+					UriInterface $uri
+				) {
+					$validationStatus = ( $this->redirectValidator )( (string)$uri );
+					if ( !$validationStatus->isGood() ) {
+						throw new RedirectRejectedException( $validationStatus->getMessages()[0] );
+					}
+				};
+			}
 		}
 
 		if ( $this->method === 'POST' ) {
@@ -208,6 +223,8 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 			$this->respVersion = $response->getProtocolVersion();
 			$this->respStatus = $response->getStatusCode() . ' ' . $response->getReasonPhrase();
+		} catch ( RedirectRejectedException $e ) {
+			$this->status->fatal( $e->getMessageObject() );
 		} catch ( ConnectException $e ) {
 			// ConnectException is thrown for several reasons besides generic "timeout":
 			//  - Connection refused
@@ -225,6 +242,8 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			} else {
 				$this->status->fatal( 'http-request-error' );
 			}
+		} catch ( TooManyRedirectsException ) {
+			$this->status->fatal( 'http-too-many-redirects' );
 		} catch ( RequestException $e ) {
 			if ( $this->usingCurl() ) {
 				$handlerContext = $e->getHandlerContext();

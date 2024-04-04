@@ -29,9 +29,6 @@ class UploadFromUrl extends UploadBase {
 	/** @var string */
 	protected $mUrl;
 
-	/** @var resource|null|false */
-	protected $mTmpHandle;
-
 	/** @var array<string,bool> */
 	protected static $allowedUrls = [];
 
@@ -301,34 +298,8 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * Callback: save a chunk of the result of a HTTP request to the temporary file
-	 *
-	 * @param mixed $req
-	 * @param string $buffer
-	 * @return int Number of bytes handled
-	 */
-	public function saveTempFileChunk( $req, $buffer ) {
-		wfDebugLog( 'fileupload', 'Received chunk of ' . strlen( $buffer ) . ' bytes' );
-		$nbytes = fwrite( $this->mTmpHandle, $buffer );
-
-		if ( $nbytes == strlen( $buffer ) ) {
-			$this->mFileSize += $nbytes;
-		} else {
-			// Well... that's not good!
-			wfDebugLog(
-				'fileupload',
-				'Short write ' . $nbytes . '/' . strlen( $buffer ) .
-				' bytes, aborting with ' . $this->mFileSize . ' uploaded so far'
-			);
-			fclose( $this->mTmpHandle );
-			$this->mTmpHandle = false;
-		}
-
-		return $nbytes;
-	}
-
-	/**
-	 * Download the file with no domain name validation
+	 * Download to the temporary file, update the file size, and set
+	 * `$this->mRemoveTempFile` for later cleanup.
 	 *
 	 * @param array $httpOptions Array of options for MWHttpRequest
 	 * @return Status
@@ -340,16 +311,16 @@ class UploadFromUrl extends UploadBase {
 			->get( MainConfigNames::CopyUploadTimeout );
 
 		// Note the temporary file should already be created by makeTemporaryFile()
-		$this->mTmpHandle = fopen( $this->mTempPath, 'wb' );
-		if ( !$this->mTmpHandle ) {
+		if ( $this->mTempPath === false || !file_exists( $this->mTempPath ) ) {
 			return Status::newFatal( 'tmp-create-error' );
 		}
-		wfDebugLog( 'fileupload', 'Temporary file created "' . $this->mTempPath . '"' );
 
-		$this->mRemoveTempFile = true;
-		$this->mFileSize = 0;
-
-		$options = $httpOptions + [ 'followRedirects' => false ];
+		$options = $httpOptions + [
+			'followRedirects' => true,
+			// Redirect targets need the same validation as the original URL (T423617).
+			'redirectValidator' => $this->canFetchFileFromUrl( ... ),
+			'sink' => $this->mTempPath,
+		];
 
 		if ( $copyUploadProxy !== false ) {
 			$options['proxy'] = $copyUploadProxy;
@@ -364,42 +335,12 @@ class UploadFromUrl extends UploadBase {
 			'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
 		);
 
-		// Manually follow any redirects up to the limit and reset the output
-		// file before each new request to prevent capturing the redirect
-		// response as part of the file.
-		$attemptsLeft = $options['maxRedirects'] ?? 5;
-		$targetUrl = $this->mUrl;
 		$requestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
-		do {
-			$req = $requestFactory->create( $targetUrl, $options, __METHOD__ );
-			$req->setCallback( $this->saveTempFileChunk( ... ) );
-			$status = $req->execute();
-			if ( !$req->isRedirect() ) {
-				break;
-			}
-			$targetUrl = $req->getFinalUrl();
-			$redirectedUrlFetchable = $this->canFetchFileFromUrl( $targetUrl );
-			if ( !$redirectedUrlFetchable->isGood() ) {
-				return $redirectedUrlFetchable;
-			}
-			// Remove redirect response content from file.
-			ftruncate( $this->mTmpHandle, 0 );
-			rewind( $this->mTmpHandle );
-			$attemptsLeft--;
-		} while ( $attemptsLeft > 0 );
+		$req = $requestFactory->create( $this->mUrl, $options, __METHOD__ );
+		$status = $req->execute();
 
-		if ( $attemptsLeft == 0 ) {
-			return Status::newFatal( 'upload-too-many-redirects' );
-		}
-
-		if ( $this->mTmpHandle ) {
-			// File got written OK
-			fclose( $this->mTmpHandle );
-			$this->mTmpHandle = null;
-		} else {
-			// We encountered a write error during the download
-			return Status::newFatal( 'tmp-write-error' );
-		}
+		$this->mRemoveTempFile = true;
+		$this->mFileSize = filesize( $this->mTempPath );
 
 		if ( $status->isOK() ) {
 			wfDebugLog( 'fileupload', 'Download by URL completed successfully.' );

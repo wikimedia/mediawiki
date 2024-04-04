@@ -1,5 +1,7 @@
 <?php
 
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\AssertionFailedError;
 use Psr\Http\Message\ResponseInterface;
 
@@ -100,6 +102,27 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 			->get( 'http://example.com' );
 
 		$this->assertSame( $expected, $data );
+	}
+
+	public function testInstallMockHttpWithMockHandler() {
+		$handler = new MockHandler( [ new Response( 200, [], 'Hello World' ) ] );
+		$this->installMockHttp( $handler );
+
+		$data = $this->getServiceContainer()->getHttpRequestFactory()
+			->get( 'http://example.com' );
+
+		$this->assertSame( 'Hello World', $data );
+		$this->assertCount( 0, $handler );
+	}
+
+	public function testMakeMockHttpRequestFactoryWithMockHandler() {
+		$handler = new MockHandler( [ new Response( 200, [], 'Hello World' ) ] );
+
+		$data = $this->makeMockHttpRequestFactory( $handler )
+			->get( 'http://example.com' );
+
+		$this->assertSame( 'Hello World', $data );
+		$this->assertCount( 0, $handler );
 	}
 
 	public function testFakeHttpRequestEmulatesRequests() {

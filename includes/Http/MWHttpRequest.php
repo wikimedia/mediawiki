@@ -66,6 +66,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $maxRedirects = 5;
 	/** @var bool */
 	protected $followRedirects = false;
+	/** @var callable|null */
+	protected $redirectValidator = null;
 	/** @var int */
 	protected $connectTimeout;
 
@@ -95,7 +97,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options extra params to pass (see HttpRequestFactory::create())
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,logger?:LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string},method?:string} $options
+	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,redirectValidator?:callable,userAgent?:string,logger?:LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string},method?:string} $options
 	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
 	 * @throws \Exception
@@ -138,7 +140,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		}
 
 		$members = [ "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
-				"method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" ];
+				"method", "followRedirects", "maxRedirects", "redirectValidator", "sslVerifyCert", "callback" ];
 
 		foreach ( $members as $o ) {
 			if ( isset( $options[$o] ) ) {

@@ -3,6 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
+use GuzzleHttp\Handler\MockHandler;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Http\MWHttpRequest;
@@ -34,11 +35,12 @@ trait MockHttpTrait {
 	 * Install a mock HttpRequestFactory in MediaWikiServices, for the duration
 	 * of the current test case.
 	 *
-	 * @param null|string|array|callable|MWHttpRequest|MultiHttpClient|GuzzleHttp\Client $request
+	 * @param null|string|array|callable|MWHttpRequest|MockHandler|MultiHttpClient|GuzzleHttp\Client $request
 	 *        A list of MWHttpRequest to return on consecutive calls to HttpRequestFactory::create().
 	 *        These MWHttpRequest also represent the desired response.
 	 *        For convenience, a single MWHttpRequest can be given,
 	 *        or a callable producing such an MWHttpRequest,
+	 *        or a MockHandler of Guzzle,
 	 *        or a string that will be used as the response body of a successful request.
 	 *        If a MultiHttpClient is given, createMultiClient() is supported.
 	 *        If a GuzzleHttp\Client is given, createGuzzleClient() is supported.
@@ -56,11 +58,12 @@ trait MockHttpTrait {
 	/**
 	 * Return a mock HttpRequestFactory in MediaWikiServices.
 	 *
-	 * @param null|string|array|callable|MWHttpRequest|MultiHttpClient $request A list of
-	 *        MWHttpRequest to return on consecutive calls to HttpRequestFactory::create().
+	 * @param null|string|array|callable|MWHttpRequest|MockHandler|MultiHttpClient|GuzzleHttp\Client $request
+	 *        A list of MWHttpRequest to return on consecutive calls to HttpRequestFactory::create().
 	 *        These MWHttpRequest also represent the desired response.
 	 *        For convenience, a single MWHttpRequest can be given,
 	 *        or a callable producing such an MWHttpRequest,
+	 *        or a MockHandler of Guzzle,
 	 *        or a string that will be used as the response body of a successful request.
 	 *        If a MultiHttpClient is given, createMultiClient() is supported.
 	 *        If a GuzzleHttp\Client is given, createGuzzleClient() is supported.
@@ -81,6 +84,8 @@ trait MockHttpTrait {
 			MainConfigNames::LocalVirtualHosts => [],
 			MainConfigNames::LocalHTTPProxy => false,
 		] );
+		$logger = new NullLogger();
+		$realRequestFactory = new HttpRequestFactory( $options, $logger );
 
 		$failCallback = static function ( /* discard any arguments */ ) {
 			TestCase::fail( 'method should not be called' );
@@ -88,7 +93,7 @@ trait MockHttpTrait {
 
 		/** @var HttpRequestFactory|MockObject $mockHttpRequestFactory */
 		$mockHttpRequestFactory = $this->getMockBuilder( HttpRequestFactory::class )
-			->setConstructorArgs( [ $options, new NullLogger() ] )
+			->setConstructorArgs( [ $options, $logger ] )
 			->onlyMethods( [ 'create', 'createMultiClient', 'createGuzzleClient' ] )
 			->getMock();
 
@@ -120,6 +125,18 @@ trait MockHttpTrait {
 		} elseif ( $request instanceof MWHttpRequest ) {
 			$mockHttpRequestFactory->method( 'create' )
 				->willReturn( $request );
+		} elseif ( $request instanceof MockHandler ) {
+			$mockHttpRequestFactory->method( 'create' )
+				->willReturnCallback(
+					static function (
+						$url,
+						array $requestOptions = [],
+						$caller = __METHOD__
+					) use ( $realRequestFactory, $request ) {
+						$requestOptions['handler'] = $request;
+						return $realRequestFactory->create( $url, $requestOptions, $caller );
+					}
+				);
 		} elseif ( is_callable( $request ) ) {
 			$mockHttpRequestFactory->method( 'create' )
 				->willReturnCallback( $request );

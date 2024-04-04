@@ -61,7 +61,9 @@ class HttpRequestFactory {
 	 *   - maxRedirects        Maximum number of redirects to follow (defaults to 5)
 	 *   - followRedirects     Whether to follow redirects (defaults to false).
 	 *                         Note: this should only be used when the target URL is trusted,
-	 *                         to avoid attacks on intranet services accessible by HTTP.
+	 *                         and use with 'redirectValidator' to be safer.
+	 *   - redirectValidator   Callback invoked with the target URL before following a redirect,
+	 *                         return a non-good status to abort the request.
 	 *   - userAgent           A user agent, if you want to override the default
 	 *                         "MediaWiki/{MW_VERSION} ({CONTACT_URL})".
 	 *   - logger              A \Psr\Logger\LoggerInterface instance for debug logging
@@ -70,7 +72,7 @@ class HttpRequestFactory {
 	 *   - originalRequest     Information about the original request (as a WebRequest object or
 	 *                         an associative array with 'ip' and 'userAgent').
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\MediaWiki\Request\WebRequest|array{ip:string,userAgent:string}} $options
+	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,redirectValidator?:callable(string):\StatusValue,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\MediaWiki\Request\WebRequest|array{ip:string,userAgent:string}} $options
 	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @return MWHttpRequest
 	 * @see MWHttpRequest::__construct

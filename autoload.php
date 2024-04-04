@@ -1908,6 +1908,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Http\\MWCallbackStream' => __DIR__ . '/includes/Http/MWCallbackStream.php',
 	'MediaWiki\\Http\\MWHttpRequest' => __DIR__ . '/includes/Http/MWHttpRequest.php',
 	'MediaWiki\\Http\\MwHttpRequestToResponseInterfaceAdapter' => __DIR__ . '/includes/Http/MwHttpRequestToResponseInterfaceAdapter.php',
+	'MediaWiki\\Http\\RedirectRejectedException' => __DIR__ . '/includes/Http/RedirectRejectedException.php',
 	'MediaWiki\\Http\\Telemetry' => __DIR__ . '/includes/Http/Telemetry.php',
 	'MediaWiki\\Import\\Hook\\AfterImportPageHook' => __DIR__ . '/includes/Import/Hook/AfterImportPageHook.php',
 	'MediaWiki\\Import\\Hook\\ImportHandleContentXMLTagHook' => __DIR__ . '/includes/Import/Hook/ImportHandleContentXMLTagHook.php',
