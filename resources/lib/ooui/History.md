@@ -1,5 +1,21 @@
 # OOUI Release History
 
+## v0.49.1 / 2024-04-02
+
+### Styles
+* icons: Add 'sortVertical' to 'movement' pack (Volker E.)
+* icons: Update 'destructive' colour from #d33 to #d73333 (James D. Forrester)
+* WikimediaUI theme: Increase margin for PopupWidget label to account for close button (Arthur Taylor)
+* WindowManager: Don't use scrollbar-gutter in fullscreen mode (Ed Sanders)
+
+### Code
+* build: Updating follow-redirects to 1.15.6 ([BOT] libraryupgrader)
+* build: Upgrade eslint-config-wikimedia to 0.27.0 (James D. Forrester)
+* build: Upgrade mediawiki/mediawiki-codesniffer to v43.0.0 (Umherirrender)
+* build: Update 'codex-design-tokens' to latest (Volker E.)
+* docs: Update README.md syntax for JSDoc (Bartosz Dziewoński)
+* DropdownWidget: Rename variable in code example (Umherirrender)
+
 ## v0.49.0 / 2024-02-06
 
 ### Breaking changes
@@ -1289,7 +1305,7 @@
 * DropdownInputWidget: Use native `select` when `isMobile` is true (Volker E.)
 * DropdownWidget: Alternative ARIA roles and attributes approach (Volker E.)
 * Make 'Infuse' button behave like a toggle (Ed Sanders)
-* Revert "Merge "DropDownWidget: Turn handle into `button` and add ARIA attribute"" (Volker E.)
+* Revert "Merge "DropdownWidget: Turn handle into `button` and add ARIA attribute"" (Volker E.)
 * SelectWidget: Fix keyboard accessibility issue with select widgets (Moriel Schottlender)
 * TabSelectWidget: Horizontally scroll tabs on mobile (Ed Sanders)
 * build: Upgrade grunt-cssjanus from 0.4.0 to 0.5.0 (James D. Forrester)
@@ -1631,7 +1647,7 @@
 * Use `-webkit-overflow-scrolling: touch` for scrollable things (Bartosz Dziewoński)
 * ComboBoxInputWidget: Add 'label' and `aria-controls` attribute to button (Volker E.)
 * ComboBoxInputWidget: `aria-expanded` needs to be set from initialization (Volker E.)
-* DropDownWidget: Turn handle into `button` and add ARIA attribute (Volker E.)
+* DropdownWidget: Turn handle into `button` and add ARIA attribute (Volker E.)
 * LookupElement: `aria-expanded` needs to be set from initialization (Volker E.)
 * MenuTagMultiselectWidget: Clear input before adding tag (Thalia Chan)
 * TagMultiselectWidget: Resize input when enabling (Thalia Chan)

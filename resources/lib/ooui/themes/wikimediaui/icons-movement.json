@@ -12,10 +12,10 @@
 			"global": true
 		},
 		"destructive": {
-			"color": "#d33"
+			"color": "#d73333"
 		},
 		"error": {
-			"color": "#d33"
+			"color": "#d73333"
 		},
 		"warning": {
 			"color": "#edab00"
@@ -64,6 +64,18 @@
 		"move": {
 			"file": "images/icons/move.svg"
 		},
+		"first": {
+			"file": {
+				"ltr": "images/icons/moveFirst-ltr.svg",
+				"rtl": "images/icons/moveFirst-rtl.svg"
+			}
+		},
+		"last": {
+			"file": {
+				"ltr": "images/icons/moveLast-ltr.svg",
+				"rtl": "images/icons/moveLast-rtl.svg"
+			}
+		},
 		"next": {
 			"file": {
 				"ltr": "images/icons/next-ltr.svg",
@@ -76,17 +88,8 @@
 				"rtl": "images/icons/previous-rtl.svg"
 			}
 		},
-		"last": {
-			"file": {
-				"ltr": "images/icons/moveLast-ltr.svg",
-				"rtl": "images/icons/moveLast-rtl.svg"
-			}
-		},
-		"first": {
-			"file": {
-				"ltr": "images/icons/moveFirst-ltr.svg",
-				"rtl": "images/icons/moveFirst-rtl.svg"
-			}
+		"sortVertical": {
+			"file": "images/icons/sortVertical.svg"
 		},
 		"upTriangle": {
 			"file": "images/icons/upTriangle.svg"

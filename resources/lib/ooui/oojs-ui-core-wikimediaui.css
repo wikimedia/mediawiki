@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.0
+ * OOUI v0.49.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-02-07T18:56:29Z
+ * Date: 2024-04-04T18:19:07Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -891,7 +891,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-warning {
   background-color: #fef6e7;
-  border-color: #ac6600;
+  border-color: #a66200;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-success {
   background-color: #d5fdf4;
@@ -1187,7 +1187,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
   display: inline-block;
-  margin: 9px 12px 0 2.64285714em;
+  margin: 9px 32px 0 2.64285714em;
   line-height: 1.42857143em;
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {

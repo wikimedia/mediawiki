@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.0
+ * OOUI v0.49.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-02-07T18:56:26Z
+ * Date: 2024-04-04T18:19:04Z
  */
 ( function ( OO ) {
 
@@ -8898,7 +8898,7 @@ OO.ui.MenuSelectWidget.prototype.scrollToTop = function () {
  *
  *     @example
  *     // A DropdownWidget with a menu that contains three options.
- *     const dropDown = new OO.ui.DropdownWidget( {
+ *     const dropdown = new OO.ui.DropdownWidget( {
  *         label: 'Dropdown menu: Select a menu option',
  *         menu: {
  *             items: [
@@ -8918,11 +8918,11 @@ OO.ui.MenuSelectWidget.prototype.scrollToTop = function () {
  *         }
  *     } );
  *
- *     $( document.body ).append( dropDown.$element );
+ *     $( document.body ).append( dropdown.$element );
  *
- *     dropDown.getMenu().selectItemByData( 'b' );
+ *     dropdown.getMenu().selectItemByData( 'b' );
  *
- *     dropDown.getMenu().findSelectedItem().getData(); // Returns 'b'.
+ *     dropdown.getMenu().findSelectedItem().getData(); // Returns 'b'.
  *
  * @class
  * @extends OO.ui.Widget
