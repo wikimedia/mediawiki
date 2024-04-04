@@ -34,6 +34,7 @@ use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Rdbms\ReplaceQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
@@ -373,6 +374,28 @@ class TaintCheckAnnotationsTest {
 		$iqb->andSet( [ 'x' => $_GET['a'] ] );// Safe
 
 		$iqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+	}
+
+	function testReplaceQueryBuilder( ReplaceQueryBuilder $rqb ) {
+		$rqb->table( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$rqb->replaceInto( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		// FIXME: After T361523 and a new release, the suppression must be enabled
+		$rqb->row( $_GET['a'] );// phan-suppress-current-line SecurityCheck-SQLInjection
+		$rqb->row( [ 'bar' => $_GET['a'] ] );// Safe
+		// FIXME: After T361523 and a new release, the suppression must be enabled
+		$rqb->row( [ $_GET['a'] => 'foo' ] );// phan-suppress-current-line SecurityCheck-SQLInjection
+
+		// FIXME: After T361523 and a new release, the suppression must be enabled
+		$rqb->rows( $_GET['a'] );// phan-suppress-current-line SecurityCheck-SQLInjection
+		// FIXME: After T361523 and a new release, the suppression must be enabled
+		$rqb->rows( [ $_GET['a'] ] );// phan-suppress-current-line SecurityCheck-SQLInjection
+		$rqb->rows( [ $_GET['a'] => [] ] );// Safe
+		$rqb->rows( [ $_GET['a'] => [ 'foo' => $_GET['a'] ] ] );// Safe
+		// FIXME: After T361523 and a new release, the suppression must be enabled
+		$rqb->rows( [ $_GET['a'] => [ $_GET['a'] => 'foo' ] ] );// phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$rqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 	}
 
 	function testUpdateQueryBuilder( UpdateQueryBuilder $uqb ) {
