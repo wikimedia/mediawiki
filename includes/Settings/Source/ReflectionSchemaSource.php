@@ -58,10 +58,17 @@ class ReflectionSchemaSource implements SettingsSource {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	public function load(): array {
+		return $this->loadAsComponents();
+	}
+
+	/**
 	 * @throws SettingsBuilderException
 	 * @return array
 	 */
-	public function load(): array {
+	public function loadAsComponents(): array {
 		$schemas = [];
 		$defs = [];
 		$obsolete = [];
@@ -117,6 +124,29 @@ class ReflectionSchemaSource implements SettingsSource {
 			'schema-definitions' => $defs,
 			'obsolete-config' => $obsolete
 		];
+	}
+
+	/**
+	 * Load the data as a single top-level JSON Schema.
+	 *
+	 * Returned JSON Schema is for an object, which includes the individual config schemas. The
+	 * returned schema may contain `$defs`, which then may be referenced internally in the schema
+	 * via `$ref`.
+	 *
+	 * @return array
+	 */
+	public function loadAsSchema(): array {
+		$info = $this->loadAsComponents();
+		$schema = [
+			'type' => 'object',
+			'properties' => $info['config-schema'],
+		];
+
+		if ( $info['schema-definitions'] ) {
+			$schema['$defs'] = $info['schema-definitions'];
+		}
+
+		return $schema;
 	}
 
 	/**
