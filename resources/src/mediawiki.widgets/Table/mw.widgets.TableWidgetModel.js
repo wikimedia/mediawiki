@@ -5,7 +5,7 @@
  */
 
 /**
- * Configuration options
+ * Configuration options.
  * @typedef {Object} mw.widgets.TableWidgetModel~Config
  * @property {Array} [rows] An array of objects containing `key` and `label` properties for every row
  * @property {Array} [cols] An array of objects containing `key` and `label` properties for every column

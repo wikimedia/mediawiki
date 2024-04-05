@@ -136,8 +136,8 @@
 		 *           }
 		 * fragment  'top'
 		 * ```
-		 * (N.b., 'password' is technically not allowed for HTTP URIs, but it is possible with other kinds
-		 * of URIs.)
+		 * Note: 'password' is technically not allowed for HTTP URIs, but it is possible with other kinds
+		 * of URIs.
 		 *
 		 * Parsing based on parseUri 1.2.2 (c) Steven Levithan <http://stevenlevithan.com>, MIT License.
 		 * <http://stevenlevithan.com/demo/parseuri/js/>

@@ -4,8 +4,8 @@
 	/**
 	 * Class that encapsulates the process of uploading a file to MediaWiki.
 	 *
-	 * @classdesc mw.ForeignStructuredUpload.BookletLayout encapsulates the process
-	 * of uploading a file to MediaWiki using the mw.ForeignStructuredUpload model.
+	 * @classdesc Encapsulates the process of uploading a file to MediaWiki
+	 * using the mw.ForeignStructuredUpload model.
 	 *
 	 * @example
 	 * var uploadDialog = new mw.Upload.Dialog( {
