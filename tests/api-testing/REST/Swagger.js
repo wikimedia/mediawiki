@@ -45,7 +45,7 @@ describe( 'OpenAPI Self-Documentation', () => {
 
 		// Ensure that the server URL points to the same API root again, so we can load
 		// the same swagger spec from it.
-		const url = spec.servers[ 0 ].url + 'coredev/v0/specs/module/-';
+		const url = spec.servers[ 0 ].url + '/coredev/v0/specs/module/-';
 		const { status, body: spec2, text } = await request( url );
 		assert.deepEqual( status, 200, text );
 

@@ -7,6 +7,11 @@
 				"handler": {
 					"factory": "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler"
 				}
+			},
+			"post": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler"
+				}
 			}
 		}
 	}

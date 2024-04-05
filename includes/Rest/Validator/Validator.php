@@ -356,6 +356,34 @@ class Validator {
 	 * @return array
 	 */
 	public static function getParameterSpec( string $name, array $paramSetting ): array {
+		$schema = self::getParameterSchema( $paramSetting );
+
+		// TODO: generate a warning if the source is not specified!
+		$location = $paramSetting[ self::PARAM_SOURCE ] ?? 'unspecified';
+
+		$param = [
+			'name' => $name,
+			'description' => $paramSetting[ self::PARAM_DESCRIPTION ] ?? "$name parameter",
+			'in' => $location,
+			'schema' => $schema
+		];
+
+		// TODO: generate a warning if required is false for a pth param
+		$param['required'] = $location === 'path'
+			|| ( $paramSetting[ ParamValidator::PARAM_REQUIRED ] ?? false );
+
+		return $param;
+	}
+
+	/**
+	 * Convert a param settings array into an OpenAPI schema structure.
+	 * @see https://swagger.io/specification/#schema-object
+	 *
+	 * @param array $paramSetting
+	 *
+	 * @return array
+	 */
+	public static function getParameterSchema( array $paramSetting ): array {
 		$type = $paramSetting[ ParamValidator::PARAM_TYPE ] ?? 'string';
 
 		if ( is_array( $type ) ) {
@@ -370,26 +398,14 @@ class Validator {
 				'type' => 'string',
 				'enum' => $type
 			];
+		} elseif ( isset( $paramSetting[ ArrayDef::PARAM_SCHEMA ] ) ) {
+			$schema = $paramSetting[ ArrayDef::PARAM_SCHEMA ];
 		} else {
 			// TODO: multi-value params?!
 			$schema = self::PARAM_TYPE_SCHEMAS["{$type}-param"] ?? [];
 		}
 
-		// TODO: generate a warning if the source is not specified!
-		$location = $paramSetting[ self::PARAM_SOURCE ] ?? 'unspecified';
-
-		$param = [
-			'name' => $name,
-			'description' => $paramSetting[ self::PARAM_DESCRIPTION ] ?? "$name parameter",
-			'in' => $location,
-			'schema' => $schema
-		];
-
-		// TODO: generate a warning if required is false for a path param
-		$param['required'] = $location === 'path'
-			|| ( $paramSetting[ ParamValidator::PARAM_REQUIRED ] ?? false );
-
-		return $param;
+		return $schema;
 	}
 
 }

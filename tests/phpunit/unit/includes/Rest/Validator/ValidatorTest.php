@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest;
 
 use Exception;
 use InvalidArgumentException;
+use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -203,10 +204,19 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				Validator::PARAM_SOURCE => 'body',
 				Validator::PARAM_DESCRIPTION => 'just a test',
 				ParamValidator::PARAM_REQUIRED => true,
+				ArrayDef::PARAM_SCHEMA => [
+					'type' => 'array',
+					'items' => [
+						'type' => 'object'
+					]
+				]
 			],
 			[
 				'schema' => [
-					'type' => 'object',
+					'type' => 'array',
+					'items' => [
+						'type' => 'object'
+					]
 				],
 				'required' => true,
 				'description' => 'just a test',
