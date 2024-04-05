@@ -3349,10 +3349,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->platform->tableName( $name, $format );
 	}
 
-	public function tableNames( ...$tables ) {
-		return $this->platform->tableNames( ...$tables );
-	}
-
 	public function tableNamesN( ...$tables ) {
 		return $this->platform->tableNamesN( ...$tables );
 	}

@@ -576,34 +576,10 @@ interface ISQLPlatform {
 	public function tableName( string $name, $format = 'quoted' );
 
 	/**
-	 * Fetch a number of table names into an associative array
-	 *
-	 * Much like {@link tableName()}, this is only needed when calling
-	 * {@link query()} directly. Prefer calling other methods,
-	 * or using {@link SelectQueryBuilder}.
-	 *
-	 * Theoretical example (which really does not require raw SQL):
-	 * ```
-	 * [ 'user' => $user, 'watchlist' => $watchlist ] =
-	 *     $dbr->tableNames( 'user', 'watchlist' );
-	 * $sql = "SELECT wl_namespace, wl_title FROM $watchlist, $user
-	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
-	 * ```
-	 *
-	 * @param string ...$tables
-	 * @return array
-	 * @deprecated since 1.39; if you must format table names,
-	 * write several calls to {@link tableName} or use {@link tableNamesN}
-	 * instead of calling this function.
-	 */
-	public function tableNames( ...$tables );
-
-	/**
 	 * Fetch a number of table names into a zero-indexed numerical array
 	 *
 	 * Much like {@link tableName()}, this is only needed when calling
-	 * {@link query()} directly. It is slightly more convenient than
-	 * {@link tableNames()}, but you should still prefer calling other
+	 * {@link query()} directly. You should prefer calling other
 	 * methods, or using {@link SelectQueryBuilder}.
 	 *
 	 * Theoretical example (which really does not require raw SQL):
