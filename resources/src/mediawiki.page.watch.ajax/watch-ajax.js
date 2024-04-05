@@ -166,7 +166,7 @@
 	 *
 	 * For an individual link being set to 'loading', the first
 	 * argument can be a jQuery collection. When updating to an
-	 * "idle" state, an mw.Title object should be passed to that
+	 * "idle" state, an {@link mw.Title} object should be passed to that
 	 * all watchstars associated with that title are updated.
 	 *
 	 * @memberof module:mediawiki.page.watch.ajax
@@ -278,12 +278,12 @@
 	/**
 	 * Bind a given watchstar element to make it interactive.
 	 *
-	 * NOTE: This is meant to allow binding of watchstars for arbitrary page titles,
+	 * This is meant to allow binding of watchstars for arbitrary page titles,
 	 * especially if different from the currently viewed page. As such, this function
 	 * will *not* synchronise its state with any "Watch this page" checkbox such as
 	 * found on the "Edit page" and "Publish changes" forms. The caller should either make
-	 * "current page" watchstars picked up by #init (and not use #watchstar) sync it manually
-	 * from the callback #watchstar provides.
+	 * "current page" watchstars picked up by init (and not use this function) or sync it manually
+	 * from the callback this function provides.
 	 *
 	 * @memberof module:mediawiki.page.watch.ajax
 	 * @param {jQuery} $links One or more anchor elements that must have an href

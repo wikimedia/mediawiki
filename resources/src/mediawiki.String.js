@@ -45,7 +45,8 @@
 	}
 
 	/**
-	 * Like String#charAt, but return the pair of UTF-16 surrogates for characters outside of BMP.
+	 * Like {@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String/charAt String.charAt()},
+	 * but return the pair of UTF-16 surrogates for characters outside of BMP.
 	 *
 	 * @memberof module:mediawiki.String
 	 * @param {string} string

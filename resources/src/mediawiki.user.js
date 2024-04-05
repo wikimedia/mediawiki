@@ -348,9 +348,9 @@
 		 * and swap class names server-side through the Skin interface.
 		 *
 		 * This feature is limited to page views by unregistered users. For logged-in requests,
-		 * store preferences in the database instead, via UserOptionsManager or `mw.Api.saveOption`
-		 * (may be hidden or API-only to exclude from Special:Preferences), and then include the
-		 * desired classes directly in Skin::getHtmlElementAttributes.
+		 * store preferences in the database instead, via UserOptionsManager or
+		 * {@link mw.Api#saveOption} (may be hidden or API-only to exclude from Special:Preferences),
+		 * and then include the desired classes directly in Skin::getHtmlElementAttributes.
 		 *
 		 * Classes toggled by this feature must be named as `<feature>-clientpref-<value>`,
 		 * where `value` contains only alphanumerical characters (a-z, A-Z, and 0-9), and `feature`

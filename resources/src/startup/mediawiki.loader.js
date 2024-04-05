@@ -1695,7 +1695,7 @@
 		 *
 		 * - `registered`: The module is available for loading but not yet requested.
 		 * - `loading`, `loaded`, or `executing`: The module is currently being loaded.
-		 * - `ready`: The module was succesfully and fully loaded.
+		 * - `ready`: The module was successfully and fully loaded.
 		 * - `error`: The module or one its dependencies has failed to load, e.g. due to
 		 *    uncaught error from the module's script files.
 		 * - `missing`: The module was requested but is not defined according to the server.

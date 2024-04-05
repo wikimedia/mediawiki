@@ -191,8 +191,8 @@
 	 * Enforces a codepoint (character) limit on an input field.
 	 *
 	 * For unfortunate historical reasons, browsers' native maxlength counts [the number of UTF-16
-	 * code units rather than Unicode codepoints] [1], which means that codepoints outside the Basic
-	 * Multilingual Plane (e.g. many emojis) count as 2 characters each. This plugin exists to
+	 * code units rather than Unicode codepoints][1], which means that codepoints outside the Basic
+	 * Multilingual Plane (such as many emojis) count as 2 characters each. This plugin exists to
 	 * correct this.
 	 *
 	 * [1]: https://www.w3.org/TR/html5/sec-forms.html#limiting-user-input-length-the-maxlength-attribute
