@@ -119,6 +119,13 @@ class ParserOutputFlags {
 	public const NO_SECTION_EDIT_LINKS = 'no-section-edit-links';
 
 	/**
+	 * @var string Wrap section contents to allow collapsing them?
+	 * This reflects the ParserOptions::getCollapsibleSections()
+	 * flag.
+	 */
+	public const COLLAPSIBLE_SECTIONS = 'collapsible-sections';
+
+	/**
 	 * @var string
 	 */
 	public const VARY_REVISION = 'vary-revision';
@@ -192,6 +199,7 @@ class ParserOutputFlags {
 			self::SHOW_TOC,
 			self::NO_TOC,
 			self::NO_SECTION_EDIT_LINKS,
+			self::COLLAPSIBLE_SECTIONS,
 			self::PREVENT_CLICKJACKING,
 			self::VARY_REVISION,
 			self::VARY_REVISION_ID,

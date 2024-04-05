@@ -42,6 +42,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 
 	public static function provideGetParserOutput() {
 		$commonOptions = [
+			'collapsibleSections',
 			'disableContentConversion',
 			'interfaceMessage',
 			'isPreview',
