@@ -39,5 +39,6 @@
 	"rest-cannot-load-file": "Il file per il titolo \"$1\" non può essere caricato.",
 	"rest-specified-revision-unavailable": "La versione indicata è stata cancellata o soppressa.",
 	"rest-previous-revision-unavailable": "Non è stato possibile trovare la versione precedente. La pagina è stata bloccata/cancellata?",
+	"rest-parsoid-resource-exceeded": "Limite delle risorse superato",
 	"rest-invalid-transform": "Trasformazione non valida: da $1 a $2"
 }
