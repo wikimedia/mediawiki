@@ -3348,11 +3348,10 @@ class OutputPage extends ContextSource {
 	 *  or ResourceLoader available; this should ideally be to a page that provides similar
 	 *  functionality without requiring JavaScript
 	 * @param string|Message $msg Message key (string) for page text, or a Message object
-	 * @param string|string[]|\MessageSpecifier $params Message parameters; ignored if $msg
-	 *  is a Message object
+	 * @param mixed ...$params Message parameters; ignored if $msg is a Message object
 	 */
 	public function showPendingTakeover(
-		$fallbackUrl, $msg, $params = []
+		$fallbackUrl, $msg, ...$params
 	) {
 		if ( $msg instanceof Message ) {
 			if ( $params !== [] ) {
@@ -3362,7 +3361,7 @@ class OutputPage extends ContextSource {
 			}
 			$this->addHTML( $msg->parseAsBlock() );
 		} else {
-			$this->addWikiMsgArray( $msg, $params );
+			$this->addHTML( $this->msg( $msg, ...$params )->parseAsBlock() );
 		}
 
 		// Redirect if the user has no JS (<noscript>)
@@ -4665,24 +4664,22 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Add a wikitext-formatted message to the output.
-	 * This is equivalent to:
 	 *
-	 *    $wgOut->addWikiText( wfMessage( ... )->plain() )
-	 *
-	 * @param mixed ...$args
+	 * @param string $name Message key
+	 * @param mixed ...$args Message parameters. Unlike wfMessage(), this method only accepts
+	 *     variadic parameters (they can't be passed as a single array parameter).
 	 */
-	public function addWikiMsg( ...$args ) {
-		$name = array_shift( $args );
+	public function addWikiMsg( $name, ...$args ) {
 		$this->addWikiMsgArray( $name, $args );
 	}
 
 	/**
 	 * Add a wikitext-formatted message to the output.
-	 * Like addWikiMsg() except the parameters are taken as an array
-	 * instead of a variable argument list.
 	 *
-	 * @param string $name
-	 * @param array $args
+	 * @param string $name Message key
+	 * @param array $args Message parameters. Unlike wfMessage(), this method only accepts
+	 *     the parameters as an array (they can't be passed as variadic parameters),
+	 *     or just a single parameter (this only works by accident, don't rely on it).
 	 */
 	public function addWikiMsgArray( $name, $args ) {
 		$this->addHTML( $this->msg( $name, $args )->parseAsBlock() );
