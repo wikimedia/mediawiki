@@ -41,6 +41,26 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 	}
 
 	public static function provideGetParserOutput() {
+		$commonOptions = [
+			'disableContentConversion',
+			'interfaceMessage',
+			'isPreview',
+			'maxIncludeSize',
+			'suppressSectionEditLinks',
+			'useParsoid',
+			'wrapclass',
+		];
+		$commonParsoidOptions = array_merge( $commonOptions, [
+			// Currently no options specific to parsoid parses
+		] );
+		$commonLegacyOptions = array_merge( $commonOptions, [
+			'disableTitleConversion',
+			'expensiveParserFunctionLimit',
+			'maxPPExpandDepth',
+			'maxPPNodeCount',
+			'suppressTOC',
+			'targetLanguage',
+		] );
 		yield 'Basic render' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
 			'model' => CONTENT_MODEL_WIKITEXT,
@@ -51,11 +71,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'Sections' => [
 				],
-				'UsedOptions' => [
-					'useParsoid', 'suppressTOC', 'maxIncludeSize', 'maxPPNodeCount',
-					'targetLanguage', 'interfaceMessage', 'maxPPExpandDepth', 'disableTitleConversion',
-					'disableContentConversion', 'expensiveParserFunctionLimit', 'suppressSectionEditLinks', 'isPreview', 'wrapclass'
-				],
+				'UsedOptions' => $commonLegacyOptions,
 			],
 		];
 		yield 'Basic Parsoid render' => [
@@ -68,9 +84,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'Sections' => [
 				],
-				'UsedOptions' => [
-					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'suppressSectionEditLinks', 'isPreview', 'wrapclass'
-				],
+				'UsedOptions' => $commonParsoidOptions,
 			],
 			'options' => [ 'useParsoid' => true, 'suppressSectionEditLinks' => true ],
 		];
@@ -85,9 +99,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'Sections' => [
 				],
-				'UsedOptions' => [
-					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'suppressSectionEditLinks', 'isPreview', 'wrapclass'
-				],
+				'UsedOptions' => $commonParsoidOptions,
 			],
 			'options' => [ 'useParsoid' => true, 'suppressSectionEditLinks' => true ],
 		];
@@ -112,9 +124,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 						'linkAnchor' => 'Hello',
 					],
 				],
-				'UsedOptions' => [
-					'useParsoid', 'maxIncludeSize', 'interfaceMessage', 'disableContentConversion', 'suppressSectionEditLinks', 'isPreview', 'wrapclass'
-				],
+				'UsedOptions' => $commonParsoidOptions,
 			],
 			'options' => [ 'useParsoid' => true ],
 		];
