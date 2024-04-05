@@ -36,10 +36,18 @@
 	/* Static methods */
 
 	/**
+	 * @typedef {Object} mw.widgets.NamespaceInputWidget~DropdownOptions
+	 * @property {any} data
+	 * @property {string} label
+	 */
+
+	/**
 	 * Get a list of namespace options, sorted by ID.
 	 *
+	 * @method getNamespaceDropdownOptions
 	 * @param {Object} [config] Configuration options
-	 * @return {Object[]} Dropdown options
+	 * @return {DropdownOptions[]} Dropdown options
+	 * @memberof mw.widgets.NamespaceInputWidget
 	 */
 	mw.widgets.NamespaceInputWidget.static.getNamespaceDropdownOptions = function ( config ) {
 		var exclude = config.exclude || [],

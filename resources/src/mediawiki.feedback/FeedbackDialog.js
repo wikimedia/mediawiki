@@ -114,6 +114,9 @@ FeedbackDialog.prototype.initialize = function () {
 
 /**
  * Validate the feedback form.
+ *
+ * @method validateFeedbackForm
+ * @memberof mw.Feedback.Dialog
  */
 FeedbackDialog.prototype.validateFeedbackForm = function () {
 	var isValid = (
@@ -327,7 +330,9 @@ FeedbackDialog.prototype.getTeardownProcess = function ( data ) {
 /**
  * Set the bug report link.
  *
+ * @method setBugReportLink
  * @param {string} link Link to the external bug report form
+ * @memberof mw.Feedback.Dialog
  */
 FeedbackDialog.prototype.setBugReportLink = function ( link ) {
 	this.bugReportLink = link;
@@ -336,7 +341,9 @@ FeedbackDialog.prototype.setBugReportLink = function ( link ) {
 /**
  * Get the bug report link.
  *
+ * @method getBugReportLink
  * @return {string} Link to the external bug report form
+ * @memberof mw.Feedback.Dialog
  */
 FeedbackDialog.prototype.getBugReportLink = function () {
 	return this.bugReportLink;
