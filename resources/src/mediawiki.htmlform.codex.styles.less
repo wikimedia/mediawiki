@@ -7,6 +7,35 @@
 		margin-top: @spacing-75;
 	}
 
+	// Allows fields to be visually indented to associate them with a checkbox or
+	// Radio that enables/disables them.
+	.cdx-field.mw-htmlform-checkradio-indent {
+		margin-left: calc( @min-size-input-binary + @spacing-50 );
+	}
+
+	.mw-htmlform-select-or-other {
+		> .cdx-select,
+		> .cdx-text-input {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.cdx-select {
+			max-width: 20em;
+			margin-right: @spacing-75;
+		}
+
+		.cdx-text-input {
+			max-width: 29.5em;
+		}
+	}
+
+	.mw-htmlform-select-and-other-field {
+		.cdx-select:first-child {
+			margin-bottom: @spacing-75;
+		}
+	}
+
 	.mw-htmlform-submit-buttons {
 		margin-top: @spacing-100;
 	}

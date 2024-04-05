@@ -230,7 +230,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		return Html::rawElement(
 			'div',
 			$wrapperAttribs,
-			"$select<br />\n$textInput"
+			"$select\n$textInput"
 		);
 	}
 
