@@ -64,11 +64,12 @@
 		 * are loaded. If all messages are known, the returned promise is resolved immediately.
 		 *
 		 * @since 1.27
-		 * @param {string[]} messages Messages to retrieve
+		 * @param {string|string[]} messages Messages to retrieve
 		 * @param {Object} [options] Additional parameters for the API call
 		 * @return {jQuery.Promise}
 		 */
 		loadMessagesIfMissing: function ( messages, options ) {
+			messages = Array.isArray( messages ) ? messages : [ messages ];
 			var missing = messages.filter( function ( msg ) {
 				// eslint-disable-next-line mediawiki/msg-doc
 				return !mw.message( msg ).exists();
