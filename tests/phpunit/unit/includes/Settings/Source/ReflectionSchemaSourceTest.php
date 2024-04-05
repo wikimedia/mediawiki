@@ -59,7 +59,7 @@ class ReflectionSchemaSourceTest extends TestCase {
 
 	public const TEST_OBSOLETE = [
 		'type' => 'string',
-		'obsolete' => 'should be excluded'
+		'obsolete' => 'should be excluded',
 	];
 
 	public static function getDefaultTEST_DYNAMIC_DEFAULT_AUTO() {
@@ -74,9 +74,11 @@ class ReflectionSchemaSourceTest extends TestCase {
 		// noop
 	}
 
-	public function testLoad() {
+	public function testLoadAsComponents() {
 		$source = new ReflectionSchemaSource( self::class );
-		$settings = $source->load();
+		$settings = $source->loadAsComponents();
+
+		$this->assertSame( $source->load(), $settings );
 
 		$this->assertArrayHasKey( 'config-schema', $settings );
 		$schemas = $settings['config-schema'];
@@ -107,6 +109,33 @@ class ReflectionSchemaSourceTest extends TestCase {
 			'number',
 			$schemas['TEST_MAP_TYPE']['additionalProperties']['items']['type']
 		);
+	}
+
+	public function testLoadAsSchema() {
+		$expectedProperties = [
+			'TEST_INTEGER' => [
+				'type' => 'integer',
+				'default' => 7,
+			],
+			'TEST_MAP_TYPE' => [
+				'type' => [ 'object', 'null' ],
+				'additionalProperties' => [
+					'type' => [ 'string', 'array' ],
+					'items' => [
+						'type' => 'number',
+					]
+				],
+				'default' => null,
+			],
+		];
+
+		$source = new ReflectionSchemaSource( self::class );
+		$schema = $source->loadAsSchema();
+		$this->assertEquals( [ 'type', 'properties' ], array_keys( $schema ) );
+		$this->assertSame( 'object', $schema['type'] );
+		foreach ( $expectedProperties as $expectedPropertyName => $expectedProperty ) {
+			$this->assertEquals( $expectedProperty, $schema['properties'][$expectedPropertyName] );
+		}
 	}
 
 	public function testDynamicDefault() {
