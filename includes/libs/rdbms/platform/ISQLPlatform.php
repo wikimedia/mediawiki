@@ -66,13 +66,13 @@ interface ISQLPlatform {
 	/** Query is a read-only Data Query Language query */
 	public const QUERY_CHANGE_NONE = 32;
 	/** Query is a Transaction Control Language command (BEGIN, USE, SET, ...) */
-	public const QUERY_CHANGE_TRX = 64 | self::QUERY_IGNORE_DBO_TRX;
+	public const QUERY_CHANGE_TRX = 64;
 	/** Query is a Data Manipulation Language command (INSERT, DELETE, LOCK, ...) */
 	public const QUERY_CHANGE_ROWS = 128;
 	/** Query is a Data Definition Language command */
-	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
+	public const QUERY_CHANGE_SCHEMA = 256;
 	/** Query is a command for advisory locks */
-	public const QUERY_CHANGE_LOCKS = 512 | self::QUERY_IGNORE_DBO_TRX;
+	public const QUERY_CHANGE_LOCKS = 512;
 
 	/**
 	 * Special value for ->caller() / $fname parameter used when providing a caller is not

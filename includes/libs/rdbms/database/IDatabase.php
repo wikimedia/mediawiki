@@ -197,11 +197,11 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string|Query $sql Single-statement SQL query
 	 * @param-taint $sql exec_sql
 	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments
-	 * @param int $flags Bit field of IDatabase::QUERY_* constants.
+	 * @param int $flags Bit field of ISQLPlatform::QUERY_* constants
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
-	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set.
+	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set
 	 * @return-taint tainted
-	 * @throws DBQueryError If the query is issued, fails, and QUERY_SILENCE_ERRORS is not set.
+	 * @throws DBQueryError If the query is issued, fails, and QUERY_SILENCE_ERRORS is not set
 	 * @throws DBExpectedError If the query is not, and cannot, be issued yet (non-DBQueryError)
 	 * @throws DBError If the query is inherently not allowed (non-DBExpectedError)
 	 */

@@ -657,7 +657,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 *
 	 * @param Query $sql SQL statement
 	 * @param string $fname Name of the calling function
-	 * @param int $flags Bit field of class QUERY_* constants
+	 * @param int $flags Bit field of ISQLPlatform::QUERY_* constants
 	 * @return QueryStatus
 	 * @throws DBUnexpectedError
 	 * @since 1.34
@@ -921,16 +921,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 *
 	 * @param Query $sql SQL statement
 	 * @param string $fname
-	 * @param int $flags
+	 * @param int $flags Bit field of ISQLPlatform::QUERY_* constants
 	 * @return bool Whether an implicit transaction was started
 	 * @throws DBError
 	 */
 	private function beginIfImplied( $sql, $fname, $flags ) {
-		if (
-			!$this->trxLevel() &&
-			$this->flagsHolder->hasImplicitTrxFlag() &&
-			!$this->flagsHolder::contains( $flags, self::QUERY_IGNORE_DBO_TRX )
-		) {
+		if ( !$this->trxLevel() && $this->flagsHolder->hasApplicableImplicitTrxFlag( $flags ) ) {
 			if ( $this->platform->isTransactableQuery( $sql ) ) {
 				$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
 				$this->transactionManager->turnOnAutomatic();

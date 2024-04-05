@@ -20,6 +20,7 @@
 namespace Wikimedia\Rdbms\Database;
 
 use Wikimedia\Rdbms\DBLanguageError;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * @ingroup Database
@@ -94,17 +95,31 @@ class DatabaseFlags implements IDatabaseFlags {
 	}
 
 	/**
-	 * @param int $flags A bitfield of flags
+	 * @param int $flags A bit field of flags
 	 * @param int $bit Bit flag constant
 	 * @return bool Whether the bit field has the specified bit flag set
-	 * @since 1.34
 	 */
 	public static function contains( int $flags, int $bit ) {
 		return ( ( $flags & $bit ) === $bit );
 	}
 
+	/**
+	 * @param int $queryFlags A bit field of ISQLPlatform::QUERY_* constants
+	 * @return bool Whether the implicit transaction flag is set and applies to the query flags
+	 */
+	public function hasApplicableImplicitTrxFlag( int $queryFlags ) {
+		return $this->hasImplicitTrxFlag() && !(
+			self::contains( $queryFlags, ISQLPlatform::QUERY_CHANGE_TRX ) ||
+			self::contains( $queryFlags, ISQLPlatform::QUERY_CHANGE_SCHEMA ) ||
+			self::contains( $queryFlags, ISQLPlatform::QUERY_CHANGE_LOCKS ) ||
+			self::contains( $queryFlags, ISQLPlatform::QUERY_IGNORE_DBO_TRX )
+		);
+	}
+
+	/**
+	 * @return bool Whether the implicit transaction flag is set
+	 */
 	public function hasImplicitTrxFlag() {
 		return $this->getFlag( self::DBO_TRX );
 	}
-
 }
