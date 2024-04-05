@@ -673,6 +673,8 @@ because of Phabricator reports.
 * Linker::generateTOC(), Linker::tocIndent(), Linker::tocUnindent(),
   Linker::tocLine(), Linker::tocLineEnd(), Linker::tocList() are deprecated.
 * Title::getBrokenLinksFrom() has been deprecated.
+* LogFormatter subclasses now emit deprecation warnings unless they are
+  constructed using LogFormatterFactory.
 * ReplicatedBagOStuff has been deprecated since 1.42.
 * The third argument to ContentRenderer::getParserOutput() now accepts a
   RevisionRecord or WikiRevision; passing an integer revision id has been

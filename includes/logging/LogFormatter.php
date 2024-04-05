@@ -157,6 +157,7 @@ class LogFormatter {
 		if ( $this->linkRenderer !== null ) {
 			return $this->linkRenderer;
 		} else {
+			wfDeprecated( static::class . " without all required services", '1.42' );
 			return MediaWikiServices::getInstance()->getLinkRenderer();
 		}
 	}
@@ -176,8 +177,7 @@ class LogFormatter {
 	 */
 	final public function getContentLanguage(): Language {
 		if ( $this->contentLanguage === null ) {
-			// Fallback if not provided
-			// TODO Change to wfWarn in a future release
+			wfDeprecated( static::class . " without all required services", '1.42' );
 			$this->contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
 		}
 		return $this->contentLanguage;
@@ -198,8 +198,7 @@ class LogFormatter {
 	 */
 	final public function getCommentFormatter(): CommentFormatter {
 		if ( $this->commentFormatter === null ) {
-			// Fallback if not provided
-			// TODO Change to wfWarn in a future release
+			wfDeprecated( static::class . " without all required services", '1.42' );
 			$this->commentFormatter = MediaWikiServices::getInstance()->getCommentFormatter();
 		}
 		return $this->commentFormatter;
@@ -220,8 +219,7 @@ class LogFormatter {
 	 */
 	final public function getUserEditTracker(): UserEditTracker {
 		if ( $this->userEditTracker === null ) {
-			// Fallback if not provided
-			// TODO Change to wfWarn in a future release
+			wfDeprecated( static::class . " without all required services", '1.42' );
 			$this->userEditTracker = MediaWikiServices::getInstance()->getUserEditTracker();
 		}
 		return $this->userEditTracker;
