@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Api\Query;
 
 use ApiMain;
+use ApiModuleManager;
+use ApiQuery;
 use ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
@@ -10,6 +12,7 @@ use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Api\MockApiQueryBase;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
@@ -217,5 +220,46 @@ class ApiQueryTest extends ApiTestCase {
 		$queryApi = $api->getModuleManager()->getModule( 'query' );
 		$this->assertTrue( $queryApi->isReadMode(),
 			'isReadMode() => true when no modules are requested' );
+	}
+
+	/** @dataProvider provideIsWriteMode */
+	public function testIsWriteMode( $queryParams, $expected ) {
+		$api = new ApiMain( new FauxRequest( array_merge( [ 'action' => 'query' ], $queryParams ) ) );
+		$queryApi = $api->getModuleManager()->getModule( 'query' );
+		$this->assertSame(
+			$expected,
+			$queryApi->isWriteMode(),
+			'::isWriteMode did not return the expected value.'
+		);
+	}
+
+	public static function provideIsWriteMode() {
+		return [
+			'No modules specified' => [ [], false ],
+			'Only meta=tokens' => [ [ 'meta' => 'tokens', 'type' => 'login' ], false ],
+		];
+	}
+
+	public function testIsWriteModeForMockedModule() {
+		$queryApi = $this->getMockBuilder( ApiQuery::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'extractRequestParams' ] )
+			->getMock();
+		// We need to mock ::extractRequestParams because we mock the module manager
+		// and using the original implementation results in a test failure.
+		$queryApi->method( 'extractRequestParams' )->willReturn( [
+			'list' => [ 'mocked-module' ]
+		] );
+		// Mock $queryApi->mModuleMgr to return always return a mock module that returns true from ::isWriteMode
+		$mockModuleManager = $this->createMock( ApiModuleManager::class );
+		$mockModuleManager->method( 'getModule' )->willReturnCallback( function ( $name ) {
+			$module = $this->createMock( MockApiQueryBase::class );
+			$module->method( 'isWriteMode' )
+				->willReturn( true );
+			return $module;
+		} );
+		$queryApi = TestingAccessWrapper::newFromObject( $queryApi );
+		$queryApi->mModuleMgr = $mockModuleManager;
+		$this->assertTrue( $queryApi->isWriteMode(), '::isWriteMode did not return the expected value.' );
 	}
 }

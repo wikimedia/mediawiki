@@ -992,6 +992,22 @@ class ApiQuery extends ApiBase {
 		return false;
 	}
 
+	public function isWriteMode() {
+		// Ask each module if it requires write mode. If any require write mode this returns true.
+		$modules = [];
+		$this->mParams = $this->extractRequestParams();
+		$this->instantiateModules( $modules, 'list' );
+		$this->instantiateModules( $modules, 'meta' );
+		$this->instantiateModules( $modules, 'prop' );
+		foreach ( $modules as $module ) {
+			if ( $module->isWriteMode() ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
