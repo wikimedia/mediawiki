@@ -63,6 +63,7 @@ class ReflectionSchemaSource implements SettingsSource {
 	 */
 	public function load(): array {
 		$schemas = [];
+		$defs = [];
 		$obsolete = [];
 
 		try {
@@ -98,7 +99,7 @@ class ReflectionSchemaSource implements SettingsSource {
 
 				$schema['default'] ??= null;
 
-				$schema = self::normalizeJsonSchema( $schema );
+				$schema = self::normalizeJsonSchema( $schema, $defs, $this->class, $name );
 
 				$schemas[ $name ] = $schema;
 			}
@@ -113,6 +114,7 @@ class ReflectionSchemaSource implements SettingsSource {
 
 		return [
 			'config-schema' => $schemas,
+			'schema-definitions' => $defs,
 			'obsolete-config' => $obsolete
 		];
 	}

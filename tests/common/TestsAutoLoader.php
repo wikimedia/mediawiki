@@ -333,6 +333,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/Settings/Config
 	'MediaWiki\\Tests\\Unit\\Settings\\Config\\ConfigSinkTestTrait' => "$testDir/phpunit/unit/includes/Settings/Config/ConfigSinkTestTrait.php",
 
+	# tests/phpunit/unit/includes/Settings/Source
+	'MediaWiki\\Tests\\Unit\\Settings\\Source\\ExampleDefinitionsClass' => "$testDir/phpunit/unit/includes/Settings/Source/ExampleDefinitionsClass.php",
+
 	# tests/phpunit/unit/includes/session
 	'MediaWiki\\Tests\\Session\\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",
 
