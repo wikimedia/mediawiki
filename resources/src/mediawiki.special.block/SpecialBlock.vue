@@ -3,7 +3,10 @@
 		<user-lookup v-model="targetUser"></user-lookup>
 		<target-active-blocks></target-active-blocks>
 		<target-block-log></target-block-log>
-		<block-type-field></block-type-field>
+		<block-type-field
+			:partial-block-options="blockPartialOptions"
+			v-model="blockPartialOptionsSelected"
+		></block-type-field>
 		<expiration-field></expiration-field>
 		<reason-field></reason-field>
 		<block-details-field
@@ -53,6 +56,16 @@ module.exports = defineComponent( {
 	},
 	setup() {
 		const targetUser = ref( '' );
+
+		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
+			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map( ( key ) =>
+				// Messages that can be used here:
+				// * ipb-action-upload
+				// * ipb-action-move
+				// * ipb-action-create
+				Object( { label: mw.message( key ).text(), value: key } ) ) :
+			[];
+		const blockPartialOptionsSelected = ref( [ 'ipb-action-create' ] );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
 		const blockDetailsSelected = ref( [] );
@@ -100,7 +113,6 @@ module.exports = defineComponent( {
 			event.preventDefault();
 
 			// TODO: Implement validation
-
 			block();
 		}
 
@@ -118,6 +130,21 @@ module.exports = defineComponent( {
 				expiry: '2025-02-25T07:27:50Z',
 				reason: 'API Test'
 			};
+
+			if ( blockPartialOptions ) {
+				const actionRestrictions = [];
+				params.partial = 1;
+				if ( blockPartialOptionsSelected.value.indexOf( 'ipb-action-upload' ) !== -1 ) {
+					actionRestrictions.push( 'upload' );
+				}
+				if ( blockPartialOptionsSelected.value.indexOf( 'ipb-action-move' ) !== -1 ) {
+					actionRestrictions.push( 'move' );
+				}
+				if ( blockPartialOptionsSelected.value.indexOf( 'ipb-action-create' ) !== -1 ) {
+					actionRestrictions.push( 'create' );
+				}
+				params.actionRestrictions = actionRestrictions.join( '|' );
+			}
 
 			if ( blockDetailsSelected.value.indexOf( 'wpCreateAccount' ) !== -1 ) {
 				params.nocreate = 1;
@@ -156,7 +183,9 @@ module.exports = defineComponent( {
 			blockDetailsOptions,
 			blockDetailsSelected,
 			additionalDetailsOptions,
-			additionalDetailsSelected
+			additionalDetailsSelected,
+			blockPartialOptions,
+			blockPartialOptionsSelected
 		};
 	}
 } );
