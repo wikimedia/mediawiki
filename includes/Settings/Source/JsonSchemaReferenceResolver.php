@@ -15,7 +15,8 @@ use InvalidArgumentException;
 class JsonSchemaReferenceResolver {
 	/**
 	 * Traverse a JSON-schema to resolve all its referenced schemas ($ref)
-	 * and return them as an array of definitions ($defs)
+	 *
+	 * Result is returned via an output parameter $defs as an array of definitions.
 	 *
 	 * @param array $schema A valid JSON-schema
 	 * @param array &$defs Array reference that will be populated with the list of definitions (JSON-schemas)
@@ -36,8 +37,8 @@ class JsonSchemaReferenceResolver {
 	 * @param string $propertyName The name of the property the schema belongs to, used for error descriptions.
 	 * @param array &$defs Array reference that will be populated with the list of definitions (JSON-schemas)
 	 * referenced in the schema
-	 * @param array $traversedRefs Array to accumulate the already visited definitions for a given schema, used to
-	 * avoid loops in the reference resolution
+	 * @param array<string, bool> $traversedRefs Array to accumulate the already visited definitions
+	 * for a given schema, used to avoid loops in the reference resolution.
 	 */
 	private static function doGetDefinitions(
 		array $schema,
