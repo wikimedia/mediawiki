@@ -563,7 +563,32 @@ abstract class Handler {
 	}
 
 	/**
-	 * @throws HttpException on failed check
+	 * Returns the parsed body of the request.
+	 * Should only be called if $request->hasBody() returns true.
+	 *
+	 * The default implementation handles application/x-www-form-urlencoded
+	 * and multipart/form-data by calling $request->getPostParams().
+	 *
+	 * The default implementation handles application/json by parsing
+	 * the body content as JSON. Only object structures (maps) are supported,
+	 * other types will trigger an HttpException with status 400.
+	 *
+	 * Other content types will trigger a HttpException with status 415 per
+	 * default.
+	 *
+	 * Subclasses may override this method to support parsing additional
+	 * content types or to disallow content types by throwing an HttpException
+	 * with status 415. Subclasses may also return null to indicate that they
+	 * support reading the content, but intent to handle it as an unparsed
+	 * stream in their implementation of the execute() method.
+	 *
+	 * @since 1.42
+	 *
+	 * @throws HttpException If the content type is not supported or the content
+	 *         is malformed.
+	 *
+	 * @return array|null The body content represented as an associative array,
+	 *         or null if the request body is accepted unparsed.
 	 */
 	public function parseBodyData( RequestInterface $request ): ?array {
 		// Parse the body based on its content type
@@ -588,8 +613,10 @@ abstract class Handler {
 				$parsedBody = json_decode( "$jsonStream", true );
 				if ( !is_array( $parsedBody ) ) {
 					throw new LocalizedHttpException(
-					// Fixme: missing parameter
-						new MessageValue( 'rest-json-body-parse-error', [ "" ] ),
+						new MessageValue(
+							'rest-json-body-parse-error',
+							[ 'not a valid JSON object' ]
+						),
 						400
 					);
 				}
