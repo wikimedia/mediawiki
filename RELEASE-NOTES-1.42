@@ -129,7 +129,11 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated pear/mail from 1.5.1 to 1.6.0.
 * Updated pear/net_smtp from 1.10.1 to 1.11.1.
 * Updated psr/http-message from 1.0.1 to 1.1.
-* Updated symfony/yaml from 5.4.23 to 5.4.31.
+* Updated symfony/polyfill-php80 from 1.28.0 to 1.29.0.
+* Updated symfony/polyfill-php81 from 1.28.0 to 1.29.0.
+* Updated symfony/polyfill-php82 from 1.28.0 to 1.29.0.
+* Updated symfony/polyfill-php83 from 1.28.0 to 1.29.0.
+* Updated symfony/yaml from 5.4.23 to 5.4.35.
 * Updated wikimedia/less.php from 4.1.1 to 4.2.1.
 * Updated wikimedia/remex-html from 4.0.1 to 4.1.0.
 * Updated wikimedia/minify from 2.5.1 to 2.7.0.
