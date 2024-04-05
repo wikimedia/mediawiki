@@ -117,6 +117,8 @@ because of Phabricator reports.
   Handler::getParamSettings() is deprecated, use "body" instead.
 * IMaintainableDatabase::textFieldSize() is now deprecated.
 * ISQLPlatform::tableNamesN() is now deprecated.
+* The implementation in SQLPlatform of ISQLPlatform::tableNames(), deprecated in
+  MediaWiki 1.39, now emits deprecation warnings.
 * …
 
 === Other changes in 1.43 ===

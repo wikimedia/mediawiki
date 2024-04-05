@@ -1065,6 +1065,8 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function tableNames( ...$tables ) {
+		wfDeprecated( '1.39' );
+
 		$retVal = [];
 
 		foreach ( $tables as $name ) {
