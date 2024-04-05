@@ -127,6 +127,7 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated guzzlehttp/guzzle from 7.5.3 to 7.7.1.
 * Updated monolog/monolog from 2.2.0 to 2.9.2.
 * Updated pear/mail from 1.5.1 to 1.6.0.
+* Updated pear/mail_mime from 1.10.11 to 1.10.12.
 * Updated pear/net_smtp from 1.10.1 to 1.11.1.
 * Updated psr/http-message from 1.0.1 to 1.1.
 * Updated symfony/polyfill-php80 from 1.28.0 to 1.29.0.
