@@ -5,6 +5,7 @@
 			:key="'checkbox-' + checkbox.value"
 			v-model="wrappedModel"
 			:input-value="checkbox.value"
+			:disabled="checkbox.disabled"
 		>
 			{{ checkbox.label }}
 		</cdx-checkbox>

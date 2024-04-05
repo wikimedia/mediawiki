@@ -2227,6 +2227,8 @@ return [
 		'messages' => [
 			'block-details',
 			'block-details-description',
+			'block-options',
+			'block-options-description',
 			'block-user-label',
 			'block-user-description',
 			'block-user-placeholder',
@@ -2234,7 +2236,10 @@ return [
 			'htmlform-optional-flag',
 			'ipbcreateaccount',
 			'ipbemailban',
-			'ipb-disableusertalk'
+			'ipb-disableusertalk',
+			'ipbenableautoblock',
+			'ipbwatchuser',
+			'ipb-hardblock'
 		],
 	],
 	'mediawiki.special.changeslist' => [

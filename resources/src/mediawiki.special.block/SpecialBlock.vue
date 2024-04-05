@@ -12,11 +12,16 @@
 			:label="$i18n( 'block-details' ).text()"
 			:description="$i18n( 'block-details-description' ).text()"
 		></block-details-field>
+		<block-details-field
+			v-model="additionalDetailsSelected"
+			:checkboxes="additionalDetailsOptions"
+			:label="$i18n( 'block-options' ).text()"
+			:description="$i18n( 'block-options-description' ).text()"
+		></block-details-field>
 		<cdx-button
 			action="progressive"
 			weight="primary"
-			@click="saveBlock"
-		>
+			@click="handleSubmit">
 			{{ $i18n( 'block-save' ).text() }}
 		</cdx-button>
 	</div>
@@ -47,7 +52,6 @@ module.exports = defineComponent( {
 		CdxButton
 	},
 	setup() {
-		const form = document.querySelector( '.mw-htmlform' );
 		const targetUser = ref( '' );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
@@ -73,14 +77,86 @@ module.exports = defineComponent( {
 			} );
 		}
 
-		function saveBlock() {
-			form.submit();
+		const additionalDetailsSelected = ref( [] );
+		const additionalDetailsOptions = [
+			{
+				label: mw.message( 'ipbenableautoblock' ),
+				value: 'wpAutoBlock',
+				disabled: false
+			},
+			{
+				label: mw.message( 'ipbwatchuser' ),
+				value: 'wpWatch',
+				disabled: false
+			},
+			{
+				label: mw.message( 'ipb-hardblock' ),
+				value: 'wpHardBlock',
+				disabled: false
+			}
+		];
+
+		function handleSubmit( event ) {
+			event.preventDefault();
+
+			// TODO: Implement validation
+
+			block();
+		}
+
+		/*
+		 * Send block.
+		 *
+		 * @return {jQuery.Promise}
+		 */
+		function block() {
+
+			const params = {
+				action: 'block',
+				format: 'json',
+				user: targetUser.value,
+				expiry: '2025-02-25T07:27:50Z',
+				reason: 'API Test'
+			};
+
+			if ( blockDetailsSelected.value.indexOf( 'wpCreateAccount' ) !== -1 ) {
+				params.nocreate = 1;
+			}
+
+			if ( blockDetailsSelected.value.indexOf( 'wpDisableEmail' ) !== -1 ) {
+				params.noemail = 1;
+			}
+
+			if ( blockDetailsSelected.value.indexOf( 'wpDisableUTEdit' ) !== -1 ) {
+				params.allowusertalk = 1;
+			}
+
+			if ( additionalDetailsSelected.value.indexOf( 'wpAutoBlock' ) !== -1 ) {
+				params.autoblock = 1;
+			}
+
+			if ( additionalDetailsSelected.value.indexOf( 'wpWatch' ) !== -1 ) {
+				params.watchuser = 1;
+			}
+
+			if ( additionalDetailsSelected.value.indexOf( 'wpHardBlock' ) !== -1 ) {
+				params.nocreate = 1;
+			}
+
+			const api = new mw.Api();
+
+			return api.postWithToken( 'csrf', params )
+				.done( () => {
+
+				} );
 		}
 		return {
 			targetUser,
-			saveBlock,
+			handleSubmit,
+			blockDetailsOptions,
 			blockDetailsSelected,
-			blockDetailsOptions
+			additionalDetailsOptions,
+			additionalDetailsSelected
 		};
 	}
 } );
