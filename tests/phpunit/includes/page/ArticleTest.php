@@ -43,6 +43,9 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	 * @covers Article::__set
 	 */
 	public function testGetOrSetOnNewProperty() {
+		// Removed in 1.42, skip test on newer PHP
+		$this->markTestSkippedIfPhp( '>=', '8.2' );
+
 		$article = new Article( Title::newMainPage() );
 
 		$this->filterDeprecated(
