@@ -1,7 +1,5 @@
 <?php
 /**
- * Job queue code for federated queues.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,7 +19,7 @@
  */
 
 /**
- * Class to handle enqueueing and running of background jobs for federated queues
+ * Enqueue and run background jobs via a federated queue, for wiki farms.
  *
  * This class allows for queues to be partitioned into smaller queues.
  * A partition is defined by the configuration for a JobQueue instance.
@@ -42,8 +40,8 @@
  * One can still use "timestamp" instead, as in "roughly timestamp ordered". Also,
  * queue classes used by this should ignore down servers (with TTL) to avoid slowness.
  *
- * @ingroup JobQueue
  * @since 1.22
+ * @ingroup JobQueue
  */
 class JobQueueFederated extends JobQueue {
 	/** @var HashRing */
@@ -471,7 +469,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function logException( Exception $e ) {
-		wfDebugLog( 'JobQueueFederated', $e->getMessage() . "\n" . $e->getTraceAsString() );
+		wfDebugLog( 'JobQueue', $e->getMessage() . "\n" . $e->getTraceAsString() );
 	}
 
 	/**

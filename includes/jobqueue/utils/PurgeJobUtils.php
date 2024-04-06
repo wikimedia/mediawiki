@@ -1,8 +1,5 @@
 <?php
 /**
- * Base code for update jobs that put some secondary data extracted
- * from article content into the database.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -26,6 +23,13 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
+/**
+ * Helper for a Job that writes data derived from page content to the database.
+ *
+ * Used by RefreshLinksJob via LinksUpdate.
+ *
+ * @ingroup JobQueue
+ */
 class PurgeJobUtils {
 	/**
 	 * Invalidate the cache of a list of pages from a single namespace.

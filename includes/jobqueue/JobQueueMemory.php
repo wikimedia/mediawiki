@@ -1,7 +1,5 @@
 <?php
 /**
- * PHP memory-backed job queue code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,12 +19,12 @@
  */
 
 /**
- * Class to handle job queues stored in PHP memory for testing
+ * PHP memory-backed job queue storage, for testing.
  *
- * JobQueueGroup does not remember every queue instance, so statically track it here
+ * JobQueueGroup does not remember every queue instance, so statically track it here.
  *
- * @ingroup JobQueue
  * @since 1.27
+ * @ingroup JobQueue
  */
 class JobQueueMemory extends JobQueue {
 	/** @var array[] */

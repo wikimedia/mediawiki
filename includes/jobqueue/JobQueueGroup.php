@@ -30,8 +30,8 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * but other operations may be called for the local wiki only. Exceptions may be thrown if you
  * attempt to inspect, pop, or execute a foreign wiki's job queue.
  *
- * @ingroup JobQueue
  * @since 1.21
+ * @ingroup JobQueue
  */
 class JobQueueGroup {
 	/** @var MapCacheLRU */
