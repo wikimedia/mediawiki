@@ -461,14 +461,17 @@ class Router {
 		}
 
 		// gather metrics
+		$statusCode = $response->getStatusCode();
 		if ( $response->getStatusCode() >= 400 ) {
 			// count how often we return which error code
-			$statusCode = $response->getStatusCode();
 			$this->stats->increment( "rest_api_errors.$pathForMetrics.$requestMethod.$statusCode" );
 		} else {
 			// measure how long it takes to generate a response
 			$microtime = ( microtime( true ) - $statTime ) * 1000;
-			$this->stats->timing( "rest_api_latency.$pathForMetrics.$requestMethod", $microtime );
+			$this->stats->timing(
+				"rest_api_latency.$pathForMetrics.$requestMethod.$statusCode",
+				$microtime
+			);
 		}
 
 		return $response;
