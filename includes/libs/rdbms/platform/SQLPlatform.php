@@ -952,6 +952,18 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function tableName( string $name, $format = 'quoted' ) {
+		$prefix = $this->currentDomain->getTablePrefix();
+
+		// Warn about table names that look qualified
+		if (
+			str_contains( $name, '.' ) ||
+			( $prefix !== '' && str_starts_with( $name, $prefix ) ) ) {
+			$this->logger->warning(
+				__METHOD__ . ' called with qualified table ' . $name,
+				[ 'db_log_category' => 'sql' ]
+			);
+		}
+
 		// Extract necessary database, schema, table identifiers and quote them as needed
 		$formattedComponents = [];
 		foreach ( $this->qualifiedTableComponents( $name ) as $component ) {
