@@ -36,7 +36,7 @@ class HTTPFileStreamer {
 	/** @var callable */
 	protected $streamMimeFunc;
 
-	// Do not send any HTTP headers unless requested by caller (e.g. body only)
+	// Do not send any HTTP headers (e.g. body only)
 	public const STREAM_HEADLESS = 1;
 	// Do not try to tear down any PHP output buffers
 	public const STREAM_ALLOW_OB = 2;
@@ -144,7 +144,7 @@ class HTTPFileStreamer {
 
 		// Send additional headers
 		foreach ( $headers as $header ) {
-			header( $header ); // always use header(); specifically requested
+			$headerFunc( $header );
 		}
 
 		if ( isset( $optHeaders['range'] ) ) {
