@@ -110,143 +110,124 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-fetch', $config->get( 'known' ) );
 	}
 
+	public static function provideScenario() {
+		$miss = false;
+		$hit = [
+			'config' => [ 'mykey' => 'from-cache' ],
+			'expires' => INF,
+			'modifiedIndex' => 0,
+		];
+		$stale = [
+			'config' => [ 'mykey' => 'from-cache-expired' ],
+			'expires' => -INF,
+			'modifiedIndex' => 0,
+		];
+
+		yield 'Cache miss' => [ 'from-fetch', [
+			'cache' => $miss,
+			'lock' => 'acquired',
+			'backend' => 'success',
+		] ];
+
+		yield 'Cache miss with backend error' => [ 'error', [
+			'cache' => $miss,
+			'lock' => 'acquired',
+			'backend' => 'error',
+		] ];
+
+		yield 'Cache miss with retry after backend error' => [ 'from-cache', [
+			'cache' => [ $miss, $hit ],
+			'lock' => 'acquired',
+			'backend' => 'error-may-retry',
+		] ];
+
+		yield 'Cache hit after lock fail and cache retry' => [ 'from-cache', [
+			// misses cache first time
+			// the other process holding the lock populates the value
+			// hits cache on retry
+			'cache' => [ $miss, $hit ],
+			'lock' => 'fail',
+			'backend' => 'never',
+		] ];
+
+		yield 'Cache hit' => [ 'from-cache', [
+			'cache' => $hit,
+			'lock' => 'never',
+			'backend' => 'never',
+		] ];
+
+		yield 'Cache expired' => [ 'from-fetch', [
+			'cache' => $stale,
+			'lock' => 'acquired',
+			'backend' => 'success',
+		] ];
+
+		yield 'Cache expired with backend failure' => [ 'from-cache-expired', [
+			'cache' => $stale,
+			'lock' => 'acquired',
+			'backend' => 'error-may-retry',
+		] ];
+
+		yield 'Cache expired with lock failure' => [ 'from-cache-expired', [
+			'cache' => $stale,
+			'lock' => 'fail',
+			'backend' => 'never',
+		] ];
+	}
+
 	/**
-	 * Test matrix
-	 *
-	 * - [x] Cache miss
-	 *       Result: Fetched value
-	 *       > cache miss | gets lock | backend succeeds
-	 *
-	 * - [x] Cache miss with backend error
-	 *       Result: ConfigException
-	 *       > cache miss | gets lock | backend error (no retry)
-	 *
-	 * - [x] Cache hit after retry
-	 *       Result: Cached value (populated by process holding lock)
-	 *       > cache miss | no lock | cache retry
-	 *
-	 * - [x] Cache hit
-	 *       Result: Cached value
-	 *       > cache hit
-	 *
-	 * - [x] Process cache hit
-	 *       Result: Cached value
-	 *       > process cache hit
-	 *
-	 * - [x] Cache expired
-	 *       Result: Fetched value
-	 *       > cache expired | gets lock | backend succeeds
-	 *
-	 * - [x] Cache expired with backend failure
-	 *       Result: Cached value (stale)
-	 *       > cache expired | gets lock | backend fails (allows retry)
-	 *
-	 * - [x] Cache expired and no lock
-	 *       Result: Cached value (stale)
-	 *       > cache expired | no lock
-	 *
-	 * Other notable scenarios:
-	 *
-	 * - [ ] Cache miss with backend retry
-	 *       Result: Fetched value
-	 *       > cache expired | gets lock | backend failure (allows retry)
+	 * @dataProvider provideScenario
 	 */
-	public function testLoadCacheMiss() {
+	public function testScenario( string $expect, array $scenario ) {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
-		// .. misses cache
-		$cache->expects( $this->once() )->method( 'get' )
-			->willReturn( false );
-		// .. gets lock
-		$cache->expects( $this->once() )->method( 'lock' )
-			->willReturn( true );
+		if ( is_array( $scenario['cache'] ) && array_is_list( $scenario['cache'] ) ) {
+			$cache->expects( $this->exactly( count( $scenario['cache'] ) ) )->method( 'get' )
+				->willReturnOnConsecutiveCalls(
+					...$scenario['cache']
+				);
+		} else {
+			$cache->expects( $this->any() )->method( 'get' )
+				->willReturn( $scenario['cache'] );
+		}
+		if ( $scenario['lock'] === 'acquired' ) {
+			$cache->expects( $this->once() )->method( 'lock' )
+				->willReturn( true );
+		} elseif ( $scenario['lock'] === 'fail' ) {
+			$cache->expects( $this->once() )->method( 'lock' )
+				->willReturn( false );
+		} else {
+			// lock=never
+			$cache->expects( $this->never() )->method( 'lock' );
+		}
 
 		// Create config mock
 		$mock = $this->createConfigMock( [
 			'cache' => $cache,
 		] );
-		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn(
-				self::createEtcdResponse( [ 'config' => [ 'known' => 'from-fetch' ] ] ) );
+		if ( $scenario['backend'] === 'success' ) {
+			$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
+				->willReturn(
+					self::createEtcdResponse( [ 'config' => [ 'mykey' => 'from-fetch' ] ] )
+				);
+		} elseif ( $scenario['backend'] === 'error' ) {
+			$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
+				->willReturn( self::createEtcdResponse( [ 'error' => 'Fake error' ] ) );
+		} elseif ( $scenario['backend'] === 'error-may-retry' ) {
+			$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
+				->willReturn( self::createEtcdResponse( [ 'error' => 'Fake error', 'retry' => true ] ) );
+		} elseif ( $scenario['backend'] === 'never' ) {
+			$mock->expects( $this->never() )->method( 'fetchAllFromEtcd' );
+		}
 
-		$this->assertSame( 'from-fetch', $mock->get( 'known' ) );
-	}
-
-	public function testLoadCacheMissBackendError() {
-		// Create cache mock
-		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->onlyMethods( [ 'get', 'lock' ] )
-			->getMock();
-		// .. misses cache
-		$cache->expects( $this->once() )->method( 'get' )
-			->willReturn( false );
-		// .. gets lock
-		$cache->expects( $this->once() )->method( 'lock' )
-			->willReturn( true );
-
-		// Create config mock
-		$mock = $this->createConfigMock( [
-			'cache' => $cache,
-		] );
-		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( self::createEtcdResponse( [ 'error' => 'Fake error', ] ) );
-
-		$this->expectException( ConfigException::class );
-		@$mock->get( 'key' );
-	}
-
-	public function testLoadCacheMissWithoutLock() {
-		// Create cache mock
-		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->onlyMethods( [ 'get', 'lock' ] )
-			->getMock();
-		$cache->expects( $this->exactly( 2 ) )->method( 'get' )
-			->willReturnOnConsecutiveCalls(
-				// .. misses cache first time
-				false,
-				// .. hits cache on retry
-				[
-					'config' => [ 'known' => 'from-cache' ],
-					'expires' => INF,
-					'modifiedIndex' => 123
-				]
-			);
-		// .. misses lock
-		$cache->expects( $this->once() )->method( 'lock' )
-			->willReturn( false );
-
-		// Create config mock
-		$mock = $this->createConfigMock( [
-			'cache' => $cache,
-		] );
-		$mock->expects( $this->never() )->method( 'fetchAllFromEtcd' );
-
-		$this->assertSame( 'from-cache', $mock->get( 'known' ) );
-	}
-
-	public function testLoadCacheHit() {
-		// Create cache mock
-		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->onlyMethods( [ 'get', 'lock' ] )
-			->getMock();
-		$cache->expects( $this->once() )->method( 'get' )
-			// .. hits cache
-			->willReturn( [
-				'config' => [ 'known' => 'from-cache' ],
-				'expires' => INF,
-				'modifiedIndex' => 0,
-			] );
-		$cache->expects( $this->never() )->method( 'lock' );
-
-		// Create config mock
-		$mock = $this->createConfigMock( [
-			'cache' => $cache,
-		] );
-		$mock->expects( $this->never() )->method( 'fetchAllFromEtcd' );
-
-		$this->assertSame( 'from-cache', $mock->get( 'known' ) );
+		if ( $expect === 'error' ) {
+			$this->expectException( ConfigException::class );
+			@$mock->get( 'mykey' );
+		} else {
+			$this->assertSame( $expect, @$mock->get( 'mykey' ) );
+		}
 	}
 
 	public function testLoadProcessCacheHit() {
@@ -273,61 +254,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'from-cache', $mock->get( 'known' ), 'Process cache hit' );
 	}
 
-	public function testLoadCacheExpiredLockFetchSucceeded() {
-		// Create cache mock
-		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->onlyMethods( [ 'get', 'lock' ] )
-			->getMock();
-		$cache->expects( $this->once() )->method( 'get' )->willReturn(
-			// .. stale cache
-			[
-				'config' => [ 'known' => 'from-cache-expired' ],
-				'expires' => -INF,
-				'modifiedIndex' => 0,
-			]
-		);
-		// .. gets lock
-		$cache->expects( $this->once() )->method( 'lock' )
-			->willReturn( true );
-
-		// Create config mock
-		$mock = $this->createConfigMock( [
-			'cache' => $cache,
-		] );
-		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( self::createEtcdResponse( [ 'config' => [ 'known' => 'from-fetch' ] ] ) );
-
-		$this->assertSame( 'from-fetch', $mock->get( 'known' ) );
-	}
-
-	public function testLoadCacheExpiredLockFetchFails() {
-		// Create cache mock
-		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->onlyMethods( [ 'get', 'lock' ] )
-			->getMock();
-		$cache->expects( $this->once() )->method( 'get' )->willReturn(
-			// .. stale cache
-			[
-				'config' => [ 'known' => 'from-cache-expired' ],
-				'expires' => -INF,
-				'modifiedIndex' => 0,
-			]
-		);
-		// .. gets lock
-		$cache->expects( $this->once() )->method( 'lock' )
-			->willReturn( true );
-
-		// Create config mock
-		$mock = $this->createConfigMock( [
-			'cache' => $cache,
-		] );
-		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( self::createEtcdResponse( [ 'error' => 'Fake failure', 'retry' => true ] ) );
-
-		$this->assertSame( 'from-cache-expired', @$mock->get( 'known' ) );
-	}
-
-	public function createConfigMockWithNoLock() {
+	public function testLoadCacheExpiredLockWarning() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'get', 'lock' ] )
@@ -348,17 +275,6 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 			'cache' => $cache,
 		] );
 		$mock->expects( $this->never() )->method( 'fetchAllFromEtcd' );
-		return $mock;
-	}
-
-	public function testLoadCacheExpiredNoLock() {
-		$mock = $this->createConfigMockWithNoLock();
-
-		$this->assertSame( 'from-cache-expired', @$mock->get( 'known' ) );
-	}
-
-	public function testLoadCacheExpiredNoLockWarning() {
-		$mock = $this->createConfigMockWithNoLock();
 
 		$this->expectPHPError(
 			E_USER_NOTICE,
