@@ -117,36 +117,37 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetTitle_successFromPageIdOnFallback() {
 		$db = $this->installMockDatabase();
 
-		$db
-			->method( 'selectRow' )
-			->withConsecutive(
-				[
-					[ 'page' ],
-					$this->anything(),
-					[ 'page_id' => 1 ]
-				],
-				[
-					[ 0 => 'page', 'revision' => 'revision' ],
-					$this->anything(),
-					[ 'rev_id' => 2 ]
-				],
-				[
-					[ 'page' ],
-					$this->anything(),
-					[ 'page_id' => 1 ]
-				]
-			)
-			->willReturnOnConsecutiveCalls(
+		$selectRowArgs = [
+			[
 				// First query, by page_id, no result
+				[ 'page' ],
+				[ 'page_id' => 1 ],
 				false,
+			],
+			[
 				// Second query, by rev_id, no result
+				[ 0 => 'page', 'revision' => 'revision' ],
+				[ 'rev_id' => 2 ],
 				false,
+			],
+			[
 				// Third query, retrying by page_id again on master
+				[ 'page' ],
+				[ 'page_id' => 1 ],
 				$this->getDummyPageRow( [
 					'page_namespace' => '2',
 					'page_title' => 'Foodey',
 				] )
-			);
+			]
+		];
+		$db->expects( $this->exactly( 3 ) )
+			->method( 'selectRow' )
+			->willReturnCallback( function ( $table, $vars, $conds ) use ( &$selectRowArgs ) {
+				[ $nextTable, $nextConds, $returnValue ] = array_shift( $selectRowArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextConds, $conds );
+				return $returnValue;
+			} );
 
 		$store = $this->getRevisionStore();
 		$title = $store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
@@ -161,29 +162,31 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetTitle_successFromRevId() {
 		$db = $this->installMockDatabase();
 
-		// First call to Title::newFromID, faking no result (db lag?)
-		// Second select using rev_id, faking no result (db lag?)
-		$db
-			->method( 'selectRow' )
-			->withConsecutive(
-				[
-					[ 'page' ],
-					$this->anything(),
-					[ 'page_id' => 1 ]
-				],
-				[
-					[ 0 => 'page', 'revision' => 'revision' ],
-					$this->anything(),
-					[ 'rev_id' => 2 ]
-				]
-			)
-			->willReturnOnConsecutiveCalls(
+		$selectRowArgs = [
+			[
+				[ 'page' ],
+				[ 'page_id' => 1 ],
 				false,
+			],
+			[
+				[ 0 => 'page', 'revision' => 'revision' ],
+				[ 'rev_id' => 2 ],
 				$this->getDummyPageRow( [
 					'page_namespace' => '1',
 					'page_title' => 'Food2',
 				] )
-			);
+			]
+		];
+		// First call to Title::newFromID, faking no result (db lag?)
+		// Second select using rev_id, faking no result (db lag?)
+		$db->expects( $this->exactly( 2 ) )
+			->method( 'selectRow' )
+			->willReturnCallback( function ( $table, $vars, $conds ) use ( &$selectRowArgs ) {
+				[ $nextTable, $nextConds, $returnValue ] = array_shift( $selectRowArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextConds, $conds );
+				return $returnValue;
+			} );
 
 		$store = $this->getRevisionStore();
 		$title = $store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
@@ -198,43 +201,43 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetTitle_successFromRevIdOnFallback() {
 		$db = $this->installMockDatabase();
 
-		$db
-			->method( 'selectRow' )
-			->withConsecutive(
-				[
-					[ 'page' ],
-					$this->anything(),
-					[ 'page_id' => 1 ]
-				],
-				[
-					[ 0 => 'page', 'revision' => 'revision' ],
-					$this->anything(),
-					[ 'rev_id' => 2 ]
-				],
-				[
-					[ 'page' ],
-					$this->anything(),
-					[ 'page_id' => 1 ]
-				],
-				[
-					[ 0 => 'page', 'revision' => 'revision' ],
-					$this->anything(),
-					[ 'rev_id' => 2 ]
-				]
-			)
-			->willReturnOnConsecutiveCalls(
+		$selectRowArgs = [
+			[
 				// First query, by page_id, no result
+				[ 'page' ],
+				[ 'page_id' => 1 ],
 				false,
+			],
+			[
 				// Second query, by rev_id, no result
+				[ 0 => 'page', 'revision' => 'revision' ],
+				[ 'rev_id' => 2 ],
 				false,
+			],
+			[
 				// Third query, retrying by page_id again on master, still no result
+				[ 'page' ],
+				[ 'page_id' => 1 ],
 				false,
+			],
+			[
 				// Fourth query, by rev_id again
+				[ 0 => 'page', 'revision' => 'revision' ],
+				[ 'rev_id' => 2 ],
 				$this->getDummyPageRow( [
 					'page_namespace' => '2',
 					'page_title' => 'Foodey',
 				] )
-			);
+			]
+		];
+		$db->expects( $this->exactly( 4 ) )
+			->method( 'selectRow' )
+			->willReturnCallback( function ( $table, $vars, $conds ) use ( &$selectRowArgs ) {
+				[ $nextTable, $nextConds, $returnValue ] = array_shift( $selectRowArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextConds, $conds );
+				return $returnValue;
+			} );
 
 		$store = $this->getRevisionStore();
 		$title = $store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
@@ -268,31 +271,32 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			} );
 
 		// First and third call to Title::newFromID, faking no result
-		$db
+		$selectRowArgs = [
+			[
+				[ 'page' ],
+				[ 'page_id' => 1 ]
+			],
+			[
+				[ 0 => 'page', 'revision' => 'revision' ],
+				[ 'rev_id' => 2 ]
+			],
+			[
+				[ 'page' ],
+				[ 'page_id' => 1 ]
+			],
+			[
+				[ 0 => 'page', 'revision' => 'revision' ],
+				[ 'rev_id' => 2 ]
+			]
+		];
+		$db->expects( $this->exactly( 4 ) )
 			->method( 'selectRow' )
-			->withConsecutive(
-				[
-					[ 'page' ],
-					$this->anything(),
-					[ 'page_id' => 1 ]
-				],
-				[
-					[ 0 => 'page', 'revision' => 'revision' ],
-					$this->anything(),
-					[ 'rev_id' => 2 ]
-				],
-				[
-					[ 'page' ],
-					$this->anything(),
-					[ 'page_id' => 1 ]
-				],
-				[
-					[ 0 => 'page', 'revision' => 'revision' ],
-					$this->anything(),
-					[ 'rev_id' => 2 ]
-				]
-			)
-			->willReturn( false );
+			->willReturnCallback( function ( $table, $vars, $conds ) use ( &$selectRowArgs ) {
+				[ $nextTable, $nextConds ] = array_shift( $selectRowArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextConds, $conds );
+				return false;
+			} );
 
 		$store = $this->getRevisionStore( $mockLoadBalancer );
 

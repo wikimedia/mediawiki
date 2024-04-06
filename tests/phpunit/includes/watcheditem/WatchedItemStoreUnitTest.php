@@ -21,7 +21,6 @@ use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\InsertQueryBuilder;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -245,18 +244,23 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'selectFieldValues' )
 			->willReturn( [ 1, 2 ] );
 
+		$deleteArgs = [
+			[
+				'watchlist',
+				[ 'wl_id' => [ 1, 2 ] ]
+			],
+			[
+				'watchlist_expiry',
+				[ 'we_item' => [ 1, 2 ] ]
+			]
+		];
 		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'delete' )
-			->withConsecutive(
-				[
-					'watchlist',
-					[ 'wl_id' => [ 1, 2 ] ]
-				],
-				[
-					'watchlist_expiry',
-					[ 'we_item' => [ 1, 2 ] ]
-				]
-			);
+			->willReturnCallback( function ( $table, $conds ) use ( &$deleteArgs ): void {
+				[ $nextTable, $nextConds ] = array_shift( $deleteArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextConds, $conds );
+			} );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'get' );
@@ -953,40 +957,18 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$mockDb = $this->getMockDb();
-		$mockDb
+		$mockDb->expects( $this->once() )
 			->method( 'select' )
-			->withConsecutive(
+			->with(
+				[ 'watchlist' ],
+				[ 'wl_user', 'wl_notificationtimestamp' ],
 				[
-					[ 'watchlist' ],
-					[ 'wl_user', 'wl_notificationtimestamp' ],
-					[
-						'wl_namespace' => 0,
-						'wl_title' => 'Old_Title',
-					]
-				],
-				[
-					'watchlist',
-					[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
-					[
-						[
-							'wl_user' => 1,
-							'wl_namespace' => 0,
-							'wl_title' => 'New_Title',
-							'wl_notificationtimestamp' => '20151212010101',
-						],
-						[
-							'wl_user' => 2,
-							'wl_namespace' => 0,
-							'wl_title' => 'New_Title',
-							'wl_notificationtimestamp' => null,
-						],
-					],
-					$this->isType( 'string' )
+					'wl_namespace' => 0,
+					'wl_title' => 'Old_Title',
 				]
 			)
-			->willReturnOnConsecutiveCalls(
+			->willReturn(
 				new FakeResultWrapper( $fakeRows ),
-				$this->createMock( IResultWrapper::class )
 			);
 
 		$mockCache = $this->getMockCache();
@@ -1009,28 +991,34 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testDuplicateAllAssociatedEntries_nothingToDuplicate( $testPageFactory ) {
-		$mockDb = $this->getMockDb();
-		$mockDb
-			->method( 'select' )
-			->withConsecutive(
+		$selectArgs = [
+			[
+				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
+				[ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
-					[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
-					[ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ],
-					[
-						'wl_namespace' => 0,
-						'wl_title' => 'Old_Title',
-					]
-				],
-				[
-					[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
-					[ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ],
-					[
-						'wl_namespace' => 1,
-						'wl_title' => 'Old_Title',
-					]
+					'wl_namespace' => 0,
+					'wl_title' => 'Old_Title',
 				]
-			)
-			->willReturn( new FakeResultWrapper( [] ) );
+			],
+			[
+				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
+				[ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ],
+				[
+					'wl_namespace' => 1,
+					'wl_title' => 'Old_Title',
+				]
+			]
+		];
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 2 ) )
+			->method( 'select' )
+			->willReturnCallback( function ( $table, $vars, $conds ) use ( &$selectArgs ) {
+				[ $nextTable, $nextVars, $nextConds ] = array_shift( $selectArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextVars, $vars );
+				$this->assertSame( $nextConds, $conds );
+				return new FakeResultWrapper( [] );
+			} );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'get' );
@@ -1068,58 +1056,68 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
+		$selectArgs = [
+			[
+				[ 'watchlist' ],
+				[ 'wl_user', 'wl_notificationtimestamp' ],
+				[
+					'wl_namespace' => $oldTarget->getNamespace(),
+					'wl_title' => $oldTarget->getDBkey(),
+				]
+			],
+			[
+				[ 'watchlist' ],
+				[ 'wl_user', 'wl_notificationtimestamp' ],
+				[
+					'wl_namespace' => $oldTarget->getNamespace() + 1,
+					'wl_title' => $oldTarget->getDBkey(),
+				]
+			]
+		];
 		$mockDb = $this->getMockDb();
-		$mockDb
+		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'select' )
-			->withConsecutive(
+			->willReturnCallback( function ( $table, $vars, $conds ) use ( &$selectArgs, $fakeRows ) {
+				[ $nextTable, $nextVars, $nextConds ] = array_shift( $selectArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextVars, $vars );
+				$this->assertSame( $nextConds, $conds );
+				return new FakeResultWrapper( $fakeRows );
+			} );
+		$replaceArgs = [
+			[
+				'watchlist',
+				[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
 				[
-					[ 'watchlist' ],
-					[ 'wl_user', 'wl_notificationtimestamp' ],
 					[
-						'wl_namespace' => $oldTarget->getNamespace(),
-						'wl_title' => $oldTarget->getDBkey(),
-					]
+						'wl_user' => '1',
+						'wl_namespace' => $newTarget->getNamespace(),
+						'wl_title' => $newTarget->getDBkey(),
+						'wl_notificationtimestamp' => '20151212010101',
+					],
 				],
+			],
+			[
+				'watchlist',
+				[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
 				[
-					[ 'watchlist' ],
-					[ 'wl_user', 'wl_notificationtimestamp' ],
 					[
-						'wl_namespace' => $oldTarget->getNamespace() + 1,
-						'wl_title' => $oldTarget->getDBkey(),
-					]
-				]
-			)
-			->willReturn( new FakeResultWrapper( $fakeRows ) );
-		$mockDb
+						'wl_user' => '1',
+						'wl_namespace' => $newTarget->getNamespace() + 1,
+						'wl_title' => $newTarget->getDBkey(),
+						'wl_notificationtimestamp' => '20151212010101',
+					],
+				],
+			],
+		];
+		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'replace' )
-			->withConsecutive(
-				[
-					'watchlist',
-					[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
-					[
-						[
-							'wl_user' => 1,
-							'wl_namespace' => $newTarget->getNamespace(),
-							'wl_title' => $newTarget->getDBkey(),
-							'wl_notificationtimestamp' => '20151212010101',
-						],
-					],
-					$this->isType( 'string' )
-				],
-				[
-					'watchlist',
-					[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
-					[
-						[
-							'wl_user' => 1,
-							'wl_namespace' => $newTarget->getNamespace() + 1,
-							'wl_title' => $newTarget->getDBkey(),
-							'wl_notificationtimestamp' => '20151212010101',
-						],
-					],
-					$this->isType( 'string' )
-				]
-			);
+			->willReturnCallback( function ( $table, $uniqueKeys, $rows ) use ( &$replaceArgs ): void {
+				[ $nextTable, $nextUniqueKeys, $nextRows ] = array_shift( $replaceArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextUniqueKeys, $uniqueKeys );
+				$this->assertSame( $nextRows, $rows );
+			} );
 		$mockDb
 			->method( 'newSelectQueryBuilder' )
 			->willReturn( new SelectQueryBuilder( $mockDb ) );
@@ -1237,13 +1235,14 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'affectedRows' )
 			->willReturn( 2 );
 
+		$cacheKeys = [ '0:Some_Page:1', '1:Some_Page:1' ];
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->exactly( 2 ) )
 			->method( 'delete' )
-			->withConsecutive(
-				[ '0:Some_Page:1' ],
-				[ '1:Some_Page:1' ]
-			);
+			->with( $this->callback( static function ( $key ) use ( &$cacheKeys ) {
+				$nextKey = array_shift( $cacheKeys );
+				return $nextKey === $key;
+			} ) );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
@@ -1404,18 +1403,23 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'selectFieldValues' )
 			->willReturn( [ 1, 2 ] );
+		$deleteArgs = [
+			[
+				'watchlist',
+				[ 'wl_id' => [ 1, 2 ] ]
+			],
+			[
+				'watchlist_expiry',
+				[ 'we_item' => [ 1, 2 ] ]
+			]
+		];
 		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'delete' )
-			->withConsecutive(
-				[
-					'watchlist',
-					[ 'wl_id' => [ 1, 2 ] ]
-				],
-				[
-					'watchlist_expiry',
-					[ 'we_item' => [ 1, 2 ] ]
-				]
-			);
+			->willReturnCallback( function ( $table, $conds ) use ( &$deleteArgs ): void {
+				[ $nextTable, $nextConds ] = array_shift( $deleteArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextConds, $conds );
+			} );
 		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'affectedRows' )
 			->willReturn( 2 );
@@ -1424,10 +1428,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockCache->expects( $this->never() )->method( 'get' );
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
-			->withConsecutive(
-				[ '0:SomeDbKey:1' ],
-				[ '1:SomeDbKey:1' ]
-			);
+			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
@@ -1456,10 +1457,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockCache->expects( $this->never() )->method( 'get' );
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
-			->withConsecutive(
-				[ '0:SomeDbKey:1' ],
-				[ '1:SomeDbKey:1' ]
-			);
+			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
@@ -1992,14 +1990,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			)
 			->willReturn( $dbResult );
 
+		$cacheKeys = [ '0:SomeDbKey:1', '1:AnotherDbKey:1' ];
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->exactly( 2 ) )
 			->method( 'get' )
-			->withConsecutive(
-				[ '0:SomeDbKey:1' ],
-				[ '1:AnotherDbKey:1' ]
-			)
-			->willReturn( null );
+			->willReturnCallback( function ( $key ) use ( &$cacheKeys ) {
+				$nextKey = array_shift( $cacheKeys );
+				$this->assertSame( $nextKey, $key );
+				return null;
+			} );
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
@@ -2102,14 +2101,18 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				(object)[ 'wl_namespace' => '1', 'wl_title' => 'AnotherDbKey', 'wl_notificationtimestamp' => null, ]
 			] );
 
+		$cacheKeys = [
+			[ '0:SomeDbKey:1', $cachedItem ],
+			[ '1:AnotherDbKey:1', null ]
+		];
 		$mockCache = $this->getMockCache();
-		$mockCache
+		$mockCache->expects( $this->exactly( 2 ) )
 			->method( 'get' )
-			->withConsecutive(
-				[ '0:SomeDbKey:1' ],
-				[ '1:AnotherDbKey:1' ]
-			)
-			->willReturnOnConsecutiveCalls( $cachedItem, null );
+			->willReturnCallback( function ( $key ) use ( &$cacheKeys ) {
+				[ $nextKey, $returnValue ] = array_shift( $cacheKeys );
+				$this->assertSame( $nextKey, $key );
+				return $returnValue;
+			} );
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
@@ -2140,14 +2143,18 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		];
 		$mockDb = $this->createNoOpMock( DBConnRef::class );
 
+		$cacheKeys = [
+			[ '0:SomeDbKey:1', $cachedItems[0] ],
+			[ '1:AnotherDbKey:1', $cachedItems[1] ],
+		];
 		$mockCache = $this->getMockCache();
-		$mockCache
+		$mockCache->expects( $this->exactly( 2 ) )
 			->method( 'get' )
-			->withConsecutive(
-				[ '0:SomeDbKey:1' ],
-				[ '1:AnotherDbKey:1' ]
-			)
-			->willReturnOnConsecutiveCalls( $cachedItems[0], $cachedItems[1] );
+			->willReturnCallback( function ( $key ) use ( &$cacheKeys ) {
+				[ $nextKey, $returnValue ] = array_shift( $cacheKeys );
+				$this->assertSame( $nextKey, $key );
+				return $returnValue;
+			} );
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
@@ -3152,32 +3159,38 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'addQuotes' )
 			->willReturn( '20200101000000' );
 
+		$selectFieldValuesArgs = [
+			// Select expired items.
+			[
+				[ 'watchlist_expiry' ],
+				'we_item',
+				[ 'we_expiry <= 20200101000000' ],
+				[ 'LIMIT' => 2 ],
+				[],
+				[ 1, 2 ],
+			],
+			// Select orphaned items.
+			[
+				[ 'watchlist_expiry', 'watchlist' => 'watchlist' ],
+				'we_item',
+				[ 'wl_id' => null, 'we_expiry' => null ],
+				[],
+				[ 'watchlist' => [ 'LEFT JOIN', 'wl_id = we_item' ] ],
+				[ 3 ]
+			]
+		];
 		// Select watchlist IDs.
 		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'selectFieldValues' )
-			->withConsecutive(
-				// Select expired items.
-				[
-					[ 'watchlist_expiry' ],
-					'we_item',
-					[ 'we_expiry <= 20200101000000' ],
-					'WatchedItemStore::removeExpired',
-					[ 'LIMIT' => 2 ]
-				],
-				// Select orphaned items.
-				[
-					[ 'watchlist_expiry', 'watchlist' => 'watchlist' ],
-					'we_item',
-					[ 'wl_id' => null, 'we_expiry' => null ],
-					'WatchedItemStore::removeExpired',
-					[],
-					[ 'watchlist' => [ 'LEFT JOIN', 'wl_id = we_item' ] ]
-				]
-			)
-			->willReturnOnConsecutiveCalls(
-				[ 1, 2 ],
-				[ 3 ]
-			);
+			->willReturnCallback( function ( $table, $vars, $conds, $fname, $options, $join_conds ) use ( &$selectFieldValuesArgs ) {
+				[ $nextTable, $nextVars, $nextConds, $nextOptions, $nextJoinConds, $returnValue ] = array_shift( $selectFieldValuesArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextVars, $vars );
+				$this->assertSame( $nextConds, $conds );
+				$this->assertSame( $nextOptions, $options );
+				$this->assertSame( $nextJoinConds, $join_conds );
+				return $returnValue;
+			} );
 
 		// Return whatever is passed to makeList, to be tested below.
 		$mockDb->expects( $this->once() )
@@ -3185,28 +3198,30 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->willReturnArgument( 0 );
 
 		// Delete from watchlist and watchlist_expiry.
+		$deleteArgs = [
+			// Delete expired items from watchlist
+			[
+				'watchlist',
+				[ 'wl_id' => [ 1, 2 ] ],
+			],
+			// Delete expired items from watchlist_expiry
+			[
+				'watchlist_expiry',
+				[ 'we_item' => [ 1, 2 ] ],
+			],
+			// Delete orphaned items
+			[
+				'watchlist_expiry',
+				[ 'we_item' => [ 3 ] ],
+			]
+		];
 		$mockDb->expects( $this->exactly( 3 ) )
 			->method( 'delete' )
-			->withConsecutive(
-				// Delete expired items from watchlist
-				[
-					'watchlist',
-					[ 'wl_id' => [ 1, 2 ] ],
-					'WatchedItemStore::removeExpired'
-				],
-				// Delete expired items from watchlist_expiry
-				[
-					'watchlist_expiry',
-					[ 'we_item' => [ 1, 2 ] ],
-					'WatchedItemStore::removeExpired'
-				],
-				// Delete orphaned items
-				[
-					'watchlist_expiry',
-					[ 'we_item' => [ 3 ] ],
-					'WatchedItemStore::removeExpired'
-				]
-			);
+			->willReturnCallback( function ( $table, $conds ) use ( &$deleteArgs ): void {
+				[ $nextTable, $nextConds ] = array_shift( $deleteArgs );
+				$this->assertSame( $nextTable, $table );
+				$this->assertSame( $nextConds, $conds );
+			} );
 
 		$mockCache = $this->getMockCache();
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );

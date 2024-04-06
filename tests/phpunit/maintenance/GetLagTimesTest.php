@@ -66,14 +66,19 @@ class GetLagTimesTest extends MaintenanceBaseTestCase {
 		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
 
 		// The Statsd service
+		$gaugeArgs = [
+			[ 'loadbalancer.lag.cluster1.localhost', 1000 ],
+			[ 'loadbalancer.lag.cluster2.localhost', 0 ],
+			[ 'loadbalancer.lag.external.localhost', 14000 ],
+		];
 		$stats = $this->createMock( IBufferingStatsdDataFactory::class );
 		$stats->expects( $this->exactly( 3 ) )
 			->method( 'gauge' )
-			->withConsecutive(
-				[ 'loadbalancer.lag.cluster1.localhost', 1000 ],
-				[ 'loadbalancer.lag.cluster2.localhost', 0 ],
-				[ 'loadbalancer.lag.external.localhost', 14000 ],
-			);
+			->willReturnCallback( function ( $key, $value ) use ( &$gaugeArgs ): void {
+				[ $nextKey, $nextValue ] = array_shift( $gaugeArgs );
+				$this->assertSame( $nextKey, $key );
+				$this->assertSame( $nextValue, $value );
+			} );
 
 		$this->setService( 'StatsdDataFactory', $stats );
 

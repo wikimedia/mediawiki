@@ -375,10 +375,14 @@ class MetricTest extends TestCase {
 	public function testStatsdDataFactoryPersistsWithComponent() {
 		$statsFactory = StatsFactory::newNull();
 
+		$timingArgs = [ 'test.timing.1', 'test.timing.2' ];
 		$statsdMock = $this->createMock( IBufferingStatsdDataFactory::class );
 		$statsdMock->expects( $this->exactly( 2 ) )
 			->method( 'timing' )
-			->withConsecutive( [ 'test.timing.1', 1.0 ], [ 'test.timing.2', 1.0 ] );
+			->with( $this->callback( static function ( $key ) use ( &$timingArgs ) {
+				$nextKey = array_shift( $timingArgs );
+				return $nextKey === $key;
+			}, 1.0 ) );
 
 		$statsFactory = $statsFactory->withStatsdDataFactory( $statsdMock );
 
