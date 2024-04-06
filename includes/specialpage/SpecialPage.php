@@ -39,6 +39,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -355,6 +356,29 @@ class SpecialPage implements MessageLocalizer {
 		return MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->userHasRight( $user, $this->mRestriction );
+	}
+
+	/**
+	 * Utility function for authorizing an action to be performed by the special
+	 * page. User blocks and rate limits are enforced implicitly.
+	 *
+	 * @see Authority::authorizeAction.
+	 *
+	 * @param ?string $action If not given, the action returned by
+	 *        getRestriction() will be used.
+	 *
+	 * @return PermissionStatus
+	 */
+	protected function authorizeAction( ?string $action = null ): PermissionStatus {
+		$action ??= $this->getRestriction();
+
+		if ( !$action ) {
+			return PermissionStatus::newGood();
+		}
+
+		$status = PermissionStatus::newEmpty();
+		$this->getAuthority()->authorizeAction( $action, $status );
+		return $status;
 	}
 
 	/**
