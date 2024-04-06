@@ -9,6 +9,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\ParameterTypeException;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -327,15 +328,31 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	public function testInLanguage() {
 		$this->assertSame( 'Main Page', wfMessage( 'mainpage' )->inLanguage( 'en' )->text() );
-		$this->assertSame( 'Заглавная страница',
-			wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
+		$this->assertSame( 'Главна страна',
+			wfMessage( 'mainpage' )->inLanguage( 'sr-ec' )->text() );
 
 		// NOTE: make sure internal caching of the message text is reset appropriately
 		$msg = wfMessage( 'mainpage' );
 		$this->assertSame( 'Main Page', $msg->inLanguage( 'en' )->text() );
 		$this->assertSame(
-			'Заглавная страница',
-			$msg->inLanguage( 'ru' )->text()
+			'Главна страна',
+			$msg->inLanguage( 'sr-ec' )->text()
+		);
+	}
+
+	public function testInLanguageBcp47() {
+		$en = new Bcp47CodeValue( 'en' );
+		$sr = new Bcp47CodeValue( 'sr-Cyrl' );
+		$this->assertSame( 'Main Page', wfMessage( 'mainpage' )->inLanguage( $en )->text() );
+		$this->assertSame( 'Главна страна',
+			wfMessage( 'mainpage' )->inLanguage( $sr )->text() );
+
+		// NOTE: make sure internal caching of the message text is reset appropriately
+		$msg = wfMessage( 'mainpage' );
+		$this->assertSame( 'Main Page', $msg->inLanguage( $en )->text() );
+		$this->assertSame(
+			'Главна страна',
+			$msg->inLanguage( $sr )->text()
 		);
 	}
 
