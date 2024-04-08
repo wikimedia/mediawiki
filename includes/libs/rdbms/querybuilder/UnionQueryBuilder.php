@@ -111,9 +111,11 @@ class UnionQueryBuilder {
 	 * This would be ignored if the DB does not support order by in union queries.
 	 *
 	 * @param string[]|string $fields The field or list of fields to order by.
+	 * @param-taint $fields exec_sql
 	 * @param string|null $direction self::SORT_ASC or self::SORT_DESC.
 	 * If this is null then $fields is assumed to optionally contain ASC or DESC
 	 * after each field name.
+	 * @param-taint $direction exec_sql
 	 * @return $this
 	 */
 	public function orderBy( $fields, $direction = null ) {
@@ -155,6 +157,7 @@ class UnionQueryBuilder {
 	 * Set the method name to be included in an SQL comment.
 	 *
 	 * @param string $fname
+	 * @param-taint $fname exec_sql
 	 * @return $this
 	 */
 	public function caller( $fname ) {

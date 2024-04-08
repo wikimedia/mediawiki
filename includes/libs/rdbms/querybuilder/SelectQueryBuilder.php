@@ -472,6 +472,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * If there is an existing GROUP BY clause, the new one will be appended.
 	 *
 	 * @param string|string[] $group
+	 * @param-taint $group exec_sql
 	 * @return $this
 	 */
 	public function groupBy( $group ) {
@@ -488,6 +489,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * If there is an existing HAVING clause, the new one will be appended.
 	 *
 	 * @param string|string[] $having
+	 * @param-taint $having exec_sql_numkey
 	 * @return $this
 	 */
 	public function having( $having ) {
@@ -500,10 +502,12 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * additional fields to it.
 	 *
 	 * @param string[]|string $fields The field or list of fields to order by.
+	 * @param-taint $fields exec_sql
 	 * @param string|null $direction Sorting direction applied to all fields,
 	 *   self::SORT_ASC or self::SORT_DESC. If different fields need to be sorted in opposite
 	 *   directions, then this parameter must be omitted, and $fields must contain 'ASC' or 'DESC'
 	 *   after each field name.
+	 * @param-taint $direction exec_sql
 	 * @return $this
 	 */
 	public function orderBy( $fields, $direction = null ) {
@@ -548,6 +552,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * array will be merged with the existing value.
 	 *
 	 * @param string|string[] $index
+	 * @param-taint $index exec_sql
 	 * @return $this
 	 */
 	public function useIndex( $index ) {
@@ -565,6 +570,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * array will be merged with the existing value.
 	 *
 	 * @param string|string[] $index
+	 * @param-taint $index exec_sql
 	 * @return $this
 	 */
 	public function ignoreIndex( $index ) {

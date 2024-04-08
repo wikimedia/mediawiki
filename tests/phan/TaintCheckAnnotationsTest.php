@@ -36,6 +36,7 @@ use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\UnionQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 die( 'This file should never be loaded' );
@@ -341,6 +342,11 @@ class TaintCheckAnnotationsTest {
 		$sqb->conds( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 		$sqb->conds( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 		$sqb->conds( [ 'foo' => $_GET['a'] ] );// Safe
+		$sqb->groupBy( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->having( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->orderBy( $_GET['a'], $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->useIndex( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$sqb->ignoreIndex( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 
 		$sqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
 
@@ -438,6 +444,17 @@ class TaintCheckAnnotationsTest {
 		$dqb->conds( [ 'foo' => $_GET['a'] ] );// Safe
 
 		$dqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+	}
+
+	function testUnionQueryBuilder( UnionQueryBuilder $uqb ) {
+		$uqb->orderBy( $_GET['a'], $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		$uqb->caller( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+
+		echo $uqb->fetchResultSet();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $uqb->fetchField();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $uqb->fetchFieldValues();// @phan-suppress-current-line SecurityCheck-XSS
+		echo $uqb->fetchRow();// @phan-suppress-current-line SecurityCheck-XSS
 	}
 
 	/**
