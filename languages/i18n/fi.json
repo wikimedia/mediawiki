@@ -1750,6 +1750,7 @@
 	"upload": "Tallenna tiedosto",
 	"uploadbtn": "Tallenna tiedosto",
 	"reuploaddesc": "Peruuta tallennus ja palaa tallennuslomakkeelle.",
+	"upload-refresh": "Päivitä",
 	"upload-tryagain": "Lähetä muutettu tiedostokuvaus",
 	"upload-tryagain-nostash": "Lähetä uudelleenlähetetty tiedosto ja muokattu kuvaus",
 	"uploadnologin": "Et ole kirjautunut sisään",

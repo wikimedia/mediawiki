@@ -4191,6 +4191,7 @@
 	"paramvalidator-help-type-user-subtype-id": "bruker-ID (f.eks. «#12345»)",
 	"paramvalidator-badtitle": "Ugyldig verdi «$2» for tittelparameteren <var>$1</var>: ikke en gyldig tittelstreng.",
 	"paramvalidator-missingtitle": "Ugyldig verdi «$2» for tittelparameteren <var>$1</var>: siden finnes ikke.",
+	"paramvalidator-notarray": "Ugyldig verdi for parameteren <var>$1</var>: array forventet.",
 	"paramvalidator-help-type-title": "Type: sidetittel",
 	"paramvalidator-help-type-title-must-exist": "Godtar kun sider som finnes.",
 	"paramvalidator-help-type-title-no-must-exist": "Godtar ikke-eksisterende sider.",

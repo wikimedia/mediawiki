@@ -2993,6 +2993,8 @@
 	"movesubpage": "{{PLURAL:$1|Unterseite|Unterseiten}}",
 	"movesubpagetext": "Diese Seite hat $1 {{PLURAL:$1|Unterseite|Unterseiten}}.",
 	"movesubpagetalktext": "Die dazugehörige Diskussionsseite hat {{PLURAL:$1|eine Unterseite, die unten angezeigt wird|$1 Unterseiten, die unten angezeigt werden}}.",
+	"movesubpagetext-truncated": "Die {{PLURAL:$1|erste Unterseite dieser Seite wird|ersten $1 Unterseiten dieser Seite werden}} unten angezeigt.",
+	"movesubpagetalktext-truncated": "Die {{PLURAL:$1|erste Unterseite für die entsprechende Diskussionsseite wird|ersten $1 Unterseiten für die entsprechende Diskussionsseite werden}} unten angezeigt.",
 	"movenosubpage": "Diese Seite hat keine Unterseiten.",
 	"movereason": "Grund:",
 	"moveotherreason": "Anderer/ergänzender Grund:",

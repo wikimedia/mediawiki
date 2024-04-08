@@ -57,7 +57,7 @@
 	"rest-badtoken-nosession": "שגיאת CSRF – אין התחברות.",
 	"rest-mock-error": "שגיאת־דמה.",
 	"rest-specified-revision-unavailable": "הגרסה שצוינה נמחקה או הועלמה.",
-	"rest-previous-revision-unavailable": "לא היה אפשר למצוא את הגרסה הקודמת. האם הדף ננעל / נמחק?",
+	"rest-previous-revision-unavailable": "לא היה אפשר למצוא את הגרסה הקודמת. האם הדף ננעל או נמחק?",
 	"rest-requires-content-type-header": "חובה לספק כותר Content-Type עם המטען של הבקשה.",
 	"rest-transform-missing-html": "לא סופק html.",
 	"rest-transform-missing-title": "לא סופק title או wikitext.",

@@ -38,7 +38,7 @@
 	"rest-update-cannot-create-page": "La pagina \"$1\" non può essere creata perché già esiste. Per aggiornare la pagina esistente, fornire l'ID versione base nella struttura sotto \"l'ultima\" chiave nel corpo richiesto.",
 	"rest-cannot-load-file": "Il file per il titolo \"$1\" non può essere caricato.",
 	"rest-specified-revision-unavailable": "La versione indicata è stata cancellata o soppressa.",
-	"rest-previous-revision-unavailable": "Non è stato possibile trovare la versione precedente. La pagina è stata bloccata/cancellata?",
+	"rest-previous-revision-unavailable": "Non è stato possibile trovare la versione precedente. La pagina è stata bloccata o cancellata?",
 	"rest-parsoid-resource-exceeded": "Limite delle risorse superato",
 	"rest-invalid-transform": "Trasformazione non valida: da $1 a $2"
 }
