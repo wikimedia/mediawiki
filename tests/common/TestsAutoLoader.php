@@ -301,6 +301,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\ExtensionJsonTestBase' => "$testDir/phpunit/integration/includes/ExtensionJsonTestBase.php",
 	'MediaWiki\\Tests\\ExtensionServicesTestBase' => "$testDir/phpunit/integration/includes/ExtensionServicesTestBase.php",
 
+	# tests/phpunit/integration/includes/HTMLForm
+	'MediaWiki\\Tests\\Integration\\HTMLForm\\HTMLFormFieldTestCase' => "$testDir/phpunit/integration/includes/HTMLForm/HTMLFormFieldTestCase.php",
+
 	# tests/phpunit/integration/includes/user
 	'MediaWiki\\Tests\\User\\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
 
