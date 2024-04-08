@@ -3051,6 +3051,7 @@
 	"searchsuggest-containing": "Ehtiva edən səhifələri axtar:",
 	"searchlimit-label": "Hər səhifədə göstəriləcək axtarış nəticəsi sayı:",
 	"searchlimit-help": "Maksimum: 500",
+	"api-clientside-error-noconnect": "Serverə qoşulmaq mümkün olmadı. İşləyən internet bağlantınız olduğundan əmin olun və yenidən cəhd edin.",
 	"api-error-unknown-warning": "Naməlum xəbərdarlıq: \"$1\".",
 	"api-error-unknownerror": "Naməlum xəta: \"$1\".",
 	"duration-seconds": "$1 {{PLURAL:$1|saniyə|saniyə}}",

@@ -45,7 +45,8 @@
 			"飞舞回堂前",
 			"아라",
 			"Base",
-			"Dream Star.cn"
+			"Dream Star.cn",
+			"Winston Sung"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -226,7 +227,7 @@
 	"mediawikipage": "觀訊",
 	"templatepage": "鑄模",
 	"viewhelppage": "助文",
-	"categorypage": "分類",
+	"categorypage": "觀類",
 	"viewtalkpage": "見議",
 	"otherlanguages": "他山",
 	"redirectedfrom": "（渡自$1）",
@@ -1311,7 +1312,7 @@
 	"prefixindex": "依名索引",
 	"shortpages": "短篇",
 	"longpages": "長言",
-	"deadendpages": "此無路也",
+	"deadendpages": "無路",
 	"protectedpages": "頁錮",
 	"protectedpages-indef": "只示無期之錮",
 	"protectedpages-cascade": "只示連串之錮",
@@ -1320,6 +1321,7 @@
 	"protectedpages-expiry": "屆期",
 	"protectedpages-reason": "因：",
 	"protectedpages-unknown-timestamp": "未知",
+	"protectedtitles": "緘題",
 	"listusers": "點簿",
 	"listusers-editsonly": "只示有纂之簿",
 	"listusers-creationsort": "按先後列之",
