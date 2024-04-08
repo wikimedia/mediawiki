@@ -41,7 +41,6 @@ class UserFactory implements UserRigorOptions {
 
 	/**
 	 * RIGOR_* constants are inherited from UserRigorOptions
-	 * READ_* constants are inherited from IDBAccessObject
 	 */
 
 	/** @internal */
