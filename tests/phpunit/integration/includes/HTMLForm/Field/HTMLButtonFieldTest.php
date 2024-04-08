@@ -9,6 +9,62 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 	protected $className = 'HTMLButtonField';
 
+	public static function provideInputHtml() {
+		yield 'Basic button' => [
+			[
+				'buttonlabel' => 'Click me',
+			],
+			'',
+			'<button class="mw-htmlform-submit" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
+		];
+
+		yield 'Button with CSS class' => [
+			[
+				'buttonlabel' => 'Click me',
+				'cssclass' => 'my-button',
+			],
+			'',
+			'<button class="mw-htmlform-submit my-button" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
+		];
+
+		yield 'Primary progressive button' => [
+			[
+				'buttonlabel' => 'Click me',
+				'flags' => [ 'primary', 'progressive' ]
+			],
+			'',
+			'<button class="mw-htmlform-submit mw-htmlform-primary mw-htmlform-progressive" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
+		];
+
+		yield 'Destructive button' => [
+			[
+				'buttonlabel' => 'Click me',
+				'flags' => [ 'destructive' ]
+			],
+			'',
+			'<button class="mw-htmlform-submit mw-htmlform-destructive" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
+		];
+
+		yield 'Quiet button with CSS class' => [
+			[
+				'buttonlabel' => 'Click me',
+				'cssclass' => 'my-button',
+				'flags' => [ 'quiet' ]
+			],
+			'',
+			'<button class="mw-htmlform-submit my-button mw-htmlform-quiet" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
+		];
+
+		yield 'Disabled button' => [
+			[
+				'buttonlabel' => 'Click me',
+				'disabled' => true
+			],
+			'',
+			'<button class="mw-htmlform-submit" id="mw-input-testfield" type="button" name="testfield" disabled="">Click me</button>'
+		];
+	}
+
 	public static function provideInputCodex() {
 		yield 'Basic button' => [
 			[
