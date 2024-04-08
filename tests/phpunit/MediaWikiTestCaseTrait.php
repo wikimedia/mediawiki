@@ -123,7 +123,7 @@ trait MediaWikiTestCaseTrait {
 	/**
 	 * Skip the test if not running the necessary php version
 	 *
-	 * @since 1.42
+	 * @since 1.42 (also backported to 1.39.8, 1.40.4 and 1.41.2)
 	 *
 	 * @param string $op
 	 * @param string $version
