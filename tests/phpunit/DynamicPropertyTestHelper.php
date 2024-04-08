@@ -17,7 +17,7 @@ use Wikimedia\Assert\Assert;
  *
  * This class can be removed and its usages converted into direct WeakMap usage once MediaWiki only supports PHP 8.0 and above.
  *
- * @since 1.42
+ * @since 1.42 (also backported to 1.39.8, 1.40.4 and 1.41.2)
  * @internal Only for use by core PHPUnit setup functionality.
  */
 class DynamicPropertyTestHelper {
