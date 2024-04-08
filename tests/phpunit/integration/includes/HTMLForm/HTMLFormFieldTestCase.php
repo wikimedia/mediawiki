@@ -42,6 +42,8 @@ abstract class HTMLFormFieldTestCase extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideInputOOUI
 	 */
 	public function testGetInputOOUI( $params, $value, $expected ) {
+		\OOUI\Theme::setSingleton( new \OOUI\BlankTheme() );
+
 		$field = $this->constructField( $params );
 		$this->assertHTMLEquals( $expected, $field->getInputOOUI( $value ) );
 	}
