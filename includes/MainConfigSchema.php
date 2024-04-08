@@ -8503,6 +8503,49 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Number of temporary accounts usernames each IP address may acquire per specified period(s).
+	 *
+	 * This should be set to a higher value than TempAccountCreationThrottle.
+	 *
+	 * On editing, we first attempt to acquire a temp username before proceeding with saving an edit
+	 * and potentially creating a temp account if the edit save is successful.
+	 *
+	 * Some edits may fail (due to core or extensions denying an edit); this throttle ensures that
+	 * there are limits to the number of temporary account names that can be acquired and stored in
+	 * the database.
+	 *
+	 * **Example:**
+	 *
+	 * ```
+	 * $wgTempAccountNameAcquisitionThrottle = [
+	 *  // no more than 100 per month
+	 *  [
+	 *   'count' => 100,
+	 *   'seconds' => 30*86400,
+	 *  ],
+	 *  // no more than 60 per day
+	 *  [
+	 *   'count' => 60,
+	 *   'seconds' => 86400,
+	 *  ],
+	 * ];
+	 * ```
+	 *
+	 * @see self::TempAccountCreationThrottle Make sure that TempAccountNameAcquisitionThrottle is greater than or
+	 *   equal to TempAccountCreationThrottle
+	 * @warning Requires $wgMainCacheType to be enabled
+	 *
+	 * @since 1.42
+	 */
+	public const TempAccountNameAcquisitionThrottle = [
+		'default' => [ [
+			'count' => 60,
+			'seconds' => 86400,
+		] ],
+		'type' => 'list',
+	];
+
+	/**
 	 * Edits matching these regular expressions in body text
 	 * will be recognised as spam and rejected automatically.
 	 *

@@ -32,7 +32,8 @@ class TempUserCreator implements TempUserConfig {
 	private UserFactory $userFactory;
 	private AuthManager $authManager;
 	private CentralIdLookup $centralIdLookup;
-	private ?Throttler $throttler;
+	private ?Throttler $tempAccountCreationThrottler;
+	private ?Throttler $tempAccountNameAcquisitionThrottler;
 	private array $serialProviderConfig;
 	private array $serialMappingConfig;
 	private ObjectFactory $objectFactory;
@@ -70,14 +71,17 @@ class TempUserCreator implements TempUserConfig {
 		UserFactory $userFactory,
 		AuthManager $authManager,
 		CentralIdLookup $centralIdLookup,
-		?Throttler $throttler
+		// TODO: Make account creation and account name acquisition throttlers required.
+		?Throttler $tempAccountCreationThrottler,
+		?Throttler $tempAccountNameAcquisitionThrottler
 	) {
 		$this->config = $config;
 		$this->objectFactory = $objectFactory;
 		$this->userFactory = $userFactory;
 		$this->authManager = $authManager;
 		$this->centralIdLookup = $centralIdLookup;
-		$this->throttler = $throttler;
+		$this->tempAccountCreationThrottler = $tempAccountCreationThrottler;
+		$this->tempAccountNameAcquisitionThrottler = $tempAccountNameAcquisitionThrottler;
 		$this->serialProviderConfig = $config->getSerialProviderConfig();
 		$this->serialMappingConfig = $config->getSerialMappingConfig();
 	}
@@ -91,10 +95,33 @@ class TempUserCreator implements TempUserConfig {
 	 */
 	public function create( $name = null, WebRequest $request = null ): CreateStatus {
 		$status = new CreateStatus;
-		if ( $request && $this->throttler ) {
+
+		// Check name acquisition rate limits first, if we have a WebRequest
+		if ( $name === null && $request ) {
+			$ip = $request->getIP();
+			if ( !$ip ) {
+				// This is only the case for some tests that call create() with
+				// without a WebRequest object. In non-test usages, a request
+				// is always provided.
+				// TODO: Make $request a required parameter, so that this block
+				// of code can be simplified.
+				return CreateStatus::newFatal( 'temp-user-unable-to-acquire' );
+			}
+			$name = $this->acquireName( $ip );
+		}
+
+		if ( $name === null ) {
+			// If the $name remains null after calling ::acquireName, then
+			// we cannot generate a username and therefore cannot create a user.
+			// In this case return a CreateStatus indicating no user was created.
+			return CreateStatus::newFatal( 'temp-user-unable-to-acquire' );
+		}
+
+		// Check temp account creation rate limits.
+		if ( $request && $this->tempAccountCreationThrottler ) {
 			// TODO: This is duplicated from ThrottlePreAuthenticationProvider
 			// and should be factored out, see T261744
-			$result = $this->throttler->increase(
+			$result = $this->tempAccountCreationThrottler->increase(
 				null, $request->getIP(), 'TempUserCreator' );
 			if ( $result ) {
 				// TODO: Use a custom message here (T357777, T357802)
@@ -105,15 +132,6 @@ class TempUserCreator implements TempUserConfig {
 			}
 		}
 
-		if ( $name === null ) {
-			$name = $this->acquireName();
-			if ( $name === null ) {
-				// If the $name remains null after calling ::acquireName, then
-				// we cannot generate a username and therefore cannot create a user.
-				// In this case return a CreateStatus indicating no user was created.
-				return CreateStatus::newFatal( 'temp-user-unable-to-acquire' );
-			}
-		}
 		$createStatus = $this->attemptAutoCreate( $name );
 
 		if ( $createStatus->isOK() ) {
@@ -208,10 +226,16 @@ class TempUserCreator implements TempUserConfig {
 	 * Acquire a new username and return it. Permanently reserve the ID in
 	 * the database.
 	 *
+	 * @param string $ip The IP address associated with this name acquisition request.
 	 * @return string|null The username, or null if the auto-generated username is
-	 *    already in use.
+	 *    already in use, or if the attempt trips the TempAccountNameAcquisitionThrottle limits.
 	 */
-	private function acquireName(): ?string {
+	private function acquireName( string $ip ): ?string {
+		if ( $this->tempAccountNameAcquisitionThrottler && $this->tempAccountNameAcquisitionThrottler->increase(
+			null, $ip, 'TempUserCreator'
+		) ) {
+			return null;
+		}
 		$year = null;
 		if ( $this->serialProviderConfig['useYear'] ?? false ) {
 			$year = MWTimestamp::getInstance()->format( 'Y' );
@@ -331,7 +355,7 @@ class TempUserCreator implements TempUserConfig {
 		if ( $name !== null ) {
 			return $name;
 		}
-		$name = $this->acquireName();
+		$name = $this->acquireName( $session->getRequest()->getIP() );
 		if ( $name !== null ) {
 			$session->set( 'TempUser:name', $name );
 			$session->save();

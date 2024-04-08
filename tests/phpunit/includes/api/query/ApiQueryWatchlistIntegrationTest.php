@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Api\Query;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -92,7 +93,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			$content,
 			$summary,
 			NS_MAIN,
-			$this->getServiceContainer()->getTempUserCreator()->create()->getUser()
+			$this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser()
 		);
 	}
 

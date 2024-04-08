@@ -2898,6 +2898,12 @@ $wgAccountCreationThrottle = null;
 $wgTempAccountCreationThrottle = null;
 
 /**
+ * Config variable stub for the TempAccountNameAcquisitionThrottle setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::TempAccountNameAcquisitionThrottle
+ */
+$wgTempAccountNameAcquisitionThrottle = null;
+
+/**
  * Config variable stub for the SpamRegex setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SpamRegex
  */

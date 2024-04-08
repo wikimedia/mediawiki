@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -97,7 +98,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 			'action' => 'query',
 			'meta' => 'userinfo',
 		];
-		$user = $this->getServiceContainer()->getTempUserCreator()->create()->getUser();
+		$user = $this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser();
 		$apiResult = $this->doApiRequest( $params, null, false, $user );
 
 		// Verify that the temp flag is set.

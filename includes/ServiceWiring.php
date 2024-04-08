@@ -2235,6 +2235,13 @@ return [
 					'type' => 'tempacctcreate',
 					'cache' => ObjectCache::getLocalClusterInstance(),
 				]
+			),
+			new Throttler(
+				$services->getMainConfig()->get( MainConfigNames::TempAccountNameAcquisitionThrottle ),
+				[
+					'type' => 'tempacctnameacquisition',
+					'cache' => ObjectCache::getLocalClusterInstance(),
+				]
 			)
 		);
 	},

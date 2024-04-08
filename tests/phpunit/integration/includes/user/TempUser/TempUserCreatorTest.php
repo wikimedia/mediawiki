@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\User\TempUser;
 
 use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -35,9 +36,9 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
 		$this->assertTrue( $tuc->isTempName( '~1' ) );
-		$status = $tuc->create();
+		$status = $tuc->create( null, new FauxRequest() );
 		$this->assertSame( '~1', $status->getUser()->getName() );
-		$status = $tuc->create();
+		$status = $tuc->create( null, new FauxRequest() );
 		$this->assertSame( '~2', $status->getUser()->getName() );
 	}
 
@@ -88,6 +89,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			$this->createMock( UserFactory::class ),
 			$this->createMock( AuthManager::class ),
 			$this->createMock( CentralIdLookup::class ),
+			null,
 			null
 		);
 		return [ $creator, [ $scope1, $scope2 ] ];
@@ -97,7 +99,10 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		[ $creator, $scope ] = $this->getTempUserCreatorUnit();
 		/** @var TempUserCreator $creator */
 		$creator = TestingAccessWrapper::newFromObject( $creator );
-		$this->assertSame( '*Unregistered active aardvark', $creator->acquireName() );
+		$this->assertSame(
+			'*Unregistered active aardvark',
+			$creator->acquireName( '127.0.0.1' )
+		);
 	}
 
 	public function testAcquireName_db() {
@@ -108,8 +113,8 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
-		$this->assertSame( '~1', $tuc->acquireName() );
-		$this->assertSame( '~2', $tuc->acquireName() );
+		$this->assertSame( '~1', $tuc->acquireName( '127.0.0.1' ) );
+		$this->assertSame( '~2', $tuc->acquireName( '127.0.0.1' ) );
 	}
 
 	public function testAcquireName_dbWithYear() {
@@ -119,28 +124,43 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
-		$this->assertSame( '~2000-1', $tuc->acquireName() );
-		$this->assertSame( '~2000-2', $tuc->acquireName() );
+		$this->assertSame( '~2000-1', $tuc->acquireName( '127.0.0.1' ) );
+		$this->assertSame( '~2000-2', $tuc->acquireName( '127.0.0.1' ) );
 
 		ConvertibleTimestamp::setFakeTime( '20010101000000' );
-		$this->assertSame( '~2001-1', $tuc->acquireName() );
+		$this->assertSame( '~2001-1', $tuc->acquireName( '127.0.0.1' ) );
 	}
 
 	public function testAcquireNameOnDuplicate_db() {
-		$this->enableAutoCreateTempUser( [
-			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
-			'matchPattern' => '~$1',
-		] );
+		$this->enableAutoCreateTempUser();
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
 		// Create a temporary account
-		$this->assertSame( '~1', $tuc->create()->value->getName() );
+		$this->assertSame( '~2024-1', $tuc->create( null, new FauxRequest() )->value->getName() );
 		// Reset the user_autocreate_serial table
 		$this->truncateTable( 'user_autocreate_serial' );
 		// Because user_autocreate_serial was truncated, the ::acquireName method should
 		// return null as the code attempts to return a temporary account that already exists.
-		$this->assertSame( null, $tuc->acquireName() );
+		$this->assertSame( null, $tuc->acquireName( '127.0.0.1' ) );
+	}
+
+	public function testAcquireNameThrottled() {
+		$this->enableAutoCreateTempUser();
+		$this->overrideConfigValue(
+			MainConfigNames::TempAccountNameAcquisitionThrottle,
+			[
+				'count' => 1,
+				'seconds' => 30 * 86400,
+			]
+		);
+		$tuc = TestingAccessWrapper::newFromObject(
+			$this->getServiceContainer()->getTempUserCreator()
+		);
+		// Create a temporary account
+		$this->assertSame( '~2024-1', $tuc->create( null, new FauxRequest() )->value->getName() );
+		// Attempt again; name acquisition should be limited
+		$this->assertStatusError( 'temp-user-unable-to-acquire', $tuc->create( null, new FauxRequest() ) );
 	}
 
 	public function testAcquireAndStashName() {
@@ -165,6 +185,10 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			}
 
 			public function save() {
+			}
+
+			public function getRequest() {
+				return new FauxRequest();
 			}
 		};
 

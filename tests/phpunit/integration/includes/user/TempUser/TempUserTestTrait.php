@@ -23,6 +23,10 @@ trait TempUserTestTrait {
 	 */
 	protected function enableAutoCreateTempUser( array $configOverrides = [] ): void {
 		$this->overrideConfigValue(
+			MainConfigNames::TempAccountNameAcquisitionThrottle,
+			[ 'count' => 0, 'seconds' => 86400 ]
+		);
+		$this->overrideConfigValue(
 			MainConfigNames::AutoCreateTempUser,
 			array_merge( [
 				'enabled' => true,

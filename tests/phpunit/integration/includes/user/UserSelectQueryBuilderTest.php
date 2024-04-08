@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\User;
 
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserSelectQueryBuilder;
@@ -253,7 +254,8 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 	public function testNamed() {
 		$this->enableAutoCreateTempUser();
 		// Add a temporary accounts for the test
-		$tempUserCreateStatus = $this->getServiceContainer()->getTempUserCreator()->create();
+		$tempUserCreateStatus = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, new FauxRequest() );
 		$this->assertStatusOK( $tempUserCreateStatus );
 		$tempUser = $tempUserCreateStatus->getUser();
 		$actors = iterator_to_array(
@@ -277,7 +279,8 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 	public function testTemp() {
 		$this->enableAutoCreateTempUser();
 		// Add a temporary accounts for the test
-		$tempUserCreateStatus = $this->getServiceContainer()->getTempUserCreator()->create();
+		$tempUserCreateStatus = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, new FauxRequest() );
 		$this->assertStatusOK( $tempUserCreateStatus );
 		$tempUser = $tempUserCreateStatus->getUser();
 		$actors = iterator_to_array(
