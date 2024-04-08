@@ -87,6 +87,18 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/** @dataProvider provideUseException */
+	public function testCreateRedirect( $useException ) {
+		$rf = $this->createResponseFactory();
+		$response = $useException ?
+			$rf->createFromException( new RedirectException(
+				333, 'http://www.example.com/'
+			) ) :
+			$rf->createRedirect( 'http://www.example.com/', 333 );
+		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
+		$this->assertSame( 333, $response->getStatusCode() );
+	}
+
+	/** @dataProvider provideUseException */
 	public function testCreateTemporaryRedirect( $useException ) {
 		$rf = $this->createResponseFactory();
 		$response = $useException ?
