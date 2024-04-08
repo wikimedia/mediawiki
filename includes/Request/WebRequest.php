@@ -42,8 +42,9 @@ use Wikimedia\IPUtils;
 
 /**
  * The WebRequest class encapsulates getting at data passed in the
- * URL or via a POSTed form stripping illegal input characters and
- * normalizing Unicode sequences.
+ * URL or via a POSTed form, stripping illegal input characters, and
+ * normalizing Unicode sequences. This class should be used instead
+ * of accessing globals such as $_GET, $_POST, and $_COOKIE.
  *
  * @ingroup HTTP
  */
@@ -483,9 +484,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a string WITHOUT any Unicode or line break normalization. This is a fast alternative
-	 * for values that are known to be simple, e.g. pure ASCII. When reading user input, use
-	 * {@see getText} instead.
+	 * Fetch a string from this web request's $_GET, $_POST or path router vars WITHOUT any
+	 * Unicode or line break normalization. This is a fast alternative for values that are known
+	 * to be simple, e.g. pure ASCII. When reading user input, use {@see getText} instead.
 	 *
 	 * Array values are discarded for security reasons. Use {@see getArray} or {@see getIntArray}.
 	 *
@@ -507,7 +508,8 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a text string and partially normalize it.
+	 * Fetch a text string from this web request's $_GET, $_POST or path router vars and partially
+	 * normalize it.
 	 *
 	 * Use of this method is discouraged. It doesn't normalize line breaks and defaults to null
 	 * instead of the empty string. Instead:
@@ -533,7 +535,8 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a text string and return it in normalized form.
+	 * Fetch a text string from this web request's $_GET, $_POST or path router vars and return it
+	 * in normalized form.
 	 *
 	 * This normalizes Unicode sequences (via {@see getGPCVal}) and line breaks.
 	 *
@@ -584,9 +587,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch an array from the input or return $default if it's not set.
-	 * If source was scalar, will return an array with a single element.
-	 * If no source and no default, returns null.
+	 * Fetch an array from this web request's $_GET, $_POST or path router vars,
+	 * or return $default if it's not set. If source was scalar, will return an
+	 * array with a single element. If no source and no default, returns null.
 	 *
 	 * @param string $name
 	 * @param array|null $default Optional default (or null)
@@ -603,10 +606,11 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch an array of integers, or return $default if it's not set.
-	 * If source was scalar, will return an array with a single element.
-	 * If no source and no default, returns null.
-	 * If an array is returned, contents are guaranteed to be integers.
+	 * Fetch an array of integers from this web request's $_GET, $_POST or
+	 * path router vars, or return $default if it's not set. If source was
+	 * scalar, will return an array with a single element. If no source and
+	 * no default, returns null. If an array is returned, contents are
+	 * guaranteed to be integers.
 	 *
 	 * @param string $name
 	 * @param array|null $default Option default (or null)
@@ -622,9 +626,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch an integer value from the input or return $default if not set.
-	 * Guaranteed to return an integer; non-numeric input will typically
-	 * return 0.
+	 * Fetch an integer value from this web request's $_GET, $_POST or
+	 * path router vars, or return $default if not set. Guaranteed to return
+	 * an integer; non-numeric input will typically return 0.
 	 *
 	 * @param string $name
 	 * @param int $default
@@ -636,9 +640,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch an integer value from the input or return null if empty.
-	 * Guaranteed to return an integer or null; non-numeric input will
-	 * typically return null.
+	 * Fetch an integer value from this web request's $_GET, $_POST or
+	 * path router vars, or return null if empty. Guaranteed to return an
+	 * integer or null; non-numeric input will typically return null.
 	 *
 	 * @param string $name
 	 * @return int|null
@@ -649,9 +653,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a floating point value from the input or return $default if not set.
-	 * Guaranteed to return a float; non-numeric input will typically
-	 * return 0.
+	 * Fetch a floating point value from this web request's $_GET, $_POST
+	 * or path router vars, or return $default if not set. Guaranteed to
+	 * return a float; non-numeric input will typically return 0.
 	 *
 	 * @since 1.23
 	 * @param string $name
@@ -664,9 +668,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a boolean value from the input or return $default if not set.
-	 * Guaranteed to return true or false, with normal PHP semantics for
-	 * boolean interpretation of strings.
+	 * Fetch a boolean value from this web request's $_GET, $_POST or path
+	 * router vars or return $default if not set. Guaranteed to return true
+	 * or false, with normal PHP semantics for boolean interpretation of strings.
 	 *
 	 * @param string $name
 	 * @param bool $default
@@ -678,9 +682,10 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a boolean value from the input or return $default if not set.
-	 * Unlike getBool, the string "false" will result in boolean false, which is
-	 * useful when interpreting information sent from JavaScript.
+	 * Fetch a boolean value from this web request's $_GET, $_POST or path router
+	 * vars or return $default if not set. Unlike getBool, the string "false" will
+	 * result in boolean false, which is useful when interpreting information sent
+	 * from JavaScript.
 	 *
 	 * @param string $name
 	 * @param bool $default
@@ -696,9 +701,10 @@ class WebRequest {
 	}
 
 	/**
-	 * Return true if the named value is set in the input, whatever that
-	 * value is (even "0"). Return false if the named value is not set.
-	 * Example use is checking for the presence of check boxes in forms.
+	 * Return true if the named value is set in this web request's $_GET,
+	 * $_POST or path router vars, whatever that value is (even "0").
+	 * Return false if the named value is not set. Example use is checking
+	 * for the presence of check boxes in forms.
 	 *
 	 * @param string $name
 	 * @return bool
@@ -710,8 +716,8 @@ class WebRequest {
 	}
 
 	/**
-	 * Extracts the (given) named values into an array.
-	 * No transformation is performed on the values.
+	 * Extracts the (given) named values from this web request's $_GET, $_POST or path
+	 * router vars into an array. No transformation is performed on the values.
 	 *
 	 * @param string ...$names If no arguments are given, returns all input values
 	 * @return array
@@ -733,7 +739,8 @@ class WebRequest {
 	}
 
 	/**
-	 * Returns the names of all input values excluding those in $exclude.
+	 * Returns the names of this web request's $_GET, $_POST or path router vars,
+	 * excluding those in $exclude.
 	 *
 	 * @param array $exclude
 	 * @return array
@@ -744,7 +751,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Get the values passed in the query string and the path router parameters.
+	 * Get the values passed in $_GET and the path router parameters.
 	 * No transformation is performed on the values.
 	 *
 	 * @codeCoverageIgnore
@@ -756,7 +763,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Get the values passed in the query string only, not including the path
+	 * Get the values passed in $_GET only, not including the path
 	 * router parameters. This is less suitable for self-links to index.php but
 	 * useful for other entry points. No transformation is performed on the
 	 * values.
@@ -781,7 +788,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Return the contents of the Query with no decoding. Use when you need to
+	 * Return the contents of the URL query string with no decoding. Use when you need to
 	 * know exactly what was sent, e.g. for an OAuth signature over the elements.
 	 *
 	 * @codeCoverageIgnore
