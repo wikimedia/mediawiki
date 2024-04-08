@@ -50,7 +50,7 @@ class GrepPages extends Maintenance {
 		$titleOnly = $this->hasOption( 'pages-with-matches' );
 
 		if ( ( $regex[0] ?? '' ) === '/' ) {
-			$delimRegex = $regex[0];
+			$delimRegex = $regex;
 		} else {
 			$delimRegex = '{' . $regex . '}';
 		}
