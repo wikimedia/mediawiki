@@ -124,6 +124,8 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCheckLintErrors
 	 */
 	public function testCheckLintErrors( $signature, $expected ) {
+		$this->markTestSkipped( 'Small modification of linter (Ie09865d333cbc8df52edb46e7f00743fe94a6174), ' .
+			 'will update after vendor patch merge' );
 		$errors = $this->validator->checkLintErrors( $signature );
 		$this->assertSame( $expected, $errors );
 	}
