@@ -107,8 +107,7 @@ class ResponseFactory {
 	 * @return Response
 	 */
 	public function createPermanentRedirect( $target ) {
-		$response = $this->createRedirectBase( $target );
-		$response->setStatus( 301 );
+		$response = $this->createRedirect( $target, 301 );
 		return $response;
 	}
 
@@ -123,8 +122,22 @@ class ResponseFactory {
 	 * @see self::createSeeOther()
 	 */
 	public function createLegacyTemporaryRedirect( $target ) {
+		$response = $this->createRedirect( $target, 302 );
+		return $response;
+	}
+
+	/**
+	 * Creates a redirect specifying the code.
+	 * This indicates that the operation the client was trying to perform can temporarily
+	 * be achieved by using a different URL. Clients will preserve the request method when
+	 * retrying the request with the new URL.
+	 * @param string $target Redirect target
+	 * @param int $code Status code
+	 * @return Response
+	 */
+	public function createRedirect( $target, $code ) {
 		$response = $this->createRedirectBase( $target );
-		$response->setStatus( 302 );
+		$response->setStatus( $code );
 		return $response;
 	}
 
@@ -137,8 +150,7 @@ class ResponseFactory {
 	 * @return Response
 	 */
 	public function createTemporaryRedirect( $target ) {
-		$response = $this->createRedirectBase( $target );
-		$response->setStatus( 307 );
+		$response = $this->createRedirect( $target, 307 );
 		return $response;
 	}
 
@@ -151,8 +163,7 @@ class ResponseFactory {
 	 * @return Response
 	 */
 	public function createSeeOther( $target ) {
-		$response = $this->createRedirectBase( $target );
-		$response->setStatus( 303 );
+		$response = $this->createRedirect( $target, 303 );
 		return $response;
 	}
 
@@ -229,8 +240,7 @@ class ResponseFactory {
 		} elseif ( $exception instanceof ResponseException ) {
 			return $exception->getResponse();
 		} elseif ( $exception instanceof RedirectException ) {
-			$response = $this->createRedirectBase( $exception->getTarget() );
-			$response->setStatus( $exception->getCode() );
+			$response = $this->createRedirect( $exception->getTarget(), $exception->getCode() );
 		} elseif ( $exception instanceof HttpException ) {
 			if ( in_array( $exception->getCode(), [ 204, 304 ], true ) ) {
 				$response = $this->create();
