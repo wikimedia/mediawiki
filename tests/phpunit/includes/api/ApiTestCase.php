@@ -300,7 +300,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 				if ( !$other instanceof ApiUsageException ) {
 					return null;
 				}
-				$errors = $other->getStatusValue()->getErrors();
+				$errors = $other->getStatusValue()->getMessages();
 				if ( count( $errors ) === 0 ) {
 					return '(no error)';
 				} elseif ( count( $errors ) > 1 ) {

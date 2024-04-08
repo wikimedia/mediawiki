@@ -266,8 +266,8 @@ class MovePage {
 			$this->oldTitle, $this->newTitle, $user, $reason, $status );
 		// TODO: remove conversion code after hook signature is changed.
 		$permissionStatus = PermissionStatus::newEmpty();
-		foreach ( $status->getErrorsArray() as $error ) {
-			$permissionStatus->fatal( ...$error );
+		foreach ( $status->getMessages() as $msg ) {
+			$permissionStatus->fatal( $msg );
 		}
 		return $permissionStatus;
 	}

@@ -115,10 +115,8 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	public function testBadUrl() {
 		$r = new GuzzleHttpRequest( '', $this->timeoutOptions );
 		$s = $r->execute();
-		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
-
 		$this->assertSame( 0, $r->getStatus() );
-		$this->assertEquals( 'http-invalid-url', $errorMsg );
+		$this->assertStatusMessage( 'http-invalid-url', $s );
 	}
 
 	public function testConnectException() {
@@ -128,10 +126,8 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		$r = new GuzzleHttpRequest( $this->exampleUrl,
 			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$s = $r->execute();
-		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
-
 		$this->assertSame( 0, $r->getStatus() );
-		$this->assertEquals( 'http-request-error', $errorMsg );
+		$this->assertStatusMessage( 'http-request-error', $s );
 	}
 
 	public function testTimeout() {
@@ -141,10 +137,8 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		$r = new GuzzleHttpRequest( $this->exampleUrl,
 			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$s = $r->execute();
-		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
-
 		$this->assertSame( 0, $r->getStatus() );
-		$this->assertEquals( 'http-timed-out', $errorMsg );
+		$this->assertStatusMessage( 'http-timed-out', $s );
 	}
 
 	public function testNotFound() {
@@ -154,10 +148,8 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		$r = new GuzzleHttpRequest( $this->exampleUrl,
 			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$s = $r->execute();
-		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
-
 		$this->assertEquals( 404, $r->getStatus() );
-		$this->assertEquals( 'http-bad-status', $errorMsg );
+		$this->assertStatusMessage( 'http-bad-status', $s );
 	}
 
 	/*

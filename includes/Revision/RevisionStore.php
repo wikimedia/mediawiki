@@ -2200,8 +2200,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			}
 			$slotContentFetchStatus = $this->blobStore
 				->getBlobBatch( $blobAddresses, $queryFlags );
-			foreach ( $slotContentFetchStatus->getErrors() as $error ) {
-				$result->warning( $error['message'], ...$error['params'] );
+			foreach ( $slotContentFetchStatus->getMessages() as $msg ) {
+				$result->warning( $msg );
 			}
 			$slotContents = $slotContentFetchStatus->getValue();
 		}

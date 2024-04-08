@@ -1368,13 +1368,10 @@ abstract class ApiBase extends ContextSource {
 		if ( !$block ) {
 			return;
 		}
-		foreach ( $status->getErrors() as $error ) {
-			$msgKey = $error['message'] instanceof MessageSpecifier ?
-				$error['message']->getKey() :
-				$error['message'];
-			if ( isset( self::BLOCK_CODE_MAP[$msgKey] ) ) {
-				$status->replaceMessage( $msgKey, ApiMessage::create(
-					$error,
+		foreach ( $status->getMessages() as $msg ) {
+			if ( isset( self::BLOCK_CODE_MAP[$msg->getKey()] ) ) {
+				$status->replaceMessage( $msg->getKey(), ApiMessage::create(
+					Message::newFromSpecifier( $msg ),
 					$this->getBlockCode( $block ),
 					[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 				) );
@@ -1617,12 +1614,12 @@ abstract class ApiBase extends ContextSource {
 		// ApiUsageException needs a fatal status, but this method has
 		// historically accepted any non-good status. Convert it if necessary.
 		$status->setOK( false );
-		if ( !$status->getErrorsByType( 'error' ) ) {
+		if ( !$status->getMessages( 'error' ) ) {
 			$newStatus = Status::newGood();
-			foreach ( $status->getErrorsByType( 'warning' ) as $err ) {
-				$newStatus->fatal( $err['message'], ...$err['params'] );
+			foreach ( $status->getMessages( 'warning' ) as $err ) {
+				$newStatus->fatal( $err );
 			}
-			if ( !$newStatus->getErrorsByType( 'error' ) ) {
+			if ( !$newStatus->getMessages( 'error' ) ) {
 				$newStatus->fatal( 'unknownerror-nocode' );
 			}
 			$status = $newStatus;

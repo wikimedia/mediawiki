@@ -266,9 +266,8 @@ class SpecialBlock extends FormSpecialPage {
 			'validation-callback' => function ( $value, $alldata, $form ) {
 				$status = $this->blockUtils->validateTarget( $value );
 				if ( !$status->isOK() ) {
-					$errors = $status->getErrorsArray();
-
-					return $form->msg( ...$errors[0] );
+					$errors = $status->getMessages();
+					return $form->msg( $errors[0] );
 				}
 				return true;
 			},

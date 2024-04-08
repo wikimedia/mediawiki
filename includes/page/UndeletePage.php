@@ -348,8 +348,8 @@ class UndeletePage {
 
 			} else {
 				// Add errors as warnings since the talk page is secondary to the main action
-				foreach ( $talkStatus->getErrors() as $error ) {
-					$resStatus->warning( $error['message'], $error['params'] );
+				foreach ( $talkStatus->getMessages() as $msg ) {
+					$resStatus->warning( $msg );
 				}
 			}
 		}

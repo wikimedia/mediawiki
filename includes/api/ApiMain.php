@@ -1354,8 +1354,8 @@ class ApiMain extends ApiBase {
 	protected function errorMessagesFromException( Throwable $e, $type = 'error' ) {
 		$messages = [];
 		if ( $e instanceof ApiUsageException ) {
-			foreach ( $e->getStatusValue()->getErrorsByType( $type ) as $error ) {
-				$messages[] = ApiMessage::create( $error );
+			foreach ( $e->getStatusValue()->getMessages( $type ) as $msg ) {
+				$messages[] = ApiMessage::create( $msg );
 			}
 		} elseif ( $type !== 'error' ) {
 			// None of the rest have any messages for non-error types

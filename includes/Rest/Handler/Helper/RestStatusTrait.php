@@ -4,9 +4,7 @@ namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Converter;
-use MediaWiki\Message\Message;
 use MediaWiki\Rest\LocalizedHttpException;
-use MessageSpecifier;
 use StatusValue;
 use Wikimedia\Message\MessageValue;
 
@@ -31,13 +29,11 @@ trait RestStatusTrait {
 	 */
 	private function convertStatusToMessageValues( StatusValue $status ): array {
 		$conv = $this->getMessageValueConverter();
-		return array_map( static function ( $error ) use ( $conv ) {
+		return array_map( static function ( $msg ) use ( $conv ) {
 			// TODO: It should be possible to do this without going through a Message object,
 			// but the internal format of parameters is different in MessageValue (T358779)
-			return $conv->convertMessage(
-				Message::newFromSpecifier( [ $error['message'], ...$error['params'], ] )
-			);
-		}, $status->getErrors() );
+			return $conv->convertMessage( $msg );
+		}, $status->getMessages() );
 	}
 
 	/**
@@ -70,14 +66,8 @@ trait RestStatusTrait {
 	private function getStatusErrorKeys( StatusValue $status ) {
 		$keys = [];
 
-		foreach ( $status->getErrors() as [ 'message' => $msg ] ) {
-			if ( is_string( $msg ) ) {
-				$keys[] = $msg;
-			} elseif ( is_array( $msg ) ) {
-				$keys[] = $msg[0];
-			} elseif ( $msg instanceof MessageSpecifier ) {
-				$keys[] = $msg->getKey();
-			}
+		foreach ( $status->getMessages() as $msg ) {
+			$keys[] = $msg->getKey();
 		}
 
 		return array_unique( $keys );

@@ -52,10 +52,8 @@ class CheckComposerLockUpToDate extends Maintenance {
 			// This can happen when this class is called directly from bootstrap code,
 			// e.g. by TestSetup. We get around this by having testSetup use quiet mode.
 			if ( !$this->isQuiet() ) {
-				foreach ( $result->getErrors() as $error ) {
-					$this->error(
-						wfMessage( $error['message'], ...$error['params'] )->inLanguage( 'en' )->plain() . "\n"
-					);
+				foreach ( $result->getMessages() as $msg ) {
+					$this->error( wfMessage( $msg )->inLanguage( 'en' )->plain() . "\n" );
 				}
 			}
 			$this->fatalError(

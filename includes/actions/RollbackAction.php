@@ -193,8 +193,9 @@ class RollbackAction extends FormAction {
 
 		if ( $rollbackResult->hasMessage( 'alreadyrolled' ) || $rollbackResult->hasMessage( 'cantrollback' ) ) {
 			$this->getOutput()->setPageTitleMsg( $this->msg( 'rollbackfailed' ) );
-			$errArray = $rollbackResult->getErrors()[0];
-			$this->getOutput()->addWikiMsgArray( $errArray['message'], $errArray['params'] );
+			# XXX: Why are we only showing the first error message, instead of all of them?
+			$msg = $rollbackResult->getMessages()[0];
+			$this->getOutput()->addWikiMsg( $msg );
 
 			if ( isset( $data['current-revision-record'] ) ) {
 				/** @var RevisionRecord $current */
@@ -221,8 +222,8 @@ class RollbackAction extends FormAction {
 
 		# XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
 		#      Right now, we only show the first error
-		foreach ( $rollbackResult->getErrors() as $error ) {
-			throw new ErrorPageError( 'rollbackfailed', $error['message'], $error['params'] );
+		foreach ( $rollbackResult->getMessages() as $msg ) {
+			throw new ErrorPageError( 'rollbackfailed', $msg );
 		}
 
 		/** @var RevisionRecord $current */

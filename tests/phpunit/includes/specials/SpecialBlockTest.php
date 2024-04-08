@@ -541,10 +541,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 
 		if ( $result instanceof Status ) {
-			$result = $result->getErrorsArray();
+			$this->assertStatusMessage( $expected, $result );
+		} else {
+			$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+			$this->assertEquals( $expected, $error );
 		}
-		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
-		$this->assertEquals( $expected, $error );
 	}
 
 	public static function provideProcessFormErrors() {
@@ -659,10 +660,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 
 		if ( $result instanceof Status ) {
-			$result = $result->getErrorsArray();
+			$this->assertStatusMessage( $expected, $result );
+		} else {
+			$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+			$this->assertEquals( $expected, $error );
 		}
-		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
-		$this->assertEquals( $expected, $error );
 	}
 
 	public static function provideProcessFormErrorsReblock() {
@@ -729,10 +731,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 
 		if ( $result instanceof Status ) {
-			$result = $result->getErrorsArray();
+			$this->assertStatusMessage( $expected, $result );
+		} else {
+			$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+			$this->assertEquals( $expected, $error );
 		}
-		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
-		$this->assertEquals( $expected, $error );
 	}
 
 	public static function provideProcessFormErrorsHideUser() {
@@ -795,10 +798,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 
 		if ( $result instanceof Status ) {
-			$result = $result->getErrorsArray();
+			$this->assertStatusMessage( 'ipb_hide_invalid', $result );
+		} else {
+			$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+			$this->assertEquals( 'ipb_hide_invalid', $error );
 		}
-		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
-		$this->assertEquals( 'ipb_hide_invalid', $error );
 	}
 
 	/**
