@@ -145,7 +145,8 @@
 			"1108-Kiju",
 			"Anonymoususer12321",
 			"M1660661",
-			"翻訳者a"
+			"翻訳者a",
+			"Salvare"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -558,7 +559,7 @@
 	"userlogin-noaccount": "登録がまだの場合",
 	"userlogin-joinproject": "{{SITENAME}}のアカウントを作成",
 	"createaccount": "アカウント作成",
-	"userlogin-resetpassword-link": "パスワードをお忘れですか?",
+	"userlogin-resetpassword-link": "パスワードをお忘れの場合はこちら",
 	"userlogin-helplink2": "ログインについてのヘルプ",
 	"userlogin-loggedin": "{{GENDER:$1|$1}} として既にログインしています。\n別の利用者としてログインするには下のログインフォームでログインしてください。",
 	"userlogin-reauth": "あなたが {{GENDER:$1|$1}} であることを確認するために、再度ログインする必要があります。",
@@ -574,7 +575,7 @@
 	"createacct-reason-ph": "アカウントを作成する理由",
 	"createacct-reason-help": "アカウント作成記録に表示されるメッセージ",
 	"createacct-reason-confirm": "理由欄にメールアドレスが入力されています。これが意図された入力である場合、「アカウントを作成」をもう一度クリックしてください",
-	"createacct-submit": "アカウントを作成",
+	"createacct-submit": "アカウントを作成する",
 	"createacct-another-submit": "アカウントを作成",
 	"createacct-continue-submit": "アカウント作成を続行",
 	"createacct-another-continue-submit": "アカウント作成を続行",
