@@ -1818,6 +1818,15 @@ abstract class ApiBase extends ContextSource {
 			' "' . addslashes( $ctx['agent'] ) . '"';
 
 		wfDebugLog( 'api-feature-usage', $s, 'private', $ctx );
+
+		$this->getHookRunner()->onApiLogFeatureUsage(
+			$feature,
+			[
+				'userName' => $this->getUser()->getName(),
+				'userAgent' => $this->getMain()->getUserAgent(),
+				'ipAddress' => $request->getIP()
+			]
+		);
 	}
 
 	// endregion -- end of warning and error reporting

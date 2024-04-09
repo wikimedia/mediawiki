@@ -17,6 +17,7 @@ class ApiHookRunner implements
 	Hook\APIAfterExecuteHook,
 	Hook\ApiCheckCanExecuteHook,
 	Hook\ApiDeprecationHelpHook,
+	Hook\ApiLogFeatureUsageHook,
 	Hook\ApiFeedContributions__feedItemHook,
 	Hook\ApiFormatHighlightHook,
 	Hook\APIGetAllowedParamsHook,
@@ -122,6 +123,13 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'APIHelpModifyOutput',
 			[ $module, &$help, $options, &$tocData ]
+		);
+	}
+
+	public function onApiLogFeatureUsage( $feature, array $clientInfo ): void {
+		$this->container->run(
+			'ApiLogFeatureUsage',
+			[ $feature, $clientInfo ]
 		);
 	}
 
