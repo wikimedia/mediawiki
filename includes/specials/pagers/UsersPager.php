@@ -81,9 +81,6 @@ class UsersPager extends AlphabeticPager {
 	/** @var string */
 	protected $requestedUser;
 
-	/** @var int */
-	protected $blockTargetReadStage;
-
 	/** @var HideUserUtils */
 	protected $hideUserUtils;
 
@@ -163,8 +160,6 @@ class UsersPager extends AlphabeticPager {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->userIdentityLookup = $userIdentityLookup;
-		$this->blockTargetReadStage = $this->getConfig()
-			->get( MainConfigNames::BlockTargetMigrationStage ) & SCHEMA_COMPAT_READ_MASK;
 		$this->hideUserUtils = $hideUserUtils;
 	}
 
@@ -234,61 +229,36 @@ class UsersPager extends AlphabeticPager {
 
 		$options['GROUP BY'] = $this->creationSort ? 'user_id' : 'user_name';
 
-		if ( $this->blockTargetReadStage === SCHEMA_COMPAT_READ_OLD ) {
-			$query = [
-				'tables' => [ 'user', 'user_groups', 'ipblocks' ],
-				'fields' => [
-					'user_name' => $this->creationSort ? 'MAX(user_name)' : 'user_name',
-					'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
-					'edits' => 'MAX(user_editcount)',
-					'creation' => 'MIN(user_registration)',
-					'deleted' => $deleted, // block/hide status
-					'sitewide' => 'MAX(ipb_sitewide)'
-				],
-				'options' => $options,
-				'join_conds' => [
-					'user_groups' => [ 'LEFT JOIN', 'user_id=ug_user' ],
-					'ipblocks' => [
-						'LEFT JOIN', [
-							'user_id=ipb_user',
-							'ipb_auto' => 0
-						]
-					],
-				],
-				'conds' => $conds
-			];
-		} else {
-			$query = [
-				'tables' => [
-					'user',
-					'user_groups',
-					'block_with_target' => [
-						'block_target',
-						'block'
+		$query = [
+			'tables' => [
+				'user',
+				'user_groups',
+				'block_with_target' => [
+					'block_target',
+					'block'
+				]
+			],
+			'fields' => [
+				'user_name' => $this->creationSort ? 'MAX(user_name)' : 'user_name',
+				'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
+				'edits' => 'MAX(user_editcount)',
+				'creation' => 'MIN(user_registration)',
+				'deleted' => $deleted, // block/hide status
+				'sitewide' => 'MAX(bl_sitewide)'
+			],
+			'options' => $options,
+			'join_conds' => [
+				'user_groups' => [ 'LEFT JOIN', 'user_id=ug_user' ],
+				'block_with_target' => [
+					'LEFT JOIN', [
+						'user_id=bt_user',
+						'bt_auto' => 0
 					]
 				],
-				'fields' => [
-					'user_name' => $this->creationSort ? 'MAX(user_name)' : 'user_name',
-					'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
-					'edits' => 'MAX(user_editcount)',
-					'creation' => 'MIN(user_registration)',
-					'deleted' => $deleted, // block/hide status
-					'sitewide' => 'MAX(bl_sitewide)'
-				],
-				'options' => $options,
-				'join_conds' => [
-					'user_groups' => [ 'LEFT JOIN', 'user_id=ug_user' ],
-					'block_with_target' => [
-						'LEFT JOIN', [
-							'user_id=bt_user',
-							'bt_auto' => 0
-						]
-					],
-					'block' => [ 'JOIN', 'bl_target=bt_id' ]
-				],
-				'conds' => $conds
-			];
-		}
+				'block' => [ 'JOIN', 'bl_target=bt_id' ]
+			],
+			'conds' => $conds
+		];
 
 		$this->hookRunner->onSpecialListusersQueryInfo( $this, $query );
 

@@ -890,9 +890,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	private function getBlockRestrictionStore(): BlockRestrictionStore {
 		$dbProvider = $this->createMock( IConnectionProvider::class );
 
-		return new BlockRestrictionStore(
-			$dbProvider,
-			$this->getConfVar( MainConfigNames::BlockTargetMigrationStage )
-		);
+		return new BlockRestrictionStore( $dbProvider );
 	}
 }

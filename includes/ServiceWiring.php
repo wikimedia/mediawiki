@@ -415,8 +415,7 @@ return [
 
 	'BlockRestrictionStoreFactory' => static function ( MediaWikiServices $services ): BlockRestrictionStoreFactory {
 		return new BlockRestrictionStoreFactory(
-			$services->getDBLoadBalancerFactory(),
-			$services->getMainConfig()->get( MainConfigNames::BlockTargetMigrationStage )
+			$services->getDBLoadBalancerFactory()
 		);
 	},
 
@@ -899,9 +898,7 @@ return [
 	},
 
 	'HideUserUtils' => static function ( MediaWikiServices $services ): HideUserUtils {
-		return new HideUserUtils(
-			$services->getMainConfig()->get( MainConfigNames::BlockTargetMigrationStage )
-		);
+		return new HideUserUtils();
 	},
 
 	'HookContainer' => static function ( MediaWikiServices $services ): HookContainer {

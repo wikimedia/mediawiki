@@ -32,10 +32,8 @@ use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\Config\ConfigException;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\BlockListPager;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\IPUtils;
@@ -181,25 +179,6 @@ class SpecialBlockList extends SpecialPage {
 	 * @return BlockListPager
 	 */
 	protected function getBlockListPager() {
-		$readStage = $this->getConfig()
-				->get( MainConfigNames::BlockTargetMigrationStage ) & SCHEMA_COMPAT_READ_MASK;
-		if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
-			$bl_id = 'ipb_id';
-			$bt_auto = 'ipb_auto';
-			$bt_user = 'ipb_user';
-			$bl_expiry = 'ipb_expiry';
-			$bl_sitewide = 'ipb_sitewide';
-		} elseif ( $readStage === SCHEMA_COMPAT_READ_NEW ) {
-			$bl_id = 'bl_id';
-			$bt_auto = 'bt_auto';
-			$bt_user = 'bt_user';
-			$bl_expiry = 'bl_expiry';
-			$bl_sitewide = 'bl_sitewide';
-		} else {
-			throw new ConfigException(
-				'$wgBlockTargetMigrationStage has an invalid read stage' );
-		}
-
 		$conds = [];
 		$db = $this->getDB();
 
@@ -209,21 +188,20 @@ class SpecialBlockList extends SpecialPage {
 			switch ( $type ) {
 				case DatabaseBlock::TYPE_ID:
 				case DatabaseBlock::TYPE_AUTO:
-					$conds[$bl_id] = $target;
+					$conds['bl_id'] = $target;
 					break;
 
 				case DatabaseBlock::TYPE_IP:
 				case DatabaseBlock::TYPE_RANGE:
 					[ $start, $end ] = IPUtils::parseRange( $target );
-					$conds[] = $this->blockStore->getRangeCond( $start, $end,
-						DatabaseBlockStore::SCHEMA_CURRENT );
-					$conds[$bt_auto] = 0;
+					$conds[] = $this->blockStore->getRangeCond( $start, $end );
+					$conds['bt_auto'] = 0;
 					break;
 
 				case DatabaseBlock::TYPE_USER:
 					if ( $target->getId() ) {
-						$conds[$bt_user] = $target->getId();
-						$conds[$bt_auto] = 0;
+						$conds['bt_user'] = $target->getId();
+						$conds['bt_auto'] = 0;
 					} else {
 						// No such user
 						$conds[] = '1=0';
@@ -234,41 +212,20 @@ class SpecialBlockList extends SpecialPage {
 
 		// Apply filters
 		if ( in_array( 'userblocks', $this->options ) ) {
-			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
-				$conds['ipb_user'] = 0;
-			} else {
-				$conds['bt_user'] = null;
-			}
+			$conds['bt_user'] = null;
 		}
 		if ( in_array( 'autoblocks', $this->options ) ) {
-			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
-				// ipb_parent_block_id = 0 because of T282890
-				$conds['ipb_parent_block_id'] = [ null, 0 ];
-			} else {
-				$conds['bl_parent_block_id'] = null;
-			}
+			$conds['bl_parent_block_id'] = null;
 		}
 		if ( in_array( 'addressblocks', $this->options )
 			&& in_array( 'rangeblocks', $this->options )
 		) {
 			// Simpler conditions for only user blocks (T360864)
-			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
-				$conds[] = "ipb_user != 0";
-			} else {
-				$conds[] = "bt_user IS NOT NULL";
-			}
+			$conds[] = "bt_user IS NOT NULL";
 		} elseif ( in_array( 'addressblocks', $this->options ) ) {
-			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
-				$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
-			} else {
-				$conds[] = "bt_user IS NOT NULL OR bt_range_start IS NOT NULL";
-			}
+			$conds[] = "bt_user IS NOT NULL OR bt_range_start IS NOT NULL";
 		} elseif ( in_array( 'rangeblocks', $this->options ) ) {
-			if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
-				$conds[] = "ipb_range_end = ipb_range_start";
-			} else {
-				$conds['bt_range_start'] = null;
-			}
+			$conds['bt_range_start'] = null;
 		}
 
 		$hideTemp = in_array( 'tempblocks', $this->options );
@@ -277,15 +234,15 @@ class SpecialBlockList extends SpecialPage {
 			// If both types are hidden, ensure query doesn't produce any results
 			$conds[] = '1=0';
 		} elseif ( $hideTemp ) {
-			$conds[$bl_expiry] = $db->getInfinity();
+			$conds['bl_expiry'] = $db->getInfinity();
 		} elseif ( $hideIndef ) {
-			$conds[] = $db->expr( $bl_expiry, '!=', $db->getInfinity() );
+			$conds[] = $db->expr( 'bl_expiry', '!=', $db->getInfinity() );
 		}
 
 		if ( $this->blockType === 'sitewide' ) {
-			$conds[$bl_sitewide] = 1;
+			$conds['bl_sitewide'] = 1;
 		} elseif ( $this->blockType === 'partial' ) {
-			$conds[$bl_sitewide] = 0;
+			$conds['bl_sitewide'] = 0;
 		}
 
 		return new BlockListPager(

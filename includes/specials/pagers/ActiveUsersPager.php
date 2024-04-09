@@ -238,30 +238,17 @@ class ActiveUsersPager extends UsersPager {
 		// Although the first query already hits the block table for un-privileged, this
 		// is done in two queries to avoid huge quicksorts and to make COUNT(*) correct.
 		$dbr = $this->getDatabase();
-		if ( $this->blockTargetReadStage === SCHEMA_COMPAT_READ_OLD ) {
-			$res = $dbr->newSelectQueryBuilder()
-				->select( [
-					'bt_user' => 'ipb_user',
-					'deleted' => 'MAX(ipb_deleted)',
-					'sitewide' => 'MAX(ipb_sitewide)'
-				] )
-				->from( 'ipblocks' )
-				->where( [ 'ipb_user' => $uids ] )
-				->groupBy( [ 'ipb_user' ] )
-				->caller( __METHOD__ )->fetchResultSet();
-		} else {
-			$res = $dbr->newSelectQueryBuilder()
-				->select( [
-					'bt_user',
-					'deleted' => 'MAX(bl_deleted)',
-					'sitewide' => 'MAX(bl_sitewide)'
-				] )
-				->from( 'block_target' )
-				->join( 'block', null, 'bl_target=bt_id' )
-				->where( [ 'bt_user' => $uids ] )
-				->groupBy( [ 'bt_user' ] )
-				->caller( __METHOD__ )->fetchResultSet();
-		}
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [
+				'bt_user',
+				'deleted' => 'MAX(bl_deleted)',
+				'sitewide' => 'MAX(bl_sitewide)'
+			] )
+			->from( 'block_target' )
+			->join( 'block', null, 'bl_target=bt_id' )
+			->where( [ 'bt_user' => $uids ] )
+			->groupBy( [ 'bt_user' ] )
+			->caller( __METHOD__ )->fetchResultSet();
 		$this->blockStatusByUid = [];
 		foreach ( $res as $row ) {
 			$this->blockStatusByUid[$row->bt_user] = [

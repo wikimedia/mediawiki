@@ -110,7 +110,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			->method( 'getReplicaDatabase' )
 			->willReturn( $database );
 
-		$hideUserUtils = new HideUserUtils( SCHEMA_COMPAT_NEW );
+		$hideUserUtils = new HideUserUtils();
 
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$dbProvider,
@@ -160,7 +160,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( UserNameUtils::class ),
-			new HideUserUtils( SCHEMA_COMPAT_NEW )
+			new HideUserUtils()
 		);
 
 		$this->expectException( InvalidArgumentException::class );

@@ -22,6 +22,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.43 ===
 
+* $wgBlockTargetMigrationStage, which was introduced in 1.42, is now deprecated
+  and has no effect.
 * …
 
 ==== New configuration ====
@@ -200,6 +202,8 @@ because of Phabricator reports.
 * SpecialEmailUser::getPermissionsError, deprecated since 1.41 has been
   removed.
 * SpecialBlock::getTargetAndType, deprecated since 1.36, has been removed.
+* ApiQueryBlockInfoTrait::addBlockInfoToQuery(), deprecated since 1.42, has been
+  removed.
 * …
 
 === Deprecations in 1.43 ===
@@ -251,6 +255,11 @@ because of Phabricator reports.
   a mistake, as the parameters have always been ignored.
 * In StatusValue::replaceMessage(), ::hasMessage() and ::hasMessagesExcept()
   passing MessageSpecifier or MessageValue as $source has been deprecated.
+* DatabaseBlock::getQueryInfo() and DatabaseBlock::getRangeCond() are
+  deprecated and emit deprecation warnings. Use the equivalent methods in
+  DatabaseBlockStore.
+* DatabaseBlockStore::getReadStage() and ::getWriteStage() are deprecated.
+  Use the new schema unconditionally.
 * …
 
 === Other changes in 1.43 ===

@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Api\Query;
 
 use ApiQueryBase;
 use ApiQueryBlockInfoTrait;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
@@ -25,9 +24,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideAddDeletedUserFilter
 	 */
-	public function testAddDeletedUserFilter( $schema, $isAllowed, $expect ) {
-		$this->overrideConfigValue( MainConfigNames::BlockTargetMigrationStage, $schema );
-
+	public function testAddDeletedUserFilter( $isAllowed, $expect ) {
 		// Fake timestamp to show up in the queries
 		ConvertibleTimestamp::setFakeTime( '20190101000000' );
 
@@ -57,33 +54,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideAddDeletedUserFilter() {
 		return [
-			'old unauthorized' => [
-				SCHEMA_COMPAT_OLD,
-				false,
-				[
-					'tables' => [ 'table' ],
-					'fields' => [ 'hu_deleted' => '1=0' ],
-					'conds' => [
-						'NOT EXISTS (SELECT  1  FROM "ipblocks" "hu_ipblocks"    ' .
-						'WHERE (hu_ipblocks.ipb_user=user_id) AND hu_ipblocks.ipb_deleted = 1  )' ],
-					'options' => [],
-					'join_conds' => [],
-				],
-			],
-			'old authorized' => [
-				SCHEMA_COMPAT_OLD,
-				true,
-				[
-					'tables' => [ 'table' ],
-					'fields' => [ 'hu_deleted' => 'EXISTS (SELECT  1  FROM "ipblocks" "hu_ipblocks"    ' .
-						'WHERE (hu_ipblocks.ipb_user=user_id) AND hu_ipblocks.ipb_deleted = 1  )' ],
-					'conds' => [],
-					'options' => [],
-					'join_conds' => []
-				],
-			],
-			'new unauthorized' => [
-				SCHEMA_COMPAT_NEW,
+			'unauthorized' => [
 				false,
 				[
 					'tables' => [ 'table' ],
@@ -95,8 +66,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 					'join_conds' => [],
 				],
 			],
-			'new authorized' => [
-				SCHEMA_COMPAT_NEW,
+			'authorized' => [
 				true,
 				[
 					'tables' => [ 'table' ],
