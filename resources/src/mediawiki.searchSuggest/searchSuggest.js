@@ -16,6 +16,7 @@
 			window.performance &&
 			performance.mark &&
 			performance.measure &&
+			// eslint-disable-next-line compat/compat
 			performance.getEntriesByName &&
 			performance.clearMarks ),
 
