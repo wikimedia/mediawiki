@@ -24,7 +24,7 @@
 namespace MediaWiki\HTMLForm;
 
 use MediaWiki\Html\Html;
-use MediaWiki\HTMLForm\Field\HTMLSubmitField;
+use MediaWiki\HTMLForm\Field\HTMLButtonField;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Parser\Sanitizer;
 
@@ -157,34 +157,36 @@ class CodexHTMLForm extends HTMLForm {
 	 */
 	public function getButtons() {
 		$buttons = [];
-		$buttonInfo = [];
-		$value = $this->getSubmitText();
 
 		if ( $this->mShowSubmit ) {
-			$buttonInfo = [
-				'flags' => $this->mSubmitFlags,
-				'buttonlabel' => $this->getSubmitText(),
-				'parent' => $this,
-			];
-
-			if ( isset( $this->mSubmitID ) ) {
-				$buttonInfo['id'] = $this->mSubmitID;
-			} else {
-				$buttonInfo['id'] = '';
-			}
-
-			if ( isset( $this->mSubmitName ) ) {
-				$buttonInfo['name'] = $this->mSubmitName;
-			} else {
-				$buttonInfo['name'] = '';
-			}
+			$value = $this->getSubmitText();
+			// Define flag classes for the submit button
+			$submitFlags = $this->mSubmitFlags;
+			$submitClasses = [ 'mw-htmlform-submit', 'cdx-button' ];
+			$submitButtonLabel = $this->getSubmitText();
+			$submitID = $this->mSubmitID;
+			$submitName = $this->mSubmitName;
+			$submitTooltip = [];
 
 			if ( isset( $this->mSubmitTooltip ) ) {
-				$buttonInfo += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
+				$submitTooltip += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-			$buttonField = new HTMLSubmitField( $buttonInfo );
-			$buttons[] = $buttonField->getInputCodex( $value, false );
+			$buttonAttribs = [
+				'value' => $value,
+				'type' => 'submit',
+				'name' => $submitName,
+				'id' => $submitID,
+				'class' => $submitClasses,
+				'formnovalidate' => false,
+			] + $submitTooltip;
+
+			$button = HTMLButtonField::buildCodexComponent(
+				$submitFlags,
+				$submitButtonLabel,
+				$buttonAttribs
+			);
+			$buttons[] = $button;
 		}
 
 		// The reset button is unused and will be removed from HTMLForm (T361032).
