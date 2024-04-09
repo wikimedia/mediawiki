@@ -681,41 +681,6 @@ CREATE TABLE objectcache (
 CREATE INDEX exptime ON objectcache (exptime);
 
 
-CREATE TABLE ipblocks (
-  ipb_id SERIAL NOT NULL,
-  ipb_address TEXT NOT NULL,
-  ipb_user INT DEFAULT 0 NOT NULL,
-  ipb_by_actor BIGINT NOT NULL,
-  ipb_reason_id BIGINT NOT NULL,
-  ipb_timestamp TIMESTAMPTZ NOT NULL,
-  ipb_auto SMALLINT DEFAULT 0 NOT NULL,
-  ipb_anon_only SMALLINT DEFAULT 0 NOT NULL,
-  ipb_create_account SMALLINT DEFAULT 1 NOT NULL,
-  ipb_enable_autoblock SMALLINT DEFAULT 1 NOT NULL,
-  ipb_expiry TIMESTAMPTZ NOT NULL,
-  ipb_range_start TEXT NOT NULL,
-  ipb_range_end TEXT NOT NULL,
-  ipb_deleted SMALLINT DEFAULT 0 NOT NULL,
-  ipb_block_email SMALLINT DEFAULT 0 NOT NULL,
-  ipb_allow_usertalk SMALLINT DEFAULT 0 NOT NULL,
-  ipb_parent_block_id INT DEFAULT NULL,
-  ipb_sitewide SMALLINT DEFAULT 1 NOT NULL,
-  PRIMARY KEY(ipb_id)
-);
-
-CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address, ipb_user, ipb_auto);
-
-CREATE INDEX ipb_user ON ipblocks (ipb_user);
-
-CREATE INDEX ipb_range ON ipblocks (ipb_range_start, ipb_range_end);
-
-CREATE INDEX ipb_timestamp ON ipblocks (ipb_timestamp);
-
-CREATE INDEX ipb_expiry ON ipblocks (ipb_expiry);
-
-CREATE INDEX ipb_parent_block_id ON ipblocks (ipb_parent_block_id);
-
-
 CREATE TABLE block (
   bl_id SERIAL NOT NULL,
   bl_target INT NOT NULL,

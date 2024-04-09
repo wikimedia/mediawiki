@@ -83,8 +83,9 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$conds = [ new Expression( ...$args ) ];
 		$joinConds = [];
 		if ( $excludeHidden ) {
-			$conds[] = 'NOT EXISTS (SELECT  1  FROM ipblocks hu_ipblocks    ' .
-				'WHERE (hu_ipblocks.ipb_user=user_id) AND hu_ipblocks.ipb_deleted = 1  )';
+			$conds[] = '(SELECT  1  FROM block_target hu_block_target ' .
+				'JOIN block hu_block ON ((hu_block.bl_target=hu_block_target.bt_id))   ' .
+				'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ) IS NULL';
 		}
 		$options = [
 			'LIMIT' => $limit,
@@ -109,7 +110,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			->method( 'getReplicaDatabase' )
 			->willReturn( $database );
 
-		$hideUserUtils = new HideUserUtils( SCHEMA_COMPAT_OLD );
+		$hideUserUtils = new HideUserUtils( SCHEMA_COMPAT_NEW );
 
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$dbProvider,
@@ -159,7 +160,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( UserNameUtils::class ),
-			new HideUserUtils( SCHEMA_COMPAT_OLD )
+			new HideUserUtils( SCHEMA_COMPAT_NEW )
 		);
 
 		$this->expectException( InvalidArgumentException::class );

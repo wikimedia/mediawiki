@@ -7789,9 +7789,10 @@ class MainConfigSchema {
 	 *
 	 * History:
 	 *   - 1.42: Added
+	 *   - 1.43: Default changed from SCHEMA_COMPAT_OLD to SCHEMA_COMPAT_NEW
 	 */
 	public const BlockTargetMigrationStage = [
-		'default' => SCHEMA_COMPAT_OLD,
+		'default' => SCHEMA_COMPAT_NEW,
 		'type' => 'integer',
 	];
 

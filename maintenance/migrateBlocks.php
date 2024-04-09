@@ -42,6 +42,10 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 		if ( !$this->dbw->tableExists( 'block', __METHOD__ ) || !$this->dbw->tableExists( 'block_target' ) ) {
 			$this->fatalError( "Run update.php to create the block and block_target tables." );
 		}
+		if ( !$this->dbw->tableExists( 'ipblocks' ) ) {
+			$this->output( "No ipblocks table, skipping migration to block_target.\n" );
+			return true;
+		}
 
 		$this->output( "Populating the block and block_target tables\n" );
 		$migratedCount = 0;

@@ -48,7 +48,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'AutoblockExpiry' => 86400,
 			'BlockCIDRLimit' => [ 'IPv4' => 16, 'IPv6' => 19 ],
 			'BlockDisablesLogin' => false,
-			'BlockTargetMigrationStage' => SCHEMA_COMPAT_OLD,
+			'BlockTargetMigrationStage' => SCHEMA_COMPAT_NEW,
 			'PutIPinRC' => true,
 			'UpdateRowsPerQuery' => 10,
 		];
@@ -190,8 +190,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$missingBlockId = 9998;
 		$dbRow = $this->db->newSelectQueryBuilder()
 			->select( '*' )
-			->from( 'ipblocks' )
-			->where( [ 'ipb_id' => $missingBlockId ] )
+			->from( 'block' )
+			->where( [ 'bl_id' => $missingBlockId ] )
 			->caller( __METHOD__ )
 			->fetchRow();
 		$this->assertFalse(
@@ -221,16 +221,16 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		// duplicates the function itself. Instead, check the structure and the field
 		// aliases. The fact that this query info is everything needed to create a block
 		// is validated by its uses within the service
-		$queryInfo = $this->getStore()->getQueryInfo( DatabaseBlockStore::SCHEMA_IPBLOCKS );
+		$queryInfo = $this->getStore()->getQueryInfo( DatabaseBlockStore::SCHEMA_BLOCK );
 		$this->assertArrayHasKey( 'tables', $queryInfo );
 		$this->assertArrayHasKey( 'fields', $queryInfo );
 		$this->assertArrayHasKey( 'joins', $queryInfo );
 
 		$this->assertIsArray( $queryInfo['fields'] );
-		$this->assertArrayHasKey( 'ipb_by', $queryInfo['fields'] );
-		$this->assertSame( 'ipblocks_actor.actor_user', $queryInfo['fields']['ipb_by'] );
-		$this->assertArrayHasKey( 'ipb_by_text', $queryInfo['fields'] );
-		$this->assertSame( 'ipblocks_actor.actor_name', $queryInfo['fields']['ipb_by_text'] );
+		$this->assertArrayHasKey( 'bl_by', $queryInfo['fields'] );
+		$this->assertSame( 'block_by_actor.actor_user', $queryInfo['fields']['bl_by'] );
+		$this->assertArrayHasKey( 'bl_by_text', $queryInfo['fields'] );
+		$this->assertSame( 'block_by_actor.actor_name', $queryInfo['fields']['bl_by_text'] );
 	}
 
 	/**
@@ -294,32 +294,34 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		yield 'IPv4 start, same end' => [
 			$hex1,
 			null,
-			"(ipb_range_start  LIKE '0102%' ESCAPE '`')"
-			. " AND (ipb_range_start <= '$hex1')"
-			. " AND (ipb_range_end >= '$hex1')"
+			"((bt_ip_hex = '$hex1' AND bt_range_start IS NULL)"
+			. " OR (bt_range_start LIKE '0102%' ESCAPE '`'"
+			. " AND bt_range_start <= '$hex1'"
+			. " AND bt_range_end >= '$hex1'))"
 		];
 		yield 'IPv4 start, different end' => [
 			$hex1,
 			$hex2,
-			"(ipb_range_start  LIKE '0102%' ESCAPE '`')"
-			. " AND (ipb_range_start <= '$hex1')"
-			. " AND (ipb_range_end >= '$hex2')"
+			"(bt_range_start LIKE '0102%' ESCAPE '`'"
+			. " AND bt_range_start <= '$hex1'"
+			. " AND bt_range_end >= '$hex2')"
 		];
 		$hex3 = IPUtils::toHex( '2000:DEAD:BEEF:A:0:0:0:0' );
 		$hex4 = IPUtils::toHex( '2000:DEAD:BEEF:A:0:0:000A:000F' );
 		yield 'IPv6 start, same end' => [
 			$hex3,
 			null,
-			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`')"
-			. " AND (ipb_range_start <= '$hex3')"
-			. " AND (ipb_range_end >= '$hex3')"
+			"((bt_ip_hex = '$hex3' AND bt_range_start IS NULL)"
+			. " OR (bt_range_start LIKE 'v6-2000%' ESCAPE '`'"
+			. " AND bt_range_start <= '$hex3'"
+			. " AND bt_range_end >= '$hex3'))"
 		];
 		yield 'IPv6 start, different end' => [
 			$hex3,
 			$hex4,
-			"(ipb_range_start  LIKE 'v6-2000%' ESCAPE '`')"
-			. " AND (ipb_range_start <= '$hex3')"
-			. " AND (ipb_range_end >= '$hex4')"
+			"(bt_range_start LIKE 'v6-2000%' ESCAPE '`'"
+			. " AND bt_range_start <= '$hex3'"
+			. " AND bt_range_end >= '$hex4')"
 		];
 	}
 
@@ -331,7 +333,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetRangeCond( $start, $end, $expect ) {
 		$this->assertSame(
 			$expect,
-			$this->getStore()->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_IPBLOCKS ) );
+			$this->getStore()->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_BLOCK ) );
 	}
 
 	public static function provideGetRangeCondIntegrated() {
@@ -361,7 +363,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$store->insertBlock( $this->getBlock( [ 'target' => $blockTarget ] ) );
 		[ $start, $end ] = IPUtils::parseRange( $searchTarget );
 		$rows = $this->db->newSelectQueryBuilder()
-			->queryInfo( $store->getQueryInfo( DatabaseBlockStore::SCHEMA_IPBLOCKS ) )
+			->queryInfo( $store->getQueryInfo( DatabaseBlockStore::SCHEMA_BLOCK ) )
 			->where( $store->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_CURRENT ) )
 			->fetchResultSet();
 		$this->assertSame( $isBlocked ? 1 : 0, $rows->numRows() );
@@ -473,17 +475,13 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		// This is quicker than adding a recent change for an unblocked user.
 		// See addDBDataOnce documentation for more details.
 		$target = $this->sysop;
-		$this->db->newDeleteQueryBuilder()
-			->deleteFrom( 'ipblocks' )
-			->where( [ 'ipb_address' => $target->getName() ] )
-			->caller( __METHOD__ )
-			->execute();
+		$store = $this->getStore();
+		$store->deleteBlocksMatchingConds( [ 'bt_user' => $target->getId() ] );
+
 		$block = $this->getBlock( [
 			'autoblock' => true,
 			'target' => $target,
 		] );
-
-		$store = $this->getStore();
 		$result = $store->insertBlock( $block );
 
 		$this->assertIsArray( $result );
@@ -625,9 +623,9 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function assertPurgeWorked( int $blockId, bool $expected ): void {
 		$blockRows = (bool)$this->db->newSelectQueryBuilder()
-			->select( 'ipb_id' )
-			->from( 'ipblocks' )
-			->where( [ 'ipb_id' => $blockId ] )
+			->select( 'bl_id' )
+			->from( 'block' )
+			->where( [ 'bl_id' => $blockId ] )
 			->fetchResultSet()->numRows();
 		$blockRestrictionsRows = (bool)$this->db->newSelectQueryBuilder()
 			->select( 'ir_ipb_id' )
@@ -697,44 +695,64 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			->fetchField();
 
 		$commonBlockData = [
-			'ipb_by_actor' => $this->sysop->getActorId(),
-			'ipb_reason_id' => $commentId,
-			'ipb_timestamp' => $this->db->timestamp( '20000101000000' ),
-			'ipb_auto' => 0,
-			'ipb_anon_only' => 0,
-			'ipb_create_account' => 0,
-			'ipb_range_start' => '',
-			'ipb_range_end' => '',
-			'ipb_deleted' => 0,
-			'ipb_block_email' => 0,
-			'ipb_allow_usertalk' => 0,
-			'ipb_sitewide' => 0,
+			'bl_by_actor' => $this->sysop->getActorId(),
+			'bl_reason_id' => $commentId,
+			'bl_timestamp' => $this->db->timestamp( '20000101000000' ),
+			'bl_anon_only' => 0,
+			'bl_create_account' => 0,
+			'bl_deleted' => 0,
+			'bl_block_email' => 0,
+			'bl_allow_usertalk' => 0,
+			'bl_sitewide' => 0,
 		];
+
+		$targetRows = [
+			'1.1.1.1' => [
+				'bt_address' => '1.1.1.1',
+				'bt_ip_hex' => IPUtils::toHex( '1.1.1.1' ),
+				'bt_auto' => 0,
+			],
+			'sysop' => [
+				'bt_user' => $this->sysop->getId(),
+				'bt_user_text' => $this->sysop->getName(),
+				'bt_auto' => 0,
+			],
+			'2.2.2.2' => [
+				'bt_address' => '2.2.2.2',
+				'bt_ip_hex' => IPUtils::toHex( '2.2.2.2' ),
+				'bt_auto' => 1,
+			]
+		];
+		$targetIds = [];
+		foreach ( $targetRows as $i => $row ) {
+			$this->db->newInsertQueryBuilder()
+				->insertInto( 'block_target' )
+				->row( $row + [ 'bt_count' => 1 ] )
+				->execute();
+			$targetIds[$i] = $this->db->insertId();
+		}
 
 		$blockData = [
 			[
-				'ipb_id' => $this->expiredBlockId,
-				'ipb_address' => '1.1.1.1',
-				'ipb_expiry' => $this->db->timestamp( '20010101000000' ),
-				'ipb_user' => 0,
-				'ipb_enable_autoblock' => 0,
-				'ipb_parent_block_id' => 0,
+				'bl_id' => $this->expiredBlockId,
+				'bl_target' => $targetIds['1.1.1.1'],
+				'bl_expiry' => $this->db->timestamp( '20010101000000' ),
+				'bl_enable_autoblock' => 0,
+				'bl_parent_block_id' => 0,
 			] + $commonBlockData,
 			[
-				'ipb_id' => $this->unexpiredBlockId,
-				'ipb_address' => $this->sysop,
-				'ipb_expiry' => $this->db->getInfinity(),
-				'ipb_user' => $this->sysop->getId(),
-				'ipb_enable_autoblock' => 1,
-				'ipb_parent_block_id' => 0,
+				'bl_id' => $this->unexpiredBlockId,
+				'bl_target' => $targetIds['sysop'],
+				'bl_expiry' => $this->db->getInfinity(),
+				'bl_enable_autoblock' => 1,
+				'bl_parent_block_id' => 0,
 			] + $commonBlockData,
 			[
-				'ipb_id' => $this->autoblockId,
-				'ipb_address' => '2.2.2.2',
-				'ipb_expiry' => $this->db->getInfinity(),
-				'ipb_user' => 0,
-				'ipb_enable_autoblock' => 0,
-				'ipb_parent_block_id' => $this->unexpiredBlockId,
+				'bl_id' => $this->autoblockId,
+				'bl_target' => $targetIds['2.2.2.2'],
+				'bl_expiry' => $this->db->getInfinity(),
+				'bl_enable_autoblock' => 0,
+				'bl_parent_block_id' => $this->unexpiredBlockId,
 			] + $commonBlockData,
 		];
 
@@ -757,7 +775,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->db->newInsertQueryBuilder()
-			->insertInto( 'ipblocks' )
+			->insertInto( 'block' )
 			->rows( $blockData )
 			->caller( __METHOD__ )
 			->execute();

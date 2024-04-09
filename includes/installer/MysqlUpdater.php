@@ -166,6 +166,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'revision', 'rev_id', 'patch-revision-cleanup.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_id', 'patch-recentchanges-rc_id-bigint.sql' ],
 			[ 'modifyField', 'change_tag', 'ct_rc_id', 'patch-change_tag-ct_rc_id.sql' ],
+			[ 'runMaintenance', \MigrateBlocks::class, 'maintenance/migrateBlocks.php' ],
+			[ 'dropTable', 'ipblocks' ],
 		];
 	}
 

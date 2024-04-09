@@ -329,7 +329,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getBlockListPager();
 		$result = $this->db->newSelectQueryBuilder()
 			->queryInfo( $pager->getQueryInfo() )
-			->where( [ 'ipb_id' => $block->getId() ] )
+			->where( [ 'bl_id' => $block->getId() ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 

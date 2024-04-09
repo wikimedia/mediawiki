@@ -441,6 +441,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'revision', 'rev_parent_id', 'BIGINT', '' ],
 			[ 'changeField', 'recentchanges', 'rc_id', 'BIGINT', '' ],
 			[ 'changeField', 'change_tag', 'ct_rc_id', 'BIGINT', '' ],
+			[ 'runMaintenance', \MigrateBlocks::class, 'maintenance/migrateBlocks.php' ],
+			[ 'dropTable', 'ipblocks' ],
 		];
 	}
 
@@ -679,6 +681,10 @@ END;
 	}
 
 	protected function changeField( $table, $field, $newtype, $default ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...$table table does not exist, skipping default change.\n" );
+			return;
+		}
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
 			$this->output( "...ERROR: expected column $table.$field to exist\n" );
@@ -735,6 +741,10 @@ END;
 	}
 
 	protected function setDefault( $table, $field, $default ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...$table table does not exist, skipping default change.\n" );
+			return;
+		}
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
@@ -789,7 +799,9 @@ END;
 	}
 
 	protected function addPgIndex( $table, $index, $type, $unique = false ) {
-		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...$table table does not exist, skipping index.\n" );
+		} elseif ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
 			$this->output( "Creating index '$index' on table '$table' $type\n" );
@@ -812,6 +824,10 @@ END;
 	}
 
 	protected function dropFkey( $table, $field ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...$table table does not exist, skipping constraint change.\n" );
+			return;
+		}
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
 			$this->output( "WARNING! Column '$table.$field' does not exist but it should! " .
