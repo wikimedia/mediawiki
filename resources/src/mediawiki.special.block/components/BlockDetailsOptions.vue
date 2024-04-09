@@ -1,0 +1,75 @@
+<template>
+	<cdx-field :is-fieldset="true">
+		<cdx-checkbox
+			v-for="checkbox in checkboxes"
+			:key="'checkbox-' + checkbox.value"
+			v-model="wrappedModel"
+			:input-value="checkbox.value"
+		>
+			{{ checkbox.label }}
+		</cdx-checkbox>
+		<template #label>
+			{{ label }}
+			<span class="cdx-label__label__optional-flag">
+				{{ $i18n( 'htmlform-optional-flag' ).text() }}
+			</span>
+		</template>
+		<template #description>
+			{{ description }}
+		</template>
+	</cdx-field>
+</template>
+
+<script>
+const { defineComponent, toRef } = require( 'vue' );
+const { CdxCheckbox, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
+
+// @vue/component
+module.exports = defineComponent( {
+	name: 'BlockDetailsField',
+	components: { CdxCheckbox, CdxField },
+	props: {
+		/**
+		 * The label displaying for the list of checkboxes
+		 */
+		label: {
+			type: String,
+			required: true
+		},
+		/**
+		 * The description displaying for list of checkboxes
+		 */
+		description: {
+			type: String,
+			required: true
+		},
+		/**
+		 * The list of checkboxes to display
+		 */
+		checkboxes: {
+			type: Array,
+			required: true
+		},
+		/**
+		 * The current checkboxes selected
+		 */
+		// eslint-disable-next-line vue/no-unused-properties
+		modelValue: {
+			type: Array,
+			required: true
+		}
+	},
+	emits: [
+		'update:modelValue'
+	],
+	setup( props, { emit } ) {
+		const wrappedModel = useModelWrapper(
+			toRef( props, 'modelValue' ),
+			emit
+		);
+		return {
+			wrappedModel
+		};
+	}
+} );
+</script>

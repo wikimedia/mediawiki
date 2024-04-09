@@ -6,10 +6,16 @@
 		<block-type-field></block-type-field>
 		<expiration-field></expiration-field>
 		<reason-field></reason-field>
+		<block-details-field
+			v-model="blockDetailsSelected"
+			:checkboxes="blockDetailsOptions"
+			:label="$i18n( 'block-details' ).text()"
+			:description="$i18n( 'block-details-description' ).text()"
+		></block-details-field>
 		<cdx-button
 			action="progressive"
 			weight="primary"
-			@click="submit"
+			@click="saveBlock"
 		>
 			{{ $i18n( 'block-save' ).text() }}
 		</cdx-button>
@@ -25,6 +31,7 @@ const TargetBlockLog = require( './components/TargetBlockLog.vue' );
 const BlockTypeField = require( './components/BlockTypeField.vue' );
 const ExpirationField = require( './components/ExpirationField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
+const BlockDetailsField = require( './components/BlockDetailsOptions.vue' );
 
 // @vue/component
 module.exports = defineComponent( {
@@ -36,17 +43,37 @@ module.exports = defineComponent( {
 		BlockTypeField,
 		ExpirationField,
 		ReasonField,
+		BlockDetailsField,
 		CdxButton
 	},
 	setup() {
+		const form = document.querySelector( '.mw-htmlform' );
 		const targetUser = ref( '' );
+		const blockDetailsSelected = ref( [] );
+		const blockDetailsOptions = [
+			{
+				label: mw.message( 'ipbcreateaccount' ),
+				value: 'wpCreateAccount'
+			},
+			{
+				label: mw.message( 'ipbemailban' ),
+				value: 'wpDisableEmail'
+			},
+			{
+				label: mw.message( 'ipb-disableusertalk' ),
+				value: 'wpDisableUTEdit'
+			}
+		];
 
+		function saveBlock() {
+			form.submit();
+		}
 		return {
-			targetUser
+			targetUser,
+			saveBlock,
+			blockDetailsSelected,
+			blockDetailsOptions
 		};
-	},
-	methods: {
-		submit() {}
 	}
 } );
 </script>

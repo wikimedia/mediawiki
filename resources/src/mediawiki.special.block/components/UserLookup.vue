@@ -1,10 +1,11 @@
 <template>
-	<cdx-field>
+	<cdx-field :is-fieldset="true">
 		<cdx-lookup
 			v-model:selected="wrappedModel"
+			name="wpTarget"
 			:menu-items="menuItems"
 			:start-icon="cdxIconSearch"
-			:placeholder="$i18n( 'block-user-placeholder' )"
+			:placeholder="$i18n( 'block-user-placeholder' ).text()"
 			@input="onInput"
 		>
 		</cdx-lookup>
