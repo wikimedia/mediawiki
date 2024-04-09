@@ -57,6 +57,7 @@ use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\Utils\UrlUtils;
 use MWCryptRand;
 use ParserOptions;
 use RuntimeException;
@@ -486,7 +487,7 @@ abstract class Installer {
 	 * @return MediaWikiServices
 	 */
 	public function resetMediaWikiServices(
-		Config $installerConfig = null,
+		?Config $installerConfig = null,
 		$serviceOverrides = [],
 		bool $disableStorage = false
 	) {
@@ -1781,10 +1782,18 @@ abstract class Installer {
 	 * @return Status
 	 */
 	public function restoreServices() {
+		// Apply wgServer, so it's available for database initialization hooks.
+		$urlOptions = [
+			UrlUtils::SERVER => $GLOBALS['wgServer'],
+		];
+
 		$this->resetMediaWikiServices( null, [
+			'UrlUtils' => static function ( MediaWikiServices $services ) use ( $urlOptions ) {
+				return new UrlUtils( $urlOptions );
+			},
 			'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
 				return $services->get( 'UserOptionsManager' );
-			}
+			},
 		] );
 		return Status::newGood();
 	}
