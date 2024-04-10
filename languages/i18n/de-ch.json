@@ -288,6 +288,7 @@
 	"linkshere": "Die folgenden Seiten verlinken auf <strong>$2</strong>:",
 	"nolinkshere": "Keine Seite verlinkt auf <strong>$2</strong>.",
 	"nolinkshere-ns": "Keine Seite verlinkt auf '''«$2»''' im gewählten Namensraum.",
+	"ipb-action-upload": "Hochladen von Dateien (einschliesslich Überschreiben von Dateien)",
 	"ipb-confirmhideuser": "Du bist gerade dabei, einen Benutzer im Modus «Benutzer verstecken» zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?",
 	"ipb-unblock-addr": "«$1» freigeben",
 	"ipb-blocklist-contribs": "Benutzerbeiträge von «$1»",

@@ -202,7 +202,8 @@
 			"Histnou",
 			"LD",
 			"MacOS Weed",
-			"TheresNoTime"
+			"TheresNoTime",
+			"Hecatonchire"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -3578,7 +3579,7 @@
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Un titre a été retiré|$1 titres ont été retirés}} :",
 	"watchlistedit-too-many": "Votre liste de suivi a été mise à jour. Il y a trop de pages à afficher ici.",
 	"watchlisttools-clear": "Effacer la liste de suivi",
-	"watchlisttools-view": "Afficher les modifications pertinentes",
+	"watchlisttools-view": "Afficher les modifications afférentes",
 	"watchlisttools-edit": "Afficher et modifier la liste de suivi",
 	"watchlisttools-raw": "Modifier la liste de suivi en mode brut",
 	"iranian-calendar-m1": "Farvardin",

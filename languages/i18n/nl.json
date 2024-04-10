@@ -115,7 +115,8 @@
 			"Wolf Lambert",
 			"Xxmarijnw",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Iamthedutchdude"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -2920,6 +2921,8 @@
 	"movesubpage": "{{PLURAL:$1|Deelpagina|Deelpagina's}}",
 	"movesubpagetext": "De {{PLURAL:$1|deelpagina|$1 deelpagina's}} van deze pagina {{PLURAL:$1|wordt|worden}} hieronder weergegeven.",
 	"movesubpagetalktext": "De bijbehorende overlegpagina heeft $1 {{PLURAL:$1|deelpagina|deelpagina's}} hierbeneden getoond.",
+	"movesubpagetext-truncated": "De eerste $1 {{PLURAL:$1|deelpagina|deelpagina's}} voor deze pagina worden hieronder weergegeven.",
+	"movesubpagetalktext-truncated": "De eerste $1 {{PLURAL:$1|deelpagina|deelpagina's}} voor de bijbehorende overlegpagina worden hieronder weergegeven.",
 	"movenosubpage": "Deze pagina heeft geen deelpagina's.",
 	"movereason": "Reden:",
 	"moveotherreason": "Andere/aanvullende reden:",

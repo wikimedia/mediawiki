@@ -333,7 +333,7 @@
 	"hiddencategories": "Dis pej na mɛmba fɔ {{PLURAL:$1| wan kategori we ayd| $1 kategori dɛn we dɛn ayd}}:",
 	"permissionserrors": "Permishɔn mistek",
 	"permissionserrorstext-withaction": "Yu no gèt permisshòn fo $2, bikoz {{PLURAL:$1|rizin|rizin-dem}}:",
-	"recreate-moveddeleted-warn": "'''Tek tèm o!!: Yu de mek bak wan pej we dèn bin dòn ires.'''\n\nYu sabi if yu fò work pan dhis pej ya.\nDhis pejim delet èn muf lòg de hyar:",
+	"recreate-moveddeleted-warn": "<strong>Tek tèm o!!: Yu de mek bak wan pej we dèn bin dòn ires.</strong>\n\nYu sabi if yu fò work pan dhis pej ya.\nDhis pejim delet èn muf lòg de hyar:",
 	"moveddeleted-notice": "Dis pej nɔ de.\nDi dilit, protɛkshɔn, ɛn muv lɔg fɔ di pej de dɔŋ fɔ rɛfrɛns.",
 	"edit-hook-aborted": "Wan huk dòn blòk yu Èdit.\nI nò èksplan whethin mek.",
 	"edit-gone-missing": "Wi nò ebul fòr ùpdat dhis pej hyar.\nSòmtèm dèn dòn delet am.",
