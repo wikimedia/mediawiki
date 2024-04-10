@@ -70,4 +70,62 @@ class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 			'<button class="mw-htmlform-submit cdx-button" id="mw-input-testfield" type="button" name="testfield" disabled="">Click me</button>'
 		];
 	}
+
+	public static function provideInputOOUI() {
+		yield 'Basic button' => [
+			[
+				'buttonlabel' => 'Click me',
+			],
+			'',
+			"<span id='mw-input-testfield' class='mw-htmlform-submit  oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-buttonInputWidget'><button type='button' tabindex='0' name='testfield' value='' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon'></span><span class='oo-ui-labelElement-label'>Click me</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator'></span></button></span>"
+		];
+
+		yield 'Button with CSS class' => [
+			[
+				'buttonlabel' => 'Click me',
+				'cssclass' => 'my-button',
+			],
+			'',
+			"<span id='mw-input-testfield' class='mw-htmlform-submit my-button oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-buttonInputWidget'><button type='button' tabindex='0' name='testfield' value='' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon'></span><span class='oo-ui-labelElement-label'>Click me</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator'></span></button></span>"
+		];
+
+		yield 'Primary progressive button' => [
+			[
+				'buttonlabel' => 'Click me',
+				'flags' => [ 'primary', 'progressive' ]
+			],
+			'',
+			"<span id='mw-input-testfield' class='mw-htmlform-submit  oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-primary oo-ui-flaggedElement-progressive oo-ui-buttonInputWidget'><button type='button' tabindex='0' name='testfield' value='' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon'></span><span class='oo-ui-labelElement-label'>Click me</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator'></span></button></span>"
+
+		];
+
+		yield 'Destructive button' => [
+			[
+				'buttonlabel' => 'Click me',
+				'flags' => [ 'destructive' ]
+			],
+			'',
+			"<span id='mw-input-testfield' class='mw-htmlform-submit  oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-destructive oo-ui-buttonInputWidget'><button type='button' tabindex='0' name='testfield' value='' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon'></span><span class='oo-ui-labelElement-label'>Click me</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator'></span></button></span>"
+		];
+
+		yield 'Quiet button with CSS class' => [
+			[
+				'buttonlabel' => 'Click me',
+				'cssclass' => 'my-button',
+				'flags' => [ 'quiet' ]
+			],
+			'',
+			"<span id='mw-input-testfield' class='mw-htmlform-submit my-button oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-quiet oo-ui-buttonInputWidget'><button type='button' tabindex='0' name='testfield' value='' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon'></span><span class='oo-ui-labelElement-label'>Click me</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator'></span></button></span>"
+
+		];
+
+		yield 'Disabled button' => [
+			[
+				'buttonlabel' => 'Click me',
+				'disabled' => true
+			],
+			'',
+			"<span id='mw-input-testfield' aria-disabled='true' class='mw-htmlform-submit  oo-ui-widget oo-ui-widget-disabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-buttonInputWidget'><button type='button' tabindex='-1' aria-disabled='true' name='testfield' disabled='disabled' value='' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon'></span><span class='oo-ui-labelElement-label'>Click me</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator'></span></button></span>"
+		];
+	}
 }
