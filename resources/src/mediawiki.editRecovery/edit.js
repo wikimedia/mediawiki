@@ -15,6 +15,7 @@ var changeDebounceTimer = null;
 const debounceTime = 5000;
 
 // This module is loaded for every edit form, but not all should have Edit Recovery functioning.
+const wasPosted = mw.config.get( 'wgEditRecoveryWasPosted' );
 const isUndo = $( 'input[name="wpUndoAfter"]' ).length > 0;
 const isOldRevision = $( 'input[name="oldid"]' ).val() > 0;
 const isConflict = mw.config.get( 'wgEditMessage' ) === 'editconflict';
@@ -48,7 +49,7 @@ function onLoadHandler( $editForm ) {
 		}
 	} );
 	// Save the contents of all of those, as well as the following hidden inputs.
-	const inputsToSaveNames = [ 'wpSection', 'editRevId', 'oldid', 'parentRevId', 'format', 'model', 'mode' ];
+	const inputsToSaveNames = [ 'wpSection', 'editRevId', 'oldid', 'parentRevId', 'format', 'model' ];
 	const $inputsToSave = $editForm.find( '[name="' + inputsToSaveNames.join( '"], [name="' ) + '"]' );
 	$inputsToSave.each( function ( _i, field ) {
 		inputFields[ field.name ] = field;
@@ -119,7 +120,6 @@ function track( metric, value ) {
 }
 
 function onLoadData( pageData ) {
-	const wasPosted = mw.config.get( 'wgEditRecoveryWasPosted' );
 	if ( wasPosted ) {
 		// If this is a POST request, save the current data (e.g. from a preview).
 		saveFormData();
@@ -240,9 +240,17 @@ function saveFormData() {
 	const pageName = mw.config.get( 'wgPageName' );
 	const section = inputFields.wpSection.value !== undefined ? inputFields.wpSection.value : null;
 	const pageData = getFormData();
-	storage.saveData( pageName, section, pageData );
-	// Flag the data for deletion in the postEdit handler in ./postEdit.js
-	mw.storage.session.set( 'EditRecovery-data-saved', true, 300 );
+	if ( ( originalData === null || isSameAsOriginal( pageData ) ) && !wasPosted ) {
+		// Delete the stored data if there's no change,
+		// or if we've flagged originalData as irrelevant,
+		// or if we can't determine this because this page was POSTed.
+		storage.deleteData( pageName, section );
+		mw.storage.session.remove( 'EditRecovery-data-saved' );
+	} else {
+		storage.saveData( pageName, section, pageData );
+		// Flag the data for deletion in the postEdit handler in ./postEdit.js
+		mw.storage.session.set( 'EditRecovery-data-saved', true, 300 );
+	}
 }
 
 /**
