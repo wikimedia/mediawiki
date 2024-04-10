@@ -314,8 +314,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				'type' => $type,
 			] );
 
-			$mockField->method( 'merge' )
-				->willReturn( $mockField );
+			$mockField->method( 'merge' )->willReturnSelf();
 
 			return $mockField;
 		};
