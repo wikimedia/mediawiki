@@ -717,17 +717,31 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @param bool $useDeprecatedApi
 	 * @covers \MediaWiki\Parser\ParserOutput::setPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setIndexedPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setUnindexedPageProperty
+	 * @dataProvider provideUseDeprecatedApi
 	 */
-	public function testUpdate_page_props() {
+	public function testUpdate_page_props( $useDeprecatedApi ) {
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$fields = [ 'pp_propname', 'pp_value', 'pp_sortkey' ];
 		$cond = [ 'pp_page' => self::$testingPageId ];
 
-		$po->setPageProperty( 'deleted', 1 );
-		$po->setPageProperty( 'changed', 1 );
+		$setIndexedPageProperty = 'setIndexedPageProperty';
+		$setUnindexedPageProperty = 'setUnindexedPageProperty';
+		if ( $useDeprecatedApi ) {
+			// ::setPageProperty is deprecated when used for non-string values;
+			// and when used for string values it is identical to
+			// ::setUnindexedPageProperty
+			$indexedPageProperty = 'setPageProperty';
+			$setUnindexedPageProperty = 'setPageProperty';
+		}
+
+		$po->$setIndexedPageProperty( 'deleted', 1 );
+		$po->$setIndexedPageProperty( 'changed', 1 );
 		$this->assertLinksUpdate(
 			$t, $po, 'page_props', $fields, $cond,
 			[
@@ -738,32 +752,50 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
+		// Elements of the $expected array are 3-element arrays:
+		// First element is the page property name
+		// Second element is the page property value
+		//    (These are stringified when encoded into the database.)
+		// Third element is the sort key (as a float, or null)
 		$expected = [];
-		$po->setPageProperty( "bool", true );
-		$expected[] = [ "bool", true ];
 
-		$po->setPageProperty( 'changed', 2 );
-		$expected[] = [ 'changed', 2 ];
-
-		$po->setPageProperty( "float", 4.0 + 1.0 / 4.0 );
-		$expected[] = [ "float", 4.0 + 1.0 / 4.0 ];
-
-		$po->setPageProperty( "int", -7 );
-		$expected[] = [ "int", -7 ];
-
-		$po->setPageProperty( "string", "33 bar" );
-		$expected[] = [ "string", "33 bar" ];
-
-		// compute expected sortkey values
-		foreach ( $expected as &$row ) {
-			$value = $row[1];
-
-			if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
-				$row[] = floatval( $value );
-			} else {
-				$row[] = null;
-			}
+		if ( $useDeprecatedApi ) {
+			// Using legacy API this is only coerced during LinksUpdate
+			$po->setPageProperty( 'bool', true );
+			$expected[] = [ "bool", true, 1.0 ];
+		} else {
+			// Coerced early to a numeric type using non-legacy API
+			$po->setIndexedPageProperty( "bool", true );
+			$expected[] = [ "bool", 1, 1.0 ];
 		}
+
+		$po->$setIndexedPageProperty( 'changed', 2 );
+		$expected[] = [ 'changed', 2, 2.0 ];
+
+		$f = 4.0 + 1.0 / 4.0;
+		$po->$setIndexedPageProperty( "float", $f );
+		$expected[] = [ "float", $f, $f ];
+
+		$po->$setIndexedPageProperty( "int", -7 );
+		$expected[] = [ "int", -7, -7.0 ];
+
+		$po->$setUnindexedPageProperty( "string", "33 bar" );
+		$expected[] = [ "string", "33 bar", null ];
+
+		if ( !$useDeprecatedApi ) {
+			// A numeric string *does* get indexed if you use
+			// ::setIndexedPageProperty
+			$po->setIndexedPageProperty( "numeric-string", "33" );
+			$expected[] = [ "numeric-string", 33, 33.0 ];
+			// And similarly a numeric argument won't get indexed if you
+			// use ::setUnindexedPageProperty
+			$po->setUnindexedPageProperty( "unindexed", 33 );
+			$expected[] = [ "unindexed", "33", null ];
+		}
+
+		// Note that the ::assertSelect machinery will sort by the columns
+		// provided in $fields; in our case we should sort by property name
+		usort( $expected, static fn ( $a, $b ): int => $a[0] <=> $b[0] );
 
 		$update = $this->assertLinksUpdate(
 			$t, $po, 'page_props', $fields, [ 'pp_page' => self::$testingPageId ], $expected );
@@ -780,6 +812,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			],
 			$update->getRemovedProperties()
 		);
+	}
+
+	public static function provideUseDeprecatedApi() {
+		yield "Non-deprecated API" => [ false ];
+		yield "Deprecated API" => [ true ];
 	}
 
 	// @todo test recursive, too!
@@ -852,8 +889,16 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	/**
 	 * Confirm that repeatedly saving the same ParserOutput does not lead to
 	 * DELETE/INSERT queries (T299662)
+	 * @dataProvider provideUseDeprecatedApi
 	 */
-	public function testNullEdit() {
+	public function testNullEdit( bool $useDeprecatedApi ) {
+		$setIndexedPageProperty = 'setIndexedPageProperty';
+		$setUnindexedPageProperty = 'setUnindexedPageProperty';
+		if ( $useDeprecatedApi ) {
+			$indexedPageProperty = 'setPageProperty';
+			$setUnindexedPageProperty = 'setPageProperty';
+		}
+
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( 'Test', 'Test' );
@@ -862,14 +907,18 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$po->addInterwikiLink( new TitleValue( 0, 'test', '', 'test' ) );
 		$po->addLanguageLink( new TitleValue( 0, 'Test', '', 'en' ) );
 		$po->addLink( new TitleValue( 0, 'Test' ) );
-		$po->setPageProperty( 'string', 'x' );
-		$po->setPageProperty( 'numeric-string', '1' );
-		$po->setPageProperty( 'int', 10 );
-		$po->setPageProperty( 'float', 2 / 3 );
-		$po->setPageProperty( 'true', true );
-		$po->setPageProperty( 'false', false );
-		$this->expectDeprecationAndContinue( '/::setPageProperty with non-scalar value/' );
-		$po->setPageProperty( 'null', null );
+		$po->$setUnindexedPageProperty( 'string', 'x' );
+		$po->$setUnindexedPageProperty( 'numeric-string', '1' );
+		$po->$setIndexedPageProperty( 'int', 10 );
+		$po->$setIndexedPageProperty( 'float', 2 / 3 );
+		$po->$setIndexedPageProperty( 'true', true );
+		$po->$setIndexedPageProperty( 'false', false );
+		if ( $useDeprecatedApi ) {
+			$this->expectDeprecationAndContinue( '/::setPageProperty with non-scalar value/' );
+			$po->setPageProperty( 'null', null );
+		} else {
+			$po->setUnindexedPageProperty( 'null', '' );
+		}
 
 		$update = new LinksUpdate( $t, $po );
 		$update->setStrictTestMode();
@@ -914,7 +963,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$po->addInterwikiLink( new TitleValue( 0, $s, '', $s ) );
 		$po->addLanguageLink( new TitleValue( 0, $s, '', $s ) );
 		$po->addLink( new TitleValue( 0, $s ) );
-		$po->setPageProperty( $s, $s );
+		$po->setUnindexedPageProperty( $s, $s );
 		$po->addTemplate( new TitleValue( 0, $s ), 1, 1 );
 
 		$update = new LinksUpdate( $t, $po );

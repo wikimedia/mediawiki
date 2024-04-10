@@ -176,30 +176,66 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \MediaWiki\Parser\ParserOutput::setPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setIndexedPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setUnindexedPageProperty
 	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperty
 	 * @covers \MediaWiki\Parser\ParserOutput::unsetPageProperty
 	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperties
+	 * @dataProvider providePageProperties
 	 */
-	public function testProperties() {
+	public function testPageProperties( string $setPageProperty, $value1, $value2 ) {
 		$po = new ParserOutput();
 
-		$po->setPageProperty( 'foo', 'val' );
+		$po->$setPageProperty( 'foo', $value1 );
 
 		$properties = $po->getPageProperties();
-		$this->assertSame( 'val', $po->getPageProperty( 'foo' ) );
-		$this->assertSame( 'val', $properties['foo'] );
+		$this->assertSame( $value1, $po->getPageProperty( 'foo' ) );
+		$this->assertSame( $value1, $properties['foo'] );
 
-		$po->setPageProperty( 'foo', 'second val' );
+		$po->$setPageProperty( 'foo', $value2 );
 
 		$properties = $po->getPageProperties();
-		$this->assertSame( 'second val', $po->getPageProperty( 'foo' ) );
-		$this->assertSame( 'second val', $properties['foo'] );
+		$this->assertSame( $value2, $po->getPageProperty( 'foo' ) );
+		$this->assertSame( $value2, $properties['foo'] );
 
 		$po->unsetPageProperty( 'foo' );
 
 		$properties = $po->getPageProperties();
 		$this->assertSame( null, $po->getPageProperty( 'foo' ) );
 		$this->assertArrayNotHasKey( 'foo', $properties );
+	}
+
+	public static function providePageProperties() {
+		yield 'Unindexed' => [ 'setUnindexedPageProperty', 'val', 'second val' ];
+		yield 'Indexed' => [ 'setIndexedPageProperty', 42, 3.14 ];
+		yield 'Unindexed (old style)' => [ 'setPageProperty', 'val', 'second val' ];
+		yield 'Indexed (old style)' => [ 'setPageProperty', 123, 456 ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::setIndexedPageProperty
+	 */
+	public function testIndexedPageProperties() {
+		$po = new ParserOutput();
+
+		$po->setIndexedPageProperty( 'foo', '123' );
+
+		$properties = $po->getPageProperties();
+		$this->assertSame( 123, $po->getPageProperty( 'foo' ) );
+		$this->assertSame( 123, $properties['foo'] );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::setUnindexedPageProperty
+	 */
+	public function testUnindexedPageProperties() {
+		$po = new ParserOutput();
+
+		$po->setUnindexedPageProperty( 'foo', 123 );
+
+		$properties = $po->getPageProperties();
+		$this->assertSame( '123', $po->getPageProperty( 'foo' ) );
+		$this->assertSame( '123', $properties['foo'] );
 	}
 
 	/**
