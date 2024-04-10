@@ -123,9 +123,10 @@ class LanguageCode {
 	 * Returns a mapping of deprecated language codes that were used in previous
 	 * versions of MediaWiki to up-to-date, current language codes.
 	 *
-	 * This array is merged into $wgDummyLanguageCodes in Setup.php, along with
-	 * the fake language codes 'qqq' and 'qqx', which are used internally by
-	 * MediaWiki's localisation system.
+	 * This array is merged into $wgDummyLanguageCodes in
+	 * SetupDynamicConfig.php, along with the fake language codes
+	 * 'qqq' and 'qqx', which are used internally by MediaWiki's
+	 * localisation system.
 	 *
 	 * @return string[]
 	 *
