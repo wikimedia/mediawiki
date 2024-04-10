@@ -1967,9 +1967,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers \MediaWiki\Languages\LanguageNameUtils::isKnownLanguageTag
 	 */
 	public function testCldr() {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'CLDR' ) ) {
-			$this->markTestSkipped( 'The CLDR extension is not installed.' );
-		}
+		$this->markTestSkippedIfExtensionNotLoaded( 'CLDR' );
 
 		$languageNameUtils = $this->getServiceContainer()->getLanguageNameUtils();
 
