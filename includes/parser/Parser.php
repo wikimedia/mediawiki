@@ -3625,8 +3625,15 @@ class Parser {
 		$revRecord = null;
 		$contextTitle = $parser ? $parser->getTitle() : null;
 
-		$services = MediaWikiServices::getInstance();
 		# Loop to fetch the article, with up to 2 redirects
+
+		# Note that $title (including redirect targets) could be
+		# external; we do allow hooks a chance to redirect the
+		# external title to a local one (which might be useful), but
+		# are careful not to add external titles to the dependency
+		# list. (T362221)
+
+		$services = MediaWikiServices::getInstance();
 		$revLookup = $services->getRevisionLookup();
 		$hookRunner = new HookRunner( $services->getHookContainer() );
 		for ( $i = 0; $i < 3 && is_object( $title ); $i++ ) {
@@ -3648,11 +3655,13 @@ class Parser {
 
 			if ( $skip ) {
 				$text = false;
-				$deps[] = [
-					'title' => $title,
-					'page_id' => $title->getArticleID(),
-					'rev_id' => null
-				];
+				if ( !$title->isExternal() ) {
+					$deps[] = [
+						'title' => $title,
+						'page_id' => $title->getArticleID(),
+						'rev_id' => null
+					];
+				}
 				break;
 			}
 			# Get the revision
@@ -3671,12 +3680,13 @@ class Parser {
 				$title = Title::newFromLinkTarget(
 					$revRecord->getPageAsLinkTarget()
 				);
+				// Assuming title is not external if we've got a $revRecord
 				$deps[] = [
 					'title' => $title,
 					'page_id' => $revRecord->getPageId(),
 					'rev_id' => $revRecord->getId(),
 				];
-			} else {
+			} elseif ( !$title->isExternal() ) {
 				$deps[] = [
 					'title' => $title,
 					'page_id' => $title->getArticleID(),
@@ -3686,11 +3696,13 @@ class Parser {
 			if ( !$title->equals( $origTitle ) ) {
 				# If we fetched a rev from a different title, register
 				# the original title too...
-				$deps[] = [
-					'title' => $origTitle,
-					'page_id' => $origTitle->getArticleID(),
-					'rev_id' => null,
-				];
+				if ( !$origTitle->isExternal() ) {
+					$deps[] = [
+						'title' => $origTitle,
+						'page_id' => $origTitle->getArticleID(),
+						'rev_id' => null,
+					];
+				}
 				$titleChanged = true;
 			}
 			# If there is no current revision, there is no page
