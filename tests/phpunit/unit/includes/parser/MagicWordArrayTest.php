@@ -217,7 +217,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getFactory( ?bool $caseSensitive = null ): MagicWordFactory {
-		$language = $this->createNoOpMock( Language::class, [ 'lc', '__debugInfo' ] );
+		$language = $this->createNoOpMock( Language::class, [ 'lc' ] );
 		$language->method( 'lc' )->willReturnCallback( static fn ( $s ) => strtolower( $s ) );
 
 		$factory = $this->createNoOpMock( MagicWordFactory::class, [ 'getContentLanguage', 'get' ] );
