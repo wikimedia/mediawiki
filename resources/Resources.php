@@ -110,15 +110,7 @@ return [
 		],
 	],
 
-	/* Base modules */
-	// These modules' dependencies MUST also be included in StartUpModule::getBaseModules().
-	// These modules' dependencies MUST be dependency-free (having dependencies would cause recursion).
-
-	'jquery' => [
-		'scripts' => [
-			'resources/lib/jquery/jquery.js'
-		],
-	],
+	/* Polyfills */
 	'web2017-polyfills' => [
 		'scripts' => [
 			'resources/lib/intersection-observer/intersection-observer.js',
@@ -131,6 +123,16 @@ return [
 		],
 		'skipFunction' => 'resources/src/skip-web2017-polyfills.js',
 		'dependencies' => []
+	],
+
+	/* Base modules */
+	// These modules' dependencies MUST also be included in StartUpModule::getBaseModules().
+	// These modules' dependencies MUST be dependency-free (having dependencies would cause recursion).
+
+	'jquery' => [
+		'scripts' => [
+			'resources/lib/jquery/jquery.js'
+		],
 	],
 	'mediawiki.base' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.base',
