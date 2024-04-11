@@ -454,26 +454,6 @@ __INDEXATTR__;
 		return $typesByColumn;
 	}
 
-	public function textFieldSize( $table, $field ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$encTable = $this->tableName( $table );
-		$sql = "SELECT t.typname as ftype,a.atttypmod as size
-			FROM pg_class c, pg_attribute a, pg_type t
-			WHERE relname='$encTable' AND a.attrelid=c.oid AND
-				a.atttypid=t.oid and a.attname='$field'";
-		$query = new Query( $sql, $flags, 'SELECT' );
-		$res = $this->query( $query, __METHOD__ );
-		$row = $res->fetchObject();
-		if ( $row->ftype == 'varchar' ) {
-			$size = $row->size - 4;
-		} else {
-			$size = $row->size;
-		}
-
-		return $size;
-	}
-
 	public function wasDeadlock() {
 		// https://www.postgresql.org/docs/9.2/static/errcodes-appendix.html
 		return $this->lastErrno() === '40P01';

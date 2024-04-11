@@ -560,11 +560,6 @@ class DatabaseSqlite extends Database {
 		$this->query( $query, $fname );
 	}
 
-	public function textFieldSize( $table, $field ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		return -1;
-	}
-
 	/**
 	 * @return bool
 	 */
