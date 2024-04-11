@@ -342,6 +342,7 @@ $specialPageAliases = [
 	'Diff'                      => [ 'فرق' ],
 	'DoubleRedirects'           => [ 'تحويلات_مزدوجة' ],
 	'EditPage'                  => [ 'عدل_الصفحة', 'عدل' ],
+	'EditRecovery'              => [ 'استرداد_التعديل' ],
 	'EditTags'                  => [ 'تعديل_الوسوم' ],
 	'EditWatchlist'             => [ 'تعديل_قائمة_المراقبة' ],
 	'Emailuser'                 => [ 'مراسلة_المستخدم' ],

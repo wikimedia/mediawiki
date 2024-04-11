@@ -67,6 +67,7 @@ $specialPageAliases = [
 	'Diff'                      => [ 'فرق' ],
 	'DoubleRedirects'           => [ 'تحويلات_دوبل' ],
 	'EditPage'                  => [ 'عدل_الصفحه', 'عدل' ],
+	'EditRecovery'              => [ 'ترجيع_التعديل' ],
 	'EditTags'                  => [ 'تغيير_التاجز' ],
 	'EditWatchlist'             => [ 'تغيير_قايمه_المراقبه' ],
 	'Emailuser'                 => [ 'ابعت_ايميل_لليوزر' ],
