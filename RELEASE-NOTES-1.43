@@ -45,6 +45,13 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 === New developer features in 1.43 ===
 
+* StatusValue class gained new method getMessages(): MessageSpecifier[],
+  allowing the errors to be inspected and displayed more easily, for example:
+    foreach ( $status->getMessages() as $msg ) {
+      if ( $msg->getKey() !== 'ignored-message' ) {
+        $this->getOutput()->addWikiMsg( $msg );
+      }
+    }
 * …
 
 === External library changes in 1.43 ===
@@ -97,6 +104,9 @@ because of Phabricator reports.
 
 === Deprecations in 1.43 ===
 
+* The methods StatusValue::getErrors() and StatusValue::getErrorsByType(),
+  as well as Status::getErrorsArray() and Status::getWarningsArray(), have
+  been deprecated in favor of new method StatusValue::getMessages().
 * …
 
 === Other changes in 1.43 ===
