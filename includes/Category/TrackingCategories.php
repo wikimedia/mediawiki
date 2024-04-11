@@ -259,10 +259,7 @@ class TrackingCategories {
 		if ( $categoryPage === null ) {
 			return false;
 		}
-		$parserOutput->addCategory(
-			$categoryPage->getDBkey(),
-			$parserOutput->getPageProperty( 'defaultsort' ) ?? ''
-		);
+		$parserOutput->addCategory( $categoryPage->getDBkey() );
 		return true;
 	}
 }

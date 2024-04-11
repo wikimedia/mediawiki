@@ -608,7 +608,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Return the sort key for a given category name, or `null` if the
-	 * category is not present in this ParserOutput.
+	 * category is not present in this ParserOutput.  Returns the
+	 * empty string if the category is to use the default sort key.
+	 *
+	 * @note The effective sort key in the database may vary from what
+	 * is returned here; see note in ParserOutput::addCategory().
+	 *
 	 * @param string $name The category name
 	 * @return ?string The sort key for the category, or `null` if the
 	 *  category is not present in this ParserOutput
@@ -905,8 +910,18 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Add a category.
+	 *
+	 * Although ParserOutput::getCategorySortKey() will return exactly
+	 * the sort key you specify here, before storing in the database
+	 * all sort keys will be language converted, HTML entities will be
+	 * decoded, newlines stripped, and then they will be truncated to
+	 * 255 bytes. Thus the "effective" sort key in the DB may be different
+	 * from what is passed to `$sort` here and returned by
+	 * ::getCategorySortKey().
+	 *
 	 * @param string|ParsoidLinkTarget $c The category name
-	 * @param string $sort The sort key
+	 * @param string $sort The sort key; an empty string indicates
+	 *  that the default sort key for the page should be used.
 	 */
 	public function addCategory( $c, $sort = '' ): void {
 		if ( $c instanceof ParsoidLinkTarget ) {

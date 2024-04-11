@@ -8,6 +8,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use PurgeJobUtils;
@@ -107,6 +108,15 @@ class CategoryLinksTable extends TitleLinksTable {
 		foreach ( $parserOutput->getCategoryNames() as $name ) {
 			$sortKey = $parserOutput->getCategorySortKey( $name );
 			'@phan-var string $sortKey'; // sort key will never be null
+
+			if ( $sortKey == '' ) {
+				$sortKey = $parserOutput->getPageProperty( "defaultsort" ) ?? '';
+			}
+			$sortKey = $this->languageConverter->convertCategoryKey( $sortKey );
+
+			// Clean up the sort key, regardless of source
+			$sortKey = Sanitizer::decodeCharReferences( $sortKey );
+			$sortKey = str_replace( "\n", '', $sortKey );
 
 			// If the sort key is longer then 255 bytes, it is truncated by DB,
 			// and then doesn't match when comparing existing vs current
