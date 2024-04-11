@@ -883,6 +883,69 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->getHtml();
 	}
 
+	public static function provideParsoidOutputStatus() {
+		yield 'parsoid-client-error' => [
+			Status::newFatal( 'parsoid-client-error' ),
+			new LocalizedHttpException(
+				new MessageValue( 'rest-html-backend-error' ),
+				400,
+				[
+					'reason' => 'parsoid-client-error'
+				]
+			)
+		];
+		yield 'parsoid-resource-limit-exceeded' => [
+			Status::newFatal( 'parsoid-resource-limit-exceeded' ),
+			new LocalizedHttpException(
+				new MessageValue( 'rest-resource-limit-exceeded' ),
+				413,
+				[
+					'reason' => 'TEST_TEST'
+				]
+			)
+		];
+		yield 'missing-revision-permission' => [
+			Status::newFatal( 'missing-revision-permission' ),
+			new LocalizedHttpException(
+				new MessageValue( 'rest-permission-denied-revision' ),
+				403,
+				[
+					'reason' => 'missing-revision-permission'
+				]
+			)
+		];
+		yield 'parsoid-revision-access' => [
+			Status::newFatal( 'parsoid-revision-access' ),
+			new LocalizedHttpException(
+				new MessageValue( 'rest-specified-revision-unavailable' ),
+				404,
+				[
+					'reason' => 'parsoid-revision-access'
+				]
+			)
+		];
+	}
+
+	/**
+	 * @dataProvider provideParsoidOutputStatus
+	 */
+	public function testParsoidOutputStatus(
+		Status $parsoidOutputStatus,
+		Exception $expectedException
+	) {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$access = $this->createNoOpMock( ParsoidOutputAccess::class, [ 'getParserOutput' ] );
+		$access->method( 'getParserOutput' )
+			->willReturn( $parsoidOutputStatus );
+
+		$helper = $this->newHelper( [ 'ParsoidOutputAccess' => $access ] );
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+
+		$this->expectExceptionObject( $expectedException );
+		$helper->getHtml();
+	}
+
 	public function testWillUseParserCache() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 
