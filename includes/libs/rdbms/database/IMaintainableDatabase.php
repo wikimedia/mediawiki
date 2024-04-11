@@ -117,17 +117,6 @@ interface IMaintainableDatabase extends IDatabase {
 	public function truncateTable( $table, $fname = __METHOD__ );
 
 	/**
-	 * Delete all data in a table(s) and reset any sequences owned by that table(s)
-	 *
-	 * @param string|string[] $tables
-	 * @param string $fname
-	 * @throws DBError If an error occurs
-	 * @since 1.35
-	 * @deprecated Since 1.42; use truncateTable() instead
-	 */
-	public function truncate( $tables, $fname = __METHOD__ );
-
-	/**
 	 * Creates a new table with structure copied from existing table
 	 *
 	 * Note that unlike most database abstraction functions, this function does not
