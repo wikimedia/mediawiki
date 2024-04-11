@@ -65,6 +65,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		'tly',
 		'uz',
 		'wuu',
+		'zgh',
 		'zh',
 	];
 
@@ -88,6 +89,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		'tly' => 'tly',
 		'uz' => 'uz',
 		'wuu' => 'wuu',
+		'zgh' => 'zgh',
 		'zh' => 'zh',
 	];
 

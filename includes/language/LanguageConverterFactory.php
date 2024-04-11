@@ -40,6 +40,7 @@ use TrivialLanguageConverter;
 use UzConverter;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use WuuConverter;
+use ZghConverter;
 use ZhConverter;
 
 /**
@@ -90,6 +91,9 @@ class LanguageConverterFactory {
 		],
 		'wuu' => [
 			'class' => WuuConverter::class,
+		],
+		'zgh' => [
+			'class' => ZghConverter::class,
 		],
 		'zh' => [
 			'class' => ZhConverter::class,

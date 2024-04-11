@@ -3845,6 +3845,8 @@
 	"variantname-wuu-hant": "{{Optional}}\n\nVariant option for wikis with variants conversion enabled.",
 	"variantname-yue-hant": "{{Optional}}\n\nVariant option for wikis with variants conversion enabled.",
 	"variantname-yue-hans": "{{Optional}}\n\nVariant option for wikis with variants conversion enabled.",
+	"variantname-zgh": "{{optional}}\nVariant option for wikis with variants conversion enabled.",
+	"variantname-zgh-latn": "{{optional}}\nVariant option for wikis with variants conversion enabled.",
 	"variantname-zh": "{{Optional}}\n\nVariant option for wikis with variants conversion enabled.",
 	"variantname-zh-hans": "{{Optional}}\n\nVariant option for wikis with variants conversion enabled.",
 	"variantname-zh-hant": "{{Optional}}\n\nVariant option for wikis with variants conversion enabled.",

@@ -562,6 +562,7 @@ class Names {
 		'za' => 'Vahcuengh', # Zhuang
 		'zea' => 'Zeêuws', # Zeeuws / Zeaws
 		'zgh' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ ⵜⴰⵏⴰⵡⴰⵢⵜ', # Moroccan Amazigh (multiple scripts - defaults to Neo-Tifinagh)
+		'zgh-latn' => 'tamaziɣt tanawayt', # Moroccan Amazigh (Latin script)
 		'zh' => '中文', # (Zhōng Wén) - Chinese
 		'zh-classical' => '文言', # Classical Chinese/Literary Chinese -- (see T10217)
 		'zh-cn' => '中文（中国大陆）', # Chinese (PRC)
