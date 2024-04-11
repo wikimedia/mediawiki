@@ -160,8 +160,8 @@ class DatabaseTestHelper extends Database {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
-		$tableRaw = $this->tableName( $table, 'raw' );
-		if ( isset( $this->sessionTempTables[$tableRaw] ) ) {
+		[ $db, $pt ] = $this->platform->getDatabaseAndTableIdentifier( $table );
+		if ( isset( $this->sessionTempTables[$db][$pt] ) ) {
 			return true; // already known to exist
 		}
 

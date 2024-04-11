@@ -92,9 +92,9 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	/** @var string|bool|null Stashed value of html_errors INI setting */
 	private $htmlErrors;
 
-	/** @var array<string,array> Map of (name => (UNIX time,trx ID)) for current lock() mutexes */
+	/** @var array<string,array> Map of (lock name => (UNIX time,trx ID)) */
 	protected $sessionNamedLocks = [];
-	/** @var array<string,TempTableInfo> Current temp tables */
+	/** @var array<string,array<string, TempTableInfo>> Map of (DB name => table name => info) */
 	protected $sessionTempTables = [];
 
 	/** @var int Affected row count for the last statement to query() */
@@ -588,8 +588,8 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 			// Parse error? Assume permanent.
 			return true;
 		}
-		$rawTable = $this->platform->tableName( $table, 'raw' );
-		$tempInfo = $this->sessionTempTables[$rawTable] ?? null;
+		[ $db, $pt ] = $this->platform->getDatabaseAndTableIdentifier( $table );
+		$tempInfo = $this->sessionTempTables[$db][$pt] ?? null;
 		return !$tempInfo || $tempInfo->pseudoPermanent;
 	}
 
@@ -605,16 +605,16 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		}
 		switch ( $query->getVerb() ) {
 			case 'CREATE TEMPORARY':
-				$rawTable = $this->platform->tableName( $table, 'raw' );
-				$this->sessionTempTables[$rawTable] = new TempTableInfo(
+				[ $db, $pt ] = $this->platform->getDatabaseAndTableIdentifier( $table );
+				$this->sessionTempTables[$db][$pt] = new TempTableInfo(
 					$this->transactionManager->getTrxId(),
 					(bool)( $query->getFlags() & self::QUERY_PSEUDO_PERMANENT )
 				);
 				break;
 
 			case 'DROP':
-				$rawTable = $this->platform->tableName( $table, 'raw' );
-				unset( $this->sessionTempTables[$rawTable] );
+				[ $db, $pt ] = $this->platform->getDatabaseAndTableIdentifier( $table );
+				unset( $this->sessionTempTables[$db][$pt] );
 		}
 	}
 
@@ -1040,20 +1040,22 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 			}
 		}
 		// Loss of temp tables breaks future callers relying on those tables for queries
-		foreach ( $priorSessInfo->tempTables as $tableName => $tableInfo ) {
-			if ( $tableInfo->trxId && $tableInfo->trxId === $priorSessInfo->trxId ) {
-				// Treat lost temp tables created during the lost transaction as a transaction
-				// state problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
-				// rollback automatically triggered server-side.
-				if ( $verb !== 'ROLLBACK' ) {
-					$res = max( $res, self::ERR_ABORT_TRX );
+		foreach ( $priorSessInfo->tempTables as $domainTempTables ) {
+			foreach ( $domainTempTables as $tableName => $tableInfo ) {
+				if ( $tableInfo->trxId && $tableInfo->trxId === $priorSessInfo->trxId ) {
+					// Treat lost temp tables created during the lost transaction as a
+					// transaction state problem. Connection loss on ROLLBACK (non-SAVEPOINT)
+					// is tolerable since rollback automatically triggered server-side.
+					if ( $verb !== 'ROLLBACK' ) {
+						$res = max( $res, self::ERR_ABORT_TRX );
+						$blockers[] = "temp table '$tableName'";
+					}
+				} else {
+					// Treat lost temp tables created either during prior transactions or during
+					// no transaction as a session state problem.
+					$res = max( $res, self::ERR_ABORT_SESSION );
 					$blockers[] = "temp table '$tableName'";
 				}
-			} else {
-				// Treat lost temp tables created either during prior transactions or during
-				// no transaction as a session state problem.
-				$res = max( $res, self::ERR_ABORT_SESSION );
-				$blockers[] = "temp table '$tableName'";
 			}
 		}
 		// Loss of transaction writes breaks future callers and DBO_TRX logic relying on those

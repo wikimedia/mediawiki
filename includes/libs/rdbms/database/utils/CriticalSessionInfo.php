@@ -34,7 +34,7 @@ class CriticalSessionInfo {
 	public $trxPreCommitCbCallers;
 	/** @var array<string,array> */
 	public $namedLocks;
-	/** @var array<string,TempTableInfo> */
+	/** @var array<string,array<string, TempTableInfo>> */
 	public $tempTables;
 
 	/**

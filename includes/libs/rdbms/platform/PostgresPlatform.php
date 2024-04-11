@@ -148,6 +148,20 @@ class PostgresPlatform extends SQLPlatform {
 		return [ $startOpts, $preLimitTail, $postLimitTail ];
 	}
 
+	public function getDatabaseAndTableIdentifier( string $table ) {
+		$components = $this->qualifiedTableComponents( $table );
+		switch ( count( $components ) ) {
+			case 1:
+				return [ $this->currentDomain->getDatabase(), $components[0] ];
+			case 2:
+				return [ $this->currentDomain->getDatabase(), $components[1] ];
+			case 3:
+				return [ $components[0], $components[2] ];
+			default:
+				throw new DBLanguageError( 'Too many table components' );
+		}
+	}
+
 	protected function relationSchemaQualifier() {
 		if ( $this->coreSchema === $this->currentDomain->getSchema() ) {
 			// The schema to be used is now in the search path; no need for explicit qualification

@@ -1156,6 +1156,43 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
+	 * Get the database identifer and prefixed table name identifier for a table
+	 *
+	 * The table name is assumed to be relative to the current DB domain
+	 *
+	 * This method is useful for TEMPORARY table tracking. In MySQL, temp tables with identical
+	 * names can co-exist on different databases, which can be done via CREATE and USE. Note
+	 * that SQLite/PostgreSQL do not allow changing the database within a session. This method
+	 * omits the schema identifier for several reasons:
+	 *   - MySQL/MariaDB do not support schemas at all.
+	 *   - SQLite/PostgreSQL put all TEMPORARY tables in the same schema (TEMP and pgtemp,
+	 *     respectively). When these engines resolve a table reference, they first check for
+	 *     a matching table in the temp schema, before checking the current DB domain schema.
+	 *     Note that this breaks table segregation based on the schema component of the DB
+	 *     domain, e.g. a temp table with unqualified name "x" resolves to the same underlying
+	 *     table whether the current DB domain is "my_db-schema1-mw_" or "my_db-schema2-mw_".
+	 *     By ignoring the schema, we can at least account for this.
+	 *   - Exposing the the TEMP/pg_temp schema here would be too leaky of an abstraction,
+	 *     running the risk of unexpected results, such as identifiers that don't match. It is
+	 *     easier to just avoid creating identically-named TEMPORARY tables on different schemas.
+	 *
+	 * @internal only to be used inside rdbms library
+	 * @param string $table Table name
+	 * @return array{0:string|null,1:string} (unquoted database name, unquoted prefixed table name)
+	 */
+	public function getDatabaseAndTableIdentifier( string $table ) {
+		$components = $this->qualifiedTableComponents( $table );
+		switch ( count( $components ) ) {
+			case 1:
+				return [ $this->currentDomain->getDatabase(), $components[0] ];
+			case 2:
+				return $components;
+			default:
+				throw new DBLanguageError( 'Too many table components' );
+		}
+	}
+
+	/**
 	 * @stable to override
 	 * @return string|null Schema to use to qualify relations in queries
 	 */
