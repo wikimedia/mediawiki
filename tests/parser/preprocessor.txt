@@ -351,13 +351,13 @@ tag, nothing bad happens:</p>
 <ul><li><span typeof="mw:Nowiki">foo-{bar}bat</span></li>
 <li><span typeof="mw:Nowiki mw:Transclusion" about="#mwt9" data-parsoid='{"pi":[[{"k":"1"}]],}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;nowiki>foo-{bar}bat&lt;/nowiki>"}},"i":0}}]}'>foo-{bar}bat</span></li>
 <li><pre typeof="mw:Extension/pre" about="#mwt11" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>foo-{bar}bat</pre></li>
-<li><pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt12" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre>foo-{bar}bat&lt;/pre>"}},"i":0}}]}'>foo-{bar}bat</pre></li></ul>
+<li><pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt12" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo-{bar}bat"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre>foo-{bar}bat&lt;/pre>"}},"i":0}}]}'>foo-{bar}bat</pre></li></ul>
 
 <pre typeof="mw:Extension/tag" about="#mwt16" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>'foo-{bar}bat'
 array (
 )
 </pre>
-<pre typeof="mw:Extension/tag mw:Transclusion" about="#mwt17" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tag>foo-{bar}bat&lt;/tag>"}},"i":0}}]}'>'foo-{bar}bat'
+<pre typeof="mw:Extension/tag mw:Transclusion" about="#mwt17" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"foo-{bar}bat"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tag>foo-{bar}bat&lt;/tag>"}},"i":0}}]}'>'foo-{bar}bat'
 array (
 )
 </pre>

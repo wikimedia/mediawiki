@@ -302,7 +302,7 @@ parsoid=wt2html
 !! wikitext
 {{T1}}{{T1}}
 !! html/parsoid
-<span typeof="mw:Extension/pwraptest mw:Transclusion" about="#mwt1" data-mw='{"parts":[{"template":{"target":{"wt":"T1","href":"./Template:T1"},"params":{},"i":0}}]}'><!--CMT--></span><style about="#mwt1">p{}</style><div about="#mwt1">foo</div><span typeof="mw:Extension/pwraptest" about="#mwt1" data-mw='{"name":"pwraptest","attrs":{}}'><!--CMT--></span><style about="#mwt1">p{}</style><span typeof="mw:Extension/pwraptest mw:Transclusion" about="#mwt7" data-mw='{"parts":[{"template":{"target":{"wt":"T1","href":"./Template:T1"},"params":{},"i":0}}]}'><!--CMT--></span><style about="#mwt7">p{}</style><div about="#mwt7">foo</div><span typeof="mw:Extension/pwraptest" about="#mwt7" data-mw='{"name":"pwraptest","attrs":{}}'><!--CMT--></span><style about="#mwt7">p{}</style>
+<span typeof="mw:Extension/pwraptest mw:Transclusion" about="#mwt1" data-mw='{"name":"pwraptest","attrs":{},"parts":[{"template":{"target":{"wt":"T1","href":"./Template:T1"},"params":{},"i":0}}]}'><!--CMT--></span><style about="#mwt1">p{}</style><div about="#mwt1">foo</div><span typeof="mw:Extension/pwraptest" about="#mwt1" data-mw='{"name":"pwraptest","attrs":{}}'><!--CMT--></span><style about="#mwt1">p{}</style><span typeof="mw:Extension/pwraptest mw:Transclusion" about="#mwt7" data-mw='{"name":"pwraptest","attrs":{},"parts":[{"template":{"target":{"wt":"T1","href":"./Template:T1"},"params":{},"i":0}}]}'><!--CMT--></span><style about="#mwt7">p{}</style><div about="#mwt7">foo</div><span typeof="mw:Extension/pwraptest" about="#mwt7" data-mw='{"name":"pwraptest","attrs":{}}'><!--CMT--></span><style about="#mwt7">p{}</style>
 !! end
 
 ###

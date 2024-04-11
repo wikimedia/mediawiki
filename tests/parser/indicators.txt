@@ -187,7 +187,7 @@ abcd
 </p>
 !! html/parsoid
 <p>abcd</p>
-<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
+<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo","parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
 !! end
 
 !! test
@@ -208,7 +208,7 @@ abcd
 !! html/parsoid
 <p>abcd
 <meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"bar"},"html":"bar"}'/></p>
-<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
+<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo","parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
 !! end
 
 !! test

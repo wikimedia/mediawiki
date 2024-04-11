@@ -1853,7 +1853,7 @@ Don't break on | in extension attribute in template
 !! wikitext
 {{1x|<tag name="hi|ho">ha</tag>}}
 !! html/parsoid
-<pre typeof="mw:Extension/tag mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tag name=\"hi|ho\">ha&lt;/tag>"}},"i":0}}]}'>'ha'
+<pre typeof="mw:Extension/tag mw:Transclusion" data-mw='{"name":"tag","attrs":{"name":"hi|ho"},"body":{"extsrc":"ha"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tag name=\"hi|ho\">ha&lt;/tag>"}},"i":0}}]}'>'ha'
 array (
   'name' => 'hi|ho',
 )</pre>
@@ -4681,7 +4681,7 @@ Don't bail on table cell attribute parsing if wikilink is found in template arg
 |}
 !! html/parsoid+integrated
 <table>
-<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>Test <span typeof="mw:Extension/spantag mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#tag:spantag","function":"tag"},"params":{"1":{"wt":"One two \"[[three]]\" four"}},"i":0}}]}'>One two "<a rel="mw:WikiLink" href="./Three" title="Three">three</a>" four</span></td></tr>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>Test <span typeof="mw:Extension/spantag mw:Transclusion" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"One two \"[[three]]\" four"},"parts":[{"template":{"target":{"wt":"#tag:spantag","function":"tag"},"params":{"1":{"wt":"One two \"[[three]]\" four"}},"i":0}}]}'>One two "<a rel="mw:WikiLink" href="./Three" title="Three">three</a>" four</span></td></tr>
 </tbody></table>
 !! end
 
@@ -5962,7 +5962,7 @@ Templates: Support for templates generating attributes and content
 <td>bar
 </td></tr></tbody></table>
 !! html/parsoid
-<table style="color:red;" title="T48811" about="#mwt1" typeof="mw:Transclusion mw:ExpandedAttrs" data-mw='{"parts":["{| ",{"template":{"target":{"wt":"mixed_attr_content_template","href":"./Template:Mixed_attr_content_template"},"params":{},"i":0}},"\n|-\n|bar\n|}"]}'>
+<table style="color:red;" title="T48811" about="#mwt1" typeof="mw:Transclusion mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"style","html":"style=\"color:red;\" title=\"T48811\"","uneditable":true},{"html":""}]],"parts":["{| ",{"template":{"target":{"wt":"mixed_attr_content_template","href":"./Template:Mixed_attr_content_template"},"params":{},"i":0}},"\n|-\n|bar\n|}"]}'>
 <tbody><tr>
 <td>foo</td></tr>
 <tr>
@@ -6092,7 +6092,7 @@ Extension tag in templated tag attribute
 <td>hi
 </td></tr></tbody></table>
 !! html/parsoid
-<table class="123" about="#mwt2" typeof="mw:Transclusion mw:ExpandedAttrs" data-parsoid='{"startTagSrc":"{{{!}}","a":{"&lt;nowiki />":null},"sa":{"&lt;nowiki />":""},"pi":[[{"k":"1","named":true,"spc":["","","\n","\n"]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{{!}} class=\"123\" &lt;nowiki />\n{{!}} hi\n{{!}}}"}},"i":0}}]}'>
+<table class="123" about="#mwt2" typeof="mw:Transclusion mw:ExpandedAttrs" data-parsoid='{"startTagSrc":"{{{!}}","a":{"&lt;nowiki />":null},"sa":{"&lt;nowiki />":""},"pi":[[{"k":"1","named":true,"spc":["","","\n","\n"]}]]}' data-mw='{"attribs":[[{"txt":"","html":"&lt;span typeof=\"mw:Nowiki\">&lt;/span>"},{"html":""}]],"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{{!}} class=\"123\" &lt;nowiki />\n{{!}} hi\n{{!}}}"}},"i":0}}]}'>
 <tbody><tr><td>hi</td></tr>
 </tbody></table>
 !! end
