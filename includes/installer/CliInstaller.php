@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
+use MessageSpecifier;
 use UserPasswordPolicy;
 
 /**
@@ -267,9 +268,8 @@ class CliInstaller extends Installer {
 	}
 
 	/**
-	 * @param string $msg
+	 * @param string|MessageSpecifier $msg
 	 * @param array $params
-	 *
 	 * @return string
 	 */
 	protected function getMessageText( $msg, $params ) {

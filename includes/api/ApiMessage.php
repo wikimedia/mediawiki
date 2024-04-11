@@ -36,7 +36,7 @@ class ApiMessage extends Message implements IApiMessage {
 	 * $msg is a RawMessage, or calls 'new ApiMessage' in all other cases.
 	 *
 	 * @stable to call
-	 * @param Message|RawMessage|array|string $msg
+	 * @param MessageSpecifier|array|string $msg
 	 * @param string|null $code
 	 * @param array|null $data
 	 * @return IApiMessage
@@ -65,10 +65,10 @@ class ApiMessage extends Message implements IApiMessage {
 	}
 
 	/**
-	 * @param Message|string|array $msg
+	 * @param MessageSpecifier|string|array $msg
 	 *  - Message: is cloned
 	 *  - array: first element is $key, rest are $params to Message::__construct
-	 *  - string: passed to Message::__construct
+	 *  - string, any other MessageSpecifier: passed to Message::__construct
 	 * @param string|null $code
 	 * @param array|null $data
 	 */

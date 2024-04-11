@@ -1444,7 +1444,7 @@ abstract class ApiBase extends ContextSource {
 	 * message key by stripping any "apiwarn-" or "apierror-" prefix.
 	 *
 	 * @since 1.29
-	 * @param string|array|Message $msg See ApiErrorFormatter::addWarning()
+	 * @param string|array|MessageSpecifier $msg See ApiErrorFormatter::addWarning()
 	 * @param string|null $code See ApiErrorFormatter::addWarning()
 	 * @param array|null $data See ApiErrorFormatter::addWarning()
 	 */
@@ -1458,7 +1458,7 @@ abstract class ApiBase extends ContextSource {
 	 * A combination of $this->addWarning() and $this->logFeatureUsage()
 	 *
 	 * @since 1.29
-	 * @param string|array|Message $msg See ApiErrorFormatter::addWarning()
+	 * @param string|array|MessageSpecifier $msg See ApiErrorFormatter::addWarning()
 	 * @param string|null $feature See ApiBase::logFeatureUsage()
 	 * @param array|null $data See ApiErrorFormatter::addWarning()
 	 */

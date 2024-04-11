@@ -369,12 +369,6 @@ class WebInstaller extends Installer {
 		] ) );
 	}
 
-	/**
-	 * Show an error message in a box. Parameters are like wfMessage(), or
-	 * alternatively, pass a Message object in.
-	 * @param string|Message $msg
-	 * @param mixed ...$params
-	 */
 	public function showError( $msg, ...$params ) {
 		if ( !( $msg instanceof Message ) ) {
 			$msg = wfMessage(
@@ -683,13 +677,6 @@ class WebInstaller extends Installer {
 		$this->output->addHTML( $html );
 	}
 
-	/**
-	 * Show a short informational message.
-	 * Output looks like a list.
-	 *
-	 * @param string $msg
-	 * @param mixed ...$params
-	 */
 	public function showMessage( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--notice">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
@@ -698,9 +685,6 @@ class WebInstaller extends Installer {
 		$this->output->addHTML( $html );
 	}
 
-	/**
-	 * @param Status $status
-	 */
 	public function showStatusMessage( Status $status ) {
 		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
 		foreach ( $errors as $error ) {

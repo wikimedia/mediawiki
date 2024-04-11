@@ -58,6 +58,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\UrlUtils;
+use MessageSpecifier;
 use MWCryptRand;
 use ParserOptions;
 use RuntimeException;
@@ -362,14 +363,14 @@ abstract class Installer {
 	 * The parameters are like parameters to wfMessage().
 	 * The messages will be in wikitext format, which will be converted to an
 	 * output format such as HTML or text before being sent to the user.
-	 * @param string $msg
+	 * @param string|MessageSpecifier $msg
 	 * @param mixed ...$params
 	 */
 	abstract public function showMessage( $msg, ...$params );
 
 	/**
 	 * Same as showMessage(), but for displaying errors
-	 * @param string $msg
+	 * @param string|MessageSpecifier $msg
 	 * @param mixed ...$params
 	 */
 	abstract public function showError( $msg, ...$params );
