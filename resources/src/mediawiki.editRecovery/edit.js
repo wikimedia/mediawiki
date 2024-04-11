@@ -137,12 +137,17 @@ function onLoadData( pageData ) {
 		const notification = loadNotification.getNotification();
 		// On 'show changes'.
 		loadNotification.getDiffButton().on( 'click', function () {
-			$( '#wpDiff' ).trigger( 'click' );
+			// use live diff view rather than reloading the whole page.
+			mw.loader.using( [ 'mediawiki.page.preview' ] ).then( function () {
+				const pagePreview = require( 'mediawiki.page.preview' );
+				pagePreview.doPreview( { showDiff: true } );
+			} );
 		} );
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', function () {
 			loadData( originalData );
 			storage.deleteData( mw.config.get( 'wgPageName' ) ).then( function () {
+				$( '#wikiDiff' ).hide();
 				notification.close();
 			} );
 			// statsv: Track the number of times the edit recovery data is discarded.
