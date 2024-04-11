@@ -7,6 +7,7 @@
 
 @import 'mediawiki.skin.variables';
 @import 'content.variables.less';
+@import 'mediawiki.mixins.less';
 
 /* @noflip */
 div.tright,
@@ -14,6 +15,13 @@ div.floatright,
 table.floatright {
 	clear: right;
 	float: right;
+
+	body.skin--responsive & {
+		@media all and ( max-width: @width-breakpoint-tablet ) {
+			clear: both;
+			float: none;
+		}
+	}
 }
 
 /* @noflip */
@@ -22,6 +30,13 @@ div.floatleft,
 table.floatleft {
 	float: left;
 	clear: left;
+
+	@media all and ( max-width: @width-breakpoint-tablet ) {
+		body.skin--responsive & {
+			clear: both;
+			float: none;
+		}
+	}
 }
 
 /* @noflip */
@@ -68,4 +83,28 @@ div.thumbinner {
 	/* new block formatting context,
 	 * to clear background from floating content */
 	overflow: hidden;
+}
+
+// When rendering two images side by side, ensure they always appear side by side as intended
+// Avoid image child overflowing the container (T200518)/
+// T38030 and T148505
+
+@media all and ( max-width: @width-breakpoint-tablet ) {
+	body.skin--responsive & {
+		.mw-parser-output {
+			.thumb .thumbinner {
+				.flex-display();
+				justify-content: center;
+				flex-wrap: wrap;
+				align-content: flex-start;
+				// stylelint-disable-next-line declaration-block-no-redundant-longhand-properties
+				flex-direction: column;
+
+				> .thumbcaption {
+					.flex( 1, 0, 100% );
+					display: block;
+				}
+			}
+		}
+	}
 }
