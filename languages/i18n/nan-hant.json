@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"SupaplexTW"
 		]
 	},
 	"tog-underline": "連結底線：",
@@ -173,6 +174,7 @@
 	"nstab-project": "專案頁",
 	"nstab-image": "檔案",
 	"nstab-mediawiki": "訊息",
+	"nstab-template": "枋模",
 	"nstab-help": "說明頁",
 	"nstab-category": "類",
 	"mainpage-nstab": "頭頁",
@@ -221,6 +223,7 @@
 	"createacct-yourpassword-ph": "拍密碼",
 	"yourpasswordagain": "重拍密碼：",
 	"createacct-yourpasswordagain": "確認密碼",
+	"createacct-yourpasswordagain-ph": "閣拍一改密碼",
 	"userlogin-signwithsecure": "用安全連線",
 	"cannotlogin-title": "無法度登入",
 	"cannotcreateaccount-title": "無法度開新口座",
@@ -297,6 +300,8 @@
 	"postedit-confirmation-created": "已經新增頁。",
 	"postedit-temp-created-label": "臨時口座",
 	"content-model-wikitext": "wikitext",
+	"histfirst": "上久",
+	"histlast": "上新",
 	"rev-showdeleted": "顯示",
 	"revdelete-show-file-submit": "是",
 	"revdelete-hide-image": "掩檔案內容",
@@ -309,6 +314,7 @@
 	"searchprofile-images": "多媒體",
 	"searchprofile-advanced-tooltip": "佇你家己設的名空間內底揣",
 	"search-category": "（類「$1」）",
+	"searchall": "所有",
 	"mypreferences": "設定",
 	"prefs-user-pages": "用者頁",
 	"prefs-editwatchlist-raw": "編輯原始監視清單",

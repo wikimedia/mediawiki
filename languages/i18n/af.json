@@ -1004,6 +1004,7 @@
 	"prefs-info": "Basiese inligting",
 	"prefs-i18n": "Taalinstellings",
 	"prefs-signature": "Handtekening",
+	"prefs-signature-highlight-error": "Wys fout ligging",
 	"prefs-signature-error-details": "Leer meer",
 	"prefs-dateformat": "Datumformaat",
 	"prefs-timeoffset": "Tydsverskil",
