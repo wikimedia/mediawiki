@@ -569,6 +569,7 @@ class DatabaseSqlite extends Database {
 	 * @return int
 	 */
 	public function textFieldSize( $table, $field ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		return -1;
 	}
 

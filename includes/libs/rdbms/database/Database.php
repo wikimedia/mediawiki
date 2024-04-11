@@ -1710,6 +1710,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function textFieldSize( $table, $field ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		$tableName = $this->tableName( $table );
 		$query = new Query(
 			"SHOW COLUMNS FROM $tableName LIKE \"$field\"",

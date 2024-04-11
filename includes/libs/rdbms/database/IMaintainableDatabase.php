@@ -38,6 +38,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param string $table
 	 * @param string $field
 	 * @return int
+	 * @deprecated Since 1.43
 	 */
 	public function textFieldSize( $table, $field );
 

@@ -492,6 +492,7 @@ __INDEXATTR__;
 	}
 
 	public function textFieldSize( $table, $field ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$encTable = $this->tableName( $table );
 		$sql = "SELECT t.typname as ftype,a.atttypmod as size
