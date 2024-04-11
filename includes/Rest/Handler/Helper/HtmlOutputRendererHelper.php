@@ -598,6 +598,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 					$this->throwExceptionForStatus( $status, 'rest-html-backend-error', 400 );
 				} elseif ( $status->hasMessage( 'parsoid-resource-limit-exceeded' ) ) {
 					$this->throwExceptionForStatus( $status, 'rest-resource-limit-exceeded', 413 );
+				} elseif ( $status->hasMessage( 'missing-revision-permission' ) ) {
+					$this->throwExceptionForStatus( $status, 'rest-permission-denied-revision', 403 );
+				} elseif ( $status->hasMessage( 'parsoid-revision-access' ) ) {
+					$this->throwExceptionForStatus( $status, 'rest-specified-revision-unavailable', 404 );
 				} else {
 					$this->logStatusError( $status, 'Parsoid backend error', 'HtmlOutputRendererHelper' );
 					$this->throwExceptionForStatus( $status, 'rest-html-backend-error', 500 );
