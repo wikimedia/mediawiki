@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * @coversDefaultClass \MediaWiki\Permissions\RestrictionStore
+ * @covers \MediaWiki\Permissions\RestrictionStore
  */
 class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
@@ -141,7 +141,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::<public>
 	 * @dataProvider provideNonLocalPage
 	 */
 	public function testNonLocalPage( string $method, ...$extraArgs ) {
@@ -189,7 +188,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getRestrictions
 	 * @dataProvider provideGetRestrictions
 	 */
 	public function testGetRestrictions(
@@ -228,10 +226,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::__construct
-	 * @covers ::getAllRestrictions
-	 * @covers ::loadRestrictions
-	 * @covers ::loadRestrictionsFromRows
 	 * @dataProvider provideGetAllRestrictions
 	 */
 	public function testGetAllRestrictions(
@@ -296,7 +290,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getRestrictionExpiry
 	 * @dataProvider provideGetRestrictionExpiry
 	 */
 	public function testGetRestrictionExpiry(
@@ -403,8 +396,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getCreateProtection
-	 * @covers ::getCreateProtectionInternal
 	 * @dataProvider provideGetCreateProtection
 	 */
 	public function testGetCreateProtection(
@@ -476,7 +467,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::deleteCreateProtection
 	 * @dataProvider provideDeleteCreateProtection
 	 */
 	public function testDeleteCreateProtection( PageIdentity $page ): void {
@@ -505,7 +495,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::isSemiProtected
 	 * @dataProvider provideIsSemiProtected
 	 */
 	public function testIsSemiProtected(
@@ -588,7 +577,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::isProtected
 	 * @dataProvider provideIsProtected
 	 */
 	public function testIsProtected(
@@ -711,7 +699,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::listApplicableRestrictionTypes
 	 * @dataProvider provideListApplicableRestrictionTypes
 	 */
 	public function testListApplicableRestrictionTypes(
@@ -828,7 +815,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::listAllRestrictionTypes
 	 * @dataProvider provideListAllRestrictionTypes
 	 */
 	public function testListAllRestrictionTypes(
@@ -890,8 +876,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::areRestrictionsLoaded
-	 * @covers ::loadRestrictionsFromRows
 	 * @dataProvider provideAreRestrictionsLoaded
 	 */
 	public function testAreRestrictionsLoaded(
@@ -921,8 +905,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::areRestrictionsCascading
-	 * @covers ::loadRestrictionsFromRows
 	 * @dataProvider provideAreRestrictionsCascading
 	 */
 	public function testAreRestrictionsCascading(
@@ -966,9 +948,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::flushRestrictions
-	 */
 	public function testFlushRestrictions(): void {
 		$obj = $this->newRestrictionStore();
 		$page = PageIdentityValue::localIdentity( 1, NS_MAIN, 'X' );
@@ -979,10 +958,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $obj->areRestrictionsLoaded( $page ) );
 	}
 
-	/**
-	 * @covers ::getCascadeProtectionSources
-	 * @covers ::getCascadeProtectionSourcesInternal
-	 */
 	public function testGetCascadeProtectionSources() {
 		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [ 'select' =>
 			static function () {
@@ -999,10 +974,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( 'edit', $restrictions );
 	}
 
-	/**
-	 * @covers ::getCascadeProtectionSources
-	 * @covers ::getCascadeProtectionSourcesInternal
-	 */
 	public function testGetCascadeProtectionSourcesSpecialPage() {
 		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [ 'select' => [
 			static function () {
@@ -1017,9 +988,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertCount( 0, $restrictions );
 	}
 
-	/**
-	 * @covers ::getRestrictions
-	 */
 	public function testShouldNotFetchProtectionSettingsIfActionCannotBeRestricted(): void {
 		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->expects( $this->never() )

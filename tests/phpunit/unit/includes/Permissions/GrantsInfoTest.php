@@ -8,7 +8,7 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWikiUnitTestCase;
 
 /**
- * @coversDefaultClass \MediaWiki\Permissions\GrantsInfo
+ * @covers \MediaWiki\Permissions\GrantsInfo
  */
 class GrantsInfoTest extends MediaWikiUnitTestCase {
 
@@ -49,9 +49,6 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getValidGrants
-	 */
 	public function testGetValidGrants() {
 		$this->assertSame(
 			[ 'hidden1', 'hidden2', 'normal', 'normal2', 'admin' ],
@@ -59,9 +56,6 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getRightsByGrant
-	 */
 	public function testGetRightsByGrant() {
 		$this->assertSame(
 			[
@@ -77,7 +71,6 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideGetGrantRights
-	 * @covers ::getGrantRights
 	 * @param array|string $grants
 	 * @param array $rights
 	 */
@@ -95,7 +88,6 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideGrantsAreValid
-	 * @covers ::grantsAreValid
 	 * @param array $grants
 	 * @param bool $valid
 	 */
@@ -112,7 +104,6 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideGetGrantGroups
-	 * @covers ::getGrantGroups
 	 * @param array|null $grants
 	 * @param array $expect
 	 */
@@ -135,9 +126,6 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::getHiddenGrants
-	 */
 	public function testGetHiddenGrants() {
 		$this->assertSame(
 			[ 'hidden1', 'hidden2' ],
@@ -145,9 +133,6 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getRiskGroupsByGrant
-	 */
 	public function testGetRiskGroupsByGrant() {
 		$this->assertSame(
 			[
