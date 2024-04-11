@@ -2543,10 +2543,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
-	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
-	}
-
 	public function affectedRows() {
 		$this->lastEmulatedAffectedRows ??= $this->lastQueryAffectedRows;
 

@@ -128,19 +128,6 @@ interface IMaintainableDatabase extends IDatabase {
 	public function truncate( $tables, $fname = __METHOD__ );
 
 	/**
-	 * Lists all the VIEWs in the database
-	 *
-	 * @deprecated since 1.42 This was previously used to filter views out of the return
-	 *   value of listTables(), but listTables() no longer includes views.
-	 *
-	 * @param string|null $prefix Only show VIEWs with this prefix, eg. unit_test_
-	 * @param string $fname Name of calling function
-	 * @throws RuntimeException
-	 * @return array
-	 */
-	public function listViews( $prefix = null, $fname = __METHOD__ );
-
-	/**
 	 * Creates a new table with structure copied from existing table
 	 *
 	 * Note that unlike most database abstraction functions, this function does not
