@@ -51,5 +51,19 @@
 	"rest-requires-safe-against-csrf": "Оваа завршница бара услужник на седници безбеден за CSRF.",
 	"rest-badtoken": "Укажаната CSRF-шифра е неважечка.",
 	"rest-badtoken-missing": "Се бара параметарот <var>token</var> освен ако не се користи заверување безбедно за CSRF.",
-	"rest-badtoken-nosession": "CSRF-грешка — нема седница."
+	"rest-badtoken-nosession": "CSRF-грешка — нема седница.",
+	"rest-mock-error": "Божемна грешка.",
+	"rest-specified-revision-unavailable": "Укажаната преработка е избришана или потисната.",
+	"rest-previous-revision-unavailable": "Не можев да ја најдам претходната преработка. Дали страницата е заклучена или избришана?",
+	"rest-requires-content-type-header": "Мора да се укаже заглавие Content-Type со товарот на барањето.",
+	"rest-transform-missing-html": "Нема укажано HTML.",
+	"rest-transform-missing-title": "Нема укажано наслов или виктекст.",
+	"rest-unsupported-target-format": "Побараниот целене формат не е поддржан.",
+	"rest-parsoid-resource-exceeded": "Надмината е ресурсната граница",
+	"rest-parsoid-error": "Грешка во Parsoid.",
+	"rest-bad-stash-key": "Неисправен клуч за Stash.",
+	"rest-html-key-expected": "'Се очекуваше клуч `html` во содржината'",
+	"rest-invalid-transform": "Неважечка преобразба: $1 во $2",
+	"rest-request-body-expected": "На методот на барање $1 му треба содржина на барањето",
+	"rest-request-body-unaccepted": "Методот на барање $1 не прифаќа содржина на барањето"
 }

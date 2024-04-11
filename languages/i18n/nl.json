@@ -2810,6 +2810,7 @@
 	"ipb-blocklist-duration-left": "$1 te gaan",
 	"block-actions": "Type blokkering",
 	"block-details": "Details blokkering",
+	"block-details-description": "Welke handelingen wilt u blokkeren?",
 	"block-expiry": "Vervalt:",
 	"block-options": "Extra opties:",
 	"block-reason": "Reden:",

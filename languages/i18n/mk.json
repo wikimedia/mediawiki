@@ -2731,6 +2731,7 @@
 	"ipb-blocklist-duration-left": "{{PLURAL:$1|преостанува уште $1|преостануваат уште $1}}",
 	"block-actions": "Вид на блок",
 	"block-details": "Поединости за блокот",
+	"block-details-description": "Кои дејства сакате да ги блокирате?",
 	"block-expiry": "Истек на рокот:",
 	"block-options": "Дополнителни можности:",
 	"block-reason": "Причина:",

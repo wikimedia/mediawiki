@@ -2702,6 +2702,7 @@
 	"ipb-blocklist-duration-left": "преостало: $1",
 	"block-actions": "Тип блокаде",
 	"block-details": "Детаљи блокаде",
+	"block-details-description": "Које радње желите да блокирате?",
 	"block-expiry": "Трајање:",
 	"block-options": "Додатне опције:",
 	"block-reason": "Разлог:",

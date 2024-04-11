@@ -2805,6 +2805,7 @@
 	"ipb-blocklist-duration-left": "$1 rimasti",
 	"block-actions": "Tipo di blocco",
 	"block-details": "Dettagli blocco",
+	"block-details-description": "Quali azioni vuoi bloccare?",
 	"block-expiry": "Scadenza del blocco:",
 	"block-options": "Opzioni aggiuntive:",
 	"block-reason": "Motivo:",
