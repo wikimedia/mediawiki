@@ -3134,7 +3134,7 @@
 	"pageinfo-robot-index": "Дозвољено",
 	"pageinfo-robot-noindex": "Није дозвољено",
 	"pageinfo-watchers": "Број надгледача странице",
-	"pageinfo-visiting-watchers": "Број надгледача странице који су посетили скорашње измене",
+	"pageinfo-visiting-watchers": "Број надгледача странице који су је посетили у последњих $1",
 	"pageinfo-few-watchers": "Мање од $1 {{PLURAL:$1|надгледача}}",
 	"pageinfo-few-visiting-watchers": "Могуће је да постоји корисник који прати и посећује скорашње измене",
 	"pageinfo-redirects-name": "Број преусмерења на ову страницу",

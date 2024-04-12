@@ -2809,7 +2809,7 @@
 	"pageinfo-robot-index": "Erlaabt",
 	"pageinfo-robot-noindex": "Net erlaabt",
 	"pageinfo-watchers": "Zuel vun de Benotzer déi d'Säit iwwerwaachen",
-	"pageinfo-visiting-watchers": "Zuel vun den Obsevateuren déi déi rezent Ännerunge gekuckt hunn",
+	"pageinfo-visiting-watchers": "Zuel vun den Obsevateuren, déi dës Säit an de leschte(n) $1 gekuckt hunn",
 	"pageinfo-few-watchers": "Manner wéi $1 {{PLURAL:$1|Benotzer deen iwwerwaacht|Benotzer déi iwwerwaachen}}",
 	"pageinfo-redirects-name": "Zuel vun de Viruleedungen op dës Säit",
 	"pageinfo-subpages-name": "Ënnersäite vun dëser Säit",

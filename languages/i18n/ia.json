@@ -3145,7 +3145,7 @@
 	"pageinfo-robot-index": "Permittite",
 	"pageinfo-robot-noindex": "Non permittite",
 	"pageinfo-watchers": "Numero de observatores del pagina",
-	"pageinfo-visiting-watchers": "Numero de observatores del pagina qui ha visitate le modificationes recente",
+	"pageinfo-visiting-watchers": "Numero de observatores del pagina qui ha visitate in le ultime $1",
 	"pageinfo-few-watchers": "Minus de $1 {{PLURAL:$1|observator|observatores}}",
 	"pageinfo-few-visiting-watchers": "Il pote haber o non haber un usator observante le modificationes recente",
 	"pageinfo-redirects-name": "Numero de redirectiones verso iste pagina",
