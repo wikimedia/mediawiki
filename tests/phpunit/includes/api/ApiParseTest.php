@@ -309,7 +309,11 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->expectApiErrorCode( 'missingcontent-pageid' );
 
-		$this->db->delete( 'revision', [ 'rev_id' => $status->getNewRevision()->getId() ] );
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'revision' )
+			->where( [ 'rev_id' => $status->getNewRevision()->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Ignore warning from WikiPage::getContentModel
 		@$this->doApiRequest( [

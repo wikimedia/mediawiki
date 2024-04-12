@@ -78,7 +78,11 @@ class ApiComparePagesTest extends ApiTestCase {
 
 		$id = $this->addPage( 'D', 'D 1' );
 		self::$repl['pageD'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest D' )->getArticleID();
-		$this->getDb()->delete( 'revision', [ 'rev_id' => $id ] );
+		$this->getDb()->newDeleteQueryBuilder()
+			->deleteFrom( 'revision' )
+			->where( [ 'rev_id' => $id ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		self::$repl['revE1'] = $this->addPage( 'E', 'E 1' );
 		self::$repl['revE2'] = $this->addPage( 'E', 'E 2' );

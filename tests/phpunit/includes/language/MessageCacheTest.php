@@ -152,9 +152,11 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 		// Screw up the database so MessageCache::loadFromDB() will
 		// produce the wrong result for reloading Key1
-		$this->db->delete(
-			'page', [ 'page_namespace' => NS_MEDIAWIKI, 'page_title' => 'Key1' ], __METHOD__
-		);
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'page' )
+			->where( [ 'page_namespace' => NS_MEDIAWIKI, 'page_title' => 'Key1' ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Populate the second key
 		$this->makePage( 'Key2', 'de', 'Value2' );

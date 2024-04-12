@@ -629,7 +629,11 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
 		$this->expectException( DBReadOnlyRoleError::class );
-		$dbr->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
+		$dbr->newDeleteQueryBuilder()
+			->deleteFrom( 'some_table' )
+			->where( [ 'id' => 57634126 ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// FIXME: not needed?
 		$lb->closeAll( __METHOD__ );
