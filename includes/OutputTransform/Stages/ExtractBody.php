@@ -23,7 +23,7 @@ class ExtractBody extends ContentTextTransformStage {
 		'a' => true, 'img' => true, 'video' => true, 'audio' => true,
 	];
 
-	private static function expandRelativeAttrs( string $text, string $baseHref ): string {
+	private static function expandRelativeAttrs( string $text, string $baseHref, string $pageFragmentPrefix ): string {
 		// T350952: Expand relative links
 		// What we should be doing here is parsing as a title and then
 		// using Title::getLocalURL()
@@ -36,11 +36,19 @@ class ExtractBody extends ContentTextTransformStage {
 				$attr = $node->name === 'a' ? 'href' : 'resource';
 				return str_starts_with( $node->attrs[$attr] ?? '', './' );
 			},
-			static function ( SerializerNode $node ) use ( $baseHref ): SerializerNode {
+			static function ( SerializerNode $node ) use ( $baseHref, $pageFragmentPrefix ): SerializerNode {
 				$attr = $node->name === 'a' ? 'href' : 'resource';
-				$href = $baseHref . $node->attrs[$attr];
-				$node->attrs[$attr] =
-					wfExpandUrl( $href, PROTO_RELATIVE );
+				$href = $node->attrs[$attr];
+				// Convert page fragment urls to true fragment urls
+				// This ensures that those fragments include any URL query params
+				// and resolve internally. (Ex: on pages with ?useparsoid=1,
+				// cite link fragments should not take you to a different page).
+				if ( $pageFragmentPrefix && str_starts_with( $href, $pageFragmentPrefix ) ) {
+					$node->attrs[$attr] = substr( $href, strlen( $pageFragmentPrefix ) - 1 );
+				} else {
+					$href = $baseHref . $href;
+					$node->attrs[$attr] = wfExpandUrl( $href, PROTO_RELATIVE );
+				}
 				return $node;
 			}
 		);
@@ -50,13 +58,23 @@ class ExtractBody extends ContentTextTransformStage {
 		// T350952: temporary fix for subpage paths: use Parsoid's
 		// <base href> to expand relative links
 		$baseHref = '';
+		$pageFragmentPrefix = '';
 		if ( preg_match( '{<base href=["\']([^"\']+)["\'][^>]+>}', $text, $matches ) === 1 ) {
 			$baseHref = $matches[1];
+			// Since we don't have easy access to the title, extract it from the
+			// Parsoid HTML where the title is embedded in the <head>.
+			if ( preg_match(
+				'%<link rel="dc:isVersionOf" href=(?:"([^"]+)"|\'[^\']+\')\s*/>%',
+				$text, $matches ) === 1
+			) {
+				$title = substr( $matches[1], strlen( $baseHref ) );
+				$pageFragmentPrefix = "./" . urldecode( $title ) . "#";
+			}
 		}
 		foreach ( $po->getIndicators() as $name => $html ) {
-			$po->setIndicator( $name, self::expandRelativeAttrs( $html, $baseHref ) );
+			$po->setIndicator( $name, self::expandRelativeAttrs( $html, $baseHref, $pageFragmentPrefix ) );
 		}
 		$text = Parser::extractBody( $text );
-		return self::expandRelativeAttrs( $text, $baseHref );
+		return self::expandRelativeAttrs( $text, $baseHref, $pageFragmentPrefix );
 	}
 }
