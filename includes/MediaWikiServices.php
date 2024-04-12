@@ -134,7 +134,6 @@ use MediaWiki\Request\ProxyLookup;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
-use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRenderer;
@@ -999,13 +998,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentTransformer(): ContentTransformer {
 		return $this->getService( 'ContentTransformer' );
-	}
-
-	/**
-	 * @since 1.35
-	 */
-	public function getContributionsLookup(): ContributionsLookup {
-		return $this->getService( 'ContributionsLookup' );
 	}
 
 	/**

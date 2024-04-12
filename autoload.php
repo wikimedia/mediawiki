@@ -2006,7 +2006,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Revision\\ArchiveSelectQueryBuilder' => __DIR__ . '/includes/Revision/ArchiveSelectQueryBuilder.php',
 	'MediaWiki\\Revision\\ArchivedRevisionLookup' => __DIR__ . '/includes/Revision/ArchivedRevisionLookup.php',
 	'MediaWiki\\Revision\\BadRevisionException' => __DIR__ . '/includes/Revision/BadRevisionException.php',
-	'MediaWiki\\Revision\\ContributionsLookup' => __DIR__ . '/includes/Revision/ContributionsLookup.php',
 	'MediaWiki\\Revision\\ContributionsSegment' => __DIR__ . '/includes/Revision/ContributionsSegment.php',
 	'MediaWiki\\Revision\\FallbackSlotRoleHandler' => __DIR__ . '/includes/Revision/FallbackSlotRoleHandler.php',
 	'MediaWiki\\Revision\\Hook\\ContentHandlerDefaultModelForHook' => __DIR__ . '/includes/Revision/Hook/ContentHandlerDefaultModelForHook.php',

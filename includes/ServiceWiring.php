@@ -171,7 +171,6 @@ use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
-use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
@@ -628,18 +627,6 @@ return [
 
 	'ContentTransformer' => static function ( MediaWikiServices $services ): ContentTransformer {
 		return new ContentTransformer( $services->getContentHandlerFactory() );
-	},
-
-	'ContributionsLookup' => static function ( MediaWikiServices $services ): ContributionsLookup {
-		return new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRendererFactory(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getConnectionProvider(),
-			$services->getNamespaceInfo(),
-			$services->getCommentFormatter()
-		);
 	},
 
 	'CriticalSectionProvider' => static function ( MediaWikiServices $services ): CriticalSectionProvider {
