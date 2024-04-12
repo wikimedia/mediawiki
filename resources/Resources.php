@@ -1294,10 +1294,8 @@ return [
 			'mediawiki.page.preview',
 		],
 		'messages' => [
-			'continue-editing',
 			'otherlanguages',
 			'preview',
-			'previewerrortext',
 		],
 	],
 	'mediawiki.action.history' => [
@@ -1738,6 +1736,8 @@ return [
 			'diff-empty',
 			'currentrev',
 			'yourtext',
+			'continue-editing',
+			'previewerrortext',
 		]
 	],
 	'mediawiki.page.image.pagination' => [
