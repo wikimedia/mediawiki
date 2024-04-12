@@ -79,18 +79,18 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 
 	public function provideValidateTarget(): Generator {
 		$noopUserMock = $this->createMock( User::class );
-		$noopUserMock->method( 'getUser' )->willReturn( $noopUserMock );
+		$noopUserMock->method( 'getUser' )->willReturnSelf();
 		$validTarget = $this->getValidTarget();
 
 		$anonTarget = $this->createMock( User::class );
 		$anonTarget->expects( $this->atLeastOnce() )->method( 'getId' )->willReturn( 0 );
-		$anonTarget->method( 'getUser' )->willReturn( $anonTarget );
+		$anonTarget->method( 'getUser' )->willReturnSelf();
 		yield 'Target has user ID 0' => [ $anonTarget, $noopUserMock, StatusValue::newFatal( 'emailnotarget' ) ];
 
 		$emailNotConfirmedTarget = $this->createMock( User::class );
 		$emailNotConfirmedTarget->method( 'getId' )->willReturn( 1 );
 		$emailNotConfirmedTarget->expects( $this->atLeastOnce() )->method( 'isEmailConfirmed' )->willReturn( false );
-		$emailNotConfirmedTarget->method( 'getUser' )->willReturn( $emailNotConfirmedTarget );
+		$emailNotConfirmedTarget->method( 'getUser' )->willReturnSelf();
 		yield 'Target does not have confirmed email' => [
 			$emailNotConfirmedTarget,
 			$noopUserMock,
@@ -101,7 +101,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$cannotReceiveEmailsTarget->method( 'getId' )->willReturn( 1 );
 		$cannotReceiveEmailsTarget->method( 'isEmailConfirmed' )->willReturn( true );
 		$cannotReceiveEmailsTarget->expects( $this->atLeastOnce() )->method( 'canReceiveEmail' )->willReturn( false );
-		$cannotReceiveEmailsTarget->method( 'getUser' )->willReturn( $cannotReceiveEmailsTarget );
+		$cannotReceiveEmailsTarget->method( 'getUser' )->willReturnSelf();
 		yield 'Target cannot receive emails' => [
 			$cannotReceiveEmailsTarget,
 			$noopUserMock,
@@ -377,7 +377,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 
 		$invalidTarget = $this->createMock( User::class );
 		$invalidTarget->method( 'getId' )->willReturn( 0 );
-		$invalidTarget->method( 'getUser' )->willReturn( $invalidTarget );
+		$invalidTarget->method( 'getUser' )->willReturnSelf();
 		yield 'Invalid target' => [ $invalidTarget, $validSender, StatusValue::newFatal( 'emailnotarget' ) ];
 
 		$hookStatusError = StatusValue::newFatal( 'some-hook-error' );
@@ -492,7 +492,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		$validTarget->method( 'getId' )->willReturn( 1 );
 		$validTarget->method( 'isEmailConfirmed' )->willReturn( true );
 		$validTarget->method( 'canReceiveEmail' )->willReturn( true );
-		$validTarget->method( 'getUser' )->willReturn( $validTarget );
+		$validTarget->method( 'getUser' )->willReturnSelf();
 		return $validTarget;
 	}
 }

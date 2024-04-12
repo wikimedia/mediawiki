@@ -217,8 +217,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$content->method( 'getModel' )
 			->willReturn( 'NotText' );
 		$content->expects( $this->never() )->method( 'getNativeData' );
-		$content->method( 'copy' )
-			->willReturn( $content );
+		$content->method( 'copy' )->willReturnSelf();
 
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( $dummyRev->getId() );
