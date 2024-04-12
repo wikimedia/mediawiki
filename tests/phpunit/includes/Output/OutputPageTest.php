@@ -1281,7 +1281,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
 
 		$stubPO = $this->createParserOutputStub( [
-			'getCategories' => $args,
 			'getCategoryMap' => $args,
 		] );
 
@@ -1616,7 +1615,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$arrayReturningMethods = [
-			'getCategories',
 			'getCategoryMap',
 			'getFileSearchOptions',
 			'getHeadItems',
