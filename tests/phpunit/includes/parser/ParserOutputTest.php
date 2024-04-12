@@ -176,8 +176,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \MediaWiki\Parser\ParserOutput::setPageProperty
-	 * @covers \MediaWiki\Parser\ParserOutput::setIndexedPageProperty
-	 * @covers \MediaWiki\Parser\ParserOutput::setUnindexedPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setNumericPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setUnsortedPageProperty
 	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperty
 	 * @covers \MediaWiki\Parser\ParserOutput::unsetPageProperty
 	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperties
@@ -206,19 +206,19 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	public static function providePageProperties() {
-		yield 'Unindexed' => [ 'setUnindexedPageProperty', 'val', 'second val' ];
-		yield 'Indexed' => [ 'setIndexedPageProperty', 42, 3.14 ];
-		yield 'Unindexed (old style)' => [ 'setPageProperty', 'val', 'second val' ];
-		yield 'Indexed (old style)' => [ 'setPageProperty', 123, 456 ];
+		yield 'Unsorted' => [ 'setUnsortedPageProperty', 'val', 'second val' ];
+		yield 'Numeric' => [ 'setNumericPageProperty', 42, 3.14 ];
+		yield 'Unsorted (old style)' => [ 'setPageProperty', 'val', 'second val' ];
+		yield 'Numeric (old style)' => [ 'setPageProperty', 123, 456 ];
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\ParserOutput::setIndexedPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setNumericPageProperty
 	 */
-	public function testIndexedPageProperties() {
+	public function testNumericPageProperties() {
 		$po = new ParserOutput();
 
-		$po->setIndexedPageProperty( 'foo', '123' );
+		$po->setNumericPageProperty( 'foo', '123' );
 
 		$properties = $po->getPageProperties();
 		$this->assertSame( 123, $po->getPageProperty( 'foo' ) );
@@ -226,12 +226,12 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\ParserOutput::setUnindexedPageProperty
+	 * @covers \MediaWiki\Parser\ParserOutput::setUnsortedPageProperty
 	 */
-	public function testUnindexedPageProperties() {
+	public function testUnsortedPageProperties() {
 		$po = new ParserOutput();
 
-		$po->setUnindexedPageProperty( 'foo', 123 );
+		$po->setUnsortedPageProperty( 'foo', 123 );
 
 		$properties = $po->getPageProperties();
 		$this->assertSame( '123', $po->getPageProperty( 'foo' ) );
