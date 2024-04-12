@@ -281,9 +281,9 @@ class Parser {
 	private LinkHolderArray $mLinkHolders;
 	private int $mLinkID = 0;
 	private array $mIncludeSizes;
-	/** @deprecated since 1.35 */
+	/** @internal */
 	public $mPPNodeCount;
-	/** @deprecated since 1.35 */
+	/** @internal */
 	public $mHighestExpansionDepth;
 	private array $mTplRedirCache;
 	/** @internal */
