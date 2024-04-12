@@ -582,16 +582,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @deprecated since 1.40; use ::getCategoryNames() and
-	 * ::getCategorySortKey() instead. For @internal use ::getCategoryMap()
-	 * may be used, but it is not recommended.
-	 */
-	public function &getCategories() {
-		wfDeprecated( __METHOD__, '1.40' );
-		return $this->mCategories;
-	}
-
-	/**
 	 * Return category names and sort keys as a map.
 	 *
 	 * BEWARE that numeric category names get converted to 'int' when stored
