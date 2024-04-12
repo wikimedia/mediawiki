@@ -212,6 +212,13 @@ class StatusValue {
 	 */
 	private function addError( array $newError ) {
 		if ( $newError[ 'message' ] instanceof MessageSpecifier ) {
+			if ( $newError['params'] ) {
+				// Deprecate code like `Status::newFatal( wfMessage( 'foo' ), 'param' )`
+				// - the parameters have always been ignored, so this is usually a mistake.
+				wfDeprecatedMsg( 'Combining MessageSpecifier and parameters array' .
+					' was deprecated in MediaWiki 1.43', '1.43' );
+			}
+
 			$isEqual = static function ( $key, $params ) use ( $newError ) {
 				if ( $key instanceof MessageSpecifier ) {
 					// compare attributes of both MessageSpecifiers
@@ -435,11 +442,15 @@ class StatusValue {
 		$source = $this->normalizeMessage( $source );
 		$dest = $this->normalizeMessage( $dest );
 
-		foreach ( $this->errors as [ 'message' => &$message ] ) {
+		foreach ( $this->errors as [ 'message' => &$message, 'params' => &$params ] ) {
 			if ( $message === $source ||
 				( $message instanceof MessageSpecifier && $message->getKey() === $source )
 			) {
 				$message = $dest;
+				if ( $dest instanceof MessageSpecifier ) {
+					// 'params' will be ignored now, so remove them from the internal array
+					$params = [];
+				}
 				$replaced = true;
 			}
 		}

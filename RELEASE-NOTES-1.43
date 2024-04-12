@@ -176,6 +176,9 @@ because of Phabricator reports.
   warnings.
 * User::isBlockedFromEmailuser() and User::canSendEmail(), deprecated since
   1.41, now emit deprecation warnings.
+* StatusValue will emit deprecation warnings when an error is given as
+  a MessageSpecifier combined with a parameters array, which is usually
+  a mistake, as the parameters have always been ignored.
 * …
 
 === Other changes in 1.43 ===
