@@ -208,7 +208,7 @@ HTML;
 				. "Please install:\n" . $missingExtText;
 
 			$web = array();
-			$web['intro'] = "Installing some PHP extensions is required.";
+			$web['intro'] = "Installing some PHP extensions are required.";
 			$web['longTitle'] = 'Required components';
 			$web['longHtml'] = <<<HTML
 		<p>
@@ -256,6 +256,10 @@ HTML;
 		$finalOutput = <<<HTML
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, private, max-age=0" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">			
 	<head>
 		<meta charset="UTF-8" />
 		<title>MediaWiki {$this->mwVersion}</title>
