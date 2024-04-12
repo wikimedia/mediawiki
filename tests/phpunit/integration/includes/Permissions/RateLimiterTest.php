@@ -20,7 +20,7 @@ use Wikimedia\WRStats\BagOStuffStatsStore;
 use Wikimedia\WRStats\WRStatsFactory;
 
 /**
- * @coversDefaultClass \MediaWiki\Permissions\RateLimiter
+ * @covers \MediaWiki\Permissions\RateLimiter
  * @group Database
  */
 class RateLimiterTest extends MediaWikiIntegrationTestCase {
@@ -45,9 +45,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::limit
-	 * @covers ::__construct
-	 * @covers ::getConditions
 	 * @covers \Wikimedia\WRStats\WRStatsFactory
 	 * @covers \Wikimedia\WRStats\BagOStuffStatsStore
 	 */
@@ -158,10 +155,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatsHasCount( 'test.RateLimiter.limit.move.tripped_by.user_global', 1, $statsData );
 	}
 
-	/**
-	 * @covers ::limit
-	 * @covers ::getConditions
-	 */
 	public function testPingLimiterWithStaleCache() {
 		$limits = [
 			'edit' => [
@@ -194,10 +187,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $limiter->limit( $user, 'edit' ), 'limit functional after expiry' );
 	}
 
-	/**
-	 * @covers ::limit
-	 * @covers ::getConditions
-	 */
 	public function testPingLimiterRate() {
 		$limits = [
 			'edit' => [
@@ -233,9 +222,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'fifth ping should pass' );
 	}
 
-	/**
-	 * @covers ::limit
-	 */
 	public function testPingLimiterHook() {
 		$limits = [
 			'edit' => [
@@ -294,9 +280,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatsNotHasCount( 'test.RateLimiter.limit.edit.result.tripped', $statsData );
 	}
 
-	/**
-	 * @covers ::isLimitable
-	 */
 	public function testIsLimitableAction() {
 		$limits = [
 			'read' => [ // will be ignored, because 'read' is non-limitable
@@ -345,7 +328,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsExempt
-	 * @covers ::isExempt
 	 *
 	 * @param array $rateLimitExcludeIps
 	 * @param RateLimitSubject $subject
@@ -415,8 +397,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	 * Test limit with different limit types:
 	 * - newbie trips the 'user' limit when 'newbie' not set
 	 * - newbie trips the 'ip' limit on shared IP when 'user' is set
-	 * @covers ::limit
-	 * @covers ::getConditions
 	 */
 	public function testLimitTypes() {
 		$limits = [
@@ -448,7 +428,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	 * Test limit when 'newbie' is set:
 	 * - 'newbie' limit takes precedence over 'user' limit for newbie
 	 * - newbie trips the 'ip' limit on a shared IP, when 'newbie' limit is set
-	 * @covers ::limit
 	 */
 	public function testLimitTypes_newbie() {
 		$limits = [
@@ -472,8 +451,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test that '&can-bypass' can be used to impose limits on users
 	 * who are otherwise exempt from limits.
-	 *
-	 * @covers ::limit
 	 */
 	public function testCanBypass() {
 		$limits = [
@@ -511,8 +488,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test that the most permissive limit is used when a limit is defined for
 	 * multiple groups a user belongs to.
-	 *
-	 * @covers ::limit
 	 */
 	public function testGroupLimits() {
 		$limits = [

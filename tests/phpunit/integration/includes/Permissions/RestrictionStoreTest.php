@@ -22,10 +22,9 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  *
- * See \MediaWiki\Tests\Unit\Permissions\RestrictionStoreTest
- * for unit tests
+ * See \MediaWiki\Tests\Unit\Permissions\RestrictionStoreTest for unit tests
  *
- * @coversDefaultClass \MediaWiki\Permissions\RestrictionStore
+ * @covers \MediaWiki\Permissions\RestrictionStore
  */
 class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	private const DEFAULT_RESTRICTION_TYPES = [ 'create', 'edit', 'move', 'upload' ];
@@ -107,10 +106,6 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 			);
 	}
 
-	/**
-	 * @covers ::getCascadeProtectionSources
-	 * @covers ::getCascadeProtectionSourcesInternal
-	 */
 	public function testGetCascadeProtectionSources() {
 		$page = self::$testPageRestrictionCascade['title'];
 		$pageSource = self::$testPageRestrictionSource['title'];
@@ -127,10 +122,6 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( 0, $restrictions );
 	}
 
-	/**
-	 * @covers ::getCascadeProtectionSources
-	 * @covers ::getCascadeProtectionSourcesInternal
-	 */
 	public function testGetCascadeProtectionSourcesSpecialPage() {
 		[ $sources, $restrictions ] = $this->newRestrictionStore()
 			->getCascadeProtectionSources( SpecialPage::getTitleFor( 'Whatlinkshere' ) );
@@ -139,7 +130,6 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::loadRestrictions
 	 * @dataProvider provideLoadRestrictions
 	 */
 	public function testLoadRestrictions( $page, $expectedCacheSubmap, ?array $restrictions = null ) {
@@ -176,9 +166,6 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::loadRestrictions
-	 */
 	public function testLoadRestrictions_latest() {
 		$pageSource = self::$testPageRestrictionSource['title'];
 		$cacheKey = CacheKeyHelper::getKeyForPage( $pageSource );
