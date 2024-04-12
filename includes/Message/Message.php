@@ -191,7 +191,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @var Language|null Explicit language object, or null for user language
 	 */
-	protected $language = null;
+	protected ?Language $language = null;
 
 	/**
 	 * @var callable|null A callable which returns the current user language,
@@ -405,7 +405,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @return Language
 	 */
-	public function getLanguage() {
+	public function getLanguage(): Language {
 		// Defaults to null which means current user language
 		if ( $this->language !== null ) {
 			return $this->language;
@@ -871,12 +871,12 @@ class Message implements MessageSpecifier, Serializable {
 		} elseif ( $lang instanceof StubUserLang ) {
 			$this->language = null;
 		} elseif ( $lang instanceof Bcp47Code ) {
-			if ( !$this->language instanceof Language || !$this->language->isSameCodeAs( $lang ) ) {
+			if ( $this->language === null || !$this->language->isSameCodeAs( $lang ) ) {
 				$this->language = MediaWikiServices::getInstance()->getLanguageFactory()
 					->getLanguage( $lang );
 			}
 		} elseif ( is_string( $lang ) ) {
-			if ( !$this->language instanceof Language || $this->language->getCode() != $lang ) {
+			if ( $this->language === null || $this->language->getCode() != $lang ) {
 				$this->language = MediaWikiServices::getInstance()->getLanguageFactory()
 					->getLanguage( $lang );
 			}
