@@ -147,18 +147,18 @@ class ApiParseTest extends ApiTestCase {
 	 * Set up an interwiki entry for testing.
 	 */
 	protected function setupInterwiki() {
-		$this->getDb()->insert(
-			'interwiki',
-			[
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'interwiki' )
+			->ignore()
+			->row( [
 				'iw_prefix' => 'madeuplanguage',
 				'iw_url' => "https://example.com/wiki/$1",
 				'iw_api' => '',
 				'iw_wikiid' => '',
 				'iw_local' => false,
-			],
-			__METHOD__,
-			'IGNORE'
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$this->overrideConfigValue(
 			MainConfigNames::ExtraInterlanguageLinkPrefixes,

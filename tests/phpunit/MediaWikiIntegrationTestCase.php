@@ -2211,13 +2211,21 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		foreach ( $tables as $table ) {
 			$res = $source->select( $table, '*', [], __METHOD__ );
+			if ( !$res->numRows() ) {
+				continue;
+			}
 			$allRows = [];
 
 			foreach ( $res as $row ) {
 				$allRows[] = (array)$row;
 			}
 
-			$target->insert( $table, $allRows, __METHOD__, [ 'IGNORE' ] );
+			$target->newInsertQueryBuilder()
+				->insertInto( $table )
+				->ignore()
+				->rows( $allRows )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 

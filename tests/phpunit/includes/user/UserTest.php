@@ -1310,7 +1310,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 			case 'actor':
 				$name = 'TestNewSystemUser ' . TestUserRegistry::getNextId();
-				$this->db->insert( 'actor', [ 'actor_name' => $name ] );
+				$this->db->newInsertQueryBuilder()
+					->insertInto( 'actor' )
+					->row( [ 'actor_name' => $name ] )
+					->caller( __METHOD__ )
+					->execute();
 				$actorId = (int)$this->db->insertId();
 				break;
 

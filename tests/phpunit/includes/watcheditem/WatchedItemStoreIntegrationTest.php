@@ -421,7 +421,11 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 			[ 'we_item' => '100000', 'we_expiry' => $this->db->timestamp( '30300101000000' ) ],
 			[ 'we_item' => '100001', 'we_expiry' => $this->db->timestamp( '30300101000000' ) ],
 		];
-		$this->db->insert( 'watchlist_expiry', $orphanRows, __METHOD__ );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'watchlist_expiry' )
+			->rows( $orphanRows )
+			->caller( __METHOD__ )
+			->execute();
 		$initialRowCount = $this->db->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'watchlist_expiry' )

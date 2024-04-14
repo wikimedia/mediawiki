@@ -24,20 +24,18 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function addDBData() {
-		$this->db->insert(
-			'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'category' )
+			->ignore()
+			->row( [
+				'cat_id' => 1,
+				'cat_title' => 'Example',
+				'cat_pages' => 3,
+				'cat_subcats' => 4,
+				'cat_files' => 5
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public function testInitialize_idNotExist() {

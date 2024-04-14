@@ -50,15 +50,17 @@ class DbTestRecorder extends TestRecorder {
 			echo "OK, resuming.\n";
 		}
 
-		$this->db->insert( 'testrun',
-			[
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'testrun' )
+			->row( [
 				'tr_date' => $this->db->timestamp(),
 				'tr_mw_version' => $this->version,
 				'tr_php_version' => PHP_VERSION,
 				'tr_db_version' => $this->db->getServerVersion(),
 				'tr_uname' => php_uname()
-			],
-			__METHOD__ );
+			] )
+			->caller( __METHOD__ )
+			->execute();
 		$this->curRun = $this->db->insertId();
 	}
 
@@ -69,13 +71,15 @@ class DbTestRecorder extends TestRecorder {
 	 */
 	public function record( ParserTestResult $result ) {
 		$desc = $result->getDescription();
-		$this->db->insert( 'testitem',
-			[
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'testitem' )
+			->row( [
 				'ti_run' => $this->curRun,
 				'ti_name' => $desc,
 				'ti_success' => $result->isSuccess() ? 1 : 0,
-			],
-			__METHOD__ );
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**

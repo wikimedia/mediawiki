@@ -398,11 +398,11 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		// Avoid self-deadlocks with Sqlite
 		$this->markTestSkippedIfDbType( 'sqlite' );
 
-		$this->db->insert(
-			'objectcache',
-			[ 'keyname' => __METHOD__, 'value' => 'TEST', 'exptime' => $this->db->timestamp( 11 ) ],
-			__METHOD__
-		);
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'objectcache' )
+			->row( [ 'keyname' => __METHOD__, 'value' => 'TEST', 'exptime' => $this->db->timestamp( 11 ) ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Make an untracked DB_PRIMARY connection
 		$lb = $this->getServiceContainer()->getDBLoadBalancerFactory()->newMainLB();

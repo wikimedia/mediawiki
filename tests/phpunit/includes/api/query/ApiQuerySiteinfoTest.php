@@ -193,29 +193,27 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			MainConfigNames::ScriptPath => '/w',
 		] );
 
-		$this->getDb()->insert(
-			'interwiki',
-			[
-				[
-					'iw_prefix' => 'self',
-					'iw_url' => 'https://local.example/w/index.php?title=$1',
-					'iw_api' => 'https://local.example/w/api.php',
-					'iw_wikiid' => 'somedbname',
-					'iw_local' => true,
-					'iw_trans' => true,
-				],
-				[
-					'iw_prefix' => 'foreign',
-					'iw_url' => '//foreign.example/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => false,
-					'iw_trans' => false,
-				],
-			],
-			__METHOD__,
-			'IGNORE'
-		);
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'interwiki' )
+			->ignore()
+			->row( [
+				'iw_prefix' => 'self',
+				'iw_url' => 'https://local.example/w/index.php?title=$1',
+				'iw_api' => 'https://local.example/w/api.php',
+				'iw_wikiid' => 'somedbname',
+				'iw_local' => true,
+				'iw_trans' => true,
+			] )
+			->row( [
+				'iw_prefix' => 'foreign',
+				'iw_url' => '//foreign.example/wiki/$1',
+				'iw_api' => '',
+				'iw_wikiid' => '',
+				'iw_local' => false,
+				'iw_trans' => false,
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$this->getServiceContainer()->getMessageCache()->enable();
 

@@ -26,12 +26,13 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $actors as $description => $row ) {
-			$this->assertTrue( $this->db->insert(
-				'actor',
-				$row,
-				__METHOD__,
-				[ 'IGNORE' ]
-			), "Must create {$description} actor" );
+			 $this->db->newInsertQueryBuilder()
+				->insertInto( 'actor' )
+				->ignore()
+				->row( $row )
+				->caller( __METHOD__ )
+				->execute();
+			$this->assertSame( 1, $this->db->affectedRows(), "Must create {$description} actor" );
 		}
 	}
 

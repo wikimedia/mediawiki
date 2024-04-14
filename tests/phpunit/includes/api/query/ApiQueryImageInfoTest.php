@@ -46,9 +46,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$actorId = $this->getServiceContainer()
 			->getActorStore()
 			->acquireActorId( $this->testUser, $this->db );
-		$this->db->insert(
-			'image',
-			[
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'image' )
+			->row( [
 				'img_name' => 'Random-11m.png',
 				'img_size' => self::NEW_IMAGE_SIZE,
 				'img_width' => 1000,
@@ -64,11 +64,12 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'img_actor' => $actorId,
 				'img_timestamp' => $this->db->timestamp( self::NEW_IMAGE_TIMESTAMP ),
 				'img_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
-			]
-		);
-		$this->db->insert(
-			'oldimage',
-			[
+			] )
+			->caller( __METHOD__ )
+			->execute();
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'oldimage' )
+			->row( [
 				'oi_name' => 'Random-11m.png',
 				'oi_archive_name' => self::OLD_IMAGE_TIMESTAMP . 'Random-11m.png',
 				'oi_size' => self::OLD_IMAGE_SIZE,
@@ -86,11 +87,8 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'oi_timestamp' => $this->db->timestamp( self::OLD_IMAGE_TIMESTAMP ),
 				'oi_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
 				'oi_deleted' => File::DELETED_FILE | File::DELETED_COMMENT | File::DELETED_USER,
-			]
-		);
-		$this->db->insert(
-			'oldimage',
-			[
+			] )
+			->row( [
 				'oi_name' => 'Random-11m.png',
 				'oi_archive_name' => self::NO_COMMENT_TIMESTAMP . 'Random-11m.png',
 				'oi_size' => self::OLD_IMAGE_SIZE,
@@ -108,8 +106,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'oi_timestamp' => $this->db->timestamp( self::NO_COMMENT_TIMESTAMP ),
 				'oi_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
 				'oi_deleted' => 0,
-			]
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Set up temp user config
 		$this->enableAutoCreateTempUser();
@@ -119,9 +118,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$tempActorId = $this->getServiceContainer()
 			->getActorStore()
 			->acquireActorId( $this->tempUser, $this->db );
-		$this->db->insert(
-			'image',
-			[
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'image' )
+			->row( [
 				'img_name' => self::IMAGE_2_NAME,
 				'img_size' => self::IMAGE_2_SIZE,
 				'img_width' => 1000,
@@ -137,8 +136,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'img_actor' => $tempActorId,
 				'img_timestamp' => $this->db->timestamp( self::IMAGE_2_TIMESTAMP ),
 				'img_sha1' => 'aaaaasim0bgdh0jt4vdltuzoh7',
-			]
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	private function getImageInfoFromResult( array $result ) {

@@ -1515,10 +1515,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// create an actor row for the empty user name (see also T225469)
-		$this->getDb()->insert( 'actor', [ [
-			'actor_user' => $row->ar_user,
-			'actor_name' => $row->ar_user_text,
-		] ] );
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'actor' )
+			->row( [
+				'actor_user' => $row->ar_user,
+				'actor_name' => $row->ar_user_text,
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$row->ar_actor = $this->getDb()->insertId();
 
@@ -3024,12 +3028,16 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		// Construct a slot row that will conflict with the insertion of the next revision ID,
 		// to emulate the failure mode described in T202032. Nothing will ever read this row,
 		// we just need it to trigger a primary key conflict.
-		$this->getDb()->insert( 'slots', [
-			'slot_revision_id' => $maxRevId + 1,
-			'slot_role_id' => 1,
-			'slot_content_id' => 0,
-			'slot_origin' => 0
-		], __METHOD__ );
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'slots' )
+			->row( [
+				'slot_revision_id' => $maxRevId + 1,
+				'slot_role_id' => 1,
+				'slot_content_id' => 0,
+				'slot_origin' => 0
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$rev = new MutableRevisionRecord( $page->getTitle() );
 		$rev->setTimestamp( '20180101000000' )

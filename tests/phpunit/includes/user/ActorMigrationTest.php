@@ -454,7 +454,11 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			}
 
 			$id = ++self::$amId;
-			$this->db->insert( $table, [ $pk => $id ] + $fields, __METHOD__ );
+			$this->db->newInsertQueryBuilder()
+				->insertInto( $table )
+				->row( [ $pk => $id ] + $fields )
+				->caller( __METHOD__ )
+				->execute();
 
 			foreach ( $possibleReadStages as $readStageName ) {
 				$readStage = self::STAGES_BY_NAME[$readStageName];
@@ -504,7 +508,11 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$m = $this->getMigration( $stage );
 		$fields = $m->getInsertValues( $this->db, 'am1_user', $userIdentity );
 		$id = ++self::$amId;
-		$this->db->insert( 'actormigration1', [ 'am1_id' => $id ] + $fields, __METHOD__ );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'actormigration1' )
+			->row( [ 'am1_id' => $id ] + $fields )
+			->caller( __METHOD__ )
+			->execute();
 
 		$qi = $m->getJoin( 'am1_user' );
 		$row = $this->db->selectRow(

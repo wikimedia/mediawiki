@@ -12,7 +12,11 @@ use MediaWiki\WikiMap\WikiMap;
 class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 
 	private function populateDB( $iwrows ) {
-		$this->db->insert( 'interwiki', array_values( $iwrows ), __METHOD__ );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'interwiki' )
+			->rows( $iwrows )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
