@@ -302,7 +302,7 @@ class PPFrame_Hash implements PPFrame {
 				# Not in RECOVER_COMMENTS mode (msgnw) though.
 				if ( ( $this->parser->getOutputType() === Parser::OT_HTML
 					|| ( $this->parser->getOutputType() === Parser::OT_PREPROCESS &&
-						$this->parser->mOptions->getRemoveComments() )
+						$this->parser->getOptions()->getRemoveComments() )
 					|| ( $flags & PPFrame::STRIP_COMMENTS )
 					) && !( $flags & PPFrame::RECOVER_COMMENTS )
 				) {

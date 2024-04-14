@@ -716,6 +716,7 @@ because of Phabricator reports.
   warnings:
   - Parser::$ot, deprecated since 1.35
   - Parser::$mTitle, deprecated since 1.35
+  - Parser::$mOptions, deprecated since 1.35
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
   and will soon stop working due to schema changes. Instead use
   addDeletedUserFilter() or getBlockDetailsForRows().
