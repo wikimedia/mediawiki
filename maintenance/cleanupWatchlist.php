@@ -80,17 +80,17 @@ class CleanupWatchlist extends TableCleanup {
 	private function removeWatch( $row ) {
 		if ( !$this->dryrun && $this->hasOption( 'fix' ) ) {
 			$dbw = $this->getPrimaryDB();
-			$dbw->delete(
-				'watchlist',
-				[ 'wl_id' => $row->wl_id ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'watchlist' )
+				->where( [ 'wl_id' => $row->wl_id ] )
+				->caller( __METHOD__ )
+				->execute();
 			if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
-				$dbw->delete(
-					'watchlist_expiry',
-					[ 'we_item' => $row->wl_id ],
-					__METHOD__
-				);
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'watchlist_expiry' )
+					->where( [ 'we_item' => $row->wl_id ] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 
 			$this->output( "- removed\n" );

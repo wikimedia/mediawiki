@@ -42,7 +42,11 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\SiteStats\SiteStats
 	 */
 	public function testInit() {
-		$this->db->delete( 'site_stats', ISQLPlatform::ALL_ROWS, __METHOD__ );
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'site_stats' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
 		SiteStats::unload();
 
 		SiteStats::edits();

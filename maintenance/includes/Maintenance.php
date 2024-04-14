@@ -1018,7 +1018,11 @@ abstract class Maintenance {
 		# Delete as appropriate
 		if ( $delete && $count ) {
 			$this->output( 'Deleting...' );
-			$dbw->delete( 'text', [ 'old_id' => $old ], __METHOD__ );
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'text' )
+				->where( [ 'old_id' => $old ] )
+				->caller( __METHOD__ )
+				->execute();
 			$this->output( "done.\n" );
 		}
 

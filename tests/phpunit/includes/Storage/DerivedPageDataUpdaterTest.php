@@ -38,6 +38,7 @@ use ParserOptions;
 use PHPUnit\Framework\MockObject\MockObject;
 use TextContent;
 use TextContentHandler;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use WikiPage;
@@ -1090,7 +1091,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			->from( 'site_stats' )
 			->where( '1=1' )
 			->fetchRow();
-		$this->db->delete( 'pagelinks', '*' );
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'pagelinks' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
 
 		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );

@@ -113,9 +113,11 @@ class CleanupImages extends TableCleanup {
 		} else {
 			$this->output( "deleting bogus row '$name'\n" );
 			$db = $this->getPrimaryDB();
-			$db->delete( 'image',
-				[ 'img_name' => $name ],
-				__METHOD__ );
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'image' )
+				->where( [ 'img_name' => $name ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 

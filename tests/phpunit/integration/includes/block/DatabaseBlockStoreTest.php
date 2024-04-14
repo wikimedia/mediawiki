@@ -440,10 +440,11 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		// This is quicker than adding a recent change for an unblocked user.
 		// See addDBDataOnce documentation for more details.
 		$target = $this->sysop;
-		$this->db->delete(
-			'ipblocks',
-			[ 'ipb_address' => $target->getName() ]
-		);
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'ipblocks' )
+			->where( [ 'ipb_address' => $target->getName() ] )
+			->caller( __METHOD__ )
+			->execute();
 		$block = $this->getBlock( [
 			'autoblock' => true,
 			'target' => $target,

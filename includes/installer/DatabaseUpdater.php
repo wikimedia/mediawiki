@@ -54,6 +54,7 @@ use UnexpectedValueException;
 use UpdateCollation;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
@@ -1144,7 +1145,11 @@ abstract class DatabaseUpdater {
 		$this->output( "Purging caches..." );
 
 		// ObjectCache
-		$this->db->delete( 'objectcache', '*', __METHOD__ );
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'objectcache' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
 
 		// LocalisationCache
 		if ( $wgLocalisationCacheConf['manualRecache'] ) {
@@ -1158,7 +1163,11 @@ abstract class DatabaseUpdater {
 		);
 
 		// ResourceLoader: File-dependency cache
-		$this->db->delete( 'module_deps', '*', __METHOD__ );
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'module_deps' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
 		$this->output( "done.\n" );
 	}
 

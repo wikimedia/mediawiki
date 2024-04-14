@@ -3,6 +3,7 @@
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * @covers \RefreshLinksJob
@@ -61,8 +62,16 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$parserCache = $this->getServiceContainer()->getParserCache();
 		$parserCache->deleteOptionsKey( $page );
 
-		$this->db->delete( 'pagelinks', '*', __METHOD__ );
-		$this->db->delete( 'categorylinks', '*', __METHOD__ );
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'pagelinks' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'categorylinks' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
 
 		// run job
 		$job = new RefreshLinksJob( $page->getTitle(), [ 'parseThreshold' => 0 ] );
@@ -101,8 +110,16 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$parserCache->deleteOptionsKey( $page1 );
 		$parserCache->deleteOptionsKey( $page2 );
 
-		$this->db->delete( 'pagelinks', '*', __METHOD__ );
-		$this->db->delete( 'categorylinks', '*', __METHOD__ );
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'pagelinks' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
+		$this->db->newDeleteQueryBuilder()
+			->deleteFrom( 'categorylinks' )
+			->where( ISQLPlatform::ALL_ROWS )
+			->caller( __METHOD__ )
+			->execute();
 
 		// run job
 		$job = new RefreshLinksJob(
