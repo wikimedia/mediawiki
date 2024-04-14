@@ -2023,12 +2023,18 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// Change the user name in the database, "behind the back" of the cache
 		$newUserName = "Renamed $userNameBefore";
-		$this->getDb()->update( 'user',
-			[ 'user_name' => $newUserName ],
-			[ 'user_id' => $rev->getUser()->getId() ] );
-		$this->getDb()->update( 'actor',
-			[ 'actor_name' => $newUserName ],
-			[ 'actor_user' => $rev->getUser()->getId() ] );
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_name' => $newUserName ] )
+			->where( [ 'user_id' => $rev->getUser()->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'actor' )
+			->set( [ 'actor_name' => $newUserName ] )
+			->where( [ 'actor_user' => $rev->getUser()->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Reload the revision and regrab the user name.
 		$revAfter = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
@@ -2096,9 +2102,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$deletedBefore = $rev->getVisibility();
 
 		// Change the deleted bitmask in the database, "behind the back" of the cache
-		$this->getDb()->update( 'revision',
-			[ 'rev_deleted' => RevisionRecord::DELETED_TEXT ],
-			[ 'rev_id' => $rev->getId() ] );
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_deleted' => RevisionRecord::DELETED_TEXT ] )
+			->where( [ 'rev_id' => $rev->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Reload the revision and regrab the visibility flag.
 		$revAfter = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
@@ -2136,12 +2145,18 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// Change the user name in the database
 		$newUserName = "Renamed $userNameBefore";
-		$this->getDb()->update( 'user',
-			[ 'user_name' => $newUserName ],
-			[ 'user_id' => $storeRecord->getUser()->getId() ] );
-		$this->getDb()->update( 'actor',
-			[ 'actor_name' => $newUserName ],
-			[ 'actor_user' => $storeRecord->getUser()->getId() ] );
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_name' => $newUserName ] )
+			->where( [ 'user_id' => $storeRecord->getUser()->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'actor' )
+			->set( [ 'actor_name' => $newUserName ] )
+			->where( [ 'actor_user' => $storeRecord->getUser()->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Reload the record, passing $fromCache as true to force fresh info from the db,
 		// and regrab the user name
@@ -2184,9 +2199,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$deletedBefore = $storeRecord->getVisibility();
 
 		// Change the deleted bitmask in the database
-		$this->getDb()->update( 'revision',
-			[ 'rev_deleted' => RevisionRecord::DELETED_TEXT ],
-			[ 'rev_id' => $storeRecord->getId() ] );
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_deleted' => RevisionRecord::DELETED_TEXT ] )
+			->where( [ 'rev_id' => $storeRecord->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Reload the record, passing $fromCache as true to force fresh info from the db,
 		// and regrab the deleted bitmask

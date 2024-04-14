@@ -63,12 +63,12 @@ class ApiComparePagesTest extends ApiTestCase {
 			self::$repl['revB4'] => '20040404044404',
 		];
 		foreach ( $updateTimestamps as $id => $ts ) {
-			$this->db->update(
-				'revision',
-				[ 'rev_timestamp' => $this->db->timestamp( $ts ) ],
-				[ 'rev_id' => $id ],
-				__METHOD__
-			);
+			$this->db->newUpdateQueryBuilder()
+				->update( 'revision' )
+				->set( [ 'rev_timestamp' => $this->db->timestamp( $ts ) ] )
+				->where( [ 'rev_id' => $id ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		self::$repl['revC1'] = $this->addPage( 'C', 'C 1' );
@@ -89,9 +89,12 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['revE3'] = $this->addPage( 'E', 'E 3' );
 		self::$repl['revE4'] = $this->addPage( 'E', 'E 4' );
 		self::$repl['pageE'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest E' )->getArticleID();
-		$this->getDb()->update(
-			'page', [ 'page_latest' => 0 ], [ 'page_id' => self::$repl['pageE'] ]
-		);
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( [ 'page_latest' => 0 ] )
+			->where( [ 'page_id' => self::$repl['pageE'] ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		self::$repl['revF1'] = $this->addPage( 'F', "== Section 1 ==\nF 1.1\n\n== Section 2 ==\nF 1.2" );
 		self::$repl['pageF'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest F' )->getArticleID();

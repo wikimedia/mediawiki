@@ -27,12 +27,12 @@ class UserRegistrationLookupIntegrationTest extends MediaWikiIntegrationTestCase
 	public function testLocal() {
 		$user = $this->getMutableTestUser()->getUser();
 		$dbw = $this->getDb();
-		$dbw->update(
-			'user',
-			[ 'user_registration' => $dbw->timestamp( '20050101000000' ) ],
-			[ 'user_id' => $user->getId() ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_registration' => $dbw->timestamp( '20050101000000' ) ] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$this->assertSame(
 			'20050101000000',

@@ -167,19 +167,19 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			->getNewRevision();
 
 		// Parent of revision 1 is not in revision table (deleted)
-		$this->db->update(
-			'revision',
-			[ 'rev_parent_id' => $rev2->getId() + 100 ],
-			[ 'rev_id' => $rev1->getId() ],
-			__METHOD__
-		);
+		$this->db->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_parent_id' => $rev2->getId() + 100 ] )
+			->where( [ 'rev_id' => $rev1->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 		// Parent of revision 2 is unknown
-		$this->db->update(
-			'revision',
-			[ 'rev_parent_id' => null ],
-			[ 'rev_id' => $rev2->getId() ],
-			__METHOD__
-		);
+		$this->db->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_parent_id' => null ] )
+			->where( [ 'rev_id' => $rev2->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$contributionsLookup = $this->getContributionsLookup();
 
@@ -361,12 +361,12 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$contributionsLookup = $this->getContributionsLookup();
 
 		$revIds = [ self::$storedRevisions[1]->getId(), self::$storedRevisions[2]->getId() ];
-		$this->db->update(
-			'revision',
-			[ 'rev_deleted' => RevisionRecord::DELETED_USER ],
-			[ 'rev_id' => $revIds ],
-			__METHOD__
-		);
+		$this->db->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [ 'rev_deleted' => RevisionRecord::DELETED_USER ] )
+			->where( [ 'rev_id' => $revIds ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$this->assertSame( 2, $this->db->affectedRows() );
 

@@ -149,19 +149,21 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 		$lowerInitialUserName = mb_strtolower( $userName[0] ) . substr( $userName, 1 );
 		$this->assertTrue( $provider->testUserCanAuthenticate( $lowerInitialUserName ) );
 
-		$dbw->update(
-			'user',
-			[ 'user_password' => PasswordFactory::newInvalidPassword()->toString() ],
-			[ 'user_name' => $userName ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_password' => PasswordFactory::newInvalidPassword()->toString() ] )
+			->where( [ 'user_name' => $userName ] )
+			->caller( __METHOD__ )
+			->execute();
 		$this->assertFalse( $provider->testUserCanAuthenticate( $userName ) );
 
 		// Really old format
-		$dbw->update(
-			'user',
-			[ 'user_password' => '0123456789abcdef0123456789abcdef' ],
-			[ 'user_name' => $userName ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_password' => '0123456789abcdef0123456789abcdef' ] )
+			->where( [ 'user_name' => $userName ] )
+			->caller( __METHOD__ )
+			->execute();
 		$this->assertTrue( $provider->testUserCanAuthenticate( $userName ) );
 	}
 
@@ -353,7 +355,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 
 		// Correct handling of legacy encodings
 		$password = ':B:salt:' . md5( 'salt-' . md5( "\xe1\xe9\xed\xf3\xfa" ) );
-		$dbw->update( 'user', [ 'user_password' => $password ], [ 'user_name' => $userName ] );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_password' => $password ] )
+			->where( [ 'user_name' => $userName ] )
+			->caller( __METHOD__ )
+			->execute();
 		$req->password = 'áéíóú';
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals(
@@ -384,7 +391,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 
 		// Correct handling of really old password hashes
 		$password = md5( "$id-" . md5( 'FooBar' ) );
-		$dbw->update( 'user', [ 'user_password' => $password ], [ 'user_name' => $userName ] );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_password' => $password ] )
+			->where( [ 'user_name' => $userName ] )
+			->caller( __METHOD__ )
+			->execute();
 		$req->password = 'FooBar';
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $userName ),

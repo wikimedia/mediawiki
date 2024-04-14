@@ -45,12 +45,12 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 	 * @param int|null $count
 	 */
 	private function setDbEditCount( $user, $count ) {
-		$this->db->update(
-			'user',
-			[ 'user_editcount' => $count ],
-			[ 'user_id' => $user->getId() ],
-			__METHOD__
-		);
+		$this->db->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [ 'user_editcount' => $count ] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public function testGetUserEditCount() {
