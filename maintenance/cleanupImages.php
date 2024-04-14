@@ -192,18 +192,24 @@ class CleanupImages extends TableCleanup {
 			$this->output( "renaming $path to $finalPath\n" );
 			// @todo FIXME: Should this use File::move()?
 			$this->beginTransaction( $db, __METHOD__ );
-			$db->update( 'image',
-				[ 'img_name' => $final ],
-				[ 'img_name' => $orig ],
-				__METHOD__ );
-			$db->update( 'oldimage',
-				[ 'oi_name' => $final ],
-				[ 'oi_name' => $orig ],
-				__METHOD__ );
-			$db->update( 'page',
-				[ 'page_title' => $final ],
-				[ 'page_title' => $orig, 'page_namespace' => NS_FILE ],
-				__METHOD__ );
+			$db->newUpdateQueryBuilder()
+				->update( 'image' )
+				->set( [ 'img_name' => $final ] )
+				->where( [ 'img_name' => $orig ] )
+				->caller( __METHOD__ )
+				->execute();
+			$db->newUpdateQueryBuilder()
+				->update( 'oldimage' )
+				->set( [ 'oi_name' => $final ] )
+				->where( [ 'oi_name' => $orig ] )
+				->caller( __METHOD__ )
+				->execute();
+			$db->newUpdateQueryBuilder()
+				->update( 'page' )
+				->set( [ 'page_title' => $final ] )
+				->where( [ 'page_title' => $orig, 'page_namespace' => NS_FILE ] )
+				->caller( __METHOD__ )
+				->execute();
 			$dir = dirname( $finalPath );
 			if ( !file_exists( $dir ) ) {
 				if ( !wfMkdirParents( $dir, null, __METHOD__ ) ) {

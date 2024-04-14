@@ -220,8 +220,12 @@ class RefreshLinks extends Maintenance {
 		}
 
 		// Update the page table to be sure it is an a consistent state
-		$dbw->update( 'page', [ 'page_is_redirect' => $fieldValue ],
-			[ 'page_id' => $id ], __METHOD__ );
+		$dbw->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( [ 'page_is_redirect' => $fieldValue ] )
+			->where( [ 'page_id' => $id ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**

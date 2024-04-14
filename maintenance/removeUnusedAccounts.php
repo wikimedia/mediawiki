@@ -121,7 +121,12 @@ class RemoveUnusedAccounts extends Maintenance {
 					->caller( __METHOD__ )->execute();
 			}
 			if ( $keep ) {
-				$dbw->update( 'actor', [ 'actor_user' => null ], [ 'actor_id' => $keep ], __METHOD__ );
+				$dbw->newUpdateQueryBuilder()
+					->update( 'actor' )
+					->set( [ 'actor_user' => null ] )
+					->where( [ 'actor_id' => $keep ] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'user_groups' )
@@ -149,12 +154,12 @@ class RemoveUnusedAccounts extends Maintenance {
 				->select( 'COUNT(*)' )
 				->from( 'user' )
 				->caller( __METHOD__ )->fetchField();
-			$dbw->update(
-				'site_stats',
-				[ 'ss_users' => $users ],
-				[ 'ss_row_id' => 1 ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'site_stats' )
+				->set( [ 'ss_users' => $users ] )
+				->where( [ 'ss_row_id' => 1 ] )
+				->caller( __METHOD__ )
+				->execute();
 		} elseif ( $count > 0 ) {
 			$this->output( "\nRun the script again with --delete to remove them from the database.\n" );
 		}

@@ -575,21 +575,23 @@ class RecompressTracked {
 		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		$dbw->begin( __METHOD__ );
-		$dbw->update( 'text',
-			[ // set
+		$dbw->newUpdateQueryBuilder()
+			->update( 'text' )
+			->set( [
 				'old_text' => $url,
 				'old_flags' => 'external,utf-8',
-			],
-			[ // where
+			] )
+			->where( [
 				'old_id' => $textId
-			],
-			__METHOD__
-		);
-		$dbw->update( 'blob_tracking',
-			[ 'bt_moved' => 1 ],
-			[ 'bt_text_id' => $textId ],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newUpdateQueryBuilder()
+			->update( 'blob_tracking' )
+			->set( [ 'bt_moved' => 1 ] )
+			->where( [ 'bt_text_id' => $textId ] )
+			->caller( __METHOD__ )
+			->execute();
 		$dbw->commit( __METHOD__ );
 	}
 
@@ -815,14 +817,15 @@ class CgzCopyTransaction {
 		// Write the new URLs to the blob_tracking table
 		foreach ( $this->referrers as $textId => $hash ) {
 			$url = $baseUrl . '/' . $hash;
-			$dbw->update( 'blob_tracking',
-				[ 'bt_new_url' => $url ],
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'blob_tracking' )
+				->set( [ 'bt_new_url' => $url ] )
+				->where( [
 					'bt_text_id' => $textId,
 					'bt_moved' => 0, # Check for concurrent conflicting update
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$targetDB->commit( __METHOD__ );

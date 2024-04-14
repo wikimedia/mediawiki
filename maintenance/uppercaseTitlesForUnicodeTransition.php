@@ -432,18 +432,18 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		$this->output( "Renamed {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}\n" );
 
 		// The move created a log entry under the old invalid title. Fix it.
-		$db->update(
-			'logging',
-			[
+		$db->newUpdateQueryBuilder()
+			->update( 'logging' )
+			->set( [
 				'log_title' => $this->charmap[$char] . mb_substr( $title, 1 ),
-			],
-			[
+			] )
+			->where( [
 				'log_namespace' => $oldTitle->getNamespace(),
 				'log_title' => $oldTitle->getDBkey(),
 				'log_page' => $newTitle->getArticleID(),
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		if ( $deletionReason !== null ) {
 			$page = $services->getWikiPageFactory()->newFromTitle( $newTitle );
@@ -544,15 +544,15 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		}
 
 		if ( $this->run ) {
-			$db->update(
-				$table,
-				array_merge(
+			$db->newUpdateQueryBuilder()
+				->update( $table )
+				->set( array_merge(
 					is_int( $nsField ) ? [] : [ $nsField => $newTitle->getNamespace() ],
 					[ $titleField => $newTitle->getDBkey() ]
-				),
-				(array)$row,
-				__METHOD__
-			);
+				) )
+				->where( (array)$row )
+				->caller( __METHOD__ )
+				->execute();
 			$r = json_encode( $row, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 			$this->output( "Set $r to {$newTitle->getPrefixedText()}\n" );
 		} else {

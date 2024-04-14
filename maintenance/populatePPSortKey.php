@@ -70,15 +70,15 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 				if ( !is_numeric( $row->pp_value ) ) {
 					continue;
 				}
-				$dbw->update(
-					'page_props',
-					[ 'pp_sortkey' => $row->pp_value ],
-					[
+				$dbw->newUpdateQueryBuilder()
+					->update( 'page_props' )
+					->set( [ 'pp_sortkey' => $row->pp_value ] )
+					->where( [
 						'pp_page' => $row->pp_page,
 						'pp_propname' => $row->pp_propname
-					],
-					__METHOD__
-				);
+					] )
+					->caller( __METHOD__ )
+					->execute();
 				$editedRowCount++;
 			}
 

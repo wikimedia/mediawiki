@@ -138,12 +138,12 @@ class CleanupBlocks extends Maintenance {
 				->caller( __METHOD__ )
 				->fetchResultSet();
 			foreach ( $res as $row ) {
-				$db->update(
-					'ipblocks',
-					[ 'ipb_address' => $row->user_name ],
-					[ 'ipb_id' => $row->ipb_id ],
-					__METHOD__
-				);
+				$db->newUpdateQueryBuilder()
+					->update( 'ipblocks' )
+					->set( [ 'ipb_address' => $row->user_name ] )
+					->where( [ 'ipb_id' => $row->ipb_id ] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 

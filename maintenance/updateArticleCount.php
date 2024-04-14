@@ -57,12 +57,12 @@ class UpdateArticleCount extends Maintenance {
 		if ( $this->hasOption( 'update' ) ) {
 			$this->output( "Updating site statistics table..." );
 			$dbw = $this->getPrimaryDB();
-			$dbw->update(
-				'site_stats',
-				[ 'ss_good_articles' => $result ],
-				[ 'ss_row_id' => 1 ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'site_stats' )
+				->set( [ 'ss_good_articles' => $result ] )
+				->where( [ 'ss_row_id' => 1 ] )
+				->caller( __METHOD__ )
+				->execute();
 			$this->output( "done.\n" );
 		} else {
 			$this->output( "To update the site statistics table, run the script "
