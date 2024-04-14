@@ -854,9 +854,10 @@ abstract class Installer {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$status->getDB()->insert(
-			'site_stats',
-			[
+		$status->getDB()->newInsertQueryBuilder()
+			->insertInto( 'site_stats' )
+			->ignore()
+			->row( [
 				'ss_row_id' => 1,
 				'ss_total_edits' => 0,
 				'ss_good_articles' => 0,
@@ -864,10 +865,9 @@ abstract class Installer {
 				'ss_users' => 0,
 				'ss_active_users' => 0,
 				'ss_images' => 0
-			],
-			__METHOD__,
-			'IGNORE'
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return Status::newGood();
 	}
