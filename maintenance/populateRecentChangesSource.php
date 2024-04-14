@@ -66,15 +66,16 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		$updatedValues = $this->buildUpdateCondition( $dbw );
 
 		while ( $blockEnd <= $end ) {
-			$dbw->update(
-				'recentchanges',
-				[ $updatedValues ],
-				[
-					"rc_source = ''",
-					"rc_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
-				],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'recentchanges' )
+				->set( [ $updatedValues ] )
+				->where( [
+					'rc_source' => '',
+					$dbw->expr( 'rc_id', '>=', (int)$blockStart ),
+					$dbw->expr( 'rc_id', '<=', (int)$blockEnd ),
+				] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$this->output( "." );
 			$this->waitForReplication();

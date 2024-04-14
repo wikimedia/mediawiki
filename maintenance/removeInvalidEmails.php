@@ -57,12 +57,12 @@ class RemoveInvalidEmails extends Maintenance {
 				$badCount = count( $badIds );
 				if ( $this->commit ) {
 					$this->output( "Removing $badCount emails from the database.\n" );
-					$dbw->update(
-						'user',
-						[ 'user_email' => '' ],
-						[ 'user_id' => $badIds ],
-						__METHOD__
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'user' )
+						->set( [ 'user_email' => '' ] )
+						->where( [ 'user_id' => $badIds ] )
+						->caller( __METHOD__ )
+						->execute();
 					foreach ( $badIds as $badId ) {
 						User::newFromId( $badId )->invalidateCache();
 					}

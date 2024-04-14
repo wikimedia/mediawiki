@@ -116,11 +116,12 @@ class WrapOldPasswords extends Maintenance {
 				$count++;
 				if ( $update ) {
 					$updateUsers[] = $user;
-					$dbw->update( 'user',
-						[ 'user_password' => $layeredPassword->toString() ],
-						[ 'user_id' => $row->user_id ],
-						__METHOD__
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'user' )
+						->set( [ 'user_password' => $layeredPassword->toString() ] )
+						->where( [ 'user_id' => $row->user_id ] )
+						->caller( __METHOD__ )
+						->execute();
 				}
 
 				$minUserId = $row->user_id;

@@ -162,8 +162,12 @@ class CheckStorage extends Maintenance {
 						$this->addError( 'fixed', "Warning: old_flags set to 0", $id );
 						$dbw = $this->getPrimaryDB();
 						$dbw->ping();
-						$dbw->update( 'text', [ 'old_flags' => '' ],
-							[ 'old_id' => $id ], __METHOD__ );
+						$dbw->newUpdateQueryBuilder()
+							->update( 'text' )
+							->set( [ 'old_flags' => '' ] )
+							->where( [ 'old_id' => $id ] )
+							->caller( __METHOD__ )
+							->execute();
 						echo "Fixed\n";
 					} else {
 						$this->addError( 'fixable', "Warning: old_flags set to 0", $id );
@@ -571,11 +575,12 @@ class CheckStorage extends Maintenance {
 
 		// Update the text row
 		$dbw = $this->getPrimaryDB();
-		$dbw->update( 'text',
-			[ 'old_flags' => $flags, 'old_text' => $text ],
-			[ 'old_id' => $oldId ],
-			__METHOD__, [ 'LIMIT' => 1 ]
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'text' )
+			->set( [ 'old_flags' => $flags, 'old_text' => $text ] )
+			->where( [ 'old_id' => $oldId ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Remove it from the unfixed list and add it to the fixed list
 		unset( $this->errors['restore text'][$id] );

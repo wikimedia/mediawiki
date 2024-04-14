@@ -78,11 +78,12 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 					continue;
 				}
 				$sha1 = LocalRepo::getHashFromKey( $row->fa_storage_key );
-				$dbw->update( $table,
-					[ 'fa_sha1' => $sha1 ],
-					[ 'fa_id' => $row->fa_id ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( $table )
+					->set( [ 'fa_sha1' => $sha1 ] )
+					->where( [ 'fa_id' => $row->fa_id ] )
+					->caller( __METHOD__ )
+					->execute();
 				$lastId = $row->fa_id;
 				$i++;
 			}

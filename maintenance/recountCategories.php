@@ -180,13 +180,15 @@ TEXT
 		// cleanupEmptyCategories.php.
 		$affectedRows = 0;
 		foreach ( $res as $row ) {
-			$dbw->update( 'category',
-				[ "cat_{$mode}" => $row->count ],
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'category' )
+				->set( [ "cat_{$mode}" => $row->count ] )
+				->where( [
 					'cat_id' => $row->cat_id,
-					"cat_{$mode} != " . (int)( $row->count ),
-				],
-				__METHOD__ );
+					$dbw->expr( "cat_{$mode}", '!=', (int)$row->count ),
+				] )
+				->caller( __METHOD__ )
+				->execute();
 			$affectedRows += $dbw->affectedRows();
 		}
 

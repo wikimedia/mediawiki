@@ -77,21 +77,24 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 				->where( "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd )
 				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
-				$db->update( 'pagelinks',
-					[ 'pl_from_namespace' => $row->page_namespace ],
-					[ 'pl_from' => $row->page_id ],
-					__METHOD__
-				);
-				$db->update( 'templatelinks',
-					[ 'tl_from_namespace' => $row->page_namespace ],
-					[ 'tl_from' => $row->page_id ],
-					__METHOD__
-				);
-				$db->update( 'imagelinks',
-					[ 'il_from_namespace' => $row->page_namespace ],
-					[ 'il_from' => $row->page_id ],
-					__METHOD__
-				);
+				$db->newUpdateQueryBuilder()
+					->update( 'pagelinks' )
+					->set( [ 'pl_from_namespace' => $row->page_namespace ] )
+					->where( [ 'pl_from' => $row->page_id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$db->newUpdateQueryBuilder()
+					->update( 'templatelinks' )
+					->set( [ 'tl_from_namespace' => $row->page_namespace ] )
+					->where( [ 'tl_from' => $row->page_id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$db->newUpdateQueryBuilder()
+					->update( 'imagelinks' )
+					->set( [ 'il_from_namespace' => $row->page_namespace ] )
+					->where( [ 'il_from' => $row->page_id ] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 			$blockStart += $batchSize - 1;
 			$blockEnd += $batchSize - 1;

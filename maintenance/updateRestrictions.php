@@ -114,7 +114,12 @@ class UpdateRestrictions extends Maintenance {
 				->caller( __METHOD__ )->execute();
 
 			// Clear out the legacy page.page_restrictions blob for this batch
-			$dbw->update( 'page', [ 'page_restrictions' => '' ], [ 'page_id' => $pageIds ], __METHOD__ );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'page' )
+				->set( [ 'page_restrictions' => '' ] )
+				->where( [ 'page_id' => $pageIds ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$this->commitTransaction( $dbw, __METHOD__ );
 

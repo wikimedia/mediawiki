@@ -203,15 +203,17 @@ class CompressOld extends Maintenance {
 		}
 
 		# Update text row
-		$dbw->update( 'text',
-			[ /* SET */
+		$dbw->newUpdateQueryBuilder()
+			->update( 'text' )
+			->set( [
 				'old_flags' => $flags,
 				'old_text' => $compress
-			], [ /* WHERE */
+			] )
+			->where( [
 				'old_id' => $row->old_id
-			], __METHOD__,
-			[ 'LIMIT' => 1 ]
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return true;
 	}
@@ -426,41 +428,47 @@ class CompressOld extends Maintenance {
 							}
 							# $stored should provide base path to a BLOB
 							$url = $stored . "/" . $stub->getHash();
-							$dbw->update( 'text',
-								[ /* SET */
+							$dbw->newUpdateQueryBuilder()
+								->update( 'text' )
+								->set( [
 									'old_text' => $url,
 									'old_flags' => 'external,utf-8',
-								], [ /* WHERE */
+								] )
+								->where( [
 									'old_id' => $stub->getReferrer(),
-								],
-								__METHOD__
-							);
+								] )
+								->caller( __METHOD__ )
+								->execute();
 						}
 					} else {
 						# Store the main object locally
-						$dbw->update( 'text',
-							[ /* SET */
+						$dbw->newUpdateQueryBuilder()
+							->update( 'text' )
+							->set( [
 								'old_text' => serialize( $chunk ),
 								'old_flags' => 'object,utf-8',
-							], [ /* WHERE */
+							] )
+							->where( [
 								'old_id' => $primaryOldid
-							],
-							__METHOD__
-						);
+							] )
+							->caller( __METHOD__ )
+							->execute();
 
 						# Store the stub objects
 						for ( $j = 1; $j < $thisChunkSize; $j++ ) {
 							# Skip if not compressing and don't overwrite the first revision
 							if ( $stubs[$j] !== false && $revs[$i + $j]->old_id != $primaryOldid ) {
-								$dbw->update( 'text',
-									[ /* SET */
+								$dbw->newUpdateQueryBuilder()
+									->update( 'text' )
+									->set( [
 										'old_text' => serialize( $stubs[$j] ),
 										'old_flags' => 'object,utf-8',
-									], [ /* WHERE */
+									] )
+									->where( [
 										'old_id' => $revs[$i + $j]->old_id
-									],
-									__METHOD__
-								);
+									] )
+									->caller( __METHOD__ )
+									->execute();
 							}
 						}
 					}

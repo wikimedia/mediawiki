@@ -91,12 +91,12 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 			return;
 		}
 
-		$dbw->update(
-			'change_tag_def',
-			[ 'ctd_user_defined' => 1 ],
-			[ 'ctd_name' => $userTags ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'change_tag_def' )
+			->set( [ 'ctd_user_defined' => 1 ] )
+			->where( [ 'ctd_name' => $userTags ] )
+			->caller( __METHOD__ )
+			->execute();
 		$this->waitForReplication();
 		$this->output( "Finished setting user defined tags in change_tag_def table\n" );
 	}
@@ -123,12 +123,12 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				continue;
 			}
 
-			$dbw->update(
-				'change_tag_def',
-				[ 'ctd_count' => $row->hitcount ],
-				[ 'ctd_id' => $row->ct_tag_id ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'change_tag_def' )
+				->set( [ 'ctd_count' => $row->hitcount ] )
+				->where( [ 'ctd_id' => $row->ct_tag_id ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 		$this->waitForReplication();
 	}
@@ -213,12 +213,12 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				$this->output( "Updating ct_tag_id = {$tagId} up to row ct_id = {$lastId}\n" );
 			}
 
-			$dbw->update(
-				'change_tag',
-				[ 'ct_tag_id' => $tagId ],
-				[ 'ct_id' => $ids ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'change_tag' )
+				->set( [ 'ct_tag_id' => $tagId ] )
+				->where( [ 'ct_id' => $ids ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$this->waitForReplication();
 			if ( $sleep > 0 ) {
