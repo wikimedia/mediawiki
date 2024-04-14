@@ -34,11 +34,14 @@ foreach( $res as $row ) {
 For a write query, use something like:
 ```php
 $dbw = $dbProvider->getPrimaryDatabase();
-$dbw->insert( /* ...see docs... */ );
+$dbw->newInsertQueryBuilder()
+	->insertInto( /* ...see docs... */ )
+	// ...see docs for other methods...
+	->execute();
 ```
 We use the convention `$dbr` for read and `$dbw` for write to help you keep track of whether the database object is a replica (read-only) or a primary (read/write). If you write to a replica, the world will explode. Or to be precise, a subsequent write query which succeeded on the primary may fail when propagated to the replica due to a unique key collision. Replication will then stop and it may take hours to repair the database and get it back online. Setting `read_only` in `my.cnf` on the replica will avoid this scenario, but given the dire consequences, we prefer to have as many checks as possible.
 
-We provide a `query()` function for raw SQL, but the wrapper functions like `select()` and `insert()` are usually more convenient. They take care of things like table prefixes and escaping for you. If you really need to make your own SQL, please read the documentation for `tableName()` and `addQuotes()`. You will need both of them.
+We provide a `query()` function for raw SQL, but the query builders like `SelectQueryBuilder` and `InsertQueryBuilder` are usually more convenient. They take care of things like table prefixes and escaping for you. If you really need to make your own SQL, please read the documentation for `tableName()` and `addQuotes()`. You will need both of them.
 
 
 ## Basic query optimisation
