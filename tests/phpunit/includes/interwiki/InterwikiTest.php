@@ -48,7 +48,11 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 			->deleteFrom( 'interwiki' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )->execute();
-		$dbw->insert( 'interwiki', array_values( $iwrows ), __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'interwiki' )
+			->rows( $iwrows )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	private function setWgInterwikiCache( $interwikiCache ) {

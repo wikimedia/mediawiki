@@ -94,18 +94,18 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			->deleteFrom( 'bot_passwords' )
 			->where( [ 'bp_user' => $userId, 'bp_app_id' => 'BotPasswordSessionProvider' ] )
 			->caller( __METHOD__ )->execute();
-		$dbw->insert(
-			'bot_passwords',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'bot_passwords' )
+			->row( [
 				'bp_user' => $userId,
 				'bp_app_id' => 'BotPasswordSessionProvider',
 				'bp_password' => $passwordHash->toString(),
 				'bp_token' => 'token!',
 				'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
 				'bp_grants' => '["test"]',
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public function testConstructor() {

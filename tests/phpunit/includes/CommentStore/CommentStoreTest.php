@@ -133,7 +133,11 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$this->assertArrayNotHasKey( $key, $fields, "old field" );
 		$this->assertArrayHasKey( "{$key}_id", $fields, "new field" );
 
-		$this->db->insert( $table, [ $pk => ++$id ] + $fields, __METHOD__ );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( $table )
+			->row( [ $pk => ++$id ] + $fields )
+			->caller( __METHOD__ )
+			->execute();
 
 		$rstore = $this->makeStore();
 

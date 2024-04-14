@@ -72,28 +72,26 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			->deleteFrom( 'bot_passwords' )
 			->where( [ 'bp_user' => [ 42, 43 ], 'bp_app_id' => 'BotPassword' ] )
 			->caller( __METHOD__ )->execute();
-		$dbw->insert(
-			'bot_passwords',
-			[
-				[
-					'bp_user' => 42,
-					'bp_app_id' => 'BotPassword',
-					'bp_password' => $passwordHash->toString(),
-					'bp_token' => 'token!',
-					'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
-					'bp_grants' => '["test"]',
-				],
-				[
-					'bp_user' => 43,
-					'bp_app_id' => 'BotPassword',
-					'bp_password' => $passwordHash->toString(),
-					'bp_token' => 'token!',
-					'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
-					'bp_grants' => '["test"]',
-				],
-			],
-			__METHOD__
-		);
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'bot_passwords' )
+			->row( [
+				'bp_user' => 42,
+				'bp_app_id' => 'BotPassword',
+				'bp_password' => $passwordHash->toString(),
+				'bp_token' => 'token!',
+				'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
+				'bp_grants' => '["test"]',
+			] )
+			->row( [
+				'bp_user' => 43,
+				'bp_app_id' => 'BotPassword',
+				'bp_password' => $passwordHash->toString(),
+				'bp_token' => 'token!',
+				'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
+				'bp_grants' => '["test"]',
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public function testBasics() {

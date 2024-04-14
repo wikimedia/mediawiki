@@ -105,34 +105,38 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$pageData = $this->insertPage( $title );
 		$pageId = $pageData['id'];
 
-		$this->db->insert( 'ipblocks_restrictions', [
-			'ir_ipb_id' => $block->getId(),
-			'ir_type' => PageRestriction::TYPE_ID,
-			'ir_value' => $pageId,
-		] );
-		// Page that has been deleted.
-		$this->db->insert( 'ipblocks_restrictions', [
-			'ir_ipb_id' => $block->getId(),
-			'ir_type' => PageRestriction::TYPE_ID,
-			'ir_value' => 999999,
-		] );
-		$this->db->insert( 'ipblocks_restrictions', [
-			'ir_ipb_id' => $block->getId(),
-			'ir_type' => NamespaceRestriction::TYPE_ID,
-			'ir_value' => NS_USER_TALK,
-		] );
-		// Invalid type
-		$this->db->insert( 'ipblocks_restrictions', [
-			'ir_ipb_id' => $block->getId(),
-			'ir_type' => 127,
-			'ir_value' => 4,
-		] );
-		// Action (upload)
-		$this->db->insert( 'ipblocks_restrictions', [
-			'ir_ipb_id' => $block->getId(),
-			'ir_type' => ActionRestriction::TYPE_ID,
-			'ir_value' => BlockActionInfo::ACTION_UPLOAD,
-		] );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'ipblocks_restrictions' )
+			->row( [
+				'ir_ipb_id' => $block->getId(),
+				'ir_type' => PageRestriction::TYPE_ID,
+				'ir_value' => $pageId,
+			] )
+			// Page that has been deleted.
+			->row( [
+				'ir_ipb_id' => $block->getId(),
+				'ir_type' => PageRestriction::TYPE_ID,
+				'ir_value' => 999999,
+			] )
+			->row( [
+				'ir_ipb_id' => $block->getId(),
+				'ir_type' => NamespaceRestriction::TYPE_ID,
+				'ir_value' => NS_USER_TALK,
+			] )
+			// Invalid type
+			->row( [
+				'ir_ipb_id' => $block->getId(),
+				'ir_type' => 127,
+				'ir_value' => 4,
+			] )
+			// Action (upload)
+			->row( [
+				'ir_ipb_id' => $block->getId(),
+				'ir_type' => ActionRestriction::TYPE_ID,
+				'ir_value' => BlockActionInfo::ACTION_UPLOAD,
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Test without requesting restrictions.
 		[ $data ] = $this->doApiRequest( [

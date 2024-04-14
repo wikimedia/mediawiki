@@ -26,11 +26,18 @@ use Wikimedia\TestingAccessWrapper;
 class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 	private function populateTable( $values ) {
+		if ( !$values ) {
+			return;
+		}
 		$insertValues = [];
 		foreach ( $values as $name ) {
 			$insertValues[] = [ 'role_name' => $name ];
 		}
-		$this->db->insert( 'slot_roles', $insertValues );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'slot_roles' )
+			->rows( $insertValues )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	private function getHashWANObjectCache( $cacheBag ) {

@@ -130,13 +130,17 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$targetRow = [
 			'tl_target_id' => $targetId,
 		];
-		$this->db->insert( 'templatelinks', [
-			[ 'tl_from' => 56890, 'tl_from_namespace' => 0 ] + $targetRow,
-			[ 'tl_from' => 56891, 'tl_from_namespace' => 0 ] + $targetRow,
-			[ 'tl_from' => 56892, 'tl_from_namespace' => 0 ] + $targetRow,
-			[ 'tl_from' => 56893, 'tl_from_namespace' => 0 ] + $targetRow,
-			[ 'tl_from' => 56894, 'tl_from_namespace' => 0 ] + $targetRow,
-		] );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'templatelinks' )
+			->rows( [
+				[ 'tl_from' => 56890, 'tl_from_namespace' => 0 ] + $targetRow,
+				[ 'tl_from' => 56891, 'tl_from_namespace' => 0 ] + $targetRow,
+				[ 'tl_from' => 56892, 'tl_from_namespace' => 0 ] + $targetRow,
+				[ 'tl_from' => 56893, 'tl_from_namespace' => 0 ] + $targetRow,
+				[ 'tl_from' => 56894, 'tl_from_namespace' => 0 ] + $targetRow,
+			] )
+			->caller( __METHOD__ )
+			->execute();
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::makeTitle( NS_MAIN, 'BLCTest1234' ) );
 		$partition = $backlinkCache->partition( 'templatelinks', 2 );

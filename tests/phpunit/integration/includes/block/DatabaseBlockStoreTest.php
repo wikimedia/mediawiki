@@ -663,21 +663,17 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		)->fetchObject()->comment_id;
 
 		$commonBlockData = [
-			'ipb_user' => 0,
 			'ipb_by_actor' => $this->sysop->getActorId(),
 			'ipb_reason_id' => $commentId,
 			'ipb_timestamp' => $this->db->timestamp( '20000101000000' ),
 			'ipb_auto' => 0,
 			'ipb_anon_only' => 0,
 			'ipb_create_account' => 0,
-			'ipb_enable_autoblock' => 0,
-			'ipb_expiry' => $this->db->getInfinity(),
 			'ipb_range_start' => '',
 			'ipb_range_end' => '',
 			'ipb_deleted' => 0,
 			'ipb_block_email' => 0,
 			'ipb_allow_usertalk' => 0,
-			'ipb_parent_block_id' => 0,
 			'ipb_sitewide' => 0,
 		];
 
@@ -686,18 +682,26 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 				'ipb_id' => $this->expiredBlockId,
 				'ipb_address' => '1.1.1.1',
 				'ipb_expiry' => $this->db->timestamp( '20010101000000' ),
-			],
+				'ipb_user' => 0,
+				'ipb_enable_autoblock' => 0,
+				'ipb_parent_block_id' => 0,
+			] + $commonBlockData,
 			[
 				'ipb_id' => $this->unexpiredBlockId,
 				'ipb_address' => $this->sysop,
+				'ipb_expiry' => $this->db->getInfinity(),
 				'ipb_user' => $this->sysop->getId(),
 				'ipb_enable_autoblock' => 1,
-			],
+				'ipb_parent_block_id' => 0,
+			] + $commonBlockData,
 			[
 				'ipb_id' => $this->autoblockId,
 				'ipb_address' => '2.2.2.2',
+				'ipb_expiry' => $this->db->getInfinity(),
+				'ipb_user' => 0,
+				'ipb_enable_autoblock' => 0,
 				'ipb_parent_block_id' => $this->unexpiredBlockId,
-			],
+			] + $commonBlockData,
 		];
 
 		$restrictionData = [
@@ -718,13 +722,17 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
-		foreach ( $blockData as $row ) {
-			$this->db->insert( 'ipblocks', $row + $commonBlockData );
-		}
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'ipblocks' )
+			->rows( $blockData )
+			->caller( __METHOD__ )
+			->execute();
 
-		foreach ( $restrictionData as $row ) {
-			$this->db->insert( 'ipblocks_restrictions', $row );
-		}
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'ipblocks_restrictions' )
+			->rows( $restrictionData )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 }

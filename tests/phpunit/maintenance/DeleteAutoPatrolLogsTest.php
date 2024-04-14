@@ -135,7 +135,11 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_comment_id' => $comment->id,
 		];
 
-		$dbw->insert( 'logging', $logs );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'logging' )
+			->rows( $logs )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public static function runProvider() {
