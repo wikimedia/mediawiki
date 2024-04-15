@@ -44,9 +44,6 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 	 * @covers \MediaWiki\SpecialPage\FormSpecialPage::checkExecutePermissions
 	 */
 	public function testCheckExecutePermissionsSitewideBlock() {
-		$special = $this->newSpecialPage();
-		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
-
 		$blockErrorFormatter = $this->createMock( BlockErrorFormatter::class );
 		$blockErrorFormatter->method( 'getMessage' )
 			->willReturn( $this->getMockMessage( 'test' ) );
@@ -56,6 +53,9 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )->willReturn( true );
 		$this->setService( 'PermissionManager', $permissionManager );
+
+		$special = $this->newSpecialPage();
+		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
 
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getBlock', 'getWikiId' ] )
@@ -75,9 +75,6 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 	 * @covers \MediaWiki\SpecialPage\FormSpecialPage::checkExecutePermissions
 	 */
 	public function testCheckExecutePermissionsPartialBlock() {
-		$special = $this->newSpecialPage();
-		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
-
 		$blockErrorFormatter = $this->createMock( BlockErrorFormatter::class );
 		$blockErrorFormatter->method( 'getMessage' )
 			->willReturn( $this->getMockMessage( 'test' ) );
@@ -91,6 +88,9 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )->willReturn( true );
 		$this->setService( 'PermissionManager', $permissionManager );
+
+		$special = $this->newSpecialPage();
+		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
 
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getBlock', 'getWikiId' ] )
