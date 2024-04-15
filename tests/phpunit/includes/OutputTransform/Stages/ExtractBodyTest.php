@@ -5,7 +5,9 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ExtractBody
@@ -13,7 +15,7 @@ use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new ExtractBody();
+		return new ExtractBody( new NullLogger() );
 	}
 
 	public function provideShouldRun(): array {
@@ -32,7 +34,7 @@ class ExtractBodyTest extends OutputTransformStageTestBase {
 	public function provideTransform(): array {
 		$pageTemplate = <<<EOF
 <!DOCTYPE html>
-<html><head><title>__TITLE__</title><link rel="dc:isVersionOf" href="https://www.example.com/w/__TITLE__"/><base href="https://www.example.com/w/"/></head><body>__BODY__
+<html><head><base href="https://www.example.com/w/"/></head><body>__BODY__
 </body></html>
 EOF;
 		$testData = [
@@ -48,6 +50,17 @@ EOF;
 				"body" => "<p><a href=\"./Foo#cite1\">hello</a><a href=\"./Foo/Bar#cite1\">boo</a></p>",
 				"result" => "<p><a href=\"#cite1\">hello</a><a href=\"https://www.example.com/w/Foo/Bar#cite1\">boo</a></p>\n"
 			],
+			// hrefs have db-key normalization of titles - test that output isn't tripped by that
+			[
+				"title" => "Foo_Bar Baz",
+				"body" => "<p><a href=\"./Foo_Bar_Baz#cite1\">hello</a></p>",
+				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
+			],
+			[
+				"title" => "Foo+Bar",
+				"body" => "<p><a href=\"./Foo+Bar#cite1\">hello</a></p>",
+				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
+			],
 			[
 				"title" => "Foo/Bar",
 				"body" => "<p><a href=\"./Foo/Bar#cite1\">hello</a></p>",
@@ -59,19 +72,22 @@ EOF;
 				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
 			],
 			[
-				"title" => "Foo/Bar%22Baz",
+				"title" => 'Foo/Bar"Baz',
 				"body" => "<p><a href='./Foo/Bar\"Baz#cite1'>hello</a></p>",
 				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
 			]
 		];
 		$opts = [];
 		$tests = [];
+		// Set test title in parser output extension data
 		foreach ( $testData as $t ) {
-			// Strictly speaking, __TITLE__ in the <title> tag will have entites decoded
-			// but since we aren't testing that or using that tag, we are ignoring that detail.
-			$text = str_replace( "__TITLE__", $t['title'], $pageTemplate );
-			$text = str_replace( "__BODY__", $t['body'], $text );
-			$tests[] = [ new ParserOutput( $text ), null, $opts, new ParserOutput( $t['result'] ) ];
+			$titleDBKey = strtr( $t['title'], ' ', '_' );
+			$text = str_replace( "__BODY__", $t['body'], $pageTemplate );
+			$poInput = new ParserOutput( $text );
+			$poOutput = new ParserOutput( $t['result'] );
+			$poInput->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, $titleDBKey );
+			$poOutput->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, $titleDBKey );
+			$tests[] = [ $poInput, null, $opts, $poOutput ];
 		}
 		return $tests;
 	}
