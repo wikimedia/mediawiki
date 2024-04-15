@@ -262,7 +262,6 @@ class HTMLForm extends ContextSource {
 	/** @var HTMLFormField[] */
 	protected $mFlatFields = [];
 	protected $mFieldTree = [];
-	protected $mShowReset = false;
 	protected $mShowSubmit = true;
 	/** @var string[] */
 	protected $mSubmitFlags = [ 'primary', 'progressive' ];
@@ -1504,16 +1503,6 @@ class HTMLForm extends ContextSource {
 			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}
 
-		if ( $this->mShowReset ) {
-			$buttons .= Html::element(
-				'input',
-				[
-					'type' => 'reset',
-					'value' => $this->msg( 'htmlform-reset' )->text(),
-				]
-			) . "\n";
-		}
-
 		if ( $this->mShowCancel ) {
 			$target = $this->getCancelTargetURL();
 			$buttons .= Html::element(
@@ -2158,19 +2147,6 @@ class HTMLForm extends ContextSource {
 		}
 
 		$this->mFieldData = $fieldData;
-	}
-
-	/**
-	 * Stop a reset button being shown for this form
-	 *
-	 * @param bool $suppressReset Set to false to re-enable the button again
-	 *
-	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 */
-	public function suppressReset( $suppressReset = true ) {
-		$this->mShowReset = !$suppressReset;
-
-		return $this;
 	}
 
 	/**

@@ -89,13 +89,6 @@ class OOUIHTMLForm extends HTMLForm {
 			$buttons .= new \OOUI\ButtonInputWidget( $attribs );
 		}
 
-		if ( $this->mShowReset ) {
-			$buttons .= new \OOUI\ButtonInputWidget( [
-				'type' => 'reset',
-				'label' => $this->msg( 'htmlform-reset' )->text(),
-			] );
-		}
-
 		if ( $this->mShowCancel ) {
 			$buttons .= new \OOUI\ButtonWidget( [
 				'label' => $this->msg( 'cancel' )->text(),
