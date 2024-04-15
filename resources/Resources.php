@@ -2363,6 +2363,7 @@ return [
 			'edit-recovery-special-intro-empty',
 			'edit-recovery-special-view',
 			'edit-recovery-special-edit',
+			'edit-recovery-special-delete',
 			'edit-recovery-special-recovered-on',
 			'edit-recovery-special-recovered-on-tooltip',
 		],

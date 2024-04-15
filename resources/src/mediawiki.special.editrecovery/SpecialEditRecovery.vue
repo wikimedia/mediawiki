@@ -17,6 +17,9 @@
 			<span :title="$i18n( 'edit-recovery-special-recovered-on-tooltip' )">
 				{{ $i18n( 'edit-recovery-special-recovered-on', page.timeStored ) }}
 			</span>
+			{{ $i18n( 'parentheses-start' ) }}
+			<a :onclick="() => onDelete( page )">{{ $i18n( 'edit-recovery-special-delete' ) }}</a>
+			{{ $i18n( 'parentheses-end' ) }}
 		</li>
 	</ol>
 </template>
@@ -51,8 +54,18 @@ module.exports = {
 				} );
 			} );
 		} );
+		function onDelete( page ) {
+			storage.openDatabase().then( () => {
+				const title = new mw.Title( page.title );
+				storage.deleteData( title.title, page.section ).then( () => {
+					const index = pages.value.indexOf( page );
+					pages.value.splice( index, 1 );
+				} );
+			} );
+		}
 		return {
-			pages
+			pages,
+			onDelete
 		};
 	}
 };
