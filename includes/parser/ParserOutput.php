@@ -1541,13 +1541,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Set a page property which is *not* intended to be indexed.
 	 *
-	 * See `::setPageProperty()` for details.
+	 * See `::setPageProperty()` for details.  It is recommended to
+	 * use the empty string if you need a placeholder value.
 	 *
 	 * @param string $name
-	 * @param string $value
+	 * @param string $value Optional value; defaults to the empty string.
 	 * @since 1.42
 	 */
-	public function setUnindexedPageProperty( string $name, string $value ): void {
+	public function setUnindexedPageProperty( string $name, string $value = '' ): void {
 		$this->mProperties[$name] = $value;
 	}
 
