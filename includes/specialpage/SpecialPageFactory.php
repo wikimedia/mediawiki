@@ -1376,6 +1376,9 @@ class SpecialPageFactory {
 			if ( $this->options->get( MainConfigNames::EnableEditRecovery ) ) {
 				$this->list['EditRecovery'] = [
 					'class' => SpecialEditRecovery::class,
+					'services' => [
+						'UserOptionsLookup',
+					],
 				];
 			}
 
