@@ -524,6 +524,13 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function getTagInvert() {
+		return $this->tagInvert;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getTarget() {
