@@ -287,8 +287,10 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->fatal( new MessageValue( 'bad-msg-value' ) );
 		$this->assertTrue( $status->hasMessage( 'bad' ) );
 		$this->assertTrue( $status->hasMessage( 'bad-msg' ) );
+		$this->expectDeprecationAndContinue( '/Passing MessageSpecifier/' );
 		$this->assertTrue( $status->hasMessage( wfMessage( 'bad-msg' ) ) );
 		$this->assertTrue( $status->hasMessage( wfMessage( 'bad-msg-value' ) ) );
+		$this->expectDeprecationAndContinue( '/Passing MessageValue/' );
 		$this->assertTrue( $status->hasMessage( new MessageValue( 'bad-msg' ) ) );
 		$this->assertTrue( $status->hasMessage( new MessageValue( 'bad-msg-value' ) ) );
 		$this->assertFalse( $status->hasMessage( 'good' ) );
@@ -308,6 +310,8 @@ class StatusTest extends MediaWikiLangTestCase {
 			'bad', 'bad-msg', 'bad-msg-value' ) );
 		$this->assertFalse( $status->hasMessagesExcept(
 			'good', 'bad', 'bad-msg', 'bad-msg-value' ) );
+		$this->expectDeprecationAndContinue( '/Passing MessageSpecifier/' );
+		$this->expectDeprecationAndContinue( '/Passing MessageValue/' );
 		$this->assertFalse( $status->hasMessagesExcept(
 			wfMessage( 'bad' ), new MessageValue( 'bad-msg' ), 'bad-msg-value' ) );
 	}
@@ -640,15 +644,45 @@ class StatusTest extends MediaWikiLangTestCase {
 	/**
 	 * @covers \MediaWiki\Status\Status::replaceMessage
 	 */
-	public function testReplaceMessage() {
+	public function testReplaceMessageObj() {
+		$this->expectDeprecationAndContinue( '/Passing MessageSpecifier/' );
+
 		$status = new Status();
 		$message = new Message( 'key1', [ 'foo1', 'bar1' ] );
 		$status->error( $message );
 		$newMessage = new Message( 'key2', [ 'foo2', 'bar2' ] );
 
+		// Replacing by searching for the same Message object works
 		$status->replaceMessage( $message, $newMessage );
+		$this->assertSame( $newMessage, $status->errors[0]['message'] );
 
-		$this->assertEquals( $newMessage, $status->errors[0]['message'] );
+		$messageB = new Message( 'key-b', [ 'foo1', 'bar1' ] );
+		$status->error( $messageB );
+
+		// Replacing by searching for a different but equivalent Message object DOES NOT WORK
+		// (that's why this is deprecated)
+		$status->replaceMessage( new Message( 'key-b' ), 'huh' );
+		$status->replaceMessage( new Message( 'key-b', [ 'foo1', 'bar1' ] ), 'huh' );
+		$this->assertSame( $messageB, $status->errors[1]['message'] );
+	}
+
+	/**
+	 * @covers \MediaWiki\Status\Status::replaceMessage
+	 */
+	public function testReplaceMessageValue() {
+		$this->expectDeprecationAndContinue( '/Passing MessageValue/' );
+
+		$status = new Status();
+		$messageVal = new MessageValue( 'key1', [ 'foo1', 'bar1' ] );
+		$status->error( $messageVal );
+		$newMessageVal = new MessageValue( 'key2', [ 'foo2', 'bar2' ] );
+
+		$status->replaceMessage( $messageVal, $newMessageVal );
+
+		// Replacing by searching for a MessageValue DOES NOT WORK at all
+		// (that's why this is deprecated)
+		$conv = new \MediaWiki\Message\Converter;
+		$this->assertEquals( $messageVal, $conv->convertMessage( $status->errors[0]['message'] ) );
 	}
 
 	/**

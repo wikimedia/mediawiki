@@ -294,18 +294,15 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		// No "@"-thing in the username
 		$status = BotPassword::login( $this->testUserName, 'foobaz', new FauxRequest );
-		$this->assertStatusError( wfMessage( 'botpasswords-invalid-name', '@' ), $status );
+		$this->assertStatusError( 'botpasswords-invalid-name', $status );
 
 		// No base user
 		$status = BotPassword::login( 'UTDummy@BotPassword', 'foobaz', new FauxRequest );
-		$this->assertStatusError( wfMessage( 'nosuchuser', 'UTDummy' ), $status );
+		$this->assertStatusError( 'nosuchuser', $status );
 
 		// No bot password
 		$status = BotPassword::login( "{$this->testUserName}@DoesNotExist", 'foobaz', new FauxRequest );
-		$this->assertStatusError(
-			wfMessage( 'botpasswords-not-exist', $this->testUserName, 'DoesNotExist' ),
-			$status
-		);
+		$this->assertStatusError( 'botpasswords-not-exist', $status );
 
 		// Failed restriction
 		$request = $this->getMockBuilder( FauxRequest::class )
@@ -314,12 +311,12 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$request->method( 'getIP' )
 			->willReturn( '10.0.0.1' );
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', $request );
-		$this->assertStatusError( wfMessage( 'botpasswords-restriction-failed' ), $status );
+		$this->assertStatusError( 'botpasswords-restriction-failed', $status );
 
 		// Wrong password
 		$status = BotPassword::login(
 			"{$this->testUserName}@BotPassword", $this->testUser->getPassword(), new FauxRequest );
-		$this->assertStatusError( wfMessage( 'wrongpassword' ), $status );
+		$this->assertStatusError( 'wrongpassword', $status );
 
 		// Success!
 		$request = new FauxRequest;
