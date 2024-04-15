@@ -8,12 +8,12 @@
 	&-savedLinksTable {
 		margin-top: 1em;
 
-		// T358424: Stack <= 1200px
+		// T358424: Stack < 1120px
 		// At this resolution, particularly in Vector 2022, the
 		// UI becomes more cluttered. Forcing these onto separate lines
 		// avoids the buttons spilling out of content area.
 		.mw-rcfilters-ui-row {
-			@media only screen and ( max-width: @width-breakpoint-desktop-wide ) {
+			@media only screen and ( max-width: @max-width-breakpoint-tablet ) {
 				display: flex;
 				flex-flow: column;
 				align-items: start;
