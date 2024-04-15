@@ -3662,7 +3662,6 @@ class Parser {
 		for ( $i = 0; $i < 3 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$revRecord = null; # Assume no hook
-			$id = false; # Assume current
 			$origTitle = $title;
 			$titleChanged = false;
 			$hookRunner->onBeforeParserFetchTemplateRevisionRecord(
@@ -3689,10 +3688,7 @@ class Parser {
 			}
 			# Get the revision
 			if ( !$revRecord ) {
-				if ( $id ) {
-					# Handle $id returned by deprecated legacy hook
-					$revRecord = $revLookup->getRevisionById( $id );
-				} elseif ( $parser ) {
+				if ( $parser ) {
 					$revRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
 				} else {
 					$revRecord = $revLookup->getRevisionByTitle( $title );

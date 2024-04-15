@@ -21,7 +21,7 @@ use WikitextContent;
 
 /**
  * @group Database
- * @covers \Parser
+ * @covers \MediaWiki\Parser\Parser
  * @covers \BlockLevelPass
  */
 class ParserMethodsTest extends MediaWikiLangTestCase {
