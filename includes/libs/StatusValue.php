@@ -218,12 +218,8 @@ class StatusValue implements Stringable {
 	private function addError( array $newError ) {
 		[ 'type' => $newType, 'message' => $newKey, 'params' => $newParams ] = $newError;
 		if ( $newKey instanceof MessageSpecifier ) {
-			if ( $newParams ) {
-				// Deprecate code like `Status::newFatal( wfMessage( 'foo' ), 'param' )`
-				// - the parameters have always been ignored, so this is usually a mistake.
-				wfDeprecatedMsg( 'Combining MessageSpecifier and parameters array' .
-					' was deprecated in MediaWiki 1.43', '1.43' );
-			}
+			Assert::parameter( $newParams === [],
+				'$parameters', "must be empty when using a MessageSpecifier" );
 			$newParams = $newKey->getParams();
 			$newKey = $newKey->getKey();
 		}

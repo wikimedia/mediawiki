@@ -136,6 +136,8 @@ because of Phabricator reports.
 * In StatusValue::replaceMessage(), ::hasMessage() and ::hasMessagesExcept()
   passing MessageSpecifier or MessageValue as $source, deprecated in 1.43,
   is no longer allowed.
+* StatusValue will no longer accept errors given as a MessageSpecifier
+  combined with a parameters array. This was deprecated in 1.43.
 * The methods MessageValue::objectParams(), Message::objectParams()
   and Message::objectParam(), deprecated in 1.43, have been removed.
 * The UserGroupMembershipParam class, deprecated in 1.43, has been removed.
