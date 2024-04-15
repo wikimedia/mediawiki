@@ -3004,6 +3004,8 @@
 	"movesubpage": "{{PLURAL:$1|Subpágina|Subpáginas}}",
 	"movesubpagetext": "Esta página tiene {{PLURAL:$1|la siguiente subpágina|las siguientes $1 subpáginas}}:",
 	"movesubpagetalktext": "La página de discusión tiene $1 {{PLURAL:$1|subpágina que se muestra|subpáginas que se muestran}} a continuación.",
+	"movesubpagetext-truncated": "La primera $1 {{PLURAL:$1| subpágina|subpáginas}} para esta página se muestran a continuación.",
+	"movesubpagetalktext-truncated": "La primera $1 {{PLURAL:$1| subpage|subpages}} para la página de discusión correspondiente se muestran a continuación.",
 	"movenosubpage": "Esta página no tiene subpáginas.",
 	"movereason": "Motivo:",
 	"revertmove": "revertir",

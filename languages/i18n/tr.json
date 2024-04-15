@@ -2893,6 +2893,8 @@
 	"movesubpage": "{{PLURAL:$1|Alt sayfa|Alt sayfalar}}",
 	"movesubpagetext": "Bu sayfanın aşağıda gösterilen $1 alt sayfası vardır.",
 	"movesubpagetalktext": "İlgili tartışma sayfasında aşağıda gösterilen $1 alt sayfa var.",
+	"movesubpagetext-truncated": "Bu sayfanın ilk $1 {{PLURAL:$1|alt sayfası}} aşağıda gösterilmiştir.",
+	"movesubpagetalktext-truncated": "İlgili tartışma sayfasının ilk $1 {{PLURAL:$1|alt sayfası}} aşağıda gösterilmiştir.",
 	"movenosubpage": "Bu sayfanın alt sayfası yoktur.",
 	"movereason": "Sebep:",
 	"revertmove": "geri al",

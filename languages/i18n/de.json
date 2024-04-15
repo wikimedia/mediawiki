@@ -127,7 +127,8 @@
 			"Lukasaiko",
 			"Abcdefg",
 			"Iketsi",
-			"KimKelting"
+			"KimKelting",
+			"TomatoCake"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -2882,6 +2883,8 @@
 	"movesubpage": "{{PLURAL:$1|Unterseite|Unterseiten}}",
 	"movesubpagetext": "Diese Seite hat $1 {{PLURAL:$1|Unterseite|Unterseiten}}.",
 	"movesubpagetalktext": "Die dazugehörige Diskussionsseite hat {{PLURAL:$1|eine Unterseite, die unten angezeigt wird|$1 Unterseiten, die unten angezeigt werden}}.",
+	"movesubpagetext-truncated": "Die {{PLURAL:$1|erste Unterseite dieser Seite wird|ersten $1 Unterseiten dieser Seite werden}} unten angezeigt.",
+	"movesubpagetalktext-truncated": "Die {{PLURAL:$1|erste Unterseite für die entsprechende Diskussionsseite wird|ersten $1 Unterseiten für die entsprechende Diskussionsseite werden}} unten angezeigt.",
 	"movenosubpage": "Diese Seite hat keine Unterseiten.",
 	"movereason": "Grund:",
 	"revertmove": "zurückverschieben",
@@ -3672,8 +3675,8 @@
 	"logentry-delete-delete_redir2": "$1 {{GENDER:$2|löschte}} die Weiterleitung $3 durch Überschreiben",
 	"logentry-delete-restore": "$1 {{GENDER:$2|stellte}} die Seite „$3“ wieder her ($4)",
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|stellte}} die Seite „$3“ wieder her",
-	"restore-count-revisions": "{{PLURAL:$1|Eine Version|$1 Versionen}}",
-	"restore-count-files": "{{PLURAL:$1|Eine Datei|$1 Dateien}}",
+	"restore-count-revisions": "{{PLURAL:$1|1 Version|$1 Versionen}}",
+	"restore-count-files": "{{PLURAL:$1|1 Datei|$1 Dateien}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|änderte}} die Sichtbarkeit {{PLURAL:$5|eines Logbucheintrags|von $5 Logbucheinträgen}} auf $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|änderte}} die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} der Seite $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|änderte}} die Sichtbarkeit von Logbucheinträgen auf $3",

@@ -2815,6 +2815,8 @@
 	"movesubpage": "{{PLURAL:$1|Underside|Undersider}}",
 	"movesubpagetext": "Denne siden har {{PLURAL:$1|én underside|$1 undersider}} som vises nedenfor.",
 	"movesubpagetalktext": "Den tilsvarende diskusjonssiden har $1 {{PLURAL:$1|underside|undersider}} som vises nedenfor.",
+	"movesubpagetext-truncated": "{{PLURAL:$1|Den første undersiden|De første $1 undersidene}} av denne siden vises nedenfor.",
+	"movesubpagetalktext-truncated": "{{PLURAL:$1|Den første undersiden|De første $1 undersidene}} av den tilhørende diskusjonssiden vises nedenfor.",
 	"movenosubpage": "Denne siden har ingen undersider.",
 	"movereason": "Årsak:",
 	"revertmove": "tilbakestill",
