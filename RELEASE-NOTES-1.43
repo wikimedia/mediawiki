@@ -107,6 +107,8 @@ because of Phabricator reports.
 * The methods StatusValue::getErrors() and StatusValue::getErrorsByType(),
   as well as Status::getErrorsArray() and Status::getWarningsArray(), have
   been deprecated in favor of new method StatusValue::getMessages().
+* Using the "post" source in parameter declarations returned from
+  Handler::getParamSettings() is deprecated, use "body" instead.
 * …
 
 === Other changes in 1.43 ===

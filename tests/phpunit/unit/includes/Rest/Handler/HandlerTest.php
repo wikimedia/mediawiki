@@ -180,9 +180,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideValidate() {
-		yield 'empty' => [ [], new RequestData(), [] ];
+		yield 'empty' => [ [], new RequestData(), [], [] ];
 
-		yield 'parameter' => [
+		yield 'query parameter' => [
 			[
 				'foo' => [
 					ParamValidator::PARAM_TYPE => 'string',
@@ -191,6 +191,20 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				]
 			],
 			new RequestData( [ 'queryParams' => [ 'foo' => 'kittens' ] ] ),
+			[ 'foo' => 'kittens' ],
+			[]
+		];
+
+		yield 'body parameter' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'kittens' ] ] ),
+			[],
 			[ 'foo' => 'kittens' ]
 		];
 	}
@@ -198,7 +212,30 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideValidate
 	 */
-	public function testValidate( $paramSettings, $request, $expected ) {
+	public function testValidate( $paramSettings, $request, $expectedParams, $expectedBody ) {
+		$handler = $this->newHandler( [ 'getParamSettings' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+
+		$this->assertSame( $expectedParams, $handler->getValidatedParams() );
+		$this->assertSame( $expectedBody, $handler->getValidatedBody() );
+	}
+
+	public function testValidate_post() {
+		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
+
+		$paramSettings = [
+			'foo' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_SOURCE => 'post',
+			]
+		];
+
+		$request = new RequestData( [ 'parsedBody' => [ 'foo' => 'kittens' ] ] );
+
 		$handler = $this->newHandler( [ 'getParamSettings' ] );
 		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
 
@@ -206,7 +243,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->validateHandler( $handler );
 
 		$params = $handler->getValidatedParams();
-		$this->assertSame( $expected, $params );
+		$this->assertSame( [ 'foo' => 'kittens' ], $params );
 	}
 
 	public function provideValidate_invalid() {
@@ -605,6 +642,20 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				new RequestData( [
 					'bodyContents' => '{"foo":"bar"}',
 					'headers' => [ 'Content-Type' => 'application/json' ]
+				] ),
+				[ 'foo' => 'bar' ]
+			],
+			'form data' => [
+				new RequestData( [
+					'postParams' => [ 'foo' => 'bar' ],
+					'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ]
+				] ),
+				[ 'foo' => 'bar' ]
+			],
+			'multipart form data' => [
+				new RequestData( [
+					'postParams' => [ 'foo' => 'bar' ],
+					'headers' => [ 'Content-Type' => 'multipart/form-data' ]
 				] ),
 				[ 'foo' => 'bar' ]
 			],
