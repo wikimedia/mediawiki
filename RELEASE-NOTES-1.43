@@ -100,6 +100,8 @@ because of Phabricator reports.
 
 * ErrorPageError public properties 'msg' and 'title' may now contain
   any MessageSpecifier object, not just Message.
+* Reset button functionality suppressReset() and $mShowReset from HTMLForm
+  was removed without replacement.
 * …
 
 === Deprecations in 1.43 ===
