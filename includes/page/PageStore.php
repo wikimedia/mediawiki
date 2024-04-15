@@ -435,7 +435,7 @@ class PageStore implements PageLookup {
 		return $this->newSelectQueryBuilder()
 			->whereTitlePrefix( $page->getNamespace(), $page->getDBkey() . '/' )
 			->orderByTitle()
-			->options( [ 'LIMIT' => $limit ] )
+			->limit( $limit )
 			->caller( __METHOD__ )
 			->fetchPageRecords();
 	}
