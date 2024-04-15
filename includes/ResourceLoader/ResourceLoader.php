@@ -857,7 +857,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
-		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $response;
 	}
 
@@ -1038,26 +1037,24 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Handle exception display.
 	 *
-	 * @param Throwable $e Exception to be shown to the user
-	 * @return string Sanitized text in a CSS/JS comment that can be returned to the user
-	 */
-	public static function formatException( Throwable $e ) {
-		return self::makeComment( self::formatExceptionNoComment( $e ) );
-	}
-
-	/**
-	 * Handle exception display.
-	 *
 	 * @since 1.25
 	 * @param Throwable $e Exception to be shown to the user
-	 * @return string Sanitized text that can be returned to the user
+	 * @return string Sanitized text for a CSS/JS comment that can be returned to the user
 	 */
 	protected static function formatExceptionNoComment( Throwable $e ) {
 		if ( !MWExceptionRenderer::shouldShowExceptionDetails() ) {
 			return MWExceptionHandler::getPublicLogMessage( $e );
 		}
 
-		return MWExceptionHandler::getLogMessage( $e ) .
+		// Like MWExceptionHandler::getLogMessage but without $url and $id.
+		// - Long load.php URL would push the actual error message off-screen into
+		//   scroll overflow in browser devtools.
+		// - reqId is redundant with X-Request-Id header, plus usually no need to
+		//   correlate the reqId since the backtrace is already included below.
+		$type = get_class( $e );
+		$message = $e->getMessage();
+
+		return "$type: $message" .
 			"\nBacktrace:\n" .
 			MWExceptionHandler::getRedactedTraceAsString( $e );
 	}
