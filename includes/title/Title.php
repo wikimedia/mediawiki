@@ -2924,6 +2924,7 @@ class Title implements LinkTarget, PageIdentity {
 	 * Get an array of Title objects referring to non-existent articles linked
 	 * from this page.
 	 *
+	 * @deprecated since 1.42, unneeded
 	 * @return Title[]
 	 */
 	public function getBrokenLinksFrom() {
