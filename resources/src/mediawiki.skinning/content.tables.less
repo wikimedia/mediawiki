@@ -3,6 +3,8 @@
  * Keep in sync with content.tables-print.less.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 @import 'mediawiki.skin.variables.less';
 
 .wikitable {
@@ -29,5 +31,13 @@
 
 	> caption {
 		font-weight: bold;
+	}
+
+	@media all and ( max-width: @width-breakpoint-tablet ) {
+		body.skin--responsive & {
+			float: none;
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 }
