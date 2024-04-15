@@ -252,7 +252,16 @@
 					toggleText: { collapseText: collapseText, expandText: expandText }
 				};
 				opts = $.extend( defaultOpts, options, opts );
-				togglingHandler( $( this ), $collapsible, e, opts );
+
+				// Take care of cloned content (e.g. in reference popups): if the toggle
+				// link is not inside the original collapsible, make it toggle the
+				// cloned collapsible (which we expect to be there) instead of
+				// original.
+				var $currentCollapsible = $.contains( $collapsible.get( 0 ), this ) ?
+					$collapsible :
+					$( this ).closest( '.mw-collapsible' );
+
+				togglingHandler( $( this ), $currentCollapsible, e, opts );
 			};
 
 			// Default toggle link. Only build it when needed to avoid jQuery memory leaks (event data).

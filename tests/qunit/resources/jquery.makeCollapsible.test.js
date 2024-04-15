@@ -374,6 +374,30 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		$clone.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
+	QUnit.test( 'collapsibles in cloned elements are controlled by toggle clones', ( assert ) => {
+		const $original = $( $.parseHTML( (
+			'<div>' +
+			'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '</div>' +
+			'</div>'
+		) ) ).appendTo( '#qunit-fixture' );
+		const $originalCollapsible = $original.find( '.mw-collapsible' )
+			.makeCollapsible();
+		const $originalContent = $original.find( '.mw-collapsible-content' );
+
+		// clone with data and events
+		const $clone = $original.clone( true ).appendTo( '#qunit-fixture' );
+		const $cloneCollapsible = $clone.find( '.mw-collapsible' );
+		const $cloneContent = $clone.find( '.mw-collapsible-content' );
+		assert.strictEqual( $cloneContent.css( 'display' ), 'none', 'clone of content is hidden' );
+
+		$cloneCollapsible.add( $originalCollapsible ).on( 'afterExpand.mw-collapsible', () => {
+			assert.notStrictEqual( $cloneContent.css( 'display' ), 'none', 'after expanding clone: clone of content is visible' );
+			assert.strictEqual( $originalContent.css( 'display' ), 'none', 'after expanding clone: original content is hidden' );
+		} );
+
+		$clone.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+	} );
+
 	QUnit.test( 'reveal hash fragment', ( assert ) => {
 		const $collapsible = prepareCollapsible(
 			'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '<div id="español,a:nth-child(even)">' + loremIpsum + '</div></div>'
