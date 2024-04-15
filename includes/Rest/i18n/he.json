@@ -65,7 +65,7 @@
 	"rest-parsoid-resource-exceeded": "חרגת ממגבלת המשאבים",
 	"rest-parsoid-error": "שגיאת פרסואיד.",
 	"rest-bad-stash-key": "מפתח מאגר פלט גרוע.",
-	"rest-html-key-expected": "מפתח `html` צפוי בגוף",
+	"rest-html-key-expected": "היה אמור להיות מפתח <var>html</var> בגוף",
 	"rest-invalid-transform": "התמרה בלתי־תקינה: מתסדיר $1 לתסדיר $2",
 	"rest-request-body-expected": "שיטת הבקשה $1 מצפה לגוף הבקשה",
 	"rest-request-body-unaccepted": "שיטת הבקשה $1 אינה מצפה לגוף הבקשה"

@@ -3,6 +3,7 @@
 		"authors": [
 			"BerryAVGN",
 			"Dirruw'o",
+			"Kareyac",
 			"Katunchik",
 			"Megakott",
 			"Okras",
@@ -55,5 +56,6 @@
 	"rest-requires-safe-against-csrf": "Для этой конечной точки требуется поставщик сеансов, безопасный для CSRF.",
 	"rest-badtoken": "Предоставленный CSRF-токен недействителен.",
 	"rest-badtoken-missing": "Параметр <var>token</var> является обязательным, если только не используется метод аутентификации, безопасный для CSRF.",
-	"rest-badtoken-nosession": "Ошибка CSRF — нет сеанса."
+	"rest-badtoken-nosession": "Ошибка CSRF — нет сеанса.",
+	"rest-html-key-expected": "Ожидаемый <var>HTML-</var> ключ в теле"
 }

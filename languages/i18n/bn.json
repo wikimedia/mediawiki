@@ -3184,7 +3184,7 @@
 	"pageinfo-robot-index": "অনুমোদিত",
 	"pageinfo-robot-noindex": "অননুমোদিত",
 	"pageinfo-watchers": "পাতাটি নজরতালিকায় রেখেছেন",
-	"pageinfo-visiting-watchers": "সাম্প্রতিক সম্পাদনাগুলি পরিদর্শন করা পাতা পর্যবেক্ষকের সংখ্যা",
+	"pageinfo-visiting-watchers": "গত $1-এ পরিদর্শন করা পাতা পর্যবেক্ষকের সংখ্যা",
 	"pageinfo-few-watchers": "$1 জন {{PLURAL:$1|নজরকারীরও}} কম",
 	"pageinfo-few-visiting-watchers": "সাম্প্রতিক সম্পাদনাগুলি সম্ভবত একজন নজরকারী পর্যবেক্ষক করেছেন বা করেনি",
 	"pageinfo-redirects-name": "এই পাতায় পুনর্নির্দেশনাসমূহের সংখ্যা",

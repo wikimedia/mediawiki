@@ -3244,7 +3244,7 @@
 	"pageinfo-robot-index": "Toegestaan",
 	"pageinfo-robot-noindex": "Niet toegestaan",
 	"pageinfo-watchers": "Aantal paginavolgers",
-	"pageinfo-visiting-watchers": "Aantal volgers die recente bewerkingen hebben bekeken",
+	"pageinfo-visiting-watchers": "Aantal volgers die de pagina hebben bezocht in de laatste $1",
 	"pageinfo-few-watchers": "Minder dan  {{PLURAL:$1|één volger|$1 volgers}}",
 	"pageinfo-few-visiting-watchers": "Er kan wel of niet een volger zijn die de laatste bewerkingen hier bezoekt",
 	"pageinfo-redirects-name": "Aantal doorverwijzingen naar deze pagina",

@@ -2760,6 +2760,7 @@
 	"ipb-blocklist-duration-left": "$1 igjen",
 	"block-actions": "Blokkeringstype",
 	"block-details": "Blokkeringsdetaljer",
+	"block-details-description": "Hvilke handlinger ønsker du å blokkere?",
 	"block-expiry": "Varighet:",
 	"block-options": "Ekstra valg:",
 	"block-reason": "Årsak:",

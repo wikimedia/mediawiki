@@ -64,7 +64,7 @@
 	"rest-parsoid-resource-exceeded": "Ressourcenlimit überschritten",
 	"rest-parsoid-error": "Parsoid-Fehler.",
 	"rest-bad-stash-key": "Ungültiger Stash-Schlüssel.",
-	"rest-html-key-expected": "'Schlüssel `html` im Textkörper erwartet'",
+	"rest-html-key-expected": "Schlüssel <var>html</var> im Textkörper erwartet",
 	"rest-invalid-transform": "Ungültige Transformation: $1 in $2",
 	"rest-request-body-expected": "Die Anfragemethode $1 erwartet einen Anfragetext",
 	"rest-request-body-unaccepted": "Die $1 Anfragemethode akzeptiert keinen Anfragetext"

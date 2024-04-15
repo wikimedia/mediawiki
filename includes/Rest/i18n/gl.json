@@ -52,5 +52,19 @@
 	"rest-requires-safe-against-csrf": "Este extremo necesita un provedor de sesión seguro contra ataques CSRF.",
 	"rest-badtoken": "O token CSRF proporcionado non é válido.",
 	"rest-badtoken-missing": "O parámetro <var>token</var> é obrigatorio a menos que uses un método de autenticación seguro contra ataques CSRF.",
-	"rest-badtoken-nosession": "Erro CSRF: Non hai sesión."
+	"rest-badtoken-nosession": "Erro CSRF: Non hai sesión.",
+	"rest-mock-error": "Erro simulado.",
+	"rest-specified-revision-unavailable": "A revisión especificada foi borrada ou suprimida.",
+	"rest-previous-revision-unavailable": "Non se puido atopar a revisión anterior. Bloqueouse ou eliminouse a páxina?",
+	"rest-requires-content-type-header": "Cómpre proporcionar unha cabeceira de tipo de contido cunha carga útil no corpo da solicitude.",
+	"rest-transform-missing-html": "Non se proporcionou ningún HTML.",
+	"rest-transform-missing-title": "Non se proporcionou ningún título nin texto wiki.",
+	"rest-unsupported-target-format": "O formato de destino solicitado non é compatible.",
+	"rest-parsoid-resource-exceeded": "Superouse o límite de recursos",
+	"rest-parsoid-error": "Erro de Parsoid.",
+	"rest-bad-stash-key": "Clave de reserva incorrecta.",
+	"rest-html-key-expected": "Agardábase unha clave <var>html</var> no corpo",
+	"rest-invalid-transform": "Transformación non válida: $1 a $2",
+	"rest-request-body-expected": "O método de solicitude $1 agarda un corpo de solicitude",
+	"rest-request-body-unaccepted": "O método de solicitude $1 non acepta un corpo de solicitude"
 }

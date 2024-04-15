@@ -6,6 +6,7 @@
 			"Fitoschido",
 			"Ihojose",
 			"MarcoAurelio",
+			"McDutchie",
 			"No se"
 		]
 	},
@@ -46,9 +47,9 @@
 	"rest-transform-missing-title": "No se proporcionó ningún título ni wikitexto.",
 	"rest-unsupported-target-format": "El formato de destino solicitado no es compatible.",
 	"rest-parsoid-resource-exceeded": "Se superó el límite de recursos",
-	"rest-parsoid-error": "Error parsoide.",
+	"rest-parsoid-error": "Error de Parsoid.",
 	"rest-bad-stash-key": "Mala clave escondida.",
-	"rest-html-key-expected": "'Se supone clave `html` en el cuerpo'",
+	"rest-html-key-expected": "Se supone clave <var>HTML</var> en el cuerpo",
 	"rest-invalid-transform": "Transformación inválida: $1 a $2",
 	"rest-request-body-expected": "El método de solicitud $1 espera un cuerpo de solicitud",
 	"rest-request-body-unaccepted": "El método de solicitud $1 no acepta un cuerpo de solicitud"
