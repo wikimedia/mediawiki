@@ -4,7 +4,6 @@ namespace Wikimedia\Tests\Stats;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Exceptions\UnsupportedFormatException;
 use Wikimedia\Stats\Metrics\CounterMetric;
 use Wikimedia\Stats\Metrics\GaugeMetric;
@@ -50,12 +49,6 @@ class StatsFactoryTest extends TestCase {
 		$m = StatsFactory::newNull();
 		$this->expectException( InvalidArgumentException::class );
 		$m->getCounter( '' );
-	}
-
-	public function testDisallowSettingStaticLabelsOnUndefinedComponent() {
-		$m = StatsFactory::newNull();
-		$this->expectException( IllegalOperationException::class );
-		$m->addStaticLabel( 'a', 'a' );
 	}
 
 	public function testNormalizeString() {
