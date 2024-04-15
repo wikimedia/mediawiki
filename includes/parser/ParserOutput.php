@@ -1439,7 +1439,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * for efficient "top k" queries of pages wrt a given property.
 	 * This only works if the value is passed as a int, float, or
 	 * bool. Since 1.42 you should use ::setIndexedPageProperty()
-	 * if you want your page property to be indexed, which will ensure
+	 * if you want your page property value to be indexed, which will ensure
 	 * that the value is of the proper type.
 	 *
 	 * setPageProperty() is thus used to propagate properties from the parsed
@@ -1522,7 +1522,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Set a page property which is intended to be indexed.
+	 * Set a page property whose value is intended to be indexed.
 	 *
 	 * See `::setPageProperty()` for details.
 	 *
@@ -1539,10 +1539,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Set a page property which is *not* intended to be indexed.
+	 * Set a page property whose value is *not* intended to be indexed.
 	 *
 	 * See `::setPageProperty()` for details.  It is recommended to
 	 * use the empty string if you need a placeholder value.
+	 * It is still possible to efficiently look up all the pages with a certain property
+	 * (the "presence" of it *is* indexed; see Special:PagesWithProp, list=pageswithprop).
 	 *
 	 * @param string $name
 	 * @param string $value Optional value; defaults to the empty string.
