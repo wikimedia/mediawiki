@@ -20,6 +20,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
+ * @covers \MediaWiki\Pager\ContribsPager
  */
 class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var ContribsPager */
@@ -79,7 +80,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Pager\ContribsPager::reallyDoQuery
 	 * Tests enabling/disabling ContribsPager::reallyDoQuery hook via the revisionsOnly option to restrict
 	 * extensions are able to insert their own revisions
 	 */
@@ -100,7 +100,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Pager\ContribsPager::processDateFilter
 	 * @dataProvider dateFilterOptionProcessingProvider
 	 * @param array $inputOpts Input options
 	 * @param array $expectedOpts Expected options
@@ -179,7 +178,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Pager\ContribsPager::isQueryableRange
 	 * @dataProvider provideQueryableRanges
 	 */
 	public function testQueryableRanges( $ipRange ) {
@@ -206,7 +204,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Pager\ContribsPager::isQueryableRange
 	 * @dataProvider provideUnqueryableRanges
 	 */
 	public function testUnqueryableRanges( $ipRange ) {
@@ -232,12 +229,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Pager\ContribsPager::getExtraSortFields
-	 * @covers \MediaWiki\Pager\ContribsPager::getIndexField
-	 * @covers \MediaWiki\Pager\ContribsPager::getQueryInfo
-	 * @covers \MediaWiki\Pager\ContribsPager::getTargetTable
-	 */
 	public function testUniqueSortOrderWithoutIpChanges() {
 		$pager = $this->getContribsPager( [
 			'start' => '',
@@ -255,12 +246,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'rev_timestamp DESC', 'rev_id DESC' ], $queryInfo[4]['ORDER BY'] );
 	}
 
-	/**
-	 * @covers \MediaWiki\Pager\ContribsPager::getExtraSortFields
-	 * @covers \MediaWiki\Pager\ContribsPager::getIndexField
-	 * @covers \MediaWiki\Pager\ContribsPager::getQueryInfo
-	 * @covers \MediaWiki\Pager\ContribsPager::getTargetTable
-	 */
 	public function testUniqueSortOrderOnIpChanges() {
 		$pager = $this->getContribsPager( [
 			'target' => '116.17.184.5/32',
@@ -277,9 +262,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'ipc_rev_timestamp DESC', 'ipc_rev_id DESC' ], $queryInfo[4]['ORDER BY'] );
 	}
 
-	/**
-	 * @covers \MediaWiki\Pager\ContribsPager::tryCreatingRevisionRecord
-	 */
 	public function testCreateRevision() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
 
@@ -329,8 +311,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * Flow uses ContribsPager::reallyDoQuery hook to provide something other then
 	 * stdClass as a row, and then manually formats its own row in ContributionsLineEnding.
 	 * Emulate this behaviour and check that it works.
-	 *
-	 * @covers \MediaWiki\Pager\ContribsPager::formatRow
 	 */
 	public function testContribProvidedByHook() {
 		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', static function ( &$data ) {
@@ -375,12 +355,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * filter options, by running the query on an empty DB.
 	 *
 	 * @dataProvider provideEmptyResultIntegration
-	 * @covers \MediaWiki\Pager\ContribsPager::__construct
-	 * @covers \MediaWiki\Pager\ContribsPager::getQueryInfo
-	 * @covers \MediaWiki\Pager\ContribsPager::getDatabase
-	 * @covers \MediaWiki\Pager\ContribsPager::getIpRangeConds
-	 * @covers \MediaWiki\Pager\ContribsPager::getNamespaceCond
-	 * @covers \MediaWiki\Pager\ContribsPager::getIndexField
 	 */
 	public function testEmptyResultIntegration( $options ) {
 		if ( !empty( $options['testUser'] ) ) {
@@ -395,9 +369,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * DB integration test with a row in the result set.
-	 *
-	 * @covers \MediaWiki\Pager\ContribsPager::formatRow
-	 * @covers \MediaWiki\Pager\ContribsPager::doBatchLookups
 	 */
 	public function testPopulatedIntegration() {
 		$user = $this->getTestUser()->getUser();
