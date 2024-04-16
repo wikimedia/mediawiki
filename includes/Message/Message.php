@@ -523,7 +523,8 @@ class Message implements MessageSpecifier, Serializable {
 		}
 
 		return Title::makeTitle(
-			NS_MEDIAWIKI, $contLang->ucfirst( strtr( $title, ' ', '_' ) ) );
+			// Don't use $contLang->ucfirst() here. See T362654
+			NS_MEDIAWIKI, ucfirst( strtr( $title, ' ', '_' ) ) );
 	}
 
 	/**
