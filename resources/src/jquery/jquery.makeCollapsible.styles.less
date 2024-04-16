@@ -44,6 +44,7 @@
 	}
 
 	// table.: Where the tbody or thead is the first child of the collapsible table
+	.mw-collapsible:not( @{exclude} ) .mw-collapsible-toggle-placeholder:before,
 	ol.mw-collapsible:not( @{exclude} ):before,
 	ul.mw-collapsible:not( @{exclude} ):before,
 	table.mw-collapsible:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
@@ -52,6 +53,7 @@
 		content: '[@{msg-collapsible-collapse}]';
 	}
 
+	.mw-collapsed:not( @{exclude} ) .mw-collapsible-toggle-placeholder:before,
 	td.mw-collapsed:not( @{exclude} ):before,
 	table.mw-collapsed:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
 	table.mw-collapsed:not( @{exclude} ) > caption:first-child:after,
@@ -62,6 +64,13 @@
 	// Any element with id beginning `mw-customcollapsible` will have special treatment
 	.mw-collapsible[ id^='mw-customcollapsible' ] th::before,
 	.mw-collapsible[ id^='mw-customcollapsible' ]::before {
+		content: none !important; // stylelint-disable-line declaration-no-important
+	}
+
+	// Any element with a placeholder toggle will have special treatment
+	// (this is a separate rule, because :has() is not supported by all browsers yet)
+	.mw-collapsible:not( @{exclude} ):has( .mw-collapsible-toggle, .mw-collapsible-toggle-placeholder ) th::before,
+	.mw-collapsible:not( @{exclude} ):has( .mw-collapsible-toggle, .mw-collapsible-toggle-placeholder )::before {
 		content: none !important; // stylelint-disable-line declaration-no-important
 	}
 
@@ -89,6 +98,7 @@
  * .mw-content-rtl. Align them based on the user language. */
 .mw-collapsible:not( @{exclude} ) th:before,
 .mw-collapsible:not( @{exclude} ):before,
+.mw-collapsible-toggle-placeholder,
 .mw-collapsible-toggle {
 	float: right;
 }
@@ -99,6 +109,7 @@
 .mw-content-rtl .mw-content-ltr {
 	.mw-collapsible:not( @{exclude} ) th:before,
 	.mw-collapsible:not( @{exclude} ):before,
+	.mw-collapsible-toggle-placeholder,
 	.mw-collapsible-toggle {
 		float: right;
 	}
@@ -109,6 +120,7 @@
 .mw-content-ltr .mw-content-rtl {
 	.mw-collapsible:not( @{exclude} ) th:before,
 	.mw-collapsible:not( @{exclude} ):before,
+	.mw-collapsible-toggle-placeholder,
 	.mw-collapsible-toggle {
 		float: left;
 	}
@@ -120,6 +132,7 @@ li,
 .mw-content-rtl li,
 .mw-content-ltr .mw-content-rtl li,
 .mw-content-rtl .mw-content-ltr li {
+	.mw-collapsible-toggle-placeholder,
 	.mw-collapsible-toggle {
 		float: none;
 	}
