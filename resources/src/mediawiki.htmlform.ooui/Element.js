@@ -35,7 +35,8 @@
 	 *
 	 * @class
 	 * @extends {OO.ui.FieldLayout}
-	 * @classdesc FieldLayout class. Mixes in HTMLForm Element class.
+	 * @mixes mw.htmlform.Element
+	 * @classdesc FieldLayout class.
 	 * @memberof mw.htmlform
 	 * @param {Object} config
 	 */
@@ -53,7 +54,8 @@
 	 *
 	 * @class
 	 * @extends {OO.ui.ActionFieldLayout}
-	 * @classdesc FieldLayout class. Mixes in HTMLForm Element class.
+	 * @mixes mw.htmlform.Element
+	 * @classdesc FieldLayout class.
 	 * @memberof mw.htmlform
 	 * @param {Object} config
 	 */

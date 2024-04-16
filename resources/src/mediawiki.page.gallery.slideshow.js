@@ -1,8 +1,7 @@
 ( function () {
 	/**
-	 * mw.GallerySlideshow encapsulates the user interface of the slideshow
-	 * galleries. An object is instantiated for each `.mw-gallery-slideshow`
-	 * element.
+	 * Encapsulates the user interface of the slideshow galleries.
+	 * An object is instantiated for each `.mw-gallery-slideshow` element.
 	 *
 	 * @class mw.GallerySlideshow
 	 * @classdesc Interface controls for the slideshow gallery. To use first load
