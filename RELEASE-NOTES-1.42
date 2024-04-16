@@ -701,7 +701,7 @@ because of Phabricator reports.
   and emits a warning; pass an empty string or use `::unsetPageProperty()`
   instead.
 * Passing a non-string value to ParserOutput::setPageProperty() has been
-  deprecated; use ::setIndexedPageProperty() instead.
+  deprecated; use ::setNumericPageProperty() instead.
 * Passing a non-scalar value to ParserOutput::setPageProperty() will emit
   a warning (it has never worked).
 * ParserOutput::setLanguageLinks() has been deprecated.
