@@ -712,6 +712,8 @@ because of Phabricator reports.
 * ParserOutput::addTemplate() will emit a deprecation warning if it is called
   with a non-local title, such as an interwiki link.  In a future release
   it will throw InvalidArgumentException.
+* The use of dynamic properties of Parser has been deprecated and will emit
+  deprecation warnings.
 * The following deprecated public properties of Parser will emit deprecation
   warnings:
   - Parser::$ot, deprecated since 1.35
