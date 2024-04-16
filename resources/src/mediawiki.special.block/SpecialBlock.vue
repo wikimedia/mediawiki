@@ -49,21 +49,29 @@ module.exports = defineComponent( {
 	setup() {
 		const form = document.querySelector( '.mw-htmlform' );
 		const targetUser = ref( '' );
+		const blockAllosUTEdit = mw.config.get( 'blockAllosUTEdit' ) || false;
+		const blockEmailBan = mw.config.get( 'blockAllosEmailBan' ) || false;
 		const blockDetailsSelected = ref( [] );
 		const blockDetailsOptions = [
 			{
 				label: mw.message( 'ipbcreateaccount' ),
 				value: 'wpCreateAccount'
-			},
-			{
-				label: mw.message( 'ipbemailban' ),
-				value: 'wpDisableEmail'
-			},
-			{
-				label: mw.message( 'ipb-disableusertalk' ),
-				value: 'wpDisableUTEdit'
 			}
 		];
+
+		if ( blockEmailBan ) {
+			blockDetailsOptions.push( {
+				label: mw.message( 'ipbemailban' ),
+				value: 'wpDisableEmail'
+			} );
+		}
+
+		if ( blockAllosUTEdit ) {
+			blockDetailsOptions.push( {
+				label: mw.message( 'ipb-disableusertalk' ),
+				value: 'wpDisableUTEdit'
+			} );
+		}
 
 		function saveBlock() {
 			form.submit();

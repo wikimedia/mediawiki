@@ -104,6 +104,11 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected $preErrors = [];
 
+	/**
+	 * @var array <mixed,mixed> An associative array used to pass vars to Codex form
+	 */
+	protected $codexFormData = [];
+
 	private NamespaceInfo $namespaceInfo;
 
 	/**
@@ -146,6 +151,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		if ( $this->getConfig()->get( 'UseCodexSpecialBlock' ) ) {
 			$this->getOutput()->addModules( 'mediawiki.special.block.codex' );
+			$this->getOutput()->addJsConfigVars( $this->codexFormData );
 		}
 	}
 
@@ -368,6 +374,8 @@ class SpecialBlock extends FormSpecialPage {
 				'label-message' => 'ipbemailban',
 				'section' => 'details',
 			];
+
+			$this->codexFormData[ 'blockAllosEmailBan'] = true;
 		}
 
 		if ( $blockAllowsUTEdit ) {
@@ -378,6 +386,8 @@ class SpecialBlock extends FormSpecialPage {
 				'default' => false,
 				'section' => 'details',
 			];
+
+			$this->codexFormData[ 'blockAllosUTEdit'] = true;
 		}
 
 		$defaultExpiry = $this->msg( 'ipb-default-expiry' )->inContentLanguage();
