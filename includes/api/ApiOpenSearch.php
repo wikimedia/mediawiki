@@ -380,19 +380,21 @@ class ApiOpenSearch extends ApiBase {
 	 * @return string
 	 */
 	public static function getOpenSearchTemplate( $type ) {
-		$config = MediaWikiServices::getInstance()->getSearchEngineConfig();
-		$ns = implode( '|', $config->defaultNamespaces() );
+		$services = MediaWikiServices::getInstance();
+		$canonicalServer = $services->getMainConfig()->get( MainConfigNames::CanonicalServer );
+		$searchEngineConfig = $services->getSearchEngineConfig();
+		$ns = implode( '|', $searchEngineConfig->defaultNamespaces() );
 		if ( !$ns ) {
 			$ns = '0';
 		}
 
 		switch ( $type ) {
 			case 'application/x-suggestions+json':
-				return $config->getConfig()->get( MainConfigNames::CanonicalServer ) .
+				return $canonicalServer .
 					wfScript( 'api' ) . '?action=opensearch&search={searchTerms}&namespace=' . $ns;
 
 			case 'application/x-suggestions+xml':
-				return $config->getConfig()->get( MainConfigNames::CanonicalServer ) .
+				return $canonicalServer .
 					wfScript( 'api' ) .
 					'?action=opensearch&format=xml&search={searchTerms}&namespace=' . $ns;
 

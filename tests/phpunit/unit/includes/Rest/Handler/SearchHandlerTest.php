@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\RawMessage;
@@ -76,12 +77,13 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$mockTitleFormatter = null,
 		HookContainer $hookContainer = null
 	) {
-		$config = new HashConfig( [
+		$sources = [
 			MainConfigNames::SearchType => 'test',
 			MainConfigNames::SearchTypeAlternatives => [],
 			MainConfigNames::NamespacesToBeSearchedDefault => [ NS_MAIN => true ],
 			MainConfigNames::SearchSuggestCacheExpiry => 1200,
-		] );
+		];
+		$config = new HashConfig( $sources );
 
 		/** @var Language|MockObject $language */
 		$language = $this->createNoOpMock( Language::class );
@@ -89,7 +91,10 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		/** @var UserOptionsLookup|MockObject $userOptionsLookup */
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$searchEngineConfig = new SearchEngineConfig(
-			$config,
+			new ServiceOptions(
+				SearchEngineConfig::CONSTRUCTOR_OPTIONS,
+				$sources
+			),
 			$language,
 			$hookContainer,
 			[],
