@@ -1438,7 +1438,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Since 1.23, page_props are also indexed by numeric value, to allow
 	 * for efficient "top k" queries of pages wrt a given property.
 	 * This only works if the value is passed as a int, float, or
-	 * bool. Since 1.42 you should use ::setIndexedPageProperty()
+	 * bool. Since 1.42 you should use ::setNumericPageProperty()
 	 * if you want your page property value to be indexed, which will ensure
 	 * that the value is of the proper type.
 	 *
@@ -1470,14 +1470,18 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @note The sort key stored in the database *will be NULL* unless
 	 *  the value passed here is an `int|float|bool`.  If you *do not*
-	 *  want your property value indexed and sorted (for example, the
+	 *  want your property *value* indexed and sorted (for example, the
 	 *  value is a title string which can be numeric but only
 	 *  incidentally, like when it gets retrieved from an array key)
 	 *  be sure to cast to string or use
-	 *  `::setUnindexedPageProperty()`.  If you *do* want your property
-	 *  value indexed and sorted, you should use
-	 *  `::setIndexedPageProperty()` instead as this will ensure the
-	 *  value type is correct.
+	 *  `::setUnsortedPageProperty()`.  If you *do* want your property
+	 *  *value* indexed and sorted, you should use
+	 *  `::setNumericPageProperty()` instead as this will ensure the
+	 *  value type is correct. Note that either way it is possible to
+	 *  efficiently look up all the pages with a certain property; we
+	 *  are only talking about sorting the *values* assigned to the
+	 *  property, for example for a "top N values of the property"
+	 *  query.
 	 *
 	 * @note Note that `::getPageProperty()`/`::setPageProperty()` do
 	 *  not do any conversions themselves; you should therefore be
@@ -1508,7 +1512,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * ::unsetPageProperty() if you mean to remove a page property.
 	 *
 	 * @note The use of non-string values is deprecated since 1.42; if you
-	 * need an indexed page property use ::setIndexedPageProperty().
+	 * need an page property value with a sort index
+	 * use ::setNumericPageProperty().
 	 *
 	 * @param string $name
 	 * @param int|float|string|bool|null $value
@@ -1522,44 +1527,54 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Set a page property whose value is intended to be indexed.
+	 * Set a numeric page property whose *value* is intended to be sorted
+	 * and indexed.  The sort key used for the property will be the value,
+	 * coerced to a number.
 	 *
 	 * See `::setPageProperty()` for details.
 	 *
 	 * In the future, we may allow the value to be specified independent
 	 * of sort key (T357783).
 	 *
-	 * @param string $name
-	 * @param int|float $sortKey the numeric key to use for the index
+	 * @param string $propName The name of the page property
+	 * @param int|float|string $numericValue the numeric value
 	 * @since 1.42
 	 */
-	public function setIndexedPageProperty( string $name, $sortKey ): void {
-		$sortKey = 0 + $sortKey; // Coerce to a numeric type (int|float)
-		$this->mProperties[$name] = $sortKey;
+	public function setNumericPageProperty( string $propName, $numericValue ): void {
+		if ( !is_numeric( $numericValue ) ) {
+			throw new \TypeError( __METHOD__ . " with non-numeric value" );
+		}
+		// Coerce numeric sort key to a number.
+		$this->mProperties[$propName] = 0 + $numericValue;
 	}
 
 	/**
-	 * Set a page property whose value is *not* intended to be indexed.
+	 * Set a page property whose *value* is not intended to be sorted and
+	 * indexed.
 	 *
 	 * See `::setPageProperty()` for details.  It is recommended to
-	 * use the empty string if you need a placeholder value.
-	 * It is still possible to efficiently look up all the pages with a certain property
-	 * (the "presence" of it *is* indexed; see Special:PagesWithProp, list=pageswithprop).
+	 * use the empty string if you need a placeholder value (ie, if
+	 * it is the *presence* of the property which is important, not
+	 * the *value* the property is set to).
 	 *
-	 * @param string $name
+	 * It is still possible to efficiently look up all the pages with
+	 * a certain property (the "presence" of it *is* indexed; see
+	 * Special:PagesWithProp, list=pageswithprop).
+	 *
+	 * @param string $propName The name of the page property
 	 * @param string $value Optional value; defaults to the empty string.
 	 * @since 1.42
 	 */
-	public function setUnindexedPageProperty( string $name, string $value = '' ): void {
-		$this->mProperties[$name] = $value;
+	public function setUnsortedPageProperty( string $propName, string $value = '' ): void {
+		$this->mProperties[$propName] = $value;
 	}
 
 	/**
 	 * Look up a page property.
 	 * @param string $name The page property name to look up.
 	 * @return int|float|string|bool|null The value previously set using
-	 * ::setPageProperty(), ::setUnindexedPageProperty(), or
-	 * ::setIndexedPageProperty().
+	 * ::setPageProperty(), ::setUnsortedPageProperty(), or
+	 * ::setNumericPageProperty().
 	 * Returns null if no value was set for the given property name.
 	 *
 	 * @note You would need to use ::getPageProperties() to test for an
