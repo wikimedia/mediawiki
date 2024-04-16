@@ -39,6 +39,7 @@ use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -637,7 +638,7 @@ class ChangeTagsStore {
 			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
 				$dbw->newUpdateQueryBuilder()
 					->update( self::CHANGE_TAG_DEF )
-					->set( [ 'ctd_count = ctd_count + 1' ] )
+					->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count + 1' ) ] )
 					->where( [ 'ctd_name' => $tagsToAdd ] )
 					->caller( $fname )->execute();
 			}, $fname );
@@ -688,7 +689,7 @@ class ChangeTagsStore {
 					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
 						$dbw->newUpdateQueryBuilder()
 							->update( self::CHANGE_TAG_DEF )
-							->set( [ 'ctd_count = ctd_count - 1' ] )
+							->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count - 1' ) ] )
 							->where( [ 'ctd_name' => $tag ] )
 							->caller( $fname )->execute();
 

@@ -25,6 +25,7 @@ use MediaWiki\Password\PasswordFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\RawSQLValue;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -127,8 +128,11 @@ ERROR
 		} elseif ( $this->getOption( 'prefix' ) ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'user' )
-				->set( [ 'user_password = ' . $dbw->buildConcat( [ $dbw->addQuotes( ':null:' ),
-						'user_password' ] ) ] )
+				->set( [
+					'user_password' => new RawSQLValue(
+						$dbw->buildConcat( [ $dbw->addQuotes( ':null:' ), 'user_password' ] )
+					)
+				] )
 				->where( [
 					$dbw->expr( 'user_password', IExpression::NOT_LIKE, new LikeValue( ':null:', $dbw->anyString() ) ),
 					$dbw->expr( 'user_password', '!=', PasswordFactory::newInvalidPassword()->toString() ),
@@ -139,7 +143,11 @@ ERROR
 		} elseif ( $this->getOption( 'unprefix' ) ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'user' )
-				->set( [ 'user_password = ' . $dbw->buildSubString( 'user_password', strlen( ':null:' ) + 1 ) ] )
+				->set( [
+					'user_password' => new RawSQLValue(
+						$dbw->buildSubString( 'user_password', strlen( ':null:' ) + 1 )
+					)
+				] )
 				->where( [
 					$dbw->expr( 'user_password', IExpression::LIKE, new LikeValue( ':null:', $dbw->anyString() ) ),
 					'user_name' => $userBatch,

@@ -24,6 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\RawSQLValue;
 
 /**
  * Maintenance script to populate the rc_source field.
@@ -68,7 +69,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		while ( $blockEnd <= $end ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'recentchanges' )
-				->set( [ $updatedValues ] )
+				->set( $updatedValues )
 				->where( [
 					'rc_source' => '',
 					$dbw->expr( 'rc_id', '>=', (int)$blockStart ),
@@ -101,13 +102,13 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		$rcExternal = $dbw->addQuotes( RC_EXTERNAL );
 		$rcSrcExternal = $dbw->addQuotes( RecentChange::SRC_EXTERNAL );
 
-		return "rc_source = CASE
+		return [ 'rc_source' => new RawSQLValue( "CASE
 					WHEN rc_type = $rcNew THEN $rcSrcNew
 					WHEN rc_type = $rcEdit THEN $rcSrcEdit
 					WHEN rc_type = $rcLog THEN $rcSrcLog
 					WHEN rc_type = $rcExternal THEN $rcSrcExternal
 					ELSE ''
-				END";
+				END" ) ];
 	}
 }
 
