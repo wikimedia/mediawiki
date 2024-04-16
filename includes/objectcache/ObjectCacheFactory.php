@@ -22,11 +22,36 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Stats\StatsFactory;
 
 /**
  * Factory for cache objects as configured in the ObjectCaches setting.
+ *
+ * The word "cache" has two main dictionary meanings, and both
+ * are used in this factory class. They are:
+ *
+ *    - a) Cache (the computer science definition).
+ *         A place to store copies or computations on existing data for
+ *         higher access speeds.
+ *    - b) Storage.
+ *         A place to store lightweight data that is not canonically
+ *         stored anywhere else (e.g. a "hoard" of objects).
+ *
+ *  Primary entry points:
+ *
+ *  - ObjectCacheFactory::getLocalServerInstance( $fallbackType )
+ *    Purpose: Memory cache for very hot keys.
+ *    Stored only on the individual web server (typically APC or APCu for web requests,
+ *    and EmptyBagOStuff in CLI mode).
+ *    Not replicated to the other servers.
+ *
+ *  - ObjectCacheFactory::getInstance( $cacheType )
+ *    Purpose: Special cases (like tiered memory/disk caches).
+ *    Get a specific cache type by key in $wgObjectCaches.
+ *
+ *  All the above BagOStuff cache instances have their makeKey()
+ *  method scoped to the *current* wiki ID. Use makeGlobalKey() to avoid this scoping
+ *  when using keys that need to be shared amongst wikis.
  *
  * @ingroup Cache
  * @since 1.42
@@ -53,26 +78,30 @@ class ObjectCacheFactory {
 	/** @var BagOStuff[] */
 	private $instances = [];
 	private string $domainId;
+	/** @var callable */
+	private $dbLoadBalancerFactory;
 
 	public function __construct(
 		ServiceOptions $options,
 		StatsFactory $stats,
 		Spi $loggerSpi,
+		callable $dbLoadBalancerFactory,
 		string $domainId
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->stats = $stats;
 		$this->logger = $loggerSpi;
+		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->domainId = $domainId;
 	}
 
 	/**
 	 * Get the default keyspace for this wiki.
 	 *
-	 * This is either the value of the `CachePrefix` configuration variable,
-	 * or (if the former is unset) the `DBname` configuration variable, with
-	 * `DBprefix` (if defined).
+	 * This is either the value of the MainConfigNames::CachePrefix setting
+	 * or (if the former is unset) the MainConfigNames::DBname setting, with
+	 * MainConfigNames::DBprefix (if defined).
 	 *
 	 * @return string
 	 */
@@ -97,7 +126,7 @@ class ObjectCacheFactory {
 		}
 
 		if ( !isset( $this->options->get( MainConfigNames::ObjectCaches )[$id] ) ) {
-			// Always recognize these ones
+			// Always recognize these
 			if ( $id === CACHE_NONE ) {
 				return new EmptyBagOStuff();
 			} elseif ( $id === CACHE_HASH ) {
@@ -206,14 +235,15 @@ class ObjectCacheFactory {
 			}
 		} elseif ( isset( $params['cluster'] ) ) {
 			$cluster = $params['cluster'];
-			$params['loadBalancerCallback'] = static function () use ( $cluster ) {
-				return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
-					->getExternalLB( $cluster );
+			$dbLbFactory = $this->dbLoadBalancerFactory;
+			$params['loadBalancerCallback'] = static function () use ( $cluster, $dbLbFactory ) {
+				return $dbLbFactory()->getExternalLB( $cluster );
 			};
 			$params += [ 'dbDomain' => false ];
 		} else {
-			$params['loadBalancerCallback'] = static function () {
-				return MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$dbLbFactory = $this->dbLoadBalancerFactory;
+			$params['loadBalancerCallback'] = static function () use ( $dbLbFactory ) {
+				return $dbLbFactory()->getMainLb();
 			};
 			$params += [ 'dbDomain' => false ];
 		}

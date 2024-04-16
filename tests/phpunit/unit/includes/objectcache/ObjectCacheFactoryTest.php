@@ -9,14 +9,14 @@ use Wikimedia\Stats\StatsFactory;
  */
 class ObjectCacheFactoryTest extends MediaWikiUnitTestCase {
 	private function newObjectCacheFactory() {
-		$factory = new ObjectCacheFactory(
+		return new ObjectCacheFactory(
 			$this->createMock( ServiceOptions::class ),
 			$this->createMock( StatsFactory::class ),
 			$this->createMock( Spi::class ),
+			static function () {
+			},
 			'testWikiId'
 		);
-
-		return $factory;
 	}
 
 	public function testNewObjectCacheFactory() {
