@@ -68,16 +68,16 @@ class SearchUpdate implements DeferrableUpdate {
 	 */
 	public function doUpdate() {
 		$services = MediaWikiServices::getInstance();
-		$config = $services->getSearchEngineConfig();
+		$searchEngineConfig = $services->getSearchEngineConfig();
 
-		if ( $config->getConfig()->get( MainConfigNames::DisableSearchUpdate ) || !$this->id ) {
+		if ( $services->getMainConfig()->get( MainConfigNames::DisableSearchUpdate ) || !$this->id ) {
 			LoggerFactory::getInstance( "search" )
 				->debug( "Skipping update: search updates disabled by config" );
 			return;
 		}
 
 		$seFactory = $services->getSearchEngineFactory();
-		foreach ( $config->getSearchTypes() as $type ) {
+		foreach ( $searchEngineConfig->getSearchTypes() as $type ) {
 			$search = $seFactory->create( $type );
 			if ( !$search->supports( 'search-update' ) ) {
 				continue;

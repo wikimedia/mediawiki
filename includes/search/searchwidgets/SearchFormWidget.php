@@ -3,6 +3,7 @@
 namespace MediaWiki\Search\SearchWidgets;
 
 use ILanguageConverter;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -18,6 +19,11 @@ use SearchEngineConfig;
 use Xml;
 
 class SearchFormWidget {
+	/** @internal For use by SpecialSearch only */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::CapitalLinks,
+	];
+	private ServiceOptions $options;
 	/** @var SpecialSearch */
 	protected $specialSearch;
 	/** @var SearchEngineConfig */
@@ -34,6 +40,7 @@ class SearchFormWidget {
 	private $namespaceInfo;
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param SpecialSearch $specialSearch
 	 * @param SearchEngineConfig $searchConfig
 	 * @param HookContainer $hookContainer
@@ -42,6 +49,7 @@ class SearchFormWidget {
 	 * @param array $profiles
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		SpecialSearch $specialSearch,
 		SearchEngineConfig $searchConfig,
 		HookContainer $hookContainer,
@@ -49,6 +57,8 @@ class SearchFormWidget {
 		NamespaceInfo $namespaceInfo,
 		array $profiles
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
 		$this->specialSearch = $specialSearch;
 		$this->searchConfig = $searchConfig;
 		$this->hookContainer = $hookContainer;
@@ -123,8 +133,7 @@ class SearchFormWidget {
 		$offset,
 		array $options = []
 	) {
-		$autoCapHint = $this->searchConfig->getConfig()
-			->get( MainConfigNames::CapitalLinks );
+		$autoCapHint = $this->options->get( MainConfigNames::CapitalLinks );
 
 		$searchWidget = new SearchInputWidget( $options + [
 			'id' => 'searchText',

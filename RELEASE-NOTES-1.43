@@ -109,6 +109,8 @@ because of Phabricator reports.
 * The methods StatusValue::getErrors() and StatusValue::getErrorsByType(),
   as well as Status::getErrorsArray() and Status::getWarningsArray(), have
   been deprecated in favor of new method StatusValue::getMessages().
+* SearchEngineConfig::getConfig() has been deprecated, use DI with
+  ServiceOptions to inject the required options.
 * Using the "post" source in parameter declarations returned from
   Handler::getParamSettings() is deprecated, use "body" instead.
 * …
