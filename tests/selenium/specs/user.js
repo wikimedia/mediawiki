@@ -27,7 +27,7 @@ describe( 'User', function () {
 		assert.strictEqual( await CreateAccountPage.heading.getText(), `Welcome, ${ username }!` );
 	} );
 
-	it( 'should be able to log in @daily', async function () {
+	it( 'should be able to log in', async function () {
 		// create
 		await Api.createAccount( bot, username, password );
 
