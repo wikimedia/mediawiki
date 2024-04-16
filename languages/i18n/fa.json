@@ -2878,6 +2878,8 @@
 	"movesubpage": "{{PLURAL:$1|زیرصفحه|زیرصفحه‌ها}}",
 	"movesubpagetext": "این صفحه $1 زیرصفحه دارد که در زیر نمایش {{PLURAL:$1|یافته است|یافته‌اند}}.",
 	"movesubpagetalktext": "صفحهٔ بحث مربوط دارای $1 زیرصفحه است که در زیر نمایش {{PLURAL:$1|یافته است|یافته‌اند}}.",
+	"movesubpagetext-truncated": "$1 {{PLURAL:$1|زیرصفحهٔ}} نخست این صفحه در زیر نمایش یافته‌{{PLURAL:$1| است|اند}}.",
+	"movesubpagetalktext-truncated": "$1 {{PLURAL:$1|زیرصفحهٔ}} نخست صفحهٔ بحث مرتبط در زیر نمایش یافته{{PLURAL:$1| است|‌اند}}.",
 	"movenosubpage": "این صفحه هیچ زیرصفحه‌ای ندارد.",
 	"movereason": "دلیل:",
 	"moveotherreason": "دلیل دیگر/اضافی",

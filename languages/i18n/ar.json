@@ -2059,7 +2059,7 @@
 	"filedelete-success-old": "نسخة <strong>[[Media:$1|$1]]</strong> بتاريخ $3، $2 تم حذفها.",
 	"filedelete-nofile": "<strong>$1</strong> غير موجود.",
 	"filedelete-nofile-old": "لا توجد نسخة مؤرشفة من <strong>$1</strong> بالعناصر المحددة.",
-	"filedelete-otherreason": "سبب إضافي/آخر:",
+	"filedelete-otherreason": "سبب آخر/إضافي:",
 	"filedelete-reason-otherlist": "سبب آخر",
 	"filedelete-reason-dropdown": "*أسباب الحذف الشائعة\n** خرق حقوق النشر\n** ملف مكرر",
 	"filedelete-edit-reasonlist": "عدل أسباب الحذف",
