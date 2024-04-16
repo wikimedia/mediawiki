@@ -541,12 +541,6 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function nextSequenceValue( $seqName ) {
-		$this->assertRoleAllowsWrites();
-
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 

@@ -427,10 +427,6 @@ __INDEXATTR__;
 		}
 	}
 
-	public function nextSequenceValue( $seqName ) {
-		return new NextSequenceValue;
-	}
-
 	public function getValueTypesForWithClause( $table ) {
 		$typesByColumn = [];
 
@@ -936,8 +932,6 @@ __INDEXATTR__;
 				$s = pg_escape_bytea( $conn, $s->fetch() );
 			}
 			return "'$s'";
-		} elseif ( $s instanceof NextSequenceValue ) {
-			return 'DEFAULT';
 		}
 
 		return "'" . pg_escape_string( $conn, (string)$s ) . "'";

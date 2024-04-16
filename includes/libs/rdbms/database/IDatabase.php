@@ -368,24 +368,6 @@ interface IDatabase extends IReadableDatabase {
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] );
 
 	/**
-	 * Deprecated method, calls should be removed
-	 *
-	 * This was formerly used for PostgreSQL to handle
-	 * self::insertId() auto-incrementing fields. It is no longer necessary
-	 * since DatabasePostgres::insertId() has been reimplemented using
-	 * `lastval()`
-	 *
-	 * Implementations should return null if inserting `NULL` into an
-	 * auto-incrementing field works, otherwise it should return an instance of
-	 * NextSequenceValue and filter it on calls to relevant methods.
-	 *
-	 * @deprecated since 1.30, no longer needed
-	 * @param string $seqName
-	 * @return null|NextSequenceValue
-	 */
-	public function nextSequenceValue( $seqName );
-
-	/**
 	 * Insert row(s) into a table, in the provided order, while deleting conflicting rows
 	 *
 	 * Conflicts are determined by the provided unique indexes. Note that it is possible
