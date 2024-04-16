@@ -730,6 +730,7 @@ Parser.prototype = {
 		 * @param {Object} attributes array of consecutive key value pairs,
 		 *  with index 2 * n being a name and 2 * n + 1 the associated value
 		 * @return {boolean} true if this is HTML is allowed, false otherwise
+		 * @ignore
 		 */
 		function isAllowedHtml( startTagName, endTagName, attributes ) {
 			startTagName = startTagName.toLowerCase();
@@ -884,6 +885,7 @@ Parser.prototype = {
 		 *
 		 * @param {Function} rootExpression Root parse function
 		 * @return {Array|null}
+		 * @ignore
 		 */
 		function start( rootExpression ) {
 			var result = nOrMore( 0, rootExpression )();
