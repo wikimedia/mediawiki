@@ -24,40 +24,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Functions to get cache objects
- *
- * The word "cache" has two main dictionary meanings, and both
- * are used in this factory class. They are:
- *
- *   - a) Cache (the computer science definition).
- *        A place to store copies or computations on existing data for
- *        higher access speeds.
- *   - b) Storage.
- *        A place to store lightweight data that is not canonically
- *        stored anywhere else (e.g. a "hoard" of objects).
- *
- * Primary entry points:
- *
- * - ObjectCache::getLocalServerInstance( $fallbackType )
- *   Purpose: Memory cache for very hot keys.
- *   Stored only on the individual web server (typically APC or APCu for web requests,
- *   and EmptyBagOStuff in CLI mode).
- *   Not replicated to the other servers.
- *
- * - ObjectCache::getLocalClusterInstance()
- *   Purpose: Memory storage for per-cluster coordination and tracking.
- *   A typical use case would be a rate limit counter or cache regeneration mutex.
- *   Stored centrally within the local data-center. Not replicated to other DCs.
- *   Configured by $wgMainCacheType.
- *
- * - ObjectCache::getInstance( $cacheType )
- *   Purpose: Special cases (like tiered memory/disk caches).
- *   Get a specific cache type by key in $wgObjectCaches.
- *
- * All the above BagOStuff cache instances have their makeKey()
- * method scoped to the *current* wiki ID. Use makeGlobalKey() to avoid this scoping
- * when using keys that need to be shared amongst wikis.
- *
+ * @see ObjectCacheFactory
  * @ingroup Cache
  */
 class ObjectCache {
@@ -185,6 +152,16 @@ class ObjectCache {
 	 */
 	public static function isDatabaseId( $id ) {
 		global $wgObjectCaches;
+
+		// NOTE: Sanity check if $id is set to CACHE_ANYTHING and
+		// everything is going through service wiring. CACHE_ANYTHING
+		// would default to CACHE_DB, let's handle that early for cases
+		// where all cache configs are set to CACHE_ANYTHING (T362686).
+		if ( $id === CACHE_ANYTHING ) {
+			$id = self::getAnythingId();
+			return self::isDatabaseId( $id );
+		}
+
 		if ( !isset( $wgObjectCaches[$id] ) ) {
 			return false;
 		}
@@ -192,10 +169,7 @@ class ObjectCache {
 		if ( ( $cache['class'] ?? '' ) === SqlBagOStuff::class ) {
 			return true;
 		}
-		if ( $id === CACHE_ANYTHING ) {
-			$id = self::getAnythingId();
-			return self::isDatabaseId( $id );
-		}
+
 		return false;
 	}
 
