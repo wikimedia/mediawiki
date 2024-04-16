@@ -704,6 +704,10 @@ because of Phabricator reports.
   - Parser::$ot, deprecated since 1.35
   - Parser::$mTitle, deprecated since 1.35
   - Parser::$mOptions, deprecated since 1.35
+* The following deprecated public properties of Parser are now marked
+  for internal use only:
+  - Parser::$mPPNodeCount, deprecated since 1.35
+  - Parser::$mHighestExpansionDepth, deprecated since 1.35
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery() will emit deprecation warnings
   and will soon stop working due to schema changes. Instead use
   addDeletedUserFilter() or getBlockDetailsForRows().
