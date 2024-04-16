@@ -46,7 +46,6 @@ use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MessageSpecifier;
-use MWException;
 use ObjectCache;
 use UnregisteredLocalFile;
 use Wikimedia\AtEase\AtEase;
@@ -281,10 +280,6 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 				400,
 				'The specified thumbnail parameters are not valid: ' . $e->getMessage()
 			);
-			return;
-		} catch ( MWException $e ) {
-			$this->thumbError( 500, $e->getHTML(), 'Exception caught while extracting thumb name',
-				[ 'exception' => $e ] );
 			return;
 		}
 
