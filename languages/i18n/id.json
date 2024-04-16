@@ -93,6 +93,7 @@
 			"William Surya Permana",
 			"WillsonEP09",
 			"WongKentir",
+			"Zulf",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -2949,6 +2950,7 @@
 	"movepage-reason-dropdown": "* Alasan perpindahan umum\n** Judul salah eja",
 	"movepage-edit-reasonlist": "Edit alasan pindah",
 	"revertmove": "batalkan",
+	"revertmove-summary": "Kembalikan",
 	"delete_and_move_text": "Halaman yang dituju, \"[[:$1]]\", telah berisi.\nApakah Anda ingin menghapusnya untuk memberikan ruang bagi pemindahan?",
 	"delete_redirect_and_move_text": "Halaman yang dituju \"[[:$1]]\" sudah ada sebagai pengalihan.\nApakah Anda ingin menghapusnya untuk memberikan ruang bagi pemindahan?",
 	"delete_and_move_confirm": "Ya, hapus halaman tersebut",

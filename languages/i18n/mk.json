@@ -648,6 +648,7 @@
 	"edit-recovery-special-intro-empty": "Немате незачувани промени.",
 	"edit-recovery-special-view": "преглед",
 	"edit-recovery-special-edit": "уреди",
+	"edit-recovery-special-delete": "избриши",
 	"edit-recovery-special-recovered-on": "од $1",
 	"edit-recovery-special-recovered-on-tooltip": "Датумот и времето кога последен пат се зачувани податоците за повраток.",
 	"edit-recovery-loaded-title": "Промените се повратени",

@@ -806,6 +806,7 @@
 	"edit-recovery-special-intro-empty": "У вас нет несохранённых изменений.",
 	"edit-recovery-special-view": "посмотреть",
 	"edit-recovery-special-edit": "править",
+	"edit-recovery-special-delete": "удалить",
 	"edit-recovery-special-recovered-on": "$1",
 	"edit-recovery-special-recovered-on-tooltip": "Дата и время последнего сохранения данных для восстановления.",
 	"edit-recovery-loaded-title": "Изменения восстановлены",

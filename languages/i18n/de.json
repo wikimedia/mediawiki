@@ -742,6 +742,7 @@
 	"edit-recovery-special-intro-empty": "Du hast keine nicht gespeicherten Änderungen.",
 	"edit-recovery-special-view": "ansehen",
 	"edit-recovery-special-edit": "bearbeiten",
+	"edit-recovery-special-delete": "löschen",
 	"edit-recovery-special-recovered-on": "von $1",
 	"edit-recovery-special-recovered-on-tooltip": "Das Datum und die Uhrzeit der letzten Speicherung deiner Wiederherstellungsdaten",
 	"edit-recovery-loaded-title": "Änderungen wiederhergestellt",

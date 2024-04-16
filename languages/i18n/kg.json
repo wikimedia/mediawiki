@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Cgmbo",
 			"DannyS712",
 			"Irus",
 			"Mouse21",
@@ -221,6 +222,7 @@
 	"resetpass-submit-cancel": "Sala ve",
 	"changeemail-none": "(nkatu)",
 	"changeemail-password": "Mpovo ya nge ya kukota {{SITENAME}}:",
+	"edit-recovery-special-delete": "vwansa",
 	"minoredit": "Yayi kele nsoba ya fyoti",
 	"watchthis": "Keba mukânda yayi",
 	"savearticle": "Lunda mukânda",

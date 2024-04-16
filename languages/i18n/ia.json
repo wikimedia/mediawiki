@@ -631,6 +631,7 @@
 	"edit-recovery-special-intro-empty": "Tu non ha cambiamentos non salveguardate.",
 	"edit-recovery-special-view": "vider",
 	"edit-recovery-special-edit": "modificar",
+	"edit-recovery-special-delete": "deler",
 	"edit-recovery-special-recovered-on": "del $1",
 	"edit-recovery-special-recovered-on-tooltip": "Le data e hora in que tu datos de recuperation ha essite salveguardate pro le ultime vice",
 	"edit-recovery-loaded-title": "Cambiamentos recuperate",
