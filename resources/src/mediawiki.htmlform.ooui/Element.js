@@ -19,7 +19,7 @@
 	 * @param {Object} [config] Configuration options
 	 * @param {Object<string,string[]>} [config.condState] typically corresponds to a data-cond-state attribute
 	 * that is found on HTMLForm elements and used during
-	 * {@link Hooks~'htmlform.enhance' htmlform.enhance}. For more information on the format see
+	 * {@link event:'htmlform.enhance' htmlform.enhance}. For more information on the format see
 	 * the private function conditionParse in resources/src/mediawiki.htmlform/cond-state.js.
 	 */
 	mw.htmlform.Element = function ( config ) {
