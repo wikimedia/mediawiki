@@ -20,7 +20,7 @@
  * to know about and delete when the data is no longer needed. Instead,
  * store dynamic values in an object under a single constant key that you
  * manage or replace over time.
- * See also <https://phabricator.wikimedia.org/T121646>.
+ * See also T121646.
  *
  * @example mw.storage.set( key, value, expiry );
  * mw.storage.set( key, value ); // stored indefinitely
