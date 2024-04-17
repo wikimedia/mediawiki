@@ -531,8 +531,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			"Correct full table name"
 		);
 
-		$lb->reuseConnection( $db ); // don't care
-
 		$factory->closeAll( __METHOD__ );
 		$factory->destroy();
 	}
