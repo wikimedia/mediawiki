@@ -153,17 +153,15 @@ class Sanitizer {
 	 * @internal
 	 */
 	public static function getRecognizedTagData( array $extratags = [], array $removetags = [] ): array {
-		static $commonCase, $staticInitialised;
+		static $commonCase, $staticInitialised = false;
 		$isCommonCase = ( $extratags === [] && $removetags === [] );
-		if ( $staticInitialised === false && $isCommonCase && $commonCase ) {
+		if ( $staticInitialised && $isCommonCase && $commonCase ) {
 			return $commonCase;
 		}
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic;
 
-		// Base our staticInitialised variable off of the global config state so that if the globals
-		// are changed (like in the screwed up test system) we will re-initialise the settings.
 		if ( !$staticInitialised ) {
 			$htmlpairsStatic = [ # Tags that must be closed
 				'b', 'bdi', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
@@ -213,7 +211,7 @@ class Sanitizer {
 			foreach ( $vars as $var ) {
 				$$var = array_fill_keys( $$var, true );
 			}
-			$staticInitialised = false;
+			$staticInitialised = true;
 		}
 
 		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
