@@ -471,7 +471,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 415, $response->getStatusCode() );
 	}
 
-	public function testJsonBody() {
+	public function testHandlerCanAccessParsedBodyForJsonRequest() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
 			'method' => 'POST',
@@ -482,66 +482,42 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );
 
+		// Check if the response contains a field called 'parsedBody'
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
+		$this->assertArrayHasKey( 'parsedBody', $data );
 
-		// Check the value of 'parsedBody' and 'validateBody' fields
-		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['parsedBody'] );
-		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['validatedBody'] );
-		$this->assertArrayNotHasKey( 'bodyParam', $data['validatedParams'] );
+		// Check the value of the 'parsedBody' field
+		$parsedBody = $data['parsedBody'];
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $parsedBody );
 	}
 
-	public function testFormDataBody() {
+	public function testHandlerCanAccessValidatedBodyForJsonRequest() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/RouterTest/echo' ),
 			'method' => 'POST',
-			'postParams' => [ 'bodyParam' => 'bar' ],
-			'headers' => [
-				"content-type" => 'application/x-www-form-urlencoded',
-				"content-length" => 123,
-			]
+			'bodyContents' => '{"bodyParam":"bar"}',
+			'headers' => [ "content-type" => 'application/json' ]
 		] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 
+		// Check if the response contains a field called 'validatedBody'
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
+		$this->assertArrayHasKey( 'validatedBody', $data );
 
-		// The body parameter should be in parsedBody and validatedBody,
-		// but not in validatedParams.
-		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['parsedBody'] );
-		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['validatedBody'] );
-		$this->assertArrayNotHasKey( 'bodyParam', $data['validatedParams'] );
-	}
+		// Check the value of the 'validatedBody' field
+		$validatedBody = $data['validatedBody'];
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $validatedBody );
 
-	public function testFormDataBody_post() {
-		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
-
-		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/RouterTest/echo_post' ),
-			'method' => 'POST',
-			'postParams' => [ 'postParam' => 'bar' ],
-			'headers' => [
-				"content-type" => 'application/x-www-form-urlencoded',
-				"content-length" => 123,
-			]
-		] );
-		$router = $this->createRouter( $request );
-		$response = $router->execute( $request );
-		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
-
-		$body = $response->getBody();
-		$body->rewind();
-		$data = json_decode( $body->getContents(), true );
-
-		// The post  parameter should be in parsedBody and validatedParams,
-		// but not in validatedBody.
-		$this->assertEquals( [ 'postParam' => 'bar' ], $data['parsedBody'] );
-		$this->assertArrayHasKey( 'postParam', $data['validatedParams'] );
-		$this->assertArrayNotHasKey( 'postParam', $data['validatedBody'] );
+		// Check the value of the 'validatedParams' field.
+		// It should not contain bodyParam.
+		$validatedParams = $data['validatedParams'];
+		$this->assertArrayNotHasKey( 'bodyParam', $validatedParams );
 	}
 
 	public function testHandlerCanAccessValidatedParams() {

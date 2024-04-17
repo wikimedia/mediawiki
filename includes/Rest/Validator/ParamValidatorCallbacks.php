@@ -40,8 +40,7 @@ class ParamValidatorCallbacks implements Callbacks {
 				return $this->request->getQueryParams();
 
 			case 'post':
-				wfDeprecatedMsg( 'The "post" source is deprecated, use "body" instead', '1.43' );
-				// Fall through to "body" case!
+				return $this->request->getPostParams();
 
 			case 'body':
 				return $this->request->getParsedBody() ?? [];

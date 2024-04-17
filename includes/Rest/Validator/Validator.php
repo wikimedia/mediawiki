@@ -182,10 +182,7 @@ class Validator {
 		$remainingBodyFields = $parsedBody;
 		foreach ( $paramSettings as $name => $settings ) {
 			$source = $settings[Handler::PARAM_SOURCE] ?? 'unspecified';
-
-			// NOTE: "post" is deprecated, but for now, it functions as an alias
-			// for "body".
-			if ( $source !== 'body' && $source !== 'post' ) {
+			if ( $source !== 'body' ) {
 				continue;
 			}
 
