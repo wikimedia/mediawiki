@@ -11,6 +11,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
+use MediaWiki\Rest\Handler\RedirectHandler;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
@@ -517,19 +518,24 @@ class Router {
 	 * @return Handler
 	 */
 	public function instantiateHandlerObject( array $spec ): Handler {
-		// Hack for factory methods defined by Router
-		$objectFactorySpec = array_intersect_key(
-			$spec,
-			[
-				'factory' => true,
-				'class' => true,
-				'args' => true,
-				'services' => true,
-				'optional_services' => true
-			]
-		);
+		if ( !isset( $spec['class'] ) && !isset( $spec['factory'] ) ) {
+			// Inject well known handle class for shorthand definition
+			if ( isset( $spec['redirect'] ) ) {
+				$spec['class'] = RedirectHandler::class;
+			} else {
+				throw new RouteDefinitionException(
+					'Route handler definition must specify "class" or ' .
+					'"factory" or "redirect"'
+				);
+			}
+		}
+
 		/** @var $handler Handler (annotation for PHPStorm) */
-		$handler = $this->objectFactory->createObject( $objectFactorySpec );
+		// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
+		$handler = $this->objectFactory->createObject(
+			$spec,
+			[ 'assertClass' => Handler::class ]
+		);
 
 		return $handler;
 	}

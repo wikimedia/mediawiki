@@ -1993,6 +1993,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\ResponseException' => __DIR__ . '/includes/Rest/ResponseException.php',
 	'MediaWiki\\Rest\\ResponseFactory' => __DIR__ . '/includes/Rest/ResponseFactory.php',
 	'MediaWiki\\Rest\\ResponseInterface' => __DIR__ . '/includes/Rest/ResponseInterface.php',
+	'MediaWiki\\Rest\\RouteDefinitionException' => __DIR__ . '/includes/Rest/RouteDefinitionException.php',
 	'MediaWiki\\Rest\\Router' => __DIR__ . '/includes/Rest/Router.php',
 	'MediaWiki\\Rest\\SimpleHandler' => __DIR__ . '/includes/Rest/SimpleHandler.php',
 	'MediaWiki\\Rest\\Stream' => __DIR__ . '/includes/Rest/Stream.php',

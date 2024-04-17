@@ -50,6 +50,12 @@
 		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwRedirectHandlerFactory"
 	},
 	{
+		"path": "/mock/RouterTest/redirect",
+		"redirect": {
+			"path": "/mock/RouterTest/redirectTarget"
+		}
+	},
+	{
 		"path": "/mock/RouterTest/throwWrapped",
 		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwWrappedHandlerFactory"
 	},

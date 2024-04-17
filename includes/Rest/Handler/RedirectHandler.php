@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Handler;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Response;
+use MediaWiki\Rest\RouteDefinitionException;
 
 /**
  * A generic redirect handler for the REST API
@@ -19,7 +20,7 @@ class RedirectHandler extends Handler {
 	public function execute() {
 		$path = $this->getConfig()['redirect']['path'] ?? '';
 		if ( $path === '' ) {
-			throw new ConfigException( "No registered redirect for this path" );
+			throw new RouteDefinitionException( 'No registered redirect for this path' );
 		}
 		$code = $this->getConfig()['redirect']['code'] ?? 308;
 		$pathParams = $this->getRequest()->getPathParams();

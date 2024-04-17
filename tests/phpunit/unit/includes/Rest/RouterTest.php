@@ -172,6 +172,15 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'http://example.com', $response->getHeaderLine( 'Location' ) );
 	}
 
+	public function testRedirectDefinition() {
+		// This route is defined in testRoutes.json wihtout specifying a class or factory.
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/redirect' ) ] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 308, $response->getStatusCode() );
+		$this->assertSame( '/rest/mock/RouterTest/redirectTarget', $response->getHeaderLine( 'Location' ) );
+	}
+
 	public function testResponseException() {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throwWrapped' ) ] );
 		$router = $this->createRouter( $request );
