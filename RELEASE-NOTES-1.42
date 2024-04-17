@@ -240,6 +240,8 @@ because of Phabricator reports.
   - ipblocks
 * ParserOutput::setFlag() and ::getFlag(), deprecated in 1.38, were removed. You
   should use ::setOutputFlag() and ::getOutputFlag() instead.
+* ParserOutput::getCategories(), deprecated in 1.40, has been removed. You
+  should use ::getCategoryNames() and ::getCategorySortKey() instead.
 * The parser does not substitute the default category sort key at
   parse time; this is substituted when the category links table is
   updated instead.  As a result {{DEFAULTSORT}} will affect all the
