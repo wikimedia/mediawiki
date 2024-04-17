@@ -372,7 +372,7 @@ class ApiMainTest extends ApiTestCase {
 	private function doTestCheckMaxLag( $lag ) {
 		$mockLB = $this->createMock( ILoadBalancer::class );
 		$mockLB->method( 'getMaxLag' )->willReturn( [ 'somehost', $lag ] );
-		$mockLB->method( 'getConnectionRef' )->willReturn( $this->createMock( DBConnRef::class ) );
+		$mockLB->method( 'getConnection' )->willReturn( $this->createMock( DBConnRef::class ) );
 		$this->setService( 'DBLoadBalancer', $mockLB );
 
 		$req = new FauxRequest();

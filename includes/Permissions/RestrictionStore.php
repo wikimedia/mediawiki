@@ -209,7 +209,7 @@ class RestrictionStore {
 	public function deleteCreateProtection( PageIdentity $page ): void {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'protected_titles' )
 			->where( [ 'pt_namespace' => $page->getNamespace(), 'pt_title' => $page->getDBkey() ] )
@@ -389,7 +389,7 @@ class RestrictionStore {
 			};
 
 			if ( $readLatest ) {
-				$dbr = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+				$dbr = $this->loadBalancer->getConnection( DB_PRIMARY );
 				$rows = $loadRestrictionsFromDb( $dbr );
 			} else {
 				$this->linkCache->addLinkObj( $page );
@@ -405,7 +405,7 @@ class RestrictionStore {
 						$this->wanCache->makeKey( 'page-restrictions', 'v1', $id, $latestRev ),
 						$this->wanCache::TTL_DAY,
 						function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
-							$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+							$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 							$setOpts += Database::getCacheSetOptions( $dbr );
 							if ( $this->loadBalancer->hasOrMadeRecentPrimaryChanges() ) {
 								// TODO: cleanup Title cache and caller assumption mess in general
@@ -478,7 +478,7 @@ class RestrictionStore {
 				continue;
 			}
 
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
 
 			// Only apply the restrictions if they haven't expired!
@@ -519,7 +519,7 @@ class RestrictionStore {
 		$cacheEntry = &$this->cache[CacheKeyHelper::getKeyForPage( $page )];
 
 		if ( !$cacheEntry || !array_key_exists( 'create_protection', $cacheEntry ) ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 			$commentQuery = $this->commentStore->getJoin( 'pt_reason' );
 			$row = $dbr->selectRow(
 				[ 'protected_titles' ] + $commentQuery['tables'],
@@ -583,7 +583,7 @@ class RestrictionStore {
 			return $cacheEntry['has_cascading'];
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$queryBuilder = $dbr->newSelectQueryBuilder();
 		$queryBuilder->select( [ 'pr_expiry' ] )
 			->from( 'page_restrictions' )

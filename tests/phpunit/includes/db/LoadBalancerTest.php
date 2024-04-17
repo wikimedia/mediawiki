@@ -642,9 +642,9 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	public function testDBConnRefReadsMasterAndReplicaRoles() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
 
-		$rConn = $lb->getConnectionRef( DB_REPLICA );
-		$wConn = $lb->getConnectionRef( DB_PRIMARY );
-		$wConn2 = $lb->getConnectionRef( 0 );
+		$rConn = $lb->getConnection( DB_REPLICA );
+		$wConn = $lb->getConnection( DB_PRIMARY );
+		$wConn2 = $lb->getConnection( 0 );
 
 		$v = [ 'value' => '1', '1' ];
 		$sql = 'SELECT MAX(1) AS value';
@@ -665,7 +665,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	public function testDBConnRefWritesReplicaRole() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
 
-		$rConn = $lb->getConnectionRef( DB_REPLICA );
+		$rConn = $lb->getConnection( DB_REPLICA );
 
 		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
@@ -674,7 +674,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	public function testDBConnRefWritesReplicaRoleIndex() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
-		$rConn = $lb->getConnectionRef( 1 );
+		$rConn = $lb->getConnection( 1 );
 
 		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
@@ -683,7 +683,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	public function testDBConnRefWritesReplicaRoleInsert() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
-		$rConn = $lb->getConnectionRef( DB_REPLICA );
+		$rConn = $lb->getConnection( DB_REPLICA );
 
 		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->insert( 'test', [ 't' => 1 ], __METHOD__ );
@@ -693,7 +693,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb = $this->newMultiServerLocalLoadBalancer( [ 'defaultGroup' => 'vslow' ] );
 		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
 
-		$rVslow = $lb->getConnectionRef( DB_REPLICA );
+		$rVslow = $lb->getConnection( DB_REPLICA );
 		$vslowIndexPicked = $rVslow->getLBInfo( 'serverIndex' );
 
 		$this->assertSame( $vslowIndexPicked, $lbWrapper->getExistingReaderIndex( 'vslow' ) );
@@ -704,7 +704,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			IDatabase::class,
-			$lb->getConnectionRef( DB_REPLICA )
+			$lb->getConnection( DB_REPLICA )
 		);
 	}
 
@@ -713,7 +713,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		/** @var LoadBalancer $lbWrapper */
 		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
 
-		$rGeneric = $lb->getConnectionRef( DB_REPLICA );
+		$rGeneric = $lb->getConnection( DB_REPLICA );
 		$mainIndexPicked = $rGeneric->getLBInfo( 'serverIndex' );
 
 		$this->assertSame(
@@ -722,15 +722,15 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertContains( $mainIndexPicked, [ 1, 2 ] );
 		for ( $i = 0; $i < 300; ++$i ) {
-			$rLog = $lb->getConnectionRef( DB_REPLICA, [] );
+			$rLog = $lb->getConnection( DB_REPLICA, [] );
 			$this->assertSame(
 				$mainIndexPicked,
 				$rLog->getLBInfo( 'serverIndex' ),
 				"Main index unchanged" );
 		}
 
-		$rRC = $lb->getConnectionRef( DB_REPLICA, [ 'foo' ] );
-		$rWL = $lb->getConnectionRef( DB_REPLICA, [ 'bar' ] );
+		$rRC = $lb->getConnection( DB_REPLICA, [ 'foo' ] );
+		$rWL = $lb->getConnection( DB_REPLICA, [ 'bar' ] );
 		$rRCMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'foo' ] );
 		$rWLMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'bar' ] );
 
@@ -739,19 +739,19 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 3, $rRCMaint->getLBInfo( 'serverIndex' ) );
 		$this->assertSame( 3, $rWLMaint->getLBInfo( 'serverIndex' ) );
 
-		$rLog = $lb->getConnectionRef( DB_REPLICA, [ 'baz', 'bar' ] );
+		$rLog = $lb->getConnection( DB_REPLICA, [ 'baz', 'bar' ] );
 		$logIndexPicked = $rLog->getLBInfo( 'serverIndex' );
 
 		$this->assertSame( $logIndexPicked, $lbWrapper->getExistingReaderIndex( 'baz' ) );
 		$this->assertContains( $logIndexPicked, [ 4, 5 ] );
 
 		for ( $i = 0; $i < 300; ++$i ) {
-			$rLog = $lb->getConnectionRef( DB_REPLICA, [ 'baz', 'bar' ] );
+			$rLog = $lb->getConnection( DB_REPLICA, [ 'baz', 'bar' ] );
 			$this->assertSame(
 				$logIndexPicked, $rLog->getLBInfo( 'serverIndex' ), "Index unchanged" );
 		}
 
-		$rVslow = $lb->getConnectionRef( DB_REPLICA, [ 'vslow', 'baz' ] );
+		$rVslow = $lb->getConnection( DB_REPLICA, [ 'vslow', 'baz' ] );
 		$vslowIndexPicked = $rVslow->getLBInfo( 'serverIndex' );
 
 		$this->assertSame( $vslowIndexPicked, $lbWrapper->getExistingReaderIndex( 'vslow' ) );
@@ -761,7 +761,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	public function testNonZeroMasterLoad() {
 		$lb = $this->newMultiServerLocalLoadBalancer( [], [ 'flags' => DBO_DEFAULT ], true );
 		// Make sure that no infinite loop occurs (T226678)
-		$rGeneric = $lb->getConnectionRef( DB_REPLICA );
+		$rGeneric = $lb->getConnection( DB_REPLICA );
 		$this->assertSame( $lb->getWriterIndex(), $rGeneric->getLBInfo( 'serverIndex' ) );
 	}
 

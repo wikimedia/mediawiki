@@ -434,7 +434,7 @@ class LinkCache implements LoggerAwareInterface {
 				$wanCacheKey,
 				WANObjectCache::TTL_DAY,
 				function ( $curValue, &$ttl, array &$setOpts ) use ( $fetchCallback, $ns, $dbkey ) {
-					$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+					$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
 					$setOpts += Database::getCacheSetOptions( $dbr );
 
 					$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
@@ -447,7 +447,7 @@ class LinkCache implements LoggerAwareInterface {
 		} else {
 			// No persistent caching needed, but we can still use the callback.
 			[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-			$dbr = $this->loadBalancer->getConnectionRef( $mode );
+			$dbr = $this->loadBalancer->getConnection( $mode );
 			$row = $fetchCallback( $dbr, $ns, $dbkey, $options );
 		}
 

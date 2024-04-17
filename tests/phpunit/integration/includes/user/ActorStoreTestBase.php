@@ -66,7 +66,7 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 			->getDBLoadBalancerFactory()
 			->getMainLB( $wikiId );
 		$foreignLB->setDomainAliases( [ $wikiId => $dbLoadBalancer->getLocalDomainID() ] );
-		$foreignDB = $foreignLB->getConnectionRef( DB_PRIMARY );
+		$foreignDB = $foreignLB->getConnection( DB_PRIMARY );
 
 		$store = new ActorStore(
 			$dbLoadBalancer,

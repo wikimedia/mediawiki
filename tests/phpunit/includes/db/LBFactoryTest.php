@@ -406,7 +406,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		$db = $lb->getConnectionRef( DB_PRIMARY );
+		$db = $lb->getConnection( DB_PRIMARY );
 		$this->assertEquals(
 			WikiMap::getCurrentWikiId(),
 			$db->getDomainID()
@@ -611,7 +611,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		$conn1 = $lb->getConnectionRef( DB_PRIMARY );
+		$conn1 = $lb->getConnection( DB_PRIMARY );
 		$this->assertEquals(
 			WikiMap::getCurrentWikiId(),
 			$conn1->getDomainID()
@@ -629,7 +629,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$n = iterator_count( $lbWrapper->getOpenConnections() );
 		$this->assertSame( 0, $n, "Connections closed" );
 
-		$conn2 = $lb->getConnectionRef( DB_PRIMARY );
+		$conn2 = $lb->getConnection( DB_PRIMARY );
 		$this->assertEquals(
 			$domain->getId(),
 			$conn2->getDomainID()

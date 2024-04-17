@@ -7,22 +7,15 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * Test class for HistoryPager methods.
  *
  * @group Pager
+ * @group Database
  */
-class HistoryPagerTest extends MediaWikiLangTestCase {
-	protected function setUp(): void {
-		parent::setUp();
-		$this->setService( 'DBLoadBalancer', $this->createMock( ILoadBalancer::class ) );
-		$this->setService( 'DBLoadBalancerFactory', $this->createMock( LBFactory::class ) );
-	}
-
+class HistoryPagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param array $results for passing to FakeResultWrapper and deriving
 	 *  RevisionRecords and formatted comments.

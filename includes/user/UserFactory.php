@@ -285,9 +285,9 @@ class UserFactory implements UserRigorOptions {
 		int $flags = IDBAccessObject::READ_NORMAL
 	) {
 		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
-			$db = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+			$db = $this->loadBalancer->getConnection( DB_PRIMARY );
 		} else {
-			$db = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+			$db = $this->loadBalancer->getConnection( DB_REPLICA );
 		}
 
 		$id = $db->newSelectQueryBuilder()

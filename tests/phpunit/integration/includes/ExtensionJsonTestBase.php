@@ -297,8 +297,6 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 					[ 'dummy', 'dummy', 'dummy', 'dummy' ],
 					DB_REPLICA
 				);
-				$lb->method( 'getConnectionRef' )
-					->willReturn( $lazyDb );
 				$lb->method( 'getConnection' )
 					->willReturn( $lazyDb );
 

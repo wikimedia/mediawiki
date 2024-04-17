@@ -19,9 +19,7 @@
  */
 
 use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBUnexpectedError;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\Query;
@@ -155,12 +153,12 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 *
 	 * @since 1.34
 	 * @param string $cluster Cluster name
-	 * @return DBConnRef
+	 * @return \Wikimedia\Rdbms\IReadableDatabase
 	 */
 	public function getReplica( $cluster ) {
 		$lb = $this->getLoadBalancer( $cluster );
 
-		return $lb->getConnectionRef(
+		return $lb->getConnection(
 			DB_REPLICA,
 			[],
 			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
@@ -216,7 +214,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * Get the 'blobs' table name for this database
 	 *
-	 * @param IDatabase $db
+	 * @param \Wikimedia\Rdbms\IReadableDatabase $db
 	 * @param string|null $cluster Cluster name
 	 * @return string Table name ('blobs' by default)
 	 */
@@ -229,7 +227,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			}
 		}
 
-		return $db->getLBInfo( 'blobs table' ) ?? 'blobs'; // b/c
+		return 'blobs';
 	}
 
 	/**

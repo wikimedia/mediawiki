@@ -424,7 +424,7 @@ class WikiPage implements Page, PageRecord {
 		if ( is_int( $from ) ) {
 			[ $index, $opts ] = DBAccessObjectUtils::getDBOptions( $from );
 			$loadBalancer = $this->getDBLoadBalancer();
-			$db = $loadBalancer->getConnectionRef( $index );
+			$db = $loadBalancer->getConnection( $index );
 			$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
 
 			if ( !$data
@@ -434,7 +434,7 @@ class WikiPage implements Page, PageRecord {
 			) {
 				$from = IDBAccessObject::READ_LATEST;
 				[ $index, $opts ] = DBAccessObjectUtils::getDBOptions( $from );
-				$db = $loadBalancer->getConnectionRef( $index );
+				$db = $loadBalancer->getConnection( $index );
 				$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
 			}
 		} else {

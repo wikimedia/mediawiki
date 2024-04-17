@@ -175,7 +175,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$fname = __METHOD__;
-		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
+		$dbw = $lbFactory->getMainLB()->getConnection( DB_PRIMARY );
 		$dbw->setFlag( DBO_TRX, $dbw::REMEMBER_PRIOR ); // make queries trigger TRX
 		$reset = new ScopedCallback( [ $dbw, 'restoreFlags' ] );
 

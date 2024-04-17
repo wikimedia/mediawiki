@@ -27,7 +27,7 @@ class LocalSerialProvider extends DBSerialProvider {
 	}
 
 	protected function getDB() {
-		return $this->lb->getConnectionRef(
+		return $this->lb->getConnection(
 			DB_PRIMARY,
 			[],
 			false,

@@ -57,14 +57,14 @@ class SiteStats {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$lb = self::getLB();
-		$dbr = $lb->getConnectionRef( DB_REPLICA );
+		$dbr = $lb->getConnection( DB_REPLICA );
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB" );
 		$row = self::doLoadFromDB( $dbr );
 
 		if ( !self::isRowSensible( $row ) && $lb->hasOrMadeRecentPrimaryChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
-			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
+			$row = self::doLoadFromDB( $lb->getConnection( DB_PRIMARY ) );
 		}
 
 		if ( !self::isRowSensible( $row ) ) {
@@ -81,7 +81,7 @@ class SiteStats {
 				SiteStatsInit::doAllAndCommit( $dbr );
 			}
 
-			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
+			$row = self::doLoadFromDB( $lb->getConnection( DB_PRIMARY ) );
 		}
 
 		return $row;
@@ -154,7 +154,7 @@ class SiteStats {
 			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $group, $fname ) {
-				$dbr = self::getLB()->getConnectionRef( DB_REPLICA );
+				$dbr = self::getLB()->getConnection( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 				return (int)$dbr->newSelectQueryBuilder()
 					->select( 'COUNT(*)' )
@@ -206,7 +206,7 @@ class SiteStats {
 			$cache->makeKey( 'SiteStats', 'page-in-namespace', $ns ),
 			$cache::TTL_HOUR,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $ns, $fname ) {
-				$dbr = self::getLB()->getConnectionRef( DB_REPLICA );
+				$dbr = self::getLB()->getConnection( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				return (int)$dbr->newSelectQueryBuilder()

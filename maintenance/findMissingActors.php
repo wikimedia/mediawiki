@@ -195,7 +195,7 @@ class FindMissingActors extends Maintenance {
 		[ $table, $actorField, $idField ] = $this->getTableInfo( $field );
 		$this->output( "Finding invalid actor IDs in $table.$actorField...\n" );
 
-		$dbr = $this->getServiceContainer()->getDBLoadBalancer()->getConnectionRef( DB_REPLICA, 'vslow' );
+		$dbr = $this->getServiceContainer()->getDBLoadBalancer()->getConnection( DB_REPLICA, 'vslow' );
 
 		/*
 		We are building an SQL query like this one here, performing a left join

@@ -88,8 +88,8 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				} );
 		}
 
-		$lb = $this->createMock( ILoadBalancer::class, [ 'getConnectionRef' ] );
-		$lb->method( 'getConnectionRef' )->willReturnCallback(
+		$lb = $this->createMock( ILoadBalancer::class, [ 'getConnection' ] );
+		$lb->method( 'getConnection' )->willReturnCallback(
 			function ( int $index ) use ( $dbs ): IDatabase {
 				$this->assertArrayHasKey( $index, $dbs );
 				return $dbs[$index];

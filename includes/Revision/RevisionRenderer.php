@@ -181,7 +181,7 @@ class RevisionRenderer {
 		// stale data from REPEATABLE-READ snapshots.
 		$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 
-		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
+		$db = $this->loadBalancer->getConnection( $dbIndex, [], $this->dbDomain, $flags );
 
 		return 1 + (int)$db->newSelectQueryBuilder()
 			->select( 'MAX(rev_id)' )
@@ -194,7 +194,7 @@ class RevisionRenderer {
 		// stale data from REPEATABLE-READ snapshots.
 		$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 
-		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
+		$db = $this->loadBalancer->getConnection( $dbIndex, [], $this->dbDomain, $flags );
 
 		return 1 + (int)$db->newSelectQueryBuilder()
 			->select( 'MAX(page_id)' )

@@ -47,9 +47,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 
 		$lb = $this->createNoOpMock(
 			LoadBalancer::class,
-			[ 'getConnectionRef', 'getConnection' ]
+			[ 'getConnection' ]
 		);
-		$lb->method( 'getConnectionRef' )->willReturn( $db );
 		$lb->method( 'getConnection' )->willReturn( $db );
 
 		$lbFactory = $this->createNoOpMock(

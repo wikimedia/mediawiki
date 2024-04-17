@@ -211,14 +211,7 @@ class RecompressTracked {
 	 * @return bool
 	 */
 	private function checkTrackingTable() {
-		// TOOD: Use ICP::getConnection() – but that returns an IDatabase not a Database and so no tableExists()
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnectionRef( DB_REPLICA );
-		if ( !$dbr->tableExists( 'blob_tracking', __METHOD__ ) ) {
-			$this->critical( "Error: blob_tracking table does not exist" );
-
-			return false;
-		}
-		$row = $dbr->newSelectQueryBuilder()
+		$row = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'blob_tracking' )
 			->caller( __METHOD__ )->fetchRow();

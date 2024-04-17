@@ -194,7 +194,7 @@ class SqlBlobStore implements BlobStore {
 	 */
 	private function getDBConnection( $index ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnectionRef( $index, [], $this->dbDomain );
+		return $lb->getConnection( $index, [], $this->dbDomain );
 	}
 
 	/**

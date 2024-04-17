@@ -21,9 +21,9 @@
 namespace Wikimedia\DependencyStore;
 
 use InvalidArgumentException;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
@@ -142,10 +142,10 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	/**
 	 * @param string[] $entities
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return string[]
 	 */
-	private function fetchDependencyBlobs( array $entities, IDatabase $db ) {
+	private function fetchDependencyBlobs( array $entities, IReadableDatabase $db ) {
 		$modulesByVariant = [];
 		foreach ( $entities as $entity ) {
 			[ $module, $variant ] = $this->getEntityNameComponents( $entity );
@@ -178,19 +178,19 @@ class SqlModuleDependencyStore extends DependencyStore {
 	}
 
 	/**
-	 * @return DBConnRef
+	 * @return IReadableDatabase
 	 */
 	private function getReplicaDb() {
 		return $this->lb
-			->getConnectionRef( DB_REPLICA, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
+			->getConnection( DB_REPLICA, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
 	}
 
 	/**
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
 	private function getPrimaryDb() {
 		return $this->lb
-			->getConnectionRef( DB_PRIMARY, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
+			->getConnection( DB_PRIMARY, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
 	}
 
 	/**

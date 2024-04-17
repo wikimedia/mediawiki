@@ -451,7 +451,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$dbMock = $this->createMock( DBConnRef::class );
 		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
 		$lbMock = $this->createMock( ILoadBalancer::class );
-		$lbMock->method( 'getConnectionRef' )
+		$lbMock->method( 'getConnection' )
 			->with( DB_REPLICA, [], 'm' )
 			->willReturn( $dbMock );
 		$lbFactoryMock = $this->createMock( LBFactory::class );
@@ -533,7 +533,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$dbMock = $this->createMock( DBConnRef::class );
 		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
 		$lbMock = $this->createMock( ILoadBalancer::class );
-		$lbMock->method( 'getConnectionRef' )->willReturn( $dbMock );
+		$lbMock->method( 'getConnection' )->willReturn( $dbMock );
 		$lbFactoryMock = $this->createMock( LBFactory::class );
 		$lbFactoryMock->method( 'getMainLB' )->willReturn( $lbMock );
 		$this->setService( 'DBLoadBalancerFactory', $lbFactoryMock );

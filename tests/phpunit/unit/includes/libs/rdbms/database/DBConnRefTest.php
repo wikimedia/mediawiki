@@ -141,7 +141,7 @@ class DBConnRefTest extends TestCase {
 	}
 
 	private function innerMethodForTestDestruct( ILoadBalancer $lb ) {
-		$ref = $lb->getConnectionRef( DB_REPLICA );
+		$ref = $lb->getConnection( DB_REPLICA );
 
 		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
 	}
