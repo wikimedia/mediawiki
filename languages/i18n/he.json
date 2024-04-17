@@ -670,6 +670,7 @@
 	"edit-recovery-special-intro-empty": "אין לך שינויים שלא נשמרו.",
 	"edit-recovery-special-view": "צפייה",
 	"edit-recovery-special-edit": "עריכה",
+	"edit-recovery-special-delete": "מחיקה",
 	"edit-recovery-special-recovered-on": "מ־$1",
 	"edit-recovery-special-recovered-on-tooltip": "התאריך והשעה שנתוני שחזור העריכה האבודה שלך נשמרו בהם בפעם האחרונה",
 	"edit-recovery-loaded-title": "השינויים האבודים שוחזרו",

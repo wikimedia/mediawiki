@@ -858,6 +858,7 @@
 	"edit-recovery-special-intro-empty": "No tienes cambios sin guardar.",
 	"edit-recovery-special-view": "ver",
 	"edit-recovery-special-edit": "editar",
+	"edit-recovery-special-delete": "borrar",
 	"edit-recovery-special-recovered-on": "de $1",
 	"edit-recovery-special-recovered-on-tooltip": "La fecha y hora en que se guardaron tus datos de recuperación por última vez",
 	"edit-recovery-loaded-title": "Cambios recuperados",

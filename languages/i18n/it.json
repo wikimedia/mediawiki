@@ -755,6 +755,7 @@
 	"edit-recovery-special-intro-empty": "Non hai modifiche non salvate.",
 	"edit-recovery-special-view": "visualizza",
 	"edit-recovery-special-edit": "modifica",
+	"edit-recovery-special-delete": "cancella",
 	"edit-recovery-special-recovered-on": "da $1",
 	"edit-recovery-special-recovered-on-tooltip": "Data e ora in cui i dati di ripristino sono stati salvati per l'ultima volta",
 	"edit-recovery-loaded-title": "Modifiche ripristinate",

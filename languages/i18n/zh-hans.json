@@ -815,6 +815,7 @@
 	"edit-recovery-special-intro-empty": "您没有未保存的更改。",
 	"edit-recovery-special-view": "查看",
 	"edit-recovery-special-edit": "编辑",
+	"edit-recovery-special-delete": "删除",
 	"edit-recovery-special-recovered-on": "恢复于$1",
 	"edit-recovery-special-recovered-on-tooltip": "上次恢复数据保存的日期和时间",
 	"edit-recovery-loaded-title": "更改已恢复",

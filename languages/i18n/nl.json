@@ -729,6 +729,7 @@
 	"edit-recovery-special-intro-empty": "U hebt geen niet-opgeslagen wijzigingen.",
 	"edit-recovery-special-view": "bekijken",
 	"edit-recovery-special-edit": "bewerken",
+	"edit-recovery-special-delete": "verwijderen",
 	"edit-recovery-special-recovered-on": "van $1",
 	"edit-recovery-special-recovered-on-tooltip": "De datum en tijd waarop uw herstelgegevens voor het laatst zijn opgeslagen",
 	"edit-recovery-loaded-title": "Wijzigingen hersteld",
