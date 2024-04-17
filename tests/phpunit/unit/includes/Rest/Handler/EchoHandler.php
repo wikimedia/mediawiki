@@ -36,7 +36,7 @@ class EchoHandler extends Handler {
 	}
 
 	public function getParamSettings() {
-		$paramSettings = [
+		return [
 			'q' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
@@ -45,22 +45,16 @@ class EchoHandler extends Handler {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 			],
+			'postParam' => [
+				self::PARAM_SOURCE => 'post',
+				ParamValidator::PARAM_TYPE => 'integer',
+			],
 			'bodyParam' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false
 			],
 		];
-
-		if ( $this->getConfig()['postParam'] ?? false ) {
-			// Deprecated, will trigger a warning!
-			$paramSettings['postParam'] = [
-				self::PARAM_SOURCE => 'post',
-				ParamValidator::PARAM_TYPE => 'string',
-			];
-		}
-
-		return $paramSettings;
 	}
 
 	protected function postValidationSetup() {

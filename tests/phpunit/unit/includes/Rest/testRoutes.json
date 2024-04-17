@@ -10,12 +10,6 @@
 	},
 	{
 		"method": [ "GET", "POST", "PUT", "DELETE" ],
-		"path": "/mock/RouterTest/echo_post",
-		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler",
-		"postParam": true
-	},
-	{
-		"method": [ "GET", "POST", "PUT", "DELETE" ],
 		"path": "/mock/RouterTest/echo/{pathParam}",
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
 	},

@@ -364,7 +364,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideValidateParams() {
-		$sources = [ 'path', 'query' ];
+		$sources = [ 'path', 'query', 'post' ];
 		$paramNames = [
 			"path" => "pathParams",
 			"query" => "queryParams",
@@ -509,24 +509,6 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function testValidateParams_post() {
-		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
-
-		$requestData = new RequestData( [ 'parsedBody' => [ 'foo' => 'bar' ] ] );
-		$paramSetting = [
-			'foo' => [
-				ParamValidator::PARAM_TYPE => 'string',
-				Validator::PARAM_SOURCE => 'post',
-			]
-		];
-
-		$objectFactory = $this->getDummyObjectFactory();
-		$validator = new Validator( $objectFactory, $requestData, $this->mockAnonNullAuthority() );
-
-		$actual = $validator->validateParams( $paramSetting );
-		$this->assertSame( [ 'foo' => 'bar' ], $actual );
-	}
-
 	public static function provideDetectExtraneousBodyFields() {
 		yield 'known body params' => [
 			[
@@ -539,26 +521,6 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 					Validator::PARAM_SOURCE => 'path',
 				],
 			],
-			new RequestData( [ 'parsedBody' => [ 'foo' => 'test' ] ] )
-		];
-		yield 'known body params (post)' => [
-			[
-				'foo' => [
-					ParamValidator::PARAM_TYPE => 'string',
-					Validator::PARAM_SOURCE => 'post',
-				],
-				// Make sure we still have "known" body params even if "post"
-				// params are not treated as body params.
-				'dummy' => [
-					ParamValidator::PARAM_TYPE => 'string',
-					Validator::PARAM_SOURCE => 'body',
-				],
-				'pathfoo' => [
-					ParamValidator::PARAM_TYPE => 'string',
-					Validator::PARAM_SOURCE => 'path',
-				],
-			],
-			// Emulate the behavior of Handler::parseBodyData for form data
 			new RequestData( [ 'parsedBody' => [ 'foo' => 'test' ] ] )
 		];
 		yield 'no known body params' => [
