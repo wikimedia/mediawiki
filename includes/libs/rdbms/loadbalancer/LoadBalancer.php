@@ -752,7 +752,18 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
-		return $this->getConnectionRef( $i, $groups, $domain, $flags );
+		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ' got CONN_SILENCE_ERRORS; connection is already deferred'
+			);
+		}
+
+		$domain = $this->resolveDomainID( $domain );
+		$role = ( $i === self::DB_PRIMARY || $i === ServerInfo::WRITER_INDEX )
+			? self::DB_PRIMARY
+			: self::DB_REPLICA;
+
+		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
 	}
 
 	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
@@ -824,19 +835,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// no-op
 	}
 
-	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
-		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
-			throw new UnexpectedValueException(
-				__METHOD__ . ' got CONN_SILENCE_ERRORS; connection is already deferred'
-			);
-		}
-
-		$domain = $this->resolveDomainID( $domain );
-		$role = ( $i === self::DB_PRIMARY || $i === ServerInfo::WRITER_INDEX )
-			? self::DB_PRIMARY
-			: self::DB_REPLICA;
-
-		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
+	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
+		wfDeprecated( '1.39', __METHOD__ );
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType to be removed soon
+		return $this->getConnection( $i, $groups, $domain, $flags );
 	}
 
 	public function getMaintenanceConnectionRef(

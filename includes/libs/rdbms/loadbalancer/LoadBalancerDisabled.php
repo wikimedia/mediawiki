@@ -92,7 +92,7 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 *
 	 * @return never
 	 */
-	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
+	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 

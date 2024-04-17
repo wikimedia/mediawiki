@@ -289,7 +289,7 @@ interface ILoadBalancer {
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
-	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
+	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
 	/**
 	 * @internal Only to be used by DBConnRef
