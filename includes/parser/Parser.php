@@ -330,6 +330,8 @@ class Parser {
 	public $mExtLoopsCounter;
 	/** @deprecated since 1.42: T362664 */
 	public $proofreadRenderingPages;
+	/** @deprecated since 1.42: T362693 */
+	public $mTemplatePath;
 
 	/**
 	 * Title context, used for self-link rendering and similar things
