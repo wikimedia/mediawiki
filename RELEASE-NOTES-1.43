@@ -114,6 +114,7 @@ because of Phabricator reports.
 * Using the "post" source in parameter declarations returned from
   Handler::getParamSettings() is deprecated, use "body" instead.
 * IMaintainableDatabase::textFieldSize() is now deprecated.
+* ISQLPlatform::tableNamesN() is now deprecated.
 * …
 
 === Other changes in 1.43 ===
