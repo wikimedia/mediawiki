@@ -658,6 +658,8 @@
 	"sig-text": "--$1",
 	"editrecovery": "Edit Recovery",
 	"edit-recovery-nojs-placeholder": "JavaScript is required for the Edit Recovery feature.",
+	"edit-recovery-special-user-unnamed": "Please [[Special:UserLogin|log in]] or [[Special:CreateAccount|create an account]] to use this feature.",
+	"edit-recovery-special-user-not-enabled": "You can enable this feature in [[Special:Preferences#mw-prefsection-editing|your preferences]].",
 	"edit-recovery-special-intro": "You have unsaved changes to the following {{PLURAL:$1|page or section|pages and/or sections}}:",
 	"edit-recovery-special-intro-empty": "You have no unsaved changes.",
 	"edit-recovery-special-view": "view",

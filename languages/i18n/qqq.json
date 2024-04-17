@@ -916,6 +916,8 @@
 	"sig-text": "{{notranslate}} This is the text that appears when you click on the signature button (second button from the right) on the edit toolbar. $1 will be replaced with four tildes (which cannot be included directly in the message for technical reasons).",
 	"editrecovery": "{{doc-special|EditRecovery}}\n\nAdditionally, it is also used as part of the following checkbox label:\n\n* {{msg-mw|tog-editrecovery}}",
 	"edit-recovery-nojs-placeholder": "Error message shown when JavaScript is disabled.",
+	"edit-recovery-special-user-unnamed": "Error message shown on Special:EditRecovery when the user is not logged in.",
+	"edit-recovery-special-user-not-enabled": "Error message shown on Special:EditRecovery when the Edit Recovery user preference is not enabled.",
 	"edit-recovery-special-intro": "Message shown above a list of linked page titles.\n\nParameters:\n\n* $1 — Integer number of list items.",
 	"edit-recovery-special-intro-empty": "Message shown instead of the list of pages when the list is empty.",
 	"edit-recovery-special-view": "Link text for the 'view' link. Appears on [[Special:EditRecovery]] in a list with:\n* {{msg-mw|edit-recovery-special-view}}\n* {{msg-mw|edit-recovery-special-edit}}\n* {{msg-mw|edit-recovery-special-delete}}",
