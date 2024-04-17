@@ -6,6 +6,8 @@
 const storage = require( './storage.js' );
 const LoadNotification = require( './LoadNotification.js' );
 
+const pageName = mw.config.get( 'wgPageName' );
+const section = $( 'input[name="wpSection"]' ).val() || null;
 const inputFields = {};
 const fieldNamePrefix = 'field_';
 var originalData = {};
@@ -80,13 +82,11 @@ function onLoadHandler( $editForm ) {
 		}
 	} );
 
-	// Open indexedDB database and load any saved data that might be there.
-	const pageName = mw.config.get( 'wgPageName' );
-	const section = inputFields.wpSection.value || null;
 	// Set a short-lived (5m / see postEdit.js) localStorage item to indicate which section is being edited.
 	if ( section ) {
 		mw.storage.session.set( pageName + '-editRecoverySection', section, 300 );
 	}
+	// Open indexedDB database and load any saved data that might be there.
 	storage.openDatabase().then( function () {
 		// Check for and delete any expired data for any page, before loading any saved data for the current page.
 		storage.deleteExpiredData().then( () => {
@@ -146,7 +146,7 @@ function onLoadData( pageData ) {
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', function () {
 			loadData( originalData );
-			storage.deleteData( mw.config.get( 'wgPageName' ) ).then( function () {
+			storage.deleteData( pageName, section ).then( function () {
 				$( '#wikiDiff' ).hide();
 				notification.close();
 			} );
@@ -242,8 +242,6 @@ function isSameAsOriginal( pageData, ignoreRevIds = false ) {
 }
 
 function saveFormData() {
-	const pageName = mw.config.get( 'wgPageName' );
-	const section = inputFields.wpSection.value !== undefined ? inputFields.wpSection.value : null;
 	const pageData = getFormData();
 	if ( ( originalData === null || isSameAsOriginal( pageData ) ) && !wasPosted ) {
 		// Delete the stored data if there's no change,
