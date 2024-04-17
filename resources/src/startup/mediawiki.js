@@ -136,7 +136,10 @@
 	log.warn = Function.prototype.bind.call( con.warn, con );
 
 	/**
-	 * Base library for MediaWiki. Exposed globally as `mw`, with `mediaWiki` as alias.
+	 * Base library for MediaWiki.
+	 *
+	 * Exposed globally as `mw`, with `mediaWiki` as alias. `mw` code can be considered stable and follows the
+	 * [frontend stable interface policy](https://www.mediawiki.org/wiki/Special:MyLanguage/Stable_interface_policy/Frontend).
 	 *
 	 * @namespace mw
 	 * @singleton

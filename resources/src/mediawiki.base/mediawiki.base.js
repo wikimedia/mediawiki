@@ -475,6 +475,7 @@ trackCallbacks.fire( mw.trackQueue );
  * new mw.Foo( .. ).fetch( { callback: h.fire } );
  * ```
  *
+ * The function signature for hooks can be considered [stable](https://www.mediawiki.org/wiki/Special:MyLanguage/Stable_interface_policy/Frontend).
  * See available global events below.
  *
  * @See {@link Hook}

@@ -3,6 +3,17 @@ module.exports = {
 	opts: {
 		destination: 'docs/js',
 		package: 'resources/package.json',
+		pages: {
+			modules: {
+				longname: 'Modules',
+				readme: 'resources/src/modules.md'
+			},
+			namespaces: {
+				depth: 1,
+				longname: 'Globals',
+				readme: 'resources/src/README.md'
+			}
+		},
 		pedantic: true,
 		readme: 'resources/README.md',
 		recurse: true,
@@ -25,6 +36,10 @@ module.exports = {
 			useLongnameInNav: true
 		},
 		wmf: {
+			siteMap: {
+				sections: true
+			},
+			hideSections: [ 'Classes', 'Events' ],
 			repository: 'https://gerrit.wikimedia.org/g/mediawiki/core/',
 			linkMap: {
 				Array: 'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array',
