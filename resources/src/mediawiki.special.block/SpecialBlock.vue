@@ -49,8 +49,8 @@ module.exports = defineComponent( {
 	setup() {
 		const form = document.querySelector( '.mw-htmlform' );
 		const targetUser = ref( '' );
-		const blockAllosUTEdit = mw.config.get( 'blockAllosUTEdit' ) || false;
-		const blockEmailBan = mw.config.get( 'blockAllosEmailBan' ) || false;
+		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
+		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
 		const blockDetailsSelected = ref( [] );
 		const blockDetailsOptions = [
 			{
@@ -66,7 +66,7 @@ module.exports = defineComponent( {
 			} );
 		}
 
-		if ( blockAllosUTEdit ) {
+		if ( blockAllowsUTEdit ) {
 			blockDetailsOptions.push( {
 				label: mw.message( 'ipb-disableusertalk' ),
 				value: 'wpDisableUTEdit'

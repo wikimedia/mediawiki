@@ -375,7 +375,7 @@ class SpecialBlock extends FormSpecialPage {
 				'section' => 'details',
 			];
 
-			$this->codexFormData[ 'blockAllosEmailBan'] = true;
+			$this->codexFormData[ 'blockAllowsEmailBan'] = true;
 		}
 
 		if ( $blockAllowsUTEdit ) {
@@ -387,7 +387,7 @@ class SpecialBlock extends FormSpecialPage {
 				'section' => 'details',
 			];
 
-			$this->codexFormData[ 'blockAllosUTEdit'] = true;
+			$this->codexFormData[ 'blockAllowsUTEdit'] = true;
 		}
 
 		$defaultExpiry = $this->msg( 'ipb-default-expiry' )->inContentLanguage();
