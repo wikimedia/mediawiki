@@ -10,9 +10,10 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @param {string} [config.format='@default'] May be a key from the {@link #static-formats static formats},
-	 *  or a format specification as defined by {@link #method-parseFieldSpec parseFieldSpec}
-	 *  and {@link #method-getFieldForTag getFieldForTag}.
+	 * @param {string} [config.format='@default'] May be a key from the
+	 *  {@link mw.widgets.datetime.DateTimeFormatter.formats}, or a format
+	 *  specification as defined by {@link mw.widgets.datetime.DateTimeFormatter#parseFieldSpec}
+	 *  and {@link mw.widgets.datetime.DateTimeFormatter#getFieldForTag}.
 	 * @param {boolean} [config.local=false] Whether dates are local time or UTC
 	 * @param {string[]} [config.fullZones] Time zone indicators. Array of 2 strings, for
 	 *  UTC and local time.

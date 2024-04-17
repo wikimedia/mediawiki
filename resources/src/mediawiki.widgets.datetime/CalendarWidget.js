@@ -18,8 +18,8 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 * @param {Object|mw.widgets.datetime.DateTimeFormatter} [config.formatter={}] Configuration options for
-	 *  mw.widgets.datetime.ProlepticGregorianDateTimeFormatter, or an mw.widgets.datetime.DateTimeFormatter
-	 *  instance to use.
+	 *  {@link mw.widgets.datetime.ProlepticGregorianDateTimeFormatter}, or an
+	 *  {@link mw.widgets.datetime.DateTimeFormatter} instance to use.
 	 * @param {OO.ui.Widget|null} [config.widget=null] Widget associated with the calendar.
 	 *  Specifying this configures the calendar to be used as a popup from the
 	 *  specified widget (e.g. absolute positioning, automatic hiding when clicked

@@ -442,8 +442,8 @@ var util = {
 	 *
 	 * If you need just the wikipage content (not any of the
 	 * extra elements output by the skin), use `$( '#mw-content-text' )`
-	 * instead. Or listen to mw.hook#wikipage_content which will
-	 * allow your code to re-run when the page changes (e.g. live preview
+	 * instead. Or listen to {@link event:'wikipage.content' wikipage.content}
+	 * which will allow your code to re-run when the page changes (e.g. live preview
 	 * or re-render after ajax save).
 	 *
 	 * @type {jQuery}

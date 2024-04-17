@@ -9,7 +9,7 @@
 		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
 	/**
-	 * Category selector widget. Displays an OO.ui.MenuTagMultiselectWidget
+	 * Category selector widget. Displays an {@link OO.ui.MenuTagMultiselectWidget}
 	 * and autocompletes with available categories.
 	 *
 	 * @example

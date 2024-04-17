@@ -24,7 +24,7 @@
 	 * wiki page that you specify, as a new section.
 	 *
 	 * This feature works with any content model that defines a
-	 * `mw.messagePoster.MessagePoster`.
+	 * {@link mw.messagePoster.MessagePoster}.
 	 *
 	 * @example // Minimal usage example
 	 * mw.loader.using( 'mediawiki.feedback').then(() => {

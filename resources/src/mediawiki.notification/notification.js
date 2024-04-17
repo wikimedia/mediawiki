@@ -393,7 +393,7 @@
 
 		/**
 		 * Resume any paused auto-hide timers from the beginning.
-		 * Only the first #autoHideLimit timers will be resumed.
+		 * Only the first {@link mw.notification.autoHideLimit} timers will be resumed.
 		 * @memberof mw.notification
 		 */
 		resume: function () {

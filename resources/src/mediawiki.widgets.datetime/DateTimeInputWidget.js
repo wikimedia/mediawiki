@@ -26,14 +26,16 @@
 	 * @param {Object} [config] Configuration options
 	 * @param {string} [config.type='datetime'] Whether to act like a 'date', 'time', or 'datetime' input.
 	 *  Affects values stored in the relevant `<input>` and the formatting and
-	 *  interpretation of values passed to/from getValue() and setValue(). It's up
-	 *  to the user to configure the DateTimeFormatter correctly.
+	 *  interpretation of values passed to/from
+	 *  {@link https://doc.wikimedia.org/oojs-ui/master/js/OO.ui.InputWidget.html#getValue getValue()} and
+	 *  {@link https://doc.wikimedia.org/oojs-ui/master/js/OO.ui.InputWidget.html#setValue setValue()}.
+	 *  It's up to the user to configure the DateTimeFormatter correctly.
 	 * @param {Object|mw.widgets.datetime.DateTimeFormatter} [config.formatter={}] Configuration options for
-	 *  mw.widgets.datetime.ProlepticGregorianDateTimeFormatter (with 'format' defaulting to
+	 *  {@link mw.widgets.datetime.ProlepticGregorianDateTimeFormatter} (with 'format' defaulting to
 	 *  '@date', '@time', or '@datetime' depending on 'type'), or an
-	 *  mw.widgets.datetime.DateTimeFormatter instance to use.
+	 *  {@link mw.widgets.datetime.DateTimeFormatter} instance to use.
 	 * @param {Object|null} [config.calendar={}] Configuration options for
-	 *  mw.widgets.datetime.CalendarWidget; note certain settings will be forced based on the
+	 *  {@link mw.widgets.datetime.CalendarWidget}; note certain settings will be forced based on the
 	 *  settings passed to this widget. Set null to disable the calendar.
 	 * @param {boolean} [config.required=false] Whether a value is required.
 	 * @param {boolean} [config.clearable=true] Whether to provide for blanking the value.

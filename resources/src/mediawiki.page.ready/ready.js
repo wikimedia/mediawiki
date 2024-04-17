@@ -175,7 +175,7 @@ $( function () {
 	 * Fired when a trusted UI element to perform a logout has been activated.
 	 *
 	 * This will end the user session, and either redirect to the given URL
-	 * on success, or queue an error message via mw.notification.
+	 * on success, or queue an error message via {@link mw.notification}.
 	 *
 	 * @event ~'skin.logout'
 	 * @memberof Hooks
