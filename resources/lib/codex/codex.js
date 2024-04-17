@@ -5446,7 +5446,8 @@ const _sfc_main$c = defineComponent({
     const computedDisabled = useComputedDisabled(disabled);
     const rootClasses = computed(() => {
       return {
-        "cdx-field--disabled": computedDisabled.value
+        "cdx-field--disabled": computedDisabled.value,
+        "cdx-field--is-fieldset": isFieldset.value
       };
     });
     const labelId = useGeneratedId("label");

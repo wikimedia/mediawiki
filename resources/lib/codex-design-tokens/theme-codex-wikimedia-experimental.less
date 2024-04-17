@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v1.3.6
+ * Codex Design Tokens v1.4.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  * 
@@ -13,6 +13,7 @@
 @color-placeholder: var( --color-placeholder );
 @color-disabled: var( --color-disabled );
 @color-inverted: var( --color-inverted );
+@color-inverted-fixed: var( --color-inverted-fixed ); // The same as color-inverted in light mode, but does not change in dark mode. Use this for things that should be white in both modes.
 @color-progressive: var( --color-progressive ); // 'Progressive' Color and states
 @color-progressive--hover: var( --color-progressive--hover );
 @color-progressive--active: var( --color-progressive--active );
@@ -78,6 +79,7 @@
 @size-2400: 24rem;
 @size-2800: 28rem;
 @size-3200: 32rem;
+@size-4000: 40rem;
 @size-5600: 56rem;
 @size-viewport-width-full: 100vw;
 @size-viewport-height-full: 100vh;
@@ -203,13 +205,13 @@
 @background-color-backdrop-light: var( --background-color-backdrop-light ); // Backdrop is the term used by CSS Fullscreen API and is used to dim the background when a modal Dialog is open. Also known as overlay mask.
 @background-color-backdrop-dark: var( --background-color-backdrop-dark );
 @background-color-base: var( --background-color-base ); // Background Colors for static elements (for page layout, sections, etc.) from here on.
+@background-color-base-fixed: var( --background-color-base-fixed ); // The same as background-color-base in light mode, but does not change in dark mode. Use this for things that should be white in both modes.
 @background-color-neutral: var( --background-color-neutral );
 @background-color-neutral-subtle: var( --background-color-neutral-subtle );
 @background-color-transparent: var( --background-color-transparent );
 @background-color-button-quiet--hover: var( --background-color-button-quiet--hover );
 @background-color-button-quiet--active: var( --background-color-button-quiet--active );
 @background-color-input-binary--checked: var( --background-color-input-binary--checked );
-@background-color-primary--hover: var( --background-color-primary--hover );
 @background-color-tab-list-item-framed--hover: var( --background-color-tab-list-item-framed--hover );
 @background-color-tab-list-item-framed--active: var( --background-color-tab-list-item-framed--active );
 @opacity-icon-base: var( --opacity-icon-base );
@@ -235,10 +237,7 @@
 @width-breakpoint-mobile: 320px;
 @width-breakpoint-tablet: 720px;
 @width-breakpoint-desktop: 1000px;
-@width-breakpoint-desktop-wide: 1200px;
-@width-breakpoint-desktop-extrawide: 2000px;
 @position-offset-border-width-base: -1px;
-@position-offset-input-radio--focus: -0.25rem;
 @spacing-0: 0;
 @spacing-12: 2px;
 @spacing-25: 4px;

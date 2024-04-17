@@ -65,6 +65,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
+* Updated codex, codex-design-tokens and codex-icons
+  from v1.3.6 to v1.4.0.
 
 * …
 
