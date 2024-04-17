@@ -153,22 +153,8 @@ function deleteData( pageName, section ) {
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
 		const objectStore = transaction.objectStore( objectStoreName );
 
-		const request = objectStore.openCursor();
-
-		request.addEventListener( 'success', ( event ) => {
-			const cursor = event.target.result;
-			if ( cursor ) {
-				const key = cursor.key;
-				const deleteSection = ( !section && key[ 1 ] === '' ) || section === key[ 1 ];
-				if ( key[ 0 ] === pageName && deleteSection ) {
-					objectStore.delete( key );
-				}
-				cursor.continue();
-			} else {
-				resolve();
-			}
-		} );
-
+		const request = objectStore.delete( [ pageName, section || '' ] );
+		request.addEventListener( 'success', resolve );
 		request.addEventListener( 'error', () => {
 			reject( 'Error opening cursor' );
 		} );
