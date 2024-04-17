@@ -40,7 +40,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	private function installMockLoadBalancer( IDatabase $db ) {
 		$lb = $this->createNoOpMock(
 			ILoadBalancer::class,
-			[ 'getConnection', 'getLocalDomainID', 'reuseConnection' ]
+			[ 'getConnection', 'getLocalDomainID' ]
 		);
 
 		$lb->method( 'getConnection' )->willReturn( $db );

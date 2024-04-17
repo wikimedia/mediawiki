@@ -894,7 +894,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		//  - a) IDatabase::databasesAreIndependent() returns true (e.g. postgres) and two
 		//       or more database domains have been used during the load balancer's lifetime
 		//  - b) Two or more nested function calls used getConnection() on different domains.
-		//       Normally, callers should use getConnectionRef() instead of getConnection().
 		foreach ( ( $this->conns[$category][$i] ?? [] ) as $poolConn ) {
 			// Check if any required DB domain changes for the new reference are possible
 			// Calling selectDomain() would trigger a reconnect, which will break if a

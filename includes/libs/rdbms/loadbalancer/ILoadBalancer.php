@@ -243,7 +243,6 @@ interface ILoadBalancer {
 	 *
 	 * CONN_UNTRACKED_GAUGE and CONN_TRX_AUTOCOMMIT are incompatible.
 	 *
-	 * @see ILoadBalancer::reuseConnection()
 	 * @see ILoadBalancer::getServerAttributes()
 	 *
 	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index

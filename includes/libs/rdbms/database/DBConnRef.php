@@ -5,21 +5,28 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 
 /**
- * Helper class used for automatically marking an IDatabase connection as reusable (once it no
- * longer matters which DB domain is selected) and for deferring the actual network connection
+ * Helper class used for automatically re-using IDatabase connections and lazily
+ * establishing the actual network connection to a database host.
  *
- * This uses an RAII-style pattern where calling code is expected to keep the returned reference
- * handle as a function variable that falls out of scope when no longer needed. This avoids the
- * need for matching reuseConnection() calls for every "return" statement as well as the tedious
- * use of try/finally.
+ * It does this by deferring to ILoadBalancer::getConnectionInternal, which in
+ * turn ensures we share and re-use a single connection for a given database
+ * wherever possible.
+ *
+ * This class previously used an RAII-style pattern where connections would be
+ * claimed from a pool, and then added back to the pool for re-use only after
+ * the calling code's variable for this object went out of scope (a __destruct
+ * got called when the calling function returns or throws). This is no longer
+ * needed today as LoadBalancer now permits re-use internally even for
+ * overlapping callers, where two pieces of code may both obtain their own
+ * DBConnRef object and where both are used alternatingly, and yet still share
+ * the same connection.
  *
  * @par Example:
  * @code
  *     function getRowData() {
- *         $conn = $this->lb->getConnectionRef( DB_REPLICA );
+ *         $conn = $this->lb->getConnection( DB_REPLICA );
  *         $row = $conn->select( ... );
  *         return $row ? (array)$row : false;
- *         // $conn falls out of scope and $this->lb->reuseConnection() gets called
  *     }
  * @endcode
  *

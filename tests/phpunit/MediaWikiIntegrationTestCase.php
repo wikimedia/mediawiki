@@ -1713,8 +1713,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			self::$dbClone = null;
 		}
 
-		// T219673: close any connections from code that failed to call reuseConnection()
-		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
+		// T219673: close any lingering connections.
 		$services->getDBLoadBalancerFactory()->closeAll( __METHOD__ );
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
