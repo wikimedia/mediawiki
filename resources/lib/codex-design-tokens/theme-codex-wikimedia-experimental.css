@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v1.3.6
+ * Codex Design Tokens v1.4.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  * 
@@ -14,6 +14,7 @@
   --color-placeholder: #72777d;
   --color-disabled: #72777d;
   --color-inverted: #fff;
+  --color-inverted-fixed: #fff; /* The same as color-inverted in light mode, but does not change in dark mode. Use this for things that should be white in both modes. */
   --color-progressive: #36c; /* 'Progressive' Color and states */
   --color-progressive--hover: #447ff5;
   --color-progressive--active: #2a4b8d;
@@ -21,7 +22,7 @@
   --color-destructive: #d73333; /* 'Destructive' Color and states */
   --color-destructive--hover: #ff4242;
   --color-destructive--active: #b32424;
-  --color-destructive--focus: #d73333;
+  --color-destructive--focus: #36c;
   --color-visited: #6b4ba1; /* 'Visited' color. In combination with progressive. Used for default links. */
   --color-error: #d73333;
   --color-warning: #edab00; /* Note, this is only meant for warning icon for contrast reasons. */
@@ -31,7 +32,7 @@
   --color-link-red: #d73333; /* Red ('new') Link color and states */
   --color-link-red--hover: #ff4242;
   --color-link-red--active: #b32424;
-  --color-link-red--focus: #d73333;
+  --color-link-red--focus: #36c;
   --color-link-red--visited: #a55858;
   --filter-invert-icon: 0;
   --filter-invert-primary-button-icon: 1;
@@ -41,7 +42,7 @@
   --box-shadow-color-progressive-selected: #36c;
   --box-shadow-color-progressive-selected--hover: #447ff5;
   --box-shadow-color-progressive-selected--active: #2a4b8d;
-  --box-shadow-color-destructive--focus: #d73333;
+  --box-shadow-color-destructive--focus: #36c;
   --box-shadow-color-inverted: #fff;
   --box-shadow-color-transparent: transparent;
   --background-color-interactive: #eaecf0;
@@ -56,7 +57,7 @@
   --background-color-destructive: #d73333;
   --background-color-destructive--hover: #ff4242;
   --background-color-destructive--active: #b32424;
-  --background-color-destructive--focus: #d73333;
+  --background-color-destructive--focus: #36c;
   --background-color-destructive-subtle: #fee7e6;
   --background-color-error: #d73333;
   --background-color-error--hover: #ff4242;
@@ -68,13 +69,13 @@
   --background-color-backdrop-light: rgba( 255, 255, 255, 0.65 ); /* Backdrop is the term used by CSS Fullscreen API and is used to dim the background when a modal Dialog is open. Also known as overlay mask. */
   --background-color-backdrop-dark: rgba( 0, 0, 0, 0.65 );
   --background-color-base: #fff; /* Background Colors for static elements (for page layout, sections, etc.) from here on. */
+  --background-color-base-fixed: #fff; /* The same as background-color-base in light mode, but does not change in dark mode. Use this for things that should be white in both modes. */
   --background-color-neutral: #eaecf0;
   --background-color-neutral-subtle: #f8f9fa;
   --background-color-transparent: transparent;
   --background-color-button-quiet--hover: rgba( 0, 24, 73, 0.027 );
   --background-color-button-quiet--active: rgba( 0, 24, 73, 0.082 );
   --background-color-input-binary--checked: #36c;
-  --background-color-primary--hover: rgba( 51, 102, 204, 0.1 );
   --background-color-tab-list-item-framed--hover: rgba( 255, 255, 255, 0.3 );
   --background-color-tab-list-item-framed--active: rgba( 255, 255, 255, 0.65 );
   --opacity-icon-base: 0.87;
@@ -96,7 +97,7 @@
   --border-color-destructive: #d73333;
   --border-color-destructive--hover: #ff4242;
   --border-color-destructive--active: #b32424;
-  --border-color-destructive--focus: #d73333;
+  --border-color-destructive--focus: #36c;
   --border-color-error: #b32424;
   --border-color-error--hover: #ff4242;
   --border-color-warning: #a66200;

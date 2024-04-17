@@ -1,3 +1,41 @@
+# 1.4.0 / 2024-04-16
+
+## BREAKING CHANGES
+- [BREAKING] tokens: Remove deprecated breakpoint tokens (Volker E)
+- [BREAKING] tokens: Remove deprecated tokens without replacement (Volker E)
+
+This release removes the following deprecated design tokens:
+- `background-color-primary--hover`
+- `position-offset-input-radio--focus`
+- `wmui-color-modifier-blue600-translucent`
+- `width-breakpoint-desktop-wide`
+- `width-breakpoint-desktop-extrawide`
+
+## Features
+- Field: Add additional class if it's a `fieldset` (Volker E.)
+
+## Styles
+- styles: adjust component colors for dark mode to work (lwatson)
+- tokens, docs: Change any red focus color to progressive blue (Derek Torsani)
+- tokens: Add `40rem` sizing token (Derek Torsani)
+- tokens: Add dark mode decision tokens (lwatson)
+
+## Code
+- build: Remove needless Stylelint disable (Volker E.)
+- build: Remove the demos build (Roan Kattouw)
+- build: Update .nvmrc version from 18.17.0 to 18.20.2 (James D. Forrester)
+- build: Wrap sandbox in a separate `<div dir="...">` (Roan Kattouw)
+
+## Documentation
+- docs, Dialog: Adjust spacing and guidance between buttons from 8 to 12px (Derek Torsani)
+- docs: Add `kbd` styles to custom.css (Volker E.)
+- docs: Add keyboard navigation in all components guidelines (bmartinezcalvo)
+- docs: Unify alternative text across documentation (Volker E.)
+- docs: Update "Guidelines" section in the "Contributing design" (bmartinezcalvo)
+- docs: Update image in the InfoChip best practices (bmartinezcalvo)
+- docs: fix comment on MediaWiki skin environment (Volker E.)
+- docs: fix nested Fields vertical alignment (Volker E.)
+
 # 1.3.6 / 2024-04-02
 ## Styles
 - Field: Update spacing between fields from 24px to 16px (Roan Kattouw)
