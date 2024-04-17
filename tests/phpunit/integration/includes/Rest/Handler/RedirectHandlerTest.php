@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use MediaWiki\Config\ConfigException;
 use MediaWiki\Rest\Handler\RedirectHandler;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\RouteDefinitionException;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -34,11 +34,11 @@ class RedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		return [
 			[
 				[ 'path' => '', 'code' => 308 ],
-				ConfigException::class
+				RouteDefinitionException::class
 			],
 			[
 				[ 'code' => 308 ],
-				ConfigException::class
+				RouteDefinitionException::class
 			],
 			// Add more test cases
 		];
