@@ -25,7 +25,6 @@ use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
-use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -157,14 +156,12 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->http->setLogger( $this->logger );
 
 		// Cache container information to mask latency
-		if ( isset( $config['wanCache'] ) && $config['wanCache'] instanceof WANObjectCache ) {
-			$this->memCache = $config['wanCache'];
-		}
+		$this->wanStatCache = $this->wanCache;
 		// Process cache for container info
 		$this->containerStatCache = new MapCacheLRU( 300 );
 		// Cache auth token information to avoid RTTs
-		if ( !empty( $config['cacheAuthInfo'] ) && isset( $config['srvCache'] ) ) {
-			$this->credentialCache = $config['srvCache'];
+		if ( !empty( $config['cacheAuthInfo'] ) ) {
+			$this->credentialCache = $this->srvCache;
 		} else {
 			$this->credentialCache = new EmptyBagOStuff();
 		}

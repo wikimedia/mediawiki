@@ -48,14 +48,19 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.19
  */
 abstract class FileBackendStore extends FileBackend {
-	/** @var WANObjectCache */
+	/** Persistent cache accessible to all relevant datacenters */
+	protected WANObjectCache $wanCache;
+	/** Persistent local server/host cache (e.g. APCu) */
+	protected BagOStuff $srvCache;
+	/** In-memory map of paths to small (RAM/disk) cache items */
+	protected MapCacheLRU $cheapCache;
+	/** In-memory map of paths to large (RAM/disk) cache items */
+	protected MapCacheLRU $expensiveCache;
+
+	/** Cache used for persistent file/container stat entries */
+	protected WANObjectCache $wanStatCache;
+	/** @deprecated Since 1.45 */
 	protected $memCache;
-	/** @var BagOStuff */
-	protected $srvCache;
-	/** @var MapCacheLRU Map of paths to small (RAM/disk) cache items */
-	protected $cheapCache;
-	/** @var MapCacheLRU Map of paths to large (RAM/disk) cache items */
-	protected $expensiveCache;
 
 	/** @var array<string,array> Map of container names to sharding config */
 	protected $shardViaHashLevels = [];
@@ -83,8 +88,8 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
-	 *   - srvCache     : BagOStuff cache to APC or the like.
-	 *   - wanCache     : WANObjectCache object to use for persistent caching.
+	 *   - srvCache     : BagOStuff object to use for server-local persistent caching.
+	 *   - wanCache     : WANObjectCache object to use for server-shared persistent caching.
 	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
 	 *                    system path parameter should be used if the content one is null.
@@ -96,8 +101,10 @@ abstract class FileBackendStore extends FileBackend {
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 		$this->mimeCallback = $config['mimeCallback'] ?? null;
-		$this->srvCache = new EmptyBagOStuff(); // disabled by default
-		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
+		$this->srvCache = $config['srvCache'] ?? new EmptyBagOStuff();
+		$this->wanCache = $config['wanCache'] ?? WANObjectCache::newEmpty();
+		$this->wanStatCache = WANObjectCache::newEmpty(); // disabled by default
+		$this->memCache =& $this->wanStatCache; // compatability alias
 		$this->cheapCache = new MapCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->expensiveCache = new MapCacheLRU( self::CACHE_EXPENSIVE_SIZE );
 	}
@@ -1830,7 +1837,11 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $val Information to cache
 	 */
 	final protected function setContainerCache( $container, array $val ) {
-		if ( !$this->memCache->set( $this->containerCacheKey( $container ), $val, 14 * 86400 ) ) {
+		if ( !$this->wanStatCache->set(
+			$this->containerCacheKey( $container ),
+			$val,
+			14 * 86400
+		) ) {
 			$this->logger->warning( "Unable to set stat cache for container {container}.",
 				[ 'filebackend' => $this->name, 'container' => $container ]
 			);
@@ -1844,7 +1855,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 */
 	final protected function deleteContainerCache( $container ) {
-		if ( !$this->memCache->delete( $this->containerCacheKey( $container ), 300 ) ) {
+		if ( !$this->wanStatCache->delete( $this->containerCacheKey( $container ), 300 ) ) {
 			$this->logger->warning( "Unable to delete stat cache for container {container}.",
 				[ 'filebackend' => $this->name, 'container' => $container ]
 			);
@@ -1880,7 +1891,7 @@ abstract class FileBackendStore extends FileBackend {
 
 		$contInfo = []; // (resolved container name => cache value)
 		// Get all cache entries for these container cache keys...
-		$values = $this->memCache->getMulti( array_keys( $contNames ) );
+		$values = $this->wanStatCache->getMulti( array_keys( $contNames ) );
 		foreach ( $values as $cacheKey => $val ) {
 			$contInfo[$contNames[$cacheKey]] = $val;
 		}
@@ -1924,10 +1935,9 @@ abstract class FileBackendStore extends FileBackend {
 			return; // invalid storage path
 		}
 		$mtime = (int)ConvertibleTimestamp::convert( TS_UNIX, $val['mtime'] );
-		$ttl = $this->memCache->adaptiveTTL( $mtime, 7 * 86400, 300, 0.1 );
-		$key = $this->fileCacheKey( $path );
+		$ttl = $this->wanStatCache->adaptiveTTL( $mtime, 7 * 86400, 300, 0.1 );
 		// Set the cache unless it is currently salted.
-		if ( !$this->memCache->set( $key, $val, $ttl ) ) {
+		if ( !$this->wanStatCache->set( $this->fileCacheKey( $path ), $val, $ttl ) ) {
 			$this->logger->warning( "Unable to set stat cache for file {path}.",
 				[ 'filebackend' => $this->name, 'path' => $path ]
 			);
@@ -1947,7 +1957,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		if ( !$this->memCache->delete( $this->fileCacheKey( $path ), 300 ) ) {
+		if ( !$this->wanStatCache->delete( $this->fileCacheKey( $path ), 300 ) ) {
 			$this->logger->warning( "Unable to delete stat cache for file {path}.",
 				[ 'filebackend' => $this->name, 'path' => $path ]
 			);
@@ -1985,7 +1995,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		// Get all cache entries for these file cache keys.
 		// Note that negatives are not cached by getFileStat()/preloadFileStat().
-		$values = $this->memCache->getMulti( array_keys( $pathNames ) );
+		$values = $this->wanStatCache->getMulti( array_keys( $pathNames ) );
 		// Load all of the results into process cache...
 		foreach ( array_filter( $values, 'is_array' ) as $cacheKey => $stat ) {
 			$path = $pathNames[$cacheKey];
