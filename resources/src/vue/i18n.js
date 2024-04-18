@@ -26,7 +26,7 @@ module.exports = {
 		 * @param {string} key Key of message to get
 		 * @param {...any} parameters Values for $N replacements
 		 * @return {mw.Message}
-		 * @memberof module:Vue.prototype
+		 * @memberof module:vue.prototype
 		 */
 		function $i18n( key, ...parameters ) {
 			// eslint-disable-next-line mediawiki/msg-doc

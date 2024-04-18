@@ -10,7 +10,7 @@
 	 * For documentation on Vue's built-in functions, see
 	 * {@link https://vuejs.org/api/ Vue's API reference}.
 	 *
-	 * @module Vue
+	 * @module vue
 	 */
 
 	/**
@@ -19,12 +19,12 @@
 	 * globally in Vue 2, but Vue 3 does not support global plugins.
 	 *
 	 * To ensure all Vue code has the i18n plugin and the error handler installed, use of
-	 * `Vue.createMwApp()` is recommended anywhere one would normally use `Vue.createApp()`.
+	 * `vue.createMwApp()` is recommended anywhere one would normally use `Vue.createApp()`.
 	 *
 	 * @method createMwApp
 	 * @param {...any} args
 	 * @return {Object} Vue app instance
-	 * @memberof module:Vue
+	 * @memberof module:vue
 	 */
 	Vue.createMwApp = function ( ...args ) {
 		const app = Vue.createApp( ...args );
