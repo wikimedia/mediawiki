@@ -8,12 +8,13 @@
 ( function () {
 
 	/**
-	 * Creates a mw.widgets.ExpiryWidget object.
+	 * @classdesc Expiry widget.
 	 *
 	 * @class mw.widgets.ExpiryWidget
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @description Create a mw.widgets.ExpiryWidget object.
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.ExpiryWidget = function ( config ) {

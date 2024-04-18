@@ -111,14 +111,15 @@
 	};
 
 	/**
-	 * Category selector tag item widget. Extends OO.ui.TagItemWidget with the ability to link
-	 * to the given page, and to show its existence status (i.e., whether it is a redlink).
+	 * @classdesc Extends OO.ui.TagItemWidget with the ability to link to the given page,
+	 * and to show its existence status (whether it is a redlink).
 	 *
 	 * @class mw.widgets.CategoryTagItemWidget
 	 * @uses mw.Api
 	 * @extends OO.ui.TagItemWidget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.CategoryTagItemWidget`.
 	 * @param {Object} config Configuration options
 	 * @param {mw.Title} config.title Page title to use (required)
 	 * @param {string} [config.apiUrl] API URL, if not the current wiki's API

@@ -7,8 +7,7 @@
 ( function () {
 
 	/**
-	 * UsersMultiselectWidget can be used to input list of users in a single
-	 * line.
+	 * @classdesc Input list of users in a single line.
 	 *
 	 * If used inside HTML form the results will be sent as the list of
 	 * newline-separated usernames.
@@ -20,6 +19,7 @@
 	 * @extends OO.ui.MenuTagMultiselectWidget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.UsersMultiselectWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {mw.Api} [config.api] Instance of mw.Api (or subclass thereof) to use for queries
 	 * @param {number} [config.limit=10] Number of results to show in autocomplete menu

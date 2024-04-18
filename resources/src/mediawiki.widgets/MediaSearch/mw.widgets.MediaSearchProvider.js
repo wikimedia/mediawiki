@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * MediaWiki media search provider.
+	 * @classdesc Media search provider.
 	 *
 	 * @class
 	 * @extends mw.widgets.MediaResourceProvider
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.MediaSearchProvider`.
 	 * @param {string} apiurl The API url
 	 * @param {Object} [config] Configuration options
 	 */

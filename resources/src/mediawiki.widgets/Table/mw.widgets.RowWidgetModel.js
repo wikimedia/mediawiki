@@ -5,12 +5,13 @@
  */
 
 /**
- * RowWidget model.
+ * @classdesc RowWidget model.
  *
  * @class
  * @mixes OO.EventEmitter
  *
  * @constructor
+ * @description Create an instance of `mw.widgets.RowWidgetModel`.
  * @param {Object} [config] Configuration options
  * @param {Array} [config.data] An array containing all values of the row
  * @param {Array} [config.keys] An array of keys for easy cell selection

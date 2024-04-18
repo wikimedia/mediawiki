@@ -1,5 +1,5 @@
 /**
- * A TableWidget groups {@link mw.widgets.RowWidget row widgets} together to form a bidimensional
+ * @classdesc Groups {@link mw.widgets.RowWidget row widgets} together to form a bidimensional
  * grid of text inputs.
  *
  * @class
@@ -7,6 +7,7 @@
  * @mixes OO.ui.mixin.GroupElement
  *
  * @constructor
+ * @description Create an instance of `mw.widgets.TableWidget`.
  * @param {mw.widgets.TableWidgetModel~Config} [config] Configuration options
  */
 mw.widgets.TableWidget = function MwWidgetsTableWidget( config ) {

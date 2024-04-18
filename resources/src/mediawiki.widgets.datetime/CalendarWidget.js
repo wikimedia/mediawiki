@@ -1,8 +1,6 @@
 ( function () {
 
 	/**
-	 * A widget for selecting a date from a calendar.
-	 *
 	 * @classdesc CalendarWidget displays a calendar that can be used to select a date. It
 	 * uses {@link mw.widgets.datetime.DateTimeFormatter DateTimeFormatter} to get the details of
 	 * the calendar.
@@ -16,6 +14,7 @@
 	 * @mixes OO.ui.mixin.TabIndexedElement
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.CalendarWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object|mw.widgets.datetime.DateTimeFormatter} [config.formatter={}] Configuration options for
 	 *  {@link mw.widgets.datetime.ProlepticGregorianDateTimeFormatter}, or an

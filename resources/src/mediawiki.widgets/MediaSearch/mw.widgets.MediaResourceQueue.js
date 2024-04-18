@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * MediaWiki media resource queue.
+	 * @classdesc Media resource queue.
 	 *
 	 * @class
 	 * @extends mw.widgets.APIResultsQueue
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.MediaResourceQueue`.
 	 * @param {Object} [config] Configuration options
 	 * @param {number} config.maxHeight The maximum height of the media, used in the
 	 *  search call to the API.

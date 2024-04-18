@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * Like TitleInputWidget, but the namespace has to be input through a separate dropdown field.
+	 * @classdesc Like TitleInputWidget, but the namespace has to be input through a separate dropdown field.
 	 *
 	 * @class
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.ComplexTitleInputWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object} config.namespace Configuration for the NamespaceInputWidget dropdown with list of
 	 *     namespaces

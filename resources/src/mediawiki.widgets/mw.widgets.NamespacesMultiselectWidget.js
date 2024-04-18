@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.NamespacesMultiselectWidget object.
+	 * @classdesc Namespaces multiselect widget.
 	 *
 	 * TODO: A lot of this is duplicated in mw.widgets.UsersMultiselectWidget
 	 * and mw.widgets.TitlesMultiselectWidget. These classes should be
@@ -17,6 +17,7 @@
 	 * @extends OO.ui.MenuTagMultiselectWidget
 	 *
 	 * @constructor
+	 * @description Create an mw.widgets.NamespacesMultiselectWidget object.
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.NamespacesMultiselectWidget = function MwWidgetsNamespacesMultiselectWidget( config ) {

@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.MediaResultWidget object.
+	 * @classdesc Media result widget.
 	 *
 	 * @class
 	 * @extends OO.ui.OptionWidget
 	 *
 	 * @constructor
+	 * @description Creates an mw.widgets.MediaResultWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {number} [config.rowHeight] Height of the row this result is part of
 	 * @param {number} [config.maxRowWidth] A limit for the width of the row this

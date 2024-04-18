@@ -1,9 +1,9 @@
 ( function () {
 
 	/**
-	 * A DateTimeFormatter for the proleptic Gregorian calendar.
+	 * @classdesc DateTimeFormatter for the proleptic Gregorian calendar.
 	 *
-	 * @classdesc Provides various methods needed for formatting dates and times. This
+	 * Provides various methods needed for formatting dates and times. This
 	 * implementation implements the proleptic Gregorian calendar over years
 	 * 0000–9999.
 	 *
@@ -11,6 +11,7 @@
 	 * @extends mw.widgets.datetime.DateTimeFormatter
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.datetime.ProlepticGregorianDateTimeFormatter`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object} [config.fullMonthNames] Mapping 1–12 to full month names.
 	 * @param {Object} [config.shortMonthNames] Mapping 1–12 to abbreviated month names.

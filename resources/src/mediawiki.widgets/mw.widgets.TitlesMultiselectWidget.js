@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.TitlesMultiselectWidget object.
+	 * @classdesc Titles multiselect widget.
 	 *
 	 * @class
 	 * @extends OO.ui.MenuTagMultiselectWidget
@@ -16,6 +16,7 @@
 	 * @mixes mw.widgets.TitleWidget
 	 *
 	 * @constructor
+	 * @description Create an mw.widgets.TitlesMultiselectWidget object.
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.TitlesMultiselectWidget = function MwWidgetsTitlesMultiselectWidget( config ) {

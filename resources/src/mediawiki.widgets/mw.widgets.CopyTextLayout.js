@@ -6,12 +6,13 @@
  */
 
 /**
- * Extends CopyTextLayout with MediaWiki notifications.
+ * @classdesc Extends CopyTextLayout with MediaWiki notifications.
  *
  * @class
  * @extends OO.ui.CopyTextLayout
  *
  * @constructor
+ * @description Create an instance of `mw.widgets.CopyTextLayout`.
  * @param {Object} [config] Configuration options
  * @param {string} [config.successMessage] Success message,
  *  defaults to the {@link mw.Message} 'mw-widgets-copytextlayout-copy-success'.

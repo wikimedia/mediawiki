@@ -8,9 +8,9 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.CalendarWidget object.
+	 * @classdesc Calendar widget.
 	 *
-	 * You will most likely want to use mw.widgets.DateInputWidget instead of CalendarWidget directly.
+	 * You will most likely want to use {@link mw.widgets.DateInputWidget} instead of CalendarWidget directly.
 	 *
 	 * @class
 	 * @extends OO.ui.Widget
@@ -19,6 +19,7 @@
 	 * @mixes OO.ui.mixin.ClippableElement
 	 *
 	 * @constructor
+	 * @description Creates an mw.widgets.CalendarWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {boolean} [config.lazyInitOnToggle=false] Don't build most of the interface until
 	 *     `.toggle( true )` is called. Meant to be used when the calendar is not immediately visible.

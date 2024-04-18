@@ -7,13 +7,14 @@
 ( function () {
 
 	/**
-	 * Namespace input widget. Displays a dropdown box with the choice of available namespaces, plus
-	 * two checkboxes to include associated namespace or to invert selection.
+	 * @classdesc Displays a dropdown box with the choice of available namespaces,
+	 * plus two checkboxes to include associated namespace or to invert selection.
 	 *
 	 * @class
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.ComplexNamespaceInputWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object} config.namespace Configuration for the NamespaceInputWidget dropdown with list
 	 *     of namespaces
