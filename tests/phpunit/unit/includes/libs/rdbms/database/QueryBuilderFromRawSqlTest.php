@@ -88,7 +88,7 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 			],
 			[
 				'CREATE TEMPORARY TABLE foo (id INT)',
-				'CREATE TEMPORARY', SQLPlatform::QUERY_CHANGE_SCHEMA | SQLPlatform::QUERY_CREATE_TEMP,
+				'CREATE TEMPORARY', SQLPlatform::QUERY_CHANGE_SCHEMA,
 			],
 			[
 				'CREATE INDEX foo ON bar (baz)',
