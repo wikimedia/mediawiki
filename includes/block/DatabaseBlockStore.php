@@ -1151,7 +1151,7 @@ class DatabaseBlockStore {
 	 * @param int[] $targetIds
 	 * @param int $delta The amount to decrement by
 	 */
-	private function releaseTargets( IDatabase $dbw, $targetIds, $delta = 1 ) {
+	private function releaseTargets( IDatabase $dbw, $targetIds, int $delta = 1 ) {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'block_target' )
 			->set( "bt_count=bt_count-$delta" )
