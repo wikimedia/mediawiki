@@ -378,13 +378,13 @@ class DBConnRef implements IMaintainableDatabase {
 
 	public function estimateRowCount(
 		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
-	) {
+	): int {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function selectRowCount(
 		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
-	) {
+	): int {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

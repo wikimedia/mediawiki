@@ -833,7 +833,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				],
 				$this->isType( 'string' )
 			)
-			->willReturn( '9' );
+			->willReturn( 9 );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'set' );
@@ -1161,6 +1161,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
 			->with( '0:Some_Page:1' );
+		$mockDb->method( 'select' )->willReturn( new FakeResultWrapper( [] ) );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
@@ -3325,7 +3326,10 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				},
 			]
 		);
+		$mockDb = $this->getMockDb();
+		$mockDb->method( 'select' )->willReturn( new FakeResultWrapper( [] ) );
 		$store = $this->newWatchedItemStore( [
+			'db' => $mockDb,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'stash' => $stash,
