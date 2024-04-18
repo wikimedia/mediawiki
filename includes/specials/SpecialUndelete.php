@@ -903,17 +903,16 @@ class SpecialUndelete extends SpecialPage {
 			$lang->userDate( $file->getTimestamp(), $user ),
 			$lang->userTime( $file->getTimestamp(), $user ) );
 		$out->addHTML(
-			Xml::openElement( 'form', [
+			Html::rawElement( 'form', [
 					'method' => 'POST',
 					'action' => $this->getPageTitle()->getLocalURL( [
 						'target' => $this->mTarget,
 						'file' => $key,
 						'token' => $user->getEditToken( $key ),
 					] ),
-				]
-			) .
-				Xml::submitButton( $this->msg( 'undelete-show-file-submit' )->text() ) .
-				'</form>'
+				],
+				Xml::submitButton( $this->msg( 'undelete-show-file-submit' )->text() )
+			)
 		);
 	}
 
