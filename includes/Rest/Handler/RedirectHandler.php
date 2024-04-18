@@ -8,7 +8,24 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\RouteDefinitionException;
 
 /**
- * A generic redirect handler for the REST API
+ * A generic redirect handler for the REST API.
+ *
+ * To declare a redirect in a route file, use the following structure:
+ * @code
+ * {
+ *     "path": "/path/to/trigger/a/redirect/{foo}",
+ *     "redirect": {
+ *         "path": "/redirect/target/{foo}",
+ *         "code": 302
+ *     }
+ * }
+ * @endcode
+ *
+ * It is not necessary to specify the handler class.
+ * The default status code is 308.
+ * Path parameters and query parameters will be looped through.
+ *
+ * @since 1.43
  * @package MediaWiki\Rest\Handler
  */
 class RedirectHandler extends Handler {
