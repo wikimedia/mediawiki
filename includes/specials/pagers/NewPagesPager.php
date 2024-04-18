@@ -23,7 +23,6 @@ namespace MediaWiki\Pager;
 
 use ChangesList;
 use ChangeTags;
-use HtmlArmor;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
@@ -61,6 +60,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 	/** @var string[] */
 	private $formattedComments = [];
+	/** @var bool Whether to group items by date by default this is disabled, but eventually the intention
+	 * should be to default to true once all pages have been transitioned to support date grouping.
+	 */
+	public $mGroupByDate = true;
 
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private HookRunner $hookRunner;
@@ -235,17 +238,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		$lang = $this->getLanguage();
 		$dm = $lang->getDirMark();
+		$time = ChangesList::revDateLink( $revRecord, $this->getUser(), $lang, null, 'mw-newpages-time' );
 
-		$spanTime = Html::element( 'span', [ 'class' => 'mw-newpages-time' ],
-			$lang->userTimeAndDate( $row->rc_timestamp, $this->getUser() )
-		);
 		$linkRenderer = $this->getLinkRenderer();
-		$time = $linkRenderer->makeKnownLink(
-			$title,
-			new HtmlArmor( $spanTime ),
-			[],
-			[ 'oldid' => $row->rc_this_oldid ]
-		);
 
 		$query = $title->isRedirect() ? [ 'redirect' => 'no' ] : [];
 
@@ -364,6 +359,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	protected function revisionFromRcResult( stdClass $result, Title $title ): RevisionRecord {
 		$revRecord = new MutableRevisionRecord( $title );
+		$revRecord->setTimestamp( $result->rc_timestamp );
+		$revRecord->setId( $result->rc_this_oldid );
 		$revRecord->setVisibility( (int)$result->rc_deleted );
 
 		$user = new UserIdentityValue(
@@ -389,12 +386,18 @@ class NewPagesPager extends ReverseChronologicalPager {
 		);
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getStartBody() {
-		return '<ul>';
+		return "<section class='mw-pager-body'>\n";
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getEndBody() {
-		return '</ul>';
+		return "</section>\n";
 	}
 }
 
