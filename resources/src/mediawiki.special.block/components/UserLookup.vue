@@ -99,7 +99,7 @@ module.exports = defineComponent( {
 					const results = data.allusers.map( ( result ) => {
 						return {
 							label: result.name,
-							value: result.userid
+							value: result.name
 						};
 					} );
 
