@@ -82,10 +82,6 @@ class QueryBuilderFromRawSql {
 					$flags |= SQLPlatform::QUERY_CHANGE_NONE;
 				}
 			}
-
-			if ( self::isCreateTemporaryTable( $sql ) ) {
-				$flags |= SQLPlatform::QUERY_CREATE_TEMP;
-			}
 		}
 
 		return new Query(
@@ -166,10 +162,6 @@ class QueryBuilderFromRawSql {
 			return $tableName;
 		}
 		return null;
-	}
-
-	private static function isCreateTemporaryTable( $sql ) {
-		return (bool)preg_match( '/^CREATE\s+TEMPORARY\s+TABLE\s+/i', $sql );
 	}
 
 	/**

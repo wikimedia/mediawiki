@@ -789,7 +789,6 @@ class DatabaseSqlite extends Database {
 					'CREATE TEMPORARY TABLE',
 					$sqlCreateTable
 				);
-				$flags |= self::QUERY_CREATE_TEMP;
 			}
 		}
 
