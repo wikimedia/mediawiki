@@ -1071,7 +1071,7 @@ abstract class ContentHandler {
 			->limit( 20 );
 		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
-		if ( $res === false ) {
+		if ( !$res->numRows() ) {
 			// This page has no revisions, which is very weird
 			return false;
 		}

@@ -451,7 +451,7 @@ class UploadStash {
 			->where( [ 'us_user' => $this->user->getId() ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
-		if ( !is_object( $res ) || $res->numRows() == 0 ) {
+		if ( $res->numRows() == 0 ) {
 			// nothing to do.
 			return false;
 		}

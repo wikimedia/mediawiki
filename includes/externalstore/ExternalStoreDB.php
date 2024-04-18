@@ -355,9 +355,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			->fetchResultSet();
 
 		$ret = [];
-		if ( $res !== false ) {
-			$this->mergeBatchResult( $ret, $ids, $res );
-		}
+		$this->mergeBatchResult( $ret, $ids, $res );
 		if ( $ids ) {
 			// Try the primary
 			$this->logger->info(
@@ -374,11 +372,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				->caller( __METHOD__ )
 				->fetchResultSet();
 			ScopedCallback::consume( $scope );
-			if ( $res === false ) {
-				$this->logger->error( __METHOD__ . ": primary failed on '$cluster'" );
-			} else {
-				$this->mergeBatchResult( $ret, $ids, $res );
-			}
+			$this->mergeBatchResult( $ret, $ids, $res );
 		}
 		if ( $ids ) {
 			$this->logger->error(

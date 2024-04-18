@@ -77,7 +77,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 				->from( 'image' )
 				->where( [ 'img_name' => $file ] )
 				->caller( __METHOD__ )->fetchResultSet();
-			if ( !$res ) {
+			if ( !$res->numRows() ) {
 				$this->fatalError( "No such file: $file" );
 			}
 			$this->output( "Populating img_sha1 field for specified files\n" );

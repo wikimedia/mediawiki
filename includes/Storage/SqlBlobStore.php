@@ -38,7 +38,6 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Service for storing and loading Content objects representing revision data blobs.
@@ -399,10 +398,7 @@ class SqlBlobStore implements BlobStore {
 			->where( [ 'old_id' => $textIds ] )
 			->options( $options )
 			->caller( __METHOD__ )->fetchResultSet();
-		$numRows = 0;
-		if ( $rows instanceof IResultWrapper ) {
-			$numRows = $rows->numRows();
-		}
+		$numRows = $rows->numRows();
 
 		// Fallback to DB_PRIMARY in some cases if not all the rows were found, using the appropriate
 		// options, such as FOR UPDATE to avoid missing rows due to REPEATABLE-READ.
