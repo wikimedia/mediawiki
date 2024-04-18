@@ -33,13 +33,15 @@
 	}
 
 	/**
-	 * Constructor to create an object to interact with the REST API of a particular MediaWiki server.
-	 * mw.Rest objects represent the REST API of a particular MediaWiki server.
+	 * @classdesc Interact with the REST API. mw.Rest is a client library
+	 * for the [REST API](https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API).
+	 * An mw.Rest object represents the REST API of a MediaWiki site.
+	 * For the action API, see {@link mw.Api}.
 	 *
 	 * @example
 	 * var api = new mw.Rest();
 	 * api.get( '/v1/page/Main_Page/html' )
-	 * .done( function ( data ) {
+	 * .then( function ( data ) {
 	 *     console.log( data );
 	 * } );
 	 *
@@ -51,11 +53,12 @@
 	 * }, {
 	 *     'authorization': 'token'
 	 * } )
-	 * .done( function ( data ) {
+	 * .then( function ( data ) {
 	 *     console.log( data );
 	 * } );
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.Rest`.
 	 * @param {mw.Rest.Options} [options] See {@link mw.Rest.Options}
 	 */
 	mw.Rest = function ( options ) {

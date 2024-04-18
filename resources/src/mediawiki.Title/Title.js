@@ -403,15 +403,8 @@ var toUpperMap,
 	};
 
 /**
- * Parse titles into an object structure. Note that when using the constructor
- * directly, passing invalid titles will result in an exception.
- * Use [newFromText]{@link mw.Title.newFromText} to use the
- * logic directly and get null for invalid titles which is easier to work with.
- *
- * Note that in the constructor and [newFromText]{@link mw.Title.newFromText} method,
- * `namespace` is the **default** namespace only, and can be overridden by a namespace
- * prefix in `title`. If you do not want this behavior,
- * use [makeTitle]{@link mw.Title.makeTitle}.
+ * @class mw.Title
+ * @classdesc Library for constructing MediaWiki titles.
  *
  * @example
  * new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();
@@ -435,12 +428,20 @@ var toUpperMap,
  * mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();
  * // => 'Template:Template:Foo'
  *
- * @class mw.Title
- * @classdesc Library for constructing MediaWiki titles.
+ * @constructor
+ * @description Parse titles into an object structure. Note that when using the constructor
+ * directly, passing invalid titles will result in an exception.
+ * Use [newFromText]{@link mw.Title.newFromText} to use the
+ * logic directly and get null for invalid titles which is easier to work with.
+ *
+ * Note that in the constructor and [newFromText]{@link mw.Title.newFromText} method,
+ * `namespace` is the **default** namespace only, and can be overridden by a namespace
+ * prefix in `title`. If you do not want this behavior,
+ * use [makeTitle]{@link mw.Title.makeTitle}.
+ *
  * @param {string} title Title of the page. If no second argument given,
  *  this will be searched for a namespace
  * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
- * @constructor
  * @throws {Error} When the title is invalid
  */
 function Title( title, namespace ) {

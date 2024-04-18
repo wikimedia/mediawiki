@@ -1,11 +1,12 @@
 /**
  * @class Dialog
- * @classdesc FeedbackDialog for use within the context mw.Feedback. Typically
+ * @classdesc Feedback dialog for use within the context mw.Feedback. Typically
  * constructed using {@link mw.Feedback#launch} instead of directly using the constructor.
  * @memberof mw.Feedback
  * @extends OO.ui.ProcessDialog
  *
  * @constructor
+ * @description Create an instance of `mw.Feedback.Dialog`.
  * @param {Object} config Configuration object
  */
 function FeedbackDialog( config ) {

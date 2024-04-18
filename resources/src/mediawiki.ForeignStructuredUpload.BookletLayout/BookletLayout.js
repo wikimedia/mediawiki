@@ -2,10 +2,8 @@
 ( function () {
 
 	/**
-	 * Class that encapsulates the process of uploading a file to MediaWiki.
-	 *
 	 * @classdesc Encapsulates the process of uploading a file to MediaWiki
-	 * using the mw.ForeignStructuredUpload model.
+	 * using the {@link mw.ForeignStructuredUpload} model.
 	 *
 	 * @example
 	 * var uploadDialog = new mw.Upload.Dialog( {
@@ -22,6 +20,7 @@
 	 * @extends mw.Upload.BookletLayout
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.ForeignStructuredUpload.BookletLayout`.
 	 * @param {Object} config Configuration options
 	 * @param {string} [config.target] Used to choose the target repository.
 	 *     If nothing is passed, the {@link mw.ForeignUpload#property-target default} is used.

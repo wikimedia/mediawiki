@@ -1,7 +1,8 @@
 module.exports = ( function () {
 
 	/**
-	 * Create an object like {@link mw.Api}, but automatically handling everything required to communicate
+	 * @classdesc Interact with the API of another MediaWiki site. mw.Foreign API creates
+	 * an object like {@link mw.Api}, but automatically handle everything required to communicate
 	 * with another MediaWiki wiki via cross-origin requests (CORS).
 	 *
 	 * The foreign wiki must be configured to accept requests from the current wiki. See
@@ -17,9 +18,9 @@ module.exports = ( function () {
 	 * ```
 	 *
 	 * To ensure that the user at the foreign wiki is logged in, pass the `assert: 'user'` parameter
-	 * to {@link mw.ForeignApi.get}/{@link mw.ForeignApi.post} (since MW 1.23), otherwise the API
-	 * request will fail. (Note that this doesn't guarantee that it's the same user. To assert that
-	 * the user at the foreign wiki has a specific username, pass the `assertuser` parameter with
+	 * to {@link mw.ForeignApi#get get()}/{@link mw.ForeignApi#post post()} (since MW 1.23), otherwise
+	 * the API request will fail. (Note that this doesn't guarantee that it's the same user. To assert
+	 * that the user at the foreign wiki has a specific username, pass the `assertuser` parameter with
 	 * the desired username.)
 	 *
 	 * Authentication-related MediaWiki extensions may extend this class to ensure that the user
@@ -36,6 +37,8 @@ module.exports = ( function () {
 	 * @extends mw.Api
 	 * @since 1.26
 	 *
+	 * @constructor
+	 * @description Create an instance of `mw.ForeignApi`.
 	 * @param {string|mw.Uri} url URL pointing to another wiki's `api.php` endpoint.
 	 * @param {mw.Api.Options} [options] Also accepts all the options from {@link mw.Api.Options}.
 	 * @param {boolean} [options.anonymous=false] Perform all requests anonymously. Use this option if

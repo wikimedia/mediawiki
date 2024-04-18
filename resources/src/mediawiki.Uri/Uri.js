@@ -94,7 +94,7 @@
 		 */
 
 		/**
-		 * Create and manipulate MediaWiki URIs.
+		 * @classdesc Create and manipulate MediaWiki URIs.
 		 *
 		 * Intended to be minimal, but featureful; do not expect full RFC 3986 compliance. The use cases we
 		 * have in mind are constructing 'next page' or 'previous page' URLs, detecting whether we need to
@@ -142,13 +142,12 @@
 		 * Parsing based on parseUri 1.2.2 (c) Steven Levithan <http://stevenlevithan.com>, MIT License.
 		 * <http://stevenlevithan.com/demo/parseuri/js/>
 		 *
-		 * Construct a new URI object. Throws error if arguments are illegal/impossible, or
-		 * otherwise don't parse.
+		 * @class
+		 * @name mw.Uri
 		 *
 		 * @constructor
-		 * @class
-		 * @classdesc Library for simple URI parsing and manipulation.
-		 * @name mw.Uri
+		 * @description Construct a new URI object. Throws error if arguments are illegal/impossible, or
+		 * otherwise don't parse.
 		 * @param {Object|string} [uri] URI string, or an Object with appropriate properties (especially
 		 *  another URI object to clone). Object must have non-blank `protocol`, `host`, and `path`
 		 *  properties. If omitted (or set to `undefined`, `null` or empty string), then an object

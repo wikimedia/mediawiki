@@ -1,13 +1,14 @@
 ( function () {
 	/**
-	 * Encapsulates the user interface of the slideshow galleries.
-	 * An object is instantiated for each `.mw-gallery-slideshow` element.
-	 *
 	 * @class mw.GallerySlideshow
-	 * @classdesc Interface controls for the slideshow gallery. To use first load
+	 * @classdesc Interface controls for the slideshow gallery. To use, first load
 	 * the `mediawiki.page.gallery.slideshow` ResourceLoader module.
 	 * @uses mw.Title
 	 * @uses mw.Api
+	 *
+	 * @constructor
+	 * @description Encapsulates the user interface of the slideshow galleries.
+	 * An object is instantiated for each `.mw-gallery-slideshow` element.
 	 * @param {jQuery} gallery The `<ul>` element of the gallery.
 	 */
 	mw.GallerySlideshow = function ( gallery ) {

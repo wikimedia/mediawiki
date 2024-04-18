@@ -1,13 +1,11 @@
 ( function () {
 
 	/**
-	 * Class for controlling a BookletLayout.
-	 *
-	 * @classdesc mw.Upload.Dialog controls a {@link mw.Upload.BookletLayout BookletLayout}.
+	 * @classdesc Controls a {@link mw.Upload.BookletLayout BookletLayout}.
 	 *
 	 * ## Usage
 	 *
-	 * To use, setup a {@link OO.ui.WindowManager window manager} like for normal
+	 * To use, set up a {@link OO.ui.WindowManager window manager} like for normal
 	 * dialogs:
 	 * ```
 	 * var uploadDialog = new mw.Upload.Dialog();
@@ -32,6 +30,7 @@
 	 * @extends OO.ui.ProcessDialog
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.Upload.Dialog`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Function} [config.bookletClass=mw.Upload.BookletLayout] Booklet class to be
 	 *     used for the steps

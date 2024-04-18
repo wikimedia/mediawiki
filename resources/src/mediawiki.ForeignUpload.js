@@ -3,9 +3,9 @@
 	var config = require( './config.json' );
 
 	/**
-	 * Used to represent an upload in progress on the frontend.
+	 * @classdesc Upload to another MediaWiki site.
 	 *
-	 * @classdesc Subclassed to upload to a foreign API, with no other goodies. Use
+	 * Subclassed to upload to a foreign API, with no other goodies. Use
 	 * this for a generic foreign image repository on your wiki farm.
 	 *
 	 * Note you can provide the `target` or not - if the first argument is
@@ -16,6 +16,7 @@
 	 * @extends mw.Upload
 	 *
 	 * @constructor
+	 * @description Used to represent an upload in progress on the frontend.
 	 * @param {string} [target] Used to set up the target
 	 *     wiki. If not remote, this class behaves identically to mw.Upload (unless further subclassed)
 	 *     Use the same names as set in $wgForeignFileRepos for this. Also,
