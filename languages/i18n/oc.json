@@ -628,6 +628,7 @@
 	"resettokens-watchlist-token": "Geton pel flux (Atom/RSS) web de [[Special:Watchlist|modificacions de paginas de vòstra lista de seguiment]]",
 	"resettokens-done": "Getons reïnicializats.",
 	"resettokens-resetbutton": "Reïnicializar los getons seleccionats",
+	"editrecovery": "Recuperacion de modificacions",
 	"edit-recovery-special-view": "Veire",
 	"edit-recovery-special-edit": "Modificar",
 	"edit-recovery-loaded-message": "Los cambiaments non enregistrats son recuperats automaticament.",

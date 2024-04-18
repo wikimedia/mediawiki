@@ -2755,7 +2755,7 @@
 	"undeletecomment": "Причина:",
 	"undeleteothercomment": "Другая/дополнительная причина:",
 	"undeletecommentotherlist": "Другая причина",
-	"undelete-comment-dropdown": "* Распространённые причины восстановления\n** Запрос автора",
+	"undelete-comment-dropdown": "* Общие причины восстановления\n** Запрос автора",
 	"undelete-edit-commentlist": "Править причины восстановления",
 	"undelete-edit-commentlist-unsuppress": "Править причины сокрытия",
 	"cannotundelete": "Некоторые или все ваши восстановления не удались:\n$1",

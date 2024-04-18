@@ -143,6 +143,7 @@
 	"tog-showrollbackconfirmation": "되돌리기 링크를 클릭할 때 확인창을 표시",
 	"tog-requireemail": "이메일 주소와 사용자 이름이 모두 제공되었을 때만 비밀번호 재설정 메일 보내기",
 	"tog-forcesafemode": "항상 [[mw:Manual:Safemode|안전 모드]] 활성화",
+	"tog-editrecovery": "[[Special:EditRecovery|{{int:editrecovery}}]] 기능 활성화",
 	"tog-editrecovery-help": "[$1 프로젝트의 토론 문서]에서 피드백을 제공할 수 있습니다.",
 	"underline-always": "항상",
 	"underline-never": "항상 긋지 않기",

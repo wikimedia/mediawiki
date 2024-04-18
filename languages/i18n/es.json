@@ -294,6 +294,7 @@
 	"tog-requireemail": "Enviar correos electrónicos de restablecimiento de contraseña solo cuando se proporcionen la dirección de correo electrónico y el nombre de usuario.",
 	"tog-forcesafemode": "Habilitar siempre el [[mw:Manual:Safemode|modo seguro]]",
 	"tog-editrecovery": "Habilitar la herramienta [[Special:EditRecovery|{{int:editrecovery}}]]",
+	"tog-editrecovery-help": "Puedes dejar tus comentarios en la [$1 página de discusión del proyecto].",
 	"underline-always": "Siempre",
 	"underline-never": "Nunca",
 	"underline-default": "Configuración predeterminada de la apariencia o el navegador",
