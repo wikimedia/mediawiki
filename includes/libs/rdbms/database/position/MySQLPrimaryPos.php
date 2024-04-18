@@ -39,9 +39,9 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 	private const GTID_MARIA = 'gtid-maria';
 	private const GTID_MYSQL = 'gtid-mysql';
 
-	/** @var int Key name of the 6 digit binary log index number of a position tuple */
+	/** Key name of the 6 digit binary log index number of a position tuple */
 	public const CORD_INDEX = 0;
-	/** @var int Key name of the 64 bit binary log event number of a position tuple */
+	/** Key name of the 64 bit binary log event number of a position tuple */
 	public const CORD_EVENT = 1;
 
 	/**
