@@ -58,7 +58,7 @@ class DefaultOutputPipelineFactory {
 	 */
 	public function buildPipeline(): OutputTransformPipeline {
 		return ( new OutputTransformPipeline() )
-			->addStage( new ExtractBody() )
+			->addStage( new ExtractBody( $this->logger ) )
 			->addStage( new AddRedirectHeader() )
 			->addStage( new RenderDebugInfo( $this->hookContainer ) )
 			->addStage( new ExecutePostCacheTransformHooks( $this->hookContainer ) )

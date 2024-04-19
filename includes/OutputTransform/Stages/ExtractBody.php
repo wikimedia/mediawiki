@@ -6,7 +6,9 @@ use MediaWiki\Html\HtmlHelper;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use ParserOptions;
+use Psr\Log\LoggerInterface;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
 /**
@@ -14,6 +16,12 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
  * @internal
  */
 class ExtractBody extends ContentTextTransformStage {
+
+	private LoggerInterface $logger;
+
+	public function __construct( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
 		return ( $options['isParsoidContent'] ?? false );
@@ -58,19 +66,15 @@ class ExtractBody extends ContentTextTransformStage {
 		// T350952: temporary fix for subpage paths: use Parsoid's
 		// <base href> to expand relative links
 		$baseHref = '';
-		$pageFragmentPrefix = '';
 		if ( preg_match( '{<base href=["\']([^"\']+)["\'][^>]+>}', $text, $matches ) === 1 ) {
 			$baseHref = $matches[1];
-			// Since we don't have easy access to the title, extract it from the
-			// Parsoid HTML where the title is embedded in the <head>.
-			if ( preg_match(
-				'%<link rel="dc:isVersionOf" href=(?:"([^"]+)"|\'[^\']+\')\s*/>%',
-				$text, $matches ) === 1
-			) {
-				$title = substr( $matches[1], strlen( $baseHref ) );
-				$pageFragmentPrefix = "./" . urldecode( $title ) . "#";
-			}
 		}
+		$title = $po->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY );
+		if ( !$title ) {
+			// We don't think this should ever trigger, but being conservative
+			$this->logger->error( __METHOD__ . ": Missing title information in ParserOutput" );
+		}
+		$pageFragmentPrefix = "./" . $title . "#";
 		foreach ( $po->getIndicators() as $name => $html ) {
 			$po->setIndicator( $name, self::expandRelativeAttrs( $html, $baseHref, $pageFragmentPrefix ) );
 		}
