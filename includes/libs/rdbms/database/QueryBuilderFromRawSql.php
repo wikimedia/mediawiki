@@ -45,8 +45,13 @@ class QueryBuilderFromRawSql {
 	private const SCHEMA_CHANGE_VERBS = [
 		'CREATE',
 		'CREATE TEMPORARY',
+		'CREATE INDEX',
+		'CREATE DATABASE',
 		'ALTER',
+		'ALTER DATABASE',
 		'DROP',
+		'DROP INDEX',
+		'DROP DATABASE',
 	];
 
 	private const TRX_VERBS = [
@@ -54,9 +59,11 @@ class QueryBuilderFromRawSql {
 		'COMMIT',
 		'ROLLBACK',
 		'SAVEPOINT',
-		'RELEASE',
+		'RELEASE SAVEPOINT',
 		'ROLLBACK TO SAVEPOINT',
 	];
+
+	private static string $queryVerbRegex;
 
 	/**
 	 * @param string $sql
@@ -123,12 +130,15 @@ class QueryBuilderFromRawSql {
 	 * @return string
 	 */
 	private static function getQueryVerb( $sql ) {
-		// Distinguish ROLLBACK from ROLLBACK TO SAVEPOINT and CREATE from CREATE TEMPORARY
-		return preg_match(
-			'/^\s*(rollback\s+to\s+savepoint|create\s+temporary|[a-z]+)/i',
-			$sql,
-			$m
-		) ? strtoupper( $m[1] ) : '';
+		// @phan-suppress-next-line PhanRedundantCondition https://github.com/phan/phan/issues/4720
+		if ( !isset( self::$queryVerbRegex ) ) {
+			$multiwordVerbsRegex = implode( '|', array_map(
+				fn ( $words ) => str_replace( ' ', '\s+', $words ),
+				Query::MULTIWORD_VERBS
+			) );
+			self::$queryVerbRegex = "/^\s*($multiwordVerbsRegex|[a-z]+)/i";
+		}
+		return preg_match( self::$queryVerbRegex, $sql, $m ) ? strtoupper( $m[1] ) : '';
 	}
 
 	/**
