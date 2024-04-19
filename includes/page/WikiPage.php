@@ -2896,10 +2896,8 @@ class WikiPage implements Page, PageRecord {
 			->where( [ 'cl_from' => $id, 'pp_propname' => 'hiddencat', 'page_namespace' => NS_CATEGORY ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
-		if ( $res !== false ) {
-			foreach ( $res as $row ) {
-				$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
-			}
+		foreach ( $res as $row ) {
+			$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 		}
 
 		return $result;
