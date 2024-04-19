@@ -80,7 +80,7 @@ Entities inside <pre>
 !! html/parsoid+standalone
 <pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo <span typeof="mw:Entity">→</span>bar</pre>
 !! html/parsoid+integrated
-<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo →bar</pre>
+<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"},"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo →bar</pre>
 !! end
 
 ## Don't expect this to rt, Parsoid drops the unmatched closing pre tags that
@@ -223,7 +223,7 @@ parsoid=wt2html
 <pre>x</pre>
 &lt;pre <table></table>
 !! html/parsoid
-<pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt2" data-parsoid='{"stx":"html","a":{"&lt;pre":null},"sa":{"&lt;pre":""},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre &lt;pre>x&lt;/pre>"}},"i":0}}]}'>x</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt2" data-parsoid='{"stx":"html","a":{"&lt;pre":null},"sa":{"&lt;pre":""},"pi":[[{"k":"1"}]]}' data-mw='{"name":"pre","attrs":{"&lt;pre":""},"body":{"extsrc":"x"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre &lt;pre>x&lt;/pre>"}},"i":0}}]}'>x</pre>
 
 <pre data-parsoid='{"stx":"html","src":"&lt;pre &lt;/table>","tagWidths":[13,0],"a":{"&lt;":null,"table":null},"sa":{"&lt;":"","table":""},"fostered":true,"autoInsertedEnd":true}'></pre><table data-parsoid='{"stx":"html","autoInsertedEnd":true}'></table>
 !! end
