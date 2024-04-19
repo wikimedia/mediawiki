@@ -10,6 +10,7 @@ use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\Expression;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -209,7 +210,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->willReturn( [
+			->willReturn( new FakeResultWrapper( [
 				(object)[
 					'rc_id' => 1,
 					'rc_namespace' => 0,
@@ -237,7 +238,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				],
-			] );
+			] ) );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUserWithId( 1 );
@@ -333,7 +334,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'extension_dummy_join_cond' => [],
 				]
 			)
-			->willReturn( [
+			->willReturn( new FakeResultWrapper( [
 				(object)[
 					'rc_id' => 1,
 					'rc_namespace' => 0,
@@ -352,7 +353,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				],
-			] );
+			] ) );
 
 		$user = $this->getMockUserWithId( 1 );
 
@@ -846,7 +847,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$expectedDbOptions,
 				$expectedJoinConds
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUserWithId( 1 );
@@ -881,7 +882,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$user = $this->getMockUserWithId( 1, false );
 
@@ -948,7 +949,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 		$mockDb->method( 'getType' )
 			->willReturn( $dbType );
 
@@ -1064,7 +1065,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'page' => [ 'LEFT JOIN', 'rc_cur_id=page_id' ],
 				], $expectedExtraJoins )
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$user = $this->getMockUserWithId( 1, false, $notAllowedAction );
 
@@ -1106,7 +1107,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUserWithId( 1 );
@@ -1234,7 +1235,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUserWithId( 1 );
@@ -1276,7 +1277,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUserWithId( 1 );
@@ -1304,7 +1305,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$user = $this->getMockUserWithId( 1 );
 		$otherUser = $this->getMockUserWithId( 2, true );
@@ -1332,7 +1333,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 				[ 'wl_user' => 1 ]
 			)
-			->willReturn( [
+			->willReturn( new FakeResultWrapper( [
 				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'Foo1',
@@ -1343,7 +1344,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'wl_title' => 'Foo2',
 					'wl_notificationtimestamp' => null,
 				],
-			] );
+			] ) );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUserWithId( 1 );
@@ -1443,7 +1444,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'string' ),
 				$expectedDbOptions
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$queryService = $this->newService( $mockDb );
 
@@ -1554,7 +1555,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'string' ),
 				$expectedDbOptions
 			)
-			->willReturn( [] );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$queryService = $this->newService( $mockDb );
 

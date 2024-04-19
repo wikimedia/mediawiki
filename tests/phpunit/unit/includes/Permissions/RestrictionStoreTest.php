@@ -26,6 +26,7 @@ use UnexpectedValueException;
 use WANObjectCache;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -961,10 +962,10 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	public function testGetCascadeProtectionSources() {
 		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [ 'select' =>
 			static function () {
-				return [
+				return new FakeResultWrapper( [
 					(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test',
 						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop' ]
-				];
+				] );
 			}
 		] ] ] );
 

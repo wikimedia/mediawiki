@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 
 /**
@@ -133,7 +134,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 			->method( 'select' )
 			// only testing second parameter of Database::select
 			->with( 'some_table', $columns )
-			->willReturn( new ArrayIterator( [] ) );
+			->willReturn( new FakeResultWrapper( [] ) );
 
 		$reader = new BatchRowIterator( $db, 'some_table', $primaryKeys, 22 );
 		$reader->setFetchColumns( $fetchColumns );
@@ -214,8 +215,8 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 	protected function consecutivelyReturnFromSelect( array $results ) {
 		$retvals = [];
 		foreach ( $results as $rows ) {
-			// The Database::select method returns iterators, so we do too.
-			$retvals[] = $this->returnValue( new ArrayIterator( $rows ) );
+			// The Database::select method returns result wrapper, so we do too.
+			$retvals[] = $this->returnValue( new FakeResultWrapper( $rows ) );
 		}
 
 		return $this->onConsecutiveCalls( ...$retvals );
