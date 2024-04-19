@@ -170,7 +170,8 @@ class SearchSuggestionSet {
 		foreach ( $this->suggestions as $k => $s ) {
 			$titleId = $s->getSuggestedTitleID();
 			if ( ( $titleId != null && $titleId === $suggestion->getSuggestedTitleID() )
-				 || $s->getText() === $suggestion->getText() ) {
+				|| $s->getText() === $suggestion->getText()
+			) {
 				array_splice( $this->suggestions, $k, 1 );
 				unset( $this->pageMap[$s->getSuggestedTitleID()] );
 				return true;

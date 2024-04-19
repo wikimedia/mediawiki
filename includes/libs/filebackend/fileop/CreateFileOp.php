@@ -35,7 +35,7 @@ class CreateFileOp extends FileOp {
 	protected function doPrecheck(
 		FileStatePredicates $opPredicates,
 		FileStatePredicates $batchPredicates
-	 ) {
+	) {
 		$status = StatusValue::newGood();
 
 		// Check if the source data is too big

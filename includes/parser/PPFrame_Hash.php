@@ -324,8 +324,7 @@ class PPFrame_Hash implements PPFrame {
 				# OT_WIKI will only respect <ignore> in substed templates.
 				# The other output types respect it unless NO_IGNORE is set.
 				# extractSections() sets NO_IGNORE and so never respects it.
-				if ( ( !isset( $this->parent ) &&
-					   $this->parser->getOutputType() === Parser::OT_WIKI )
+				if ( ( !isset( $this->parent ) && $this->parser->getOutputType() === Parser::OT_WIKI )
 					|| ( $flags & PPFrame::NO_IGNORE )
 				) {
 					$out .= $contextChildren[0];

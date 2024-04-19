@@ -26,7 +26,7 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $actors as $description => $row ) {
-			 $this->db->newInsertQueryBuilder()
+			$this->db->newInsertQueryBuilder()
 				->insertInto( 'actor' )
 				->ignore()
 				->row( $row )

@@ -72,7 +72,7 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 		if ( $class == "ParserOutput" || $class == "MediaWiki\\Parser\\ParserOutput" ) {
 			$class = ParserOutput::class; // T353835
 		} elseif ( $class !== stdClass::class &&
-			 !( class_exists( $class ) && is_subclass_of( $class, JsonUnserializable::class ) )
+			!( class_exists( $class ) && is_subclass_of( $class, JsonUnserializable::class ) )
 		) {
 			throw new JsonException( "Invalid target class {$class}" );
 		}

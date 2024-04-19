@@ -381,10 +381,10 @@ class RestrictionStore {
 			$loadRestrictionsFromDb = static function ( IReadableDatabase $dbr ) use ( $fname, $id ) {
 				return iterator_to_array(
 					$dbr->newSelectQueryBuilder()
-					->select( [ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ] )
-					->from( 'page_restrictions' )
-					->where( [ 'pr_page' => $id ] )
-					->caller( $fname )->fetchResultSet()
+						->select( [ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ] )
+						->from( 'page_restrictions' )
+						->where( [ 'pr_page' => $id ] )
+						->caller( $fname )->fetchResultSet()
 				);
 			};
 

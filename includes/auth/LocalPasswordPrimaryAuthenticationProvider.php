@@ -266,7 +266,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 					'user_password' => $pwhash->toString(),
 					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable expiry is set together with pwhash
 					'user_password_expires' => $dbw->timestampOrNull( $expiry ),
-				 ] )
+				] )
 				->where( [ 'user_name' => $username ] )
 				->caller( __METHOD__ )->execute();
 		}

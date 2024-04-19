@@ -11,7 +11,7 @@ class ServerInfoTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	private function serverConfigs(
-		 $extra = [], $flags = DBO_DEFAULT
+		$extra = [], $flags = DBO_DEFAULT
 	) {
 		return [
 			// Primary DB

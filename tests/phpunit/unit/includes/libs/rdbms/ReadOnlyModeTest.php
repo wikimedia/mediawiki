@@ -136,7 +136,7 @@ class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 			->willReturn( $params['lbMessage'] );
 		$lbf = $this->createMock( ILBFactory::class );
 		$lbf->method( 'getMainLB' )
-		   ->willReturn( $lb );
+			->willReturn( $lb );
 		return $lbf;
 	}
 

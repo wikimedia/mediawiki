@@ -471,7 +471,7 @@ class Category {
 				->set( [
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,
-					 'cat_files' => $result->files
+					'cat_files' => $result->files
 				] )
 				->caller( __METHOD__ )->execute();
 			// @todo: Should we update $this->mID here? Or not since Category

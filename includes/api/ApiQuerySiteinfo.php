@@ -1033,7 +1033,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				}
 			} elseif ( is_string( $cond[0] ) ) {
 				// Returns $cond directly, if $cond[0] is a string
-				 $config = $cond;
+				$config = $cond;
 			} else {
 				// When $cond is equal to an APCOND_ constant value
 				$params = array_slice( $cond, 1 );

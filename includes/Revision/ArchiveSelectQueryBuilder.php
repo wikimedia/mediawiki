@@ -53,8 +53,8 @@ class ArchiveSelectQueryBuilder extends SelectQueryBuilder {
 			'ar_user' => 'archive_actor.actor_user',
 			'ar_user_text' => 'archive_actor.actor_name',
 		] )
-			 ->from( 'archive' )
-			 ->join( 'actor', 'archive_actor', 'actor_id=ar_actor' );
+			->from( 'archive' )
+			->join( 'actor', 'archive_actor', 'actor_id=ar_actor' );
 	}
 
 	/**

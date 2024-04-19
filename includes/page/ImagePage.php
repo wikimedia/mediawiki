@@ -281,8 +281,8 @@ class ImagePage extends Article {
 		}
 
 		return Html::rawElement( 'ul', [
-		  'id' => 'filetoc',
-		  'role' => 'navigation'
+			'id' => 'filetoc',
+			'role' => 'navigation'
 		], implode( "\n", $r ) );
 	}
 
