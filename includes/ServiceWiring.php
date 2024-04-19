@@ -1382,6 +1382,11 @@ return [
 			),
 			$services->getStatsFactory(),
 			LoggerFactory::getProvider(),
+			// Prevent a recursive service instantiation on DBLoadBalancerFactory
+			// and ensure the service keeps working when DB storage is disabled.
+			static function () use ( $services ) {
+				return $services->getDBLoadBalancerFactory();
+			},
 			WikiMap::getCurrentWikiDbDomain()->getId()
 		);
 	},
