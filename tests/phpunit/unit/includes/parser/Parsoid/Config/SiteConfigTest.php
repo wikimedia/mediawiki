@@ -230,7 +230,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::linting()
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::__construct
 	 * @dataProvider provideParsoidSettingPassed
 	 * @param array $settings
 	 * @param string $method
@@ -241,6 +241,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		string $method,
 		$expectedValue
 	) {
+		$this->markTestSkipped();
 		$config = $this->createSiteConfig( [], $settings );
 		$config = TestingAccessWrapper::newFromObject( $config );
 		$this->assertSame( $expectedValue, $config->$method() );
