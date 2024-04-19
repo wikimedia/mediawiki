@@ -2732,14 +2732,10 @@ class Parser {
 					# See T2087, T87753, T174639, T359886
 					$s = preg_replace( '/\n\s*$/', '', $s . $prefix ) . $trail;
 
-					if ( $wasblank ) {
-						$sortkey = $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
-					} else {
+					$sortkey = ''; // filled in by CategoryLinksTable
+					if ( !$wasblank ) {
 						$sortkey = $text;
 					}
-					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
-					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $this->getTargetLanguageConverter()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt, $sortkey );
 
 					continue;
