@@ -1940,10 +1940,21 @@ class EditPage implements IEditObject {
 	private function doPostEditRedirect( $query, $anchor ) {
 		$out = $this->context->getOutput();
 		$url = $this->mTitle->getFullURL( $query ) . $anchor;
-		if ( $this->tempUserCreateDone ) {
+		$user = $this->getUserForSave();
+		// If the temporary account was created in this request,
+		// or if the temporary account has zero edits (implying
+		// that the account was created during a failed edit
+		// attempt in a previous request), perform the top-level
+		// redirect to ensure the account is attached.
+		// Note that the temp user could already have performed
+		// the top-level redirect if this a first edit on
+		// a wiki that is not the user's home wiki.
+		$shouldRedirectForTempUser = $this->tempUserCreateDone ||
+			$user->isTemp() && $user->getEditCount() === 0;
+		if ( $shouldRedirectForTempUser ) {
 			$this->getHookRunner()->onTempUserCreatedRedirect(
 				$this->context->getRequest()->getSession(),
-				$this->getUserForSave(),
+				$user,
 				$this->mTitle->getPrefixedDBkey(),
 				$query,
 				$anchor,

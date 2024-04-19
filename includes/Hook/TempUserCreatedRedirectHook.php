@@ -15,7 +15,13 @@ use MediaWiki\User\UserIdentity;
 interface TempUserCreatedRedirectHook {
 	/**
 	 * This hook is called after an action causes a temporary user to be
-	 * created. The handler may modify the redirect URL.
+	 * created or after the first successful edit for a temporary account.
+	 * The handler may modify the redirect URL.
+	 *
+	 * To differentiate between invocations of this hook where a) the account
+	 * was created in the current request and b) the account existed, but made
+	 * a first successful edit, one can examine the registration date of the
+	 * account.
 	 *
 	 * @since 1.39
 	 *

@@ -607,12 +607,22 @@ class ApiEditPage extends ApiBase {
 				}
 				$this->persistGlobalSession();
 
-				if ( isset( $result['savedTempUser'] ) ) {
+				// If the temporary account was created in this request,
+				// or if the temporary account has zero edits (implying
+				// that the account was created during a failed edit
+				// attempt in a previous request), perform the top-level
+				// redirect to ensure the account is attached.
+				// Note that the temp user could already have performed
+				// the top-level redirect if this a first edit on
+				// a wiki that is not the user's home wiki.
+				$shouldRedirectForTempUser = isset( $result['savedTempUser'] ) ||
+					$user->isTemp() && $user->getEditCount() === 0;
+				if ( $shouldRedirectForTempUser ) {
 					$r['tempusercreated'] = true;
 					$params['returnto'] ??= $titleObj->getPrefixedDBkey();
 					$redirectUrl = $this->getTempUserRedirectUrl(
 						$params,
-						$result['savedTempUser']
+						$result['savedTempUser'] ?? $user
 					);
 					if ( $redirectUrl ) {
 						$r['tempusercreatedredirect'] = $redirectUrl;
