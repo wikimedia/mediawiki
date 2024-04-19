@@ -725,6 +725,7 @@
 	"resettokens-resetbutton": "Geselecteerde tokens opnieuw instellen",
 	"editrecovery": "Bewerkingen herstellen",
 	"edit-recovery-nojs-placeholder": "JavaScript is vereist voor de functie Bewerkingen herstellen.",
+	"edit-recovery-special-user-not-enabled": "U kunt deze functie inschakelen in [[Special:Preferences#mw-prefsection-editing|uw voorkeuren]].",
 	"edit-recovery-special-intro": "U hebt niet-opgeslagen wijzigingen in de volgende {{PLURAL:$1|pagina of sectie|pagina’s en/of secties}}:",
 	"edit-recovery-special-intro-empty": "U hebt geen niet-opgeslagen wijzigingen.",
 	"edit-recovery-special-view": "bekijken",

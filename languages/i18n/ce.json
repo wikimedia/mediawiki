@@ -142,7 +142,6 @@
 	"index-category": "Меттигтерахьйо агӀонаш",
 	"noindex-category": "ДӀахьушйоцу агӀонаш",
 	"broken-file-category": "{{#switch:{{NAMESPACE}}\n |{{ns:0}}=Болх ца бен файлийн хьажоргаш йолу агӀонаш}}",
-	"categoryviewer-pagedlinks": "\"$1\" ($2)",
 	"about": "Цуьнах лаьцна",
 	"article": "Йаззам",
 	"newwindow": "(керлачу корехь)",
