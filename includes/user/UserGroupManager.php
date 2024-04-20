@@ -867,7 +867,7 @@ class UserGroupManager {
 				// Update the current row if its expiry does not match that of the loaded row
 				$conds[] = $expiry
 					? $dbw->expr( 'ug_expiry', '=', null )
-						  ->or( 'ug_expiry', '!=', $dbw->timestamp( $expiry ) )
+						->or( 'ug_expiry', '!=', $dbw->timestamp( $expiry ) )
 					: $dbw->expr( 'ug_expiry', '!=', null );
 			} else {
 				// Update the current row if it is expired
@@ -1008,7 +1008,7 @@ class UserGroupManager {
 	 * @internal
 	 */
 	public function newQueryBuilder( IReadableDatabase $db ): SelectQueryBuilder {
-		 return $db->newSelectQueryBuilder()
+		return $db->newSelectQueryBuilder()
 			->select( [
 				'ug_user',
 				'ug_group',

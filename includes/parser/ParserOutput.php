@@ -2574,8 +2574,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			} else {
 				$valuesSame = ( $a[$key] === $bValue );
 				if ( ( !$valuesSame ) &&
-					 is_object( $a[$key] ) &&
-					 is_object( $bValue )
+					is_object( $a[$key] ) &&
+					is_object( $bValue )
 				) {
 					$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
 					$valuesSame = ( $jsonCodec->serialize( $a[$key] ) === $jsonCodec->serialize( $bValue ) );

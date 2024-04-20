@@ -66,7 +66,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mock->method( 'getPrimaryDatabase' )
 			->willReturn( $mockDb );
 		$mock->method( 'getReplicaDatabase' )
-			 ->willReturn( $mockDb );
+			->willReturn( $mockDb );
 		$mock->method( 'getLBsForOwner' )
 			->willReturn( [] );
 		return $mock;

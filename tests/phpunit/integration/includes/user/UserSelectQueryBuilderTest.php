@@ -312,14 +312,14 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		// hidden set to true
 		$actors = iterator_to_array(
 			$this->getStore()
-			->newSelectQueryBuilder()
-			->limit( 100 )
-			->whereUserIds( [
-				$hiddenUser->getId(),
-				$normalUser->getId()
-			] )
-			->hidden( true )
-			->fetchUserIdentities()
+				->newSelectQueryBuilder()
+				->limit( 100 )
+				->whereUserIds( [
+					$hiddenUser->getId(),
+					$normalUser->getId()
+				] )
+				->hidden( true )
+				->fetchUserIdentities()
 		);
 		$this->assertCount( 1, $actors );
 		$this->assertSameActors(

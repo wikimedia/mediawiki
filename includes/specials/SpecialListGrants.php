@@ -87,7 +87,7 @@ class SpecialListGrants extends SpecialPage {
 			}
 
 			$out->addHTML( Html::rawElement( 'tr', [ 'id' => $grant ],
-															 "<td>" .
+				"<td>" .
 				$this->msg( 'listgrants-grant-display' )
 					->params( $this->grantsLocalization->getGrantDescription( $grant, $lang ) )
 					->rawParams( Html::element(

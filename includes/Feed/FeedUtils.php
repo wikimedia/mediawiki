@@ -120,7 +120,7 @@ class FeedUtils {
 	 *
 	 */
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp,
-										 $comment, $actiontext = ''
+		$comment, $actiontext = ''
 	) {
 		$formattedComment = MediaWikiServices::getInstance()->getCommentFormatter()
 			->format( $comment );

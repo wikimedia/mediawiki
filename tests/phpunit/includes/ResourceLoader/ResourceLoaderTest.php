@@ -664,7 +664,7 @@ END
 
 	protected function getFailFerryMock( $getter = 'getScript' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-					 ->onlyMethods( [ $getter, 'getName' ] )
+			->onlyMethods( [ $getter, 'getName' ] )
 			->getMock();
 		$mock->method( $getter )->willThrowException(
 			new Exception( 'Ferry not found' )
@@ -675,7 +675,7 @@ END
 
 	protected function getSimpleModuleMock( $script = '' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-					 ->onlyMethods( [ 'getScript', 'getName' ] )
+			->onlyMethods( [ 'getScript', 'getName' ] )
 			->getMock();
 		$mock->method( 'getScript' )->willReturn( $script );
 		$mock->method( 'getName' )->willReturn( __METHOD__ );
@@ -684,7 +684,7 @@ END
 
 	protected function getSimpleStyleModuleMock( $styles = '' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-					 ->onlyMethods( [ 'getStyles', 'getName' ] )
+			->onlyMethods( [ 'getStyles', 'getName' ] )
 			->getMock();
 		$mock->method( 'getStyles' )->willReturn( [ '' => $styles ] );
 		$mock->method( 'getName' )->willReturn( __METHOD__ );

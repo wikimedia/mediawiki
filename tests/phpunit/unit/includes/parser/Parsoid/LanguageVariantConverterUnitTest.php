@@ -452,13 +452,13 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 				return $seen[$code];
 			} );
 		$mock->method( 'getParentLanguage' )
-			 ->willReturnCallback( static function ( $code ) use ( $mock ) {
+			->willReturnCallback( static function ( $code ) use ( $mock ) {
 				if ( $code instanceof Bcp47Code ) {
 					$code = LanguageCode::bcp47ToInternal( $code );
 				}
 				$code = preg_replace( '/-.*$/', '', $code );
 				return $mock->getLanguage( $code );
-			 } );
+			} );
 
 		return $mock;
 	}

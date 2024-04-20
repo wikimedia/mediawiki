@@ -19,7 +19,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	/**
 	 * @return Generator|array
 	 */
-	 // abstract public static function provideHookRunners();
+	// abstract public static function provideHookRunners();
 
 	/**
 	 * Temporary override to make provideHookRunners static.

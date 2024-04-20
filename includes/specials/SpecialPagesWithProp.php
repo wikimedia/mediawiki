@@ -257,14 +257,13 @@ class SpecialPagesWithProp extends QueryPage {
 	}
 
 	protected function queryExistingProps( $limit = null, $offset = 0 ) {
-		$queryBuilder =
-			$this->getDatabaseProvider()
-				 ->getReplicaDatabase()
-				 ->newSelectQueryBuilder()
-				 ->select( 'pp_propname' )
-				 ->distinct()
-				 ->from( 'page_props' )
-				 ->orderBy( 'pp_propname' );
+		$queryBuilder = $this->getDatabaseProvider()
+			->getReplicaDatabase()
+			->newSelectQueryBuilder()
+			->select( 'pp_propname' )
+			->distinct()
+			->from( 'page_props' )
+			->orderBy( 'pp_propname' );
 
 		if ( $limit ) {
 			$queryBuilder->limit( $limit );

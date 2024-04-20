@@ -232,7 +232,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'actor_user = user_id',
 					$db->expr( 'rc_type', '!=', RC_EXTERNAL ), // no wikidata
 					$db->expr( 'rc_log_type', '=', null )
-					   ->or( 'rc_log_type', '!=', 'newusers' ),
+						->or( 'rc_log_type', '!=', 'newusers' ),
 					$db->expr( 'rc_timestamp', '>=', $timestamp ),
 				] );
 			$this->addFields( [

@@ -403,7 +403,7 @@ class LinkRenderer {
 			'div', [ 'class' => 'redirectMsg' ],
 			Html::rawElement( 'p', [], $redirectToText ) .
 			Html::rawElement( 'ul', [ 'class' => 'redirectText' ],
-							 Html::rawElement( 'li', [], $link ) )
+				Html::rawElement( 'li', [], $link ) )
 		);
 	}
 

@@ -99,12 +99,12 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 
 	private function initOldFile( $options ) {
 		$this->table( 'oldimage' )
-			 ->join( 'actor', 'oldimage_actor', 'actor_id=oi_actor' )
-			 ->join(
-				 'comment',
-				 'comment_oi_description',
-				 'comment_oi_description.comment_id = oi_description_id'
-			 );
+			->join( 'actor', 'oldimage_actor', 'actor_id=oi_actor' )
+			->join(
+				'comment',
+				'comment_oi_description',
+				'comment_oi_description.comment_id = oi_description_id'
+			);
 
 		if ( !in_array( 'omit-nonlazy', $options, true ) ) {
 			$this->fields(
@@ -139,12 +139,12 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 
 	private function initArchivedFile( $options ) {
 		$this->table( 'filearchive' )
-			 ->join( 'actor', 'filearchive_actor', 'actor_id=fa_actor' )
-			 ->join(
-				 'comment',
-				 'comment_fa_description',
-				 'comment_fa_description.comment_id = fa_description_id'
-			 );
+			->join( 'actor', 'filearchive_actor', 'actor_id=fa_actor' )
+			->join(
+				'comment',
+				'comment_fa_description',
+				'comment_fa_description.comment_id = fa_description_id'
+			);
 
 		if ( !in_array( 'omit-nonlazy', $options, true ) ) {
 			$this->fields(

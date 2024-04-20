@@ -78,7 +78,7 @@ class EnConverter extends LanguageConverter {
 					// "Original" texts from the ReplacementArray rules
 					array_keys( $customRules->getArray() )
 				)
-			 ) . ')';
+			) . ')';
 
 		$matches = preg_split( $re, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 		$m = array_shift( $matches );

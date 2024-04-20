@@ -329,7 +329,7 @@ class SearchMySQL extends SearchDatabase {
 			->row( [
 				'si_page' => $id,
 				'si_title' => $this->normalizeText( $title ),
-				 'si_text' => $this->normalizeText( $text )
+				'si_text' => $this->normalizeText( $text )
 			] )
 			->caller( __METHOD__ )->execute();
 	}

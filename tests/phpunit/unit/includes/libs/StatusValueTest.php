@@ -32,25 +32,25 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 		];
 
 		yield [
-			 true, 42, null,
-			 '<OK, no errors detected, integer value set>',
-			 'Simple int, good state'
+			true, 42, null,
+			'<OK, no errors detected, integer value set>',
+			'Simple int, good state'
 		];
 		yield [
-			 false, 42, null,
-			 '<Error, no errors detected, integer value set>',
-			 'Simple int, error state'
+			false, 42, null,
+			'<Error, no errors detected, integer value set>',
+			'Simple int, error state'
 		];
 
 		yield [
-			 true, [ 'TestValue' => false ], null,
-			 '<OK, no errors detected, array value set>',
-			 'Simple array, good state'
+			true, [ 'TestValue' => false ], null,
+			'<OK, no errors detected, array value set>',
+			'Simple array, good state'
 		];
 		yield [
-			 false, [ 'TestValue' => false ], null,
-			 '<Error, no errors detected, array value set>',
-			 'Simple array, error state'
+			false, [ 'TestValue' => false ], null,
+			'<Error, no errors detected, array value set>',
+			'Simple array, error state'
 		];
 
 		$basicErrorReport = "\n"
@@ -59,20 +59,20 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 			. "+----------+---------------------------+--------------------------------------+\n";
 
 		yield [
-			 true, null, [ 'This is the error' ],
-			 '<OK, collected 1 message(s) on the way, no value set>' . $basicErrorReport,
-			 'Empty, string error, good state'
+			true, null, [ 'This is the error' ],
+			'<OK, collected 1 message(s) on the way, no value set>' . $basicErrorReport,
+			'Empty, string error, good state'
 		];
 		yield [
-			 false, null, [ 'This is the error' ],
-			 '<Error, collected 1 message(s) on the way, no value set>' . $basicErrorReport,
-			 'Empty, string error, error state'
+			false, null, [ 'This is the error' ],
+			'<Error, collected 1 message(s) on the way, no value set>' . $basicErrorReport,
+			'Empty, string error, error state'
 		];
 
 		yield [
-			 false, 'TestValue', [ 'This is the error' ],
-			 '<Error, collected 1 message(s) on the way, string value set>' . $basicErrorReport,
-			 'Simple string, string error, error state'
+			false, 'TestValue', [ 'This is the error' ],
+			'<Error, collected 1 message(s) on the way, string value set>' . $basicErrorReport,
+			'Simple string, string error, error state'
 		];
 
 		yield [

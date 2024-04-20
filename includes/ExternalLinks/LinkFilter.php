@@ -392,7 +392,7 @@ class LinkFilter {
 	public static function getProtocolPrefix( $protocol ) {
 		// Find the right prefix
 		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
-										 ->get( MainConfigNames::UrlProtocols );
+			->get( MainConfigNames::UrlProtocols );
 		if ( $protocol && !in_array( $protocol, $urlProtocols ) ) {
 			foreach ( $urlProtocols as $p ) {
 				if ( str_starts_with( $p, $protocol ) ) {
@@ -409,7 +409,7 @@ class LinkFilter {
 
 	public static function prepareProtocols() {
 		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
-										 ->get( MainConfigNames::UrlProtocols );
+			->get( MainConfigNames::UrlProtocols );
 		$protocols = [ '' ];
 		foreach ( $urlProtocols as $p ) {
 			if ( $p !== '//' ) {
