@@ -2586,7 +2586,10 @@ return [
 				ConditionalDefaultsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getUserRegistrationLookup(),
-			$services->getUserIdentityUtils()
+			$services->getUserIdentityUtils(),
+			static function () use ( $services ) {
+				return $services->getUserGroupManager();
+			}
 		);
 	},
 
