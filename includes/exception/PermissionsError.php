@@ -32,7 +32,8 @@ use MediaWiki\User\UserGroupMembership;
  * @ingroup Exception
  */
 class PermissionsError extends ErrorPageError {
-	public $permission, $errors;
+	public ?string $permission;
+	public array $errors;
 
 	/**
 	 * @stable to call
@@ -42,7 +43,7 @@ class PermissionsError extends ErrorPageError {
 	 * PermissionStatus containing an array of errors; must not be empty if $permission is null
 	 * @throws \InvalidArgumentException
 	 */
-	public function __construct( $permission, $errors = [] ) {
+	public function __construct( ?string $permission, $errors = [] ) {
 		if ( $errors instanceof PermissionStatus ) {
 			$errors = $errors->toLegacyErrorArray();
 		}

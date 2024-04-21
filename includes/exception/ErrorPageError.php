@@ -30,7 +30,12 @@
 class ErrorPageError extends MWException implements ILocalizedException {
 	public const SEND_OUTPUT = 0;
 	public const STAGE_OUTPUT = 1;
-	public $title, $msg, $params;
+
+	/** @var string|MessageSpecifier */
+	public $title;
+	/** @var string|MessageSpecifier */
+	public $msg;
+	public array $params;
 
 	/**
 	 * Note: these arguments are keys into wfMessage(), not text!
