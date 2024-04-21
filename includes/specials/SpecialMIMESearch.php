@@ -45,7 +45,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialMIMESearch extends QueryPage {
-	protected $major, $minor, $mime;
+	protected $major;
+	protected $minor;
+	protected $mime;
 
 	private ILanguageConverter $languageConverter;
 

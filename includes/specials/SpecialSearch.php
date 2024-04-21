@@ -86,10 +86,8 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $mPrefix;
 
-	/**
-	 * @var int
-	 */
-	protected $limit, $offset;
+	protected int $limit;
+	protected int $offset;
 
 	/**
 	 * @var array

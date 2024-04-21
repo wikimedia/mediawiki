@@ -43,7 +43,10 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialExport extends SpecialPage {
-	protected $curonly, $doExport, $pageLinkDepth, $templates;
+	protected bool $curonly;
+	protected bool $doExport;
+	protected int $pageLinkDepth;
+	protected bool $templates;
 
 	private IConnectionProvider $dbProvider;
 	private WikiExporterFactory $wikiExporterFactory;

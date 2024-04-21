@@ -42,7 +42,8 @@ class SpecialMediaStatistics extends QueryPage {
 
 	public const MAX_LIMIT = 5000;
 
-	protected $totalCount = 0, $totalBytes = 0;
+	protected int $totalCount = 0;
+	protected int $totalBytes = 0;
 
 	/**
 	 * @var int Combined file size of all files in a section

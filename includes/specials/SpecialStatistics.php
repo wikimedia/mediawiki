@@ -40,8 +40,12 @@ use Xml;
  * @ingroup SpecialPage
  */
 class SpecialStatistics extends SpecialPage {
-	private $edits, $good, $images, $total, $users,
-		$activeUsers = 0;
+	private int $edits;
+	private int $good;
+	private int $images;
+	private int $total;
+	private int $users;
+	private int $activeUsers;
 
 	private UserGroupManager $userGroupManager;
 
