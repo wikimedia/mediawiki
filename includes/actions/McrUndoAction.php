@@ -42,7 +42,9 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class McrUndoAction extends FormAction {
 
-	protected $undo = 0, $undoafter = 0, $cur = 0;
+	protected int $undo = 0;
+	protected int $undoafter = 0;
+	protected int $cur = 0;
 
 	/** @var RevisionRecord|null */
 	protected $curRev = null;

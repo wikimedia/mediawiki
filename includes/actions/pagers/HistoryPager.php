@@ -55,7 +55,9 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	public $mGroupByDate = true;
 
-	public $historyPage, $buttons, $conds;
+	public HistoryAction $historyPage;
+	public string $buttons;
+	public array $conds;
 
 	protected $oldIdChecked;
 
