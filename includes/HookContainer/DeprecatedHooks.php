@@ -32,27 +32,28 @@ class DeprecatedHooks {
 	 *    to pass to wfDeprecated().
 	 *  - component: (string, optional) $component to pass to wfDeprecated().
 	 *  - silent (bool, optional) If true, no deprecation warning will be raised
+	 * @phpcs-require-sorted-array
 	 */
 	private $deprecatedHooks = [
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27' ],
+		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
+		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
+		'ArticleUndelete' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],
+		'EmailUser' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
+		'EmailUserPermissionsErrors' => [ 'deprecatedVersion' => '1.41' ],
+		'InterwikiLoadPrefix' => [ 'deprecatedVersion' => '1.36' ],
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+		'MessageCache::get' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'PrefixSearchBackend' => [ 'deprecatedVersion' => '1.27' ],
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
-		'WikiPageDeletionUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
-		'userCan' => [ 'deprecatedVersion' => '1.37' ],
-		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
-		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'SearchDataForIndex' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
-		'ArticleUndelete' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
-		'MessageCache::get' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
-		'EmailUserPermissionsErrors' => [ 'deprecatedVersion' => '1.41' ],
+		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'UserCanSendEmail' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
-		'EmailUser' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
-		'InterwikiLoadPrefix' => [ 'deprecatedVersion' => '1.36' ],
+		'WikiPageDeletionUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
 	];
 
 	/**
