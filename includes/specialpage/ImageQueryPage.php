@@ -28,7 +28,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use Skin;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -49,7 +49,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 *
 	 * @param OutputPage $out OutputPage to print to
 	 * @param Skin $skin User skin to use [unused]
-	 * @param IDatabase $dbr (read) connection to use
+	 * @param IReadableDatabase $dbr (read) connection to use
 	 * @param IResultWrapper $res Result pointer
 	 * @param int $num Number of available result rows
 	 * @param int $offset Paging offset
