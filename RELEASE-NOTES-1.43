@@ -107,6 +107,7 @@ because of Phabricator reports.
 * UserGroupMembership::getGroupName(), deprecated in 1.38, and
   UserGroupMembership::getGroupMemberName(), deprecated in 1.40, have
   been removed.
+* Parser::getFreshParser(), deprecated in 1.39, has been removed.
 * …
 
 === Deprecations in 1.43 ===
