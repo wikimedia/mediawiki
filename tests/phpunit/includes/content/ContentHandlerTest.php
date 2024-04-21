@@ -165,6 +165,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContentHandler::getContentText
 	 */
 	public function testGetContentText_Null() {
+		$this->hideDeprecated( 'ContentHandler::getContentText' );
 		$content = null;
 		$text = ContentHandler::getContentText( $content );
 		$this->assertSame( '', $text );
@@ -174,6 +175,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContentHandler::getContentText
 	 */
 	public function testGetContentText_TextContent() {
+		$this->hideDeprecated( 'ContentHandler::getContentText' );
 		$content = new WikitextContent( "hello world" );
 		$text = ContentHandler::getContentText( $content );
 		$this->assertEquals( $content->getText(), $text );
@@ -183,6 +185,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContentHandler::getContentText
 	 */
 	public function testGetContentText_NonTextContent() {
+		$this->hideDeprecated( 'ContentHandler::getContentText' );
 		$content = new DummyContentForTesting( "hello world" );
 		$text = ContentHandler::getContentText( $content );
 		$this->assertNull( $text );
