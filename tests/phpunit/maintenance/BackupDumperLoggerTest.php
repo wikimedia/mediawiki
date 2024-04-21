@@ -26,8 +26,11 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 	// We'll add several log entries and users for this test. The following
 	// variables hold the corresponding ids.
-	private $userId1, $userId2;
-	private $logId1, $logId2, $logId3;
+	private int $userId1;
+	private int $userId2;
+	private int $logId1;
+	private int $logId2;
+	private int $logId3;
 
 	/**
 	 * adds a log entry to the database.

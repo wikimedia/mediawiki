@@ -11,7 +11,13 @@ use MediaWiki\WikiMap\WikiMap;
  */
 class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected $key;
-	protected $queueRand, $queueRandTTL, $queueTimestamp, $queueTimestampTTL, $queueFifo, $queueFifoTTL;
+
+	protected ?JobQueue $queueRand;
+	protected ?JobQueue $queueRandTTL;
+	protected ?JobQueue $queueTimestamp;
+	protected ?JobQueue $queueTimestampTTL;
+	protected ?JobQueue $queueFifo;
+	protected ?JobQueue $queueFifoTTL;
 
 	protected function setUp(): void {
 		global $wgJobTypeConf;

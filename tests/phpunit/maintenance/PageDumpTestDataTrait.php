@@ -23,29 +23,33 @@ trait PageDumpTestDataTrait {
 	// We'll add several pages, revision and texts. The following variables hold the
 	// corresponding ids.
 
-	/** @var int */
-	private $pageId1, $pageId2, $pageId3, $pageId4, $pageId5;
+	private int $pageId1;
+	private int $pageId2;
+	private int $pageId3;
+	private int $pageId4;
+	private int $pageId5;
 
-	/** @var Title */
-	private $pageTitle1, $pageTitle2, $pageTitle3, $pageTitle4, $pageTitle5;
+	private Title $pageTitle1;
+	private Title $pageTitle2;
+	private Title $pageTitle3;
+	private Title $pageTitle4;
+	private Title $pageTitle5;
 
 	private static $numOfPages = 4;
 	private static $numOfRevs = 8;
 
-	/** @var RevisionRecord */
-	private $rev1_1;
-	/** @var RevisionRecord */
-	private $rev2_1, $rev2_2;
-	/** @var RevisionRecord */
-	private $rev2_3, $rev2_4;
-	/** @var RevisionRecord */
-	private $rev3_1, $rev3_2;
-	/** @var RevisionRecord */
-	private $rev4_1;
-	/** @var RevisionRecord */
-	private $rev5_1;
+	private RevisionRecord $rev1_1;
+	private RevisionRecord $rev2_1;
+	private RevisionRecord $rev2_2;
+	private RevisionRecord $rev2_3;
+	private RevisionRecord $rev2_4;
+	private RevisionRecord $rev3_1;
+	private RevisionRecord $rev3_2;
+	private RevisionRecord $rev4_1;
+	private RevisionRecord $rev5_1;
 
-	private $namespace, $talk_namespace;
+	private int $namespace;
+	private int $talk_namespace;
 
 	protected function addTestPages() {
 		// be sure, titles created here using english namespace names

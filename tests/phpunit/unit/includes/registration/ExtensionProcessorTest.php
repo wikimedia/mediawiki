@@ -17,7 +17,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 
-	private $extensionPath, $dirname;
+	private string $extensionPath;
+	private string $dirname;
 
 	protected function setUp(): void {
 		parent::setUp();
