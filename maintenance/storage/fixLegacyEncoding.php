@@ -20,6 +20,8 @@
  */
 
 use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 require_once __DIR__ . '/moveToExternal.php';
 
@@ -31,9 +33,12 @@ class FixLegacyEncoding extends MoveToExternal {
 
 	protected function getConditions( $blockStart, $blockEnd, $dbr ) {
 		return [
-			"old_id BETWEEN $blockStart AND $blockEnd",
-			'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'utf-8', $dbr->anyString() ),
-			'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'utf8', $dbr->anyString() ),
+			$dbr->expr( 'old_id', '>=', $blockStart ),
+			$dbr->expr( 'old_id', '<=', $blockEnd ),
+			$dbr->expr( 'old_flags', IExpression::NOT_LIKE,
+				new LikeValue( $dbr->anyString(), 'utf-8', $dbr->anyString() ) ),
+			$dbr->expr( 'old_flags', IExpression::NOT_LIKE,
+				new LikeValue( $dbr->anyString(), 'utf8', $dbr->anyString() ) ),
 		];
 	}
 

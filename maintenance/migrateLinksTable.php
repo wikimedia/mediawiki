@@ -90,7 +90,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		$batchSize = $this->getBatchSize();
 		$targetColumn = $mapping[$table]['target_id'];
 		$pageIdColumn = $mapping[$table]['page_id'];
-		// BETWEEN is inclusive, let's subtract one.
+		// range is inclusive, let's subtract one.
 		$highPageId = $lowPageId + $batchSize - 1;
 		$dbw = $this->getPrimaryDB();
 		$updated = 0;
@@ -101,7 +101,8 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 				->from( $table )
 				->where( [
 					$targetColumn => [ null, 0 ],
-					"$pageIdColumn BETWEEN $lowPageId AND $highPageId"
+					$dbw->expr( $pageIdColumn, '>=', $lowPageId ),
+					$dbw->expr( $pageIdColumn, '<=', $highPageId ),
 				] )
 				->limit( 1 )
 				->caller( __METHOD__ )
@@ -123,7 +124,8 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 					$targetColumn => [ null, 0 ],
 					$mapping[$table]['ns'] => $ns,
 					$mapping[$table]['title'] => $titleString,
-					"$pageIdColumn BETWEEN $lowPageId AND $highPageId"
+					$dbw->expr( $pageIdColumn, '>=', $lowPageId ),
+					$dbw->expr( $pageIdColumn, '<=', $highPageId ),
 				] )
 				->caller( __METHOD__ )->execute();
 			$updatedInThisBatch = $dbw->affectedRows();

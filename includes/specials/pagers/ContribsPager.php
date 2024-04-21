@@ -50,6 +50,7 @@ use stdClass;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -457,7 +458,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * Get SQL conditions for an IP range, if applicable
 	 * @param IReadableDatabase $db
 	 * @param string $ip The IP address or CIDR
-	 * @return string|false SQL for valid IP ranges, false if invalid
+	 * @return IExpression|false SQL for valid IP ranges, false if invalid
 	 */
 	private function getIpRangeConds( $db, $ip ) {
 		// First make sure it is a valid range and they are not outside the CIDR limit
@@ -467,7 +468,7 @@ class ContribsPager extends RangeChronologicalPager {
 
 		[ $start, $end ] = IPUtils::parseRange( $ip );
 
-		return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+		return $db->expr( 'ipc_hex', '>=', $start )->and( 'ipc_hex', '<=', $end );
 	}
 
 	/**

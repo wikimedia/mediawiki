@@ -101,8 +101,10 @@ class RebuildTextIndex extends Maintenance {
 			}
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
 			$queryBuilder = clone $queryBuilderTemplate;
-			$res = $queryBuilder->where( [ "page_id BETWEEN $n AND $end", 'page_latest = rev_id' ] )
-				->caller( __METHOD__ )->fetchResultSet();
+			$res = $queryBuilder->where( [
+					$dbw->expr( 'page_id', '>=', $n )->and( 'page_id', '<=', $end ),
+					'page_latest = rev_id'
+				] )->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $s ) {
 

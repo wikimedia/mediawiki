@@ -74,7 +74,8 @@ class MigrateUserGroup extends Maintenance {
 				->set( [ 'ug_group' => $newGroup ] )
 				->where( [
 					'ug_group' => $oldGroup,
-					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
+					$dbw->expr( 'ug_user', '>=', (int)$blockStart ),
+					$dbw->expr( 'ug_user', '<=', (int)$blockEnd ),
 				] )
 				->caller( __METHOD__ )->execute();
 			$affected += $dbw->affectedRows();
@@ -86,7 +87,8 @@ class MigrateUserGroup extends Maintenance {
 				->deleteFrom( 'user_groups' )
 				->where( [
 					'ug_group' => $oldGroup,
-					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
+					$dbw->expr( 'ug_user', '>=', (int)$blockStart ),
+					$dbw->expr( 'ug_user', '<=', (int)$blockEnd ),
 				] )
 				->caller( __METHOD__ )->execute();
 			$affected += $dbw->affectedRows();
@@ -101,7 +103,8 @@ class MigrateUserGroup extends Maintenance {
 					->from( 'user_groups' )
 					->where( [
 						'ug_group' => $newGroup,
-						"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
+						$dbw->expr( 'ug_user', '>=', (int)$blockStart ),
+						$dbw->expr( 'ug_user', '<=', (int)$blockEnd ),
 					] )
 					->caller( __METHOD__ )->fetchResultSet();
 				if ( $res !== false ) {

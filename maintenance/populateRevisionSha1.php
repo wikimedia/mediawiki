@@ -106,11 +106,11 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
 
-			$cond = "$idCol BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd .
-				" AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
-
-			$res = $queryBuilder->where( $cond )
-				->caller( __METHOD__ )->fetchResultSet();
+			$res = $queryBuilder->where( [
+					$db->expr( $idCol, '>=', (int)$blockStart )->and( $idCol, '<=', (int)$blockEnd ),
+					$db->expr( $idCol, '!=', null ),
+					"{$prefix}_sha1" => '',
+				] )->caller( __METHOD__ )->fetchResultSet();
 
 			$this->beginTransaction( $db, __METHOD__ );
 			foreach ( $res as $row ) {
