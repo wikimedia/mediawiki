@@ -1401,22 +1401,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Check if user is blocked
-	 *
-	 * @deprecated since 1.34, use BlockManager::getBlock(), Authority:definitelyCan(),
-	 *   Authority:authorizeRead() or Authority:authorizeWrite(), as appropriate.
-	 *   Hard-deprecated since 1.42.
-	 *
-	 * @param bool $fromReplica Whether to check the replica DB instead of
-	 *   the primary DB. Hacked from false due to horrible probs on site.
-	 * @return bool True if blocked, false otherwise
-	 */
-	public function isBlocked( $fromReplica = true ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getBlock( $fromReplica ) !== null;
-	}
-
-	/**
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
 	 * @param int|bool $freshness One of the IDBAccessObject::READ_XXX constants.
@@ -1462,22 +1446,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$request,
 			$fromReplica,
 		);
-	}
-
-	/**
-	 * Check if user is blocked from editing a particular article
-	 *
-	 * @param PageIdentity $title Title to check
-	 * @param bool $fromReplica Whether to check the replica DB instead of the primary DB
-	 * @return bool
-	 *
-	 * @deprecated since 1.33, hard-deprecated since 1.42
-	 *   use MediaWikiServices::getInstance()->getPermissionManager()->isBlockedFrom(..)
-	 */
-	public function isBlockedFrom( $title, $fromReplica = false ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		return MediaWikiServices::getInstance()->getPermissionManager()
-			->isBlockedFrom( $this, $title, $fromReplica );
 	}
 
 	/**
@@ -2024,27 +1992,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get the user's current setting for a given option.
-	 *
-	 * @param string $oname The option to check
-	 * @param mixed|null $defaultOverride A default value returned if the option does not exist.
-	 *   Default values set via $wgDefaultUserOptions / UserGetDefaultOptions take precedence.
-	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
-	 * @return mixed|null User's current value for the option
-	 * @deprecated since 1.35 Hard-deprecated since 1.39.
-	 * Use UserOptionsLookup::getOption instead.
-	 */
-	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $oname === null ) {
-			return null; // b/c
-		}
-		return MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getOption( $this, $oname, $defaultOverride, $ignoreHidden );
-	}
-
-	/**
 	 * Get a token stored in the preferences (like the watchlist one),
 	 * resetting it if it's empty (and saving changes).
 	 *
@@ -2143,39 +2090,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get the list of explicit group memberships this user has.
-	 * The implicit * and user groups are not included.
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserGroups instead.
-	 *   Hard-deprecated since 1.41
-	 *
-	 * @return string[] Array of internal group names (sorted since 1.33)
-	 */
-	public function getGroups() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserGroups( $this, $this->queryFlagsUsed );
-	}
-
-	/**
-	 * Get the list of explicit group memberships this user has, stored as
-	 * UserGroupMembership objects. Implicit groups are not included.
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserGroupMemberships instead.
-	 *   Hard-deprecated since 1.41
-	 *
-	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
-	 * @since 1.29
-	 */
-	public function getGroupMemberships() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserGroupMemberships( $this, $this->queryFlagsUsed );
-	}
-
-	/**
 	 * Get the user's edit count.
 	 * @return int|null Null for anonymous users
 	 */
@@ -2183,44 +2097,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		return MediaWikiServices::getInstance()
 			->getUserEditTracker()
 			->getUserEditCount( $this );
-	}
-
-	/**
-	 * Add the user to the given group. This takes immediate effect.
-	 * If the user is already in the group, the expiry time will be updated to the new
-	 * expiry time. (If $expiry is omitted or null, the membership will be altered to
-	 * never expire.)
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::addUserToGroup instead.
-	 *   Hard-deprecated since 1.41
-	 *
-	 * @param string $group Name of the group to add
-	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to
-	 *   wfTimestamp(), or null if the group assignment should not expire
-	 * @return bool
-	 */
-	public function addGroup( $group, $expiry = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->addUserToGroup( $this, $group, $expiry, true );
-	}
-
-	/**
-	 * Remove the user from the given group.
-	 * This takes immediate effect.
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::removeUserFromGroup instead.
-	 *   Hard-deprecated since 1.41
-	 *
-	 * @param string $group Name of the group to remove
-	 * @return bool
-	 */
-	public function removeGroup( $group ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->removeUserFromGroup( $this, $group );
 	}
 
 	/**
@@ -2795,24 +2671,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * If the user is blocked from creating an account, return the Block.
-	 * @deprecated since 1.37. If a Block is needed, use BlockManager::getCreateAccountBlock().
-	 *   If a boolean or error message is needed, use Authority::authorize* for the
-	 *   createaccount permission.
-	 * @return Block|false
-	 */
-	public function isBlockedFromCreateAccount() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$isExempt = $this->isAllowed( 'ipblock-exempt' );
-		$block = MediaWikiServices::getInstance()->getBlockManager()
-			->getCreateAccountBlock(
-				$this,
-				$isExempt ? null : $this->getRequest(),
-				false );
-		return $block ?: false;
-	}
-
-	/**
 	 * Get whether the user is blocked from using Special:Emailuser.
 	 * @return bool
 	 * @deprecated since 1.41 EmailUser::canSend checks blocks amongst other things. If you only need this
@@ -3215,33 +3073,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 		$this->load();
 		return $this->mRegistration;
-	}
-
-	/**
-	 * Return the set of defined explicit groups.
-	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
-	 * are not included, as they are defined automatically, not in the database.
-	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead.
-	 *   Hard-deprecated since 1.41.
-	 * @return string[] internal group names
-	 */
-	public static function getAllGroups() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->listAllGroups();
-	}
-
-	/**
-	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups()
-	 *   instead. Hard-deprecated since 1.41.
-	 * @return string[] internal group names
-	 */
-	public static function getImplicitGroups() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->listAllImplicitGroups();
 	}
 
 	/**

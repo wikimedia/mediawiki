@@ -2,8 +2,6 @@
 
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\Restriction\NamespaceRestriction;
-use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
@@ -166,8 +164,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getGroups
-	 * @covers \MediaWiki\User\User::getGroupMemberships
 	 * @covers \MediaWiki\User\User::isBot
 	 */
 	public function testBot() {
@@ -996,7 +992,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\User\User::getBlock
 	 * @covers \MediaWiki\User\User::isHidden
-	 * @covers \MediaWiki\User\User::isBlockedFrom
 	 */
 	public function testBlockInstanceCache() {
 		$this->hideDeprecated( User::class . '::isBlockedFrom' );
@@ -1005,7 +1000,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
 		$this->assertNull( $user->getBlock( false ) );
 		$this->assertFalse( $user->isHidden() );
-		$this->assertFalse( $user->isBlockedFrom( $ut ) );
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
@@ -1024,7 +1018,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->clearInstanceCache();
 		$this->assertInstanceOf( DatabaseBlock::class, $user->getBlock( false ) );
 		$this->assertTrue( $user->isHidden() );
-		$this->assertTrue( $user->isBlockedFrom( $ut ) );
 
 		// Unblock
 		$blockStore->deleteBlock( $block );
@@ -1033,7 +1026,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->clearInstanceCache();
 		$this->assertNull( $user->getBlock( false ) );
 		$this->assertFalse( $user->isHidden() );
-		$this->assertFalse( $user->isBlockedFrom( $ut ) );
 	}
 
 	/**
@@ -1086,55 +1078,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $block, 'getuserBlock' );
 		$this->assertNotNull( $block->getTargetUserIdentity(), 'getTargetUserIdentity()' );
 		$this->assertSame( $user->getName(), $block->getTargetUserIdentity()->getName() );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\User::isBlockedFrom
-	 * @dataProvider provideIsBlockedFrom
-	 * @param string|null $title Title to test.
-	 * @param bool $expect Expected result from User::isBlockedFrom()
-	 * @param array $options Additional test options:
-	 *  - 'blockAllowsUTEdit': (bool, default true) Value for $wgBlockAllowsUTEdit
-	 *  - 'allowUsertalk': (bool, default false) Passed to DatabaseBlock::__construct()
-	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
-	 */
-	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
-		$this->hideDeprecated( User::class . '::isBlockedFrom' );
-		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, $options['blockAllowsUTEdit'] ?? true );
-
-		$user = $this->getMutableTestUser()->getUser();
-
-		if ( $title === self::USER_TALK_PAGE ) {
-			$title = $user->getTalkPage();
-		} else {
-			$title = Title::newFromText( $title );
-		}
-
-		$restrictions = [];
-		foreach ( $options['pageRestrictions'] ?? [] as $pagestr ) {
-			$page = $this->getExistingTestPage(
-				$pagestr === self::USER_TALK_PAGE ? $user->getTalkPage() : $pagestr
-			);
-			$restrictions[] = new PageRestriction( 0, $page->getId() );
-		}
-		foreach ( $options['namespaceRestrictions'] ?? [] as $ns ) {
-			$restrictions[] = new NamespaceRestriction( 0, $ns );
-		}
-
-		$block = new DatabaseBlock( [
-			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
-			'allowUsertalk' => $options['allowUsertalk'] ?? false,
-			'sitewide' => !$restrictions,
-		] );
-		$block->setTarget( $user );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		if ( $restrictions ) {
-			$block->setRestrictions( $restrictions );
-		}
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
-
-		$this->assertSame( $expect, $user->isBlockedFrom( $title ) );
 	}
 
 	public static function provideIsBlockedFrom() {
@@ -1390,68 +1333,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'Anonymous actor but no creation' => [ 'actor', [ 'create' => false ], [], 'null' ],
 			'Anonymous actor but not reserved' => [ 'actor', [], [], 'exception' ],
 		];
-	}
-
-	/**
-	 * @covers \MediaWiki\User\User::getGroups
-	 */
-	public function testGetGroups() {
-		$this->hideDeprecated( 'MediaWiki\User\User::getGroups' );
-
-		$user = $this->getTestUser( [ 'a', 'b' ] )->getUser();
-		$this->assertArrayEquals( [ 'a', 'b' ], $user->getGroups() );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\User::addGroup
-	 */
-	public function testAddGroup() {
-		$this->hideDeprecated( 'MediaWiki\User\User::getGroups' );
-		$this->hideDeprecated( 'MediaWiki\User\User::addGroup' );
-
-		$user = $this->getTestUser()->getUser();
-		$this->assertSame( [], $user->getGroups() );
-
-		$this->assertTrue( $user->addGroup( 'test' ) );
-		$this->assertArrayEquals( [ 'test' ], $user->getGroups() );
-
-		$this->assertTrue( $user->addGroup( 'test2' ) );
-		$this->assertArrayEquals( [ 'test', 'test2' ], $user->getGroups() );
-
-		$this->setTemporaryHook( 'UserAddGroup', static function ( $user, &$group, &$expiry ) {
-			return false;
-		} );
-		$this->assertFalse( $user->addGroup( 'test3' ) );
-		$this->assertArrayEquals(
-			[ 'test', 'test2' ],
-			$user->getGroups(),
-			'Hooks can stop addition of a group'
-		);
-	}
-
-	/**
-	 * @covers \MediaWiki\User\User::removeGroup
-	 */
-	public function testRemoveGroup() {
-		$this->hideDeprecated( 'MediaWiki\User\User::getGroups' );
-		$this->hideDeprecated( 'MediaWiki\User\User::removeGroup' );
-
-		$user = $this->getTestUser( [ 'test', 'test3' ] )->getUser();
-
-		$this->assertTrue( $user->removeGroup( 'test' ) );
-		$this->assertSame( [ 'test3' ], $user->getGroups() );
-
-		$this->assertFalse(
-			$user->removeGroup( 'test2' ),
-			'A group membership that does not exist cannot be removed'
-		);
-
-		$this->setTemporaryHook( 'UserRemoveGroup', static function ( $user, &$group ) {
-			return false;
-		} );
-
-		$this->assertFalse( $user->removeGroup( 'test3' ) );
-		$this->assertSame( [ 'test3' ], $user->getGroups(), 'Hooks can stop removal of a group' );
 	}
 
 	/**
