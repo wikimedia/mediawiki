@@ -24,7 +24,6 @@ namespace MediaWiki\User;
 
 use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
@@ -240,34 +239,6 @@ class UserGroupMembership {
 		$expiryD = $uiLanguage->userDate( $expiry, $uiUser );
 		$expiryT = $uiLanguage->userTime( $expiry, $uiUser );
 		return [ 'expiryDT' => $expiryDT, 'expiryD' => $expiryD, 'expiryT' => $expiryT ];
-	}
-
-	/**
-	 * Gets the localized friendly name for a group, if it exists. For example,
-	 * "Administrators" or "Bureaucrats"
-	 *
-	 * @param string $group Internal group name
-	 * @return string Localized friendly group name
-	 * @deprecated since 1.38, use Language::getGroupName or Message::userGroupParams, hard-deprecated in 1.41
-	 */
-	public static function getGroupName( $group ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return RequestContext::getMain()->getLanguage()->getGroupName( $group );
-	}
-
-	/**
-	 * Gets the localized name for a member of a group, if it exists. For example,
-	 * "administrator" or "bureaucrat"
-	 *
-	 * @param string $group Internal group name
-	 * @param string|UserIdentity $member Username or UserIdentity of member for gender
-	 * @return string Localized name for group member
-	 * @deprecated since 1.40, use Language::getGroupMemberName or
-	 *   Message::objectParm with instance of UserGroupMembershipParam, hard-deprecated in 1.41
-	 */
-	public static function getGroupMemberName( $group, $member ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return RequestContext::getMain()->getLanguage()->getGroupMemberName( $group, $member );
 	}
 
 	/**
