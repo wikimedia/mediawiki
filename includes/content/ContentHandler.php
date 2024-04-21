@@ -89,12 +89,13 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @deprecated since 1.37, use Content::getText() for TextContent instances
-	 * instead
+	 * instead. Hard deprecated since 1.43.
 	 *
 	 * @param Content|null $content
 	 * @return string|null Textual form of the content, if available.
 	 */
 	public static function getContentText( Content $content = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		if ( $content === null ) {
 			return '';
 		}
