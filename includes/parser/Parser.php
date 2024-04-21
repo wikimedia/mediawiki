@@ -6466,26 +6466,6 @@ class Parser {
 	}
 
 	/**
-	 * Return this parser if it is not doing anything, otherwise
-	 * get a fresh parser. You can use this method by doing
-	 * $newParser = $oldParser->getFreshParser(), or more simply
-	 * $oldParser->getFreshParser()->parse( ... );
-	 * if you're unsure if $oldParser is safe to use.
-	 *
-	 * @deprecated since 1.39, use ParserFactory::getInstance(), Hard-deprecated since 1.41.
-	 * @since 1.24
-	 * @return Parser A parser object that is not parsing anything
-	 */
-	public function getFreshParser() {
-		wfDeprecated( __METHOD__, '1.39' );
-		if ( $this->mInParse ) {
-			return $this->factory->create();
-		} else {
-			return $this;
-		}
-	}
-
-	/**
 	 * Set's up the PHP implementation of OOUI for use in this request
 	 * and instructs OutputPage to enable OOUI for itself.
 	 *
