@@ -42,7 +42,8 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 abstract class ApiQueryBase extends ApiBase {
 	use ApiQueryBlockInfoTrait;
 
-	private $mQueryModule, $mDb;
+	private ApiQuery $mQueryModule;
+	private ?IReadableDatabase $mDb;
 
 	/**
 	 * @var SelectQueryBuilder|null

@@ -63,8 +63,8 @@ class ApiParse extends ApiBase {
 	/** @var Content|null */
 	private $pstContent = null;
 
-	/** @var bool */
-	private $contentIsDeleted = false, $contentIsSuppressed = false;
+	private bool $contentIsDeleted = false;
+	private bool $contentIsSuppressed = false;
 
 	private RevisionLookup $revisionLookup;
 	private SkinFactory $skinFactory;

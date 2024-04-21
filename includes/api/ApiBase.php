@@ -273,8 +273,17 @@ abstract class ApiBase extends ContextSource {
 
 	/** @var ApiMain */
 	private $mMainModule;
+
+	// Adding inline type hints for these two fields is non-trivial because
+	// of tests that create mocks for ApiBase subclasses and use
+	// disableOriginalConstructor(): in those cases the constructor here is never
+	// hit and thus these will be empty and any uses will raise a "Typed property
+	// must not be accessed before initialization" error.
 	/** @var string */
-	private $mModuleName, $mModulePrefix;
+	private $mModuleName;
+	/** @var string */
+	private $mModulePrefix;
+
 	private $mReplicaDB = null;
 	/**
 	 * @var array

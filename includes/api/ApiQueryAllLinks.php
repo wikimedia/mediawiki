@@ -37,7 +37,9 @@ use Wikimedia\Rdbms\LikeValue;
  */
 class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
-	private $table, $tablePrefix, $indexTag;
+	private string $table;
+	private string $tablePrefix;
+	private string $indexTag;
 	private $fieldTitle = 'title';
 	private $dfltNamespace = NS_MAIN;
 	private $hasNamespace = true;

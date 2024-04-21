@@ -33,8 +33,10 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 abstract class ApiFormatBase extends ApiBase {
-	private $mIsHtml, $mFormat;
-	private $mBuffer, $mDisabled = false;
+	private bool $mIsHtml;
+	private string $mFormat;
+	private string $mBuffer = '';
+	private bool $mDisabled = false;
 	private $mIsWrappedHtml = false;
 	private $mHttpStatus = false;
 	protected $mForceDefaultParams = false;

@@ -65,13 +65,20 @@ class ApiQueryInfo extends ApiQueryBase {
 	private RevisionLookup $revisionLookup;
 	private UrlUtils $urlUtils;
 
-	private $fld_protection = false, $fld_talkid = false,
-		$fld_subjectid = false, $fld_url = false,
-		$fld_readable = false, $fld_watched = false,
-		$fld_watchers = false, $fld_visitingwatchers = false,
-		$fld_notificationtimestamp = false,
-		$fld_preload = false, $fld_preloadcontent = false, $fld_editintro = false,
-		$fld_displaytitle = false, $fld_varianttitles = false;
+	private bool $fld_protection = false;
+	private bool $fld_talkid = false;
+	private bool $fld_subjectid = false;
+	private bool $fld_url = false;
+	private bool $fld_readable = false;
+	private bool $fld_watched = false;
+	private bool $fld_watchers = false;
+	private bool $fld_visitingwatchers = false;
+	private bool $fld_notificationtimestamp = false;
+	private bool $fld_preload = false;
+	private bool $fld_preloadcontent = false;
+	private bool $fld_editintro = false;
+	private bool $fld_displaytitle = false;
+	private bool $fld_varianttitles = false;
 
 	/**
 	 * @var bool Whether to include link class information for the
@@ -93,11 +100,23 @@ class ApiQueryInfo extends ApiQueryBase {
 	/** @var PageIdentity[] */
 	private $everything;
 
-	private $pageIsRedir, $pageIsNew, $pageTouched,
-		$pageLatest, $pageLength;
+	// TODO: seems like these all could be typed as ?array with a default null value?
+	private $pageIsRedir;
+	private $pageIsNew;
+	private $pageTouched;
+	private $pageLatest;
+	private $pageLength;
 
-	private $protections, $restrictionTypes, $watched, $watchers, $visitingwatchers,
-		$notificationtimestamps, $talkids, $subjectids, $displaytitles, $variantTitles;
+	private $protections;
+	private $restrictionTypes;
+	private $watched;
+	private $watchers;
+	private $visitingwatchers;
+	private $notificationtimestamps;
+	private $talkids;
+	private $subjectids;
+	private $displaytitles;
+	private $variantTitles;
 
 	/**
 	 * Watchlist expiries that corresponds with the $watched property. Keyed by namespace and title.

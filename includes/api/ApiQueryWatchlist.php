@@ -88,14 +88,20 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
-	private $fld_ids = false, $fld_title = false, $fld_patrol = false,
-		$fld_flags = false, $fld_timestamp = false, $fld_user = false,
-		$fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
-		$fld_notificationtimestamp = false, $fld_userid = false,
-		$fld_loginfo = false, $fld_tags;
-
-	/** @var bool */
-	private $fld_expiry = false;
+	private bool $fld_ids = false;
+	private bool $fld_title = false;
+	private bool $fld_patrol = false;
+	private bool $fld_flags = false;
+	private bool $fld_timestamp = false;
+	private bool $fld_user = false;
+	private bool $fld_comment = false;
+	private bool $fld_parsedcomment = false;
+	private bool $fld_sizes = false;
+	private bool $fld_notificationtimestamp = false;
+	private bool $fld_userid = false;
+	private bool $fld_loginfo = false;
+	private bool $fld_tags = false;
+	private bool $fld_expiry = false;
 
 	/**
 	 * @param ApiPageSet|null $resultPageSet

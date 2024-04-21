@@ -73,10 +73,16 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->userNameUtils = $userNameUtils;
 	}
 
-	private $fld_ids = false, $fld_title = false, $fld_type = false,
-		$fld_user = false, $fld_userid = false,
-		$fld_timestamp = false, $fld_comment = false, $fld_parsedcomment = false,
-		$fld_details = false, $fld_tags = false;
+	private bool $fld_ids = false;
+	private bool $fld_title = false;
+	private bool $fld_type = false;
+	private bool $fld_user = false;
+	private bool $fld_userid = false;
+	private bool $fld_timestamp = false;
+	private bool $fld_comment = false;
+	private bool $fld_parsedcomment = false;
+	private bool $fld_details = false;
+	private bool $fld_tags = false;
 
 	public function execute() {
 		$params = $this->extractRequestParams();

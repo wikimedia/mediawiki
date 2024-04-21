@@ -50,7 +50,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	/** @var array */
 	private $cont;
 	private $redirect;
-	private $bl_ns, $bl_from, $bl_from_ns, $bl_table, $bl_code, $bl_title, $hasNS;
+
+	private string $bl_ns;
+	private string $bl_from;
+	private string $bl_from_ns;
+	private string $bl_table;
+	private string $bl_code;
+	private string $bl_title;
+	private bool $hasNS;
 
 	/** @var string */
 	private $helpUrl;

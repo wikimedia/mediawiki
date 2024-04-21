@@ -62,15 +62,37 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	// endregion
 
-	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
-		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true,
-		$slotRoles = null, $slotContentFormats, $needSlots;
+	protected $limit;
+	protected $diffto;
+	protected $difftotext;
+	protected $difftotextpst;
+	protected $expandTemplates;
+	protected $generateXML;
+	protected $section;
+	protected $parseContent;
+	protected $fetchContent;
+	protected $contentFormat;
+	protected bool $setParsedLimit = true;
+	protected ?array $slotRoles = null;
+	protected $slotContentFormats;
+	protected $needSlots;
 
-	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
-		$fld_size = false, $fld_slotsize = false, $fld_sha1 = false, $fld_slotsha1 = false,
-		$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_roles = false,
-		$fld_parsetree = false;
+	protected bool $fld_ids = false;
+	protected bool $fld_flags = false;
+	protected bool $fld_timestamp = false;
+	protected bool $fld_size = false;
+	protected bool $fld_slotsize = false;
+	protected bool $fld_sha1 = false;
+	protected bool $fld_slotsha1 = false;
+	protected bool $fld_comment = false;
+	protected bool $fld_parsedcomment = false;
+	protected bool $fld_user = false;
+	protected bool $fld_userid = false;
+	protected bool $fld_content = false;
+	protected bool $fld_tags = false;
+	protected bool $fld_contentmodel = false;
+	protected bool $fld_roles = false;
+	protected bool $fld_parsetree = false;
 
 	/**
 	 * The number of uncached diffs that had to be generated for this request.

@@ -87,11 +87,21 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->commentFormatter = $commentFormatter;
 	}
 
-	private $params, $multiUserMode, $orderBy, $parentLens;
+	private array $params;
+	private bool $multiUserMode;
+	private string $orderBy;
+	private array $parentLens;
 
-	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
-		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
-		$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
+	private bool $fld_ids = false;
+	private bool $fld_title = false;
+	private bool $fld_timestamp = false;
+	private bool $fld_comment = false;
+	private bool $fld_parsedcomment = false;
+	private bool $fld_flags = false;
+	private bool $fld_patrolled = false;
+	private bool $fld_tags = false;
+	private bool $fld_size = false;
+	private bool $fld_sizediff = false;
 
 	public function execute() {
 		// Parse some parameters

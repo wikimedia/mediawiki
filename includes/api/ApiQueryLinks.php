@@ -37,7 +37,10 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	private const LINKS = 'links';
 	private const TEMPLATES = 'templates';
 
-	private $table, $prefix, $titlesParam, $helpUrl;
+	private string $table;
+	private string $prefix;
+	private string $titlesParam;
+	private string $helpUrl;
 
 	private LinkBatchFactory $linkBatchFactory;
 	private LinksMigration $linksMigration;
