@@ -725,7 +725,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * @return IResultWrapper
 	 * @return-taint tainted
 	 */
-	public function fetchResultSet() {
+	public function fetchResultSet(): IResultWrapper {
 		return $this->db->select( $this->tables, $this->fields, $this->conds, $this->caller,
 			$this->options, $this->joinConds );
 	}
@@ -735,7 +735,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * from the first result row. This may only be called when only one field
 	 * has been added to the builder.
 	 *
-	 * @return mixed
+	 * @return mixed|false The value from the field, or false if nothing was found
 	 * @return-taint tainted
 	 */
 	public function fetchField() {
@@ -756,7 +756,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * @return array
 	 * @return-taint tainted
 	 */
-	public function fetchFieldValues() {
+	public function fetchFieldValues(): array {
 		if ( count( $this->fields ) !== 1 ) {
 			throw new \UnexpectedValueException(
 				__METHOD__ . ' expects the query to have only one field' );
@@ -790,7 +790,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *
 	 * @return int
 	 */
-	public function fetchRowCount() {
+	public function fetchRowCount(): int {
 		return $this->db->selectRowCount( $this->tables, $this->getRowCountVar(), $this->conds,
 			$this->caller, $this->options, $this->joinConds );
 	}
@@ -805,7 +805,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *
 	 * @return int
 	 */
-	public function estimateRowCount() {
+	public function estimateRowCount(): int {
 		return $this->db->estimateRowCount( $this->tables, $this->getRowCountVar(), $this->conds,
 			$this->caller, $this->options, $this->joinConds );
 	}

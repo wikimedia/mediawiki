@@ -293,7 +293,7 @@ class DatabaseMySQL extends Database {
 	 * @param string $fname
 	 * @param string|array $options
 	 * @param array $join_conds
-	 * @return int|false
+	 * @return int
 	 */
 	public function estimateRowCount(
 		$tables,
@@ -302,7 +302,7 @@ class DatabaseMySQL extends Database {
 		$fname = __METHOD__,
 		$options = [],
 		$join_conds = []
-	) {
+	): int {
 		$conds = $this->platform->normalizeConditions( $conds, $fname );
 		$column = $this->platform->extractSingleFieldFromList( $var );
 		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
@@ -312,7 +312,7 @@ class DatabaseMySQL extends Database {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $tables, $var, $conds, $fname, $options, $join_conds );
 		if ( $res === false ) {
-			return false;
+			return -1;
 		}
 		if ( !$res->numRows() ) {
 			return 0;

@@ -482,7 +482,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 */
 	public function estimateRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
-	);
+	): int;
 
 	/**
 	 * Get the number of rows in dataset
@@ -515,7 +515,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 */
 	public function selectRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
-	);
+	): int;
 
 	/**
 	 * Returns true if DBs are assumed to be on potentially different servers
