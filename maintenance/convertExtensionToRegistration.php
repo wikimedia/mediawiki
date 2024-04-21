@@ -53,7 +53,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'type',
 	];
 
-	private $json, $dir, $hasWarning = false;
+	private array $json;
+	private string $dir;
+	private bool $hasWarning = false;
 
 	public function __construct() {
 		parent::__construct();

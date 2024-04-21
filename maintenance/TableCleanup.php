@@ -41,7 +41,11 @@ class TableCleanup extends Maintenance {
 	protected $dryrun = false;
 	protected $reportInterval = 100;
 
-	protected $processed, $updated, $count, $startTime, $table;
+	protected int $processed;
+	protected int $updated;
+	protected int $count;
+	protected float $startTime;
+	protected string $table;
 
 	public function __construct() {
 		parent::__construct();

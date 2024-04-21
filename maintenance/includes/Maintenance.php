@@ -111,7 +111,8 @@ abstract class Maintenance {
 
 	/** @var bool Special vars for params that are always used */
 	protected $mQuiet = false;
-	protected $mDbUser, $mDbPass;
+	protected ?string $mDbUser = null;
+	protected ?string $mDbPass = null;
 
 	/**
 	 * @var string A description of the script, children should change this via addDescription()

@@ -66,8 +66,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	/** @var array|null */
 	private $namespaces = null;
 
-	/** @var string|null */
-	private $prefix = null, $suffix = null;
+	private ?string $prefix = null;
+	private ?string $suffix = null;
 
 	/** @var int|null */
 	private $prefixNs = null;

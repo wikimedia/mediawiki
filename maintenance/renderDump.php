@@ -43,7 +43,8 @@ require_once __DIR__ . '/Maintenance.php';
 class DumpRenderer extends Maintenance {
 
 	private $count = 0;
-	private $outputDirectory, $startTime;
+	private string $outputDirectory;
+	private float $startTime;
 	/** @var string */
 	private $prefix;
 
