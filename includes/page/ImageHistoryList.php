@@ -55,7 +55,8 @@ class ImageHistoryList extends ContextSource {
 	 */
 	protected $current;
 
-	protected $repo, $showThumb;
+	protected $repo;
+	protected bool $showThumb;
 	protected $preventClickjacking = false;
 
 	/**
