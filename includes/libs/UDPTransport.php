@@ -33,7 +33,11 @@ use Wikimedia\IPUtils;
 class UDPTransport {
 	// Limit to 64 KiB
 	public const MAX_PAYLOAD_SIZE = 65507;
-	private $host, $port, $prefix, $domain;
+	private string $host;
+	private int $port;
+	/** @var bool|string */
+	private $prefix;
+	private int $domain;
 
 	/**
 	 * @param string $host IP address to send to
