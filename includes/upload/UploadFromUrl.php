@@ -39,7 +39,8 @@ use MediaWiki\Status\Status;
 class UploadFromUrl extends UploadBase {
 	protected $mUrl;
 
-	protected $mTempPath, $mTmpHandle;
+	protected $mTempPath;
+	protected $mTmpHandle;
 
 	protected static $allowedUrls = [];
 
