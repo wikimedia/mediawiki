@@ -125,7 +125,9 @@ class ZipDirectoryReader {
 	protected $zip64 = false;
 
 	/** Stored headers */
-	protected $eocdr, $eocdr64, $eocdr64Locator;
+	protected $eocdr;
+	protected $eocdr64;
+	protected $eocdr64Locator;
 
 	protected $data;
 
