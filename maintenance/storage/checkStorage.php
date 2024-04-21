@@ -37,7 +37,8 @@ require_once __DIR__ . '/../Maintenance.php';
 class CheckStorage extends Maintenance {
 	private const CONCAT_HEADER = 'O:27:"concatenatedgziphistoryblob"';
 
-	public $oldIdMap, $errors;
+	public array $oldIdMap;
+	public array $errors;
 
 	/** @var ExternalStoreDB */
 	public $dbStore = null;

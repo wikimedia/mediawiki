@@ -30,7 +30,8 @@ use Wikimedia\Rdbms\OrExpressionGroup;
 require_once __DIR__ . '/../Maintenance.php';
 
 class TrackBlobs extends Maintenance {
-	public $clusters, $textClause;
+	public $clusters;
+	public $textClause;
 	public $doBlobOrphans;
 	public $trackedBlobs = [];
 

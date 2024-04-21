@@ -65,13 +65,18 @@ class RecompressTracked {
 	public $reportingInterval = 10;
 	public $numProcs = 1;
 	public $numBatches = 0;
-	public $pageBlobClass, $orphanBlobClass;
-	public $childPipes, $childProcs, $prevChildId;
+	public $pageBlobClass;
+	public $orphanBlobClass;
+	public $childPipes;
+	public $childProcs;
+	public $prevChildId;
 	public $copyOnly = false;
 	public $isChild = false;
 	public $childId = false;
 	public $noCount = false;
-	public $debugLog, $infoLog, $criticalLog;
+	public ?string $debugLog = null;
+	public ?string $infoLog = null;
+	public ?string $criticalLog = null;
 	/** @var ExternalStoreDB */
 	public $store;
 	/** @var SqlBlobStore */
