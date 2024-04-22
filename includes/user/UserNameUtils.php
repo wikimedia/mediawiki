@@ -57,9 +57,7 @@ class UserNameUtils implements UserRigorOptions {
 	 */
 	private const IPV4_ADDRESS = '\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})';
 
-	/**
-	 * RIGOR_* constants are inherited from UserRigorOptions
-	 */
+	// RIGOR_* constants are inherited from UserRigorOptions
 
 	private ServiceOptions $options;
 	private Language $contentLang;

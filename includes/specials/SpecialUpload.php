@@ -107,7 +107,7 @@ class SpecialUpload extends SpecialPage {
 		return true;
 	}
 
-	/** Misc variables */
+	// Misc variables
 
 	/** @var WebRequest|FauxRequest The request this form is supposed to handle */
 	public $mRequest;
@@ -123,21 +123,21 @@ class SpecialUpload extends SpecialPage {
 	public $mLocalFile;
 	public $mUploadClicked;
 
-	/** User input variables from the "description" section */
+	// User input variables from the "description" section
 
 	/** @var string The requested target file name */
 	public $mDesiredDestName;
 	public $mComment;
 	public $mLicense;
 
-	/** User input variables from the root section */
+	// User input variables from the root section
 
 	public $mIgnoreWarning;
 	public $mWatchthis;
 	public $mCopyrightStatus;
 	public $mCopyrightSource;
 
-	/** Hidden variables */
+	// Hidden variables
 
 	public $mDestWarningAck;
 
