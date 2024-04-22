@@ -2,10 +2,13 @@
 
 namespace Wikimedia\Rdbms;
 
-class SQLiteField implements Field {
-	private $info, $tableName;
+use stdClass;
 
-	public function __construct( $info, $tableName ) {
+class SQLiteField implements Field {
+	private stdClass $info;
+	private string $tableName;
+
+	public function __construct( stdClass $info, string $tableName ) {
 		$this->info = $info;
 		$this->tableName = $tableName;
 	}

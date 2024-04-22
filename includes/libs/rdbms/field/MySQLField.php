@@ -3,9 +3,21 @@
 namespace Wikimedia\Rdbms;
 
 class MySQLField implements Field {
-	private $name, $tablename, $default, $max_length, $nullable,
-		$is_pk, $is_unique, $is_multiple, $is_key, $type, $binary,
-		$is_numeric, $is_blob, $is_unsigned, $is_zerofill;
+	private string $name;
+	private string $tablename;
+	private $default;
+	private $max_length;
+	private bool $nullable;
+	private bool $is_pk;
+	private bool $is_unique;
+	private bool $is_multiple;
+	private bool $is_key;
+	private string $type;
+	private bool $binary;
+	private bool $is_numeric;
+	private bool $is_blob;
+	private bool $is_unsigned;
+	private bool $is_zerofill;
 
 	public function __construct( $info ) {
 		$this->name = $info->name;

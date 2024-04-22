@@ -3,8 +3,16 @@
 namespace Wikimedia\Rdbms;
 
 class PostgresField implements Field {
-	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname,
-		$has_default, $default;
+	private string $name;
+	private string $tablename;
+	private string $type;
+	private bool $nullable;
+	private $max_length;
+	private bool $deferred;
+	private bool $deferrable;
+	private ?string $conname;
+	private bool $has_default;
+	private $default;
 
 	/**
 	 * @param DatabasePostgres $db
