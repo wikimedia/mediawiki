@@ -56,7 +56,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 */
 	protected $uniqueId;
 
-	/* @var HTMLFormField[] */
+	/** @var array<string, HTMLFormField[]> */
 	protected $mFields = [];
 
 	/**

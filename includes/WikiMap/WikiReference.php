@@ -26,19 +26,19 @@ namespace MediaWiki\WikiMap;
  * Reference to a locally-hosted wiki
  */
 class WikiReference {
-	// wgCanonicalServer, e.g. 'https://www.mediawiki.org'
-	private $mCanonicalServer;
-	// wgServer, may be protocol-relative, e.g. '//www.mediawiki.org'
-	private $mServer;
-	// wgArticlepath, e.g. '/wiki/$1'
-	private $mPath;
+	/** @var string wgCanonicalServer, e.g. 'https://www.mediawiki.org' */
+	private string $mCanonicalServer;
+	/** @var string wgServer, may be protocol-relative, e.g. '//www.mediawiki.org' */
+	private string $mServer;
+	/** @var string wgArticlepath, e.g. '/wiki/$1' */
+	private string $mPath;
 
 	/**
 	 * @param string $canonicalServer
 	 * @param string $path
 	 * @param null|string $server
 	 */
-	public function __construct( $canonicalServer, $path, $server = null ) {
+	public function __construct( string $canonicalServer, string $path, ?string $server = null ) {
 		$this->mCanonicalServer = $canonicalServer;
 		$this->mPath = $path;
 		$this->mServer = $server ?? $canonicalServer;

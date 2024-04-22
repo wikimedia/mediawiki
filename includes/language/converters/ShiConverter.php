@@ -33,10 +33,12 @@
  * @ingroup Languages
  */
 class ShiConverter extends LanguageConverterSpecific {
-	// The Tifinagh alphabet sequence is based on
-	// "Dictionnaire Général de la Langue Amazighe Informatisé"
-	// by IRCAM (https://tal.ircam.ma/dglai/lexieam.php, DGLAi),
-	// with the labio-velarization mark in the end
+	/**
+	 * The Tifinagh alphabet sequence is based on
+	 * "Dictionnaire Général de la Langue Amazighe Informatisé"
+	 * by IRCAM (https://tal.ircam.ma/dglai/lexieam.php, DGLAi),
+	 * with the labio-velarization mark in the end
+	 */
 	public $mToLatin = [
 		'ⴰ' => 'a',
 		'ⴱ' => 'b',
@@ -72,7 +74,7 @@ class ShiConverter extends LanguageConverterSpecific {
 		'ⵯ' => 'ʷ',
 	];
 
-	// The sequence is based on DGLAi, with the non-standard letters in the end
+	/** The sequence is based on DGLAi, with the non-standard letters in the end */
 	public $mUpperToLowerCaseLatin = [
 		'A' => 'a',
 		'B' => 'b',
@@ -110,8 +112,10 @@ class ShiConverter extends LanguageConverterSpecific {
 		'V' => 'v',
 	];
 
-	// The sequence is based on DGLAi, with the labio-velarization mark and
-	// the non-standard letters in the end
+	/**
+	 * The sequence is based on DGLAi, with the labio-velarization mark and
+	 * the non-standard letters in the end
+	 */
 	public $mToTifinagh = [
 		'a' => 'ⴰ',
 		'b' => 'ⴱ',

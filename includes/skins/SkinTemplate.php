@@ -49,7 +49,7 @@ class SkinTemplate extends Skin {
 	public $thispage;
 	public $titletxt;
 	public $userpage;
-	// TODO: Rename this to $isRegistered (but that's a breaking change)
+	/** @var bool TODO: Rename this to $isRegistered (but that's a breaking change) */
 	public $loggedin;
 	public $username;
 	public $userpageUrlDetails;

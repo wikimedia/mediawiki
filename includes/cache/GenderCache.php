@@ -43,7 +43,7 @@ class GenderCache {
 	protected $cache = [];
 	protected $default = null;
 	protected $misses = 0;
-	/* @internal Exposed for MediaWiki core unit tests. */
+	/** @internal Exposed for MediaWiki core unit tests. */
 	protected $missLimit = 1000;
 
 	private NamespaceInfo $nsInfo;

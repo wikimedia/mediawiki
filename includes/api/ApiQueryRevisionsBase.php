@@ -62,6 +62,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	// endregion
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	protected $limit;
 	protected $diffto;
 	protected $difftotext;

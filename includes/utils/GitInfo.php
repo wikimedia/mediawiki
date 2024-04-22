@@ -49,16 +49,16 @@ class GitInfo {
 	/** Singleton for the repo at $IP */
 	protected static $repo = null;
 
-	/* Location of the .git directory */
+	/** Location of the .git directory */
 	protected $basedir;
 
-	/* Location of the repository */
+	/** Location of the repository */
 	protected $repoDir;
 
-	/* Path to JSON cache file for pre-computed git information */
+	/** Path to JSON cache file for pre-computed git information */
 	protected $cacheFile;
 
-	/* Cached git information */
+	/** Cached git information */
 	protected $cache = [];
 
 	/**

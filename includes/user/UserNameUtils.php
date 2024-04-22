@@ -59,6 +59,7 @@ class UserNameUtils implements UserRigorOptions {
 
 	// RIGOR_* constants are inherited from UserRigorOptions
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	private ServiceOptions $options;
 	private Language $contentLang;
 	private LoggerInterface $logger;

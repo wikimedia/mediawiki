@@ -26,6 +26,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 	// We'll add several log entries and users for this test. The following
 	// variables hold the corresponding ids.
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	private int $userId1;
 	private int $userId2;
 	private int $logId1;
