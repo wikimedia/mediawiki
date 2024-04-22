@@ -49,6 +49,7 @@ class SpecialPrefixIndex extends SpecialAllPages {
 
 	// Inherit $maxPerPage
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	private IConnectionProvider $dbProvider;
 	private LinkCache $linkCache;
 

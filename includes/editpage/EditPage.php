@@ -399,7 +399,7 @@ class EditPage implements IEditObject {
 	public $editFormTextAfterContent = '';
 	public $previewTextAfterContent = '';
 
-	/* $didSave should be set to true whenever an article was successfully altered. */
+	/** @var bool should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
 	public $undidRev = 0;
 	private $undoAfter = 0;

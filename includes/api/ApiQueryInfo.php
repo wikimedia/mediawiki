@@ -101,6 +101,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $everything;
 
 	// TODO: seems like these all could be typed as ?array with a default null value?
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	private $pageIsRedir;
 	private $pageIsNew;
 	private $pageTouched;

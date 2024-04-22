@@ -25,6 +25,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	use TempUserTestTrait;
 
 	// TODO: This test should use Authority, but can't due to User::saveSettings
+
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	private $loggedInUser;
 	private $notLoggedInUser;
 

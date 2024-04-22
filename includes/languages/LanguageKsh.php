@@ -25,8 +25,10 @@
  * @ingroup Languages
  */
 class LanguageKsh extends Language {
-	// Do not add male wiki families, since that's the default.
-	// No need to add neuter to wikis having names ending in "-wiki".
+	/**
+	 * Do not add male wiki families, since that's the default.
+	 * No need to add neuter to wikis having names ending in "-wiki".
+	 */
 	private static $familygender = [
 		'wikipedia' => 'f',
 		'wikiversity' => 'f',

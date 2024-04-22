@@ -23,6 +23,7 @@ trait PageDumpTestDataTrait {
 	// We'll add several pages, revision and texts. The following variables hold the
 	// corresponding ids.
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	private int $pageId1;
 	private int $pageId2;
 	private int $pageId3;

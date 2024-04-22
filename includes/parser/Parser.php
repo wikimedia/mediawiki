@@ -265,16 +265,19 @@ class Parser {
 	/** @deprecated since 1.35 */
 	public $mMarkerIndex = 0;
 
-	# Initialised by initializeVariables()
+	// Initialised by initializeVariables()
+	/** @var MagicWordArray */
 	private MagicWordArray $mVariables;
 	private MagicWordArray $mSubstWords;
 
-	# Initialised in constructor
+	// Initialised in constructor
+	/** @var string */
 	private string $mExtLinkBracketedRegex;
 	private UrlUtils $urlUtils;
 	private Preprocessor $mPreprocessor;
 
-	# Cleared with clearState():
+	// Cleared with clearState():
+	/** @var ParserOutput */
 	private ParserOutput $mOutput;
 	private int $mAutonumber = 0;
 	private StripState $mStripState;

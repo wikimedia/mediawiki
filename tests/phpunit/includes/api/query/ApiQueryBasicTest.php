@@ -132,7 +132,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 		] ]
 	];
 
-	// Although this appears to have no use it is used by testLists()
+	/** Although this appears to have no use it is used by testLists() */
 	private static $allcategories = [
 		[ 'list' => 'allcategories', 'acprefix' => 'AQBT-' ],
 		[ 'allcategories' => [

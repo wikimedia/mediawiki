@@ -49,7 +49,7 @@ class BlockManager {
 	/** @var UserFactory */
 	private $userFactory;
 
-	/* @var UserIdentityUtils */
+	/** @var UserIdentityUtils */
 	private $userIdentityUtils;
 
 	/** @var ServiceOptions */

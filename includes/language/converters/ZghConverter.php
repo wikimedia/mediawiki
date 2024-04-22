@@ -31,10 +31,12 @@
  * @ingroup Languages
  */
 class ZghConverter extends LanguageConverterSpecific {
-	// The Tifinagh alphabet sequence is based on
-	// "Dictionnaire Général de la Langue Amazighe Informatisé"
-	// by IRCAM (https://tal.ircam.ma/dglai/lexieam.php, DGLAi),
-	// with the labio-velarization mark in the end
+	/**
+	 * The Tifinagh alphabet sequence is based on
+	 * "Dictionnaire Général de la Langue Amazighe Informatisé"
+	 * by IRCAM (https://tal.ircam.ma/dglai/lexieam.php, DGLAi),
+	 * with the labio-velarization mark in the end.
+	 */
 	public $mToLatin = [
 		'ⴰ' => 'a',
 		'ⴱ' => 'b',

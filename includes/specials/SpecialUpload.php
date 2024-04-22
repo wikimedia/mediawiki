@@ -132,6 +132,7 @@ class SpecialUpload extends SpecialPage {
 
 	// User input variables from the root section
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	public $mIgnoreWarning;
 	public $mWatchthis;
 	public $mCopyrightStatus;
@@ -139,6 +140,7 @@ class SpecialUpload extends SpecialPage {
 
 	// Hidden variables
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
 	public $mDestWarningAck;
 
 	/** @var bool The user followed an "overwrite this file" link */

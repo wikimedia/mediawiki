@@ -16,7 +16,7 @@ use Xml;
  * @stable to extend
  */
 class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
-	/* @var string */
+	/** @var string */
 	private $mPlaceholder;
 
 	/**
