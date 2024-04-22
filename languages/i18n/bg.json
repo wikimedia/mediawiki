@@ -101,6 +101,8 @@
 	"tog-showrollbackconfirmation": "Показване на диалогов прозорец за потвърждение при кликване върху препратката „Отмяна“",
 	"tog-requireemail": "Изпраща ел. писма за зануляване на паролата, само когато са предоставени адрес на ел. поща и потребителско име.",
 	"tog-forcesafemode": "Винаги да се активира [[mw:Manual:Safemode|защитения режим]]",
+	"tog-editrecovery": "Включване на възможността „[[Special:EditRecovery|{{int:editrecovery}}]]“",
+	"tog-editrecovery-help": "Можете да предоставите обратна връзка в [$1 беседата на проекта].",
 	"underline-always": "Винаги",
 	"underline-never": "Никога",
 	"underline-default": "Според настройките на облика или браузъра",

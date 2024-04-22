@@ -6,11 +6,13 @@
 			"Anterdc99",
 			"GuoPC",
 			"Hzy980512",
+			"Lakejason0",
 			"LittlePaw365",
 			"Shizhao",
 			"SomeyaMako",
 			"Tr jason",
 			"VulpesVulpes825",
+			"沈澄心",
 			"铁桶"
 		]
 	},
@@ -51,6 +53,7 @@
 	"rest-bad-json-body": "无效请求正文，其必须是 JSON 对象。",
 	"rest-json-body-parse-error": "将请求正文解析成 JSON 时失败：$1",
 	"rest-missing-body-field": "请求正文缺失必填变量“$1”。",
+	"rest-body-validation error": "请求主体无效： $1",
 	"rest-extraneous-body-fields": "请求正文内发现无关字段：$1",
 	"rest-bad-content-model": "无效内容模块：$1",
 	"rest-update-cannot-create-page": "页面“$1”已存在，无法创建。要更新现有页面，请在请求正文的“latest”键中的结构中提供基础修订 ID。",
@@ -60,5 +63,19 @@
 	"rest-requires-safe-against-csrf": "此端点需要CSRF安全的会话提供者。",
 	"rest-badtoken": "提供的 CSRF 令牌无效。",
 	"rest-badtoken-missing": "不使用防CSRF的验证方式时，<var>token</var>参数必填。",
-	"rest-badtoken-nosession": "CSRF错误—没有session。"
+	"rest-badtoken-nosession": "CSRF错误—没有session。",
+	"rest-mock-error": "模拟错误。",
+	"rest-specified-revision-unavailable": "指定的修订已被删除或隐藏。",
+	"rest-previous-revision-unavailable": "找不到先前的修订。该页面是否已被锁定或删除？",
+	"rest-requires-content-type-header": "必须为请求负载提供Content-Type标头。",
+	"rest-transform-missing-html": "没有提供html。",
+	"rest-transform-missing-title": "没有提供标题或wikitext。",
+	"rest-unsupported-target-format": "不支持请求的目标格式。",
+	"rest-parsoid-resource-exceeded": "超出资源限制",
+	"rest-parsoid-error": "Parsoid错误。",
+	"rest-bad-stash-key": "错误的stash key。",
+	"rest-html-key-expected": "正文中应包含<var>html</var>键",
+	"rest-invalid-transform": "无效转换：$1到$2",
+	"rest-request-body-expected": "$1请求方法需要请求主体",
+	"rest-request-body-unaccepted": "$1请求方法不接受请求主体"
 }

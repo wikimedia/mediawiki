@@ -2325,7 +2325,6 @@
 	"emailuserfooter": "Ovaj imejl {{GENDER:$1|poslao|poslala}} je $1 {{GENDER:$2|korisniku|korisnici}} $2 pomoću opcije „{{int:emailuser}}” na projektu {{SITENAME}}. Ako odgovorite na ovaj imejl, {{GENDER:$2|vaš}} mejl će biti neposredno prosleđen ka {{GENDER:$1|originalnom pošiljaocu}}, čime ćete {{GENDER:$2|mu|joj}} otkriti {{GENDER:$2|svoju}} imejl-adresu.",
 	"usermessage-summary": "Slanje sistemske poruke.",
 	"usermessage-editor": "Uređivač sistemskih poruka",
-	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "Spisak nadgledanja",
 	"mywatchlist": "Spisak nadgledanja",
 	"watchlistfor2": "Za $1",

@@ -43,6 +43,7 @@
 	"rest-bad-json-body": "錯誤的請求正文，必須是 JSON 物件。",
 	"rest-json-body-parse-error": "將請求正文解析成 JSON 失敗：$1",
 	"rest-missing-body-field": "請求正文中缺少必要欄位「$1」。",
+	"rest-body-validation error": "請求正文無效：$1",
 	"rest-extraneous-body-fields": "請求正文裡發現無關欄位：$1",
 	"rest-bad-content-model": "錯誤內容模組：$1",
 	"rest-update-cannot-create-page": "頁面「$1」已存在，因此無法建立。要更新現有的頁面，請在請求正文中「latest」鍵的結構裡提供基本修訂 ID。",
@@ -52,5 +53,19 @@
 	"rest-requires-safe-against-csrf": "此端點需要一個 CSRF 安全的 session 提供者。",
 	"rest-badtoken": "提供的 CSRF 權杖無效。",
 	"rest-badtoken-missing": "除非是使用 CSRF 安全身份驗證方法，否則 <var>token</var> 參數為必填。",
-	"rest-badtoken-nosession": "CSRF 錯誤 - 沒有 session。"
+	"rest-badtoken-nosession": "CSRF 錯誤 - 沒有 session。",
+	"rest-mock-error": "模擬錯誤。",
+	"rest-specified-revision-unavailable": "指定的修訂已被刪除或遮蔽。",
+	"rest-previous-revision-unavailable": "找不到先前的修訂。該頁面是否已被鎖定或刪除？",
+	"rest-requires-content-type-header": "內容類型標頭必須與請求負載一起提供。",
+	"rest-transform-missing-html": "沒有提供 html。",
+	"rest-transform-missing-title": "沒有提供標題或 wikitext。",
+	"rest-unsupported-target-format": "不支援的請求目標格式。",
+	"rest-parsoid-resource-exceeded": "超出資源限制",
+	"rest-parsoid-error": "Parsoid 錯誤。",
+	"rest-bad-stash-key": "錯誤的 stash key。",
+	"rest-html-key-expected": "正文裡預期的 <var>html</var> 鍵",
+	"rest-invalid-transform": "無效轉換：$1成$2",
+	"rest-request-body-expected": "$1請求方法需要一個請求正文",
+	"rest-request-body-unaccepted": "$1請求方法不接受請求正文"
 }
