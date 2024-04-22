@@ -222,15 +222,15 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideParsoidSettingPassed() {
-		yield 'linting' => [
+		yield 'linterEnabled' => [
 			[ 'linting' => true ],
-			'linting',
+			'linterEnabled',
 			true
 		];
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::__construct
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::linterEnabled()
 	 * @dataProvider provideParsoidSettingPassed
 	 * @param array $settings
 	 * @param string $method
@@ -241,7 +241,6 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		string $method,
 		$expectedValue
 	) {
-		$this->markTestSkipped();
 		$config = $this->createSiteConfig( [], $settings );
 		$config = TestingAccessWrapper::newFromObject( $config );
 		$this->assertSame( $expectedValue, $config->$method() );
