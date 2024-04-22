@@ -784,8 +784,8 @@
 	"apihelp-query+codexicons-param-names": "Names of icons",
 	"apihelp-query+codexicons-example": "Get icons for cdxIconInfo and cdxIconTrash",
 
-	"apihelp-query+contributors-summary": "Get the list of logged-in contributors and the count of logged-out contributors to a page.",
-	"apihelp-query+contributors-summary-tempusers-enabled": "Get the list of logged-in contributors (including temporary users) and the count of logged-out contributors to a page.",
+	"apihelp-query+contributors-summary": "Get the list of registered contributors and the count of anonymous contributors to a page.",
+	"apihelp-query+contributors-summary-tempusers-enabled": "Get the list of registered contributors (including temporary users) and the count of anonymous contributors to a page.",
 	"apihelp-query+contributors-param-group": "Only include users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.",
 	"apihelp-query+contributors-param-excludegroup": "Exclude users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.",
 	"apihelp-query+contributors-param-rights": "Only include users having the given rights. Does not include rights granted by implicit or auto-promoted groups like *, user, or autoconfirmed.",
