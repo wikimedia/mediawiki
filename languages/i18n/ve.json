@@ -4,7 +4,8 @@
 			"Ajeje Brazorf",
 			"Fierodelveneto",
 			"Johannes Rohr (on ve.wikipedia.org)",
-			"Node ue"
+			"Node ue",
+			"Amire80"
 		]
 	},
 	"search": "Ṱolani",
@@ -17,7 +18,7 @@
 	"yourname": "Dzina ḽa mushumisi:",
 	"yourpassword": "Phasiwede:",
 	"changepassword": "Shandukisani phasiwede",
-	"username": "Dzina ḽa mushumisi:",
+	"username": "{{GENDER:$1|Dzina ḽa mushumisi}}:",
 	"newpages-username": "Dzina ḽa mushumisi:",
 	"version-other": "Zwiṅwe"
 }

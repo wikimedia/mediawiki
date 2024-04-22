@@ -19,7 +19,8 @@
 			"Игорь Бродский",
 			"아라",
 			"Сантяй",
-			"Бочканова Надежда Владимировна"
+			"Бочканова Надежда Владимировна",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Невтематнень тешкстамо:",
@@ -2005,9 +2006,9 @@
 	"deadendpagestext": "{{SITENAME}}-сэ те лопатнень эйсэ арасть лия лопатнень лангс невтемат.",
 	"protectedpages": "Ванстозь лопат",
 	"protectedpages-filters": "Ванькскавтомат:",
-	"protectedpages-indef": "Ансяк виев идема",
+	"protectedpages-indef": "Indefinite protections only",
 	"protectedpages-summary": "Те лопасонть невтезь важодиця сеть лопатне, конат неень шкасто идезь. Одов теемань идемадо лемлувонть вант [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
-	"protectedpages-cascade": "Ансяк виев идема",
+	"protectedpages-cascade": "Cascading protections only",
 	"protectedpages-noredirect": "Кекшемс одов кучоматнень",
 	"cachedspecial-viewing-cached-ttl": "Тон ванат кэш-партонь версиянь лопанть, паряк сон одкстомтозель $1 икеле.",
 	"protectedpagesempty": "Неень шкасто невтезь ладямотнень марто идезь лопат арасть",

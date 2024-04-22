@@ -1228,7 +1228,7 @@
 	"group-autoconfirmed": "Registrerede brugere",
 	"group-bot": "Robotter",
 	"group-sysop": "Administratorer",
-	"group-interface-admin": "Grænsesnitadministratorer",
+	"group-interface-admin": "Brugerfladeredaktører",
 	"group-bureaucrat": "Bureaukrater",
 	"group-suppress": "Undertrykkere",
 	"group-all": "(alle)",

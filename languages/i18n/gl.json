@@ -2804,6 +2804,8 @@
 	"movesubpage": "{{PLURAL:$1|Subpáxina|Subpáxinas}}",
 	"movesubpagetext": "Esta páxina ten $1 {{PLURAL:$1|subpáxina|subpáxinas}}.",
 	"movesubpagetalktext": "A páxina de conversa correspondente ten $1 {{PLURAL:$1|subpáxina, amosada|subpáxinas, amosadas}} abaixo.",
+	"movesubpagetext-truncated": "A continuación, {{PLURAL:$1|móstrase a primeira subpáxina|móstranse as primeiras $1 subpáxinas}} para esta páxina.",
+	"movesubpagetalktext-truncated": "A continuación, {{PLURAL:$1|móstrase a primeira subpáxina|móstranse as primeiras $1 subpáxinas}} para a correspondente páxina de conversa.",
 	"movenosubpage": "Esta páxina non ten subpáxinas.",
 	"movereason": "Motivo:",
 	"revertmove": "reverter",

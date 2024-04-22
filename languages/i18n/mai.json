@@ -30,7 +30,8 @@
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
 			"아라",
-			"Dreamy Jazz"
+			"Dreamy Jazz",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "लिङ्कके रेखाङ्कित करी:",
@@ -3121,9 +3122,9 @@
 	"log-action-filter-block-reblock": "अवरोध परिवर्तन",
 	"log-action-filter-block-unblock": "अवरोधरहित",
 	"log-action-filter-contentmodel-change": "सामग्रीक नमूना परिवर्तन",
-	"log-action-filter-delete-delete": "पृष्ठ हटाबी",
+	"log-action-filter-delete-delete": "Page deletion",
 	"log-action-filter-delete-delete_redir": "पुननिर्देशित ओभरराइट",
-	"log-action-filter-delete-event": "पृष्ठ हटाबी",
+	"log-action-filter-delete-event": "Log deletion",
 	"log-action-filter-delete-revision": "खाली मेटाएल",
 	"log-action-filter-import-interwiki": "अंतरविकि आयात",
 	"log-action-filter-managetags-create": "प्रयोक्ता रचना लग",

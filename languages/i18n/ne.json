@@ -42,7 +42,8 @@
 			"CAPTAIN MEDUSA",
 			"NehalDaveND",
 			"Base",
-			"Amire80"
+			"Amire80",
+			"Yadav Bhattarai"
 		]
 	},
 	"tog-underline": "रेखाङ्कित सूत्र:",
@@ -2813,7 +2814,7 @@
 	"table_pager_limit_submit": "जाउ",
 	"table_pager_empty": "नतिजाहरू छैन ।",
 	"autosumm-blank": "पृष्ठ खाली गरीयो",
-	"autosumm-replace": "सामग्रीलाई \"$1\"सँग प्रतिस्थापन गरियो",
+	"autosumm-replace": "\"$1\" ले फेरियो",
 	"autoredircomment": "पृष्ठ[[$1]]मा पठाइएको",
 	"autosumm-removed-redirect": "[[$1]]मा अनुप्रेषण हटाइएको छ",
 	"autosumm-changed-redirect-target": "अनुप्रेषण [[$1]] बाट [[$2]] मा परिवर्तन गरियो",
