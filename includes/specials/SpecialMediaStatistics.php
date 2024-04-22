@@ -33,6 +33,7 @@ use MimeAnalyzer;
 use Skin;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -146,7 +147,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 *
 	 * @param OutputPage $out
 	 * @param Skin $skin (deprecated presumably)
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param IResultWrapper $res Results from query
 	 * @param int $num Number of results
 	 * @param int $offset Paging offset (Should always be 0 in our case)
