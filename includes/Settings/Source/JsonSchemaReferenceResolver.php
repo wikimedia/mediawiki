@@ -14,57 +14,6 @@ use InvalidArgumentException;
  */
 class JsonSchemaReferenceResolver {
 	/**
-	 * Traverse a JSON-schema to resolve all its referenced schemas ($ref)
-	 *
-	 * Result is returned via an output parameter $defs as an array of definitions.
-	 *
-	 * @param array $schema A valid JSON-schema
-	 * @param array &$defs Array reference that will be populated with the list of definitions (JSON-schemas)
-	 * referenced in the schema
-	 * @param string $source An identifier for the source schema being reflected, used
-	 * for error descriptions.
-	 * @param string $propertyName The name of the property the schema belongs to, used for error descriptions.
-	 */
-	public static function getDefinitions( array $schema, array &$defs, string $source, string $propertyName ) {
-		$traversedReferences = [];
-		self::doGetDefinitions( $schema, $source, $propertyName, $defs, $traversedReferences );
-	}
-
-	/**
-	 * @param array $schema A valid JSON-schema
-	 * @param string $source An identifier for the source schema being reflected, used
-	 * for error descriptions.
-	 * @param string $propertyName The name of the property the schema belongs to, used for error descriptions.
-	 * @param array &$defs Array reference that will be populated with the list of definitions (JSON-schemas)
-	 * referenced in the schema
-	 * @param array<string, bool> $traversedRefs Array to accumulate the already visited definitions
-	 * for a given schema, used to avoid loops in the reference resolution.
-	 */
-	private static function doGetDefinitions(
-		array $schema,
-		string $source,
-		string $propertyName,
-		array &$defs,
-		array $traversedRefs
-	) {
-		if ( isset( $schema['$ref'] ) ) {
-			$definitionName = self::getDefinitionName( $schema[ '$ref' ] );
-			if ( array_key_exists( $definitionName, $traversedRefs ) ) {
-				throw new RefLoopException(
-					"Found a loop while resolving reference $definitionName in $propertyName." .
-					" Root schema location: $source"
-				);
-			}
-			if ( !isset( $defs[$definitionName] ) ) {
-				$value = self::resolveRef( $schema[ '$ref' ], $source );
-				$traversedRefs[ $definitionName ] = true;
-				$defs[$definitionName] = $value;
-				self::doGetDefinitions( $value, $source, $propertyName, $defs, $traversedRefs );
-			}
-		}
-	}
-
-	/**
 	 * Returns a URI relative to a JSON-schema document
 	 * for a given definition name
 	 *
