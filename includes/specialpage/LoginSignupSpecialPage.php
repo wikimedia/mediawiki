@@ -509,6 +509,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * reflected in the current request.
 	 */
 	protected function setSessionUserForCurrentRequest() {
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		global $wgLang;
 
 		$context = RequestContext::getMain();
@@ -523,6 +524,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		StubGlobalUser::setUser( $user );
 		$context->setUser( $user );
 
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		$wgLang = $context->getLanguage();
 	}
 

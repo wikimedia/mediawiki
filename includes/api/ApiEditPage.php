@@ -479,6 +479,7 @@ class ApiEditPage extends ApiBase {
 		// This is kind of a hack but it's the best we can do to make extensions work
 		$requestArray += $this->getRequest()->getValues();
 
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		global $wgTitle, $wgRequest;
 
 		$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
@@ -532,12 +533,14 @@ class ApiEditPage extends ApiBase {
 
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
+		// phpcs:disable MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
 		$status = $ep->attemptSave( $result );
 		$statusValue = is_int( $status->value ) ? $status->value : 0;
 		$wgRequest = $oldRequest;
+		// phpcs:enable MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 
 		$r = [];
 		switch ( $statusValue ) {

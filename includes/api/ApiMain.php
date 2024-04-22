@@ -631,9 +631,11 @@ class ApiMain extends ApiBase {
 			$code = RequestContext::sanitizeLangCode( $uselang );
 			$derivativeContext->setLanguage( $code );
 			if ( !$this->mInternalMode ) {
+				// phpcs:disable MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 				global $wgLang;
 				$wgLang = $derivativeContext->getLanguage();
 				RequestContext::getMain()->setLanguage( $wgLang );
+				// phpcs:enable MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 			}
 		}
 
