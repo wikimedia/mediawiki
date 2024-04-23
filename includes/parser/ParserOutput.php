@@ -2682,7 +2682,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'Warnings' => $this->mWarnings,
 			'Sections' => $this->getSections(),
 			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
-			'TOCHTML' => '', // T363107: this is temporary
 			'Timestamp' => $this->mTimestamp,
 			'EnableOOUI' => $this->mEnableOOUI,
 			'IndexPolicy' => $this->getIndexPolicy(),
