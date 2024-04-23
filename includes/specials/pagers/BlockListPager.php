@@ -543,7 +543,9 @@ class BlockListPager extends TablePager {
 			# Determine if the user is hidden
 			# With multiblocks we can't just rely on bl_deleted in the row being formatted
 			$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
-				$db, 'block_target.bt_user', HideUserUtils::HIDDEN_USERS );
+				$db,
+				$db->tableName( 'block_target' ) . '.bt_user',
+				HideUserUtils::HIDDEN_USERS );
 		}
 		return $info;
 	}

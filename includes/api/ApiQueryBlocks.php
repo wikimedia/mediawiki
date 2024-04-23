@@ -293,7 +293,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$this->addWhereFld( $bl_deleted, 0 );
 			} else {
 				$this->addWhere(
-					$this->hideUserUtils->getExpression( $db, 'block_target.bt_user' )
+					$this->hideUserUtils->getExpression( $db, $db->tableName( 'block_target' ) . '.bt_user' )
 				);
 			}
 		}
