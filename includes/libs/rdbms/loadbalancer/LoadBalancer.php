@@ -1845,7 +1845,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( $this->serverInfo->hasReplicaServers() ) {
 			$lagTimes = $this->getLagTimes();
 			foreach ( $lagTimes as $i => $lag ) {
-				if ( $this->groupLoads[self::GROUP_GENERIC][$i] > 0 && $lag > $maxLag ) {
+				// Allowing the value to be unset due to stale cache (T361824)
+				$load = $this->groupLoads[self::GROUP_GENERIC][$i] ?? 0;
+				if ( $load > 0 && $lag > $maxLag ) {
 					$maxLag = $lag;
 					$host = $this->serverInfo->getServerInfoStrict( $i, 'host' );
 					$maxIndex = $i;
