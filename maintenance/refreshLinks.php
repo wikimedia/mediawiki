@@ -23,6 +23,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -359,7 +360,7 @@ class RefreshLinks extends Maintenance {
 	}
 
 	/**
-	 * Build a SQL expression for a closed interval (i.e. BETWEEN).
+	 * Build a SQL expression for a closed interval.
 	 *
 	 * By specifying a null $start or $end, it is also possible to create
 	 * half-bounded or unbounded intervals using this function.
@@ -368,17 +369,17 @@ class RefreshLinks extends Maintenance {
 	 * @param string $var Field name
 	 * @param mixed $start First value to include or null
 	 * @param mixed $end Last value to include or null
-	 * @return string
+	 * @return IExpression
 	 */
 	private static function intervalCond( IReadableDatabase $db, $var, $start, $end ) {
 		if ( $start === null && $end === null ) {
-			return "$var IS NOT NULL";
+			return $db->expr( $var, '!=', null );
 		} elseif ( $end === null ) {
-			return "$var >= " . $db->addQuotes( $start );
+			return $db->expr( $var, '>=', $start );
 		} elseif ( $start === null ) {
-			return "$var <= " . $db->addQuotes( $end );
+			return $db->expr( $var, '<=', $end );
 		} else {
-			return "$var BETWEEN " . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+			return $db->expr( $var, '>=', $start )->and( $var, '<=', $end );
 		}
 	}
 

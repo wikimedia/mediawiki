@@ -100,7 +100,11 @@ TEXT
 			$rows = $dbr->select(
 				[ 'revision' ] + $actorQuery['tables'],
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' => $actorQuery['fields']['rev_user_text'] ],
-				[ "rev_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd, $revUserIsAnon ],
+				[
+					$dbr->expr( 'rev_id', '>=', (int)$blockStart ),
+					$dbr->expr( 'rev_id', '<=', (int)$blockEnd ),
+					$revUserIsAnon
+				],
 				__METHOD__,
 				[],
 				$actorQuery['joins']

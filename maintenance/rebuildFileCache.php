@@ -126,7 +126,10 @@ class RebuildFileCache extends Maintenance {
 				->from( 'page' )
 				->useIndex( 'PRIMARY' )
 				->where( $where )
-				->andWhere( [ "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ] )
+				->andWhere( [
+					$dbr->expr( 'page_id', '>=', (int)$blockStart ),
+					$dbr->expr( 'page_id', '<=', (int)$blockEnd ),
+				] )
 				->orderBy( 'page_id', SelectQueryBuilder::SORT_ASC )
 				->caller( __METHOD__ )->fetchResultSet();
 

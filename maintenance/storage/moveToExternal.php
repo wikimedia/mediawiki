@@ -25,6 +25,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\UndoLog;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -320,8 +322,10 @@ class MoveToExternal extends Maintenance {
 
 	protected function getConditions( $blockStart, $blockEnd, $dbr ) {
 		return [
-			"old_id BETWEEN $blockStart AND $blockEnd",
-			'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+			$dbr->expr( 'old_id', '>=', $blockStart ),
+			$dbr->expr( 'old_id', '>=', $blockEnd ),
+			$dbr->expr( 'old_flags', IExpression::NOT_LIKE,
+				new LikeValue( $dbr->anyString(), 'external', $dbr->anyString() ) ),
 		];
 	}
 

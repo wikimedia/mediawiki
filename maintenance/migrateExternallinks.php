@@ -69,7 +69,7 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 
 	private function handleBatch( $lowId ) {
 		$batchSize = $this->getBatchSize();
-		// BETWEEN is inclusive, let's subtract one.
+		// range is inclusive, let's subtract one.
 		$highId = $lowId + $batchSize - 1;
 		$dbw = $this->getPrimaryDB();
 		$updated = 0;
@@ -78,7 +78,8 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 			->from( 'externallinks' )
 			->where( [
 				'el_to_domain_index' => '',
-				"el_id BETWEEN $lowId AND $highId"
+				$dbw->expr( 'el_id', '>=', $lowId ),
+				$dbw->expr( 'el_id', '<=', $highId ),
 			] )
 			->limit( $batchSize )
 			->caller( __METHOD__ )

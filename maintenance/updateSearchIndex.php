@@ -106,7 +106,8 @@ class UpdateSearchIndex extends Maintenance {
 			->join( 'page', null, 'rc_cur_id=page_id AND rc_this_oldid=page_latest' )
 			->where( [
 				$dbw->expr( 'rc_type', '!=', RC_LOG ),
-				'rc_timestamp BETWEEN ' . $dbw->addQuotes( $start ) . ' AND ' . $dbw->addQuotes( $end )
+				$dbw->expr( 'rc_timestamp', '>=', $start ),
+				$dbw->expr( 'rc_timestamp', '<=', $end ),
 			] )
 			->caller( __METHOD__ )->fetchResultSet();
 

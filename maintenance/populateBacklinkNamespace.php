@@ -74,7 +74,10 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 			$res = $db->newSelectQueryBuilder()
 				->select( [ 'page_id', 'page_namespace' ] )
 				->from( 'page' )
-				->where( "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd )
+				->where( [
+					$db->expr( 'page_id', '>=', (int)$blockStart ),
+					$db->expr( 'page_id', '<=', (int)$blockEnd ),
+				] )
 				->caller( __METHOD__ )->fetchResultSet();
 			foreach ( $res as $row ) {
 				$db->newUpdateQueryBuilder()

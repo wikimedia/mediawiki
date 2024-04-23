@@ -99,7 +99,10 @@ class CheckStorage extends Maintenance {
 				->select( [ 'slot_revision_id', 'content_address' ] )
 				->from( 'slots' )
 				->join( 'content', null, 'content_id = slot_content_id' )
-				->where( [ "slot_revision_id BETWEEN $chunkStart AND $chunkEnd" ] )
+				->where( [
+					$dbr->expr( 'slot_revision_id', '>=', $chunkStart ),
+					$dbr->expr( 'slot_revision_id', '<=', $chunkEnd ),
+				] )
 				->caller( __METHOD__ )->fetchResultSet();
 			/** @var \MediaWiki\Storage\SqlBlobStore $blobStore */
 			$blobStore = $this->getServiceContainer()->getBlobStore();
