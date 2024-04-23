@@ -1243,7 +1243,7 @@ class ApiMain extends ApiBase {
 		$maxage = 0;
 		if ( isset( $this->mCacheControl['max-age'] ) ) {
 			$maxage = $this->mCacheControl['max-age'];
-		} elseif ( ( $this->mModule && !$this->mModule->isWriteMode() ) ||
+		} elseif ( ( !$isError && $this->mModule && !$this->mModule->isWriteMode() ) ||
 			$this->mCacheMode !== 'private'
 		) {
 			$maxage = $this->getParameter( 'maxage' );
