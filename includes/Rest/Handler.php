@@ -579,7 +579,7 @@ abstract class Handler {
 	 * Subclasses may override this method to support parsing additional
 	 * content types or to disallow content types by throwing an HttpException
 	 * with status 415. Subclasses may also return null to indicate that they
-	 * support reading the content, but intent to handle it as an unparsed
+	 * support reading the content, but intend to handle it as an unparsed
 	 * stream in their implementation of the execute() method.
 	 *
 	 * @since 1.42
