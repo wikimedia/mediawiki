@@ -46,6 +46,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 		$this->addOption( 'login', 'Reset login throttle' );
 		$this->addOption( 'signup', 'Reset account creation throttle' );
 		$this->addOption( 'tempaccount', 'Reset temp account creation throttle' );
+		$this->addOption( 'tempaccountnameacquisition', 'Reset temp account name acquisition throttle' );
 		$this->addOption( 'user', 'Username to reset', false, true );
 		$this->addOption( 'ip', 'IP to reset', false, true );
 	}
@@ -54,17 +55,22 @@ class ResetAuthenticationThrottle extends Maintenance {
 		$forLogin = (bool)$this->getOption( 'login' );
 		$forSignup = (bool)$this->getOption( 'signup' );
 		$forTempAccount = (bool)$this->getOption( 'tempaccount' );
+		$forTempAccountNameAcquisition = (bool)$this->getOption( 'tempaccountnameacquisition' );
 		$username = $this->getOption( 'user' );
 		$ip = $this->getOption( 'ip' );
 
-		if ( !$forLogin && !$forSignup && !$forTempAccount ) {
-			$this->fatalError( 'At least one of --login, --signup or --tempaccount is required!' );
+		if ( !$forLogin && !$forSignup && !$forTempAccount && !$forTempAccountNameAcquisition ) {
+			$this->fatalError(
+				'At least one of --login, --signup, --tempaccount, or --tempaccountnameacquisition is required!'
+			);
 		} elseif ( $forLogin && ( $ip === null || $username === null ) ) {
 			$this->fatalError( '--user and --ip are both required when using --login!' );
 		} elseif ( $forSignup && $ip === null ) {
 			$this->fatalError( '--ip is required when using --signup!' );
 		} elseif ( $forTempAccount && $ip === null ) {
 			$this->fatalError( '--ip is required when using --tempaccount!' );
+		} elseif ( $forTempAccountNameAcquisition && $ip === null ) {
+			$this->fatalError( '--ip is required when using --tempaccountnameacquisition!' );
 		} elseif ( $ip !== null && !IPUtils::isValid( $ip ) ) {
 			$this->fatalError( "Not a valid IP: $ip" );
 		}
@@ -78,12 +84,16 @@ class ResetAuthenticationThrottle extends Maintenance {
 		if ( $forTempAccount ) {
 			$this->clearTempAccountCreationThrottle( $ip );
 		}
+		if ( $forTempAccountNameAcquisition ) {
+			$this->clearTempAccountNameAcquisitionThrottle( $ip );
+		}
 
 		LoggerFactory::getInstance( 'throttler' )->info( 'Manually cleared {type} throttle', [
 			'type' => implode( ' and ', array_filter( [
 				$forLogin ? 'login' : null,
 				$forSignup ? 'signup' : null,
 				$forTempAccount ? 'tempaccount' : null,
+				$forTempAccountNameAcquisition ? 'tempaccountnameacquisition' : null,
 			] ) ),
 			'username' => $username,
 			'ipKey' => $ip,
@@ -167,6 +177,26 @@ class ResetAuthenticationThrottle extends Maintenance {
 		}
 		$throttler = new Throttler( $tempAccountCreationThrottle, [
 			'type' => 'tempacctcreate',
+			'cache' => ObjectCache::getLocalClusterInstance(),
+		] );
+
+		$throttler->clear( null, $ip );
+
+		$this->output( "done\n" );
+	}
+
+	protected function clearTempAccountNameAcquisitionThrottle( string $ip ): void {
+		$this->output( 'Clearing temp account name acquisition throttle...' );
+
+		$tempAccountNameAcquisitionThrottle = $this->getConfig()->get(
+			MainConfigNames::TempAccountNameAcquisitionThrottle
+		);
+		if ( !$tempAccountNameAcquisitionThrottle ) {
+			$this->output( "none set\n" );
+			return;
+		}
+		$throttler = new Throttler( $tempAccountNameAcquisitionThrottle, [
+			'type' => 'tempacctnameacquisition',
 			'cache' => ObjectCache::getLocalClusterInstance(),
 		] );
 

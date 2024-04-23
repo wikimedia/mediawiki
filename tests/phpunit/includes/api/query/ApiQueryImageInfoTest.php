@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Api\Query;
 
 use ApiQueryImageInfo;
 use File;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -114,7 +115,7 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->enableAutoCreateTempUser();
 		$this->tempUser = $this->getServiceContainer()
 			->getTempUserCreator()
-			->create()->getUser();
+			->create( null, new FauxRequest() )->getUser();
 		$tempActorId = $this->getServiceContainer()
 			->getActorStore()
 			->acquireActorId( $this->tempUser, $this->db );
