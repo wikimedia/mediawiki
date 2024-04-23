@@ -1108,6 +1108,8 @@
 	"show-big-image-size": "$1 × $2 ⵉⴷ ⴱⵉⴽⵙⵍ",
 	"days": "{{PLURAL:$1|$1 ⵡⴰⵙⵙ|$1 ⵡⵓⵙⵙⴰⵏ}}",
 	"saturday-at": "ⴰⵙⵉⴹⵢⴰⵙ ⴳ $1",
+	"variantname-zgh": "ⵜⵉⴼⵉⵏⴰⵖ",
+	"variantname-zgh-latn": "Alatin",
 	"metadata": "ⵎⵉⵜⴰⴷⴰⵜⴰ",
 	"metadata-help": "ⴰⴼⵍⵓ ⴰ ⵢⵓⵎⴰ ⵉⵏⵖⵎⵉⵙⵏ ⵉⵎⵔⵏⴰⵏⵉⵏ, ⵉⵔⵡⴰⵙ ⵉⵙ ⴰⵙ ⵜⵜⵡⴰⵔⵏⵉⵏ ⵙ ⴽⴰⵎⵉⵔⴰ ⵜⴰⵎⵓⵟⵟⵓⵏⵜ ⵏⵖ ⴰⵙⴽⴰⵏⵉⵔ ⵉⵜⵜⵓⵙⵎⵔⵙⵏ ⴳ ⵓⵙⵏⴼⵍⵓⵍ ⵏⵏⵙ.\nⵎⴽ ⵉⵜⵜⵓⵙⵏⴼⵍ ⵓⴼⴰⵢⵍⵓ ⵙⴳ ⵡⴰⴷⴷⴰⴷ ⵏⵏⵙ ⴰⵙⴰⵍⴰⵏ, ⵖⵉⵢⵏ ⴽⵔⴰ ⵏ ⵉⴼⵔⵓⵔⵉⵜⵏ ⴰⴷ ⵓⵔ ⵜⵜⴰⵖⵓⵍⵏ ⵖⴼ ⵓⴼⴰⵢⵍⵓ ⵉⵏⵏⴼⵍⵏ.",
 	"metadata-fields": "ⵔⴰⴷ ⵓⵎⵓⵏ ⵉⴳⵔⴰⵏ ⵏ ⵉⵙⴼⴽⴰ ⵓⴳⵍⵉⵎⵏ ⵏ ⵜⵡⵍⴰⴼⵜ ⵏⵏⴰ ⴷⵔⵙⵏⵉⵏ ⴳ ⵜⵓⵣⵉⵏⵜ ⴰⴷ ⴳ ⵓⵙⵎⴰⵍ ⵏ ⵜⴰⵙⵏⴰ ⵏ ⵜⴰⵡⵍⴰⴼⵜ ⴰⴷⴷⴰⵢ ⵜⴽⵔⵉ ⵜⴼⵍⵡⵉⵜ ⵏ ⵉⵙⴼⴽⴰ ⵓⴳⵍⵉⵎⵏ.\nⵔⴰⴷ ⴼⴼⵔⵏ ⵡⵉⵢⵢⴰⴹ ⵙ ⵓⵡⵏⵓⵍ.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude\n* dc-rights\n* copyrightowner\n* usageterms\n* webstatement\n* licenseurl\n* attributionurl\n* preferredattributionname\n* credit\n* jpegfilecomment\n* pngfilecomment\n* giffilecomment\n* usercomment\n* citydest\n* citycreated\n* headline\n* source\n* locationdest\n* dc-contributor\n* dc-coverage\n* dc-publisher\n* dc-relation\n* label\n* nickname\n* personinimage\n* disclaimer\n* event\n* objectname",
