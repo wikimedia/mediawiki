@@ -1487,9 +1487,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @param string $ip IP address, uses current client if none given
 	 * @return bool True if blocked, false otherwise
-	 * @deprecated since 1.40. Use getBlock instead.
+	 * @deprecated since 1.40, emits deprecation warnings since 1.43. Use getBlock instead.
 	 */
 	public function isBlockedGlobally( $ip = '' ) {
+		wfDeprecated( __METHOD__, '1.40' );
 		return $this->getGlobalBlock( $ip ) instanceof AbstractBlock;
 	}
 
@@ -2815,10 +2816,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get whether the user is blocked from using Special:Emailuser.
 	 * @return bool
-	 * @deprecated since 1.41 EmailUser::canSend checks blocks amongst other things. If you only need this
-	 * check, use ::getBlock()->appliesToRight( 'sendemail' ).
+	 * @deprecated since 1.41, emits deprecation warnings since 1.43. EmailUser::canSend
+	 *   checks blocks amongst other things. If you only need this check, use
+	 *   ::getBlock()->appliesToRight( 'sendemail' ).
 	 */
 	public function isBlockedFromEmailuser() {
+		wfDeprecated( __METHOD__, '1.41' );
 		$block = $this->getBlock();
 		return $block && $block->appliesToRight( 'sendemail' );
 	}
@@ -3144,10 +3147,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Is this user allowed to send e-mails within limits of current
 	 * site configuration?
-	 * @deprecated since 1.41 Use EmailUser::canSend() instead.
+	 * @deprecated since 1.41, emits deprecation warnings since 1.43.
+	 *   Use EmailUser::canSend() instead.
 	 * @return bool
 	 */
 	public function canSendEmail() {
+		wfDeprecated( __METHOD__, '1.41' );
 		$permError = MediaWikiServices::getInstance()->getEmailUserFactory()
 			->newEmailUser( $this->getThisAsAuthority() )
 			->canSend();

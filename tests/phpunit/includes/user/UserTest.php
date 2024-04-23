@@ -1222,6 +1222,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $blockFromAccountCreation Whether to block account creation.
 	 */
 	public function testIsBlockedFromAction( $blockFromEmail, $blockFromAccountCreation ) {
+		$this->hideDeprecated( User::class . '::isBlockedFromEmailuser' );
 		$user = $this->getMutableTestUser( 'accountcreator' )->getUser();
 
 		$block = new DatabaseBlock( [

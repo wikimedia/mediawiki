@@ -152,6 +152,10 @@ because of Phabricator reports.
   warnings. Use ::getConnection() instead.
 * IDatabase::lockForUpdate is deprecated, use
   SelectQueryBuilder::acquireRowLocks instead.
+* User::isBlockedGlobally(), deprecated since 1.40, now emits deprecation
+  warnings.
+* User::isBlockedFromEmailuser() and User::canSendEmail(), deprecated since
+  1.41, now emit deprecation warnings.
 * …
 
 === Other changes in 1.43 ===
