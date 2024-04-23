@@ -2493,19 +2493,16 @@ class Title implements LinkTarget, PageIdentity {
 			return [];
 		}
 
-		$options = [];
-		if ( $limit > -1 ) {
-			$options['LIMIT'] = $limit;
-		}
-
 		$services = MediaWikiServices::getInstance();
 		$pageStore = $services->getPageStore();
 		$titleFactory = $services->getTitleFactory();
 		$query = $pageStore->newSelectQueryBuilder()
 			->fields( $pageStore->getSelectFields() )
 			->whereTitlePrefix( $this->getNamespace(), $this->getDBkey() . '/' )
-			->options( $options )
 			->caller( __METHOD__ );
+		if ( $limit > -1 ) {
+			$query->limit( $limit );
+		}
 
 		return $titleFactory->newTitleArrayFromResult( $query->fetchResultSet() );
 	}

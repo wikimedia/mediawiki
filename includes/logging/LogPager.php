@@ -399,7 +399,7 @@ class LogPager extends ReverseChronologicalPager {
 		// Tell it not to reorder the query. But not when tag filtering or log_search was used, as it
 		// seems as likely to be harmed as helped in that case.
 		if ( $this->mTagFilter === '' && !array_key_exists( 'ls_field', $this->mConds ) ) {
-			$queryBuilder->option( 'STRAIGHT_JOIN' );
+			$queryBuilder->straightJoinOption();
 		}
 
 		$maxExecTime = $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
