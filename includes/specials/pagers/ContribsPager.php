@@ -360,30 +360,7 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	public function getQueryInfo() {
-		$revQuery = $this->revisionStore->getQueryInfo( [ 'page', 'user' ] );
-		$queryInfo = [
-			'tables' => $revQuery['tables'],
-			'fields' => array_merge( $revQuery['fields'], [ 'page_is_new' ] ),
-			'conds' => [],
-			'options' => [],
-			'join_conds' => $revQuery['joins'],
-		];
-
-		// WARNING: Keep this in sync with getTargetTable()!
-		$dbr = $this->getDatabase();
-		$ipRangeConds = !$this->targetUser->isRegistered() ? $this->getIpRangeConds( $dbr, $this->target ) : null;
-		if ( $ipRangeConds ) {
-			// Put ip_changes first (T284419)
-			array_unshift( $queryInfo['tables'], 'ip_changes' );
-			$queryInfo['join_conds']['revision'] = [
-				'JOIN', [ 'rev_id = ipc_rev_id' ]
-			];
-			$queryInfo['conds'][] = $ipRangeConds;
-		} else {
-			$queryInfo['conds']['actor_name'] = $this->targetUser->getName();
-			// Force the appropriate index to avoid bad query plans (T307295)
-			$queryInfo['options']['USE INDEX']['revision'] = 'rev_actor_timestamp';
-		}
+		$queryInfo = $this->getRevisionQuery();
 
 		if ( $this->deletedOnly ) {
 			$queryInfo['conds'][] = 'rev_deleted != 0';
@@ -404,6 +381,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$queryInfo['conds'] = array_merge( $queryInfo['conds'], $this->getNamespaceCond() );
 
 		// Paranoia: avoid brute force searches (T19342)
+		$dbr = $this->getDatabase();
 		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$queryInfo['conds'][] = $dbr->bitAnd(
 				'rev_deleted', RevisionRecord::DELETED_USER
@@ -431,6 +409,36 @@ class ContribsPager extends RangeChronologicalPager {
 		);
 
 		$this->hookRunner->onContribsPager__getQueryInfo( $this, $queryInfo );
+
+		return $queryInfo;
+	}
+
+	protected function getRevisionQuery() {
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page', 'user' ] );
+		$queryInfo = [
+			'tables' => $revQuery['tables'],
+			'fields' => array_merge( $revQuery['fields'], [ 'page_is_new' ] ),
+			'conds' => [],
+			'options' => [],
+			'join_conds' => $revQuery['joins'],
+		];
+
+		// WARNING: Keep this in sync with getTargetTable()!
+		$ipRangeConds = !$this->targetUser->isRegistered() ?
+			$this->getIpRangeConds( $this->getDatabase(), $this->target ) :
+			null;
+		if ( $ipRangeConds ) {
+			// Put ip_changes first (T284419)
+			array_unshift( $queryInfo['tables'], 'ip_changes' );
+			$queryInfo['join_conds']['revision'] = [
+				'JOIN', [ 'rev_id = ipc_rev_id' ]
+			];
+			$queryInfo['conds'][] = $ipRangeConds;
+		} else {
+			$queryInfo['conds']['actor_name'] = $this->targetUser->getName();
+			// Force the appropriate index to avoid bad query plans (T307295)
+			$queryInfo['options']['USE INDEX']['revision'] = 'rev_actor_timestamp';
+		}
 
 		return $queryInfo;
 	}
