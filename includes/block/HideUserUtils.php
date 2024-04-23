@@ -99,17 +99,19 @@ class HideUserUtils {
 					[ "ipb_user=$userIdField", 'ipb_deleted' => 1 ]
 				);
 		} else {
-			$group = $qb->newJoinGroup()
-				->table( 'block_target' )
-				->join( 'block', 'hide_user_block', 'bl_target=bt_id' );
-			$qb
-				->select( [ $deletedFieldAlias => 'bl_deleted IS NOT NULL' ] )
-				->leftJoin(
-					$group,
-					'hide_user_block_group',
-					[ "bt_user=$userIdField", 'bl_deleted' => 1 ]
-				)
-				->groupBy( $userIdField );
+			$cond = '(' .
+				$qb->newSubquery()
+					->select( '1' )
+					// $userIdField may be e.g. block_target.bt_user so an inner table
+					// alias is necessary to ensure that that refers to the outer copy
+					// of the block_target table.
+					->from( 'block_target', 'hu_block_target' )
+					->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
+					->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
+					->caller( __METHOD__ )
+					->getSQL() .
+				') IS NOT NULL';
+			$qb->select( [ $deletedFieldAlias => $cond ] );
 		}
 	}
 }
