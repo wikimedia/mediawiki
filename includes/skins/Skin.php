@@ -673,6 +673,11 @@ abstract class Skin extends ContextSource {
 		$titleFormatter = $services->getTitleFormatter();
 		$name = Sanitizer::escapeClass( 'page-' . $titleFormatter->getPrefixedText( $title ) );
 		$root = Sanitizer::escapeClass( 'rootpage-' . $titleFormatter->formatTitle( $ns, $title->getRootText() ) );
+		// Add a static class that is not subject to translation to allow extensions/skins/global code to target main
+		// pages reliably (T363281)
+		if ( $title->isMainPage() ) {
+			$name .= ' page-Main_Page';
+		}
 
 		return "$numeric $type $name $root";
 	}
