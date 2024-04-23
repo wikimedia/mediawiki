@@ -941,7 +941,7 @@
 	"group-sysop": "Адміністраторы",
 	"group-interface-admin": "Адміністраторы інтерфейсу",
 	"group-bureaucrat": "Бірократы",
-	"group-suppress": "Ревізоры",
+	"group-suppress": "Suppressors",
 	"group-all": "(вшыткы)",
 	"group-user-member": "{{GENDER:$1|хоснователь|хоснователька|хоснователь}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|автопотвердженый хоснователь|автопотверджена хоснователька|автопотвердженый хоснователь}}",
