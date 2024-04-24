@@ -134,34 +134,11 @@ class SignatureValidator {
 
 		$errors = $this->localizer ? [] : false;
 
-		$hiddenCats = [];
-		if ( $this->extensionRegistry->isLoaded( 'Linter' ) ) { // T360809
-			$services = MediaWikiServices::getInstance();
-			$linterCategories = $services->getMainConfig()->get( 'LinterCategories' );
-			foreach ( $linterCategories as $name => $cat ) {
-				if ( $cat['priority'] === 'none' ) {
-					$hiddenCats[$name] = true;
-				}
-			}
-		}
-
 		$lintErrors = $this->checkLintErrors( $signature );
 		if ( $lintErrors ) {
-			$allowedLintErrors = $this->serviceOptions->get(
-				MainConfigNames::SignatureAllowedLintErrors );
 			$messages = '';
 
 			foreach ( $lintErrors as $error ) {
-				if ( $error['type'] === 'multiple-unclosed-formatting-tags' ) {
-					// Always appears with 'missing-end-tag', we can ignore it to simplify the error message
-					continue;
-				}
-				if ( in_array( $error['type'], $allowedLintErrors, true ) ) {
-					continue;
-				}
-				if ( $hiddenCats[$error['type']] ?? false ) {
-					continue;
-				}
 				if ( !$this->localizer ) {
 					$errors = true;
 					break;
@@ -290,6 +267,27 @@ class SignatureValidator {
 		// This has to use Parsoid because PHP Parser doesn't produce this information,
 		// it just fixes up the result quietly.
 
+		$disabled = array_merge(
+			[
+				// Always appears with 'missing-end-tag', we can ignore it to
+				// simplify the error message
+				'multiple-unclosed-formatting-tags',
+			],
+			$this->serviceOptions->get(
+				MainConfigNames::SignatureAllowedLintErrors
+			)
+		);
+		if ( $this->extensionRegistry->isLoaded( 'Linter' ) ) { // T360809
+			$services = MediaWikiServices::getInstance();
+			$linterCategories = $services->getMainConfig()->get( 'LinterCategories' );
+			foreach ( $linterCategories as $name => $cat ) {
+				if ( $cat['priority'] === 'none' ) {
+					$disabled[] = $name;
+				}
+			}
+		}
+		$disabled = array_unique( $disabled );
+
 		$page = Title::newMainPage();
 		$fakeRevision = new MutableRevisionRecord( $page );
 		$fakeRevision->setSlot(
@@ -300,7 +298,8 @@ class SignatureValidator {
 		);
 
 		return $this->parsoid->wikitext2lint(
-			$this->pageConfigFactory->create( $page, null, $fakeRevision )
+			$this->pageConfigFactory->create( $page, null, $fakeRevision ),
+			[ 'linterOverrides' => [ 'disabled' => $disabled ] ]
 		);
 	}
 

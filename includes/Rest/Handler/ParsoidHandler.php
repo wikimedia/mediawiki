@@ -634,9 +634,12 @@ abstract class ParsoidHandler extends Handler {
 		return '/v1/revision/{revision}/html';
 	}
 
-	public function wtLint( PageConfig $pageConfig, array $attribs, ?string $wikitext = null ) {
-		$envOptions = $attribs['envOptions'];
-
+	public function wtLint(
+		PageConfig $pageConfig, array $attribs, ?array $linterOverrides = []
+	) {
+		$envOptions = $attribs['envOptions'] + [
+			'linterOverrides' => $linterOverrides,
+		];
 		try {
 			$parsoid = $this->newParsoid();
 			return $parsoid->wikitext2lint( $pageConfig, $envOptions );
@@ -668,31 +671,19 @@ abstract class ParsoidHandler extends Handler {
 		$stash = $opts['stash'] ?? false;
 
 		if ( $format === ParsoidFormatHelper::FORMAT_LINT ) {
-			$lints = $this->wtLint( $pageConfig, $attribs, $wikitext );
-
+			$linterOverrides = [];
 			if ( $this->extensionRegistry->isLoaded( 'Linter' ) ) { // T360809
+				$disabled = [];
 				$services = MediaWikiServices::getInstance();
 				$linterCategories = $services->getMainConfig()->get( 'LinterCategories' );
-				$hiddenCats = [];
 				foreach ( $linterCategories as $name => $cat ) {
 					if ( $cat['priority'] === 'none' ) {
-						$hiddenCats[$name] = true;
+						$disabled[] = $name;
 					}
 				}
-				$lintRemoved = false;
-				foreach ( $lints as $index => $lint ) {
-					if ( isset( $hiddenCats[ $lint['type'] ] ) ) {
-						unset( $lints[$index] );
-						$lintRemoved = true;
-					}
-				}
-				// Resequence array indexes of unset elements which otherwise are json
-				// formatted with unwanted index keys
-				if ( $lintRemoved ) {
-					$lints = array_values( $lints );
-				}
+				$linterOverrides['disabled'] = $disabled;
 			}
-
+			$lints = $this->wtLint( $pageConfig, $attribs, $linterOverrides );
 			$response = $this->getResponseFactory()->createJson( $lints );
 			return $response;
 		}
