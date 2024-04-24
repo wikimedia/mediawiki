@@ -365,7 +365,7 @@ class Validator {
 			'schema' => $schema
 		];
 
-		// TODO: generate a warning if required is false for a pth param
+		// TODO: generate a warning if required is false for a path param
 		$param['required'] = $location === 'path'
 			|| ( $paramSetting[ ParamValidator::PARAM_REQUIRED ] ?? false );
 

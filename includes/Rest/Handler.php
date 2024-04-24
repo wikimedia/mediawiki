@@ -119,8 +119,8 @@ abstract class Handler {
 	}
 
 	/**
-	 * Get a list of parameter placeholder present in the route's path
-	 * as returned by getPath(). Not that this independent of the parameters
+	 * Get a list of parameter placeholders present in the route's path
+	 * as returned by getPath(). Note that this is independent of the parameters
 	 * defined by getParamSettings(): required path parameters defined in
 	 * getParamSettings() should be present in the path, but there is no
 	 * mechanism to ensure that they are.
