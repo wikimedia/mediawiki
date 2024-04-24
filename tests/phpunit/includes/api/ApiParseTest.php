@@ -107,9 +107,9 @@ class ApiParseTest extends ApiTestCase {
 
 		$html = substr( $html, strlen( $expectedStart ) );
 
-		# Parsoid-based transformations may add an ID attribute to the
-		# wrapper div
-		$possibleIdAttr = '/^( id="[^"]+")?>/';
+		# Parsoid-based transformations may add ID and data-mw-parsoid-version
+		# attributes to the wrapper div
+		$possibleIdAttr = '/^( (id|data-mw[^=]*)="[^"]+")*>/';
 		$html = preg_replace( $possibleIdAttr, '', $html );
 
 		$possibleParserCache = '/\n<!-- Saved in (?>parser cache|RevisionOutputCache) (?>.*?\n -->)\n/';
