@@ -31,7 +31,7 @@
 	transform: translateX( 35px );
 	transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
 	pointer-events: auto;
-	word-break: break-all;
+	word-break: break-word;
 }
 
 .mw-notification-visible {
