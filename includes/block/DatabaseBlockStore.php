@@ -42,8 +42,11 @@ use stdClass;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\OrExpressionGroup;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use function array_key_exists;
@@ -638,20 +641,22 @@ class DatabaseBlockStore {
 				LIST_AND
 			);
 		} elseif ( $schema === self::SCHEMA_BLOCK ) {
-			return $dbr->makeList(
-				[
-					'bt_ip_hex' => $start,
-					$dbr->makeList(
-						[
-							"bt_range_start $like",
-							$dbr->expr( 'bt_range_start', '<=', $start ),
-							$dbr->expr( 'bt_range_end', '>=', $end ),
-						],
-						LIST_AND
-					)
-				],
-				LIST_OR
-			);
+			$expr = $dbr->expr(
+					'bt_range_start',
+					IExpression::LIKE,
+					new LikeValue( $chunk, $dbr->anyString() )
+				)
+				->and( 'bt_range_start', '<=', $start )
+				->and( 'bt_range_end', '>=', $end );
+			if ( $start === $end ) {
+				// Also select single IP blocks for this target
+				$expr = new OrExpressionGroup(
+					$dbr->expr( 'bt_ip_hex', '=', $start )
+						->and( 'bt_range_start', '=', null ),
+					$expr
+				);
+			}
+			return $expr->toSql( $dbr );
 		} else {
 			throw new InvalidArgumentException(
 				'$schema must be SCHEMA_IPBLOCKS or SCHEMA_BLOCK' );

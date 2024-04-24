@@ -334,6 +334,39 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			$this->getStore()->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_IPBLOCKS ) );
 	}
 
+	public static function provideGetRangeCondIntegrated() {
+		return [
+			'single IP block' => [ '3.3.3.3', '3.3.3.3', true ],
+			'/32 range blocks single IP' => [ '3.3.3.3/32', '3.3.3.3', true ],
+			'single IP block mismatch' => [ '3.3.3.3', '3.3.3.4', false ],
+			'/32 range mismatch' => [ '3.3.3.3/32', '3.3.3.4', false ],
+			'/24 match' => [ '3.3.3.0/24', '3.3.3.0', true ],
+			'/24 mismatch' => [ '3.3.3.0/24', '3.3.4.0', false ],
+			'range search exact match' => [ '3.3.3.0/24', '3.3.3.0/24', true ],
+			'encompassing range match' => [ '3.3.3.0/24', '3.3.3.1/27', true ],
+			'excessive range mismatch' => [ '3.3.0.0/24', '3.3.0.0/22', false ],
+		];
+	}
+
+	/**
+	 * Test getRangeCond() by inserting blocks and checking for matches
+	 *
+	 * @dataProvider provideGetRangeCondIntegrated
+	 * @param string $blockTarget
+	 * @param string $searchTarget
+	 * @param bool $isBlocked
+	 */
+	public function testGetRangeCondIntegrated( $blockTarget, $searchTarget, $isBlocked ) {
+		$store = $this->getStore();
+		$store->insertBlock( $this->getBlock( [ 'target' => $blockTarget ] ) );
+		[ $start, $end ] = IPUtils::parseRange( $searchTarget );
+		$rows = $this->db->newSelectQueryBuilder()
+			->queryInfo( $store->getQueryInfo( DatabaseBlockStore::SCHEMA_IPBLOCKS ) )
+			->where( $store->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_CURRENT ) )
+			->fetchResultSet();
+		$this->assertSame( $isBlocked ? 1 : 0, $rows->numRows() );
+	}
+
 	/**
 	 * @dataProvider provideInsertBlockSuccess
 	 */

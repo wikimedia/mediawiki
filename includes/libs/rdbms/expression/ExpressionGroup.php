@@ -17,7 +17,6 @@ abstract class ExpressionGroup implements IExpression {
 	protected array $children = [];
 
 	/**
-	 * @internal
 	 * @param IExpression ...$children
 	 */
 	public function __construct( IExpression ...$children ) {
