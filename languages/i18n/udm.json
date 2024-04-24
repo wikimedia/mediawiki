@@ -19,7 +19,8 @@
 			"ОйЛ",
 			"Света Поторочина",
 			"לערי ריינהארט",
-			"LaMagiaaa"
+			"LaMagiaaa",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Чӧлсконъёсты ултӥз гожен пусъёно",
@@ -2503,8 +2504,8 @@
 	"restriction-move": "Нимзэ воштоно",
 	"restriction-create": "Кылдытоно",
 	"restriction-upload": "Инъяны",
-	"restriction-level-sysop": "Быдэсак утемын",
-	"restriction-level-autoconfirmed": "Быдэсак утемын",
+	"restriction-level-sysop": "fully protected",
+	"restriction-level-autoconfirmed": "semi protected",
 	"restriction-level-all": "котькуд ӵоштала",
 	"undelete": "Ӵушем бамъёсты учконо",
 	"undeletepage": "Ӵушем бамъёсты учкон но берентон",

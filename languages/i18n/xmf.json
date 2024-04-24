@@ -2846,6 +2846,7 @@
 	"movesubpage": "{{PLURAL:$1|გიმენხასჷლა}}",
 	"movesubpagetext": "ათე ხასჷლას უღჷ $1 {{PLURAL:$1|გიმენხასჷლა}}.",
 	"movesubpagetalktext": "ომანგე სხუნუაშ ხასჷლას უღჷ $1 {{PLURAL:$1|გიმენხასჷლა}}, ნამუთ ნაძირებუ რე გიმე.",
+	"movesubpagetext-truncated": "ათე ხასჷლაშ {{PLURAL:$1|$1 გიმენხასჷლა}} {{PLURAL:$1|მოჩამილი რე}} გიმე.",
 	"movenosubpage": "ათე ხასჷლას ვა უღჷ გიმენხასჷლეფი",
 	"movereason": "სამანჯელი:",
 	"moveotherreason": "შხვა/გეძინელი სამანჯელი:",
