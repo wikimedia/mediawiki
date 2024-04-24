@@ -299,6 +299,12 @@ abstract class Skin extends ContextSource {
 	 *     Since: MW 1.41
 	 *     Default: `false`
 	 *
+	 *  - `wrapSiteNotice`: Enable support for standard site notice wrapper.
+	 *     This instructs the Skin to wrap banners in div#siteNotice.
+	 *
+	 *     Since: MW 1.42
+	 *     Default: `false`
+	 *
 	 *  - `responsive`: Whether the skin supports responsive behaviour and wants a viewport meta
 	 *     tag to be added to the HTML head. Note, users can disable this feature via a user
 	 *     preference.
@@ -1923,6 +1929,9 @@ abstract class Skin extends ContextSource {
 		}
 
 		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
+		if ( $this->getOptions()[ 'wrapSiteNotice' ] ) {
+			$siteNotice = Html::rawElement( 'div', [ 'id' => 'siteNotice', 'class' => 'notheme' ], $siteNotice );
+		}
 		return $siteNotice;
 	}
 
@@ -2431,7 +2440,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * For documentation about supported options, refer to the Skin constructor.
 	 *
-	 * @internal Please call SkinFactory::getSkinOptions instead
+	 * @internal Please call SkinFactory::getSkinOptions instead. See Skin::__construct for documentation.
 	 * @return array
 	 */
 	final public function getOptions(): array {
@@ -2445,6 +2454,7 @@ abstract class Skin extends ContextSource {
 			'responsive' => false,
 			'link' => [],
 			'tempUserBanner' => false,
+			'wrapSiteNotice' => false,
 			'menus' => [
 				// Legacy keys that are enabled by default for backwards compatibility
 				'namespaces',
