@@ -83,15 +83,30 @@ abstract class Handler {
 		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer,
 		Session $session
 	) {
-		$this->router = $router;
+		$this->initContext( $router, $config );
 		$this->request = $request;
 		$this->authority = $authority;
-		$this->config = $config;
 		$this->responseFactory = $responseFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->session = $session;
 		$this->postInitSetup();
+	}
+
+	/**
+	 * Injects information about the handler's context in the Router.
+	 *
+	 * First function of the initialization function, must be called before
+	 * initServices().
+	 *
+	 * @param Router $router
+	 * @param array $routeConfig information about the route declaration.
+	 *
+	 * @internal
+	 */
+	final public function initContext( Router $router, array $routeConfig ) {
+		$this->router = $router;
+		$this->config = $routeConfig;
 	}
 
 	/**
@@ -101,6 +116,23 @@ abstract class Handler {
 	 */
 	public function getPath(): string {
 		return $this->getConfig()['path'];
+	}
+
+	/**
+	 * Get a list of parameter placeholder present in the route's path
+	 * as returned by getPath(). Not that this independent of the parameters
+	 * defined by getParamSettings(): required path parameters defined in
+	 * getParamSettings() should be present in the path, but there is no
+	 * mechanism to ensure that they are.
+	 *
+	 * @return string[]
+	 */
+	public function getSupportedPathParams(): array {
+		$path = $this->getPath();
+
+		preg_match_all( '/\{(.*?)\}/', $path, $matches, PREG_PATTERN_ORDER );
+
+		return $matches[1] ?? [];
 	}
 
 	/**
@@ -418,6 +450,8 @@ abstract class Handler {
 		// XXX: Maybe we want to be able to define a spec file in the route definition?
 		// NOTE: the route definition may not be loaded when this is called before init()!
 
+		$supportedPathParams = array_flip( $this->getSupportedPathParams() );
+
 		foreach ( $this->getParamSettings() as $name => $paramSetting ) {
 			$param = Validator::getParameterSpec(
 				$name,
@@ -425,11 +459,18 @@ abstract class Handler {
 			);
 
 			$location = $param['in'];
-			if ( $location !== 'post' && $location !== 'body' ) {
+			if ( $location === 'post' || $location === 'body' ) {
 				// 'post' and 'body' are handled in getRequestSpec()
 				// but others are added as normal parameters
-				$parameters[] = $param;
+				continue;
 			}
+
+			if ( $location === 'path' && !isset( $supportedPathParams[$name] ) ) {
+				// Skip optional path param not used in the current path
+				continue;
+			}
+
+			$parameters[] = $param;
 		}
 
 		$spec = [
