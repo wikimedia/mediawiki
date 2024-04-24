@@ -117,6 +117,11 @@ $wgParsoidSettings['html2wtLimits']['htmlSize'] = 100 * 1024; // in characters!
 // Enable Vue dev mode by default, so that Vue devtools are functional.
 $wgVueDevelopmentMode = true;
 
+// Disable rate limiting of temp account creation and temp account name
+// acquisition, to facilitate local development and testing
+$wgTempAccountCreationThrottle = [];
+$wgTempAccountNameAcquisitionThrottle = [];
+
 /**
  * Experimental changes that may later become the default.
  * (Must reference a Phabricator ticket)
