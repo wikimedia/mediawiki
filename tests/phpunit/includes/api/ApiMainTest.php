@@ -1192,6 +1192,32 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
+	 * Common test code for tests that cover ApiMain::sendCacheHeaders.
+	 *
+	 * @param TestingAccessWrapper $api An ApiMain instance, wrapped in a TestingAccessWrapper.
+	 * @param FauxRequest $req
+	 * @param bool $isError
+	 * @param string $cacheMode
+	 * @param string|null $expectedVary
+	 * @param string $expectedCacheControl
+	 */
+	private function commonTestCacheHeaders(
+		TestingAccessWrapper $api,
+		FauxRequest $req,
+		bool $isError,
+		string $cacheMode,
+		?string $expectedVary,
+		string $expectedCacheControl
+	) {
+		$api->setCacheMode( $cacheMode );
+		$this->assertSame( $cacheMode, $api->mCacheMode, 'Cache mode precondition' );
+		$api->sendCacheHeaders( $isError );
+
+		$this->assertSame( $expectedVary, $req->response()->getHeader( 'Vary' ), 'Vary' );
+		$this->assertSame( $expectedCacheControl, $req->response()->getHeader( 'Cache-Control' ), 'Cache-Control' );
+	}
+
+	/**
 	 * @param string $cacheMode
 	 * @param string|null $expectedVary
 	 * @param string $expectedCacheControl
@@ -1215,12 +1241,7 @@ class ApiMainTest extends ApiTestCase {
 		/** @var ApiMain|TestingAccessWrapper $api */
 		$api = TestingAccessWrapper::newFromObject( new ApiMain( $ctx ) );
 
-		$api->setCacheMode( $cacheMode );
-		$this->assertSame( $cacheMode, $api->mCacheMode, 'Cache mode precondition' );
-		$api->sendCacheHeaders( false );
-
-		$this->assertSame( $expectedVary, $req->response()->getHeader( 'Vary' ), 'Vary' );
-		$this->assertSame( $expectedCacheControl, $req->response()->getHeader( 'Cache-Control' ), 'Cache-Control' );
+		$this->commonTestCacheHeaders( $api, $req, false, $cacheMode, $expectedVary, $expectedCacheControl );
 	}
 
 	public static function provideCacheHeaders(): Generator {
@@ -1236,5 +1257,33 @@ class ApiMainTest extends ApiTestCase {
 			'Accept-Encoding, Treat-as-Untrusted, Cookie',
 			'private, must-revalidate, max-age=0'
 		];
+	}
+
+	/** @dataProvider provideCacheHeaders */
+	public function testCacheHeadersOnIsErrorAsTrue(
+		string $cacheMode,
+		?string $expectedVary,
+		string $expectedCacheControl,
+		array $requestData = []
+	) {
+		$req = new FauxRequest( $requestData );
+		$ctx = new RequestContext();
+		$ctx->setRequest( $req );
+		/** @var ApiMain|TestingAccessWrapper $api */
+		$api = TestingAccessWrapper::newFromObject( new ApiMain( $ctx ) );
+
+		// Create a mock ApiBase object that throws an ApiUsageException from ::isWriteMode. This will be used as the
+		// mModule property of $api, and will test that ::isWriteMode is either never called or properly wrapped in
+		// a try block in the method we are testing (T363133).
+		$module = $this->getMockBuilder( ApiBase::class )
+			->setConstructorArgs( [ $api->object, 'mock' ] )
+			->onlyMethods( [ 'isWriteMode' ] )
+			->getMockForAbstractClass();
+		$module->method( 'isWriteMode' )
+			->willThrowException( new ApiUsageException( $module, StatusValue::newFatal( 'test' ) ) );
+		$api->mModule = $module;
+
+		// This will test that ::isWriteMode will not be called if $isError is true.
+		$this->commonTestCacheHeaders( $api, $req, true, $cacheMode, $expectedVary, $expectedCacheControl );
 	}
 }
