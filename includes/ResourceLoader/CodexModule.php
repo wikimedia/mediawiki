@@ -230,8 +230,8 @@ class CodexModule extends FileModule {
 				'rtl' => 'manifest-rtl.json',
 			],
 			'wikimedia-ui-legacy' => [
-				'ltr' => 'manifest-legacy.json',
-				'rtl' => 'manifest-legacy-rtl.json',
+				'ltr' => 'manifest.json',
+				'rtl' => 'manifest-rtl.json',
 			],
 			'experimental' => [
 				'ltr' => 'manifest.json',
@@ -484,8 +484,8 @@ class CodexModule extends FileModule {
 					'rtl' => 'resources/lib/codex/codex.style-rtl.css'
 				],
 				'wikimedia-ui-legacy' => [
-					'ltr' => 'resources/lib/codex/codex.style-legacy.css',
-					'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
+					'ltr' => 'resources/lib/codex/codex.style.css',
+					'rtl' => 'resources/lib/codex/codex.style-rtl.css'
 				],
 				'experimental' => [
 					'ltr' => 'resources/lib/codex/codex.style.css',
