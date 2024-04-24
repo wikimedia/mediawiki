@@ -1,5 +1,8 @@
 # Changelog
 
+## UNRELEASED
+* Wait for form submission in `LoginPage.login()`.
+
 ## 2.5.0 / 2024-01-24
 
 * Screenshots no longer work with WebdriverIO v8, just with v7. (T347137)
