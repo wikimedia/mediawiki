@@ -178,7 +178,8 @@
 		"phpunit:integration": "@phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
 		"phpunit:coverage": "@phpunit --testsuite=core:unit --exclude-group Dump,Broken",
 		"phpunit:coverage-edit": "MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit::onEvent",
-		"phpunit:entrypoint": "@phpunit"
+		"phpunit:entrypoint": "@phpunit",
+		"maintenance": "@php maintenance/run.php"
 	},
 	"config": {
 		"optimize-autoloader": true,
