@@ -6604,10 +6604,12 @@ class MainConfigSchema {
 	 * Note that each skin also has to indicate support for the new structure.
 	 * More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
 	 *
+	 * @deprecated since 1.44
 	 * @since 1.43
 	 */
 	public const ParserEnableLegacyHeadingDOM = [
-		'default' => true,
+		'default' => false,
+		'deprecated' => 'since 1.44',
 	];
 
 	/**

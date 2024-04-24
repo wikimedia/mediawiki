@@ -2365,6 +2365,7 @@ $wgParserEnableLegacyMediaDOM = null;
 /**
  * Config variable stub for the ParserEnableLegacyHeadingDOM setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserEnableLegacyHeadingDOM
+ * @deprecated since 1.44
  */
 $wgParserEnableLegacyHeadingDOM = null;
 
