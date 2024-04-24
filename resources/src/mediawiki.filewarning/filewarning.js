@@ -60,6 +60,10 @@
 			}
 		}
 
+		// Position the popup relative to $button rather than the default $element, so that it isn't
+		// pushed away by padding added to .mediawiki-filewarning-anchor in CSS. (T363157)
+		dialog.getPopup().setFloatableContainer( dialog.$button );
+
 		// Make OOUI open the dialog, it won't appear until the user
 		// hovers over the warning.
 		dialog.getPopup().toggle( true );
