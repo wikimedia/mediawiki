@@ -3,9 +3,11 @@
 /* stylelint-disable selector-class-pattern */
 
 // Increase the area of the button, so that the user can move the mouse cursor
-// to the popup without the popup disappearing. (T157544)
+// to the popup without the popup disappearing. (T157544, T363157)
 .mediawiki-filewarning-anchor {
+	padding-top: 10px;
 	padding-bottom: 10px;
+	margin-top: -10px;
 	margin-bottom: -10px;
 
 	&.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button {
