@@ -95,6 +95,7 @@ class RootSpecHandler extends SimpleHandler {
 
 	private function getRouteSpec( array $handlerObjectSpec, string $method ): array {
 		$handler = $this->getRouter()->instantiateHandlerObject( $handlerObjectSpec );
+		$handler->initContext( $this->getRouter(), $handlerObjectSpec );
 
 		$operationSpec = $handler->getOpenApiSpec( $method );
 

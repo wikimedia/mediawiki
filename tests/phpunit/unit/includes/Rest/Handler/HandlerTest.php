@@ -122,6 +122,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'just/some/path', $handler->getPath() );
 	}
 
+	public function testSupportedPathparams() {
+		$handler = $this->newHandler();
+		$request = new RequestData();
+		$this->initHandler( $handler, $request, [ 'path' => 'some/path/{foo}/{bar}' ] );
+		$this->assertSame( [ 'foo', 'bar' ], $handler->getSupportedPathParams() );
+	}
+
 	public function testGetResponseFactory() {
 		$handler = $this->newHandler();
 		$this->initHandler( $handler, new RequestData() );
