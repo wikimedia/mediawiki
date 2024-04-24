@@ -428,9 +428,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 				$url = $title->getFullURL( $query );
 			}
 			// Check for a redirect loop
-			if ( !preg_match( '/^' . preg_quote( $this->getConfig( MainConfigNames::Server ), '/' ) . '/', $url )
-				&& $title->isLocal()
-			) {
+			if ( $url !== $request->getFullRequestURL() && $title->isLocal() ) {
 				// 301 so google et al report the target as the actual url.
 				$output->redirect( $url, 301 );
 			} else {
