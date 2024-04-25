@@ -132,6 +132,7 @@ because of Phabricator reports.
   MediaWiki 1.39, now emits deprecation warnings.
 * ContentHandler::getContentText(), deprecated in 1.37, now emits deprecation
   warnings.
+* OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
 * …
 
 === Other changes in 1.43 ===
