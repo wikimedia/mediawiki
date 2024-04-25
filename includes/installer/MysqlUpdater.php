@@ -173,6 +173,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'runMaintenance', PopulateUserIsTemp::class, 'maintenance/populateUserIsTemp.php' ],
 			[ 'dropIndex', 'sites', 'site_type', 'patch-sites-drop_indexes.sql' ],
 			[ 'dropIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-iwlinks-drop-iwl_prefix_from_title.sql' ],
+
+			// 1.43
+			[ 'migratePagelinks' ],
 		];
 	}
 
