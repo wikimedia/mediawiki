@@ -667,6 +667,7 @@
 	"edit-recovery-special-intro-empty": "Няма несъхранени промени.",
 	"edit-recovery-special-view": "преглед",
 	"edit-recovery-special-edit": "редактиране",
+	"edit-recovery-special-delete": "изтриване",
 	"edit-recovery-special-recovered-on": "от $1",
 	"edit-recovery-special-recovered-on-tooltip": "Дата и час, в които Вашите данни за възстановяване на редакция последно са били запазени.",
 	"edit-recovery-loaded-title": "Промените са възстановени",
