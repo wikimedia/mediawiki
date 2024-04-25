@@ -155,8 +155,6 @@ class MWExceptionRenderer {
 		// Don't even bother with OutputPage if there's no Title context set,
 		// (e.g. we're in RL code on load.php) - the Skin system (and probably
 		// most of MediaWiki) won't work.
-
-		// NOTE: keep in sync with MWException::useOutputPage
 		return (
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
 			!empty( $GLOBALS['wgOut'] ) &&
@@ -314,14 +312,7 @@ class MWExceptionRenderer {
 	 * @return Message
 	 */
 	private static function getExceptionTitle( Throwable $e ): Message {
-		if (
-			$e instanceof MWException &&
-			MWDebug::detectDeprecatedOverride( $e, MWException::class, 'getPageTitle', '1.42' )
-		) {
-			return ( new RawMessage( '$1' ) )->plaintextParams(
-				$e->getPageTitle() /* convert string title to Message */
-			);
-		} elseif ( $e instanceof DBReadOnlyError ) {
+		if ( $e instanceof DBReadOnlyError ) {
 			return self::msgObj( 'readonly', 'Database is locked' );
 		} elseif ( $e instanceof DBExpectedError ) {
 			return self::msgObj( 'databaseerror', 'Database error' );
