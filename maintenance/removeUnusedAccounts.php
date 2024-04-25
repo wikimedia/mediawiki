@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -188,9 +187,8 @@ class RemoveUnusedAccounts extends Maintenance {
 			'archive' => 'ar',
 			'image' => 'img',
 			'oldimage' => 'oi',
-			'filearchive' => 'fa'
-			// re-add when actor migration is complete
-			// 'revision' => 'rev'
+			'filearchive' => 'fa',
+			'revision' => 'rev',
 		];
 		$count = 0;
 
@@ -203,17 +201,6 @@ class RemoveUnusedAccounts extends Maintenance {
 				__METHOD__
 			);
 		}
-
-		// Delete this special case when the actor migration is complete
-		$actorQuery = ActorMigration::newMigration()->getWhere( $dbo, 'rev_user', $user );
-		$count += (int)$dbo->selectField(
-			[ 'revision' ] + $actorQuery['tables'],
-			'COUNT(*)',
-			$actorQuery['conds'],
-			__METHOD__,
-			[],
-			$actorQuery['joins']
-		);
 
 		$count += (int)$dbo->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
