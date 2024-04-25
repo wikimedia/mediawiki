@@ -42,7 +42,8 @@
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
 			"हिमाल सुबेदी",
-			"아라"
+			"아라",
+			"Yadav Bhattarai"
 		]
 	},
 	"tog-underline": "रेखाङ्कित सूत्र:",
@@ -1379,6 +1380,7 @@
 	"rcfilters-filter-newpages-description": "नयाँ पृष्ठ निर्माण हुने सम्पादन",
 	"rcfilters-filter-categorization-label": "परिवर्तित श्रेणी",
 	"rcfilters-filter-logactions-label": "प्रवेश गरिएका कार्यहरू",
+	"rcfilters-filter-accountcreations-label": "खाता सिर्जनाहरू",
 	"rcfilters-filtergroup-lastrevision": "हालको संस्करणहरू",
 	"rcfilters-filter-lastrevision-label": "हालको संस्करण",
 	"rcfilters-filter-previousrevision-label": "पछिल्लो संशोधन होइन",
@@ -2809,7 +2811,7 @@
 	"table_pager_limit_submit": "जाउ",
 	"table_pager_empty": "नतिजाहरू छैन ।",
 	"autosumm-blank": "पृष्ठ खाली गरीयो",
-	"autosumm-replace": "सामग्रीलाई \"$1\"सँग प्रतिस्थापन गरियो",
+	"autosumm-replace": "\"$1\" ले फेरियो",
 	"autoredircomment": "पृष्ठ[[$1]]मा पठाइएको",
 	"autosumm-removed-redirect": "[[$1]]मा अनुप्रेषण हटाइएको छ",
 	"autosumm-changed-redirect-target": "अनुप्रेषण [[$1]] बाट [[$2]] मा परिवर्तन गरियो",

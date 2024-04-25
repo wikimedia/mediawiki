@@ -149,7 +149,8 @@
 			"לערי ריינהארט",
 			"아라",
 			555,
-			"Vinickw"
+			"Vinickw",
+			"Mellogabi03"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -1302,7 +1303,7 @@
 	"badsiglinebreak": "Sua assinatura deve consistir em uma única linha de wikitexto.",
 	"linterror-bogus-image-options": "Opção de arquivo Bogus",
 	"linterror-deletable-table-tag": "Etiqueta da tabela que deve ser excluída",
-	"linterror-fostered": "Conteúdo fomentado",
+	"linterror-fostered": "Conteúdo promovido",
 	"linterror-html5-misnesting": "Má intercalação de elementos (agora quebrado)",
 	"linterror-inline-media-caption": "Título invisível",
 	"linterror-large-tables": "Tabelas grandes que quebram a tela em dispositivos móveis",

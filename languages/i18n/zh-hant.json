@@ -755,7 +755,7 @@
 	"editrecovery": "編輯恢復",
 	"edit-recovery-nojs-placeholder": "編輯恢復功能需要 JavaScript。",
 	"edit-recovery-special-intro": "您尚有未儲存的{{PLURAL:$1|頁面變更或章節變更|頁面變更或/和章節變更}}：",
-	"edit-recovery-special-intro-empty": "您沒有未保存的變更。",
+	"edit-recovery-special-intro-empty": "您沒有未儲存的變更。",
 	"edit-recovery-special-view": "檢視",
 	"edit-recovery-special-edit": "編輯",
 	"edit-recovery-special-recovered-on": "恢復於$1",
