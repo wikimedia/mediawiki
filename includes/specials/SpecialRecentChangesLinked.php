@@ -293,13 +293,14 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
 				->caller( __METHOD__ )->fetchResultSet();
 		} else {
-			$sqls = array_map( static function ( $queryBuilder ) {
-				return $queryBuilder->getSQL();
-			}, $subsql );
+			$unionQueryBuilder = $dbr->newUnionQueryBuilder()->caller( __METHOD__ );
+			foreach ( $subsql as $selectQueryBuilder ) {
+				$unionQueryBuilder->add( $selectQueryBuilder );
+			}
 			return $dbr->newSelectQueryBuilder()
 				->select( '*' )
 				->from(
-					new Subquery( $dbr->unionQueries( $sqls, $dbr::UNION_DISTINCT ) ),
+					new Subquery( $unionQueryBuilder->getSQL() ),
 					'main'
 				)
 				->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
