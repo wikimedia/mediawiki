@@ -18,7 +18,6 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\ObjectFactory\ObjectFactory;
-use Wikimedia\Services\ServiceContainer;
 
 /**
  * A trait providing utility functions for testing Handler classes.
@@ -105,8 +104,7 @@ trait HandlerTestTrait {
 		Validator $validator = null
 	) {
 		if ( !$validator ) {
-			/** @var ServiceContainer|MockObject $serviceContainer */
-			$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
+			$serviceContainer = $this->getServiceContainer();
 			$objectFactory = new ObjectFactory( $serviceContainer );
 			$validator = new Validator( $objectFactory, $handler->getRequest(), $handler->getAuthority() );
 		}
