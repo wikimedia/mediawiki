@@ -4,11 +4,13 @@ namespace MediaWiki\Tests\Rest\PathTemplateMatcher;
 
 use MediaWiki\Rest\PathTemplateMatcher\PathConflict;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
+use MediaWiki\Rest\PathTemplateMatcher\PathSegmentException;
 use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Rest\PathTemplateMatcher\PathMatcher
  * @covers \MediaWiki\Rest\PathTemplateMatcher\PathConflict
+ * @covers \MediaWiki\Rest\PathTemplateMatcher\PathSegmentException
  */
 class PathMatcherTest extends MediaWikiUnitTestCase {
 	private static $normalRoutes = [
@@ -18,9 +20,16 @@ class PathMatcherTest extends MediaWikiUnitTestCase {
 		'/c/{x}/e',
 		'/c/{x}/{y}/d',
 		'/d/',
+		'/d/{x}',
 		'/',
-		'/d//e'
+		'/{x}'
 	];
+
+	public static function provideErrorRoutes() {
+		return [
+			[ '/d//e' ]
+		];
+	}
 
 	public static function provideConflictingRoutes() {
 		return [
@@ -29,18 +38,17 @@ class PathMatcherTest extends MediaWikiUnitTestCase {
 			[ '/{x}/c', 1, '/b/{x}' ],
 			[ '/b/a', 1, '/b/{x}' ],
 			[ '/b/{x}', 1, '/b/{x}' ],
-			[ '/{x}/{y}/d', 2, '/c/{x}/d' ],
-			[ '/d/{x}', 5, '/d/' ],
-			[ '/{x}', 6, '/' ]
+			[ '/{x}/{y}/d', 2, '/c/{x}/d' ]
 		];
 	}
 
 	public static function provideMatch() {
 		return [
 			[ '', false ],
+			[ '/a/', false ],
 			[ '/a/b', [ 'params' => [], 'userData' => 0 ] ],
-			[ '/b', false ],
 			[ '/b/1', [ 'params' => [ 'x' => '1' ], 'userData' => 1 ] ],
+			[ '/c/1', false ],
 			[ '/c/1/d', [ 'params' => [ 'x' => '1' ], 'userData' => 2 ] ],
 			[ '/c/1/e', [ 'params' => [ 'x' => '1' ], 'userData' => 3 ] ],
 			[ '/c/000/e', [ 'params' => [ 'x' => '000' ], 'userData' => 3 ] ],
@@ -48,8 +56,10 @@ class PathMatcherTest extends MediaWikiUnitTestCase {
 			[ '/c//e', [ 'params' => [ 'x' => '' ], 'userData' => 3 ] ],
 			[ '/c///e', false ],
 			[ '/d/', [ 'params' => [], 'userData' => 5 ] ],
-			[ '/', [ 'params' => [], 'userData' => 6 ] ],
-			[ '/d//e', [ 'params' => [], 'userData' => 7 ] ]
+			[ '/d/1', [ 'params' => [ 'x' => '1' ], 'userData' => 6 ] ],
+			[ '/', [ 'params' => [], 'userData' => 7 ] ],
+			[ '/1', [ 'params' => [ 'x' => '1' ], 'userData' => 8 ] ],
+			[ '/1/', false ]
 		];
 	}
 
@@ -59,6 +69,14 @@ class PathMatcherTest extends MediaWikiUnitTestCase {
 			$pm->add( $route, $i );
 		}
 		return $pm;
+	}
+
+	/** @dataProvider provideErrorRoutes */
+	public function testAddError( $attempt ) {
+		$pm = $this->createNormalRouter();
+
+		$this->expectException( PathSegmentException::class );
+		$pm->add( $attempt, 'error' );
 	}
 
 	/** @dataProvider provideConflictingRoutes */
