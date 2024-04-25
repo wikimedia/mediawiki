@@ -179,6 +179,46 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$this->addToAssertionCount( 1 );
 	}
 
+	/**
+	 * @dataProvider provideRoutes
+	 */
+	public function testBodyParameters( array $spec ): void {
+		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
+		$request = new RequestData();
+		$handler = $router->createHandler( $request, $spec );
+
+		$paramSettings = $handler->getParamSettings();
+		$bodySettings = $handler->getBodyParamSettings();
+
+		$bodySettingsFromParams = array_filter(
+			$paramSettings,
+			static function ( array $settings ) {
+				return $settings[ Handler::PARAM_SOURCE ] === 'body';
+			}
+		);
+
+		if ( !$bodySettings && !$bodySettingsFromParams ) {
+			$this->addToAssertionCount( 1 );
+			return;
+		}
+
+		if ( $bodySettingsFromParams ) {
+			$this->assertSame(
+				$bodySettingsFromParams,
+				$bodySettings,
+				'If getParamSettings and getBodyParamSettings both return body ' .
+				'parameters, they must return the same body parameters.' . "\n" .
+				'When overriding getBodyParamSettings, do not return body ' .
+				'parameters from getParamSettings.'
+			);
+		}
+
+		foreach ( $bodySettings as $settings ) {
+			$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings );
+			$this->assertSame( 'body', $settings[Handler::PARAM_SOURCE] );
+		}
+	}
+
 	public function provideRoutes(): Iterator {
 		foreach ( $this->getAllRoutes() as $spec ) {
 			$method = $spec['method'] ?? 'GET';

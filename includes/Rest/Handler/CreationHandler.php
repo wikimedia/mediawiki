@@ -26,7 +26,7 @@ class CreationHandler extends EditHandler {
 	 * @inheritDoc
 	 * @return array
 	 */
-	public function getParamSettings() {
+	public function getBodyParamSettings(): array {
 		return [
 			'source' => [
 				self::PARAM_SOURCE => 'body',
@@ -53,8 +53,7 @@ class CreationHandler extends EditHandler {
 				self::PARAM_DESCRIPTION => 'The content model to use to interpret the source',
 			],
 		]
-			+ $this->getTokenParamDefinition()
-			+ parent::getParamSettings();
+		+ $this->getTokenParamDefinition();
 	}
 
 	/**

@@ -48,6 +48,14 @@ class UpdateHandler extends EditHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
+		] + parent::getParamSettings();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBodyParamSettings(): array {
+		return [
 			'source' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
@@ -68,10 +76,7 @@ class UpdateHandler extends EditHandler {
 				ParamValidator::PARAM_TYPE => 'array',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
-
-		]
-			+ $this->getTokenParamDefinition()
-			+ parent::getParamSettings();
+		] + $this->getTokenParamDefinition();
 	}
 
 	/**
