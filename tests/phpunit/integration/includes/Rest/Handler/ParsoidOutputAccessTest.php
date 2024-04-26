@@ -18,6 +18,7 @@ use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess
@@ -30,13 +31,16 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param int $expectedCalls
+	 * @param string|null $version
 	 *
 	 * @return MockObject|Parsoid
 	 */
-	private function newMockParsoid( $expectedCalls = 1 ) {
+	private function newMockParsoid( int $expectedCalls = 1, ?string $version = null ) {
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
 		$parsoid->expects( $this->exactly( $expectedCalls ) )->method( 'wikitext2html' )->willReturnCallback(
-			static function ( PageConfig $pageConfig, $options, &$headers, ?ContentMetadataCollector $metadata = null ) {
+			static function (
+				PageConfig $pageConfig, $options, &$headers, ?ContentMetadataCollector $metadata = null
+			) use ( $version ) {
 				$wikitext = $pageConfig->getRevisionContent()->getContent( SlotRecord::MAIN );
 				if ( $metadata !== null ) {
 					$metadata->setExtensionData( 'my-key', 'my-data' );
@@ -48,7 +52,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 					self::MOCKED_HTML . ' of ' . $wikitext,
 					[ 'parsoid-data' ],
 					[ 'mw-data' ],
-					Parsoid::defaultHTMLVersion(),
+					$version ?? Parsoid::defaultHTMLVersion(),
 					[ 'content-language' => 'en' ],
 					$pageConfig->getContentModel()
 				);
@@ -62,6 +66,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @param int $expectedParses
 	 * @param array $parsoidCacheConfig
 	 * @param BagOStuff|null $parserCacheBag
+	 * @param string|null $version
 	 *
 	 * @return ParsoidOutputAccess
 	 * @throws Exception
@@ -69,11 +74,12 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	private function resetServicesWithMockedParsoid(
 		$expectedParses,
 		$parsoidCacheConfig = [],
-		?BagOStuff $parserCacheBag = null
+		?BagOStuff $parserCacheBag = null,
+		?string $version = null
 	): void {
 		$services = $this->getServiceContainer();
 
-		$mockParsoid = $this->newMockParsoid( $expectedParses );
+		$mockParsoid = $this->newMockParsoid( $expectedParses, $version );
 		$parsoidParser = new ParsoidParser(
 			$mockParsoid,
 			$services->getParsoidPageConfigFactory(),
@@ -93,13 +99,16 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param ?ParserOutputAccess $parserOutputAccess
 	 * @return ParsoidOutputAccess
 	 */
-	private function getParsoidOutputAccessWithCache(): ParsoidOutputAccess {
+	private function getParsoidOutputAccessWithCache(
+		?ParserOutputAccess $parserOutputAccess = null
+	): ParsoidOutputAccess {
 		$services = $this->getServiceContainer();
 		return new ParsoidOutputAccess(
 			$services->getParsoidParserFactory(),
-			$services->getParserOutputAccess(),
+			$parserOutputAccess ?? $services->getParserOutputAccess(),
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
 			$services->getParsoidSiteConfig(),
@@ -615,6 +624,30 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// assert the page language in parsoid output HTML
 		$this->assertStringContainsString( 'lang="' . $expectedLangCode . '"', $html );
 		$this->assertStringContainsString( 'content="' . $expectedLangCode . '"', $html );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
+	 */
+	public function testRerenderForNonDefaultVersion() {
+		// Rendering is asked for twice because version is not the Parsoid default
+		// so even though the output is found in the primary cache, it's obsolete.
+		$this->resetServicesWithMockedParsoid( 2, [], null, '1.1.1' );
+
+		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
+		$access = $this->getParsoidOutputAccessWithCache( $parserOutputAccess );
+
+		$parserOptions = $this->getParserOptions();
+		$page = $this->getExistingTestPage();
+
+		$access->getParserOutput( $page, $parserOptions );
+
+		// Clear the localCache since that has priority and updating the Parsoid
+		// default version would require a process restart anyways.
+		$testingAccess = TestingAccessWrapper::newFromObject( $parserOutputAccess );
+		$testingAccess->localCache->clear();
+
+		$access->getParserOutput( $page, $parserOptions );
 	}
 
 }

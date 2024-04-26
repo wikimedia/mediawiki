@@ -1248,38 +1248,4 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( ParsoidRenderID::newFromParserOutput( $output )->getKey() );
 	}
 
-	/**
-	 * HtmlOutputRendererHelper should force a reparse if getParserOuput doesn't
-	 * return Parsoid's default version.
-	 */
-	public function testForceDefault() {
-		$page = $this->getExistingTestPage();
-
-		$poa = $this->createMock( ParsoidOutputAccess::class );
-		$poa->method( 'getParserOutput' )
-			->willReturnCallback( function (
-				PageIdentity $page,
-				ParserOptions $parserOpts,
-				$revision = null,
-				int $options = 0
-			) {
-				static $first = true;
-				if ( $first ) {
-					$version = '1.1.1'; // Not the default
-					$first = false;
-				} else {
-					$version = Parsoid::defaultHTMLVersion();
-					$this->assertGreaterThan( 0, $options & ParserOutputAccess::OPT_FORCE_PARSE );
-				}
-				$html = $this->getMockHtml( $revision );
-				$pout = $this->makeParserOutput( $parserOpts, $html, $revision, $page, $version );
-				return Status::newGood( $pout );
-			} );
-
-		$helper = $this->newHelper( [ 'ParsoidOutputAccess' => $poa ] );
-		$helper->init( $page, [], $this->newAuthority() );
-		$pb = $helper->getPageBundle();
-		$this->assertSame( $pb->version, Parsoid::defaultHTMLVersion() );
-	}
-
 }
