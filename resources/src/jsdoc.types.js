@@ -16,5 +16,8 @@
 /**
  * The global window object.
  *
+ * These methods exist for backwards compatibility and should not be considered
+ * [stable](https://www.mediawiki.org/wiki/Special:MyLanguage/Stable_interface_policy/Frontend).
+ *
  * @namespace window
  */

@@ -1,5 +1,7 @@
 This documentation describes the public API that user scripts, gadgets, skins, and extensions can use to interact with [MediaWiki](https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki).
-These resources contain frontend JavaScript and CSS managed by [ResourceLoader](https://www.mediawiki.org/wiki/Special:MyLanguage/ResourceLoader). To interact with MediaWiki from outside a wiki, use the [Action API](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page).
+To interact with MediaWiki from outside a wiki, use the [Action API](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page).
+
+The MediaWiki frontend API consists of [global variables](namespaces.html) and [ResourceLoader modules](modules.html).
 
 ## Get started
 - [Write your first user script](https://www.mediawiki.org/wiki/Special:MyLanguage/Gadget_kitchen)
