@@ -3277,10 +3277,12 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output an error page
 	 *
-	 * @note FatalError exception class provides an alternative.
+	 * @deprecated since 1.43 Use showErrorPage() instead
 	 * @param string $message Error to output. Must be escaped for HTML.
 	 */
 	public function showFatalError( $message ) {
+		wfDeprecated( __METHOD__, '1.43' );
+
 		$this->prepareErrorPage();
 		$this->setPageTitleMsg( $this->msg( 'internalerror' ) );
 

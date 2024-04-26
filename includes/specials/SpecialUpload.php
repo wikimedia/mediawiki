@@ -1076,10 +1076,10 @@ class SpecialUpload extends SpecialPage {
 		}
 		$success = $this->mUpload->unsaveUploadedFile();
 		if ( !$success ) {
-			$this->getOutput()->showFatalError(
-				$this->msg( 'filedeleteerror' )
-					->params( $this->mUpload->getTempPath() )
-					->escaped()
+			$this->getOutput()->showErrorPage(
+				'internalerror',
+				'filedeleteerror',
+				[ $this->mUpload->getTempPath() ]
 			);
 
 			return false;
