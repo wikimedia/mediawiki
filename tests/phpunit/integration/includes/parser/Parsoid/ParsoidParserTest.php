@@ -32,8 +32,13 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$args[1]->getPrefixedDBkey(),
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
 		);
-		$this->assertSame( [
-			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'suppressSectionEditLinks', 'isPreview', 'maxIncludeSize'
+		$this->assertArrayEquals( [
+			'disableContentConversion',
+			'interfaceMessage',
+			'wrapclass',
+			'suppressSectionEditLinks',
+			'isPreview',
+			'maxIncludeSize',
 		], $output->getUsedOptions() );
 	}
 
@@ -69,8 +74,13 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$pageTitle->getPrefixedDBkey(),
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
 		);
-		$this->assertSame( [
-			'disableContentConversion', 'interfaceMessage', 'wrapclass', 'suppressSectionEditLinks', 'isPreview', 'maxIncludeSize'
+		$this->assertArrayEquals( [
+			'disableContentConversion',
+			'interfaceMessage',
+			'isPreview',
+			'maxIncludeSize',
+			'suppressSectionEditLinks',
+			'wrapclass',
 		], $output->getUsedOptions() );
 	}
 }
