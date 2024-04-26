@@ -1,13 +1,13 @@
 ( function () {
 	/**
-	 * Abstract base class for posting messages to talk pages.
+	 * @classdesc  Abstract base class for posting messages to talk pages.
 	 *
 	 * @abstract
 	 * @class
-	 * @classdesc The abstract base class for MessagePoster implementations.
 	 * @type {mw.messagePoster.MessagePoster}
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.messagePoster.MessagePoster`.
 	 * @param {mw.Title} title Title to post to
 	 */
 	mw.messagePoster.MessagePoster = function MwMessagePoster() {};

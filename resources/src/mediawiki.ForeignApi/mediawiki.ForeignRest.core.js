@@ -1,9 +1,9 @@
 module.exports = ( function () {
 
 	/**
-	 * Create an object like {@link mw.Rest}, but automatically handling everything required to communicate
+	 * @classdesc Interact with the REST API of another MediaWiki site. mw.ForeignRest creates
+	 * an object like {@link mw.Rest}, but automatically handles everything required to communicate
 	 * with another MediaWiki wiki via cross-origin requests (CORS).
-	 *
 	 *
 	 * The foreign wiki must be configured to accept requests from the current wiki. See
 	 * <https://www.mediawiki.org/wiki/Manual:$wgCrossSiteAJAXdomains> for details.
@@ -29,6 +29,8 @@ module.exports = ( function () {
 	 * @extends mw.Rest
 	 * @since 1.36
 	 *
+	 * @constructor
+	 * @description Create an instance of `mw.ForeignRest`.
 	 * @param {string} url URL pointing to another wiki's `rest.php` endpoint.
 	 * @param {mw.ForeignApi} foreignActionApi
 	 * @param {Object} [options] See {@link mw.Rest}.

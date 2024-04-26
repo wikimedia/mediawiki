@@ -8,14 +8,15 @@
 	mw.htmlform = {};
 
 	/**
-	 * Allows custom data specific to HTMLFormField to be set for OOUI forms. This picks up the
+	 * @classdesc Allows custom data specific to HTMLFormField to be set for OOUI forms. This picks up the
 	 * extra config from a matching PHP widget (defined in HTMLFormElement.php) when constructed using
 	 * OO.ui.infuse().
 	 *
 	 * Currently only supports passing 'cond-state' data.
 	 *
-	 * @classdesc HTMLForm Element class.
 	 * @class
+	 * @constructor
+	 * @description Create an instance of `mw.htmlform.Element`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object<string,string[]>} [config.condState] typically corresponds to a data-cond-state attribute
 	 * that is found on HTMLForm elements and used during
@@ -31,13 +32,14 @@
 	};
 
 	/**
-	 * Create a FieldLayout class.
-	 *
 	 * @class
 	 * @extends {OO.ui.FieldLayout}
 	 * @mixes mw.htmlform.Element
 	 * @classdesc FieldLayout class.
 	 * @memberof mw.htmlform
+	 *
+	 * @constructor
+	 * @description Create a FieldLayout class.
 	 * @param {Object} config
 	 */
 	mw.htmlform.FieldLayout = function ( config ) {
@@ -50,13 +52,14 @@
 	OO.mixinClass( mw.htmlform.FieldLayout, mw.htmlform.Element );
 
 	/**
-	 * Create an ActionFieldLayout class.
-	 *
 	 * @class
 	 * @extends {OO.ui.ActionFieldLayout}
 	 * @mixes mw.htmlform.Element
 	 * @classdesc FieldLayout class.
 	 * @memberof mw.htmlform
+	 *
+	 * @constructor
+	 * @description Create an ActionFieldLayout class.
 	 * @param {Object} config
 	 */
 	mw.htmlform.ActionFieldLayout = function ( config ) {

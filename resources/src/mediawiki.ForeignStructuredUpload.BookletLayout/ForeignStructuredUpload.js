@@ -1,21 +1,21 @@
 ( function () {
 	/**
-	 * Used to represent an upload in progress on the frontend.
+	 * @classdesc Upload to another MediaWiki site using structured metadata.
 	 *
-	 * This subclass will upload to a wiki using a structured metadata
-	 * system similar to (or identical to) the one on Wikimedia Commons.
-	 *
+	 * This subclass uses a structured metadata system similar to
+	 * (or identical to) the one on Wikimedia Commons.
 	 * See <https://commons.wikimedia.org/wiki/Commons:Structured_data> for
 	 * a more detailed description of how that system works.
 	 *
-	 * **TODO: This currently only supports uploads under CC-BY-SA 4.0,
-	 * and should really have support for more licenses.**
+	 * TODO: This currently only supports uploads under CC-BY-SA 4.0,
+	 * and should really have support for more licenses.
 	 *
 	 * @class ForeignStructuredUpload
 	 * @memberof mw
 	 * @extends mw.ForeignUpload
 	 *
 	 * @constructor
+	 * @description Used to represent an upload in progress on the frontend.
 	 * @param {string} [target]
 	 * @param {Object} [apiconfig]
 	 */

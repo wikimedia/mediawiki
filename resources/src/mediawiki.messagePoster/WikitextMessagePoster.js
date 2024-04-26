@@ -1,13 +1,13 @@
 ( function () {
 	/**
-	 * Posts messages to wikitext talk pages.
+	 * @classdesc Posts messages to wikitext talk pages.
 	 *
 	 * @class mw.messagePoster.WikitextMessagePoster
-	 * @classdesc An implementation of MessagePoster for wikitext talk pages.
 	 * @extends mw.messagePoster.MessagePoster
 	 * @type {mw.messagePoster.WikitextMessagePoster}
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.messagePoster.WikitextMessagePoster`.
 	 * @param {mw.Title} title Wikitext page in a talk namespace, to post to
 	 * @param {mw.Api} api mw.Api object to use
 	 */

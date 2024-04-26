@@ -8,8 +8,8 @@ mw.config.set( require( './config.json' ) );
 require( './log.js' );
 
 /**
- * Object constructor for messages.
- * The constructor is not publicly accessible; use {@link mw.message} instead.
+ * @class mw.Message
+ * @classdesc Describes a translateable text or HTML string. Similar to the Message class in MediaWiki PHP.
  *
  * @example
  * var obj, str;
@@ -46,8 +46,9 @@ require( './log.js' );
  * mw.log( obj.escaped() );
  * // You will find: Time &quot;after&quot; &lt;time&gt;
  *
- * @class mw.Message
- * @classdesc Describes a translateable text or HTML string. Similar to the Message class in MediaWiki PHP.
+ * @constructor
+ * @description Object constructor for messages. The constructor is not publicly accessible;
+ * use {@link mw.message} instead.
  * @param {mw.Map} map Message store
  * @param {string} key
  * @param {Array} [parameters]

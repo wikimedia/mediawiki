@@ -2,11 +2,9 @@
 	var UP;
 
 	/**
-	 * Used to represent an upload in progress on the frontend.
-	 *
-	 * @classdesc Most of the functionality is implemented in {@link mw.Api#upload} and friends,
-	 * but this model class will tie it together as well as let you perform
-	 * actions in a logical way.
+	 * @classdesc Upload to a wiki. Most of the functionality is implemented
+	 * in {@link mw.Api#upload} and friends, but this model class will tie it
+	 * together as well as let you perform actions in a logical way.
 	 *
 	 * A simple example:
 	 * ```
@@ -22,8 +20,8 @@
 	 *
 	 * $( document.body ).append( file.$element, button.$element );
 	 * ```
-	 * You can also choose to {@link #uploadToStash stash the upload} and
-	 * {@link #finishStashUpload finalize} it later:
+	 * You can also choose to {@link mw.Upload#uploadToStash stash the upload}
+	 * and {@link mw.Upload#finishStashUpload finalize} it later:
 	 * ```
 	 * var file, // Some file object
 	 *   upload = new mw.Upload,
@@ -45,6 +43,7 @@
 	 * @class mw.Upload
 	 *
 	 * @constructor
+	 * @description Used to represent an upload in progress on the frontend.
 	 * @param {Object|mw.Api} [apiconfig] A mw.Api object (or subclass), or configuration
 	 *     to pass to the constructor of mw.Api.
 	 */

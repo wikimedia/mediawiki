@@ -17,18 +17,17 @@
 	var defaultOptions;
 
 	/**
-	 * Client library for the action API. See mw.Rest for the REST API.
-	 * See also <https://www.mediawiki.org/wiki/API:Main_page>.
-	 *
-	 * @classdesc Interact with the API of a particular MediaWiki site. mw.Api objects represent the API of
-	 * one particular MediaWiki site.
+	 * @classdesc Interact with the MediaWiki API. `mw.Api` is a client library for
+	 * the [action API](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page).
+	 * An `mw.Api` object represents the API of a MediaWiki site. For the REST API,
+	 * see {@link mw.Rest}.
 	 *
 	 * ```
 	 * var api = new mw.Api();
 	 * api.get( {
 	 *     action: 'query',
 	 *     meta: 'userinfo'
-	 * } ).done( function ( data ) {
+	 * } ).then( function ( data ) {
 	 *     console.log( data );
 	 * } );
 	 * ```
@@ -40,7 +39,7 @@
 	 * api.get( {
 	 *     action: 'query',
 	 *     meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 * } ).done( function ( data ) {
+	 * } ).then( function ( data ) {
 	 *     console.log( data );
 	 * } );
 	 * ```
@@ -51,6 +50,7 @@
 	 *
 	 * @class mw.Api
 	 * @constructor
+	 * @description Create an instance of `mw.Api`.
 	 * @param {mw.Api.Options} [options] See {@link mw.Api.Options}. This can also be overridden for
 	 *  each request by passing them to [get()]{@link mw.Api#get} or [post()]{@link mw.Api#post} (or directly to
 	 *  [ajax()]{@link mw.Api#ajax}) later on.
