@@ -90,6 +90,7 @@ class ParserOptions {
 		'printable' => true,
 		'userlang' => true,
 		'useParsoid' => true,
+		'suppressSectionEditLinks' => true,
 	];
 
 	/**
