@@ -7046,8 +7046,6 @@ Category with newline in sort key
 !! options
 cat
 parsoid=wt2html,html2html
-!! metadata
-cat=Wikidata:Tools sort=*
 !! wikitext
 [[Category:Wikidata:Tools|
 *]]

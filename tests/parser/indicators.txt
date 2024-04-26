@@ -267,3 +267,22 @@ parsoid=wt2html,selser
 <tbody><tr><td>x
 </td></tr></tbody></table>
 !! end
+
+!! test
+Indicator with comments should not be <p>-wrapped
+!! options
+showindicators
+!! metadata
+x=<span>some stuff</span>
+!! metadata/parsoid
+x=<!-- hello -->
+<span data-parsoid='{"stx":"html","dsr":[35,58,6,7]}'>some stuff</span>
+<!-- second comment-->
+!! wikitext
+<indicator name="x"><!-- hello -->
+<span>some stuff</span>
+<!-- second comment--></indicator>
+!! html/php
+!! html/parsoid
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"&lt;!-- hello -->\n&lt;span>some stuff&lt;/span>\n&lt;!-- second comment-->"},"html":"&lt;!-- hello -->\n&lt;span data-parsoid=&apos;{\"stx\":\"html\",\"dsr\":[35,58,6,7]}&apos;>some stuff&lt;/span>\n&lt;!-- second comment-->"}'/>
+!! end
