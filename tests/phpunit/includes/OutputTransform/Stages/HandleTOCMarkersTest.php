@@ -104,12 +104,23 @@ EOF;
 			'skin' => $skin,
 			'allowTOC' => true,
 			'injectTOC' => true
-		], $expectedWith ];
+		], $expectedWith, 'should insert TOC' ];
 
 		$poTest2 = new ParserOutput( TestUtils::TEST_DOC );
 		TestUtils::initSections( $poTest2 );
 		$expectedWithout = new ParserOutput( $withoutToc );
 		TestUtils::initSections( $expectedWithout );
-		yield [ $poTest2, null, [ 'allowTOC' => false ], $expectedWithout ];
+		yield [ $poTest2, null, [ 'allowTOC' => false ], $expectedWithout, 'should not insert TOC' ];
+
+		$poTest3 = new ParserOutput( TestUtils::TEST_DOC . '<meta property="mw:PageProp/toc" />' );
+		TestUtils::initSections( $poTest3 );
+		$expectedWith = new ParserOutput( $withToc );
+		TestUtils::initSections( $expectedWith );
+		yield [ $poTest3, null, [
+			'userLang' => $lang,
+			'skin' => $skin,
+			'allowTOC' => true,
+			'injectTOC' => true
+		], $expectedWith, 'should insert TOC only once' ];
 	}
 }

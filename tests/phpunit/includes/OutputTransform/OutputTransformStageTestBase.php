@@ -47,7 +47,7 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 	/**
 	 * @dataProvider provideTransform
 	 */
-	public function testTransform( $parserOutput, $parserOptions, $options, $expected ) {
+	public function testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' ) {
 		$stage = $this->createStage();
 		$result = $stage->transform( $parserOutput, $parserOptions, $options );
 		// If this has Parsoid internal metadata, clear it in both the expected
@@ -57,6 +57,6 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 			$key = PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY;
 			$expected->setExtensionData( $key, $result->getExtensionData( $key ) );
 		}
-		$this->assertEquals( $expected, $result );
+		$this->assertEquals( $expected, $result, $message );
 	}
 }
