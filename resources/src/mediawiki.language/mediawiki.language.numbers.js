@@ -205,7 +205,7 @@
 	Object.assign( mw.language, {
 
 		/**
-		 * Converts a number using #getDigitTransformTable.
+		 * Converts a number using `getDigitTransformTable()`.
 		 *
 		 * @memberof mw.language
 		 * @param {number} num Value to be converted
