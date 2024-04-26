@@ -541,10 +541,10 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 !! wikitext
 {{NUMBEROFFILES}}
 !! html/php
-<p>7
+<p>8
 </p>
 !! html/parsoid+integrated
-<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"NUMBEROFFILES","function":"numberoffiles"},"params":{},"i":0}}]}'>7</span></p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"NUMBEROFFILES","function":"numberoffiles"},"params":{},"i":0}}]}'>8</span></p>
 !! end
 
 !! test

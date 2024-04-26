@@ -2552,6 +2552,26 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123500' )
 		);
 
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Hi-ho.jpg' ) );
+		$image->recordUpload3(
+			'',
+			'Hi',
+			'ho',
+			$performer,
+			[
+				'size' => 7881,
+				'width' => 1941,
+				'height' => 220,
+				'bits' => 8,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/jpeg',
+				'metadata' => [],
+				'sha1' => Wikimedia\base_convert( '1', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
+
 		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Video.ogv' ) );
 		$image->recordUpload3(
 			'',
