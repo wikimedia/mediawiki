@@ -28,6 +28,7 @@ use HTTPFileStreamer;
 use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use RequestContext;
 use UploadBase;
 
 /**
@@ -64,11 +65,21 @@ class StreamFile {
 			$fname,
 			[
 				'obResetFunc' => 'wfResetOutputBuffers',
-				'streamMimeFunc' => [ __CLASS__, 'contentTypeFromPath' ]
+				'streamMimeFunc' => [ __CLASS__, 'contentTypeFromPath' ],
+				'headerFunc' => [ __CLASS__, 'setHeader' ],
 			]
 		);
 
 		return $streamer->stream( $headers, $sendErrors, $optHeaders, $flags );
+	}
+
+	/**
+	 * @param string $header
+	 *
+	 * @internal
+	 */
+	public static function setHeader( $header ) {
+		RequestContext::getMain()->getRequest()->response()->header( $header );
 	}
 
 	/**

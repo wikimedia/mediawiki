@@ -1065,10 +1065,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $fsFile ) {
 			$streamer = new HTTPFileStreamer(
 				$fsFile->getPath(),
-				[
-					'obResetFunc' => $this->obResetFunc,
-					'streamMimeFunc' => $this->streamMimeFunc
-				]
+				$this->getStreamerOptions()
 			);
 			$res = $streamer->stream( $params['headers'], true, $params['options'], $flags );
 		} else {

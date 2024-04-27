@@ -123,9 +123,11 @@ abstract class FileBackend implements LoggerAwareInterface {
 	protected $profiler;
 
 	/** @var callable */
-	protected $obResetFunc;
-	/** @var callable|null */
-	protected $streamMimeFunc;
+	private $obResetFunc;
+	/** @var callable */
+	private $headerFunc;
+	/** @var array Option map for use with HTTPFileStreamer */
+	protected $streamerOptions;
 	/** @var callable|null */
 	protected $statusWrapper;
 
@@ -184,6 +186,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *      try to discover a usable temporary directory.
 	 *   - obResetFunc : alternative callback to clear the output buffer
 	 *   - streamMimeFunc : alternative method to determine the content type from the path
+	 *   - headerFunc : alternative callback for sending response headers
 	 *   - logger : Optional PSR logger object.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
@@ -215,8 +218,14 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
-		$this->obResetFunc = $config['obResetFunc'] ?? [ $this, 'resetOutputBuffer' ];
-		$this->streamMimeFunc = $config['streamMimeFunc'] ?? null;
+		$this->obResetFunc = $config['obResetFunc']
+			?? [ self::class, 'resetOutputBufferTheDefaultWay' ];
+		$this->headerFunc = $config['headerFunc'] ?? 'header';
+		$this->streamerOptions = [
+			'obResetFunc' => $this->obResetFunc,
+			'headerFunc' => $this->headerFunc,
+			'streamMimeFunc' => $config['streamMimeFunc'] ?? null,
+		];
 
 		$this->profiler = $config['profiler'] ?? null;
 		if ( !is_callable( $this->profiler ) ) {
@@ -230,6 +239,15 @@ abstract class FileBackend implements LoggerAwareInterface {
 		} else {
 			$this->tmpFileFactory = $config['tmpFileFactory'] ?? new TempFSFileFactory();
 		}
+	}
+
+	protected function header( $header ) {
+		( $this->headerFunc )( $header );
+	}
+
+	protected function resetOutputBuffer() {
+		// By default, this ends up calling $this->defaultOutputBufferReset
+		( $this->obResetFunc )();
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1702,9 +1720,11 @@ abstract class FileBackend implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @codeCoverageIgnore Let's not reset output buffering during tests
+	 * Default behavior of resetOutputBuffer().
+	 * @codeCoverageIgnore
+	 * @internal
 	 */
-	protected function resetOutputBuffer() {
+	public static function resetOutputBufferTheDefaultWay() {
 		// XXX According to documentation, ob_get_status() always returns a non-empty array and this
 		// condition will always be true
 		while ( ob_get_status() ) {
@@ -1714,5 +1734,14 @@ abstract class FileBackend implements LoggerAwareInterface {
 				break;
 			}
 		}
+	}
+
+	/**
+	 * Return options for use with HTTPFileStreamer.
+	 *
+	 * @internal
+	 */
+	public function getStreamerOptions(): array {
+		return $this->streamerOptions;
 	}
 }
