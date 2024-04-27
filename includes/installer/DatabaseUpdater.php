@@ -1272,6 +1272,27 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
+	protected function migratePagelinks() {
+		if ( $this->updateRowExists( MigrateLinksTable::class . 'pagelinks' ) ) {
+			$this->output( "...pagelinks table has already been migrated.\n" );
+			return;
+		}
+		/**
+		 * @var MigrateLinksTable $task
+		 */
+		$task = $this->maintenance->runChild(
+			MigrateLinksTable::class, 'migrateLinksTable.php'
+		);
+		'@phan-var MigrateLinksTable $task';
+		$task->loadParamsAndArgs( MigrateLinksTable::class, [
+			'force' => true,
+			'table' => 'pagelinks'
+		] );
+		$this->output( "Running migrateLinksTable.php on pagelinks...\n" );
+		$task->execute();
+		$this->output( "done.\n" );
+	}
+
 	/**
 	 * Only run a function if a table does not exist
 	 *

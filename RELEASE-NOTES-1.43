@@ -29,6 +29,9 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 ==== Changed configuration ====
 
+* wgPageLinksSchemaMigrationStage – (T299947) This temporary setting, which
+  controls the database schema migration for the page links table, is now set
+  by default to write to both old and new data and read from the new data.
 * …
 
 ==== Removed configuration ====

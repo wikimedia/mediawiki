@@ -392,7 +392,7 @@ return [
 			'VirtualDomainsMapping' => [
 			],
 			'TemplateLinksSchemaMigrationStage' => 768,
-			'PageLinksSchemaMigrationStage' => 3,
+			'PageLinksSchemaMigrationStage' => 769,
 			'ExternalLinksDomainGaps' => [
 			],
 			'ContentHandlers' => [

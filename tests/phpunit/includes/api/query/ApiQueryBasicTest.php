@@ -117,9 +117,9 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	private static $alllinks = [
 		[ 'list' => 'alllinks', 'alprefix' => 'AQBT-' ],
 		[ 'alllinks' => [
+			[ 'ns' => NS_MAIN, 'title' => 'AQBT-Links' ],
 			[ 'ns' => NS_MAIN, 'title' => 'AQBT-All' ],
 			[ 'ns' => NS_MAIN, 'title' => 'AQBT-Categories' ],
-			[ 'ns' => NS_MAIN, 'title' => 'AQBT-Links' ],
 			[ 'ns' => NS_MAIN, 'title' => 'AQBT-Templates' ],
 		] ]
 	];
