@@ -695,8 +695,9 @@ class SpecialPage implements MessageLocalizer {
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$title = $this->getDescription();
-		if ( is_string( $title ) ) { // T343849
-			wfDeprecated( 'string return from SpecialPage::getDescription()', '1.41' );
+		// T343849
+		if ( is_string( $title ) ) {
+			wfDeprecated( "string return from {$this->getName()}::getDescription()", '1.41' );
 			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
 		}
 		$out->setPageTitleMsg( $title );
