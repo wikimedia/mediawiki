@@ -289,7 +289,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			// use the ar_actor_timestamp index.
 			$this->addWhereFld( 'actor_name', $params['user'] );
 		} elseif ( $params['excludeuser'] !== null ) {
-			$this->addWhere( 'actor_name<>' . $db->addQuotes( $params['excludeuser'] ) );
+			$this->addWhere( $db->expr( 'actor_name', '!=', $params['excludeuser'] ) );
 		}
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {

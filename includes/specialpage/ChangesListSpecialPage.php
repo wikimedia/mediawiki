@@ -250,7 +250,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$user = $ctx->getUser();
-							$conds[] = 'actor_name<>' . $dbr->addQuotes( $user->getName() );
+							$conds[] = $dbr->expr( 'actor_name', '!=', $user->getName() );
 							$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 						},
 						'cssClassSuffix' => 'self',

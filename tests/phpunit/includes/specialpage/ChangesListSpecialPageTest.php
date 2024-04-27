@@ -296,7 +296,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$encName = $this->db->addQuotes( $user->getName() );
 		$this->assertConditions(
 			[ # expected
-				"actor_name<>$encName",
+				"actor_name != $encName",
 			],
 			[
 				'hidemyself' => 1,
@@ -308,7 +308,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = User::newFromName( '10.11.12.13', false );
 		$this->assertConditions(
 			[ # expected
-				"actor_name<>'10.11.12.13'",
+				"actor_name != '10.11.12.13'",
 			],
 			[
 				'hidemyself' => 1,
