@@ -123,6 +123,20 @@ interface ILBFactory extends IConnectionProvider {
 	public function redefineLocalDomain( $domain );
 
 	/**
+	 * Get the tracked load balancer instance for a given domain.
+	 *
+	 * If no tracked instances exists, then one will be instantiated.
+	 *
+	 * This method accepts virtual domains
+	 * ({@see \MediaWiki\MainConfigSchema::VirtualDomainsMapping}).
+	 *
+	 * @since 1.43
+	 * @param string|false $domain Domain ID, or false for the current domain
+	 * @return ILoadBalancer
+	 */
+	public function getLoadBalancer( $domain = false ): ILoadBalancer;
+
+	/**
 	 * Create a new load balancer instance for the main cluster that handles the given domain
 	 *
 	 * The resulting object will be untracked and the caller is responsible for cleaning it up.

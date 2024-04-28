@@ -535,6 +535,22 @@ abstract class LBFactory implements ILBFactory {
 		return $this->getMappedDatabase( DB_REPLICA, $groups, $domain );
 	}
 
+	public function getLoadBalancer( $domain = false ): ILoadBalancer {
+		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
+			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
+				$config = $this->virtualDomainsMapping[$domain];
+				if ( isset( $config['cluster'] ) ) {
+					return $this->getExternalLB( $config['cluster'] );
+				}
+				$domain = $config['db'];
+			} else {
+				// It's not configured, assume local db.
+				$domain = false;
+			}
+		}
+		return $this->getMainLB( $domain );
+	}
+
 	/**
 	 * Helper for getPrimaryDatabase and getReplicaDatabase() providing virtual
 	 * domain mapping.
@@ -546,20 +562,9 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	private function getMappedDatabase( $index, $groups, $domain ) {
 		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
-			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
-				$config = $this->virtualDomainsMapping[$domain];
-				if ( isset( $config['cluster'] ) ) {
-					return $this
-						->getExternalLB( $config['cluster'] )
-						->getConnection( $index, $groups, $config['db'] );
-				}
-				$domain = $config['db'];
-			} else {
-				// It's not configured, assume local db.
-				$domain = false;
-			}
+			$domain = $this->virtualDomainsMapping[$domain]['db'] ?? false;
 		}
-		return $this->getMainLB( $domain )->getConnection( $index, $groups, $domain );
+		return $this->getLoadBalancer( $domain )->getConnection( $index, $groups, $domain );
 	}
 
 	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
