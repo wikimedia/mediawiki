@@ -136,6 +136,8 @@ because of Phabricator reports.
 * ContentHandler::getContentText(), deprecated in 1.37, now emits deprecation
   warnings.
 * OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
+* IDatabase::lockForUpdate is deprecated, use
+  SelectQueryBuilder::acquireRowLocks instead.
 * …
 
 === Other changes in 1.43 ===
