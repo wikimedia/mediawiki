@@ -1,7 +1,7 @@
 <?php
 /**
  * Find all revisions by logged out users and copy the rev_id,
- * rev_timestamp, and a hex representation of rev_user_text to the
+ * rev_timestamp, and a hex representation of IP address to the
  * new ip_changes table. This table is used to efficiently query for
  * contributions within an IP range.
  *
@@ -26,12 +26,11 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\User\ActorMigration;
 use Wikimedia\IPUtils;
 
 /**
  * Maintenance script that will find all rows in the revision table where
- * rev_user = 0 (user is an IP), and copy relevant fields to ip_changes so
+ * rev_actor refers to an IP actor, and copy relevant fields to ip_changes so
  * that historical data will be available when querying for IP ranges.
  *
  * @ingroup Maintenance
@@ -91,24 +90,19 @@ TEXT
 
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
-		$actorMigration = ActorMigration::newMigration();
-		$actorQuery = $actorMigration->getJoin( 'rev_user' );
-		$revUserIsAnon = $actorMigration->isAnon( $actorQuery['fields']['rev_user'] );
-
 		while ( $blockStart <= $end ) {
 			$blockEnd = min( $blockStart + $this->getBatchSize(), $end );
-			$rows = $dbr->select(
-				[ 'revision' ] + $actorQuery['tables'],
-				[ 'rev_id', 'rev_timestamp', 'rev_user_text' => $actorQuery['fields']['rev_user_text'] ],
-				[
+			$rows = $dbr->newSelectQueryBuilder()
+				->select( [ 'rev_id', 'rev_timestamp', 'actor_name' ] )
+				->from( 'revision' )
+				->join( 'actor', null, 'actor_id = rev_actor' )
+				->where( [
 					$dbr->expr( 'rev_id', '>=', (int)$blockStart ),
 					$dbr->expr( 'rev_id', '<=', (int)$blockEnd ),
-					$revUserIsAnon
-				],
-				__METHOD__,
-				[],
-				$actorQuery['joins']
-			);
+					'actor_user' => null,
+				] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			$numRows = $rows->numRows();
 
@@ -123,11 +117,11 @@ TEXT
 			$insertRows = [];
 			foreach ( $rows as $row ) {
 				// Make sure this is really an IP, e.g. not maintenance user or imported revision.
-				if ( IPUtils::isValid( $row->rev_user_text ) ) {
+				if ( IPUtils::isValid( $row->actor_name ) ) {
 					$insertRows[] = [
 						'ipc_rev_id' => $row->rev_id,
 						'ipc_rev_timestamp' => $row->rev_timestamp,
-						'ipc_hex' => IPUtils::toHex( $row->rev_user_text ),
+						'ipc_hex' => IPUtils::toHex( $row->actor_name ),
 					];
 
 					$attempted++;

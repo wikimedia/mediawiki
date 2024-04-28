@@ -194,12 +194,12 @@ class RemoveUnusedAccounts extends Maintenance {
 
 		$this->beginTransaction( $dbo, __METHOD__ );
 		foreach ( $checks as $table => $prefix ) {
-			$count += (int)$dbo->selectField(
-				$table,
-				'COUNT(*)',
-				[ "{$prefix}_actor" => $actor ],
-				__METHOD__
-			);
+			$count += (int)$dbo->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( $table )
+				->where( [ "{$prefix}_actor" => $actor ] )
+				->caller( __METHOD__ )
+				->fetchField();
 		}
 
 		$count += (int)$dbo->newSelectQueryBuilder()

@@ -123,7 +123,10 @@ class TableCleanup extends Maintenance {
 
 		$table = $params['table'];
 		// count(*) would melt the DB for huge tables, we can estimate here
-		$count = $dbr->estimateRowCount( $table, '*', '', __METHOD__ );
+		$count = $dbr->newSelectQueryBuilder()
+			->table( $table )
+			->caller( __METHOD__ )
+			->estimateRowCount();
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
 

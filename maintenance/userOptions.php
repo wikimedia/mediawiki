@@ -182,8 +182,7 @@ WARN
 		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		$tempUserConfig = $this->getServiceContainer()->getTempUserConfig();
 		$dbr = $this->getReplicaDB();
-		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
-		$queryBuilderTemplate
+		$queryBuilderTemplate = $dbr->newSelectQueryBuilder()
 			->table( 'user' )
 			->leftJoin( 'user_properties', null, [
 				'user_id = up_user',
@@ -198,7 +197,7 @@ WARN
 			->limit( $this->getBatchSize() )
 			->caller( __METHOD__ );
 		if ( $toUserId ) {
-			$queryBuilderTemplate->andWhere( "user_id <= $toUserId " );
+			$queryBuilderTemplate->andWhere( $dbr->expr( 'user_id', '<=', $toUserId ) );
 		}
 
 		if ( $tempUserConfig->isEnabled() ) {
@@ -209,7 +208,7 @@ WARN
 
 		do {
 			$queryBuilder = clone $queryBuilderTemplate;
-			$queryBuilder->andWhere( "user_id > $fromUserId" );
+			$queryBuilder->andWhere( $dbr->expr( 'user_id', '>', $fromUserId ) );
 			$result = $queryBuilder->fetchResultSet();
 			foreach ( $result as $row ) {
 				$fromUserId = (int)$row->user_id;
@@ -266,9 +265,9 @@ WARN
 			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->select( 'up_user' )
 				->from( 'user_properties' )
-				->where( [ 'up_property' => $option, "up_user > $minUserId" ] );
+				->where( [ 'up_property' => $option, $dbr->expr( 'up_user', '>', $minUserId ) ] );
 			if ( $this->hasOption( 'touserid' ) ) {
-				$queryBuilder->andWhere( "up_user < $toUserId" );
+				$queryBuilder->andWhere( $dbr->expr( 'up_user', '<', $toUserId ) );
 			}
 			if ( $this->hasOption( 'old' ) ) {
 				$queryBuilder->andWhere( [ 'up_value' => $old ] );
@@ -329,8 +328,8 @@ WARN
 		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_PRIMARY );
 
-		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
-		$queryBuilderTemplate->select( [ 'user_id', 'user_name', 'up_value' ] )
+		$queryBuilderTemplate = $dbr->newSelectQueryBuilder()
+			->select( [ 'user_id', 'user_name', 'up_value' ] )
 			->from( 'user_properties' )
 			->join( 'user', null, [ 'up_user = user_id' ] )
 			->where( [ 'up_property' => $option ] )
