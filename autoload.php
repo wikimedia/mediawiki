@@ -1776,6 +1776,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Pager\\BlockListPager' => __DIR__ . '/includes/specials/pagers/BlockListPager.php',
 	'MediaWiki\\Pager\\CategoryPager' => __DIR__ . '/includes/specials/pagers/CategoryPager.php',
 	'MediaWiki\\Pager\\ContribsPager' => __DIR__ . '/includes/specials/pagers/ContribsPager.php',
+	'MediaWiki\\Pager\\ContributionsPager' => __DIR__ . '/includes/pager/ContributionsPager.php',
 	'MediaWiki\\Pager\\DeletedContribsPager' => __DIR__ . '/includes/specials/pagers/DeletedContribsPager.php',
 	'MediaWiki\\Pager\\HistoryPager' => __DIR__ . '/includes/actions/pagers/HistoryPager.php',
 	'MediaWiki\\Pager\\ImageListPager' => __DIR__ . '/includes/specials/pagers/ImageListPager.php',
