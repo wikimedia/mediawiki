@@ -39,7 +39,7 @@ use MediaWiki\Page\PageReference;
 interface TitleFormatter {
 	/**
 	 * Returns the title formatted for display.
-	 * Per default, this includes the namespace but not the fragment.
+	 * By default, this includes the namespace but not the fragment.
 	 *
 	 * @note Normalization is applied if $title is not in TitleValue::TITLE_FORM.
 	 *

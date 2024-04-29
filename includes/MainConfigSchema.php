@@ -4069,7 +4069,7 @@ class MainConfigSchema {
 	 * - StashType: The type of object store to be used by the ParsoidOutputStash service,
 	 *       which stores the base state of HTML based edits.
 	 *       Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
-	 *       Per default, the value of the MainStash setting will be used.
+	 *       By default, the value of the MainStash setting will be used.
 	 *       This should be an object store that provides fairly solid persistence guarantees,
 	 *       since losing an entry from the stash may mean that the user can't save their edit.
 	 *       If null, the value of the MainStash configuration setting will be used.
@@ -4077,7 +4077,7 @@ class MainConfigSchema {
 	 * - StashDuration: The number of seconds for which an entry in the stash should be kept.
 	 *       Should be long enough for users to finish editing,
 	 *       since losing an entry from the stash may mean that the user can't save their edit.
-	 *       This is set to one day per default.
+	 *       This is set to one day by default.
 	 *
 	 * - WarmParsoidParserCache: Setting this to true will pre-populate the parsoid parser cache
 	 *       with parsoid outputs on page edits. This speeds up loading HTML into Visual Editor.
@@ -11027,7 +11027,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * The schema to use per default when generating XML dumps. This allows sites to control
+	 * The schema to use by default when generating XML dumps. This allows sites to control
 	 * explicitly when to make breaking changes to their export and dump format.
 	 */
 	public const XmlDumpSchemaVersion = [

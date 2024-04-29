@@ -3063,7 +3063,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					'Vary' => 'Accept-Encoding, Cookie, Accept-Language',
 				]
 			],
-			'Private per default' => [
+			'Private by default' => [
 				[],
 				[
 					'Cache-Control' => 'private, must-revalidate, max-age=0',

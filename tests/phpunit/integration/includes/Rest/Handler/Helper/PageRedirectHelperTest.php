@@ -207,7 +207,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 	public function testWikiRedirectDisabled() {
 		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_foo', false );
 
-		// We assume that wiki redirect handling is disabled per default.
+		// We assume that wiki redirect handling is disabled by default.
 		$helper = $this->newRedirectHelper();
 
 		$target = $helper->getWikiRedirectTargetUrl( $page );

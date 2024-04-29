@@ -185,7 +185,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * Parses the given text and constructs a TitleValue.
 	 *
 	 * @param string $text The text to parse
-	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $defaultNamespace Namespace to assume by default (usually NS_MAIN)
 	 *
 	 * @throws MalformedTitleException
 	 * @return TitleValue

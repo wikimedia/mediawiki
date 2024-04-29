@@ -234,7 +234,7 @@ class MaintenanceParameters {
 
 	/**
 	 * Sets whether to allow unknown options to be passed to the script.
-	 * Per default, unknown options cause an error.
+	 * By default, unknown options cause an error.
 	 * @param bool $allow Should we allow?
 	 */
 	public function setAllowUnregisteredOptions( bool $allow ) {

@@ -74,7 +74,7 @@ class SearchHandler extends Handler {
 	 */
 	private $mode = null;
 
-	/** Limit results to 50 pages per default */
+	/** Limit results to 50 pages by default */
 	private const LIMIT = 50;
 
 	/** Hard limit results to 100 pages */

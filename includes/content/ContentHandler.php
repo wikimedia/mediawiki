@@ -326,7 +326,7 @@ abstract class ContentHandler {
 	abstract public function serializeContent( Content $content, $format = null );
 
 	/**
-	 * Applies transformations on export (returns the blob unchanged per default).
+	 * Applies transformations on export (returns the blob unchanged by default).
 	 * Subclasses may override this to perform transformations such as conversion
 	 * of legacy formats or filtering of internal meta-data.
 	 *
@@ -356,7 +356,7 @@ abstract class ContentHandler {
 	abstract public function unserializeContent( $blob, $format = null );
 
 	/**
-	 * Apply import transformation (per default, returns $blob unchanged).
+	 * Apply import transformation (by default, returns $blob unchanged).
 	 * This gives subclasses an opportunity to transform data blobs on import.
 	 *
 	 * @stable to override

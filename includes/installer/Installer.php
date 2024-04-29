@@ -481,7 +481,7 @@ abstract class Installer {
 	 * @param Config|null $installerConfig Config override. If null, the previous
 	 *        config will be inherited.
 	 * @param array $serviceOverrides Service definition overrides. Values can be null to
-	 *        disable specific overrides that would be applied per default, namely
+	 *        disable specific overrides that would be applied by default, namely
 	 *        'InterwikiLookup' and 'UserOptionsLookup'.
 	 * @param bool $disableStorage Whether MediaWikiServices::disableStorage() should be called.
 	 *

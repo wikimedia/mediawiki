@@ -770,7 +770,7 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Outputs a summary message on top of special pages
-	 * Per default the message key is the canonical name of the special page
+	 * By default the message key is the canonical name of the special page
 	 * May be overridden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
 	 *

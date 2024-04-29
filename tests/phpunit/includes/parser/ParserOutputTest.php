@@ -1326,7 +1326,7 @@ EOF
 		$po = new ParserOutput();
 		$time = $po->getCacheTime();
 
-		// Use current (fake) time per default. Ignore the last digit.
+		// Use current (fake) time by default. Ignore the last digit.
 		// Subsequent calls must yield the exact same timestamp as the first.
 		$this->assertStringStartsWith( '2010010100000', $time );
 		$this->assertSame( $time, $po->getCacheTime() );

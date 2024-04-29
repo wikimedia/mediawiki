@@ -295,7 +295,7 @@ describe( 'Page protection', function () {
 			return res.watchlistraw;
 		};
 
-		it( 'should have added the page the user\'s watchlist per default', async () => {
+		it( 'should have added the page to the user\'s watchlist by default', async () => {
 			const list = await eve.action( 'query', {
 				list: 'watchlistraw',
 				wrfromtitle: testWatchlist,

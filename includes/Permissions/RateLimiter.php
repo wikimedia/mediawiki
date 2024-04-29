@@ -198,7 +198,7 @@ class RateLimiter {
 	 * @param RateLimitSubject $subject The subject of the rate limit, representing the
 	 *        client performing the action.
 	 * @param string $action Action to enforce
-	 * @param int $incrBy Positive amount to increment counter by, 1 per default.
+	 * @param int $incrBy Positive amount to increment counter by, 1 by default.
 	 *        Use 0 to check the limit without bumping the counter.
 	 *
 	 * @return bool True if a rate limit was exceeded.

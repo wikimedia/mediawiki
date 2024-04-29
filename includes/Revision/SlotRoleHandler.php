@@ -135,7 +135,7 @@ class SlotRoleHandler {
 	}
 
 	/**
-	 * Determines the content model to use per default for this slot on the given page.
+	 * Determines the content model to use by default for this slot on the given page.
 	 *
 	 * The default implementation always returns the content model provided to the constructor.
 	 * Subclasses may base the choice on default model on the page title or namespace.

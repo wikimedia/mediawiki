@@ -59,14 +59,14 @@ class TestSetup {
 		// cache meant for the local wiki from outside the test run.
 		// See also MediaWikiIntegrationTestCase::run() which mocks CACHE_DB and APC.
 
-		// Disabled per default in MainConfigSchema, override local settings
+		// Disabled by default in MainConfigSchema, override local settings
 		$wgMainCacheType = CACHE_NONE;
-		// Uses CACHE_ANYTHING per default in MainConfigSchema, use hash instead of db
+		// Uses CACHE_ANYTHING by default in MainConfigSchema, use hash instead of db
 		$wgMessageCacheType =
 		$wgParserCacheType =
 		$wgSessionCacheType =
 		$wgLanguageConverterCacheType = 'hash';
-		// Uses db-replicated per default in MainConfigSchema
+		// Uses db-replicated by default in MainConfigSchema
 		$wgMainStash = 'hash';
 		$wgChronologyProtectorStash = 'hash';
 		// Use memory job queue

@@ -211,7 +211,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetMainCache() {
-		// Cache should be set to a hash per default.
+		// Cache should be set to a hash by default.
 		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalClusterInstance() );
 
 		// Use HashBagOStuff.

@@ -937,7 +937,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Set the main object cache that will be returned by ObjectCache::getLocalClusterInstance().
 	 *
-	 * Per default, the main object cache is disabled during testing (that is, the cache is an
+	 * By default, the main object cache is disabled during testing (that is, the cache is an
 	 * EmptyBagOStuff).
 	 *
 	 * The $cache parameter supports the following kinds of values:

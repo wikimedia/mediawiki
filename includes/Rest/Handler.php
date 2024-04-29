@@ -363,7 +363,7 @@ abstract class Handler {
 	 * getLastModified() when they were called before execute() was run.
 	 *
 	 * Other request methods are assumed to be state-changing, so no headers
-	 * will be set per default.
+	 * will be set by default.
 	 *
 	 * This may be overridden to modify the verifier headers sent in the response.
 	 * However, handlers that modify the resource's state would typically just
@@ -400,7 +400,7 @@ abstract class Handler {
 		if ( !$response->getHeaderLine( 'Cache-Control' ) ) {
 			$rqMethod = $this->getRequest()->getMethod();
 			if ( $rqMethod !== 'GET' && $rqMethod !== 'HEAD' ) {
-				// Responses to requests other than GET or HEAD should not be cacheable per default.
+				// Responses to requests other than GET or HEAD should not be cacheable by default.
 				$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
 			}
 		}
@@ -437,7 +437,7 @@ abstract class Handler {
 	 *
 	 * @see https://swagger.io/specification/#operation-object
 	 *
-	 * Per default, this will contain information about the supported parameters, as well as
+	 * By default, this will contain information about the supported parameters, as well as
 	 * the response for status 200.
 	 *
 	 * Subclasses may override this to provide additional information.
@@ -497,7 +497,7 @@ abstract class Handler {
 	 * Returns an OpenAPI Request Body Object specification structure as an associative array.
 	 * @see https://swagger.io/specification/#request-body-object
 	 *
-	 * Per default, this calls getBodyValidator() to get a SchemaValidator,
+	 * By default, this calls getBodyValidator() to get a SchemaValidator,
 	 * and then calls getBodySpec() on it.
 	 * If no SchemaValidator is supported, this returns null;
 	 *
@@ -532,7 +532,7 @@ abstract class Handler {
 	 * Returns an OpenAPI Schema Object specification structure as an associative array.
 	 * @see https://swagger.io/specification/#schema-object
 	 *
-	 * Returns null per default. Subclasses that return a JSON response should
+	 * Returns null by default. Subclasses that return a JSON response should
 	 * implement this method to return a schema of the response body.
 	 *
 	 * @stable to override
@@ -546,7 +546,7 @@ abstract class Handler {
 	 * Returns an OpenAPI Responses Object specification structure as an associative array.
 	 * @see https://swagger.io/specification/#responses-object
 	 *
-	 * Per default, this will contain basic information response for status 200, 400, and 500.
+	 * By default, this will contain basic information response for status 200, 400, and 500.
 	 * The getResponseBodySchema() method is used to determine the structure of the response for status 200.
 	 *
 	 * Subclasses may override this to provide additional information about the structure of responses.

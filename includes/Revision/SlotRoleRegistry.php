@@ -161,7 +161,7 @@ class SlotRoleRegistry {
 	 */
 	public function getAllowedRoles( PageIdentity $page ): array {
 		// TODO: allow this to be overwritten per namespace (or page type)
-		// TODO: decide how to control which slots are offered for editing per default (T209927)
+		// TODO: decide how to control which slots are offered for editing by default (T209927)
 		return $this->getDefinedRoles();
 	}
 
