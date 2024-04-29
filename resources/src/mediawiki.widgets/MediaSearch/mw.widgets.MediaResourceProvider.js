@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * MediaWiki media resource provider.
+	 * @classdesc Media resource provider.
 	 *
 	 * @class
 	 * @extends mw.widgets.APIResultsProvider
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.MediaResourceProvider`.
 	 * @param {string} apiurl The API url
 	 * @param {Object} [config] Configuration options
 	 * @param {string} [config.scriptDirUrl] The url of the API script

@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.TitleSearchWidget object.
+	 * @classdesc Title search widget.
 	 *
 	 * @class
 	 * @extends OO.ui.SearchWidget
@@ -15,6 +15,7 @@
 	 * @mixes mw.widgets.TitleWidget
 	 *
 	 * @constructor
+	 * @description Create an mw.widgets.TitleSearchWidget object.
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.TitleSearchWidget = function MwWidgetsTitleSearchWidget( config ) {

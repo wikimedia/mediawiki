@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * RadioSelectInputWidget and a TextInputWidget to set minimum or maximum byte size.
+	 * @classdesc Size filter widget.
 	 *
 	 * @example
 	 * mw.loader.using( 'mediawiki.widgets.SizeFilterWidget', function () {
@@ -21,6 +21,7 @@
 	 * @uses OO.ui.TextInputWidget
 	 *
 	 * @constructor
+	 * @description Use a RadioSelectInputWidget and a TextInputWidget to set minimum or maximum byte size.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object} [config.radioselectinput] Config for the radio select input
 	 * @param {Object} [config.textinput] Config for the text input

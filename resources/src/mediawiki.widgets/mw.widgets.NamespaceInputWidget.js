@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * Namespace input widget. Displays a dropdown box with the choice of available namespaces.
+	 * @classdesc Displays a dropdown box with the choice of available namespaces.
 	 *
 	 * @class
 	 * @extends OO.ui.DropdownInputWidget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.NamespaceInputWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {string|null} [config.includeAllValue] Value for "all namespaces" option, if any
 	 * @param {boolean} [config.userLang=false] Display namespaces in user language

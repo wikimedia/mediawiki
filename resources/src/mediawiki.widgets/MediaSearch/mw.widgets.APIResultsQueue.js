@@ -6,7 +6,7 @@
 ( function () {
 
 	/**
-	 * API Results Queue object.
+	 * @classdesc API results queue.
 	 *
 	 * @class
 	 * @mixes OO.EventEmitter

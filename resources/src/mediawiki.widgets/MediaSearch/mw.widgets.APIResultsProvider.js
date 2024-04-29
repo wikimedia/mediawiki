@@ -6,12 +6,13 @@
 ( function () {
 
 	/**
-	 * API Results Provider object.
+	 * @classdesc API results provider.
 	 *
 	 * @class
 	 * @mixes OO.EventEmitter
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.APIResultsProvider`.
 	 * @param {string} apiurl The URL to the api
 	 * @param {Object} [config] Configuration options
 	 * @param {number} config.fetchLimit The default number of results to fetch

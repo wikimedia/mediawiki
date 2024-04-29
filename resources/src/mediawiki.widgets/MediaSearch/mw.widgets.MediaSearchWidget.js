@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.MediaSearchWidget object.
+	 * @classdesc Media search widget.
 	 *
 	 * @class
 	 * @extends OO.ui.SearchWidget
 	 *
 	 * @constructor
+	 * @description Creates an mw.widgets.MediaSearchWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {number} [size] Vertical size of thumbnails
 	 */

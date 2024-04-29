@@ -8,7 +8,7 @@
 ( function () {
 
 	/**
-	 * Creates an mw.widgets.DateInputWidget object.
+	 * @classdesc Date input widget.
 	 *
 	 * @example
 	 * // Date input widget showcase
@@ -60,6 +60,7 @@
 	 * @mixes OO.ui.mixin.IndicatorElement
 	 *
 	 * @constructor
+	 * @description Create an mw.widgets.DateInputWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {string} [config.precision='day'] Date precision to use, 'day' or 'month'
 	 * @param {string} [config.value] Day or month date (depending on `precision`), in the format 'YYYY-MM-DD'

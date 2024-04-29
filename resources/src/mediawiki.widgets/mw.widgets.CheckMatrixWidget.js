@@ -1,11 +1,12 @@
 ( function () {
 	/**
-	 * A JavaScript version of CheckMatrixWidget.
+	 * @classdesc A JavaScript version of CheckMatrixWidget.
 	 *
 	 * @class
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.CheckMatrixWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object} config.columns Required object mapping column labels (as HTML) to
 	 *  their tags.

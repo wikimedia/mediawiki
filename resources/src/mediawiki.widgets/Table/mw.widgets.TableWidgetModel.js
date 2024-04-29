@@ -18,12 +18,13 @@
  */
 
 /**
- * TableWidget model.
+ * @classdesc TableWidget model.
  *
  * @class
  * @mixes OO.EventEmitter
  *
  * @constructor
+ * @description Create an instance of `mw.widgets.TableWidgetModel`.
  * @param {mw.widgets.TableWidgetModel~Config} [config] Configuration options
  */
 mw.widgets.TableWidgetModel = function MwWidgetsTableWidgetModel( config ) {

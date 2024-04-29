@@ -8,12 +8,13 @@
 	var hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
-	 * Mixin for title widgets.
+	 * @classdesc Mixin for title widgets.
 	 *
 	 * @class
 	 * @abstract
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.TitleWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {number} [config.limit=10] Number of results to show
 	 * @param {number} [config.namespace] Namespace to prepend to queries

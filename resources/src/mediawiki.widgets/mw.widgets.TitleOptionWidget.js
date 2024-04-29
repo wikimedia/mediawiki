@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * Creates a mw.widgets.TitleOptionWidget object.
+	 * @classdesc Title option widget.
 	 *
 	 * @class
 	 * @extends OO.ui.MenuOptionWidget
 	 *
 	 * @constructor
+	 * @description Create a mw.widgets.TitleOptionWidget object.
 	 * @param {Object} config Configuration options
 	 * @param {string} config.data Label to display
 	 * @param {string} config.url URL of page

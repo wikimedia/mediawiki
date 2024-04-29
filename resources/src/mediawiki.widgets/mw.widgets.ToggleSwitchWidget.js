@@ -6,13 +6,13 @@
  */
 ( function () {
 	/**
-	 * This extends ToggleSwitchWidget by adding an invisible checkbox
-	 * element which will be used to submit the value.
+	 * @classdesc Add an invisible checkbox element which will be used to submit the value.
 	 *
 	 * @class
 	 * @extends OO.ui.ToggleSwitchWidget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.ToggleSwitchWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {string} [config.name] Name of input to submit results (when used in HTML forms)
 	 */

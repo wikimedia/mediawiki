@@ -1,14 +1,13 @@
 ( function () {
 
 	/**
-	 * Abstract class for datetime formatters.
-	 *
 	 * @class
 	 * @classdesc Provides various methods needed for formatting dates and times.
 	 * @abstract
 	 * @mixes OO.EventEmitter
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.datetime.DateTimeFormatter`.
 	 * @param {Object} [config] Configuration options
 	 * @param {string} [config.format='@default'] May be a key from the
 	 *  {@link mw.widgets.datetime.DateTimeFormatter.formats}, or a format

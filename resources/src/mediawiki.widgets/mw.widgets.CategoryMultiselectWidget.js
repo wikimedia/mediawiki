@@ -9,7 +9,7 @@
 		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
 	/**
-	 * Category selector widget. Displays an {@link OO.ui.MenuTagMultiselectWidget}
+	 * @classdesc Displays an {@link OO.ui.MenuTagMultiselectWidget}
 	 * and autocompletes with available categories.
 	 *
 	 * @example
@@ -32,6 +32,7 @@
 	 * @mixes OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.CategoryMultiselectWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {mw.Api} [config.api] Instance of mw.Api (or subclass thereof) to use for queries
 	 * @param {number} [config.limit=10] Maximum number of results to load

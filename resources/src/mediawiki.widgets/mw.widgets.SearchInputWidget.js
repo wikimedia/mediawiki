@@ -7,12 +7,13 @@
 ( function () {
 
 	/**
-	 * Creates a mw.widgets.SearchInputWidget object.
+	 * @classdesc Search input widget.
 	 *
 	 * @class
 	 * @extends mw.widgets.TitleInputWidget
 	 *
 	 * @constructor
+	 * @description Create a mw.widgets.SearchInputWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {boolean} [config.performSearchOnClick=true] If true, the script will start a search when-
 	 *  ever a user hits a suggestion. If false, the text of the suggestion is inserted into the

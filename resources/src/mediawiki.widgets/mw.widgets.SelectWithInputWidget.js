@@ -7,7 +7,7 @@
 ( function () {
 
 	/**
-	 * Select with input widget. Displays an OO.ui.TextInputWidget along with
+	 * @classdesc Select with input widget. Displays an OO.ui.TextInputWidget along with
 	 * an OO.ui.DropdownInputWidget.
 	 * TODO Explain the OTHER option
 	 *
@@ -34,6 +34,7 @@
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.SelectWithInputWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {Object} [config.dropdowninput] Config for the dropdown
 	 * @param {Object} [config.textinput] Config for the text input

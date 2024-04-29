@@ -9,7 +9,7 @@
 	var trimByteLength = require( 'mediawiki.String' ).trimByteLength;
 
 	/**
-	 * Creates an mw.widgets.TitleInputWidget object.
+	 * @classdesc Title input widget.
 	 *
 	 * @class
 	 * @extends OO.ui.TextInputWidget
@@ -17,6 +17,7 @@
 	 * @mixes OO.ui.mixin.LookupElement
 	 *
 	 * @constructor
+	 * @description Create an mw.widgets.TitleInputWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {boolean} [config.suggestions=true] Display search suggestions
 	 * @param {RegExp|Function|string} [config.validate] Perform title validation

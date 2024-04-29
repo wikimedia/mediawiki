@@ -1,7 +1,7 @@
 /**
- * A RowWidget is used in conjunction with {@link mw.widgets.TableWidget table widgets}
- * and should not be instantiated by themselves. They group together
- * {@link OO.ui.TextInputWidget text input widgets} to form a unified row of
+ * @classdesc Table row widget. A RowWidget is used in conjunction with
+ * {@link mw.widgets.TableWidget table widgets} and should not be instantiated by themselves.
+ * They group together {@link OO.ui.TextInputWidget text input widgets} to form a unified row of
  * editable data.
  *
  * @class
@@ -9,6 +9,7 @@
  * @mixes OO.ui.mixin.GroupElement
  *
  * @constructor
+ * @description Create an instance of `mw.widgets.RowWidget`.
  * @param {Object} [config] Configuration options
  * @param {Array} [config.data] The data of the cells
  * @param {Array} [config.keys] An array of keys for easy cell selection

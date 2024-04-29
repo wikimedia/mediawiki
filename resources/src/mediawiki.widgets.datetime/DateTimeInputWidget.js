@@ -1,8 +1,6 @@
 ( function () {
 
 	/**
-	 * A widget with a series of inputs for date and time.
-	 *
 	 * @classdesc DateTimeInputWidgets can be used to input a date, a time, or
 	 * a date and time, in either UTC or the user's local timezone.
 	 * Please see the [OOUI documentation on MediaWiki](https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs)
@@ -23,6 +21,7 @@
 	 * @mixes OO.ui.mixin.FlaggedElement
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.datetime.DateTimeInputWidget`.
 	 * @param {Object} [config] Configuration options
 	 * @param {string} [config.type='datetime'] Whether to act like a 'date', 'time', or 'datetime' input.
 	 *  Affects values stored in the relevant `<input>` and the formatting and

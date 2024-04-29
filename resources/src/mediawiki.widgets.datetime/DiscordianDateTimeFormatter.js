@@ -1,9 +1,9 @@
 ( function () {
 
 	/**
-	 * A DateTimeFormatter for the Discordian calendar.
+	 * @classdesc DateTimeFormatter for the Discordian calendar.
 	 *
-	 * @classdesc Provides various methods needed for formatting dates and times. This
+	 * Provides various methods needed for formatting dates and times. This
 	 * implementation implements the [Discordian calendar](https://en.wikipedia.org/wiki/Discordian_calendar),
 	 * mainly for testing with something very different from the usual Gregorian
 	 * calendar.
@@ -15,6 +15,7 @@
 	 * @extends mw.widgets.datetime.DateTimeFormatter
 	 *
 	 * @constructor
+	 * @description Create an instance of `mw.widgets.datetime.DiscordianDateTimeFormatter`.
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.datetime.DiscordianDateTimeFormatter = function MwWidgetsDatetimeDiscordianDateTimeFormatter( config ) {

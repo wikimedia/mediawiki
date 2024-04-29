@@ -7,13 +7,14 @@
 ( function () {
 
 	/**
-	 * Creates a mw.widgets.UserInputWidget object.
+	 * @classdesc User input widget.
 	 *
 	 * @class
 	 * @extends OO.ui.TextInputWidget
 	 * @mixes OO.ui.mixin.LookupElement
 	 *
 	 * @constructor
+	 * @description Create a mw.widgets.UserInputWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {number} [config.limit=10] Number of results to show
 	 * @param {mw.Api} [config.api] API object to use, creates a default mw.Api instance if not specified
