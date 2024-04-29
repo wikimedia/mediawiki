@@ -39,6 +39,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'suppressSectionEditLinks',
 			'isPreview',
 			'maxIncludeSize',
+			'collapsibleSections',
 		], $output->getUsedOptions() );
 	}
 
@@ -75,6 +76,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
 		);
 		$this->assertArrayEquals( [
+			'collapsibleSections',
 			'disableContentConversion',
 			'interfaceMessage',
 			'isPreview',

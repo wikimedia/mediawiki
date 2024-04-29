@@ -91,6 +91,7 @@ class ParserOptions {
 		'userlang' => true,
 		'useParsoid' => true,
 		'suppressSectionEditLinks' => true,
+		'collapsibleSections' => true,
 	];
 
 	/**
@@ -847,6 +848,24 @@ class ParserOptions {
 	}
 
 	/**
+	 * Should section contents be wrapped in <div> to make them
+	 * collapsible?
+	 * @since 1.42
+	 */
+	public function getCollapsibleSections(): bool {
+		return $this->getOption( 'collapsibleSections' );
+	}
+
+	/**
+	 * Wrap section contents in a <div> to allow client-side code
+	 * to collapse them.
+	 * @since 1.42
+	 */
+	public function setCollapsibleSections(): void {
+		$this->setOption( 'collapsibleSections', true );
+	}
+
+	/**
 	 * If the wiki is configured to allow raw html ($wgRawHtml = true)
 	 * is it allowed in the specific case of parsing this page.
 	 *
@@ -1219,6 +1238,7 @@ class ParserOptions {
 				'removeComments' => true,
 				'suppressTOC' => false,
 				'suppressSectionEditLinks' => false,
+				'collapsibleSections' => false,
 				'enableLimitReport' => false,
 				'preSaveTransform' => true,
 				'isPreview' => false,

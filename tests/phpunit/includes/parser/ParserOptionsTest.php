@@ -341,6 +341,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public function testAllCacheVaryingOptions() {
 		$this->setTemporaryHook( 'ParserOptionsRegister', HookContainer::NOOP );
 		$this->assertSame( [
+			'collapsibleSections',
 			'dateformat', 'printable', 'suppressSectionEditLinks',
 			'thumbsize', 'useParsoid', 'userlang',
 		], ParserOptions::allCacheVaryingOptions() );
@@ -359,6 +360,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			];
 		} );
 		$this->assertSame( [
+			'collapsibleSections',
 			'dateformat', 'foo', 'printable', 'suppressSectionEditLinks',
 			'thumbsize', 'useParsoid', 'userlang',
 		], ParserOptions::allCacheVaryingOptions() );
@@ -413,5 +415,14 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		$options->setSuppressSectionEditLinks();
 		$this->assertTrue( $options->getSuppressSectionEditLinks() );
+	}
+
+	public function testCollapsibleSections() {
+		$options = ParserOptions::newFromAnon();
+
+		$this->assertFalse( $options->getCollapsibleSections() );
+
+		$options->setCollapsibleSections();
+		$this->assertTrue( $options->getCollapsibleSections() );
 	}
 }
