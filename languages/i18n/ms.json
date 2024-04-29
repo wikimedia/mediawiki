@@ -709,7 +709,7 @@
 	"session_fail_preview_html": "Maaf! Kami tidak dapat memproses suntingan anda disebabkan kehilangan data sesi.\n\n<em>Oleh kerana {{SITENAME}} mempunyai HTML mentah didayakan, pralihat disembunyikan sebagai pencegahan daripada serangan JavaScript.</em>\n\n<strong>Jika ini merupakan percubaan suntingan yang sah, sila cuba lagi.</strong>\nJika masih tidak berjaya, cuba [[Special:UserLogout|log keluar]] dan log masuk semula, dan pastikan pelayar anda membenarkan kuki dari tapak ini.",
 	"edit_form_incomplete": "'''Beberapa bahagian dari bentuk edit tidak mencapai pelayan, periksa bahawa suntingan anda utuh dan cuba lagi'.'''",
 	"editing": "Menyunting $1",
-	"edit-textarea-aria-label": "Editor sumber teks wiki",
+	"edit-textarea-aria-label": "Alat sunting sumber teks wiki",
 	"creating": "Mencipta $1",
 	"editingsection": "Menyunting $1 (bahagian)",
 	"editingcomment": "Menyunting $1 (bahagian baru)",

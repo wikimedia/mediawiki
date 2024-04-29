@@ -43,7 +43,8 @@
 			"아라",
 			"Patriot Kor",
 			"IBAnk",
-			"Atakhanli"
+			"Atakhanli",
+			"Nemoralis"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -1273,7 +1274,7 @@
 	"right-unblockself": "Öz blokunuzun açılması",
 	"right-protect": "Mühafizə parametrlərinin dəyişdirilməsi və kaskad mühafizə olunan səhifələrin redaktə edilməsi",
 	"right-editprotected": "\"{{int:protect-level-sysop}}\" mühafizə səviyyəsinə malik səhifələrin redaktə edilməsi",
-	"right-editsemiprotected": "\"{{int:protect-level-sysop}}\" mühafizə səviyyəsinə malik səhifələrin redaktə edilməsi",
+	"right-editsemiprotected": "\"{{int:protect-level-autoconfirmed}}\" mühafizə səviyyəsinə malik səhifələrin redaktə edilməsi",
 	"right-editcontentmodel": "Səhifənin məzmun modelini dəyişmək",
 	"right-editinterface": "İstifadəçi interfeysini dəyişmək",
 	"right-editusercss": "Digər istifadəçilərin CSS faylını redaktə",
@@ -1675,7 +1676,7 @@
 	"upload-dialog-button-cancel": "İmtina",
 	"upload-dialog-button-back": "Əvvəlki",
 	"upload-dialog-button-done": "Oldu",
-	"upload-dialog-button-save": "Qeyd et",
+	"upload-dialog-button-save": "Yadda saxla",
 	"upload-dialog-button-upload": "Yüklə",
 	"upload-form-label-infoform-title": "Detallar",
 	"upload-form-label-infoform-name": "Ad",

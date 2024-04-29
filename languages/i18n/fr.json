@@ -203,7 +203,9 @@
 			"LD",
 			"MacOS Weed",
 			"TheresNoTime",
-			"Hecatonchire"
+			"Hecatonchire",
+			"Alien333",
+			"Lofhi"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -2979,6 +2981,8 @@
 	"movesubpage": "Sous-page{{PLURAL:$1||s}}",
 	"movesubpagetext": "Cette page a $1 sous-page{{PLURAL:$1||s}} affichée{{PLURAL:$1||s}} ci-dessous.",
 	"movesubpagetalktext": "La page de discussion correspondante a $1 sous-page{{PLURAL:$1||s}} affichée{{PLURAL:$1||s}} ci-dessous.",
+	"movesubpagetext-truncated": "Les premières $1 {{PLURAL:$1|sous-page|sous-pages}} de cette pages sont affichées ci-dessous.",
+	"movesubpagetalktext-truncated": "Les premières $1 {{PLURAL:$1|sous-page|sous-pages}} pour la page de discussion correspondante sont affichées ci-dessous.",
 	"movenosubpage": "Cette page n’a aucune sous-page.",
 	"movereason": "Motif :",
 	"revertmove": "rétablir",
