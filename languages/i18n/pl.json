@@ -1270,6 +1270,7 @@
 	"badsiglinebreak": "Twój podpis musi składać się z pojedynczej linii wikitekstu.",
 	"linterror-bogus-image-options": "Nieprawidłowa opcja pliku",
 	"linterror-deletable-table-tag": "Nadmiarowe znaczniki tabeli do usunięcia",
+	"linterror-fostered": "Osierocona zawartość",
 	"linterror-html5-misnesting": "Źle zagnieżdżone (i widoczne uszkodzenia)",
 	"linterror-inline-media-caption": "Niewidoczny podpis obrazu",
 	"linterror-large-tables": "Duże tabele, które psują układ na urządzeniach mobilnych",

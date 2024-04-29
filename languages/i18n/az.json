@@ -3206,7 +3206,7 @@
 	"logentry-protect-protect": "$1 $3 səhifəsini mühafizə {{GENDER:$2|etdi}} $4",
 	"logentry-protect-protect-cascade": "$1 $3 $4 səhifəsini {{GENDER:$2|mühafizə etdi}} [kaskad mühafizə]",
 	"logentry-protect-modify": "$1 $3 $4 səhifəsinin mühafizə səviyyəsini {{GENDER:$2|dəyişdi}}",
-	"logentry-rights-rights": "$1 {{GENDER:$6|$3}} istifadəçisinin hüquqlarını $4 hüquqlarından $5 hüquqlarına dəyişdi",
+	"logentry-rights-rights": "$1 {{GENDER:$6|$3}} istifadəçisinin \"$4\" olan hüquqlarını \"$5\" olaraq {{GENDER:$2|dəyişdirdi}}.",
 	"logentry-rights-autopromote": "$1 adlı istifadəçinin $4 olan hüquqları avtomatik olaraq $5 olaraq {{GENDER:$2|dəyişdirildi}}",
 	"logentry-upload-upload": "$1 $3 faylını {{GENDER:$2|yüklədi}}.",
 	"logentry-upload-overwrite": "$1 $3 faylının yeni versiyasını {{GENDER:$2|yüklədi}}",
