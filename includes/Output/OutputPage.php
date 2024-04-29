@@ -4091,17 +4091,25 @@ class OutputPage extends ContextSource {
 		# should not matter, but Konqueror (3.5.9 at least) incorrectly
 		# uses whichever one appears later in the HTML source. Make sure
 		# apple-touch-icon is specified first to avoid this.
-		if ( $config->get( MainConfigNames::AppleTouchIcon ) !== false ) {
+		$appleTouchIconHref = $config->get( MainConfigNames::AppleTouchIcon );
+		# Browser look for those by default, unnessecary to set a link tag
+		if (
+			$appleTouchIconHref !== false &&
+			$appleTouchIconHref !== '/apple-touch-icon.png' &&
+			$appleTouchIconHref !== '/apple-touch-icon-precomposed.png'
+		) {
 			$tags['apple-touch-icon'] = Html::element( 'link', [
 				'rel' => 'apple-touch-icon',
-				'href' => $config->get( MainConfigNames::AppleTouchIcon )
+				'href' => $appleTouchIconHref
 			] );
 		}
 
-		if ( $config->get( MainConfigNames::Favicon ) !== false ) {
+		$faviconHref = $config->get( MainConfigNames::Favicon );
+		# Browser look for those by default, unnessecary to set a link tag
+		if ( $faviconHref !== false && $faviconHref !== '/favicon.ico' ) {
 			$tags['favicon'] = Html::element( 'link', [
 				'rel' => 'icon',
-				'href' => $config->get( MainConfigNames::Favicon )
+				'href' => $faviconHref
 			] );
 		}
 
