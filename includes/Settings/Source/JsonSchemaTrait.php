@@ -117,10 +117,13 @@ trait JsonSchemaTrait {
 		array $schema,
 		array &$defs,
 		string $source,
-		string $propertyName
+		string $propertyName,
+		bool $inlineReferences = false
 	): array {
 		$traversedReferences = [];
-		return self::doNormalizeJsonSchema( $schema, $defs, $source, $propertyName, $traversedReferences );
+		return self::doNormalizeJsonSchema(
+			$schema, $defs, $source, $propertyName, $inlineReferences, $traversedReferences
+		);
 	}
 
 	/**
@@ -131,6 +134,7 @@ trait JsonSchemaTrait {
 	 * @param string $source An identifier for the source schema being reflected, used
 	 * for error descriptions.
 	 * @param string $propertyName The name of the property the schema belongs to, used for error descriptions.
+	 * @param bool $inlineReferences Whether references in the schema should be inlined or not.
 	 * @param array $traversedReferences An accumulator for the resolved references within a schema normalization,
 	 * used for cycle detection.
 	 * @return array JSON Schema structure using only proper JSON types
@@ -140,6 +144,7 @@ trait JsonSchemaTrait {
 		array &$defs,
 		string $source,
 		string $propertyName,
+		bool $inlineReferences,
 		array $traversedReferences
 	): array {
 		if ( isset( $schema['type'] ) ) {
@@ -150,20 +155,35 @@ trait JsonSchemaTrait {
 		if ( isset( $schema['additionalProperties'] ) && is_array( $schema['additionalProperties'] ) ) {
 			$schema['additionalProperties'] =
 				self::doNormalizeJsonSchema(
-					$schema['additionalProperties'], $defs, $source, $propertyName, $traversedReferences
+					$schema['additionalProperties'],
+					$defs,
+					$source,
+					$propertyName,
+					$inlineReferences,
+					$traversedReferences
 				);
 		}
 
 		if ( isset( $schema['items'] ) && is_array( $schema['items'] ) ) {
 			$schema['items'] = self::doNormalizeJsonSchema(
-				$schema['items'], $defs, $source, $propertyName, $traversedReferences
+				$schema['items'],
+				$defs,
+				$source,
+				$propertyName,
+				$inlineReferences,
+				$traversedReferences
 			);
 		}
 
 		if ( isset( $schema['properties'] ) && is_array( $schema['properties'] ) ) {
 			foreach ( $schema['properties'] as $name => $propSchema ) {
 				$schema['properties'][$name] = self::doNormalizeJsonSchema(
-					$propSchema, $defs, $source, $propertyName, $traversedReferences
+					$propSchema,
+					$defs,
+					$source,
+					$propertyName,
+					$inlineReferences,
+					$traversedReferences
 				);
 			}
 		}
@@ -180,13 +200,27 @@ trait JsonSchemaTrait {
 			if ( $def ) {
 				if ( !isset( $defs[$definitionName] ) ) {
 					$traversedReferences[$definitionName] = true;
-					$defs[$definitionName] = self::doNormalizeJsonSchema(
-						$def, $defs, $source, $propertyName, $traversedReferences
+					$normalizedDefinition = self::doNormalizeJsonSchema(
+						$def,
+						$defs,
+						$source,
+						$propertyName,
+						$inlineReferences,
+						$traversedReferences
 					);
+					if ( !$inlineReferences ) {
+						$defs[$definitionName] = $normalizedDefinition;
+					}
+				} else {
+					$normalizedDefinition = $defs[$definitionName];
 				}
 				// Normalize reference after resolving it since JsonSchemaReferenceResolver expects
 				// the $ref to be an array with: [ "class" => "Some\\Class", "field" => "someField" ]
-				$schema['$ref'] = JsonSchemaReferenceResolver::normalizeRef( $schema['$ref'] );
+				if ( $inlineReferences ) {
+					$schema = $normalizedDefinition;
+				} else {
+					$schema['$ref'] = JsonSchemaReferenceResolver::normalizeRef( $schema['$ref'] );
+				}
 			}
 		}
 

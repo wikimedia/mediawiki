@@ -157,6 +157,28 @@ class JsonSchemaTraitTest extends TestCase {
 				]
 			]
 		];
+
+		yield 'inlined' => [
+			[
+				'type' => 'object',
+				'properties' => [
+					'foo' => [
+						'$ref' => [
+							'class' => ExampleDefinitionsClass::class,
+							'field' => 'REFERENCING_SCHEMA',
+						]
+					],
+				]
+			],
+			[
+				'type' => 'object',
+				'properties' => [
+					'foo' => [ 'type' => 'string' ],
+				]
+			],
+			[],
+			true
+		];
 	}
 
 	/**
@@ -164,14 +186,16 @@ class JsonSchemaTraitTest extends TestCase {
 	 * @param array $schema
 	 * @param array $expectedSchema
 	 * @param array $expectedDefs
+	 * @param bool $inlinedReferences
 	 */
-	public function testNormalizeJsonSchema( $schema, $expectedSchema, $expectedDefs = [] ) {
+	public function testNormalizeJsonSchema( $schema, $expectedSchema, $expectedDefs = [], $inlinedReferences = false ) {
 		$actualDefs = [];
 		$actual = self::normalizeJsonSchema(
 			$schema,
 			$actualDefs,
 			'provideNormalizeJsonSchema',
-			'foo'
+			'foo',
+			$inlinedReferences
 		);
 		$this->assertSame( $expectedSchema, $actual );
 		$this->assertEquals( $expectedDefs, $actualDefs );
