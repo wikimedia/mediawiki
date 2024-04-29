@@ -466,10 +466,10 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 					'content_model' => CONTENT_MODEL_WIKITEXT,
 				] ),
 			],
-			DataMessageValue::new( 'rest-body-validation-error', [
+			MessageValue::new( 'rest-body-validation-error', [
 				DataMessageValue::new( 'paramvalidator-missingparam', [], 'missingparam' )
 					->plaintextParams( 'source' )
-			], 'missingparam' ),
+			] ),
 		];
 		yield "missing comment field" => [
 			[ // Request data received by UpdateHandler
@@ -484,10 +484,10 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 					'content_model' => CONTENT_MODEL_WIKITEXT,
 				] ),
 			],
-			DataMessageValue::new( 'rest-body-validation-error', [
+			MessageValue::new( 'rest-body-validation-error', [
 				DataMessageValue::new( 'paramvalidator-missingparam', [], 'missingparam' )
 					->plaintextParams( 'comment' )
-			], 'missingparam' ),
+			] ),
 		];
 	}
 

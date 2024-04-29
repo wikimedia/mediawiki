@@ -349,10 +349,10 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 					'content_model' => CONTENT_MODEL_WIKITEXT,
 				] ),
 			],
-			DataMessageValue::new( 'rest-body-validation-error', [
+			MessageValue::new( 'rest-body-validation-error', [
 				DataMessageValue::new( 'paramvalidator-missingparam', [], 'missingparam' )
 					->plaintextParams( 'source' )
-			], 'missingparam' ),
+			] ),
 		];
 		yield "missing comment field" => [
 			[ // Request data received by CreationHandler
@@ -367,10 +367,10 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 					'content_model' => CONTENT_MODEL_WIKITEXT,
 				] ),
 			],
-			DataMessageValue::new( 'rest-body-validation-error', [
+			MessageValue::new( 'rest-body-validation-error', [
 				DataMessageValue::new( 'paramvalidator-missingparam', [], 'missingparam' )
 					->plaintextParams( 'comment' )
-			], 'missingparam' ),
+			] ),
 		];
 		yield "missing title field" => [
 			[ // Request data received by CreationHandler
@@ -385,10 +385,10 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 					'content_model' => CONTENT_MODEL_WIKITEXT,
 				] ),
 			],
-			DataMessageValue::new( 'rest-body-validation-error', [
+			MessageValue::new( 'rest-body-validation-error', [
 				DataMessageValue::new( 'paramvalidator-missingparam', [], 'missingparam' )
 					->plaintextParams( 'title' )
-			], 'missingparam' ),
+			] ),
 		];
 	}
 

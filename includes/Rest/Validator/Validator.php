@@ -10,7 +10,6 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
-use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
@@ -230,19 +229,17 @@ class Validator {
 				] );
 			} catch ( ValidationException $e ) {
 				$msg = $e->getFailureMessage();
-				$wrappedMsg = new DataMessageValue(
+				$wrappedMsg = new MessageValue(
 					'rest-body-validation-error',
-					[ $e->getFailureMessage() ],
-					$msg->getCode(),
-					$msg->getData()
+					[ $e->getFailureMessage() ]
 				);
 
 				throw new LocalizedHttpException( $wrappedMsg, 400, [
 					'error' => 'parameter-validation-failed',
 					'name' => $e->getParamName(),
 					'value' => $e->getParamValue(),
-					'failureCode' => $e->getFailureMessage()->getCode(),
-					'failureData' => $e->getFailureMessage()->getData(),
+					'failureCode' => $msg->getCode(),
+					'failureData' => $msg->getData(),
 				] );
 			}
 		}
