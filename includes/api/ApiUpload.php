@@ -89,13 +89,9 @@ class ApiUpload extends ApiBase {
 
 		// Parameter handling
 		$this->mParams = $this->extractRequestParams();
-		$request = $this->getMain()->getRequest();
 		// Check if async mode is actually supported (jobs done in cli mode)
 		$this->mParams['async'] = ( $this->mParams['async'] &&
 			$this->getConfig()->get( MainConfigNames::EnableAsyncUploads ) );
-		// Add the uploaded file to the params array
-		$this->mParams['file'] = $request->getFileName( 'file' );
-		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
 
 		// Copy the session key to the file key, for backward compatibility.
 		if ( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
@@ -322,9 +318,9 @@ class ApiUpload extends ApiBase {
 			$result['warnings'] = $warnings;
 		}
 
-		$request = $this->getMain()->getRequest();
-		$chunkPath = $request->getFileTempname( 'chunk' );
-		$chunkSize = $request->getUpload( 'chunk' )->getSize();
+		$chunkUpload = $this->getMain()->getUpload( 'chunk' );
+		$chunkPath = $chunkUpload->getTempName();
+		$chunkSize = $chunkUpload->getSize();
 		$totalSoFar = $this->mParams['offset'] + $chunkSize;
 		$minChunkSize = self::getMinUploadChunkSize( $this->getConfig() );
 
@@ -627,8 +623,6 @@ class ApiUpload extends ApiBase {
 	 * @return bool
 	 */
 	protected function selectUploadModule() {
-		$request = $this->getMain()->getRequest();
-
 		// chunk or one and only one of the following parameters is needed
 		if ( !$this->mParams['chunk'] ) {
 			$this->requireOnlyOneParameter( $this->mParams,
@@ -694,7 +688,7 @@ class ApiUpload extends ApiBase {
 				$this->mUpload->continueChunks(
 					$this->mParams['filename'],
 					$this->mParams['filekey'],
-					$request->getUpload( 'chunk' )
+					$this->getMain()->getUpload( 'chunk' )
 				);
 			} else {
 				if ( $this->mParams['offset'] !== 0 ) {
@@ -704,7 +698,7 @@ class ApiUpload extends ApiBase {
 				// handle first chunk
 				$this->mUpload->initialize(
 					$this->mParams['filename'],
-					$request->getUpload( 'chunk' )
+					$this->getMain()->getUpload( 'chunk' )
 				);
 			}
 		} elseif ( isset( $this->mParams['filekey'] ) ) {
@@ -730,7 +724,7 @@ class ApiUpload extends ApiBase {
 			$this->mUpload = new UploadFromFile();
 			$this->mUpload->initialize(
 				$this->mParams['filename'],
-				$request->getUpload( 'file' )
+				$this->getMain()->getUpload( 'file' )
 			);
 		} elseif ( isset( $this->mParams['url'] ) ) {
 			// Make sure upload by URL is enabled:

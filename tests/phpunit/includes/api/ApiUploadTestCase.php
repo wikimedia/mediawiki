@@ -152,7 +152,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 			'type' => $type,
 			'tmp_name' => $tmpName,
 			'size' => $size,
-			'error' => null
+			'error' => UPLOAD_ERR_OK,
 		];
 	}
 
