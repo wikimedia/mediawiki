@@ -6,7 +6,6 @@
 *
 * - mw-ui-icon = base class. 20px square with icon.
 * - mw-ui-icon + mw-ui-icon-element = icon with padding & pseudo-states.
-* - mw-ui-icon + mw-ui-icon-small = small icon with padding & pseudo-states.
 * - mw-ui-icon + mw-ui-icon-before = *deprecated*, icon with text.
 *   Labels should be placed in a separate element beside the icon.
 *
@@ -19,10 +18,6 @@
 @icon-touch-area-sm: 32; // This is also used for touch areas at DESKTOP resolutions.
 @icon-touch-area-md: 44;
 @font-size-browser: 16; // Assumed browser default of `16px`.
-// Small icon
-@icon-glyph-size-sm: 16;
-@icon-size-sm: unit( @icon-glyph-size-sm / @font-size-browser, em );
-@icon-padding-sm: unit( ( @icon-touch-area-sm - @icon-glyph-size-sm - 2 ) / 2 / @font-size-browser, em );
 // Medium icon
 @icon-glyph-size-md: 20;
 @icon-size-md: unit( @icon-glyph-size-md / @font-size-browser, em );
@@ -141,29 +136,6 @@
 			padding: @icon-padding-md-button--desktop;
 		}
 	}
-}
-
-.mw-ui-icon-small {
-	width: @icon-size-sm;
-	height: @icon-size-sm;
-	min-width: @icon-size-sm;
-	min-height: @icon-size-sm;
-	flex-basis: @icon-size-sm;
-	line-height: @icon-size-sm;
-
-	&::before {
-		.mixin-background-square( @icon-size-sm );
-	}
-}
-
-.mw-ui-icon-small.mw-ui-icon-element {
-	padding: @icon-padding-sm;
-}
-
-.mw-ui-icon-small.mw-ui-icon-before::before {
-	min-width: @icon-size-sm;
-	min-height: @icon-size-sm;
-	margin-right: @icon-padding-sm;
 }
 
 .mw-ui-icon-before {
