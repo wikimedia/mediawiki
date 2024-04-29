@@ -324,7 +324,14 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			new RequestData( [] ),
 			new LocalizedHttpException(
 				new MessageValue( 'paramvalidator-missingparam' ),
-				400
+				400,
+				[
+					'error' => 'parameter-validation-failed',
+					'name' => 'requiredparam',
+					'value' => null,
+					'failureCode' => 'missingparam',
+					'failureData' => null,
+				]
 			)
 		];
 		yield "$source parameter" => [
@@ -358,7 +365,14 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			new RequestData( [ $requestDataKey => [ 'param' => [] ] ] ),
 			new LocalizedHttpException(
 				new MessageValue( 'paramvalidator-notmulti' ),
-				400
+				400,
+				[
+					'error' => 'parameter-validation-failed',
+					'name' => 'param',
+					'value' => [],
+					'failureCode' => 'badvalue',
+					'failureData' => null,
+				]
 			)
 		];
 	}
@@ -460,7 +474,17 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			new RequestData( [ 'parsedBody' => [
 				'foo' => 'xyzzy' // not a complex value
 			] ] ),
-			new LocalizedHttpException( new MessageValue( 'paramvalidator-notarray' ), 400 )
+			new LocalizedHttpException(
+				new MessageValue( 'paramvalidator-notarray' ),
+				400,
+				[
+					'error' => 'parameter-validation-failed',
+					'name' => 'foo',
+					'value' => 'xyzzy',
+					'failureCode' => 'notarray',
+					'failureData' => null,
+				]
+			),
 		];
 
 		yield "default complex value" => [
@@ -503,6 +527,8 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				/** @var MessageValue $validationMessage */
 				$validationMessage = $param->getValue();
 				$this->assertSame( $expected->getMessageValue()->getKey(), $validationMessage->getKey() );
+
+				$this->assertSame( $expected->getErrorData(), $ex->getErrorData() );
 			} else {
 				$this->fail( 'Unexpected exception: ' . $ex );
 			}
