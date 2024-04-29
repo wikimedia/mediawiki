@@ -631,8 +631,6 @@ return [
 		'class' => CodexModule::class,
 		'codexFullLibrary' => true,
 		'codexStyleOnly' => true,
-		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
-		'noflip' => true,
 	],
 
 	'@wikimedia/codex-search' => [
