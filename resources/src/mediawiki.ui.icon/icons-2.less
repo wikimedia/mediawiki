@@ -7,8 +7,6 @@
 * - mw-ui-icon = base class. 20px square with icon.
 * - mw-ui-icon + mw-ui-icon-element = icon with padding & pseudo-states.
 * - mw-ui-icon + mw-ui-icon-small = small icon with padding & pseudo-states.
-* - mw-ui-icon + mw-ui-icon-flush-left = negative right-margin.
-* - mw-ui-icon + mw-ui-icon-flush-right = negative left-margin.
 * - mw-ui-icon + mw-ui-icon-before = *deprecated*, icon with text.
 *   Labels should be placed in a separate element beside the icon.
 *
@@ -29,8 +27,6 @@
 @icon-glyph-size-md: 20;
 @icon-size-md: unit( @icon-glyph-size-md / @font-size-browser, em );
 @icon-padding-md: unit( ( @icon-touch-area-md - @icon-glyph-size-md ) / 2 / @font-size-browser, em );
-
-@icon-border-width: unit( 1 / @font-size-browser, em );
 
 // Includes 2px mw-ui-button border
 @icon-padding-md-button: unit( ( @icon-touch-area-md - @icon-glyph-size-md - 2 ) / 2 / @font-size-browser, em );
@@ -120,31 +116,6 @@
 	}
 }
 
-/**
-* When aligning a series of similar icons (e.g. list items)
-* prefer using a `:first-child` or `:last-child` selector.
-* The flush-left/right classes are appropriate when that's unavailable.
-*/
-.mw-ui-icon-flush-top {
-	margin-top: -@icon-padding-md;
-}
-
-.mw-ui-icon-flush-left {
-	margin-left: -@icon-padding-md;
-
-	@media all and ( min-width: @width-breakpoint-desktop ) {
-		margin-left: -@icon-padding-md-button--desktop - @icon-border-width;
-	}
-}
-
-.mw-ui-icon-flush-right {
-	margin-right: -@icon-padding-md;
-
-	@media all and ( min-width: @width-breakpoint-desktop ) {
-		margin-right: -@icon-padding-md-button--desktop - @icon-border-width;
-	}
-}
-
 .mw-ui-icon-element {
 	border-radius: @border-radius-base;
 	padding: @icon-padding-md;
@@ -187,14 +158,6 @@
 
 .mw-ui-icon-small.mw-ui-icon-element {
 	padding: @icon-padding-sm;
-}
-
-.mw-ui-icon-small.mw-ui-icon-flush-left {
-	margin-left: -@icon-padding-sm;
-}
-
-.mw-ui-icon-small.mw-ui-icon-flush-right {
-	margin-right: -@icon-padding-sm;
 }
 
 .mw-ui-icon-small.mw-ui-icon-before::before {
