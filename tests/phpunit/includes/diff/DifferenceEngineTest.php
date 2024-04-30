@@ -592,6 +592,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$context->setLanguage( 'qqx' );
 
 		$out = new OutputPage( $context );
+		$out->enableOOUI();
 		$context->setOutput( $out );
 
 		$engine = new DifferenceEngine(
