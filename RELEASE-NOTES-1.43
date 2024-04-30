@@ -125,6 +125,8 @@ because of Phabricator reports.
   longer supported.
 * TablePager::getBody(), final and deprecated since 1.24, has been removed.
   Use ::getBodyOutput() or ::getFullOutput() instead.
+* ImportableUploadRevisionImporter::downloadSource(), deprecated in 1.31, is now
+  private. Its only known external caller was removed in 1.40.
 * …
 
 === Deprecations in 1.43 ===
