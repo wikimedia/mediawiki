@@ -41,7 +41,7 @@
 	"rest-bad-json-body": "Mal corpore de requesta, debe esser un objecto JSON.",
 	"rest-json-body-parse-error": "Le analyse syntactic del corpore del requesta como JSON ha fallite: $1",
 	"rest-missing-body-field": "Le campo obligatori \"$1\" manca in le corpore del requesta.",
-	"rest-body-validation error": "Corpore de requesta invalide: $1",
+	"rest-body-validation-error": "Corpore de requesta invalide: $1",
 	"rest-extraneous-body-fields": "Campos extranee trovate in le corpore del requesta: $1",
 	"rest-bad-content-model": "Mal modello de contento: $1",
 	"rest-update-cannot-create-page": "Le pagina \"$1\" non pote esser create perque illo jam existe. Pro actualisar le pagina existente, forni le ID del version de base in le structura sub le clave \"latest\" in le corpore del requesta.",

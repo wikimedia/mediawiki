@@ -43,7 +43,7 @@
 	"rest-bad-json-body": "錯誤的請求正文，必須是 JSON 物件。",
 	"rest-json-body-parse-error": "將請求正文解析成 JSON 失敗：$1",
 	"rest-missing-body-field": "請求正文中缺少必要欄位「$1」。",
-	"rest-body-validation error": "請求正文無效：$1",
+	"rest-body-validation-error": "請求正文無效：$1",
 	"rest-extraneous-body-fields": "請求正文裡發現無關欄位：$1",
 	"rest-bad-content-model": "錯誤內容模組：$1",
 	"rest-update-cannot-create-page": "頁面「$1」已存在，因此無法建立。要更新現有的頁面，請在請求正文中「latest」鍵的結構裡提供基本修訂 ID。",
