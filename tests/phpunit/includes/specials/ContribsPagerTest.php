@@ -9,7 +9,10 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\IndexPager;
+use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -23,6 +26,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Pager\ContribsPager
  */
 class ContribsPagerTest extends MediaWikiIntegrationTestCase {
+	use TempUserTestTrait;
+
 	/** @var ContribsPager */
 	private $pager;
 
@@ -365,17 +370,55 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		}
 		$pager = $this->getContribsPager( $options, $targetUser );
 		$this->assertIsString( $pager->getBody() );
+		$this->assertSame( 0, $pager->getNumRows() );
 	}
 
 	/**
-	 * DB integration test with a row in the result set.
+	 * DB integration test for an IP range target with a few edits.
 	 */
 	public function testPopulatedIntegration() {
-		$user = $this->getTestUser()->getUser();
+		$this->disableAutoCreateTempUser();
+		$user = new SimpleAuthority( new UserIdentityValue( 0, '127.0.0.1' ), [] );
 		$title = Title::makeTitle( NS_MAIN, 'ContribsPagerTest' );
 		$this->editPage( $title, '', '', NS_MAIN, $user );
-		$pager = $this->getContribsPager( [], $user );
+		$this->editPage( $title, 'Test content.', '', NS_MAIN, $user );
+		$pager = $this->getContribsPager( [ 'target' => '127.0.0.1/16' ] );
 		$this->assertIsString( $pager->getBody() );
+		$this->assertSame( 2, $pager->getNumRows() );
 	}
 
+	/**
+	 * DB integration test for a reader with permissions to delete and rollback.
+	 */
+	public function testPopulatedIntegrationWithPermissions() {
+		$this->setGroupPermissions( [ '*' => [
+			'deletedhistory' => true,
+			'deleterevision' => true,
+			'rollback' => true,
+		] ] );
+		$sysop = $this->getTestsysop()->getUser();
+		$user = $this->getTestUser()->getUser();
+		$title = Title::makeTitle( NS_MAIN, 'ContribsPagerTest' );
+
+		// Edit from a different user so we show rollback links
+		$this->editPage( $title, '', '', NS_MAIN, $sysop );
+		$this->editPage( $title, 'Test content.', '', NS_MAIN, $user );
+
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'revision' )
+			->set( [
+				'rev_deleted' => RevisionRecord::DELETED_USER,
+				// Make a couple of alterations to ensure these paths are covered
+				'rev_minor_edit' => 1,
+				'rev_parent_id' => null,
+			] )
+			->where( [
+				'rev_actor' => $user->getActorId()
+			] )
+			->execute();
+
+		$pager = $this->getContribsPager( [], $user );
+		$this->assertIsString( $pager->getBody() );
+		$this->assertSame( 1, $pager->getNumRows() );
+	}
 }
