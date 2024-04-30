@@ -70,5 +70,21 @@
 	"rest-html-key-expected": "Error message for REST API debugging, shown when when the \"html\" key is missing from the request body",
 	"rest-invalid-transform": "Error message for REST API debugging, shown when an unsupported transformation is requested from the transform handler. Parameters:\n* $1: The source format \n* $2: The target format",
 	"rest-request-body-expected": "Error message for REST API debugging, shown when the request method expects a request body",
-	"rest-request-body-unaccepted": "Error message for REST API debugging, shown when the request method does not accept a request body"
+	"rest-request-body-unaccepted": "Error message for REST API debugging, shown when the request method does not accept a request body",
+	"rest-unmapped-action-error": "Error message for REST API debugging, shown when the ApiUsageExceptions does not have errors in status object. Parameters:\n* $1: The error details",
+	"rest-unsupported-transform-input": "Error message for REST API debugging, shown when the the input format to the transformation is unsupported. Parameters:\n* $1: The source format",
+	"rest-bad-etag": "Error message for REST API debugging, shown when the ParsoidRenderID object cannot be created from the provided key. Parameters:\n* $1: The key",
+	"rest-no-stashed-content": "Error message for REST API debugging, shown when the .when no stashed content was found with the given key Parameters:\n* $1: The stash key",
+	"rest-unsupported-profile-version": "Error message for REST API debugging, shown when the profile version is unsupported. Parameters:\n* $1: The version",
+	"rest-no-json-decode": "Error message for REST API debugging, shown when the payload does not json decode to an array",
+	"rest-parsoid-unsupported-media": "Error message for REST API debugging, shown when the media content is unsupported",
+	"rest-edit-conflict": "Error message for REST API debugging, shown when there is an edit conflict. Parameters:\n* $1: The result of the edit attempt",
+	"rest-missing-revision-html": "Error message for REST API debugging, shown when the revision html is missing",
+	"rest-missing-revision-html-content-type": "Error message for REST API debugging, shown when the content-type of revision html is missing",
+	"rest-unsupported-profile-conversion": "Error message for REST API debugging, shown when the handler does not know how to do the conversion",
+	"rest-unknown-parsoid-transformation": "Error message for REST API debugging, shown when the requested transformation is not supported",
+	"rest-target-variant-required": "Error message for REST API debugging, shown when the target variant is required",
+	"rest-unsupported-language-conversion": "Error message for REST API debugging, shown when the language conversion is not supported. Parameters:\n* $1: The source format \n* $2: The target format",
+	"rest-unknown-content-model": "Error message for REST API debugging, shown when an unregistered content model is requested. Parameters:\n* $1: The name of the unknown content model",
+	"rest-page-bundle-validation-error": "Error message for REST API debugging, shown when PageBundle does not match the given contentVersion. Parameters:\n* $1: The error details"
 }

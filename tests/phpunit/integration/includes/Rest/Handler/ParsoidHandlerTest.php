@@ -1050,7 +1050,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$attribs,
 			$html,
 			new LocalizedHttpException(
-				new MessageValue( 'rest-html-backend-error' ),
+				new MessageValue( 'rest-html-backend-error', [ 'Content-type of original html is missing.' ] ),
 				400,
 				[ 'reason' => 'Content-type of original html is missing.' ]
 			)
@@ -1078,7 +1078,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$attribs,
 			$htmlOfMinimal,
 			new LocalizedHttpException(
-				new MessageValue( 'rest-html-backend-error' ),
+				new MessageValue( 'rest-html-backend-error', [ 'No downgrade possible from schema version 2222.0.0 to 2.4.0.' ] ),
 				400,
 				[ 'reason' => 'No downgrade possible from schema version 2222.0.0 to 2.4.0.' ]
 			)
@@ -1110,7 +1110,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$attribs,
 			$html,
 			new LocalizedHttpException(
-				new MessageValue( 'rest-html-backend-error' ),
+				new MessageValue( 'rest-html-backend-error', [ 'DSR offsetType mismatch: UCS2 vs byte' ] ),
 				400,
 				[ 'reason' => 'DSR offsetType mismatch: UCS2 vs byte' ]
 			)
@@ -1143,7 +1143,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$attribs,
 			$html,
 			new LocalizedHttpException(
-				new MessageValue( 'rest-html-backend-error' ),
+				new MessageValue( 'rest-html-backend-error', [ 'DSR offsetType mismatch: byte vs UCS2' ] ),
 				400,
 				[ 'reason' => 'DSR offsetType mismatch: byte vs UCS2' ]
 			)
@@ -1192,8 +1192,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'should return a 400 for missing inline data-mw (2.x)' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'Cannot serialize mw:Transclusion without data-mw.parts or data-parsoid.src',
+			new LocalizedHttpException( new MessageValue( 'rest-parsoid-error', [ 'Cannot serialize mw:Transclusion without data-mw.parts or data-parsoid.src' ] ),
 				400
 			)
 		];
@@ -1217,7 +1216,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$attribs,
 			$html,
 			new LocalizedHttpException(
-				new MessageValue( 'rest-html-backend-error' ),
+				new MessageValue( 'rest-html-backend-error', [ 'Invalid data-mw was provided.' ] ),
 				400,
 				[ 'reason' => 'Invalid data-mw was provided.' ]
 			)
@@ -1247,8 +1246,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'should return a 400 for missing modified data-mw' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'Cannot serialize mw:Transclusion without data-mw.parts or data-parsoid.src',
+			new LocalizedHttpException( new MessageValue( 'rest-parsoid-error', [ 'Cannot serialize mw:Transclusion without data-mw.parts or data-parsoid.src' ] ),
 				400
 			)
 		];
@@ -1274,7 +1272,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$attribs,
 			$html,
 			new LocalizedHttpException(
-				new MessageValue( 'rest-html-backend-error' ),
+				new MessageValue( 'rest-html-backend-error', [ 'Invalid data-parsoid was provided.' ] ),
 				400,
 				[ 'reason' => 'Invalid data-parsoid was provided.' ]
 			)
@@ -1332,6 +1330,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				);
 			}
 
+			if ( $expectedException instanceof LocalizedHttpException ) {
+				/** @var LocalizedHttpException $expectedException */
+				$this->assertInstanceOf( LocalizedHttpException::class, $e );
+				$this->assertEquals( $expectedException->getMessageValue(), $e->getMessageValue() );
+				$this->assertSame( $expectedException->getErrorData(), $e->getErrorData() );
+			}
+
 			$this->assertSame( $expectedException->getMessage(), $e->getMessage() );
 		}
 	}
@@ -1339,12 +1344,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	public static function provideDom2wikitextException() {
 		yield 'ClientError' => [
 			new ClientError( 'test' ),
-			new HttpException( 'test', 400 )
+			new LocalizedHttpException( new MessageValue( 'rest-parsoid-error', [ 'test' ] ), 400 )
 		];
 
 		yield 'ResourceLimitExceededException' => [
 			new ResourceLimitExceededException( 'test' ),
-			new HttpException( 'test', 413 )
+			new LocalizedHttpException( new MessageValue( 'rest-parsoid-resource-exceeded', [ 'test' ] ), 413 )
 		];
 	}
 
@@ -1399,12 +1404,21 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			}
 		] );
 
-		// Check that the exception thrown by Parsoid gets converted as expected.
-		$this->expectException( get_class( $expectedException ) );
-		$this->expectExceptionCode( $expectedException->getCode() );
-		$this->expectExceptionMessage( $expectedException->getMessage() );
+		try {
+			$handler->html2wt( $page, $attribs, $html );
+			$this->fail( 'Expected exception ' . get_class( $expectedException ) . ' not thrown' );
+		} catch ( Exception $e ) {
+			$this->assertSame( $expectedException->getCode(), $e->getCode() );
+			$this->assertSame( $expectedException->getMessage(), $e->getMessage() );
 
-		$handler->html2wt( $page, $attribs, $html );
+			if ( $expectedException instanceof LocalizedHttpException ) {
+				$this->assertEquals( $expectedException->getMessageValue(), $e->getMessageValue() );
+				$this->assertSame( $expectedException->getErrorData(), $e->getErrorData() );
+
+			}
+			$this->assertSame( $expectedException->getMessage(), $e->getMessage() );
+
+		}
 	}
 
 	/** @return Generator */

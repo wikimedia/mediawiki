@@ -240,12 +240,16 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$outputContentVersion = Parsoid::resolveContentVersion( $version );
 
 		if ( !$outputContentVersion ) {
-			throw new HttpException( "Unsupported profile version: $version", 406 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-unsupported-profile-version", [ $version ] ), 406
+			);
 		}
 
 		// Only set the option if the value isn't the default!
 		if ( $outputContentVersion !== Parsoid::defaultHTMLVersion() ) {
-			throw new HttpException( "Unsupported profile version: $version", 406 );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-unsupported-profile-version", [ $version ] ), 406
+			);
 
 			// TODO: (T347426) At some later point, we may reintroduce support for
 			// non-default content versions as part of work on the content
@@ -352,7 +356,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$content = $handler->unserializeContent( $source );
 			$this->setContent( $content );
 		} catch ( MWUnknownContentModelException $ex ) {
-			throw new HttpException( 'Bad content model: ' . $model, 400 );
+			throw new LocalizedHttpException( new MessageValue( "rest-bad-content-model", [ $model ] ), 400 );
 		}
 	}
 
