@@ -104,6 +104,8 @@ class UserNotLoggedIn extends ErrorPageError {
 			'returnto' => $context->getTitle()->getFullText(),
 			'returntoquery' => wfArrayToCgi( $query ),
 			'warning' => $this->msg,
+			// Forward the 'display' parameter if provided
+			'display' => $query['display'] ?? null,
 		] ) );
 
 		if ( $action === self::SEND_OUTPUT ) {
