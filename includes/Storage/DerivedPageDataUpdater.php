@@ -1402,7 +1402,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	/**
-	 * @deprecated This only exists for B/C, use the getters on DerivedPageDataUpdater directly!
+	 * @deprecated since 1.43; This only exists for B/C, use the getters on DerivedPageDataUpdater directly!
 	 * @return PreparedEdit
 	 */
 	public function getPreparedEdit() {

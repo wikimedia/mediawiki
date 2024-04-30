@@ -671,7 +671,7 @@ class ChangesList extends ContextSource {
 	 * and a separator
 	 *
 	 * @param RecentChange $rc
-	 * @deprecated use revDateLink instead.
+	 * @deprecated since 1.43; use revDateLink instead.
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {

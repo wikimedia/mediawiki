@@ -1486,7 +1486,7 @@ class WikiPage implements Page, PageRecord {
 	 *
 	 * MCR migration note: this method should go away!
 	 *
-	 * @deprecated Use only as a stop-gap before refactoring to support MCR.
+	 * @deprecated since 1.43; Use only as a stop-gap before refactoring to support MCR.
 	 *
 	 * @param RevisionRecord $a
 	 * @param RevisionRecord $b

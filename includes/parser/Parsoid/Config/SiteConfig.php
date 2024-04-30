@@ -569,9 +569,14 @@ class SiteConfig extends ISiteConfig {
 	 * values are arrays with two fields:
 	 *   - base: (string) Base language code (e.g. "zh") (MediaWiki-internal)
 	 *   - fallbacks: (string[]) Fallback variants (MediaWiki-internal codes)
-	 * @deprecated Use ::variantsFor() (T320662)
+	 * @deprecated since 1.43; use ::variantsFor() (T320662)
 	 */
 	public function variants(): array {
+		// Deprecated for all external callers; to make private and remove this warning.
+		if ( wfGetCaller() !== __CLASS__ . '->variantsFor' ) {
+			wfDeprecated( __METHOD__, '1.43' );
+		}
+
 		if ( $this->variants !== null ) {
 			return $this->variants;
 		}

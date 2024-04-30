@@ -825,6 +825,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Test without first initializing the configured providers
 		$this->initializeManager();
+		$this->expectDeprecationAndContinue( '/AuthManager::forcePrimaryAuthenticationProviders/' );
 		$this->manager->forcePrimaryAuthenticationProviders( [ $mockB ], 'testing' );
 		$this->assertSame(
 			[ 'B' => $mockB ], $this->managerPriv->getPrimaryAuthenticationProviders()
@@ -842,6 +843,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( null, $this->managerPriv->getAuthenticationProvider( 'B' ) );
 		$this->request->getSession()->setSecret( AuthManager::AUTHN_STATE, 'test' );
 		$this->request->getSession()->setSecret( AuthManager::ACCOUNT_CREATION_STATE, 'test' );
+		$this->expectDeprecationAndContinue( '/AuthManager::forcePrimaryAuthenticationProviders/' );
 		$this->manager->forcePrimaryAuthenticationProviders( [ $mockB ], 'testing' );
 		$this->assertSame(
 			[ 'B' => $mockB ], $this->managerPriv->getPrimaryAuthenticationProviders()
@@ -864,6 +866,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		// Test duplicate IDs
 		$this->initializeManager();
 		try {
+			$this->expectDeprecationAndContinue( '/AuthManager::forcePrimaryAuthenticationProviders/' );
 			$this->manager->forcePrimaryAuthenticationProviders( [ $mockB, $mockB2 ], 'testing' );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( RuntimeException $ex ) {
