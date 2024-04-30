@@ -70,26 +70,6 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * Get the formatted result list. Calls getStartBody(), formatRow() and getEndBody(), concatenates
-	 * the results and returns them.
-	 *
-	 * Also adds the required styles to our OutputPage object (this means that if context wasn't
-	 * passed to constructor or otherwise set up, you will get a pager with missing styles).
-	 *
-	 * This method has been made 'final' in 1.24. There's no reason to override it, and if there exist
-	 * any subclasses that do, the style loading hack is probably broken in them. Let's fail fast
-	 * rather than mysteriously render things wrong.
-	 *
-	 * @deprecated since 1.24, use getBodyOutput() or getFullOutput() instead
-	 *   Emitting deprecation warnings since 1.41.
-	 * @return string
-	 */
-	final public function getBody() {
-		wfDeprecated( __METHOD__, '1.24' );
-		return parent::getBody();
-	}
-
-	/**
 	 * Get the formatted result list.
 	 *
 	 * Calls getBody() and getModuleStyles() and builds a ParserOutput object. (This is a bit hacky
