@@ -559,10 +559,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'mediawiki.special.userlogin.common.styles'
 		] );
 		if ( $this->isSignup() ) {
-			// XXX hack pending RL or JS parse() support for complex content messages T27349
-			$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
-				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
-
 			// Additional styles and scripts for signup form
 			$out->addModules( 'mediawiki.special.createaccount' );
 			$out->addModuleStyles( [
