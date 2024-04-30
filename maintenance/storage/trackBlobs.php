@@ -230,8 +230,7 @@ class TrackBlobs extends Maintenance {
 		# Wait until the blob_tracking table is available in the replica DB
 		$dbw = $this->getPrimaryDB();
 		$dbr = $this->getReplicaDB();
-		$pos = $dbw->getPrimaryPos();
-		$dbr->primaryPosWait( $pos, 100_000 );
+		$this->getServiceContainer()->getDBLoadBalancerFactory()->waitForReplication( [ 'timeout' => 100_000 ] );
 
 		$textClause = $this->getTextClause();
 		$startId = 0;

@@ -288,7 +288,7 @@ class DatabaseMySQLTest extends TestCase {
 		$replicationReporter->method( 'getServerId' )->willReturn( 1 );
 		$replicationReporter->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
 
-		/** @var DatabaseMySQL $replicationReporter */
+		/** @var MysqlReplicationReporter $replicationReporter */
 		if ( is_array( $rGTIDs ) ) {
 			$this->assertEquals( $rGTIDs, $replicationReporter->getReplicaPos( $db )->getGTIDs() );
 		} else {

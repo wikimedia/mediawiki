@@ -3499,10 +3499,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->replicationReporter->primaryPosWait( $this, $pos, $timeout );
 	}
 
-	public function getReplicaPos() {
-		return $this->replicationReporter->getReplicaPos( $this );
-	}
-
 	public function getPrimaryPos() {
 		return $this->replicationReporter->getPrimaryPos( $this );
 	}
