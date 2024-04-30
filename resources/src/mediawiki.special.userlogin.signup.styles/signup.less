@@ -1,30 +1,20 @@
 @import 'mediawiki.skin.variables.less';
-@import 'mediawiki.mixins.less';
 
 .mw-ui-container {
-	.mixin-clearfix();
+	/* Benefits column CSS to the right (if it fits) of the form, otherwise below. */
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 100px;
+	row-gap: 50px;
 
 	/* Disable the underline that Vector puts on h2 headings, and bold them. */
 	h2 {
 		border: 0;
 		font-weight: bold;
 	}
-
-	/* Benefits column CSS to the right (if it fits) of the form. */
-	#userloginForm {
-		float: left;
-		/* Override the right margin of the form to give space in case a benefits
-		 * column appears to the side. */
-		margin-right: 100px;
-		/* Override `.mw-body-content` to ensure useful, readable paragraphs */
-		line-height: 1.4;
-	}
 }
 
 .mw-createacct-benefits-container {
-	/* Keeps this column compact and close to the form, but tends to squish contents. */
-	float: left;
-
 	h2 {
 		margin-bottom: 30px;
 	}
@@ -56,7 +46,7 @@
 	color: @color-base;
 	margin: 0;
 	padding: 0;
-	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+	font-family: @font-family-serif;
 	font-weight: normal;
 	font-size: 2.2em;
 	line-height: 1.2;

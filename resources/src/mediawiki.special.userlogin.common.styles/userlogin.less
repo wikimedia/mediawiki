@@ -42,14 +42,9 @@
 	font-size: 0.8em;
 }
 
-/* Put some space under template's header, which may contain CAPTCHA HTML. */
-section.mw-form-header {
-	margin-bottom: 10px;
-}
-
 /* shuffled CAPTCHA */
-#wpCaptchaWord {
-	margin-top: 6px;
+#mw-input-captchaWord {
+	margin-top: 0.5em;
 }
 
 /* FIXME: These should be namespaced to mw-ext-confirmedit-fancycaptcha-, and really shouldn't be in core at all */
@@ -73,9 +68,8 @@ section.mw-form-header {
 .fancycaptcha-captcha-and-reload {
 	border: @border-subtle;
 	border-radius: @border-radius-base @border-radius-base 0 0;
-	/* Other display formats end up too wide */
-	display: table-cell;
-	width: 270px;
+	width: 100%;
+	box-sizing: border-box;
 	background-color: @background-color-base;
 }
 
@@ -100,6 +94,7 @@ section.mw-form-header {
 
 .mw-login-flush-right {
 	float: right;
+	text-align: right;
 	padding-right: 0;
 	margin-right: 0;
 }
