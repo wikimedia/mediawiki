@@ -445,7 +445,7 @@ class UserMailer {
 
 	/**
 	 * Converts a string into a valid RFC 822 "phrase", such as is used for the sender name
-	 * @deprecated 1.38 This method has not been used by anything
+	 * @deprecated since 1.38; This method has not been used by anything
 	 * @param string $phrase
 	 * @return string
 	 */

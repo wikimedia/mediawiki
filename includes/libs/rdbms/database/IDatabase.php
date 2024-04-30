@@ -344,7 +344,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @return int Number of matching rows found (and locked)
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.32
-	 * @deprecated 1.43 Use SelectQueryBuilder::acquireRowLocks
+	 * @deprecated since 1.43; Use SelectQueryBuilder::acquireRowLocks
 	 */
 	public function lockForUpdate(
 		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []

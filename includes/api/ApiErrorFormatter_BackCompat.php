@@ -23,7 +23,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Format errors and warnings in the old style, for backwards compatibility.
  * @since 1.25
- * @deprecated Only for backwards compatibility, do not use
+ * @deprecated since 1.25; only for backwards compatibility, do not use
  * @ingroup API
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps

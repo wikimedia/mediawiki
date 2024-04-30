@@ -391,7 +391,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/**
 	 * Pull option from a user account. Handles stuff like array-type preferences.
 	 *
-	 * @deprecated 1.41 Use getPreferenceForField() instead.
+	 * @deprecated since 1.41; Use getPreferenceForField() instead.
 	 * @param string $name
 	 * @param array $info
 	 * @param array $userOptions

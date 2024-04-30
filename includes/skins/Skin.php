@@ -2273,7 +2273,7 @@ abstract class Skin extends ContextSource {
 	 * @since 1.35
 	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
 	 *  and decorate the resulting input
-	 * @deprecated 1.39 use $this->getTemplateData()['data-search-box'] instead.
+	 * @deprecated since 1.39; use $this->getTemplateData()['data-search-box'] instead.
 	 * @return string of HTML input
 	 */
 	public function makeSearchInput( $attrs = [] ) {
@@ -2296,7 +2296,7 @@ abstract class Skin extends ContextSource {
 	 * @param string $mode representing the type of button wanted
 	 *  either `go`, `fulltext` or `image`
 	 * @param array $attrs (optional)
-	 * @deprecated 1.39 use $this->getTemplateData()['data-search-box'] instead.
+	 * @deprecated since 1.39; use $this->getTemplateData()['data-search-box'] instead.
 	 *   Note: When removing this function please merge SkinTemplate::makeSearchButtonInternal
 	 *   with SkinTemplate::makeSearchButton.
 	 * @return string of HTML button

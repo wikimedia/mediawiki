@@ -196,7 +196,7 @@ class EditPage implements IEditObject {
 	private $mContextTitle = null;
 
 	/**
-	 * @deprecated for public usage since 1.38 with no replacement
+	 * @deprecated since 1.38 for public usage; no replacement
 	 * @var string
 	 */
 	public $action = 'submit';
