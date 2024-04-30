@@ -117,6 +117,8 @@ because of Phabricator reports.
   removed.
 * IReadableDatabase::getReplicaPos() has been removed without deprecation
   as it's not used anywhere.
+* ILoadBalancer::laggedReplicaUsed() has been moved to ILoadBalancerForOwner::
+  effectively making it internal.
 * Overriding MWException::getHTML(), ::getText(), ::getPageTitle(), and
   ::reportHTML() in order to display custom exception messages is no
   longer supported.

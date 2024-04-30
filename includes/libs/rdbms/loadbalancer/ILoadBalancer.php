@@ -443,14 +443,6 @@ interface ILoadBalancer {
 	public function hasOrMadeRecentPrimaryChanges( $age = null );
 
 	/**
-	 * Whether a highly "lagged" replica database connection was queried.
-	 *
-	 * @note This method will never cause a new DB connection
-	 * @return bool
-	 */
-	public function laggedReplicaUsed();
-
-	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|false $domain DB domain ID or false (unused and deprecated since 1.40)
 	 * @return string|false Reason the primary is read-only or false if it is not

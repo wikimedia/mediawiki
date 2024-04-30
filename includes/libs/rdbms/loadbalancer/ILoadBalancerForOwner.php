@@ -263,4 +263,12 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
 	public function waitForAll( DBPrimaryPos $pos, $timeout = null );
+
+	/**
+	 * Whether a highly "lagged" replica database connection was queried.
+	 *
+	 * @note This method will never cause a new DB connection
+	 * @return bool
+	 */
+	public function laggedReplicaUsed();
 }
