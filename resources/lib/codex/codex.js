@@ -1105,6 +1105,15 @@ const _sfc_main$n = defineComponent({
       default: false
     },
     /**
+     * Whether the label should be visually hidden.
+     *
+     * When true, the label will remain accessible to assistive technology.
+     */
+    hideLabel: {
+      type: Boolean,
+      default: false
+    },
+    /**
      * `status` attribute of the checkbox.
      */
     status: {
@@ -1178,7 +1187,8 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
       class: "cdx-checkbox__label",
       "input-id": _ctx.checkboxId,
       "description-id": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
-      disabled: _ctx.computedDisabled
+      disabled: _ctx.computedDisabled,
+      "visually-hidden": _ctx.hideLabel
     }, createSlots({
       default: withCtx(() => [
         renderSlot(_ctx.$slots, "default")
@@ -1192,7 +1202,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         key: "0"
       } : void 0
-    ]), 1032, ["input-id", "description-id", "disabled"])) : createCommentVNode("", true)
+    ]), 1032, ["input-id", "description-id", "disabled", "visually-hidden"])) : createCommentVNode("", true)
   ], 2);
 }
 const Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$n]]);

@@ -1,3 +1,42 @@
+# 1.5.0 / 2024-04-30
+
+## Features
+
+### CSS variables and dark mode support
+Codex design tokens and component styles now use CSS variables for all
+color-related design tokens. This change has been made in order to provide
+support for an alternate "dark mode" color palette. In
+@wikimedia/codex-design-tokens, new files have been introduced to provide
+default (light mode) and dark versions of Codex color tokens:
+theme-wikimedia-ui-root.css and theme-wikimedia-ui-mode-dark.css, respectively.
+The theme-wikimedia-ui.less file can continue to be used independently of these
+new CSS variable files.
+
+### Other features
+- Table: add sort icon (lwatson)
+- Checkbox: Allow label to be visually hidden (Anne Tomasevich)
+- Table: Add prop to show vertical borders (Volker E)
+- Table: Add special class to force vertical borders (Anne Tomasevich)
+- Table: Add width and minWidth to column definitions (Anne Tomasevich)
+- Table: Add row selection (Anne Tomasevich)
+- Table: add single sort (lwatson)
+
+## Styles
+- tokens: Add decision tokens for content added and removed (Derek Torsani)
+- Select, TextArea, TextInput: Implement error hover feedback (Volker E.)
+
+## Code
+- build: update 'svglint' to latest (Volker E.)
+- build, tokens: Remove all logic for the legacy build (Eric Gardner)
+- build, tokens: Fold the "experimental" build into the standard build (Eric Gardner)
+- build, tokens: provide a "mode reset" mixin (Eric Gardner)
+- demo: Add dark mode toggle to sandbox (Roan Kattouw)
+- demo: Add a framed toggle to the Tabs sandbox (Roan Kattouw)
+
+## Documentation
+- docs: Include new error-hover state in the “Interaction states“ image (bmartinezcalvo)
+- docs: expand commands in RELEASING.md and build scripts (Volker E.)
+
 # 1.4.0 / 2024-04-16
 
 ## BREAKING CHANGES
