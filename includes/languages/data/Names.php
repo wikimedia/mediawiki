@@ -62,6 +62,7 @@ class Names {
 		'ang' => 'Ænglisc', # Old English, T25283
 		'ann' => 'Obolo', # Obolo
 		'anp' => 'अंगिका', # Angika
+		'apc' => 'شامي', # Levantine Arabic
 		'ar' => 'العربية', # Arabic
 		'arc' => 'ܐܪܡܝܐ', # Aramaic
 		'arn' => 'mapudungun', # Mapuche, Mapudungu, Araucanian (Araucano)
