@@ -8,9 +8,9 @@ test:
 
 doc:
 	php mwdocgen.php --all
-	./mwjsduck-gen
+	npm run doc
 	@echo 'PHP documentation (by Doxygen) in ./docs/html/'
-	@echo 'JS documentation (by JSDuck) in ./docs/js/'
+	@echo 'JS documentation (by JSDoc) in ./docs/js/'
 
 man:
 	php mwdocgen.php --all --generate-man
