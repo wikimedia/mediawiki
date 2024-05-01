@@ -67,5 +67,20 @@
 	"rest-html-key-expected": "Schlüssel <var>html</var> im Textkörper erwartet",
 	"rest-invalid-transform": "Ungültige Transformation: $1 in $2",
 	"rest-request-body-expected": "Die Anfragemethode $1 erwartet einen Anfragetext",
-	"rest-request-body-unaccepted": "Die $1 Anfragemethode akzeptiert keinen Anfragetext"
+	"rest-request-body-unaccepted": "Die $1 Anfragemethode akzeptiert keinen Anfragetext",
+	"rest-unmapped-action-error": "Fehler bei nicht zugeordnetem Aktionsmodul: . $1",
+	"rest-unsupported-transform-input": "Nicht unterstützte Eingabe: . $1",
+	"rest-bad-etag": "Schlechtes ETag: $1",
+	"rest-unsupported-profile-version": "Nicht unterstützte Profilversion: $1",
+	"rest-no-json-decode": "Die Nutzlast kann nicht per JSON in ein Array dekodiert werden.",
+	"rest-parsoid-unsupported-media": "Nicht unterstützter Medientyp",
+	"rest-missing-revision-html": "Fehlende Version HTML",
+	"rest-missing-revision-html-content-type": "Inhaltstyp der Versions-HTML fehlt.",
+	"rest-unsupported-profile-conversion": "Wir wissen nicht, wie diese Konvertierung durchzuführen ist.",
+	"rest-edit-conflict": "Bearbeitungskonflikt ($1)",
+	"rest-unknown-parsoid-transformation": "Unbekannte Transformation.",
+	"rest-target-variant-required": "Zielvariante ist erforderlich.",
+	"rest-unsupported-language-conversion": "Nicht unterstützte Sprachkonvertierung: $1 bis $2",
+	"rest-unknown-content-model": "Unbekanntes Inhaltsmodell: $1",
+	"rest-page-bundle-validation-error": "PageBundle stimmt nicht mit contentVersion überein: $1"
 }
