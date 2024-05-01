@@ -1903,6 +1903,7 @@ class Linker {
 	 * @return string HTML fragment
 	 */
 	public static function generateTOC( ?TOCData $tocData, Language $lang = null, array $options = [] ): string {
+		wfDeprecated( __METHOD__, '1.42' );
 		$toc = '';
 		$lastLevel = 0;
 		$maxTocLevel = $options['maxtoclevel'] ?? null;
