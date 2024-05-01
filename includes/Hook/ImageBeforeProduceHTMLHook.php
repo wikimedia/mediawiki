@@ -21,7 +21,7 @@ interface ImageBeforeProduceHTMLHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param mixed $linker Unused (always null)
+	 * @param null $unused Will always be null
 	 * @param Title &$title Title object of the image
 	 * @param File|false &$file File object, or false if it doesn't exist
 	 * @param array &$frameParams Various parameters with special meanings; see documentation in
@@ -36,7 +36,7 @@ interface ImageBeforeProduceHTMLHook {
 	 * @param string &$widthOption Used by the parser to remember the user preference thumbnailsize
 	 * @return bool|void True or no return value to continue or false to skip the default logic
 	 */
-	public function onImageBeforeProduceHTML( $linker, &$title, &$file,
+	public function onImageBeforeProduceHTML( $unused, &$title, &$file,
 		&$frameParams, &$handlerParams, &$time, &$res, $parser, &$query, &$widthOption
 	);
 }
