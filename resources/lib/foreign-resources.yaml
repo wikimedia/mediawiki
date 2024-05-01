@@ -384,8 +384,6 @@ ooui:
     package/dist/oojs-ui-windows-{wikimediaui,apex}.css:
     package/dist/oojs-ui-{wikimediaui,apex}.js{,.map.json}:
     package/dist/i18n:
-    # For jsduck/eg-iframe
-    package/dist/oojs-ui-images-wikimediaui.css:
     # WikimediaUI theme
     package/dist/themes/wikimediaui/images/icons/*.{svg,png}: themes/wikimediaui/images/icons
     package/dist/themes/wikimediaui/images/indicators/*.{svg,png}: themes/wikimediaui/images/indicators
