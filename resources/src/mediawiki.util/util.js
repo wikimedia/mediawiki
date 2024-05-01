@@ -521,6 +521,10 @@ var util = {
 	 * @param {string} [label] of the new portlet.
 	 * @param {string} [before] selector of the element preceding the new portlet. If not passed
 	 *  the caller is responsible for appending the element to the DOM before using addPortletLink.
+	 *  To add a portlet after a selector instead of before, you can create the portlet before the
+	 *  element (make sure to also assign the result to a variable), then use
+	 *  <pre>p.parentNode.appendChild( p );</pre> or similar to move it after the element. Dropdown
+	 *  menus in vector and vector-2022 can be created by targeting '#p-cactions'.
 	 * @fires Hooks~'util.addPortlet'
 	 * @return {HTMLElement|null} will be null if it was not possible to create an portlet with
 	 *  the required information e.g. the selector given in before parameter could not be resolved
