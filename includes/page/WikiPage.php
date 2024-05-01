@@ -377,12 +377,18 @@ class WikiPage implements Page, PageRecord {
 	 *
 	 * @param IReadableDatabase $dbr
 	 * @param Title $title
-	 * @param array $options
+	 * @param int $recency
 	 * @return stdClass|false Database result resource, or false on failure
 	 */
-	public function pageDataFromTitle( $dbr, $title, $options = [] ) {
+	public function pageDataFromTitle( $dbr, $title, $recency = IDBAccessObject::READ_NORMAL ) {
 		if ( !$title->canExist() ) {
 			return false;
+		}
+		$options = [];
+		if ( ( $recency & IDBAccessObject::READ_EXCLUSIVE ) == IDBAccessObject::READ_EXCLUSIVE ) {
+			$options[] = 'FOR UPDATE';
+		} elseif ( ( $recency & IDBAccessObject::READ_LOCKING ) == IDBAccessObject::READ_LOCKING ) {
+			$options[] = 'LOCK IN SHARE MODE';
 		}
 
 		return $this->pageData( $dbr, [
@@ -422,10 +428,14 @@ class WikiPage implements Page, PageRecord {
 		}
 
 		if ( is_int( $from ) ) {
-			[ $index, $opts ] = DBAccessObjectUtils::getDBOptions( $from );
 			$loadBalancer = $this->getDBLoadBalancer();
+			if ( ( $from & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+				$index = DB_PRIMARY;
+			} else {
+				$index = DB_REPLICA;
+			}
 			$db = $loadBalancer->getConnection( $index );
-			$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
+			$data = $this->pageDataFromTitle( $db, $this->mTitle, $from );
 
 			if ( !$data
 				&& $index == DB_REPLICA
@@ -433,9 +443,8 @@ class WikiPage implements Page, PageRecord {
 				&& $loadBalancer->hasOrMadeRecentPrimaryChanges()
 			) {
 				$from = IDBAccessObject::READ_LATEST;
-				[ $index, $opts ] = DBAccessObjectUtils::getDBOptions( $from );
-				$db = $loadBalancer->getConnection( $index );
-				$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
+				$db = $loadBalancer->getConnection( DB_PRIMARY );
+				$data = $this->pageDataFromTitle( $db, $this->mTitle, $from );
 			}
 		} else {
 			// No idea from where the caller got this data, assume replica DB.

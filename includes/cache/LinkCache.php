@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Cache;
 
-use DBAccessObjectUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MapCacheLRU;
@@ -446,8 +445,17 @@ class LinkCache implements LoggerAwareInterface {
 			);
 		} else {
 			// No persistent caching needed, but we can still use the callback.
-			[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-			$dbr = $this->loadBalancer->getConnection( $mode );
+			if ( ( $queryFlags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+				$dbr = $this->loadBalancer->getConnection( DB_PRIMARY );
+			} else {
+				$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+			}
+			$options = [];
+			if ( ( $queryFlags & IDBAccessObject::READ_EXCLUSIVE ) == IDBAccessObject::READ_EXCLUSIVE ) {
+				$options[] = 'FOR UPDATE';
+			} elseif ( ( $queryFlags & IDBAccessObject::READ_LOCKING ) == IDBAccessObject::READ_LOCKING ) {
+				$options[] = 'LOCK IN SHARE MODE';
+			}
 			$row = $fetchCallback( $dbr, $ns, $dbkey, $options );
 		}
 
