@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class CodexModuleTest extends ResourceLoaderTestCase {
 
-	public const FIXTURE_PATH = 'tests/phpunit/data/resourceloader/codexModules/';
+	public const FIXTURE_PATH = 'tests/phpunit/data/resourceloader/codex/';
 
 	public static function provideModuleConfig() {
 		return [
@@ -149,7 +149,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		}
 
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
@@ -167,7 +167,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		$styleFilenames = [];
 		if ( count( $styleFiles ) > 0 ) {
 			$styleFilenames = array_map( static function ( $filepath ) use ( $testModule ) {
-				return str_replace( $testModule::CODEX_MODULE_DIR, '', $filepath->getPath() );
+				return str_replace( $testModule::CODEX_LIBRARY_DIR . 'modules/', '', $filepath->getPath() );
 			}, $styleFiles[ 'all' ] );
 		}
 		$this->assertEquals( $expected[ 'styles' ] ?? [], $styleFilenames, 'Correct styleFiles added for ' . $testCase );
@@ -179,7 +179,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		];
 
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
@@ -202,7 +202,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 	public function testGetManifestFile() {
 		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
@@ -210,7 +210,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 
 		// By default, look for a manifest file called "manifest.json"
 		$this->assertEquals(
-			MW_INSTALL_PATH . '/' . self::FIXTURE_PATH . 'manifest.json',
+			MW_INSTALL_PATH . '/' . self::FIXTURE_PATH . 'modules/manifest.json',
 			$testWrapper->getManifestFilePath( $context )
 		);
 	}
@@ -223,7 +223,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 	public function testGetCodexFiles() {
 		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_MODULE_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();

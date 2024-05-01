@@ -13,7 +13,7 @@
 /vendor/
 /tests/coverage/
 /tests/phpunit/data/registration/duplicate_keys.json
-/tests/phpunit/data/resourceloader/codexModules/
+/tests/phpunit/data/resourceloader/codex/modules/
 /tests/phpunit/unit/includes/Settings/Source/fixtures/bad.json
 /maintenance/benchmarks/data/
 
