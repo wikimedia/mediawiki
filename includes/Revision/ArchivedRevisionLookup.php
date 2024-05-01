@@ -216,13 +216,15 @@ class ArchivedRevisionLookup {
 	 * @return bool
 	 */
 	public function hasArchivedRevisions( PageIdentity $page ): bool {
-		$row = $this->dbProvider->getReplicaDatabase()->selectRow(
-			'archive',
-			'1', // We don't care about the value. Allow the database to optimize.
-			[ 'ar_namespace' => $page->getNamespace(),
-				'ar_title' => $page->getDBkey() ],
-			__METHOD__
-		);
+		$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+			->select( '1' ) // We don't care about the value. Allow the database to optimize.
+			->from( 'archive' )
+			->where( [
+				'ar_namespace' => $page->getNamespace(),
+				'ar_title' => $page->getDBkey()
+			] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		return (bool)$row;
 	}
