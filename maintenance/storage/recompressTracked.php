@@ -172,12 +172,7 @@ class RecompressTracked {
 	 * previous part of this batch process.
 	 */
 	private function syncDBs() {
-		$icp = MediaWikiServices::getInstance()->getConnectionProvider();
-		$dbw = $icp->getPrimaryDatabase();
-
-		$dbr = $icp->getReplicaDatabase();
-		$pos = $dbw->getPrimaryPos();
-		$dbr->primaryPosWait( $pos, 100_000 );
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication( [ 'timeout' => 100_000 ] );
 	}
 
 	/**

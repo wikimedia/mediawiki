@@ -603,14 +603,6 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout );
 
 	/**
-	 * Get the replication position of this replica DB
-	 *
-	 * @return DBPrimaryPos|false False if this is not a replica DB
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function getReplicaPos();
-
-	/**
 	 * Ping the server and try to reconnect if it there is no connection
 	 *
 	 * @return bool Success or failure

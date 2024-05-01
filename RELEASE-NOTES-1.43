@@ -116,6 +116,8 @@ because of Phabricator reports.
 * Parser::getFreshParser(), deprecated in 1.39, has been removed.
 * ConfigFactory::getDefaultInstance(), deprecated since 1.27, has been
   removed.
+* IReadableDatabase::getReplicaPos() has been removed without deprecation
+  as it's not used anywhere.
 * Overriding MWException::getHTML(), ::getText(), ::getPageTitle(), and
   ::reportHTML() in order to display custom exception messages is no
   longer supported.

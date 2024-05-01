@@ -620,10 +620,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getReplicaPos() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function getPrimaryPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
