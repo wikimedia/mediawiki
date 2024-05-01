@@ -234,8 +234,8 @@ class CodexModule extends FileModule {
 				'rtl' => 'manifest-legacy-rtl.json',
 			],
 			'experimental' => [
-				'ltr' => 'manifest-experimental.json',
-				'rtl' => 'manifest-experimental-rtl.json',
+				'ltr' => 'manifest.json',
+				'rtl' => 'manifest-rtl.json',
 			]
 		];
 
@@ -488,8 +488,8 @@ class CodexModule extends FileModule {
 					'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
 				],
 				'experimental' => [
-					'ltr' => 'resources/lib/codex/codex.style-experimental.css',
-					'rtl' => 'resources/lib/codex/codex.style-experimental-rtl.css'
+					'ltr' => 'resources/lib/codex/codex.style.css',
+					'rtl' => 'resources/lib/codex/codex.style-rtl.css'
 				]
 			];
 
