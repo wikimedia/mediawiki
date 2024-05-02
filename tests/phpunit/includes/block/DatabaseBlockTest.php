@@ -12,7 +12,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -448,7 +448,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 */
 	public function testCrossWikiBlocking() {
 		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'm' ] );
-		$dbMock = $this->createMock( DBConnRef::class );
+		$dbMock = $this->createMock( IDatabase::class );
 		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
 		$lbMock = $this->createMock( ILoadBalancer::class );
 		$lbMock->method( 'getConnection' )
@@ -530,7 +530,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetWikiId() {
 		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'foo' ] );
-		$dbMock = $this->createMock( DBConnRef::class );
+		$dbMock = $this->createMock( IDatabase::class );
 		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
 		$lbMock = $this->createMock( ILoadBalancer::class );
 		$lbMock->method( 'getConnection' )->willReturn( $dbMock );

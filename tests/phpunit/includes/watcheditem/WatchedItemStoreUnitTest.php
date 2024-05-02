@@ -17,9 +17,9 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
@@ -39,10 +39,10 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 
 	/**
-	 * @return MockObject&DBConnRef
+	 * @return MockObject&IDatabase
 	 */
 	private function getMockDb() {
-		$mock = $this->createMock( DBConnRef::class );
+		$mock = $this->createMock( IDatabase::class );
 		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $mock ) );
 		$mock->method( 'newUpdateQueryBuilder' )->willReturnCallback( static fn () => new UpdateQueryBuilder( $mock ) );
 		$mock->method( 'newDeleteQueryBuilder' )->willReturnCallback( static fn () => new DeleteQueryBuilder( $mock ) );
@@ -52,12 +52,12 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param DBConnRef $mockDb
+	 * @param IDatabase $mockDb
 	 * @param string|null $expectedConnectionType
 	 * @return MockObject&LBFactory
 	 */
 	private function getMockLBFactory(
-		DBConnRef $mockDb,
+		IDatabase $mockDb,
 		$expectedConnectionType = null
 	) {
 		$mock = $this->createMock( LBFactory::class );
@@ -136,10 +136,10 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param DBConnRef $mockDb
+	 * @param IDatabase $mockDb
 	 * @return LinkBatchFactory
 	 */
-	private function getMockLinkBatchFactory( DBConnRef $mockDb ) {
+	private function getMockLinkBatchFactory( IDatabase $mockDb ) {
 		return new LinkBatchFactory(
 			$this->createMock( LinkCache::class ),
 			$this->createMock( TitleFormatter::class ),
@@ -2142,7 +2142,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			new WatchedItem( $user, $targets[0], '20151212010101' ),
 			new WatchedItem( $user, $targets[1], null ),
 		];
-		$mockDb = $this->createNoOpMock( DBConnRef::class );
+		$mockDb = $this->createNoOpMock( IDatabase::class );
 
 		$cacheKeys = [
 			[ '0:SomeDbKey:1', $cachedItems[0] ],
@@ -2179,7 +2179,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			$testPageFactory( 101, 1, 'AnotherDbKey' ),
 		];
 
-		$mockDb = $this->createNoOpMock( DBConnRef::class );
+		$mockDb = $this->createNoOpMock( IDatabase::class );
 
 		$mockCache = $this->createNoOpMock( HashBagOStuff::class );
 

@@ -24,7 +24,6 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -84,7 +83,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->method( 'getConnection' )
 			->with( $dbIndex )
-			->willReturn( $this->mockDatabaseConnection( $this->createMock( DBConnRef::class ), $maxRev ) );
+			->willReturn( $this->mockDatabaseConnection( $this->createMock( IDatabase::class ), $maxRev ) );
 
 		/** @var NameTableStore|MockObject $slotRoles */
 		$slotRoles = $this->createMock( NameTableStore::class );
