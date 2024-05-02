@@ -1578,7 +1578,7 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * @deprecated 1.38 see @internal note.
+	 * @deprecated since 1.38; see @internal note.
 	 * @param string $mode representing the type of button wanted
 	 *  either `go`, `fulltext` or `image`
 	 * @param array $searchData Skin data returned by Skin::getTemplateData()['data-search-box']

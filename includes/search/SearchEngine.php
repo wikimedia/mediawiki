@@ -457,7 +457,7 @@ abstract class SearchEngine {
 	/**
 	 * Find snippet highlight settings for all users
 	 * @return array Contextlines, contextchars
-	 * @deprecated in 1.34 use the SearchHighlighter constants directly
+	 * @deprecated since 1.34; use the SearchHighlighter constants directly
 	 * @see SearchHighlighter::DEFAULT_CONTEXT_CHARS
 	 * @see SearchHighlighter::DEFAULT_CONTEXT_LINES
 	 */

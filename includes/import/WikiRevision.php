@@ -628,7 +628,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.4.1
-	 * @deprecated in 1.31. Use OldRevisionImporter::import
+	 * @deprecated since 1.31. Use OldRevisionImporter::import
 	 * @return bool
 	 */
 	public function importOldRevision() {
