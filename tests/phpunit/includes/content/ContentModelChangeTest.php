@@ -194,7 +194,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'Dummy:NoDirectEditing' );
 		$wikipage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
-		$dummyContent = ContentHandler::getForModelID( 'testing' )->makeEmptyContent();
+		$dummyContent = $this->getServiceContainer()
+			->getContentHandlerFactory()
+			->getContentHandler( 'testing' )
+			->makeEmptyContent();
+
 		$wikipage->doUserEditContent(
 			$dummyContent,
 			$this->getTestSysop()->getUser(),

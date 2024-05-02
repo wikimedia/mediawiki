@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Content;
-use ContentHandler;
 use DOMDocument;
 use ExecutableFinder;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -69,7 +68,9 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$summary,
 		$model = CONTENT_MODEL_WIKITEXT
 	) {
-		$contentHandler = ContentHandler::getForModelID( $model );
+		$contentHandler = $this->getServiceContainer()
+			->getContentHandlerFactory()->getContentHandler( $model );
+
 		$content = $contentHandler->unserializeContent( $text );
 
 		$rev = $this->addMultiSlotRevision( $page, [ SlotRecord::MAIN => $content ], $summary );
@@ -110,7 +111,9 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @return string
 	 */
 	protected function getSlotFormat( SlotRecord $slot ) {
-		$contentHandler = ContentHandler::getForModelID( $slot->getModel() );
+		$contentHandler = $this->getServiceContainer()
+			->getContentHandlerFactory()->getContentHandler( $slot->getModel() );
+
 		return $contentHandler->getDefaultFormat();
 	}
 

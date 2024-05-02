@@ -98,6 +98,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetDefaultModelFor( $title, $expectedModelId ) {
 		$title = Title::newFromText( $title );
+		$this->hideDeprecated( 'ContentHandler::getDefaultModelFor' );
 		$this->assertEquals( $expectedModelId, ContentHandler::getDefaultModelFor( $title ) );
 	}
 
@@ -350,7 +351,8 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetModelForID
 	 */
 	public function testGetModelForID( $modelId, $handlerClass ) {
-		$handler = ContentHandler::getForModelID( $modelId );
+		$handler = $this->getServiceContainer()->getContentHandlerFactory()
+			->getContentHandler( $modelId );
 
 		$this->assertInstanceOf( $handlerClass, $handler );
 	}
@@ -361,7 +363,12 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testGetFieldsForSearchIndex() {
 		$searchEngine = $this->newSearchEngine();
 
-		$handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
+		$handler = $this->getMockBuilder( ContentHandler::class )
+			->onlyMethods(
+				[ 'serializeContent', 'unserializeContent', 'makeEmptyContent' ]
+			)
+			->disableOriginalConstructor()
+			->getMock();
 
 		$fields = $handler->getFieldsForSearchIndex( $searchEngine );
 
