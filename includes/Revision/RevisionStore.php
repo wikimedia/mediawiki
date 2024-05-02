@@ -784,9 +784,17 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				// auto-increment value to disk, so on server restart it might reuse IDs from deleted
 				// revisions. We can fix that with an insert with an explicit rev_id value, if necessary.
 
-				$maxRevId = intval( $dbw->selectField( 'archive', 'MAX(ar_rev_id)', '', __METHOD__ ) );
+				$maxRevId = intval( $dbw->newSelectQueryBuilder()
+					->select( 'MAX(ar_rev_id)' )
+					->from( 'archive' )
+					->caller( __METHOD__ )
+					->fetchField() );
 				$table = 'archive';
-				$maxRevId2 = intval( $dbw->selectField( 'slots', 'MAX(slot_revision_id)', '', __METHOD__ ) );
+				$maxRevId2 = intval( $dbw->newSelectQueryBuilder()
+					->select( 'MAX(slot_revision_id)' )
+					->from( 'slots' )
+					->caller( __METHOD__ )
+					->fetchField() );
 				if ( $maxRevId2 >= $maxRevId ) {
 					$maxRevId = $maxRevId2;
 					$table = 'slots';
@@ -2717,20 +2725,20 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			}
 		}
 
-		$revId = $db->selectField( 'revision', 'rev_id',
-			[
+		$revId = $db->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
+			->where( [
 				'rev_page' => $rev->getPageId( $this->wikiId ),
 				$db->buildComparison( $op, [
 					'rev_timestamp' => $db->timestamp( $ts ),
 					'rev_id' => $revisionIdValue,
 				] ),
-			],
-			__METHOD__,
-			[
-				'ORDER BY' => [ "rev_timestamp $sort", "rev_id $sort" ],
-				'IGNORE INDEX' => 'rev_timestamp', // Probably needed for T159319
-			]
-		);
+			] )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], $sort )
+			->ignoreIndex( 'rev_timestamp' ) // Probably needed for T159319
+			->caller( __METHOD__ )
+			->fetchField();
 
 		if ( $revId === false ) {
 			return null;
@@ -3246,37 +3254,35 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		}
 
 		$dbr = $this->getReplicaConnection();
-		$conds = array_merge(
-			[
-				'rev_page' => $pageId,
-				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . " = 0"
-			],
-			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
-		);
-
-		$queryOpts = [ 'DISTINCT' ];
-		if ( $max !== null ) {
-			$queryOpts['LIMIT'] = $max + 1;
-		}
-
-		return array_map( function ( $row ) {
-			return $this->actorStore->newActorFromRowFields(
-				$row->rev_user,
-				$row->rev_user_text,
-				$row->rev_actor
-			);
-		}, iterator_to_array( $dbr->select(
-			[ 'revision', 'revision_actor' => 'actor' ],
-			[
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( [
 				'rev_actor',
 				'rev_user' => 'revision_actor.actor_user',
 				'rev_user_text' => 'revision_actor.actor_name',
-			],
-			$conds,
-			__METHOD__,
-			$queryOpts,
-			[ 'revision_actor' => [ 'JOIN', 'revision_actor.actor_id = rev_actor' ] ]
-		) ) );
+			] )
+			->distinct()
+			->from( 'revision' )
+			->join( 'actor', 'revision_actor', 'revision_actor.actor_id = rev_actor' )
+			->where( [
+				'rev_page' => $pageId,
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . " = 0"
+			] )
+			->andWhere( $this->getRevisionLimitConditions( $dbr, $old, $new, $options ) )
+			->caller( __METHOD__ );
+		if ( $max !== null ) {
+			$queryBuilder->limit( $max + 1 );
+		}
+
+		return array_map(
+			function ( $row ) {
+				return $this->actorStore->newActorFromRowFields(
+					$row->rev_user,
+					$row->rev_user_text,
+					$row->rev_actor
+				);
+			},
+			iterator_to_array( $queryBuilder->fetchResultSet() )
+		);
 	}
 
 	/**
@@ -3360,11 +3366,13 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
 		);
 		if ( $max !== null ) {
-			return $dbr->selectRowCount( 'revision', '1',
-				$conds,
-				__METHOD__,
-				[ 'LIMIT' => $max + 1 ] // extra to detect truncation
-			);
+			return $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'revision' )
+				->where( $conds )
+				->caller( __METHOD__ )
+				->limit( $max + 1 ) // extra to detect truncation
+				->fetchRowCount();
 		} else {
 			return (int)$dbr->newSelectQueryBuilder()
 				->select( 'count(*)' )
