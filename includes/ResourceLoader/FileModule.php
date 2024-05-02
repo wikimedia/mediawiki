@@ -1103,11 +1103,14 @@ class FileModule extends Module {
 
 		$vars = $this->getLessVars( $context );
 		// Construct a cache key from a hash of the LESS source, and a hash digest
-		// of the LESS variables used for compilation.
+		// of the LESS variables and import dirs used for compilation.
 		ksort( $vars );
 		$compilerParams = [
 			'vars' => $vars,
 			'importDirs' => $importDirs,
+			// CodexDevelopmentDir affects import path mapping in ResourceLoader::getLessCompiler(),
+			// so take that into account too
+			'codexDevDir' => $this->getConfig()->get( MainConfigNames::CodexDevelopmentDir )
 		];
 		$key = $cache->makeGlobalKey(
 			'resourceloader-less',

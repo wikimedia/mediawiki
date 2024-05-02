@@ -674,6 +674,7 @@ return [
 			'ResourceLoaderEnableSourceMapLinks' => true,
 			'AllowSiteCSSOnRestrictedPages' => false,
 			'VueDevelopmentMode' => false,
+			'CodexDevelopmentDir' => null,
 			'MetaNamespace' => false,
 			'MetaNamespaceTalk' => false,
 			'CanonicalNamespaceNames' => [

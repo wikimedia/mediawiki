@@ -2133,6 +2133,12 @@ $wgAllowSiteCSSOnRestrictedPages = null;
 $wgVueDevelopmentMode = null;
 
 /**
+ * Config variable stub for the CodexDevelopmentDir setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CodexDevelopmentDir
+ */
+$wgCodexDevelopmentDir = null;
+
+/**
  * Config variable stub for the MetaNamespace setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MetaNamespace
  */

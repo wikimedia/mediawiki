@@ -6004,6 +6004,23 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * If this is set, MediaWiki will look for Codex files in this directory
+	 * instead of in resources/lib/codex/ and friends.
+	 *
+	 * To use a local development version of Codex, set this to the full file
+	 * path of the root directory of a local clone of the Codex repository, and
+	 * run `npm run build-all` in the Codex root directory. Rerun this command
+	 * after making any changes.
+	 *
+	 * This should be disabled for production installations.
+	 *
+	 * @since 1.43
+	 */
+	public const CodexDevelopmentDir = [
+		'default' => null,
+	];
+
 	// endregion -- End of ResourceLoader settings
 
 	/***************************************************************************/

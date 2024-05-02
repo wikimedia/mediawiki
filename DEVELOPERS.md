@@ -288,6 +288,45 @@ XDEBUG_CONFIG=client_host=192.168.42.34 client_port=9000 log=/tmp/xdebug.log
 This shouldn't be necessary for basic use cases, but see [the Xdebug settings
 documentation](https://xdebug.org/docs/all_settings) for available settings.
 
+### Codex
+
+You can use your local version of Codex instead of the one bundled with MediaWiki. This is useful
+when testing how changes in Codex affect Codex-based features in MediaWiki.
+
+1. Clone the Codex repository and build Codex, if you haven't done this already:
+    ```sh
+    cd ../
+    git clone https://gerrit.wikimedia.org/r/design/codex
+    cd codex
+    npm run build-all
+    ```
+2. If your clone of the Codex repository is outside of the MediaWiki directory (this is common),
+   add the following to your `docker-compose.override.yml`. Replace `~/git/codex` with the path to
+   your Codex clone.
+
+    ```yaml
+   services:
+     mediawiki:
+       volumes:
+         - ~/git/codex:/var/www/html/w/codex:cached
+    ```
+3. To apply the change to `docker-compose.override.yml`, you have to recreate the environment:
+    ```sh
+    docker compose down
+    docker compose up -d
+    ```
+4. Enable Codex development mode by adding the following to the bottom of `LocalSettings.php`:
+
+    ```php
+    $wgCodexDevelopmentDir = MW_INSTALL_PATH . '/codex';
+    ```
+
+   To disable Codex development mode and use the regular version of Codex, delete or comment out
+   this line.
+5. Every time you make a change to your local copy of Codex (or download a Gerrit change), you
+   have to rerun Codex's build process for these changes to take effect. To do this, run
+   `npm run build-all` in the Codex directory.
+
 ### Stop or recreate environment
 
 Stop the environment, perhaps to reduce the load when working on something

@@ -2148,6 +2148,12 @@ class MainConfigNames {
 	public const VueDevelopmentMode = 'VueDevelopmentMode';
 
 	/**
+	 * Name constant for the CodexDevelopmentDir setting, for use with Config::get()
+	 * @see MainConfigSchema::CodexDevelopmentDir
+	 */
+	public const CodexDevelopmentDir = 'CodexDevelopmentDir';
+
+	/**
 	 * Name constant for the MetaNamespace setting, for use with Config::get()
 	 * @see MainConfigSchema::MetaNamespace
 	 */

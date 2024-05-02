@@ -3,7 +3,9 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use InvalidArgumentException;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\CodexModule;
+use RuntimeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -12,7 +14,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class CodexModuleTest extends ResourceLoaderTestCase {
 
-	public const FIXTURE_PATH = 'tests/phpunit/data/resourceloader/codex/';
+	public const FIXTURE_PATH = 'tests/phpunit/data/resourceloader/codex';
+	public const DEVMODE_FIXTURE_PATH = 'tests/phpunit/data/resourceloader/codex-devmode';
 
 	public static function provideModuleConfig() {
 		yield 'Codex subset' => [
@@ -187,7 +190,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		}
 
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
@@ -205,7 +208,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		$styleFilenames = [];
 		if ( count( $styleFiles ) > 0 ) {
 			$styleFilenames = array_map( static function ( $filepath ) use ( $testModule ) {
-				return str_replace( $testModule::CODEX_LIBRARY_DIR, '', $filepath->getPath() );
+				return str_replace( $testModule::CODEX_DEFAULT_LIBRARY_DIR . '/', '', $filepath->getPath() );
 			}, $styleFiles[ 'all' ] );
 		}
 		$this->assertEquals( $expected[ 'styles' ] ?? [], $styleFilenames, 'Correct styleFiles added' );
@@ -217,7 +220,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		];
 
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
@@ -240,17 +243,168 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 	public function testGetManifestFile() {
 		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
 		$testWrapper = TestingAccessWrapper::newFromObject( $testModule );
 
 		// By default, look for a manifest file called "manifest.json"
 		$this->assertEquals(
-			MW_INSTALL_PATH . '/' . self::FIXTURE_PATH . 'modules/manifest.json',
+			MW_INSTALL_PATH . '/' . self::FIXTURE_PATH . '/modules/manifest.json',
 			$testWrapper->getManifestFilePath( $context )
 		);
+	}
+
+	public function testGetMessages() {
+		$messageKeysFromFile = json_decode( file_get_contents(
+			MW_INSTALL_PATH . '/' . self::FIXTURE_PATH . '/messageKeys.json'
+		) );
+
+		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
+		$this->assertEquals(
+			$messageKeysFromFile,
+			$testModule->getMessages(),
+			'i18n messages from messageKeys.json are added'
+		);
+
+		$moduleDefinition = [
+			'codexComponents' => [ 'CdxButton', 'CdxMessage' ],
+			'messages' => [ 'monday', 'tuesday' ]
+		];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
+		$this->assertEquals(
+			array_merge( [ 'monday', 'tuesday' ], $messageKeysFromFile ),
+			$testModule->getMessages(),
+			'i18n messages from messageKeys.json are in addition to messages in module definition'
+		);
+
+		$moduleDefinition = [
+			'codexFullLibrary' => true
+		];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
+		$this->assertEquals(
+			$messageKeysFromFile,
+			$testModule->getMessages(),
+			'i18n messages are added for full library modules'
+		);
+
+		$moduleDefinition = [
+			'codexComponents' => [ 'CdxButton', 'CdxMessage' ],
+			'codexStyleOnly' => true
+		];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
+		$this->assertEquals(
+			[],
+			$testModule->getMessages(),
+			'i18n messages are not added for style-only modules'
+		);
+	}
+
+	public function testDevMode() {
+		$devDir = MW_INSTALL_PATH . '/' . self::DEVMODE_FIXTURE_PATH;
+		$this->overrideConfigValues( [
+			MainConfigNames::CodexDevelopmentDir => $devDir
+		] );
+
+		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
+		$testWrapper = TestingAccessWrapper::newFromObject( $testModule );
+
+		$this->assertEquals(
+			$devDir . '/packages/codex/dist/modules/manifest.json',
+			$testWrapper->getManifestFilePath( $context ),
+			'Manifest path is based on dev mode path'
+		);
+
+		$packageFiles = $testModule->getPackageFiles( $context );
+		$this->assertEquals(
+			$devDir . '/packages/codex/dist/modules/CdxButton.js',
+			$packageFiles[ 'files' ][ '_codex/CdxButton.js' ][ 'filePath' ]->getLocalPath(),
+			'Package file paths are based on dev mode path'
+		);
+
+		$styleFiles = $testModule->getStyleFiles( $context );
+		$this->assertEquals(
+			$devDir . '/packages/codex/dist/modules/CdxButton.css',
+			$styleFiles[ 'all' ][ 0 ]->getLocalPath(),
+			'Style file paths are based on dev mode path'
+		);
+
+		$this->assertEquals(
+			[ 'cdx-test-message-1', 'cdx-test-message-2' ],
+			$testModule->getMessages(),
+			'i18n message keys come from messages file in dev mode path'
+		);
+
+		$fullLibraryModuleDefinition = [ 'codexFullLibrary' => true ];
+		$fullLibraryModule = new class( $fullLibraryModuleDefinition ) extends CodexModule {
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+		$fullLibraryModule->setConfig( $config );
+
+		$packageFiles = $fullLibraryModule->getPackageFiles( $context );
+		$this->assertEquals(
+			$devDir . '/packages/codex/dist/codex.umd.cjs',
+			$packageFiles[ 'files' ][ 'codex.js' ][ 'filePath' ]->getLocalPath(),
+			'Full library module script path is based on dev mode path'
+		);
+
+		$styleFiles = $fullLibraryModule->getStyleFiles( $context );
+		$this->assertEquals(
+			$devDir . '/packages/codex/dist/codex.style.css',
+			$styleFiles[ 'all' ][ 0 ]->getLocalPath(),
+			'Full library module style path is based on dev mode path'
+		);
+	}
+
+	public function testDevModeException() {
+		$badDir = MW_INSTALL_PATH . '/' . self::DEVMODE_FIXTURE_PATH . '/path/that/does/not/exist';
+		$this->overrideConfigValues( [
+			MainConfigNames::CodexDevelopmentDir => $badDir
+		] );
+
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage( 'Could not find Codex development build' );
+
+		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
+		$testModule = new class( $moduleDefinition ) extends CodexModule {
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+		};
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
+
+		$testModule->getPackageFiles( $context );
 	}
 
 	/**
@@ -261,10 +415,12 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 	public function testGetCodexFiles() {
 		$moduleDefinition = [ 'codexComponents' => [ 'CdxButton', 'CdxMessage' ] ];
 		$testModule = new class( $moduleDefinition ) extends CodexModule {
-			public const CODEX_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
+			public const CODEX_DEFAULT_LIBRARY_DIR = CodexModuleTest::FIXTURE_PATH;
 		};
 
 		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$testModule->setConfig( $config );
 		$testWrapper = TestingAccessWrapper::newFromObject( $testModule );
 		$codexFiles = $testWrapper->getCodexFiles( $context );
 
@@ -283,5 +439,32 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		$this->assertArrayHasKey( 'CdxButton.js', $codexFiles[ 'files' ] );
 		$this->assertArrayHasKey( 'styles', $codexFiles[ 'files' ][ 'CdxButton.js' ] );
 		$this->assertArrayHasKey( 'dependencies', $codexFiles[ 'files' ][ 'CdxButton.js' ] );
+	}
+
+	public function testGetIcons() {
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+
+		$icons = CodexModule::getIcons( $context, $config, [ 'cdxIconAdd', 'cdxIconNext' ] );
+		$this->assertArrayHasKey( 'cdxIconAdd', $icons );
+		$this->assertArrayHasKey( 'cdxIconNext', $icons );
+		$this->assertArrayNotHasKey( 'cdxIconPrevious', $icons );
+	}
+
+	public function testGetIconsInDevMode() {
+		$devDir = MW_INSTALL_PATH . '/' . self::DEVMODE_FIXTURE_PATH;
+		$this->overrideConfigValues( [
+			MainConfigNames::CodexDevelopmentDir => $devDir
+		] );
+
+		$context = $this->getResourceLoaderContext();
+		$config = $context->getResourceLoader()->getConfig();
+		$icons = CodexModule::getIcons( $context, $config, [ 'cdxIconAdd', 'cdxIconNext' ] );
+		$this->assertArrayHasKey( 'cdxIconAdd', $icons );
+		$this->assertArrayHasKey( 'cdxIconNext', $icons );
+		$this->assertArrayNotHasKey( 'cdxIconPrevious', $icons );
+
+		$this->assertEquals( 'test add icon', $icons['cdxIconAdd'] );
+		$this->assertEquals( 'test next icon', $icons['cdxIconNext'] );
 	}
 }

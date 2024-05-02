@@ -95,6 +95,9 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ResourceLoaderEnableJSProfiler => false,
+
+			// For CodexModule
+			MainConfigNames::CodexDevelopmentDir => null,
 		];
 	}
 
