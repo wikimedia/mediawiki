@@ -188,12 +188,12 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromID_missing() {
 		$store = $this->getStore();
 		$missingBlockId = 9998;
-		$dbRow = $this->db->selectRow(
-			'ipblocks',
-			'*',
-			[ 'ipb_id' => $missingBlockId ],
-			__METHOD__
-		);
+		$dbRow = $this->db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'ipblocks' )
+			->where( [ 'ipb_id' => $missingBlockId ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$this->assertFalse(
 			$dbRow,
 			"Sanity check: make sure there is no block with id $missingBlockId"
@@ -657,10 +657,11 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->sysop = $this->getTestSysop()->getUser();
 
 		// Get a comment ID. One was added in addDBDataOnce.
-		$commentId = $this->db->select(
-			'comment',
-			'comment_id'
-		)->fetchObject()->comment_id;
+		$commentId = $this->db->newSelectQueryBuilder()
+			->select( 'comment_id' )
+			->from( 'comment' )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		$commonBlockData = [
 			'ipb_by_actor' => $this->sysop->getActorId(),

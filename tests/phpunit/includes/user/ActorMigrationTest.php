@@ -465,14 +465,12 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				$r = $this->getMigration( $readStage );
 
 				$queryInfo = $r->getJoin( $key );
-				$row = $this->db->selectRow(
-					[ $table ] + $queryInfo['tables'],
-					$queryInfo['fields'],
-					[ $pk => $id ],
-					__METHOD__,
-					[],
-					$queryInfo['joins']
-				);
+				$row = $this->db->newSelectQueryBuilder()
+					->queryInfo( $queryInfo )
+					->from( $table )
+					->where( [ $pk => $id ] )
+					->caller( __METHOD__ )
+					->fetchRow();
 
 				$this->assertSame( $user->getId(), (int)$row->$key,
 					"w={$stageNames[$writeStage]}, r={$stageNames[$readStage]}, id" );
@@ -515,14 +513,12 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			->execute();
 
 		$qi = $m->getJoin( 'am1_user' );
-		$row = $this->db->selectRow(
-			[ 'actormigration1' ] + $qi['tables'],
-			$qi['fields'],
-			[ 'am1_id' => $id ],
-			__METHOD__,
-			[],
-			$qi['joins']
-		);
+		$row = $this->db->newSelectQueryBuilder()
+			->queryInfo( $qi )
+			->from( 'actormigration1' )
+			->where( [ 'am1_id' => $id ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$this->assertSame( $user->getId(), (int)$row->am1_user );
 		$this->assertSame( $user->getName(), $row->am1_user_text );
 		$this->assertSame(

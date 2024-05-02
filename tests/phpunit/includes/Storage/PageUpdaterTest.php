@@ -64,14 +64,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getRecentChangeFor( $revId ) {
 		$qi = RecentChange::getQueryInfo();
-		$row = $this->db->selectRow(
-			$qi['tables'],
-			$qi['fields'],
-			[ 'rc_this_oldid' => $revId ],
-			__METHOD__,
-			[],
-			$qi['joins']
-		);
+		$row = $this->db->newSelectQueryBuilder()
+			->queryInfo( $qi )
+			->where( [ 'rc_this_oldid' => $revId ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		return $row ? RecentChange::newFromRow( $row ) : null;
 	}

@@ -2209,7 +2209,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$tables = self::listOriginalTables( $source );
 
 		foreach ( $tables as $table ) {
-			$res = $source->select( $table, '*', [], __METHOD__ );
+			$res = $source->newSelectQueryBuilder()
+				->select( '*' )
+				->from( $table )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			if ( !$res->numRows() ) {
 				continue;
 			}
@@ -2288,16 +2292,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$tables = is_array( $table ) ? $table : [ $table ];
+		$conds = $condition === '' || $condition === '*' ? [] : $condition;
 
-		$res = $dbr->select(
-			$table,
-			$fields,
-			$condition,
-			wfGetCaller(),
-			$options + [ 'ORDER BY' => $fields ],
-			$join_conds
-		);
-		$this->assertNotFalse( $res, "query failed: " . $dbr->lastError() );
+		$res = $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( wfGetCaller() )
+			->options( $options )
+			->orderBy( $fields )
+			->joinConds( $join_conds )
+			->fetchResultSet();
 
 		$i = 0;
 

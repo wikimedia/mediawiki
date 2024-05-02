@@ -1142,24 +1142,18 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$info = $store->getQueryInfo();
-		$row = $this->getDb()->selectRow(
-			$info['tables'],
-			$info['fields'],
-			[ 'rev_id' => $revRecord->getId() ],
-			__METHOD__,
-			[],
-			$info['joins']
-		);
+		$row = $this->getDb()->newSelectQueryBuilder()
+			->queryInfo( $info )
+			->where( [ 'rev_id' => $revRecord->getId() ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		$info = $store->getSlotsQueryInfo( [ 'content' ] );
-		$slotRows = $this->getDb()->select(
-			$info['tables'],
-			$info['fields'],
-			[ 'slot_revision_id' => $revRecord->getId() ],
-			__METHOD__,
-			[],
-			$info['joins']
-		);
+		$slotRows = $this->getDb()->newSelectQueryBuilder()
+			->queryInfo( $info )
+			->where( [ 'slot_revision_id' => $revRecord->getId() ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$storeRecord = $store->newRevisionFromRowAndSlots(
 			$row,
@@ -1187,14 +1181,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$info = $store->getQueryInfo();
-		$row = $this->getDb()->selectRow(
-			$info['tables'],
-			$info['fields'],
-			[ 'rev_id' => $revRecord->getId() ],
-			__METHOD__,
-			[],
-			$info['joins']
-		);
+		$row = $this->getDb()->newSelectQueryBuilder()
+			->queryInfo( $info )
+			->where( [ 'rev_id' => $revRecord->getId() ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$storeRecord = $store->newRevisionFromRow(
 			$row,
 			0,
@@ -1291,14 +1282,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsObject( $res, 'query failed' );
 
 		$info = $store->getSlotsQueryInfo( [ 'content' ] );
-		$slotRows = $this->getDb()->select(
-			$info['tables'],
-			$info['fields'],
-			[ 'slot_revision_id' => $orig->getId() ],
-			__METHOD__,
-			[],
-			$info['joins']
-		);
+		$slotRows = $this->getDb()->newSelectQueryBuilder()
+			->queryInfo( $info )
+			->where( [ 'slot_revision_id' => $orig->getId() ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$row = $res->fetchObject();
 		$res->free();
@@ -1579,14 +1567,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 
 		$info = $store->getQueryInfo();
-		$row = $this->getDb()->selectRow(
-			$info['tables'],
-			$info['fields'],
-			[ 'rev_page' => $page->getId(), 'rev_id' => $page->getLatest() ],
-			__METHOD__,
-			[],
-			$info['joins']
-		);
+		$row = $this->getDb()->newSelectQueryBuilder()
+			->queryInfo( $info )
+			->where( [ 'rev_page' => $page->getId(), 'rev_id' => $page->getLatest() ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		$record = $store->newRevisionFromRow( $row );
 
@@ -1616,14 +1601,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->getRevisionStore( $wikiId );
 
 		$info = $store->getQueryInfo();
-		$row = $this->getDb()->selectRow(
-			$info['tables'],
-			$info['fields'],
-			[ 'rev_page' => $page->getId(), 'rev_id' => $page->getLatest() ],
-			__METHOD__,
-			[],
-			$info['joins']
-		);
+		$row = $this->getDb()->newSelectQueryBuilder()
+			->queryInfo( $info )
+			->where( [ 'rev_page' => $page->getId(), 'rev_id' => $page->getLatest() ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		$record = $store->newRevisionFromRow( $row );
 

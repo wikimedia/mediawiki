@@ -419,16 +419,13 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$blockStore->insertBlock( $block );
 
 		$blockQuery = DatabaseBlock::getQueryInfo();
-		$row = $this->db->select(
-			$blockQuery['tables'],
-			$blockQuery['fields'],
-			[
+		$row = $this->db->newSelectQueryBuilder()
+			->queryInfo( $blockQuery )
+			->where( [
 				'ipb_id' => $block->getId(),
-			],
-			__METHOD__,
-			[],
-			$blockQuery['joins']
-		)->fetchObject();
+			] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		$block = DatabaseBlock::newFromRow( $row );
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
