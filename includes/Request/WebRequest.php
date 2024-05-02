@@ -910,6 +910,13 @@ class WebRequest {
 		// Work around mangling of $_COOKIE
 		$name = strtr( $name, '.', '_' );
 		if ( isset( $_COOKIE[$name] ) ) {
+			// For duplicate cookies in the format of name[]=value;name[]=value2,
+			// PHP will assign an array value for the 'name' cookie in $_COOKIE.
+			// Neither RFC 6265 nor its preceding RFCs define such behavior,
+			// and MediaWiki does not rely on it either, so treat the cookie as absent if so (T363980).
+			if ( is_array( $_COOKIE[$name] ) ) {
+				return $default;
+			}
 			return $_COOKIE[$name];
 		} else {
 			return $default;

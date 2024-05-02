@@ -12,19 +12,70 @@ use MediaWiki\Request\WebRequest;
 class WebRequestTest extends MediaWikiIntegrationTestCase {
 	private const INTERNAL_SERVER = 'http://wiki.site';
 
-	/** @var string */
+	/** @var array */
 	private $oldServer;
+
+	/** @var array */
+	private $oldCookies;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
+		$this->oldCookies = $_COOKIE;
 	}
 
 	protected function tearDown(): void {
 		$_SERVER = $this->oldServer;
+		$_COOKIE = $this->oldCookies;
 
 		parent::tearDown();
+	}
+
+	/**
+	 * @dataProvider provideGetCookie
+	 *
+	 * @param mixed $expected Expected value
+	 * @param array $cookies Cookies to set in $_COOKIE
+	 * @param string $prefix Cookie prefix to use when retrieving the cookie
+	 * @param string $cookieName Cookie name to retrieve
+	 * @param mixed $defaultValue Default value to use when the cookie is not found
+	 */
+	public function testGetCookie( $expected, $cookies, $prefix, $cookieName, $defaultValue ) {
+		$_COOKIE = $cookies;
+		$request = new WebRequest();
+
+		$actual = $defaultValue !== null ?
+			$request->getCookie( $cookieName, $prefix, $defaultValue ) :
+			$request->getCookie( $cookieName, $prefix );
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public static function provideGetCookie() {
+		yield 'no cookies with no default override' => [ null, [], '', 'test', null ];
+		yield 'no cookies with explicit default override' => [ false, [], '', 'test', false ];
+
+		yield 'missing cookie with no default override' => [ null, [ 'other' => 'bar' ], '', 'test', null ];
+		yield 'missing cookie with explicit default override' => [ false, [ 'other' => 'bar' ], '', 'test', false ];
+
+		yield 'cookie not matching prefix with no default override' => [
+			null, [ 'test' => 'bar' ], 'prefix', 'test', null
+		];
+		yield 'cookie not matching prefix with explicit default override' => [
+			false, [ 'test' => 'bar' ], 'prefix', 'test', false
+		];
+
+		// T363980
+		yield 'cookie with array value with no default override' => [ null, [ 'test' => [ 'bar' ] ], '', 'test', null ];
+		yield 'cookie with array value explicit default override' => [ false, [ 'test' => [ 'bar' ] ], '', 'test', false ];
+
+		yield 'valid cookie' => [ 'value', [ 'test' => 'value' ], '', 'test', null ];
+		yield 'valid cookie with prefix' => [ 'value', [ 'prefixtest' => 'value' ], 'prefix', 'test', null ];
+		yield 'mangled cookie name' => [ 'value', [ 'test_mangled' => 'value' ], '', 'test.mangled', null ];
+		yield 'mangled cookie name with prefix' => [
+			'value', [ 'prefix_partstest_mangled' => 'value' ], 'prefix.parts', 'test.mangled', null
+		];
 	}
 
 	/**
