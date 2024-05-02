@@ -42,7 +42,7 @@ interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
 	 * @param BagOStuff $sCache Local server memory cache
 	 * @param WANObjectCache $wCache Local cluster memory cache
 	 * @param array $options Additional parameters include:
-	 *   - maxConnCount: maximum number of connections before logging a warning [default: 500]
+	 *   - maxConnCount: maximum number of connections before circuit breaking to kick in [default: infinity]
 	 */
 	public function __construct( ILoadBalancer $lb, BagOStuff $sCache, WANObjectCache $wCache, $options );
 
