@@ -1,6 +1,8 @@
 'use strict';
 
 const { action, assert, REST, utils, wiki } = require( 'api-testing' );
+const superagent = require( 'superagent' );
+const xml2js = require( 'xml2js' );
 
 describe( 'Search', () => {
 	const client = new REST( 'rest.php/v1' );
@@ -196,6 +198,35 @@ describe( 'Search', () => {
 			assert.lengthOf( body.pages, 1 );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'matched_title', redirectSourceTitle );
+		} );
+	} );
+
+	describe( 'GET /search', () => {
+		// enable XML parsing
+		function parseXML( res, cb ) {
+			res.text = '';
+			res.on( 'data', function ( chunk ) {
+				res.text += chunk;
+			} );
+			res.on( 'end', () => xml2js.parseString( res.text, cb ) );
+		}
+
+		superagent.parse[ 'application/xml' ] = parseXML;
+		superagent.parse[ 'application/opensearchdescription+xml' ] = parseXML;
+
+		it( 'should return an OpenSearch Description document', async () => {
+			const { body, headers } = await client.get( '/search' );
+			assert.match( headers[ 'content-type' ], /^application\/opensearchdescription\+xml/ );
+			assert.nestedProperty( body, 'OpenSearchDescription' );
+			// TODO: assert more about the structure
+		} );
+
+		it( 'should support plain XML output', async () => {
+			const { body, headers } = await client.get( '/search' )
+				.query( { ctype: 'application/xml' } );
+
+			assert.match( headers[ 'content-type' ], /^application\/xml/ );
+			assert.nestedProperty( body, 'OpenSearchDescription' );
 		} );
 	} );
 } );
