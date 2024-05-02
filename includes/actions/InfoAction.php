@@ -422,13 +422,8 @@ class InfoAction extends FormlessAction {
 					$value = $this->msg( 'pageinfo-few-visiting-watchers' );
 				}
 				$pageInfo['header-basic'][] = [
-					$this->msg(
-						'pageinfo-visiting-watchers',
-						$title->getPageLanguage()->formatTimePeriod(
-							$config->get( MainConfigNames::WatchersMaxAge ),
-							[ 'avoid' => 'avoidhours', 'noabbrevs' => true ]
-						)
-					),
+					$this->msg( 'pageinfo-visiting-watchers' )
+						->numParams( ceil( $config->get( MainConfigNames::WatchersMaxAge ) / 86400 ) ),
 					$value
 				];
 			}
