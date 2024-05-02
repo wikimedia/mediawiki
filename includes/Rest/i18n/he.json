@@ -68,5 +68,19 @@
 	"rest-html-key-expected": "היה אמור להיות מפתח <var>html</var> בגוף",
 	"rest-invalid-transform": "התמרה בלתי־תקינה: מתסדיר $1 לתסדיר $2",
 	"rest-request-body-expected": "שיטת הבקשה $1 מצפה לגוף הבקשה",
-	"rest-request-body-unaccepted": "שיטת הבקשה $1 אינה מצפה לגוף הבקשה"
+	"rest-request-body-unaccepted": "שיטת הבקשה $1 אינה מצפה לגוף הבקשה",
+	"rest-bad-etag": "ETag גרוע: $1",
+	"rest-no-stashed-content": "לא נמצא תוכן שמור במאגר עבור $1",
+	"rest-unsupported-profile-version": "גרסת פרופיל לא נתמכת: $1",
+	"rest-no-json-decode": "המטען לא מתפענח מ־JSON למערך",
+	"rest-parsoid-unsupported-media": "סוג מדיה לא נתמך",
+	"rest-missing-revision-html": "חסר html של הגרסה",
+	"rest-missing-revision-html-content-type": "חסר סוג תוכן של ה־html של הגרסה.",
+	"rest-unsupported-profile-conversion": "אנחנו לא יודעים איך לעשות את ההמרה הזאת.",
+	"rest-edit-conflict": "התנגשות עריכה ($1)",
+	"rest-unknown-parsoid-transformation": "המרה לא ידועה.",
+	"rest-target-variant-required": "נדרש הגוון השפה (variant) המיועד.",
+	"rest-unsupported-language-conversion": "המרת שפה לא נתמכת: מהתסדיר $1 לתסדיר $2",
+	"rest-unknown-content-model": "מודל תוכן לא ידוע: $1",
+	"rest-page-bundle-validation-error": "PageBundle אינו תואם ל־contentVersion‏: $1"
 }
