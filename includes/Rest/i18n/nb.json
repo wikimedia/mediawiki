@@ -51,5 +51,12 @@
 	"rest-requires-safe-against-csrf": "Dette endepunktet krever en CSRF-trygg øktleverandør.",
 	"rest-badtoken": "Den gitte CSRF-nøkkelen er ugyldig.",
 	"rest-badtoken-missing": "Parameteren <var>token</var> er påkrevd med mindre man bruker en CSRF-trygg autentiseringsmetode.",
-	"rest-badtoken-nosession": "CSRF-feil – ingen økt."
+	"rest-badtoken-nosession": "CSRF-feil – ingen økt.",
+	"rest-transform-missing-html": "Ingen HTML ble angitt.",
+	"rest-transform-missing-title": "Ingen tittel eller wikitekst ble angitt.",
+	"rest-unsupported-target-format": "Det forespurte målformatet støttes ikke.",
+	"rest-parsoid-resource-exceeded": "Ressursgrense overskredet",
+	"rest-parsoid-error": "Parsoid-feil.",
+	"rest-bad-stash-key": "Ugyldig stash-nøkkel.",
+	"rest-invalid-transform": "Ugyldig transformasjon: $1 til $2"
 }

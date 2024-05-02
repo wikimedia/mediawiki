@@ -1308,6 +1308,7 @@
 	"linterror-bogus-image-options": "偽のファイルオプション",
 	"linterror-deletable-table-tag": "削除する必要があるTableタグ",
 	"linterror-html5-misnesting": "Misnesting（現在使用不可）",
+	"linterror-inline-media-caption": "非表示のキャプション",
 	"linterror-large-tables": "モバイルデバイスでの表示を妨げる大きなテーブル",
 	"linterror-misc-tidy-replacement-issues": "その他のマークアップエラー",
 	"linterror-misnested-tag": "適切に入れ子にされるべきである誤ったタグ",

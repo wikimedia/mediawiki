@@ -53,7 +53,7 @@
 	"rest-badtoken-missing": "Le paramètre <var>token</var> est obligatoire à moins d’utiliser une méthode d’authentification sécurisée contre les attaques CSRF.",
 	"rest-badtoken-nosession": "Erreur CSRF — aucune session.",
 	"rest-specified-revision-unavailable": "La modification spécifiée est supprimée.",
-	"rest-previous-revision-unavailable": "Impossible de trouver la modification précédente. La page a-t-elle été verrouillée/supprimée ?",
+	"rest-previous-revision-unavailable": "Impossible de trouver la modification précédente. La page a-t-elle été verrouillée ou supprimée ?",
 	"rest-parsoid-resource-exceeded": "Limite de ressources dépassée",
 	"rest-html-key-expected": "'Clé `html` attendue dans le corps'",
 	"rest-invalid-transform": "Transformation non valide : $1 à $2",
