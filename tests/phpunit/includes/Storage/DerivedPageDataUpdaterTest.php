@@ -1086,12 +1086,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->createRevision( $page, 'first', $content );
 		$pageId = $page->getId();
 
-		$oldStats = $this->db->newSelectQueryBuilder()
+		$oldStats = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
 			->where( '1=1' )
 			->fetchRow();
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'pagelinks' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )
@@ -1109,7 +1109,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->doUpdates();
 
 		// links table update
-		$pageLinks = $this->db->newSelectQueryBuilder()
+		$pageLinks = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'pagelinks' )
 			->where( [ 'pl_from' => $pageId ] )
@@ -1130,7 +1130,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		// site stats
-		$stats = $this->db->newSelectQueryBuilder()
+		$stats = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
 			->where( '1=1' )
@@ -1164,7 +1164,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
-		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
+		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
 
 		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
 		$updater->prepareUpdate( $rev, [] );
@@ -1173,7 +1173,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
 		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
 
-		$this->db->endAtomic( __METHOD__ ); // run deferred updates
+		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
 
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 	}
@@ -1200,7 +1200,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$pcache = $services->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
-		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
+		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
 
 		$updater = $this->getDerivedPageDataUpdater( $page, $rev, $user );
 		$updater->prepareUpdate( $rev, [] );
@@ -1209,7 +1209,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan( 1, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
 		$this->assertFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
 
-		$this->db->endAtomic( __METHOD__ ); // run deferred updates
+		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
 
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );

@@ -133,7 +133,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$this->assertArrayNotHasKey( $key, $fields, "old field" );
 		$this->assertArrayHasKey( "{$key}_id", $fields, "new field" );
 
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( $table )
 			->row( [ $pk => ++$id ] + $fields )
 			->caller( __METHOD__ )
@@ -141,14 +141,14 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$rstore = $this->makeStore();
 
-		$fieldRow = $this->db->newSelectQueryBuilder()
+		$fieldRow = $this->getDb()->newSelectQueryBuilder()
 			->select( [ "{$key}_id" => "{$key}_id" ] )
 			->from( $table )
 			->where( [ $pk => $id ] )
 			->caller( __METHOD__ )->fetchRow();
 
 		$queryInfo = $rstore->getJoin( $key );
-		$joinRow = $this->db->newSelectQueryBuilder()
+		$joinRow = $this->getDb()->newSelectQueryBuilder()
 			->queryInfo( $queryInfo )
 			->from( $table )
 			->where( [ $pk => $id ] )
@@ -272,7 +272,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$store = $this->makeStore();
 		$fields = $store->insert( $this->db, 'ipb_reason', $comment );
-		$stored = $this->db->newSelectQueryBuilder()
+		$stored = $this->getDb()->newSelectQueryBuilder()
 			->select( 'comment_text' )
 			->from( 'comment' )
 			->where( [ 'comment_id' => $fields['ipb_reason_id'] ] )

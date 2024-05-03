@@ -42,7 +42,7 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\SiteStats\SiteStats
 	 */
 	public function testInit() {
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'site_stats' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )
@@ -50,7 +50,7 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 		SiteStats::unload();
 
 		SiteStats::edits();
-		$row = $this->db->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'site_stats' )
 			->caller( __METHOD__ )->fetchRow();
