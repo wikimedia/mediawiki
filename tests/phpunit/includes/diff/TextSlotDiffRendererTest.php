@@ -6,6 +6,7 @@ use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextDiffer\Wikidiff2TextDiffer;
 use MediaWiki\Tests\Diff\TextDiffer\TextDifferData;
 use Wikimedia\Assert\ParameterTypeException;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @covers \TextSlotDiffRenderer
@@ -119,7 +120,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getTextSlotDiffRenderer( $langCode = 'en' ) {
 		$slotDiffRenderer = new TextSlotDiffRenderer();
-		$slotDiffRenderer->setStatsdDataFactory( new NullStatsdDataFactory() );
+		$slotDiffRenderer->setStatsFactory( StatsFactory::newNull() );
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( $langCode );
 		$context = new RequestContext;
 		$context->setLanguage( $lang );

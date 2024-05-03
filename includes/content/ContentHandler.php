@@ -649,8 +649,7 @@ abstract class ContentHandler {
 		$slotDiffRenderer = new TextSlotDiffRenderer();
 
 		$services = MediaWikiServices::getInstance();
-		$statsdDataFactory = $services->getStatsdDataFactory();
-		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
+		$slotDiffRenderer->setStatsFactory( $services->getStatsFactory() );
 		$slotDiffRenderer->setHookContainer( $services->getHookContainer() );
 		$slotDiffRenderer->setContentModel( $this->getModelID() );
 
