@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;

@@ -29,7 +29,7 @@ use Closure;
 use Error;
 use InvalidArgumentException;
 use LogicException;
-use MWDebug;
+use MediaWiki\Debug\MWDebug;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\NonSerializable\NonSerializableTrait;

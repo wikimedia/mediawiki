@@ -28,6 +28,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Debug;
+
+use ApiResult;
+use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LegacyLogger;
@@ -25,6 +29,8 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Utils\GitInfo;
+use ReflectionMethod;
+use UtfNormal;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -774,3 +780,6 @@ class MWDebug {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MWDebug::class, 'MWDebug' );
