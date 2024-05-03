@@ -12,10 +12,10 @@ use MediaWiki\Specials\SpecialContributions;
  */
 class SpecialContributionsTest extends SpecialPageTestBase {
 	private $pageName = __CLASS__ . 'BlaBlaTest';
-	private $admin;
+	private static $admin;
+	private static $user;
 
-	protected function setUp(): void {
-		parent::setUp();
+	public function addDBDataOnce() {
 		$this->overrideConfigValue(
 			MainConfigNames::RangeContributionsCIDRLimit,
 			[
@@ -28,21 +28,79 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			static function () {
 			}
 		);
-		$this->admin = new UltimateAuthority( $this->getTestSysop()->getUser() );
+		self::$admin = new UltimateAuthority( $this->getTestSysop()->getUser() );
 		$this->assertTrue(
 			$this->editPage(
-				$this->pageName, 'Test Content', 'test', NS_MAIN, $this->admin
+				$this->pageName, 'Test Content', 'test', NS_MAIN, self::$admin
 			)->isOK(),
-			'Admin contributed'
+			'Edit failed for admin'
 		);
+
+		self::$user = $this->getTestUser()->getUser();
+		$this->assertTrue(
+			$this->editPage(
+				'Test', 'Test Content', 'test', NS_MAIN, self::$user
+			)->isOK(),
+			'Edit failed for user'
+		);
+
+		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
+			->newBlockUser(
+				self::$user->getName(),
+				self::$admin,
+				'infinity',
+				'',
+				[ 'isHideUser' => true ],
+			)
+			->placeBlock();
+		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
+	}
+
+	public function testExecuteEmptyTarget() {
+		[ $html ] = $this->executeSpecialPage();
+		$this->assertStringNotContainsString( 'mw-pager-body', $html );
+	}
+
+	public function testExecuteHiddenTarget() {
+		[ $html ] = $this->executeSpecialPage(
+			self::$user->getName()
+		);
+		$this->assertStringNotContainsString( 'mw-pager-body', $html );
+	}
+
+	public function testExecuteHiddenTargetWithPermissions() {
+		[ $html ] = $this->executeSpecialPage(
+			self::$user->getName(),
+			null,
+			'qqx',
+			// This is necessary because permission checks aren't actually
+			// done on the UlitmateAuthority that is self::$admin. Instead,
+			// they are done on a UserAuthority. See the TODO comment in
+			// User::getThisAsAuthority for more details.
+			$this->getTestUser( [
+				'sysop',
+				'bureaucrat',
+				'suppress'
+			] )->getUser()
+		);
+		$this->assertStringContainsString( 'mw-pager-body', $html );
+	}
+
+	public function testExecuteInvalidNamespace() {
+		[ $html ] = $this->executeSpecialPage(
+			'::1',
+			new FauxRequest( [
+				'namespace' => -1,
+			] )
+		);
+		$this->assertStringNotContainsString( 'mw-pager-body', $html );
 	}
 
 	/**
-	 * @covers \MediaWiki\Specials\SpecialContributions::execute
 	 * @dataProvider provideTestExecuteRange
 	 */
 	public function testExecuteRange( $username, $shouldShowLinks ) {
-		[ $html ] = $this->executeSpecialPage( $username, null, 'qqx', $this->admin, true );
+		[ $html ] = $this->executeSpecialPage( $username, null, 'qqx', self::$admin, true );
 
 		if ( $shouldShowLinks ) {
 			$this->assertStringContainsString( 'blocklink', $html );
@@ -53,11 +111,10 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Specials\SpecialContributions::execute
 	 * @dataProvider provideTestExecuteNonRange
 	 */
 	public function testExecuteNonRange( $username, $shouldShowLinks ) {
-		[ $html ] = $this->executeSpecialPage( $username, null, 'qqx', $this->admin, true );
+		[ $html ] = $this->executeSpecialPage( $username, null, 'qqx', self::$admin, true );
 
 		if ( $shouldShowLinks ) {
 			$this->assertStringContainsString( 'blocklink', $html );
@@ -105,12 +162,11 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Specials\SpecialContributions::execute
 	 * @dataProvider provideYearMonthParams
 	 */
 	public function testYearMonthParams( string $year, string $month, bool $expect ) {
 		[ $html ] = $this->executeSpecialPage(
-			$this->admin->getUser()->getName(),
+			self::$admin->getUser()->getName(),
 			new FauxRequest( [
 				'year' => $year,
 				'month' => $month,
@@ -120,6 +176,64 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		} else {
 			$this->assertStringNotContainsString( $this->pageName, $html );
 		}
+	}
+
+	public function testBotParam() {
+		[ $html ] = $this->executeSpecialPage(
+			'::1',
+			new FauxRequest( [
+				'bot' => 1,
+			] ),
+			null,
+			self::$admin
+		);
+		$this->assertStringContainsString( 'bot', $html );
+	}
+
+	public function testFeedFormat() {
+		$specialPage = $this->newSpecialPage();
+		[ $html ] = ( new SpecialPageExecutor() )->executeSpecialPage(
+			$specialPage,
+			'::1',
+			new FauxRequest( [
+				'feed' => 'atom',
+				'namespace' => 2,
+				'topOnly' => true,
+				'newOnly' => true,
+				'hideMinor' => true,
+				'deletedOnly' => true,
+				'tagfilter' => 'mw-reverted',
+				'year' => '2000',
+				'month' => '01',
+			] )
+		);
+		$url = $specialPage->getOutput()->getRedirect();
+		$this->assertStringContainsString( 'namespace', $url );
+		$this->assertStringContainsString( 'toponly', $url );
+		$this->assertStringContainsString( 'newonly', $url );
+		$this->assertStringContainsString( 'hideminor', $url );
+		$this->assertStringContainsString( 'deletedonly', $url );
+		$this->assertStringContainsString( 'tagfilter', $url );
+		$this->assertStringContainsString( 'year', $url );
+		$this->assertStringContainsString( 'month', $url );
+	}
+
+	/**
+	 * @dataProvider providePrefixSearchSubpages
+	 */
+	public function testPrefixSearchSubpages( $search, $expected ) {
+		$specialPage = $this->newSpecialPage();
+		$this->assertCount(
+			$expected,
+			$specialPage->prefixSearchSubpages( $search, 10, 0 )
+		);
+	}
+
+	public static function providePrefixSearchSubpages() {
+		return [
+			'Invalid prefix' => [ '/', 0 ],
+			'Valid prefix' => [ 'U', 1 ],
+		];
 	}
 
 	protected function newSpecialPage(): SpecialContributions {
