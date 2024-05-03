@@ -356,15 +356,14 @@ class MaintenanceRunner {
 			return;
 		}
 
+		$scriptClass = $this->expandScriptClass( $scriptName, null );
 		$scriptFile = $this->expandScriptFile( $scriptName, null );
 
-		$scriptClass = null;
-		if ( file_exists( $scriptFile ) ) {
-			$scriptClass = $this->loadScriptFile( $scriptFile );
-		}
-
-		if ( !$scriptClass ) {
-			$scriptClass = $this->expandScriptClass( $scriptName, null );
+		if ( !class_exists( $scriptClass ) && file_exists( $scriptFile ) ) {
+			$scriptFileClass = $this->loadScriptFile( $scriptFile );
+			if ( $scriptFileClass ) {
+				$scriptClass = $scriptFileClass;
+			}
 		}
 
 		// NOTE: class_exists will trigger auto-loading, so file-level code in the script file will run.
@@ -414,15 +413,14 @@ class MaintenanceRunner {
 			$extension = null;
 		}
 
+		$scriptClass = $this->expandScriptClass( $scriptName, $extension );
 		$scriptFile = $this->expandScriptFile( $scriptName, $extension );
 
-		$scriptClass = null;
-		if ( file_exists( $scriptFile ) ) {
-			$scriptClass = $this->loadScriptFile( $scriptFile );
-		}
-
-		if ( !$scriptClass ) {
-			$scriptClass = $this->expandScriptClass( $scriptName, $extension );
+		if ( !class_exists( $scriptClass ) && file_exists( $scriptFile ) ) {
+			$scriptFileClass = $this->loadScriptFile( $scriptFile );
+			if ( $scriptFileClass ) {
+				$scriptClass = $scriptFileClass;
+			}
 		}
 
 		if ( !class_exists( $scriptClass ) ) {
