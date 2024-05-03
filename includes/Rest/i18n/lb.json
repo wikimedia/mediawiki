@@ -9,7 +9,7 @@
 	"rest-nonexistent-revision": "Déi spezifizéiert Versioun ($1) gëtt et net",
 	"rest-permission-denied-title": "De Benotzer huet net d'Rechter fir den Titel ($1) ze liesen",
 	"rest-cannot-load-file": "De Fichier fir den Titel ''$1'' kann net geluede ginn.",
-	"rest-unsupported-transform-input": "Net ënnerstëtzten Input: . $1",
+	"rest-unsupported-transform-input": "Net ënnerstëtzten Input: $1",
 	"rest-unsupported-profile-version": "Net ënnerstëtzte Profilversioun: $1",
 	"rest-parsoid-unsupported-media": "Net ënnerstëtzte Medientyp",
 	"rest-edit-conflict": "Ännerungskonflikt ($1)",

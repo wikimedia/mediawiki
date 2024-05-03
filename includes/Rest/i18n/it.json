@@ -40,5 +40,6 @@
 	"rest-specified-revision-unavailable": "La versione indicata è stata cancellata o soppressa.",
 	"rest-previous-revision-unavailable": "Non è stato possibile trovare la versione precedente. La pagina è stata bloccata o cancellata?",
 	"rest-parsoid-resource-exceeded": "Limite delle risorse superato",
-	"rest-invalid-transform": "Trasformazione non valida: da $1 a $2"
+	"rest-invalid-transform": "Trasformazione non valida: da $1 a $2",
+	"rest-unknown-parsoid-transformation": "Trasformazione sconosciuta."
 }

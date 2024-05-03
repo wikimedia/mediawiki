@@ -3198,7 +3198,7 @@
 	"pageinfo-robot-index": "Tillatt",
 	"pageinfo-robot-noindex": "Ikke tillatt",
 	"pageinfo-watchers": "Antall overvåkere av siden",
-	"pageinfo-visiting-watchers": "Antall sideovervåkere som har sett nylige redigeringer",
+	"pageinfo-visiting-watchers": "Antall sideovervåkere som har besøkt {{PLURAL:$1|det siste døgnet|de siste $1 dagene}}.",
 	"pageinfo-few-watchers": "Færre enn $1 {{PLURAL:$1|overvåker|overvåkere}}",
 	"pageinfo-few-visiting-watchers": "Det kan finnes sideovervåkere som besøker nylige redigeringer",
 	"pageinfo-redirects-name": "Antall omdirigeringer til denne siden",
