@@ -49,52 +49,11 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
-			// 1.35 but must come first
-			[ 'addPgField', 'revision', 'rev_actor', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgIndex', 'revision', 'rev_actor_timestamp', '(rev_actor,rev_timestamp,rev_id)' ],
-			[ 'addPgIndex', 'revision', 'rev_page_actor_timestamp', '(rev_page,rev_actor,rev_timestamp)' ],
-
 			// Exception to the sequential updates. Renaming pagecontent and mwuser.
 			// Introduced in 1.36.
 			[ 'renameTable', 'pagecontent', 'text' ],
 			// Introduced in 1.37.
 			[ 'renameTable', 'mwuser', 'user' ],
-
-			// 1.35
-			[ 'addIndex', 'redirect', 'redirect_pkey', 'patch-redirect-pk.sql' ],
-			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
-			[ 'setSequenceOwner', 'watchlist_expiry', 'we_item', 'watchlist_expiry_we_item_seq' ],
-			[ 'setDefault', 'user_newtalk', 'user_ip', '' ],
-			[ 'changeNullableField', 'user_newtalk', 'user_ip', 'NOT NULL', true ],
-			[ 'setDefault', 'user_newtalk', 'user_id', 0 ],
-			[ 'dropPgIndex', 'revision', 'rev_user_idx' ],
-			[ 'dropPgIndex', 'revision', 'rev_user_text_idx' ],
-			[ 'dropPgIndex', 'revision', 'rev_text_id_idx' ],
-			[ 'dropPgField', 'revision', 'rev_user' ],
-			[ 'dropPgField', 'revision', 'rev_user_text' ],
-			[ 'dropPgField', 'revision', 'rev_comment' ],
-			[ 'dropPgField', 'revision', 'rev_text_id' ],
-			[ 'dropPgField', 'revision', 'rev_content_model' ],
-			[ 'dropPgField', 'revision', 'rev_content_format' ],
-			[ 'addPgField', 'revision', 'rev_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'dropPgField', 'archive', 'ar_text_id' ],
-			[ 'dropPgField', 'archive', 'ar_content_model' ],
-			[ 'dropPgField', 'archive', 'ar_content_format' ],
-			[ 'changeField', 'updatelog', 'ul_key', 'varchar(255)', '' ],
-			[ 'changeField', 'updatelog', 'ul_value', 'TEXT', '' ],
-			[ 'changeField', 'site_identifiers', 'si_type', 'TEXT', '' ],
-			[ 'changeField', 'site_identifiers', 'si_key', 'TEXT', '' ],
-			[ 'changeField', 'actor', 'actor_id', 'BIGINT', '' ],
-			[ 'changeField', 'actor', 'actor_name', 'TEXT', '' ],
-			[ 'changeField', 'user_former_groups', 'ufg_group', 'TEXT', '' ],
-			[ 'dropFkey', 'user_former_groups', 'ufg_user' ],
-			[ 'checkIndex', 'ipb_address_unique', [
-					[ 'ipb_address', 'text_ops', 'btree', 0 ],
-					[ 'ipb_user', 'int4_ops', 'btree', 0 ],
-					[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
-				],
-				'CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto)'
-			],
 
 			// 1.36
 			[ 'setDefault', 'bot_passwords', 'bp_token', '' ],
