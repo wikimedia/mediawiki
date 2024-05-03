@@ -213,7 +213,7 @@ class GenerateSitemap extends Maintenance {
 
 		// Custom main namespaces
 		$this->priorities[self::GS_MAIN] = '0.5';
-		// Custom talk namesspaces
+		// Custom talk namespaces
 		$this->priorities[self::GS_TALK] = '0.1';
 		// MediaWiki standard namespaces
 		$this->priorities[NS_MAIN] = '1.0';
