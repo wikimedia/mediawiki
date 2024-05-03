@@ -312,6 +312,64 @@
 	}
 
 	/**
+	 * Parse preview response and show a warning at the top of the preview.
+	 *
+	 * @private
+	 * @param {Object} config
+	 * @param {Object} response
+	 */
+	function showPreviewNotes( config, response ) {
+		var arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
+
+		var $previewHeader = $( '<div>' )
+			.addClass( 'previewnote' )
+			.append( $( '<h2>' )
+				.attr( 'id', 'mw-previewheader' )
+				// TemplateSandbox will insert an HTML string here.
+				.append( config.previewHeader )
+			)
+			.append( $( '<div>' )
+				.addClass( 'mw-message-box-warning mw-message-box' )
+				.append(
+					// TemplateSandbox will insert a jQuery here.
+					config.previewNote,
+					' ',
+					$( '<span>' )
+						.addClass( 'mw-continue-editing' )
+						.append( $( '<a>' )
+							.attr( 'href', '#' + config.$formNode.attr( 'id' ) )
+							.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
+						),
+					response.parse.parsewarningshtml.map( function ( warning ) {
+						return $( '<p>' ).append( warning );
+					} )
+				)
+			);
+
+		config.$previewNode.prepend( $previewHeader );
+	}
+
+	/**
+	 * Show an error message in place of a preview.
+	 *
+	 * @private
+	 * @param {Object} config
+	 * @param {jQuery} $message
+	 */
+	function showError( config, $message ) {
+		var $errorBox = $( '<div>' )
+			.addClass( 'mw-message-box-error mw-message-box' )
+			.append(
+				$( '<strong>' ).text( mw.msg( 'previewerrortext' ) ),
+				$message
+			);
+		config.$previewNode.hide().before( $errorBox );
+		if ( config.$diffNode ) {
+			config.$diffNode.hide();
+		}
+	}
+
+	/**
 	 * Update the various bits of the page based on the response.
 	 *
 	 * @private
@@ -381,10 +439,14 @@
 			return;
 		}
 
-		// Remove preview note, if present (added by Live Preview, etc.).
-		config.$previewNode.find( '.previewnote' ).remove();
 		// Remove any previous preview
 		config.$previewNode.children( '.mw-parser-output' ).remove();
+		// Remove preview note, if present (added by Live Preview, etc.).
+		config.$previewNode.find( '.previewnote' ).remove();
+
+		if ( config.isLivePreview ) {
+			showPreviewNotes( config, response );
+		}
 
 		$content = $( $.parseHTML( response.parse.text ) );
 
@@ -405,15 +467,15 @@
 		var params = {
 			formatversion: 2,
 			action: 'parse',
-			title: config.title,
 			summary: config.summary,
 			prop: ''
 		};
+		params[ config.titleParam ] = config.title;
 
 		if ( !config.showDiff ) {
+			params[ config.textParam ] = config.$textareaNode.textSelection( 'getContents' );
 			$.extend( params, {
 				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|sections|templates|langlinks|limitreporthtml|parsewarningshtml',
-				text: config.$textareaNode.textSelection( 'getContents' ),
 				pst: true,
 				preview: true,
 				sectionpreview: section !== '',
@@ -430,6 +492,8 @@
 			params.sectiontitle = params.summary;
 			delete params.summary;
 		}
+
+		$.extend( params, config.parseParams );
 
 		return api.post( params, { headers: { 'Promise-Non-Write-API-Action': 'true' } } );
 	}
@@ -462,11 +526,11 @@
 	}
 
 	/**
-	 * Get the unresolved promise of the diff view request.
+	 * Show the diff from the response.
 	 *
 	 * @private
 	 * @param {Object} config
-	 * @param {Object[]|null} response
+	 * @param {Object} response
 	 */
 	function handleDiffResponse( config, response ) {
 		const $table = getDiffTable();
@@ -474,9 +538,9 @@
 			.hide()
 			.empty()
 			.append( $table );
-		if ( response && response[ 0 ].compare.bodies.main ) {
-			var diff = response[ 0 ].compare.bodies;
 
+		const diff = response.compare.bodies;
+		if ( diff.main ) {
 			$table.find( 'tbody' ).html( diff.main );
 			mw.hook( 'wikipage.diff' ).fire( $table );
 		} else {
@@ -496,6 +560,66 @@
 				);
 		}
 		config.$diffNode.show();
+	}
+
+	/**
+	 * Get the unresolved promise of the diff request.
+	 *
+	 * @private
+	 * @param {Object} config
+	 * @param {string|number} section
+	 * @param {boolean} pageExists
+	 * @return {jQuery.Promise}
+	 */
+	function getDiffRequest( config, section, pageExists ) {
+		var contents = config.$textareaNode.textSelection( 'getContents' ),
+			sectionTitle = config.summary;
+
+		if ( section === 'new' ) {
+			// T293930: Hack to show live diff for new section creation.
+
+			// We concatenate the section heading with the edit box text and pass it to
+			// the diff API as the full input text. This is roughly what the server-side
+			// does when difference is requested for section edit.
+			// The heading is always prepended, we do not bother with editing old rev
+			// at this point (`?action=edit&oldid=xxx&section=new`) -- which will require
+			// mid-text insertion of the section -- because creation of new section is only
+			// possible on latest revision.
+
+			// The section heading text is unconditionally wrapped in <h2> heading and
+			// ends with double newlines, except when it's empty. This is for parity with the
+			// server-side rendering of the same case.
+			sectionTitle = sectionTitle === '' ? '' : '== ' + sectionTitle + ' ==\n\n';
+
+			// Prepend section heading to section text.
+			contents = sectionTitle + contents;
+		}
+
+		var params = {
+			action: 'compare',
+			fromtitle: config.title,
+			totitle: config.title,
+			toslots: 'main',
+			// Remove trailing whitespace for consistency with EditPage diffs.
+			// TODO trimEnd() when we can use that.
+			'totext-main': contents.replace( /\s+$/, '' ),
+			'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
+			topst: true,
+			slots: 'main',
+			uselang: mw.config.get( 'wgUserLanguage' )
+		};
+		if ( mw.config.get( 'wgUserVariant' ) ) {
+			params.variant = mw.config.get( 'wgUserVariant' );
+		}
+		if ( section ) {
+			params[ 'tosection-main' ] = section;
+		}
+		if ( !pageExists ) {
+			params.fromslots = 'main';
+			params[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
+			params[ 'fromtext-main' ] = '';
+		}
+		return api.post( params );
 	}
 
 	/**
@@ -533,11 +657,31 @@
 	 * @param {jQuery} [config.$textareaNode=$( '#wpTextbox1' )] The edit form's textarea.
 	 * @param {jQuery} [config.$spinnerNode=$( '.mw-spinner-preview' )] The loading indicator. This will
 	 *   be shown/hidden accordingly while waiting for the XMLHttpRequest to complete.
-	 *   Ignored if no $spinnerNode is given.
+	 *   Ignored if it doesn't exist in the document and `createSpinner` is false.
 	 * @param {string} [config.summary=null] The edit summary. If no value is given, the summary is
 	 *   fetched from `$( '#wpSummaryWidget' )`.
 	 * @param {boolean} [config.showDiff=false] Shows a diff in the preview area instead of the content.
-	 * @param {string} [config.title=mw.config.get( 'wgPageName' )] The title of the page being previewed
+	 * @param {boolean} [config.isLivePreview=false] Instructs the module to replicate the
+	 *   server-side preview as much as possible. Specifically:
+	 *   - Before initiating the preview, some alerts and error messages at the top of the page will
+	 *     be removed, and the browser will scroll to the preview.
+	 *   - After finishing the preview, a reminder that it's only a preview, or an error message in
+	 *     case a request has failed, will be shown at the top of the preview.
+	 * @param {Node|Node[]|jQuery|string} [config.previewHeader=null] Content of `<h2>` element at
+	 *   the top of the preview notes. Required if `isLivePreview` is true.
+	 * @param {Node|Node[]|jQuery|string} [config.previewNote=null] Main text of the first preview
+	 *   note. Required if `isLivePreview` is true.
+	 * @param {string} [config.title=mw.config.get( 'wgPageName' )] The title of the page being previewed.
+	 * @param {string} [config.titleParam='title'] Name of the parse API parameter to pass `title` to.
+	 * @param {string} [config.textParam='text'] Name of the parse API parameter to pass the content
+	 *   of `$textareaNode` to. Ignored if `showDiff` is true.
+	 * @param {Object} [config.parseParams=null] Additional parse API parameters. This can override
+	 *   any parameter set by the module.
+	 * @param {module:mediawiki.page.preview~responseHandler} [config.responseHandler=null] Callback
+	 *   to run right after the API responses are received. This allows the config and response
+	 *   objects to be modified before the preview is shown.
+	 * @param {boolean} [config.createSpinner=false] Creates `$spinnerNode` and inserts it before
+	 *   `$previewNode` if one doesn't already exist and the module `jquery.spinner` is loaded.
 	 * @param {string[]} [config.loadingSelectors=getLoadingSelectors()] An array of query selectors
 	 *   (i.e. '#catlinks') that should be grayed out while the preview is being generated.
 	 * @return {jQuery.Promise|undefined} jQuery.Promise or `undefined` if no `$textareaNode` was provided in the config.
@@ -557,7 +701,15 @@
 			$spinnerNode: $( '.mw-spinner-preview' ),
 			summary: null,
 			showDiff: false,
+			isLivePreview: false,
+			previewHeader: null,
+			previewNote: null,
 			title: mw.config.get( 'wgPageName' ),
+			titleParam: 'title',
+			textParam: 'text',
+			parseParams: null,
+			responseHandler: null,
+			createSpinner: false,
 			loadingSelectors: getLoadingSelectors()
 		}, config );
 
@@ -575,9 +727,32 @@
 			}
 		}
 
-		// Show the spinner if it exists.
+		if ( config.isLivePreview ) {
+			// Not shown during normal preview, to be removed if present
+			$( '.mw-newarticletext, .mw-message-box-error' ).remove();
+
+			// Show #wikiPreview if it's hidden to be able to scroll to it.
+			// (If it is hidden, it's also empty, so nothing changes in the rendering.)
+			config.$previewNode.show();
+
+			// Jump to where the preview will appear
+			config.$previewNode[ 0 ].scrollIntoView();
+		}
+
+		// Show or create the spinner if possible.
 		if ( config.$spinnerNode && config.$spinnerNode.length ) {
 			config.$spinnerNode.show();
+		} else if ( config.createSpinner ) {
+			if ( mw.loader.getState( 'jquery.spinner' ) === 'ready' ) {
+				config.$spinnerNode = $.createSpinner( {
+					size: 'large',
+					type: 'block'
+				} )
+					.addClass( 'mw-spinner-preview' )
+					.insertBefore( config.$previewNode );
+			} else {
+				mw.log.warn( 'createSpinner requires the module jquery.spinner' );
+			}
 		}
 
 		// Gray out the 'copy elements' while we wait for a response.
@@ -618,60 +793,13 @@
 			// Hide the table of contents, in case it was previously shown after previewing.
 			mw.hook( 'wikipage.tableOfContents' ).fire( [] );
 
-			var contents = config.$textareaNode.textSelection( 'getContents' ),
-				sectionTitle = config.summary;
-
-			if ( section === 'new' ) {
-				// T293930: Hack to show live diff for new section creation.
-
-				// We concatenate the section heading with the edit box text and pass it to
-				// the diff API as the full input text. This is roughly what the server-side
-				// does when difference is requested for section edit.
-				// The heading is always prepended, we do not bother with editing old rev
-				// at this point (`?action=edit&oldid=xxx&section=new`) -- which will require
-				// mid-text insertion of the section -- because creation of new section is only
-				// possible on latest revision.
-
-				// The section heading text is unconditionally wrapped in <h2> heading and
-				// ends with double newlines, except when it's empty. This is for parity with the
-				// server-side rendering of the same case.
-				sectionTitle = sectionTitle === '' ? '' : '== ' + sectionTitle + ' ==\n\n';
-
-				// Prepend section heading to section text.
-				contents = sectionTitle + contents;
-			}
-
 			// The compare API returns an error if the title doesn't exist and fromtext is not
 			// specified. So we have to account for the possibility that the page was created or
 			// deleted after the user started editing. Luckily the parse API returns pageid so we
 			// can wait for that.
 			// TODO: Show "Warning: This page was deleted after you started editing!"?
 			diffRequest = parseRequest.then( function ( parseResponse ) {
-				var diffPar = {
-					action: 'compare',
-					fromtitle: config.title,
-					totitle: config.title,
-					toslots: 'main',
-					// Remove trailing whitespace for consistency with EditPage diffs.
-					// TODO trimEnd() when we can use that.
-					'totext-main': contents.replace( /\s+$/, '' ),
-					'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
-					topst: true,
-					slots: 'main',
-					uselang: mw.config.get( 'wgUserLanguage' )
-				};
-				if ( mw.config.get( 'wgUserVariant' ) ) {
-					diffPar.variant = mw.config.get( 'wgUserVariant' );
-				}
-				if ( section ) {
-					diffPar[ 'tosection-main' ] = section;
-				}
-				if ( parseResponse.parse.pageid === 0 ) {
-					diffPar.fromslots = 'main';
-					diffPar[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
-					diffPar[ 'fromtext-main' ] = '';
-				}
-				return api.post( diffPar );
+				return getDiffRequest( config, section, parseResponse.parse.pageid !== 0 );
 			} );
 
 		} else if ( config.$diffNode ) {
@@ -680,15 +808,35 @@
 
 		return $.when( parseRequest, diffRequest )
 			.done( function ( parseResponse, diffResponse ) {
+				if ( config.responseHandler ) {
+					/**
+					 * @callback module:mediawiki.page.preview~responseHandler
+					 * @param {Object} config Options for live preview API
+					 * @param {Object} parseResponse Parse API response
+					 * @param {Object} [diffResponse] Compare API response
+					 */
+					if ( config.showDiff ) {
+						config.responseHandler( config, parseResponse[ 0 ], diffResponse[ 0 ] );
+					} else {
+						config.responseHandler( config, parseResponse[ 0 ] );
+					}
+				}
+
 				showEditSummary( config.$formNode, parseResponse[ 0 ] );
 
 				if ( config.showDiff ) {
-					handleDiffResponse( config, diffResponse );
+					handleDiffResponse( config, diffResponse[ 0 ] );
 				} else {
 					handleParseResponse( config, parseResponse[ 0 ] );
 				}
 
 				mw.hook( 'wikipage.editform' ).fire( config.$formNode );
+			} )
+			.fail( function ( _code, result ) {
+				if ( config.isLivePreview ) {
+					// This just shows the error for whatever request failed first
+					showError( config, api.getErrorMessage( result ) );
+				}
 			} )
 			.always( function () {
 				if ( config.$spinnerNode && config.$spinnerNode.length ) {

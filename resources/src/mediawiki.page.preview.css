@@ -5,3 +5,7 @@
 .mw-preview-loading-elements-loading {
 	opacity: 0.4;
 }
+
+.mw-spinner-preview {
+	margin-top: 1em;
+}
