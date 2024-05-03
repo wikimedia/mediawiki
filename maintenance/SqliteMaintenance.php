@@ -22,7 +22,7 @@
  */
 
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -59,6 +59,8 @@ class SqliteMaintenance extends Maintenance {
 
 			return;
 		}
+		/** @var DatabaseSqlite $dbw */
+		'@phan-var DatabaseSqlite $dbw';
 
 		if ( $this->hasOption( 'vacuum' ) ) {
 			$this->vacuum( $dbw );
@@ -73,9 +75,8 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function vacuum( DBConnRef $dbw ) {
-		// Call non-standard DatabaseSqlite::getDbFilePath method
-		$prevSize = filesize( $dbw->__call( 'getDbFilePath', [] ) );
+	private function vacuum( DatabaseSqlite $dbw ) {
+		$prevSize = filesize( $dbw->getDbFilePath() );
 		if ( $prevSize == 0 ) {
 			$this->fatalError( "Can't vacuum an empty database.\n" );
 		}
@@ -106,10 +107,10 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function backup( DBConnRef $dbw, $fileName ) {
+	private function backup( DatabaseSqlite $dbw, $fileName ) {
 		$this->output( "Backing up database:\n   Locking..." );
 		$dbw->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
-		$ourFile = $dbw->__call( 'getDbFilePath', [] );
+		$ourFile = $dbw->getDbFilePath();
 		$this->output( "   Copying database file $ourFile to $fileName..." );
 		AtEase::suppressWarnings();
 		if ( !copy( $ourFile, $fileName ) ) {
