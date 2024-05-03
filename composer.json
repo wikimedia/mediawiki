@@ -100,7 +100,7 @@
 		"php-parallel-lint/php-parallel-lint": "1.4.0",
 		"phpunit/phpunit": "9.6.16",
 		"psy/psysh": "^0.12.3",
-		"seld/jsonlint": "1.10.1",
+		"seld/jsonlint": "1.10.2",
 		"wikimedia/alea": "1.0.0",
 		"wikimedia/langconv": "^0.4.2",
 		"wikimedia/testing-access-wrapper": "^3.0.0",

@@ -76,6 +76,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 ===== Changed development-only external libraries =====
 
 * Upgraded eslint-config-wikimedia from 0.26.0 to 0.27.0.
+* Updated seld/jsonlint from 1.10.1 to 1.10.2.
 * …
 
 ==== Removed external libraries ====
