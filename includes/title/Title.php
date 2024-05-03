@@ -2918,28 +2918,6 @@ class Title implements LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Get a list of URLs to purge from the CDN cache when this page changes.
-	 *
-	 * @deprecated since 1.35 Use HTMLCacheUpdater; hard-deprecated in 1.42
-	 * @return string[]
-	 */
-	public function getCdnUrls() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
-		return $htmlCache->getUrls( $this );
-	}
-
-	/**
-	 * Purge all applicable CDN URLs
-	 * @deprecated since 1.35 Use HTMLCacheUpdater; hard-deprecated in 1.42
-	 */
-	public function purgeSquid() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
-		$htmlCache->purgeTitleUrls( $this, $htmlCache::PURGE_INTENT_TXROUND_REFLECTED );
-	}
-
-	/**
 	 * Locks the page row and check if this page is single revision redirect
 	 *
 	 * This updates the cached fields of this instance via Title::loadFromRow()
