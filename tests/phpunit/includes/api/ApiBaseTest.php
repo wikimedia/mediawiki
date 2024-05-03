@@ -1425,7 +1425,6 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( 'systemblockedtext' );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( $msg );
-		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
 			[ 'blockedtext' ],
@@ -1433,7 +1432,6 @@ class ApiBaseTest extends ApiTestCase {
 			[ 'systemblockedtext' ],
 			'mainpage',
 			$msg,
-			[ $msg, 'foobar' ],
 			[ 'parentheses', 'foobar' ],
 		] ) );
 
@@ -1461,7 +1459,6 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( ApiMessage::create( 'systemblockedtext', 'blocked', $blockinfo ) );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( $msg );
-		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
 			[ 'blockedtext' ],
@@ -1469,7 +1466,6 @@ class ApiBaseTest extends ApiTestCase {
 			[ 'systemblockedtext' ],
 			'mainpage',
 			$msg,
-			[ $msg, 'foobar' ],
 			[ 'parentheses', 'foobar' ],
 		], $user ) );
 	}
@@ -1492,7 +1488,6 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( 'systemblockedtext' );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( $msg );
-		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$test = clone $expect;
 		$mock->addBlockInfoToStatus( $test );
@@ -1522,7 +1517,6 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( ApiMessage::create( 'systemblockedtext', 'blocked', $blockinfo ) );
 		$expect->fatal( 'mainpage' );
 		$expect->fatal( $msg );
-		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$test = Status::newGood();
 		$test->fatal( 'blockedtext' );
@@ -1530,7 +1524,6 @@ class ApiBaseTest extends ApiTestCase {
 		$test->fatal( 'systemblockedtext' );
 		$test->fatal( 'mainpage' );
 		$test->fatal( $msg );
-		$test->fatal( $msg, 'foobar' );
 		$test->fatal( 'parentheses', 'foobar' );
 		$mock->addBlockInfoToStatus( $test, $user );
 		$this->assertEquals( $expect, $test );
