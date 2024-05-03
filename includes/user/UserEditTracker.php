@@ -10,6 +10,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
 use UserEditCountInitJob;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -23,7 +24,7 @@ class UserEditTracker {
 	private const FIRST_EDIT = 1;
 	private const LATEST_EDIT = 2;
 
-	private ActorMigration $actorMigration;
+	private ActorNormalization $actorNormalization;
 	private IConnectionProvider $dbProvider;
 	private JobQueueGroup $jobQueueGroup;
 
@@ -36,16 +37,16 @@ class UserEditTracker {
 	private $userEditCountCache = [];
 
 	/**
-	 * @param ActorMigration $actorMigration
+	 * @param ActorNormalization $actorNormalization
 	 * @param IConnectionProvider $dbProvider
 	 * @param JobQueueGroup $jobQueueGroup
 	 */
 	public function __construct(
-		ActorMigration $actorMigration,
+		ActorNormalization $actorNormalization,
 		IConnectionProvider $dbProvider,
 		JobQueueGroup $jobQueueGroup
 	) {
-		$this->actorMigration = $actorMigration;
+		$this->actorNormalization = $actorNormalization;
 		$this->dbProvider = $dbProvider;
 		$this->jobQueueGroup = $jobQueueGroup;
 	}
@@ -89,16 +90,12 @@ class UserEditTracker {
 	 */
 	public function initializeUserEditCount( UserIdentity $user ): int {
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$actorWhere = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
-
-		$count = (int)$dbr->selectField(
-			[ 'revision' ] + $actorWhere['tables'],
-			'COUNT(*)',
-			[ $actorWhere['conds'] ],
-			__METHOD__,
-			[],
-			$actorWhere['joins']
-		);
+		$count = (int)$dbr->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'revision' )
+			->where( [ 'rev_actor' => $this->actorNormalization->findActorId( $user, $dbr ) ] )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		// Defer updating the edit count via a job (T259719)
 		$this->jobQueueGroup->push( new UserEditCountInitJob( [
@@ -164,17 +161,15 @@ class UserEditTracker {
 			return false;
 		}
 		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $flags );
-		$actorWhere = $this->actorMigration->getWhere( $db, 'rev_user', $user );
 
-		$sortOrder = ( $type === self::FIRST_EDIT ) ? 'ASC' : 'DESC';
-		$time = $db->selectField(
-			[ 'revision' ] + $actorWhere['tables'],
-			'rev_timestamp',
-			[ $actorWhere['conds'] ],
-			__METHOD__,
-			[ 'ORDER BY' => "rev_timestamp $sortOrder" ],
-			$actorWhere['joins']
-		);
+		$sortOrder = ( $type === self::FIRST_EDIT ) ? SelectQueryBuilder::SORT_ASC : SelectQueryBuilder::SORT_DESC;
+		$time = $db->newSelectQueryBuilder()
+			->select( 'rev_timestamp' )
+			->from( 'revision' )
+			->where( [ 'rev_actor' => $this->actorNormalization->findActorId( $user, $db ) ] )
+			->orderBy( 'rev_timestamp', $sortOrder )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		if ( !$time ) {
 			return false; // no edits
