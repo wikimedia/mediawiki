@@ -27,7 +27,7 @@ var FilterItem = require( './FilterItem.js' ),
  *  groups. { min: x, max: y }
  * @param {number} [config.minValue] Minimum value for numeric groups
  * @param {string} [config.separator='|'] Value separator for 'string_options' groups
- * @param {boolean} [supportsAll=true] For 'string_options' groups, whether the magic 'all' value
+ * @param {boolean} [config.supportsAll=true] For 'string_options' groups, whether the magic 'all' value
  *  is understood to mean all options are selected.
  * @param {boolean} [config.active] Group is active
  * @param {boolean} [config.fullCoverage] This filters in this group collectively cover all results
