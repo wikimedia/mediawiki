@@ -127,6 +127,21 @@ because of Phabricator reports.
   Use ::getBodyOutput() or ::getFullOutput() instead.
 * ImportableUploadRevisionImporter::downloadSource(), deprecated in 1.31, is now
   private. Its only known external caller was removed in 1.40.
+* The following methods in the User class have been removed:
+  * Deprecated in 1.33:
+    * User::isBlockedFrom()
+  * Deprecated in 1.34:
+    * User::isBlocked()
+  * Deprecated in 1.35:
+    * User::addGroup()
+    * User::getAllGroups()
+    * User::getGroups()
+    * User::getGroupMemberships()
+    * User::getImplicitGroups()
+    * User::getOption()
+    * User::removeGroup()
+  * Deprecated in 1.37:
+    * User::isBlockedFromCreateAccount()
 * …
 
 === Deprecations in 1.43 ===
