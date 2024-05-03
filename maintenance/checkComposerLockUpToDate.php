@@ -20,6 +20,10 @@ class CheckComposerLockUpToDate extends Maintenance {
 			'Checks whether your composer.lock file is up to date with the current composer.json' );
 	}
 
+	public function canExecuteWithoutLocalSettings(): bool {
+		return true;
+	}
+
 	public function execute() {
 		global $IP;
 		$lockLocation = "$IP/composer.lock";
