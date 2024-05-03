@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Libs\UnpackFailedException;
 use MediaWiki\Logger\LoggerFactory;

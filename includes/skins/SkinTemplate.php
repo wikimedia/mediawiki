@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;

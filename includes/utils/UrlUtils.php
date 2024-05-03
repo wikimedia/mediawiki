@@ -4,8 +4,8 @@ namespace MediaWiki\Utils;
 
 use BadMethodCallException;
 use InvalidArgumentException;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\MainConfigSchema;
-use MWDebug;
 
 /**
  * A service to expand, parse, and otherwise manipulate URLs.

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Context\ContextSource;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;

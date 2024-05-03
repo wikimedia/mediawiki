@@ -25,6 +25,7 @@ use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

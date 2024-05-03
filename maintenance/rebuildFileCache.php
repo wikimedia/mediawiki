@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\Title;

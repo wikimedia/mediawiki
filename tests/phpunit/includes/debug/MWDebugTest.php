@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
@@ -8,7 +9,7 @@ use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
 
 /**
- * @covers \MWDebug
+ * @covers \MediaWiki\Debug\MWDebug
  */
 class MWDebugTest extends MediaWikiIntegrationTestCase {
 
