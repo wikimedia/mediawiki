@@ -12,7 +12,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use WANObjectCache;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -45,7 +45,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @return LoadBalancer
 	 */
 	private function getMockLoadBalancer( $db ) {
@@ -58,7 +58,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	 * @param null $insertCalls
 	 * @param null $selectCalls
 	 *
-	 * @return MockObject&DBConnRef
+	 * @return MockObject&IDatabase
 	 */
 	private function getProxyDb( $insertCalls = null, $selectCalls = null ) {
 		$proxiedMethods = [
@@ -75,7 +75,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			'rollback' => null,
 			'commit' => null,
 		];
-		$mock = $this->createMock( DBConnRef::class );
+		$mock = $this->createMock( IDatabase::class );
 		foreach ( $proxiedMethods as $method => $count ) {
 			$mock->expects( is_int( $count ) ? $this->exactly( $count ) : $this->any() )
 				->method( $method )

@@ -8,10 +8,10 @@ use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -296,7 +296,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	public function testOptionsForUpdateNotRefetchedBeforeInsert() {
-		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb = $this->createMock( IDatabase::class );
 		$mockDb->expects( $this->once() ) // This is critical what we are testing
 			->method( 'select' )
 			->willReturn( new FakeResultWrapper( [
@@ -329,7 +329,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	}
 
 	public function testOptionsNoDeleteSetDefaultValue() {
-		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb = $this->createMock( IDatabase::class );
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->willReturn( new FakeResultWrapper( [
@@ -364,7 +364,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 
 	public function testOptionsDeleteSetDefaultValue() {
 		$user = $this->getTestUser()->getUser();
-		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb = $this->createMock( IDatabase::class );
 		$mockDb
 			->method( 'newDeleteQueryBuilder' )
 			->willReturnCallback( static fn () => new DeleteQueryBuilder( $mockDb ) );
@@ -425,7 +425,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	 */
 	public function testOptionsInsertFromDefaultValue() {
 		$user = $this->getTestUser()->getUser();
-		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb = $this->createMock( IDatabase::class );
 		$mockDb
 			->method( 'newSelectQueryBuilder' )
 			->willReturnCallback( static fn () => new SelectQueryBuilder( $mockDb ) );

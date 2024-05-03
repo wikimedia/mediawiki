@@ -8,7 +8,6 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
@@ -35,12 +34,12 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param DBConnRef $mockDb
+	 * @param IDatabase $mockDb
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 * @return WatchedItemQueryService
 	 */
 	private function newService(
-		DBConnRef $mockDb,
+		IDatabase $mockDb,
 		UserOptionsLookup $userOptionsLookup = null
 	) {
 		return new WatchedItemQueryService(
@@ -55,10 +54,10 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @return MockObject&DBConnRef
+	 * @return MockObject&IDatabase
 	 */
 	private function getMockDb() {
-		$mock = $this->createMock( DBConnRef::class );
+		$mock = $this->createMock( IDatabase::class );
 
 		$mock->method( 'makeList' )
 			->with(

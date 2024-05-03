@@ -30,7 +30,6 @@ use MediaWiki\User\User;
 use MWExceptionHandler;
 use StatusValue;
 use UnexpectedValueException;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -372,7 +371,7 @@ class ApiMainTest extends ApiTestCase {
 	private function doTestCheckMaxLag( $lag ) {
 		$mockLB = $this->createMock( ILoadBalancer::class );
 		$mockLB->method( 'getMaxLag' )->willReturn( [ 'somehost', $lag ] );
-		$mockLB->method( 'getConnection' )->willReturn( $this->createMock( DBConnRef::class ) );
+		$mockLB->method( 'getConnection' )->willReturn( $this->createMock( IDatabase::class ) );
 		$this->setService( 'DBLoadBalancer', $mockLB );
 
 		$req = new FauxRequest();
