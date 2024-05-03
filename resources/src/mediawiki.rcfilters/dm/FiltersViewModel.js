@@ -10,7 +10,6 @@ var FilterGroup = require( './FilterGroup.js' ),
  * @ignore
  * @mixes OO.EventEmitter
  * @mixes OO.EmitterList
- *
  */
 FiltersViewModel = function MwRcfiltersDmFiltersViewModel() {
 	// Mixin constructor
