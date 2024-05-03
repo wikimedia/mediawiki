@@ -19,7 +19,7 @@
  */
 
 use MediaWiki\Output\StreamFile;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Proxy backend that manages file layout rewriting for FileRepo.
@@ -44,7 +44,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	protected $dbHandleFunc;
 	/** @var MapCacheLRU */
 	protected $resolvedPathCache;
-	/** @var DBConnRef[] */
+	/** @var IDatabase[] */
 	protected $dbs;
 
 	public function __construct( array $config ) {
@@ -282,7 +282,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 * Get a connection to the repo file registry DB
 	 *
 	 * @param int $index
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
 	protected function getDB( $index ) {
 		if ( !isset( $this->dbs[$index] ) ) {
