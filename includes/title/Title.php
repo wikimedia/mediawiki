@@ -2918,35 +2918,6 @@ class Title implements LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Get an array of Title objects referring to non-existent articles linked
-	 * from this page.
-	 *
-	 * @deprecated since 1.42, unneeded
-	 * @return Title[]
-	 */
-	public function getBrokenLinksFrom() {
-		wfDeprecated( __METHOD__, '1.42' );
-		if ( $this->getArticleID() == 0 ) {
-			# All links from article ID 0 are false positives
-			return [];
-		}
-
-		$dbr = $this->getDbProvider()->getReplicaDatabase();
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'pl_namespace', 'pl_title' ] )
-			->from( 'pagelinks' )
-			->leftJoin( 'page', null, [ 'pl_namespace=page_namespace', 'pl_title=page_title' ] )
-			->where( [ 'pl_from' => $this->getArticleID(), 'page_namespace' => null ] )
-			->caller( __METHOD__ )->fetchResultSet();
-
-		$retVal = [];
-		foreach ( $res as $row ) {
-			$retVal[] = self::makeTitle( $row->pl_namespace, $row->pl_title );
-		}
-		return $retVal;
-	}
-
-	/**
 	 * Get a list of URLs to purge from the CDN cache when this page changes.
 	 *
 	 * @deprecated since 1.35 Use HTMLCacheUpdater; hard-deprecated in 1.42
