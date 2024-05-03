@@ -1,5 +1,4 @@
-var ValuePickerWidget = require( './ValuePickerWidget.js' ),
-	ChangesLimitPopupWidget;
+const ValuePickerWidget = require( './ValuePickerWidget.js' );
 
 /**
  * Widget defining the popup to choose number of results.
@@ -12,7 +11,7 @@ var ValuePickerWidget = require( './ValuePickerWidget.js' ),
  * @param {mw.rcfilters.dm.FilterItem} groupByPageItemModel Group model for 'limit'
  * @param {Object} [config] Configuration object
  */
-ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitModel, groupByPageItemModel, config ) {
+const ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitModel, groupByPageItemModel, config ) {
 	config = config || {};
 
 	// Parent

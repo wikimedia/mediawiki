@@ -4,7 +4,7 @@
  * Loading this module also ensures the availability of appropriate messages via mw.msg.
  */
 ( function () {
-	var
+	const
 		monthMessages = [
 			'january', 'february', 'march', 'april',
 			'may_long', 'june', 'july', 'august',

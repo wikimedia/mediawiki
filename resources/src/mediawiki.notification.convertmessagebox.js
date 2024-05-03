@@ -8,19 +8,19 @@
  * Convert a messagebox to a notification.
  *
  * @example
- * var convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
+ * const convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
  *
  * @method (require("mediawiki.notification.convertmessagebox"))
  * @param {Object} [options] Options
  * @param {mw.Message} [options.msg] Message key (must be loaded already)
  */
 module.exports = function ( options ) {
-	var $msgBox, type, autoHide, msg, notif,
-		$successBox = $( '.mw-notify-success' ),
+	const $successBox = $( '.mw-notify-success' ),
 		$warningBox = $( '.mw-notify-warning' ),
 		$errorBox = $( '.mw-notify-error' );
 
 	// If there is a message box and javascript is enabled, use a slick notification instead!
+	let $msgBox, type;
 	if ( $successBox.length ) {
 		$msgBox = $successBox;
 		type = 'info';
@@ -34,13 +34,13 @@ module.exports = function ( options ) {
 		return;
 	}
 
-	autoHide = $msgBox.attr( 'data-mw-autohide' ) === 'true';
+	const autoHide = $msgBox.attr( 'data-mw-autohide' ) === 'true';
 
 	// If the msg param is given, use it, otherwise use the text of the successbox
-	msg = options && options.msg || $msgBox.text();
+	const msg = options && options.msg || $msgBox.text();
 	$msgBox.detach();
 
-	notif = mw.notification.notify( msg, { autoHide: autoHide, type: type } );
+	let notif = mw.notification.notify( msg, { autoHide: autoHide, type: type } );
 	if ( !autoHide ) {
 		// 'change' event not reliable!
 		$( document ).one( 'keydown mousedown', function () {

@@ -16,7 +16,7 @@
 	// (Plain tags needed for compatibility with skin option supportsMwHeading=false)
 	$( document ).on( 'contextmenu', '.mw-heading, h1, h2, h3, h4, h5, h6', function ( e ) {
 		// Don't use ":has:(.mw-editsection a)" in the selector because it's slow.
-		var $edit = $( this ).find( '.mw-editsection a' );
+		const $edit = $( this ).find( '.mw-editsection a' );
 		if ( !$edit.length ) {
 			return;
 		}

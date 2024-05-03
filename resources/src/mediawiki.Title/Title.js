@@ -5,8 +5,9 @@
 
 /* Private members */
 
-var toUpperMap,
-	mwString = require( 'mediawiki.String' ),
+let toUpperMap;
+
+const mwString = require( 'mediawiki.String' ),
 
 	namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 
@@ -79,9 +80,9 @@ var toUpperMap,
 		if ( typeof ns !== 'string' ) {
 			return false;
 		}
-		// TODO: Should just use local var namespaceIds here but it
+		// TODO: Should just use the local variable namespaceIds here, but it
 		// breaks test which modify the config
-		var id = mw.config.get( 'wgNamespaceIds' )[ ns.toLowerCase() ];
+		const id = mw.config.get( 'wgNamespaceIds' )[ ns.toLowerCase() ];
 		if ( id === undefined ) {
 			return false;
 		}
@@ -213,7 +214,7 @@ var toUpperMap,
 	 * @return {Object|boolean}
 	 */
 	parse = function ( title, defaultNamespace ) {
-		var namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
+		let namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 		title = title
 			// Strip Unicode bidi override characters
@@ -247,9 +248,9 @@ var toUpperMap,
 		}
 
 		// Process namespace prefix (if any)
-		var m = title.match( rSplit );
+		let m = title.match( rSplit );
 		if ( m ) {
-			var id = getNsIdByName( m[ 1 ] );
+			const id = getNsIdByName( m[ 1 ] );
 			if ( id !== false ) {
 				// Ordinary namespace
 				namespace = id;
@@ -266,8 +267,8 @@ var toUpperMap,
 		}
 
 		// Process fragment
-		var i = title.indexOf( '#' );
-		var fragment;
+		const i = title.indexOf( '#' );
+		let fragment;
 		if ( i === -1 ) {
 			fragment = null;
 		} else {
@@ -359,11 +360,11 @@ var toUpperMap,
 	 * @return {string}
 	 */
 	sanitize = function ( s, filter ) {
-		var rules = sanitationRules;
+		const rules = sanitationRules;
 
-		for ( var i = 0, ruleLength = rules.length; i < ruleLength; ++i ) {
-			var rule = rules[ i ];
-			for ( var m = 0, filterLength = filter.length; m < filterLength; ++m ) {
+		for ( let i = 0, ruleLength = rules.length; i < ruleLength; ++i ) {
+			const rule = rules[ i ];
+			for ( let m = 0, filterLength = filter.length; m < filterLength; ++m ) {
 				if ( rule[ filter[ m ] ] ) {
 					s = s.replace( rule.pattern, rule.replace );
 				}
@@ -445,7 +446,7 @@ var toUpperMap,
  * @throws {Error} When the title is invalid
  */
 function Title( title, namespace ) {
-	var parsed = parse( title, namespace );
+	const parsed = parse( title, namespace );
 	if ( !parsed ) {
 		throw new Error( 'Unable to parse title' );
 	}
@@ -471,12 +472,12 @@ function Title( title, namespace ) {
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
  */
 Title.newFromText = function ( title, namespace ) {
-	var parsed = parse( title, namespace );
+	const parsed = parse( title, namespace );
 	if ( !parsed ) {
 		return null;
 	}
 
-	var t = Object.create( Title.prototype );
+	const t = Object.create( Title.prototype );
 	t.namespace = parsed.namespace;
 	t.title = parsed.title;
 	t.fragment = parsed.fragment;
@@ -524,7 +525,7 @@ Title.makeTitle = function ( namespace, title ) {
  * @return {mw.Title|null} A valid Title object or null if the input cannot be turned into a valid title
  */
 Title.newFromUserInput = function ( title, defaultNamespace, options ) {
-	var namespace = parseInt( defaultNamespace ) || NS_MAIN;
+	let namespace = parseInt( defaultNamespace ) || NS_MAIN;
 
 	// merge options into defaults
 	options = $.extend( {
@@ -546,9 +547,9 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 	}
 
 	// Process namespace prefix (if any)
-	var m = title.match( rSplit );
+	const m = title.match( rSplit );
 	if ( m ) {
-		var id = getNsIdByName( m[ 1 ] );
+		const id = getNsIdByName( m[ 1 ] );
 		if ( id !== false ) {
 			// Ordinary namespace
 			namespace = id;
@@ -565,7 +566,7 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 		// Operate on the file extension
 		// Although it is possible having spaces between the name and the ".ext" this isn't nice for
 		// operating systems hiding file extensions -> strip them later on
-		var lastDot = title.lastIndexOf( '.' );
+		const lastDot = title.lastIndexOf( '.' );
 
 		// No or empty file extension
 		if ( lastDot === -1 || lastDot >= title.length - 1 ) {
@@ -573,7 +574,7 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 		}
 
 		// Get the last part, which is supposed to be the file extension
-		var ext = title.slice( lastDot + 1 );
+		const ext = title.slice( lastDot + 1 );
 
 		// Remove whitespace of the name part (that without extension)
 		title = title.slice( 0, lastDot ).trim();
@@ -615,7 +616,7 @@ Title.newFromFileName = function ( uncleanName ) {
  * Get the file title from an image element.
  *
  * @example
- * var title = mw.Title.newFromImg( imageNode );
+ * const title = mw.Title.newFromImg( imageNode );
  *
  * @name mw.Title.newFromImg
  * @method
@@ -623,7 +624,7 @@ Title.newFromFileName = function ( uncleanName ) {
  * @return {mw.Title|null} The file title or null if unsuccessful
  */
 Title.newFromImg = function ( img ) {
-	var src = img.jquery ? img[ 0 ].src : img.src,
+	const src = img.jquery ? img[ 0 ].src : img.src,
 		data = mw.util.parseImageUrl( src );
 
 	return data ? mw.Title.newFromText( 'File:' + data.name ) : null;
@@ -668,9 +669,9 @@ Title.wantSignaturesNamespace = function ( namespaceId ) {
  * @throws {Error} If title is not a string or mw.Title
  */
 Title.exists = function ( title ) {
-	var obj = Title.exist.pages;
+	const obj = Title.exist.pages;
 
-	var match;
+	let match;
 	if ( typeof title === 'string' ) {
 		match = obj[ title ];
 	} else if ( title instanceof Title ) {
@@ -714,12 +715,12 @@ Title.exist = {
 	pages: {},
 
 	set: function ( titles, state ) {
-		var pages = this.pages;
+		const pages = this.pages;
 
 		titles = Array.isArray( titles ) ? titles : [ titles ];
 		state = state === undefined ? true : !!state;
 
-		for ( var i = 0, len = titles.length; i < len; i++ ) {
+		for ( let i = 0, len = titles.length; i < len; i++ ) {
 			pages[ titles[ i ] ] = state;
 		}
 		return true;
@@ -737,7 +738,7 @@ Title.exist = {
  * @return {string} File extension in canonical form
  */
 Title.normalizeExtension = function ( extension ) {
-	var
+	const
 		lower = extension.toLowerCase(),
 		normalizations = {
 			htm: 'html',
@@ -813,7 +814,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	 * @return {string}
 	 */
 	getFileNameWithoutExtension: function () {
-		var ext = this.getExtension();
+		const ext = this.getExtension();
 		if ( ext === null ) {
 			return this.getMain();
 		}
@@ -868,7 +869,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	 * @return {string|null} Name extension or null if there is none
 	 */
 	getExtension: function () {
-		var lastDot = this.title.lastIndexOf( '.' );
+		const lastDot = this.title.lastIndexOf( '.' );
 		if ( lastDot === -1 ) {
 			return null;
 		}
@@ -889,7 +890,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 		) {
 			return this.title;
 		}
-		var firstChar = mwString.charAt( this.title, 0 );
+		const firstChar = mwString.charAt( this.title, 0 );
 		return mw.Title.phpCharToUpper( firstChar ) + this.title.slice( firstChar.length );
 	},
 
@@ -970,7 +971,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	 * @return {string}
 	 */
 	getUrl: function ( params ) {
-		var fragment = this.getFragment();
+		const fragment = this.getFragment();
 		if ( fragment ) {
 			return mw.util.getUrl( this.toString() + '#' + fragment, params );
 		} else {

@@ -2,8 +2,8 @@
 	'use strict';
 
 	$( function () {
-		var $inputs = $( '#mw-specialmute-form input[type="checkbox"]' ),
-			saveButton, $saveButton = $( '#save' );
+		const $inputs = $( '#mw-specialmute-form input[type="checkbox"]' ),
+			$saveButton = $( '#save' );
 
 		function isFormChanged() {
 			return $inputs.is( function () {
@@ -12,7 +12,7 @@
 		}
 
 		if ( $saveButton.length ) {
-			saveButton = OO.ui.infuse( $saveButton );
+			const saveButton = OO.ui.infuse( $saveButton );
 			saveButton.setDisabled( !isFormChanged() );
 
 			$inputs.on( 'change', function () {
