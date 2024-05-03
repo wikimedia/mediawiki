@@ -648,4 +648,70 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
 	}
 
+	public function testGetRevisionText_external_oldId_direct_access() {
+		$cache = $this->getWANObjectCache();
+		$this->setService( 'MainWANObjectCache', $cache );
+
+		$this->setService(
+			'ExternalStoreFactory',
+			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
+		);
+
+		$lb = $this->createMock( LoadBalancer::class );
+		$access = $this->getServiceContainer()->getExternalStoreAccess();
+
+		$blobStore = new SqlBlobStore( $lb, $access, $cache );
+
+		$this->assertSame(
+			'AAAABBAAA',
+			$blobStore->getBlob( 'es:ForTesting://cluster1/12345?flags=external,gzip' )
+		);
+
+		$cacheKey = $cache->makeGlobalKey(
+			'SqlBlobStore-blob',
+			$lb->getLocalDomainID(),
+			// See ExternalStoreForTesting for the path
+			'es:ForTesting://cluster1/12345?flags=external,gzip'
+		);
+		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
+	}
+
+	public static function provideTestGetRevisionText_external_oldId_direct_store() {
+		yield 'no compression' => [ false ];
+		yield 'compression' => [ true ];
+	}
+
+	/**
+	 * @dataProvider provideTestGetRevisionText_external_oldId_direct_store
+	 */
+	public function testGetRevisionText_external_oldId_direct_store( bool $compression ) {
+		$cache = $this->getWANObjectCache();
+		$this->setService( 'MainWANObjectCache', $cache );
+
+		$this->setService(
+			'ExternalStoreFactory',
+			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
+		);
+
+		$lb = $this->createMock( LoadBalancer::class );
+		$access = $this->getServiceContainer()->getExternalStoreAccess();
+
+		$blobStore = new SqlBlobStore( $lb, $access, $cache );
+		$blobStore->setUseExternalStore( true );
+		$blobStore->setCompressBlobs( $compression );
+		$id = $blobStore->storeBlob( 'A very unique text' );
+		$this->assertStringStartsWith( 'es:ForTesting://cluster1/', $id );
+
+		$this->assertSame(
+			'A very unique text',
+			$blobStore->getBlob( $id )
+		);
+
+		$cacheKey = $cache->makeGlobalKey(
+			'SqlBlobStore-blob',
+			$lb->getLocalDomainID(),
+			$id
+		);
+		$this->assertSame( 'A very unique text', $cache->get( $cacheKey ) );
+	}
 }

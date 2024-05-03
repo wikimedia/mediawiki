@@ -18,8 +18,8 @@ class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideFetchFromURLWithStore() {
-		yield [ 'Hello', 'ForTesting://cluster1/200', 'Allow FOO://cluster1/200' ];
-		yield [ 'Hello', 'ForTesting://cluster1/300/0', 'Allow FOO://cluster1/300/0' ];
+		yield [ 'Hello', 'ForTesting://cluster1/200', 'Allow ForTesting://cluster1/200' ];
+		yield [ 'Hello', 'ForTesting://cluster1/300/0', 'Allow ForTesting://cluster1/300/0' ];
 
 		// cases for r68900
 		yield [ false, 'ftp.example.org', 'Deny domain ftp.example.org' ];

@@ -222,25 +222,22 @@ class SqlBlobStore implements BlobStore {
 				throw new BlobAccessException( "Failed to store text to external storage" );
 			}
 			if ( $flags ) {
-				$flags .= ',';
+				return 'es:' . $data . '?flags=' . $flags;
+			} else {
+				return 'es:' . $data;
 			}
-			$flags .= 'external';
+		} else {
+			$dbw = $this->getDBConnection( DB_PRIMARY );
 
-			// TODO: we could also return an address for the external store directly here.
-			// That would mean bypassing the text table entirely when the external store is
-			// used. We'll need to assess expected fallout before doing that.
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'text' )
+				->row( [ 'old_text' => $data, 'old_flags' => $flags ] )
+				->caller( __METHOD__ )->execute();
+
+			$textId = $dbw->insertId();
+
+			return self::makeAddressFromTextId( $textId );
 		}
-
-		$dbw = $this->getDBConnection( DB_PRIMARY );
-
-		$dbw->newInsertQueryBuilder()
-			->insertInto( 'text' )
-			->row( [ 'old_text' => $data, 'old_flags' => $flags ] )
-			->caller( __METHOD__ )->execute();
-
-		$textId = $dbw->insertId();
-
-		return self::makeAddressFromTextId( $textId );
 	}
 
 	/**
@@ -337,7 +334,7 @@ class SqlBlobStore implements BlobStore {
 		$errors = [];
 		foreach ( $blobAddresses as $blobAddress ) {
 			try {
-				[ $schema, $id ] = self::splitBlobAddress( $blobAddress );
+				[ $schema, $id, $params ] = self::splitBlobAddress( $blobAddress );
 			} catch ( InvalidArgumentException $ex ) {
 				throw new BlobAccessException(
 					$ex->getMessage() . '. Use findBadBlobs.php to remedy.',
@@ -346,8 +343,21 @@ class SqlBlobStore implements BlobStore {
 				);
 			}
 
-			// TODO: MCR: also support 'ex' schema with ExternalStore URLs, plus flags encoded in the URL!
-			if ( $schema === 'bad' ) {
+			if ( $schema === 'es' ) {
+				if ( $params && isset( $params['flags'] ) ) {
+					$blob = $this->expandBlob( $id, $params['flags'] . ',external', $blobAddress );
+				} else {
+					$blob = $this->expandBlob( $id, 'external', $blobAddress );
+				}
+
+				if ( $blob === false ) {
+					$errors[$blobAddress] = [
+						'internalerror',
+						"Bad data in external store address $id. Use findBadBlobs.php to remedy."
+					];
+				}
+				$result[$blobAddress] = $blob;
+			} elseif ( $schema === 'bad' ) {
 				// Database row was marked as "known bad"
 				wfDebug(
 					__METHOD__
