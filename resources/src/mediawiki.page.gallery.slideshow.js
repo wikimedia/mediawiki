@@ -49,7 +49,7 @@
 		 * The `<li>` element that contains the carousel.
 		 *
 		 * @name $carousel
-		 * @memberOf mw.GallerySlideshow.prototype
+		 * @memberof mw.GallerySlideshow.prototype
 		 * @type {jQuery|null}
 		 */
 
@@ -57,7 +57,7 @@
 		 * The `<div>` element that contains the interface buttons.
 		 *
 		 * @name $interface
-		 * @memberOf mw.GallerySlideshow.prototype
+		 * @memberof mw.GallerySlideshow.prototype
 		 * @type {jQuery}
 		 */
 
@@ -65,7 +65,7 @@
 		 * The `<img>` element that'll display the current image.
 		 *
 		 * @name $img
-		 * @memberOf mw.GallerySlideshow.prototype
+		 * @memberof mw.GallerySlideshow.prototype
 		 * @type {jQuery}
 		 */
 
@@ -73,7 +73,7 @@
 		 * The `<p>` element that holds the image caption.
 		 *
 		 * @name $imgCaption
-		 * @memberOf mw.GallerySlideshow.prototype
+		 * @memberof mw.GallerySlideshow.prototype
 		 * @type {jQuery}
 		 */
 
@@ -81,7 +81,7 @@
 		 * The `<div>` element that contains the image.
 		 *
 		 * @name $imgContainer
-		 * @memberOf mw.GallerySlideshow.prototype
+		 * @memberof mw.GallerySlideshow.prototype
 		 * @type {jQuery}
 		 */
 
@@ -89,7 +89,7 @@
 		 * Width of the image based on viewport size.
 		 *
 		 * @name imageWidth
-		 * @memberOf mw.GallerySlideshow.prototype
+		 * @memberof mw.GallerySlideshow.prototype
 		 * @type {number}
 		 */
 
@@ -97,7 +97,7 @@
 		 * Height of the image based on viewport size the URLs in the required size.
 		 *
 		 * @name imageHeight
-		 * @memberOf mw.GallerySlideshow.prototype
+		 * @memberof mw.GallerySlideshow.prototype
 		 * @type {number}
 		 */
 
