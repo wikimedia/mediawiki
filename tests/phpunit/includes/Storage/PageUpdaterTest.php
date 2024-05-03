@@ -64,7 +64,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getRecentChangeFor( $revId ) {
 		$qi = RecentChange::getQueryInfo();
-		$row = $this->db->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->queryInfo( $qi )
 			->where( [ 'rc_this_oldid' => $revId ] )
 			->caller( __METHOD__ )
@@ -85,7 +85,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$page = $wikiPageFactory->newFromTitle( $title );
 		$updater = $page->newPageUpdater( $user );
 
-		$oldStats = $this->db->newSelectQueryBuilder()
+		$oldStats = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
 			->where( '1=1' )
@@ -165,7 +165,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $rc, 'RecentChange' );
 
 		// check site stats - this asserts that derived data updates where run.
-		$stats = $this->db->newSelectQueryBuilder()
+		$stats = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
 			->where( '1=1' )
@@ -204,7 +204,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $page->newPageUpdater( $user );
 
-		$oldStats = $this->db->newSelectQueryBuilder()
+		$oldStats = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
 			->where( '1=1' )

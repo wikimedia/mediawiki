@@ -33,7 +33,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		foreach ( $values as $name ) {
 			$insertValues[] = [ 'role_name' => $name ];
 		}
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'slot_roles' )
 			->rows( $insertValues )
 			->caller( __METHOD__ )
@@ -80,7 +80,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			$mock->expects( is_int( $count ) ? $this->exactly( $count ) : $this->any() )
 				->method( $method )
 				->willReturnCallback( function ( ...$args ) use ( $method ) {
-					return $this->db->$method( ...$args );
+					return $this->getDb()->$method( ...$args );
 				} );
 		}
 		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $mock ) );
@@ -354,9 +354,10 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			'slot_roles', 'role_id', 'role_name'
 		);
 
-		$this->db->begin( __METHOD__ );
+		$db = $this->getDb();
+		$db->begin( __METHOD__ );
 		$fooId = $store1->acquireId( 'foo' );
-		$this->db->rollback( __METHOD__ );
+		$db->rollback( __METHOD__ );
 
 		$this->assertSame( $fooId, $store2->getId( 'foo' ) );
 		$this->assertSame( $fooId, $store1->getId( 'foo' ) );
@@ -392,9 +393,9 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			'slot_roles', 'role_id', 'role_name'
 		);
 
-		$this->db->begin( __METHOD__ );
+		$this->getDb()->begin( __METHOD__ );
 		$store1->acquireId( 'foo' );
-		$this->db->rollback( __METHOD__ );
+		$this->getDb()->rollback( __METHOD__ );
 
 		$this->assertArrayNotHasKey( 'foo', $store1->getMap() );
 	}
@@ -419,10 +420,10 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			'slot_roles', 'role_id', 'role_name'
 		);
 
-		$this->db->begin( __METHOD__ );
+		$this->getDb()->begin( __METHOD__ );
 
 		$quuxId = null;
-		$this->db->onTransactionResolution(
+		$this->getDb()->onTransactionResolution(
 			static function () use ( $store1, &$quuxId ) {
 				$quuxId = $store1->acquireId( 'quux' );
 			},
@@ -430,7 +431,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$store1->acquireId( 'foo' );
-		$this->db->rollback( __METHOD__ );
+		$this->getDb()->rollback( __METHOD__ );
 
 		// $store2 should know about the insert by $store1
 		$this->assertSame( $quuxId, $store2->getId( 'quux' ) );
@@ -459,21 +460,22 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Nested atomic sections
-		$atomic1 = $this->db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
-		$atomic2 = $this->db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
+		$db = $this->getDb();
+		$atomic1 = $db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
+		$atomic2 = $db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
 
 		// Acquire ID
 		$id = $store->acquireId( 'foo' );
 
 		// Oops, rolled back
-		$this->db->cancelAtomic( $fname, $atomic2 );
+		$db->cancelAtomic( $fname, $atomic2 );
 
 		// Should have been re-inserted
 		$store->reloadMap();
 		$this->assertSame( $id, $store->getId( 'foo' ) );
 
 		// Oops, re-insert was rolled back too.
-		$this->db->cancelAtomic( $fname, $atomic1 );
+		$db->cancelAtomic( $fname, $atomic1 );
 
 		// This time, no re-insertion happened.
 		try {

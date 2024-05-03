@@ -24,7 +24,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function addDBData() {
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'category' )
 			->ignore()
 			->row( [
