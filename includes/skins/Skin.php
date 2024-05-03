@@ -989,13 +989,9 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @param string $type
 	 * @return string
 	 */
-	final public function getCopyright( $type = 'detect' ) {
-		if ( $type !== 'detect' ) {
-			wfDeprecated( __METHOD__ . ' with detect parameter', '1.40' );
-		}
+	final public function getCopyright(): string {
 		return $this->getFooterTemplateDataItem( 'data-info', 'copyright' );
 	}
 

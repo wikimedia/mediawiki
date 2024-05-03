@@ -148,6 +148,8 @@ because of Phabricator reports.
   BotPassword::removeAllPasswordsForCentralId(), deprecated in 1.37,
   have been removed.
 * Title::getBrokenLinksFrom(), deprecated in 1.42, has been removed.
+* The $type parameter to Skin::getCopyright(), deprecated in 1.40, has been
+  removed.
 * …
 
 === Deprecations in 1.43 ===
