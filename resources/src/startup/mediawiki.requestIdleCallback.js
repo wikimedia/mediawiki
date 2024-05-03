@@ -37,7 +37,7 @@ mw.requestIdleCallbackInternal = function ( callback ) {
  * [RAIL]: https://developers.google.com/web/fundamentals/performance/rail
  *
  * @memberof mw
- * @function
+ * @method
  * @param {Function} callback
  * @param {Object} [options]
  * @param {number} [options.timeout] If set, the callback will be scheduled for
