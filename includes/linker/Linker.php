@@ -1300,8 +1300,13 @@ class Linker {
 			$items[] = self::blockLink( $userId, $userText );
 		}
 
-		$user = RequestContext::getMain()->getUser();
-		if ( $addEmailLink && $user->canSendEmail() ) {
+		if (
+			$addEmailLink
+			&& MediaWikiServices::getInstance()->getEmailUserFactory()
+				->newEmailUser( RequestContext::getMain()->getAuthority() )
+				->canSend()
+				->isGood()
+		) {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
