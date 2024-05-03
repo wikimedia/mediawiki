@@ -68,6 +68,21 @@ class HTMLSelectNamespace extends HTMLFormField {
 	 * @inheritDoc
 	 * @stable to override
 	 */
+	public function getInputCodex( $value, $hasErrors ) {
+		$optionParams = [
+			'all' => $this->mAllValue,
+			'in-user-lang' => $this->mUserLang
+		];
+		$select = new HTMLSelectField( [
+			'options' => array_flip( Html::namespaceSelectorOptions( $optionParams ) )
+		] + $this->mParams );
+		return $select->getInputCodex( $value, $hasErrors );
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	protected function getOOUIModules() {
 		// FIXME: NamespaceInputWidget should be in its own module (probably?)
 		return [ 'mediawiki.widgets' ];
