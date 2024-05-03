@@ -186,6 +186,8 @@ because of Phabricator reports.
   only for successful edits. This change is done to support better logging
   support and moderation, to ensure that hooks run in a pre-save context have
   a user object to associate log entries and other actions with.
+* Several entries have been removed from the default list of interwikis used
+  when installing new wikis. This does not affect existing wikis.
 * …
 
 == Compatibility ==
