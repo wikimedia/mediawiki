@@ -33,7 +33,7 @@
 
 	/**
 	 * @class
-	 * @extends {OO.ui.FieldLayout}
+	 * @extends OO.ui.FieldLayout
 	 * @mixes mw.htmlform.Element
 	 * @classdesc FieldLayout class.
 	 * @memberof mw.htmlform
@@ -53,7 +53,7 @@
 
 	/**
 	 * @class
-	 * @extends {OO.ui.ActionFieldLayout}
+	 * @extends OO.ui.ActionFieldLayout
 	 * @mixes mw.htmlform.Element
 	 * @classdesc FieldLayout class.
 	 * @memberof mw.htmlform
