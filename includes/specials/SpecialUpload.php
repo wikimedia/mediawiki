@@ -362,6 +362,12 @@ class SpecialUpload extends SpecialPage {
 							[ 'active' => true, 'msg' => 'upload-progress-processing' ]
 						);
 						break;
+					default:
+						// unknown result, just show a generic error
+						$this->showUploadError( $this->getOutput()->parseAsInterface(
+							$status->getWikiText( false, false, $this->getLanguage() ) )
+						);
+						break;
 				}
 				break;
 			case 'queued':
@@ -377,6 +383,12 @@ class SpecialUpload extends SpecialPage {
 						break;
 					case 'Failure':
 						// downloading failed
+						$this->showUploadError( $this->getOutput()->parseAsInterface(
+							$status->getWikiText( false, false, $this->getLanguage() ) )
+						);
+						break;
+					default:
+						// unknown result, just show a generic error
 						$this->showUploadError( $this->getOutput()->parseAsInterface(
 							$status->getWikiText( false, false, $this->getLanguage() ) )
 						);
