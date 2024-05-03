@@ -4533,6 +4533,7 @@
 	"duration-hours": "Used as duration. Parameters:\n* $1 - number of hours\n{{Related|Duration}}\n{{Identical|Hour}}",
 	"duration-days": "Used as duration. Parameters:\n* $1 - number of days\n{{Related|Duration}}\n{{Identical|Day}}",
 	"duration-weeks": "Used as duration. Parameters:\n* $1 - number of weeks\n{{Related|Duration}}\n{{Identical|Week}}",
+	"duration-months": "Used as duration. Parameters:\n* $1 - number of months\n{{Related|Duration}}\n{{Identical|Month}}",
 	"duration-years": "Used as duration. Parameters:\n* $1 - number of years\n{{Related|Duration}}\n{{Identical|Year}}",
 	"duration-decades": "Used as duration. Parameters:\n* $1 - number of decades\n{{Related|Duration}}",
 	"duration-centuries": "Used as duration. Parameters:\n* $1 - number of centuries\n{{Related|Duration}}",

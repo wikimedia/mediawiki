@@ -262,7 +262,8 @@ class Language implements Bcp47Code {
 		'decades' => 10 * 31_556_952,
 		// The average year is 365.2425 days (365 + (24 * 3 + 25) / 400)
 		'years' => 31_556_952, // 365.2425 * 24 * 3600
-		'weeks' => 7 * 24 * 3600,
+		// To simplify, we consider a month to be 1/12 of a year
+		'months' => 365.2425 * 24 * 3600 / 12,
 		'days' => 24 * 3600,
 		'hours' => 3600,
 		'minutes' => 60,
@@ -2152,6 +2153,7 @@ class Language implements Bcp47Code {
 	 */
 	public function getDurationIntervals( $seconds, array $chosenIntervals = [] ) {
 		if ( !$chosenIntervals ) {
+			// Default intervals. Do not include `months` as they were not part of the origional default implementaiton
 			$chosenIntervals = [
 				'millennia',
 				'centuries',
