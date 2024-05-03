@@ -603,6 +603,7 @@ abstract class MediaWikiEntryPoint {
 		if (
 			// "Content-Length" is used to prevent clients from waiting on deferred updates
 			$this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH &&
+			!$this->getResponse()->headersSent() &&
 			// The HTTP response code clearly allows for a meaningful body
 			in_array( $this->getStatusCode(), [ 200, 404 ], true ) &&
 			// The queue of (post-send) deferred updates is non-empty
