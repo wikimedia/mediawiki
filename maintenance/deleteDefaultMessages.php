@@ -55,12 +55,14 @@ class DeleteDefaultMessages extends Maintenance {
 
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
-			->tables( [ 'page', 'revision' ] + $actorQuery['tables'] )
+			->from( 'page' )
+			->join( 'revision', null, 'page_latest=rev_id' )
+			->tables( $actorQuery['tables'] )
 			->where( [
 				'page_namespace' => NS_MEDIAWIKI,
 				$actorQuery['conds'],
 			] )
-			->joinConds( [ 'revision' => [ 'JOIN', 'page_latest=rev_id' ] ] + $actorQuery['joins'] )
+			->joinConds( $actorQuery['joins'] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 

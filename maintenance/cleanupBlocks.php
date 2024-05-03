@@ -128,9 +128,9 @@ class CleanupBlocks extends Maintenance {
 
 			$res = $db->newSelectQueryBuilder()
 				->select( [ 'ipb_id', 'user_name' ] )
-				->tables( [ 'ipblocks', 'user' ] )
+				->from( 'ipblocks' )
+				->join( 'user', null, 'ipb_user = user_id' )
 				->where( [
-					'ipb_user = user_id',
 					"ipb_user >= " . $from,
 					"ipb_user <= " . (int)$to,
 					'ipb_address != user_name',
