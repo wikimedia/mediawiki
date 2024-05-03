@@ -192,6 +192,8 @@ because of Phabricator reports.
 * StatusValue will emit deprecation warnings when an error is given as
   a MessageSpecifier combined with a parameters array, which is usually
   a mistake, as the parameters have always been ignored.
+* In StatusValue::replaceMessage(), ::hasMessage() and ::hasMessagesExcept()
+  passing MessageSpecifier or MessageValue as $source has been deprecated.
 * …
 
 === Other changes in 1.43 ===
