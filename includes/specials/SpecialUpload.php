@@ -316,7 +316,7 @@ class SpecialUpload extends SpecialPage {
 	protected function showUploadStatus( $user ) {
 		// first, let's fetch the status from the main stash
 		$progress = UploadBase::getSessionStatus( $user, $this->mCacheKey );
-		if ( $progress == false ) {
+		if ( !$progress ) {
 			$progress = [ 'status' => Status::newFatal( 'invalid-cache-key' ) ];
 		}
 		$this->log->debug( 'Upload status: stage {stage}, result {result}', $progress );
