@@ -71,12 +71,19 @@
 }
 
 .searchResultImage {
+	display: flex;
+
 	.searchResultImage-thumbnail {
+		flex-shrink: 0;
 		width: 90px;
 		height: 90px;
 		text-align: center;
 		vertical-align: top;
-		padding-right: 0.5em;
+		padding-right: 1em;
+
+		> div {
+			padding: 0.5em;
+		}
 
 		.searchResultImage-thumbnail-placeholder {
 			background-color: @background-color-neutral-subtle;
