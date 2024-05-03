@@ -148,14 +148,12 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			->caller( __METHOD__ )->fetchRow();
 
 		$queryInfo = $rstore->getJoin( $key );
-		$joinRow = $this->db->selectRow(
-			[ $table ] + $queryInfo['tables'],
-			$queryInfo['fields'],
-			[ $pk => $id ],
-			__METHOD__,
-			[],
-			$queryInfo['joins']
-		);
+		$joinRow = $this->db->newSelectQueryBuilder()
+			->queryInfo( $queryInfo )
+			->from( $table )
+			->where( [ $pk => $id ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		$this->assertComment(
 			$expect,
