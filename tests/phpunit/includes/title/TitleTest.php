@@ -1859,21 +1859,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Title\Title::getCdnUrls
-	 */
-	public function testGetCdnUrls() {
-		$this->hideDeprecated( Title::class . '::getCdnUrls' );
-		$this->assertEquals(
-			[
-				'https://example.org/wiki/Example',
-				'https://example.org/w/index.php?title=Example&action=history',
-			],
-			Title::makeTitle( NS_MAIN, 'Example' )->getCdnUrls(),
-			'article'
-		);
-	}
-
-	/**
 	 * @covers \MediaWiki\Page\PageStore::getSubpages
 	 */
 	public function testGetSubpages() {
