@@ -15,7 +15,7 @@
 	 * that.
 	 *
 	 * @example
-	 * var widget = new mw.widgets.StashedFileWidget( {
+	 * const widget = new mw.widgets.StashedFileWidget( {
 	 *   filekey: '12r9e4rugeec.ddtmmp.1.jpg',
 	 * } );
 	 *
@@ -94,7 +94,7 @@
 	};
 
 	mw.widgets.StashedFileWidget.prototype.updateUI = function () {
-		var $label, $filetype;
+		let $label, $filetype;
 
 		if ( this.filekey ) {
 			this.$element.removeClass( 'mw-widgets-stashedFileWidget-empty' );
@@ -134,7 +134,7 @@
 	};
 
 	mw.widgets.StashedFileWidget.prototype.loadAndGetImageUrl = function () {
-		var filekey = this.filekey;
+		const filekey = this.filekey;
 
 		if ( filekey ) {
 			return this.api.get( {
@@ -144,7 +144,7 @@
 				siiprop: [ 'size', 'url', 'mime' ],
 				siiurlwidth: 220
 			} ).then( function ( data ) {
-				var sii = data.query.stashimageinfo[ 0 ];
+				const sii = data.query.stashimageinfo[ 0 ];
 
 				return $.Deferred().resolve( sii.thumburl, sii.mime );
 			} );

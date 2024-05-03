@@ -6,7 +6,7 @@
 		return;
 	}
 
-	var wpRevDeleteReasonList = OO.ui.infuse( $( '#wpRevDeleteReasonList' ) ),
+	const wpRevDeleteReasonList = OO.ui.infuse( $( '#wpRevDeleteReasonList' ) ),
 		wpReason = OO.ui.infuse( $( '#wpReason' ) );
 
 	mw.widgets.visibleCodePointLimitWithDropdown( wpReason, wpRevDeleteReasonList, mw.config.get( 'wgCommentCodePointLimit' ) );

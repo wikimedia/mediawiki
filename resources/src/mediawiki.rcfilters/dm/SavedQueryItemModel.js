@@ -11,7 +11,7 @@
  * @param {Object} [config] Configuration options
  * @param {boolean} [config.default] This item is the default
  */
-var SavedQueryItemModel = function MwRcfiltersDmSavedQueriesModel( id, label, data, config ) {
+const SavedQueryItemModel = function MwRcfiltersDmSavedQueriesModel( id, label, data, config ) {
 	config = config || {};
 
 	// Mixin constructor

@@ -1,5 +1,5 @@
 ( function () {
-	var isMobile;
+	let isMobile;
 	// Connect OOUI to MediaWiki's localisation system
 	OO.ui.getUserLanguages = mw.language.getFallbackLanguageChain;
 	OO.ui.msg = mw.msg;

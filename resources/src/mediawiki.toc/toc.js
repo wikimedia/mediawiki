@@ -2,12 +2,13 @@
 	'use strict';
 
 	function initToc( tocNode ) {
-		var hidden = false,
-			toggleNode = tocNode.querySelector( '.toctogglecheckbox' );
+		const toggleNode = tocNode.querySelector( '.toctogglecheckbox' );
 
 		if ( !toggleNode ) {
 			return;
 		}
+
+		let hidden = false;
 
 		toggleNode.addEventListener( 'change', function () {
 			hidden = !hidden;
@@ -22,8 +23,8 @@
 	}
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		var tocs = $content[ 0 ] ? $content[ 0 ].querySelectorAll( '.toc' ) : [],
-			i = tocs.length;
+		const tocs = $content[ 0 ] ? $content[ 0 ].querySelectorAll( '.toc' ) : [];
+		let i = tocs.length;
 		while ( i-- ) {
 			initToc( tocs[ i ] );
 		}
