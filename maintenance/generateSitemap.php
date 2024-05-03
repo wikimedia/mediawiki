@@ -175,6 +175,12 @@ class GenerateSitemap extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption(
+			'namespaces',
+			'Only include pages in these namespaces in the sitemap, ' .
+			'defaults to the value of wgSitemapNamespaces if not defined.',
+			false, true, false, true
+		);
 	}
 
 	/**
@@ -254,6 +260,14 @@ class GenerateSitemap extends Maintenance {
 	 * Generate a one-dimensional array of existing namespaces
 	 */
 	private function generateNamespaces() {
+		// Use the namespaces passed in via command line arguments if they are set.
+		$sitemapNamespacesFromConfig = $this->getOption( 'namespaces' );
+		if ( is_array( $sitemapNamespacesFromConfig ) && count( $sitemapNamespacesFromConfig ) > 0 ) {
+			$this->namespaces = $sitemapNamespacesFromConfig;
+
+			return;
+		}
+
 		// Only generate for specific namespaces if $wgSitemapNamespaces is an array.
 		$sitemapNamespaces = $this->getConfig()->get( MainConfigNames::SitemapNamespaces );
 		if ( is_array( $sitemapNamespaces ) ) {
