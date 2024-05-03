@@ -1048,51 +1048,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Given a pair of message keys for link and text label,
-	 * return an HTML link for use in the footer.
-	 *
-	 * @param string $desc The i18n message key for the link text.
-	 * 		The content of this message will be the visible text label.
-	 * 		If this is set to nonexisting message key or the message is
-	 * 		disabled, the link will not be generated, empty string will
-	 * 		be returned in the stead.
-	 * @param string $page The i18n message key for the page to link to.
-	 * 		The content of this message will be the destination page for
-	 * 		the footer link. Given a message key 'Privacypage' with content
-	 * 		'Project:Privacy policy', the link will lead to the wiki page with
-	 * 		the title of the content.
-	 *
-	 * @return string HTML anchor
-	 * @deprecated since 1.40
-	 */
-	public function footerLink( $desc, $page ) {
-		wfDeprecated( __METHOD__, '1.40' );
-
-		// If the link description has been disabled in the default language,
-		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
-			// then it is disabled, for all languages.
-			$title = null;
-		} else {
-			// Otherwise, we display the link for the user, described in their
-			// language (which may or may not be the same as the default language),
-			// but we make the link target be the one site-wide page.
-			$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
-		}
-
-		if ( !$title ) {
-			return '';
-		}
-
-		// Similar to Skin::addToSidebarPlain
-		// Optimization: Avoid LinkRenderer here as it requires extra DB info
-		// to add unneeded classes even for makeKnownLink (T313462).
-		return Html::element( 'a',
-			[ 'href' => $title->fixSpecialName()->getLinkURL() ],
-			$this->msg( $desc )->text()
-		);
-	}
-
-	/**
 	 * Return URL options for the 'edit page' link.
 	 * This may include an 'oldid' specifier, if the current page view is such.
 	 *
