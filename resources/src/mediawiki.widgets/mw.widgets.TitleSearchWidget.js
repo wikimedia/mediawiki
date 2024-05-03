@@ -75,7 +75,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.TitleSearchWidget.prototype.onQueryChange = function () {
-		var widget = this;
+		const widget = this;
 
 		this.getRequestData().done( function ( data ) {
 			if ( widget.query.isReadOnly() ) {

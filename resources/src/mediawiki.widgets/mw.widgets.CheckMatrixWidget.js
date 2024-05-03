@@ -22,7 +22,7 @@
 	 *  (as HTML). Takes precedence over text tooltips.
 	 */
 	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {
-		var widget = this;
+		const widget = this;
 		config = config || {};
 
 		// Parent constructor
@@ -39,7 +39,7 @@
 		this.forcedOff = config.forcedOff || [];
 
 		// Build header
-		var $headRow = $( '<tr>' );
+		const $headRow = $( '<tr>' );
 		$headRow.append( $( '<td>' ).text( '\u00A0' ) );
 
 		// Iterate over the columns object (ignore the value)
@@ -47,14 +47,14 @@
 		$.each( this.columns, function ( columnLabel ) {
 			$headRow.append( $( '<th>' ).html( columnLabel ) );
 		} );
-		var $thead = $( '<thead>' );
+		const $thead = $( '<thead>' );
 		$thead.append( $headRow );
 
-		var $tbody = $( '<tbody>' );
+		const $tbody = $( '<tbody>' );
 		// Build table
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.rows, function ( rowLabel, rowTag ) {
-			var $row = $( '<tr>' ),
+			const $row = $( '<tr>' ),
 				labelField = new OO.ui.FieldLayout(
 					new OO.ui.Widget(), // Empty widget, since we don't have the checkboxes here
 					{
@@ -71,7 +71,7 @@
 			// Columns
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( widget.columns, function ( columnLabel, columnTag ) {
-				var thisTag = columnTag + '-' + rowTag,
+				const thisTag = columnTag + '-' + rowTag,
 					checkbox = new OO.ui.CheckboxInputWidget( {
 						value: thisTag,
 						name: widget.name ? widget.name + '[]' : undefined,
@@ -86,7 +86,7 @@
 
 			$tbody.append( $row );
 		} );
-		var $table = $( '<table>' );
+		const $table = $( '<table>' );
 		$table
 			.addClass( 'mw-htmlform-matrix mw-widget-checkMatrixWidget-matrix' )
 			.append( $thead, $tbody );
@@ -140,7 +140,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.CheckMatrixWidget.prototype.setDisabled = function ( isDisabled ) {
-		var widget = this;
+		const widget = this;
 
 		// Parent method
 		mw.widgets.CheckMatrixWidget.super.prototype.setDisabled.call( this, isDisabled );

@@ -65,7 +65,7 @@
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		var retval = mw.widgets.UserInputWidget.super.prototype.focus.apply( this, arguments );
+		const retval = mw.widgets.UserInputWidget.super.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( false );
 
@@ -102,10 +102,10 @@
 	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.widgets.UserInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
-		var items = [];
+		const items = [];
 
-		for ( var i = 0, len = data.length; i < len; i++ ) {
-			var user = data[ i ] || {};
+		for ( let i = 0, len = data.length; i < len; i++ ) {
+			const user = data[ i ] || {};
 			items.push( new OO.ui.MenuOptionWidget( {
 				label: user.name,
 				data: user.name

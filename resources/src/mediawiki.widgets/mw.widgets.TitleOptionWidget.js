@@ -27,7 +27,7 @@
 	 * @param {Function} [config.compare] String comparison function for query highlighting
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
-		var icon;
+		let icon;
 
 		if ( !config.showImages ) {
 			icon = null;

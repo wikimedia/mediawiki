@@ -73,7 +73,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ComplexTitleInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.ComplexTitleInputWidget.super.static.gatherPreInfuseState( node, config );
+		const state = mw.widgets.ComplexTitleInputWidget.super.static.gatherPreInfuseState( node, config );
 		state.namespace = mw.widgets.NamespaceInputWidget.static.gatherPreInfuseState(
 			$( node ).find( '.mw-widget-namespaceInputWidget' ),
 			config.namespace

@@ -11,7 +11,7 @@
 	 *
 	 * @example
 	 * mw.loader.using( 'mediawiki.widgets.SizeFilterWidget', function () {
-	 *   var sf = new mw.widgets.SizeFilterWidget();
+	 *   let sf = new mw.widgets.SizeFilterWidget();
 	 *   $( document.body ).append( sf.$element );
 	 * } );
 	 *
@@ -84,7 +84,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SizeFilterWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.SizeFilterWidget.super.static.gatherPreInfuseState( node, config );
+		const state = mw.widgets.SizeFilterWidget.super.static.gatherPreInfuseState( node, config );
 		state.radioselectinput = OO.ui.RadioSelectInputWidget.static.gatherPreInfuseState(
 			$( node ).find( '.oo-ui-radioSelectInputWidget' ),
 			config.radioselectinput

@@ -96,7 +96,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.TitlesMultiselectWidget.prototype.onInputChange = function () {
-		var widget = this;
+		const widget = this;
 
 		this.getRequestData()
 			.then( function ( data ) {

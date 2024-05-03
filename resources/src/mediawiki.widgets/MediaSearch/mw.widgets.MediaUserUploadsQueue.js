@@ -39,12 +39,12 @@
 	 * @return {jQuery.Promise} Promise that resolves when the resources are set up
 	 */
 	mw.widgets.MediaUserUploadsQueue.prototype.setup = function () {
-		var queue = this;
+		const queue = this;
 
 		return this.getFileRepos().then( function ( sources ) {
 			if ( queue.providers.length === 0 ) {
 				// Set up the providers
-				for ( var i = 0, len = sources.length; i < len; i++ ) {
+				for ( let i = 0, len = sources.length; i < len; i++ ) {
 					queue.addProvider( new mw.widgets.MediaUserUploadsProvider(
 						sources[ i ].apiurl,
 						{

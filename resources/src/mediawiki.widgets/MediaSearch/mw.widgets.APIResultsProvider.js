@@ -56,10 +56,10 @@
 	 * of available results, or is rejected if no results are available.
 	 */
 	mw.widgets.APIResultsProvider.prototype.getResults = function () {
-		var deferred = $.Deferred(),
+		const deferred = $.Deferred(),
 			allParams = $.extend( {}, this.getStaticParams(), this.getUserParams() );
 
-		var xhr = $.getJSON( this.getAPIurl(), allParams )
+		const xhr = $.getJSON( this.getAPIurl(), allParams )
 			.done( function ( data ) {
 				if ( Array.isArray( data ) && data.length ) {
 					deferred.resolve( data );

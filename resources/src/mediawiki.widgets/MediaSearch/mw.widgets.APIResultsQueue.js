@@ -59,8 +59,9 @@
 	 * @return {jQuery.Promise} Promise that resolves into an array of items.
 	 */
 	mw.widgets.APIResultsQueue.prototype.get = function ( howMany ) {
-		var fetchingPromise = null,
-			me = this;
+		let fetchingPromise = null;
+
+		const me = this;
 
 		howMany = howMany || this.limit;
 
@@ -90,18 +91,18 @@
 	 *  of fetched items. Note: The promise must have an .abort() functionality.
 	 */
 	mw.widgets.APIResultsQueue.prototype.queryProviders = function ( howMany ) {
-		var queue = this;
+		const queue = this;
 
 		// Make sure there are resources set up
 		return this.setup()
 			.then( function () {
 				// Abort previous requests
-				for ( var i = 0, iLen = queue.providerPromises.length; i < iLen; i++ ) {
+				for ( let i = 0, iLen = queue.providerPromises.length; i < iLen; i++ ) {
 					queue.providerPromises[ i ].abort();
 				}
 				queue.providerPromises = [];
 				// Set up the query to all providers
-				for ( var j = 0, jLen = queue.providers.length; j < jLen; j++ ) {
+				for ( let j = 0, jLen = queue.providers.length; j < jLen; j++ ) {
 					if ( !queue.providers[ j ].isDepleted() ) {
 						queue.providerPromises.push(
 							queue.providers[ j ].getResults( howMany )
@@ -128,11 +129,11 @@
 			// Reset queue
 			this.queue = [];
 			// Reset promises
-			for ( var i = 0, iLen = this.providerPromises.length; i < iLen; i++ ) {
+			for ( let i = 0, iLen = this.providerPromises.length; i < iLen; i++ ) {
 				this.providerPromises[ i ].abort();
 			}
 			// Change queries
-			for ( var j = 0, jLen = this.providers.length; j < jLen; j++ ) {
+			for ( let j = 0, jLen = this.providers.length; j < jLen; j++ ) {
 				this.providers[ j ].setUserParams( this.params );
 			}
 		}
@@ -145,11 +146,11 @@
 		// Reset queue
 		this.queue = [];
 		// Reset promises
-		for ( var i = 0, iLen = this.providerPromises.length; i < iLen; i++ ) {
+		for ( let i = 0, iLen = this.providerPromises.length; i < iLen; i++ ) {
 			this.providerPromises[ i ].abort();
 		}
 		// Reset options
-		for ( var j = 0, jLen = this.providers.length; j < jLen; j++ ) {
+		for ( let j = 0, jLen = this.providers.length; j < jLen; j++ ) {
 			this.providers[ j ].reset();
 		}
 	};
@@ -170,7 +171,7 @@
 	 */
 	mw.widgets.APIResultsQueue.prototype.setProviders = function ( providers ) {
 		this.providers = providers;
-		for ( var i = 0, len = this.providers.length; i < len; i++ ) {
+		for ( let i = 0, len = this.providers.length; i < len; i++ ) {
 			this.providers[ i ].setUserParams( this.params );
 			this.providers[ i ].setLang( this.lang );
 		}
@@ -232,7 +233,7 @@
 	 */
 	mw.widgets.APIResultsQueue.prototype.setLang = function ( lang ) {
 		this.lang = lang;
-		for ( var i = 0, len = this.providers.length; i < len; i++ ) {
+		for ( let i = 0, len = this.providers.length; i < len; i++ ) {
 			this.providers[ i ].setLang( this.lang );
 		}
 	};

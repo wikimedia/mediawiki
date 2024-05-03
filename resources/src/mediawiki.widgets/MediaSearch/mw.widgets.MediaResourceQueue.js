@@ -36,7 +36,7 @@
 	 * @return {jQuery.Promise} Promise that resolves when the resources are set up
 	 */
 	mw.widgets.MediaResourceQueue.prototype.getFileRepos = function () {
-		var defaultSource = [ {
+		const defaultSource = [ {
 			url: mw.util.wikiScript( 'api' ),
 			local: ''
 		} ];

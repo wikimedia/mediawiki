@@ -73,7 +73,7 @@
 	 * properties are set.
 	 */
 	mw.widgets.MediaResourceProvider.prototype.loadSiteInfo = function () {
-		var provider = this;
+		const provider = this;
 
 		if ( !this.siteInfoPromise ) {
 			this.siteInfoPromise = new mw.Api().get( {
@@ -100,9 +100,10 @@
 	 * of available results, or is rejected if no results are available.
 	 */
 	mw.widgets.MediaResourceProvider.prototype.getResults = function ( howMany ) {
-		var xhr,
-			aborted = false,
-			provider = this;
+		let xhr,
+			aborted = false;
+
+		const provider = this;
 
 		return this.loadSiteInfo()
 			.then( function () {
@@ -170,17 +171,17 @@
 	 *  the fetched data.
 	 */
 	mw.widgets.MediaResourceProvider.prototype.fetchAPIresults = function ( howMany ) {
-		var provider = this;
+		const provider = this;
 
 		if ( !this.isValid() ) {
 			return $.Deferred().reject().promise( { abort: function () {} } );
 		}
 
-		var api = this.isLocal ? new mw.Api() : new mw.ForeignApi( this.getAPIurl(), { anonymous: true } );
-		var xhr = api.get( $.extend( {}, this.getStaticParams(), this.getUserParams(), this.getContinueData( howMany ) ) );
+		const api = this.isLocal ? new mw.Api() : new mw.ForeignApi( this.getAPIurl(), { anonymous: true } );
+		const xhr = api.get( $.extend( {}, this.getStaticParams(), this.getUserParams(), this.getContinueData( howMany ) ) );
 		return xhr
 			.then( function ( data ) {
-				var results = [];
+				const results = [];
 
 				if ( data.error ) {
 					provider.toggleDepleted( true );
@@ -198,10 +199,10 @@
 				// If the source returned no results, it will not have a
 				// query property
 				if ( data.query ) {
-					var raw = data.query.pages;
+					const raw = data.query.pages;
 					if ( raw ) {
 						// Strip away the page ids
-						for ( var page in raw ) {
+						for ( const page in raw ) {
 							if ( !raw[ page ].imageinfo ) {
 								// The search may give us pages that belong to the File:
 								// namespace but have no files in them, either because
@@ -210,7 +211,7 @@
 								// imageinfo. Skip those files.
 								continue;
 							}
-							var newObj = raw[ page ].imageinfo[ 0 ];
+							const newObj = raw[ page ].imageinfo[ 0 ];
 							newObj.title = raw[ page ].title;
 							newObj.index = raw[ page ].index;
 							results.push( newObj );

@@ -6,7 +6,7 @@
  */
 ( function () {
 
-	var trimByteLength = require( 'mediawiki.String' ).trimByteLength;
+	const trimByteLength = require( 'mediawiki.String' ).trimByteLength;
 
 	/**
 	 * @classdesc Title input widget.
@@ -119,7 +119,7 @@
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		var retval = mw.widgets.TitleInputWidget.super.prototype.focus.apply( this, arguments );
+		const retval = mw.widgets.TitleInputWidget.super.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( !this.suggestions );
 
@@ -130,13 +130,13 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.TitleInputWidget.prototype.cleanUpValue = function ( value ) {
-		var widget = this;
+		const widget = this;
 
 		// Parent method
 		value = mw.widgets.TitleInputWidget.super.prototype.cleanUpValue.call( this, value );
 
 		return trimByteLength( this.value, value, this.maxLength, function ( val ) {
-			var title = widget.getMWTitle( val );
+			const title = widget.getMWTitle( val );
 			return title ? title.getMain() : val;
 		} ).newVal;
 	};

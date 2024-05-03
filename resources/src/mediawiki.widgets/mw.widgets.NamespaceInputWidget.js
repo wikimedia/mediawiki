@@ -51,15 +51,15 @@
 	 * @memberof mw.widgets.NamespaceInputWidget
 	 */
 	mw.widgets.NamespaceInputWidget.static.getNamespaceDropdownOptions = function ( config ) {
-		var exclude = config.exclude || [],
+		const exclude = config.exclude || [],
 			mainNamespace = mw.config.get( 'wgNamespaceIds' )[ '' ];
 
-		var namespaces = config.userLang ?
+		const namespaces = config.userLang ?
 			require( './data.json' ).formattedNamespaces :
 			mw.config.get( 'wgFormattedNamespaces' );
 
 		// eslint-disable-next-line no-jquery/no-map-util
-		var options = $.map( namespaces, function ( name, ns ) {
+		const options = $.map( namespaces, function ( name, ns ) {
 			if ( ns < mainNamespace || exclude.indexOf( Number( ns ) ) !== -1 ) {
 				return null; // skip
 			}

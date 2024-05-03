@@ -72,11 +72,11 @@
 
 	// Copied from ve.dm.MWImageNode
 	mw.widgets.MediaResultWidget.static.resizeToBoundingBox = function ( imageDimensions, boundingBox ) {
-		var newDimensions = OO.copy( imageDimensions ),
-			scale = Math.min(
-				boundingBox.height / imageDimensions.height,
-				boundingBox.width / imageDimensions.width
-			);
+		let newDimensions = OO.copy( imageDimensions );
+		const scale = Math.min(
+			boundingBox.height / imageDimensions.height,
+			boundingBox.width / imageDimensions.width
+		);
 
 		if ( scale < 1 ) {
 			// Scale down
@@ -116,7 +116,7 @@
 	mw.widgets.MediaResultWidget.prototype.calculateSizing = function ( originalDimensions, boundingBox ) {
 		boundingBox = boundingBox || {};
 
-		var imageDimensions;
+		let imageDimensions;
 		if ( this.isAudio ) {
 			// HACK: We are getting the wrong information from the
 			// API about audio files. Set their thumbnail to square 120px
@@ -144,7 +144,7 @@
 		this.$thumb.css( this.imageDimensions );
 
 		// Set the box size
-		var wrapperPadding = this.calculateWrapperPadding( this.imageDimensions );
+		const wrapperPadding = this.calculateWrapperPadding( this.imageDimensions );
 		this.$element.css( wrapperPadding );
 	};
 
@@ -174,12 +174,12 @@
 	 * @param {number} resizeFactor The resizing factor for the image
 	 */
 	mw.widgets.MediaResultWidget.prototype.resizeThumb = function ( resizeFactor ) {
-		var imageOriginalWidth = this.imageDimensions.width,
+		const imageOriginalWidth = this.imageDimensions.width,
 			wrapperWidth = this.$element.width();
 		// Set the new row height
 		this.setRowHeight( Math.ceil( this.getRowHeight() * resizeFactor ) );
 
-		var boundingBox = {
+		const boundingBox = {
 			width: Math.ceil( this.imageDimensions.width * resizeFactor ),
 			height: this.getRowHeight()
 		};
@@ -201,7 +201,7 @@
 	 * @return {Object} Css styling for the wrapper
 	 */
 	mw.widgets.MediaResultWidget.prototype.calculateWrapperPadding = function ( thumbDimensions ) {
-		var css = {
+		const css = {
 			height: this.rowHeight,
 			width: thumbDimensions.width,
 			lineHeight: this.getRowHeight() + 'px'
