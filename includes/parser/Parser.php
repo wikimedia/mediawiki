@@ -4874,8 +4874,21 @@ class Parser {
 	 * @return string Result HTML
 	 */
 	public static function replaceTableOfContentsMarker( $text, $toc ) {
-		return preg_replace( self::TOC_PLACEHOLDER_REGEX,
-			StringUtils::escapeRegexReplacement( $toc ), $text );
+		$replaced = false;
+		// remove the additional metas. while not strictly necessary, this also ensures idempotence if we run
+		// the pass more than once on a given content and TOC markers are not inserted by $toc. At the same time,
+		// if $toc inserts TOC markers (which, as of 2024-05, it shouldn't be able to), these are preserved by the
+		// fact that we run a single pass with a callback (rather than doing a first replacement with the $toc and
+		// a replacement of leftover markers as a second pass).
+		$callback = static function ( array $matches ) use( &$replaced, $toc ): string {
+			if ( !$replaced ) {
+				$replaced = true;
+				return StringUtils::escapeRegexReplacement( $toc );
+			}
+			return '';
+		};
+
+		return preg_replace_callback( self::TOC_PLACEHOLDER_REGEX, $callback, $text );
 	}
 
 	/**
