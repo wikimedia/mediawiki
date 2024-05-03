@@ -8,7 +8,7 @@ module.exports = {
 	/**
 	 * @param {Node[]} arr
 	 * @param {Node[]|Node} elements
-	 * @return {{Node[]}
+	 * @return {Node[]}
 	 */
 	addArrayElementsUnique: function ( arr, elements ) {
 		elements = Array.isArray( elements ) ? elements : [ elements ];
