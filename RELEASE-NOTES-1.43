@@ -142,6 +142,9 @@ because of Phabricator reports.
     * User::removeGroup()
   * Deprecated in 1.37:
     * User::isBlockedFromCreateAccount()
+* BotPassword::invalidateAllPasswordsForCentralId() and
+  BotPassword::removeAllPasswordsForCentralId(), deprecated in 1.37,
+  have been removed.
 * …
 
 === Deprecations in 1.43 ===
