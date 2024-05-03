@@ -150,6 +150,7 @@ because of Phabricator reports.
 * The $type parameter to Skin::getCopyright(), deprecated in 1.40, has been
   removed.
 * Skin::footerLink(), deprecated in 1.40, has been removed.
+* Skin::getAction(), deprecated in 1.39, has been removed.
 * …
 
 === Deprecations in 1.43 ===

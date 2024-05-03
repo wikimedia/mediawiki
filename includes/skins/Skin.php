@@ -2359,15 +2359,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @return string
-	 * @deprecated since 1.39
-	 */
-	final protected function getAction(): string {
-		wfDeprecated( __METHOD__, '1.39' );
-		return $this->getContext()->getActionName();
-	}
-
-	/**
 	 * Wrap the body text with language information and identifiable element
 	 *
 	 * @since 1.38 in Skin, previously was a method of SkinTemplate
