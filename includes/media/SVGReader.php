@@ -368,31 +368,38 @@ class SVGReader {
 	/**
 	 * Return a rounded pixel equivalent for a labeled CSS/SVG length.
 	 * https://www.w3.org/TR/SVG11/coords.html#Units
+	 * https://www.w3.org/TR/css-values-3/#lengths
 	 *
 	 * @param string $length CSS/SVG length.
 	 * @param float|int $viewportSize Optional scale for percentage units...
 	 * @return float Length in pixels
 	 */
 	public static function scaleSVGUnit( $length, $viewportSize = 512 ) {
+		// Per CSS values spec, assume 96dpi.
 		static $unitLength = [
 			'px' => 1.0,
-			'pt' => 1.25,
-			'pc' => 15.0,
-			'mm' => 3.543307,
-			'cm' => 35.43307,
-			'in' => 90.0,
-			'em' => 16.0, // fake it?
-			'ex' => 12.0, // fake it?
+			'pt' => 1.333333,
+			'pc' => 16.0,
+			'mm' => 3.7795275,
+			'q' => 0.944881,
+			'cm' => 37.795275,
+			'in' => 96.0,
+			'em' => 16.0, // Browser default font size if unspecified
+			'rem' => 16.0,
+			'ch' => 8.0, // Spec says 1em if impossible to determine
+			'ex' => 8.0, // Spec says 0.5em if impossible to determine
 			'' => 1.0, // "User units" pixels by default
 		];
+		// TODO: Does not support vw, vh, vmin, vmax.
 		$matches = [];
 		if ( preg_match(
-			'/^\s*([-+]?\d*(?:\.\d+|\d+)(?:[Ee][-+]?\d+)?)\s*(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/',
+			'/^\s*([-+]?\d*(?:\.\d+|\d+)(?:[Ee][-+]?\d+)?)\s*' .
+			'(rem|em|ex|px|pt|pc|cm|mm|in|ch|q|%)\s*$/i',
 			$length,
 			$matches
 		) ) {
 			$length = (float)$matches[1];
-			$unit = $matches[2];
+			$unit = strtolower( $matches[2] );
 			if ( $unit === '%' ) {
 				return $length * 0.01 * $viewportSize;
 			}
