@@ -147,6 +147,7 @@ because of Phabricator reports.
 * BotPassword::invalidateAllPasswordsForCentralId() and
   BotPassword::removeAllPasswordsForCentralId(), deprecated in 1.37,
   have been removed.
+* Title::getBrokenLinksFrom(), deprecated in 1.42, has been removed.
 * …
 
 === Deprecations in 1.43 ===
