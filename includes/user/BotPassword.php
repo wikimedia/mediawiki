@@ -315,33 +315,6 @@ class BotPassword {
 	}
 
 	/**
-	 * Invalidate all passwords for a user, by central ID
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param int $centralId
-	 * @return bool Whether any passwords were invalidated
-	 */
-	public static function invalidateAllPasswordsForCentralId( $centralId ) {
-		wfDeprecated( __METHOD__, '1.37' );
-
-		$enableBotPasswords = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::EnableBotPasswords );
-
-		if ( !$enableBotPasswords ) {
-			return false;
-		}
-
-		$dbw = self::getPrimaryDatabase();
-		$dbw->newUpdateQueryBuilder()
-			->update( 'bot_passwords' )
-			->set( [ 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ] )
-			->where( [ 'bp_user' => $centralId ] )
-			->caller( __METHOD__ )->execute();
-		return (bool)$dbw->affectedRows();
-	}
-
-	/**
 	 * Remove all passwords for a user, by name
 	 * @param string $username
 	 * @return bool Whether any passwords were removed
@@ -350,32 +323,6 @@ class BotPassword {
 		return MediaWikiServices::getInstance()
 			->getBotPasswordStore()
 			->removeUserPasswords( (string)$username );
-	}
-
-	/**
-	 * Remove all passwords for a user, by central ID
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param int $centralId
-	 * @return bool Whether any passwords were removed
-	 */
-	public static function removeAllPasswordsForCentralId( $centralId ) {
-		wfDeprecated( __METHOD__, '1.37' );
-
-		$enableBotPasswords = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::EnableBotPasswords );
-
-		if ( !$enableBotPasswords ) {
-			return false;
-		}
-
-		$dbw = self::getPrimaryDatabase();
-		$dbw->newDeleteQueryBuilder()
-			->deleteFrom( 'bot_passwords' )
-			->where( [ 'bp_user' => $centralId ] )
-			->caller( __METHOD__ )->execute();
-		return (bool)$dbw->affectedRows();
 	}
 
 	/**
