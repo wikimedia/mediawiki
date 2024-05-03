@@ -672,7 +672,6 @@ mw.html = {
 	 * @classdesc Wrapper object for raw HTML. Can be used with {@link mw.html.element}.
 	 * @class mw.html.Raw
 	 * @param {string} value
-	 * @property {string} value
 	 * @example
 	 * const raw = new mw.html.Raw( 'Text' );
 	 * mw.html.element( 'div', { class: 'html' }, raw );
