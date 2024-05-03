@@ -3978,4 +3978,22 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 	}
+
+	public function testSetRequestContextUserFromSessionUser() {
+		$user = $this->getTestUser()->getUser();
+		$context = RequestContext::getMain();
+		$context->setUser( $this->getTestUser()->getUser() );
+		$context->getRequest()->getSession()->setUser( $user );
+		$this->assertSame( $context->getRequest()->getSession()->getUser()->getName(), $context->getUser()->getName() );
+
+		// Update the session with a new user, but leave the context user as the old user
+		$newSessionUser = $this->getTestUser( 'sysop' )->getUser();
+		$context->getRequest()->getSession()->setUser( $newSessionUser );
+		$this->assertNotSame( $newSessionUser->getName(), $context->getUser()->getName() );
+
+		$authManager = $this->getServiceContainer()->getAuthManager();
+		$authManager->setRequestContextUserFromSessionUser();
+		$this->assertSame( $context->getRequest()->getSession()->getUser()->getName(), $newSessionUser->getName() );
+		$this->assertSame( $context->getRequest()->getSession()->getUser()->getName(), $context->getUser()->getName() );
+	}
 }
